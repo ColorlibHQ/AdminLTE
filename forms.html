@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AdminLTE - Forms</title>
+        <meta charset="UTF-8">
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <!-- font Awesome -->
+        <link href="css/font-awesome.min.css" rel="stylesheet" />
+        <!-- Theme style -->
+        <link href="theme/theme.css" rel="stylesheet" />
+        <!-- wysihtml5 stylesheet -->
+        <link href="css/bootstrap3-wysihtml5.min.css" rel="stylesheet"/>
+        <!-- Bootstrap Switch stylesheet -->
+        <link href="css/bootstrap-switch.css" rel="stylesheet"/>
+        <!-- Date Range Picker stylesheet -->
+        <link href="css/daterangepicker-bs3.css" rel="stylesheet"/>
+        <!-- Date Time Picker Stylesheet -->
+        <link href="css/bootstrap-timepicker.min.css" rel="stylesheet"/>
+        <!-- Date Time Picker Stylesheet -->
+        <link href="css/bootstrap-colorpicker.min.css" rel="stylesheet"/>
+        <!-- Google font Signika -->
+        <link href='http://fonts.googleapis.com/css?family=Signika+Negative' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <nav class="navbar navbar-theme bg-yellow navbar-static-top" role="navigation">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><span class="fa fa-shield"></span> AdminLTE</a>
+                <a href="#" class='lte-menu-sm visible-xs navbar-brand'>
+                    <span class="fa fa-list"></span>
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gears"></i></a>
+                        <ul class="dropdown-menu navbar-selector">
+                            <li role="presentation" class="dropdown-header font-primary noClick">Navbar Color</li>
+                            <li class="font-primary" data-color="bg-primary"><a href="#"><i class="fa fa-gear"></i> Primary</a></li>
+                            <li class="font-blue" data-color="bg-blue"><a href="#"><i class="fa fa-gear"></i> Blue <small class="text-muted">(default)</small></a></li>
+                            <li class="font-light-blue" data-color="bg-light-blue"><a href="#"><i class="fa fa-gear"></i> Light Blue</a></li>
+                            <li class="font-green" data-color="bg-green"><a href="#"><i class="fa fa-gear"></i> Green</a></li>
+                            <li class="font-yellow" data-color="bg-yellow"><a href="#"><i class="fa fa-gear"></i> Yellow</a></li>
+                            <li class="font-purple" data-color="bg-purple"><a href="#"><i class="fa fa-gear"></i> Purple</a></li>
+                            <li class="font-red" data-color="bg-red"><a href="#"><i class="fa fa-gear"></i> Red</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa fa-bullhorn"></i></a></li>
+                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Friends</a></li>
+                            <li><a href="#">Settings</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Privacy</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" name="search" class="form-control" placeholder="..."/>
+                    </div>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+        <div class="lte-main-content">
+            <!-- side bar -->
+            <div class="lte-sidebar col-md-2 col-sm-3 hidden-xs">
+                <ul class="lte-sidebar-menu">
+                    <li><a href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                    <li class="lte-tree">
+                        <a href="#"><i class="fa fa-bar-chart-o"></i> Charts<i class="pull-right fa fa-angle-right"></i></a>
+                        <ul class="lte-tree-menu">
+                            <li><a href="charts/flot.html"><i class="fa fa-bar-chart-o"></i> Flot</a></li>
+                            <li><a href="charts/jqplot.html"><i class="fa fa-bar-chart-o"></i> JQplot</a></li>
+                            <li><a href="charts/xcharts.html"><i class="fa fa-bar-chart-o"></i> xCharts</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="ui.html"><i class="fa fa-tint"></i> User Interface </a></li>
+                    <!--<li><a href="widgets.html"><i class="fa fa-gear"></i> Widgets</a></li>-->
+                    <li class="lte-tree">
+                        <a href="#"><i class="fa fa-pagelines"></i> Example Pages <i class="pull-right fa fa-angle-right"></i></a>
+                        <ul class="lte-tree-menu">
+                            <li><a href="examples/invoice.html"><i class="fa fa-money"></i> Invoice</a></li>
+                            <li><a href="examples/login.html"><i class="fa fa-sign-in"></i> Login</a></li>
+                            <li><a href="examples/register.html"><i class="fa fa-lock"></i> Register</a></li>
+                            <li><a href="examples/blank_page.html"><i class="fa fa-paperclip"></i> Blank Page</a></li>
+                            <li><a href="examples/404.html"><i class="fa fa-unlink"></i> 404 Error Page</a></li>
+                            <li><a href="examples/500.html"><i class="fa fa-unlink"></i> 500 Error Page</a></li>
+                        </ul>
+                    </li>
+                    <li class="active"><a href="forms.html"><i class="fa fa-edit"></i> Forms</a></li>
+                    <li><a href="typography.html"><i class="fa fa-text-width"></i> Typography</a></li>
+                    <li><a href="calendar.html"><i class="fa fa-calendar"></i> Calendar</a></li>
+
+                    <li class="lte-tree">
+                        <a href="#"><i class="fa fa-pagelines"></i> Multilevel Dropdown<i class="pull-right fa fa-angle-right"></i></a>
+                        <ul class="lte-tree-menu">
+                            <li class="lte-tree">
+                                <a href="#"><i class="fa fa-pagelines"></i> Level 1<i class="pull-right fa fa-angle-right"></i></a>
+                                <ul class="lte-tree-menu">
+                                    <li class="lte-tree">
+                                        <a href="#"><i class="fa fa-pagelines"></i> Level 2<i class="pull-right fa fa-angle-right"></i></a>
+                                        <ul class="lte-tree-menu">
+                                            <li><a href="#"><i class="fa fa-pagelines"></i> Level 3</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- /.side-bar-->            
+
+            <div class="lte-main-container col-md-10 col-sm-9">
+                <!-- main content -->
+            <div class="page-header">
+                <i class="fa fa-edit"></i> Forms
+            </div>
+            <!-- /.page-header -->
+                <div class="lte-dashboard">
+                    <div class="row">
+                        <div class='col-xs-12'>
+                            <div class='box box-yellow'>
+                                <div class='box-header'>
+                                    <h3 class="box-title"><i class="fa fa-edit"></i> WYSISWYG</h3>
+                                    <div class="box-tools">
+                                        <i class="fa fa-gear"></i>
+                                        <i class="fa fa-angle-down lte-hider"></i>
+                                        <i class="off fa fa-times"></i>
+                                    </div>
+                                </div>
+                                <div class='box-body'>
+                                    <textarea class="textarea" placeholder="Enter text ..." style="width: 100%; height: 300px; font-size: 14px; line-height: 18px; border: 1px solid #ddd;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.row -->
+                    <div class="row">
+                        <div class='col-xs-12'>
+                            <div class='box box-yellow'>
+                                <div class='box-header'>
+                                    <h3 class="box-title"><i class="fa fa-edit"></i> Elements</h3>
+                                    <div class="box-tools">
+                                        <i class="fa fa-gear"></i>
+                                        <i class="fa fa-angle-down lte-hider"></i>
+                                        <i class="off fa fa-times"></i>
+                                    </div>
+                                </div>
+                                <div class='box-body'>
+                                    <form>
+                                        <div class="form-group">
+                                            <label class="control-label">Date Range Picker Button</label>
+                                            <div class="input-group">
+                                                <button id="reportrange" class='btn btn-default'>
+                                                    <i class="fa fa-calendar"></i>
+                                                    <span>Date Range Picker</span> <b class="caret"></b>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- date picker input -->
+                                        <div class="form-group">
+                                            <label class="control-label">Date Range Picker Input</label>
+                                            <div class="row">
+                                                <div class="input-group col-sm-4">
+                                                    <span class="input-group-addon control"><i class="fa fa-calendar"></i></span>
+                                                    <input type="text" name="date" class="form-control" id="reservation" placeholder="Pick a date"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- time picker input -->
+                                        <div class="form-group">
+                                            <label class="control-label">Time Picker Input</label>
+                                            <div class="row">
+                                                <div class="input-group col-sm-4 bootstrap-timepicker">
+                                                    <span class="input-group-addon control"><i class="fa fa-clock-o"></i></span>
+                                                    <input type="text" name="time" class="form-control" id="timepicker1"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- color picker input -->
+                                        <div class="form-group">
+                                            <label class="control-label">Color Picker Input</label>
+                                            <div class="row">
+                                                <div class="input-group col-sm-4 bootstrap-timepicker">
+                                                    <span class="input-group-addon control"><i class="fa fa-tint"></i></span>
+                                                    <input type="text" name="color" class="form-control" id="colorPicker"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.row-->
+                    <div class="row">
+                        <div class='col-xs-12'>
+                            <div class='box box-yellow'>
+                                <div class='box-header'>
+                                    <h3 class="box-title"><i class="fa fa-edit"></i> Switch</h3>
+                                    <div class="box-tools">
+                                        <i class="fa fa-gear"></i>
+                                        <i class="fa fa-angle-down lte-hider"></i>
+                                        <i class="off fa fa-times"></i>
+                                    </div>
+                                </div>
+                                <div class='box-body table-responsive'>
+                                    <h4>Sizes:</h4>
+                                    <table class='table'>
+                                        <tr>
+                                            <td>
+                                                <div class="make-switch switch-large">
+                                                    <input type="checkbox" checked>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="make-switch">
+                                                    <input type="checkbox" checked>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="make-switch switch-small">
+                                                    <input type="checkbox" checked>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="make-switch switch-mini">
+                                                    <input type="checkbox" checked>
+                                                </div>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                <div id="dimension-switch" class="make-switch">
+                                                    <input type="checkbox" checked>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <h4>Colors:</h4>
+                                    <table class='table'>
+                                        <tr>
+                                            <td>
+                                                <div class="make-switch" data-on="primary" data-off="info">
+                                                    <input type="checkbox" checked>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="make-switch" data-on="info" data-off="success">
+                                                    <input type="checkbox" checked>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="make-switch" data-on="success" data-off="warning">
+                                                    <input type="checkbox" checked>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="make-switch" data-on="warning" data-off="danger">
+                                                    <input type="checkbox" checked>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="make-switch" data-on="danger" data-off="default">
+                                                    <input type="checkbox" checked>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="make-switch" data-on="default" data-off="primary">
+                                                    <input type="checkbox" checked>
+                                                </div>
+                                            </td>                                        
+                                    </table>
+                                    <h4>Disabled:</h4>
+                                    <table class='table'>
+                                        <tr>
+                                            <td>
+                                                <div class="make-switch">
+                                                    <input type="checkbox" checked disabled>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.row-->
+                </div><!-- /.lte-dashboard -->
+            </div>
+        </div>
+        <!-- ./.lte-main-content -->
+        <footer>
+            Copyright &copy; 2013 - <a>Preview</a> - <a>Purchase</a> - Built with <a target="blank" href="http://getbootstrap.com">Bootstrap 3</a>
+        </footer>
+
+
+        <!-- JQuery 1.10.2 -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- LTE Tree -->
+        <script src="js/lteTree.js" type="text/javascript"></script>
+        <!-- LTE App -->
+        <script src="js/lteApp.js" type="text/javascript"></script>
+        <!-- bootstrap WYSIWYG -->
+        <script src="js/wysiwyg/bootstrap3-wysihtml5.all.min.js"></script>
+        <!-- bootstrap Switch -->
+        <script src="js/bootstrap-switch.js" type="text/javascript"></script>
+        <!-- bootstrap Moment -->
+        <script src="js/moment.js" type="text/javascript"></script>
+        <!-- bootstrap Date Range Picker -->
+        <script src="js/daterangepicker.js" type="text/javascript"></script>
+        <!-- bootstrap time picker -->
+        <script src="js/bootstrap-timepicker.js" type="text/javascript"></script>
+        <!-- bootstrap color picker -->
+        <script src="js/bootstrap-colorpicker.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(function() {
+                //wysiwyg
+                $('.textarea').wysihtml5();
+
+                //date picker
+                $('#reportrange').daterangepicker(
+                        {
+                            ranges: {
+                                'Today': [moment(), moment()],
+                                'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                                'Last 7 Days': [moment().subtract('days', 6), moment()],
+                                'Last 30 Days': [moment().subtract('days', 29), moment()],
+                                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                                'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+                            },
+                            startDate: moment().subtract('days', 29),
+                            endDate: moment()
+                        },
+                function(start, end) {
+                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                }
+                );
+
+                $('#reservation').daterangepicker();
+
+                //Time Picker
+                $('#timepicker1').timepicker();
+
+                //Color Picker
+                $('#colorPicker').colorpicker();
+            });
+            current_nav_color = "bg-yellow";
+        </script>
+    </body>
+</html>

@@ -1,0 +1,243 @@
+Title: Options Tutorial
+
+This document will help you understand how jqPlot's options
+relate to the API documentation and the jqPlot object
+itself.  For a listing of options available to jqPlot,
+see <jqPlot Options> in the jqPlotOptions.txt file.
+
+The key to effectively using jqPlot is understanding jqPlot's
+options.  The online documentation is API documentation.  While
+it explains what attributes and methods various objects possess,
+it doesn't explain how to use or set those attributes through 
+options.  This tutorial will help explain that.
+
+Let's assume you are creating a plot 
+like this:
+
+> chart = $.jqplot('chart', dataSeries, optionsObj);
+
+First, note that you shouldn't try to directly set attributes on the
+"chart" object (like chart.grid.shadow) after your call to $.jqplot().  
+At best this won't do anything **(see below). You should pass options in via
+the "optionsObj".
+
+The optionsObj really represents the plot object (jqPlot object, not
+to be confused with the $.jqplot function which will create a jqPlot
+object).  Attributes you specify on that object will be merged with
+attributes in the jqPlot object.  The axes, legend, series, etc. are
+attributes on the jqPlot object.  The jqPlot/optionsObj object looks
+something like (only some attributes shown):
+
+> jqPlot-|
+>        |-seriesColors
+>        |-textColor
+>        |-fontFamily
+>        |-fontSize
+>        |-stackSeries
+>        |-series(Array)-|
+>        |               |-Series1-|
+>        |               |         |-lineWidth
+>        |               |         |-linePattern
+>        |               |         |-shadow
+>        |               |         |-showLine
+>        |               |         |-showMarker
+>        |               |         |-color
+>        |               |-Series2...
+>        |               |-...
+>        |               |-SeriesN
+>        |
+>        |-grid(Object)-|
+>        |              |-drawGridLines
+>        |              |-background
+>        |              |-borderColor
+>        |              |-borderWidth
+>        |              |-shadow
+>        |
+>        |-title(Object)-|
+>        |               |-text
+>        |               |-show
+>        |               |-fontFamily
+>        |               |-fontSize
+>        |               |-textAlign
+>        |               |-textColor
+>        |
+>        |-axes(Object)-|
+>        |              |-xais-|
+>        |              |      |-min
+>        |              |      |-max
+>        |              |      |-numberTicks
+>        |              |      |-showTicks
+>        |              |      |-showTickMarks
+>        |              |      |-pad
+>        |
+>        | ... and so on
+ 
+The optionsObj should follow the same construction as if it were a
+jqPlot object (with some exceptions/shortcuts I'll mention in a
+moment).  So generally, when you see something like
+"this.drawGridLines" in the grid properties in the docs, just replace
+"this" with "grid" in your options object.  So it becomes
+optionsObj.grid.drawGridLines.  Do likewise with the other objects in
+the plot, replacing "this", with the respective attribute on the plot
+like "legend" or "title".  Series and Axes are handled a little
+differently, because series is an array and axes has 4 distinct children
+"xaxis", "yaxis", "x2axis" and "y2axis".
+
+So, to remove the shadow from the grid and change the grid border size
+you would do:
+
+> optionObj = {grid:{shadow:false, borderWidth:9.0}};
+
+To do the same as above but also make all the text in the plot red you
+would do:
+
+> optionObj = {
+>    textColor:"#ff0000",
+>    grid:{shadow:false, borderWidth:9.0}
+> }
+
+Here is a more deeply nested example. Say you want to specify a min
+and max on your y axis and use a specific color for your second
+series.  That would look like:
+
+> optionsObj = {
+>    axes:{yaxis:{min:5, max:230}},
+>    series:[{},{color:"#33ff66"}]
+> }
+
+Note that series options are an array in order of the series data you
+sent in to your plot.  To get to the second series, you have to put an
+object (even if empty) in place of the first series.
+
+There is a handy shortcut to assign options to all axes or all series
+at one go.  Use axesDefaults and seriesDefaults.  So, if you wanted
+both x and y axes to start at 0 and you wanted all series to not show
+markers, you could do:
+
+> optionsObj = {axesDefaults:{min:0}, seriesDefaults:{showMarker:false}}
+
+Another shortcut is for the plot title.  Normally, you would assign
+options to the title as an object.  If you specify a title option as a
+string, it will assign that to the title.text property automatically.
+So these two are equivalent:
+
+> optionsObj = {title:{text:"My Plot"}}
+
+and
+
+> optionsObj = {title:"My Plot"}
+
+Where things need more explanation is with renderers, plugins and
+their options.  Briefly, what's the difference between a renderer and
+a plugin.
+
+A renderer is an object that is used to draw something and gets
+attached to an existing object in the plot in order to draw it.  A
+plugin does more than just provide drawing functionality to an
+object; it can calculate a trend line, change the
+cursor, provide event driven functionality, etc.  I consider renderers
+plugins, but plugins don't have to be renderers.
+
+So, how do you use renderers and plugins, and specify their options?
+Some common renderers are for bar charts and category axes.  If you
+want to render your series as a bar chart with each set of bars
+showing up in a category on the x axis, you do:
+
+> optionsObj = {
+>    seriesDefaults:{renderer:$.jqplot.BarRenderer},
+>    axes:{xaxis:{renderer:$.jqplot.CategoryAxisRenderer}}
+> }
+
+This replaces the default renderer used for all series in the plot
+with a bar renderer and the x axis default renderer (but not any other
+axis) with a category renderer.
+
+Now, how would I assign options to those renderers?  The renderer's
+attributes may not be present in the pre-existing jqPlot object, they
+may be specific to the renderer.  This is done through the
+"rendererOptions" option on the appropriate object. So, if I wanted my
+bars to be 25 pixels wide, I would do:
+
+
+> optionsObj = {
+>    seriesDefaults:{
+>        renderer:$.jqplot.BarRenderer},
+>        rendererOptions:{
+>            barWidth:25
+>        },
+>    axes:{xaxis:{renderer:$.jqplot.CategoryAxisRenderer}}
+> }
+
+Again, this is using the "seriesDefaults" option, which will apply
+options to all series in the plot.  You could do the same on any
+particular series in the plot through the "series" options array.
+
+Plugins are free to add their own options.  For example, the
+highlighter plugin has its own set of options that are unique to it.
+As a result, it responds to options placed in the "highlighter"
+attribute of your options object.  So, if I wanted to change the
+highlighter tooltip to fade in and out slowly and be positioned
+directly above the point I'm highlighting:
+
+> optionsObj = {
+>     highlighter:{tooltipFadeSpeed:'slow', tooltipLocation:'n'}
+> }
+
+Other plugins, like dragable and trendlines, add their options in with
+the series.   (Yes, that's the correct name for the dragable plugin; it
+doesn't use the correct spelling of "draggable".)
+This is because both of those plugins can have different
+options for different series in the plot.  So, if you wanted to specify the
+color for the dragable plugin and constrain it to drag only on the x axis as well
+as specify the color of the trend line you could do:
+
+> series:[{
+>     dragable: {
+>         color: '#ff3366',
+>         constrainTo: 'x'
+>     },
+>     trendline: {
+>         color: '#cccccc'
+>     }
+> }]
+
+This would apply those options to the first series only.  If you had 2 series
+and wanted to turn off dragging and trend lines on the second series, you could do:
+
+> series:[{
+>     dragable: {
+>         color: '#ff3366',
+>         constrainTo: 'x'
+>     },
+>     trendline: {
+>         color: '#cccccc'
+>     }
+> }, {
+>    isDragable: false,
+>    trendline:{
+>        show: false
+>    }
+> }]
+
+Note, series draggability is turned off with the "isDragable" option directly on 
+the series itself, not with a suboption of "dragable".  This may be improved 
+in the future.
+
+I hope this is helpful. 
+A few key points to remember:
+
+- When you see "this" in the api docs, you generally replace it with
+the name of the object (in lowercase) you are looking at in your
+options object.
+- seriesDefaults and axesDefaults are convenient shortcuts.
+- to assign options to a renderer, generally use the "rendererOptions"
+- plugins may add their own options attribute, like "highlighter" or
+"cursor".
+
+** Note:  you can set attributes after the plot is created (like
+plot.grid.shadow = false), but you'll have to issue the appropriate
+calls to possibly reinitialize and redraw the plot.  jqPlot can
+definitely handle this to change the plot after creation (this is how
+the dragable plugin updates the plot data and the trend line plugin
+recomputes itself when data changes).  This hasn't been documented
+yet, however.

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>Cumulative Density Function Chart</title>
+
+    <link class="include" rel="stylesheet" type="text/css" href="../jquery.jqplot.min.css" />
+    <link rel="stylesheet" type="text/css" href="examples.min.css" />
+    <link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/shCoreDefault.min.css" />
+    <link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/shThemejqPlot.min.css" />
+  
+    <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="../excanvas.js"></script><![endif]-->
+    <script class="include" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
+   
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <a class="nav" href="../../../index.php"><span>&gt;</span>Home</a>
+            <a class="nav"  href="../../../docs/"><span>&gt;</span>Docs</a>
+            <a class="nav"  href="../../download/"><span>&gt;</span>Download</a>
+            <a class="nav" href="../../../info.php"><span>&gt;</span>Info</a>
+            <a class="nav"  href="../../../donate.php"><span>&gt;</span>Donate</a>
+        </div>
+    </div>
+    <div class="colmask leftmenu">
+      <div class="colleft">
+        <div class="col1" id="example-content">
+
+  
+<!-- Example scripts go here -->
+
+
+  <link class="include" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/themes/smoothness/jquery-ui.css" rel="Stylesheet" /> 
+
+   <style type="text/css">
+
+    .chart-container {
+        border: 1px solid darkblue;
+        padding: 30px;
+        width: 500px;
+        height: 400px;
+        
+    }
+
+    #chart1 {
+        width: 96%;
+        height: 96%;
+    }
+
+    .jqplot-datestamp {
+      font-size: 0.8em;
+      color: #777;
+/*      margin-top: 1em;
+      text-align: right;*/
+      font-style: italic;
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+    }
+
+    td.controls li {
+        list-style-type: none;
+    }
+
+    td.controls ul {
+        margin-top: 0.5em;
+        padding-left: 0.2em;
+    }
+
+    pre.code {
+        margin-top: 45px;
+        clear: both;
+    }
+
+  </style>
+
+    <table class="app">
+        <td class="controls">
+
+            <div>
+                Data Series:
+                <ul>
+                    <li><input name="dataSeries" value="national" type="radio" checked />National</li>
+                    <li><input name="dataSeries" value="urban" type="radio" />Urban</li>
+                    <li><input name="dataSeries" value="rural" type="radio" />Rural</li>
+                </ul>
+            </div>
+
+            <div>
+                Background Color:
+                <ul>
+                    <li><input name="backgroundColor" value="white" type="radio" checked />Default</li>
+                    <li><input name="backgroundColor" value="#efefef" type="radio" />Gray</li>
+                </ul>
+            </div>
+
+            <div>
+                Line Width:
+                <ul>
+                    <li><input name="lineWidth" value="2.5" type="radio" checked />Thin</li>
+                    <li><input name="lineWidth" value="5" type="radio" />Thick</li>
+                </ul>
+            </div>
+
+            <div>
+                Grids:
+                <ul>
+                    <li><input name="gridsVertical" value="vertical" type="checkbox" checked />Vertical</li>
+                    <li><input name="gridsHorizontal" value="horizontal" type="checkbox" checked />Horizontal</li>
+                </ul>
+            </div>
+
+            <div>
+                Set lines at:
+                <ul>
+                    <li><input name="userLine1" value="8250" type="text" size="8" /> and </li>
+                    <li><input name="userLine2" value="60000" type="text" size="8" /></li>
+                </ul>
+            </div>
+        </td>
+
+        <td class="chart">
+            <div class="chart-container">    
+                <div id="chart1"></div>
+                <div class="jqplot-datestamp"></div>
+            </div>
+        </td>
+
+    </table>
+
+    <pre class="code brush:js"></pre>
+  
+  <script class="code" type="text/javascript">
+$(document).ready(function(){
+    var dataSets = {
+        national: [[1521.3938, 0.034259], [1626.3757, 0.036908], [1738.6018, 0.039957], [1858.5719, 0.043623], [1986.8205, 0.048008], [2123.9187, 0.053278], [2270.4772, 0.059665], [2427.1488, 0.067405], [2594.6313, 0.076951], [2773.6707, 0.088909], [2965.0643, 0.103706], [3169.6651, 0.121406], [3388.384, 0.142376], [3622.1955, 0.167456], [3872.1408, 0.198392], [4139.3332, 0.237371], [4424.963, 0.287096], [4730.3023, 0.350664], [5056.7112, 0.43322], [5405.6431, 0.546538], [5778.6531, 0.703419], [6177.4022, 0.921534], [6603.6665, 1.225405], [7059.3446, 1.658248], [7546.4664, 2.286919], [8067.2013, 3.168531], [8623.869, 4.338121], [9218.9488, 5.828025], [9855.0905, 7.674282], [10535.1293, 9.856185], [11262.0934, 12.427952], [12039.2208, 15.374906], [12869.973, 18.559853], [13758.0502, 21.938501], [14707.4081, 25.480211], [15722.2754, 29.195872], [16807.1724, 33.040813], [17966.9296, 36.929108], [19206.7162, 40.883239], [20532.0529, 44.934876], [21948.8429, 48.979949], [23463.3991, 52.874709], [25082.4581, 56.569122], [26813.238, 60.143349], [28663.448, 63.632698], [30641.3597, 67.019887], [32755.7239, 70.272329], [35015.9867, 73.31569], [37432.2159, 76.137996], [40015.1736, 78.734309], [42776.4074, 81.144203], [45728.1335, 83.364771], [48883.5393, 85.40072], [52256.6796, 87.276365], [55862.5786, 88.994984], [59717.3573, 90.547773], [63838.07, 91.930153], [68243.1267, 93.143588], [72952.1481, 94.19365], [77986.109, 95.093093], [83367.4313, 95.863261], [89120.1733, 96.518119], [95269.7861, 97.07861], [101843.7444, 97.555507], [108871.3294, 97.958887], [116383.8431, 98.29631], [124414.8718, 98.57645], [132999.9458, 98.805892], [142177.421, 98.994988], [151988.1749, 99.15183], [162475.9062, 99.279882], [173687.5023, 99.384116], [185672.5653, 99.470272], [198484.6408, 99.541871], [212180.7957, 99.601871], [226822.0345, 99.653556], [242473.814, 99.698334], [259205.3802, 99.737113], [277091.4846, 99.770733], [296211.7947, 99.800151], [316651.475, 99.826487], [338501.5668, 99.85018], [361859.7555, 99.871291], [386829.3815, 99.889939], [413522.0015, 99.906286], [442056.5084, 99.92045], [472559.9991, 99.932702], [505168.8456, 99.9433], [540027.3147, 99.952485], [577291.1437, 99.960528], [617126.311, 99.96755], [659710.2484, 99.9736], [705233.3359, 99.978742], [753896.9752, 99.983126], [805918.5808, 99.986929], [861529.8645, 99.990275], [920978.5269, 99.993221], [984529.3611, 99.995794], [1052466.484, 99.998031], [1125090.461, 100]],
+
+        urban: [[2918.1368, 0.022476], [3099.059, 0.026364], [3291.1983, 0.031079], [3495.2501, 0.03683], [3711.9529, 0.043812], [3942.0911, 0.052123], [4186.4977, 0.061977], [4446.0574, 0.07392], [4721.7095, 0.08836], [5014.4519, 0.105627], [5325.3441, 0.126649], [5655.5113, 0.152991], [6006.1487, 0.186685], [6378.5253, 0.230466], [6773.9889, 0.288337], [7193.971, 0.364009], [7639.9917, 0.462362], [8113.6654, 0.591815], [8616.7064, 0.763717], [9150.9356, 0.990265], [9718.2865, 1.291577], [10320.8128, 1.689361], [10960.6953, 2.197829], [11640.25, 2.833156], [12361.9366, 3.607935], [13128.3672, 4.531058], [13942.3158, 5.612064], [14806.7287, 6.829389], [15724.7345, 8.150496], [16699.656, 9.587093], [17735.0219, 11.139531], [18834.5796, 12.843232], [20002.3091, 14.744], [21242.4369, 16.882944], [22559.4426, 19.274088], [23958.1299, 21.898373], [25443.5105, 24.70402], [27020.9832, 27.725078], [28696.2577, 31.02485], [30475.3976, 34.577391], [32364.8747, 38.361881], [34371.4652, 42.220399], [36502.4624, 46.204947], [38765.5793, 50.279452], [41169.0072, 54.284933], [43721.489, 58.020934], [46432.1785, 61.527083], [49310.9281, 65.059633], [52368.1573, 68.631977], [55614.9317, 72.134933], [59063.062, 75.35901], [62724.914, 78.289798], [66613.7972, 80.980675], [70743.7873, 83.426691], [75129.8328, 85.63051], [79787.8886, 87.600439], [84734.6595, 89.324337], [89988.1253, 90.82494], [95567.3009, 92.132382], [101492.3799, 93.28344], [107784.9158, 94.291515], [114467.4749, 95.165628], [121564.3462, 95.917569], [129101.2165, 96.566309], [137105.3654, 97.111687], [145605.9093, 97.557321], [154633.333, 97.923776], [164220.4481, 98.224115], [174401.955, 98.472073], [185214.7052, 98.683427], [196698.0321, 98.864412], [208893.1174, 99.018636], [221844.2859, 99.150765], [235598.4142, 99.266909], [250205.285, 99.369967], [265718.0332, 99.460335], [282192.2909, 99.538693], [299687.9363, 99.60658], [318268.2947, 99.665149], [338000.617, 99.716006], [358956.683, 99.76009], [381211.6455, 99.798168], [404846.394, 99.830962], [429946.4736, 99.858805], [456602.7336, 99.881656], [484912.1405, 99.900176], [514976.218, 99.91564], [546904.2389, 99.928971], [580811.7657, 99.940546], [616821.5259, 99.950572], [655064.5111, 99.959091], [695677.8688, 99.966315], [738809.2149, 99.97239], [784614.6621, 99.97761], [833260.0023, 99.982252], [884922.1907, 99.986425], [939786.4993, 99.990223], [998052.3412, 99.993742], [1059930.608, 99.996997], [1125645.267, 100]],
+
+        rural: [[1522.3755, 0.044856], [1621.4335, 0.048153], [1726.937, 0.051764], [1839.3056, 0.055907], [1958.9857, 0.060801], [2086.4531, 0.066762], [2222.2145, 0.073899], [2366.8099, 0.082612], [2520.8136, 0.093168], [2684.8381, 0.106164], [2859.5353, 0.122508], [3045.6, 0.142886], [3243.7713, 0.16758], [3454.8371, 0.19669], [3679.6367, 0.23118], [3919.0639, 0.273098], [4174.0698, 0.325019], [4445.6684, 0.390807], [4734.9398, 0.474177], [5043.0332, 0.579565], [5371.1735, 0.719638], [5720.6654, 0.911325], [6092.8986, 1.175054], [6489.3516, 1.537895], [6911.6011, 2.041596], [7361.3256, 2.758826], [7840.3135, 3.776691], [8350.4675, 5.133703], [8893.8162, 6.852621], [9472.5195, 8.948744], [10088.8789, 11.417648], [10745.3427, 14.293846], [11444.5212, 17.634387], [12189.194, 21.360828], [12982.3225, 25.29956], [13827.0569, 29.428878], [14726.7567, 33.707138], [15684.9997, 38.129755], [16705.5921, 42.671778], [17792.5925, 47.229102], [18950.322, 51.800588], [20183.3846, 56.383771], [21496.6782, 60.886558], [22895.4161, 65.12792], [24385.1837, 69.030354], [25971.888, 72.617033], [27661.8365, 75.986887], [29461.7179, 79.112304], [31378.744, 81.975561], [33420.5079, 84.537139], [35595.0905, 86.782817], [37911.2052, 88.71901], [40378.0258, 90.413815], [43005.3584, 91.908817], [45803.6014, 93.228911], [48783.9674, 94.381653], [51958.2609, 95.359352], [55339.1005, 96.170082], [58939.867, 96.837248], [62774.9884, 97.378991], [66859.655, 97.8273], [71210.033, 98.200135], [75843.5542, 98.506646], [80778.5711, 98.752685], [86034.7015, 98.949784], [91632.7482, 99.10766], [97595.1423, 99.232528], [103945.4998, 99.334335], [110709.0646, 99.42121], [117912.6058, 99.497035], [125584.9876, 99.563629], [133756.5988, 99.621726], [142459.781, 99.672192], [151729.4076, 99.715746], [161602.1937, 99.752893], [172117.386, 99.784601], [183316.6015, 99.811139], [195244.7151, 99.833203], [207948.9717, 99.852181], [221479.8735, 99.868723], [235890.9734, 99.883153], [251240.0159, 99.89576], [267587.7958, 99.906951], [284999.0141, 99.917064], [303543.4372, 99.926265], [323294.5157, 99.9346], [344330.7648, 99.942191], [366735.4418, 99.949086], [390598.3214, 99.955426], [416013.9199, 99.961279], [443083.2701, 99.966677], [471913.507, 99.971673], [502620.1526, 99.976302], [535324.8297, 99.980575], [570156.9769, 99.984496], [607256.1655, 99.988063], [646769.3381, 99.991314], [688853.5686, 99.994366], [733675.418, 99.997264], [781414.486, 100]]
+    };
+     
+    // Initial values for the user lines.
+    var userLine1Val = 8250;
+    var userLine2Val = 60000; 
+
+
+    
+    plot1 = $.jqplot("chart1", [dataSets.national], {
+        title: "Cumulative Density Function",
+        cursor: {
+            show: false
+        },
+        highlighter: {
+            show: true,
+            showMarker: false,
+            useAxesFormatters: false,
+            formatString: '%d, %.1f'
+        },
+        axesDefaults: {
+            labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+        },
+        seriesDefaults: {
+            showMarker: false
+        },
+        axes: {
+            xaxis: {
+                label: "Per Capita Expenditure (local currency)",
+                renderer: $.jqplot.LogAxisRenderer,
+                pad:0,
+                ticks: [700, 7000, 70000, 700000, {value:1000000, showLabel:false, showMark:false, showGridline:false}],
+                tickOptions: {
+                    formatString: "%d"
+                }
+            },
+            yaxis: {
+                label: "Population Share (%)",
+                forceTickAt0: true,
+                pad: 0
+            }
+        },
+        grid: {
+            drawBorder: false,
+            shadow: false,
+            // background: 'rgba(0,0,0,0)'  works.
+            background: "white"
+        },
+        canvasOverlay: {
+            show: true,
+            objects: [
+                {verticalLine: {
+                    name: "line1",
+                    x: userLine1Val,
+                    color: "#d4c35D",
+                    yOffset: 0,
+                    shadow: false,
+                    showTooltip: true,
+                    tooltipFormatString: "PCE=%'d",
+                    showTooltipPrecision: 0.5
+                }},
+                {verticalLine: {
+                    name: "line2",
+                    x: userLine2Val,
+                    color: "#d4c35D",
+                    yOffset: 0,
+                    shadow: false,
+                    showTooltip: true,
+                    tooltipFormatString: "PCE=%'d",
+                    showTooltipPrecision: 0.5
+                }}
+            ]
+        }
+    });
+
+    // add a date at the bottom.
+
+    var d = new $.jsDate();
+    $("div.jqplot-datestamp").html("Generated on "+d.strftime("%v"));
+
+    // initialize form elements
+    // set these before attaching event handlers.
+
+    $("input[type=radio][name=dataSeries]").attr("checked", false);
+    $("input[type=radio][name=dataSeries][value=national]").attr("checked", true);
+
+    $("input[type=radio][name=backgroundColor]").attr("checked", false);
+    $("input[type=radio][name=backgroundColor][value=white]").attr("checked", true);
+
+    $("input[type=radio][name=lineWidth]").attr("checked", false);
+    $('input[type=radio][name=lineWidth][value="2.5"]').attr("checked", true);
+
+    $("input[type=text][name=userLine1]").val(userLine1Val);
+    $("input[type=text][name=userLine2]").val(userLine2Val);
+
+    $("input[type=checkbox][name=gridsVertical]").attr("checked", true);
+    $("input[type=checkbox][name=gridsHorizontal]").attr("checked", true);
+
+    $("input[type=radio][name=backgroundColor]").change(function(){ 
+        plot1.grid.background = $(this).val();
+        plot1.replot();
+    });
+
+    $("input[type=radio][name=dataSeries]").change(function(){ 
+        var val = $(this).val();
+        plot1.series[0].data = dataSets[val];
+
+        switch (val) {
+            case "national":
+                plot1.series[0].renderer.shapeRenderer.strokeStyle = "#4bb2c5";
+                break;
+            case "urban":
+                plot1.series[0].renderer.shapeRenderer.strokeStyle = "#c54b62";
+                break;
+            case "rural":
+                plot1.series[0].renderer.shapeRenderer.strokeStyle = "#b2c54b";
+                break;
+            default:
+                plot1.series[0].renderer.shapeRenderer.strokeStyle = "#4bb2c5";
+                break;
+        }
+        // hack to make sure plot auto computes a new format string if needed.
+        plot1.axes.yaxis.tickOptions.formatString = ''
+        plot1.replot({resetAxes:["yaxis"]});
+    });
+
+    $("input[type=checkbox][name=gridsVertical]").change(function(){
+        plot1.axes.xaxis.tickOptions.showGridline = this.checked;
+        plot1.replot();
+    });
+
+    $("input[type=checkbox][name=gridsHorizontal]").change(function(){
+        plot1.axes.yaxis.tickOptions.showGridline = this.checked;
+        plot1.replot();
+    });
+
+    $("input[type=text][name=userLine1]").keyup(function(){
+        var val = parseFloat($(this).val());
+        plot1.plugins.canvasOverlay.get("line1").options.x = val;
+        plot1.replot();
+    });
+
+    $("input[type=text][name=userLine2]").keyup(function(){
+        var val = parseFloat($(this).val());
+        plot1.plugins.canvasOverlay.get("line2").options.x = val;
+        plot1.replot();
+    });
+
+    $("input[type=radio][name=lineWidth]").change(function(){
+        var val = parseFloat($(this).val()), shadowOffset; 
+        plot1.series[0].renderer.shapeRenderer.lineWidth = val;
+        plot1.series[0].renderer.shadowRenderer.lineWidth = val;
+        // for thick lines, scale shadow offset.
+        if (val > 2.5) {
+            shadowOffset = 1.25 * (1 + (Math.atan((val/2.5))/0.785398163 - 1)*0.6);
+            // var shadow_offset = this.shadowOffset;
+        }
+        // for skinny lines, don't make such a big shadow.
+        else {
+            shadowOffset = 1.25*Math.atan((val/2.5))/0.785398163;
+        }
+        plot1.series[0].renderer.shadowRenderer.offset = shadowOffset;
+        plot1.plugins.canvasOverlay.get("line1").options.lineWidth = val;
+        plot1.plugins.canvasOverlay.get("line2").options.lineWidth = val;
+        plot1.replot();
+    });
+    
+    
+    $("div.chart-container").resizable({delay:20});    
+
+    $("div.chart-container").bind("resize", function(event, ui) {
+        plot1.replot();
+    });
+});
+
+</script>
+
+
+<!-- End example scripts -->
+
+<!-- Don't touch this! -->
+
+
+    <script class="include" type="text/javascript" src="../jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shCore.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shBrushJScript.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shBrushXml.min.js"></script>
+<!-- End Don't touch this! -->
+
+<!-- Additional plugins go here -->
+  <script class="include" type="text/javascript" src="../plugins/jqplot.logAxisRenderer.min.js"></script>
+  <script class="include" type="text/javascript" src="../plugins/jqplot.cursor.min.js"></script>
+  <script class="include" type="text/javascript" src="../plugins/jqplot.canvasTextRenderer.min.js"></script>
+  <script class="include" type="text/javascript" src="../plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
+  <script class="include" type="text/javascript" src="../plugins/jqplot.highlighter.min.js"></script>
+  <script class="include" type="text/javascript" src="../plugins/jqplot.canvasOverlay.min.js"></script>
+  <script class="include" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+
+<!-- End additional plugins -->
+
+        </div>
+         <div class="col2">
+
+           <div class="example-link"><a class="example-link" href="data-renderers.html">AJAX and JSON Data Loading via Data Renderers</a></div>
+           <div class="example-link"><a class="example-link" href="barLineAnimated.html">Animated Charts</a></div>
+           <div class="example-link"><a class="example-link" href="dashboardWidget.html">Animated Dashboard Sample - Filled Line with Log Axis</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_area.html">Area Chart</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_area2.html">Area Chart 2</a></div>
+           <div class="example-link"><a class="example-link" href="axisLabelTests.html">Axis Labels</a></div>
+           <div class="example-link"><a class="example-link" href="axisLabelsRotatedText.html">Axis Labels and Rotated Text</a></div>
+           <div class="example-link"><a class="example-link" href="barTest.html">Bar Charts</a></div>
+           <div class="example-link"><a class="example-link" href="multipleBarColors.html">Bar Colors Example</a></div>
+           <div class="example-link"><a class="example-link" href="bezierCurve.html">Bezier Curve Plots</a></div>
+           <div class="example-link"><a class="example-link" href="blockPlot.html">Block Plots</a></div>
+           <div class="example-link"><a class="example-link" href="bubbleChart.html">Bubble Charts</a></div>
+           <div class="example-link"><a class="example-link" href="bubble-plots.html">Bubble Plots</a></div>
+           <div class="example-link"><a class="example-link" href="candlestick.html">Candlestick and Open Hi Low Close Charts</a></div>
+           <div class="example-link"><a class="example-link" href="theming.html">Chart Theming</a></div>
+           <div class="example-link"><a class="example-link" href="fillBetweenLines.html">Charts with Fill Between Lines</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_cdf.html">Cumulative Density Function Chart</a></div>
+           <div class="example-link"><a class="example-link" href="dashedLines.html">Dashed Lines with Smoothing</a></div>
+           <div class="example-link"><a class="example-link" href="cursor-highlighter.html">Data Point Highlighting, Tooltips and Cursor Tracking</a></div>
+           <div class="example-link"><a class="example-link" href="point-labels.html">Data Point labels</a></div>
+           <div class="example-link"><a class="example-link" href="date-axes.html">Date Axes</a></div>
+           <div class="example-link"><a class="example-link" href="dateAxisRenderer.html">Date Axes 2</a></div>
+           <div class="example-link"><a class="example-link" href="rotatedTickLabelsZoom.html">Date Axes, Rotated Labels and Zooming</a></div>
+           <div class="example-link"><a class="example-link" href="canvas-overlay.html">Draw Lines on Plots - Canvas Overlay</a></div>
+           <div class="example-link"><a class="example-link" href="draw-rectangles.html">Draw Rectangles on Plots</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_engel.html">Engel Curves</a></div>
+           <div class="example-link"><a class="example-link" href="bandedLine.html">Error Bands and Confidence Intervals</a></div>
+           <div class="example-link"><a class="example-link" href="area.html">Filled (Area) Charts</a></div>
+           <div class="example-link"><a class="example-link" href="axisScalingForceTickAt.html">Force Plot to Have Tick at 0 or 100</a></div>
+           <div class="example-link"><a class="example-link" href="hiddenPlotsInTabs.html">Hidden Plots</a></div>
+           <div class="example-link"><a class="example-link" href="customHighlighterCursorTrendline.html">Highlighting, Dragging Points, Cursor and Trend Lines</a></div>
+           <div class="example-link"><a class="example-link" href="line-charts.html">Line Charts and Options</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_lorenz.html">Lorenz Curves</a></div>
+           <div class="example-link"><a class="example-link" href="mekkoCharts.html">Mekko Charts</a></div>
+           <div class="example-link"><a class="example-link" href="meterGauge.html">Meter Gauge</a></div>
+           <div class="example-link"><a class="example-link" href="candlestick-charts.html">Open Hi Low Close and Candlestick Charts</a></div>
+           <div class="example-link"><a class="example-link" href="pieTest.html">Pie Charts and Options</a></div>
+           <div class="example-link"><a class="example-link" href="pieTest4.html">Pie Charts and Options 2</a></div>
+           <div class="example-link"><a class="example-link" href="pie-donut-charts.html">Pie and Donut Charts</a></div>
+           <div class="example-link"><a class="example-link" href="selectorSyntax.html">Plot Creation with jQuery Selectors</a></div>
+           <div class="example-link"><a class="example-link" href="zooming.html">Plot Zooming and Cursor Control</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pdf.html">Probability Density Function Chart</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid_by_age.html">Pyramid Chart By Age</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid.html">Pyramid Charts</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid2.html">Pyramid Charts 2</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_quintiles.html">Quintile Pyramid Charts</a></div>
+           <div class="example-link"><a class="example-link" href="resizablePlot.html">Resizable Plots</a></div>
+           <div class="example-link"><a class="example-link" href="rotated-tick-labels.html">Rotated Labels and Font Styling</a></div>
+           <div class="example-link"><a class="example-link" href="smoothedLine.html">Smoothed Lines</a></div>
+           <div class="example-link"><a class="example-link" href="bar-charts.html">Vertical and Horizontal Bar Charts</a></div>
+           <div class="example-link"><a class="example-link" href="waterfall.html">Waterfall Charts</a></div>
+           <div class="example-link"><a class="example-link" href="waterfall2.html">Waterfall Charts 2</a></div>
+           <div class="example-link"><a class="example-link" href="zoomOptions.html">Zoom Options</a></div>
+           <div class="example-link"><a class="example-link" href="zoomProxy.html">Zoom Proxy - Control one plot from another</a></div>
+           <div class="example-link"><a class="example-link" href="zoom1.html">Zooming</a></div>
+           <div class="example-link"><a class="example-link" href="dateAxisLogAxisZooming.html">Zooming with Date and Log Axes</a></div>
+
+         </div>
+               </div>
+    </div>
+    <script type="text/javascript" src="example.min.js"></script>
+
+</body>
+
+
+</html>

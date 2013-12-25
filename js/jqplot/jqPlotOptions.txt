@@ -1,0 +1,391 @@
+Title: jqPlot Options
+
+**This document is out of date.  While the options described here should still be 
+relavent and valid, it has not been updated for many new options.  Sorry for
+this inconvenience.**
+
+This document describes the options available to jqPlot.  These are set with the 
+third argument to the $.jqplot('target', data, options) function. Options are 
+described using the following convention:
+
+{{{ 
+property: default, // notes 
+}}}
+
+This document is not complete!  Not all options are shown!  
+Further information about the options can be found in the online API 
+documentation.  For details on how the options relate to the API documentation,
+see the <Options Tutorial> in the optionsTutorial.txt file.
+
+{{{
+options = 
+{
+    seriesColors: [ "#4bb2c5", "#c5b47f", "#EAA228", "#579575", "#839557", "#958c12", 
+        "#953579", "#4b5de4", "#d8b83f", "#ff5800", "#0085cc"],  // colors that will 
+         // be assigned to the series.  If there are more series than colors, colors
+         // will wrap around and start at the beginning again.
+
+    // when fillToZero is enabled, this sets the colors to use for portions of the line below zero.
+    negativeSeriesColors: [ "#498991", "#C08840", "#9F9274", "#546D61", "#646C4A", "#6F6621",
+                            "#6E3F5F", "#4F64B0", "#A89050", "#C45923", "#187399", "#945381", 
+                            "#959E5C", "#C7AF7B", "#478396", "#907294"], 
+
+    sortData : true,    // if true, will sort the data passed in by the user.
+    stackSeries: false, // if true, will create a stack plot.  
+                        // Currently supported by line and bar graphs.
+
+    title: '',      // Title for the plot.  Can also be specified as an object like:
+
+    title: {
+        text: '',   // title for the plot,
+        show: true,
+    },
+
+    animate : false,        // if true, the series will be animated on initial drawing.
+                            // This support is renderer-dependent; the renderer must support animation.
+    animateReplot : false,  // if true, the series will be animated after every replot() call.
+                            // Use with caution!  Replots can happen very frequently under
+                            // certain circumstances (e.g. resizing, dragging points) and
+                            // animation in these situations can cause problems.
+    captureRightClick : false,   // if true, right-click events are intercepted and a jqplotRightClick
+                                 // event will be fired.  This will also block the context menu.
+    dataRenderer : undefined, // A callable which can be used to preprocess data passed into the plot.
+                              // Will be called with 3 arguments: the plot data, a reference to the plot,
+                              // and the value of dataRendererOptions.
+
+    dataRendererOptions : undefined,    // Options that will be passed to the dataRenderer,
+                                        // if that option is supplied.  Can be of any type.
+
+    gridData : [],  // array of grid coordinates corresponding to the data points; 
+                    // normally jqPlot will calculate this for you.
+
+    axesDefaults: {
+        show: false,    // whether or not to render the axis.  Determined automatically.
+        min: null,      // minimum numerical value of the axis.  Determined automatically.
+        max: null,      // maximum numerical value of the axis.  Determined automatically.
+        pad: 1.2,       // a factor multiplied by the data range on the axis to give the 
+                        // axis range so that data points don't fall on the edges of the axis.
+        ticks: [],      // a 1D [val1, val2, ...], or 2D [[val, label], [val, label], ...] 
+                        // array of ticks to use.  Computed automatically.
+        numberTicks: undefined,
+        renderer: $.jqplot.LinearAxisRenderer,  // renderer to use to draw the axis,
+        rendererOptions: {},    // options to pass to the renderer.  LinearAxisRenderer 
+                                // has no options,
+        tickOptions: {
+            mark: 'outside',    // Where to put the tick mark on the axis
+                                // 'outside', 'inside' or 'cross'
+            showMark: true,     // whether or not to show the mark on the axis
+            showGridline: true, // whether to draw a gridline (across the whole grid) at this tick
+            isMinorTick: false, // whether this is a minor tick
+            markSize: 4,        // length the tick will extend beyond the grid in pixels.  For
+                                // 'cross', length will be added above and below the grid boundary
+            show: true,         // whether to show the tick (mark and label)
+            showLabel: true,    // whether to show the text label at the tick
+            prefix: '',         // String to prepend to the tick label.
+                                // Prefix is prepended to the formatted tick label
+            suffix: '',         // String to append to the tick label.
+                                // Suffix is appended to the formatted tick label
+            formatString: '',   // format string to use with the axis tick formatter
+            fontFamily: '',     // css spec for the font-size css attribute
+            fontSize: '',       // css spec for the font-size css attribute
+            textColor: '',      // css spec for the color attribute
+            escapeHTML: false   // true to escape HTML entities in the label
+        }
+        showTicks: true,        // whether or not to show the tick labels,
+        showTickMarks: true,    // whether or not to show the tick marks
+    },
+    
+    axes: {
+        xaxis: {
+            // same options as axesDefaults
+        },
+        yaxis: {
+            // same options as axesDefaults
+        },
+        x2axis: {
+            // same options as axesDefaults
+        },
+        y2axis: {
+            // same options as axesDefaults
+        }
+    },
+    
+    seriesDefaults: {
+        show: true,     // whether to render the series.
+        xaxis: 'xaxis', // either 'xaxis' or 'x2axis'.
+        yaxis: 'yaxis', // either 'yaxis' or 'y2axis'.
+        label: '',      // label to use in the legend for this line.
+        color: '',      // CSS color spec to use for the line.  Determined automatically.
+        lineWidth: 2.5, // Width of the line in pixels.
+        shadow: true,   // show shadow or not.
+        shadowAngle: 45,    // angle (degrees) of the shadow, clockwise from x axis.
+        shadowOffset: 1.25, // offset from the line of the shadow.
+        shadowDepth: 3,     // Number of strokes to make when drawing shadow.  Each 
+                            // stroke offset by shadowOffset from the last.
+        shadowAlpha: 0.1,   // Opacity of the shadow.
+        showLine: true,     // whether to render the line segments or not.
+        showMarker: true,   // render the data point markers or not.
+        fill: false,        // fill under the line,
+        fillAndStroke: false,       // stroke a line at top of fill area.
+        fillColor: undefined,       // custom fill color for filled lines (default is line color).
+        fillAlpha: undefined,       // custom alpha to apply to fillColor.
+        renderer: $.jqplot.LineRenderer],    // renderer used to draw the series.
+        rendererOptions: {}, // options passed to the renderer.  LineRenderer has no options.
+        markerRenderer: $.jqplot.MarkerRenderer,    // renderer to use to draw the data 
+                                                    // point markers.
+        markerOptions: { 
+            show: true,             // whether to show data point markers.
+            style: 'filledCircle',  // circle, diamond, square, filledCircle.
+                                    // filledDiamond or filledSquare.
+            lineWidth: 2,       // width of the stroke drawing the marker.
+            size: 9,            // size (diameter, edge length, etc.) of the marker.
+            color: '#666666'    // color of marker, set to color of line by default.
+            shadow: true,       // whether to draw shadow on marker or not.
+            shadowAngle: 45,    // angle of the shadow.  Clockwise from x axis.
+            shadowOffset: 1,    // offset from the line of the shadow,
+            shadowDepth: 3,     // Number of strokes to make when drawing shadow.  Each stroke 
+                                // offset by shadowOffset from the last.
+            shadowAlpha: 0.07   // Opacity of the shadow
+        }
+    },
+
+    series:[
+        {Each series has same options as seriesDefaults},
+        {You can override each series individually here}
+    ],
+    
+    legend: {
+        show: false,
+        location: 'ne',     // compass direction, nw, n, ne, e, se, s, sw, w.
+        xoffset: 12,        // pixel offset of the legend box from the x (or x2) axis.
+        yoffset: 12,        // pixel offset of the legend box from the y (or y2) axis.
+    },
+    
+    grid: {
+        drawGridLines: true,        // whether to draw lines across the grid or not.
+        gridLineColor: '#cccccc'    // Color of the grid lines.
+        background: '#fffdf6',      // CSS color spec for background color of grid.
+        borderColor: '#999999',     // CSS color spec for border around grid.
+        borderWidth: 2.0,           // pixel width of border around grid.
+        shadow: true,               // draw a shadow for grid.
+        shadowAngle: 45,            // angle of the shadow.  Clockwise from x axis.
+        shadowOffset: 1.5,          // offset from the line of the shadow.
+        shadowWidth: 3,             // width of the stroke for the shadow.
+        shadowDepth: 3,             // Number of strokes to make when drawing shadow.  
+                                    // Each stroke offset by shadowOffset from the last.
+        shadowAlpha: 0.07           // Opacity of the shadow
+        renderer: $.jqplot.CanvasGridRenderer,  // renderer to use to draw the grid.
+        rendererOptions: {}         // options to pass to the renderer.  Note, the default
+                                    // CanvasGridRenderer takes no additional options.
+    },                              
+    
+    // Size of the grid containing the plot.
+    gridDimensions: {
+        height: null,
+        width: null
+    },
+
+    // Padding to apply around the grid containing the plot.
+    gridPadding: {
+        top: null,
+        bottom: null,
+        left: null,
+        right: null
+    },
+
+    noDataIndicator : object, // For setting up a mock plot with a data loading indicator if
+                              // no data is specified.  Must have .show=true, .axes, and a
+                              // .indicator string that will be displayed.
+
+    // Plugin and renderer options.
+    
+    // BarRenderer. 
+    // With BarRenderer, you can specify additional options in the rendererOptions object
+    // on the series or on the seriesDefaults object.  Note, some options are re-specified 
+    // (like shadowDepth) to override lineRenderer defaults from which BarRenderer inherits.
+    
+    seriesDefaults: {
+        rendererOptions: {
+            barPadding: 8,      // number of pixels between adjacent bars in the same 
+                                // group (same category or bin).
+            barMargin: 10,      // number of pixels between adjacent groups of bars.
+            barDirection: 'vertical', // vertical or horizontal.
+            barWidth: null,     // width of the bars.  null to calculate automatically.
+            shadowOffset: 2,    // offset from the bar edge to stroke the shadow.
+            shadowDepth: 5,     // number of strokes to make for the shadow.
+            shadowAlpha: 0.8,   // transparency of the shadow.
+        }
+    },
+    
+    // Cursor
+    // Options are passed to the cursor plugin through the "cursor" object at the top
+    // level of the options object.
+    
+    cursor: {
+        style: 'crosshair',     // A CSS spec for the cursor type to change the 
+                                // cursor to when over plot.
+        show: true, 
+        showTooltip: true,      // show a tooltip showing cursor position.
+        followMouse: false,     // whether tooltip should follow the mouse or be stationary.
+        tooltipLocation: 'se',  // location of the tooltip either relative to the mouse 
+                                // (followMouse=true) or relative to the plot.  One of
+                                // the compass directions, n, ne, e, se, etc.
+        tooltipOffset: 6,       // pixel offset of the tooltip from the mouse or the axes.
+        showTooltipGridPosition: false,     // show the grid pixel coordinates of the mouse
+                                            // in the tooltip.
+        showTooltipUnitPosition: true,      // show the coordinates in data units of the mouse 
+                                            // in the tooltip.
+        tooltipFormatString: '%.4P',    // sprintf style format string for tooltip values.
+        useAxesFormatters: true,        // whether to use the same formatter and formatStrings
+                                        // as used by the axes, or to use the formatString
+                                        // specified on the cursor with sprintf.
+        tooltipAxesGroups: [],  // show only specified axes groups in tooltip.  Would specify like:
+                                // [['xaxis', 'yaxis'], ['xaxis', 'y2axis']].  By default, all axes
+                                // combinations with for the series in the plot are shown.
+        
+    },
+    
+    // Dragable
+    // Dragable options are specified with the "dragable" object at the top level
+    // of the options object.
+    // (Note that 'dragable' is the name and spelling used by the plugin, even though
+    // the correct word is 'draggable'.)
+    
+    dragable: {
+        color: undefined,       // custom color to use for the dragged point and dragged line
+                                // section. default will use a transparent variant of the line color.
+        constrainTo: 'none',    // Constrain dragging motion to an axis: 'x', 'y', or 'none'.
+    },
+    
+    // Highlighter
+    // Highlighter options are specified with the "highlighter" object at the top level
+    // of the options object.
+    
+    highlighter: {
+        lineWidthAdjust: 2.5,   // pixels to add to the size line stroking the data point marker
+                                // when showing highlight.  Only affects non filled data point markers.
+        sizeAdjust: 5,          // pixels to add to the size of filled markers when drawing highlight.
+        showTooltip: true,      // show a tooltip with data point values.
+        tooltipLocation: 'nw',  // location of tooltip: n, ne, e, se, s, sw, w, nw.
+        fadeTooltip: true,      // use fade effect to show/hide tooltip.
+        tooltipFadeSpeed: "fast"// slow, def, fast, or a number of milliseconds.
+        tooltipOffset: 2,       // pixel offset of tooltip from the highlight.
+        tooltipAxes: 'both',    // which axis values to display in the tooltip, x, y or both.
+        tooltipSeparator: ', '  // separator between values in the tooltip.
+        useAxesFormatters: true // use the same format string and formatters as used in the axes to
+                                // display values in the tooltip.
+        tooltipFormatString: '%.5P' // sprintf format string for the tooltip.  only used if
+                                    // useAxesFormatters is false.  Will use sprintf formatter with
+                                    // this string, not the axes formatters.
+    },
+    
+    // LogAxisRenderer
+    // LogAxisRenderer add 2 options to the axes object.  These options are specified directly on
+    // the axes or axesDefaults object.
+    
+    axesDefaults: {
+        base: 10,                   // the logarithmic base.
+        tickDistribution: 'even',   // 'even' or 'power'.  'even' will produce ticks with even visual
+                                    // (pixel) spacing on the axis.  'power' will produce ticks spaced by 
+                                    // increasing powers of the log base.
+    },
+    
+    // PieRenderer
+    // PieRenderer accepts options from the rendererOptions object of the series or seriesDefaults object.
+    
+    seriesDefaults: {
+        rendererOptions: {
+            diameter: undefined, // diameter of pie, auto computed by default.
+            padding: 20,        // padding between pie and neighboring legend or plot margin.
+            sliceMargin: 0,     // gap between slices.
+            fill: true,         // render solid (filled) slices.
+            shadowOffset: 2,    // offset of the shadow from the chart.
+            shadowDepth: 5,     // Number of strokes to make when drawing shadow.  Each stroke is
+                                // offset by shadowOffset from the last.
+            shadowAlpha: 0.07   // Opacity of the shadow
+        }
+    },
+    
+    // Trendline
+    // Trendline takes options on the trendline object of the series or seriesDefaults object.
+    
+    seriesDefaults: {
+        trendline: {
+            show: true,         // show the trend line
+            color: '#666666',   // CSS color spec for the trend line.
+            label: '',          // label for the trend line.
+            type: 'linear',     // 'linear', 'exponential' or 'exp'
+            shadow: true,       // show the trend line shadow.
+            lineWidth: 1.5,     // width of the trend line.
+            shadowAngle: 45,    // angle of the shadow.  Clockwise from x axis.
+            shadowOffset: 1.5,  // offset from the line of the shadow.
+            shadowDepth: 3,     // Number of strokes to make when drawing shadow.  
+                                // Each stroke offset by shadowOffset from the last.
+            shadowAlpha: 0.07   // Opacity of the shadow    
+        }
+    }
+}
+}}}
+
+
+Options to be described:
+     
+    lineRenderer: 
+    .markerOptions?
+    bands
+    fill
+    fillAndStroke
+    fillStyle
+    highlightColor
+    highlightMouseDown
+    highlightMouseOver
+    shadow
+    shadowOffset
+    showLine
+
+    shadowRenderer:
+    alpha
+    closePath
+    depth
+    fill
+    fillRect
+    fillStyle
+    isarc
+    lineCap
+    lineJoin
+    linePattern
+    lineWidth
+    offset
+    strokeStyle
+
+    shapeRenderer:
+    clearRect
+    closePath
+    fill
+    fillRect
+    fillStyle
+    isarc
+    lineCap
+    lineJoin
+    linePattern
+    lineWidth
+    strokeRect
+    strokeStyle
+
+    jqplot.effects:
+    options.duration ; options.complete
+
+    LinearAxisRenderer:
+    .min, .max (?)
+    numberTicks
+    tickInternal
+    forceTickAt0 : false,   // If true, a tick will always be drawn at 0.
+
+    markerRenderer:
+    color
+    fillStyle
+    strokeStyle
+
+    canvasGridRenderer:
+    lineWidth
+

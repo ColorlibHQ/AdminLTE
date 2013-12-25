@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>Candlestick and Open Hi Low Close Charts</title>
+
+    <link class="include" rel="stylesheet" type="text/css" href="../jquery.jqplot.min.css" />
+    <link rel="stylesheet" type="text/css" href="examples.min.css" />
+    <link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/shCoreDefault.min.css" />
+    <link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/shThemejqPlot.min.css" />
+  
+    <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="../excanvas.js"></script><![endif]-->
+    <script class="include" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
+   
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <a class="nav" href="../../../index.php"><span>&gt;</span>Home</a>
+            <a class="nav"  href="../../../docs/"><span>&gt;</span>Docs</a>
+            <a class="nav"  href="../../download/"><span>&gt;</span>Download</a>
+            <a class="nav" href="../../../info.php"><span>&gt;</span>Info</a>
+            <a class="nav"  href="../../../donate.php"><span>&gt;</span>Donate</a>
+        </div>
+    </div>
+    <div class="colmask leftmenu">
+      <div class="colleft">
+        <div class="col1" id="example-content">
+
+  
+<!-- Example scripts go here -->
+
+<div id="chart1" class="code" style="margin:20px;height:240px; width:640px;"></div>
+<pre class="code brush:js"></pre>
+<div id="chart2" class="code" style="margin:20px;height:240px; width:640px;"></div>
+<pre class="code brush:js"></pre>
+<div id="chart2b" class="code" style="margin:20px;height:240px; width:640px;"></div>
+<pre class="code brush:js"></pre>
+<div id="chart3" class="code" style="margin:20px;height:240px; width:640px;"></div>
+<pre class="code brush:js"></pre>
+<div id="chart4" class="code" style="margin:20px;height:320px; width:500px;"></div>
+<pre class="code brush:js"></pre>
+<p>The examples on this page use the folowing code:</p>
+<pre class="common brush:js"></pre>
+
+<script class="common" type="text/javascript">
+    
+    ohlc = [['07/06/2009', 138.7, 139.68, 135.18, 135.4],
+    ['06/29/2009', 143.46, 144.66, 139.79, 140.02],
+    ['06/22/2009', 140.67, 143.56, 132.88, 142.44],
+    ['06/15/2009', 136.01, 139.5, 134.53, 139.48],
+    ['06/08/2009', 143.82, 144.56, 136.04, 136.97],
+    ['06/01/2009', 136.47, 146.4, 136, 144.67],
+    ['05/26/2009', 124.76, 135.9, 124.55, 135.81],
+    ['05/18/2009', 123.73, 129.31, 121.57, 122.5],
+    ['05/11/2009', 127.37, 130.96, 119.38, 122.42],
+    ['05/04/2009', 128.24, 133.5, 126.26, 129.19],
+    ['04/27/2009', 122.9, 127.95, 122.66, 127.24],
+    ['04/20/2009', 121.73, 127.2, 118.6, 123.9],
+    ['04/13/2009', 120.01, 124.25, 115.76, 123.42],
+    ['04/06/2009', 114.94, 120, 113.28, 119.57],
+    ['03/30/2009', 104.51, 116.13, 102.61, 115.99],
+    ['03/23/2009', 102.71, 109.98, 101.75, 106.85],
+    ['03/16/2009', 96.53, 103.48, 94.18, 101.59],
+    ['03/09/2009', 84.18, 97.2, 82.57, 95.93],
+    ['03/02/2009', 88.12, 92.77, 82.33, 85.3],
+    ['02/23/2009', 91.65, 92.92, 86.51, 89.31],
+    ['02/17/2009', 96.87, 97.04, 89, 91.2],
+    ['02/09/2009', 100, 103, 95.77, 99.16],
+    ['02/02/2009', 89.1, 100, 88.9, 99.72],
+    ['01/26/2009', 88.86, 95, 88.3, 90.13],
+    ['01/20/2009', 81.93, 90, 78.2, 88.36],
+    ['01/12/2009', 90.46, 90.99, 80.05, 82.33],
+    ['01/05/2009', 93.17, 97.17, 90.04, 90.58],
+    ['12/29/2008', 86.52, 91.04, 84.72, 90.75],
+    ['12/22/2008', 90.02, 90.03, 84.55, 85.81],
+    ['12/15/2008', 95.99, 96.48, 88.02, 90],
+    ['12/08/2008', 97.28, 103.6, 92.53, 98.27],
+    ['12/01/2008', 91.3, 96.23, 86.5, 94],
+    ['11/24/2008', 85.21, 95.25, 84.84, 92.67],
+    ['11/17/2008', 88.48, 91.58, 79.14, 82.58],    
+    ['11/10/2008', 100.17, 100.4, 86.02, 90.24],
+    ['11/03/2008', 105.93, 111.79, 95.72, 98.24],
+    ['10/27/2008', 95.07, 112.19, 91.86, 107.59],
+    ['10/20/2008', 99.78, 101.25, 90.11, 96.38],
+    ['10/13/2008', 104.55, 116.4, 85.89, 97.4],
+    ['10/06/2008', 91.96, 101.5, 85, 96.8],
+    ['09/29/2008', 119.62, 119.68, 94.65, 97.07],
+    ['09/22/2008', 139.94, 140.25, 123, 128.24],
+    ['09/15/2008', 142.03, 147.69, 120.68, 140.91],
+    ['09/08/2008', 164.57, 164.89, 146, 148.94]
+    ];
+    
+    ohlc_b = [['07/06/2009', 138.7, 139.68, 135.18, 135.4, 'j'],
+    ['06/29/2009', 143.46, 144.66, 139.79, 140.02, 'q'],
+    ['06/22/2009', 140.67, 143.56, 132.88, 142.44, 'p'],
+    ['06/15/2009', 136.01, 139.5, 134.53, 139.48, 'l'],
+    ['06/08/2009', 143.82, 144.56, 136.04, 136.97, 'o'],
+    ['06/01/2009', 136.47, 146.4, 136, 144.67, 't'],
+    ['05/26/2009', 124.76, 135.9, 124.55, 135.81, '_'],
+    ['05/18/2009', 123.73, 129.31, 121.57, 122.5, 'c'],
+    ['05/11/2009', 127.37, 130.96, 119.38, 122.42, 'h'],
+    ['05/04/2009', 128.24, 133.5, 126.26, 129.19, 'a'],
+    ['04/27/2009', 122.9, 127.95, 122.66, 127.24, 'r'],
+    ['04/20/2009', 121.73, 127.2, 118.6, 123.9, 't'],
+    ['04/13/2009', 120.01, 124.25, 115.76, 123.42, 's']
+    ];     
+    
+    hlc = [['07/06/2009', 139.68, 135.18, 135.4],
+    ['06/29/2009', 144.66, 139.79, 140.02],
+    ['06/22/2009', 143.56, 132.88, 142.44],
+    ['06/15/2009', 139.5, 134.53, 139.48],
+    ['06/08/2009', 144.56, 136.04, 136.97],
+    ['06/01/2009', 146.4, 136, 144.67],
+    ['05/26/2009', 135.9, 124.55, 135.81],
+    ['05/18/2009', 129.31, 121.57, 122.5],
+    ['05/11/2009', 130.96, 119.38, 122.42],
+    ['05/04/2009', 133.5, 126.26, 129.19],
+    ['04/27/2009', 127.95, 122.66, 127.24],
+    ['04/20/2009', 127.2, 118.6, 123.9],
+    ['04/13/2009', 124.25, 115.76, 123.42],
+    ['04/06/2009', 120, 113.28, 119.57],
+    ['03/30/2009', 116.13, 102.61, 115.99],
+    ['03/23/2009',  109.98, 101.75, 106.85],
+    ['03/16/2009', 103.48, 94.18, 101.59],
+    ['03/09/2009', 97.2, 82.57, 95.93],
+    ['03/02/2009', 92.77, 82.33, 85.3],
+    ['02/23/2009', 92.92, 86.51, 89.31],
+    ['02/17/2009', 97.04, 89, 91.2],
+    ['02/09/2009', 103, 95.77, 99.16],
+    ['02/02/2009', 100, 88.9, 99.72],
+    ['01/26/2009', 95, 88.3, 90.13],
+    ['01/20/2009', 90, 78.2, 88.36],
+    ['01/12/2009', 90.99, 80.05, 82.33],
+    ['01/05/2009', 97.17, 90.04, 90.58],
+    ['12/29/2008', 91.04, 84.72, 90.75],
+    ['12/22/2008', 90.03, 84.55, 85.81],
+    ['12/15/2008', 96.48, 88.02, 90],
+    ['12/08/2008', 103.6, 92.53, 98.27],
+    ['12/01/2008', 96.23, 86.5, 94],
+    ['11/24/2008', 95.25, 84.84, 92.67],
+    ['11/17/2008', 91.58, 79.14, 82.58],  
+    ['11/10/2008', 100.4, 86.02, 90.24],
+    ['11/03/2008', 111.79, 95.72, 98.24],
+    ['10/27/2008', 112.19, 91.86, 107.59],
+    ['10/20/2008', 101.25, 90.11, 96.38],
+    ['10/13/2008', 116.4, 85.89, 97.4],
+    ['10/06/2008', 101.5, 85, 96.8],
+    ['09/29/2008', 119.68, 94.65, 97.07],
+    ['09/22/2008', 140.25, 123, 128.24],
+    ['09/15/2008', 147.69, 120.68, 140.91],
+    ['09/08/2008', 164.89, 146, 148.94]
+    ];
+    
+</script>
+
+<script class="code" type="text/javascript">$(document).ready(function(){  
+    $.jqplot.config.enablePlugins = true;     
+    plot1 = $.jqplot('chart1',[ohlc],{
+      title: 'Candlestick Charts',
+      axesDefaults:{},
+      axes: {
+          xaxis: {
+              renderer:$.jqplot.DateAxisRenderer
+          },
+          yaxis: {
+              tickOptions:{ prefix: '$' }
+          }
+      },
+      series: [{renderer:$.jqplot.OHLCRenderer, rendererOptions:{}}],
+      cursor:{
+          zoom:true,
+          tooltipOffset: 10,
+          tooltipLocation: 'nw'
+      }
+    });
+});</script>
+
+<script class="code" type="text/javascript">$(document).ready(function(){  
+    plot2 = $.jqplot('chart2',[ohlc],{
+      title: 'Chart',
+      axesDefaults:{},
+      axes: {
+          xaxis: {
+              renderer:$.jqplot.DateAxisRenderer
+          },
+          yaxis: {
+              tickOptions:{ prefix: '$' }
+          }
+      },
+      series: [{renderer:$.jqplot.OHLCRenderer, rendererOptions:{candleStick:true}}],
+      cursor:{
+          zoom:true,
+          tooltipOffset: 10,
+          tooltipLocation: 'nw'
+      },
+      highlighter: {
+          showMarker:false,
+          tooltipAxes: 'xy',
+          yvalues: 4,
+          formatString:'<table class="jqplot-highlighter"> \
+          <tr><td>date:</td><td>%s</td></tr> \
+          <tr><td>open:</td><td>%s</td></tr> \
+          <tr><td>hi:</td><td>%s</td></tr> \
+          <tr><td>low:</td><td>%s</td></tr> \
+          <tr><td>close:</td><td>%s</td></tr></table>'
+      }
+    });
+});</script>
+
+<script class="code" type="text/javascript">$(document).ready(function(){  
+    plot2b = $.jqplot('chart2b',[ohlc_b],{
+      axesDefaults:{},
+      axes: {
+          xaxis: {
+              renderer:$.jqplot.DateAxisRenderer
+          },
+          yaxis: {
+              tickOptions:{ prefix: '$' }
+          }
+      },
+      series: [{renderer:$.jqplot.OHLCRenderer, rendererOptions:{candleStick:true}}],
+      cursor:{
+          zoom:false,
+          tooltipOffset: 10,
+          tooltipLocation: 'nw'
+      },
+      highlighter: {
+          showMarker:false,
+          tooltipAxes: 'xy',
+          yvalues: 5,
+          formatString:'<table class="jqplot-highlighter"> \
+          <tr><td>date:</td><td>%s</td></tr> \
+          <tr><td>open:</td><td>%s</td></tr> \
+          <tr><td>hi:</td><td>%s</td></tr> \
+          <tr><td>low:</td><td>%s</td></tr> \
+          <tr><td>close:</td><td>%s</td></tr> \
+          <tr><td>letter:</td><td>%s</td></tr></table>'
+      }
+    });
+});</script>
+
+<script class="code" type="text/javascript">$(document).ready(function(){ 
+    plot3 = $.jqplot('chart3',[hlc],{
+      axesDefaults:{},
+      axes: {
+          xaxis: {
+              renderer:$.jqplot.DateAxisRenderer
+          },
+          yaxis: {
+              tickOptions:{ prefix: '$' }
+          }
+      },
+      series: [{renderer:$.jqplot.OHLCRenderer, rendererOptions:{}}],
+      cursor:{
+          zoom:true,
+          tooltipOffset: 10,
+          tooltipLocation: 'nw'
+      }
+    });
+});</script>
+
+<script class="code" type="text/javascript">$(document).ready(function(){ 
+    var catOHLC = [[1, 138.7, 139.68, 135.18, 135.4],
+    [2, 143.46, 144.66, 139.79, 140.02],
+    [3, 140.67, 143.56, 132.88, 142.44],
+    [4, 136.01, 139.5, 134.53, 139.48],
+    [5, 143.82, 144.56, 136.04, 136.97],
+    [6, 136.47, 146.4, 136, 144.67],
+    [7, 124.76, 135.9, 124.55, 135.81],
+    [8, 123.73, 129.31, 121.57, 122.5]];
+    
+    var ticks = ['Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue'];
+        
+    plot4 = $.jqplot('chart4',[catOHLC],{
+      axes: {
+          xaxis: {
+              renderer:$.jqplot.CategoryAxisRenderer,
+              ticks:ticks
+          },
+          yaxis: {
+              tickOptions:{ prefix: '$' }
+          }
+      },
+      series: [{renderer:$.jqplot.OHLCRenderer, rendererOptions:{candleStick:true}}]
+    });
+});</script>
+
+<!-- End example scripts -->
+
+<!-- Don't touch this! -->
+
+
+    <script class="include" type="text/javascript" src="../jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shCore.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shBrushJScript.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shBrushXml.min.js"></script>
+<!-- End Don't touch this! -->
+
+<!-- Additional plugins go here -->
+
+    <script class="include" type="text/javascript" src="../plugins/jqplot.dateAxisRenderer.min.js"></script>
+    <script class="include" type="text/javascript" src="../plugins/jqplot.categoryAxisRenderer.min.js"></script>
+    <script class="include" type="text/javascript" src="../plugins/jqplot.ohlcRenderer.min.js"></script>
+    <script class="include" type="text/javascript" src="../plugins/jqplot.highlighter.min.js"></script>
+    <script class="include" type="text/javascript" src="../plugins/jqplot.cursor.min.js"></script>
+
+<!-- End additional plugins -->
+
+        </div>
+         <div class="col2">
+
+           <div class="example-link"><a class="example-link" href="data-renderers.html">AJAX and JSON Data Loading via Data Renderers</a></div>
+           <div class="example-link"><a class="example-link" href="barLineAnimated.html">Animated Charts</a></div>
+           <div class="example-link"><a class="example-link" href="dashboardWidget.html">Animated Dashboard Sample - Filled Line with Log Axis</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_area.html">Area Chart</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_area2.html">Area Chart 2</a></div>
+           <div class="example-link"><a class="example-link" href="axisLabelTests.html">Axis Labels</a></div>
+           <div class="example-link"><a class="example-link" href="axisLabelsRotatedText.html">Axis Labels and Rotated Text</a></div>
+           <div class="example-link"><a class="example-link" href="barTest.html">Bar Charts</a></div>
+           <div class="example-link"><a class="example-link" href="multipleBarColors.html">Bar Colors Example</a></div>
+           <div class="example-link"><a class="example-link" href="bezierCurve.html">Bezier Curve Plots</a></div>
+           <div class="example-link"><a class="example-link" href="blockPlot.html">Block Plots</a></div>
+           <div class="example-link"><a class="example-link" href="bubbleChart.html">Bubble Charts</a></div>
+           <div class="example-link"><a class="example-link" href="bubble-plots.html">Bubble Plots</a></div>
+           <div class="example-link"><a class="example-link" href="candlestick.html">Candlestick and Open Hi Low Close Charts</a></div>
+           <div class="example-link"><a class="example-link" href="theming.html">Chart Theming</a></div>
+           <div class="example-link"><a class="example-link" href="fillBetweenLines.html">Charts with Fill Between Lines</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_cdf.html">Cumulative Density Function Chart</a></div>
+           <div class="example-link"><a class="example-link" href="dashedLines.html">Dashed Lines with Smoothing</a></div>
+           <div class="example-link"><a class="example-link" href="cursor-highlighter.html">Data Point Highlighting, Tooltips and Cursor Tracking</a></div>
+           <div class="example-link"><a class="example-link" href="point-labels.html">Data Point labels</a></div>
+           <div class="example-link"><a class="example-link" href="date-axes.html">Date Axes</a></div>
+           <div class="example-link"><a class="example-link" href="dateAxisRenderer.html">Date Axes 2</a></div>
+           <div class="example-link"><a class="example-link" href="rotatedTickLabelsZoom.html">Date Axes, Rotated Labels and Zooming</a></div>
+           <div class="example-link"><a class="example-link" href="canvas-overlay.html">Draw Lines on Plots - Canvas Overlay</a></div>
+           <div class="example-link"><a class="example-link" href="draw-rectangles.html">Draw Rectangles on Plots</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_engel.html">Engel Curves</a></div>
+           <div class="example-link"><a class="example-link" href="bandedLine.html">Error Bands and Confidence Intervals</a></div>
+           <div class="example-link"><a class="example-link" href="area.html">Filled (Area) Charts</a></div>
+           <div class="example-link"><a class="example-link" href="axisScalingForceTickAt.html">Force Plot to Have Tick at 0 or 100</a></div>
+           <div class="example-link"><a class="example-link" href="hiddenPlotsInTabs.html">Hidden Plots</a></div>
+           <div class="example-link"><a class="example-link" href="customHighlighterCursorTrendline.html">Highlighting, Dragging Points, Cursor and Trend Lines</a></div>
+           <div class="example-link"><a class="example-link" href="line-charts.html">Line Charts and Options</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_lorenz.html">Lorenz Curves</a></div>
+           <div class="example-link"><a class="example-link" href="mekkoCharts.html">Mekko Charts</a></div>
+           <div class="example-link"><a class="example-link" href="meterGauge.html">Meter Gauge</a></div>
+           <div class="example-link"><a class="example-link" href="candlestick-charts.html">Open Hi Low Close and Candlestick Charts</a></div>
+           <div class="example-link"><a class="example-link" href="pieTest.html">Pie Charts and Options</a></div>
+           <div class="example-link"><a class="example-link" href="pieTest4.html">Pie Charts and Options 2</a></div>
+           <div class="example-link"><a class="example-link" href="pie-donut-charts.html">Pie and Donut Charts</a></div>
+           <div class="example-link"><a class="example-link" href="selectorSyntax.html">Plot Creation with jQuery Selectors</a></div>
+           <div class="example-link"><a class="example-link" href="zooming.html">Plot Zooming and Cursor Control</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pdf.html">Probability Density Function Chart</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid_by_age.html">Pyramid Chart By Age</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid.html">Pyramid Charts</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid2.html">Pyramid Charts 2</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_quintiles.html">Quintile Pyramid Charts</a></div>
+           <div class="example-link"><a class="example-link" href="resizablePlot.html">Resizable Plots</a></div>
+           <div class="example-link"><a class="example-link" href="rotated-tick-labels.html">Rotated Labels and Font Styling</a></div>
+           <div class="example-link"><a class="example-link" href="smoothedLine.html">Smoothed Lines</a></div>
+           <div class="example-link"><a class="example-link" href="bar-charts.html">Vertical and Horizontal Bar Charts</a></div>
+           <div class="example-link"><a class="example-link" href="waterfall.html">Waterfall Charts</a></div>
+           <div class="example-link"><a class="example-link" href="waterfall2.html">Waterfall Charts 2</a></div>
+           <div class="example-link"><a class="example-link" href="zoomOptions.html">Zoom Options</a></div>
+           <div class="example-link"><a class="example-link" href="zoomProxy.html">Zoom Proxy - Control one plot from another</a></div>
+           <div class="example-link"><a class="example-link" href="zoom1.html">Zooming</a></div>
+           <div class="example-link"><a class="example-link" href="dateAxisLogAxisZooming.html">Zooming with Date and Log Axes</a></div>
+
+         </div>
+               </div>
+    </div>
+    <script type="text/javascript" src="example.min.js"></script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,382 @@
+
+version 1.6.4 (9/1/13)
+	- better algorithm for positioning timed agenda events (issue 1115)
+	- `slotEventOverlap` option to tweak timed agenda event overlapping (issue 218)
+	- selection bug when slot height is customized (issue 1035)
+	- supply view argument in `loading` callback (issue 1018)
+	- fixed week number not displaying in agenda views (issue 1951)
+	- fixed fullCalendar not initializing with no options (issue 1356)
+	- NPM's package.json, no more warnings or errors (issue 1762)
+	- building the bower component should output bower.json instead of component.json (PR 125)
+	- use bower internally for fetching new versions of jQuery and jQuery UI
+
+version 1.6.3 (8/10/13)
+	- viewRender callback (PR 15)
+	- viewDestroy callback (PR 15)
+	- eventDestroy callback (PR 111)
+	- handleWindowResize option (PR 54)
+	- eventStartEditable/startEditable options (PR 49)
+	- eventDurationEditable/durationEditable options (PR 49)
+	- specify function for $.ajax `data` parameter for JSON event sources (PR 59)
+	- fixed bug with agenda event dropping in wrong column (PR 55)
+	- easier event element z-index customization (PR 58)
+	- classNames on past/future days (PR 88)
+	- allow null/undefined event titles (PR 84)
+	- small optimize for agenda event rendering (PR 56)
+	- deprecated:
+		- viewDisplay
+		- disableDragging
+		- disableResizing
+	- bundled with latest jQuery (1.10.2) and jQuery UI (1.10.3)
+
+version 1.6.2 (7/18/13)
+	- hiddenDays option (issue 686)
+	- bugfix: when eventRender returns false, incorrect stacking of events (issue 762)
+	- bugfix: couldn't change event.backgroundImage when calling updateEvent (thx stephenharris)
+
+version 1.6.1 (4/14/13)
+	- fixed event inner content overflow bug (issue 1783)
+	- fixed table header className bug (1772)
+	- removed text-shadow on events (better for general use, thx tkrotoff)
+
+version 1.6.0 (3/18/13)
+	- visual facelift, with bootstrap-inspired buttons and colors
+	- simplified HTML/CSS for events and buttons
+	- dayRender, for modifying a day cell (issue 191, thx althaus)
+	- week numbers on side of calendar (issue 295)
+		- weekNumber
+		- weekNumberCalculation
+		- weekNumberTitle
+		- "W" formatting variable
+	- finer snapping granularity for agenda view events (issue 495, thx ms-doodle-com)
+	- eventAfterAllRender (issue 753, thx pdrakeweb)
+	- eventDataTransform (thx joeyspo)
+	- data-date attributes on cells (thx Jae)
+	- expose $.fullCalendar.dateFormatters
+	- when clicking fast on buttons, prevent text selection
+	- bundled with latest jQuery (1.9.1) and jQuery UI (1.10.2)
+	- Grunt/Lumbar build system for internal development
+	- build for Bower package manager
+	- build for jQuery plugin site
+
+version 1.5.4 (9/5/12)
+	- made compatible with jQuery 1.8.* (thx archaeron)
+	- bundled with jQuery 1.8.1 and jQuery UI 1.8.23
+
+version 1.5.3 (2/6/12)
+	- fixed dragging issue with jQuery UI 1.8.16 (issue 1168)
+	- bundled with jQuery 1.7.1 and jQuery UI 1.8.17
+
+version 1.5.2 (8/21/11)
+	- correctly process UTC "Z" ISO8601 date strings (issue 750)
+
+version 1.5.1 (4/9/11)
+	- more flexible ISO8601 date parsing (issue 814)
+	- more flexible parsing of UNIX timestamps (issue 826)
+	- FullCalendar now buildable from source on a Mac (issue 795)
+	- FullCalendar QA'd in FF4 (issue 883)
+	- upgraded to jQuery 1.5.2 (which supports IE9) and jQuery UI 1.8.11
+
+version 1.5 (3/19/11)
+	- slicker default styling for buttons
+	- reworked a lot of the calendar's HTML and accompanying CSS
+	  (solves issues 327 and 395)
+	- more printer-friendly (fullcalendar-print.css)
+	- fullcalendar now inherits styles from jquery-ui themes differently.
+	  styles for buttons are distinct from styles for calendar cells.
+	  (solves issue 299)
+	- can now color events through FullCalendar options and Event-Object properties (issue 117)
+	  THIS IS NOW THE PREFERRED METHOD OF COLORING EVENTS (as opposed to using className and CSS)
+		- FullCalendar options:
+			- eventColor (changes both background and border)
+			- eventBackgroundColor
+			- eventBorderColor
+			- eventTextColor
+		- Event-Object options:
+			- color (changes both background and border)
+			- backgroundColor
+			- borderColor
+			- textColor
+	- can now specify an event source as an *object* with a `url` property (json feed) or
+	  an `events` property (function or array) with additional properties that will
+	  be applied to the entire event source:
+		- color (changes both background and border)
+		- backgroudColor
+		- borderColor
+		- textColor
+		- className
+		- editable
+		- allDayDefault
+		- ignoreTimezone
+		- startParam (for a feed)
+		- endParam   (for a feed)
+		- ANY OF THE JQUERY $.ajax OPTIONS
+		  allows for easily changing from GET to POST and sending additional parameters (issue 386)
+		  allows for easily attaching ajax handlers such as `error` (issue 754)
+		  allows for turning caching on (issue 355)
+	- Google Calendar feeds are now specified differently:
+		- specify a simple string of your feed's URL
+		- specify an *object* with a `url` property of your feed's URL.
+		  you can include any of the new Event-Source options in this object.
+		- the old `$.fullCalendar.gcalFeed` method still works
+	- no more IE7 SSL popup (issue 504)
+	- remove `cacheParam` - use json event source `cache` option instead
+	- latest jquery/jquery-ui
+
+version 1.4.11 (2/22/11)
+	- fixed rerenderEvents bug (issue 790)
+	- fixed bug with faulty dragging of events from all-day slot in agenda views
+	- bundled with jquery 1.5 and jquery-ui 1.8.9
+
+version 1.4.10 (1/2/11)
+	- fixed bug with resizing event to different week in 5-day month view (issue 740)
+	- fixed bug with events not sticking after a removeEvents call (issue 757)
+	- fixed bug with underlying parseTime method, and other uses of parseInt (issue 688)
+
+version 1.4.9 (11/16/10)
+	- new algorithm for vertically stacking events (issue 111)
+	- resizing an event to a different week (issue 306)
+	- bug: some events not rendered with consecutive calls to addEventSource (issue 679)
+
+version 1.4.8 (10/16/10)
+	- ignoreTimezone option (set to `false` to process UTC offsets in ISO8601 dates)
+	- bugfixes
+		- event refetching not being called under certain conditions (issues 417, 554)
+		- event refetching being called multiple times under certain conditions (issues 586, 616)
+		- selection cannot be triggered by right mouse button (issue 558)
+		- agenda view left axis sized incorrectly (issue 465)
+		- IE js error when calendar is too narrow (issue 517)
+		- agenda view looks strange when no scrollbars (issue 235)
+		- improved parsing of ISO8601 dates with UTC offsets
+	- $.fullCalendar.version
+	- an internal refactor of the code, for easier future development and modularity
+
+version 1.4.7 (7/5/10)
+	- "dropping" external objects onto the calendar
+		- droppable (boolean, to turn on/off)
+		- dropAccept (to filter which events the calendar will accept)
+		- drop (trigger)
+	- selectable options can now be specified with a View Option Hash
+	- bugfixes
+		- dragged & reverted events having wrong time text (issue 406)
+		- bug rendering events that have an endtime with seconds, but no hours/minutes (issue 477)
+		- gotoDate date overflow bug (issue 429)
+		- wrong date reported when clicking on edge of last column in agenda views (412)
+	- support newlines in event titles
+	- select/unselect callbacks now passes native js event
+
+version 1.4.6 (5/31/10)
+	- "selecting" days or timeslots
+		- options: selectable, selectHelper, unselectAuto, unselectCancel
+		- callbacks: select, unselect
+		- methods: select, unselect
+	- when dragging an event, the highlighting reflects the duration of the event
+	- code compressing by Google Closure Compiler
+	- bundled with jQuery 1.4.2 and jQuery UI 1.8.1
+
+version 1.4.5 (2/21/10)
+	- lazyFetching option, which can force the calendar to fetch events on every view/date change
+	- scroll state of agenda views are preserved when switching back to view
+	- bugfixes
+		- calling methods on an uninitialized fullcalendar throws error
+		- IE6/7 bug where an entire view becomes invisible (issue 320)
+		- error when rendering a hidden calendar (in jquery ui tabs for example) in IE (issue 340)
+		- interconnected bugs related to calendar resizing and scrollbars
+			- when switching views or clicking prev/next, calendar would "blink" (issue 333)
+			- liquid-width calendar's events shifted (depending on initial height of browser) (issue 341)
+			- more robust underlying algorithm for calendar resizing
+
+version 1.4.4 (2/3/10)
+	- optimized event rendering in all views (events render in 1/10 the time)
+	- gotoDate() does not force the calendar to unnecessarily rerender
+	- render() method now correctly readjusts height
+
+version 1.4.3 (12/22/09)
+	- added destroy method
+	- Google Calendar event pages respect currentTimezone
+	- caching now handled by jQuery's ajax	
+	- protection from setting aspectRatio to zero
+	- bugfixes
+		- parseISO8601 and DST caused certain events to display day before
+		- button positioning problem in IE6
+		- ajax event source removed after recently being added, events still displayed
+		- event not displayed when end is an empty string
+		- dynamically setting calendar height when no events have been fetched, throws error
+
+version 1.4.2 (12/02/09)
+	- eventAfterRender trigger
+	- getDate & getView methods
+	- height & contentHeight options (explicitly sets the pixel height)
+	- minTime & maxTime options (restricts shown hours in agenda view)
+	- getters [for all options] and setters [for height, contentHeight, and aspectRatio ONLY! stay tuned..]
+	- render method now readjusts calendar's size
+	- bugfixes
+		- lightbox scripts that use iframes (like fancybox)
+		- day-of-week classNames were off when firstDay=1
+		- guaranteed space on right side of agenda events (even when stacked)
+		- accepts ISO8601 dates with a space (instead of 'T')
+
+version 1.4.1 (10/31/09)
+	- can exclude weekends with new 'weekends' option
+	- gcal feed 'currentTimezone' option
+	- bugfixes
+		- year/month/date option sometimes wouldn't set correctly (depending on current date)
+		- daylight savings issue caused agenda views to start at 1am (for BST users)
+	- cleanup of gcal.js code
+
+version 1.4 (10/19/09)
+	- agendaWeek and agendaDay views
+	- added some options for agenda views:
+		- allDaySlot
+		- allDayText
+		- firstHour
+		- slotMinutes
+		- defaultEventMinutes
+		- axisFormat
+	- modified some existing options/triggers to work with agenda views:
+		- dragOpacity and timeFormat can now accept a "View Hash" (a new concept)
+		- dayClick now has an allDay parameter
+		- eventDrop now has an an allDay parameter
+		  (this will affect those who use revertFunc, adjust parameter list)
+	- added 'prevYear' and 'nextYear' for buttons in header
+	- minor change for theme users, ui-state-hover not applied to active/inactive buttons
+	- added event-color-changing example in docs
+	- better defaults for right-to-left themed button icons
+
+version 1.3.2 (10/13/09)
+	- Bugfixes (please upgrade from 1.3.1!)
+		- squashed potential infinite loop when addMonths and addDays
+		  is called with an invalid date
+		- $.fullCalendar.parseDate() now correctly parses IETF format
+		- when switching views, the 'today' button sticks inactive, fixed
+	- gotoDate now can accept a single Date argument
+	- documentation for changes in 1.3.1 and 1.3.2 now on website
+
+version 1.3.1 (9/30/09)
+	- Important Bugfixes (please upgrade from 1.3!)
+		- When current date was late in the month, for long months, and prev/next buttons
+		  were clicked in month-view, some months would be skipped/repeated
+		- In certain time zones, daylight savings time would cause certain days
+		  to be misnumbered in month-view
+	- Subtle change in way week interval is chosen when switching from month to basicWeek/basicDay view
+	- Added 'allDayDefault' option
+	- Added 'changeView' and 'render' methods
+
+version 1.3 (9/21/09)
+	- different 'views': month/basicWeek/basicDay
+	- more flexible 'header' system for buttons
+	- themable by jQuery UI themes
+	- resizable events (require jQuery UI resizable plugin)
+	- rescoped & rewritten CSS, enhanced default look
+	- cleaner css & rendering techniques for right-to-left
+	- reworked options & API to support multiple views / be consistent with jQuery UI
+	- refactoring of entire codebase
+		- broken into different JS & CSS files, assembled w/ build scripts
+		- new test suite for new features, uses firebug-lite
+	- refactored docs
+	- Options
+		+ date
+		+ defaultView
+		+ aspectRatio
+		+ disableResizing
+		+ monthNames      (use instead of $.fullCalendar.monthNames)
+		+ monthNamesShort (use instead of $.fullCalendar.monthAbbrevs)
+		+ dayNames        (use instead of $.fullCalendar.dayNames)
+		+ dayNamesShort   (use instead of $.fullCalendar.dayAbbrevs)
+		+ theme
+		+ buttonText
+		+ buttonIcons
+		x draggable           -> editable/disableDragging
+		x fixedWeeks          -> weekMode
+		x abbrevDayHeadings   -> columnFormat
+		x buttons/title       -> header
+		x eventDragOpacity    -> dragOpacity
+		x eventRevertDuration -> dragRevertDuration
+		x weekStart           -> firstDay
+		x rightToLeft         -> isRTL
+		x showTime (use 'allDay' CalEvent property instead)
+	- Triggered Actions
+		+ eventResizeStart
+		+ eventResizeStop
+		+ eventResize
+		x monthDisplay -> viewDisplay
+		x resize       -> windowResize
+		'eventDrop' params changed, can revert if ajax cuts out
+	- CalEvent Properties
+		x showTime  -> allDay
+		x draggable -> editable
+		'end' is now INCLUSIVE when allDay=true
+		'url' now produces a real <a> tag, more native clicking/tab behavior
+	- Methods:
+		+ renderEvent
+		x prevMonth         -> prev
+		x nextMonth         -> next
+		x prevYear/nextYear -> moveDate
+		x refresh           -> rerenderEvents/refetchEvents
+		x removeEvent       -> removeEvents
+		x getEventsByID     -> clientEvents
+	- Utilities:
+		'formatDate' format string completely changed (inspired by jQuery UI datepicker + datejs)
+		'formatDates' added to support date-ranges
+	- Google Calendar Options:
+		x draggable -> editable
+	- Bugfixes
+		- gcal extension fetched 25 results max, now fetches all
+
+version 1.2.1 (6/29/09)
+	- bugfixes
+		- allows and corrects invalid end dates for events
+		- doesn't throw an error in IE while rendering when display:none
+		- fixed 'loading' callback when used w/ multiple addEventSource calls
+		- gcal className can now be an array
+
+version 1.2 (5/31/09)
+	- expanded API
+		- 'className' CalEvent attribute
+		- 'source' CalEvent attribute
+		- dynamically get/add/remove/update events of current month
+		- locale improvements: change month/day name text
+		- better date formatting ($.fullCalendar.formatDate)
+		- multiple 'event sources' allowed
+			- dynamically add/remove event sources
+	- options for prevYear and nextYear buttons
+	- docs have been reworked (include addition of Google Calendar docs)
+	- changed behavior of parseDate for number strings
+	  (now interpets as unix timestamp, not MS times)
+	- bugfixes
+		- rightToLeft month start bug
+		- off-by-one errors with month formatting commands
+		- events from previous months sticking when clicking prev/next quickly
+	- Google Calendar API changed to work w/ multiple event sources
+		- can also provide 'className' and 'draggable' options
+	- date utilties moved from $ to $.fullCalendar
+	- more documentation in source code
+	- minified version of fullcalendar.js
+	- test suit (available from svn)
+	- top buttons now use <button> w/ an inner <span> for better css cusomization
+		- thus CSS has changed. IF UPGRADING FROM PREVIOUS VERSIONS,
+		  UPGRADE YOUR FULLCALENDAR.CSS FILE!!!
+
+version 1.1 (5/10/09)
+	- Added the following options:
+		- weekStart
+		- rightToLeft
+		- titleFormat
+		- timeFormat
+		- cacheParam
+		- resize
+	- Fixed rendering bugs
+		- Opera 9.25 (events placement & window resizing)
+		- IE6 (window resizing)
+	- Optimized window resizing for ALL browsers
+	- Events on same day now sorted by start time (but first by timespan)
+	- Correct z-index when dragging
+	- Dragging contained in overflow DIV for IE6
+	- Modified fullcalendar.css
+		- for right-to-left support
+		- for variable start-of-week
+		- for IE6 resizing bug
+		- for THEAD and TBODY (in 1.0, just used TBODY, restructured in 1.1)
+		- IF UPGRADING FROM FULLCALENDAR 1.0, YOU MUST UPGRADE FULLCALENDAR.CSS
+		  !!!!!!!!!!!
+		  

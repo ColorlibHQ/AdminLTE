@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>Line Charts and Options</title>
+
+    <link class="include" rel="stylesheet" type="text/css" href="../jquery.jqplot.min.css" />
+    <link rel="stylesheet" type="text/css" href="examples.min.css" />
+    <link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/shCoreDefault.min.css" />
+    <link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/shThemejqPlot.min.css" />
+  
+    <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="../excanvas.js"></script><![endif]-->
+    <script class="include" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
+   
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <a class="nav" href="../../../index.php"><span>&gt;</span>Home</a>
+            <a class="nav"  href="../../../docs/"><span>&gt;</span>Docs</a>
+            <a class="nav"  href="../../download/"><span>&gt;</span>Download</a>
+            <a class="nav" href="../../../info.php"><span>&gt;</span>Info</a>
+            <a class="nav"  href="../../../donate.php"><span>&gt;</span>Donate</a>
+        </div>
+    </div>
+    <div class="colmask leftmenu">
+      <div class="colleft">
+        <div class="col1" id="example-content">
+
+  
+<!-- Example scripts go here -->
+
+<p>The most basic jqPlot chart takes a series of data and plots a line.  No options need to be supplied.  Data is passed in as an array of series.  A series can be either an array of y values or an array of [x,y] data pairs.  If y values only, x values are assigned like 1, 2, 3, ...  Note, for this plot you don't need any plugins.</p>
+
+<div id="chart1" style="height:300px; width:500px;"></div>
+
+<pre class="code prettyprint brush: js"></pre>
+
+
+<p>The following plot uses a number of options to set the title, add axis labels, and shows how to use the canvasAxisLabelRenderer plugin to provide rotated axis labels.</p>
+
+<div id="chart2" style="height:300px; width:500px;"></div>
+
+<pre class="code prettyprint brush: js"></pre>
+
+
+<p>There are numerous line style options to control how the lines and markers are displayed.</p>
+
+<div id="chart3" style="height:300px; width:500px;"></div>
+
+<pre class="code prettyprint brush: js"></pre>
+
+  
+<script class="code" type="text/javascript">
+$(document).ready(function(){
+  var plot1 = $.jqplot ('chart1', [[3,7,9,1,5,3,8,2,5]]);
+});
+</script>
+  
+<script class="code" type="text/javascript">
+$(document).ready(function(){
+  var plot2 = $.jqplot ('chart2', [[3,7,9,1,5,3,8,2,5]], {
+      // Give the plot a title.
+      title: 'Plot With Options',
+      // You can specify options for all axes on the plot at once with
+      // the axesDefaults object.  Here, we're using a canvas renderer
+      // to draw the axis label which allows rotated text.
+      axesDefaults: {
+        labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+      },
+      // Likewise, seriesDefaults specifies default options for all
+      // series in a plot.  Options specified in seriesDefaults or
+      // axesDefaults can be overridden by individual series or
+      // axes options.
+      // Here we turn on smoothing for the line.
+      seriesDefaults: {
+          rendererOptions: {
+              smooth: true
+          }
+      },
+      // An axes object holds options for all axes.
+      // Allowable axes are xaxis, x2axis, yaxis, y2axis, y3axis, ...
+      // Up to 9 y axes are supported.
+      axes: {
+        // options for each axis are specified in seperate option objects.
+        xaxis: {
+          label: "X Axis",
+          // Turn off "padding".  This will allow data point to lie on the
+          // edges of the grid.  Default padding is 1.2 and will keep all
+          // points inside the bounds of the grid.
+          pad: 0
+        },
+        yaxis: {
+          label: "Y Axis"
+        }
+      }
+    });
+});
+</script>
+  
+<script class="code" type="text/javascript">
+$(document).ready(function(){
+  // Some simple loops to build up data arrays.
+  var cosPoints = [];
+  for (var i=0; i<2*Math.PI; i+=1){ 
+    cosPoints.push([i, Math.cos(i)]); 
+  }
+   
+  var sinPoints = []; 
+  for (var i=0; i<2*Math.PI; i+=0.4){ 
+     sinPoints.push([i, 2*Math.sin(i-.8)]); 
+  }
+   
+  var powPoints1 = []; 
+  for (var i=0; i<2*Math.PI; i+=1) { 
+      powPoints1.push([i, 2.5 + Math.pow(i/4, 2)]); 
+  }
+   
+  var powPoints2 = []; 
+  for (var i=0; i<2*Math.PI; i+=1) { 
+      powPoints2.push([i, -2.5 - Math.pow(i/4, 2)]); 
+  } 
+
+  var plot3 = $.jqplot('chart3', [cosPoints, sinPoints, powPoints1, powPoints2], 
+    { 
+      title:'Line Style Options', 
+      // Set default options on all series, turn on smoothing.
+      seriesDefaults: {
+          rendererOptions: {
+              smooth: true
+          }
+      },
+      // Series options are specified as an array of objects, one object
+      // for each series.
+      series:[ 
+          {
+            // Change our line width and use a diamond shaped marker.
+            lineWidth:2, 
+            markerOptions: { style:'dimaond' }
+          }, 
+          {
+            // Don't show a line, just show markers.
+            // Make the markers 7 pixels with an 'x' style
+            showLine:false, 
+            markerOptions: { size: 7, style:"x" }
+          },
+          { 
+            // Use (open) circlular markers.
+            markerOptions: { style:"circle" }
+          }, 
+          {
+            // Use a thicker, 5 pixel line and 10 pixel
+            // filled square markers.
+            lineWidth:5, 
+            markerOptions: { style:"filledSquare", size:10 }
+          }
+      ]
+    }
+  );
+   
+});
+</script>
+
+
+<!-- End example scripts -->
+
+<!-- Don't touch this! -->
+
+
+    <script class="include" type="text/javascript" src="../jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shCore.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shBrushJScript.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shBrushXml.min.js"></script>
+<!-- End Don't touch this! -->
+
+<!-- Additional plugins go here -->
+
+  <script class="include" type="text/javascript" src="../plugins/jqplot.canvasTextRenderer.min.js"></script>
+  <script class="include" type="text/javascript" src="../plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
+
+<!-- End additional plugins -->
+
+        </div>
+         <div class="col2">
+
+           <div class="example-link"><a class="example-link" href="data-renderers.html">AJAX and JSON Data Loading via Data Renderers</a></div>
+           <div class="example-link"><a class="example-link" href="barLineAnimated.html">Animated Charts</a></div>
+           <div class="example-link"><a class="example-link" href="dashboardWidget.html">Animated Dashboard Sample - Filled Line with Log Axis</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_area.html">Area Chart</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_area2.html">Area Chart 2</a></div>
+           <div class="example-link"><a class="example-link" href="axisLabelTests.html">Axis Labels</a></div>
+           <div class="example-link"><a class="example-link" href="axisLabelsRotatedText.html">Axis Labels and Rotated Text</a></div>
+           <div class="example-link"><a class="example-link" href="barTest.html">Bar Charts</a></div>
+           <div class="example-link"><a class="example-link" href="multipleBarColors.html">Bar Colors Example</a></div>
+           <div class="example-link"><a class="example-link" href="bezierCurve.html">Bezier Curve Plots</a></div>
+           <div class="example-link"><a class="example-link" href="blockPlot.html">Block Plots</a></div>
+           <div class="example-link"><a class="example-link" href="bubbleChart.html">Bubble Charts</a></div>
+           <div class="example-link"><a class="example-link" href="bubble-plots.html">Bubble Plots</a></div>
+           <div class="example-link"><a class="example-link" href="candlestick.html">Candlestick and Open Hi Low Close Charts</a></div>
+           <div class="example-link"><a class="example-link" href="theming.html">Chart Theming</a></div>
+           <div class="example-link"><a class="example-link" href="fillBetweenLines.html">Charts with Fill Between Lines</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_cdf.html">Cumulative Density Function Chart</a></div>
+           <div class="example-link"><a class="example-link" href="dashedLines.html">Dashed Lines with Smoothing</a></div>
+           <div class="example-link"><a class="example-link" href="cursor-highlighter.html">Data Point Highlighting, Tooltips and Cursor Tracking</a></div>
+           <div class="example-link"><a class="example-link" href="point-labels.html">Data Point labels</a></div>
+           <div class="example-link"><a class="example-link" href="date-axes.html">Date Axes</a></div>
+           <div class="example-link"><a class="example-link" href="dateAxisRenderer.html">Date Axes 2</a></div>
+           <div class="example-link"><a class="example-link" href="rotatedTickLabelsZoom.html">Date Axes, Rotated Labels and Zooming</a></div>
+           <div class="example-link"><a class="example-link" href="canvas-overlay.html">Draw Lines on Plots - Canvas Overlay</a></div>
+           <div class="example-link"><a class="example-link" href="draw-rectangles.html">Draw Rectangles on Plots</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_engel.html">Engel Curves</a></div>
+           <div class="example-link"><a class="example-link" href="bandedLine.html">Error Bands and Confidence Intervals</a></div>
+           <div class="example-link"><a class="example-link" href="area.html">Filled (Area) Charts</a></div>
+           <div class="example-link"><a class="example-link" href="axisScalingForceTickAt.html">Force Plot to Have Tick at 0 or 100</a></div>
+           <div class="example-link"><a class="example-link" href="hiddenPlotsInTabs.html">Hidden Plots</a></div>
+           <div class="example-link"><a class="example-link" href="customHighlighterCursorTrendline.html">Highlighting, Dragging Points, Cursor and Trend Lines</a></div>
+           <div class="example-link"><a class="example-link" href="line-charts.html">Line Charts and Options</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_lorenz.html">Lorenz Curves</a></div>
+           <div class="example-link"><a class="example-link" href="mekkoCharts.html">Mekko Charts</a></div>
+           <div class="example-link"><a class="example-link" href="meterGauge.html">Meter Gauge</a></div>
+           <div class="example-link"><a class="example-link" href="candlestick-charts.html">Open Hi Low Close and Candlestick Charts</a></div>
+           <div class="example-link"><a class="example-link" href="pieTest.html">Pie Charts and Options</a></div>
+           <div class="example-link"><a class="example-link" href="pieTest4.html">Pie Charts and Options 2</a></div>
+           <div class="example-link"><a class="example-link" href="pie-donut-charts.html">Pie and Donut Charts</a></div>
+           <div class="example-link"><a class="example-link" href="selectorSyntax.html">Plot Creation with jQuery Selectors</a></div>
+           <div class="example-link"><a class="example-link" href="zooming.html">Plot Zooming and Cursor Control</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pdf.html">Probability Density Function Chart</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid_by_age.html">Pyramid Chart By Age</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid.html">Pyramid Charts</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid2.html">Pyramid Charts 2</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_quintiles.html">Quintile Pyramid Charts</a></div>
+           <div class="example-link"><a class="example-link" href="resizablePlot.html">Resizable Plots</a></div>
+           <div class="example-link"><a class="example-link" href="rotated-tick-labels.html">Rotated Labels and Font Styling</a></div>
+           <div class="example-link"><a class="example-link" href="smoothedLine.html">Smoothed Lines</a></div>
+           <div class="example-link"><a class="example-link" href="bar-charts.html">Vertical and Horizontal Bar Charts</a></div>
+           <div class="example-link"><a class="example-link" href="waterfall.html">Waterfall Charts</a></div>
+           <div class="example-link"><a class="example-link" href="waterfall2.html">Waterfall Charts 2</a></div>
+           <div class="example-link"><a class="example-link" href="zoomOptions.html">Zoom Options</a></div>
+           <div class="example-link"><a class="example-link" href="zoomProxy.html">Zoom Proxy - Control one plot from another</a></div>
+           <div class="example-link"><a class="example-link" href="zoom1.html">Zooming</a></div>
+           <div class="example-link"><a class="example-link" href="dateAxisLogAxisZooming.html">Zooming with Date and Log Axes</a></div>
+
+         </div>
+               </div>
+    </div>
+    <script type="text/javascript" src="example.min.js"></script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>Chart Theming</title>
+
+    <link class="include" rel="stylesheet" type="text/css" href="../jquery.jqplot.min.css" />
+    <link rel="stylesheet" type="text/css" href="examples.min.css" />
+    <link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/shCoreDefault.min.css" />
+    <link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/shThemejqPlot.min.css" />
+  
+    <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="../excanvas.js"></script><![endif]-->
+    <script class="include" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
+   
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <a class="nav" href="../../../index.php"><span>&gt;</span>Home</a>
+            <a class="nav"  href="../../../docs/"><span>&gt;</span>Docs</a>
+            <a class="nav"  href="../../download/"><span>&gt;</span>Download</a>
+            <a class="nav" href="../../../info.php"><span>&gt;</span>Info</a>
+            <a class="nav"  href="../../../donate.php"><span>&gt;</span>Donate</a>
+        </div>
+    </div>
+    <div class="colmask leftmenu">
+      <div class="colleft">
+        <div class="col1" id="example-content">
+
+  
+<!-- Example scripts go here -->
+
+<style type="text/css">
+.jqplot-target {
+    margin: 30px;
+}
+</style>
+
+<p>jqPlot has basic theming support for commonly styled atributes of plot elements.  Upon creation, each plot will have a "themeEngine" that controls modificaition, adding, removing and activating of plot themes.  In addition, each plot will have a "Default" theme which corresponds to the styling of the plot at plot creation.<p>
+    
+<p>Creation of new themes is easy.  A "style" object is created with properties for the various plot elements to be styles.  Attached to each of those is an ojbect with the actual styling properties.  A simple style object might look like:</p>
+
+<pre>
+    gabe = {
+        series: [
+            {color: 'rgba(216, 159, 60, 0.4)'},
+            {color: 'rgba(159, 216, 60, 0.4)'},
+            {color: 'rgba(60, 159, 216, 0.4)'},
+        ],
+        grid: {
+            backgroundColor: '#DEA493'
+        }
+    }
+</pre>
+
+<p>This new style would then be added to the plot's themeEngine as a new theme.  it can then be activated by calling the plot's <code>activateTheme</code> method.</p>
+<pre>
+    plot1b.themeEngine.newTheme('gabe', gabe);
+    plot1b.activateTheme('gabe');
+</pre>
+    
+<div id="chart1b" class="plot" style="width:400px;height:260px;"></div>
+<p>Select Theme for area plot:
+<select id="p1bswitcher" onchange="switch1b();">
+    <option value="Default" selected>Default</option>
+    <option value="gabe">gabe</option>
+</select>
+</p>
+
+<p>Themes can be reused between plots.  Here a style object is created and assigned to two different plots.  For convenience, the theme is given the same name when added to each plot's themeEngine.  Since each plot keeps its own copy of the theme, the names do not need to be the same.  Also note that themes are added as deep copies by value and not by reference.  This avoids strange behavior due to the cascading nature of css related styles.</p>
+
+<pre>
+    temp = {
+        seriesStyles: {
+            seriesColors: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo'],
+            highlightColors: ['lightpink', 'lightsalmon', 'lightyellow', 'lightgreen', 'lightblue', 'mediumslateblue']
+        },
+        legend: {
+            fontSize: '8pt'
+        },
+        title: {
+            fontSize: '18pt'
+        },
+        grid: {
+            backgroundColor: 'rgb(211, 233, 195)'
+        }
+    };
+    
+    plot3.themeEngine.newTheme('uma', temp);
+    plot5.themeEngine.newTheme('uma', temp);
+</pre>
+
+<p>Select Theme for funnel and pie charts at same time:
+<select id="p35switcher" onchange="switch35();">
+    <option value="Default" selected>Default</option>
+    <option value="uma">uma</option>
+</select>
+</p>
+
+<div id="chart3" class="plot" style="width:400px;height:320px;"></div>
+
+<p>Select Theme for funnel plot:
+<select id="p3switcher" onchange="switch3();">
+    <option value="Default" selected>Default</option>
+    <option value="uma">uma</option>
+</select>
+</p>
+
+<div id="chart5" class="plot" style="width:400px;height:260px;"></div>
+
+<p>Select Theme for pie chart:
+<select id="p5switcher" onchange="switch5();">
+    <option value="Default" selected>Default</option>
+    <option value="uma">uma</option>
+</select>
+</p>
+
+<p>There are various was to create and edit themes for a plot.  Below are two different methods for creating additional themes for a line plot and adding them to the plots themeEngine.  Here the <code>axesStyles</code> property is used to supply styling to all axes at one time.  A similar property, <code>seriesStyles</code>, exists for styling all series of a plot at one time. Note, neither of these methods is as straightforward as using the <code>newTheme()</code> method of the plots themeEngine, but are included for illustrative purposes.</p>
+
+<pre> 
+    e1 = plot1.themeEngine;
+    brass = e1.copy('Default', 'brass');
+    brass.title.fontFamily = 'Copperplate, Impact';
+    brass.grid.backgroundColor = "rgb(216, 198, 114)";
+    brass.grid.drawGridlines = false;
+    brass.series[0].lineWidth = 6.5;
+    brass.series[0].markerOptions.show = false;
+    brass.axesStyles.label.fontFamily = "Copperplate, 'Copperplate Gothic Light', Impact";
+    brass.axesStyles.ticks.fontFamily = "Copperplate, 'Copperplate Gothic Light', Impact";
+    brass.axesStyles.label.fontSize = '14pt';
+    
+    temp = {
+        grid: {
+            backgroundColor: "#593D2B",
+            gridLineColor: '#E8E8E8',
+            gridLineWidth: 3
+        },
+        title: {
+            fontFamily: '"Comic Sans MS", cursive',
+            fontSize: '18pt',
+            textColor: '#C7CC4E'
+        },
+        seriesStyles: {
+            color: "#DBBCAF",
+            lineWidth: 8,
+            markerOptions: {
+                show: false
+            }
+        },
+        axes: {
+            xaxis: {
+                label: {
+                    fontFamily: '"Comic Sans MS", cursive',
+                    textColor: '#C7CC4E'
+                }
+            }
+        }
+    };
+    
+    chocolate = plot1.themeEngine.copy('Default', 'chocolate', temp);
+</pre>
+
+<div id="chart1" class="plot" style="width:400px;height:260px;"></div>
+
+<p>Select theme for line chart:
+<select id="p1switcher" onchange="switch1();">
+    <option value="Default" selected>Default</option>
+    <option value="brass">brass</option>
+    <option value="chocolate">chocolate</option>
+</select>
+</p>
+
+<p>The example below shows more extensive use of the various styling options to give the chart a rather ugly and dated appearence.  Note that, for bar (and funnel, pie and donut charts), <code>highlightColors</code> can be specified as an array of colors which will be applied to each bar individually, as a single string giving a color to apply to all bars, or as an empty array which will force jqPlot to auto calculate highlight colors based on the current bar color.<p>
+    
+<pre>
+    oldstyle = {
+        title: {
+            fontFamily: 'Times New Roman',
+            textColor: 'black'
+        },
+        axesStyles: {
+           borderWidth: 0,
+           ticks: {
+               fontSize: '12pt',
+               fontFamily: 'Times New Roman',
+               textColor: 'black'
+           },
+           label: {
+               fontFamily: 'Times New Roman',
+               textColor: 'black'
+           }
+        },
+        grid: {
+            backgroundColor: 'white',
+            borderWidth: 0,
+            gridLineColor: 'black',
+            gridLineWidth: 2,
+            borderColor: 'black'
+        },
+        series: [
+            {color: 'red', highlightColors: ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 'lime', 'maroon', 'navy', 'olive', 'purple', 'red', 'silver', 'teal', 'white', 'yellow']},
+            {color: 'green', highlightColors: []},
+            {color: 'blue', highlightColors: []},
+            {color: 'yellow', highlightColors: 'rgb(255, 245, 185)'}
+        ],
+        legend: {
+            background: 'white',
+            textColor: 'black',
+            fontFamily: 'Times New Roman',
+            border: '1px solid black'
+        }
+    };
+    
+    plot2.themeEngine.newTheme('oldstyle', oldstyle);
+</pre>
+
+<div id="chart2" class="plot" style="width:760px;height:360px;"></div>
+
+<p>Select theme for bar chart:
+<select id="p2switcher" onchange="switch2();">
+    <option value="Default" selected>Default</option>
+    <option value="oldstyle">oldstyle</option>
+</select>
+</p>
+
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+
+    l1 = [['Seoul', 1], ['Paris', 7], ['Singapore',3], ['Hong  Kong',5], ['Chicago', 2], ['New York', 9]];
+    l2 = [11, 9, 5, 12, 14];
+    l3 = [4, 8, 5, 3, 6];
+    l4 = [12, 6, 13, 11, 2];
+    l5 = [4, -3, 3, 6, 2, -2];
+
+    pop1980 = [7071639, 2968528, 3005072, 1595138, 789704, 1688210, 785940, 904599];
+    pop1990 = [7322564, 3485398, 2783726, 1630553, 983403, 1585577, 935933, 1006877];
+    pop2000 = [8008654, 3694644, 2896051, 1974152, 1322025, 1517550, 1160005, 1188603];
+    pop2008 = [8363710, 3833995, 2853114, 2242193, 1567924, 1447395, 1351305, 1279910];
+
+    ticks = ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "Dallas"];
+
+    plot1 = $.jqplot('chart1',[l2],{
+       title: 'Line Chart',
+       highlighter: {
+           show:true
+       },
+       cursor: {
+           show: true,
+           zoom: true
+       },
+       axes: {
+           xaxis: {
+               label: 'Sample'
+           }
+       }
+    });
+    
+    plot1b = $.jqplot('chart1b',[l2, l3, l4],{
+       stackSeries: true,
+       showMarker: false,
+       seriesDefaults: {
+           fill: true
+       }
+    });
+
+    plot2 = $.jqplot('chart2',[pop1980, pop1990, pop2000, pop2008],{
+       title: 'City Population',
+       legend: {
+           show: true
+       },
+       seriesDefaults: {
+           renderer: $.jqplot.BarRenderer,
+           rendererOptions: {
+               barPadding: 2
+           }
+       },
+       series: [
+          {label: '1980'},
+          {label: '1990'},
+          {label: '2000'},
+          {label: '2008 (est)'}
+       ],
+       axes: {
+           xaxis: {
+               label: 'City',
+               renderer: $.jqplot.CategoryAxisRenderer,
+               tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+               labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+               ticks: ticks,
+               tickOptions: {
+                   angle: -30
+                }
+           },
+           yaxis: {
+               tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+               max: 9000000,
+               min: 0,
+               tickOptions: {
+                   formatString: '%d',
+                   angle: -30
+                }
+           }
+       }
+    });
+    
+    plot3 = $.jqplot('chart3',[l1],{
+       title: 'Global City Index',
+       legend: {
+           show: true,
+           rendererOptions: {
+               // numberColumns: 2,
+               fontSize: '10pt'
+           }
+        },
+       seriesDefaults: {
+           renderer: $.jqplot.FunnelRenderer
+       }
+    });
+        
+    plot5 = $.jqplot('chart5',[l1],{
+       title: 'Pie Chart',
+       seriesDefaults: {
+           renderer: $.jqplot.PieRenderer
+       },
+       legend: {
+           show: true
+       }
+    });
+        
+    e1 = plot1.themeEngine;
+    brass = e1.copy('Default', 'brass');
+    brass.title.fontFamily = 'Copperplate, Impact';
+    brass.grid.backgroundColor = "rgb(216, 198, 114)";
+    brass.grid.drawGridlines = false;
+    brass.series[0].lineWidth = 6.5;
+    brass.series[0].markerOptions.show = false;
+    // brass.axes.xaxis.ticks.fontFamily = "Copperplate, Impact";
+    brass.axesStyles.label.fontFamily = "Copperplate, 'Copperplate Gothic Light', Impact";
+    brass.axesStyles.ticks.fontFamily = "Copperplate, 'Copperplate Gothic Light', Impact";
+    brass.axesStyles.label.fontSize = '14pt';
+    
+    temp = {
+        grid: {
+            backgroundColor: "#593D2B",
+            gridLineColor: '#E8E8E8',
+            gridLineWidth: 3
+        },
+        title: {
+            fontFamily: '"Comic Sans MS", cursive',
+            fontSize: '18pt',
+            textColor: '#C7CC4E'
+        },
+        seriesStyles: {
+            color: "#DBBCAF",
+            lineWidth: 8,
+            markerOptions: {
+                show: false
+            }
+        },
+        axes: {
+            xaxis: {
+                label: {
+                    fontFamily: '"Comic Sans MS", cursive',
+                    textColor: '#C7CC4E'
+                }
+            }
+        }
+    };
+    
+    chocolate = plot1.themeEngine.copy('Default', 'chocolate', temp);
+    
+    gabe = {
+        series: [
+            {color: 'rgba(216, 159, 60, 0.6)'},
+            {color: 'rgba(159, 216, 60, 0.6)'},
+            {color: 'rgba(60, 159, 216, 0.6)'},
+        ],
+        grid: {
+            backgroundColor: '#DEA493'
+        }
+    }
+    
+    gabe = plot1b.themeEngine.newTheme('gabe', gabe);
+    
+    oldstyle = {
+        title: {
+            fontFamily: 'Times New Roman',
+            textColor: 'black'
+        },
+        axesStyles: {
+           borderWidth: 0,
+           ticks: {
+               fontSize: '12pt',
+               fontFamily: 'Times New Roman',
+               textColor: 'black'
+           },
+           label: {
+               fontFamily: 'Times New Roman',
+               textColor: 'black'
+           }
+        },
+        grid: {
+            backgroundColor: 'white',
+            borderWidth: 0,
+            gridLineColor: 'black',
+            gridLineWidth: 2,
+            borderColor: 'black'
+        },
+        series: [
+            {color: 'red', highlightColors: ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 'lime', 'maroon', 'navy', 'olive', 'purple', 'red', 'silver', 'teal', 'white', 'yellow']},
+            {color: 'green', highlightColors: []},
+            {color: 'blue', highlightColors: []},
+            {color: 'yellow', highlightColors: 'rgb(255, 245, 185)'}
+        ],
+        legend: {
+            background: 'white',
+            textColor: 'black',
+            fontFamily: 'Times New Roman',
+            border: '1px solid black'
+        }
+    };
+    
+    plot2.themeEngine.newTheme('oldstyle', oldstyle);
+    
+    temp = {
+        seriesStyles: {
+            seriesColors: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo'],
+            highlightColors: ['lightpink', 'lightsalmon', 'lightyellow', 'lightgreen', 'lightblue', 'mediumslateblue']
+        },
+        legend: {
+            fontSize: '8pt'
+        },
+        title: {
+            fontSize: '18pt'
+        },
+        grid: {
+            backgroundColor: 'rgb(211, 233, 195)'
+        }
+    };
+    
+    plot3.themeEngine.newTheme('uma', temp);
+    plot5.themeEngine.newTheme('uma', temp);
+    
+});
+
+function switch1() {
+    var th = $('#p1switcher').val();
+    plot1.activateTheme(th);
+}
+
+function switch1b() {
+    var th = $('#p1bswitcher').val();
+    plot1b.activateTheme(th);
+}
+
+function switch2() {
+    var th = $('#p2switcher').val();
+    plot2.activateTheme(th);
+}
+
+function switch3() {
+    var th = $('#p3switcher').val();
+    plot3.activateTheme(th);
+}
+
+function switch5() {
+    var th = $('#p5switcher').val();
+    plot5.activateTheme(th);
+}
+
+function switch35() {
+    var th = $('#p35switcher').val();
+    plot3.activateTheme(th);
+    plot5.activateTheme(th);
+}
+
+
+</script>
+
+<!-- End example scripts -->
+
+<!-- Don't touch this! -->
+
+
+    <script class="include" type="text/javascript" src="../jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shCore.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shBrushJScript.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shBrushXml.min.js"></script>
+<!-- End Don't touch this! -->
+
+<!-- Additional plugins go here -->
+  <script language="javascript" type="text/javascript" src="../plugins/jqplot.barRenderer.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../plugins/jqplot.categoryAxisRenderer.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../plugins/jqplot.pieRenderer.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../plugins/jqplot.donutRenderer.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../plugins/jqplot.highlighter.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../plugins/jqplot.cursor.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../plugins/jqplot.funnelRenderer.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../plugins/jqplot.canvasTextRenderer.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
+
+<!-- End additional plugins -->
+
+        </div>
+         <div class="col2">
+
+           <div class="example-link"><a class="example-link" href="data-renderers.html">AJAX and JSON Data Loading via Data Renderers</a></div>
+           <div class="example-link"><a class="example-link" href="barLineAnimated.html">Animated Charts</a></div>
+           <div class="example-link"><a class="example-link" href="dashboardWidget.html">Animated Dashboard Sample - Filled Line with Log Axis</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_area.html">Area Chart</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_area2.html">Area Chart 2</a></div>
+           <div class="example-link"><a class="example-link" href="axisLabelTests.html">Axis Labels</a></div>
+           <div class="example-link"><a class="example-link" href="axisLabelsRotatedText.html">Axis Labels and Rotated Text</a></div>
+           <div class="example-link"><a class="example-link" href="barTest.html">Bar Charts</a></div>
+           <div class="example-link"><a class="example-link" href="multipleBarColors.html">Bar Colors Example</a></div>
+           <div class="example-link"><a class="example-link" href="bezierCurve.html">Bezier Curve Plots</a></div>
+           <div class="example-link"><a class="example-link" href="blockPlot.html">Block Plots</a></div>
+           <div class="example-link"><a class="example-link" href="bubbleChart.html">Bubble Charts</a></div>
+           <div class="example-link"><a class="example-link" href="bubble-plots.html">Bubble Plots</a></div>
+           <div class="example-link"><a class="example-link" href="candlestick.html">Candlestick and Open Hi Low Close Charts</a></div>
+           <div class="example-link"><a class="example-link" href="theming.html">Chart Theming</a></div>
+           <div class="example-link"><a class="example-link" href="fillBetweenLines.html">Charts with Fill Between Lines</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_cdf.html">Cumulative Density Function Chart</a></div>
+           <div class="example-link"><a class="example-link" href="dashedLines.html">Dashed Lines with Smoothing</a></div>
+           <div class="example-link"><a class="example-link" href="cursor-highlighter.html">Data Point Highlighting, Tooltips and Cursor Tracking</a></div>
+           <div class="example-link"><a class="example-link" href="point-labels.html">Data Point labels</a></div>
+           <div class="example-link"><a class="example-link" href="date-axes.html">Date Axes</a></div>
+           <div class="example-link"><a class="example-link" href="dateAxisRenderer.html">Date Axes 2</a></div>
+           <div class="example-link"><a class="example-link" href="rotatedTickLabelsZoom.html">Date Axes, Rotated Labels and Zooming</a></div>
+           <div class="example-link"><a class="example-link" href="canvas-overlay.html">Draw Lines on Plots - Canvas Overlay</a></div>
+           <div class="example-link"><a class="example-link" href="draw-rectangles.html">Draw Rectangles on Plots</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_engel.html">Engel Curves</a></div>
+           <div class="example-link"><a class="example-link" href="bandedLine.html">Error Bands and Confidence Intervals</a></div>
+           <div class="example-link"><a class="example-link" href="area.html">Filled (Area) Charts</a></div>
+           <div class="example-link"><a class="example-link" href="axisScalingForceTickAt.html">Force Plot to Have Tick at 0 or 100</a></div>
+           <div class="example-link"><a class="example-link" href="hiddenPlotsInTabs.html">Hidden Plots</a></div>
+           <div class="example-link"><a class="example-link" href="customHighlighterCursorTrendline.html">Highlighting, Dragging Points, Cursor and Trend Lines</a></div>
+           <div class="example-link"><a class="example-link" href="line-charts.html">Line Charts and Options</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_lorenz.html">Lorenz Curves</a></div>
+           <div class="example-link"><a class="example-link" href="mekkoCharts.html">Mekko Charts</a></div>
+           <div class="example-link"><a class="example-link" href="meterGauge.html">Meter Gauge</a></div>
+           <div class="example-link"><a class="example-link" href="candlestick-charts.html">Open Hi Low Close and Candlestick Charts</a></div>
+           <div class="example-link"><a class="example-link" href="pieTest.html">Pie Charts and Options</a></div>
+           <div class="example-link"><a class="example-link" href="pieTest4.html">Pie Charts and Options 2</a></div>
+           <div class="example-link"><a class="example-link" href="pie-donut-charts.html">Pie and Donut Charts</a></div>
+           <div class="example-link"><a class="example-link" href="selectorSyntax.html">Plot Creation with jQuery Selectors</a></div>
+           <div class="example-link"><a class="example-link" href="zooming.html">Plot Zooming and Cursor Control</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pdf.html">Probability Density Function Chart</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid_by_age.html">Pyramid Chart By Age</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid.html">Pyramid Charts</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid2.html">Pyramid Charts 2</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_quintiles.html">Quintile Pyramid Charts</a></div>
+           <div class="example-link"><a class="example-link" href="resizablePlot.html">Resizable Plots</a></div>
+           <div class="example-link"><a class="example-link" href="rotated-tick-labels.html">Rotated Labels and Font Styling</a></div>
+           <div class="example-link"><a class="example-link" href="smoothedLine.html">Smoothed Lines</a></div>
+           <div class="example-link"><a class="example-link" href="bar-charts.html">Vertical and Horizontal Bar Charts</a></div>
+           <div class="example-link"><a class="example-link" href="waterfall.html">Waterfall Charts</a></div>
+           <div class="example-link"><a class="example-link" href="waterfall2.html">Waterfall Charts 2</a></div>
+           <div class="example-link"><a class="example-link" href="zoomOptions.html">Zoom Options</a></div>
+           <div class="example-link"><a class="example-link" href="zoomProxy.html">Zoom Proxy - Control one plot from another</a></div>
+           <div class="example-link"><a class="example-link" href="zoom1.html">Zooming</a></div>
+           <div class="example-link"><a class="example-link" href="dateAxisLogAxisZooming.html">Zooming with Date and Log Axes</a></div>
+
+         </div>
+               </div>
+    </div>
+    <script type="text/javascript" src="example.min.js"></script>
+
+</body>
+
+
+</html>

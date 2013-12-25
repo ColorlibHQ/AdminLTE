@@ -1,0 +1,199 @@
+.ui-colorpicker,
+.ui-dialog.ui-colorpicker {
+	width:					auto;
+    white-space:			nowrap;
+
+	-webkit-touch-callout:	none;
+	-webkit-user-select:	none;
+	-khtml-user-select:		none;
+	-moz-user-select:		none;
+	-ms-user-select:		none;
+	user-select:			none;
+}
+
+.ui-colorpicker-inline {
+    position:				static;
+}
+
+.ui-colorpicker-buttonset {
+	float:					left;
+	margin-left:			.4em;
+}
+
+.ui-colorpicker-buttonset .ui-button {
+	margin:					.5em 0 .5em 0;
+	cursor:					pointer;
+}
+
+.ui-colorpicker-buttonpane {
+	background-image:		none;
+	margin:					.7em 0 0 0;
+	padding:				0 .2em;
+	border-left:			0;
+	border-right:			0;
+	border-bottom:			0;
+}
+
+.ui-colorpicker-buttonpane button {
+	float:					right;
+	margin:					.5em .2em .4em;
+	cursor:					pointer;
+	padding:				.2em .6em .3em .6em;
+	width:					auto;
+	overflow:				visible;
+}
+
+.ui-colorpicker-buttonpane button.ui-colorpicker-current {
+	float:					left;
+}
+
+.ui-colorpicker table {
+    font-size:				100%; /* Reset browser table font-size */
+	margin:					0;
+}
+
+.ui-colorpicker table td {
+	vertical-align:			top;
+}
+
+.ui-colorpicker-padding-left {
+	padding-left:			10px;
+}
+.ui-colorpicker-padding-top {
+	padding-top:			10px;
+}
+
+.ui-colorpicker-border {
+	border:					1px inset;
+    display:				inline-block;
+}
+
+/* Bar & map */
+.ui-colorpicker-map > *,
+.ui-colorpicker-bar > * {
+    position:				absolute;
+	cursor:					crosshair;
+}
+
+.ui-colorpicker-map-pointer,
+.ui-colorpicker-bar-pointer {
+    position:				absolute;
+}
+/* Map */
+.ui-colorpicker-map,
+.ui-colorpicker-map > * {
+    display:				block;
+	width:					256px;
+	height:					256px;
+	overflow:				hidden;
+}
+
+.ui-colorpicker-map-layer-1,
+.ui-colorpicker-map-layer-2 {
+	background:				url(images/map.png) no-repeat;
+}
+
+.ui-colorpicker-map-layer-alpha {
+	background:				url(images/map-opacity.png);
+}
+
+.ui-colorpicker-map-pointer {
+	display:				inline-block;
+	width:					15px;
+	height:					15px;
+	background:				url(images/map-pointer.png) no-repeat;
+}
+
+/* Bar */
+.ui-colorpicker-bar,
+.ui-colorpicker-bar > * {
+    display:				block;
+    width:					20px;
+    height:					256px;
+	overflow:				hidden;
+    background-repeat:		repeat-x;
+}
+
+.ui-colorpicker-bar-layer-1,
+.ui-colorpicker-bar-layer-2,
+.ui-colorpicker-bar-layer-3,
+.ui-colorpicker-bar-layer-4 {
+	background:				url(images/bar.png) repeat-x;
+}
+
+.ui-colorpicker-bar-layer-alpha {
+	background:				url(images/bar-opacity.png);
+}
+
+.ui-colorpicker-bar-layer-alphabar {
+	background:				url(images/bar-alpha.png);
+}
+
+.ui-colorpicker-bar-pointer {
+	display:				inline-block;
+	width:					20px;
+	height:					7px;
+	background:				url(images/bar-pointer.png) no-repeat;
+}
+
+/* Preview */
+.ui-colorpicker-preview {
+	text-align:				center;
+}
+
+.ui-colorpicker-preview-initial {
+    cursor:					pointer;
+}
+
+.ui-colorpicker-preview-initial,
+.ui-colorpicker-preview-current {
+    width:					50px;
+    height:					20px;
+    display:				inline-block;
+}
+
+.ui-colorpicker-preview-initial-alpha,
+.ui-colorpicker-preview-current-alpha {
+    width:					50px;
+    height:					20px;
+    display:				inline-block;
+	background:				url(images/preview-opacity.png) repeat;
+}
+
+/* Inputs */
+.ui-colorpicker-rgb label,
+.ui-colorpicker-hsv label,
+.ui-colorpicker-hsl label,
+.ui-colorpicker-lab label,
+.ui-colorpicker-cmyk label,
+.ui-colorpicker-alpha label {
+    width:					1.5em;
+    display:				inline-block;
+}
+
+.ui-colorpicker-number {
+	margin:					.1em;
+	width:					4em;
+}
+
+/* Hex */
+.ui-colorpicker-hex {
+	text-align:				center;
+}
+
+/* Swatches */
+.ui-colorpicker-swatches {
+	width:					84px;
+	height:					256px;
+	overflow:				auto;
+	background-color:		#f8f8f8;
+}
+
+.ui-colorpicker-swatch {
+	cursor:					pointer;
+	float:					left;
+	width:					11px;
+	height:					11px;
+    border-right:			1px solid black;
+    border-bottom:			1px solid black;
+}

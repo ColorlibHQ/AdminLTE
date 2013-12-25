@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>Error Bands and Confidence Intervals</title>
+
+    <link class="include" rel="stylesheet" type="text/css" href="../jquery.jqplot.min.css" />
+    <link rel="stylesheet" type="text/css" href="examples.min.css" />
+    <link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/shCoreDefault.min.css" />
+    <link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/shThemejqPlot.min.css" />
+  
+    <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="../excanvas.js"></script><![endif]-->
+    <script class="include" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
+   
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <a class="nav" href="../../../index.php"><span>&gt;</span>Home</a>
+            <a class="nav"  href="../../../docs/"><span>&gt;</span>Docs</a>
+            <a class="nav"  href="../../download/"><span>&gt;</span>Download</a>
+            <a class="nav" href="../../../info.php"><span>&gt;</span>Info</a>
+            <a class="nav"  href="../../../donate.php"><span>&gt;</span>Donate</a>
+        </div>
+    </div>
+    <div class="colmask leftmenu">
+      <div class="colleft">
+        <div class="col1" id="example-content">
+
+  
+<!-- Example scripts go here -->
+<p>Bands (like confidence intervals or error bands) can be added to line charts through the "bands" option of the line renderer.  The band data can be automatically computed or manually assigned.  If assigned manually, the simpliest approach is to set the "rendererOptions: { bandData: [] }" array on the series.  Note that band data is taken into account when axes scale themselves so bands will not get clipped.</p>
+
+
+<p>Band data can be supplied as arrays of [x,y] values.  One array for the upper band line and one for the lower band line.</p>
+
+ <div id="chart01" style="height:300px; width:600px;"></div>
+    <pre class="code brush:js"></pre>
+
+
+<p>The number of points in the band data arrays does not have to correspond to the number of points in the data series.  Also, band data will be drawn as smoothed lines if the data series is smoothed.</p>
+
+ <div id="chart02" style="height:300px; width:600px;"></div>
+    <pre class="code brush:js"></pre>
+
+<p>In this example, band data is supplied as an array of arrays of y values for the low and hi bands.  X values for the bands are taken from the x values of the series.  The band data is of the form:  [ [y low 1, y hi 1], [y low 2, y hi 2], ... ] and there must be a corresponding array of low/hi y values for each x value in the data series.</p>
+
+ <div id="chart1" style="height:300px; width:600px;"></div>
+    <pre class="code brush:js"></pre>
+
+<p>The band data can also be supplied as an array of [low y values], [hi y values].  In this case there must also be an equal number of low y values and hi y values as there are data points in the series.  X values for the low and hi bands will be taken from the series data.  Additionally, the order of low/hi values does not matter as long as they are consistent.  jqPlot will figure out which is the low values and which are the high values.</p>
+
+ <div id="chart2" style="height:300px; width:600px;"></div>
+    <pre class="code brush:js"></pre>
+
+<p>Band data does not have to be provided.  By default, jqPlot will compute +/- 3% band intervals if the "rendererOptions: { bands: { show: true } }" option is set.  The band intervals can be customized as well through the "rendererOptions: { bands: { interval: [number|string|arry] } }" option.  Valid intervals are:</p>
+
+<ul>
+<li> '1.7' - will add bands at y +/- 1.7 above and below the line.</li>
+<li> '10%' - will compute +/- 10% interval bands.</li>
+<li> [3, '-10%'] - will add bands at y + 3 and y - 10% above and below the line.</li>
+</ul>
+
+<p>Examples of such interval specifications are shown below:</p>
+
+ <div id="chart3" style="height:300px; width:600px;"></div>
+    <pre class="code brush:js"></pre>
+ <div id="chart4" style="height:300px; width:600px;"></div>
+    <pre class="code brush:js"></pre>
+
+ <div id="chart5" style="height:300px; width:600px;"></div>
+    <pre class="code brush:js"></pre>
+    
+<p>You can also customize the fill color of the bands and turn on/off band lines.  By default, bands respond to the mouse over event, but they can be set to respond to mouse down as well.</p>
+ <div id="chart6" style="height:300px; width:600px;"></div>
+    <pre class="code brush:js"></pre>
+
+<p>Note, the plots on this page all extend the following pre-defined theme:</p>
+
+    <pre class="code brush:js"></pre>
+
+
+<script class="code" type="text/javascript">
+$(document).ready(function(){
+    // Band data in arrays of [x,y] values.
+    bdat = [[['7/1/2011', 8], ['7/2/2011', 9], ['7/3/2011', 8], ['7/4/2011', 13], ['7/5/2011', 11], ['7/6/2011', 13]], 
+    [['7/1/2011', 12], ['7/2/2011', 13], ['7/3/2011', 12], ['7/4/2011', 17], ['7/5/2011', 15], ['7/6/2011', 17]]];
+    
+    dat = [['7/1/2011', 10], ['7/2/2011', 11], ['7/3/2011', 10], ['7/4/2011', 15], ['7/5/2011', 13], ['7/6/2011', 15]];
+
+    plot01 = $.jqplot('chart01', [dat], $.extend(true, {}, myTheme, {
+        series: [{
+            rendererOptions: {
+                bandData: bdat
+            }
+        }],
+        axes: {
+            xaxis: {
+                renderer: $.jqplot.DateAxisRenderer,
+                min: '7/1/2011',
+                max: '7/6/2011',
+                tickInterval: '1 day'
+            }
+        }
+    }));
+});
+</script>
+
+<script class="code" type="text/javascript">
+$(document).ready(function(){
+    // Band data in arrays of [x,y] values.
+    // Here the low band line (1st array) has 5 points and the hi band line has 4 points.
+    bdat = [[['7/1/2011', 9], ['7/3/2011', 7], ['7/4/2011', 13], ['7/5/2011', 11], ['7/6/2011', 13]], 
+    [['7/1/2011', 12], ['7/3/2011', 14], ['7/4/2011', 18], ['7/6/2011', 16]]];
+    
+    dat = [['7/1/2011', 10], ['7/2/2011', 11], ['7/3/2011', 10], ['7/4/2011', 15], ['7/5/2011', 13], ['7/6/2011', 15]];
+
+    plot02 = $.jqplot('chart02', [dat], $.extend(true, {}, myTheme, {
+        series: [{
+            rendererOptions: {
+                bandData: bdat,
+
+                // turn on smoothing
+                smooth: true
+            }
+        }],
+        axes: {
+            xaxis: {
+                renderer: $.jqplot.DateAxisRenderer,
+                min: '7/1/2011',
+                max: '7/6/2011',
+                tickInterval: '1 day'
+            }
+        }
+    }));
+});
+</script>
+
+<script class="code" type="text/javascript">
+$(document).ready(function(){
+    // data points for line.
+    dat = [[0, 10], [1, 11], [2, 10], [3, 15], [4, 13], [5, 15]];
+
+    // band data in [[low_y_1, hi_y_1], [low_y_2, hi_y_2],...] format
+    bdat = [[7, 13], [8, 14], [7, 13], [12, 18], [10, 16], [12, 18]];
+
+    plot1 = $.jqplot('chart1', [dat], $.extend(true, {}, myTheme, {
+        series: [{
+            rendererOptions: {
+                // Set the band data on the series.
+                // Bands will be turned on automatically if
+                // valid band data is present.
+                bandData: bdat,
+                smooth: true
+            }
+        }]
+    }));
+});
+
+</script>
+
+
+<script class="code" type="text/javascript">
+
+$(document).ready(function(){
+    // here band data specified as an array of [low y values] and [hi y values]
+    bdat = [[7, 8, 7, 12, 10, 12], [13, 14, 13, 18, 16, 18]];
+
+    // Same plot as before with different band data specification and smoothed lines.
+    plot2 = $.jqplot('chart2', [dat], $.extend(true, {}, myTheme, {
+        series: [
+        {
+            rendererOptions: {
+                bandData: bdat,
+                smooth: true
+            }
+        }]
+    }));
+});
+
+</script>
+
+<script class="code" type="text/javascript">
+$(document).ready(function(){
+    plot3 = $.jqplot('chart3', [dat], $.extend(true, {}, myTheme, {
+        series: [{
+            rendererOptions: {
+                bands: {
+                    // draw bands at 1.7 "units" above and below line.
+                    interval: 1.7
+                },
+                smooth: true
+            }
+        }]
+    }));
+});
+
+</script>
+
+<script class="code" type="text/javascript">
+$(document).ready(function(){
+    plot4 = $.jqplot('chart4', [dat], $.extend(true, {}, myTheme, {
+        series: [{
+            rendererOptions: {
+                bands: {
+                    // draw interval at 10% above and below line.
+                    interval: '10%'
+                },
+                smooth: true
+            }
+        }]
+    }));
+});
+</script>
+
+<script class="code" type="text/javascript">
+$(document).ready(function(){
+    plot5 = $.jqplot('chart5', [dat], $.extend(true, {}, myTheme, {
+        series: [{
+            rendererOptions: {
+                bands: {
+                    // draw interval at 3 units above and 10% below line.
+                    interval: [3, '-10%']
+                },
+                smooth: true
+            }
+        }]
+    }));
+});
+</script>
+
+<script class="code" type="text/javascript">
+$(document).ready(function(){
+    plot6 = $.jqplot('chart6', [dat], $.extend(true, {}, myTheme, {
+        series: [{
+            rendererOptions: {
+                bands: {
+                    // draw interval at 3 units above and 10% below line.
+                    interval: 4,
+                    fillColor: 'rgba(198, 88, 88, 0.6)',
+                    showLines: true
+                },
+
+                // highlight the band on mouse down, not on mouse over.
+                highlightMouseDown: true,
+                smooth: true
+            }
+        }]
+    }));
+});
+</script>
+
+<script class="code" type="text/javascript">
+///////
+// A default set of reusable plot options.  Note that line
+// smoothing is turned on.  Bands will be drawn with the same 
+// smoothing as the line.
+//////
+myTheme = {
+  grid: {
+      drawBorder: false,
+      shadow: false,
+      background: 'rgba(255, 255, 255, 0.0)'
+  },
+  seriesDefaults: {
+    shadow: false,
+    showMarker: false
+  },
+  axes: {
+      xaxis: {
+          pad: 1.0,
+          tickOptions: {
+              showGridline: false
+          }
+      },
+      yaxis: {
+          pad: 1.05
+      }
+  }
+};
+</script>
+<!-- End example scripts -->
+
+<!-- Don't touch this! -->
+
+
+    <script class="include" type="text/javascript" src="../jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shCore.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shBrushJScript.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shBrushXml.min.js"></script>
+<!-- Additional plugins go here -->
+
+    <script class="include" type="text/javascript" src="../plugins/jqplot.highlighter.min.js"></script>
+    <script class="include" type="text/javascript" src="../plugins/jqplot.cursor.min.js"></script>
+    <script class="include" type="text/javascript" src="../plugins/jqplot.pointLabels.min.js"></script>
+    <script class="include" type="text/javascript" src="../plugins/jqplot.dateAxisRenderer.min.js"></script>
+
+<!-- End additional plugins -->
+
+        </div>
+         <div class="col2">
+
+           <div class="example-link"><a class="example-link" href="data-renderers.html">AJAX and JSON Data Loading via Data Renderers</a></div>
+           <div class="example-link"><a class="example-link" href="barLineAnimated.html">Animated Charts</a></div>
+           <div class="example-link"><a class="example-link" href="dashboardWidget.html">Animated Dashboard Sample - Filled Line with Log Axis</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_area.html">Area Chart</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_area2.html">Area Chart 2</a></div>
+           <div class="example-link"><a class="example-link" href="axisLabelTests.html">Axis Labels</a></div>
+           <div class="example-link"><a class="example-link" href="axisLabelsRotatedText.html">Axis Labels and Rotated Text</a></div>
+           <div class="example-link"><a class="example-link" href="barTest.html">Bar Charts</a></div>
+           <div class="example-link"><a class="example-link" href="multipleBarColors.html">Bar Colors Example</a></div>
+           <div class="example-link"><a class="example-link" href="bezierCurve.html">Bezier Curve Plots</a></div>
+           <div class="example-link"><a class="example-link" href="blockPlot.html">Block Plots</a></div>
+           <div class="example-link"><a class="example-link" href="bubbleChart.html">Bubble Charts</a></div>
+           <div class="example-link"><a class="example-link" href="bubble-plots.html">Bubble Plots</a></div>
+           <div class="example-link"><a class="example-link" href="candlestick.html">Candlestick and Open Hi Low Close Charts</a></div>
+           <div class="example-link"><a class="example-link" href="theming.html">Chart Theming</a></div>
+           <div class="example-link"><a class="example-link" href="fillBetweenLines.html">Charts with Fill Between Lines</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_cdf.html">Cumulative Density Function Chart</a></div>
+           <div class="example-link"><a class="example-link" href="dashedLines.html">Dashed Lines with Smoothing</a></div>
+           <div class="example-link"><a class="example-link" href="cursor-highlighter.html">Data Point Highlighting, Tooltips and Cursor Tracking</a></div>
+           <div class="example-link"><a class="example-link" href="point-labels.html">Data Point labels</a></div>
+           <div class="example-link"><a class="example-link" href="date-axes.html">Date Axes</a></div>
+           <div class="example-link"><a class="example-link" href="dateAxisRenderer.html">Date Axes 2</a></div>
+           <div class="example-link"><a class="example-link" href="rotatedTickLabelsZoom.html">Date Axes, Rotated Labels and Zooming</a></div>
+           <div class="example-link"><a class="example-link" href="canvas-overlay.html">Draw Lines on Plots - Canvas Overlay</a></div>
+           <div class="example-link"><a class="example-link" href="draw-rectangles.html">Draw Rectangles on Plots</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_engel.html">Engel Curves</a></div>
+           <div class="example-link"><a class="example-link" href="bandedLine.html">Error Bands and Confidence Intervals</a></div>
+           <div class="example-link"><a class="example-link" href="area.html">Filled (Area) Charts</a></div>
+           <div class="example-link"><a class="example-link" href="axisScalingForceTickAt.html">Force Plot to Have Tick at 0 or 100</a></div>
+           <div class="example-link"><a class="example-link" href="hiddenPlotsInTabs.html">Hidden Plots</a></div>
+           <div class="example-link"><a class="example-link" href="customHighlighterCursorTrendline.html">Highlighting, Dragging Points, Cursor and Trend Lines</a></div>
+           <div class="example-link"><a class="example-link" href="line-charts.html">Line Charts and Options</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_lorenz.html">Lorenz Curves</a></div>
+           <div class="example-link"><a class="example-link" href="mekkoCharts.html">Mekko Charts</a></div>
+           <div class="example-link"><a class="example-link" href="meterGauge.html">Meter Gauge</a></div>
+           <div class="example-link"><a class="example-link" href="candlestick-charts.html">Open Hi Low Close and Candlestick Charts</a></div>
+           <div class="example-link"><a class="example-link" href="pieTest.html">Pie Charts and Options</a></div>
+           <div class="example-link"><a class="example-link" href="pieTest4.html">Pie Charts and Options 2</a></div>
+           <div class="example-link"><a class="example-link" href="pie-donut-charts.html">Pie and Donut Charts</a></div>
+           <div class="example-link"><a class="example-link" href="selectorSyntax.html">Plot Creation with jQuery Selectors</a></div>
+           <div class="example-link"><a class="example-link" href="zooming.html">Plot Zooming and Cursor Control</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pdf.html">Probability Density Function Chart</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid_by_age.html">Pyramid Chart By Age</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid.html">Pyramid Charts</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid2.html">Pyramid Charts 2</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_quintiles.html">Quintile Pyramid Charts</a></div>
+           <div class="example-link"><a class="example-link" href="resizablePlot.html">Resizable Plots</a></div>
+           <div class="example-link"><a class="example-link" href="rotated-tick-labels.html">Rotated Labels and Font Styling</a></div>
+           <div class="example-link"><a class="example-link" href="smoothedLine.html">Smoothed Lines</a></div>
+           <div class="example-link"><a class="example-link" href="bar-charts.html">Vertical and Horizontal Bar Charts</a></div>
+           <div class="example-link"><a class="example-link" href="waterfall.html">Waterfall Charts</a></div>
+           <div class="example-link"><a class="example-link" href="waterfall2.html">Waterfall Charts 2</a></div>
+           <div class="example-link"><a class="example-link" href="zoomOptions.html">Zoom Options</a></div>
+           <div class="example-link"><a class="example-link" href="zoomProxy.html">Zoom Proxy - Control one plot from another</a></div>
+           <div class="example-link"><a class="example-link" href="zoom1.html">Zooming</a></div>
+           <div class="example-link"><a class="example-link" href="dateAxisLogAxisZooming.html">Zooming with Date and Log Axes</a></div>
+
+         </div>
+               </div>
+    </div>
+    <script type="text/javascript" src="example.min.js"></script>
+
+</body>
+
+
+</html>

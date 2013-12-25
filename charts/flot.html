@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AdminLTE - Flot Charts</title>
+        <meta charset="UTF-8">
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet" />
+        <!-- font Awesome -->
+        <link href="../css/font-awesome.min.css" rel="stylesheet" />
+        <!-- Theme style -->
+        <link href="../theme/theme.css" rel="stylesheet" />
+        <!-- Google font Signika -->
+        <link href='http://fonts.googleapis.com/css?family=Signika+Negative' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <nav class="navbar navbar-theme bg-blue navbar-static-top" role="navigation">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../index.html"><span class="fa fa-shield"></span> AdminLTE</a>
+                <a href="#" class='lte-menu-sm visible-xs navbar-brand'>
+                    <span class="fa fa-list"></span>
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gears"></i></a>
+                        <ul class="dropdown-menu navbar-selector">
+                            <li role="presentation" class="dropdown-header font-primary noClick">Navbar Color</li>
+                            <li class="font-primary" data-color="bg-primary"><a href="#"><i class="fa fa-gear"></i> Primary</a></li>
+                            <li class="font-blue" data-color="bg-blue"><a href="#"><i class="fa fa-gear"></i> Blue <small class="text-muted">(default)</small></a></li>
+                            <li class="font-light-blue" data-color="bg-light-blue"><a href="#"><i class="fa fa-gear"></i> Light Blue</a></li>
+                            <li class="font-green" data-color="bg-green"><a href="#"><i class="fa fa-gear"></i> Green</a></li>
+                            <li class="font-yellow" data-color="bg-yellow"><a href="#"><i class="fa fa-gear"></i> Yellow</a></li>
+                            <li class="font-purple" data-color="bg-purple"><a href="#"><i class="fa fa-gear"></i> Purple</a></li>
+                            <li class="font-red" data-color="bg-red"><a href="#"><i class="fa fa-gear"></i> Red</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa fa-bullhorn"></i></a></li>
+                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Friends</a></li>
+                            <li><a href="#">Settings</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Privacy</a></li>
+                        </ul>                        
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" name="search" class="form-control" placeholder="..."/>
+                    </div>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+        <div class="lte-main-content">
+            <!-- side bar -->
+            <div class="lte-sidebar col-md-2 col-sm-3 hidden-xs">
+                <ul class="lte-sidebar-menu">
+                    <li><a href="../index.html"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                    <li class="lte-tree active">
+                        <a href="#"><i class="fa fa-bar-chart-o"></i> Charts<i class="pull-right fa fa-angle-right"></i></a>
+                        <ul class="lte-tree-menu">
+                            <li class="active"><a href="../charts/flot.html"><i class="fa fa-bar-chart-o"></i> Flot</a></li>
+                            <li><a href="../charts/jqplot.html"><i class="fa fa-bar-chart-o"></i> JQplot</a></li>
+                            <li><a href="../charts/xcharts.html"><i class="fa fa-bar-chart-o"></i> xCharts</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../ui.html"><i class="fa fa-tint"></i> User Interface </a></li>
+                    <!--<li><a href="../widgets.html"><i class="fa fa-gear"></i> Widgets</a></li>-->                    
+                    <li class="lte-tree">
+                        <a href="#"><i class="fa fa-pagelines"></i> Example Pages <i class="pull-right fa fa-angle-right"></i></a>
+                        <ul class="lte-tree-menu">
+                            <li><a href="../examples/invoice.html"><i class="fa fa-money"></i> Invoice</a></li>
+                            <li><a href="../examples/login.html"><i class="fa fa-sign-in"></i> Login</a></li>
+                            <li><a href="../examples/register.html"><i class="fa fa-lock"></i> Register</a></li>
+                            <li><a href="../examples/blank_page.html"><i class="fa fa-paperclip"></i> Blank Page</a></li>
+                            <li><a href="../examples/404.html"><i class="fa fa-unlink"></i> 404 Error Page</a></li>
+                            <li><a href="../examples/500.html"><i class="fa fa-unlink"></i> 500 Error Page</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../forms.html"><i class="fa fa-edit"></i> Forms</a></li>
+                    <li><a href="../typography.html"><i class="fa fa-text-width"></i> Typography</a></li>
+                    <li><a href="../calendar.html"><i class="fa fa-calendar"></i> Calendar</a></li>
+
+                    <li class="lte-tree">
+                        <a href="#"><i class="fa fa-pagelines"></i> Multilevel Dropdown<i class="pull-right fa fa-angle-right"></i></a>
+                        <ul class="lte-tree-menu">
+                            <li class="lte-tree">
+                                <a href="#"><i class="fa fa-pagelines"></i> Level 1<i class="pull-right fa fa-angle-right"></i></a>
+                                <ul class="lte-tree-menu">
+                                    <li class="lte-tree">
+                                        <a href="#"><i class="fa fa-pagelines"></i> Level 2<i class="pull-right fa fa-angle-right"></i></a>                                        
+                                        <ul class="lte-tree-menu">
+                                            <li><a href="#"><i class="fa fa-pagelines"></i> Level 3</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- /.side-bar-->
+
+            <div class="lte-main-container col-md-10 col-sm-9">
+                <!-- main content -->
+                <div class="page-header">
+                    <i class="fa fa-bar-chart-o"></i> Flot Charts <small>example page</small>
+                </div>
+                <!-- /.page-header -->
+                <div class='lte-dashboard'>
+                    <div class='row'>
+                        <div class='col-sm-12'>
+                            <div class='box box-blue'>
+                                <div class='box-header'>
+                                    <h3 class="box-title"><i class="fa fa-bar-chart-o"></i> Line Chart</h3>
+                                    <div class="box-tools">
+                                        <i class="fa fa-gear"></i>
+                                        <i class="fa fa-angle-down lte-hider"></i>
+                                        <i class="off fa fa-times"></i>
+                                    </div>                                
+                                </div>
+                                <div class='box-body'>
+                                    <div id='line-chart1' class='lte-chart'></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-sm-6 col-sm-12'>
+                            <div class='box box-blue'>
+                                <div class='box-header'>
+                                    <h3 class="box-title"><i class="fa fa-bar-chart-o"></i> Line Chart</h3>
+                                    <div class="box-tools">
+                                        <i class="fa fa-gear"></i>
+                                        <i class="fa fa-angle-down lte-hider"></i>
+                                        <i class="off fa fa-times"></i>
+                                    </div>                                
+                                </div>
+                                <div class='box-body'>
+                                    <div id='line-chart2' class='lte-chart'></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-6 col-sm-12'>
+                            <div class='box box-blue'>
+                                <div class='box-header'>
+                                    <h3 class="box-title"><i class="fa fa-bar-chart-o"></i> Line Chart</h3>
+                                    <div class="box-tools">
+                                        <i class="fa fa-gear"></i>
+                                        <i class="fa fa-angle-down lte-hider"></i>
+                                        <i class="off fa fa-times"></i>
+                                    </div>                                
+                                </div>
+                                <div class='box-body'>
+                                    <div id='line-chart3' class='lte-chart'></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-md-4 col-sm-12'>
+                            <div class='box box-blue'>
+                                <div class='box-header'>
+                                    <h3 class="box-title"><i class="fa fa-bar-chart-o"></i> Pie Chart</h3>
+                                    <div class="box-tools">
+                                        <i class="fa fa-gear"></i>
+                                        <i class="fa fa-angle-down lte-hider"></i>
+                                        <i class="off fa fa-times"></i>
+                                    </div>                                
+                                </div>
+                                <div class='box-body'>
+                                    <div id='pie-chart1' class='lte-chart'></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-md-4 col-sm-12'>
+                            <div class='box box-blue'>
+                                <div class='box-header'>
+                                    <h3 class="box-title"><i class="fa fa-bar-chart-o"></i> Pie Chart - 2</h3>
+                                    <div class="box-tools">
+                                        <i class="fa fa-gear"></i>
+                                        <i class="fa fa-angle-down lte-hider"></i>
+                                        <i class="off fa fa-times"></i>
+                                    </div>                                
+                                </div>
+                                <div class='box-body'>
+                                    <div id='pie-chart2' class='lte-chart'></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-md-4 col-sm-12'>
+                            <div class='box box-blue'>
+                                <div class='box-header'>
+                                    <h3 class="box-title"><i class="fa fa-bar-chart-o"></i> Pie Chart - 3</h3>
+                                    <div class="box-tools">
+                                        <i class="fa fa-gear"></i>
+                                        <i class="fa fa-angle-down lte-hider"></i>
+                                        <i class="off fa fa-times"></i>
+                                    </div>                                
+                                </div>
+                                <div class='box-body'>
+                                    <div id='pie-chart3' class='lte-chart'></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-md-4 col-sm-12'>
+                            <div class='box box-blue'>
+                                <div class='box-header'>
+                                    <h3 class="box-title"><i class="fa fa-bar-chart-o"></i> Bar Chart</h3>
+                                    <div class="box-tools">
+                                        <i class="fa fa-gear"></i>
+                                        <i class="fa fa-angle-down lte-hider"></i>
+                                        <i class="off fa fa-times"></i>
+                                    </div>                                
+                                </div>
+                                <div class='box-body'>
+                                    <div id='bar-chart1' class='lte-chart'></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-md-4 col-sm-12'>
+                            <div class='box box-blue'>
+                                <div class='box-header'>
+                                    <h3 class="box-title"><i class="fa fa-bar-chart-o"></i> Bar Chart - 2</h3>
+                                    <div class="box-tools">
+                                        <i class="fa fa-gear"></i>
+                                        <i class="fa fa-angle-down lte-hider"></i>
+                                        <i class="off fa fa-times"></i>
+                                    </div>                                
+                                </div>
+                                <div class='box-body'>
+                                    <div id='bar-chart2' class='lte-chart'></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-md-4 col-sm-12'>
+                            <div class='box box-blue'>
+                                <div class='box-header'>
+                                    <h3 class="box-title"><i class="fa fa-bar-chart-o"></i> Bar Chart - 3</h3>
+                                    <div class="box-tools">
+                                        <i class="fa fa-gear"></i>
+                                        <i class="fa fa-angle-down lte-hider"></i>
+                                        <i class="off fa fa-times"></i>
+                                    </div>                                
+                                </div>
+                                <div class='box-body'>
+                                    <div id='bar-chart3' class='lte-chart'></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./.lte-main-content -->
+        <footer>
+            Copyright &copy; 2013 - <a>Preview</a> - <a>Purchase</a> - Built with <a target="blank" href="http://getbootstrap.com">Bootstrap 3</a>
+        </footer>
+
+
+        <!-- JQuery 1.10.2 -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- LTE Tree -->
+        <script src="../js/lteTree.js" type="text/javascript"></script>
+        <!-- LTE App -->
+        <script src="../js/lteApp.js" type="text/javascript"></script>
+        <!-- flot -->
+        <script src="../js/flot/jquery.flot.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../js/flot/jquery.flot.categories.js"></script>
+        <script type="text/javascript" src="../js/flot/jquery.flot.pie.js"></script>
+        <script type="text/javascript">
+            $(function() {
+
+
+                //Line chart 1
+                var d1 = [];
+                for (var i = 0; i < 14; i += 0.5) {
+                    d1.push([i, Math.sin(i)]);
+                }
+
+                var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
+
+                // A null signifies separate line segments
+
+                var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
+
+                $.plot("#line-chart1", [d1, d2, d3]);
+
+                //Bar chart 1
+                var data = [["January", 10], ["February", 8], ["March", 4]];
+
+                $.plot("#bar-chart1", [data], {
+                    series: {
+                        bars: {
+                            show: true,
+                            barWidth: 0.6,
+                            align: "center"
+                        }
+                    },
+                    xaxis: {
+                        mode: "categories",
+                        tickLength: 0
+                    }
+                });
+
+                //Line chart 2
+                var d1 = [];
+                for (var i = 0; i < Math.PI * 2; i += 0.25) {
+                    d1.push([i, Math.sin(i)]);
+                }
+
+                var d2 = [];
+                for (var i = 0; i < Math.PI * 2; i += 0.25) {
+                    d2.push([i, Math.cos(i)]);
+                }
+
+                var d3 = [];
+                for (var i = 0; i < Math.PI * 2; i += 0.1) {
+                    d3.push([i, Math.tan(i)]);
+                }
+
+                $.plot("#line-chart2", [
+                    {label: "sin(x)", data: d1},
+                    {label: "cos(x)", data: d2},
+                    {label: "tan(x)", data: d3}
+                ], {
+                    series: {
+                        lines: {show: true},
+                        points: {show: true}
+                    },
+                    xaxis: {
+                        ticks: [
+                            0, [Math.PI / 2, "\u03c0/2"], [Math.PI, "\u03c0"],
+                            [Math.PI * 3 / 2, "3\u03c0/2"], [Math.PI * 2, "2\u03c0"]
+                        ]
+                    },
+                    yaxis: {
+                        ticks: 10,
+                        min: -2,
+                        max: 2,
+                        tickDecimals: 3
+                    },
+                    grid: {
+                        backgroundColor: {colors: ["#fff", "#eee"]},
+                        borderWidth: {
+                            top: 1,
+                            right: 1,
+                            bottom: 2,
+                            left: 2
+                        }
+                    }
+                });
+
+                //bar chart 2
+                var d1 = [];
+                for (var i = 0; i < 20; ++i) {
+                    d1.push([i, Math.sin(i)]);
+                }
+
+                var data = [{data: d1, label: "Pressure", color: "#333"}];
+
+                var markings = [
+                    {color: "#f6f6f6", yaxis: {from: 1}},
+                    {color: "#f6f6f6", yaxis: {to: -1}},
+                    {color: "#000", lineWidth: 1, xaxis: {from: 2, to: 2}},
+                    {color: "#000", lineWidth: 1, xaxis: {from: 8, to: 8}}
+                ];
+
+                var placeholder = $("#bar-chart2");
+
+                var plot = $.plot(placeholder, data, {
+                    bars: {show: true, barWidth: 0.5, fill: 0.9},
+                    xaxis: {ticks: [], autoscaleMargin: 0.02},
+                    yaxis: {min: -2, max: 2},
+                    grid: {markings: markings}
+                });
+
+                var o = plot.pointOffset({x: 2, y: -1.2});
+
+                // Append it to the placeholder that Flot already uses for positioning
+
+                placeholder.append("<div style='position:absolute;left:" + (o.left + 4) + "px;top:" + o.top + "px;color:#666;font-size:smaller'>Warming up</div>");
+
+                o = plot.pointOffset({x: 8, y: -1.2});
+                placeholder.append("<div style='position:absolute;left:" + (o.left + 4) + "px;top:" + o.top + "px;color:#666;font-size:smaller'>Actual measurements</div>");
+
+                // Draw a little arrow on top of the last label to demonstrate canvas
+                // drawing
+
+                var ctx = plot.getCanvas().getContext("2d");
+                ctx.beginPath();
+                o.left += 4;
+                ctx.moveTo(o.left, o.top);
+                ctx.lineTo(o.left, o.top - 10);
+                ctx.lineTo(o.left + 10, o.top - 5);
+                ctx.lineTo(o.left, o.top);
+                ctx.fillStyle = "#000";
+                ctx.fill();
+                function _sidebar_fix() {
+                    $(".lte-sidebar").css("min-height", ($(window).height() - ($("nav").outerHeight() + $("footer").outerHeight())) + "px");
+                    var height = $(document).height() - ($("nav").outerHeight() + $("footer").outerHeight());
+                    $(".lte-sidebar").css("min-height", height + "px");
+                }
+
+                //Bar chart 3
+                var d1 = [];
+                for (var i = 0; i <= 3; i += 1) {
+                    d1.push([i, parseInt(Math.random() * 30)]);
+                }
+
+                var d2 = [];
+                for (var i = 0; i <= 3; i += 1) {
+                    d2.push([i, parseInt(Math.random() * 30)]);
+                }
+
+                var d3 = [];
+                for (var i = 0; i <= 3; i += 1) {
+                    d3.push([i, parseInt(Math.random() * 30)]);
+                }
+
+                var stack = 0,
+                        bars = true,
+                        lines = false,
+                        steps = false;
+
+
+                $.plot("#bar-chart3", [d1, d2, d3], {
+                    series: {
+                        stack: true,
+                        lines: {
+                            show: lines,
+                            fill: true,
+                            steps: false
+                        },
+                        bars: {
+                            show: bars,
+                            barWidth: 0.6
+                        }
+                    }
+                });
+
+                //Line chart 3
+                $.plot("#line-chart3", [d1, d2, d3], {
+                    series: {
+                        stack: true,
+                        lines: {
+                            show: true,
+                            fill: true,
+                            steps: false
+                        },
+                        bars: {
+                            show: false,
+                            barWidth: 0.6
+                        }
+                    }
+                });
+
+                //Pie charts
+                // Randomly Generated Data
+
+                var data = [],
+                        series = Math.floor(Math.random() * 6) + 3;
+
+                for (var i = 0; i < series; i++) {
+                    data[i] = {
+                        label: "Series" + (i + 1),
+                        data: Math.floor(Math.random() * 100) + 1
+                    }
+                }
+                $.plot("#pie-chart1", data, {
+                    series: {
+                        pie: {
+                            show: true
+                        }
+                    }
+                });
+
+                //Donut
+                $.plot("#pie-chart2", data, {
+                    series: {
+                        pie: {
+                            innerRadius: 0.5,
+                            show: true
+                        }
+                    }
+                });
+                function labelFormatter(label, series) {
+                    return "<div style='font-size:8pt; text-align:center; padding:2px; color:white;'>" + label + "<br/>" + Math.round(series.percent) + "%</div>";
+                }
+                //3d
+                $.plot("#pie-chart3", data, {
+                    series: {
+                        pie: {
+                            show: true,
+                            radius: 1,
+                            tilt: 0.5,
+                            label: {
+                                show: true,
+                                radius: 1,
+                                formatter: labelFormatter,
+                                background: {
+                                    opacity: 0.8
+                                }
+                            },
+                            combine: {
+                                color: "#999",
+                                threshold: 0.1
+                            }
+                        }
+                    },
+                    legend: {
+                        show: false
+                    }
+                });
+
+            });
+        </script>
+    </body>
+</html>

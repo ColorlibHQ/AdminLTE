@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>Hidden Plots</title>
+
+    <link class="include" rel="stylesheet" type="text/css" href="../jquery.jqplot.min.css" />
+    <link rel="stylesheet" type="text/css" href="examples.min.css" />
+    <link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/shCoreDefault.min.css" />
+    <link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/shThemejqPlot.min.css" />
+  
+    <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="../excanvas.js"></script><![endif]-->
+    <script class="include" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
+   
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <a class="nav" href="../../../index.php"><span>&gt;</span>Home</a>
+            <a class="nav"  href="../../../docs/"><span>&gt;</span>Docs</a>
+            <a class="nav"  href="../../download/"><span>&gt;</span>Download</a>
+            <a class="nav" href="../../../info.php"><span>&gt;</span>Info</a>
+            <a class="nav"  href="../../../donate.php"><span>&gt;</span>Donate</a>
+        </div>
+    </div>
+    <div class="colmask leftmenu">
+      <div class="colleft">
+        <div class="col1" id="example-content">
+
+  
+<!-- Example scripts go here -->
+
+  <style type="text/css">
+    .ui-tabs, .ui-accordion {
+      width: 690px;
+      margin: 2em auto;
+    }
+    .ui-tabs-nav, .ui-accordion-header {
+      font-size: 12px;
+    }
+    
+    .ui-tabs-panel, .ui-accordion-content {
+      font-size: 14px;
+    }
+    
+    .jqplot-target {
+      font-size: 18px;
+    }
+    
+    ol.description {
+      list-style-position: inside;
+      font-size:15px;
+      margin:1.5em auto;
+      padding:0 15px;
+      width:600px;
+    }
+  </style>
+
+<p class="description">This page demonstrates placing plots within jQuery UI widgets. Tab 2 and tab 3 contain plots.  Using a combination of alternate sizing specification and the jqplot "replot" method the plots are properly displayed when their containers are shown.</p>
+  
+  <p class="description">The alternate sizing specifications for setting plot height and width are needed because a hidden element (or child of a hidden element) has no size.  The first example in tab 2 uses custom "data-height" and "data-width" attributes on the plot target element.  The second example uses "width" and "height" properties specified on the options object passed into the $.jqplot() function.</p>
+
+  <p class="description">The default plot size is 300px wide by 400px high. The default setting can be overridden by specifying different values to the $.jqplot.config.defaultHeight and $.jqplot.config.defaultWidth properties.  Height and width values are taken in this order of precedence:
+  </p>
+      
+      <ol class="description">
+        <li>The css properties of the plot target if available (not available with display:none;).</li>
+        <li>Options object passed into the $.jqplot() function.</li>
+        <li>Custom data-height and data-width attributes on the plot target.</li>
+        <li>The config defaults.</li>
+      </ol>
+      
+  <div id="tabs">
+    <ul>
+      <li><a href="#tabs-1">Tab 1</a></li>
+      <li><a href="#tabs-2">Tab 2</a></li>
+      <li><a href="#tabs-3">Tab 3</a></li>
+    </ul>
+    <div id="tabs-1">
+      Tabs 2 and 3 have plots.  Since tabs 2 and 3 are initially inactive, their contents (and the plots) are initially hidden.
+    </div>
+    
+    <div id="tabs-2">
+      <p>This plot was in an initially hidden container.  Its height and width are set by the "data-height" and "data-width" properties of the plot container.</p>
+        <div id="chart1" data-height="260px" data-width="480px" style="margin-top:20px; margin-left:20px;"></div>
+    </div>
+    
+    <div id="tabs-3">
+      <p>This plot is in an initially hidden container.  Its height and width are set by the 'height' and 'width' properties of the options object passed into the plot constructor.</p>
+        <div id="chart2" style="margin-top:20px; margin-left:20px;"></div>
+    </div>
+    
+  </div> 
+  
+    <p class="description">In the accordion below, section 2 contains a plot.  Sizing plots in hidden accordion sections is very similar to sizing in a tab widget.  Because of the default animation on accordions, however, the plot will not draw itself until the entire accordion panel is shown.</p>
+    
+<div id="accordion" style="margin-top:50px">
+  
+  <h3><a href="#">Section 1</a></h3>
+  <div>
+    Here is section 1 there is no plot.  Section 2 has a plot that will display once the section is completely shown.
+  </div>
+  
+  <h3><a href="#">Section 2</a></h3>
+  <div>
+    <p>
+    This plot also has its height and width set with the data-height and data-width attributes.  Note, if you want the accordion widget to properly size itself </em>before</em> the plot is shown, you must also specify a css height and width on the plot target.
+    </p>
+    <div id="chart3" data-height="200" data-width="400" style="width:400px; height: 200px; margin-top: 20px; margin-left: 20px"></div>
+  </div>
+  
+</div>
+
+<p class="description">Code for generating the plots follows.  It is critical to bind the callback to the UI widgets "show" or "change" method which calls the plots "replot" method.  Without this, the plot won't properly redraw itself when its container becomes visible.</p>
+
+<p class="description">
+  Note in the ui.index and plot._drawCount properties in the tabsshow callback.  ui.index gives the index of the activated tab.  plot._drawCount keeps track of how many times the plot was visibly drawn (or redrawn/replotted).  Generally, replot only needs to be called the first time the plot is visibly drawn, hence the check for plot._drawCount === 0.
+  </p>  
+
+<pre class="code brush:js"></pre>
+
+<script class="code" type="text/javascript">
+    $(document).ready(function() {
+        $.jqplot.config.enablePlugins = false;
+
+        var l1 = [18, 36, 14, 11];
+        var l2 = [[2, 14], [7, 2], [8,5]];
+        var l3 = [4, 7, 9, 2, 11, 5, 9, 13, 8, 7];
+        var l4 = [['peech',3], ['cabbage', 2], ['bean', 4], ['orange', 5]];
+
+        $("#tabs").tabs();
+        $("#accordion").accordion();
+
+        var plot1 = $.jqplot('chart1', [l1, l2, l3],  {
+          title: "I was hidden",
+          lengend:{show:true},
+          series:[{},{yaxis:'y2axis'}, {yaxis:'y3axis'}],
+          cursor:{show:true, zoom:true},
+          axesDefaults:{useSeriesColor:true, rendererOptions: { alignTicks: true}}
+        });
+
+        var plot2 = $.jqplot('chart2', [l4], {
+          height: 200,
+          width: 300,
+          series:[{renderer:$.jqplot.PieRenderer}],
+          legend:{show:true}
+        });
+    
+        var catOHLC = [[1, 138.7, 139.68, 135.18, 135.4],
+        [2, 143.46, 144.66, 139.79, 140.02],
+        [3, 140.67, 143.56, 132.88, 142.44],
+        [4, 136.01, 139.5, 134.53, 139.48],
+        [5, 143.82, 144.56, 136.04, 136.97],
+        [6, 136.47, 146.4, 136, 144.67],
+        [7, 124.76, 135.9, 124.55, 135.81],
+        [8, 123.73, 129.31, 121.57, 122.5]];
+
+        var ticks = ['Tue', 'Wed', 'Thu', 'Fri', 'Mon', 'Tue', 'Wed', 'Thr'];
+    
+        var plot3 = $.jqplot('chart3',[catOHLC],{
+          grid:{ drawGridlines:true},
+          title: 'A CandleStick Chart',
+          axes: {
+              xaxis: {
+                  renderer:$.jqplot.CategoryAxisRenderer,
+                  ticks:ticks
+              },
+              yaxis: {
+                  tickOptions:{formatString:'$%.2f'}
+              }
+          },
+          series: [{renderer:$.jqplot.OHLCRenderer, rendererOptions:{candleStick:true}}]
+        });
+
+        $('#tabs').bind('tabsactivate', function(event, ui) {
+          if (ui.newTab.index() === 1 && plot1._drawCount === 0) {
+            plot1.replot();
+          }
+          else if (ui.newTab.index() === 2 && plot2._drawCount === 0) {
+            plot2.replot();
+          }
+        });
+
+        $('#accordion').bind('accordionactivate', function(event, ui) {
+          var index = $(this).find("h3").index ( ui.newHeader[0] );
+          if (index === 1) {
+            plot3.replot();
+          }
+        });
+    
+    });
+</script> 
+
+<!-- End example scripts -->
+
+<!-- Don't touch this! -->
+
+
+    <script class="include" type="text/javascript" src="../jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shCore.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shBrushJScript.min.js"></script>
+    <script type="text/javascript" src="syntaxhighlighter/scripts/shBrushXml.min.js"></script>
+<!-- End Don't touch this! -->
+
+<!-- Additional plugins go here -->
+  <script class="include" type="text/javascript" src="../plugins/jqplot.cursor.min.js"></script>
+  <script class="include" type="text/javascript" src="../plugins/jqplot.pieRenderer.min.js"></script>
+  <script class="include" type="text/javascript" src="../plugins/jqplot.ohlcRenderer.min.js"></script>
+  <script class="include" type="text/javascript" src="../plugins/jqplot.categoryAxisRenderer.min.js"></script>
+  <link class="include" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/themes/smoothness/jquery-ui.css" rel="Stylesheet" /> 
+  <script class="include" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+
+<!-- End additional plugins -->
+
+        </div>
+         <div class="col2">
+
+           <div class="example-link"><a class="example-link" href="data-renderers.html">AJAX and JSON Data Loading via Data Renderers</a></div>
+           <div class="example-link"><a class="example-link" href="barLineAnimated.html">Animated Charts</a></div>
+           <div class="example-link"><a class="example-link" href="dashboardWidget.html">Animated Dashboard Sample - Filled Line with Log Axis</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_area.html">Area Chart</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_area2.html">Area Chart 2</a></div>
+           <div class="example-link"><a class="example-link" href="axisLabelTests.html">Axis Labels</a></div>
+           <div class="example-link"><a class="example-link" href="axisLabelsRotatedText.html">Axis Labels and Rotated Text</a></div>
+           <div class="example-link"><a class="example-link" href="barTest.html">Bar Charts</a></div>
+           <div class="example-link"><a class="example-link" href="multipleBarColors.html">Bar Colors Example</a></div>
+           <div class="example-link"><a class="example-link" href="bezierCurve.html">Bezier Curve Plots</a></div>
+           <div class="example-link"><a class="example-link" href="blockPlot.html">Block Plots</a></div>
+           <div class="example-link"><a class="example-link" href="bubbleChart.html">Bubble Charts</a></div>
+           <div class="example-link"><a class="example-link" href="bubble-plots.html">Bubble Plots</a></div>
+           <div class="example-link"><a class="example-link" href="candlestick.html">Candlestick and Open Hi Low Close Charts</a></div>
+           <div class="example-link"><a class="example-link" href="theming.html">Chart Theming</a></div>
+           <div class="example-link"><a class="example-link" href="fillBetweenLines.html">Charts with Fill Between Lines</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_cdf.html">Cumulative Density Function Chart</a></div>
+           <div class="example-link"><a class="example-link" href="dashedLines.html">Dashed Lines with Smoothing</a></div>
+           <div class="example-link"><a class="example-link" href="cursor-highlighter.html">Data Point Highlighting, Tooltips and Cursor Tracking</a></div>
+           <div class="example-link"><a class="example-link" href="point-labels.html">Data Point labels</a></div>
+           <div class="example-link"><a class="example-link" href="date-axes.html">Date Axes</a></div>
+           <div class="example-link"><a class="example-link" href="dateAxisRenderer.html">Date Axes 2</a></div>
+           <div class="example-link"><a class="example-link" href="rotatedTickLabelsZoom.html">Date Axes, Rotated Labels and Zooming</a></div>
+           <div class="example-link"><a class="example-link" href="canvas-overlay.html">Draw Lines on Plots - Canvas Overlay</a></div>
+           <div class="example-link"><a class="example-link" href="draw-rectangles.html">Draw Rectangles on Plots</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_engel.html">Engel Curves</a></div>
+           <div class="example-link"><a class="example-link" href="bandedLine.html">Error Bands and Confidence Intervals</a></div>
+           <div class="example-link"><a class="example-link" href="area.html">Filled (Area) Charts</a></div>
+           <div class="example-link"><a class="example-link" href="axisScalingForceTickAt.html">Force Plot to Have Tick at 0 or 100</a></div>
+           <div class="example-link"><a class="example-link" href="hiddenPlotsInTabs.html">Hidden Plots</a></div>
+           <div class="example-link"><a class="example-link" href="customHighlighterCursorTrendline.html">Highlighting, Dragging Points, Cursor and Trend Lines</a></div>
+           <div class="example-link"><a class="example-link" href="line-charts.html">Line Charts and Options</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_lorenz.html">Lorenz Curves</a></div>
+           <div class="example-link"><a class="example-link" href="mekkoCharts.html">Mekko Charts</a></div>
+           <div class="example-link"><a class="example-link" href="meterGauge.html">Meter Gauge</a></div>
+           <div class="example-link"><a class="example-link" href="candlestick-charts.html">Open Hi Low Close and Candlestick Charts</a></div>
+           <div class="example-link"><a class="example-link" href="pieTest.html">Pie Charts and Options</a></div>
+           <div class="example-link"><a class="example-link" href="pieTest4.html">Pie Charts and Options 2</a></div>
+           <div class="example-link"><a class="example-link" href="pie-donut-charts.html">Pie and Donut Charts</a></div>
+           <div class="example-link"><a class="example-link" href="selectorSyntax.html">Plot Creation with jQuery Selectors</a></div>
+           <div class="example-link"><a class="example-link" href="zooming.html">Plot Zooming and Cursor Control</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pdf.html">Probability Density Function Chart</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid_by_age.html">Pyramid Chart By Age</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid.html">Pyramid Charts</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_pyramid2.html">Pyramid Charts 2</a></div>
+           <div class="example-link"><a class="example-link" href="kcp_quintiles.html">Quintile Pyramid Charts</a></div>
+           <div class="example-link"><a class="example-link" href="resizablePlot.html">Resizable Plots</a></div>
+           <div class="example-link"><a class="example-link" href="rotated-tick-labels.html">Rotated Labels and Font Styling</a></div>
+           <div class="example-link"><a class="example-link" href="smoothedLine.html">Smoothed Lines</a></div>
+           <div class="example-link"><a class="example-link" href="bar-charts.html">Vertical and Horizontal Bar Charts</a></div>
+           <div class="example-link"><a class="example-link" href="waterfall.html">Waterfall Charts</a></div>
+           <div class="example-link"><a class="example-link" href="waterfall2.html">Waterfall Charts 2</a></div>
+           <div class="example-link"><a class="example-link" href="zoomOptions.html">Zoom Options</a></div>
+           <div class="example-link"><a class="example-link" href="zoomProxy.html">Zoom Proxy - Control one plot from another</a></div>
+           <div class="example-link"><a class="example-link" href="zoom1.html">Zooming</a></div>
+           <div class="example-link"><a class="example-link" href="dateAxisLogAxisZooming.html">Zooming with Date and Log Axes</a></div>
+
+         </div>
+               </div>
+    </div>
+    <script type="text/javascript" src="example.min.js"></script>
+
+</body>
+
+
+</html>
