@@ -1,0 +1,64 @@
+/*
+    Component: Mailbox
+*/
+
+.mailbox {
+
+    .table-mailbox {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;        
+        tr {
+            &.unread {
+                 > td {                    
+                    background-color: rgba(0, 0, 0, 0.05);
+                    color: #000;
+                    font-weight: 600;                    
+                }                
+            }
+
+            > td > .fa.fa-star,
+            > td > .fa.fa-star-o,
+            > td > .glyphicon.glyphicon-star,
+            > td > .glyphicon.glyphicon-star-empty{
+                color: @yellow;   
+                cursor: pointer;
+            }
+
+            > td.small-col {
+                width: 30px;
+            }
+
+            > td.name {
+                width: 150px;
+                font-weight: 600;
+            }
+            > td.time {
+                text-align: right;
+                width: 100px;                
+            }
+            > td {
+                white-space: nowrap;                
+            }
+            
+            & > td > a {color: #444;}
+        }
+    }
+
+    @media screen and (max-width: @screen-sm) {
+        .nav-stacked {
+            > li:not(.header) {
+                float: left;
+                width: 50%;
+                &.header {
+                    border: 0!important;
+                }
+            }
+        }
+        
+        .search-form {
+            margin-top: 10px;
+        }
+    }
+
+}

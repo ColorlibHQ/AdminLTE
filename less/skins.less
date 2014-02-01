@@ -1,0 +1,115 @@
+
+/* 
+    Skins
+    -----
+*/
+
+/* 
+    skin-blue 
+    ---------
+*/
+
+/* skin-blue navbar */
+.skin-blue .navbar {
+    .navbar-variant(@light-blue);
+}
+/* skin-blue logo */
+.skin-blue .logo {
+    .logo-variant(darken(@light-blue, 5%));
+}
+
+/* Skin-blue user panel */
+.skin-blue .user-panel {
+
+    > .image > img {
+        border: 1px solid #dfdfdf;
+    }
+
+    > .info, > .info > a {
+        color: @sidebar-light-font;
+    }
+}
+
+/* skin-blue sidebar */
+.skin-blue {
+    .sidebar {
+        border-bottom: 1px solid #fff;
+    }
+    // the menu 
+    .sidebar > .sidebar-menu > li {
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid @sidebar-light-border;
+
+        &:first-of-type {
+            border-top: 1px solid @sidebar-light-border;
+            > a {
+                border-top: 1px solid #fff;
+            }
+        }
+        > a {
+            margin-right: 1px;
+        }
+        //Hover and active states
+        > a:hover, &.active > a {
+            color: #222;
+            background: @sidebar-light-hover-bg;            
+        }
+
+        > .treeview-menu {
+            margin: 0 1px;
+            background: @body-bg;
+        }
+    }
+
+    // Sidebar color (Both .wrapper and .left-side are responsible for sidebar bg color) 
+    .left-side {
+        background: @sidebar-light-bg;
+        -webkit-box-shadow: inset -3px 0px 8px -4px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: inset -3px 0px 8px -4px rgba(0, 0, 0, 0.1);
+        box-shadow: inset -3px 0px 8px -4px rgba(0, 0, 0, 0.07);
+    }
+
+    .sidebar a {
+        color: @sidebar-light-font;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    // skin blue treeview-menu
+    .treeview-menu {
+        > li {
+            > a {color: #777;}
+            &.active > a, > a:hover {
+                color: #111;
+            }
+        }
+    }
+
+    .sidebar-form {
+        .border-radius(2px);
+        border: 1px solid @sidebar-light-border;
+        margin: 10px 10px;
+        input[type="text"], .btn {
+            box-shadow: none;
+            background-color: #fafafa;
+            border: 1px solid #fafafa;
+            height: 35px;
+
+        }
+        input[type="text"]{
+            color: #666;
+            .border-radius(2px, 0, 2px, 0)!important;
+            &:focus, &:focus + .input-group-btn .btn {
+                background-color: #fff;
+                color: #666;
+            }
+            &:focus + .input-group-btn .btn {
+                border-left-color: #fff;
+            }
+        }
+        .btn {
+            color: #999;
+            .border-radius(0, 2px, 0, 2px)!important;
+        }
+    }
+}

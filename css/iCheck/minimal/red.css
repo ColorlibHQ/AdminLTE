@@ -1,0 +1,62 @@
+/* iCheck plugin Minimal skin, red
+----------------------------------- */
+.icheckbox_minimal-red,
+.iradio_minimal-red {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    background: url(red.png) no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.icheckbox_minimal-red {
+    background-position: 0 0;
+}
+    .icheckbox_minimal-red.hover {
+        background-position: -20px 0;
+    }
+    .icheckbox_minimal-red.checked {
+        background-position: -40px 0;
+    }
+    .icheckbox_minimal-red.disabled {
+        background-position: -60px 0;
+        cursor: default;
+    }
+    .icheckbox_minimal-red.checked.disabled {
+        background-position: -80px 0;
+    }
+
+.iradio_minimal-red {
+    background-position: -100px 0;
+}
+    .iradio_minimal-red.hover {
+        background-position: -120px 0;
+    }
+    .iradio_minimal-red.checked {
+        background-position: -140px 0;
+    }
+    .iradio_minimal-red.disabled {
+        background-position: -160px 0;
+        cursor: default;
+    }
+    .iradio_minimal-red.checked.disabled {
+        background-position: -180px 0;
+    }
+
+/* Retina support */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (-moz-min-device-pixel-ratio: 1.5),
+       only screen and (-o-min-device-pixel-ratio: 1.5),
+       only screen and (min-device-pixel-ratio: 1.5) {
+    .icheckbox_minimal-red,
+    .iradio_minimal-red {
+        background-image: url(red@2x.png);
+        -webkit-background-size: 200px 20px;
+        background-size: 200px 20px;
+    }
+}

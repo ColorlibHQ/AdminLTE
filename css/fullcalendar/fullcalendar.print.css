@@ -9,24 +9,21 @@
  * When including this stylesheet, use the media='print' attribute of the <link> tag.
  * Make sure to include this stylesheet IN ADDITION to the regular fullcalendar.css.
  */
- 
- 
- /* Events
+
+
+/* Events
 -----------------------------------------------------*/
- 
-.fc-event {
-	background: #fff !important;
-	color: #000 !important;
-	}
-	
-/* for vertical events */
-	
-.fc-event-bg {
-	display: none !important;
-	}
-	
-.fc-event .ui-resizable-handle {
-	display: none !important;
-	}
-	
-	
+    .fc-event {
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    /* for vertical events */
+
+    .fc-event-bg {
+        display: none !important;
+    }
+
+    .fc-event .ui-resizable-handle {
+        display: none !important;
+    }

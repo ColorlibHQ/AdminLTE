@@ -1,0 +1,49 @@
+
+/* 
+    Component: callout
+------------------------
+*/
+
+// Base styles (regardless of theme) 
+.callout {
+    margin: 0 0 20px 0;
+    padding: 15px 30px 15px 15px;
+    border-left: 5px solid #eee;
+
+    h4 {
+        margin-top: 0;
+    }
+    p:last-child {
+        margin-bottom: 0;
+    }
+    code,
+    .highlight {
+        background-color: #fff;
+    }
+
+    // Themes for different contexts 
+    &.callout-danger {
+        background-color: #fcf2f2;
+        border-color: #dFb5b4;
+    }
+    &.callout-warning {
+        background-color: #fefbed;
+        border-color: #f1e7bc;
+    }
+    &.callout-info {
+        background-color: #f0f7fd;
+        border-color: #d0e3f0;
+    }
+    // h4 header themes 
+    &.callout-danger h4 {
+        color: #B94A48;
+    }
+
+    &.callout-warning h4 {
+        color: #C09853;
+    }
+
+    &.callout-info h4 {
+        color: #3A87AD;
+    }
+} 

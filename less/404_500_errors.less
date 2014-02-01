@@ -1,0 +1,38 @@
+/* 
+    Page: 404 and 500 error pages
+------------------------------------
+*/
+
+.error-page {
+    width: 600px;
+    margin: 20px auto 0 auto;
+    @media screen and (max-width: @screen-sm) {
+        width: 100%;
+    }
+    //For the error number e.g: 404
+    > .headline {
+        float: left;        
+        font-size: 100px;
+        font-weight: 300;
+        @media screen and (max-width: @screen-sm) {
+            float: none;
+            text-align: center;
+        }
+    }
+    //For the message
+    > .error-content {
+        margin-left: 190px;
+        @media screen and (max-width: @screen-sm) {
+            margin-left: 0;
+        }
+        > h3 {
+            font-weight: 300;
+            font-size: 25px;
+            @media screen and (max-width: @screen-sm) {
+                text-align: center;
+            }
+        }
+        display: block;
+    }
+    .clearfix();
+}

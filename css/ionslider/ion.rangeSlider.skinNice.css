@@ -1,0 +1,85 @@
+/* Ion.RangeSlider, Nice Skin
+// css version 1.8.5
+// by Denis Ineshin | ionden.com
+// ===================================================================================================================*/
+
+/* =====================================================================================================================
+// Skin details */
+
+.irs-line-mid,
+.irs-line-left,
+.irs-line-right,
+.irs-diapason,
+.irs-slider {
+    background: url(../../img/sprite-skin-nice.png) repeat-x;
+}
+
+.irs {
+    height: 40px;
+}
+.irs-with-grid {
+    height: 60px;
+}
+.irs-line {
+    height: 8px; top: 25px;
+}
+    .irs-line-left {
+        height: 8px;
+        background-position: 0 -30px;
+    }
+    .irs-line-mid {
+        height: 8px;
+        background-position: 0 0;
+    }
+    .irs-line-right {
+        height: 8px;
+        background-position: 100% -30px;
+    }
+
+.irs-diapason {
+    height: 8px; top: 25px;
+    background-position: 0 -60px;
+}
+
+.irs-slider {
+    width: 22px; height: 22px;
+    top: 17px;
+    background-position: 0 -90px;
+}
+#irs-active-slider, .irs-slider:hover {
+    background-position: 0 -120px;
+}
+
+.irs-min, .irs-max {
+    color: #999;
+    font-size: 10px; line-height: 1.333;
+    text-shadow: none;
+    top: 0; padding: 1px 3px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 3px;
+}
+.lt-ie9 .irs-min, .lt-ie9 .irs-max {
+    background: #ccc;
+}
+
+.irs-from, .irs-to, .irs-single {
+    color: #fff;
+    font-size: 10px; line-height: 1.333;
+    text-shadow: none;
+    padding: 1px 5px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 3px;
+}
+.lt-ie9 .irs-from, .lt-ie9 .irs-to, .lt-ie9 .irs-single {
+    background: #999;
+}
+
+.irs-grid-pol {
+    background: #99a4ac;
+}
+.irs-grid-text {
+    color: #99a4ac;
+}
+
+.irs-disabled {
+}

@@ -56,7 +56,7 @@ html .fc,
 
 .fc-header-title h2 {
     margin-top: 0;
-    white-space: nowrap;
+    white-space: nowrap;    
 }
 
 .fc .fc-header-space {
@@ -136,14 +136,23 @@ html .fc,
 ------------------------------------------------------------------------*/
 
 .fc-button {
-    position: relative;
     display: inline-block;
-    padding: 0 .6em;
-    overflow: hidden;
-    height: 1.9em;
-    line-height: 1.9em;
+    padding: 4px 9px;
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
     white-space: nowrap;
+    vertical-align: middle;
     cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .fc-state-default { /* non-theme */
@@ -212,6 +221,16 @@ html .fc,
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
+
+.fc-button.fc-state-default {
+    border: 1px solid #d9dadc;
+    border-bottom-color: #d3d5d7;  
+    border-bottom-width: 2px;
+    margin-left: 0px!important;
+    background: #fafafa;    
+    color: #666;
+}
+
 
 .fc-state-hover,
 .fc-state-down,
@@ -584,4 +603,15 @@ table.fc-border-separate {
 
 .fc-agenda .ui-resizable-resizing { /* TODO: better selector */
     _overflow: hidden;
+}
+
+/* Custom calendar */
+.external-event {
+    margin: 10px 0;
+    padding: 3px 5px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: 600;
+    display: inline-block;
+    margin: 0 5px 5px 0;
 }
