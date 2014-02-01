@@ -65,3 +65,7 @@ Image Credits:
 [ajaxload](http://www.ajaxload.info/ "")
 
 [pickaface](http://pickaface.net/ "")
+
+**If you like the theme and you are feeling generous, I would greatly appreciate your donation. Donations are made by Paypal**
+
+https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=629XCUSXBHCBC
