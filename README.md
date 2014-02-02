@@ -51,6 +51,14 @@ Featured Plugins:
 - jVector Map
 - Slim Scroll
 
+Browser Support:
+----------------
+- IE 9+
+- Firefox 5+
+- Chrome 14+
+- Safari 5+
+- Opera 11+
+
 To Do List:
 -----------
 - More features
