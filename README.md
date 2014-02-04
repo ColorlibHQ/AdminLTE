@@ -1,6 +1,6 @@
 **AdminLTE** -- is a fully responsive admin template. Based on **Bootstrap 3** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself. 
 
-http://almsaeedstudio.com/AdminLTE
+http://almsaeedstudio.com/preview/
 
 **If you like the theme and you are feeling generous, I would greatly appreciate your donation. Donations are made by Paypal** [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif "AdminLTE Presentation")](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=629XCUSXBHCBC "Donate")
 
