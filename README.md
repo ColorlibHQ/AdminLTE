@@ -11,6 +11,11 @@
 
 **AdminLTE** has been carefully coded with clear comments in all of its JS, LESS and HTML files. LESS has been used to increase code customizability.
 
+Announcements:
+--------------
+- Added new skin. class: .skin-black
+- Added [pace](http://github.hubspot.com/pace/docs/welcome/ "pace") plugin.
+
 Special Features:
 -----------------
 - **Fully responsive**
@@ -53,6 +58,7 @@ Featured Plugins:
 - jQuery Knob
 - jVector Map
 - Slim Scroll
+- Pace
 
 Browser Support:
 ----------------
