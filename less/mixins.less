@@ -3,11 +3,11 @@
 
 
 //Changes the color and the hovering properties of the navbar
-.navbar-variant(@color) {
+.navbar-variant(@color; @font-color: rgba(255, 255, 255, 0.8); @hover-color: #f6f6f6; @hover-bg: rgba(0, 0, 0, 0.1)) {
     background-color: @color;
     //Navbar links
     .nav a {
-        color: #acd0e5;
+        color: @font-color;
     }
 
     .nav > li > a:hover,
@@ -16,8 +16,8 @@
         .nav .open > a,
         .nav .open > a:hover,
         .nav .open > a:focus {
-        background: darken(@color, 10%);
-        color: #f6f6f6;
+        background: @hover-bg;
+        color: @hover-color;
     }
 
     .navbar-right > .nav {
@@ -25,7 +25,11 @@
     }
     //Add color to the sidebar toggle button
     .sidebar-toggle .icon-bar {
-        background: #acd0e5;
+        background: @font-color;
+       
+    }
+    .sidebar-toggle:hover .icon-bar {
+        background: @hover-color!important;
     }
 }
 

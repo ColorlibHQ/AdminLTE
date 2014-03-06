@@ -4,8 +4,8 @@
 /*! 
  *   AdminLTE v1.0
  *   Author: AlmsaeedStudio.com
- *   License: Please visit http://wrapbootstrap.com for information about 
- *            this theme's license
+ *   License: Open source - MIT
+ *           Please visit http://opensource.org/licenses/MIT for more information
 !*/
 /*
     Core: General style
@@ -305,8 +305,7 @@ img {
   }
 }
 /* Remove border radius */
-.flat,
-.flat > * {
+.flat {
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
@@ -413,8 +412,6 @@ body > .header .logo .icon {
 .right-side > .content-header {
   position: relative;
   padding: 15px 15px 10px 20px;
-  background: #fbfbfb;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 .right-side > .content-header > h1 {
   margin: 0;
@@ -2427,7 +2424,7 @@ Component: timeline
     -----
 */
 /* 
-    skin-blue 
+    Skin Blue 
     ---------
 */
 /* skin-blue navbar */
@@ -2435,7 +2432,7 @@ Component: timeline
   background-color: #3c8dbc;
 }
 .skin-blue .navbar .nav a {
-  color: #acd0e5;
+  color: rgba(255, 255, 255, 0.8);
 }
 .skin-blue .navbar .nav > li > a:hover,
 .skin-blue .navbar .nav > li > a:active,
@@ -2443,14 +2440,17 @@ Component: timeline
 .skin-blue .navbar .nav .open > a,
 .skin-blue .navbar .nav .open > a:hover,
 .skin-blue .navbar .nav .open > a:focus {
-  background: #307095;
+  background: rgba(0, 0, 0, 0.1);
   color: #f6f6f6;
 }
 .skin-blue .navbar .navbar-right > .nav {
   margin-right: 10px;
 }
 .skin-blue .navbar .sidebar-toggle .icon-bar {
-  background: #acd0e5;
+  background: rgba(255, 255, 255, 0.8);
+}
+.skin-blue .navbar .sidebar-toggle:hover .icon-bar {
+  background: #f6f6f6 !important;
 }
 /* skin-blue logo */
 .skin-blue .logo {
@@ -2462,6 +2462,11 @@ Component: timeline
 }
 .skin-blue .logo:hover {
   background: #357ca5;
+}
+/* skin-blue content header */
+.skin-blue .right-side > .content-header {
+  background: #fbfbfb;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 /* Skin-blue user panel */
 .skin-blue .user-panel > .image > img {
@@ -2568,6 +2573,156 @@ Component: timeline
   border-bottom-right-radius: 2px !important;
   border-bottom-left-radius: 0 !important;
 }
+/*
+    Skin Black
+    --------
+*/
+/* skin-black navbar */
+.skin-black .navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #eee;
+}
+.skin-black .navbar .nav a {
+  color: #333333;
+}
+.skin-black .navbar .nav > li > a:hover,
+.skin-black .navbar .nav > li > a:active,
+.skin-black .navbar .nav > li > a:focus,
+.skin-black .navbar .nav .open > a,
+.skin-black .navbar .nav .open > a:hover,
+.skin-black .navbar .nav .open > a:focus {
+  background: #ffffff;
+  color: #999999;
+}
+.skin-black .navbar .navbar-right > .nav {
+  margin-right: 10px;
+}
+.skin-black .navbar .sidebar-toggle .icon-bar {
+  background: #333333;
+}
+.skin-black .navbar .sidebar-toggle:hover .icon-bar {
+  background: #999999 !important;
+}
+/* skin-black logo */
+.skin-black .logo {
+  background-color: #333333;
+  color: #f9f9f9;
+}
+.skin-black .logo > a {
+  color: #f9f9f9;
+}
+.skin-black .logo:hover {
+  background: #303030;
+}
+/* skin-black content header */
+.skin-black .right-side > .content-header {
+  background: transparent;
+  box-shadow: none;
+}
+/* Skin-red user panel */
+.skin-black .user-panel > .image > img {
+  border: 1px solid #444;
+}
+.skin-black .user-panel > .info,
+.skin-black .user-panel > .info > a {
+  color: #eee;
+}
+/* skin-black sidebar */
+.skin-black .sidebar {
+  border-bottom: 1px solid #333;
+}
+.skin-black .sidebar > .sidebar-menu > li {
+  border-top: 1px solid #333;
+  border-bottom: 0px solid #444;
+}
+.skin-black .sidebar > .sidebar-menu > li:first-of-type {
+  border-top: 1px solid #444;
+}
+.skin-black .sidebar > .sidebar-menu > li:first-of-type > a {
+  border-top: 0px solid #333;
+}
+.skin-black .sidebar > .sidebar-menu > li > a {
+  margin-right: 1px;
+}
+.skin-black .sidebar > .sidebar-menu > li > a:hover,
+.skin-black .sidebar > .sidebar-menu > li.active > a {
+  color: #f6f6f6;
+  background: #444;
+}
+.skin-black .sidebar > .sidebar-menu > li > .treeview-menu {
+  margin: 0 1px;
+  background: #444;
+}
+.skin-black .left-side {
+  background: #333;
+}
+.skin-black .sidebar a {
+  color: #eee;
+}
+.skin-black .sidebar a:hover {
+  text-decoration: none;
+}
+.skin-black .treeview-menu > li > a {
+  color: #ccc;
+}
+.skin-black .treeview-menu > li.active > a,
+.skin-black .treeview-menu > li > a:hover {
+  color: #fff;
+}
+.skin-black .sidebar-form {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  border: 0px solid #555;
+  margin: 10px 10px;
+}
+.skin-black .sidebar-form input[type="text"],
+.skin-black .sidebar-form .btn {
+  box-shadow: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 0 solid rgba(255, 255, 255, 0.1);
+  height: 35px;
+  outline: none;
+}
+.skin-black .sidebar-form input[type="text"] {
+  color: #666;
+  -webkit-border-top-left-radius: 2px !important;
+  -webkit-border-top-right-radius: 0 !important;
+  -webkit-border-bottom-right-radius: 0 !important;
+  -webkit-border-bottom-left-radius: 2px !important;
+  -moz-border-radius-topleft: 2px !important;
+  -moz-border-radius-topright: 0 !important;
+  -moz-border-radius-bottomright: 0 !important;
+  -moz-border-radius-bottomleft: 2px !important;
+  border-top-left-radius: 2px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 2px !important;
+}
+.skin-black .sidebar-form input[type="text"]:focus,
+.skin-black .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+  background-color: #444;
+  border: 0;
+}
+.skin-black .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+  border-left: 0;
+}
+.skin-black .sidebar-form .btn {
+  color: #999;
+  -webkit-border-top-left-radius: 0 !important;
+  -webkit-border-top-right-radius: 2px !important;
+  -webkit-border-bottom-right-radius: 2px !important;
+  -webkit-border-bottom-left-radius: 0 !important;
+  -moz-border-radius-topleft: 0 !important;
+  -moz-border-radius-topright: 2px !important;
+  -moz-border-radius-bottomright: 2px !important;
+  -moz-border-radius-bottomleft: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 2px !important;
+  border-bottom-right-radius: 2px !important;
+  border-bottom-left-radius: 0 !important;
+  border-left: 0;
+}
 /*!
  * iCheck v1.0.1, http://git.io/arlzeA
  * =================================
@@ -2631,4 +2786,19 @@ Component: timeline
     -webkit-background-size: 200px 20px;
     background-size: 200px 20px;
   }
+}
+.pace .pace-progress {
+  background: #00c0ef;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  height: 2px;
+  -webkit-transition: width 1s;
+  -moz-transition: width 1s;
+  -o-transition: width 1s;
+  transition: width 1s;
+}
+.pace-inactive {
+  display: none;
 }
