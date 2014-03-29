@@ -26,7 +26,7 @@ Special Features:
 - **18 plugins and 3 custom plugins**
 - **Light weight and fast**
 - **Compatible with most major browsers**
-- **Full support for Glyphicons, Fontawsome and Ion icons**
+- **Full support for Glyphicons, Fontawesome and Ion icons**
 
 Featured Pages:
 ----------------
