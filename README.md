@@ -1,4 +1,4 @@
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=almasaeed2010&url=http://almsaeedstudio.com&title=AdminLTE&language=&tags=github&category=software)
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=almasaeed2010&url=http://almsaeedstudio.com&title=AdminLTE&language=&tags=github&category=software) [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif "AdminLTE Presentation")](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=629XCUSXBHCBC "Donate")
 ------------------------
 
 **AdminLTE** -- is a fully responsive admin template. Based on **Bootstrap 3** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself. 
@@ -7,7 +7,10 @@
 
 Note: If the javascript in the preview does not work properly (specially IE users), please visit http://almsaeedstudio.com/AdminLTE (this could be because of the use of an iframe!)
 
-**If you like the theme and you are feeling generous, I would greatly appreciate your donation. Donations are made by Paypal** [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif "AdminLTE Presentation")](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=629XCUSXBHCBC "Donate")
+Want More?
+-----------
+**Almsaeed studio just opened a new premium templates page. Hand picked to insure the best quality and the most affordable prices. Visit http://almsaeedstudio.com/premium for more information.**
+
 
 ![preview image](http://almsaeedstudio.com/adminlte.png "AdminLTE Presentation")
 
