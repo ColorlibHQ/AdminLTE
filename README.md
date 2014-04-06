@@ -63,6 +63,7 @@ Featured Plugins:
 - jVector Map
 - Slim Scroll
 - Pace
+- [Bootstrap Social Buttons](http://lipis.github.io/bootstrap-social/ "Bootstrap Social")
 
 Browser Support:
 ----------------
