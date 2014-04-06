@@ -18,8 +18,7 @@ Want More?
 
 Announcements:
 --------------
-- Added new skin. class: .skin-black
-- Added [pace](http://github.hubspot.com/pace/docs/welcome/ "pace") plugin.
+- Check the change log at the bottom
 
 Special Features:
 -----------------
@@ -72,6 +71,17 @@ Browser Support:
 - Chrome 14+
 - Safari 5+
 - Opera 11+
+
+Change log:
+-----------
+ver 1.2:
+- Fixed the sidebar scroll issue when using the fixed layout.
+- Added [Bootstrap Social Buttons](http://lipis.github.io/bootstrap-social/ "Bootstrap Social") plugin.
+- Fixed RequireJS bug. Thanks to [StaticSphere](https://github.com/StaticSphere "github user"). 
+
+ver 1.1:
+- Added new skin. class: .skin-black
+- Added [pace](http://github.hubspot.com/pace/docs/welcome/ "pace") plugin.
 
 To Do List:
 -----------
