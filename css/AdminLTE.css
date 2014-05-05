@@ -42,7 +42,7 @@ a:focus {
   clear: both;
 }
 /* Header */
-body > .header {
+header.header {
   position: absolute;
   top: 0;
   left: 0;
@@ -330,17 +330,17 @@ table.text-center th {
     Components: navbar, logo and content header
 -------------------------------------------------
 */
-body > .header {
+header.header {
   position: relative;
   max-height: 100px;
   z-index: 1030;
 }
-body > .header .navbar {
+header.header .navbar {
   height: 50px;
   margin-bottom: 0;
   margin-left: 220px;
 }
-body > .header .navbar .sidebar-toggle {
+header.header .navbar .sidebar-toggle {
   float: left;
   padding: 9px 5px;
   margin-top: 8px;
@@ -354,10 +354,10 @@ body > .header .navbar .sidebar-toggle {
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
 }
-body > .header .navbar .sidebar-toggle:hover .icon-bar {
+header.header .navbar .sidebar-toggle:hover .icon-bar {
   background: #f6f6f6;
 }
-body > .header .navbar .sidebar-toggle .icon-bar {
+header.header .navbar .sidebar-toggle .icon-bar {
   display: block;
   width: 22px;
   height: 2px;
@@ -365,18 +365,18 @@ body > .header .navbar .sidebar-toggle .icon-bar {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-body > .header .navbar .sidebar-toggle .icon-bar + .icon-bar {
+header.header .navbar .sidebar-toggle .icon-bar + .icon-bar {
   margin-top: 4px;
 }
-body > .header .navbar .nav > li.user > a {
+header.header .navbar .nav > li.user > a {
   font-weight: bold;
 }
-body > .header .navbar .nav > li.user > a > .fa,
-body > .header .navbar .nav > li.user > a > .glyphicon,
-body > .header .navbar .nav > li.user > a > .ion {
+header.header .navbar .nav > li.user > a > .fa,
+header.header .navbar .nav > li.user > a > .glyphicon,
+header.header .navbar .nav > li.user > a > .ion {
   margin-right: 5px;
 }
-body > .header .navbar .nav > li > a > .label {
+header.header .navbar .nav > li > a > .label {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -391,10 +391,10 @@ body > .header .navbar .nav > li > a > .label {
   text-align: center;
   padding: 2px;
 }
-body > .header .navbar .nav > li > a:hover > .label {
+header.header .navbar .nav > li > a:hover > .label {
   top: 3px;
 }
-body > .header .logo {
+header.header .logo {
   float: left;
   font-size: 20px;
   line-height: 50px;
@@ -406,7 +406,7 @@ body > .header .logo {
   height: 50px;
   display: block;
 }
-body > .header .logo .icon {
+header.header .logo .icon {
   margin-right: 10px;
 }
 .right-side > .content-header {
@@ -477,16 +477,16 @@ body > .header .logo .icon {
   }
 }
 @media screen and (max-width: 560px) {
-  body > .header {
+  header.header {
     position: relative;
   }
-  body > .header .logo,
-  body > .header .navbar {
+  header.header .logo,
+  header.header .navbar {
     width: 100%;
     float: none;
     position: relative!important;
   }
-  body > .header .navbar {
+  header.header .navbar {
     margin: 0;
   }
   body.fixed > .header {
