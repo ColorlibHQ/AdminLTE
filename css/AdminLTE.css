@@ -1318,7 +1318,7 @@ body > .header .logo .icon {
   float: left;
   cursor: default;
 }
-.box .box-header a {
+.box .box-header a:not(.btn) {
   color: #444;
 }
 .box .box-header > .box-tools {
