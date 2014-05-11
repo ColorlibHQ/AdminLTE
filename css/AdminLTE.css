@@ -1,7 +1,7 @@
 @import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic);
 
 @import url(//fonts.googleapis.com/css?family=Kaushan+Script);
-/*! 
+/*!
  *   AdminLTE v1.2
  *   Author: AlmsaeedStudio.com
  *   License: Open source - MIT
@@ -620,7 +620,7 @@ body > .header .logo .icon {
     left: 0px;
   }
 }
-/* 
+/*
     Dropdown menus
 ----------------------------
 */
@@ -1001,7 +1001,7 @@ body > .header .logo .icon {
     left: auto;
   }
 }
-/* 
+/*
    All form elements including input, select, textarea etc.
 -----------------------------------------------------------------
 */
@@ -1051,7 +1051,7 @@ body > .header .logo .icon {
 .radio {
   padding-left: 0;
 }
-/* 
+/*
     Compenent: Progress bars
 --------------------------------
 */
@@ -1489,6 +1489,7 @@ body > .header .logo .icon {
   margin: 0;
   padding: 0px 0px;
   list-style: none;
+  overflow: auto;
 }
 .box .todo-list > li {
   -webkit-border-radius: 2px;
@@ -1912,7 +1913,7 @@ Component: timeline
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
-/* 
+/*
     Component: callout
 ------------------------
 */
@@ -1952,7 +1953,7 @@ Component: timeline
 .callout.callout-info h4 {
   color: #3A87AD;
 }
-/* 
+/*
     Component: alert
 ------------------------
 */
@@ -2257,7 +2258,7 @@ Component: timeline
   margin-top: 30px;
   text-align: center;
 }
-/* 
+/*
     Page: register and login
 */
 .form-box {
@@ -2322,7 +2323,7 @@ Component: timeline
     width: 90%;
   }
 }
-/* 
+/*
     Page: 404 and 500 error pages
 ------------------------------------
 */
@@ -2372,7 +2373,7 @@ Component: timeline
 .error-page:after {
   clear: both;
 }
-/* 
+/*
     Page: Invoice
 */
 .invoice {
@@ -2405,12 +2406,12 @@ Component: timeline
     white-space: normal!important;
   }
 }
-/* 
+/*
     Skins
     -----
 */
-/* 
-    Skin Blue 
+/*
+    Skin Blue
     ---------
 */
 /* skin-blue navbar */
