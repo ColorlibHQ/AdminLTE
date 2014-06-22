@@ -113,6 +113,7 @@ body.fixed .wrapper {
 .content {
   padding: 20px 15px;
   background: #f9f9f9;
+  overflow: auto;
 }
 /* Utility */
 /* H1 - H6 font */
