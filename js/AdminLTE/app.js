@@ -147,14 +147,7 @@ function fix_sidebar() {
         color: "rgba(0,0,0,0.2)"
     });
 }
-function change_layout() {
-    $("body").toggleClass("fixed");
-    fix_sidebar();
-}
-function change_skin(cls) {
-    $("body").removeClass("skin-blue skin-black");
-    $("body").addClass(cls);
-}
+
 /*END DEMO*/
 $(window).load(function() {
     /*! pace 0.4.17 */
