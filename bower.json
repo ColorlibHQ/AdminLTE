@@ -1,0 +1,53 @@
+{
+  "name": "admin-lte",
+  "version": "1.2.1",
+  "authors": [
+    "Abdullah Almsaeed <support@almsaeedstudio.com>"
+  ],
+  "description": "AdminLTE - Free Premium Admin control Panel Theme That Is Based On Bootstrap 3.x",
+  "main": [],
+  "keywords": [
+    "bootstrap",
+    "admin",
+    "template",
+    "twitter bootstrap"
+  ],
+  "license": "MIT",
+  "homepage": "http://almsaeedstudio.com/",
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "bootstrap": ">=3.1.0",
+    "font-awesome": ">=4.0.0",
+    "iCheck": "~1.0.1"
+  },
+  "devDependencies": {
+    "ionicons": ">=1.4.0",
+    "seiyria-bootstrap-slider": ">=1.9.0",
+    "bootstrap3-wysihtml5-bower": ">=0.2.10",
+    "jquery-ui": ">=1.10.3",
+    "ckeditor": ">=4.3.3",
+    "mjolnic-bootstrap-colorpicker": "~2.0.0",
+    "datatables": ">=1.9.4",
+    "datatables-bootstrap3": "latest",
+    "bootstrap-daterangepicker": "~1.3",
+    "bootstrap3-datetimepicker": "~3.0",
+    "flot": ">=0.8.3",
+    "fullcalendar": "1.6.4",
+    "jquery.inputmask": "~3.0.0",
+    "ionslider": "https://github.com/IonDen/ion.rangeSlider.git#>=1.8.5",
+    "jquery-knob": "~1.2.0",
+    "bower-jvectormap": ">=1.2.2",
+    "morrisjs": "~0.5.1",
+    "slimScroll": "~1.3.0",
+    "bootstrap-social": ">=4.2.0",
+    "sparkline": "http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.min.js"
+  },
+  "resolutions": {
+    "jquery": ">= 1.9.0",
+    "bootstrap": ">=3.1.0",
+    "datatables": ">=1.9.4"
+  }
+}
