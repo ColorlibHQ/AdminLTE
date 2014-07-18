@@ -18,7 +18,7 @@ Want More?
 
 Announcements:
 --------------
-- Check the change log at the bottom
+- Thanks to **[@hason](https://github.com/hason)** for the great contribution, we now have a bower branch that supports Bower.js
 
 Special Features:
 -----------------
