@@ -18,6 +18,7 @@ Want More?
 
 Announcements:
 --------------
+- Check out the new updated dashboard!
 - Thanks to **[@hason](https://github.com/hason)** for the great contribution, we now have a bower branch that supports Bower.js
 
 Special Features:
