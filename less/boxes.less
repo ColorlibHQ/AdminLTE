@@ -44,13 +44,12 @@
         //Add top left and top right border radius
         .border-radius(@box-border-radius; @box-border-radius; 0; 0);
         border-bottom: 0px solid @box-border-color;
-        color: #444;
-        padding-bottom: 10px;
+        color: #444;        
         // Icons and box title
         > .fa, > .glyphicon, > .ion,
         .box-title {
             display: inline-block;
-            padding: 10px 0px 10px 10px;
+            padding: 10px 10px 10px 10px;
             margin: 0;
             font-size: 20px;
             font-weight: 400;
@@ -182,7 +181,7 @@
             .box-solid-variant(@green);
         }
 
-        > .box-header > .box-tools > .btn {
+        > .box-header > .box-tools .btn {
             border: 0;
             box-shadow: none;
         }
