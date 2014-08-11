@@ -144,6 +144,10 @@ h6,
 img {
   max-width: 100% !important;
 }
+/* To rectify google map controls distorts issue */
+.gmnoprint img{
+	max-width:none !important;
+}
 .sort-highlight {
   background: #f4f4f4;
   border: 1px dashed #ddd;
