@@ -9,8 +9,8 @@
         <!-- Ionicons -->
         <link href="../css/ionicons.min.css" rel="stylesheet" type="text/css" />
         <!-- fullCalendar -->
-        <link href="../css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
-        <link href="../css/fullcalendar/fullcalendar.print.css" rel="stylesheet" type="text/css" media='print' />
+        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.0.2/fullcalendar.css" rel="stylesheet" type="text/css" />
+        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.0.2/fullcalendar.print.css" rel="stylesheet" type="text/css" media='print' />
         <!-- Theme style -->
         <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
@@ -475,7 +475,8 @@
         <!-- AdminLTE for demo purposes -->
         <script src="../js/AdminLTE/demo.js" type="text/javascript"></script>        
         <!-- fullCalendar -->
-        <script src="../js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.0.2/fullcalendar.min.js" type="text/javascript"></script>
         <!-- Page specific script -->
         <script type="text/javascript">
             $(function() {
@@ -623,7 +624,7 @@
                         return;
                     }
 
-                    //Create event
+                    //Create events
                     var event = $("<div />");
                     event.css({"background-color": currColor, "border-color": currColor, "color": "#fff"}).addClass("external-event");
                     event.html(val);
