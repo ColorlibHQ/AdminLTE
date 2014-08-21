@@ -1,6 +1,6 @@
 {
   "name": "admin-lte",
-  "version": "1.2.1",
+  "version": "1.3",
   "authors": [
     "Abdullah Almsaeed <support@almsaeedstudio.com>"
   ],
@@ -34,6 +34,7 @@
     "datatables-bootstrap3": "latest",
     "bootstrap-daterangepicker": "~1.3",
     "bootstrap3-datetimepicker": "~3.0",
+    "bootstrap-datepicker": "^1.3",
     "flot": ">=0.8.3",
     "fullcalendar": "1.6.4",
     "jquery.inputmask": "~3.0.0",

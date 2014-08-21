@@ -747,7 +747,7 @@ body > .header .logo .icon {
     left: 0px;
   }
 }
-/*
+/* 
     Dropdown menus
 ----------------------------
 */
@@ -1125,7 +1125,7 @@ body > .header .logo .icon {
     left: auto;
   }
 }
-/*
+/* 
    All form elements including input, select, textarea etc.
 -----------------------------------------------------------------
 */
@@ -1175,7 +1175,7 @@ body > .header .logo .icon {
 .radio {
   padding-left: 0;
 }
-/*
+/* 
     Compenent: Progress bars
 --------------------------------
 */
@@ -2036,7 +2036,7 @@ Component: timeline
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
-/*
+/* 
     Component: callout
 ------------------------
 */
@@ -2076,7 +2076,7 @@ Component: timeline
 .callout.callout-info h4 {
   color: #3A87AD;
 }
-/*
+/* 
     Component: alert
 ------------------------
 */
@@ -2388,7 +2388,7 @@ Component: timeline
   margin-top: 30px;
   text-align: center;
 }
-/*
+/* 
     Page: register and login
 */
 .form-box {
@@ -2453,7 +2453,7 @@ Component: timeline
     width: 90%;
   }
 }
-/*
+/* 
     Page: 404 and 500 error pages
 ------------------------------------
 */
@@ -2503,7 +2503,7 @@ Component: timeline
 .error-page:after {
   clear: both;
 }
-/*
+/* 
     Page: Invoice
 */
 .invoice {
@@ -2536,12 +2536,12 @@ Component: timeline
     white-space: normal!important;
   }
 }
-/*
+/* 
     Skins
     -----
 */
-/*
-    Skin Blue
+/* 
+    Skin Blue 
     ---------
 */
 /* skin-blue navbar */
@@ -2840,7 +2840,6 @@ Component: timeline
   border-bottom-left-radius: 0 !important;
   border-left: 0;
 }
-
 /*!
  * iCheck
  */
@@ -2848,20 +2847,6 @@ Component: timeline
 .iradio_minimal {
   background-color: rgba(255, 255, 255, 0.7);
 }
-
-/*!
- * Full Calendar
- */
-.external-event {
-  margin: 10px 0;
-  padding: 3px 5px;
-  border-radius: 2px;
-  cursor: pointer;
-  font-weight: 600;
-  display: inline-block;
-  margin: 0 5px 5px 0;
-}
-
 .pace .pace-progress {
   background: #00c0ef;
   position: fixed;
@@ -2877,7 +2862,32 @@ Component: timeline
 .pace-inactive {
   display: none;
 }
-
+/*!
+ * Full Calendar
+ */
+.external-event {
+  margin: 10px 0;
+  padding: 3px 5px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: 600;
+  display: inline-block;
+  margin: 0 5px 5px 0;
+}
+.fc-button.fc-state-default {
+  border: 1px solid #d9dadc;
+  border-bottom-color: #d3d5d7;
+  border-bottom-width: 2px;
+  margin-left: 0px!important;
+  background: #fafafa;
+  color: #666;
+}
+.fc-button {
+  padding: 4px 9px;
+  font-size: 12px;
+  line-height: 1.428571429;
+  height: auto;
+}
 /*!
  * Bootstrap slider
  */
@@ -2886,50 +2896,113 @@ Component: timeline
   background-image: none;
   opacity: 1;
 }
-
 .slider.slider-horizontal {
-    width: 100%;
-    margin-bottom: 20px;
+  width: 100%;
+  margin-bottom: 20px;
 }
-
 .slider.slider-vertical {
   margin-right: 20px;
 }
-
 #red .slider-selection {
   background: #f56954;
 }
-
 #blue .slider-selection {
   background: #3c8dbc;
 }
-
 #green .slider-selection {
   background: #00a65a;
 }
-
 #yellow .slider-selection {
   background: #f39c12;
 }
-
 #aqua .slider-selection {
   background: #00c0ef;
 }
-
 #purple .slider-selection {
   background: #932ab6;
 }
-
 /*!
  * jsVectorMap
  */
 .jvectormap-zoomin,
 .jvectormap-zoomout {
-    padding: 5px;
-    width: auto;
-    height: auto;
+  padding: 5px;
+  width: auto;
+  height: auto;
+  font-weight: bold;
 }
-
 .jvectormap-zoomout {
-    top: 35px;
+  top: 35px;
+}
+/*!
+ * Bootstrap datepicker
+ */
+.datepicker-inline {
+  width: 100%;
+}
+.datepicker table {
+  width: 100%;
+}
+.datepicker table tr td.day:hover,
+.datepicker table tr td.day.focused {
+  background: rgba(0, 0, 0, 0.2);
+}
+.datepicker table tr td.old,
+.datepicker table tr td.new {
+  color: #777;
+}
+.datepicker table tr td.disabled,
+.datepicker table tr td.disabled:hover {
+  color: #444;
+}
+.datepicker table tr td.today,
+.datepicker table tr td.today:hover,
+.datepicker table tr td.today.disabled,
+.datepicker table tr td.today.disabled:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.datepicker table tr td.active,
+.datepicker table tr td.active:hover,
+.datepicker table tr td.active.disabled,
+.datepicker table tr td.active.disabled:hover {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.datepicker table tr td span:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+.datepicker table tr td span.active,
+.datepicker table tr td span.active:hover,
+.datepicker table tr td span.active.disabled,
+.datepicker table tr td span.active.disabled:hover {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.datepicker table tr td span.old,
+.datepicker table tr td span.new {
+  color: #444;
+}
+.datepicker thead tr:first-child th:hover,
+.datepicker tfoot tr th:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+.open .dropdown-toggle.datepicker table tr td.today.disabled:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+/*!
+ * Bootstrap DateTime picker
+ */
+.bootstrap-datetimepicker-widget .btn {
+  box-shadow: none;
+}
+/*!
+ * morris
+ */
+.morris-hover {
+  z-index: 1090;
+}
+.morris-hover.morris-default-style {
+  color: #f9f9f9;
+  background: rgba(0, 0, 0, 0.8);
+  border: solid 2px rgba(0, 0, 0, 0.9);
+  font-family: inherit;
+  font-size: 14px;
 }

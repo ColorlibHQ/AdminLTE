@@ -1,0 +1,74 @@
+/*!
+ * Bootstrap datepicker
+ */
+.datepicker {
+  &-inline {
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  table tr td {
+    &.day:hover, &.day.focused {
+      background: rgba(0,0,0,0.2);
+    }
+    &.old,
+    &.new {
+      color: #777;
+    }
+    &.disabled,
+    &.disabled:hover {
+      color: #444;
+    }
+
+    &.today,
+    &.today:hover,
+    &.today.disabled,
+    &.today.disabled:hover {
+      background-color: rgba(0,0,0,0.2);
+    }
+
+    &.selected,
+    &.selected:hover,
+    &.selected.disabled,
+    &.selected.disabled:hover {
+
+    }
+
+    &.active,
+    &.active:hover,
+    &.active.disabled,
+    &.active.disabled:hover {
+      background-color: rgba(0,0,0,0.5) !important;
+    }
+
+    span {
+      &:hover {
+        background: rgba(0,0,0,0.2);
+      }
+      &.active,
+      &.active:hover,
+      &.active.disabled,
+      &.active.disabled:hover {
+        background-color: rgba(0,0,0,0.5) !important;
+      }
+
+      &.old,
+      &.new {
+        color: #444;
+      }
+    }
+  }
+
+  thead tr:first-child th,
+  tfoot tr th {
+    &:hover{
+      background: rgba(0,0,0,0.2);
+    }
+  }
+}
+.open .dropdown-toggle.datepicker table tr td.today.disabled:hover {
+  background: rgba(0,0,0,0.2);
+}
