@@ -51,9 +51,13 @@ $(function() {
         var bf = box.find(".box-body, .box-footer");
         if (!box.hasClass("collapsed-box")) {
             box.addClass("collapsed-box");
+            //Convert minus into plus
+            $(this).children(".fa-minus").removeClass("fa-minus").addClass("fa-plus");
             bf.slideUp();
         } else {
             box.removeClass("collapsed-box");
+            //Convert plus into minus
+            $(this).children(".fa-plus").removeClass("fa-plus").addClass("fa-minus");
             bf.slideDown();
         }
     });
@@ -101,7 +105,7 @@ $(function() {
      **/
     function _fix() {
         //Get window height and the wrapper height
-        var height = $(window).height() - $("body > .header").height();
+        var height = $(window).height() - $("body > .header").height() - ($("body > .footer").outerHeight() || 0);
         $(".wrapper").css("min-height", height + "px");
         var content = $(".wrapper").height();
         //If the wrapper height is greater than the window
@@ -129,7 +133,7 @@ $(function() {
      * iCheck plugin in.
      * You can find the documentation at http://fronteed.com/iCheck/
      */
-    $("input[type='checkbox'], input[type='radio']").iCheck({
+    $("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
         checkboxClass: 'icheckbox_minimal',
         radioClass: 'iradio_minimal'
     });
@@ -147,14 +151,7 @@ function fix_sidebar() {
         color: "rgba(0,0,0,0.2)"
     });
 }
-function change_layout() {
-    $("body").toggleClass("fixed");
-    fix_sidebar();
-}
-function change_skin(cls) {
-    $("body").removeClass("skin-blue skin-black");
-    $("body").addClass(cls);
-}
+
 /*END DEMO*/
 $(window).load(function() {
     /*! pace 0.4.17 */

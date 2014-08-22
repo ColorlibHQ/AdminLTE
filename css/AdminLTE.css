@@ -1,5 +1,4 @@
-@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic);
-
+@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
 @import url(//fonts.googleapis.com/css?family=Kaushan+Script);
 /*! 
  *   AdminLTE v1.2
@@ -113,6 +112,7 @@ body.fixed .wrapper {
 .content {
   padding: 20px 15px;
   background: #f9f9f9;
+  overflow: auto;
 }
 /* Utility */
 /* H1 - H6 font */
@@ -142,7 +142,7 @@ h6,
 }
 /* All images should be responsive */
 img {
-  max-width: 100%important;
+  max-width: 100% !important;
 }
 .sort-highlight {
   background: #f4f4f4;
@@ -240,6 +240,9 @@ img {
 .text-blue {
   color: #0073b7 !important;
 }
+.text-black {
+  color: #222222 !important;
+}
 .text-light-blue {
   color: #3c8dbc !important;
 }
@@ -315,10 +318,32 @@ img {
 .table-striped > tbody > tr:nth-child(odd) > th {
   background-color: #f3f4f5;
 }
+.table.no-border,
+.table.no-border td,
+.table.no-border th {
+  border: 0;
+}
 /* .text-center in tables */
+table.text-center,
 table.text-center td,
 table.text-center th {
   text-align: center;
+}
+.table.align th {
+  text-align: left;
+}
+.table.align td {
+  text-align: right;
+}
+.text-bold,
+.text-bold.table td,
+.text-bold.table th {
+  font-weight: 700;
+}
+.border-radius-none {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
 }
 /* _fix for sparkline tooltip */
 .jqstooltip {
@@ -326,6 +351,108 @@ table.text-center th {
   width: auto!important;
   height: auto!important;
 }
+/*
+Gradient Background colors
+*/
+.bg-teal-gradient {
+  background: #39cccc !important;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #39cccc), color-stop(1, #7adddd)) !important;
+  background: -ms-linear-gradient(bottom, #39cccc, #7adddd) !important;
+  background: -moz-linear-gradient(center bottom, #39cccc 0%, #7adddd 100%) !important;
+  background: -o-linear-gradient(#7adddd, #39cccc) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7adddd', endColorstr='#39cccc', GradientType=0) !important;
+  color: #fff;
+}
+.bg-light-blue-gradient {
+  background: #3c8dbc !important;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #3c8dbc), color-stop(1, #67a8ce)) !important;
+  background: -ms-linear-gradient(bottom, #3c8dbc, #67a8ce) !important;
+  background: -moz-linear-gradient(center bottom, #3c8dbc 0%, #67a8ce 100%) !important;
+  background: -o-linear-gradient(#67a8ce, #3c8dbc) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#67a8ce', endColorstr='#3c8dbc', GradientType=0) !important;
+  color: #fff;
+}
+.bg-blue-gradient {
+  background: #0073b7 !important;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0073b7), color-stop(1, #0089db)) !important;
+  background: -ms-linear-gradient(bottom, #0073b7, #0089db) !important;
+  background: -moz-linear-gradient(center bottom, #0073b7 0%, #0089db 100%) !important;
+  background: -o-linear-gradient(#0089db, #0073b7) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0089db', endColorstr='#0073b7', GradientType=0) !important;
+  color: #fff;
+}
+.bg-aqua-gradient {
+  background: #00c0ef !important;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #00c0ef), color-stop(1, #14d1ff)) !important;
+  background: -ms-linear-gradient(bottom, #00c0ef, #14d1ff) !important;
+  background: -moz-linear-gradient(center bottom, #00c0ef 0%, #14d1ff 100%) !important;
+  background: -o-linear-gradient(#14d1ff, #00c0ef) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#14d1ff', endColorstr='#00c0ef', GradientType=0) !important;
+  color: #fff;
+}
+.bg-yellow-gradient {
+  background: #f39c12 !important;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f39c12), color-stop(1, #f7bc60)) !important;
+  background: -ms-linear-gradient(bottom, #f39c12, #f7bc60) !important;
+  background: -moz-linear-gradient(center bottom, #f39c12 0%, #f7bc60 100%) !important;
+  background: -o-linear-gradient(#f7bc60, #f39c12) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7bc60', endColorstr='#f39c12', GradientType=0) !important;
+  color: #fff;
+}
+.bg-purple-gradient {
+  background: #932ab6 !important;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #932ab6), color-stop(1, #b959d9)) !important;
+  background: -ms-linear-gradient(bottom, #932ab6, #b959d9) !important;
+  background: -moz-linear-gradient(center bottom, #932ab6 0%, #b959d9 100%) !important;
+  background: -o-linear-gradient(#b959d9, #932ab6) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b959d9', endColorstr='#932ab6', GradientType=0) !important;
+  color: #fff;
+}
+.bg-green-gradient {
+  background: #00a65a !important;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #00a65a), color-stop(1, #00ca6d)) !important;
+  background: -ms-linear-gradient(bottom, #00a65a, #00ca6d) !important;
+  background: -moz-linear-gradient(center bottom, #00a65a 0%, #00ca6d 100%) !important;
+  background: -o-linear-gradient(#00ca6d, #00a65a) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ca6d', endColorstr='#00a65a', GradientType=0) !important;
+  color: #fff;
+}
+.bg-red-gradient {
+  background: #f56954 !important;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f56954), color-stop(1, #f89384)) !important;
+  background: -ms-linear-gradient(bottom, #f56954, #f89384) !important;
+  background: -moz-linear-gradient(center bottom, #f56954 0%, #f89384 100%) !important;
+  background: -o-linear-gradient(#f89384, #f56954) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f89384', endColorstr='#f56954', GradientType=0) !important;
+  color: #fff;
+}
+.bg-black-gradient {
+  background: #222222 !important;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #222222), color-stop(1, #3c3c3c)) !important;
+  background: -ms-linear-gradient(bottom, #222222, #3c3c3c) !important;
+  background: -moz-linear-gradient(center bottom, #222222 0%, #3c3c3c 100%) !important;
+  background: -o-linear-gradient(#3c3c3c, #222222) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c3c3c', endColorstr='#222222', GradientType=0) !important;
+  color: #fff;
+}
+.bg-maroon-gradient {
+  background: #85144b !important;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #85144b), color-stop(1, #b11b64)) !important;
+  background: -ms-linear-gradient(bottom, #85144b, #b11b64) !important;
+  background: -moz-linear-gradient(center bottom, #85144b 0%, #b11b64 100%) !important;
+  background: -o-linear-gradient(#b11b64, #85144b) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b11b64', endColorstr='#85144b', GradientType=0) !important;
+  color: #fff;
+}
+.connectedSortable {
+  min-height: 100px;
+}
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
 /*
     Components: navbar, logo and content header
 -------------------------------------------------
@@ -740,7 +867,6 @@ body > .header .logo .icon {
   display: block;
   white-space: nowrap;
   /* Prevent text from breaking */
-
   border-bottom: 1px solid #f4f4f4;
 }
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a:hover,
@@ -762,11 +888,9 @@ body > .header .logo .icon {
   padding: 15px 0px;
   margin-right: 5px;
   /* Default background and font colors */
-
   background: #00c0ef;
   color: #f9f9f9;
   /* Fallback for browsers that doesn't support rgba */
-
   color: rgba(255, 255, 255, 0.7);
 }
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .glyphicon.danger,
@@ -1296,7 +1420,6 @@ body > .header .logo .icon {
   border-bottom-left-radius: 0;
   border-bottom: 0px solid #f4f4f4;
   color: #444;
-  padding-bottom: 10px;
 }
 .box .box-header:before,
 .box .box-header:after {
@@ -1311,14 +1434,14 @@ body > .header .logo .icon {
 .box .box-header > .ion,
 .box .box-header .box-title {
   display: inline-block;
-  padding: 10px 0px 10px 10px;
+  padding: 10px 10px 10px 10px;
   margin: 0;
   font-size: 20px;
   font-weight: 400;
   float: left;
   cursor: default;
 }
-.box .box-header a:not(.btn) {
+.box .box-header a {
   color: #444;
 }
 .box .box-header > .box-tools {
@@ -1463,7 +1586,7 @@ body > .header .logo .icon {
 .box.box-solid.box-success > .box-header a {
   color: #444;
 }
-.box.box-solid > .box-header > .box-tools > .btn {
+.box.box-solid > .box-header > .box-tools .btn {
   border: 0;
   box-shadow: none;
 }
@@ -1648,6 +1771,7 @@ Component: timeline
 --------------------
 */
 .timeline {
+  position: relative;
   margin: 0 0 30px 0;
   padding: 0;
   list-style: none;
@@ -1659,7 +1783,7 @@ Component: timeline
   bottom: 0;
   width: 5px;
   background: #ddd;
-  left: 45px;
+  left: 30px;
   border: 1px solid #eee;
   margin: 0;
   -webkit-border-radius: 2px;
@@ -2102,6 +2226,13 @@ Component: timeline
 .nav-tabs-custom > .tab-content {
   background: #fff;
   padding: 10px;
+}
+/* Nav tabs bottom */
+.tabs-bottom.nav-3 li a {
+  width: 3333.33333333% !important;
+}
+.tabs-bottom li a {
+  border: 0;
 }
 /* PAGINATION */
 .pagination > li > a {

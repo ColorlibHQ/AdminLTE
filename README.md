@@ -12,13 +12,14 @@ Want More?
 **Almsaeed studio just opened a new premium templates page. Hand picked to insure the best quality and the most affordable prices. Visit http://almsaeedstudio.com/premium for more information.**
 
 
-![preview image](http://almsaeedstudio.com/adminlte.png "AdminLTE Presentation")
+!["AdminLTE Presentation"](http://almsaeedstudio.com/adminlte2.png "AdminLTE Presentation")
 
 **AdminLTE** has been carefully coded with clear comments in all of its JS, LESS and HTML files. LESS has been used to increase code customizability.
 
 Announcements:
 --------------
-- Check the change log at the bottom
+- Check out the new updated dashboard!
+- Thanks to **[@hason](https://github.com/hason)** for the great contribution, we now have a bower branch that supports Bower.js
 
 Special Features:
 -----------------

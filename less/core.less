@@ -105,6 +105,7 @@ body.fixed {
 .content {
     padding: 20px 15px;
     background: @body-bg;
+    overflow: auto;
 }
 
 /* Utility */
@@ -139,7 +140,7 @@ h6,
 
 /* All images should be responsive */
 img {
-    max-width: 100%important;
+    max-width: 100% !important;
 }
 
 .sort-highlight {
@@ -242,6 +243,9 @@ img {
 .text-blue {
     color: @blue !important;
 }
+.text-black {
+    color: @black!important;
+}
 .text-light-blue {
     color: @light-blue !important;
 }
@@ -326,11 +330,39 @@ img {
     }
 }
 
+.table.no-border {
+    
+    &, td, th {
+        border: 0;
+    }
+}
+
 /* .text-center in tables */
 table.text-center {
-    td, th {
+    &, td, th {
         text-align: center;
     }
+}
+
+.table.align {
+    th {
+        text-align: left;
+    }
+    td {
+        text-align: right;
+    }
+}
+
+.text-bold {
+    &, &.table td, &.table th {
+        font-weight: 700;
+    }
+    
+    
+}
+
+.border-radius-none {
+    .border-radius(0)!important;
 }
 
 /* _fix for sparkline tooltip */
@@ -338,4 +370,53 @@ table.text-center {
     padding: 5px!important;
     width:auto!important;
     height:auto!important;
+}
+
+/*
+Gradient Background colors
+*/
+.bg-teal-gradient {
+    .gradient(@teal; @teal; lighten(@teal, 16%))!important;
+    color: #fff;
+}
+.bg-light-blue-gradient {
+    .gradient(@light-blue; @light-blue; lighten(@light-blue, 12%))!important;
+    color: #fff;
+}
+.bg-blue-gradient {
+    .gradient(@blue; @blue; lighten(@blue, 7%))!important;
+    color: #fff;
+}
+.bg-aqua-gradient {
+    .gradient(@aqua; @aqua; lighten(@aqua, 7%))!important;
+    color: #fff;
+}
+.bg-yellow-gradient {
+    .gradient(@yellow; @yellow; lighten(@yellow, 16%))!important;
+    color: #fff;
+}
+.bg-purple-gradient {
+    .gradient(@purple; @purple; lighten(@purple, 16%))!important;
+    color: #fff;
+}
+.bg-green-gradient {
+    .gradient(@green; @green; lighten(@green, 7%))!important;
+    color: #fff;
+}
+.bg-red-gradient {
+    .gradient(@red; @red; lighten(@red, 10%))!important;
+    color: #fff;
+}
+.bg-black-gradient {
+    .gradient(@black; @black; lighten(@black, 10%))!important;
+    color: #fff;
+}
+.bg-maroon-gradient {
+    .gradient(@maroon; @maroon; lighten(@maroon, 10%))!important;
+    color: #fff;
+}
+
+
+.connectedSortable {
+    min-height: 100px;
 }

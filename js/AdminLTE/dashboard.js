@@ -16,14 +16,15 @@ $(function() {
         forcePlaceholderSize: true,
         zIndex: 999999
     }).disableSelection();
-    $(".box-header, .nav-tabs").css("cursor","move");
+    $(".connectedSortable .box-header, .connectedSortable .nav-tabs-custom").css("cursor", "move");
     //jQuery UI sortable for the todo list
     $(".todo-list").sortable({
         placeholder: "sort-highlight",
         handle: ".handle",
         forcePlaceholderSize: true,
         zIndex: 999999
-    }).disableSelection();;
+    }).disableSelection();
+    ;
 
     //bootstrap WYSIHTML5 - text editor
     $(".textarea").wysihtml5();
@@ -65,7 +66,7 @@ $(function() {
     //World map by jvectormap
     $('#world-map').vectorMap({
         map: 'world_mill_en',
-        backgroundColor: "#fff",
+        backgroundColor: "transparent",
         regionStyle: {
             initial: {
                 fill: '#e4e4e4',
@@ -78,7 +79,7 @@ $(function() {
         series: {
             regions: [{
                     values: visitorsData,
-                    scale: ["#3c8dbc", "#2D79A6"], //['#3E5E6B', '#A6BAC2'],
+                    scale: ["#92c1dc", "#ebf4f9"],
                     normalizeFunction: 'polynomial'
                 }]
         },
@@ -89,118 +90,33 @@ $(function() {
     });
 
     //Sparkline charts
-    var myvalues = [15, 19, 20, -22, -33, 27, 31, 27, 19, 30, 21];
+    var myvalues = [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021];
     $('#sparkline-1').sparkline(myvalues, {
-        type: 'bar',
-        barColor: '#00a65a',
-        negBarColor: "#f56954",
-        height: '20px'
+        type: 'line',
+        lineColor: '#92c1dc',
+        fillColor: "#ebf4f9",
+        height: '50',
+        width: '80'
     });
-    myvalues = [15, 19, 20, 22, -2, -10, -7, 27, 19, 30, 21];
+    myvalues = [515, 519, 520, 522, 652, 810, 370, 627, 319, 630, 921];
     $('#sparkline-2').sparkline(myvalues, {
-        type: 'bar',
-        barColor: '#00a65a',
-        negBarColor: "#f56954",
-        height: '20px'
+        type: 'line',
+        lineColor: '#92c1dc',
+        fillColor: "#ebf4f9",
+        height: '50',
+        width: '80'
     });
-    myvalues = [15, -19, -20, 22, 33, 27, 31, 27, 19, 30, 21];
+    myvalues = [15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21];
     $('#sparkline-3').sparkline(myvalues, {
-        type: 'bar',
-        barColor: '#00a65a',
-        negBarColor: "#f56954",
-        height: '20px'
-    });
-    myvalues = [15, 19, 20, 22, 33, -27, -31, 27, 19, 30, 21];
-    $('#sparkline-4').sparkline(myvalues, {
-        type: 'bar',
-        barColor: '#00a65a',
-        negBarColor: "#f56954",
-        height: '20px'
-    });
-    myvalues = [15, 19, 20, 22, 33, 27, 31, -27, -19, 30, 21];
-    $('#sparkline-5').sparkline(myvalues, {
-        type: 'bar',
-        barColor: '#00a65a',
-        negBarColor: "#f56954",
-        height: '20px'
-    });
-    myvalues = [15, 19, -20, 22, -13, 27, 31, 27, 19, 30, 21];
-    $('#sparkline-6').sparkline(myvalues, {
-        type: 'bar',
-        barColor: '#00a65a',
-        negBarColor: "#f56954",
-        height: '20px'
-    });
+        type: 'line',
+        lineColor: '#92c1dc',
+        fillColor: "#ebf4f9",
+        height: '50',
+        width: '80'
+    });    
 
-    //Date for the calendar events (dummy data)
-    var date = new Date();
-    var d = date.getDate(),
-            m = date.getMonth(),
-            y = date.getFullYear();
-
-    //Calendar
-    $('#calendar').fullCalendar({
-        editable: true, //Enable drag and drop
-        events: [
-            {
-                title: 'All Day Event',
-                start: new Date(y, m, 1),
-                backgroundColor: "#3c8dbc", //light-blue 
-                borderColor: "#3c8dbc" //light-blue
-            },
-            {
-                title: 'Long Event',
-                start: new Date(y, m, d - 5),
-                end: new Date(y, m, d - 2),
-                backgroundColor: "#f39c12", //yellow
-                borderColor: "#f39c12" //yellow
-            },
-            {
-                title: 'Meeting',
-                start: new Date(y, m, d, 10, 30),
-                allDay: false,
-                backgroundColor: "#0073b7", //Blue
-                borderColor: "#0073b7" //Blue
-            },
-            {
-                title: 'Lunch',
-                start: new Date(y, m, d, 12, 0),
-                end: new Date(y, m, d, 14, 0),
-                allDay: false,
-                backgroundColor: "#00c0ef", //Info (aqua)
-                borderColor: "#00c0ef" //Info (aqua)
-            },
-            {
-                title: 'Birthday Party',
-                start: new Date(y, m, d + 1, 19, 0),
-                end: new Date(y, m, d + 1, 22, 30),
-                allDay: false,
-                backgroundColor: "#00a65a", //Success (green)
-                borderColor: "#00a65a" //Success (green)
-            },
-            {
-                title: 'Click for Google',
-                start: new Date(y, m, 28),
-                end: new Date(y, m, 29),
-                url: 'http://google.com/',
-                backgroundColor: "#f56954", //red
-                borderColor: "#f56954" //red
-            }
-        ],
-        buttonText: {//This is to add icons to the visible buttons
-            prev: "<span class='fa fa-caret-left'></span>",
-            next: "<span class='fa fa-caret-right'></span>",
-            today: 'today',
-            month: 'month',
-            week: 'week',
-            day: 'day'
-        },
-        header: {
-            left: 'title',
-            center: '',
-            right: 'prev,next'
-        }
-    });
+    //The Calender
+    $("#calendar").datepicker();
 
     //SLIMSCROLL FOR CHAT WIDGET
     $('#chat-box').slimScroll({
@@ -230,6 +146,36 @@ $(function() {
         lineColors: ['#a0d0e0', '#3c8dbc'],
         hideHover: 'auto'
     });
+    var line = new Morris.Line({
+        element: 'line-chart',
+        resize: true,
+        data: [
+            {y: '2011 Q1', item1: 2666},
+            {y: '2011 Q2', item1: 2778},
+            {y: '2011 Q3', item1: 4912},
+            {y: '2011 Q4', item1: 3767},
+            {y: '2012 Q1', item1: 6810},
+            {y: '2012 Q2', item1: 5670},
+            {y: '2012 Q3', item1: 4820},
+            {y: '2012 Q4', item1: 15073},
+            {y: '2013 Q1', item1: 10687},
+            {y: '2013 Q2', item1: 8432}
+        ],
+        xkey: 'y',
+        ykeys: ['item1'],
+        labels: ['Item 1'],
+        lineColors: ['#efefef'],
+        lineWidth: 2,
+        hideHover: 'auto',
+        gridTextColor: "#fff",
+        gridStrokeWidth: 0.4,
+        pointSize: 4,
+        pointStrokeColors: ["#efefef"],
+        gridLineColor: "#efefef",
+        gridTextFamily: "Open Sans",
+        gridTextSize: 10
+    });
+
     //Donut Chart
     var donut = new Morris.Donut({
         element: 'sales-chart',
