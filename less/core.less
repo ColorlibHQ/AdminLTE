@@ -22,7 +22,7 @@ a:hover, a:active, a:focus {
 /* Layouts */
 .wrapper {
     min-height: 100%;
-    .clearfix();    
+    .clearfix();
 }
 
 /* Header */
@@ -41,8 +41,8 @@ body > .header {
 }
 /*right side - contins main content*/
 .right-side {
-    background-color: @body-bg;
-    margin-left: @left-side-width;
+   background-color: @body-bg;
+   .margin-left(@left-side-width);
 }
 /*left side - contains sidebar*/
 .left-side {
@@ -64,14 +64,14 @@ body > .header {
     }
     /* Left side collapse */
     .left-side.collapse-left {
-        left: -@left-side-width;
+        .left(-@left-side-width);
     }
 }
 
 /*Give content full width on xs screens*/
 @media screen and (max-width: @screen-md) {
     .right-side {
-        margin-left: 0;
+        .margin-left(0);
     }
 
 }
@@ -128,7 +128,7 @@ h6,
 
 /* Page Header */
 .page-header {
-    margin: 10px 0 20px 0;
+    .margin(10px 0 20px 0);
     font-size: 22px;
 
     > small {
@@ -305,8 +305,8 @@ img {
     //Add to elements that you do not want to show when printing
     .no-print {
         display: none;
-    }  
-    
+    }
+
     //Elements that we want to hide when printing
     .left-side, .header, .content-header {
         display: none;
@@ -331,7 +331,7 @@ img {
 }
 
 .table.no-border {
-    
+
     &, td, th {
         border: 0;
     }
@@ -346,10 +346,10 @@ table.text-center {
 
 .table.align {
     th {
-        text-align: left;
+        .text-align(left);
     }
     td {
-        text-align: right;
+        .text-align(right);
     }
 }
 
@@ -357,8 +357,8 @@ table.text-center {
     &, &.table td, &.table th {
         font-weight: 700;
     }
-    
-    
+
+
 }
 
 .border-radius-none {
