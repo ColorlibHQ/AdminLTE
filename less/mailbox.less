@@ -5,23 +5,23 @@
 .mailbox {
 
     .table-mailbox {
-        border-left: 1px solid #ddd;
-        border-right: 1px solid #ddd;
-        border-bottom: 1px solid #ddd;        
+        .border-left(1px solid #ddd);
+        .border-right(1px solid #ddd);
+        border-bottom: 1px solid #ddd;
         tr {
             &.unread {
-                 > td {                    
+                 > td {
                     background-color: rgba(0, 0, 0, 0.05);
                     color: #000;
-                    font-weight: 600;                    
-                }                
+                    font-weight: 600;
+                }
             }
 
             > td > .fa.fa-star,
             > td > .fa.fa-star-o,
             > td > .glyphicon.glyphicon-star,
             > td > .glyphicon.glyphicon-star-empty{
-                color: @yellow;   
+                color: @yellow;
                 cursor: pointer;
             }
 
@@ -34,13 +34,13 @@
                 font-weight: 600;
             }
             > td.time {
-                text-align: right;
-                width: 100px;                
+                .text-align(right);
+                width: 100px;
             }
             > td {
-                white-space: nowrap;                
+                white-space: nowrap;
             }
-            
+
             & > td > a {color: #444;}
         }
     }
@@ -48,14 +48,14 @@
     @media screen and (max-width: @screen-sm) {
         .nav-stacked {
             > li:not(.header) {
-                float: left;
+                .float(left);
                 width: 50%;
                 &.header {
                     border: 0!important;
                 }
             }
         }
-        
+
         .search-form {
             margin-top: 10px;
         }

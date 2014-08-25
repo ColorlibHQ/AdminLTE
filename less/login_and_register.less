@@ -1,10 +1,10 @@
-/* 
+/*
     Page: register and login
 */
 
-.form-box {    
+.form-box {
     width: 360px;
-    margin: 90px auto 0 auto;
+    .margin(90px, auto, 0, auto);
     .header {
         .border-radius(4px, 4px, 0, 0);
         background: @olive;
@@ -15,7 +15,7 @@
         font-weight: 300;
         color: #fff;
     }
-    
+
      .body, .footer {
         padding: 10px 20px;
         background: #fff;
@@ -26,16 +26,16 @@
                 border: #fff;
             }
         }
-        
+
         > .btn {
             margin-bottom: 10px;
         }
     }
-    
+
     .footer {
        .border-radius(0, 0, 4px, 4px);
     }
-    
+
     @media (max-width: @screen-sm) {
     width: 90%;
 }

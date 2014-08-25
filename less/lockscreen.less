@@ -23,8 +23,8 @@
     font-weight: 300;
     -webkit-font-smoothing: antialiased !important;
     opacity: 0.8;
-    margin: 10px 0 30px 0;
-    font-size: 90px;    
+    .margin(10px, 0, 30px, 0);
+    font-size: 90px;
 }
 
 @media screen and (max-width: @screen-xs) {
@@ -47,7 +47,7 @@
     background: #fff;
     position: relative;
     .border-radius(4px);
-    .clearfix();    
+    .clearfix();
     margin: 10px auto;
     width: 290px;
 }
@@ -55,7 +55,7 @@
 /* User image */
 .lockscreen-item > .lockscreen-image {
     position: absolute;
-    left: -10px;
+    .left(-10px);
     top: -30px;
     background: #fff;
     padding: 10px;
@@ -70,7 +70,7 @@
 
 /* Contains the password input and the login button */
 .lockscreen-item > .lockscreen-credentials {
-    margin-left: 80px;
+    .margin-left(80px);
     input {
         border: 0 !important;
     }
@@ -80,7 +80,7 @@
     }
 }
 /* Extra to give the user an option to navigate the website [optional]*/
-.lockscreen-link {    
+.lockscreen-link {
     margin-top: 30px;
     text-align: center;
 }
