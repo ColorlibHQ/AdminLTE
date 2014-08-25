@@ -21,7 +21,7 @@
     }
 
     .navbar-right > .nav {
-        margin-right: 10px;
+        .margin-right(10px);
     }
     //Add color to the sidebar toggle button
     .sidebar-toggle .icon-bar {
@@ -84,6 +84,7 @@
     border-radius: @radius;
 }
 //Different radius each side
+// TODO: fix border-radius to use global direction
 .border-radius(@top-left; @top-right; @bottom-left; @bottom-right) {
     -webkit-border-top-left-radius: @top-left;
     -webkit-border-top-right-radius: @top-right;

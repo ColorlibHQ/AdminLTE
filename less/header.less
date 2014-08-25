@@ -5,22 +5,22 @@
 
 body > .header {
     position: relative;
-    max-height: 100px;   
+    max-height: 100px;
     z-index: 1030;
     .navbar {
         height: 50px;
-        margin-bottom: 0;        
-        margin-left: @left-side-width;
+        margin-bottom: 0;
+        .margin-left(@left-side-width);
     }
 
     //Navbar toggle button
     .navbar .sidebar-toggle {
-        float: left;
+        .float(left);
         padding: 9px 5px;
         margin-top: 8px;
-        margin-right: 0;
+        .margin-right(0);
         margin-bottom: 8px;
-        margin-left: 5px;
+        .margin-left(5px);
         background-color: transparent;
         background-image: none;
         border: 1px solid transparent;
@@ -50,7 +50,7 @@ body > .header {
     .navbar .nav > li.user > a > .fa,
     .navbar .nav > li.user > a > .glyphicon,
     .navbar .nav > li.user > a > .ion {
-        margin-right: 5px;
+        .margin-right(5px);
     }
 
     //Labels in navbar
@@ -58,7 +58,7 @@ body > .header {
         .border-radius(50%);
         position: absolute;
         top:7px;
-        right: 2px;
+        .right(2px);
         font-size: 10px;
         font-weight: normal;
         width: 15px;
@@ -73,7 +73,7 @@ body > .header {
 
     //Logo bar - leftside
     .logo {
-        float: left;
+        .float(left);
         height: 50px;
         font-size: 20px;
         line-height: 50px;
@@ -86,30 +86,30 @@ body > .header {
         display: block;
         //For logo imgs or icons
         .icon {
-            margin-right: 10px;
-        }        
+           .margin-right(10px);
+        }
     }
 
 }
 
-// Content Header 
+// Content Header
 .right-side > .content-header {
     position: relative;
-    padding: 15px 15px 10px 20px;    
-    // Header Text 
+    .padding(15px, 15px, 10px, 20px);
+    // Header Text
     > h1 {
         margin: 0;
         font-size: 24px;
         > small {
             font-size: 15px;
             display: inline-block;
-            padding-left: 4px;
+            .padding-left(4px);
             font-weight: 300;
         }
     }
 
     > .breadcrumb {
-        float: right;
+        .float(right);
         background: transparent;
         margin-top: 0px;
         margin-bottom: 0;
@@ -117,14 +117,14 @@ body > .header {
         padding: 7px 5px;
         position: absolute;
         top: 15px;
-        right: 10px;
+        .right(10px);
         .border-radius(2px);
         > li > a {
             color: #444;
             text-decoration: none;
             > .fa, > .glyphicon, > .ion {
-                margin-right: 5px;
-            }            
+                .margin-right(5px);
+            }
         }
         > li + li:before {
             content: '>\00a0';
@@ -136,7 +136,7 @@ body > .header {
             position: relative;
             margin-top: 5px;
             top: 0;
-            right: 0;
+            .right(0);
             float: none;
             background: #efefef;
         }
@@ -146,12 +146,12 @@ body > .header {
 //Control navbar scaffolding on x-small screens
 @media (max-width: @screen-sm) {
     .navbar .navbar-nav > li {
-        float: left;
+        .float(left);
     }
     //Dont't let links get full width
     .navbar-nav {
         margin: 0;
-        float: left;
+        .float(left);
     }
 
     .navbar-nav > li > a {
@@ -160,11 +160,11 @@ body > .header {
         line-height: 20px;
     }
     .navbar .navbar-right {
-        float: right;
+        .float(right);
     }
 }
 
-// Collapse header 
+// Collapse header
 @media screen and (max-width: @screen-header-collapse) {
     body > .header {
         position: relative;
