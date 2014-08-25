@@ -242,25 +242,24 @@
                 margin-bottom: 0;
             }
             // Color varaity
-            // TODO: write a mixin for border-left/right-color
             &.danger {
-                border-left-color: @red;
+               .border-left-color(@red);
             }
             &.warning {
-                border-left-color: @yellow;
+               .border-left-color(@yellow);
             }
             &.info {
-                border-left-color: @aqua;
+               .border-left-color(@aqua);
             }
             &.success {
-                border-left-color: @green;
+               .border-left-color(@green);
             }
             &.primary {
-                border-left-color: @light-blue;
+               .border-left-color(@light-blue);
             }
 
             > input[type='checkbox']  {
-                margin: 0 10px 0 5px;
+               .margin(0, 10px, 0, 5px);
             }
 
             .text {
