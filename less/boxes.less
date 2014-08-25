@@ -44,16 +44,16 @@
         //Add top left and top right border radius
         .border-radius(@box-border-radius; @box-border-radius; 0; 0);
         border-bottom: 0px solid @box-border-color;
-        color: #444;        
+        color: #444;
         // Icons and box title
         > .fa, > .glyphicon, > .ion,
         .box-title {
             display: inline-block;
-            padding: 10px 10px 10px 10px;
+            .padding(10px, 10px, 10px, 10px);
             margin: 0;
             font-size: 20px;
             font-weight: 400;
-            float: left;
+           .float(left);
             cursor: default;
             //text-transform: capitalize;
         }
@@ -99,13 +99,13 @@
             font-size: 15px;
             line-height: 1.6em;
             color: #666;
-            margin-left: 10px;
+           .margin-left(10px);
         }
         .fc-header-right {
-            padding-right: 10px;
+           .padding-right(10px);
         }
         .fc-header-left {
-            padding-left: 10px;
+           .padding-left(10px);
         }
         // Calendar table header cells
         .fc-widget-header {
@@ -118,12 +118,12 @@
         }
         .fc-widget-header:first-of-type,
             .fc-widget-content:first-of-type {
-            border-left: 0;
-            border-right: 0;
+               .border-left(0);
+               .border-right(0);
         }
         .fc-widget-header:last-of-type,
             .fc-widget-content:last-of-type {
-            border-right: 0;
+               .border-right(0);
         }
         // tables in the box body
         .table {
@@ -236,12 +236,13 @@
             padding: 10px;
             background: @table-striped-color;
             margin-bottom: 2px;
-            border-left: 2px solid #e6e7e8;
+           .border-left(2px solid #e6e7e8);
             color: #444;
             &:last-of-type {
                 margin-bottom: 0;
             }
             // Color varaity
+            // TODO: write a mixin for border-left/right-color
             &.danger {
                 border-left-color: @red;
             }
@@ -264,24 +265,24 @@
 
             .text {
                 display: inline-block;
-                margin-left: 5px;
+               .margin-left(5px);
                 font-weight: 600;
             }
 
             // Time labels
             .label {
-                margin-left: 10px;
+               .margin-left(10px);
                 font-size: 9px;
             }
 
             // Tools and options box
             .tools {
                 display: none;
-                float: right;
+               .float(right);
                 color: @red;
                 // icons
                 > .fa, > .glyphicon, > .ion {
-                    margin-right: 5px;
+                   .margin-right(5px);
                     cursor: pointer;
                 }
 
@@ -314,7 +315,7 @@
 
     // Chat widget
     .chat {
-        padding: 5px 20px 5px 10px;
+       .padding(5px, 20px, 5px, 10px);
 
         .item {
             .clearfix();
@@ -336,7 +337,7 @@
 
             // The message body
             > .message {
-                margin-left: 55px;
+               .margin-left(55px);
                 margin-top: -40px;
                 > .name {
                     display: block;
@@ -348,11 +349,11 @@
             > .attachment {
                 .border-radius(@attachment-border-radius);
                 background: #f0f0f0;
-                margin-left: 65px;
-                margin-right: 15px;
+               .margin-left(65px);
+               .margin-right(15px);
                 padding: 10px;
                 > h4 {
-                    margin: 0 0 5px 0;
+                    .margin(0, 0, 5px, 0);
                     font-weight: 600;
                     font-size: 14px;
                 }
@@ -374,7 +375,7 @@
     > .overlay, > .loading-img {
         position: absolute;
         top: 0;
-        left: 0;
+       .left(0);
         width: 100%;
         height: 100%;
     }
