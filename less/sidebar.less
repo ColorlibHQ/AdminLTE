@@ -5,7 +5,7 @@
 
 .sidebar {
     margin-bottom: 5px;
-    // remove shadow from form 
+    // remove shadow from form
     .sidebar-form {
         input:focus {
             -webkit-box-shadow: none;
@@ -14,7 +14,7 @@
             border-color: transparent!important;
         }
     }
-    // Sidebar menu 
+    // Sidebar menu
     .sidebar-menu {
         list-style: none;
         margin: 0;
@@ -23,7 +23,7 @@
             margin: 0;
             padding: 0;
             > a {
-                padding: 12px 5px 12px 15px;
+               .padding(12px, 5px, 12px, 15px);
                 display: block;
                 > .fa, > .glyphicon, > .ion {
                     width: 20px;
@@ -31,7 +31,7 @@
             }
         }
 
-        // Tree view menu 
+        // Tree view menu
         .treeview-menu {
             display: none;
             list-style: none;
@@ -40,7 +40,7 @@
             > li {
                 margin: 0;
                 > a {
-                    padding: 5px 5px 5px 15px;
+                    .padding(5px, 5px, 5px, 15px);
                     display: block;
                     font-size: 14px;
                     margin: 0px 0px;
@@ -59,11 +59,11 @@
     .clearfix();
     > .image > img {
         width: 45px;
-        height: 45px;        
+        height: 45px;
     }
     > .info {
         font-weight: 600;
-        padding: 5px 5px 5px 15px;
+        .padding(5px, 5px, 5px, 15px);
         font-size: 14px;
         line-height: 1;
     }
@@ -72,12 +72,12 @@
     }
     > .info > a {
         text-decoration: none;
-        padding-right: 5px;
+       .padding-right(5px);
         margin-top: 3px;
         font-size: 11px;
         font-weight: normal;
         > .fa, > .ion, > .glyphicon {
-            margin-right: 3px;
+           .margin-right(3px);
         }
     }
 }
@@ -95,39 +95,39 @@
 
     .row-offcanvas-right
     .sidebar-offcanvas {
-        right: -@left-side-width;
+       .right(-@left-side-width);
     }
 
     .row-offcanvas-left
     .sidebar-offcanvas {
-        left: -@left-side-width;
+       .left(-@left-side-width);
     }
 
     .row-offcanvas-right.active {
-        right: @left-side-width;
+       .right(@left-side-width);
     }
 
     .row-offcanvas-left.active {
-        left: @left-side-width;
+       .left(@left-side-width);
     }
 
     .sidebar-offcanvas {
-        left: 0;
+       .left(0);
     }
 
     body.fixed {
         .sidebar-offcanvas {
             margin-top: 50px;
-            left: -@left-side-width;
+           .left(-@left-side-width);
         }
         .row-offcanvas-left.active {
             .navbar {
-                left: @left-side-width!important;
-                right: 0;
+               .left(@left-side-width!important);
+               .right(0);
 
             }
             .sidebar-offcanvas {
-                left: 0px;
+               .left(0px);
             }
 
         }
