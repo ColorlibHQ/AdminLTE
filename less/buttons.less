@@ -10,7 +10,7 @@
     -webkit-box-shadow: inset 0px -2px 0px 0px rgba(0,0,0,0.09);
     -moz-box-shadow: inset 0px -2px 0px 0px rgba(0,0,0,0.09);
     box-shadow: inset 0px -1px 0px 0px rgba(0,0,0,0.09);
-    //Button color variations 
+    //Button color variations
     &.btn-default {
         background-color: #fafafa;
         color: #666;
@@ -58,8 +58,8 @@
             background-color: darken(@yellow, 5%);
         }
     }
-    
-    // Flat buttons 
+
+    // Flat buttons
     &.btn-flat {
         .border-radius(0);
         -webkit-box-shadow: none;
@@ -68,7 +68,7 @@
         border-width: 1px;
     }
 
-    // Active state 
+    // Active state
     &:active {
         -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
         -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
@@ -79,7 +79,7 @@
         outline: none;
     }
 
-    // input file btn 
+    // input file btn
     &.btn-file {
         position: relative;
         width: 120px;
@@ -96,16 +96,16 @@
         }
     }
 
-    // Application buttons 
+    // Application buttons
     &.btn-app {
         position: relative;
         padding: 15px 5px;
-        margin: 0 0 10px 10px;
+        .margin(0, 0, 10px, 10px);
         min-width: 80px;
         height: 60px;
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
-        box-shadow: none; 
+        box-shadow: none;
         .border-radius(0);
         text-align: center;
         color: #666;
@@ -114,7 +114,7 @@
         font-size: 12px;
         //Icons within the btn
         > .fa, > .glyphicon, > .ion {
-            font-size: 20px;   
+            font-size: 20px;
             display: block;
         }
 
@@ -134,7 +134,7 @@
         > .badge {
             position: absolute;
             top: -3px;
-            right: -10px;
+           .right(-10px);
             font-size: 10px;
             font-weight: 400;
         }
@@ -148,12 +148,12 @@
         opacity: 0.9;
         //Only font-awesome provides social icons
         padding: 0;
-        > .fa {            
+        > .fa {
             padding: 10px 0;
             width: 40px;
         }
         > .fa + span {
-            border-left: 1px solid rgba(255, 255,255, 0.3);            
+           .border-left(1px solid rgba(255, 255,255, 0.3));
         }
         span {
             padding: 10px;
@@ -163,7 +163,7 @@
             opacity: 1;
         }
     }
-    
+
     &.btn-circle {
         width: 30px;
         height: 30px;
