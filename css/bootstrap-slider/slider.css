@@ -140,6 +140,9 @@
     background: transparent none;
 }
 
+.slider-disabled .slider-selection {
+    opacity: 0.5;
+}
 
 #red .slider-selection {
     background: #f56954;
