@@ -1042,7 +1042,7 @@ body > .header .logo .icon {
   color: #666666;
 }
 /* Add fade animation to dropdown menus */
-.open > .dropdown-menu {
+.open:not(.dropup) > .dropdown-menu {
   animation-name: fadeAnimation;
   animation-duration: .7s;
   animation-iteration-count: 1;
