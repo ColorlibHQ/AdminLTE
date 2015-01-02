@@ -3,7 +3,7 @@
 
 Announcements:
 --------------
-**- AdminLTE discussion and review:** available now on the [main Almsaeed Studio page](http://almsaeedstudio.com/#comments "Comments Sections"). 
+**- Almsaeed Studio Email Subscribtion:** available now on the [Main Almsaeed Studio page](http://almsaeedstudio.com/#subscribe "Subscribe Section"). 
 
 **- [Documentation](http://almsaeedstudio.com/guide)**: a quick start and installation guide have been created in our website Almsaeed Studio.
 
