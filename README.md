@@ -3,34 +3,31 @@
 
 Announcements:
 --------------
-**- Almsaeed Studio Email Subscribtion:** available now on the [main Almsaeed Studio page](http://almsaeedstudio.com/#subscribe "Subscribe Section"). 
+- **Almsaeed Studio Email Subscription:** now available on the [main Almsaeed Studio page](http://almsaeedstudio.com/#subscribe "Subscribe Section"). 
 
-**- [Documentation](http://almsaeedstudio.com/guide)**: a quick start and installation guide have been created in our website Almsaeed Studio.
+- **[Documentation](http://almsaeedstudio.com/guide)**: a quick start/installation guide has been published on our website.
 
-**AdminLTE** -- is a fully responsive admin template. Based on **Bootstrap 3** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself. 
+**AdminLTE** is a fully responsive admin template based on the **Bootstrap 3** framework. It's highly customizable, easy to use, and it fits many screen resolutions ranging from small mobile devices to large desktops. [Check out the **live preview**](http://almsaeedstudio.com/preview/) now and see for yourself. 
 
-**Live Preview: http://almsaeedstudio.com/preview/**
-
-Note: If the javascript in the preview does not work properly (specially IE users), please visit http://almsaeedstudio.com/AdminLTE (this could be because of the use of an iframe!)
+Note: If the javascript in the preview does not work properly (especially for IE users), please check http://almsaeedstudio.com/AdminLTE instead, as the issue could be caused by the use of an iframe.
 
 Want More?
 -----------
-**Almsaeed studio just opened a new premium templates page. Hand picked to insure the best quality and the most affordable prices. Visit http://almsaeedstudio.com/premium for more information.**
-
+**Almsaeed studio just opened a new premium templates page. Hand picked to ensure the best quality and the most affordable prices. Visit http://almsaeedstudio.com/premium for more information.**
 
 !["AdminLTE Presentation"](http://almsaeedstudio.com/adminlte2.png "AdminLTE Presentation")
 
-**AdminLTE** has been carefully coded with clear comments in all of its JS, LESS and HTML files. LESS has been used to increase code customizability.
+**AdminLTE** is carefully coded with clear comments in all of its JS, LESS and HTML files. LESS is used to increase code customizability.
 
-Special Features:
------------------
+Features:
+---------
 - **Fully responsive**
 - **Enhanced for printing**
 - **Sortable dashboard widgets**
 - **18 plugins and 3 custom plugins**
-- **Light weight and fast**
+- **Lightweight and fast**
 - **Compatible with most major browsers**
-- **Full support for Glyphicons, Fontawesome and Ion icons**
+- **Full support for Glyphicons, Font Awesome and Ion icons**
 
 Featured Pages:
 ----------------
@@ -38,11 +35,11 @@ Featured Pages:
 - Mailbox
 - Calendar
 - Invoice
-- Lockscreen
+- Lock screen
 - Login
 - Register
-- 404 Error
-- 500 Error
+- 404 error
+- 500 error
 - Blank page
 
 Featured Plugins:
