@@ -8,6 +8,7 @@
  */
 /* iCheck plugin Minimal skin, black
 ----------------------------------- */
+
 .icheckbox_minimal,
 .iradio_minimal {
     display: inline-block;
@@ -17,7 +18,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: rgba(255, 255, 255, 0.7) url(iCheck/minimal/minimal.png) no-repeat;
+    background: rgba(255, 255, 255, 0.7) url('@{icheck-minimal-path}minimal.png') no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -63,7 +64,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_minimal,
     .iradio_minimal {
-        background-image: url('iCheck/minimal/minimal@2x.png');
+        background-image: url('@{icheck-minimal-path}minimal@2x.png');
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
