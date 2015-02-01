@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 2 | Documentation</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      body {
+        font-family: "proxima-nova", 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 500;
+      }
+      .right-side {
+          background: #f9f9f9;      
+      }
+      .page-header {
+        border: 0;
+        margin: 20px 0;
+        padding: 0;        
+        position: relative;
+        z-index: 1;                
+      }
+      .page-header span {        
+        z-index: 5;
+        display: inline-block;
+        background-color: #f9f9f9;
+        padding: 10px 10px 10px 0;
+        font-size: 25px;
+        line-height: 1;        
+        border-radius: 3px;
+      }
+      .page-header::before {
+        content: " ";
+        display: block;
+        background: #ededed;
+        width: 100%;
+        height: 1px;
+        position: absolute;
+        top: 50%;
+        margin-top: 2px;
+        z-index: -1;        
+      }
+      .lead {
+        font-size: 16px;
+        font-weight: 400;        
+      }
+      .content {
+        padding: 10px 25px;
+      }
+      .hierarchy {
+        background: #333;
+        color: #fff;
+      }
+      pre {
+        border: none;
+      }
+      /* desert scheme ported from vim to google prettify */
+      pre.prettyprint { display: block; background-color: #333; max-height: 300px; border: none!important;}
+      pre .nocode { background-color: none; color: #000 }
+      pre .str { color: #ffa0a0 } /* string  - pink */
+      pre .kwd { color: #f0e68c; font-weight: bold }
+      pre .com { color: #87ceeb } /* comment - skyblue */
+      pre .typ { color: #98fb98 } /* type    - lightgreen */
+      pre .lit { color: #cd5c5c } /* literal - darkred */
+      pre .pun { color: #fff }    /* punctuation */
+      pre .pln { color: #fff }    /* plaintext */
+      pre .tag { color: #f0e68c; font-weight: bold } /* html/xml tag    - lightyellow */
+      pre .atn { color: #bdb76b; font-weight: bold } /* attribute name  - khaki */
+      pre .atv { color: #ffa0a0 } /* attribute value - pink */
+      pre .dec { color: #98fb98 } /* decimal         - lightgreen */
+
+      /* Specify class=linenums on a pre to get line numbering */
+      ol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE } /* IE indents via margin-left */
+      li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }
+      /* Alternate shading for lines */
+      li.L1,li.L3,li.L5,li.L7,li.L9 { }
+
+      @media print {
+        pre.prettyprint { background-color: none }
+        pre .str, code .str { color: #060 }
+        pre .kwd, code .kwd { color: #006; font-weight: bold }
+        pre .com, code .com { color: #600; font-style: italic }
+        pre .typ, code .typ { color: #404; font-weight: bold }
+        pre .lit, code .lit { color: #044 }
+        pre .pun, code .pun { color: #440 }
+        pre .pln, code .pln { color: #000 }
+        pre .tag, code .tag { color: #006; font-weight: bold }
+        pre .atn, code .atn { color: #404 }
+        pre .atv, code .atv { color: #060 }
+      }
+    </style>
+  </head>
+  <body class="skin-blue fixed" data-spy="scroll" data-target="#scrollspy">
+    <div class="wrapper">
+      <!-- header logo: style can be found in header.less -->
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="../index2.html" class="logo">AdminLTE</a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <!-- Navbar Right Menu -->
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <li><a href="http://almsaeedstudio.com">Almsaeed Studio</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="left-side">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu" id="scrollspy">
+            <li class="header">TABLE OF CONTENTS</li>
+            <li class='active'><a href="#introduction"><i class='fa fa-circle-o'></i> Introduction</a></li>
+            <li><a href="#download"><i class='fa fa-circle-o'></i>  Download</a></li>
+            <li><a href="#dependencies"><i class='fa fa-circle-o'></i>  Dependencies</a></li>
+            <li><a href="#advice"><i class='fa fa-circle-o'></i> Advice</a></li>
+            <li><a href="#layout"><i class='fa fa-circle-o'></i>  Layout</a></li>
+            <li><a href="#components"><i class='fa fa-circle-o'></i>  Components</a></li>
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Right side column. Contains the navbar and content of the page -->
+      <div class="right-side">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+          <h1>
+            AdminLTE Documentation
+            <small>Current version 2.0</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Documentation</li>
+          </ol>
+        </div>
+
+        <!-- Main content -->
+        <div class="content body">
+          <section id='introduction'>
+            <h2 class='page-header'><span>Introduction</span></h2>
+            <p class='lead'>
+              <b>AdminLTE</b> is a popular open source WebApp template for admin dashboards and control panels.
+              It is a responsive HTML template that is based on the CSS framework Bootstrap 3.
+              It utilizes all of the Bootstrap components in its design and re-styles many
+              commonly used plugins to create a consistent design that can be used as a user
+              interface for backend applications. AdminLTE is based on a modular design, which
+              allows it to be easily customized and built upon. This documentation will guide you through
+              installing the template and exploring the various components that are bundled with the template.
+            </p>
+          </section><!-- /#introduction -->
+          <section id='download'>
+            <h2 class='page-header'><span>Download</span></h2>
+            <p class='lead'>
+              AdminLTE can be downloaded in two different versions, each appealing to different
+              skill levels and use case.
+            </p>
+            <div class='row'>
+              <div class='col-sm-6'>
+                <div class='box box-primary'>
+                  <div class='box-header with-border'>
+                    <h3 class='box-title'>Ready</h3>
+                    <span class='label label-primary pull-right'><i class='fa fa-html5'></i></span>
+                  </div><!-- /.box-header -->
+                  <div class='box-body'>
+                    <p>Compiled and ready to use in production. Download this version
+                      if you don't want to customize AdminLTE's LESS files.</p>
+                    <a href='#' class='btn btn-primary'><i class='fa fa-download'></i> Download</a>
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div><!-- /.col -->
+              <div class='col-sm-6'>
+                <div class='box box-danger'>
+                  <div class='box-header with-border'>
+                    <h3 class='box-title'>Source Code</h3>
+                    <span class='label label-danger pull-right'><i class='fa fa-database'></i></span>
+                  </div><!-- /.box-header -->
+                  <div class='box-body'>
+                    <p>All files including the compiled CSS. Download this version
+                      if you plan on customizing the template. <b>Requires a LESS compiler.</b></p>
+                    <a href='#' class='btn btn-danger'><i class='fa fa-download'></i> Download</a>
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+            <pre class='hierarchy'><code class="language-bash" data-lang="bash">File Hierarchy of the Source Code Package
+
+AdminLTE/
+├── dist/
+│   ├── CSS/
+│   ├── JS
+│   ├── img
+├── build/
+│   ├── less/
+│   │   ├── AdminLTE's Less files
+│   └── Bootstrap-less/ (Only for reference. No modifications have been made)
+│       ├── mixins/
+│       ├── variables.less
+│       ├── mixins.less
+└── plugins/
+    ├── All the customized plugins CSS and JS files</code></pre>
+          </section>
+          <section id="dependencies">
+            <h2 class="page-header"><span>Dependencies</span></h2>  
+            <p class="lead">AdminLTE depends on two main frameworks. 
+              The downloadable package contains both of these libraries, so you don't have to manually download them.</p>
+            <ul class="lead"> 
+              <li><a href="http://getbootstrap.com" target="_blank">Bootstrap 3</a></li>
+              <li><a href="http://jquery.com/" target="_blank">jQuery 1.11+</a></li>
+            </ul>
+          </section>
+          <section id='advice'>
+            <h2 class='page-header'><span>A Word of Advice</span></h2>
+            <p class='lead'>
+              Before you go to see your new awesome theme, here are few tips on how to familiarize yourself with it:
+            </p>
+
+            <ul class='lead'>
+              <li><b>AdminLTE is based on <a href="http://getbootstrap.com/" target="_blank">Bootstrap 3</a>.</b> If you are unfamiliar with Bootstrap, visit their website and read through the documentation. All of Bootstrap components have been modified to fit the style of AdminLTE and provide a consistent look throughout the template. This way, we guarantee you will get the best of AdminLTE.</li>
+              <li><b>Go through the pages that are bundled with the theme.</b> Most of the template example pages contain quick tips on how to create or use a component which can be really helpful when you need to create something on the fly.</li>
+              <li><b>Documentation.</b> We are trying our best to make your experience with AdminLTE be smooth. One way to achieve that is to provide documentation and support. If you think that something is missing from the documentation, please do not hesitate to create an issue to tell us about it. Also, if you would like to contribute, email the support team at support@almsaeedstudio.com.</li>
+              <li><b>Built with <a href="http://lesscss.org/" target="_blank">LESS</a>.</b> This theme uses the LESS compiler to make it easier to customize and use. LESS is easy to learn if you know css or SASS. It is not necessary to learn LESS but it will benefit you a lot in the future.</li>
+              <li><b>Hosted on <a href="https://github.com/almasaeed2010/AdminLTE/" target="_blank">GitHub</a>.</b> Visit our GitHub repository to view issues, make requests, or contribute to the project.</li>
+            </ul>
+            <p class='lead'>
+              <b>Note:</b> LESS files are better commented than the compiled css file.
+            </p>
+          </section>
+          <section id='layout'>
+            <h2 class='page-header'><span>Layout</span></h2>
+            <p class='lead'>The first thing that you probably want to do is understanding the layout
+              of AdminLTE. The layout consists of four major parts:</p>
+            <ul class='lead'>
+              <li>Wrapper <code>.wrapper</code></li>
+              <li>Main Header <code>.main-header</code></li>
+              <li>Sidebar <code>.left-side</code></li>
+              <li>Content <code>.right-side</code></li>
+            </ul>
+            <pre class='prettyprint'>
+&LT;!DOCTYPE html>
+&LT;html>
+  &LT;head>
+    &LT;meta charset="UTF-8">
+    &LT;title>AdminLTE 2 | Dashboard&LT;/title>
+    &LT;meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    &LT;!-- Bootstrap 3.3.1 loaded from CDN. You can add you own bootstrap copy -->
+    &LT;!-- AdminLTE won't work without loading Bootstrap first -->
+    &LT;link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    &LT;!-- FontAwesome Icons -->
+    &LT;link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    &LT;!-- Ionicons -->
+    &LT;link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    &LT;!-- ADMINLTE MAIN CSS FILE -->
+    &LT;link href="../../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+
+    &LT;!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    &LT;!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    &LT;!--[if lt IE 9]>
+        &LT;script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">&LT;/script>
+        &LT;script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js">&LT;/script>
+    &LT;![endif]-->
+  &LT;/head>
+  &LT;body class="skin-blue">
+    &LT;!-- Site wrapper -->
+    &LT;div class="wrapper">
+      &LT;!-- header logo: style can be found in header.less -->
+      &LT;header class="main-header">
+        &LT;a href="../../index2.html" class="logo">
+          &LT;!-- LOGO -->
+        &LT;/a>
+        &LT;!-- Header Navbar: style can be found in header.less -->
+        &LT;nav class="navbar navbar-static-top" role="navigation">
+
+        &LT;/nav>
+      &LT;/header>
+
+      &LT;!-- =============================================== -->
+
+      &LT;!-- Left side column. contains the sidebar -->
+      &LT;aside class="left-side">
+        &LT;!-- sidebar: style can be found in sidebar.less -->
+        &LT;section class="sidebar">
+          &LT;!-- sidebar menu: : style can be found in sidebar.less -->
+          &LT;ul class="sidebar-menu">
+          &LT;/ul>
+        &LT;/section>
+        &LT;!-- /.sidebar -->
+      &LT;/aside>
+
+      &LT;!-- =============================================== -->
+
+      &LT;!-- Right side column. Contains the content of the page -->
+      &LT;div class="right-side">
+        &LT;section class="content-header">
+          &LT;!-- Page title and breadcrumbs go here -->
+        &LT;/section>&LT;!-- /.content-header -->
+
+        &LT;!-- Main content -->
+        &LT;section class="content">
+
+        &LT;/section>&LT;!-- /.content -->
+      &LT;/div>&LT;!-- /.right-side -->
+
+      &LT;footer class="main-footer">
+        &LT;div class="pull-right hidden-xs">
+          &LT;b>Version&LT;/b> 2.0
+        &LT;/div>
+        &LT;strong>Copyright &copy; 2014-2015 &LT;a href="http://almsaeedstudio.com">Almsaeed Studio&LT;/a>.&LT;/strong> All rights reserved.
+      &LT;/footer>
+    &LT;/div>&LT;!-- ./wrapper -->
+
+    &LT;!-- jQuery 2.1.1: both Bootstrap and AdminLTE dependent on jQuery -->
+    &LT;script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">&LT;/script>
+    &LT;!-- Bootstrap 3.3.2 JS -->
+    &LT;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js" type="text/javascript">&LT;/script>
+    &LT;!-- AdminLTE App. Required in all pages -->
+    &LT;script src="../../js/AdminLTE/app.js" type="text/javascript">&LT;/script>
+  &LT;/body>
+&LT;/html></pre>
+
+          </section>
+          <section id='components'>
+            <h2 class='page-header'><span>Components</span></h2>
+          </section>
+          <section id='browsers'>
+            <h2 class='page-header'><span>Browser Support</span></h2>
+            <p>Text will go here</p>
+          </section>
+          <section id='browsers'>
+            <h2 class='page-header'><span>FAQ</span></h2>
+            <p>Text will go here</p>
+          </section>
+          <div class='box'>
+            <div class='box-header with-border'>
+              <h3 class='box-title'></h3>
+            </div><!-- /.box-header -->
+            <div class='box-body'></div><!-- /.box-body -->
+          </div><!-- /.box -->
+        </div><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+      <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+          <b>Version</b> 2.0
+        </div>
+        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+      </footer>
+
+    </div><!-- ./wrapper -->
+
+    <!-- Pace 1.0.0 --
+    <script src="js/plugins/pace/pace.js" type="text/javascript"></script-->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <!-- AdminLTE App -->
+    <script src="../dist/js/app.js" type="text/javascript"></script>
+    <!-- SlimScroll 1.3.0 -->
+    <script src="../plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <script src="//use.typekit.net/yvy0plb.js"></script>
+    <script>try {
+        Typekit.load();
+      } catch (e) {
+      }</script>
+  </body>
+</html>

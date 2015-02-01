@@ -1,0 +1,33 @@
+/*
+ * Component: Table
+ * ----------------
+ */
+
+.table {
+  //progress bars in tables
+  tr td .progress {
+    margin-top: 5px;
+  }
+}
+.table.no-border {
+
+  &, td, th {
+    border: 0;
+  }
+}
+
+/* .text-center in tables */
+table.text-center {
+  &, td, th {
+    text-align: center;
+  }
+}
+
+.table.align {
+  th {
+    text-align: left;
+  }
+  td {
+    text-align: right;
+  }
+}
