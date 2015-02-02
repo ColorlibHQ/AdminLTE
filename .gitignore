@@ -1,8 +1,8 @@
-*.DS_Store
+**.DS_Store
 .idea
 /nbproject/private/
 /nbproject/
 /node_modules/
 TODO
-*.zip
-*.png
+**.zip
+**.png
