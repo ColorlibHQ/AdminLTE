@@ -8,11 +8,12 @@
   max-height: 100px;
   z-index: 1030;
   //Navbar
-  .navbar {
+  > .navbar {
     margin-bottom: 0;
     margin-left: @sidebar-width;
     border: none;
     min-height: @navbar-height;
+    border-radius: 0;
   }
   //Navbar Right Menu
   .navbar-custom-menu,
@@ -124,7 +125,7 @@
     }
   }
 
-  @media screen and (max-width: @screen-sm) {
+  @media (max-width: @screen-sm-max) {
     > .breadcrumb {
       position: relative;
       margin-top: 5px;

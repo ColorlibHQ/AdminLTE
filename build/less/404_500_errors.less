@@ -5,7 +5,7 @@
 .error-page {
   width: 600px;
   margin: 20px auto 0 auto;
-  @media screen and (max-width: @screen-sm) {
+  @media (max-width: @screen-sm-max) {
     width: 100%;
   }
   //For the error number e.g: 404
@@ -13,7 +13,7 @@
     float: left;
     font-size: 100px;
     font-weight: 300;
-    @media screen and (max-width: @screen-sm) {
+    @media (max-width: @screen-sm-max) {
       float: none;
       text-align: center;
     }
@@ -21,13 +21,13 @@
   //For the message
   > .error-content {
     margin-left: 190px;
-    @media screen and (max-width: @screen-sm) {
+    @media (max-width: @screen-sm-max) {
       margin-left: 0;
     }
     > h3 {
       font-weight: 300;
       font-size: 25px;
-      @media screen and (max-width: @screen-sm) {
+      @media(max-width: @screen-sm-max) {
         text-align: center;
       }
     }

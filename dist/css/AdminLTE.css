@@ -203,11 +203,12 @@ a:focus {
   max-height: 100px;
   z-index: 1030;
 }
-.main-header .navbar {
+.main-header > .navbar {
   margin-bottom: 0;
   margin-left: 230px;
   border: none;
   min-height: 50px;
+  border-radius: 0;
 }
 .main-header .navbar-custom-menu,
 .main-header .navbar-right {
@@ -308,7 +309,7 @@ a:focus {
 .content-header > .breadcrumb > li + li:before {
   content: '>\00a0';
 }
-@media screen and (max-width: 768px) {
+@media (max-width: 991px) {
   .content-header > .breadcrumb {
     position: relative;
     margin-top: 5px;
@@ -1133,7 +1134,7 @@ a:focus {
 .small-box:hover .icon {
   font-size: 95px;
 }
-@media screen and (max-width: 480px) {
+@media (max-width: 767px) {
   .small-box {
     text-align: center;
   }
@@ -2525,7 +2526,7 @@ table.text-center th {
 .mailbox .table-mailbox tr > td > a {
   color: #444;
 }
-@media screen and (max-width: 768px) {
+@media (max-width: 991px) {
   .mailbox .nav-stacked > li:not(.header) {
     float: left;
     width: 50%;
@@ -2563,7 +2564,7 @@ table.text-center th {
   margin: 10px 0 30px 0;
   font-size: 90px;
 }
-@media screen and (max-width: 480px) {
+@media (max-width: 767px) {
   .lockscreen .headline {
     font-size: 60px;
     margin-bottom: 40px;
@@ -2681,7 +2682,7 @@ table.text-center th {
   width: 600px;
   margin: 20px auto 0 auto;
 }
-@media screen and (max-width: 768px) {
+@media (max-width: 991px) {
   .error-page {
     width: 100%;
   }
@@ -2691,7 +2692,7 @@ table.text-center th {
   font-size: 100px;
   font-weight: 300;
 }
-@media screen and (max-width: 768px) {
+@media (max-width: 991px) {
   .error-page > .headline {
     float: none;
     text-align: center;
@@ -2701,7 +2702,7 @@ table.text-center th {
   margin-left: 190px;
   display: block;
 }
-@media screen and (max-width: 768px) {
+@media (max-width: 991px) {
   .error-page > .error-content {
     margin-left: 0;
   }
@@ -2710,7 +2711,7 @@ table.text-center th {
   font-weight: 300;
   font-size: 25px;
 }
-@media screen and (max-width: 768px) {
+@media (max-width: 991px) {
   .error-page > .error-content > h3 {
     text-align: center;
   }
