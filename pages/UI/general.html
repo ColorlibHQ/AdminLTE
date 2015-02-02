@@ -17,6 +17,23 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <style>
+      .color-pallete {
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+
+      }
+      .color-pallete-set {
+        margin-bottom: 15px;
+      }
+      .color-pallete span {
+        display: none;
+      }
+      .color-pallete:hover span {
+        display: block;
+      }
+    </style>
   </head>
   <body class="skin-blue">
     <div class="wrapper">
@@ -430,9 +447,66 @@
             <li class="active">Blank page</li>
           </ol>
         </section>
-
+                
         <!-- Main content -->
         <section class="content">
+          <div class='box box-default'>
+            <div class='box-header with-border'>
+              <h3 class='box-title'><i class="fa fa-tag"></i> Color Pallete</h3>
+            </div>
+            <div class='box-body'>
+              <div class='row'>
+                <div class='col-sm-4 col-md-2'>
+                  <h4 class='text-center'>Primary</h4>
+                  <div class='color-pallete-set'>
+                    <div class='bg-light-blue disabled color-pallete'><span>Disabled</span></div>
+                    <div class='bg-light-blue color-pallete'><span>#3c8dbc</span></div>
+                    <div class='bg-light-blue-active color-pallete'><span>Active</span></div>
+                  </div>
+                </div><!-- /.col -->
+                <div class='col-sm-4 col-md-2'>
+                  <h4 class='text-center'>Info</h4>
+                  <div class='color-pallete-set'>
+                    <div class='bg-aqua disabled color-pallete'><span>Disabled</span></div>
+                    <div class='bg-aqua color-pallete'><span>#00c0ef</span></div>
+                    <div class='bg-aqua-active color-pallete'><span>Active</span></div>
+                  </div>
+                </div><!-- /.col -->
+                <div class='col-sm-4 col-md-2'>
+                  <h4 class='text-center'>Success</h4>
+                  <div class='color-pallete-set'>
+                    <div class='bg-green disabled color-pallete'><span>Disabled</span></div>
+                    <div class='bg-green color-pallete'><span>#00a65a</span></div>
+                    <div class='bg-green-active color-pallete'><span>Active</span></div>
+                  </div>
+                </div><!-- /.col -->
+                <div class='col-sm-4 col-md-2'>
+                  <h4 class='text-center'>Warning</h4>
+                  <div class='color-pallete-set'>
+                    <div class='bg-yellow disabled color-pallete'><span>Disabled</span></div>
+                    <div class='bg-yellow color-pallete'><span>#f39c12</span></div>
+                    <div class='bg-yellow-active color-pallete'><span>Active</span></div>
+                  </div>
+                </div><!-- /.col -->
+                <div class='col-sm-4 col-md-2'>
+                  <h4 class='text-center'>Danger</h4>
+                  <div class='color-pallete-set'>
+                    <div class='bg-red disabled color-pallete'><span>Disabled</span></div>
+                    <div class='bg-red color-pallete'><span>#f56954</span></div>
+                    <div class='bg-red-active color-pallete'><span>Active</span></div>
+                  </div>
+                </div><!-- /.col -->
+                <div class='col-sm-4 col-md-2'>
+                  <h4 class='text-center'>Gray</h4>
+                  <div class='color-pallete-set'>
+                    <div class='bg-gray disabled color-pallete'><span>Disabled</span></div>
+                    <div class='bg-gray color-pallete'><span>#d2d6de</span></div>
+                    <div class='bg-gray-active color-pallete'><span>Active</span></div>
+                  </div>
+                </div><!-- /.col -->
+              </div><!-- /.row -->
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
           <!-- START ALERTS AND CALLOUTS -->
           <h2 class="page-header">Alerts and Callouts</h2>
           <div class="row">
