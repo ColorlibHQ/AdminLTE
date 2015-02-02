@@ -1,24 +1,22 @@
 'use strict';
-
 module.exports = function (grunt) {
   // load all grunt tasks
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
-
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.initConfig({
     watch: {
       // if any .less file changes in directory "build/less/" run the "less"-task.
-      files: ["build/less/*.less", "build/less/skins/*.less"],
-      tasks: ["less"]
+      files: ["build/less/*.less", "build/less/skins/*.less", "dist/js/app.min.js"],
+      tasks: ["less", "uglify"]
     },
     // "less"-task configuration
+    //this task will compile all less files upon saving to create both AdminLTE.css and AdminLTE.min.css
     less: {
       //Development not compressed
       development: {
         options: {
-          // Specifies directories to scan for @import directives when parsing. 
-          // Default value is the directory of the source, which is probably what you want.
-          paths: ["dist/css/"],
+          //Wether to compress or not
           compress: false
         },
         files: {
@@ -29,14 +27,23 @@ module.exports = function (grunt) {
       //production compresses version
       production: {
         options: {
-          // Specifies directories to scan for @import directives when parsing. 
-          // Default value is the directory of the source, which is probably what you want.
-          paths: ["dist/css/"],
+          //Wether to compress or not          
           compress: true
         },
         files: {
           // compilation.css  :  source.less
           "dist/css/AdminLTE.min.css": "build/less/AdminLTE.less"
+        }
+      }
+    },
+    //Uglify task info
+    uglify: {
+      options: {
+        mangle: true
+      },
+      my_target: {
+        files: {
+          'dist/js/app.min.js': ['dist/js/app.js']
         }
       }
     }
