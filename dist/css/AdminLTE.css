@@ -1898,6 +1898,13 @@ a:focus {
   padding: 15px 30px 15px 15px;
   border-left: 5px solid #eee;
 }
+.callout a {
+  color: #fff;
+  text-decoration: underline;
+}
+.callout a:hover {
+  color: #eee;
+}
 .callout h4 {
   margin-top: 0;
   font-weight: 600;
