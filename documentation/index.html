@@ -23,13 +23,13 @@
         font-family: "proxima-nova", 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         font-weight: 500;
       }
-      .right-side {
+      .content-wrapper {
         background: #f9f9f9;
       }
       .page-header {
         border: 0;
-        margin: 20px 0;
-        padding: 0;
+        margin: 0;
+        padding: 0 0 20px 0;
         position: relative;
         z-index: 1;
       }
@@ -139,13 +139,14 @@
             <li><a href="#components"><i class='fa fa-circle-o'></i>  Components</a></li>
             <li><a href="#browsers"><i class='fa fa-circle-o'></i>  Browser Support</a></li>
             <li><a href="#upgrade"><i class='fa fa-circle-o'></i>  Upgrade Guide</a></li>
+            <li><a href="#faq"><i class='fa fa-circle-o'></i>  FAQ</a></li>
           </ul>
         </section>
         <!-- /.sidebar -->
       </aside>
 
       <!-- Right side column. Contains the navbar and content of the page -->
-      <div class="right-side">
+      <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
           <h1>
@@ -172,6 +173,9 @@
               installing the template and exploring the various components that are bundled with the template.
             </p>
           </section><!-- /#introduction -->
+          
+          <!-- ============================================================= -->
+          
           <section id='download'>
             <h2 class='page-header'><span>Download</span></h2>
             <p class='lead'>
@@ -223,6 +227,9 @@ AdminLTE/
 └── plugins/
     ├── All the customized plugins CSS and JS files</code></pre>
           </section>
+          
+          <!-- ============================================================= -->
+          
           <section id="dependencies">
             <h2 class="page-header"><span>Dependencies</span></h2>
             <p class="lead">AdminLTE depends on two main frameworks.
@@ -230,30 +237,37 @@ AdminLTE/
             <ul class="lead">
               <li><a href="http://getbootstrap.com" target="_blank">Bootstrap 3</a></li>
               <li><a href="http://jquery.com/" target="_blank">jQuery 1.11+</a></li>
+              <li><a href="#plugins">All other plugins are listed below</a></li>
             </ul>
           </section>
+          
+          <!-- ============================================================= -->
+          
           <section id='advice'>
             <h2 class='page-header'><span>A Word of Advice</span></h2>
             <p class='lead'>
               Before you go to see your new awesome theme, here are few tips on how to familiarize yourself with it:
             </p>
 
-            <ul class='lead'>
+            <ul>
               <li><b>AdminLTE is based on <a href="http://getbootstrap.com/" target="_blank">Bootstrap 3</a>.</b> If you are unfamiliar with Bootstrap, visit their website and read through the documentation. All of Bootstrap components have been modified to fit the style of AdminLTE and provide a consistent look throughout the template. This way, we guarantee you will get the best of AdminLTE.</li>
               <li><b>Go through the pages that are bundled with the theme.</b> Most of the template example pages contain quick tips on how to create or use a component which can be really helpful when you need to create something on the fly.</li>
               <li><b>Documentation.</b> We are trying our best to make your experience with AdminLTE be smooth. One way to achieve that is to provide documentation and support. If you think that something is missing from the documentation, please do not hesitate to create an issue to tell us about it. Also, if you would like to contribute, email the support team at support@almsaeedstudio.com.</li>
               <li><b>Built with <a href="http://lesscss.org/" target="_blank">LESS</a>.</b> This theme uses the LESS compiler to make it easier to customize and use. LESS is easy to learn if you know css or SASS. It is not necessary to learn LESS but it will benefit you a lot in the future.</li>
               <li><b>Hosted on <a href="https://github.com/almasaeed2010/AdminLTE/" target="_blank">GitHub</a>.</b> Visit our GitHub repository to view issues, make requests, or contribute to the project.</li>
             </ul>
-            <p class='lead'>
+            <p>
               <b>Note:</b> LESS files are better commented than the compiled css file.
             </p>
           </section>
+          
+          <!-- ============================================================= -->
+          
           <section id='layout'>
             <h2 class='page-header'><span>Layout</span></h2>
             <p class='lead'>The first thing that you probably want to do is understanding the layout
               of AdminLTE. The layout consists of four major parts:</p>
-            <ul class='lead'>
+            <ul>
               <li>Wrapper <code>.wrapper</code></li>
               <li>Main Header <code>.main-header</code></li>
               <li>Sidebar <code>.sidebar-wrapper</code></li>
@@ -313,7 +327,7 @@ AdminLTE/
       &LT;!-- =============================================== -->
 
       &LT;!-- Right side column. Contains the content of the page -->
-      &LT;div class="right-side">
+      &LT;div class="content-wrapper">
         &LT;section class="content-header">
           &LT;!-- Page title and breadcrumbs go here -->
         &LT;/section>&LT;!-- /.content-header -->
@@ -340,12 +354,17 @@ AdminLTE/
     &LT;script src="../../js/AdminLTE/app.js" type="text/javascript">&LT;/script>
   &LT;/body>
 &LT;/html></pre>
-
           </section>
+          
+          <!-- ============================================================= -->
+          
           <section id='components'>
             <h2 class='page-header'><span>Components</span></h2>
             <p class="lead">Content</p>
           </section>
+          
+          <!-- ============================================================= -->
+          
           <section id='browsers'>
             <h2 class='page-header'><span>Browser Support</span></h2>
             <p class="lead">AdminLTE supports the following browsers:</p>
@@ -357,20 +376,28 @@ AdminLTE/
               <li>Opera (latest)</li>
             </ul>
           </section>
+          
+          <!-- ============================================================= -->
+          
           <section id='upgrade'>
             <h2 class='page-header'><span>Upgrade Guide</span></h2>
-            <p class="lead">Content</p>
+            <p class="lead">To upgrade from version 1.x to the lateset version, apply these changes to your HTML markup:</p>
+            <ol>
+              <li>The .wrapper div must be placed immediately after the body tag rather than after the header</li>
+              <li>Change the .header div to .main-header <code>&LT;div class="main-header"></code></li>
+              <li>Change the .right-side class to .content-wrapper<code>&LT;div class="content-wrapper"></code></li>
+              <li>Change the .left-side class to .main-sidebar<code>&LT;div class="main-sidebar"></code></li>
+            </ol>
+            <p>And you should be set!</p>
           </section>
+          
+          <!-- ============================================================= -->
+          
           <section id='faq'>
             <h2 class='page-header'><span>FAQ</span></h2>
-            <p class="lead">Content</p>
+            <h3>Can AdminLTE be used with Wordpress?</h3>
+            <p class="lead">AdminLTE is an HTML template that can be used for any purpose. However, it is not made to be easily installed on Wordpress. It will require some effort and enough knowledge of the Wordpress script to do so.</p>
           </section>
-          <div class='box'>
-            <div class='box-header with-border'>
-              <h3 class='box-title'></h3>
-            </div><!-- /.box-header -->
-            <div class='box-body'></div><!-- /.box-body -->
-          </div><!-- /.box -->
         </div><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
