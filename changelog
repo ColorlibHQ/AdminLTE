@@ -20,3 +20,4 @@ v2.0
 - Created Dashboard 2.0
 - Changed .right-side to .content-wrapper
 - Changed .navbar-right to .navbar-custom-menu
+- Removed unused files
