@@ -24,22 +24,22 @@
         font-weight: 500;
       }
       .right-side {
-          background: #f9f9f9;      
+        background: #f9f9f9;
       }
       .page-header {
         border: 0;
         margin: 20px 0;
-        padding: 0;        
+        padding: 0;
         position: relative;
-        z-index: 1;                
+        z-index: 1;
       }
-      .page-header span {        
+      .page-header span {
         z-index: 5;
         display: inline-block;
         background-color: #f9f9f9;
         padding: 10px 10px 10px 0;
         font-size: 25px;
-        line-height: 1;        
+        line-height: 1;
         border-radius: 3px;
       }
       .page-header::before {
@@ -51,11 +51,11 @@
         position: absolute;
         top: 50%;
         margin-top: 2px;
-        z-index: -1;        
+        z-index: -1;
       }
       .lead {
         font-size: 16px;
-        font-weight: 400;        
+        font-weight: 400;
       }
       .content {
         padding: 10px 25px;
@@ -124,12 +124,12 @@
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
-      <aside class="left-side">
+      <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
+        <section class="sidebar" id="scrollspy">
 
           <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu" id="scrollspy">
+          <ul class="nav sidebar-menu">
             <li class="header">TABLE OF CONTENTS</li>
             <li class='active'><a href="#introduction"><i class='fa fa-circle-o'></i> Introduction</a></li>
             <li><a href="#download"><i class='fa fa-circle-o'></i>  Download</a></li>
@@ -137,6 +137,8 @@
             <li><a href="#advice"><i class='fa fa-circle-o'></i> Advice</a></li>
             <li><a href="#layout"><i class='fa fa-circle-o'></i>  Layout</a></li>
             <li><a href="#components"><i class='fa fa-circle-o'></i>  Components</a></li>
+            <li><a href="#browsers"><i class='fa fa-circle-o'></i>  Browser Support</a></li>
+            <li><a href="#upgrade"><i class='fa fa-circle-o'></i>  Upgrade Guide</a></li>
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -222,10 +224,10 @@ AdminLTE/
     ├── All the customized plugins CSS and JS files</code></pre>
           </section>
           <section id="dependencies">
-            <h2 class="page-header"><span>Dependencies</span></h2>  
-            <p class="lead">AdminLTE depends on two main frameworks. 
+            <h2 class="page-header"><span>Dependencies</span></h2>
+            <p class="lead">AdminLTE depends on two main frameworks.
               The downloadable package contains both of these libraries, so you don't have to manually download them.</p>
-            <ul class="lead"> 
+            <ul class="lead">
               <li><a href="http://getbootstrap.com" target="_blank">Bootstrap 3</a></li>
               <li><a href="http://jquery.com/" target="_blank">jQuery 1.11+</a></li>
             </ul>
@@ -254,8 +256,8 @@ AdminLTE/
             <ul class='lead'>
               <li>Wrapper <code>.wrapper</code></li>
               <li>Main Header <code>.main-header</code></li>
-              <li>Sidebar <code>.left-side</code></li>
-              <li>Content <code>.right-side</code></li>
+              <li>Sidebar <code>.sidebar-wrapper</code></li>
+              <li>Content <code>.content-wrapper</code></li>
             </ul>
             <pre class='prettyprint'>
 &LT;!DOCTYPE html>
@@ -298,7 +300,7 @@ AdminLTE/
       &LT;!-- =============================================== -->
 
       &LT;!-- Left side column. contains the sidebar -->
-      &LT;aside class="left-side">
+      &LT;aside class="main-sidebar">
         &LT;!-- sidebar: style can be found in sidebar.less -->
         &LT;section class="sidebar">
           &LT;!-- sidebar menu: : style can be found in sidebar.less -->
@@ -342,14 +344,26 @@ AdminLTE/
           </section>
           <section id='components'>
             <h2 class='page-header'><span>Components</span></h2>
+            <p class="lead">Content</p>
           </section>
           <section id='browsers'>
             <h2 class='page-header'><span>Browser Support</span></h2>
-            <p>Text will go here</p>
+            <p class="lead">AdminLTE supports the following browsers:</p>
+            <ul>
+              <li>IE9+</li>
+              <li>FireFox (latest)</li>
+              <li>Safari (latest)</li>
+              <li>Chrome (latest)</li>
+              <li>Opera (latest)</li>
+            </ul>
           </section>
-          <section id='browsers'>
+          <section id='upgrade'>
+            <h2 class='page-header'><span>Upgrade Guide</span></h2>
+            <p class="lead">Content</p>
+          </section>
+          <section id='faq'>
             <h2 class='page-header'><span>FAQ</span></h2>
-            <p>Text will go here</p>
+            <p class="lead">Content</p>
           </section>
           <div class='box'>
             <div class='box-header with-border'>
@@ -369,9 +383,6 @@ AdminLTE/
 
     </div><!-- ./wrapper -->
 
-    <!-- Pace 1.0.0 --
-    <script src="js/plugins/pace/pace.js" type="text/javascript"></script-->
-
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js" type="text/javascript"></script>
 
@@ -381,9 +392,19 @@ AdminLTE/
     <script src="../plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
     <script src="//use.typekit.net/yvy0plb.js"></script>
-    <script>try {
+    <script>
+      try {
         Typekit.load();
       } catch (e) {
-      }</script>
+      }
+    </script>
+    <script>
+      $(function(){
+        $(".sidebar-menu li a").click(function(){
+          $(this).parents("ul").find(".active").removeClass("active");
+          $(this).parent('li').addClass('active');
+        });
+      });
+    </script>
   </body>
 </html>

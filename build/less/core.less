@@ -10,7 +10,7 @@ body {
   }
 }
 
-body {
+body {  
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -85,7 +85,9 @@ body {
 
 /* Fixed layout */
 .fixed {
-  .main-header, .left-side {
+  .main-header,
+  .main-sidebar,
+  .left-side {
     position: fixed;
   }
   .main-header {
@@ -160,7 +162,10 @@ a:hover, a:active, a:focus {
   }
 
   //Elements that we want to hide when printing
-  .left-side, .header, .content-header {
+  .main-sidebar,
+  .left-side,
+  .header,
+  .content-header {
     display: none;
   }
   //This is the only element that should appear, so let's remove the margins
