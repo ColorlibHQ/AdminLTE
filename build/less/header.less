@@ -20,6 +20,12 @@
   .navbar-right {
     margin-right: 5px;
     float: right;
+    @media (max-width: @screen-sm-max) {
+      a {
+        color: inherit;
+        background: transparent;
+      }
+    }
   }
   .navbar-right {
     @media (max-width: @screen-header-collapse) {

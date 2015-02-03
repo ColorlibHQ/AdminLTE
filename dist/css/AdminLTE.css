@@ -215,6 +215,13 @@ a:focus {
   margin-right: 5px;
   float: right;
 }
+@media (max-width: 991px) {
+  .main-header .navbar-custom-menu a,
+  .main-header .navbar-right a {
+    color: inherit;
+    background: transparent;
+  }
+}
 @media (max-width: 767px) {
   .main-header .navbar-right {
     float: none;
@@ -1946,6 +1953,10 @@ a:focus {
   color: #fff;
   opacity: 0.7;
   filter: alpha(opacity=70);
+}
+.alert a {
+  color: #fff;
+  text-decoration: underline;
 }
 .alert-success {
   border-color: #008d4c;

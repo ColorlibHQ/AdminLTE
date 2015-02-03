@@ -24,7 +24,7 @@
         font-weight: 500;
       }
       .content-wrapper {
-        background: #f9f9f9;
+        background: #f4f5f7;
         padding: 0 10px;
       }
       .page-header {
@@ -44,7 +44,7 @@
       .page-header span {
         z-index: 5;
         display: inline-block;
-        background-color: #f9f9f9;
+        background-color: #f4f5f7;
         padding-right: 10px;
       }
       .page-header::before {
@@ -67,12 +67,12 @@
         top: 0;
         left: 0;
         display: inline-block;
-        background: #f4f4f4;
+        background: #d2d6de;
         padding: 5px;
         border-bottom-right-radius: 3px;
         border-top-left-radius: 3px;
-        border-bottom: 1px solid #eee;
-        border-right: 1px solid #eee;
+        border-bottom: 1px solid #d2d6dc;
+        border-right: 1px solid #d2d6dc;
       }
       .eg + * {
         margin-top: 30px;
@@ -124,6 +124,10 @@
       .sidebar {
         margin-top: 0;
         padding-top: 0!important;
+      }
+      .box .main-header {
+        z-index: 1000;
+        position: relative;
       }
     </style>
   </head>
@@ -407,9 +411,9 @@ AdminLTE/
 
           <section id='components'>
             <h2 class='page-header'><span>Components</span></h2>
-            <p class='callout callout-info lead'>
+            <p class='alert alert-info lead'>
               AdminLTE makes use of all of Bootstrap 3 components. It's a good start to review
-              the <a href="http://getbootstrap.com">Bootstrap documentation</a> to get an idea of what you the various components
+              the <a href="http://getbootstrap.com">Bootstrap documentation</a> to get an idea of the various components
               that this documentation does not cover.
             </p>
             <h3>Main Header</h3>
@@ -446,7 +450,7 @@ AdminLTE/
                                 <li><!-- start message -->
                                   <a href="#">
                                     <div class="pull-left">
-                                      <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                                      <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
                                     </div>
                                     <h4>
                                       Support Team
@@ -692,7 +696,62 @@ AdminLTE/
     &LT;/div>
   &LT;/nav>
 &LT;/header></pre>
-            <p class='lead'>Top Nav Layout. Main Header Example.</p>
+            <h4>Top Nav Layout. Main Header Example.</h4>
+            <div class="callout callout-info">To use this main header instead of the regular one, you must add the layout-top-nav class to the body tag.</div>
+            <div class="box box-solid">
+              <div class="box-body">
+                <span class="eg">Top Nav Example</span>
+                <header class="main-header">
+                  <!-- Logo -->
+                  <a href="../index2.html" class="logo">AdminLTE</a>
+                  <nav class="navbar navbar-static-top">
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <i class="fa fa-bars"></i>
+                      </button>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">Link</a></li>
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                      </form>
+                      <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Link</a></li>
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div><!-- /.navbar-collapse -->
+                  </nav>
+                </header>
+              </div>
+            </div>
             <pre class='prettyprint'>
 &LT;!-- header logo: style can be found in header.less -->
 &LT;header class="main-header">
@@ -745,8 +804,8 @@ AdminLTE/
   &LT;/nav>
 &LT;/header>
             </pre>
-            
-            
+
+
           </section>
 
           <!-- ============================================================= -->
