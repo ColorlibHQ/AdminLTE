@@ -38,8 +38,9 @@
       section[id] {
         padding: 20px 0 0 0;
       }
-      h3 {
-        margin-bottom: 5px;
+      #components > h3 {
+        font-size: 25px;
+        border-bottom: 1px solid #dedede;
       }
       .page-header span {
         z-index: 5;
@@ -50,7 +51,7 @@
       .page-header::before {
         content: " ";
         display: block;
-        background: #ededed;
+        background: #ccc;
         width: 100%;
         height: 1px;
         position: absolute;
@@ -88,7 +89,7 @@
         border: none;
       }
       /* desert scheme ported from vim to google prettify */
-      pre.prettyprint { display: block; background-color: #333; max-height: 300px; border: none!important;}
+      pre.prettyprint {display: block; background-color: #333; max-height: 300px; border: none!important;}
       pre .nocode { background-color: none; color: #000 }
       pre .str { color: #ffa0a0 } /* string  - pink */
       pre .kwd { color: #f0e68c; font-weight: bold }
@@ -165,6 +166,7 @@
             <li><a href="#advice"><i class='fa fa-circle-o'></i> Advice</a></li>
             <li><a href="#layout"><i class='fa fa-circle-o'></i> Layout</a></li>
             <li><a href="#components"><i class='fa fa-circle-o'></i> Components</a></li>
+            <li><a href="#plugins"><i class='fa fa-circle-o'></i> Plugins</a></li>
             <li><a href="#browsers"><i class='fa fa-circle-o'></i> Browser Support</a></li>
             <li><a href="#upgrade"><i class='fa fa-circle-o'></i> Upgrade Guide</a></li>
             <li><a href="#faq"><i class='fa fa-circle-o'></i> FAQ</a></li>
@@ -301,6 +303,10 @@ AdminLTE/
               <li>Sidebar <code>.sidebar-wrapper</code>. Contains the user panel and sidebar menu.</li>
               <li>Content <code>.content-wrapper</code>. Contains the page header and content.</li>
             </ul>
+            <div class="callout callout-danger lead">
+              <h4>Tip!</h4>
+              <p>Use the blank example page located in pages/examples/blank.html to build your own pages.</p>
+            </div>
             <p>A full layout example for a quick start</p>
             <pre class='prettyprint'>
 &LT;!DOCTYPE html>
@@ -411,11 +417,14 @@ AdminLTE/
 
           <section id='components'>
             <h2 class='page-header'><span>Components</span></h2>
-            <p class='alert alert-info lead'>
-              AdminLTE makes use of all of Bootstrap 3 components. It's a good start to review
-              the <a href="http://getbootstrap.com">Bootstrap documentation</a> to get an idea of the various components
-              that this documentation does not cover.
-            </p>
+            <div class='callout callout-info lead'>
+              <h4>Reminder!</h4>
+              <p>
+                AdminLTE makes use of all of Bootstrap 3 components. It's a good start to review
+                the <a href="http://getbootstrap.com">Bootstrap documentation</a> to get an idea of the various components
+                that this documentation does not cover.
+              </p>
+            </div>
             <h3>Main Header</h3>
             <p class='lead'>The main header contains the logo and navbar. Construction of the
               navbar differs slightly from Bootstrap because it has components that Bootstrap doesn't provide.
@@ -458,7 +467,7 @@ AdminLTE/
                                     </h4>
                                     <p>Why not buy a new awesome theme?</p>
                                   </a>
-                                </li><!-- end message -->                                
+                                </li><!-- end message -->
                               </ul>
                             </li>
                             <li class="footer"><a href="#">See All Messages</a></li>
@@ -479,7 +488,7 @@ AdminLTE/
                                   <a href="#">
                                     <i class="ion ion-ios-people info"></i> 5 new members joined today
                                   </a>
-                                </li>                                
+                                </li>
                               </ul>
                             </li>
                             <li class="footer"><a href="#">View all</a></li>
@@ -508,7 +517,7 @@ AdminLTE/
                                       </div>
                                     </div>
                                   </a>
-                                </li><!-- end task item -->                                
+                                </li><!-- end task item -->
                               </ul>
                             </li>
                             <li class="footer">
@@ -697,7 +706,10 @@ AdminLTE/
   &LT;/nav>
 &LT;/header></pre>
             <h4>Top Nav Layout. Main Header Example.</h4>
-            <div class="callout callout-info">To use this main header instead of the regular one, you must add the layout-top-nav class to the body tag.</div>
+            <div class="callout callout-info lead">
+              <h4>Reminder!</h4>
+              <p>To use this main header instead of the regular one, you must add the <code>layout-top-nav</code> class to the body tag.</p>
+            </div>
             <div class="box box-solid">
               <div class="box-body">
                 <span class="eg">Top Nav Example</span>
@@ -805,7 +817,253 @@ AdminLTE/
 &LT;/header>
             </pre>
 
+            <!-- ----------------------------------------------------------- -->
 
+            <h3>Sidebar</h3>
+            <p class="lead">
+              The sidebar used in this page to the left provides an example of what your sidebar should like.
+              Construction of a sidebar:
+            </p>
+            <pre class="prettyprint">
+&LT;div class="main-sidebar">
+  &LT;!-- Inner sidebar -->
+  &LT;div class="sidebar">
+    &LT;!-- user panel (Optional) -->
+    &LT;div class="user-panel">
+      &LT;div class="pull-left image">
+        &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+      &LT;/div>
+      &LT;div class="pull-left info">
+        &LT;p>User Name&LT;/p>
+
+        &LT;a href="#">&LT;i class="fa fa-circle text-success">&LT;/i> Online&LT;/a>
+      &LT;/div>
+    &LT;/div>&LT;!-- /.user-panel -->
+
+    &LT;!-- Search Form (Optional) -->
+    &LT;form action="#" method="get" class="sidebar-form">
+      &LT;div class="input-group">
+        &LT;input type="text" name="q" class="form-control" placeholder="Search..."/>
+        &LT;span class="input-group-btn">
+          &LT;button type='submit' name='search' id='search-btn' class="btn btn-flat">&LT;i class="fa fa-search">&LT;/i>&LT;/button>
+        &LT;/span>
+      &LT;/div>
+    &LT;/form>&LT;!-- /.sidebar-form -->
+
+    &LT;!-- Sidebar Menu -->
+    &LT;ul class="sidebar-menu">
+      &LT;li class="active">&LT;a href="#">Link&LT;/a>&LT;/li>
+      &LT;li>&LT;a href="#">Another Link&LT;/a>&LT;/li>
+      &LT;li class="treeview">
+        &LT;a href="#">Second Level&LT;/a>
+        &LT;ul class="treeview-menu">
+          &LT;li>&LT;a href="#">Link in level 2&LT;/a>&LT;/li>
+          &LT;li>&LT;a href="#">Link in level 2&LT;/a>&LT;/li>
+        &LT;/ul>
+      &LT;/li>
+    &LT;/ul>&LT;!-- /.sidebar-menu -->
+
+  &LT;/div>&LT;!-- /.sidebar -->
+&LT;/div>&LT;!-- /.main-sidebar -->
+            </pre>
+
+            <!-- ----------------------------------------------------------- -->
+
+            <h3>Box</h3>
+            <p class="lead">The box component is the most widely used component through out this template. You can
+              use it for anything from displaying charts to just blocks of text. It comes in many different
+              styles that we will explore below.</p>
+            <h4>Default Box Markup</h4>
+            <div class="box">
+              <div class="box-header with-border">
+                <h3 class="box-title">Default Box Example</h3>
+                <div class="box-tools pull-right">
+                  <!-- Buttons, labels, and many other things can be placed here! -->
+                  <!-- Here is a label for example -->
+                  <span class="label label-primary">Label</span>
+                </div><!-- /.box-tools -->
+              </div><!-- /.box-header -->
+              <div class="box-body">
+                The body of the box
+              </div><!-- /.box-body -->
+              <div class="box-footer">
+                The footer of the box
+              </div><!-- box-footer -->
+            </div><!-- /.box -->
+            <pre class="prettyprint">
+&LT;div class="box">
+  &LT;div class="box-header with-border">
+    &LT;h3 class="box-title">Default Box Example&LT;/h3>
+    &LT;div class="box-tools pull-right">
+      &LT;!-- Buttons, labels, and many other things can be placed here! -->
+      &LT;!-- Here is a label for example -->
+      &LT;span class="label label-primary">Label&LT;/span>
+    &LT;/div>&LT;!-- /.box-tools -->
+  &LT;/div>&LT;!-- /.box-header -->
+  &LT;div class="box-body">
+    The body of the box
+  &LT;/div>&LT;!-- /.box-body -->
+  &LT;div class="box-footer">
+    The footer of the box
+  &LT;/div>&LT;!-- box-footer -->
+&LT;/div>&LT;!-- /.box --></pre>
+            <h4>Box Variants</h4>
+            <p class="lead">You can change the style of the box by adding any of the contextual classes.</p>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="box">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Default Box Example</h3>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    The body of the box
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div>
+              <div class="col-md-4">
+                <div class="box box-primary">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Primary Box Example</h3>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    The body of the box
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div>
+              <div class="col-md-4">
+                <div class="box box-info">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Info Box Example</h3>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    The body of the box
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-md-4">
+                <div class="box box-warning">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Warning Box Example</h3>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    The body of the box
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div>
+              <div class="col-md-4">
+                <div class="box box-success">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Success Box Example</h3>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    The body of the box
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div>
+              <div class="col-md-4">
+                <div class="box box-danger">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Danger Box Example</h3>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    The body of the box
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div>
+            </div><!-- /.row -->
+            <pre class="prettyprint">
+&LT;div class="box box-default">...&LT;/div>
+&LT;div class="box box-primary">...&LT;/div>
+&LT;div class="box box-info">...&LT;/div>
+&LT;div class="box box-warning">...&LT;/div>
+&LT;div class="box box-success">...&LT;/div>
+&LT;div class="box box-danger">...&LT;/div></pre>
+            
+            <h4>Solid Box</h4>
+            <p class="lead">Solid Boxes are alternative ways to display boxes.
+              They can be created by simply adding th box-solid class to the box component.
+              You may also use contextual classes with you solid boxes.</p>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="box box-solid">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Default Solid Box Example</h3>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    The body of the box
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div>
+              <div class="col-md-4">
+                <div class="box box-solid box-primary">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Primary Solid Box Example</h3>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    The body of the box
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div>
+              <div class="col-md-4">
+                <div class="box box-solid box-info">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Info Solid Box Example</h3>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    The body of the box
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-md-4">
+                <div class="box box-solid box-warning">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Warning Solid Box Example</h3>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    The body of the box
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div>
+              <div class="col-md-4">
+                <div class="box box-solid box-success">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Success Solid Box Example</h3>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    The body of the box
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div>
+              <div class="col-md-4">
+                <div class="box box-solid box-danger">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Danger Solid Box Example</h3>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    The body of the box
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+              </div>
+            </div><!-- /.row -->
+                        <pre class="prettyprint">
+&LT;div class="box box-solid">...&LT;/div>
+&LT;div class="box box-solid box-primary">...&LT;/div>
+&LT;div class="box box-solid box-info">...&LT;/div>
+&LT;div class="box box-solid box-warning">...&LT;/div>
+&LT;div class="box box-solid box-success">...&LT;/div>
+&LT;div class="box box-solid box-danger">...&LT;/div></pre>
+          </section>
+
+          <!-- ============================================================= -->
+
+          <section id='plugins'>
+            <h2 class='page-header'><span>Plugins</span></h2>
+            <p class="lead">AdminLTE makes use of the following plugins. For documentation and/or updates, please visit the provided links.</p>
+            <ul>
+
+            </ul>
           </section>
 
           <!-- ============================================================= -->
@@ -863,7 +1121,7 @@ AdminLTE/
             <h1 class="page-header"><span>License</span></h1>
             <h3>AdminLTE</h3>
             <p class="lead">AdminLTE is an open source project that is licensed under the <a href="http://opensource.org/licenses/MIT">MIT license</a>.
-              This allows you to do pretty much anything you want with it except selling it without any major modifications. 
+              This allows you to do pretty much anything you want with it except selling it without any major modifications.
               Attribution is not required (though very much appreciated).</p>
             <h3>AdminLTE Premium Collection</h3>
             <p class="lead">AdminLTE's premium collection provides a set of non-open source components, plugins and widgets. To use
@@ -899,7 +1157,7 @@ AdminLTE/
               <li>If the item was created using materials which are the subject of a GNU General Public License (GPL), your use of the item is subject to the terms of the GPL in place of the foregoing conditions (to the extent the GPL applies).
             </ul>
           </section>
-        </div><!-- /.content -->        
+        </div><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
