@@ -178,13 +178,13 @@ $.AdminLTE.layout = {
     //Get window height and the wrapper height
     var neg = $('.main-header').height() + $('.main-footer').height();
     var window_height = $(window).height();
-    var sidebar_height = $(".left-side").height();
+    var sidebar_height = $(".main-sidebar, .left-side").height();
     //Set the min-height of the content and sidebar based on the
     //the maximum height of the document.
     if (window_height >= sidebar_height) {
-      $(".content-wrapper, .left-side").css('min-height', window_height - neg);
+      $(".content-wrapper, .main-sidebar, .left-side, .right-side").css('min-height', window_height - neg);
     } else {
-      $(".content-wrapper, .left-side").css('min-height', sidebar_height);
+      $(".content-wrapper, .main-sidebar, .left-side, .right-side").css('min-height', sidebar_height);
     }
   },
   fixSidebar: function () {

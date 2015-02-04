@@ -21,7 +21,14 @@ module.exports = function (grunt) {
         },
         files: {
           // compilation.css  :  source.less
-          "dist/css/AdminLTE.css": "build/less/AdminLTE.less"
+          "dist/css/AdminLTE.css": "build/less/AdminLTE.less",
+          "dist/css/skins/skin-blue.css": "build/less/skins/skin-blue.less",
+          "dist/css/skins/skin-black.css": "build/less/skins/skin-black.less",
+          "dist/css/skins/skin-yellow.css": "build/less/skins/skin-yellow.less",
+          "dist/css/skins/skin-green.css": "build/less/skins/skin-green.less",
+          "dist/css/skins/skin-red.css": "build/less/skins/skin-red.less",
+          "dist/css/skins/skin-purple.css": "build/less/skins/skin-purple.less",
+          "dist/css/skins/_all-skins.css": "build/less/skins/_all-skins.less"
         }
       },
       //production compresses version
@@ -32,11 +39,18 @@ module.exports = function (grunt) {
         },
         files: {
           // compilation.css  :  source.less
-          "dist/css/AdminLTE.min.css": "build/less/AdminLTE.less"
+          "dist/css/AdminLTE.min.css": "build/less/AdminLTE.less",
+          "dist/css/skins/skin-blue.min.css": "build/less/skins/skin-blue.less",
+          "dist/css/skins/skin-black.min.css": "build/less/skins/skin-black.less",
+          "dist/css/skins/skin-yellow.min.css": "build/less/skins/skin-yellow.less",
+          "dist/css/skins/skin-green.min.css": "build/less/skins/skin-green.less",
+          "dist/css/skins/skin-red.min.css": "build/less/skins/skin-red.less",
+          "dist/css/skins/skin-purple.min.css": "build/less/skins/skin-purple.less",
+          "dist/css/skins/_all-skins.min.css": "build/less/skins/_all-skins.less"
         }
       }
     },
-    //Uglify task info
+    //Uglify task info. Compress the js files.
     uglify: {
       options: {
         mangle: true,

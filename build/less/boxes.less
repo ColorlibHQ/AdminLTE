@@ -27,8 +27,8 @@
   &.box-success {
     border-top-color: @green;
   }
-  &.box-black {
-    border-top-color: @black;
+  &.box-default {
+    border-top-color: @gray;
   }
 
   .nav-stacked {
@@ -66,11 +66,17 @@
       .btn.btn-default {
         background: transparent;
       }
+      .btn, 
+      a {
+        &:hover {
+          background: rgba(0,0,0,0.1)!important;
+        }
+      }
     }
 
     // Box color variations
     &.box-default {
-      .box-solid-variant(#222d32, #fff);
+      .box-solid-variant(@gray, #444);
     }
     &.box-primary {
       .box-solid-variant(@light-blue);
