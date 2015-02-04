@@ -1,3 +1,4 @@
+var my_skins = ["skin-blue", "skin-black", "skin-red", "skin-yellow", "skin-purple", "skin-green"];
 $(function () {
   /* For demo purposes */
   var demo = $("<div />").css({
@@ -130,10 +131,9 @@ function change_layout(cls) {
   $("body").toggleClass(cls);
   $.AdminLTE.layout.fixSidebar();  
 }
-function change_skin(cls) {
-  var skins = ["skin-blue", "skin-black", "skin-red", "skin-yellow", "skin-purple", "skin-green"];
-  $.each(skins, function (i) {
-    $("body").removeClass(skins[i]);
+function change_skin(cls) {  
+  $.each(my_skins, function (i) {
+    $("body").removeClass(my_skins[i]);
   });
 
   $("body").addClass(cls);
@@ -156,6 +156,7 @@ function get(name) {
 }
 
 function setup() {
-  if (get('skin'))
-    change_skin(get('skin'));
+  var tmp = get('skin');
+  if (tmp && $.inArray(tmp, my_skins))
+    change_skin(tmp);
 }

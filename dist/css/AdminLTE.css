@@ -2554,27 +2554,23 @@ table.text-center th {
  * Page: Lock Screen
  * -----------------
  */
-/* ADD THIS CLASS TO THE <HTML> TAG */
+/* ADD THIS CLASS TO THE <BODY> TAG */
 .lockscreen {
-  background: url(../img/blur-background09.jpg) repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-/* Remove the background from the body element */
-.lockscreen > body {
-  background: transparent;
+  background: #d2d6de;
 }
 /* We will put the dynamically generated digital clock here */
-.lockscreen .headline {
-  color: #fff;
-  text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased !important;
-  opacity: 0.8;
-  margin: 10px 0 30px 0;
-  font-size: 90px;
+.lockscreen-logo {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+.lockscreen-logo a {
+  color: #444;
+}
+.lockscreen-wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 10%;
 }
 @media (max-width: 767px) {
   .lockscreen .headline {
@@ -2586,7 +2582,6 @@ table.text-center th {
 .lockscreen .lockscreen-name {
   text-align: center;
   font-weight: 600;
-  font-size: 16px;
 }
 /* Will contain the image and the sign in form */
 .lockscreen-item {
@@ -2606,7 +2601,7 @@ table.text-center th {
   clear: both;
 }
 /* User image */
-.lockscreen-item > .lockscreen-image {
+.lockscreen-image {
   position: absolute;
   left: -10px;
   top: -30px;
@@ -2615,19 +2610,19 @@ table.text-center th {
   border-radius: 50%;
   z-index: 10;
 }
-.lockscreen-item > .lockscreen-image > img {
+.lockscreen-image > img {
   width: 70px;
   height: 70px;
   border-radius: 50%;
 }
 /* Contains the password input and the login button */
-.lockscreen-item > .lockscreen-credentials {
+.lockscreen-credentials {
   margin-left: 80px;
 }
-.lockscreen-item > .lockscreen-credentials input {
+.lockscreen-credentials input {
   border: 0 !important;
 }
-.lockscreen-item > .lockscreen-credentials .btn {
+.lockscreen-credentials .btn {
   background-color: #fff;
   border: 0;
 }

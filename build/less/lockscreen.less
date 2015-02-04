@@ -2,31 +2,25 @@
  * Page: Lock Screen
  * -----------------
  */
-/* ADD THIS CLASS TO THE <HTML> TAG */
+/* ADD THIS CLASS TO THE <BODY> TAG */
 .lockscreen {
-  background: url(../img/blur-background09.jpg) repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-/* Remove the background from the body element */
-.lockscreen > body {
-  background: transparent;
+  background: @gray;//url(../img/boxed-bg.png) repeat;
 }
 
 /* We will put the dynamically generated digital clock here */
-.lockscreen .headline {
-  color: #fff;
-  text-shadow: 1px 3px 5px rgba(0,0,0,0.5);
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased !important;
-  opacity: 0.8;
-  margin: 10px 0 30px 0;
-  font-size: 90px;
+.lockscreen-logo {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 25px;
+  a {
+    color: #444;
+  }
 }
-
+.lockscreen-wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 10%;
+}
 @media (max-width: @screen-xs-max) {
   .lockscreen .headline {
     font-size: 60px;
@@ -38,7 +32,6 @@
 .lockscreen .lockscreen-name {
   text-align: center;
   font-weight: 600;
-  font-size: 16px;
 }
 
 /* Will contain the image and the sign in form */
@@ -53,7 +46,7 @@
 }
 
 /* User image */
-.lockscreen-item > .lockscreen-image {
+.lockscreen-image {
   position: absolute;
   left: -10px;
   top: -30px;
@@ -69,7 +62,7 @@
 }
 
 /* Contains the password input and the login button */
-.lockscreen-item > .lockscreen-credentials {
+.lockscreen-credentials {
   margin-left: 80px;
   input {
     border: 0 !important;
