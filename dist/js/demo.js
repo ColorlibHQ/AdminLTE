@@ -128,7 +128,7 @@ $(function () {
 
 function change_layout(cls) {
   $("body").toggleClass(cls);
-  $.AdminLTE.layout.fixSidebar();
+  $.AdminLTE.layout.fixSidebar();  
 }
 function change_skin(cls) {
   var skins = ["skin-blue", "skin-black", "skin-red", "skin-yellow", "skin-purple", "skin-green"];
