@@ -11,6 +11,7 @@
     <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <link href="../dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,8 +42,8 @@
       #components > h3 {
         font-size: 25px;
         border-bottom: 1px solid #dedede;
-        color: #000; 
-     }
+        color: #000;
+      }
       #components > h4 {
         font-size: 20px;
         color: #000;
@@ -91,7 +92,7 @@
         color: #fff;
       }
       pre {
-        border: none;
+        border: none;       
       }
       /* desert scheme ported from vim to google prettify */
       pre.prettyprint {display: block; background-color: #333; max-height: 300px; border: none!important; margin-bottom: 20px;}
@@ -197,6 +198,17 @@
 
         <!-- Main content -->
         <div class="content body">
+          <div class="callout callout-warning">
+            <h4>Warning!</h4>
+            This documentation is under development. Some information may change as the template
+            goes through different pre-releases.
+          </div>
+          <div class="callout callout-danger">
+            <h4>Heads Up!</h4>
+            The current AdminLTE 2.0 version is in its alpha stage and should not be used in
+            production. It's however available for testing and to get developers familiar with
+            the new syntax.
+          </div>
           <section id='introduction'>
             <h2 class='page-header'><span>Introduction</span></h2>
             <p class='lead'>
@@ -407,7 +419,9 @@ AdminLTE/
             <p><b>Note:</b> you cannot use both layout-boxed and fixed at the same time. Anything else can be mixed together.</p>
 
             <h3>Skins</h3>
-            <p class="lead">Add one of the following classes to the body tag to change the template's appearance.</p>
+            <p class="lead">Skins can be found in the dist/css/skins folder.
+              Choose and the skin file that you want then add the appropriate
+              class to the body tag to change the template's appearance. Here is the list of available skins:</p>
             <ul>
               <li><code>skin-blue</code></li>
               <li><code>skin-yellow</code></li>
@@ -425,7 +439,7 @@ AdminLTE/
             <div class='callout callout-info lead'>
               <h4>Reminder!</h4>
               <p>
-                AdminLTE makes use of all of Bootstrap 3 components. It's a good start to review
+                AdminLTE uses all of Bootstrap 3 components. It's a good start to review
                 the <a href="http://getbootstrap.com">Bootstrap documentation</a> to get an idea of the various components
                 that this documentation does not cover.
               </p>
@@ -433,7 +447,7 @@ AdminLTE/
             <div class='callout callout-danger lead'>
               <h4>Tip!</h4>
               <p>
-                If you go through the example pages and would like to copy a component, right-click on 
+                If you go through the example pages and would like to copy a component, right-click on
                 the component and choose "inspect element" to get to the HTML quicker than scanning
                 the HTML page.
               </p>
@@ -452,7 +466,7 @@ AdminLTE/
                   <!-- Header Navbar: style can be found in header.less -->
                   <nav class="navbar" role="navigation" style="border: 0;">
                     <!-- Sidebar toggle button-->
-                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <a href="#" class="sidebar-toggle" role="button">
                       <span class="sr-only">Toggle navigation</span>
                     </a>
                     <!-- Navbar Right Menu -->
@@ -992,7 +1006,7 @@ AdminLTE/
 &LT;div class="box box-warning">...&LT;/div>
 &LT;div class="box box-success">...&LT;/div>
 &LT;div class="box box-danger">...&LT;/div></pre>
-            
+
             <h4>Solid Box</h4>
             <p class="lead">Solid Boxes are alternative ways to display boxes.
               They can be created by simply adding th box-solid class to the box component.
@@ -1060,7 +1074,7 @@ AdminLTE/
                 </div><!-- /.box -->
               </div>
             </div><!-- /.row -->
-                        <pre class="prettyprint">
+            <pre class="prettyprint">
 &LT;div class="box box-solid">...&LT;/div>
 &LT;div class="box box-solid box-primary">...&LT;/div>
 &LT;div class="box box-solid box-info">...&LT;/div>

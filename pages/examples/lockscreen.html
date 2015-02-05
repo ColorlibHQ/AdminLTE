@@ -34,18 +34,19 @@
         <!-- /.lockscreen-image -->
 
         <!-- lockscreen credentials (contains the form) -->
-        <div class="lockscreen-credentials">
-
+        <form class="lockscreen-credentials">
           <div class="input-group">
             <input type="password" class="form-control" placeholder="password" />
             <div class="input-group-btn">
               <button class="btn btn-flat"><i class="fa fa-arrow-right text-muted"></i></button>
             </div>
           </div>
-        </div><!-- /.lockscreen credentials -->
+        </form><!-- /.lockscreen credentials -->
 
       </div><!-- /.lockscreen-item -->
-
+      <div class="help-block text-center">
+        Enter your password to retrieve your session
+      </div>
       <div class="lockscreen-link">
         <a href="login.html">Or sign in as a different user</a>
       </div>
@@ -53,15 +54,5 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
-
-    <!-- page script -->
-    <script type="text/javascript">
-      $(function () {        
-        //$(".center").center();
-        $(window).resize(function () {
-          $(".center").center();
-        });
-      });
-    </script>
   </body>
 </html>

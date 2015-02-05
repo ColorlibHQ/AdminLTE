@@ -2560,7 +2560,7 @@ table.text-center th {
 }
 /* We will put the dynamically generated digital clock here */
 .lockscreen-logo {
-  font-size: 30px;
+  font-size: 35px;
   text-align: center;
   margin-bottom: 25px;
 }
@@ -2585,20 +2585,12 @@ table.text-center th {
 }
 /* Will contain the image and the sign in form */
 .lockscreen-item {
+  border-radius: 4px;
   padding: 0;
   background: #fff;
   position: relative;
-  border-radius: 4px;
-  margin: 10px auto;
+  margin: 10px auto 45px auto;
   width: 290px;
-}
-.lockscreen-item:before,
-.lockscreen-item:after {
-  content: " ";
-  display: table;
-}
-.lockscreen-item:after {
-  clear: both;
 }
 /* User image */
 .lockscreen-image {
