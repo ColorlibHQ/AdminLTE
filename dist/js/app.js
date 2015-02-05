@@ -169,7 +169,7 @@ $.AdminLTE.layout = {
     var _this = this;
     _this.fix();
     _this.fixSidebar();
-    $(".wrapper").resize(function () {
+    $(window, ".wrapper").resize(function () {
       _this.fix();
       _this.fixSidebar();
     });
