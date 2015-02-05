@@ -21,17 +21,11 @@
   margin: 0 auto;
   margin-top: 10%;
 }
-@media (max-width: @screen-xs-max) {
-  .lockscreen .headline {
-    font-size: 60px;
-    margin-bottom: 40px;
-  }
-}
 
 /* User name [optional] */
 .lockscreen .lockscreen-name {
   text-align: center;
-  font-weight: 600;
+  font-weight: 600;  
 }
 
 /* Will contain the image and the sign in form */
@@ -40,39 +34,35 @@
   padding: 0;
   background: #fff;
   position: relative;
-  margin: 10px auto 45px auto;
+  margin: 10px auto 30px auto;
   width: 290px;
 }
 
 /* User image */
 .lockscreen-image {
+  .border-radius(50%);
   position: absolute;
   left: -10px;
-  top: -30px;
+  top: -25px;
   background: #fff;
-  padding: 10px;
-  .border-radius(50%);
+  padding: 5px;  
   z-index: 10;
   > img {
-    width: 70px;
-    height: 70px;
     .border-radius(50%);
+    width: 70px;
+    height: 70px;    
   }
 }
 
 /* Contains the password input and the login button */
 .lockscreen-credentials {
-  margin-left: 80px;
-  input {
+  margin-left: 70px;
+  .form-control {
     border: 0 !important;
   }
   .btn {
     background-color: #fff;
     border: 0;
+    padding: 0 10px;
   }
-}
-/* Extra to give the user an option to navigate the website [optional]*/
-.lockscreen-link {
-  margin-top: 30px;
-  text-align: center;
 }
