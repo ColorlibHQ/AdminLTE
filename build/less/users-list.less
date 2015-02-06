@@ -8,6 +8,7 @@
     width: 25%;
     float: left;
     padding: 10px;
+    text-align: center;
     > img {
       .border-radius(50%);
       max-width: 100%;
@@ -17,12 +18,14 @@
 }
 .users-list-name,
 .users-list-date {
-  display: block;
-  text-align: center;
+  display: block;  
 }
 .users-list-name {
   font-weight: 600;
   color: #444;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   &:hover {
     color: #999;
   }

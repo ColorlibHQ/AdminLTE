@@ -2,41 +2,49 @@
  * Page: Login & Register
  * ----------------------
  */
-.form-box {    
-  width: 360px;
-  margin: 90px auto 0 auto;
-  .header {
-    .border-radius(4px, 4px, 0, 0);
-    background: @olive;
-    box-shadow: inset 0 -3px 0 rgba(0,0,0,0.2);
-    padding: 20px 10px;
-    text-align: center;
-    font-size: 26px;
-    font-weight: 300;
-    color: #fff;
-  }
 
-  .body, .footer {
-    padding: 10px 20px;
-    background: #fff;
+.login-logo,
+.register-logo {
+  font-size: 35px;
+  text-align: center;
+  margin-bottom: 25px;
+  a {
     color: #444;
-    > .form-group {
-      margin-top: 20px;
-      > input {
-        border: #fff;
-      }
-    }
-
-    > .btn {
-      margin-bottom: 10px;
-    }
   }
+}
 
-  .footer {
-    .border-radius(0, 0, 4px, 4px);
-  }
+.login-page,
+.register-page {
+  background: @gray;
+}
 
+.login-box,
+.register-box {
+  width: 360px;
+  margin: 7% auto 0 auto;
   @media (max-width: @screen-sm) {
     width: 90%;
+    margin-top: 20px;
   }
+}
+
+.login-box-body,
+.register-box-body {  
+  background: #fff;
+  padding: 20px;
+  color: #444;
+  border-top: 0;
+  color: #666;
+  .form-control-feedback {
+    color: #777;
+  }
+}
+.login-box-msg,
+.register-box-msg {
+  margin: 0;
+  text-align: center;  
+  padding: 0 20px 20px 20px;  
+}
+.social-auth-links {
+  margin: 10px 0;
 }
