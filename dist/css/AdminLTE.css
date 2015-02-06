@@ -57,12 +57,13 @@ body {
 .content-wrapper,
 .right-side,
 .main-footer {
+  -webkit-transition: -webkit-transform 0.3s ease;
+  -moz-transition: -moz-transform 0.3s ease;
+  -o-transition: -o-transform 0.3s ease;
+  transition: transform 0.3s ease;
   -webkit-transition: margin-left 0.3s ease;
   -o-transition: margin-left 0.3s ease;
   transition: margin-left 0.3s ease;
-  -webkit-transition: transform 0.3s ease;
-  -o-transition: transform 0.3s ease;
-  transition: transform 0.3s ease;
   margin-left: 230px;
 }
 .layout-top-nav .content-wrapper,
@@ -277,6 +278,7 @@ a:focus {
   width: 230px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0 15px;
+  font-weight: 300;
 }
 .content-header {
   position: relative;
@@ -383,8 +385,9 @@ a:focus {
   left: 0;
   width: 230px;
   z-index: 810;
-  -webkit-transition: transform 0.3s ease;
-  -o-transition: transform 0.3s ease;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  -moz-transition: -moz-transform 0.3s ease;
+  -o-transition: -o-transform 0.3s ease;
   transition: transform 0.3s ease;
 }
 @media (max-width: 767px) {
@@ -938,9 +941,7 @@ a:focus {
 .btn-group-vertical .btn.btn-flat:last-of-type {
   border-radius: 0;
 }
-/* Checkbox and radio inputs */
-.checkbox,
-.radio {
+.icheck > label {
   padding-left: 0;
 }
 /*
@@ -2571,6 +2572,7 @@ table.text-center th {
   font-size: 35px;
   text-align: center;
   margin-bottom: 25px;
+  font-weight: 300;
 }
 .lockscreen-logo a {
   color: #444;
@@ -2633,6 +2635,7 @@ table.text-center th {
   font-size: 35px;
   text-align: center;
   margin-bottom: 25px;
+  font-weight: 300;
 }
 .login-logo a,
 .register-logo a {

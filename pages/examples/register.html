@@ -8,7 +8,9 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="../../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-
+    <!-- iCheck -->
+    <link href="../../plugins/iCheck/square/blue.css" rel="stylesheet" type="text/css" />
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -43,7 +45,7 @@
           </div>
           <div class="row">
             <div class="col-xs-8">    
-              <div class="checkbox">
+              <div class="checkbox icheck">
                 <label>
                   <input type="checkbox"> I agree to the <a href="#">terms</a>
                 </label>
@@ -67,6 +69,16 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
-
+    <!-- iCheck -->
+    <script src="../../plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+    <script>
+      $(function () {
+        $('input').iCheck({
+          checkboxClass: 'icheckbox_square-blue',
+          radioClass: 'iradio_square-blue',
+          increaseArea: '20%' // optional
+        });
+      });
+    </script>
   </body>
 </html>

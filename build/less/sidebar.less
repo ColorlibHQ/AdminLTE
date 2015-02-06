@@ -12,7 +12,7 @@
   left: 0;
   width: @sidebar-width;
   z-index: 810;
-  .transition(transform @transition-speed @transition-fn);
+  .transition-transform(@transition-speed @transition-fn);
   @media (max-width: @screen-xs-max) {
     .translate(-@sidebar-width, 0);
   }
