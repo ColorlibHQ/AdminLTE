@@ -72,10 +72,6 @@ body {
   min-height: 100%;
   background-color: @body-bg;
   z-index: 800;  
-  //In case of printing
-  @media print {
-    margin: 0!important;
-  }
 }
 .main-footer {
   background: #fff;
@@ -164,7 +160,7 @@ a:hover, a:active, a:focus {
   //Elements that we want to hide when printing
   .main-sidebar,
   .left-side,
-  .header,
+  .main-header,
   .content-header {
     display: none;
   }

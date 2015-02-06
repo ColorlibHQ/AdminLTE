@@ -101,12 +101,6 @@ body {
   background-color: #f4f5f7;
   z-index: 800;
 }
-@media print {
-  .content-wrapper,
-  .right-side {
-    margin: 0!important;
-  }
-}
 .main-footer {
   background: #fff;
   padding: 15px;
@@ -189,7 +183,7 @@ a:focus {
   }
   .main-sidebar,
   .left-side,
-  .header,
+  .main-header,
   .content-header {
     display: none;
   }
@@ -1955,9 +1949,13 @@ a:focus {
   margin-right: 10px;
 }
 .alert .close {
-  color: #fff;
-  opacity: 0.7;
-  filter: alpha(opacity=70);
+  color: #000;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+}
+.alert .close:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
 }
 .alert a {
   color: #fff;

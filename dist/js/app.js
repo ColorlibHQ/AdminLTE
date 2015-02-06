@@ -89,7 +89,7 @@ $.AdminLTE.options = {
     purple: "#8E24AA",
     maroon: "#D81B60",
     black: "#222222",
-    gray: "#eaeaec"
+    gray: "#d2d6de"
   }
 };
 
