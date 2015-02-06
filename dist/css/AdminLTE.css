@@ -57,9 +57,12 @@ body {
 .content-wrapper,
 .right-side,
 .main-footer {
-  -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: margin-left 0.3s ease;
+  -o-transition: margin-left 0.3s ease;
+  transition: margin-left 0.3s ease;
+  -webkit-transition: transform 0.3s ease;
+  -o-transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
   margin-left: 230px;
 }
 .layout-top-nav .content-wrapper,

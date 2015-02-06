@@ -104,11 +104,11 @@ $(function () {
   //Easy access to options
   var o = $.AdminLTE.options;
 
-  //Enable sidebar tree view controls
-  $.AdminLTE.tree('.sidebar');
-
   //Activate the layout maker
   $.AdminLTE.layout.activate();
+
+  //Enable sidebar tree view controls
+  $.AdminLTE.tree('.sidebar');
 
   //Add slimscroll to navbar dropdown
   if (o.navbarMenuSlimscroll && typeof $.fn.slimscroll != 'undefined') {
@@ -169,22 +169,22 @@ $.AdminLTE.layout = {
     var _this = this;
     _this.fix();
     _this.fixSidebar();
-    $(".wrapper").resize(function () {
+    $(window, ".wrapper").resize(function () {
       _this.fix();
       _this.fixSidebar();
     });
   },
   fix: function () {
     //Get window height and the wrapper height
-    var neg = $('.main-header').height() + $('.main-footer').height();
+    var neg = $('.main-header').outerHeight() + $('.main-footer').outerHeight();
     var window_height = $(window).height();
     var sidebar_height = $(".main-sidebar, .left-side").height();
     //Set the min-height of the content and sidebar based on the
-    //the maximum height of the document.
+    //the height of the document.
     if (window_height >= sidebar_height) {
-      $(".content-wrapper, .main-sidebar, .left-side, .right-side").css('min-height', window_height - neg);
+      $(".content-wrapper, .main-sidebar, .left-side, .right-side").css('min-height', window_height - neg);      
     } else {
-      $(".content-wrapper, .main-sidebar, .left-side, .right-side").css('min-height', sidebar_height);
+      $(".content-wrapper, .main-sidebar, .left-side, .right-side").css('min-height', sidebar_height);      
     }
   },
   fixSidebar: function () {
