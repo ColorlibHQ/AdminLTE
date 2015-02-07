@@ -52,6 +52,11 @@ $.AdminLTE.options = {
   //Bootstrap.js tooltip
   enableBSToppltip: true,
   BSTooltipSelector: "[data-toggle='tooltip']",
+  //Enable Fast Click. Fastclick.js creates a more
+  //native touch ecperience with touch devices. If you
+  //choose to enable the plugin, make sure you load the script 
+  //before AdminLTE's app.js
+  enableFastclick: true,
   //Box Widget Plugin. Enable this plugin
   //to allow boxes to be collapsed and/or removed
   enableBoxWidget: true,
@@ -132,6 +137,10 @@ $(function () {
   //Activate box widget
   if (o.enableBoxWidget) {
     $.AdminLTE.boxWidget.activate();
+  }
+  
+  if(o.enableFastclick && typeof FastClick != 'undefined') {
+    FastClick.attach(document.body);
   }
 
   /*
