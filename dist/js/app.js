@@ -232,6 +232,13 @@ $.AdminLTE.pushMenu = function (toggleBtn) {
     $("body").toggleClass('sidebar-collapse');
     $("body").toggleClass('sidebar-open');
   });
+  $(".content-wrapper").click(function () {
+    //Enable hide menu when clicking on the content-wrapper on small screens    
+    if ($(window).width() <= 767 && $("body").hasClass("sidebar-open")) {
+      $("body").removeClass('sidebar-open');
+    }
+  });
+
 };
 
 /* Tree()
