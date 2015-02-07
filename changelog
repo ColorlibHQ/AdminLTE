@@ -23,3 +23,5 @@ v2.0
 - Removed unused files
 - Updated lockscreen style (HTML markup changed!)
 - Updated Login & Registration pages (HTML markup changed!)
+- Updated buttons style.
+- Enhanced border-radius consistency

@@ -194,10 +194,14 @@ $.AdminLTE.layout = {
         $(".sidebar").slimScroll({destroy: true}).height("auto");
       }
       return;
+    } else if(typeof $.fn.slimScroll == 'undefined' && console) {
+      console.error("Error: the fixed layout requires the slimscroll plugin!");
     }
     //Enable slimscroll for fixed layout
     if ($.AdminLTE.options.sidebarSlimScroll) {
       if (typeof $.fn.slimScroll != 'undefined') {
+        //Distroy if it exists
+        $(".sidebar").slimScroll({destroy: true}).height("auto");
         //Add slimscroll
         $(".sidebar").slimscroll({
           height: ($(window).height() - $(".main-header").height()) + "px",

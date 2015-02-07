@@ -15,6 +15,25 @@
     min-height: @navbar-height;
     border-radius: 0;
   }
+  //Navbar search text input
+  #navbar-search-input {
+    background: rgba(255,255,255,.2);
+    border-color: transparent;
+    &:focus,
+      &:active {
+      border-color: rgba(0,0,0,.1)!important;
+    }
+    &::-moz-placeholder {
+      color: #ccc;
+      opacity: 1;
+    }
+    &:-ms-input-placeholder {
+      color: #ccc;
+    }
+    &::-webkit-input-placeholder {
+      color: #ccc;
+    }
+  }
   //Navbar Right Menu
   .navbar-custom-menu,
   .navbar-right {
@@ -78,7 +97,7 @@
   }
 
   //Logo bar
-  .logo {    
+  .logo {
     display: block;
     float: left;
     height: 50px;

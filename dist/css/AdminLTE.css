@@ -208,6 +208,24 @@ a:focus {
   min-height: 50px;
   border-radius: 0;
 }
+.main-header #navbar-search-input {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: transparent;
+}
+.main-header #navbar-search-input:focus,
+.main-header #navbar-search-input:active {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+.main-header #navbar-search-input::-moz-placeholder {
+  color: #ccc;
+  opacity: 1;
+}
+.main-header #navbar-search-input:-ms-input-placeholder {
+  color: #ccc;
+}
+.main-header #navbar-search-input::-webkit-input-placeholder {
+  color: #ccc;
+}
 .main-header .navbar-custom-menu,
 .main-header .navbar-right {
   margin-right: 5px;
