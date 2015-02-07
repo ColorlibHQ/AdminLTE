@@ -84,7 +84,7 @@
       border-bottom: 1px solid #f4f4f4;
       // Hove state
       &:hover {
-        background: #f6f6f6;
+        background: #f4f4f4;
         text-decoration: none;
       }
     }
@@ -95,36 +95,17 @@
 .navbar-nav > .notifications-menu {
   > .dropdown-menu > li .menu {
     // Links inside the menu
-    > li > a {
-      font-size: 12px;
+    > li > a {      
       color: #444444;
-
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 10px;
       // Icons inside the menu
       > .glyphicon,
       > .fa,
       > .ion {
-        font-size: 20px;
-        width: 50px;
-        text-align: center;
-        padding: 15px 0px;
-        margin-right: 5px;
-        /* Default background and font colors */
-        background: @aqua;
-        color: #f9f9f9; /* Fallback for browsers that doesn't support rgba */
-        color: rgba(255, 255, 255, 0.7);
-        // Icon background variations
-        &.danger {
-          background: @red;
-        }
-        &.warning {
-          background: @yellow;
-        }
-        &.success {
-          background: @green;
-        }
-        &.info {
-          background: @aqua;
-        }
+        width: 20px;
       }
     }
 
@@ -138,8 +119,8 @@
     // Messages menu item
     > li > a {
       margin: 0px;
-      line-height: 20px;
-      padding: 10px 5px 10px 5px;
+      //line-height: 20px;
+      padding: 10px 10px;
       // User image
       > div > img {
         margin: auto 10px auto auto;
@@ -152,11 +133,14 @@
         margin: 0 0 0 45px;
         color: #444444;
         font-size: 15px;
+        position: relative;
         // Small for message time display
         > small {
           color: #999999;
           font-size: 10px;
-          float: right;
+          position: absolute;
+          top: 0px;
+          right: 0px;
         }
       }
 

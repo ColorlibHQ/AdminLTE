@@ -627,51 +627,24 @@ a:focus {
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a:hover,
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a:hover,
 .navbar-nav > .tasks-menu > .dropdown-menu > li .menu > li > a:hover {
-  background: #f6f6f6;
+  background: #f4f4f4;
   text-decoration: none;
 }
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
-  font-size: 12px;
   color: #444444;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 10px;
 }
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .glyphicon,
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .fa,
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .ion {
-  font-size: 20px;
-  width: 50px;
-  text-align: center;
-  padding: 15px 0px;
-  margin-right: 5px;
-  /* Default background and font colors */
-  background: #00c0ef;
-  color: #f9f9f9;
-  /* Fallback for browsers that doesn't support rgba */
-  color: rgba(255, 255, 255, 0.7);
-}
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .glyphicon.danger,
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .fa.danger,
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .ion.danger {
-  background: #dd4b39;
-}
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .glyphicon.warning,
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .fa.warning,
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .ion.warning {
-  background: #f39c12;
-}
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .glyphicon.success,
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .fa.success,
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .ion.success {
-  background: #00a65a;
-}
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .glyphicon.info,
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .fa.info,
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .ion.info {
-  background: #00c0ef;
+  width: 20px;
 }
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a {
   margin: 0px;
-  line-height: 20px;
-  padding: 10px 5px 10px 5px;
+  padding: 10px 10px;
 }
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > div > img {
   margin: auto 10px auto auto;
@@ -683,11 +656,14 @@ a:focus {
   margin: 0 0 0 45px;
   color: #444444;
   font-size: 15px;
+  position: relative;
 }
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > h4 > small {
   color: #999999;
   font-size: 10px;
-  float: right;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > p {
   margin: 0 0 0 45px;
