@@ -21,8 +21,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
   </head>
-  <!-- ADD THE CLASS layout-boxed TO GET A FIXED HEADER AND SIDEBAR LAYOUTS -->
-  <body class="skin-blue sidebar-collapse">
+  <!-- ADD THE CLASS sidedar-collapse TO HIDE THE SIDEBAR PRIOR TO LOADING THE SITE -->
+  <body class="skin-blue sidebar-collapse fixed">
     <!-- Site wrapper -->
     <div class="wrapper">
       <!-- header logo: style can be found in header.less -->
@@ -211,7 +211,7 @@
                 <li><a href="top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
                 <li><a href="boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
                 <li><a href="fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                <li><a href="collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+                <li class="active"><a href="collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
               </ul>
             </li>
             <li>
@@ -346,7 +346,10 @@
 
         <!-- Main content -->
         <section class="content">
-
+          <div class="callout callout-info">
+            <h4>Tip!</h4>
+            <p>Add the sidebar-collapse class to the body tag to get this layout</p>
+          </div>
           <!-- Default box -->
           <div class="box">
             <div class="box-header with-border">
