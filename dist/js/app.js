@@ -181,10 +181,14 @@ $.AdminLTE.layout = {
     var sidebar_height = $(".main-sidebar, .left-side").height();
     //Set the min-height of the content and sidebar based on the
     //the height of the document.
-    if (window_height >= sidebar_height) {
-      $(".content-wrapper, .main-sidebar, .left-side, .right-side").css('min-height', window_height - neg);      
+    if ($("body").hasClass("fixed")) {
+      $(".content-wrapper, .right-side").css('min-height', window_height - $('.main-footer').outerHeight());
     } else {
-      $(".content-wrapper, .main-sidebar, .left-side, .right-side").css('min-height', sidebar_height);      
+      if (window_height >= sidebar_height) {
+        $(".content-wrapper, .main-sidebar, .left-side, .right-side").css('min-height', window_height - neg);
+      } else {
+        $(".content-wrapper, .main-sidebar, .left-side, .right-side").css('min-height', sidebar_height);
+      }
     }
   },
   fixSidebar: function () {
@@ -194,7 +198,7 @@ $.AdminLTE.layout = {
         $(".sidebar").slimScroll({destroy: true}).height("auto");
       }
       return;
-    } else if(typeof $.fn.slimScroll == 'undefined' && console) {
+    } else if (typeof $.fn.slimScroll == 'undefined' && console) {
       console.error("Error: the fixed layout requires the slimscroll plugin!");
     }
     //Enable slimscroll for fixed layout
