@@ -33,8 +33,10 @@
 
 .sidebar {
   padding-bottom: 10px;
-  overflow: auto;
-  height: 100%;
+  .fixed & {
+    overflow: auto;
+    height: 100%;
+  }
 }
 // remove border from form
 .sidebar-form {

@@ -434,6 +434,8 @@ a:focus {
 }
 .sidebar {
   padding-bottom: 10px;
+}
+.fixed .sidebar {
   overflow: auto;
   height: 100%;
 }

@@ -138,6 +138,17 @@
   border-bottom-right-radius: 2px !important;
   border-bottom-left-radius: 0 !important;
 }
+.skin-blue.layout-top-nav .main-header > .logo {
+  background-color: #3c8dbc;
+  color: #ffffff;
+  border-bottom: 1px solid transparent;
+}
+.skin-blue.layout-top-nav .main-header > .logo > a {
+  color: #ffffff;
+}
+.skin-blue.layout-top-nav .main-header > .logo:hover {
+  background: #3b8ab8;
+}
 /*
  * Skin: Black
  * -----------
