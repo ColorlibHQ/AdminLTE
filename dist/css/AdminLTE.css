@@ -57,19 +57,20 @@ body {
 .content-wrapper,
 .right-side,
 .main-footer {
-  -webkit-transition: -webkit-transform 0.3s ease;
-  -moz-transition: -moz-transform 0.3s ease;
-  -o-transition: -o-transform 0.3s ease;
-  transition: transform 0.3s ease;
-  -webkit-transition: margin-left 0.3s ease;
-  -o-transition: margin-left 0.3s ease;
-  transition: margin-left 0.3s ease;
+  -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -moz-transition: -moz-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -o-transition: -o-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  transition: transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -o-transition: margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  transition: margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
   margin-left: 230px;
+  z-index: 820;
 }
 .layout-top-nav .content-wrapper,
 .layout-top-nav .right-side,
 .layout-top-nav .main-footer {
-  margin-left: 0!important;
+  margin-left: 0;
 }
 @media (max-width: 767px) {
   .content-wrapper,
@@ -383,8 +384,7 @@ a:focus {
   }
   .main-sidebar,
   .left-side {
-    padding-top: 50px!important;
-    margin-top: 0!important;
+    padding-top: 100px!important;
   }
 }
 /*
@@ -394,14 +394,16 @@ a:focus {
 .main-sidebar,
 .left-side {
   position: absolute;
-  top: 50px;
+  top: 0;
   left: 0;
+  padding-top: 50px;
+  height: 100%;
   width: 230px;
   z-index: 810;
-  -webkit-transition: -webkit-transform 0.3s ease;
-  -moz-transition: -moz-transform 0.3s ease;
-  -o-transition: -o-transform 0.3s ease;
-  transition: transform 0.3s ease;
+  -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -moz-transition: -moz-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -o-transition: -o-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  transition: transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
 }
 @media (max-width: 767px) {
   .main-sidebar,
@@ -432,8 +434,6 @@ a:focus {
 }
 .sidebar {
   padding-bottom: 10px;
-}
-.fixed .sidebar {
   overflow: auto;
   height: 100%;
 }
@@ -1114,9 +1114,9 @@ a:focus {
   z-index: 5px;
 }
 .small-box .icon {
-  -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
   position: absolute;
   top: -10px;
   right: 10px;
@@ -2234,9 +2234,9 @@ table.text-center th {
 }
 .direct-chat-messages,
 .direct-chat-contacts {
-  -webkit-transition: transform 0.5s ease;
-  -o-transition: transform 0.5s ease;
-  transition: transform 0.5s ease;
+  -webkit-transition: transform 0.5s ease-in-out;
+  -o-transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
 .direct-chat-text {
   border-radius: 5px;

@@ -48,18 +48,21 @@ body {
   .transition-transform(@transition-speed @transition-fn);
   .transition(margin-left @transition-speed @transition-fn);
   margin-left: @sidebar-width;
+  z-index: 820;
   //Top nav layout
   .layout-top-nav & {
-    margin-left: 0!important;
+    margin-left: 0;
   }
   @media (max-width: @screen-xs-max) {
     margin-left: 0;
   }
+  //When opening the sidebar on large screens
   .sidebar-collapse & {
     @media (min-width: @screen-sm) {
       margin-left: 0;
     }
   }
+  //When opening the sidebar on small screens
   .sidebar-open & {
     @media (max-width: @screen-xs-max) {
       .translate(@sidebar-width, 0);

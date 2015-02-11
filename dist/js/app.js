@@ -45,8 +45,8 @@ $.AdminLTE.options = {
   sidebarToggleSelector: "[data-toggle='offcanvas']",
   //Activate sidebar push menu
   sidebarPushMenu: true,
-  //Activate sidebar slimscroll if the fixed layout is set
-  sidebarSlimScroll: true,
+  //Activate sidebar slimscroll if the fixed layout is set (requires SlimScroll Plugin)
+  sidebarSlimScroll: false,
   //BoxRefresh Plugin
   enableBoxRefresh: true,
   //Bootstrap.js tooltip

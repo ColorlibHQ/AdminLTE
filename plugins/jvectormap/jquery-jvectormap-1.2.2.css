@@ -16,12 +16,12 @@
     position: absolute;
     top: 100%;
     margin-top: -25px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    background: rgba(0,0,0,0.4);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background: #d2d6de;//rgba(0,0,0,0.4);
     padding: 5px;
-    color: rgb(255, 255,255);
+    color: #444;
     cursor: pointer;
     line-height: 10px;
     text-align: center;

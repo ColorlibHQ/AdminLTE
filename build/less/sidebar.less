@@ -2,19 +2,21 @@
  * Component: Sidebar
  * ------------------
  */
-//Main Sidebar 
+//Main Sidebar
 // ``` .left-side has been deprecated in favor of .main-sidebar ```
 
 .main-sidebar,
 .left-side {
   position: absolute;
-  top: 50px;
+  top: 0;
   left: 0;
+  padding-top: 50px;
+  height: 100%;
   width: @sidebar-width;
   z-index: 810;
   .transition-transform(@transition-speed @transition-fn);
   @media (max-width: @screen-xs-max) {
-    .translate(-@sidebar-width, 0);
+    .translate(-@sidebar-width, 0); 
   }
   .sidebar-collapse & {
     @media (min-width: @screen-sm) {
@@ -30,11 +32,9 @@
 }
 
 .sidebar {
-  padding-bottom: 10px;    
-  .fixed & {
-    overflow: auto;
-    height: 100%;
-  }
+  padding-bottom: 10px;
+  overflow: auto;
+  height: 100%;
 }
 // remove border from form
 .sidebar-form {
@@ -142,7 +142,7 @@
         > .fa-angle-down {
           width: auto;
         }
-      }        
+      }
     }
   }
 }

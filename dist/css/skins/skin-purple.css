@@ -112,9 +112,9 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
-  -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -o-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
 }
 .skin-purple .sidebar-form input[type="text"] {
   color: #666;
