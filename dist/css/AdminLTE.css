@@ -1578,6 +1578,9 @@ a:focus {
 .chat .item > .attachment:after {
   clear: both;
 }
+.box-input {
+  max-width: 200px;
+}
 /*
  * Component: Info Box
  * -------------------
@@ -1976,41 +1979,43 @@ a:focus {
  * --------------
  */
 /* NAV PILLS */
-.nav.nav-pills > li > a {
-  border-top: 3px solid transparent;
+.nav-pills > li > a {
   border-radius: 0;
+  border-top: 3px solid transparent;
   color: #444;
 }
-.nav.nav-pills > li > a > .fa,
-.nav.nav-pills > li > a > .glyphicon,
-.nav.nav-pills > li > a > .ion {
+.nav-pills > li > a > .fa,
+.nav-pills > li > a > .glyphicon,
+.nav-pills > li > a > .ion {
   margin-right: 5px;
 }
-.nav.nav-pills > li.active > a,
-.nav.nav-pills > li.active > a:hover {
-  background-color: #f6f6f6;
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover {
+  background-color: #f4f4f4;
   border-top-color: #3c8dbc;
   color: #444;
 }
-.nav.nav-pills > li.active > a {
+.nav-pills > li.active > a {
   font-weight: 600;
 }
-.nav.nav-pills > li > a:hover {
+.nav-pills > li > a:hover {
   background-color: #f6f6f6;
 }
-.nav.nav-pills.nav-stacked > li > a {
+/* NAV STACKED */
+.nav-stacked > li > a {
+  border-radius: 0;
   border-top: 0;
   border-left: 3px solid transparent;
-  border-radius: 0;
   color: #444;
 }
-.nav.nav-pills.nav-stacked > li.active > a,
-.nav.nav-pills.nav-stacked > li.active > a:hover {
-  background-color: #f6f6f6;
+.nav-stacked > li.active > a,
+.nav-stacked > li.active > a:hover {
+  background-color: #f4f4f4;
+  border-top: 0;
   border-left-color: #3c8dbc;
   color: #444;
 }
-.nav.nav-pills.nav-stacked > li.header {
+.nav-stacked > li.header {
   border-bottom: 1px solid #ddd;
   color: #777;
   margin-bottom: 10px;
@@ -2169,8 +2174,34 @@ a:focus {
  * Component: Table
  * ----------------
  */
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  border-top: 1px solid #f4f4f4;
+}
+.table > thead > tr > th {
+  border-bottom: 2px solid #f4f4f4;
+}
 .table tr td .progress {
   margin-top: 5px;
+}
+.table-bordered {
+  border: 1px solid #f4f4f4;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid #f4f4f4;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+  border-bottom-width: 2px;
 }
 .table.no-border,
 .table.no-border td,
@@ -2510,9 +2541,9 @@ table.text-center th {
  * -------------
  */
 .mailbox .table-mailbox {
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #f4f4f4;
+  border-right: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
 }
 .mailbox .table-mailbox tr.unread > td {
   background-color: rgba(0, 0, 0, 0.05);
@@ -2554,6 +2585,71 @@ table.text-center th {
   .mailbox .search-form {
     margin-top: 10px;
   }
+}
+.mailbox-messages > .table {
+  margin: 0;
+}
+.mailbox-controls {
+  padding: 5px;
+}
+.mailbox-controls.with-border {
+  border-bottom: 1px solid #f4f4f4;
+}
+.mailbox-read-info {
+  border-bottom: 1px solid #f4f4f4;
+  padding: 10px;
+}
+.mailbox-read-info h3 {
+  font-size: 20px;
+  margin: 0;
+}
+.mailbox-read-info h5 {
+  margin: 0;
+  padding: 5px 0 0 0;
+}
+.mailbox-read-time {
+  color: #999;
+  font-size: 13px;
+}
+.mailbox-read-message {
+  padding: 10px;
+}
+.mailbox-attachments li {
+  float: left;
+  width: 200px;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+.mailbox-attachment-name {
+  font-weight: bold;
+  color: #666;
+}
+.mailbox-attachment-icon,
+.mailbox-attachment-info,
+.mailbox-attachment-size {
+  display: block;
+}
+.mailbox-attachment-info {
+  padding: 10px;
+  background: #f4f4f4;
+}
+.mailbox-attachment-size {
+  color: #999;
+  font-size: 12px;
+}
+.mailbox-attachment-icon {
+  text-align: center;
+  font-size: 65px;
+  color: #666;
+  padding: 20px 10px;
+}
+.mailbox-attachment-icon.has-img {
+  padding: 0;
+}
+.mailbox-attachment-icon.has-img > img {
+  max-width: 100%;
+  height: auto;
 }
 /*
  * Page: Lock Screen
@@ -2643,7 +2739,7 @@ table.text-center th {
 .login-box,
 .register-box {
   width: 360px;
-  margin: 7% auto 0 auto;
+  margin: 7% auto;
 }
 @media (max-width: 768px) {
   .login-box,
@@ -3508,6 +3604,9 @@ fieldset[disabled] .btn-vk.active {
 .margin {
   margin: 10px;
 }
+.margin-bottom {
+  margin-bottom: 20px;
+}
 /* Display inline */
 .inline {
   display: inline;
@@ -3797,7 +3896,8 @@ fieldset[disabled] .btn-vk.active {
 .list-unstyled,
 .chart-legend,
 .contacts-list,
-.users-list {
+.users-list,
+.mailbox-attachments {
   list-style: none;
   margin: 0;
   padding: 0;
