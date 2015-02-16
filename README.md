@@ -3,9 +3,7 @@
 
 Announcements:
 --------------
-**- AdminLTE discussion and review:** available now on the [main Almsaeed Studio page](http://almsaeedstudio.com/#comments "Comments Sections"). 
-
-**- [Documentation](http://almsaeedstudio.com/guide)**: a quick start and installation guide have been created in our website Almsaeed Studio.
+**Current AdminLTE version in master is v2 Beta 1**
 
 **AdminLTE** -- is a fully responsive admin template. Based on **Bootstrap 3** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself. 
 
