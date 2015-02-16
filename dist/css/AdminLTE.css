@@ -1662,10 +1662,9 @@ a:focus {
   position: absolute;
   top: 0px;
   bottom: 0;
-  width: 5px;
+  width: 4px;
   background: #ddd;
-  left: 30px;
-  border: 1px solid #eee;
+  left: 31px;
   margin: 0;
   border-radius: 2px;
 }
@@ -1683,26 +1682,28 @@ a:focus {
   clear: both;
 }
 .timeline > li > .timeline-item {
-  margin-top: 10px;
-  border: 0px solid #dfdfdf;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  margin-top: 0px;
   background: #fff;
-  color: #555;
+  color: #444;
   margin-left: 60px;
   margin-right: 15px;
-  padding: 5px;
+  padding: 0;
   position: relative;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
 }
 .timeline > li > .timeline-item > .time {
   color: #999;
   float: right;
-  margin: 2px 0 0 0;
+  padding: 10px;
+  font-size: 12px;
 }
 .timeline > li > .timeline-item > .timeline-header {
   margin: 0;
   color: #555;
   border-bottom: 1px solid #f4f4f4;
-  padding: 5px;
+  padding: 10px;
   font-size: 16px;
   line-height: 1.1;
 }
@@ -1718,20 +1719,18 @@ a:focus {
   padding: 5px;
   display: inline-block;
   background-color: #fff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
 }
 .timeline > li > .fa,
 .timeline > li > .glyphicon,
 .timeline > li > .ion {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   width: 30px;
   height: 30px;
   font-size: 15px;
   line-height: 30px;
   position: absolute;
   color: #666;
-  background: #eee;
+  background: #d2d6de;
   border-radius: 50%;
   text-align: center;
   left: 18px;
