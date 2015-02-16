@@ -30,7 +30,15 @@
   &.box-default {
     border-top-color: @gray;
   }
-
+  
+  // collapsed mode
+  &.collapsed-box {
+    .box-body,
+    .box-footer {
+      display: none;
+    }
+  }
+  
   .nav-stacked {
     > li {
       border-bottom: 1px solid @box-border-color;
@@ -97,15 +105,7 @@
     > .box-header > .box-tools .btn {
       border: 0;
       box-shadow: none;
-    }
-
-    // collapsed mode
-    &.collapsed-box {
-      .box-body,
-      .box-footer {
-        display: none;
-      }
-    }
+    }    
 
     // Fix font color for tiles
     &[class*='bg'] {

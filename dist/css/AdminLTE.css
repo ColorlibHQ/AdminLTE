@@ -1181,6 +1181,10 @@ a:focus {
 .box.box-default {
   border-top-color: #d2d6de;
 }
+.box.collapsed-box .box-body,
+.box.collapsed-box .box-footer {
+  display: none;
+}
 .box .nav-stacked > li {
   border-bottom: 1px solid #f4f4f4;
   margin: 0;
@@ -1283,10 +1287,6 @@ a:focus {
 .box.box-solid > .box-header > .box-tools .btn {
   border: 0;
   box-shadow: none;
-}
-.box.box-solid.collapsed-box .box-body,
-.box.box-solid.collapsed-box .box-footer {
-  display: none;
 }
 .box.box-solid[class*='bg'] > .box-header {
   color: #fff;
@@ -2229,6 +2229,10 @@ table.text-center th {
  * Component: Label
  * ----------------
  */
+.label-default {
+  background-color: #d2d6de;
+  color: #333;
+}
 /*
  * Component: Direct Chat
  * ----------------------
