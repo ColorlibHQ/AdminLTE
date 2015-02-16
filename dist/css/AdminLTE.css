@@ -2272,8 +2272,9 @@ table.text-center th {
 }
 .direct-chat-messages,
 .direct-chat-contacts {
-  -webkit-transition: transform 0.5s ease-in-out;
-  -o-transition: transform 0.5s ease-in-out;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  -moz-transition: -moz-transform 0.5s ease-in-out;
+  -o-transition: -o-transform 0.5s ease-in-out;
   transition: transform 0.5s ease-in-out;
 }
 .direct-chat-text {
@@ -3571,8 +3572,9 @@ fieldset[disabled] .btn-vk.active {
   line-height: 30px;
 }
 .fc-color-picker > li .fa {
-  -webkit-transition: transform linear 0.3s;
-  -o-transition: transform linear 0.3s;
+  -webkit-transition: -webkit-transform linear 0.3s;
+  -moz-transition: -moz-transform linear 0.3s;
+  -o-transition: -o-transform linear 0.3s;
   transition: transform linear 0.3s;
 }
 .fc-color-picker > li .fa:hover {
