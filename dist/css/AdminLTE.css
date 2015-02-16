@@ -2550,52 +2550,6 @@ table.text-center th {
  * Page: Mailbox
  * -------------
  */
-.mailbox .table-mailbox {
-  border-left: 1px solid #f4f4f4;
-  border-right: 1px solid #f4f4f4;
-  border-bottom: 1px solid #f4f4f4;
-}
-.mailbox .table-mailbox tr.unread > td {
-  background-color: rgba(0, 0, 0, 0.05);
-  color: #000;
-  font-weight: 600;
-}
-.mailbox .table-mailbox tr > td > .fa.fa-star,
-.mailbox .table-mailbox tr > td > .fa.fa-star-o,
-.mailbox .table-mailbox tr > td > .glyphicon.glyphicon-star,
-.mailbox .table-mailbox tr > td > .glyphicon.glyphicon-star-empty {
-  color: #f39c12;
-  cursor: pointer;
-}
-.mailbox .table-mailbox tr > td.small-col {
-  width: 30px;
-}
-.mailbox .table-mailbox tr > td.name {
-  width: 150px;
-  font-weight: 600;
-}
-.mailbox .table-mailbox tr > td.time {
-  text-align: right;
-  width: 100px;
-}
-.mailbox .table-mailbox tr > td {
-  white-space: nowrap;
-}
-.mailbox .table-mailbox tr > td > a {
-  color: #444;
-}
-@media (max-width: 991px) {
-  .mailbox .nav-stacked > li:not(.header) {
-    float: left;
-    width: 50%;
-  }
-  .mailbox .nav-stacked > li:not(.header).header {
-    border: 0!important;
-  }
-  .mailbox .search-form {
-    margin-top: 10px;
-  }
-}
 .mailbox-messages > .table {
   margin: 0;
 }
@@ -2660,6 +2614,52 @@ table.text-center th {
 .mailbox-attachment-icon.has-img > img {
   max-width: 100%;
   height: auto;
+}
+.mailbox .table-mailbox {
+  border-left: 1px solid #f4f4f4;
+  border-right: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
+}
+.mailbox .table-mailbox tr.unread > td {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #000;
+  font-weight: 600;
+}
+.mailbox .table-mailbox tr > td > .fa.fa-star,
+.mailbox .table-mailbox tr > td > .fa.fa-star-o,
+.mailbox .table-mailbox tr > td > .glyphicon.glyphicon-star,
+.mailbox .table-mailbox tr > td > .glyphicon.glyphicon-star-empty {
+  color: #f39c12;
+  cursor: pointer;
+}
+.mailbox .table-mailbox tr > td.small-col {
+  width: 30px;
+}
+.mailbox .table-mailbox tr > td.name {
+  width: 150px;
+  font-weight: 600;
+}
+.mailbox .table-mailbox tr > td.time {
+  text-align: right;
+  width: 100px;
+}
+.mailbox .table-mailbox tr > td {
+  white-space: nowrap;
+}
+.mailbox .table-mailbox tr > td > a {
+  color: #444;
+}
+@media (max-width: 991px) {
+  .mailbox .nav-stacked > li:not(.header) {
+    float: left;
+    width: 50%;
+  }
+  .mailbox .nav-stacked > li:not(.header).header {
+    border: 0!important;
+  }
+  .mailbox .search-form {
+    margin-top: 10px;
+  }
 }
 /*
  * Page: Lock Screen
