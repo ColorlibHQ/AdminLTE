@@ -349,7 +349,7 @@
         <section class="content">
           <div class="row">
             <div class="col-md-3">
-              <button class="btn btn-primary btn-block margin-bottom">Compose</button>
+              <a href="compose.html" class="btn btn-primary btn-block margin-bottom">Compose</a>
               <div class="box box-solid">
                 <div class="box-header with-border">
                   <h3 class="box-title">Folders</h3>
@@ -390,13 +390,14 @@
                 </div><!-- /.box-header -->
                 <div class="box-body no-padding">
                   <div class="mailbox-controls">
-                    <button class="btn btn-default btn-sm"><i class="fa fa-square-o"></i></button>
-                    <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                    <!-- Check all button -->
+                    <button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
                     <div class="btn-group">
                       <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
                       <button class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                      <button class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>                      
+                      <button class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
                     </div><!-- /.btn-group -->
+                    <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
                     <div class="pull-right">
                       1-50/200
                       <div class="btn-group">
@@ -534,13 +535,14 @@
                 </div><!-- /.box-body -->
                 <div class="box-footer no-padding">
                   <div class="mailbox-controls">
-                    <button class="btn btn-default btn-sm"><i class="fa fa-square-o"></i></button>
-                    <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                    <!-- Check all button -->
+                    <button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>                    
                     <div class="btn-group">
                       <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
                       <button class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
                       <button class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
                     </div><!-- /.btn-group -->
+                    <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
                     <div class="pull-right">
                       1-50/200
                       <div class="btn-group">
@@ -584,6 +586,38 @@
         $('input[type="checkbox"]').iCheck({
           checkboxClass: 'icheckbox_flat-blue',
           radioClass: 'iradio_flat-blue'
+        });
+
+        //Enable check and uncheck all functionality
+        $(".checkbox-toggle").click(function () {
+          var clicks = $(this).data('clicks');
+          if (clicks) {
+            //Uncheck all checkboxes
+            $("input[type='checkbox']", ".mailbox-messages").iCheck("uncheck");
+          } else {
+            //Check all checkboxes
+            $("input[type='checkbox']", ".mailbox-messages").iCheck("check");
+          }
+          $(this).data("clicks", !clicks);
+        });
+
+        //Handle starring for glyphicon and font awesome
+        $(".fa-star, .fa-star-o, .glyphicon-star, .glyphicon-star-empty").click(function (e) {
+          e.preventDefault();
+          //detect type
+          var glyph = $(this).hasClass("glyphicon");
+          var fa = $(this).hasClass("fa");
+
+          //Switch states
+          if (glyph) {
+            $(this).toggleClass("glyphicon-star");
+            $(this).toggleClass("glyphicon-star-empty");
+          }
+
+          if (fa) {
+            $(this).toggleClass("fa-star");
+            $(this).toggleClass("fa-star-o");
+          }
         });
       });
     </script>
