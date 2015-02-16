@@ -3704,7 +3704,7 @@ fieldset[disabled] .btn-vk.active {
   background-color: #d2d6de !important;
 }
 .bg-black {
-  background-color: #222222 !important;
+  background-color: #111111 !important;
 }
 .bg-red,
 .callout.callout-danger,
@@ -3772,7 +3772,7 @@ fieldset[disabled] .btn-vk.active {
   background-color: #b5bbc8 !important;
 }
 .bg-black-active {
-  background-color: #080808 !important;
+  background-color: #000000 !important;
 }
 .bg-red-active,
 .modal-danger .modal-header,
@@ -3803,28 +3803,28 @@ fieldset[disabled] .btn-vk.active {
   background-color: #008d4c !important;
 }
 .bg-navy-active {
-  background-color: #00060c !important;
+  background-color: #001a35 !important;
 }
 .bg-teal-active {
-  background-color: #2ba7a7 !important;
+  background-color: #30bbbb !important;
 }
 .bg-olive-active {
-  background-color: #2e7555 !important;
+  background-color: #368763 !important;
 }
 .bg-lime-active {
-  background-color: #00cd5a !important;
+  background-color: #00e765 !important;
 }
 .bg-orange-active {
-  background-color: #e76b00 !important;
+  background-color: #ff7701 !important;
 }
 .bg-fuchsia-active {
-  background-color: #c30c9a !important;
+  background-color: #db0ead !important;
 }
 .bg-purple-active {
-  background-color: #4c4988 !important;
+  background-color: #555299 !important;
 }
 .bg-maroon-active {
-  background-color: #ab154c !important;
+  background-color: #ca195a !important;
 }
 [class^="bg-"].disabled {
   opacity: 0.65;
@@ -3844,7 +3844,7 @@ fieldset[disabled] .btn-vk.active {
   color: #0073b7 !important;
 }
 .text-black {
-  color: #222222 !important;
+  color: #111111 !important;
 }
 .text-light-blue {
   color: #3c8dbc !important;
@@ -4000,12 +4000,12 @@ Gradient Background colors
   color: #fff;
 }
 .bg-black-gradient {
-  background: #222222 !important;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #222222), color-stop(1, #3c3c3c)) !important;
-  background: -ms-linear-gradient(bottom, #222222, #3c3c3c) !important;
-  background: -moz-linear-gradient(center bottom, #222222 0%, #3c3c3c 100%) !important;
-  background: -o-linear-gradient(#3c3c3c, #222222) !important;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c3c3c', endColorstr='#222222', GradientType=0) !important;
+  background: #111111 !important;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #111111), color-stop(1, #2b2b2b)) !important;
+  background: -ms-linear-gradient(bottom, #111111, #2b2b2b) !important;
+  background: -moz-linear-gradient(center bottom, #111111 0%, #2b2b2b 100%) !important;
+  background: -o-linear-gradient(#2b2b2b, #111111) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2b2b2b', endColorstr='#111111', GradientType=0) !important;
   color: #fff;
 }
 .bg-maroon-gradient {
