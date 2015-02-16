@@ -565,7 +565,7 @@ a:focus {
   border-color: #eee;
 }
 .dropdown-menu > li > a {
-  color: #444;
+  color: #777;
 }
 .dropdown-menu > li > a > .glyphicon,
 .dropdown-menu > li > a > .fa,
@@ -573,8 +573,8 @@ a:focus {
   margin-right: 10px;
 }
 .dropdown-menu > li > a:hover {
-  background-color: #d2d6de;
-  color: #ffffff;
+  background-color: #e1e3e9;
+  color: #333;
 }
 .dropdown-menu > .divider {
   background-color: #eee;
