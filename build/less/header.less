@@ -14,7 +14,10 @@
     border: none;
     min-height: @navbar-height;
     border-radius: 0;
-  }
+    .layout-top-nav & {
+      margin-left: 0!important;
+    }
+  }    
   //Navbar search text input
   #navbar-search-input {
     background: rgba(255,255,255,.2);
@@ -109,6 +112,10 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding: 0 15px;
     font-weight: 300;
+  }
+  //Navbar Brand. Alternative logo with layout-top-nav
+  .navbar-brand {
+    color: #fff;
   }
 }
 

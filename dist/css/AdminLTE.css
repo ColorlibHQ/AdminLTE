@@ -209,6 +209,9 @@ a:focus {
   min-height: 50px;
   border-radius: 0;
 }
+.layout-top-nav .main-header > .navbar {
+  margin-left: 0!important;
+}
 .main-header #navbar-search-input {
   background: rgba(255, 255, 255, 0.2);
   border-color: transparent;
@@ -293,6 +296,9 @@ a:focus {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0 15px;
   font-weight: 300;
+}
+.main-header .navbar-brand {
+  color: #fff;
 }
 .content-header {
   position: relative;
