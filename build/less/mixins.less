@@ -1,0 +1,105 @@
+//AdminLTE mixins
+//===============
+
+//Changes the color and the hovering properties of the navbar
+.navbar-variant(@color; @font-color: rgba(255, 255, 255, 0.8); @hover-color: #f6f6f6; @hover-bg: rgba(0, 0, 0, 0.1)) {
+  background-color: @color;
+  //Navbar links
+  .nav > li > a {
+    color: @font-color;
+  }
+
+  .nav > li > a:hover,
+    .nav > li > a:active,
+    .nav > li > a:focus,
+    .nav .open > a,
+    .nav .open > a:hover,
+    .nav .open > a:focus {
+    background: @hover-bg;
+    color: @hover-color;
+  }
+
+  .navbar-custom-menu > .nav {
+    margin-right: 10px;
+  }
+  //Add color to the sidebar toggle button
+  .sidebar-toggle {
+    color: @font-color;
+    &:hover {
+      color: @hover-color;
+      background: @hover-bg;
+    }
+  }
+}
+
+//Logo color variation
+.logo-variant(@bg-color; @color: #fff; @border-bottom-color: transparent) {
+  background-color: @bg-color;
+  color: @color;
+  border-bottom: 1px solid @border-bottom-color;
+  > a {
+    color: @color;
+  }
+
+  &:hover {
+    background: darken(@bg-color, 1%);
+  }
+}
+
+//Box solid color variantion creator
+.box-solid-variant(@color; @text-color: #fff) {
+  border: 1px solid @color;
+  > .box-header {
+    color: @text-color;
+    background: @color;
+    background-color: @color;
+    a,
+    .btn {
+      color: @text-color;      
+    }
+  }
+}
+
+//Direct Chat Variant
+.direct-chat-variant(@bg-color; @color: #fff) {
+  .right > .direct-chat-text {
+    background: @bg-color;    
+    border-color: @bg-color;
+    color: @color;
+    &:after,
+      &:before {      
+      border-left-color: @bg-color;
+    }
+  }
+}
+
+//border radius creator
+.border-radius(@radius) {
+  border-radius: @radius;
+}
+//Different radius each side
+.border-radius(@top-left; @top-right; @bottom-left; @bottom-right) {
+  border-top-left-radius: @top-left;
+  border-top-right-radius: @top-right;
+  border-bottom-right-radius: @bottom-right;
+  border-bottom-left-radius: @bottom-left;
+}
+
+//Gradient background
+.gradient(@color: #F5F5F5, @start: #EEE, @stop: #FFF) {
+  background: @color;
+  background: -webkit-gradient(linear,
+    left bottom,
+    left top,
+    color-stop(0, @start),
+    color-stop(1, @stop));
+  background: -ms-linear-gradient(bottom,
+    @start,
+    @stop);
+  background: -moz-linear-gradient(center bottom,
+    @start 0%,
+    @stop 100%);
+  background: -o-linear-gradient(@stop,
+    @start);
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@stop,@start));
+}

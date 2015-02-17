@@ -1,0 +1,135 @@
+/*
+ * Skin: Red
+ * ---------
+ */
+
+@import "../../bootstrap-less/mixins.less";
+@import "../../bootstrap-less/variables.less";
+@import "../variables.less";
+@import "../mixins.less";
+
+.skin-red {
+  //Navbar
+  .main-header {
+    .navbar {
+      .navbar-variant(@red; #fff);
+      .sidebar-toggle {
+        color: #fff;
+        &:hover {
+          background-color: darken(@red, 5%);
+        }
+      }
+      @media(max-width: @screen-header-collapse) {
+        .dropdown-menu {
+          li {
+            &.divider {
+              background-color: rgba(255,255,255,0.1);
+            }
+            a {
+              color: #fff;
+              &:hover {
+                background: darken(@red, 5%);
+              }
+            }
+          }
+        }
+      }
+    }
+    //Logo
+    .logo {
+      .logo-variant(darken(@red, 5%));      
+    }
+    
+    li.user-header {
+      background-color: @red;
+    }
+  }
+
+  //Content Header
+  .content-header {
+    background: transparent;
+  }
+
+  //User Panel (resides in the sidebar)
+  .user-panel {
+
+    > .info, > .info > a {
+      color: #fff;
+    }
+  }
+
+  //Sidebar & Treeview menu
+  // the menu
+  .sidebar-menu > li {
+    &.header {
+      color: lighten(@sidebar-dark-bg, 20%);
+      background: darken(@sidebar-dark-bg, 4%);
+    }
+    > a {
+      border-left: 3px solid transparent;
+      margin-right: 1px;
+    }
+    //Hover and active states
+    > a:hover, &.active > a {
+      color: @sidebar-dark-hover-color;
+      background: @sidebar-dark-hover-bg;
+      border-left-color: @red;
+    }
+
+    > .treeview-menu {
+      margin: 0 1px;
+      background: @sidebar-dark-submenu-bg;
+    }
+  }
+
+  // Sidebar color (Both .wrapper and .left-side are responsible for sidebar bg color)
+  .wrapper ,
+  .main-sidebar,
+  .left-side {
+    background: @sidebar-dark-bg;
+  }
+
+  .sidebar a {
+    color: @sidebar-dark-color;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  // skin blue treeview-menu
+  .treeview-menu {
+    > li {
+      > a {color: @sidebar-dark-submenu-color;}
+      &.active > a, > a:hover {
+        color: @sidebar-dark-submenu-hover-color;
+      }
+    }
+  }
+
+  .sidebar-form {
+    .border-radius(3px);
+    border: 1px solid lighten(@sidebar-dark-bg, 10%);
+    margin: 10px 10px;
+    input[type="text"], .btn {
+      box-shadow: none;
+      background-color: lighten(@sidebar-dark-bg, 10%);
+      border: 1px solid transparent;
+      height: 35px;
+      .transition(all @transition-speed @transition-fn);
+    }
+    input[type="text"]{
+      color: #666;
+      .border-radius(2px, 0, 2px, 0)!important;
+      &:focus, &:focus + .input-group-btn .btn {
+        background-color: #fff;
+        color: #666;
+      }
+      &:focus + .input-group-btn .btn {
+        border-left-color: #fff;
+      }
+    }
+    .btn {
+      color: #999;
+      .border-radius(0, 2px, 0, 2px)!important;
+    }
+  }
+}

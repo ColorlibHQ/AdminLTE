@@ -1,0 +1,88 @@
+/*
+ * Plugin: Full Calendar
+ * ---------------------
+ */
+//Fullcalendar buttons
+.fc-button {
+  background: #f4f4f4;
+  background-image: none;
+  color: #444;
+  border-color: #ddd;
+  border-bottom-color: #ddd;
+  &:hover,
+    &:active,
+    &.hover {
+    background-color: #e9e9e9;
+  }
+}
+// Calendar title
+.fc-header-title h2 {
+  font-size: 15px;
+  line-height: 1.6em;
+  color: #666;
+  margin-left: 10px;
+}
+.fc-header-right {
+  padding-right: 10px;
+}
+.fc-header-left {
+  padding-left: 10px;
+}
+// Calendar table header cells
+.fc-widget-header {
+  background: #fafafa;
+}
+.fc-grid {
+  width: 100%;
+  border: 0;
+}
+.fc-widget-header:first-of-type,
+.fc-widget-content:first-of-type {
+  border-left: 0;
+  border-right: 0;
+}
+.fc-widget-header:last-of-type,
+.fc-widget-content:last-of-type {
+  border-right: 0;
+}
+.fc-toolbar {
+  padding: @box-padding;
+  margin: 0;
+}
+.fc-day-number {
+  font-size: 20px;
+  font-weight: 300;
+  padding-right: 10px;
+}
+.fc-color-picker {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  > li {
+    float: left;
+    font-size: 30px;
+    margin-right: 5px;
+    line-height: 30px;
+    .fa {
+      .transition-transform(linear .3s);
+      &:hover {
+        .rotate(30deg);
+      }
+    }
+  }
+}
+#add-new-event {
+  .transition(all linear .3s);
+}
+.external-event {
+  padding: 5px 10px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  box-shadow: @box-boxshadow;
+  text-shadow: @box-boxshadow;
+  border-radius: @box-border-radius;
+  cursor: move;
+  &:hover {
+    box-shadow: inset 0 0 90px rgba(0,0,0,0.2);
+  }
+}

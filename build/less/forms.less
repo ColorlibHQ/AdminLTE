@@ -1,0 +1,79 @@
+/*
+ * Component: Form
+ * ---------------
+ */
+.form-control {
+  .border-radius(@input-radius)!important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  border-color: @gray;
+  &:focus {
+    border-color: @light-blue !important;
+    box-shadow: none;
+  }
+  &::-moz-placeholder {
+    color: #bbb;
+    opacity: 1;
+  }
+  &:-ms-input-placeholder {
+    color: #bbb;
+  }
+  &::-webkit-input-placeholder {
+    color: #bbb;
+  }
+}
+
+.form-group {
+  &.has-success {
+    label {
+      color: @green;
+    }
+    .form-control {
+      border-color: @green !important;
+      box-shadow: none;
+    }
+  }
+
+  &.has-warning {
+    label {
+      color: @yellow;
+    }
+    .form-control {
+      border-color: @yellow !important;
+      box-shadow: none;
+    }
+  }
+
+  &.has-error {
+    label {
+      color: @red;
+    }
+    .form-control {
+      border-color: @red !important;
+      box-shadow: none;
+    }
+  }
+}
+
+/* Input group */
+.input-group {
+  .input-group-addon {
+    .border-radius(@input-radius);
+    border-color: @gray;
+    background-color: #fff;
+  }
+}
+/* button groups */
+.btn-group-vertical {
+  .btn {
+    &.btn-flat:first-of-type, &.btn-flat:last-of-type {
+      .border-radius(0);
+    }
+  }
+}
+
+.icheck > label {
+  padding-left: 0;
+}

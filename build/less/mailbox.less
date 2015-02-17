@@ -1,0 +1,134 @@
+/*
+ * Page: Mailbox
+ * -------------
+ */
+.mailbox {
+  .table-mailbox {
+    border-left: 1px solid @box-border-color;
+    border-right: 1px solid @box-border-color;
+    border-bottom: 1px solid @box-border-color;        
+    tr {
+      &.unread {
+        > td {                    
+          background-color: rgba(0, 0, 0, 0.05);
+          color: #000;
+          font-weight: 600;                    
+        }                
+      }
+      > td > .fa.fa-star,
+      > td > .fa.fa-star-o,
+      > td > .glyphicon.glyphicon-star,
+      > td > .glyphicon.glyphicon-star-empty{
+        color: @yellow;   
+        cursor: pointer;
+      }
+
+      > td.small-col {
+        width: 30px;
+      }
+
+      > td.name {
+        width: 150px;
+        font-weight: 600;
+      }
+      > td.time {
+        text-align: right;
+        width: 100px;                
+      }
+      > td {
+        white-space: nowrap;                
+      }
+
+      & > td > a {color: #444;}
+    }
+  }
+
+  @media (max-width: @screen-sm-max) {
+    .nav-stacked {
+      > li:not(.header) {
+        float: left;
+        width: 50%;
+        &.header {
+          border: 0!important;
+        }
+      }
+    }
+
+    .search-form {
+      margin-top: 10px;
+    }
+  }
+}
+.mailbox-messages {
+  > .table {
+    margin: 0;
+  }
+}
+.mailbox-controls {
+  padding: 5px;
+  &.with-border {
+    border-bottom: 1px solid @box-border-color;
+  }
+}
+.mailbox-read-info {
+  border-bottom: 1px solid @box-border-color;
+  padding: 10px;
+  h3 {
+    font-size: 20px;
+    margin: 0;    
+  }
+  h5 {
+    margin: 0;
+    padding: 5px 0 0 0;
+  }
+}
+.mailbox-read-time {
+  color: #999;
+  font-size: 13px;
+}
+.mailbox-read-message {
+  padding: 10px;
+}
+.mailbox-attachments {
+  &:extend(.list-unstyled);
+  li {
+    float: left;
+    width: 200px;
+    border: 1px solid #eee;
+    margin-bottom: 10px;    
+    margin-right: 10px;
+  }
+}
+.mailbox-attachment-name {
+  font-weight: bold;
+  color: #666;
+}
+.mailbox-attachment-icon,
+.mailbox-attachment-info,
+.mailbox-attachment-size {
+  display: block;
+}
+.mailbox-attachment-info {
+  padding: 10px;
+  background: #f4f4f4;
+}
+.mailbox-attachment-size {
+  color: #999;
+  font-size: 12px;
+}
+.mailbox-attachment-icon {
+  text-align: center;
+  font-size: 65px;
+  color: #666;
+  padding: 20px 10px;
+  &.has-img {
+    padding: 0;
+    > img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+.mailbox-attachment-close {
+  &:extend(.close);
+}

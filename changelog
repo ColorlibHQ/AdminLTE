@@ -1,0 +1,29 @@
+CHANGE LOG:
+
+v2.0
+- Major layout bug fixes
+- Change in layout mark up
+- Added transitions to sidebar collapse
+- New skins and modified previous skins
+- Change in color scheme to a more complementing scheme 
+- Added footer support
+- Removed pace.js from the main app.js
+- Added support for collapsed sidebar as an initial state (add .sidebar-collapse to the body tag)
+- Added boxed layout (.layout-boxed)
+- Enhanced consistency in padding and margining
+- Updated Bootstrap to 3.3.2 
+- Fixed navbar dropdown menu on small screens positioning issues.
+- Updated Ion Icons to 2.0.0
+- Updated FontAwesome to 4.3.0
+- Added ChartJS 1.0.1
+- Removed iCheck dependency
+- Created Dashboard 2.0
+- Changed .right-side to .content-wrapper
+- Changed .navbar-right to .navbar-custom-menu
+- Removed unused files
+- Updated lockscreen style (HTML markup changed!)
+- Updated Login & Registration pages (HTML markup changed!)
+- Updated buttons style.
+- Enhanced border-radius consistency
+- Added mailbox: inbox, read, and compose pages
+- Bootstrap & jQuery are now hosted locally
