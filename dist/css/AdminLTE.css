@@ -1458,7 +1458,7 @@ a:focus {
 .todo-list > li {
   border-radius: 2px;
   padding: 10px;
-  background: #f3f4f5;
+  background: #f4f4f4;
   margin-bottom: 2px;
   border-left: 2px solid #e6e7e8;
   color: #444;
@@ -1559,7 +1559,7 @@ a:focus {
 }
 .chat .item > .attachment {
   border-radius: 3px;
-  background: #f0f0f0;
+  background: #f4f4f4;
   margin-left: 65px;
   margin-right: 15px;
   padding: 10px;
