@@ -31,7 +31,7 @@
         padding: 0 10px;
       }
       .page-header {
-        border: 0;
+        border: 0;        
         margin: 0 0 20px 0;
         padding: 0;
         position: relative;
@@ -222,7 +222,7 @@
           </div>
           <div class="callout callout-danger">
             <h4>Heads Up!</h4>
-            The current AdminLTE 2.0 version is in its alpha stage and should not be used in
+            The current AdminLTE 2.0 version is in its Beta stage and should not be used in
             production. It's however available for testing and to get developers familiar with
             the new syntax.
           </div>
@@ -1770,9 +1770,7 @@ AdminLTE/
         $(".sidebar-menu li a").click(function () {
           var $this = $(this);
           var target = $this.attr("href");
-          $(this).parents("ul").find(".active").removeClass("active");
-          $(this).parent('li').addClass('active');
-          if (typeof target == 'string') {
+          if (typeof target === 'string') {
             $("body").animate({
               scrollTop: ($(target).offset().top - 32) + "px"
             }, 500);
