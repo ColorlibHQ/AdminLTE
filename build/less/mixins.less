@@ -33,10 +33,10 @@
 }
 
 //Logo color variation
-.logo-variant(@bg-color; @color: #fff; @border-bottom-color: transparent) {
+.logo-variant(@bg-color; @color: #fff; @border-bottom-color: transparent; @border-bottom-width: 0px) {
   background-color: @bg-color;
   color: @color;
-  border-bottom: 1px solid @border-bottom-color;
+  border-bottom: @border-bottom-width solid @border-bottom-color;
   > a {
     color: @color;
   }

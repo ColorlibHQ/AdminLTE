@@ -2,7 +2,6 @@
  * Skin: Black
  * -----------
  */
-
 @import "../../bootstrap-less/mixins.less";
 @import "../../bootstrap-less/variables.less";
 @import "../variables.less";
@@ -12,49 +11,46 @@
 .skin-black {
   //Navbar & Logo 
   .main-header {
-    border-bottom: 1px solid #eee;
+    .box-shadow(0px 1px 1px rgba(0, 0, 0, 0.0));
+    border-bottom: 1px solid #ddd;
     .navbar-toggle {
       color: #333;
     }
     .navbar-brand {
       color: #333;
-      border-right: 1px solid #eee;
+      border-right: 1px solid #ddd;
     }
     > .navbar {
-      .navbar-variant(#fff; #333; #999; #fff);    
-      //border-bottom: 1px solid #eee;
+      .navbar-variant(#fff; #333; #999; #fff);
+      //border-bottom: 1px solid #ddd;
       > .sidebar-toggle {
         color: #333;
-        border-right: 1px solid #eee;
+        border-right: 1px solid #ddd;
       }
       .navbar-nav {
         > li > a {
-          border-right: 1px solid #eee; 
+          border-right: 1px solid #ddd;
         }
       }
       .navbar-custom-menu .navbar-nav,
       .navbar-right {
         > li {
           > a {
-            border-left: 1px solid #eee;
+            border-left: 1px solid #ddd;
             border-right-width: 0;
           }
         }
-      }           
+      }
     }
     > .logo {
       .logo-variant(#fff; #333);
-      border-right: 1px solid #eee;
+      border-right: 1px solid #ddd;
       @media (max-width: @screen-header-collapse) {
         .logo-variant(#222; #fff);
-        border-right: none;        
+        border-right: none;
       }
     }
-    > .logo,
-    > .navbar {
-      .box-shadow(2px 1px 2px rgba(0,0,0,0.1));
-    }
-    
+
     li.user-header {
       background-color: #222;
     }
@@ -86,7 +82,7 @@
   .sidebar > .sidebar-menu > li {
     &.header {
       background: darken(#222, 2%);
-      color: rgba(255,255,255,.4);
+      color: rgba(255, 255, 255, .4);
     }
     > a {
       margin-right: 1px;
@@ -94,7 +90,7 @@
     }
     //Hover and active states
     > a:hover,
-      &.active > a {
+    &.active > a {
       color: #fff;
       background: #444;
       border-left-color: #fff;
@@ -103,7 +99,7 @@
     > .treeview-menu {
       background: #333;
     }
-  }		
+  }
 
   .sidebar a {
     color: #eee;
@@ -136,9 +132,9 @@
       height: 35px;
       .transition(all @transition-speed @transition-fn);
     }
-    input[type="text"]{
+    input[type="text"] {
       color: #666;
-      .border-radius(2px, 0, 2px, 0)!important;      
+      .border-radius(2px, 0, 2px, 0) !important;
       &:focus, &:focus + .input-group-btn .btn {
         background-color: #fff;
         color: #666;
@@ -149,7 +145,7 @@
     }
     .btn {
       color: #999;
-      .border-radius(0, 2px, 0, 2px)!important;
+      .border-radius(0, 2px, 0, 2px) !important;
     }
   }
 }

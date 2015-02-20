@@ -809,7 +809,8 @@ a:focus {
     line-height: 10px;
   }
 }
-/* Add fade animation to dropdown menus */
+/* Add fade animation to dropdown menus by appending
+ the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
 .open:not(.dropup) > .animated-dropdown-menu {
   backface-visibility: visible !important;
   -webkit-animation: flipInX 0.7s both;

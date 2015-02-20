@@ -47,7 +47,7 @@
 .skin-purple .main-header .logo {
   background-color: #555299;
   color: #ffffff;
-  border-bottom: 1px solid transparent;
+  border-bottom: 0px solid transparent;
 }
 .skin-purple .main-header .logo > a {
   color: #ffffff;

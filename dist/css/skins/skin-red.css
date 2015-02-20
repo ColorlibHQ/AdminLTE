@@ -47,7 +47,7 @@
 .skin-red .main-header .logo {
   background-color: #d73925;
   color: #ffffff;
-  border-bottom: 1px solid transparent;
+  border-bottom: 0px solid transparent;
 }
 .skin-red .main-header .logo > a {
   color: #ffffff;

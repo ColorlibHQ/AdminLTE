@@ -47,7 +47,7 @@
 .skin-green .main-header .logo {
   background-color: #008d4c;
   color: #ffffff;
-  border-bottom: 1px solid transparent;
+  border-bottom: 0px solid transparent;
 }
 .skin-green .main-header .logo > a {
   color: #ffffff;

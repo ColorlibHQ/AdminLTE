@@ -47,7 +47,7 @@
 .skin-yellow .main-header .logo {
   background-color: #e08e0b;
   color: #ffffff;
-  border-bottom: 1px solid transparent;
+  border-bottom: 0px solid transparent;
 }
 .skin-yellow .main-header .logo > a {
   color: #ffffff;
