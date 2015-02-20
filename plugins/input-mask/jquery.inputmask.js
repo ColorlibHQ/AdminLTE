@@ -464,7 +464,6 @@
 
                 while (--position > 0 && !isMask(position)) {
                 }
-                ;
                 return position;
             }
 
@@ -853,9 +852,6 @@
                 }
                 return end - (lengthBefore - buffer.length); //return new start position
             }
-
-            ;
-
 
             function HandleRemove(input, k, pos) {
                 if (opts.numericInput || isRTL) {
@@ -1419,8 +1415,7 @@
                         return getActiveBuffer().join('');
                 }
             }
-        };
-
+        }
         $.inputmask = {
             //options default
             defaults: {

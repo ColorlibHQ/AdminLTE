@@ -27,7 +27,7 @@ if (typeof jQuery === "undefined") {
  *				prevents conflict with other plugins and is a better
  *				way to organize our code.
  */
-$.AdminLTE = new Object();
+$.AdminLTE = {};
 
 /* --------------------
  * - AdminLTE Options -

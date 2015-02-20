@@ -89,8 +89,7 @@ Allows for using regular expressions as a mask
 
                             if (currentToken.matches.length > 0)
                                 opts.regexTokens.push(currentToken);
-                        };
-
+                        }
                         function validateRegexToken(token, fromGroup) {
                             var isvalid = false;
                             if (fromGroup) {

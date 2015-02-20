@@ -44,8 +44,8 @@
 						window.addEventListener('message', handler, false);
 					} else {
 						window.attachEvent("onmessage", handler);
-					};
-				};
+                    }
+                };
 				var _sendCmd = function(o) {
 					var str,
 						type = Object.prototype.toString,
@@ -57,9 +57,8 @@
 					if (type.call(o.message) == "[object Object]") {
 						(o.message['id']) ? o.message['id'] : o.message['id'] = id;
 						message = o.message;
-					};
-
-					str = JSON.stringify(message, fn);
+                    }
+                    str = JSON.stringify(message, fn);
 					target.postMessage(str, '*');
 				};
 
@@ -88,7 +87,7 @@
 				            if (scriptTag.readyState == "loaded" ||
 				            scriptTag.readyState == "complete") {
 				                scriptTag.onreadystatechange = null;
-				                setTimeout(function(){scriptTag.parentNode.removeChild(scriptTag)},1)
+				                setTimeout(function(){scriptTag.parentNode.removeChild(scriptTag)},1);
 				                callback();
 				            }
 				        };
@@ -98,13 +97,11 @@
 				           setTimeout(function(){scriptTag.parentNode.removeChild(scriptTag)},1);
 				           callback();
 				        };
-				    };
-				    scriptTag.src = src;
+                    }
+                    scriptTag.src = src;
 				    document.getElementsByTagName("head")[0].appendChild(scriptTag);
-				};
-
-
-				window.onload = function(){
+                }
+            window.onload = function(){
 					 loadScript(appString, function(){
 						manageMessageTmp.send({
 							'id': 'iframeOnload',

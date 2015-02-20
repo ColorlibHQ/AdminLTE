@@ -4,16 +4,15 @@
  */
 /* skin-black navbar */
 .skin-black .main-header {
-  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0);
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0);
-  border-bottom: 1px solid #ddd;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
 }
 .skin-black .main-header .navbar-toggle {
   color: #333;
 }
 .skin-black .main-header .navbar-brand {
   color: #333;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #eee;
 }
 .skin-black .main-header > .navbar {
   background-color: #ffffff;
@@ -42,21 +41,21 @@
 }
 .skin-black .main-header > .navbar > .sidebar-toggle {
   color: #333;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #eee;
 }
 .skin-black .main-header > .navbar .navbar-nav > li > a {
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #eee;
 }
 .skin-black .main-header > .navbar .navbar-custom-menu .navbar-nav > li > a,
 .skin-black .main-header > .navbar .navbar-right > li > a {
-  border-left: 1px solid #ddd;
+  border-left: 1px solid #eee;
   border-right-width: 0;
 }
 .skin-black .main-header > .logo {
   background-color: #ffffff;
   color: #333333;
   border-bottom: 0px solid transparent;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #eee;
 }
 .skin-black .main-header > .logo > a {
   color: #333333;
