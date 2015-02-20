@@ -99,7 +99,7 @@ body {
 .content-wrapper,
 .right-side {
   min-height: 100%;
-  background-color: #f4f5f7;
+  background-color: #ecf0f5;
   z-index: 800;
 }
 .main-footer {
