@@ -62,7 +62,11 @@
     background-color: #fff;
     padding: 7px 10px;
     border-bottom: 1px solid #eeeeee;
-    color: #444444;
+    color: #444!important;
+    @media (max-width: @screen-sm-max) {
+      background: #fff!important;
+      color: #444!important;
+    }
     text-align: center;
     //Hover state
     &:hover {
@@ -217,8 +221,12 @@
       border-bottom: 1px solid #f4f4f4;
       border-top: 1px solid #dddddd;
       .clearfix();
-      > div > a {
-        color: @light-blue;
+      a {
+        color: #444 !important;
+        @media (max-width: @screen-sm-max) {
+          background: #fff !important;
+          color: #444 !important;
+        }
       }
     }
 
@@ -316,7 +324,7 @@
       }
     }
   }
-@media (max-width: @screen-sm) {
+@media (max-width: @screen-sm-max) {
   .navbar-custom-menu > .navbar-nav {
     float: right;
     > li {
@@ -325,22 +333,8 @@
         position: absolute;
         right: 5%;
         left: auto;
-        border-right: 1px solid #ddd;
-        border-bottom: 1px solid #ddd;
-        border-left: 1px solid #ddd;
+        border: 1px solid #ddd;
         background: #fff;
-      }
-    }
-  }
-}
-
-/* Fix menu positions on xs screens to appear correctly and fully */
-@media (max-width: @screen-sm) {
-  .navbar-nav  {
-    > li > .dropdown-menu {
-      /* Remove arrow from the top */
-      &:after, & > li.header:after {
-        border-width: 0px!important;
       }
     }
   }

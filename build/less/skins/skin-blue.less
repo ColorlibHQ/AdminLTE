@@ -2,7 +2,6 @@
  * Skin: Blue
  * ----------
  */
-
 @import "../../bootstrap-less/mixins.less";
 @import "../../bootstrap-less/variables.less";
 @import "../variables.less";
@@ -19,11 +18,11 @@
           background-color: darken(@light-blue, 5%);
         }
       }
-      @media(max-width: @screen-header-collapse) {
+      @media (max-width: @screen-header-collapse) {
         .dropdown-menu {
           li {
             &.divider {
-              background-color: rgba(255,255,255,0.1);
+              background-color: rgba(255, 255, 255, 0.1);
             }
             a {
               color: #fff;
@@ -36,10 +35,10 @@
       }
     }
     //Logo
-    .logo {      
-      .logo-variant(darken(@light-blue, 5%));      
+    .logo {
+      .logo-variant(darken(@light-blue, 5%));
     }
-    
+
     li.user-header {
       background-color: @light-blue;
     }
@@ -83,7 +82,7 @@
   }
 
   // Sidebar color (Both .wrapper and .left-side are responsible for sidebar bg color)
-  .wrapper ,
+  .wrapper,
   .main-sidebar,
   .left-side {
     background: @sidebar-dark-bg;
@@ -98,7 +97,9 @@
   // skin blue treeview-menu
   .treeview-menu {
     > li {
-      > a {color: @sidebar-dark-submenu-color;}
+      > a {
+        color: @sidebar-dark-submenu-color;
+      }
       &.active > a, > a:hover {
         color: @sidebar-dark-submenu-hover-color;
       }
@@ -116,9 +117,9 @@
       height: 35px;
       .transition(all @transition-speed @transition-fn);
     }
-    input[type="text"]{
+    input[type="text"] {
       color: #666;
-      .border-radius(2px, 0, 2px, 0)!important;
+      .border-radius(2px, 0, 2px, 0) !important;
       &:focus, &:focus + .input-group-btn .btn {
         background-color: #fff;
         color: #666;
@@ -129,10 +130,11 @@
     }
     .btn {
       color: #999;
-      .border-radius(0, 2px, 0, 2px)!important;
+      .border-radius(0, 2px, 0, 2px) !important;
     }
   }
 }
+
 .skin-blue.layout-top-nav .main-header > .logo {
   .logo-variant(@light-blue);
 }

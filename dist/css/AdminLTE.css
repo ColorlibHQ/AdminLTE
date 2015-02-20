@@ -625,8 +625,16 @@ a:focus {
   background-color: #fff;
   padding: 7px 10px;
   border-bottom: 1px solid #eeeeee;
-  color: #444444;
+  color: #444!important;
   text-align: center;
+}
+@media (max-width: 991px) {
+  .navbar-nav > .notifications-menu > .dropdown-menu > li.footer > a,
+  .navbar-nav > .messages-menu > .dropdown-menu > li.footer > a,
+  .navbar-nav > .tasks-menu > .dropdown-menu > li.footer > a {
+    background: #fff!important;
+    color: #444!important;
+  }
 }
 .navbar-nav > .notifications-menu > .dropdown-menu > li.footer > a:hover,
 .navbar-nav > .messages-menu > .dropdown-menu > li.footer > a:hover,
@@ -761,8 +769,14 @@ a:focus {
 .navbar-nav > .user-menu > .dropdown-menu > .user-body:after {
   clear: both;
 }
-.navbar-nav > .user-menu > .dropdown-menu > .user-body > div > a {
-  color: #3c8dbc;
+.navbar-nav > .user-menu > .dropdown-menu > .user-body a {
+  color: #444 !important;
+}
+@media (max-width: 991px) {
+  .navbar-nav > .user-menu > .dropdown-menu > .user-body a {
+    background: #fff !important;
+    color: #444 !important;
+  }
 }
 .navbar-nav > .user-menu > .dropdown-menu > .user-footer {
   background-color: #f9f9f9;
@@ -853,7 +867,7 @@ a:focus {
   right: 0;
   left: auto;
 }
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .navbar-custom-menu > .navbar-nav {
     float: right;
   }
@@ -864,20 +878,8 @@ a:focus {
     position: absolute;
     right: 5%;
     left: auto;
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    border-left: 1px solid #ddd;
+    border: 1px solid #ddd;
     background: #fff;
-  }
-}
-/* Fix menu positions on xs screens to appear correctly and fully */
-@media (max-width: 768px) {
-  .navbar-nav > li > .dropdown-menu {
-    /* Remove arrow from the top */
-  }
-  .navbar-nav > li > .dropdown-menu:after,
-  .navbar-nav > li > .dropdown-menu > li.header:after {
-    border-width: 0px!important;
   }
 }
 /*
