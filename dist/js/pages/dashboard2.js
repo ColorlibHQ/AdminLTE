@@ -142,7 +142,7 @@ $(function () {
     //String - The colour of each segment stroke
     segmentStrokeColor: "#fff",
     //Number - The width of each segment stroke
-    segmentStrokeWidth: 2,
+    segmentStrokeWidth: 1,
     //Number - The percentage of the chart that we cut out of the middle
     percentageInnerCutout: 50, // This is 0 for Pie charts
     //Number - Amount of animation steps
