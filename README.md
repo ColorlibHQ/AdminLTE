@@ -27,15 +27,22 @@ Using The Command Line:
 **Github**
 
 - Fork the repository ([here is the guide](https://help.github.com/articles/fork-a-repo/)).
-- Clone to your machine ```git clone https://github.com/YOUR_USERNAME/AdminLTE.git"```
+- Clone to your machine 
+```
+git clone https://github.com/YOUR_USERNAME/AdminLTE.git"
+```
 
 **Bower**
 
-```bower install git://github.com/almasaeed2010/AdminLTE.git```
+```
+bower install git://github.com/almasaeed2010/AdminLTE.git
+```
 
 **Composer**
 
-```composer require "almasaeed2010/adminlte=~2.0"```
+```
+composer require "almasaeed2010/adminlte=~2.0"
+```
 
 Documentation
 =============
