@@ -3,7 +3,7 @@ CHANGE LOG:
 v2.0
 - Major layout bug fixes
 - Change in layout mark up
-- Added transitions to sidebar collapse
+- Added transitions to the sidebar
 - New skins and modified previous skins
 - Change in color scheme to a more complementing scheme 
 - Added footer support
@@ -18,6 +18,9 @@ v2.0
 - Added ChartJS 1.0.1
 - Removed iCheck dependency
 - Created Dashboard 2.0
+- Created new Chat widget (DirectChat)
+- Added transitions to DirectChat
+- Added contacts pane to DirectChat
 - Changed .right-side to .content-wrapper
 - Changed .navbar-right to .navbar-custom-menu
 - Removed unused files
@@ -27,3 +30,4 @@ v2.0
 - Enhanced border-radius consistency
 - Added mailbox: inbox, read, and compose pages
 - Bootstrap & jQuery are now hosted locally
+- Created documentation.
