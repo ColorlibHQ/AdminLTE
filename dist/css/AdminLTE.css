@@ -561,7 +561,7 @@ a:focus {
  */
 /*Dropdowns in general*/
 .dropdown-menu {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   border-color: #eee;
 }
 .dropdown-menu > li > a {
@@ -1084,7 +1084,7 @@ a:focus {
   position: relative;
   display: block;
   margin-bottom: 20px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 .small-box > .inner {
   padding: 10px;
@@ -1164,7 +1164,7 @@ a:focus {
   border-top: 3px solid #d2d6de;
   margin-bottom: 20px;
   width: 100%;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 .box.box-primary {
   border-top-color: #3c8dbc;
@@ -1599,7 +1599,7 @@ a:focus {
   min-height: 90px;
   background: #fff;
   width: 100%;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 2px;
   margin-bottom: 15px;
 }
@@ -1690,8 +1690,8 @@ a:focus {
   clear: both;
 }
 .timeline > li > .timeline-item {
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
   margin-top: 0px;
   background: #fff;
@@ -2033,7 +2033,7 @@ a:focus {
 .nav-tabs-custom {
   margin-bottom: 20px;
   background: #fff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
 }
 .nav-tabs-custom > .nav-tabs {
@@ -2135,8 +2135,8 @@ a:focus {
 }
 .products-list > .item {
   border-radius: 3px;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   padding: 10px 0;
   background: #fff;
 }
@@ -3598,8 +3598,8 @@ fieldset[disabled] .btn-vk.active {
   padding: 5px 10px;
   font-weight: bold;
   margin-bottom: 4px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
   cursor: move;
 }
