@@ -78,6 +78,10 @@ License
 AdminLTE is an open source project by [Almsaeed Studio](http://almsaeedstudio.com) that is licensed under [MIT](http://opensource.org/licenses/MIT). Almsaeed Studio
 reserves the right to change the license of future releases.
 
+Legacy Realeases
+================
+AdminLTE 1.x can be easily upgraded to 2.x using [this guide](http://almsaeedstudio.com/themes/AdminLTE/documentation/index.html#browsers), but if you intend to keep using AdminLTE 1.x, you can download the latest release from the [releases](https://github.com/almasaeed2010/AdminLTE/releases) section above.
+
 Change log
 ==========
 **v2.0:**
