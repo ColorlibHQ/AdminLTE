@@ -6,7 +6,7 @@ Introduction
 **Download & Preview on [Almsaeed Studio](http://almsaeedstudio.com)**
 
 Looking for Premium Templates?
-==============================
+------------------------------
 **Almsaeed studio just opened a new premium templates page. Hand picked to insure the best quality and the most affordable prices. Visit http://almsaeedstudio.com/premium for more information.**
 
 
@@ -15,15 +15,15 @@ Looking for Premium Templates?
 **AdminLTE** has been carefully coded with clear comments in all of its JS, LESS and HTML files. LESS has been used to increase code customizability.
 
 Installation
-============
+------------
 There are multiple ways to install AdminLTE.
 
-Download:
----------
+####Download:
+
 Download from Github or [visit Almsaeed Studio](http://almsaeedstudio.com) and download the lateset release.
 
-Using The Command Line:
------------------------
+####Using The Command Line:
+
 **Github**
 
 - Fork the repository ([here is the guide](https://help.github.com/articles/fork-a-repo/)).
@@ -45,12 +45,12 @@ composer require "almasaeed2010/adminlte=~2.0"
 ```
 
 Documentation
-=============
+-------------
 Visit the [online documentation](http://almsaeedstudio.com/themes/AdminLTE/documentation/index.html) for the most
 updated guide. Information will be added on a weekly basis.
 
 Browser Support
-===============
+---------------
 - IE 9+
 - Firefox (latest)
 - Chrome (latest)
@@ -58,7 +58,7 @@ Browser Support
 - Opera (latest)
 
 Contribution
-============
+------------
 Contribution are always **welcome and recommended**! Here is how:
 
 - Fork the repository ([here is the guide](https://help.github.com/articles/fork-a-repo/)).
@@ -66,24 +66,24 @@ Contribution are always **welcome and recommended**! Here is how:
 - Make your changes
 - Create a pull request
 
-Contribution Requirements:
---------------------------
+#### Contribution Requirements:
+
 - When you contribute, you agree to give a non-exclusive license to Almsaeed Studio to use that contribution in any context as we (Almsaeed Studio) see appropriate.
 - If you use content provided by another party, it must be appropriately licensed using an [open source](http://opensource.org/licenses) license.
 - Contributions are only accepted through Github pull requests.
 - Finally, contributed code must work in all supported browsers (see above for browser support).
 
 License
-=======
+-------
 AdminLTE is an open source project by [Almsaeed Studio](http://almsaeedstudio.com) that is licensed under [MIT](http://opensource.org/licenses/MIT). Almsaeed Studio
 reserves the right to change the license of future releases.
 
 Legacy Realeases
-================
+----------------
 AdminLTE 1.x can be easily upgraded to 2.x using [this guide](http://almsaeedstudio.com/themes/AdminLTE/documentation/index.html#browsers), but if you intend to keep using AdminLTE 1.x, you can download the latest release from the [releases](https://github.com/almasaeed2010/AdminLTE/releases) section above.
 
 Change log
-==========
+----------
 **v2.0:**
 
 - Major layout bug fixes
@@ -129,7 +129,7 @@ Change log
 - Added [pace](http://github.hubspot.com/pace/docs/welcome/ "pace") plugin.
 
 Image Credits
-=============
+-------------
 [Pixeden](http://www.pixeden.com/psd-web-elements/flat-responsive-showcase-psd)
 
 [Graphicsfuel](http://www.graphicsfuel.com/2013/02/13-high-resolution-blur-backgrounds/)
@@ -139,7 +139,7 @@ Image Credits
 [Unsplash](https://unsplash.com/)
 
 Donations
-=========
+---------
 Donations are **greatly appreciated!**
 
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif "AdminLTE Presentation")](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=629XCUSXBHCBC "Donate")
