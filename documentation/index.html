@@ -27,8 +27,8 @@
         font-weight: 500;
       }
       .content-wrapper {
-        background: #f4f5f7;
         padding: 0 10px;
+        font-size: 14px;
       }
       .page-header {
         border: 0;        
@@ -53,7 +53,7 @@
       .page-header span {
         z-index: 5;
         display: inline-block;
-        background-color: #f4f5f7;
+        background-color: #ecf0f5;
         padding-right: 10px;
       }
       .page-header::before {
@@ -1498,7 +1498,7 @@ AdminLTE/
                   <div class="box-header with-border">
                     <h3 class="box-title">Labels</h3>
                     <div class="box-tools pull-right">
-                      <span class="label label-default">8 New Messages</span>
+                      <span class="label label-default">Some Label</span>
                     </div><!-- /.box-tools -->
                   </div><!-- /.box-header -->
                   <div class="box-body">
@@ -1649,6 +1649,9 @@ AdminLTE/
           <section id='upgrade'>
             <h2 class='page-header'><span>Upgrade Guide</span></h2>
             <p class="lead">To upgrade from version 1.x to the lateset version, follow this guide.</p>
+            <h3>New Files</h3>
+            <p>Make sure you update all CSS and JS files that are related to AdminLTE. Otherwise, the layout will not
+            function properly. Most important files are AdminLTE.css, skins CSS files, and app.js.</p>
             <h3>Layout Changes</h3>
             <ol>
               <li>The .wrapper div must be placed immediately after the body tag rather than after the header</li>
