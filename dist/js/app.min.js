@@ -1,5 +1,5 @@
-/*! AdminLTE app.js
- * ================
+/*! AdminLTE 2.0.1 app.js
+ * ======================
  * Main JS application file for AdminLTE v2. This file
  * should be included in all pages. It controls some layout
  * options and implements exclusive AdminLTE plugins.
