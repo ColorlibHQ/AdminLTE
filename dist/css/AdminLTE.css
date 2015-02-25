@@ -889,9 +889,6 @@ a:focus {
  */
 .form-control {
   border-radius: 0px !important;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   box-shadow: none;
   border-color: #d2d6de;
 }
@@ -908,6 +905,11 @@ a:focus {
 }
 .form-control::-webkit-input-placeholder {
   color: #bbb;
+}
+.form-control:not(select) {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 .form-group.has-success label {
   color: #00a65a;

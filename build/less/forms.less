@@ -3,10 +3,7 @@
  * ---------------
  */
 .form-control {
-  .border-radius(@input-radius)!important;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  .border-radius(@input-radius)!important;  
   box-shadow: none;
   border-color: @gray;
   &:focus {
@@ -22,6 +19,12 @@
   }
   &::-webkit-input-placeholder {
     color: #bbb;
+  }
+
+  &:not(select) {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 }
 
