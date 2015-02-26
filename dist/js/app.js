@@ -274,6 +274,7 @@ $.AdminLTE.tree = function (menu) {
       //Close the menu
       checkElement.slideUp('normal', function () {
         checkElement.removeClass('menu-open');
+        $.AdminLTE.layout.fix();
       });
       checkElement.parent("li").removeClass("active");
     }
@@ -294,12 +295,15 @@ $.AdminLTE.tree = function (menu) {
         checkElement.addClass('menu-open');
         parent.find('li.active').removeClass('active');
         parent_li.addClass('active');
+
+        $.AdminLTE.layout.fix();
       });
     }
     //if this isn't a link, prevent the page from being redirected
     if (checkElement.is('.treeview-menu')) {
       e.preventDefault();
     }
+
   });
 };
 
