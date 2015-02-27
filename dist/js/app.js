@@ -176,6 +176,13 @@ $(function () {
 $.AdminLTE.layout = {
   activate: function () {
     var _this = this;
+    // add initial body sidebar class on activate
+    if ($(window).width() <= 767 && !$("body").hasClass("sidebar-open")) {
+      $('body').addClass('sidebar-collapse');
+    } else {
+      $('body').addClass('sidebar-open');
+    }
+
     _this.fix();
     _this.fixSidebar();
     $(window, ".wrapper").resize(function () {
@@ -238,13 +245,8 @@ $.AdminLTE.pushMenu = function (toggleBtn) {
   $(toggleBtn).click(function (e) {
     e.preventDefault();
     //Enable sidebar push menu
-    if ($("body").hasClass('sidebar-collapse')) {
-      $("body").removeClass('sidebar-collapse');
-      $("body").addClass('sidebar-open');
-    } else {
-      $("body").removeClass('sidebar-open');
-      $("body").addClass('sidebar-collapse');
-    }
+    $("body").toggleClass('sidebar-collapse');
+    $("body").toggleClass('sidebar-open');
   });
   $(".content-wrapper").click(function () {
     //Enable hide menu when clicking on the content-wrapper on small screens
