@@ -84,6 +84,15 @@ AdminLTE 1.x can be easily upgraded to 2.x using [this guide](http://almsaeedstu
 
 Change log
 ----------
+**v2.0.2:**
+- Solved issue with hidden arrow in select inputs.
+
+**v2.0.1:**
+- Updated README.md
+- Fixed versioning issue in CSS, LESS, and JS
+- Updated box-shadow for boxes
+- Updated docs
+
 **v2.0:**
 
 - Major layout bug fixes
