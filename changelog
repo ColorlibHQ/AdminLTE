@@ -1,6 +1,15 @@
 CHANGE LOG:
 
-v2.0
+v2.0.2:
+- Solved issue with hidden arrow in select inputs.
+
+v2.0.1:
+- Updated README.md
+- Fixed versioning issue in CSS, LESS, and JS
+- Updated box-shadow for boxes
+- Updated docs
+
+v2.0.0
 - Major layout bug fixes
 - Change in layout mark up
 - Added transitions to the sidebar
