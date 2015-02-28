@@ -1,10 +1,5 @@
 'use strict';
 $(function () {
-  
-  //Simple implementation of direct chat contact pane toggle (TEMPORARY)
-  $('[data-widget="chat-pane-toggle"]').click(function(){
-    $("#myDirectChat").toggleClass('direct-chat-contacts-open');
-  });
 
   /* ChartJS
    * -------

@@ -11,12 +11,12 @@
  * @license MIT <http://opensource.org/licenses/MIT>
  */
 
+'use strict';
+
 //Make sure jQuery has been loaded before app.js
 if (typeof jQuery === "undefined") {
   throw new Error("AdminLTE requires jQuery");
 }
-
-'use strict';
 
 /* AdminLTE
  *
@@ -76,6 +76,13 @@ $.AdminLTE.options = {
       //Collapse button selector
       collapse: '[data-widget="collapse"]'
     }
+  },
+  //Direct Chat plugin options
+  directChat: {
+    //Enable direct chat by default
+    enable: true,
+    //The button to open and close the chat contacts pane
+    contactToggleSelector: '[data-widget="chat-pane-toggle"]'
   },
   //Define the set of colors to use globally around the website
   colors: {
@@ -138,9 +145,18 @@ $(function () {
   if (o.enableBoxWidget) {
     $.AdminLTE.boxWidget.activate();
   }
-  
-  if(o.enableFastclick && typeof FastClick != 'undefined') {
+
+  //Activate fast click
+  if (o.enableFastclick && typeof FastClick != 'undefined') {
     FastClick.attach(document.body);
+  }
+
+  //Activate direct chat widget
+  if (o.directChat.enable) {
+    $(o.directChat.contactToggleSelector).click(function () {
+      var box = $(this).parents('.direct-chat').first();
+      box.toggleClass('direct-chat-contacts-open');
+    });
   }
 
   /*
