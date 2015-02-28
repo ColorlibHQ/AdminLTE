@@ -183,10 +183,15 @@
 //User menu
 .navbar-nav > .user-menu {
   > .dropdown-menu {
-    .border-radius(0);
+    .border-top-radius(0);    
     padding: 1px 0 0 0;
     border-top-width: 0;
     width: 280px;
+    
+    &,
+    > .user-body {
+      .border-bottom-radius(4px);
+    }
     // Header menu
     > li.user-header {
       height: 175px;
