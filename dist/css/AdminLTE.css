@@ -52,7 +52,7 @@ body {
 }
 /*
  * Content Wrapper - contins main content
- * ```.right-side has been deprecated as of v2.0 in favor of .content-wrapper  ```
+ * ```.right-side has been deprecated as of v2.0.0 in favor of .content-wrapper  ```
  */
 .content-wrapper,
 .right-side,
@@ -329,6 +329,7 @@ a:focus {
 .content-header > .breadcrumb > li > a {
   color: #444;
   text-decoration: none;
+  display: inline-block;
 }
 .content-header > .breadcrumb > li > a > .fa,
 .content-header > .breadcrumb > li > a > .glyphicon,
