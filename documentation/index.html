@@ -186,7 +186,9 @@
               <ul class='nav treeview-menu'>
                 <li><a href='#component-main-header'>Main Header</a></li>
                 <li><a href='#component-sidebar'>Sidebar</a></li>
+                <li><a href='#component-info-box'>Info Box</a></li>                
                 <li><a href='#component-box'>Boxes</a></li>
+                <li><a href='#component-direct-chat'>Direct Chat</a></li>
               </ul>
             </li>
             <li><a href="#plugins"><i class='fa fa-circle-o'></i> Plugins</a></li>
@@ -332,7 +334,7 @@ AdminLTE/
             </ul>
             <div class="callout callout-danger lead">
               <h4>Tip!</h4>
-              <p>Use the blank example page located in <a href="../pages/examples/blank.html">pages/examples/blank.html</a> to build your own pages.</p>
+              <p>The <a href="../starter.html">starter page</a> is a good place to start building your app if you'd like to start from scratch.</p>
             </div>
             <p>A full layout example for a quick start</p>
             <pre class='prettyprint'>
@@ -1219,6 +1221,144 @@ AdminLTE/
 
             <!-- ----------------------------------------------------------- -->
 
+            <h3 id="component-info-box">Info Box</h3>
+            <p class="lead">Info boxes are used to display statistical snippets. There are two types of info boxes. Example of the first type:</p>
+            <!-- Info Boxes -->
+            <div class="row">
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                  <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Messages</span>
+                    <span class="info-box-number">1,410</span>
+                  </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+              </div><!-- /.col -->
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                  <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Bookmarks</span>
+                    <span class="info-box-number">410</span>
+                  </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+              </div><!-- /.col -->
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                  <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Uploads</span>
+                    <span class="info-box-number">13,648</span>
+                  </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+              </div><!-- /.col -->
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                  <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Likes</span>
+                    <span class="info-box-number">93,139</span>
+                  </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+            <p class="lead">Markup</p>
+            <pre class="prettyprint"><code class="html">
+&LT;div class="info-box">
+  &LT;-- Apply any bg-* class to to the icon to color it -->
+  &LT;span class="info-box-icon bg-red">&LT;i class="fa fa-star-o">&LT;/i>&LT;/span>
+  &LT;div class="info-box-content">
+    &LT;span class="info-box-text">Likes&LT;/span>
+    &LT;span class="info-box-number">93,139&LT;/span>
+  &LT;/div>&LT;!-- /.info-box-content -->
+&LT;/div>&LT;!-- /.info-box -->
+</code></pre>
+
+            <h4>Second Type of Info Boxes</h4>
+            <div class="row">
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-aqua">
+                  <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Bookmarks</span>
+                    <span class="info-box-number">41,410</span>
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 70%"></div>
+                    </div>
+                    <span class="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+                  </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+              </div><!-- /.col -->
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-green">
+                  <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Likes</span>
+                    <span class="info-box-number">41,410</span>
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 70%"></div>
+                    </div>
+                    <span class="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+                  </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+              </div><!-- /.col -->
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-yellow">
+                  <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Events</span>
+                    <span class="info-box-number">41,410</span>
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 70%"></div>
+                    </div>
+                    <span class="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+                  </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+              </div><!-- /.col -->
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-red">
+                  <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Comments</span>
+                    <span class="info-box-number">41,410</span>
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 70%"></div>
+                    </div>
+                    <span class="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+                  </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+            <p class="lead">Markup</p>
+            <pre class="prettyprint"><code class="html">
+&LT;-- Apply any bg-* class to to the info-box to color it -->
+&LT;div class="info-box bg-red">
+  &LT;span class="info-box-icon">&LT;i class="fa fa-comments-o">&LT;/i>&LT;/span>
+  &LT;div class="info-box-content">
+    &LT;span class="info-box-text">Likes&LT;/span>
+    &LT;span class="info-box-number">41,410&LT;/span>
+    &LT;-- The progress section is optional -->
+    &LT;div class="progress">
+      &LT;div class="progress-bar" style="width: 70%">&LT;/div>
+    &LT;/div>
+    &LT;span class="progress-description">
+      70% Increase in 30 Days
+    &LT;/span>
+  &LT;/div>&LT;!-- /.info-box-content -->
+&LT;/div>&LT;!-- /.info-box -->
+</code></pre>
+            <p class="lead">The only thing you need to change to alternate between these style is change the placement of the bg-* class. For the 
+              first style apply any bg-* class to the icon itself. For the other style, apply the bg-* class to the info-box div.</p>
+            <!-- ----------------------------------------------------------- -->
+
             <h3 id='component-box'>Box</h3>
             <p class="lead">The box component is the most widely used component through out this template. You can
               use it for anything from displaying charts to just blocks of text. It comes in many different
@@ -1408,7 +1548,7 @@ AdminLTE/
             <p class="lead">Boxes can contain tools to deploy a specific event or provide simple info. The following examples makes use
               of multiple AdminLTE components within the header of the box.</p>
             <p>AdminLTE data-widget attribute provides boxes with the ability to collapse or be removed. The buttons
-            are placed in the box-tools which is placed in the box-header.</p>
+              are placed in the box-tools which is placed in the box-header.</p>
             <pre class="prettyprint">
 &LT;-- This will cause the box to be removed when clicked -->
 &LT;button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">&LT;i class="fa fa-times">&LT;/i>&LT;/button>
@@ -1577,6 +1717,409 @@ AdminLTE/
 &LT;/div>&LT;!-- /.box --></pre>
               </div><!-- /.col -->
             </div><!-- /.row -->
+
+            <h4>Loading States</h4>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="box box-default">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Loading state</h3>
+                  </div>
+                  <div class="box-body">
+                    The body of the box
+                  </div><!-- /.box-body -->
+                  <!-- Loading (remove the following to stop the loading)-->
+                  <div class="overlay">
+                    <i class="fa fa-refresh fa-spin"></i>
+                  </div>
+                  <!-- end loading -->
+                </div><!-- /.box -->                
+              </div><!-- /.col -->
+              
+              <div class="col-md-6">
+                <div class="box box-default box-solid">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Loading state (.box-solid)</h3>
+                  </div>
+                  <div class="box-body">
+                    The body of the box
+                  </div><!-- /.box-body -->
+                  <!-- Loading (remove the following to stop the loading)-->
+                  <div class="overlay">
+                    <i class="fa fa-refresh fa-spin"></i>
+                  </div>
+                  <!-- end loading -->
+                </div><!-- /.box -->                
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+            <p class="lead">
+              To simulate a loading state, simply place this code before the <code>.box</code> closing tag.              
+            </p>
+            <pre class="prettyprint"><code class="html">&LT;div class="overlay">
+  &LT;i class="fa fa-refresh fa-spin">&LT;/i>
+&LT;/div>
+</code></pre>
+            <h3 id="component-direct-chat">Direct Chat</h3>
+            <p class="lead">The direct chat widget extends the box component to create a beautiful chat interface. This widget
+              consists of a required messages pane and an <b>optional</b> contacts pane. Examples:</p>
+            <!-- Direct Chat -->
+            <div class="row">
+              <div class="col-md-3">
+                <!-- DIRECT CHAT PRIMARY -->
+                <div class="box box-primary direct-chat direct-chat-primary">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Direct Chat</h3>
+                    <div class="box-tools pull-right">
+                      <span data-toggle="tooltip" title="3 New Messages" class='badge bg-light-blue'>3</span>
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                      <button class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle"><i class="fa fa-comments"></i></button>
+                      <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    <!-- Conversations are loaded here -->
+                    <div class="direct-chat-messages">
+                      <!-- Message. Default to the left -->
+                      <div class="direct-chat-msg">
+                        <div class='direct-chat-info clearfix'>
+                          <span class='direct-chat-name pull-left'>Alexander Pierce</span>
+                          <span class='direct-chat-timestamp pull-right'>23 Jan 2:00 pm</span>
+                        </div><!-- /.direct-chat-info -->
+                        <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="message user image" /><!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                          Is this template really for free? That's unbelievable!
+                        </div><!-- /.direct-chat-text -->
+                      </div><!-- /.direct-chat-msg -->
+
+                      <!-- Message to the right -->
+                      <div class="direct-chat-msg right">
+                        <div class='direct-chat-info clearfix'>
+                          <span class='direct-chat-name pull-right'>Sarah Bullock</span>
+                          <span class='direct-chat-timestamp pull-left'>23 Jan 2:05 pm</span>
+                        </div><!-- /.direct-chat-info -->
+                        <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="message user image" /><!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                          You better believe it!
+                        </div><!-- /.direct-chat-text -->
+                      </div><!-- /.direct-chat-msg -->                    
+                    </div><!--/.direct-chat-messages-->
+
+                    <!-- Contacts are loaded here -->
+                    <div class="direct-chat-contacts">
+                      <ul class='contacts-list'>
+                        <li>
+                          <a href='#'>
+                            <img class='contacts-list-img' src='../dist/img/user1-128x128.jpg'/>
+                            <div class='contacts-list-info'>
+                              <span class='contacts-list-name'>
+                                Count Dracula
+                                <small class='contacts-list-date pull-right'>2/28/2015</small>
+                              </span>
+                              <span class='contacts-list-msg'>How have you been? I was...</span>
+                            </div><!-- /.contacts-list-info -->
+                          </a>
+                        </li><!-- End Contact Item -->                      
+                      </ul><!-- /.contatcts-list -->
+                    </div><!-- /.direct-chat-pane -->
+                  </div><!-- /.box-body -->
+                  <div class="box-footer">
+                    <form action="#" method="post">
+                      <div class="input-group">
+                        <input type="text" name="message" placeholder="Type Message ..." class="form-control"/>
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-primary btn-flat">Send</button>
+                        </span>
+                      </div>
+                    </form>
+                  </div><!-- /.box-footer-->
+                </div><!--/.direct-chat -->
+              </div><!-- /.col -->
+
+              <div class="col-md-3">
+                <!-- DIRECT CHAT SUCCESS -->
+                <div class="box box-success direct-chat direct-chat-success">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Direct Chat</h3>
+                    <div class="box-tools pull-right">
+                      <span data-toggle="tooltip" title="3 New Messages" class='badge bg-green'>3</span>
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                      <button class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle"><i class="fa fa-comments"></i></button>
+                      <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    <!-- Conversations are loaded here -->
+                    <div class="direct-chat-messages">
+                      <!-- Message. Default to the left -->
+                      <div class="direct-chat-msg">
+                        <div class='direct-chat-info clearfix'>
+                          <span class='direct-chat-name pull-left'>Alexander Pierce</span>
+                          <span class='direct-chat-timestamp pull-right'>23 Jan 2:00 pm</span>
+                        </div><!-- /.direct-chat-info -->
+                        <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="message user image" /><!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                          Is this template really for free? That's unbelievable!
+                        </div><!-- /.direct-chat-text -->
+                      </div><!-- /.direct-chat-msg -->
+
+                      <!-- Message to the right -->
+                      <div class="direct-chat-msg right">
+                        <div class='direct-chat-info clearfix'>
+                          <span class='direct-chat-name pull-right'>Sarah Bullock</span>
+                          <span class='direct-chat-timestamp pull-left'>23 Jan 2:05 pm</span>
+                        </div><!-- /.direct-chat-info -->
+                        <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="message user image" /><!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                          You better believe it!
+                        </div><!-- /.direct-chat-text -->
+                      </div><!-- /.direct-chat-msg -->                    
+                    </div><!--/.direct-chat-messages-->
+
+                    <!-- Contacts are loaded here -->
+                    <div class="direct-chat-contacts">
+                      <ul class='contacts-list'>
+                        <li>
+                          <a href='#'>
+                            <img class='contacts-list-img' src='../dist/img/user1-128x128.jpg'/>
+                            <div class='contacts-list-info'>
+                              <span class='contacts-list-name'>
+                                Count Dracula
+                                <small class='contacts-list-date pull-right'>2/28/2015</small>
+                              </span>
+                              <span class='contacts-list-msg'>How have you been? I was...</span>
+                            </div><!-- /.contacts-list-info -->
+                          </a>
+                        </li><!-- End Contact Item -->                      
+                      </ul><!-- /.contatcts-list -->
+                    </div><!-- /.direct-chat-pane -->
+                  </div><!-- /.box-body -->
+                  <div class="box-footer">
+                    <form action="#" method="post">
+                      <div class="input-group">
+                        <input type="text" name="message" placeholder="Type Message ..." class="form-control"/>
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-success btn-flat">Send</button>
+                        </span>
+                      </div>
+                    </form>
+                  </div><!-- /.box-footer-->
+                </div><!--/.direct-chat -->
+              </div><!-- /.col -->
+
+              <div class="col-md-3">
+                <!-- DIRECT CHAT WARNING -->
+                <div class="box box-warning direct-chat direct-chat-warning">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Direct Chat</h3>
+                    <div class="box-tools pull-right">
+                      <span data-toggle="tooltip" title="3 New Messages" class='badge bg-yellow'>3</span>
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                      <button class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle"><i class="fa fa-comments"></i></button>
+                      <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    <!-- Conversations are loaded here -->
+                    <div class="direct-chat-messages">
+                      <!-- Message. Default to the left -->
+                      <div class="direct-chat-msg">
+                        <div class='direct-chat-info clearfix'>
+                          <span class='direct-chat-name pull-left'>Alexander Pierce</span>
+                          <span class='direct-chat-timestamp pull-right'>23 Jan 2:00 pm</span>
+                        </div><!-- /.direct-chat-info -->
+                        <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="message user image" /><!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                          Is this template really for free? That's unbelievable!
+                        </div><!-- /.direct-chat-text -->
+                      </div><!-- /.direct-chat-msg -->
+
+                      <!-- Message to the right -->
+                      <div class="direct-chat-msg right">
+                        <div class='direct-chat-info clearfix'>
+                          <span class='direct-chat-name pull-right'>Sarah Bullock</span>
+                          <span class='direct-chat-timestamp pull-left'>23 Jan 2:05 pm</span>
+                        </div><!-- /.direct-chat-info -->
+                        <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="message user image" /><!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                          You better believe it!
+                        </div><!-- /.direct-chat-text -->
+                      </div><!-- /.direct-chat-msg -->                    
+                    </div><!--/.direct-chat-messages-->
+
+                    <!-- Contacts are loaded here -->
+                    <div class="direct-chat-contacts">
+                      <ul class='contacts-list'>
+                        <li>
+                          <a href='#'>
+                            <img class='contacts-list-img' src='../dist/img/user1-128x128.jpg'/>
+                            <div class='contacts-list-info'>
+                              <span class='contacts-list-name'>
+                                Count Dracula
+                                <small class='contacts-list-date pull-right'>2/28/2015</small>
+                              </span>
+                              <span class='contacts-list-msg'>How have you been? I was...</span>
+                            </div><!-- /.contacts-list-info -->
+                          </a>
+                        </li><!-- End Contact Item -->                      
+                      </ul><!-- /.contatcts-list -->
+                    </div><!-- /.direct-chat-pane -->
+                  </div><!-- /.box-body -->
+                  <div class="box-footer">
+                    <form action="#" method="post">
+                      <div class="input-group">
+                        <input type="text" name="message" placeholder="Type Message ..." class="form-control"/>
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-warning btn-flat">Send</button>
+                        </span>
+                      </div>
+                    </form>
+                  </div><!-- /.box-footer-->
+                </div><!--/.direct-chat -->
+              </div><!-- /.col -->
+
+              <div class="col-md-3">
+                <!-- DIRECT CHAT DANGER -->
+                <div class="box box-danger direct-chat direct-chat-danger">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Direct Chat</h3>
+                    <div class="box-tools pull-right">
+                      <span data-toggle="tooltip" title="3 New Messages" class='badge bg-red'>3</span>
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                      <button class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle"><i class="fa fa-comments"></i></button>
+                      <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    <!-- Conversations are loaded here -->
+                    <div class="direct-chat-messages">
+                      <!-- Message. Default to the left -->
+                      <div class="direct-chat-msg">
+                        <div class='direct-chat-info clearfix'>
+                          <span class='direct-chat-name pull-left'>Alexander Pierce</span>
+                          <span class='direct-chat-timestamp pull-right'>23 Jan 2:00 pm</span>
+                        </div><!-- /.direct-chat-info -->
+                        <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="message user image" /><!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                          Is this template really for free? That's unbelievable!
+                        </div><!-- /.direct-chat-text -->
+                      </div><!-- /.direct-chat-msg -->
+
+                      <!-- Message to the right -->
+                      <div class="direct-chat-msg right">
+                        <div class='direct-chat-info clearfix'>
+                          <span class='direct-chat-name pull-right'>Sarah Bullock</span>
+                          <span class='direct-chat-timestamp pull-left'>23 Jan 2:05 pm</span>
+                        </div><!-- /.direct-chat-info -->
+                        <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="message user image" /><!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                          You better believe it!
+                        </div><!-- /.direct-chat-text -->
+                      </div><!-- /.direct-chat-msg -->                    
+                    </div><!--/.direct-chat-messages-->
+
+                    <!-- Contacts are loaded here -->
+                    <div class="direct-chat-contacts">
+                      <ul class='contacts-list'>
+                        <li>
+                          <a href='#'>
+                            <img class='contacts-list-img' src='../dist/img/user1-128x128.jpg'/>
+                            <div class='contacts-list-info'>
+                              <span class='contacts-list-name'>
+                                Count Dracula
+                                <small class='contacts-list-date pull-right'>2/28/2015</small>
+                              </span>
+                              <span class='contacts-list-msg'>How have you been? I was...</span>
+                            </div><!-- /.contacts-list-info -->
+                          </a>
+                        </li><!-- End Contact Item -->                      
+                      </ul><!-- /.contatcts-list -->
+                    </div><!-- /.direct-chat-pane -->
+                  </div><!-- /.box-body -->
+                  <div class="box-footer">
+                    <form action="#" method="post">
+                      <div class="input-group">
+                        <input type="text" name="message" placeholder="Type Message ..." class="form-control"/>
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-danger btn-flat">Send</button>
+                        </span>
+                      </div>
+                    </form>
+                  </div><!-- /.box-footer-->
+                </div><!--/.direct-chat -->
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+            <p class="lead">Direct Chat Markup</p>
+            <pre class="prettyprint"><code class="html">
+&LT;-- Construct the box with style you want. Here we are using box-danger -->
+&LT;-- Then add the class direct-chat and choose the direct-chat-* contexual class -->
+&LT;-- The contextual class should match the box, so we are using direct-chat-danger -->
+&LT;div class="box box-danger direct-chat direct-chat-danger">
+  &LT;div class="box-header with-border">
+    &LT;h3 class="box-title">Direct Chat&LT;/h3>
+    &LT;div class="box-tools pull-right">
+      &LT;span data-toggle="tooltip" title="3 New Messages" class='badge bg-red'>3&LT;/span>
+      &LT;button class="btn btn-box-tool" data-widget="collapse">&LT;i class="fa fa-minus">&LT;/i>&LT;/button>
+      &LT;-- In box-tools add this button if you intend to use the contacts pane -->
+      &LT;button class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">&LT;i class="fa fa-comments">&LT;/i>&LT;/button>
+      &LT;button class="btn btn-box-tool" data-widget="remove">&LT;i class="fa fa-times">&LT;/i>&LT;/button>
+    &LT;/div>
+  &LT;/div>&LT;!-- /.box-header -->
+  &LT;div class="box-body">
+    &LT;!-- Conversations are loaded here -->
+    &LT;div class="direct-chat-messages">
+      &LT;!-- Message. Default to the left -->
+      &LT;div class="direct-chat-msg">
+        &LT;div class='direct-chat-info clearfix'>
+          &LT;span class='direct-chat-name pull-left'>Alexander Pierce&LT;/span>
+          &LT;span class='direct-chat-timestamp pull-right'>23 Jan 2:00 pm&LT;/span>
+        &LT;/div>&LT;!-- /.direct-chat-info -->
+        &LT;img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="message user image" />&LT;!-- /.direct-chat-img -->
+        &LT;div class="direct-chat-text">
+          Is this template really for free? That's unbelievable!
+        &LT;/div>&LT;!-- /.direct-chat-text -->
+      &LT;/div>&LT;!-- /.direct-chat-msg -->
+
+      &LT;!-- Message to the right -->
+      &LT;div class="direct-chat-msg right">
+        &LT;div class='direct-chat-info clearfix'>
+          &LT;span class='direct-chat-name pull-right'>Sarah Bullock&LT;/span>
+          &LT;span class='direct-chat-timestamp pull-left'>23 Jan 2:05 pm&LT;/span>
+        &LT;/div>&LT;!-- /.direct-chat-info -->
+        &LT;img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="message user image" />&LT;!-- /.direct-chat-img -->
+        &LT;div class="direct-chat-text">
+          You better believe it!
+        &LT;/div>&LT;!-- /.direct-chat-text -->
+      &LT;/div>&LT;!-- /.direct-chat-msg -->                    
+    &LT;/div>&LT;!--/.direct-chat-messages-->
+
+    &LT;!-- Contacts are loaded here -->
+    &LT;div class="direct-chat-contacts">
+      &LT;ul class='contacts-list'>
+        &LT;li>
+          &LT;a href='#'>
+            &LT;img class='contacts-list-img' src='../dist/img/user1-128x128.jpg'/>
+            &LT;div class='contacts-list-info'>
+              &LT;span class='contacts-list-name'>
+                Count Dracula
+                &LT;small class='contacts-list-date pull-right'>2/28/2015&LT;/small>
+              &LT;/span>
+              &LT;span class='contacts-list-msg'>How have you been? I was...&LT;/span>
+            &LT;/div>&LT;!-- /.contacts-list-info -->
+          &LT;/a>
+        &LT;/li>&LT;!-- End Contact Item -->                      
+      &LT;/ul>&LT;!-- /.contatcts-list -->
+    &LT;/div>&LT;!-- /.direct-chat-pane -->
+  &LT;/div>&LT;!-- /.box-body -->
+  &LT;div class="box-footer">
+    &LT;div class="input-group">
+      &LT;input type="text" name="message" placeholder="Type Message ..." class="form-control"/>
+      &LT;span class="input-group-btn">
+        &LT;button type="button" class="btn btn-danger btn-flat">Send&LT;/button>
+      &LT;/span>
+    &LT;/div>
+  &LT;/div>&LT;!-- /.box-footer-->
+&LT;/div>&LT;!--/.direct-chat -->
+</code></pre>
           </section>
 
           <!-- ============================================================= -->
@@ -1651,7 +2194,7 @@ AdminLTE/
             <p class="lead">To upgrade from version 1.x to the lateset version, follow this guide.</p>
             <h3>New Files</h3>
             <p>Make sure you update all CSS and JS files that are related to AdminLTE. Otherwise, the layout will not
-            function properly. Most important files are AdminLTE.css, skins CSS files, and app.js.</p>
+              function properly. Most important files are AdminLTE.css, skins CSS files, and app.js.</p>
             <h3>Layout Changes</h3>
             <ol>
               <li>The .wrapper div must be placed immediately after the body tag rather than after the header</li>
@@ -1669,7 +2212,7 @@ AdminLTE/
             <p>And you should be set to go!</p>
             <h3>Mailbox</h3>
             <p>Mailbox got an upgrade to include three different views. The views are inbox, read mail, and compose new email. To use these views,
-            you should use the provided HTML files in the pages/mailbox folder.</p>
+              you should use the provided HTML files in the pages/mailbox folder.</p>
             <p><b class="text-red">Note:</b> the old mailbox layout has been deprecated in favor of the new one and will be removed by the next release.</p>
           </section>
 
@@ -1772,7 +2315,6 @@ AdminLTE/
             }, 500);
           }
         });
-
       });
     </script>
   </body>
