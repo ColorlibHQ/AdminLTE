@@ -177,22 +177,6 @@ a:focus {
   display: block;
   margin-top: 5px;
 }
-/* Don't display when printing */
-@media print {
-  .no-print {
-    display: none;
-  }
-  .main-sidebar,
-  .left-side,
-  .main-header,
-  .content-header {
-    display: none;
-  }
-  .content-wrapper,
-  .right-side {
-    margin: 0!important;
-  }
-}
 /*
  * Component: Main Header
  * ----------------------
@@ -2849,26 +2833,6 @@ table.text-center th {
 .invoice-title {
   margin-top: 0;
 }
-/* Enhancement for printing */
-@media print {
-  .invoice {
-    width: 100%;
-    border: 0;
-    margin: 0;
-    padding: 0;
-  }
-  .invoice-col {
-    float: left;
-    width: 33.3333333%;
-  }
-  .table-responsive {
-    overflow: auto;
-  }
-  .table-responsive > .table tr th,
-  .table-responsive > .table tr td {
-    white-space: normal!important;
-  }
-}
 /*
  * Plugin: Social Buttons
  * ----------------------
@@ -4060,4 +4024,48 @@ Gradient Background colors
 .full-opacity-hover:hover {
   opacity: 1;
   filter: alpha(opacity=100);
+}
+/*
+ * Misc: print
+ * -----------
+ */
+@media print {
+  .no-print,
+  .main-sidebar,
+  .left-side,
+  .main-header,
+  .content-header {
+    display: none!important;
+  }
+  .content-wrapper,
+  .right-side,
+  .main-footer {
+    margin-left: 0!important;
+    min-height: 0!important;
+    -webkit-transform: translate(0, 0) !important;
+    -ms-transform: translate(0, 0) !important;
+    -o-transform: translate(0, 0) !important;
+    transform: translate(0, 0) !important;
+  }
+  .fixed .content-wrapper,
+  .fixed .right-side {
+    padding-top: 0!important;
+  }
+  .invoice {
+    width: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .invoice-col {
+    float: left;
+    width: 33.3333333%;
+  }
+  .table-responsive {
+    overflow: auto;
+  }
+  .table-responsive > .table tr th,
+  .table-responsive > .table tr td {
+    white-space: normal!important;
+  }
 }

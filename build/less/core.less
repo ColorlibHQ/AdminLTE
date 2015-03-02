@@ -135,7 +135,9 @@ h6,
 a {
   color: @link-color;
 }
-a:hover, a:active, a:focus {
+a:hover,
+a:active,
+a:focus {
   outline: none;
   text-decoration: none;
   color: @link-hover-color;
@@ -150,26 +152,5 @@ a:hover, a:active, a:focus {
     color: #666;
     display: block;
     margin-top: 5px;
-  }
-}
-
-/* Don't display when printing */
-@media print {
-  //Add to elements that you do not want to show when printing
-  .no-print {
-    display: none;
-  }
-
-  //Elements that we want to hide when printing
-  .main-sidebar,
-  .left-side,
-  .main-header,
-  .content-header {
-    display: none;
-  }
-  //This is the only element that should appear, so let's remove the margins
-  .content-wrapper,
-  .right-side {
-    margin: 0!important;
   }
 }
