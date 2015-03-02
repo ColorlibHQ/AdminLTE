@@ -35,7 +35,7 @@ git clone https://github.com/YOUR_USERNAME/AdminLTE.git"
 **Bower**
 
 ```
-bower install git://github.com/almasaeed2010/AdminLTE.git
+bower install admin-lte
 ```
 
 **Composer**
@@ -77,6 +77,14 @@ License
 -------
 AdminLTE is an open source project by [Almsaeed Studio](http://almsaeedstudio.com) that is licensed under [MIT](http://opensource.org/licenses/MIT). Almsaeed Studio
 reserves the right to change the license of future releases.
+
+Todo List
+---------
+- Light sidebar colors
+- Right sidebar
+- Minified main-sidebar 
+- Right to left support
+- Custom pace style
 
 Legacy Realeases
 ----------------
