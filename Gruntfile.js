@@ -4,6 +4,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-includes');
+  
   grunt.initConfig({
     watch: {
       // if any .less file changes in directory "build/less/" run the "less"-task.
@@ -59,6 +61,20 @@ module.exports = function (grunt) {
       my_target: {
         files: {
           'dist/js/app.min.js': ['dist/js/app.js']
+        }
+      }
+    },
+    //Build the documentaion files
+    includes: {
+      build: {
+        src: ['*.html'], // Source files 
+        dest: 'documentation/', // Destination directory 
+        flatten: true,
+        cwd: 'documentation/build',
+        options: {
+          silent: true,
+          includePath: 'documentation/build/include'
+          //banner: '<!-- I am a banner <% includes.files.dest %> -->'
         }
       }
     }

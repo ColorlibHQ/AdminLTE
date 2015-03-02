@@ -14,6 +14,7 @@
     <!-- Theme style -->
     <link href="../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <link href="../dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,132 +22,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    <style>
-      body {
-        font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-weight: 500;
-      }
-      .content-wrapper {
-        padding: 0 10px;
-        font-size: 14px;
-      }
-      .page-header {
-        border: 0;        
-        margin: 30px 0;
-        padding: 0;        
-        position: relative;
-        z-index: 1;
-        font-size: 30px;
-      }      
-      section[id] {
-        padding: 20px 0 0 0;
-      }
-      #components > h3 {
-        font-size: 25px;
-        border-bottom: 1px solid #dedede;
-        color: #000;
-      }
-      #components > h4 {
-        font-size: 20px;
-        color: #000;
-      }
-      .page-header span {
-        z-index: 5;
-        display: inline-block;
-        background-color: #ecf0f5;
-        padding-right: 10px;
-      }
-      .page-header::before {
-        content: " ";
-        display: block;
-        background: #ccc;
-        width: 100%;
-        height: 1px;
-        position: absolute;
-        top: 50%;
-        margin-top: 2px;
-        z-index: -1;
-      }
-      .lead {
-        font-size: 16px;
-        font-weight: 400;
-      }
-      .eg{
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: inline-block;
-        background: #d2d6de;
-        padding: 5px;
-        border-bottom-right-radius: 3px;
-        border-top-left-radius: 3px;
-        border-bottom: 1px solid #d2d6dc;
-        border-right: 1px solid #d2d6dc;
-      }
-      .eg + * {
-        margin-top: 30px;
-      }
-      .content {
-        padding: 10px 25px;
-      }
-      .hierarchy {
-        background: #333;
-        color: #fff;
-      }
-      .plugins-list li {
-        width: 50%;
-        float: left;
-      }
-      pre {
-        border: none;
-      }
-      /* desert scheme ported from vim to google prettify */
-      pre.prettyprint {display: block; background-color: #333; max-height: 300px; border: none!important; margin-bottom: 20px;}
-      pre .nocode { background-color: none; color: #000 }
-      pre .str { color: #ffa0a0;} /* string  - pink */
-      pre .kwd { color: #f0e68c; font-weight: bold }
-      pre .com { color: #87ceeb } /* comment - skyblue */
-      pre .typ { color: #98fb98 } /* type    - lightgreen */
-      pre .lit { color: #cd5c5c } /* literal - darkred */
-      pre .pun { color: #fff }    /* punctuation */
-      pre .pln { color: #fff }    /* plaintext */
-      pre .tag { color: #f0e68c; font-weight: bold } /* html/xml tag    - lightyellow */
-      pre .atn { color: #bdb76b; font-weight: bold } /* attribute name  - khaki */
-      pre .atv { color: #ffa0a0 } /* attribute value - pink */
-      pre .dec { color: #98fb98 } /* decimal         - lightgreen */
-
-      /* Specify class=linenums on a pre to get line numbering */
-      ol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE } /* IE indents via margin-left */
-      li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }
-      /* Alternate shading for lines */
-      li.L1,li.L3,li.L5,li.L7,li.L9 { }
-
-      @media print {
-        pre.prettyprint { background-color: none }
-        pre .str, code .str { color: #060 }
-        pre .kwd, code .kwd { color: #006; font-weight: bold }
-        pre .com, code .com { color: #600; font-style: italic }
-        pre .typ, code .typ { color: #404; font-weight: bold }
-        pre .lit, code .lit { color: #044 }
-        pre .pun, code .pun { color: #440 }
-        pre .pln, code .pln { color: #000 }
-        pre .tag, code .tag { color: #006; font-weight: bold }
-        pre .atn, code .atn { color: #404 }
-        pre .atv, code .atv { color: #060 }
-      }
-      .sidebar {
-        margin-top: 0;
-        padding-top: 0!important;
-      }
-      .box .main-header {
-        z-index: 1000;
-        position: relative;
-      }
-      .treeview .nav li a:hover,
-      .treeview .nav li a:active {
-        background: transparent;
-      }
-    </style>
   </head>
   <body class="skin-blue fixed" data-spy="scroll" data-target="#scrollspy">
     <div class="wrapper">
@@ -164,6 +39,7 @@
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <li><a href="http://almsaeedstudio.com">Almsaeed Studio</a></li>
+              <li><a href="http://almsaeedstudio.com/premium">Premium Templates</a></li>
             </ul>
           </div>
         </nav>
@@ -217,7 +93,7 @@
 
         <!-- Main content -->
         <div class="content body">
-          <div class="callout callout-warning">
+          <div class="callout callout-warning no-margin">
             <h4>Warning!</h4>
             This documentation is under development. Some information may change as the progress of creating the documentation continues.
           </div>
@@ -272,20 +148,20 @@
             </div><!-- /.row -->
             <pre class='hierarchy'><code class="language-bash" data-lang="bash">File Hierarchy of the Source Code Package
 
-AdminLTE/
-├── dist/
-│   ├── CSS/
-│   ├── JS
-│   ├── img
-├── build/
-│   ├── less/
-│   │   ├── AdminLTE's Less files
-│   └── Bootstrap-less/ (Only for reference. No modifications have been made)
-│       ├── mixins/
-│       ├── variables.less
-│       ├── mixins.less
-└── plugins/
-    ├── All the customized plugins CSS and JS files</code></pre>
+          AdminLTE/
+          ├── dist/
+          │   ├── CSS/
+          │   ├── JS
+          │   ├── img
+          ├── build/
+          │   ├── less/
+          │   │   ├── AdminLTE's Less files
+          │   └── Bootstrap-less/ (Only for reference. No modifications have been made)
+          │       ├── mixins/
+          │       ├── variables.less
+          │       ├── mixins.less
+          └── plugins/
+              ├── All the customized plugins CSS and JS files</code></pre>
           </section>
 
           <!-- ============================================================= -->
@@ -294,7 +170,7 @@ AdminLTE/
             <h2 class="page-header"><span>Dependencies</span></h2>
             <p class="lead">AdminLTE depends on two main frameworks.
               The downloadable package contains both of these libraries, so you don't have to manually download them.</p>
-            <ul class="lead">
+            <ul>
               <li><a href="http://getbootstrap.com" target="_blank">Bootstrap 3</a></li>
               <li><a href="http://jquery.com/" target="_blank">jQuery 1.11+</a></li>
               <li><a href="#plugins">All other plugins are listed below</a></li>
@@ -338,398 +214,398 @@ AdminLTE/
             </div>
             <p>A full layout example for a quick start</p>
             <pre class='prettyprint'>
-&LT;!DOCTYPE html>
-&LT;html>
-  &LT;head>
-    &LT;meta charset="UTF-8">
-    &LT;title>AdminLTE 2 | Dashboard&LT;/title>
-    &LT;meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    &LT;!-- Bootstrap 3.3.2 -->
-    &LT;link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    &LT;!-- Font Awesome Icons -->
-    &LT;link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    &LT;!-- Ionicons -->
-    &LT;link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-    &LT;!-- Theme style -->
-    &LT;link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-    &LT;!-- AdminLTE Skins. Choose a skin from the css/skins 
-         folder instead of downloading all of them to reduce the load. -->
-    &LT;link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+          &LT;!DOCTYPE html>
+          &LT;html>
+            &LT;head>
+              &LT;meta charset="UTF-8">
+              &LT;title>AdminLTE 2 | Dashboard&LT;/title>
+              &LT;meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+              &LT;!-- Bootstrap 3.3.2 -->
+              &LT;link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+              &LT;!-- Font Awesome Icons -->
+              &LT;link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+              &LT;!-- Ionicons -->
+              &LT;link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+              &LT;!-- Theme style -->
+              &LT;link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+              &LT;!-- AdminLTE Skins. Choose a skin from the css/skins 
+                   folder instead of downloading all of them to reduce the load. -->
+              &LT;link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
 
-    &LT;!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    &LT;!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    &LT;!--[if lt IE 9]>
-        &LT;script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">&LT;/script>
-        &LT;script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js">&LT;/script>
-    &LT;![endif]-->
-  &LT;/head>
-  &LT;body class="skin-blue">
-    &LT;!-- Site wrapper -->
-    &LT;div class="wrapper">
-      
-      &LT;header class="main-header">
-        &LT;a href="index2.html" class="logo">&LT;b>Admin&LT;/b>LTE&LT;/a>
-        &LT;!-- Header Navbar: style can be found in header.less -->
-        &LT;nav class="navbar navbar-static-top" role="navigation">
-          &LT;!-- Sidebar toggle button-->
-          &LT;a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            &LT;span class="sr-only">Toggle navigation&LT;/span>
-            &LT;span class="icon-bar">&LT;/span>
-            &LT;span class="icon-bar">&LT;/span>
-            &LT;span class="icon-bar">&LT;/span>
-          &LT;/a>
-          &LT;div class="navbar-custom-menu">
-            &LT;ul class="nav navbar-nav">
-              &LT;!-- Messages: style can be found in dropdown.less-->
-              &LT;li class="dropdown messages-menu">
-                &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  &LT;i class="fa fa-envelope-o">&LT;/i>
-                  &LT;span class="label label-success">4&LT;/span>
-                &LT;/a>
-                &LT;ul class="dropdown-menu">
-                  &LT;li class="header">You have 4 messages&LT;/li>
-                  &LT;li>
-                    &LT;!-- inner menu: contains the actual data -->
-                    &LT;ul class="menu">
-                      &LT;li>&LT;!-- start message -->
+              &LT;!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+              &LT;!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+              &LT;!--[if lt IE 9]>
+                  &LT;script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">&LT;/script>
+                  &LT;script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js">&LT;/script>
+              &LT;![endif]-->
+            &LT;/head>
+            &LT;body class="skin-blue">
+              &LT;!-- Site wrapper -->
+              &LT;div class="wrapper">
+                
+                &LT;header class="main-header">
+                  &LT;a href="index2.html" class="logo">&LT;b>Admin&LT;/b>LTE&LT;/a>
+                  &LT;!-- Header Navbar: style can be found in header.less -->
+                  &LT;nav class="navbar navbar-static-top" role="navigation">
+                    &LT;!-- Sidebar toggle button-->
+                    &LT;a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                      &LT;span class="sr-only">Toggle navigation&LT;/span>
+                      &LT;span class="icon-bar">&LT;/span>
+                      &LT;span class="icon-bar">&LT;/span>
+                      &LT;span class="icon-bar">&LT;/span>
+                    &LT;/a>
+                    &LT;div class="navbar-custom-menu">
+                      &LT;ul class="nav navbar-nav">
+                        &LT;!-- Messages: style can be found in dropdown.less-->
+                        &LT;li class="dropdown messages-menu">
+                          &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            &LT;i class="fa fa-envelope-o">&LT;/i>
+                            &LT;span class="label label-success">4&LT;/span>
+                          &LT;/a>
+                          &LT;ul class="dropdown-menu">
+                            &LT;li class="header">You have 4 messages&LT;/li>
+                            &LT;li>
+                              &LT;!-- inner menu: contains the actual data -->
+                              &LT;ul class="menu">
+                                &LT;li>&LT;!-- start message -->
+                                  &LT;a href="#">
+                                    &LT;div class="pull-left">
+                                      &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                                    &LT;/div>
+                                    &LT;h4>
+                                      Support Team
+                                      &LT;small>&LT;i class="fa fa-clock-o">&LT;/i> 5 mins&LT;/small>
+                                    &LT;/h4>
+                                    &LT;p>Why not buy a new awesome theme?&LT;/p>
+                                  &LT;/a>
+                                &LT;/li>&LT;!-- end message -->
+                              &LT;/ul>
+                            &LT;/li>
+                            &LT;li class="footer">&LT;a href="#">See All Messages&LT;/a>&LT;/li>
+                          &LT;/ul>
+                        &LT;/li>
+                        &LT;!-- Notifications: style can be found in dropdown.less -->
+                        &LT;li class="dropdown notifications-menu">
+                          &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            &LT;i class="fa fa-bell-o">&LT;/i>
+                            &LT;span class="label label-warning">10&LT;/span>
+                          &LT;/a>
+                          &LT;ul class="dropdown-menu">
+                            &LT;li class="header">You have 10 notifications&LT;/li>
+                            &LT;li>
+                              &LT;!-- inner menu: contains the actual data -->
+                              &LT;ul class="menu">
+                                &LT;li>
+                                  &LT;a href="#">
+                                    &LT;i class="fa fa-users text-aqua">&LT;/i> 5 new members joined today
+                                  &LT;/a>
+                                &LT;/li>
+                              &LT;/ul>
+                            &LT;/li>
+                            &LT;li class="footer">&LT;a href="#">View all&LT;/a>&LT;/li>
+                          &LT;/ul>
+                        &LT;/li>
+                        &LT;!-- Tasks: style can be found in dropdown.less -->
+                        &LT;li class="dropdown tasks-menu">
+                          &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            &LT;i class="fa fa-flag-o">&LT;/i>
+                            &LT;span class="label label-danger">9&LT;/span>
+                          &LT;/a>
+                          &LT;ul class="dropdown-menu">
+                            &LT;li class="header">You have 9 tasks&LT;/li>
+                            &LT;li>
+                              &LT;!-- inner menu: contains the actual data -->
+                              &LT;ul class="menu">
+                                &LT;li>&LT;!-- Task item -->
+                                  &LT;a href="#">
+                                    &LT;h3>
+                                      Design some buttons
+                                      &LT;small class="pull-right">20%&LT;/small>
+                                    &LT;/h3>
+                                    &LT;div class="progress xs">
+                                      &LT;div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                        &LT;span class="sr-only">20% Complete&LT;/span>
+                                      &LT;/div>
+                                    &LT;/div>
+                                  &LT;/a>
+                                &LT;/li>&LT;!-- end task item -->
+                              &LT;/ul>
+                            &LT;/li>
+                            &LT;li class="footer">
+                              &LT;a href="#">View all tasks&LT;/a>
+                            &LT;/li>
+                          &LT;/ul>
+                        &LT;/li>
+                        &LT;!-- User Account: style can be found in dropdown.less -->
+                        &LT;li class="dropdown user user-menu">
+                          &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            &LT;img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                            &LT;span class="hidden-xs">Alexander Pierce&LT;/span>
+                          &LT;/a>
+                          &LT;ul class="dropdown-menu">
+                            &LT;!-- User image -->
+                            &LT;li class="user-header">
+                              &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                              &LT;p>
+                                Alexander Pierce - Web Developer
+                                &LT;small>Member since Nov. 2012&LT;/small>
+                              &LT;/p>
+                            &LT;/li>
+                            &LT;!-- Menu Body -->
+                            &LT;li class="user-body">
+                              &LT;div class="col-xs-4 text-center">
+                                &LT;a href="#">Followers&LT;/a>
+                              &LT;/div>
+                              &LT;div class="col-xs-4 text-center">
+                                &LT;a href="#">Sales&LT;/a>
+                              &LT;/div>
+                              &LT;div class="col-xs-4 text-center">
+                                &LT;a href="#">Friends&LT;/a>
+                              &LT;/div>
+                            &LT;/li>
+                            &LT;!-- Menu Footer-->
+                            &LT;li class="user-footer">
+                              &LT;div class="pull-left">
+                                &LT;a href="#" class="btn btn-default btn-flat">Profile&LT;/a>
+                              &LT;/div>
+                              &LT;div class="pull-right">
+                                &LT;a href="#" class="btn btn-default btn-flat">Sign out&LT;/a>
+                              &LT;/div>
+                            &LT;/li>
+                          &LT;/ul>
+                        &LT;/li>
+                      &LT;/ul>
+                    &LT;/div>
+                  &LT;/nav>
+                &LT;/header>
+
+                &LT;!-- =============================================== -->
+
+                &LT;!-- Left side column. contains the sidebar -->
+                &LT;aside class="main-sidebar">
+                  &LT;!-- sidebar: style can be found in sidebar.less -->
+                  &LT;section class="sidebar">
+                    &LT;!-- Sidebar user panel -->
+                    &LT;div class="user-panel">
+                      &LT;div class="pull-left image">
+                        &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                      &LT;/div>
+                      &LT;div class="pull-left info">
+                        &LT;p>Alexander Pierce&LT;/p>
+
+                        &LT;a href="#">&LT;i class="fa fa-circle text-success">&LT;/i> Online&LT;/a>
+                      &LT;/div>
+                    &LT;/div>
+                    &LT;!-- search form -->
+                    &LT;form action="#" method="get" class="sidebar-form">
+                      &LT;div class="input-group">
+                        &LT;input type="text" name="q" class="form-control" placeholder="Search..."/>
+                        &LT;span class="input-group-btn">
+                          &LT;button type='submit' name='seach' id='search-btn' class="btn btn-flat">&LT;i class="fa fa-search">&LT;/i>&LT;/button>
+                        &LT;/span>
+                      &LT;/div>
+                    &LT;/form>
+                    &LT;!-- /.search form -->
+                    &LT;!-- sidebar menu: : style can be found in sidebar.less -->
+                    &LT;ul class="sidebar-menu">
+                      &LT;li class="header">MAIN NAVIGATION&LT;/li>
+                      &LT;li class="treeview">
                         &LT;a href="#">
-                          &LT;div class="pull-left">
-                            &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
-                          &LT;/div>
-                          &LT;h4>
-                            Support Team
-                            &LT;small>&LT;i class="fa fa-clock-o">&LT;/i> 5 mins&LT;/small>
-                          &LT;/h4>
-                          &LT;p>Why not buy a new awesome theme?&LT;/p>
+                          &LT;i class="fa fa-dashboard">&LT;/i> &LT;span>Dashboard&LT;/span> &LT;i class="fa fa-angle-left pull-right">&LT;/i>
                         &LT;/a>
-                      &LT;/li>&LT;!-- end message -->
-                    &LT;/ul>
-                  &LT;/li>
-                  &LT;li class="footer">&LT;a href="#">See All Messages&LT;/a>&LT;/li>
-                &LT;/ul>
-              &LT;/li>
-              &LT;!-- Notifications: style can be found in dropdown.less -->
-              &LT;li class="dropdown notifications-menu">
-                &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  &LT;i class="fa fa-bell-o">&LT;/i>
-                  &LT;span class="label label-warning">10&LT;/span>
-                &LT;/a>
-                &LT;ul class="dropdown-menu">
-                  &LT;li class="header">You have 10 notifications&LT;/li>
-                  &LT;li>
-                    &LT;!-- inner menu: contains the actual data -->
-                    &LT;ul class="menu">
-                      &LT;li>
+                        &LT;ul class="treeview-menu">
+                          &LT;li>&LT;a href="index.html">&LT;i class="fa fa-circle-o">&LT;/i> Dashboard v1&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="index2.html">&LT;i class="fa fa-circle-o">&LT;/i> Dashboard v2&LT;/a>&LT;/li>
+                        &LT;/ul>
+                      &LT;/li>
+                      &LT;li class="treeview">
                         &LT;a href="#">
-                          &LT;i class="fa fa-users text-aqua">&LT;/i> 5 new members joined today
+                          &LT;i class="fa fa-files-o">&LT;/i>
+                          &LT;span>Layout Options&LT;/span>
+                          &LT;span class="label label-primary pull-right">4&LT;/span>
+                        &LT;/a>
+                        &LT;ul class="treeview-menu">
+                          &LT;li>&LT;a href="../layout/top-nav.html">&LT;i class="fa fa-circle-o">&LT;/i> Top Navigation&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="../layout/boxed.html">&LT;i class="fa fa-circle-o">&LT;/i> Boxed&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="../layout/fixed.html">&LT;i class="fa fa-circle-o">&LT;/i> Fixed&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="../layout/collapsed-sidebar.html">&LT;i class="fa fa-circle-o">&LT;/i> Collapsed Sidebar&LT;/a>&LT;/li>
+                        &LT;/ul>
+                      &LT;/li>
+                      &LT;li>
+                        &LT;a href="../widgets.html">
+                          &LT;i class="fa fa-th">&LT;/i> &LT;span>Widgets&LT;/span> &LT;small class="label pull-right bg-green">Hot&LT;/small>
+                        &LT;/a>
+                      &LT;/li>            
+                      &LT;li class="treeview">
+                        &LT;a href="#">
+                          &LT;i class="fa fa-pie-chart">&LT;/i>
+                          &LT;span>Charts&LT;/span>
+                          &LT;i class="fa fa-angle-left pull-right">&LT;/i>
+                        &LT;/a>
+                        &LT;ul class="treeview-menu">
+                          &LT;li>&LT;a href="../charts/morris.html">&LT;i class="fa fa-circle-o">&LT;/i> Morris&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="../charts/flot.html">&LT;i class="fa fa-circle-o">&LT;/i> Flot&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="../charts/inline.html">&LT;i class="fa fa-circle-o">&LT;/i> Inline charts&LT;/a>&LT;/li>
+                        &LT;/ul>
+                      &LT;/li>            
+                      &LT;li class="treeview">
+                        &LT;a href="#">
+                          &LT;i class="fa fa-laptop">&LT;/i>
+                          &LT;span>UI Elements&LT;/span>
+                          &LT;i class="fa fa-angle-left pull-right">&LT;/i>
+                        &LT;/a>
+                        &LT;ul class="treeview-menu">
+                          &LT;li>&LT;a href="../UI/general.html">&LT;i class="fa fa-circle-o">&LT;/i> General&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="../UI/icons.html">&LT;i class="fa fa-circle-o">&LT;/i> Icons&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="../UI/buttons.html">&LT;i class="fa fa-circle-o">&LT;/i> Buttons&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="../UI/sliders.html">&LT;i class="fa fa-circle-o">&LT;/i> Sliders&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="../UI/timeline.html">&LT;i class="fa fa-circle-o">&LT;/i> Timeline&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="../UI/modals.html">&LT;i class="fa fa-circle-o">&LT;/i> Modals&LT;/a>&LT;/li>
+                        &LT;/ul>
+                      &LT;/li>
+                      &LT;li class="treeview">
+                        &LT;a href="#">
+                          &LT;i class="fa fa-edit">&LT;/i> &LT;span>Forms&LT;/span>
+                          &LT;i class="fa fa-angle-left pull-right">&LT;/i>
+                        &LT;/a>
+                        &LT;ul class="treeview-menu">
+                          &LT;li>&LT;a href="../forms/general.html">&LT;i class="fa fa-circle-o">&LT;/i> General Elements&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="../forms/advanced.html">&LT;i class="fa fa-circle-o">&LT;/i> Advanced Elements&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="../forms/editors.html">&LT;i class="fa fa-circle-o">&LT;/i> Editors&LT;/a>&LT;/li>
+                        &LT;/ul>
+                      &LT;/li>
+                      &LT;li class="treeview">
+                        &LT;a href="#">
+                          &LT;i class="fa fa-table">&LT;/i> &LT;span>Tables&LT;/span>
+                          &LT;i class="fa fa-angle-left pull-right">&LT;/i>
+                        &LT;/a>
+                        &LT;ul class="treeview-menu">
+                          &LT;li>&LT;a href="../tables/simple.html">&LT;i class="fa fa-circle-o">&LT;/i> Simple tables&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="../tables/data.html">&LT;i class="fa fa-circle-o">&LT;/i> Data tables&LT;/a>&LT;/li>
+                        &LT;/ul>
+                      &LT;/li>
+                      &LT;li>
+                        &LT;a href="../calendar.html">
+                          &LT;i class="fa fa-calendar">&LT;/i> &LT;span>Calendar&LT;/span>
+                          &LT;small class="label pull-right bg-red">3&LT;/small>
                         &LT;/a>
                       &LT;/li>
-                    &LT;/ul>
-                  &LT;/li>
-                  &LT;li class="footer">&LT;a href="#">View all&LT;/a>&LT;/li>
-                &LT;/ul>
-              &LT;/li>
-              &LT;!-- Tasks: style can be found in dropdown.less -->
-              &LT;li class="dropdown tasks-menu">
-                &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  &LT;i class="fa fa-flag-o">&LT;/i>
-                  &LT;span class="label label-danger">9&LT;/span>
-                &LT;/a>
-                &LT;ul class="dropdown-menu">
-                  &LT;li class="header">You have 9 tasks&LT;/li>
-                  &LT;li>
-                    &LT;!-- inner menu: contains the actual data -->
-                    &LT;ul class="menu">
-                      &LT;li>&LT;!-- Task item -->
-                        &LT;a href="#">
-                          &LT;h3>
-                            Design some buttons
-                            &LT;small class="pull-right">20%&LT;/small>
-                          &LT;/h3>
-                          &LT;div class="progress xs">
-                            &LT;div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                              &LT;span class="sr-only">20% Complete&LT;/span>
-                            &LT;/div>
-                          &LT;/div>
+                      &LT;li>
+                        &LT;a href="../mailbox/mailbox.html">
+                          &LT;i class="fa fa-envelope">&LT;/i> &LT;span>Mailbox&LT;/span>
+                          &LT;small class="label pull-right bg-yellow">12&LT;/small>
                         &LT;/a>
-                      &LT;/li>&LT;!-- end task item -->
+                      &LT;/li>
+                      &LT;li class="treeview active">
+                        &LT;a href="#">
+                          &LT;i class="fa fa-folder">&LT;/i> &LT;span>Examples&LT;/span>
+                          &LT;i class="fa fa-angle-left pull-right">&LT;/i>
+                        &LT;/a>
+                        &LT;ul class="treeview-menu">
+                          &LT;li>&LT;a href="invoice.html">&LT;i class="fa fa-circle-o">&LT;/i> Invoice&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="login.html">&LT;i class="fa fa-circle-o">&LT;/i> Login&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="register.html">&LT;i class="fa fa-circle-o">&LT;/i> Register&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="lockscreen.html">&LT;i class="fa fa-circle-o">&LT;/i> Lockscreen&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="404.html">&LT;i class="fa fa-circle-o">&LT;/i> 404 Error&LT;/a>&LT;/li>
+                          &LT;li>&LT;a href="500.html">&LT;i class="fa fa-circle-o">&LT;/i> 500 Error&LT;/a>&LT;/li>
+                          &LT;li class="active">&LT;a href="blank.html">&LT;i class="fa fa-circle-o">&LT;/i> Blank Page&LT;/a>&LT;/li>
+                        &LT;/ul>
+                      &LT;/li>
+                      &LT;li class="treeview">
+                        &LT;a href="#">
+                          &LT;i class="fa fa-share">&LT;/i> &LT;span>Multilevel&LT;/span>
+                          &LT;i class="fa fa-angle-left pull-right">&LT;/i>
+                        &LT;/a>
+                        &LT;ul class="treeview-menu">
+                          &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level One&LT;/a>&LT;/li>
+                          &LT;li>
+                            &LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level One &LT;i class="fa fa-angle-left pull-right">&LT;/i>&LT;/a>
+                            &LT;ul class="treeview-menu">
+                              &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level Two&LT;/a>&LT;/li>
+                              &LT;li>
+                                &LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level Two &LT;i class="fa fa-angle-left pull-right">&LT;/i>&LT;/a>
+                                &LT;ul class="treeview-menu">
+                                  &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level Three&LT;/a>&LT;/li>
+                                  &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level Three&LT;/a>&LT;/li>
+                                &LT;/ul>
+                              &LT;/li>
+                            &LT;/ul>
+                          &LT;/li>
+                          &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level One&LT;/a>&LT;/li>
+                        &LT;/ul>
+                      &LT;/li>
+                      &LT;li>&LT;a href="documentation/index.html">&LT;i class="fa fa-book">&LT;/i> Documentation&LT;/a>&LT;/li>
+                      &LT;li class="header">LABELS&LT;/li>
+                      &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o text-danger">&LT;/i> Important&LT;/a>&LT;/li>
+                      &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o text-warning">&LT;/i> Warning&LT;/a>&LT;/li>
+                      &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o text-info">&LT;/i> Information&LT;/a>&LT;/li>
                     &LT;/ul>
-                  &LT;/li>
-                  &LT;li class="footer">
-                    &LT;a href="#">View all tasks&LT;/a>
-                  &LT;/li>
-                &LT;/ul>
-              &LT;/li>
-              &LT;!-- User Account: style can be found in dropdown.less -->
-              &LT;li class="dropdown user user-menu">
-                &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  &LT;img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                  &LT;span class="hidden-xs">Alexander Pierce&LT;/span>
-                &LT;/a>
-                &LT;ul class="dropdown-menu">
-                  &LT;!-- User image -->
-                  &LT;li class="user-header">
-                    &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
-                    &LT;p>
-                      Alexander Pierce - Web Developer
-                      &LT;small>Member since Nov. 2012&LT;/small>
-                    &LT;/p>
-                  &LT;/li>
-                  &LT;!-- Menu Body -->
-                  &LT;li class="user-body">
-                    &LT;div class="col-xs-4 text-center">
-                      &LT;a href="#">Followers&LT;/a>
-                    &LT;/div>
-                    &LT;div class="col-xs-4 text-center">
-                      &LT;a href="#">Sales&LT;/a>
-                    &LT;/div>
-                    &LT;div class="col-xs-4 text-center">
-                      &LT;a href="#">Friends&LT;/a>
-                    &LT;/div>
-                  &LT;/li>
-                  &LT;!-- Menu Footer-->
-                  &LT;li class="user-footer">
-                    &LT;div class="pull-left">
-                      &LT;a href="#" class="btn btn-default btn-flat">Profile&LT;/a>
-                    &LT;/div>
-                    &LT;div class="pull-right">
-                      &LT;a href="#" class="btn btn-default btn-flat">Sign out&LT;/a>
-                    &LT;/div>
-                  &LT;/li>
-                &LT;/ul>
-              &LT;/li>
-            &LT;/ul>
-          &LT;/div>
-        &LT;/nav>
-      &LT;/header>
+                  &LT;/section>
+                  &LT;!-- /.sidebar -->
+                &LT;/aside>
 
-      &LT;!-- =============================================== -->
+                &LT;!-- =============================================== -->
 
-      &LT;!-- Left side column. contains the sidebar -->
-      &LT;aside class="main-sidebar">
-        &LT;!-- sidebar: style can be found in sidebar.less -->
-        &LT;section class="sidebar">
-          &LT;!-- Sidebar user panel -->
-          &LT;div class="user-panel">
-            &LT;div class="pull-left image">
-              &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
-            &LT;/div>
-            &LT;div class="pull-left info">
-              &LT;p>Alexander Pierce&LT;/p>
+                &LT;!-- Right side column. Contains the navbar and content of the page -->
+                &LT;div class="content-wrapper">
+                  &LT;!-- Content Header (Page header) -->
+                  &LT;section class="content-header">
+                    &LT;h1>
+                      Blank page
+                      &LT;small>it all starts here&LT;/small>
+                    &LT;/h1>
+                    &LT;ol class="breadcrumb">
+                      &LT;li>&LT;a href="#">&LT;i class="fa fa-dashboard">&LT;/i> Home&LT;/a>&LT;/li>
+                      &LT;li>&LT;a href="#">Examples&LT;/a>&LT;/li>
+                      &LT;li class="active">Blank page&LT;/li>
+                    &LT;/ol>
+                  &LT;/section>
 
-              &LT;a href="#">&LT;i class="fa fa-circle text-success">&LT;/i> Online&LT;/a>
-            &LT;/div>
-          &LT;/div>
-          &LT;!-- search form -->
-          &LT;form action="#" method="get" class="sidebar-form">
-            &LT;div class="input-group">
-              &LT;input type="text" name="q" class="form-control" placeholder="Search..."/>
-              &LT;span class="input-group-btn">
-                &LT;button type='submit' name='seach' id='search-btn' class="btn btn-flat">&LT;i class="fa fa-search">&LT;/i>&LT;/button>
-              &LT;/span>
-            &LT;/div>
-          &LT;/form>
-          &LT;!-- /.search form -->
-          &LT;!-- sidebar menu: : style can be found in sidebar.less -->
-          &LT;ul class="sidebar-menu">
-            &LT;li class="header">MAIN NAVIGATION&LT;/li>
-            &LT;li class="treeview">
-              &LT;a href="#">
-                &LT;i class="fa fa-dashboard">&LT;/i> &LT;span>Dashboard&LT;/span> &LT;i class="fa fa-angle-left pull-right">&LT;/i>
-              &LT;/a>
-              &LT;ul class="treeview-menu">
-                &LT;li>&LT;a href="index.html">&LT;i class="fa fa-circle-o">&LT;/i> Dashboard v1&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="index2.html">&LT;i class="fa fa-circle-o">&LT;/i> Dashboard v2&LT;/a>&LT;/li>
-              &LT;/ul>
-            &LT;/li>
-            &LT;li class="treeview">
-              &LT;a href="#">
-                &LT;i class="fa fa-files-o">&LT;/i>
-                &LT;span>Layout Options&LT;/span>
-                &LT;span class="label label-primary pull-right">4&LT;/span>
-              &LT;/a>
-              &LT;ul class="treeview-menu">
-                &LT;li>&LT;a href="../layout/top-nav.html">&LT;i class="fa fa-circle-o">&LT;/i> Top Navigation&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="../layout/boxed.html">&LT;i class="fa fa-circle-o">&LT;/i> Boxed&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="../layout/fixed.html">&LT;i class="fa fa-circle-o">&LT;/i> Fixed&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="../layout/collapsed-sidebar.html">&LT;i class="fa fa-circle-o">&LT;/i> Collapsed Sidebar&LT;/a>&LT;/li>
-              &LT;/ul>
-            &LT;/li>
-            &LT;li>
-              &LT;a href="../widgets.html">
-                &LT;i class="fa fa-th">&LT;/i> &LT;span>Widgets&LT;/span> &LT;small class="label pull-right bg-green">Hot&LT;/small>
-              &LT;/a>
-            &LT;/li>            
-            &LT;li class="treeview">
-              &LT;a href="#">
-                &LT;i class="fa fa-pie-chart">&LT;/i>
-                &LT;span>Charts&LT;/span>
-                &LT;i class="fa fa-angle-left pull-right">&LT;/i>
-              &LT;/a>
-              &LT;ul class="treeview-menu">
-                &LT;li>&LT;a href="../charts/morris.html">&LT;i class="fa fa-circle-o">&LT;/i> Morris&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="../charts/flot.html">&LT;i class="fa fa-circle-o">&LT;/i> Flot&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="../charts/inline.html">&LT;i class="fa fa-circle-o">&LT;/i> Inline charts&LT;/a>&LT;/li>
-              &LT;/ul>
-            &LT;/li>            
-            &LT;li class="treeview">
-              &LT;a href="#">
-                &LT;i class="fa fa-laptop">&LT;/i>
-                &LT;span>UI Elements&LT;/span>
-                &LT;i class="fa fa-angle-left pull-right">&LT;/i>
-              &LT;/a>
-              &LT;ul class="treeview-menu">
-                &LT;li>&LT;a href="../UI/general.html">&LT;i class="fa fa-circle-o">&LT;/i> General&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="../UI/icons.html">&LT;i class="fa fa-circle-o">&LT;/i> Icons&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="../UI/buttons.html">&LT;i class="fa fa-circle-o">&LT;/i> Buttons&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="../UI/sliders.html">&LT;i class="fa fa-circle-o">&LT;/i> Sliders&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="../UI/timeline.html">&LT;i class="fa fa-circle-o">&LT;/i> Timeline&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="../UI/modals.html">&LT;i class="fa fa-circle-o">&LT;/i> Modals&LT;/a>&LT;/li>
-              &LT;/ul>
-            &LT;/li>
-            &LT;li class="treeview">
-              &LT;a href="#">
-                &LT;i class="fa fa-edit">&LT;/i> &LT;span>Forms&LT;/span>
-                &LT;i class="fa fa-angle-left pull-right">&LT;/i>
-              &LT;/a>
-              &LT;ul class="treeview-menu">
-                &LT;li>&LT;a href="../forms/general.html">&LT;i class="fa fa-circle-o">&LT;/i> General Elements&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="../forms/advanced.html">&LT;i class="fa fa-circle-o">&LT;/i> Advanced Elements&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="../forms/editors.html">&LT;i class="fa fa-circle-o">&LT;/i> Editors&LT;/a>&LT;/li>
-              &LT;/ul>
-            &LT;/li>
-            &LT;li class="treeview">
-              &LT;a href="#">
-                &LT;i class="fa fa-table">&LT;/i> &LT;span>Tables&LT;/span>
-                &LT;i class="fa fa-angle-left pull-right">&LT;/i>
-              &LT;/a>
-              &LT;ul class="treeview-menu">
-                &LT;li>&LT;a href="../tables/simple.html">&LT;i class="fa fa-circle-o">&LT;/i> Simple tables&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="../tables/data.html">&LT;i class="fa fa-circle-o">&LT;/i> Data tables&LT;/a>&LT;/li>
-              &LT;/ul>
-            &LT;/li>
-            &LT;li>
-              &LT;a href="../calendar.html">
-                &LT;i class="fa fa-calendar">&LT;/i> &LT;span>Calendar&LT;/span>
-                &LT;small class="label pull-right bg-red">3&LT;/small>
-              &LT;/a>
-            &LT;/li>
-            &LT;li>
-              &LT;a href="../mailbox/mailbox.html">
-                &LT;i class="fa fa-envelope">&LT;/i> &LT;span>Mailbox&LT;/span>
-                &LT;small class="label pull-right bg-yellow">12&LT;/small>
-              &LT;/a>
-            &LT;/li>
-            &LT;li class="treeview active">
-              &LT;a href="#">
-                &LT;i class="fa fa-folder">&LT;/i> &LT;span>Examples&LT;/span>
-                &LT;i class="fa fa-angle-left pull-right">&LT;/i>
-              &LT;/a>
-              &LT;ul class="treeview-menu">
-                &LT;li>&LT;a href="invoice.html">&LT;i class="fa fa-circle-o">&LT;/i> Invoice&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="login.html">&LT;i class="fa fa-circle-o">&LT;/i> Login&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="register.html">&LT;i class="fa fa-circle-o">&LT;/i> Register&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="lockscreen.html">&LT;i class="fa fa-circle-o">&LT;/i> Lockscreen&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="404.html">&LT;i class="fa fa-circle-o">&LT;/i> 404 Error&LT;/a>&LT;/li>
-                &LT;li>&LT;a href="500.html">&LT;i class="fa fa-circle-o">&LT;/i> 500 Error&LT;/a>&LT;/li>
-                &LT;li class="active">&LT;a href="blank.html">&LT;i class="fa fa-circle-o">&LT;/i> Blank Page&LT;/a>&LT;/li>
-              &LT;/ul>
-            &LT;/li>
-            &LT;li class="treeview">
-              &LT;a href="#">
-                &LT;i class="fa fa-share">&LT;/i> &LT;span>Multilevel&LT;/span>
-                &LT;i class="fa fa-angle-left pull-right">&LT;/i>
-              &LT;/a>
-              &LT;ul class="treeview-menu">
-                &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level One&LT;/a>&LT;/li>
-                &LT;li>
-                  &LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level One &LT;i class="fa fa-angle-left pull-right">&LT;/i>&LT;/a>
-                  &LT;ul class="treeview-menu">
-                    &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level Two&LT;/a>&LT;/li>
-                    &LT;li>
-                      &LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level Two &LT;i class="fa fa-angle-left pull-right">&LT;/i>&LT;/a>
-                      &LT;ul class="treeview-menu">
-                        &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level Three&LT;/a>&LT;/li>
-                        &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level Three&LT;/a>&LT;/li>
-                      &LT;/ul>
-                    &LT;/li>
-                  &LT;/ul>
-                &LT;/li>
-                &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level One&LT;/a>&LT;/li>
-              &LT;/ul>
-            &LT;/li>
-            &LT;li>&LT;a href="documentation/index.html">&LT;i class="fa fa-book">&LT;/i> Documentation&LT;/a>&LT;/li>
-            &LT;li class="header">LABELS&LT;/li>
-            &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o text-danger">&LT;/i> Important&LT;/a>&LT;/li>
-            &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o text-warning">&LT;/i> Warning&LT;/a>&LT;/li>
-            &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o text-info">&LT;/i> Information&LT;/a>&LT;/li>
-          &LT;/ul>
-        &LT;/section>
-        &LT;!-- /.sidebar -->
-      &LT;/aside>
+                  &LT;!-- Main content -->
+                  &LT;section class="content">
 
-      &LT;!-- =============================================== -->
+                    &LT;!-- Default box -->
+                    &LT;div class="box">
+                      &LT;div class="box-header with-border">
+                        &LT;h3 class="box-title">Title&LT;/h3>
+                        &LT;div class="box-tools pull-right">
+                          &LT;button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">&LT;i class="fa fa-minus">&LT;/i>&LT;/button>
+                          &LT;button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">&LT;i class="fa fa-times">&LT;/i>&LT;/button>
+                        &LT;/div>
+                      &LT;/div>
+                      &LT;div class="box-body">
+                        Start creating your amazing application!
+                      &LT;/div>&LT;!-- /.box-body -->
+                      &LT;div class="box-footer">
+                        Footer
+                      &LT;/div>&LT;!-- /.box-footer-->
+                    &LT;/div>&LT;!-- /.box -->
 
-      &LT;!-- Right side column. Contains the navbar and content of the page -->
-      &LT;div class="content-wrapper">
-        &LT;!-- Content Header (Page header) -->
-        &LT;section class="content-header">
-          &LT;h1>
-            Blank page
-            &LT;small>it all starts here&LT;/small>
-          &LT;/h1>
-          &LT;ol class="breadcrumb">
-            &LT;li>&LT;a href="#">&LT;i class="fa fa-dashboard">&LT;/i> Home&LT;/a>&LT;/li>
-            &LT;li>&LT;a href="#">Examples&LT;/a>&LT;/li>
-            &LT;li class="active">Blank page&LT;/li>
-          &LT;/ol>
-        &LT;/section>
+                  &LT;/section>&LT;!-- /.content -->
+                &LT;/div>&LT;!-- /.content-wrapper -->
 
-        &LT;!-- Main content -->
-        &LT;section class="content">
+                &LT;footer class="main-footer">
+                  &LT;div class="pull-right hidden-xs">
+                    &LT;b>Version&LT;/b> 2.0
+                  &LT;/div>
+                  &LT;strong>Copyright &copy; 2014-2015 &LT;a href="http://almsaeedstudio.com">Almsaeed Studio&LT;/a>.&LT;/strong> All rights reserved.
+                &LT;/footer>
+              &LT;/div>&LT;!-- ./wrapper -->
 
-          &LT;!-- Default box -->
-          &LT;div class="box">
-            &LT;div class="box-header with-border">
-              &LT;h3 class="box-title">Title&LT;/h3>
-              &LT;div class="box-tools pull-right">
-                &LT;button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">&LT;i class="fa fa-minus">&LT;/i>&LT;/button>
-                &LT;button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">&LT;i class="fa fa-times">&LT;/i>&LT;/button>
-              &LT;/div>
-            &LT;/div>
-            &LT;div class="box-body">
-              Start creating your amazing application!
-            &LT;/div>&LT;!-- /.box-body -->
-            &LT;div class="box-footer">
-              Footer
-            &LT;/div>&LT;!-- /.box-footer-->
-          &LT;/div>&LT;!-- /.box -->
-
-        &LT;/section>&LT;!-- /.content -->
-      &LT;/div>&LT;!-- /.content-wrapper -->
-
-      &LT;footer class="main-footer">
-        &LT;div class="pull-right hidden-xs">
-          &LT;b>Version&LT;/b> 2.0
-        &LT;/div>
-        &LT;strong>Copyright &copy; 2014-2015 &LT;a href="http://almsaeedstudio.com">Almsaeed Studio&LT;/a>.&LT;/strong> All rights reserved.
-      &LT;/footer>
-    &LT;/div>&LT;!-- ./wrapper -->
-
-    &LT;!-- jQuery 2.1.3 -->
-    &LT;script src="plugins/jQuery/jQuery-2.1.3.min.js">&LT;/script>
-    &LT;!-- Bootstrap 3.3.2 JS -->
-    &LT;script src="bootstrap/js/bootstrap.min.js" type="text/javascript">&LT;/script>
-    &LT;!-- SlimScroll -->
-    &LT;script src="plugins/slimScroll/jquery.slimScroll.min.js" type="text/javascript">&LT;/script>
-    &LT;!-- FastClick -->
-    &LT;script src='plugins/fastclick/fastclick.min.js'>&LT;/script>
-    &LT;!-- AdminLTE App -->
-    &LT;script src="dist/js/app.min.js" type="text/javascript">&LT;/script>
-    &LT;!-- AdminLTE for demo purposes -->
-    &LT;script src="dist/js/demo.js" type="text/javascript">&LT;/script>
-  &LT;/body>
-&LT;/html></pre>
+              &LT;!-- jQuery 2.1.3 -->
+              &LT;script src="plugins/jQuery/jQuery-2.1.3.min.js">&LT;/script>
+              &LT;!-- Bootstrap 3.3.2 JS -->
+              &LT;script src="bootstrap/js/bootstrap.min.js" type="text/javascript">&LT;/script>
+              &LT;!-- SlimScroll -->
+              &LT;script src="plugins/slimScroll/jquery.slimScroll.min.js" type="text/javascript">&LT;/script>
+              &LT;!-- FastClick -->
+              &LT;script src='plugins/fastclick/fastclick.min.js'>&LT;/script>
+              &LT;!-- AdminLTE App -->
+              &LT;script src="dist/js/app.min.js" type="text/javascript">&LT;/script>
+              &LT;!-- AdminLTE for demo purposes -->
+              &LT;script src="dist/js/demo.js" type="text/javascript">&LT;/script>
+            &LT;/body>
+          &LT;/html></pre>
 
             <h3>Layout Options</h3>
             <p class="lead">AdminLTE 2.0 provides a set of options to apply to your main layout. Each on of these classes can be added
@@ -786,7 +662,7 @@ AdminLTE/
                 <span class="eg">Main Header Example</span>
                 <header class="main-header" style="position: relative;">
                   <!-- Logo -->
-                  <a href="index2.html" class="logo"><b>Admin</b>LTE</a>
+                  <a href="index2.html" class="logo" style='position: relative;'><b>Admin</b>LTE</a>
                   <!-- Header Navbar: style can be found in header.less -->
                   <nav class="navbar" role="navigation" style="border: 0;">
                     <!-- Sidebar toggle button-->
@@ -921,141 +797,141 @@ AdminLTE/
               </div>
             </div>
             <pre class='prettyprint'>
-&LT;header class="main-header">
-  &LT;a href="../../index2.html" class="logo">
-    &LT;!-- LOGO -->
-    AdminLTE
-  &LT;/a>
-  &LT;!-- Header Navbar: style can be found in header.less -->
-  &LT;nav class="navbar navbar-static-top" role="navigation">
-    &LT;!-- Navbar Right Menu -->
-    &LT;div class="navbar-custom-menu">
-      &LT;ul class="nav navbar-nav">
-        &LT;!-- Messages: style can be found in dropdown.less-->
-        &LT;li class="dropdown messages-menu">
-          &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            &LT;i class="fa fa-envelope-o">&LT;/i>
-            &LT;span class="label label-success">4&LT;/span>
-          &LT;/a>
-          &LT;ul class="dropdown-menu">
-            &LT;li class="header">You have 4 messages&LT;/li>
-            &LT;li>
-              &LT;!-- inner menu: contains the actual data -->
-              &LT;ul class="menu">
-                &LT;li>&LT;!-- start message -->
-                  &LT;a href="#">
-                    &LT;div class="pull-left">
-                      &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
-                    &LT;/div>
-                    &LT;h4>
-                      Sender Name
-                      &LT;small>&LT;i class="fa fa-clock-o">&LT;/i> 5 mins&LT;/small>
-                    &LT;/h4>
-                    &LT;p>Message Excerpt&LT;/p>
-                  &LT;/a>
-                &LT;/li>&LT;!-- end message -->
-                ...
-              &LT;/ul>
-            &LT;/li>
-            &LT;li class="footer">&LT;a href="#">See All Messages&LT;/a>&LT;/li>
-          &LT;/ul>
-        &LT;/li>
-        &LT;!-- Notifications: style can be found in dropdown.less -->
-        &LT;li class="dropdown notifications-menu">
-          &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            &LT;i class="fa fa-bell-o">&LT;/i>
-            &LT;span class="label label-warning">10&LT;/span>
-          &LT;/a>
-          &LT;ul class="dropdown-menu">
-            &LT;li class="header">You have 10 notifications&LT;/li>
-            &LT;li>
-              &LT;!-- inner menu: contains the actual data -->
-              &LT;ul class="menu">
-                &LT;li>
-                  &LT;a href="#">
-                    &LT;i class="ion ion-ios-people info">&LT;/i> Notification title
-                  &LT;/a>
-                &LT;/li>
-                ...
-              &LT;/ul>
-            &LT;/li>
-            &LT;li class="footer">&LT;a href="#">View all&LT;/a>&LT;/li>
-          &LT;/ul>
-        &LT;/li>
-        &LT;!-- Tasks: style can be found in dropdown.less -->
-        &LT;li class="dropdown tasks-menu">
-          &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            &LT;i class="fa fa-flag-o">&LT;/i>
-            &LT;span class="label label-danger">9&LT;/span>
-          &LT;/a>
-          &LT;ul class="dropdown-menu">
-            &LT;li class="header">You have 9 tasks&LT;/li>
-            &LT;li>
-              &LT;!-- inner menu: contains the actual data -->
-              &LT;ul class="menu">
-                &LT;li>&LT;!-- Task item -->
-                  &LT;a href="#">
-                    &LT;h3>
-                      Design some buttons
-                      &LT;small class="pull-right">20%&LT;/small>
-                    &LT;/h3>
-                    &LT;div class="progress xs">
-                      &LT;div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                        &LT;span class="sr-only">20% Complete&LT;/span>
-                      &LT;/div>
-                    &LT;/div>
-                  &LT;/a>
-                &LT;/li>&LT;!-- end task item -->
-                ...
-              &LT;/ul>
-            &LT;/li>
-            &LT;li class="footer">
-              &LT;a href="#">View all tasks&LT;/a>
-            &LT;/li>
-          &LT;/ul>
-        &LT;/li>
-        &LT;!-- User Account: style can be found in dropdown.less -->
-        &LT;li class="dropdown user user-menu">
-          &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            &LT;img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-            &LT;span class="hidden-xs">Alexander Pierce&LT;/span>
-          &LT;/a>
-          &LT;ul class="dropdown-menu">
-            &LT;!-- User image -->
-            &LT;li class="user-header">
-              &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
-              &LT;p>
-                Alexander Pierce - Web Developer
-                &LT;small>Member since Nov. 2012&LT;/small>
-              &LT;/p>
-            &LT;/li>
-            &LT;!-- Menu Body -->
-            &LT;li class="user-body">
-              &LT;div class="col-xs-4 text-center">
-                &LT;a href="#">Followers&LT;/a>
+          &LT;header class="main-header">
+            &LT;a href="../../index2.html" class="logo">
+              &LT;!-- LOGO -->
+              AdminLTE
+            &LT;/a>
+            &LT;!-- Header Navbar: style can be found in header.less -->
+            &LT;nav class="navbar navbar-static-top" role="navigation">
+              &LT;!-- Navbar Right Menu -->
+              &LT;div class="navbar-custom-menu">
+                &LT;ul class="nav navbar-nav">
+                  &LT;!-- Messages: style can be found in dropdown.less-->
+                  &LT;li class="dropdown messages-menu">
+                    &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      &LT;i class="fa fa-envelope-o">&LT;/i>
+                      &LT;span class="label label-success">4&LT;/span>
+                    &LT;/a>
+                    &LT;ul class="dropdown-menu">
+                      &LT;li class="header">You have 4 messages&LT;/li>
+                      &LT;li>
+                        &LT;!-- inner menu: contains the actual data -->
+                        &LT;ul class="menu">
+                          &LT;li>&LT;!-- start message -->
+                            &LT;a href="#">
+                              &LT;div class="pull-left">
+                                &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                              &LT;/div>
+                              &LT;h4>
+                                Sender Name
+                                &LT;small>&LT;i class="fa fa-clock-o">&LT;/i> 5 mins&LT;/small>
+                              &LT;/h4>
+                              &LT;p>Message Excerpt&LT;/p>
+                            &LT;/a>
+                          &LT;/li>&LT;!-- end message -->
+                          ...
+                        &LT;/ul>
+                      &LT;/li>
+                      &LT;li class="footer">&LT;a href="#">See All Messages&LT;/a>&LT;/li>
+                    &LT;/ul>
+                  &LT;/li>
+                  &LT;!-- Notifications: style can be found in dropdown.less -->
+                  &LT;li class="dropdown notifications-menu">
+                    &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      &LT;i class="fa fa-bell-o">&LT;/i>
+                      &LT;span class="label label-warning">10&LT;/span>
+                    &LT;/a>
+                    &LT;ul class="dropdown-menu">
+                      &LT;li class="header">You have 10 notifications&LT;/li>
+                      &LT;li>
+                        &LT;!-- inner menu: contains the actual data -->
+                        &LT;ul class="menu">
+                          &LT;li>
+                            &LT;a href="#">
+                              &LT;i class="ion ion-ios-people info">&LT;/i> Notification title
+                            &LT;/a>
+                          &LT;/li>
+                          ...
+                        &LT;/ul>
+                      &LT;/li>
+                      &LT;li class="footer">&LT;a href="#">View all&LT;/a>&LT;/li>
+                    &LT;/ul>
+                  &LT;/li>
+                  &LT;!-- Tasks: style can be found in dropdown.less -->
+                  &LT;li class="dropdown tasks-menu">
+                    &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      &LT;i class="fa fa-flag-o">&LT;/i>
+                      &LT;span class="label label-danger">9&LT;/span>
+                    &LT;/a>
+                    &LT;ul class="dropdown-menu">
+                      &LT;li class="header">You have 9 tasks&LT;/li>
+                      &LT;li>
+                        &LT;!-- inner menu: contains the actual data -->
+                        &LT;ul class="menu">
+                          &LT;li>&LT;!-- Task item -->
+                            &LT;a href="#">
+                              &LT;h3>
+                                Design some buttons
+                                &LT;small class="pull-right">20%&LT;/small>
+                              &LT;/h3>
+                              &LT;div class="progress xs">
+                                &LT;div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                  &LT;span class="sr-only">20% Complete&LT;/span>
+                                &LT;/div>
+                              &LT;/div>
+                            &LT;/a>
+                          &LT;/li>&LT;!-- end task item -->
+                          ...
+                        &LT;/ul>
+                      &LT;/li>
+                      &LT;li class="footer">
+                        &LT;a href="#">View all tasks&LT;/a>
+                      &LT;/li>
+                    &LT;/ul>
+                  &LT;/li>
+                  &LT;!-- User Account: style can be found in dropdown.less -->
+                  &LT;li class="dropdown user user-menu">
+                    &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      &LT;img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                      &LT;span class="hidden-xs">Alexander Pierce&LT;/span>
+                    &LT;/a>
+                    &LT;ul class="dropdown-menu">
+                      &LT;!-- User image -->
+                      &LT;li class="user-header">
+                        &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                        &LT;p>
+                          Alexander Pierce - Web Developer
+                          &LT;small>Member since Nov. 2012&LT;/small>
+                        &LT;/p>
+                      &LT;/li>
+                      &LT;!-- Menu Body -->
+                      &LT;li class="user-body">
+                        &LT;div class="col-xs-4 text-center">
+                          &LT;a href="#">Followers&LT;/a>
+                        &LT;/div>
+                        &LT;div class="col-xs-4 text-center">
+                          &LT;a href="#">Sales&LT;/a>
+                        &LT;/div>
+                        &LT;div class="col-xs-4 text-center">
+                          &LT;a href="#">Friends&LT;/a>
+                        &LT;/div>
+                      &LT;/li>
+                      &LT;!-- Menu Footer-->
+                      &LT;li class="user-footer">
+                        &LT;div class="pull-left">
+                          &LT;a href="#" class="btn btn-default btn-flat">Profile&LT;/a>
+                        &LT;/div>
+                        &LT;div class="pull-right">
+                          &LT;a href="#" class="btn btn-default btn-flat">Sign out&LT;/a>
+                        &LT;/div>
+                      &LT;/li>
+                    &LT;/ul>
+                  &LT;/li>
+                &LT;/ul>
               &LT;/div>
-              &LT;div class="col-xs-4 text-center">
-                &LT;a href="#">Sales&LT;/a>
-              &LT;/div>
-              &LT;div class="col-xs-4 text-center">
-                &LT;a href="#">Friends&LT;/a>
-              &LT;/div>
-            &LT;/li>
-            &LT;!-- Menu Footer-->
-            &LT;li class="user-footer">
-              &LT;div class="pull-left">
-                &LT;a href="#" class="btn btn-default btn-flat">Profile&LT;/a>
-              &LT;/div>
-              &LT;div class="pull-right">
-                &LT;a href="#" class="btn btn-default btn-flat">Sign out&LT;/a>
-              &LT;/div>
-            &LT;/li>
-          &LT;/ul>
-        &LT;/li>
-      &LT;/ul>
-    &LT;/div>
-  &LT;/nav>
-&LT;/header></pre>
+            &LT;/nav>
+          &LT;/header></pre>
             <h4>Top Nav Layout. Main Header Example.</h4>
             <div class="callout callout-info lead">
               <h4>Reminder!</h4>
@@ -1117,56 +993,56 @@ AdminLTE/
               </div>
             </div>
             <pre class='prettyprint'>
-&LT;header class="main-header">               
-  &LT;nav class="navbar navbar-static-top">
-    &LT;div class="container-fluid">
-    &LT;div class="navbar-header">
-      &LT;a href="../../index2.html" class="navbar-brand">&LT;b>Admin&LT;/b>LTE&LT;/a>
-      &LT;button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-        &LT;i class="fa fa-bars">&LT;/i>
-      &LT;/button>
-    &LT;/div>
+          &LT;header class="main-header">               
+            &LT;nav class="navbar navbar-static-top">
+              &LT;div class="container-fluid">
+              &LT;div class="navbar-header">
+                &LT;a href="../../index2.html" class="navbar-brand">&LT;b>Admin&LT;/b>LTE&LT;/a>
+                &LT;button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                  &LT;i class="fa fa-bars">&LT;/i>
+                &LT;/button>
+              &LT;/div>
 
-    &LT;!-- Collect the nav links, forms, and other content for toggling -->
-    &LT;div class="collapse navbar-collapse" id="navbar-collapse">
-      &LT;ul class="nav navbar-nav">
-        &LT;li class="active">&LT;a href="#">Link &LT;span class="sr-only">(current)&LT;/span>&LT;/a>&LT;/li>
-        &LT;li>&LT;a href="#">Link&LT;/a>&LT;/li>
-        &LT;li class="dropdown">
-          &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown &LT;span class="caret">&LT;/span>&LT;/a>
-          &LT;ul class="dropdown-menu" role="menu">
-            &LT;li>&LT;a href="#">Action&LT;/a>&LT;/li>
-            &LT;li>&LT;a href="#">Another action&LT;/a>&LT;/li>
-            &LT;li>&LT;a href="#">Something else here&LT;/a>&LT;/li>
-            &LT;li class="divider">&LT;/li>
-            &LT;li>&LT;a href="#">Separated link&LT;/a>&LT;/li>
-            &LT;li class="divider">&LT;/li>
-            &LT;li>&LT;a href="#">One more separated link&LT;/a>&LT;/li>
-          &LT;/ul>
-        &LT;/li>
-      &LT;/ul>
-      &LT;form class="navbar-form navbar-left" role="search">
-        &LT;div class="form-group">
-          &LT;input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
-        &LT;/div>
-      &LT;/form>
-      &LT;ul class="nav navbar-nav navbar-right">
-        &LT;li>&LT;a href="#">Link&LT;/a>&LT;/li>
-        &LT;li class="dropdown">
-          &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown &LT;span class="caret">&LT;/span>&LT;/a>
-          &LT;ul class="dropdown-menu" role="menu">
-            &LT;li>&LT;a href="#">Action&LT;/a>&LT;/li>
-            &LT;li>&LT;a href="#">Another action&LT;/a>&LT;/li>
-            &LT;li>&LT;a href="#">Something else here&LT;/a>&LT;/li>
-            &LT;li class="divider">&LT;/li>
-            &LT;li>&LT;a href="#">Separated link&LT;/a>&LT;/li>
-          &LT;/ul>
-        &LT;/li>
-      &LT;/ul>
-    &LT;/div>&LT;!-- /.navbar-collapse -->
-    &LT;/div>&LT;!-- /.container-fluid -->
-  &LT;/nav>
-&LT;/header>
+              &LT;!-- Collect the nav links, forms, and other content for toggling -->
+              &LT;div class="collapse navbar-collapse" id="navbar-collapse">
+                &LT;ul class="nav navbar-nav">
+                  &LT;li class="active">&LT;a href="#">Link &LT;span class="sr-only">(current)&LT;/span>&LT;/a>&LT;/li>
+                  &LT;li>&LT;a href="#">Link&LT;/a>&LT;/li>
+                  &LT;li class="dropdown">
+                    &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown &LT;span class="caret">&LT;/span>&LT;/a>
+                    &LT;ul class="dropdown-menu" role="menu">
+                      &LT;li>&LT;a href="#">Action&LT;/a>&LT;/li>
+                      &LT;li>&LT;a href="#">Another action&LT;/a>&LT;/li>
+                      &LT;li>&LT;a href="#">Something else here&LT;/a>&LT;/li>
+                      &LT;li class="divider">&LT;/li>
+                      &LT;li>&LT;a href="#">Separated link&LT;/a>&LT;/li>
+                      &LT;li class="divider">&LT;/li>
+                      &LT;li>&LT;a href="#">One more separated link&LT;/a>&LT;/li>
+                    &LT;/ul>
+                  &LT;/li>
+                &LT;/ul>
+                &LT;form class="navbar-form navbar-left" role="search">
+                  &LT;div class="form-group">
+                    &LT;input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
+                  &LT;/div>
+                &LT;/form>
+                &LT;ul class="nav navbar-nav navbar-right">
+                  &LT;li>&LT;a href="#">Link&LT;/a>&LT;/li>
+                  &LT;li class="dropdown">
+                    &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown &LT;span class="caret">&LT;/span>&LT;/a>
+                    &LT;ul class="dropdown-menu" role="menu">
+                      &LT;li>&LT;a href="#">Action&LT;/a>&LT;/li>
+                      &LT;li>&LT;a href="#">Another action&LT;/a>&LT;/li>
+                      &LT;li>&LT;a href="#">Something else here&LT;/a>&LT;/li>
+                      &LT;li class="divider">&LT;/li>
+                      &LT;li>&LT;a href="#">Separated link&LT;/a>&LT;/li>
+                    &LT;/ul>
+                  &LT;/li>
+                &LT;/ul>
+              &LT;/div>&LT;!-- /.navbar-collapse -->
+              &LT;/div>&LT;!-- /.container-fluid -->
+            &LT;/nav>
+          &LT;/header>
             </pre>
 
             <!-- ----------------------------------------------------------- -->
@@ -1177,46 +1053,48 @@ AdminLTE/
               Construction of a sidebar:
             </p>
             <pre class="prettyprint">
-&LT;div class="main-sidebar">
-  &LT;!-- Inner sidebar -->
-  &LT;div class="sidebar">
-    &LT;!-- user panel (Optional) -->
-    &LT;div class="user-panel">
-      &LT;div class="pull-left image">
-        &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
-      &LT;/div>
-      &LT;div class="pull-left info">
-        &LT;p>User Name&LT;/p>
+          &LT;div class="main-sidebar">
+            &LT;!-- Inner sidebar -->
+            &LT;div class="sidebar">
+              &LT;!-- user panel (Optional) -->
+              &LT;div class="user-panel">
+                &LT;div class="pull-left image">
+                  &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                &LT;/div>
+                &LT;div class="pull-left info">
+                  &LT;p>User Name&LT;/p>
 
-        &LT;a href="#">&LT;i class="fa fa-circle text-success">&LT;/i> Online&LT;/a>
-      &LT;/div>
-    &LT;/div>&LT;!-- /.user-panel -->
+                  &LT;a href="#">&LT;i class="fa fa-circle text-success">&LT;/i> Online&LT;/a>
+                &LT;/div>
+              &LT;/div>&LT;!-- /.user-panel -->
 
-    &LT;!-- Search Form (Optional) -->
-    &LT;form action="#" method="get" class="sidebar-form">
-      &LT;div class="input-group">
-        &LT;input type="text" name="q" class="form-control" placeholder="Search..."/>
-        &LT;span class="input-group-btn">
-          &LT;button type='submit' name='search' id='search-btn' class="btn btn-flat">&LT;i class="fa fa-search">&LT;/i>&LT;/button>
-        &LT;/span>
-      &LT;/div>
-    &LT;/form>&LT;!-- /.sidebar-form -->
+              &LT;!-- Search Form (Optional) -->
+              &LT;form action="#" method="get" class="sidebar-form">
+                &LT;div class="input-group">
+                  &LT;input type="text" name="q" class="form-control" placeholder="Search..."/>
+                  &LT;span class="input-group-btn">
+                    &LT;button type='submit' name='search' id='search-btn' class="btn btn-flat">&LT;i class="fa fa-search">&LT;/i>&LT;/button>
+                  &LT;/span>
+                &LT;/div>
+              &LT;/form>&LT;!-- /.sidebar-form -->
 
-    &LT;!-- Sidebar Menu -->
-    &LT;ul class="sidebar-menu">
-      &LT;li class="active">&LT;a href="#">Link&LT;/a>&LT;/li>
-      &LT;li>&LT;a href="#">Another Link&LT;/a>&LT;/li>
-      &LT;li class="treeview">
-        &LT;a href="#">Second Level&LT;/a>
-        &LT;ul class="treeview-menu">
-          &LT;li>&LT;a href="#">Link in level 2&LT;/a>&LT;/li>
-          &LT;li>&LT;a href="#">Link in level 2&LT;/a>&LT;/li>
-        &LT;/ul>
-      &LT;/li>
-    &LT;/ul>&LT;!-- /.sidebar-menu -->
+              &LT;!-- Sidebar Menu -->
+              &LT;ul class="sidebar-menu">
+                &LT;li class="header">HEADER&LT;/li>
+                &LT;!-- Optionally, you can add icons to the links -->
+                &LT;li class="active">&LT;a href="#">&LT;span>Link&LT;/span>&LT;/a>&LT;&LT;/li>
+                &LT;li>&LT;a href="#">&LT;span>Another Link&LT;/span>&LT;/a>&LT;/li>
+                &LT;li class="treeview">
+                  &LT;a href="#">&LT;span>Multilevel&LT;/span> &LT;i class="fa fa-angle-left pull-right">&LT;/i>&LT;/a>
+                  &LT;ul class="treeview-menu">
+                    &LT;li>&LT;a href="#">Link in level 2&LT;/a>&LT;/li>
+                    &LT;li>&LT;a href="#">Link in level 2&LT;/a>&LT;/li>
+                  &LT;/ul>
+                &LT;/li>
+              &LT;/ul>&LT;!-- /.sidebar-menu -->
 
-  &LT;/div>&LT;!-- /.sidebar -->
-&LT;/div>&LT;!-- /.main-sidebar -->
+            &LT;/div>&LT;!-- /.sidebar -->
+          &LT;/div>&LT;!-- /.main-sidebar -->
             </pre>
 
             <!-- ----------------------------------------------------------- -->
@@ -1264,15 +1142,15 @@ AdminLTE/
             </div><!-- /.row -->
             <p class="lead">Markup</p>
             <pre class="prettyprint"><code class="html">
-&LT;div class="info-box">
-  &LT;-- Apply any bg-* class to to the icon to color it -->
-  &LT;span class="info-box-icon bg-red">&LT;i class="fa fa-star-o">&LT;/i>&LT;/span>
-  &LT;div class="info-box-content">
-    &LT;span class="info-box-text">Likes&LT;/span>
-    &LT;span class="info-box-number">93,139&LT;/span>
-  &LT;/div>&LT;!-- /.info-box-content -->
-&LT;/div>&LT;!-- /.info-box -->
-</code></pre>
+          &LT;div class="info-box">
+            &LT;-- Apply any bg-* class to to the icon to color it -->
+            &LT;span class="info-box-icon bg-red">&LT;i class="fa fa-star-o">&LT;/i>&LT;/span>
+            &LT;div class="info-box-content">
+              &LT;span class="info-box-text">Likes&LT;/span>
+              &LT;span class="info-box-number">93,139&LT;/span>
+            &LT;/div>&LT;!-- /.info-box-content -->
+          &LT;/div>&LT;!-- /.info-box -->
+          </code></pre>
 
             <h4>Second Type of Info Boxes</h4>
             <div class="row">
@@ -1339,22 +1217,22 @@ AdminLTE/
             </div><!-- /.row -->
             <p class="lead">Markup</p>
             <pre class="prettyprint"><code class="html">
-&LT;-- Apply any bg-* class to to the info-box to color it -->
-&LT;div class="info-box bg-red">
-  &LT;span class="info-box-icon">&LT;i class="fa fa-comments-o">&LT;/i>&LT;/span>
-  &LT;div class="info-box-content">
-    &LT;span class="info-box-text">Likes&LT;/span>
-    &LT;span class="info-box-number">41,410&LT;/span>
-    &LT;-- The progress section is optional -->
-    &LT;div class="progress">
-      &LT;div class="progress-bar" style="width: 70%">&LT;/div>
-    &LT;/div>
-    &LT;span class="progress-description">
-      70% Increase in 30 Days
-    &LT;/span>
-  &LT;/div>&LT;!-- /.info-box-content -->
-&LT;/div>&LT;!-- /.info-box -->
-</code></pre>
+          &LT;-- Apply any bg-* class to to the info-box to color it -->
+          &LT;div class="info-box bg-red">
+            &LT;span class="info-box-icon">&LT;i class="fa fa-comments-o">&LT;/i>&LT;/span>
+            &LT;div class="info-box-content">
+              &LT;span class="info-box-text">Likes&LT;/span>
+              &LT;span class="info-box-number">41,410&LT;/span>
+              &LT;-- The progress section is optional -->
+              &LT;div class="progress">
+                &LT;div class="progress-bar" style="width: 70%">&LT;/div>
+              &LT;/div>
+              &LT;span class="progress-description">
+                70% Increase in 30 Days
+              &LT;/span>
+            &LT;/div>&LT;!-- /.info-box-content -->
+          &LT;/div>&LT;!-- /.info-box -->
+          </code></pre>
             <p class="lead">The only thing you need to change to alternate between these style is change the placement of the bg-* class. For the 
               first style apply any bg-* class to the icon itself. For the other style, apply the bg-* class to the info-box div.</p>
             <!-- ----------------------------------------------------------- -->
@@ -1381,22 +1259,22 @@ AdminLTE/
               </div><!-- box-footer -->
             </div><!-- /.box -->
             <pre class="prettyprint">
-&LT;div class="box">
-  &LT;div class="box-header with-border">
-    &LT;h3 class="box-title">Default Box Example&LT;/h3>
-    &LT;div class="box-tools pull-right">
-      &LT;!-- Buttons, labels, and many other things can be placed here! -->
-      &LT;!-- Here is a label for example -->
-      &LT;span class="label label-primary">Label&LT;/span>
-    &LT;/div>&LT;!-- /.box-tools -->
-  &LT;/div>&LT;!-- /.box-header -->
-  &LT;div class="box-body">
-    The body of the box
-  &LT;/div>&LT;!-- /.box-body -->
-  &LT;div class="box-footer">
-    The footer of the box
-  &LT;/div>&LT;!-- box-footer -->
-&LT;/div>&LT;!-- /.box --></pre>
+          &LT;div class="box">
+            &LT;div class="box-header with-border">
+              &LT;h3 class="box-title">Default Box Example&LT;/h3>
+              &LT;div class="box-tools pull-right">
+                &LT;!-- Buttons, labels, and many other things can be placed here! -->
+                &LT;!-- Here is a label for example -->
+                &LT;span class="label label-primary">Label&LT;/span>
+              &LT;/div>&LT;!-- /.box-tools -->
+            &LT;/div>&LT;!-- /.box-header -->
+            &LT;div class="box-body">
+              The body of the box
+            &LT;/div>&LT;!-- /.box-body -->
+            &LT;div class="box-footer">
+              The footer of the box
+            &LT;/div>&LT;!-- box-footer -->
+          &LT;/div>&LT;!-- /.box --></pre>
             <h4>Box Variants</h4>
             <p class="lead">You can change the style of the box by adding any of the contextual classes.</p>
             <div class="row">
@@ -1463,12 +1341,12 @@ AdminLTE/
               </div>
             </div><!-- /.row -->
             <pre class="prettyprint">
-&LT;div class="box box-default">...&LT;/div>
-&LT;div class="box box-primary">...&LT;/div>
-&LT;div class="box box-info">...&LT;/div>
-&LT;div class="box box-warning">...&LT;/div>
-&LT;div class="box box-success">...&LT;/div>
-&LT;div class="box box-danger">...&LT;/div></pre>
+          &LT;div class="box box-default">...&LT;/div>
+          &LT;div class="box box-primary">...&LT;/div>
+          &LT;div class="box box-info">...&LT;/div>
+          &LT;div class="box box-warning">...&LT;/div>
+          &LT;div class="box box-success">...&LT;/div>
+          &LT;div class="box box-danger">...&LT;/div></pre>
 
             <h4>Solid Box</h4>
             <p class="lead">Solid Boxes are alternative ways to display boxes.
@@ -1538,22 +1416,22 @@ AdminLTE/
               </div>
             </div><!-- /.row -->
             <pre class="prettyprint">
-&LT;div class="box box-solid">...&LT;/div>
-&LT;div class="box box-solid box-primary">...&LT;/div>
-&LT;div class="box box-solid box-info">...&LT;/div>
-&LT;div class="box box-solid box-warning">...&LT;/div>
-&LT;div class="box box-solid box-success">...&LT;/div>
-&LT;div class="box box-solid box-danger">...&LT;/div></pre>
+          &LT;div class="box box-solid box-default">...&LT;/div>
+          &LT;div class="box box-solid box-primary">...&LT;/div>
+          &LT;div class="box box-solid box-info">...&LT;/div>
+          &LT;div class="box box-solid box-warning">...&LT;/div>
+          &LT;div class="box box-solid box-success">...&LT;/div>
+          &LT;div class="box box-solid box-danger">...&LT;/div></pre>
             <h4>Box Tools</h4>
             <p class="lead">Boxes can contain tools to deploy a specific event or provide simple info. The following examples makes use
               of multiple AdminLTE components within the header of the box.</p>
             <p>AdminLTE data-widget attribute provides boxes with the ability to collapse or be removed. The buttons
               are placed in the box-tools which is placed in the box-header.</p>
             <pre class="prettyprint">
-&LT;-- This will cause the box to be removed when clicked -->
-&LT;button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">&LT;i class="fa fa-times">&LT;/i>&LT;/button>
-&LT;-- This will cause the box to collapse when clicked -->
-&LT;button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">&LT;i class="fa fa-minus">&LT;/i>&LT;/button></pre>
+          &LT;-- This will cause the box to be removed when clicked -->
+          &LT;button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">&LT;i class="fa fa-times">&LT;/i>&LT;/button>
+          &LT;-- This will cause the box to collapse when clicked -->
+          &LT;button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">&LT;i class="fa fa-minus">&LT;/i>&LT;/button></pre>
             <div class="row">
               <div class="col-md-4">
                 <div class="box box-default">
@@ -1568,17 +1446,17 @@ AdminLTE/
                   </div><!-- /.box-body -->
                 </div><!-- /.box -->
                 <pre class="prettyprint">
-&LT;div class="box box-default">
-  &LT;div class="box-header with-border">
-    &LT;h3 class="box-title">Collapsable&LT;/h3>
-    &LT;div class="box-tools pull-right">
-      &LT;button class="btn btn-box-tool" data-widget="collapse">&LT;i class="fa fa-minus">&LT;/i>&LT;/button>
-    &LT;/div>&LT;!-- /.box-tools -->
-  &LT;/div>&LT;!-- /.box-header -->
-  &LT;div class="box-body">
-    The body of the box
-  &LT;/div>&LT;!-- /.box-body -->
-&LT;/div>&LT;!-- /.box --></pre>
+          &LT;div class="box box-default">
+            &LT;div class="box-header with-border">
+              &LT;h3 class="box-title">Collapsable&LT;/h3>
+              &LT;div class="box-tools pull-right">
+                &LT;button class="btn btn-box-tool" data-widget="collapse">&LT;i class="fa fa-minus">&LT;/i>&LT;/button>
+              &LT;/div>&LT;!-- /.box-tools -->
+            &LT;/div>&LT;!-- /.box-header -->
+            &LT;div class="box-body">
+              The body of the box
+            &LT;/div>&LT;!-- /.box-body -->
+          &LT;/div>&LT;!-- /.box --></pre>
               </div>
               <div class="col-md-4">
                 <div class="box box-default">
@@ -1593,17 +1471,17 @@ AdminLTE/
                   </div><!-- /.box-body -->
                 </div><!-- /.box -->
                 <pre class="prettyprint">
-&LT;div class="box box-default">
-  &LT;div class="box-header with-border">
-    &LT;h3 class="box-title">Removable&LT;/h3>
-    &LT;div class="box-tools pull-right">
-      &LT;button class="btn btn-box-tool" data-widget="remove">&LT;i class="fa fa-times">&LT;/i>&LT;/button>
-    &LT;/div>&LT;!-- /.box-tools -->
-  &LT;/div>&LT;!-- /.box-header -->
-  &LT;div class="box-body">
-    The body of the box
-  &LT;/div>&LT;!-- /.box-body -->
-&LT;/div>&LT;!-- /.box --></pre>
+          &LT;div class="box box-default">
+            &LT;div class="box-header with-border">
+              &LT;h3 class="box-title">Removable&LT;/h3>
+              &LT;div class="box-tools pull-right">
+                &LT;button class="btn btn-box-tool" data-widget="remove">&LT;i class="fa fa-times">&LT;/i>&LT;/button>
+              &LT;/div>&LT;!-- /.box-tools -->
+            &LT;/div>&LT;!-- /.box-header -->
+            &LT;div class="box-body">
+              The body of the box
+            &LT;/div>&LT;!-- /.box-body -->
+          &LT;/div>&LT;!-- /.box --></pre>
               </div>
               <div class="col-md-4">
                 <div class="box box-default collapsed-box">
@@ -1618,17 +1496,17 @@ AdminLTE/
                   </div><!-- /.box-body -->
                 </div><!-- /.box -->
                 <pre class="prettyprint">
-&LT;div class="box box-default">
-  &LT;div class="box-header with-border">
-    &LT;h3 class="box-title">Expandable&LT;/h3>
-    &LT;div class="box-tools pull-right">
-      &LT;button class="btn btn-box-tool" data-widget="collapse">&LT;i class="fa fa-plus">&LT;/i>&LT;/button>
-    &LT;/div>&LT;!-- /.box-tools -->
-  &LT;/div>&LT;!-- /.box-header -->
-  &LT;div class="box-body">
-    The body of the box
-  &LT;/div>&LT;!-- /.box-body -->
-&LT;/div>&LT;!-- /.box --></pre>
+          &LT;div class="box box-default">
+            &LT;div class="box-header with-border">
+              &LT;h3 class="box-title">Expandable&LT;/h3>
+              &LT;div class="box-tools pull-right">
+                &LT;button class="btn btn-box-tool" data-widget="collapse">&LT;i class="fa fa-plus">&LT;/i>&LT;/button>
+              &LT;/div>&LT;!-- /.box-tools -->
+            &LT;/div>&LT;!-- /.box-header -->
+            &LT;div class="box-body">
+              The body of the box
+            &LT;/div>&LT;!-- /.box-body -->
+          &LT;/div>&LT;!-- /.box --></pre>
               </div>
             </div><!-- /.row -->
             <p>We can also add labels, badges, pagination, tooltips, inputs and many more in the box tools.  A few examples:</p>
@@ -1646,17 +1524,17 @@ AdminLTE/
                   </div><!-- /.box-body -->
                 </div><!-- /.box -->
                 <pre class="prettyprint">
-&LT;div class="box box-default">
-  &LT;div class="box-header with-border">
-    &LT;h3 class="box-title">Labels&LT;/h3>
-    &LT;div class="box-tools pull-right">
-      &LT;span class="label label-default">8 New Messages&LT;/span>
-    &LT;/div>&LT;!-- /.box-tools -->
-  &LT;/div>&LT;!-- /.box-header -->
-  &LT;div class="box-body">
-    The body of the box
-  &LT;/div>&LT;!-- /.box-body -->
-&LT;/div>&LT;!-- /.box --></pre>
+          &LT;div class="box box-default">
+            &LT;div class="box-header with-border">
+              &LT;h3 class="box-title">Labels&LT;/h3>
+              &LT;div class="box-tools pull-right">
+                &LT;span class="label label-default">8 New Messages&LT;/span>
+              &LT;/div>&LT;!-- /.box-tools -->
+            &LT;/div>&LT;!-- /.box-header -->
+            &LT;div class="box-body">
+              The body of the box
+            &LT;/div>&LT;!-- /.box-body -->
+          &LT;/div>&LT;!-- /.box --></pre>
               </div>
               <div class="col-md-4">
                 <div class="box box-default">
@@ -1674,20 +1552,20 @@ AdminLTE/
                   </div><!-- /.box-body -->
                 </div><!-- /.box -->
                 <pre class="prettyprint">
-&LT;div class="box box-default">
-  &LT;div class="box-header with-border">
-    &LT;h3 class="box-title">Input&LT;/h3>
-    &LT;div class="box-tools pull-right">
-      &LT;div class="has-feedback">
-        &LT;input type="text" class="form-control input-sm" placeholder="Search..."/>
-        &LT;span class="glyphicon glyphicon-search form-control-feedback">&LT;/span>
-      &LT;/div>
-    &LT;/div>&LT;!-- /.box-tools -->
-  &LT;/div>&LT;!-- /.box-header -->
-  &LT;div class="box-body">
-    The body of the box
-  &LT;/div>&LT;!-- /.box-body -->
-&LT;/div>&LT;!-- /.box --></pre>
+          &LT;div class="box box-default">
+            &LT;div class="box-header with-border">
+              &LT;h3 class="box-title">Input&LT;/h3>
+              &LT;div class="box-tools pull-right">
+                &LT;div class="has-feedback">
+                  &LT;input type="text" class="form-control input-sm" placeholder="Search..."/>
+                  &LT;span class="glyphicon glyphicon-search form-control-feedback">&LT;/span>
+                &LT;/div>
+              &LT;/div>&LT;!-- /.box-tools -->
+            &LT;/div>&LT;!-- /.box-header -->
+            &LT;div class="box-body">
+              The body of the box
+            &LT;/div>&LT;!-- /.box-body -->
+          &LT;/div>&LT;!-- /.box --></pre>
               </div>
               <div class="col-md-4">
                 <div class="box box-default">
@@ -1703,18 +1581,18 @@ AdminLTE/
                   </div><!-- /.box-body -->
                 </div><!-- /.box -->
                 <pre class="prettyprint">
-&LT;div class="box box-default">
-  &LT;div class="box-header with-border">
-    &LT;h3 class="box-title">Tooltips on buttons&LT;/h3>
-    &LT;div class="box-tools pull-right">      
-      &LT;button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">&LT;i class="fa fa-minus">&LT;/i>&LT;/button>
-      &LT;button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">&LT;i class="fa fa-times">&LT;/i>&LT;/button>
-    &LT;/div>&LT;!-- /.box-tools -->
-  &LT;/div>&LT;!-- /.box-header -->
-  &LT;div class="box-body">
-    The body of the box
-  &LT;/div>&LT;!-- /.box-body -->
-&LT;/div>&LT;!-- /.box --></pre>
+          &LT;div class="box box-default">
+            &LT;div class="box-header with-border">
+              &LT;h3 class="box-title">Tooltips on buttons&LT;/h3>
+              &LT;div class="box-tools pull-right">      
+                &LT;button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">&LT;i class="fa fa-minus">&LT;/i>&LT;/button>
+                &LT;button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">&LT;i class="fa fa-times">&LT;/i>&LT;/button>
+              &LT;/div>&LT;!-- /.box-tools -->
+            &LT;/div>&LT;!-- /.box-header -->
+            &LT;div class="box-body">
+              The body of the box
+            &LT;/div>&LT;!-- /.box-body -->
+          &LT;/div>&LT;!-- /.box --></pre>
               </div><!-- /.col -->
             </div><!-- /.row -->
 
@@ -1735,7 +1613,7 @@ AdminLTE/
                   <!-- end loading -->
                 </div><!-- /.box -->                
               </div><!-- /.col -->
-              
+
               <div class="col-md-6">
                 <div class="box box-default box-solid">
                   <div class="box-header with-border">
@@ -1756,9 +1634,9 @@ AdminLTE/
               To simulate a loading state, simply place this code before the <code>.box</code> closing tag.              
             </p>
             <pre class="prettyprint"><code class="html">&LT;div class="overlay">
-  &LT;i class="fa fa-refresh fa-spin">&LT;/i>
-&LT;/div>
-</code></pre>
+            &LT;i class="fa fa-refresh fa-spin">&LT;/i>
+          &LT;/div>
+          </code></pre>
             <h3 id="component-direct-chat">Direct Chat</h3>
             <p class="lead">The direct chat widget extends the box component to create a beautiful chat interface. This widget
               consists of a required messages pane and an <b>optional</b> contacts pane. Examples:</p>
@@ -2050,76 +1928,76 @@ AdminLTE/
             </div><!-- /.row -->
             <p class="lead">Direct Chat Markup</p>
             <pre class="prettyprint"><code class="html">
-&LT;-- Construct the box with style you want. Here we are using box-danger -->
-&LT;-- Then add the class direct-chat and choose the direct-chat-* contexual class -->
-&LT;-- The contextual class should match the box, so we are using direct-chat-danger -->
-&LT;div class="box box-danger direct-chat direct-chat-danger">
-  &LT;div class="box-header with-border">
-    &LT;h3 class="box-title">Direct Chat&LT;/h3>
-    &LT;div class="box-tools pull-right">
-      &LT;span data-toggle="tooltip" title="3 New Messages" class='badge bg-red'>3&LT;/span>
-      &LT;button class="btn btn-box-tool" data-widget="collapse">&LT;i class="fa fa-minus">&LT;/i>&LT;/button>
-      &LT;-- In box-tools add this button if you intend to use the contacts pane -->
-      &LT;button class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">&LT;i class="fa fa-comments">&LT;/i>&LT;/button>
-      &LT;button class="btn btn-box-tool" data-widget="remove">&LT;i class="fa fa-times">&LT;/i>&LT;/button>
-    &LT;/div>
-  &LT;/div>&LT;!-- /.box-header -->
-  &LT;div class="box-body">
-    &LT;!-- Conversations are loaded here -->
-    &LT;div class="direct-chat-messages">
-      &LT;!-- Message. Default to the left -->
-      &LT;div class="direct-chat-msg">
-        &LT;div class='direct-chat-info clearfix'>
-          &LT;span class='direct-chat-name pull-left'>Alexander Pierce&LT;/span>
-          &LT;span class='direct-chat-timestamp pull-right'>23 Jan 2:00 pm&LT;/span>
-        &LT;/div>&LT;!-- /.direct-chat-info -->
-        &LT;img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="message user image" />&LT;!-- /.direct-chat-img -->
-        &LT;div class="direct-chat-text">
-          Is this template really for free? That's unbelievable!
-        &LT;/div>&LT;!-- /.direct-chat-text -->
-      &LT;/div>&LT;!-- /.direct-chat-msg -->
+          &LT;-- Construct the box with style you want. Here we are using box-danger -->
+          &LT;-- Then add the class direct-chat and choose the direct-chat-* contexual class -->
+          &LT;-- The contextual class should match the box, so we are using direct-chat-danger -->
+          &LT;div class="box box-danger direct-chat direct-chat-danger">
+            &LT;div class="box-header with-border">
+              &LT;h3 class="box-title">Direct Chat&LT;/h3>
+              &LT;div class="box-tools pull-right">
+                &LT;span data-toggle="tooltip" title="3 New Messages" class='badge bg-red'>3&LT;/span>
+                &LT;button class="btn btn-box-tool" data-widget="collapse">&LT;i class="fa fa-minus">&LT;/i>&LT;/button>
+                &LT;-- In box-tools add this button if you intend to use the contacts pane -->
+                &LT;button class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">&LT;i class="fa fa-comments">&LT;/i>&LT;/button>
+                &LT;button class="btn btn-box-tool" data-widget="remove">&LT;i class="fa fa-times">&LT;/i>&LT;/button>
+              &LT;/div>
+            &LT;/div>&LT;!-- /.box-header -->
+            &LT;div class="box-body">
+              &LT;!-- Conversations are loaded here -->
+              &LT;div class="direct-chat-messages">
+                &LT;!-- Message. Default to the left -->
+                &LT;div class="direct-chat-msg">
+                  &LT;div class='direct-chat-info clearfix'>
+                    &LT;span class='direct-chat-name pull-left'>Alexander Pierce&LT;/span>
+                    &LT;span class='direct-chat-timestamp pull-right'>23 Jan 2:00 pm&LT;/span>
+                  &LT;/div>&LT;!-- /.direct-chat-info -->
+                  &LT;img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="message user image" />&LT;!-- /.direct-chat-img -->
+                  &LT;div class="direct-chat-text">
+                    Is this template really for free? That's unbelievable!
+                  &LT;/div>&LT;!-- /.direct-chat-text -->
+                &LT;/div>&LT;!-- /.direct-chat-msg -->
 
-      &LT;!-- Message to the right -->
-      &LT;div class="direct-chat-msg right">
-        &LT;div class='direct-chat-info clearfix'>
-          &LT;span class='direct-chat-name pull-right'>Sarah Bullock&LT;/span>
-          &LT;span class='direct-chat-timestamp pull-left'>23 Jan 2:05 pm&LT;/span>
-        &LT;/div>&LT;!-- /.direct-chat-info -->
-        &LT;img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="message user image" />&LT;!-- /.direct-chat-img -->
-        &LT;div class="direct-chat-text">
-          You better believe it!
-        &LT;/div>&LT;!-- /.direct-chat-text -->
-      &LT;/div>&LT;!-- /.direct-chat-msg -->                    
-    &LT;/div>&LT;!--/.direct-chat-messages-->
+                &LT;!-- Message to the right -->
+                &LT;div class="direct-chat-msg right">
+                  &LT;div class='direct-chat-info clearfix'>
+                    &LT;span class='direct-chat-name pull-right'>Sarah Bullock&LT;/span>
+                    &LT;span class='direct-chat-timestamp pull-left'>23 Jan 2:05 pm&LT;/span>
+                  &LT;/div>&LT;!-- /.direct-chat-info -->
+                  &LT;img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="message user image" />&LT;!-- /.direct-chat-img -->
+                  &LT;div class="direct-chat-text">
+                    You better believe it!
+                  &LT;/div>&LT;!-- /.direct-chat-text -->
+                &LT;/div>&LT;!-- /.direct-chat-msg -->                    
+              &LT;/div>&LT;!--/.direct-chat-messages-->
 
-    &LT;!-- Contacts are loaded here -->
-    &LT;div class="direct-chat-contacts">
-      &LT;ul class='contacts-list'>
-        &LT;li>
-          &LT;a href='#'>
-            &LT;img class='contacts-list-img' src='../dist/img/user1-128x128.jpg'/>
-            &LT;div class='contacts-list-info'>
-              &LT;span class='contacts-list-name'>
-                Count Dracula
-                &LT;small class='contacts-list-date pull-right'>2/28/2015&LT;/small>
-              &LT;/span>
-              &LT;span class='contacts-list-msg'>How have you been? I was...&LT;/span>
-            &LT;/div>&LT;!-- /.contacts-list-info -->
-          &LT;/a>
-        &LT;/li>&LT;!-- End Contact Item -->                      
-      &LT;/ul>&LT;!-- /.contatcts-list -->
-    &LT;/div>&LT;!-- /.direct-chat-pane -->
-  &LT;/div>&LT;!-- /.box-body -->
-  &LT;div class="box-footer">
-    &LT;div class="input-group">
-      &LT;input type="text" name="message" placeholder="Type Message ..." class="form-control"/>
-      &LT;span class="input-group-btn">
-        &LT;button type="button" class="btn btn-danger btn-flat">Send&LT;/button>
-      &LT;/span>
-    &LT;/div>
-  &LT;/div>&LT;!-- /.box-footer-->
-&LT;/div>&LT;!--/.direct-chat -->
-</code></pre>
+              &LT;!-- Contacts are loaded here -->
+              &LT;div class="direct-chat-contacts">
+                &LT;ul class='contacts-list'>
+                  &LT;li>
+                    &LT;a href='#'>
+                      &LT;img class='contacts-list-img' src='../dist/img/user1-128x128.jpg'/>
+                      &LT;div class='contacts-list-info'>
+                        &LT;span class='contacts-list-name'>
+                          Count Dracula
+                          &LT;small class='contacts-list-date pull-right'>2/28/2015&LT;/small>
+                        &LT;/span>
+                        &LT;span class='contacts-list-msg'>How have you been? I was...&LT;/span>
+                      &LT;/div>&LT;!-- /.contacts-list-info -->
+                    &LT;/a>
+                  &LT;/li>&LT;!-- End Contact Item -->                      
+                &LT;/ul>&LT;!-- /.contatcts-list -->
+              &LT;/div>&LT;!-- /.direct-chat-pane -->
+            &LT;/div>&LT;!-- /.box-body -->
+            &LT;div class="box-footer">
+              &LT;div class="input-group">
+                &LT;input type="text" name="message" placeholder="Type Message ..." class="form-control"/>
+                &LT;span class="input-group-btn">
+                  &LT;button type="button" class="btn btn-danger btn-flat">Send&LT;/button>
+                &LT;/span>
+              &LT;/div>
+            &LT;/div>&LT;!-- /.box-footer-->
+          &LT;/div>&LT;!--/.direct-chat -->
+          </code></pre>
           </section>
 
           <!-- ============================================================= -->
@@ -2175,17 +2053,17 @@ AdminLTE/
           <!-- ============================================================= -->
 
           <section id='browsers'>
-            <h2 class='page-header'><span>Browser Support</span></h2>
-            <p class="lead">AdminLTE supports the following browsers:</p>
-            <ul>
-              <li>IE9+</li>
-              <li>FireFox (latest)</li>
-              <li>Safari (latest)</li>
-              <li>Chrome (latest)</li>
-              <li>Opera (latest)</li>
-            </ul>
-            <p><b>Note:</b> IE9 does not support transitions or animations. The template will function properly but it won't use animations/transitions on IE9.</p>
-          </section>
+                      <h2 class='page-header'><span>Browser Support</span></h2>
+                      <p class="lead">AdminLTE supports the following browsers:</p>
+                      <ul>
+                        <li>IE9+</li>
+                        <li>FireFox (latest)</li>
+                        <li>Safari (latest)</li>
+                        <li>Chrome (latest)</li>
+                        <li>Opera (latest)</li>
+                      </ul>
+                      <p><b>Note:</b> IE9 does not support transitions or animations. The template will function properly but it won't use animations/transitions on IE9.</p>
+                    </section>
 
           <!-- ============================================================= -->
 
@@ -2242,7 +2120,7 @@ AdminLTE/
             <h1 class="page-header"><span>License</span></h1>
             <h3>AdminLTE</h3>
             <p class="lead">AdminLTE is an open source project that is licensed under the <a href="http://opensource.org/licenses/MIT">MIT license</a>.
-              This allows you to do pretty much anything you want with it except selling it without any major modifications.
+              This allows you to do pretty much anything you want as long as you include the copyright in "all copies or substantial portions of the Software."
               Attribution is not required (though very much appreciated).</p>
             <h3>AdminLTE Premium Collection (Coming Soon)</h3>
             <p class="lead">AdminLTE's premium collection provides a set of non-open source components, plugins and widgets. To use
@@ -2281,6 +2159,7 @@ AdminLTE/
             </ul>
             <p>For further question about which license you should get, please email us at <a href="mailto:support@almsaeedstudio.com">support@almsaeedstudio.com</a>.</p>
           </section>
+          
         </div><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
@@ -2304,18 +2183,6 @@ AdminLTE/
     <!-- SlimScroll 1.3.0 -->
     <script src="../plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
-    <script>
-      $(function () {
-        $(".sidebar-menu li a").click(function () {
-          var $this = $(this);
-          var target = $this.attr("href");
-          if (typeof target === 'string') {
-            $("body").animate({
-              scrollTop: ($(target).offset().top - 32) + "px"
-            }, 500);
-          }
-        });
-      });
-    </script>
+    <script src="docs.js"></script>
   </body>
 </html>

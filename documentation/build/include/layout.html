@@ -1,0 +1,432 @@
+<section id='layout'>
+  <h2 class='page-header'><span>Layout</span></h2>
+  <p class='lead'>The layout consists of four major parts:</p>
+  <ul>
+    <li>Wrapper <code>.wrapper</code>. A div that wraps the whole site.</li>
+    <li>Main Header <code>.main-header</code>. Contains the logo and navbar.</li>
+    <li>Sidebar <code>.sidebar-wrapper</code>. Contains the user panel and sidebar menu.</li>
+    <li>Content <code>.content-wrapper</code>. Contains the page header and content.</li>
+  </ul>
+  <div class="callout callout-danger lead">
+    <h4>Tip!</h4>
+    <p>The <a href="../starter.html">starter page</a> is a good place to start building your app if you'd like to start from scratch.</p>
+  </div>
+  <p>A full layout example for a quick start</p>
+  <pre class='prettyprint'>
+&LT;!DOCTYPE html>
+&LT;html>
+  &LT;head>
+    &LT;meta charset="UTF-8">
+    &LT;title>AdminLTE 2 | Dashboard&LT;/title>
+    &LT;meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    &LT;!-- Bootstrap 3.3.2 -->
+    &LT;link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    &LT;!-- Font Awesome Icons -->
+    &LT;link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    &LT;!-- Ionicons -->
+    &LT;link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    &LT;!-- Theme style -->
+    &LT;link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    &LT;!-- AdminLTE Skins. Choose a skin from the css/skins 
+         folder instead of downloading all of them to reduce the load. -->
+    &LT;link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+
+    &LT;!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    &LT;!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    &LT;!--[if lt IE 9]>
+        &LT;script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">&LT;/script>
+        &LT;script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js">&LT;/script>
+    &LT;![endif]-->
+  &LT;/head>
+  &LT;body class="skin-blue">
+    &LT;!-- Site wrapper -->
+    &LT;div class="wrapper">
+      
+      &LT;header class="main-header">
+        &LT;a href="index2.html" class="logo">&LT;b>Admin&LT;/b>LTE&LT;/a>
+        &LT;!-- Header Navbar: style can be found in header.less -->
+        &LT;nav class="navbar navbar-static-top" role="navigation">
+          &LT;!-- Sidebar toggle button-->
+          &LT;a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            &LT;span class="sr-only">Toggle navigation&LT;/span>
+            &LT;span class="icon-bar">&LT;/span>
+            &LT;span class="icon-bar">&LT;/span>
+            &LT;span class="icon-bar">&LT;/span>
+          &LT;/a>
+          &LT;div class="navbar-custom-menu">
+            &LT;ul class="nav navbar-nav">
+              &LT;!-- Messages: style can be found in dropdown.less-->
+              &LT;li class="dropdown messages-menu">
+                &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  &LT;i class="fa fa-envelope-o">&LT;/i>
+                  &LT;span class="label label-success">4&LT;/span>
+                &LT;/a>
+                &LT;ul class="dropdown-menu">
+                  &LT;li class="header">You have 4 messages&LT;/li>
+                  &LT;li>
+                    &LT;!-- inner menu: contains the actual data -->
+                    &LT;ul class="menu">
+                      &LT;li>&LT;!-- start message -->
+                        &LT;a href="#">
+                          &LT;div class="pull-left">
+                            &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                          &LT;/div>
+                          &LT;h4>
+                            Support Team
+                            &LT;small>&LT;i class="fa fa-clock-o">&LT;/i> 5 mins&LT;/small>
+                          &LT;/h4>
+                          &LT;p>Why not buy a new awesome theme?&LT;/p>
+                        &LT;/a>
+                      &LT;/li>&LT;!-- end message -->
+                    &LT;/ul>
+                  &LT;/li>
+                  &LT;li class="footer">&LT;a href="#">See All Messages&LT;/a>&LT;/li>
+                &LT;/ul>
+              &LT;/li>
+              &LT;!-- Notifications: style can be found in dropdown.less -->
+              &LT;li class="dropdown notifications-menu">
+                &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  &LT;i class="fa fa-bell-o">&LT;/i>
+                  &LT;span class="label label-warning">10&LT;/span>
+                &LT;/a>
+                &LT;ul class="dropdown-menu">
+                  &LT;li class="header">You have 10 notifications&LT;/li>
+                  &LT;li>
+                    &LT;!-- inner menu: contains the actual data -->
+                    &LT;ul class="menu">
+                      &LT;li>
+                        &LT;a href="#">
+                          &LT;i class="fa fa-users text-aqua">&LT;/i> 5 new members joined today
+                        &LT;/a>
+                      &LT;/li>
+                    &LT;/ul>
+                  &LT;/li>
+                  &LT;li class="footer">&LT;a href="#">View all&LT;/a>&LT;/li>
+                &LT;/ul>
+              &LT;/li>
+              &LT;!-- Tasks: style can be found in dropdown.less -->
+              &LT;li class="dropdown tasks-menu">
+                &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  &LT;i class="fa fa-flag-o">&LT;/i>
+                  &LT;span class="label label-danger">9&LT;/span>
+                &LT;/a>
+                &LT;ul class="dropdown-menu">
+                  &LT;li class="header">You have 9 tasks&LT;/li>
+                  &LT;li>
+                    &LT;!-- inner menu: contains the actual data -->
+                    &LT;ul class="menu">
+                      &LT;li>&LT;!-- Task item -->
+                        &LT;a href="#">
+                          &LT;h3>
+                            Design some buttons
+                            &LT;small class="pull-right">20%&LT;/small>
+                          &LT;/h3>
+                          &LT;div class="progress xs">
+                            &LT;div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                              &LT;span class="sr-only">20% Complete&LT;/span>
+                            &LT;/div>
+                          &LT;/div>
+                        &LT;/a>
+                      &LT;/li>&LT;!-- end task item -->
+                    &LT;/ul>
+                  &LT;/li>
+                  &LT;li class="footer">
+                    &LT;a href="#">View all tasks&LT;/a>
+                  &LT;/li>
+                &LT;/ul>
+              &LT;/li>
+              &LT;!-- User Account: style can be found in dropdown.less -->
+              &LT;li class="dropdown user user-menu">
+                &LT;a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  &LT;img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                  &LT;span class="hidden-xs">Alexander Pierce&LT;/span>
+                &LT;/a>
+                &LT;ul class="dropdown-menu">
+                  &LT;!-- User image -->
+                  &LT;li class="user-header">
+                    &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                    &LT;p>
+                      Alexander Pierce - Web Developer
+                      &LT;small>Member since Nov. 2012&LT;/small>
+                    &LT;/p>
+                  &LT;/li>
+                  &LT;!-- Menu Body -->
+                  &LT;li class="user-body">
+                    &LT;div class="col-xs-4 text-center">
+                      &LT;a href="#">Followers&LT;/a>
+                    &LT;/div>
+                    &LT;div class="col-xs-4 text-center">
+                      &LT;a href="#">Sales&LT;/a>
+                    &LT;/div>
+                    &LT;div class="col-xs-4 text-center">
+                      &LT;a href="#">Friends&LT;/a>
+                    &LT;/div>
+                  &LT;/li>
+                  &LT;!-- Menu Footer-->
+                  &LT;li class="user-footer">
+                    &LT;div class="pull-left">
+                      &LT;a href="#" class="btn btn-default btn-flat">Profile&LT;/a>
+                    &LT;/div>
+                    &LT;div class="pull-right">
+                      &LT;a href="#" class="btn btn-default btn-flat">Sign out&LT;/a>
+                    &LT;/div>
+                  &LT;/li>
+                &LT;/ul>
+              &LT;/li>
+            &LT;/ul>
+          &LT;/div>
+        &LT;/nav>
+      &LT;/header>
+
+      &LT;!-- =============================================== -->
+
+      &LT;!-- Left side column. contains the sidebar -->
+      &LT;aside class="main-sidebar">
+        &LT;!-- sidebar: style can be found in sidebar.less -->
+        &LT;section class="sidebar">
+          &LT;!-- Sidebar user panel -->
+          &LT;div class="user-panel">
+            &LT;div class="pull-left image">
+              &LT;img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+            &LT;/div>
+            &LT;div class="pull-left info">
+              &LT;p>Alexander Pierce&LT;/p>
+
+              &LT;a href="#">&LT;i class="fa fa-circle text-success">&LT;/i> Online&LT;/a>
+            &LT;/div>
+          &LT;/div>
+          &LT;!-- search form -->
+          &LT;form action="#" method="get" class="sidebar-form">
+            &LT;div class="input-group">
+              &LT;input type="text" name="q" class="form-control" placeholder="Search..."/>
+              &LT;span class="input-group-btn">
+                &LT;button type='submit' name='seach' id='search-btn' class="btn btn-flat">&LT;i class="fa fa-search">&LT;/i>&LT;/button>
+              &LT;/span>
+            &LT;/div>
+          &LT;/form>
+          &LT;!-- /.search form -->
+          &LT;!-- sidebar menu: : style can be found in sidebar.less -->
+          &LT;ul class="sidebar-menu">
+            &LT;li class="header">MAIN NAVIGATION&LT;/li>
+            &LT;li class="treeview">
+              &LT;a href="#">
+                &LT;i class="fa fa-dashboard">&LT;/i> &LT;span>Dashboard&LT;/span> &LT;i class="fa fa-angle-left pull-right">&LT;/i>
+              &LT;/a>
+              &LT;ul class="treeview-menu">
+                &LT;li>&LT;a href="index.html">&LT;i class="fa fa-circle-o">&LT;/i> Dashboard v1&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="index2.html">&LT;i class="fa fa-circle-o">&LT;/i> Dashboard v2&LT;/a>&LT;/li>
+              &LT;/ul>
+            &LT;/li>
+            &LT;li class="treeview">
+              &LT;a href="#">
+                &LT;i class="fa fa-files-o">&LT;/i>
+                &LT;span>Layout Options&LT;/span>
+                &LT;span class="label label-primary pull-right">4&LT;/span>
+              &LT;/a>
+              &LT;ul class="treeview-menu">
+                &LT;li>&LT;a href="../layout/top-nav.html">&LT;i class="fa fa-circle-o">&LT;/i> Top Navigation&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="../layout/boxed.html">&LT;i class="fa fa-circle-o">&LT;/i> Boxed&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="../layout/fixed.html">&LT;i class="fa fa-circle-o">&LT;/i> Fixed&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="../layout/collapsed-sidebar.html">&LT;i class="fa fa-circle-o">&LT;/i> Collapsed Sidebar&LT;/a>&LT;/li>
+              &LT;/ul>
+            &LT;/li>
+            &LT;li>
+              &LT;a href="../widgets.html">
+                &LT;i class="fa fa-th">&LT;/i> &LT;span>Widgets&LT;/span> &LT;small class="label pull-right bg-green">Hot&LT;/small>
+              &LT;/a>
+            &LT;/li>            
+            &LT;li class="treeview">
+              &LT;a href="#">
+                &LT;i class="fa fa-pie-chart">&LT;/i>
+                &LT;span>Charts&LT;/span>
+                &LT;i class="fa fa-angle-left pull-right">&LT;/i>
+              &LT;/a>
+              &LT;ul class="treeview-menu">
+                &LT;li>&LT;a href="../charts/morris.html">&LT;i class="fa fa-circle-o">&LT;/i> Morris&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="../charts/flot.html">&LT;i class="fa fa-circle-o">&LT;/i> Flot&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="../charts/inline.html">&LT;i class="fa fa-circle-o">&LT;/i> Inline charts&LT;/a>&LT;/li>
+              &LT;/ul>
+            &LT;/li>            
+            &LT;li class="treeview">
+              &LT;a href="#">
+                &LT;i class="fa fa-laptop">&LT;/i>
+                &LT;span>UI Elements&LT;/span>
+                &LT;i class="fa fa-angle-left pull-right">&LT;/i>
+              &LT;/a>
+              &LT;ul class="treeview-menu">
+                &LT;li>&LT;a href="../UI/general.html">&LT;i class="fa fa-circle-o">&LT;/i> General&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="../UI/icons.html">&LT;i class="fa fa-circle-o">&LT;/i> Icons&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="../UI/buttons.html">&LT;i class="fa fa-circle-o">&LT;/i> Buttons&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="../UI/sliders.html">&LT;i class="fa fa-circle-o">&LT;/i> Sliders&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="../UI/timeline.html">&LT;i class="fa fa-circle-o">&LT;/i> Timeline&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="../UI/modals.html">&LT;i class="fa fa-circle-o">&LT;/i> Modals&LT;/a>&LT;/li>
+              &LT;/ul>
+            &LT;/li>
+            &LT;li class="treeview">
+              &LT;a href="#">
+                &LT;i class="fa fa-edit">&LT;/i> &LT;span>Forms&LT;/span>
+                &LT;i class="fa fa-angle-left pull-right">&LT;/i>
+              &LT;/a>
+              &LT;ul class="treeview-menu">
+                &LT;li>&LT;a href="../forms/general.html">&LT;i class="fa fa-circle-o">&LT;/i> General Elements&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="../forms/advanced.html">&LT;i class="fa fa-circle-o">&LT;/i> Advanced Elements&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="../forms/editors.html">&LT;i class="fa fa-circle-o">&LT;/i> Editors&LT;/a>&LT;/li>
+              &LT;/ul>
+            &LT;/li>
+            &LT;li class="treeview">
+              &LT;a href="#">
+                &LT;i class="fa fa-table">&LT;/i> &LT;span>Tables&LT;/span>
+                &LT;i class="fa fa-angle-left pull-right">&LT;/i>
+              &LT;/a>
+              &LT;ul class="treeview-menu">
+                &LT;li>&LT;a href="../tables/simple.html">&LT;i class="fa fa-circle-o">&LT;/i> Simple tables&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="../tables/data.html">&LT;i class="fa fa-circle-o">&LT;/i> Data tables&LT;/a>&LT;/li>
+              &LT;/ul>
+            &LT;/li>
+            &LT;li>
+              &LT;a href="../calendar.html">
+                &LT;i class="fa fa-calendar">&LT;/i> &LT;span>Calendar&LT;/span>
+                &LT;small class="label pull-right bg-red">3&LT;/small>
+              &LT;/a>
+            &LT;/li>
+            &LT;li>
+              &LT;a href="../mailbox/mailbox.html">
+                &LT;i class="fa fa-envelope">&LT;/i> &LT;span>Mailbox&LT;/span>
+                &LT;small class="label pull-right bg-yellow">12&LT;/small>
+              &LT;/a>
+            &LT;/li>
+            &LT;li class="treeview active">
+              &LT;a href="#">
+                &LT;i class="fa fa-folder">&LT;/i> &LT;span>Examples&LT;/span>
+                &LT;i class="fa fa-angle-left pull-right">&LT;/i>
+              &LT;/a>
+              &LT;ul class="treeview-menu">
+                &LT;li>&LT;a href="invoice.html">&LT;i class="fa fa-circle-o">&LT;/i> Invoice&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="login.html">&LT;i class="fa fa-circle-o">&LT;/i> Login&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="register.html">&LT;i class="fa fa-circle-o">&LT;/i> Register&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="lockscreen.html">&LT;i class="fa fa-circle-o">&LT;/i> Lockscreen&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="404.html">&LT;i class="fa fa-circle-o">&LT;/i> 404 Error&LT;/a>&LT;/li>
+                &LT;li>&LT;a href="500.html">&LT;i class="fa fa-circle-o">&LT;/i> 500 Error&LT;/a>&LT;/li>
+                &LT;li class="active">&LT;a href="blank.html">&LT;i class="fa fa-circle-o">&LT;/i> Blank Page&LT;/a>&LT;/li>
+              &LT;/ul>
+            &LT;/li>
+            &LT;li class="treeview">
+              &LT;a href="#">
+                &LT;i class="fa fa-share">&LT;/i> &LT;span>Multilevel&LT;/span>
+                &LT;i class="fa fa-angle-left pull-right">&LT;/i>
+              &LT;/a>
+              &LT;ul class="treeview-menu">
+                &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level One&LT;/a>&LT;/li>
+                &LT;li>
+                  &LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level One &LT;i class="fa fa-angle-left pull-right">&LT;/i>&LT;/a>
+                  &LT;ul class="treeview-menu">
+                    &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level Two&LT;/a>&LT;/li>
+                    &LT;li>
+                      &LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level Two &LT;i class="fa fa-angle-left pull-right">&LT;/i>&LT;/a>
+                      &LT;ul class="treeview-menu">
+                        &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level Three&LT;/a>&LT;/li>
+                        &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level Three&LT;/a>&LT;/li>
+                      &LT;/ul>
+                    &LT;/li>
+                  &LT;/ul>
+                &LT;/li>
+                &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o">&LT;/i> Level One&LT;/a>&LT;/li>
+              &LT;/ul>
+            &LT;/li>
+            &LT;li>&LT;a href="documentation/index.html">&LT;i class="fa fa-book">&LT;/i> Documentation&LT;/a>&LT;/li>
+            &LT;li class="header">LABELS&LT;/li>
+            &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o text-danger">&LT;/i> Important&LT;/a>&LT;/li>
+            &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o text-warning">&LT;/i> Warning&LT;/a>&LT;/li>
+            &LT;li>&LT;a href="#">&LT;i class="fa fa-circle-o text-info">&LT;/i> Information&LT;/a>&LT;/li>
+          &LT;/ul>
+        &LT;/section>
+        &LT;!-- /.sidebar -->
+      &LT;/aside>
+
+      &LT;!-- =============================================== -->
+
+      &LT;!-- Right side column. Contains the navbar and content of the page -->
+      &LT;div class="content-wrapper">
+        &LT;!-- Content Header (Page header) -->
+        &LT;section class="content-header">
+          &LT;h1>
+            Blank page
+            &LT;small>it all starts here&LT;/small>
+          &LT;/h1>
+          &LT;ol class="breadcrumb">
+            &LT;li>&LT;a href="#">&LT;i class="fa fa-dashboard">&LT;/i> Home&LT;/a>&LT;/li>
+            &LT;li>&LT;a href="#">Examples&LT;/a>&LT;/li>
+            &LT;li class="active">Blank page&LT;/li>
+          &LT;/ol>
+        &LT;/section>
+
+        &LT;!-- Main content -->
+        &LT;section class="content">
+
+          &LT;!-- Default box -->
+          &LT;div class="box">
+            &LT;div class="box-header with-border">
+              &LT;h3 class="box-title">Title&LT;/h3>
+              &LT;div class="box-tools pull-right">
+                &LT;button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">&LT;i class="fa fa-minus">&LT;/i>&LT;/button>
+                &LT;button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">&LT;i class="fa fa-times">&LT;/i>&LT;/button>
+              &LT;/div>
+            &LT;/div>
+            &LT;div class="box-body">
+              Start creating your amazing application!
+            &LT;/div>&LT;!-- /.box-body -->
+            &LT;div class="box-footer">
+              Footer
+            &LT;/div>&LT;!-- /.box-footer-->
+          &LT;/div>&LT;!-- /.box -->
+
+        &LT;/section>&LT;!-- /.content -->
+      &LT;/div>&LT;!-- /.content-wrapper -->
+
+      &LT;footer class="main-footer">
+        &LT;div class="pull-right hidden-xs">
+          &LT;b>Version&LT;/b> 2.0
+        &LT;/div>
+        &LT;strong>Copyright &copy; 2014-2015 &LT;a href="http://almsaeedstudio.com">Almsaeed Studio&LT;/a>.&LT;/strong> All rights reserved.
+      &LT;/footer>
+    &LT;/div>&LT;!-- ./wrapper -->
+
+    &LT;!-- jQuery 2.1.3 -->
+    &LT;script src="plugins/jQuery/jQuery-2.1.3.min.js">&LT;/script>
+    &LT;!-- Bootstrap 3.3.2 JS -->
+    &LT;script src="bootstrap/js/bootstrap.min.js" type="text/javascript">&LT;/script>
+    &LT;!-- SlimScroll -->
+    &LT;script src="plugins/slimScroll/jquery.slimScroll.min.js" type="text/javascript">&LT;/script>
+    &LT;!-- FastClick -->
+    &LT;script src='plugins/fastclick/fastclick.min.js'>&LT;/script>
+    &LT;!-- AdminLTE App -->
+    &LT;script src="dist/js/app.min.js" type="text/javascript">&LT;/script>
+    &LT;!-- AdminLTE for demo purposes -->
+    &LT;script src="dist/js/demo.js" type="text/javascript">&LT;/script>
+  &LT;/body>
+&LT;/html></pre>
+
+  <h3>Layout Options</h3>
+  <p class="lead">AdminLTE 2.0 provides a set of options to apply to your main layout. Each on of these classes can be added
+    to the body tag to get the desired goal.</p>
+  <ul>
+    <li><b>Fixed:</b> use the class <code>.fixed</code> to get a fixed header and sidebar.</li>
+    <li><b>Collapsed Sidebar:</b> use the class <code>.collapsed-sidebar</code> to have a collapsed sidebar upon loading.</li>
+    <li><b>Boxed Layout:</b> use the class <code>.layout-boxed</code> to get a boxed layout that stretches only to 1250px.</li>
+    <li><b>Top Navigation</b> use the class <code>.layout-top-nav</code> to remove the sidebar and have your links at the top navbar.</li>
+  </ul>
+  <p><b>Note:</b> you cannot use both layout-boxed and fixed at the same time. Anything else can be mixed together.</p>
+
+  <h3>Skins</h3>
+  <p class="lead">Skins can be found in the dist/css/skins folder.
+    Choose and the skin file that you want then add the appropriate
+    class to the body tag to change the template's appearance. Here is the list of available skins:</p>
+  <ul>
+    <li><code>skin-blue</code></li>
+    <li><code>skin-yellow</code></li>
+    <li><code>skin-purple</code></li>
+    <li><code>skin-green</code></li>
+    <li><code>skin-red</code></li>
+    <li><code>skin-black</code></li>
+  </ul>
+</section>
