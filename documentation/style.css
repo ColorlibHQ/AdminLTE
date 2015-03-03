@@ -11,6 +11,7 @@
   border-bottom: 1px solid #dedede;
   color: #000;
 }
+
 #components > h4 {
   font-size: 20px;
   color: #000;
@@ -35,6 +36,15 @@
   margin-right: 10px;
   color: #3c8dbc;
 }
+.page-header:before,
+#components > h3:before {
+  display: block; 
+  content: " "; 
+  margin-top: -60px; 
+  height: 60px; 
+  visibility: hidden; 
+}
+
 .lead {
   font-size: 18px;
   font-weight: 400;
