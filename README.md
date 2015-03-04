@@ -109,7 +109,7 @@ Change log
 - Updated box-shadow for boxes
 - Updated docs
 
-**v2.0:**
+**v2.0.0:**
 
 - Major layout bug fixes
 - Change in layout mark up
@@ -142,13 +142,13 @@ Change log
 - Bootstrap & jQuery are now hosted locally
 - Created documentation.
 
-**ver 1.2:**
+**ver 1.2.0:**
 
 - Fixed the sidebar scroll issue when using the fixed layout.
 - Added [Bootstrap Social Buttons](http://lipis.github.io/bootstrap-social/ "Bootstrap Social") plugin.
 - Fixed RequireJS bug. Thanks to [StaticSphere](https://github.com/StaticSphere "github user"). 
 
-**ver 1.1:**
+**ver 1.1.0:**
 
 - Added new skin. class: .skin-black
 - Added [pace](http://github.hubspot.com/pace/docs/welcome/ "pace") plugin.
