@@ -1,5 +1,5 @@
-/*! AdminLTE 2.0.1 app.js
- * ======================
+/*! AdminLTE app.js
+ * ================
  * Main JS application file for AdminLTE v2. This file
  * should be included in all pages. It controls some layout
  * options and implements exclusive AdminLTE plugins.
@@ -7,7 +7,7 @@
  * @Author  Almsaeed Studio
  * @Support <http://www.almsaeedstudio.com>
  * @Email   <support@almsaeedstudio.com>
- * @version 2.0
+ * @version 2.0.2
  * @license MIT <http://opensource.org/licenses/MIT>
  */
 
@@ -54,7 +54,7 @@ $.AdminLTE.options = {
   BSTooltipSelector: "[data-toggle='tooltip']",
   //Enable Fast Click. Fastclick.js creates a more
   //native touch experience with touch devices. If you
-  //choose to enable the plugin, make sure you load the script 
+  //choose to enable the plugin, make sure you load the script
   //before AdminLTE's app.js
   enableFastclick: true,
   //Box Widget Plugin. Enable this plugin
@@ -102,6 +102,15 @@ $.AdminLTE.options = {
     maroon: "#D81B60",
     black: "#222222",
     gray: "#d2d6de"
+  },
+  //The standard screen sizes that bootstrap uses.
+  //If you change these in the variables.less file, change
+  //them here too.
+  screenSizes: {
+    xs: 480,
+    sm: 768,
+    md: 992,
+    lg: 1200
   }
 };
 
@@ -250,16 +259,31 @@ $.AdminLTE.layout = {
  * @usage: $.AdminLTE.pushMenu("[data-toggle='offcanvas']")
  */
 $.AdminLTE.pushMenu = function (toggleBtn) {
+  //Get the screen sizes
+  var screenSizes = this.options.screenSizes;
+
   //Enable sidebar toggle
   $(toggleBtn).click(function (e) {
     e.preventDefault();
+
     //Enable sidebar push menu
-    $("body").toggleClass('sidebar-collapse');
-    $("body").toggleClass('sidebar-open');
+    if ($(window).width() > (screenSizes.sm - 1)) {
+      $("body").toggleClass('sidebar-collapse');
+    }
+    //Handle sidebar push menu for small screens
+    else {
+      if ($("body").hasClass('sidebar-open')) {
+        $("body").removeClass('sidebar-open');
+        $("body").removeClass('sidebar-collapse')
+      } else {
+        $("body").addClass('sidebar-open');
+      }
+    }
   });
+
   $(".content-wrapper").click(function () {
-    //Enable hide menu when clicking on the content-wrapper on small screens    
-    if ($(window).width() <= 767 && $("body").hasClass("sidebar-open")) {
+    //Enable hide menu when clicking on the content-wrapper on small screens
+    if ($(window).width() <= (screenSizes.sm - 1) && $("body").hasClass("sidebar-open")) {
       $("body").removeClass('sidebar-open');
     }
   });
@@ -275,6 +299,8 @@ $.AdminLTE.pushMenu = function (toggleBtn) {
  * @Usage: $.AdminLTE.tree('.sidebar')
  */
 $.AdminLTE.tree = function (menu) {
+  var _this = this;
+
   $("li a", $(menu)).click(function (e) {
     //Get the clicked link and the next element
     var $this = $(this);
@@ -285,6 +311,8 @@ $.AdminLTE.tree = function (menu) {
       //Close the menu
       checkElement.slideUp('normal', function () {
         checkElement.removeClass('menu-open');
+        //Fix the layout in case the sidebar stretches over the height of the window
+        //_this.layout.fix();
       });
       checkElement.parent("li").removeClass("active");
     }
@@ -305,6 +333,8 @@ $.AdminLTE.tree = function (menu) {
         checkElement.addClass('menu-open');
         parent.find('li.active').removeClass('active');
         parent_li.addClass('active');
+        //Fix the layout in case the sidebar stretches over the height of the window
+        _this.layout.fix();
       });
     }
     //if this isn't a link, prevent the page from being redirected

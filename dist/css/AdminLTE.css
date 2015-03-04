@@ -388,7 +388,7 @@ a:focus {
   top: 0;
   left: 0;
   padding-top: 50px;
-  height: 100%;
+  min-height: 100%;
   width: 230px;
   z-index: 810;
   -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
@@ -2339,11 +2339,6 @@ table.text-center th {
 .direct-chat-timestamp {
   color: #999;
 }
-.direct-chat-contacts-open {
-  /*.direct-chat-messages {
-    .translate(-101%, 0);
-  }*/
-}
 .direct-chat-contacts-open .direct-chat-contacts {
   -webkit-transform: translate(0, 0);
   -ms-transform: translate(0, 0);
@@ -2351,10 +2346,10 @@ table.text-center th {
   transform: translate(0, 0);
 }
 .direct-chat-contacts {
-  -webkit-transform: translate(101%, 0);
-  -ms-transform: translate(101%, 0);
-  -o-transform: translate(101%, 0);
-  transform: translate(101%, 0);
+  -webkit-transform: translate(100%, 0);
+  -ms-transform: translate(100%, 0);
+  -o-transform: translate(100%, 0);
+  transform: translate(100%, 0);
   position: absolute;
   top: 0;
   bottom: 0;
