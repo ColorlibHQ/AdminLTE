@@ -7,8 +7,7 @@
 }
 
 #components > h3 {
-  font-size: 25px;
-  border-bottom: 1px solid #dedede;
+  font-size: 25px;  
   color: #000;
 }
 
@@ -17,8 +16,8 @@
   color: #000;
 }
 .page-header {
-  border-bottom: 1px solid #ddd;        
-  margin: 20px 0 10px 0;
+  /*border-bottom: 1px solid #ddd;        */
+  margin: 20px 0 20px 0;
   position: relative;
   z-index: 1;
   font-size: 30px;
