@@ -98,7 +98,7 @@ Change log
 - Updated documentation and fixed links scrolling issue
 - Created print.less file (this makes it easier if you want to create a seperate CSS file for printing)
 - Fixed sidebar stretching issue #275
-- Fixed checkbox out of bounds issue in WYISHTML5 editor.
+- Fixed checkbox out of bounds issue in WYSIHTML5 editor.
 
 **v2.0.2:**
 - Solved issue with hidden arrow in select inputs.
