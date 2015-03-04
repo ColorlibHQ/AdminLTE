@@ -92,6 +92,13 @@ AdminLTE 1.x can be easily upgraded to 2.x using [this guide](http://almsaeedstu
 
 Change log
 ----------
+**v2.0.3**
+- Bug fixes
+- Fixed extra page when printing issue #264
+- Updated documentation and fixed links scrolling issue
+- Created print.less file (this makes it easier if you want to create a seperate CSS file for printing)
+- Fixed sidebar stretching issue #275
+
 **v2.0.2:**
 - Solved issue with hidden arrow in select inputs.
 
