@@ -64,7 +64,7 @@ module.exports = function (grunt) {
         }
       }
     },
-    //Build the documentaion files
+    //Build the documentation files
     includes: {
       build: {
         src: ['*.html'], // Source files 
