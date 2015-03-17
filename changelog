@@ -1,4 +1,7 @@
 CHANGE LOG:
+v2.0.5:
+- Fixed issue #288
+
 v2.0.4:
 - Fixed bower.json to pick up newest release.
 
