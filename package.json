@@ -1,6 +1,6 @@
 {
   "name": "AdminLTE",
-  "version": "2.0.3",
+  "version": "2.0.5",
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-contrib-less": "^0.12.0",
