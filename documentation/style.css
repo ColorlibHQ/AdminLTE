@@ -6,6 +6,10 @@
   font-size: 16px;
 }
 
+.content {
+  z-index: 500;
+}
+
 #components > h3 {
   font-size: 25px;  
   color: #000;
@@ -20,7 +24,7 @@ ul {
 }
 .page-header {
   /*border-bottom: 1px solid #ddd;        */
-  margin: 20px 0 20px 0;
+  margin: 20px 0 10px 0!important;
   position: relative;
   z-index: 1;
   font-size: 30px;
@@ -46,6 +50,7 @@ ul {
   margin-top: -60px; 
   height: 60px; 
   visibility: hidden; 
+  z-index: -10;
 }
 
 .lead {
