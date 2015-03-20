@@ -97,7 +97,7 @@ Change log
 
 **v2.0.4:**
 - Fixed bower.json to pick up newest release.
-- 
+
 **v2.0.3**
 - Bug fixes
 - Fixed extra page when printing issue #264
