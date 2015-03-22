@@ -14,7 +14,9 @@
   min-height: 100%;
   width: @sidebar-width;
   z-index: 810;
-  .transition-transform(@transition-speed @transition-fn);
+  @transition-rule: @transition-speed @transition-fn, 
+                      width @transition-speed @transition-fn;
+  .transition-transform(@transition-rule);
   @media (max-width: @screen-xs-max) {
     .translate(-@sidebar-width, 0); 
   }
