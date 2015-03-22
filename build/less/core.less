@@ -45,8 +45,9 @@ body {
 .content-wrapper, 
 .right-side,
 .main-footer {    
-  .transition-transform(@transition-speed @transition-fn);
-  .transition(margin-left @transition-speed @transition-fn);
+  @transition-rule: @transition-speed @transition-fn,
+                    margin-left @transition-speed @transition-fn;
+  .transition-transform(@transition-rule);
   margin-left: @sidebar-width;
   z-index: 820;
   //Top nav layout
