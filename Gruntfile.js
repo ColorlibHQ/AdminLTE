@@ -18,7 +18,7 @@ module.exports = function (grunt) {
       //Development not compressed
       development: {
         options: {
-          //Wether to compress or not
+          //Whether to compress or not
           compress: false
         },
         files: {
@@ -36,7 +36,7 @@ module.exports = function (grunt) {
       //production compresses version
       production: {
         options: {
-          //Wether to compress or not          
+          //Whether to compress or not          
           compress: true
         },
         files: {
