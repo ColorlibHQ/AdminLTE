@@ -24,8 +24,8 @@
     <![endif]-->
     <style>
       .color-palette {
-        height: 50px;
-        line-height: 50px;
+        height: 35px;
+        line-height: 35px;
         text-align: center;
 
       }
@@ -34,9 +34,20 @@
       }
       .color-palette span {
         display: none;
+        font-size: 12px;
       }
       .color-palette:hover span {
         display: block;
+      }
+      .color-palette-box h4 {
+        position: absolute;
+        top: 100%;
+        left: 25px;
+        margin-top: -40px;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 12px;
+        display: block;    
+        z-index: 7;
       }
     </style>
   </head>
@@ -466,7 +477,7 @@
         <!-- Main content -->
         <section class="content">
           <!-- COLOR PALETTE -->
-          <div class='box box-default'>
+          <div class='box box-default color-palette-box'>
             <div class='box-header with-border'>
               <h3 class='box-title'><i class="fa fa-tag"></i> Color Palette</h3>
             </div>
