@@ -1,6 +1,6 @@
 @import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
 /*!
- *   AdminLTE v2.0.
+ *   AdminLTE v2.0.5
  *   Author: Almsaeed Studio
  *	 Website: Almsaeed Studio <http://almsaeedstudio.com>
  *   License: Open source - MIT
@@ -57,13 +57,10 @@ body {
 .content-wrapper,
 .right-side,
 .main-footer {
-  -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -moz-transition: -moz-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -o-transition: -o-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  transition: transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -webkit-transition: margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -o-transition: margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  transition: margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15), margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -moz-transition: -moz-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15), margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -o-transition: -o-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15), margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  transition: transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15), margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
   margin-left: 230px;
   z-index: 820;
 }
@@ -391,10 +388,10 @@ a:focus {
   min-height: 100%;
   width: 230px;
   z-index: 810;
-  -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -moz-transition: -moz-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -o-transition: -o-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  transition: transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15), width 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -moz-transition: -moz-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15), width 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -o-transition: -o-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15), width 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  transition: transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15), width 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
 }
 @media (max-width: 767px) {
   .main-sidebar,
@@ -539,6 +536,74 @@ a:focus {
 .sidebar-menu .treeview-menu > li > a > .fa-angle-left,
 .sidebar-menu .treeview-menu > li > a > .fa-angle-down {
   width: auto;
+}
+/*
+ * Component: Sidebar Mini
+ */
+@media (min-width: 768px) {
+  .sidebar-mini.sidebar-collapse .content-wrapper,
+  .sidebar-mini.sidebar-collapse .right-side,
+  .sidebar-mini.sidebar-collapse .main-footer {
+    margin-left: 50px!important;
+    z-index: 840;
+  }
+  .sidebar-mini.sidebar-collapse .main-sidebar {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+    width: 50px!important;
+    z-index: 850;
+  }
+  .sidebar-mini.sidebar-collapse .main-sidebar .user-panel > .info {
+    display: none;
+  }
+  .sidebar-mini.sidebar-collapse .main-sidebar .user-panel img {
+    max-width: 100%;
+    height: auto;
+  }
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li {
+    position: relative;
+  }
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li > a {
+    margin-right: 0;
+  }
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > span,
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu,
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > .pull-right,
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li.header {
+    display: none!important;
+  }
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > span {
+    border-top-right-radius: 4px;
+  }
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li:not(.treeview) > a > span {
+    border-bottom-right-radius: 4px;
+  }
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom-right-radius: 4px;
+  }
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right),
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
+    display: block!important;
+    position: absolute;
+    width: 180px;
+    left: 50px;
+  }
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span {
+    top: 0;
+    padding: 12px 5px 12px 20px;
+    background-color: inherit;
+  }
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
+    top: 44px;
+    margin-left: 0;
+  }
+  .sidebar-mini.sidebar-collapse .sidebar-form {
+    display: none;
+  }
 }
 /*
  * Component: Dropdown menus

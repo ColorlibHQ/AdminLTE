@@ -252,7 +252,6 @@
   color: rgba(255, 255, 255, 0.4);
 }
 .skin-black .sidebar > .sidebar-menu > li > a {
-  margin-right: 1px;
   border-left: 3px solid transparent;
 }
 .skin-black .sidebar > .sidebar-menu > li:hover > a,
