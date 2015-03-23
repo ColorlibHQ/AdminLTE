@@ -73,7 +73,7 @@
   border-left: 3px solid transparent;
   margin-right: 1px;
 }
-.skin-blue .sidebar-menu > li > a:hover,
+.skin-blue .sidebar-menu > li:hover > a,
 .skin-blue .sidebar-menu > li.active > a {
   color: #ffffff;
   background: #1e282c;
@@ -255,7 +255,7 @@
   margin-right: 1px;
   border-left: 3px solid transparent;
 }
-.skin-black .sidebar > .sidebar-menu > li > a:hover,
+.skin-black .sidebar > .sidebar-menu > li:hover > a,
 .skin-black .sidebar > .sidebar-menu > li.active > a {
   color: #fff;
   background: #444;
@@ -389,7 +389,7 @@
   border-left: 3px solid transparent;
   margin-right: 1px;
 }
-.skin-green .sidebar-menu > li > a:hover,
+.skin-green .sidebar-menu > li:hover > a,
 .skin-green .sidebar-menu > li.active > a {
   color: #ffffff;
   background: #1e282c;
@@ -529,7 +529,7 @@
   border-left: 3px solid transparent;
   margin-right: 1px;
 }
-.skin-red .sidebar-menu > li > a:hover,
+.skin-red .sidebar-menu > li:hover > a,
 .skin-red .sidebar-menu > li.active > a {
   color: #ffffff;
   background: #1e282c;
@@ -669,7 +669,7 @@
   border-left: 3px solid transparent;
   margin-right: 1px;
 }
-.skin-yellow .sidebar-menu > li > a:hover,
+.skin-yellow .sidebar-menu > li:hover > a,
 .skin-yellow .sidebar-menu > li.active > a {
   color: #ffffff;
   background: #1e282c;
@@ -809,7 +809,7 @@
   border-left: 3px solid transparent;
   margin-right: 1px;
 }
-.skin-purple .sidebar-menu > li > a:hover,
+.skin-purple .sidebar-menu > li:hover > a,
 .skin-purple .sidebar-menu > li.active > a {
   color: #ffffff;
   background: #1e282c;

@@ -104,7 +104,7 @@
   margin-right: 1px;
   border-left: 3px solid transparent;
 }
-.skin-black .sidebar > .sidebar-menu > li > a:hover,
+.skin-black .sidebar > .sidebar-menu > li:hover > a,
 .skin-black .sidebar > .sidebar-menu > li.active > a {
   color: #fff;
   background: #444;

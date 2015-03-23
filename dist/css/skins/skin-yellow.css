@@ -73,7 +73,7 @@
   border-left: 3px solid transparent;
   margin-right: 1px;
 }
-.skin-yellow .sidebar-menu > li > a:hover,
+.skin-yellow .sidebar-menu > li:hover > a,
 .skin-yellow .sidebar-menu > li.active > a {
   color: #ffffff;
   background: #1e282c;
