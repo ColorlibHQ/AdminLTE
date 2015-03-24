@@ -362,13 +362,13 @@ function _init() {
       var o = $.AdminLTE.options;
       var _this = this;
       //Listen for collapse event triggers
-      $(o.boxWidgetOptions.boxWidgetSelectors.collapse).click(function (e) {
+      $(document).on('click', o.boxWidgetOptions.boxWidgetSelectors.collapse, function (e) {
         e.preventDefault();
         _this.collapse($(this));
       });
 
       //Listen for remove event triggers
-      $(o.boxWidgetOptions.boxWidgetSelectors.remove).click(function (e) {
+      $(document).on('click', o.boxWidgetOptions.boxWidgetSelectors.remove, function (e) {
         e.preventDefault();
         _this.remove($(this));
       });
