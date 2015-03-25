@@ -6,6 +6,7 @@
 .sidebar-mini {
   //Sidebar mini should work only on devices larger than @screen-sm
   @media (min-width: @screen-sm) {
+    //When the sidebar is collapsed...
     &.sidebar-collapse {
 
       //Apply the new margining to the main content and footer
@@ -35,7 +36,7 @@
           }
         }
       }            
-      
+
       .sidebar-menu {
         //Make the sidebar links, menus, labels, badeges
         //and angle icons disappear
@@ -50,17 +51,17 @@
           &.header {
             display: none!important;
           }
-          
+
           > a > span {
             border-top-right-radius: 4px;
           }
-          
+
           &:not(.treeview) {
             > a > span {
               border-bottom-right-radius: 4px;
             }
           }
-          
+
           > .treeview-menu {
             //Add some padding to the treeview menu
             padding-top: 5px;
@@ -71,13 +72,13 @@
           //Show menu items on hover
           &:hover {
             > a > span:not(.pull-right),
-            > .treeview-menu {
+              > .treeview-menu {
               display: block!important;
               position: absolute;
               width: @sidebar-width - 50;
               left: 50px;
             }
-            
+
             //position the header & treeview menus
             > a > span {
               top: 0;
@@ -96,6 +97,29 @@
       .sidebar-form {
         display: none;
       }
+
+      .main-header {
+        //Lets make the logo also shrink and the mini logo to appear
+        .logo {
+          width: 50px;
+          > .logo-mini {
+            display: block;
+            margin-left: -15px;
+            margin-right: -15px;
+            font-size: 18px;
+          }
+          > .logo-lg {
+            display: none;
+          }
+        }
+
+        //Of course, since the logo got smaller, we need to fix the
+        //navbar's position
+        .navbar {
+          margin-left: 50px;
+        }
+      }
     }
+
   }
 }

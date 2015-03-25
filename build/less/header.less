@@ -9,6 +9,7 @@
   z-index: 1030;
   //Navbar
   > .navbar {
+    .transition(margin-left @transition-speed @transition-fn);
     margin-bottom: 0;
     margin-left: @sidebar-width;
     border: none;
@@ -76,6 +77,10 @@
     &:hover {
       color: #fff;
     }
+    &:focus,
+    &:active {
+      background: transparent;
+    }
   }
   .sidebar-toggle .icon-bar {
     display: none;
@@ -102,6 +107,7 @@
 
   //Logo bar
   .logo {
+    .transition(width @transition-speed @transition-fn);
     display: block;
     float: left;
     height: 50px;
@@ -112,6 +118,15 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding: 0 15px;
     font-weight: 300;
+    //Add support to sidebar mini by allowing the user to create
+    //2 logo designs. mini and lg
+    .logo-lg {
+      //should be visibile when sidebar isn't collapsed
+      display: block;
+    }
+    .logo-mini {
+      display: none;
+    }    
   }
   //Navbar Brand. Alternative logo with layout-top-nav
   .navbar-brand {

@@ -184,6 +184,9 @@ a:focus {
   z-index: 1030;
 }
 .main-header > .navbar {
+  -webkit-transition: margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -o-transition: margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  transition: margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
   margin-bottom: 0;
   margin-left: 230px;
   border: none;
@@ -249,6 +252,10 @@ a:focus {
 .main-header .sidebar-toggle:hover {
   color: #fff;
 }
+.main-header .sidebar-toggle:focus,
+.main-header .sidebar-toggle:active {
+  background: transparent;
+}
 .main-header .sidebar-toggle .icon-bar {
   display: none;
 }
@@ -267,6 +274,9 @@ a:focus {
   line-height: .9;
 }
 .main-header .logo {
+  -webkit-transition: width 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -o-transition: width 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  transition: width 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
   display: block;
   float: left;
   height: 50px;
@@ -277,6 +287,12 @@ a:focus {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0 15px;
   font-weight: 300;
+}
+.main-header .logo .logo-lg {
+  display: block;
+}
+.main-header .logo .logo-mini {
+  display: none;
 }
 .main-header .navbar-brand {
   color: #fff;
@@ -599,6 +615,21 @@ a:focus {
   }
   .sidebar-mini.sidebar-collapse .sidebar-form {
     display: none;
+  }
+  .sidebar-mini.sidebar-collapse .main-header .logo {
+    width: 50px;
+  }
+  .sidebar-mini.sidebar-collapse .main-header .logo > .logo-mini {
+    display: block;
+    margin-left: -15px;
+    margin-right: -15px;
+    font-size: 18px;
+  }
+  .sidebar-mini.sidebar-collapse .main-header .logo > .logo-lg {
+    display: none;
+  }
+  .sidebar-mini.sidebar-collapse .main-header .navbar {
+    margin-left: 50px;
   }
 }
 /*
