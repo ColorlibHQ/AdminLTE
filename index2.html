@@ -29,11 +29,11 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="skin-blue sidebar-mini">
+  <body class="skin-blue sidebar-mini sidebar-collapse">
     <div class="wrapper">
 
       <header class="main-header">
-        
+
         <!-- Logo -->
         <a href="index2.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -41,7 +41,7 @@
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>Admin</b>LTE</span>
         </a>
-        
+
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
@@ -277,9 +277,13 @@
                   </li>
                 </ul>
               </li>
+              <!-- Control Sidebar Toggle Button -->
+              <li>
+                <a href="#" data-toggle="control-sidebar"><i class="fa fa-outdent"></i></a>
+              </li>
             </ul>
           </div>
-          
+
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
@@ -1116,6 +1120,31 @@
         <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
       </footer>
 
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+          <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+          <li><a href="#control-sidebar-stats-tab" data-toggle="tab"><i class="fa fa-pie-chart"></i></a></li>
+          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <!-- Home tab content -->
+          <div class="tab-pane active" id="control-sidebar-home-tab">
+            <h5 class="control-sidebar-heading"><b>News Feed</b></h5>
+
+            <h5 class="control-sidebar-heading"><b>Mail</b></h5>            
+
+            <h5 class="control-sidebar-heading"><b>Todo List</b></h5>           
+
+          </div><!-- /.tab-pane -->
+          <!-- Stats tab content -->
+          <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
+          <!-- Settings tab content -->
+          <div class="tab-pane" id="control-sidebar-settings-tab">Settings Tab Content</div><!-- /.tab-pane -->
+        </div>
+      </aside>
     </div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.3 -->
