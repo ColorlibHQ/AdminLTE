@@ -1,0 +1,75 @@
+/*
+ * Component: Control sidebar. By deafult, this is the right sidebar.
+ */
+.control-sidebar {
+  position: absolute;
+  top: @navbar-height;
+  right: 0;
+  width: @control-sidebar-width;
+  z-index: 1010;
+  background: @sidebar-dark-bg;
+  color: @sidebar-dark-color;
+  //Make it hide in small screens
+  @media (max-width: @screen-sm) {
+    .translate(@control-sidebar-width, 0);    
+  }
+  //Tab panes
+  > .tab-content {
+    padding: 10px 15px;   
+  }
+}
+//Control sidebar tabs
+.control-sidebar-tabs {
+  border-bottom: darken(@sidebar-dark-bg, 3%);
+  > li {
+    > a {
+      .border-radius(0)!important;         
+      background: darken(@sidebar-dark-bg, 5%);
+      color: @sidebar-dark-color;    
+      //Hover and active states
+      &,
+      &:hover {
+        border-right: none;
+        border-left: 1px solid darken(@sidebar-dark-bg, 7%)!important;
+        border-bottom: 1px solid darken(@sidebar-dark-bg, 7%)!important;
+      }
+      &:hover,
+        &:focus,
+        &:active {
+        border-top: none;
+        background: darken(@sidebar-dark-bg, 3%);
+      }
+      .icon {
+        font-size: 16px;
+      }
+    }
+    //Active state
+    &.active {
+      > a {
+        &,
+        &:hover,
+          &:focus,
+          &:active {
+          border-top: none!important;
+          border-right: none!important;
+          border-bottom: none!important;
+          background: @sidebar-dark-bg;
+          color: #fff;          
+        }
+      }
+    }
+  }  
+}
+//Headings in the sidebar content
+.control-sidebar-heading {
+  color: #fff;
+}
+
+.content-wrapper,
+.right-side,
+.main-footer {
+  margin-right: @control-sidebar-width;
+  @media (max-width: @screen-sm) {
+    margin-right: 0;
+  }
+}
