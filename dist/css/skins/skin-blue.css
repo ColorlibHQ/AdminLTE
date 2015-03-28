@@ -17,9 +17,6 @@
   background: rgba(0, 0, 0, 0.1);
   color: #f6f6f6;
 }
-.skin-blue .main-header .navbar .navbar-custom-menu > .nav {
-  margin-right: 10px;
-}
 .skin-blue .main-header .navbar .sidebar-toggle {
   color: #ffffff;
 }
@@ -49,9 +46,6 @@
   color: #ffffff;
   border-bottom: 0px solid transparent;
 }
-.skin-blue .main-header .logo > a {
-  color: #ffffff;
-}
 .skin-blue .main-header .logo:hover {
   background: #357ca5;
 }
@@ -60,6 +54,11 @@
 }
 .skin-blue .content-header {
   background: transparent;
+}
+.skin-blue .wrapper,
+.skin-blue .main-sidebar,
+.skin-blue .left-side {
+  background-color: #222d32;
 }
 .skin-blue .user-panel > .info,
 .skin-blue .user-panel > .info > a {
@@ -82,11 +81,6 @@
 .skin-blue .sidebar-menu > li > .treeview-menu {
   margin: 0 1px;
   background: #2c3b41;
-}
-.skin-blue .wrapper,
-.skin-blue .main-sidebar,
-.skin-blue .left-side {
-  background: #222d32;
 }
 .skin-blue .sidebar a {
   color: #b8c7ce;
@@ -142,9 +136,6 @@
   background-color: #3c8dbc;
   color: #ffffff;
   border-bottom: 0px solid transparent;
-}
-.skin-blue.layout-top-nav .main-header > .logo > a {
-  color: #ffffff;
 }
 .skin-blue.layout-top-nav .main-header > .logo:hover {
   background: #3b8ab8;

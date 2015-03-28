@@ -7,7 +7,7 @@
  * @Author  Almsaeed Studio
  * @Support <http://www.almsaeedstudio.com>
  * @Email   <support@almsaeedstudio.com>
- * @version 2.0.5
+ * @version 2.1.0
  * @license MIT <http://opensource.org/licenses/MIT>
  */
 
@@ -346,6 +346,42 @@ function _init() {
         e.preventDefault();
       }
     });
+  };
+  
+  /* ControlSidebar
+   * ==============
+   * Control the all of the control sidebar transitions
+   * 
+   * @type Object
+   * @usage $.Admin.controlSidebar.activate(options)
+   */
+  $.AdminLTE.controlSidebar = {
+    //Default settings
+    defaults: {
+      toggleBtnSelector: "[data-toggle='control-sidebar']",
+      selector: ".control-sidebar",
+      slide: false,
+      animationSpeed: 300
+    },
+    //Initiate the object
+    activate: function (options) {
+      var settings = $.extend({}, options, this.defaults);
+    },
+    //Close the control sidebar
+    close: function () {
+      
+    },
+    //Open the control sidebar
+    open: function () {
+      
+    },
+    //If the slide option is set, this
+    //function is used to open the sidebar
+    slideIn: function() {
+      
+    },
+    //The complement funtion to slideIn
+    slideOut: function () {}
   };
 
   /* BoxWidget

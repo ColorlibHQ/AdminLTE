@@ -17,9 +17,6 @@
   background: rgba(0, 0, 0, 0.1);
   color: #f6f6f6;
 }
-.skin-yellow .main-header .navbar .navbar-custom-menu > .nav {
-  margin-right: 10px;
-}
 .skin-yellow .main-header .navbar .sidebar-toggle {
   color: #ffffff;
 }
@@ -49,9 +46,6 @@
   color: #ffffff;
   border-bottom: 0px solid transparent;
 }
-.skin-yellow .main-header .logo > a {
-  color: #ffffff;
-}
 .skin-yellow .main-header .logo:hover {
   background: #db8b0b;
 }
@@ -60,6 +54,11 @@
 }
 .skin-yellow .content-header {
   background: transparent;
+}
+.skin-yellow .wrapper,
+.skin-yellow .main-sidebar,
+.skin-yellow .left-side {
+  background-color: #222d32;
 }
 .skin-yellow .user-panel > .info,
 .skin-yellow .user-panel > .info > a {
@@ -82,11 +81,6 @@
 .skin-yellow .sidebar-menu > li > .treeview-menu {
   margin: 0 1px;
   background: #2c3b41;
-}
-.skin-yellow .wrapper,
-.skin-yellow .main-sidebar,
-.skin-yellow .left-side {
-  background: #222d32;
 }
 .skin-yellow .sidebar a {
   color: #b8c7ce;

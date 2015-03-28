@@ -1,6 +1,6 @@
 @import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
 /*!
- *   AdminLTE v2.0.5
+ *   AdminLTE v2.1.0
  *   Author: Almsaeed Studio
  *	 Website: Almsaeed Studio <http://almsaeedstudio.com>
  *   License: Open source - MIT
@@ -217,7 +217,6 @@ a:focus {
 }
 .main-header .navbar-custom-menu,
 .main-header .navbar-right {
-  margin-right: 5px;
   float: right;
 }
 @media (max-width: 991px) {
@@ -552,6 +551,9 @@ a:focus {
 /*
  * Component: Sidebar Mini
  */
+.sidebar-mini {
+  min-height: 100%;
+}
 @media (min-width: 768px) {
   .sidebar-mini.sidebar-collapse .content-wrapper,
   .sidebar-mini.sidebar-collapse .right-side,
@@ -630,6 +632,72 @@ a:focus {
   }
   .sidebar-mini.sidebar-collapse .main-header .navbar {
     margin-left: 50px;
+  }
+}
+/*
+ * Component: Control sidebar. By deafult, this is the right sidebar.
+ */
+.control-sidebar {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 230px;
+  z-index: 1010;
+  background: #222d32;
+  color: #b8c7ce;
+}
+@media (max-width: 768px) {
+  .control-sidebar {
+    -webkit-transform: translate(230px, 0);
+    -ms-transform: translate(230px, 0);
+    -o-transform: translate(230px, 0);
+    transform: translate(230px, 0);
+  }
+}
+.control-sidebar > .tab-content {
+  padding: 10px 15px;
+}
+.control-sidebar-tabs {
+  border-bottom: #1c2529;
+}
+.control-sidebar-tabs > li > a {
+  border-radius: 0 !important;
+  background: #181f23;
+  color: #b8c7ce;
+}
+.control-sidebar-tabs > li > a,
+.control-sidebar-tabs > li > a:hover {
+  border-right: none;
+  border-left: 1px solid #141a1d !important;
+  border-bottom: 1px solid #141a1d !important;
+}
+.control-sidebar-tabs > li > a:hover,
+.control-sidebar-tabs > li > a:focus,
+.control-sidebar-tabs > li > a:active {
+  border-top: none;
+  background: #1c2529;
+}
+.control-sidebar-tabs > li > a .icon {
+  font-size: 16px;
+}
+.control-sidebar-tabs > li.active > a,
+.control-sidebar-tabs > li.active > a:hover,
+.control-sidebar-tabs > li.active > a:focus,
+.control-sidebar-tabs > li.active > a:active {
+  border-top: none!important;
+  border-right: none!important;
+  border-bottom: none!important;
+  background: #222d32;
+  color: #fff;
+}
+.control-sidebar-heading {
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .content-wrapper,
+  .right-side,
+  .main-footer {
+    margin-right: 0;
   }
 }
 /*

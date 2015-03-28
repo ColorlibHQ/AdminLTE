@@ -1,4 +1,17 @@
-var my_skins = ["skin-blue", "skin-black", "skin-red", "skin-yellow", "skin-purple", "skin-green"];
+var my_skins = [
+  "skin-blue",
+  "skin-black",
+  "skin-red",
+  "skin-yellow",
+  "skin-purple",
+  "skin-green",
+  "skin-blue-light",
+  "skin-black-light",
+  "skin-red-light",
+  "skin-yellow-light",
+  "skin-purple-light",
+  "skin-green-light"
+];
 $(function () {
   /* For demo purposes */
   var demo = $("<div />").css({
@@ -159,4 +172,6 @@ function setup() {
   var tmp = get('skin');
   if (tmp && $.inArray(tmp, my_skins))
     change_skin(tmp);
+  
+  change_skin('skin-blue-light');
 }

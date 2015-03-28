@@ -17,9 +17,6 @@
   background: rgba(0, 0, 0, 0.1);
   color: #f6f6f6;
 }
-.skin-red .main-header .navbar .navbar-custom-menu > .nav {
-  margin-right: 10px;
-}
 .skin-red .main-header .navbar .sidebar-toggle {
   color: #ffffff;
 }
@@ -49,9 +46,6 @@
   color: #ffffff;
   border-bottom: 0px solid transparent;
 }
-.skin-red .main-header .logo > a {
-  color: #ffffff;
-}
 .skin-red .main-header .logo:hover {
   background: #d33724;
 }
@@ -60,6 +54,11 @@
 }
 .skin-red .content-header {
   background: transparent;
+}
+.skin-red .wrapper,
+.skin-red .main-sidebar,
+.skin-red .left-side {
+  background-color: #222d32;
 }
 .skin-red .user-panel > .info,
 .skin-red .user-panel > .info > a {
@@ -82,11 +81,6 @@
 .skin-red .sidebar-menu > li > .treeview-menu {
   margin: 0 1px;
   background: #2c3b41;
-}
-.skin-red .wrapper,
-.skin-red .main-sidebar,
-.skin-red .left-side {
-  background: #222d32;
 }
 .skin-red .sidebar a {
   color: #b8c7ce;

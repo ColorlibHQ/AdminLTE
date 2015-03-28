@@ -36,21 +36,28 @@
 @link-hover-color: lighten(@link-color, 15%);
 
 //Body background (Affects main content background only)
-@body-bg: #ecf0f5;//darken(#f4f5f7, 4%);
+@body-bg: #ecf0f5;
 
 //SIDEBAR SKINS
 //--------------------------------------------------------
 
-//skin blue (light) sidebar vars
+//Dark sidebar
 @sidebar-dark-bg:                  #222d32;
 @sidebar-dark-hover-bg:            darken(@sidebar-dark-bg, 2%);
-@sidebar-dark-color:                lighten(@sidebar-dark-bg, 60%);
+@sidebar-dark-color:               lighten(@sidebar-dark-bg, 60%);
 @sidebar-dark-hover-color:         #fff;
-@sidebar-dark-border:              #dbdbdb;
 @sidebar-dark-submenu-bg:          lighten(@sidebar-dark-bg, 5%);
 @sidebar-dark-submenu-color:       lighten(@sidebar-dark-submenu-bg, 40%);
 @sidebar-dark-submenu-hover-color: #fff;
 
+//Light sidebar
+@sidebar-light-bg:                  #f9fafc;
+@sidebar-light-hover-bg:            lighten(#f0f0f1, 1.5%);//#f7f7f7;
+@sidebar-light-color:               #444;
+@sidebar-light-hover-color:         #000;
+@sidebar-light-submenu-bg:          @sidebar-light-hover-bg;
+@sidebar-light-submenu-color:       #777;
+@sidebar-light-submenu-hover-color: #000;
 
 //CONTROL SIDEBAR
 //--------------------------------------------------------

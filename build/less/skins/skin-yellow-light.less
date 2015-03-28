@@ -1,6 +1,6 @@
 /*
- * Skin: Green
- * -----------
+ * Skin: Yellow
+ * ------------
  */
 
 @import "../../bootstrap-less/mixins.less";
@@ -8,15 +8,15 @@
 @import "../variables.less";
 @import "../mixins.less";
 
-.skin-green {
+.skin-yellow-light {
   //Navbar
   .main-header {
     .navbar {
-      .navbar-variant(@green; #fff);
+      .navbar-variant(@yellow; #fff);
       .sidebar-toggle {
         color: #fff;
         &:hover {
-          background-color: darken(@green, 5%);
+          background-color: darken(@yellow, 5%);
         }
       }
       @media(max-width: @screen-header-collapse) {
@@ -28,7 +28,7 @@
             a {
               color: #fff;
               &:hover {
-                background: darken(@green, 5%);
+                background: darken(@yellow, 5%);
               }
             }
           }
@@ -37,11 +37,11 @@
     }
     //Logo
     .logo {
-      .logo-variant(darken(@green, 5%));      
+      .logo-variant(darken(@yellow, 5%));      
     }
     
     li.user-header {
-      background-color: @green;
+      background-color: @yellow;
     }
   }
 
@@ -49,8 +49,7 @@
   .content-header {
     background: transparent;
   }
-  
-  //Create the sidebar skin
-  .skin-dark-sidebar(@green);
 
+  //Create the sidebar skin
+  .skin-dark-sidebar(@yellow);
 }
