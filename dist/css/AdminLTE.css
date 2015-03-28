@@ -638,6 +638,14 @@ a:focus {
  * Component: Control sidebar. By deafult, this is the right sidebar.
  */
 .control-sidebar {
+  -webkit-transform: translate(230px, 0);
+  -ms-transform: translate(230px, 0);
+  -o-transform: translate(230px, 0);
+  transform: translate(230px, 0);
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  -moz-transition: -moz-transform 0.3s ease-in-out;
+  -o-transition: -o-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   position: absolute;
   top: 50px;
   right: 0;
@@ -648,14 +656,19 @@ a:focus {
 }
 @media (max-width: 768px) {
   .control-sidebar {
-    -webkit-transform: translate(230px, 0);
-    -ms-transform: translate(230px, 0);
-    -o-transform: translate(230px, 0);
-    transform: translate(230px, 0);
+    top: 100px;
   }
 }
 .control-sidebar > .tab-content {
   padding: 10px 15px;
+}
+.control-sidebar.control-sidebar-open {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+  -webkit-box-shadow: -1px 0 3px rgba(0, 0, 0, 0.2);
+  box-shadow: -1px 0 3px rgba(0, 0, 0, 0.2);
 }
 .control-sidebar-tabs {
   border-bottom: #1c2529;
@@ -690,15 +703,26 @@ a:focus {
   background: #222d32;
   color: #fff;
 }
+@media (max-width: 768px) {
+  .control-sidebar-tabs {
+    display: table;
+  }
+  .control-sidebar-tabs > li {
+    display: table-cell !important;
+  }
+}
 .control-sidebar-heading {
   color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 10px 0;
+  margin-bottom: 10px;
 }
-@media (max-width: 768px) {
-  .content-wrapper,
-  .right-side,
-  .main-footer {
-    margin-right: 0;
-  }
+.control-sidebar-subheading {
+  display: block;
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
 }
 /*
  * Component: Dropdown menus

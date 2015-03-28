@@ -232,13 +232,12 @@
     &.active {      
       border-left-color: @icon-active-color;
       > a {
-      font-weight: 600;      
+        font-weight: 600;      
       }
     }
     //First Level Submenu
-    > .treeview-menu {
-      margin: 0;
-      background: @sidebar-light-submenu-bg;
+    > .treeview-menu {      
+      background: @sidebar-light-submenu-bg;      
     }
   }
   //All links within the sidebar menu
@@ -291,6 +290,13 @@
     .btn {
       color: #999;
       .border-radius(0, 2px, 0, 2px) !important;
+    }
+  }
+  @media(min-width: @screen-sm-min) {  
+    &.sidebar-mini.sidebar-collapse {
+      .sidebar-menu > li > .treeview-menu {
+        border-left: 1px solid @gray;
+      }           
     }
   }
 }

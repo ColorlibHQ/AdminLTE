@@ -57,6 +57,17 @@ $.AdminLTE.options = {
   //choose to enable the plugin, make sure you load the script
   //before AdminLTE's app.js
   enableFastclick: true,
+  //Control Sidebar Options
+  enableControlSidebar: true,
+  controlSidebarOptions: {
+    //Which button should trigger the open/close event
+    toggleBtnSelector: "[data-toggle='control-sidebar']",
+    //The sidebar selector
+    selector: ".control-sidebar",
+    //Enable slide over content animation
+    slide: false,
+    animationSpeed: 300
+  },
   //Box Widget Plugin. Enable this plugin
   //to allow boxes to be collapsed and/or removed
   enableBoxWidget: true,
@@ -133,6 +144,11 @@ $(function () {
 
   //Enable sidebar tree view controls
   $.AdminLTE.tree('.sidebar');
+
+  //Enable control sidebar
+  if (o.enableControlSidebar) {
+    $.AdminLTE.controlSidebar.activate(o.controlSidebarOptions);
+  }
 
   //Add slimscroll to navbar dropdown
   if (o.navbarMenuSlimscroll && typeof $.fn.slimscroll != 'undefined') {
@@ -347,41 +363,66 @@ function _init() {
       }
     });
   };
-  
+
   /* ControlSidebar
    * ==============
-   * Control the all of the control sidebar transitions
+   * Adds functionality to the right sidebar  
    * 
    * @type Object
-   * @usage $.Admin.controlSidebar.activate(options)
+   * @usage $.AdminLTE.controlSidebar.activate(options)
    */
   $.AdminLTE.controlSidebar = {
     //Default settings
     defaults: {
       toggleBtnSelector: "[data-toggle='control-sidebar']",
       selector: ".control-sidebar",
-      slide: false,
-      animationSpeed: 300
+      slide: true
     },
-    //Initiate the object
+    //instantiate the object
     activate: function (options) {
-      var settings = $.extend({}, options, this.defaults);
-    },
-    //Close the control sidebar
-    close: function () {
+      //Get the object
+      var _this = this;
+      //Update options
+      var o = $.extend({}, options, this.defaults);
+      //Get the sidebar
+      var sidebar = $(o.selector);
+      //The toggle button
+      var btn = $(o.toggleBtnSelector);
       
+      //Initial height fix
+      _this.fixHeight(sidebar);
+      //Fix the height when the screen size changes
+      $(window, ".content").resize(function(){
+        _this.fixHeight(sidebar);
+        console.log('debug');
+      });
+      
+      //Listen to the click event
+      btn.click(function(e){
+        e.preventDefault();
+        if(!sidebar.hasClass('control-sidebar-open')) {
+          //Open the sidebar
+          _this.open(sidebar);
+        } else {
+          _this.close(sidebar);
+        }
+      });
     },
     //Open the control sidebar
-    open: function () {
-      
+    open: function (sidebar) {      
+      sidebar.addClass('control-sidebar-open');
     },
-    //If the slide option is set, this
-    //function is used to open the sidebar
-    slideIn: function() {
-      
-    },
-    //The complement funtion to slideIn
-    slideOut: function () {}
+    //Close the control sidebar
+    close: function (sidebar) {
+      sidebar.removeClass('control-sidebar-open');
+    },    
+    //Fix the height of the sidebar
+    fixHeight: function(sidebar) {
+      //We'll have to make it small then stretch it again so it 
+      //doesn't occupy more than the space it needs
+      sidebar.css('min-height', $(window).height() - $(".main-header").height());
+      sidebar.css('min-height', $(document).height() - $(".main-header").height());
+    }
   };
 
   /* BoxWidget

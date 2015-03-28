@@ -2,6 +2,8 @@
  * Component: Control sidebar. By deafult, this is the right sidebar.
  */
 .control-sidebar {
+  .translate(@control-sidebar-width, 0);
+  .transition-transform(@transition-speed ease-in-out);
   position: absolute;
   top: @navbar-height;
   right: 0;
@@ -11,11 +13,17 @@
   color: @sidebar-dark-color;
   //Make it hide in small screens
   @media (max-width: @screen-sm) {
-    .translate(@control-sidebar-width, 0);    
+    top: @navbar-height + 50;
+    //.translate(@control-sidebar-width, 0);
   }
   //Tab panes
   > .tab-content {
-    padding: 10px 15px;   
+    padding: 10px 15px;
+  }
+  //Open state
+  &.control-sidebar-open {
+    .translate(0, 0);
+    .box-shadow(-1px 0 3px rgba(0,0,0,.2));
   }
 }
 //Control sidebar tabs
@@ -23,9 +31,9 @@
   border-bottom: darken(@sidebar-dark-bg, 3%);
   > li {
     > a {
-      .border-radius(0)!important;         
+      .border-radius(0)!important;
       background: darken(@sidebar-dark-bg, 5%);
-      color: @sidebar-dark-color;    
+      color: @sidebar-dark-color;
       //Hover and active states
       &,
       &:hover {
@@ -54,22 +62,31 @@
           border-right: none!important;
           border-bottom: none!important;
           background: @sidebar-dark-bg;
-          color: #fff;          
+          color: #fff;
         }
       }
     }
-  }  
+  }
+  //Remove resposiveness on small screens
+  @media(max-width: @screen-sm) {
+    display: table;
+    >li {
+      display: table-cell!important;
+    }
+  }
 }
 //Headings in the sidebar content
 .control-sidebar-heading {
   color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 10px 0;
+  margin-bottom: 10px;
 }
 
-.content-wrapper,
-.right-side,
-.main-footer {
-  //margin-right: @control-sidebar-width;
-  @media (max-width: @screen-sm) {
-    margin-right: 0;
-  }
+.control-sidebar-subheading {
+  display: block;
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
 }

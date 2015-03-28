@@ -172,6 +172,4 @@ function setup() {
   var tmp = get('skin');
   if (tmp && $.inArray(tmp, my_skins))
     change_skin(tmp);
-  
-  change_skin('skin-blue-light');
 }
