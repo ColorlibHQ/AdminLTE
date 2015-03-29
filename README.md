@@ -57,6 +57,19 @@ Browser Support
 - Safari (latest)
 - Opera (latest)
 
+RTL Version
+-----------
+Just add below lines in end head of your html files.
+```html
+<!-- Bootstrap 3.3.2 RTL -->
+<link href="bootstrap-rtl/dist/css/bootstrap-rtl.min.css" rel="stylesheet" type="text/css" /> 
+<!-- Theme RTL style -->
+<link href="dist/css/AdminLTE-rtl.min.css" rel="stylesheet" type="text/css" />
+<!-- AdminLTE RTL Skins. Choose a skin from the css/skins 
+     folder instead of downloading all of them to reduce the load. -->
+<link href="dist/css/skins/_all-skins-rtl.min.css" rel="stylesheet" type="text/css" />
+```
+
 Contribution
 ------------
 Contribution are always **welcome and recommended**! Here is how:
