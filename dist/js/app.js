@@ -64,9 +64,8 @@ $.AdminLTE.options = {
     toggleBtnSelector: "[data-toggle='control-sidebar']",
     //The sidebar selector
     selector: ".control-sidebar",
-    //Enable slide over content animation
-    slide: false,
-    animationSpeed: 300
+    //Enable slide over content
+    slide: true
   },
   //Box Widget Plugin. Enable this plugin
   //to allow boxes to be collapsed and/or removed
@@ -147,7 +146,7 @@ $(function () {
 
   //Enable control sidebar
   if (o.enableControlSidebar) {
-    $.AdminLTE.controlSidebar.activate(o.controlSidebarOptions);
+    $.AdminLTE.controlSidebar.activate();
   }
 
   //Add slimscroll to navbar dropdown
@@ -366,59 +365,59 @@ function _init() {
 
   /* ControlSidebar
    * ==============
-   * Adds functionality to the right sidebar  
-   * 
+   * Adds functionality to the right sidebar
+   *
    * @type Object
    * @usage $.AdminLTE.controlSidebar.activate(options)
    */
   $.AdminLTE.controlSidebar = {
-    //Default settings
-    defaults: {
-      toggleBtnSelector: "[data-toggle='control-sidebar']",
-      selector: ".control-sidebar",
-      slide: true
-    },
     //instantiate the object
-    activate: function (options) {
+    activate: function () {
       //Get the object
       var _this = this;
       //Update options
-      var o = $.extend({}, options, this.defaults);
+      var o = $.AdminLTE.options.controlSidebarOptions;
       //Get the sidebar
       var sidebar = $(o.selector);
       //The toggle button
       var btn = $(o.toggleBtnSelector);
-      
+
       //Initial height fix
       _this.fixHeight(sidebar);
       //Fix the height when the screen size changes
-      $(window, ".content").resize(function(){
-        _this.fixHeight(sidebar);
-        console.log('debug');
+      $(window).resize(function () {
+        _this.fixHeight(sidebar);        
       });
-      
+
       //Listen to the click event
-      btn.click(function(e){
+      btn.click(function (e) {
         e.preventDefault();
-        if(!sidebar.hasClass('control-sidebar-open')) {
+        if (!sidebar.hasClass('control-sidebar-open')
+                && !$('body').hasClass('control-sidebar-open')) {
           //Open the sidebar
-          _this.open(sidebar);
+          _this.open(sidebar, o.slide);
         } else {
-          _this.close(sidebar);
+          _this.close(sidebar, o.slide);
         }
       });
     },
     //Open the control sidebar
-    open: function (sidebar) {      
-      sidebar.addClass('control-sidebar-open');
+    open: function (sidebar, slide) {
+      if (slide)
+        sidebar.addClass('control-sidebar-open');
+      else
+        $('body').addClass('control-sidebar-open');
     },
     //Close the control sidebar
-    close: function (sidebar) {
-      sidebar.removeClass('control-sidebar-open');
-    },    
+    close: function (sidebar, slide) {
+      if (slide)
+        sidebar.removeClass('control-sidebar-open');
+      else
+        $('body').removeClass('control-sidebar-open');
+    },
     //Fix the height of the sidebar
-    fixHeight: function(sidebar) {
-      //We'll have to make it small then stretch it again so it 
+    fixHeight: function (sidebar) {
+      //We'll have to make it small then stretch it again so it
       //doesn't occupy more than the space it needs
       sidebar.css('min-height', $(window).height() - $(".main-header").height());
       sidebar.css('min-height', $(document).height() - $(".main-header").height());

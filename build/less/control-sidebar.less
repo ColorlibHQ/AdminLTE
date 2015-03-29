@@ -23,9 +23,20 @@
   //Open state
   &.control-sidebar-open {
     .translate(0, 0);
-    .box-shadow(-1px 0 3px rgba(0,0,0,.2));
   }
 }
+//Open without silde over content
+.control-sidebar-open {
+  .control-sidebar {
+  .translate(0,0);
+  }
+  .content-wrapper,
+  .right-side,
+  .main-footer {
+    margin-right: @control-sidebar-width;
+  }
+}
+
 //Control sidebar tabs
 .control-sidebar-tabs {
   border-bottom: darken(@sidebar-dark-bg, 3%);
@@ -37,6 +48,7 @@
       //Hover and active states
       &,
       &:hover {
+        border-top: none;
         border-right: none;
         border-left: 1px solid darken(@sidebar-dark-bg, 7%)!important;
         border-bottom: 1px solid darken(@sidebar-dark-bg, 7%)!important;
@@ -44,7 +56,6 @@
       &:hover,
         &:focus,
         &:active {
-        border-top: none;
         background: darken(@sidebar-dark-bg, 3%);
       }
       .icon {
@@ -83,10 +94,50 @@
   padding: 10px 0;
   margin-bottom: 10px;
 }
-
+//Subheadings
 .control-sidebar-subheading {
   display: block;
   color: #fff;
   font-weight: 400;
   font-size: 14px;
+}
+//Control Sidebar Menu
+.control-sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0 -15px;
+  > li > a {
+    .clearfix();
+    display: block;
+    padding: 10px 15px;
+    &:hover {
+      background: @sidebar-dark-hover-bg;
+    }
+    > .control-sidebar-subheading {
+      margin-top: 0;
+    }
+  }
+  .menu-icon {
+    float: left;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 35px;
+  }
+  .menu-info {
+    margin-left: 45px;
+    margin-top: 3px;
+    > .control-sidebar-subheading {
+      margin: 0;
+    }
+    > p {
+      margin: 0;
+      color: @sidebar-dark-color;
+      font-size: 11px;
+    }
+  }  
+  .progress {
+    margin: 0;
+  }
 }

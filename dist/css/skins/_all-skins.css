@@ -106,9 +106,9 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
-  -webkit-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -o-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .skin-blue .sidebar-form input[type="text"] {
   color: #666;
@@ -264,9 +264,9 @@
   background-color: #fff;
   border: 1px solid transparent;
   height: 35px;
-  -webkit-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -o-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .skin-blue-light .sidebar-form input[type="text"] {
   color: #666;
@@ -434,9 +434,9 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
-  -webkit-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -o-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .skin-black .sidebar-form input[type="text"] {
   color: #666;
@@ -604,9 +604,9 @@
   background-color: #fff;
   border: 1px solid transparent;
   height: 35px;
-  -webkit-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -o-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .skin-black-light .sidebar-form input[type="text"] {
   color: #666;
@@ -743,9 +743,9 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
-  -webkit-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -o-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .skin-green .sidebar-form input[type="text"] {
   color: #666;
@@ -893,9 +893,9 @@
   background-color: #fff;
   border: 1px solid transparent;
   height: 35px;
-  -webkit-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -o-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .skin-green-light .sidebar-form input[type="text"] {
   color: #666;
@@ -1032,9 +1032,9 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
-  -webkit-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -o-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .skin-red .sidebar-form input[type="text"] {
   color: #666;
@@ -1166,9 +1166,9 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
-  -webkit-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -o-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .skin-red-light .sidebar-form input[type="text"] {
   color: #666;
@@ -1300,9 +1300,9 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
-  -webkit-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -o-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .skin-yellow .sidebar-form input[type="text"] {
   color: #666;
@@ -1434,9 +1434,9 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
-  -webkit-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -o-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .skin-yellow-light .sidebar-form input[type="text"] {
   color: #666;
@@ -1568,9 +1568,9 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
-  -webkit-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -o-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .skin-purple .sidebar-form input[type="text"] {
   color: #666;
@@ -1702,9 +1702,9 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
-  -webkit-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  -o-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
-  transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .skin-purple-light .sidebar-form input[type="text"] {
   color: #666;
