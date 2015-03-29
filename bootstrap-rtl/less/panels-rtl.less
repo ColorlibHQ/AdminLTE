@@ -1,0 +1,70 @@
+//
+// RTL Panels
+// --------------------------------------------------
+
+// Tables in panels
+//
+// Place a non-bordered `.table` within a panel (not within a `.panel-body`) and
+// watch it go full width.
+
+.panel {
+  // Add border top radius for first one
+  > .table:first-child,
+  > .table-responsive:first-child > .table:first-child {
+
+    > thead:first-child,
+    > tbody:first-child {
+      > tr:first-child {
+        td:first-child,
+        th:first-child {
+          border-top-right-radius: (@panel-border-radius - 1);
+          border-top-left-radius: 0;
+        }
+        td:last-child,
+        th:last-child {
+          border-top-left-radius: (@panel-border-radius - 1);
+          border-top-right-radius: 0;
+        }
+      }
+    }
+  }
+  // Add border bottom radius for last one
+  > .table:last-child,
+  > .table-responsive:last-child > .table:last-child {
+
+    > tbody:last-child,
+    > tfoot:last-child {
+      > tr:last-child {
+        td:first-child,
+        th:first-child {
+          border-bottom-left-radius: (@panel-border-radius - 1);
+          border-top-right-radius: 0;
+        }
+        td:last-child,
+        th:last-child {
+          border-bottom-right-radius: (@panel-border-radius - 1);
+          border-top-left-radius: 0;
+        }
+      }
+    }
+  }
+  > .table-bordered,
+  > .table-responsive > .table-bordered {
+    > thead,
+    > tbody,
+    > tfoot {
+      > tr {
+        > th:first-child,
+        > td:first-child {
+          border-right: 0;
+          border-left: none;
+        }
+        > th:last-child,
+        > td:last-child {
+          border-right: none;
+          border-left: 0;
+        }
+      }
+    }
+  }
+}

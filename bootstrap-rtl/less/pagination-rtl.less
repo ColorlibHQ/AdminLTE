@@ -1,0 +1,32 @@
+//
+// RTL Pagination (multiple pages)
+// --------------------------------------------------
+.pagination {
+  padding-right: 0;
+
+  > li {
+    > a,
+    > span {
+      float: right; // Collapse white-space
+      margin-right: -1px;
+      margin-left: 0px;
+    }
+    &:first-child {
+      > a,
+      > span {
+        margin-left: 0;
+        .border-right-radius(@border-radius-base);
+        .border-left-radius(0);
+      }
+    }
+    &:last-child {
+      > a,
+      > span {
+        margin-right: -1px;
+        .border-left-radius(@border-radius-base);
+        .border-right-radius(0);
+      }
+    }
+  }
+
+}

@@ -1,0 +1,20 @@
+//
+// RTL Alerts
+// --------------------------------------------------
+
+
+// Dismissable alerts
+//
+// Expand the left padding and account for the close button's positioning.
+
+.alert-dismissable, // The misspelled .alert-dismissable was deprecated in 3.2.0.
+.alert-dismissible {
+ padding-left: (@alert-padding + 20);
+ padding-right: (@alert-padding);
+
+  // Adjust close link position
+  .close {
+    right: auto;
+    left: -21px;
+  }
+}
