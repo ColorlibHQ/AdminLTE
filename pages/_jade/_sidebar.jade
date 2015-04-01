@@ -1,0 +1,243 @@
+// Left side column. contains the logo and sidebar
+aside.main-sidebar
+  // sidebar: style can be found in sidebar.less
+  section.sidebar
+    // Sidebar user panel
+    .user-panel
+      .pull-left.image
+        img.img-circle(src='dist/img/user2-160x160.jpg', alt='User Image')
+      .pull-left.info
+        p Alexander Pierce
+        a(href='#')
+          i.fa.fa-circle.text-success
+          |  Online
+    // search form
+    form.sidebar-form(action='#', method='get')
+      .input-group
+        input.form-control(type='text', name='q', placeholder='Search...')
+        span.input-group-btn
+          button#search-btn.btn.btn-flat(type='submit', name='search')
+            i.fa.fa-search
+    // sidebar menu: : style can be found in sidebar.less
+    ul.sidebar-menu
+      li.header MAIN NAVIGATION
+      li.active.treeview
+        a(href='#')
+          i.fa.fa-dashboard
+          span Dashboard
+          i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li.active
+            a(href='index.html')
+              i.fa.fa-circle-o
+              |  Dashboard v1
+          li
+            a(href='index2.html')
+              i.fa.fa-circle-o
+              |  Dashboard v2
+      li.treeview
+        a(href='#')
+          i.fa.fa-files-o
+          span Layout Options
+          span.label.label-primary.pull-right 4
+        ul.treeview-menu
+          li
+            a(href='pages/layout/top-nav.html')
+              i.fa.fa-circle-o
+              |  Top Navigation
+          li
+            a(href='pages/layout/boxed.html')
+              i.fa.fa-circle-o
+              |  Boxed
+          li
+            a(href='pages/layout/fixed.html')
+              i.fa.fa-circle-o
+              |  Fixed
+          li
+            a(href='pages/layout/collapsed-sidebar.html')
+              i.fa.fa-circle-o
+              |  Collapsed Sidebar
+      li
+        a(href='pages/widgets.html')
+          i.fa.fa-th
+          span Widgets
+          small.label.pull-right.bg-green new
+      li.treeview
+        a(href='#')
+          i.fa.fa-pie-chart
+          span Charts
+          i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li
+            a(href='pages/charts/morris.html')
+              i.fa.fa-circle-o
+              |  Morris
+          li
+            a(href='pages/charts/flot.html')
+              i.fa.fa-circle-o
+              |  Flot
+          li
+            a(href='pages/charts/inline.html')
+              i.fa.fa-circle-o
+              |  Inline charts
+      li.treeview
+        a(href='#')
+          i.fa.fa-laptop
+          span UI Elements
+          i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li
+            a(href='pages/UI/general.html')
+              i.fa.fa-circle-o
+              |  General
+          li
+            a(href='pages/UI/icons.html')
+              i.fa.fa-circle-o
+              |  Icons
+          li
+            a(href='pages/UI/buttons.html')
+              i.fa.fa-circle-o
+              |  Buttons
+          li
+            a(href='pages/UI/sliders.html')
+              i.fa.fa-circle-o
+              |  Sliders
+          li
+            a(href='pages/UI/timeline.html')
+              i.fa.fa-circle-o
+              |  Timeline
+          li
+            a(href='pages/UI/modals.html')
+              i.fa.fa-circle-o
+              |  Modals
+      li.treeview
+        a(href='#')
+          i.fa.fa-edit
+          span Forms
+          i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li
+            a(href='pages/forms/general.html')
+              i.fa.fa-circle-o
+              |  General Elements
+          li
+            a(href='pages/forms/advanced.html')
+              i.fa.fa-circle-o
+              |  Advanced Elements
+          li
+            a(href='pages/forms/editors.html')
+              i.fa.fa-circle-o
+              |  Editors
+      li.treeview
+        a(href='#')
+          i.fa.fa-table
+          span Tables
+          i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li
+            a(href='pages/tables/simple.html')
+              i.fa.fa-circle-o
+              |  Simple tables
+          li
+            a(href='pages/tables/data.html')
+              i.fa.fa-circle-o
+              |  Data tables
+      li
+        a(href='pages/calendar.html')
+          i.fa.fa-calendar
+          span Calendar
+          small.label.pull-right.bg-red 3
+      li
+        a(href='pages/mailbox/mailbox.html')
+          i.fa.fa-envelope
+          span Mailbox
+          small.label.pull-right.bg-yellow 12
+      li.treeview
+        a(href='#')
+          i.fa.fa-folder
+          span Examples
+          i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li
+            a(href='pages/examples/invoice.html')
+              i.fa.fa-circle-o
+              |  Invoice
+          li
+            a(href='pages/examples/login.html')
+              i.fa.fa-circle-o
+              |  Login
+          li
+            a(href='pages/examples/register.html')
+              i.fa.fa-circle-o
+              |  Register
+          li
+            a(href='pages/examples/lockscreen.html')
+              i.fa.fa-circle-o
+              |  Lockscreen
+          li
+            a(href='pages/examples/404.html')
+              i.fa.fa-circle-o
+              |  404 Error
+          li
+            a(href='pages/examples/500.html')
+              i.fa.fa-circle-o
+              |  500 Error
+          li
+            a(href='pages/examples/blank.html')
+              i.fa.fa-circle-o
+              |  Blank Page
+      li.treeview
+        a(href='#')
+          i.fa.fa-share
+          span Multilevel
+          i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li
+            a(href='#')
+              i.fa.fa-circle-o
+              |  Level One
+          li
+            a(href='#')
+              i.fa.fa-circle-o
+              |  Level One
+              i.fa.fa-angle-left.pull-right
+            ul.treeview-menu
+              li
+                a(href='#')
+                  i.fa.fa-circle-o
+                  |  Level Two
+              li
+                a(href='#')
+                  i.fa.fa-circle-o
+                  |  Level Two
+                  i.fa.fa-angle-left.pull-right
+                ul.treeview-menu
+                  li
+                    a(href='#')
+                      i.fa.fa-circle-o
+                      |  Level Three
+                  li
+                    a(href='#')
+                      i.fa.fa-circle-o
+                      |  Level Three
+          li
+            a(href='#')
+              i.fa.fa-circle-o
+              |  Level One
+      li
+        a(href='documentation/index.html')
+          i.fa.fa-book
+          |  Documentation
+      li.header LABELS
+      li
+        a(href='#')
+          i.fa.fa-circle-o.text-danger
+          |  Important
+      li
+        a(href='#')
+          i.fa.fa-circle-o.text-warning
+          |  Warning
+      li
+        a(href='#')
+          i.fa.fa-circle-o.text-info
+          |  Information

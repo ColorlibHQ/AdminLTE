@@ -4,13 +4,24 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-includes');
-  
+
   grunt.initConfig({
     watch: {
-      // if any .less file changes in directory "build/less/" run the "less"-task.
-      files: ["build/less/*.less", "build/less/skins/*.less", "dist/js/app.js"],
-      tasks: ["less", "uglify"]
+      // Redo specific build on file modification
+      css: {
+        files: ["build/less/*.less", "build/less/skins/*.less"],
+        tasks: ["less"]
+      },
+      scripts: {
+        files: "dist/js/app.js",
+        tasks: ["uglify"]
+      },
+      html: {
+        files: ["pages/_jade/**/*.jade"],
+        tasks: ["jade"]
+      }
     },
     // "less"-task configuration
     //this task will compile all less files upon saving to create both AdminLTE.css and AdminLTE.min.css
@@ -36,7 +47,7 @@ module.exports = function (grunt) {
       //production compresses version
       production: {
         options: {
-          //Whether to compress or not          
+          //Whether to compress or not
           compress: true
         },
         files: {
@@ -64,11 +75,30 @@ module.exports = function (grunt) {
         }
       }
     },
+    jade: {
+      compile: {
+        options: {
+          pretty: true,
+          data: {
+            debug: false
+          }
+        },
+        files: [
+          {
+            cwd: "pages/_jade",
+            src: ["*/*.jade", "index*.jade"],
+            dest: "",
+            expand: true,
+            ext: ".html"
+          }
+        ]
+      }
+    },
     //Build the documentation files
     includes: {
       build: {
-        src: ['*.html'], // Source files 
-        dest: 'documentation/', // Destination directory 
+        src: ['*.html'], // Source files
+        dest: 'documentation/', // Destination directory
         flatten: true,
         cwd: 'documentation/build',
         options: {
