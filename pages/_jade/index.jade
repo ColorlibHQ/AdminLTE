@@ -1,0 +1,364 @@
+extends layout
+
+//block title
+//  | TEST
+
+//block content_title
+//  | test
+
+//block content_subtitle
+//  | subtest
+
+//block breadcrumb_list
+//  li.active Test
+
+block content
+  // Small boxes (Stat box)
+  .row
+    .col-lg-3.col-xs-6
+      // small box
+      .small-box.bg-aqua
+        .inner
+          h3 150
+          p New Orders
+        .icon
+          i.ion.ion-bag
+        a.small-box-footer(href='#')
+          | More info
+          i.fa.fa-arrow-circle-right
+    .col-lg-3.col-xs-6
+      // small box
+      .small-box.bg-green
+        .inner
+          h3
+            | 53
+            sup(style='font-size: 20px') %
+          p Bounce Rate
+        .icon
+          i.ion.ion-stats-bars
+        a.small-box-footer(href='#')
+          | More info
+          i.fa.fa-arrow-circle-right
+    .col-lg-3.col-xs-6
+      // small box
+      .small-box.bg-yellow
+        .inner
+          h3 44
+          p User Registrations
+        .icon
+          i.ion.ion-person-add
+        a.small-box-footer(href='#')
+          | More info
+          i.fa.fa-arrow-circle-right
+    .col-lg-3.col-xs-6
+      // small box
+      .small-box.bg-red
+        .inner
+          h3 65
+          p Unique Visitors
+        .icon
+          i.ion.ion-pie-graph
+        a.small-box-footer(href='#')
+          | More info
+          i.fa.fa-arrow-circle-right
+  // Main row
+  .row
+    // Left col
+    section.col-lg-7.connectedSortable
+      // Custom tabs (Charts with tabs)
+      .nav-tabs-custom
+        // Tabs within a box
+        ul.nav.nav-tabs.pull-right
+          li.active
+            a(href='#revenue-chart', data-toggle='tab') Area
+          li
+            a(href='#sales-chart', data-toggle='tab') Donut
+          li.pull-left.header
+            i.fa.fa-inbox
+            |  Sales
+        .tab-content.no-padding
+          // Morris chart - Sales
+          #revenue-chart.chart.tab-pane.active(style='position: relative; height: 300px;')
+          #sales-chart.chart.tab-pane(style='position: relative; height: 300px;')
+      // Chat box
+      .box.box-success
+        .box-header
+          i.fa.fa-comments-o
+          h3.box-title Chat
+          .box-tools.pull-right(data-toggle='tooltip', title='Status')
+            .btn-group(data-toggle='btn-toggle')
+              button.btn.btn-default.btn-sm.active(type='button')
+                i.fa.fa-square.text-green
+              button.btn.btn-default.btn-sm(type='button')
+                i.fa.fa-square.text-red
+        #chat-box.box-body.chat
+          // chat item
+          .item
+            img.online(src='dist/img/user4-128x128.jpg', alt='user image')
+            p.message
+              a.name(href='#')
+                small.text-muted.pull-right
+                  i.fa.fa-clock-o
+                  |  2:15
+                |                         Mike Doe
+              |                       I would like to meet you to discuss the latest news about
+              |                       the arrival of the new theme. They say it is going to be one the
+              |                       best themes on the market
+            .attachment
+              h4 Attachments:
+              p.filename
+                | Theme-thumbnail-image.jpg
+              .pull-right
+                button.btn.btn-primary.btn-sm.btn-flat Open
+          // chat item
+          .item
+            img.offline(src='dist/img/user3-128x128.jpg', alt='user image')
+            p.message
+              a.name(href='#')
+                small.text-muted.pull-right
+                  i.fa.fa-clock-o
+                  |  5:15
+                |                         Alexander Pierce
+              |                       I would like to meet you to discuss the latest news about
+              |                       the arrival of the new theme. They say it is going to be one the
+              |                       best themes on the market
+          // chat item
+          .item
+            img.offline(src='dist/img/user2-160x160.jpg', alt='user image')
+            p.message
+              a.name(href='#')
+                small.text-muted.pull-right
+                  i.fa.fa-clock-o
+                  |  5:30
+                |                         Susan Doe
+              |                       I would like to meet you to discuss the latest news about
+              |                       the arrival of the new theme. They say it is going to be one the
+              |                       best themes on the market
+        .box-footer
+          .input-group
+            input.form-control(placeholder='Type message...')
+            .input-group-btn
+              button.btn.btn-success
+                i.fa.fa-plus
+      // TO DO List
+      .box.box-primary
+        .box-header
+          i.ion.ion-clipboard
+          h3.box-title To Do List
+          .box-tools.pull-right
+            ul.pagination.pagination-sm.inline
+              li
+                a(href='#') «
+              li
+                a(href='#') 1
+              li
+                a(href='#') 2
+              li
+                a(href='#') 3
+              li
+                a(href='#') »
+        .box-body
+          ul.todo-list
+            li
+              // drag handle
+              span.handle
+                i.fa.fa-ellipsis-v
+                i.fa.fa-ellipsis-v
+              // checkbox
+              input(type='checkbox', value='', name='')
+              // todo text
+              span.text Design a nice theme
+              // Emphasis label
+              small.label.label-danger
+                i.fa.fa-clock-o
+                |  2 mins
+              // General tools such as edit or delete
+              .tools
+                i.fa.fa-edit
+                i.fa.fa-trash-o
+            li
+              span.handle
+                i.fa.fa-ellipsis-v
+                i.fa.fa-ellipsis-v
+              input(type='checkbox', value='', name='')
+              span.text Make the theme responsive
+              small.label.label-info
+                i.fa.fa-clock-o
+                |  4 hours
+              .tools
+                i.fa.fa-edit
+                i.fa.fa-trash-o
+            li
+              span.handle
+                i.fa.fa-ellipsis-v
+                i.fa.fa-ellipsis-v
+              input(type='checkbox', value='', name='')
+              span.text Let theme shine like a star
+              small.label.label-warning
+                i.fa.fa-clock-o
+                |  1 day
+              .tools
+                i.fa.fa-edit
+                i.fa.fa-trash-o
+            li
+              span.handle
+                i.fa.fa-ellipsis-v
+                i.fa.fa-ellipsis-v
+              input(type='checkbox', value='', name='')
+              span.text Let theme shine like a star
+              small.label.label-success
+                i.fa.fa-clock-o
+                |  3 days
+              .tools
+                i.fa.fa-edit
+                i.fa.fa-trash-o
+            li
+              span.handle
+                i.fa.fa-ellipsis-v
+                i.fa.fa-ellipsis-v
+              input(type='checkbox', value='', name='')
+              span.text Check your messages and notifications
+              small.label.label-primary
+                i.fa.fa-clock-o
+                |  1 week
+              .tools
+                i.fa.fa-edit
+                i.fa.fa-trash-o
+            li
+              span.handle
+                i.fa.fa-ellipsis-v
+                i.fa.fa-ellipsis-v
+              input(type='checkbox', value='', name='')
+              span.text Let theme shine like a star
+              small.label.label-default
+                i.fa.fa-clock-o
+                |  1 month
+              .tools
+                i.fa.fa-edit
+                i.fa.fa-trash-o
+        .box-footer.clearfix.no-border
+          button.btn.btn-default.pull-right
+            i.fa.fa-plus
+            |  Add item
+      // quick email widget
+      .box.box-info
+        .box-header
+          i.fa.fa-envelope
+          h3.box-title Quick Email
+          // tools box
+          .pull-right.box-tools
+            button.btn.btn-info.btn-sm(data-widget='remove', data-toggle='tooltip', title='Remove')
+              i.fa.fa-times
+        .box-body
+          form(action='#', method='post')
+            .form-group
+              input.form-control(type='email', name='emailto', placeholder='Email to:')
+            .form-group
+              input.form-control(type='text', name='subject', placeholder='Subject')
+            div
+              textarea.textarea(placeholder='Message', style='width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;')
+        .box-footer.clearfix
+          button#sendEmail.pull-right.btn.btn-default
+            | Send
+            i.fa.fa-arrow-circle-right
+    // right col (We are only adding the ID to make the widgets sortable)
+    section.col-lg-5.connectedSortable
+      // Map box
+      .box.box-solid.bg-light-blue-gradient
+        .box-header
+          // tools box
+          .pull-right.box-tools
+            button.btn.btn-primary.btn-sm.daterange.pull-right(data-toggle='tooltip', title='Date range')
+              i.fa.fa-calendar
+            button.btn.btn-primary.btn-sm.pull-right(data-widget='collapse', data-toggle='tooltip', title='Collapse', style='margin-right: 5px;')
+              i.fa.fa-minus
+          i.fa.fa-map-marker
+          h3.box-title
+            | Visitors
+        .box-body
+          #world-map(style='height: 250px; width: 100%;')
+        .box-footer.no-border
+          .row
+            .col-xs-4.text-center(style='border-right: 1px solid #f4f4f4')
+              #sparkline-1
+              .knob-label Visitors
+            .col-xs-4.text-center(style='border-right: 1px solid #f4f4f4')
+              #sparkline-2
+              .knob-label Online
+            .col-xs-4.text-center
+              #sparkline-3
+              .knob-label Exists
+      // solid sales graph
+      .box.box-solid.bg-teal-gradient
+        .box-header
+          i.fa.fa-th
+          h3.box-title Sales Graph
+          .box-tools.pull-right
+            button.btn.bg-teal.btn-sm(data-widget='collapse')
+              i.fa.fa-minus
+            button.btn.bg-teal.btn-sm(data-widget='remove')
+              i.fa.fa-times
+        .box-body.border-radius-none
+          #line-chart.chart(style='height: 250px;')
+        .box-footer.no-border
+          .row
+            .col-xs-4.text-center(style='border-right: 1px solid #f4f4f4')
+              input.knob(type='text', data-readonly='true', value='20', data-width='60', data-height='60', data-fgcolor='#39CCCC')
+              .knob-label Mail-Orders
+            .col-xs-4.text-center(style='border-right: 1px solid #f4f4f4')
+              input.knob(type='text', data-readonly='true', value='50', data-width='60', data-height='60', data-fgcolor='#39CCCC')
+              .knob-label Online
+            .col-xs-4.text-center
+              input.knob(type='text', data-readonly='true', value='30', data-width='60', data-height='60', data-fgcolor='#39CCCC')
+              .knob-label In-Store
+      // Calendar
+      .box.box-solid.bg-green-gradient
+        .box-header
+          i.fa.fa-calendar
+          h3.box-title Calendar
+          // tools box
+          .pull-right.box-tools
+            // button with a dropdown
+            .btn-group
+              button.btn.btn-success.btn-sm.dropdown-toggle(data-toggle='dropdown')
+                i.fa.fa-bars
+              ul.dropdown-menu.pull-right(role='menu')
+                li
+                  a(href='#') Add new event
+                li
+                  a(href='#') Clear events
+                li.divider
+                li
+                  a(href='#') View calendar
+            button.btn.btn-success.btn-sm(data-widget='collapse')
+              i.fa.fa-minus
+            button.btn.btn-success.btn-sm(data-widget='remove')
+              i.fa.fa-times
+        .box-body.no-padding
+          // The calendar
+          #calendar(style='width: 100%')
+        .box-footer.text-black
+          .row
+            .col-sm-6
+              // Progress bars
+              .clearfix
+                span.pull-left Task #1
+                small.pull-right 90%
+              .progress.xs
+                .progress-bar.progress-bar-green(style='width: 90%;')
+              .clearfix
+                span.pull-left Task #2
+                small.pull-right 70%
+              .progress.xs
+                .progress-bar.progress-bar-green(style='width: 70%;')
+            .col-sm-6
+              .clearfix
+                span.pull-left Task #3
+                small.pull-right 60%
+              .progress.xs
+                .progress-bar.progress-bar-green(style='width: 60%;')
+              .clearfix
+                span.pull-left Task #4
+                small.pull-right 40%
+              .progress.xs
+                .progress-bar.progress-bar-green(style='width: 40%;')

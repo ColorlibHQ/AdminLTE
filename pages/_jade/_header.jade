@@ -1,0 +1,180 @@
+header.main-header
+  // Logo
+  a.logo(href='index2.html')
+    | <b>Admin</b>LTE
+  // Header Navbar: style can be found in header.less
+  nav.navbar.navbar-static-top(role='navigation')
+    // Sidebar toggle button
+    a.sidebar-toggle(href='#', data-toggle='offcanvas', role='button')
+      span.sr-only Toggle navigation
+    .navbar-custom-menu
+      ul.nav.navbar-nav
+        // Messages: style can be found in dropdown.less
+        li.dropdown.messages-menu
+          a.dropdown-toggle(href='#', data-toggle='dropdown')
+            i.fa.fa-envelope-o
+            span.label.label-success 4
+          ul.dropdown-menu
+            li.header You have 4 messages
+            li
+              // inner menu: contains the actual data
+              ul.menu
+                li
+                  // start message
+                  a(href='#')
+                    .pull-left
+                      img.img-circle(src='dist/img/user2-160x160.jpg', alt='User Image')
+                    h4 Support Team
+                      small
+                        i.fa.fa-clock-o
+                        |  5 mins
+                    p Why not buy a new awesome theme?
+                // end message
+                li
+                  a(href='#')
+                    .pull-left
+                      img.img-circle(src='dist/img/user3-128x128.jpg', alt='user image')
+                    h4 AdminLTE Design Team
+                      small
+                        i.fa.fa-clock-o
+                        |  2 hours
+                    p Why not buy a new awesome theme?
+                li
+                  a(href='#')
+                    .pull-left
+                      img.img-circle(src='dist/img/user4-128x128.jpg', alt='user image')
+                    h4 Developers
+                      small
+                        i.fa.fa-clock-o
+                        |  Today
+                    p Why not buy a new awesome theme?
+                li
+                  a(href='#')
+                    .pull-left
+                      img.img-circle(src='dist/img/user3-128x128.jpg', alt='user image')
+                    h4 Sales Department
+                      small
+                        i.fa.fa-clock-o
+                        |  Yesterday
+                    p Why not buy a new awesome theme?
+                li
+                  a(href='#')
+                    .pull-left
+                      img.img-circle(src='dist/img/user4-128x128.jpg', alt='user image')
+                    h4 Reviewers
+                      small
+                        i.fa.fa-clock-o
+                        |  2 days
+                    p Why not buy a new awesome theme?
+            li.footer
+              a(href='#') See All Messages
+        // Notifications: style can be found in dropdown.less
+        li.dropdown.notifications-menu
+          a.dropdown-toggle(href='#', data-toggle='dropdown')
+            i.fa.fa-bell-o
+            span.label.label-warning 10
+          ul.dropdown-menu
+            li.header You have 10 notifications
+            li
+              // inner menu: contains the actual data
+              ul.menu
+                li
+                  a(href='#')
+                    i.fa.fa-users.text-aqua
+                    |  5 new members joined today
+                li
+                  a(href='#')
+                    i.fa.fa-warning.text-yellow
+                    |  Very long description here that may not fit into the page and may cause design problems
+                li
+                  a(href='#')
+                    i.fa.fa-users.text-red
+                    |  5 new members joined
+                li
+                  a(href='#')
+                    i.fa.fa-shopping-cart.text-green
+                    |  25 sales made
+                li
+                  a(href='#')
+                    i.fa.fa-user.text-red
+                    |  You changed your username
+            li.footer
+              a(href='#') View all
+        // Tasks: style can be found in dropdown.less
+        li.dropdown.tasks-menu
+          a.dropdown-toggle(href='#', data-toggle='dropdown')
+            i.fa.fa-flag-o
+            span.label.label-danger 9
+          ul.dropdown-menu
+            li.header You have 9 tasks
+            li
+              // inner menu: contains the actual data
+              ul.menu
+                li
+                  // Task item
+                  a(href='#')
+                    h3
+                      | Design some buttons
+                      small.pull-right 20%
+                    .progress.xs
+                      .progress-bar.progress-bar-aqua(style='width: 20%', role='progressbar', aria-valuenow='20', aria-valuemin='0', aria-valuemax='100')
+                        span.sr-only 20% Complete
+                // end task item
+                li
+                  // Task item
+                  a(href='#')
+                    h3
+                      | Create a nice theme
+                      small.pull-right 40%
+                    .progress.xs
+                      .progress-bar.progress-bar-green(style='width: 40%', role='progressbar', aria-valuenow='20', aria-valuemin='0', aria-valuemax='100')
+                        span.sr-only 40% Complete
+                // end task item
+                li
+                  // Task item
+                  a(href='#')
+                    h3
+                      | Some task I need to do
+                      small.pull-right 60%
+                    .progress.xs
+                      .progress-bar.progress-bar-red(style='width: 60%', role='progressbar', aria-valuenow='20', aria-valuemin='0', aria-valuemax='100')
+                        span.sr-only 60% Complete
+                // end task item
+                li
+                  // Task item
+                  a(href='#')
+                    h3
+                      | Make beautiful transitions
+                      small.pull-right 80%
+                    .progress.xs
+                      .progress-bar.progress-bar-yellow(style='width: 80%', role='progressbar', aria-valuenow='20', aria-valuemin='0', aria-valuemax='100')
+                        span.sr-only 80% Complete
+                // end task item
+            li.footer
+              a(href='#') View all tasks
+        // User Account: style can be found in dropdown.less
+        li.dropdown.user.user-menu
+          a.dropdown-toggle(href='#', data-toggle='dropdown')
+            img.user-image(src='dist/img/user2-160x160.jpg', alt='User Image')
+            span.hidden-xs Alexander Pierce
+          ul.dropdown-menu
+            // User image
+            li.user-header
+              img.img-circle(src='dist/img/user2-160x160.jpg', alt='User Image')
+              p
+                | Alexander Pierce - Web Developer
+                small Member since Nov. 2012
+            // Menu Body
+            li.user-body
+              .col-xs-4.text-center
+                a(href='#') Followers
+              .col-xs-4.text-center
+                a(href='#') Sales
+              .col-xs-4.text-center
+                a(href='#') Friends
+            // Menu Footer
+            li.user-footer
+              .pull-left
+                a.btn.btn-default.btn-flat(href='#') Profile
+              .pull-right
+                a.btn.btn-default.btn-flat(href='#') Sign out
