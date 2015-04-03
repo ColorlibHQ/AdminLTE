@@ -103,7 +103,7 @@ body {
   background: #fff;
   padding: 15px;
   color: #444;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #d2d6de;
 }
 /* Fixed layout */
 .fixed .main-header,
@@ -455,6 +455,7 @@ a:focus {
 .user-panel > .image > img {
   width: 45px;
   height: 45px;
+  max-width: 100%!important;
 }
 .user-panel > .info {
   font-weight: 600;
@@ -637,6 +638,16 @@ a:focus {
 /*
  * Component: Control sidebar. By deafult, this is the right sidebar.
  */
+.control-sidebar-bg {
+  position: fixed;
+  z-index: 900;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 230px;
+  background: #222d32;
+}
+.control-sidebar-bg,
 .control-sidebar {
   -webkit-transform: translate(230px, 0);
   -ms-transform: translate(230px, 0);
@@ -646,12 +657,13 @@ a:focus {
   -moz-transition: -moz-transform 0.3s ease-in-out;
   -o-transition: -o-transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out;
+}
+.control-sidebar {
   position: absolute;
   top: 50px;
   right: 0;
   width: 230px;
   z-index: 1010;
-  background: #222d32;
   color: #b8c7ce;
 }
 @media (max-width: 768px) {
@@ -662,12 +674,14 @@ a:focus {
 .control-sidebar > .tab-content {
   padding: 10px 15px;
 }
-.control-sidebar.control-sidebar-open {
+.control-sidebar.control-sidebar-open,
+.control-sidebar.control-sidebar-open + .control-sidebar-bg {
   -webkit-transform: translate(0, 0);
   -ms-transform: translate(0, 0);
   -o-transform: translate(0, 0);
   transform: translate(0, 0);
 }
+.control-sidebar-open .control-sidebar-bg,
 .control-sidebar-open .control-sidebar {
   -webkit-transform: translate(0, 0);
   -ms-transform: translate(0, 0);

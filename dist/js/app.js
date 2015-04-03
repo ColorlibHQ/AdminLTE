@@ -382,13 +382,6 @@ function _init() {
       //The toggle button
       var btn = $(o.toggleBtnSelector);
 
-      //Initial height fix
-      _this.fixHeight(sidebar);
-      //Fix the height when the screen size changes
-      $(window).resize(function () {
-        _this.fixHeight(sidebar);        
-      });
-
       //Listen to the click event
       btn.click(function (e) {
         e.preventDefault();
@@ -414,13 +407,6 @@ function _init() {
         sidebar.removeClass('control-sidebar-open');
       else
         $('body').removeClass('control-sidebar-open');
-    },
-    //Fix the height of the sidebar
-    fixHeight: function (sidebar) {
-      //We'll have to make it small then stretch it again so it
-      //doesn't occupy more than the space it needs
-      sidebar.css('min-height', $(window).height() - $(".main-header").height());
-      sidebar.css('min-height', $(document).height() - $(".main-header").height());
     }
   };
 
