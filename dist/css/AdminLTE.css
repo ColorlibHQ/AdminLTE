@@ -453,9 +453,9 @@ a:focus {
   clear: both;
 }
 .user-panel > .image > img {
-  width: 45px;
-  height: 45px;
-  max-width: 100%!important;
+  width: 100%;
+  max-width: 45px;
+  height: auto;
 }
 .user-panel > .info {
   font-weight: 600;
@@ -572,10 +572,6 @@ a:focus {
   }
   .sidebar-mini.sidebar-collapse .main-sidebar .user-panel > .info {
     display: none;
-  }
-  .sidebar-mini.sidebar-collapse .main-sidebar .user-panel img {
-    max-width: 100%;
-    height: auto;
   }
   .sidebar-mini.sidebar-collapse .sidebar-menu > li {
     position: relative;
