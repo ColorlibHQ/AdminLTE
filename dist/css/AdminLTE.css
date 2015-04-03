@@ -684,10 +684,12 @@ a:focus {
   -o-transform: translate(0, 0);
   transform: translate(0, 0);
 }
-.control-sidebar-open .content-wrapper,
-.control-sidebar-open .right-side,
-.control-sidebar-open .main-footer {
-  margin-right: 230px;
+@media (min-width: 768px) {
+  .control-sidebar-open .content-wrapper,
+  .control-sidebar-open .right-side,
+  .control-sidebar-open .main-footer {
+    margin-right: 230px;
+  }
 }
 .control-sidebar-tabs {
   border-bottom: #1c2529;
@@ -2248,7 +2250,8 @@ a:focus {
   margin-right: 5px;
 }
 .nav-pills > li.active > a,
-.nav-pills > li.active > a:hover {
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
   background-color: #f4f4f4;
   border-top-color: #3c8dbc;
   color: #444;

@@ -48,10 +48,12 @@
   .control-sidebar {
     .translate(0,0);
   }
-  .content-wrapper,
-  .right-side,
-  .main-footer {
-    margin-right: @control-sidebar-width;
+  @media(min-width: @screen-sm) {
+    .content-wrapper,
+    .right-side,
+    .main-footer {
+      margin-right: @control-sidebar-width;
+    }
   }
 }
 
