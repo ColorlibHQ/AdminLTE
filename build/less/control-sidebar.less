@@ -1,34 +1,52 @@
 /*
  * Component: Control sidebar. By deafult, this is the right sidebar.
  */
+//The sidebar's backhround control class
+//This is a hack to make the background visible while scrolling
+.control-sidebar-bg {
+  position: fixed;
+  z-index: 900;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: @control-sidebar-width;
+  background: @sidebar-dark-bg;
+}
+
+//Transitions
+.control-sidebar-bg,
 .control-sidebar {
   .translate(@control-sidebar-width, 0);
   .transition-transform(@transition-speed ease-in-out);
+}
+.control-sidebar {
   position: absolute;
   top: @navbar-height;
   right: 0;
   width: @control-sidebar-width;
-  z-index: 1010;
-  background: @sidebar-dark-bg;
+  z-index: 1010;  
   color: @sidebar-dark-color;
-  //Make it hide in small screens
+  //Fix position after header collapse
   @media (max-width: @screen-sm) {
-    top: @navbar-height + 50;
-    //.translate(@control-sidebar-width, 0);
+    top: @navbar-height + 50;    
   }
   //Tab panes
   > .tab-content {
     padding: 10px 15px;
   }
-  //Open state
+  //Open state with slide over content effect
   &.control-sidebar-open {
-    .translate(0, 0);
+    &,
+    + .control-sidebar-bg {
+      .translate(0, 0);
+    }
   }
 }
 //Open without silde over content
 .control-sidebar-open {
+  .control-sidebar-bg,
   .control-sidebar {
-  .translate(0,0);
+    .translate(0,0);
   }
   .content-wrapper,
   .right-side,
@@ -36,6 +54,7 @@
     margin-right: @control-sidebar-width;
   }
 }
+
 
 //Control sidebar tabs
 .control-sidebar-tabs {
