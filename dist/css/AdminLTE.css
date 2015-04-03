@@ -1571,19 +1571,25 @@ a:focus {
 .box .overlay.dark {
   background: rgba(0, 0, 0, 0.5);
 }
+.box-header:before,
+.box-body:before,
+.box-footer:before,
+.box-header:after,
+.box-body:after,
+.box-footer:after {
+  content: " ";
+  display: table;
+}
+.box-header:after,
+.box-body:after,
+.box-footer:after {
+  clear: both;
+}
 .box-header {
   color: #444;
   display: block;
   padding: 10px;
   position: relative;
-}
-.box-header:before,
-.box-header:after {
-  content: " ";
-  display: table;
-}
-.box-header:after {
-  clear: both;
 }
 .box-header.with-border {
   border-bottom: 1px solid #f4f4f4;

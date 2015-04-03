@@ -164,10 +164,15 @@
 
 }
 
-//Box header
-.box-header {
-  //Add top left and top right border radius
+//Add clearfix to header, body and footer
+.box-header,
+.box-body,
+.box-footer {
   .clearfix();
+}
+
+//Box header
+.box-header {  
   color: #444;
   display: block;
   padding: @box-padding;
