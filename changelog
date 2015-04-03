@@ -1,6 +1,11 @@
 CHANGE LOG:
-v2.0.6:
+v2.1.0:
 - Update Ion Icons
+- Added right sidebar ".control-sidebar"
+- Control sidebar has 2 open effects: slide over content and push content
+- Control sidebar converts to always slide over content on small screens
+- Added 6 new light sidebar skins
+- Updated demo menu
 
 v2.0.5:
 - Fixed issue #288
