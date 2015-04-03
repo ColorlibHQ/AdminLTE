@@ -81,7 +81,7 @@
           + "<div class='form-group'>"
           + "<div class='checkbox'>"
           + "<label>"
-          + "<input type='checkbox' onchange='change_layout(\"fixed\");'/> "
+          + "<input type='checkbox' data-layout='layout-fixed'/> "
           + "Fixed layout"
           + "</label>"
           + "</div>"
@@ -90,17 +90,26 @@
           + "<div class='form-group'>"
           + "<div class='checkbox'>"
           + "<label>"
-          + "<input type='checkbox' onchange='change_layout(\"layout-boxed\");'/> "
+          + "<input type='checkbox' data-layout='layout-boxed'/> "
           + "Boxed Layout"
           + "</label>"
           + "</div>"
           + "</div>"
-          //Sidebar Collapse
+          //Sidebar Toggle
           + "<div class='form-group'>"
           + "<div class='checkbox'>"
           + "<label>"
-          + "<input type='checkbox' onchange='change_layout(\"sidebar-collapse\");'/> "
-          + "Collapsed Sidebar"
+          + "<input type='checkbox' data-layout='sidebar-collapse'/> "
+          + "Toggle Sidebar"
+          + "</label>"
+          + "</div>"
+          + "</div>"
+          //Control Sidebar Toggle
+          + "<div class='form-group'>"
+          + "<div class='checkbox'>"
+          + "<label>"
+          + "<input type='checkbox' data-controlsidebar='control-sidebar-open'/> "
+          + "Toggle Control Sidebar Slide Effect"
           + "</label>"
           + "</div>"
           + "</div>"
@@ -296,6 +305,19 @@
     $("[data-skin]").on('click', function (e) {
       e.preventDefault();
       change_skin($(this).data('skin'));
+    });
+
+    //Add the layout manager
+    $("[data-layout]").on('click', function () {
+      change_layout($(this).data('layout'));
+    });
+    
+    $("[data-controlsidebar]").on('click', function () {
+      change_layout($(this).data('controlsidebar'));
+      var slide = !$.AdminLTE.options.controlSidebarOptions.slide;
+      $.AdminLTE.options.controlSidebarOptions.slide = slide;
+      if(!slide)
+        $('.control-sidebar').removeClass('control-sidebar-open');
     });
   }
 })(jQuery);
