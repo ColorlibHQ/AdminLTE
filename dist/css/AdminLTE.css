@@ -390,6 +390,17 @@ a:focus {
     padding-top: 100px!important;
   }
 }
+@media (max-width: 991px) {
+  .navbar-collapse.pull-left {
+    float: none!important;
+  }
+  .navbar-collapse.pull-left + .navbar-custom-menu {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 40px;
+  }
+}
 /*
  * Component: Sidebar
  * ------------------

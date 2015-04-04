@@ -234,3 +234,15 @@
     padding-top: 100px!important;    
   }
 }
+
+.navbar-collapse.pull-left {
+  @media(max-width: @screen-sm-max) {
+    float: none!important;
+    + .navbar-custom-menu {      
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 40px;
+    }
+  }  
+}
