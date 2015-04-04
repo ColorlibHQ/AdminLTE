@@ -6,6 +6,7 @@ v2.1.0:
 - Control sidebar converts to always slide over content on small screens
 - Added 6 new light sidebar skins
 - Updated demo menu
+- Fixed some minor bugs
 
 v2.0.5:
 - Fixed issue #288

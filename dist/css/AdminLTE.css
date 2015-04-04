@@ -1653,15 +1653,6 @@ a:focus {
 .box-body > .table {
   margin-bottom: 0;
 }
-.box-body > .chart {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-.box-body > .chart svg,
-.box-body > .chart canvas {
-  width: 100%!important;
-}
 .box-body .fc {
   margin-top: 5px;
 }
@@ -3793,7 +3784,6 @@ fieldset[disabled] .btn-vk.active {
  * General: Miscellaneous
  * ----------------------
  */
-/* 10px padding and margins */
 .pad {
   padding: 10px;
 }
@@ -3803,12 +3793,10 @@ fieldset[disabled] .btn-vk.active {
 .margin-bottom {
   margin-bottom: 20px;
 }
-/* Display inline */
 .inline {
   display: inline;
   width: auto;
 }
-/* Description Blocks */
 .description-block {
   display: block;
   margin: 10px 0;
@@ -3826,7 +3814,6 @@ fieldset[disabled] .btn-vk.active {
 .description-block > .description-text {
   text-transform: uppercase;
 }
-/* Background colors */
 .bg-red,
 .bg-yellow,
 .bg-aqua,
@@ -4019,7 +4006,6 @@ fieldset[disabled] .btn-vk.active {
   opacity: 0.65;
   filter: alpha(opacity=65);
 }
-/* Text colors */
 .text-red {
   color: #dd4b39 !important;
 }
@@ -4068,27 +4054,21 @@ fieldset[disabled] .btn-vk.active {
 .text-maroon {
   color: #d81b60 !important;
 }
-/*Hide elements by display none only*/
 .hide {
   display: none !important;
 }
-/* Remove borders */
 .no-border {
   border: 0px !important;
 }
-/* Remove padding */
 .no-padding {
   padding: 0px !important;
 }
-/* Remove margins */
 .no-margin {
   margin: 0px !important;
 }
-/* Remove box shadow */
 .no-shadow {
   box-shadow: none!important;
 }
-/* Unstyled List */
 .list-unstyled,
 .chart-legend,
 .contacts-list,
@@ -4098,7 +4078,6 @@ fieldset[disabled] .btn-vk.active {
   margin: 0;
   padding: 0;
 }
-/* Remove border radius */
 .flat {
   border-radius: 0 !important;
 }
@@ -4107,15 +4086,11 @@ fieldset[disabled] .btn-vk.active {
 .text-bold.table th {
   font-weight: 700;
 }
-/* _fix for sparkline tooltip */
 .jqstooltip {
   padding: 5px!important;
   width: auto!important;
   height: auto!important;
 }
-/*
-Gradient Background colors
-*/
 .bg-teal-gradient {
   background: #39cccc !important;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #39cccc), color-stop(1, #7adddd)) !important;
@@ -4231,6 +4206,15 @@ Gradient Background colors
 .full-opacity-hover:hover {
   opacity: 1;
   filter: alpha(opacity=100);
+}
+.chart {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.chart svg,
+.chart canvas {
+  width: 100%!important;
 }
 /*
  * Misc: print

@@ -73,12 +73,12 @@ $.AdminLTE.options = {
   //Box Widget plugin options
   boxWidgetOptions: {
     boxWidgetIcons: {
-      //The icon that triggers the collapse event
-      collapse: 'fa fa-minus',
-      //The icon that trigger the opening event
-      open: 'fa fa-plus',
-      //The icon that triggers the removing event
-      remove: 'fa fa-times'
+      //Collapse icon
+      collapse: 'fa-minus',
+      //Open icon
+      open: 'fa-plus',
+      //Remove icon
+      remove: 'fa-times'
     },
     boxWidgetSelectors: {
       //Remove button selector
@@ -420,36 +420,44 @@ function _init() {
    *        Set all of your option in the main $.AdminLTE.options object
    */
   $.AdminLTE.boxWidget = {
+    selectors: $.AdminLTE.options.boxWidgetOptions.boxWidgetSelectors,
+    icons: $.AdminLTE.options.boxWidgetOptions.boxWidgetIcons,
     activate: function () {
-      var o = $.AdminLTE.options;
       var _this = this;
       //Listen for collapse event triggers
-      $(o.boxWidgetOptions.boxWidgetSelectors.collapse).click(function (e) {
+      $(_this.selectors.collapse).on('click', function (e) {
         e.preventDefault();
         _this.collapse($(this));
       });
 
       //Listen for remove event triggers
-      $(o.boxWidgetOptions.boxWidgetSelectors.remove).click(function (e) {
+      $(_this.selectors.remove).on('click', function (e) {
         e.preventDefault();
         _this.remove($(this));
       });
     },
     collapse: function (element) {
+      var _this = this;
       //Find the box parent
       var box = element.parents(".box").first();
       //Find the body and the footer
-      var bf = box.find(".box-body, .box-footer");
+      var box_content = box.find("> .box-body, > .box-footer");
       if (!box.hasClass("collapsed-box")) {
-        //Convert minus into plus
-        element.children(".fa-minus").removeClass("fa-minus").addClass("fa-plus");
-        bf.slideUp(300, function () {
+        //Convert minus into plus        
+        element.children(":first")
+                .removeClass(_this.icons.collapse)
+                .addClass(_this.icons.open);
+        //Hide the content
+        box_content.slideUp(300, function () {
           box.addClass("collapsed-box");
         });
       } else {
         //Convert plus into minus
-        element.children(".fa-plus").removeClass("fa-plus").addClass("fa-minus");
-        bf.slideDown(300, function () {
+        element.children(":first")
+                .removeClass(_this.icons.open)
+                .addClass(_this.icons.collapse);
+        //Show the content
+        box_content.slideDown(300, function () {
           box.removeClass("collapsed-box");
         });
       }
@@ -458,8 +466,7 @@ function _init() {
       //Find the box parent
       var box = element.parents(".box").first();
       box.slideUp();
-    },
-    options: $.AdminLTE.options.boxWidgetOptions
+    }
   };
 }
 
