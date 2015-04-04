@@ -80,9 +80,9 @@ reserves the right to change the license of future releases.
 
 Todo List
 ---------
-- ~~Light sidebar colors~~ (Done)
-- ~~Right sidebar~~ (Done)
-- ~~Minified main-sidebar~~ (Done)
+- ~~Light sidebar colors~~ (Done v2.1.0)
+- ~~Right sidebar~~ (Done v2.1.0)
+- ~~Minified main-sidebar~~ (Done v2.1.0)
 - Right to left support
 - Custom pace style
 
