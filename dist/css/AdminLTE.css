@@ -563,9 +563,6 @@ a:focus {
 /*
  * Component: Sidebar Mini
  */
-.sidebar-mini {
-  min-height: 100%;
-}
 @media (min-width: 768px) {
   .sidebar-mini.sidebar-collapse .content-wrapper,
   .sidebar-mini.sidebar-collapse .right-side,
