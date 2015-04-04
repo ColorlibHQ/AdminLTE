@@ -32,7 +32,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!--
   BODY TAG OPTIONS:
   =================
-  Apply one or more of the following classes to get the 
+  Apply one or more of the following classes to get the
   desired effect
   |---------------------------------------------------------|
   | SKINS         | skin-blue                               |
@@ -45,9 +45,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   |LAYOUT OPTIONS | fixed                                   |
   |               | layout-boxed                            |
   |               | layout-top-nav                          |
-  |               | sidebar-collapse                        |  
+  |               | sidebar-collapse                        |
+  |               | sidebar-mini                            |
   |---------------------------------------------------------|
-  
   -->
   <body class="skin-blue sidebar-mini">
     <div class="wrapper">
@@ -56,7 +56,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="index2.html" class="logo"><b>Admin</b>LTE</a>
+        <a href="index2.html" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>A</b>LT</span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>Admin</b>LTE</span>
+        </a>
 
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -86,14 +91,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
                           </div>
                           <!-- Message title and timestamp -->
-                          <h4>                            
+                          <h4>
                             Support Team
                             <small><i class="fa fa-clock-o"></i> 5 mins</small>
                           </h4>
                           <!-- The message -->
                           <p>Why not buy a new awesome theme?</p>
                         </a>
-                      </li><!-- end message -->                      
+                      </li><!-- end message -->
                     </ul><!-- /.menu -->
                   </li>
                   <li class="footer"><a href="#">See All Messages</a></li>
@@ -116,7 +121,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a href="#">
                           <i class="fa fa-users text-aqua"></i> 5 new members joined today
                         </a>
-                      </li><!-- end notification -->                      
+                      </li><!-- end notification -->
                     </ul>
                   </li>
                   <li class="footer"><a href="#">View all</a></li>
@@ -149,7 +154,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                           </div>
                         </a>
-                      </li><!-- end task item -->                      
+                      </li><!-- end task item -->
                     </ul>
                   </li>
                   <li class="footer">
@@ -235,10 +240,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <ul class="sidebar-menu">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="#"><span>Link</span></a><</li>
-            <li><a href="#"><span>Another Link</span></a></li>
+            <li class="active"><a href="#"><i class='fa fa-link'></i> <span>Link</span></a></li>
+            <li><a href="#"><i class='fa fa-link'></i> <span>Another Link</span></a></li>
             <li class="treeview">
-              <a href="#"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#"><i class='fa fa-link'></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="#">Link in level 2</a></li>
                 <li><a href="#">Link in level 2</a></li>
@@ -265,7 +270,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Main content -->
         <section class="content">
-          
+
           <!-- Your Page Content Here -->
 
         </section><!-- /.content -->
@@ -277,23 +282,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="pull-right hidden-xs">
           Anything you want
         </div>
-        <!-- Default to the left --> 
+        <!-- Default to the left -->
         <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
       </footer>
 
     </div><!-- ./wrapper -->
 
     <!-- REQUIRED JS SCRIPTS -->
-    
+
     <!-- jQuery 2.1.3 -->
     <script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
     <!-- Bootstrap 3.3.2 JS -->
     <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/app.min.js" type="text/javascript"></script>
-    
-    <!-- Optionally, you can add Slimscroll and FastClick plugins. 
-          Both of these plugins are recommended to enhance the 
-          user experience -->
+
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+          Both of these plugins are recommended to enhance the
+          user experience. Slimscroll is required when using the
+          fixed layout. -->
   </body>
 </html>
