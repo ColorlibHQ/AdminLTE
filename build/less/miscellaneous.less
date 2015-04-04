@@ -2,7 +2,7 @@
  * General: Miscellaneous
  * ----------------------
  */
-/* 10px padding and margins */
+// 10px padding and margins
 .pad {
   padding: 10px;
 }
@@ -12,13 +12,13 @@
 .margin-bottom {
   margin-bottom: 20px;
 }
-/* Display inline */
+// Display inline
 .inline {
   display: inline;
   width: auto;
 }
 
-/* Description Blocks */
+// Description Blocks
 .description-block {
   display: block;
   margin: 10px 0;
@@ -37,7 +37,7 @@
   }
 }
 
-/* Background colors */
+// Background colors
 .bg-red,
 .bg-yellow,
 .bg-aqua,
@@ -176,7 +176,7 @@
   .opacity(.65);
 }
 
-/* Text colors */
+// Text colors
 .text-red {
   color: @red !important;
 }
@@ -226,37 +226,37 @@
   color: @maroon !important;
 }
 
-/*Hide elements by display none only*/
+// Hide elements by display none only
 .hide {
   display: none !important;
 }
 
-/* Remove borders */
+// Remove borders
 .no-border {
   border: 0px !important;
 }
-/* Remove padding */
+// Remove padding
 .no-padding {
   padding: 0px !important;
 }
-/* Remove margins */
+// Remove margins
 .no-margin {
   margin: 0px !important;
 }
 
-/* Remove box shadow */
+// Remove box shadow
 .no-shadow {
   box-shadow: none!important;
 }
 
-/* Unstyled List */
+// Unstyled List
 .list-unstyled {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* Remove border radius */
+// Remove border radius
 .flat {
   .border-radius(0)!important;
 }
@@ -269,16 +269,15 @@
 
 }
 
-/* _fix for sparkline tooltip */
+// _fix for sparkline tooltip
 .jqstooltip{
   padding: 5px!important;
   width:auto!important;
   height:auto!important;
 }
 
-/*
-Gradient Background colors
-*/
+
+// Gradient Background colors
 .bg-teal-gradient {
   .gradient(@teal; @teal; lighten(@teal, 16%))!important;
   color: #fff;
@@ -341,5 +340,15 @@ Gradient Background colors
   .opacity(.65);
   &:hover {
     .opacity(1);
+  }
+}
+// Charts
+.chart {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  svg,
+  canvas {
+    width: 100%!important;
   }
 }
