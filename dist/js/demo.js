@@ -246,6 +246,7 @@
   function change_layout(cls) {
     $("body").toggleClass(cls);
     $.AdminLTE.layout.fixSidebar();
+    //Fix the problem
   }
 
   /**

@@ -1565,7 +1565,7 @@ a:focus {
   height: 100%;
 }
 .box .overlay {
-  z-index: 1010;
+  z-index: 50;
   background: rgba(255, 255, 255, 0.7);
   border-radius: 3px;
 }
@@ -2603,10 +2603,10 @@ table.text-center th {
   transform: translate(0, 0);
 }
 .direct-chat-contacts {
-  -webkit-transform: translate(100%, 0);
-  -ms-transform: translate(100%, 0);
-  -o-transform: translate(100%, 0);
-  transform: translate(100%, 0);
+  -webkit-transform: translate(101%, 0);
+  -ms-transform: translate(101%, 0);
+  -o-transform: translate(101%, 0);
+  transform: translate(101%, 0);
   position: absolute;
   top: 0;
   bottom: 0;

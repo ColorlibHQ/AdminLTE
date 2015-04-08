@@ -42,12 +42,12 @@
   }
 }
 .skin-yellow-light .main-header .logo {
-  background-color: #e08e0b;
+  background-color: #f39c12;
   color: #ffffff;
   border-bottom: 0px solid transparent;
 }
 .skin-yellow-light .main-header .logo:hover {
-  background: #db8b0b;
+  background: #f39a0d;
 }
 .skin-yellow-light .main-header li.user-header {
   background-color: #f39c12;

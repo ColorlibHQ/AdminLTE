@@ -813,12 +813,12 @@
   }
 }
 .skin-green-light .main-header .logo {
-  background-color: #008d4c;
+  background-color: #00a65a;
   color: #ffffff;
   border-bottom: 0px solid transparent;
 }
 .skin-green-light .main-header .logo:hover {
-  background: #008749;
+  background: #00a157;
 }
 .skin-green-light .main-header li.user-header {
   background-color: #00a65a;
@@ -1102,12 +1102,12 @@
   }
 }
 .skin-red-light .main-header .logo {
-  background-color: #d73925;
+  background-color: #dd4b39;
   color: #ffffff;
   border-bottom: 0px solid transparent;
 }
 .skin-red-light .main-header .logo:hover {
-  background: #d33724;
+  background: #dc4735;
 }
 .skin-red-light .main-header li.user-header {
   background-color: #dd4b39;
@@ -1391,12 +1391,12 @@
   }
 }
 .skin-yellow-light .main-header .logo {
-  background-color: #e08e0b;
+  background-color: #f39c12;
   color: #ffffff;
   border-bottom: 0px solid transparent;
 }
 .skin-yellow-light .main-header .logo:hover {
-  background: #db8b0b;
+  background: #f39a0d;
 }
 .skin-yellow-light .main-header li.user-header {
   background-color: #f39c12;
@@ -1680,12 +1680,12 @@
   }
 }
 .skin-purple-light .main-header .logo {
-  background-color: #555299;
+  background-color: #605ca8;
   color: #ffffff;
   border-bottom: 0px solid transparent;
 }
 .skin-purple-light .main-header .logo:hover {
-  background: #545096;
+  background: #5d59a6;
 }
 .skin-purple-light .main-header li.user-header {
   background-color: #605ca8;

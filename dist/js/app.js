@@ -393,6 +393,13 @@ function _init() {
           _this.close(sidebar, o.slide);
         }
       });
+
+      //If the body has a boxed layout, fix the sidebar bg position
+      if ($("body").hasClass('layout-boxed')) {
+        var bg = $(".control-sidebar-bg");
+        bg.css("position", "absolute");
+        _this._fix(bg);
+      }
     },
     //Open the control sidebar
     open: function (sidebar, slide) {
@@ -407,6 +414,13 @@ function _init() {
         sidebar.removeClass('control-sidebar-open');
       else
         $('body').removeClass('control-sidebar-open');
+    },
+    _fix: function (sidebar) {
+      var _this = this;
+      sidebar.height($(".wrapper").height());
+      $(window).resize(function () {
+        _this._fix(sidebar);
+      });
     }
   };
 
@@ -443,7 +457,7 @@ function _init() {
       //Find the body and the footer
       var box_content = box.find("> .box-body, > .box-footer");
       if (!box.hasClass("collapsed-box")) {
-        //Convert minus into plus        
+        //Convert minus into plus
         element.children(":first")
                 .removeClass(_this.icons.collapse)
                 .addClass(_this.icons.open);
