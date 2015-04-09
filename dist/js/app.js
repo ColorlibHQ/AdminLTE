@@ -180,7 +180,7 @@ $(function () {
 
   //Activate direct chat widget
   if (o.directChat.enable) {
-    $(o.directChat.contactToggleSelector).click(function () {
+    $(o.directChat.contactToggleSelector).on('click', function () {
       var box = $(this).parents('.direct-chat').first();
       box.toggleClass('direct-chat-contacts-open');
     });
@@ -192,7 +192,7 @@ $(function () {
    */
   $('.btn-group[data-toggle="btn-toggle"]').each(function () {
     var group = $(this);
-    $(this).find(".btn").click(function (e) {
+    $(this).find(".btn").on('click', function (e) {
       group.find(".btn.active").removeClass("active");
       $(this).addClass("active");
       e.preventDefault();
@@ -282,7 +282,7 @@ function _init() {
     var screenSizes = this.options.screenSizes;
 
     //Enable sidebar toggle
-    $(toggleBtn).click(function (e) {
+    $(toggleBtn).on('click', function (e) {
       e.preventDefault();
 
       //Enable sidebar push menu
@@ -320,7 +320,7 @@ function _init() {
   $.AdminLTE.tree = function (menu) {
     var _this = this;
 
-    $("li a", $(menu)).click(function (e) {
+    $("li a", $(menu)).on('click', function (e) {
       //Get the clicked link and the next element
       var $this = $(this);
       var checkElement = $this.next();
@@ -383,7 +383,7 @@ function _init() {
       var btn = $(o.toggleBtnSelector);
 
       //Listen to the click event
-      btn.click(function (e) {
+      btn.on('click', function (e) {
         e.preventDefault();
         //If the sidebar is not open
         if (!sidebar.hasClass('control-sidebar-open')
@@ -543,7 +543,7 @@ function _init() {
       var rBtn = box.find(settings.trigger).first();
 
       //On trigger click
-      rBtn.click(function (e) {
+      rBtn.on('click', function (e) {
         e.preventDefault();
         //Add loading overlay
         start(box);
