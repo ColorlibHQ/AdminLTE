@@ -23,30 +23,14 @@
         .translate(0, 0);
         width: 50px!important;
         z-index: 850;
-
-        //Keep only the image of the user in the user panel
-        .user-panel {
-          > .info {
-            display: none;
-          }
-        }
       }
 
       .sidebar-menu {
-        //Make the sidebar links, menus, labels, badeges
-        //and angle icons disappear
         > li {
           position: relative;
           > a {
             margin-right: 0;
           }
-          > a > span,
-          > .treeview-menu,
-          > a > .pull-right,
-          &.header {
-            display: none!important;
-          }
-
           > a > span {
             border-top-right-radius: 4px;
           }
@@ -69,6 +53,8 @@
             > a > span:not(.pull-right),
               > .treeview-menu {
               display: block!important;
+              visibility: visible;
+              .opacity(1);
               position: absolute;
               width: @sidebar-width - 50;
               left: 50px;
@@ -77,6 +63,7 @@
             //position the header & treeview menus
             > a > span {
               top: 0;
+              margin-left: -3px;
               padding: 12px 5px 12px 20px;
               background-color: inherit;
             }
@@ -88,9 +75,15 @@
         }
       }
 
-      //One more thing to remove because it doesn't fit :-z
-      .sidebar-form {
-        display: none;
+      //Make the sidebar links, menus, labels, badeges
+      //and angle icons disappear
+      .main-sidebar .user-panel > .info,
+      .sidebar-form,
+      .sidebar-menu > li > a > span,
+      .sidebar-menu > li > .treeview-menu,
+      .sidebar-menu >li > a > .pull-right,
+      .sidebar-menu li.header {
+        display: none!important;
       }
 
       .main-header {
@@ -108,12 +101,42 @@
           }
         }
 
-        //Of course, since the logo got smaller, we need to fix the
-        //navbar's position
+        //Since the logo got smaller, we need to fix the navbar's position
         .navbar {
           margin-left: 50px;
         }
       }
     }
+  }
+}
+
+.main-sidebar .user-panel > .info,
+.sidebar-form,
+.sidebar-menu > li > a > span,
+.sidebar-menu > li > .treeview-menu,
+.sidebar-menu >li > a > .pull-right,
+.sidebar-menu li.header {
+  .transition(display 0s linear 1s);
+}
+
+//A fix for text overflow while transitioning from sidebar mini to full sidebar
+.sidebar-menu > li > a,
+.main-sidebar .user-panel,
+.sidebar-menu > li.header
+.treeview-menu > li > a {
+  width: 100%;
+  white-space: nowrap!important;
+}
+.sidebar-menu > li.header {
+  overflow: hidden;
+  text-overflow: clip;
+}
+.sidebar-menu li > a {
+  position: relative;
+  > .pull-right {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -7px;
   }
 }

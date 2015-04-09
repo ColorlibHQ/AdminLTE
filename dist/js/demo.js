@@ -4,7 +4,7 @@
  * You should not use this file in production.
  * This file is for demo purposes only.
  */
-(function ($) {
+(function ($, AdminLTE) {
 
   /**
    * List of all the available skins
@@ -26,93 +26,62 @@
     "skin-green-light"
   ];
 
-  /**
-   * CSS rules for the menu
-   * 
-   * @type Object
-   */
-  var menu_css = {
-    "padding": "10px",
-    "position": "fixed",
-    "top": "70px",
-    "right": "-250px",
-    "background": "#fff",
-    "border": "0px solid #ddd",
-    "width": "250px",
-    "z-index": "99999",
-    "box-shadow": "0 1px 3px rgba(0,0,0,0.1)"
-  };
+  //Create the new tab
+  var tab_pane = $("<div />", {
+    "id": "control-sidebar-theme-demo-options-tab",
+    "class": "tab-pane"
+  });
 
-  /**
-   * CSS rules for the demo handle button
-   * 
-   * @type Object
-   */
-  var handle_css = {
-    "position": "fixed",
-    "top": "70px",
-    "right": "0",
-    "background": "#fff",
-    "border-radius": "5px 0px 0px 5px",
-    "padding": "10px 15px",
-    "font-size": "16px",
-    "z-index": "99999",
-    "cursor": "pointer",
-    "color": "#3c8dbc",
-    "box-shadow": "0 1px 3px rgba(0,0,0,0.1)"
-  };
+  //Create the tab button
+  var tab_button = $("<li />")
+          .html("<a href='#control-sidebar-theme-demo-options-tab' data-toggle='tab'>"
+                  + "<i class='fa fa-wrench'></i>"
+                  + "</a>");
 
-  //Create the handle
-  var demo = $("<div />")
-          .css(handle_css)
-          .html("<i class='fa fa-gear'></i>")
-          .addClass("no-print");
+  //Add the tab button to the right sidebar tabs
+  $("[href='#control-sidebar-home-tab']")
+          .parent()
+          .before(tab_button);
 
   //Create the menu
-  var demo_settings = $("<div />")
-          .css(menu_css)
-          .addClass("no-print");
+  var demo_settings = $("<div />");
 
+  //Layout options
   demo_settings.append(
-          "<h4 class='text-light-blue' style='margin: 0 0 5px 0; border-bottom: 1px solid #ddd; padding-bottom: 15px;'>"
+          "<h4 class='control-sidebar-heading'>"
           + "Layout Options"
           + "</h4>"
           //Fixed layout
           + "<div class='form-group'>"
-          + "<div class='checkbox'>"
-          + "<label>"
-          + "<input type='checkbox' data-layout='layout-fixed'/> "
+          + "<label class='control-sidebar-subheading'>"
+          + "<input type='checkbox' data-layout='fixed' class='pull-right'/> "
           + "Fixed layout"
           + "</label>"
-          + "</div>"
+          + "<p>Activate the fixed layout. You can't use fixed and boxed layouts together</p>"
           + "</div>"
           //Boxed layout
           + "<div class='form-group'>"
-          + "<div class='checkbox'>"
-          + "<label>"
-          + "<input type='checkbox' data-layout='layout-boxed'/> "
+          + "<label class='control-sidebar-subheading'>"
+          + "<input type='checkbox' data-layout='layout-boxed'class='pull-right'/> "
           + "Boxed Layout"
           + "</label>"
-          + "</div>"
+          + "<p>Activate the boxed layout</p>"
           + "</div>"
           //Sidebar Toggle
           + "<div class='form-group'>"
-          + "<div class='checkbox'>"
-          + "<label>"
-          + "<input type='checkbox' data-layout='sidebar-collapse'/> "
+          + "<label class='control-sidebar-subheading'>"
+          + "<input type='checkbox' data-layout='sidebar-collapse' class='pull-right'/> "
           + "Toggle Sidebar"
           + "</label>"
-          + "</div>"
+          + "<p>Toggle the left sidebar's state (open or collapse)</p>"
           + "</div>"
           //Control Sidebar Toggle
           + "<div class='form-group'>"
-          + "<div class='checkbox'>"
-          + "<label>"
-          + "<input type='checkbox' data-controlsidebar='control-sidebar-open'/> "
-          + "Toggle Control Sidebar Slide Effect"
+          + "<label class='control-sidebar-subheading'>"
+          + "<input type='checkbox' data-controlsidebar='control-sidebar-open' class='pull-right'/> "
+          + "Toggle Right Sidebar Slide"
           + "</label>"
-          + "<small>Toggles between slide over content and push content effects.</small>"
-          + "</div>"
+          + "<p>Toggles between slide over content and push content effects.</p>"
           + "</div>"
           );
   var skins_list = $("<ul />", {"class": 'list-unstyled clearfix'});
@@ -217,23 +186,11 @@
                   + "<p class='text-center no-margin' style='font-size: 12px;'>Yellow Light</p>");
   skins_list.append(skin_yellow_light);
 
-  demo_settings.append("<h4 class='text-light-blue' style='margin: 0 0 5px 0; border-bottom: 1px solid #ddd; padding-bottom: 15px;'>Skins</h4>");
+  demo_settings.append("<h4 class='control-sidebar-heading'>Skins</h4>");
   demo_settings.append(skins_list);
 
-  demo.click(function () {
-    if (!$(this).hasClass("open")) {
-      $(this).animate({"right": "250px"});
-      demo_settings.animate({"right": "0"});
-      $(this).addClass("open");
-    } else {
-      $(this).animate({"right": "0"});
-      demo_settings.animate({"right": "-250px"});
-      $(this).removeClass("open");
-    }
-  });
-
-  $("body").append(demo);
-  $("body").append(demo_settings);
+  tab_pane.append(demo_settings);
+  $("#control-sidebar-settings-tab").before(tab_pane);
 
   setup();
 
@@ -245,8 +202,10 @@
    */
   function change_layout(cls) {
     $("body").toggleClass(cls);
-    $.AdminLTE.layout.fixSidebar();
-    //Fix the problem
+    AdminLTE.layout.fixSidebar();
+    //Fix the problem with right sidebar and layout boxed
+    if(cls == "layout-boxed")
+      AdminLTE.controlSidebar._fix($(".control-sidebar-bg"));
   }
 
   /**
@@ -313,13 +272,13 @@
     $("[data-layout]").on('click', function () {
       change_layout($(this).data('layout'));
     });
-    
+
     $("[data-controlsidebar]").on('click', function () {
       change_layout($(this).data('controlsidebar'));
-      var slide = !$.AdminLTE.options.controlSidebarOptions.slide;
-      $.AdminLTE.options.controlSidebarOptions.slide = slide;
-      if(!slide)
+      var slide = !AdminLTE.options.controlSidebarOptions.slide;
+      AdminLTE.options.controlSidebarOptions.slide = slide;
+      if (!slide)
         $('.control-sidebar').removeClass('control-sidebar-open');
     });
   }
-})(jQuery);
+})(jQuery, $.AdminLTE);

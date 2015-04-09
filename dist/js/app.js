@@ -385,6 +385,7 @@ function _init() {
       //Listen to the click event
       btn.click(function (e) {
         e.preventDefault();
+        //If the sidebar is not open
         if (!sidebar.hasClass('control-sidebar-open')
                 && !$('body').hasClass('control-sidebar-open')) {
           //Open the sidebar
@@ -395,32 +396,37 @@ function _init() {
       });
 
       //If the body has a boxed layout, fix the sidebar bg position
-      if ($("body").hasClass('layout-boxed')) {
-        var bg = $(".control-sidebar-bg");
-        bg.css("position", "absolute");
-        _this._fix(bg);
-      }
+      var bg = $(".control-sidebar-bg");
+      _this._fix(bg);
     },
     //Open the control sidebar
     open: function (sidebar, slide) {
+      //Slide over content
       if (slide)
         sidebar.addClass('control-sidebar-open');
+      //Push the content by adding the open class to the body instead 
+      //of the sidebar itself
       else
         $('body').addClass('control-sidebar-open');
     },
     //Close the control sidebar
     close: function (sidebar, slide) {
-      if (slide)
-        sidebar.removeClass('control-sidebar-open');
-      else
-        $('body').removeClass('control-sidebar-open');
+
+      sidebar.removeClass('control-sidebar-open');
+      $('body').removeClass('control-sidebar-open');
     },
     _fix: function (sidebar) {
       var _this = this;
-      sidebar.height($(".wrapper").height());
-      $(window).resize(function () {
-        _this._fix(sidebar);
-      });
+      if ($("body").hasClass('layout-boxed')) {
+        sidebar.css('position', 'absolute');
+        sidebar.height($(".wrapper").height());
+        $(window).resize(function () {
+          _this._fix(sidebar);
+        });
+      } else {
+        sidebar.css('position', 'fixed');
+        sidebar.height($(window).height());
+      }
     }
   };
 

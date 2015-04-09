@@ -453,7 +453,10 @@ a:focus {
   border-color: transparent!important;
 }
 .user-panel {
+  position: relative;
+  width: 100%;
   padding: 10px;
+  overflow: hidden;
 }
 .user-panel:before,
 .user-panel:after {
@@ -469,12 +472,13 @@ a:focus {
   height: auto;
 }
 .user-panel > .info {
-  font-weight: 600;
   padding: 5px 5px 5px 15px;
-  font-size: 14px;
   line-height: 1;
+  position: absolute;
+  left: 55px;
 }
 .user-panel > .info > p {
+  font-weight: 600;
   margin-bottom: 9px;
 }
 .user-panel > .info > a {
@@ -482,7 +486,6 @@ a:focus {
   padding-right: 5px;
   margin-top: 3px;
   font-size: 11px;
-  font-weight: normal;
 }
 .user-panel > .info > a > .fa,
 .user-panel > .info > a > .ion,
@@ -578,20 +581,11 @@ a:focus {
     width: 50px!important;
     z-index: 850;
   }
-  .sidebar-mini.sidebar-collapse .main-sidebar .user-panel > .info {
-    display: none;
-  }
   .sidebar-mini.sidebar-collapse .sidebar-menu > li {
     position: relative;
   }
   .sidebar-mini.sidebar-collapse .sidebar-menu > li > a {
     margin-right: 0;
-  }
-  .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > span,
-  .sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu,
-  .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > .pull-right,
-  .sidebar-mini.sidebar-collapse .sidebar-menu > li.header {
-    display: none!important;
   }
   .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > span {
     border-top-right-radius: 4px;
@@ -607,12 +601,16 @@ a:focus {
   .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right),
   .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
     display: block!important;
+    visibility: visible;
+    opacity: 1;
+    filter: alpha(opacity=100);
     position: absolute;
     width: 180px;
     left: 50px;
   }
   .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span {
     top: 0;
+    margin-left: -3px;
     padding: 12px 5px 12px 20px;
     background-color: inherit;
   }
@@ -620,8 +618,13 @@ a:focus {
     top: 44px;
     margin-left: 0;
   }
-  .sidebar-mini.sidebar-collapse .sidebar-form {
-    display: none;
+  .sidebar-mini.sidebar-collapse .main-sidebar .user-panel > .info,
+  .sidebar-mini.sidebar-collapse .sidebar-form,
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > span,
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu,
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > .pull-right,
+  .sidebar-mini.sidebar-collapse .sidebar-menu li.header {
+    display: none!important;
   }
   .sidebar-mini.sidebar-collapse .main-header .logo {
     width: 50px;
@@ -638,6 +641,35 @@ a:focus {
   .sidebar-mini.sidebar-collapse .main-header .navbar {
     margin-left: 50px;
   }
+}
+.main-sidebar .user-panel > .info,
+.sidebar-form,
+.sidebar-menu > li > a > span,
+.sidebar-menu > li > .treeview-menu,
+.sidebar-menu > li > a > .pull-right,
+.sidebar-menu li.header {
+  -webkit-transition: display 0s linear 1s;
+  -o-transition: display 0s linear 1s;
+  transition: display 0s linear 1s;
+}
+.sidebar-menu > li > a,
+.main-sidebar .user-panel,
+.sidebar-menu > li.header .treeview-menu > li > a {
+  width: 100%;
+  white-space: nowrap!important;
+}
+.sidebar-menu > li.header {
+  overflow: hidden;
+  text-overflow: clip;
+}
+.sidebar-menu li > a {
+  position: relative;
+}
+.sidebar-menu li > a > .pull-right {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -7px;
 }
 /*
  * Component: Control sidebar. By deafult, this is the right sidebar.
