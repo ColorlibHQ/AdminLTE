@@ -411,9 +411,10 @@ function _init() {
     },
     //Close the control sidebar
     close: function (sidebar, slide) {
-
-      sidebar.removeClass('control-sidebar-open');
-      $('body').removeClass('control-sidebar-open');
+      if (slide)
+        sidebar.removeClass('control-sidebar-open');
+      else
+        $('body').removeClass('control-sidebar-open');
     },
     _fix: function (sidebar) {
       var _this = this;
@@ -424,8 +425,10 @@ function _init() {
           _this._fix(sidebar);
         });
       } else {
-        sidebar.css('position', 'fixed');
-        sidebar.height($(window).height());
+        sidebar.css({
+          'position': 'fixed',
+          'height': 'auto'
+        });
       }
     }
   };
