@@ -50,11 +50,12 @@
 
           //Show menu items on hover
           &:hover {
+            > a {
+              overflow: visible;
+            }
             > a > span:not(.pull-right),
-              > .treeview-menu {
+            > .treeview-menu {
               display: block!important;
-              visibility: visible;
-              .opacity(1);
               position: absolute;
               width: @sidebar-width - 50;
               left: 50px;
@@ -110,23 +111,14 @@
   }
 }
 
-.main-sidebar .user-panel > .info,
-.sidebar-form,
-.sidebar-menu > li > a > span,
-.sidebar-menu > li > .treeview-menu,
-.sidebar-menu >li > a > .pull-right,
-.sidebar-menu li.header {
-  .transition(display 0s linear 1s);
-}
-
 //A fix for text overflow while transitioning from sidebar mini to full sidebar
-.sidebar-menu > li > a,
+.sidebar-menu li > a,
 .main-sidebar .user-panel,
-.sidebar-menu > li.header
-.treeview-menu > li > a {
-  width: 100%;
+.sidebar-menu > li.header {
   white-space: nowrap!important;
+  overflow: hidden;
 }
+.sidebar-form,
 .sidebar-menu > li.header {
   overflow: hidden;
   text-overflow: clip;
