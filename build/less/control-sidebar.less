@@ -10,25 +10,23 @@
   right: 0;
   bottom: 0;
   width: @control-sidebar-width;
-  background: @sidebar-dark-bg;
 }
-
 //Transitions
 .control-sidebar-bg,
 .control-sidebar {
   .translate(@control-sidebar-width, 0);
   .transition-transform(@transition-speed ease-in-out);
 }
+//The sidebar
 .control-sidebar {
   position: absolute;
   top: @navbar-height;
   right: 0;
   width: @control-sidebar-width;
-  z-index: 1010;  
-  color: @sidebar-dark-color;
+  z-index: 1010;
   //Fix position after header collapse
   @media (max-width: @screen-sm) {
-    top: @navbar-height + 50;    
+    top: @navbar-height + 50;
   }
   //Tab panes
   > .tab-content {
@@ -56,28 +54,25 @@
     }
   }
 }
-
-
 //Control sidebar tabs
 .control-sidebar-tabs {
-  border-bottom: darken(@sidebar-dark-bg, 3%);
   > li {
+    &:first-of-type > a {
+      margin-left: 1px;
+      &,
+      &:hover {
+        border-left-width: 0!important;
+      }      
+    }
     > a {
       .border-radius(0)!important;
-      background: darken(@sidebar-dark-bg, 5%);
-      color: @sidebar-dark-color;
       //Hover and active states
       &,
       &:hover {
         border-top: none;
         border-right: none;
-        border-left: 1px solid darken(@sidebar-dark-bg, 7%)!important;
-        border-bottom: 1px solid darken(@sidebar-dark-bg, 7%)!important;
-      }
-      &:hover,
-        &:focus,
-        &:active {
-        background: darken(@sidebar-dark-bg, 3%);
+        border-left: 1px solid transparent!important;
+        border-bottom: 1px solid transparent!important;
       }
       .icon {
         font-size: 16px;
@@ -93,8 +88,6 @@
           border-top: none!important;
           border-right: none!important;
           border-bottom: none!important;
-          background: @sidebar-dark-bg;
-          color: #fff;
         }
       }
     }
@@ -108,8 +101,7 @@
   }
 }
 //Headings in the sidebar content
-.control-sidebar-heading {
-  color: #fff;
+.control-sidebar-heading {  
   font-weight: 400;
   font-size: 16px;
   padding: 10px 0;
@@ -118,7 +110,6 @@
 //Subheadings
 .control-sidebar-subheading {
   display: block;
-  color: #fff;
   font-weight: 400;
   font-size: 14px;
 }
@@ -130,10 +121,7 @@
   > li > a {
     .clearfix();
     display: block;
-    padding: 10px 15px;
-    &:hover {
-      background: @sidebar-dark-hover-bg;
-    }
+    padding: 10px 15px;    
     > .control-sidebar-subheading {
       margin-top: 0;
     }
@@ -153,12 +141,135 @@
       margin: 0;
     }
     > p {
-      margin: 0;
-      color: @sidebar-dark-color;
+      margin: 0;      
       font-size: 11px;
     }
-  }  
+  }
   .progress {
     margin: 0;
+  }
+}
+//Dark skin
+.control-sidebar-dark {
+  color: @sidebar-dark-color;
+  // Background
+  + .control-sidebar-bg {
+    background: @sidebar-dark-bg;
+  }
+  // Sidebar tabs
+  .control-sidebar-tabs {
+    border-bottom: darken(@sidebar-dark-bg, 3%);
+    > li {
+      > a {
+        background: darken(@sidebar-dark-bg, 5%);
+        color: @sidebar-dark-color;
+        //Hover and active states
+        &,
+        &:hover {
+          border-left-color: darken(@sidebar-dark-bg, 7%)!important;
+          border-bottom-color: darken(@sidebar-dark-bg, 7%)!important;
+        }
+        &:hover,
+          &:focus,
+          &:active {
+          background: darken(@sidebar-dark-bg, 3%);
+        }
+      }
+      //Active state
+      &.active {
+        > a {
+          &,
+          &:hover,
+            &:focus,
+            &:active {
+            background: @sidebar-dark-bg;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  //Heading & subheading
+  .control-sidebar-heading,
+  .control-sidebar-subheading {
+    color: #fff;
+  }
+  //Sidebar list
+  .control-sidebar-menu {
+    > li {
+      > a {
+        &:hover {
+          background: @sidebar-dark-hover-bg;
+        }
+        .menu-info {
+          > p {
+            color: @sidebar-dark-color;
+          }
+        }
+      }
+    }
+  }
+}
+//Light skin
+.control-sidebar-light {
+  color: lighten(@sidebar-light-color, 10%);
+  // Background
+  + .control-sidebar-bg {
+    background: @sidebar-light-bg;
+    border-left: 1px solid @gray;
+  }
+  // Sidebar tabs
+  .control-sidebar-tabs {
+    border-bottom: @gray;
+    > li {
+      > a {
+        background: darken(@sidebar-light-bg, 5%);
+        color: @sidebar-light-color;
+        //Hover and active states
+        &,
+        &:hover {
+          border-left-color: @gray!important;
+          border-bottom-color: @gray!important;
+        }
+        &:hover,
+          &:focus,
+          &:active {
+          background: darken(@sidebar-light-bg, 3%);
+        }
+      }
+      //Active state
+      &.active {
+        > a {
+          &,
+          &:hover,
+            &:focus,
+            &:active {
+            background: @sidebar-light-bg;
+            color: #111;
+          }
+        }
+      }
+    }
+  }
+  //Heading & subheading
+  .control-sidebar-heading,
+  .control-sidebar-subheading {
+    color: #111;
+  }
+  //Sidebar list
+  .control-sidebar-menu {
+    margin-left: -14px;
+    > li {
+      > a {
+        &:hover {
+          background: @sidebar-light-hover-bg;
+        }
+        .menu-info {
+          > p {
+            color: lighten(@sidebar-light-color, 10%);
+          }
+        }
+      }
+    }
   }
 }

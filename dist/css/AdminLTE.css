@@ -672,7 +672,6 @@ a:focus {
   right: 0;
   bottom: 0;
   width: 230px;
-  background: #222d32;
 }
 .control-sidebar-bg,
 .control-sidebar {
@@ -691,7 +690,6 @@ a:focus {
   right: 0;
   width: 230px;
   z-index: 1010;
-  color: #b8c7ce;
 }
 @media (max-width: 768px) {
   .control-sidebar {
@@ -722,25 +720,22 @@ a:focus {
     margin-right: 230px;
   }
 }
-.control-sidebar-tabs {
-  border-bottom: #1c2529;
+.control-sidebar-tabs > li:first-of-type > a {
+  margin-left: 1px;
+}
+.control-sidebar-tabs > li:first-of-type > a,
+.control-sidebar-tabs > li:first-of-type > a:hover {
+  border-left-width: 0!important;
 }
 .control-sidebar-tabs > li > a {
   border-radius: 0 !important;
-  background: #181f23;
-  color: #b8c7ce;
 }
 .control-sidebar-tabs > li > a,
 .control-sidebar-tabs > li > a:hover {
   border-top: none;
   border-right: none;
-  border-left: 1px solid #141a1d !important;
-  border-bottom: 1px solid #141a1d !important;
-}
-.control-sidebar-tabs > li > a:hover,
-.control-sidebar-tabs > li > a:focus,
-.control-sidebar-tabs > li > a:active {
-  background: #1c2529;
+  border-left: 1px solid transparent!important;
+  border-bottom: 1px solid transparent!important;
 }
 .control-sidebar-tabs > li > a .icon {
   font-size: 16px;
@@ -752,8 +747,6 @@ a:focus {
   border-top: none!important;
   border-right: none!important;
   border-bottom: none!important;
-  background: #222d32;
-  color: #fff;
 }
 @media (max-width: 768px) {
   .control-sidebar-tabs {
@@ -764,7 +757,6 @@ a:focus {
   }
 }
 .control-sidebar-heading {
-  color: #fff;
   font-weight: 400;
   font-size: 16px;
   padding: 10px 0;
@@ -772,7 +764,6 @@ a:focus {
 }
 .control-sidebar-subheading {
   display: block;
-  color: #fff;
   font-weight: 400;
   font-size: 14px;
 }
@@ -792,9 +783,6 @@ a:focus {
 }
 .control-sidebar-menu > li > a:after {
   clear: both;
-}
-.control-sidebar-menu > li > a:hover {
-  background: #1e282c;
 }
 .control-sidebar-menu > li > a > .control-sidebar-subheading {
   margin-top: 0;
@@ -816,11 +804,94 @@ a:focus {
 }
 .control-sidebar-menu .menu-info > p {
   margin: 0;
-  color: #b8c7ce;
   font-size: 11px;
 }
 .control-sidebar-menu .progress {
   margin: 0;
+}
+.control-sidebar-dark {
+  color: #b8c7ce;
+}
+.control-sidebar-dark + .control-sidebar-bg {
+  background: #222d32;
+}
+.control-sidebar-dark .control-sidebar-tabs {
+  border-bottom: #1c2529;
+}
+.control-sidebar-dark .control-sidebar-tabs > li > a {
+  background: #181f23;
+  color: #b8c7ce;
+}
+.control-sidebar-dark .control-sidebar-tabs > li > a,
+.control-sidebar-dark .control-sidebar-tabs > li > a:hover {
+  border-left-color: #141a1d !important;
+  border-bottom-color: #141a1d !important;
+}
+.control-sidebar-dark .control-sidebar-tabs > li > a:hover,
+.control-sidebar-dark .control-sidebar-tabs > li > a:focus,
+.control-sidebar-dark .control-sidebar-tabs > li > a:active {
+  background: #1c2529;
+}
+.control-sidebar-dark .control-sidebar-tabs > li.active > a,
+.control-sidebar-dark .control-sidebar-tabs > li.active > a:hover,
+.control-sidebar-dark .control-sidebar-tabs > li.active > a:focus,
+.control-sidebar-dark .control-sidebar-tabs > li.active > a:active {
+  background: #222d32;
+  color: #fff;
+}
+.control-sidebar-dark .control-sidebar-heading,
+.control-sidebar-dark .control-sidebar-subheading {
+  color: #fff;
+}
+.control-sidebar-dark .control-sidebar-menu > li > a:hover {
+  background: #1e282c;
+}
+.control-sidebar-dark .control-sidebar-menu > li > a .menu-info > p {
+  color: #b8c7ce;
+}
+.control-sidebar-light {
+  color: #5e5e5e;
+}
+.control-sidebar-light + .control-sidebar-bg {
+  background: #f9fafc;
+  border-left: 1px solid #d2d6de;
+}
+.control-sidebar-light .control-sidebar-tabs {
+  border-bottom: #d2d6de;
+}
+.control-sidebar-light .control-sidebar-tabs > li > a {
+  background: #e8ecf4;
+  color: #444444;
+}
+.control-sidebar-light .control-sidebar-tabs > li > a,
+.control-sidebar-light .control-sidebar-tabs > li > a:hover {
+  border-left-color: #d2d6de !important;
+  border-bottom-color: #d2d6de !important;
+}
+.control-sidebar-light .control-sidebar-tabs > li > a:hover,
+.control-sidebar-light .control-sidebar-tabs > li > a:focus,
+.control-sidebar-light .control-sidebar-tabs > li > a:active {
+  background: #eff1f7;
+}
+.control-sidebar-light .control-sidebar-tabs > li.active > a,
+.control-sidebar-light .control-sidebar-tabs > li.active > a:hover,
+.control-sidebar-light .control-sidebar-tabs > li.active > a:focus,
+.control-sidebar-light .control-sidebar-tabs > li.active > a:active {
+  background: #f9fafc;
+  color: #111;
+}
+.control-sidebar-light .control-sidebar-heading,
+.control-sidebar-light .control-sidebar-subheading {
+  color: #111;
+}
+.control-sidebar-light .control-sidebar-menu {
+  margin-left: -14px;
+}
+.control-sidebar-light .control-sidebar-menu > li > a:hover {
+  background: #f4f4f5;
+}
+.control-sidebar-light .control-sidebar-menu > li > a .menu-info > p {
+  color: #5e5e5e;
 }
 /*
  * Component: Dropdown menus
