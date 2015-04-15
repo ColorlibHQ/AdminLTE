@@ -87,10 +87,10 @@ body {
   .sidebar-open .content-wrapper,
   .sidebar-open .right-side,
   .sidebar-open .main-footer {
-    -webkit-transform: translate(230px, 0);
-    -ms-transform: translate(230px, 0);
-    -o-transform: translate(230px, 0);
-    transform: translate(230px, 0);
+    -webkit-transform: translate(-230px, 0);
+    -ms-transform: translate(-230px, 0);
+    -o-transform: translate(-230px, 0);
+    transform: translate(-230px, 0);
   }
 }
 .content-wrapper,
@@ -675,10 +675,10 @@ a:focus {
 }
 .control-sidebar-bg,
 .control-sidebar {
-  -webkit-transform: translate(230px, 0);
-  -ms-transform: translate(230px, 0);
-  -o-transform: translate(230px, 0);
-  transform: translate(230px, 0);
+  -webkit-transform: translate(-230px, 0);
+  -ms-transform: translate(-230px, 0);
+  -o-transform: translate(-230px, 0);
+  transform: translate(-230px, 0);
   -webkit-transition: -webkit-transform 0.3s ease-in-out;
   -moz-transition: -moz-transform 0.3s ease-in-out;
   -o-transition: -o-transform 0.3s ease-in-out;
