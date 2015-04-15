@@ -29,11 +29,11 @@
   //Create the new tab
   var tab_pane = $("<div />", {
     "id": "control-sidebar-theme-demo-options-tab",
-    "class": "tab-pane"
+    "class": "tab-pane active"
   });
 
   //Create the tab button
-  var tab_button = $("<li />")
+  var tab_button = $("<li />", {"class": "active"})
           .html("<a href='#control-sidebar-theme-demo-options-tab' data-toggle='tab'>"
                   + "<i class='fa fa-wrench'></i>"
                   + "</a>");
@@ -81,7 +81,15 @@
           + "<input type='checkbox' data-controlsidebar='control-sidebar-open' class='pull-right'/> "
           + "Toggle Right Sidebar Slide"
           + "</label>"
-          + "<p>Toggles between slide over content and push content effects.</p>"
+          + "<p>Toggle between slide over content and push content effects</p>"
+          + "</div>"
+          //Control Sidebar Skin Toggle
+          + "<div class='form-group'>"
+          + "<label class='control-sidebar-subheading'>"
+          + "<input type='checkbox' data-sidebarskin='toggle' class='pull-right'/> "
+          + "Toggle Right Sidebar Skin"
+          + "</label>"
+          + "<p>Toggle between dark and light skins for the right sidebar</p>"
           + "</div>"
           );
   var skins_list = $("<ul />", {"class": 'list-unstyled clearfix'});
@@ -204,7 +212,7 @@
     $("body").toggleClass(cls);
     AdminLTE.layout.fixSidebar();
     //Fix the problem with right sidebar and layout boxed
-    if(cls == "layout-boxed")
+    if (cls == "layout-boxed")
       AdminLTE.controlSidebar._fix($(".control-sidebar-bg"));
   }
 
@@ -279,6 +287,17 @@
       AdminLTE.options.controlSidebarOptions.slide = slide;
       if (!slide)
         $('.control-sidebar').removeClass('control-sidebar-open');
+    });
+
+    $("[data-sidebarskin='toggle']").on('click', function () {
+      var sidebar = $(".control-sidebar");
+      if (sidebar.hasClass("control-sidebar-dark")) {
+        sidebar.removeClass("control-sidebar-dark")
+        sidebar.addClass("control-sidebar-light")
+      } else {
+        sidebar.removeClass("control-sidebar-light")
+        sidebar.addClass("control-sidebar-dark")
+      }
     });
   }
 })(jQuery, $.AdminLTE);
