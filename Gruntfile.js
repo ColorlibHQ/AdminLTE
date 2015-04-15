@@ -1,24 +1,19 @@
 'use strict';
 module.exports = function (grunt) {
-  // load all grunt tasks
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-includes');
-  
+
   grunt.initConfig({
     watch: {
-      // if any .less file changes in directory "build/less/" run the "less"-task.
+      // If any .less file changes in directory "build/less/" run the "less"-task.
       files: ["build/less/*.less", "build/less/skins/*.less", "dist/js/app.js"],
       tasks: ["less", "uglify"]
     },
     // "less"-task configuration
-    //this task will compile all less files upon saving to create both AdminLTE.css and AdminLTE.min.css
+    // This task will compile all less files upon saving to create both AdminLTE.css and AdminLTE.min.css
     less: {
-      //Development not compressed
+      // Development not compressed
       development: {
         options: {
-          //Whether to compress or not
+          // Whether to compress or not
           compress: false
         },
         files: {
@@ -40,16 +35,16 @@ module.exports = function (grunt) {
           "dist/css/skins/_all-skins.css": "build/less/skins/_all-skins.less"
         }
       },
-      //production compresses version
+      // Production compresses version
       production: {
         options: {
-          //Whether to compress or not          
+          // Whether to compress or not          
           compress: true
         },
         files: {
           // compilation.css  :  source.less
-          "dist/css/AdminLTE.min.css": "build/less/AdminLTE.less",         
-          //Skins minified
+          "dist/css/AdminLTE.min.css": "build/less/AdminLTE.less",
+          // Skins minified
           "dist/css/skins/skin-blue.min.css": "build/less/skins/skin-blue.less",
           "dist/css/skins/skin-black.min.css": "build/less/skins/skin-black.less",
           "dist/css/skins/skin-yellow.min.css": "build/less/skins/skin-yellow.less",
@@ -66,7 +61,7 @@ module.exports = function (grunt) {
         }
       }
     },
-    //Uglify task info. Compress the js files.
+    // Uglify task info. Compress the js files.
     uglify: {
       options: {
         mangle: true,
@@ -78,7 +73,7 @@ module.exports = function (grunt) {
         }
       }
     },
-    //Build the documentation files
+    // Build the documentation files
     includes: {
       build: {
         src: ['*.html'], // Source files 
@@ -88,11 +83,34 @@ module.exports = function (grunt) {
         options: {
           silent: true,
           includePath: 'documentation/build/include'
-          //banner: '<!-- I am a banner <% includes.files.dest %> -->'
+        }
+      }
+    },
+    cssjanus: {
+      build: {
+        files: {
+          'dist/css/AdminLTE-rtl.css': 'dist/css/AdminLTE.css',
+          'dist/css/AdminLTE-rtl.min.css': 'dist/css/AdminLTE.min.css',
+          'bootstrap/css/bootstrap-rtl.css': 'bootstrap/css/bootstrap.css',
+          'bootstrap/css/bootstrap-rtl.min.css': 'bootstrap/css/bootstrap.min.css'
         }
       }
     }
   });
-  // the default task (running "grunt" in console) is "watch"
+
+  // Load all grunt tasks
+
+  // LESS Compiler
+  grunt.loadNpmTasks('grunt-contrib-less');
+  // Watch File Changes
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  // Compress JS Files
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  // Include Files Within HTML
+  grunt.loadNpmTasks('grunt-includes');
+  // Convert CSS to RTL
+  grunt.loadNpmTasks('grunt-cssjanus');
+
+  // The default task (running "grunt" in console) is "watch"
   grunt.registerTask('default', ['watch']);
 };
