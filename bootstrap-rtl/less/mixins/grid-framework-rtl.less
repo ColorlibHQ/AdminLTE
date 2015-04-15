@@ -1,0 +1,96 @@
+// RTL Framework grid generation
+//
+// Used only by Bootstrap to generate the correct number of grid classes given
+// any value of `@grid-columns`.
+
+.make-rtl-grid-columns() {
+  // Common styles for all sizes of grid columns, widths 1-12
+  .col(@index) { // initial
+    @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}";
+    .col((@index + 1), @item);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) { // general; "=<" isn't a typo
+    @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}";
+    .col((@index + 1), ~"@{list}, @{item}");
+  }
+  .col(@index, @list) when (@index > @grid-columns) { // terminal
+    @{list} {
+      position: relative;
+      // Prevent columns from collapsing when empty
+      min-height: 1px;
+      // Inner gutter via padding
+      padding-left:  (@grid-gutter-width / 2);
+      padding-right: (@grid-gutter-width / 2);
+    }
+  }
+  .col(1); // kickstart it
+}
+
+.float-rtl-grid-columns(@class) {
+  .col(@index) { // initial
+    @item: ~".col-@{class}-@{index}";
+    .col((@index + 1), @item);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) { // general
+    @item: ~".col-@{class}-@{index}";
+    .col((@index + 1), ~"@{list}, @{item}");
+  }
+  .col(@index, @list) when (@index > @grid-columns) { // terminal
+    @{list} {
+      float: right;
+    }
+  }
+  .col(1); // kickstart it
+}
+
+.calc-rtl-grid-column(@index, @class, @type) when (@type = width) and (@index > 0) {
+  .col-@{class}-@{index} {
+    width: percentage((@index / @grid-columns));
+  }
+}
+.calc-rtl-grid-column(@index, @class, @type) when (@type = push) and (@index > 0) {
+  .col-@{class}-push-@{index} {
+    right: percentage((@index / @grid-columns));
+    left: 0;
+  }
+}
+.calc-rtl-grid-column(@index, @class, @type) when (@type = push) and (@index = 0) {
+  .col-@{class}-push-0 {
+    right: auto;
+    left: 0;
+  }
+}
+.calc-rtl-grid-column(@index, @class, @type) when (@type = pull) and (@index > 0) {
+  .col-@{class}-pull-@{index} {
+    left: percentage((@index / @grid-columns));
+    right: auto;
+  }
+}
+.calc-rtl-grid-column(@index, @class, @type) when (@type = pull) and (@index = 0) {
+  .col-@{class}-pull-0 {
+    left: auto;
+    right: auto;
+  }
+}
+.calc-rtl-grid-column(@index, @class, @type) when (@type = offset) {
+  .col-@{class}-offset-@{index} {
+    margin-right: percentage((@index / @grid-columns));
+    margin-left: 0;
+  }
+}
+
+// Basic looping in LESS
+.loop-rtl-grid-columns(@index, @class, @type) when (@index >= 0) {
+  .calc-rtl-grid-column(@index, @class, @type);
+  // next iteration
+  .loop-rtl-grid-columns((@index - 1), @class, @type);
+}
+
+// Create grid for specific class
+.make-rtl-grid(@class) {
+  .float-rtl-grid-columns(@class);
+  .loop-rtl-grid-columns(@grid-columns, @class, width);
+  .loop-rtl-grid-columns(@grid-columns, @class, pull);
+  .loop-rtl-grid-columns(@grid-columns, @class, push);
+  .loop-rtl-grid-columns(@grid-columns, @class, offset);
+}

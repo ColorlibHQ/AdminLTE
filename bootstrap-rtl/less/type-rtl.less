@@ -1,0 +1,61 @@
+//
+// RTL Typography
+// --------------------------------------------------
+
+// List options
+
+// Unstyled keeps list items block level, just removes default browser padding and list-style
+.list-unstyled {
+  padding-right: 0;
+  padding-left: initial;
+}
+
+// Inline turns list items into inline-block
+.list-inline {
+  .list-unstyled();
+  margin-right: -5px;
+  margin-left: 0;
+}
+
+dd {
+  margin-right: 0; // Undo browser default
+  margin-left: initial;
+}
+
+// Horizontal description lists
+//
+// Defaults to being stacked without any of the below styles applied, until the
+// grid breakpoint is reached (default of ~768px).
+
+.dl-horizontal {
+
+  @media (min-width: @grid-float-breakpoint) {
+    dt {
+      float: right;
+      clear: right;
+      text-align: left;
+    }
+    dd {
+      margin-right: @component-offset-horizontal;
+      margin-left: 0;
+    }
+  }
+}
+
+// Blockquotes
+blockquote {
+  border-right: 5px solid @blockquote-border-color;
+  border-left: 0;
+}
+
+// Opposite alignment of blockquote
+//
+// Heads up: `blockquote.pull-right` has been deprecated as of v3.1.0.
+.blockquote-reverse,
+blockquote.pull-left {
+  padding-left: 15px;
+  padding-right: 0;
+  border-left: 5px solid @blockquote-border-color;
+  border-right: 0;
+  text-align: left;
+}

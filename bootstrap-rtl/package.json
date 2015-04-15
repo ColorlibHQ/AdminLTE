@@ -1,0 +1,37 @@
+{
+  "name": "bootstrap-rtl",
+  "description": "Right-to-left (RTL) theme for Boostrap 3.x",
+  "version": "3.3.1",
+  "style": "dist/css/bootstrap-rtl.css",
+  "homepage": "http://github.com/morteza/bootstrap-rtl",
+  "author": "Morteza Ansarinia (http://github.com/morteza)",
+  "keywords": [
+    "twitter",
+    "bootstrap",
+    "rtl",
+    "css",
+    "persian",
+    "farsi",
+    "arabic",
+    "hebrew",
+    "theme"
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-banner": "~0.2.3",
+    "grunt-contrib-less": "~0.12.0"
+  },
+  "engines": {
+    "node": "~0.10.1"
+  },
+  "repository": {
+      "type": "git",
+    "url": "https://github.com/morteza/bootstrap-rtl.git"
+  },
+  "bugs": {
+      "url": "https://github.com/morteza/bootstrap-rtl/issues"
+  },
+  "licenses": [{
+    "type": "Unlicensed Public Domain"
+  }]
+}
