@@ -286,6 +286,7 @@ a:focus {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0 15px;
   font-weight: 300;
+  overflow: hidden;
 }
 .main-header .logo .logo-lg {
   display: block;
