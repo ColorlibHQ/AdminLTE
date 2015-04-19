@@ -206,7 +206,7 @@
   demo_settings.append(skins_list);
 
   tab_pane.append(demo_settings);
-  $("#control-sidebar-settings-tab").before(tab_pane);
+  $("#control-sidebar-home-tab").after(tab_pane);
 
   setup();
 

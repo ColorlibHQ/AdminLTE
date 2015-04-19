@@ -256,14 +256,14 @@ function _init() {
           $(".content-wrapper, .right-side").css('min-height', sidebar_height);
           postSetWidth = sidebar_height;
         }
-        
+
         //Fix for the control sidebar height
         var controlSidebar = $($.AdminLTE.options.controlSidebarOptions.selector);
-        if(typeof controlSidebar !== "undefined") {
-          if(controlSidebar.height() > postSetWidth)
+        if (typeof controlSidebar !== "undefined") {
+          if (controlSidebar.height() > postSetWidth)
             $(".content-wrapper, .right-side").css('min-height', controlSidebar.height());
         }
-        
+
       }
     },
     fixSidebar: function () {
@@ -468,20 +468,26 @@ function _init() {
     },
     //Open the control sidebar
     open: function (sidebar, slide) {
+      var _this = this;
       //Slide over content
-      if (slide)
+      if (slide) {
         sidebar.addClass('control-sidebar-open');
-      //Push the content by adding the open class to the body instead 
-      //of the sidebar itself
-      else
+        $('.content-wrapper, .right-side').on('click', function () {
+          _this.close(sidebar, slide);
+        });
+      } else {
+        //Push the content by adding the open class to the body instead 
+        //of the sidebar itself
         $('body').addClass('control-sidebar-open');
+      }
     },
     //Close the control sidebar
     close: function (sidebar, slide) {
-      if (slide)
+      if (slide) {
         sidebar.removeClass('control-sidebar-open');
-      else
+      } else {
         $('body').removeClass('control-sidebar-open');
+      }
     },
     _fix: function (sidebar) {
       var _this = this;
