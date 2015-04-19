@@ -760,9 +760,7 @@
     <!-- FastClick -->
     <script src='../../plugins/fastclick/fastclick.min.js'></script>
     <!-- AdminLTE App -->
-    <script src="../../dist/js/app.min.js" type="text/javascript"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js" type="text/javascript"></script>
+    <script src="../../dist/js/app.min.js" type="text/javascript"></script>    
     <!-- iCheck -->
     <script src="../../plugins/iCheck/icheck.min.js" type="text/javascript"></script>
     <!-- Page Script -->
@@ -770,7 +768,7 @@
       $(function () {
         //Enable iCheck plugin for checkboxes
         //iCheck for checkbox and radio inputs
-        $('input[type="checkbox"]').iCheck({
+        $('.mailbox-messages input[type="checkbox"]').iCheck({
           checkboxClass: 'icheckbox_flat-blue',
           radioClass: 'iradio_flat-blue'
         });
@@ -780,10 +778,10 @@
           var clicks = $(this).data('clicks');
           if (clicks) {
             //Uncheck all checkboxes
-            $("input[type='checkbox']", ".mailbox-messages").iCheck("uncheck");
+            $(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
           } else {
             //Check all checkboxes
-            $("input[type='checkbox']", ".mailbox-messages").iCheck("check");
+            $(".mailbox-messages input[type='checkbox']").iCheck("check");
           }
           $(this).data("clicks", !clicks);
         });
@@ -809,5 +807,8 @@
         });
       });
     </script>
+    
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js" type="text/javascript"></script>
   </body>
 </html>
