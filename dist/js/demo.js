@@ -75,6 +75,14 @@
           + "</label>"
           + "<p>Toggle the left sidebar's state (open or collapse)</p>"
           + "</div>"
+          //Sidebar mini expand on hover toggle
+          + "<div class='form-group'>"
+          + "<label class='control-sidebar-subheading'>"
+          + "<input type='checkbox' data-enable='expandOnHover' class='pull-right'/> "
+          + "Sidebar Expand on Hover"
+          + "</label>"
+          + "<p>Let the sidebar mini expand on hover</p>"
+          + "</div>"
           //Control Sidebar Toggle
           + "<div class='form-group'>"
           + "<label class='control-sidebar-subheading'>"
@@ -304,5 +312,24 @@
         sidebar.addClass("control-sidebar-dark")
       }
     });
+    
+    $("[data-enable='expandOnHover']").on('click', function () {
+      $(this).attr('disabled', true);      
+      AdminLTE.pushMenu.expandOnHover();
+      if(!$('body').hasClass('sidebar-collapse'))
+        $("[data-layout='sidebar-collapse']").click();
+    });
+    
+    // Reset options
+    if($('body').hasClass('fixed')) {
+      $("[data-layout='fixed']").attr('checked', 'checked');
+    }
+    if($('body').hasClass('layout-boxed')) {
+      $("[data-layout='layout-boxed']").attr('checked', 'checked');
+    }
+    if($('body').hasClass('sidebar-collapse')) {
+      $("[data-layout='sidebar-collapse']").attr('checked', 'checked');
+    }
+    
   }
 })(jQuery, $.AdminLTE);
