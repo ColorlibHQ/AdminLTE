@@ -9,6 +9,8 @@ v2.1.0:
 - Added ChartJS preview page
 - Fixed some minor bugs
 - Added light control sidebar skin
+- Added expand on hover option for sidebar mini
+- Added fixed control sidebar layout
 
 v2.0.5:
 - Fixed issue #288
