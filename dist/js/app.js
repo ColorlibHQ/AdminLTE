@@ -136,6 +136,13 @@ $.AdminLTE.options = {
  * options above.
  */
 $(function () {
+  //Extend options if external options exist
+  if (typeof AdminLTEOptions !== "undefined") {
+    $.AdminLTE.options = $.extend({},
+            $.AdminLTE.options,
+            AdminLTEOptions);
+  }
+
   //Easy access to options
   var o = $.AdminLTE.options;
 
