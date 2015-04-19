@@ -497,7 +497,6 @@ function _init() {
     },
     _fixForContent: function (sidebar) {
       $(".content-wrapper, .right-side").css('min-height', sidebar.height());
-      console.log('triggered')
     }
   };
 
