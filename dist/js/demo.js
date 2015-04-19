@@ -214,6 +214,11 @@
     //Fix the problem with right sidebar and layout boxed
     if (cls == "layout-boxed")
       AdminLTE.controlSidebar._fix($(".control-sidebar-bg"));
+    if ($('body').hasClass('fixed') && cls == 'fixed') {
+      AdminLTE.pushMenu.expandOnHover();
+      AdminLTE.controlSidebar._fixForFixed($('.control-sidebar'));
+      AdminLTE.layout.activate();
+    }
   }
 
   /**
