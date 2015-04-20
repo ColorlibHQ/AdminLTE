@@ -918,10 +918,9 @@ a:focus {
 .dropdown-menu > .divider {
   background-color: #eee;
 }
-/*
-    Navbar custom dropdown menu
-------------------------------------
-*/
+.navbar-nav .dropdown-menu {
+  box-shadow: none;
+}
 .navbar-nav > .notifications-menu,
 .navbar-nav > .messages-menu,
 .navbar-nav > .tasks-menu {
