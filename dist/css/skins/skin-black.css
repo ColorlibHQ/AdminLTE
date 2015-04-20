@@ -90,7 +90,6 @@
 }
 .skin-black .sidebar-menu > li > a {
   border-left: 3px solid transparent;
-  margin-right: 1px;
 }
 .skin-black .sidebar-menu > li:hover > a,
 .skin-black .sidebar-menu > li.active > a {

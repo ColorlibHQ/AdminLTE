@@ -70,7 +70,6 @@
 }
 .skin-green .sidebar-menu > li > a {
   border-left: 3px solid transparent;
-  margin-right: 1px;
 }
 .skin-green .sidebar-menu > li:hover > a,
 .skin-green .sidebar-menu > li.active > a {

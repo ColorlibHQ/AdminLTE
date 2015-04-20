@@ -70,7 +70,6 @@
 }
 .skin-blue .sidebar-menu > li > a {
   border-left: 3px solid transparent;
-  margin-right: 1px;
 }
 .skin-blue .sidebar-menu > li:hover > a,
 .skin-blue .sidebar-menu > li.active > a {
@@ -398,7 +397,6 @@
 }
 .skin-black .sidebar-menu > li > a {
   border-left: 3px solid transparent;
-  margin-right: 1px;
 }
 .skin-black .sidebar-menu > li:hover > a,
 .skin-black .sidebar-menu > li.active > a {
@@ -707,7 +705,6 @@
 }
 .skin-green .sidebar-menu > li > a {
   border-left: 3px solid transparent;
-  margin-right: 1px;
 }
 .skin-green .sidebar-menu > li:hover > a,
 .skin-green .sidebar-menu > li.active > a {
@@ -996,7 +993,6 @@
 }
 .skin-red .sidebar-menu > li > a {
   border-left: 3px solid transparent;
-  margin-right: 1px;
 }
 .skin-red .sidebar-menu > li:hover > a,
 .skin-red .sidebar-menu > li.active > a {
@@ -1285,7 +1281,6 @@
 }
 .skin-yellow .sidebar-menu > li > a {
   border-left: 3px solid transparent;
-  margin-right: 1px;
 }
 .skin-yellow .sidebar-menu > li:hover > a,
 .skin-yellow .sidebar-menu > li.active > a {
@@ -1574,7 +1569,6 @@
 }
 .skin-purple .sidebar-menu > li > a {
   border-left: 3px solid transparent;
-  margin-right: 1px;
 }
 .skin-purple .sidebar-menu > li:hover > a,
 .skin-purple .sidebar-menu > li.active > a {
