@@ -919,7 +919,8 @@ a:focus {
   background-color: #eee;
 }
 .navbar-nav .dropdown-menu {
-  box-shadow: none;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
 }
 .navbar-nav > .notifications-menu,
 .navbar-nav > .messages-menu,
