@@ -279,7 +279,7 @@ function _init() {
       //Enable slimscroll for fixed layout
       if ($.AdminLTE.options.sidebarSlimScroll) {
         if (typeof $.fn.slimScroll != 'undefined') {
-          //Distroy if it exists
+          //Destroy if it exists
           $(".sidebar").slimScroll({destroy: true}).height("auto");
           //Add slimscroll
           $(".sidebar").slimscroll({
@@ -460,7 +460,7 @@ function _init() {
       if ($('body').hasClass('fixed')) {
         _this._fixForFixed(sidebar);
       } else {
-        //If the content height is less the sidebar's height, force max height
+        //If the content height is less than the sidebar's height, force max height
         if ($('.content-wrapper, .right-side').height() < sidebar.height()) {
           _this._fixForContent(sidebar);
         }
@@ -519,12 +519,12 @@ function _init() {
 
   /* BoxWidget
    * =========
-   * BoxWidget is plugin to handle collapsing and
+   * BoxWidget is a plugin to handle collapsing and
    * removing boxes from the screen.
    *
    * @type Object
    * @usage $.AdminLTE.boxWidget.activate()
-   *        Set all of your option in the main $.AdminLTE.options object
+   *        Set all your options in the main $.AdminLTE.options object
    */
   $.AdminLTE.boxWidget = {
     selectors: $.AdminLTE.options.boxWidgetOptions.boxWidgetSelectors,
@@ -586,7 +586,7 @@ function _init() {
 /*
  * BOX REFRESH BUTTON
  * ------------------
- * This is a custom plugin to use with the compenet BOX. It allows you to add
+ * This is a custom plugin to use with the component BOX. It allows you to add
  * a refresh button to the box. It converts the box's state to a loading state.
  *
  * @type plugin
@@ -598,7 +598,7 @@ function _init() {
 
     // Render options
     var settings = $.extend({
-      //Refressh button selector
+      //Refresh button selector
       trigger: ".refresh-btn",
       //File source to be loaded (e.g: ajax/src.php)
       source: "",
