@@ -51,7 +51,7 @@ body {
   background: url('../img/boxed-bg.jpg') repeat fixed;
 }
 /*
- * Content Wrapper - contins main content
+ * Content Wrapper - contains the main content
  * ```.right-side has been deprecated as of v2.0.0 in favor of .content-wrapper  ```
  */
 .content-wrapper,
@@ -664,7 +664,7 @@ a:focus {
   margin-top: -7px;
 }
 /*
- * Component: Control sidebar. By deafult, this is the right sidebar.
+ * Component: Control sidebar. By default, this is the right sidebar.
  */
 .control-sidebar-bg {
   position: fixed;
