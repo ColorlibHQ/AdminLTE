@@ -20,13 +20,14 @@
 //The sidebar
 .control-sidebar {
   position: absolute;
-  top: @navbar-height;
+  top: 0;
+  padding-top: @navbar-height;
   right: 0;
   width: @control-sidebar-width;
   z-index: 1010;
   //Fix position after header collapse
   @media (max-width: @screen-sm) {
-    top: @navbar-height + 50;
+    padding-top: @navbar-height + 50;
   }
   //Tab panes
   > .tab-content {
@@ -151,8 +152,9 @@
 }
 //Dark skin
 .control-sidebar-dark {
-  color: @sidebar-dark-color;
+  color: @sidebar-dark-color;  
   // Background
+  &,
   + .control-sidebar-bg {
     background: @sidebar-dark-bg;
   }
@@ -212,8 +214,9 @@
 }
 //Light skin
 .control-sidebar-light {
-  color: lighten(@sidebar-light-color, 10%);
+  color: lighten(@sidebar-light-color, 10%);  
   // Background
+  &,
   + .control-sidebar-bg {
     background: @sidebar-light-bg;
     border-left: 1px solid @gray;

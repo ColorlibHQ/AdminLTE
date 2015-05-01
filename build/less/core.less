@@ -24,7 +24,7 @@ body {
   .clearfix();
   min-height: 100%;
   position: static;
-  overflow: hidden;
+  overflow: hidden!important;
   .layout-boxed & {
     max-width: 1250px;
     margin: 0 auto;
@@ -50,7 +50,7 @@ body {
                     margin @transition-speed @transition-fn;
   .transition-transform(@transition-rule);
   margin-left: @sidebar-width;
-  z-index: 820;
+  z-index: 820;  
   //Top nav layout
   .layout-top-nav & {
     margin-left: 0;

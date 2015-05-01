@@ -30,7 +30,7 @@ body {
 .wrapper {
   min-height: 100%;
   position: static;
-  overflow: hidden;
+  overflow: hidden!important;
 }
 .wrapper:before,
 .wrapper:after {
@@ -687,14 +687,15 @@ a:focus {
 }
 .control-sidebar {
   position: absolute;
-  top: 50px;
+  top: 0;
+  padding-top: 50px;
   right: 0;
   width: 230px;
   z-index: 1010;
 }
 @media (max-width: 768px) {
   .control-sidebar {
-    top: 100px;
+    padding-top: 100px;
   }
 }
 .control-sidebar > .tab-content {
@@ -813,6 +814,7 @@ a:focus {
 .control-sidebar-dark {
   color: #b8c7ce;
 }
+.control-sidebar-dark,
 .control-sidebar-dark + .control-sidebar-bg {
   background: #222d32;
 }
@@ -853,6 +855,7 @@ a:focus {
 .control-sidebar-light {
   color: #5e5e5e;
 }
+.control-sidebar-light,
 .control-sidebar-light + .control-sidebar-bg {
   background: #f9fafc;
   border-left: 1px solid #d2d6de;
