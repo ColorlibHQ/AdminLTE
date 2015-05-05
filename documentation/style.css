@@ -11,7 +11,8 @@
   position: relative;
   z-index: 30;
 }
-.content {
+.content {  
+  font-size: 16px;
   z-index: 500;
 }
 
@@ -109,7 +110,7 @@ p {
 }
 /* Hemisu Light */
 /* Original theme - http://noahfrederick.com/vim-color-scheme-hemisu/ */
-.prettyprint {
+pre.prettyprint {
   background: white;
   font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
   font-size: 12px;
@@ -117,6 +118,12 @@ p {
   border: 1px solid #dedede!important;
   padding: 10px;
   max-height: 300px;
+  width: auto;
+  overflow: auto!important;
+}
+pre.prettyprint > code {
+  width: auto;
+  overflow: auto!important;
 }
 
 .pln {
