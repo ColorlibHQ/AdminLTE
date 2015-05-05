@@ -587,7 +587,6 @@ a:focus {
   }
   .sidebar-mini.sidebar-collapse .sidebar-menu > li > a {
     margin-right: 0;
-    overflow: hidden;
   }
   .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > span {
     border-top-right-radius: 4px;
@@ -599,9 +598,6 @@ a:focus {
     padding-top: 5px;
     padding-bottom: 5px;
     border-bottom-right-radius: 4px;
-  }
-  .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a {
-    overflow: visible;
   }
   .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right),
   .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
@@ -644,11 +640,14 @@ a:focus {
     margin-left: 50px;
   }
 }
-.sidebar-menu li > a,
+.sidebar-menu,
 .main-sidebar .user-panel,
 .sidebar-menu > li.header {
   white-space: nowrap!important;
   overflow: hidden;
+}
+.sidebar-menu:hover {
+  overflow: visible;
 }
 .sidebar-form,
 .sidebar-menu > li.header {
