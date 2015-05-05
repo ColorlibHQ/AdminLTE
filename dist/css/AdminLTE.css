@@ -2462,10 +2462,7 @@ a:focus {
 .pagination > li > a {
   background: #fafafa;
   color: #666;
-}
-.pagination > li:first-of-type a,
-.pagination > li:last-of-type a {
-  border-radius: 0;
+  border-radius: 0 !important;
 }
 /*
  * Component: Products List
