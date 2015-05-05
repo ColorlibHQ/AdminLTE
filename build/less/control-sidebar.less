@@ -5,25 +5,21 @@
 //This is a hack to make the background visible while scrolling
 .control-sidebar-bg {
   position: fixed;
-  z-index: 900;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: @control-sidebar-width;
+  z-index: 1000;
+  bottom: 0;  
 }
 //Transitions
 .control-sidebar-bg,
 .control-sidebar {
-  .translate(@control-sidebar-width, 0);
-  .transition-transform(@transition-speed ease-in-out);
+  top: 0;
+  right: -@control-sidebar-width;
+  width: @control-sidebar-width;  
+  .transition(right @transition-speed ease-in-out);
 }
 //The sidebar
-.control-sidebar {
-  position: absolute;
-  top: 0;
-  padding-top: @navbar-height;
-  right: 0;
-  width: @control-sidebar-width;
+.control-sidebar {  
+  position: absolute;  
+  padding-top: @navbar-height;  
   z-index: 1010;
   //Fix position after header collapse
   @media (max-width: @screen-sm) {
@@ -37,15 +33,15 @@
   &.control-sidebar-open {
     &,
     + .control-sidebar-bg {
-      .translate(0, 0);
+      right: 0;      
     }
   }
 }
 //Open without slide over content
-.control-sidebar-open {
+.control-sidebar-open {  
   .control-sidebar-bg,
   .control-sidebar {
-    .translate(0,0);
+    right: 0;
   }
   @media(min-width: @screen-sm) {
     .content-wrapper,
