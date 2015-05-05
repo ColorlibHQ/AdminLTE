@@ -176,7 +176,9 @@ $(function () {
 
   //Activate Bootstrap tooltip
   if (o.enableBSToppltip) {
-    $(o.BSTooltipSelector).tooltip();
+    $('body').tooltip({
+      selector: o.BSTooltipSelector
+    });
   }
 
   //Activate box widget
