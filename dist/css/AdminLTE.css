@@ -2458,13 +2458,6 @@ a:focus {
   background: transparent;
   color: #999;
 }
-/* Nav tabs bottom */
-.tabs-bottom.nav-3 li a {
-  width: 3333.33333333% !important;
-}
-.tabs-bottom li a {
-  border: 0;
-}
 /* PAGINATION */
 .pagination > li > a {
   background: #fafafa;
