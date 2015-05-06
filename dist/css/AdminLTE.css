@@ -2340,7 +2340,7 @@ a:focus {
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-  background-color: #f4f4f4;
+  background-color: #f7f7f7;
   border-top-color: #3c8dbc;
   color: #444;
 }
@@ -2359,7 +2359,7 @@ a:focus {
 }
 .nav-stacked > li.active > a,
 .nav-stacked > li.active > a:hover {
-  background-color: #f4f4f4;
+  background-color: #f7f7f7;
   border-top: 0;
   border-left-color: #3c8dbc;
   color: #444;
