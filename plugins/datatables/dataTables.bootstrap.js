@@ -39,7 +39,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 	var api     = new DataTable.Api( settings );
 	var classes = settings.oClasses;
 	var lang    = settings.oLanguage.oPaginate;
-	var btnDisplay, btnClass;
+	var btnDisplay, btnClass, counter=0;
 
 	var attach = function( container, buttons ) {
 		var i, ien, node, button;
@@ -100,14 +100,15 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 				if ( btnDisplay ) {
 					node = $('<li>', {
 							'class': classes.sPageButton+' '+btnClass,
-							'aria-controls': settings.sTableId,
-							'tabindex': settings.iTabIndex,
 							'id': idx === 0 && typeof button === 'string' ?
 								settings.sTableId +'_'+ button :
 								null
 						} )
 						.append( $('<a>', {
-								'href': '#'
+								'href': '#',
+								'aria-controls': settings.sTableId,
+								'data-dt-idx': counter,
+								'tabindex': settings.iTabIndex
 							} )
 							.html( btnDisplay )
 						)
@@ -116,15 +117,34 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 					settings.oApi._fnBindAction(
 						node, {action: button}, clickHandler
 					);
+
+					counter++;
 				}
 			}
 		}
 	};
 
+	// IE9 throws an 'unknown error' if document.activeElement is used
+	// inside an iframe or frame. 
+	var activeEl;
+
+	try {
+		// Because this approach is destroying and recreating the paging
+		// elements, focus is lost on the select button which is bad for
+		// accessibility. So we want to restore focus once the draw has
+		// completed
+		activeEl = $(document.activeElement).data('dt-idx');
+	}
+	catch (e) {}
+
 	attach(
 		$(host).empty().html('<ul class="pagination"/>').children('ul'),
 		buttons
 	);
+
+	if ( activeEl ) {
+		$(host).find( '[data-dt-idx='+activeEl+']' ).focus();
+	}
 };
 
 
