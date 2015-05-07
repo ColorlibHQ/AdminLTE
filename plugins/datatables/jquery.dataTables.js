@@ -1,11 +1,11 @@
-/*! DataTables 1.10.6
+/*! DataTables 1.10.7
  * ©2008-2014 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     DataTables
  * @description Paginate, search and order HTML tables
- * @version     1.10.6
+ * @version     1.10.7
  * @file        jquery.dataTables.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
@@ -2435,7 +2435,7 @@
 		var ajax = oSettings.ajax;
 		var instance = oSettings.oInstance;
 		var callback = function ( json ) {
-			_fnCallbackFire( oSettings, null, 'xhr', [oSettings, json] );
+			_fnCallbackFire( oSettings, null, 'xhr', [oSettings, json, oSettings.jqXHR] );
 			fn( json );
 		};
 	
@@ -2462,7 +2462,7 @@
 			"success": function (json) {
 				var error = json.error || json.sError;
 				if ( error ) {
-					oSettings.oApi._fnLog( oSettings, 0, error );
+					_fnLog( oSettings, 0, error );
 				}
 	
 				oSettings.json = json;
@@ -2472,13 +2472,15 @@
 			"cache": false,
 			"type": oSettings.sServerMethod,
 			"error": function (xhr, error, thrown) {
-				var log = oSettings.oApi._fnLog;
+				var ret = _fnCallbackFire( oSettings, null, 'xhr', [oSettings, null, oSettings.jqXHR] );
 	
-				if ( error == "parsererror" ) {
-					log( oSettings, 0, 'Invalid JSON response', 1 );
-				}
-				else if ( xhr.readyState === 4 ) {
-					log( oSettings, 0, 'Ajax error', 7 );
+				if ( $.inArray( true, ret ) === -1 ) {
+					if ( error == "parsererror" ) {
+						_fnLog( oSettings, 0, 'Invalid JSON response', 1 );
+					}
+					else if ( xhr.readyState === 4 ) {
+						_fnLog( oSettings, 0, 'Ajax error', 7 );
+					}
 				}
 	
 				_fnProcessingDisplay( oSettings, false );
@@ -3018,7 +3020,7 @@
 			 * 
 			 * ^(?=.*?\bone\b)(?=.*?\btwo three\b)(?=.*?\bfour\b).*$
 			 */
-			var a = $.map( search.match( /"[^"]+"|[^ ]+/g ) || '', function ( word ) {
+			var a = $.map( search.match( /"[^"]+"|[^ ]+/g ) || [''], function ( word ) {
 				if ( word.charAt(0) === '"' ) {
 					var m = word.match( /^"(.*)"$/ );
 					word = m ? m[1] : word;
@@ -4139,21 +4141,20 @@
 		}
 		else
 		{
-			// Otherwise construct a single row table with the widest node in the
-			// data, assign any user defined widths, then insert it into the DOM and
-			// allow the browser to do all the hard work of calculating table widths
+			// Otherwise construct a single row, worst case, table with the widest
+			// node in the data, assign any user defined widths, then insert it into
+			// the DOM and allow the browser to do all the hard work of calculating
+			// table widths
 			var tmpTable = $(table).clone() // don't use cloneNode - IE8 will remove events on the main table
-				.empty()
 				.css( 'visibility', 'hidden' )
-				.removeAttr( 'id' )
-				.append( $(oSettings.nTHead).clone( false ) )
-				.append( $(oSettings.nTFoot).clone( false ) )
-				.append( $('<tbody><tr/></tbody>') );
+				.removeAttr( 'id' );
+	
+			// Clean up the table body
+			tmpTable.find('tbody tr').remove();
+			var tr = $('<tr/>').appendTo( tmpTable.find('tbody') );
 	
 			// Remove any assigned widths from the footer (from scrolling)
 			tmpTable.find('tfoot th, tfoot td').css('width', '');
-	
-			var tr = tmpTable.find( 'tbody tr' );
 	
 			// Apply custom sizing to the cloned header
 			headerCells = _fnGetUniqueThs( oSettings, tmpTable.find('thead')[0] );
@@ -4252,9 +4253,20 @@
 		}
 	
 		if ( (tableWidthAttr || scrollX) && ! oSettings._reszEvt ) {
-			$(window).bind('resize.DT-'+oSettings.sInstance, _fnThrottle( function () {
-				_fnAdjustColumnSizing( oSettings );
-			} ) );
+			var bindResize = function () {
+				$(window).bind('resize.DT-'+oSettings.sInstance, _fnThrottle( function () {
+					_fnAdjustColumnSizing( oSettings );
+				} ) );
+			};
+	
+			// IE6/7 will crash if we bind a resize event handler on page load.
+			// To be removed in 1.11 which drops IE6/7 support
+			if ( oSettings.oBrowser.bScrollOversize ) {
+				setTimeout( bindResize, 1000 );
+			}
+			else {
+				bindResize();
+			}
 	
 			oSettings._reszEvt = true;
 		}
@@ -5208,13 +5220,13 @@
 	 *  @param {object} settings dataTables settings object
 	 *  @param {string} callbackArr Name of the array storage for the callbacks in
 	 *      oSettings
-	 *  @param {string} event Name of the jQuery custom event to trigger. If null no
-	 *      trigger is fired
+	 *  @param {string} eventName Name of the jQuery custom event to trigger. If
+	 *      null no trigger is fired
 	 *  @param {array} args Array of arguments to pass to the callback function /
 	 *      trigger
 	 *  @memberof DataTable#oApi
 	 */
-	function _fnCallbackFire( settings, callbackArr, e, args )
+	function _fnCallbackFire( settings, callbackArr, eventName, args )
 	{
 		var ret = [];
 	
@@ -5224,8 +5236,12 @@
 			} );
 		}
 	
-		if ( e !== null ) {
-			$(settings.nTable).trigger( e+'.dt', args );
+		if ( eventName !== null ) {
+			var e = $.Event( eventName+'.dt' );
+	
+			$(settings.nTable).trigger( e, args );
+	
+			ret.push( e.result );
 		}
 	
 		return ret;
@@ -6722,10 +6738,8 @@
 	 */
 	_Api = function ( context, data )
 	{
-		if ( ! this instanceof _Api ) {
-			throw 'DT API must be constructed as a new object';
-			// or should it do the 'new' for the caller?
-			// return new _Api.apply( this, arguments );
+		if ( ! (this instanceof _Api) ) {
+			return new _Api( context, data );
 		}
 	
 		var settings = [];
@@ -6766,18 +6780,12 @@
 	DataTable.Api = _Api;
 	
 	_Api.prototype = /** @lends DataTables.Api */{
-		/**
-		 * Return a new Api instance, comprised of the data held in the current
-		 * instance, join with the other array(s) and/or value(s).
-		 *
-		 * An alias for `Array.prototype.concat`.
-		 *
-		 * @type method
-		 * @param {*} value1 Arrays and/or values to concatenate.
-		 * @param {*} [...] Additional arrays and/or values to concatenate.
-		 * @returns {DataTables.Api} New API instance, comprising of the combined
-		 *   array.
-		 */
+		any: function ()
+		{
+			return this.flatten().length !== 0;
+		},
+	
+	
 		concat:  __arrayProto.concat,
 	
 	
@@ -6844,7 +6852,6 @@
 			return -1;
 		},
 	
-		// Note that `alwaysNew` is internal - use iteratorNew externally
 		iterator: function ( flatten, type, fn, alwaysNew ) {
 			var
 				a = [], ret,
@@ -7527,7 +7534,7 @@
 	
 	
 	
-	var _selector_run = function ( selector, select )
+	var _selector_run = function ( type, selector, selectFn, settings, opts )
 	{
 		var
 			out = [], res,
@@ -7546,11 +7553,19 @@
 				[ selector[i] ];
 	
 			for ( j=0, jen=a.length ; j<jen ; j++ ) {
-				res = select( typeof a[j] === 'string' ? $.trim(a[j]) : a[j] );
+				res = selectFn( typeof a[j] === 'string' ? $.trim(a[j]) : a[j] );
 	
 				if ( res && res.length ) {
 					out.push.apply( out, res );
 				}
+			}
+		}
+	
+		// selector extensions
+		var ext = _ext.selector[ type ];
+		if ( ext.length ) {
+			for ( i=0, ien=ext.length ; i<ien ; i++ ) {
+				out = ext[i]( settings, opts, out );
 			}
 		}
 	
@@ -7566,15 +7581,15 @@
 	
 		// Backwards compatibility for 1.9- which used the terminology filter rather
 		// than search
-		if ( opts.filter && ! opts.search ) {
+		if ( opts.filter && opts.search === undefined ) {
 			opts.search = opts.filter;
 		}
 	
-		return {
-			search: opts.search || 'none',
-			order:  opts.order  || 'current',
-			page:   opts.page   || 'all'
-		};
+		return $.extend( {
+			search: 'none',
+			order: 'current',
+			page: 'all'
+		}, opts );
 	};
 	
 	
@@ -7586,6 +7601,7 @@
 				// Assign the first element to the first item in the instance
 				// and truncate the instance and context
 				inst[0] = inst[i];
+				inst[0].length = 1;
 				inst.length = 1;
 				inst.context = [ inst.context[i] ];
 	
@@ -7672,7 +7688,7 @@
 	
 	var __row_selector = function ( settings, selector, opts )
 	{
-		return _selector_run( selector, function ( sel ) {
+		var run = function ( sel ) {
 			var selInt = _intVal( sel );
 			var i, ien;
 	
@@ -7724,7 +7740,9 @@
 					return this._DT_RowIndex;
 				} )
 				.toArray();
-		} );
+		};
+	
+		return _selector_run( 'row', selector, run, settings, opts );
 	};
 	
 	
@@ -8154,7 +8172,7 @@
 			names = _pluck( columns, 'sName' ),
 			nodes = _pluck( columns, 'nTh' );
 	
-		return _selector_run( selector, function ( s ) {
+		var run = function ( s ) {
 			var selInt = _intVal( s );
 	
 			// Selector - all
@@ -8220,7 +8238,9 @@
 					} )
 					.toArray();
 			}
-		} );
+		};
+	
+		return _selector_run( 'column', selector, run, settings, opts );
 	};
 	
 	
@@ -8395,7 +8415,7 @@
 		var columns = settings.aoColumns.length;
 		var a, i, ien, j, o, host;
 	
-		return _selector_run( selector, function ( s ) {
+		var run = function ( s ) {
 			var fnSelector = typeof s === 'function';
 	
 			if ( s === null || s === undefined || fnSelector ) {
@@ -8415,7 +8435,7 @@
 							// Selector - function
 							host = settings.aoData[ row ];
 	
-							if ( s( o, _fnGetCellData(settings, row, j), host.anCells[j] ) ) {
+							if ( s( o, _fnGetCellData(settings, row, j), host.anCells ? host.anCells[j] : null ) ) {
 								a.push( o );
 							}
 						}
@@ -8446,7 +8466,9 @@
 					};
 				} )
 				.toArray();
-		} );
+		};
+	
+		return _selector_run( 'cell', selector, run, settings, opts );
 	};
 	
 	
@@ -9083,6 +9105,25 @@
 		} );
 	} );
 	
+	
+	// i18n method for extensions to be able to use the language object from the
+	// DataTable
+	_api_register( 'i18n()', function ( token, def, plural ) {
+		var ctx = this.context[0];
+		var resolved = _fnGetObjectDataFn( token )( ctx.oLanguage );
+	
+		if ( resolved === undefined ) {
+			resolved = def;
+		}
+	
+		if ( plural !== undefined && $.isPlainObject( resolved ) ) {
+			resolved = resolved[ plural ] !== undefined ?
+				resolved[ plural ] :
+				resolved._;
+		}
+	
+		return resolved.replace( '%d', plural ); // nb: plural might be undefined,
+	} );
 
 	/**
 	 * Version string for plug-ins to check compatibility. Allowed format is
@@ -9092,7 +9133,7 @@
 	 *  @type string
 	 *  @default Version number
 	 */
-	DataTable.version = "1.10.6";
+	DataTable.version = "1.10.7";
 
 	/**
 	 * Private data store, containing all of the settings objects that are
@@ -13597,6 +13638,37 @@
 		 *    );
 		 */
 		search: [],
+	
+	
+		/**
+		 * Selector extensions
+		 *
+		 * The `selector` option can be used to extend the options available for the
+		 * selector modifier options (`selector-modifier` object data type) that
+		 * each of the three built in selector types offer (row, column and cell +
+		 * their plural counterparts). For example the Select extension uses this
+		 * mechanism to provide an option to select only rows, columns and cells
+		 * that have been marked as selected by the end user (`{selected: true}`),
+		 * which can be used in conjunction with the existing built in selector
+		 * options.
+		 *
+		 * Each property is an array to which functions can be pushed. The functions
+		 * take three attributes:
+		 *
+		 * * Settings object for the host table
+		 * * Options object (`selector-modifier` object type)
+		 * * Array of selected item indexes
+		 *
+		 * The return is an array of the resulting item indexes after the custom
+		 * selector has been applied.
+		 *
+		 *  @type object
+		 */
+		selector: {
+			cell: [],
+			column: [],
+			row: []
+		},
 	
 	
 		/**

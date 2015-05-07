@@ -51,10 +51,10 @@ table.dataTable thead th.ui-state-default:last-child {
   border-right-width: 1px;
 }
 table.dataTable tbody tr {
-  background-color: white;
+  background-color: #ffffff;
 }
 table.dataTable tbody tr.selected {
-  background-color: #b0bed9;
+  background-color: #B0BED9;
 }
 table.dataTable tbody th,
 table.dataTable tbody td {
@@ -70,7 +70,7 @@ table.dataTable td.right {
   text-align: right;
 }
 table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #ddd;
 }
 table.dataTable.row-border tbody tr:first-child th,
 table.dataTable.row-border tbody tr:first-child td, table.dataTable.display tbody tr:first-child th,
@@ -78,12 +78,12 @@ table.dataTable.display tbody tr:first-child td {
   border-top: none;
 }
 table.dataTable.cell-border tbody th, table.dataTable.cell-border tbody td {
-  border-top: 1px solid #dddddd;
-  border-right: 1px solid #dddddd;
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
 }
 table.dataTable.cell-border tbody tr th:first-child,
 table.dataTable.cell-border tbody tr td:first-child {
-  border-left: 1px solid #dddddd;
+  border-left: 1px solid #ddd;
 }
 table.dataTable.cell-border tbody tr:first-child th,
 table.dataTable.cell-border tbody tr:first-child td {
@@ -334,7 +334,7 @@ table.dataTable td {
   text-decoration: none !important;
   cursor: pointer;
   *cursor: hand;
-  color: #333333 !important;
+  color: #333 !important;
   border: 1px solid transparent;
 }
 .dataTables_wrapper .dataTables_paginate .fg-button:active {
@@ -378,7 +378,7 @@ table.dataTable td {
 .dataTables_wrapper .dataTables_info,
 .dataTables_wrapper .dataTables_processing,
 .dataTables_wrapper .dataTables_paginate {
-  color: #333333;
+  color: #333;
 }
 .dataTables_wrapper .dataTables_scroll {
   clear: both;
