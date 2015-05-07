@@ -1,5 +1,5 @@
 /* 
- * Documentation specific JS script
+ * Documentation JS script
  */
 $(function () {
   var slideToTop = $("<div />");
@@ -42,9 +42,9 @@ $(function () {
       scrollTop: 0
     }, 500);
   });
-  $(".sidebar-menu li a").click(function () {
+  $(".sidebar-menu li:not(.treeview) a").click(function () {
     var $this = $(this);
-    var target = $this.attr("href");
+    var target = $this.attr("href");    
     if (typeof target === 'string') {
       $("body").animate({
         scrollTop: ($(target).offset().top) + "px"

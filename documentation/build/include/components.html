@@ -303,7 +303,7 @@
   <div class="box box-solid">
     <div class="box-body layout-top-nav">
       <span class="eg">Top Nav Example</span>
-      <header class="main-header">               
+      <header class="main-header">
         <nav class="navbar navbar-static-top">
           <div class="container-fluid">
             <div class="navbar-header">
@@ -356,7 +356,7 @@
     </div>
   </div>
   <pre class='prettyprint'>
-&LT;header class="main-header">               
+&LT;header class="main-header">
   &LT;nav class="navbar navbar-static-top">
     &LT;div class="container-fluid">
     &LT;div class="navbar-header">
@@ -456,9 +456,42 @@
     &LT;/ul>&LT;!-- /.sidebar-menu -->
 
   &LT;/div>&LT;!-- /.sidebar -->
-&LT;/div>&LT;!-- /.main-sidebar -->
-  </pre>
+&LT;/div>&LT;!-- /.main-sidebar --></pre>
 
+  <h3 id="component-control-sidebar">Control Sidebar</h3>
+  <p class="lead">Control sidebar is the right side bar. It can be used for many purposes and is extremely easy
+    to create. The sidebar ships with two different show/hide styles. The first allows the sidebar to
+  slide over the content. The second pushes the content to make space for the sidebar. Either of
+  these methods can be set through the <a href="#adminlte-options">Javascript options</a>.</p>
+  <p class="lead">The following code should be placed within the <code>.wrapper</code> div. I prefer
+  to place it right after the footer.</p>
+  <p class="lead">Dark Sidebar Markup</p>  
+<pre class="prettyprint"><code class="lang-html">&LT;!-- The Right Sidebar -->
+&LT;aside class="control-sidebar control-sidebar-dark">
+  &LT;!-- Content of the sidebar goes here -->
+&LT;/aside>
+&LT;!-- The sidebar's background -->
+&LT;!-- This div must placed right after the sidebar for it to work-->
+&LT;div class="control-sidebar-bg">&LT;/div></code></pre>
+  
+  <p class="lead">Light Sidebar Markup</p>  
+<pre class="prettyprint"><code class="lang-html">&LT;!-- The Right Sidebar -->
+&LT;aside class="control-sidebar control-sidebar-light">
+  &LT;!-- Content of the sidebar goes here -->
+&LT;/aside>
+&LT;!-- The sidebar's background -->
+&LT;!-- This div must placed right after the sidebar for it to work-->
+&LT;div class="control-sidebar-bg">&LT;/div></code></pre>
+
+  <p class='lead'>Once you create the sidebar, you will need a toggle button to open/close it.
+  By adding the attribute <code>data-toggle="control-sidebar"</code> to any button, it will
+  automatically act as the toggle button.</p>
+
+  <p class="lead">Toggle Button Example</p>
+  <button class="btn btn-primary" data-toggle="control-sidebar">Toggle Right Sidebar</button><br /><br />
+
+  <p class="lead">Sidebar Toggle Markup</p>
+  <pre class="prettyprint"><code class="lang-html">&LT;button class="btn btn-default" data-toggle="control-sidebar">Toggle Right Sidebar&LT;/button></code></pre>
   <!-- ===================================================================== -->
 
   <h3 id="component-info-box">Info Box</h3>
@@ -504,16 +537,14 @@
     </div><!-- /.col -->
   </div><!-- /.row -->
   <p class="lead">Markup</p>
-  <pre class="prettyprint"><code class="html">
-&LT;div class="info-box">
+  <pre class="prettyprint"><code class="lang-html">&LT;div class="info-box">
   &LT;-- Apply any bg-* class to to the icon to color it -->
   &LT;span class="info-box-icon bg-red">&LT;i class="fa fa-star-o">&LT;/i>&LT;/span>
   &LT;div class="info-box-content">
     &LT;span class="info-box-text">Likes&LT;/span>
     &LT;span class="info-box-number">93,139&LT;/span>
   &LT;/div>&LT;!-- /.info-box-content -->
-&LT;/div>&LT;!-- /.info-box -->
-</code></pre>
+&LT;/div>&LT;!-- /.info-box --></code></pre>
 
   <h4>Second Type of Info Boxes</h4>
   <div class="row">
@@ -579,8 +610,7 @@
     </div><!-- /.col -->
   </div><!-- /.row -->
   <p class="lead">Markup</p>
-  <pre class="prettyprint"><code class="html">
-&LT;-- Apply any bg-* class to to the info-box to color it -->
+  <pre class="prettyprint"><code class="lang-html">&LT;-- Apply any bg-* class to to the info-box to color it -->
 &LT;div class="info-box bg-red">
   &LT;span class="info-box-icon">&LT;i class="fa fa-comments-o">&LT;/i>&LT;/span>
   &LT;div class="info-box-content">
@@ -594,9 +624,8 @@
       70% Increase in 30 Days
     &LT;/span>
   &LT;/div>&LT;!-- /.info-box-content -->
-&LT;/div>&LT;!-- /.info-box -->
-</code></pre>
-  <p class="lead">The only thing you need to change to alternate between these style is change the placement of the bg-* class. For the 
+&LT;/div>&LT;!-- /.info-box --></code></pre>
+  <p class="lead">The only thing you need to change to alternate between these style is change the placement of the bg-* class. For the
     first style apply any bg-* class to the icon itself. For the other style, apply the bg-* class to the info-box div.</p>
   <!-- ===================================================================== -->
 
@@ -621,8 +650,7 @@
       The footer of the box
     </div><!-- box-footer -->
   </div><!-- /.box -->
-  <pre class="prettyprint">
-&LT;div class="box">
+  <pre class="prettyprint">&LT;div class="box">
   &LT;div class="box-header with-border">
     &LT;h3 class="box-title">Default Box Example&LT;/h3>
     &LT;div class="box-tools pull-right">
@@ -703,8 +731,7 @@
       </div><!-- /.box -->
     </div>
   </div><!-- /.row -->
-  <pre class="prettyprint">
-&LT;div class="box box-default">...&LT;/div>
+  <pre class="prettyprint">&LT;div class="box box-default">...&LT;/div>
 &LT;div class="box box-primary">...&LT;/div>
 &LT;div class="box box-info">...&LT;/div>
 &LT;div class="box box-warning">...&LT;/div>
@@ -934,7 +961,7 @@
       <div class="box box-default">
         <div class="box-header with-border">
           <h3 class="box-title">Tootips on buttons</h3>
-          <div class="box-tools pull-right">                      
+          <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
           </div><!-- /.box-tools -->
@@ -947,7 +974,7 @@
 &LT;div class="box box-default">
   &LT;div class="box-header with-border">
     &LT;h3 class="box-title">Tooltips on buttons&LT;/h3>
-    &LT;div class="box-tools pull-right">      
+    &LT;div class="box-tools pull-right">
       &LT;button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">&LT;i class="fa fa-minus">&LT;/i>&LT;/button>
       &LT;button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">&LT;i class="fa fa-times">&LT;/i>&LT;/button>
     &LT;/div>&LT;!-- /.box-tools -->
@@ -974,7 +1001,7 @@
           <i class="fa fa-refresh fa-spin"></i>
         </div>
         <!-- end loading -->
-      </div><!-- /.box -->                
+      </div><!-- /.box -->
     </div><!-- /.col -->
 
     <div class="col-md-6">
@@ -990,11 +1017,11 @@
           <i class="fa fa-refresh fa-spin"></i>
         </div>
         <!-- end loading -->
-      </div><!-- /.box -->                
+      </div><!-- /.box -->
     </div><!-- /.col -->
   </div><!-- /.row -->
   <p class="lead">
-    To simulate a loading state, simply place this code before the <code>.box</code> closing tag.              
+    To simulate a loading state, simply place this code before the <code>.box</code> closing tag.
   </p>
   <pre class="prettyprint"><code class="html">&LT;div class="overlay">
   &LT;i class="fa fa-refresh fa-spin">&LT;/i>
@@ -1042,7 +1069,7 @@
               <div class="direct-chat-text">
                 You better believe it!
               </div><!-- /.direct-chat-text -->
-            </div><!-- /.direct-chat-msg -->                    
+            </div><!-- /.direct-chat-msg -->
           </div><!--/.direct-chat-messages-->
 
           <!-- Contacts are loaded here -->
@@ -1059,7 +1086,7 @@
                     <span class='contacts-list-msg'>How have you been? I was...</span>
                   </div><!-- /.contacts-list-info -->
                 </a>
-              </li><!-- End Contact Item -->                      
+              </li><!-- End Contact Item -->
             </ul><!-- /.contatcts-list -->
           </div><!-- /.direct-chat-pane -->
         </div><!-- /.box-body -->
@@ -1113,7 +1140,7 @@
               <div class="direct-chat-text">
                 You better believe it!
               </div><!-- /.direct-chat-text -->
-            </div><!-- /.direct-chat-msg -->                    
+            </div><!-- /.direct-chat-msg -->
           </div><!--/.direct-chat-messages-->
 
           <!-- Contacts are loaded here -->
@@ -1130,7 +1157,7 @@
                     <span class='contacts-list-msg'>How have you been? I was...</span>
                   </div><!-- /.contacts-list-info -->
                 </a>
-              </li><!-- End Contact Item -->                      
+              </li><!-- End Contact Item -->
             </ul><!-- /.contatcts-list -->
           </div><!-- /.direct-chat-pane -->
         </div><!-- /.box-body -->
@@ -1184,7 +1211,7 @@
               <div class="direct-chat-text">
                 You better believe it!
               </div><!-- /.direct-chat-text -->
-            </div><!-- /.direct-chat-msg -->                    
+            </div><!-- /.direct-chat-msg -->
           </div><!--/.direct-chat-messages-->
 
           <!-- Contacts are loaded here -->
@@ -1201,7 +1228,7 @@
                     <span class='contacts-list-msg'>How have you been? I was...</span>
                   </div><!-- /.contacts-list-info -->
                 </a>
-              </li><!-- End Contact Item -->                      
+              </li><!-- End Contact Item -->
             </ul><!-- /.contatcts-list -->
           </div><!-- /.direct-chat-pane -->
         </div><!-- /.box-body -->
@@ -1255,7 +1282,7 @@
               <div class="direct-chat-text">
                 You better believe it!
               </div><!-- /.direct-chat-text -->
-            </div><!-- /.direct-chat-msg -->                    
+            </div><!-- /.direct-chat-msg -->
           </div><!--/.direct-chat-messages-->
 
           <!-- Contacts are loaded here -->
@@ -1272,7 +1299,7 @@
                     <span class='contacts-list-msg'>How have you been? I was...</span>
                   </div><!-- /.contacts-list-info -->
                 </a>
-              </li><!-- End Contact Item -->                      
+              </li><!-- End Contact Item -->
             </ul><!-- /.contatcts-list -->
           </div><!-- /.direct-chat-pane -->
         </div><!-- /.box-body -->
@@ -1330,7 +1357,7 @@
         &LT;div class="direct-chat-text">
           You better believe it!
         &LT;/div>&LT;!-- /.direct-chat-text -->
-      &LT;/div>&LT;!-- /.direct-chat-msg -->                    
+      &LT;/div>&LT;!-- /.direct-chat-msg -->
     &LT;/div>&LT;!--/.direct-chat-messages-->
 
     &LT;!-- Contacts are loaded here -->
@@ -1347,7 +1374,7 @@
               &LT;span class='contacts-list-msg'>How have you been? I was...&LT;/span>
             &LT;/div>&LT;!-- /.contacts-list-info -->
           &LT;/a>
-        &LT;/li>&LT;!-- End Contact Item -->                      
+        &LT;/li>&LT;!-- End Contact Item -->
       &LT;/ul>&LT;!-- /.contatcts-list -->
     &LT;/div>&LT;!-- /.direct-chat-pane -->
   &LT;/div>&LT;!-- /.box-body -->
@@ -1365,7 +1392,7 @@
   <p>Of course you can use direct chat with a solid box by adding the class <code>solid-box</code> to the box. Here are a couple of examples:</p>
 
   <!-- Direct Chat With Solid Boxes -->
-  <div class="row">        
+  <div class="row">
     <div class="col-md-6">
       <!-- DIRECT CHAT WARNING -->
       <div class="box box-primary box-solid direct-chat direct-chat-primary">
@@ -1403,7 +1430,7 @@
               <div class="direct-chat-text">
                 You better believe it!
               </div><!-- /.direct-chat-text -->
-            </div><!-- /.direct-chat-msg -->                    
+            </div><!-- /.direct-chat-msg -->
           </div><!--/.direct-chat-messages-->
 
           <!-- Contacts are loaded here -->
@@ -1420,7 +1447,7 @@
                     <span class='contacts-list-msg'>How have you been? I was...</span>
                   </div><!-- /.contacts-list-info -->
                 </a>
-              </li><!-- End Contact Item -->                      
+              </li><!-- End Contact Item -->
             </ul><!-- /.contatcts-list -->
           </div><!-- /.direct-chat-pane -->
         </div><!-- /.box-body -->
@@ -1474,7 +1501,7 @@
               <div class="direct-chat-text">
                 You better believe it!
               </div><!-- /.direct-chat-text -->
-            </div><!-- /.direct-chat-msg -->                    
+            </div><!-- /.direct-chat-msg -->
           </div><!--/.direct-chat-messages-->
 
           <!-- Contacts are loaded here -->
@@ -1491,7 +1518,7 @@
                     <span class='contacts-list-msg'>How have you been? I was...</span>
                   </div><!-- /.contacts-list-info -->
                 </a>
-              </li><!-- End Contact Item -->                      
+              </li><!-- End Contact Item -->
             </ul><!-- /.contatcts-list -->
           </div><!-- /.direct-chat-pane -->
         </div><!-- /.box-body -->
