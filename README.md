@@ -92,6 +92,19 @@ AdminLTE 1.x can be easily upgraded to 2.x using [this guide](https://almsaeedst
 
 Change log
 ----------
+**v2.1.0:**
+- Update Ion Icons
+- Added right sidebar ```.control-sidebar```
+- Control sidebar has 2 open effects: slide over content and push content
+- Control sidebar converts to always slide over content on small screens
+- Added 6 new light sidebar skins
+- Updated demo menu
+- Added ChartJS preview page
+- Fixed some minor bugs
+- Added light control sidebar skin
+- Added expand on hover option for sidebar mini
+- Added fixed control sidebar layout
+
 **v2.0.5:**
 - Fixed issue #288
 

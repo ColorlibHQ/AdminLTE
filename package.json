@@ -1,6 +1,6 @@
 {
   "name": "admin-lte",
-  "version": "2.1.0-alpha-1",
+  "version": "2.1.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/almasaeed2010/AdminLTE.git"
