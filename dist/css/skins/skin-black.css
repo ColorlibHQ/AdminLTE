@@ -55,7 +55,7 @@
   border-right: 1px solid #eee;
 }
 .skin-black .main-header > .logo:hover {
-  background: #fcfcfc;
+  background-color: #fcfcfc;
 }
 @media (max-width: 767px) {
   .skin-black .main-header > .logo {
@@ -65,7 +65,7 @@
     border-right: none;
   }
   .skin-black .main-header > .logo:hover {
-    background: #1f1f1f;
+    background-color: #1f1f1f;
   }
 }
 .skin-black .main-header li.user-header {

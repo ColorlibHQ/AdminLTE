@@ -47,7 +47,7 @@
   border-bottom: 0px solid transparent;
 }
 .skin-blue-light .main-header .logo:hover {
-  background: #3b8ab8;
+  background-color: #3b8ab8;
 }
 .skin-blue-light .main-header li.user-header {
   background-color: #3c8dbc;
@@ -162,5 +162,5 @@
   border-bottom: 0px solid transparent;
 }
 .skin-blue.layout-top-nav .main-header > .logo:hover {
-  background: #3b8ab8;
+  background-color: #3b8ab8;
 }
