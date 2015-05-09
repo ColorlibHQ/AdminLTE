@@ -444,7 +444,6 @@ function _init() {
       //Listen to the click event
       btn.on('click', function (e) {
         e.preventDefault();
-        e.stopPropagation();
         //If the sidebar is not open
         if (!sidebar.hasClass('control-sidebar-open')
                 && !$('body').hasClass('control-sidebar-open')) {
@@ -475,9 +474,6 @@ function _init() {
       //Slide over content
       if (slide) {
         sidebar.addClass('control-sidebar-open');
-        $(document).on('click', function () {
-          _this.close(sidebar, slide);
-        });
       } else {
         //Push the content by adding the open class to the body instead 
         //of the sidebar itself
