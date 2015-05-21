@@ -1356,6 +1356,24 @@ AdminLTE/
     </div><!-- /.col -->
   </div><!-- /.row -->
 
+  <h4>Box Events</h4>
+  <p class="lead">
+    When a box is collapsed, expanded or removed, the following jQuery-events are triggered:
+  </p>
+  <ul>
+    <li><code>collapsed-box</code></li>
+    <li><code>expanded-box</code></li>
+    <li><code>removed-box</code></li>
+  </ul>
+  <p>You can subscribe to these events to do any required action (e.g. resource cleanup):</p>
+  <pre class='prettyprint'><code class='html'>&LT;script>
+  $(document).on('removed-box', function(event, box, clickedElement) {
+    var boxData = box.data();
+    // Do something with the box data or the box itself, e.g. remove the box from the DOM:
+    box.remove();
+  });
+&LT;/script></code></pre>
+
   <h4>Loading States</h4>
   <div class="row">
     <div class="col-md-6">
