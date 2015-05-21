@@ -556,6 +556,7 @@ function _init() {
         //Hide the content
         box_content.slideUp(300, function () {
           box.addClass("collapsed-box");
+          box.trigger('collapsed-box',[box, element]);
         });
       } else {
         //Convert plus into minus
@@ -565,13 +566,16 @@ function _init() {
         //Show the content
         box_content.slideDown(300, function () {
           box.removeClass("collapsed-box");
+          box.trigger('expanded-box',[box, element]);
         });
       }
     },
     remove: function (element) {
       //Find the box parent
       var box = element.parents(".box").first();
-      box.slideUp();
+      box.slideUp(300, function () {
+        box.trigger('removed-box',[box, element]);
+      });
     }
   };
 }
