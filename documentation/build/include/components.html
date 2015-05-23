@@ -985,6 +985,13 @@
 &LT;/div>&LT;!-- /.box --></pre>
     </div><!-- /.col -->
   </div><!-- /.row -->
+  <p>
+    If you inserted a box into the document after <code>app.js</code> was loaded, you have to activate
+    the collapse/remove buttons explicitly by calling <code>.activateBox()</code>:
+  </p>
+  <pre class='prettyprint'><code class='html'>&LT;script>
+    $("#box-widget").activateBox();
+&LT;/script></code></pre>
 
   <h4>Loading States</h4>
   <div class="row">

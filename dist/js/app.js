@@ -528,16 +528,19 @@ function _init() {
   $.AdminLTE.boxWidget = {
     selectors: $.AdminLTE.options.boxWidgetOptions.boxWidgetSelectors,
     icons: $.AdminLTE.options.boxWidgetOptions.boxWidgetIcons,
-    activate: function () {
+    activate: function (_box) {
       var _this = this;
+      if (! _box) {
+        _box = document; // activate all boxes per default
+      }
       //Listen for collapse event triggers
-      $(_this.selectors.collapse).on('click', function (e) {
+      $(_box).find(_this.selectors.collapse).on('click', function (e) {
         e.preventDefault();
         _this.collapse($(this));
       });
 
       //Listen for remove event triggers
-      $(_this.selectors.remove).on('click', function (e) {
+      $(_box).find(_this.selectors.remove).on('click', function (e) {
         e.preventDefault();
         _this.remove($(this));
       });
@@ -652,6 +655,23 @@ function _init() {
       settings.onLoadDone.call(box);
     }
 
+  };
+
+})(jQuery);
+
+/*
+ * EXPLICIT BOX ACTIVATION
+ * -----------------------
+ * This is a custom plugin to use with the component BOX. It allows you to activate
+ * a box inserted in the DOM after the app.js was loaded.
+ *
+ * @type plugin
+ * @usage $("#box-widget").activateBox();
+ */
+(function ($) {
+
+  $.fn.activateBox = function () {
+    $.AdminLTE.boxWidget.activate(this);
   };
 
 })(jQuery);
