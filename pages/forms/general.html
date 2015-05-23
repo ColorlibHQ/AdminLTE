@@ -12,7 +12,7 @@
     <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="../../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-    <!-- AdminLTE Skins. Choose a skin from the css/skins 
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link href="../../dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
 
@@ -25,7 +25,7 @@
   </head>
   <body class="skin-blue sidebar-mini">
     <div class="wrapper">
-      
+
       <header class="main-header">
         <!-- Logo -->
         <a href="../../index2.html" class="logo">
@@ -407,7 +407,7 @@
                 <li><a href="../examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
                 <li><a href="../examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
                 <li><a href="../examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-                <li><a href="../examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>                
+                <li><a href="../examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
               </ul>
             </li>
             <li class="treeview">
@@ -465,7 +465,7 @@
             <div class="col-md-6">
               <!-- general form elements -->
               <div class="box box-primary">
-                <div class="box-header">
+                <div class="box-header with-border">
                   <h3 class="box-title">Quick Example</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
@@ -499,7 +499,7 @@
 
               <!-- Form Element sizes -->
               <div class="box box-success">
-                <div class="box-header">
+                <div class="box-header with-border">
                   <h3 class="box-title">Different Height</h3>
                 </div>
                 <div class="box-body">
@@ -512,7 +512,7 @@
               </div><!-- /.box -->
 
               <div class="box box-danger">
-                <div class="box-header">
+                <div class="box-header with-border">
                   <h3 class="box-title">Different Width</h3>
                 </div>
                 <div class="box-body">
@@ -532,7 +532,7 @@
 
               <!-- Input addon -->
               <div class="box box-info">
-                <div class="box-header">
+                <div class="box-header with-border">
                   <h3 class="box-title">Input Addon</h3>
                 </div>
                 <div class="box-body">
@@ -624,9 +624,45 @@
             </div><!--/.col (left) -->
             <!-- right column -->
             <div class="col-md-6">
+              <!-- Horizontal Form -->
+              <div class="box box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Horizontal Form</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                      <div class="col-sm-10">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                      <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox"> Remember me
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- /.box-body -->
+                  <div class="box-footer">
+                    <button type="submit" class="btn btn-default">Cancel</button>
+                    <button type="submit" class="btn btn-info pull-right">Sign in</button>
+                  </div><!-- /.box-footer -->
+                </form>
+              </div><!-- /.box -->
               <!-- general form elements disabled -->
               <div class="box box-warning">
-                <div class="box-header">
+                <div class="box-header with-border">
                   <h3 class="box-title">General Elements</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -768,13 +804,13 @@
         </div>
         <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
       </footer>
-      
-      <!-- Control Sidebar -->      
-      <aside class="control-sidebar control-sidebar-dark">                
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
           <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-          
+
           <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
         </ul>
         <!-- Tab panes -->
@@ -821,59 +857,59 @@
               </li>
             </ul><!-- /.control-sidebar-menu -->
 
-            <h3 class="control-sidebar-heading">Tasks Progress</h3> 
+            <h3 class="control-sidebar-heading">Tasks Progress</h3>
             <ul class='control-sidebar-menu'>
               <li>
-                <a href='javascript::;'>               
+                <a href='javascript::;'>
                   <h4 class="control-sidebar-subheading">
                     Custom Template Design
                     <span class="label label-danger pull-right">70%</span>
                   </h4>
                   <div class="progress progress-xxs">
                     <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                  </div>                                    
+                  </div>
                 </a>
-              </li> 
+              </li>
               <li>
-                <a href='javascript::;'>               
+                <a href='javascript::;'>
                   <h4 class="control-sidebar-subheading">
                     Update Resume
                     <span class="label label-success pull-right">95%</span>
                   </h4>
                   <div class="progress progress-xxs">
                     <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-                  </div>                                    
+                  </div>
                 </a>
-              </li> 
+              </li>
               <li>
-                <a href='javascript::;'>               
+                <a href='javascript::;'>
                   <h4 class="control-sidebar-subheading">
                     Laravel Integration
                     <span class="label label-waring pull-right">50%</span>
                   </h4>
                   <div class="progress progress-xxs">
                     <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-                  </div>                                    
+                  </div>
                 </a>
-              </li> 
+              </li>
               <li>
-                <a href='javascript::;'>               
+                <a href='javascript::;'>
                   <h4 class="control-sidebar-subheading">
                     Back End Framework
                     <span class="label label-primary pull-right">68%</span>
                   </h4>
                   <div class="progress progress-xxs">
                     <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-                  </div>                                    
+                  </div>
                 </a>
-              </li>               
-            </ul><!-- /.control-sidebar-menu -->         
+              </li>
+            </ul><!-- /.control-sidebar-menu -->
 
           </div><!-- /.tab-pane -->
           <!-- Stats tab content -->
           <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
           <!-- Settings tab content -->
-          <div class="tab-pane" id="control-sidebar-settings-tab">            
+          <div class="tab-pane" id="control-sidebar-settings-tab">
             <form method="post">
               <h3 class="control-sidebar-heading">General Settings</h3>
               <div class="form-group">
@@ -912,21 +948,21 @@
                 <label class="control-sidebar-subheading">
                   Show me as online
                   <input type="checkbox" class="pull-right" checked />
-                </label>                
+                </label>
               </div><!-- /.form-group -->
 
               <div class="form-group">
                 <label class="control-sidebar-subheading">
                   Turn off notifications
                   <input type="checkbox" class="pull-right" />
-                </label>                
+                </label>
               </div><!-- /.form-group -->
 
               <div class="form-group">
                 <label class="control-sidebar-subheading">
                   Delete chat history
                   <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-                </label>                
+                </label>
               </div><!-- /.form-group -->
             </form>
           </div><!-- /.tab-pane -->
