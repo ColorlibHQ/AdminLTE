@@ -532,12 +532,8 @@ function _init() {
   $.AdminLTE.boxWidget = {
     selectors: $.AdminLTE.options.boxWidgetOptions.boxWidgetSelectors,
     icons: $.AdminLTE.options.boxWidgetOptions.boxWidgetIcons,
-<<<<<<< HEAD
-    animationSpeed: $.AdminLTE.options.animationSpeed,
-    activate: function () {
-=======
+    animationSpeed: $.AdminLTE.options.animationSpeed,    
     activate: function (_box) {
->>>>>>> refs/remotes/origin/master
       var _this = this;
       if (! _box) {
         _box = document; // activate all boxes per default
