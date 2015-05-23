@@ -11,6 +11,9 @@
   position: relative;
   z-index: 30;
 }
+.nth-2-center > tbody > tr > td:last-of-type {
+  text-align: center!important;
+}
 .content {  
   font-size: 16px;
   z-index: 500;

@@ -52,9 +52,12 @@ $(function () {
     }
   });
   //Skin switcher
-  $('#layout-skins-list a').click(function(e) {
+  var current_skin = "skin-blue";
+  $('#layout-skins-list [data-skin]').click(function(e) {
     e.preventDefault();
-    var skinName = $(this).siblings('code').text();
-    $('body').attr('class', skinName + ' fixed');
+    var skinName = $(this).data('skin');
+    $('body').removeClass(current_skin);
+    $('body').addClass(skinName);
+    current_skin = skinName;
   });
 });
