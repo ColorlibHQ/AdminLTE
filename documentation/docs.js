@@ -51,4 +51,10 @@ $(function () {
       }, 500);
     }
   });
+  //Skin switcher
+  $('#layout-skins-list a').click(function(e) {
+    e.preventDefault();
+    var skinName = $(this).siblings('code').text();
+    $('body').attr('class', skinName + ' fixed');
+  });
 });
