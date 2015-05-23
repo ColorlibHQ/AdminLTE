@@ -23,8 +23,7 @@ module.exports = function (grunt) {
       options: {
         sourcemap: 'none',
         compass: false,
-        style: 'expanded',
-        update: true
+        style: 'expanded'
       },
       development: {
         files: {
