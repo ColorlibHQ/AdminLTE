@@ -1,0 +1,76 @@
+/*!
+ *   AdminLTE v2.1.0
+ *   Author: Almsaeed Studio
+ *   Website: Almsaeed Studio <http://almsaeedstudio.com>
+ *   License: Open source - MIT
+ *           Please visit http://opensource.org/licenses/MIT for more information
+!*/
+
+//google fonts
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
+
+//Bootstrap Variables & Mixins
+//The core bootstrap code have not been modified. These files
+//are included only for reference.
+
+//https://github.com/sass/sass/issues/1317
+// @import (reference) "../bootstrap-sass/mixins";
+// @import (reference) "../bootstrap-sass/variables";
+@import "../bootstrap-sass/mixins/clearfix";
+@import "../bootstrap-sass/mixins/vendor-prefixes";
+@import "../bootstrap-sass/mixins/grid";
+@import "../bootstrap-sass/mixins/border-radius";
+@import "../bootstrap-sass/mixins/progress-bar";
+@import "../bootstrap-sass/mixins/gradients";
+@import "../bootstrap-sass/mixins/opacity";
+@import "../bootstrap-sass/mixins/buttons";
+@import "../bootstrap-sass/variables";
+
+//MISC
+//----
+@import "variables";
+@import "core";
+@import "mixins";
+
+//COMPONENTS
+//-----------
+@import "header";
+@import "sidebar";
+@import "sidebar-mini";
+@import "control-sidebar";
+@import "dropdown";
+@import "forms";
+@import "progress-bars";
+@import "small-box";
+@import "boxes";
+@import "info-box";
+@import "timeline";
+@import "buttons";
+@import "callout";
+@import "alerts";
+@import "navs";
+@import "products";
+@import "table";
+@import "labels";
+@import "direct-chat";
+@import "users-list";
+@import "carousel";
+@import "modal";
+
+//PAGES
+//------
+@import "mailbox";
+@import "lockscreen";
+@import "login_and_register";
+@import "404_500_errors";
+@import "invoice";
+
+//Plugins
+//--------
+@import "bootstrap-social";
+@import "fullcalendar";
+
+//Miscellaneous
+//-------------
+@import "miscellaneous";
+@import "print";

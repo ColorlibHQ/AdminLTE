@@ -7,3 +7,4 @@ TODO
 *.zip
 test.html
 *.log
+.sass-cache
