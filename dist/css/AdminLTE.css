@@ -1928,6 +1928,9 @@ a:focus {
 .box-input {
   max-width: 200px;
 }
+.modal .panel-body {
+  color: #444;
+}
 /*
  * Component: Info Box
  * -------------------
