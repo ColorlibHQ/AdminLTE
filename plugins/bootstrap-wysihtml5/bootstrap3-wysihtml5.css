@@ -100,3 +100,18 @@ ul.wysihtml5-toolbar div[data-wysihtml5-command-value="blue"] {
 ul.wysihtml5-toolbar div[data-wysihtml5-command-value="orange"] {
   background: orange !important;
 }
+
+.glyphicon-quote:before {
+  content: "\201C";
+  font-family: Georgia, serif;
+  font-size: 50px;
+  position: absolute;
+  top: -4px;
+  left: -3px;
+  max-height: 100%;
+}
+
+.glyphicon-quote:after {
+  content: "\0000a0";
+}
+
