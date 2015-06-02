@@ -3706,7 +3706,7 @@ table.text-center th {
 .alert-info,
 .label-danger,
 .label-info,
-.label-waring,
+.label-warning,
 .label-primary,
 .label-success,
 .modal-primary .modal-body,
@@ -3744,7 +3744,7 @@ table.text-center th {
 .bg-yellow,
 .callout.callout-warning,
 .alert-warning,
-.label-waring,
+.label-warning,
 .modal-warning .modal-body {
   background-color: #f39c12 !important;
 }
