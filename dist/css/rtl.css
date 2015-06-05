@@ -67,8 +67,16 @@ h4 {
 .main-header .navbar-right {
     float: left;
 }
-/* Menu */
 
+/* Menu */
+.skin-blue .sidebar-menu>li>a {
+  border-right: 3px solid rgba(0, 0, 0, 0);
+  border-left: none;
+}
+.skin-blue .sidebar-menu>li:hover>a, 
+.skin-blue .sidebar-menu>li.active>a {
+    border-right-color: #3C8DBC;
+}
 .sidebar-menu>li>a {
     padding: 12px 15px 12px 15px;
 }
@@ -115,6 +123,9 @@ h4 {
 .control-sidebar-menu .menu-info {
     margin-right: 45px;
     margin-left: 0;
+}
+.navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>div>img {
+      margin: auto auto auto 10px;
 }
 .navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>p,
 .navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>h4 {
@@ -220,7 +231,8 @@ h4 {
         margin-right: 50px;
     }
     .sidebar-mini.sidebar-collapse .sidebar-menu>li:not(.treeview)>a>span {
-        border-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 4px;
     }
 }
 @media (max-width: 767px) {
