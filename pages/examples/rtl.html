@@ -1,21 +1,28 @@
 <!DOCTYPE html>
-<html dir="rtl">
+<html>
   <head>
     <meta charset="UTF-8">
-    <title>AdminLTE 2 | Collapsed Sidebar Layout</title>
+    <title>AdminLTE 2 | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.4 -->
-    <link href="../../bootstrap/css/bootstrap-rtl.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Bootstrap RTL 3.2.0 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.2.0-rc2/css/bootstrap-rtl.min.css" rel="stylesheet" type="text/css" />
+
     <!-- Font Awesome Icons -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
     <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
-    <link href="../../dist/css/AdminLTE-rtl.min.css" rel="stylesheet" type="text/css" />
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
+    <link href="../../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
     <link href="../../dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- RTL Theme style -->
+    <link href="../../dist/css/rtl-min.css" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,11 +31,10 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <!-- ADD THE CLASS sidedar-collapse TO HIDE THE SIDEBAR PRIOR TO LOADING THE SITE -->
   <body class="skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
-
+      
       <header class="main-header">
         <!-- Logo -->
         <a href="../../index2.html" class="logo">
@@ -55,25 +61,25 @@
                   <span class="label label-success">4</span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">You have 4 messages</li>
+                  <li class="header">لديك 4 رسائل</li>
                   <li>
                     <!-- inner menu: contains the actual data -->
                     <ul class="menu">
                       <li><!-- start message -->
                         <a href="#">
-                          <div class="pull-left">
+                          <div class="pull-right">
                             <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
                           </div>
                           <h4>
-                            Support Team
-                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                            فريق الدعم
+                            <small><i class="fa fa-clock-o"></i> 5 دقائق</small>
                           </h4>
-                          <p>Why not buy a new awesome theme?</p>
+                          <p>لماذا لا تشتري سمة جديدة؟</p>
                         </a>
                       </li><!-- end message -->
                     </ul>
                   </li>
-                  <li class="footer"><a href="#">See All Messages</a></li>
+                  <li class="footer"><a href="#">جميع الرسائل</a></li>
                 </ul>
               </li>
               <!-- Notifications: style can be found in dropdown.less -->
@@ -83,18 +89,18 @@
                   <span class="label label-warning">10</span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">You have 10 notifications</li>
+                  <li class="header">لديك 10 الإشعارات</li>
                   <li>
                     <!-- inner menu: contains the actual data -->
                     <ul class="menu">
                       <li>
                         <a href="#">
-                          <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                          <i class="fa fa-users text-aqua"></i> انضموا 5 أعضاء جدد اليوم
                         </a>
                       </li>
                     </ul>
                   </li>
-                  <li class="footer"><a href="#">View all</a></li>
+                  <li class="footer"><a href="#">مشاهدة الكل</a></li>
                 </ul>
               </li>
               <!-- Tasks: style can be found in dropdown.less -->
@@ -104,19 +110,19 @@
                   <span class="label label-danger">9</span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">You have 9 tasks</li>
+                  <li class="header">لديك 9 مهام</li>
                   <li>
                     <!-- inner menu: contains the actual data -->
                     <ul class="menu">
                       <li><!-- Task item -->
                         <a href="#">
                           <h3>
-                            Design some buttons
-                            <small class="pull-right">20%</small>
+                            تصميم بعض الأزرار
+                            <small class="pull-left">20%</small>
                           </h3>
                           <div class="progress xs">
                             <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                              <span class="sr-only">20% Complete</span>
+                              <span class="sr-only">20% كامل</span>
                             </div>
                           </div>
                         </a>
@@ -124,7 +130,7 @@
                     </ul>
                   </li>
                   <li class="footer">
-                    <a href="#">View all tasks</a>
+                    <a href="#">عرض كافة المهام</a>
                   </li>
                 </ul>
               </li>
@@ -132,36 +138,36 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs">Alexander Pierce</span>
+                  <span class="hidden-xs">الكسندر بيرس</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
                     <p>
-                      Alexander Pierce - Web Developer
-                      <small>Member since Nov. 2012</small>
+                      الكسندر بيرس - مطور ويب
+                      <small>عضو منذ نوفمبر. 2012</small>
                     </p>
                   </li>
                   <!-- Menu Body -->
                   <li class="user-body">
                     <div class="col-xs-4 text-center">
-                      <a href="#">Followers</a>
+                      <a href="#">متابعون</a>
                     </div>
                     <div class="col-xs-4 text-center">
-                      <a href="#">Sales</a>
+                      <a href="#">مبيعات</a>
                     </div>
                     <div class="col-xs-4 text-center">
-                      <a href="#">Friends</a>
+                      <a href="#">أصدقاء</a>
                     </div>
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                    <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="#" class="btn btn-default btn-flat">الملف الشخصي</a>
+                    </div>
+                    <div class="pull-left">
+                      <a href="#" class="btn btn-default btn-flat">تسجيل الخروج</a>
                     </div>
                   </li>
                 </ul>
@@ -183,19 +189,19 @@
         <section class="sidebar">
           <!-- Sidebar user panel -->
           <div class="user-panel">
-            <div class="pull-left image">
+            <div class="pull-right image">
               <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
             </div>
-            <div class="pull-left info">
-              <p>Alexander Pierce</p>
+            <div class="pull-right info">
+              <p>الكسندر بيرس</p>
 
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+              <a href="#"><i class="fa fa-circle text-success"></i> متصل</a>
             </div>
           </div>
           <!-- search form -->
           <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search..."/>
+              <input type="text" name="q" class="form-control" placeholder="بحث..."/>
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
@@ -204,39 +210,39 @@
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header">الواجهة الرئيسية</li>
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-left"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
                 <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
               </ul>
             </li>
-            <li class="treeview active">
+            <li class="treeview">
               <a href="#">
                 <i class="fa fa-files-o"></i>
                 <span>Layout Options</span>
-                <span class="label label-primary pull-right">4</span>
+                <span class="label label-primary pull-left">4</span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                <li><a href="boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                <li><a href="fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                <li class="active"><a href="collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+                <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
+                <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
+                <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
+                <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
               </ul>
             </li>
             <li>
               <a href="../widgets.html">
-                <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">new</small>
+                <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-left bg-green">Hot</small>
               </a>
-            </li>
+            </li>            
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-pie-chart"></i>
                 <span>Charts</span>
-                <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-angle-left pull-left"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
@@ -244,12 +250,12 @@
                 <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
                 <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
               </ul>
-            </li>
+            </li>            
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i>
                 <span>UI Elements</span>
-                <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-angle-left pull-left"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="../UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
@@ -263,7 +269,7 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-edit"></i> <span>Forms</span>
-                <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-angle-left pull-left"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="../forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
@@ -274,7 +280,7 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-table"></i> <span>Tables</span>
-                <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-angle-left pull-left"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="../tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
@@ -284,43 +290,44 @@
             <li>
               <a href="../calendar.html">
                 <i class="fa fa-calendar"></i> <span>Calendar</span>
-                <small class="label pull-right bg-red">3</small>
+                <small class="label pull-left bg-red">3</small>
               </a>
             </li>
             <li>
               <a href="../mailbox/mailbox.html">
                 <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                <small class="label pull-right bg-yellow">12</small>
+                <small class="label pull-left bg-yellow">12</small>
               </a>
             </li>
-            <li class="treeview">
+            <li class="treeview active">
               <a href="#">
                 <i class="fa fa-folder"></i> <span>Examples</span>
-                <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-angle-left pull-left"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="../examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-                <li><a href="../examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-                <li><a href="../examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-                <li><a href="../examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-                <li><a href="../examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-                <li><a href="../examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-                <li><a href="../examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
+                <li><a href="invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
+                <li><a href="login.html"><i class="fa fa-circle-o"></i> Login</a></li>
+                <li><a href="register.html"><i class="fa fa-circle-o"></i> Register</a></li>
+                <li><a href="lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
+                <li><a href="404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
+                <li><a href="500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
+                <li><a href="blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
+                <li class="active"><a href="rtl.html"><i class="fa fa-circle-o"></i> RTL Page</a></li>
               </ul>
             </li>
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-share"></i> <span>Multilevel</span>
-                <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-angle-left pull-left"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
                 <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Level One <i class="fa fa-angle-left pull-right"></i></a>
+                  <a href="#"><i class="fa fa-circle-o"></i> Level One <i class="fa fa-angle-left pull-left"></i></a>
                   <ul class="treeview-menu">
                     <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
                     <li>
-                      <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
+                      <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-left"></i></a>
                       <ul class="treeview-menu">
                         <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
@@ -348,8 +355,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Sidebar Collapsed
-            <small>Layout with collapsed sidebar on load</small>
+            صفحة فارغة
+            <small>كل شيء يبدأ هنا</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -360,24 +367,21 @@
 
         <!-- Main content -->
         <section class="content">
-          <div class="callout callout-info">
-            <h4>Tip!</h4>
-            <p>Add the sidebar-collapse class to the body tag to get this layout. You should combine this option with a fixed layout if you have a long sidebar. Doing that will prevent your page content from getting stretched vertically.</p>
-          </div>
+
           <!-- Default box -->
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Title</h3>
-              <div class="box-tools pull-right">
+              <h3 class="box-title">العنوان</h3>
+              <div class="box-tools pull-left">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
                 <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
               </div>
             </div>
             <div class="box-body">
-              Start creating your amazing application!
+              البدء في إنشاء التطبيق الخاص بك!
             </div><!-- /.box-body -->
             <div class="box-footer">
-              Footer
+              أسفل الصفحة
             </div><!-- /.box-footer-->
           </div><!-- /.box -->
 
@@ -385,14 +389,14 @@
       </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
-        <div class="pull-right hidden-xs">
+        <div class="pull-left hidden-xs">
           <b>Version</b> 2.0
         </div>
         <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
       </footer>
-
-      <!-- Control Sidebar -->
-      <aside class="control-sidebar control-sidebar-dark">
+      
+      <!-- Control Sidebar -->      
+      <aside class="control-sidebar control-sidebar-dark">                
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
           <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
@@ -443,65 +447,65 @@
               </li>
             </ul><!-- /.control-sidebar-menu -->
 
-            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <h3 class="control-sidebar-heading">Tasks Progress</h3> 
             <ul class='control-sidebar-menu'>
               <li>
-                <a href='javascript::;'>
+                <a href='javascript::;'>               
                   <h4 class="control-sidebar-subheading">
                     Custom Template Design
-                    <span class="label label-danger pull-right">70%</span>
+                    <span class="label label-danger pull-left">70%</span>
                   </h4>
                   <div class="progress progress-xxs">
                     <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                  </div>
+                  </div>                                    
                 </a>
-              </li>
+              </li> 
               <li>
-                <a href='javascript::;'>
+                <a href='javascript::;'>               
                   <h4 class="control-sidebar-subheading">
                     Update Resume
-                    <span class="label label-success pull-right">95%</span>
+                    <span class="label label-success pull-left">95%</span>
                   </h4>
                   <div class="progress progress-xxs">
                     <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-                  </div>
+                  </div>                                    
                 </a>
-              </li>
+              </li> 
               <li>
-                <a href='javascript::;'>
+                <a href='javascript::;'>               
                   <h4 class="control-sidebar-subheading">
                     Laravel Integration
-                    <span class="label label-warning pull-right">50%</span>
+                    <span class="label label-warning pull-left">50%</span>
                   </h4>
                   <div class="progress progress-xxs">
                     <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-                  </div>
+                  </div>                                    
                 </a>
-              </li>
+              </li> 
               <li>
-                <a href='javascript::;'>
+                <a href='javascript::;'>               
                   <h4 class="control-sidebar-subheading">
                     Back End Framework
-                    <span class="label label-primary pull-right">68%</span>
+                    <span class="label label-primary pull-left">68%</span>
                   </h4>
                   <div class="progress progress-xxs">
                     <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-                  </div>
+                  </div>                                    
                 </a>
-              </li>
-            </ul><!-- /.control-sidebar-menu -->
+              </li>               
+            </ul><!-- /.control-sidebar-menu -->         
 
           </div><!-- /.tab-pane -->
           <!-- Stats tab content -->
           <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
           <!-- Settings tab content -->
-          <div class="tab-pane" id="control-sidebar-settings-tab">
+          <div class="tab-pane" id="control-sidebar-settings-tab">            
             <form method="post">
               <h3 class="control-sidebar-heading">General Settings</h3>
               <div class="form-group">
                 <label class="control-sidebar-subheading">
                   Report panel usage
-                  <input type="checkbox" class="pull-right" checked />
+                  <input type="checkbox" class="pull-left" checked />
                 </label>
                 <p>
                   Some information about this general settings option
@@ -511,7 +515,7 @@
               <div class="form-group">
                 <label class="control-sidebar-subheading">
                   Allow mail redirect
-                  <input type="checkbox" class="pull-right" checked />
+                  <input type="checkbox" class="pull-left" checked />
                 </label>
                 <p>
                   Other sets of options are available
@@ -521,7 +525,7 @@
               <div class="form-group">
                 <label class="control-sidebar-subheading">
                   Expose author name in posts
-                  <input type="checkbox" class="pull-right" checked />
+                  <input type="checkbox" class="pull-left" checked />
                 </label>
                 <p>
                   Allow the user to show his name in blog posts
@@ -533,22 +537,22 @@
               <div class="form-group">
                 <label class="control-sidebar-subheading">
                   Show me as online
-                  <input type="checkbox" class="pull-right" checked />
-                </label>
+                  <input type="checkbox" class="pull-left" checked />
+                </label>                
               </div><!-- /.form-group -->
 
               <div class="form-group">
                 <label class="control-sidebar-subheading">
                   Turn off notifications
-                  <input type="checkbox" class="pull-right" />
-                </label>
+                  <input type="checkbox" class="pull-left" />
+                </label>                
               </div><!-- /.form-group -->
 
               <div class="form-group">
                 <label class="control-sidebar-subheading">
                   Delete chat history
-                  <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-                </label>
+                  <a href="javascript::;" class="text-red pull-left"><i class="fa fa-trash-o"></i></a>
+                </label>                
               </div><!-- /.form-group -->
             </form>
           </div><!-- /.tab-pane -->
@@ -569,7 +573,8 @@
     <script src='../../plugins/fastclick/fastclick.min.js'></script>
     <!-- AdminLTE App -->
     <script src="../../dist/js/app.min.js" type="text/javascript"></script>
-    <!-- AdminLTE for demo purposes -->
+    
+    <!-- Demo -->
     <script src="../../dist/js/demo.js" type="text/javascript"></script>
   </body>
 </html>
