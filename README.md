@@ -92,6 +92,13 @@ AdminLTE 1.x can be easily upgraded to 2.x using [this guide](https://almsaeedst
 
 Change log
 ----------
+**v2.1.2:**
+- Added explicit BoxWidget activation function issue #450
+- Crushed some bugs
+
+**v2.1.1:**
+- Fix version error
+
 **v2.1.0:**
 - Update Ion Icons
 - Added right sidebar ```.control-sidebar```
