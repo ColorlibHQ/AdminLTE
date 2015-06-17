@@ -1,4 +1,8 @@
 CHANGE LOG:
+v2.2.0:
+- Added support for [Select2](https://select2.github.io/)
+
+
 v2.1.2:
 - Added explicit BoxWidget activation function issue #450
 - Crushed some bugs
