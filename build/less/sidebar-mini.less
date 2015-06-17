@@ -54,7 +54,7 @@
               //overflow: visible;
             }
             > a > span:not(.pull-right),
-            > .treeview-menu {
+              > .treeview-menu {
               display: block!important;
               position: absolute;
               width: @sidebar-width - 50;
@@ -85,6 +85,7 @@
       .sidebar-menu >li > a > .pull-right,
       .sidebar-menu li.header {
         display: none!important;
+        -webkit-transform: translateZ(0);
       }
 
       .main-header {
