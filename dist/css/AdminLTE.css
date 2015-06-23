@@ -1974,6 +1974,9 @@ a:focus {
   line-height: 90px;
   background: rgba(0, 0, 0, 0.2);
 }
+.info-box-icon > img {
+  max-width: 100%;
+}
 .info-box-content {
   padding: 5px 10px;
   margin-left: 90px;
