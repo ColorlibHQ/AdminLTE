@@ -29,5 +29,31 @@
     "bower_components",
     "composer.json",
     "documentation"
-  ]
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "seiyria-bootstrap-slider": "~4.10.1",
+    "bootstrap-wysihtml5": "*",
+    "chartjs": "~1.0.2",
+    "ckeditor": "~4.4.7",
+    "mjolnic-bootstrap-colorpicker": "~2.2.0",
+    "datatables": "~1.10.7",
+    "bootstrap-datepicker": "eternicode/bootstrap-datepicker#~1.4.0",
+    "bootstrap-daterangepicker": "~1.3.22",
+    "fastclick": "~1.0.6",
+    "flot": "~0.8.3",
+    "fullcalendar": "~2.3.2",
+    "iCheck": "~1.0.2",
+    "jquery.inputmask": "RobinHerbots/jquery.inputmask#~3.1.63",
+    "ion.rangeSlider": "IonDen/ion.rangeSlider#~2.0.10",
+    "jquery-ui": "~1.11.4",
+    "jvectormap": "~2.0.2",
+    "jquery-knob": "~1.2.11",
+    "morrisjs": "~0.5.1",
+    "pace": "~1.0.2",
+    "select2": "~4.0.0",
+    "slimScroll": "~1.3.6",
+    "sparkline": "~2.1.2",
+    "bootstrap-timepicker": "jdewit/bootstrap-timepicker#~0.2.6"
+  }
 }
