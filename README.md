@@ -92,7 +92,7 @@ AdminLTE 1.x can be easily upgraded to 2.x using [this guide](https://almsaeedst
 
 Change log
 ----------
-**v2.1.3**
+**v2.2.0**
 - Bug fixes
 - Added support for [Select2](https://select2.github.io/)
 - Updated ChartJS
