@@ -99,7 +99,7 @@
 .navbar-nav > .notifications-menu {
   > .dropdown-menu > li .menu {
     // Links inside the menu
-    > li > a {      
+    > li > a {
       color: #444444;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -152,6 +152,8 @@
         margin: 0 0 0 45px;
         font-size: 12px;
         color: #888888;
+        word-wrap: break-word;
+        white-space: normal;
       }
 
       .clearfix();
@@ -183,11 +185,11 @@
 //User menu
 .navbar-nav > .user-menu {
   > .dropdown-menu {
-    .border-top-radius(0);    
+    .border-top-radius(0);
     padding: 1px 0 0 0;
     border-top-width: 0;
     width: 280px;
-    
+
     &,
     > .user-body {
       .border-bottom-radius(4px);
