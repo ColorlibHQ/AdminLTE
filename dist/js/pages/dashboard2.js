@@ -158,7 +158,7 @@ $(function () {
     tooltipTemplate: "<%=value %> <%=label%> users"
   };
   //Create pie or douhnut chart
-  // You can switch between pie and douhnut using the method below.  
+  // You can switch between pie and douhnut using the method below.
   pieChart.Doughnut(PieData, pieOptions);
   //-----------------
   //- END PIE CHART -
