@@ -317,9 +317,9 @@ function _init() {
         //Enable sidebar push menu
         if ($(window).width() > (screenSizes.sm - 1)) {
           if ($("body").hasClass('sidebar-collapse')) {
-              $("body").removeClass('sidebar-collapse').trigger('expanded.pushMenu');
+            $("body").removeClass('sidebar-collapse').trigger('expanded.pushMenu');
           } else {
-              $("body").addClass('sidebar-collapse').trigger('collapsed.pushMenu');
+            $("body").addClass('sidebar-collapse').trigger('collapsed.pushMenu');
           }
         }
         //Handle sidebar push menu for small screens
@@ -534,10 +534,10 @@ function _init() {
   $.AdminLTE.boxWidget = {
     selectors: $.AdminLTE.options.boxWidgetOptions.boxWidgetSelectors,
     icons: $.AdminLTE.options.boxWidgetOptions.boxWidgetIcons,
-    animationSpeed: $.AdminLTE.options.animationSpeed,    
+    animationSpeed: $.AdminLTE.options.animationSpeed,
     activate: function (_box) {
       var _this = this;
-      if (! _box) {
+      if (!_box) {
         _box = document; // activate all boxes per default
       }
       //Listen for collapse event triggers
@@ -578,7 +578,7 @@ function _init() {
         });
       }
     },
-    remove: function (element) {     
+    remove: function (element) {
       //Find the box parent
       var box = element.parents(".box").first();
       box.slideUp(this.animationSpeed);

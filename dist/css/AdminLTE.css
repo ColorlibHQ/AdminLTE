@@ -1281,6 +1281,20 @@ a:focus {
 .icheck > label {
   padding-left: 0;
 }
+/* support Font Awesome icons in form-control */
+.form-control-feedback.fa {
+  line-height: 34px;
+}
+.input-lg + .form-control-feedback.fa,
+.input-group-lg + .form-control-feedback.fa,
+.form-group-lg .form-control + .form-control-feedback.fa {
+  line-height: 46px;
+}
+.input-sm + .form-control-feedback.fa,
+.input-group-sm + .form-control-feedback.fa,
+.form-group-sm .form-control + .form-control-feedback.fa {
+  line-height: 30px;
+}
 /*
  * Component: Progress Bar
  * -----------------------
@@ -3139,55 +3153,59 @@ table.text-center th {
   margin-top: 0;
 }
 /*
- * Plugin: Social Buttons
- * ----------------------
+ * Social Buttons for Bootstrap
+ *
+ * Copyright 2013-2015 Panayiotis Lipiridis
+ * Licensed under the MIT License
+ *
+ * https://github.com/lipis/bootstrap-social
  */
 .btn-social {
   position: relative;
-  padding-left: 44px !important;
+  padding-left: 44px;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.btn-social :first-child {
+.btn-social > :first-child {
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 32px !important;
-  line-height: 34px !important;
-  font-size: 1.6em!important;
+  width: 32px;
+  line-height: 34px;
+  font-size: 1.6em;
   text-align: center;
   border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 .btn-social.btn-lg {
-  padding-left: 61px !important;
+  padding-left: 61px;
 }
-.btn-social.btn-lg :first-child {
+.btn-social.btn-lg > :first-child {
   line-height: 45px;
   width: 45px;
   font-size: 1.8em;
 }
 .btn-social.btn-sm {
-  padding-left: 38px !important;
+  padding-left: 38px;
 }
-.btn-social.btn-sm :first-child {
+.btn-social.btn-sm > :first-child {
   line-height: 28px;
   width: 28px;
   font-size: 1.4em;
 }
 .btn-social.btn-xs {
-  padding-left: 30px !important;
+  padding-left: 30px;
 }
-.btn-social.btn-xs :first-child {
+.btn-social.btn-xs > :first-child {
   line-height: 20px;
   width: 20px;
   font-size: 1.2em;
 }
 .btn-social-icon {
   position: relative;
-  padding-left: 44px !important;
+  padding-left: 44px;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
@@ -3196,42 +3214,42 @@ table.text-center th {
   width: 34px;
   padding: 0;
 }
-.btn-social-icon :first-child {
+.btn-social-icon > :first-child {
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 32px !important;
-  line-height: 34px !important;
-  font-size: 1.6em!important;
+  width: 32px;
+  line-height: 34px;
+  font-size: 1.6em;
   text-align: center;
   border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 .btn-social-icon.btn-lg {
-  padding-left: 61px !important;
+  padding-left: 61px;
 }
-.btn-social-icon.btn-lg :first-child {
+.btn-social-icon.btn-lg > :first-child {
   line-height: 45px;
   width: 45px;
   font-size: 1.8em;
 }
 .btn-social-icon.btn-sm {
-  padding-left: 38px !important;
+  padding-left: 38px;
 }
-.btn-social-icon.btn-sm :first-child {
+.btn-social-icon.btn-sm > :first-child {
   line-height: 28px;
   width: 28px;
   font-size: 1.4em;
 }
 .btn-social-icon.btn-xs {
-  padding-left: 30px !important;
+  padding-left: 30px;
 }
-.btn-social-icon.btn-xs :first-child {
+.btn-social-icon.btn-xs > :first-child {
   line-height: 20px;
   width: 20px;
   font-size: 1.2em;
 }
-.btn-social-icon :first-child {
+.btn-social-icon > :first-child {
   border: none;
   text-align: center;
   width: 100%!important;
@@ -3253,6 +3271,30 @@ table.text-center th {
   width: 22px;
   padding-left: 0;
   padding-right: 0;
+}
+.btn-adn {
+  color: #ffffff;
+  background-color: #d87a68;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-adn:hover,
+.btn-adn:focus,
+.btn-adn.focus,
+.btn-adn:active,
+.btn-adn.active,
+.open > .dropdown-toggle.btn-adn {
+  color: #ffffff;
+  background-color: #ce563f;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-adn:active,
+.btn-adn.active,
+.open > .dropdown-toggle.btn-adn {
+  background-image: none;
+}
+.btn-adn .badge {
+  color: #d87a68;
+  background-color: #ffffff;
 }
 .btn-bitbucket {
   color: #ffffff;
@@ -3352,7 +3394,7 @@ table.text-center th {
 }
 .btn-foursquare {
   color: #ffffff;
-  background-color: #0072b1;
+  background-color: #f94877;
   border-color: rgba(0, 0, 0, 0.2);
 }
 .btn-foursquare:hover,
@@ -3362,7 +3404,7 @@ table.text-center th {
 .btn-foursquare.active,
 .open > .dropdown-toggle.btn-foursquare {
   color: #ffffff;
-  background-color: #00517e;
+  background-color: #f71752;
   border-color: rgba(0, 0, 0, 0.2);
 }
 .btn-foursquare:active,
@@ -3371,7 +3413,7 @@ table.text-center th {
   background-image: none;
 }
 .btn-foursquare .badge {
-  color: #0072b1;
+  color: #f94877;
   background-color: #ffffff;
 }
 .btn-github {
@@ -3398,27 +3440,27 @@ table.text-center th {
   color: #444444;
   background-color: #ffffff;
 }
-.btn-google-plus {
+.btn-google {
   color: #ffffff;
   background-color: #dd4b39;
   border-color: rgba(0, 0, 0, 0.2);
 }
-.btn-google-plus:hover,
-.btn-google-plus:focus,
-.btn-google-plus.focus,
-.btn-google-plus:active,
-.btn-google-plus.active,
-.open > .dropdown-toggle.btn-google-plus {
+.btn-google:hover,
+.btn-google:focus,
+.btn-google.focus,
+.btn-google:active,
+.btn-google.active,
+.open > .dropdown-toggle.btn-google {
   color: #ffffff;
   background-color: #c23321;
   border-color: rgba(0, 0, 0, 0.2);
 }
-.btn-google-plus:active,
-.btn-google-plus.active,
-.open > .dropdown-toggle.btn-google-plus {
+.btn-google:active,
+.btn-google.active,
+.open > .dropdown-toggle.btn-google {
   background-image: none;
 }
-.btn-google-plus .badge {
+.btn-google .badge {
   color: #dd4b39;
   background-color: #ffffff;
 }
@@ -3470,6 +3512,126 @@ table.text-center th {
   color: #007bb6;
   background-color: #ffffff;
 }
+.btn-microsoft {
+  color: #ffffff;
+  background-color: #2672ec;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-microsoft:hover,
+.btn-microsoft:focus,
+.btn-microsoft.focus,
+.btn-microsoft:active,
+.btn-microsoft.active,
+.open > .dropdown-toggle.btn-microsoft {
+  color: #ffffff;
+  background-color: #125acd;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-microsoft:active,
+.btn-microsoft.active,
+.open > .dropdown-toggle.btn-microsoft {
+  background-image: none;
+}
+.btn-microsoft .badge {
+  color: #2672ec;
+  background-color: #ffffff;
+}
+.btn-openid {
+  color: #ffffff;
+  background-color: #f7931e;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-openid:hover,
+.btn-openid:focus,
+.btn-openid.focus,
+.btn-openid:active,
+.btn-openid.active,
+.open > .dropdown-toggle.btn-openid {
+  color: #ffffff;
+  background-color: #da7908;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-openid:active,
+.btn-openid.active,
+.open > .dropdown-toggle.btn-openid {
+  background-image: none;
+}
+.btn-openid .badge {
+  color: #f7931e;
+  background-color: #ffffff;
+}
+.btn-pinterest {
+  color: #ffffff;
+  background-color: #cb2027;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-pinterest:hover,
+.btn-pinterest:focus,
+.btn-pinterest.focus,
+.btn-pinterest:active,
+.btn-pinterest.active,
+.open > .dropdown-toggle.btn-pinterest {
+  color: #ffffff;
+  background-color: #9f191f;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-pinterest:active,
+.btn-pinterest.active,
+.open > .dropdown-toggle.btn-pinterest {
+  background-image: none;
+}
+.btn-pinterest .badge {
+  color: #cb2027;
+  background-color: #ffffff;
+}
+.btn-reddit {
+  color: #000000;
+  background-color: #eff7ff;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-reddit:hover,
+.btn-reddit:focus,
+.btn-reddit.focus,
+.btn-reddit:active,
+.btn-reddit.active,
+.open > .dropdown-toggle.btn-reddit {
+  color: #000000;
+  background-color: #bcddff;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-reddit:active,
+.btn-reddit.active,
+.open > .dropdown-toggle.btn-reddit {
+  background-image: none;
+}
+.btn-reddit .badge {
+  color: #eff7ff;
+  background-color: #000000;
+}
+.btn-soundcloud {
+  color: #ffffff;
+  background-color: #ff5500;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-soundcloud:hover,
+.btn-soundcloud:focus,
+.btn-soundcloud.focus,
+.btn-soundcloud:active,
+.btn-soundcloud.active,
+.open > .dropdown-toggle.btn-soundcloud {
+  color: #ffffff;
+  background-color: #cc4400;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-soundcloud:active,
+.btn-soundcloud.active,
+.open > .dropdown-toggle.btn-soundcloud {
+  background-image: none;
+}
+.btn-soundcloud .badge {
+  color: #ff5500;
+  background-color: #ffffff;
+}
 .btn-tumblr {
   color: #ffffff;
   background-color: #2c4762;
@@ -3518,6 +3680,30 @@ table.text-center th {
   color: #55acee;
   background-color: #ffffff;
 }
+.btn-vimeo {
+  color: #ffffff;
+  background-color: #1ab7ea;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-vimeo:hover,
+.btn-vimeo:focus,
+.btn-vimeo.focus,
+.btn-vimeo:active,
+.btn-vimeo.active,
+.open > .dropdown-toggle.btn-vimeo {
+  color: #ffffff;
+  background-color: #1295bf;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-vimeo:active,
+.btn-vimeo.active,
+.open > .dropdown-toggle.btn-vimeo {
+  background-image: none;
+}
+.btn-vimeo .badge {
+  color: #1ab7ea;
+  background-color: #ffffff;
+}
 .btn-vk {
   color: #ffffff;
   background-color: #587ea3;
@@ -3540,6 +3726,30 @@ table.text-center th {
 }
 .btn-vk .badge {
   color: #587ea3;
+  background-color: #ffffff;
+}
+.btn-yahoo {
+  color: #ffffff;
+  background-color: #720e9e;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-yahoo:hover,
+.btn-yahoo:focus,
+.btn-yahoo.focus,
+.btn-yahoo:active,
+.btn-yahoo.active,
+.open > .dropdown-toggle.btn-yahoo {
+  color: #ffffff;
+  background-color: #500a6f;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-yahoo:active,
+.btn-yahoo.active,
+.open > .dropdown-toggle.btn-yahoo {
+  background-image: none;
+}
+.btn-yahoo .badge {
+  color: #720e9e;
   background-color: #ffffff;
 }
 /*
