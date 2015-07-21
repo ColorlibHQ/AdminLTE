@@ -16,16 +16,16 @@
     min-height: @navbar-height;
     border-radius: 0;
     .layout-top-nav & {
-      margin-left: 0!important;
+      margin-left: 0;
     }
   }
   //Navbar search text input
-  #navbar-search-input {
+  #navbar-search-input.form-control {
     background: rgba(255,255,255,.2);
     border-color: transparent;
     &:focus,
       &:active {
-      border-color: rgba(0,0,0,.1)!important;
+      border-color: rgba(0,0,0,.1);
       background: rgba(255,255,255,.9);
     }
     &::-moz-placeholder {
@@ -221,7 +221,6 @@
     .navbar {
       width: 100%;
       float: none;
-      position: relative!important;
     }
     .navbar {
       margin: 0;
@@ -229,10 +228,6 @@
     .navbar-custom-menu {
       float: right;
     }
-  }
-  .main-sidebar,
-  .left-side {
-    padding-top: 100px!important;
   }
 }
 

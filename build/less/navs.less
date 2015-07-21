@@ -71,7 +71,7 @@
       margin-bottom: -2px;
       > a {
         color: #444;
-        .border-radius(0)!important;
+        .border-radius(0);
         &,
         &:hover {
           background: transparent;
@@ -167,8 +167,11 @@
 .pagination {
   > li > a {
     background: #fafafa;
-    color: #666;
-    .border-radius(0)!important;
+    color: #666;    
   }
-
+  &.pagination-flat {
+    > li > a {
+      .border-radius(0)!important;
+    }
+  }
 }

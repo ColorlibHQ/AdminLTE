@@ -52,24 +52,25 @@
   }
 }
 //Control sidebar tabs
-.control-sidebar-tabs {
+.nav-tabs.control-sidebar-tabs {
   > li {
     &:first-of-type > a {
-      margin-left: 1px;
       &,
-      &:hover {
-        border-left-width: 0!important;
+      &:hover,
+        &:focus {
+        border-left-width: 0;
       }
     }
     > a {
-      .border-radius(0)!important;
+      .border-radius(0);
+
       //Hover and active states
       &,
       &:hover {
         border-top: none;
         border-right: none;
-        border-left: 1px solid transparent!important;
-        border-bottom: 1px solid transparent!important;
+        border-left: 1px solid transparent;
+        border-bottom: 1px solid transparent;
       }
       .icon {
         font-size: 16px;
@@ -82,9 +83,9 @@
         &:hover,
           &:focus,
           &:active {
-          border-top: none!important;
-          border-right: none!important;
-          border-bottom: none!important;
+          border-top: none;
+          border-right: none;
+          border-bottom: none;
         }
       }
     }
@@ -93,7 +94,7 @@
   @media(max-width: @screen-sm) {
     display: table;
     >li {
-      display: table-cell!important;
+      display: table-cell;
     }
   }
 }
@@ -155,7 +156,7 @@
     background: @sidebar-dark-bg;
   }
   // Sidebar tabs
-  .control-sidebar-tabs {
+  .nav-tabs.control-sidebar-tabs {
     border-bottom: darken(@sidebar-dark-bg, 3%);
     > li {
       > a {
@@ -163,14 +164,18 @@
         color: @sidebar-dark-color;
         //Hover and active states
         &,
-        &:hover {
-          border-left-color: darken(@sidebar-dark-bg, 7%)!important;
-          border-bottom-color: darken(@sidebar-dark-bg, 7%)!important;
+        &:hover,
+          &:focus {
+          border-left-color: darken(@sidebar-dark-bg, 7%);
+          border-bottom-color: darken(@sidebar-dark-bg, 7%);          
         }
         &:hover,
           &:focus,
           &:active {
           background: darken(@sidebar-dark-bg, 3%);
+        }
+        &:hover {
+          color: #fff;
         }
       }
       //Active state
@@ -218,7 +223,7 @@
     border-left: 1px solid @gray;
   }
   // Sidebar tabs
-  .control-sidebar-tabs {
+  .nav-tabs.control-sidebar-tabs {
     border-bottom: @gray;
     > li {
       > a {
@@ -226,9 +231,10 @@
         color: @sidebar-light-color;
         //Hover and active states
         &,
-        &:hover {
-          border-left-color: @gray!important;
-          border-bottom-color: @gray!important;
+        &:hover,
+          &:focus {
+          border-left-color: @gray;
+          border-bottom-color: @gray;
         }
         &:hover,
           &:focus,

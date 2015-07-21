@@ -3,7 +3,10 @@
  * -------------------
  */
 .carousel-control {
-  background-image: none!important;
+  &.left,
+  &.right {
+    background-image: none;
+  }
   > .fa {
     font-size: 40px;
     position: absolute;

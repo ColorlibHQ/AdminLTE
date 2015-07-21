@@ -18,6 +18,9 @@
   @transition-rule: @transition-speed @transition-fn,
     width @transition-speed @transition-fn;
   .transition-transform(@transition-rule);
+  @media (max-width: @screen-header-collapse) {
+      padding-top: 100px;
+  }
   @media (max-width: @screen-xs-max) {
     .translate(-@sidebar-width, 0);
   }
@@ -39,7 +42,7 @@
 // remove border from form
 .sidebar-form {
   input:focus {
-    border-color: transparent!important;
+    border-color: transparent;
   }
 }
 

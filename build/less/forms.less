@@ -3,22 +3,18 @@
  * ---------------
  */
 .form-control {
-  .border-radius(@input-radius)!important;
+  .border-radius(@input-radius);
   box-shadow: none;
   border-color: @gray;
   &:focus {
-    border-color: @light-blue !important;
+    border-color: @light-blue;
     box-shadow: none;
   }
-  &::-moz-placeholder {
-    color: #bbb;
-    opacity: 1;
-  }
-  &:-ms-input-placeholder {
-    color: #bbb;
-  }
+  &::-moz-placeholder,
+  &:-ms-input-placeholder,
   &::-webkit-input-placeholder {
     color: #bbb;
+    opacity: 1;
   }
 
   &:not(select) {
@@ -34,7 +30,7 @@
       color: @green;
     }
     .form-control {
-      border-color: @green !important;
+      border-color: @green;
       box-shadow: none;
     }
   }
@@ -44,7 +40,7 @@
       color: @yellow;
     }
     .form-control {
-      border-color: @yellow !important;
+      border-color: @yellow;
       box-shadow: none;
     }
   }
@@ -54,7 +50,7 @@
       color: @red;
     }
     .form-control {
-      border-color: @red !important;
+      border-color: @red;
       box-shadow: none;
     }
   }
