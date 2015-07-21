@@ -224,9 +224,10 @@
       AdminLTE.controlSidebar._fix($(".control-sidebar-bg"));
     if ($('body').hasClass('fixed') && cls == 'fixed') {
       AdminLTE.pushMenu.expandOnHover();
-      AdminLTE.controlSidebar._fixForFixed($('.control-sidebar'));
       AdminLTE.layout.activate();
     }
+    AdminLTE.controlSidebar._fix($(".control-sidebar-bg"));
+    AdminLTE.controlSidebar._fix($(".control-sidebar"));
   }
 
   /**
