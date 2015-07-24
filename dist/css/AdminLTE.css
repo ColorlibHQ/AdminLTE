@@ -2376,6 +2376,8 @@ a:focus {
 }
 .nav-stacked > li.active > a,
 .nav-stacked > li.active > a:hover {
+  background: transparent;
+  color: #444;
   border-top: 0;
   border-left-color: #3c8dbc;
 }
