@@ -385,7 +385,7 @@ function _init() {
   $.AdminLTE.tree = function (menu) {
     var _this = this;
     var animationSpeed = $.AdminLTE.options.animationSpeed;
-    $("li a", $(menu)).on('click', function (e) {
+    $(document).on('click', menu + ' li a', function (e) {
       //Get the clicked link and the next element
       var $this = $(this);
       var checkElement = $this.next();
