@@ -1123,6 +1123,11 @@ a:focus {
 .navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-default {
   color: #666666;
 }
+@media (max-width: 991px) {
+  .navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-default:hover {
+    background-color: #f9f9f9;
+  }
+}
 .navbar-nav > .user-menu .user-image {
   float: left;
   width: 25px;

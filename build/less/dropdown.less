@@ -237,6 +237,11 @@
       .clearfix();
       .btn-default {
         color: #666666;
+        &:hover {
+          @media (max-width: @screen-sm-max) {
+            background-color: #f9f9f9;
+          }
+        }
       }
     }
   }
@@ -316,15 +321,15 @@
 
 /* Fix dropdown menu in navbars */
 .navbar-custom-menu > .navbar-nav {
-    > li {
-      position: relative;
-      > .dropdown-menu {
-        position: absolute;
-        right: 0;
-        left: auto;
-      }
+  > li {
+    position: relative;
+    > .dropdown-menu {
+      position: absolute;
+      right: 0;
+      left: auto;
     }
   }
+}
 @media (max-width: @screen-sm-max) {
   .navbar-custom-menu > .navbar-nav {
     float: right;
