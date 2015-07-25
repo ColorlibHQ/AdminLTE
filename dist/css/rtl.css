@@ -1,0 +1,262 @@
+/*
+|------------------------------------------------------------------------------------
+| Load Arabic fonts
+|------------------------------------------------------------------------------------
+*/
+
+@font-face {
+    font-family: 'Droid Arabic Kufi';
+    font-style: normal;
+    font-weight: 400;
+    src: url(//fonts.gstatic.com/ea/droidarabickufi/v6/DroidKufi-Regular.eot);
+    src: url(//fonts.gstatic.com/ea/droidarabickufi/v6/DroidKufi-Regular.eot?#iefix) format('embedded-opentype'), url(//fonts.gstatic.com/ea/droidarabickufi/v6/DroidKufi-Regular.woff2) format('woff2'), url(//fonts.gstatic.com/ea/droidarabickufi/v6/DroidKufi-Regular.woff) format('woff'), url(//fonts.gstatic.com/ea/droidarabickufi/v6/DroidKufi-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Droid Arabic Kufi';
+    font-style: normal;
+    font-weight: 700;
+    src: url(//fonts.gstatic.com/ea/droidarabickufi/v6/DroidKufi-Bold.eot);
+    src: url(//fonts.gstatic.com/ea/droidarabickufi/v6/DroidKufi-Bold.eot?#iefix) format('embedded-opentype'), url(//fonts.gstatic.com/ea/droidarabickufi/v6/DroidKufi-Bold.woff2) format('woff2'), url(//fonts.gstatic.com/ea/droidarabickufi/v6/DroidKufi-Bold.woff) format('woff'), url(//fonts.gstatic.com/ea/droidarabickufi/v6/DroidKufi-Bold.ttf) format('truetype');
+}
+font-face {
+    font-family: 'Droid Arabic Naskh';
+    font-style: normal;
+    font-weight: 400;
+    src: url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Regular.eot);
+    src: url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Regular.eot?#iefix) format('embedded-opentype'), url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Regular.woff2) format('woff2'), url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Regular.woff) format('woff'), url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Droid Arabic Naskh';
+    font-style: normal;
+    font-weight: 700;
+    src: url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Bold.eot);
+    src: url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Bold.eot?#iefix) format('embedded-opentype'), url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Bold.woff2) format('woff2'), url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Bold.woff) format('woff'), url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Bold.ttf) format('truetype');
+}
+body {
+    font-family: 'Droid Arabic Naskh', serif;
+}
+/*Form*/
+
+input[type=checkbox],
+input[type=radio] {
+    margin: 4px 0 0 4px;
+}
+/* Title */
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Droid Arabic Kufi', serif;
+    font-weight: normal;
+}
+/* Header */
+
+.main-header .logo {
+    float: right;
+    z-index: 99999;
+}
+.main-header>.navbar {
+    margin-left: 0;
+    margin-right: 230px;
+}
+.main-header .sidebar-toggle {
+    float: right;
+}
+.main-header .navbar-custom-menu,
+.main-header .navbar-right {
+    float: left;
+}
+
+/* Menu */
+.skin-blue .sidebar-menu>li>a {
+  border-right: 3px solid rgba(0, 0, 0, 0);
+  border-left: none;
+}
+.skin-blue .sidebar-menu>li:hover>a, 
+.skin-blue .sidebar-menu>li.active>a {
+    border-right-color: #3C8DBC;
+}
+.sidebar-menu>li>a {
+    padding: 12px 15px 12px 15px;
+}
+.sidebar-menu .treeview-menu>li>a {
+    padding: 5px 15px 5px 5px;
+}
+.skin-purple .sidebar-menu>li>a {
+    border-left: none;
+    border-right: 3px solid transparent;
+}
+.skin-purple .sidebar-menu>li:hover>a,
+.skin-purple .sidebar-menu>li.active>a {
+    border-right-color: #605ca8;
+}
+.main-sidebar,
+.left-side {
+    right: 0;
+    left: auto;
+}
+.skin-blue .sidebar-form input[type="text"] {
+    border-radius: 0!important
+}
+.skin-blue .sidebar-form .btn {
+    border-radius: 0!important
+}
+.navbar-custom-menu>.navbar-nav>li>.dropdown-menu {
+    position: absolute;
+    right: auto;
+    left: 0;
+}
+.control-sidebar-bg,
+.control-sidebar {
+    left: -230px;
+    right: auto;
+}
+.control-sidebar.control-sidebar-open,
+.control-sidebar.control-sidebar-open+.control-sidebar-bg {
+    left: 0;
+    right: auto;
+}
+.control-sidebar-menu .menu-icon {
+    float: right;
+}
+.control-sidebar-menu .menu-info {
+    margin-right: 45px;
+    margin-left: 0;
+}
+.navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>div>img {
+      margin: auto auto auto 10px;
+}
+.navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>p,
+.navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>h4 {
+    margin: 0 45px 5px 0;
+}
+.navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>h4>small {
+    left: 0;
+    right: auto;
+}
+.navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>h4>small .fa {
+    float: left;
+    margin-right: 5px;
+}
+/* Content */
+
+.content-wrapper,
+.right-side,
+.main-footer {
+    margin-left: 0;
+    margin-right: 230px;
+}
+.content-header>.breadcrumb {
+    float: left;
+    right: auto;
+    left: 10px;
+}
+.content-header>.breadcrumb>li {
+    float: left;
+    text-align: left;
+}
+.content-header>.breadcrumb>li+li:after {
+    content: '<\00a0';
+}
+.content-header>.breadcrumb>li+li:before {
+    display: none;
+}
+.content-header>.breadcrumb>li>a>.fa,
+.content-header>.breadcrumb>li>a>.glyphicon,
+.content-header>.breadcrumb>li>a>.ion {
+    float: left;
+}
+.box-header>.box-tools {
+    right: auto;
+    left: 10px;
+}
+/*SideBar*/
+
+.sidebar-menu li>a>.pull-right {
+    right: auto;
+    left: 10px;
+}
+@media (max-width: 991px) {
+    .content-header>.breadcrumb {
+        left: 0;
+        right: 0;
+        position: relative;
+        float: none;
+        overflow: hidden;
+    }
+    .navbar-custom-menu>.navbar-nav>li {
+        float: right;
+    }
+}
+@media (min-width: 768px) {
+    .sidebar-mini.sidebar-collapse .content-wrapper,
+    .sidebar-mini.sidebar-collapse .right-side,
+    .sidebar-mini.sidebar-collapse .main-footer {
+        margin-left: 0!important;
+        margin-right: 50px!important;
+    }
+    .sidebar-mini.sidebar-collapse .sidebar-menu>li>a {
+        margin-left: 0
+    }
+    .sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>a>span:not(.pull-right),
+    .sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>.treeview-menu {
+        right: 49px;
+        left: auto;
+    }
+    .sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>a>span.pull-left {
+        display: none!important;
+    }
+    .sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>a>span {
+        margin-left: 0;
+        margin-right: -2px;
+        padding: 12px 20px 12px 5px;
+    }
+    .sidebar-mini.sidebar-collapse .main-sidebar .user-panel>.info,
+    .sidebar-mini.sidebar-collapse .sidebar-form,
+    .sidebar-mini.sidebar-collapse .sidebar-menu>li>a>span,
+    .sidebar-mini.sidebar-collapse .sidebar-menu>li>.treeview-menu,
+    .sidebar-mini.sidebar-collapse .sidebar-menu>li>a>.pull-left,
+    .sidebar-mini.sidebar-collapse .sidebar-menu li.header {
+        display: none!important;
+    }
+    .sidebar-mini.sidebar-collapse .sidebar-menu>li>.treeview-menu {
+        border-radius: 0 0 0 4px;
+    }
+    .sidebar-mini.sidebar-collapse .sidebar-menu>li>a>span {
+        border-radius: 4px 0 0;
+    }
+    .sidebar-mini.sidebar-collapse .main-header .navbar {
+        margin-left: 0;
+        margin-right: 50px;
+    }
+    .sidebar-mini.sidebar-collapse .sidebar-menu>li:not(.treeview)>a>span {
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 4px;
+    }
+}
+@media (max-width: 767px) {
+    .main-header>.navbar {
+        margin-right: 0;
+    }
+    .main-sidebar,
+    .left-side {
+        -webkit-transform: translate(230px, 0);
+        -ms-transform: translate(230px, 0);
+        -o-transform: translate(230px, 0);
+        transform: translate(230px, 0);
+    }
+    .content-wrapper,
+    .right-side,
+    .main-footer {
+        margin-right: 0;
+    }
+    .sidebar-open .content-wrapper,
+    .sidebar-open .right-side,
+    .sidebar-open .main-footer {
+        -webkit-transform: translate(-230px, 0);
+        -ms-transform: translate(-230px, 0);
+        -o-transform: translate(-230px, 0);
+        transform: translate(-230px, 0);
+    }
+}
