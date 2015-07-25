@@ -44,7 +44,7 @@
 .skin-green-light .main-header .logo {
   background-color: #00a65a;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-green-light .main-header .logo:hover {
   background-color: #00a157;

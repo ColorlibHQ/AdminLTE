@@ -44,7 +44,7 @@
 .skin-purple-light .main-header .logo {
   background-color: #605ca8;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-purple-light .main-header .logo:hover {
   background-color: #5d59a6;

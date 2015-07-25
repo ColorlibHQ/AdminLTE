@@ -44,7 +44,7 @@
 .skin-blue .main-header .logo {
   background-color: #367fa9;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-blue .main-header .logo:hover {
   background-color: #357ca5;
@@ -134,7 +134,7 @@
 .skin-blue.layout-top-nav .main-header > .logo {
   background-color: #3c8dbc;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-blue.layout-top-nav .main-header > .logo:hover {
   background-color: #3b8ab8;
@@ -185,7 +185,7 @@
 .skin-blue-light .main-header .logo {
   background-color: #3c8dbc;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-blue-light .main-header .logo:hover {
   background-color: #3b8ab8;
@@ -300,7 +300,7 @@
 .skin-blue.layout-top-nav .main-header > .logo {
   background-color: #3c8dbc;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-blue.layout-top-nav .main-header > .logo:hover {
   background-color: #3b8ab8;
@@ -358,7 +358,7 @@
 .skin-black .main-header > .logo {
   background-color: #ffffff;
   color: #333333;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
   border-right: 1px solid #eee;
 }
 .skin-black .main-header > .logo:hover {
@@ -368,7 +368,7 @@
   .skin-black .main-header > .logo {
     background-color: #222222;
     color: #ffffff;
-    border-bottom: 0px solid transparent;
+    border-bottom: 0 solid transparent;
     border-right: none;
   }
   .skin-black .main-header > .logo:hover {
@@ -511,7 +511,7 @@
 .skin-black-light .main-header > .logo {
   background-color: #ffffff;
   color: #333333;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
   border-right: 1px solid #eee;
 }
 .skin-black-light .main-header > .logo:hover {
@@ -521,7 +521,7 @@
   .skin-black-light .main-header > .logo {
     background-color: #222222;
     color: #ffffff;
-    border-bottom: 0px solid transparent;
+    border-bottom: 0 solid transparent;
     border-right: none;
   }
   .skin-black-light .main-header > .logo:hover {
@@ -679,7 +679,7 @@
 .skin-green .main-header .logo {
   background-color: #008d4c;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-green .main-header .logo:hover {
   background-color: #008749;
@@ -812,7 +812,7 @@
 .skin-green-light .main-header .logo {
   background-color: #00a65a;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-green-light .main-header .logo:hover {
   background-color: #00a157;
@@ -967,7 +967,7 @@
 .skin-red .main-header .logo {
   background-color: #d73925;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-red .main-header .logo:hover {
   background-color: #d33724;
@@ -1100,7 +1100,7 @@
 .skin-red-light .main-header .logo {
   background-color: #dd4b39;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-red-light .main-header .logo:hover {
   background-color: #dc4735;
@@ -1255,7 +1255,7 @@
 .skin-yellow .main-header .logo {
   background-color: #e08e0b;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-yellow .main-header .logo:hover {
   background-color: #db8b0b;
@@ -1388,7 +1388,7 @@
 .skin-yellow-light .main-header .logo {
   background-color: #f39c12;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-yellow-light .main-header .logo:hover {
   background-color: #f39a0d;
@@ -1543,7 +1543,7 @@
 .skin-purple .main-header .logo {
   background-color: #555299;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-purple .main-header .logo:hover {
   background-color: #545096;
@@ -1676,7 +1676,7 @@
 .skin-purple-light .main-header .logo {
   background-color: #605ca8;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-purple-light .main-header .logo:hover {
   background-color: #5d59a6;

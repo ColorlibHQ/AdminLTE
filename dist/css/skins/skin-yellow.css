@@ -44,7 +44,7 @@
 .skin-yellow .main-header .logo {
   background-color: #e08e0b;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-yellow .main-header .logo:hover {
   background-color: #db8b0b;

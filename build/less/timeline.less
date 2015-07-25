@@ -13,7 +13,7 @@
   &:before {
     content: '';
     position: absolute;
-    top: 0px;
+    top: 0;
     bottom: 0;
     width: 4px;
     background: #ddd;
@@ -33,7 +33,7 @@
     > .timeline-item {
       .box-shadow(@box-boxshadow);
       .border-radius(@box-border-radius);
-      margin-top: 0px;
+      margin-top: 0;
       background: #fff;
       color: #444;
       margin-left: 60px;
@@ -66,18 +66,6 @@
 
     }
 
-    // Time label
-    &.time-label {
-      > span {
-        font-weight: 600;
-        padding: 5px;
-        display: inline-block;
-        background-color: #fff;
-
-        .border-radius(4px);
-      }
-    }
-
     // The icons
     > .fa,
     > .glyphicon,
@@ -93,6 +81,18 @@
       text-align: center;
       left: 18px;
       top: 0;
+    }
+  }
+
+  // Time label
+  > .time-label {
+    > span {
+      font-weight: 600;
+      padding: 5px;
+      display: inline-block;
+      background-color: #fff;
+
+      .border-radius(4px);
     }
   }
 }

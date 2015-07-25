@@ -44,7 +44,7 @@
 .skin-red-light .main-header .logo {
   background-color: #dd4b39;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-red-light .main-header .logo:hover {
   background-color: #dc4735;

@@ -69,7 +69,7 @@
   //use this class to get a colored header and borders
 
   &.box-solid {
-    border-top: 0px;
+    border-top: 0;
     > .box-header {
       .btn.btn-default {
         background: transparent;
@@ -292,7 +292,7 @@
 
 .todo-list {
   margin: 0;
-  padding: 0px 0px;
+  padding: 0;
   list-style: none;
   overflow: auto;
   // Todo list element
@@ -305,22 +305,6 @@
     color: #444;
     &:last-of-type {
       margin-bottom: 0;
-    }
-    // Color varaity
-    &.danger {
-      border-left-color: @red;
-    }
-    &.warning {
-      border-left-color: @yellow;
-    }
-    &.info {
-      border-left-color: @aqua;
-    }
-    &.success {
-      border-left-color: @green;
-    }
-    &.primary {
-      border-left-color: @light-blue;
     }
 
     > input[type='checkbox']  {
@@ -368,6 +352,23 @@
     }
   }
 
+  // Color varaity
+  .danger {
+    border-left-color: @red;
+  }
+  .warning {
+    border-left-color: @yellow;
+  }
+  .info {
+    border-left-color: @aqua;
+  }
+  .success {
+    border-left-color: @green;
+  }
+  .primary {
+    border-left-color: @light-blue;
+  }
+
   .handle {
     display: inline-block;
     cursor: move;
@@ -390,12 +391,13 @@
       height: 40px;
       border: 2px solid transparent;
       .border-radius(50%);
-      &.online {
-        border: 2px solid @green;
-      }
-      &.offline {
-        border: 2px solid @red;
-      }
+    }
+
+    > .online {
+      border: 2px solid @green;
+    }
+    > .offline {
+      border: 2px solid @red;
     }
 
     // The message body

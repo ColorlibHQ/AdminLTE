@@ -44,7 +44,7 @@
 .skin-blue-light .main-header .logo {
   background-color: #3c8dbc;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-blue-light .main-header .logo:hover {
   background-color: #3b8ab8;
@@ -159,7 +159,7 @@
 .skin-blue.layout-top-nav .main-header > .logo {
   background-color: #3c8dbc;
   color: #ffffff;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
 }
 .skin-blue.layout-top-nav .main-header > .logo:hover {
   background-color: #3b8ab8;

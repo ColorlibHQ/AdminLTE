@@ -51,7 +51,7 @@
 .skin-black-light .main-header > .logo {
   background-color: #ffffff;
   color: #333333;
-  border-bottom: 0px solid transparent;
+  border-bottom: 0 solid transparent;
   border-right: 1px solid #eee;
 }
 .skin-black-light .main-header > .logo:hover {
@@ -61,7 +61,7 @@
   .skin-black-light .main-header > .logo {
     background-color: #222222;
     color: #ffffff;
-    border-bottom: 0px solid transparent;
+    border-bottom: 0 solid transparent;
     border-right: none;
   }
   .skin-black-light .main-header > .logo:hover {
