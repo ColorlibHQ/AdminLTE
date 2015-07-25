@@ -6,6 +6,8 @@
  */
 (function ($, AdminLTE) {
 
+  "use strict";
+
   /**
    * List of all the available skins
    *
@@ -256,7 +258,7 @@
     if (typeof (Storage) !== "undefined") {
       localStorage.setItem(name, val);
     } else {
-      alert('Please use a modern browser to properly view this template!');
+      window.alert('Please use a modern browser to properly view this template!');
     }
   }
 
@@ -270,7 +272,7 @@
     if (typeof (Storage) !== "undefined") {
       return localStorage.getItem(name);
     } else {
-      alert('Please use a modern browser to properly view this template!');
+      window.alert('Please use a modern browser to properly view this template!');
     }
   }
 
@@ -317,18 +319,18 @@
     $("[data-enable='expandOnHover']").on('click', function () {
       $(this).attr('disabled', true);
       AdminLTE.pushMenu.expandOnHover();
-      if(!$('body').hasClass('sidebar-collapse'))
+      if (!$('body').hasClass('sidebar-collapse'))
         $("[data-layout='sidebar-collapse']").click();
     });
 
     // Reset options
-    if($('body').hasClass('fixed')) {
+    if ($('body').hasClass('fixed')) {
       $("[data-layout='fixed']").attr('checked', 'checked');
     }
-    if($('body').hasClass('layout-boxed')) {
+    if ($('body').hasClass('layout-boxed')) {
       $("[data-layout='layout-boxed']").attr('checked', 'checked');
     }
-    if($('body').hasClass('sidebar-collapse')) {
+    if ($('body').hasClass('sidebar-collapse')) {
       $("[data-layout='sidebar-collapse']").attr('checked', 'checked');
     }
 
