@@ -1733,6 +1733,10 @@ a:focus {
   right: 0;
   left: auto;
 }
+.box-header > .box-tools.center .dropdown-menu {
+  right: auto;
+  left: auto;
+}
 .btn-box-tool {
   padding: 5px;
   font-size: 12px;
