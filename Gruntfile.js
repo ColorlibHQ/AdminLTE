@@ -124,6 +124,15 @@ module.exports = function (grunt) {
       }
     },
     
+    csslint: {
+      options: {
+        csslintrc: 'build/less/.csslintrc'
+      },
+      dist: [
+        'dist/css/AdminLTE.css',
+      ]
+    },
+    
     // Delete images in build directory
     // After compressing the images in the build/img dir, there is no need
     // for them
@@ -148,6 +157,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   // Delete not needed files
   grunt.loadNpmTasks('grunt-contrib-clean');
+  // Lint CSS
+  grunt.loadNpmTasks('grunt-contrib-csslint');
 
   // The default task (running "grunt" in console) is "watch"
   grunt.registerTask('default', ['watch']);
