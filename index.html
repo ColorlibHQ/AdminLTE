@@ -120,18 +120,26 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="active treeview">
+            <li>
               <a href="#">
                 <i class="fa fa-paypal"></i> <span>Donate</span> <i class="fa fa-bitcoin pull-right"></i>
               </a>
             </li>
             <li>
-              <a href="#">
+                <?php
+                if ($_GET['run']) {
+                # This code will run if ?run=true is set.
+                shell_exec("sudo /usr/local/bin/gravity.sh");
+                }
+                ?>
+
+                <!-- This link will add ?run=true to your URL, myfilename.php?run=true -->
+                <a href="?run=true">
 		<i class="fa fa-refresh"></i> <span>Update</span>
               </a>
             </li>
-            <li class="treeview">
-              <a href="#">
+            <li>
+		<a href="#">
                 <i class="fa fa-power-off"></i>
                 <span>Restart</span>
                 <i class="fa fa-power-off pull-right"></i>
@@ -152,7 +160,11 @@
               <!-- small box -->
               <div class="small-box bg-aqua">
                 <div class="inner">
-                  <h3>150</h3>
+			<?php
+		        $ads_blocked = exec("today=$(date \"+%b %e\");cat /var/log/daemon.log | awk '/\/etc\/hosts/ {print $7}' | wc -l");
+		        $formatted_number = number_format($ads_blocked);
+		        echo "<h3>$formatted_number</h3>";
+			?>
                   <p>Ads Blocked Today</p>
                 </div>
                 <div class="icon">
@@ -165,8 +177,12 @@
               <!-- small box -->
               <div class="small-box bg-green">
                 <div class="inner">
-                  <h3>53656</h3>
-                  <p>Total DNS Queries</p>
+			<?php
+		        $queries = exec("today=$(date \"+%b %e\");cat /var/log/daemon.log | awk '/query/ {print $7}' | wc -l");
+       			 $formatted_number = number_format($queries);
+       			 echo "<h3>$formatted_number</h3>";
+			?>
+                  <p>DNS Queries Today</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-earth"></i>
@@ -191,7 +207,11 @@
               <!-- small box -->
               <div class="small-box bg-red">
                 <div class="inner">
-                  <h3>400,900</h3>
+		  <?php
+		        $amount_of_domains = exec("wc -l /etc/hosts | awk '{print $1}'");
+		        $formatted_number = number_format($amount_of_domains);
+       			echo "<h3>$formatted_number</h3>";
+		  ?>
                   <p>Domains Being Blocked</p>
                 </div>
                 <div class="icon">
