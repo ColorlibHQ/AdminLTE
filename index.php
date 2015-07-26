@@ -121,7 +121,7 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-              <a href="#">
+              <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3J2L3Z4DHW9UY">
                 <i class="fa fa-paypal"></i> <span>Donate</span> <i class="fa fa-bitcoin pull-right"></i>
               </a>
             </li>
@@ -227,7 +227,7 @@
         <div class="pull-right hidden-xs">
           <b>Pi-hole Version</b> 2.0
         </div>
-        <i class="fa fa-github"></i> <strong><a href="http://pi-hole.net">Donate</a></strong> if you found this useful.
+        <i class="fa fa-github"></i> <strong><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3J2L3Z4DHW9UY">Donate</a></strong> if you found this useful.
       </footer>c
     </div><!-- ./wrapper -->
 
