@@ -41,7 +41,7 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="http://pi-hole.net" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>P</b>H</span>
           <!-- logo for regular state and mobile devices -->
@@ -122,7 +122,7 @@
             <li class="header">MAIN NAVIGATION</li>
             <li>
               <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3J2L3Z4DHW9UY">
-                <i class="fa fa-paypal"></i> <span>Donate</span> <i class="fa fa-bitcoin pull-right"></i>
+                <i class="fa fa-paypal pull-left"></i> <span>Donate</span>
               </a>
             </li>
             <li>
@@ -135,15 +135,21 @@
 
                 <!-- This link will add ?run=true to your URL, myfilename.php?run=true -->
                 <a href="?run=true">
-		<i class="fa fa-refresh"></i> <span>Update</span>
+		<i class="fa fa-download"></i> <span>Update</span>
               </a>
             </li>
             <li>
 		<a href="#">
-                <i class="fa fa-power-off"></i>
-                <span>Restart</span>
-                <i class="fa fa-power-off pull-right"></i>
+                <i class="fa fa-spinner"></i>
+                <span>Reload DNS</span>
               </a>
+            </li>
+           <li>
+		<a href="#">
+                <i class="fa fa-power-off"></i>
+                <span>Restart Everything</span>
+              </a>
+            </li>
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -179,8 +185,8 @@
                 <div class="inner">
 			<?php
 		        $queries = exec("today=$(date \"+%b %e\");cat /var/log/daemon.log | awk '/query/ {print $7}' | wc -l");
-       			 $formatted_number = number_format($queries);
-       			 echo "<h3>$formatted_number</h3>";
+       			$formatted_number = number_format($queries);
+       			echo "<h3>$formatted_number</h3>";
 			?>
                   <p>DNS Queries Today</p>
                 </div>
@@ -194,7 +200,13 @@
               <!-- small box -->
               <div class="small-box bg-yellow">
                 <div class="inner">
-                  <h3>44<sup style="font-size: 20px">%</sup></h3>
+            <?php
+		        $queries = exec("today=$(date \"+%b %e\");cat /var/log/daemon.log | awk '/query/ {print $7}' | wc -l");
+		        $ads_blocked = exec("today=$(date \"+%b %e\");cat /var/log/daemon.log | awk '/\/etc\/hosts/ {print $7}' | wc -l");
+		        $percent = ($ads_blocked / $queries * 100);
+       			$formatted_number = number_format($percent, 2, '.', '');
+       			echo "<h3>$formatted_number<sup style=\"font-size: 20px\">%</sup></h3>";
+			?>
                   <p>Of Today's Traffic Is Ads</p>
                 </div>
                 <div class="icon">
