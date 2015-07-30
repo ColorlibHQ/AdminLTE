@@ -220,7 +220,7 @@
               <div class="small-box bg-red">
                 <div class="inner">
 		  <?php
-		        $amount_of_domains = exec("wc -l /etc/hosts | awk '{print $1}'");
+		        $amount_of_domains = exec("wc -l /etc/pihole/gravity.list | awk '{print $1}'");
 		        $formatted_number = number_format($amount_of_domains);
        			echo "<h3>$formatted_number</h3>";
 		  ?>
