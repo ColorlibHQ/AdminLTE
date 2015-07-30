@@ -5,6 +5,7 @@
     "type": "git",
     "url": "git://github.com/almasaeed2010/AdminLTE.git"
   },
+  "license": "MIT",
   "devDependencies": {
     "R2": "^1.4.3",
     "grunt": "~0.4.5",
