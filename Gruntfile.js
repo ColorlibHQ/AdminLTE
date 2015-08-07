@@ -7,7 +7,7 @@
 
 
 module.exports = function (grunt) {
-  
+
   'use strict';
 
   grunt.initConfig({
@@ -95,19 +95,19 @@ module.exports = function (grunt) {
         }
       }
     },
-    
+
     // Optimize images
     image: {
       dynamic: {
         files: [{
           expand: true,
-          cwd: 'build/img/', 
+          cwd: 'build/img/',
           src: ['**/*.{png,jpg,gif,svg}'],
           dest: 'dist/img/'
         }]
       }
     },
-    
+
     // Validate JS code
     jshint: {
       options: {
@@ -123,7 +123,7 @@ module.exports = function (grunt) {
         src: 'dist/js/pages/*.js'
       }
     },
-    
+
     csslint: {
       options: {
         csslintrc: 'build/less/.csslintrc'
@@ -132,7 +132,7 @@ module.exports = function (grunt) {
         'dist/css/AdminLTE.css',
       ]
     },
-    
+
     // Delete images in build directory
     // After compressing the images in the build/img dir, there is no need
     // for them

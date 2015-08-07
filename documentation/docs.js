@@ -1,4 +1,4 @@
-/* 
+/*
  * Documentation JS script
  */
 $(function () {
@@ -44,7 +44,7 @@ $(function () {
   });
   $(".sidebar-menu li:not(.treeview) a").click(function () {
     var $this = $(this);
-    var target = $this.attr("href");    
+    var target = $this.attr("href");
     if (typeof target === 'string') {
       $("body").animate({
         scrollTop: ($(target).offset().top) + "px"
