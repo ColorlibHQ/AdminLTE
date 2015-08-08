@@ -97,6 +97,12 @@ Change log
 - Removed many ```!important``` statements in css
 - Activate boxWidget automatically when created after the page has loaded
 - Activate sidebar menu treeview links automatically when created after the page has loaded
+- Updated Font Awesome thanks to @Dennis14e
+- Added JSHint to Grunt tasks (Find JS errors)
+- Added CSSLint to Grunt tasks (Find CSS errors)
+- Added Image to Grunt tasks (compress images)
+- Added Clean to Grunt tasks (remove unwanted files like uncompressed images)
+- Updated Bootstrap to 3.3.5
 
 **v2.2.0**
 - Bug fixes
