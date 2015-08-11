@@ -3918,7 +3918,6 @@ table.text-center th {
 .select2-container--default .select2-selection--multiple {
   border: 1px solid #d2d6de;
   border-radius: 0;
-  height: 34px;
 }
 .select2-container--default .select2-selection--multiple:focus {
   border-color: #3c8dbc;
