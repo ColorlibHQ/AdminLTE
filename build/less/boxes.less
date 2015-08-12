@@ -285,6 +285,39 @@
   }
 }
 
+//Comment Box
+.box-comments {
+  background: #f7f7f7;
+  .box-comment {
+    .clearfix();
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    &:last-of-type {
+      border-bottom: 0;
+    }
+    &:first-of-type {
+      padding-top: 0;
+    }
+    img {
+      &:extend(.img-sm);
+      float: left;
+    }
+  }
+  .comment-text {
+    margin-left: 40px;
+    color: #555;
+  }
+  .username {
+    color: #444;
+    display: block;
+    font-weight: 600;
+  }
+  .text-muted {
+    font-weight: 400;
+    font-size: 12px;
+  }
+}
+
 //Widgets
 //-----------
 
