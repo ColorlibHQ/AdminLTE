@@ -1,4 +1,7 @@
 CHANGE LOG:
+v2.3.0:
+- Added social widgets (found in the widgets page)
+
 v2.2.1:
 - Bug Fixes
 - Removed many ```!important``` statements in css
