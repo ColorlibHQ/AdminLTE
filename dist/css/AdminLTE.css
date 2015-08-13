@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
 /*!
- *   AdminLTE v2.1.2
+ *   AdminLTE v2.2.1
  *   Author: Almsaeed Studio
  *	 Website: Almsaeed Studio <http://almsaeedstudio.com>
  *   License: Open source - MIT
@@ -4535,7 +4535,7 @@ table.text-center th {
   margin-bottom: 10px;
   background: #f7f7f7;
 }
-.attachment-block .attachemnt-img {
+.attachment-block .attachment-img {
   max-width: 100px;
   max-height: 100px;
   height: auto;
