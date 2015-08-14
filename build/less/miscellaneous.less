@@ -73,6 +73,9 @@
   color: #000;
   background-color: @gray!important;
 }
+.bg-gray-light {
+  background-color: #f7f7f7;
+}
 .bg-black {
   background-color: @black!important;
 }
@@ -317,6 +320,139 @@
   .gradient(@maroon; @maroon; lighten(@maroon, 10%))!important;
   color: #fff;
 }
+
+//Description Block Extension
+.description-block {
+  .description-icon {
+    font-size: 16px;
+  }
+}
+
+//Remove top padding
+.no-pad-top {
+  padding-top: 0;
+}
+
+//Make position static
+.position-static {
+  position: static!important;
+}
+
+//List utility classes
+.list-header {
+  font-size: 15px;
+  padding: 10px 4px;
+  font-weight: bold;
+  color: #666;
+}
+.list-seperator {
+  height: 1px;
+  background: @box-border-color;
+  margin: 15px 0 9px 0;
+}
+.list-link {
+  > a {
+    padding: 4px;
+    color: #777;
+    &:hover {
+      color: #222;
+    }
+  }
+}
+
+//Light font weight
+.font-light {
+  font-weight: 300;
+}
+
+//User block
+.user-block {
+  img {
+    width: 40px;
+    height: 40px;
+    float: left;
+  }
+  .username,
+  .description,
+  .comment {
+    display: block;
+    margin-left: 50px;
+  }
+  .username {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .description {
+    color: #999;
+    font-size: 13px;
+  }
+  &.user-block-sm {
+    img {
+      &:extend(.img-sm);
+    }
+    .username,
+    .description,
+    .comment {
+      margin-left: 40px;
+    }
+    .username {
+      font-size: 14px;
+    }
+  }
+}
+
+//Image sizes
+.img-sm,
+.img-md,
+.img-lg {
+  float: left;
+}
+.img-sm {
+  width: 30px!important;
+  height: 30px!important;
+  + .img-push {
+    margin-left: 40px;
+  }
+}
+.img-md {
+  width: 60px;
+  height: 60px;
+  + .img-push {
+    margin-left: 70px;
+  }
+}
+.img-lg {
+  width: 100px;
+  height: 100px;
+  + .img-push {
+    margin-left: 110px;
+  }
+}
+
+//General attachemnt block
+.attachment-block {
+  border: 1px solid @box-border-color;
+  padding: 5px;
+  margin-bottom: 10px;
+  background: #f7f7f7;
+
+  .attachemnt-img {
+    max-width: 100px;
+    max-height: 100px;
+    height: auto;
+    float: left;
+  }
+  .attachment-pushed {
+    margin-left: 110px;
+  }
+  .attachment-heading {
+    margin: 0;
+  }
+  .attachment-text {
+    color: #555;
+  }
+}
+
 .connectedSortable {
   min-height: 100px;
 }

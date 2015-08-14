@@ -1,7 +1,7 @@
 Introduction
 ============
 
-**AdminLTE** -- is a fully responsive admin template. Based on **Bootstrap 3** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself.
+**AdminLTE** -- is a fully responsive admin template. Based on **[Bootstrap 3](https://github.com/twbs/bootstrap)** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself.
 
 **Download & Preview on [Almsaeed Studio](https://almsaeedstudio.com)**
 
@@ -88,7 +88,7 @@ Todo List
 
 Legacy Realeases
 ----------------
-AdminLTE 1.x can be easily upgraded to 2.x using [this guide](https://almsaeedstudio.com/themes/AdminLTE/documentation/index.html#browsers), but if you intend to keep using AdminLTE 1.x, you can download the latest release from the [releases](https://github.com/almasaeed2010/AdminLTE/releases) section above.
+AdminLTE 1.x can be easily upgraded to 2.x using [this guide](https://almsaeedstudio.com/themes/AdminLTE/documentation/index.html#upgrade), but if you intend to keep using AdminLTE 1.x, you can download the latest release from the [releases](https://github.com/almasaeed2010/AdminLTE/releases) section above.
 
 Change log
 ----------
@@ -97,6 +97,12 @@ Change log
 - Removed many ```!important``` statements in css
 - Activate boxWidget automatically when created after the page has loaded
 - Activate sidebar menu treeview links automatically when created after the page has loaded
+- Updated Font Awesome thanks to @Dennis14e
+- Added JSHint to Grunt tasks (Find JS errors)
+- Added CSSLint to Grunt tasks (Find CSS errors)
+- Added Image to Grunt tasks (compress images)
+- Added Clean to Grunt tasks (remove unwanted files like uncompressed images)
+- Updated Bootstrap to 3.3.5
 
 **v2.2.0**
 - Bug fixes
