@@ -12,6 +12,12 @@
 .margin-bottom {
   margin-bottom: 20px;
 }
+.margin-bottom-none {
+  margin-bottom: 0;
+}
+.margin-r-5 {
+  margin-right: 5px;
+}
 // Display inline
 .inline {
   display: inline;
@@ -234,6 +240,13 @@
     color: darken(@gray, 40%);
   }
 }
+.link-black {
+  color: #666;
+  &:hover,
+    &:focus {
+    color: #999;
+  }
+}
 
 // Hide elements by display none only
 .hide {
@@ -265,6 +278,16 @@
   padding: 0;
 }
 
+.list-group-unbordered {
+  > .list-group-item {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0; 
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 // Remove border radius
 .flat {
   .border-radius(0)!important;
@@ -274,8 +297,9 @@
   &, &.table td, &.table th {
     font-weight: 700;
   }
-
-
+}
+.text-sm {
+  font-size: 12px;
 }
 
 // _fix for sparkline tooltip
@@ -374,6 +398,7 @@
 
 //User block
 .user-block {
+  .clearfix();
   img {
     width: 40px;
     height: 40px;
@@ -435,7 +460,15 @@
     margin-left: 110px;
   }
 }
-
+// Image bordered
+.img-bordered {
+  border: 3px solid @gray;
+  padding: 3px;
+}
+.img-bordered-sm {
+  border: 2px solid @gray;
+  padding: 2px;
+}
 //General attachemnt block
 .attachment-block {
   border: 1px solid @box-border-color;

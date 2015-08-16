@@ -3265,13 +3265,26 @@ table.text-center th {
 .profile-user-img {
   margin: 0 auto;
   width: 100px;
-}
-.box-profile {
-  text-align: center;
+  padding: 3px;
+  border: 3px solid #d2d6de;
 }
 .profile-username {
-  font-size: 18px;
+  font-size: 21px;
   margin-top: 5px;
+}
+.post {
+  border-bottom: 1px solid #d2d6de;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  color: #666;
+}
+.post:last-of-type {
+  border-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.post .user-block {
+  margin-bottom: 15px;
 }
 /*
  * Social Buttons for Bootstrap
@@ -4076,6 +4089,12 @@ table.text-center th {
 .margin-bottom {
   margin-bottom: 20px;
 }
+.margin-bottom-none {
+  margin-bottom: 0;
+}
+.margin-r-5 {
+  margin-right: 5px;
+}
 .inline {
   display: inline;
 }
@@ -4346,6 +4365,13 @@ table.text-center th {
 .link-muted:focus {
   color: #606c84;
 }
+.link-black {
+  color: #666;
+}
+.link-black:hover,
+.link-black:focus {
+  color: #999;
+}
 .hide {
   display: none !important;
 }
@@ -4370,6 +4396,13 @@ table.text-center th {
   margin: 0;
   padding: 0;
 }
+.list-group-unbordered > .list-group-item {
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
 .flat {
   border-radius: 0 !important;
 }
@@ -4377,6 +4410,9 @@ table.text-center th {
 .text-bold.table td,
 .text-bold.table th {
   font-weight: 700;
+}
+.text-sm {
+  font-size: 12px;
 }
 .jqstooltip {
   padding: 5px!important;
@@ -4503,6 +4539,14 @@ table.text-center th {
 .font-light {
   font-weight: 300;
 }
+.user-block:before,
+.user-block:after {
+  content: " ";
+  display: table;
+}
+.user-block:after {
+  clear: both;
+}
 .user-block img {
   width: 40px;
   height: 40px;
@@ -4559,6 +4603,14 @@ table.text-center th {
 }
 .img-lg + .img-push {
   margin-left: 110px;
+}
+.img-bordered {
+  border: 3px solid #d2d6de;
+  padding: 3px;
+}
+.img-bordered-sm {
+  border: 2px solid #d2d6de;
+  padding: 2px;
 }
 .attachment-block {
   border: 1px solid #f4f4f4;
