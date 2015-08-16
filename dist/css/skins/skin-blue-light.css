@@ -13,7 +13,8 @@
 .skin-blue-light .main-header .navbar .nav > li > a:focus,
 .skin-blue-light .main-header .navbar .nav .open > a,
 .skin-blue-light .main-header .navbar .nav .open > a:hover,
-.skin-blue-light .main-header .navbar .nav .open > a:focus {
+.skin-blue-light .main-header .navbar .nav .open > a:focus,
+.skin-blue-light .main-header .navbar .nav > .active > a {
   background: rgba(0, 0, 0, 0.1);
   color: #f6f6f6;
 }

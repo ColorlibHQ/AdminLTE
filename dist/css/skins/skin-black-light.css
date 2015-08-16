@@ -25,7 +25,8 @@
 .skin-black-light .main-header > .navbar .nav > li > a:focus,
 .skin-black-light .main-header > .navbar .nav .open > a,
 .skin-black-light .main-header > .navbar .nav .open > a:hover,
-.skin-black-light .main-header > .navbar .nav .open > a:focus {
+.skin-black-light .main-header > .navbar .nav .open > a:focus,
+.skin-black-light .main-header > .navbar .nav > .active > a {
   background: #ffffff;
   color: #999999;
 }

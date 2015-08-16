@@ -13,7 +13,8 @@
 .skin-yellow-light .main-header .navbar .nav > li > a:focus,
 .skin-yellow-light .main-header .navbar .nav .open > a,
 .skin-yellow-light .main-header .navbar .nav .open > a:hover,
-.skin-yellow-light .main-header .navbar .nav .open > a:focus {
+.skin-yellow-light .main-header .navbar .nav .open > a:focus,
+.skin-yellow-light .main-header .navbar .nav > .active > a {
   background: rgba(0, 0, 0, 0.1);
   color: #f6f6f6;
 }
