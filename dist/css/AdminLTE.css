@@ -2456,6 +2456,9 @@ a:focus {
   color: #444;
   border-radius: 0;
 }
+.nav-tabs-custom > .nav-tabs > li > a.text-muted {
+  color: #999;
+}
 .nav-tabs-custom > .nav-tabs > li > a,
 .nav-tabs-custom > .nav-tabs > li > a:hover {
   background: transparent;
