@@ -129,6 +129,20 @@ body {
 .fixed.layout-boxed .wrapper {
   max-width: 100%;
 }
+body.hold-transition {
+  /* Fix for IE */
+}
+body.hold-transition .content-wrapper,
+body.hold-transition .right-side,
+body.hold-transition .main-footer,
+body.hold-transition .main-sidebar,
+body.hold-transition .left-side,
+body.hold-transition .main-header > .navbar,
+body.hold-transition .main-header .logo {
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
+}
 /* Content */
 .content {
   min-height: 250px;

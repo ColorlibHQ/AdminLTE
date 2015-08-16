@@ -111,6 +111,18 @@ body {
   }
 }
 
+body.hold-transition { /* Fix for IE */
+    .content-wrapper, 
+    .right-side, 
+    .main-footer, 
+    .main-sidebar, 
+    .left-side, 
+    .main-header > .navbar,
+    .main-header .logo {
+      .transition(none);
+    }
+}
+
 /* Content */
 .content {
   min-height: 250px;
