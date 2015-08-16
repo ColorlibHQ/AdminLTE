@@ -227,6 +227,13 @@
 .text-maroon {
   color: @maroon !important;
 }
+.link-muted {
+  color: darken(@gray, 30%);
+  &:hover,
+    &:focus {
+    color: darken(@gray, 40%);
+  }
+}
 
 // Hide elements by display none only
 .hide {

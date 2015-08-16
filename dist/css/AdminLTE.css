@@ -2138,6 +2138,15 @@ a:focus {
   background-color: #fff;
   border-radius: 4px;
 }
+.timeline-inverse > li > .timeline-item {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.timeline-inverse > li > .timeline-item > .timeline-header {
+  border-bottom-color: #ddd;
+}
 /*
  * Component: Button
  * -----------------
@@ -3250,6 +3259,21 @@ table.text-center th {
   margin-top: 0;
 }
 /*
+ * Page: Profile
+ * -------------
+ */
+.profile-user-img {
+  margin: 0 auto;
+  width: 100px;
+}
+.box-profile {
+  text-align: center;
+}
+.profile-username {
+  font-size: 18px;
+  margin-top: 5px;
+}
+/*
  * Social Buttons for Bootstrap
  *
  * Copyright 2013-2015 Panayiotis Lipiridis
@@ -4314,6 +4338,13 @@ table.text-center th {
 }
 .text-maroon {
   color: #d81b60 !important;
+}
+.link-muted {
+  color: #7a869d;
+}
+.link-muted:hover,
+.link-muted:focus {
+  color: #606c84;
 }
 .hide {
   display: none !important;
