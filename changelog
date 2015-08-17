@@ -1,6 +1,8 @@
 CHANGE LOG:
 v2.3.0:
 - Added social widgets (found in the widgets page)
+- Added profile page
+- Fixed bugs (ie transition fix requires ```.hold-transition``` to be added to ```<body>```)
 
 v2.2.1:
 - Bug Fixes
