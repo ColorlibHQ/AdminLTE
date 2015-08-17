@@ -111,7 +111,7 @@ body {
   }
 }
 
-body.hold-transition { /* Fix for IE */
+body.hold-transition { 
     .content-wrapper, 
     .right-side, 
     .main-footer, 
@@ -119,6 +119,7 @@ body.hold-transition { /* Fix for IE */
     .left-side, 
     .main-header > .navbar,
     .main-header .logo {
+      /* Fix for IE */
       .transition(none);
     }
 }
