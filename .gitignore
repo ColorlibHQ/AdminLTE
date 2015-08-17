@@ -1,10 +1,9 @@
 *.DS_Store
+*.log
+*.zip
 .idea
-/nbproject/private/
 /nbproject/
+/nbproject/private/
 /node_modules/
 TODO
-*.zip
-test.html
-*.log
 test.html
