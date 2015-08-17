@@ -92,6 +92,13 @@ AdminLTE 1.x can be easily upgraded to 2.x using [this guide](https://almsaeedst
 
 Change log
 ----------
+**v2.3.0:**
+- Added social widgets (found in the widgets page)
+- Added profile page
+- Fix issue #430 (requires ```.hold-transition``` to be added to ```<body>```)
+- Fix issue #578
+- Fix issue #579
+
 **v2.2.1:**
 - Bug Fixes
 - Removed many ```!important``` statements in css
@@ -104,7 +111,7 @@ Change log
 - Added Clean to Grunt tasks (remove unwanted files like uncompressed images)
 - Updated Bootstrap to 3.3.5
 
-**v2.2.0**
+**v2.2.0:**
 - Bug fixes
 - Added support for [Select2](https://select2.github.io/)
 - Updated ChartJS
