@@ -136,7 +136,7 @@ module.exports = function (grunt) {
 
     // Validate Bootstrap HTML
     bootlint: {
-      files: ['pages/**/*.html']
+      files: ['pages/**/*.html', '*.html']
     },
 
     // Delete images in build directory
