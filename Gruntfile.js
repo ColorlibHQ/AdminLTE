@@ -136,6 +136,9 @@ module.exports = function (grunt) {
 
     // Validate Bootstrap HTML
     bootlint: {
+      options: {
+        relaxerror: ['W005']
+      },
       files: ['pages/**/*.html', '*.html']
     },
 
