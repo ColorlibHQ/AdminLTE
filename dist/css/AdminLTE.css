@@ -1005,7 +1005,6 @@ a:focus {
   color: #444444;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
   padding: 10px;
 }
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .glyphicon,
