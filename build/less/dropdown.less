@@ -216,7 +216,12 @@
 
     // Menu Body
     > .user-body {
-      padding: 15px;
+      // this is for backward compatibility with implementation using .row and .col
+      > .row {
+        padding: 15px 0;
+        margin: 0;
+      }
+
       border-bottom: 1px solid #f4f4f4;
       border-top: 1px solid #dddddd;
       .clearfix();
