@@ -45,7 +45,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>P</b>H</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Pi</b>-Hole</span>
+          <span class="logo-lg"><b>Pi</b>-hole</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -125,31 +125,6 @@
                 <i class="fa fa-paypal pull-left"></i> <span>Donate</span>
               </a>
             </li>
-            <li>
-                <?php
-                if ($_GET['run']) {
-                # This code will run if ?run=true is set.
-                shell_exec("sudo /usr/local/bin/gravity.sh");
-                }
-                ?>
-
-                <!-- This link will add ?run=true to your URL, myfilename.php?run=true -->
-                <a href="?run=true">
-		<i class="fa fa-download"></i> <span>Update</span>
-              </a>
-            </li>
-            <li>
-		<a href="#">
-                <i class="fa fa-spinner"></i>
-                <span>Reload DNS</span>
-              </a>
-            </li>
-           <li>
-		<a href="#">
-                <i class="fa fa-power-off"></i>
-                <span>Restart Everything</span>
-              </a>
-            </li>
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -200,7 +175,7 @@
               <!-- small box -->
               <div class="small-box bg-yellow">
                 <div class="inner">
-            <?php
+            		<?php
 		        $queries = exec("today=$(date \"+%b %e\");cat /var/log/pihole.log | awk '/query/ {print $6}' | wc -l");
 		        $ads_blocked = exec("today=$(date \"+%b %e\");cat /var/log/pihole.log | awk '/\/etc\/pihole\/gravity.list/ {print $6}' | wc -l");
 		        $percent = ($ads_blocked / $queries * 100);
@@ -219,11 +194,11 @@
               <!-- small box -->
               <div class="small-box bg-red">
                 <div class="inner">
-		  <?php
-		        $amount_of_domains = exec("wc -l /etc/pihole/gravity.list | awk '{print $1}'");
-		        $formatted_number = number_format($amount_of_domains);
-       			echo "<h3>$formatted_number</h3>";
-		  ?>
+			<?php
+			$amount_of_domains = exec("wc -l /etc/pihole/gravity.list | awk '{print $1}'");
+			$formatted_number = number_format($amount_of_domains);
+			echo "<h3><sup style=\"font-size: 30px\">$formatted_number</sup></h3>";
+			?>
                   <p>Domains Being Blocked</p>
                 </div>
                 <div class="icon">
