@@ -5,21 +5,24 @@
 
 .make-grid-columns() {
   // Common styles for all sizes of grid columns, widths 1-12
-  .col(@index) { // initial
+  .col(@index) {
+    // initial
     @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}";
     .col((@index + 1), @item);
   }
-  .col(@index, @list) when (@index =< @grid-columns) { // general; "=<" isn't a typo
+  .col(@index, @list) when (@index =< @grid-columns) {
+    // general; "=<" isn't a typo
     @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}";
     .col((@index + 1), ~"@{list}, @{item}");
   }
-  .col(@index, @list) when (@index > @grid-columns) { // terminal
+  .col(@index, @list) when (@index > @grid-columns) {
+    // terminal
     @{list} {
       position: relative;
       // Prevent columns from collapsing when empty
       min-height: 1px;
       // Inner gutter via padding
-      padding-left:  (@grid-gutter-width / 2);
+      padding-left: (@grid-gutter-width / 2);
       padding-right: (@grid-gutter-width / 2);
     }
   }
@@ -27,15 +30,18 @@
 }
 
 .float-grid-columns(@class) {
-  .col(@index) { // initial
+  .col(@index) {
+    // initial
     @item: ~".col-@{class}-@{index}";
     .col((@index + 1), @item);
   }
-  .col(@index, @list) when (@index =< @grid-columns) { // general
+  .col(@index, @list) when (@index =< @grid-columns) {
+    // general
     @item: ~".col-@{class}-@{index}";
     .col((@index + 1), ~"@{list}, @{item}");
   }
-  .col(@index, @list) when (@index > @grid-columns) { // terminal
+  .col(@index, @list) when (@index > @grid-columns) {
+    // terminal
     @{list} {
       float: left;
     }
@@ -48,26 +54,31 @@
     width: percentage((@index / @grid-columns));
   }
 }
+
 .calc-grid-column(@index, @class, @type) when (@type = push) and (@index > 0) {
   .col-@{class}-push-@{index} {
     left: percentage((@index / @grid-columns));
   }
 }
+
 .calc-grid-column(@index, @class, @type) when (@type = push) and (@index = 0) {
   .col-@{class}-push-0 {
     left: auto;
   }
 }
+
 .calc-grid-column(@index, @class, @type) when (@type = pull) and (@index > 0) {
   .col-@{class}-pull-@{index} {
     right: percentage((@index / @grid-columns));
   }
 }
+
 .calc-grid-column(@index, @class, @type) when (@type = pull) and (@index = 0) {
   .col-@{class}-pull-0 {
     right: auto;
   }
 }
+
 .calc-grid-column(@index, @class, @type) when (@type = offset) {
   .col-@{class}-offset-@{index} {
     margin-left: percentage((@index / @grid-columns));

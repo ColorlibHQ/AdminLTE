@@ -77,10 +77,10 @@ $(function () {
     },
     series: {
       regions: [{
-          values: visitorsData,
-          scale: ["#92c1dc", "#ebf4f9"],
-          normalizeFunction: 'polynomial'
-        }]
+        values: visitorsData,
+        scale: ["#92c1dc", "#ebf4f9"],
+        normalizeFunction: 'polynomial'
+      }]
     },
     onRegionLabelShow: function (e, el, code) {
       if (typeof visitorsData[code] != "undefined")

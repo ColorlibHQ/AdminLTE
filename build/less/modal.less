@@ -3,19 +3,22 @@
  * ----------------
  */
 .modal {
-  background: rgba(0,0,0,.3);
+  background: rgba(0, 0, 0, .3);
 }
+
 .modal-content {
   .border-radius(0);
-  .box-shadow(0 2px 3px rgba(0,0,0,.125));
+  .box-shadow(0 2px 3px rgba(0, 0, 0, .125));
   border: 0;
   @media (min-width: @screen-sm-min) {
-    .box-shadow(0 2px 3px rgba(0,0,0,.125));
+    .box-shadow(0 2px 3px rgba(0, 0, 0, .125));
   }
 }
+
 .modal-header {
   border-bottom-color: @box-border-color;
 }
+
 .modal-footer {
   border-top-color: @box-border-color;
 }
@@ -31,6 +34,7 @@
     border-color: darken(@light-blue, 10%);
   }
 }
+
 .modal-warning {
   .modal-body {
     &:extend(.bg-yellow);
@@ -41,6 +45,7 @@
     border-color: darken(@yellow, 10%);
   }
 }
+
 .modal-info {
   .modal-body {
     &:extend(.bg-aqua);
@@ -51,6 +56,7 @@
     border-color: darken(@aqua, 10%);
   }
 }
+
 .modal-success {
   .modal-body {
     &:extend(.bg-green);
@@ -61,6 +67,7 @@
     border-color: darken(@green, 10%);
   }
 }
+
 .modal-danger {
   .modal-body {
     &:extend(.bg-red);

@@ -16,10 +16,10 @@
   z-index: 810;
   //Using disposable variable to join statements with a comma
   @transition-rule: @transition-speed @transition-fn,
-    width @transition-speed @transition-fn;
+  width @transition-speed @transition-fn;
   .transition-transform(@transition-rule);
   @media (max-width: @screen-header-collapse) {
-      padding-top: 100px;
+    padding-top: 100px;
   }
   @media (max-width: @screen-xs-max) {
     .translate(-@sidebar-width, 0);
@@ -39,6 +39,7 @@
 .sidebar {
   padding-bottom: 10px;
 }
+
 // remove border from form
 .sidebar-form {
   input:focus {
@@ -130,8 +131,8 @@
   .treeview-menu {
     display: none;
     list-style: none;
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
     padding-left: 5px;
     .treeview-menu {
       padding-left: 20px;

@@ -8,6 +8,7 @@
   z-index: 1000;
   bottom: 0;
 }
+
 //Transitions
 .control-sidebar-bg,
 .control-sidebar {
@@ -16,6 +17,7 @@
   width: @control-sidebar-width;
   .transition(right @transition-speed ease-in-out);
 }
+
 //The sidebar
 .control-sidebar {
   position: absolute;
@@ -37,13 +39,14 @@
     }
   }
 }
+
 //Open without slide over content
 .control-sidebar-open {
   .control-sidebar-bg,
   .control-sidebar {
     right: 0;
   }
-  @media(min-width: @screen-sm) {
+  @media (min-width: @screen-sm) {
     .content-wrapper,
     .right-side,
     .main-footer {
@@ -51,13 +54,14 @@
     }
   }
 }
+
 //Control sidebar tabs
 .nav-tabs.control-sidebar-tabs {
   > li {
     &:first-of-type > a {
       &,
       &:hover,
-        &:focus {
+      &:focus {
         border-left-width: 0;
       }
     }
@@ -81,8 +85,8 @@
       > a {
         &,
         &:hover,
-          &:focus,
-          &:active {
+        &:focus,
+        &:active {
           border-top: none;
           border-right: none;
           border-bottom: none;
@@ -91,13 +95,14 @@
     }
   }
   //Remove responsiveness on small screens
-  @media(max-width: @screen-sm) {
+  @media (max-width: @screen-sm) {
     display: table;
-    >li {
+    > li {
       display: table-cell;
     }
   }
 }
+
 //Headings in the sidebar content
 .control-sidebar-heading {
   font-weight: 400;
@@ -105,12 +110,14 @@
   padding: 10px 0;
   margin-bottom: 10px;
 }
+
 //Subheadings
 .control-sidebar-subheading {
   display: block;
   font-weight: 400;
   font-size: 14px;
 }
+
 //Control Sidebar Menu
 .control-sidebar-menu {
   list-style: none;
@@ -147,6 +154,7 @@
     margin: 0;
   }
 }
+
 //Dark skin
 .control-sidebar-dark {
   color: @sidebar-dark-color;
@@ -165,13 +173,13 @@
         //Hover and active states
         &,
         &:hover,
-          &:focus {
+        &:focus {
           border-left-color: darken(@sidebar-dark-bg, 7%);
           border-bottom-color: darken(@sidebar-dark-bg, 7%);
         }
         &:hover,
-          &:focus,
-          &:active {
+        &:focus,
+        &:active {
           background: darken(@sidebar-dark-bg, 3%);
         }
         &:hover {
@@ -183,8 +191,8 @@
         > a {
           &,
           &:hover,
-            &:focus,
-            &:active {
+          &:focus,
+          &:active {
             background: @sidebar-dark-bg;
             color: #fff;
           }
@@ -213,6 +221,7 @@
     }
   }
 }
+
 //Light skin
 .control-sidebar-light {
   color: lighten(@sidebar-light-color, 10%);
@@ -232,13 +241,13 @@
         //Hover and active states
         &,
         &:hover,
-          &:focus {
+        &:focus {
           border-left-color: @gray;
           border-bottom-color: @gray;
         }
         &:hover,
-          &:focus,
-          &:active {
+        &:focus,
+        &:active {
           background: darken(@sidebar-light-bg, 3%);
         }
       }
@@ -247,8 +256,8 @@
         > a {
           &,
           &:hover,
-            &:focus,
-            &:active {
+          &:focus,
+          &:active {
             background: @sidebar-light-bg;
             color: #111;
           }

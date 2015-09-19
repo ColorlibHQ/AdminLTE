@@ -21,12 +21,12 @@
   }
   //Navbar search text input
   #navbar-search-input.form-control {
-    background: rgba(255,255,255,.2);
+    background: rgba(255, 255, 255, .2);
     border-color: transparent;
     &:focus,
-      &:active {
-      border-color: rgba(0,0,0,.1);
-      background: rgba(255,255,255,.9);
+    &:active {
+      border-color: rgba(0, 0, 0, .1);
+      background: rgba(255, 255, 255, .9);
     }
     &::-moz-placeholder {
       color: #ccc;
@@ -44,7 +44,7 @@
   .navbar-right {
     float: right;
     @media (max-width: @screen-sm-max) {
-       a {
+      a {
         color: inherit;
         background: transparent;
       }
@@ -56,6 +56,7 @@
       .navbar-collapse & {
         margin: 7.5px -15px;
       }
+
       > li {
         color: inherit;
         border: 0;
@@ -189,17 +190,20 @@
     }
   }
 }
+
 .navbar-toggle {
   color: #fff;
   border: 0;
   margin: 0;
   padding: @navbar-padding-vertical @navbar-padding-horizontal;
 }
+
 //Control navbar scaffolding on x-small screens
 @media (max-width: @screen-sm-max) {
   .navbar-custom-menu .navbar-nav > li {
     float: left;
   }
+
   //Dont't let links get full width
   .navbar-custom-menu .navbar-nav {
     margin: 0;
@@ -232,8 +236,8 @@
 }
 
 .navbar-collapse.pull-left {
-  @media(max-width: @screen-sm-max) {
-    float: none!important;
+  @media (max-width: @screen-sm-max) {
+    float: none !important;
     + .navbar-custom-menu {
       display: block;
       position: absolute;

@@ -29,7 +29,7 @@ body {
     max-width: 1250px;
     margin: 0 auto;
     min-height: 100%;
-    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
     position: relative;
   }
 }
@@ -47,7 +47,7 @@ body {
 .main-footer {
   //Using disposable variable to join statements with a comma
   @transition-rule: @transition-speed @transition-fn,
-    margin @transition-speed @transition-fn;
+  margin @transition-speed @transition-fn;
   .transition-transform(@transition-rule);
   margin-left: @sidebar-width;
   z-index: 820;
@@ -78,6 +78,7 @@ body {
   background-color: @body-bg;
   z-index: 800;
 }
+
 .main-footer {
   background: #fff;
   padding: 15px;
@@ -112,16 +113,16 @@ body {
 }
 
 body.hold-transition {
-    .content-wrapper,
-    .right-side,
-    .main-footer,
-    .main-sidebar,
-    .left-side,
-    .main-header > .navbar,
-    .main-header .logo {
-      /* Fix for IE */
-      .transition(none);
-    }
+  .content-wrapper,
+  .right-side,
+  .main-footer,
+  .main-sidebar,
+  .left-side,
+  .main-header > .navbar,
+  .main-header .logo {
+    /* Fix for IE */
+    .transition(none);
+  }
 }
 
 /* Content */
@@ -146,10 +147,12 @@ h6,
 .h6 {
   font-family: 'Source Sans Pro', sans-serif;
 }
+
 /* General Links */
 a {
   color: @link-color;
 }
+
 a:hover,
 a:active,
 a:focus {

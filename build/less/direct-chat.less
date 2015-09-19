@@ -15,24 +15,29 @@
     }
   }
 }
+
 .direct-chat-messages {
   .translate(0, 0);
   padding: 10px;
   height: 250px;
   overflow: auto;
 }
+
 .direct-chat-msg,
 .direct-chat-text {
   display: block;
 }
+
 .direct-chat-msg {
   .clearfix();
   margin-bottom: 10px;
 }
+
 .direct-chat-messages,
 .direct-chat-contacts {
   .transition-transform(.5s ease-in-out);
 }
+
 .direct-chat-text {
   .border-radius(5px);
   position: relative;
@@ -44,7 +49,7 @@
 
   //Create the arrow
   &:after,
-    &:before {
+  &:before {
     position: absolute;
     right: 100%;
     top: 15px;
@@ -68,7 +73,7 @@
     margin-right: 50px;
     margin-left: 0;
     &:after,
-      &:before {
+    &:before {
       right: auto;
       left: 100%;
       border-right-color: transparent;
@@ -76,6 +81,7 @@
     }
   }
 }
+
 .direct-chat-img {
   .border-radius(50%);
   float: left;
@@ -85,23 +91,28 @@
     float: right;
   }
 }
+
 .direct-chat-info {
   display: block;
   margin-bottom: 2px;
   font-size: 12px;
 }
+
 .direct-chat-name {
   font-weight: 600;
 }
+
 .direct-chat-timestamp {
   color: #999;
 }
+
 //Direct chat contacts pane
 .direct-chat-contacts-open {
   .direct-chat-contacts {
     .translate(0, 0);
   }
 }
+
 .direct-chat-contacts {
   .translate(101%, 0);
   position: absolute;
@@ -119,7 +130,7 @@
   &:extend(.list-unstyled);
   > li {
     .clearfix();
-    border-bottom: 1px solid rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     padding: 10px;
     margin: 0;
     &:last-of-type {
@@ -127,29 +138,36 @@
     }
   }
 }
+
 .contacts-list-img {
   .border-radius(50%);
   width: 40px;
   float: left;
 }
+
 .contacts-list-info {
   margin-left: 45px;
   color: #fff;
 }
+
 .contacts-list-name,
 .contacts-list-status {
   display: block;
 }
+
 .contacts-list-name {
   font-weight: 600;
 }
+
 .contacts-list-status {
   font-size: 12px;
 }
+
 .contacts-list-date {
   color: #aaa;
   font-weight: normal;
 }
+
 .contacts-list-msg {
   color: #999;
 }
@@ -158,15 +176,19 @@
 .direct-chat-danger {
   .direct-chat-variant(@red);
 }
+
 .direct-chat-primary {
   .direct-chat-variant(@light-blue);
 }
+
 .direct-chat-warning {
   .direct-chat-variant(@yellow);
 }
+
 .direct-chat-info {
   .direct-chat-variant(@aqua);
 }
+
 .direct-chat-success {
   .direct-chat-variant(@green);
 }

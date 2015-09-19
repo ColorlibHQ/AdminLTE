@@ -146,8 +146,8 @@ $(function () {
   //Extend options if external options exist
   if (typeof AdminLTEOptions !== "undefined") {
     $.extend(true,
-            $.AdminLTE.options,
-            AdminLTEOptions);
+        $.AdminLTE.options,
+        AdminLTEOptions);
   }
 
   //Easy access to options
@@ -344,8 +344,8 @@ function _init() {
 
       //Enable expand on hover for sidebar mini
       if ($.AdminLTE.options.sidebarExpandOnHover
-              || ($('body').hasClass('fixed')
-                      && $('body').hasClass('sidebar-mini'))) {
+          || ($('body').hasClass('fixed')
+          && $('body').hasClass('sidebar-mini'))) {
         this.expandOnHover();
       }
     },
@@ -355,14 +355,14 @@ function _init() {
       //Expand sidebar on hover
       $('.main-sidebar').hover(function () {
         if ($('body').hasClass('sidebar-mini')
-                && $("body").hasClass('sidebar-collapse')
-                && $(window).width() > screenWidth) {
+            && $("body").hasClass('sidebar-collapse')
+            && $(window).width() > screenWidth) {
           _this.expand();
         }
       }, function () {
         if ($('body').hasClass('sidebar-mini')
-                && $('body').hasClass('sidebar-expanded-on-hover')
-                && $(window).width() > screenWidth) {
+            && $('body').hasClass('sidebar-expanded-on-hover')
+            && $(window).width() > screenWidth) {
           _this.collapse();
         }
       });
@@ -455,7 +455,7 @@ function _init() {
         e.preventDefault();
         //If the sidebar is not open
         if (!sidebar.hasClass('control-sidebar-open')
-                && !$('body').hasClass('control-sidebar-open')) {
+            && !$('body').hasClass('control-sidebar-open')) {
           //Open the sidebar
           _this.open(sidebar, o.slide);
         } else {
@@ -563,8 +563,8 @@ function _init() {
       if (!box.hasClass("collapsed-box")) {
         //Convert minus into plus
         element.children(":first")
-                .removeClass(_this.icons.collapse)
-                .addClass(_this.icons.open);
+            .removeClass(_this.icons.collapse)
+            .addClass(_this.icons.open);
         //Hide the content
         box_content.slideUp(_this.animationSpeed, function () {
           box.addClass("collapsed-box");
@@ -572,8 +572,8 @@ function _init() {
       } else {
         //Convert plus into minus
         element.children(":first")
-                .removeClass(_this.icons.open)
-                .addClass(_this.icons.collapse);
+            .removeClass(_this.icons.open)
+            .addClass(_this.icons.collapse);
         //Show the content
         box_content.slideDown(_this.animationSpeed, function () {
           box.removeClass("collapsed-box");
