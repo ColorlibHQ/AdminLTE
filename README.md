@@ -92,6 +92,11 @@ AdminLTE 1.x can be easily upgraded to 2.x using [this guide](https://almsaeedst
 
 Change log
 ----------
+**v2.3.1:**
+- Fix sidebar issue #676
+- Fix BootLint warnings and errors
+- Minor bug fixes and code reformat
+
 **v2.3.0:**
 - Added social widgets (found in the widgets page)
 - Added profile page
