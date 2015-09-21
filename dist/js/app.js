@@ -672,14 +672,16 @@ function _init() {
 
 })(jQuery);
 
-/*
- * EXPLICIT BOX ACTIVATION
+ /*
+ * EXPLICIT BOX CONTROLS
  * -----------------------
  * This is a custom plugin to use with the component BOX. It allows you to activate
- * a box inserted in the DOM after the app.js was loaded.
+ * a box inserted in the DOM after the app.js was loaded, toggle and remove box.
  *
  * @type plugin
  * @usage $("#box-widget").activateBox();
+ * @usage $("#box-widget").toggleBox();
+ * @usage $("#box-widget").removeBox();
  */
 (function ($) {
 
@@ -687,6 +689,16 @@ function _init() {
 
   $.fn.activateBox = function () {
     $.AdminLTE.boxWidget.activate(this);
+  };
+  
+  $.fn.toggleBox = function(){
+    var button = $($.AdminLTE.boxWidget.selectors.collapse, this);
+    $.AdminLTE.boxWidget.collapse(button);
+  };
+  
+  $.fn.removeBox = function(){
+    var button = $($.AdminLTE.boxWidget.selectors.remove, this);
+    $.AdminLTE.boxWidget.remove(button);
   };
 
 })(jQuery);
