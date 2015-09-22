@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | User Profile</title>
+    <title>AdminLTE 2 | Animate CSS</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -12,11 +12,203 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="../../plugins/animatecss/animate.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../../dist/css/skins/skin-blue.min.css">
+
+    <!-- Animate website demo css -->
+    <style>
+    /*-----------------------------------*\
+    $RESET
+    \*-----------------------------------*/
+
+
+
+    input, select, button, textarea {
+    -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+
+    font: inherit;
+    color: inherit;
+    }
+
+    /*-----------------------------------*\
+    $OBJECTS
+    \*-----------------------------------*/
+
+    .content .butt,.content .input {
+    padding: .75rem;
+    margin: .375rem;
+
+    background-color: transparent;
+    border-radius: 4px;
+    }
+
+    .content .butt:focus,.content .input:focus {
+    outline: none;
+    }
+
+    .content .butt {
+    border: 2px solid #f35626;
+    line-height: 1.375;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
+    font-weight: 700;
+
+    color: #f35626;
+
+    cursor: pointer;
+    -webkit-animation: hue 60s infinite linear;
+    }
+
+    .content .butt--primary {
+    background-color: #f35626;
+    color: #fff;
+    }
+
+    .content .input {
+    border: 1px solid #c0c8c9;
+    border-radius: 4px;
+    }
+
+    html {
+      font: 100%/1.5 "Roboto", Verdana, sans-serif;
+      color: #3d464d;
+      background-color: #fff;
+      -webkit-font-smoothing: antialiased;
+      width: 100%;
+
+      overflow: hidden-x;
+
+    }
+
+    /*-----------------------------------*\
+    $TYPOGRAPHY
+    \*-----------------------------------*/
+
+    h1, .alpha {
+    margin-bottom: 1.5rem;
+
+    font-size: 3rem;
+    font-weight: 100;
+    line-height: 1;
+    letter-spacing: -.05em;
+    }
+
+    h2, .beta {
+    margin-bottom: .75rem;
+
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1;
+    }
+
+    @media (min-width: 650px) {
+    .mega {
+    font-size: 6rem;
+    line-height: 1;
+    }
+    }
+
+    .subhead, .meta {
+    color: #7b8993;
+    }
+
+    .promo {
+    text-align: center;
+    }
+
+    p, hr, form {
+    margin-bottom: 1.5rem;
+    }
+
+    hr {
+    border: none;
+    margin-top: -1px;
+    height: 1px;
+    background-color: #c0c8c9;
+    background-image: -webkit-linear-gradient(0deg, #fff, #c0c8c9, #fff);
+    }
+
+    .content a {
+    color: inherit;
+    text-decoration: underline;
+    -webkit-animation: hue 60s infinite linear;
+    }
+
+    .content a:hover {
+    color: #f35626;
+    }
+
+    /*-----------------------------------*\
+    $LAYOUT
+    \*-----------------------------------*/
+
+    .wrap {
+    max-width: 38rem;
+    margin: 0 auto;
+    }
+
+    .island {
+    padding: 1.5rem;
+    }
+
+    .isle {
+    padding: .75rem;
+    }
+
+    .spit {
+    padding: .375rem;
+    }
+
+
+    /*-----------------------------------*\
+    $HEADER
+    \*-----------------------------------*/
+
+    .site__header {
+    -webkit-animation: bounceInUp 1s;
+    }
+
+    .site__title {
+    color: #f35626;
+    background-image: -webkit-linear-gradient(92deg,#f35626,#feab3a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: hue 60s infinite linear;
+    }
+
+    .site__content {
+    -webkit-animation: bounceInUp 1s;
+    -webkit-animation-delay: .1s;
+    }
+
+    .site__content form {
+    -webkit-animation: bounceInUp 1s;
+    -webkit-animation-delay: .1s;
+    }
+
+    /*-----------------------------------*\
+    $ANIMATIONS
+    \*-----------------------------------*/
+
+    @-webkit-keyframes hue {
+    from {
+    -webkit-filter: hue-rotate(0deg);
+    }
+
+    to {
+    -webkit-filter: hue-rotate(-360deg);
+    }
+    }
+
+    </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -149,6 +341,7 @@
                           <i class="fa fa-users text-red"></i> 5 new members joined
                         </a>
                       </li>
+
                       <li>
                         <a href="#">
                           <i class="fa fa-shopping-cart text-green"></i> 25 sales made
@@ -336,17 +529,17 @@
                 <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
-            <li class="treeview">
+            <li class="treeview ">
               <a href="#">
                 <i class="fa fa-pie-chart"></i>
                 <span>Charts</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-                <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-                <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-                <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+                <li><a href="chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
+                <li><a href="morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
+                <li class="active"><a href="flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
+                <li><a href="inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
               </ul>
             </li>
             <li class="treeview">
@@ -375,7 +568,7 @@
                 <li><a href="../forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
               </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview active">
               <a href="#">
                 <i class="fa fa-spinner"></i> <span>Animation</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -406,20 +599,20 @@
                 <small class="label pull-right bg-yellow">12</small>
               </a>
             </li>
-            <li class="treeview active">
+            <li class="treeview">
               <a href="#">
                 <i class="fa fa-folder"></i> <span>Examples</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-                <li class="active"><a href="profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-                <li><a href="login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-                <li><a href="register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-                <li><a href="lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-                <li><a href="404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-                <li><a href="500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-                <li><a href="blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
+                <li><a href="../examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
+                <li><a href="../examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
+                <li><a href="../examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
+                <li><a href="../examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
+                <li><a href="../examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
+                <li><a href="../examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
+                <li><a href="../examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
+                <li><a href="../examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
               </ul>
             </li>
             <li class="treeview">
@@ -460,319 +653,264 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            User Profile
+            Animate CSS
+            <small>preview sample</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Examples</a></li>
-            <li class="active">User profile</li>
+            <li><a href="#">Animation</a></li>
+            <li class="active">AnimateCSS</li>
           </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-sm-12">
+                <header class="site__header island">
+              <div class="wrap">
+               <span id="animationSandbox" style="display: block;"><h1 class="site__title mega">Animate.css</h1></span>
+                <span class="beta subhead">Just-add-water CSS animations</span>
+              </div>
+            </header><!-- /.site__header -->
 
-          <div class="row">
-            <div class="col-md-3">
+            <main class="site__content island" role="content">
+              <div class="wrap">
+                <form>
+                  <select class="input input--dropdown js--animations">
+                    <optgroup label="Attention Seekers">
+                      <option value="bounce">bounce</option>
+                      <option value="flash">flash</option>
+                      <option value="pulse">pulse</option>
+                      <option value="rubberBand">rubberBand</option>
+                      <option value="shake">shake</option>
+                      <option value="swing">swing</option>
+                      <option value="tada">tada</option>
+                      <option value="wobble">wobble</option>
+                      <option value="jello">jello</option>
+                    </optgroup>
 
-              <!-- Profile Image -->
-              <div class="box box-primary">
-                <div class="box-body box-profile">
-                  <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
-                  <h3 class="profile-username text-center">Nina Mcintire</h3>
-                  <p class="text-muted text-center">Software Engineer</p>
+                    <optgroup label="Bouncing Entrances">
+                      <option value="bounceIn">bounceIn</option>
+                      <option value="bounceInDown">bounceInDown</option>
+                      <option value="bounceInLeft">bounceInLeft</option>
+                      <option value="bounceInRight">bounceInRight</option>
+                      <option value="bounceInUp">bounceInUp</option>
+                    </optgroup>
 
-                  <ul class="list-group list-group-unbordered">
-                    <li class="list-group-item">
-                      <b>Followers</b> <a class="pull-right">1,322</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>Following</b> <a class="pull-right">543</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>Friends</b> <a class="pull-right">13,287</a>
-                    </li>
-                  </ul>
+                    <optgroup label="Bouncing Exits">
+                      <option value="bounceOut">bounceOut</option>
+                      <option value="bounceOutDown">bounceOutDown</option>
+                      <option value="bounceOutLeft">bounceOutLeft</option>
+                      <option value="bounceOutRight">bounceOutRight</option>
+                      <option value="bounceOutUp">bounceOutUp</option>
+                    </optgroup>
 
-                  <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
+                    <optgroup label="Fading Entrances">
+                      <option value="fadeIn">fadeIn</option>
+                      <option value="fadeInDown">fadeInDown</option>
+                      <option value="fadeInDownBig">fadeInDownBig</option>
+                      <option value="fadeInLeft">fadeInLeft</option>
+                      <option value="fadeInLeftBig">fadeInLeftBig</option>
+                      <option value="fadeInRight">fadeInRight</option>
+                      <option value="fadeInRightBig">fadeInRightBig</option>
+                      <option value="fadeInUp">fadeInUp</option>
+                      <option value="fadeInUpBig">fadeInUpBig</option>
+                    </optgroup>
 
-              <!-- About Me Box -->
-              <div class="box box-primary">
+                    <optgroup label="Fading Exits">
+                      <option value="fadeOut">fadeOut</option>
+                      <option value="fadeOutDown">fadeOutDown</option>
+                      <option value="fadeOutDownBig">fadeOutDownBig</option>
+                      <option value="fadeOutLeft">fadeOutLeft</option>
+                      <option value="fadeOutLeftBig">fadeOutLeftBig</option>
+                      <option value="fadeOutRight">fadeOutRight</option>
+                      <option value="fadeOutRightBig">fadeOutRightBig</option>
+                      <option value="fadeOutUp">fadeOutUp</option>
+                      <option value="fadeOutUpBig">fadeOutUpBig</option>
+                    </optgroup>
+
+                    <optgroup label="Flippers">
+                      <option value="flip">flip</option>
+                      <option value="flipInX">flipInX</option>
+                      <option value="flipInY">flipInY</option>
+                      <option value="flipOutX">flipOutX</option>
+                      <option value="flipOutY">flipOutY</option>
+                    </optgroup>
+
+                    <optgroup label="Lightspeed">
+                      <option value="lightSpeedIn">lightSpeedIn</option>
+                      <option value="lightSpeedOut">lightSpeedOut</option>
+                    </optgroup>
+
+                    <optgroup label="Rotating Entrances">
+                      <option value="rotateIn">rotateIn</option>
+                      <option value="rotateInDownLeft">rotateInDownLeft</option>
+                      <option value="rotateInDownRight">rotateInDownRight</option>
+                      <option value="rotateInUpLeft">rotateInUpLeft</option>
+                      <option value="rotateInUpRight">rotateInUpRight</option>
+                    </optgroup>
+
+                    <optgroup label="Rotating Exits">
+                      <option value="rotateOut">rotateOut</option>
+                      <option value="rotateOutDownLeft">rotateOutDownLeft</option>
+                      <option value="rotateOutDownRight">rotateOutDownRight</option>
+                      <option value="rotateOutUpLeft">rotateOutUpLeft</option>
+                      <option value="rotateOutUpRight">rotateOutUpRight</option>
+                    </optgroup>
+
+                    <optgroup label="Sliding Entrances">
+                      <option value="slideInUp">slideInUp</option>
+                      <option value="slideInDown">slideInDown</option>
+                      <option value="slideInLeft">slideInLeft</option>
+                      <option value="slideInRight">slideInRight</option>
+
+                    </optgroup>
+                    <optgroup label="Sliding Exits">
+                      <option value="slideOutUp">slideOutUp</option>
+                      <option value="slideOutDown">slideOutDown</option>
+                      <option value="slideOutLeft">slideOutLeft</option>
+                      <option value="slideOutRight">slideOutRight</option>
+
+                    </optgroup>
+
+                    <optgroup label="Zoom Entrances">
+                      <option value="zoomIn">zoomIn</option>
+                      <option value="zoomInDown">zoomInDown</option>
+                      <option value="zoomInLeft">zoomInLeft</option>
+                      <option value="zoomInRight">zoomInRight</option>
+                      <option value="zoomInUp">zoomInUp</option>
+                    </optgroup>
+
+                    <optgroup label="Zoom Exits">
+                      <option value="zoomOut">zoomOut</option>
+                      <option value="zoomOutDown">zoomOutDown</option>
+                      <option value="zoomOutLeft">zoomOutLeft</option>
+                      <option value="zoomOutRight">zoomOutRight</option>
+                      <option value="zoomOutUp">zoomOutUp</option>
+                    </optgroup>
+
+                    <optgroup label="Specials">
+                      <option value="hinge">hinge</option>
+                      <option value="rollIn">rollIn</option>
+                      <option value="rollOut">rollOut</option>
+                    </optgroup>
+                  </select>
+
+                  <button class="butt js--triggerAnimation">Animate it</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12">
+              <div class="box box-solid">
                 <div class="box-header with-border">
-                  <h3 class="box-title">About Me</h3>
+                  <i class="fa fa-text-width"></i>
+                  <h3 class="box-title">Usage/使用方法</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <strong><i class="fa fa-book margin-r-5"></i>  Education</strong>
-                  <p class="text-muted">
-                    B.S. in Computer Science from the University of Tennessee at Knoxville
-                  </p>
+                  <ol>
+                    <li>Basic Usage
+                        <ol>
+                            <li><code>&lt;link rel="stylesheet" href="animate.min.css"&gt;</code></li>
+                            <li><code>&lt;h1&gt; class="animated infinite bounce">Example&lt;/h1&gt;</code></li>
+                        </ol>
+                    </li>
+                    <li>JQuery Usage
+                        <ol>
+                            <li><code>&lt;link rel="stylesheet" href="animate.min.css"&gt;</code></li>
+                            <li><code>$('#yourElement').addClass('animated bounceOutLeft');</code></li>
+                        </ol>
+                    </li>
+                    <li>Animate CSS inner Class
+                        <ul>
+                            <li><code>bounce</code></li>
+                            <li><code>flash</code></li>
+                            <li><code>pulse</code></li>
+                            <li><code>rubberBand</code></li>
+                            <li><code>shake</code></li>
+                            <li><code>swing</code></li>
+                            <li><code>tada</code></li>
+                            <li><code>wobble</code></li>
+                            <li><code>jello</code></li>
+                            <li><code>bounceIn</code></li>
+                            <li><code>bounceInDown</code></li>
+                            <li><code>bounceInLeft</code></li>
+                            <li><code>bounceInRight</code></li>
+                            <li><code>bounceInUp</code></li>
+                            <li><code>bounceOut</code></li>
+                            <li><code>bounceOutDown</code></li>
+                            <li><code>bounceOutLeft</code></li>
+                            <li><code>bounceOutRight</code></li>
+                            <li><code>bounceOutUp</code></li>
+                            <li><code>fadeIn</code></li>
+                            <li><code>fadeInDown</code></li>
+                            <li><code>fadeInDownBig</code></li>
+                            <li><code>fadeInLeft</code></li>
+                            <li><code>fadeInLeftBig</code></li>
+                            <li><code>fadeInRight</code></li>
+                            <li><code>fadeInRightBig</code></li>
+                            <li><code>fadeInUp</code></li>
+                            <li><code>fadeInUpBig</code></li>
+                            <li><code>fadeOut</code></li>
+                            <li><code>fadeOutDown</code></li>
+                            <li><code>fadeOutDownBig</code></li>
+                            <li><code>fadeOutLeft</code></li>
+                            <li><code>fadeOutLeftBig</code></li>
+                            <li><code>fadeOutRight</code></li>
+                            <li><code>fadeOutRightBig</code></li>
+                            <li><code>fadeOutUp</code></li>
+                            <li><code>fadeOutUpBig</code></li>
+                            <li><code>flipInX</code></li>
+                            <li><code>flipInY</code></li>
+                            <li><code>flipOutX</code></li>
+                            <li><code>flipOutY</code></li>
+                            <li><code>lightSpeedIn</code></li>
+                            <li><code>lightSpeedOut</code></li>
+                            <li><code>rotateIn</code></li>
+                            <li><code>rotateInDownLeft</code></li>
+                            <li><code>rotateInDownRight</code></li>
+                            <li><code>rotateInUpLeft</code></li>
+                            <li><code>rotateInUpRight</code></li>
+                            <li><code>rotateOut</code></li>
+                            <li><code>rotateOutDownLeft</code></li>
+                            <li><code>rotateOutDownRight</code></li>
+                            <li><code>rotateOutUpLeft</code></li>
+                            <li><code>rotateOutUpRight</code></li>
+                            <li><code>hinge</code></li>
+                            <li><code>rollIn</code></li>
+                            <li><code>rollOut</code></li>
+                            <li><code>zoomIn</code></li>
+                            <li><code>zoomInDown</code></li>
+                            <li><code>zoomInLeft</code></li>
+                            <li><code>zoomInRight</code></li>
+                            <li><code>zoomInUp</code></li>
+                            <li><code>zoomOut</code></li>
+                            <li><code>zoomOutDown</code></li>
+                            <li><code>zoomOutLeft</code></li>
+                            <li><code>zoomOutRight</code></li>
+                            <li><code>zoomOutUp</code></li>
+                            <li><code>slideInDown</code></li>
+                            <li><code>slideInLeft</code></li>
+                            <li><code>slideInRight</code></li>
+                            <li><code>slideInUp</code></li>
+                            <li><code>slideOutDown</code></li>
+                            <li><code>slideOutLeft</code></li>
+                            <li><code>slideOutRight</code></li>
+                            <li><code>slideOutUp</code></li>
+                            </ul>
+                    </li>
 
-                  <hr>
-
-                  <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-                  <p class="text-muted">Malibu, California</p>
-
-                  <hr>
-
-                  <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-                  <p>
-                    <span class="label label-danger">UI Design</span>
-                    <span class="label label-success">Coding</span>
-                    <span class="label label-info">Javascript</span>
-                    <span class="label label-warning">PHP</span>
-                    <span class="label label-primary">Node.js</span>
-                  </p>
-
-                  <hr>
-
-                  <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                  </ol>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
-            </div><!-- /.col -->
-            <div class="col-md-9">
-              <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs">
-                  <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-                  <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
-                  <li><a href="#settings" data-toggle="tab">Settings</a></li>
-                </ul>
-                <div class="tab-content">
-                  <div class="active tab-pane" id="activity">
-                    <!-- Post -->
-                    <div class="post">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">Shared publicly - 7:30 PM today</span>
-                      </div><!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
-                      </p>
-                      <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a></li>
-                        <li class="pull-right"><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments (5)</a></li>
-                      </ul>
+            </div>
+        </div>
 
-                      <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                    </div><!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post clearfix">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">Sent you a message - 3 days ago</span>
-                      </div><!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
-                      </p>
-
-                      <form class="form-horizontal">
-                        <div class="form-group margin-bottom-none">
-                          <div class="col-sm-9">
-                            <input class="form-control input-sm" placeholder="Response">
-                          </div>
-                          <div class="col-sm-3">
-                            <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div><!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">Posted 5 photos - 5 days ago</span>
-                      </div><!-- /.user-block -->
-                      <div class="row margin-bottom">
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                          <div class="row">
-                            <div class="col-sm-6">
-                              <img class="img-responsive" src="../../dist/img/photo2.png" alt="Photo">
-                              <br>
-                              <img class="img-responsive" src="../../dist/img/photo3.jpg" alt="Photo">
-                            </div><!-- /.col -->
-                            <div class="col-sm-6">
-                              <img class="img-responsive" src="../../dist/img/photo4.jpg" alt="Photo">
-                              <br>
-                              <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-                            </div><!-- /.col -->
-                          </div><!-- /.row -->
-                        </div><!-- /.col -->
-                      </div><!-- /.row -->
-
-                      <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a></li>
-                        <li class="pull-right"><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments (5)</a></li>
-                      </ul>
-
-                      <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                    </div><!-- /.post -->
-                  </div><!-- /.tab-pane -->
-                  <div class="tab-pane" id="timeline">
-                    <!-- The timeline -->
-                    <ul class="timeline timeline-inverse">
-                      <!-- timeline time label -->
-                      <li class="time-label">
-                        <span class="bg-red">
-                          10 Feb. 2014
-                        </span>
-                      </li>
-                      <!-- /.timeline-label -->
-                      <!-- timeline item -->
-                      <li>
-                        <i class="fa fa-envelope bg-blue"></i>
-                        <div class="timeline-item">
-                          <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-                          <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-                          <div class="timeline-body">
-                            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                            weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                            jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                            quora plaxo ideeli hulu weebly balihoo...
-                          </div>
-                          <div class="timeline-footer">
-                            <a class="btn btn-primary btn-xs">Read more</a>
-                            <a class="btn btn-danger btn-xs">Delete</a>
-                          </div>
-                        </div>
-                      </li>
-                      <!-- END timeline item -->
-                      <!-- timeline item -->
-                      <li>
-                        <i class="fa fa-user bg-aqua"></i>
-                        <div class="timeline-item">
-                          <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-                          <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
-                        </div>
-                      </li>
-                      <!-- END timeline item -->
-                      <!-- timeline item -->
-                      <li>
-                        <i class="fa fa-comments bg-yellow"></i>
-                        <div class="timeline-item">
-                          <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-                          <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-                          <div class="timeline-body">
-                            Take me to your leader!
-                            Switzerland is small and neutral!
-                            We are more like Germany, ambitious and misunderstood!
-                          </div>
-                          <div class="timeline-footer">
-                            <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                          </div>
-                        </div>
-                      </li>
-                      <!-- END timeline item -->
-                      <!-- timeline time label -->
-                      <li class="time-label">
-                        <span class="bg-green">
-                          3 Jan. 2014
-                        </span>
-                      </li>
-                      <!-- /.timeline-label -->
-                      <!-- timeline item -->
-                      <li>
-                        <i class="fa fa-camera bg-purple"></i>
-                        <div class="timeline-item">
-                          <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-                          <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-                          <div class="timeline-body">
-                            <img src="http://placehold.it/150x100" alt="..." class="margin">
-                            <img src="http://placehold.it/150x100" alt="..." class="margin">
-                            <img src="http://placehold.it/150x100" alt="..." class="margin">
-                            <img src="http://placehold.it/150x100" alt="..." class="margin">
-                          </div>
-                        </div>
-                      </li>
-                      <!-- END timeline item -->
-                      <li>
-                        <i class="fa fa-clock-o bg-gray"></i>
-                      </li>
-                    </ul>
-                  </div><!-- /.tab-pane -->
-
-                  <div class="tab-pane" id="settings">
-                    <form class="form-horizontal">
-                      <div class="form-group">
-                        <label for="inputName" class="col-sm-2 control-label">Name</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputName" placeholder="Name">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="inputName" class="col-sm-2 control-label">Name</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName" placeholder="Name">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-                        <div class="col-sm-10">
-                          <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Submit</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div><!-- /.tab-pane -->
-                </div><!-- /.tab-content -->
-              </div><!-- /.nav-tabs-custom -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
 
         </section><!-- /.content -->
+
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
@@ -958,5 +1096,28 @@
     <script src="../../dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="../../dist/js/demo.js"></script>
+
+    <!-- animation css demo script -->
+    <script>
+      function testAnim(x) {
+        $('#animationSandbox').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+          $(this).removeClass();
+        });
+      };
+
+      $(document).ready(function(){
+        $('.js--triggerAnimation').click(function(e){
+          e.preventDefault();
+          var anim = $('.js--animations').val();
+          testAnim(anim);
+        });
+
+        $('.js--animations').change(function(){
+          var anim = $(this).val();
+          testAnim(anim);
+        });
+      });
+
+    </script>
   </body>
 </html>
