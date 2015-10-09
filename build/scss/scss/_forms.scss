@@ -1,0 +1,82 @@
+/*
+ * Component: Form
+ * ---------------
+ */
+.form-control {
+  @include border-radius-same($input-radius !important);
+  box-shadow: none;
+  border-color: $gray;
+  &:focus {
+    border-color: $light-blue !important;
+    box-shadow: none;
+  }
+  &::-moz-placeholder {
+    color: #bbb;
+    opacity: 1;
+  }
+  &:-ms-input-placeholder {
+    color: #bbb;
+  }
+  &::-webkit-input-placeholder {
+    color: #bbb;
+  }
+
+  &:not(select) {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+}
+
+.form-group {
+  &.has-success {
+    label {
+      color: $green;
+    }
+    .form-control {
+      border-color: $green !important;
+      box-shadow: none;
+    }
+  }
+
+  &.has-warning {
+    label {
+      color: $yellow;
+    }
+    .form-control {
+      border-color: $yellow !important;
+      box-shadow: none;
+    }
+  }
+
+  &.has-error {
+    label {
+      color: $red;
+    }
+    .form-control {
+      border-color: $red !important;
+      box-shadow: none;
+    }
+  }
+}
+
+/* Input group */
+.input-group {
+  .input-group-addon {
+    @include border-radius-same($input-radius);
+    border-color: $gray;
+    background-color: #fff;
+  }
+}
+/* button groups */
+.btn-group-vertical {
+  .btn {
+    &.btn-flat:first-of-type, &.btn-flat:last-of-type {
+      @include border-radius-same(0);
+    }
+  }
+}
+
+.icheck > label {
+  padding-left: 0;
+}

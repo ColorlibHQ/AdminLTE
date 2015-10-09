@@ -1,0 +1,98 @@
+/*
+ * Component: Timeline
+ * -------------------
+ */
+
+.timeline{
+  position: relative;
+  margin: 0 0 30px 0;
+  padding: 0;
+  list-style: none;
+
+  // The line
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    width: 4px;
+    background: #ddd;
+    left: 31px;
+    margin: 0;
+    @include border-radius-same(2px);
+  }
+
+
+  > li {
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    @include clearfix;
+
+    // The content
+    > .timeline-item {
+      @include box-shadow($box-boxshadow);
+      @include border-radius-same($box-border-radius);
+      margin-top: 0px;
+      background: #fff;
+      color: #444;
+      margin-left: 60px;
+      margin-right: 15px;
+      padding: 0;
+      position: relative;
+
+      // The time and header
+      > .time {
+        color: #999;
+        float: right;
+        padding: 10px;
+        font-size: 12px;
+      }
+      > .timeline-header {
+        margin: 0;
+        color: #555;
+        border-bottom: 1px solid $box-border-color;
+        padding: 10px;
+        font-size: 16px;
+        line-height: 1.1;
+        > a {
+          font-weight: 600;
+        }
+      }
+      // Item body and footer
+      > .timeline-body, > .timeline-footer {
+        padding: 10px;
+      }
+
+    }
+
+    // Time label
+    &.time-label {
+      > span {
+        font-weight: 600;
+        padding: 5px;
+        display: inline-block;
+        background-color: #fff;
+
+        @include border-radius-same(4px);
+      }
+    }
+
+    // The icons
+    > .fa,
+    > .glyphicon,
+    > .ion {
+      width: 30px;
+      height: 30px;
+      font-size: 15px;
+      line-height: 30px;
+      position: absolute;
+      color: #666;
+      background: $gray;
+      border-radius: 50%;
+      text-align: center;
+      left: 18px;
+      top: 0;
+    }
+  }
+}
