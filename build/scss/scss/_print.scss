@@ -1,0 +1,44 @@
+@media print {
+  //Add to elements that you do not want to show when printing
+  .no-print {
+    display: none !important;
+  }
+  //Elements that we want to hide when printing
+  .main-sidebar,
+  .left-side,
+  .main-header,
+  .content-header {
+    @extend .no-print;
+  }
+  //This is the only element that should appear, so let's remove the margins
+  .content-wrapper,
+  .right-side,
+  .main-footer {
+    margin-left: 0 !important;
+    min-height: 0 !important;
+    @include translate(0, 0);
+  }
+  .fixed .content-wrapper,
+  .fixed .right-side {
+    padding-top: 0!important;
+  }
+  //Invoice printing
+  .invoice {
+    width: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .invoice-col {
+    float: left;
+    width: 33.3333333%;
+  }
+  //Make sure table content displays properly
+  .table-responsive {
+    overflow: auto;
+    > .table tr th,
+    > .table tr td {
+      white-space: normal!important;
+    }
+  }
+}

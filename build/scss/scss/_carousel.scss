@@ -1,0 +1,15 @@
+/*
+ * Component: Carousel
+ * -------------------
+ */
+.carousel-control {
+  background-image: none!important;
+  > .fa {
+    font-size: 40px;
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    margin-top: -20px;
+  }
+}
