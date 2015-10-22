@@ -394,7 +394,7 @@ function _init() {
       var checkElement = $this.next();
 
       //Check if the next element is a menu and is visible
-      if ((checkElement.is('.treeview-menu')) && (checkElement.is(':visible'))) {
+      if ((checkElement.is('.treeview-menu')) && (checkElement.is(':visible')) && (!$('body').hasClass('sidebar-collapse'))) {
         //Close the menu
         checkElement.slideUp(animationSpeed, function () {
           checkElement.removeClass('menu-open');
