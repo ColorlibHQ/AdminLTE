@@ -672,10 +672,7 @@ a:focus {
   position: relative;
 }
 .sidebar-menu li > a > .pull-right {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  margin-top: -7px;
+  margin-top: 2px;
 }
 /*
  * Component: Control sidebar. By default, this is the right sidebar.
