@@ -6,10 +6,9 @@
   ],
   "description": "Admin dashboard and control panel template",
   "main": [
-    "index2.html",
+    "starter.html",
     "dist/css/AdminLTE.css",
-    "dist/js/app.js",
-    "build/less/AdminLTE.less"
+    "dist/js/app.js"
   ],
   "keywords": [
     "css",
