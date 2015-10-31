@@ -9,6 +9,7 @@ module.exports = function (grunt) {
       files: ["build/less/*.less", "build/less/skins/*.less", "dist/js/app.js"],
       tasks: ["less", "uglify"]
     },
+
     // "less"-task configuration
     // This task will compile all less files upon saving to create both AdminLTE.css and AdminLTE.min.css
     less: {
@@ -63,6 +64,27 @@ module.exports = function (grunt) {
         }
       }
     },
+
+    // SASS compiler
+    sass: {
+      development: {
+        options: {
+          style: 'expanded'
+        },
+        files: {
+          'dist/tmp/AdminLTE.css': 'build/scss/AdminLTE.scss'
+        }
+      },
+      production: {
+        options: {
+          style: 'compressed'
+        },
+        files: {
+          'dist/tmp/AdminLTE.min.css': 'build/scss/AdminLTE.scss'
+        }
+      }
+    },
+
     // Uglify task info. Compress the js files.
     uglify: {
       options: {
@@ -75,6 +97,7 @@ module.exports = function (grunt) {
         }
       }
     },
+
     // Build the documentation files
     includes: {
       build: {
@@ -147,6 +170,8 @@ module.exports = function (grunt) {
 
   // LESS Compiler
   grunt.loadNpmTasks('grunt-contrib-less');
+  // SASS compiler
+  grunt.loadNpmTasks('grunt-contrib-sass');
   // Watch File Changes
   grunt.loadNpmTasks('grunt-contrib-watch');
   // Compress JS Files
