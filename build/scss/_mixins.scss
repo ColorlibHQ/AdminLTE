@@ -174,7 +174,7 @@
     }
     input[type="text"] {
       color: #666;
-      @include border-radius(2px, 0, 2px, 0);
+      @include border-radius-sides(2px, 0, 2px, 0);
       &:focus, &:focus + .input-group-btn .btn {
         background-color: #fff;
         color: #666;
@@ -185,7 +185,7 @@
     }
     .btn {
       color: #999;
-      @include border-radius(0, 2px, 0, 2px);
+      @include border-radius-sides(0, 2px, 0, 2px);
     }
   }
 }
@@ -279,7 +279,7 @@
     }
     input[type="text"] {
       color: #666;
-      @include border-radius(2px, 0, 2px, 0);
+      @include border-radius-sides(2px, 0, 2px, 0);
       &:focus,
       &:focus + .input-group-btn .btn {
         background-color: #fff;
@@ -291,7 +291,7 @@
     }
     .btn {
       color: #999;
-      @include border-radius(0, 2px, 0, 2px);
+      @include border-radius-sides(0, 2px, 0, 2px);
     }
   }
   @media (min-width: map-get($grid-breakpoints, sm)) {

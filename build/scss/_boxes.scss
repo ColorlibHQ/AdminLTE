@@ -28,7 +28,7 @@
     border-top-color: $green;
   }
   &.box-default {
-    border-top-color: $gray;
+    border-top-color: $box-default-border-top-color;
   }
 
   // collapsed mode
@@ -224,10 +224,10 @@
   padding: 5px;
   font-size: 12px;
   background: transparent;
-  color: darken($box-default-border-top-color, 20%);
+  color: $gray-light;
   .open &,
   &:hover {
-    color: darken($box-default-border-top-color, 40%);
+    color: $gray;
   }
   &.btn:active {
     box-shadow: none;

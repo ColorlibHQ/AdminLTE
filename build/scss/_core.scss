@@ -13,8 +13,6 @@ body {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 400;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -35,7 +33,7 @@ body {
 }
 
 .layout-boxed {
-  background: url('${boxed-layout-bg-image-path}') repeat fixed;
+  background: url('#{$boxed-layout-bg-image-path}') repeat fixed;
 }
 
 /*
@@ -75,7 +73,7 @@ transition: transform $transition-rule;
 .content-wrapper,
 .right-side {
   min-height: 100%;
-  background-color: $body-bg;
+  background-color: $main-bg;
   z-index: 800;
 }
 
@@ -83,7 +81,7 @@ transition: transform $transition-rule;
   background: #fff;
   padding: 15px;
   color: #444;
-  border-top: 1px solid $gray;
+  border-top: 1px solid $gray-lighter;
 }
 
 /* Fixed layout */

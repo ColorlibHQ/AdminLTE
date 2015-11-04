@@ -2,16 +2,12 @@
  * Skin: Yellow
  * ------------
  */
-@import "../../bootstrap-less/mixins.less";
-@import "../../bootstrap-less/variables.less";
-@import "../variables.less";
-@import "../mixins.less";
 
 .skin-yellow-light {
   //Navbar
   .main-header {
     .navbar {
-      @include navbar-variant($yellow; #fff);
+      @include navbar-variant($yellow, #fff);
       .sidebar-toggle {
         color: #fff;
         &:hover {

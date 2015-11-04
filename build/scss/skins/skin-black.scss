@@ -2,10 +2,6 @@
  * Skin: Black
  * -----------
  */
-@import "../../bootstrap-less/mixins.less";
-@import "../../bootstrap-less/variables.less";
-@import "../variables.less";
-@import "../mixins.less";
 
 /* skin-black navbar */
 .skin-black {
@@ -20,7 +16,7 @@
       border-right: 1px solid #eee;
     }
     > .navbar {
-      @include navbar-variant(#fff; #333; #999; #fff);
+      @include navbar-variant(#fff, #333, #999, #fff);
       > .sidebar-toggle {
         color: #333;
         border-right: 1px solid #eee;
@@ -41,10 +37,10 @@
       }
     }
     > .logo {
-      @include logo-variant(#fff; #333);
+      @include logo-variant(#fff, #333);
       border-right: 1px solid #eee;
       @media (max-width: $screen-header-collapse) {
-        @include logo-variant(#222; #fff);
+        @include logo-variant(#222, #fff);
         border-right: none;
       }
     }

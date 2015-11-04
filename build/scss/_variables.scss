@@ -28,7 +28,7 @@ $fuchsia: #F012BE;
 $purple: #605ca8;
 $maroon: #D81B60;
 $black: #111;
-$gray: #d2d6de;
+//$gray: #d2d6de;
 
 //LAYOUT
 //--------------------------------------------------------
@@ -40,12 +40,12 @@ $boxed-layout-max-width: 1024px;
 //When the logo should go to the top of the screen
 $screen-header-collapse: map-get($grid-breakpoints, xs);
 
-//Link colors (Aka: <a> tags)
+//Link colors (aka: <a> tags)
 $link-color: $light-blue;
 $link-hover-color: lighten($link-color, 15%);
 
 //Body background (Affects main content background only)
-$body-bg: #ecf0f5;
+$main-bg: #ecf0f5;
 
 //SIDEBAR SKINS
 //--------------------------------------------------------
@@ -81,7 +81,7 @@ $box-boxshadow: 0 1px 1px rgba(0, 0, 0, 0.125);
 $box-padding: 10px;
 
 //Box variants
-$box-default-border-top-color: #d2d6de;
+$box-default-border-top-color: $gray-light;//#d2d6de;
 
 //BUTTONS
 //--------------------------------------------------------
@@ -118,6 +118,5 @@ $attachment-border-radius: 3px;
 //--------------------------------------------------------
 
 //Transition global options
-$transition-speed: 3s;
+$transition-speed: 0.3s;
 $transition-fn: ease-in-out;
-//cubic-bezier(0.32,1.25,0.375,1.15);
