@@ -4,7 +4,7 @@
  */
 .skin-blue {
   //Navbar
-  .main-header {
+  .main-header {/*
     .navbar {
       @include navbar-variant($light-blue, #fff);
       .sidebar-toggle {
@@ -28,7 +28,7 @@
           }
         }
       }
-    }
+    }*/
     //Logo
     .logo {
       @include logo-variant(darken($light-blue, 5%));

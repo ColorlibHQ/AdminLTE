@@ -4,5 +4,34 @@
  */
 
 .main-header {
+  position: relative;
+  z-index: $zindex-navbar;
 
+  > .navbar {
+    margin-left: $sidebar-width;
+    height: 55px;
+  }
+
+  > .logo {
+    width: $sidebar-width;
+    padding: 0 15px;
+    text-align: center;
+    float: left;
+    font-size: 18px;
+    height: 55px;
+    line-height: 55px;
+  }
+}
+
+.content-header {
+  padding: 15px;
+  h1 {
+    font-size: 2rem;
+    margin: 0;
+
+  }
+  .breadcrumb {
+    margin-bottom: 0;
+    padding: 0;
+  }
 }
