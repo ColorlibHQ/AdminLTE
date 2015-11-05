@@ -131,7 +131,7 @@ module.exports = function (grunt) {
   // LESS Compiler
   grunt.loadNpmTasks('grunt-contrib-less');
   // SASS compiler
-  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-sass');
   // Watch File Changes
   grunt.loadNpmTasks('grunt-contrib-watch');
   // Compress JS Files
