@@ -4613,27 +4613,28 @@ a:focus {
  */
 .main-header {
   position: relative;
-  z-index: 1000; }
-  .main-header > .navbar {
-    margin-left: 230px;
-    height: 55px; }
-  .main-header > .logo {
-    width: 230px;
+  z-index: 1000;
+  /*
+  > .logo {
+    width: $sidebar-width;
     padding: 0 15px;
     text-align: center;
     float: left;
     font-size: 18px;
     height: 55px;
-    line-height: 55px; }
+    line-height: 55px;
+  }*/ }
 
 .content-header {
   padding: 15px; }
   .content-header h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin: 0; }
   .content-header .breadcrumb {
     margin-bottom: 0;
-    padding: 0; }
+    padding: 0;
+    background: transparent;
+    font-size: 1rem; }
 
 /*
  * Component: Sidebar

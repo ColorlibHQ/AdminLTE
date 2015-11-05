@@ -8,10 +8,10 @@
   z-index: $zindex-navbar;
 
   > .navbar {
-    margin-left: $sidebar-width;
-    height: 55px;
+    //margin-left: $sidebar-width;
+    //height: 55px;
   }
-
+/*
   > .logo {
     width: $sidebar-width;
     padding: 0 15px;
@@ -20,18 +20,20 @@
     font-size: 18px;
     height: 55px;
     line-height: 55px;
-  }
+  }*/
 }
 
 .content-header {
   padding: 15px;
   h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin: 0;
 
   }
   .breadcrumb {
     margin-bottom: 0;
     padding: 0;
+    background: transparent;
+    font-size: 1rem;
   }
 }
