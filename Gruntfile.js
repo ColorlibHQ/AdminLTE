@@ -19,7 +19,7 @@ module.exports = function (grunt) {
           style: 'expanded'
         },
         files: {
-          'dist/tmp/AdminLTE.css': 'build/scss/AdminLTE.scss'
+          'dist/css/AdminLTE.css': 'build/scss/AdminLTE.scss'
         }
       },
       production: {
@@ -27,7 +27,7 @@ module.exports = function (grunt) {
           style: 'compressed'
         },
         files: {
-          'dist/tmp/AdminLTE.min.css': 'build/scss/AdminLTE.scss'
+          'dist/css/AdminLTE.min.css': 'build/scss/AdminLTE.scss'
         }
       }
     },
@@ -103,10 +103,10 @@ module.exports = function (grunt) {
     // Validate CSS files
     csslint: {
       options: {
-        csslintrc: 'build/less/.csslintrc'
+        csslintrc: 'build/scss/.csslintrc'
       },
       dist: [
-        'dist/css/AdminLTE.css',
+        'dist/tmp/AdminLTE.css',
       ]
     },
 

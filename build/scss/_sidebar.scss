@@ -5,8 +5,7 @@
 //Main Sidebar
 // ``` .left-side has been deprecated as of 2.0.0 in favor of .main-sidebar ```
 
-.main-sidebar,
-.left-side {
+.main-sidebar {
   position: absolute;
   top: 0;
   left: 0;
@@ -19,18 +18,18 @@
   width $transition-speed $transition-fn;
   transition: transform $transition-rule;
   @media (max-width: $screen-header-collapse) {
-    padding-top: 100px;
+    padding-top: 0;
   }
-  @media (max-width: map-get($grid-breakpoints, xs)) {
+  @media (max-width: map-get($grid-breakpoints, md) + 1) {
     @include translate(-$sidebar-width, 0);
   }
   .sidebar-collapse & {
-    @media (min-width: map-get($grid-breakpoints, sm)) {
+    @media (min-width: map-get($grid-breakpoints, md)) {
       @include translate(-$sidebar-width, 0);
     }
   }
   .sidebar-open & {
-    @media (max-width: map-get($grid-breakpoints, xs)) {
+    @media (max-width: map-get($grid-breakpoints, md) + 1) {
       @include translate(0, 0);
     }
   }

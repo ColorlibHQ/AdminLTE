@@ -74,6 +74,7 @@
 }
 
 @mixin translate($x, $y) {
+  -webkit-transform: translate($x, $y);
   -ms-transform: translate($x, $y); // IE9 only
   transform: translate($x, $y);
 }

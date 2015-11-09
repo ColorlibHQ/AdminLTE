@@ -4,23 +4,15 @@
  */
 
 .main-header {
-  position: relative;
-  z-index: $zindex-navbar;
-
-  > .navbar {
-    //margin-left: $sidebar-width;
-    //height: 55px;
-  }
-/*
-  > .logo {
+  padding: 0 16px 0 0;
+  .navbar-brand {
     width: $sidebar-width;
-    padding: 0 15px;
-    text-align: center;
-    float: left;
-    font-size: 18px;
-    height: 55px;
-    line-height: 55px;
-  }*/
+    padding: 10px;
+  }
+
+  .nav-link {
+    padding: 15px 5px;
+  }
 }
 
 .content-header {

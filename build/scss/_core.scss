@@ -14,7 +14,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  overflow-y: auto;
 }
 
 /* Layout */
@@ -38,33 +37,38 @@ body {
 
 /*
  * Content Wrapper - contains the main content
- * ```.right-side has been deprecated as of v2.0.0 in favor of .content-wrapper  ```
  */
+.content-wrapper {
+  min-height: 100%;
+}
 .content-wrapper,
-.right-side,
 .main-footer {
-  //Using disposable variable to join statements with a comma
-  $transition-rule: $transition-speed $transition-fn,
-  margin $transition-speed $transition-fn;
-transition: transform $transition-rule;
   margin-left: $sidebar-width;
   z-index: 820;
   //Top nav layout
   .layout-top-nav & {
     margin-left: 0;
   }
-  @media (max-width: map-get($grid-breakpoints, xs)) {
+  @media (max-width: map-get($grid-breakpoints, md) + 1) {
     margin-left: 0;
   }
   //When opening the sidebar on large screens
   .sidebar-collapse & {
-    @media (min-width: map-get($grid-breakpoints, sm)) {
+    @media (min-width: map-get($grid-breakpoints, md)) {
       margin-left: 0;
     }
   }
+}
+.main-header,
+.main-footer,
+.content-wrapper {
+  //Using disposable variable to join statements with a comma
+  $transition-rule: $transition-speed $transition-fn,
+  margin $transition-speed $transition-fn;
+  transition: transform $transition-rule;
   //When opening the sidebar on small screens
   .sidebar-open & {
-    @media (max-width: map-get($grid-breakpoints, xs)) {
+    @media (max-width: map-get($grid-breakpoints, md) + 1) {
       @include translate($sidebar-width, 0);
     }
   }
@@ -99,9 +103,6 @@ transition: transform $transition-rule;
   .content-wrapper,
   .right-side {
     padding-top: 50px;
-    @media (max-width: $screen-header-collapse) {
-      padding-top: 100px;
-    }
   }
   &.layout-boxed {
     .wrapper {

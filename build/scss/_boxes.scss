@@ -2,6 +2,11 @@
  * Component: Box
  * --------------
  */
+
+.card {
+  background: #fff;
+}
+
 .box {
   position: relative;
   @include border-radius($box-border-radius);
