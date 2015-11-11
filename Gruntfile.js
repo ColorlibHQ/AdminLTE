@@ -2,14 +2,33 @@
 
 module.exports = function (grunt) {
 
-  'use strict';
+  'use strict'
 
   grunt.initConfig({
+
+    // Metadata.
+    pkg: grunt.file.readJSON('package.json'),
+    banner: '/*!\n' +
+    ' * AdminLTE v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
+    ' * Copyright 2014-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+    ' * Project website Almsaeed Studio (https://almsaeedstudio.com)\n' +
+    ' * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)\n' +
+    ' */\n',
+
+    // Watch files for changes and invoke appropriate compiler
     watch: {
-      // If any .less file changes in directory "build/less/" run the "less"-task.
-      // files: ["build/less/*.less", "build/less/skins/*.less", "dist/js/app.js"],
-      files: ["build/scss/*.scss", "build/scss/skins/*.scss", "dist/js/app.js"],
-      tasks: ["sass", "uglify"]
+      sass: {
+        files: ['build/scss/*.scss', 'build/scss/skins/*.scss'],
+        tasks: ['sass']
+      },
+      es6: {
+        files: ['build/js/src/*.js'],
+        tasks: ['babel']
+      },
+      js: {
+        files: ['dist/js/AdminLTE.js', 'dist/js/app.js'],
+        tasks: ['uglify']
+      }
     },
 
     // SASS compiler
@@ -27,25 +46,26 @@ module.exports = function (grunt) {
           style: 'compressed'
         },
         files: {
-          'dist/css/AdminLTE.min.css': 'build/scss/AdminLTE.scss'
+          'dist/css/adminlte.min.css': 'build/scss/AdminLTE.scss'
         }
       }
     },
 
-    // Uglify task info. Compress the js files.
+    // Compress the js files.
     uglify: {
       options: {
         mangle: true,
         preserveComments: 'some'
       },
-      my_target: {
+      target: {
         files: {
+          'dist/js/adminlte.min.js': ['dist/js/adminlte.js'],
           'dist/js/app.min.js': ['dist/js/app.js']
         }
       }
     },
 
-    // Compile ECMA6 to ECMA5
+    // Compile ES6
     babel: {
       options: {
         sourceMap: true,
@@ -53,8 +73,26 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-          'dist/js/AdminLTE.js': 'build/js/AdminLTE.js'
+          'build/js/dist/Treeview.js': 'build/js/src/Treeview.js',
+          'build/js/dist/PushMenu.js': 'build/js/src/PushMenu.js',
+          'build/js/dist/Widget.js': 'build/js/src/Widget.js'
         }
+      }
+    },
+
+    // Concat compiled JS files
+    concat: {
+      options: {
+        stripBanners: true,
+        banner: '<%= banner %>'
+      },
+      adminlte: {
+        src: [
+          'build/js/dist/Treeview.js',
+          'build/js/dist/PushMenu.js',
+          'build/js/dist/Widget.js'
+        ],
+        dest: 'dist/js/adminlte.js'
       }
     },
 
@@ -75,29 +113,38 @@ module.exports = function (grunt) {
     // Optimize images
     image: {
       dynamic: {
-        files: [{
-          expand: true,
-          cwd: 'build/img/',
-          src: ['**/*.{png,jpg,gif,svg,jpeg}'],
-          dest: 'dist/img/'
-        }]
+        files: [
+          {
+            expand: true,
+            cwd: 'build/img/',
+            src: ['**/*.{png,jpg,gif,svg,jpeg}'],
+            dest: 'dist/img/'
+          }
+        ]
       }
     },
 
-    // Validate JS code
-    jshint: {
+    eslint: {
       options: {
-        jshintrc: '.jshintrc'
+        configFile: 'build/js/.eslintrc'
+      },
+      target: 'build/js/src/*.js'
+    },
+
+    // Lint JS code
+    jscs: {
+      options: {
+        config: 'build/js/.jscsrc'
+      },
+      grunt: {
+        src: ['Gruntfile.js']
       },
       core: {
-        src: 'dist/js/app.js'
-      },
-      demo: {
-        src: 'dist/js/demo.js'
-      },
-      pages: {
-        src: 'dist/js/pages/*.js'
+        src: 'js/src/*.js'
       }
+      /*app: {
+       src: 'dist/js/app.js'
+       }*/
     },
 
     // Validate CSS files
@@ -106,7 +153,7 @@ module.exports = function (grunt) {
         csslintrc: 'build/scss/.csslintrc'
       },
       dist: [
-        'dist/tmp/AdminLTE.css',
+        'dist/css/AdminLTE.css'
       ]
     },
 
@@ -122,38 +169,42 @@ module.exports = function (grunt) {
     // After compressing the images in the build/img dir, there is no need
     // for them
     clean: {
-      build: ["build/img/*"]
+      build: ['build/img/*']
     }
-  });
+  })
 
   // Load all grunt tasks
 
-  // LESS Compiler
-  grunt.loadNpmTasks('grunt-contrib-less');
   // SASS compiler
-  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-sass')
   // Watch File Changes
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-watch')
   // Compress JS Files
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-uglify')
   // Include Files Within HTML
-  grunt.loadNpmTasks('grunt-includes');
+  grunt.loadNpmTasks('grunt-includes')
   // Optimize images
-  grunt.loadNpmTasks('grunt-image');
-  // Validate JS code
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-image')
   // Delete not needed files
-  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-clean')
+  // Lint JS code
+  grunt.loadNpmTasks('grunt-jscs')
+  // Lint ECMA6 code
+  grunt.loadNpmTasks('grunt-eslint')
   // Lint CSS
-  grunt.loadNpmTasks('grunt-contrib-csslint');
+  grunt.loadNpmTasks('grunt-contrib-csslint')
   // Lint Bootstrap
-  grunt.loadNpmTasks('grunt-bootlint');
+  grunt.loadNpmTasks('grunt-bootlint')
   // Grunt Babel to compile ECMA6 to ECMA5
-  grunt.loadNpmTasks('grunt-babel');
+  grunt.loadNpmTasks('grunt-babel')
+  // Concat files
+  grunt.loadNpmTasks('grunt-contrib-concat')
 
   // Linting task
-  grunt.registerTask('lint', ['jshint', 'csslint', 'bootlint']);
+  grunt.registerTask('lint', ['jscs', 'eslint', 'csslint', 'bootlint'])
+  // JS Build Task
+  grunt.registerTask('build-js', ['babel', 'concat', 'uglify'])
 
-  // The default task (running "grunt" in console) is "watch"
-  grunt.registerTask('default', ['watch']);
-};
+  // The default task (running 'grunt' in console) is 'watch'
+  grunt.registerTask('default', ['watch'])
+}

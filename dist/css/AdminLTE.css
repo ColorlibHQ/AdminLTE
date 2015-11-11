@@ -4841,19 +4841,23 @@ a:focus {
  */
 .control-sidebar-bg {
   position: fixed;
-  z-index: 1000;
+  z-index: 820;
   bottom: 0; }
 
 .control-sidebar-bg,
 .control-sidebar {
   top: 0;
+  bottom: 0;
   right: -230px;
   width: 230px;
   transition: right 0.3s ease-in-out; }
 
 .control-sidebar {
   position: absolute;
-  z-index: 1010; }
+  padding-top: 55px;
+  z-index: 830;
+  height: 100%;
+  overflow: auto; }
   .control-sidebar > .tab-content {
     padding: 10px 15px; }
   .control-sidebar.control-sidebar-open,
@@ -4870,25 +4874,25 @@ a:focus {
   .control-sidebar-open .main-footer {
     margin-right: 230px; } }
 
-.nav-tabs.control-sidebar-tabs > li:first-of-type > a, .nav-tabs.control-sidebar-tabs > li:first-of-type > a:hover, .nav-tabs.control-sidebar-tabs > li:first-of-type > a:focus {
+.nav-tabs.control-sidebar-tabs > .nav-item:first-of-type > .nav-link, .nav-tabs.control-sidebar-tabs > .nav-item:first-of-type > .nav-link:hover, .nav-tabs.control-sidebar-tabs > .nav-item:first-of-type > .nav-link:focus {
   border-left-width: 0; }
 
-.nav-tabs.control-sidebar-tabs > li > a {
+.nav-tabs.control-sidebar-tabs > .nav-item > .nav-link {
   border-radius: 0; }
-  .nav-tabs.control-sidebar-tabs > li > a, .nav-tabs.control-sidebar-tabs > li > a:hover {
+  .nav-tabs.control-sidebar-tabs > .nav-item > .nav-link, .nav-tabs.control-sidebar-tabs > .nav-item > .nav-link:hover {
     border-top: none;
     border-right: none;
     border-left: 1px solid transparent;
     border-bottom: 1px solid transparent; }
-  .nav-tabs.control-sidebar-tabs > li > a .icon {
+  .nav-tabs.control-sidebar-tabs > .nav-item > .nav-link .icon {
     font-size: 16px; }
 
-.nav-tabs.control-sidebar-tabs > li.active > a, .nav-tabs.control-sidebar-tabs > li.active > a:hover, .nav-tabs.control-sidebar-tabs > li.active > a:focus, .nav-tabs.control-sidebar-tabs > li.active > a:active {
+.nav-tabs.control-sidebar-tabs > .nav-item.active > .nav-link, .nav-tabs.control-sidebar-tabs > .nav-item.active > .nav-link:hover, .nav-tabs.control-sidebar-tabs > .nav-item.active > .nav-link:focus, .nav-tabs.control-sidebar-tabs > .nav-item.active > .nav-link:active {
   border-top: none;
   border-right: none;
   border-bottom: none; }
 
-@media (max-width: 34em) {
+@media (max-width: 48em) {
   .nav-tabs.control-sidebar-tabs {
     display: table; }
     .nav-tabs.control-sidebar-tabs > li {

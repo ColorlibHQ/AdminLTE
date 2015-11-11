@@ -5,7 +5,7 @@
 //This is a hack to make the background visible while scrolling
 .control-sidebar-bg {
   position: fixed;
-  z-index: 1000;
+  z-index: 820;
   bottom: 0;
 }
 
@@ -13,6 +13,7 @@
 .control-sidebar-bg,
 .control-sidebar {
   top: 0;
+  bottom: 0;
   right: -$control-sidebar-width;
   width: $control-sidebar-width;
   transition: right $transition-speed ease-in-out
@@ -21,12 +22,10 @@
 //The sidebar
 .control-sidebar {
   position: absolute;
-  //padding-top: $navbar-height;
-  z-index: 1010;
-  //Fix position after header collapse
-  @media (max-width: map-get($grid-breakpoints, sm)) {
-    //padding-top: $navbar-height + 50;
-  }
+  padding-top: 55px; //$navbar-height;
+  z-index: 830;
+  height: 100%;
+  overflow: auto;
   //Tab panes
   > .tab-content {
     padding: 10px 15px;
@@ -57,15 +56,19 @@
 
 //Control sidebar tabs
 .nav-tabs.control-sidebar-tabs {
-  > li {
-    &:first-of-type > a {
+  //display: table;
+  //width: 100%;
+  > .nav-item {
+    //display: table-cell;
+    //width: auto;
+    &:first-of-type > .nav-link {
       &,
       &:hover,
       &:focus {
         border-left-width: 0;
       }
     }
-    > a {
+    > .nav-link {
       @include border-radius(0);
 
       //Hover and active states
@@ -82,7 +85,7 @@
     }
     //Active state
     &.active {
-      > a {
+      > .nav-link {
         &,
         &:hover,
         &:focus,
@@ -95,7 +98,7 @@
     }
   }
   //Remove responsiveness on small screens
-  @media (max-width: map-get($grid-breakpoints, sm)) {
+  @media (max-width: map-get($grid-breakpoints, md)) {
     display: table;
     > li {
       display: table-cell;
