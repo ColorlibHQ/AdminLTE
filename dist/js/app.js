@@ -43,6 +43,8 @@ $.AdminLTE.options = {
   //sidebar treeview slide up/down. This options accepts an integer as milliseconds,
   //'fast', 'normal', or 'slow'
   animationSpeed: 500,
+  //To describe which easing function to use for the animation
+  animationEasing: 'easeInSine',
   //Sidebar push menu toggle button selector
   sidebarToggleSelector: "[data-toggle='offcanvas']",
   //Activate sidebar push menu
@@ -388,6 +390,7 @@ function _init() {
   $.AdminLTE.tree = function (menu) {
     var _this = this;
     var animationSpeed = $.AdminLTE.options.animationSpeed;
+    var animationEasing = $.AdminLTE.options.animationEasing;
     $(menu).on('click', 'li a', function (e) {
       //Get the clicked link and the next element
       var $this = $(this);
@@ -396,10 +399,14 @@ function _init() {
       //Check if the next element is a menu and is visible
       if ((checkElement.is('.treeview-menu')) && (checkElement.is(':visible')) && (!$('body').hasClass('sidebar-collapse'))) {
         //Close the menu
-        checkElement.slideUp(animationSpeed, function () {
-          checkElement.removeClass('menu-open');
-          //Fix the layout in case the sidebar stretches over the height of the window
-          //_this.layout.fix();
+        checkElement.velocity('slideUp', {
+          duration: animationSpeed,
+          easing: animationEasing,
+          complete: function () {
+            checkElement.removeClass('menu-open');
+            //Fix the layout in case the sidebar stretches over the height of the window
+            //_this.layout.fix();
+          }
         });
         checkElement.parent("li").removeClass("active");
       }
@@ -408,20 +415,27 @@ function _init() {
         //Get the parent menu
         var parent = $this.parents('ul').first();
         //Close all open menus within the parent
-        var ul = parent.find('ul:visible').slideUp(animationSpeed);
+        var ul = parent.find('ul:visible').velocity('slideUp', {
+          duration: animationSpeed,
+          easing: animationEasing
+        });
         //Remove the menu-open class from the parent
         ul.removeClass('menu-open');
         //Get the parent li
         var parent_li = $this.parent("li");
 
         //Open the target menu and add the menu-open class
-        checkElement.slideDown(animationSpeed, function () {
-          //Add the class active to the parent li
-          checkElement.addClass('menu-open');
-          parent.find('li.active').removeClass('active');
-          parent_li.addClass('active');
-          //Fix the layout in case the sidebar stretches over the height of the window
-          _this.layout.fix();
+        checkElement.velocity('slideDown', {
+          duration: animationSpeed,
+          easing: animationEasing,
+          complete: function () {
+            //Add the class active to the parent li
+            checkElement.addClass('menu-open');
+            parent.find('li.active').removeClass('active');
+            parent_li.addClass('active');
+            //Fix the layout in case the sidebar stretches over the height of the window
+            _this.layout.fix();
+          }
         });
       }
       //if this isn't a link, prevent the page from being redirected
@@ -537,6 +551,7 @@ function _init() {
     selectors: $.AdminLTE.options.boxWidgetOptions.boxWidgetSelectors,
     icons: $.AdminLTE.options.boxWidgetOptions.boxWidgetIcons,
     animationSpeed: $.AdminLTE.options.animationSpeed,
+    animationEasing: $.AdminLTE.options.animationEasing,
     activate: function (_box) {
       var _this = this;
       if (!_box) {
@@ -566,8 +581,12 @@ function _init() {
             .removeClass(_this.icons.collapse)
             .addClass(_this.icons.open);
         //Hide the content
-        box_content.slideUp(_this.animationSpeed, function () {
-          box.addClass("collapsed-box");
+        box_content.velocity('slideUp', {
+          duration: _this.animationSpeed,
+          easing: _this.animationEasing,
+          complete: function () {
+            box.addClass("collapsed-box");
+          }
         });
       } else {
         //Convert plus into minus
@@ -575,15 +594,22 @@ function _init() {
             .removeClass(_this.icons.open)
             .addClass(_this.icons.collapse);
         //Show the content
-        box_content.slideDown(_this.animationSpeed, function () {
-          box.removeClass("collapsed-box");
+        box_content.velocity('slideDown', {
+          duration: _this.animationSpeed,
+          easing: _this.animationEasing,
+          complete: function () {
+            box.removeClass("collapsed-box");
+          }
         });
       }
     },
     remove: function (element) {
       //Find the box parent
       var box = element.parents(".box").first();
-      box.slideUp(this.animationSpeed);
+      box.velocity('slideUp', {
+        duration: this.animationSpeed,
+        easing: this.animationEasing
+      });
     }
   };
 }
