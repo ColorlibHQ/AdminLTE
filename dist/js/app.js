@@ -501,9 +501,13 @@ function _init() {
       if ($("body").hasClass('layout-boxed')) {
         sidebar.css('position', 'absolute');
         sidebar.height($(".wrapper").height());
+        if( _this.hasBindedResize ) {
+          return;
+        }
         $(window).resize(function () {
           _this._fix(sidebar);
         });
+        _this.hasBindedResize = true;
       } else {
         sidebar.css({
           'position': 'fixed',
