@@ -212,7 +212,7 @@
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Pi-hole Version</b> 2.0
+          <b>Pi-hole Version</b> 2.1
         </div>
         <i class="fa fa-github"></i> <strong><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3J2L3Z4DHW9UY">Donate</a></strong> if you found this useful.
       </footer>c
