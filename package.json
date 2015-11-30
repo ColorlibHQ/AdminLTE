@@ -1,6 +1,7 @@
 {
   "name": "admin-lte",
   "version": "2.3.2",
+  "main": "dist/js/app.min.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/almasaeed2010/AdminLTE.git"
