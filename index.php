@@ -142,7 +142,7 @@
               <div class="small-box bg-aqua">
                 <div class="inner">
 			<?php
-		        $ads_blocked = exec("today=$(date \"+%b %e\");cat /var/log/pihole.log | awk  '/\/etc\/pihole\/gravity.list/ {print $6}' | wc -l");
+		        $ads_blocked = exec("cat /var/log/pihole.log | awk  '/\/etc\/pihole\/gravity.list/ && !/address/ {print $6}' | wc -l");
 		        $formatted_number = number_format($ads_blocked);
 		        echo "<h3>$formatted_number</h3>";
 			?>
@@ -159,7 +159,7 @@
               <div class="small-box bg-green">
                 <div class="inner">
 			<?php
-		        $queries = exec("today=$(date \"+%b %e\");cat /var/log/pihole.log | awk '/query/ {print $6}' | wc -l");
+		        $queries = exec("cat /var/log/pihole.log | awk '/query/ {print $6}' | wc -l");
        			$formatted_number = number_format($queries);
        			echo "<h3>$formatted_number</h3>";
 			?>
@@ -176,8 +176,8 @@
               <div class="small-box bg-yellow">
                 <div class="inner">
             		<?php
-		        $queries = exec("today=$(date \"+%b %e\");cat /var/log/pihole.log | awk '/query/ {print $6}' | wc -l");
-		        $ads_blocked = exec("today=$(date \"+%b %e\");cat /var/log/pihole.log | awk '/\/etc\/pihole\/gravity.list/ {print $6}' | wc -l");
+		        $queries = exec("cat /var/log/pihole.log | awk '/query/ {print $6}' | wc -l");
+		        $ads_blocked = exec("cat /var/log/pihole.log | awk '/\/etc\/pihole\/gravity.list/ && !/address/ {print $6}' | wc -l");
 		        $percent = ($ads_blocked / $queries * 100);
        			$formatted_number = number_format($percent, 2, '.', '');
        			echo "<h3>$formatted_number<sup style=\"font-size: 20px\">%</sup></h3>";
