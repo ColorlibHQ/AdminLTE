@@ -16,8 +16,9 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
-        <link href="./css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-        <link href="./css/skin-blue.min.css" rel="stylesheet" type="text/css" />
+        <link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+        <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
 
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -45,13 +46,13 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="./img/pihole-160x160.jpg" class="user-image" alt="Pi-hole logo" />
+                                <img src="dist/img/pihole-160x160.jpg" class="user-image" alt="Pi-hole logo" />
                                 <span class="hidden-xs">Pi-hole</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="./img/pihole-160x160.jpg" alt="User Image" />
+                                        <img src="dist/img/pihole-160x160.jpg" alt="User Image" />
                                         <p>
                                             Open Source Ad Blocker
                                             <small>Designed For Raspberry Pi</small>
@@ -96,7 +97,7 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="./img/pihole-160x160.jpg" class="img-circle" alt="Pi-hole logo" />
+                            <img src="dist/img/pihole-160x160.jpg" class="img-circle" alt="Pi-hole logo" />
                         </div>
                         <div class="pull-left info">
                             <p>Status</p>
@@ -193,5 +194,6 @@
         <!-- ./wrapper -->
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="./js/app.min.js" type="text/javascript"></script>
     </body>
 </html>
