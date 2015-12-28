@@ -16,9 +16,8 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
-        <link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-        <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
-        <link href="plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
+        <link href="./css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+        <link href="./css/skin-blue.min.css" rel="stylesheet" type="text/css" />
 
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -194,6 +193,5 @@
         <!-- ./wrapper -->
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="dist/js/app.min.js" type="text/javascript"></script>
     </body>
 </html>
