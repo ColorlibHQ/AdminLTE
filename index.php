@@ -45,13 +45,13 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="dist/img/pihole-160x160.jpg" class="user-image" alt="Pi-hole logo" />
+                                <img src="./img/pihole-160x160.jpg" class="user-image" alt="Pi-hole logo" />
                                 <span class="hidden-xs">Pi-hole</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="dist/img/pihole-160x160.jpg" alt="User Image" />
+                                        <img src="./img/pihole-160x160.jpg" alt="User Image" />
                                         <p>
                                             Open Source Ad Blocker
                                             <small>Designed For Raspberry Pi</small>
@@ -96,7 +96,7 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="dist/img/pihole-160x160.jpg" class="img-circle" alt="Pi-hole logo" />
+                            <img src="./img/pihole-160x160.jpg" class="img-circle" alt="Pi-hole logo" />
                         </div>
                         <div class="pull-left info">
                             <p>Status</p>
@@ -193,6 +193,6 @@
         <!-- ./wrapper -->
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="dist/js/app.min.js" type="text/javascript"></script>
+        <script src="./js/app.min.js" type="text/javascript"></script>
     </body>
 </html>
