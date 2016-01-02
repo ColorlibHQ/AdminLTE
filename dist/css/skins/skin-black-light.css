@@ -15,10 +15,10 @@
   border-right: 1px solid #eee;
 }
 .skin-black-light .main-header > .navbar {
-  background-color: #ffffff;
+  background-color: #fff;
 }
 .skin-black-light .main-header > .navbar .nav > li > a {
-  color: #333333;
+  color: #333;
 }
 .skin-black-light .main-header > .navbar .nav > li > a:hover,
 .skin-black-light .main-header > .navbar .nav > li > a:active,
@@ -27,15 +27,15 @@
 .skin-black-light .main-header > .navbar .nav .open > a:hover,
 .skin-black-light .main-header > .navbar .nav .open > a:focus,
 .skin-black-light .main-header > .navbar .nav > .active > a {
-  background: #ffffff;
-  color: #999999;
+  background: #fff;
+  color: #999;
 }
 .skin-black-light .main-header > .navbar .sidebar-toggle {
-  color: #333333;
+  color: #333;
 }
 .skin-black-light .main-header > .navbar .sidebar-toggle:hover {
-  color: #999999;
-  background: #ffffff;
+  color: #999;
+  background: #fff;
 }
 .skin-black-light .main-header > .navbar > .sidebar-toggle {
   color: #333;
@@ -50,8 +50,8 @@
   border-right-width: 0;
 }
 .skin-black-light .main-header > .logo {
-  background-color: #ffffff;
-  color: #333333;
+  background-color: #fff;
+  color: #333;
   border-bottom: 0 solid transparent;
   border-right: 1px solid #eee;
 }
@@ -60,8 +60,8 @@
 }
 @media (max-width: 767px) {
   .skin-black-light .main-header > .logo {
-    background-color: #222222;
-    color: #ffffff;
+    background-color: #222;
+    color: #fff;
     border-bottom: 0 solid transparent;
     border-right: none;
   }
@@ -87,7 +87,7 @@
 }
 .skin-black-light .user-panel > .info,
 .skin-black-light .user-panel > .info > a {
-  color: #444444;
+  color: #444;
 }
 .skin-black-light .sidebar-menu > li {
   -webkit-transition: border-left-color 0.3s ease;
@@ -104,11 +104,11 @@
 }
 .skin-black-light .sidebar-menu > li:hover > a,
 .skin-black-light .sidebar-menu > li.active > a {
-  color: #000000;
+  color: #000;
   background: #f4f4f5;
 }
 .skin-black-light .sidebar-menu > li.active {
-  border-left-color: #ffffff;
+  border-left-color: #fff;
 }
 .skin-black-light .sidebar-menu > li.active > a {
   font-weight: 600;
@@ -117,17 +117,17 @@
   background: #f4f4f5;
 }
 .skin-black-light .sidebar a {
-  color: #444444;
+  color: #444;
 }
 .skin-black-light .sidebar a:hover {
   text-decoration: none;
 }
 .skin-black-light .treeview-menu > li > a {
-  color: #777777;
+  color: #777;
 }
 .skin-black-light .treeview-menu > li.active > a,
 .skin-black-light .treeview-menu > li > a:hover {
-  color: #000000;
+  color: #000;
 }
 .skin-black-light .treeview-menu > li.active > a {
   font-weight: 600;
