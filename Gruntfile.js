@@ -24,12 +24,23 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-csslint');
   // Lint Bootstrap
   grunt.loadNpmTasks('grunt-bootlint');
+  // Install bower dependencies
+  grunt.loadNpmTasks('grunt-bower');
+
 
   grunt.initConfig({
     watch: {
       // If any .less file changes in directory "build/less/" run the "less"-task.
       files: ["build/less/*.less", "build/less/skins/*.less", "dist/js/app.js"],
       tasks: ["less", "uglify"]
+    },
+    bower: {
+      dev: {
+        dest: 'dist/plugins',
+        options: {
+          expand: true
+        }
+      }
     },
     // "less"-task configuration
     // This task will compile all less files upon saving to create both AdminLTE.css and AdminLTE.min.css
