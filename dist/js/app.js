@@ -220,12 +220,8 @@ $(function () {
 
   });
 
-  if ($.fn.datepicker) {
+  if ($.fn.datepicker && $.fn.datepicker.DPGlobal) {
     $.fn.datepicker.DPGlobal.template = $.fn.datepicker.DPGlobal.template.replace(/" ?table-condensed"/g, '"table table-condensed"');
-  }
-
-  if ($.fn.wysihtml5) {
-    $.fn.wysihtml5.defaultOptions.stylesheets
   }
 });
 

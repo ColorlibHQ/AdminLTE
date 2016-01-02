@@ -98,11 +98,11 @@ module.exports = function (grunt) {
     },
     // Uglify task info. Compress the js files.
     uglify: {
-      options: {
-        mangle: true,
-        preserveComments: 'some'
-      },
       my_target: {
+        options: {
+          mangle: true,
+          preserveComments: /(?:^!|@(?:license|preserve|cc_on))/
+        },
         files: {
           'dist/js/app.min.js': ['dist/js/app.js']
         }
