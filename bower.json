@@ -29,5 +29,36 @@
     "bower_components",
     "composer.json",
     "documentation"
-  ]
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3",
+    "bootstrap-timepicker": "~0.5",
+    "mjolnic-bootstrap-colorpicker": "~2.3",
+    "bootstrap-datepicker": "~1.5",
+    "bootstrap-daterangepicker": "~2.1",
+    "bootstrap-slider": "*",
+    "jquery": "~2.1",
+    "jquery-ui": "~1.11",
+    "jquery-knob": "~1.2",
+    "Chart.js": "~1.0",
+    "flot": "~0.8",
+    "morris.js": "#75cdb5bd97",
+    "ckeditor": "~4.5",
+    "fastclick": "~1.0",
+    "fullcalendar": "~2.5",
+    "iCheck": "~1.0",
+    "ionrangeslider": "~2.1",
+    "pace": "~1.0",
+    "select2": "~4.0",
+    "datatables": "~1.10",
+    "relayfoods-jquery.sparkline": "~2.1",
+    "bootstrap3-wysihtml5-bower": "master",
+    "font-awesome": "~4.5",
+    "ionicons": "~2.0",
+    "jvectormap-concat-only": "b9b0bada8b155147419bebd7258661773e4f6110"
+  },
+  "resolutions": {
+    "jquery": ">= 2.1.0",
+    "bootstrap": "~3.3"
+  }
 }
