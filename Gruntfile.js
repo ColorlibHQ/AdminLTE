@@ -3,11 +3,44 @@ module.exports = function (grunt) {
 
   'use strict';
 
+  // Load all grunt tasks
+
+
+  // Validate JS code
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  // LESS Compiler
+  grunt.loadNpmTasks('grunt-contrib-less');
+  // Watch File Changes
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  // Compress JS Files
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  // Include Files Within HTML
+  grunt.loadNpmTasks('grunt-includes');
+  // Optimize images
+  grunt.loadNpmTasks('grunt-image');
+  // Delete not needed files
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  // Lint CSS
+  grunt.loadNpmTasks('grunt-contrib-csslint');
+  // Lint Bootstrap
+  grunt.loadNpmTasks('grunt-bootlint');
+  // Install bower dependencies
+  grunt.loadNpmTasks('grunt-bower');
+
+
   grunt.initConfig({
     watch: {
       // If any .less file changes in directory "build/less/" run the "less"-task.
       files: ["build/less/*.less", "build/less/skins/*.less", "dist/js/app.js"],
       tasks: ["less", "uglify"]
+    },
+    bower: {
+      dev: {
+        dest: 'dist/plugins',
+        options: {
+          expand: true
+        }
+      }
     },
     // "less"-task configuration
     // This task will compile all less files upon saving to create both AdminLTE.css and AdminLTE.min.css
@@ -65,11 +98,11 @@ module.exports = function (grunt) {
     },
     // Uglify task info. Compress the js files.
     uglify: {
-      options: {
-        mangle: true,
-        preserveComments: 'some'
-      },
       my_target: {
+        options: {
+          mangle: true,
+          preserveComments: /(?:^!|@(?:license|preserve|cc_on))/
+        },
         files: {
           'dist/js/app.min.js': ['dist/js/app.js']
         }
@@ -143,29 +176,10 @@ module.exports = function (grunt) {
     }
   });
 
-  // Load all grunt tasks
-
-  // LESS Compiler
-  grunt.loadNpmTasks('grunt-contrib-less');
-  // Watch File Changes
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  // Compress JS Files
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  // Include Files Within HTML
-  grunt.loadNpmTasks('grunt-includes');
-  // Optimize images
-  grunt.loadNpmTasks('grunt-image');
-  // Validate JS code
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  // Delete not needed files
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  // Lint CSS
-  grunt.loadNpmTasks('grunt-contrib-csslint');
-  // Lint Bootstrap
-  grunt.loadNpmTasks('grunt-bootlint');
-
   // Linting task
   grunt.registerTask('lint', ['jshint', 'csslint', 'bootlint']);
+
+  grunt.registerTask('compile', ['less', 'uglify']);
 
   // The default task (running "grunt" in console) is "watch"
   grunt.registerTask('default', ['watch']);

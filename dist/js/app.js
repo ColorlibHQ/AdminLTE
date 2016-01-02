@@ -219,6 +219,10 @@ $(function () {
     });
 
   });
+
+  if ($.fn.datepicker && $.fn.datepicker.DPGlobal) {
+    $.fn.datepicker.DPGlobal.template = $.fn.datepicker.DPGlobal.template.replace(/" ?table-condensed"/g, '"table table-condensed"');
+  }
 });
 
 /* ----------------------------------
