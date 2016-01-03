@@ -18,7 +18,34 @@
 
         <link href="./css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
         <link href="./css/skin-blue.min.css" rel="stylesheet" type="text/css" />
-
+        <!-- Whitelist sidebar code -->
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script type='text/javascript'>
+          function runSearchShellScript(charCodeEntered) {
+              // If Enter is pressed
+              if (charCodeEntered.keyCode == 13) {
+                  $(document).ready(function(){
+                      var searchLi = $('#get_whitelist').val();
+                      var commandArguments = "li00="+searchLi;
+                      $.get("whitelist.php", commandArguments, function (data){
+                          // Delimiter to split the last echo command from the script
+                          dataSplitted = data.split(';');
+                          $("#li01").html(dataSplitted[0]);
+                          $("#li02").html(dataSplitted[1]);
+                          $("#li03").html(dataSplitted[2]);
+                          $("#li04").html(dataSplitted[3]);
+                          $("#li05").html(dataSplitted[4]);
+                          $("#li06").html(dataSplitted[5]);
+                          $("#li07").html(dataSplitted[6]);
+                          $("#li08").html(dataSplitted[7]);
+                          $("#li09").html(dataSplitted[8]);
+                          $("#li10").html(dataSplitted[9]);
+                      });
+                  });
+              }
+          }
+        </script>
+        <!-- /.Whitelist sidebar code -->
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -111,6 +138,27 @@
                             <i class="fa fa-paypal pull-left"></i> <span>Donate</span>
                             </a>
                         </li>
+                        <!-- Expandable whitelist button -->
+                        <li>
+                          <a href="#" name="exec_whitelist">
+                            <i class="fa fa-pencil-square-o"></i> <span>Whitelist</span>
+                          </a>
+                          <ul class="treeview-menu">
+                            <!-- Press Enter to run the script and then show no more than 10 lines of output -->
+                            <a href="#" disabled><li id="li00"></li><input type="text" id='get_whitelist' onkeypress="runSearchShellScript(event)"></a>
+                            <a href="#" disabled><li id="li01"></li></a>
+                            <a href="#" disabled><li id="li02"></li></a>
+                            <a href="#" disabled><li id="li03"></li></a>
+                            <a href="#" disabled><li id="li04"></li></a>
+                            <a href="#" disabled><li id="li05"></li></a>
+                            <a href="#" disabled><li id="li06"></li></a>
+                            <a href="#" disabled><li id="li07"></li></a>
+                            <a href="#" disabled><li id="li08"></li></a>
+                            <a href="#" disabled><li id="li09"></li></a>
+                            <a href="#" disabled><li id="li10"></li></a>
+                          </ul>
+                        </li>
+                        <!-- /.Expandable whitelist button -->
                     </ul>
                 </section>
                 <!-- /.sidebar -->
