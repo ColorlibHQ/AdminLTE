@@ -27,7 +27,7 @@
                   $(document).ready(function(){
                       var searchLi = $('#get_whitelist').val();
                       var commandArguments = "li00="+searchLi;
-                      $.get("whitelist.php", commandArguments, function (data){
+                      $.get("php/whitelist.php", commandArguments, function (data){
                           // Delimiter to split the last echo command from the script
                           dataSplitted = data.split(';');
                           $("#li01").html(dataSplitted[0]);
