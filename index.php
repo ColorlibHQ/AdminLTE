@@ -145,7 +145,8 @@
                           </a>
                           <ul class="treeview-menu">
                             <!-- Press Enter to run the script and then show no more than 10 lines of output -->
-                            <a href="#" disabled><li id="li00"></li><input type="text" id='get_whitelist' onkeypress="runSearchShellScript(event)"></a>
+                            <ul class="sidebar-menu"><li><a href="list/index.php"><i class="fa fa-cogs"></i> Advanced</a></li></ul>
+                            <a href="#" disabled><li id="li00"></li>Add:  <input type="text" id='get_whitelist' onkeypress="runSearchShellScript(event)" placeholder="ad.example.com"></a>
                             <a href="#" disabled><li id="li01"></li></a>
                             <a href="#" disabled><li id="li02"></li></a>
                             <a href="#" disabled><li id="li03"></li></a>

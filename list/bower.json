@@ -1,0 +1,25 @@
+{
+  "name": "Pi-Hole List",
+  "description": "Manage the Pi-Hole's Whitelist and Blacklist",
+  "main": "",
+  "moduleType": [],
+  "authors": [
+    "Mcat12 <newtoncat12@yahoo.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "*.iml",
+    "*.ipr",
+    "*.iws"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}
