@@ -8,3 +8,14 @@ From this interface, you will be able to see stats on how well your Pi-hole is p
 
 ![Pi-hole Web interface](http://i.imgur.com/x2iMfoc.png)
 ![Fully responsive](http://i.imgur.com/NyAIXm8.png)
+
+## API
+A basic read-only API can be accessed at `/admin/api.php`. It returns the following JSON:
+```JSON
+{
+	"domains_being_blocked": "136708",
+	"dns_queries_today": "18108",
+	"ads_blocked_today": "14648",
+	"ads_percentage_today": 80.892423238348
+}
+```
