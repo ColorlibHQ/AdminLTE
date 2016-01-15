@@ -1,6 +1,6 @@
 <?php
 if(!isset($_GET['domain'], $_GET['list']))
-    return;
+    die();
 
 if($_GET['list'] == "white")
     exec("/usr/local/bin/whitelist.sh ${_GET['domain']}");
