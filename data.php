@@ -24,7 +24,7 @@
             $exploded = explode(" ", $query);
             $domain = trim($exploded[5]);
             if (isset($splitQueries[$domain])) {
-                $splitQueries[$domain] = $splitQueries[$domain] + 1;
+                $splitQueries[$domain]++;
             }
             else {
                 $splitQueries[$domain] = 1;
@@ -34,6 +34,20 @@
         return array_slice($splitQueries, 0, 10);
     }
 
+    function overTime($entries) {
+        $byTime = array();
+        foreach ($entries as $entry) {
+            $hour = substr($entry, 7, 2);
+            if (isset($byTime[$hour])) {
+                $byTime[$hour]++;
+            }
+            else {
+                $byTime[$hour] = 1;
+            }
+        }
+        return $byTime;
+    }
+
     $data = array(
         'domains_being_blocked' => $domains_being_blocked,
         'dns_queries_today' => $dns_queries_today,
@@ -41,6 +55,8 @@
         'ads_percentage_today' => $ads_percentage_today,
         'top_queries' => topItems($dns_queries),
         'top_ads' => topItems($ads_blocked),
+        'domains_over_time' => overTime($dns_queries),
+        'ads_over_time' => overTime($ads_blocked)
     );
 
 ?>

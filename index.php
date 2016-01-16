@@ -21,6 +21,35 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script type="text/javascript">
+        var chartData = {
+            labels: [<?php foreach ($data['domains_over_time'] as $key=>$value) {echo "'" . $key . ":00', ";}?>],
+            datasets: [
+                {
+                    label: "All Queries",
+                    fillColor: "rgba(220,220,220,0.5)",
+                    strokeColor: "rgba(0, 166, 90,.8)",
+                    data: [<?php foreach ($data['domains_over_time'] as $key=>$value) {echo $value . ", ";}?>],
+                },
+                {
+                    label: "Ad Queries",
+                    fillColor: "rgba(243,156,18,0.5)",
+                    strokeColor: "rgba(243,156,18,1)",
+                    pointColor: "rgba(243,156,18,1)",
+                    data: [<?php foreach ($data['ads_over_time'] as $key=>$value) {echo $value . ", ";}?>],
+                }
+            ]
+        };
+
+        $(document).ready(function() {
+            var ctx = document.getElementById("queryOverTimeChart").getContext("2d");
+            var myLineChart = new Chart(ctx).Line(chartData, {pointDot : false });
+        });
+
+
+    </script>
     </head>
     <body class="skin-blue sidebar-mini">
         <div class="wrapper">
@@ -172,6 +201,21 @@
                         </div>
                         <!-- ./col -->
                     </div>
+    <div class="row">
+        <div class="col-md-12">
+<div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Queries over time</h3>
+            </div>
+            <div class="box-body">
+              <div class="chart">
+                <canvas id="queryOverTimeChart" style="height: 247px; width: 466px;" width="932" height="494"></canvas>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-6">
           <div class="box">
