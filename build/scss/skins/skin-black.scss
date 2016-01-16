@@ -50,11 +50,6 @@
     }
   }
 
-  //Content Header
-  .content-header {
-    background: transparent;
-    box-shadow: none;
-  }
   //Create the sidebar skin
   @include skin-dark-sidebar(#fff);
 }

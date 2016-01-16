@@ -7,7 +7,7 @@
   display: inline-block;
   padding: .25em .4em;
   font-size: 75%;
-  font-weight: bold;
+  font-weight: $label-font-weight;
   line-height: 1;
   color: $label-color;
   text-align: center;
@@ -19,12 +19,12 @@
   &:empty {
     display: none;
   }
+}
 
-  // Quick fix for labels in buttons
-  .btn & {
-    position: relative;
-    top: -1px;
-  }
+// Quick fix for labels in buttons
+.btn .label {
+  position: relative;
+  top: -1px;
 }
 
 // Add hover effects, but only for links
@@ -41,11 +41,12 @@ a.label {
 // Make them extra rounded with a modifier to replace v3's badges.
 
 .label-pill {
-  padding-left: .6em;
   padding-right: .6em;
-  border-radius: 1rem;
+  padding-left: .6em;
+  // Use a higher than normal value to ensure completely rounded edges when
+  // customizing padding or font-size on labels.
+  @include border-radius(10rem);
 }
-
 
 // Colors
 //

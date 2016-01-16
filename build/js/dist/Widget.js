@@ -15,16 +15,13 @@ var Widget = (function ($) {
   'use strict';
 
   var Widget = (function () {
-    function Widget() {
+    function Widget(element) {
       _classCallCheck(this, Widget);
+
+      this._element = element;
     }
 
-    _createClass(Widget, [{
-      key: 'Constructor',
-      value: function Constructor(element) {
-        this._element = element;
-      }
-    }], [{
+    _createClass(Widget, null, [{
       key: '_jQueryInterface',
       value: function _jQueryInterface(element) {
         var $this = $(element);

@@ -8,10 +8,9 @@
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  touch-action: manipulation;
   cursor: pointer;
   user-select: none;
-  border: $border-width solid transparent;
+  border: $input-btn-border-width solid transparent;
   @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $line-height, $btn-border-radius);
   @include transition(all .2s ease-in-out);
 
@@ -39,8 +38,7 @@
   }
 
   &.disabled,
-  &:disabled,
-  fieldset[disabled] & {
+  &:disabled {
     cursor: $cursor-disabled;
     opacity: .65;
     @include box-shadow(none);
@@ -48,7 +46,7 @@
 }
 
 // Future-proof disabling of clicks on `<a>` elements
-a.btn.disaabled,
+a.btn.disabled,
 fieldset[disabled] a.btn {
   pointer-events: none;
 }
@@ -111,8 +109,7 @@ fieldset[disabled] a.btn {
   &,
   &:active,
   &.active,
-  &:disabled,
-  fieldset[disabled] & {
+  &:disabled {
     background-color: transparent;
     @include box-shadow(none);
   }
@@ -129,8 +126,7 @@ fieldset[disabled] a.btn {
     text-decoration: $link-hover-decoration;
     background-color: transparent;
   }
-  &:disabled,
-  fieldset[disabled] & {
+  &:disabled {
     @include hover-focus {
       color: $btn-link-disabled-color;
       text-decoration: none;

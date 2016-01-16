@@ -26,7 +26,7 @@ var PushMenu = (function ($) {
 
   var Event = {
     COLLAPSED: 'collapsed' + EVENT_KEY,
-    SHOWN: 'shown' + DATA_KEY
+    SHOWN: 'shown' + EVENT_KEY
   };
 
   var Selector = {
@@ -40,23 +40,20 @@ var PushMenu = (function ($) {
    */
 
   var PushMenu = (function () {
-    function PushMenu() {
+    function PushMenu(element) {
       _classCallCheck(this, PushMenu);
+
+      this._element = element;
+      this._isShown = !$('body').hasClass(Selector.COLLAPSED) || $('body').hasClass('sidebar-open');
     }
 
+    // Public
+
     _createClass(PushMenu, [{
-      key: 'Constructor',
-      value: function Constructor(element) {
-        this._element = element;
-        this._isShown;
-      }
-
-      // Public
-
-    }, {
       key: 'show',
       value: function show() {
-        $('body').removeClass(Selector.COLLAPSED);
+        $('body').addClass('sidebar-open').removeClass(Selector.COLLAPSED);
+
         this._isShown = true;
 
         var shownEvent = $.Event(Event.SHOWN);
@@ -65,7 +62,8 @@ var PushMenu = (function ($) {
     }, {
       key: 'collapse',
       value: function collapse() {
-        $('body').addClass(Selector.COLLAPSED);
+        $('body').removeClass('sidebar-open').addClass(Selector.COLLAPSED);
+
         this._isShown = false;
 
         var collapsedEvent = $.Event(Event.COLLAPSED);
@@ -76,7 +74,7 @@ var PushMenu = (function ($) {
       value: function toggle() {
 
         if (typeof this._isShown === 'undefined') {
-          this._isShown = !$('body').hasClass(Selector.COLLAPSED);
+          this._isShown = !$('body').hasClass(Selector.COLLAPSED) || $('body').hasClass('sidebar-open');
         }
 
         if (this._isShown) {
@@ -117,7 +115,7 @@ var PushMenu = (function ($) {
   $(document).on('click', Selector.TOGGLE_BUTTON, function (event) {
     event.preventDefault();
 
-    var button = event.target;
+    var button = event.currentTarget;
 
     if ($(button).data('widget') !== 'pushmenu') {
       button = $(button).closest(Selector.TOGGLE_BUTTON);

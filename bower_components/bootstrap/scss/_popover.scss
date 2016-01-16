@@ -12,7 +12,7 @@
   font-size: $font-size-sm;
   background-color: $popover-bg;
   background-clip: padding-box;
-  border: 1px solid $popover-border-color;
+  border: $popover-border-width solid $popover-border-color;
   @include border-radius($border-radius-lg);
   @include box-shadow(0 5px 10px rgba(0,0,0,.2));
 
@@ -29,7 +29,7 @@
       margin-left: -$popover-arrow-outer-width;
       border-top-color: $popover-arrow-outer-color;
       border-bottom-width: 0;
-      &:after {
+      &::after {
         bottom: 1px;
         margin-left: -$popover-arrow-width;
         content: "";
@@ -49,7 +49,7 @@
       margin-top: -$popover-arrow-outer-width;
       border-right-color: $popover-arrow-outer-color;
       border-left-width: 0;
-      &:after {
+      &::after {
         bottom: -$popover-arrow-width;
         left: 1px;
         content: "";
@@ -69,7 +69,7 @@
       margin-left: -$popover-arrow-outer-width;
       border-top-width: 0;
       border-bottom-color: $popover-arrow-outer-color;
-      &:after {
+      &::after {
         top: 1px;
         margin-left: -$popover-arrow-width;
         content: "";
@@ -89,7 +89,7 @@
       margin-top: -$popover-arrow-outer-width;
       border-right-width: 0;
       border-left-color: $popover-arrow-outer-color;
-      &:after {
+      &::after {
         right: 1px;
         bottom: -$popover-arrow-width;
         content: "";
@@ -107,7 +107,7 @@
   margin: 0; // reset heading margin
   font-size: $font-size-base;
   background-color: $popover-title-bg;
-  border-bottom: 1px solid darken($popover-title-bg, 5%);
+  border-bottom: $popover-border-width solid darken($popover-title-bg, 5%);
   @include border-radius(($border-radius-lg - 1) ($border-radius-lg - 1) 0 0);
 }
 
@@ -118,11 +118,11 @@
 
 // Arrows
 //
-// .popover-arrow is outer, .popover-arrow:after is inner
+// .popover-arrow is outer, .popover-arrow::after is inner
 
 .popover-arrow {
   &,
-  &:after {
+  &::after {
     position: absolute;
     display: block;
     width: 0;
@@ -134,7 +134,7 @@
 .popover-arrow {
   border-width: $popover-arrow-outer-width;
 }
-.popover-arrow:after {
+.popover-arrow::after {
   content: "";
   border-width: $popover-arrow-width;
 }

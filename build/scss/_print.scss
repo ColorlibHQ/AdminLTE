@@ -10,7 +10,6 @@
 
   //Elements that we want to hide when printing
   .main-sidebar,
-  .left-side,
   .main-header,
   .content-header {
     @extend .no-print;
@@ -18,15 +17,13 @@
 
   //This is the only element that should appear, so let's remove the margins
   .content-wrapper,
-  .right-side,
   .main-footer {
     margin-left: 0 !important;
     min-height: 0 !important;
     @include translate(0, 0);
   }
 
-  .fixed .content-wrapper,
-  .fixed .right-side {
+  .layout-fixed .content-wrapper {
     padding-top: 0 !important;
   }
 

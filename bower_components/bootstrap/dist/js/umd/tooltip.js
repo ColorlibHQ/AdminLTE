@@ -11,6 +11,8 @@
     global.tooltip = mod.exports;
   }
 })(this, function (exports, module, _util) {
+  /* global Tether */
+
   'use strict';
 
   var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -23,12 +25,20 @@
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.0.0): tooltip.js
+   * Bootstrap (v4.0.0-alpha.2): tooltip.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
 
   var Tooltip = (function ($) {
+
+    /**
+     * Check for Tether dependency
+     * Tether - http://github.hubspot.com/tether/
+     */
+    if (window.Tether === undefined) {
+      throw new Error('Bootstrap tooltips require Tether (http://github.hubspot.com/tether/)');
+    }
 
     /**
      * ------------------------------------------------------------------------
@@ -37,7 +47,7 @@
      */
 
     var NAME = 'tooltip';
-    var VERSION = '4.0.0';
+    var VERSION = '4.0.0-alpha';
     var DATA_KEY = 'bs.tooltip';
     var EVENT_KEY = '.' + DATA_KEY;
     var JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -60,7 +70,7 @@
     var DefaultType = {
       animation: 'boolean',
       template: 'string',
-      title: '(string|function)',
+      title: '(string|element|function)',
       trigger: 'string',
       delay: '(number|object)',
       html: 'boolean',
@@ -265,7 +275,8 @@
               classes: TetherClass,
               classPrefix: CLASS_PREFIX,
               offset: this.config.offset,
-              constraints: this.config.constraints
+              constraints: this.config.constraints,
+              addTargetClasses: false
             });
 
             _Util['default'].reflow(tip);
@@ -346,15 +357,30 @@
       }, {
         key: 'setContent',
         value: function setContent() {
-          var tip = this.getTipElement();
-          var title = this.getTitle();
-          var method = this.config.html ? 'innerHTML' : 'innerText';
+          var $tip = $(this.getTipElement());
 
-          $(tip).find(Selector.TOOLTIP_INNER)[0][method] = title;
+          this.setElementContent($tip.find(Selector.TOOLTIP_INNER), this.getTitle());
 
-          $(tip).removeClass(ClassName.FADE).removeClass(ClassName.IN);
+          $tip.removeClass(ClassName.FADE).removeClass(ClassName.IN);
 
           this.cleanupTether();
+        }
+      }, {
+        key: 'setElementContent',
+        value: function setElementContent($element, content) {
+          var html = this.config.html;
+          if (typeof content === 'object' && (content.nodeType || content.jquery)) {
+            // content is a DOM node or a jQuery
+            if (html) {
+              if (!$(content).parent().is($element)) {
+                $element.empty().append(content);
+              }
+            } else {
+              $element.text($(content).text());
+            }
+          } else {
+            $element[html ? 'html' : 'text'](content);
+          }
         }
       }, {
         key: 'getTitle',
@@ -372,12 +398,6 @@
         value: function cleanupTether() {
           if (this._tether) {
             this._tether.destroy();
-
-            // clean up after tether's junk classes
-            // remove after they fix issue
-            // (https://github.com/HubSpot/tether/issues/36)
-            $(this.element).removeClass(this._removeTetherClasses);
-            $(this.tip).removeClass(this._removeTetherClasses);
           }
         }
 
@@ -414,11 +434,6 @@
           } else {
             this._fixTitle();
           }
-        }
-      }, {
-        key: '_removeTetherClasses',
-        value: function _removeTetherClasses(i, css) {
-          return ((css.baseVal || css).match(new RegExp('(^|\\s)' + CLASS_PREFIX + '-\\S+', 'g')) || []).join(' ');
         }
       }, {
         key: '_fixTitle',
@@ -562,6 +577,9 @@
             }
 
             if (typeof config === 'string') {
+              if (data[config] === undefined) {
+                throw new Error('No method named "' + config + '"');
+              }
               data[config]();
             }
           });

@@ -22,7 +22,7 @@
 //The sidebar
 .control-sidebar {
   position: absolute;
-  padding-top: 55px; //$navbar-height;
+  padding-top: $main-header-height;
   z-index: 830;
   height: 100%;
   overflow: auto;
@@ -46,9 +46,7 @@
     right: 0;
   }
   @media (min-width: map-get($grid-breakpoints, sm)) {
-    .content-wrapper,
-    .right-side,
-    .main-footer {
+    .content-wrapper {
       margin-right: $control-sidebar-width;
     }
   }

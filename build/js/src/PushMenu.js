@@ -20,7 +20,7 @@ const PushMenu = (($) => {
 
   const Event = {
     COLLAPSED: `collapsed${EVENT_KEY}`,
-    SHOWN: `shown${DATA_KEY}`
+    SHOWN: `shown${EVENT_KEY}`
   }
 
   const Selector = {
@@ -35,15 +35,17 @@ const PushMenu = (($) => {
 
   class PushMenu {
 
-    Constructor(element) {
+    constructor(element) {
       this._element = element
-      this._isShown
+      this._isShown = !$('body').hasClass(Selector.COLLAPSED) || $('body').hasClass('sidebar-open')
     }
 
     // Public
 
     show() {
-      $('body').removeClass(Selector.COLLAPSED)
+      $('body').addClass('sidebar-open')
+          .removeClass(Selector.COLLAPSED)
+
       this._isShown = true
 
       let shownEvent = $.Event(Event.SHOWN)
@@ -51,7 +53,9 @@ const PushMenu = (($) => {
     }
 
     collapse() {
-      $('body').addClass(Selector.COLLAPSED)
+      $('body').removeClass('sidebar-open')
+          .addClass(Selector.COLLAPSED)
+
       this._isShown = false
 
       let collapsedEvent = $.Event(Event.COLLAPSED)
@@ -61,7 +65,7 @@ const PushMenu = (($) => {
     toggle() {
 
       if (typeof this._isShown === 'undefined') {
-        this._isShown = !$('body').hasClass(Selector.COLLAPSED)
+        this._isShown = !$('body').hasClass(Selector.COLLAPSED) || $('body').hasClass('sidebar-open')
       }
 
       if (this._isShown) {
@@ -97,7 +101,7 @@ const PushMenu = (($) => {
   $(document).on('click', Selector.TOGGLE_BUTTON, (event) => {
     event.preventDefault()
 
-    let button = event.target
+    let button = event.currentTarget
 
     if ($(button).data('widget') !== 'pushmenu') {
       button = $(button).closest(Selector.TOGGLE_BUTTON)

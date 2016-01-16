@@ -27,7 +27,7 @@
   > li.active > a,
   > li.active > a:hover,
   > li.active > a:focus {
-    border-top-color: $light-blue;
+    border-top-color: $brand-primary;
   }
   > li.active > a {
     font-weight: 600;
@@ -47,7 +47,7 @@
     background: transparent;
     color: #444;
     border-top: 0;
-    border-left-color: $light-blue;
+    border-left-color: $brand-primary;
   }
 
   > li.header {
@@ -98,7 +98,7 @@
     }
 
     > li.active {
-      border-top-color: $light-blue;
+      border-top-color: $brand-primary;
       & > a,
       &:hover > a {
         background-color: #fff;
@@ -171,35 +171,35 @@
   &.tab-primary {
     > .nav-tabs {
       > li.active {
-        border-top-color: $light-blue;
+        border-top-color: $brand-primary;
       }
     }
   }
   &.tab-info {
     > .nav-tabs {
       > li.active {
-        border-top-color: $aqua;
+        border-top-color: $brand-info;
       }
     }
   }
   &.tab-danger {
     > .nav-tabs {
       > li.active {
-        border-top-color: $red;
+        border-top-color: $brand-danger;
       }
     }
   }
   &.tab-warning {
     > .nav-tabs {
       > li.active {
-        border-top-color: $yellow;
+        border-top-color: $brand-warning;
       }
     }
   }
   &.tab-success {
     > .nav-tabs {
       > li.active {
-        border-top-color: $green;
+        border-top-color: $brand-success;
       }
     }
   }

@@ -10,10 +10,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <title>AdminLTE 2 | Starter</title>
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <!-- Google Font: Roboto -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500' rel='stylesheet' type='text/css'>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -28,23 +31,29 @@ desired effect
 |               | skin-red                                |
 |               | skin-green                              |
 |---------------------------------------------------------|
-|LAYOUT OPTIONS | layout-fixed                                   |
+|LAYOUT OPTIONS | layout-fixed                            |
 |               | layout-boxed                            |
 |               | layout-top-nav                          |
 |               | sidebar-collapse                        |
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue sidebar-mini sidebar-collapsed">
+<body class="hold-transition skin-blue">
 <div class="wrapper">
-
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-static-top navbar-dark bg-primary">
+  <nav class="main-header navbar navbar-static-top bg-primary navbar-dark">
     <!-- Logo -->
-    <a class="navbar-brand text-center" href="#"><b>Admin</b>LTE</a>
+    <a class="navbar-brand text-center hidden-md-down" href="#">
+      <span class="logo">
+        <b>Admin</b>LTE
+      </span>
+      <span class="logo-mini">
+        <b>A</b>LT
+      </span>
+    </a>
     <ul class="nav navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-toggle="offcanvas" href="#"><i class="fa fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
     </ul>
 
@@ -64,13 +73,11 @@ desired effect
     </ul>
   </nav>
   <!-- /.navbar -->
-
-  <!-- Left side column. contains the logo and sidebar -->
+  <!-- Main Sidebar Container -->
   <aside class="main-sidebar">
 
-    <!-- sidebar: style can be found in sidebar.less -->
+    <!-- Sidebar -->
     <section class="sidebar">
-
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
@@ -83,20 +90,54 @@ desired effect
         </div>
       </div>
 
+      <form action="#" method="get" class="sidebar-form">
+        <input type="search" name="q" class="form-control" placeholder="Search" data-widget="treeview-search" data-target="#searchable-treeview">
+      </form>
+
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
-        <li class="header">HEADER</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i
-              class="fa fa-angle-left pull-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
+      <ul class="nav nav-pills nav-sidebar nav-stacked" id="searchable-treeview" data-widget="treeview" role="menu">
+        <li class="nav-header">Navigation</li>
+        <!-- Optionally, you can add icons to the links using the .nav-icon class -->
+        <li class="nav-item active">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-link"></i> <span class="text">Link</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-link"></i> <span class="text">Another Link</span>
+          </a>
+        </li>
+        <?php for($i = 0; $i < 2; $i++):?>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-link"></i> <span class="text">Multilevel</span>
+            <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item"><a href="#" class="nav-link">Link in level 2</a></li>
+            <li class="nav-item">
+              <a href="#" class="nav-link"><span>Link in level 2</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item"><a href="#" class="nav-link">Link in level 2</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Link in level 2</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link"><span>Link in level 2</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item"><a href="#" class="nav-link">Link in level 2</a></li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Link in level 2</a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item"><a href="#" class="nav-link">Link in level 2</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Link in level 2</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
           </ul>
         </li>
+        <?php endfor; ?>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -106,34 +147,33 @@ desired effect
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <div class="content-header container-fluid">
       <div class="row">
-        <div class="col-sm-6">
-          <h1>
-            Page Header
-          </h1>
-        </div>
-        <!-- /.col-sm-6 -->
-        <div class="col-sm-6">
+        <div class="col-lg-6">
+          <h1>Page Header</h1>
+        </div><!-- /.col -->
+        <div class="col-lg-6">
           <ol class="breadcrumb pull-right">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
+            <li><a href="#">Home</a></li>
+            <li class="active">Dashboard</li>
           </ol>
-        </div>
-        <!-- /.col-sm-6 -->
-      </div>
-      <!-- /.row -->
-    </section>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div>
+    <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content container-fluid">
-
+    <div class="content container-fluid">
       <div class="row">
         <div class="col-lg-6">
           <!-- Your Page Content Here -->
           <div class="card card-block">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h5 class="card-title">Card title</h5>
+
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the bulk of the card's
+              content.
+            </p>
             <a href="#" class="card-link">Card link</a>
             <a href="#" class="card-link">Another link</a>
           </div>
@@ -142,10 +182,11 @@ desired effect
         <div class="col-lg-6">
           <div class="card">
             <div class="card-header">
-              <h4 class="no-margin">Featured</h4>
+              <h5 class="no-margin">Featured</h5>
             </div>
             <div class="card-block">
-              <h4 class="card-title">Special title treatment</h4>
+              <h6 class="card-title">Special title treatment</h6>
+
               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
               <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
@@ -153,12 +194,44 @@ desired effect
         </div>
         <!-- /.col-md-6 -->
       </div>
+      <!-- /.row -->
 
-    </section>
+      <div class="row">
+        <div class="col-lg-6">
+          <!-- Your Page Content Here -->
+          <div class="card card-block">
+            <h5 class="card-title">Card title</h5>
+
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the bulk of the card's
+              content.
+            </p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+        <!-- /.col-md-6 -->
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="no-margin">Featured</h5>
+            </div>
+            <div class="card-block">
+              <h6 class="card-title">Special title treatment</h6>
+
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <!-- /.col-md-6 -->
+      </div>
+      <!-- /.row -->
+    </div>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
+  <div class="clearfix"></div>
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- To the right -->
@@ -168,13 +241,16 @@ desired effect
     <!-- Default to the left -->
     <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
   </footer>
-
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+      <li class="nav-item" class="active">
+        <a class="nav-link" href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a>
+      </li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
@@ -240,20 +316,23 @@ desired effect
     </div>
   </aside>
   <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
+  <!-- Add the sidebar's background -->
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
-<!-- REQUIRED JS SCRIPTS -->
+<!-- REQUIRED SCRIPTS -->
 
-<!-- jQuery 2.1.4 -->
+<!-- jQuery -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.5 -->
+<!-- Bootstrap -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
+<script src="dist/js/adminlte.js"></script>
+
+<!-- OPTIONAL SCRIPTS -->
 <script src="dist/js/app.min.js"></script>
+<script src="dist/js/demo.js"></script>
 
 </body>
 </html>

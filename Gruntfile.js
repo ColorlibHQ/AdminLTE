@@ -23,10 +23,10 @@ module.exports = function (grunt) {
       },
       es6: {
         files: ['build/js/src/*.js'],
-        tasks: ['babel']
+        tasks: ['concat', 'babel', 'uglify']
       },
       js: {
-        files: ['dist/js/AdminLTE.js', 'dist/js/app.js'],
+        files: ['dist/js/adminlte.js', 'dist/js/app.js'],
         tasks: ['uglify']
       }
     },
@@ -73,9 +73,11 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
+          'build/js/dist/Layout.js': 'build/js/src/Layout.js',
           'build/js/dist/Treeview.js': 'build/js/src/Treeview.js',
           'build/js/dist/PushMenu.js': 'build/js/src/PushMenu.js',
-          'build/js/dist/Widget.js': 'build/js/src/Widget.js'
+          'build/js/dist/Widget.js': 'build/js/src/Widget.js',
+          'dist/js/adminlte.js': 'build/js/src/AdminLTE.js'
         }
       }
     },
@@ -88,11 +90,12 @@ module.exports = function (grunt) {
       },
       adminlte: {
         src: [
-          'build/js/dist/Treeview.js',
-          'build/js/dist/PushMenu.js',
-          'build/js/dist/Widget.js'
+          'build/js/src/Layout.js',
+          'build/js/src/Treeview.js',
+          'build/js/src/PushMenu.js',
+          'build/js/src/Widget.js'
         ],
-        dest: 'dist/js/adminlte.js'
+        dest: 'build/js/src/AdminLTE.js'
       }
     },
 
@@ -162,7 +165,8 @@ module.exports = function (grunt) {
       options: {
         relaxerror: ['W005']
       },
-      files: ['pages/**/*.html', '*.html']
+      // files: ['pages/**/*.html', '*.html']
+      files: ['starter.html']
     },
 
     // Delete images in build directory

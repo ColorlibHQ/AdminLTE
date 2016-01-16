@@ -32,11 +32,11 @@ $gray-light:                #818a91 !default;
 $gray-lighter:              #eceeef !default;
 $gray-lightest:             #f7f7f9 !default;
 
-$brand-primary:             #0275d8 !default;
-$brand-success:             #5cb85c !default;
-$brand-info:                #5bc0de !default;
-$brand-warning:             #f0ad4e !default;
-$brand-danger:              #d9534f !default;
+$brand-primary:             #3c8dbc !default;
+$brand-success:             #00a65a !default;
+$brand-info:                #00c0ef !default;
+$brand-warning:             #f39c12 !default;
+$brand-danger:              #dd4b39 !default;
 
 
 // Options
@@ -122,13 +122,13 @@ $grid-gutter-width:          1.875rem !default; // 30px
 //
 // Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:     "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif:     "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $font-family-serif:          Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:           $font-family-sans-serif !default;
 
 // Pixel value used to responsively scale all typography. Applied to the `<html>` element.
-$font-size-root:             16px !default;
+$font-size-root:             14px !default;
 
 $font-size-base:             1rem !default;
 $font-size-lg:               1.25rem !default;
@@ -147,10 +147,10 @@ $display2-size:               4.5rem !default;
 $display3-size:               5.5rem !default;
 $display4-size:               6rem !default;
 
-$display1-weight:             300 !default;
-$display2-weight:             300 !default;
-$display3-weight:             300 !default;
-$display4-weight:             300 !default;
+$display1-weight:             400 !default;
+$display2-weight:             400 !default;
+$display3-weight:             400 !default;
+$display4-weight:             400 !default;
 
 $line-height:                1.5 !default;
 
@@ -354,7 +354,7 @@ $navbar-light-disabled-color:       rgba(0,0,0,.15);
 
 // Navs
 
-$nav-link-padding:                          .5em 1em !default;
+$nav-link-padding:                          .7em 1em !default;
 $nav-link-hover-bg:                         $gray-lighter !default;
 
 $nav-disabled-link-color:                   $gray-light !default;

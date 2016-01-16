@@ -5,7 +5,7 @@
 .error-page {
   width: 600px;
   margin: 20px auto 0 auto;
-  @media (max-width: map-get($grid-breakpoints, sm)) {
+  @include media-breakpoint-down(sm) {
     width: 100%;
   }
   //For the error number e.g: 404
@@ -13,7 +13,7 @@
     float: left;
     font-size: 100px;
     font-weight: 300;
-    @media (max-width: map-get($grid-breakpoints, sm)) {
+    @include media-breakpoint-down(sm) {
       float: none;
       text-align: center;
     }
@@ -21,13 +21,13 @@
   //For the message
   > .error-content {
     margin-left: 190px;
-    @media (max-width: map-get($grid-breakpoints, sm)) {
+    @include media-breakpoint-down(sm) {
       margin-left: 0;
     }
     > h3 {
       font-weight: 300;
       font-size: 25px;
-      @media (max-width: map-get($grid-breakpoints, sm)) {
+      @include media-breakpoint-down(sm) {
         text-align: center;
       }
     }

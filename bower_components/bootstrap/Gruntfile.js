@@ -1,7 +1,7 @@
 /*!
  * Bootstrap's Gruntfile
  * http://getbootstrap.com
- * Copyright 2013-2014 Twitter, Inc.
+ * Copyright 2013-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
@@ -18,8 +18,40 @@ module.exports = function (grunt) {
   var fs = require('fs');
   var path = require('path');
   var glob = require('glob');
+  var isTravis = require('is-travis');
   var npmShrinkwrap = require('npm-shrinkwrap');
   var mq4HoverShim = require('mq4-hover-shim');
+  var autoprefixer = require('autoprefixer')({
+    browsers: [
+      //
+      // Official browser support policy:
+      // http://v4-alpha.getbootstrap.com/getting-started/browsers-devices/#supported-browsers
+      //
+      'Chrome >= 35', // Exact version number here is kinda arbitrary
+      // Rather than using Autoprefixer's native "Firefox ESR" version specifier string,
+      // we deliberately hardcode the number. This is to avoid unwittingly severely breaking the previous ESR in the event that:
+      // (a) we happen to ship a new Bootstrap release soon after the release of a new ESR,
+      //     such that folks haven't yet had a reasonable amount of time to upgrade; and
+      // (b) the new ESR has unprefixed CSS properties/values whose absence would severely break webpages
+      //     (e.g. `box-sizing`, as opposed to `background: linear-gradient(...)`).
+      //     Since they've been unprefixed, Autoprefixer will stop prefixing them,
+      //     thus causing them to not work in the previous ESR (where the prefixes were required).
+      'Firefox >= 31', // Current Firefox Extended Support Release (ESR)
+      // Note: Edge versions in Autoprefixer & Can I Use refer to the EdgeHTML rendering engine version,
+      // NOT the Edge app version shown in Edge's "About" screen.
+      // For example, at the time of writing, Edge 20 on an up-to-date system uses EdgeHTML 12.
+      // See also https://github.com/Fyrd/caniuse/issues/1928
+      'Edge >= 12',
+      'Explorer >= 9',
+      // Out of leniency, we prefix these 1 version further back than the official policy.
+      'iOS >= 8',
+      'Safari >= 8',
+      // The following remain NOT officially supported, but we're lenient and include their prefixes to avoid severely breaking in them.
+      'Android 2.3',
+      'Android >= 4',
+      'Opera >= 12'
+    ]
+  });
 
   var generateCommonJSModule = require('./grunt/bs-commonjs-generator.js');
   var configBridge = grunt.file.readJSON('./grunt/configBridge.json', { encoding: 'utf8' });
@@ -45,8 +77,8 @@ module.exports = function (grunt) {
                  '}\n',
     jqueryVersionCheck: '+function ($) {\n' +
                         '  var version = $.fn.jquery.split(\' \')[0].split(\'.\')\n' +
-                        '  if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1)) {\n' +
-                        '    throw new Error(\'Bootstrap\\\'s JavaScript requires jQuery version 1.9.1 or higher\')\n' +
+                        '  if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1) || (version[0] >= 3)) {\n' +
+                        '    throw new Error(\'Bootstrap\\\'s JavaScript requires at least jQuery v1.9.1 but less than v3.0.0\')\n' +
                         '  }\n' +
                         '}(jQuery);\n\n',
 
@@ -184,15 +216,11 @@ module.exports = function (grunt) {
           warnings: false
         },
         mangle: true,
-        preserveComments: 'some'
+        preserveComments: /^!|@preserve|@license|@cc_on/i
       },
       core: {
         src: '<%= concat.bootstrap.dest %>',
         dest: 'dist/js/<%= pkg.name %>.min.js'
-      },
-      customize: {
-        src: configBridge.paths.customizerJs,
-        dest: 'docs/assets/js/customize.min.js'
       },
       docsJs: {
         src: configBridge.paths.docsJs,
@@ -210,45 +238,38 @@ module.exports = function (grunt) {
     // CSS build configuration
     scsslint: {
       options: {
-        config: 'scss/.scsslint.yml',
+        bundleExec: true,
+        config: 'scss/.scss-lint.yml',
         reporterOutput: null
       },
       src: ['scss/*.scss', '!scss/_normalize.scss']
     },
 
     postcss: {
-      options: {
-        map: true,
-        processors: [mq4HoverShim.postprocessorFor({ hoverSelectorPrefix: '.bs-true-hover ' })]
-      },
-      core: {
-        src: 'dist/css/*.css'
-      }
-    },
-
-    autoprefixer: {
-      options: {
-        browsers: [
-          'Android 2.3',
-          'Android >= 4',
-          'Chrome >= 35',
-          'Firefox >= 31',
-          'Explorer >= 9',
-          'iOS >= 7',
-          'Opera >= 12',
-          'Safari >= 7.1'
-        ]
-      },
       core: {
         options: {
-          map: true
+          map: true,
+          processors: [
+            mq4HoverShim.postprocessorFor({ hoverSelectorPrefix: '.bs-true-hover ' }),
+            autoprefixer
+          ]
         },
         src: 'dist/css/*.css'
       },
       docs: {
+        options: {
+          processors: [
+            autoprefixer
+          ]
+        },
         src: 'docs/assets/css/docs.min.css'
       },
       examples: {
+        options: {
+          processors: [
+            autoprefixer
+          ]
+        },
         expand: true,
         cwd: 'docs/examples/',
         src: ['**/*.css'],
@@ -260,10 +281,10 @@ module.exports = function (grunt) {
       options: {
         // TODO: disable `zeroUnits` optimization once clean-css 3.2 is released
         //    and then simplify the fix for https://github.com/twbs/bootstrap/issues/14837 accordingly
-        compatibility: 'ie8',
+        compatibility: 'ie9',
         keepSpecialComments: '*',
         sourceMap: true,
-        noAdvanced: true
+        advanced: false
       },
       core: {
         files: [
@@ -279,16 +300,6 @@ module.exports = function (grunt) {
       docs: {
         src: 'docs/assets/css/docs.min.css',
         dest: 'docs/assets/css/docs.min.css'
-      }
-    },
-
-    usebanner: {
-      options: {
-        position: 'top',
-        banner: '<%= banner %>'
-      },
-      files: {
-        src: 'dist/css/*.css'
       }
     },
 
@@ -336,7 +347,9 @@ module.exports = function (grunt) {
 
     jekyll: {
       options: {
-        config: '_config.yml'
+        bundleExec: true,
+        config: '_config.yml',
+        incremental: false
       },
       docs: {},
       github: {
@@ -350,15 +363,14 @@ module.exports = function (grunt) {
       options: {
         ignore: [
           'Element “img” is missing required attribute “src”.',
-          'Bad value “X-UA-Compatible” for attribute “http-equiv” on element “meta”.',
-          'Attribute “autocomplete” not allowed on element “input” at this point.',
+          'Attribute “autocomplete” is only allowed when the input type is “color”, “date”, “datetime”, “datetime-local”, “email”, “month”, “number”, “password”, “range”, “search”, “tel”, “text”, “time”, “url”, or “week”.',
           'Attribute “autocomplete” not allowed on element “button” at this point.',
           'Element “div” not allowed as child of element “progress” in this context. (Suppressing further errors from this subtree.)',
           'Consider using the “h1” element as a top-level heading only (all “h1” elements are treated as top-level headings by many screen readers and other tools).',
           'The “datetime” input type is not supported in all browsers. Please be sure to test, and consider using a polyfill.'
         ]
       },
-      src: '_gh_pages/**/*.html'
+      src: ['_gh_pages/**/*.html', 'js/tests/visual/*.html']
     },
 
     watch: {
@@ -373,17 +385,6 @@ module.exports = function (grunt) {
       docs: {
         files: 'docs/assets/scss/**/*.scss',
         tasks: ['dist-css', 'docs']
-      }
-    },
-
-    sed: {
-      versionNumber: {
-        pattern: (function () {
-          var old = grunt.option('oldver');
-          return old ? RegExp.quote(old) : old;
-        })(),
-        replacement: grunt.option('newver'),
-        recursive: true
       }
     },
 
@@ -403,14 +404,6 @@ module.exports = function (grunt) {
     exec: {
       npmUpdate: {
         command: 'npm update'
-      },
-      bundleUpdate: {
-        command: function () {
-          // Update dev gems and all the test gemsets
-          return 'bundle update && ' + glob.sync('test-infra/gemfiles/*.gemfile').map(function (gemfile) {
-            return 'BUNDLE_GEMFILE=' + gemfile + ' bundle update';
-          }).join(' && ');
-        }
       }
     },
 
@@ -427,7 +420,27 @@ module.exports = function (grunt) {
           branch: 'gh-pages'
         }
       }
+    },
+
+    compress: {
+      main: {
+        options: {
+          archive: 'bootstrap-<%= pkg.version %>-dist.zip',
+          mode: 'zip',
+          level: 9,
+          pretty: true
+        },
+        files: [
+          {
+            expand: true,
+            cwd: 'dist/',
+            src: ['**'],
+            dest: 'bootstrap-<%= pkg.version %>-dist'
+          }
+        ]
+      }
     }
+
   });
 
 
@@ -438,7 +451,7 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
 
   // Docs HTML validation task
-  grunt.registerTask('validate-html', ['jekyll:docs']);
+  grunt.registerTask('validate-html', ['jekyll:docs', 'htmllint']);
 
   var runSubset = function (subset) {
     return !process.env.TWBS_TEST || process.env.TWBS_TEST === subset;
@@ -457,7 +470,8 @@ module.exports = function (grunt) {
   }
   // Skip HTML validation if running a different subset of the test suite
   if (runSubset('validate-html') &&
-      // Skip HTML5 validator on Travis when [skip validator] is in the commit message
+      isTravis &&
+      // Skip HTML5 validator when [skip validator] is in the commit message
       isUndefOrNonZero(process.env.TWBS_DO_VALIDATOR)) {
     testSubtasks.push('validate-html');
   }
@@ -467,6 +481,7 @@ module.exports = function (grunt) {
       runSubset('sauce-js-unit') &&
       // Skip Sauce on Travis when [skip sauce] is in the commit message
       isUndefOrNonZero(process.env.TWBS_DO_SAUCE)) {
+    testSubtasks.push('babel:dev');
     testSubtasks.push('connect');
     testSubtasks.push('saucelabs-qunit');
   }
@@ -474,7 +489,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test-js', ['eslint', 'jscs:core', 'jscs:test', 'jscs:grunt', 'qunit']);
 
   // JS distribution task.
-  grunt.registerTask('dist-js', ['concat', 'lineremover', 'babel:dist', 'stamp', 'uglify:core', 'commonjs']);
+  grunt.registerTask('dist-js', ['babel:dev', 'concat', 'lineremover', 'babel:dist', 'stamp', 'uglify:core', 'commonjs']);
 
   grunt.registerTask('test-scss', ['scsslint']);
 
@@ -486,18 +501,13 @@ module.exports = function (grunt) {
   // grunt.registerTask('sass-compile', ['sass:core', 'sass:extras', 'sass:docs']);
   grunt.registerTask('sass-compile', ['sass:core', 'sass:docs']);
 
-  grunt.registerTask('dist-css', ['sass-compile', 'postcss:core', 'autoprefixer:core', 'usebanner', 'csscomb:dist', 'cssmin:core', 'cssmin:docs']);
+  grunt.registerTask('dist-css', ['sass-compile', 'postcss:core', 'csscomb:dist', 'cssmin:core', 'cssmin:docs']);
 
   // Full distribution task.
   grunt.registerTask('dist', ['clean:dist', 'dist-css', 'dist-js']);
 
   // Default task.
   grunt.registerTask('default', ['clean:dist', 'test']);
-
-  // Version numbering task.
-  // grunt change-version-number --oldver=A.B.C --newver=X.Y.Z
-  // This can be overzealous, so its changes should always be manually reviewed!
-  grunt.registerTask('change-version-number', 'sed');
 
   grunt.registerTask('commonjs', ['babel:umd', 'npm-js']);
 
@@ -510,12 +520,13 @@ module.exports = function (grunt) {
   });
 
   // Docs task.
-  grunt.registerTask('docs-css', ['autoprefixer:docs', 'autoprefixer:examples', 'csscomb:docs', 'csscomb:examples', 'cssmin:docs']);
+  grunt.registerTask('docs-css', ['postcss:docs', 'postcss:examples', 'csscomb:docs', 'csscomb:examples', 'cssmin:docs']);
   grunt.registerTask('docs-js', ['uglify:docsJs']);
   grunt.registerTask('lint-docs-js', ['jscs:assets']);
   grunt.registerTask('docs', ['docs-css', 'docs-js', 'lint-docs-js', 'clean:docs', 'copy:docs']);
+  grunt.registerTask('docs-github', ['jekyll:github', 'htmlmin']);
 
-  grunt.registerTask('prep-release', ['dist', 'docs', 'jekyll:github', 'htmlmin', 'compress']);
+  grunt.registerTask('prep-release', ['dist', 'docs', 'docs-github', 'compress']);
 
   // Publish to GitHub
   grunt.registerTask('publish', ['buildcontrol:pages']);
@@ -529,13 +540,10 @@ module.exports = function (grunt) {
       if (err) {
         grunt.fail.warn(err);
       }
-      var dest = 'test-infra/npm-shrinkwrap.json';
+      var dest = 'grunt/npm-shrinkwrap.json';
       fs.renameSync('npm-shrinkwrap.json', dest);
       grunt.log.writeln('File ' + dest.cyan + ' updated.');
       done();
     });
   });
-  // Task for updating the cached RubyGem packages used by the Travis build (which are controlled by test-infra/Gemfile.lock).
-  // This task should be run and the updated file should be committed whenever Bootstrap's RubyGem dependencies change.
-  grunt.registerTask('update-gemfile-lock', ['exec:bundleUpdate']);
 };

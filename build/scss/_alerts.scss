@@ -27,21 +27,21 @@
 //Alert Variants
 .alert-success {
   @extend .bg-green;
-  border-color: darken($green, 5%);
+  border-color: darken($brand-success, 5%);
 }
 
 .alert-danger,
 .alert-error {
   @extend .bg-red;
-  border-color: darken($red, 5%);
+  border-color: darken($brand-danger, 5%);
 }
 
 .alert-warning {
   @extend .bg-yellow;
-  border-color: darken($yellow, 5%);
+  border-color: darken($brand-warning, 5%);
 }
 
 .alert-info {
   @extend .bg-aqua;
-  border-color: darken($aqua, 5%);
+  border-color: darken($brand-info, 5%);
 }

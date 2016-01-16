@@ -4,170 +4,114 @@
  */
 html,
 body {
-  min-height: 100%;
-  .layout-boxed & {
-    height: 100%;
-  }
+  height: 100%;
 }
 
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html,
+body,
+.wrapper {
+  height: 100%;
   overflow-x: hidden;
 }
 
-/* Layout */
+.layout-boxed {
+  background: url('#{$boxed-layout-bg-image-path}') #ccc repeat;
+}
+
 .wrapper {
-  @include clearfix();
-  min-height: 100%;
-  position: relative;
-  overflow: hidden;
+  //min-height: 100%;
   .layout-boxed & {
-    max-width: 1250px;
-    margin: 0 auto;
-    min-height: 100%;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-    position: relative;
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
+    &,
+    &:before {
+      margin: 0 auto;
+      max-width: $boxed-layout-max-width;
+    }
   }
 }
 
-.layout-boxed {
-  background: url('#{$boxed-layout-bg-image-path}') repeat fixed;
+.wrapper:before,
+.main-sidebar:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
 }
 
-/*
- * Content Wrapper - contains the main content
- */
-.content-wrapper {
-  min-height: 100%;
+.wrapper:before {
+  background: $main-bg;
+  width: 100%;
 }
+
+.main-sidebar:before {
+  left: 0;
+  width: $sidebar-width;
+}
+
 .content-wrapper,
 .main-footer {
   margin-left: $sidebar-width;
-  z-index: 820;
-  //Top nav layout
-  .layout-top-nav & {
-    margin-left: 0;
-  }
-  @media (max-width: map-get($grid-breakpoints, md) + 1) {
-    margin-left: 0;
-  }
-  //When opening the sidebar on large screens
+  z-index: 3000;
   .sidebar-collapse & {
-    @media (min-width: map-get($grid-breakpoints, md)) {
-      margin-left: 0;
-    }
-  }
-}
-.main-header,
-.main-footer,
-.content-wrapper {
-  //Using disposable variable to join statements with a comma
-  $transition-rule: $transition-speed $transition-fn,
-  margin $transition-speed $transition-fn;
-  transition: transform $transition-rule;
-  //When opening the sidebar on small screens
-  .sidebar-open & {
-    @media (max-width: map-get($grid-breakpoints, md) + 1) {
-      @include translate($sidebar-width, 0);
-    }
+    margin-left: 0;
   }
 }
 
 .content-wrapper,
-.right-side {
-  min-height: 100%;
-  background-color: $main-bg;
-  z-index: 800;
+.main-sidebar {
+  @include calc("min-height", "100% - #{$main-header-height + $main-footer-height}");
 }
 
-.main-footer {
-  background: #fff;
-  padding: 15px;
-  color: #444;
-  border-top: 1px solid $gray-lighter;
+.content-wrapper {
+  background: $main-bg;
+  > .content-header,
+  > .content {
+    display: table;
+    width: 100%;
+  }
+
+  > .content {
+    padding: 15px;
+  }
 }
 
-/* Fixed layout */
-.fixed {
-  .main-header,
-  .main-sidebar,
-  .left-side {
-    position: fixed;
-  }
-  .main-header {
-    top: 0;
-    right: 0;
-    left: 0;
-  }
-  .content-wrapper,
-  .right-side {
-    padding-top: 50px;
-  }
-  &.layout-boxed {
-    .wrapper {
-      max-width: 100%;
+.main-sidebar {
+  width: $sidebar-width;
+  float: left;
+  .sidebar-collapse & {
+    &,
+    &:before {
+      margin-left: -$sidebar-width;
     }
   }
 }
 
-body.hold-transition {
-  .content-wrapper,
-  .right-side,
-  .main-footer,
-  .main-sidebar,
-  .left-side,
-  .main-header > .navbar,
-  .main-header .logo {
-    /* Fix for IE */
-    transition: none;
+.main-footer {
+  padding: $main-footer-padding;
+  color: #555;
+  border-top: $main-footer-border-top;
+  background: #fff;
+  margin-left: $sidebar-width;
+}
+
+.content-header {
+  padding: 15px;
+  background: #fff;
+  box-shadow: 3px 0 6px rgba(0, 0, 0, 0.2);
+  h1 {
+    font-size: 1.8rem;
+    margin: 0;
   }
-}
-
-/* Content */
-.content {
-  min-height: 250px;
-  padding: 0 15px 15px 15px;
-  // @include container-fixed($grid-gutter-width);
-}
-
-/* H1 - H6 font */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
-/* General Links */
-a {
-  color: $link-color;
-}
-
-a:hover,
-a:active,
-a:focus {
-  outline: none;
-  text-decoration: none;
-  color: $link-hover-color;
-}
-
-/* Page Header */
-.page-header {
-  margin: 10px 0 20px 0;
-  font-size: 22px;
-
-  > small {
-    color: #666;
-    display: block;
-    margin-top: 5px;
+  .breadcrumb {
+    margin-bottom: 0;
+    padding: 0;
+    background: transparent;
+    line-height: 1.8rem;
+    @include media-breakpoint-down(sm) {
+      float: none !important;
+      margin-top: 15px;
+      line-height: 1;
+    }
   }
 }

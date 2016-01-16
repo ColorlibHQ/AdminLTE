@@ -15,7 +15,7 @@
 
   var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -27,7 +27,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.0.0): popover.js
+   * Bootstrap (v4.0.0-alpha.2): popover.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -41,7 +41,7 @@
      */
 
     var NAME = 'popover';
-    var VERSION = '4.0.0';
+    var VERSION = '4.0.0-alpha';
     var DATA_KEY = 'bs.popover';
     var EVENT_KEY = '.' + DATA_KEY;
     var JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -54,7 +54,7 @@
     });
 
     var DefaultType = $.extend({}, _Tooltip2['default'].DefaultType, {
-      content: '(string|function)'
+      content: '(string|element|function)'
     });
 
     var ClassName = {
@@ -118,19 +118,13 @@
       }, {
         key: 'setContent',
         value: function setContent() {
-          var tip = this.getTipElement();
-          var title = this.getTitle();
-          var content = this._getContent();
-          var titleElement = $(tip).find(Selector.TITLE)[0];
-
-          if (titleElement) {
-            titleElement[this.config.html ? 'innerHTML' : 'innerText'] = title;
-          }
+          var $tip = $(this.getTipElement());
 
           // we use append for html objects to maintain js events
-          $(tip).find(Selector.CONTENT).children().detach().end()[this.config.html ? typeof content === 'string' ? 'html' : 'append' : 'text'](content);
+          this.setElementContent($tip.find(Selector.TITLE), this.getTitle());
+          this.setElementContent($tip.find(Selector.CONTENT), this._getContent());
 
-          $(tip).removeClass(ClassName.FADE).removeClass(ClassName.IN);
+          $tip.removeClass(ClassName.FADE).removeClass(ClassName.IN);
 
           this.cleanupTether();
         }
@@ -162,6 +156,9 @@
             }
 
             if (typeof config === 'string') {
+              if (data[config] === undefined) {
+                throw new Error('No method named "' + config + '"');
+              }
               data[config]();
             }
           });

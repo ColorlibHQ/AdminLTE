@@ -10,7 +10,7 @@ const Widget = (($) => {
 
   class Widget {
 
-    Constructor(element) {
+    constructor(element) {
       this._element = element
     }
 
