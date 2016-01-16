@@ -1,6 +1,6 @@
 /* Ion.RangeSlider, Nice Skin
-// css version 1.8.5
-// by Denis Ineshin | ionden.com
+// css version 2.0.3
+// © Denis Ineshin, 2014    https://github.com/IonDen
 // ===================================================================================================================*/
 
 /* =====================================================================================================================
@@ -9,7 +9,8 @@
 .irs-line-mid,
 .irs-line-left,
 .irs-line-right,
-.irs-diapason,
+.irs-bar,
+.irs-bar-edge,
 .irs-slider {
     background: url(img/sprite-skin-nice.png) repeat-x;
 }
@@ -36,18 +37,32 @@
         background-position: 100% -30px;
     }
 
-.irs-diapason {
+.irs-bar {
     height: 8px; top: 25px;
     background-position: 0 -60px;
+}
+    .irs-bar-edge {
+        top: 25px;
+        height: 8px; width: 11px;
+        background-position: 0 -90px;
+    }
+
+.irs-shadow {
+    height: 1px; top: 34px;
+    background: #000;
+    opacity: 0.15;
+}
+.lt-ie9 .irs-shadow {
+    filter: alpha(opacity=15);
 }
 
 .irs-slider {
     width: 22px; height: 22px;
     top: 17px;
-    background-position: 0 -90px;
-}
-#irs-active-slider, .irs-slider:hover {
     background-position: 0 -120px;
+}
+.irs-slider.state_hover, .irs-slider:hover {
+    background-position: 0 -150px;
 }
 
 .irs-min, .irs-max {
@@ -56,6 +71,7 @@
     text-shadow: none;
     top: 0; padding: 1px 3px;
     background: rgba(0,0,0,0.1);
+    -moz-border-radius: 3px;
     border-radius: 3px;
 }
 .lt-ie9 .irs-min, .lt-ie9 .irs-max {
@@ -68,6 +84,7 @@
     text-shadow: none;
     padding: 1px 5px;
     background: rgba(0,0,0,0.3);
+    -moz-border-radius: 3px;
     border-radius: 3px;
 }
 .lt-ie9 .irs-from, .lt-ie9 .irs-to, .lt-ie9 .irs-single {
