@@ -1,6 +1,6 @@
 /* Ion.RangeSlider
-// css version 1.8.5
-// by Denis Ineshin | ionden.com
+// css version 2.0.3
+// © 2013-2014 Denis Ineshin | IonDen.com
 // ===================================================================================================================*/
 
 /* =====================================================================================================================
@@ -8,62 +8,61 @@
 
 .irs {
     position: relative; display: block;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
     .irs-line {
         position: relative; display: block;
         overflow: hidden;
+        outline: none !important;
     }
         .irs-line-left, .irs-line-mid, .irs-line-right {
             position: absolute; display: block;
             top: 0;
         }
         .irs-line-left {
-            left: 0; width: 10%;
+            left: 0; width: 11%;
         }
         .irs-line-mid {
-            left: 10%; width: 80%;
+            left: 9%; width: 82%;
         }
         .irs-line-right {
-            right: 0; width: 10%;
+            right: 0; width: 11%;
         }
 
-    .irs-diapason {
+    .irs-bar {
         position: absolute; display: block;
-        left: 0; width: 100%;
+        left: 0; width: 0;
     }
+        .irs-bar-edge {
+            position: absolute; display: block;
+            top: 0; left: 0;
+        }
+
+    .irs-shadow {
+        position: absolute; display: none;
+        left: 0; width: 0;
+    }
+
     .irs-slider {
         position: absolute; display: block;
         cursor: default;
         z-index: 1;
     }
         .irs-slider.single {
-            left: 10px;
+
         }
-            .irs-slider.single:before {
-                position: absolute; display: block; content: "";
-                top: -30%; left: -30%;
-                width: 160%; height: 160%;
-                background: rgba(0,0,0,0.0);
-            }
         .irs-slider.from {
-            left: 100px;
+
         }
-            .irs-slider.from:before {
-                position: absolute; display: block; content: "";
-                top: -30%; left: -30%;
-                width: 130%; height: 160%;
-                background: rgba(0,0,0,0.0);
-            }
         .irs-slider.to {
-            left: 300px;
+
         }
-            .irs-slider.to:before {
-                position: absolute; display: block; content: "";
-                top: -30%; left: 0;
-                width: 130%; height: 160%;
-                background: rgba(0,0,0,0.0);
-            }
-        .irs-slider.last {
+        .irs-slider.type_last {
             z-index: 2;
         }
 
@@ -85,7 +84,6 @@
         white-space: nowrap;
     }
 
-
 .irs-grid {
     position: absolute; display: none;
     bottom: 0; left: 0;
@@ -106,21 +104,46 @@
     .irs-grid-text {
         position: absolute;
         bottom: 0; left: 0;
-        width: 100px;
         white-space: nowrap;
         text-align: center;
         font-size: 9px; line-height: 9px;
+        padding: 0 3px;
         color: #000;
     }
 
 .irs-disable-mask {
     position: absolute; display: block;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0; left: -1%;
+    width: 102%; height: 100%;
     cursor: default;
     background: rgba(0,0,0,0.0);
     z-index: 2;
 }
+.lt-ie9 .irs-disable-mask {
+    background: #000;
+    filter: alpha(opacity=0);
+    cursor: not-allowed;
+}
+
 .irs-disabled {
     opacity: 0.4;
+}
+
+
+.irs-hidden-input {
+    position: absolute !important;
+    display: block !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    outline: none !important;
+    z-index: -9999 !important;
+    background: none !important;
+    border-style: solid !important;
+    border-color: transparent !important;
 }

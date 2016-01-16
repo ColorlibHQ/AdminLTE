@@ -72,6 +72,12 @@
   background-image: url("img/alpha.png");
 }
 
+.colorpicker-saturation,
+.colorpicker-hue,
+.colorpicker-alpha {
+  background-size: contain;
+}
+
 .colorpicker {
   top: 0;
   left: 0;
@@ -143,15 +149,36 @@
   height: 10px;
 }
 
-.colorpicker-element .input-group-addon i {
-  display: block;
+.colorpicker-selectors {
+  display: none;
+  height: 10px;
+  margin-top: 5px;
+  clear: both;
+}
+
+.colorpicker-selectors i {
+  float: left;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+}
+
+.colorpicker-selectors i + i {
+  margin-left: 3px;
+}
+
+.colorpicker-element .input-group-addon i,
+.colorpicker-element .add-on i {
+  display: inline-block;
   width: 16px;
   height: 16px;
+  vertical-align: text-top;
   cursor: pointer;
 }
 
 .colorpicker.colorpicker-inline {
   position: relative;
+  z-index: auto;
   display: inline-block;
   float: none;
 }
@@ -211,4 +238,14 @@
 
 .colorpicker-inline.colorpicker-visible {
   display: inline-block;
+}
+
+.colorpicker-right:before {
+  right: 6px;
+  left: auto;
+}
+
+.colorpicker-right:after {
+  right: 7px;
+  left: auto;
 }
