@@ -228,7 +228,7 @@
                 <tbody><tr>
                   <th>Domain</th>
                   <th>Hits</th>
-                  <th>Percent</th>
+                  <th>Frequency</th>
                 </tr>
                 <?php foreach($data['top_queries'] as $key=>$value): ?>
                 <tr>
@@ -259,7 +259,7 @@
                 <tbody><tr>
                   <th>Domain</th>
                   <th>Hits</th>
-                  <th>Percentage</th>
+                  <th>Frequency</th>
                 </tr>
                 <?php foreach($data['top_ads'] as $key=>$value): ?>
                 <tr>
