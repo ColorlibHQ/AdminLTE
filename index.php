@@ -1,8 +1,6 @@
 <?php
-    $domains_being_blocked = exec("wc -l /etc/pihole/gravity.list | awk '{print $1}'");
-    $dns_queries_today = exec("cat /var/log/pihole.log | awk '/query/ {print $6}' | wc -l");
-    $ads_blocked_today = exec("cat /var/log/pihole.log | awk '/\/etc\/pihole\/gravity.list/ && !/address/ {print $6}' | wc -l");
-    $ads_percentage_today = $ads_blocked_today / $dns_queries_today * 100;
+    # adds $data variable
+    include('data.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -125,13 +123,12 @@
                             <!-- small box -->
                             <div class="small-box bg-aqua">
                                 <div class="inner">
-                                    <h3><?php echo number_format($ads_blocked_today) ?></h3>
+                                    <h3><?php echo number_format($data['ads_blocked_today']) ?></h3>
                                     <p>Ads Blocked Today</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-android-hand"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
@@ -139,13 +136,12 @@
                             <!-- small box -->
                             <div class="small-box bg-green">
                                 <div class="inner">
-                                    <h3><?php echo number_format($dns_queries_today) ?></h3>
+                                    <h3><?php echo number_format($data['dns_queries_today']) ?></h3>
                                     <p>DNS Queries Today</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-earth"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
@@ -153,13 +149,12 @@
                             <!-- small box -->
                             <div class="small-box bg-yellow">
                                 <div class="inner">
-                                    <h3><?php echo number_format($ads_percentage_today, 2, '.', '') ?><sup style="font-size: 20px">%</sup></h3>
+                                    <h3><?php echo number_format($data['ads_percentage_today'], 2, '.', '') ?><sup style="font-size: 20px">%</sup></h3>
                                     <p>Of Today's Traffic Is Ads</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-pie-graph"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
@@ -167,17 +162,80 @@
                             <!-- small box -->
                             <div class="small-box bg-red">
                                 <div class="inner">
-                                    <h3><sup style="font-size: 30px"><?php echo number_format($domains_being_blocked) ?></sup></h3>
+                                    <h3><sup style="font-size: 30px"><?php echo number_format($data['domains_being_blocked']) ?></sup></h3>
                                     <p>Domains Being Blocked</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-ios-list"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
                     </div>
+    <div class="row">
+        <div class="col-md-6">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Top Domains</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table class="table table-bordered">
+                <tbody><tr>
+                  <th>Domain</th>
+                  <th>Hits</th>
+                  <th>Percent</th>
+                </tr>
+                <?php foreach($data['top_queries'] as $key=>$value): ?>
+                <tr>
+                    <td><?php echo $key ?></td>
+                    <td><?php echo $value ?></td>
+                    <td>
+                    <div class="progress progress-sm">
+                    <div class="progress-bar progress-bar-green" style="width: <?php echo number_format(($value/$data['dns_queries_today']), 2, '.', '') * 100?>%"></div>
+                    </div>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-6">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Top Advertisers</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table class="table table-bordered">
+                <tbody><tr>
+                  <th>Domain</th>
+                  <th>Hits</th>
+                  <th>Percentage</th>
+                </tr>
+                <?php foreach($data['top_ads'] as $key=>$value): ?>
+                <tr>
+                    <td><?php echo $key ?></td>
+                    <td><?php echo $value ?></td>
+                    <td>
+                    <div class="progress progress-sm">
+                    <div class="progress-bar progress-bar-yellow" style="width: <?php echo number_format(($value/$data['ads_blocked_today']), 2, '.', '') * 100?>%"></div>
+                    </div>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
                     <!-- /.row -->
                 </section>
                 <!-- /.content -->
