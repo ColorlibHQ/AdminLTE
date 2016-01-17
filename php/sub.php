@@ -1,6 +1,6 @@
 <?php
 if(!isset($_GET['domain'], $_GET['list']))
-    return;
+    die();
 
 switch($_GET['list']) {
     case "white":
