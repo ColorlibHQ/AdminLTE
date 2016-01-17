@@ -1,6 +1,12 @@
 <?php
 if(!isset($_GET['domain'], $_GET['list']))
-    die();
+    return;
 
-exec("ex +g/${_GET['domain']}/d -cwq /etc/pihole/${_GET['list']}list.txt");
-exec("sudo /usr/local/bin/gravity.sh");
+switch($_GET['list']) {
+    case "white":
+        exec("/usr/local/bin/whitelist.sh -q -d ${_GET['domain']}");
+        break;
+    case "black":
+        exec("/usr/local/bin/blacklist.sh -q -d ${_GET['domain']}");
+        break;
+}
