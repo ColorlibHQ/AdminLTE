@@ -181,7 +181,7 @@
                         <!-- ./col -->
                     </div>
                     <!-- /.row -->
-                    <div class="box box-info collapse" id="frequent_queries_box">
+                    <div class="box box-success collapse" id="frequent_queries_box">
                       <div class="box-header with-border">
                         <h3 class="box-title">Frequent queries</h3>
                         <div class="box-tools pull-right">
