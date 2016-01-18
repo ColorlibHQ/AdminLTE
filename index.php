@@ -3,6 +3,7 @@
     $dns_queries_today = exec("cat /var/log/pihole.log | awk '/query/ {print $6}' | wc -l");
     $ads_blocked_today = exec("cat /var/log/pihole.log | awk '/\/etc\/pihole\/gravity.list/ && !/address/ {print $6}' | wc -l");
     $ads_percentage_today = $ads_blocked_today / $dns_queries_today * 100;
+    exec('grep -F "query[A]" /var/log/pihole.log | cut -d " " -f 6 | sort | uniq -c | sort -nr | head -n 100', $frequent_queries);
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,7 @@
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
 
         <link href="./css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
         <link href="./css/skin-blue.min.css" rel="stylesheet" type="text/css" />
@@ -145,7 +147,7 @@
                                 <div class="icon">
                                     <i class="ion ion-earth"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="#frequent_queries_box" role="button" data-toggle="collapse" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
@@ -179,6 +181,26 @@
                         <!-- ./col -->
                     </div>
                     <!-- /.row -->
+                    <div class="box box-info collapse" id="frequent_queries_box">
+                      <div class="box-header with-border">
+                        <h3 class="box-title">Frequent queries</h3>
+                        <div class="box-tools pull-right">
+                          <!-- Buttons, labels, and many other things can be placed here! -->
+                          <!-- Here is a label for example -->
+                        </div><!-- /.box-tools -->
+                      </div><!-- /.box-header -->
+                      <div class="box-body">
+                          <table id="frequent_queries" class="table table-striped table-bordered" cellspacing="0">
+                              <thead><tr><th>N. of queries</th><th>Domain</th></tr></thead>
+                              <?php
+                                  foreach ($frequent_queries as $key => $value) {
+                                      $a = explode(" ", trim($value));
+                                      echo "<tr><td>{$a[0]}</td><td>{$a[1]}</td></tr>";
+                                  }
+                              ?>
+                          </table>
+                      </div><!-- /.box-body -->
+                    </div><!-- /.box -->
                 </section>
                 <!-- /.content -->
             </div>
@@ -193,6 +215,13 @@
         <!-- ./wrapper -->
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script src="./js/app.min.js" type="text/javascript"></script>
+        <script>
+        $(document).ready(function(){
+            $('#frequent_queries').DataTable({"order": [[ 0, "desc" ]]});
+        });
+        </script>
     </body>
 </html>
