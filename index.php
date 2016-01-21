@@ -1,10 +1,13 @@
 <?php
-require "header.html";
-
-$domains_being_blocked = exec("wc -l /etc/pihole/gravity.list | awk '{print $1}'");
-$dns_queries_today = exec("cat /var/log/pihole.log | awk '/query/ {print $6}' | wc -l");
-$ads_blocked_today = exec("cat /var/log/pihole.log | awk '/\/etc\/pihole\/gravity.list/ && !/address/ {print $6}' | wc -l");
-$ads_percentage_today = $ads_blocked_today / $dns_queries_today * 100;
+    require "header.html";
+    
+    $output = exec('/usr/local/bin/chronometer.sh -j');
+    $outj = json_decode($output);
+    $domains_being_blocked = $outj->domains_being_blocked;
+    $dns_queries_today = $outj->dns_queries_today;
+    $ads_blocked_today = $outj->ads_blocked_today;
+    $ads_percentage_today = $outj->ads_percentage_today;
+    exec('grep -F "query[A]" /var/log/pihole.log | cut -d " " -f 6 | sort | uniq -c | sort -nr | head -n 100', $frequent_queries);
 ?>
 
 <!-- Small boxes (Stat box) -->
@@ -19,7 +22,7 @@ $ads_percentage_today = $ads_blocked_today / $dns_queries_today * 100;
             <div class="icon">
                 <i class="ion ion-android-hand"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#frequent_queries_box" role="button" data-toggle="collapse" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -67,7 +70,35 @@ $ads_percentage_today = $ads_blocked_today / $dns_queries_today * 100;
     <!-- ./col -->
 </div>
 <!-- /.row -->
+<div class="box box-success collapse" id="frequent_queries_box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Frequent queries</h3>
+        <div class="box-tools pull-right">
+            <!-- Buttons, labels, and many other things can be placed here! -->
+            <!-- Here is a label for example -->
+        </div><!-- /.box-tools -->
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        <table id="frequent_queries" class="table table-striped table-bordered" cellspacing="0">
+            <thead><tr><th>N. of queries</th><th>Domain</th></tr></thead>
+            <?php
+                foreach ($frequent_queries as $key => $value) {
+                    $a = explode(" ", trim($value));
+                    echo "<tr><td>{$a[0]}</td><td>{$a[1]}</td></tr>";
+                }
+            ?>
+        </table>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
 
 <?php
     require "footer.html";
 ?>
+
+<script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function(){
+        $('#frequent_queries').DataTable({"order": [[ 0, "desc" ]]});
+    });
+</script>
