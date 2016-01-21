@@ -19,3 +19,9 @@ A basic read-only API can be accessed at `/admin/api.php`. It returns the follow
 	"ads_percentage_today": 80.892423238348
 }
 ```
+
+## Contributing
+If you would like to add to the project, please make sure to follow these guidelines:
+
+1. Branch off of ```devel``` into your own feature branch (ex. ```feature```).
+2. When you are finished, make a pull request to merge your ```feature``` branch into ```devel```.
