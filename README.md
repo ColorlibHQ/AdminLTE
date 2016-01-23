@@ -44,6 +44,12 @@ bower install admin-lte
 composer require "almasaeed2010/adminlte=~2.0"
 ```
 
+**npm**
+
+```
+npm install admin-lte
+```
+
 Documentation
 -------------
 Visit the [online documentation](https://almsaeedstudio.com/themes/AdminLTE/documentation/index.html) for the most
