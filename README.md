@@ -25,3 +25,7 @@ If you would like to add to the project, please make sure to follow these guidel
 
 1. Branch off of ```devel``` into your own feature branch (ex. ```feature```).
 2. When you are finished, make a pull request to merge your ```feature``` branch into ```devel```.
+
+Keep these things in mind:
+
+* Use 4 spaces instead of tabs
