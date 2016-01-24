@@ -1,0 +1,100 @@
+@import (once) "utils";
+
+/* transform functions */
+.perspective(@perspective) {
+	transform: perspective(@perspective);
+}
+.rotate(@degrees) {
+	transform: rotate(@degrees);
+}
+.rotateX(@degrees) {
+	transform: rotateX(@degrees);
+}
+.rotateY(@degrees) {
+	transform: rotateY(@degrees);
+}
+.rotateZ(@degrees) {
+	transform: rotateZ(@degrees);
+}
+.scale(@ratio) {
+	transform: scale(@ratio);
+}
+.scaleX(@ratio) {
+	transform: scaleX(@ratio);
+}
+.scaleY(@ratio) {
+	transform: scaleY(@ratio);
+}
+.translate(@x: 0, @y: 0) {
+	transform: translate(@x, @y);
+}
+.skew(@x: 0, @y: 0) {
+	transform: skew(@x, @y);
+}
+.translate3d(@x: 0, @y: 0, @z: 0) {
+	transform: translate(@x, @y, @z);
+}
+
+.transformOrigin(@origin) {
+	transform-origin: @origin;
+}
+
+.transition(@time: 1s, @func: ease, @target: all){
+	transition: @target @time @func;
+}
+
+.translateX(@x: 0) {
+	transform: translateX(@x);
+}
+.translateY(@y: 0) {
+	transform: translateY(@y);
+}
+
+.rotate45 {.rotate(45deg);}
+.rotate90 {.rotate(90deg);}
+.rotate135 {.rotate(135deg);}
+.rotate180 {.rotate(180deg);}
+.rotate225 {.rotate(225deg);}
+.rotate270 {.rotate(270deg);}
+.rotate360 {.rotate(360deg);}
+
+.rotate-45 {.rotate(-45deg);}
+.rotate-90 {.rotate(-90deg);}
+.rotate-135 {.rotate(-135deg);}
+.rotate-180 {.rotate(-180deg);}
+.rotate-225 {.rotate(-225deg);}
+.rotate-270 {.rotate(-270deg);}
+.rotate-360 {.rotate(-360deg);}
+
+.rotateX45 {.rotateX(45deg);}
+.rotateX90 {.rotateX(90deg);}
+.rotateX135 {.rotateX(135deg);}
+.rotateX180 {.rotateX(180deg);}
+.rotateX225 {.rotateX(225deg);}
+.rotateX270 {.rotateX(270deg);}
+.rotateX360 {.rotateX(360deg);}
+
+.rotateX-45 {.rotateX(-45deg);}
+.rotateX-90 {.rotateX(-90deg);}
+.rotateX-135 {.rotateX(-135deg);}
+.rotateX-180 {.rotateX(-180deg);}
+.rotateX-225 {.rotateX(-225deg);}
+.rotateX-270 {.rotateX(-270deg);}
+.rotateX-360 {.rotateX(-360deg);}
+
+.rotateY45 {.rotateY(45deg);}
+.rotateY90 {.rotateY(90deg);}
+.rotateY135 {.rotateY(135deg);}
+.rotateY180 {.rotateY(180deg);}
+.rotateY225 {.rotateY(225deg);}
+.rotateY270 {.rotateY(270deg);}
+.rotateY360 {.rotateY(360deg);}
+
+.rotateY-45 {.rotateY(-45deg);}
+.rotateY-90 {.rotateY(-90deg);}
+.rotateY-135 {.rotateY(-135deg);}
+.rotateY-180 {.rotateY(-180deg);}
+.rotateY-225 {.rotateY(-225deg);}
+.rotateY-270 {.rotateY(-270deg);}
+.rotateY-360 {.rotateY(-360deg);}
+

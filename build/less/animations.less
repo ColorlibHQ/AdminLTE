@@ -1,0 +1,674 @@
+@import (once) "transform";
+
+.animate(@params){
+	animation: @params;
+}
+
+.ani-spin,
+.ani-hover-spin:hover {
+    .animate( ani-spin 1.5s linear infinite);
+}
+
+.ani-spin.ani-fast,
+.ani-hover-spin.ani-fast:hover {
+    .animate(ani-spin 0.7s linear infinite);
+}
+
+.ani-spin.ani-slow,
+.ani-hover-spin.ani-slow:hover {
+    .animate(ani-spin 2.2s linear infinite);
+}
+
+.ani-pulse,
+.ani-hover-pulse:hover {
+    .animate(ani-pulse 1.7s infinite);
+}
+
+.ani-pulse.ani-fast,
+.ani-hover-pulse.ani-fast:hover {
+    .animate(ani-pulse 1s infinite);
+}
+
+.ani-pulse.ani-slow,
+.ani-hover-pulse.ani-slow:hover {
+    .animate(ani-pulse 3s infinite);
+}
+
+.ani-spanner,
+.ani-hover-spanner:hover {
+    transform-origin-x: 90%;
+    transform-origin-y: 35%;
+    transform-origin-z: initial;
+    .animate( ani-wrench 2.5s ease infinite );
+}
+
+.ani-spanner.ani-fast,
+.ani-hover-spanner.ani-fast:hover {
+    .animate(ani-wrench 1.2s ease infinite);
+}
+
+.ani-spanner.ani-slow,
+.ani-hover-spanner.ani-slow:hover {
+    .animate(ani-wrench 3.7s ease infinite);
+}
+
+.ani-ring,
+.ani-hover-ring:hover {
+    transform-origin-x: 50%;
+    transform-origin-y: 0px;
+    transform-origin-z: initial;
+    .animate(ani-ring 2s ease infinite);
+}
+
+.ani-ring.ani-fast,
+.ani-hover-ring.ani-fast:hover {
+    .animate(ani-ring 1s ease infinite);
+}
+
+.ani-ring.ani-slow,
+.ani-hover-ring.ani-slow:hover {
+    .animate( ani-ring 3s ease infinite );
+}
+
+.ani-vertical,
+.ani-hover-vertical:hover {
+    .animate(ani-vertical 2s ease infinite);
+}
+
+.ani-vertical.ani-fast,
+.ani-vertical.ani-fast:hover {
+    .animate( ani-vertical 1s ease infinite);
+}
+
+.ani-vertical.ani-slow,
+.ani-hover-vertical.ani-slow:hover {
+    .animate( ani-vertical 4s ease infinite);
+}
+
+.ani-horizontal,
+.ani-hover-horizontal:hover {
+    .animate(ani-horizontal 2s ease infinite);
+}
+
+.ani-horizontal.ani-fast,
+.ani-horizontal.ani-fast:hover {
+    .animate(ani-horizontal 1s ease infinite);
+}
+
+.ani-horizontal.ani-slow,
+.ani-horizontal.ani-slow:hover {
+    .animate( ani-horizontal 3s ease infinite);
+}
+
+.ani-flash,
+.ani-hover-flash:hover {
+    .animate(ani-flash 2s ease infinite);
+}
+
+.ani-flash.ani-fast,
+.ani-hover-flash.ani-fast:hover {
+    .animate(ani-flash 1s ease infinite);
+}
+
+.ani-flash.ani-slow,
+.ani-hover-flash.ani-slow:hover {
+    .animate(ani-flash 3s ease infinite);
+}
+
+.ani-bounce,
+.ani-hover-bounce:hover {
+    .animate(ani-bounce 2s ease infinite);
+}
+
+.ani-bounce.ani-fast,
+.ani-hover-bounce.ani-fast:hover {
+    .animate(ani-bounce 1s ease infinite);
+}
+
+.ani-bounce.ani-slow,
+.ani-hover-bounce.ani-slow:hover {
+    .animate(ani-bounce 3s ease infinite);
+}
+
+.ani-float,
+.ani-hover-float:hover {
+    .animate(ani-float 2s linear infinite);
+}
+
+.ani-float.ani-fast,
+.ani-hover-float.ani-fast:hover {
+    .animate(ani-float 1s linear infinite);
+}
+
+.ani-float.ani-slow,
+.ani-hover-float.ani-slow:hover {
+    .animate(ani-float 3s linear infinite);
+}
+
+.ani-heartbeat,
+.ani-hover-heartbeat:hover {
+    .animate(ani-heartbeat 2s linear infinite);
+}
+
+.ani-heartbeat.ani-fast,
+.ani-hover-heartbeat.ani-fast:hover {
+    .animate(ani-heartbeat 1s linear infinite);
+}
+
+.ani-heartbeat.ani-slow,
+.ani-hover-heartbeat.ani-slow:hover {
+    .animate(ani-heartbeat 3s linear infinite);
+}
+
+.ani-shake,
+.ani-hover-shake:hover {
+    .animate(ani-wrench 2.5s ease infinite);
+}
+
+.ani-shake.ani-fast,
+.ani-hover-shake.ani-fast:hover {
+    .animate(ani-wrench 1.2s ease infinite);
+}
+
+.ani-shake.ani-slow,
+.ani-hover-shake.ani-slow:hover {
+    .animate(ani-wrench 3.7s ease infinite);
+}
+
+.ani-shuttle,
+.ani-hover-shuttle:hover {
+    .animate(ani-shuttle 2s linear infinite);
+}
+
+.ani-shuttle.ani-fast,
+.ani-hover-shuttle.ani-fast:hover {
+    .animate(ani-shuttle 1s linear infinite);
+}
+
+.ani-shuttle.ani-slow,
+.ani-hover-shuttle.ani-slow:hover {
+    .animate(ani-shuttle 3s linear infinite);
+}
+
+.ani-pass,
+.ani-hover-pass:hover {
+    .animate(ani-pass 2s linear infinite);
+}
+
+.ani-pass.ani-fast,
+.ani-hover-pass.ani-fast:hover {
+    .animate(ani-pass 1s linear infinite);
+}
+
+.ani-pass.ani-slow,
+.ani-hover-pass.ani-slow:hover {
+    .animate(ani-pass 3s linear infinite);
+}
+
+.ani-ripple,
+.ani-hover-ripple:hover {
+    .animate(ani-ripple 2s infinite linear);
+}
+
+.ani-ripple.ani-fast,
+.ani-hover-ripple.ani-fast:hover {
+    .animate(ani-ripple 1s infinite linear);
+}
+
+.ani-ripple.ani-slow,
+.ani-hover-ripple.ani-slow:hover {
+    .animate(ani-ripple 3s infinite linear);
+}
+
+
+@keyframes swinging{
+	0% { .rotate(0deg); }
+	5% { .rotate(10deg); }
+	10% { .rotate(-9deg); }
+	15% { .rotate(8deg); }
+	20% { .rotate(-7deg); }
+	25% { .rotate(6deg); }
+	30% { .rotate(-5deg); }
+	35% { .rotate(4deg); }
+	40% { .rotate(-3deg); }
+	45% { .rotate(2deg); }
+	50% { .rotate(0deg); }
+	100% { .rotate(0deg); }
+}
+
+@keyframes scaleout {
+	0% {
+		.scale(0.0);
+	}
+	100% {
+		.scale(1.0);
+		opacity: 0;
+	}
+}
+
+@keyframes cubemove {
+	25% {
+		transform: translateX(10px) rotate(-90deg);
+	}
+	50% {
+		transform: translateX(10px) translateY(10px) rotate(-179deg);
+	}
+	50.1% {
+		transform: translateX(10px) translateY(10px) rotate(-180deg);
+	}
+	75% {
+		transform: translateX(0px) translateY(10px) rotate(-270deg);
+	}
+	100% {
+		transform: rotate(-360deg);
+	}
+}
+
+@keyframes orbit {
+	0% {
+		opacity: 1;
+		animation-timing-function: ease-out;
+		.rotate(225deg);
+	}
+
+	7% {
+		.rotate(345deg);
+		animation-timing-function: linear;
+	}
+
+	35% {
+		.rotate(495deg);
+		animation-timing-function: ease-in-out;
+	}
+
+	42% {
+		.rotate(690deg);
+		animation-timing-function: linear;
+	}
+
+	70% {
+		opacity: 1;
+		.rotate(835deg);
+		animation-timing-function: linear;
+	}
+
+	76% {
+		opacity: 1;
+	}
+
+	77% {
+		.rotate(955deg);
+		animation-timing-function: ease-in;
+	}
+
+	78% {
+		.rotate(955deg);
+		opacity: 0;
+	}
+
+	100% {
+		.rotate(955deg);
+		opacity: 0;
+	}
+}
+
+@keyframes metro-slide {
+	0% {
+		left: -50%;
+	}
+	100% {
+		left: 150%;
+	}
+}
+
+@keyframes metro-opacity {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: .5;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes ani-spin {
+    0% {
+        .rotate(0deg);
+    }
+    100% {
+        .rotate(359deg);
+    }
+}
+
+@keyframes ani-pulse {
+    0% {
+        .rotate(0deg);
+    }
+    100% {
+        .rotate(359deg);
+    }
+}
+
+@keyframes ani-wrench {
+    0% {
+        transform: rotate(-12deg)
+    }
+    8% {
+        transform: rotate(12deg)
+    }
+    10% {
+        transform: rotate(24deg)
+    }
+    18% {
+        transform: rotate(-24deg)
+    }
+    20% {
+        transform: rotate(-24deg)
+    }
+    28% {
+        transform: rotate(24deg)
+    }
+    30% {
+        transform: rotate(24deg)
+    }
+    38% {
+        transform: rotate(-24deg)
+    }
+    40% {
+        transform: rotate(-24deg)
+    }
+    48% {
+        transform: rotate(24deg)
+    }
+    50% {
+        transform: rotate(24deg)
+    }
+    58% {
+        transform: rotate(-24deg)
+    }
+    60% {
+        transform: rotate(-24deg)
+    }
+    68% {
+        transform: rotate(24deg)
+    }
+    75% {
+        transform: rotate(0deg)
+    }
+}
+
+@keyframes ani-ring {
+    0% {
+        transform: rotate(-15deg);
+    }
+
+    2% {
+        transform: rotate(15deg);
+    }
+
+    4% {
+        transform: rotate(-18deg);
+    }
+
+    6% {
+        transform: rotate(18deg);
+    }
+
+    8% {
+        transform: rotate(-22deg);
+    }
+
+    10% {
+        transform: rotate(22deg);
+    }
+
+    12% {
+        transform: rotate(-18deg);
+    }
+
+    14% {
+        transform: rotate(18deg);
+    }
+
+    16% {
+        transform: rotate(-12deg);
+    }
+
+    18% {
+        transform: rotate(12deg);
+    }
+
+    20% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes ani-vertical {
+    0% {
+        transform: translate(0,-3px);
+    }
+
+    4% {
+        transform: translate(0,3px);
+    }
+
+    8% {
+        transform: translate(0,-3px);
+    }
+
+    12% {
+        transform: translate(0,3px);
+    }
+
+    16% {
+        transform: translate(0,-3px);
+    }
+
+    20% {
+        transform: translate(0,3px);
+    }
+
+    22% {
+        transform: translate(0,0);
+    }
+}
+
+@keyframes ani-horizontal {
+    0% {
+        transform: translate(0,0);
+    }
+
+    6% {
+        transform: translate(5px,0);
+    }
+
+    12% {
+        transform: translate(0,0);
+    }
+
+    18% {
+        transform: translate(5px,0);
+    }
+
+    24% {
+        transform: translate(0,0);
+    }
+
+    30% {
+        transform: translate(5px,0);
+    }
+
+    36% {
+        transform: translate(0,0);
+    }
+}
+
+@keyframes ani-flash {
+    0%, 100%, 50% {
+        opacity: 1;
+    }
+
+    25%, 75% {
+        opacity: 0;
+    }
+}
+
+@keyframes ani-bounce {
+    0%, 10%, 20%, 50%, 80% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-15px);
+    }
+
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes ani-float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes ani-heartbeat {
+    0% {
+        transform: scale(1.1);
+    }
+
+    50% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes ani-shuttle {
+    0% {
+        transform: scale(1);
+    }
+
+    10%, 20% {
+        transform: scale(.9) rotate(-8deg);
+    }
+
+    30%, 50%, 70% {
+        transform: scale(1.3) rotate(8deg);
+    }
+
+    40%, 60% {
+        transform: scale(1.3) rotate(-8deg);
+    }
+
+    80% {
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes ani-pass {
+    0% {
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(50%);
+        opacity: 0;
+    }
+}
+
+@keyframes ani-ripple {
+    0% {
+        opacity: .6;
+    }
+
+    50% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes ani-shrink {
+    0% {
+        transform: scale(1);
+    }
+    90% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.5);
+    }
+}
+
+@keyframes ani-drop {
+    0% {
+        transform: translateY(-50px);
+    }
+    25% {
+        transform: translate(0);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes ani-drop2 {
+    0% {
+        transform: translateY(-50px);
+    }
+    50% {
+        transform: translate(0);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes ani-drop3 {
+    0% {
+        transform: translateY(-50px);
+    }
+    75% {
+        transform: translate(0);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes ani-pre-spin {
+    0%   {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes ani-bg-stripes {
+    from  { background-position: 40px 0; }
+    to    { background-position: 0 0; }
+}
