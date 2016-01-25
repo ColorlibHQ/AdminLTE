@@ -29,4 +29,5 @@ If you would like to add to the project, please make sure to follow these guidel
 Keep these things in mind:
 
 * Use 4 spaces instead of tabs
+* Commit Unix line endings
 * If you want, try to keep to the theme of black holes/gravity. This can add some fun to your submission.
