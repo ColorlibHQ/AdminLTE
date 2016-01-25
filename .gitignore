@@ -7,3 +7,8 @@ TODO
 *.zip
 test.html
 *.log
+
+# Intellij IDEA Project Files
+*.iml
+*.ipr
+*.iws
