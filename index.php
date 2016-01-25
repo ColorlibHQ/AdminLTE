@@ -47,6 +47,7 @@
                 <h3><?php echo number_format($ads_percentage_today, 2, '.', '') ?><sup style="font-size: 20px">%</sup></h3>
                 <p>Of Today's Traffic Is Ads</p>
             </div>
+
             <div class="icon">
                 <i class="ion ion-pie-graph"></i>
             </div>
