@@ -15,16 +15,21 @@
     $ads_over_time = overTime($ads_blocked);
     alignTimeArrays($ads_over_time, $domains_over_time);
 
-    function topItems($queries) {
+    $topAds = topItems($ads_blocked);
+    $topQueries = topItems($dns_queries, $topAds);
+
+    function topItems($queries, $exclude = array()) {
         $splitQueries = array();
         foreach ($queries as $query) {
             $exploded = explode(" ", $query);
             $domain = trim($exploded[5]);
-            if (isset($splitQueries[$domain])) {
-                $splitQueries[$domain]++;
-            }
-            else {
-                $splitQueries[$domain] = 1;
+            if (!isset($exclude[$domain])) {
+                if (isset($splitQueries[$domain])) {
+                    $splitQueries[$domain]++;
+                }
+                else {
+                    $splitQueries[$domain] = 1;
+                }
             }
         }
         arsort($splitQueries);
@@ -75,8 +80,8 @@
         'dns_queries_today' => $dns_queries_today,
         'ads_blocked_today' => $ads_blocked_today,
         'ads_percentage_today' => $ads_percentage_today,
-        'top_queries' => topItems($dns_queries),
-        'top_ads' => topItems($ads_blocked),
+        'top_queries' => $topQueries,
+        'top_ads' => $topAds,
         'domains_over_time' => $domains_over_time,
         'ads_over_time' => $ads_over_time,
     );

@@ -3,7 +3,6 @@
     include('data.php');
 ?>
 <!DOCTYPE html>
-    <%?= print_r($data); ?>
 <html>
     <head>
         <meta charset="UTF-8">
