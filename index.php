@@ -3,6 +3,7 @@
     include('data.php');
 ?>
 <!DOCTYPE html>
+    <%?= print_r($data); ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -25,20 +26,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
     <script type="text/javascript">
         var chartData = {
-            labels: [<?php foreach ($data['domains_over_time'] as $key=>$value) {echo "'" . $key . ":00', ";}?>],
+            labels: [<?php foreach($data['domains_over_time'] as $time=>$qty) {echo $time . ", ";} ?>],
             datasets: [
                 {
                     label: "All Queries",
                     fillColor: "rgba(220,220,220,0.5)",
                     strokeColor: "rgba(0, 166, 90,.8)",
-                    data: [<?php foreach ($data['domains_over_time'] as $key=>$value) {echo $value . ", ";}?>],
+                    data: [<?= implode(', ', $data['domains_over_time']) ?>],
                 },
                 {
                     label: "Ad Queries",
                     fillColor: "rgba(243,156,18,0.5)",
                     strokeColor: "rgba(243,156,18,1)",
                     pointColor: "rgba(243,156,18,1)",
-                    data: [<?php foreach ($data['ads_over_time'] as $key=>$value) {echo $value . ", ";}?>],
+                    data: [<?= implode(', ', $data['ads_over_time']) ?>],
                 }
             ]
         };
