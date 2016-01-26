@@ -67,6 +67,21 @@
         ksort($times2);
     }
 
+    function getRecent($queries, $qty){
+        $recent = array();
+        foreach (array_slice($queries, -$qty) as $query) {
+            $queryArray = array();
+            $exploded = explode(" ", $query);
+            $time = date_create(substr($query, 0, 16), new DateTimeZone('GMT'))->SetTimeZone(new DateTimeZone(date_default_timezone_get()));
+
+            $queryArray['time'] = $time->format('h:m:s');
+            $queryArray['domain'] = trim($exploded[5]);
+            $queryArray['ip'] = trim($exploded[7]);
+            array_push($recent, $queryArray);
+        }
+        return array_reverse($recent);
+    }
+
     function findQueries($var) {
         return strpos($var, "query") != false;
     }
@@ -84,6 +99,7 @@
         'top_ads' => $topAds,
         'domains_over_time' => $domains_over_time,
         'ads_over_time' => $ads_over_time,
+        'recent_queries' => getRecent($dns_queries, 20),
     );
 
 ?>
