@@ -1,0 +1,49 @@
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Pi-hole Version</b> 2.2
+        </div>
+        <i class="fa fa-github"></i> <strong><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=3J2L3Z4DHW9UY">Donate</a></strong> if you found this useful.
+    </footer>
+</div>
+<!-- ./wrapper -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="./js/app.min.js" type="text/javascript"></script>
+
+<script src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script type="text/javascript">
+    var chartData = {
+        labels: [<?php foreach($data['domains_over_time'] as $time=>$qty) {
+            echo "'" . $time . ":00', ";} ?>],
+        datasets: [
+            {
+                label: "All Queries",
+                fillColor: "rgba(220,220,220,0.5)",
+                strokeColor: "rgba(0, 166, 90,.8)",
+                data: [<?= implode(', ', $data['domains_over_time']) ?>],
+            },
+            {
+                label: "Ad Queries",
+                fillColor: "rgba(243,156,18,0.5)",
+                strokeColor: "rgba(243,156,18,1)",
+                pointColor: "rgba(243,156,18,1)",
+                data: [<?= implode(', ', $data['ads_over_time']) ?>],
+            }
+        ]
+    };
+
+    $(document).ready(function() {
+        var ctx = document.getElementById("queryOverTimeChart").getContext("2d");
+        var myLineChart = new Chart(ctx).Line(chartData, {pointDot : false });
+    });
+
+
+</script>
+
+</body>
+</html>
