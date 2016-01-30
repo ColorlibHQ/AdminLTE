@@ -41,7 +41,7 @@ function getFullName() {
 <ul class="list-group" id="list"></ul>
 
 <?php
-require "footer.html";
+require "footer.php";
 ?>
 
 <script>
