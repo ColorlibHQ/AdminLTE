@@ -172,3 +172,32 @@
 <?php
     require "footer.html";
 ?>
+
+<script type="text/javascript">
+    var chartData = {
+        labels: [<?php foreach($data['domains_over_time'] as $time=>$qty) {
+            echo "'" . $time . ":00', ";} ?>],
+        datasets: [
+            {
+                label: "All Queries",
+                fillColor: "rgba(220,220,220,0.5)",
+                strokeColor: "rgba(0, 166, 90,.8)",
+                data: [<?= implode(', ', $data['domains_over_time']) ?>],
+            },
+            {
+                label: "Ad Queries",
+                fillColor: "rgba(243,156,18,0.5)",
+                strokeColor: "rgba(243,156,18,1)",
+                pointColor: "rgba(243,156,18,1)",
+                data: [<?= implode(', ', $data['ads_over_time']) ?>],
+            }
+        ]
+    };
+
+    $(document).ready(function() {
+        var ctx = document.getElementById("queryOverTimeChart").getContext("2d");
+        var myLineChart = new Chart(ctx).Line(chartData, {pointDot : false });
+    });
+
+
+</script>
