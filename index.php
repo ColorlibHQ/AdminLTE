@@ -1,6 +1,7 @@
 <?php
     # adds $data variable
     include('data.php');
+    $data = getSummaryData();
     require "header.html";
 ?>
 
@@ -10,7 +11,7 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3><?php echo number_format($ads_blocked_today) ?></h3>
+                <h3><?php echo number_format($data['ads_blocked_today']) ?></h3>
                 <p>Ads Blocked Today</p>
             </div>
             <div class="icon">
@@ -23,7 +24,7 @@
         <!-- small box -->
         <div class="small-box bg-green">
             <div class="inner">
-                <h3><?php echo number_format($dns_queries_today) ?></h3>
+                <h3><?php echo number_format($data['dns_queries_today']) ?></h3>
                 <p>DNS Queries Today</p>
             </div>
             <div class="icon">
@@ -36,7 +37,7 @@
         <!-- small box -->
         <div class="small-box bg-yellow">
             <div class="inner">
-                <h3><?php echo number_format($ads_percentage_today, 2, '.', '') ?><sup style="font-size: 20px">%</sup></h3>
+                <h3><?php echo number_format($data['ads_percentage_today'], 2, '.', '') ?><sup style="font-size: 20px">%</sup></h3>
                 <p>Of Today's Traffic Is Ads</p>
             </div>
             <div class="icon">
@@ -49,7 +50,7 @@
         <!-- small box -->
         <div class="small-box bg-red">
             <div class="inner">
-                <h3><sup style="font-size: 30px"><?php echo number_format($domains_being_blocked) ?></sup></h3>
+                <h3><sup style="font-size: 30px"><?php echo number_format($data['domains_being_blocked']) ?></sup></h3>
                 <p>Domains Being Blocked</p>
             </div>
             <div class="icon">
@@ -82,23 +83,12 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <table class="table table-bordered">
+          <table class="table table-bordered" id="domain-frequency">
             <tbody><tr>
               <th>Domain</th>
               <th>Hits</th>
               <th>Frequency</th>
             </tr>
-            <?php foreach($data['top_queries'] as $key=>$value): ?>
-            <tr>
-                <td><?php echo $key ?></td>
-                <td><?php echo $value ?></td>
-                <td>
-                <div class="progress progress-sm">
-                <div class="progress-bar progress-bar-green" style="width: <?php echo number_format(($value/$data['dns_queries_today']), 2, '.', '') * 100?>%"></div>
-                </div>
-                </td>
-            </tr>
-            <?php endforeach; ?>
           </tbody></table>
         </div>
         <!-- /.box-body -->
@@ -113,23 +103,12 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <table class="table table-bordered">
+          <table class="table table-bordered" id="ad-frequency">
             <tbody><tr>
               <th>Domain</th>
               <th>Hits</th>
               <th>Frequency</th>
             </tr>
-            <?php foreach($data['top_ads'] as $key=>$value): ?>
-            <tr>
-                <td><?php echo $key ?></td>
-                <td><?php echo $value ?></td>
-                <td>
-                <div class="progress progress-sm">
-                <div class="progress-bar progress-bar-yellow" style="width: <?php echo number_format(($value/$data['ads_blocked_today']), 2, '.', '') * 100?>%"></div>
-                </div>
-                </td>
-            </tr>
-            <?php endforeach; ?>
           </tbody></table>
         </div>
         <!-- /.box-body -->
@@ -147,19 +126,12 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <table class="table table-bordered">
+          <table class="table table-bordered" id="recent-queries">
             <tbody><tr>
               <th>Time</th>
               <th>Domain</th>
               <th>Source Ip</th>
             </tr>
-            <?php foreach($data['recent_queries'] as $key=>$value): ?>
-            <tr>
-                <td><?php echo $value['time'] ?></td>
-                <td><?php echo $value['domain'] ?></td>
-                <td><?php echo $value['ip'] ?></td>
-            </tr>
-            <?php endforeach; ?>
           </tbody></table>
         </div>
         <!-- /.box-body -->
@@ -174,27 +146,57 @@
 ?>
 
 <script type="text/javascript">
-    var chartData = {
-        labels: [<?php foreach($data['domains_over_time'] as $time=>$qty) {
-            echo "'" . $time . ":00', ";} ?>],
-        datasets: [
-            {
-                label: "All Queries",
-                fillColor: "rgba(220,220,220,0.5)",
-                strokeColor: "rgba(0, 166, 90,.8)",
-                data: [<?= implode(', ', $data['domains_over_time']) ?>],
-            },
-            {
-                label: "Ad Queries",
-                fillColor: "rgba(243,156,18,0.5)",
-                strokeColor: "rgba(243,156,18,1)",
-                pointColor: "rgba(243,156,18,1)",
-                data: [<?= implode(', ', $data['ads_over_time']) ?>],
-            }
-        ]
-    };
+    summaryData = <?=json_encode($data)?>;
 
     $(document).ready(function() {
+        // Populate queries over time
+        $.getJSON("api.php?overTimeData", function(data) {
+            for (hour in data.ads_over_time) {
+                myLineChart.addData([data.domains_over_time[hour], data.ads_over_time[hour]], hour + ":00");
+            }
+        });
+
+        // Populate 'Top' lists
+        $.getJSON("api.php?topItems", function(data) {
+            var domaintable = $('#domain-frequency').find('tbody:last');
+            var adtable = $('#ad-frequency').find('tbody:last');
+            for (domain in data.top_queries) {
+                domaintable.append('<tr> <td>' + domain + 
+                    '</td> <td>' + data.top_queries[domain] + '</td> <td> <div class="progress progress-sm"> <div class="progress-bar progress-bar-yellow" style="width: ' +
+                     data.top_queries[domain] / summaryData.dns_queries_today * 100 + '%"></div> </div> </td> </tr> ');
+            }
+            for (domain in data.top_ads) {
+                adtable.append('<tr> <td>' + domain + 
+                    '</td> <td>' + data.top_ads[domain] + '</td> <td> <div class="progress progress-sm"> <div class="progress-bar progress-bar-yellow" style="width: ' +
+                     data.top_ads[domain] / summaryData.ads_blocked_today * 100 + '%"></div> </div> </td> </tr> ');
+            }
+
+        });
+
+        // Populate recent queries
+        $.getJSON("api.php?recentItems=10", function(data) {
+            var recenttable = $('#recent-queries').find('tbody:last');
+            for (query in data.recent_queries) {
+                recenttable.append('<tr> <td>' + data.recent_queries[query].time + '</td> <td>' + data.recent_queries[query].domain + '</td> <td>' + data.recent_queries[query].ip + '</td> </tr> ');
+            }
+        });
+
+        var chartData = {
+            labels: [],
+            datasets: [
+                {
+                    label: "All Queries",
+                    fillColor: "rgba(220,220,220,0.5)",
+                    strokeColor: "rgba(0, 166, 90,.8)",
+                },
+                {
+                    label: "Ad Queries",
+                    fillColor: "rgba(243,156,18,0.5)",
+                    strokeColor: "rgba(243,156,18,1)",
+                    pointColor: "rgba(243,156,18,1)",
+                }
+            ]
+        };
         var ctx = document.getElementById("queryOverTimeChart").getContext("2d");
         var myLineChart = new Chart(ctx).Line(chartData, {pointDot : false });
     });

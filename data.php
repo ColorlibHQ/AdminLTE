@@ -1,28 +1,91 @@
 <?php
-    $domains = file("/etc/pihole/gravity.list");
-    $log = file("/var/log/pihole.log");
-    $domains_being_blocked = count($domains);
+    $domains = Array();
+    $log = Array();
+    $ipv6 = file_exists("/etc/pihole/.useIPv6");
 
-    $dns_queries = array_filter($log, "findQueries");
-    $dns_queries_today = count($dns_queries);
+    /*******   Public Members ********/
+    function getSummaryData() {
+        global $ipv6;
+        $domains = readInBlockList();
+        $log = readInLog();
+        $domains_being_blocked = count($domains) / ($ipv6 ? 2 : 1);
 
-    $ads_blocked= array_filter($log, "findAds");
-    $ads_blocked_today = count($ads_blocked);
+        $dns_queries_today = count(getDnsQueries($log));
 
-    $ads_percentage_today = $ads_blocked_today / $dns_queries_today * 100;
+        $ads_blocked_today = count(getBlockedQueries($log));
 
-    $domains_over_time = overTime($dns_queries);
-    $ads_over_time = overTime($ads_blocked);
-    alignTimeArrays($ads_over_time, $domains_over_time);
+        $ads_percentage_today = $ads_blocked_today / $dns_queries_today * 100;
 
-    $topAds = topItems($ads_blocked);
-    $topQueries = topItems($dns_queries, $topAds);
+        return array(
+            'domains_being_blocked' => $domains_being_blocked,
+            'dns_queries_today' => $dns_queries_today,
+            'ads_blocked_today' => $ads_blocked_today,
+            'ads_percentage_today' => $ads_percentage_today,
+        );
+    }
 
-    function topItems($queries, $exclude = array()) {
+    function getOverTimeData() {
+        $domains = readInBlockList();
+        $log = readInLog();
+        $dns_queries = getDnsQueries($log);
+        $ads_blocked = getBlockedQueries($log);
+
+        $domains_over_time = overTime($dns_queries);
+        $ads_over_time = overTime($ads_blocked);
+        alignTimeArrays($ads_over_time, $domains_over_time);
+        return Array(
+            'domains_over_time' => $domains_over_time,
+            'ads_over_time' => $ads_over_time,
+        );
+    }
+
+    function getTopItems() {
+        $domains = readInBlockList();
+        $log = readInLog();
+        $dns_queries = getDnsQueries($log);
+        $ads_blocked = getBlockedQueries($log);
+
+        $topAds = topItems($ads_blocked);
+        $topQueries = topItems($dns_queries, $topAds);
+
+        return Array(
+            'top_queries' => $topQueries,
+            'top_ads' => $topAds,
+        );
+    }
+
+    function getRecentItems($qty) {
+        $log = readInLog();
+        $dns_queries = getDnsQueries($log);
+        return Array(
+            'recent_queries' => getRecent($dns_queries, $qty)
+        );
+    }
+
+    /******** Private Members ********/
+    function readInBlockList() {
+        global $domains;
+        return count($domains) > 1 ? $domains :
+            file("/etc/pihole/gravity.list");
+    }
+    function readInLog() {
+        global $log;
+        return count($log) > 1 ? $log :
+            file("/var/log/pihole.log");
+    }
+    function getDnsQueries($log) {
+        return array_filter($log, "findQueries");
+    }
+    function getBlockedQueries($log) {
+        return array_filter($log, "findAds");
+    }
+
+
+    function topItems($queries, $exclude = array(), $qty=10) {
         $splitQueries = array();
         foreach ($queries as $query) {
             $exploded = explode(" ", $query);
-            $domain = trim($exploded[5]);
+            $domain = trim($exploded[6]);
             if (!isset($exclude[$domain])) {
                 if (isset($splitQueries[$domain])) {
                     $splitQueries[$domain]++;
@@ -33,7 +96,7 @@
             }
         }
         arsort($splitQueries);
-        return array_slice($splitQueries, 0, 10);
+        return array_slice($splitQueries, 0, $qty);
     }
 
     function overTime($entries) {
@@ -74,10 +137,11 @@
             $exploded = explode(" ", $query);
             $time = date_create(substr($query, 0, 16), new DateTimeZone('GMT'))->SetTimeZone(new DateTimeZone(date_default_timezone_get()));
 
-            $queryArray['time'] = $time->format('h:m:s');
-            $queryArray['domain'] = trim($exploded[5]);
-            $queryArray['ip'] = trim($exploded[7]);
+            $queryArray['time'] = $time->format('h:i:s a');
+            $queryArray['domain'] = trim($exploded[6]);
+            $queryArray['ip'] = trim($exploded[8]);
             array_push($recent, $queryArray);
+
         }
         return array_reverse($recent);
     }
@@ -89,7 +153,7 @@
     function findAds($var) {
         return strpos($var, "gravity.list") != false;
     }
-
+/*
     $data = array(
         'domains_being_blocked' => $domains_being_blocked,
         'dns_queries_today' => $dns_queries_today,
@@ -102,4 +166,5 @@
         'recent_queries' => getRecent($dns_queries, 20),
     );
 
+ */
 ?>
