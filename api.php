@@ -4,8 +4,17 @@
 
     $data = array();
 
-    if (isset($_GET['summary'])) {
+    if (isset($_GET['summaryRaw'])) {
         $data = array_merge($data,  getSummaryData());
+    }
+
+    if (isset($_GET['summary'])) {
+        $sum = getSummaryData();
+        $sum['ads_blocked_today'] = number_format( $sum['ads_blocked_today']);
+        $sum['dns_queries_today'] = number_format( $sum['dns_queries_today']);
+        $sum['ads_percentage_today'] = number_format( $sum['ads_percentage_today'], 1, '.', '');
+        $sum['domains_being_blocked'] = number_format( $sum['domains_being_blocked']);
+        $data = array_merge($data,  $sum);
     }
 
     if (isset($_GET['overTimeData'])) {

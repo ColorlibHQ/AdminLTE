@@ -1,7 +1,4 @@
 <?php
-    # adds $data variable
-    include('data.php');
-    $data = getSummaryData();
     require "header.html";
 ?>
 
@@ -11,7 +8,7 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3><?php echo number_format($data['ads_blocked_today']) ?></h3>
+                <h3 class="statistic" id="ads_blocked_today"></h3>
                 <p>Ads Blocked Today</p>
             </div>
             <div class="icon">
@@ -24,7 +21,7 @@
         <!-- small box -->
         <div class="small-box bg-green">
             <div class="inner">
-                <h3><?php echo number_format($data['dns_queries_today']) ?></h3>
+                <h3 class="statistic" id="dns_queries_today"></h3>
                 <p>DNS Queries Today</p>
             </div>
             <div class="icon">
@@ -37,7 +34,7 @@
         <!-- small box -->
         <div class="small-box bg-yellow">
             <div class="inner">
-                <h3><?php echo number_format($data['ads_percentage_today'], 2, '.', '') ?><sup style="font-size: 20px">%</sup></h3>
+                <h3 class="statistic" id="ads_percentage_today"></h3>
                 <p>Of Today's Traffic Is Ads</p>
             </div>
             <div class="icon">
@@ -50,7 +47,7 @@
         <!-- small box -->
         <div class="small-box bg-red">
             <div class="inner">
-                <h3><sup style="font-size: 30px"><?php echo number_format($data['domains_being_blocked']) ?></sup></h3>
+                <h3 class="statistic" id="domains_being_blocked"><sup style="font-size: 30px"></sup></h3>
                 <p>Domains Being Blocked</p>
             </div>
             <div class="icon">
@@ -149,38 +146,18 @@
     summaryData = <?=json_encode($data)?>;
 
     $(document).ready(function() {
-        // Populate queries over time
-        $.getJSON("api.php?overTimeData", function(data) {
-            for (hour in data.ads_over_time) {
-                myLineChart.addData([data.domains_over_time[hour], data.ads_over_time[hour]], hour + ":00");
-            }
-        });
 
-        // Populate 'Top' lists
-        $.getJSON("api.php?topItems", function(data) {
-            var domaintable = $('#domain-frequency').find('tbody:last');
-            var adtable = $('#ad-frequency').find('tbody:last');
-            for (domain in data.top_queries) {
-                domaintable.append('<tr> <td>' + domain + 
-                    '</td> <td>' + data.top_queries[domain] + '</td> <td> <div class="progress progress-sm"> <div class="progress-bar progress-bar-yellow" style="width: ' +
-                     data.top_queries[domain] / summaryData.dns_queries_today * 100 + '%"></div> </div> </td> </tr> ');
-            }
-            for (domain in data.top_ads) {
-                adtable.append('<tr> <td>' + domain + 
-                    '</td> <td>' + data.top_ads[domain] + '</td> <td> <div class="progress progress-sm"> <div class="progress-bar progress-bar-yellow" style="width: ' +
-                     data.top_ads[domain] / summaryData.ads_blocked_today * 100 + '%"></div> </div> </td> </tr> ');
-            }
+        updateSummaryData();
+        summaryDataIntervalId = window.setInterval(updateSummaryData, 20000);
 
-        });
+        updateQueriesOverTime();
 
-        // Populate recent queries
-        $.getJSON("api.php?recentItems=10", function(data) {
-            var recenttable = $('#recent-queries').find('tbody:last');
-            for (query in data.recent_queries) {
-                recenttable.append('<tr> <td>' + data.recent_queries[query].time + '</td> <td>' + data.recent_queries[query].domain + '</td> <td>' + data.recent_queries[query].ip + '</td> </tr> ');
-            }
-        });
+        updateTopLists();
 
+        updateRecentQueries();
+
+
+        // Create chart
         var chartData = {
             labels: [],
             datasets: [
@@ -198,8 +175,65 @@
             ]
         };
         var ctx = document.getElementById("queryOverTimeChart").getContext("2d");
-        var myLineChart = new Chart(ctx).Line(chartData, {pointDot : false });
+        timeLineChart = new Chart(ctx).Line(chartData, {pointDot : false });
     });
 
+    function updateSummaryData() {
+        $.getJSON("api.php?summary", function(data) {
+            //$("h3.statistic").addClass("glow");
+            if ($("h3#ads_blocked_today").text() != data.ads_blocked_today) {
+                $("h3#ads_blocked_today").addClass("glow");
+            }
+            if ($("h3#dns_queries_today").text() != data.dns_queries_today) {
+                $("h3#dns_queries_today").addClass("glow");
+            }
+            if ($("h3#ads_percentage_today").text() != data.ads_percentage_today) {
+                $("h3#ads_percentage_today").addClass("glow");
+            }
+
+            window.setTimeout(function(){
+                $("h3#ads_blocked_today").text(data.ads_blocked_today);
+                $("h3#dns_queries_today").text(data.dns_queries_today);
+                $("h3#domains_being_blocked").text(data.domains_being_blocked);
+                $("h3#ads_percentage_today").text(data.ads_percentage_today + "%");
+                $("h3.statistic.glow").removeClass("glow")
+            }, 500);
+        });
+    }
+
+    function updateQueriesOverTime() {
+        $.getJSON("api.php?overTimeData", function(data) {
+            for (hour in data.ads_over_time) {
+                timeLineChart.addData([data.domains_over_time[hour], data.ads_over_time[hour]], hour + ":00");
+            }
+        });
+    }
+
+    function updateTopLists() {
+        $.getJSON("api.php?summaryRaw&topItems", function(data) {
+            var domaintable = $('#domain-frequency').find('tbody:last');
+            var adtable = $('#ad-frequency').find('tbody:last');
+            for (domain in data.top_queries) {
+                domaintable.append('<tr> <td>' + domain + 
+                    '</td> <td>' + data.top_queries[domain] + '</td> <td> <div class="progress progress-sm"> <div class="progress-bar progress-bar-green" style="width: ' +
+                     data.top_queries[domain] / data.dns_queries_today * 100 + '%"></div> </div> </td> </tr> ');
+            }
+            for (domain in data.top_ads) {
+                adtable.append('<tr> <td>' + domain + 
+                    '</td> <td>' + data.top_ads[domain] + '</td> <td> <div class="progress progress-sm"> <div class="progress-bar progress-bar-yellow" style="width: ' +
+                     data.top_ads[domain] / data.ads_blocked_today * 100 + '%"></div> </div> </td> </tr> ');
+            }
+
+        });
+    }
+
+    function updateRecentQueries() {
+        $.getJSON("api.php?recentItems=10", function(data) {
+            var recenttable = $('#recent-queries').find('tbody:last');
+            for (query in data.recent_queries) {
+                recenttable.append('<tr> <td>' + data.recent_queries[query].time + '</td> <td>' + data.recent_queries[query].domain + '</td> <td>' + data.recent_queries[query].ip + '</td> </tr> ');
+            }
+        });
+    }
 
 </script>
