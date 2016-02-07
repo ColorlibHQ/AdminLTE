@@ -8,7 +8,7 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3 class="statistic" id="ads_blocked_today"></h3>
+                <h3 class="statistic" id="ads_blocked_today">---</h3>
                 <p>Ads Blocked Today</p>
             </div>
             <div class="icon">
@@ -21,7 +21,7 @@
         <!-- small box -->
         <div class="small-box bg-green">
             <div class="inner">
-                <h3 class="statistic" id="dns_queries_today"></h3>
+                <h3 class="statistic" id="dns_queries_today">---</h3>
                 <p>DNS Queries Today</p>
             </div>
             <div class="icon">
@@ -34,7 +34,7 @@
         <!-- small box -->
         <div class="small-box bg-yellow">
             <div class="inner">
-                <h3 class="statistic" id="ads_percentage_today"></h3>
+                <h3 class="statistic" id="ads_percentage_today">---</h3>
                 <p>Of Today's Traffic Is Ads</p>
             </div>
             <div class="icon">
@@ -47,7 +47,7 @@
         <!-- small box -->
         <div class="small-box bg-red">
             <div class="inner">
-                <h3 class="statistic" id="domains_being_blocked"><sup style="font-size: 30px"></sup></h3>
+                <h3 class="statistic" id="domains_being_blocked"><sup style="font-size: 30px">---</sup></h3>
                 <p>Domains Being Blocked</p>
             </div>
             <div class="icon">
@@ -59,7 +59,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-    <div class="box">
+    <div class="box" id="queries-over-time">
         <div class="box-header with-border">
           <h3 class="box-title">Queries over time</h3>
         </div>
@@ -68,25 +68,31 @@
             <canvas id="queryOverTimeChart" style="height: 247px; width: 466px;" width="932" height="494"></canvas>
           </div>
         </div>
+        <div class="overlay">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
         <!-- /.box-body -->
       </div>
     </div>
 </div>
 <div class="row">
     <div class="col-md-6">
-      <div class="box">
+      <div class="box" id="domain-frequency">
         <div class="box-header with-border">
           <h3 class="box-title">Top Domains</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <table class="table table-bordered" id="domain-frequency">
+          <table class="table table-bordered">
             <tbody><tr>
               <th>Domain</th>
               <th>Hits</th>
               <th>Frequency</th>
             </tr>
           </tbody></table>
+        </div>
+        <div class="overlay">
+          <i class="fa fa-refresh fa-spin"></i>
         </div>
         <!-- /.box-body -->
       </div>
@@ -94,19 +100,22 @@
     </div>
     <!-- /.col -->
     <div class="col-md-6">
-      <div class="box">
+      <div class="box" id="ad-frequency">
         <div class="box-header with-border">
           <h3 class="box-title">Top Advertisers</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <table class="table table-bordered" id="ad-frequency">
+          <table class="table table-bordered">
             <tbody><tr>
               <th>Domain</th>
               <th>Hits</th>
               <th>Frequency</th>
             </tr>
           </tbody></table>
+        </div>
+        <div class="overlay">
+          <i class="fa fa-refresh fa-spin"></i>
         </div>
         <!-- /.box-body -->
       </div>
@@ -117,19 +126,22 @@
     <!-- /.row -->
 <div class="row">
     <div class="col-md-12">
-      <div class="box">
+      <div class="box" id="recent-queries">
         <div class="box-header with-border">
           <h3 class="box-title">Recent Queries</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <table class="table table-bordered" id="recent-queries">
+          <table class="table table-bordered">
             <tbody><tr>
               <th>Time</th>
               <th>Domain</th>
               <th>Source Ip</th>
             </tr>
           </tbody></table>
+        </div>
+        <div class="overlay">
+          <i class="fa fa-refresh fa-spin"></i>
         </div>
         <!-- /.box-body -->
       </div>
@@ -148,7 +160,7 @@
     $(document).ready(function() {
 
         updateSummaryData();
-        summaryDataIntervalId = window.setInterval(updateSummaryData, 20000);
+        //summaryDataIntervalId = window.setTimeout(updateSummaryData, 20000);
 
         updateQueriesOverTime();
 
@@ -178,8 +190,8 @@
         timeLineChart = new Chart(ctx).Line(chartData, {pointDot : false });
     });
 
-    function updateSummaryData() {
-        $.getJSON("api.php?summary", function(data) {
+    function updateSummaryData(runOnce) {
+        $.getJSON("api.php?summary", function LoadSummaryData(data) {
             //$("h3.statistic").addClass("glow");
             if ($("h3#ads_blocked_today").text() != data.ads_blocked_today) {
                 $("h3#ads_blocked_today").addClass("glow");
@@ -198,7 +210,15 @@
                 $("h3#ads_percentage_today").text(data.ads_percentage_today + "%");
                 $("h3.statistic.glow").removeClass("glow")
             }, 500);
-        });
+        }).done(function() {
+            if (runOnce !== true) {
+                setTimeout(updateSummaryData, 10000);
+            }
+        }).fail(function() {
+            if (runOnce !== true) {
+                setTimeout(updateSummaryData, (1000 * 60 * 5));
+            }
+        });;
     }
 
     function updateQueriesOverTime() {
@@ -206,6 +226,7 @@
             for (hour in data.ads_over_time) {
                 timeLineChart.addData([data.domains_over_time[hour], data.ads_over_time[hour]], hour + ":00");
             }
+           $('#queries-over-time .overlay').remove();
         });
     }
 
@@ -224,6 +245,8 @@
                      data.top_ads[domain] / data.ads_blocked_today * 100 + '%"></div> </div> </td> </tr> ');
             }
 
+            $('#domain-frequency .overlay').remove();
+            $('#ad-frequency .overlay').remove();
         });
     }
 
@@ -233,6 +256,7 @@
             for (query in data.recent_queries) {
                 recenttable.append('<tr> <td>' + data.recent_queries[query].time + '</td> <td>' + data.recent_queries[query].domain + '</td> <td>' + data.recent_queries[query].ip + '</td> </tr> ');
             }
+            $('#recent-queries .overlay').remove();
         });
     }
 
