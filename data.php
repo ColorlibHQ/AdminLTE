@@ -85,7 +85,7 @@
         $splitQueries = array();
         foreach ($queries as $query) {
             $exploded = explode(" ", $query);
-            $domain = trim($exploded[6]);
+            $domain = trim($exploded[count($exploded) - 3]);
             if (!isset($exclude[$domain])) {
                 if (isset($splitQueries[$domain])) {
                     $splitQueries[$domain]++;
@@ -138,8 +138,8 @@
             $time = date_create(substr($query, 0, 16), new DateTimeZone('GMT'))->SetTimeZone(new DateTimeZone(date_default_timezone_get()));
 
             $queryArray['time'] = $time->format('h:i:s a');
-            $queryArray['domain'] = trim($exploded[6]);
-            $queryArray['ip'] = trim($exploded[8]);
+            $queryArray['domain'] = trim($exploded[count($exploded) - 3]);
+            $queryArray['ip'] = trim($exploded[count($exploded)-1]);
             array_push($recent, $queryArray);
 
         }
