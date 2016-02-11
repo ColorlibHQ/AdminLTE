@@ -81,6 +81,25 @@
         return $queryTypes;
     }
 
+    function getForwardDestinations() {
+        $log = readInLog();
+        $forwards = getForwards($log);
+        $destinations = array();
+        foreach ($forwards as $forward) {
+            $exploded = explode(" ", trim($forward));
+            $dest = $exploded[count($exploded) - 1];
+            if (isset($destinations[$dest])) {
+                $destinations[$dest]++;
+            }
+            else {
+                $destinations[$dest] = 0;
+            }
+        }
+
+        return $destinations;
+
+    }
+
     /******** Private Members ********/
     function readInBlockList() {
         global $domains;
@@ -97,6 +116,9 @@
     }
     function getBlockedQueries($log) {
         return array_filter($log, "findAds");
+    }
+    function getForwards($log) {
+        return array_filter($log, "findForwards");
     }
 
 
@@ -172,6 +194,11 @@
     function findAds($var) {
         return strpos($var, "gravity.list") !== false;
     }
+
+    function findForwards($var) {
+        return strpos($var, ": forwarded") !== false;
+    }
+
 /*
     $data = array(
         'domains_being_blocked' => $domains_being_blocked,

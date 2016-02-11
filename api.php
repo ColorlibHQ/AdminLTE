@@ -35,6 +35,10 @@
         $data = array_merge($data, getIpvType());
     }
 
+    if (isset($_GET['getForwardDestinations'])) {
+        $data = array_merge($data, getForwardDestinations());
+    }
+
 
     echo json_encode($data);
 ?>

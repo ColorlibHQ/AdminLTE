@@ -94,6 +94,22 @@
         <!-- /.box-body -->
       </div>
     </div>
+    <div class="col-md-4">
+    <div class="box" id="forward-destinations">
+        <div class="box-header with-border">
+          <h3 class="box-title">Forward Destinations</h3>
+        </div>
+        <div class="box-body">
+          <div class="chart">
+            <canvas id="forwardDestinationChart" style="height: 247px; width: 466px;" width="932" height="494"></canvas>
+          </div>
+        </div>
+        <div class="overlay">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </div>
 </div>
 
 <div class="row">
@@ -186,6 +202,8 @@
 
         updateQueryTypes();
 
+        updateForwardDestinations();
+
         updateTopLists();
 
         updateRecentQueries();
@@ -211,22 +229,11 @@
         var ctx = document.getElementById("queryOverTimeChart").getContext("2d");
         timeLineChart = new Chart(ctx).Line(chartData, {pointDot : false });
         
-        /*
-        // Create radar chart
-        chartData = {
-            labels: [],
-            datasets: [
-                {
-                    label: "Query Types",
-                    fillColor: "rgba(220,220,220,0.5)",
-                    strokeColor: "rgba(0, 166, 90,.8)",
-                    data: []
-                },
-            ]
-        };
-        */
-        var ctx = document.getElementById("queryTypeChart").getContext("2d");
-        queryTypeChart = new Chart(ctx).Doughnut([],{legendTemplate: "HELLO"});
+        ctx = document.getElementById("queryTypeChart").getContext("2d");
+        queryTypeChart = new Chart(ctx).Doughnut([],{});
+
+        ctx = document.getElementById("forwardDestinationChart").getContext("2d");
+        forwardDestinationChart = new Chart(ctx).Doughnut([],{});
     });
 
     function updateSummaryData(runOnce) {
@@ -281,6 +288,21 @@
                 });
             });
             $('#query-types .overlay').remove();
+        });
+    }
+
+    function updateForwardDestinations() {
+        $.getJSON("api.php?getForwardDestinations", function(data) {
+            var colors = [];
+            $.each($.AdminLTE.options.colors, function(key, value) { colors.push(value); });
+            $.each(data, function(key , value) {
+                forwardDestinationChart.addData({
+                    value: value,
+                    color: colors.shift(),
+                    label: key
+                });
+            });
+            $('#forward-destinations .overlay').remove();
         });
     }
 
