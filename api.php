@@ -31,6 +31,10 @@
         }
     }
 
+    if (isset($_GET['getQueryTypes'])) {
+        $data = array_merge($data, getIpvType());
+    }
+
 
     echo json_encode($data);
 ?>

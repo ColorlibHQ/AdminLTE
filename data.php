@@ -62,6 +62,25 @@
         );
     }
 
+    function getIpvType() {
+        $log = readInLog();
+        $dns_queries = getDnsQueries($log);
+        $queryTypes = array();
+
+        foreach($dns_queries as $query) {
+            $info = trim(explode(": ", $query)[1]);
+            $queryType = explode(" ", $info)[0];
+            if (isset($queryTypes[$queryType])) {
+                $queryTypes[$queryType]++;
+            }
+            else {
+                $queryTypes[$queryType] = 1;
+            }
+        }
+
+        return $queryTypes;
+    }
+
     /******** Private Members ********/
     function readInBlockList() {
         global $domains;
@@ -147,11 +166,11 @@
     }
 
     function findQueries($var) {
-        return strpos($var, "query") != false;
+        return strpos($var, ": query[") !== false;
     }
 
     function findAds($var) {
-        return strpos($var, "gravity.list") != false;
+        return strpos($var, "gravity.list") !== false;
     }
 /*
     $data = array(
