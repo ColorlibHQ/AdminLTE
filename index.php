@@ -227,13 +227,14 @@
             ]
         };
         var ctx = document.getElementById("queryOverTimeChart").getContext("2d");
-        timeLineChart = new Chart(ctx).Line(chartData, {pointDot : false });
+        timeLineChart = new Chart(ctx).Line(chartData, {pointDot : false, legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+        });
         
         ctx = document.getElementById("queryTypeChart").getContext("2d");
-        queryTypeChart = new Chart(ctx).Doughnut([],{});
+        queryTypeChart = new Chart(ctx).Doughnut([],{ legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].strokeColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>" });
 
         ctx = document.getElementById("forwardDestinationChart").getContext("2d");
-        forwardDestinationChart = new Chart(ctx).Doughnut([],{});
+        forwardDestinationChart = new Chart(ctx).Doughnut([],{ legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].strokeColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>" });
     });
 
     function updateSummaryData(runOnce) {
@@ -273,6 +274,7 @@
                 timeLineChart.addData([data.domains_over_time[hour], data.ads_over_time[hour]], hour + ":00");
             }
            $('#queries-over-time .overlay').remove();
+           $('#queries-over-time').append(timeLineChart.generateLegend());
         });
     }
 
@@ -288,6 +290,7 @@
                 });
             });
             $('#query-types .overlay').remove();
+            $('#query-types').append(queryTypeChart.generateLegend());
         });
     }
 
@@ -303,6 +306,7 @@
                 });
             });
             $('#forward-destinations .overlay').remove();
+            $('#forward-destinations').append(forwardDestinationChart.generateLegend());
         });
     }
 
