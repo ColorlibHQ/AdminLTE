@@ -39,6 +39,10 @@
         $data = array_merge($data, getForwardDestinations());
     }
 
+    if (isset($_GET['getQuerySources'])) {
+        $data = array_merge($data, getQuerySources());
+    }
+
 
     echo json_encode($data);
 ?>

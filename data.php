@@ -100,6 +100,23 @@
 
     }
 
+    function getQuerySources() {
+        $log = readInLog();
+        $dns_queries = getDnsQueries($log);
+        $sources = array();
+        foreach($dns_queries as $query) {
+            $exploded = explode(" ", $query);
+            $ip = trim($exploded[count($exploded)-1]);
+            if (isset($sources[$ip])) {
+                $sources[$ip]++;
+            }
+            else {
+                $sources[$ip] = 1;
+            }
+        }
+        return $sources;
+    }
+
     /******** Private Members ********/
     function readInBlockList() {
         global $domains;

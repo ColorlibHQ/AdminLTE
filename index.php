@@ -95,6 +95,22 @@
       </div>
     </div>
     <div class="col-md-4">
+    <div class="box" id="top-clients">
+        <div class="box-header with-border">
+          <h3 class="box-title">Top Clients</h3>
+        </div>
+        <div class="box-body">
+          <div class="chart">
+            <canvas id="topClientsChart" style="height: 247px; width: 466px;" width="932" height="494"></canvas>
+          </div>
+        </div>
+        <div class="overlay">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </div>
+    <div class="col-md-4">
     <div class="box" id="forward-destinations">
         <div class="box-header with-border">
           <h3 class="box-title">Forward Destinations</h3>
@@ -202,6 +218,8 @@
 
         updateQueryTypes();
 
+        updateTopClientsChart();
+
         updateForwardDestinations();
 
         updateTopLists();
@@ -235,6 +253,20 @@
 
         ctx = document.getElementById("forwardDestinationChart").getContext("2d");
         forwardDestinationChart = new Chart(ctx).Doughnut([],{ legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].strokeColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>" });
+
+        var radarChartData = {
+            labels: [],
+            datasets: [
+                {
+                    label: "Top Clients",
+                    fillColor: "rgba(220,220,220,0.5)",
+                    strokeColor: "rgba(0, 166, 90,.8)",
+                    data: []
+                }
+            ]
+        };
+        ctx = document.getElementById("topClientsChart").getContext("2d");
+        topClientsChart = new Chart(ctx).Radar(radarChartData, {});
     });
 
     function updateSummaryData(runOnce) {
@@ -275,6 +307,18 @@
             }
            $('#queries-over-time .overlay').remove();
            $('#queries-over-time').append(timeLineChart.generateLegend());
+        });
+    }
+
+    function updateTopClientsChart() {
+        $.getJSON("api.php?getQuerySources", function(data) {
+            console.log(data);
+            $.each(data, function(key, value) {
+                topClientsChart.addData([value], key);
+            });
+
+           $('#top-clients .overlay').remove();
+           //$('#queries-over-time').append(timeLineChart.generateLegend());
         });
     }
 
