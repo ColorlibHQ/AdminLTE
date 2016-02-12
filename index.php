@@ -306,7 +306,7 @@
                 timeLineChart.addData([data.domains_over_time[hour], data.ads_over_time[hour]], hour + ":00");
             }
            $('#queries-over-time .overlay').remove();
-           $('#queries-over-time').append(timeLineChart.generateLegend());
+           //$('#queries-over-time').append(timeLineChart.generateLegend());
         });
     }
 
@@ -334,7 +334,7 @@
                 });
             });
             $('#query-types .overlay').remove();
-            $('#query-types').append(queryTypeChart.generateLegend());
+            //$('#query-types').append(queryTypeChart.generateLegend());
         });
     }
 
@@ -350,7 +350,7 @@
                 });
             });
             $('#forward-destinations .overlay').remove();
-            $('#forward-destinations').append(forwardDestinationChart.generateLegend());
+            //$('#forward-destinations').append(forwardDestinationChart.generateLegend());
         });
     }
 
