@@ -44,7 +44,7 @@
 <!-- /.row -->
 
 <?php
-    require "footer.html";
+    require "footer.php";
 ?>
 
 <script type="text/javascript">
@@ -66,4 +66,5 @@
         tableApi.ajax.url("api.php?getAllQuerie").load();
     }
 </script>
+
 
