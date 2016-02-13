@@ -177,31 +177,6 @@
     <!-- /.col -->
   </div>
     <!-- /.row -->
-<div class="row">
-    <div class="col-md-12">
-      <div class="box" id="recent-queries">
-        <div class="box-header with-border">
-          <h3 class="box-title">Recent Queries</h3>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-          <table class="table table-bordered">
-            <tbody><tr>
-              <th>Time</th>
-              <th>Domain</th>
-              <th>Source Ip</th>
-            </tr>
-          </tbody></table>
-        </div>
-        <div class="overlay">
-          <i class="fa fa-refresh fa-spin"></i>
-        </div>
-        <!-- /.box-body -->
-      </div>
-      <!-- /.box -->
-    </div>
-</div>
-<!-- /.row -->
 
 <?php
     require "footer.html";
@@ -211,6 +186,8 @@
     summaryData = <?=json_encode($data)?>;
 
     $(document).ready(function() {
+
+        // Pull in data via AJAX
 
         updateSummaryData();
 
@@ -224,10 +201,8 @@
 
         updateTopLists();
 
-        updateRecentQueries();
 
-
-        // Create line chart
+        // Create charts
         var chartData = {
             labels: [],
             datasets: [
@@ -268,6 +243,9 @@
         ctx = document.getElementById("topClientsChart").getContext("2d");
         topClientsChart = new Chart(ctx).Radar(radarChartData, {});
     });
+
+
+    // Functions to oupdate data in page
 
     function updateSummaryData(runOnce) {
         $.getJSON("api.php?summary", function LoadSummaryData(data) {
@@ -374,14 +352,5 @@
         });
     }
 
-    function updateRecentQueries() {
-        $.getJSON("api.php?recentItems=10", function(data) {
-            var recenttable = $('#recent-queries').find('tbody:last');
-            for (query in data.recent_queries) {
-                recenttable.append('<tr> <td>' + data.recent_queries[query].time + '</td> <td>' + data.recent_queries[query].domain + '</td> <td>' + data.recent_queries[query].ip + '</td> </tr> ');
-            }
-            $('#recent-queries .overlay').remove();
-        });
-    }
 
 </script>
