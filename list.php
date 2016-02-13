@@ -31,7 +31,7 @@ function getFullName() {
     Adding to the <?php getFullName(); ?>...
 </div>
 <div id="alSuccess" class="alert alert-success" role="alert" hidden="true">
-    Success! It will probably take 2-10 minutes until the changes take effect. The list will refresh.
+    Success! The list will refresh.
 </div>
 <div id="alFailure" class="alert alert-danger" role="alert" hidden="true">
     Failure! Something went wrong.
@@ -41,7 +41,7 @@ function getFullName() {
 <ul class="list-group" id="list"></ul>
 
 <?php
-require "footer.html";
+require "footer.php";
 ?>
 
 <script>
@@ -62,10 +62,10 @@ require "footer.html";
                         '<div class="alert alert-info" role="alert">Your <?php getFullName(); ?> is empty!</div>';
                 }
                 else {
-                    data.forEach(function (entry) {
+                    data.forEach(function (entry, index) {
                         list.innerHTML +=
-                            '<li id="' + entry + '" class="list-group-item clearfix">' + entry +
-                            '<button class="btn btn-danger btn-xs pull-right" type="button" onclick="sub(\'' + entry + '\')">' +
+                            '<li id="' + index + '" class="list-group-item clearfix">' + entry +
+                            '<button class="btn btn-danger btn-xs pull-right" type="button" onclick="sub(\'' + index + '\', \'' + entry + '\')">' +
                             '<span class="glyphicon glyphicon-trash"></span></button></li>';
                     })
                 }
@@ -98,13 +98,14 @@ require "footer.html";
         });
     }
     
-    function sub(entry) {
+    function sub(index, entry) {
+        $("#"+index).hide("highlight");
         $.ajax({
             url: "php/sub.php",
             method: "get",
             data: {"domain":entry, "list":"<?php echo $list ?>"},
             success: function(response) {
-                document.getElementById("list").removeChild(document.getElementById(entry));
+                document.getElementById("list").removeChild(document.getElementById(index));
             },
             error: function(jqXHR, exception) {
                 alert("Failed to remove the domain!");

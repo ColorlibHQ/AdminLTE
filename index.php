@@ -179,7 +179,7 @@
     <!-- /.row -->
 
 <?php
-    require "footer.html";
+    require "footer.php";
 ?>
 
 <script type="text/javascript">
