@@ -174,16 +174,18 @@
     }
 
     function alignTimeArrays(&$times1, &$times2) {
-        foreach (array_keys($times1) as $time) {
-            if (!isset($times2[$time])) {
-                $times2[$time] = 0;
+        $max = max(array(max(array_keys($times1)), max(array_keys($times2))));
+        $min = min(array(min(array_keys($times1)), min(array_keys($times2))));
+        
+        for ($i = $min; $i <= $max; $i++) {
+            if (!isset($times2[$i])) {
+                $times2[$i] = 0;
+            }
+            if (!isset($times1[$i])) {
+                $times1[$i] = 0;
             }
         }
-        foreach (array_keys($times2) as $time) {
-            if (!isset($times1[$time])) {
-                $times1[$time] = 0;
-            }
-        }
+
         ksort($times1);
         ksort($times2);
     }
@@ -194,7 +196,6 @@
             $queryArray = array();
             $exploded = explode(" ", $query);
             $time = date_create(substr($query, 0, 16), new DateTimeZone('GMT'))->SetTimeZone(new DateTimeZone(date_default_timezone_get()));
-
             $queryArray['time'] = $time->format('h:i:s a');
             $queryArray['domain'] = trim($exploded[count($exploded) - 3]);
             $queryArray['ip'] = trim($exploded[count($exploded)-1]);
