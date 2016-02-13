@@ -117,6 +117,26 @@
         return $sources;
     }
 
+    function getAllQueries() {
+        $allQueries = array("data" => array());
+        $log = readInLog();
+        $dns_queries = getDnsQueries($log);
+    
+        foreach ($dns_queries as $query) {
+            $time = date_create(substr($query, 0, 16), new DateTimeZone('GMT'))->SetTimeZone(new DateTimeZone(date_default_timezone_get()));
+
+            $exploded = explode(" ", trim($query));
+            array_push($allQueries['data'], array(
+                $time->format('Y-m-d\TH:i:s'),
+                substr($exploded[4], 6, -1),
+                $exploded[5],
+                $exploded[7],
+            ));
+        }
+
+        return $allQueries;
+    }
+
     /******** Private Members ********/
     function readInBlockList() {
         global $domains;

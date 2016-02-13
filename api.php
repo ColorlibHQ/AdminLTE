@@ -43,6 +43,10 @@
         $data = array_merge($data, getQuerySources());
     }
 
+    if (isset($_GET['getAllQueries'])) {
+        $data = array_merge($data, getAllQueries());
+    }
+
 
     echo json_encode($data);
 ?>
