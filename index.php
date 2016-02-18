@@ -219,15 +219,48 @@
                 }
             ]
         };
+        var isMobile = {
+                Windows: function() {
+                        return /IEMobile/i.test(navigator.userAgent);
+                },
+                Android: function() {
+                        return /Android/i.test(navigator.userAgent);
+                },
+                BlackBerry: function() {
+                        return /BlackBerry/i.test(navigator.userAgent);
+                },
+                iOS: function() {
+                        return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+                },
+                any: function() {
+                        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+                }
+        };
+        var animate = !isMobile.any();
         var ctx = document.getElementById("queryOverTimeChart").getContext("2d");
-        timeLineChart = new Chart(ctx).Line(chartData, {pointDot : false, legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
-        });
+        timeLineChart = new Chart(ctx).Line(chartData,
+            {
+                pointDot : false,
+                legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+                animation : animate
+            }
+        );
         
         ctx = document.getElementById("queryTypeChart").getContext("2d");
-        queryTypeChart = new Chart(ctx).Doughnut([],{ legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].strokeColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>" });
+        queryTypeChart = new Chart(ctx).Doughnut([],
+            {
+                legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].strokeColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
+                animation : animate
+            }
+        );
 
         ctx = document.getElementById("forwardDestinationChart").getContext("2d");
-        forwardDestinationChart = new Chart(ctx).Doughnut([],{ legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].strokeColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>" });
+        forwardDestinationChart = new Chart(ctx).Doughnut([],
+            {
+                legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].strokeColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
+                animation : animate
+            }
+        );
 
         var radarChartData = {
             labels: [],
@@ -241,7 +274,7 @@
             ]
         };
         ctx = document.getElementById("topClientsChart").getContext("2d");
-        topClientsChart = new Chart(ctx).Radar(radarChartData, {});
+        topClientsChart = new Chart(ctx).Radar(radarChartData, {animation : animate});
     });
 
 
