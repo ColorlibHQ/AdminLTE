@@ -183,8 +183,6 @@
 ?>
 
 <script type="text/javascript">
-    summaryData = <?=json_encode($data)?>;
-
     $(document).ready(function() {
 
         // Pull in data via AJAX
