@@ -160,12 +160,14 @@
         <!-- /.box-header -->
         <div class="box-body">
           <table class="table table-bordered">
-            <tbody><tr>
+            <tbody>
+              <tr>
               <th>Domain</th>
               <th>Hits</th>
               <th>Frequency</th>
-            </tr>
-          </tbody></table>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div class="overlay">
           <i class="fa fa-refresh fa-spin"></i>
@@ -175,8 +177,8 @@
       <!-- /.box -->
     </div>
     <!-- /.col -->
-  </div>
-    <!-- /.row -->
+</div>
+<!-- /.row -->
 
 <?php
     require "footer.php";
@@ -184,22 +186,20 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-
         // Pull in data via AJAX
-
+        
         updateSummaryData();
-
+        
         updateQueriesOverTime();
-
+        
         updateQueryTypes();
-
+        
         updateTopClientsChart();
-
+        
         updateForwardDestinations();
-
+        
         updateTopLists();
-
-
+        
         // Create charts
         var chartData = {
             labels: [],
@@ -251,7 +251,7 @@
                 animation : animate
             }
         );
-
+        
         ctx = document.getElementById("forwardDestinationChart").getContext("2d");
         forwardDestinationChart = new Chart(ctx).Doughnut([],
             {
@@ -259,7 +259,7 @@
                 animation : animate
             }
         );
-
+        
         var radarChartData = {
             labels: [],
             datasets: [
@@ -274,10 +274,9 @@
         ctx = document.getElementById("topClientsChart").getContext("2d");
         topClientsChart = new Chart(ctx).Radar(radarChartData, {animation : animate});
     });
-
-
+    
     // Functions to oupdate data in page
-
+    
     function updateSummaryData(runOnce) {
         $.getJSON("api.php?summary", function LoadSummaryData(data) {
             //$("h3.statistic").addClass("glow");
@@ -290,7 +289,7 @@
             if ($("h3#ads_percentage_today").text() != data.ads_percentage_today) {
                 $("h3#ads_percentage_today").addClass("glow");
             }
-
+            
             window.setTimeout(function(){
                 $("h3#ads_blocked_today").text(data.ads_blocked_today);
                 $("h3#dns_queries_today").text(data.dns_queries_today);
@@ -308,7 +307,7 @@
             }
         });;
     }
-
+    
     function updateQueriesOverTime() {
         $.getJSON("api.php?overTimeData", function(data) {
             for (hour in data.ads_over_time) {
@@ -318,7 +317,7 @@
            //$('#queries-over-time').append(timeLineChart.generateLegend());
         });
     }
-
+    
     function updateTopClientsChart() {
         $.getJSON("api.php?getQuerySources", function(data) {
             console.log(data);
@@ -330,7 +329,7 @@
            //$('#queries-over-time').append(timeLineChart.generateLegend());
         });
     }
-
+    
     function updateQueryTypes() {
         $.getJSON("api.php?getQueryTypes", function(data) {
             var colors = [];
@@ -346,7 +345,7 @@
             //$('#query-types').append(queryTypeChart.generateLegend());
         });
     }
-
+    
     function updateForwardDestinations() {
         $.getJSON("api.php?getForwardDestinations", function(data) {
             var colors = [];
@@ -362,7 +361,7 @@
             //$('#forward-destinations').append(forwardDestinationChart.generateLegend());
         });
     }
-
+    
     function updateTopLists() {
         $.getJSON("api.php?summaryRaw&topItems", function(data) {
             var domaintable = $('#domain-frequency').find('tbody:last');
@@ -382,6 +381,4 @@
             $('#ad-frequency .overlay').remove();
         });
     }
-
-
 </script>
