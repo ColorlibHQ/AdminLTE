@@ -8,7 +8,7 @@
         $data = array_merge($data,  getSummaryData());
     }
 
-    if (isset($_GET['summary']) || !count($_GET) {
+    if (isset($_GET['summary']) || !count($_GET)) {
         $sum = getSummaryData();
         $sum['ads_blocked_today'] = number_format( $sum['ads_blocked_today']);
         $sum['dns_queries_today'] = number_format( $sum['dns_queries_today']);
