@@ -565,24 +565,16 @@ function _init() {
       },
       collapse: function (element) {
         var _this = this;
-        //Find the box parent
-        var box = element.parents(".box").first();
-        //Find the body and the footer
-        var box_content = box.find("> .box-body, > .box-footer, > form  >.box-body, > form > .box-footer");
+        var box = elementParentBox(element);
+        var box_content = boxContent(box);
         if (!box.hasClass("collapsed-box")) {
-          //Convert minus into plus
-          element.children(":first")
-              .removeClass(_this.icons.collapse)
-              .addClass(_this.icons.open);
+          this._convertMinusIntoPlus(element);
           //Hide the content
           box_content.slideUp(_this.animationSpeed, function () {
             box.addClass("collapsed-box");
           });
         } else {
-          //Convert plus into minus
-          element.children(":first")
-              .removeClass(_this.icons.open)
-              .addClass(_this.icons.collapse);
+          this._convertPlusIntoMinus();
           //Show the content
           box_content.slideDown(_this.animationSpeed, function () {
             box.removeClass("collapsed-box");
@@ -591,10 +583,49 @@ function _init() {
       },
       remove: function (element) {
         //Find the box parent
-        var box = element.parents(".box").first();
+        var box = elementParentBox(element);
         box.slideUp(this.animationSpeed);
+      },
+      /**
+       * Hides de elements box instantaneously, without animation
+       * @param element
+       */
+      hide: function (element) {
+        var box = elementParentBox(element);
+        this._convertMinusIntoPlus(element);
+        boxContent(box).hide();
+        box.addClass("collapsed-box");
+      },
+      /**
+       * Shows de elements box instantaneously, without animation
+       * @param element
+       */
+      show: function (element) {
+        var box = elementParentBox(element);
+        this._convertPlusIntoMinus();
+        boxContent(box).show();
+        box.removeClass("collapsed-box");
+      },
+      _convertMinusIntoPlus: function (element) {
+        element.children(":first")
+            .removeClass(this.icons.collapse)
+            .addClass(this.icons.open);
+      },
+      _convertPlusIntoMinus: function (element) {
+        element.children(":first")
+            .removeClass(_this.icons.open)
+            .addClass(_this.icons.collapse);
       }
     };
+
+    function elementParentBox(element) {
+      return element.parents(".box").first();
+    }
+
+    function boxContent(box) {
+      return box.find("> .box-body, > .box-footer, > form  >.box-body, > form > .box-footer");
+    }
+
   })(jQuery.AdminLTE, jQuery)
 }
 
