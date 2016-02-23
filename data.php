@@ -123,7 +123,7 @@
         $dns_queries = getDnsQueries($log);
     
         foreach ($dns_queries as $query) {
-            $time = date_create(substr($query, 0, 16), new DateTimeZone('GMT'))->SetTimeZone(new DateTimeZone(date_default_timezone_get()));
+            $time = date_create(substr($query, 0, 16));
 
             $exploded = explode(" ", trim($query));
             array_push($allQueries['data'], array(
@@ -180,7 +180,7 @@
     function overTime($entries) {
         $byTime = array();
         foreach ($entries as $entry) {
-            $time = date_create(substr($entry, 0, 16), new DateTimeZone('GMT'))->SetTimeZone(new DateTimeZone(date_default_timezone_get()));
+            $time = date_create(substr($entry, 0, 16));
             $hour = $time->format('G');
 
             if (isset($byTime[$hour])) {
@@ -215,7 +215,7 @@
         foreach (array_slice($queries, -$qty) as $query) {
             $queryArray = array();
             $exploded = explode(" ", $query);
-            $time = date_create(substr($query, 0, 16), new DateTimeZone('GMT'))->SetTimeZone(new DateTimeZone(date_default_timezone_get()));
+            $time = date_create(substr($query, 0, 16));
             $queryArray['time'] = $time->format('h:i:s a');
             $queryArray['domain'] = trim($exploded[count($exploded) - 3]);
             $queryArray['ip'] = trim($exploded[count($exploded)-1]);
