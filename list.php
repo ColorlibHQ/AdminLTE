@@ -17,6 +17,8 @@ function getFullName() {
     <h1><?php getFullName(); ?></h1>
 </div>
 
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#passModal">Open modal</button>
+
 <!-- Domain Input -->
 <div class="form-group input-group">
     <input id="domain" type="text" class="form-control" placeholder="Add a domain (example.com or sub.example.com)">
@@ -37,6 +39,29 @@ function getFullName() {
     Failure! Something went wrong.
 </div>
 
+<!-- Password Modal -->
+<div id="passModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Enter Your Pi-hole Password</h4>
+            </div>
+            <div class="modal-body">
+                Please enter your Pi-hole password to proceed.
+                <div class="form-group">
+                    <label for="passInput">Password:</label>
+                    <input id="passInput" type="password" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="passBtn" type="button" class="btn btn-primary" data-dismiss="modal">Enter</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Domain List -->
 <ul class="list-group" id="list"></ul>
 
@@ -46,6 +71,10 @@ require "footer.php";
 
 <script>
     window.onload = refresh;
+    var password = "";
+    $("#passModal").on("shown.bs.modal", function() {
+       $("#passInput").focus();
+    });
     
     function refresh() {
         $.ajax({
@@ -77,39 +106,65 @@ require "footer.php";
     }
     
     function add() {
-        var domain = document.getElementById("domain").value;
-        if(domain == "")
-            return;
-        
-        document.getElementById("alInfo").hidden = false;
-        document.getElementById("alSuccess").hidden = true;
-        document.getElementById("alFailure").hidden = true;
-        $.ajax({
-            url: "php/add.php",
-            method: "get",
-            data: {"domain":domain, "list":"<?php echo $list ?>"},
-            success: function(response) {
-                document.getElementById("alSuccess").hidden = false;
-                refresh();
-            },
-            error: function(jqXHR, exception) {
-                document.getElementById("alFailure").hidden = false;
-            }
-        });
+        getPassword(function() {
+            var domain = document.getElementById("domain").value;
+            if(domain == "")
+                return;
+            
+            document.getElementById("alInfo").hidden = false;
+            document.getElementById("alSuccess").hidden = true;
+            document.getElementById("alFailure").hidden = true;
+            $.ajax({
+                url: "php/add.php",
+                method: "get",
+                data: {"domain":domain, "list":"<?php echo $list ?>"},
+                success: function(response) {
+                    document.getElementById("alSuccess").hidden = false;
+                    refresh();
+                },
+                error: function(jqXHR, exception) {
+                    document.getElementById("alFailure").hidden = false;
+                }
+            });
+        })
     }
     
     function sub(index, entry) {
-        $("#"+index).hide("highlight");
-        $.ajax({
-            url: "php/sub.php",
-            method: "get",
-            data: {"domain":entry, "list":"<?php echo $list ?>"},
-            success: function(response) {
-                document.getElementById("list").removeChild(document.getElementById(index));
-            },
-            error: function(jqXHR, exception) {
-                alert("Failed to remove the domain!");
-            }
+        getPassword(function() {
+            $("#"+index).hide("highlight");
+            $.ajax({
+                url: "php/sub.php",
+                method: "get",
+                data: {"domain":entry, "list":"<?php echo $list ?>"},
+                success: function(response) {
+                    document.getElementById("list").removeChild(document.getElementById(index));
+                },
+                error: function(jqXHR, exception) {
+                    alert("Failed to remove the domain!");
+                }
+            });
+        });
+    }
+    
+    function getPassword(callback) {
+        // Return if we already have the password
+        if(password !== "") {
+            callback();
+            return;
+        }
+        
+        // Prompt the user for password
+        $("#passModal").modal();
+        
+        // Handle enter button
+        $("#passBtn").on("click", function() {
+            var passInput = $("#passInput");
+            password = passInput.value;
+            passInput.html("");
+            
+            // Execute callback if password was entered
+            if(password !== "")
+                callback();
         });
     }
 </script>
