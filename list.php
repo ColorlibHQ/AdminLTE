@@ -17,8 +17,6 @@ function getFullName() {
     <h1><?php getFullName(); ?></h1>
 </div>
 
-<button type="button" class="btn btn-default" data-toggle="modal" data-target="#passModal">Open modal</button>
-
 <!-- Domain Input -->
 <div class="form-group input-group">
     <input id="domain" type="text" class="form-control" placeholder="Add a domain (example.com or sub.example.com)">
