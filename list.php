@@ -84,7 +84,7 @@ require "footer.php";
                 list.innerHTML = "";
                 var data = JSON.parse(response);
                 
-                if(data.length == 0) {
+                if(data.length === 0) {
                     list.innerHTML =
                         '<div class="alert alert-info" role="alert">Your <?php getFullName(); ?> is empty!</div>';
                 }
@@ -104,11 +104,11 @@ require "footer.php";
     }
     
     function add() {
+        var domain = document.getElementById("domain").value;
+        if(domain.length === 0)
+            return;
+        
         getPassword(function() {
-            var domain = document.getElementById("domain").value;
-            if(domain == "")
-                return;
-            
             document.getElementById("alInfo").hidden = false;
             document.getElementById("alSuccess").hidden = true;
             document.getElementById("alFailure").hidden = true;
@@ -146,7 +146,7 @@ require "footer.php";
     
     function getPassword(callback) {
         // Return if we already have the password
-        if(password !== "") {
+        if(password.length !== 0) {
             callback();
             return;
         }
@@ -157,11 +157,11 @@ require "footer.php";
         // Handle enter button
         $("#passBtn").on("click", function() {
             var passInput = $("#passInput");
-            password = passInput.value;
+            password = passInput.val();
             passInput.html("");
             
             // Execute callback if password was entered
-            if(password !== "")
+            if(password.length !== 0)
                 callback();
         });
     }
