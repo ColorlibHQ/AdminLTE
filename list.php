@@ -47,14 +47,17 @@ function getFullName() {
             </div>
             <div class="modal-body">
                 Please enter your Pi-hole password to proceed.
+                <div id="alPassword" class="alert alert-danger" role="alert" hidden="true">
+                    Wrong Password! Please try again.
+                </div>
                 <div class="form-group">
                     <label for="passInput">Password:</label>
                     <input id="passInput" type="password" class="form-control">
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button id="passBtn" type="button" class="btn btn-primary" data-dismiss="modal">Enter</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#alPassword').hide()">Cancel</button>
+                <button id="passBtn" type="button" class="btn btn-primary">Enter</button>
             </div>
         </div>
     </div>
@@ -115,8 +118,10 @@ require "footer.php";
             $.ajax({
                 url: "php/add.php",
                 method: "get",
-                data: {"domain":domain, "list":"<?php echo $list ?>"},
+                data: {"domain":domain, "list":"<?php echo $list ?>", "pass":password},
                 success: function(response) {
+                    if(response.length !== 0)
+                        return;
                     document.getElementById("alSuccess").hidden = false;
                     refresh();
                 },
@@ -133,8 +138,10 @@ require "footer.php";
             $.ajax({
                 url: "php/sub.php",
                 method: "get",
-                data: {"domain":entry, "list":"<?php echo $list ?>"},
+                data: {"domain":entry, "list":"<?php echo $list ?>", "pass":password},
                 success: function(response) {
+                    if(response.length !== 0)
+                        return;
                     document.getElementById("list").removeChild(document.getElementById(index));
                 },
                 error: function(jqXHR, exception) {
@@ -145,24 +152,61 @@ require "footer.php";
     }
     
     function getPassword(callback) {
-        // Return if we already have the password
+        // Check password and return
         if(password.length !== 0) {
-            callback();
+            $.ajax({
+                url: "php/checkPass.php",
+                method: "get",
+                data: {"pass":password},
+                success: function(response) {
+                    if(response === "Correct")
+                        callback();
+                },
+                error: function(jqXHR, exception) {
+                    alert("Failed to check password!");
+                }
+            });
             return;
         }
         
         // Prompt the user for password
-        $("#passModal").modal();
+        var modal = $("#passModal");
+        modal.modal();
         
         // Handle enter button
         $("#passBtn").on("click", function() {
             var passInput = $("#passInput");
+            var passAlert = $("#alPassword");
             password = passInput.val();
-            passInput.html("");
             
-            // Execute callback if password was entered
-            if(password.length !== 0)
-                callback();
+            // Execute callback if entered
+            if(password.length !== 0) {
+                // Check if password is correct
+                $.ajax({
+                    url: "php/checkPass.php",
+                    method: "get",
+                    data: {"pass":password},
+                    success: function(response) {
+                        if(response === "Correct") {
+                            passInput.html("");
+                            passAlert.hide();
+                            modal.modal("hide");
+                            callback();
+                        }
+                        else {
+                            passAlert.show();
+                            password = "";
+                        }
+                    },
+                    error: function(jqXHR, exception) {
+                        alert("Failed to check password!");
+                        password = "";
+                    }
+                });
+            }
+            else {
+                passAlert.show()
+            }
         });
     }
 </script>
