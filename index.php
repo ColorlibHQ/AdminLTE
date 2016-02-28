@@ -1,15 +1,15 @@
 <?php
     require "header.html";
 ?>
-<!-- JS Warn -->
+<!-- JS Warning -->
 <div>
-  <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/Verpz/Javascript-Disabled-Warning-Popup/b10b9ebe28a92ffe746eb7e6fb6e0d3497c3afdd/js-warn.css">
+  <link rel="stylesheet" type="text/css" href="css/js-warn.css">
   <input type="checkbox" id="js-hide" />
   <div class="js-warn" id="js-warn-exit"><h1>Javascript Is Disabled</h1><p>Javascript seems to be disabled. This will break some site features.</p>
   <p>To enable Javascript click <a href="http://www.enable-javascript.com/" target="_blank">here</a></p><label for="js-hide">Close</label></div>
   <script>var jswarn = document.getElementById("js-warn-exit"); jswarn.parentNode.removeChild(jswarn);</script>
 </div>
-<!-- / JS Warn -->
+<!-- /JS Warning -->
 <!-- Small boxes (Stat box) -->
 <div class="row">
     <div class="col-lg-3 col-xs-6">
