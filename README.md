@@ -10,12 +10,14 @@ From this interface, you will be able to see stats on how well your Pi-hole is p
 ![Fully responsive](http://i.imgur.com/fHuWR6E.png)
 
 ## API
-A basic read-only API can be accessed at `/admin/api.php`. It returns the following JSON:
+An API can be accessed at `/admin/api.php`. With either no parameters or `api.php?summary` it returns the following JSON:
 ```JSON
 {
-	"domains_being_blocked": "136708",
-	"dns_queries_today": "18108",
-	"ads_blocked_today": "14648",
-	"ads_percentage_today": 80.892423238348
+	"domains_being_blocked": "136,708",
+	"dns_queries_today": "18,108",
+	"ads_blocked_today": "14,648",
+	"ads_percentage_today": "80.9"
 }
 ```
+
+There are many more paramters, such as `summaryRaw`, `overTimeData`, `topItems`, `recentItems`, `getQueryTypes`, `getForwardDestinations`, `getQuerySources`, and finally `getAllQueries`.
