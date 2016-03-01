@@ -216,12 +216,13 @@
                     label: "All Queries",
                     fillColor: "rgba(220,220,220,0.5)",
                     strokeColor: "rgba(0, 166, 90,.8)",
+                    pointColor: "rgba(0, 166, 90,.8)"
                 },
                 {
                     label: "Ad Queries",
                     fillColor: "rgba(0,192,239,0.5)",
                     strokeColor: "rgba(0,192,239,1)",
-                    pointColor: "rgba(0,192,239,1)",
+                    pointColor: "rgba(0,192,239,1)"
                 }
             ]
         };
