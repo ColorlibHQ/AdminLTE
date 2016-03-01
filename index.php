@@ -219,9 +219,9 @@
                 },
                 {
                     label: "Ad Queries",
-                    fillColor: "rgba(243,156,18,0.5)",
-                    strokeColor: "rgba(243,156,18,1)",
-                    pointColor: "rgba(243,156,18,1)",
+                    fillColor: "rgba(0,192,239,0.5)",
+                    strokeColor: "rgba(0,192,239,1)",
+                    pointColor: "rgba(0,192,239,1)",
                 }
             ]
         };
