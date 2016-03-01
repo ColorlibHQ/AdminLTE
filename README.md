@@ -10,7 +10,7 @@ From this interface, you will be able to see stats on how well your Pi-hole is p
 ![Fully responsive](http://i.imgur.com/fHuWR6E.png)
 
 ## API
-An API can be accessed at `/admin/api.php`. With either no parameters or `api.php?summary` it returns the following JSON:
+A read-only API can be accessed at `/admin/api.php`. With either no parameters or `api.php?summary` it returns the following JSON:
 ```JSON
 {
 	"domains_being_blocked": "136,708",
