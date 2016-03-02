@@ -128,9 +128,9 @@
             $exploded = explode(" ", trim($query));
             array_push($allQueries['data'], array(
                 $time->format('Y-m-d\TH:i:s'),
-                substr($exploded[4], 6, -1),
-                $exploded[5],
-                $exploded[7],
+                substr($exploded[5], 6, -1),
+                $exploded[6],
+                $exploded[8],
             ));
         }
 
