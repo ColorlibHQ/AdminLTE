@@ -63,7 +63,7 @@
     } );
 
     function refreshData() {
-        tableApi.ajax.url("api.php?getAllQuerie").load();
+        tableApi.ajax.url("api.php?getAllQueries").load();
     }
 </script>
 
