@@ -14,7 +14,7 @@
 
         $ads_blocked_today = count(getBlockedQueries($log));
 
-        $ads_percentage_today = $ads_blocked_today / $dns_queries_today * 100;
+        $ads_percentage_today = $dns_queries_today > 0 ? ($ads_blocked_today / $dns_queries_today * 100) : 0;
 
         return array(
             'domains_being_blocked' => $domains_being_blocked,
