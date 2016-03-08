@@ -123,21 +123,26 @@
         $dns_queries = getDnsQueries($log);
         
         $fileName = '/etc/pihole/gravity.list';
-        $file = file_get_contents($fileName);
-    
+        //Turn gravity.list into an array
+        $lines = explode("\n", file_get_contents($fileName));
+        
+        //Create a new array and set domain name as index instead of value, with value as 1
+        foreach(array_values($lines) as $v){
+            $new_lines[trim(strstr($v, ' '))] = 1;
+        }
+        
         foreach ($dns_queries as $query) {
             $time = date_create(substr($query, 0, 16));
             $exploded = explode(" ", trim($query));
-    
-                    $searchString = " {$exploded[6]}\n";
-                    
-                    if (strpos($file,$searchString)) {
-                         $extra="Pi-holed";
-                    }
-                    else {
-                         $extra="OK";
-                    };                        
             
+            //Is index of the domain name set?
+            if (isset($new_lines[$exploded[6]])){
+            	$extra = "Pi-holed";
+            }
+            else
+            {
+            	$extra = "OK";
+            }            
             array_push($allQueries['data'], array(
                 $time->format('Y-m-d\TH:i:s'),
                 substr($exploded[5], 6, -1),
