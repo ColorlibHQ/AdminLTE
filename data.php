@@ -121,19 +121,32 @@
         $allQueries = array("data" => array());
         $log = readInLog();
         $dns_queries = getDnsQueries($log);
+        
+        $fileName = '/etc/pihole/gravity.list';
+        $file = file_get_contents($fileName);
     
         foreach ($dns_queries as $query) {
             $time = date_create(substr($query, 0, 16));
-
             $exploded = explode(" ", trim($query));
+    
+                    $searchString = " {$exploded[6]}\n";
+                    
+                    if (strpos($file,$searchString)) {
+                         $extra="Pi-holed";
+                    }
+                    else {
+                         $extra="OK";
+                    };                        
+            
             array_push($allQueries['data'], array(
                 $time->format('Y-m-d\TH:i:s'),
                 substr($exploded[5], 6, -1),
                 $exploded[6],
                 $exploded[8],
+                $extra,
             ));
         }
-
+    
         return $allQueries;
     }
 
