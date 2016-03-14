@@ -461,6 +461,13 @@
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 0;
 }
+.skin-black .pace .pace-progress {
+  background: #222;
+}
+.skin-black .pace .pace-activity {
+  border-top-color: #222;
+  border-left-color: #222;
+}
 /*
  * Skin: Black
  * -----------
