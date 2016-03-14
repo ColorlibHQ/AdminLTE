@@ -756,7 +756,9 @@
 
                 <div class="input-group">
                   <button type="button" class="btn btn-default pull-right" id="daterange-btn">
-                    <i class="fa fa-calendar"></i> Date range picker
+                    <span>
+                      <i class="fa fa-calendar"></i> Date range picker
+                    </span>
                     <i class="fa fa-caret-down"></i>
                   </button>
                 </div>
@@ -1144,7 +1146,7 @@
           endDate: moment()
         },
         function (start, end) {
-          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+          $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
         }
     );
 
