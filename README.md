@@ -1,4 +1,4 @@
-**I apoligize to everyone for my slow rate of response and development recently.** This is my final semester and I am very busy. Although I usually work on AdminLTE a few hours a week, there are weeks full of exams and assignments. Thanks for your understanding.
+**I apologize to everyone for my slow rate of response and development recently.** This is my final semester and I am very busy. Although I usually work on AdminLTE a few hours a week, there are weeks full of exams and assignments. Thanks for your understanding.
 Introduction
 ============
 
@@ -87,7 +87,7 @@ Todo List
 - Right to left support
 - ~~Custom pace style~~ (Done v2.3.1)
 
-Legacy Realeases
+Legacy Releases
 ----------------
 AdminLTE 1.x can be easily upgraded to 2.x using [this guide](https://almsaeedstudio.com/themes/AdminLTE/documentation/index.html#upgrade), but if you intend to keep using AdminLTE 1.x, you can download the latest release from the [releases](https://github.com/almasaeed2010/AdminLTE/releases) section above.
 
