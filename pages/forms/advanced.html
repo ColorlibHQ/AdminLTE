@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- daterange picker -->
   <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker-bs3.css">
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="../../plugins/datepicker/datepicker3.css">
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="../../plugins/iCheck/all.css">
   <!-- Bootstrap Color Picker -->
@@ -706,6 +708,20 @@
               <h3 class="box-title">Date picker</h3>
             </div>
             <div class="box-body">
+              <!-- Date -->
+              <div class="form-group">
+                <label>Date:</label>
+
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right" id="datepicker">
+                </div>
+                <!-- /.input group -->
+              </div>
+              <!-- /.form group -->
+
               <!-- Date range -->
               <div class="form-group">
                 <label>Date range:</label>
@@ -1080,6 +1096,8 @@
 <!-- date-range-picker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
 <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap datepicker -->
+<script src="../../plugins/datepicker/bootstrap-datepicker.js"></script>
 <!-- bootstrap color picker -->
 <script src="../../plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
 <!-- bootstrap time picker -->
@@ -1129,6 +1147,11 @@
           $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
         }
     );
+
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    });
 
     //iCheck for checkbox and radio inputs
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
