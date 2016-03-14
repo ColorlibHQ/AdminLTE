@@ -418,7 +418,7 @@ function _init() {
         checkElement.slideDown(animationSpeed, function () {
           //Add the class active to the parent li
           checkElement.addClass('menu-open');
-          parent.find('li.active').removeClass('active');
+          //parent.find('li.active').removeClass('active');
           parent_li.addClass('active');
           //Fix the layout in case the sidebar stretches over the height of the window
           _this.layout.fix();
