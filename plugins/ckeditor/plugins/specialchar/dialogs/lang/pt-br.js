@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 CKEDITOR.plugins.setLang("specialchar","pt-br",{euro:"Euro",lsquo:"Aspas simples esquerda",rsquo:"Aspas simples direita",ldquo:"Aspas duplas esquerda",rdquo:"Aspas duplas direita",ndash:"Traço",mdash:"Travessão",iexcl:"Ponto de exclamação invertido",cent:"Cent",pound:"Cerquilha",curren:"Dinheiro",yen:"Yen",brvbar:"Bara interrompida",sect:"Símbolo de Parágrafo",uml:"Trema",copy:"Direito de Cópia",ordf:"Indicador ordinal feminino",laquo:"Aspas duplas angulares esquerda",not:"Negação",reg:"Marca Registrada",

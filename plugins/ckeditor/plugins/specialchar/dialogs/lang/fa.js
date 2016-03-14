@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 CKEDITOR.plugins.setLang("specialchar","fa",{euro:"نشان یورو",lsquo:"علامت نقل قول تکی چپ",rsquo:"علامت نقل قول تکی راست",ldquo:"علامت نقل قول دوتایی چپ",rdquo:"علامت نقل قول دوتایی راست",ndash:"خط تیره En",mdash:"خط تیره Em",iexcl:"علامت تعجب وارونه",cent:"نشان سنت",pound:"نشان پوند",curren:"نشان ارز",yen:"نشان ین",brvbar:"نوار شکسته",sect:"نشان بخش",uml:"نشان سواگیری",copy:"نشان کپی رایت",ordf:"شاخص ترتیبی مونث",laquo:"اشاره چپ مکرر برای زاویه علامت نقل قول",not:"نشان ثبت نشده",reg:"نشان ثبت شده",

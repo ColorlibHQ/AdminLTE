@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+-->
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Append To Page Element Using JavaScript Code &mdash; CKEditor Sample</title>
+	<script src="../../ckeditor.js"></script>
+	<link rel="stylesheet" href="sample.css">
+</head>
+<body>
+	<h1 class="samples">
+		<a href="index.html">CKEditor Samples</a> &raquo; Append To Page Element Using JavaScript Code
+	</h1>
+	<div class="warning deprecated">
+		This sample is not maintained anymore. Check out the <a href="http://sdk.ckeditor.com/">brand new samples in CKEditor SDK</a>.
+	</div>
+	<div id="section1">
+		<div class="description">
+			<p>
+				The <code><a class="samples" href="http://docs.ckeditor.com/#!/api/CKEDITOR-method-appendTo">CKEDITOR.appendTo()</a></code> method serves to to place editors inside existing DOM elements. Unlike <code><a class="samples" href="http://docs.ckeditor.com/#!/api/CKEDITOR-method-replace">CKEDITOR.replace()</a></code>,
+				a target container to be replaced is no longer necessary. A new editor
+				instance is inserted directly wherever it is desired.
+			</p>
+<pre class="samples">CKEDITOR.appendTo( '<em>container_id</em>',
+	{ /* Configuration options to be used. */ }
+	'Editor content to be used.'
+);</pre>
+		</div>
+		<script>
+
+			// This call can be placed at any point after the
+			// DOM element to append CKEditor to or inside the <head><script>
+			// in a window.onload event handler.
+
+			// Append a CKEditor instance using the default configuration and the
+			// provided content to the <div> element of ID "section1".
+			CKEDITOR.appendTo( 'section1',
+				null,
+				'<p>This is some <strong>sample text</strong>. You are using <a href="http://ckeditor.com/">CKEditor</a>.</p>'
+			);
+
+		</script>
+	</div>
+	<br>
+	<div id="footer">
+		<hr>
+		<p>
+			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
+		</p>
+		<p id="copy">
+			Copyright &copy; 2003-2016, <a class="samples" href="http://cksource.com/">CKSource</a> - Frederico
+			Knabben. All rights reserved.
+		</p>
+	</div>
+</body>
+</html>

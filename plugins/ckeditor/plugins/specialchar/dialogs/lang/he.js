@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 CKEDITOR.plugins.setLang("specialchar","he",{euro:"יורו",lsquo:"סימן ציטוט יחיד שמאלי",rsquo:"סימן ציטוט יחיד ימני",ldquo:"סימן ציטוט כפול שמאלי",rdquo:"סימן ציטוט כפול ימני",ndash:"קו מפריד קצר",mdash:"קו מפריד ארוך",iexcl:"סימן קריאה הפוך",cent:"סנט",pound:"פאונד",curren:"מטבע",yen:"ין",brvbar:"קו שבור",sect:"סימן מקטע",uml:"שתי נקודות אופקיות (Diaeresis)",copy:"סימן זכויות יוצרים (Copyright)",ordf:"סימן אורדינאלי נקבי",laquo:"סימן ציטוט זווית כפולה לשמאל",not:"סימן שלילה מתמטי",reg:"סימן רשום",

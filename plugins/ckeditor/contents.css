@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 
@@ -21,7 +21,7 @@ body
 .cke_editable
 {
 	font-size: 13px;
-	line-height: 1.6em;
+	line-height: 1.6;
 }
 
 blockquote
@@ -64,7 +64,7 @@ ol,ul,dl
 h1,h2,h3,h4,h5,h6
 {
 	font-weight: normal;
-	line-height: 1.2em;
+	line-height: 1.2;
 }
 
 hr
@@ -93,6 +93,8 @@ pre
 {
 	white-space: pre-wrap; /* CSS 2.1 */
 	word-wrap: break-word; /* IE7 */
+	-moz-tab-size: 4;
+	tab-size: 4;
 }
 
 .marker
@@ -102,7 +104,7 @@ pre
 
 span[lang]
 {
-   font-style: italic;
+	font-style: italic;
 }
 
 figure
@@ -113,11 +115,18 @@ figure
 	background: rgba(0,0,0,0.05);
 	padding: 10px;
 	margin: 10px 20px;
-	display: block; /* For IE8 */
+	display: inline-block;
 }
 
-figure figcaption
+figure > figcaption
 {
 	text-align: center;
 	display: block; /* For IE8 */
+}
+
+a > img {
+	padding: 1px;
+	margin: 1px;
+	border: none;
+	outline: 1px solid #0782C1;
 }

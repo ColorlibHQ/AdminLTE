@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 CKEDITOR.plugins.setLang("specialchar","sk",{euro:"Znak eura",lsquo:"Ľavá jednoduchá úvodzovka",rsquo:"Pravá jednoduchá úvodzovka",ldquo:"Pravá dvojitá úvodzovka",rdquo:"Pravá dvojitá úvodzovka",ndash:"En pomlčka",mdash:"Em pomlčka",iexcl:"Obrátený výkričník",cent:"Znak centu",pound:"Znak libry",curren:"Znak meny",yen:"Znak jenu",brvbar:"Prerušená zvislá čiara",sect:"Znak odseku",uml:"Prehláska",copy:"Znak copyrightu",ordf:"Ženský indikátor rodu",laquo:"Znak dvojitých lomených úvodzoviek vľavo",not:"Logistický zápor",

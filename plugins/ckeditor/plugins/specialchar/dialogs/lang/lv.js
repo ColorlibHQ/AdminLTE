@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 CKEDITOR.plugins.setLang("specialchar","lv",{euro:"Euro zīme",lsquo:"Kreisā  vienkārtīga pēdiņa",rsquo:"Labā  vienkārtīga pēdiņa",ldquo:"Kreisā  dubult pēdiņa",rdquo:"Labā dubult pēdiņa",ndash:"En svītra",mdash:"Em svītra",iexcl:"Apgriezta izsaukuma zīme",cent:"Centu naudas zīme",pound:"Sterliņu mārciņu naudas zīme",curren:"Valūtas zīme",yen:"Jenu naudas zīme",brvbar:"Vertikāla pārrauta līnija",sect:"Paragrāfa zīme",uml:"Diakritiska zīme",copy:"Autortiesību zīme",ordf:"Sievišķas kārtas rādītājs",

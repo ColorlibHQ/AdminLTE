@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 CKEDITOR.plugins.setLang("specialchar","sv",{euro:"Eurotecken",lsquo:"Enkelt vänster citattecken",rsquo:"Enkelt höger citattecken",ldquo:"Dubbelt vänster citattecken",rdquo:"Dubbelt höger citattecken",ndash:"Snedstreck",mdash:"Långt tankstreck",iexcl:"Inverterad utropstecken",cent:"Centtecken",pound:"Pundtecken",curren:"Valutatecken",yen:"Yentecken",brvbar:"Brutet lodrätt streck",sect:"Paragraftecken",uml:"Diaeresis",copy:"Upphovsrättstecken",ordf:"Feminit ordningstalsindikator",laquo:"Vänsterställt dubbelt vinkelcitationstecken",

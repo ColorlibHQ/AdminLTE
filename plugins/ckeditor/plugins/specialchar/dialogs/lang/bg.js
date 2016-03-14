@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 CKEDITOR.plugins.setLang("specialchar","bg",{euro:"Евро знак",lsquo:"Лява маркировка за цитат",rsquo:"Дясна маркировка за цитат",ldquo:"Лява двойна кавичка за цитат",rdquo:"Дясна двойна кавичка за цитат",ndash:"\\\\",mdash:"/",iexcl:"Обърната питанка",cent:"Знак за цент",pound:"Знак за паунд",curren:"Валутен знак",yen:"Знак за йена",brvbar:"Прекъсната линия",sect:"Знак за секция",uml:"Diaeresis",copy:"Знак за Copyright",ordf:"Feminine ordinal indicator",laquo:"Left-pointing double angle quotation mark",
