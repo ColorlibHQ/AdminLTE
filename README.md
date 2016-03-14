@@ -39,6 +39,12 @@ git clone https://github.com/YOUR_USERNAME/AdminLTE.git
 bower install admin-lte
 ```
 
+**npm**
+
+```
+npm install --save admin-lte
+```
+
 **Composer**
 
 ```
