@@ -124,13 +124,13 @@
     
         foreach ($dns_queries as $query) {
             $time = date_create(substr($query, 0, 16));
-
+            
             $exploded = explode(" ", trim($query));
             array_push($allQueries['data'], array(
                 $time->format('Y-m-d\TH:i:s'),
-                substr($exploded[5], 6, -1),
-                $exploded[6],
-                $exploded[8],
+                substr($exploded[count($exploded)-4], 6, -1),
+                $exploded[count($exploded)-3],
+                $exploded[count($exploded)-1],
             ));
         }
 
