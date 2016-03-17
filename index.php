@@ -347,7 +347,7 @@
                 queryTypeChart.addData({
                     value: value,
                     color: colors.shift(),
-                    label: key
+                    label: key.substr(6,key.length - 7)
                 });
             });
             $('#query-types .overlay').remove();

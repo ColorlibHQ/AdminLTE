@@ -24,6 +24,7 @@
                         <th>Type</th>
                         <th>Domain</th>
                         <th>Client</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -32,6 +33,7 @@
                         <th>Type</th>
                         <th>Domain</th>
                         <th>Client</th>
+                        <th>Status</th>
                     </tr>
                 </tfoot>
             </table>
@@ -50,6 +52,15 @@
 <script type="text/javascript">
     $(document).ready(function() {
         tableApi = $('#all-queries').DataTable( {
+            "rowCallback": function( row, data, index ){
+            	if (data[4] == "Pi-holed") {
+            		$(row).css('color','red')
+            	}
+            	else{
+            		$(row).css('color','green')
+            	}
+
+            },
             "ajax": "api.php?getAllQueries",
             "autoWidth" : false,
             "order" : [[0, "desc"]],
@@ -58,13 +69,12 @@
                 { "width" : "10%" },
                 { "width" : "40%" },
                 { "width" : "15%" },
+                { "width" : "15%" }
               ]
             })
     } );
 
     function refreshData() {
-        tableApi.ajax.url("api.php?getAllQuerie").load();
+        tableApi.ajax.url("api.php?getAllQueries").load();
     }
 </script>
-
-
