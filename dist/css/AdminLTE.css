@@ -1260,6 +1260,9 @@ a:focus {
   border-color: #00a65a;
   box-shadow: none;
 }
+.form-group.has-success .help-block {
+  color: #00a65a;
+}
 .form-group.has-warning label {
   color: #f39c12;
 }
@@ -1267,12 +1270,18 @@ a:focus {
   border-color: #f39c12;
   box-shadow: none;
 }
+.form-group.has-warning .help-block {
+  color: #f39c12;
+}
 .form-group.has-error label {
   color: #dd4b39;
 }
 .form-group.has-error .form-control {
   border-color: #dd4b39;
   box-shadow: none;
+}
+.form-group.has-error .help-block {
+  color: #dd4b39;
 }
 /* Input group */
 .input-group .input-group-addon {
