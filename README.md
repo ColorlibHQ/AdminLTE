@@ -99,6 +99,9 @@ AdminLTE 1.x can be easily upgraded to 2.x using [this guide](https://almsaeedst
 
 Change log
 ----------
+
+**For the most recent change log, visit the [releases page](https://github.com/almasaeed2010/AdminLTE/releases).** We will add a detailed release notes to each new release. 
+
 **v2.3.1:**
 - Fix sidebar issue #676
 - Fix BootLint warnings and errors
