@@ -1,7 +1,15 @@
 <?php
     require "header.html";
 ?>
-
+<!-- JS Warning -->
+<div>
+  <link rel="stylesheet" type="text/css" href="css/js-warn.css">
+  <input type="checkbox" id="js-hide" />
+  <div class="js-warn" id="js-warn-exit"><h1>Javascript Is Disabled</h1><p>Javascript seems to be disabled. This will break some site features.</p>
+  <p>To enable Javascript click <a href="http://www.enable-javascript.com/" target="_blank">here</a></p><label for="js-hide">Close</label></div>
+  <script>var jswarn = document.getElementById("js-warn-exit"); jswarn.parentNode.removeChild(jswarn);</script>
+</div>
+<!-- /JS Warning -->
 <!-- Small boxes (Stat box) -->
 <div class="row">
     <div class="col-lg-3 col-xs-6">
@@ -208,12 +216,13 @@
                     label: "All Queries",
                     fillColor: "rgba(220,220,220,0.5)",
                     strokeColor: "rgba(0, 166, 90,.8)",
+                    pointColor: "rgba(0, 166, 90,.8)"
                 },
                 {
                     label: "Ad Queries",
-                    fillColor: "rgba(243,156,18,0.5)",
-                    strokeColor: "rgba(243,156,18,1)",
-                    pointColor: "rgba(243,156,18,1)",
+                    fillColor: "rgba(0,192,239,0.5)",
+                    strokeColor: "rgba(0,192,239,1)",
+                    pointColor: "rgba(0,192,239,1)"
                 }
             ]
         };
@@ -338,7 +347,7 @@
                 queryTypeChart.addData({
                     value: value,
                     color: colors.shift(),
-                    label: key
+                    label: key.substr(6,key.length - 7)
                 });
             });
             $('#query-types .overlay').remove();
