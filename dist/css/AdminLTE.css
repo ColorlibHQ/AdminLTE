@@ -2,7 +2,7 @@
 /*!
  *   AdminLTE v2.3.3
  *   Author: Almsaeed Studio
- *	 Website: Almsaeed Studio <http://almsaeedstudio.com>
+ *   Website: Almsaeed Studio <http://almsaeedstudio.com>
  *   License: Open source - MIT
  *           Please visit http://opensource.org/licenses/MIT for more information
 !*/
@@ -12,7 +12,7 @@
  */
 html,
 body {
-  min-height: 100%;
+  height: 100%;
 }
 .layout-boxed html,
 .layout-boxed body {
@@ -28,9 +28,9 @@ body {
 }
 /* Layout */
 .wrapper {
-  min-height: 100%;
+  height: 100%;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
 }
 .wrapper:before,
 .wrapper:after {
@@ -43,7 +43,6 @@ body {
 .layout-boxed .wrapper {
   max-width: 1250px;
   margin: 0 auto;
-  min-height: 100%;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
   position: relative;
 }
