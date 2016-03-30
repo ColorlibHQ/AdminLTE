@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.html or http://ckeditor.com/license
 */
 CKEDITOR.dialog.add("checkspell",function(a){function c(a,c){var d=0;return function(){"function"==typeof window.doSpell?("undefined"!=typeof e&&window.clearInterval(e),l(a)):180==d++&&window._cancelOnError(c)}}function l(c){var f=new window._SP_FCK_LangCompare,b=CKEDITOR.getUrl(a.plugins.wsc.path+"dialogs/"),e=b+"tmpFrameset.html";window.gFCKPluginName="wsc";f.setDefaulLangCode(a.config.defaultLanguage);window.doSpell({ctrl:g,lang:a.config.wsc_lang||f.getSPLangCode(a.langCode),intLang:a.config.wsc_uiLang||
