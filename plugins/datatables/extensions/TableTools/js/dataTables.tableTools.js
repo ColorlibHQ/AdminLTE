@@ -1,5 +1,5 @@
 /*! TableTools 2.2.4
- * 2009-2015 SpryMedia Ltd - datatables.net/license
+ * 2009-2016 SpryMedia Ltd - datatables.net/license
  *
  * ZeroClipboard 1.0.4
  * Author: Joseph Huckaby - MIT licensed
@@ -12,7 +12,7 @@
  * @file        dataTables.tableTools.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
- * @copyright   Copyright 2009-2015 SpryMedia Ltd.
+ * @copyright   Copyright 2009-2016 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -434,7 +434,7 @@ ZeroClipboard_TableTools.Client.prototype = {
 window.ZeroClipboard_TableTools = ZeroClipboard_TableTools;
 //include TableTools.js
 /* TableTools
- * 2009-2015 SpryMedia Ltd - datatables.net/license
+ * 2009-2016 SpryMedia Ltd - datatables.net/license
  */
 
 /*globals TableTools,ZeroClipboard_TableTools*/
