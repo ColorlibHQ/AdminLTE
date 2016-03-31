@@ -1,14 +1,12 @@
-<?php
-    $domains = Array();
-    $log = Array();
+<?php    
+    $log = array();
     $ipv6 = file_exists("/etc/pihole/.useIPv6");
 
     /*******   Public Members ********/
     function getSummaryData() {
-        global $ipv6;
-        $domains = readInBlockList();
+        global $ipv6;        
         $log = readInLog();
-        $domains_being_blocked = count($domains) / ($ipv6 ? 2 : 1);
+        $domains_being_blocked = readInBlockList() / ($ipv6 ? 2 : 1);
 
         $dns_queries_today = count(getDnsQueries($log));
 
@@ -24,8 +22,7 @@
         );
     }
 
-    function getOverTimeData() {
-        $domains = readInBlockList();
+    function getOverTimeData() {        
         $log = readInLog();
         $dns_queries = getDnsQueries($log);
         $ads_blocked = getBlockedQueries($log);
@@ -39,8 +36,7 @@
         );
     }
 
-    function getTopItems() {
-        $domains = readInBlockList();
+    function getTopItems() {        
         $log = readInLog();
         $dns_queries = getDnsQueries($log);
         $ads_blocked = getBlockedQueries($log);
@@ -156,9 +152,19 @@
 
     /******** Private Members ********/
     function readInBlockList() {
-        global $domains;
-        return count($domains) > 1 ? $domains :
-            file("/etc/pihole/gravity.list");
+        //returns count of domains in blocklist.
+        $file="/etc/pihole/gravity.list";
+        $linecount = 0;
+        $handle = fopen($file, "r");
+        while(!feof($handle)){
+          $line = fgets($handle);
+          $linecount++;
+        }
+        
+        fclose($handle);
+        
+        return $linecount;
+            
     }
     function readInLog() {
         global $log;
