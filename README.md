@@ -1,5 +1,7 @@
 Pi-hole Admin Dashboard
 ============
+[![Join the chat at https://gitter.im/pi-hole/AdminLTE](https://badges.gitter.im/pi-hole/AdminLTE.svg)](https://gitter.im/pi-hole/AdminLTE?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif "AdminLTE Presentation")](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3J2L3Z4DHW9UY "Donate")
 
 Using **[AdminLTE](https://almsaeedstudio.com)**, this project will create a Web interface for the ad-blocking Pi-hole: **a black hole for Internet advertisements**.
