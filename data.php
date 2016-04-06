@@ -153,15 +153,15 @@
     /******** Private Members ********/
     function readInBlockList() {
         //returns count of domains in blocklist.
-        $file="/etc/pihole/gravity.list";
-        $linecount = 0;
-        $handle = fopen($file, "r");
-        while ($chunk = fread($handle, 1024000)) {
-          $linecount += substr_count($chunk, "\n");
+        $gravity="/etc/pihole/gravity.list";
+        $swallowed = 0;
+        $NGC4889 = fopen($gravity, "r");
+        while ($stars = fread($NGC4889, 1024000)) {
+          $swallowed += substr_count($stars, "\n");
         }      
-        fclose($handle);
+        fclose($NGC4889);
         
-        return $linecount;
+        return $swallowed;
             
     }
     function readInLog() {
