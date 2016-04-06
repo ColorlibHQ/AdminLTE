@@ -156,12 +156,9 @@
         $file="/etc/pihole/gravity.list";
         $linecount = 0;
         $handle = fopen($file, "r");
-        if(gettype($handle) == "resource") {
-          while(!feof($handle)){
-          $line = fgets($handle);
-          $linecount++;
-          }
-        }
+        while ($chunk = fread($handle, 1024000)) {
+          $linecount += substr_count($chunk, "\n");
+        }      
         fclose($handle);
         
         return $linecount;
