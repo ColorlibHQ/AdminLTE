@@ -104,7 +104,14 @@
                 </div>
                 <div class="pull-left info">
                     <p>Status</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Nominal</a>
+					<?php 
+					$pistatus = exec("pgrep dnsmasq | wc -l");
+					if ($pistatus >= "0") {
+					  echo '<a href="#"><img src="img/pi-online.png" alt=Status height="15" width="15" /> Nominal</a>';
+					} else {
+					  echo '<a href="#"><img src="img/pi-offline.png" alt=Status height="15" width="15" /> Offline</a>';
+					}
+					?>
                 </div>
             </div>
             <!-- sidebar menu: : style can be found in sidebar.less -->
