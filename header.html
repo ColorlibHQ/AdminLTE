@@ -105,12 +105,12 @@
                 <div class="pull-left info">
                     <p>Status</p>
                     <?php 
-                     $pistatus = exec('pgrep dnsmasq | wc -l');
-                     if ($pistatus > "0") {
-                       echo '<a href="#"><img src="img/pi-online.png" alt=Status height="15" width="15" /> Nominal</a>';
-                     } else {
-                       echo '<a href="#"><img src="img/pi-offline.png" alt=Status height="15" width="15" /> Offline</a>';
-                     }
+                        $pistatus = exec('pgrep dnsmasq | wc -l');
+                        if ($pistatus > "0") {
+                            echo '<a href="#"><i class="fa fa-circle" style="color:#7FFF00"></i> Active</a>';
+                        } else {
+                            echo '<a href="#"><i class="fa fa-circle" style="color:#FF0000"></i> Offline</a>';
+                        }
                     ?>
                 </div>
             </div>
