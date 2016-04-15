@@ -6,7 +6,7 @@
     function getSummaryData() {
         global $ipv6;        
         $log = readInLog();
-        $domains_being_blocked = readInBlockList() / ($ipv6 ? 2 : 1);
+        $domains_being_blocked = gravityCount() / ($ipv6 ? 2 : 1);
 
         $dns_queries_today = count(getDnsQueries($log));
 
@@ -116,42 +116,43 @@
     function getAllQueries() {
         $allQueries = array("data" => array());
         $log = readInLog();
-        $dns_queries = getDnsQueries($log);
-
-        $fileName = '/etc/pihole/gravity.list';
-        //Turn gravity.list into an array
-        $lines = explode("\n", file_get_contents($fileName));
-
-        //Create a new array and set domain name as index instead of value, with value as 1
-        foreach(array_values($lines) as $v){
-            $new_lines[trim(strstr($v, ' '))] = 1;
-        }
+        $dns_queries = getDnsQueriesAll($log);
 
         foreach ($dns_queries as $query) {
             $time = date_create(substr($query, 0, 16));
             $exploded = explode(" ", trim($query));
-
-            //Is index of the domain name set?
-            if (isset($new_lines[$exploded[count($exploded)-3]])){
-            	$extra = "Pi-holed";
+            $tmp = $exploded[count($exploded)-4];
+            
+            if (substr($tmp, 0, 5) == "query"){
+              $type = substr($exploded[count($exploded)-4], 6, -1);
+              $domain = $exploded[count($exploded)-3];
+              $client = $exploded[count($exploded)-1];
+              $status = "";
             }
-            else
-            {
-            	$extra = "OK";
+            elseif (substr($tmp, 0, 9) == "forwarded" ){
+              $status="OK";
             }
-            array_push($allQueries['data'], array(
+            elseif (substr($tmp, strlen($tmp) - 12, 12)  == "gravity.list" ){
+              $status="Pi-holed";
+            }
+            
+            if ( $status != ""){
+              array_push($allQueries['data'], array(
                 $time->format('Y-m-d\TH:i:s'),
-                substr($exploded[count($exploded)-4], 6, -1),
-                $exploded[count($exploded)-3],
-                $exploded[count($exploded)-1],
-                $extra,
-            ));
+                $type,
+                $domain,
+                $client,
+                $status,
+              )); 
+            }
+            
+            
         }
         return $allQueries;
     }
 
     /******** Private Members ********/
-    function readInBlockList() {
+    function gravityCount() {
         //returns count of domains in blocklist.
         $gravity="/etc/pihole/gravity.list";
         $swallowed = 0;
@@ -171,6 +172,9 @@
     }
     function getDnsQueries($log) {
         return array_filter($log, "findQueries");
+    }
+    function getDnsQueriesAll($log) {
+      return array_filter($log, "findQueriesAll");
     }
     function getBlockedQueries($log) {
         return array_filter($log, "findAds");
@@ -246,6 +250,10 @@
         return array_reverse($recent);
     }
 
+    function findQueriesAll($var) {
+        return strpos($var, ": query[") || strpos($var, "gravity.list") || strpos($var, ": forwarded") !== false;
+    }
+    
     function findQueries($var) {
         return strpos($var, ": query[") !== false;
     }
