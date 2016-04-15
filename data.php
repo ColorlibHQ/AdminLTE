@@ -6,7 +6,7 @@
     function getSummaryData() {
         global $ipv6;        
         $log = readInLog();
-        $domains_being_blocked = readInBlockList() / ($ipv6 ? 2 : 1);
+        $domains_being_blocked = gravityCount() / ($ipv6 ? 2 : 1);
 
         $dns_queries_today = count(getDnsQueries($log));
 
@@ -151,7 +151,7 @@
     }
 
     /******** Private Members ********/
-    function readInBlockList() {
+    function gravityCount() {
         //returns count of domains in blocklist.
         $gravity="/etc/pihole/gravity.list";
         $swallowed = 0;
