@@ -103,7 +103,7 @@
         $sources = array();
         foreach($dns_queries as $query) {
             $exploded = explode(" ", $query);
-            $ip = trim($exploded[count($exploded)-1]);
+            $ip = hasHostName(trim($exploded[count($exploded)-1]));
             if (isset($sources[$ip])) {
                 $sources[$ip]++;
             }
@@ -142,7 +142,7 @@
                 $time->format('Y-m-d\TH:i:s'),
                 $type,
                 $domain,
-                $client,
+                hasHostName($client),
                 $status,
               )); 
             }
