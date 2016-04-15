@@ -1,7 +1,8 @@
 <?php    
     $log = array();
     $ipv6 = file_exists("/etc/pihole/.useIPv6");
-
+    $hosts = file_exists("/etc/hosts") ? file("/etc/hosts") : array();
+    
     /*******   Public Members ********/
     function getSummaryData() {
         global $ipv6;        
@@ -268,6 +269,17 @@
 
     function findForwards($var) {
         return strpos($var, ": forwarded") !== false;
+    }
+    
+    function hasHostName($var){
+        global $hosts;
+        foreach ($hosts as $host){
+            $x = explode("\t", $host);
+            if ( $var == $x[0] ){
+                $var = $var . " ($x[1])";
+            }
+        }
+        return $var;
     }
 
 /*
