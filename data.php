@@ -259,7 +259,11 @@
     }
 
     function findAds($var) {
-        return strpos($var, "gravity.list") !== false;
+      $exploded = explode(" ", $var);
+      $tmp = $exploded[count($exploded)-4];
+      $tmp2 = $exploded[count($exploded)-5];
+      //filter out bad names and host file reloads:
+      return (substr($tmp, strlen($tmp) - 12, 12)  == "gravity.list" && $tmp2 != "read") ;
     }
 
     function findForwards($var) {
