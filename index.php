@@ -243,7 +243,7 @@
                         return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
                 }
         };
-        var animate = !isMobile.any();
+        var animate = false;
         var ctx = document.getElementById("queryOverTimeChart").getContext("2d");
         timeLineChart = new Chart(ctx).Line(chartData,
             {
