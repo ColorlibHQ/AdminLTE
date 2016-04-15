@@ -116,21 +116,22 @@
     function getAllQueries() {
         $allQueries = array("data" => array());
         $log = readInLog();
-        $dns_queries = getDnsQueries($log);
+        $dns_queries = getDnsQueriesAll($log);
 
         foreach ($dns_queries as $query) {
             $time = date_create(substr($query, 0, 16));
             $exploded = explode(" ", trim($query));
+            $tmp = $exploded[count($exploded)-4];
             
-            if (substr($exploded[count($exploded)-4], 0, 5) == "query"){
+            if (substr($tmp, 0, 5) == "query"){
               $type = substr($exploded[count($exploded)-4], 6, -1);
               $domain = $exploded[count($exploded)-3];
               $client = $exploded[count($exploded)-1];
             }
-            elseif (substr($exploded[count($exploded)-4], 0, 9) == "forwarded" ){
+            elseif (substr($tmp, 0, 9) == "forwarded" ){
               $status="OK";
             }
-            elseif (substr($exploded[count($exploded)-4], 0, 5) == "/etc/" ){
+            elseif (substr($tmp, strlen($tmp) - 12, 12)  == "gravity.list" ){
               $status="Pi-holed";
             }
             
@@ -171,6 +172,9 @@
     }
     function getDnsQueries($log) {
         return array_filter($log, "findQueries");
+    }
+    function getDnsQueriesAll($log) {
+      return array_filter($log, "findQueriesAll");
     }
     function getBlockedQueries($log) {
         return array_filter($log, "findAds");
@@ -246,8 +250,12 @@
         return array_reverse($recent);
     }
 
+    function findQueriesAll($var) {
+        return strpos($var, ": query[") || strpos($var, "gravity.list") || strpos($var, ": forwarded") !== false;
+    }
+    
     function findQueries($var) {
-        return strpos($var, ": query[") || strpos($var, "gravity.list") || strpos($var, ": forwarded")!== false;
+        return strpos($var, ": query[") !== false;
     }
 
     function findAds($var) {
