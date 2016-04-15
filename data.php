@@ -127,6 +127,7 @@
               $type = substr($exploded[count($exploded)-4], 6, -1);
               $domain = $exploded[count($exploded)-3];
               $client = $exploded[count($exploded)-1];
+              $status = "";
             }
             elseif (substr($tmp, 0, 9) == "forwarded" ){
               $status="OK";
@@ -143,7 +144,6 @@
                 $client,
                 $status,
               )); 
-              $status = "";
             }
             
             
