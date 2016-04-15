@@ -118,34 +118,34 @@
         $log = readInLog();
         $dns_queries = getDnsQueries($log);
 
-        $fileName = '/etc/pihole/gravity.list';
-        //Turn gravity.list into an array
-        $lines = explode("\n", file_get_contents($fileName));
-
-        //Create a new array and set domain name as index instead of value, with value as 1
-        foreach(array_values($lines) as $v){
-            $new_lines[trim(strstr($v, ' '))] = 1;
-        }
-
         foreach ($dns_queries as $query) {
             $time = date_create(substr($query, 0, 16));
             $exploded = explode(" ", trim($query));
-
-            //Is index of the domain name set?
-            if (isset($new_lines[$exploded[count($exploded)-3]])){
-            	$extra = "Pi-holed";
+            
+            if (substr($exploded[count($exploded)-4], 0, 5) == "query"){
+              $type = substr($exploded[count($exploded)-4], 6, -1);
+              $domain = $exploded[count($exploded)-3];
+              $client = $exploded[count($exploded)-1];
             }
-            else
-            {
-            	$extra = "OK";
+            elseif (substr($exploded[count($exploded)-4], 0, 9) == "forwarded" ){
+              $status="OK";
             }
-            array_push($allQueries['data'], array(
+            elseif (substr($exploded[count($exploded)-4], 0, 5) == "/etc/" ){
+              $status="Pi-holed";
+            }
+            
+            if ( $status != ""){
+              array_push($allQueries['data'], array(
                 $time->format('Y-m-d\TH:i:s'),
-                substr($exploded[count($exploded)-4], 6, -1),
-                $exploded[count($exploded)-3],
-                $exploded[count($exploded)-1],
-                $extra,
-            ));
+                $type,
+                $domain,
+                $client,
+                $status,
+              )); 
+              $status = "";
+            }
+            
+            
         }
         return $allQueries;
     }
@@ -247,7 +247,7 @@
     }
 
     function findQueries($var) {
-        return strpos($var, ": query[") !== false;
+        return strpos($var, ": query[") || strpos($var, "gravity.list") || strpos($var, ": forwarded")!== false;
     }
 
     function findAds($var) {
