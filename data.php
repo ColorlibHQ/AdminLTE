@@ -132,7 +132,7 @@
             elseif (substr($tmp, 0, 9) == "forwarded" ){
               $status="OK";
             }
-            elseif (substr($tmp, strlen($tmp) - 12, 12)  == "gravity.list" ){
+            elseif (substr($tmp, strlen($tmp) - 12, 12)  == "gravity.list"  && $exploded[count($exploded)-5] != "read"){
               $status="Pi-holed";
             }
             
