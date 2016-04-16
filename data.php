@@ -1,7 +1,8 @@
 <?php    
     $log = array();
     $ipv6 = file_exists("/etc/pihole/.useIPv6");
-
+    $hosts = file_exists("/etc/hosts") ? file("/etc/hosts") : array();
+    
     /*******   Public Members ********/
     function getSummaryData() {
         global $ipv6;        
@@ -102,7 +103,7 @@
         $sources = array();
         foreach($dns_queries as $query) {
             $exploded = explode(" ", $query);
-            $ip = trim($exploded[count($exploded)-1]);
+            $ip = hasHostName(trim($exploded[count($exploded)-1]));
             if (isset($sources[$ip])) {
                 $sources[$ip]++;
             }
@@ -110,7 +111,11 @@
                 $sources[$ip] = 1;
             }
         }
-        return $sources;
+        arsort($sources);
+        array_slice($sources, 0, 10);
+        return Array(
+            'top_sources' => $sources
+        );
     }
 
     function getAllQueries() {
@@ -141,7 +146,7 @@
                 $time->format('Y-m-d\TH:i:s'),
                 $type,
                 $domain,
-                $client,
+                hasHostName($client),
                 $status,
               )); 
             }
@@ -269,19 +274,15 @@
     function findForwards($var) {
         return strpos($var, ": forwarded") !== false;
     }
-
-/*
-    $data = array(
-        'domains_being_blocked' => $domains_being_blocked,
-        'dns_queries_today' => $dns_queries_today,
-        'ads_blocked_today' => $ads_blocked_today,
-        'ads_percentage_today' => $ads_percentage_today,
-        'top_queries' => $topQueries,
-        'top_ads' => $topAds,
-        'domains_over_time' => $domains_over_time,
-        'ads_over_time' => $ads_over_time,
-        'recent_queries' => getRecent($dns_queries, 20),
-    );
-
- */
+    
+    function hasHostName($var){
+        global $hosts;
+        foreach ($hosts as $host){
+            $x = explode("\t", $host);
+            if ( $var == $x[0] ){
+                $var = $x[1] . "($var)";
+            }
+        }
+        return $var;
+    }
 ?>
