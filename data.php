@@ -111,7 +111,11 @@
                 $sources[$ip] = 1;
             }
         }
-        return $sources;
+        arsort($sources);
+        array_slice($sources, 0, 10);
+        return Array(
+            'top_sources' => $sources
+        );
     }
 
     function getAllQueries() {
@@ -283,19 +287,4 @@
         }
         return $var;
     }
-
-/*
-    $data = array(
-        'domains_being_blocked' => $domains_being_blocked,
-        'dns_queries_today' => $dns_queries_today,
-        'ads_blocked_today' => $ads_blocked_today,
-        'ads_percentage_today' => $ads_percentage_today,
-        'top_queries' => $topQueries,
-        'top_ads' => $topAds,
-        'domains_over_time' => $domains_over_time,
-        'ads_over_time' => $ads_over_time,
-        'recent_queries' => getRecent($dns_queries, 20),
-    );
-
- */
 ?>
