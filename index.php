@@ -267,21 +267,15 @@
                 legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].strokeColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
                 animation : animate
             }
-        );
-        
-        var radarChartData = {
-            labels: [],
-            datasets: [
-                {
-                    label: "Top Clients",
-                    fillColor: "rgba(220,220,220,0.5)",
-                    strokeColor: "rgba(0, 166, 90,.8)",
-                    data: []
-                }
-            ]
-        };
+        );        
+
         ctx = document.getElementById("topClientsChart").getContext("2d");
-        topClientsChart = new Chart(ctx).Radar(radarChartData, {animation : animate});
+        topClientsChart = new Chart(ctx).Doughnut([],
+            {
+                legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].strokeColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
+                animation : animate
+            }
+        );        
     });
     
     // Functions to oupdate data in page
@@ -329,9 +323,14 @@
     
     function updateTopClientsChart() {
         $.getJSON("api.php?getQuerySources", function(data) {
-            console.log(data);
+            var colors = [];
+            $.each($.AdminLTE.options.colors, function(key, value) { colors.push(value); });
             $.each(data, function(key, value) {
-                topClientsChart.addData([value], key);
+                topClientsChart.addData({
+                    value: value,
+                    color: colors.shift(),
+                    label: key
+                });
             });
 
            $('#top-clients .overlay').remove();
