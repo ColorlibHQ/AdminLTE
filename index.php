@@ -86,7 +86,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
     <div class="box" id="query-types">
         <div class="box-header with-border">
           <h3 class="box-title">Query Types</h3>
@@ -102,23 +102,7 @@
         <!-- /.box-body -->
       </div>
     </div>
-    <div class="col-md-4">
-    <div class="box" id="top-clients">
-        <div class="box-header with-border">
-          <h3 class="box-title">Top Clients</h3>
-        </div>
-        <div class="box-body">
-          <div class="chart">
-            <canvas id="topClientsChart" style="height: 247px; width: 466px;" width="932" height="494"></canvas>
-          </div>
-        </div>
-        <div class="overlay">
-          <i class="fa fa-refresh fa-spin"></i>
-        </div>
-        <!-- /.box-body -->
-      </div>
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
     <div class="box" id="forward-destinations">
         <div class="box-header with-border">
           <h3 class="box-title">Forward Destinations</h3>
@@ -137,7 +121,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+        <div class="col-md-4">
       <div class="box" id="domain-frequency">
         <div class="box-header with-border">
           <h3 class="box-title">Top Domains</h3>
@@ -160,7 +144,7 @@
       <!-- /.box -->
     </div>
     <!-- /.col -->
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="box" id="ad-frequency">
         <div class="box-header with-border">
           <h3 class="box-title">Top Advertisers</h3>
@@ -176,6 +160,29 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        <div class="overlay">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-4">
+      <div class="box" id="client-frequency">
+        <div class="box-header with-border">
+          <h3 class="box-title">Top Clients</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table class="table table-bordered">
+            <tbody><tr>
+              <th>Client</th>
+              <th>Requests</th>
+              <th>Frequency</th>
+            </tr>
+          </tbody></table>
         </div>
         <div class="overlay">
           <i class="fa fa-refresh fa-spin"></i>
@@ -267,15 +274,7 @@
                 legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].strokeColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
                 animation : animate
             }
-        );        
-
-        ctx = document.getElementById("topClientsChart").getContext("2d");
-        topClientsChart = new Chart(ctx).Doughnut([],
-            {
-                legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].strokeColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
-                animation : animate
-            }
-        );        
+        );
     });
     
     // Functions to oupdate data in page
@@ -322,19 +321,15 @@
     }
     
     function updateTopClientsChart() {
-        $.getJSON("api.php?getQuerySources", function(data) {
-            var colors = [];
-            $.each($.AdminLTE.options.colors, function(key, value) { colors.push(value); });
-            $.each(data, function(key, value) {
-                topClientsChart.addData({
-                    value: value,
-                    color: colors.shift(),
-                    label: key
-                });
-            });
-
-           $('#top-clients .overlay').remove();
-           //$('#queries-over-time').append(timeLineChart.generateLegend());
+        $.getJSON("api.php?summaryRaw&getQuerySources", function(data) {
+            var clienttable =  $('#client-frequency').find('tbody:last');
+            for (domain in data.top_sources) {
+                clienttable.append('<tr> <td>' + domain + 
+                    '</td> <td>' + data.top_sources[domain] + '</td> <td> <div class="progress progress-sm"> <div class="progress-bar progress-bar-blue" style="width: ' +
+                     data.top_sources[domain] / data.dns_queries_today * 100 + '%"></div> </div> </td> </tr> ');
+            }
+            
+            $('#client-frequency .overlay').remove();
         });
     }
     
@@ -374,6 +369,7 @@
         $.getJSON("api.php?summaryRaw&topItems", function(data) {
             var domaintable = $('#domain-frequency').find('tbody:last');
             var adtable = $('#ad-frequency').find('tbody:last');
+            
             for (domain in data.top_queries) {
                 domaintable.append('<tr> <td>' + domain + 
                     '</td> <td>' + data.top_queries[domain] + '</td> <td> <div class="progress progress-sm"> <div class="progress-bar progress-bar-green" style="width: ' +
