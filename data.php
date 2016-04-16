@@ -276,6 +276,8 @@
         foreach ($hosts as $host){
             $x = explode("\t", $host);
             if ( $var == $x[0] ){
+                //For some reason there is an extra space...
+                $x[1] = substr($x[1],0,strlen($x[1]) -1);
                 $var = $var . " ($x[1])";
             }
         }
