@@ -112,7 +112,7 @@
             }
         }
         arsort($sources);
-        array_slice($sources, 0, 10);
+        $sources = array_slice($sources, 0, 10);
         return Array(
             'top_sources' => $sources
         );
