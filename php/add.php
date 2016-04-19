@@ -4,9 +4,9 @@ if(!isset($_GET['domain'], $_GET['list']))
 
 switch($_GET['list']) {
     case "white":
-        exec("/usr/local/bin/whitelist.sh -q ${_GET['domain']}");
+        exec("sudo pihole -w -q ${_GET['domain']}");
         break;
     case "black":
-        exec("/usr/local/bin/blacklist.sh -q ${_GET['domain']}");
+        exec("sudo pihole -b -q ${_GET['domain']}");
         break;
 }
