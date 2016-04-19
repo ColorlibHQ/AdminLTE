@@ -1,11 +1,6 @@
 <?php
-if(!isset($_GET['domain'], $_GET['list'], $_GET['pass']))
+if(!isset($_GET['domain'], $_GET['list']))
     die();
-
-include "functions.php";
-
-if(!checkPass($_GET['pass']))
-    die("Wrong Password");
 
 switch($_GET['list']) {
     case "white":
