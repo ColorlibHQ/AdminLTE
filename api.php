@@ -47,6 +47,6 @@
         $data = array_merge($data, getAllQueries());
     }
 
-
-    echo json_encode(htmlspecialchars($data));
+    foreach ($data as &$d) $d = htmlspecialchars($d);
+    echo json_encode($data);
 ?>
