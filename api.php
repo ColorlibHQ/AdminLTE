@@ -47,6 +47,18 @@
         $data = array_merge($data, getAllQueries());
     }
 
-
+    function filterArray(&$a) {
+	    $sanArray = array();
+	    foreach ($a as $k=>$v) {
+	        if (is_array($v)) {
+	            $sanArray[htmlspecialchars($k)] = filterArray($v);
+            } else {
+	            $sanArray[htmlspecialchars($k)] = htmlspecialchars($v);
+            }
+	    }
+	    return $sanArray;
+    }
+    
+    $data = filterArray($data);
     echo json_encode($data);
 ?>
