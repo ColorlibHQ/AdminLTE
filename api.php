@@ -48,5 +48,5 @@
     }
 
 
-    echo htmlspecialchars(json_encode($data));
+    echo json_encode(htmlspecialchars($data));
 ?>
