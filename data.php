@@ -1,11 +1,11 @@
-<?php    
+<?php
     $log = array();
     $ipv6 = file_exists("/etc/pihole/.useIPv6");
     $hosts = file_exists("/etc/hosts") ? file("/etc/hosts") : array();
-    
+
     /*******   Public Members ********/
     function getSummaryData() {
-        global $ipv6;        
+        global $ipv6;
         $log = readInLog();
         $domains_being_blocked = gravityCount() / ($ipv6 ? 2 : 1);
 
@@ -23,7 +23,7 @@
         );
     }
 
-    function getOverTimeData() {        
+    function getOverTimeData() {
         $log = readInLog();
         $dns_queries = getDnsQueries($log);
         $ads_blocked = getBlockedQueries($log);
@@ -37,7 +37,7 @@
         );
     }
 
-    function getTopItems() {        
+    function getTopItems() {
         $log = readInLog();
         $dns_queries = getDnsQueries($log);
         $ads_blocked = getBlockedQueries($log);
@@ -127,7 +127,7 @@
             $time = date_create(substr($query, 0, 16));
             $exploded = explode(" ", trim($query));
             $tmp = $exploded[count($exploded)-4];
-            
+
             if (substr($tmp, 0, 5) == "query"){
               $type = substr($exploded[count($exploded)-4], 6, -1);
               $domain = $exploded[count($exploded)-3];
@@ -140,7 +140,7 @@
             elseif (substr($tmp, strlen($tmp) - 12, 12)  == "gravity.list"  && $exploded[count($exploded)-5] != "read"){
               $status="Pi-holed";
             }
-            
+
             if ( $status != ""){
               array_push($allQueries['data'], array(
                 $time->format('Y-m-d\TH:i:s'),
@@ -148,10 +148,10 @@
                 $domain,
                 hasHostName($client),
                 $status,
-              )); 
+              ));
             }
-            
-            
+
+
         }
         return $allQueries;
     }
@@ -164,11 +164,11 @@
         $NGC4889 = fopen($gravity, "r");
         while ($stars = fread($NGC4889, 1024000)) {
           $swallowed += substr_count($stars, "\n");
-        }      
+        }
         fclose($NGC4889);
-        
+
         return $swallowed;
-            
+
     }
     function readInLog() {
         global $log;
@@ -226,7 +226,7 @@
     function alignTimeArrays(&$times1, &$times2) {
         $max = max(array(max(array_keys($times1)), max(array_keys($times2))));
         $min = min(array(min(array_keys($times1)), min(array_keys($times2))));
-        
+
         for ($i = $min; $i <= $max; $i++) {
             if (!isset($times2[$i])) {
                 $times2[$i] = 0;
@@ -258,7 +258,7 @@
     function findQueriesAll($var) {
         return strpos($var, ": query[") || strpos($var, "gravity.list") || strpos($var, ": forwarded") !== false;
     }
-    
+
     function findQueries($var) {
         return strpos($var, ": query[") !== false;
     }
@@ -274,11 +274,11 @@
     function findForwards($var) {
         return strpos($var, ": forwarded") !== false;
     }
-    
+
     function hasHostName($var){
         global $hosts;
         foreach ($hosts as $host){
-            $x = explode("\t", $host);
+            $x = preg_split('/\s+/', $host);
             if ( $var == $x[0] ){
                 $var = $x[1] . "($var)";
             }
