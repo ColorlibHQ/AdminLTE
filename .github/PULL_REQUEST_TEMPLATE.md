@@ -8,4 +8,4 @@ Changes proposed in this pull request:
 
 - 
 
-@pihole/dashboard
+@pi-hole/dashboard

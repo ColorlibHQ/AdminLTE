@@ -104,7 +104,14 @@
                 </div>
                 <div class="pull-left info">
                     <p>Status</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Nominal</a>
+                    <?php 
+                        $pistatus = exec('pgrep dnsmasq | wc -l');
+                        if ($pistatus > "0") {
+                            echo '<a href="#"><i class="fa fa-circle" style="color:#7FFF00"></i> Active</a>';
+                        } else {
+                            echo '<a href="#"><i class="fa fa-circle" style="color:#FF0000"></i> Offline</a>';
+                        }
+                    ?>
                 </div>
             </div>
             <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -123,17 +130,21 @@
                     </a>
                 </li>
                 <!-- Whitelist -->
+                <!--
                 <li>
                     <a href="list.php?l=white">
                         <i class="fa fa-pencil-square-o"></i> <span>Whitelist</span>
                     </a>
                 </li>
+                -->
                 <!-- Blacklist -->
+                <!--
                 <li>
                     <a href="list.php?l=black">
                         <i class="fa fa-pencil-square-o"></i> <span>Blacklist</span>
                     </a>
                 </li>
+                -->
                 <!-- Donate -->
                 <li>
                     <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3J2L3Z4DHW9UY">
