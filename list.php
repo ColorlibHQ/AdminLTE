@@ -10,6 +10,13 @@ function getFullName() {
     else
         echo "Blacklist";
 }
+
+// Generate CSRF token
+session_start();
+if(empty($_SESSION['token'])) {
+    $_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(32));
+}
+$token = $_SESSION['token'];
 ?>
 
 <!-- Title -->
@@ -86,8 +93,8 @@ require "footer.php";
         document.getElementById("alFailure").hidden = true;
         $.ajax({
             url: "php/add.php",
-            method: "get",
-            data: {"domain":domain, "list":"<?php echo $list ?>"},
+            method: "post",
+            data: {"domain":domain, "list":"<?php echo $list ?>", "token":"<?php echo $token ?>"},
             success: function(response) {
                 if(response.length !== 0)
                     return;
@@ -104,8 +111,8 @@ require "footer.php";
         $("#"+index).hide("highlight");
         $.ajax({
             url: "php/sub.php",
-            method: "get",
-            data: {"domain":entry, "list":"<?php echo $list ?>"},
+            method: "post",
+            data: {"domain":entry, "list":"<?php echo $list ?>", "token":"<?php echo $token ?>"},
             success: function(response) {
                 if(response.length !== 0)
                     return;

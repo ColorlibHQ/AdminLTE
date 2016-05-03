@@ -1,12 +1,18 @@
 <?php
-if(!isset($_GET['domain'], $_GET['list']))
+if(!isset($_POST['domain'], $_POST['list'], $_POST['token']))
     die();
 
-switch($_GET['list']) {
+session_start();
+
+// Check CSRF token
+if(!hash_equals($_SESSION['token'], $_POST['token']))
+    die("Wrong token!");
+
+switch($_POST['list']) {
     case "white":
-        exec("sudo pihole -w -q ${_GET['domain']}");
+        exec("sudo pihole -w -q ${_POST['domain']}");
         break;
     case "black":
-        exec("sudo pihole -b -q ${_GET['domain']}");
+        exec("sudo pihole -b -q ${_POST['domain']}");
         break;
 }
