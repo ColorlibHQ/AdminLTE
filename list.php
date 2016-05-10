@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "header.html";
 
 $list = $_GET['l'];
@@ -12,7 +13,6 @@ function getFullName() {
 }
 
 // Generate CSRF token
-session_start();
 if(empty($_SESSION['token'])) {
     $_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(32));
 }
