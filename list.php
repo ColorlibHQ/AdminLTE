@@ -53,6 +53,7 @@ require "footer.php";
 
 <script>
     window.onload = refresh;
+    $.ajaxSetup({cache: false});
     
     function refresh() {
         $.ajax({
