@@ -1,5 +1,5 @@
 ﻿import {Component, OnInit} from 'angular2/core';
-declare var jQuery: any;
+declare var $: any;
 
 @Component({
     selector: 'app',
@@ -8,6 +8,15 @@ declare var jQuery: any;
 
 export class AppComponent implements OnInit {
     ngOnInit() {
-        jQuery.AdminLTE.layout.activate();
+        //Easy access to options
+        var o = $.AdminLTE.options;
+
+        //Activate the layout maker
+        $.AdminLTE.layout.activate();
+
+        //Enable control sidebar
+        if (o.enableControlSidebar) {
+            $.AdminLTE.controlSidebar.activate();
+        }
     }
 }
