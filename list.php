@@ -54,6 +54,12 @@ require "footer.php";
 <script>
     window.onload = refresh;
     $.ajaxSetup({cache: false});
+    $(document).keypress(function(e) {
+        if(e.which === 13 && $("#domain").is(":focus")) {
+            // Enter was pressed, and the input has focus
+            add();
+        }
+    });
     
     function refresh() {
         $.ajax({
