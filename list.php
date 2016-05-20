@@ -34,13 +34,16 @@ $token = $_SESSION['token'];
 </div>
 
 <!-- Alerts -->
-<div id="alInfo" class="alert alert-info" role="alert" hidden="true">
+<div id="alInfo" class="alert alert-info alert-dismissible fade in" role="alert" hidden="true">
+    <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     Adding to the <?php getFullName(); ?>...
 </div>
-<div id="alSuccess" class="alert alert-success" role="alert" hidden="true">
+<div id="alSuccess" class="alert alert-success alert-dismissible fade in" role="alert" hidden="true">
+    <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     Success! The list will refresh.
 </div>
-<div id="alFailure" class="alert alert-danger" role="alert" hidden="true">
+<div id="alFailure" class="alert alert-danger alert-dismissible fade in" role="alert" hidden="true">
+    <button type="button" class="close" data-hide="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     Failure! Something went wrong.
 </div>
 
@@ -59,6 +62,11 @@ require "footer.php";
             // Enter was pressed, and the input has focus
             add();
         }
+    });
+    $(function(){
+        $("[data-hide]").on("click", function(){
+            $(this).closest("." + $(this).attr("data-hide")).hide();
+        });
     });
     
     function refresh() {
