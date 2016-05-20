@@ -93,8 +93,8 @@ require "footer.php";
                             '<span class="glyphicon glyphicon-trash"></span></button></li>'
                         );
                     });
-                    list.fadeIn("fast");
                 }
+                list.fadeIn("fast");
             },
             error: function(jqXHR, exception) {
                 $("#alFailure").show();
