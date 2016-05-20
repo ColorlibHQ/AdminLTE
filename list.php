@@ -100,6 +100,7 @@ require "footer.php";
                 if(response.length !== 0)
                     return;
                 $("#alSuccess").show();
+                domain.val("");
                 refresh();
             },
             error: function(jqXHR, exception) {
