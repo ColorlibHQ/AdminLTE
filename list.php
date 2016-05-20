@@ -29,7 +29,7 @@ $token = $_SESSION['token'];
     <input id="domain" type="text" class="form-control" placeholder="Add a domain (example.com or sub.example.com)">
     <span class="input-group-btn">
         <button class="btn btn-default" type="button" onclick="add()">Add</button>
-        <button class="btn btn-default" type="button" onclick="refresh()">Refresh</button>
+        <button class="btn btn-default" type="button" onclick="refresh(true)">Refresh</button>
     </span>
 </div>
 
@@ -55,7 +55,7 @@ require "footer.php";
 ?>
 
 <script>
-    window.onload = refresh;
+    window.onload = refresh(false);
     $.ajaxSetup({cache: false});
     $(document).keypress(function(e) {
         if(e.which === 13 && $("#domain").is(":focus")) {
@@ -69,13 +69,16 @@ require "footer.php";
         });
     });
     
-    function refresh() {
+    function refresh(fade) {
+        var list = $("#list");
+        if(fade) {
+            list.fadeOut(100);
+        }
         $.ajax({
             url: "php/get.php",
             method: "get",
             data: {"list":"<?php echo $list ?>"},
             success: function(response) {
-                var list = $("#list");
                 list.html("");
                 var data = JSON.parse(response);
                 
@@ -90,6 +93,7 @@ require "footer.php";
                             '<span class="glyphicon glyphicon-trash"></span></button></li>'
                         );
                     });
+                    list.fadeIn("fast");
                 }
             },
             error: function(jqXHR, exception) {
@@ -103,9 +107,12 @@ require "footer.php";
         if(domain.val().length === 0)
             return;
         
-        $("#alInfo").show();
-        $("#alSuccess").hide();
-        $("#alFailure").hide();
+        var alInfo = $("#alInfo");
+        var alSuccess = $("#alSuccess");
+        var alFailure = $("#alFailure");
+        alInfo.show();
+        alSuccess.hide();
+        alFailure.hide();
         $.ajax({
             url: "php/add.php",
             method: "post",
@@ -113,18 +120,31 @@ require "footer.php";
             success: function(response) {
                 if(response.length !== 0)
                     return;
-                $("#alSuccess").show();
+                alSuccess.show();
+                alSuccess.delay(1000).fadeOut(2000, function() {
+                    alSuccess.hide();
+                });
+                alInfo.delay(1000).fadeOut(2000, function() {
+                    alInfo.hide();
+                });
                 domain.val("");
-                refresh();
+                refresh(true);
             },
             error: function(jqXHR, exception) {
-                $("#alFailure").show();
+                alFailure.show();
+                alFailure.delay(1000).fadeOut(2000, function() {
+                    alFailure.hide();
+                });
+                alInfo.delay(1000).fadeOut(2000, function() {
+                    alInfo.hide();
+                });
             }
         });
     }
     
     function sub(index, entry) {
-        $("#"+index).hide("highlight");
+        var domain = $("#"+index);
+        domain.hide("highlight");
         $.ajax({
             url: "php/sub.php",
             method: "post",
@@ -132,7 +152,7 @@ require "footer.php";
             success: function(response) {
                 if(response.length !== 0)
                     return;
-                $("#list #"+index+"").remove();
+                domain.remove();
             },
             error: function(jqXHR, exception) {
                 alert("Failed to remove the domain!");
