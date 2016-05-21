@@ -18,6 +18,9 @@ if(empty($_SESSION['token'])) {
 }
 $token = $_SESSION['token'];
 ?>
+<!-- Send PHP info to JS -->
+<div id="token" hidden><?php echo $token ?></div>
+<div id="list-type" hidden><?php echo $list ?></div>
 
 <!-- Title -->
 <div class="page-header">
@@ -28,8 +31,8 @@ $token = $_SESSION['token'];
 <div class="form-group input-group">
     <input id="domain" type="text" class="form-control" placeholder="Add a domain (example.com or sub.example.com)">
     <span class="input-group-btn">
-        <button class="btn btn-default" type="button" onclick="add()">Add</button>
-        <button class="btn btn-default" type="button" onclick="refresh(true)">Refresh</button>
+        <button id="btnAdd" class="btn btn-default" type="button">Add</button>
+        <button id="btnRefresh" class="btn btn-default" type="button">Refresh</button>
     </span>
 </div>
 
@@ -54,109 +57,4 @@ $token = $_SESSION['token'];
 require "footer.php";
 ?>
 
-<script>
-    window.onload = refresh(false);
-    $.ajaxSetup({cache: false});
-    $(document).keypress(function(e) {
-        if(e.which === 13 && $("#domain").is(":focus")) {
-            // Enter was pressed, and the input has focus
-            add();
-        }
-    });
-    $(function(){
-        $("[data-hide]").on("click", function(){
-            $(this).closest("." + $(this).attr("data-hide")).hide();
-        });
-    });
-    
-    function refresh(fade) {
-        var list = $("#list");
-        if(fade) {
-            list.fadeOut(100);
-        }
-        $.ajax({
-            url: "php/get.php",
-            method: "get",
-            data: {"list":"<?php echo $list ?>"},
-            success: function(response) {
-                list.html("");
-                var data = JSON.parse(response);
-                
-                if(data.length === 0) {
-                    list.html('<div class="alert alert-info" role="alert">Your <?php getFullName(); ?> is empty!</div>');
-                }
-                else {
-                    data.forEach(function (entry, index) {
-                        list.append(
-                            '<li id="' + index + '" class="list-group-item clearfix">' + entry +
-                            '<button class="btn btn-danger btn-xs pull-right" type="button" onclick="sub(\'' + index + '\', \'' + entry + '\')">' +
-                            '<span class="glyphicon glyphicon-trash"></span></button></li>'
-                        );
-                    });
-                }
-                list.fadeIn("fast");
-            },
-            error: function(jqXHR, exception) {
-                $("#alFailure").show();
-            }
-        });
-    }
-    
-    function add() {
-        var domain = $("#domain");
-        if(domain.val().length === 0)
-            return;
-        
-        var alInfo = $("#alInfo");
-        var alSuccess = $("#alSuccess");
-        var alFailure = $("#alFailure");
-        alInfo.show();
-        alSuccess.hide();
-        alFailure.hide();
-        $.ajax({
-            url: "php/add.php",
-            method: "post",
-            data: {"domain":domain.val(), "list":"<?php echo $list ?>", "token":"<?php echo $token ?>"},
-            success: function(response) {
-                if(response.length !== 0)
-                    return;
-                alSuccess.show();
-                alSuccess.delay(1000).fadeOut(2000, function() {
-                    alSuccess.hide();
-                });
-                alInfo.delay(1000).fadeOut(2000, function() {
-                    alInfo.hide();
-                });
-                domain.val("");
-                refresh(true);
-            },
-            error: function(jqXHR, exception) {
-                alFailure.show();
-                alFailure.delay(1000).fadeOut(2000, function() {
-                    alFailure.hide();
-                });
-                alInfo.delay(1000).fadeOut(2000, function() {
-                    alInfo.hide();
-                });
-            }
-        });
-    }
-    
-    function sub(index, entry) {
-        var domain = $("#"+index);
-        domain.hide("highlight");
-        $.ajax({
-            url: "php/sub.php",
-            method: "post",
-            data: {"domain":entry, "list":"<?php echo $list ?>", "token":"<?php echo $token ?>"},
-            success: function(response) {
-                if(response.length !== 0)
-                    return;
-                domain.remove();
-            },
-            error: function(jqXHR, exception) {
-                alert("Failed to remove the domain!");
-            }
-        });
-    }
-</script>
+<script src="js/pihole/list.js"></script>
