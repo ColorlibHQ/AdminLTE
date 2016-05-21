@@ -50,8 +50,8 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <!-- User Account: style can be found in dropdown.less -->
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <li id="dropdown-menu" class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle">
                             <img src="img/pihole-160x160.jpg" class="user-image" alt="Pi-hole logo" />
                             <span class="hidden-xs">Pi-hole</span>
                         </a>
@@ -76,8 +76,17 @@
                                     <a href="https://github.com/pi-hole/pi-hole/releases">Updates</a>
                                 </div>
                             </li>
-                            <!-- Menu Footer-->
+                            <!-- Menu Footer -->
                             <li class="user-footer">
+                                <!-- Update alerts -->
+                                <div id="alPiholeUpdate" class="alert alert-info alert-dismissible fade in" role="alert" hidden>
+                                    <a class="alert-link" href="https://github.com/pi-hole/pi-hole/releases">There's an update available for this Pi-hole!</a>
+                                </div>
+                                <div id="alWebUpdate" class="alert alert-info alert-dismissible fade in" role="alert" hidden>
+                                    <a class="alert-link" href="https://github.com/pi-hole/AdminLTE/releases">There's an update available for this Web Interface!</a>
+                                </div>
+                                
+                                <!-- PayPal -->
                                 <div>
                                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                                         <input type="hidden" name="cmd" value="_s-xclick">
