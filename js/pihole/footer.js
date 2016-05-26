@@ -8,6 +8,9 @@ $("body").on("click", function(event) {
     }
 });
 
+var piholeVersion = $("#piholeVersion").html();
+var webVersion = $("#webVersion").html();
+
 // Credit for following function: https://gist.github.com/alexey-bass/1115557
 function versionCompare(left, right) {
     if (typeof left + typeof right != 'stringstring')
@@ -30,7 +33,7 @@ function versionCompare(left, right) {
 
 // Update check
 $.getJSON("https://api.github.com/repos/pi-hole/pi-hole/releases/latest", function(json) {
-    if(versionCompare("<?php echo substr($piholeVersion, 1); ?>", json.tag_name.slice(1)) < 0) {
+    if(versionCompare(piholeVersion, json.tag_name.slice(1)) < 0) {
         // Alert user
         $("#alPiholeUpdate").show();
         if(!$("#dropdown-menu").hasClass("open")) {
@@ -39,7 +42,7 @@ $.getJSON("https://api.github.com/repos/pi-hole/pi-hole/releases/latest", functi
     }
 });
 $.getJSON("https://api.github.com/repos/pi-hole/AdminLTE/releases/latest", function(json) {
-    if(versionCompare("<?php echo substr($webVersion, 1); ?>", json.tag_name.slice(1)) < 0) {
+    if(versionCompare(webVersion, json.tag_name.slice(1)) < 0) {
         // Alert user
         $("#alWebUpdate").show();
         if(!$("#dropdown-menu").hasClass("open")) {
