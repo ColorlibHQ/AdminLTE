@@ -185,14 +185,6 @@
     <!-- /.col -->
 </div>
 <!-- /.row -->
-<!-- JS Warning -->
-<div>
-    <link rel="stylesheet" type="text/css" href="css/js-warn.css">
-    <input type="checkbox" id="js-hide" />
-    <div class="js-warn" id="js-warn-exit"><h1>Javascript Is Disabled</h1><p>Javascript seems to be disabled. This will break some site features.</p>
-        <p>To enable Javascript click <a href="http://www.enable-javascript.com/" target="_blank">here</a></p><label for="js-hide">Close</label></div>
-</div>
-<!-- /JS Warning -->
 
 <?php
     require "footer.php";

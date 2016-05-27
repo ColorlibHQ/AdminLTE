@@ -1,7 +1,3 @@
-// Remove JS warning
-var jswarn = document.getElementById("js-warn-exit");
-jswarn.parentNode.removeChild(jswarn);
-
 $(document).ready(function() {
     // Pull in data via AJAX
 
