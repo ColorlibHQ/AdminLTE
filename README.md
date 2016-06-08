@@ -107,6 +107,9 @@ Change log
 
 **For the most recent change log, visit the [releases page](https://github.com/almasaeed2010/AdminLTE/releases).** We will add a detailed release notes to each new release. 
 
+**v2.3.…:**
+- Users now must explicitly include Google fonts themselves
+
 **v2.3.1:**
 - Fix sidebar issue #676
 - Fix BootLint warnings and errors
