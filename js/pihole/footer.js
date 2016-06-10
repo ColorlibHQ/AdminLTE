@@ -52,8 +52,8 @@ $.getJSON("https://api.github.com/repos/pi-hole/AdminLTE/releases/latest", funct
 });
 
 /*
- * Make sure that Pi-hole is updated to at least v2.6.4, since that is needed to use the sudo
+ * Make sure that Pi-hole is updated to at least v2.7, since that is needed to use the sudo
  * features of the interface
  */
-if(versionCompare(piholeVersion, "v2.6.4") < 0)
-    alert("Pi-hole needs to be updated to at least v2.6.4 before you can use features such as whitelisting/blacklisting from this web interface!")
+if(versionCompare(piholeVersion, "v2.7") < 0)
+    alert("Pi-hole needs to be updated to at least v2.7 before you can use features such as whitelisting/blacklisting from this web interface!")
