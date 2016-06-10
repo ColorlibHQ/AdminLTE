@@ -17,10 +17,10 @@ if(!hash_equals($_SESSION['token'], $_POST['token']))
     die("Wrong token");
 
 switch($_POST['list']) {
-    case "white":
-        exec("sudo pihole -w -q ${_POST['domain']}");
+    case "white":        
+        echo exec("sudo pihole -w -q ${_POST['domain']}");
         break;
     case "black":
-        exec("sudo pihole -b -q ${_POST['domain']}");
+        echo exec("sudo pihole -b -q ${_POST['domain']}");
         break;
 }
