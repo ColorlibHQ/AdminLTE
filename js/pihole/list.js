@@ -85,8 +85,15 @@ function add() {
         method: "post",
         data: {"domain":domain.val(), "list":list_type, "token":token},
         success: function(response) {
-            if(response.length !== 0)
-                return;
+          if (response.indexOf("not a valid argument")>=0) {
+            alFailure.show();
+            alFailure.delay(1000).fadeOut(2000, function() {
+                alFailure.hide();
+            });
+            alInfo.delay(1000).fadeOut(2000, function() {
+                alInfo.hide();
+            });
+          } else {
             alSuccess.show();
             alSuccess.delay(1000).fadeOut(2000, function() {
                 alSuccess.hide();
@@ -96,6 +103,7 @@ function add() {
             });
             domain.val("");
             refresh(true);
+          }
         },
         error: function(jqXHR, exception) {
             alFailure.show();
