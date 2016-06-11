@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://api.github.com; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'">
     <title>Pi-hole Admin Console</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -27,11 +28,20 @@
     </style>
     
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.min.js"></script>
-    <script src="js/respond.min.js"></script>
+    <script src="js/other/html5shiv.min.js"></script>
+    <script src="js/other/respond.min.js"></script>
     <![endif]-->
 </head>
 <body class="skin-blue sidebar-mini">
+<!-- JS Warning -->
+<div>
+    <link rel="stylesheet" type="text/css" href="css/js-warn.css">
+    <input type="checkbox" id="js-hide" />
+    <div class="js-warn" id="js-warn-exit"><h1>Javascript Is Disabled</h1><p>Javascript seems to be disabled. This will break some site features.</p>
+        <p>To enable Javascript click <a href="http://www.enable-javascript.com/" target="_blank">here</a></p><label for="js-hide">Close</label></div>
+</div>
+<!-- /JS Warning -->
+<script src="js/pihole/header.js"></script>
 <div class="wrapper">
     <header class="main-header">
         <!-- Logo -->
@@ -50,8 +60,8 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <!-- User Account: style can be found in dropdown.less -->
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <li id="dropdown-menu" class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle">
                             <img src="img/pihole-160x160.jpg" class="user-image" alt="Pi-hole logo" />
                             <span class="hidden-xs">Pi-hole</span>
                         </a>
@@ -76,14 +86,22 @@
                                     <a href="https://github.com/pi-hole/pi-hole/releases">Updates</a>
                                 </div>
                             </li>
-                            <!-- Menu Footer-->
+                            <!-- Menu Footer -->
                             <li class="user-footer">
+                                <!-- Update alerts -->
+                                <div id="alPiholeUpdate" class="alert alert-info alert-dismissible fade in" role="alert" hidden>
+                                    <a class="alert-link" href="https://github.com/pi-hole/pi-hole/releases">There's an update available for this Pi-hole!</a>
+                                </div>
+                                <div id="alWebUpdate" class="alert alert-info alert-dismissible fade in" role="alert" hidden>
+                                    <a class="alert-link" href="https://github.com/pi-hole/AdminLTE/releases">There's an update available for this Web Interface!</a>
+                                </div>
+                                
+                                <!-- PayPal -->
                                 <div>
                                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                                         <input type="hidden" name="cmd" value="_s-xclick">
                                         <input type="hidden" name="hosted_button_id" value="3J2L3Z4DHW9UY">
                                         <input style="display: block; margin: 0 auto;" type="image" src="img/donate.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                                        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
                                     </form>
                                 </div>
                             </li>
@@ -130,21 +148,17 @@
                     </a>
                 </li>
                 <!-- Whitelist -->
-                <!--
                 <li>
                     <a href="list.php?l=white">
                         <i class="fa fa-pencil-square-o"></i> <span>Whitelist</span>
                     </a>
                 </li>
-                -->
                 <!-- Blacklist -->
-                <!--
                 <li>
                     <a href="list.php?l=black">
-                        <i class="fa fa-pencil-square-o"></i> <span>Blacklist</span>
+                        <i class="fa fa-ban"></i> <span>Blacklist</span>
                     </a>
                 </li>
-                -->
                 <!-- Donate -->
                 <li>
                     <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3J2L3Z4DHW9UY">
