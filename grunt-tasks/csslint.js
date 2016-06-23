@@ -1,3 +1,4 @@
+// Validate CSS files
 'use strict';
 
 module.exports = function (grunt) {
