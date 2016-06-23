@@ -1,3 +1,4 @@
+// Compile ECMA6 to ECMA5
 'use strict';
 
 module.exports = function (grunt) {
