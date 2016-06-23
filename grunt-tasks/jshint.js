@@ -1,3 +1,4 @@
+// Validate JS code
 'use strict';
 
 module.exports = function (grunt) {
