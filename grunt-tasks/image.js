@@ -1,3 +1,4 @@
+// Optimize images
 'use strict';
 
 module.exports = function (grunt) {
