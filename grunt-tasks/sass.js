@@ -1,3 +1,5 @@
+// SASS compiler
+
 'use strict';
 
 module.exports = function (grunt) {
