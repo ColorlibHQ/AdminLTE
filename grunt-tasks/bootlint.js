@@ -1,3 +1,4 @@
+// Validate Bootstrap HTML
 'use strict';
 
 module.exports = function (grunt) {
