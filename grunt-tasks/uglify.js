@@ -1,3 +1,4 @@
+// Uglify task info. Compress the js files.
 'use strict';
 
 module.exports = function (grunt) {
