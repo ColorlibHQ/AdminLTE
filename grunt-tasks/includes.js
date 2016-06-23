@@ -1,3 +1,4 @@
+// Build the documentation files
 'use strict';
 
 module.exports = function (grunt) {
