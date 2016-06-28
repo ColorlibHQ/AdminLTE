@@ -53,8 +53,6 @@ $.AdminLTE.options = {
   //This option is forced to true if both the fixed layout and sidebar mini
   //are used together
   sidebarExpandOnHover: false,
-  //Do not close menu after opening
-  sidebarKeepMenuOpen: false,
   //BoxRefresh Plugin
   enableBoxRefresh: true,
   //Bootstrap.js tooltip
@@ -390,17 +388,10 @@ function _init() {
   $.AdminLTE.tree = function (menu) {
     var _this = this;
     var animationSpeed = $.AdminLTE.options.animationSpeed;
-    var keepMenuOpen = $.AdminLTE.options.sidebarKeepMenuOpen;
-
-    //Find active li and set open class 
-    $(menu + ' .sidebar-menu').find('li.active').addClass('open');
-
     $(document).on('click', menu + ' li a', function (e) {
       //Get the clicked link and the next element
       var $this = $(this);
       var checkElement = $this.next();
-      //Get the parent li
-      var parent_li = $this.parent("li");
 
       //Check if the next element is a menu and is visible
       if ((checkElement.is('.treeview-menu')) && (checkElement.is(':visible')) && (!$('body').hasClass('sidebar-collapse'))) {
@@ -410,27 +401,25 @@ function _init() {
           //Fix the layout in case the sidebar stretches over the height of the window
           //_this.layout.fix();
         });
-        parent_li.removeClass('open');
+        checkElement.parent("li").removeClass("active");
       }
       //If the menu is not visible
       else if ((checkElement.is('.treeview-menu')) && (!checkElement.is(':visible'))) {
         //Get the parent menu
         var parent = $this.parents('ul').first();
-        //
-        var ul = parent.find('ul:visible').not(':has(".active")');
-        if (!keepMenuOpen) {
-          //Close all open menus within the parent
-          ul.slideUp(animationSpeed);
-          //Remove the menu-open class from the parent
-          ul.removeClass('menu-open');
-          //Remove all open classes except active
-          parent.find('.treeview').not(':has(".active")').removeClass('open');
-        }
-        parent_li.addClass('open');
+        //Close all open menus within the parent
+        var ul = parent.find('ul:visible').slideUp(animationSpeed);
+        //Remove the menu-open class from the parent
+        ul.removeClass('menu-open');
+        //Get the parent li
+        var parent_li = $this.parent("li");
+
         //Open the target menu and add the menu-open class
         checkElement.slideDown(animationSpeed, function () {
           //Add the class active to the parent li
           checkElement.addClass('menu-open');
+          parent.find('li.active').removeClass('active');
+          parent_li.addClass('active');
           //Fix the layout in case the sidebar stretches over the height of the window
           _this.layout.fix();
         });
