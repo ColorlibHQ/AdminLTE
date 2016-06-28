@@ -107,6 +107,57 @@ Change log
 
 **For the most recent change log, visit the [releases page](https://github.com/almasaeed2010/AdminLTE/releases).** We will add a detailed release notes to each new release. 
 
+**v2.3.3:**
+- Update version number
+- Merge pull request #976 from suvjunmd/markup
+- Merge pull request #983 from johnberberich/fix-help-block-validation
+- Apply form validation state colors to help blocks
+- Fixed W3C Markup Validation errors and warnings
+- Merge #918. Fix date-range button selection issue
+- Merge pull request #944 from bluemanos/master
+- Merge pull request #935 from schulzetenberg/master
+- Merge pull request #904 from 0xMatt/master
+- Merge pull request #816 from magikMaker/feature/package-json
+- Fix #957. Make pace visible in skin black
+- Update ckeditor
+- Fix typo
+- updated momentjs library to 2.11.2
+- update font-awesome to 4.5.0, change CDN to cdnjs.com
+- Fix sentence
+- Update README.md
+- Formatting fix
+- Add datepicker plugin to examples
+- Merge remote-tracking branch 'refs/remotes/almasaeed2010/master'
+- Update License
+- Improve click event handler
+- Merge pull request #877 from suvjunmd/jQuery
+- Add Laravel implementation #858
+- Updated jQuery to version 2.2.0
+- Fix issue #812
+- Update BS to v3.3.6
+- Merge pull
+- Add .sass-cache to gitignore
+- Merge pull request #822 from condor-bird/patch-5
+- Merge pull request #818 from gabel/update_bootstrap_slider
+- Merge pull request #821 from pdesmarais/master
+- Merge pull request #829 from gabel/update_momentjs
+- Merge pull request #831 from gabel/update_colorpicker
+- Merge pull request #854 from aqnouch/patch-1
+- Merge pull request #825 from gabel/update_select2
+- Updated copyright to 2016
+- Update to bootstrap-colorpicker version 2.3.0
+- update moment.js cdn links to version 2.10.6
+- Update to select2 version 4.0.1
+- Duplicate attribute type button
+- Changing the img paths in the css files
+- Updating to ion.RangeSlider v2.1.2
+- update to bootsrap-slider 5.3.1
+- added npm install to readme
+- added main property to package.json
+
+**v2.3.2:**
+- Fix issue #752 (badges, labels and arrows didn't align on sidebar menu properly on FireFox)
+
 **v2.3.1:**
 - Fix sidebar issue #676
 - Fix BootLint warnings and errors
