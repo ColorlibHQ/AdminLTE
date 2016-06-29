@@ -1,15 +1,19 @@
-// Watch File Changes
+// Watch files for changes and invoke appropriate compiler
 'use strict';
 
 module.exports = function (grunt) {
   return {
-      // If any .less file changes in directory "build/less/" run the "less"-task.
-      // files: ["build/less/*.less", "build/less/skins/*.less", "dist/js/app.js"],
-      files: [
-        "build/scss/*.scss", 
-        "build/scss/skins/*.scss", 
-        "dist/js/app.js"
-        ],
-      tasks: ["sass", "uglify"]
-    };
+    sass: {
+      files: ['build/scss/*.scss', 'build/scss/skins/*.scss'],
+      tasks: ['sass']
+    },
+    es6: {
+      files: ['build/js/src/*.js'],
+      tasks: ['concat', 'babel', 'uglify']
+    },
+    js: {
+      files: ['dist/js/adminlte.js', 'dist/js/app.js'],
+      tasks: ['uglify']
+    }
+  };
 };

@@ -7,8 +7,9 @@ module.exports = function (grunt) {
       mangle: true,
       preserveComments: 'some'
     },
-    my_target: {
+    target: {
       files: {
+        'dist/js/adminlte.min.js': ['dist/js/adminlte.js'],
         'dist/js/app.min.js': ['dist/js/app.js']
       }
     }

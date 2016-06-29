@@ -9,7 +9,7 @@ module.exports = function (grunt) {
           style: 'expanded'
         },
         files: {
-          'dist/tmp/AdminLTE.css': 'build/scss/AdminLTE.scss'
+          'dist/css/AdminLTE.css': 'build/scss/AdminLTE.scss'
         }
       },
       production: {
@@ -17,7 +17,7 @@ module.exports = function (grunt) {
           style: 'compressed'
         },
         files: {
-          'dist/tmp/AdminLTE.min.css': 'build/scss/AdminLTE.scss'
+          'dist/css/adminlte.min.css': 'build/scss/AdminLTE.scss'
         }
       }
     };
