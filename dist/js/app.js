@@ -476,6 +476,11 @@ function _init() {
           _this._fixForContent(sidebar);
         }
       }
+      
+      // When resize the page format sidebar position and height
+      $(window).resize(function () {
+        _this._fix(sidebar);
+      });
     },
     //Open the control sidebar
     open: function (sidebar, slide) {
@@ -497,13 +502,9 @@ function _init() {
       }
     },
     _fix: function (sidebar) {
-      var _this = this;
       if ($("body").hasClass('layout-boxed')) {
         sidebar.css('position', 'absolute');
         sidebar.height($(".wrapper").height());
-        $(window).resize(function () {
-          _this._fix(sidebar);
-        });
       } else {
         sidebar.css({
           'position': 'fixed',
