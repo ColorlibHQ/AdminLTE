@@ -9,7 +9,11 @@ module.exports = function (grunt) {
     },
     dist: {
       files: {
-        'dist/js/AdminLTE.js': 'build/js/AdminLTE.js'
+        'build/js/dist/Layout.js': 'build/js/src/Layout.js',
+        'build/js/dist/Treeview.js': 'build/js/src/Treeview.js',
+        'build/js/dist/PushMenu.js': 'build/js/src/PushMenu.js',
+        'build/js/dist/Widget.js': 'build/js/src/Widget.js',
+        'dist/js/adminlte.js': 'build/js/src/AdminLTE.js'
       }
     }
   };
