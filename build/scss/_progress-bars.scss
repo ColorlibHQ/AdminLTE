@@ -87,26 +87,26 @@
 // -------------------------
 .progress-bar-light-blue,
 .progress-bar-primary {
-  @include progress-bar-variant($light-blue);
+  @include progress-bar-variant($brand-primary);
 }
 
 .progress-bar-green,
 .progress-bar-success {
-  @include progress-bar-variant($green);
+  @include progress-bar-variant($brand-success);
 }
 
 .progress-bar-aqua,
 .progress-bar-info {
-  @include progress-bar-variant($aqua);
+  @include progress-bar-variant($brand-info);
 }
 
 .progress-bar-yellow,
 .progress-bar-warning {
-  @include progress-bar-variant($yellow);
+  @include progress-bar-variant($brand-warning);
 }
 
 .progress-bar-red,
 .progress-bar-danger {
-  @include progress-bar-variant($red);
+  @include progress-bar-variant($brand-danger);
 }
 */

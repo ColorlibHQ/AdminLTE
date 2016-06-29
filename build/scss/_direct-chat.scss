@@ -174,21 +174,21 @@
 
 //Direct Chat Variants
 .direct-chat-danger {
-  @include direct-chat-variant($red);
+  @include direct-chat-variant($brand-danger);
 }
 
 .direct-chat-primary {
-  @include direct-chat-variant($light-blue);
+  @include direct-chat-variant($brand-primary);
 }
 
 .direct-chat-warning {
-  @include direct-chat-variant($yellow);
+  @include direct-chat-variant($brand-warning);
 }
 
 .direct-chat-info {
-  @include direct-chat-variant($aqua);
+  @include direct-chat-variant($brand-info);
 }
 
 .direct-chat-success {
-  @include direct-chat-variant($green);
+  @include direct-chat-variant($brand-success);
 }

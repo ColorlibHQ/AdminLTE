@@ -7,11 +7,11 @@
   //Navbar
   .main-header {
     .navbar {
-      @include navbar-variant($green, #fff);
+      @include navbar-variant($brand-success, #fff);
       .sidebar-toggle {
         color: #fff;
         &:hover {
-          background-color: darken($green, 5%);
+          background-color: darken($brand-success, 5%);
         }
       }
       @media (max-width: $screen-header-collapse) {
@@ -23,7 +23,7 @@
             a {
               color: #fff;
               &:hover {
-                background: darken($green, 5%);
+                background: darken($brand-success, 5%);
               }
             }
           }
@@ -32,20 +32,15 @@
     }
     //Logo
     .logo {
-      @include logo-variant($green);
+      @include logo-variant($brand-success);
     }
 
     li.user-header {
-      background-color: $green;
+      background-color: $brand-success;
     }
   }
 
-  //Content Header
-  .content-header {
-    background: transparent;
-  }
-
   //Create the sidebar skin
-  @include skin-light-sidebar($green);
+  @include skin-light-sidebar($brand-success);
 
 }

@@ -40,11 +40,6 @@
     }
   }
 
-  //Content Header
-  .content-header {
-    background: transparent;
-  }
-
   //Create the sidebar skin
   @include skin-light-sidebar($purple);
 }

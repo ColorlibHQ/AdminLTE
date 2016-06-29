@@ -66,42 +66,42 @@
 }
 
 .btn-primary {
-  background-color: $light-blue;
-  border-color: darken($light-blue, 5%);
+  background-color: $brand-primary;
+  border-color: darken($brand-primary, 5%);
   &:hover, &:active, &.hover {
-    background-color: darken($light-blue, 5%);
+    background-color: darken($brand-primary, 5%);
   }
 }
 
 .btn-success {
-  background-color: $green;
-  border-color: darken($green, 5%);
+  background-color: $brand-success;
+  border-color: darken($brand-success, 5%);
   &:hover, &:active, &.hover {
-    background-color: darken($green, 5%);
+    background-color: darken($brand-success, 5%);
   }
 }
 
 .btn-info {
-  background-color: $aqua;
-  border-color: darken($aqua, 5%);
+  background-color: $brand-info;
+  border-color: darken($brand-info, 5%);
   &:hover, &:active, &.hover {
-    background-color: darken($aqua, 5%);
+    background-color: darken($brand-info, 5%);
   }
 }
 
 .btn-danger {
-  background-color: $red;
-  border-color: darken($red, 5%);
+  background-color: $brand-danger;
+  border-color: darken($brand-danger, 5%);
   &:hover, &:active, &.hover {
-    background-color: darken($red, 5%);
+    background-color: darken($brand-danger, 5%);
   }
 }
 
 .btn-warning {
-  background-color: $yellow;
-  border-color: darken($yellow, 5%);
+  background-color: $brand-warning;
+  border-color: darken($brand-warning, 5%);
   &:hover, &:active, &.hover {
-    background-color: darken($yellow, 5%);
+    background-color: darken($brand-warning, 5%);
   }
 }
 

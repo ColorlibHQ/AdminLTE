@@ -1,52 +1,39 @@
 /*
  * Component: Sidebar
  * ------------------
- */
+ *
 //Main Sidebar
-// ``` .left-side has been deprecated as of 2.0.0 in favor of .main-sidebar ```
-
-.main-sidebar,
-.left-side {
+.main-sidebar {
   position: absolute;
-  top: 0;
+  top: $main-header-height;
   left: 0;
-  padding-top: 55px;
-  min-height: 100%;
-  width: $sidebar-width;
+  @include calc("min-height", "100% - #{$main-header-height}");
   z-index: 810;
-  //Using disposable variable to join statements with a comma
-  $transition-rule: $transition-speed $transition-fn,
-  width $transition-speed $transition-fn;
-  transition: transform $transition-rule;
-  @media (max-width: $screen-header-collapse) {
-    padding-top: 100px;
+  width: $sidebar-width;
+  transition: transform $transition-speed $transition-fn,
+              width $transition-speed $transition-fn;
+  .layout-fixed & {
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 55px;
   }
-  @media (max-width: map-get($grid-breakpoints, xs)) {
+  @include media-breakpoint-down(md) {
     @include translate(-$sidebar-width, 0);
   }
   .sidebar-collapse & {
-    @media (min-width: map-get($grid-breakpoints, sm)) {
+    @include media-breakpoint-up(md) {
       @include translate(-$sidebar-width, 0);
     }
   }
   .sidebar-open & {
-    @media (max-width: map-get($grid-breakpoints, xs)) {
+    @include media-breakpoint-down(md) {
       @include translate(0, 0);
     }
   }
-}
-
+}*/
 .sidebar {
   padding-bottom: 10px;
 }
-
-// remove border from form
-.sidebar-form {
-  input:focus {
-    border-color: transparent;
-  }
-}
-
 //Sidebar user panel
 .user-panel {
   position: relative;
@@ -83,74 +70,62 @@
 }
 
 // Sidebar menu
-.sidebar-menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.nav-sidebar {
   //First Level
-  > li {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    > a {
-      padding: 12px 5px 12px 15px;
-      display: block;
-      > .fa,
-      > .glyphicon,
-      > .ion {
+  > .nav-item {
+    > .nav-link {
+      @include border-radius(0);
+      > .nav-icon {
         width: 20px;
       }
     }
-    .label,
-    .badge {
+    .pull-right {
       margin-top: 3px;
       margin-right: 5px;
     }
   }
-  li.header {
-    padding: 10px 25px 10px 15px;
-    font-size: 12px;
+  .nav-header {
+    padding: $nav-link-padding;
+    font-size: .85em;
   }
-  li > a > .fa-angle-left {
+  // All other levels
+  .nav-link > .fa-angle-left {
     width: auto;
     height: auto;
     padding: 0;
     margin-right: 10px;
     margin-top: 3px;
   }
-  li.active {
-    > a > .fa-angle-left {
+  .nav-item.active {
+    > .nav-link {
+      font-weight: $display1-weight;
+    }
+    > .nav-link > .fa-angle-left {
       @include rotate(-90deg);
     }
-    > .treeview-menu {
+    > .nav-treeview {
       display: block;
     }
   }
 
   // Tree view menu
-  .treeview-menu {
+  .nav-treeview {
     display: none;
     list-style: none;
     padding: 0;
     margin: 0;
     padding-left: 5px;
-    .treeview-menu {
+    .nav-treeview {
       padding-left: 20px;
     }
-    > li {
+    > .nav-item {
       margin: 0;
-      > a {
+      > .nav-link {
         padding: 5px 5px 5px 15px;
         display: block;
         font-size: 14px;
-        > .fa,
-        > .glyphicon,
-        > .ion {
+        > .nav-icon {
           width: 20px;
-        }
-        > .fa-angle-left,
-        > .fa-angle-down {
-          width: auto;
         }
       }
     }

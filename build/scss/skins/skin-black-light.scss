@@ -49,12 +49,6 @@
       background-color: #222;
     }
   }
-
-  //Content Header
-  .content-header {
-    background: transparent;
-    box-shadow: none;
-  }
   //Create the sidebar skin
   @include skin-light-sidebar(#fff);
 }

@@ -2,6 +2,11 @@
  * Component: Box
  * --------------
  */
+
+.card {
+  background: #fff;
+}
+
 .box {
   position: relative;
   @include border-radius($box-border-radius);
@@ -13,19 +18,19 @@
 
   // Box color variations
   &.box-primary {
-    border-top-color: $light-blue;
+    border-top-color: $brand-primary;
   }
   &.box-info {
-    border-top-color: $aqua;
+    border-top-color: $brand-info;
   }
   &.box-danger {
-    border-top-color: $red;
+    border-top-color: $brand-danger;
   }
   &.box-warning {
-    border-top-color: $yellow;
+    border-top-color: $brand-warning;
   }
   &.box-success {
-    border-top-color: $green;
+    border-top-color: $brand-success;
   }
   &.box-default {
     border-top-color: $box-default-border-top-color;
@@ -87,19 +92,19 @@
       @include box-solid-variant($gray, #444);
     }
     &.box-primary {
-      @include box-solid-variant($light-blue);
+      @include box-solid-variant($brand-primary);
     }
     &.box-info {
-      @include box-solid-variant($aqua);
+      @include box-solid-variant($brand-info);
     }
     &.box-danger {
-      @include box-solid-variant($red);
+      @include box-solid-variant($brand-danger);
     }
     &.box-warning {
-      @include box-solid-variant($yellow);
+      @include box-solid-variant($brand-warning);
     }
     &.box-success {
-      @include box-solid-variant($green);
+      @include box-solid-variant($brand-success);
     }
 
     > .box-header > .box-tools .btn {
@@ -360,7 +365,7 @@
     .tools {
       display: none;
       float: right;
-      color: $red;
+      color: $brand-danger;
       // icons
       > .fa, > .glyphicon, > .ion {
         margin-right: 5px;
@@ -387,19 +392,19 @@
 
   // Color varaity
   .danger {
-    border-left-color: $red;
+    border-left-color: $brand-danger;
   }
   .warning {
-    border-left-color: $yellow;
+    border-left-color: $brand-warning;
   }
   .info {
-    border-left-color: $aqua;
+    border-left-color: $brand-info;
   }
   .success {
-    border-left-color: $green;
+    border-left-color: $brand-success;
   }
   .primary {
-    border-left-color: $light-blue;
+    border-left-color: $brand-primary;
   }
 
   .handle {
@@ -428,10 +433,10 @@
     }
 
     > .online {
-      border: 2px solid $green;
+      border: 2px solid $brand-success;
     }
     > .offline {
-      border: 2px solid $red;
+      border: 2px solid $brand-danger;
     }
 
     // The message body

@@ -75,7 +75,7 @@
   }
 }
 
-@media (max-width: map-get($grid-breakpoints, xs)) {
+@include media-breakpoint-down(sm) {
   // No need for icons on very small devices
   .small-box {
     text-align: center;

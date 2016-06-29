@@ -31,12 +31,12 @@
   //Create the new tab
   var tab_pane = $("<div />", {
     "id": "control-sidebar-theme-demo-options-tab",
-    "class": "tab-pane active"
+    "class": "tab-pane"
   });
 
   //Create the tab button
-  var tab_button = $("<li />", {"class": "active"})
-      .html("<a href='#control-sidebar-theme-demo-options-tab' data-toggle='tab'>"
+  var tab_button = $("<li />", {"class": "nav-item"})
+      .html("<a href='#control-sidebar-theme-demo-options-tab' data-toggle='tab' class='nav-link'>"
       + "<i class='fa fa-wrench'></i>"
       + "</a>");
 

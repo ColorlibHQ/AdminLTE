@@ -4,36 +4,44 @@
  */
 
 .main-header {
-  position: relative;
-  z-index: $zindex-navbar;
-
-  > .navbar {
-    //margin-left: $sidebar-width;
-    //height: 55px;
-  }
-/*
-  > .logo {
+  padding: 0 16px 0 0;
+  .navbar-brand {
+    font-weight: 200;
     width: $sidebar-width;
-    padding: 0 15px;
-    text-align: center;
-    float: left;
-    font-size: 18px;
-    height: 55px;
-    line-height: 55px;
-  }*/
+    padding: $main-header-brand-padding-y $main-header-brand-padding-x;
+    background: darken($brand-primary, 5%);
+    transition: width $transition-speed $transition-fn;
+    overflow: hidden;
+    > .logo-mini {
+      display: none;
+    }
+    @include media-breakpoint-up(md) {
+      .sidebar-mini.sidebar-collapse & {
+        width: $sidebar-mini-width;
+        > .logo {
+          display: none;
+        }
+        > .logo-mini {
+          display: inline;
+        }
+      }
+    }
+    @include media-breakpoint-down(md) {
+      width: $sidebar-mini-width;
+      > .logo {
+        display: none;
+      }
+      > .logo-mini {
+        display: inline;
+      }
+    }
+  }
+
+  .nav-link {
+    padding: $main-header-link-padding-y $main-header-link-padding-x;
+  }
 }
 
-.content-header {
-  padding: 15px;
-  h1 {
-    font-size: 1.8rem;
-    margin: 0;
-
-  }
-  .breadcrumb {
-    margin-bottom: 0;
-    padding: 0;
-    background: transparent;
-    font-size: 1rem;
-  }
+.navbar-shadow {
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
 }

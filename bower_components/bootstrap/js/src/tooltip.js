@@ -1,14 +1,24 @@
+/* global Tether */
+
 import Util from './util'
 
 
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v4.0.0): tooltip.js
+ * Bootstrap (v4.0.0-alpha.2): tooltip.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
 
 const Tooltip = (($) => {
+
+  /**
+   * Check for Tether dependency
+   * Tether - http://github.hubspot.com/tether/
+   */
+  if (window.Tether === undefined) {
+    throw new Error('Bootstrap tooltips require Tether (http://github.hubspot.com/tether/)')
+  }
 
 
   /**
@@ -18,7 +28,7 @@ const Tooltip = (($) => {
    */
 
   const NAME                = 'tooltip'
-  const VERSION             = '4.0.0'
+  const VERSION             = '4.0.0-alpha'
   const DATA_KEY            = 'bs.tooltip'
   const EVENT_KEY           = `.${DATA_KEY}`
   const JQUERY_NO_CONFLICT  = $.fn[NAME]
@@ -43,7 +53,7 @@ const Tooltip = (($) => {
   const DefaultType = {
     animation   : 'boolean',
     template    : 'string',
-    title       : '(string|function)',
+    title       : '(string|element|function)',
     trigger     : 'string',
     delay       : '(number|object)',
     html        : 'boolean',
@@ -270,12 +280,13 @@ const Tooltip = (($) => {
 
         this._tether = new Tether({
           attachment,
-          element     : tip,
-          target      : this.element,
-          classes     : TetherClass,
-          classPrefix : CLASS_PREFIX,
-          offset      : this.config.offset,
-          constraints : this.config.constraints
+          element         : tip,
+          target          : this.element,
+          classes         : TetherClass,
+          classPrefix     : CLASS_PREFIX,
+          offset          : this.config.offset,
+          constraints     : this.config.constraints,
+          addTargetClasses: false
         })
 
         Util.reflow(tip)
@@ -356,17 +367,31 @@ const Tooltip = (($) => {
     }
 
     setContent() {
-      let tip    = this.getTipElement()
-      let title  = this.getTitle()
-      let method = this.config.html ? 'innerHTML' : 'innerText'
+      let $tip = $(this.getTipElement())
 
-      $(tip).find(Selector.TOOLTIP_INNER)[0][method] = title
+      this.setElementContent($tip.find(Selector.TOOLTIP_INNER), this.getTitle())
 
-      $(tip)
+      $tip
         .removeClass(ClassName.FADE)
         .removeClass(ClassName.IN)
 
       this.cleanupTether()
+    }
+
+    setElementContent($element, content) {
+      let html = this.config.html
+      if (typeof content === 'object' && (content.nodeType || content.jquery)) {
+        // content is a DOM node or a jQuery
+        if (html) {
+          if (!$(content).parent().is($element)) {
+            $element.empty().append(content)
+          }
+        } else {
+          $element.text($(content).text())
+        }
+      } else {
+        $element[html ? 'html' : 'text'](content)
+      }
     }
 
     getTitle() {
@@ -384,12 +409,6 @@ const Tooltip = (($) => {
     cleanupTether() {
       if (this._tether) {
         this._tether.destroy()
-
-        // clean up after tether's junk classes
-        // remove after they fix issue
-        // (https://github.com/HubSpot/tether/issues/36)
-        $(this.element).removeClass(this._removeTetherClasses)
-        $(this.tip).removeClass(this._removeTetherClasses)
       }
     }
 
@@ -441,12 +460,6 @@ const Tooltip = (($) => {
       } else {
         this._fixTitle()
       }
-    }
-
-    _removeTetherClasses(i, css) {
-      return ((css.baseVal || css).match(
-        new RegExp(`(^|\\s)${CLASS_PREFIX}-\\S+`, 'g')) || []
-      ).join(' ')
     }
 
     _fixTitle() {
@@ -608,6 +621,9 @@ const Tooltip = (($) => {
         }
 
         if (typeof config === 'string') {
+          if (data[config] === undefined) {
+            throw new Error(`No method named "${config}"`)
+          }
           data[config]()
         }
       })

@@ -3,7 +3,7 @@ import Tooltip from './tooltip'
 
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v4.0.0): popover.js
+ * Bootstrap (v4.0.0-alpha.2): popover.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
@@ -18,7 +18,7 @@ const Popover = (($) => {
    */
 
   const NAME                = 'popover'
-  const VERSION             = '4.0.0'
+  const VERSION             = '4.0.0-alpha'
   const DATA_KEY            = 'bs.popover'
   const EVENT_KEY           = `.${DATA_KEY}`
   const JQUERY_NO_CONFLICT  = $.fn[NAME]
@@ -34,7 +34,7 @@ const Popover = (($) => {
   })
 
   const DefaultType = $.extend({}, Tooltip.DefaultType, {
-    content : '(string|function)'
+    content : '(string|element|function)'
   })
 
   const ClassName = {
@@ -113,24 +113,13 @@ const Popover = (($) => {
     }
 
     setContent() {
-      let tip          = this.getTipElement()
-      let title        = this.getTitle()
-      let content      = this._getContent()
-      let titleElement = $(tip).find(Selector.TITLE)[0]
-
-      if (titleElement) {
-        titleElement[
-          this.config.html ? 'innerHTML' : 'innerText'
-        ] = title
-      }
+      let $tip = $(this.getTipElement())
 
       // we use append for html objects to maintain js events
-      $(tip).find(Selector.CONTENT).children().detach().end()[
-        this.config.html ?
-          (typeof content === 'string' ? 'html' : 'append') : 'text'
-      ](content)
+      this.setElementContent($tip.find(Selector.TITLE), this.getTitle())
+      this.setElementContent($tip.find(Selector.CONTENT), this._getContent())
 
-      $(tip)
+      $tip
         .removeClass(ClassName.FADE)
         .removeClass(ClassName.IN)
 
@@ -164,6 +153,9 @@ const Popover = (($) => {
         }
 
         if (typeof config === 'string') {
+          if (data[config] === undefined) {
+            throw new Error(`No method named "${config}"`)
+          }
           data[config]()
         }
       })

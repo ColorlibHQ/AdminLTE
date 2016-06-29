@@ -1,18 +1,38 @@
 {
   "name": "admin-lte",
-  "version": "2.3.2",
+  "description": "Responsive open source admin dashboard and control panel.",
+  "version": "3.0.0-alpha",
+  "license": "MIT",
+  "author": "Abdullah Almsaeed <abdullah@almsaeedstudio.com>",
+  "keywords": [
+    "css",
+    "sass",
+    "responsive",
+    "admin",
+    "template",
+    "theme",
+    "framework",
+    "control-panel",
+    "dashboard"
+  ],
+  "homepage": "https://almsaeedstudio.com",
+  "style": "dist/css/AdminLTE.css",
+  "sass": "build/scss/AdminLTE.scss",
   "repository": {
     "type": "git",
     "url": "git://github.com/almasaeed2010/AdminLTE.git"
   },
-  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/almasaeed2010/AdminLTE/issues"
+  },
   "devDependencies": {
-    "R2": "^1.4.3",
-    "babel-preset-es2015": "^6.0.15",
+    "babel-eslint": "^4.1.4",
+    "babel-preset-es2015": "^6.1.4",
     "grunt": "~0.4.5",
     "grunt-babel": "^6.0.0",
     "grunt-bootlint": "^0.9.1",
     "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-csslint": "^0.5.0",
     "grunt-contrib-cssmin": "^0.12.2",
     "grunt-contrib-jshint": "^0.11.2",
@@ -20,9 +40,11 @@
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-cssjanus": "^0.2.4",
+    "grunt-eslint": "^17.3.1",
     "grunt-image": "^1.0.5",
     "grunt-includes": "^0.4.5",
-    "grunt-sass": "^1.1.0",
+    "grunt-jscs": "^2.3.0",
+    "grunt-scss-lint": "^0.3.8",
     "load-grunt-config": "^0.19.2"
   }
 }
