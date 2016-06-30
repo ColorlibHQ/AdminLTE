@@ -527,21 +527,22 @@ a:focus {
 }
 .sidebar-menu > li .label,
 .sidebar-menu > li .badge {
-  margin-top: 3px;
   margin-right: 5px;
+}
+.sidebar-menu > li .badge {
+  margin-top: 3px;
 }
 .sidebar-menu li.header {
   padding: 10px 25px 10px 15px;
   font-size: 12px;
 }
-.sidebar-menu li > a > .fa-angle-left {
+.sidebar-menu li > a > .pull-right-container > .fa-angle-left {
   width: auto;
   height: auto;
   padding: 0;
   margin-right: 10px;
-  margin-top: 3px;
 }
-.sidebar-menu li.active > a > .fa-angle-left {
+.sidebar-menu li.active > a > .pull-right-container > .fa-angle-left {
   -webkit-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   -o-transform: rotate(-90deg);
@@ -573,7 +574,7 @@ a:focus {
 .sidebar-menu .treeview-menu > li > a > .ion {
   width: 20px;
 }
-.sidebar-menu .treeview-menu > li > a > .fa-angle-left,
+.sidebar-menu .treeview-menu > li > a > .pull-right-container > .fa-angle-left,
 .sidebar-menu .treeview-menu > li > a > .fa-angle-down {
   width: auto;
 }
@@ -671,7 +672,7 @@ a:focus {
 .sidebar-menu li > a {
   position: relative;
 }
-.sidebar-menu li > a > .pull-right {
+.sidebar-menu li > a > .pull-right-container {
   position: absolute;
   right: 10px;
   top: 50%;
