@@ -134,7 +134,7 @@ body.hold-transition .right-side,
 body.hold-transition .main-footer,
 body.hold-transition .main-sidebar,
 body.hold-transition .left-side,
-body.hold-transition .main-header > .navbar,
+body.hold-transition .main-header .navbar,
 body.hold-transition .main-header .logo {
   /* Fix for IE */
   -webkit-transition: none;
@@ -195,7 +195,7 @@ a:focus {
   max-height: 100px;
   z-index: 1030;
 }
-.main-header > .navbar {
+.main-header .navbar {
   -webkit-transition: margin-left 0.3s ease-in-out;
   -o-transition: margin-left 0.3s ease-in-out;
   transition: margin-left 0.3s ease-in-out;
@@ -205,7 +205,7 @@ a:focus {
   min-height: 50px;
   border-radius: 0;
 }
-.layout-top-nav .main-header > .navbar {
+.layout-top-nav .main-header .navbar {
   margin-left: 0;
 }
 .main-header #navbar-search-input.form-control {
