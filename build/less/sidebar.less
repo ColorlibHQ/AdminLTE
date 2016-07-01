@@ -103,23 +103,24 @@
     }
     .label,
     .badge {
-      margin-top: 3px;
       margin-right: 5px;
+    }
+    .badge {
+      margin-top: 3px;
     }
   }
   li.header {
     padding: 10px 25px 10px 15px;
     font-size: 12px;
   }
-  li > a > .fa-angle-left {
+  li > a > .pull-right-container > .fa-angle-left {
     width: auto;
     height: auto;
     padding: 0;
     margin-right: 10px;
-    margin-top: 3px;
   }
   li.active {
-    > a > .fa-angle-left {
+    > a > .pull-right-container > .fa-angle-left {
       .rotate(-90deg);
     }
     > .treeview-menu {
@@ -148,7 +149,7 @@
         > .ion {
           width: 20px;
         }
-        > .fa-angle-left,
+        > .pull-right-container > .fa-angle-left,
         > .fa-angle-down {
           width: auto;
         }
