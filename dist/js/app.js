@@ -502,7 +502,7 @@ function _init() {
       if ($("body").hasClass('layout-boxed')) {
         sidebar.css('position', 'absolute');
         sidebar.height($(".wrapper").height());
-        $(window).resize(function () {
+        $(window).unbind('resize').resize(function () {
           _this._fix(sidebar);
         });
       } else {
