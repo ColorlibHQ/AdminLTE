@@ -1,7 +1,7 @@
 /*
  * Component: Sidebar
  * ------------------
- *
+ */
 //Main Sidebar
 .main-sidebar {
   position: absolute;
@@ -17,7 +17,7 @@
     overflow-y: auto;
     padding-bottom: 55px;
   }
-  @include media-breakpoint-down(md) {
+  /*@include media-breakpoint-down(md) {
     @include translate(-$sidebar-width, 0);
   }
   .sidebar-collapse & {
@@ -29,8 +29,9 @@
     @include media-breakpoint-down(md) {
       @include translate(0, 0);
     }
-  }
-}*/
+  }*/
+}
+
 .sidebar {
   padding-bottom: 10px;
 }

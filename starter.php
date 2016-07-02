@@ -108,7 +108,7 @@ desired effect
             <i class="nav-icon fa fa-link"></i> <span class="text">Another Link</span>
           </a>
         </li>
-        <?php for($i = 0; $i < 2; $i++):?>
+        <?php for($i = 0; $i < 6; $i++):?>
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fa fa-link"></i> <span class="text">Multilevel</span>
@@ -149,10 +149,10 @@ desired effect
     <!-- Content Header (Page header) -->
     <div class="content-header container-fluid">
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-xs-6">
           <h1>Page Header</h1>
         </div><!-- /.col -->
-        <div class="col-lg-6">
+        <div class="col-xs-6">
           <ol class="breadcrumb pull-right">
             <li><a href="#">Home</a></li>
             <li class="active">Dashboard</li>
@@ -164,6 +164,7 @@ desired effect
 
     <!-- Main content -->
     <div class="content container-fluid">
+      <?php for($i = 0; $i < 1; $i++): ?>
       <div class="row">
         <div class="col-lg-6">
           <!-- Your Page Content Here -->
@@ -195,6 +196,7 @@ desired effect
         <!-- /.col-md-6 -->
       </div>
       <!-- /.row -->
+      <?php endfor; ?>
 
       <div class="row">
         <div class="col-lg-6">
@@ -325,6 +327,8 @@ desired effect
 
 <!-- jQuery -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Tether -->
+<script src="bower_components/tether/dist/js/tether.min.js"></script>
 <!-- Bootstrap -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
