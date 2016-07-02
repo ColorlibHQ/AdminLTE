@@ -1,0 +1,145 @@
+@charset "UTF-8";
+/****
+
+   colors.css v1.0 For a friendlier looking web
+   MIT License • http://clrs.cc • http://github.com/mrmrs/colors
+
+   Author: mrmrs
+           http://mrmrs.cc
+           @mrmrs_
+
+****/
+/*
+
+   SKINS
+   • Backgrounds
+   • Colors
+
+*/
+/* Backgrounds */
+.bg-navy {
+  background-color: #001f3f; }
+
+.bg-blue {
+  background-color: #0074d9; }
+
+.bg-aqua {
+  background-color: #7fdbff; }
+
+.bg-teal {
+  background-color: #39cccc; }
+
+.bg-olive {
+  background-color: #3d9970; }
+
+.bg-green {
+  background-color: #2ecc40; }
+
+.bg-lime {
+  background-color: #01ff70; }
+
+.bg-yellow {
+  background-color: #ffdc00; }
+
+.bg-orange {
+  background-color: #ff851b; }
+
+.bg-red {
+  background-color: #ff4136; }
+
+.bg-fuchsia {
+  background-color: #f012be; }
+
+.bg-purple {
+  background-color: #b10dc9; }
+
+.bg-maroon {
+  background-color: #85144b; }
+
+.bg-white {
+  background-color: white; }
+
+.bg-gray {
+  background-color: #aaaaaa; }
+
+.bg-silver {
+  background-color: #dddddd; }
+
+.bg-black {
+  background-color: #111111; }
+
+/* Colors */
+.navy {
+  color: #001f3f; }
+
+.blue {
+  color: #0074d9; }
+
+.aqua {
+  color: #7fdbff; }
+
+.teal {
+  color: #39cccc; }
+
+.olive {
+  color: #3d9970; }
+
+.green {
+  color: #2ecc40; }
+
+.lime {
+  color: #01ff70; }
+
+.yellow {
+  color: #ffdc00; }
+
+.orange {
+  color: #ff851b; }
+
+.red {
+  color: #ff4136; }
+
+.fuchsia {
+  color: #f012be; }
+
+.purple {
+  color: #b10dc9; }
+
+.maroon {
+  color: #85144b; }
+
+.white {
+  color: white; }
+
+.silver {
+  color: #dddddd; }
+
+.gray {
+  color: #aaaaaa; }
+
+.black {
+  color: #111111; }
+
+/* PRETTIER LINKS */
+a {
+  text-decoration: none;
+  -webkit-transition: color .3s ease-in-out;
+  transition: color .3s ease-in-out; }
+
+a:link {
+  color: #0074d9;
+  -webkit-transition: color .3s ease-in-out;
+  transition: color .3s ease-in-out; }
+
+a:visited {
+  color: #b10dc9; }
+
+a:hover {
+  color: #7fdbff;
+  -webkit-transition: color .3s ease-in-out;
+  transition: color .3s ease-in-out; }
+
+a:active {
+  color: #ff851b;
+  -webkit-transition: color .3s ease-in-out;
+  transition: color .3s ease-in-out; }

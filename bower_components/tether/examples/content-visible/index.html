@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../resources/css/base.css" />
+    </head>
+    <body>
+
+    <div class="instructions">Scroll the page</div>
+
+    <style>
+      .instructions {
+        width: 100%;
+        text-align: center;
+        font-size: 24px;
+        padding: 15px;
+        background-color: rgba(210, 180, 140, 0.4);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 1200vh;
+        height: 100%;
+      }
+
+      .content-box {
+        width: 600px;
+        border: 10px solid #999;
+        height: 600vh;
+        background-color: #439CCC;
+        margin: 200vh auto;
+      }
+      .element {
+        border: 10px solid #999;
+        background-color: #FFDC00;
+        width: 300px;
+        height: 200px;
+        padding: 0 15px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    </style>
+
+    <div class="content-box">
+      <div class="element">
+        <p>This is some sort of crazy dialog.</p>
+
+        <p>It's setup to align with the center of the visible part of the blue area.</p>
+      </div>
+    </div>
+
+    <script src="//github.hubspot.com/tether/dist/js/tether.js"></script>
+    <script>
+      new Tether({
+        element: '.element',
+        target: '.content-box',
+        attachment: 'middle center',
+        targetAttachment: 'middle center',
+        targetModifier: 'visible'
+      });
+    </script>
+  </body>
+</html>

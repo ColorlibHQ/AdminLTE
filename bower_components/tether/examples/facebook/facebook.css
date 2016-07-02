@@ -1,0 +1,86 @@
+.drop-target.drop-open {
+    outline: 2px solid;
+}
+
+.body {
+    position: relative;
+    margin-right: 300px;
+}
+
+.page {
+    max-width: 100%;
+    width: 1080px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.navigation {
+    background: blue;
+    color: #fff;
+    margin-right: 300px;
+    margin-bottom: 30px;
+}
+
+.navigation .item a {
+    padding: 30px 20px;
+    display: inline-block;
+}
+
+.navigation .item a {
+    color: inherit;
+}
+
+.navigation .drop-target.drop-open {
+    background: #fff;
+    color: blue;
+    outline: none;
+}
+
+.right-sidebar {
+    position: fixed;
+    height: 50%;
+    width: 300px;
+    background: #eee;
+    overflow: auto;
+    right: 0;
+}
+
+.right-sidebar .drop-target.drop-open {
+    background: blue;
+    color: #fff;
+    outline: none;
+}
+
+.right-sidebar .item a {
+    display: block;
+    padding: 20px;
+    margin-bottom: 10px;
+    background: rgba(0, 0, 0, .1);
+}
+
+.right-sidebar-top {
+    top: 0;
+}
+
+.right-sidebar-bottom {
+    top: 50%;
+    background: #ccc;
+}
+
+.scroll-container {
+    position: relative; 
+    overflow: auto;
+    background: #eee;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    height: 200px;
+    width: 200px;
+}
+
+.absolute-container {
+    position: absolute;
+    top: 20px;
+    right: 300px;
+}

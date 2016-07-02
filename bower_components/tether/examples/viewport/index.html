@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../resources/css/base.css" />
+    <link rel="stylesheet" href="./colors.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .element {
+        background-color: #FFDC00;
+        width: 80%;
+        max-width: 300px;
+        padding: 0 15px;
+        font-size: 20px;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+      }
+
+      @media (max-width: 380px) {
+        .element {
+          font-size: 16px;
+        }
+      }
+
+      .bit {
+        width: 10vw;
+        height: 10vw;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="element">
+      <p>This element is tethered to the middle of the visible part of the body.</p>
+
+      <p>Inspect the element to see how Tether decided
+      to use <code>position: fixed</code>.</p>
+    </div>
+
+    <script src="//github.hubspot.com/tether/dist/js/tether.js"></script>
+    <script>
+      new Tether({
+        element: '.element',
+        target: document.body,
+        attachment: 'middle center',
+        targetAttachment: 'middle center',
+        targetModifier: 'visible'
+      });
+    </script>
+
+    <script>
+      // Random colors bit, don't mind this
+      colors = ['navy', 'blue', 'aqua', 'teal', 'olive', 'green', 'lime',
+        'yellow', 'orange', 'red', 'fuchsia', 'purple', 'maroon'];
+
+      curColors = null;
+      for(var i=300; i--;){
+        if (!curColors || !curColors.length)
+          curColors = colors.slice(0);
+
+        var bit = document.createElement('div')
+        var index = (Math.random() * curColors.length)|0;
+        bit.className = 'bit bg-' + curColors[index]
+        curColors.splice(index, 1);
+        document.body.appendChild(bit);
+      }
+    </script>
+  </body>
+</html>

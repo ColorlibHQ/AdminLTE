@@ -1,0 +1,18 @@
+.tether-element, .tether-target {
+  width: 200px;
+  height: 50px;
+  background-color: #4cc;
+  position: absolute;
+}
+body {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+.scroll {
+  width: 400%;
+  height: 400%;
+}
+.tether-target:not(.tether-element) {
+  cursor: move;
+}

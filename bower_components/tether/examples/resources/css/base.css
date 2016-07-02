@@ -1,0 +1,10 @@
+body {
+    font-family: "Helvetica Neue", sans-serif;
+    color: #444;
+    margin: 0px;
+}
+
+a {
+    cursor: pointer;
+    color: blue;
+}

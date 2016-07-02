@@ -1,0 +1,233 @@
+$scrollableArea: 2000px
+$exampleWidth: 400px
+$exampleHeight: 180px
+
+@mixin inline-block
+  display: inline-block
+  vertical-align: middle
+  *vertical-align: auto
+  *zoom: 1
+  *display: inline
+
+*, *:after, *:before
+  box-sizing: border-box
+
+body
+  position: relative
+
+.yellow-box
+  width: 100px
+  height: 100px
+  background-color: #fe8
+  pointer-events: none
+
+.green-box
+  margin-top: ($exampleHeight - 50px) / 2
+  margin-left: ($exampleWidth - 200px) / 2
+  width: 200px
+  height: 50px
+  background-color: #4e9
+
+  .no-green &
+    display: none
+
+.scroll-box
+  height: 150px
+  border: 10px solid #eee
+  background: #fbfbfb
+  overflow: auto
+  position: relative
+
+.scroll-content
+  height: $scrollableArea
+  width: $scrollableArea
+  padding: ($scrollableArea - $exampleHeight)/2 ($scrollableArea - $exampleWidth)/2 + 9
+
+pre.pre-with-output
+  margin: 0
+  width: 50%
+  float: left
+
+  code mark
+    background: #b8daff
+    color: #000
+
+p, h2, h3
+  clear: both
+
+output
+  display: block
+  position: relative
+  width: 50%
+  float: right
+  margin-bottom: 15px
+
+  &.scroll-page
+    .scroll-box
+      overflow: hidden
+
+    &:after
+      content: "↕ scroll the page ↕"
+
+  &:after
+    content: "↕ scroll this area ↕"
+    position: absolute
+    bottom: 25px
+    width: 100%
+    text-align: center
+    font-size: 16px
+    font-variant: small-caps
+    color: #777
+    opacity: 1
+    transition: opacity 0.2s
+
+  &.scrolled:after
+    opacity: 0
+
+  &[deactivated], &[activated]
+    .scroll-box
+      pointer-events: none
+
+    cursor: pointer
+
+    &:after
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      opacity: 1
+      content: "Click To Show"
+      background-color: #AAA
+      border-left: 10px solid #EEE
+      color: white
+      font-size: 24px
+      font-variant: normal
+      padding-top: 80px
+
+  &[activated]
+    &:after
+      content: "Click To Hide"
+
+    &.visible-enabled
+      &:after
+        height: 35px
+        padding-top: 5px
+
+.attachment-mark
+  position: relative
+
+  &:after
+    content: "A"
+    width: 10px
+    height: 10px
+    background-color: red
+    display: inline-block
+
+    line-height: 10px
+    font-size: 9px
+    color: white
+    text-align: center
+
+    position: absolute
+
+span.attachment-mark
+  &:after
+    position: relative
+    top: -1px
+    margin-right: 1px
+
+.tether-marker-dot
+  @extend .attachment-mark
+
+  position: absolute
+
+  &:after
+    top: -5px
+    left: -5px
+
+@each $type in target, element
+  .tether-#{ $type }-marker
+    position: absolute
+
+    @each $side in left, top, bottom, right
+      div.tether-#{ $type }-attached-#{ $side } &
+        #{ $side }: 0
+
+    div.tether-#{ $type }-attached-center &
+      left: 50%
+
+.tether-element-attached-middle .tether-element-marker
+  top: 50px
+
+.tether-target-attached-middle .tether-target-marker
+  top: 25px
+
+.tether-element
+  position: relative
+
+  &.tether-pinned-left
+    box-shadow: inset 2px 0 0 0 red
+  &.tether-pinned-right
+    box-shadow: inset -2px 0 0 0 red
+  &.tether-pinned-top
+    box-shadow: inset 0 2px 0 0 red
+  &.tether-pinned-bottom
+    box-shadow: inset 0 -2px 0 0 red
+
+.tether-target
+  position: relative
+
+.tether-element.tether-out-of-bounds[data-example="hide"]
+  display: none
+
+[data-example^="optimizer"]
+  &.lang-javascript
+    /* This should just be a `code` selector, but sass doesn't allow that with & */
+    min-height: 220px
+
+  &.tether-element
+
+    &:before
+      margin-top: 26px
+      display: block
+      text-align: center
+      content: "I'm in the body"
+      line-height: 1.2
+      font-size: 15px
+      padding: 4px
+      color: #666
+
+  .scroll-box .tether-element:before
+    content: "I'm in my scroll parent!"
+
+.tether-element[data-example="scroll-visible"]
+  height: 30px
+
+  .tether-marker-dot
+    display: none
+
+.hs-doc-content h2.projects-header
+  text-align: center
+  font-weight: 300
+
+.projects-paragraph
+  text-align: center
+
+  a
+    +inline-block
+    text-align: center
+    margin-right: 30px
+    color: inherit
+
+    span
+      +inline-block
+      margin-bottom: 20px
+      font-size: 20px
+      color: inherit
+      font-weight: 300
+
+    img
+      display: block
+      max-width: 100%
+      width: 100px

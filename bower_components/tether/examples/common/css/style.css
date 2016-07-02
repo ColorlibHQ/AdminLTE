@@ -1,0 +1,48 @@
+body {
+    min-height: 3000px;
+}
+.element {
+    width: 200px;
+    height: 200px;
+    background-color: #fe8;
+    position: absolute;
+    z-index: 6;
+}
+
+.target {
+    width: 300px;
+    height: 50px;
+    margin: 0 35%;
+    background-color: #4e9;
+}
+
+.container {
+    height: 600px;
+    overflow: scroll;
+    width: 600px;
+    border: 20px solid #CCC;
+    margin-top: 100px;
+}
+
+body {
+    padding: 15px;
+}
+
+body > .container {
+    margin: 0 auto;
+}
+
+.pad {
+    height: 400px;
+    width: 100px;
+}
+
+.instructions {
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    padding: 15px;
+    background-color: rgba(210, 180, 140, 0.4);
+    margin: -15px -15px 0 -15px;
+}
+

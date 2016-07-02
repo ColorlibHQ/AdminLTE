@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="../../css/drop.css" />
+        <link rel="stylesheet" href="../resources/css/base.css" />
+        <link rel="stylesheet" href="chosen.css" />
+    </head>
+    <body>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        <br/>
+        Favorite pizza style: <br/>
+        <div class="drop-chosen-target chosen-container chosen-container-single chosen-with-drop" style="width: 350px">
+            <a class="chosen-single chosen-default" tabindex="-1"><span>Choose a style...</span><div><b></b></div></a>
+        </div>
+        <br/>
+        <br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        <script src="../resources/js/log.js"></script>
+        <script src="../resources/js/jquery.js"></script>
+        <script src="chosen.js"></script>
+        <script src="../../drop.js"></script>
+        <script>
+            $(function(){
+                var $target, $drop;
+
+                $target = $('.drop-chosen-target').drop({
+                    className: 'drop-chosen',
+                    attach: 'bottom-left',
+                    content: ''
+                });
+
+                $drop = $target.data().drop.$drop;
+
+                $drop.append('<select><option>Plain</option><option>Pepperoni</option><option>Supreme</option></select>');
+
+                $drop.on('openDrop', function(event){
+                    $target.addClass('chosen-container-active');
+                }).on('closeDrop', function(event){
+                    $target.removeClass('chosen-container-active');
+                });
+
+                $drop.on('openDrop', function(event) {
+                    var $select = $drop.find('select');
+
+                    if (!$drop.find('.chosen-container').length) {
+                        $select
+                            .css('width', $target.outerWidth())
+                            .chosen({
+                                allow_single_deselect: true,
+                                disable_search_threshold: 0
+                            })
+                        ;
+                    }
+
+                    setTimeout(function(){
+                        $drop.find('.chosen-search input').click().focus().keyup();
+                        $target.drop('positionDrop');
+                    }, 0);
+                });
+            });
+        </script>
+        <style>
+            .drop-chosen-target > a {
+                outline: none;
+            }
+
+            .drop.drop-chosen {
+                background: transparent;
+            }
+
+            .drop.drop-chosen .chosen-container > .chosen-single {
+                display: none;
+            }
+
+            .drop.drop-chosen .chosen-container .chosen-drop {
+                position: static;
+            }
+        </style>
+    </body>
+</html>
