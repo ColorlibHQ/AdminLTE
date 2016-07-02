@@ -1,6 +1,6 @@
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11,7 +11,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * --------------------------------------------
  */
 
-var Layout = (function ($) {
+var Layout = function ($) {
   'use strict';
 
   /**
@@ -32,6 +32,7 @@ var Layout = (function ($) {
     SIDEBAR: '.main-sidebar',
     HEADER: '.main-header',
     CONTENT: '.content-wrapper',
+    CONTENT_HEADER: '.content-header',
     WRAPPER: '.wrapper',
     CONTROL_SIDEBAR: '.control-sidebar',
     LAYOUT_FIXED: '.layout-fixed',
@@ -44,14 +45,12 @@ var Layout = (function ($) {
     LAYOUT_FIXED: 'layout-fixed'
   };
 
-  var Default = {};
-
   /**
    * Class Definition
    * ====================================================
    */
 
-  var Layout = (function () {
+  var Layout = function () {
     function Layout(element) {
       _classCallCheck(this, Layout);
 
@@ -65,18 +64,10 @@ var Layout = (function ($) {
     _createClass(Layout, [{
       key: 'fixLayoutHeight',
       value: function fixLayoutHeight() {
-        var $elements = $(Selector.CONTENT + ', ' + Selector.SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR);
-        var maxHeight = undefined;
+        var heights = [$(window).height(), $(Selector.HEADER).outerHeight(), $(Selector.FOOTER).outerHeight()];
 
-        $elements.css('min-height', 0);
-
-        var heights = [$(window).height(), $(Selector.SIDEBAR).height(), $(Selector.HEADER).outerHeight(), $(Selector.CONTROL_SIDEBAR).height(), $(Selector.CONTENT).outerHeight(), $(Selector.FOOTER).outerHeight()];
-
-        maxHeight = this._max(heights);
-
-        // $elements.css('min-height', maxHeight)
-
-        // $(Selector.CONTENT).css('min-height', maxHeight - (heights[2] + heights[5]))
+        $(Selector.CONTENT).css('min-height', heights[0] - (heights[1] + heights[2]));
+        console.log(heights[0] - (heights[1] + heights[2]));
       }
 
       // Private
@@ -131,7 +122,7 @@ var Layout = (function ($) {
     }]);
 
     return Layout;
-  })();
+  }();
 
   /**
    * jQuery API
@@ -146,5 +137,5 @@ var Layout = (function ($) {
   };
 
   return Layout;
-})(jQuery);
+}(jQuery);
 //# sourceMappingURL=Layout.js.map

@@ -26,6 +26,7 @@ const Layout = (($) => {
     SIDEBAR: '.main-sidebar',
     HEADER: '.main-header',
     CONTENT: '.content-wrapper',
+    CONTENT_HEADER: '.content-header',
     WRAPPER: '.wrapper',
     CONTROL_SIDEBAR: '.control-sidebar',
     LAYOUT_FIXED: '.layout-fixed',
@@ -37,8 +38,6 @@ const Layout = (($) => {
     SIDEBAR: 'main-sidebar',
     LAYOUT_FIXED: 'layout-fixed'
   }
-
-  const Default = {}
 
   /**
    * Class Definition
@@ -56,25 +55,14 @@ const Layout = (($) => {
     // Public
 
     fixLayoutHeight() {
-      let $elements = $(`${Selector.CONTENT}, ${Selector.SIDEBAR}, ${Selector.CONTROL_SIDEBAR}`)
-      let maxHeight
-
-      $elements.css('min-height', 0)
-
       let heights = [
         $(window).height(),
-        $(Selector.SIDEBAR).height(),
         $(Selector.HEADER).outerHeight(),
-        $(Selector.CONTROL_SIDEBAR).height(),
-        $(Selector.CONTENT).outerHeight(),
         $(Selector.FOOTER).outerHeight()
       ]
 
-      maxHeight = this._max(heights)
-
-      // $elements.css('min-height', maxHeight)
-
-      // $(Selector.CONTENT).css('min-height', maxHeight - (heights[2] + heights[5]))
+      $(Selector.CONTENT).css('min-height', heights[0] - (heights[1] + heights[2]))
+      console.log(heights[0] - (heights[1] + heights[2]))
     }
 
     // Private
