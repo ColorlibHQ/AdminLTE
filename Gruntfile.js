@@ -5,7 +5,7 @@ module.exports = function (grunt) {
   'use strict';
   //loading the configurations and grunt tasks
   var configs = require('load-grunt-config')(grunt,{
-    configPath: __dirname +  '/build/grunt-tasks',
+    configPath: __dirname +  '/build/grunt',
     data:{
       // Metadata.
       pkg: grunt.file.readJSON('package.json'),
