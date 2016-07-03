@@ -1,4 +1,11 @@
 CHANGE LOG:
+v2.4.5:
+- Fix issue #1097
+- Remove changelog from readme and specify new source
+- Merge pull request #1040 from OskarStark/patch-1
+- Update package.json version
+- updated changelog with already released versions
+
 v2.3.4
 - Fix issue #1093
 - Fix issue #427 by updating slimscroll
