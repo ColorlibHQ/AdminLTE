@@ -394,6 +394,11 @@ function _init() {
         var $this = $(this);
         var checkElement = $this.next();
 
+        // If the link has an url, just follow it.
+        if ('#' !== $this.attr('href')) {
+          return;
+        }
+
         //Check if the next element is a menu and is visible
         if ((checkElement.is('.treeview-menu')) && (checkElement.is(':visible')) && (!$('body').hasClass('sidebar-collapse'))) {
           //Close the menu
