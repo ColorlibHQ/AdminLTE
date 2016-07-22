@@ -14,38 +14,38 @@
   color: #333;
   border-right: 1px solid #eee;
 }
-.skin-black .main-header > .navbar {
+.skin-black .main-header .navbar {
   background-color: #ffffff;
 }
-.skin-black .main-header > .navbar .nav > li > a {
+.skin-black .main-header .navbar .nav > li > a {
   color: #333333;
 }
-.skin-black .main-header > .navbar .nav > li > a:hover,
-.skin-black .main-header > .navbar .nav > li > a:active,
-.skin-black .main-header > .navbar .nav > li > a:focus,
-.skin-black .main-header > .navbar .nav .open > a,
-.skin-black .main-header > .navbar .nav .open > a:hover,
-.skin-black .main-header > .navbar .nav .open > a:focus,
-.skin-black .main-header > .navbar .nav > .active > a {
+.skin-black .main-header .navbar .nav > li > a:hover,
+.skin-black .main-header .navbar .nav > li > a:active,
+.skin-black .main-header .navbar .nav > li > a:focus,
+.skin-black .main-header .navbar .nav .open > a,
+.skin-black .main-header .navbar .nav .open > a:hover,
+.skin-black .main-header .navbar .nav .open > a:focus,
+.skin-black .main-header .navbar .nav > .active > a {
   background: #ffffff;
   color: #999999;
 }
-.skin-black .main-header > .navbar .sidebar-toggle {
+.skin-black .main-header .navbar .sidebar-toggle {
   color: #333333;
 }
-.skin-black .main-header > .navbar .sidebar-toggle:hover {
+.skin-black .main-header .navbar .sidebar-toggle:hover {
   color: #999999;
   background: #ffffff;
 }
-.skin-black .main-header > .navbar > .sidebar-toggle {
+.skin-black .main-header .navbar > .sidebar-toggle {
   color: #333;
   border-right: 1px solid #eee;
 }
-.skin-black .main-header > .navbar .navbar-nav > li > a {
+.skin-black .main-header .navbar .navbar-nav > li > a {
   border-right: 1px solid #eee;
 }
-.skin-black .main-header > .navbar .navbar-custom-menu .navbar-nav > li > a,
-.skin-black .main-header > .navbar .navbar-right > li > a {
+.skin-black .main-header .navbar .navbar-custom-menu .navbar-nav > li > a,
+.skin-black .main-header .navbar .navbar-right > li > a {
   border-left: 1px solid #eee;
   border-right-width: 0;
 }
@@ -126,9 +126,6 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
 }
 .skin-black .sidebar-form input[type="text"] {
   color: #666;

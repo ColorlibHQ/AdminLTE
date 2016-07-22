@@ -179,17 +179,19 @@
       background-color: lighten(@sidebar-dark-bg, 10%);
       border: 1px solid transparent;
       height: 35px;
-      .transition(all @transition-speed @transition-fn);
+      //.transition(all @transition-speed @transition-fn);
     }
     input[type="text"] {
       color: #666;
       .border-radius(2px, 0, 2px, 0);
-      &:focus, &:focus + .input-group-btn .btn {
+      &:focus,
+      &:focus + .input-group-btn .btn {
         background-color: #fff;
         color: #666;
       }
       &:focus + .input-group-btn .btn {
         border-left-color: #fff;
+
       }
     }
     .btn {
@@ -284,7 +286,7 @@
       background-color: #fff; //darken(@sidebar-light-bg, 3%);
       border: 1px solid transparent;
       height: 35px;
-      .transition(all @transition-speed @transition-fn);
+      //.transition(all @transition-speed @transition-fn);
     }
     input[type="text"] {
       color: #666;
