@@ -1,5 +1,5 @@
 CHANGE LOG:
-v2.4.5:
+v2.3.5:
 - Fix issue #1097
 - Remove changelog from readme and specify new source
 - Merge pull request #1040 from OskarStark/patch-1
