@@ -536,13 +536,14 @@ a:focus {
   padding: 10px 25px 10px 15px;
   font-size: 12px;
 }
+.sidebar-menu li > a > .fa-angle-left,
 .sidebar-menu li > a > .pull-right-container > .fa-angle-left {
   width: auto;
   height: auto;
   padding: 0;
   margin-right: 10px;
 }
-.sidebar-menu li.active > a > .pull-right-container > .fa-angle-left {
+.sidebar-menu li.active > a > .fa-angle-left > a > .pull-right-container > .fa-angle-left {
   -webkit-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   -o-transform: rotate(-90deg);
@@ -575,6 +576,8 @@ a:focus {
   width: 20px;
 }
 .sidebar-menu .treeview-menu > li > a > .pull-right-container > .fa-angle-left,
+.sidebar-menu .treeview-menu > li > a > .pull-right-container > .fa-angle-down,
+.sidebar-menu .treeview-menu > li > a > .fa-angle-left,
 .sidebar-menu .treeview-menu > li > a > .fa-angle-down {
   width: auto;
 }
