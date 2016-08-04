@@ -1,12 +1,12 @@
-CHANGE LOG:
-v2.4.5:
+### CHANGE LOG:
+**v2.4.5:**
 - Fix issue #1097
 - Remove changelog from readme and specify new source
 - Merge pull request #1040 from OskarStark/patch-1
 - Update package.json version
 - updated changelog with already released versions
 
-v2.3.4
+**v2.3.4:**
 - Fix issue #1093
 - Fix issue #427 by updating slimscroll
 - Fix isse #683
@@ -46,7 +46,7 @@ v2.3.4
 - Add notification for changelog
 - Remove sidebar click handler, before assigning one
 
-v2.3.3
+**v2.3.3:**
 - Update version number
 - Merge pull request #976 from suvjunmd/markup
 - Merge pull request #983 from johnberberich/fix-help-block-validation
@@ -94,22 +94,22 @@ v2.3.3
 - added npm install to readme
 - added main property to package.json
 
-v2.3.2
+**v2.3.2:**
 - Fix issue #752 (badges, labels and arrows didn't align on sidebar menu properly on FireFox)
 
-v2.3.1:
+**v2.3.1:**
 - Fix sidebar issue #676
 - Fix BootLint warnings and errors
 - Minor bug fixes and code reformat
 
-v2.3.0:
+**v2.3.0:**
 - Added social widgets (found in the widgets page)
 - Added profile page
 - Fix issue #430 (requires ```.hold-transition``` to be added to ```<body>```)
 - Fix issue #578
 - Fix issue #579
 
-v2.2.1:
+**v2.2.1:**
 - Bug Fixes
 - Removed many ```!important``` statements in css
 - Activate boxWidget automatically when created after the page has loaded
@@ -121,19 +121,19 @@ v2.2.1:
 - Added Clean to Grunt tasks (remove unwanted files like uncompressed images)
 - Updated Bootstrap to 3.3.5
 
-v2.2.0:
+**v2.2.0:**
 - Bug fixes
 - Added support for [Select2](https://select2.github.io/)
 - Updated ChartJS
 
-v2.1.2:
+**v2.1.2:**
 - Added explicit BoxWidget activation function issue #450
 - Crushed some bugs
 
-v2.1.1:
+**v2.1.1:**
 - Fix version error
 
-v2.1.0:
+**v2.1.0:**
 - Update Ion Icons
 - Added right sidebar ```.control-sidebar```
 - Control sidebar has 2 open effects: slide over content and push content
@@ -146,13 +146,13 @@ v2.1.0:
 - Added expand on hover option for sidebar mini
 - Added fixed control sidebar layout
 
-v2.0.5:
+**v2.0.5:**
 - Fixed issue #288
 
-v2.0.4:
+**v2.0.4:**
 - Fixed bower.json to pick up newest release.
 
-v2.0.3:
+**v2.0.3:**
 - Bug fixes
 - Fixed extra page when printing issue #264
 - Updated documentation and fixed links scrolling issue
@@ -160,16 +160,16 @@ v2.0.3:
 - Fixed sidebar stretching issue #275
 - Fixed checkbox out of bounds issue in WYSIHTML5 editor.
 
-v2.0.2:
+**v2.0.2:**
 - Solved issue with hidden arrow in select inputs.
 
-v2.0.1:
+**v2.0.1:**
 - Updated README.md
 - Fixed versioning issue in CSS, LESS, and JS
 - Updated box-shadow for boxes
 - Updated docs
 
-v2.0.0
+**v2.0.0:**
 - Major layout bug fixes
 - Change in layout mark up
 - Added transitions to the sidebar
