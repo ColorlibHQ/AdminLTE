@@ -827,7 +827,7 @@
 <script>
   $(function () {
     /* BOOTSTRAP SLIDER */
-    $('.slider').slider();
+    $('.slider').bootstrapSlider();
 
     /* ION SLIDER */
     $("#range_1").ionRangeSlider({
@@ -841,7 +841,10 @@
       prettify: false,
       hasGrid: true
     });
-    $("#range_2").ionRangeSlider();
+    
+    $("#range_2").ionRangeSlider({
+      type: 'double'
+    });
 
     $("#range_5").ionRangeSlider({
       min: 0,
@@ -852,6 +855,7 @@
       prettify: false,
       hasGrid: true
     });
+    
     $("#range_6").ionRangeSlider({
       min: -50,
       max: 50,
@@ -871,6 +875,7 @@
       hideMinMax: true,
       hideFromTo: false
     });
+    
     $("#range_3").ionRangeSlider({
       type: "double",
       postfix: " miles",
