@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+.wrapper.rtl  .main-sidebar {
+    left: auto;
+    right: 0;
+}
+
+.wrapper.rtl .content-wrapper {
+    margin-left: auto;
+    margin-right: 230px;
+}
+
+.wrapper.rtl .main-header .logo {
+    float: right;
+}
+
+.wrapper.rtl .main-header .sidebar-toggle {
+    float: right;
+}
+
+.wrapper.rtl .main-header .navbar-custom-menu {
+    float: left;
+}
+
+.wrapper.rtl .main-header .navbar {
+    margin-left: auto;
+    margin-right: 230px;
+}
+
+@media (min-width: 768px){
+	.wrapper.rtl .navbar-nav{float:right;}
+	.wrapper.rtl .navbar-nav>li{float:right;}
+
+	.wrapper.rtl .sidebar-collapse .content-wrapper,
+  	.wrapper.rtl .sidebar-collapse .right-side,
+  	.wrapper.rtl .sidebar-collapse .main-footer {
+    	margin-left: auto;
+    	margin-right:0;
+  	}
+}
