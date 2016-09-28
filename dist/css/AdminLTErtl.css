@@ -27,6 +27,70 @@
     margin-right: 230px;
 }
 
+.wrapper.rtl .sidebar-menu .treeview-menu > li{direction:rtl;text-align: right;}
+
+.wrapper.rtl .sidebar-menu li > a {
+    direction: rtl;
+}
+
+.wrapper.rtl .sidebar-menu > li > a > .fa,.wrapper.rtl .sidebar-menu > li > a > .glyphicon, .sidebar-menu > li > a > .ion {
+    padding: 0;
+    padding-left: 5px;
+}
+
+.wrapper.rtl .sidebar-menu li > a > .pull-right-container {
+    right: auto;
+    left: 10px;
+}
+
+.wrapper.rtl .fa-angle-left:before {
+    content: "\f105";
+}
+
+
+.wrapper.rtl .sidebar-menu .treeview-menu>li>a>.fa, .wrapper.rtl .sidebar-menu .treeview-menu>li>a>.glyphicon, .sidebar-menu .treeview-menu>li>a>.ion {
+    padding-left: 5px;
+}
+
+.wrapper.rtl .sidebar-menu>li {
+    text-align: right;
+}
+
+.wrapper .rtl .input-group {
+    direction: rtl;
+}
+
+.wrapper.rtl .user-panel>.info {
+    left: auto;
+    right: 55px;
+    text-align: right;
+    direction: rtl;
+}
+
+.wrapper.rtl .user-panel>.info>a {
+    direction: rtl;
+    padding-right: 0;
+    padding-left: 5px;
+}
+
+.wrapper.rtl .user-panel>.info>a>.fa, .wrapper.rtl .user-panel>.info>a>.ion, .wrapper.rtl .user-panel>.info>a>.glyphicon {
+    margin-right: auto;
+    margin-left: 3px;
+}
+
+.wrapper.rtl .main-footer {
+    margin-left: auto;
+    margin-right: 230px;
+}
+
+.sidebar-collapse .wrapper.rtl .sidebar-menu>li {
+    text-align: left;
+}
+
+.sidebar-collapse .wrapper.rtl .sidebar-menu>li i {
+    padding-left: 0;
+}
+
 @media (min-width: 768px){
 	.wrapper.rtl .navbar-nav{float:right;}
 	.wrapper.rtl .navbar-nav>li{float:right;}
@@ -56,7 +120,7 @@
   }
   .sidebar-mini.sidebar-collapse  .wrapper.rtl .sidebar-menu > li:not(.treeview) > a > span {
     border-bottom-right-radius: 0;
-	border-bottom-left-radius: 4px;
+    border-bottom-left-radius: 4px;
   }
   .sidebar-mini.sidebar-collapse  .wrapper.rtl .sidebar-menu > li > .treeview-menu {
      border-bottom-right-radius: 0;
@@ -65,15 +129,17 @@
   .sidebar-mini.sidebar-collapse  .wrapper.rtl .sidebar-menu > li:hover > a > span:not(.pull-right),
   .sidebar-mini.sidebar-collapse  .wrapper.rtl .sidebar-menu > li:hover > .treeview-menu {
     right: 50px;
+    left: auto;
+    text-align: right;
   }
   .sidebar-mini.sidebar-collapse  .wrapper.rtl .sidebar-menu > li:hover > a > span {
-    margin-right: -3px;
+    margin-right: 0px;
     padding: 12px 20px 12px 5px;
   }
   .sidebar-mini.sidebar-collapse  .wrapper.rtl .sidebar-menu > li:hover > a > .pull-right-container {
     float: left;
-    left: auto!important;
-	right: 200px!important;
+    right: auto!important;
+    left: -178px !important;
   }
 
   .sidebar-mini.sidebar-collapse  .wrapper.rtl .sidebar-menu > li:hover > .treeview-menu {
