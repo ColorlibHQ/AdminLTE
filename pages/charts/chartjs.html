@@ -720,32 +720,29 @@
 
     // Get context with jQuery - using jQuery's .get() method.
     var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
-    // This will get the first returned node in the jQuery collection.
-    var areaChart = new Chart(areaChartCanvas);
-
     var areaChartData = {
       labels: ["January", "February", "March", "April", "May", "June", "July"],
       datasets: [
         {
-          label: "Electronics",
-          fillColor: "rgba(210, 214, 222, 1)",
-          strokeColor: "rgba(210, 214, 222, 1)",
-          pointColor: "rgba(210, 214, 222, 1)",
-          pointStrokeColor: "#c1c7d1",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(220,220,220,1)",
-          data: [65, 59, 80, 81, 56, 55, 40]
+          label: "Digital Goods",
+          backgroundColor: "rgba(60,141,188,0.9)",
+          borderColor: "rgba(60,141,188,0.8)",
+          borderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          pointHitRadius: 10,
+          data: [28, 48, 40, 19, 86, 27, 90]
         },
         {
-          label: "Digital Goods",
-          fillColor: "rgba(60,141,188,0.9)",
-          strokeColor: "rgba(60,141,188,0.8)",
-          pointColor: "#3b8bba",
-          pointStrokeColor: "rgba(60,141,188,1)",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(60,141,188,1)",
-          data: [28, 48, 40, 19, 86, 27, 90]
-        }
+          label: "Electronics",
+          backgroundColor: "rgba(210, 214, 222, 1)",
+          borderColor: "rgba(210, 214, 222, 1)",
+          borderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          pointHitRadius: 10,
+          data: [65, 59, 80, 81, 56, 55, 40],
+        },
       ]
     };
 
@@ -785,20 +782,58 @@
       //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
       maintainAspectRatio: true,
       //Boolean - whether to make the chart responsive to window resizing
-      responsive: true
+      responsive: true,
+      legend: {
+          display: false
+      },
+      tooltips: {
+          /*
+           Sets which elements appear in the tooltip. Acceptable options are 'single', 'label' or 'x-axis'.
+
+           'single' highlights the closest element.
+
+           'label' highlights elements in all datasets at the same X value.
+
+           'x-axis' also highlights elements in all datasets at the same X value, but activates when hovering anywhere within the vertical slice of the x-axis representing that X value.
+          */
+          mode: 'x-axis'
+      },
+      scales : {
+        xAxes : [ {
+            gridLines : {
+                display : false
+            }
+        } ],
+        yAxes : [ {
+            gridLines : {
+                display : false
+            }
+        } ]
+      }
     };
 
+    new Chart(areaChartCanvas, {
+            type: 'line',
+            data: areaChartData,
+            options: areaChartOptions
+    });
+
     //Create the line chart
-    areaChart.Line(areaChartData, areaChartOptions);
 
     //-------------
     //- LINE CHART -
     //--------------
     var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
-    var lineChart = new Chart(lineChartCanvas);
     var lineChartOptions = areaChartOptions;
-    lineChartOptions.datasetFill = false;
-    lineChart.Line(areaChartData, lineChartOptions);
+    // Remove fill
+    areaChartData.datasets[0].fill = false
+    areaChartData.datasets[1].fill = false
+
+   new Chart(lineChartCanvas, {
+            type: 'line',
+            data: areaChartData,
+            options: lineChartOptions
+    });
 
     //-------------
     //- PIE CHART -
