@@ -765,9 +765,7 @@
            Sets which elements appear in the tooltip. Acceptable options are 'single', 'label' or 'x-axis'.
 
            'single' highlights the closest element.
-
            'label' highlights elements in all datasets at the same X value.
-
            'x-axis' also highlights elements in all datasets at the same X value, but activates when hovering anywhere within the vertical slice of the x-axis representing that X value.
           */
           mode: 'x-axis'
@@ -867,41 +865,65 @@
     //- BAR CHART -
     //-------------
     var barChartCanvas = $("#barChart").get(0).getContext("2d");
-    var barChart = new Chart(barChartCanvas);
     var barChartData = areaChartData;
-    barChartData.datasets[1].fillColor = "#00a65a";
-    barChartData.datasets[1].strokeColor = "#00a65a";
-    barChartData.datasets[1].pointColor = "#00a65a";
+
+    barChartData.datasets[0].backgroundColor = "#00a65a";
+    barChartData.datasets[0].borderColor = "#00a65a";
+
+    // http://www.chartjs.org/docs/#bar-chart-chart-options
+    // These are the customisation options specific to Bar charts.
+    // These options are merged with the global chart configuration options (http://www.chartjs.org/docs/#chart-configuration-global-configuration),
+    // and form the options of the chart
     var barChartOptions = {
-      //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
-      scaleBeginAtZero: true,
-      //Boolean - Whether grid lines are shown across the chart
-      scaleShowGridLines: true,
-      //String - Colour of the grid lines
-      scaleGridLineColor: "rgba(0,0,0,.05)",
-      //Number - Width of the grid lines
-      scaleGridLineWidth: 1,
-      //Boolean - Whether to show horizontal lines (except X axis)
-      scaleShowHorizontalLines: true,
-      //Boolean - Whether to show vertical lines (except Y axis)
-      scaleShowVerticalLines: true,
-      //Boolean - If there is a stroke on each bar
-      barShowStroke: true,
-      //Number - Pixel width of the bar stroke
-      barStrokeWidth: 2,
-      //Number - Spacing between each of the X value sets
-      barValueSpacing: 5,
-      //Number - Spacing between data sets within X values
-      barDatasetSpacing: 1,
-      //String - A legend template
-      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
-      //Boolean - whether to make the chart responsive
-      responsive: true,
-      maintainAspectRatio: true
+        // Since v2.0 options have been divided between scales.
+        scales: {
+            // Options for x Axes
+            xAxes: [{
+                    // Bolean - ( true ) - If true, show the scale.
+                    display: true,
+                    // String - ( "x-axis-0" ) - Id of the axis so that data can bind to it.
+                    id: "x-axis-0",
+                    // Bolean - ( false ) - If true, bars are stacked on the x-axis.
+                    stacked: false,
+                    // Number - ( undefined ) - Manually set width of each bar in pixels. If not set, the bars are sized automatically.
+                    // barThickness: 10
+                    // Number - ( 0.8 ) - Percent (0-1) of the available width (the space between the gridlines for small datasets) for each data-point to use for the bars.
+                    // Read more : http://www.chartjs.org/docs/#bar-chart-barpercentage-vs-categorypercentage
+                    categoryPercentage: 0.8,
+                    // Number - ( 0.9 ) - Percent (0-1) of the available width each bar should be within the category percentage.
+                    // 1.0 will take the whole category width and put the bars right next to each other.
+                    // Read more : http://www.chartjs.org/docs/#bar-chart-barpercentage-vs-categorypercentage
+                    barPercentage: 0.9
+            }],
+            // Options for y Axes
+            yAxes: [{
+                    // Bolean - ( true ) - If true, show the scale.
+                    display: true,
+                    // String - ( "y-axis-0" ) - Id of the axis so that data can bind to it.
+                    id: "y-axis-0",
+                    // Bolean - ( false ) - If true, bars are stacked on the x-axis.
+                    stacked: false,
+                    // Number - ( undefined ) - Manually set width of each bar in pixels. If not set, the bars are sized automatically.
+                    // barThickness: 10
+            }]
+        },
+        tooltips: {
+            /*
+             Sets which elements appear in the tooltip. Acceptable options are 'single', 'label' or 'x-axis'.
+
+             'single' highlights the closest element.
+             'label' highlights elements in all datasets at the same X value.
+             'x-axis' also highlights elements in all datasets at the same X value, but activates when hovering anywhere within the vertical slice of the x-axis representing that X value.
+             */
+             mode: 'label'
+        },
     };
 
-    barChartOptions.datasetFill = false;
-    barChart.Bar(barChartData, barChartOptions);
+    new Chart(barChartCanvas, {
+        type: 'bar',
+        data: barChartData,
+        options: barChartOptions
+    });
   });
 </script>
 </body>
