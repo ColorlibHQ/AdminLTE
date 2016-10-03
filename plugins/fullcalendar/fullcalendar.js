@@ -1,131 +1,28 @@
 /*!
- * FullCalendar v2.2.5
- * Docs & License: http://arshaw.com/fullcalendar/
- * (c) 2013 Adam Shaw
+ * FullCalendar v3.0.1
+ * Docs & License: http://fullcalendar.io/
+ * (c) 2016 Adam Shaw
  */
 
 (function(factory) {
 	if (typeof define === 'function' && define.amd) {
 		define([ 'jquery', 'moment' ], factory);
 	}
+	else if (typeof exports === 'object') { // Node/CommonJS
+		module.exports = factory(require('jquery'), require('moment'));
+	}
 	else {
 		factory(jQuery, moment);
 	}
 })(function($, moment) {
 
-    var defaults = {
+;;
 
-	titleRangeSeparator: ' \u2014 ', // emphasized dash
-	monthYearFormat: 'MMMM YYYY', // required for en. other languages rely on datepicker computable option
-
-	defaultTimedEventDuration: '02:00:00',
-	defaultAllDayEventDuration: { days: 1 },
-	forceEventDuration: false,
-	nextDayThreshold: '09:00:00', // 9am
-
-	// display
-	defaultView: 'month',
-	aspectRatio: 1.35,
-	header: {
-		left: 'title',
-		center: '',
-		right: 'today prev,next'
-	},
-	weekends: true,
-	weekNumbers: false,
-
-	weekNumberTitle: 'W',
-	weekNumberCalculation: 'local',
-	
-	//editable: false,
-	
-	// event ajax
-	lazyFetching: true,
-	startParam: 'start',
-	endParam: 'end',
-	timezoneParam: 'timezone',
-
-	timezone: false,
-
-	//allDayDefault: undefined,
-
-	// locale
-	isRTL: false,
-	defaultButtonText: {
-		prev: "prev",
-		next: "next",
-		prevYear: "prev year",
-		nextYear: "next year",
-		today: 'today',
-		month: 'month',
-		week: 'week',
-		day: 'day'
-	},
-
-	buttonIcons: {
-		prev: 'left-single-arrow',
-		next: 'right-single-arrow',
-		prevYear: 'left-double-arrow',
-		nextYear: 'right-double-arrow'
-	},
-	
-	// jquery-ui theming
-	theme: false,
-	themeButtonIcons: {
-		prev: 'circle-triangle-w',
-		next: 'circle-triangle-e',
-		prevYear: 'seek-prev',
-		nextYear: 'seek-next'
-	},
-
-	dragOpacity: .75,
-	dragRevertDuration: 500,
-	dragScroll: true,
-	
-	//selectable: false,
-	unselectAuto: true,
-	
-	dropAccept: '*',
-
-	eventLimit: false,
-	eventLimitText: 'more',
-	eventLimitClick: 'popover',
-	dayPopoverFormat: 'LL',
-	
-	handleWindowResize: true,
-	windowResizeDelay: 200 // milliseconds before an updateSize happens
-	
+var FC = $.fullCalendar = {
+	version: "3.0.1",
+	internalApiVersion: 6
 };
-
-
-var englishDefaults = {
-	dayPopoverFormat: 'dddd, MMMM D'
-};
-
-
-// right-to-left defaults
-var rtlDefaults = {
-	header: {
-		left: 'next,prev today',
-		center: '',
-		right: 'title'
-	},
-	buttonIcons: {
-		prev: 'right-single-arrow',
-		next: 'left-single-arrow',
-		prevYear: 'right-double-arrow',
-		nextYear: 'left-double-arrow'
-	},
-	themeButtonIcons: {
-		prev: 'circle-triangle-e',
-		next: 'circle-triangle-w',
-		nextYear: 'seek-prev',
-		prevYear: 'seek-next'
-	}
-};
-
-    var fc = $.fullCalendar = { version: "2.2.5" };
-var fcViews = fc.views = {};
+var fcViews = FC.views = {};
 
 
 $.fn.fullCalendar = function(options) {
@@ -161,200 +58,30 @@ $.fn.fullCalendar = function(options) {
 };
 
 
-// function for adding/overriding defaults
-function setDefaults(d) {
-	mergeOptions(defaults, d);
+var complexOptions = [ // names of options that are objects whose properties should be combined
+	'header',
+	'buttonText',
+	'buttonIcons',
+	'themeButtonIcons'
+];
+
+
+// Merges an array of option objects into a single object
+function mergeOptions(optionObjs) {
+	return mergeProps(optionObjs, complexOptions);
 }
 
-
-// Recursively combines option hash-objects.
-// Better than `$.extend(true, ...)` because arrays are not traversed/copied.
-//
-// called like:
-//     mergeOptions(target, obj1, obj2, ...)
-//
-function mergeOptions(target) {
-
-	function mergeIntoTarget(name, value) {
-		if ($.isPlainObject(value) && $.isPlainObject(target[name]) && !isForcedAtomicOption(name)) {
-			// merge into a new object to avoid destruction
-			target[name] = mergeOptions({}, target[name], value); // combine. `value` object takes precedence
-		}
-		else if (value !== undefined) { // only use values that are set and not undefined
-			target[name] = value;
-		}
-	}
-
-	for (var i=1; i<arguments.length; i++) {
-		$.each(arguments[i], mergeIntoTarget);
-	}
-
-	return target;
-}
-
-
-// overcome sucky view-option-hash and option-merging behavior messing with options it shouldn't
-function isForcedAtomicOption(name) {
-	// Any option that ends in "Time" or "Duration" is probably a Duration,
-	// and these will commonly be specified as plain objects, which we don't want to mess up.
-	return /(Time|Duration)$/.test(name);
-}
-// FIX: find a different solution for view-option-hashes and have a whitelist
-// for options that can be recursively merged.
-
-    var langOptionHash = fc.langs = {}; // initialize and expose
-
-
-// TODO: document the structure and ordering of a FullCalendar lang file
-// TODO: rename everything "lang" to "locale", like what the moment project did
-
-
-// Initialize jQuery UI datepicker translations while using some of the translations
-// Will set this as the default language for datepicker.
-fc.datepickerLang = function(langCode, dpLangCode, dpOptions) {
-
-	// get the FullCalendar internal option hash for this language. create if necessary
-	var fcOptions = langOptionHash[langCode] || (langOptionHash[langCode] = {});
-
-	// transfer some simple options from datepicker to fc
-	fcOptions.isRTL = dpOptions.isRTL;
-	fcOptions.weekNumberTitle = dpOptions.weekHeader;
-
-	// compute some more complex options from datepicker
-	$.each(dpComputableOptions, function(name, func) {
-		fcOptions[name] = func(dpOptions);
-	});
-
-	// is jQuery UI Datepicker is on the page?
-	if ($.datepicker) {
-
-		// Register the language data.
-		// FullCalendar and MomentJS use language codes like "pt-br" but Datepicker
-		// does it like "pt-BR" or if it doesn't have the language, maybe just "pt".
-		// Make an alias so the language can be referenced either way.
-		$.datepicker.regional[dpLangCode] =
-			$.datepicker.regional[langCode] = // alias
-				dpOptions;
-
-		// Alias 'en' to the default language data. Do this every time.
-		$.datepicker.regional.en = $.datepicker.regional[''];
-
-		// Set as Datepicker's global defaults.
-		$.datepicker.setDefaults(dpOptions);
-	}
-};
-
-
-// Sets FullCalendar-specific translations. Will set the language as the global default.
-fc.lang = function(langCode, newFcOptions) {
-	var fcOptions;
-	var momOptions;
-
-	// get the FullCalendar internal option hash for this language. create if necessary
-	fcOptions = langOptionHash[langCode] || (langOptionHash[langCode] = {});
-
-	// provided new options for this language? merge them in
-	if (newFcOptions) {
-		mergeOptions(fcOptions, newFcOptions);
-	}
-
-	// compute language options that weren't defined.
-	// always do this. newFcOptions can be undefined when initializing from i18n file,
-	// so no way to tell if this is an initialization or a default-setting.
-	momOptions = getMomentLocaleData(langCode); // will fall back to en
-	$.each(momComputableOptions, function(name, func) {
-		if (fcOptions[name] === undefined) {
-			fcOptions[name] = func(momOptions, fcOptions);
-		}
-	});
-
-	// set it as the default language for FullCalendar
-	defaults.lang = langCode;
-};
-
-
-// NOTE: can't guarantee any of these computations will run because not every language has datepicker
-// configs, so make sure there are English fallbacks for these in the defaults file.
-var dpComputableOptions = {
-
-	defaultButtonText: function(dpOptions) {
-		return {
-			// the translations sometimes wrongly contain HTML entities
-			prev: stripHtmlEntities(dpOptions.prevText),
-			next: stripHtmlEntities(dpOptions.nextText),
-			today: stripHtmlEntities(dpOptions.currentText)
-		};
-	},
-
-	// Produces format strings like "MMMM YYYY" -> "September 2014"
-	monthYearFormat: function(dpOptions) {
-		return dpOptions.showMonthAfterYear ?
-			'YYYY[' + dpOptions.yearSuffix + '] MMMM' :
-			'MMMM YYYY[' + dpOptions.yearSuffix + ']';
-	}
-
-};
-
-var momComputableOptions = {
-
-	// Produces format strings like "ddd MM/DD" -> "Fri 12/10"
-	dayOfMonthFormat: function(momOptions, fcOptions) {
-		var format = momOptions.longDateFormat('l'); // for the format like "M/D/YYYY"
-
-		// strip the year off the edge, as well as other misc non-whitespace chars
-		format = format.replace(/^Y+[^\w\s]*|[^\w\s]*Y+$/g, '');
-
-		if (fcOptions.isRTL) {
-			format += ' ddd'; // for RTL, add day-of-week to end
-		}
-		else {
-			format = 'ddd ' + format; // for LTR, add day-of-week to beginning
-		}
-		return format;
-	},
-
-	// Produces format strings like "H(:mm)a" -> "6pm" or "6:30pm"
-	smallTimeFormat: function(momOptions) {
-		return momOptions.longDateFormat('LT')
-			.replace(':mm', '(:mm)')
-			.replace(/(\Wmm)$/, '($1)') // like above, but for foreign langs
-			.replace(/\s*a$/i, 'a'); // convert AM/PM/am/pm to lowercase. remove any spaces beforehand
-	},
-
-	// Produces format strings like "H(:mm)t" -> "6p" or "6:30p"
-	extraSmallTimeFormat: function(momOptions) {
-		return momOptions.longDateFormat('LT')
-			.replace(':mm', '(:mm)')
-			.replace(/(\Wmm)$/, '($1)') // like above, but for foreign langs
-			.replace(/\s*a$/i, 't'); // convert to AM/PM/am/pm to lowercase one-letter. remove any spaces beforehand
-	},
-
-	// Produces format strings like "H:mm" -> "6:30" (with no AM/PM)
-	noMeridiemTimeFormat: function(momOptions) {
-		return momOptions.longDateFormat('LT')
-			.replace(/\s*a$/i, ''); // remove trailing AM/PM
-	}
-
-};
-
-
-// Returns moment's internal locale data. If doesn't exist, returns English.
-// Works with moment-pre-2.8
-function getMomentLocaleData(langCode) {
-	var func = moment.localeData || moment.langData;
-	return func.call(moment, langCode) ||
-		func.call(moment, 'en'); // the newer localData could return null, so fall back to en
-}
-
-
-// Initialize English by forcing computation of moment-derived options.
-// Also, sets it as the default.
-fc.lang('en', englishDefaults);
+;;
 
 // exports
-fc.intersectionToSeg = intersectionToSeg;
-fc.applyAll = applyAll;
-fc.debounce = debounce;
+FC.intersectRanges = intersectRanges;
+FC.applyAll = applyAll;
+FC.debounce = debounce;
+FC.isInt = isInt;
+FC.htmlEscape = htmlEscape;
+FC.cssToStr = cssToStr;
+FC.proxy = proxy;
+FC.capitaliseFirstLetter = capitaliseFirstLetter;
 
 
 /* FullCalendar-specific DOM Utilities
@@ -485,30 +212,31 @@ function matchCellWidths(els) {
 }
 
 
-// Turns a container element into a scroller if its contents is taller than the allotted height.
-// Returns true if the element is now a scroller, false otherwise.
-// NOTE: this method is best because it takes weird zooming dimensions into account
-function setPotentialScroller(containerEl, height) {
-	containerEl.height(height).addClass('fc-scroller');
+// Given one element that resides inside another,
+// Subtracts the height of the inner element from the outer element.
+function subtractInnerElHeight(outerEl, innerEl) {
+	var both = outerEl.add(innerEl);
+	var diff;
 
-	// are scrollbars needed?
-	if (containerEl[0].scrollHeight - 1 > containerEl[0].clientHeight) { // !!! -1 because IE is often off-by-one :(
-		return true;
-	}
+	// effin' IE8/9/10/11 sometimes returns 0 for dimensions. this weird hack was the only thing that worked
+	both.css({
+		position: 'relative', // cause a reflow, which will force fresh dimension recalculation
+		left: -1 // ensure reflow in case the el was already relative. negative is less likely to cause new scroll
+	});
+	diff = outerEl.outerHeight() - innerEl.outerHeight(); // grab the dimensions
+	both.css({ position: '', left: '' }); // undo hack
 
-	unsetScroller(containerEl); // undo
-	return false;
+	return diff;
 }
 
 
-// Takes an element that might have been a scroller, and turns it back into a normal element.
-function unsetScroller(containerEl) {
-	containerEl.height('').removeClass('fc-scroller');
-}
-
-
-/* General DOM Utilities
+/* Element Geom Utilities
 ----------------------------------------------------------------------------------------------------------------------*/
+
+FC.getOuterRect = getOuterRect;
+FC.getClientRect = getClientRect;
+FC.getContentRect = getContentRect;
+FC.getScrollbarWidths = getScrollbarWidths;
 
 
 // borrowed from https://github.com/jquery/jquery-ui/blob/1.11.0/ui/core.js#L51
@@ -525,21 +253,124 @@ function getScrollParent(el) {
 }
 
 
-// Given a container element, return an object with the pixel values of the left/right scrollbars.
-// Left scrollbars might occur on RTL browsers (IE maybe?) but I have not tested.
-// PREREQUISITE: container element must have a single child with display:block
-function getScrollbarWidths(container) {
-	var containerLeft = container.offset().left;
-	var containerRight = containerLeft + container.width();
-	var inner = container.children();
-	var innerLeft = inner.offset().left;
-	var innerRight = innerLeft + inner.outerWidth();
+// Queries the outer bounding area of a jQuery element.
+// Returns a rectangle with absolute coordinates: left, right (exclusive), top, bottom (exclusive).
+// Origin is optional.
+function getOuterRect(el, origin) {
+	var offset = el.offset();
+	var left = offset.left - (origin ? origin.left : 0);
+	var top = offset.top - (origin ? origin.top : 0);
 
 	return {
-		left: innerLeft - containerLeft,
-		right: containerRight - innerRight
+		left: left,
+		right: left + el.outerWidth(),
+		top: top,
+		bottom: top + el.outerHeight()
 	};
 }
+
+
+// Queries the area within the margin/border/scrollbars of a jQuery element. Does not go within the padding.
+// Returns a rectangle with absolute coordinates: left, right (exclusive), top, bottom (exclusive).
+// Origin is optional.
+// NOTE: should use clientLeft/clientTop, but very unreliable cross-browser.
+function getClientRect(el, origin) {
+	var offset = el.offset();
+	var scrollbarWidths = getScrollbarWidths(el);
+	var left = offset.left + getCssFloat(el, 'border-left-width') + scrollbarWidths.left - (origin ? origin.left : 0);
+	var top = offset.top + getCssFloat(el, 'border-top-width') + scrollbarWidths.top - (origin ? origin.top : 0);
+
+	return {
+		left: left,
+		right: left + el[0].clientWidth, // clientWidth includes padding but NOT scrollbars
+		top: top,
+		bottom: top + el[0].clientHeight // clientHeight includes padding but NOT scrollbars
+	};
+}
+
+
+// Queries the area within the margin/border/padding of a jQuery element. Assumed not to have scrollbars.
+// Returns a rectangle with absolute coordinates: left, right (exclusive), top, bottom (exclusive).
+// Origin is optional.
+function getContentRect(el, origin) {
+	var offset = el.offset(); // just outside of border, margin not included
+	var left = offset.left + getCssFloat(el, 'border-left-width') + getCssFloat(el, 'padding-left') -
+		(origin ? origin.left : 0);
+	var top = offset.top + getCssFloat(el, 'border-top-width') + getCssFloat(el, 'padding-top') -
+		(origin ? origin.top : 0);
+
+	return {
+		left: left,
+		right: left + el.width(),
+		top: top,
+		bottom: top + el.height()
+	};
+}
+
+
+// Returns the computed left/right/top/bottom scrollbar widths for the given jQuery element.
+// NOTE: should use clientLeft/clientTop, but very unreliable cross-browser.
+function getScrollbarWidths(el) {
+	var leftRightWidth = el.innerWidth() - el[0].clientWidth; // the paddings cancel out, leaving the scrollbars
+	var widths = {
+		left: 0,
+		right: 0,
+		top: 0,
+		bottom: el.innerHeight() - el[0].clientHeight // the paddings cancel out, leaving the bottom scrollbar
+	};
+
+	if (getIsLeftRtlScrollbars() && el.css('direction') == 'rtl') { // is the scrollbar on the left side?
+		widths.left = leftRightWidth;
+	}
+	else {
+		widths.right = leftRightWidth;
+	}
+
+	return widths;
+}
+
+
+// Logic for determining if, when the element is right-to-left, the scrollbar appears on the left side
+
+var _isLeftRtlScrollbars = null;
+
+function getIsLeftRtlScrollbars() { // responsible for caching the computation
+	if (_isLeftRtlScrollbars === null) {
+		_isLeftRtlScrollbars = computeIsLeftRtlScrollbars();
+	}
+	return _isLeftRtlScrollbars;
+}
+
+function computeIsLeftRtlScrollbars() { // creates an offscreen test element, then removes it
+	var el = $('<div><div/></div>')
+		.css({
+			position: 'absolute',
+			top: -1000,
+			left: 0,
+			border: 0,
+			padding: 0,
+			overflow: 'scroll',
+			direction: 'rtl'
+		})
+		.appendTo('body');
+	var innerEl = el.children();
+	var res = innerEl.offset().left > el.offset().left; // is the inner div shifted to accommodate a left scrollbar?
+	el.remove();
+	return res;
+}
+
+
+// Retrieves a jQuery element's computed CSS value as a floating-point number.
+// If the queried value is non-numeric (ex: IE can return "medium" for border width), will just return zero.
+function getCssFloat(el, prop) {
+	return parseFloat(el.css(prop)) || 0;
+}
+
+
+/* Mouse / Touch Utilities
+----------------------------------------------------------------------------------------------------------------------*/
+
+FC.preventDefault = preventDefault;
 
 
 // Returns a boolean whether this was a left mouse click and no ctrl key (which means right click on Mac)
@@ -548,14 +379,210 @@ function isPrimaryMouseButton(ev) {
 }
 
 
+function getEvX(ev) {
+	if (ev.pageX !== undefined) {
+		return ev.pageX;
+	}
+	var touches = ev.originalEvent.touches;
+	if (touches) {
+		return touches[0].pageX;
+	}
+}
+
+
+function getEvY(ev) {
+	if (ev.pageY !== undefined) {
+		return ev.pageY;
+	}
+	var touches = ev.originalEvent.touches;
+	if (touches) {
+		return touches[0].pageY;
+	}
+}
+
+
+function getEvIsTouch(ev) {
+	return /^touch/.test(ev.type);
+}
+
+
+function preventSelection(el) {
+	el.addClass('fc-unselectable')
+		.on('selectstart', preventDefault);
+}
+
+
+// Stops a mouse/touch event from doing it's native browser action
+function preventDefault(ev) {
+	ev.preventDefault();
+}
+
+
+// attach a handler to get called when ANY scroll action happens on the page.
+// this was impossible to do with normal on/off because 'scroll' doesn't bubble.
+// http://stackoverflow.com/a/32954565/96342
+// returns `true` on success.
+function bindAnyScroll(handler) {
+	if (window.addEventListener) {
+		window.addEventListener('scroll', handler, true); // useCapture=true
+		return true;
+	}
+	return false;
+}
+
+
+// undoes bindAnyScroll. must pass in the original function.
+// returns `true` on success.
+function unbindAnyScroll(handler) {
+	if (window.removeEventListener) {
+		window.removeEventListener('scroll', handler, true); // useCapture=true
+		return true;
+	}
+	return false;
+}
+
+
+/* General Geometry Utils
+----------------------------------------------------------------------------------------------------------------------*/
+
+FC.intersectRects = intersectRects;
+
+// Returns a new rectangle that is the intersection of the two rectangles. If they don't intersect, returns false
+function intersectRects(rect1, rect2) {
+	var res = {
+		left: Math.max(rect1.left, rect2.left),
+		right: Math.min(rect1.right, rect2.right),
+		top: Math.max(rect1.top, rect2.top),
+		bottom: Math.min(rect1.bottom, rect2.bottom)
+	};
+
+	if (res.left < res.right && res.top < res.bottom) {
+		return res;
+	}
+	return false;
+}
+
+
+// Returns a new point that will have been moved to reside within the given rectangle
+function constrainPoint(point, rect) {
+	return {
+		left: Math.min(Math.max(point.left, rect.left), rect.right),
+		top: Math.min(Math.max(point.top, rect.top), rect.bottom)
+	};
+}
+
+
+// Returns a point that is the center of the given rectangle
+function getRectCenter(rect) {
+	return {
+		left: (rect.left + rect.right) / 2,
+		top: (rect.top + rect.bottom) / 2
+	};
+}
+
+
+// Subtracts point2's coordinates from point1's coordinates, returning a delta
+function diffPoints(point1, point2) {
+	return {
+		left: point1.left - point2.left,
+		top: point1.top - point2.top
+	};
+}
+
+
+/* Object Ordering by Field
+----------------------------------------------------------------------------------------------------------------------*/
+
+FC.parseFieldSpecs = parseFieldSpecs;
+FC.compareByFieldSpecs = compareByFieldSpecs;
+FC.compareByFieldSpec = compareByFieldSpec;
+FC.flexibleCompare = flexibleCompare;
+
+
+function parseFieldSpecs(input) {
+	var specs = [];
+	var tokens = [];
+	var i, token;
+
+	if (typeof input === 'string') {
+		tokens = input.split(/\s*,\s*/);
+	}
+	else if (typeof input === 'function') {
+		tokens = [ input ];
+	}
+	else if ($.isArray(input)) {
+		tokens = input;
+	}
+
+	for (i = 0; i < tokens.length; i++) {
+		token = tokens[i];
+
+		if (typeof token === 'string') {
+			specs.push(
+				token.charAt(0) == '-' ?
+					{ field: token.substring(1), order: -1 } :
+					{ field: token, order: 1 }
+			);
+		}
+		else if (typeof token === 'function') {
+			specs.push({ func: token });
+		}
+	}
+
+	return specs;
+}
+
+
+function compareByFieldSpecs(obj1, obj2, fieldSpecs) {
+	var i;
+	var cmp;
+
+	for (i = 0; i < fieldSpecs.length; i++) {
+		cmp = compareByFieldSpec(obj1, obj2, fieldSpecs[i]);
+		if (cmp) {
+			return cmp;
+		}
+	}
+
+	return 0;
+}
+
+
+function compareByFieldSpec(obj1, obj2, fieldSpec) {
+	if (fieldSpec.func) {
+		return fieldSpec.func(obj1, obj2);
+	}
+	return flexibleCompare(obj1[fieldSpec.field], obj2[fieldSpec.field]) *
+		(fieldSpec.order || 1);
+}
+
+
+function flexibleCompare(a, b) {
+	if (!a && !b) {
+		return 0;
+	}
+	if (b == null) {
+		return -1;
+	}
+	if (a == null) {
+		return 1;
+	}
+	if ($.type(a) === 'string' || $.type(b) === 'string') {
+		return String(a).localeCompare(String(b));
+	}
+	return a - b;
+}
+
+
 /* FullCalendar-specific Misc Utilities
 ----------------------------------------------------------------------------------------------------------------------*/
 
 
-// Creates a basic segment with the intersection of the two ranges. Returns undefined if no intersection.
+// Computes the intersection of the two ranges. Will return fresh date clones in a range.
+// Returns undefined if no intersection.
 // Expects all dates to be normalized to the same timezone beforehand.
 // TODO: move to date section?
-function intersectionToSeg(subjectRange, constraintRange) {
+function intersectRanges(subjectRange, constraintRange) {
 	var subjectStart = subjectRange.start;
 	var subjectEnd = subjectRange.end;
 	var constraintStart = constraintRange.start;
@@ -593,25 +620,14 @@ function intersectionToSeg(subjectRange, constraintRange) {
 }
 
 
-function smartProperty(obj, name) { // get a camel-cased/namespaced property of an object
-	obj = obj || {};
-	if (obj[name] !== undefined) {
-		return obj[name];
-	}
-	var parts = name.split(/(?=[A-Z])/),
-		i = parts.length - 1, res;
-	for (; i>=0; i--) {
-		res = obj[parts[i].toLowerCase()];
-		if (res !== undefined) {
-			return res;
-		}
-	}
-	return obj['default'];
-}
-
-
 /* Date Utilities
 ----------------------------------------------------------------------------------------------------------------------*/
+
+FC.computeIntervalUnit = computeIntervalUnit;
+FC.divideRangeByDuration = divideRangeByDuration;
+FC.divideDurationByDuration = divideDurationByDuration;
+FC.multiplyDuration = multiplyDuration;
+FC.durationHasTime = durationHasTime;
 
 var dayIDs = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ];
 var intervalUnits = [ 'year', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond' ];
@@ -635,38 +651,27 @@ function diffDay(a, b) {
 }
 
 
-// Computes the larges whole-unit period of time, as a duration object.
-// For example, 48 hours will be {days:2} whereas 49 hours will be {hours:49}.
+// Diffs two moments, producing a duration, made of a whole-unit-increment of the given unit. Uses rounding.
+function diffByUnit(a, b, unit) {
+	return moment.duration(
+		Math.round(a.diff(b, unit, true)), // returnFloat=true
+		unit
+	);
+}
+
+
+// Computes the unit name of the largest whole-unit period of time.
+// For example, 48 hours will be "days" whereas 49 hours will be "hours".
 // Accepts start/end, a range object, or an original duration object.
-/* (never used)
-function computeIntervalDuration(start, end) {
-	var durationInput = {};
+function computeIntervalUnit(start, end) {
 	var i, unit;
 	var val;
 
 	for (i = 0; i < intervalUnits.length; i++) {
 		unit = intervalUnits[i];
-		val = computeIntervalAs(unit, start, end);
-		if (val) {
-			break;
-		}
-	}
+		val = computeRangeAs(unit, start, end);
 
-	durationInput[unit] = val;
-	return moment.duration(durationInput);
-}
-*/
-
-
-// Computes the unit name of the largest whole-unit period of time.
-// For example, 48 hours will be "days" wherewas 49 hours will be "hours".
-// Accepts start/end, a range object, or an original duration object.
-function computeIntervalUnit(start, end) {
-	var i, unit;
-
-	for (i = 0; i < intervalUnits.length; i++) {
-		unit = intervalUnits[i];
-		if (computeIntervalAs(unit, start, end)) {
+		if (val >= 1 && isInt(val)) {
 			break;
 		}
 	}
@@ -675,27 +680,76 @@ function computeIntervalUnit(start, end) {
 }
 
 
-// Computes the number of units the interval is cleanly comprised of.
-// If the given unit does not cleanly divide the interval a whole number of times, `false` is returned.
-// Accepts start/end, a range object, or an original duration object.
-function computeIntervalAs(unit, start, end) {
-	var val;
+// Computes the number of units (like "hours") in the given range.
+// Range can be a {start,end} object, separate start/end args, or a Duration.
+// Results are based on Moment's .as() and .diff() methods, so results can depend on internal handling
+// of month-diffing logic (which tends to vary from version to version).
+function computeRangeAs(unit, start, end) {
 
 	if (end != null) { // given start, end
-		val = end.diff(start, unit, true);
+		return end.diff(start, unit, true);
 	}
 	else if (moment.isDuration(start)) { // given duration
-		val = start.as(unit);
+		return start.as(unit);
 	}
 	else { // given { start, end } range object
-		val = start.end.diff(start.start, unit, true);
+		return start.end.diff(start.start, unit, true);
 	}
+}
 
-	if (val >= 1 && isInt(val)) {
-		return val;
+
+// Intelligently divides a range (specified by a start/end params) by a duration
+function divideRangeByDuration(start, end, dur) {
+	var months;
+
+	if (durationHasTime(dur)) {
+		return (end - start) / dur;
 	}
+	months = dur.asMonths();
+	if (Math.abs(months) >= 1 && isInt(months)) {
+		return end.diff(start, 'months', true) / months;
+	}
+	return end.diff(start, 'days', true) / dur.asDays();
+}
 
-	return false;
+
+// Intelligently divides one duration by another
+function divideDurationByDuration(dur1, dur2) {
+	var months1, months2;
+
+	if (durationHasTime(dur1) || durationHasTime(dur2)) {
+		return dur1 / dur2;
+	}
+	months1 = dur1.asMonths();
+	months2 = dur2.asMonths();
+	if (
+		Math.abs(months1) >= 1 && isInt(months1) &&
+		Math.abs(months2) >= 1 && isInt(months2)
+	) {
+		return months1 / months2;
+	}
+	return dur1.asDays() / dur2.asDays();
+}
+
+
+// Intelligently multiplies a duration by a number
+function multiplyDuration(dur, n) {
+	var months;
+
+	if (durationHasTime(dur)) {
+		return moment.duration(dur * n);
+	}
+	months = dur.asMonths();
+	if (Math.abs(months) >= 1 && isInt(months)) {
+		return moment.duration({ months: months * n });
+	}
+	return moment.duration({ days: dur.asDays() * n });
+}
+
+
+// Returns a boolean about whether the given duration has any time parts (hours/minutes/seconds/ms)
+function durationHasTime(dur) {
+	return Boolean(dur.hours() || dur.minutes() || dur.seconds() || dur.milliseconds());
 }
 
 
@@ -710,10 +764,82 @@ function isTimeString(str) {
 }
 
 
+/* Logging and Debug
+----------------------------------------------------------------------------------------------------------------------*/
+
+FC.log = function() {
+	var console = window.console;
+
+	if (console && console.log) {
+		return console.log.apply(console, arguments);
+	}
+};
+
+FC.warn = function() {
+	var console = window.console;
+
+	if (console && console.warn) {
+		return console.warn.apply(console, arguments);
+	}
+	else {
+		return FC.log.apply(FC, arguments);
+	}
+};
+
+
 /* General Utilities
 ----------------------------------------------------------------------------------------------------------------------*/
 
 var hasOwnPropMethod = {}.hasOwnProperty;
+
+
+// Merges an array of objects into a single object.
+// The second argument allows for an array of property names who's object values will be merged together.
+function mergeProps(propObjs, complexProps) {
+	var dest = {};
+	var i, name;
+	var complexObjs;
+	var j, val;
+	var props;
+
+	if (complexProps) {
+		for (i = 0; i < complexProps.length; i++) {
+			name = complexProps[i];
+			complexObjs = [];
+
+			// collect the trailing object values, stopping when a non-object is discovered
+			for (j = propObjs.length - 1; j >= 0; j--) {
+				val = propObjs[j][name];
+
+				if (typeof val === 'object') {
+					complexObjs.unshift(val);
+				}
+				else if (val !== undefined) {
+					dest[name] = val; // if there were no objects, this value will be used
+					break;
+				}
+			}
+
+			// if the trailing values were objects, use the merged value
+			if (complexObjs.length) {
+				dest[name] = mergeProps(complexObjs);
+			}
+		}
+	}
+
+	// copy values into the destination, going from last to first
+	for (i = propObjs.length - 1; i >= 0; i--) {
+		props = propObjs[i];
+
+		for (name in props) {
+			if (!(name in dest)) { // if already assigned by previous props or complex props, don't reassign
+				dest[name] = props[name];
+			}
+		}
+	}
+
+	return dest;
+}
 
 
 // Create an object that has the given prototype. Just like Object.create
@@ -783,6 +909,36 @@ function stripHtmlEntities(text) {
 }
 
 
+// Given a hash of CSS properties, returns a string of CSS.
+// Uses property names as-is (no camel-case conversion). Will not make statements for null/undefined values.
+function cssToStr(cssProps) {
+	var statements = [];
+
+	$.each(cssProps, function(name, val) {
+		if (val != null) {
+			statements.push(name + ':' + val);
+		}
+	});
+
+	return statements.join(';');
+}
+
+
+// Given an object hash of HTML attribute names to values,
+// generates a string that can be injected between < > in HTML
+function attrsToStr(attrs) {
+	var parts = [];
+
+	$.each(attrs, function(name, val) {
+		if (val != null) {
+			parts.push(name + '="' + htmlEscape(val) + '"');
+		}
+	});
+
+	return parts.join(' ');
+}
+
+
 function capitaliseFirstLetter(str) {
 	return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -798,24 +954,35 @@ function isInt(n) {
 }
 
 
+// Returns a method bound to the given object context.
+// Just like one of the jQuery.proxy signatures, but without the undesired behavior of treating the same method with
+// different contexts as identical when binding/unbinding events.
+function proxy(obj, methodName) {
+	var method = obj[methodName];
+
+	return function() {
+		return method.apply(obj, arguments);
+	};
+}
+
+
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for
-// N milliseconds.
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
 // https://github.com/jashkenas/underscore/blob/1.6.0/underscore.js#L714
-function debounce(func, wait) {
-	var timeoutId;
-	var args;
-	var context;
-	var timestamp; // of most recent call
+function debounce(func, wait, immediate) {
+	var timeout, args, context, timestamp, result;
+
 	var later = function() {
 		var last = +new Date() - timestamp;
-		if (last < wait && last > 0) {
-			timeoutId = setTimeout(later, wait - last);
+		if (last < wait) {
+			timeout = setTimeout(later, wait - last);
 		}
 		else {
-			timeoutId = null;
-			func.apply(context, args);
-			if (!timeoutId) {
+			timeout = null;
+			if (!immediate) {
+				result = func.apply(context, args);
 				context = args = null;
 			}
 		}
@@ -825,20 +992,52 @@ function debounce(func, wait) {
 		context = this;
 		args = arguments;
 		timestamp = +new Date();
-		if (!timeoutId) {
-			timeoutId = setTimeout(later, wait);
+		var callNow = immediate && !timeout;
+		if (!timeout) {
+			timeout = setTimeout(later, wait);
 		}
+		if (callNow) {
+			result = func.apply(context, args);
+			context = args = null;
+		}
+		return result;
 	};
 }
 
-    var ambigDateOfMonthRegex = /^\s*\d{4}-\d\d$/;
+
+// HACK around jQuery's now A+ promises: execute callback synchronously if already resolved.
+// thenFunc shouldn't accept args.
+// similar to whenResources in Scheduler plugin.
+function syncThen(promise, thenFunc) {
+	// not a promise, or an already-resolved promise?
+	if (!promise || !promise.then || promise.state() === 'resolved') {
+		return $.when(thenFunc()); // resolve immediately
+	}
+	else if (thenFunc) {
+		return promise.then(thenFunc);
+	}
+}
+
+;;
+
+/*
+GENERAL NOTE on moments throughout the *entire rest* of the codebase:
+All moments are assumed to be ambiguously-zoned unless otherwise noted,
+with the NOTABLE EXCEOPTION of start/end dates that live on *Event Objects*.
+Ambiguously-TIMED moments are assumed to be ambiguously-zoned by nature.
+*/
+
+var ambigDateOfMonthRegex = /^\s*\d{4}-\d\d$/;
 var ambigTimeOrZoneRegex =
 	/^\s*\d{4}-(?:(\d\d-\d\d)|(W\d\d$)|(W\d\d-\d)|(\d\d\d))((T| )(\d\d(:\d\d(:\d\d(\.\d+)?)?)?)?)?$/;
 var newMomentProto = moment.fn; // where we will attach our new methods
 var oldMomentProto = $.extend({}, newMomentProto); // copy of original moment methods
-var allowValueOptimization;
-var setUTCValues; // function defined below
-var setLocalValues; // function defined below
+
+// tell momentjs to transfer these properties upon clone
+var momentProperties = moment.momentProperties;
+momentProperties.push('_fullCalendar');
+momentProperties.push('_ambigTime');
+momentProperties.push('_ambigZone');
 
 
 // Creating
@@ -848,12 +1047,12 @@ var setLocalValues; // function defined below
 // extra features (ambiguous time, enhanced formatting). When given an existing moment,
 // it will function as a clone (and retain the zone of the moment). Anything else will
 // result in a moment in the local zone.
-fc.moment = function() {
+FC.moment = function() {
 	return makeMoment(arguments);
 };
 
-// Sames as fc.moment, but forces the resulting moment to be in the UTC timezone.
-fc.moment.utc = function() {
+// Sames as FC.moment, but forces the resulting moment to be in the UTC timezone.
+FC.moment.utc = function() {
 	var mom = makeMoment(arguments, true);
 
 	// Force it into UTC because makeMoment doesn't guarantee it
@@ -865,9 +1064,9 @@ fc.moment.utc = function() {
 	return mom;
 };
 
-// Same as fc.moment, but when given an ISO8601 string, the timezone offset is preserved.
+// Same as FC.moment, but when given an ISO8601 string, the timezone offset is preserved.
 // ISO8601 strings with no timezone offset will become ambiguously zoned.
-fc.moment.parseZone = function() {
+FC.moment.parseZone = function() {
 	return makeMoment(arguments, true, true);
 };
 
@@ -884,12 +1083,8 @@ function makeMoment(args, parseAsUTC, parseZone) {
 	var ambigMatch;
 	var mom;
 
-	if (moment.isMoment(input)) {
-		mom = moment.apply(null, args); // clone it
-		transferAmbigs(input, mom); // the ambig flags weren't transfered with the clone
-	}
-	else if (isNativeDate(input) || input === undefined) {
-		mom = moment.apply(null, args); // will be local
+	if (moment.isMoment(input) || isNativeDate(input) || input === undefined) {
+		mom = moment.apply(null, args);
 	}
 	else { // "parsing" is required
 		isAmbigTime = false;
@@ -930,7 +1125,7 @@ function makeMoment(args, parseAsUTC, parseZone) {
 				mom._ambigZone = true;
 			}
 			else if (isSingleString) {
-				mom.zone(input); // if not a valid zone, will assign UTC
+				mom.utcOffset(input); // if not a valid zone, will assign UTC
 			}
 		}
 	}
@@ -941,18 +1136,23 @@ function makeMoment(args, parseAsUTC, parseZone) {
 }
 
 
-// A clone method that works with the flags related to our enhanced functionality.
-// In the future, use moment.momentProperties
-newMomentProto.clone = function() {
-	var mom = oldMomentProto.clone.apply(this, arguments);
+// Week Number
+// -------------------------------------------------------------------------------------------------
 
-	// these flags weren't transfered with the clone
-	transferAmbigs(this, mom);
-	if (this._fullCalendar) {
-		mom._fullCalendar = true;
+
+// Returns the week number, considering the locale's custom week number calcuation
+// `weeks` is an alias for `week`
+newMomentProto.week = newMomentProto.weeks = function(input) {
+	var weekCalc = this._locale._fullCalendar_weekCalc;
+
+	if (input == null && typeof weekCalc === 'function') { // custom function only works for getter
+		return weekCalc(this);
+	}
+	else if (weekCalc === 'ISO') {
+		return oldMomentProto.isoWeek.apply(this, arguments); // ISO getter/setter
 	}
 
-	return mom;
+	return oldMomentProto.week.apply(this, arguments); // local getter/setter
 };
 
 
@@ -1010,18 +1210,21 @@ newMomentProto.time = function(time) {
 // but preserving its YMD. A moment with a stripped time will display no time
 // nor timezone offset when .format() is called.
 newMomentProto.stripTime = function() {
-	var a;
 
 	if (!this._ambigTime) {
 
-		// get the values before any conversion happens
-		a = this.toArray(); // array of y/m/d/h/m/s/ms
+		this.utc(true); // keepLocalTime=true (for keeping *date* value)
 
-		this.utc(); // set the internal UTC flag (will clear the ambig flags)
-		setUTCValues(this, a.slice(0, 3)); // set the year/month/date. time will be zero
+		// set time to zero
+		this.set({
+			hours: 0,
+			minutes: 0,
+			seconds: 0,
+			ms: 0
+		});
 
-		// Mark the time as ambiguous. This needs to happen after the .utc() call, which calls .zone(),
-		// which clears all ambig flags. Same with setUTCValues with moment-timezone.
+		// Mark the time as ambiguous. This needs to happen after the .utc() call, which might call .utcOffset(),
+		// which clears all ambig flags.
 		this._ambigTime = true;
 		this._ambigZone = true; // if ambiguous time, also ambiguous timezone offset
 	}
@@ -1042,24 +1245,19 @@ newMomentProto.hasTime = function() {
 // YMD and time-of-day. A moment with a stripped timezone offset will display no
 // timezone offset when .format() is called.
 newMomentProto.stripZone = function() {
-	var a, wasAmbigTime;
+	var wasAmbigTime;
 
 	if (!this._ambigZone) {
 
-		// get the values before any conversion happens
-		a = this.toArray(); // array of y/m/d/h/m/s/ms
 		wasAmbigTime = this._ambigTime;
 
-		this.utc(); // set the internal UTC flag (will clear the ambig flags)
-		setUTCValues(this, a); // will set the year/month/date/hours/minutes/seconds/ms
+		this.utc(true); // keepLocalTime=true (for keeping date and time values)
 
-		if (wasAmbigTime) {
-			// the above call to .utc()/.zone() unfortunately clears the ambig flags, so reassign
-			this._ambigTime = true;
-		}
+		// the above call to .utc()/.utcOffset() unfortunately might clear the ambig flags, so restore
+		this._ambigTime = wasAmbigTime || false;
 
-		// Mark the zone as ambiguous. This needs to happen after the .utc() call, which calls .zone(),
-		// which clears all ambig flags. Same with setUTCValues with moment-timezone.
+		// Mark the zone as ambiguous. This needs to happen after the .utc() call, which might call .utcOffset(),
+		// which clears the ambig flags.
 		this._ambigZone = true;
 	}
 
@@ -1071,8 +1269,39 @@ newMomentProto.hasZone = function() {
 	return !this._ambigZone;
 };
 
-// this method implicitly marks a zone (will get called upon .utc() and .local())
-newMomentProto.zone = function(tzo) {
+
+// implicitly marks a zone
+newMomentProto.local = function(keepLocalTime) {
+
+	// for when converting from ambiguously-zoned to local,
+	// keep the time values when converting from UTC -> local
+	oldMomentProto.local.call(this, this._ambigZone || keepLocalTime);
+
+	// ensure non-ambiguous
+	// this probably already happened via local() -> utcOffset(), but don't rely on Moment's internals
+	this._ambigTime = false;
+	this._ambigZone = false;
+
+	return this; // for chaining
+};
+
+
+// implicitly marks a zone
+newMomentProto.utc = function(keepLocalTime) {
+
+	oldMomentProto.utc.call(this, keepLocalTime);
+
+	// ensure non-ambiguous
+	// this probably already happened via utc() -> utcOffset(), but don't rely on Moment's internals
+	this._ambigTime = false;
+	this._ambigZone = false;
+
+	return this;
+};
+
+
+// implicitly marks a zone (will probably get called upon .utc() and .local())
+newMomentProto.utcOffset = function(tzo) {
 
 	if (tzo != null) { // setter
 		// these assignments needs to happen before the original zone method is called.
@@ -1081,23 +1310,7 @@ newMomentProto.zone = function(tzo) {
 		this._ambigZone = false;
 	}
 
-	return oldMomentProto.zone.apply(this, arguments);
-};
-
-// this method implicitly marks a zone
-newMomentProto.local = function() {
-	var a = this.toArray(); // year,month,date,hours,minutes,seconds,ms as an array
-	var wasAmbigZone = this._ambigZone;
-
-	oldMomentProto.local.apply(this, arguments); // will clear ambig flags
-
-	if (wasAmbigZone) {
-		// If the moment was ambiguously zoned, the date fields were stored as UTC.
-		// We want to preserve these, but in local time.
-		setLocalValues(this, a);
-	}
-
-	return this; // for chaining
+	return oldMomentProto.utcOffset.apply(this, arguments);
 };
 
 
@@ -1127,154 +1340,7 @@ newMomentProto.toISOString = function() {
 	return oldMomentProto.toISOString.apply(this, arguments);
 };
 
-
-// Querying
-// -------------------------------------------------------------------------------------------------
-
-// Is the moment within the specified range? `end` is exclusive.
-// FYI, this method is not a standard Moment method, so always do our enhanced logic.
-newMomentProto.isWithin = function(start, end) {
-	var a = commonlyAmbiguate([ this, start, end ]);
-	return a[0] >= a[1] && a[0] < a[2];
-};
-
-// When isSame is called with units, timezone ambiguity is normalized before the comparison happens.
-// If no units specified, the two moments must be identically the same, with matching ambig flags.
-newMomentProto.isSame = function(input, units) {
-	var a;
-
-	// only do custom logic if this is an enhanced moment
-	if (!this._fullCalendar) {
-		return oldMomentProto.isSame.apply(this, arguments);
-	}
-
-	if (units) {
-		a = commonlyAmbiguate([ this, input ], true); // normalize timezones but don't erase times
-		return oldMomentProto.isSame.call(a[0], a[1], units);
-	}
-	else {
-		input = fc.moment.parseZone(input); // normalize input
-		return oldMomentProto.isSame.call(this, input) &&
-			Boolean(this._ambigTime) === Boolean(input._ambigTime) &&
-			Boolean(this._ambigZone) === Boolean(input._ambigZone);
-	}
-};
-
-// Make these query methods work with ambiguous moments
-$.each([
-	'isBefore',
-	'isAfter'
-], function(i, methodName) {
-	newMomentProto[methodName] = function(input, units) {
-		var a;
-
-		// only do custom logic if this is an enhanced moment
-		if (!this._fullCalendar) {
-			return oldMomentProto[methodName].apply(this, arguments);
-		}
-
-		a = commonlyAmbiguate([ this, input ]);
-		return oldMomentProto[methodName].call(a[0], a[1], units);
-	};
-});
-
-
-// Misc Internals
-// -------------------------------------------------------------------------------------------------
-
-// given an array of moment-like inputs, return a parallel array w/ moments similarly ambiguated.
-// for example, of one moment has ambig time, but not others, all moments will have their time stripped.
-// set `preserveTime` to `true` to keep times, but only normalize zone ambiguity.
-// returns the original moments if no modifications are necessary.
-function commonlyAmbiguate(inputs, preserveTime) {
-	var anyAmbigTime = false;
-	var anyAmbigZone = false;
-	var len = inputs.length;
-	var moms = [];
-	var i, mom;
-
-	// parse inputs into real moments and query their ambig flags
-	for (i = 0; i < len; i++) {
-		mom = inputs[i];
-		if (!moment.isMoment(mom)) {
-			mom = fc.moment.parseZone(mom);
-		}
-		anyAmbigTime = anyAmbigTime || mom._ambigTime;
-		anyAmbigZone = anyAmbigZone || mom._ambigZone;
-		moms.push(mom);
-	}
-
-	// strip each moment down to lowest common ambiguity
-	// use clones to avoid modifying the original moments
-	for (i = 0; i < len; i++) {
-		mom = moms[i];
-		if (!preserveTime && anyAmbigTime && !mom._ambigTime) {
-			moms[i] = mom.clone().stripTime();
-		}
-		else if (anyAmbigZone && !mom._ambigZone) {
-			moms[i] = mom.clone().stripZone();
-		}
-	}
-
-	return moms;
-}
-
-// Transfers all the flags related to ambiguous time/zone from the `src` moment to the `dest` moment
-function transferAmbigs(src, dest) {
-	if (src._ambigTime) {
-		dest._ambigTime = true;
-	}
-	else if (dest._ambigTime) {
-		dest._ambigTime = false;
-	}
-
-	if (src._ambigZone) {
-		dest._ambigZone = true;
-	}
-	else if (dest._ambigZone) {
-		dest._ambigZone = false;
-	}
-}
-
-
-// Sets the year/month/date/etc values of the moment from the given array.
-// Inefficient because it calls each individual setter.
-function setMomentValues(mom, a) {
-	mom.year(a[0] || 0)
-		.month(a[1] || 0)
-		.date(a[2] || 0)
-		.hours(a[3] || 0)
-		.minutes(a[4] || 0)
-		.seconds(a[5] || 0)
-		.milliseconds(a[6] || 0);
-}
-
-// Can we set the moment's internal date directly?
-allowValueOptimization = '_d' in moment() && 'updateOffset' in moment;
-
-// Utility function. Accepts a moment and an array of the UTC year/month/date/etc values to set.
-// Assumes the given moment is already in UTC mode.
-setUTCValues = allowValueOptimization ? function(mom, a) {
-	// simlate what moment's accessors do
-	mom._d.setTime(Date.UTC.apply(Date, a));
-	moment.updateOffset(mom, false); // keepTime=false
-} : setMomentValues;
-
-// Utility function. Accepts a moment and an array of the local year/month/date/etc values to set.
-// Assumes the given moment is already in local mode.
-setLocalValues = allowValueOptimization ? function(mom, a) {
-	// simlate what moment's accessors do
-	mom._d.setTime(+new Date( // FYI, there is now way to apply an array of args to a constructor
-		a[0] || 0,
-		a[1] || 0,
-		a[2] || 0,
-		a[3] || 0,
-		a[4] || 0,
-		a[5] || 0,
-		a[6] || 0
-	));
-	moment.updateOffset(mom, false); // keepTime=false
-} : setMomentValues;
+;;
 
 // Single Date Formatting
 // -------------------------------------------------------------------------------------------------
@@ -1351,10 +1417,10 @@ function formatDateWithChunk(date, chunk) {
 function formatRange(date1, date2, formatStr, separator, isRTL) {
 	var localeData;
 
-	date1 = fc.moment.parseZone(date1);
-	date2 = fc.moment.parseZone(date2);
+	date1 = FC.moment.parseZone(date1);
+	date2 = FC.moment.parseZone(date2);
 
-	localeData = (date1.localeData || date1.lang).call(date1); // works with moment-pre-2.8
+	localeData = date1.localeData();
 
 	// Expand localized format strings, like "LL" -> "MMMM D YYYY"
 	formatStr = localeData.longDateFormat(formatStr) || formatStr;
@@ -1371,10 +1437,12 @@ function formatRange(date1, date2, formatStr, separator, isRTL) {
 		isRTL
 	);
 }
-fc.formatRange = formatRange; // expose
+FC.formatRange = formatRange; // expose
 
 
 function formatRangeWithChunks(date1, date2, chunks, separator, isRTL) {
+	var unzonedDate1 = date1.clone().stripZone(); // for formatSimilarChunk
+	var unzonedDate2 = date2.clone().stripZone(); // "
 	var chunkStr; // the rendering of the chunk
 	var leftI;
 	var leftStr = '';
@@ -1388,7 +1456,7 @@ function formatRangeWithChunks(date1, date2, chunks, separator, isRTL) {
 	// Start at the leftmost side of the formatting string and continue until you hit a token
 	// that is not the same between dates.
 	for (leftI=0; leftI<chunks.length; leftI++) {
-		chunkStr = formatSimilarChunk(date1, date2, chunks[leftI]);
+		chunkStr = formatSimilarChunk(date1, date2, unzonedDate1, unzonedDate2, chunks[leftI]);
 		if (chunkStr === false) {
 			break;
 		}
@@ -1397,7 +1465,7 @@ function formatRangeWithChunks(date1, date2, chunks, separator, isRTL) {
 
 	// Similarly, start at the rightmost side of the formatting string and move left
 	for (rightI=chunks.length-1; rightI>leftI; rightI--) {
-		chunkStr = formatSimilarChunk(date1, date2, chunks[rightI]);
+		chunkStr = formatSimilarChunk(date1, date2, unzonedDate1, unzonedDate2,  chunks[rightI]);
 		if (chunkStr === false) {
 			break;
 		}
@@ -1444,7 +1512,7 @@ var similarUnitMap = {
 
 // Given a formatting chunk, and given that both dates are similar in the regard the
 // formatting chunk is concerned, format date1 against `chunk`. Otherwise, return `false`.
-function formatSimilarChunk(date1, date2, chunk) {
+function formatSimilarChunk(date1, date2, unzonedDate1, unzonedDate2, chunk) {
 	var token;
 	var unit;
 
@@ -1453,8 +1521,10 @@ function formatSimilarChunk(date1, date2, chunk) {
 	}
 	else if ((token = chunk.token)) {
 		unit = similarUnitMap[token.charAt(0)];
+
 		// are the dates the same for this unit of measurement?
-		if (unit && date1.isSame(date2, unit)) {
+		// use the unzoned dates for this calculation because unreliable when near DST (bug #2396)
+		if (unit && unzonedDate1.isSame(unzonedDate2, unit)) {
 			return oldMomentFormat(date1, token); // would be the same if we used `date2`
 			// BTW, don't support custom tokens
 		}
@@ -1483,7 +1553,7 @@ function getFormatStringChunks(formatStr) {
 // Break the formatting string into an array of chunks
 function chunkFormatString(formatStr) {
 	var chunks = [];
-	var chunker = /\[([^\]]*)\]|\(([^\)]*)\)|(LT|(\w)\4*o?)|([^\w\[\(]+)/g; // TODO: more descrimination
+	var chunker = /\[([^\]]*)\]|\(([^\)]*)\)|(LTS|LT|(\w)\4*o?)|([^\w\[\(]+)/g; // TODO: more descrimination
 	var match;
 
 	while ((match = chunker.exec(formatStr))) {
@@ -1504,17 +1574,84 @@ function chunkFormatString(formatStr) {
 	return chunks;
 }
 
-    fc.Class = Class; // export
 
-// class that all other classes will inherit from
+// Misc Utils
+// -------------------------------------------------------------------------------------------------
+
+
+// granularity only goes up until day
+// TODO: unify with similarUnitMap
+var tokenGranularities = {
+	Y: { value: 1, unit: 'year' },
+	M: { value: 2, unit: 'month' },
+	W: { value: 3, unit: 'week' },
+	w: { value: 3, unit: 'week' },
+	D: { value: 4, unit: 'day' }, // day of month
+	d: { value: 4, unit: 'day' } // day of week
+};
+
+// returns a unit string, either 'year', 'month', 'day', or null
+// for the most granular formatting token in the string.
+FC.queryMostGranularFormatUnit = function(formatStr) {
+	var chunks = getFormatStringChunks(formatStr);
+	var i, chunk;
+	var candidate;
+	var best;
+
+	for (i = 0; i < chunks.length; i++) {
+		chunk = chunks[i];
+		if (chunk.token) {
+			candidate = tokenGranularities[chunk.token.charAt(0)];
+			if (candidate) {
+				if (!best || candidate.value > best.value) {
+					best = candidate;
+				}
+			}
+		}
+	}
+
+	if (best) {
+		return best.unit;
+	}
+
+	return null;
+};
+
+;;
+
+FC.Class = Class; // export
+
+// Class that all other classes will inherit from
 function Class() { }
 
-// called upon a class to create a subclass
-Class.extend = function(members) {
-	var superClass = this;
-	var subClass;
 
-	members = members || {};
+// Called on a class to create a subclass.
+// Last argument contains instance methods. Any argument before the last are considered mixins.
+Class.extend = function() {
+	var len = arguments.length;
+	var i;
+	var members;
+
+	for (i = 0; i < len; i++) {
+		members = arguments[i];
+		if (i < len - 1) { // not the last argument?
+			mixIntoClass(this, members);
+		}
+	}
+
+	return extendClass(this, members || {}); // members will be undefined if no arguments
+};
+
+
+// Adds new member variables/methods to the class's prototype.
+// Can be called with another class, or a plain object hash containing new members.
+Class.mixin = function(members) {
+	mixIntoClass(this, members);
+};
+
+
+function extendClass(superClass, members) {
+	var subClass;
 
 	// ensure a constructor for the subclass, forwarding all arguments to the super-constructor if it doesn't exist
 	if (hasOwnProp(members, 'constructor')) {
@@ -1536,14 +1673,169 @@ Class.extend = function(members) {
 	copyOwnProps(superClass, subClass);
 
 	return subClass;
+}
+
+
+function mixIntoClass(theClass, members) {
+	copyOwnProps(members, theClass.prototype);
+}
+;;
+
+var EmitterMixin = FC.EmitterMixin = {
+
+	// jQuery-ification via $(this) allows a non-DOM object to have
+	// the same event handling capabilities (including namespaces).
+
+
+	on: function(types, handler) {
+
+		// handlers are always called with an "event" object as their first param.
+		// sneak the `this` context and arguments into the extra parameter object
+		// and forward them on to the original handler.
+		var intercept = function(ev, extra) {
+			return handler.apply(
+				extra.context || this,
+				extra.args || []
+			);
+		};
+
+		// mimick jQuery's internal "proxy" system (risky, I know)
+		// causing all functions with the same .guid to appear to be the same.
+		// https://github.com/jquery/jquery/blob/2.2.4/src/core.js#L448
+		// this is needed for calling .off with the original non-intercept handler.
+		if (!handler.guid) {
+			handler.guid = $.guid++;
+		}
+		intercept.guid = handler.guid;
+
+		$(this).on(types, intercept);
+
+		return this; // for chaining
+	},
+
+
+	off: function(types, handler) {
+		$(this).off(types, handler);
+
+		return this; // for chaining
+	},
+
+
+	trigger: function(types) {
+		var args = Array.prototype.slice.call(arguments, 1); // arguments after the first
+
+		// pass in "extra" info to the intercept
+		$(this).triggerHandler(types, { args: args });
+
+		return this; // for chaining
+	},
+
+
+	triggerWith: function(types, context, args) {
+
+		// `triggerHandler` is less reliant on the DOM compared to `trigger`.
+		// pass in "extra" info to the intercept.
+		$(this).triggerHandler(types, { context: context, args: args });
+
+		return this; // for chaining
+	}
+
 };
 
-// adds new member variables/methods to the class's prototype.
-// can be called with another class, or a plain object hash containing new members.
-Class.mixin = function(members) {
-	copyOwnProps(members.prototype || members, this.prototype);
+;;
+
+/*
+Utility methods for easily listening to events on another object,
+and more importantly, easily unlistening from them.
+*/
+var ListenerMixin = FC.ListenerMixin = (function() {
+	var guid = 0;
+	var ListenerMixin = {
+
+		listenerId: null,
+
+		/*
+		Given an `other` object that has on/off methods, bind the given `callback` to an event by the given name.
+		The `callback` will be called with the `this` context of the object that .listenTo is being called on.
+		Can be called:
+			.listenTo(other, eventName, callback)
+		OR
+			.listenTo(other, {
+				eventName1: callback1,
+				eventName2: callback2
+			})
+		*/
+		listenTo: function(other, arg, callback) {
+			if (typeof arg === 'object') { // given dictionary of callbacks
+				for (var eventName in arg) {
+					if (arg.hasOwnProperty(eventName)) {
+						this.listenTo(other, eventName, arg[eventName]);
+					}
+				}
+			}
+			else if (typeof arg === 'string') {
+				other.on(
+					arg + '.' + this.getListenerNamespace(), // use event namespacing to identify this object
+					$.proxy(callback, this) // always use `this` context
+						// the usually-undesired jQuery guid behavior doesn't matter,
+						// because we always unbind via namespace
+				);
+			}
+		},
+
+		/*
+		Causes the current object to stop listening to events on the `other` object.
+		`eventName` is optional. If omitted, will stop listening to ALL events on `other`.
+		*/
+		stopListeningTo: function(other, eventName) {
+			other.off((eventName || '') + '.' + this.getListenerNamespace());
+		},
+
+		/*
+		Returns a string, unique to this object, to be used for event namespacing
+		*/
+		getListenerNamespace: function() {
+			if (this.listenerId == null) {
+				this.listenerId = guid++;
+			}
+			return '_listener' + this.listenerId;
+		}
+
+	};
+	return ListenerMixin;
+})();
+;;
+
+// simple class for toggle a `isIgnoringMouse` flag on delay
+// initMouseIgnoring must first be called, with a millisecond delay setting.
+var MouseIgnorerMixin = {
+
+	isIgnoringMouse: false, // bool
+	delayUnignoreMouse: null, // method
+
+
+	initMouseIgnoring: function(delay) {
+		this.delayUnignoreMouse = debounce(proxy(this, 'unignoreMouse'), delay || 1000);
+	},
+
+
+	// temporarily ignore mouse actions on segments
+	tempIgnoreMouse: function() {
+		this.isIgnoringMouse = true;
+		this.delayUnignoreMouse();
+	},
+
+
+	// delayUnignoreMouse eventually calls this
+	unignoreMouse: function() {
+		this.isIgnoringMouse = false;
+	}
+
 };
-    /* A rectangular panel that is absolutely positioned over other content
+
+;;
+
+/* A rectangular panel that is absolutely positioned over other content
 ------------------------------------------------------------------------------------------------------------------------
 Options:
 	- className (string)
@@ -1557,12 +1849,11 @@ Options:
 	- hide (callback)
 */
 
-var Popover = Class.extend({
+var Popover = Class.extend(ListenerMixin, {
 
 	isHidden: true,
 	options: null,
 	el: null, // the container element for the popover. generated by this object
-	documentMousedownProxy: null, // document mousedown handler bound to `this`
 	margin: 10, // the space required between the popover and the edges of the scroll container
 
 
@@ -1616,7 +1907,7 @@ var Popover = Class.extend({
 		});
 
 		if (options.autoHide) {
-			$(document).on('mousedown', this.documentMousedownProxy = $.proxy(this, 'documentMousedown'));
+			this.listenTo($(document), 'mousedown', this.documentMousedown);
 		}
 	},
 
@@ -1631,7 +1922,7 @@ var Popover = Class.extend({
 
 
 	// Hides and unregisters any handlers
-	destroy: function() {
+	removeElement: function() {
 		this.hide();
 
 		if (this.el) {
@@ -1639,7 +1930,7 @@ var Popover = Class.extend({
 			this.el = null;
 		}
 
-		$(document).off('mousedown', this.documentMousedownProxy);
+		this.stopListeningTo($(document), 'mousedown');
 	},
 
 
@@ -1710,403 +2001,567 @@ var Popover = Class.extend({
 
 });
 
-    /* A "coordinate map" converts pixel coordinates into an associated cell, which has an associated date
-------------------------------------------------------------------------------------------------------------------------
-Common interface:
+;;
 
-	CoordMap.prototype = {
-		build: function() {},
-		getCell: function(x, y) {}
-	};
+/*
+A cache for the left/right/top/bottom/width/height values for one or more elements.
+Works with both offset (from topleft document) and position (from offsetParent).
 
+options:
+- els
+- isHorizontal
+- isVertical
 */
+var CoordCache = FC.CoordCache = Class.extend({
 
-/* Coordinate map for a grid component
-----------------------------------------------------------------------------------------------------------------------*/
+	els: null, // jQuery set (assumed to be siblings)
+	forcedOffsetParentEl: null, // options can override the natural offsetParent
+	origin: null, // {left,top} position of offsetParent of els
+	boundingRect: null, // constrain cordinates to this rectangle. {left,right,top,bottom} or null
+	isHorizontal: false, // whether to query for left/right/width
+	isVertical: false, // whether to query for top/bottom/height
 
-var GridCoordMap = Class.extend({
-
-	grid: null, // reference to the Grid
-	rowCoords: null, // array of {top,bottom} objects
-	colCoords: null, // array of {left,right} objects
-
-	containerEl: null, // container element that all coordinates are constrained to. optionally assigned
-	minX: null,
-	maxX: null, // exclusive
-	minY: null,
-	maxY: null, // exclusive
+	// arrays of coordinates (offsets from topleft of document)
+	lefts: null,
+	rights: null,
+	tops: null,
+	bottoms: null,
 
 
-	constructor: function(grid) {
-		this.grid = grid;
+	constructor: function(options) {
+		this.els = $(options.els);
+		this.isHorizontal = options.isHorizontal;
+		this.isVertical = options.isVertical;
+		this.forcedOffsetParentEl = options.offsetParent ? $(options.offsetParent) : null;
 	},
 
 
-	// Queries the grid for the coordinates of all the cells
+	// Queries the els for coordinates and stores them.
+	// Call this method before using and of the get* methods below.
 	build: function() {
-		this.rowCoords = this.grid.computeRowCoords();
-		this.colCoords = this.grid.computeColCoords();
-		this.computeBounds();
+		var offsetParentEl = this.forcedOffsetParentEl || this.els.eq(0).offsetParent();
+
+		this.origin = offsetParentEl.offset();
+		this.boundingRect = this.queryBoundingRect();
+
+		if (this.isHorizontal) {
+			this.buildElHorizontals();
+		}
+		if (this.isVertical) {
+			this.buildElVerticals();
+		}
 	},
 
 
-	// Clears the coordinates data to free up memory
+	// Destroys all internal data about coordinates, freeing memory
 	clear: function() {
-		this.rowCoords = null;
-		this.colCoords = null;
+		this.origin = null;
+		this.boundingRect = null;
+		this.lefts = null;
+		this.rights = null;
+		this.tops = null;
+		this.bottoms = null;
 	},
 
 
-	// Given a coordinate of the document, gets the associated cell. If no cell is underneath, returns null
-	getCell: function(x, y) {
-		var rowCoords = this.rowCoords;
-		var colCoords = this.colCoords;
-		var hitRow = null;
-		var hitCol = null;
-		var i, coords;
-		var cell;
-
-		if (this.inBounds(x, y)) {
-
-			for (i = 0; i < rowCoords.length; i++) {
-				coords = rowCoords[i];
-				if (y >= coords.top && y < coords.bottom) {
-					hitRow = i;
-					break;
-				}
-			}
-
-			for (i = 0; i < colCoords.length; i++) {
-				coords = colCoords[i];
-				if (x >= coords.left && x < coords.right) {
-					hitCol = i;
-					break;
-				}
-			}
-
-			if (hitRow !== null && hitCol !== null) {
-				cell = this.grid.getCell(hitRow, hitCol);
-				cell.grid = this.grid; // for DragListener's isCellsEqual. dragging between grids
-				return cell;
-			}
-		}
-
-		return null;
-	},
-
-
-	// If there is a containerEl, compute the bounds into min/max values
-	computeBounds: function() {
-		var containerOffset;
-
-		if (this.containerEl) {
-			containerOffset = this.containerEl.offset();
-			this.minX = containerOffset.left;
-			this.maxX = containerOffset.left + this.containerEl.outerWidth();
-			this.minY = containerOffset.top;
-			this.maxY = containerOffset.top + this.containerEl.outerHeight();
+	// When called, if coord caches aren't built, builds them
+	ensureBuilt: function() {
+		if (!this.origin) {
+			this.build();
 		}
 	},
 
 
-	// Determines if the given coordinates are in bounds. If no `containerEl`, always true
-	inBounds: function(x, y) {
-		if (this.containerEl) {
-			return x >= this.minX && x < this.maxX && y >= this.minY && y < this.maxY;
+	// Populates the left/right internal coordinate arrays
+	buildElHorizontals: function() {
+		var lefts = [];
+		var rights = [];
+
+		this.els.each(function(i, node) {
+			var el = $(node);
+			var left = el.offset().left;
+			var width = el.outerWidth();
+
+			lefts.push(left);
+			rights.push(left + width);
+		});
+
+		this.lefts = lefts;
+		this.rights = rights;
+	},
+
+
+	// Populates the top/bottom internal coordinate arrays
+	buildElVerticals: function() {
+		var tops = [];
+		var bottoms = [];
+
+		this.els.each(function(i, node) {
+			var el = $(node);
+			var top = el.offset().top;
+			var height = el.outerHeight();
+
+			tops.push(top);
+			bottoms.push(top + height);
+		});
+
+		this.tops = tops;
+		this.bottoms = bottoms;
+	},
+
+
+	// Given a left offset (from document left), returns the index of the el that it horizontally intersects.
+	// If no intersection is made, returns undefined.
+	getHorizontalIndex: function(leftOffset) {
+		this.ensureBuilt();
+
+		var lefts = this.lefts;
+		var rights = this.rights;
+		var len = lefts.length;
+		var i;
+
+		for (i = 0; i < len; i++) {
+			if (leftOffset >= lefts[i] && leftOffset < rights[i]) {
+				return i;
+			}
 		}
-		return true;
+	},
+
+
+	// Given a top offset (from document top), returns the index of the el that it vertically intersects.
+	// If no intersection is made, returns undefined.
+	getVerticalIndex: function(topOffset) {
+		this.ensureBuilt();
+
+		var tops = this.tops;
+		var bottoms = this.bottoms;
+		var len = tops.length;
+		var i;
+
+		for (i = 0; i < len; i++) {
+			if (topOffset >= tops[i] && topOffset < bottoms[i]) {
+				return i;
+			}
+		}
+	},
+
+
+	// Gets the left offset (from document left) of the element at the given index
+	getLeftOffset: function(leftIndex) {
+		this.ensureBuilt();
+		return this.lefts[leftIndex];
+	},
+
+
+	// Gets the left position (from offsetParent left) of the element at the given index
+	getLeftPosition: function(leftIndex) {
+		this.ensureBuilt();
+		return this.lefts[leftIndex] - this.origin.left;
+	},
+
+
+	// Gets the right offset (from document left) of the element at the given index.
+	// This value is NOT relative to the document's right edge, like the CSS concept of "right" would be.
+	getRightOffset: function(leftIndex) {
+		this.ensureBuilt();
+		return this.rights[leftIndex];
+	},
+
+
+	// Gets the right position (from offsetParent left) of the element at the given index.
+	// This value is NOT relative to the offsetParent's right edge, like the CSS concept of "right" would be.
+	getRightPosition: function(leftIndex) {
+		this.ensureBuilt();
+		return this.rights[leftIndex] - this.origin.left;
+	},
+
+
+	// Gets the width of the element at the given index
+	getWidth: function(leftIndex) {
+		this.ensureBuilt();
+		return this.rights[leftIndex] - this.lefts[leftIndex];
+	},
+
+
+	// Gets the top offset (from document top) of the element at the given index
+	getTopOffset: function(topIndex) {
+		this.ensureBuilt();
+		return this.tops[topIndex];
+	},
+
+
+	// Gets the top position (from offsetParent top) of the element at the given position
+	getTopPosition: function(topIndex) {
+		this.ensureBuilt();
+		return this.tops[topIndex] - this.origin.top;
+	},
+
+	// Gets the bottom offset (from the document top) of the element at the given index.
+	// This value is NOT relative to the offsetParent's bottom edge, like the CSS concept of "bottom" would be.
+	getBottomOffset: function(topIndex) {
+		this.ensureBuilt();
+		return this.bottoms[topIndex];
+	},
+
+
+	// Gets the bottom position (from the offsetParent top) of the element at the given index.
+	// This value is NOT relative to the offsetParent's bottom edge, like the CSS concept of "bottom" would be.
+	getBottomPosition: function(topIndex) {
+		this.ensureBuilt();
+		return this.bottoms[topIndex] - this.origin.top;
+	},
+
+
+	// Gets the height of the element at the given index
+	getHeight: function(topIndex) {
+		this.ensureBuilt();
+		return this.bottoms[topIndex] - this.tops[topIndex];
+	},
+
+
+	// Bounding Rect
+	// TODO: decouple this from CoordCache
+
+	// Compute and return what the elements' bounding rectangle is, from the user's perspective.
+	// Right now, only returns a rectangle if constrained by an overflow:scroll element.
+	queryBoundingRect: function() {
+		var scrollParentEl = getScrollParent(this.els.eq(0));
+
+		if (!scrollParentEl.is(document)) {
+			return getClientRect(scrollParentEl);
+		}
+	},
+
+	isPointInBounds: function(leftOffset, topOffset) {
+		return this.isLeftInBounds(leftOffset) && this.isTopInBounds(topOffset);
+	},
+
+	isLeftInBounds: function(leftOffset) {
+		return !this.boundingRect || (leftOffset >= this.boundingRect.left && leftOffset < this.boundingRect.right);
+	},
+
+	isTopInBounds: function(topOffset) {
+		return !this.boundingRect || (topOffset >= this.boundingRect.top && topOffset < this.boundingRect.bottom);
 	}
 
 });
 
+;;
 
-/* Coordinate map that is a combination of multiple other coordinate maps
+/* Tracks a drag's mouse movement, firing various handlers
 ----------------------------------------------------------------------------------------------------------------------*/
+// TODO: use Emitter
 
-var ComboCoordMap = Class.extend({
+var DragListener = FC.DragListener = Class.extend(ListenerMixin, MouseIgnorerMixin, {
 
-	coordMaps: null, // an array of CoordMaps
-
-
-	constructor: function(coordMaps) {
-		this.coordMaps = coordMaps;
-	},
-
-
-	// Builds all coordMaps
-	build: function() {
-		var coordMaps = this.coordMaps;
-		var i;
-
-		for (i = 0; i < coordMaps.length; i++) {
-			coordMaps[i].build();
-		}
-	},
-
-
-	// Queries all coordMaps for the cell underneath the given coordinates, returning the first result
-	getCell: function(x, y) {
-		var coordMaps = this.coordMaps;
-		var cell = null;
-		var i;
-
-		for (i = 0; i < coordMaps.length && !cell; i++) {
-			cell = coordMaps[i].getCell(x, y);
-		}
-
-		return cell;
-	},
-
-
-	// Clears all coordMaps
-	clear: function() {
-		var coordMaps = this.coordMaps;
-		var i;
-
-		for (i = 0; i < coordMaps.length; i++) {
-			coordMaps[i].clear();
-		}
-	}
-
-});
-
-    /* Tracks mouse movements over a CoordMap and raises events about which cell the mouse is over.
-----------------------------------------------------------------------------------------------------------------------*/
-// TODO: very useful to have a handler that gets called upon cellOut OR when dragging stops (for cleanup)
-
-var DragListener = Class.extend({
-
-	coordMap: null,
 	options: null,
-
-	isListening: false,
-	isDragging: false,
-
-	// the cell the mouse was over when listening started
-	origCell: null,
-
-	// the cell the mouse is over
-	cell: null,
+	subjectEl: null,
 
 	// coordinates of the initial mousedown
-	mouseX0: null,
-	mouseY0: null,
+	originX: null,
+	originY: null,
 
-	// handler attached to the document, bound to the DragListener's `this`
-	mousemoveProxy: null,
-	mouseupProxy: null,
-
+	// the wrapping element that scrolls, or MIGHT scroll if there's overflow.
+	// TODO: do this for wrappers that have overflow:hidden as well.
 	scrollEl: null,
-	scrollBounds: null, // { top, bottom, left, right }
-	scrollTopVel: null, // pixels per second
-	scrollLeftVel: null, // pixels per second
-	scrollIntervalId: null, // ID of setTimeout for scrolling animation loop
-	scrollHandlerProxy: null, // this-scoped function for handling when scrollEl is scrolled
 
-	scrollSensitivity: 30, // pixels from edge for scrolling to start
-	scrollSpeed: 200, // pixels per second, at maximum speed
-	scrollIntervalMs: 50, // millisecond wait between scroll increment
+	isInteracting: false,
+	isDistanceSurpassed: false,
+	isDelayEnded: false,
+	isDragging: false,
+	isTouch: false,
+
+	delay: null,
+	delayTimeoutId: null,
+	minDistance: null,
+
+	handleTouchScrollProxy: null, // calls handleTouchScroll, always bound to `this`
 
 
-	constructor: function(coordMap, options) {
-		this.coordMap = coordMap;
+	constructor: function(options) {
 		this.options = options || {};
+		this.handleTouchScrollProxy = proxy(this, 'handleTouchScroll');
+		this.initMouseIgnoring(500);
 	},
 
 
-	// Call this when the user does a mousedown. Will probably lead to startListening
-	mousedown: function(ev) {
-		if (isPrimaryMouseButton(ev)) {
+	// Interaction (high-level)
+	// -----------------------------------------------------------------------------------------------------------------
 
-			ev.preventDefault(); // prevents native selection in most browsers
 
-			this.startListening(ev);
+	startInteraction: function(ev, extraOptions) {
+		var isTouch = getEvIsTouch(ev);
 
-			// start the drag immediately if there is no minimum distance for a drag start
-			if (!this.options.distance) {
-				this.startDrag(ev);
+		if (ev.type === 'mousedown') {
+			if (this.isIgnoringMouse) {
+				return;
+			}
+			else if (!isPrimaryMouseButton(ev)) {
+				return;
+			}
+			else {
+				ev.preventDefault(); // prevents native selection in most browsers
+			}
+		}
+
+		if (!this.isInteracting) {
+
+			// process options
+			extraOptions = extraOptions || {};
+			this.delay = firstDefined(extraOptions.delay, this.options.delay, 0);
+			this.minDistance = firstDefined(extraOptions.distance, this.options.distance, 0);
+			this.subjectEl = this.options.subjectEl;
+
+			this.isInteracting = true;
+			this.isTouch = isTouch;
+			this.isDelayEnded = false;
+			this.isDistanceSurpassed = false;
+
+			this.originX = getEvX(ev);
+			this.originY = getEvY(ev);
+			this.scrollEl = getScrollParent($(ev.target));
+
+			this.bindHandlers();
+			this.initAutoScroll();
+			this.handleInteractionStart(ev);
+			this.startDelay(ev);
+
+			if (!this.minDistance) {
+				this.handleDistanceSurpassed(ev);
 			}
 		}
 	},
 
 
-	// Call this to start tracking mouse movements
-	startListening: function(ev) {
-		var scrollParent;
-		var cell;
+	handleInteractionStart: function(ev) {
+		this.trigger('interactionStart', ev);
+	},
 
-		if (!this.isListening) {
 
-			// grab scroll container and attach handler
-			if (ev && this.options.scroll) {
-				scrollParent = getScrollParent($(ev.target));
-				if (!scrollParent.is(window) && !scrollParent.is(document)) {
-					this.scrollEl = scrollParent;
+	endInteraction: function(ev, isCancelled) {
+		if (this.isInteracting) {
+			this.endDrag(ev);
 
-					// scope to `this`, and use `debounce` to make sure rapid calls don't happen
-					this.scrollHandlerProxy = debounce($.proxy(this, 'scrollHandler'), 100);
-					this.scrollEl.on('scroll', this.scrollHandlerProxy);
+			if (this.delayTimeoutId) {
+				clearTimeout(this.delayTimeoutId);
+				this.delayTimeoutId = null;
+			}
+
+			this.destroyAutoScroll();
+			this.unbindHandlers();
+
+			this.isInteracting = false;
+			this.handleInteractionEnd(ev, isCancelled);
+
+			// a touchstart+touchend on the same element will result in the following addition simulated events:
+			// mouseover + mouseout + click
+			// let's ignore these bogus events
+			if (this.isTouch) {
+				this.tempIgnoreMouse();
+			}
+		}
+	},
+
+
+	handleInteractionEnd: function(ev, isCancelled) {
+		this.trigger('interactionEnd', ev, isCancelled || false);
+	},
+
+
+	// Binding To DOM
+	// -----------------------------------------------------------------------------------------------------------------
+
+
+	bindHandlers: function() {
+		var _this = this;
+		var touchStartIgnores = 1;
+
+		if (this.isTouch) {
+			this.listenTo($(document), {
+				touchmove: this.handleTouchMove,
+				touchend: this.endInteraction,
+				touchcancel: this.endInteraction,
+
+				// Sometimes touchend doesn't fire
+				// (can't figure out why. touchcancel doesn't fire either. has to do with scrolling?)
+				// If another touchstart happens, we know it's bogus, so cancel the drag.
+				// touchend will continue to be broken until user does a shorttap/scroll, but this is best we can do.
+				touchstart: function(ev) {
+					if (touchStartIgnores) { // bindHandlers is called from within a touchstart,
+						touchStartIgnores--; // and we don't want this to fire immediately, so ignore.
+					}
+					else {
+						_this.endInteraction(ev, true); // isCancelled=true
+					}
 				}
+			});
+
+			// listen to ALL scroll actions on the page
+			if (
+				!bindAnyScroll(this.handleTouchScrollProxy) && // hopefully this works and short-circuits the rest
+				this.scrollEl // otherwise, attach a single handler to this
+			) {
+				this.listenTo(this.scrollEl, 'scroll', this.handleTouchScroll);
 			}
+		}
+		else {
+			this.listenTo($(document), {
+				mousemove: this.handleMouseMove,
+				mouseup: this.endInteraction
+			});
+		}
 
-			this.computeCoords(); // relies on `scrollEl`
+		this.listenTo($(document), {
+			selectstart: preventDefault, // don't allow selection while dragging
+			contextmenu: preventDefault // long taps would open menu on Chrome dev tools
+		});
+	},
 
-			// get info on the initial cell and its coordinates
-			if (ev) {
-				cell = this.getCell(ev);
-				this.origCell = cell;
 
-				this.mouseX0 = ev.pageX;
-				this.mouseY0 = ev.pageY;
-			}
+	unbindHandlers: function() {
+		this.stopListeningTo($(document));
 
-			$(document)
-				.on('mousemove', this.mousemoveProxy = $.proxy(this, 'mousemove'))
-				.on('mouseup', this.mouseupProxy = $.proxy(this, 'mouseup'))
-				.on('selectstart', this.preventDefault); // prevents native selection in IE<=8
-
-			this.isListening = true;
-			this.trigger('listenStart', ev);
+		// unbind scroll listening
+		unbindAnyScroll(this.handleTouchScrollProxy);
+		if (this.scrollEl) {
+			this.stopListeningTo(this.scrollEl, 'scroll');
 		}
 	},
 
 
-	// Recomputes the drag-critical positions of elements
-	computeCoords: function() {
-		this.coordMap.build();
-		this.computeScrollBounds();
+	// Drag (high-level)
+	// -----------------------------------------------------------------------------------------------------------------
+
+
+	// extraOptions ignored if drag already started
+	startDrag: function(ev, extraOptions) {
+		this.startInteraction(ev, extraOptions); // ensure interaction began
+
+		if (!this.isDragging) {
+			this.isDragging = true;
+			this.handleDragStart(ev);
+		}
 	},
 
 
-	// Called when the user moves the mouse
-	mousemove: function(ev) {
-		var minDistance;
-		var distanceSq; // current distance from mouseX0/mouseY0, squared
+	handleDragStart: function(ev) {
+		this.trigger('dragStart', ev);
+	},
 
-		if (!this.isDragging) { // if not already dragging...
-			// then start the drag if the minimum distance criteria is met
-			minDistance = this.options.distance || 1;
-			distanceSq = Math.pow(ev.pageX - this.mouseX0, 2) + Math.pow(ev.pageY - this.mouseY0, 2);
+
+	handleMove: function(ev) {
+		var dx = getEvX(ev) - this.originX;
+		var dy = getEvY(ev) - this.originY;
+		var minDistance = this.minDistance;
+		var distanceSq; // current distance from the origin, squared
+
+		if (!this.isDistanceSurpassed) {
+			distanceSq = dx * dx + dy * dy;
 			if (distanceSq >= minDistance * minDistance) { // use pythagorean theorem
-				this.startDrag(ev);
+				this.handleDistanceSurpassed(ev);
 			}
 		}
 
 		if (this.isDragging) {
-			this.drag(ev); // report a drag, even if this mousemove initiated the drag
-		}
-	},
-
-
-	// Call this to initiate a legitimate drag.
-	// This function is called internally from this class, but can also be called explicitly from outside
-	startDrag: function(ev) {
-		var cell;
-
-		if (!this.isListening) { // startDrag must have manually initiated
-			this.startListening();
-		}
-
-		if (!this.isDragging) {
-			this.isDragging = true;
-			this.trigger('dragStart', ev);
-
-			// report the initial cell the mouse is over
-			// especially important if no min-distance and drag starts immediately
-			cell = this.getCell(ev); // this might be different from this.origCell if the min-distance is large
-			if (cell) {
-				this.cellOver(cell);
-			}
+			this.handleDrag(dx, dy, ev);
 		}
 	},
 
 
 	// Called while the mouse is being moved and when we know a legitimate drag is taking place
-	drag: function(ev) {
-		var cell;
+	handleDrag: function(dx, dy, ev) {
+		this.trigger('drag', dx, dy, ev);
+		this.updateAutoScroll(ev); // will possibly cause scrolling
+	},
 
+
+	endDrag: function(ev) {
 		if (this.isDragging) {
-			cell = this.getCell(ev);
-
-			if (!isCellsEqual(cell, this.cell)) { // a different cell than before?
-				if (this.cell) {
-					this.cellOut();
-				}
-				if (cell) {
-					this.cellOver(cell);
-				}
-			}
-
-			this.dragScroll(ev); // will possibly cause scrolling
-		}
-	},
-
-
-	// Called when a the mouse has just moved over a new cell
-	cellOver: function(cell) {
-		this.cell = cell;
-		this.trigger('cellOver', cell, isCellsEqual(cell, this.origCell));
-	},
-
-
-	// Called when the mouse has just moved out of a cell
-	cellOut: function() {
-		if (this.cell) {
-			this.trigger('cellOut', this.cell);
-			this.cell = null;
-		}
-	},
-
-
-	// Called when the user does a mouseup
-	mouseup: function(ev) {
-		this.stopDrag(ev);
-		this.stopListening(ev);
-	},
-
-
-	// Called when the drag is over. Will not cause listening to stop however.
-	// A concluding 'cellOut' event will NOT be triggered.
-	stopDrag: function(ev) {
-		if (this.isDragging) {
-			this.stopScrolling();
-			this.trigger('dragStop', ev);
 			this.isDragging = false;
+			this.handleDragEnd(ev);
 		}
 	},
 
 
-	// Call this to stop listening to the user's mouse events
-	stopListening: function(ev) {
-		if (this.isListening) {
+	handleDragEnd: function(ev) {
+		this.trigger('dragEnd', ev);
+	},
 
-			// remove the scroll handler if there is a scrollEl
-			if (this.scrollEl) {
-				this.scrollEl.off('scroll', this.scrollHandlerProxy);
-				this.scrollHandlerProxy = null;
-			}
 
-			$(document)
-				.off('mousemove', this.mousemoveProxy)
-				.off('mouseup', this.mouseupProxy)
-				.off('selectstart', this.preventDefault);
+	// Delay
+	// -----------------------------------------------------------------------------------------------------------------
 
-			this.mousemoveProxy = null;
-			this.mouseupProxy = null;
 
-			this.isListening = false;
-			this.trigger('listenStop', ev);
+	startDelay: function(initialEv) {
+		var _this = this;
 
-			this.origCell = this.cell = null;
-			this.coordMap.clear();
+		if (this.delay) {
+			this.delayTimeoutId = setTimeout(function() {
+				_this.handleDelayEnd(initialEv);
+			}, this.delay);
+		}
+		else {
+			this.handleDelayEnd(initialEv);
 		}
 	},
 
 
-	// Gets the cell underneath the coordinates for the given mouse event
-	getCell: function(ev) {
-		return this.coordMap.getCell(ev.pageX, ev.pageY);
+	handleDelayEnd: function(initialEv) {
+		this.isDelayEnded = true;
+
+		if (this.isDistanceSurpassed) {
+			this.startDrag(initialEv);
+		}
 	},
+
+
+	// Distance
+	// -----------------------------------------------------------------------------------------------------------------
+
+
+	handleDistanceSurpassed: function(ev) {
+		this.isDistanceSurpassed = true;
+
+		if (this.isDelayEnded) {
+			this.startDrag(ev);
+		}
+	},
+
+
+	// Mouse / Touch
+	// -----------------------------------------------------------------------------------------------------------------
+
+
+	handleTouchMove: function(ev) {
+		// prevent inertia and touchmove-scrolling while dragging
+		if (this.isDragging) {
+			ev.preventDefault();
+		}
+
+		this.handleMove(ev);
+	},
+
+
+	handleMouseMove: function(ev) {
+		this.handleMove(ev);
+	},
+
+
+	// Scrolling (unrelated to auto-scroll)
+	// -----------------------------------------------------------------------------------------------------------------
+
+
+	handleTouchScroll: function(ev) {
+		// if the drag is being initiated by touch, but a scroll happens before
+		// the drag-initiating delay is over, cancel the drag
+		if (!this.isDragging) {
+			this.endInteraction(ev, true); // isCancelled=true
+		}
+	},
+
+
+	// Utils
+	// -----------------------------------------------------------------------------------------------------------------
 
 
 	// Triggers a callback. Calls a function in the option hash of the same name.
@@ -2115,38 +2570,71 @@ var DragListener = Class.extend({
 		if (this.options[name]) {
 			this.options[name].apply(this, Array.prototype.slice.call(arguments, 1));
 		}
+		// makes _methods callable by event name. TODO: kill this
+		if (this['_' + name]) {
+			this['_' + name].apply(this, Array.prototype.slice.call(arguments, 1));
+		}
+	}
+
+
+});
+
+;;
+/*
+this.scrollEl is set in DragListener
+*/
+DragListener.mixin({
+
+	isAutoScroll: false,
+
+	scrollBounds: null, // { top, bottom, left, right }
+	scrollTopVel: null, // pixels per second
+	scrollLeftVel: null, // pixels per second
+	scrollIntervalId: null, // ID of setTimeout for scrolling animation loop
+
+	// defaults
+	scrollSensitivity: 30, // pixels from edge for scrolling to start
+	scrollSpeed: 200, // pixels per second, at maximum speed
+	scrollIntervalMs: 50, // millisecond wait between scroll increment
+
+
+	initAutoScroll: function() {
+		var scrollEl = this.scrollEl;
+
+		this.isAutoScroll =
+			this.options.scroll &&
+			scrollEl &&
+			!scrollEl.is(window) &&
+			!scrollEl.is(document);
+
+		if (this.isAutoScroll) {
+			// debounce makes sure rapid calls don't happen
+			this.listenTo(scrollEl, 'scroll', debounce(this.handleDebouncedScroll, 100));
+		}
 	},
 
 
-	// Stops a given mouse event from doing it's native browser action. In our case, text selection.
-	preventDefault: function(ev) {
-		ev.preventDefault();
+	destroyAutoScroll: function() {
+		this.endAutoScroll(); // kill any animation loop
+
+		// remove the scroll handler if there is a scrollEl
+		if (this.isAutoScroll) {
+			this.stopListeningTo(this.scrollEl, 'scroll'); // will probably get removed by unbindHandlers too :(
+		}
 	},
-
-
-	/* Scrolling
-	------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Computes and stores the bounding rectangle of scrollEl
 	computeScrollBounds: function() {
-		var el = this.scrollEl;
-		var offset;
-
-		if (el) {
-			offset = el.offset();
-			this.scrollBounds = {
-				top: offset.top,
-				left: offset.left,
-				bottom: offset.top + el.outerHeight(),
-				right: offset.left + el.outerWidth()
-			};
+		if (this.isAutoScroll) {
+			this.scrollBounds = getOuterRect(this.scrollEl);
+			// TODO: use getClientRect in future. but prevents auto scrolling when on top of scrollbars
 		}
 	},
 
 
 	// Called when the dragging is in progress and scrolling should be updated
-	dragScroll: function(ev) {
+	updateAutoScroll: function(ev) {
 		var sensitivity = this.scrollSensitivity;
 		var bounds = this.scrollBounds;
 		var topCloseness, bottomCloseness;
@@ -2157,10 +2645,10 @@ var DragListener = Class.extend({
 		if (bounds) { // only scroll if scrollEl exists
 
 			// compute closeness to edges. valid range is from 0.0 - 1.0
-			topCloseness = (sensitivity - (ev.pageY - bounds.top)) / sensitivity;
-			bottomCloseness = (sensitivity - (bounds.bottom - ev.pageY)) / sensitivity;
-			leftCloseness = (sensitivity - (ev.pageX - bounds.left)) / sensitivity;
-			rightCloseness = (sensitivity - (bounds.right - ev.pageX)) / sensitivity;
+			topCloseness = (sensitivity - (getEvY(ev) - bounds.top)) / sensitivity;
+			bottomCloseness = (sensitivity - (bounds.bottom - getEvY(ev))) / sensitivity;
+			leftCloseness = (sensitivity - (getEvX(ev) - bounds.left)) / sensitivity;
+			rightCloseness = (sensitivity - (bounds.right - getEvX(ev))) / sensitivity;
 
 			// translate vertical closeness into velocity.
 			// mouse must be completely in bounds for velocity to happen.
@@ -2195,7 +2683,7 @@ var DragListener = Class.extend({
 		// if there is non-zero velocity, and an animation loop hasn't already started, then START
 		if ((this.scrollTopVel || this.scrollLeftVel) && !this.scrollIntervalId) {
 			this.scrollIntervalId = setInterval(
-				$.proxy(this, 'scrollIntervalFunc'), // scope to `this`
+				proxy(this, 'scrollIntervalFunc'), // scope to `this`
 				this.scrollIntervalMs
 			);
 		}
@@ -2247,56 +2735,256 @@ var DragListener = Class.extend({
 
 		// if scrolled all the way, which causes the vels to be zero, stop the animation loop
 		if (!this.scrollTopVel && !this.scrollLeftVel) {
-			this.stopScrolling();
+			this.endAutoScroll();
 		}
 	},
 
 
 	// Kills any existing scrolling animation loop
-	stopScrolling: function() {
+	endAutoScroll: function() {
 		if (this.scrollIntervalId) {
 			clearInterval(this.scrollIntervalId);
 			this.scrollIntervalId = null;
 
-			// when all done with scrolling, recompute positions since they probably changed
-			this.computeCoords();
+			this.handleScrollEnd();
 		}
 	},
 
 
 	// Get called when the scrollEl is scrolled (NOTE: this is delayed via debounce)
-	scrollHandler: function() {
+	handleDebouncedScroll: function() {
 		// recompute all coordinates, but *only* if this is *not* part of our scrolling animation
 		if (!this.scrollIntervalId) {
-			this.computeCoords();
+			this.handleScrollEnd();
 		}
+	},
+
+
+	// Called when scrolling has stopped, whether through auto scroll, or the user scrolling
+	handleScrollEnd: function() {
+	}
+
+});
+;;
+
+/* Tracks mouse movements over a component and raises events about which hit the mouse is over.
+------------------------------------------------------------------------------------------------------------------------
+options:
+- subjectEl
+- subjectCenter
+*/
+
+var HitDragListener = DragListener.extend({
+
+	component: null, // converts coordinates to hits
+		// methods: prepareHits, releaseHits, queryHit
+
+	origHit: null, // the hit the mouse was over when listening started
+	hit: null, // the hit the mouse is over
+	coordAdjust: null, // delta that will be added to the mouse coordinates when computing collisions
+
+
+	constructor: function(component, options) {
+		DragListener.call(this, options); // call the super-constructor
+
+		this.component = component;
+	},
+
+
+	// Called when drag listening starts (but a real drag has not necessarily began).
+	// ev might be undefined if dragging was started manually.
+	handleInteractionStart: function(ev) {
+		var subjectEl = this.subjectEl;
+		var subjectRect;
+		var origPoint;
+		var point;
+
+		this.computeCoords();
+
+		if (ev) {
+			origPoint = { left: getEvX(ev), top: getEvY(ev) };
+			point = origPoint;
+
+			// constrain the point to bounds of the element being dragged
+			if (subjectEl) {
+				subjectRect = getOuterRect(subjectEl); // used for centering as well
+				point = constrainPoint(point, subjectRect);
+			}
+
+			this.origHit = this.queryHit(point.left, point.top);
+
+			// treat the center of the subject as the collision point?
+			if (subjectEl && this.options.subjectCenter) {
+
+				// only consider the area the subject overlaps the hit. best for large subjects.
+				// TODO: skip this if hit didn't supply left/right/top/bottom
+				if (this.origHit) {
+					subjectRect = intersectRects(this.origHit, subjectRect) ||
+						subjectRect; // in case there is no intersection
+				}
+
+				point = getRectCenter(subjectRect);
+			}
+
+			this.coordAdjust = diffPoints(point, origPoint); // point - origPoint
+		}
+		else {
+			this.origHit = null;
+			this.coordAdjust = null;
+		}
+
+		// call the super-method. do it after origHit has been computed
+		DragListener.prototype.handleInteractionStart.apply(this, arguments);
+	},
+
+
+	// Recomputes the drag-critical positions of elements
+	computeCoords: function() {
+		this.component.prepareHits();
+		this.computeScrollBounds(); // why is this here??????
+	},
+
+
+	// Called when the actual drag has started
+	handleDragStart: function(ev) {
+		var hit;
+
+		DragListener.prototype.handleDragStart.apply(this, arguments); // call the super-method
+
+		// might be different from this.origHit if the min-distance is large
+		hit = this.queryHit(getEvX(ev), getEvY(ev));
+
+		// report the initial hit the mouse is over
+		// especially important if no min-distance and drag starts immediately
+		if (hit) {
+			this.handleHitOver(hit);
+		}
+	},
+
+
+	// Called when the drag moves
+	handleDrag: function(dx, dy, ev) {
+		var hit;
+
+		DragListener.prototype.handleDrag.apply(this, arguments); // call the super-method
+
+		hit = this.queryHit(getEvX(ev), getEvY(ev));
+
+		if (!isHitsEqual(hit, this.hit)) { // a different hit than before?
+			if (this.hit) {
+				this.handleHitOut();
+			}
+			if (hit) {
+				this.handleHitOver(hit);
+			}
+		}
+	},
+
+
+	// Called when dragging has been stopped
+	handleDragEnd: function() {
+		this.handleHitDone();
+		DragListener.prototype.handleDragEnd.apply(this, arguments); // call the super-method
+	},
+
+
+	// Called when a the mouse has just moved over a new hit
+	handleHitOver: function(hit) {
+		var isOrig = isHitsEqual(hit, this.origHit);
+
+		this.hit = hit;
+
+		this.trigger('hitOver', this.hit, isOrig, this.origHit);
+	},
+
+
+	// Called when the mouse has just moved out of a hit
+	handleHitOut: function() {
+		if (this.hit) {
+			this.trigger('hitOut', this.hit);
+			this.handleHitDone();
+			this.hit = null;
+		}
+	},
+
+
+	// Called after a hitOut. Also called before a dragStop
+	handleHitDone: function() {
+		if (this.hit) {
+			this.trigger('hitDone', this.hit);
+		}
+	},
+
+
+	// Called when the interaction ends, whether there was a real drag or not
+	handleInteractionEnd: function() {
+		DragListener.prototype.handleInteractionEnd.apply(this, arguments); // call the super-method
+
+		this.origHit = null;
+		this.hit = null;
+
+		this.component.releaseHits();
+	},
+
+
+	// Called when scrolling has stopped, whether through auto scroll, or the user scrolling
+	handleScrollEnd: function() {
+		DragListener.prototype.handleScrollEnd.apply(this, arguments); // call the super-method
+
+		this.computeCoords(); // hits' absolute positions will be in new places. recompute
+	},
+
+
+	// Gets the hit underneath the coordinates for the given mouse event
+	queryHit: function(left, top) {
+
+		if (this.coordAdjust) {
+			left += this.coordAdjust.left;
+			top += this.coordAdjust.top;
+		}
+
+		return this.component.queryHit(left, top);
 	}
 
 });
 
 
-// Returns `true` if the cells are identically equal. `false` otherwise.
-// They must have the same row, col, and be from the same grid.
-// Two null values will be considered equal, as two "out of the grid" states are the same.
-function isCellsEqual(cell1, cell2) {
+// Returns `true` if the hits are identically equal. `false` otherwise. Must be from the same component.
+// Two null values will be considered equal, as two "out of the component" states are the same.
+function isHitsEqual(hit0, hit1) {
 
-	if (!cell1 && !cell2) {
+	if (!hit0 && !hit1) {
 		return true;
 	}
 
-	if (cell1 && cell2) {
-		return cell1.grid === cell2.grid &&
-			cell1.row === cell2.row &&
-			cell1.col === cell2.col;
+	if (hit0 && hit1) {
+		return hit0.component === hit1.component &&
+			isHitPropsWithin(hit0, hit1) &&
+			isHitPropsWithin(hit1, hit0); // ensures all props are identical
 	}
 
 	return false;
 }
 
-    /* Creates a clone of an element and lets it track the mouse as it moves
+
+// Returns true if all of subHit's non-standard properties are within superHit
+function isHitPropsWithin(subHit, superHit) {
+	for (var propName in subHit) {
+		if (!/^(component|left|right|top|bottom)$/.test(propName)) {
+			if (subHit[propName] !== superHit[propName]) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+;;
+
+/* Creates a clone of an element and lets it track the mouse as it moves
 ----------------------------------------------------------------------------------------------------------------------*/
 
-var MouseFollower = Class.extend({
+var MouseFollower = Class.extend(ListenerMixin, {
 
 	options: null,
 
@@ -2308,15 +2996,13 @@ var MouseFollower = Class.extend({
 	top0: null,
 	left0: null,
 
-	// the initial position of the mouse
-	mouseY0: null,
-	mouseX0: null,
+	// the absolute coordinates of the initiating touch/mouse action
+	y0: null,
+	x0: null,
 
 	// the number of pixels the mouse has moved from its initial position
 	topDelta: null,
 	leftDelta: null,
-
-	mousemoveProxy: null, // document mousemove handler, bound to the MouseFollower's `this`
 
 	isFollowing: false,
 	isHidden: false,
@@ -2334,8 +3020,8 @@ var MouseFollower = Class.extend({
 		if (!this.isFollowing) {
 			this.isFollowing = true;
 
-			this.mouseY0 = ev.pageY;
-			this.mouseX0 = ev.pageX;
+			this.y0 = getEvY(ev);
+			this.x0 = getEvX(ev);
 			this.topDelta = 0;
 			this.leftDelta = 0;
 
@@ -2343,7 +3029,12 @@ var MouseFollower = Class.extend({
 				this.updatePosition();
 			}
 
-			$(document).on('mousemove', this.mousemoveProxy = $.proxy(this, 'mousemove'));
+			if (getEvIsTouch(ev)) {
+				this.listenTo($(document), 'touchmove', this.handleMove);
+			}
+			else {
+				this.listenTo($(document), 'mousemove', this.handleMove);
+			}
 		}
 	},
 
@@ -2354,11 +3045,11 @@ var MouseFollower = Class.extend({
 		var _this = this;
 		var revertDuration = this.options.revertDuration;
 
-		function complete() {
-			this.isAnimating = false;
-			_this.destroyEl();
+		function complete() { // might be called by .animate(), which might change `this` context
+			_this.isAnimating = false;
+			_this.removeElement();
 
-			this.top0 = this.left0 = null; // reset state for future updatePosition calls
+			_this.top0 = _this.left0 = null; // reset state for future updatePosition calls
 
 			if (callback) {
 				callback();
@@ -2368,7 +3059,7 @@ var MouseFollower = Class.extend({
 		if (this.isFollowing && !this.isAnimating) { // disallow more than one stop animation at a time
 			this.isFollowing = false;
 
-			$(document).off('mousemove', this.mousemoveProxy);
+			this.stopListeningTo($(document));
 
 			if (shouldRevert && revertDuration && !this.isHidden) { // do a revert animation?
 				this.isAnimating = true;
@@ -2392,8 +3083,8 @@ var MouseFollower = Class.extend({
 		var el = this.el;
 
 		if (!el) {
-			this.sourceEl.width(); // hack to force IE8 to compute correct bounding box
 			el = this.el = this.sourceEl.clone()
+				.addClass(this.options.additionalClass || '')
 				.css({
 					position: 'absolute',
 					visibility: '', // in case original element was hidden (commonly through hideEvents())
@@ -2405,8 +3096,13 @@ var MouseFollower = Class.extend({
 					height: this.sourceEl.height(), // explicit width in case there was a 'bottom' value
 					opacity: this.options.opacity || '',
 					zIndex: this.options.zIndex
-				})
-				.appendTo(this.parentEl);
+				});
+
+			// we don't want long taps or any mouse interaction causing selection/menus.
+			// would use preventSelection(), but that prevents selectstart, causing problems.
+			el.addClass('fc-unselectable');
+
+			el.appendTo(this.parentEl);
 		}
 
 		return el;
@@ -2414,7 +3110,7 @@ var MouseFollower = Class.extend({
 
 
 	// Removes the tracking element if it has already been created
-	destroyEl: function() {
+	removeElement: function() {
 		if (this.el) {
 			this.el.remove();
 			this.el = null;
@@ -2431,7 +3127,6 @@ var MouseFollower = Class.extend({
 
 		// make sure origin info was computed
 		if (this.top0 === null) {
-			this.sourceEl.width(); // hack to force IE8 to compute correct bounding box
 			sourceOffset = this.sourceEl.offset();
 			origin = this.el.offsetParent().offset();
 			this.top0 = sourceOffset.top - origin.top;
@@ -2446,9 +3141,9 @@ var MouseFollower = Class.extend({
 
 
 	// Gets called when the user moves the mouse
-	mousemove: function(ev) {
-		this.topDelta = ev.pageY - this.mouseY0;
-		this.leftDelta = ev.pageX - this.mouseX0;
+	handleMove: function(ev) {
+		this.topDelta = getEvY(ev) - this.y0;
+		this.leftDelta = getEvX(ev) - this.x0;
 
 		if (!this.isHidden) {
 			this.updatePosition();
@@ -2478,164 +3173,55 @@ var MouseFollower = Class.extend({
 
 });
 
-    /* A utility class for rendering <tr> rows.
-----------------------------------------------------------------------------------------------------------------------*/
-// It leverages methods of the subclass and the View to determine custom rendering behavior for each row "type"
-// (such as highlight rows, day rows, helper rows, etc).
+;;
 
-var RowRenderer = Class.extend({
+/* An abstract class comprised of a "grid" of areas that each represent a specific datetime
+----------------------------------------------------------------------------------------------------------------------*/
+
+var Grid = FC.Grid = Class.extend(ListenerMixin, MouseIgnorerMixin, {
+
+	// self-config, overridable by subclasses
+	hasDayInteractions: true, // can user click/select ranges of time?
 
 	view: null, // a View object
 	isRTL: null, // shortcut to the view's isRTL option
-	cellHtml: '<td/>', // plain default HTML used for a cell when no other is available
+
+	start: null,
+	end: null,
+
+	el: null, // the containing element
+	elsByFill: null, // a hash of jQuery element sets used for rendering each fill. Keyed by fill name.
+
+	// derived from options
+	eventTimeFormat: null,
+	displayEventTime: null,
+	displayEventEnd: null,
+
+	minResizeDuration: null, // TODO: hack. set by subclasses. minumum event resize duration
+
+	// if defined, holds the unit identified (ex: "year" or "month") that determines the level of granularity
+	// of the date areas. if not defined, assumes to be day and time granularity.
+	// TODO: port isTimeScale into same system?
+	largeUnit: null,
+
+	dayDragListener: null,
+	segDragListener: null,
+	segResizeListener: null,
+	externalDragListener: null,
 
 
 	constructor: function(view) {
 		this.view = view;
 		this.isRTL = view.opt('isRTL');
-	},
-
-
-	// Renders the HTML for a row, leveraging custom cell-HTML-renderers based on the `rowType`.
-	// Also applies the "intro" and "outro" cells, which are specified by the subclass and views.
-	// `row` is an optional row number.
-	rowHtml: function(rowType, row) {
-		var renderCell = this.getHtmlRenderer('cell', rowType);
-		var rowCellHtml = '';
-		var col;
-		var cell;
-
-		row = row || 0;
-
-		for (col = 0; col < this.colCnt; col++) {
-			cell = this.getCell(row, col);
-			rowCellHtml += renderCell(cell);
-		}
-
-		rowCellHtml = this.bookendCells(rowCellHtml, rowType, row); // apply intro and outro
-
-		return '<tr>' + rowCellHtml + '</tr>';
-	},
-
-
-	// Applies the "intro" and "outro" HTML to the given cells.
-	// Intro means the leftmost cell when the calendar is LTR and the rightmost cell when RTL. Vice-versa for outro.
-	// `cells` can be an HTML string of <td>'s or a jQuery <tr> element
-	// `row` is an optional row number.
-	bookendCells: function(cells, rowType, row) {
-		var intro = this.getHtmlRenderer('intro', rowType)(row || 0);
-		var outro = this.getHtmlRenderer('outro', rowType)(row || 0);
-		var prependHtml = this.isRTL ? outro : intro;
-		var appendHtml = this.isRTL ? intro : outro;
-
-		if (typeof cells === 'string') {
-			return prependHtml + cells + appendHtml;
-		}
-		else { // a jQuery <tr> element
-			return cells.prepend(prependHtml).append(appendHtml);
-		}
-	},
-
-
-	// Returns an HTML-rendering function given a specific `rendererName` (like cell, intro, or outro) and a specific
-	// `rowType` (like day, eventSkeleton, helperSkeleton), which is optional.
-	// If a renderer for the specific rowType doesn't exist, it will fall back to a generic renderer.
-	// We will query the View object first for any custom rendering functions, then the methods of the subclass.
-	getHtmlRenderer: function(rendererName, rowType) {
-		var view = this.view;
-		var generalName; // like "cellHtml"
-		var specificName; // like "dayCellHtml". based on rowType
-		var provider; // either the View or the RowRenderer subclass, whichever provided the method
-		var renderer;
-
-		generalName = rendererName + 'Html';
-		if (rowType) {
-			specificName = rowType + capitaliseFirstLetter(rendererName) + 'Html';
-		}
-
-		if (specificName && (renderer = view[specificName])) {
-			provider = view;
-		}
-		else if (specificName && (renderer = this[specificName])) {
-			provider = this;
-		}
-		else if ((renderer = view[generalName])) {
-			provider = view;
-		}
-		else if ((renderer = this[generalName])) {
-			provider = this;
-		}
-
-		if (typeof renderer === 'function') {
-			return function() {
-				return renderer.apply(provider, arguments) || ''; // use correct `this` and always return a string
-			};
-		}
-
-		// the rendered can be a plain string as well. if not specified, always an empty string.
-		return function() {
-			return renderer || '';
-		};
-	}
-
-});
-
-    /* An abstract class comprised of a "grid" of cells that each represent a specific datetime
-----------------------------------------------------------------------------------------------------------------------*/
-
-var Grid = fc.Grid = RowRenderer.extend({
-
-	start: null, // the date of the first cell
-	end: null, // the date after the last cell
-
-	rowCnt: 0, // number of rows
-	colCnt: 0, // number of cols
-	rowData: null, // array of objects, holding misc data for each row
-	colData: null, // array of objects, holding misc data for each column
-
-	el: null, // the containing element
-	coordMap: null, // a GridCoordMap that converts pixel values to datetimes
-	elsByFill: null, // a hash of jQuery element sets used for rendering each fill. Keyed by fill name.
-
-	documentDragStartProxy: null, // binds the Grid's scope to documentDragStart (in DayGrid.events)
-
-	// derived from options
-	colHeadFormat: null, // TODO: move to another class. not applicable to all Grids
-	eventTimeFormat: null,
-	displayEventEnd: null,
-
-
-	constructor: function() {
-		RowRenderer.apply(this, arguments); // call the super-constructor
-
-		this.coordMap = new GridCoordMap(this);
 		this.elsByFill = {};
-		this.documentDragStartProxy = $.proxy(this, 'documentDragStart');
-	},
 
-
-	// Renders the grid into the `el` element.
-	// Subclasses should override and call this super-method when done.
-	render: function() {
-		this.bindHandlers();
-	},
-
-
-	// Called when the grid's resources need to be cleaned up
-	destroy: function() {
-		this.unbindHandlers();
+		this.dayDragListener = this.buildDayDragListener();
+		this.initMouseIgnoring();
 	},
 
 
 	/* Options
 	------------------------------------------------------------------------------------------------------------------*/
-
-
-	// Generates the format string used for the text in column headers, if not explicitly defined by 'columnFormat'
-	// TODO: move to another class. not applicable to all Grids
-	computeColHeadFormat: function() {
-		// subclasses must implement if they want to use headHtml()
-	},
 
 
 	// Generates the format string used for event time text, if not explicitly defined by 'timeFormat'
@@ -2644,9 +3230,16 @@ var Grid = fc.Grid = RowRenderer.extend({
 	},
 
 
+	// Determines whether events should have their end times displayed, if not explicitly defined by 'displayEventTime'.
+	// Only applies to non-all-day events.
+	computeDisplayEventTime: function() {
+		return true;
+	},
+
+
 	// Determines whether events should have their end times displayed, if not explicitly defined by 'displayEventEnd'
 	computeDisplayEventEnd: function() {
-		return false;
+		return true;
 	},
 
 
@@ -2654,152 +3247,173 @@ var Grid = fc.Grid = RowRenderer.extend({
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Tells the grid about what period of time to display. Grid will subsequently compute dates for cell system.
+	// Tells the grid about what period of time to display.
+	// Any date-related internal data should be generated.
 	setRange: function(range) {
-		var view = this.view;
-
 		this.start = range.start.clone();
 		this.end = range.end.clone();
 
-		this.rowData = [];
-		this.colData = [];
-		this.updateCells();
+		this.rangeUpdated();
+		this.processRangeOptions();
+	},
 
-		// Populate option-derived settings. Look for override first, then compute if necessary.
-		this.colHeadFormat = view.opt('columnFormat') || this.computeColHeadFormat();
-		this.eventTimeFormat = view.opt('timeFormat') || this.computeEventTimeFormat();
-		this.displayEventEnd = view.opt('displayEventEnd');
-		if (this.displayEventEnd == null) {
-			this.displayEventEnd = this.computeDisplayEventEnd();
+
+	// Called when internal variables that rely on the range should be updated
+	rangeUpdated: function() {
+	},
+
+
+	// Updates values that rely on options and also relate to range
+	processRangeOptions: function() {
+		var view = this.view;
+		var displayEventTime;
+		var displayEventEnd;
+
+		this.eventTimeFormat =
+			view.opt('eventTimeFormat') ||
+			view.opt('timeFormat') || // deprecated
+			this.computeEventTimeFormat();
+
+		displayEventTime = view.opt('displayEventTime');
+		if (displayEventTime == null) {
+			displayEventTime = this.computeDisplayEventTime(); // might be based off of range
+		}
+
+		displayEventEnd = view.opt('displayEventEnd');
+		if (displayEventEnd == null) {
+			displayEventEnd = this.computeDisplayEventEnd(); // might be based off of range
+		}
+
+		this.displayEventTime = displayEventTime;
+		this.displayEventEnd = displayEventEnd;
+	},
+
+
+	// Converts a span (has unzoned start/end and any other grid-specific location information)
+	// into an array of segments (pieces of events whose format is decided by the grid).
+	spanToSegs: function(span) {
+		// subclasses must implement
+	},
+
+
+	// Diffs the two dates, returning a duration, based on granularity of the grid
+	// TODO: port isTimeScale into this system?
+	diffDates: function(a, b) {
+		if (this.largeUnit) {
+			return diffByUnit(a, b, this.largeUnit);
+		}
+		else {
+			return diffDayTime(a, b);
 		}
 	},
 
 
-	// Responsible for setting rowCnt/colCnt and any other row/col data
-	updateCells: function() {
-		// subclasses must implement
-	},
-
-
-	// Converts a range with an inclusive `start` and an exclusive `end` into an array of segment objects
-	rangeToSegs: function(range) {
-		// subclasses must implement
-	},
-
-
-	/* Cells
-	------------------------------------------------------------------------------------------------------------------*/
-	// NOTE: columns are ordered left-to-right
-
-
-	// Gets an object containing row/col number, misc data, and range information about the cell.
-	// Accepts row/col values, an object with row/col properties, or a single-number offset from the first cell.
-	getCell: function(row, col) {
-		var cell;
-
-		if (col == null) {
-			if (typeof row === 'number') { // a single-number offset
-				col = row % this.colCnt;
-				row = Math.floor(row / this.colCnt);
-			}
-			else { // an object with row/col properties
-				col = row.col;
-				row = row.row;
-			}
-		}
-
-		cell = { row: row, col: col };
-
-		$.extend(cell, this.getRowData(row), this.getColData(col));
-		$.extend(cell, this.computeCellRange(cell));
-
-		return cell;
-	},
-
-
-	// Given a cell object with index and misc data, generates a range object
-	computeCellRange: function(cell) {
-		// subclasses must implement
-	},
-
-
-	// Retrieves misc data about the given row
-	getRowData: function(row) {
-		return this.rowData[row] || {};
-	},
-
-
-	// Retrieves misc data baout the given column
-	getColData: function(col) {
-		return this.colData[col] || {};
-	},
-
-
-	// Retrieves the element representing the given row
-	getRowEl: function(row) {
-		// subclasses should implement if leveraging the default getCellDayEl() or computeRowCoords()
-	},
-
-
-	// Retrieves the element representing the given column
-	getColEl: function(col) {
-		// subclasses should implement if leveraging the default getCellDayEl() or computeColCoords()
-	},
-
-
-	// Given a cell object, returns the element that represents the cell's whole-day
-	getCellDayEl: function(cell) {
-		return this.getColEl(cell.col) || this.getRowEl(cell.row);
-	},
-
-
-	/* Cell Coordinates
+	/* Hit Area
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Computes the top/bottom coordinates of all rows.
-	// By default, queries the dimensions of the element provided by getRowEl().
-	computeRowCoords: function() {
-		var items = [];
-		var i, el;
-		var item;
-
-		for (i = 0; i < this.rowCnt; i++) {
-			el = this.getRowEl(i);
-			item = {
-				top: el.offset().top
-			};
-			if (i > 0) {
-				items[i - 1].bottom = item.top;
-			}
-			items.push(item);
-		}
-		item.bottom = item.top + el.outerHeight();
-
-		return items;
+	// Called before one or more queryHit calls might happen. Should prepare any cached coordinates for queryHit
+	prepareHits: function() {
 	},
 
 
-	// Computes the left/right coordinates of all rows.
-	// By default, queries the dimensions of the element provided by getColEl().
-	computeColCoords: function() {
-		var items = [];
-		var i, el;
-		var item;
+	// Called when queryHit calls have subsided. Good place to clear any coordinate caches.
+	releaseHits: function() {
+	},
 
-		for (i = 0; i < this.colCnt; i++) {
-			el = this.getColEl(i);
-			item = {
-				left: el.offset().left
-			};
-			if (i > 0) {
-				items[i - 1].right = item.left;
-			}
-			items.push(item);
+
+	// Given coordinates from the topleft of the document, return data about the date-related area underneath.
+	// Can return an object with arbitrary properties (although top/right/left/bottom are encouraged).
+	// Must have a `grid` property, a reference to this current grid. TODO: avoid this
+	// The returned object will be processed by getHitSpan and getHitEl.
+	queryHit: function(leftOffset, topOffset) {
+	},
+
+
+	// Given position-level information about a date-related area within the grid,
+	// should return an object with at least a start/end date. Can provide other information as well.
+	getHitSpan: function(hit) {
+	},
+
+
+	// Given position-level information about a date-related area within the grid,
+	// should return a jQuery element that best represents it. passed to dayClick callback.
+	getHitEl: function(hit) {
+	},
+
+
+	/* Rendering
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Sets the container element that the grid should render inside of.
+	// Does other DOM-related initializations.
+	setElement: function(el) {
+		this.el = el;
+
+		if (this.hasDayInteractions) {
+			preventSelection(el);
+
+			this.bindDayHandler('touchstart', this.dayTouchStart);
+			this.bindDayHandler('mousedown', this.dayMousedown);
 		}
-		item.right = item.left + el.outerWidth();
 
-		return items;
+		// attach event-element-related handlers. in Grid.events
+		// same garbage collection note as above.
+		this.bindSegHandlers();
+
+		this.bindGlobalHandlers();
+	},
+
+
+	bindDayHandler: function(name, handler) {
+		var _this = this;
+
+		// attach a handler to the grid's root element.
+		// jQuery will take care of unregistering them when removeElement gets called.
+		this.el.on(name, function(ev) {
+			if (
+				!$(ev.target).is(
+					_this.segSelector + ',' + // directly on an event element
+					_this.segSelector + ' *,' + // within an event element
+					'.fc-more,' + // a "more.." link
+					'a[data-goto]' // a clickable nav link
+				)
+			) {
+				return handler.call(_this, ev);
+			}
+		});
+	},
+
+
+	// Removes the grid's container element from the DOM. Undoes any other DOM-related attachments.
+	// DOES NOT remove any content beforehand (doesn't clear events or call unrenderDates), unlike View
+	removeElement: function() {
+		this.unbindGlobalHandlers();
+		this.clearDragListeners();
+
+		this.el.remove();
+
+		// NOTE: we don't null-out this.el for the same reasons we don't do it within View::removeElement
+	},
+
+
+	// Renders the basic structure of grid view before any content is rendered
+	renderSkeleton: function() {
+		// subclasses should implement
+	},
+
+
+	// Renders the grid's date-related content (like areas that represent days/times).
+	// Assumes setRange has already been called and the skeleton has already been rendered.
+	renderDates: function() {
+		// subclasses should implement
+	},
+
+
+	// Unrenders the grid's date-related content
+	unrenderDates: function() {
+		// subclasses should implement
 	},
 
 
@@ -2807,87 +3421,136 @@ var Grid = fc.Grid = RowRenderer.extend({
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Attaches handlers to DOM
-	bindHandlers: function() {
-		var _this = this;
-
-		// attach a handler to the grid's root element.
-		// we don't need to clean up in unbindHandlers or destroy, because when jQuery removes the element from the
-		// DOM it automatically unregisters the handlers.
-		this.el.on('mousedown', function(ev) {
-			if (
-				!$(ev.target).is('.fc-event-container *, .fc-more') && // not an an event element, or "more.." link
-				!$(ev.target).closest('.fc-popover').length // not on a popover (like the "more.." events one)
-			) {
-				_this.dayMousedown(ev);
-			}
+	// Binds DOM handlers to elements that reside outside the grid, such as the document
+	bindGlobalHandlers: function() {
+		this.listenTo($(document), {
+			dragstart: this.externalDragStart, // jqui
+			sortstart: this.externalDragStart // jqui
 		});
-
-		// attach event-element-related handlers. in Grid.events
-		// same garbage collection note as above.
-		this.bindSegHandlers();
-
-		$(document).on('dragstart', this.documentDragStartProxy); // jqui drag
 	},
 
 
-	// Unattaches handlers from the DOM
-	unbindHandlers: function() {
-		$(document).off('dragstart', this.documentDragStartProxy); // jqui drag
+	// Unbinds DOM handlers from elements that reside outside the grid
+	unbindGlobalHandlers: function() {
+		this.stopListeningTo($(document));
 	},
 
 
 	// Process a mousedown on an element that represents a day. For day clicking and selecting.
 	dayMousedown: function(ev) {
+		if (!this.isIgnoringMouse) {
+			this.dayDragListener.startInteraction(ev, {
+				//distance: 5, // needs more work if we want dayClick to fire correctly
+			});
+		}
+	},
+
+
+	dayTouchStart: function(ev) {
+		var view = this.view;
+
+		// HACK to prevent a user's clickaway for unselecting a range or an event
+		// from causing a dayClick.
+		if (view.isSelected || view.selectedEvent) {
+			this.tempIgnoreMouse();
+		}
+
+		this.dayDragListener.startInteraction(ev, {
+			delay: this.view.opt('longPressDelay')
+		});
+	},
+
+
+	// Creates a listener that tracks the user's drag across day elements.
+	// For day clicking and selecting.
+	buildDayDragListener: function() {
 		var _this = this;
 		var view = this.view;
 		var isSelectable = view.opt('selectable');
-		var dayClickCell; // null if invalid dayClick
-		var selectionRange; // null if invalid selection
+		var dayClickHit; // null if invalid dayClick
+		var selectionSpan; // null if invalid selection
 
 		// this listener tracks a mousedown on a day element, and a subsequent drag.
 		// if the drag ends on the same day, it is a 'dayClick'.
 		// if 'selectable' is enabled, this listener also detects selections.
-		var dragListener = new DragListener(this.coordMap, {
-			//distance: 5, // needs more work if we want dayClick to fire correctly
+		var dragListener = new HitDragListener(this, {
 			scroll: view.opt('dragScroll'),
+			interactionStart: function() {
+				dayClickHit = dragListener.origHit; // for dayClick, where no dragging happens
+				selectionSpan = null;
+			},
 			dragStart: function() {
 				view.unselect(); // since we could be rendering a new selection, we want to clear any old one
 			},
-			cellOver: function(cell, isOrig) {
-				var origCell = dragListener.origCell;
-				if (origCell) { // click needs to have started on a cell
-					dayClickCell = isOrig ? cell : null; // single-cell selection is a day click
+			hitOver: function(hit, isOrig, origHit) {
+				if (origHit) { // click needs to have started on a hit
+
+					// if user dragged to another cell at any point, it can no longer be a dayClick
+					if (!isOrig) {
+						dayClickHit = null;
+					}
+
 					if (isSelectable) {
-						selectionRange = _this.computeSelection(origCell, cell);
-						if (selectionRange) {
-							_this.renderSelection(selectionRange);
+						selectionSpan = _this.computeSelection(
+							_this.getHitSpan(origHit),
+							_this.getHitSpan(hit)
+						);
+						if (selectionSpan) {
+							_this.renderSelection(selectionSpan);
 						}
-						else {
+						else if (selectionSpan === false) {
 							disableCursor();
 						}
 					}
 				}
 			},
-			cellOut: function(cell) {
-				dayClickCell = null;
-				selectionRange = null;
-				_this.destroySelection();
+			hitOut: function() { // called before mouse moves to a different hit OR moved out of all hits
+				dayClickHit = null;
+				selectionSpan = null;
+				_this.unrenderSelection();
+			},
+			hitDone: function() { // called after a hitOut OR before a dragEnd
 				enableCursor();
 			},
-			listenStop: function(ev) {
-				if (dayClickCell) {
-					view.trigger('dayClick', _this.getCellDayEl(dayClickCell), dayClickCell.start, ev);
+			interactionEnd: function(ev, isCancelled) {
+				if (!isCancelled) {
+					if (
+						dayClickHit &&
+						!_this.isIgnoringMouse // see hack in dayTouchStart
+					) {
+						view.triggerDayClick(
+							_this.getHitSpan(dayClickHit),
+							_this.getHitEl(dayClickHit),
+							ev
+						);
+					}
+					if (selectionSpan) {
+						// the selection will already have been rendered. just report it
+						view.reportSelection(selectionSpan, ev);
+					}
 				}
-				if (selectionRange) {
-					// the selection will already have been rendered. just report it
-					view.reportSelection(selectionRange, ev);
-				}
-				enableCursor();
 			}
 		});
 
-		dragListener.mousedown(ev); // start listening, which will eventually initiate a dragStart
+		return dragListener;
+	},
+
+
+	// Kills all in-progress dragging.
+	// Useful for when public API methods that result in re-rendering are invoked during a drag.
+	// Also useful for when touch devices misbehave and don't fire their touchend.
+	clearDragListeners: function() {
+		this.dayDragListener.endInteraction();
+
+		if (this.segDragListener) {
+			this.segDragListener.endInteraction(); // will clear this.segDragListener
+		}
+		if (this.segResizeListener) {
+			this.segResizeListener.endInteraction(); // will clear this.segResizeListener
+		}
+		if (this.externalDragListener) {
+			this.externalDragListener.endInteraction(); // will clear this.externalDragListener
+		}
 	},
 
 
@@ -2896,17 +3559,25 @@ var Grid = fc.Grid = RowRenderer.extend({
 	// TODO: should probably move this to Grid.events, like we did event dragging / resizing
 
 
-	// Renders a mock event over the given range.
+	// Renders a mock event at the given event location, which contains zoned start/end properties.
+	// Returns all mock event elements.
+	renderEventLocationHelper: function(eventLocation, sourceSeg) {
+		var fakeEvent = this.fabricateHelperEvent(eventLocation, sourceSeg);
+
+		return this.renderHelper(fakeEvent, sourceSeg); // do the actual rendering
+	},
+
+
+	// Builds a fake event given zoned event date properties and a segment is should be inspired from.
 	// The range's end can be null, in which case the mock event that is rendered will have a null end time.
 	// `sourceSeg` is the internal segment object involved in the drag. If null, something external is dragging.
-	renderRangeHelper: function(range, sourceSeg) {
-		var fakeEvent;
+	fabricateHelperEvent: function(eventLocation, sourceSeg) {
+		var fakeEvent = sourceSeg ? createObject(sourceSeg.event) : {}; // mask the original event object if possible
 
-		fakeEvent = sourceSeg ? createObject(sourceSeg.event) : {}; // mask the original event object if possible
-		fakeEvent.start = range.start.clone();
-		fakeEvent.end = range.end ? range.end.clone() : null;
-		fakeEvent.allDay = null; // force it to be freshly computed by normalizeEventDateProps
-		this.view.calendar.normalizeEventDateProps(fakeEvent);
+		fakeEvent.start = eventLocation.start.clone();
+		fakeEvent.end = eventLocation.end ? eventLocation.end.clone() : null;
+		fakeEvent.allDay = null; // force it to be freshly computed by normalizeEventDates
+		this.view.calendar.normalizeEventDates(fakeEvent);
 
 		// this extra className will be useful for differentiating real events from mock events in CSS
 		fakeEvent.className = (fakeEvent.className || []).concat('fc-helper');
@@ -2916,18 +3587,19 @@ var Grid = fc.Grid = RowRenderer.extend({
 			fakeEvent.editable = false;
 		}
 
-		this.renderHelper(fakeEvent, sourceSeg); // do the actual rendering
+		return fakeEvent;
 	},
 
 
-	// Renders a mock event
-	renderHelper: function(event, sourceSeg) {
+	// Renders a mock event. Given zoned event date properties.
+	// Must return all mock event elements.
+	renderHelper: function(eventLocation, sourceSeg) {
 		// subclasses must implement
 	},
 
 
 	// Unrenders a mock event
-	destroyHelper: function() {
+	unrenderHelper: function() {
 		// subclasses must implement
 	},
 
@@ -2937,41 +3609,41 @@ var Grid = fc.Grid = RowRenderer.extend({
 
 
 	// Renders a visual indication of a selection. Will highlight by default but can be overridden by subclasses.
-	renderSelection: function(range) {
-		this.renderHighlight(range);
+	// Given a span (unzoned start/end and other misc data)
+	renderSelection: function(span) {
+		this.renderHighlight(span);
 	},
 
 
 	// Unrenders any visual indications of a selection. Will unrender a highlight by default.
-	destroySelection: function() {
-		this.destroyHighlight();
+	unrenderSelection: function() {
+		this.unrenderHighlight();
 	},
 
 
-	// Given the first and last cells of a selection, returns a range object.
-	// Will return something falsy if the selection is invalid (when outside of selectionConstraint for example).
-	// Subclasses can override and provide additional data in the range object. Will be passed to renderSelection().
-	computeSelection: function(firstCell, lastCell) {
-		var dates = [
-			firstCell.start,
-			firstCell.end,
-			lastCell.start,
-			lastCell.end
-		];
-		var range;
+	// Given the first and last date-spans of a selection, returns another date-span object.
+	// Subclasses can override and provide additional data in the span object. Will be passed to renderSelection().
+	// Will return false if the selection is invalid and this should be indicated to the user.
+	// Will return null/undefined if a selection invalid but no error should be reported.
+	computeSelection: function(span0, span1) {
+		var span = this.computeSelectionSpan(span0, span1);
+
+		if (span && !this.view.calendar.isSelectionSpanAllowed(span)) {
+			return false;
+		}
+
+		return span;
+	},
+
+
+	// Given two spans, must return the combination of the two.
+	// TODO: do this separation of concerns (combining VS validation) for event dnd/resize too.
+	computeSelectionSpan: function(span0, span1) {
+		var dates = [ span0.start, span0.end, span1.start, span1.end ];
 
 		dates.sort(compareNumbers); // sorts chronologically. works with Moments
 
-		range = {
-			start: dates[0].clone(),
-			end: dates[3].clone()
-		};
-
-		if (!this.view.calendar.isSelectionRangeAllowed(range)) {
-			return null;
-		}
-
-		return range;
+		return { start: dates[0].clone(), end: dates[3].clone() };
 	},
 
 
@@ -2979,15 +3651,15 @@ var Grid = fc.Grid = RowRenderer.extend({
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Renders an emphasis on the given date range. `start` is inclusive. `end` is exclusive.
-	renderHighlight: function(range) {
-		this.renderFill('highlight', this.rangeToSegs(range));
+	// Renders an emphasis on the given date range. Given a span (unzoned start/end and other misc data)
+	renderHighlight: function(span) {
+		this.renderFill('highlight', this.spanToSegs(span));
 	},
 
 
 	// Unrenders the emphasis on a date range
-	destroyHighlight: function() {
-		this.destroyFill('highlight');
+	unrenderHighlight: function() {
+		this.unrenderFill('highlight');
 	},
 
 
@@ -2997,12 +3669,42 @@ var Grid = fc.Grid = RowRenderer.extend({
 	},
 
 
-	/* Fill System (highlight, background events, business hours)
+	/* Business Hours
 	------------------------------------------------------------------------------------------------------------------*/
 
 
+	renderBusinessHours: function() {
+	},
+
+
+	unrenderBusinessHours: function() {
+	},
+
+
+	/* Now Indicator
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	getNowIndicatorUnit: function() {
+	},
+
+
+	renderNowIndicator: function(date) {
+	},
+
+
+	unrenderNowIndicator: function() {
+	},
+
+
+	/* Fill System (highlight, background events, business hours)
+	--------------------------------------------------------------------------------------------------------------------
+	TODO: remove this system. like we did in TimeGrid
+	*/
+
+
 	// Renders a set of rectangles over the given segments of time.
-	// Returns a subset of segs, the segs that were actually rendered.
+	// MUST RETURN a subset of segs, the segs that were actually rendered.
 	// Responsible for populating this.elsByFill. TODO: better API for expressing this requirement
 	renderFill: function(type, segs) {
 		// subclasses must implement
@@ -3010,7 +3712,7 @@ var Grid = fc.Grid = RowRenderer.extend({
 
 
 	// Unrenders a specific type of fill that is currently rendered on the grid
-	destroyFill: function(type) {
+	unrenderFill: function(type) {
 		var el = this.elsByFill[type];
 
 		if (el) {
@@ -3068,73 +3770,36 @@ var Grid = fc.Grid = RowRenderer.extend({
 	fillSegTag: 'div', // subclasses can override
 
 
-	// Builds the HTML needed for one fill segment. Generic enought o work with different types.
+	// Builds the HTML needed for one fill segment. Generic enough to work with different types.
 	fillSegHtml: function(type, seg) {
-		var classesMethod = this[type + 'SegClasses']; // custom hooks per-type
-		var stylesMethod = this[type + 'SegStyles']; //
+
+		// custom hooks per-type
+		var classesMethod = this[type + 'SegClasses'];
+		var cssMethod = this[type + 'SegCss'];
+
 		var classes = classesMethod ? classesMethod.call(this, seg) : [];
-		var styles = stylesMethod ? stylesMethod.call(this, seg) : ''; // a semi-colon separated CSS property string
+		var css = cssToStr(cssMethod ? cssMethod.call(this, seg) : {});
 
 		return '<' + this.fillSegTag +
 			(classes.length ? ' class="' + classes.join(' ') + '"' : '') +
-			(styles ? ' style="' + styles + '"' : '') +
+			(css ? ' style="' + css + '"' : '') +
 			' />';
 	},
+
 
 
 	/* Generic rendering utilities for subclasses
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Renders a day-of-week header row.
-	// TODO: move to another class. not applicable to all Grids
-	headHtml: function() {
-		return '' +
-			'<div class="fc-row ' + this.view.widgetHeaderClass + '">' +
-				'<table>' +
-					'<thead>' +
-						this.rowHtml('head') + // leverages RowRenderer
-					'</thead>' +
-				'</table>' +
-			'</div>';
-	},
-
-
-	// Used by the `headHtml` method, via RowRenderer, for rendering the HTML of a day-of-week header cell
-	// TODO: move to another class. not applicable to all Grids
-	headCellHtml: function(cell) {
-		var view = this.view;
-		var date = cell.start;
-
-		return '' +
-			'<th class="fc-day-header ' + view.widgetHeaderClass + ' fc-' + dayIDs[date.day()] + '">' +
-				htmlEscape(date.format(this.colHeadFormat)) +
-			'</th>';
-	},
-
-
-	// Renders the HTML for a single-day background cell
-	bgCellHtml: function(cell) {
-		var view = this.view;
-		var date = cell.start;
-		var classes = this.getDayClasses(date);
-
-		classes.unshift('fc-day', view.widgetContentClass);
-
-		return '<td class="' + classes.join(' ') + '"' +
-			' data-date="' + date.format('YYYY-MM-DD') + '"' + // if date has a time, won't format it
-			'></td>';
-	},
-
-
-	// Computes HTML classNames for a single-day cell
+	// Computes HTML classNames for a single-day element
 	getDayClasses: function(date) {
 		var view = this.view;
-		var today = view.calendar.getNow().stripTime();
+		var today = view.calendar.getNow();
 		var classes = [ 'fc-' + dayIDs[date.day()] ];
 
 		if (
-			view.name === 'month' &&
+			view.intervalDuration.as('months') == 1 &&
 			date.month() != view.intervalStart.month()
 		) {
 			classes.push('fc-other-month');
@@ -3158,50 +3823,63 @@ var Grid = fc.Grid = RowRenderer.extend({
 
 });
 
-    /* Event-rendering and event-interaction methods for the abstract Grid class
+;;
+
+/* Event-rendering and event-interaction methods for the abstract Grid class
 ----------------------------------------------------------------------------------------------------------------------*/
 
 Grid.mixin({
 
+	// self-config, overridable by subclasses
+	segSelector: '.fc-event-container > *', // what constitutes an event element?
+
 	mousedOverSeg: null, // the segment object the user's mouse is over. null if over nothing
 	isDraggingSeg: false, // is a segment being dragged? boolean
 	isResizingSeg: false, // is a segment being resized? boolean
-	segs: null, // the event segments currently rendered in the grid
+	isDraggingExternal: false, // jqui-dragging an external element? boolean
+	segs: null, // the *event* segments currently rendered in the grid. TODO: rename to `eventSegs`
 
 
 	// Renders the given events onto the grid
 	renderEvents: function(events) {
-		var segs = this.eventsToSegs(events);
-		var bgSegs = [];
-		var fgSegs = [];
-		var i, seg;
+		var bgEvents = [];
+		var fgEvents = [];
+		var i;
 
-		for (i = 0; i < segs.length; i++) {
-			seg = segs[i];
-
-			if (isBgEvent(seg.event)) {
-				bgSegs.push(seg);
-			}
-			else {
-				fgSegs.push(seg);
-			}
+		for (i = 0; i < events.length; i++) {
+			(isBgEvent(events[i]) ? bgEvents : fgEvents).push(events[i]);
 		}
 
-		// Render each different type of segment.
-		// Each function may return a subset of the segs, segs that were actually rendered.
-		bgSegs = this.renderBgSegs(bgSegs) || bgSegs;
-		fgSegs = this.renderFgSegs(fgSegs) || fgSegs;
+		this.segs = [].concat( // record all segs
+			this.renderBgEvents(bgEvents),
+			this.renderFgEvents(fgEvents)
+		);
+	},
 
-		this.segs = bgSegs.concat(fgSegs);
+
+	renderBgEvents: function(events) {
+		var segs = this.eventsToSegs(events);
+
+		// renderBgSegs might return a subset of segs, segs that were actually rendered
+		return this.renderBgSegs(segs) || segs;
+	},
+
+
+	renderFgEvents: function(events) {
+		var segs = this.eventsToSegs(events);
+
+		// renderFgSegs might return a subset of segs, segs that were actually rendered
+		return this.renderFgSegs(segs) || segs;
 	},
 
 
 	// Unrenders all events currently rendered on the grid
-	destroyEvents: function() {
-		this.triggerSegMouseout(); // trigger an eventMouseout if user's mouse is over an event
+	unrenderEvents: function() {
+		this.handleSegMouseout(); // trigger an eventMouseout if user's mouse is over an event
+		this.clearDragListeners();
 
-		this.destroyFgSegs();
-		this.destroyBgSegs();
+		this.unrenderFgSegs();
+		this.unrenderBgSegs();
 
 		this.segs = null;
 	},
@@ -3224,7 +3902,7 @@ Grid.mixin({
 
 
 	// Unrenders all currently rendered foreground segments
-	destroyFgSegs: function() {
+	unrenderFgSegs: function() {
 		// subclasses must implement
 	},
 
@@ -3281,8 +3959,8 @@ Grid.mixin({
 
 
 	// Unrenders all the currently rendered background event segments
-	destroyBgSegs: function() {
-		this.destroyFill('bgEvent');
+	unrenderBgSegs: function() {
+		this.unrenderFill('bgEvent');
 	},
 
 
@@ -3293,7 +3971,7 @@ Grid.mixin({
 
 
 	// Generates an array of classNames to be used for the default rendering of a background event.
-	// Called by the fill system.
+	// Called by fillSegHtml.
 	bgEventSegClasses: function(seg) {
 		var event = seg.event;
 		var source = event.source || {};
@@ -3306,34 +3984,47 @@ Grid.mixin({
 
 
 	// Generates a semicolon-separated CSS string to be used for the default rendering of a background event.
-	// Called by the fill system.
-	// TODO: consolidate with getEventSkinCss?
-	bgEventSegStyles: function(seg) {
-		var view = this.view;
-		var event = seg.event;
-		var source = event.source || {};
-		var eventColor = event.color;
-		var sourceColor = source.color;
-		var optionColor = view.opt('eventColor');
-		var backgroundColor =
-			event.backgroundColor ||
-			eventColor ||
-			source.backgroundColor ||
-			sourceColor ||
-			view.opt('eventBackgroundColor') ||
-			optionColor;
-
-		if (backgroundColor) {
-			return 'background-color:' + backgroundColor;
-		}
-
-		return '';
+	// Called by fillSegHtml.
+	bgEventSegCss: function(seg) {
+		return {
+			'background-color': this.getSegSkinCss(seg)['background-color']
+		};
 	},
 
 
 	// Generates an array of classNames to be used for the rendering business hours overlay. Called by the fill system.
+	// Called by fillSegHtml.
 	businessHoursSegClasses: function(seg) {
 		return [ 'fc-nonbusiness', 'fc-bgevent' ];
+	},
+
+
+	/* Business Hours
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Compute business hour segs for the grid's current date range.
+	// Caller must ask if whole-day business hours are needed.
+	buildBusinessHourSegs: function(wholeDay) {
+		var events = this.view.calendar.getCurrentBusinessHourEvents(wholeDay);
+
+		// HACK. Eventually refactor business hours "events" system.
+		// If no events are given, but businessHours is activated, this means the entire visible range should be
+		// marked as *not* business-hours, via inverse-background rendering.
+		if (
+			!events.length &&
+			this.view.calendar.options.businessHours // don't access view option. doesn't update with dynamic options
+		) {
+			events = [
+				$.extend({}, BUSINESS_HOUR_EVENT_DEFAULTS, {
+					start: this.view.end, // guaranteed out-of-range
+					end: this.view.end,   // "
+					dow: null
+				})
+			];
+		}
+
+		return this.eventsToSegs(events);
 	},
 
 
@@ -3341,50 +4032,57 @@ Grid.mixin({
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Attaches event-element-related handlers to the container element and leverage bubbling
+	// Attaches event-element-related handlers for *all* rendered event segments of the view.
 	bindSegHandlers: function() {
+		this.bindSegHandlersToEl(this.el);
+	},
+
+
+	// Attaches event-element-related handlers to an arbitrary container element. leverages bubbling.
+	bindSegHandlersToEl: function(el) {
+		this.bindSegHandlerToEl(el, 'touchstart', this.handleSegTouchStart);
+		this.bindSegHandlerToEl(el, 'touchend', this.handleSegTouchEnd);
+		this.bindSegHandlerToEl(el, 'mouseenter', this.handleSegMouseover);
+		this.bindSegHandlerToEl(el, 'mouseleave', this.handleSegMouseout);
+		this.bindSegHandlerToEl(el, 'mousedown', this.handleSegMousedown);
+		this.bindSegHandlerToEl(el, 'click', this.handleSegClick);
+	},
+
+
+	// Executes a handler for any a user-interaction on a segment.
+	// Handler gets called with (seg, ev), and with the `this` context of the Grid
+	bindSegHandlerToEl: function(el, name, handler) {
 		var _this = this;
-		var view = this.view;
 
-		$.each(
-			{
-				mouseenter: function(seg, ev) {
-					_this.triggerSegMouseover(seg, ev);
-				},
-				mouseleave: function(seg, ev) {
-					_this.triggerSegMouseout(seg, ev);
-				},
-				click: function(seg, ev) {
-					return view.trigger('eventClick', this, seg.event, ev); // can return `false` to cancel
-				},
-				mousedown: function(seg, ev) {
-					if ($(ev.target).is('.fc-resizer') && view.isEventResizable(seg.event)) {
-						_this.segResizeMousedown(seg, ev);
-					}
-					else if (view.isEventDraggable(seg.event)) {
-						_this.segDragMousedown(seg, ev);
-					}
-				}
-			},
-			function(name, func) {
-				// attach the handler to the container element and only listen for real event elements via bubbling
-				_this.el.on(name, '.fc-event-container > *', function(ev) {
-					var seg = $(this).data('fc-seg'); // grab segment data. put there by View::renderEvents
+		el.on(name, this.segSelector, function(ev) {
+			var seg = $(this).data('fc-seg'); // grab segment data. put there by View::renderEvents
 
-					// only call the handlers if there is not a drag/resize in progress
-					if (seg && !_this.isDraggingSeg && !_this.isResizingSeg) {
-						return func.call(this, seg, ev); // `this` will be the event element
-					}
-				});
+			// only call the handlers if there is not a drag/resize in progress
+			if (seg && !_this.isDraggingSeg && !_this.isResizingSeg) {
+				return handler.call(_this, seg, ev); // context will be the Grid
 			}
-		);
+		});
+	},
+
+
+	handleSegClick: function(seg, ev) {
+		var res = this.view.trigger('eventClick', seg.el[0], seg.event, ev); // can return `false` to cancel
+		if (res === false) {
+			ev.preventDefault();
+		}
 	},
 
 
 	// Updates internal state and triggers handlers for when an event element is moused over
-	triggerSegMouseover: function(seg, ev) {
-		if (!this.mousedOverSeg) {
+	handleSegMouseover: function(seg, ev) {
+		if (
+			!this.isIgnoringMouse &&
+			!this.mousedOverSeg
+		) {
 			this.mousedOverSeg = seg;
+			if (this.view.isEventResizable(seg.event)) {
+				seg.el.addClass('fc-allow-mouse-resize');
+			}
 			this.view.trigger('eventMouseover', seg.el[0], seg.event, ev);
 		}
 	},
@@ -3392,144 +4090,297 @@ Grid.mixin({
 
 	// Updates internal state and triggers handlers for when an event element is moused out.
 	// Can be given no arguments, in which case it will mouseout the segment that was previously moused over.
-	triggerSegMouseout: function(seg, ev) {
+	handleSegMouseout: function(seg, ev) {
 		ev = ev || {}; // if given no args, make a mock mouse event
 
 		if (this.mousedOverSeg) {
 			seg = seg || this.mousedOverSeg; // if given no args, use the currently moused-over segment
 			this.mousedOverSeg = null;
+			if (this.view.isEventResizable(seg.event)) {
+				seg.el.removeClass('fc-allow-mouse-resize');
+			}
 			this.view.trigger('eventMouseout', seg.el[0], seg.event, ev);
 		}
 	},
+
+
+	handleSegMousedown: function(seg, ev) {
+		var isResizing = this.startSegResize(seg, ev, { distance: 5 });
+
+		if (!isResizing && this.view.isEventDraggable(seg.event)) {
+			this.buildSegDragListener(seg)
+				.startInteraction(ev, {
+					distance: 5
+				});
+		}
+	},
+
+
+	handleSegTouchStart: function(seg, ev) {
+		var view = this.view;
+		var event = seg.event;
+		var isSelected = view.isEventSelected(event);
+		var isDraggable = view.isEventDraggable(event);
+		var isResizable = view.isEventResizable(event);
+		var isResizing = false;
+		var dragListener;
+
+		if (isSelected && isResizable) {
+			// only allow resizing of the event is selected
+			isResizing = this.startSegResize(seg, ev);
+		}
+
+		if (!isResizing && (isDraggable || isResizable)) { // allowed to be selected?
+
+			dragListener = isDraggable ?
+				this.buildSegDragListener(seg) :
+				this.buildSegSelectListener(seg); // seg isn't draggable, but still needs to be selected
+
+			dragListener.startInteraction(ev, { // won't start if already started
+				delay: isSelected ? 0 : this.view.opt('longPressDelay') // do delay if not already selected
+			});
+		}
+
+		// a long tap simulates a mouseover. ignore this bogus mouseover.
+		this.tempIgnoreMouse();
+	},
+
+
+	handleSegTouchEnd: function(seg, ev) {
+		// touchstart+touchend = click, which simulates a mouseover.
+		// ignore this bogus mouseover.
+		this.tempIgnoreMouse();
+	},
+
+
+	// returns boolean whether resizing actually started or not.
+	// assumes the seg allows resizing.
+	// `dragOptions` are optional.
+	startSegResize: function(seg, ev, dragOptions) {
+		if ($(ev.target).is('.fc-resizer')) {
+			this.buildSegResizeListener(seg, $(ev.target).is('.fc-start-resizer'))
+				.startInteraction(ev, dragOptions);
+			return true;
+		}
+		return false;
+	},
+
 
 
 	/* Event Dragging
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Called when the user does a mousedown on an event, which might lead to dragging.
+	// Builds a listener that will track user-dragging on an event segment.
 	// Generic enough to work with any type of Grid.
-	segDragMousedown: function(seg, ev) {
+	// Has side effect of setting/unsetting `segDragListener`
+	buildSegDragListener: function(seg) {
 		var _this = this;
 		var view = this.view;
+		var calendar = view.calendar;
 		var el = seg.el;
 		var event = seg.event;
-		var dropLocation;
+		var isDragging;
+		var mouseFollower; // A clone of the original element that will move with the mouse
+		var dropLocation; // zoned event date properties
 
-		// A clone of the original element that will move with the mouse
-		var mouseFollower = new MouseFollower(seg.el, {
-			parentEl: view.el,
-			opacity: view.opt('dragOpacity'),
-			revertDuration: view.opt('dragRevertDuration'),
-			zIndex: 2 // one above the .fc-view
-		});
+		if (this.segDragListener) {
+			return this.segDragListener;
+		}
 
 		// Tracks mouse movement over the *view's* coordinate map. Allows dragging and dropping between subcomponents
 		// of the view.
-		var dragListener = new DragListener(view.coordMap, {
-			distance: 5,
+		var dragListener = this.segDragListener = new HitDragListener(view, {
 			scroll: view.opt('dragScroll'),
-			listenStart: function(ev) {
+			subjectEl: el,
+			subjectCenter: true,
+			interactionStart: function(ev) {
+				seg.component = _this; // for renderDrag
+				isDragging = false;
+				mouseFollower = new MouseFollower(seg.el, {
+					additionalClass: 'fc-dragging',
+					parentEl: view.el,
+					opacity: dragListener.isTouch ? null : view.opt('dragOpacity'),
+					revertDuration: view.opt('dragRevertDuration'),
+					zIndex: 2 // one above the .fc-view
+				});
 				mouseFollower.hide(); // don't show until we know this is a real drag
 				mouseFollower.start(ev);
 			},
 			dragStart: function(ev) {
-				_this.triggerSegMouseout(seg, ev); // ensure a mouseout on the manipulated event has been reported
-				_this.isDraggingSeg = true;
+				if (dragListener.isTouch && !view.isEventSelected(event)) {
+					// if not previously selected, will fire after a delay. then, select the event
+					view.selectEvent(event);
+				}
+				isDragging = true;
+				_this.handleSegMouseout(seg, ev); // ensure a mouseout on the manipulated event has been reported
+				_this.segDragStart(seg, ev);
 				view.hideEvent(event); // hide all event segments. our mouseFollower will take over
-				view.trigger('eventDragStart', el[0], event, ev, {}); // last argument is jqui dummy
 			},
-			cellOver: function(cell, isOrig) {
-				var origCell = seg.cell || dragListener.origCell; // starting cell could be forced (DayGrid.limit)
+			hitOver: function(hit, isOrig, origHit) {
+				var dragHelperEls;
 
-				dropLocation = _this.computeEventDrop(origCell, cell, event);
-				if (dropLocation) {
-					if (view.renderDrag(dropLocation, seg)) { // have the subclass render a visual indication
-						mouseFollower.hide(); // if the subclass is already using a mock event "helper", hide our own
+				// starting hit could be forced (DayGrid.limit)
+				if (seg.hit) {
+					origHit = seg.hit;
+				}
+
+				// since we are querying the parent view, might not belong to this grid
+				dropLocation = _this.computeEventDrop(
+					origHit.component.getHitSpan(origHit),
+					hit.component.getHitSpan(hit),
+					event
+				);
+
+				if (dropLocation && !calendar.isEventSpanAllowed(_this.eventToSpan(dropLocation), event)) {
+					disableCursor();
+					dropLocation = null;
+				}
+
+				// if a valid drop location, have the subclass render a visual indication
+				if (dropLocation && (dragHelperEls = view.renderDrag(dropLocation, seg))) {
+
+					dragHelperEls.addClass('fc-dragging');
+					if (!dragListener.isTouch) {
+						_this.applyDragOpacity(dragHelperEls);
 					}
-					else {
-						mouseFollower.show();
-					}
-					if (isOrig) {
-						dropLocation = null; // needs to have moved cells to be a valid drop
-					}
+
+					mouseFollower.hide(); // if the subclass is already using a mock event "helper", hide our own
 				}
 				else {
-					// have the helper follow the mouse (no snapping) with a warning-style cursor
-					mouseFollower.show();
-					disableCursor();
+					mouseFollower.show(); // otherwise, have the helper follow the mouse (no snapping)
+				}
+
+				if (isOrig) {
+					dropLocation = null; // needs to have moved hits to be a valid drop
 				}
 			},
-			cellOut: function() { // called before mouse moves to a different cell OR moved out of all cells
+			hitOut: function() { // called before mouse moves to a different hit OR moved out of all hits
+				view.unrenderDrag(); // unrender whatever was done in renderDrag
+				mouseFollower.show(); // show in case we are moving out of all hits
 				dropLocation = null;
-				view.destroyDrag(); // unrender whatever was done in renderDrag
-				mouseFollower.show(); // show in case we are moving out of all cells
+			},
+			hitDone: function() { // Called after a hitOut OR before a dragEnd
 				enableCursor();
 			},
-			dragStop: function(ev) {
+			interactionEnd: function(ev) {
+				delete seg.component; // prevent side effects
+
 				// do revert animation if hasn't changed. calls a callback when finished (whether animation or not)
 				mouseFollower.stop(!dropLocation, function() {
-					_this.isDraggingSeg = false;
-					view.destroyDrag();
-					view.showEvent(event);
-					view.trigger('eventDragStop', el[0], event, ev, {}); // last argument is jqui dummy
-
+					if (isDragging) {
+						view.unrenderDrag();
+						view.showEvent(event);
+						_this.segDragStop(seg, ev);
+					}
 					if (dropLocation) {
-						view.reportEventDrop(event, dropLocation, el, ev);
+						view.reportEventDrop(event, dropLocation, this.largeUnit, el, ev);
 					}
 				});
-				enableCursor();
-			},
-			listenStop: function() {
-				mouseFollower.stop(); // put in listenStop in case there was a mousedown but the drag never started
+				_this.segDragListener = null;
 			}
 		});
 
-		dragListener.mousedown(ev); // start listening, which will eventually lead to a dragStart
+		return dragListener;
 	},
 
 
-	// Given the cell an event drag began, and the cell event was dropped, calculates the new start/end/allDay
+	// seg isn't draggable, but let's use a generic DragListener
+	// simply for the delay, so it can be selected.
+	// Has side effect of setting/unsetting `segDragListener`
+	buildSegSelectListener: function(seg) {
+		var _this = this;
+		var view = this.view;
+		var event = seg.event;
+
+		if (this.segDragListener) {
+			return this.segDragListener;
+		}
+
+		var dragListener = this.segDragListener = new DragListener({
+			dragStart: function(ev) {
+				if (dragListener.isTouch && !view.isEventSelected(event)) {
+					// if not previously selected, will fire after a delay. then, select the event
+					view.selectEvent(event);
+				}
+			},
+			interactionEnd: function(ev) {
+				_this.segDragListener = null;
+			}
+		});
+
+		return dragListener;
+	},
+
+
+	// Called before event segment dragging starts
+	segDragStart: function(seg, ev) {
+		this.isDraggingSeg = true;
+		this.view.trigger('eventDragStart', seg.el[0], seg.event, ev, {}); // last argument is jqui dummy
+	},
+
+
+	// Called after event segment dragging stops
+	segDragStop: function(seg, ev) {
+		this.isDraggingSeg = false;
+		this.view.trigger('eventDragStop', seg.el[0], seg.event, ev, {}); // last argument is jqui dummy
+	},
+
+
+	// Given the spans an event drag began, and the span event was dropped, calculates the new zoned start/end/allDay
 	// values for the event. Subclasses may override and set additional properties to be used by renderDrag.
 	// A falsy returned value indicates an invalid drop.
-	computeEventDrop: function(startCell, endCell, event) {
-		var dragStart = startCell.start;
-		var dragEnd = endCell.start;
+	// DOES NOT consider overlap/constraint.
+	computeEventDrop: function(startSpan, endSpan, event) {
+		var calendar = this.view.calendar;
+		var dragStart = startSpan.start;
+		var dragEnd = endSpan.start;
 		var delta;
-		var newStart;
-		var newEnd;
-		var newAllDay;
-		var dropLocation;
+		var dropLocation; // zoned event date properties
 
 		if (dragStart.hasTime() === dragEnd.hasTime()) {
-			delta = diffDayTime(dragEnd, dragStart);
-			newStart = event.start.clone().add(delta);
-			if (event.end === null) { // do we need to compute an end?
-				newEnd = null;
+			delta = this.diffDates(dragEnd, dragStart);
+
+			// if an all-day event was in a timed area and it was dragged to a different time,
+			// guarantee an end and adjust start/end to have times
+			if (event.allDay && durationHasTime(delta)) {
+				dropLocation = {
+					start: event.start.clone(),
+					end: calendar.getEventEnd(event), // will be an ambig day
+					allDay: false // for normalizeEventTimes
+				};
+				calendar.normalizeEventTimes(dropLocation);
 			}
+			// othewise, work off existing values
 			else {
-				newEnd = event.end.clone().add(delta);
+				dropLocation = pluckEventDateProps(event);
 			}
-			newAllDay = event.allDay; // keep it the same
+
+			dropLocation.start.add(delta);
+			if (dropLocation.end) {
+				dropLocation.end.add(delta);
+			}
 		}
 		else {
 			// if switching from day <-> timed, start should be reset to the dropped date, and the end cleared
-			newStart = dragEnd.clone();
-			newEnd = null; // end should be cleared
-			newAllDay = !dragEnd.hasTime();
-		}
-
-		dropLocation = {
-			start: newStart,
-			end: newEnd,
-			allDay: newAllDay
-		};
-
-		if (!this.view.calendar.isEventRangeAllowed(dropLocation, event)) {
-			return null;
+			dropLocation = {
+				start: dragEnd.clone(),
+				end: null, // end should be cleared
+				allDay: !dragEnd.hasTime()
+			};
 		}
 
 		return dropLocation;
+	},
+
+
+	// Utility for apply dragOpacity to a jQuery set
+	applyDragOpacity: function(els) {
+		var opacity = this.view.opt('dragOpacity');
+
+		if (opacity != null) {
+			els.css('opacity', opacity);
+		}
 	},
 
 
@@ -3538,57 +4389,69 @@ Grid.mixin({
 
 
 	// Called when a jQuery UI drag is initiated anywhere in the DOM
-	documentDragStart: function(ev, ui) {
+	externalDragStart: function(ev, ui) {
 		var view = this.view;
 		var el;
 		var accept;
 
 		if (view.opt('droppable')) { // only listen if this setting is on
-			el = $(ev.target);
+			el = $((ui ? ui.item : null) || ev.target);
 
 			// Test that the dragged element passes the dropAccept selector or filter function.
 			// FYI, the default is "*" (matches all)
 			accept = view.opt('dropAccept');
 			if ($.isFunction(accept) ? accept.call(el[0], el) : el.is(accept)) {
-
-				this.startExternalDrag(el, ev, ui);
+				if (!this.isDraggingExternal) { // prevent double-listening if fired twice
+					this.listenToExternalDrag(el, ev, ui);
+				}
 			}
 		}
 	},
 
 
-	// Called when a jQuery UI drag starts and it needs to be monitored for cell dropping
-	startExternalDrag: function(el, ev, ui) {
+	// Called when a jQuery UI drag starts and it needs to be monitored for dropping
+	listenToExternalDrag: function(el, ev, ui) {
 		var _this = this;
+		var calendar = this.view.calendar;
 		var meta = getDraggedElMeta(el); // extra data about event drop, including possible event to create
-		var dragListener;
 		var dropLocation; // a null value signals an unsuccessful drag
 
 		// listener that tracks mouse movement over date-associated pixel regions
-		dragListener = new DragListener(this.coordMap, {
-			cellOver: function(cell) {
-				dropLocation = _this.computeExternalDrop(cell, meta);
+		var dragListener = _this.externalDragListener = new HitDragListener(this, {
+			interactionStart: function() {
+				_this.isDraggingExternal = true;
+			},
+			hitOver: function(hit) {
+				dropLocation = _this.computeExternalDrop(
+					hit.component.getHitSpan(hit), // since we are querying the parent view, might not belong to this grid
+					meta
+				);
+
+				if ( // invalid hit?
+					dropLocation &&
+					!calendar.isExternalSpanAllowed(_this.eventToSpan(dropLocation), dropLocation, meta.eventProps)
+				) {
+					disableCursor();
+					dropLocation = null;
+				}
+
 				if (dropLocation) {
 					_this.renderDrag(dropLocation); // called without a seg parameter
 				}
-				else { // invalid drop cell
-					disableCursor();
-				}
 			},
-			cellOut: function() {
+			hitOut: function() {
 				dropLocation = null; // signal unsuccessful
-				_this.destroyDrag();
+			},
+			hitDone: function() { // Called after a hitOut OR before a dragEnd
 				enableCursor();
-			}
-		});
-
-		// gets called, only once, when jqui drag is finished
-		$(document).one('dragstop', function(ev, ui) {
-			_this.destroyDrag();
-			enableCursor();
-
-			if (dropLocation) { // element was dropped on a valid date/time cell
-				_this.view.reportExternalDrop(meta, dropLocation, el, ev, ui);
+				_this.unrenderDrag();
+			},
+			interactionEnd: function(ev) {
+				if (dropLocation) { // element was dropped on a valid hit
+					_this.view.reportExternalDrop(meta, dropLocation, el, ev, ui);
+				}
+				_this.isDraggingExternal = false;
+				_this.externalDragListener = null;
 			}
 		});
 
@@ -3596,26 +4459,24 @@ Grid.mixin({
 	},
 
 
-	// Given a cell to be dropped upon, and misc data associated with the jqui drag (guaranteed to be a plain object),
-	// returns start/end dates for the event that would result from the hypothetical drop. end might be null.
-	// Returning a null value signals an invalid drop cell.
-	computeExternalDrop: function(cell, meta) {
+	// Given a hit to be dropped upon, and misc data associated with the jqui drag (guaranteed to be a plain object),
+	// returns the zoned start/end dates for the event that would result from the hypothetical drop. end might be null.
+	// Returning a null value signals an invalid drop hit.
+	// DOES NOT consider overlap/constraint.
+	computeExternalDrop: function(span, meta) {
+		var calendar = this.view.calendar;
 		var dropLocation = {
-			start: cell.start.clone(),
+			start: calendar.applyTimezone(span.start), // simulate a zoned event start date
 			end: null
 		};
 
-		// if dropped on an all-day cell, and element's metadata specified a time, set it
+		// if dropped on an all-day span, and element's metadata specified a time, set it
 		if (meta.startTime && !dropLocation.start.hasTime()) {
 			dropLocation.start.time(meta.startTime);
 		}
 
 		if (meta.duration) {
 			dropLocation.end = dropLocation.start.clone().add(meta.duration);
-		}
-
-		if (!this.view.calendar.isExternalDropRangeAllowed(dropLocation, meta.eventProps)) {
-			return null;
 		}
 
 		return dropLocation;
@@ -3631,13 +4492,14 @@ Grid.mixin({
 	// `dropLocation` contains hypothetical start/end/allDay values the event would have if dropped. end can be null.
 	// `seg` is the internal segment object that is being dragged. If dragging an external element, `seg` is null.
 	// A truthy returned value indicates this method has rendered a helper element.
+	// Must return elements used for any mock events.
 	renderDrag: function(dropLocation, seg) {
 		// subclasses must implement
 	},
 
 
 	// Unrenders a visual indication of an event or external element being dragged
-	destroyDrag: function() {
+	unrenderDrag: function() {
 		// subclasses must implement
 	},
 
@@ -3646,83 +4508,161 @@ Grid.mixin({
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Called when the user does a mousedown on an event's resizer, which might lead to resizing.
+	// Creates a listener that tracks the user as they resize an event segment.
 	// Generic enough to work with any type of Grid.
-	segResizeMousedown: function(seg, ev) {
+	buildSegResizeListener: function(seg, isStart) {
 		var _this = this;
 		var view = this.view;
 		var calendar = view.calendar;
 		var el = seg.el;
 		var event = seg.event;
-		var start = event.start;
-		var oldEnd = calendar.getEventEnd(event);
-		var newEnd; // falsy if invalid resize
-		var dragListener;
-
-		function destroy() { // resets the rendering to show the original event
-			_this.destroyEventResize();
-			view.showEvent(event);
-			enableCursor();
-		}
+		var eventEnd = calendar.getEventEnd(event);
+		var isDragging;
+		var resizeLocation; // zoned event date properties. falsy if invalid resize
 
 		// Tracks mouse movement over the *grid's* coordinate map
-		dragListener = new DragListener(this.coordMap, {
-			distance: 5,
+		var dragListener = this.segResizeListener = new HitDragListener(this, {
 			scroll: view.opt('dragScroll'),
+			subjectEl: el,
+			interactionStart: function() {
+				isDragging = false;
+			},
 			dragStart: function(ev) {
-				_this.triggerSegMouseout(seg, ev); // ensure a mouseout on the manipulated event has been reported
-				_this.isResizingSeg = true;
-				view.trigger('eventResizeStart', el[0], event, ev, {}); // last argument is jqui dummy
+				isDragging = true;
+				_this.handleSegMouseout(seg, ev); // ensure a mouseout on the manipulated event has been reported
+				_this.segResizeStart(seg, ev);
 			},
-			cellOver: function(cell) {
-				newEnd = cell.end;
+			hitOver: function(hit, isOrig, origHit) {
+				var origHitSpan = _this.getHitSpan(origHit);
+				var hitSpan = _this.getHitSpan(hit);
 
-				if (!newEnd.isAfter(start)) { // was end moved before start?
-					newEnd = start.clone().add( // make the event span a single slot
-						diffDayTime(cell.end, cell.start) // assumes all slot durations are the same
-					);
+				resizeLocation = isStart ?
+					_this.computeEventStartResize(origHitSpan, hitSpan, event) :
+					_this.computeEventEndResize(origHitSpan, hitSpan, event);
+
+				if (resizeLocation) {
+					if (!calendar.isEventSpanAllowed(_this.eventToSpan(resizeLocation), event)) {
+						disableCursor();
+						resizeLocation = null;
+					}
+					// no change? (FYI, event dates might have zones)
+					else if (
+						resizeLocation.start.isSame(event.start.clone().stripZone()) &&
+						resizeLocation.end.isSame(eventEnd.clone().stripZone())
+					) {
+						resizeLocation = null;
+					}
 				}
 
-				if (newEnd.isSame(oldEnd)) {
-					newEnd = null;
-				}
-				else if (!calendar.isEventRangeAllowed({ start: start, end: newEnd }, event)) {
-					newEnd = null;
-					disableCursor();
-				}
-				else {
-					_this.renderEventResize({ start: start, end: newEnd }, seg);
+				if (resizeLocation) {
 					view.hideEvent(event);
+					_this.renderEventResize(resizeLocation, seg);
 				}
 			},
-			cellOut: function() { // called before mouse moves to a different cell OR moved out of all cells
-				newEnd = null;
-				destroy();
+			hitOut: function() { // called before mouse moves to a different hit OR moved out of all hits
+				resizeLocation = null;
 			},
-			dragStop: function(ev) {
-				_this.isResizingSeg = false;
-				destroy();
-				view.trigger('eventResizeStop', el[0], event, ev, {}); // last argument is jqui dummy
-
-				if (newEnd) { // valid date to resize to?
-					view.reportEventResize(event, newEnd, el, ev);
+			hitDone: function() { // resets the rendering to show the original event
+				_this.unrenderEventResize();
+				view.showEvent(event);
+				enableCursor();
+			},
+			interactionEnd: function(ev) {
+				if (isDragging) {
+					_this.segResizeStop(seg, ev);
 				}
+				if (resizeLocation) { // valid date to resize to?
+					view.reportEventResize(event, resizeLocation, this.largeUnit, el, ev);
+				}
+				_this.segResizeListener = null;
 			}
 		});
 
-		dragListener.mousedown(ev); // start listening, which will eventually lead to a dragStart
+		return dragListener;
+	},
+
+
+	// Called before event segment resizing starts
+	segResizeStart: function(seg, ev) {
+		this.isResizingSeg = true;
+		this.view.trigger('eventResizeStart', seg.el[0], seg.event, ev, {}); // last argument is jqui dummy
+	},
+
+
+	// Called after event segment resizing stops
+	segResizeStop: function(seg, ev) {
+		this.isResizingSeg = false;
+		this.view.trigger('eventResizeStop', seg.el[0], seg.event, ev, {}); // last argument is jqui dummy
+	},
+
+
+	// Returns new date-information for an event segment being resized from its start
+	computeEventStartResize: function(startSpan, endSpan, event) {
+		return this.computeEventResize('start', startSpan, endSpan, event);
+	},
+
+
+	// Returns new date-information for an event segment being resized from its end
+	computeEventEndResize: function(startSpan, endSpan, event) {
+		return this.computeEventResize('end', startSpan, endSpan, event);
+	},
+
+
+	// Returns new zoned date information for an event segment being resized from its start OR end
+	// `type` is either 'start' or 'end'.
+	// DOES NOT consider overlap/constraint.
+	computeEventResize: function(type, startSpan, endSpan, event) {
+		var calendar = this.view.calendar;
+		var delta = this.diffDates(endSpan[type], startSpan[type]);
+		var resizeLocation; // zoned event date properties
+		var defaultDuration;
+
+		// build original values to work from, guaranteeing a start and end
+		resizeLocation = {
+			start: event.start.clone(),
+			end: calendar.getEventEnd(event),
+			allDay: event.allDay
+		};
+
+		// if an all-day event was in a timed area and was resized to a time, adjust start/end to have times
+		if (resizeLocation.allDay && durationHasTime(delta)) {
+			resizeLocation.allDay = false;
+			calendar.normalizeEventTimes(resizeLocation);
+		}
+
+		resizeLocation[type].add(delta); // apply delta to start or end
+
+		// if the event was compressed too small, find a new reasonable duration for it
+		if (!resizeLocation.start.isBefore(resizeLocation.end)) {
+
+			defaultDuration =
+				this.minResizeDuration || // TODO: hack
+				(event.allDay ?
+					calendar.defaultAllDayEventDuration :
+					calendar.defaultTimedEventDuration);
+
+			if (type == 'start') { // resizing the start?
+				resizeLocation.start = resizeLocation.end.clone().subtract(defaultDuration);
+			}
+			else { // resizing the end?
+				resizeLocation.end = resizeLocation.start.clone().add(defaultDuration);
+			}
+		}
+
+		return resizeLocation;
 	},
 
 
 	// Renders a visual indication of an event being resized.
 	// `range` has the updated dates of the event. `seg` is the original segment object involved in the drag.
+	// Must return elements used for any mock events.
 	renderEventResize: function(range, seg) {
 		// subclasses must implement
 	},
 
 
 	// Unrenders a visual indication of an event being resized.
-	destroyEventResize: function() {
+	unrenderEventResize: function() {
 		// subclasses must implement
 	},
 
@@ -3733,31 +4673,40 @@ Grid.mixin({
 
 	// Compute the text that should be displayed on an event's element.
 	// `range` can be the Event object itself, or something range-like, with at least a `start`.
-	// The `timeFormat` options and the grid's default format is used, but `formatStr` can override.
-	getEventTimeText: function(range, formatStr) {
+	// If event times are disabled, or the event has no time, will return a blank string.
+	// If not specified, formatStr will default to the eventTimeFormat setting,
+	// and displayEnd will default to the displayEventEnd setting.
+	getEventTimeText: function(range, formatStr, displayEnd) {
 
-		formatStr = formatStr || this.eventTimeFormat;
+		if (formatStr == null) {
+			formatStr = this.eventTimeFormat;
+		}
 
-		if (range.end && this.displayEventEnd) {
-			return this.view.formatRange(range, formatStr);
+		if (displayEnd == null) {
+			displayEnd = this.displayEventEnd;
 		}
-		else {
-			return range.start.format(formatStr);
+
+		if (this.displayEventTime && range.start.hasTime()) {
+			if (displayEnd && range.end) {
+				return this.view.formatRange(range, formatStr);
+			}
+			else {
+				return range.start.format(formatStr);
+			}
 		}
+
+		return '';
 	},
 
 
 	// Generic utility for generating the HTML classNames for an event segment's element
 	getSegClasses: function(seg, isDraggable, isResizable) {
-		var event = seg.event;
+		var view = this.view;
 		var classes = [
 			'fc-event',
 			seg.isStart ? 'fc-start' : 'fc-not-start',
 			seg.isEnd ? 'fc-end' : 'fc-not-end'
-		].concat(
-			event.className,
-			event.source ? event.source.className : []
-		);
+		].concat(this.getSegCustomClasses(seg));
 
 		if (isDraggable) {
 			classes.push('fc-draggable');
@@ -3766,157 +4715,246 @@ Grid.mixin({
 			classes.push('fc-resizable');
 		}
 
+		// event is currently selected? attach a className.
+		if (view.isEventSelected(seg.event)) {
+			classes.push('fc-selected');
+		}
+
 		return classes;
 	},
 
 
-	// Utility for generating a CSS string with all the event skin-related properties
-	getEventSkinCss: function(event) {
-		var view = this.view;
-		var source = event.source || {};
-		var eventColor = event.color;
-		var sourceColor = source.color;
-		var optionColor = view.opt('eventColor');
-		var backgroundColor =
-			event.backgroundColor ||
-			eventColor ||
-			source.backgroundColor ||
-			sourceColor ||
-			view.opt('eventBackgroundColor') ||
-			optionColor;
-		var borderColor =
-			event.borderColor ||
-			eventColor ||
-			source.borderColor ||
-			sourceColor ||
-			view.opt('eventBorderColor') ||
-			optionColor;
-		var textColor =
-			event.textColor ||
-			source.textColor ||
-			view.opt('eventTextColor');
-		var statements = [];
-		if (backgroundColor) {
-			statements.push('background-color:' + backgroundColor);
-		}
-		if (borderColor) {
-			statements.push('border-color:' + borderColor);
-		}
-		if (textColor) {
-			statements.push('color:' + textColor);
-		}
-		return statements.join(';');
+	// List of classes that were defined by the caller of the API in some way
+	getSegCustomClasses: function(seg) {
+		var event = seg.event;
+
+		return [].concat(
+			event.className, // guaranteed to be an array
+			event.source ? event.source.className : []
+		);
 	},
 
 
-	/* Converting events -> ranges -> segs
+	// Utility for generating event skin-related CSS properties
+	getSegSkinCss: function(seg) {
+		return {
+			'background-color': this.getSegBackgroundColor(seg),
+			'border-color': this.getSegBorderColor(seg),
+			color: this.getSegTextColor(seg)
+		};
+	},
+
+
+	// Queries for caller-specified color, then falls back to default
+	getSegBackgroundColor: function(seg) {
+		return seg.event.backgroundColor ||
+			seg.event.color ||
+			this.getSegDefaultBackgroundColor(seg);
+	},
+
+
+	getSegDefaultBackgroundColor: function(seg) {
+		var source = seg.event.source || {};
+
+		return source.backgroundColor ||
+			source.color ||
+			this.view.opt('eventBackgroundColor') ||
+			this.view.opt('eventColor');
+	},
+
+
+	// Queries for caller-specified color, then falls back to default
+	getSegBorderColor: function(seg) {
+		return seg.event.borderColor ||
+			seg.event.color ||
+			this.getSegDefaultBorderColor(seg);
+	},
+
+
+	getSegDefaultBorderColor: function(seg) {
+		var source = seg.event.source || {};
+
+		return source.borderColor ||
+			source.color ||
+			this.view.opt('eventBorderColor') ||
+			this.view.opt('eventColor');
+	},
+
+
+	// Queries for caller-specified color, then falls back to default
+	getSegTextColor: function(seg) {
+		return seg.event.textColor ||
+			this.getSegDefaultTextColor(seg);
+	},
+
+
+	getSegDefaultTextColor: function(seg) {
+		var source = seg.event.source || {};
+
+		return source.textColor ||
+			this.view.opt('eventTextColor');
+	},
+
+
+	/* Converting events -> eventRange -> eventSpan -> eventSegs
 	------------------------------------------------------------------------------------------------------------------*/
 
 
+	// Generates an array of segments for the given single event
+	// Can accept an event "location" as well (which only has start/end and no allDay)
+	eventToSegs: function(event) {
+		return this.eventsToSegs([ event ]);
+	},
+
+
+	eventToSpan: function(event) {
+		return this.eventToSpans(event)[0];
+	},
+
+
+	// Generates spans (always unzoned) for the given event.
+	// Does not do any inverting for inverse-background events.
+	// Can accept an event "location" as well (which only has start/end and no allDay)
+	eventToSpans: function(event) {
+		var range = this.eventToRange(event);
+		return this.eventRangeToSpans(range, event);
+	},
+
+
+
 	// Converts an array of event objects into an array of event segment objects.
-	// A custom `rangeToSegsFunc` may be given for arbitrarily slicing up events.
-	eventsToSegs: function(events, rangeToSegsFunc) {
-		var eventRanges = this.eventsToRanges(events);
+	// A custom `segSliceFunc` may be given for arbitrarily slicing up events.
+	// Doesn't guarantee an order for the resulting array.
+	eventsToSegs: function(allEvents, segSliceFunc) {
+		var _this = this;
+		var eventsById = groupEventsById(allEvents);
+		var segs = [];
+
+		$.each(eventsById, function(id, events) {
+			var ranges = [];
+			var i;
+
+			for (i = 0; i < events.length; i++) {
+				ranges.push(_this.eventToRange(events[i]));
+			}
+
+			// inverse-background events (utilize only the first event in calculations)
+			if (isInverseBgEvent(events[0])) {
+				ranges = _this.invertRanges(ranges);
+
+				for (i = 0; i < ranges.length; i++) {
+					segs.push.apply(segs, // append to
+						_this.eventRangeToSegs(ranges[i], events[0], segSliceFunc));
+				}
+			}
+			// normal event ranges
+			else {
+				for (i = 0; i < ranges.length; i++) {
+					segs.push.apply(segs, // append to
+						_this.eventRangeToSegs(ranges[i], events[i], segSliceFunc));
+				}
+			}
+		});
+
+		return segs;
+	},
+
+
+	// Generates the unzoned start/end dates an event appears to occupy
+	// Can accept an event "location" as well (which only has start/end and no allDay)
+	eventToRange: function(event) {
+		var calendar = this.view.calendar;
+		var start = event.start.clone().stripZone();
+		var end = (
+				event.end ?
+					event.end.clone() :
+					// derive the end from the start and allDay. compute allDay if necessary
+					calendar.getDefaultEventEnd(
+						event.allDay != null ?
+							event.allDay :
+							!event.start.hasTime(),
+						event.start
+					)
+			).stripZone();
+
+		// hack: dynamic locale change forgets to upate stored event localed
+		calendar.localizeMoment(start);
+		calendar.localizeMoment(end);
+
+		return { start: start, end: end };
+	},
+
+
+	// Given an event's range (unzoned start/end), and the event itself,
+	// slice into segments (using the segSliceFunc function if specified)
+	eventRangeToSegs: function(range, event, segSliceFunc) {
+		var spans = this.eventRangeToSpans(range, event);
 		var segs = [];
 		var i;
 
-		for (i = 0; i < eventRanges.length; i++) {
-			segs.push.apply(
-				segs,
-				this.eventRangeToSegs(eventRanges[i], rangeToSegsFunc)
-			);
+		for (i = 0; i < spans.length; i++) {
+			segs.push.apply(segs, // append to
+				this.eventSpanToSegs(spans[i], event, segSliceFunc));
 		}
 
 		return segs;
 	},
 
 
-	// Converts an array of events into an array of "range" objects.
-	// A "range" object is a plain object with start/end properties denoting the time it covers. Also an event property.
-	// For "normal" events, this will be identical to the event's start/end, but for "inverse-background" events,
-	// will create an array of ranges that span the time *not* covered by the given event.
-	eventsToRanges: function(events) {
-		var _this = this;
-		var eventsById = groupEventsById(events);
-		var ranges = [];
-
-		// group by ID so that related inverse-background events can be rendered together
-		$.each(eventsById, function(id, eventGroup) {
-			if (eventGroup.length) {
-				ranges.push.apply(
-					ranges,
-					isInverseBgEvent(eventGroup[0]) ?
-						_this.eventsToInverseRanges(eventGroup) :
-						_this.eventsToNormalRanges(eventGroup)
-				);
-			}
-		});
-
-		return ranges;
+	// Given an event's unzoned date range, return an array of "span" objects.
+	// Subclasses can override.
+	eventRangeToSpans: function(range, event) {
+		return [ $.extend({}, range) ]; // copy into a single-item array
 	},
 
 
-	// Converts an array of "normal" events (not inverted rendering) into a parallel array of ranges
-	eventsToNormalRanges: function(events) {
-		var calendar = this.view.calendar;
-		var ranges = [];
-		var i, event;
-		var eventStart, eventEnd;
+	// Given an event's span (unzoned start/end and other misc data), and the event itself,
+	// slices into segments and attaches event-derived properties to them.
+	eventSpanToSegs: function(span, event, segSliceFunc) {
+		var segs = segSliceFunc ? segSliceFunc(span) : this.spanToSegs(span);
+		var i, seg;
 
-		for (i = 0; i < events.length; i++) {
-			event = events[i];
-
-			// make copies and normalize by stripping timezone
-			eventStart = event.start.clone().stripZone();
-			eventEnd = calendar.getEventEnd(event).stripZone();
-
-			ranges.push({
-				event: event,
-				start: eventStart,
-				end: eventEnd,
-				eventStartMS: +eventStart,
-				eventDurationMS: eventEnd - eventStart
-			});
+		for (i = 0; i < segs.length; i++) {
+			seg = segs[i];
+			seg.event = event;
+			seg.eventStartMS = +span.start; // TODO: not the best name after making spans unzoned
+			seg.eventDurationMS = span.end - span.start;
 		}
 
-		return ranges;
+		return segs;
 	},
 
 
-	// Converts an array of events, with inverse-background rendering, into an array of range objects.
-	// The range objects will cover all the time NOT covered by the events.
-	eventsToInverseRanges: function(events) {
+	// Produces a new array of range objects that will cover all the time NOT covered by the given ranges.
+	// SIDE EFFECT: will mutate the given array and will use its date references.
+	invertRanges: function(ranges) {
 		var view = this.view;
-		var viewStart = view.start.clone().stripZone(); // normalize timezone
-		var viewEnd = view.end.clone().stripZone(); // normalize timezone
-		var normalRanges = this.eventsToNormalRanges(events); // will give us normalized dates we can use w/o copies
+		var viewStart = view.start.clone(); // need a copy
+		var viewEnd = view.end.clone(); // need a copy
 		var inverseRanges = [];
-		var event0 = events[0]; // assign this to each range's `.event`
 		var start = viewStart; // the end of the previous range. the start of the new range
-		var i, normalRange;
+		var i, range;
 
 		// ranges need to be in order. required for our date-walking algorithm
-		normalRanges.sort(compareNormalRanges);
+		ranges.sort(compareRanges);
 
-		for (i = 0; i < normalRanges.length; i++) {
-			normalRange = normalRanges[i];
+		for (i = 0; i < ranges.length; i++) {
+			range = ranges[i];
 
 			// add the span of time before the event (if there is any)
-			if (normalRange.start > start) { // compare millisecond time (skip any ambig logic)
+			if (range.start > start) { // compare millisecond time (skip any ambig logic)
 				inverseRanges.push({
-					event: event0,
 					start: start,
-					end: normalRange.start
+					end: range.start
 				});
 			}
 
-			start = normalRange.end;
+			start = range.end;
 		}
 
 		// add the span of time after the last event (if there is any)
 		if (start < viewEnd) { // compare millisecond time (skip any ambig logic)
 			inverseRanges.push({
-				event: event0,
 				start: start,
 				end: viewEnd
 			});
@@ -3926,27 +4964,17 @@ Grid.mixin({
 	},
 
 
-	// Slices the given event range into one or more segment objects.
-	// A `rangeToSegsFunc` custom slicing function can be given.
-	eventRangeToSegs: function(eventRange, rangeToSegsFunc) {
-		var segs;
-		var i, seg;
+	sortEventSegs: function(segs) {
+		segs.sort(proxy(this, 'compareEventSegs'));
+	},
 
-		if (rangeToSegsFunc) {
-			segs = rangeToSegsFunc(eventRange);
-		}
-		else {
-			segs = this.rangeToSegs(eventRange); // defined by the subclass
-		}
 
-		for (i = 0; i < segs.length; i++) {
-			seg = segs[i];
-			seg.event = eventRange.event;
-			seg.eventStartMS = eventRange.eventStartMS;
-			seg.eventDurationMS = eventRange.eventDurationMS;
-		}
-
-		return segs;
+	// A cmp function for determining which segments should take visual priority
+	compareEventSegs: function(seg1, seg2) {
+		return seg1.eventStartMS - seg2.eventStartMS || // earlier events go first
+			seg2.eventDurationMS - seg1.eventDurationMS || // tie? longer events go first
+			seg2.event.allDay - seg1.event.allDay || // tie? put all-day events first (booleans cast to 0/1)
+			compareByFieldSpecs(seg1.event, seg2.event, this.view.eventOrderSpecs);
 	}
 
 });
@@ -3956,10 +4984,21 @@ Grid.mixin({
 ----------------------------------------------------------------------------------------------------------------------*/
 
 
+function pluckEventDateProps(event) {
+	return {
+		start: event.start.clone(),
+		end: event.end ? event.end.clone() : null,
+		allDay: event.allDay // keep it the same
+	};
+}
+FC.pluckEventDateProps = pluckEventDateProps;
+
+
 function isBgEvent(event) { // returns true if background OR inverse-background
 	var rendering = getEventRendering(event);
 	return rendering === 'background' || rendering === 'inverse-background';
 }
+FC.isBgEvent = isBgEvent; // export
 
 
 function isInverseBgEvent(event) {
@@ -3986,21 +5025,9 @@ function groupEventsById(events) {
 
 
 // A cmp function for determining which non-inverted "ranges" (see above) happen earlier
-function compareNormalRanges(range1, range2) {
-	return range1.eventStartMS - range2.eventStartMS; // earlier ranges go first
+function compareRanges(range1, range2) {
+	return range1.start - range2.start; // earlier ranges go first
 }
-
-
-// A cmp function for determining which segments should take visual priority
-// DOES NOT WORK ON INVERTED BACKGROUND EVENTS because they have no eventStartMS/eventDurationMS
-function compareSegs(seg1, seg2) {
-	return seg1.eventStartMS - seg2.eventStartMS || // earlier events go first
-		seg2.eventDurationMS - seg1.eventDurationMS || // tie? longer events go first
-		seg2.event.allDay - seg1.event.allDay || // tie? put all-day events first (booleans cast to 0/1)
-		(seg1.event.title || '').localeCompare(seg2.event.title); // tie? alphabetically by title
-}
-
-fc.compareSegs = compareSegs; // export
 
 
 /* External-Dragging-Element Data
@@ -4008,13 +5035,13 @@ fc.compareSegs = compareSegs; // export
 
 // Require all HTML5 data-* attributes used by FullCalendar to have this prefix.
 // A value of '' will query attributes like data-event. A value of 'fc' will query attributes like data-fc-event.
-fc.dataAttrPrefix = '';
+FC.dataAttrPrefix = '';
 
 // Given a jQuery element that might represent a dragged FullCalendar event, returns an intermediate data structure
 // to be used for Event Object creation.
 // A defined `.eventProps`, even when empty, indicates that an event should be created.
 function getDraggedElMeta(el) {
-	var prefix = fc.dataAttrPrefix;
+	var prefix = FC.dataAttrPrefix;
 	var eventProps; // properties for creating the event, not related to date/time
 	var startTime; // a Duration
 	var duration;
@@ -4057,61 +5084,486 @@ function getDraggedElMeta(el) {
 }
 
 
-    /* A component that renders a grid of whole-days that runs horizontally. There can be multiple rows, one per week.
+;;
+
+/*
+A set of rendering and date-related methods for a visual component comprised of one or more rows of day columns.
+Prerequisite: the object being mixed into needs to be a *Grid*
+*/
+var DayTableMixin = FC.DayTableMixin = {
+
+	breakOnWeeks: false, // should create a new row for each week?
+	dayDates: null, // whole-day dates for each column. left to right
+	dayIndices: null, // for each day from start, the offset
+	daysPerRow: null,
+	rowCnt: null,
+	colCnt: null,
+	colHeadFormat: null,
+
+
+	// Populates internal variables used for date calculation and rendering
+	updateDayTable: function() {
+		var view = this.view;
+		var date = this.start.clone();
+		var dayIndex = -1;
+		var dayIndices = [];
+		var dayDates = [];
+		var daysPerRow;
+		var firstDay;
+		var rowCnt;
+
+		while (date.isBefore(this.end)) { // loop each day from start to end
+			if (view.isHiddenDay(date)) {
+				dayIndices.push(dayIndex + 0.5); // mark that it's between indices
+			}
+			else {
+				dayIndex++;
+				dayIndices.push(dayIndex);
+				dayDates.push(date.clone());
+			}
+			date.add(1, 'days');
+		}
+
+		if (this.breakOnWeeks) {
+			// count columns until the day-of-week repeats
+			firstDay = dayDates[0].day();
+			for (daysPerRow = 1; daysPerRow < dayDates.length; daysPerRow++) {
+				if (dayDates[daysPerRow].day() == firstDay) {
+					break;
+				}
+			}
+			rowCnt = Math.ceil(dayDates.length / daysPerRow);
+		}
+		else {
+			rowCnt = 1;
+			daysPerRow = dayDates.length;
+		}
+
+		this.dayDates = dayDates;
+		this.dayIndices = dayIndices;
+		this.daysPerRow = daysPerRow;
+		this.rowCnt = rowCnt;
+		
+		this.updateDayTableCols();
+	},
+
+
+	// Computes and assigned the colCnt property and updates any options that may be computed from it
+	updateDayTableCols: function() {
+		this.colCnt = this.computeColCnt();
+		this.colHeadFormat = this.view.opt('columnFormat') || this.computeColHeadFormat();
+	},
+
+
+	// Determines how many columns there should be in the table
+	computeColCnt: function() {
+		return this.daysPerRow;
+	},
+
+
+	// Computes the ambiguously-timed moment for the given cell
+	getCellDate: function(row, col) {
+		return this.dayDates[
+				this.getCellDayIndex(row, col)
+			].clone();
+	},
+
+
+	// Computes the ambiguously-timed date range for the given cell
+	getCellRange: function(row, col) {
+		var start = this.getCellDate(row, col);
+		var end = start.clone().add(1, 'days');
+
+		return { start: start, end: end };
+	},
+
+
+	// Returns the number of day cells, chronologically, from the first of the grid (0-based)
+	getCellDayIndex: function(row, col) {
+		return row * this.daysPerRow + this.getColDayIndex(col);
+	},
+
+
+	// Returns the numner of day cells, chronologically, from the first cell in *any given row*
+	getColDayIndex: function(col) {
+		if (this.isRTL) {
+			return this.colCnt - 1 - col;
+		}
+		else {
+			return col;
+		}
+	},
+
+
+	// Given a date, returns its chronolocial cell-index from the first cell of the grid.
+	// If the date lies between cells (because of hiddenDays), returns a floating-point value between offsets.
+	// If before the first offset, returns a negative number.
+	// If after the last offset, returns an offset past the last cell offset.
+	// Only works for *start* dates of cells. Will not work for exclusive end dates for cells.
+	getDateDayIndex: function(date) {
+		var dayIndices = this.dayIndices;
+		var dayOffset = date.diff(this.start, 'days');
+
+		if (dayOffset < 0) {
+			return dayIndices[0] - 1;
+		}
+		else if (dayOffset >= dayIndices.length) {
+			return dayIndices[dayIndices.length - 1] + 1;
+		}
+		else {
+			return dayIndices[dayOffset];
+		}
+	},
+
+
+	/* Options
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Computes a default column header formatting string if `colFormat` is not explicitly defined
+	computeColHeadFormat: function() {
+		// if more than one week row, or if there are a lot of columns with not much space,
+		// put just the day numbers will be in each cell
+		if (this.rowCnt > 1 || this.colCnt > 10) {
+			return 'ddd'; // "Sat"
+		}
+		// multiple days, so full single date string WON'T be in title text
+		else if (this.colCnt > 1) {
+			return this.view.opt('dayOfMonthFormat'); // "Sat 12/10"
+		}
+		// single day, so full single date string will probably be in title text
+		else {
+			return 'dddd'; // "Saturday"
+		}
+	},
+
+
+	/* Slicing
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Slices up a date range into a segment for every week-row it intersects with
+	sliceRangeByRow: function(range) {
+		var daysPerRow = this.daysPerRow;
+		var normalRange = this.view.computeDayRange(range); // make whole-day range, considering nextDayThreshold
+		var rangeFirst = this.getDateDayIndex(normalRange.start); // inclusive first index
+		var rangeLast = this.getDateDayIndex(normalRange.end.clone().subtract(1, 'days')); // inclusive last index
+		var segs = [];
+		var row;
+		var rowFirst, rowLast; // inclusive day-index range for current row
+		var segFirst, segLast; // inclusive day-index range for segment
+
+		for (row = 0; row < this.rowCnt; row++) {
+			rowFirst = row * daysPerRow;
+			rowLast = rowFirst + daysPerRow - 1;
+
+			// intersect segment's offset range with the row's
+			segFirst = Math.max(rangeFirst, rowFirst);
+			segLast = Math.min(rangeLast, rowLast);
+
+			// deal with in-between indices
+			segFirst = Math.ceil(segFirst); // in-between starts round to next cell
+			segLast = Math.floor(segLast); // in-between ends round to prev cell
+
+			if (segFirst <= segLast) { // was there any intersection with the current row?
+				segs.push({
+					row: row,
+
+					// normalize to start of row
+					firstRowDayIndex: segFirst - rowFirst,
+					lastRowDayIndex: segLast - rowFirst,
+
+					// must be matching integers to be the segment's start/end
+					isStart: segFirst === rangeFirst,
+					isEnd: segLast === rangeLast
+				});
+			}
+		}
+
+		return segs;
+	},
+
+
+	// Slices up a date range into a segment for every day-cell it intersects with.
+	// TODO: make more DRY with sliceRangeByRow somehow.
+	sliceRangeByDay: function(range) {
+		var daysPerRow = this.daysPerRow;
+		var normalRange = this.view.computeDayRange(range); // make whole-day range, considering nextDayThreshold
+		var rangeFirst = this.getDateDayIndex(normalRange.start); // inclusive first index
+		var rangeLast = this.getDateDayIndex(normalRange.end.clone().subtract(1, 'days')); // inclusive last index
+		var segs = [];
+		var row;
+		var rowFirst, rowLast; // inclusive day-index range for current row
+		var i;
+		var segFirst, segLast; // inclusive day-index range for segment
+
+		for (row = 0; row < this.rowCnt; row++) {
+			rowFirst = row * daysPerRow;
+			rowLast = rowFirst + daysPerRow - 1;
+
+			for (i = rowFirst; i <= rowLast; i++) {
+
+				// intersect segment's offset range with the row's
+				segFirst = Math.max(rangeFirst, i);
+				segLast = Math.min(rangeLast, i);
+
+				// deal with in-between indices
+				segFirst = Math.ceil(segFirst); // in-between starts round to next cell
+				segLast = Math.floor(segLast); // in-between ends round to prev cell
+
+				if (segFirst <= segLast) { // was there any intersection with the current row?
+					segs.push({
+						row: row,
+
+						// normalize to start of row
+						firstRowDayIndex: segFirst - rowFirst,
+						lastRowDayIndex: segLast - rowFirst,
+
+						// must be matching integers to be the segment's start/end
+						isStart: segFirst === rangeFirst,
+						isEnd: segLast === rangeLast
+					});
+				}
+			}
+		}
+
+		return segs;
+	},
+
+
+	/* Header Rendering
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	renderHeadHtml: function() {
+		var view = this.view;
+
+		return '' +
+			'<div class="fc-row ' + view.widgetHeaderClass + '">' +
+				'<table>' +
+					'<thead>' +
+						this.renderHeadTrHtml() +
+					'</thead>' +
+				'</table>' +
+			'</div>';
+	},
+
+
+	renderHeadIntroHtml: function() {
+		return this.renderIntroHtml(); // fall back to generic
+	},
+
+
+	renderHeadTrHtml: function() {
+		return '' +
+			'<tr>' +
+				(this.isRTL ? '' : this.renderHeadIntroHtml()) +
+				this.renderHeadDateCellsHtml() +
+				(this.isRTL ? this.renderHeadIntroHtml() : '') +
+			'</tr>';
+	},
+
+
+	renderHeadDateCellsHtml: function() {
+		var htmls = [];
+		var col, date;
+
+		for (col = 0; col < this.colCnt; col++) {
+			date = this.getCellDate(0, col);
+			htmls.push(this.renderHeadDateCellHtml(date));
+		}
+
+		return htmls.join('');
+	},
+
+
+	// TODO: when internalApiVersion, accept an object for HTML attributes
+	// (colspan should be no different)
+	renderHeadDateCellHtml: function(date, colspan, otherAttrs) {
+		var view = this.view;
+
+		return '' +
+			'<th class="fc-day-header ' + view.widgetHeaderClass + ' fc-' + dayIDs[date.day()] + '"' +
+				(this.rowCnt === 1 ?
+					' data-date="' + date.format('YYYY-MM-DD') + '"' :
+					'') +
+				(colspan > 1 ?
+					' colspan="' + colspan + '"' :
+					'') +
+				(otherAttrs ?
+					' ' + otherAttrs :
+					'') +
+				'>' +
+				// don't make a link if the heading could represent multiple days, or if there's only one day (forceOff)
+				view.buildGotoAnchorHtml(
+					{ date: date, forceOff: this.rowCnt > 1 || this.colCnt === 1 },
+					htmlEscape(date.format(this.colHeadFormat)) // inner HTML
+				) +
+			'</th>';
+	},
+
+
+	/* Background Rendering
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	renderBgTrHtml: function(row) {
+		return '' +
+			'<tr>' +
+				(this.isRTL ? '' : this.renderBgIntroHtml(row)) +
+				this.renderBgCellsHtml(row) +
+				(this.isRTL ? this.renderBgIntroHtml(row) : '') +
+			'</tr>';
+	},
+
+
+	renderBgIntroHtml: function(row) {
+		return this.renderIntroHtml(); // fall back to generic
+	},
+
+
+	renderBgCellsHtml: function(row) {
+		var htmls = [];
+		var col, date;
+
+		for (col = 0; col < this.colCnt; col++) {
+			date = this.getCellDate(row, col);
+			htmls.push(this.renderBgCellHtml(date));
+		}
+
+		return htmls.join('');
+	},
+
+
+	renderBgCellHtml: function(date, otherAttrs) {
+		var view = this.view;
+		var classes = this.getDayClasses(date);
+
+		classes.unshift('fc-day', view.widgetContentClass);
+
+		return '<td class="' + classes.join(' ') + '"' +
+			' data-date="' + date.format('YYYY-MM-DD') + '"' + // if date has a time, won't format it
+			(otherAttrs ?
+				' ' + otherAttrs :
+				'') +
+			'></td>';
+	},
+
+
+	/* Generic
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Generates the default HTML intro for any row. User classes should override
+	renderIntroHtml: function() {
+	},
+
+
+	// TODO: a generic method for dealing with <tr>, RTL, intro
+	// when increment internalApiVersion
+	// wrapTr (scheduler)
+
+
+	/* Utils
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Applies the generic "intro" and "outro" HTML to the given cells.
+	// Intro means the leftmost cell when the calendar is LTR and the rightmost cell when RTL. Vice-versa for outro.
+	bookendCells: function(trEl) {
+		var introHtml = this.renderIntroHtml();
+
+		if (introHtml) {
+			if (this.isRTL) {
+				trEl.append(introHtml);
+			}
+			else {
+				trEl.prepend(introHtml);
+			}
+		}
+	}
+
+};
+
+;;
+
+/* A component that renders a grid of whole-days that runs horizontally. There can be multiple rows, one per week.
 ----------------------------------------------------------------------------------------------------------------------*/
 
-var DayGrid = Grid.extend({
+var DayGrid = FC.DayGrid = Grid.extend(DayTableMixin, {
 
 	numbersVisible: false, // should render a row for day/week numbers? set by outside view. TODO: make internal
 	bottomCoordPadding: 0, // hack for extending the hit area for the last row of the coordinate grid
-	breakOnWeeks: null, // should create a new row for each week? set by outside view
-
-	cellDates: null, // flat chronological array of each cell's dates
-	dayToCellOffsets: null, // maps days offsets from grid's start date, to cell offsets
 
 	rowEls: null, // set of fake row elements
-	dayEls: null, // set of whole-day elements comprising the row's background
+	cellEls: null, // set of whole-day elements comprising the row's background
 	helperEls: null, // set of cell skeleton elements for rendering the mock event "helper"
+
+	rowCoordCache: null,
+	colCoordCache: null,
 
 
 	// Renders the rows and columns into the component's `this.el`, which should already be assigned.
 	// isRigid determins whether the individual rows should ignore the contents and be a constant height.
 	// Relies on the view's colCnt and rowCnt. In the future, this component should probably be self-sufficient.
-	render: function(isRigid) {
+	renderDates: function(isRigid) {
 		var view = this.view;
 		var rowCnt = this.rowCnt;
 		var colCnt = this.colCnt;
-		var cellCnt = rowCnt * colCnt;
 		var html = '';
 		var row;
-		var i, cell;
+		var col;
 
 		for (row = 0; row < rowCnt; row++) {
-			html += this.dayRowHtml(row, isRigid);
+			html += this.renderDayRowHtml(row, isRigid);
 		}
 		this.el.html(html);
 
 		this.rowEls = this.el.find('.fc-row');
-		this.dayEls = this.el.find('.fc-day');
+		this.cellEls = this.el.find('.fc-day');
+
+		this.rowCoordCache = new CoordCache({
+			els: this.rowEls,
+			isVertical: true
+		});
+		this.colCoordCache = new CoordCache({
+			els: this.cellEls.slice(0, this.colCnt), // only the first row
+			isHorizontal: true
+		});
 
 		// trigger dayRender with each cell's element
-		for (i = 0; i < cellCnt; i++) {
-			cell = this.getCell(i);
-			view.trigger('dayRender', null, cell.start, this.dayEls.eq(i));
+		for (row = 0; row < rowCnt; row++) {
+			for (col = 0; col < colCnt; col++) {
+				view.trigger(
+					'dayRender',
+					null,
+					this.getCellDate(row, col),
+					this.getCellEl(row, col)
+				);
+			}
 		}
-
-		Grid.prototype.render.call(this); // call the super-method
 	},
 
 
-	destroy: function() {
-		this.destroySegPopover();
-		Grid.prototype.destroy.call(this); // call the super-method
+	unrenderDates: function() {
+		this.removeSegPopover();
 	},
 
 
-	// Generates the HTML for a single row. `row` is the row number.
-	dayRowHtml: function(row, isRigid) {
+	renderBusinessHours: function() {
+		var segs = this.buildBusinessHourSegs(true); // wholeDay=true
+		this.renderFill('businessHours', segs, 'bgevent');
+	},
+
+
+	unrenderBusinessHours: function() {
+		this.unrenderFill('businessHours');
+	},
+
+
+	// Generates the HTML for a single row, which is a div that wraps a table.
+	// `row` is the row number.
+	renderDayRowHtml: function(row, isRigid) {
 		var view = this.view;
 		var classes = [ 'fc-row', 'fc-week', view.widgetContentClass ];
 
@@ -4123,14 +5575,14 @@ var DayGrid = Grid.extend({
 			'<div class="' + classes.join(' ') + '">' +
 				'<div class="fc-bg">' +
 					'<table>' +
-						this.rowHtml('day', row) + // leverages RowRenderer. calls dayCellHtml()
+						this.renderBgTrHtml(row) +
 					'</table>' +
 				'</div>' +
 				'<div class="fc-content-skeleton">' +
 					'<table>' +
 						(this.numbersVisible ?
 							'<thead>' +
-								this.rowHtml('number', row) + // leverages RowRenderer. View will define render method
+								this.renderNumberTrHtml(row) +
 							'</thead>' :
 							''
 							) +
@@ -4140,30 +5592,93 @@ var DayGrid = Grid.extend({
 	},
 
 
-	// Renders the HTML for a whole-day cell. Will eventually end up in the day-row's background.
-	// We go through a 'day' row type instead of just doing a 'bg' row type so that the View can do custom rendering
-	// specifically for whole-day rows, whereas a 'bg' might also be used for other purposes (TimeGrid bg for example).
-	dayCellHtml: function(cell) {
-		return this.bgCellHtml(cell);
+	/* Grid Number Rendering
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	renderNumberTrHtml: function(row) {
+		return '' +
+			'<tr>' +
+				(this.isRTL ? '' : this.renderNumberIntroHtml(row)) +
+				this.renderNumberCellsHtml(row) +
+				(this.isRTL ? this.renderNumberIntroHtml(row) : '') +
+			'</tr>';
+	},
+
+
+	renderNumberIntroHtml: function(row) {
+		return this.renderIntroHtml();
+	},
+
+
+	renderNumberCellsHtml: function(row) {
+		var htmls = [];
+		var col, date;
+
+		for (col = 0; col < this.colCnt; col++) {
+			date = this.getCellDate(row, col);
+			htmls.push(this.renderNumberCellHtml(date));
+		}
+
+		return htmls.join('');
+	},
+
+
+	// Generates the HTML for the <td>s of the "number" row in the DayGrid's content skeleton.
+	// The number row will only exist if either day numbers or week numbers are turned on.
+	renderNumberCellHtml: function(date) {
+		var html = '';
+		var classes;
+		var weekCalcFirstDoW;
+
+		if (!this.view.dayNumbersVisible && !this.view.cellWeekNumbersVisible) {
+			// no numbers in day cell (week number must be along the side)
+			return '<td/>'; //  will create an empty space above events :(
+		}
+
+		classes = this.getDayClasses(date);
+		classes.unshift('fc-day-top');
+
+		if (this.view.cellWeekNumbersVisible) {
+			// To determine the day of week number change under ISO, we cannot
+			// rely on moment.js methods such as firstDayOfWeek() or weekday(),
+			// because they rely on the locale's dow (possibly overridden by
+			// our firstDay option), which may not be Monday. We cannot change
+			// dow, because that would affect the calendar start day as well.
+			if (date._locale._fullCalendar_weekCalc === 'ISO') {
+				weekCalcFirstDoW = 1;  // Monday by ISO 8601 definition
+			}
+			else {
+				weekCalcFirstDoW = date._locale.firstDayOfWeek();
+			}
+		}
+
+		html += '<td class="' + classes.join(' ') + '" data-date="' + date.format() + '">';
+
+		if (this.view.cellWeekNumbersVisible && (date.day() == weekCalcFirstDoW)) {
+			html += this.view.buildGotoAnchorHtml(
+				{ date: date, type: 'week' },
+				{ 'class': 'fc-week-number' },
+				date.format('w') // inner HTML
+			);
+		}
+
+		if (this.view.dayNumbersVisible) {
+			html += this.view.buildGotoAnchorHtml(
+				date,
+				{ 'class': 'fc-day-number' },
+				date.date() // inner HTML
+			);
+		}
+
+		html += '</td>';
+
+		return html;
 	},
 
 
 	/* Options
 	------------------------------------------------------------------------------------------------------------------*/
-
-
-	// Computes a default column header formatting string if `colFormat` is not explicitly defined
-	computeColHeadFormat: function() {
-		if (this.rowCnt > 1) { // more than one week row. day numbers will be in each cell
-			return 'ddd'; // "Sat"
-		}
-		else if (this.colCnt > 1) { // multiple days, so full single date string WON'T be in title text
-			return this.view.opt('dayOfMonthFormat'); // "Sat 12/10"
-		}
-		else { // single day, so full single date string will probably be in title text
-			return 'dddd'; // "Saturday"
-		}
-	},
 
 
 	// Computes a default event time formatting string if `timeFormat` is not explicitly defined
@@ -4178,158 +5693,29 @@ var DayGrid = Grid.extend({
 	},
 
 
-	/* Cell System
-	------------------------------------------------------------------------------------------------------------------*/
-
-
-	// Initializes row/col information
-	updateCells: function() {
-		var cellDates;
-		var firstDay;
-		var rowCnt;
-		var colCnt;
-
-		this.updateCellDates(); // populates cellDates and dayToCellOffsets
-		cellDates = this.cellDates;
-
-		if (this.breakOnWeeks) {
-			// count columns until the day-of-week repeats
-			firstDay = cellDates[0].day();
-			for (colCnt = 1; colCnt < cellDates.length; colCnt++) {
-				if (cellDates[colCnt].day() == firstDay) {
-					break;
-				}
-			}
-			rowCnt = Math.ceil(cellDates.length / colCnt);
-		}
-		else {
-			rowCnt = 1;
-			colCnt = cellDates.length;
-		}
-
-		this.rowCnt = rowCnt;
-		this.colCnt = colCnt;
-	},
-
-
-	// Populates cellDates and dayToCellOffsets
-	updateCellDates: function() {
-		var view = this.view;
-		var date = this.start.clone();
-		var dates = [];
-		var offset = -1;
-		var offsets = [];
-
-		while (date.isBefore(this.end)) { // loop each day from start to end
-			if (view.isHiddenDay(date)) {
-				offsets.push(offset + 0.5); // mark that it's between offsets
-			}
-			else {
-				offset++;
-				offsets.push(offset);
-				dates.push(date.clone());
-			}
-			date.add(1, 'days');
-		}
-
-		this.cellDates = dates;
-		this.dayToCellOffsets = offsets;
-	},
-
-
-	// Given a cell object, generates a range object
-	computeCellRange: function(cell) {
-		var colCnt = this.colCnt;
-		var index = cell.row * colCnt + (this.isRTL ? colCnt - cell.col - 1 : cell.col);
-		var start = this.cellDates[index].clone();
-		var end = start.clone().add(1, 'day');
-
-		return { start: start, end: end };
-	},
-
-
-	// Retrieves the element representing the given row
-	getRowEl: function(row) {
-		return this.rowEls.eq(row);
-	},
-
-
-	// Retrieves the element representing the given column
-	getColEl: function(col) {
-		return this.dayEls.eq(col);
-	},
-
-
-	// Gets the whole-day element associated with the cell
-	getCellDayEl: function(cell) {
-		return this.dayEls.eq(cell.row * this.colCnt + cell.col);
-	},
-
-
-	// Overrides Grid's method for when row coordinates are computed
-	computeRowCoords: function() {
-		var rowCoords = Grid.prototype.computeRowCoords.call(this); // call the super-method
-
-		// hack for extending last row (used by AgendaView)
-		rowCoords[rowCoords.length - 1].bottom += this.bottomCoordPadding;
-
-		return rowCoords;
-	},
-
-
 	/* Dates
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Slices up a date range by row into an array of segments
-	rangeToSegs: function(range) {
-		var isRTL = this.isRTL;
-		var rowCnt = this.rowCnt;
-		var colCnt = this.colCnt;
-		var segs = [];
-		var first, last; // inclusive cell-offset range for given range
-		var row;
-		var rowFirst, rowLast; // inclusive cell-offset range for current row
-		var isStart, isEnd;
-		var segFirst, segLast; // inclusive cell-offset range for segment
-		var seg;
+	rangeUpdated: function() {
+		this.updateDayTable();
+	},
 
-		range = this.view.computeDayRange(range); // make whole-day range, considering nextDayThreshold
-		first = this.dateToCellOffset(range.start);
-		last = this.dateToCellOffset(range.end.subtract(1, 'days')); // offset of inclusive end date
 
-		for (row = 0; row < rowCnt; row++) {
-			rowFirst = row * colCnt;
-			rowLast = rowFirst + colCnt - 1;
+	// Slices up the given span (unzoned start/end with other misc data) into an array of segments
+	spanToSegs: function(span) {
+		var segs = this.sliceRangeByRow(span);
+		var i, seg;
 
-			// intersect segment's offset range with the row's
-			segFirst = Math.max(rowFirst, first);
-			segLast = Math.min(rowLast, last);
-
-			// deal with in-between indices
-			segFirst = Math.ceil(segFirst); // in-between starts round to next cell
-			segLast = Math.floor(segLast); // in-between ends round to prev cell
-
-			if (segFirst <= segLast) { // was there any intersection with the current row?
-
-				// must be matching integers to be the segment's start/end
-				isStart = segFirst === first;
-				isEnd = segLast === last;
-
-				// translate offsets to be relative to start-of-row
-				segFirst -= rowFirst;
-				segLast -= rowFirst;
-
-				seg = { row: row, isStart: isStart, isEnd: isEnd };
-				if (isRTL) {
-					seg.leftCol = colCnt - segLast - 1;
-					seg.rightCol = colCnt - segFirst - 1;
-				}
-				else {
-					seg.leftCol = segFirst;
-					seg.rightCol = segLast;
-				}
-				segs.push(seg);
+		for (i = 0; i < segs.length; i++) {
+			seg = segs[i];
+			if (this.isRTL) {
+				seg.leftCol = this.daysPerRow - 1 - seg.lastRowDayIndex;
+				seg.rightCol = this.daysPerRow - 1 - seg.firstRowDayIndex;
+			}
+			else {
+				seg.leftCol = seg.firstRowDayIndex;
+				seg.rightCol = seg.lastRowDayIndex;
 			}
 		}
 
@@ -4337,24 +5723,65 @@ var DayGrid = Grid.extend({
 	},
 
 
-	// Given a date, returns its chronolocial cell-offset from the first cell of the grid.
-	// If the date lies between cells (because of hiddenDays), returns a floating-point value between offsets.
-	// If before the first offset, returns a negative number.
-	// If after the last offset, returns an offset past the last cell offset.
-	// Only works for *start* dates of cells. Will not work for exclusive end dates for cells.
-	dateToCellOffset: function(date) {
-		var offsets = this.dayToCellOffsets;
-		var day = date.diff(this.start, 'days');
+	/* Hit System
+	------------------------------------------------------------------------------------------------------------------*/
 
-		if (day < 0) {
-			return offsets[0] - 1;
+
+	prepareHits: function() {
+		this.colCoordCache.build();
+		this.rowCoordCache.build();
+		this.rowCoordCache.bottoms[this.rowCnt - 1] += this.bottomCoordPadding; // hack
+	},
+
+
+	releaseHits: function() {
+		this.colCoordCache.clear();
+		this.rowCoordCache.clear();
+	},
+
+
+	queryHit: function(leftOffset, topOffset) {
+		if (this.colCoordCache.isLeftInBounds(leftOffset) && this.rowCoordCache.isTopInBounds(topOffset)) {
+			var col = this.colCoordCache.getHorizontalIndex(leftOffset);
+			var row = this.rowCoordCache.getVerticalIndex(topOffset);
+
+			if (row != null && col != null) {
+				return this.getCellHit(row, col);
+			}
 		}
-		else if (day >= offsets.length) {
-			return offsets[offsets.length - 1] + 1;
-		}
-		else {
-			return offsets[day];
-		}
+	},
+
+
+	getHitSpan: function(hit) {
+		return this.getCellRange(hit.row, hit.col);
+	},
+
+
+	getHitEl: function(hit) {
+		return this.getCellEl(hit.row, hit.col);
+	},
+
+
+	/* Cell System
+	------------------------------------------------------------------------------------------------------------------*/
+	// FYI: the first column is the leftmost column, regardless of date
+
+
+	getCellHit: function(row, col) {
+		return {
+			row: row,
+			col: col,
+			component: this, // needed unfortunately :(
+			left: this.colCoordCache.getLeftOffset(col),
+			right: this.colCoordCache.getRightOffset(col),
+			top: this.rowCoordCache.getTopOffset(row),
+			bottom: this.rowCoordCache.getBottomOffset(row)
+		};
+	},
+
+
+	getCellEl: function(row, col) {
+		return this.cellEls.eq(row * this.colCnt + col);
 	},
 
 
@@ -4364,34 +5791,23 @@ var DayGrid = Grid.extend({
 
 
 	// Renders a visual indication of an event or external element being dragged.
-	// The dropLocation's end can be null. seg can be null. See Grid::renderDrag for more info.
-	renderDrag: function(dropLocation, seg) {
-		var opacity;
+	// `eventLocation` has zoned start and end (optional)
+	renderDrag: function(eventLocation, seg) {
 
 		// always render a highlight underneath
-		this.renderHighlight(
-			this.view.calendar.ensureVisibleEventRange(dropLocation) // needs to be a proper range
-		);
+		this.renderHighlight(this.eventToSpan(eventLocation));
 
 		// if a segment from the same calendar but another component is being dragged, render a helper event
-		if (seg && !seg.el.closest(this.el).length) {
-
-			this.renderRangeHelper(dropLocation, seg);
-
-			opacity = this.view.opt('dragOpacity');
-			if (opacity !== undefined) {
-				this.helperEls.css('opacity', opacity);
-			}
-
-			return true; // a helper has been rendered
+		if (seg && seg.component !== this) {
+			return this.renderEventLocationHelper(eventLocation, seg); // returns mock event elements
 		}
 	},
 
 
 	// Unrenders any visual indication of a hovering event
-	destroyDrag: function() {
-		this.destroyHighlight();
-		this.destroyHelper();
+	unrenderDrag: function() {
+		this.unrenderHighlight();
+		this.unrenderHelper();
 	},
 
 
@@ -4400,16 +5816,16 @@ var DayGrid = Grid.extend({
 
 
 	// Renders a visual indication of an event being resized
-	renderEventResize: function(range, seg) {
-		this.renderHighlight(range);
-		this.renderRangeHelper(range, seg);
+	renderEventResize: function(eventLocation, seg) {
+		this.renderHighlight(this.eventToSpan(eventLocation));
+		return this.renderEventLocationHelper(eventLocation, seg); // returns mock event elements
 	},
 
 
 	// Unrenders a visual indication of an event being resized
-	destroyEventResize: function() {
-		this.destroyHighlight();
-		this.destroyHelper();
+	unrenderEventResize: function() {
+		this.unrenderHighlight();
+		this.unrenderHelper();
 	},
 
 
@@ -4420,7 +5836,7 @@ var DayGrid = Grid.extend({
 	// Renders a mock "helper" event. `sourceSeg` is the associated internal segment object. It can be null.
 	renderHelper: function(event, sourceSeg) {
 		var helperNodes = [];
-		var segs = this.eventsToSegs([ event ]);
+		var segs = this.eventToSegs(event);
 		var rowStructs;
 
 		segs = this.renderFgSegEls(segs); // assigns each seg's el and returns a subset of segs that were rendered
@@ -4448,12 +5864,14 @@ var DayGrid = Grid.extend({
 			helperNodes.push(skeletonEl[0]);
 		});
 
-		this.helperEls = $(helperNodes); // array -> jQuery set
+		return ( // must return the elements rendered
+			this.helperEls = $(helperNodes) // array -> jQuery set
+		);
 	},
 
 
 	// Unrenders any visual indication of a mock helper event
-	destroyHelper: function() {
+	unrenderHelper: function() {
 		if (this.helperEls) {
 			this.helperEls.remove();
 			this.helperEls = null;
@@ -4470,7 +5888,7 @@ var DayGrid = Grid.extend({
 
 	// Renders a set of rectangles over the given segments of days.
 	// Only returns segments that successfully rendered.
-	renderFill: function(type, segs) {
+	renderFill: function(type, segs, className) {
 		var nodes = [];
 		var i, seg;
 		var skeletonEl;
@@ -4479,7 +5897,7 @@ var DayGrid = Grid.extend({
 
 		for (i = 0; i < segs.length; i++) {
 			seg = segs[i];
-			skeletonEl = this.renderFillRow(type, seg);
+			skeletonEl = this.renderFillRow(type, seg, className);
 			this.rowEls.eq(seg.row).append(skeletonEl);
 			nodes.push(skeletonEl[0]);
 		}
@@ -4491,15 +5909,17 @@ var DayGrid = Grid.extend({
 
 
 	// Generates the HTML needed for one row of a fill. Requires the seg's el to be rendered.
-	renderFillRow: function(type, seg) {
+	renderFillRow: function(type, seg, className) {
 		var colCnt = this.colCnt;
 		var startCol = seg.leftCol;
 		var endCol = seg.rightCol + 1;
 		var skeletonEl;
 		var trEl;
 
+		className = className || type.toLowerCase();
+
 		skeletonEl = $(
-			'<div class="fc-' + type.toLowerCase() + '-skeleton">' +
+			'<div class="fc-' + className + '-skeleton">' +
 				'<table><tr/></table>' +
 			'</div>'
 		);
@@ -4517,14 +5937,16 @@ var DayGrid = Grid.extend({
 			trEl.append('<td colspan="' + (colCnt - endCol) + '"/>');
 		}
 
-		this.bookendCells(trEl, type);
+		this.bookendCells(trEl);
 
 		return skeletonEl;
 	}
 
 });
 
-    /* Event-rendering methods for the DayGrid class
+;;
+
+/* Event-rendering methods for the DayGrid class
 ----------------------------------------------------------------------------------------------------------------------*/
 
 DayGrid.mixin({
@@ -4533,9 +5955,9 @@ DayGrid.mixin({
 
 
 	// Unrenders all events currently rendered on the grid
-	destroyEvents: function() {
-		this.destroySegPopover(); // removes the "more.." events popover
-		Grid.prototype.destroyEvents.apply(this, arguments); // calls the super-method
+	unrenderEvents: function() {
+		this.removeSegPopover(); // removes the "more.." events popover
+		Grid.prototype.unrenderEvents.apply(this, arguments); // calls the super-method
 	},
 
 
@@ -4580,7 +6002,7 @@ DayGrid.mixin({
 
 
 	// Unrenders all currently rendered foreground event segments
-	destroyFgSegs: function() {
+	unrenderFgSegs: function() {
 		var rowStructs = this.rowStructs || [];
 		var rowStruct;
 
@@ -4618,17 +6040,24 @@ DayGrid.mixin({
 		var view = this.view;
 		var event = seg.event;
 		var isDraggable = view.isEventDraggable(event);
-		var isResizable = !disableResizing && event.allDay && seg.isEnd && view.isEventResizable(event);
-		var classes = this.getSegClasses(seg, isDraggable, isResizable);
-		var skinCss = this.getEventSkinCss(event);
+		var isResizableFromStart = !disableResizing && event.allDay &&
+			seg.isStart && view.isEventResizableFromStart(event);
+		var isResizableFromEnd = !disableResizing && event.allDay &&
+			seg.isEnd && view.isEventResizableFromEnd(event);
+		var classes = this.getSegClasses(seg, isDraggable, isResizableFromStart || isResizableFromEnd);
+		var skinCss = cssToStr(this.getSegSkinCss(seg));
 		var timeHtml = '';
+		var timeText;
 		var titleHtml;
 
-		classes.unshift('fc-day-grid-event');
+		classes.unshift('fc-day-grid-event', 'fc-h-event');
 
 		// Only display a timed events time if it is the starting segment
-		if (!event.allDay && seg.isStart) {
-			timeHtml = '<span class="fc-time">' + htmlEscape(this.getEventTimeText(event)) + '</span>';
+		if (seg.isStart) {
+			timeText = this.getEventTimeText(event);
+			if (timeText) {
+				timeHtml = '<span class="fc-time">' + htmlEscape(timeText) + '</span>';
+			}
 		}
 
 		titleHtml =
@@ -4652,8 +6081,12 @@ DayGrid.mixin({
 						timeHtml + ' ' + titleHtml   //
 						) +
 				'</div>' +
-				(isResizable ?
-					'<div class="fc-resizer"/>' :
+				(isResizableFromStart ?
+					'<div class="fc-resizer fc-start-resizer" />' :
+					''
+					) +
+				(isResizableFromEnd ?
+					'<div class="fc-resizer fc-end-resizer" />' :
 					''
 					) +
 			'</a>';
@@ -4662,6 +6095,7 @@ DayGrid.mixin({
 
 	// Given a row # and an array of segments all in the same row, render a <tbody> element, a skeleton that contains
 	// the segments. Returns object with a bunch of internal data about how the render was calculated.
+	// NOTE: modifies rowSegs
 	renderSegRow: function(row, rowSegs) {
 		var colCnt = this.colCnt;
 		var segLevels = this.buildSegLevels(rowSegs); // group into sub-arrays of levels
@@ -4734,7 +6168,7 @@ DayGrid.mixin({
 			}
 
 			emptyCellsUntil(colCnt); // finish off the row
-			this.bookendCells(tr, 'eventSkeleton');
+			this.bookendCells(tr);
 			tbody.append(tr);
 		}
 
@@ -4750,6 +6184,7 @@ DayGrid.mixin({
 
 
 	// Stacks a flat array of segments, which are all assumed to be in the same row, into subarrays of vertical levels.
+	// NOTE: modifies segs
 	buildSegLevels: function(segs) {
 		var levels = [];
 		var i, seg;
@@ -4757,7 +6192,7 @@ DayGrid.mixin({
 
 		// Give preference to elements with certain criteria, so they have
 		// a chance to be closer to the top.
-		segs.sort(compareSegs);
+		this.sortEventSegs(segs);
 		
 		for (i = 0; i < segs.length; i++) {
 			seg = segs[i];
@@ -4827,7 +6262,9 @@ function compareDaySegCols(a, b) {
 	return a.leftCol - b.leftCol;
 }
 
-    /* Methods relate to limiting the number events for a given day on a DayGrid
+;;
+
+/* Methods relate to limiting the number events for a given day on a DayGrid
 ----------------------------------------------------------------------------------------------------------------------*/
 // NOTE: all the segs being passed around in here are foreground segs
 
@@ -4837,9 +6274,9 @@ DayGrid.mixin({
 	popoverSegs: null, // an array of segment objects that the segPopover holds. null when not visible
 
 
-	destroySegPopover: function() {
+	removeSegPopover: function() {
 		if (this.segPopover) {
-			this.segPopover.hide(); // will trigger destruction of `segPopover` and `popoverSegs`
+			this.segPopover.hide(); // in handler, will call segPopover's removeElement
 		}
 	},
 
@@ -4879,11 +6316,22 @@ DayGrid.mixin({
 		var rowHeight = rowEl.height(); // TODO: cache somehow?
 		var trEls = this.rowStructs[row].tbodyEl.children();
 		var i, trEl;
+		var trHeight;
+
+		function iterInnerHeights(i, childNode) {
+			trHeight = Math.max(trHeight, $(childNode).outerHeight());
+		}
 
 		// Reveal one level <tr> at a time and stop when we find one out of bounds
 		for (i = 0; i < trEls.length; i++) {
-			trEl = trEls.eq(i).removeClass('fc-limited'); // get and reveal
-			if (trEl.position().top + trEl.outerHeight() > rowHeight) {
+			trEl = trEls.eq(i).removeClass('fc-limited'); // reset to original state (reveal)
+
+			// with rowspans>1 and IE8, trEl.outerHeight() would return the height of the largest cell,
+			// so instead, find the tallest inner content element.
+			trHeight = 0;
+			trEl.find('> td > :first-child').each(iterInnerHeights);
+
+			if (trEl.position().top + trHeight > rowHeight) {
 				return i;
 			}
 		}
@@ -4900,7 +6348,6 @@ DayGrid.mixin({
 		var rowStruct = this.rowStructs[row];
 		var moreNodes = []; // array of "more" <a> links and <td> DOM nodes
 		var col = 0; // col #, left-to-right (not chronologically)
-		var cell;
 		var levelSegs; // array of segment objects in the last allowable level, ordered left-to-right
 		var cellMatrix; // a matrix (by level, then column) of all <td> jQuery elements in the row
 		var limitedNodes; // array of temporarily hidden level <tr> and segment <td> DOM nodes
@@ -4916,11 +6363,10 @@ DayGrid.mixin({
 		// Iterates through empty level cells and places "more" links inside if need be
 		function emptyCellsUntil(endCol) { // goes from current `col` to `endCol`
 			while (col < endCol) {
-				cell = _this.getCell(row, col);
-				segsBelow = _this.getCellSegs(cell, levelLimit);
+				segsBelow = _this.getCellSegs(row, col, levelLimit);
 				if (segsBelow.length) {
 					td = cellMatrix[levelLimit - 1][col];
-					moreLink = _this.renderMoreLink(cell, segsBelow);
+					moreLink = _this.renderMoreLink(row, col, segsBelow);
 					moreWrap = $('<div/>').append(moreLink);
 					td.append(moreWrap);
 					moreNodes.push(moreWrap[0]);
@@ -4945,8 +6391,7 @@ DayGrid.mixin({
 				colSegsBelow = [];
 				totalSegsBelow = 0;
 				while (col <= seg.rightCol) {
-					cell = this.getCell(row, col);
-					segsBelow = this.getCellSegs(cell, levelLimit);
+					segsBelow = this.getCellSegs(row, col, levelLimit);
 					colSegsBelow.push(segsBelow);
 					totalSegsBelow += segsBelow.length;
 					col++;
@@ -4961,8 +6406,11 @@ DayGrid.mixin({
 					for (j = 0; j < colSegsBelow.length; j++) {
 						moreTd = $('<td class="fc-more-cell"/>').attr('rowspan', rowspan);
 						segsBelow = colSegsBelow[j];
-						cell = this.getCell(row, seg.leftCol + j);
-						moreLink = this.renderMoreLink(cell, [ seg ].concat(segsBelow)); // count seg as hidden too
+						moreLink = this.renderMoreLink(
+							row,
+							seg.leftCol + j,
+							[ seg ].concat(segsBelow) // count seg as hidden too
+						);
 						moreWrap = $('<div/>').append(moreLink);
 						moreTd.append(moreWrap);
 						segMoreNodes.push(moreTd[0]);
@@ -5000,7 +6448,7 @@ DayGrid.mixin({
 
 	// Renders an <a> element that represents hidden event element for a cell.
 	// Responsible for attaching click handler as well.
-	renderMoreLink: function(cell, hiddenSegs) {
+	renderMoreLink: function(row, col, hiddenSegs) {
 		var _this = this;
 		var view = this.view;
 
@@ -5010,10 +6458,10 @@ DayGrid.mixin({
 			)
 			.on('click', function(ev) {
 				var clickOption = view.opt('eventLimitClick');
-				var date = cell.start;
+				var date = _this.getCellDate(row, col);
 				var moreEl = $(this);
-				var dayEl = _this.getCellDayEl(cell);
-				var allSegs = _this.getCellSegs(cell);
+				var dayEl = _this.getCellEl(row, col);
+				var allSegs = _this.getCellSegs(row, col);
 
 				// rescope the segments to be within the cell's date
 				var reslicedAllSegs = _this.resliceDaySegs(allSegs, date);
@@ -5031,7 +6479,7 @@ DayGrid.mixin({
 				}
 
 				if (clickOption === 'popover') {
-					_this.showSegPopover(cell, moreEl, reslicedAllSegs);
+					_this.showSegPopover(row, col, moreEl, reslicedAllSegs);
 				}
 				else if (typeof clickOption === 'string') { // a view name
 					view.calendar.zoomTo(date, clickOption);
@@ -5041,7 +6489,7 @@ DayGrid.mixin({
 
 
 	// Reveals the popover that displays all events within a cell
-	showSegPopover: function(cell, moreLink, segs) {
+	showSegPopover: function(row, col, moreLink, segs) {
 		var _this = this;
 		var view = this.view;
 		var moreWrap = moreLink.parent(); // the <div> wrapper around the <a>
@@ -5052,19 +6500,19 @@ DayGrid.mixin({
 			topEl = view.el; // will cause the popover to cover any sort of header
 		}
 		else {
-			topEl = this.rowEls.eq(cell.row); // will align with top of row
+			topEl = this.rowEls.eq(row); // will align with top of row
 		}
 
 		options = {
 			className: 'fc-more-popover',
-			content: this.renderSegPopoverContent(cell, segs),
-			parentEl: this.el,
+			content: this.renderSegPopoverContent(row, col, segs),
+			parentEl: this.view.el, // attach to root of view. guarantees outside of scrollbars.
 			top: topEl.offset().top,
 			autoHide: true, // when the user clicks elsewhere, hide the popover
 			viewportConstrain: view.opt('popoverViewportConstrain'),
 			hide: function() {
-				// destroy everything when the popover is hidden
-				_this.segPopover.destroy();
+				// kill everything when the popover is hidden
+				_this.segPopover.removeElement();
 				_this.segPopover = null;
 				_this.popoverSegs = null;
 			}
@@ -5081,14 +6529,18 @@ DayGrid.mixin({
 
 		this.segPopover = new Popover(options);
 		this.segPopover.show();
+
+		// the popover doesn't live within the grid's container element, and thus won't get the event
+		// delegated-handlers for free. attach event-related handlers to the popover.
+		this.bindSegHandlersToEl(this.segPopover.el);
 	},
 
 
 	// Builds the inner DOM contents of the segment popover
-	renderSegPopoverContent: function(cell, segs) {
+	renderSegPopoverContent: function(row, col, segs) {
 		var view = this.view;
 		var isTheme = view.opt('theme');
-		var title = cell.start.format(view.opt('dayPopoverFormat'));
+		var title = this.getCellDate(row, col).format(view.opt('dayPopoverFormat'));
 		var content = $(
 			'<div class="fc-header ' + view.widgetHeaderClass + '">' +
 				'<span class="fc-close ' +
@@ -5114,7 +6566,9 @@ DayGrid.mixin({
 
 			// because segments in the popover are not part of a grid coordinate system, provide a hint to any
 			// grids that want to do drag-n-drop about which cell it came from
-			segs[i].cell = cell;
+			this.prepareHits();
+			segs[i].hit = this.getCellHit(row, col);
+			this.releaseHits();
 
 			segContainer.append(segs[i].el);
 		}
@@ -5131,18 +6585,23 @@ DayGrid.mixin({
 			return seg.event;
 		});
 
-		var dayStart = dayDate.clone().stripTime();
+		var dayStart = dayDate.clone();
 		var dayEnd = dayStart.clone().add(1, 'days');
 		var dayRange = { start: dayStart, end: dayEnd };
 
 		// slice the events with a custom slicing function
-		return this.eventsToSegs(
+		segs = this.eventsToSegs(
 			events,
 			function(range) {
-				var seg = intersectionToSeg(range, dayRange); // undefind if no intersection
+				var seg = intersectRanges(range, dayRange); // undefind if no intersection
 				return seg ? [ seg ] : []; // must return an array of segments
 			}
 		);
+
+		// force an order because eventsToSegs doesn't guarantee one
+		this.sortEventSegs(segs);
+
+		return segs;
 	},
 
 
@@ -5161,14 +6620,14 @@ DayGrid.mixin({
 
 	// Returns segments within a given cell.
 	// If `startLevel` is specified, returns only events including and below that level. Otherwise returns all segs.
-	getCellSegs: function(cell, startLevel) {
-		var segMatrix = this.rowStructs[cell.row].segMatrix;
+	getCellSegs: function(row, col, startLevel) {
+		var segMatrix = this.rowStructs[row].segMatrix;
 		var level = startLevel || 0;
 		var segs = [];
 		var seg;
 
 		while (level < segMatrix.length) {
-			seg = segMatrix[level][cell.col];
+			seg = segMatrix[level][col];
 			if (seg) {
 				segs.push(seg);
 			}
@@ -5180,51 +6639,56 @@ DayGrid.mixin({
 
 });
 
-    /* A component that renders one or more columns of vertical time slots
-----------------------------------------------------------------------------------------------------------------------*/
+;;
 
-var TimeGrid = Grid.extend({
+/* A component that renders one or more columns of vertical time slots
+----------------------------------------------------------------------------------------------------------------------*/
+// We mixin DayTable, even though there is only a single row of days
+
+var TimeGrid = FC.TimeGrid = Grid.extend(DayTableMixin, {
 
 	slotDuration: null, // duration of a "slot", a distinct time segment on given day, visualized by lines
 	snapDuration: null, // granularity of time for dragging and selecting
-
+	snapsPerSlot: null,
 	minTime: null, // Duration object that denotes the first visible time of any given day
 	maxTime: null, // Duration object that denotes the exclusive visible end time of any given day
+	labelFormat: null, // formatting string for times running along vertical axis
+	labelInterval: null, // duration of how often a label should be displayed for a slot
 
-	axisFormat: null, // formatting string for times running along vertical axis
-
-	dayEls: null, // cells elements in the day-row background
+	colEls: null, // cells elements in the day-row background
+	slatContainerEl: null, // div that wraps all the slat rows
 	slatEls: null, // elements running horizontally across all columns
+	nowIndicatorEls: null,
 
-	slatTops: null, // an array of top positions, relative to the container. last item holds bottom of last slot
-
-	helperEl: null, // cell skeleton element for rendering the mock event "helper"
-
-	businessHourSegs: null,
+	colCoordCache: null,
+	slatCoordCache: null,
 
 
 	constructor: function() {
 		Grid.apply(this, arguments); // call the super-constructor
+
 		this.processOptions();
 	},
 
 
 	// Renders the time grid into `this.el`, which should already be assigned.
 	// Relies on the view's colCnt. In the future, this component should probably be self-sufficient.
-	render: function() {
+	renderDates: function() {
 		this.el.html(this.renderHtml());
-		this.dayEls = this.el.find('.fc-day');
-		this.slatEls = this.el.find('.fc-slats tr');
+		this.colEls = this.el.find('.fc-day');
+		this.slatContainerEl = this.el.find('.fc-slats');
+		this.slatEls = this.slatContainerEl.find('tr');
 
-		this.computeSlatTops();
-		this.renderBusinessHours();
-		Grid.prototype.render.call(this); // call the super-method
-	},
+		this.colCoordCache = new CoordCache({
+			els: this.colEls,
+			isHorizontal: true
+		});
+		this.slatCoordCache = new CoordCache({
+			els: this.slatEls,
+			isVertical: true
+		});
 
-
-	renderBusinessHours: function() {
-		var events = this.view.calendar.getBusinessHoursEvents();
-		this.businessHourSegs = this.renderFill('businessHours', this.eventsToSegs(events), 'bgevent');
+		this.renderContentSkeleton();
 	},
 
 
@@ -5233,52 +6697,46 @@ var TimeGrid = Grid.extend({
 		return '' +
 			'<div class="fc-bg">' +
 				'<table>' +
-					this.rowHtml('slotBg') + // leverages RowRenderer, which will call slotBgCellHtml
+					this.renderBgTrHtml(0) + // row=0
 				'</table>' +
 			'</div>' +
 			'<div class="fc-slats">' +
 				'<table>' +
-					this.slatRowHtml() +
+					this.renderSlatRowHtml() +
 				'</table>' +
 			'</div>';
 	},
 
 
-	// Renders the HTML for a vertical background cell behind the slots.
-	// This method is distinct from 'bg' because we wanted a new `rowType` so the View could customize the rendering.
-	slotBgCellHtml: function(cell) {
-		return this.bgCellHtml(cell);
-	},
-
-
 	// Generates the HTML for the horizontal "slats" that run width-wise. Has a time axis on a side. Depends on RTL.
-	slatRowHtml: function() {
+	renderSlatRowHtml: function() {
 		var view = this.view;
 		var isRTL = this.isRTL;
 		var html = '';
-		var slotNormal = this.slotDuration.asMinutes() % 15 === 0;
 		var slotTime = moment.duration(+this.minTime); // wish there was .clone() for durations
 		var slotDate; // will be on the view's first day, but we only care about its time
-		var minutes;
+		var isLabeled;
 		var axisHtml;
 
 		// Calculate the time for each slot
 		while (slotTime < this.maxTime) {
-			slotDate = this.start.clone().time(slotTime); // will be in UTC but that's good. to avoid DST issues
-			minutes = slotDate.minutes();
+			slotDate = this.start.clone().time(slotTime);
+			isLabeled = isInt(divideDurationByDuration(slotTime, this.labelInterval));
 
 			axisHtml =
 				'<td class="fc-axis fc-time ' + view.widgetContentClass + '" ' + view.axisStyleAttr() + '>' +
-					((!slotNormal || !minutes) ? // if irregular slot duration, or on the hour, then display the time
+					(isLabeled ?
 						'<span>' + // for matchCellWidths
-							htmlEscape(slotDate.format(this.axisFormat)) +
+							htmlEscape(slotDate.format(this.labelFormat)) +
 						'</span>' :
 						''
 						) +
 				'</td>';
 
 			html +=
-				'<tr ' + (!minutes ? '' : 'class="fc-minor"') + '>' +
+				'<tr data-time="' + slotDate.format('HH:mm:ss') + '"' +
+					(isLabeled ? '' : ' class="fc-minor"') +
+					'>' +
 					(!isRTL ? axisHtml : '') +
 					'<td class="' + view.widgetContentClass + '"/>' +
 					(isRTL ? axisHtml : '') +
@@ -5300,28 +6758,54 @@ var TimeGrid = Grid.extend({
 		var view = this.view;
 		var slotDuration = view.opt('slotDuration');
 		var snapDuration = view.opt('snapDuration');
+		var input;
 
 		slotDuration = moment.duration(slotDuration);
 		snapDuration = snapDuration ? moment.duration(snapDuration) : slotDuration;
 
 		this.slotDuration = slotDuration;
 		this.snapDuration = snapDuration;
+		this.snapsPerSlot = slotDuration / snapDuration; // TODO: ensure an integer multiple?
+
+		this.minResizeDuration = snapDuration; // hack
 
 		this.minTime = moment.duration(view.opt('minTime'));
 		this.maxTime = moment.duration(view.opt('maxTime'));
 
-		this.axisFormat = view.opt('axisFormat') || view.opt('smallTimeFormat');
+		// might be an array value (for TimelineView).
+		// if so, getting the most granular entry (the last one probably).
+		input = view.opt('slotLabelFormat');
+		if ($.isArray(input)) {
+			input = input[input.length - 1];
+		}
+
+		this.labelFormat =
+			input ||
+			view.opt('smallTimeFormat'); // the computed default
+
+		input = view.opt('slotLabelInterval');
+		this.labelInterval = input ?
+			moment.duration(input) :
+			this.computeLabelInterval(slotDuration);
 	},
 
 
-	// Computes a default column header formatting string if `colFormat` is not explicitly defined
-	computeColHeadFormat: function() {
-		if (this.colCnt > 1) { // multiple days, so full single date string WON'T be in title text
-			return this.view.opt('dayOfMonthFormat'); // "Sat 12/10"
+	// Computes an automatic value for slotLabelInterval
+	computeLabelInterval: function(slotDuration) {
+		var i;
+		var labelInterval;
+		var slotsPerLabel;
+
+		// find the smallest stock label interval that results in more than one slots-per-label
+		for (i = AGENDA_STOCK_SUB_DURATIONS.length - 1; i >= 0; i--) {
+			labelInterval = moment.duration(AGENDA_STOCK_SUB_DURATIONS[i]);
+			slotsPerLabel = divideDurationByDuration(labelInterval, slotDuration);
+			if (isInt(slotsPerLabel) && slotsPerLabel > 1) {
+				return labelInterval;
+			}
 		}
-		else { // single day, so full single date string will probably be in title text
-			return 'dddd'; // "Saturday"
-		}
+
+		return moment.duration(slotDuration); // fall back. clone
 	},
 
 
@@ -5337,48 +6821,68 @@ var TimeGrid = Grid.extend({
 	},
 
 
-	/* Cell System
+	/* Hit System
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Initializes row/col information
-	updateCells: function() {
-		var view = this.view;
-		var colData = [];
-		var date;
-
-		date = this.start.clone();
-		while (date.isBefore(this.end)) {
-			colData.push({
-				day: date.clone()
-			});
-			date.add(1, 'day');
-			date = view.skipHiddenDays(date);
-		}
-
-		if (this.isRTL) {
-			colData.reverse();
-		}
-
-		this.colData = colData;
-		this.colCnt = colData.length;
-		this.rowCnt = Math.ceil((this.maxTime - this.minTime) / this.snapDuration); // # of vertical snaps
+	prepareHits: function() {
+		this.colCoordCache.build();
+		this.slatCoordCache.build();
 	},
 
 
-	// Given a cell object, generates a range object
-	computeCellRange: function(cell) {
-		var time = this.computeSnapTime(cell.row);
-		var start = this.view.calendar.rezoneDate(cell.day).time(time);
-		var end = start.clone().add(this.snapDuration);
+	releaseHits: function() {
+		this.colCoordCache.clear();
+		// NOTE: don't clear slatCoordCache because we rely on it for computeTimeTop
+	},
+
+
+	queryHit: function(leftOffset, topOffset) {
+		var snapsPerSlot = this.snapsPerSlot;
+		var colCoordCache = this.colCoordCache;
+		var slatCoordCache = this.slatCoordCache;
+
+		if (colCoordCache.isLeftInBounds(leftOffset) && slatCoordCache.isTopInBounds(topOffset)) {
+			var colIndex = colCoordCache.getHorizontalIndex(leftOffset);
+			var slatIndex = slatCoordCache.getVerticalIndex(topOffset);
+
+			if (colIndex != null && slatIndex != null) {
+				var slatTop = slatCoordCache.getTopOffset(slatIndex);
+				var slatHeight = slatCoordCache.getHeight(slatIndex);
+				var partial = (topOffset - slatTop) / slatHeight; // floating point number between 0 and 1
+				var localSnapIndex = Math.floor(partial * snapsPerSlot); // the snap # relative to start of slat
+				var snapIndex = slatIndex * snapsPerSlot + localSnapIndex;
+				var snapTop = slatTop + (localSnapIndex / snapsPerSlot) * slatHeight;
+				var snapBottom = slatTop + ((localSnapIndex + 1) / snapsPerSlot) * slatHeight;
+
+				return {
+					col: colIndex,
+					snap: snapIndex,
+					component: this, // needed unfortunately :(
+					left: colCoordCache.getLeftOffset(colIndex),
+					right: colCoordCache.getRightOffset(colIndex),
+					top: snapTop,
+					bottom: snapBottom
+				};
+			}
+		}
+	},
+
+
+	getHitSpan: function(hit) {
+		var start = this.getCellDate(0, hit.col); // row=0
+		var time = this.computeSnapTime(hit.snap); // pass in the snap-index
+		var end;
+
+		start.time(time);
+		end = start.clone().add(this.snapDuration);
 
 		return { start: start, end: end };
 	},
 
 
-	// Retrieves the element representing the given column
-	getColEl: function(col) {
-		return this.dayEls.eq(col);
+	getHitEl: function(hit) {
+		return this.colEls.eq(hit.col);
 	},
 
 
@@ -5386,36 +6890,51 @@ var TimeGrid = Grid.extend({
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Given a row number of the grid, representing a "snap", returns a time (Duration) from its start-of-day
-	computeSnapTime: function(row) {
-		return moment.duration(this.minTime + this.snapDuration * row);
+	rangeUpdated: function() {
+		this.updateDayTable();
 	},
 
 
-	// Slices up a date range by column into an array of segments
-	rangeToSegs: function(range) {
-		var colCnt = this.colCnt;
+	// Given a row number of the grid, representing a "snap", returns a time (Duration) from its start-of-day
+	computeSnapTime: function(snapIndex) {
+		return moment.duration(this.minTime + this.snapDuration * snapIndex);
+	},
+
+
+	// Slices up the given span (unzoned start/end with other misc data) into an array of segments
+	spanToSegs: function(span) {
+		var segs = this.sliceRangeByTimes(span);
+		var i;
+
+		for (i = 0; i < segs.length; i++) {
+			if (this.isRTL) {
+				segs[i].col = this.daysPerRow - 1 - segs[i].dayIndex;
+			}
+			else {
+				segs[i].col = segs[i].dayIndex;
+			}
+		}
+
+		return segs;
+	},
+
+
+	sliceRangeByTimes: function(range) {
 		var segs = [];
 		var seg;
-		var col;
-		var colDate;
-		var colRange;
+		var dayIndex;
+		var dayDate;
+		var dayRange;
 
-		// normalize :(
-		range = {
-			start: range.start.clone().stripZone(),
-			end: range.end.clone().stripZone()
-		};
-
-		for (col = 0; col < colCnt; col++) {
-			colDate = this.colData[col].day; // will be ambig time/timezone
-			colRange = {
-				start: colDate.clone().time(this.minTime),
-				end: colDate.clone().time(this.maxTime)
+		for (dayIndex = 0; dayIndex < this.daysPerRow; dayIndex++) {
+			dayDate = this.dayDates[dayIndex].clone(); // TODO: better API for this?
+			dayRange = {
+				start: dayDate.clone().time(this.minTime),
+				end: dayDate.clone().time(this.maxTime)
 			};
-			seg = intersectionToSeg(range, colRange); // both will be ambig timezone
+			seg = intersectRanges(range, dayRange); // both will be ambig timezone
 			if (seg) {
-				seg.col = col;
+				seg.dayIndex = dayIndex;
 				segs.push(seg);
 			}
 		}
@@ -5428,32 +6947,19 @@ var TimeGrid = Grid.extend({
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Called when there is a window resize/zoom and we need to recalculate coordinates for the grid
-	resize: function() {
-		this.computeSlatTops();
-		this.updateSegVerticals();
+	updateSize: function(isResize) { // NOT a standard Grid method
+		this.slatCoordCache.build();
+
+		if (isResize) {
+			this.updateSegVerticals(
+				[].concat(this.fgSegs || [], this.bgSegs || [], this.businessSegs || [])
+			);
+		}
 	},
 
 
-	// Computes the top/bottom coordinates of each "snap" rows
-	computeRowCoords: function() {
-		var originTop = this.el.offset().top;
-		var items = [];
-		var i;
-		var item;
-
-		for (i = 0; i < this.rowCnt; i++) {
-			item = {
-				top: originTop + this.computeTimeTop(this.computeSnapTime(i))
-			};
-			if (i > 0) {
-				items[i - 1].bottom = item.top;
-			}
-			items.push(item);
-		}
-		item.bottom = item.top + this.computeTimeTop(this.computeSnapTime(i));
-
-		return items;
+	getTotalSlatHeight: function() {
+		return this.slatContainerEl.outerHeight();
 	},
 
 
@@ -5462,7 +6968,7 @@ var TimeGrid = Grid.extend({
 	computeDateTop: function(date, startOfDayDate) {
 		return this.computeTimeTop(
 			moment.duration(
-				date.clone().stripZone() - startOfDayDate.clone().stripTime()
+				date - startOfDayDate.clone().stripTime()
 			)
 		);
 	},
@@ -5470,45 +6976,30 @@ var TimeGrid = Grid.extend({
 
 	// Computes the top coordinate, relative to the bounds of the grid, of the given time (a Duration).
 	computeTimeTop: function(time) {
+		var len = this.slatEls.length;
 		var slatCoverage = (time - this.minTime) / this.slotDuration; // floating-point value of # of slots covered
 		var slatIndex;
 		var slatRemainder;
-		var slatTop;
-		var slatBottom;
 
-		// constrain. because minTime/maxTime might be customized
+		// compute a floating-point number for how many slats should be progressed through.
+		// from 0 to number of slats (inclusive)
+		// constrained because minTime/maxTime might be customized.
 		slatCoverage = Math.max(0, slatCoverage);
-		slatCoverage = Math.min(this.slatEls.length, slatCoverage);
+		slatCoverage = Math.min(len, slatCoverage);
 
-		slatIndex = Math.floor(slatCoverage); // an integer index of the furthest whole slot
+		// an integer index of the furthest whole slat
+		// from 0 to number slats (*exclusive*, so len-1)
+		slatIndex = Math.floor(slatCoverage);
+		slatIndex = Math.min(slatIndex, len - 1);
+
+		// how much further through the slatIndex slat (from 0.0-1.0) must be covered in addition.
+		// could be 1.0 if slatCoverage is covering *all* the slots
 		slatRemainder = slatCoverage - slatIndex;
-		slatTop = this.slatTops[slatIndex]; // the top position of the furthest whole slot
 
-		if (slatRemainder) { // time spans part-way into the slot
-			slatBottom = this.slatTops[slatIndex + 1];
-			return slatTop + (slatBottom - slatTop) * slatRemainder; // part-way between slots
-		}
-		else {
-			return slatTop;
-		}
+		return this.slatCoordCache.getTopPosition(slatIndex) +
+			this.slatCoordCache.getHeight(slatIndex) * slatRemainder;
 	},
 
-
-	// Queries each `slatEl` for its position relative to the grid's container and stores it in `slatTops`.
-	// Includes the the bottom of the last slat as the last item in the array.
-	computeSlatTops: function() {
-		var tops = [];
-		var top;
-
-		this.slatEls.each(function(i, node) {
-			top = $(node).position().top;
-			tops.push(top);
-		});
-
-		tops.push(top + this.slatEls.last().outerHeight()); // bottom of the last slat
-
-		this.slatTops = tops;
-	},
 
 
 	/* Event Drag Visualization
@@ -5516,34 +7007,26 @@ var TimeGrid = Grid.extend({
 
 
 	// Renders a visual indication of an event being dragged over the specified date(s).
-	// dropLocation's end might be null, as well as `seg`. See Grid::renderDrag for more info.
 	// A returned value of `true` signals that a mock "helper" event has been rendered.
-	renderDrag: function(dropLocation, seg) {
-		var opacity;
+	renderDrag: function(eventLocation, seg) {
 
 		if (seg) { // if there is event information for this drag, render a helper event
-			this.renderRangeHelper(dropLocation, seg);
 
-			opacity = this.view.opt('dragOpacity');
-			if (opacity !== undefined) {
-				this.helperEl.css('opacity', opacity);
-			}
-
-			return true; // signal that a helper has been rendered
+			// returns mock event elements
+			// signal that a helper has been rendered
+			return this.renderEventLocationHelper(eventLocation, seg);
 		}
 		else {
 			// otherwise, just render a highlight
-			this.renderHighlight(
-				this.view.calendar.ensureVisibleEventRange(dropLocation) // needs to be a proper range
-			);
+			this.renderHighlight(this.eventToSpan(eventLocation));
 		}
 	},
 
 
 	// Unrenders any visual indication of an event being dragged
-	destroyDrag: function() {
-		this.destroyHelper();
-		this.destroyHighlight();
+	unrenderDrag: function() {
+		this.unrenderHelper();
+		this.unrenderHighlight();
 	},
 
 
@@ -5552,14 +7035,14 @@ var TimeGrid = Grid.extend({
 
 
 	// Renders a visual indication of an event being resized
-	renderEventResize: function(range, seg) {
-		this.renderRangeHelper(range, seg);
+	renderEventResize: function(eventLocation, seg) {
+		return this.renderEventLocationHelper(eventLocation, seg); // returns mock event elements
 	},
 
 
 	// Unrenders any visual indication of an event being resized
-	destroyEventResize: function() {
-		this.destroyHelper();
+	unrenderEventResize: function() {
+		this.unrenderHelper();
 	},
 
 
@@ -5569,13 +7052,204 @@ var TimeGrid = Grid.extend({
 
 	// Renders a mock "helper" event. `sourceSeg` is the original segment object and might be null (an external drag)
 	renderHelper: function(event, sourceSeg) {
-		var segs = this.eventsToSegs([ event ]);
-		var tableEl;
+		return this.renderHelperSegs(this.eventToSegs(event), sourceSeg); // returns mock event elements
+	},
+
+
+	// Unrenders any mock helper event
+	unrenderHelper: function() {
+		this.unrenderHelperSegs();
+	},
+
+
+	/* Business Hours
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	renderBusinessHours: function() {
+		this.renderBusinessSegs(
+			this.buildBusinessHourSegs()
+		);
+	},
+
+
+	unrenderBusinessHours: function() {
+		this.unrenderBusinessSegs();
+	},
+
+
+	/* Now Indicator
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	getNowIndicatorUnit: function() {
+		return 'minute'; // will refresh on the minute
+	},
+
+
+	renderNowIndicator: function(date) {
+		// seg system might be overkill, but it handles scenario where line needs to be rendered
+		//  more than once because of columns with the same date (resources columns for example)
+		var segs = this.spanToSegs({ start: date, end: date });
+		var top = this.computeDateTop(date, date);
+		var nodes = [];
+		var i;
+
+		// render lines within the columns
+		for (i = 0; i < segs.length; i++) {
+			nodes.push($('<div class="fc-now-indicator fc-now-indicator-line"></div>')
+				.css('top', top)
+				.appendTo(this.colContainerEls.eq(segs[i].col))[0]);
+		}
+
+		// render an arrow over the axis
+		if (segs.length > 0) { // is the current time in view?
+			nodes.push($('<div class="fc-now-indicator fc-now-indicator-arrow"></div>')
+				.css('top', top)
+				.appendTo(this.el.find('.fc-content-skeleton'))[0]);
+		}
+
+		this.nowIndicatorEls = $(nodes);
+	},
+
+
+	unrenderNowIndicator: function() {
+		if (this.nowIndicatorEls) {
+			this.nowIndicatorEls.remove();
+			this.nowIndicatorEls = null;
+		}
+	},
+
+
+	/* Selection
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Renders a visual indication of a selection. Overrides the default, which was to simply render a highlight.
+	renderSelection: function(span) {
+		if (this.view.opt('selectHelper')) { // this setting signals that a mock helper event should be rendered
+
+			// normally acceps an eventLocation, span has a start/end, which is good enough
+			this.renderEventLocationHelper(span);
+		}
+		else {
+			this.renderHighlight(span);
+		}
+	},
+
+
+	// Unrenders any visual indication of a selection
+	unrenderSelection: function() {
+		this.unrenderHelper();
+		this.unrenderHighlight();
+	},
+
+
+	/* Highlight
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	renderHighlight: function(span) {
+		this.renderHighlightSegs(this.spanToSegs(span));
+	},
+
+
+	unrenderHighlight: function() {
+		this.unrenderHighlightSegs();
+	}
+
+});
+
+;;
+
+/* Methods for rendering SEGMENTS, pieces of content that live on the view
+ ( this file is no longer just for events )
+----------------------------------------------------------------------------------------------------------------------*/
+
+TimeGrid.mixin({
+
+	colContainerEls: null, // containers for each column
+
+	// inner-containers for each column where different types of segs live
+	fgContainerEls: null,
+	bgContainerEls: null,
+	helperContainerEls: null,
+	highlightContainerEls: null,
+	businessContainerEls: null,
+
+	// arrays of different types of displayed segments
+	fgSegs: null,
+	bgSegs: null,
+	helperSegs: null,
+	highlightSegs: null,
+	businessSegs: null,
+
+
+	// Renders the DOM that the view's content will live in
+	renderContentSkeleton: function() {
+		var cellHtml = '';
+		var i;
+		var skeletonEl;
+
+		for (i = 0; i < this.colCnt; i++) {
+			cellHtml +=
+				'<td>' +
+					'<div class="fc-content-col">' +
+						'<div class="fc-event-container fc-helper-container"></div>' +
+						'<div class="fc-event-container"></div>' +
+						'<div class="fc-highlight-container"></div>' +
+						'<div class="fc-bgevent-container"></div>' +
+						'<div class="fc-business-container"></div>' +
+					'</div>' +
+				'</td>';
+		}
+
+		skeletonEl = $(
+			'<div class="fc-content-skeleton">' +
+				'<table>' +
+					'<tr>' + cellHtml + '</tr>' +
+				'</table>' +
+			'</div>'
+		);
+
+		this.colContainerEls = skeletonEl.find('.fc-content-col');
+		this.helperContainerEls = skeletonEl.find('.fc-helper-container');
+		this.fgContainerEls = skeletonEl.find('.fc-event-container:not(.fc-helper-container)');
+		this.bgContainerEls = skeletonEl.find('.fc-bgevent-container');
+		this.highlightContainerEls = skeletonEl.find('.fc-highlight-container');
+		this.businessContainerEls = skeletonEl.find('.fc-business-container');
+
+		this.bookendCells(skeletonEl.find('tr')); // TODO: do this on string level
+		this.el.append(skeletonEl);
+	},
+
+
+	/* Foreground Events
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	renderFgSegs: function(segs) {
+		segs = this.renderFgSegsIntoContainers(segs, this.fgContainerEls);
+		this.fgSegs = segs;
+		return segs; // needed for Grid::renderEvents
+	},
+
+
+	unrenderFgSegs: function() {
+		this.unrenderNamedSegs('fgSegs');
+	},
+
+
+	/* Foreground Helper Events
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	renderHelperSegs: function(segs, sourceSeg) {
+		var helperEls = [];
 		var i, seg;
 		var sourceEl;
 
-		segs = this.renderFgSegEls(segs); // assigns each seg's el and returns a subset of segs that were rendered
-		tableEl = this.renderSegTable(segs);
+		segs = this.renderFgSegsIntoContainers(segs, this.helperContainerEls);
 
 		// Try to make the segment that is in the same row as sourceSeg look the same
 		for (i = 0; i < segs.length; i++) {
@@ -5589,202 +7263,146 @@ var TimeGrid = Grid.extend({
 					'margin-right': sourceEl.css('margin-right')
 				});
 			}
+			helperEls.push(seg.el[0]);
 		}
 
-		this.helperEl = $('<div class="fc-helper-skeleton"/>')
-			.append(tableEl)
-				.appendTo(this.el);
+		this.helperSegs = segs;
+
+		return $(helperEls); // must return rendered helpers
 	},
 
 
-	// Unrenders any mock helper event
-	destroyHelper: function() {
-		if (this.helperEl) {
-			this.helperEl.remove();
-			this.helperEl = null;
-		}
+	unrenderHelperSegs: function() {
+		this.unrenderNamedSegs('helperSegs');
 	},
 
 
-	/* Selection
+	/* Background Events
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Renders a visual indication of a selection. Overrides the default, which was to simply render a highlight.
-	renderSelection: function(range) {
-		if (this.view.opt('selectHelper')) { // this setting signals that a mock helper event should be rendered
-			this.renderRangeHelper(range);
-		}
-		else {
-			this.renderHighlight(range);
-		}
+	renderBgSegs: function(segs) {
+		segs = this.renderFillSegEls('bgEvent', segs); // TODO: old fill system
+		this.updateSegVerticals(segs);
+		this.attachSegsByCol(this.groupSegsByCol(segs), this.bgContainerEls);
+		this.bgSegs = segs;
+		return segs; // needed for Grid::renderEvents
 	},
 
 
-	// Unrenders any visual indication of a selection
-	destroySelection: function() {
-		this.destroyHelper();
-		this.destroyHighlight();
+	unrenderBgSegs: function() {
+		this.unrenderNamedSegs('bgSegs');
 	},
 
 
-	/* Fill System (highlight, background events, business hours)
+	/* Highlight
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Renders a set of rectangles over the given time segments.
-	// Only returns segments that successfully rendered.
-	renderFill: function(type, segs, className) {
-		var segCols;
-		var skeletonEl;
-		var trEl;
-		var col, colSegs;
-		var tdEl;
-		var containerEl;
-		var dayDate;
-		var i, seg;
-
-		if (segs.length) {
-
-			segs = this.renderFillSegEls(type, segs); // assignes `.el` to each seg. returns successfully rendered segs
-			segCols = this.groupSegCols(segs); // group into sub-arrays, and assigns 'col' to each seg
-
-			className = className || type.toLowerCase();
-			skeletonEl = $(
-				'<div class="fc-' + className + '-skeleton">' +
-					'<table><tr/></table>' +
-				'</div>'
-			);
-			trEl = skeletonEl.find('tr');
-
-			for (col = 0; col < segCols.length; col++) {
-				colSegs = segCols[col];
-				tdEl = $('<td/>').appendTo(trEl);
-
-				if (colSegs.length) {
-					containerEl = $('<div class="fc-' + className + '-container"/>').appendTo(tdEl);
-					dayDate = this.colData[col].day;
-
-					for (i = 0; i < colSegs.length; i++) {
-						seg = colSegs[i];
-						containerEl.append(
-							seg.el.css({
-								top: this.computeDateTop(seg.start, dayDate),
-								bottom: -this.computeDateTop(seg.end, dayDate) // the y position of the bottom edge
-							})
-						);
-					}
-				}
-			}
-
-			this.bookendCells(trEl, type);
-
-			this.el.append(skeletonEl);
-			this.elsByFill[type] = skeletonEl;
-		}
-
-		return segs;
-	}
-
-});
-
-    /* Event-rendering methods for the TimeGrid class
-----------------------------------------------------------------------------------------------------------------------*/
-
-TimeGrid.mixin({
-
-	eventSkeletonEl: null, // has cells with event-containers, which contain absolutely positioned event elements
-
-
-	// Renders the given foreground event segments onto the grid
-	renderFgSegs: function(segs) {
-		segs = this.renderFgSegEls(segs); // returns a subset of the segs. segs that were actually rendered
-
-		this.el.append(
-			this.eventSkeletonEl = $('<div class="fc-content-skeleton"/>')
-				.append(this.renderSegTable(segs))
-		);
-
-		return segs; // return only the segs that were actually rendered
+	renderHighlightSegs: function(segs) {
+		segs = this.renderFillSegEls('highlight', segs); // TODO: old fill system
+		this.updateSegVerticals(segs);
+		this.attachSegsByCol(this.groupSegsByCol(segs), this.highlightContainerEls);
+		this.highlightSegs = segs;
 	},
 
 
-	// Unrenders all currently rendered foreground event segments
-	destroyFgSegs: function(segs) {
-		if (this.eventSkeletonEl) {
-			this.eventSkeletonEl.remove();
-			this.eventSkeletonEl = null;
-		}
+	unrenderHighlightSegs: function() {
+		this.unrenderNamedSegs('highlightSegs');
 	},
 
 
-	// Renders and returns the <table> portion of the event-skeleton.
-	// Returns an object with properties 'tbodyEl' and 'segs'.
-	renderSegTable: function(segs) {
-		var tableEl = $('<table><tr/></table>');
-		var trEl = tableEl.find('tr');
-		var segCols;
-		var i, seg;
-		var col, colSegs;
-		var containerEl;
+	/* Business Hours
+	------------------------------------------------------------------------------------------------------------------*/
 
-		segCols = this.groupSegCols(segs); // group into sub-arrays, and assigns 'col' to each seg
 
-		this.computeSegVerticals(segs); // compute and assign top/bottom
-
-		for (col = 0; col < segCols.length; col++) { // iterate each column grouping
-			colSegs = segCols[col];
-			placeSlotSegs(colSegs); // compute horizontal coordinates, z-index's, and reorder the array
-
-			containerEl = $('<div class="fc-event-container"/>');
-
-			// assign positioning CSS and insert into container
-			for (i = 0; i < colSegs.length; i++) {
-				seg = colSegs[i];
-				seg.el.css(this.generateSegPositionCss(seg));
-
-				// if the height is short, add a className for alternate styling
-				if (seg.bottom - seg.top < 30) {
-					seg.el.addClass('fc-short');
-				}
-
-				containerEl.append(seg.el);
-			}
-
-			trEl.append($('<td/>').append(containerEl));
-		}
-
-		this.bookendCells(trEl, 'eventSkeleton');
-
-		return tableEl;
+	renderBusinessSegs: function(segs) {
+		segs = this.renderFillSegEls('businessHours', segs); // TODO: old fill system
+		this.updateSegVerticals(segs);
+		this.attachSegsByCol(this.groupSegsByCol(segs), this.businessContainerEls);
+		this.businessSegs = segs;
 	},
 
 
-	// Refreshes the CSS top/bottom coordinates for each segment element. Probably after a window resize/zoom.
-	// Repositions business hours segs too, so not just for events. Maybe shouldn't be here.
-	updateSegVerticals: function() {
-		var allSegs = (this.segs || []).concat(this.businessHourSegs || []);
+	unrenderBusinessSegs: function() {
+		this.unrenderNamedSegs('businessSegs');
+	},
+
+
+	/* Seg Rendering Utils
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Given a flat array of segments, return an array of sub-arrays, grouped by each segment's col
+	groupSegsByCol: function(segs) {
+		var segsByCol = [];
 		var i;
 
-		this.computeSegVerticals(allSegs);
+		for (i = 0; i < this.colCnt; i++) {
+			segsByCol.push([]);
+		}
 
-		for (i = 0; i < allSegs.length; i++) {
-			allSegs[i].el.css(
-				this.generateSegVerticalCss(allSegs[i])
-			);
+		for (i = 0; i < segs.length; i++) {
+			segsByCol[segs[i].col].push(segs[i]);
+		}
+
+		return segsByCol;
+	},
+
+
+	// Given segments grouped by column, insert the segments' elements into a parallel array of container
+	// elements, each living within a column.
+	attachSegsByCol: function(segsByCol, containerEls) {
+		var col;
+		var segs;
+		var i;
+
+		for (col = 0; col < this.colCnt; col++) { // iterate each column grouping
+			segs = segsByCol[col];
+
+			for (i = 0; i < segs.length; i++) {
+				containerEls.eq(col).append(segs[i].el);
+			}
 		}
 	},
 
 
-	// For each segment in an array, computes and assigns its top and bottom properties
-	computeSegVerticals: function(segs) {
-		var i, seg;
+	// Given the name of a property of `this` object, assumed to be an array of segments,
+	// loops through each segment and removes from DOM. Will null-out the property afterwards.
+	unrenderNamedSegs: function(propName) {
+		var segs = this[propName];
+		var i;
 
-		for (i = 0; i < segs.length; i++) {
-			seg = segs[i];
-			seg.top = this.computeDateTop(seg.start, seg.start);
-			seg.bottom = this.computeDateTop(seg.end, seg.start);
+		if (segs) {
+			for (i = 0; i < segs.length; i++) {
+				segs[i].el.remove();
+			}
+			this[propName] = null;
 		}
+	},
+
+
+
+	/* Foreground Event Rendering Utils
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Given an array of foreground segments, render a DOM element for each, computes position,
+	// and attaches to the column inner-container elements.
+	renderFgSegsIntoContainers: function(segs, containerEls) {
+		var segsByCol;
+		var col;
+
+		segs = this.renderFgSegEls(segs); // will call fgSegHtml
+		segsByCol = this.groupSegsByCol(segs);
+
+		for (col = 0; col < this.colCnt; col++) {
+			this.updateFgSegCoords(segsByCol[col]);
+		}
+
+		this.attachSegsByCol(segsByCol, containerEls);
+
+		return segs;
 	},
 
 
@@ -5793,14 +7411,15 @@ TimeGrid.mixin({
 		var view = this.view;
 		var event = seg.event;
 		var isDraggable = view.isEventDraggable(event);
-		var isResizable = !disableResizing && seg.isEnd && view.isEventResizable(event);
-		var classes = this.getSegClasses(seg, isDraggable, isResizable);
-		var skinCss = this.getEventSkinCss(event);
+		var isResizableFromStart = !disableResizing && seg.isStart && view.isEventResizableFromStart(event);
+		var isResizableFromEnd = !disableResizing && seg.isEnd && view.isEventResizableFromEnd(event);
+		var classes = this.getSegClasses(seg, isDraggable, isResizableFromStart || isResizableFromEnd);
+		var skinCss = cssToStr(this.getSegSkinCss(seg));
 		var timeText;
 		var fullTimeText; // more verbose time text. for the print stylesheet
 		var startTimeText; // just the start time text
 
-		classes.unshift('fc-time-grid-event');
+		classes.unshift('fc-time-grid-event', 'fc-v-event');
 
 		if (view.isMultiDayEvent(event)) { // if the event appears to span more than one day...
 			// Don't display time text on segments that run entirely through a day.
@@ -5809,13 +7428,13 @@ TimeGrid.mixin({
 			if (seg.isStart || seg.isEnd) {
 				timeText = this.getEventTimeText(seg);
 				fullTimeText = this.getEventTimeText(seg, 'LT');
-				startTimeText = this.getEventTimeText({ start: seg.start });
+				startTimeText = this.getEventTimeText(seg, null, false); // displayEnd=false
 			}
 		} else {
 			// Display the normal time text for the *event's* times
 			timeText = this.getEventTimeText(event);
 			fullTimeText = this.getEventTimeText(event, 'LT');
-			startTimeText = this.getEventTimeText({ start: event.start });
+			startTimeText = this.getEventTimeText(event, null, false); // displayEnd=false
 		}
 
 		return '<a class="' + classes.join(' ') + '"' +
@@ -5846,17 +7465,183 @@ TimeGrid.mixin({
 						) +
 				'</div>' +
 				'<div class="fc-bg"/>' +
-				(isResizable ?
-					'<div class="fc-resizer"/>' :
+				/* TODO: write CSS for this
+				(isResizableFromStart ?
+					'<div class="fc-resizer fc-start-resizer" />' :
+					''
+					) +
+				*/
+				(isResizableFromEnd ?
+					'<div class="fc-resizer fc-end-resizer" />' :
 					''
 					) +
 			'</a>';
 	},
 
 
+	/* Seg Position Utils
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Refreshes the CSS top/bottom coordinates for each segment element.
+	// Works when called after initial render, after a window resize/zoom for example.
+	updateSegVerticals: function(segs) {
+		this.computeSegVerticals(segs);
+		this.assignSegVerticals(segs);
+	},
+
+
+	// For each segment in an array, computes and assigns its top and bottom properties
+	computeSegVerticals: function(segs) {
+		var i, seg;
+
+		for (i = 0; i < segs.length; i++) {
+			seg = segs[i];
+			seg.top = this.computeDateTop(seg.start, seg.start);
+			seg.bottom = this.computeDateTop(seg.end, seg.start);
+		}
+	},
+
+
+	// Given segments that already have their top/bottom properties computed, applies those values to
+	// the segments' elements.
+	assignSegVerticals: function(segs) {
+		var i, seg;
+
+		for (i = 0; i < segs.length; i++) {
+			seg = segs[i];
+			seg.el.css(this.generateSegVerticalCss(seg));
+		}
+	},
+
+
+	// Generates an object with CSS properties for the top/bottom coordinates of a segment element
+	generateSegVerticalCss: function(seg) {
+		return {
+			top: seg.top,
+			bottom: -seg.bottom // flipped because needs to be space beyond bottom edge of event container
+		};
+	},
+
+
+	/* Foreground Event Positioning Utils
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Given segments that are assumed to all live in the *same column*,
+	// compute their verical/horizontal coordinates and assign to their elements.
+	updateFgSegCoords: function(segs) {
+		this.computeSegVerticals(segs); // horizontals relies on this
+		this.computeFgSegHorizontals(segs); // compute horizontal coordinates, z-index's, and reorder the array
+		this.assignSegVerticals(segs);
+		this.assignFgSegHorizontals(segs);
+	},
+
+
+	// Given an array of segments that are all in the same column, sets the backwardCoord and forwardCoord on each.
+	// NOTE: Also reorders the given array by date!
+	computeFgSegHorizontals: function(segs) {
+		var levels;
+		var level0;
+		var i;
+
+		this.sortEventSegs(segs); // order by certain criteria
+		levels = buildSlotSegLevels(segs);
+		computeForwardSlotSegs(levels);
+
+		if ((level0 = levels[0])) {
+
+			for (i = 0; i < level0.length; i++) {
+				computeSlotSegPressures(level0[i]);
+			}
+
+			for (i = 0; i < level0.length; i++) {
+				this.computeFgSegForwardBack(level0[i], 0, 0);
+			}
+		}
+	},
+
+
+	// Calculate seg.forwardCoord and seg.backwardCoord for the segment, where both values range
+	// from 0 to 1. If the calendar is left-to-right, the seg.backwardCoord maps to "left" and
+	// seg.forwardCoord maps to "right" (via percentage). Vice-versa if the calendar is right-to-left.
+	//
+	// The segment might be part of a "series", which means consecutive segments with the same pressure
+	// who's width is unknown until an edge has been hit. `seriesBackwardPressure` is the number of
+	// segments behind this one in the current series, and `seriesBackwardCoord` is the starting
+	// coordinate of the first segment in the series.
+	computeFgSegForwardBack: function(seg, seriesBackwardPressure, seriesBackwardCoord) {
+		var forwardSegs = seg.forwardSegs;
+		var i;
+
+		if (seg.forwardCoord === undefined) { // not already computed
+
+			if (!forwardSegs.length) {
+
+				// if there are no forward segments, this segment should butt up against the edge
+				seg.forwardCoord = 1;
+			}
+			else {
+
+				// sort highest pressure first
+				this.sortForwardSegs(forwardSegs);
+
+				// this segment's forwardCoord will be calculated from the backwardCoord of the
+				// highest-pressure forward segment.
+				this.computeFgSegForwardBack(forwardSegs[0], seriesBackwardPressure + 1, seriesBackwardCoord);
+				seg.forwardCoord = forwardSegs[0].backwardCoord;
+			}
+
+			// calculate the backwardCoord from the forwardCoord. consider the series
+			seg.backwardCoord = seg.forwardCoord -
+				(seg.forwardCoord - seriesBackwardCoord) / // available width for series
+				(seriesBackwardPressure + 1); // # of segments in the series
+
+			// use this segment's coordinates to computed the coordinates of the less-pressurized
+			// forward segments
+			for (i=0; i<forwardSegs.length; i++) {
+				this.computeFgSegForwardBack(forwardSegs[i], 0, seg.forwardCoord);
+			}
+		}
+	},
+
+
+	sortForwardSegs: function(forwardSegs) {
+		forwardSegs.sort(proxy(this, 'compareForwardSegs'));
+	},
+
+
+	// A cmp function for determining which forward segment to rely on more when computing coordinates.
+	compareForwardSegs: function(seg1, seg2) {
+		// put higher-pressure first
+		return seg2.forwardPressure - seg1.forwardPressure ||
+			// put segments that are closer to initial edge first (and favor ones with no coords yet)
+			(seg1.backwardCoord || 0) - (seg2.backwardCoord || 0) ||
+			// do normal sorting...
+			this.compareEventSegs(seg1, seg2);
+	},
+
+
+	// Given foreground event segments that have already had their position coordinates computed,
+	// assigns position-related CSS values to their elements.
+	assignFgSegHorizontals: function(segs) {
+		var i, seg;
+
+		for (i = 0; i < segs.length; i++) {
+			seg = segs[i];
+			seg.el.css(this.generateFgSegHorizontalCss(seg));
+
+			// if the height is short, add a className for alternate styling
+			if (seg.bottom - seg.top < 30) {
+				seg.el.addClass('fc-short');
+			}
+		}
+	},
+
+
 	// Generates an object with CSS properties/values that should be applied to an event segment element.
 	// Contains important positioning-related properties that should be applied to any event element, customized or not.
-	generateSegPositionCss: function(seg) {
+	generateFgSegHorizontalCss: function(seg) {
 		var shouldOverlap = this.view.opt('slotEventOverlap');
 		var backwardCoord = seg.backwardCoord; // the left side if LTR. the right side if RTL. floating-point
 		var forwardCoord = seg.forwardCoord; // the right side if LTR. the left side if RTL. floating-point
@@ -5888,59 +7673,9 @@ TimeGrid.mixin({
 		}
 
 		return props;
-	},
-
-
-	// Generates an object with CSS properties for the top/bottom coordinates of a segment element
-	generateSegVerticalCss: function(seg) {
-		return {
-			top: seg.top,
-			bottom: -seg.bottom // flipped because needs to be space beyond bottom edge of event container
-		};
-	},
-
-
-	// Given a flat array of segments, return an array of sub-arrays, grouped by each segment's col
-	groupSegCols: function(segs) {
-		var segCols = [];
-		var i;
-
-		for (i = 0; i < this.colCnt; i++) {
-			segCols.push([]);
-		}
-
-		for (i = 0; i < segs.length; i++) {
-			segCols[segs[i].col].push(segs[i]);
-		}
-
-		return segCols;
 	}
 
 });
-
-
-// Given an array of segments that are all in the same column, sets the backwardCoord and forwardCoord on each.
-// Also reorders the given array by date!
-function placeSlotSegs(segs) {
-	var levels;
-	var level0;
-	var i;
-
-	segs.sort(compareSegs); // order by date
-	levels = buildSlotSegLevels(segs);
-	computeForwardSlotSegs(levels);
-
-	if ((level0 = levels[0])) {
-
-		for (i = 0; i < level0.length; i++) {
-			computeSlotSegPressures(level0[i]);
-		}
-
-		for (i = 0; i < level0.length; i++) {
-			computeSlotSegCoords(level0[i], 0, 0);
-		}
-	}
-}
 
 
 // Builds an array of segments "levels". The first level will be the leftmost tier of segments if the calendar is
@@ -6019,50 +7754,6 @@ function computeSlotSegPressures(seg) {
 }
 
 
-// Calculate seg.forwardCoord and seg.backwardCoord for the segment, where both values range
-// from 0 to 1. If the calendar is left-to-right, the seg.backwardCoord maps to "left" and
-// seg.forwardCoord maps to "right" (via percentage). Vice-versa if the calendar is right-to-left.
-//
-// The segment might be part of a "series", which means consecutive segments with the same pressure
-// who's width is unknown until an edge has been hit. `seriesBackwardPressure` is the number of
-// segments behind this one in the current series, and `seriesBackwardCoord` is the starting
-// coordinate of the first segment in the series.
-function computeSlotSegCoords(seg, seriesBackwardPressure, seriesBackwardCoord) {
-	var forwardSegs = seg.forwardSegs;
-	var i;
-
-	if (seg.forwardCoord === undefined) { // not already computed
-
-		if (!forwardSegs.length) {
-
-			// if there are no forward segments, this segment should butt up against the edge
-			seg.forwardCoord = 1;
-		}
-		else {
-
-			// sort highest pressure first
-			forwardSegs.sort(compareForwardSlotSegs);
-
-			// this segment's forwardCoord will be calculated from the backwardCoord of the
-			// highest-pressure forward segment.
-			computeSlotSegCoords(forwardSegs[0], seriesBackwardPressure + 1, seriesBackwardCoord);
-			seg.forwardCoord = forwardSegs[0].backwardCoord;
-		}
-
-		// calculate the backwardCoord from the forwardCoord. consider the series
-		seg.backwardCoord = seg.forwardCoord -
-			(seg.forwardCoord - seriesBackwardCoord) / // available width for series
-			(seriesBackwardPressure + 1); // # of segments in the series
-
-		// use this segment's coordinates to computed the coordinates of the less-pressurized
-		// forward segments
-		for (i=0; i<forwardSegs.length; i++) {
-			computeSlotSegCoords(forwardSegs[i], 0, seg.forwardCoord);
-		}
-	}
-}
-
-
 // Find all the segments in `otherSegs` that vertically collide with `seg`.
 // Append into an optionally-supplied `results` array and return.
 function computeSlotSegCollisions(seg, otherSegs, results) {
@@ -6083,29 +7774,24 @@ function isSlotSegCollision(seg1, seg2) {
 	return seg1.bottom > seg2.top && seg1.top < seg2.bottom;
 }
 
+;;
 
-// A cmp function for determining which forward segment to rely on more when computing coordinates.
-function compareForwardSlotSegs(seg1, seg2) {
-	// put higher-pressure first
-	return seg2.forwardPressure - seg1.forwardPressure ||
-		// put segments that are closer to initial edge first (and favor ones with no coords yet)
-		(seg1.backwardCoord || 0) - (seg2.backwardCoord || 0) ||
-		// do normal sorting...
-		compareSegs(seg1, seg2);
-}
-
-    /* An abstract class from which other views inherit from
+/* An abstract class from which other views inherit from
 ----------------------------------------------------------------------------------------------------------------------*/
 
-var View = fc.View = Class.extend({
+var View = FC.View = Class.extend(EmitterMixin, ListenerMixin, {
 
 	type: null, // subclass' view name (string)
 	name: null, // deprecated. use `type` instead
+	title: null, // the text that will be displayed in the header's title
 
 	calendar: null, // owner Calendar object
-	options: null, // view-specific options
-	coordMap: null, // a CoordMap object for converting pixel regions to dates
+	options: null, // hash containing all options. already merged with view-specific-options
 	el: null, // the view's containing element. set by Calendar
+
+	displaying: null, // a promise representing the state of rendering. null if no render requested
+	isSkeletonRendered: false,
+	isEventsRendered: false,
 
 	// range the view is actually displaying (moments)
 	start: null,
@@ -6115,15 +7801,14 @@ var View = fc.View = Class.extend({
 	// may be different from start/end. for example, a month view might have 1st-31st, excluding padded dates
 	intervalStart: null,
 	intervalEnd: null, // exclusive
-
-	intervalDuration: null, // the whole-unit duration that is being displayed
+	intervalDuration: null,
 	intervalUnit: null, // name of largest unit being displayed, like "month" or "week"
 
+	isRTL: false,
 	isSelected: false, // boolean whether a range of time is user-selected or not
+	selectedEvent: null,
 
-	// subclasses can optionally use a scroll container
-	scrollerEl: null, // the element that will most likely scroll when content is too tall
-	scrollTop: null, // cached vertical scroll value
+	eventOrderSpecs: null, // criteria for ordering events when they have same date/time
 
 	// classNames styled by jqui themes
 	widgetHeaderClass: null,
@@ -6134,20 +7819,27 @@ var View = fc.View = Class.extend({
 	nextDayThreshold: null,
 	isHiddenDayHash: null,
 
-	// document handlers, bound to `this` object
-	documentMousedownProxy: null, // TODO: doesn't work with touch
+	// now indicator
+	isNowIndicatorRendered: null,
+	initialNowDate: null, // result first getNow call
+	initialNowQueriedMs: null, // ms time the getNow was called
+	nowIndicatorTimeoutID: null, // for refresh timing of now indicator
+	nowIndicatorIntervalID: null, // "
 
 
-	constructor: function(calendar, viewOptions, viewType) {
+	constructor: function(calendar, type, options, intervalDuration) {
+
 		this.calendar = calendar;
-		this.options = viewOptions;
-		this.type = this.name = viewType; // .name is deprecated
+		this.type = this.name = type; // .name is deprecated
+		this.options = options;
+		this.intervalDuration = intervalDuration || moment.duration(1, 'day');
 
 		this.nextDayThreshold = moment.duration(this.opt('nextDayThreshold'));
-		this.initTheming();
+		this.initThemingProps();
 		this.initHiddenDays();
+		this.isRTL = this.opt('isRTL');
 
-		this.documentMousedownProxy = $.proxy(this, 'documentMousedown');
+		this.eventOrderSpecs = parseFieldSpecs(this.opt('eventOrder'));
 
 		this.initialize();
 	},
@@ -6161,19 +7853,7 @@ var View = fc.View = Class.extend({
 
 	// Retrieves an option with the given name
 	opt: function(name) {
-		var val;
-
-		val = this.options[name]; // look at view-specific options first
-		if (val !== undefined) {
-			return val;
-		}
-
-		val = this.calendar.options[name];
-		if ($.isPlainObject(val) && !isForcedAtomicOption(name)) { // view-option-hashes are deprecated
-			return smartProperty(val, this.type);
-		}
-
-		return val;
+		return this.options[name];
 	},
 
 
@@ -6195,39 +7875,38 @@ var View = fc.View = Class.extend({
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Updates all internal dates to center around the given current date
+	// Updates all internal dates to center around the given current unzoned date.
 	setDate: function(date) {
 		this.setRange(this.computeRange(date));
 	},
 
 
-	// Updates all internal dates for displaying the given range.
-	// Expects all values to be normalized (like what computeRange does).
+	// Updates all internal dates for displaying the given unzoned range.
 	setRange: function(range) {
-		$.extend(this, range);
+		$.extend(this, range); // assigns every property to this object's member variables
+		this.updateTitle();
 	},
 
 
-	// Given a single current date, produce information about what range to display.
+	// Given a single current unzoned date, produce information about what range to display.
 	// Subclasses can override. Must return all properties.
 	computeRange: function(date) {
-		var intervalDuration = moment.duration(this.opt('duration') || this.constructor.duration || { days: 1 });
-		var intervalUnit = computeIntervalUnit(intervalDuration);
+		var intervalUnit = computeIntervalUnit(this.intervalDuration);
 		var intervalStart = date.clone().startOf(intervalUnit);
-		var intervalEnd = intervalStart.clone().add(intervalDuration);
+		var intervalEnd = intervalStart.clone().add(this.intervalDuration);
 		var start, end;
 
 		// normalize the range's time-ambiguity
-		if (computeIntervalAs('days', intervalDuration)) { // whole-days?
+		if (/year|month|week|day/.test(intervalUnit)) { // whole-days?
 			intervalStart.stripTime();
 			intervalEnd.stripTime();
 		}
 		else { // needs to have a time?
 			if (!intervalStart.hasTime()) {
-				intervalStart = this.calendar.rezoneDate(intervalStart); // convert to current timezone, with 00:00
+				intervalStart = this.calendar.time(0); // give 00:00 time
 			}
 			if (!intervalEnd.hasTime()) {
-				intervalEnd = this.calendar.rezoneDate(intervalEnd); // convert to current timezone, with 00:00
+				intervalEnd = this.calendar.time(0); // give 00:00 time
 			}
 		}
 
@@ -6237,7 +7916,6 @@ var View = fc.View = Class.extend({
 		end = this.skipHiddenDays(end, -1, true); // exclusively move backwards
 
 		return {
-			intervalDuration: intervalDuration,
 			intervalUnit: intervalUnit,
 			intervalStart: intervalStart,
 			intervalEnd: intervalEnd,
@@ -6249,7 +7927,7 @@ var View = fc.View = Class.extend({
 
 	// Computes the new date when the user hits the prev button, given the current date
 	computePrevDate: function(date) {
-		return this.skipHiddenDays(
+		return this.massageCurrentDate(
 			date.clone().startOf(this.intervalUnit).subtract(this.intervalDuration), -1
 		);
 	},
@@ -6257,9 +7935,24 @@ var View = fc.View = Class.extend({
 
 	// Computes the new date when the user hits the next button, given the current date
 	computeNextDate: function(date) {
-		return this.skipHiddenDays(
+		return this.massageCurrentDate(
 			date.clone().startOf(this.intervalUnit).add(this.intervalDuration)
 		);
+	},
+
+
+	// Given an arbitrarily calculated current date of the calendar, returns a date that is ensured to be completely
+	// visible. `direction` is optional and indicates which direction the current date was being
+	// incremented or decremented (1 or -1).
+	massageCurrentDate: function(date, direction) {
+		if (this.intervalDuration.as('days') <= 1) { // if the view displays a single day or smaller
+			if (this.isHiddenDay(date)) {
+				date = this.skipHiddenDays(date, direction);
+				date.startOf('day');
+			}
+		}
+
+		return date;
 	},
 
 
@@ -6267,10 +7960,20 @@ var View = fc.View = Class.extend({
 	------------------------------------------------------------------------------------------------------------------*/
 
 
+	// Sets the view's title property to the most updated computed value
+	updateTitle: function() {
+		this.title = this.computeTitle();
+	},
+
+
 	// Computes what the title at the top of the calendar should be for this view
 	computeTitle: function() {
 		return this.formatRange(
-			{ start: this.intervalStart, end: this.intervalEnd },
+			{
+				// in case intervalStart/End has a time, make sure timezone is correct
+				start: this.calendar.applyTimezone(this.intervalStart),
+				end: this.calendar.applyTimezone(this.intervalEnd)
+			},
 			this.opt('titleFormat') || this.computeTitleFormat(),
 			this.opt('titleRangeSeparator')
 		);
@@ -6297,6 +8000,7 @@ var View = fc.View = Class.extend({
 
 	// Utility for formatting a range. Accepts a range object, formatting string, and optional separator.
 	// Displays all-day ranges naturally, with an inclusive end. Takes the current isRTL into account.
+	// The timezones of the dates within `range` will be respected.
 	formatRange: function(range, formatStr, separator) {
 		var end = range.end;
 
@@ -6308,52 +8012,347 @@ var View = fc.View = Class.extend({
 	},
 
 
+	getAllDayHtml: function() {
+		return this.opt('allDayHtml') || htmlEscape(this.opt('allDayText'));
+	},
+
+
+	/* Navigation
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Generates HTML for an anchor to another view into the calendar.
+	// Will either generate an <a> tag or a non-clickable <span> tag, depending on enabled settings.
+	// `gotoOptions` can either be a moment input, or an object with the form:
+	// { date, type, forceOff }
+	// `type` is a view-type like "day" or "week". default value is "day".
+	// `attrs` and `innerHtml` are use to generate the rest of the HTML tag.
+	buildGotoAnchorHtml: function(gotoOptions, attrs, innerHtml) {
+		var date, type, forceOff;
+		var finalOptions;
+
+		if ($.isPlainObject(gotoOptions)) {
+			date = gotoOptions.date;
+			type = gotoOptions.type;
+			forceOff = gotoOptions.forceOff;
+		}
+		else {
+			date = gotoOptions; // a single moment input
+		}
+		date = FC.moment(date); // if a string, parse it
+
+		finalOptions = { // for serialization into the link
+			date: date.format('YYYY-MM-DD'),
+			type: type || 'day'
+		};
+
+		if (typeof attrs === 'string') {
+			innerHtml = attrs;
+			attrs = null;
+		}
+
+		attrs = attrs ? ' ' + attrsToStr(attrs) : ''; // will have a leading space
+		innerHtml = innerHtml || '';
+
+		if (!forceOff && this.opt('navLinks')) {
+			return '<a' + attrs +
+				' data-goto="' + htmlEscape(JSON.stringify(finalOptions)) + '">' +
+				innerHtml +
+				'</a>';
+		}
+		else {
+			return '<span' + attrs + '>' +
+				innerHtml +
+				'</span>';
+		}
+	},
+
+
 	/* Rendering
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Wraps the basic render() method with more View-specific logic. Called by the owner Calendar.
-	renderView: function() {
-		this.render();
-		this.updateSize();
-		this.initializeScroll();
-		this.trigger('viewRender', this, this, this.el);
-
-		// attach handlers to document. do it here to allow for destroy/rerender
-		$(document).on('mousedown', this.documentMousedownProxy);
+	// Sets the container element that the view should render inside of.
+	// Does other DOM-related initializations.
+	setElement: function(el) {
+		this.el = el;
+		this.bindGlobalHandlers();
 	},
 
 
-	// Renders the view inside an already-defined `this.el`
-	render: function() {
+	// Removes the view's container element from the DOM, clearing any content beforehand.
+	// Undoes any other DOM-related attachments.
+	removeElement: function() {
+		this.clear(); // clears all content
+
+		// clean up the skeleton
+		if (this.isSkeletonRendered) {
+			this.unrenderSkeleton();
+			this.isSkeletonRendered = false;
+		}
+
+		this.unbindGlobalHandlers();
+
+		this.el.remove();
+
+		// NOTE: don't null-out this.el in case the View was destroyed within an API callback.
+		// We don't null-out the View's other jQuery element references upon destroy,
+		//  so we shouldn't kill this.el either.
+	},
+
+
+	// Does everything necessary to display the view centered around the given unzoned date.
+	// Does every type of rendering EXCEPT rendering events.
+	// Is asychronous and returns a promise.
+	display: function(date, explicitScrollState) {
+		var _this = this;
+		var prevScrollState = null;
+
+		if (explicitScrollState != null && this.displaying) { // don't need prevScrollState if explicitScrollState
+			prevScrollState = this.queryScroll();
+		}
+
+		this.calendar.freezeContentHeight();
+
+		return syncThen(this.clear(), function() { // clear the content first
+			return (
+				_this.displaying =
+					syncThen(_this.displayView(date), function() { // displayView might return a promise
+
+						// caller of display() wants a specific scroll state?
+						if (explicitScrollState != null) {
+							// we make an assumption that this is NOT the initial render,
+							// and thus don't need forceScroll (is inconveniently asynchronous)
+							_this.setScroll(explicitScrollState);
+						}
+						else {
+							_this.forceScroll(_this.computeInitialScroll(prevScrollState));
+						}
+
+						_this.calendar.unfreezeContentHeight();
+						_this.triggerRender();
+					})
+			);
+		});
+	},
+
+
+	// Does everything necessary to clear the content of the view.
+	// Clears dates and events. Does not clear the skeleton.
+	// Is asychronous and returns a promise.
+	clear: function() {
+		var _this = this;
+		var displaying = this.displaying;
+
+		if (displaying) { // previously displayed, or in the process of being displayed?
+			return syncThen(displaying, function() { // wait for the display to finish
+				_this.displaying = null;
+				_this.clearEvents();
+				return _this.clearView(); // might return a promise. chain it
+			});
+		}
+		else {
+			return $.when(); // an immediately-resolved promise
+		}
+	},
+
+
+	// Displays the view's non-event content, such as date-related content or anything required by events.
+	// Renders the view's non-content skeleton if necessary.
+	// Can be asynchronous and return a promise.
+	displayView: function(date) {
+		if (!this.isSkeletonRendered) {
+			this.renderSkeleton();
+			this.isSkeletonRendered = true;
+		}
+		if (date) {
+			this.setDate(date);
+		}
+		if (this.render) {
+			this.render(); // TODO: deprecate
+		}
+		this.renderDates();
+		this.updateSize();
+		this.renderBusinessHours(); // might need coordinates, so should go after updateSize()
+		this.startNowIndicator();
+	},
+
+
+	// Unrenders the view content that was rendered in displayView.
+	// Can be asynchronous and return a promise.
+	clearView: function() {
+		this.unselect();
+		this.stopNowIndicator();
+		this.triggerUnrender();
+		this.unrenderBusinessHours();
+		this.unrenderDates();
+		if (this.destroy) {
+			this.destroy(); // TODO: deprecate
+		}
+	},
+
+
+	// Renders the basic structure of the view before any content is rendered
+	renderSkeleton: function() {
 		// subclasses should implement
 	},
 
 
-	// Wraps the basic destroy() method with more View-specific logic. Called by the owner Calendar.
-	destroyView: function() {
-		this.unselect();
-		this.destroyViewEvents();
-		this.destroy();
-		this.trigger('viewDestroy', this, this, this.el);
-
-		$(document).off('mousedown', this.documentMousedownProxy);
+	// Unrenders the basic structure of the view
+	unrenderSkeleton: function() {
+		// subclasses should implement
 	},
 
 
-	// Clears the view's rendering
-	destroy: function() {
-		this.el.empty(); // removes inner contents but leaves the element intact
+	// Renders the view's date-related content.
+	// Assumes setRange has already been called and the skeleton has already been rendered.
+	renderDates: function() {
+		// subclasses should implement
+	},
+
+
+	// Unrenders the view's date-related content
+	unrenderDates: function() {
+		// subclasses should override
+	},
+
+
+	// Signals that the view's content has been rendered
+	triggerRender: function() {
+		this.trigger('viewRender', this, this, this.el);
+	},
+
+
+	// Signals that the view's content is about to be unrendered
+	triggerUnrender: function() {
+		this.trigger('viewDestroy', this, this, this.el);
+	},
+
+
+	// Binds DOM handlers to elements that reside outside the view container, such as the document
+	bindGlobalHandlers: function() {
+		this.listenTo($(document), 'mousedown', this.handleDocumentMousedown);
+		this.listenTo($(document), 'touchstart', this.processUnselect);
+	},
+
+
+	// Unbinds DOM handlers from elements that reside outside the view container
+	unbindGlobalHandlers: function() {
+		this.stopListeningTo($(document));
 	},
 
 
 	// Initializes internal variables related to theming
-	initTheming: function() {
+	initThemingProps: function() {
 		var tm = this.opt('theme') ? 'ui' : 'fc';
 
 		this.widgetHeaderClass = tm + '-widget-header';
 		this.widgetContentClass = tm + '-widget-content';
 		this.highlightStateClass = tm + '-state-highlight';
+	},
+
+
+	/* Business Hours
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Renders business-hours onto the view. Assumes updateSize has already been called.
+	renderBusinessHours: function() {
+		// subclasses should implement
+	},
+
+
+	// Unrenders previously-rendered business-hours
+	unrenderBusinessHours: function() {
+		// subclasses should implement
+	},
+
+
+	/* Now Indicator
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Immediately render the current time indicator and begins re-rendering it at an interval,
+	// which is defined by this.getNowIndicatorUnit().
+	// TODO: somehow do this for the current whole day's background too
+	startNowIndicator: function() {
+		var _this = this;
+		var unit;
+		var update;
+		var delay; // ms wait value
+
+		if (this.opt('nowIndicator')) {
+			unit = this.getNowIndicatorUnit();
+			if (unit) {
+				update = proxy(this, 'updateNowIndicator'); // bind to `this`
+
+				this.initialNowDate = this.calendar.getNow();
+				this.initialNowQueriedMs = +new Date();
+				this.renderNowIndicator(this.initialNowDate);
+				this.isNowIndicatorRendered = true;
+
+				// wait until the beginning of the next interval
+				delay = this.initialNowDate.clone().startOf(unit).add(1, unit) - this.initialNowDate;
+				this.nowIndicatorTimeoutID = setTimeout(function() {
+					_this.nowIndicatorTimeoutID = null;
+					update();
+					delay = +moment.duration(1, unit);
+					delay = Math.max(100, delay); // prevent too frequent
+					_this.nowIndicatorIntervalID = setInterval(update, delay); // update every interval
+				}, delay);
+			}
+		}
+	},
+
+
+	// rerenders the now indicator, computing the new current time from the amount of time that has passed
+	// since the initial getNow call.
+	updateNowIndicator: function() {
+		if (this.isNowIndicatorRendered) {
+			this.unrenderNowIndicator();
+			this.renderNowIndicator(
+				this.initialNowDate.clone().add(new Date() - this.initialNowQueriedMs) // add ms
+			);
+		}
+	},
+
+
+	// Immediately unrenders the view's current time indicator and stops any re-rendering timers.
+	// Won't cause side effects if indicator isn't rendered.
+	stopNowIndicator: function() {
+		if (this.isNowIndicatorRendered) {
+
+			if (this.nowIndicatorTimeoutID) {
+				clearTimeout(this.nowIndicatorTimeoutID);
+				this.nowIndicatorTimeoutID = null;
+			}
+			if (this.nowIndicatorIntervalID) {
+				clearTimeout(this.nowIndicatorIntervalID);
+				this.nowIndicatorIntervalID = null;
+			}
+
+			this.unrenderNowIndicator();
+			this.isNowIndicatorRendered = false;
+		}
+	},
+
+
+	// Returns a string unit, like 'second' or 'minute' that defined how often the current time indicator
+	// should be refreshed. If something falsy is returned, no time indicator is rendered at all.
+	getNowIndicatorUnit: function() {
+		// subclasses should implement
+	},
+
+
+	// Renders a current time indicator at the given datetime
+	renderNowIndicator: function(date) {
+		// subclasses should implement
+	},
+
+
+	// Undoes the rendering actions from renderNowIndicator
+	unrenderNowIndicator: function() {
+		// subclasses should implement
 	},
 
 
@@ -6363,22 +8362,30 @@ var View = fc.View = Class.extend({
 
 	// Refreshes anything dependant upon sizing of the container element of the grid
 	updateSize: function(isResize) {
+		var scrollState;
+
 		if (isResize) {
-			this.recordScroll();
+			scrollState = this.queryScroll();
 		}
-		this.updateHeight();
-		this.updateWidth();
+
+		this.updateHeight(isResize);
+		this.updateWidth(isResize);
+		this.updateNowIndicator();
+
+		if (isResize) {
+			this.setScroll(scrollState);
+		}
 	},
 
 
 	// Refreshes the horizontal dimensions of the calendar
-	updateWidth: function() {
+	updateWidth: function(isResize) {
 		// subclasses should implement
 	},
 
 
 	// Refreshes the vertical dimensions of the calendar
-	updateHeight: function() {
+	updateHeight: function(isResize) {
 		var calendar = this.calendar; // we poll the calendar for height information
 
 		this.setHeight(
@@ -6399,50 +8406,33 @@ var View = fc.View = Class.extend({
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Given the total height of the view, return the number of pixels that should be used for the scroller.
-	// By default, uses this.scrollerEl, but can pass this in as well.
-	// Utility for subclasses.
-	computeScrollerHeight: function(totalHeight, scrollerEl) {
-		var both;
-		var otherHeight; // cumulative height of everything that is not the scrollerEl in the view (header+borders)
-
-		scrollerEl = scrollerEl || this.scrollerEl;
-		both = this.el.add(scrollerEl);
-
-		// fuckin IE8/9/10/11 sometimes returns 0 for dimensions. this weird hack was the only thing that worked
-		both.css({
-			position: 'relative', // cause a reflow, which will force fresh dimension recalculation
-			left: -1 // ensure reflow in case the el was already relative. negative is less likely to cause new scroll
-		});
-		otherHeight = this.el.outerHeight() - scrollerEl.height(); // grab the dimensions
-		both.css({ position: '', left: '' }); // undo hack
-
-		return totalHeight - otherHeight;
+	// Computes the initial pre-configured scroll state prior to allowing the user to change it.
+	// Given the scroll state from the previous rendering. If first time rendering, given null.
+	computeInitialScroll: function(previousScrollState) {
+		return 0;
 	},
 
 
-	// Sets the scroll value of the scroller to the initial pre-configured state prior to allowing the user to change it
-	initializeScroll: function() {
+	// Retrieves the view's current natural scroll state. Can return an arbitrary format.
+	queryScroll: function() {
+		// subclasses must implement
 	},
 
 
-	// Called for remembering the current scroll value of the scroller.
-	// Should be called before there is a destructive operation (like removing DOM elements) that might inadvertently
-	// change the scroll of the container.
-	recordScroll: function() {
-		if (this.scrollerEl) {
-			this.scrollTop = this.scrollerEl.scrollTop();
-		}
+	// Sets the view's scroll state. Will accept the same format computeInitialScroll and queryScroll produce.
+	setScroll: function(scrollState) {
+		// subclasses must implement
 	},
 
 
-	// Set the scroll value of the scroller to the previously recorded value.
-	// Should be called after we know the view's dimensions have been restored following some type of destructive
-	// operation (like temporarily removing DOM elements).
-	restoreScroll: function() {
-		if (this.scrollTop !== null) {
-			this.scrollerEl.scrollTop(this.scrollTop);
-		}
+	// Sets the scroll state, making sure to overcome any predefined scroll value the browser has in mind
+	forceScroll: function(scrollState) {
+		var _this = this;
+
+		this.setScroll(scrollState);
+		setTimeout(function() {
+			_this.setScroll(scrollState);
+		}, 0);
 	},
 
 
@@ -6450,36 +8440,64 @@ var View = fc.View = Class.extend({
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Wraps the basic renderEvents() method with more View-specific logic
-	renderViewEvents: function(events) {
-		this.renderEvents(events);
+	// Does everything necessary to display the given events onto the current view
+	displayEvents: function(events) {
+		var scrollState = this.queryScroll();
 
-		this.eventSegEach(function(seg) {
+		this.clearEvents();
+		this.renderEvents(events);
+		this.isEventsRendered = true;
+		this.setScroll(scrollState);
+		this.triggerEventRender();
+	},
+
+
+	// Does everything necessary to clear the view's currently-rendered events
+	clearEvents: function() {
+		var scrollState;
+
+		if (this.isEventsRendered) {
+
+			// TODO: optimize: if we know this is part of a displayEvents call, don't queryScroll/setScroll
+			scrollState = this.queryScroll();
+
+			this.triggerEventUnrender();
+			if (this.destroyEvents) {
+				this.destroyEvents(); // TODO: deprecate
+			}
+			this.unrenderEvents();
+			this.setScroll(scrollState);
+			this.isEventsRendered = false;
+		}
+	},
+
+
+	// Renders the events onto the view.
+	renderEvents: function(events) {
+		// subclasses should implement
+	},
+
+
+	// Removes event elements from the view.
+	unrenderEvents: function() {
+		// subclasses should implement
+	},
+
+
+	// Signals that all events have been rendered
+	triggerEventRender: function() {
+		this.renderedEventSegEach(function(seg) {
 			this.trigger('eventAfterRender', seg.event, seg.event, seg.el);
 		});
 		this.trigger('eventAfterAllRender');
 	},
 
 
-	// Renders the events onto the view.
-	renderEvents: function() {
-		// subclasses should implement
-	},
-
-
-	// Wraps the basic destroyEvents() method with more View-specific logic
-	destroyViewEvents: function() {
-		this.eventSegEach(function(seg) {
+	// Signals that all event elements are about to be removed
+	triggerEventUnrender: function() {
+		this.renderedEventSegEach(function(seg) {
 			this.trigger('eventDestroy', seg.event, seg.event, seg.el);
 		});
-
-		this.destroyEvents();
-	},
-
-
-	// Removes event elements from the view.
-	destroyEvents: function() {
-		// subclasses should implement
 	},
 
 
@@ -6501,7 +8519,7 @@ var View = fc.View = Class.extend({
 
 	// Hides all rendered event segments linked to the given event
 	showEvent: function(event) {
-		this.eventSegEach(function(seg) {
+		this.renderedEventSegEach(function(seg) {
 			seg.el.css('visibility', '');
 		}, event);
 	},
@@ -6509,22 +8527,24 @@ var View = fc.View = Class.extend({
 
 	// Shows all rendered event segments linked to the given event
 	hideEvent: function(event) {
-		this.eventSegEach(function(seg) {
+		this.renderedEventSegEach(function(seg) {
 			seg.el.css('visibility', 'hidden');
 		}, event);
 	},
 
 
-	// Iterates through event segments. Goes through all by default.
+	// Iterates through event segments that have been rendered (have an el). Goes through all by default.
 	// If the optional `event` argument is specified, only iterates through segments linked to that event.
 	// The `this` value of the callback function will be the view.
-	eventSegEach: function(func, event) {
+	renderedEventSegEach: function(func, event) {
 		var segs = this.getEventSegs();
 		var i;
 
 		for (i = 0; i < segs.length; i++) {
 			if (!event || segs[i].event._id === event._id) {
-				func.call(this, segs[i]);
+				if (segs[i].el) {
+					func.call(this, segs[i]);
+				}
 			}
 		}
 	},
@@ -6543,24 +8563,34 @@ var View = fc.View = Class.extend({
 
 	// Computes if the given event is allowed to be dragged by the user
 	isEventDraggable: function(event) {
-		var source = event.source || {};
+		return this.isEventStartEditable(event);
+	},
 
+
+	isEventStartEditable: function(event) {
 		return firstDefined(
 			event.startEditable,
-			source.startEditable,
+			(event.source || {}).startEditable,
 			this.opt('eventStartEditable'),
+			this.isEventGenerallyEditable(event)
+		);
+	},
+
+
+	isEventGenerallyEditable: function(event) {
+		return firstDefined(
 			event.editable,
-			source.editable,
+			(event.source || {}).editable,
 			this.opt('editable')
 		);
 	},
 
 
 	// Must be called when an event in the view is dropped onto new location.
-	// `dropLocation` is an object that contains the new start/end/allDay values for the event.
-	reportEventDrop: function(event, dropLocation, el, ev) {
+	// `dropLocation` is an object that contains the new zoned start/end/allDay values for the event.
+	reportEventDrop: function(event, dropLocation, largeUnit, el, ev) {
 		var calendar = this.calendar;
-		var mutateResult = calendar.mutateEvent(event, dropLocation);
+		var mutateResult = calendar.mutateEvent(event, dropLocation, largeUnit);
 		var undoFunc = function() {
 			mutateResult.undo();
 			calendar.reportEventChange();
@@ -6583,7 +8613,7 @@ var View = fc.View = Class.extend({
 
 	// Must be called when an external element, via jQuery UI, has been dropped onto the calendar.
 	// `meta` is the parsed data that has been embedded into the dragging event.
-	// `dropLocation` is an object that contains the new start/end/allDay values for the event.
+	// `dropLocation` is an object that contains the new zoned start/end/allDay values for the event.
 	reportExternalDrop: function(meta, dropLocation, el, ev, ui) {
 		var eventProps = meta.eventProps;
 		var eventInput;
@@ -6616,14 +8646,15 @@ var View = fc.View = Class.extend({
 
 
 	// Renders a visual indication of a event or external-element drag over the given drop zone.
-	// If an external-element, seg will be `null`
+	// If an external-element, seg will be `null`.
+	// Must return elements used for any mock events.
 	renderDrag: function(dropLocation, seg) {
 		// subclasses must implement
 	},
 
 
 	// Unrenders a visual indication of an event or external-element being dragged.
-	destroyDrag: function() {
+	unrenderDrag: function() {
 		// subclasses must implement
 	},
 
@@ -6632,7 +8663,19 @@ var View = fc.View = Class.extend({
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Computes if the given event is allowed to be resize by the user
+	// Computes if the given event is allowed to be resized from its starting edge
+	isEventResizableFromStart: function(event) {
+		return this.opt('eventResizableFromStart') && this.isEventResizable(event);
+	},
+
+
+	// Computes if the given event is allowed to be resized from its ending edge
+	isEventResizableFromEnd: function(event) {
+		return this.isEventResizable(event);
+	},
+
+
+	// Computes if the given event is allowed to be resized by the user at all
 	isEventResizable: function(event) {
 		var source = event.source || {};
 
@@ -6648,9 +8691,9 @@ var View = fc.View = Class.extend({
 
 
 	// Must be called when an event in the view has been resized to a new length
-	reportEventResize: function(event, newEnd, el, ev) {
+	reportEventResize: function(event, resizeLocation, largeUnit, el, ev) {
 		var calendar = this.calendar;
-		var mutateResult = calendar.mutateEvent(event, { end: newEnd });
+		var mutateResult = calendar.mutateEvent(event, resizeLocation, largeUnit);
 		var undoFunc = function() {
 			mutateResult.undo();
 			calendar.reportEventChange();
@@ -6667,29 +8710,41 @@ var View = fc.View = Class.extend({
 	},
 
 
-	/* Selection
+	/* Selection (time range)
 	------------------------------------------------------------------------------------------------------------------*/
 
 
-	// Selects a date range on the view. `start` and `end` are both Moments.
+	// Selects a date span on the view. `start` and `end` are both Moments.
 	// `ev` is the native mouse event that begin the interaction.
-	select: function(range, ev) {
+	select: function(span, ev) {
 		this.unselect(ev);
-		this.renderSelection(range);
-		this.reportSelection(range, ev);
+		this.renderSelection(span);
+		this.reportSelection(span, ev);
 	},
 
 
 	// Renders a visual indication of the selection
-	renderSelection: function(range) {
+	renderSelection: function(span) {
 		// subclasses should implement
 	},
 
 
 	// Called when a new selection is made. Updates internal state and triggers handlers.
-	reportSelection: function(range, ev) {
+	reportSelection: function(span, ev) {
 		this.isSelected = true;
-		this.trigger('select', null, range.start, range.end, ev);
+		this.triggerSelect(span, ev);
+	},
+
+
+	// Triggers handlers to 'select'
+	triggerSelect: function(span, ev) {
+		this.trigger(
+			'select',
+			null,
+			this.calendar.applyTimezone(span.start), // convert to calendar's tz for external API
+			this.calendar.applyTimezone(span.end), // "
+			ev
+		);
 	},
 
 
@@ -6698,31 +8753,108 @@ var View = fc.View = Class.extend({
 	unselect: function(ev) {
 		if (this.isSelected) {
 			this.isSelected = false;
-			this.destroySelection();
+			if (this.destroySelection) {
+				this.destroySelection(); // TODO: deprecate
+			}
+			this.unrenderSelection();
 			this.trigger('unselect', null, ev);
 		}
 	},
 
 
 	// Unrenders a visual indication of selection
-	destroySelection: function() {
+	unrenderSelection: function() {
 		// subclasses should implement
 	},
 
 
-	// Handler for unselecting when the user clicks something and the 'unselectAuto' setting is on
-	documentMousedown: function(ev) {
+	/* Event Selection
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	selectEvent: function(event) {
+		if (!this.selectedEvent || this.selectedEvent !== event) {
+			this.unselectEvent();
+			this.renderedEventSegEach(function(seg) {
+				seg.el.addClass('fc-selected');
+			}, event);
+			this.selectedEvent = event;
+		}
+	},
+
+
+	unselectEvent: function() {
+		if (this.selectedEvent) {
+			this.renderedEventSegEach(function(seg) {
+				seg.el.removeClass('fc-selected');
+			}, this.selectedEvent);
+			this.selectedEvent = null;
+		}
+	},
+
+
+	isEventSelected: function(event) {
+		// event references might change on refetchEvents(), while selectedEvent doesn't,
+		// so compare IDs
+		return this.selectedEvent && this.selectedEvent._id === event._id;
+	},
+
+
+	/* Mouse / Touch Unselecting (time range & event unselection)
+	------------------------------------------------------------------------------------------------------------------*/
+	// TODO: move consistently to down/start or up/end?
+	// TODO: don't kill previous selection if touch scrolling
+
+
+	handleDocumentMousedown: function(ev) {
+		if (isPrimaryMouseButton(ev)) {
+			this.processUnselect(ev);
+		}
+	},
+
+
+	processUnselect: function(ev) {
+		this.processRangeUnselect(ev);
+		this.processEventUnselect(ev);
+	},
+
+
+	processRangeUnselect: function(ev) {
 		var ignore;
 
-		// is there a selection, and has the user made a proper left click?
-		if (this.isSelected && this.opt('unselectAuto') && isPrimaryMouseButton(ev)) {
-
+		// is there a time-range selection?
+		if (this.isSelected && this.opt('unselectAuto')) {
 			// only unselect if the clicked element is not identical to or inside of an 'unselectCancel' element
 			ignore = this.opt('unselectCancel');
 			if (!ignore || !$(ev.target).closest(ignore).length) {
 				this.unselect(ev);
 			}
 		}
+	},
+
+
+	processEventUnselect: function(ev) {
+		if (this.selectedEvent) {
+			if (!$(ev.target).closest('.fc-selected').length) {
+				this.unselectEvent();
+			}
+		}
+	},
+
+
+	/* Day Click
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Triggers handlers to 'dayClick'
+	// Span has start/end of the clicked area. Only the start is useful.
+	triggerDayClick: function(span, dayEl, ev) {
+		this.trigger(
+			'dayClick',
+			dayEl,
+			this.calendar.applyTimezone(span.start), // convert to calendar's timezone for external API
+			ev
+		);
 	},
 
 
@@ -6822,49 +8954,406 @@ var View = fc.View = Class.extend({
 
 });
 
-    function Calendar(element, instanceOptions) {
+;;
+
+/*
+Embodies a div that has potential scrollbars
+*/
+var Scroller = FC.Scroller = Class.extend({
+
+	el: null, // the guaranteed outer element
+	scrollEl: null, // the element with the scrollbars
+	overflowX: null,
+	overflowY: null,
+
+
+	constructor: function(options) {
+		options = options || {};
+		this.overflowX = options.overflowX || options.overflow || 'auto';
+		this.overflowY = options.overflowY || options.overflow || 'auto';
+	},
+
+
+	render: function() {
+		this.el = this.renderEl();
+		this.applyOverflow();
+	},
+
+
+	renderEl: function() {
+		return (this.scrollEl = $('<div class="fc-scroller"></div>'));
+	},
+
+
+	// sets to natural height, unlocks overflow
+	clear: function() {
+		this.setHeight('auto');
+		this.applyOverflow();
+	},
+
+
+	destroy: function() {
+		this.el.remove();
+	},
+
+
+	// Overflow
+	// -----------------------------------------------------------------------------------------------------------------
+
+
+	applyOverflow: function() {
+		this.scrollEl.css({
+			'overflow-x': this.overflowX,
+			'overflow-y': this.overflowY
+		});
+	},
+
+
+	// Causes any 'auto' overflow values to resolves to 'scroll' or 'hidden'.
+	// Useful for preserving scrollbar widths regardless of future resizes.
+	// Can pass in scrollbarWidths for optimization.
+	lockOverflow: function(scrollbarWidths) {
+		var overflowX = this.overflowX;
+		var overflowY = this.overflowY;
+
+		scrollbarWidths = scrollbarWidths || this.getScrollbarWidths();
+
+		if (overflowX === 'auto') {
+			overflowX = (
+					scrollbarWidths.top || scrollbarWidths.bottom || // horizontal scrollbars?
+					// OR scrolling pane with massless scrollbars?
+					this.scrollEl[0].scrollWidth - 1 > this.scrollEl[0].clientWidth
+						// subtract 1 because of IE off-by-one issue
+				) ? 'scroll' : 'hidden';
+		}
+
+		if (overflowY === 'auto') {
+			overflowY = (
+					scrollbarWidths.left || scrollbarWidths.right || // vertical scrollbars?
+					// OR scrolling pane with massless scrollbars?
+					this.scrollEl[0].scrollHeight - 1 > this.scrollEl[0].clientHeight
+						// subtract 1 because of IE off-by-one issue
+				) ? 'scroll' : 'hidden';
+		}
+
+		this.scrollEl.css({ 'overflow-x': overflowX, 'overflow-y': overflowY });
+	},
+
+
+	// Getters / Setters
+	// -----------------------------------------------------------------------------------------------------------------
+
+
+	setHeight: function(height) {
+		this.scrollEl.height(height);
+	},
+
+
+	getScrollTop: function() {
+		return this.scrollEl.scrollTop();
+	},
+
+
+	setScrollTop: function(top) {
+		this.scrollEl.scrollTop(top);
+	},
+
+
+	getClientWidth: function() {
+		return this.scrollEl[0].clientWidth;
+	},
+
+
+	getClientHeight: function() {
+		return this.scrollEl[0].clientHeight;
+	},
+
+
+	getScrollbarWidths: function() {
+		return getScrollbarWidths(this.scrollEl);
+	}
+
+});
+
+;;
+
+var Calendar = FC.Calendar = Class.extend({
+
+	dirDefaults: null, // option defaults related to LTR or RTL
+	localeDefaults: null, // option defaults related to current locale
+	overrides: null, // option overrides given to the fullCalendar constructor
+	dynamicOverrides: null, // options set with dynamic setter method. higher precedence than view overrides.
+	options: null, // all defaults combined with overrides
+	viewSpecCache: null, // cache of view definitions
+	view: null, // current View object
+	header: null,
+	loadingLevel: 0, // number of simultaneous loading tasks
+
+
+	// a lot of this class' OOP logic is scoped within this constructor function,
+	// but in the future, write individual methods on the prototype.
+	constructor: Calendar_constructor,
+
+
+	// Subclasses can override this for initialization logic after the constructor has been called
+	initialize: function() {
+	},
+
+
+	// Computes the flattened options hash for the calendar and assigns to `this.options`.
+	// Assumes this.overrides and this.dynamicOverrides have already been initialized.
+	populateOptionsHash: function() {
+		var locale, localeDefaults;
+		var isRTL, dirDefaults;
+
+		locale = firstDefined( // explicit locale option given?
+			this.dynamicOverrides.locale,
+			this.overrides.locale
+		);
+		localeDefaults = localeOptionHash[locale];
+		if (!localeDefaults) { // explicit locale option not given or invalid?
+			locale = Calendar.defaults.locale;
+			localeDefaults = localeOptionHash[locale] || {};
+		}
+
+		isRTL = firstDefined( // based on options computed so far, is direction RTL?
+			this.dynamicOverrides.isRTL,
+			this.overrides.isRTL,
+			localeDefaults.isRTL,
+			Calendar.defaults.isRTL
+		);
+		dirDefaults = isRTL ? Calendar.rtlDefaults : {};
+
+		this.dirDefaults = dirDefaults;
+		this.localeDefaults = localeDefaults;
+		this.options = mergeOptions([ // merge defaults and overrides. lowest to highest precedence
+			Calendar.defaults, // global defaults
+			dirDefaults,
+			localeDefaults,
+			this.overrides,
+			this.dynamicOverrides
+		]);
+		populateInstanceComputableOptions(this.options); // fill in gaps with computed options
+	},
+
+
+	// Gets information about how to create a view. Will use a cache.
+	getViewSpec: function(viewType) {
+		var cache = this.viewSpecCache;
+
+		return cache[viewType] || (cache[viewType] = this.buildViewSpec(viewType));
+	},
+
+
+	// Given a duration singular unit, like "week" or "day", finds a matching view spec.
+	// Preference is given to views that have corresponding buttons.
+	getUnitViewSpec: function(unit) {
+		var viewTypes;
+		var i;
+		var spec;
+
+		if ($.inArray(unit, intervalUnits) != -1) {
+
+			// put views that have buttons first. there will be duplicates, but oh well
+			viewTypes = this.header.getViewsWithButtons();
+			$.each(FC.views, function(viewType) { // all views
+				viewTypes.push(viewType);
+			});
+
+			for (i = 0; i < viewTypes.length; i++) {
+				spec = this.getViewSpec(viewTypes[i]);
+				if (spec) {
+					if (spec.singleUnit == unit) {
+						return spec;
+					}
+				}
+			}
+		}
+	},
+
+
+	// Builds an object with information on how to create a given view
+	buildViewSpec: function(requestedViewType) {
+		var viewOverrides = this.overrides.views || {};
+		var specChain = []; // for the view. lowest to highest priority
+		var defaultsChain = []; // for the view. lowest to highest priority
+		var overridesChain = []; // for the view. lowest to highest priority
+		var viewType = requestedViewType;
+		var spec; // for the view
+		var overrides; // for the view
+		var duration;
+		var unit;
+
+		// iterate from the specific view definition to a more general one until we hit an actual View class
+		while (viewType) {
+			spec = fcViews[viewType];
+			overrides = viewOverrides[viewType];
+			viewType = null; // clear. might repopulate for another iteration
+
+			if (typeof spec === 'function') { // TODO: deprecate
+				spec = { 'class': spec };
+			}
+
+			if (spec) {
+				specChain.unshift(spec);
+				defaultsChain.unshift(spec.defaults || {});
+				duration = duration || spec.duration;
+				viewType = viewType || spec.type;
+			}
+
+			if (overrides) {
+				overridesChain.unshift(overrides); // view-specific option hashes have options at zero-level
+				duration = duration || overrides.duration;
+				viewType = viewType || overrides.type;
+			}
+		}
+
+		spec = mergeProps(specChain);
+		spec.type = requestedViewType;
+		if (!spec['class']) {
+			return false;
+		}
+
+		if (duration) {
+			duration = moment.duration(duration);
+			if (duration.valueOf()) { // valid?
+				spec.duration = duration;
+				unit = computeIntervalUnit(duration);
+
+				// view is a single-unit duration, like "week" or "day"
+				// incorporate options for this. lowest priority
+				if (duration.as(unit) === 1) {
+					spec.singleUnit = unit;
+					overridesChain.unshift(viewOverrides[unit] || {});
+				}
+			}
+		}
+
+		spec.defaults = mergeOptions(defaultsChain);
+		spec.overrides = mergeOptions(overridesChain);
+
+		this.buildViewSpecOptions(spec);
+		this.buildViewSpecButtonText(spec, requestedViewType);
+
+		return spec;
+	},
+
+
+	// Builds and assigns a view spec's options object from its already-assigned defaults and overrides
+	buildViewSpecOptions: function(spec) {
+		spec.options = mergeOptions([ // lowest to highest priority
+			Calendar.defaults, // global defaults
+			spec.defaults, // view's defaults (from ViewSubclass.defaults)
+			this.dirDefaults,
+			this.localeDefaults, // locale and dir take precedence over view's defaults!
+			this.overrides, // calendar's overrides (options given to constructor)
+			spec.overrides, // view's overrides (view-specific options)
+			this.dynamicOverrides // dynamically set via setter. highest precedence
+		]);
+		populateInstanceComputableOptions(spec.options);
+	},
+
+
+	// Computes and assigns a view spec's buttonText-related options
+	buildViewSpecButtonText: function(spec, requestedViewType) {
+
+		// given an options object with a possible `buttonText` hash, lookup the buttonText for the
+		// requested view, falling back to a generic unit entry like "week" or "day"
+		function queryButtonText(options) {
+			var buttonText = options.buttonText || {};
+			return buttonText[requestedViewType] ||
+				// view can decide to look up a certain key
+				(spec.buttonTextKey ? buttonText[spec.buttonTextKey] : null) ||
+				// a key like "month"
+				(spec.singleUnit ? buttonText[spec.singleUnit] : null);
+		}
+
+		// highest to lowest priority
+		spec.buttonTextOverride =
+			queryButtonText(this.dynamicOverrides) ||
+			queryButtonText(this.overrides) || // constructor-specified buttonText lookup hash takes precedence
+			spec.overrides.buttonText; // `buttonText` for view-specific options is a string
+
+		// highest to lowest priority. mirrors buildViewSpecOptions
+		spec.buttonTextDefault =
+			queryButtonText(this.localeDefaults) ||
+			queryButtonText(this.dirDefaults) ||
+			spec.defaults.buttonText || // a single string. from ViewSubclass.defaults
+			queryButtonText(Calendar.defaults) ||
+			(spec.duration ? this.humanizeDuration(spec.duration) : null) || // like "3 days"
+			requestedViewType; // fall back to given view name
+	},
+
+
+	// Given a view name for a custom view or a standard view, creates a ready-to-go View object
+	instantiateView: function(viewType) {
+		var spec = this.getViewSpec(viewType);
+
+		return new spec['class'](this, viewType, spec.options, spec.duration);
+	},
+
+
+	// Returns a boolean about whether the view is okay to instantiate at some point
+	isValidViewType: function(viewType) {
+		return Boolean(this.getViewSpec(viewType));
+	},
+
+
+	// Should be called when any type of async data fetching begins
+	pushLoading: function() {
+		if (!(this.loadingLevel++)) {
+			this.trigger('loading', null, true, this.view);
+		}
+	},
+
+
+	// Should be called when any type of async data fetching completes
+	popLoading: function() {
+		if (!(--this.loadingLevel)) {
+			this.trigger('loading', null, false, this.view);
+		}
+	},
+
+
+	// Given arguments to the select method in the API, returns a span (unzoned start/end and other info)
+	buildSelectSpan: function(zonedStartInput, zonedEndInput) {
+		var start = this.moment(zonedStartInput).stripZone();
+		var end;
+
+		if (zonedEndInput) {
+			end = this.moment(zonedEndInput).stripZone();
+		}
+		else if (start.hasTime()) {
+			end = start.clone().add(this.defaultTimedEventDuration);
+		}
+		else {
+			end = start.clone().add(this.defaultAllDayEventDuration);
+		}
+
+		return { start: start, end: end };
+	}
+
+});
+
+
+Calendar.mixin(EmitterMixin);
+
+
+function Calendar_constructor(element, overrides) {
 	var t = this;
 
 
-
-	// Build options object
-	// -----------------------------------------------------------------------------------
-	// Precedence (lowest to highest): defaults, rtlDefaults, langOptions, instanceOptions
-
-	instanceOptions = instanceOptions || {};
-
-	var options = mergeOptions({}, defaults, instanceOptions);
-	var langOptions;
-
-	// determine language options
-	if (options.lang in langOptionHash) {
-		langOptions = langOptionHash[options.lang];
-	}
-	else {
-		langOptions = langOptionHash[defaults.lang];
-	}
-
-	if (langOptions) { // if language options exist, rebuild...
-		options = mergeOptions({}, defaults, langOptions, instanceOptions);
-	}
-
-	if (options.isRTL) { // is isRTL, rebuild...
-		options = mergeOptions({}, defaults, rtlDefaults, langOptions || {}, instanceOptions);
-	}
-
-
-	
 	// Exports
 	// -----------------------------------------------------------------------------------
 
-	t.options = options;
 	t.render = render;
 	t.destroy = destroy;
 	t.refetchEvents = refetchEvents;
+	t.refetchEventSources = refetchEventSources;
 	t.reportEvents = reportEvents;
 	t.reportEventChange = reportEventChange;
 	t.rerenderEvents = renderEvents; // `renderEvents` serves as a rerender. an API method
-	t.changeView = changeView;
+	t.changeView = renderView; // `renderView` will switch to another view
 	t.select = select;
 	t.unselect = unselect;
 	t.prev = prev;
@@ -6878,120 +9367,159 @@ var View = fc.View = Class.extend({
 	t.getDate = getDate;
 	t.getCalendar = getCalendar;
 	t.getView = getView;
-	t.option = option;
+	t.option = option; // getter/setter method
 	t.trigger = trigger;
-	t.isValidViewType = isValidViewType;
-	t.getViewButtonText = getViewButtonText;
 
 
-
-	// Language-data Internals
+	// Options
 	// -----------------------------------------------------------------------------------
-	// Apply overrides to the current language's data
+
+	t.dynamicOverrides = {};
+	t.viewSpecCache = {};
+	t.optionHandlers = {}; // for Calendar.options.js
+	t.overrides = $.extend({}, overrides); // make a copy
+
+	t.populateOptionsHash(); // sets this.options
 
 
-	var localeData = createObject( // make a cheap copy
-		getMomentLocaleData(options.lang) // will fall back to en
-	);
 
-	if (options.monthNames) {
-		localeData._months = options.monthNames;
-	}
-	if (options.monthNamesShort) {
-		localeData._monthsShort = options.monthNamesShort;
-	}
-	if (options.dayNames) {
-		localeData._weekdays = options.dayNames;
-	}
-	if (options.dayNamesShort) {
-		localeData._weekdaysShort = options.dayNamesShort;
-	}
-	if (options.firstDay != null) {
-		var _week = createObject(localeData._week); // _week: { dow: # }
-		_week.dow = options.firstDay;
-		localeData._week = _week;
-	}
+	// Locale-data Internals
+	// -----------------------------------------------------------------------------------
+	// Apply overrides to the current locale's data
 
+	var localeData;
+
+	// Called immediately, and when any of the options change.
+	// Happens before any internal objects rebuild or rerender, because this is very core.
+	t.bindOptions([
+		'locale', 'monthNames', 'monthNamesShort', 'dayNames', 'dayNamesShort', 'firstDay', 'weekNumberCalculation'
+	], function(locale, monthNames, monthNamesShort, dayNames, dayNamesShort, firstDay, weekNumberCalculation) {
+
+		// normalize
+		if (weekNumberCalculation === 'iso') {
+			weekNumberCalculation = 'ISO'; // normalize
+		}
+
+		localeData = createObject( // make a cheap copy
+			getMomentLocaleData(locale) // will fall back to en
+		);
+
+		if (monthNames) {
+			localeData._months = monthNames;
+		}
+		if (monthNamesShort) {
+			localeData._monthsShort = monthNamesShort;
+		}
+		if (dayNames) {
+			localeData._weekdays = dayNames;
+		}
+		if (dayNamesShort) {
+			localeData._weekdaysShort = dayNamesShort;
+		}
+
+		if (firstDay == null && weekNumberCalculation === 'ISO') {
+			firstDay = 1;
+		}
+		if (firstDay != null) {
+			var _week = createObject(localeData._week); // _week: { dow: # }
+			_week.dow = firstDay;
+			localeData._week = _week;
+		}
+
+		if ( // whitelist certain kinds of input
+			weekNumberCalculation === 'ISO' ||
+			weekNumberCalculation === 'local' ||
+			typeof weekNumberCalculation === 'function'
+		) {
+			localeData._fullCalendar_weekCalc = weekNumberCalculation; // moment-ext will know what to do with it
+		}
+
+		// If the internal current date object already exists, move to new locale.
+		// We do NOT need to do this technique for event dates, because this happens when converting to "segments".
+		if (date) {
+			localizeMoment(date); // sets to localeData
+		}
+	});
 
 
 	// Calendar-specific Date Utilities
 	// -----------------------------------------------------------------------------------
 
 
-	t.defaultAllDayEventDuration = moment.duration(options.defaultAllDayEventDuration);
-	t.defaultTimedEventDuration = moment.duration(options.defaultTimedEventDuration);
+	t.defaultAllDayEventDuration = moment.duration(t.options.defaultAllDayEventDuration);
+	t.defaultTimedEventDuration = moment.duration(t.options.defaultTimedEventDuration);
 
 
-	// Builds a moment using the settings of the current calendar: timezone and language.
+	// Builds a moment using the settings of the current calendar: timezone and locale.
 	// Accepts anything the vanilla moment() constructor accepts.
 	t.moment = function() {
 		var mom;
 
-		if (options.timezone === 'local') {
-			mom = fc.moment.apply(null, arguments);
+		if (t.options.timezone === 'local') {
+			mom = FC.moment.apply(null, arguments);
 
-			// Force the moment to be local, because fc.moment doesn't guarantee it.
+			// Force the moment to be local, because FC.moment doesn't guarantee it.
 			if (mom.hasTime()) { // don't give ambiguously-timed moments a local zone
 				mom.local();
 			}
 		}
-		else if (options.timezone === 'UTC') {
-			mom = fc.moment.utc.apply(null, arguments); // process as UTC
+		else if (t.options.timezone === 'UTC') {
+			mom = FC.moment.utc.apply(null, arguments); // process as UTC
 		}
 		else {
-			mom = fc.moment.parseZone.apply(null, arguments); // let the input decide the zone
+			mom = FC.moment.parseZone.apply(null, arguments); // let the input decide the zone
 		}
 
-		if ('_locale' in mom) { // moment 2.8 and above
-			mom._locale = localeData;
-		}
-		else { // pre-moment-2.8
-			mom._lang = localeData;
-		}
+		localizeMoment(mom);
 
 		return mom;
 	};
 
 
+	// Updates the given moment's locale settings to the current calendar locale settings.
+	function localizeMoment(mom) {
+		mom._locale = localeData;
+	}
+	t.localizeMoment = localizeMoment;
+
+
 	// Returns a boolean about whether or not the calendar knows how to calculate
 	// the timezone offset of arbitrary dates in the current timezone.
 	t.getIsAmbigTimezone = function() {
-		return options.timezone !== 'local' && options.timezone !== 'UTC';
+		return t.options.timezone !== 'local' && t.options.timezone !== 'UTC';
 	};
 
 
-	// Returns a copy of the given date in the current timezone of it is ambiguously zoned.
-	// This will also give the date an unambiguous time.
-	t.rezoneDate = function(date) {
-		return t.moment(date.toArray());
+	// Returns a copy of the given date in the current timezone. Has no effect on dates without times.
+	t.applyTimezone = function(date) {
+		if (!date.hasTime()) {
+			return date.clone();
+		}
+
+		var zonedDate = t.moment(date.toArray());
+		var timeAdjust = date.time() - zonedDate.time();
+		var adjustedZonedDate;
+
+		// Safari sometimes has problems with this coersion when near DST. Adjust if necessary. (bug #2396)
+		if (timeAdjust) { // is the time result different than expected?
+			adjustedZonedDate = zonedDate.clone().add(timeAdjust); // add milliseconds
+			if (date.time() - adjustedZonedDate.time() === 0) { // does it match perfectly now?
+				zonedDate = adjustedZonedDate;
+			}
+		}
+
+		return zonedDate;
 	};
 
 
-	// Returns a moment for the current date, as defined by the client's computer,
-	// or overridden by the `now` option.
+	// Returns a moment for the current date, as defined by the client's computer or from the `now` option.
+	// Will return an moment with an ambiguous timezone.
 	t.getNow = function() {
-		var now = options.now;
+		var now = t.options.now;
 		if (typeof now === 'function') {
 			now = now();
 		}
-		return t.moment(now);
-	};
-
-
-	// Calculates the week number for a moment according to the calendar's
-	// `weekNumberCalculation` setting.
-	t.calculateWeekNumber = function(mom) {
-		var calc = options.weekNumberCalculation;
-
-		if (typeof calc === 'function') {
-			return calc(mom);
-		}
-		else if (calc === 'local') {
-			return mom.week();
-		}
-		else if (calc.toUpperCase() === 'ISO') {
-			return mom.isoWeek();
-		}
+		return t.moment(now).stripZone();
 	};
 
 
@@ -7006,9 +9534,10 @@ var View = fc.View = Class.extend({
 	};
 
 
-	// Given an event's allDay status and start date, return swhat its fallback end date should be.
-	t.getDefaultEventEnd = function(allDay, start) { // TODO: rename to computeDefaultEventEnd
-		var end = start.clone();
+	// Given an event's allDay status and start date, return what its fallback end date should be.
+	// TODO: rename to computeDefaultEventEnd
+	t.getDefaultEventEnd = function(allDay, zonedStart) {
+		var end = zonedStart.clone();
 
 		if (allDay) {
 			end.stripTime().add(t.defaultAllDayEventDuration);
@@ -7027,10 +9556,9 @@ var View = fc.View = Class.extend({
 
 	// Produces a human-readable string for the given duration.
 	// Side-effect: changes the locale of the given duration.
-	function humanizeDuration(duration) {
-		return (duration.locale || duration.lang).call(duration, options.lang) // works moment-pre-2.8
-			.humanize();
-	}
+	t.humanizeDuration = function(duration) {
+		return duration.locale(t.options.locale).humanize();
+	};
 
 
 	
@@ -7038,9 +9566,10 @@ var View = fc.View = Class.extend({
 	// -----------------------------------------------------------------------------------
 
 
-	EventManager.call(t, options);
+	EventManager.call(t);
 	var isFetchNeeded = t.isFetchNeeded;
 	var fetchEvents = t.fetchEvents;
+	var fetchEventSources = t.fetchEventSources;
 
 
 
@@ -7050,16 +9579,15 @@ var View = fc.View = Class.extend({
 
 	var _element = element[0];
 	var header;
-	var headerElement;
 	var content;
 	var tm; // for making theme classes
-	var viewSpecCache = {};
-	var currentView;
+	var currentView; // NOTE: keep this in sync with this.view
+	var viewsByType = {}; // holds all instantiated view instances, current or not
 	var suggestedViewHeight;
 	var windowResizeProxy; // wraps the windowResize function
 	var ignoreWindowResize = 0;
-	var date;
 	var events = [];
+	var date; // unzoned
 	
 	
 	
@@ -7067,57 +9595,84 @@ var View = fc.View = Class.extend({
 	// -----------------------------------------------------------------------------------
 
 
-	if (options.defaultDate != null) {
-		date = t.moment(options.defaultDate);
+	// compute the initial ambig-timezone date
+	if (t.options.defaultDate != null) {
+		date = t.moment(t.options.defaultDate).stripZone();
 	}
 	else {
-		date = t.getNow();
+		date = t.getNow(); // getNow already returns unzoned
 	}
 	
 	
-	function render(inc) {
+	function render() {
 		if (!content) {
 			initialRender();
 		}
 		else if (elementVisible()) {
 			// mainly for the public API
 			calcSize();
-			renderView(inc);
+			renderView();
 		}
 	}
 	
 	
 	function initialRender() {
-		tm = options.theme ? 'ui' : 'fc';
 		element.addClass('fc');
 
-		if (options.isRTL) {
-			element.addClass('fc-rtl');
-		}
-		else {
-			element.addClass('fc-ltr');
-		}
+		// event delegation for nav links
+		element.on('click.fc', 'a[data-goto]', function(ev) {
+			var anchorEl = $(this);
+			var gotoOptions = anchorEl.data('goto'); // will automatically parse JSON
+			var date = t.moment(gotoOptions.date);
+			var viewType = gotoOptions.type;
 
-		if (options.theme) {
-			element.addClass('ui-widget');
-		}
-		else {
-			element.addClass('fc-unthemed');
-		}
+			// property like "navLinkDayClick". might be a string or a function
+			var customAction = currentView.opt('navLink' + capitaliseFirstLetter(viewType) + 'Click');
+
+			if (typeof customAction === 'function') {
+				customAction(date, ev);
+			}
+			else {
+				if (typeof customAction === 'string') {
+					viewType = customAction;
+				}
+				zoomTo(date, viewType);
+			}
+		});
+
+		// called immediately, and upon option change
+		t.bindOption('theme', function(theme) {
+			tm = theme ? 'ui' : 'fc'; // affects a larger scope
+			element.toggleClass('ui-widget', theme);
+			element.toggleClass('fc-unthemed', !theme);
+		});
+
+		// called immediately, and upon option change.
+		// HACK: locale often affects isRTL, so we explicitly listen to that too.
+		t.bindOptions([ 'isRTL', 'locale' ], function(isRTL) {
+			element.toggleClass('fc-ltr', !isRTL);
+			element.toggleClass('fc-rtl', isRTL);
+		});
 
 		content = $("<div class='fc-view-container'/>").prependTo(element);
 
-		header = new Header(t, options);
-		headerElement = header.render();
-		if (headerElement) {
-			element.prepend(headerElement);
-		}
+		header = t.header = new Header(t);
+		renderHeader();
 
-		changeView(options.defaultView);
+		renderView(t.options.defaultView);
 
-		if (options.handleWindowResize) {
-			windowResizeProxy = debounce(windowResize, options.windowResizeDelay); // prevents rapid calls
+		if (t.options.handleWindowResize) {
+			windowResizeProxy = debounce(windowResize, t.options.windowResizeDelay); // prevents rapid calls
 			$(window).resize(windowResizeProxy);
+		}
+	}
+
+
+	// can be called repeatedly and Header will rerender
+	function renderHeader() {
+		header.render();
+		if (header.el) {
+			element.prepend(header.el);
 		}
 	}
 	
@@ -7125,14 +9680,21 @@ var View = fc.View = Class.extend({
 	function destroy() {
 
 		if (currentView) {
-			currentView.destroyView();
+			currentView.removeElement();
+
+			// NOTE: don't null-out currentView/t.view in case API methods are called after destroy.
+			// It is still the "current" view, just not rendered.
 		}
 
-		header.destroy();
+		header.removeElement();
 		content.remove();
 		element.removeClass('fc fc-ltr fc-rtl fc-unthemed ui-widget');
 
-		$(window).unbind('resize', windowResizeProxy);
+		element.off('.fc'); // unbind nav link handlers
+
+		if (windowResizeProxy) {
+			$(window).unbind('resize', windowResizeProxy);
+		}
 	}
 	
 	
@@ -7146,61 +9708,50 @@ var View = fc.View = Class.extend({
 	// -----------------------------------------------------------------------------------
 
 
-	function changeView(viewType) {
-		renderView(0, viewType);
-	}
-
-
-	// Renders a view because of a date change, view-type change, or for the first time
-	function renderView(delta, viewType) {
+	// Renders a view because of a date change, view-type change, or for the first time.
+	// If not given a viewType, keep the current view but render different dates.
+	// Accepts an optional scroll state to restore to.
+	function renderView(viewType, explicitScrollState) {
 		ignoreWindowResize++;
 
-		// if viewType is changing, destroy the old view
+		// if viewType is changing, remove the old view's rendering
 		if (currentView && viewType && currentView.type !== viewType) {
-			header.deactivateButton(currentView.type);
 			freezeContentHeight(); // prevent a scroll jump when view element is removed
-			if (currentView.start) { // rendered before?
-				currentView.destroyView();
-			}
-			currentView.el.remove();
-			currentView = null;
+			clearView();
 		}
 
 		// if viewType changed, or the view was never created, create a fresh view
 		if (!currentView && viewType) {
-			currentView = instantiateView(viewType);
-			currentView.el =  $("<div class='fc-view fc-" + viewType + "-view' />").appendTo(content);
+			currentView = t.view =
+				viewsByType[viewType] ||
+				(viewsByType[viewType] = t.instantiateView(viewType));
+
+			currentView.setElement(
+				$("<div class='fc-view fc-" + viewType + "-view' />").appendTo(content)
+			);
 			header.activateButton(viewType);
 		}
 
 		if (currentView) {
 
-			// let the view determine what the delta means
-			if (delta < 0) {
-				date = currentView.computePrevDate(date);
-			}
-			else if (delta > 0) {
-				date = currentView.computeNextDate(date);
-			}
+			// in case the view should render a period of time that is completely hidden
+			date = currentView.massageCurrentDate(date);
 
 			// render or rerender the view
 			if (
-				!currentView.start || // never rendered before
-				delta || // explicit date window change
-				!date.isWithin(currentView.intervalStart, currentView.intervalEnd) // implicit date window change
+				!currentView.displaying ||
+				!( // NOT within interval range signals an implicit date window change
+					date >= currentView.intervalStart &&
+					date < currentView.intervalEnd
+				)
 			) {
 				if (elementVisible()) {
 
-					freezeContentHeight();
-					if (currentView.start) { // rendered before?
-						currentView.destroyView();
-					}
-					currentView.setDate(date);
-					currentView.renderView();
-					unfreezeContentHeight();
+					currentView.display(date, explicitScrollState); // will call freezeContentHeight
+					unfreezeContentHeight(); // immediately unfreeze regardless of whether display is async
 
 					// need to do this after View::render, so dates are calculated
-					updateTitle();
+					updateHeaderTitle();
 					updateTodayButton();
 
 					getAndRenderEvents();
@@ -7213,105 +9764,31 @@ var View = fc.View = Class.extend({
 	}
 
 
-
-	// View Instantiation
-	// -----------------------------------------------------------------------------------
-
-
-	// Given a view name for a custom view or a standard view, creates a ready-to-go View object
-	function instantiateView(viewType) {
-		var spec = getViewSpec(viewType);
-
-		return new spec['class'](t, spec.options, viewType);
+	// Unrenders the current view and reflects this change in the Header.
+	// Unregsiters the `currentView`, but does not remove from viewByType hash.
+	function clearView() {
+		header.deactivateButton(currentView.type);
+		currentView.removeElement();
+		currentView = t.view = null;
 	}
 
 
-	// Gets information about how to create a view
-	function getViewSpec(requestedViewType) {
-		var allDefaultButtonText = options.defaultButtonText || {};
-		var allButtonText = options.buttonText || {};
-		var hash = options.views || {}; // the `views` option object
-		var viewType = requestedViewType;
-		var viewOptionsChain = [];
-		var viewOptions;
-		var viewClass;
-		var duration, unit, unitIsSingle = false;
-		var buttonText;
+	// Destroys the view, including the view object. Then, re-instantiates it and renders it.
+	// Maintains the same scroll state.
+	// TODO: maintain any other user-manipulated state.
+	function reinitView() {
+		ignoreWindowResize++;
+		freezeContentHeight();
 
-		if (viewSpecCache[requestedViewType]) {
-			return viewSpecCache[requestedViewType];
-		}
+		var viewType = currentView.type;
+		var scrollState = currentView.queryScroll();
+		clearView();
+		renderView(viewType, scrollState);
 
-		function processSpecInput(input) {
-			if (typeof input === 'function') {
-				viewClass = input;
-			}
-			else if (typeof input === 'object') {
-				$.extend(viewOptions, input);
-			}
-		}
-
-		// iterate up a view's spec ancestor chain util we find a class to instantiate
-		while (viewType && !viewClass) {
-			viewOptions = {}; // only for this specific view in the ancestry
-			processSpecInput(fcViews[viewType]); // $.fullCalendar.views, lower precedence
-			processSpecInput(hash[viewType]); // options at initialization, higher precedence
-			viewOptionsChain.unshift(viewOptions); // record older ancestors first
-			viewType = viewOptions.type;
-		}
-
-		viewOptionsChain.unshift({}); // jQuery's extend needs at least one arg
-		viewOptions = $.extend.apply($, viewOptionsChain); // combine all, newer ancestors overwritting old
-
-		if (viewClass) {
-
-			duration = viewOptions.duration || viewClass.duration;
-			if (duration) {
-				duration = moment.duration(duration);
-				unit = computeIntervalUnit(duration);
-				unitIsSingle = computeIntervalAs(unit, duration) === 1;
-			}
-
-			// options that are specified per the view's duration, like "week" or "day"
-			if (unitIsSingle && hash[unit]) {
-				viewOptions = $.extend({}, hash[unit], viewOptions); // lowest priority
-			}
-
-			// compute the final text for the button representing this view
-			buttonText =
-				allButtonText[requestedViewType] || // init options, like "agendaWeek"
-				(unitIsSingle ? allButtonText[unit] : null) || // init options, like "week"
-				allDefaultButtonText[requestedViewType] || // lang data, like "agendaWeek"
-				(unitIsSingle ? allDefaultButtonText[unit] : null) || // lang data, like "week"
-				viewOptions.buttonText ||
-				viewClass.buttonText ||
-				(duration ? humanizeDuration(duration) : null) ||
-				requestedViewType;
-
-			return (viewSpecCache[requestedViewType] = {
-				'class': viewClass,
-				options: viewOptions,
-				buttonText: buttonText
-			});
-		}
+		unfreezeContentHeight();
+		ignoreWindowResize--;
 	}
 
-
-	// Returns a boolean about whether the view is okay to instantiate at some point
-	function isValidViewType(viewType) {
-		return Boolean(getViewSpec(viewType));
-	}
-
-
-	// Gets the text that should be displayed on a view's button in the header
-	function getViewButtonText(viewType) {
-		var spec = getViewSpec(viewType);
-
-		if (spec) {
-			return spec.buttonText;
-		}
-	}
-	
 	
 
 	// Resizing
@@ -7327,7 +9804,7 @@ var View = fc.View = Class.extend({
 
 
 	t.isHeightAuto = function() {
-		return options.contentHeight === 'auto' || options.height === 'auto';
+		return t.options.contentHeight === 'auto' || t.options.height === 'auto';
 	};
 	
 	
@@ -7355,15 +9832,32 @@ var View = fc.View = Class.extend({
 	
 	
 	function _calcSize() { // assumes elementVisible
-		if (typeof options.contentHeight === 'number') { // exists and not 'auto'
-			suggestedViewHeight = options.contentHeight;
+		var contentHeightInput = t.options.contentHeight;
+		var heightInput = t.options.height;
+
+		if (typeof contentHeightInput === 'number') { // exists and not 'auto'
+			suggestedViewHeight = contentHeightInput;
 		}
-		else if (typeof options.height === 'number') { // exists and not 'auto'
-			suggestedViewHeight = options.height - (headerElement ? headerElement.outerHeight(true) : 0);
+		else if (typeof contentHeightInput === 'function') { // exists and is a function
+			suggestedViewHeight = contentHeightInput();
+		}
+		else if (typeof heightInput === 'number') { // exists and not 'auto'
+			suggestedViewHeight = heightInput - queryHeaderHeight();
+		}
+		else if (typeof heightInput === 'function') { // exists and is a function
+			suggestedViewHeight = heightInput() - queryHeaderHeight();
+		}
+		else if (heightInput === 'parent') { // set to height of parent element
+			suggestedViewHeight = element.parent().height() - queryHeaderHeight();
 		}
 		else {
-			suggestedViewHeight = Math.round(content.width() / Math.max(options.aspectRatio, .5));
+			suggestedViewHeight = Math.round(content.width() / Math.max(t.options.aspectRatio, .5));
 		}
+	}
+
+
+	function queryHeaderHeight() {
+		return header.el ? header.el.outerHeight(true) : 0; // includes margin
 	}
 	
 	
@@ -7387,30 +9881,27 @@ var View = fc.View = Class.extend({
 
 
 	function refetchEvents() { // can be called as an API method
-		destroyEvents(); // so that events are cleared before user starts waiting for AJAX
 		fetchAndRenderEvents();
+	}
+
+
+	// TODO: move this into EventManager?
+	function refetchEventSources(matchInputs) {
+		fetchEventSources(t.getEventSourcesByMatchArray(matchInputs));
 	}
 
 
 	function renderEvents() { // destroys old events if previously rendered
 		if (elementVisible()) {
 			freezeContentHeight();
-			currentView.destroyViewEvents(); // no performance cost if never rendered
-			currentView.renderViewEvents(events);
+			currentView.displayEvents(events);
 			unfreezeContentHeight();
 		}
-	}
-
-
-	function destroyEvents() {
-		freezeContentHeight();
-		currentView.destroyViewEvents();
-		unfreezeContentHeight();
 	}
 	
 
 	function getAndRenderEvents() {
-		if (!options.lazyFetching || isFetchNeeded(currentView.start, currentView.end)) {
+		if (!t.options.lazyFetching || isFetchNeeded(currentView.start, currentView.end)) {
 			fetchAndRenderEvents();
 		}
 		else {
@@ -7444,14 +9935,15 @@ var View = fc.View = Class.extend({
 	-----------------------------------------------------------------------------*/
 
 
-	function updateTitle() {
-		header.updateTitle(currentView.computeTitle());
+	function updateHeaderTitle() {
+		header.updateTitle(currentView.title);
 	}
 
 
 	function updateTodayButton() {
 		var now = t.getNow();
-		if (now.isWithin(currentView.intervalStart, currentView.intervalEnd)) {
+
+		if (now >= currentView.intervalStart && now < currentView.intervalEnd) {
 			header.disableButton('today');
 		}
 		else {
@@ -7465,20 +9957,11 @@ var View = fc.View = Class.extend({
 	-----------------------------------------------------------------------------*/
 	
 
-	function select(start, end) {
-
-		start = t.moment(start);
-		if (end) {
-			end = t.moment(end);
-		}
-		else if (start.hasTime()) {
-			end = start.clone().add(t.defaultTimedEventDuration);
-		}
-		else {
-			end = start.clone().add(t.defaultAllDayEventDuration);
-		}
-
-		currentView.select({ start: start, end: end }); // accepts a range
+	// this public method receives start/end dates in any format, with any timezone
+	function select(zonedStartInput, zonedEndInput) {
+		currentView.select(
+			t.buildSelectSpan.apply(t, arguments)
+		);
 	}
 	
 
@@ -7495,12 +9978,14 @@ var View = fc.View = Class.extend({
 	
 	
 	function prev() {
-		renderView(-1);
+		date = currentView.computePrevDate(date);
+		renderView();
 	}
 	
 	
 	function next() {
-		renderView(1);
+		date = currentView.computeNextDate(date);
+		renderView();
 	}
 	
 	
@@ -7522,8 +10007,8 @@ var View = fc.View = Class.extend({
 	}
 	
 	
-	function gotoDate(dateInput) {
-		date = t.moment(dateInput);
+	function gotoDate(zonedDateInput) {
+		date = t.moment(zonedDateInput).stripZone();
 		renderView();
 	}
 	
@@ -7537,37 +10022,29 @@ var View = fc.View = Class.extend({
 	// Forces navigation to a view for the given date.
 	// `viewType` can be a specific view name or a generic one like "week" or "day".
 	function zoomTo(newDate, viewType) {
-		var viewStr;
-		var match;
+		var spec;
 
-		if (!viewType || !isValidViewType(viewType)) { // a general view name, or "auto"
-			viewType = viewType || 'day';
-			viewStr = header.getViewsWithButtons().join(' '); // space-separated string of all the views in the header
+		viewType = viewType || 'day'; // day is default zoom
+		spec = t.getViewSpec(viewType) || t.getUnitViewSpec(viewType);
 
-			// try to match a general view name, like "week", against a specific one, like "agendaWeek"
-			match = viewStr.match(new RegExp('\\w+' + capitaliseFirstLetter(viewType)));
-
-			// fall back to the day view being used in the header
-			if (!match) {
-				match = viewStr.match(/\w+Day/);
-			}
-
-			viewType = match ? match[0] : 'agendaDay'; // fall back to agendaDay
-		}
-
-		date = newDate;
-		changeView(viewType);
+		date = newDate.clone();
+		renderView(spec ? spec.type : null);
 	}
 	
 	
+	// for external API
 	function getDate() {
-		return date.clone();
+		return t.applyTimezone(date); // infuse the calendar's timezone
 	}
 
 
 
 	/* Height "Freezing"
 	-----------------------------------------------------------------------------*/
+	// TODO: move this into the view
+
+	t.freezeContentHeight = freezeContentHeight;
+	t.unfreezeContentHeight = unfreezeContentHeight;
 
 
 	function freezeContentHeight() {
@@ -7604,74 +10081,534 @@ var View = fc.View = Class.extend({
 	
 	
 	function option(name, value) {
-		if (value === undefined) {
-			return options[name];
+		var newOptionHash;
+
+		if (typeof name === 'string') {
+			if (value === undefined) { // getter
+				return t.options[name];
+			}
+			else { // setter for individual option
+				newOptionHash = {};
+				newOptionHash[name] = value;
+				setOptions(newOptionHash);
+			}
 		}
-		if (name == 'height' || name == 'contentHeight' || name == 'aspectRatio') {
-			options[name] = value;
-			updateSize(true); // true = allow recalculation of height
-		}
-	}
-	
-	
-	function trigger(name, thisObj) {
-		if (options[name]) {
-			return options[name].apply(
-				thisObj || _element,
-				Array.prototype.slice.call(arguments, 2)
-			);
+		else if (typeof name === 'object') { // compound setter with object input
+			setOptions(name);
 		}
 	}
 
+
+	function setOptions(newOptionHash) {
+		var optionCnt = 0;
+		var optionName;
+
+		for (optionName in newOptionHash) {
+			t.dynamicOverrides[optionName] = newOptionHash[optionName];
+		}
+
+		t.viewSpecCache = {}; // the dynamic override invalidates the options in this cache, so just clear it
+		t.populateOptionsHash(); // this.options needs to be recomputed after the dynamic override
+
+		// trigger handlers after this.options has been updated
+		for (optionName in newOptionHash) {
+			t.triggerOptionHandlers(optionName); // recall bindOption/bindOptions
+			optionCnt++;
+		}
+
+		// special-case handling of single option change.
+		// if only one option change, `optionName` will be its name.
+		if (optionCnt === 1) {
+			if (optionName === 'height' || optionName === 'contentHeight' || optionName === 'aspectRatio') {
+				updateSize(true); // true = allow recalculation of height
+				return;
+			}
+			else if (optionName === 'defaultDate') {
+				return; // can't change date this way. use gotoDate instead
+			}
+			else if (optionName === 'businessHours') {
+				if (currentView) {
+					currentView.unrenderBusinessHours();
+					currentView.renderBusinessHours();
+				}
+				return;
+			}
+			else if (optionName === 'timezone') {
+				t.rezoneArrayEventSources();
+				refetchEvents();
+				return;
+			}
+		}
+
+		// catch-all. rerender the header and rebuild/rerender the current view
+		renderHeader();
+		viewsByType = {}; // even non-current views will be affected by this option change. do before rerender
+		reinitView();
+	}
+	
+	
+	function trigger(name, thisObj) { // overrides the Emitter's trigger method :(
+		var args = Array.prototype.slice.call(arguments, 2);
+
+		thisObj = thisObj || _element;
+		this.triggerWith(name, thisObj, args); // Emitter's method
+
+		if (t.options[name]) {
+			return t.options[name].apply(thisObj, args);
+		}
+	}
+
+	t.initialize();
 }
 
-    /* Top toolbar area with buttons and title
+;;
+/*
+Options binding/triggering system.
+*/
+Calendar.mixin({
+
+	// A map of option names to arrays of handler objects. Initialized to {} in Calendar.
+	// Format for a handler object:
+	// {
+	//   func // callback function to be called upon change
+	//   names // option names whose values should be given to func
+	// }
+	optionHandlers: null, 
+
+	// Calls handlerFunc immediately, and when the given option has changed.
+	// handlerFunc will be given the option value.
+	bindOption: function(optionName, handlerFunc) {
+		this.bindOptions([ optionName ], handlerFunc);
+	},
+
+	// Calls handlerFunc immediately, and when any of the given options change.
+	// handlerFunc will be given each option value as ordered function arguments.
+	bindOptions: function(optionNames, handlerFunc) {
+		var handlerObj = { func: handlerFunc, names: optionNames };
+		var i;
+
+		for (i = 0; i < optionNames.length; i++) {
+			this.registerOptionHandlerObj(optionNames[i], handlerObj);
+		}
+
+		this.triggerOptionHandlerObj(handlerObj);
+	},
+
+	// Puts the given handler object into the internal hash
+	registerOptionHandlerObj: function(optionName, handlerObj) {
+		(this.optionHandlers[optionName] || (this.optionHandlers[optionName] = []))
+			.push(handlerObj);
+	},
+
+	// Reports that the given option has changed, and calls all appropriate handlers.
+	triggerOptionHandlers: function(optionName) {
+		var handlerObjs = this.optionHandlers[optionName] || [];
+		var i;
+
+		for (i = 0; i < handlerObjs.length; i++) {
+			this.triggerOptionHandlerObj(handlerObjs[i]);
+		}
+	},
+
+	// Calls the callback for a specific handler object, passing in the appropriate arguments.
+	triggerOptionHandlerObj: function(handlerObj) {
+		var optionNames = handlerObj.names;
+		var optionValues = [];
+		var i;
+
+		for (i = 0; i < optionNames.length; i++) {
+			optionValues.push(this.options[optionNames[i]]);
+		}
+
+		handlerObj.func.apply(this, optionValues); // maintain the Calendar's `this` context
+	}
+
+});
+
+;;
+
+Calendar.defaults = {
+
+	titleRangeSeparator: ' \u2013 ', // en dash
+	monthYearFormat: 'MMMM YYYY', // required for en. other locales rely on datepicker computable option
+
+	defaultTimedEventDuration: '02:00:00',
+	defaultAllDayEventDuration: { days: 1 },
+	forceEventDuration: false,
+	nextDayThreshold: '09:00:00', // 9am
+
+	// display
+	defaultView: 'month',
+	aspectRatio: 1.35,
+	header: {
+		left: 'title',
+		center: '',
+		right: 'today prev,next'
+	},
+	weekends: true,
+	weekNumbers: false,
+
+	weekNumberTitle: 'W',
+	weekNumberCalculation: 'local',
+	
+	//editable: false,
+
+	//nowIndicator: false,
+
+	scrollTime: '06:00:00',
+	
+	// event ajax
+	lazyFetching: true,
+	startParam: 'start',
+	endParam: 'end',
+	timezoneParam: 'timezone',
+
+	timezone: false,
+
+	//allDayDefault: undefined,
+
+	// locale
+	isRTL: false,
+	buttonText: {
+		prev: "prev",
+		next: "next",
+		prevYear: "prev year",
+		nextYear: "next year",
+		year: 'year', // TODO: locale files need to specify this
+		today: 'today',
+		month: 'month',
+		week: 'week',
+		day: 'day'
+	},
+
+	buttonIcons: {
+		prev: 'left-single-arrow',
+		next: 'right-single-arrow',
+		prevYear: 'left-double-arrow',
+		nextYear: 'right-double-arrow'
+	},
+
+	allDayText: 'all-day',
+	
+	// jquery-ui theming
+	theme: false,
+	themeButtonIcons: {
+		prev: 'circle-triangle-w',
+		next: 'circle-triangle-e',
+		prevYear: 'seek-prev',
+		nextYear: 'seek-next'
+	},
+
+	//eventResizableFromStart: false,
+	dragOpacity: .75,
+	dragRevertDuration: 500,
+	dragScroll: true,
+	
+	//selectable: false,
+	unselectAuto: true,
+	
+	dropAccept: '*',
+
+	eventOrder: 'title',
+
+	eventLimit: false,
+	eventLimitText: 'more',
+	eventLimitClick: 'popover',
+	dayPopoverFormat: 'LL',
+	
+	handleWindowResize: true,
+	windowResizeDelay: 100, // milliseconds before an updateSize happens
+
+	longPressDelay: 1000
+	
+};
+
+
+Calendar.englishDefaults = { // used by locale.js
+	dayPopoverFormat: 'dddd, MMMM D'
+};
+
+
+Calendar.rtlDefaults = { // right-to-left defaults
+	header: { // TODO: smarter solution (first/center/last ?)
+		left: 'next,prev today',
+		center: '',
+		right: 'title'
+	},
+	buttonIcons: {
+		prev: 'right-single-arrow',
+		next: 'left-single-arrow',
+		prevYear: 'right-double-arrow',
+		nextYear: 'left-double-arrow'
+	},
+	themeButtonIcons: {
+		prev: 'circle-triangle-e',
+		next: 'circle-triangle-w',
+		nextYear: 'seek-prev',
+		prevYear: 'seek-next'
+	}
+};
+
+;;
+
+var localeOptionHash = FC.locales = {}; // initialize and expose
+
+
+// TODO: document the structure and ordering of a FullCalendar locale file
+
+
+// Initialize jQuery UI datepicker translations while using some of the translations
+// Will set this as the default locales for datepicker.
+FC.datepickerLocale = function(localeCode, dpLocaleCode, dpOptions) {
+
+	// get the FullCalendar internal option hash for this locale. create if necessary
+	var fcOptions = localeOptionHash[localeCode] || (localeOptionHash[localeCode] = {});
+
+	// transfer some simple options from datepicker to fc
+	fcOptions.isRTL = dpOptions.isRTL;
+	fcOptions.weekNumberTitle = dpOptions.weekHeader;
+
+	// compute some more complex options from datepicker
+	$.each(dpComputableOptions, function(name, func) {
+		fcOptions[name] = func(dpOptions);
+	});
+
+	// is jQuery UI Datepicker is on the page?
+	if ($.datepicker) {
+
+		// Register the locale data.
+		// FullCalendar and MomentJS use locale codes like "pt-br" but Datepicker
+		// does it like "pt-BR" or if it doesn't have the locale, maybe just "pt".
+		// Make an alias so the locale can be referenced either way.
+		$.datepicker.regional[dpLocaleCode] =
+			$.datepicker.regional[localeCode] = // alias
+				dpOptions;
+
+		// Alias 'en' to the default locale data. Do this every time.
+		$.datepicker.regional.en = $.datepicker.regional[''];
+
+		// Set as Datepicker's global defaults.
+		$.datepicker.setDefaults(dpOptions);
+	}
+};
+
+
+// Sets FullCalendar-specific translations. Will set the locales as the global default.
+FC.locale = function(localeCode, newFcOptions) {
+	var fcOptions;
+	var momOptions;
+
+	// get the FullCalendar internal option hash for this locale. create if necessary
+	fcOptions = localeOptionHash[localeCode] || (localeOptionHash[localeCode] = {});
+
+	// provided new options for this locales? merge them in
+	if (newFcOptions) {
+		fcOptions = localeOptionHash[localeCode] = mergeOptions([ fcOptions, newFcOptions ]);
+	}
+
+	// compute locale options that weren't defined.
+	// always do this. newFcOptions can be undefined when initializing from i18n file,
+	// so no way to tell if this is an initialization or a default-setting.
+	momOptions = getMomentLocaleData(localeCode); // will fall back to en
+	$.each(momComputableOptions, function(name, func) {
+		if (fcOptions[name] == null) {
+			fcOptions[name] = func(momOptions, fcOptions);
+		}
+	});
+
+	// set it as the default locale for FullCalendar
+	Calendar.defaults.locale = localeCode;
+};
+
+
+// NOTE: can't guarantee any of these computations will run because not every locale has datepicker
+// configs, so make sure there are English fallbacks for these in the defaults file.
+var dpComputableOptions = {
+
+	buttonText: function(dpOptions) {
+		return {
+			// the translations sometimes wrongly contain HTML entities
+			prev: stripHtmlEntities(dpOptions.prevText),
+			next: stripHtmlEntities(dpOptions.nextText),
+			today: stripHtmlEntities(dpOptions.currentText)
+		};
+	},
+
+	// Produces format strings like "MMMM YYYY" -> "September 2014"
+	monthYearFormat: function(dpOptions) {
+		return dpOptions.showMonthAfterYear ?
+			'YYYY[' + dpOptions.yearSuffix + '] MMMM' :
+			'MMMM YYYY[' + dpOptions.yearSuffix + ']';
+	}
+
+};
+
+var momComputableOptions = {
+
+	// Produces format strings like "ddd M/D" -> "Fri 9/15"
+	dayOfMonthFormat: function(momOptions, fcOptions) {
+		var format = momOptions.longDateFormat('l'); // for the format like "M/D/YYYY"
+
+		// strip the year off the edge, as well as other misc non-whitespace chars
+		format = format.replace(/^Y+[^\w\s]*|[^\w\s]*Y+$/g, '');
+
+		if (fcOptions.isRTL) {
+			format += ' ddd'; // for RTL, add day-of-week to end
+		}
+		else {
+			format = 'ddd ' + format; // for LTR, add day-of-week to beginning
+		}
+		return format;
+	},
+
+	// Produces format strings like "h:mma" -> "6:00pm"
+	mediumTimeFormat: function(momOptions) { // can't be called `timeFormat` because collides with option
+		return momOptions.longDateFormat('LT')
+			.replace(/\s*a$/i, 'a'); // convert AM/PM/am/pm to lowercase. remove any spaces beforehand
+	},
+
+	// Produces format strings like "h(:mm)a" -> "6pm" / "6:30pm"
+	smallTimeFormat: function(momOptions) {
+		return momOptions.longDateFormat('LT')
+			.replace(':mm', '(:mm)')
+			.replace(/(\Wmm)$/, '($1)') // like above, but for foreign locales
+			.replace(/\s*a$/i, 'a'); // convert AM/PM/am/pm to lowercase. remove any spaces beforehand
+	},
+
+	// Produces format strings like "h(:mm)t" -> "6p" / "6:30p"
+	extraSmallTimeFormat: function(momOptions) {
+		return momOptions.longDateFormat('LT')
+			.replace(':mm', '(:mm)')
+			.replace(/(\Wmm)$/, '($1)') // like above, but for foreign locales
+			.replace(/\s*a$/i, 't'); // convert to AM/PM/am/pm to lowercase one-letter. remove any spaces beforehand
+	},
+
+	// Produces format strings like "ha" / "H" -> "6pm" / "18"
+	hourFormat: function(momOptions) {
+		return momOptions.longDateFormat('LT')
+			.replace(':mm', '')
+			.replace(/(\Wmm)$/, '') // like above, but for foreign locales
+			.replace(/\s*a$/i, 'a'); // convert AM/PM/am/pm to lowercase. remove any spaces beforehand
+	},
+
+	// Produces format strings like "h:mm" -> "6:30" (with no AM/PM)
+	noMeridiemTimeFormat: function(momOptions) {
+		return momOptions.longDateFormat('LT')
+			.replace(/\s*a$/i, ''); // remove trailing AM/PM
+	}
+
+};
+
+
+// options that should be computed off live calendar options (considers override options)
+// TODO: best place for this? related to locale?
+// TODO: flipping text based on isRTL is a bad idea because the CSS `direction` might want to handle it
+var instanceComputableOptions = {
+
+	// Produces format strings for results like "Mo 16"
+	smallDayDateFormat: function(options) {
+		return options.isRTL ?
+			'D dd' :
+			'dd D';
+	},
+
+	// Produces format strings for results like "Wk 5"
+	weekFormat: function(options) {
+		return options.isRTL ?
+			'w[ ' + options.weekNumberTitle + ']' :
+			'[' + options.weekNumberTitle + ' ]w';
+	},
+
+	// Produces format strings for results like "Wk5"
+	smallWeekFormat: function(options) {
+		return options.isRTL ?
+			'w[' + options.weekNumberTitle + ']' :
+			'[' + options.weekNumberTitle + ']w';
+	}
+
+};
+
+function populateInstanceComputableOptions(options) {
+	$.each(instanceComputableOptions, function(name, func) {
+		if (options[name] == null) {
+			options[name] = func(options);
+		}
+	});
+}
+
+
+// Returns moment's internal locale data. If doesn't exist, returns English.
+function getMomentLocaleData(localeCode) {
+	return moment.localeData(localeCode) || moment.localeData('en');
+}
+
+
+// Initialize English by forcing computation of moment-derived options.
+// Also, sets it as the default.
+FC.locale('en', Calendar.englishDefaults);
+
+;;
+
+/* Top toolbar area with buttons and title
 ----------------------------------------------------------------------------------------------------------------------*/
 // TODO: rename all header-related things to "toolbar"
 
-function Header(calendar, options) {
+function Header(calendar) {
 	var t = this;
 	
 	// exports
 	t.render = render;
-	t.destroy = destroy;
+	t.removeElement = removeElement;
 	t.updateTitle = updateTitle;
 	t.activateButton = activateButton;
 	t.deactivateButton = deactivateButton;
 	t.disableButton = disableButton;
 	t.enableButton = enableButton;
 	t.getViewsWithButtons = getViewsWithButtons;
+	t.el = null; // mirrors local `el`
 	
 	// locals
-	var el = $();
+	var el;
 	var viewsWithButtons = [];
 	var tm;
 
 
+	// can be called repeatedly and will rerender
 	function render() {
+		var options = calendar.options;
 		var sections = options.header;
 
 		tm = options.theme ? 'ui' : 'fc';
 
 		if (sections) {
-			el = $("<div class='fc-toolbar'/>")
-				.append(renderSection('left'))
+			if (!el) {
+				el = this.el = $("<div class='fc-toolbar'/>");
+			}
+			else {
+				el.empty();
+			}
+			el.append(renderSection('left'))
 				.append(renderSection('right'))
 				.append(renderSection('center'))
 				.append('<div class="fc-clear"/>');
-
-			return el;
+		}
+		else {
+			removeElement();
 		}
 	}
 	
 	
-	function destroy() {
-		el.remove();
+	function removeElement() {
+		if (el) {
+			el.remove();
+			el = t.el = null;
+		}
 	}
 	
 	
 	function renderSection(position) {
 		var sectionEl = $('<div class="fc-' + position + '"/>');
+		var options = calendar.options;
 		var buttonStr = options.header[position];
 
 		if (buttonStr) {
@@ -7681,43 +10618,61 @@ function Header(calendar, options) {
 				var groupEl;
 
 				$.each(this.split(','), function(j, buttonName) {
+					var customButtonProps;
+					var viewSpec;
 					var buttonClick;
+					var overrideText; // text explicitly set by calendar's constructor options. overcomes icons
+					var defaultText;
 					var themeIcon;
 					var normalIcon;
-					var defaultText;
-					var viewText; // highest priority
-					var customText;
 					var innerHtml;
 					var classes;
-					var button;
+					var button; // the element
 
 					if (buttonName == 'title') {
 						groupChildren = groupChildren.add($('<h2>&nbsp;</h2>')); // we always want it to take up height
 						isOnlyButtons = false;
 					}
 					else {
-						if (calendar[buttonName]) { // a calendar method
-							buttonClick = function() {
-								calendar[buttonName]();
+						if ((customButtonProps = (options.customButtons || {})[buttonName])) {
+							buttonClick = function(ev) {
+								if (customButtonProps.click) {
+									customButtonProps.click.call(button[0], ev);
+								}
 							};
+							overrideText = ''; // icons will override text
+							defaultText = customButtonProps.text;
 						}
-						else if (calendar.isValidViewType(buttonName)) { // a view type
+						else if ((viewSpec = calendar.getViewSpec(buttonName))) {
 							buttonClick = function() {
 								calendar.changeView(buttonName);
 							};
 							viewsWithButtons.push(buttonName);
-							viewText = calendar.getViewButtonText(buttonName);
+							overrideText = viewSpec.buttonTextOverride;
+							defaultText = viewSpec.buttonTextDefault;
 						}
+						else if (calendar[buttonName]) { // a calendar method
+							buttonClick = function() {
+								calendar[buttonName]();
+							};
+							overrideText = (calendar.overrides.buttonText || {})[buttonName];
+							defaultText = options.buttonText[buttonName]; // everything else is considered default
+						}
+
 						if (buttonClick) {
 
-							// smartProperty allows different text per view button (ex: "Agenda Week" vs "Basic Week")
-							themeIcon = smartProperty(options.themeButtonIcons, buttonName);
-							normalIcon = smartProperty(options.buttonIcons, buttonName);
-							defaultText = smartProperty(options.defaultButtonText, buttonName); // from languages
-							customText = smartProperty(options.buttonText, buttonName);
+							themeIcon =
+								customButtonProps ?
+									customButtonProps.themeIcon :
+									options.themeButtonIcons[buttonName];
 
-							if (viewText || customText) {
-								innerHtml = htmlEscape(viewText || customText);
+							normalIcon =
+								customButtonProps ?
+									customButtonProps.icon :
+									options.buttonIcons[buttonName];
+
+							if (overrideText) {
+								innerHtml = htmlEscape(overrideText);
 							}
 							else if (themeIcon && options.theme) {
 								innerHtml = "<span class='ui-icon ui-icon-" + themeIcon + "'></span>";
@@ -7726,7 +10681,7 @@ function Header(calendar, options) {
 								innerHtml = "<span class='fc-icon fc-icon-" + normalIcon + "'></span>";
 							}
 							else {
-								innerHtml = htmlEscape(defaultText || buttonName);
+								innerHtml = htmlEscape(defaultText);
 							}
 
 							classes = [
@@ -7740,11 +10695,11 @@ function Header(calendar, options) {
 									innerHtml +
 								'</button>'
 								)
-								.click(function() {
+								.click(function(ev) {
 									// don't process clicks for disabled buttons
 									if (!button.hasClass(tm + '-state-disabled')) {
 
-										buttonClick();
+										buttonClick(ev);
 
 										// after the click action, if the button becomes the "active" tab, or disabled,
 										// it should never have a hover class, so remove it now.
@@ -7815,33 +10770,43 @@ function Header(calendar, options) {
 	
 	
 	function updateTitle(text) {
-		el.find('h2').text(text);
+		if (el) {
+			el.find('h2').text(text);
+		}
 	}
 	
 	
 	function activateButton(buttonName) {
-		el.find('.fc-' + buttonName + '-button')
-			.addClass(tm + '-state-active');
+		if (el) {
+			el.find('.fc-' + buttonName + '-button')
+				.addClass(tm + '-state-active');
+		}
 	}
 	
 	
 	function deactivateButton(buttonName) {
-		el.find('.fc-' + buttonName + '-button')
-			.removeClass(tm + '-state-active');
+		if (el) {
+			el.find('.fc-' + buttonName + '-button')
+				.removeClass(tm + '-state-active');
+		}
 	}
 	
 	
 	function disableButton(buttonName) {
-		el.find('.fc-' + buttonName + '-button')
-			.attr('disabled', 'disabled')
-			.addClass(tm + '-state-disabled');
+		if (el) {
+			el.find('.fc-' + buttonName + '-button')
+				.prop('disabled', true)
+				.addClass(tm + '-state-disabled');
+		}
 	}
 	
 	
 	function enableButton(buttonName) {
-		el.find('.fc-' + buttonName + '-button')
-			.removeAttr('disabled')
-			.removeClass(tm + '-state-disabled');
+		if (el) {
+			el.find('.fc-' + buttonName + '-button')
+				.prop('disabled', false)
+				.removeClass(tm + '-state-disabled');
+		}
 	}
 
 
@@ -7851,8 +10816,10 @@ function Header(calendar, options) {
 
 }
 
-    fc.sourceNormalizers = [];
-fc.sourceFetchers = [];
+;;
+
+FC.sourceNormalizers = [];
+FC.sourceFetchers = [];
 
 var ajaxDefaults = {
 	dataType: 'json',
@@ -7862,27 +10829,31 @@ var ajaxDefaults = {
 var eventGUID = 1;
 
 
-function EventManager(options) { // assumed to be a calendar
+function EventManager() { // assumed to be a calendar
 	var t = this;
 	
 	
 	// exports
 	t.isFetchNeeded = isFetchNeeded;
 	t.fetchEvents = fetchEvents;
+	t.fetchEventSources = fetchEventSources;
+	t.getEventSources = getEventSources;
+	t.getEventSourceById = getEventSourceById;
+	t.getEventSourcesByMatchArray = getEventSourcesByMatchArray;
+	t.getEventSourcesByMatch = getEventSourcesByMatch;
 	t.addEventSource = addEventSource;
 	t.removeEventSource = removeEventSource;
+	t.removeEventSources = removeEventSources;
 	t.updateEvent = updateEvent;
 	t.renderEvent = renderEvent;
 	t.removeEvents = removeEvents;
 	t.clientEvents = clientEvents;
 	t.mutateEvent = mutateEvent;
-	t.normalizeEventDateProps = normalizeEventDateProps;
-	t.ensureVisibleEventRange = ensureVisibleEventRange;
+	t.normalizeEventDates = normalizeEventDates;
+	t.normalizeEventTimes = normalizeEventTimes;
 	
 	
 	// imports
-	var trigger = t.trigger;
-	var getView = t.getView;
 	var reportEvents = t.reportEvents;
 	
 	
@@ -7890,14 +10861,12 @@ function EventManager(options) { // assumed to be a calendar
 	var stickySource = { events: [] };
 	var sources = [ stickySource ];
 	var rangeStart, rangeEnd;
-	var currentFetchID = 0;
-	var pendingSourceCnt = 0;
-	var loadingLevel = 0;
+	var pendingSourceCnt = 0; // outstanding fetch requests, max one per source
 	var cache = []; // holds events that have already been expanded
 
 
 	$.each(
-		(options.events ? [ options.events ] : []).concat(options.eventSources || []),
+		(t.options.events ? [ t.options.events ] : []).concat(t.options.eventSources || []),
 		function(i, sourceInput) {
 			var source = buildEventSource(sourceInput);
 			if (source) {
@@ -7910,36 +10879,70 @@ function EventManager(options) { // assumed to be a calendar
 	
 	/* Fetching
 	-----------------------------------------------------------------------------*/
-	
-	
+
+
+	// start and end are assumed to be unzoned
 	function isFetchNeeded(start, end) {
 		return !rangeStart || // nothing has been fetched yet?
-			// or, a part of the new range is outside of the old range? (after normalizing)
-			start.clone().stripZone() < rangeStart.clone().stripZone() ||
-			end.clone().stripZone() > rangeEnd.clone().stripZone();
+			start < rangeStart || end > rangeEnd; // is part of the new range outside of the old range?
 	}
 	
 	
 	function fetchEvents(start, end) {
 		rangeStart = start;
 		rangeEnd = end;
-		cache = [];
-		var fetchID = ++currentFetchID;
-		var len = sources.length;
-		pendingSourceCnt = len;
-		for (var i=0; i<len; i++) {
-			fetchEventSource(sources[i], fetchID);
+		fetchEventSources(sources, 'reset');
+	}
+
+
+	// expects an array of event source objects (the originals, not copies)
+	// `specialFetchType` is an optimization parameter that affects purging of the event cache.
+	function fetchEventSources(specificSources, specialFetchType) {
+		var i, source;
+
+		if (specialFetchType === 'reset') {
+			cache = [];
+		}
+		else if (specialFetchType !== 'add') {
+			cache = excludeEventsBySources(cache, specificSources);
+		}
+
+		for (i = 0; i < specificSources.length; i++) {
+			source = specificSources[i];
+
+			// already-pending sources have already been accounted for in pendingSourceCnt
+			if (source._status !== 'pending') {
+				pendingSourceCnt++;
+			}
+
+			source._fetchId = (source._fetchId || 0) + 1;
+			source._status = 'pending';
+		}
+
+		for (i = 0; i < specificSources.length; i++) {
+			source = specificSources[i];
+
+			tryFetchEventSource(source, source._fetchId);
 		}
 	}
-	
-	
-	function fetchEventSource(source, fetchID) {
+
+
+	// fetches an event source and processes its result ONLY if it is still the current fetch.
+	// caller is responsible for incrementing pendingSourceCnt first.
+	function tryFetchEventSource(source, fetchId) {
 		_fetchEventSource(source, function(eventInputs) {
 			var isArraySource = $.isArray(source.events);
 			var i, eventInput;
 			var abstractEvent;
 
-			if (fetchID == currentFetchID) {
+			if (
+				// is this the source's most recent fetch?
+				// if not, rely on an upcoming fetch of this source to decrement pendingSourceCnt
+				fetchId === source._fetchId &&
+				// event source no longer valid?
+				source._status !== 'rejected'
+			) {
+				source._status = 'resolved';
 
 				if (eventInputs) {
 					for (i = 0; i < eventInputs.length; i++) {
@@ -7961,18 +10964,34 @@ function EventManager(options) { // assumed to be a calendar
 					}
 				}
 
-				pendingSourceCnt--;
-				if (!pendingSourceCnt) {
-					reportEvents(cache);
-				}
+				decrementPendingSourceCnt();
 			}
 		});
+	}
+
+
+	function rejectEventSource(source) {
+		var wasPending = source._status === 'pending';
+
+		source._status = 'rejected';
+
+		if (wasPending) {
+			decrementPendingSourceCnt();
+		}
+	}
+
+
+	function decrementPendingSourceCnt() {
+		pendingSourceCnt--;
+		if (!pendingSourceCnt) {
+			reportEvents(cache);
+		}
 	}
 	
 	
 	function _fetchEventSource(source, callback) {
 		var i;
-		var fetchers = fc.sourceFetchers;
+		var fetchers = FC.sourceFetchers;
 		var res;
 
 		for (i=0; i<fetchers.length; i++) {
@@ -7981,7 +11000,7 @@ function EventManager(options) { // assumed to be a calendar
 				source,
 				rangeStart.clone(),
 				rangeEnd.clone(),
-				options.timezone,
+				t.options.timezone,
 				callback
 			);
 
@@ -7999,15 +11018,15 @@ function EventManager(options) { // assumed to be a calendar
 		var events = source.events;
 		if (events) {
 			if ($.isFunction(events)) {
-				pushLoading();
+				t.pushLoading();
 				events.call(
 					t, // this, the Calendar object
 					rangeStart.clone(),
 					rangeEnd.clone(),
-					options.timezone,
+					t.options.timezone,
 					function(events) {
 						callback(events);
-						popLoading();
+						t.popLoading();
 					}
 				);
 			}
@@ -8039,9 +11058,9 @@ function EventManager(options) { // assumed to be a calendar
 				// and not affect the passed-in object.
 				var data = $.extend({}, customData || {});
 
-				var startParam = firstDefined(source.startParam, options.startParam);
-				var endParam = firstDefined(source.endParam, options.endParam);
-				var timezoneParam = firstDefined(source.timezoneParam, options.timezoneParam);
+				var startParam = firstDefined(source.startParam, t.options.startParam);
+				var endParam = firstDefined(source.endParam, t.options.endParam);
+				var timezoneParam = firstDefined(source.timezoneParam, t.options.timezoneParam);
 
 				if (startParam) {
 					data[startParam] = rangeStart.format();
@@ -8049,11 +11068,11 @@ function EventManager(options) { // assumed to be a calendar
 				if (endParam) {
 					data[endParam] = rangeEnd.format();
 				}
-				if (options.timezone && options.timezone != 'local') {
-					data[timezoneParam] = options.timezone;
+				if (t.options.timezone && t.options.timezone != 'local') {
+					data[timezoneParam] = t.options.timezone;
 				}
 
-				pushLoading();
+				t.pushLoading();
 				$.ajax($.extend({}, ajaxDefaults, source, {
 					data: data,
 					success: function(events) {
@@ -8070,7 +11089,7 @@ function EventManager(options) { // assumed to be a calendar
 					},
 					complete: function() {
 						applyAll(complete, this, arguments);
-						popLoading();
+						t.popLoading();
 					}
 				}));
 			}else{
@@ -8083,20 +11102,19 @@ function EventManager(options) { // assumed to be a calendar
 	
 	/* Sources
 	-----------------------------------------------------------------------------*/
-	
+
 
 	function addEventSource(sourceInput) {
 		var source = buildEventSource(sourceInput);
 		if (source) {
 			sources.push(source);
-			pendingSourceCnt++;
-			fetchEventSource(source, currentFetchID); // will eventually call reportEvents
+			fetchEventSources([ source ], 'add'); // will eventually call reportEvents
 		}
 	}
 
 
 	function buildEventSource(sourceInput) { // will return undefined if invalid source
-		var normalizers = fc.sourceNormalizers;
+		var normalizers = FC.sourceNormalizers;
 		var source;
 		var i;
 
@@ -8140,19 +11158,120 @@ function EventManager(options) { // assumed to be a calendar
 	}
 
 
-	function removeEventSource(source) {
-		sources = $.grep(sources, function(src) {
-			return !isSourcesEqual(src, source);
-		});
-		// remove all client events from that source
-		cache = $.grep(cache, function(e) {
-			return !isSourcesEqual(e.source, source);
-		});
+	function removeEventSource(matchInput) {
+		removeSpecificEventSources(
+			getEventSourcesByMatch(matchInput)
+		);
+	}
+
+
+	// if called with no arguments, removes all.
+	function removeEventSources(matchInputs) {
+		if (matchInputs == null) {
+			removeSpecificEventSources(sources, true); // isAll=true
+		}
+		else {
+			removeSpecificEventSources(
+				getEventSourcesByMatchArray(matchInputs)
+			);
+		}
+	}
+
+
+	function removeSpecificEventSources(targetSources, isAll) {
+		var i;
+
+		// cancel pending requests
+		for (i = 0; i < targetSources.length; i++) {
+			rejectEventSource(targetSources[i]);
+		}
+
+		if (isAll) { // an optimization
+			sources = [];
+			cache = [];
+		}
+		else {
+			// remove from persisted source list
+			sources = $.grep(sources, function(source) {
+				for (i = 0; i < targetSources.length; i++) {
+					if (source === targetSources[i]) {
+						return false; // exclude
+					}
+				}
+				return true; // include
+			});
+
+			cache = excludeEventsBySources(cache, targetSources);
+		}
+
 		reportEvents(cache);
 	}
 
 
-	function isSourcesEqual(source1, source2) {
+	function getEventSources() {
+		return sources.slice(1); // returns a shallow copy of sources with stickySource removed
+	}
+
+
+	function getEventSourceById(id) {
+		return $.grep(sources, function(source) {
+			return source.id && source.id === id;
+		})[0];
+	}
+
+
+	// like getEventSourcesByMatch, but accepts multple match criteria (like multiple IDs)
+	function getEventSourcesByMatchArray(matchInputs) {
+
+		// coerce into an array
+		if (!matchInputs) {
+			matchInputs = [];
+		}
+		else if (!$.isArray(matchInputs)) {
+			matchInputs = [ matchInputs ];
+		}
+
+		var matchingSources = [];
+		var i;
+
+		// resolve raw inputs to real event source objects
+		for (i = 0; i < matchInputs.length; i++) {
+			matchingSources.push.apply( // append
+				matchingSources,
+				getEventSourcesByMatch(matchInputs[i])
+			);
+		}
+
+		return matchingSources;
+	}
+
+
+	// matchInput can either by a real event source object, an ID, or the function/URL for the source.
+	// returns an array of matching source objects.
+	function getEventSourcesByMatch(matchInput) {
+		var i, source;
+
+		// given an proper event source object
+		for (i = 0; i < sources.length; i++) {
+			source = sources[i];
+			if (source === matchInput) {
+				return [ source ];
+			}
+		}
+
+		// an ID match
+		source = getEventSourceById(matchInput);
+		if (source) {
+			return [ source ];
+		}
+
+		return $.grep(sources, function(source) {
+			return isSourcesEquivalent(matchInput, source);
+		});
+	}
+
+
+	function isSourcesEquivalent(source1, source2) {
 		return source1 && source2 && getSourcePrimitive(source1) == getSourcePrimitive(source2);
 	}
 
@@ -8164,6 +11283,20 @@ function EventManager(options) { // assumed to be a calendar
 				null
 		) ||
 		source; // the given argument *is* the primitive
+	}
+
+
+	// util
+	// returns a filtered array without events that are part of any of the given sources
+	function excludeEventsBySources(specificEvents, specificSources) {
+		return $.grep(specificEvents, function(event) {
+			for (var i = 0; i < specificSources.length; i++) {
+				if (event.source === specificSources[i]) {
+					return false; // exclude
+				}
+			}
+			return true; // keep
+		});
 	}
 	
 	
@@ -8268,7 +11401,7 @@ function EventManager(options) { // assumed to be a calendar
 
 		reportEvents(cache);
 	}
-	
+
 	
 	function clientEvents(filter) {
 		if ($.isFunction(filter)) {
@@ -8282,26 +11415,33 @@ function EventManager(options) { // assumed to be a calendar
 		}
 		return cache; // else, return all
 	}
-	
-	
-	
-	/* Loading State
-	-----------------------------------------------------------------------------*/
-	
-	
-	function pushLoading() {
-		if (!(loadingLevel++)) {
-			trigger('loading', null, true, getView());
+
+
+	// Makes sure all array event sources have their internal event objects
+	// converted over to the Calendar's current timezone.
+	t.rezoneArrayEventSources = function() {
+		var i;
+		var events;
+		var j;
+
+		for (i = 0; i < sources.length; i++) {
+			events = sources[i].events;
+			if ($.isArray(events)) {
+
+				for (j = 0; j < events.length; j++) {
+					rezoneEventDates(events[j]);
+				}
+			}
 		}
-	}
-	
-	
-	function popLoading() {
-		if (!(--loadingLevel)) {
-			trigger('loading', null, false, getView());
+	};
+
+	function rezoneEventDates(event) {
+		event.start = t.moment(event.start);
+		if (event.end) {
+			event.end = t.moment(event.end);
 		}
+		backupEventDates(event);
 	}
-	
 	
 	
 	/* Event Normalization
@@ -8317,8 +11457,8 @@ function EventManager(options) { // assumed to be a calendar
 		var start, end;
 		var allDay;
 
-		if (options.eventDataTransform) {
-			input = options.eventDataTransform(input);
+		if (t.options.eventDataTransform) {
+			input = t.options.eventDataTransform(input);
 		}
 		if (source && source.eventDataTransform) {
 			input = source.eventDataTransform(input);
@@ -8384,16 +11524,19 @@ function EventManager(options) { // assumed to be a calendar
 			if (allDay === undefined) { // still undefined? fallback to default
 				allDay = firstDefined(
 					source ? source.allDayDefault : undefined,
-					options.allDayDefault
+					t.options.allDayDefault
 				);
-				// still undefined? normalizeEventDateProps will calculate it
+				// still undefined? normalizeEventDates will calculate it
 			}
 
 			assignDatesToEvent(start, end, allDay, out);
 		}
 
+		t.normalizeEvent(out); // hook for external use. a prototype method
+
 		return out;
 	}
+	t.buildEventFromInput = buildEventFromInput;
 
 
 	// Normalizes and assigns the given dates to the given partially-formed event object.
@@ -8402,70 +11545,53 @@ function EventManager(options) { // assumed to be a calendar
 		event.start = start;
 		event.end = end;
 		event.allDay = allDay;
-		normalizeEventDateProps(event);
+		normalizeEventDates(event);
 		backupEventDates(event);
 	}
 
 
-	// Ensures the allDay property exists.
-	// Ensures the start/end dates are consistent with allDay and forceEventDuration.
-	// Accepts an Event object, or a plain object with event-ish properties.
+	// Ensures proper values for allDay/start/end. Accepts an Event object, or a plain object with event-ish properties.
 	// NOTE: Will modify the given object.
-	function normalizeEventDateProps(props) {
+	function normalizeEventDates(eventProps) {
 
-		if (props.allDay == null) {
-			props.allDay = !(props.start.hasTime() || (props.end && props.end.hasTime()));
+		normalizeEventTimes(eventProps);
+
+		if (eventProps.end && !eventProps.end.isAfter(eventProps.start)) {
+			eventProps.end = null;
 		}
 
-		if (props.allDay) {
-			props.start.stripTime();
-			if (props.end) {
-				props.end.stripTime();
-			}
-		}
-		else {
-			if (!props.start.hasTime()) {
-				props.start = t.rezoneDate(props.start); // will also give it a 00:00 time
-			}
-			if (props.end && !props.end.hasTime()) {
-				props.end = t.rezoneDate(props.end); // will also give it a 00:00 time
-			}
-		}
-
-		if (props.end && !props.end.isAfter(props.start)) {
-			props.end = null;
-		}
-
-		if (!props.end) {
-			if (options.forceEventDuration) {
-				props.end = t.getDefaultEventEnd(props.allDay, props.start);
+		if (!eventProps.end) {
+			if (t.options.forceEventDuration) {
+				eventProps.end = t.getDefaultEventEnd(eventProps.allDay, eventProps.start);
 			}
 			else {
-				props.end = null;
+				eventProps.end = null;
 			}
 		}
 	}
 
 
-	// If `range` is a proper range with a start and end, returns the original object.
-	// If missing an end, computes a new range with an end, computing it as if it were an event.
-	// TODO: make this a part of the event -> eventRange system
-	function ensureVisibleEventRange(range) {
-		var allDay;
-
-		if (!range.end) {
-
-			allDay = range.allDay; // range might be more event-ish than we think
-			if (allDay == null) {
-				allDay = !range.start.hasTime();
-			}
-
-			range = {
-				start: range.start,
-				end: t.getDefaultEventEnd(allDay, range.start)
-			};
+	// Ensures the allDay property exists and the timeliness of the start/end dates are consistent
+	function normalizeEventTimes(eventProps) {
+		if (eventProps.allDay == null) {
+			eventProps.allDay = !(eventProps.start.hasTime() || (eventProps.end && eventProps.end.hasTime()));
 		}
-		return range;
+
+		if (eventProps.allDay) {
+			eventProps.start.stripTime();
+			if (eventProps.end) {
+				// TODO: consider nextDayThreshold here? If so, will require a lot of testing and adjustment
+				eventProps.end.stripTime();
+			}
+		}
+		else {
+			if (!eventProps.start.hasTime()) {
+				eventProps.start = t.applyTimezone(eventProps.start.time(0)); // will assign a 00:00 time
+			}
+			if (eventProps.end && !eventProps.end.hasTime()) {
+				eventProps.end = t.applyTimezone(eventProps.end.time(0)); // will assign a 00:00 time
+			}
+		}
 	}
 
 
@@ -8534,6 +11660,7 @@ function EventManager(options) { // assumed to be a calendar
 
 		return events;
 	}
+	t.expandEvent = expandEvent;
 
 
 
@@ -8546,55 +11673,70 @@ function EventManager(options) { // assumed to be a calendar
 	// If `props` does not contain start/end dates, the updated values are assumed to be the event's current start/end.
 	// All date comparisons are done against the event's pristine _start and _end dates.
 	// Returns an object with delta information and a function to undo all operations.
-	//
-	function mutateEvent(event, props) {
+	// For making computations in a granularity greater than day/time, specify largeUnit.
+	// NOTE: The given `newProps` might be mutated for normalization purposes.
+	function mutateEvent(event, newProps, largeUnit) {
 		var miscProps = {};
+		var oldProps;
 		var clearEnd;
-		var dateDelta;
+		var startDelta;
+		var endDelta;
 		var durationDelta;
 		var undoFunc;
 
-		props = props || {};
-
-		// ensure new date-related values to compare against
-		if (!props.start) {
-			props.start = event.start.clone();
+		// diffs the dates in the appropriate way, returning a duration
+		function diffDates(date1, date0) { // date1 - date0
+			if (largeUnit) {
+				return diffByUnit(date1, date0, largeUnit);
+			}
+			else if (newProps.allDay) {
+				return diffDay(date1, date0);
+			}
+			else {
+				return diffDayTime(date1, date0);
+			}
 		}
-		if (props.end === undefined) {
-			props.end = event.end ? event.end.clone() : null;
+
+		newProps = newProps || {};
+
+		// normalize new date-related properties
+		if (!newProps.start) {
+			newProps.start = event.start.clone();
 		}
-		if (props.allDay == null) { // is null or undefined?
-			props.allDay = event.allDay;
+		if (newProps.end === undefined) {
+			newProps.end = event.end ? event.end.clone() : null;
 		}
+		if (newProps.allDay == null) { // is null or undefined?
+			newProps.allDay = event.allDay;
+		}
+		normalizeEventDates(newProps);
 
-		normalizeEventDateProps(props); // massages start/end/allDay
+		// create normalized versions of the original props to compare against
+		// need a real end value, for diffing
+		oldProps = {
+			start: event._start.clone(),
+			end: event._end ? event._end.clone() : t.getDefaultEventEnd(event._allDay, event._start),
+			allDay: newProps.allDay // normalize the dates in the same regard as the new properties
+		};
+		normalizeEventDates(oldProps);
 
-		// clear the end date if explicitly changed to null
-		clearEnd = event._end !== null && props.end === null;
+		// need to clear the end date if explicitly changed to null
+		clearEnd = event._end !== null && newProps.end === null;
 
-		// compute the delta for moving the start and end dates together
-		if (props.allDay) {
-			dateDelta = diffDay(props.start, event._start); // whole-day diff from start-of-day
+		// compute the delta for moving the start date
+		startDelta = diffDates(newProps.start, oldProps.start);
+
+		// compute the delta for moving the end date
+		if (newProps.end) {
+			endDelta = diffDates(newProps.end, oldProps.end);
+			durationDelta = endDelta.subtract(startDelta);
 		}
 		else {
-			dateDelta = diffDayTime(props.start, event._start);
-		}
-
-		// compute the delta for moving the end date (after applying dateDelta)
-		if (!clearEnd && props.end) {
-			durationDelta = diffDayTime(
-				// new duration
-				props.end,
-				props.start
-			).subtract(diffDayTime(
-				// subtract old duration
-				event._end || t.getDefaultEventEnd(event._allDay, event._start),
-				event._start
-			));
+			durationDelta = null;
 		}
 
 		// gather all non-date-related properties
-		$.each(props, function(name, val) {
+		$.each(newProps, function(name, val) {
 			if (isMiscEventPropName(name)) {
 				if (val !== undefined) {
 					miscProps[name] = val;
@@ -8606,14 +11748,14 @@ function EventManager(options) { // assumed to be a calendar
 		undoFunc = mutateEvents(
 			clientEvents(event._id), // get events with this ID
 			clearEnd,
-			props.allDay,
-			dateDelta,
+			newProps.allDay,
+			startDelta,
 			durationDelta,
 			miscProps
 		);
 
 		return {
-			dateDelta: dateDelta,
+			dateDelta: startDelta,
 			durationDelta: durationDelta,
 			undo: undoFunc
 		};
@@ -8659,16 +11801,17 @@ function EventManager(options) { // assumed to be a calendar
 			newProps = {
 				start: event._start,
 				end: event._end,
-				allDay: event._allDay
+				allDay: allDay // normalize the dates in the same regard as the new properties
 			};
+			normalizeEventDates(newProps); // massages start/end/allDay
 
+			// strip or ensure the end date
 			if (clearEnd) {
 				newProps.end = null;
 			}
-
-			newProps.allDay = allDay;
-
-			normalizeEventDateProps(newProps); // massages start/end/allDay
+			else if (durationDelta && !newProps.end) { // the duration translation requires an end date
+				newProps.end = t.getDefaultEventEnd(newProps.allDay, newProps.start);
+			}
 
 			if (dateDelta) {
 				newProps.start.add(dateDelta);
@@ -8678,10 +11821,7 @@ function EventManager(options) { // assumed to be a calendar
 			}
 
 			if (durationDelta) {
-				if (!newProps.end) {
-					newProps.end = t.getDefaultEventEnd(newProps.allDay, newProps.start);
-				}
-				newProps.end.add(durationDelta);
+				newProps.end.add(durationDelta); // end already ensured above
 			}
 
 			// if the dates have changed, and we know it is impossible to recompute the
@@ -8714,219 +11854,48 @@ function EventManager(options) { // assumed to be a calendar
 	}
 
 
-	/* Business Hours
-	-----------------------------------------------------------------------------------------*/
-
-	t.getBusinessHoursEvents = getBusinessHoursEvents;
-
-
-	// Returns an array of events as to when the business hours occur in the given view.
-	// Abuse of our event system :(
-	function getBusinessHoursEvents() {
-		var optionVal = options.businessHours;
-		var defaultVal = {
-			className: 'fc-nonbusiness',
-			start: '09:00',
-			end: '17:00',
-			dow: [ 1, 2, 3, 4, 5 ], // monday - friday
-			rendering: 'inverse-background'
-		};
-		var view = t.getView();
-		var eventInput;
-
-		if (optionVal) {
-			if (typeof optionVal === 'object') {
-				// option value is an object that can override the default business hours
-				eventInput = $.extend({}, defaultVal, optionVal);
-			}
-			else {
-				// option value is `true`. use default business hours
-				eventInput = defaultVal;
-			}
-		}
-
-		if (eventInput) {
-			return expandEvent(
-				buildEventFromInput(eventInput),
-				view.start,
-				view.end
-			);
-		}
-
-		return [];
-	}
-
-
-	/* Overlapping / Constraining
-	-----------------------------------------------------------------------------------------*/
-
-	t.isEventRangeAllowed = isEventRangeAllowed;
-	t.isSelectionRangeAllowed = isSelectionRangeAllowed;
-	t.isExternalDropRangeAllowed = isExternalDropRangeAllowed;
-
-
-	function isEventRangeAllowed(range, event) {
-		var source = event.source || {};
-		var constraint = firstDefined(
-			event.constraint,
-			source.constraint,
-			options.eventConstraint
-		);
-		var overlap = firstDefined(
-			event.overlap,
-			source.overlap,
-			options.eventOverlap
-		);
-
-		range = ensureVisibleEventRange(range); // ensure a proper range with an end for isRangeAllowed
-
-		return isRangeAllowed(range, constraint, overlap, event);
-	}
-
-
-	function isSelectionRangeAllowed(range) {
-		return isRangeAllowed(range, options.selectConstraint, options.selectOverlap);
-	}
-
-
-	// when `eventProps` is defined, consider this an event.
-	// `eventProps` can contain misc non-date-related info about the event.
-	function isExternalDropRangeAllowed(range, eventProps) {
-		var eventInput;
-		var event;
-
-		// note: very similar logic is in View's reportExternalDrop
-		if (eventProps) {
-			eventInput = $.extend({}, eventProps, range);
-			event = expandEvent(buildEventFromInput(eventInput))[0];
-		}
-
-		if (event) {
-			return isEventRangeAllowed(range, event);
-		}
-		else { // treat it as a selection
-
-			range = ensureVisibleEventRange(range); // ensure a proper range with an end for isSelectionRangeAllowed
-
-			return isSelectionRangeAllowed(range);
-		}
-	}
-
-
-	// Returns true if the given range (caused by an event drop/resize or a selection) is allowed to exist
-	// according to the constraint/overlap settings.
-	// `event` is not required if checking a selection.
-	function isRangeAllowed(range, constraint, overlap, event) {
-		var constraintEvents;
-		var anyContainment;
-		var i, otherEvent;
-		var otherOverlap;
-
-		// normalize. fyi, we're normalizing in too many places :(
-		range = {
-			start: range.start.clone().stripZone(),
-			end: range.end.clone().stripZone()
-		};
-
-		// the range must be fully contained by at least one of produced constraint events
-		if (constraint != null) {
-
-			// not treated as an event! intermediate data structure
-			// TODO: use ranges in the future
-			constraintEvents = constraintToEvents(constraint);
-
-			anyContainment = false;
-			for (i = 0; i < constraintEvents.length; i++) {
-				if (eventContainsRange(constraintEvents[i], range)) {
-					anyContainment = true;
-					break;
-				}
-			}
-
-			if (!anyContainment) {
-				return false;
-			}
-		}
-
-		for (i = 0; i < cache.length; i++) { // loop all events and detect overlap
-			otherEvent = cache[i];
-
-			// don't compare the event to itself or other related [repeating] events
-			if (event && event._id === otherEvent._id) {
-				continue;
-			}
-
-			// there needs to be an actual intersection before disallowing anything
-			if (eventIntersectsRange(otherEvent, range)) {
-
-				// evaluate overlap for the given range and short-circuit if necessary
-				if (overlap === false) {
-					return false;
-				}
-				else if (typeof overlap === 'function' && !overlap(otherEvent, event)) {
-					return false;
-				}
-
-				// if we are computing if the given range is allowable for an event, consider the other event's
-				// EventObject-specific or Source-specific `overlap` property
-				if (event) {
-					otherOverlap = firstDefined(
-						otherEvent.overlap,
-						(otherEvent.source || {}).overlap
-						// we already considered the global `eventOverlap`
-					);
-					if (otherOverlap === false) {
-						return false;
-					}
-					if (typeof otherOverlap === 'function' && !otherOverlap(event, otherEvent)) {
-						return false;
-					}
-				}
-			}
-		}
-
-		return true;
-	}
-
-
-	// Given an event input from the API, produces an array of event objects. Possible event inputs:
-	// 'businessHours'
-	// An event ID (number or string)
-	// An object with specific start/end dates or a recurring event (like what businessHours accepts)
-	function constraintToEvents(constraintInput) {
-
-		if (constraintInput === 'businessHours') {
-			return getBusinessHoursEvents();
-		}
-
-		if (typeof constraintInput === 'object') {
-			return expandEvent(buildEventFromInput(constraintInput));
-		}
-
-		return clientEvents(constraintInput); // probably an ID
-	}
-
-
-	// Does the event's date range fully contain the given range?
-	// start/end already assumed to have stripped zones :(
-	function eventContainsRange(event, range) {
-		var eventStart = event.start.clone().stripZone();
-		var eventEnd = t.getEventEnd(event).stripZone();
-
-		return range.start >= eventStart && range.end <= eventEnd;
-	}
-
-
-	// Does the event's date range intersect with the given range?
-	// start/end already assumed to have stripped zones :(
-	function eventIntersectsRange(event, range) {
-		var eventStart = event.start.clone().stripZone();
-		var eventEnd = t.getEventEnd(event).stripZone();
-
-		return range.start < eventEnd && range.end > eventStart;
-	}
+	t.getEventCache = function() {
+		return cache;
+	};
 
 }
+
+
+// hook for external libs to manipulate event properties upon creation.
+// should manipulate the event in-place.
+Calendar.prototype.normalizeEvent = function(event) {
+};
+
+
+// Does the given span (start, end, and other location information)
+// fully contain the other?
+Calendar.prototype.spanContainsSpan = function(outerSpan, innerSpan) {
+	var eventStart = outerSpan.start.clone().stripZone();
+	var eventEnd = this.getEventEnd(outerSpan).stripZone();
+
+	return innerSpan.start >= eventStart && innerSpan.end <= eventEnd;
+};
+
+
+// Returns a list of events that the given event should be compared against when being considered for a move to
+// the specified span. Attached to the Calendar's prototype because EventManager is a mixin for a Calendar.
+Calendar.prototype.getPeerEvents = function(span, event) {
+	var cache = this.getEventCache();
+	var peerEvents = [];
+	var i, otherEvent;
+
+	for (i = 0; i < cache.length; i++) {
+		otherEvent = cache[i];
+		if (
+			!event ||
+			event._id !== otherEvent._id // don't compare the event to itself or other related [repeating] events
+		) {
+			peerEvents.push(otherEvent);
+		}
+	}
+
+	return peerEvents;
+};
 
 
 // updates the "backup" properties, which are preserved in order to compute diffs later on.
@@ -8936,26 +11905,277 @@ function backupEventDates(event) {
 	event._end = event.end ? event.end.clone() : null;
 }
 
-    /* An abstract class for the "basic" views, as well as month view. Renders one or more rows of day cells.
+
+/* Overlapping / Constraining
+-----------------------------------------------------------------------------------------*/
+
+
+// Determines if the given event can be relocated to the given span (unzoned start/end with other misc data)
+Calendar.prototype.isEventSpanAllowed = function(span, event) {
+	var source = event.source || {};
+
+	var constraint = firstDefined(
+		event.constraint,
+		source.constraint,
+		this.options.eventConstraint
+	);
+
+	var overlap = firstDefined(
+		event.overlap,
+		source.overlap,
+		this.options.eventOverlap
+	);
+
+	return this.isSpanAllowed(span, constraint, overlap, event) &&
+		(!this.options.eventAllow || this.options.eventAllow(span, event) !== false);
+};
+
+
+// Determines if an external event can be relocated to the given span (unzoned start/end with other misc data)
+Calendar.prototype.isExternalSpanAllowed = function(eventSpan, eventLocation, eventProps) {
+	var eventInput;
+	var event;
+
+	// note: very similar logic is in View's reportExternalDrop
+	if (eventProps) {
+		eventInput = $.extend({}, eventProps, eventLocation);
+		event = this.expandEvent(
+			this.buildEventFromInput(eventInput)
+		)[0];
+	}
+
+	if (event) {
+		return this.isEventSpanAllowed(eventSpan, event);
+	}
+	else { // treat it as a selection
+
+		return this.isSelectionSpanAllowed(eventSpan);
+	}
+};
+
+
+// Determines the given span (unzoned start/end with other misc data) can be selected.
+Calendar.prototype.isSelectionSpanAllowed = function(span) {
+	return this.isSpanAllowed(span, this.options.selectConstraint, this.options.selectOverlap) &&
+		(!this.options.selectAllow || this.options.selectAllow(span) !== false);
+};
+
+
+// Returns true if the given span (caused by an event drop/resize or a selection) is allowed to exist
+// according to the constraint/overlap settings.
+// `event` is not required if checking a selection.
+Calendar.prototype.isSpanAllowed = function(span, constraint, overlap, event) {
+	var constraintEvents;
+	var anyContainment;
+	var peerEvents;
+	var i, peerEvent;
+	var peerOverlap;
+
+	// the range must be fully contained by at least one of produced constraint events
+	if (constraint != null) {
+
+		// not treated as an event! intermediate data structure
+		// TODO: use ranges in the future
+		constraintEvents = this.constraintToEvents(constraint);
+		if (constraintEvents) { // not invalid
+
+			anyContainment = false;
+			for (i = 0; i < constraintEvents.length; i++) {
+				if (this.spanContainsSpan(constraintEvents[i], span)) {
+					anyContainment = true;
+					break;
+				}
+			}
+
+			if (!anyContainment) {
+				return false;
+			}
+		}
+	}
+
+	peerEvents = this.getPeerEvents(span, event);
+
+	for (i = 0; i < peerEvents.length; i++)  {
+		peerEvent = peerEvents[i];
+
+		// there needs to be an actual intersection before disallowing anything
+		if (this.eventIntersectsRange(peerEvent, span)) {
+
+			// evaluate overlap for the given range and short-circuit if necessary
+			if (overlap === false) {
+				return false;
+			}
+			// if the event's overlap is a test function, pass the peer event in question as the first param
+			else if (typeof overlap === 'function' && !overlap(peerEvent, event)) {
+				return false;
+			}
+
+			// if we are computing if the given range is allowable for an event, consider the other event's
+			// EventObject-specific or Source-specific `overlap` property
+			if (event) {
+				peerOverlap = firstDefined(
+					peerEvent.overlap,
+					(peerEvent.source || {}).overlap
+					// we already considered the global `eventOverlap`
+				);
+				if (peerOverlap === false) {
+					return false;
+				}
+				// if the peer event's overlap is a test function, pass the subject event as the first param
+				if (typeof peerOverlap === 'function' && !peerOverlap(event, peerEvent)) {
+					return false;
+				}
+			}
+		}
+	}
+
+	return true;
+};
+
+
+// Given an event input from the API, produces an array of event objects. Possible event inputs:
+// 'businessHours'
+// An event ID (number or string)
+// An object with specific start/end dates or a recurring event (like what businessHours accepts)
+Calendar.prototype.constraintToEvents = function(constraintInput) {
+
+	if (constraintInput === 'businessHours') {
+		return this.getCurrentBusinessHourEvents();
+	}
+
+	if (typeof constraintInput === 'object') {
+		if (constraintInput.start != null) { // needs to be event-like input
+			return this.expandEvent(this.buildEventFromInput(constraintInput));
+		}
+		else {
+			return null; // invalid
+		}
+	}
+
+	return this.clientEvents(constraintInput); // probably an ID
+};
+
+
+// Does the event's date range intersect with the given range?
+// start/end already assumed to have stripped zones :(
+Calendar.prototype.eventIntersectsRange = function(event, range) {
+	var eventStart = event.start.clone().stripZone();
+	var eventEnd = this.getEventEnd(event).stripZone();
+
+	return range.start < eventEnd && range.end > eventStart;
+};
+
+
+/* Business Hours
+-----------------------------------------------------------------------------------------*/
+
+var BUSINESS_HOUR_EVENT_DEFAULTS = {
+	id: '_fcBusinessHours', // will relate events from different calls to expandEvent
+	start: '09:00',
+	end: '17:00',
+	dow: [ 1, 2, 3, 4, 5 ], // monday - friday
+	rendering: 'inverse-background'
+	// classNames are defined in businessHoursSegClasses
+};
+
+// Return events objects for business hours within the current view.
+// Abuse of our event system :(
+Calendar.prototype.getCurrentBusinessHourEvents = function(wholeDay) {
+	return this.computeBusinessHourEvents(wholeDay, this.options.businessHours);
+};
+
+// Given a raw input value from options, return events objects for business hours within the current view.
+Calendar.prototype.computeBusinessHourEvents = function(wholeDay, input) {
+	if (input === true) {
+		return this.expandBusinessHourEvents(wholeDay, [ {} ]);
+	}
+	else if ($.isPlainObject(input)) {
+		return this.expandBusinessHourEvents(wholeDay, [ input ]);
+	}
+	else if ($.isArray(input)) {
+		return this.expandBusinessHourEvents(wholeDay, input, true);
+	}
+	else {
+		return [];
+	}
+};
+
+// inputs expected to be an array of objects.
+// if ignoreNoDow is true, will ignore entries that don't specify a day-of-week (dow) key.
+Calendar.prototype.expandBusinessHourEvents = function(wholeDay, inputs, ignoreNoDow) {
+	var view = this.getView();
+	var events = [];
+	var i, input;
+
+	for (i = 0; i < inputs.length; i++) {
+		input = inputs[i];
+
+		if (ignoreNoDow && !input.dow) {
+			continue;
+		}
+
+		// give defaults. will make a copy
+		input = $.extend({}, BUSINESS_HOUR_EVENT_DEFAULTS, input);
+
+		// if a whole-day series is requested, clear the start/end times
+		if (wholeDay) {
+			input.start = null;
+			input.end = null;
+		}
+
+		events.push.apply(events, // append
+			this.expandEvent(
+				this.buildEventFromInput(input),
+				view.start,
+				view.end
+			)
+		);
+	}
+
+	return events;
+};
+
+;;
+
+/* An abstract class for the "basic" views, as well as month view. Renders one or more rows of day cells.
 ----------------------------------------------------------------------------------------------------------------------*/
 // It is a manager for a DayGrid subcomponent, which does most of the heavy lifting.
 // It is responsible for managing width/height.
 
-var BasicView = fcViews.basic = View.extend({
+var BasicView = FC.BasicView = View.extend({
 
+	scroller: null,
+
+	dayGridClass: DayGrid, // class the dayGrid will be instantiated from (overridable by subclasses)
 	dayGrid: null, // the main subcomponent that does most of the heavy lifting
 
 	dayNumbersVisible: false, // display day numbers on each day cell?
-	weekNumbersVisible: false, // display week numbers along the side?
+	colWeekNumbersVisible: false, // display week numbers along the side?
+	cellWeekNumbersVisible: false, // display week numbers in day cell?
 
 	weekNumberWidth: null, // width of all the week-number cells running down the side
 
+	headContainerEl: null, // div that hold's the dayGrid's rendered date header
 	headRowEl: null, // the fake row element of the day-of-week header
 
 
 	initialize: function() {
-		this.dayGrid = new DayGrid(this);
-		this.coordMap = this.dayGrid.coordMap; // the view's date-to-cell mapping is identical to the subcomponent's
+		this.dayGrid = this.instantiateDayGrid();
+
+		this.scroller = new Scroller({
+			overflowX: 'hidden',
+			overflowY: 'auto'
+		});
+	},
+
+
+	// Generates the DayGrid object this view needs. Draws from this.dayGridClass
+	instantiateDayGrid: function() {
+		// generate a subclass on the fly with BasicView-specific behavior
+		// TODO: cache this subclass
+		var subclass = this.dayGridClass.extend(basicDayGridMethods);
+
+		return new subclass(this);
 	},
 
 
@@ -8989,120 +12209,79 @@ var BasicView = fcViews.basic = View.extend({
 
 
 	// Renders the view into `this.el`, which should already be assigned
-	render: function() {
+	renderDates: function() {
 
 		this.dayNumbersVisible = this.dayGrid.rowCnt > 1; // TODO: make grid responsible
-		this.weekNumbersVisible = this.opt('weekNumbers');
-		this.dayGrid.numbersVisible = this.dayNumbersVisible || this.weekNumbersVisible;
+		if (this.opt('weekNumbers')) {
+			if (this.opt('weekNumbersWithinDays')) {
+				this.cellWeekNumbersVisible = true;
+				this.colWeekNumbersVisible = false;
+			}
+			else {
+				this.cellWeekNumbersVisible = false;
+				this.colWeekNumbersVisible = true;
+			};
+		}
+		this.dayGrid.numbersVisible = this.dayNumbersVisible ||
+			this.cellWeekNumbersVisible || this.colWeekNumbersVisible;
 
-		this.el.addClass('fc-basic-view').html(this.renderHtml());
+		this.el.addClass('fc-basic-view').html(this.renderSkeletonHtml());
+		this.renderHead();
 
-		this.headRowEl = this.el.find('thead .fc-row');
+		this.scroller.render();
+		var dayGridContainerEl = this.scroller.el.addClass('fc-day-grid-container');
+		var dayGridEl = $('<div class="fc-day-grid" />').appendTo(dayGridContainerEl);
+		this.el.find('.fc-body > tr > td').append(dayGridContainerEl);
 
-		this.scrollerEl = this.el.find('.fc-day-grid-container');
-		this.dayGrid.coordMap.containerEl = this.scrollerEl; // constrain clicks/etc to the dimensions of the scroller
-
-		this.dayGrid.el = this.el.find('.fc-day-grid');
-		this.dayGrid.render(this.hasRigidRows());
+		this.dayGrid.setElement(dayGridEl);
+		this.dayGrid.renderDates(this.hasRigidRows());
 	},
 
 
-	// Make subcomponents ready for cleanup
-	destroy: function() {
-		this.dayGrid.destroy();
-		View.prototype.destroy.call(this); // call the super-method
+	// render the day-of-week headers
+	renderHead: function() {
+		this.headContainerEl =
+			this.el.find('.fc-head-container')
+				.html(this.dayGrid.renderHeadHtml());
+		this.headRowEl = this.headContainerEl.find('.fc-row');
+	},
+
+
+	// Unrenders the content of the view. Since we haven't separated skeleton rendering from date rendering,
+	// always completely kill the dayGrid's rendering.
+	unrenderDates: function() {
+		this.dayGrid.unrenderDates();
+		this.dayGrid.removeElement();
+		this.scroller.destroy();
+	},
+
+
+	renderBusinessHours: function() {
+		this.dayGrid.renderBusinessHours();
+	},
+
+
+	unrenderBusinessHours: function() {
+		this.dayGrid.unrenderBusinessHours();
 	},
 
 
 	// Builds the HTML skeleton for the view.
 	// The day-grid component will render inside of a container defined by this HTML.
-	renderHtml: function() {
+	renderSkeletonHtml: function() {
 		return '' +
 			'<table>' +
-				'<thead>' +
+				'<thead class="fc-head">' +
 					'<tr>' +
-						'<td class="' + this.widgetHeaderClass + '">' +
-							this.dayGrid.headHtml() + // render the day-of-week headers
-						'</td>' +
+						'<td class="fc-head-container ' + this.widgetHeaderClass + '"></td>' +
 					'</tr>' +
 				'</thead>' +
-				'<tbody>' +
+				'<tbody class="fc-body">' +
 					'<tr>' +
-						'<td class="' + this.widgetContentClass + '">' +
-							'<div class="fc-day-grid-container">' +
-								'<div class="fc-day-grid"/>' +
-							'</div>' +
-						'</td>' +
+						'<td class="' + this.widgetContentClass + '"></td>' +
 					'</tr>' +
 				'</tbody>' +
 			'</table>';
-	},
-
-
-	// Generates the HTML that will go before the day-of week header cells.
-	// Queried by the DayGrid subcomponent when generating rows. Ordering depends on isRTL.
-	headIntroHtml: function() {
-		if (this.weekNumbersVisible) {
-			return '' +
-				'<th class="fc-week-number ' + this.widgetHeaderClass + '" ' + this.weekNumberStyleAttr() + '>' +
-					'<span>' + // needed for matchCellWidths
-						htmlEscape(this.opt('weekNumberTitle')) +
-					'</span>' +
-				'</th>';
-		}
-	},
-
-
-	// Generates the HTML that will go before content-skeleton cells that display the day/week numbers.
-	// Queried by the DayGrid subcomponent. Ordering depends on isRTL.
-	numberIntroHtml: function(row) {
-		if (this.weekNumbersVisible) {
-			return '' +
-				'<td class="fc-week-number" ' + this.weekNumberStyleAttr() + '>' +
-					'<span>' + // needed for matchCellWidths
-						this.calendar.calculateWeekNumber(this.dayGrid.getCell(row, 0).start) +
-					'</span>' +
-				'</td>';
-		}
-	},
-
-
-	// Generates the HTML that goes before the day bg cells for each day-row.
-	// Queried by the DayGrid subcomponent. Ordering depends on isRTL.
-	dayIntroHtml: function() {
-		if (this.weekNumbersVisible) {
-			return '<td class="fc-week-number ' + this.widgetContentClass + '" ' +
-				this.weekNumberStyleAttr() + '></td>';
-		}
-	},
-
-
-	// Generates the HTML that goes before every other type of row generated by DayGrid. Ordering depends on isRTL.
-	// Affects helper-skeleton and highlight-skeleton rows.
-	introHtml: function() {
-		if (this.weekNumbersVisible) {
-			return '<td class="fc-week-number" ' + this.weekNumberStyleAttr() + '></td>';
-		}
-	},
-
-
-	// Generates the HTML for the <td>s of the "number" row in the DayGrid's content skeleton.
-	// The number row will only exist if either day numbers or week numbers are turned on.
-	numberCellHtml: function(cell) {
-		var date = cell.start;
-		var classes;
-
-		if (!this.dayNumbersVisible) { // if there are week numbers but not day numbers
-			return '<td/>'; //  will create an empty space above events :(
-		}
-
-		classes = this.dayGrid.getDayClasses(date);
-		classes.unshift('fc-day-number');
-
-		return '' +
-			'<td class="' + classes.join(' ') + '" data-date="' + date.format() + '">' +
-				date.date() +
-			'</td>';
 	},
 
 
@@ -9128,7 +12307,7 @@ var BasicView = fcViews.basic = View.extend({
 
 	// Refreshes the horizontal dimensions of the view
 	updateWidth: function() {
-		if (this.weekNumbersVisible) {
+		if (this.colWeekNumbersVisible) {
 			// Make sure all week number cells running down the side have the same width.
 			// Record the width for cells created later.
 			this.weekNumberWidth = matchCellWidths(
@@ -9142,18 +12321,21 @@ var BasicView = fcViews.basic = View.extend({
 	setHeight: function(totalHeight, isAuto) {
 		var eventLimit = this.opt('eventLimit');
 		var scrollerHeight;
+		var scrollbarWidths;
 
 		// reset all heights to be natural
-		unsetScroller(this.scrollerEl);
+		this.scroller.clear();
 		uncompensateScroll(this.headRowEl);
 
-		this.dayGrid.destroySegPopover(); // kill the "more" popover if displayed
+		this.dayGrid.removeSegPopover(); // kill the "more" popover if displayed
 
 		// is the event limit a constant level number?
 		if (eventLimit && typeof eventLimit === 'number') {
 			this.dayGrid.limitRows(eventLimit); // limit the levels first so the height can redistribute after
 		}
 
+		// distribute the height to the rows
+		// (totalHeight is a "recommended" value if isAuto)
 		scrollerHeight = this.computeScrollerHeight(totalHeight);
 		this.setGridHeight(scrollerHeight, isAuto);
 
@@ -9162,16 +12344,30 @@ var BasicView = fcViews.basic = View.extend({
 			this.dayGrid.limitRows(eventLimit); // limit the levels after the grid's row heights have been set
 		}
 
-		if (!isAuto && setPotentialScroller(this.scrollerEl, scrollerHeight)) { // using scrollbars?
+		if (!isAuto) { // should we force dimensions of the scroll container?
 
-			compensateScroll(this.headRowEl, getScrollbarWidths(this.scrollerEl));
+			this.scroller.setHeight(scrollerHeight);
+			scrollbarWidths = this.scroller.getScrollbarWidths();
 
-			// doing the scrollbar compensation might have created text overflow which created more height. redo
-			scrollerHeight = this.computeScrollerHeight(totalHeight);
-			this.scrollerEl.height(scrollerHeight);
+			if (scrollbarWidths.left || scrollbarWidths.right) { // using scrollbars?
 
-			this.restoreScroll();
+				compensateScroll(this.headRowEl, scrollbarWidths);
+
+				// doing the scrollbar compensation might have created text overflow which created more height. redo
+				scrollerHeight = this.computeScrollerHeight(totalHeight);
+				this.scroller.setHeight(scrollerHeight);
+			}
+
+			// guarantees the same scrollbar widths
+			this.scroller.lockOverflow(scrollbarWidths);
 		}
+	},
+
+
+	// given a desired total height of the view, returns what the height of the scroller should be
+	computeScrollerHeight: function(totalHeight) {
+		return totalHeight -
+			subtractInnerElHeight(this.el, this.scroller.el); // everything that's NOT the scroller
 	},
 
 
@@ -9183,6 +12379,50 @@ var BasicView = fcViews.basic = View.extend({
 		else {
 			distributeHeight(this.dayGrid.rowEls, height, true); // true = compensate for height-hogging rows
 		}
+	},
+
+
+	/* Scroll
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	queryScroll: function() {
+		return this.scroller.getScrollTop();
+	},
+
+
+	setScroll: function(top) {
+		this.scroller.setScrollTop(top);
+	},
+
+
+	/* Hit Areas
+	------------------------------------------------------------------------------------------------------------------*/
+	// forward all hit-related method calls to dayGrid
+
+
+	prepareHits: function() {
+		this.dayGrid.prepareHits();
+	},
+
+
+	releaseHits: function() {
+		this.dayGrid.releaseHits();
+	},
+
+
+	queryHit: function(left, top) {
+		return this.dayGrid.queryHit(left, top);
+	},
+
+
+	getHitSpan: function(hit) {
+		return this.dayGrid.getHitSpan(hit);
+	},
+
+
+	getHitEl: function(hit) {
+		return this.dayGrid.getHitEl(hit);
 	},
 
 
@@ -9205,13 +12445,11 @@ var BasicView = fcViews.basic = View.extend({
 
 
 	// Unrenders all event elements and clears internal segment data
-	destroyEvents: function() {
-		this.recordScroll(); // removing events will reduce height and mess with the scroll, so record beforehand
-		this.dayGrid.destroyEvents();
+	unrenderEvents: function() {
+		this.dayGrid.unrenderEvents();
 
-		// we DON'T need to call updateHeight() because:
-		// A) a renderEvents() call always happens after this, which will eventually call updateHeight()
-		// B) in IE8, this causes a flash whenever events are rerendered
+		// we DON'T need to call updateHeight() because
+		// a renderEvents() call always happens after this, which will eventually call updateHeight()
 	},
 
 
@@ -9225,8 +12463,8 @@ var BasicView = fcViews.basic = View.extend({
 	},
 
 
-	destroyDrag: function() {
-		this.dayGrid.destroyDrag();
+	unrenderDrag: function() {
+		this.dayGrid.unrenderDrag();
 	},
 
 
@@ -9235,37 +12473,102 @@ var BasicView = fcViews.basic = View.extend({
 
 
 	// Renders a visual indication of a selection
-	renderSelection: function(range) {
-		this.dayGrid.renderSelection(range);
+	renderSelection: function(span) {
+		this.dayGrid.renderSelection(span);
 	},
 
 
 	// Unrenders a visual indications of a selection
-	destroySelection: function() {
-		this.dayGrid.destroySelection();
+	unrenderSelection: function() {
+		this.dayGrid.unrenderSelection();
 	}
 
 });
 
-    /* A month view with day cells running in rows (one-per-week) and columns
+
+// Methods that will customize the rendering behavior of the BasicView's dayGrid
+var basicDayGridMethods = {
+
+
+	// Generates the HTML that will go before the day-of week header cells
+	renderHeadIntroHtml: function() {
+		var view = this.view;
+
+		if (view.colWeekNumbersVisible) {
+			return '' +
+				'<th class="fc-week-number ' + view.widgetHeaderClass + '" ' + view.weekNumberStyleAttr() + '>' +
+					'<span>' + // needed for matchCellWidths
+						htmlEscape(view.opt('weekNumberTitle')) +
+					'</span>' +
+				'</th>';
+		}
+
+		return '';
+	},
+
+
+	// Generates the HTML that will go before content-skeleton cells that display the day/week numbers
+	renderNumberIntroHtml: function(row) {
+		var view = this.view;
+		var weekStart = this.getCellDate(row, 0);
+
+		if (view.colWeekNumbersVisible) {
+			return '' +
+				'<td class="fc-week-number" ' + view.weekNumberStyleAttr() + '>' +
+					view.buildGotoAnchorHtml( // aside from link, important for matchCellWidths
+						{ date: weekStart, type: 'week', forceOff: this.colCnt === 1 },
+						weekStart.format('w') // inner HTML
+					) +
+				'</td>';
+		}
+
+		return '';
+	},
+
+
+	// Generates the HTML that goes before the day bg cells for each day-row
+	renderBgIntroHtml: function() {
+		var view = this.view;
+
+		if (view.colWeekNumbersVisible) {
+			return '<td class="fc-week-number ' + view.widgetContentClass + '" ' +
+				view.weekNumberStyleAttr() + '></td>';
+		}
+
+		return '';
+	},
+
+
+	// Generates the HTML that goes before every other type of row generated by DayGrid.
+	// Affects helper-skeleton and highlight-skeleton rows.
+	renderIntroHtml: function() {
+		var view = this.view;
+
+		if (view.colWeekNumbersVisible) {
+			return '<td class="fc-week-number" ' + view.weekNumberStyleAttr() + '></td>';
+		}
+
+		return '';
+	}
+
+};
+
+;;
+
+/* A month view with day cells running in rows (one-per-week) and columns
 ----------------------------------------------------------------------------------------------------------------------*/
 
-setDefaults({
-	fixedWeekCount: true
-});
-
-var MonthView = fcViews.month = BasicView.extend({
+var MonthView = FC.MonthView = BasicView.extend({
 
 	// Produces information about what range to display
 	computeRange: function(date) {
 		var range = BasicView.prototype.computeRange.call(this, date); // get value from super-method
+		var rowCnt;
 
+		// ensure 6 weeks
 		if (this.isFixedWeeks()) {
-			// ensure 6 weeks
-			range.end.add(
-				6 - range.end.diff(range.start, 'weeks'),
-				'weeks'
-			);
+			rowCnt = Math.ceil(range.end.diff(range.start, 'weeks', true)); // could be partial weeks due to hiddenDays
+			range.end.add(6 - rowCnt, 'weeks');
 		}
 
 		return range;
@@ -9274,8 +12577,6 @@ var MonthView = fcViews.month = BasicView.extend({
 
 	// Overrides the default BasicView behavior to have special multi-week auto-height logic
 	setGridHeight: function(height, isAuto) {
-
-		isAuto = isAuto || this.opt('weekMode') === 'variable'; // LEGACY: weekMode is deprecated
 
 		// if auto, make the height of each row the height that it would be if there were 6 weeks
 		if (isAuto) {
@@ -9287,78 +12588,87 @@ var MonthView = fcViews.month = BasicView.extend({
 
 
 	isFixedWeeks: function() {
-		var weekMode = this.opt('weekMode'); // LEGACY: weekMode is deprecated
-		if (weekMode) {
-			return weekMode === 'fixed'; // if any other type of weekMode, assume NOT fixed
-		}
-
 		return this.opt('fixedWeekCount');
 	}
 
 });
 
-MonthView.duration = { months: 1 };
+;;
 
-    /* A week view with simple day cells running horizontally
-----------------------------------------------------------------------------------------------------------------------*/
-
-fcViews.basicWeek = {
-	type: 'basic',
-	duration: { weeks: 1 }
+fcViews.basic = {
+	'class': BasicView
 };
-    /* A view with a single simple day cell
-----------------------------------------------------------------------------------------------------------------------*/
 
 fcViews.basicDay = {
 	type: 'basic',
 	duration: { days: 1 }
 };
-    /* An abstract class for all agenda-related views. Displays one more columns with time slots running vertically.
+
+fcViews.basicWeek = {
+	type: 'basic',
+	duration: { weeks: 1 }
+};
+
+fcViews.month = {
+	'class': MonthView,
+	duration: { months: 1 }, // important for prev/next
+	defaults: {
+		fixedWeekCount: true
+	}
+};
+;;
+
+/* An abstract class for all agenda-related views. Displays one more columns with time slots running vertically.
 ----------------------------------------------------------------------------------------------------------------------*/
 // Is a manager for the TimeGrid subcomponent and possibly the DayGrid subcomponent (if allDaySlot is on).
 // Responsible for managing width/height.
 
-setDefaults({
-	allDaySlot: true,
-	allDayText: 'all-day',
-	scrollTime: '06:00:00',
-	slotDuration: '00:30:00',
-	minTime: '00:00:00',
-	maxTime: '24:00:00',
-	slotEventOverlap: true
-});
+var AgendaView = FC.AgendaView = View.extend({
 
-var AGENDA_ALL_DAY_EVENT_LIMIT = 5;
+	scroller: null,
 
-fcViews.agenda = View.extend({ // AgendaView
-
+	timeGridClass: TimeGrid, // class used to instantiate the timeGrid. subclasses can override
 	timeGrid: null, // the main time-grid subcomponent of this view
+
+	dayGridClass: DayGrid, // class used to instantiate the dayGrid. subclasses can override
 	dayGrid: null, // the "all-day" subcomponent. if all-day is turned off, this will be null
 
 	axisWidth: null, // the width of the time axis running down the side
 
-	noScrollRowEls: null, // set of fake row elements that must compensate when scrollerEl has scrollbars
+	headContainerEl: null, // div that hold's the timeGrid's rendered date header
+	noScrollRowEls: null, // set of fake row elements that must compensate when scroller has scrollbars
 
 	// when the time-grid isn't tall enough to occupy the given height, we render an <hr> underneath
 	bottomRuleEl: null,
-	bottomRuleHeight: null,
 
 
 	initialize: function() {
-		this.timeGrid = new TimeGrid(this);
+		this.timeGrid = this.instantiateTimeGrid();
 
 		if (this.opt('allDaySlot')) { // should we display the "all-day" area?
-			this.dayGrid = new DayGrid(this); // the all-day subcomponent of this view
+			this.dayGrid = this.instantiateDayGrid(); // the all-day subcomponent of this view
+		}
 
-			// the coordinate grid will be a combination of both subcomponents' grids
-			this.coordMap = new ComboCoordMap([
-				this.dayGrid.coordMap,
-				this.timeGrid.coordMap
-			]);
-		}
-		else {
-			this.coordMap = this.timeGrid.coordMap;
-		}
+		this.scroller = new Scroller({
+			overflowX: 'hidden',
+			overflowY: 'auto'
+		});
+	},
+
+
+	// Instantiates the TimeGrid object this view needs. Draws from this.timeGridClass
+	instantiateTimeGrid: function() {
+		var subclass = this.timeGridClass.extend(agendaTimeGridMethods);
+
+		return new subclass(this);
+	},
+
+
+	// Instantiates the DayGrid object this view might need. Draws from this.dayGridClass
+	instantiateDayGrid: function() {
+		var subclass = this.dayGridClass.extend(agendaDayGridMethods);
+
+		return new subclass(this);
 	},
 
 
@@ -9378,24 +12688,26 @@ fcViews.agenda = View.extend({ // AgendaView
 
 
 	// Renders the view into `this.el`, which has already been assigned
-	render: function() {
+	renderDates: function() {
 
-		this.el.addClass('fc-agenda-view').html(this.renderHtml());
+		this.el.addClass('fc-agenda-view').html(this.renderSkeletonHtml());
+		this.renderHead();
 
-		// the element that wraps the time-grid that will probably scroll
-		this.scrollerEl = this.el.find('.fc-time-grid-container');
-		this.timeGrid.coordMap.containerEl = this.scrollerEl; // don't accept clicks/etc outside of this
+		this.scroller.render();
+		var timeGridWrapEl = this.scroller.el.addClass('fc-time-grid-container');
+		var timeGridEl = $('<div class="fc-time-grid" />').appendTo(timeGridWrapEl);
+		this.el.find('.fc-body > tr > td').append(timeGridWrapEl);
 
-		this.timeGrid.el = this.el.find('.fc-time-grid');
-		this.timeGrid.render();
+		this.timeGrid.setElement(timeGridEl);
+		this.timeGrid.renderDates();
 
 		// the <hr> that sometimes displays under the time-grid
-		this.bottomRuleEl = $('<hr class="' + this.widgetHeaderClass + '"/>')
+		this.bottomRuleEl = $('<hr class="fc-divider ' + this.widgetHeaderClass + '"/>')
 			.appendTo(this.timeGrid.el); // inject it into the time-grid
 
 		if (this.dayGrid) {
-			this.dayGrid.el = this.el.find('.fc-day-grid');
-			this.dayGrid.render();
+			this.dayGrid.setElement(this.el.find('.fc-day-grid'));
+			this.dayGrid.renderDates();
 
 			// have the day-grid extend it's coordinate area over the <hr> dividing the two grids
 			this.dayGrid.bottomCoordPadding = this.dayGrid.el.next('hr').outerHeight();
@@ -9405,102 +12717,51 @@ fcViews.agenda = View.extend({ // AgendaView
 	},
 
 
-	// Make subcomponents ready for cleanup
-	destroy: function() {
-		this.timeGrid.destroy();
+	// render the day-of-week headers
+	renderHead: function() {
+		this.headContainerEl =
+			this.el.find('.fc-head-container')
+				.html(this.timeGrid.renderHeadHtml());
+	},
+
+
+	// Unrenders the content of the view. Since we haven't separated skeleton rendering from date rendering,
+	// always completely kill each grid's rendering.
+	unrenderDates: function() {
+		this.timeGrid.unrenderDates();
+		this.timeGrid.removeElement();
+
 		if (this.dayGrid) {
-			this.dayGrid.destroy();
+			this.dayGrid.unrenderDates();
+			this.dayGrid.removeElement();
 		}
-		View.prototype.destroy.call(this); // call the super-method
+
+		this.scroller.destroy();
 	},
 
 
 	// Builds the HTML skeleton for the view.
 	// The day-grid and time-grid components will render inside containers defined by this HTML.
-	renderHtml: function() {
+	renderSkeletonHtml: function() {
 		return '' +
 			'<table>' +
-				'<thead>' +
+				'<thead class="fc-head">' +
 					'<tr>' +
-						'<td class="' + this.widgetHeaderClass + '">' +
-							this.timeGrid.headHtml() + // render the day-of-week headers
-						'</td>' +
+						'<td class="fc-head-container ' + this.widgetHeaderClass + '"></td>' +
 					'</tr>' +
 				'</thead>' +
-				'<tbody>' +
+				'<tbody class="fc-body">' +
 					'<tr>' +
 						'<td class="' + this.widgetContentClass + '">' +
 							(this.dayGrid ?
 								'<div class="fc-day-grid"/>' +
-								'<hr class="' + this.widgetHeaderClass + '"/>' :
+								'<hr class="fc-divider ' + this.widgetHeaderClass + '"/>' :
 								''
 								) +
-							'<div class="fc-time-grid-container">' +
-								'<div class="fc-time-grid"/>' +
-							'</div>' +
 						'</td>' +
 					'</tr>' +
 				'</tbody>' +
 			'</table>';
-	},
-
-
-	// Generates the HTML that will go before the day-of week header cells.
-	// Queried by the TimeGrid subcomponent when generating rows. Ordering depends on isRTL.
-	headIntroHtml: function() {
-		var date;
-		var weekNumber;
-		var weekTitle;
-		var weekText;
-
-		if (this.opt('weekNumbers')) {
-			date = this.timeGrid.getCell(0).start;
-			weekNumber = this.calendar.calculateWeekNumber(date);
-			weekTitle = this.opt('weekNumberTitle');
-
-			if (this.opt('isRTL')) {
-				weekText = weekNumber + weekTitle;
-			}
-			else {
-				weekText = weekTitle + weekNumber;
-			}
-
-			return '' +
-				'<th class="fc-axis fc-week-number ' + this.widgetHeaderClass + '" ' + this.axisStyleAttr() + '>' +
-					'<span>' + // needed for matchCellWidths
-						htmlEscape(weekText) +
-					'</span>' +
-				'</th>';
-		}
-		else {
-			return '<th class="fc-axis ' + this.widgetHeaderClass + '" ' + this.axisStyleAttr() + '></th>';
-		}
-	},
-
-
-	// Generates the HTML that goes before the all-day cells.
-	// Queried by the DayGrid subcomponent when generating rows. Ordering depends on isRTL.
-	dayIntroHtml: function() {
-		return '' +
-			'<td class="fc-axis ' + this.widgetContentClass + '" ' + this.axisStyleAttr() + '>' +
-				'<span>' + // needed for matchCellWidths
-					(this.opt('allDayHtml') || htmlEscape(this.opt('allDayText'))) +
-				'</span>' +
-			'</td>';
-	},
-
-
-	// Generates the HTML that goes before the bg of the TimeGrid slot area. Long vertical column.
-	slotBgIntroHtml: function() {
-		return '<td class="fc-axis ' + this.widgetContentClass + '" ' + this.axisStyleAttr() + '></td>';
-	},
-
-
-	// Generates the HTML that goes before all other types of cells.
-	// Affects content-skeleton, helper-skeleton, highlight-skeleton for both the time-grid and day-grid.
-	// Queried by the TimeGrid and DayGrid subcomponents when generating rows. Ordering depends on isRTL.
-	introHtml: function() {
-		return '<td class="fc-axis" ' + this.axisStyleAttr() + '></td>';
 	},
 
 
@@ -9513,15 +12774,55 @@ fcViews.agenda = View.extend({ // AgendaView
 	},
 
 
+	/* Business Hours
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	renderBusinessHours: function() {
+		this.timeGrid.renderBusinessHours();
+
+		if (this.dayGrid) {
+			this.dayGrid.renderBusinessHours();
+		}
+	},
+
+
+	unrenderBusinessHours: function() {
+		this.timeGrid.unrenderBusinessHours();
+
+		if (this.dayGrid) {
+			this.dayGrid.unrenderBusinessHours();
+		}
+	},
+
+
+	/* Now Indicator
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	getNowIndicatorUnit: function() {
+		return this.timeGrid.getNowIndicatorUnit();
+	},
+
+
+	renderNowIndicator: function(date) {
+		this.timeGrid.renderNowIndicator(date);
+	},
+
+
+	unrenderNowIndicator: function() {
+		this.timeGrid.unrenderNowIndicator();
+	},
+
+
 	/* Dimensions
 	------------------------------------------------------------------------------------------------------------------*/
 
 
 	updateSize: function(isResize) {
-		if (isResize) {
-			this.timeGrid.resize();
-		}
-		View.prototype.updateSize.call(this, isResize);
+		this.timeGrid.updateSize(isResize);
+
+		View.prototype.updateSize.call(this, isResize); // call the super-method
 	},
 
 
@@ -9536,21 +12837,16 @@ fcViews.agenda = View.extend({ // AgendaView
 	setHeight: function(totalHeight, isAuto) {
 		var eventLimit;
 		var scrollerHeight;
-
-		if (this.bottomRuleHeight === null) {
-			// calculate the height of the rule the very first time
-			this.bottomRuleHeight = this.bottomRuleEl.outerHeight();
-		}
-		this.bottomRuleEl.hide(); // .show() will be called later if this <hr> is necessary
+		var scrollbarWidths;
 
 		// reset all dimensions back to the original state
-		this.scrollerEl.css('overflow', '');
-		unsetScroller(this.scrollerEl);
+		this.bottomRuleEl.hide(); // .show() will be called later if this <hr> is necessary
+		this.scroller.clear(); // sets height to 'auto' and clears overflow
 		uncompensateScroll(this.noScrollRowEls);
 
 		// limit number of events in the all-day area
 		if (this.dayGrid) {
-			this.dayGrid.destroySegPopover(); // kill the "more" popover if displayed
+			this.dayGrid.removeSegPopover(); // kill the "more" popover if displayed
 
 			eventLimit = this.opt('eventLimit');
 			if (eventLimit && typeof eventLimit !== 'number') {
@@ -9561,33 +12857,48 @@ fcViews.agenda = View.extend({ // AgendaView
 			}
 		}
 
-		if (!isAuto) { // should we force dimensions of the scroll container, or let the contents be natural height?
+		if (!isAuto) { // should we force dimensions of the scroll container?
 
 			scrollerHeight = this.computeScrollerHeight(totalHeight);
-			if (setPotentialScroller(this.scrollerEl, scrollerHeight)) { // using scrollbars?
+			this.scroller.setHeight(scrollerHeight);
+			scrollbarWidths = this.scroller.getScrollbarWidths();
+
+			if (scrollbarWidths.left || scrollbarWidths.right) { // using scrollbars?
 
 				// make the all-day and header rows lines up
-				compensateScroll(this.noScrollRowEls, getScrollbarWidths(this.scrollerEl));
+				compensateScroll(this.noScrollRowEls, scrollbarWidths);
 
 				// the scrollbar compensation might have changed text flow, which might affect height, so recalculate
 				// and reapply the desired height to the scroller.
 				scrollerHeight = this.computeScrollerHeight(totalHeight);
-				this.scrollerEl.height(scrollerHeight);
-
-				this.restoreScroll();
+				this.scroller.setHeight(scrollerHeight);
 			}
-			else { // no scrollbars
-				// still, force a height and display the bottom rule (marks the end of day)
-				this.scrollerEl.height(scrollerHeight).css('overflow', 'hidden'); // in case <hr> goes outside
+
+			// guarantees the same scrollbar widths
+			this.scroller.lockOverflow(scrollbarWidths);
+
+			// if there's any space below the slats, show the horizontal rule.
+			// this won't cause any new overflow, because lockOverflow already called.
+			if (this.timeGrid.getTotalSlatHeight() < scrollerHeight) {
 				this.bottomRuleEl.show();
 			}
 		}
 	},
 
 
-	// Sets the scroll value of the scroller to the initial pre-configured state prior to allowing the user to change it
-	initializeScroll: function() {
-		var _this = this;
+	// given a desired total height of the view, returns what the height of the scroller should be
+	computeScrollerHeight: function(totalHeight) {
+		return totalHeight -
+			subtractInnerElHeight(this.el, this.scroller.el); // everything that's NOT the scroller
+	},
+
+
+	/* Scroll
+	------------------------------------------------------------------------------------------------------------------*/
+
+
+	// Computes the initial pre-configured scroll state prior to allowing the user to change it
+	computeInitialScroll: function() {
 		var scrollTime = moment.duration(this.opt('scrollTime'));
 		var top = this.timeGrid.computeTimeTop(scrollTime);
 
@@ -9598,12 +12909,61 @@ fcViews.agenda = View.extend({ // AgendaView
 			top++; // to overcome top border that slots beyond the first have. looks better
 		}
 
-		function scroll() {
-			_this.scrollerEl.scrollTop(top);
+		return top;
+	},
+
+
+	queryScroll: function() {
+		return this.scroller.getScrollTop();
+	},
+
+
+	setScroll: function(top) {
+		this.scroller.setScrollTop(top);
+	},
+
+
+	/* Hit Areas
+	------------------------------------------------------------------------------------------------------------------*/
+	// forward all hit-related method calls to the grids (dayGrid might not be defined)
+
+
+	prepareHits: function() {
+		this.timeGrid.prepareHits();
+		if (this.dayGrid) {
+			this.dayGrid.prepareHits();
+		}
+	},
+
+
+	releaseHits: function() {
+		this.timeGrid.releaseHits();
+		if (this.dayGrid) {
+			this.dayGrid.releaseHits();
+		}
+	},
+
+
+	queryHit: function(left, top) {
+		var hit = this.timeGrid.queryHit(left, top);
+
+		if (!hit && this.dayGrid) {
+			hit = this.dayGrid.queryHit(left, top);
 		}
 
-		scroll();
-		setTimeout(scroll, 0); // overrides any previous scroll state made by the browser
+		return hit;
+	},
+
+
+	getHitSpan: function(hit) {
+		// TODO: hit.component is set as a hack to identify where the hit came from
+		return hit.component.getHitSpan(hit);
+	},
+
+
+	getHitEl: function(hit) {
+		// TODO: hit.component is set as a hack to identify where the hit came from
+		return hit.component.getHitEl(hit);
 	},
 
 
@@ -9649,21 +13009,16 @@ fcViews.agenda = View.extend({ // AgendaView
 
 
 	// Unrenders all event elements and clears internal segment data
-	destroyEvents: function() {
+	unrenderEvents: function() {
 
-		// if destroyEvents is being called as part of an event rerender, renderEvents will be called shortly
-		// after, so remember what the scroll value was so we can restore it.
-		this.recordScroll();
-
-		// destroy the events in the subcomponents
-		this.timeGrid.destroyEvents();
+		// unrender the events in the subcomponents
+		this.timeGrid.unrenderEvents();
 		if (this.dayGrid) {
-			this.dayGrid.destroyEvents();
+			this.dayGrid.unrenderEvents();
 		}
 
-		// we DON'T need to call updateHeight() because:
-		// A) a renderEvents() call always happens after this, which will eventually call updateHeight()
-		// B) in IE8, this causes a flash whenever events are rerendered
+		// we DON'T need to call updateHeight() because
+		// a renderEvents() call always happens after this, which will eventually call updateHeight()
 	},
 
 
@@ -9682,10 +13037,10 @@ fcViews.agenda = View.extend({ // AgendaView
 	},
 
 
-	destroyDrag: function() {
-		this.timeGrid.destroyDrag();
+	unrenderDrag: function() {
+		this.timeGrid.unrenderDrag();
 		if (this.dayGrid) {
-			this.dayGrid.destroyDrag();
+			this.dayGrid.unrenderDrag();
 		}
 	},
 
@@ -9695,38 +13050,462 @@ fcViews.agenda = View.extend({ // AgendaView
 
 
 	// Renders a visual indication of a selection
-	renderSelection: function(range) {
-		if (range.start.hasTime() || range.end.hasTime()) {
-			this.timeGrid.renderSelection(range);
+	renderSelection: function(span) {
+		if (span.start.hasTime() || span.end.hasTime()) {
+			this.timeGrid.renderSelection(span);
 		}
 		else if (this.dayGrid) {
-			this.dayGrid.renderSelection(range);
+			this.dayGrid.renderSelection(span);
 		}
 	},
 
 
 	// Unrenders a visual indications of a selection
-	destroySelection: function() {
-		this.timeGrid.destroySelection();
+	unrenderSelection: function() {
+		this.timeGrid.unrenderSelection();
 		if (this.dayGrid) {
-			this.dayGrid.destroySelection();
+			this.dayGrid.unrenderSelection();
 		}
 	}
 
 });
 
-    /* A week view with an all-day cell area at the top, and a time grid below
-----------------------------------------------------------------------------------------------------------------------*/
 
-fcViews.agendaWeek = {
-	type: 'agenda',
-	duration: { weeks: 1 }
+// Methods that will customize the rendering behavior of the AgendaView's timeGrid
+// TODO: move into TimeGrid
+var agendaTimeGridMethods = {
+
+
+	// Generates the HTML that will go before the day-of week header cells
+	renderHeadIntroHtml: function() {
+		var view = this.view;
+		var weekText;
+
+		if (view.opt('weekNumbers')) {
+			weekText = this.start.format(view.opt('smallWeekFormat'));
+
+			return '' +
+				'<th class="fc-axis fc-week-number ' + view.widgetHeaderClass + '" ' + view.axisStyleAttr() + '>' +
+					view.buildGotoAnchorHtml( // aside from link, important for matchCellWidths
+						{ date: this.start, type: 'week', forceOff: this.colCnt > 1 },
+						htmlEscape(weekText) // inner HTML
+					) +
+				'</th>';
+		}
+		else {
+			return '<th class="fc-axis ' + view.widgetHeaderClass + '" ' + view.axisStyleAttr() + '></th>';
+		}
+	},
+
+
+	// Generates the HTML that goes before the bg of the TimeGrid slot area. Long vertical column.
+	renderBgIntroHtml: function() {
+		var view = this.view;
+
+		return '<td class="fc-axis ' + view.widgetContentClass + '" ' + view.axisStyleAttr() + '></td>';
+	},
+
+
+	// Generates the HTML that goes before all other types of cells.
+	// Affects content-skeleton, helper-skeleton, highlight-skeleton for both the time-grid and day-grid.
+	renderIntroHtml: function() {
+		var view = this.view;
+
+		return '<td class="fc-axis" ' + view.axisStyleAttr() + '></td>';
+	}
+
 };
-    /* A day view with an all-day cell area at the top, and a time grid below
-----------------------------------------------------------------------------------------------------------------------*/
+
+
+// Methods that will customize the rendering behavior of the AgendaView's dayGrid
+var agendaDayGridMethods = {
+
+
+	// Generates the HTML that goes before the all-day cells
+	renderBgIntroHtml: function() {
+		var view = this.view;
+
+		return '' +
+			'<td class="fc-axis ' + view.widgetContentClass + '" ' + view.axisStyleAttr() + '>' +
+				'<span>' + // needed for matchCellWidths
+					view.getAllDayHtml() +
+				'</span>' +
+			'</td>';
+	},
+
+
+	// Generates the HTML that goes before all other types of cells.
+	// Affects content-skeleton, helper-skeleton, highlight-skeleton for both the time-grid and day-grid.
+	renderIntroHtml: function() {
+		var view = this.view;
+
+		return '<td class="fc-axis" ' + view.axisStyleAttr() + '></td>';
+	}
+
+};
+
+;;
+
+var AGENDA_ALL_DAY_EVENT_LIMIT = 5;
+
+// potential nice values for the slot-duration and interval-duration
+// from largest to smallest
+var AGENDA_STOCK_SUB_DURATIONS = [
+	{ hours: 1 },
+	{ minutes: 30 },
+	{ minutes: 15 },
+	{ seconds: 30 },
+	{ seconds: 15 }
+];
+
+fcViews.agenda = {
+	'class': AgendaView,
+	defaults: {
+		allDaySlot: true,
+		slotDuration: '00:30:00',
+		minTime: '00:00:00',
+		maxTime: '24:00:00',
+		slotEventOverlap: true // a bad name. confused with overlap/constraint system
+	}
+};
 
 fcViews.agendaDay = {
 	type: 'agenda',
 	duration: { days: 1 }
 };
+
+fcViews.agendaWeek = {
+	type: 'agenda',
+	duration: { weeks: 1 }
+};
+;;
+
+/*
+Responsible for the scroller, and forwarding event-related actions into the "grid"
+*/
+var ListView = View.extend({
+
+	grid: null,
+	scroller: null,
+
+	initialize: function() {
+		this.grid = new ListViewGrid(this);
+		this.scroller = new Scroller({
+			overflowX: 'hidden',
+			overflowY: 'auto'
+		});
+	},
+
+	setRange: function(range) {
+		View.prototype.setRange.call(this, range); // super
+
+		this.grid.setRange(range); // needs to process range-related options
+	},
+
+	renderSkeleton: function() {
+		this.el.addClass(
+			'fc-list-view ' +
+			this.widgetContentClass
+		);
+
+		this.scroller.render();
+		this.scroller.el.appendTo(this.el);
+
+		this.grid.setElement(this.scroller.scrollEl);
+	},
+
+	unrenderSkeleton: function() {
+		this.scroller.destroy(); // will remove the Grid too
+	},
+
+	setHeight: function(totalHeight, isAuto) {
+		this.scroller.setHeight(this.computeScrollerHeight(totalHeight));
+	},
+
+	computeScrollerHeight: function(totalHeight) {
+		return totalHeight -
+			subtractInnerElHeight(this.el, this.scroller.el); // everything that's NOT the scroller
+	},
+
+	renderEvents: function(events) {
+		this.grid.renderEvents(events);
+	},
+
+	unrenderEvents: function() {
+		this.grid.unrenderEvents();
+	},
+
+	isEventResizable: function(event) {
+		return false;
+	},
+
+	isEventDraggable: function(event) {
+		return false;
+	}
+
+});
+
+/*
+Responsible for event rendering and user-interaction.
+Its "el" is the inner-content of the above view's scroller.
+*/
+var ListViewGrid = Grid.extend({
+
+	segSelector: '.fc-list-item', // which elements accept event actions
+	hasDayInteractions: false, // no day selection or day clicking
+
+	// slices by day
+	spanToSegs: function(span) {
+		var view = this.view;
+		var dayStart = view.start.clone().time(0); // timed, so segs get times!
+		var dayIndex = 0;
+		var seg;
+		var segs = [];
+
+		while (dayStart < view.end) {
+
+			seg = intersectRanges(span, {
+				start: dayStart,
+				end: dayStart.clone().add(1, 'day')
+			});
+
+			if (seg) {
+				seg.dayIndex = dayIndex;
+				segs.push(seg);
+			}
+
+			dayStart.add(1, 'day');
+			dayIndex++;
+
+			// detect when span won't go fully into the next day,
+			// and mutate the latest seg to the be the end.
+			if (
+				seg && !seg.isEnd && span.end.hasTime() &&
+				span.end < dayStart.clone().add(this.view.nextDayThreshold)
+			) {
+				seg.end = span.end.clone();
+				seg.isEnd = true;
+				break;
+			}
+		}
+
+		return segs;
+	},
+
+	// like "4:00am"
+	computeEventTimeFormat: function() {
+		return this.view.opt('mediumTimeFormat');
+	},
+
+	// for events with a url, the whole <tr> should be clickable,
+	// but it's impossible to wrap with an <a> tag. simulate this.
+	handleSegClick: function(seg, ev) {
+		var url;
+
+		Grid.prototype.handleSegClick.apply(this, arguments); // super. might prevent the default action
+
+		// not clicking on or within an <a> with an href
+		if (!$(ev.target).closest('a[href]').length) {
+			url = seg.event.url;
+			if (url && !ev.isDefaultPrevented()) { // jsEvent not cancelled in handler
+				window.location.href = url; // simulate link click
+			}
+		}
+	},
+
+	// returns list of foreground segs that were actually rendered
+	renderFgSegs: function(segs) {
+		segs = this.renderFgSegEls(segs); // might filter away hidden events
+
+		if (!segs.length) {
+			this.renderEmptyMessage();
+		}
+		else {
+			this.renderSegList(segs);
+		}
+
+		return segs;
+	},
+
+	renderEmptyMessage: function() {
+		this.el.html(
+			'<div class="fc-list-empty-wrap2">' + // TODO: try less wraps
+			'<div class="fc-list-empty-wrap1">' +
+			'<div class="fc-list-empty">' +
+				htmlEscape(this.view.opt('noEventsMessage')) +
+			'</div>' +
+			'</div>' +
+			'</div>'
+		);
+	},
+
+	// render the event segments in the view
+	renderSegList: function(allSegs) {
+		var segsByDay = this.groupSegsByDay(allSegs); // sparse array
+		var dayIndex;
+		var daySegs;
+		var i;
+		var tableEl = $('<table class="fc-list-table"><tbody/></table>');
+		var tbodyEl = tableEl.find('tbody');
+
+		for (dayIndex = 0; dayIndex < segsByDay.length; dayIndex++) {
+			daySegs = segsByDay[dayIndex];
+			if (daySegs) { // sparse array, so might be undefined
+
+				// append a day header
+				tbodyEl.append(this.dayHeaderHtml(
+					this.view.start.clone().add(dayIndex, 'days')
+				));
+
+				this.sortEventSegs(daySegs);
+
+				for (i = 0; i < daySegs.length; i++) {
+					tbodyEl.append(daySegs[i].el); // append event row
+				}
+			}
+		}
+
+		this.el.empty().append(tableEl);
+	},
+
+	// Returns a sparse array of arrays, segs grouped by their dayIndex
+	groupSegsByDay: function(segs) {
+		var segsByDay = []; // sparse array
+		var i, seg;
+
+		for (i = 0; i < segs.length; i++) {
+			seg = segs[i];
+			(segsByDay[seg.dayIndex] || (segsByDay[seg.dayIndex] = []))
+				.push(seg);
+		}
+
+		return segsByDay;
+	},
+
+	// generates the HTML for the day headers that live amongst the event rows
+	dayHeaderHtml: function(dayDate) {
+		var view = this.view;
+		var mainFormat = view.opt('listDayFormat');
+		var altFormat = view.opt('listDayAltFormat');
+
+		return '<tr class="fc-list-heading" data-date="' + dayDate.format('YYYY-MM-DD') + '">' +
+			'<td class="' + view.widgetHeaderClass + '" colspan="3">' +
+				(mainFormat ?
+					view.buildGotoAnchorHtml(
+						dayDate,
+						{ 'class': 'fc-list-heading-main' },
+						htmlEscape(dayDate.format(mainFormat)) // inner HTML
+					) :
+					'') +
+				(altFormat ?
+					view.buildGotoAnchorHtml(
+						dayDate,
+						{ 'class': 'fc-list-heading-alt' },
+						htmlEscape(dayDate.format(altFormat)) // inner HTML
+					) :
+					'') +
+			'</td>' +
+		'</tr>';
+	},
+
+	// generates the HTML for a single event row
+	fgSegHtml: function(seg) {
+		var view = this.view;
+		var classes = [ 'fc-list-item' ].concat(this.getSegCustomClasses(seg));
+		var bgColor = this.getSegBackgroundColor(seg);
+		var event = seg.event;
+		var url = event.url;
+		var timeHtml;
+
+		if (event.allDay) {
+			timeHtml = view.getAllDayHtml();
+		}
+		else if (view.isMultiDayEvent(event)) { // if the event appears to span more than one day
+			if (seg.isStart || seg.isEnd) { // outer segment that probably lasts part of the day
+				timeHtml = htmlEscape(this.getEventTimeText(seg));
+			}
+			else { // inner segment that lasts the whole day
+				timeHtml = view.getAllDayHtml();
+			}
+		}
+		else {
+			// Display the normal time text for the *event's* times
+			timeHtml = htmlEscape(this.getEventTimeText(event));
+		}
+
+		if (url) {
+			classes.push('fc-has-url');
+		}
+
+		return '<tr class="' + classes.join(' ') + '">' +
+			(this.displayEventTime ?
+				'<td class="fc-list-item-time ' + view.widgetContentClass + '">' +
+					(timeHtml || '') +
+				'</td>' :
+				'') +
+			'<td class="fc-list-item-marker ' + view.widgetContentClass + '">' +
+				'<span class="fc-event-dot"' +
+				(bgColor ?
+					' style="background-color:' + bgColor + '"' :
+					'') +
+				'></span>' +
+			'</td>' +
+			'<td class="fc-list-item-title ' + view.widgetContentClass + '">' +
+				'<a' + (url ? ' href="' + htmlEscape(url) + '"' : '') + '>' +
+					htmlEscape(seg.event.title || '') +
+				'</a>' +
+			'</td>' +
+		'</tr>';
+	}
+
+});
+
+;;
+
+fcViews.list = {
+	'class': ListView,
+	buttonTextKey: 'list', // what to lookup in locale files
+	defaults: {
+		buttonText: 'list', // text to display for English
+		listDayFormat: 'LL', // like "January 1, 2016"
+		noEventsMessage: 'No events to display'
+	}
+};
+
+fcViews.listDay = {
+	type: 'list',
+	duration: { days: 1 },
+	defaults: {
+		listDayFormat: 'dddd' // day-of-week is all we need. full date is probably in header
+	}
+};
+
+fcViews.listWeek = {
+	type: 'list',
+	duration: { weeks: 1 },
+	defaults: {
+		listDayFormat: 'dddd', // day-of-week is more important
+		listDayAltFormat: 'LL'
+	}
+};
+
+fcViews.listMonth = {
+	type: 'list',
+	duration: { month: 1 },
+	defaults: {
+		listDayAltFormat: 'dddd' // day-of-week is nice-to-have
+	}
+};
+
+fcViews.listYear = {
+	type: 'list',
+	duration: { year: 1 },
+	defaults: {
+		listDayAltFormat: 'dddd' // day-of-week is nice-to-have
+	}
+};
+
+;;
+
+return FC; // export for Node/CommonJS
 });
