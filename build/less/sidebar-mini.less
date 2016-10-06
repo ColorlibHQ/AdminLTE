@@ -53,7 +53,7 @@
             > a {
               //overflow: visible;
             }
-            > a > span:not(.pull-right),
+            > a > span:not(.pull-right),//:not(.pull-right-container),
             > .treeview-menu {
               display: block !important;
               position: absolute;
@@ -67,6 +67,16 @@
               margin-left: -3px;
               padding: 12px 5px 12px 20px;
               background-color: inherit;
+            }
+            > a > .pull-right-container {
+              //display: block!important;
+              float: right;
+              width: auto!important;
+              left: 200px!important;
+              top: 10px!important;
+              > .label:not(:first-of-type) {
+                display: none;
+              }
             }
             > .treeview-menu {
               top: 44px;
@@ -132,7 +142,7 @@
 
 .sidebar-menu li > a {
   position: relative;
-  > .pull-right {
+  > .pull-right-container {
     position: absolute;
     right: 10px;
     top: 50%;

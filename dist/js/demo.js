@@ -288,6 +288,8 @@
 
     //Add the change skin listener
     $("[data-skin]").on('click', function (e) {
+      if($(this).hasClass('knob'))
+        return;
       e.preventDefault();
       change_skin($(this).data('skin'));
     });
