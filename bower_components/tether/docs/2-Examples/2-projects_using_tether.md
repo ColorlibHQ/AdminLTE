@@ -34,4 +34,4 @@ An Ember.js-friendly interface for tether.
 
 ### Your Project Here
 
-If you have a cool open-source library built on Tether, PR this doc, or [get in touch](mailto:zbloom@hubspot.com).
+If you have a cool open-source library built on Tether, PR this doc.

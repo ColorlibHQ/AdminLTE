@@ -3,6 +3,7 @@
 
 /*!
  * Script to update version number references in the project.
+ * Copyright 2015 The Bootstrap Authors
  * Copyright 2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
@@ -55,20 +56,20 @@ function walkAsync(directory, excludedDirectories, fileCallback, errback) {
 function replaceRecursively(directory, excludedDirectories, allowedExtensions, original, replacement) {
   original = new RegExp(RegExp.quote(original), 'g');
   replacement = RegExp.quoteReplacement(replacement);
-  var updateFile = !DRY_RUN ? (function (filepath) {
-      if (allowedExtensions.has(path.parse(filepath).ext)) {
-        sed('-i', original, replacement, filepath);
-      }
-    }) : (function (filepath) {
-      if (allowedExtensions.has(path.parse(filepath).ext)) {
-        console.log('FILE: ' + filepath);
-      }
-      else {
-        console.log('EXCLUDED:' + filepath);
-      }
-    });
-  walkAsync('.', excludedDirectories, updateFile, function (err) {
-    console.error('ERROR while traversing directory!:')
+  var updateFile = !DRY_RUN ? function (filepath) {
+    if (allowedExtensions.has(path.parse(filepath).ext)) {
+      sed('-i', original, replacement, filepath);
+    }
+  } : function (filepath) {
+    if (allowedExtensions.has(path.parse(filepath).ext)) {
+      console.log('FILE: ' + filepath);
+    }
+    else {
+      console.log('EXCLUDED:' + filepath);
+    }
+  };
+  walkAsync(directory, excludedDirectories, updateFile, function (err) {
+    console.error('ERROR while traversing directory!:');
     console.error(err);
     process.exit(1);
   });
@@ -100,6 +101,6 @@ function main(args) {
     '.yml'
   ]);
   replaceRecursively('.', EXCLUDED_DIRS, INCLUDED_EXTENSIONS, oldVersion, newVersion);
-};
+}
 
 main(process.argv.slice(2));

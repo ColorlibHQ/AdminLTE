@@ -11,10 +11,10 @@
     "dist/js/app.js"
   ],
   "dependencies": {
-    "jquery": "1.9.1 - 2",
-    "bootstrap": "https://github.com/twbs/bootstrap.git#v4.0.0-alpha.2",
+    "jquery": "^3",
+    "bootstrap": "https://github.com/twbs/bootstrap.git#v4-dev",
     "font-awesome": "^4",
-    "tether": "https://github.com/HubSpot/tether.git#v1.1.1"
+    "tether": "https://github.com/HubSpot/tether.git#v1.3.7"
   },
   "keywords": [
     "css",

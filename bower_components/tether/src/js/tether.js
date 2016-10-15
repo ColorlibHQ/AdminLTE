@@ -5,7 +5,7 @@ if (typeof TetherBase === 'undefined') {
 }
 
 const {
-  getScrollParent,
+  getScrollParents,
   getBounds,
   getOffsetParent,
   extend,
@@ -14,7 +14,8 @@ const {
   updateClasses,
   defer,
   flush,
-  getScrollBarSize
+  getScrollBarSize,
+  removeUtilElements
 } = TetherBase.Utils;
 
 function within(a, b, diff=1) {
@@ -27,7 +28,7 @@ const transformKey = (() => {
   }
   const el = document.createElement('div');
 
-  const transforms = ['transform', 'webkitTransform', 'OTransform', 'MozTransform', 'msTransform'];
+  const transforms = ['transform', 'WebkitTransform', 'OTransform', 'MozTransform', 'msTransform'];
   for (let i = 0; i < transforms.length; ++i) {
     const key = transforms[i];
     if (el.style[key] !== undefined) {
@@ -72,7 +73,7 @@ function now() {
       return;
     }
 
-    if (typeof pendingTimeout !== 'undefined') {
+    if (pendingTimeout != null) {
       clearTimeout(pendingTimeout);
       pendingTimeout = null;
     }
@@ -82,7 +83,7 @@ function now() {
     lastDuration = now() - lastCall;
   };
 
-  if(typeof window !== 'undefined') {
+  if(typeof window !== 'undefined' && typeof window.addEventListener !== 'undefined') {
     ['resize', 'scroll', 'touchmove'].forEach(event => {
       window.addEventListener(event, tick);
     });
@@ -174,9 +175,10 @@ const parseOffset = (value) => {
 };
 const parseAttachment = parseOffset;
 
-class TetherClass {
+class TetherClass extends Evented {
 
   constructor(options) {
+    super();
     this.position = this.position.bind(this);
 
     tethers.push(this);
@@ -254,14 +256,14 @@ class TetherClass {
     this.offset = parseOffset(this.options.offset);
     this.targetOffset = parseOffset(this.options.targetOffset);
 
-    if (typeof this.scrollParent !== 'undefined') {
+    if (typeof this.scrollParents !== 'undefined') {
       this.disable();
     }
 
     if (this.targetModifier === 'scroll-handle') {
-      this.scrollParent = this.target;
+      this.scrollParents = [this.target];
     } else {
-      this.scrollParent = getScrollParent(this.target);
+      this.scrollParents = getScrollParents(this.target);
     }
 
     if(!(this.options.enabled === false)) {
@@ -388,9 +390,11 @@ class TetherClass {
     addClass(this.element, this.getClass('enabled'));
     this.enabled = true;
 
-    if (this.scrollParent !== document) {
-      this.scrollParent.addEventListener('scroll', this.position);
-    }
+    this.scrollParents.forEach((parent) => {
+      if (parent !== this.target.ownerDocument) {
+        parent.addEventListener('scroll', this.position);
+      }
+    })
 
     if (pos) {
       this.position();
@@ -402,8 +406,10 @@ class TetherClass {
     removeClass(this.element, this.getClass('enabled'));
     this.enabled = false;
 
-    if (typeof this.scrollParent !== 'undefined') {
-      this.scrollParent.removeEventListener('scroll', this.position);
+    if (typeof this.scrollParents !== 'undefined') {
+      this.scrollParents.forEach((parent) => {
+        parent.removeEventListener('scroll', this.position);
+      })
     }
   }
 
@@ -413,9 +419,13 @@ class TetherClass {
     tethers.forEach((tether, i) => {
       if (tether === this) {
         tethers.splice(i, 1);
-        return;
       }
     });
+
+    // Remove any elements we were using for convenience from the DOM
+    if (tethers.length === 0) {
+      removeUtilElements();
+    }
   }
 
   updateAttachClasses(elementAttach, targetAttach) {
@@ -562,22 +572,25 @@ class TetherClass {
       }
     };
 
+    var doc = this.target.ownerDocument;
+    var win = doc.defaultView;
+
     let scrollbarSize;
-    if (document.body.scrollWidth > window.innerWidth) {
+    if (win.innerHeight > doc.documentElement.clientHeight) {
       scrollbarSize = this.cache('scrollbar-size', getScrollBarSize);
       next.viewport.bottom -= scrollbarSize.height;
     }
 
-    if (document.body.scrollHeight > window.innerHeight) {
+    if (win.innerWidth > doc.documentElement.clientWidth) {
       scrollbarSize = this.cache('scrollbar-size', getScrollBarSize);
       next.viewport.right -= scrollbarSize.width;
     }
 
-    if (['', 'static'].indexOf(document.body.style.position) === -1 ||
-        ['', 'static'].indexOf(document.body.parentElement.style.position) === -1) {
+    if (['', 'static'].indexOf(doc.body.style.position) === -1 ||
+        ['', 'static'].indexOf(doc.body.parentElement.style.position) === -1) {
       // Absolute positioning in the body will be relative to the page, not the 'initial containing block'
-      next.page.bottom = document.body.scrollHeight - top - height;
-      next.page.right = document.body.scrollWidth - left - width;
+      next.page.bottom = doc.body.scrollHeight - top - height;
+      next.page.right = doc.body.scrollWidth - left - width;
     }
 
     if (typeof this.options.optimizations !== 'undefined' &&
@@ -593,8 +606,8 @@ class TetherClass {
         offsetBorder[side.toLowerCase()] = parseFloat(offsetParentStyle[`border${ side }Width`]);
       });
 
-      offsetPosition.right = document.body.scrollWidth - offsetPosition.left - offsetParentSize.width + offsetBorder.right;
-      offsetPosition.bottom = document.body.scrollHeight - offsetPosition.top - offsetParentSize.height + offsetBorder.bottom;
+      offsetPosition.right = doc.body.scrollWidth - offsetPosition.left - offsetParentSize.width + offsetBorder.right;
+      offsetPosition.bottom = doc.body.scrollHeight - offsetPosition.top - offsetParentSize.height + offsetBorder.bottom;
 
       if (next.page.top >= (offsetPosition.top + offsetBorder.top) && next.page.bottom >= offsetPosition.bottom) {
         if (next.page.left >= (offsetPosition.left + offsetBorder.left) && next.page.right >= offsetPosition.right) {
@@ -684,7 +697,17 @@ class TetherClass {
           xPos = -_pos.right;
         }
 
-        css[transformKey] = `translateX(${ Math.round(xPos) }px) translateY(${ Math.round(yPos) }px)`;
+        if (window.matchMedia) {
+          // HubSpot/tether#207
+          const retina = window.matchMedia('only screen and (min-resolution: 1.3dppx)').matches ||
+                         window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 1.3)').matches;
+          if (!retina) {
+            xPos = Math.round(xPos);
+            yPos = Math.round(yPos);
+          }
+        }
+
+        css[transformKey] = `translateX(${ xPos }px) translateY(${ yPos }px)`;
 
         if (transformKey !== 'msTransform') {
           // The Z transform will keep this in the GPU (faster, and prevents artifacts),
@@ -738,7 +761,7 @@ class TetherClass {
     if (!moved) {
       let offsetParentIsBody = true;
       let currentNode = this.element.parentNode;
-      while (currentNode && currentNode.tagName !== 'BODY') {
+      while (currentNode && currentNode.nodeType === 1 && currentNode.tagName !== 'BODY') {
         if (getComputedStyle(currentNode).position !== 'static') {
           offsetParentIsBody = false;
           break;
@@ -749,7 +772,7 @@ class TetherClass {
 
       if (!offsetParentIsBody) {
         this.element.parentNode.removeChild(this.element);
-        document.body.appendChild(this.element);
+        this.element.ownerDocument.body.appendChild(this.element);
       }
     }
 
@@ -760,11 +783,6 @@ class TetherClass {
       let val = css[key];
       let elVal = this.element.style[key];
 
-      if (elVal !== '' && val !== '' && ['top', 'left', 'bottom', 'right'].indexOf(key) >= 0) {
-        elVal = parseFloat(elVal);
-        val = parseFloat(val);
-      }
-
       if (elVal !== val) {
         write = true;
         writeCSS[key] = val;
@@ -774,6 +792,7 @@ class TetherClass {
     if (write) {
       defer(() => {
         extend(this.element.style, writeCSS);
+        this.trigger('repositioned');
       });
     }
   }

@@ -38,6 +38,7 @@
                 left: 50%
                 margin-left: - $arrowSize
                 border-top-color: $backgroundColor
+                border-bottom: 0
 
         &.#{ $themePrefix }-element-attached-top.#{ $themePrefix }-element-attached-center .#{ $themePrefix }-content
             margin-top: $arrowSize
@@ -47,6 +48,7 @@
                 left: 50%
                 margin-left: - $arrowSize
                 border-bottom-color: $backgroundColor
+                border-top: 0
 
         &.#{ $themePrefix }-element-attached-right.#{ $themePrefix }-element-attached-middle .#{ $themePrefix }-content
             margin-right: $arrowSize
@@ -56,6 +58,7 @@
                 top: 50%
                 margin-top: - $arrowSize
                 border-left-color: $backgroundColor
+                border-right: 0
 
         &.#{ $themePrefix }-element-attached-left.#{ $themePrefix }-element-attached-middle .#{ $themePrefix }-content
             margin-left: $arrowSize
@@ -65,6 +68,52 @@
                 top: 50%
                 margin-top: - $arrowSize
                 border-right-color: $backgroundColor
+                border-left: 0
+
+        // Target middle/center, element corner
+
+        &.#{ $themePrefix }-element-attached-left.#{ $themePrefix }-target-attached-center .#{ $themePrefix }-content
+            left: - $arrowSize * 2
+
+        &.#{ $themePrefix }-element-attached-right.#{ $themePrefix }-target-attached-center .#{ $themePrefix }-content
+            left: $arrowSize * 2
+
+        &.#{ $themePrefix }-element-attached-top.#{ $themePrefix }-element-attached-left.#{ $themePrefix }-target-attached-middle .#{ $themePrefix }-content
+            margin-top: $arrowSize
+
+            &:before
+                bottom: 100%
+                left: $arrowSize
+                border-bottom-color: $backgroundColor
+                border-top: 0
+
+        &.#{ $themePrefix }-element-attached-top.#{ $themePrefix }-element-attached-right.#{ $themePrefix }-target-attached-middle .#{ $themePrefix }-content
+            margin-top: $arrowSize
+
+            &:before
+                bottom: 100%
+                right: $arrowSize
+                border-bottom-color: $backgroundColor
+                border-top: 0
+
+        &.#{ $themePrefix }-element-attached-bottom.#{ $themePrefix }-element-attached-left.#{ $themePrefix }-target-attached-middle .#{ $themePrefix }-content
+            margin-bottom: $arrowSize
+
+            &:before
+                top: 100%
+                left: $arrowSize
+                border-top-color: $backgroundColor
+                border-bottom: 0
+
+        &.#{ $themePrefix }-element-attached-bottom.#{ $themePrefix }-element-attached-right.#{ $themePrefix }-target-attached-middle .#{ $themePrefix }-content
+            margin-bottom: $arrowSize
+
+            &:before
+                top: 100%
+                right: $arrowSize
+                border-top-color: $backgroundColor
+                border-bottom: 0
+
 
         // Top and bottom corners
 
@@ -75,6 +124,7 @@
                 bottom: 100%
                 left: $arrowSize
                 border-bottom-color: $backgroundColor
+                border-top: 0
 
         &.#{ $themePrefix }-element-attached-top.#{ $themePrefix }-element-attached-right.#{ $themePrefix }-target-attached-bottom .#{ $themePrefix }-content
             margin-top: $arrowSize
@@ -83,6 +133,7 @@
                 bottom: 100%
                 right: $arrowSize
                 border-bottom-color: $backgroundColor
+                border-top: 0
 
         &.#{ $themePrefix }-element-attached-bottom.#{ $themePrefix }-element-attached-left.#{ $themePrefix }-target-attached-top .#{ $themePrefix }-content
             margin-bottom: $arrowSize
@@ -91,6 +142,7 @@
                 top: 100%
                 left: $arrowSize
                 border-top-color: $backgroundColor
+                border-bottom: 0
 
         &.#{ $themePrefix }-element-attached-bottom.#{ $themePrefix }-element-attached-right.#{ $themePrefix }-target-attached-top .#{ $themePrefix }-content
             margin-bottom: $arrowSize
@@ -99,6 +151,7 @@
                 top: 100%
                 right: $arrowSize
                 border-top-color: $backgroundColor
+                border-bottom: 0
 
         // Side corners
 
@@ -109,6 +162,7 @@
                 top: $arrowSize
                 left: 100%
                 border-left-color: $backgroundColor
+                border-right: 0
 
         &.#{ $themePrefix }-element-attached-top.#{ $themePrefix }-element-attached-left.#{ $themePrefix }-target-attached-right .#{ $themePrefix }-content
             margin-left: $arrowSize
@@ -117,6 +171,7 @@
                 top: $arrowSize
                 right: 100%
                 border-right-color: $backgroundColor
+                border-left: 0
 
         &.#{ $themePrefix }-element-attached-bottom.#{ $themePrefix }-element-attached-right.#{ $themePrefix }-target-attached-left .#{ $themePrefix }-content
             margin-right: $arrowSize
@@ -125,6 +180,7 @@
                 bottom: $arrowSize
                 left: 100%
                 border-left-color: $backgroundColor
+                border-right: 0
 
         &.#{ $themePrefix }-element-attached-bottom.#{ $themePrefix }-element-attached-left.#{ $themePrefix }-target-attached-right .#{ $themePrefix }-content
             margin-left: $arrowSize
@@ -133,3 +189,4 @@
                 bottom: $arrowSize
                 right: 100%
                 border-right-color: $backgroundColor
+                border-left: 0

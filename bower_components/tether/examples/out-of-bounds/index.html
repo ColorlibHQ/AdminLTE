@@ -20,7 +20,7 @@
 
         <script src="//github.hubspot.com/tether/dist/js/tether.js"></script>
         <script>
-            new Tether({
+            var tether = new Tether({
                 element: '.element',
                 target: '.target',
                 attachment: 'top left',
@@ -29,6 +29,9 @@
                     to: 'window',
                     attachment: 'together'
                 }]
+            });
+            tether.on('update', function(event) {
+                console.log(event);
             });
         </script>
     </body>

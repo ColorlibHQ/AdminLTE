@@ -11,7 +11,7 @@ const BOUNDS_FORMAT = ['left', 'top', 'right', 'bottom'];
 
 function getBoundingRect(tether, to) {
   if (to === 'scrollParent') {
-    to = tether.scrollParent;
+    to = tether.scrollParents[0];
   } else if (to === 'window') {
     to = [pageXOffset, pageYOffset, innerWidth + pageXOffset, innerHeight + pageYOffset];
   }
@@ -21,12 +21,22 @@ function getBoundingRect(tether, to) {
   }
 
   if (typeof to.nodeType !== 'undefined') {
+    const node = to;
     const size = getBounds(to);
     const pos = size;
     const style = getComputedStyle(to);
 
     to = [pos.left, pos.top, size.width + pos.left, size.height + pos.top];
-
+  
+    // Account any parent Frames scroll offset
+    if (node.ownerDocument !== document) {
+      let win = node.ownerDocument.defaultView;
+      to[0] += win.pageXOffset;
+      to[1] += win.pageYOffset;
+      to[2] += win.pageXOffset;
+      to[3] += win.pageYOffset;
+    }
+  
     BOUNDS_FORMAT.forEach((side, i) => {
       side = side[0].toUpperCase() + side.substr(1);
       if (side === 'Top' || side === 'Left') {
@@ -114,37 +124,36 @@ TetherBase.modules.push({
       }
 
       if (changeAttachY === 'together') {
-        if (top < bounds[1] && tAttachment.top === 'top') {
-          if (eAttachment.top === 'bottom') {
+        if (tAttachment.top === 'top') {
+          if (eAttachment.top === 'bottom' && top < bounds[1]) {
             top += targetHeight;
             tAttachment.top = 'bottom';
 
             top += height;
             eAttachment.top = 'top';
 
-          } else if (eAttachment.top === 'top') {
-            top += targetHeight;
+          } else if (eAttachment.top === 'top' && top + height > bounds[3] && top - (height - targetHeight) >= bounds[1]) {
+            top -= height - targetHeight;
             tAttachment.top = 'bottom';
 
-            top -= height;
             eAttachment.top = 'bottom';
           }
         }
 
-        if (top + height > bounds[3] && tAttachment.top === 'bottom') {
-          if (eAttachment.top === 'top') {
+        if (tAttachment.top === 'bottom') {
+          if (eAttachment.top === 'top' && top + height > bounds[3]) {
             top -= targetHeight;
             tAttachment.top = 'top';
 
             top -= height;
             eAttachment.top = 'bottom';
 
-          } else if (eAttachment.top === 'bottom') {
-            top -= targetHeight;
+          } else if (eAttachment.top === 'bottom'&& top < bounds[1] && top + (height*2 - targetHeight) <= bounds[3]) {
+            top += height - targetHeight;
             tAttachment.top = 'top';
 
-            top += height;
             eAttachment.top = 'top';
+
           }
         }
 
@@ -230,14 +239,24 @@ TetherBase.modules.push({
       }
 
       if (changeAttachX === 'element' || changeAttachX === 'both') {
-        if (left < bounds[0] && eAttachment.left === 'right') {
-          left += width;
-          eAttachment.left = 'left';
+        if (left < bounds[0]) {
+          if (eAttachment.left === 'right') {
+            left += width;
+            eAttachment.left = 'left';
+          } else if (eAttachment.left === 'center') {
+            left += (width / 2);
+            eAttachment.left = 'left';
+          }
         }
 
-        if (left + width > bounds[2] && eAttachment.left === 'left') {
-          left -= width;
-          eAttachment.left = 'right';
+        if (left + width > bounds[2]) {
+          if (eAttachment.left === 'left') {
+            left -= width;
+            eAttachment.left = 'right';
+          } else if (eAttachment.left === 'center') {
+            left -= (width / 2);
+            eAttachment.left = 'right';
+          }
         }
       }
 
@@ -328,6 +347,10 @@ TetherBase.modules.push({
           eAttachment.top !== this.attachment.top ||
           eAttachment.left !== this.attachment.left) {
         this.updateAttachClasses(eAttachment, tAttachment);
+        this.trigger('update', {
+          attachment: eAttachment,
+          targetAttachment: tAttachment,
+        });
       }
     });
 
