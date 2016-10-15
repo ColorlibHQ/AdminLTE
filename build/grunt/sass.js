@@ -6,15 +6,20 @@ module.exports = function (grunt) {
   return {
       development: {
         options: {
-          style: 'expanded'
+          precision: 6,
+          sourceComments: false,
+          sourceMap: true,
+          outputStyle: 'expanded'
         },
         files: {
-          'dist/css/AdminLTE.css': 'build/scss/AdminLTE.scss'
+          'dist/css/adminlte.css': 'build/scss/AdminLTE.scss'
         }
       },
       production: {
         options: {
-          style: 'compressed'
+          sourceComments: false,
+          sourceMap: true,
+          outputStyle: 'compressed'
         },
         files: {
           'dist/css/adminlte.min.css': 'build/scss/AdminLTE.scss'
