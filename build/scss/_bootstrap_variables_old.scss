@@ -17,6 +17,22 @@
 // Fonts
 // Components
 
+@mixin _assert-ascending($map, $map-name) {
+  $prev-key: null;
+  $prev-num: null;
+  @each $key, $num in $map {
+    @if $prev-num == null {
+      // Do nothing
+    } @else if not comparable($prev-num, $num) {
+      @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+    } @else if $prev-num >= $num {
+      @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+    }
+    $prev-key: $key;
+    $prev-num: $num;
+  }
+}
+
 // General variable structure
 //
 // Variable format should follow the `$component-modifier-state-property` order.
@@ -81,21 +97,17 @@ $link-hover-decoration:      underline !default;
 
 // Grid breakpoints
 //
-// Define the minimum and maximum dimensions at which your layout will change,
+// Define the minimum dimensions at which your layout will change,
 // adapting to different screen sizes, for use in media queries.
 
 $grid-breakpoints: (
-  // Extra small screen / phone
         xs: 0,
-  // Small screen / phone
-        sm: 34em,
-  // Medium screen / tablet
-        md: 48em,
-  // Large screen / desktop
-        lg: 62em,
-  // Extra large screen / wide desktop
-        xl: 75em
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px
 ) !default;
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
 
 
 // Grid containers
@@ -103,11 +115,12 @@ $grid-breakpoints: (
 // Define the maximum width of `.container` for different screen sizes.
 
 $container-max-widths: (
-        sm: 34rem,    // 480
-        md: 45rem,    // 720
-        lg: 60rem,    // 960
-        xl: 72.25rem  // 1140
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1140px
 ) !default;
+@include _assert-ascending($container-max-widths, "$container-max-widths");
 
 
 // Grid columns
@@ -115,8 +128,14 @@ $container-max-widths: (
 // Set the number of columns and specify the width of the gutters.
 
 $grid-columns:               12 !default;
-$grid-gutter-width:          1.875rem !default; // 30px
-
+$grid-gutter-width-base:     30px !default;
+$grid-gutter-widths: (
+        xs: $grid-gutter-width-base,
+        sm: $grid-gutter-width-base,
+        md: $grid-gutter-width-base,
+        lg: $grid-gutter-width-base,
+        xl: $grid-gutter-width-base
+) !default;
 
 // Typography
 //
@@ -152,7 +171,7 @@ $display2-weight:             400 !default;
 $display3-weight:             400 !default;
 $display4-weight:             400 !default;
 
-$line-height:                1.5 !default;
+$line-height-base:             1.5 !default;
 
 $headings-margin-bottom:     ($spacer / 2) !default;
 $headings-font-family:       inherit !default;
@@ -177,9 +196,9 @@ $hr-border-width:             $border-width;
 
 // Components
 //
-// Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
+// Define common padding and border radius sizes and more.
 
-$line-height-lg:         (4/3) !default;
+$line-height-lg:         (4 / 3) !default;
 $line-height-sm:         1.5 !default;
 
 $border-radius:          .25rem !default;
@@ -281,7 +300,7 @@ $input-padding-y-sm:             .275rem !default;
 $input-padding-x-lg:             1.25rem !default;
 $input-padding-y-lg:             .75rem !default;
 
-$input-height:                   (($font-size-base * $line-height) + ($input-padding-y * 2) + ($border-width * 2)) !default;
+$input-height:                   (($font-size-base * $line-height-base) + ($input-padding-y * 2) + ($border-width * 2)) !default;
 $input-height-lg:                (($font-size-lg * $line-height-lg) + ($input-padding-y-lg * 2) + ($border-width * 2)) !default;
 $input-height-sm:                (($font-size-sm * $line-height-sm) + ($input-padding-y-sm * 2) + ($border-width * 2)) !default;
 
@@ -491,7 +510,7 @@ $label-link-hover-color:      #fff !default;
 $modal-inner-padding:         15px !default;
 
 $modal-title-padding:         15px !default;
-$modal-title-line-height:     $line-height !default;
+$modal-title-line-height:     $line-height-base !default;
 
 $modal-content-bg:                             #fff !default;
 $modal-content-border-color:                   rgba(0,0,0,.2) !default;

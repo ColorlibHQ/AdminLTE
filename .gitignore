@@ -6,6 +6,7 @@
 /nbproject/private/
 /node_modules/
 /.sass-cache/
+bower_components
 ad.js
 TODO
 test.html
