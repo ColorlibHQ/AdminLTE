@@ -68,11 +68,6 @@
   }
 }
 
-// border radius creator
-@mixin border-radius($radius) {
-  border-radius: $radius;
-}
-
 @mixin translate($x, $y) {
   -webkit-transform: translate($x, $y);
   -ms-transform: translate($x, $y); // IE9 only
@@ -80,8 +75,7 @@
 }
 
 // Different radius each side
-@mixin border-radius-sides($top-left, $top-right, $bottom-left, $bottom-right)
-{
+@mixin border-radius-sides($top-left, $top-right, $bottom-left, $bottom-right) {
   border-radius: $top-left $top-right $bottom-left $bottom-right;
 }
 
@@ -117,12 +111,35 @@
   .main-sidebar:before {
     background-color: $sidebar-dark-bg;
   }
+
   // User Panel (resides in the sidebar)
   .user-panel {
-    > .info, > .info > a {
+    .info,
+    .status {
       color: #fff;
     }
+
+    .status {
+      color: $sidebar-dark-color;
+      background: $sidebar-dark-hover-bg;
+      &:hover,
+      &:focus,
+      &:active {
+        color: $sidebar-dark-hover-color;
+        background: darken($sidebar-dark-hover-bg, 3%);
+      }
+    }
+
+    .dropdown-menu {
+      border-color: darken($sidebar-dark-hover-bg, 5%);
+      @include box-shadow(0 2px 4px rgba(0,0,0,.4));
+    }
+
+    .dropdown-item {
+      color: $body-color;
+    }
   }
+
   // Sidebar Menu. First level links
   .nav-sidebar > .nav-item {
     // links
@@ -133,24 +150,32 @@
         color: $sidebar-dark-color;
       }
     }
+
     // Hover and active states
+    &.menu-open > .nav-link,
     &:hover > .nav-link,
-    &.active > .nav-link {
+    > .nav-link.active {
       color: $sidebar-dark-hover-color;
       background: $sidebar-dark-hover-bg;
+    }
+
+    > .nav-link.active {
       border-left-color: $link-hover-border-color;
     }
+
     // First Level Submenu
     > .nav-treeview {
       margin: 0 1px;
       background: $sidebar-dark-submenu-bg;
     }
   }
-  // Section Headning
+
+  // Section Heading
   .nav-header {
     color: darken($sidebar-dark-color, 20%);
-    background: inherit;//darken($sidebar-dark-bg, 3%);
+    background: inherit; //darken($sidebar-dark-bg, 3%);
   }
+
   // All links within the sidebar menu
   .sidebar a {
     color: $sidebar-dark-color;
@@ -158,21 +183,31 @@
       text-decoration: none;
     }
   }
+
   // All submenus
   .nav-treeview {
     > .nav-item {
       > .nav-link {
         color: $sidebar-dark-submenu-color;
       }
-      &.active > .nav-link,
-      > .navlink:hover {
+      > .nav-link.active,
+      > .nav-link:hover {
         color: $sidebar-dark-submenu-hover-color;
       }
     }
   }
+
   // Sidebar form
   .sidebar-form {
+    margin: 5px 0;
     .form-control {
+      &::-webkit-input-placeholder,
+      &:-moz-placeholder,
+      &::-moz-placeholder,
+      &:-ms-input-placeholder {
+        color: red;
+      }
+      font-size: 14px;
       background: $sidebar-dark-hover-bg;
       border: 0;
       color: $sidebar-dark-hover-color;

@@ -546,6 +546,15 @@
   padding: 2px;
 }
 
+// Rounded and Circle Images
+.img-rounded {
+  @include border-radius($border-radius)
+}
+
+.img-circle {
+  @include border-radius(50%);
+}
+
 //General attachemnt block
 .attachment-block {
   border: 1px solid $box-border-color;

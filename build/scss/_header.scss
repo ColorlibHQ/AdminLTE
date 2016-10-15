@@ -12,9 +12,11 @@
     background: darken($brand-primary, 5%);
     transition: width $transition-speed $transition-fn;
     overflow: hidden;
+
     > .logo-mini {
       display: none;
     }
+
     @include media-breakpoint-up(md) {
       .sidebar-mini.sidebar-collapse & {
         width: $sidebar-mini-width;
@@ -40,8 +42,35 @@
   .nav-link {
     padding: $main-header-link-padding-y $main-header-link-padding-x;
   }
+
+  .has-img {
+    padding-top: $main-header-link-padding-y - 2;
+    padding-bottom: $main-header-link-padding-y - 2;
+  }
+
+  .navbar-nav[class*="-right"] {
+    .nav-item:first-of-type {
+      @media (max-width: breakpoint-max(md)) {
+        margin-left: 1rem;
+      }
+    }
+    .dropdown-menu {
+      margin-top: -3px;
+      right: 0;
+      left: auto;
+      @media (max-width: breakpoint-max(md)) {
+        left: 0;
+        right: auto;
+      }
+    }
+  }
 }
 
 .navbar-shadow {
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-img {
+  height: $main-header-height / 2;
+  width: auto;
 }

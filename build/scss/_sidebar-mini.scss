@@ -16,16 +16,30 @@
 
       // Modify the sidebar to shrink instead of disappearing
       .main-sidebar {
-        // Don't go away! Just shrink
-        @include translate(0, 0);
-        width: $sidebar-mini-width !important;
+        &,
+        &:before {
+          // Don't go away! Just shrink
+          margin-left: 0;
+          width: $sidebar-mini-width !important;
+        }
+
+        .user-panel {
+          margin-bottom: 10px;
+
+          .image {
+            float: none;
+          }
+        }
       }
 
       .nav-sidebar {
         > .nav-item {
           position: relative;
+          z-index: 999;
+
           > .nav-link {
             margin-right: 0;
+
             > .nav-icon {
               width: 100%;
               text-align: center;
@@ -52,15 +66,18 @@
             }
 
             // position the header & treeview menus
-            > .nav-link > span {
+            > .nav-link > .text {
               top: 0;
               margin-left: -3px;
               padding: $nav-link-padding;
               background-color: inherit;
+              border-top-right-radius: $border-radius;
             }
+
             > .nav-treeview {
               top: $nav-link-padding;
               margin-left: 0;
+              border-bottom-right-radius: $border-radius;
             }
           }
         }
@@ -83,11 +100,11 @@
 
 // A fix for text overflow while transitioning from sidebar mini to full sidebar
 .nav-sidebar,
-.main-sidebar .user-panel,
 .nav-sidebar > .nav-header {
   white-space: nowrap;
   overflow: hidden;
 }
+
 .nav-sidebar {
   position: relative;
   &:hover {

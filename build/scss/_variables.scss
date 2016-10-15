@@ -43,25 +43,25 @@ $main-header-link-padding-y:  15px !default;
 $main-header-link-padding-x:  5px !default;
 $main-header-brand-padding-y: 12px !default;
 $main-header-brand-padding-x: $main-header-brand-padding-y !default;
-$main-header-height:          (($font-size-root * $line-height) + ($main-header-link-padding-y * 2)) !default;
+$main-header-height:          (($font-size-root * $line-height-base) + ($main-header-link-padding-y * 2)) !default;
 
 // MAIN FOOTER
 // --------------------------------------------------------
 $main-footer-padding:          15px !default;
 $main-footer-border-top-width: 2px !default;
 $main-footer-border-top:       $main-footer-border-top-width solid darken($main-bg, 10%) !default;
-$main-footer-height:           (($font-size-root * $line-height) + ($main-footer-padding * 2)) + $main-footer-border-top-width !default;
+$main-footer-height:           (($font-size-root * $line-height-base) + ($main-footer-padding * 2)) + $main-footer-border-top-width !default;
 
 // SIDEBAR SKINS
 // --------------------------------------------------------
 
 // Dark sidebar
-$sidebar-dark-bg: #222d32 !default;
+$sidebar-dark-bg: #2c333c !default;//#222d32 !default;
 $sidebar-dark-hover-bg: darken($sidebar-dark-bg, 2%) !default;
-$sidebar-dark-color: lighten($sidebar-dark-bg, 60%) !default;
+$sidebar-dark-color: #C2C7D0!default;//lighten($sidebar-dark-bg, 60%) !default;
 $sidebar-dark-hover-color: #fff !default;
 $sidebar-dark-submenu-bg: lighten($sidebar-dark-bg, 5%) !default;
-$sidebar-dark-submenu-color: lighten($sidebar-dark-submenu-bg, 40%) !default;
+$sidebar-dark-submenu-color: #C2C7D0!default;//lighten($sidebar-dark-submenu-bg, 40%) !default;
 $sidebar-dark-submenu-hover-color: #fff !default;
 
 // Light sidebar
