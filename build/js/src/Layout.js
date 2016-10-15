@@ -13,9 +13,9 @@ const Layout = (($) => {
    * ====================================================
    */
 
-  const NAME               = 'Layout'
-  const DATA_KEY           = 'lte.layout'
-  const EVENT_KEY          = `.${DATA_KEY}`
+  const NAME = 'Layout'
+  const DATA_KEY = 'lte.layout'
+  const EVENT_KEY = `.${DATA_KEY}`
   const JQUERY_NO_CONFLICT = $.fn[NAME]
 
   const Event = {
@@ -56,13 +56,14 @@ const Layout = (($) => {
 
     fixLayoutHeight() {
       let heights = [
-        $(window).height(),
-        $(Selector.HEADER).outerHeight(),
-        $(Selector.FOOTER).outerHeight()
-      ]
+          $(window).height(),
+          $(Selector.HEADER).outerHeight(),
+          $(Selector.FOOTER).outerHeight(),
+          $(Selector.SIDEBAR).height()
+        ],
+        max = this._max(heights)
 
-      $(Selector.CONTENT).css('min-height', heights[0] - (heights[1] + heights[2]))
-      console.log(heights[0] - (heights[1] + heights[2]))
+      $(Selector.CONTENT).css('min-height', max - (heights[1] + heights[2]))
     }
 
     // Private
@@ -71,7 +72,7 @@ const Layout = (($) => {
       $('body').removeClass(ClassName.HOLD)
 
       this.fixLayoutHeight()
-      $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview', () => {
+      $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', () => {
         this.fixLayoutHeight()
       })
       $(window).resize(() => {
@@ -116,7 +117,7 @@ const Layout = (($) => {
 
   $.fn[NAME] = Layout._jQueryInterface
   $.fn[NAME].Constructor = Layout
-  $.fn[NAME].noConflict  = function () {
+  $.fn[NAME].noConflict = function () {
     $.fn[NAME] = JQUERY_NO_CONFLICT
     return Layout._jQueryInterface
   }
