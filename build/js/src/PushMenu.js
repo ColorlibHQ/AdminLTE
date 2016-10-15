@@ -13,9 +13,9 @@ const PushMenu = (($) => {
    * ====================================================
    */
 
-  const NAME               = 'PushMenu'
-  const DATA_KEY           = 'lte.pushmenu'
-  const EVENT_KEY          = `.${DATA_KEY}`
+  const NAME = 'PushMenu'
+  const DATA_KEY = 'lte.pushmenu'
+  const EVENT_KEY = `.${DATA_KEY}`
   const JQUERY_NO_CONFLICT = $.fn[NAME]
 
   const Event = {
@@ -44,7 +44,7 @@ const PushMenu = (($) => {
 
     show() {
       $('body').addClass('sidebar-open')
-          .removeClass(Selector.COLLAPSED)
+        .removeClass(Selector.COLLAPSED)
 
       this._isShown = true
 
@@ -54,7 +54,7 @@ const PushMenu = (($) => {
 
     collapse() {
       $('body').removeClass('sidebar-open')
-          .addClass(Selector.COLLAPSED)
+        .addClass(Selector.COLLAPSED)
 
       this._isShown = false
 
@@ -117,7 +117,7 @@ const PushMenu = (($) => {
 
   $.fn[NAME] = PushMenu._jQueryInterface
   $.fn[NAME].Constructor = PushMenu
-  $.fn[NAME].noConflict  = function () {
+  $.fn[NAME].noConflict = function () {
     $.fn[NAME] = JQUERY_NO_CONFLICT
     return PushMenu._jQueryInterface
   }

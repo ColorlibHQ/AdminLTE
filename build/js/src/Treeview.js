@@ -42,7 +42,7 @@ const Treeview = (($) => {
   const Default = {
     trigger: `${Selector.DATA_WIDGET} ${Selector.LINK}`,
     animationSpeed: 300,
-    accordion: false
+    accordion: true
   }
 
   /**

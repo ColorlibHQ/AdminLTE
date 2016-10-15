@@ -48,7 +48,7 @@ var Treeview = function ($) {
   var Default = {
     trigger: Selector.DATA_WIDGET + ' ' + Selector.LINK,
     animationSpeed: 300,
-    accordion: false
+    accordion: true
   };
 
   /**

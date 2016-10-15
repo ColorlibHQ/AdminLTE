@@ -12,9 +12,9 @@ const Layout = (($) => {
    * ====================================================
    */
 
-  const NAME               = 'Layout'
-  const DATA_KEY           = 'lte.layout'
-  const EVENT_KEY          = `.${DATA_KEY}`
+  const NAME = 'Layout'
+  const DATA_KEY = 'lte.layout'
+  const EVENT_KEY = `.${DATA_KEY}`
   const JQUERY_NO_CONFLICT = $.fn[NAME]
 
   const Event = {
@@ -55,13 +55,14 @@ const Layout = (($) => {
 
     fixLayoutHeight() {
       let heights = [
-        $(window).height(),
-        $(Selector.HEADER).outerHeight(),
-        $(Selector.FOOTER).outerHeight()
-      ]
+          $(window).height(),
+          $(Selector.HEADER).outerHeight(),
+          $(Selector.FOOTER).outerHeight(),
+          $(Selector.SIDEBAR).height()
+        ],
+        max = this._max(heights)
 
-      $(Selector.CONTENT).css('min-height', heights[0] - (heights[1] + heights[2]))
-      console.log(heights[0] - (heights[1] + heights[2]))
+      $(Selector.CONTENT).css('min-height', max - (heights[1] + heights[2]))
     }
 
     // Private
@@ -70,7 +71,7 @@ const Layout = (($) => {
       $('body').removeClass(ClassName.HOLD)
 
       this.fixLayoutHeight()
-      $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview', () => {
+      $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', () => {
         this.fixLayoutHeight()
       })
       $(window).resize(() => {
@@ -115,7 +116,7 @@ const Layout = (($) => {
 
   $.fn[NAME] = Layout._jQueryInterface
   $.fn[NAME].Constructor = Layout
-  $.fn[NAME].noConflict  = function () {
+  $.fn[NAME].noConflict = function () {
     $.fn[NAME] = JQUERY_NO_CONFLICT
     return Layout._jQueryInterface
   }
@@ -161,7 +162,7 @@ const Treeview = (($) => {
   const Default = {
     trigger: `${Selector.DATA_WIDGET} ${Selector.LINK}`,
     animationSpeed: 300,
-    accordion: false
+    accordion: true
   }
 
   /**
@@ -299,9 +300,9 @@ const PushMenu = (($) => {
    * ====================================================
    */
 
-  const NAME               = 'PushMenu'
-  const DATA_KEY           = 'lte.pushmenu'
-  const EVENT_KEY          = `.${DATA_KEY}`
+  const NAME = 'PushMenu'
+  const DATA_KEY = 'lte.pushmenu'
+  const EVENT_KEY = `.${DATA_KEY}`
   const JQUERY_NO_CONFLICT = $.fn[NAME]
 
   const Event = {
@@ -330,7 +331,7 @@ const PushMenu = (($) => {
 
     show() {
       $('body').addClass('sidebar-open')
-          .removeClass(Selector.COLLAPSED)
+        .removeClass(Selector.COLLAPSED)
 
       this._isShown = true
 
@@ -340,7 +341,7 @@ const PushMenu = (($) => {
 
     collapse() {
       $('body').removeClass('sidebar-open')
-          .addClass(Selector.COLLAPSED)
+        .addClass(Selector.COLLAPSED)
 
       this._isShown = false
 
@@ -403,7 +404,7 @@ const PushMenu = (($) => {
 
   $.fn[NAME] = PushMenu._jQueryInterface
   $.fn[NAME].Constructor = PushMenu
-  $.fn[NAME].noConflict  = function () {
+  $.fn[NAME].noConflict = function () {
     $.fn[NAME] = JQUERY_NO_CONFLICT
     return PushMenu._jQueryInterface
   }
