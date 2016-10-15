@@ -2,10 +2,10 @@
 *.log
 *.zip
 .idea
-/nbproject/
-/nbproject/private/
-/node_modules/
-/.sass-cache/
+nbproject
+nbproject/private
+node_modules
+.sass-cache
 bower_components
 ad.js
 TODO
