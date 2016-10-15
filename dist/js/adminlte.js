@@ -63,10 +63,10 @@ var Layout = function ($) {
     _createClass(Layout, [{
       key: 'fixLayoutHeight',
       value: function fixLayoutHeight() {
-        var heights = [$(window).height(), $(Selector.HEADER).outerHeight(), $(Selector.FOOTER).outerHeight()];
+        var heights = [$(window).height(), $(Selector.HEADER).outerHeight(), $(Selector.FOOTER).outerHeight(), $(Selector.SIDEBAR).height()],
+            max = this._max(heights);
 
-        $(Selector.CONTENT).css('min-height', heights[0] - (heights[1] + heights[2]));
-        console.log(heights[0] - (heights[1] + heights[2]));
+        $(Selector.CONTENT).css('min-height', max - (heights[1] + heights[2]));
       }
 
       // Private
@@ -79,7 +79,7 @@ var Layout = function ($) {
         $('body').removeClass(ClassName.HOLD);
 
         this.fixLayoutHeight();
-        $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview', function () {
+        $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', function () {
           _this.fixLayoutHeight();
         });
         $(window).resize(function () {
@@ -175,7 +175,7 @@ var Treeview = function ($) {
   var Default = {
     trigger: Selector.DATA_WIDGET + ' ' + Selector.LINK,
     animationSpeed: 300,
-    accordion: false
+    accordion: true
   };
 
   /**
