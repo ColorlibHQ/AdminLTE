@@ -132,7 +132,7 @@
 
     .dropdown-menu {
       border-color: darken($sidebar-dark-hover-bg, 5%);
-      @include box-shadow(0 2px 4px rgba(0,0,0,.4));
+      @include box-shadow(0 2px 4px rgba(0, 0, 0, .4));
     }
 
     .dropdown-item {
@@ -193,28 +193,26 @@
       > .nav-link.active,
       > .nav-link:hover {
         color: $sidebar-dark-submenu-hover-color;
+        background: transparent;
       }
     }
   }
 
   // Sidebar form
   .sidebar-form {
-    margin: 5px 0;
     .form-control {
-      &::-webkit-input-placeholder,
-      &:-moz-placeholder,
-      &::-moz-placeholder,
-      &:-ms-input-placeholder {
-        color: red;
-      }
-      font-size: 14px;
-      background: $sidebar-dark-hover-bg;
+      background: $sidebar-dark-submenu-bg;
       border: 0;
-      color: $sidebar-dark-hover-color;
-      padding: 10px 10px;
-      &:focus {
-        background: lighten($sidebar-dark-bg, 3%);
+      &,
+      &:focus + .form-icon {
+        color: $sidebar-dark-hover-color;
       }
+      &:focus {
+        background: lighten($sidebar-dark-submenu-bg, 7%);
+      }
+    }
+    .form-icon {
+      color: $sidebar-dark-color;
     }
   }
 }

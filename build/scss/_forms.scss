@@ -54,6 +54,24 @@
       box-shadow: none;
     }
   }
+
+  &.has-icon {
+    position: relative;
+    .form-control {
+      padding-right: 35px;
+    }
+    .form-icon {
+      cursor: pointer;
+      position: absolute;
+      right: 3px;
+      top: 0;
+      padding: $input-padding-y $input-padding-x;
+      margin-top: -3px;
+      border: 0;
+      background-color: transparent;
+      font-size: 1rem;
+    }
+  }
 }
 
 /* Input group */

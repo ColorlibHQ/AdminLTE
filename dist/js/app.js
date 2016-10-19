@@ -8,5 +8,5 @@
   'use strict';
 
   // Activate the layout manager
-  $(document).Layout();
+  $('body').Layout();
 }(jQuery));

@@ -1,290 +1,135 @@
 /*
  * Component: Control sidebar. By default, this is the right sidebar.
  */
-//The sidebar's background control class
-//This is a hack to make the background visible while scrolling
-.control-sidebar-bg {
-  position: fixed;
-  z-index: 820;
-  bottom: 0;
-}
 
-//Transitions
-.control-sidebar-bg,
-.control-sidebar {
-  top: 0;
-  bottom: 0;
-  right: -$control-sidebar-width;
-  width: $control-sidebar-width;
-  transition: right $transition-speed ease-in-out
-}
-
-//The sidebar
 .control-sidebar {
   position: absolute;
-  padding-top: $main-header-height;
   z-index: 830;
-  height: 100%;
-  overflow: auto;
-  //Tab panes
-  > .tab-content {
-    padding: 10px 15px;
+
+  &,
+  &:before {
+    width: $control-sidebar-width;
+    top: $main-header-height;
+    right: -$control-sidebar-width;
+    bottom: 0;
+    @include transition(right $transition-speed $transition-fn);
   }
-  //Open state with slide over content effect
-  &.control-sidebar-open {
+
+  &:before {
+    display: block;
+    position: fixed;
+    content: " ";
+    z-index: -1;
+  }
+}
+
+// Control sidebar open state
+.control-sidebar-open {
+  .control-sidebar {
     &,
-    + .control-sidebar-bg {
+    &:before {
+      right: 0;
+    }
+  }
+
+  .content-wrapper,
+  .main-footer {
+    margin-right: $control-sidebar-width;
+  }
+}
+
+// Control sidebar slide over content state
+.control-sidebar-slide-open {
+  .control-sidebar {
+    &,
+    &:before {
       right: 0;
     }
   }
 }
 
-//Open without slide over content
-.control-sidebar-open {
-  .control-sidebar-bg,
-  .control-sidebar {
-    right: 0;
-  }
-  @media (min-width: map-get($grid-breakpoints, sm)) {
-    .content-wrapper {
-      margin-right: $control-sidebar-width;
-    }
-  }
-}
-
-//Control sidebar tabs
-.nav-tabs.control-sidebar-tabs {
-  //display: table;
-  //width: 100%;
-  > .nav-item {
-    //display: table-cell;
-    //width: auto;
-    &:first-of-type > .nav-link {
-      &,
-      &:hover,
-      &:focus {
-        border-left-width: 0;
-      }
-    }
-    > .nav-link {
-      @include border-radius(0);
-
-      //Hover and active states
-      &,
-      &:hover {
-        border-top: none;
-        border-right: none;
-        border-left: 1px solid transparent;
-        border-bottom: 1px solid transparent;
-      }
-      .icon {
-        font-size: 16px;
-      }
-    }
-    //Active state
-    &.active {
-      > .nav-link {
-        &,
-        &:hover,
-        &:focus,
-        &:active {
-          border-top: none;
-          border-right: none;
-          border-bottom: none;
-        }
-      }
-    }
-  }
-  //Remove responsiveness on small screens
-  @media (max-width: map-get($grid-breakpoints, md)) {
-    display: table;
-    > li {
-      display: table-cell;
-    }
-  }
-}
-
-//Headings in the sidebar content
-.control-sidebar-heading {
-  font-weight: 400;
-  font-size: 16px;
-  padding: 10px 0;
-  margin-bottom: 10px;
-}
-
-//Subheadings
-.control-sidebar-subheading {
-  display: block;
-  font-weight: 400;
-  font-size: 14px;
-}
-
-//Control Sidebar Menu
-.control-sidebar-menu {
-  list-style: none;
-  padding: 0;
-  margin: 0 -15px;
-  > li > a {
-    @include clearfix();
-    display: block;
-    padding: 10px 15px;
-    > .control-sidebar-subheading {
-      margin-top: 0;
-    }
-  }
-  .menu-icon {
-    float: left;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 35px;
-  }
-  .menu-info {
-    margin-left: 45px;
-    margin-top: 3px;
-    > .control-sidebar-subheading {
-      margin: 0;
-    }
-    > p {
-      margin: 0;
-      font-size: 11px;
-    }
-  }
-  .progress {
-    margin: 0;
-  }
-}
-
-//Dark skin
+// Dark skin
 .control-sidebar-dark {
-  color: $sidebar-dark-color;
-  // Background
   &,
-  + .control-sidebar-bg {
+  a,
+  .nav-link {
+    color: $sidebar-dark-color;
+  }
+
+  //  Background
+  &,
+  &:before {
     background: $sidebar-dark-bg;
   }
-  // Sidebar tabs
-  .nav-tabs.control-sidebar-tabs {
-    border-bottom: darken($sidebar-dark-bg, 3%);
-    > li {
-      > a {
-        background: darken($sidebar-dark-bg, 5%);
-        color: $sidebar-dark-color;
-        //Hover and active states
-        &,
-        &:hover,
-        &:focus {
-          border-left-color: darken($sidebar-dark-bg, 7%);
-          border-bottom-color: darken($sidebar-dark-bg, 7%);
-        }
-        &:hover,
-        &:focus,
-        &:active {
-          background: darken($sidebar-dark-bg, 3%);
-        }
-        &:hover {
-          color: #fff;
-        }
-      }
-      //Active state
+
+  a:hover {
+    color: $sidebar-dark-hover-color;
+  }
+
+  // Headers
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  label {
+    color: $sidebar-dark-hover-color;
+  }
+
+  // Tabs
+  .nav-tabs {
+    border-bottom: 0;
+    background-color: $sidebar-dark-submenu-bg;
+    margin-bottom: 5px;
+
+    .nav-item {
+      margin: 0;
+    }
+
+    .nav-link {
+      position: relative;
+      border-radius: 0;
+      text-align: center;
+      padding: 10px 20px;
+
+      &,
+      &:hover,
+      &:active,
+      &:focus,
       &.active {
-        > a {
-          &,
-          &:hover,
-          &:focus,
-          &:active {
-            background: $sidebar-dark-bg;
-            color: #fff;
-          }
-        }
+        border: 0;
+      }
+
+      &:hover,
+      &:active,
+      &:focus,
+      &.active {
+        border-left-color: transparent;
+        border-bottom-color: transparent;
+        border-top-color: transparent;
+        color: $sidebar-dark-hover-color;
+      }
+
+      &.active {
+        background-color: $sidebar-dark-bg;
       }
     }
   }
-  //Heading & subheading
-  .control-sidebar-heading,
-  .control-sidebar-subheading {
-    color: #fff;
-  }
-  //Sidebar list
-  .control-sidebar-menu {
-    > li {
-      > a {
-        &:hover {
-          background: $sidebar-dark-hover-bg;
-        }
-        .menu-info {
-          > p {
-            color: $sidebar-dark-color;
-          }
-        }
-      }
-    }
+
+  .tab-pane {
+    padding: 10px 15px;
   }
 }
 
-//Light skin
+// Light skin
 .control-sidebar-light {
   color: lighten($sidebar-light-color, 10%);
-  // Background
+
+  //  Background
   &,
-  + .control-sidebar-bg {
+  &:before {
     background: $sidebar-light-bg;
     border-left: 1px solid $gray;
-  }
-  // Sidebar tabs
-  .nav-tabs.control-sidebar-tabs {
-    border-bottom: $gray;
-    > li {
-      > a {
-        background: darken($sidebar-light-bg, 5%);
-        color: $sidebar-light-color;
-        //Hover and active states
-        &,
-        &:hover,
-        &:focus {
-          border-left-color: $gray;
-          border-bottom-color: $gray;
-        }
-        &:hover,
-        &:focus,
-        &:active {
-          background: darken($sidebar-light-bg, 3%);
-        }
-      }
-      //Active state
-      &.active {
-        > a {
-          &,
-          &:hover,
-          &:focus,
-          &:active {
-            background: $sidebar-light-bg;
-            color: #111;
-          }
-        }
-      }
-    }
-  }
-  //Heading & subheading
-  .control-sidebar-heading,
-  .control-sidebar-subheading {
-    color: #111;
-  }
-  //Sidebar list
-  .control-sidebar-menu {
-    margin-left: -14px;
-    > li {
-      > a {
-        &:hover {
-          background: $sidebar-light-hover-bg;
-        }
-        .menu-info {
-          > p {
-            color: lighten($sidebar-light-color, 10%);
-          }
-        }
-      }
-    }
   }
 }

@@ -50,56 +50,56 @@
 
   //Layout options
   demo_settings.append(
-      "<h4 class='control-sidebar-heading'>"
+      "<h5 class='control-sidebar-heading'>"
       + "Layout Options"
-      + "</h4>"
+      + "</h5>"
         //Fixed layout
-      + "<div class='form-group'>"
-      + "<label class='control-sidebar-subheading'>"
-      + "<input type='checkbox' data-layout='fixed' class='pull-right'/> "
+      + "<div class='form-check'>"
+      + "<label class='form-control-label d-block'>"
+      + "<input type='checkbox' data-layout='fixed' class='form-check-input float-xs-right'/> "
       + "Fixed layout"
       + "</label>"
-      + "<p>Activate the fixed layout. You can't use fixed and boxed layouts together</p>"
+      + "<small class='form-text'>Activate the fixed layout. You can't use fixed and boxed layouts together</small>"
       + "</div>"
         //Boxed layout
       + "<div class='form-group'>"
-      + "<label class='control-sidebar-subheading'>"
-      + "<input type='checkbox' data-layout='layout-boxed'class='pull-right'/> "
+      + "<label class='form-control-label d-block'>"
+      + "<input type='checkbox' data-layout='layout-boxed'class='float-xs-right'/> "
       + "Boxed Layout"
       + "</label>"
-      + "<p>Activate the boxed layout</p>"
+      + "<small class='form-text'>Activate the boxed layout</small>"
       + "</div>"
         //Sidebar Toggle
       + "<div class='form-group'>"
-      + "<label class='control-sidebar-subheading'>"
-      + "<input type='checkbox' data-layout='sidebar-collapse' class='pull-right'/> "
+      + "<label class='form-control-label d-block'>"
+      + "<input type='checkbox' data-layout='sidebar-collapse' class='float-xs-right'/> "
       + "Toggle Sidebar"
       + "</label>"
-      + "<p>Toggle the left sidebar's state (open or collapse)</p>"
+      + "<small class='form-text'>Toggle the left sidebar's state (open or collapse)</small>"
       + "</div>"
         //Sidebar mini expand on hover toggle
       + "<div class='form-group'>"
-      + "<label class='control-sidebar-subheading'>"
-      + "<input type='checkbox' data-enable='expandOnHover' class='pull-right'/> "
+      + "<label class='form-control-label d-block'>"
+      + "<input type='checkbox' data-enable='expandOnHover' class='float-xs-right'/> "
       + "Sidebar Expand on Hover"
       + "</label>"
-      + "<p>Let the sidebar mini expand on hover</p>"
+      + "<small class='form-text'>Let the sidebar mini expand on hover</small>"
       + "</div>"
         //Control Sidebar Toggle
       + "<div class='form-group'>"
-      + "<label class='control-sidebar-subheading'>"
-      + "<input type='checkbox' data-controlsidebar='control-sidebar-open' class='pull-right'/> "
+      + "<label class='form-control-label d-block'>"
+      + "<input type='checkbox' data-controlsidebar='control-sidebar-open' class='float-xs-right'/> "
       + "Toggle Right Sidebar Slide"
       + "</label>"
-      + "<p>Toggle between slide over content and push content effects</p>"
+      + "<small class='form-text'>Toggle between slide over content and push content effects</small>"
       + "</div>"
         //Control Sidebar Skin Toggle
       + "<div class='form-group'>"
-      + "<label class='control-sidebar-subheading'>"
-      + "<input type='checkbox' data-sidebarskin='toggle' class='pull-right'/> "
+      + "<label class='form-control-label d-block'>"
+      + "<input type='checkbox' data-sidebarskin='toggle' class='float-xs-right'/> "
       + "Toggle Right Sidebar Skin"
       + "</label>"
-      + "<p>Toggle between dark and light skins for the right sidebar</p>"
+      + "<small class='form-text'>Toggle between dark and light skins for the right sidebar</small>"
       + "</div>"
   );
   var skins_list = $("<ul />", {"class": 'list-unstyled clearfix'});
@@ -204,7 +204,7 @@
           + "<p class='text-center no-margin' style='font-size: 12px;'>Yellow Light</p>");
   skins_list.append(skin_yellow_light);
 
-  demo_settings.append("<h4 class='control-sidebar-heading'>Skins</h4>");
+  demo_settings.append("<h5 class='control-sidebar-heading'>Skins</h5>");
   demo_settings.append(skins_list);
 
   tab_pane.append(demo_settings);

@@ -15,7 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <!-- Google Font: Roboto -->
+  <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <!--
@@ -38,7 +38,7 @@ to get the desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini control-sidebar-open">
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-sticky-top bg-primary navbar-dark">
@@ -59,46 +59,93 @@ to get the desired effect
 
     <!-- Right navbar links -->
     <ul class="nav navbar-nav float-sm-right">
+      <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#"><i class="fa fa-comments-o"></i></a>
-          <div class="dropdown-menu dropdown-menu-lg">
-            <a href="#" class="dropdown-item">
-              <div class="media">
-                <div class="media-left">
-                  <img src="/dist/img/user1-128x128.jpg" alt="User Avatar" class="navbar-img">
-                </div>
-                <div class="media-body">
-                  <p class="no-margin">Lola Stockholm</p>
-                  <p class="text-sm no-margin">What are you up to?</p>
-                </div>
-              </div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <div class="media">
-                <div class="media-left">
-                  <img src="/dist/img/user1-128x128.jpg" alt="User Avatar" class="navbar-img">
-                </div>
-                <div class="media-body">
-                  <p class="no-margin">Lola Stockholm</p>
-                  <p class="text-sm no-margin">What are you up to?</p>
-                </div>
-              </div>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-footer">See All Messages</a>
-            </a>
-          </div>
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="fa fa-comments-o"></i>
+          <span class="tag tag-danger navbar-tag">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg">
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media-left">
+              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle">
+            </div>
+            <div class="media-body">
+              <h3 class="dropdown-item-title">
+                Brad Diesel
+                <span class="float-xs-right text-xs text-danger"><i class="fa fa-star"></i></span>
+              </h3>
+              <p class="text-sm">Call me whenever you can...</p>
+              <p class="text-xs text-muted"><i class="fa fa-clock-o margin-r-5"></i> 4 Hours Ago</p>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media-left">
+              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle">
+            </div>
+            <div class="media-body">
+              <h3 class="dropdown-item-title">
+                John Pierce
+                <span class="float-xs-right text-xs text-muted"><i class="fa fa-star"></i></span>
+              </h3>
+              <p class="text-sm">I got your message bro</p>
+              <p class="text-xs text-muted"><i class="fa fa-clock-o margin-r-5"></i> 4 Hours Ago</p>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media-left">
+              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle">
+            </div>
+            <div class="media-body">
+              <h3 class="dropdown-item-title">
+                Nora Silvester
+                <span class="float-xs-right text-xs text-warning"><i class="fa fa-star"></i></span>
+              </h3>
+              <p class="text-sm">The subject goes here</p>
+              <p class="text-xs text-muted"><i class="fa fa-clock-o margin-r-5"></i> 4 Hours Ago</p>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        </div>
+      </li>
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="fa fa-bell-o"></i>
+          <span class="tag tag-warning navbar-tag">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-envelope icon-wide"></i> 4 new messages
+            <span class="float-xs-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-users icon-wide"></i> 8 friend requests
+            <span class="float-xs-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-file icon-wide"></i> 3 new reports
+            <span class="float-xs-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
       </li>
       <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#"><i class="fa fa-bell-o"></i></a>
-          <div class="dropdown-menu dropdown-menu-lg">
-            <a href="#" class="dropdown-item">
-              Account
-            </a>
-          </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link has-img" data-toggle="dropdown" href="#"><img src="./dist/img/user4-128x128.jpg" alt="User Account Menu Image" class="navbar-img img-circle"></a>
+        <a class="nav-link" data-toggle="dropdown" href="#"><i class="fa fa-search"></i></a>
         <div class="dropdown-menu">
           <a href="#" class="dropdown-item"><i class="fa fa-user margin-r-5"></i> Profile</a>
           <a href="#" class="dropdown-item"><i class="fa fa-user margin-r-5"></i> History</a>
@@ -106,11 +153,8 @@ to get the desired effect
           <a href="#" class="dropdown-item"><i class="fa fa-user margin-r-5"></i> Logout</a>
         </div>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#"><i class="fa fa-gears"></i></a>
-        <div class="dropdown-menu dropdown-menu-lg">
-          <a href="#" class="dropdown-item">Item</a>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="false" href="#"><i class="fa fa-th-large"></i></a>
       </li>
     </ul>
   </nav>
@@ -140,60 +184,219 @@ to get the desired effect
       </div>
 
       <form action="#" method="get" class="sidebar-form">
-        <input type="search" name="q" class="form-control" placeholder="Search" data-widget="treeview-search" data-target="#searchable-treeview">
-      </form>
+        <div class="form-group has-icon">
+          <input type="search" name="q" class="form-control" placeholder="Search" data-widget="treeview-search" data-target="#searchable-treeview">
+          <button type="submit" class="form-icon"><i class="fa fa-search"></i></button>
+        </div>
+      </form><!-- /.sidebar-form -->
+      <div class="visible-sidebar-mini"><i class="fa fa-search"></i></div>
 
       <!-- Sidebar Menu -->
       <nav>
         <ul class="nav nav-pills nav-sidebar nav-stacked" id="searchable-treeview" data-widget="treeview" role="menu">
-          <li class="nav-header">Navigation</li>
+          <li class="nav-header">COMPONENTS</li>
           <!-- Optionally, you can add icons to the links using the .nav-icon class
                paired with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
               <i class="nav-icon fa fa-dashboard"></i> <span class="text">Dashboard</span>
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fa fa-link nav-icon"></i> Dashboard v1.0</a>
+                <a href="./index.html" class="nav-link active"><i class="fa fa-circle-o nav-icon"></i> Dashboard v.1</a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fa fa-link nav-icon"></i> Dashboard v2.0</a>
+                <a href="./index2.html" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Dashboard v.2</a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fa fa-link nav-icon"></i> Dashboard v3.0</a>
+                <a href="./index3.html" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Dashboard v.3</a>
               </li>
             </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-link"></i> <span class="text">Multilevel</span>
+              <i class="nav-icon fa fa-th"></i> <span class="text">Widgets</span> <span class="tag tag-danger float-xs-right">New</span>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-pie-chart"></i> <span class="text">Charts</span>
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item"><a href="#" class="nav-link">Link in level 2</a></li>
               <li class="nav-item">
-                <a href="#" class="nav-link"><span>Link in level 2</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item"><a href="#" class="nav-link">Link in level 2</a></li>
-                  <li class="nav-item"><a href="#" class="nav-link">Link in level 2</a></li>
-                </ul>
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> ChartJS</a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link"><span>Link in level 2</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item"><a href="#" class="nav-link">Link in level 2</a></li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">Link in level 2</a>
-                    <ul class="nav nav-treeview">
-                      <li class="nav-item"><a href="#" class="nav-link">Link in level 2</a></li>
-                      <li class="nav-item"><a href="#" class="nav-link">Link in level 2</a></li>
-                    </ul>
-                  </li>
-                </ul>
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Morris</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Flot</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Inline</a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-tree"></i> <span class="text">UI Elements</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> General</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Icons</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Buttons</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Sliders</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-edit"></i> <span class="text">Forms</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> General Elements</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Advanced Elements</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Editors</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-table"></i> <span class="text">Tables</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Simple Tables</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Data Tables</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-header">EXAMPLES</li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-calendar"></i> <span class="text">Calendar</span>
+              <span class="tag tag-info float-xs-right">2</span>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-envelope-o"></i> <span class="text">Mailbox</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Inbox</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Compose</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Read</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-book"></i> <span class="text">Pages</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Invoice</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Profile</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Login</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Register</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Lockscreen</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fa fa-plus-square-o"></i> <span class="text">Extras</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Error 404</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Error 500</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Blank Page</a>
+              </li>
+              <li class="nav-item">
+                <a href="starter.html" class="nav-link active"><i class="fa fa-circle-o nav-icon"></i> Starter Page</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Pace Page</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-header">MISCELLANEOUS</li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-sitemap"></i> <span class="text">Multilevel</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Level One</a></li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Level One <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Level Two</a></li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Level Three</a></li>
+                      <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-circle-o nav-icon"></i> Level Three</a></li>
+                    </ul><!-- Level 3 -->
+                  </li>
+                </ul><!-- Level 2 -->
+              </li>
+            </ul><!-- Level 1 -->
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-file"></i> <span class="text">Documentation</span>
+            </a>
+          </li>
+          <li class="nav-header">LABELS</li>
+          <li class="nav-item">
+            <a href="#" class="nav-link"><i class="fa fa-circle-o text-danger"></i> <span class="text">Important</span></a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link"><i class="fa fa-circle-o text-warning"></i> <span class="text">Warning</span></a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link"><i class="fa fa-circle-o text-info"></i> <span class="text">Informational</span></a>
           </li>
         </ul>
       </nav>
@@ -281,7 +484,100 @@ to get the desired effect
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <div class="clearfix"></div>
+
+  <!-- Control Sidebar (a secondary optional sidebar) -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Tabs -->
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a>
+      </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- Home tab content -->
+      <div class="tab-pane active" id="control-sidebar-home-tab">
+        <h5>Notifications</h5>
+        <div class="media">
+          <div class="media-left">
+            <i class="fa fa-birthday-cake bg-red size-40 img-rounded"></i>
+          </div>
+          <div class="media-body">
+            <h6 class="no-margin">Langdon's Birthday</h6>
+            <p class="text-sm">Will be 23 on April 24th</p>
+          </div>
+        </div>
+        <div class="media">
+          <div class="media-left">
+            <i class="fa fa-clock-o bg-green size-40 img-rounded"></i>
+          </div>
+          <div class="media-body">
+            <h6 class="no-margin">Call Robert</h6>
+            <p class="text-sm">6:00 PM</p>
+          </div>
+        </div>
+
+        <h5 class="control-sidebar-heading">Tasks Progress</h5>
+        <ul class="list-unstyled">
+          <li>
+            <h6>
+              <a href="#">
+                Custom Theme Design
+                <span class="tag tag-danger float-xs-right">70%</span>
+              </a>
+            </h6>
+            <progress class="progress progress-danger progress-xs" value="70" max="100"></progress>
+          </li>
+          <li>
+            <h6>
+              <a href="#">
+                Create Shipping Tags
+                <span class="tag tag-warning float-xs-right">60%</span>
+              </a>
+            </h6>
+            <progress class="progress progress-warning progress-xs" value="60" max="100"></progress>
+          </li>
+          <li>
+            <h6>
+              <a href="#">
+                Send Invitations
+                <span class="tag tag-info float-xs-right">40%</span>
+              </a>
+            </h6>
+            <progress class="progress progress-info progress-xs" value="40" max="100"></progress>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+      </div>
+      <!-- /.tab-pane -->
+
+      <!-- Settings tab content -->
+      <div class="tab-pane" id="control-sidebar-settings-tab">
+        <form method="post">
+          <h5>General Settings</h5>
+
+          <div class="form-check">
+            <label class="form-control-label d-block">
+              <input type="checkbox" class="form-check-input float-xs-right" checked>
+              Report panel usage
+            </label>
+            <small class='form-text'>Some information about this general settings option</small>
+          </div>
+          <!-- /.form-check -->
+        </form>
+      </div>
+      <!-- /.tab-pane -->
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- THIS CLEARFIX IS REQUIRED FOR THE LAYOUT TO WORK! -->
+  <div class="clearfix"></div><!-- /.clearfix -->
+
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- To the right -->
@@ -291,83 +587,6 @@ to get the desired effect
     <!-- Default to the left -->
     <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
   </footer>
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li class="nav-item" class="active">
-        <a class="nav-link" href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a>
-      </li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:;">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:;">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="label label-danger pull-right">70%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background -->
-  <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 

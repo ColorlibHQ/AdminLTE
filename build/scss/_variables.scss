@@ -40,7 +40,7 @@ $main-bg: $gray-lighter !default;
 // MAIN HEADER
 // --------------------------------------------------------
 $main-header-link-padding-y:  15px !default;
-$main-header-link-padding-x:  5px !default;
+$main-header-link-padding-x:  15px !default;
 $main-header-brand-padding-y: 12px !default;
 $main-header-brand-padding-x: $main-header-brand-padding-y !default;
 $main-header-height:          (($font-size-root * $line-height-base) + ($main-header-link-padding-y * 2)) !default;
@@ -57,7 +57,7 @@ $main-footer-height:           (($font-size-root * $line-height-base) + ($main-f
 
 // Dark sidebar
 $sidebar-dark-bg: #2c333c !default;//#222d32 !default;
-$sidebar-dark-hover-bg: darken($sidebar-dark-bg, 2%) !default;
+$sidebar-dark-hover-bg: darken($sidebar-dark-bg, 4%) !default;
 $sidebar-dark-color: #C2C7D0!default;//lighten($sidebar-dark-bg, 60%) !default;
 $sidebar-dark-hover-color: #fff !default;
 $sidebar-dark-submenu-bg: lighten($sidebar-dark-bg, 5%) !default;

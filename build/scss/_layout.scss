@@ -3,11 +3,6 @@
  * -------------------------
  */
 html,
-body {
-  height: 100%;
-}
-
-html,
 body,
 .wrapper {
   height: 100%;
@@ -19,6 +14,8 @@ body,
 }
 
 .wrapper {
+  position: relative;
+
   .layout-boxed & {
     box-shadow: 0 0 10px rgba(0, 0, 0, .3);
     &,
@@ -47,9 +44,13 @@ body,
 .main-footer {
   margin-left: $sidebar-width;
   z-index: 3000;
+  $local-content-transition: margin-right $transition-speed $transition-fn, margin-left $transition-speed $transition-fn;
+  @include transition($local-content-transition);
+
   .sidebar-collapse & {
     margin-left: 0;
   }
+
   @media(max-width: breakpoint-max(md)) {
     &,
     &:before {
@@ -61,16 +62,6 @@ body,
 .content-wrapper,
 .main-sidebar {
   @include calc("min-height", "100% - #{$main-header-height + $main-footer-height}");
-}
-
-.content-wrapper,
-.main-footer,
-.main-sidebar,
-.main-sidebar {
-  &,
-  &:before {
-    @include transition(margin-left $transition-speed $transition-fn);
-  }
 }
 
 .content-wrapper {
@@ -91,7 +82,8 @@ body,
 
   &,
   &:before {
-    @include transition(width $transition-speed $transition-fn);
+    $local-sidebar-transition: margin-left $transition-speed $transition-fn, width $transition-speed $transition-fn;
+    @include transition($local-sidebar-transition);
     width: $sidebar-width;
   }
 
@@ -102,7 +94,7 @@ body,
     }
   }
 
-  @media(max-width: breakpoint-max(md)) {
+  @include media-breakpoint-down(md) {
     &,
     &:before {
       margin-left: -$sidebar-width;
@@ -120,7 +112,7 @@ body,
 .content-header {
   padding: 15px;
   background: #fff;
-  @include box-shadow(3px 0 6px rgba(0, 0, 0, 0.2));
+  border-bottom: 1px solid $card-border-color;
   h1 {
     font-size: 1.8rem;
     margin: 0;

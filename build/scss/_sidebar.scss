@@ -9,7 +9,8 @@
 
 //Sidebar user panel
 .user-panel {
-  padding: 10px 10px 0 10px;
+  padding: 10px;
+  margin-bottom: 6px;
 
   .image {
     float: left;
@@ -58,24 +59,18 @@
 .nav-sidebar {
   //First Level
   > .nav-item {
-    margin-bottom: 0;
+    margin-top: 0 !important;
 
     > .nav-link {
       @include border-radius(0);
       > .nav-icon {
-        width: 20px;
+        width: 26px;
       }
     }
 
-    .pull-right {
+    .float-xs-right {
       margin-top: 3px;
-      margin-right: 5px;
     }
-  }
-
-  .nav-header {
-    padding: $nav-link-padding;
-    font-size: .9em;
   }
 
   // All other levels
@@ -85,10 +80,6 @@
     padding: 0;
     margin-right: 10px;
     margin-top: 3px;
-  }
-
-  .nav-item > .nav-link.active {
-    font-weight: $display1-weight;
   }
 
   .menu-open {
@@ -117,11 +108,18 @@
       > .nav-link {
         padding: 5px 5px 5px 15px;
         display: block;
-        font-size: 14px;
         > .nav-icon {
-          width: 20px;
+          width: 30px;
         }
       }
+    }
+  }
+
+  .nav-header {
+    font-size: .9em;
+    padding: $nav-link-padding;
+    &:not(:first-of-type) {
+      padding: 1.7em 1em .5em 1em;
     }
   }
 }

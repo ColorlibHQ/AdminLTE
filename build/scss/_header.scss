@@ -12,6 +12,7 @@
     background: darken($brand-primary, 5%);
     transition: width $transition-speed $transition-fn;
     overflow: hidden;
+    margin-right: 0;
 
     > .logo-mini {
       display: none;
@@ -28,6 +29,7 @@
         }
       }
     }
+
     @include media-breakpoint-down(md) {
       width: $sidebar-mini-width;
       > .logo {
@@ -39,8 +41,18 @@
     }
   }
 
+  .navbar-nav .nav-item {
+    margin: 0;
+  }
+
   .nav-link {
     padding: $main-header-link-padding-y $main-header-link-padding-x;
+    position: relative;
+  }
+
+  .open > .nav-link,
+  .nav-link:hover {
+    background: rgba(#000, .1);
   }
 
   .has-img {
@@ -49,28 +61,35 @@
   }
 
   .navbar-nav[class*="-right"] {
-    .nav-item:first-of-type {
-      @media (max-width: breakpoint-max(md)) {
-        margin-left: 1rem;
-      }
-    }
     .dropdown-menu {
       margin-top: -3px;
       right: 0;
       left: auto;
-      @media (max-width: breakpoint-max(md)) {
+      @media (max-width: breakpoint-max(xs)) {
         left: 0;
         right: auto;
       }
     }
   }
+
 }
 
+// Add shadow to the navbar if wanted
 .navbar-shadow {
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+  @include box-shadow(0 3px 3px rgba(0, 0, 0, 0.1));
 }
 
+// Add this class to images within a nav-link
 .navbar-img {
   height: $main-header-height / 2;
   width: auto;
+}
+
+// Navbar tags (used as badges in nav-link)
+.navbar-tag {
+  position: absolute;
+  top: 9px;
+  right: 5px;
+  font-size: $font-size-xs - .1;
+  padding: 2px 4px;
 }

@@ -77,8 +77,10 @@ var Layout = function ($) {
       value: function _init() {
         var _this = this;
 
+        // Enable transitions
         $('body').removeClass(ClassName.HOLD);
 
+        // Activate layout height watcher
         this.fixLayoutHeight();
         $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', function () {
           _this.fixLayoutHeight();
@@ -90,6 +92,7 @@ var Layout = function ($) {
     }, {
       key: '_max',
       value: function _max(numbers) {
+        // Calculate the maximum number in a list
         var max = 0;
 
         numbers.forEach(function (v) {

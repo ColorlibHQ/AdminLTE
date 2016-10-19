@@ -3,14 +3,53 @@
  * -------------------------
  */
 
-.dropdown-menu-lg {
-  min-width: 230px;
-  .dropdown-footer {
-    text-align: center;
-    display: block;
+// General Dropdown Rules
+.dropdown-item {
+  &:first-of-type {
+    @include border-top-radius($border-radius);
+  }
+  &:last-of-type {
+    @include border-bottom-radius($border-radius);
   }
 }
 
+.dropdown-item-title {
+  font-size: $font-size-base;
+  margin: 0;
+}
+
+// Dropdown Sizes
+.dropdown-menu-lg {
+  min-width: 280px;
+  max-width: 300px;
+  padding: 0;
+  .dropdown-divider {
+    margin: 0;
+  }
+  .dropdown-item {
+    padding: $dropdown-padding-y $dropdown-item-padding-x;
+  }
+  p {
+    white-space: normal;
+    margin: 0;
+  }
+}
+
+// Dropdown header and footer
+.dropdown-footer,
+.dropdown-header {
+  text-align: center;
+  display: block;
+  padding: .5rem $dropdown-item-padding-x;
+  font-size: $font-size-sm;
+}
+
+.dropdown-header {
+  &:hover {
+    background-color: #fff;
+    color: $gray-light;
+  }
+}
 
 /* Add fade animation to dropdown menus by appending
  the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/

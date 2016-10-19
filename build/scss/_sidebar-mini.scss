@@ -33,6 +33,10 @@
       }
 
       .nav-sidebar {
+        > .nav-label {
+          border-bottom-right-radius: $border-radius;
+        }
+
         > .nav-item {
           position: relative;
           z-index: 999;
@@ -57,11 +61,12 @@
             > .nav-link {
               overflow: visible;
             }
+
             > .nav-link > .text,
             > .nav-treeview {
               display: block !important;
               position: absolute;
-              width: $sidebar-width - $sidebar-mini-width;
+              width: $sidebar-width - ($sidebar-mini-width/2);
               left: $sidebar-mini-width;
             }
 
@@ -71,7 +76,11 @@
               margin-left: -3px;
               padding: $nav-link-padding;
               background-color: inherit;
-              border-top-right-radius: $border-radius;
+              @include border-right-radius($border-radius);
+            }
+
+            &.has-treeview > .nav-link > .text {
+              border-bottom-right-radius: 0;
             }
 
             > .nav-treeview {
@@ -94,6 +103,11 @@
         display: none !important;
         -webkit-transform: translateZ(0);
       }
+
+      // Make an element visible only when sidebar mini is active
+      .visible-sidebar-mini {
+        display: block !important;
+      }
     }
   }
 }
@@ -103,6 +117,10 @@
 .nav-sidebar > .nav-header {
   white-space: nowrap;
   overflow: hidden;
+}
+
+.nav-sidebar .nav-link {
+  white-space: normal;
 }
 
 .nav-sidebar {
@@ -126,4 +144,9 @@
     top: 50%;
     margin-top: -7px;
   }
+}
+
+// Make an element visible only when sidebar mini is active
+.visible-sidebar-mini {
+  display: none !important;
 }

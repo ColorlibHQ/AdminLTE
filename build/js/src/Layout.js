@@ -69,8 +69,10 @@ const Layout = (($) => {
     // Private
 
     _init() {
+      // Enable transitions
       $('body').removeClass(ClassName.HOLD)
 
+      // Activate layout height watcher
       this.fixLayoutHeight()
       $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', () => {
         this.fixLayoutHeight()
@@ -81,6 +83,7 @@ const Layout = (($) => {
     }
 
     _max(numbers) {
+      // Calculate the maximum number in a list
       let max = 0
 
       numbers.forEach((v) => {
@@ -91,6 +94,7 @@ const Layout = (($) => {
 
       return max
     }
+
 
     // Static
 

@@ -360,7 +360,11 @@
 }
 
 .text-sm {
-  font-size: 12px;
+  font-size: $font-size-sm;
+}
+
+.text-xs {
+  font-size: $font-size-xs;
 }
 
 // _fix for sparkline tooltip
@@ -555,6 +559,51 @@
   @include border-radius(50%);
 }
 
+// Image sizes
+.img-size-64,
+.img-size-50,
+.img-size-32 {
+  height: auto;
+}
+
+.img-size-64 {
+  width: 64px;
+}
+
+.img-size-50 {
+  width: 50px;
+}
+
+.img-size-32 {
+  width: 32px;
+}
+
+// Block sizes
+.size-32,
+.size-40,
+.size-50 {
+  display: block;
+  text-align: center;
+}
+
+.size-32 {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+}
+
+.size-40 {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.size-50 {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+}
+
 //General attachemnt block
 .attachment-block {
   border: 1px solid $box-border-color;
@@ -616,4 +665,9 @@
   canvas {
     width: 100% !important;
   }
+}
+
+// Icons
+.icon-wide {
+  width: 30px;
 }
