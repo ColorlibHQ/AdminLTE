@@ -1,4 +1,18 @@
 ### CHANGE LOG:
+**v2.3.7**
+- Merge pull request #1160 from antoniocambados/antoniocambados-patch-1158
+- Merge branch 'rickysang-master'
+- merge pull request #1165
+- Merge pull request #1166 from liamgall/master
+- Merge pull request #1178 from mortonfox/patch-1
+- Merge pull request #1184 from leoncheek/master
+- Fix sidebar li.active fa-angle-left rotate.
+- Fix link to changelog
+- Merge pull request #1 from liamgall/liamgall-patch-1
+- changed index2.html to ../index2.html
+- Fix issue #1008
+- Update sidebar.less
+
 **v2.3.6:**
 - Update version
 - Use markdown in the changelog file
