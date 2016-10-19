@@ -12,7 +12,8 @@ module.exports = function (grunt) {
         'build/js/src/Layout.js',
         'build/js/src/Treeview.js',
         'build/js/src/PushMenu.js',
-        'build/js/src/Widget.js'
+        'build/js/src/Widget.js',
+        'build/js/src/ControlSidebar.js'
       ],
       dest: 'build/js/src/AdminLTE.js'
     }

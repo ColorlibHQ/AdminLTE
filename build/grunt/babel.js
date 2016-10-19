@@ -13,6 +13,7 @@ module.exports = function (grunt) {
         'build/js/dist/Treeview.js': 'build/js/src/Treeview.js',
         'build/js/dist/PushMenu.js': 'build/js/src/PushMenu.js',
         'build/js/dist/Widget.js': 'build/js/src/Widget.js',
+        'build/js/dist/ControlSidebar.js': 'build/js/src/ControlSidebar.js',
         'dist/js/adminlte.js': 'build/js/src/AdminLTE.js'
       }
     }
