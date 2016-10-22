@@ -3,9 +3,9 @@
  * ---------------
  */
 .form-control {
-  @include border-radius($input-radius);
+  //@include border-radius($input-radius);
   box-shadow: none;
-  border-color: $gray;
+  //border-color: $gray;
   &:focus {
     border-color: $brand-primary;
     box-shadow: none;
@@ -77,7 +77,7 @@
 /* Input group */
 .input-group {
   .input-group-addon {
-    @include border-radius($input-radius);
+    //@include border-radius($input-radius);
     border-color: $gray;
     background-color: #fff;
   }

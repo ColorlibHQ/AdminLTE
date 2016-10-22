@@ -88,6 +88,8 @@ var Layout = function ($) {
         $(window).resize(function () {
           _this.fixLayoutHeight();
         });
+
+        $('body, html').css('height', 'auto');
       }
     }, {
       key: '_max',

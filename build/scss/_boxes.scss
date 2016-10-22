@@ -249,6 +249,10 @@
   // Tables within the box body
   > .table {
     margin-bottom: 0;
+    > thead > tr > th,
+    > thead > tr > td {
+      border-top-width: 0;
+    }
   }
 
   // Calendar within the box body

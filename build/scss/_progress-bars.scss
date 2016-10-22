@@ -4,40 +4,25 @@
  */
 
 //General CSS
-.progress,
-.progress > .progress-bar {
+.progress {
   @include box-shadow(none);
-  &, .progress-bar {
-    @include border-radius($progress-bar-border-radius);
-  }
+  @include border-radius($progress-bar-border-radius);
 }
 
-/* size variation */
-.progress.sm,
+// size variation
 .progress-sm {
   height: 10px;
-  &, .progress-bar {
-    @include border-radius($progress-bar-sm-border-radius);
-  }
 }
 
-.progress.xs,
 .progress-xs {
   height: 7px;
-  &, .progress-bar {
-    @include border-radius($progress-bar-xs-border-radius);
-  }
 }
 
-.progress.xxs,
 .progress-xxs {
   height: 3px;
-  &, .progress-bar {
-    @include border-radius($progress-bar-xs-border-radius);
-  }
 }
 
-/* Vertical bars */
+// Vertical bars
 .progress.vertical {
   position: relative;
   width: 30px;
@@ -69,44 +54,17 @@
 //Progress Groups
 .progress-group {
   .progress-text {
-    font-weight: 600;
+    //display: inline-block;
+    //margin-bottom: 5px;
   }
   .progress-number {
-    float: right;
+    //float: right;
   }
 }
 
-/* Remove margins from progress bars when put in a table */
+// Remove margins from progress bars when put in a table
 .table {
   tr > td .progress {
     margin: 0;
   }
 }
-/*
-// Variations
-// -------------------------
-.progress-bar-light-blue,
-.progress-bar-primary {
-  @include progress-bar-variant($brand-primary);
-}
-
-.progress-bar-green,
-.progress-bar-success {
-  @include progress-bar-variant($brand-success);
-}
-
-.progress-bar-aqua,
-.progress-bar-info {
-  @include progress-bar-variant($brand-info);
-}
-
-.progress-bar-yellow,
-.progress-bar-warning {
-  @include progress-bar-variant($brand-warning);
-}
-
-.progress-bar-red,
-.progress-bar-danger {
-  @include progress-bar-variant($brand-danger);
-}
-*/

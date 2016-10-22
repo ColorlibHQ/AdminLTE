@@ -12,7 +12,7 @@
   ],
   "dependencies": {
     "jquery": "^3",
-    "bootstrap": "https://github.com/twbs/bootstrap.git#v4-dev",
+    "bootstrap": "https://github.com/twbs/bootstrap.git#v4.0.0-alpha.5",
     "font-awesome": "^4",
     "tether": "https://github.com/HubSpot/tether.git#v1.3.7"
   },

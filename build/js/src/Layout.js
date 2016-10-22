@@ -80,6 +80,8 @@ const Layout = (($) => {
       $(window).resize(() => {
         this.fixLayoutHeight()
       })
+
+      $('body, html').css('height', 'auto');
     }
 
     _max(numbers) {

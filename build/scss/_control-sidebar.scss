@@ -4,18 +4,19 @@
 
 .control-sidebar {
   position: absolute;
+  top: $main-header-height;
   z-index: 830;
 
   &,
   &:before {
     width: $control-sidebar-width;
-    top: $main-header-height;
     right: -$control-sidebar-width;
     bottom: 0;
     @include transition(right $transition-speed $transition-fn);
   }
 
   &:before {
+    top: 0;
     display: block;
     position: fixed;
     content: " ";
@@ -25,16 +26,27 @@
 
 // Control sidebar open state
 .control-sidebar-open {
-  .control-sidebar {
-    &,
-    &:before {
-      right: 0;
+  @include media-breakpoint-up(md) {
+    .control-sidebar {
+      &,
+      &:before {
+        right: 0;
+      }
+    }
+
+    .content-wrapper,
+    .main-footer {
+      margin-right: $control-sidebar-width;
     }
   }
 
-  .content-wrapper,
-  .main-footer {
-    margin-right: $control-sidebar-width;
+  @include media-breakpoint-down(md) {
+    .control-sidebar {
+      &,
+      &:before {
+        right: 0;
+      }
+    }
   }
 }
 
@@ -66,7 +78,7 @@
     color: $sidebar-dark-hover-color;
   }
 
-  // Headers
+  // Headers and labels
   h1,
   h2,
   h3,
@@ -80,7 +92,7 @@
   // Tabs
   .nav-tabs {
     border-bottom: 0;
-    background-color: $sidebar-dark-submenu-bg;
+    background-color: $sidebar-dark-hover-bg;
     margin-bottom: 5px;
 
     .nav-item {

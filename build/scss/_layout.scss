@@ -42,16 +42,18 @@ body,
 
 .content-wrapper,
 .main-footer {
-  margin-left: $sidebar-width;
-  z-index: 3000;
-  $local-content-transition: margin-right $transition-speed $transition-fn, margin-left $transition-speed $transition-fn;
-  @include transition($local-content-transition);
+  @include media-breakpoint-up(md) {
+    margin-left: $sidebar-width;
+    z-index: 3000;
+    $local-content-transition: margin-right $transition-speed $transition-fn, margin-left $transition-speed $transition-fn;
+    @include transition($local-content-transition);
 
-  .sidebar-collapse & {
-    margin-left: 0;
+    .sidebar-collapse & {
+      margin-left: 0;
+    }
   }
 
-  @media(max-width: breakpoint-max(md)) {
+  @include media-breakpoint-down(md) {
     &,
     &:before {
       margin-left: 0;

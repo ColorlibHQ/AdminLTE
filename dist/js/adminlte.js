@@ -87,6 +87,8 @@ var Layout = function ($) {
         $(window).resize(function () {
           _this.fixLayoutHeight();
         });
+
+        $('body, html').css('height', 'auto');
       }
     }, {
       key: '_max',
@@ -526,7 +528,6 @@ var ControlSidebar = function ($) {
     _createClass(ControlSidebar, [{
       key: 'show',
       value: function show() {
-        console.log('showing', this._config.slide);
         // Show the control sidebar
         if (this._config.slide) {
           $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE);

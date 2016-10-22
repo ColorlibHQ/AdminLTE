@@ -4,39 +4,40 @@
  */
 .info-box {
   display: block;
-  min-height: 90px;
+  min-height: 80px;
   background: #fff;
   width: 100%;
   box-shadow: $box-boxshadow;
   @include border-radius(2px);
   margin-bottom: 15px;
+
   small {
-    font-size: 14px;
+    font-size: $font-size-sm;
   }
-  .progress {
-    background: rgba(0, 0, 0, 0.125);
-    margin: 5px -10px 5px -10px;
+
+  .progress[value] {
+    background-color: rgba(0, 0, 0, 0.125);
+    margin: 5px 0;
     height: 2px;
-    &,
-    & .progress-bar {
-      @include border-radius(0);
-    }
-    .progress-bar {
-      background: #fff;
-    }
+    @include progress-variant(#fff);
+    @include border-radius(0);
+  }
+  .progress[value]::-webkit-progress-bar {
+    background-color: rgba(0, 0, 0, 0.125);
   }
 }
 
 .info-box-icon {
-  @include border-radius-sides(2px, 0, 2px, 0);
+  @include border-left-radius(2px);
   display: block;
   float: left;
-  height: 90px;
-  width: 90px;
+  height: 80px;
+  width: 80px;
   text-align: center;
-  font-size: 45px;
-  line-height: 90px;
+  font-size: 40px;
+  line-height: 80px;
   background: rgba(0, 0, 0, 0.2);
+
   > img {
     max-width: 100%;
   }
@@ -44,19 +45,18 @@
 
 .info-box-content {
   padding: 5px 10px;
-  margin-left: 90px;
+  margin-left: 80px;
 }
 
 .info-box-number {
   display: block;
   font-weight: bold;
-  font-size: 18px;
 }
 
 .progress-description,
 .info-box-text {
   display: block;
-  font-size: 14px;
+  font-size: $font-size-sm;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

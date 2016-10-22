@@ -28,14 +28,8 @@
   }
 
   .status {
-    position: relative;
     padding: 3px 7px;
     border: 0;
-    > .fa,
-    > .ion,
-    > .glyphicon {
-      margin-right: 3px;
-    }
   }
 
   h6 {
@@ -48,11 +42,6 @@
   .dropdown-menu {
     font-size: $font-size-sm;
   }
-
-  .dropdown-menu {
-    position: absolute;
-    z-index: 99999999;
-  }
 }
 
 // Sidebar navigation menu
@@ -63,6 +52,7 @@
 
     > .nav-link {
       @include border-radius(0);
+
       > .nav-icon {
         width: 26px;
       }
@@ -86,6 +76,7 @@
     > .nav-treeview {
       display: block;
     }
+
     > .nav-link {
       .fa-angle-left {
         @include rotate(-90deg);
@@ -100,9 +91,11 @@
     padding: 0;
     margin: 0;
     padding-left: 5px;
+
     .nav-treeview {
       padding-left: 20px;
     }
+
     > .nav-item {
       margin: 0;
       > .nav-link {
@@ -118,8 +111,15 @@
   .nav-header {
     font-size: .9em;
     padding: $nav-link-padding;
+
     &:not(:first-of-type) {
       padding: 1.7em 1em .5em 1em;
     }
+  }
+}
+
+.sidebar-form {
+  .form-control {
+    border-radius: 0;
   }
 }
