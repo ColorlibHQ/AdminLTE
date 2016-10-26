@@ -173,6 +173,23 @@
     left: auto;
     text-align: right;
   }
+
+  .sidebar-mini.sidebar-collapse .wrapper.rtl.rtl-inv .sidebar-menu > li:hover > a > .pull-right-container {
+	float: left;
+	right: auto!important;
+	left: -175px !important;
+  }  
+
+  .sidebar-mini.sidebar-collapse .wrapper.rtl .sidebar-menu > li:hover > a > .pull-left-container {
+	float: left;
+	right: auto!important;
+	left: -175px !important;
+	top: 10px;
+	text-align: left !important;
+	width: auto;
+	} 
+   
+  .sidebar-mini.sidebar-collapse .wrapper.rtl .sidebar-menu > li:hover > a > .pull-left-container > .fa-angle-right {margin-left:0;}
   .sidebar-mini.sidebar-collapse  .wrapper.rtl .sidebar-menu > li:hover > a > span {
     /* margin-right: 0px; */
     padding: 12px 20px 12px 5px;
