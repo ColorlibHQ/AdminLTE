@@ -150,7 +150,7 @@
   background-color: $maroon;
 }
 
-//Set of Active Background Colors
+// Set of Active Background Colors
 .bg-gray-active {
   color: #000;
   background-color: darken($gray, 10%);
@@ -220,7 +220,7 @@
   background-color: #fff;
 }
 
-//Disabled!
+// Disabled!
 [class^="bg-"].disabled {
   opacity: .65;
 }
@@ -425,24 +425,24 @@
   color: #fff;
 }
 
-//Description Block Extension
+// Description Block Extension
 .description-block {
   .description-icon {
     font-size: 16px;
   }
 }
 
-//Remove top padding
+// Remove top padding
 .no-pad-top {
   padding-top: 0;
 }
 
-//Make position static
+// Make position static
 .position-static {
   position: static !important;
 }
 
-//List utility classes
+// List utility classes
 .list-header {
   font-size: 15px;
   padding: 10px 4px;
@@ -466,12 +466,12 @@
   }
 }
 
-//Light font weight
+// Light font weight
 .font-light {
   font-weight: 300;
 }
 
-//User block
+// User block
 .user-block {
   @include clearfix();
   img {
@@ -508,7 +508,7 @@
   }
 }
 
-//Image sizes
+// Image sizes
 .img-sm,
 .img-md,
 .img-lg {
@@ -604,7 +604,7 @@
   line-height: 50px;
 }
 
-//General attachemnt block
+// General attachemnt block
 .attachment-block {
   border: 1px solid $box-border-color;
   padding: 5px;
