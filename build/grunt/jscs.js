@@ -2,14 +2,14 @@
 'use strict';
 
 module.exports = function (grunt) {
-	return  {
+  return {
     options: {
       config: 'build/js/.jscsrc'
     },
-    grunt: {
+    grunt  : {
       src: ['Gruntfile.js']
     },
-    core: {
+    core   : {
       src: 'js/src/*.js'
     }
     /*app: {

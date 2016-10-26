@@ -2,10 +2,10 @@
 'use strict';
 
 module.exports = function (grunt) {
-	return  {
+  return {
     options: {
       configFile: 'build/js/.eslintrc'
     },
-    target: 'build/js/src/*.js'
+    target : 'build/js/src/*.js'
   };
 };

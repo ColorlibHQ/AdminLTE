@@ -2,11 +2,11 @@
 'use strict';
 
 module.exports = function (grunt) {
-	return {
-		options: {
+  return {
+    options: {
       csslintrc: 'build/less/.csslintrc'
     },
-    dist: [
+    dist   : [
       'dist/css/AdminLTE.css',
     ]
   }

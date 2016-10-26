@@ -4,13 +4,13 @@
 module.exports = function (grunt) {
   return {
     options: {
-      mangle: true,
+      mangle          : true,
       preserveComments: 'some'
     },
-    target: {
+    target : {
       files: {
         'dist/js/adminlte.min.js': ['dist/js/adminlte.js'],
-        'dist/js/app.min.js': ['dist/js/app.js']
+        'dist/js/app.min.js'     : ['dist/js/app.js']
       }
     }
   };

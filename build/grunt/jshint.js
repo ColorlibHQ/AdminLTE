@@ -2,17 +2,17 @@
 'use strict';
 
 module.exports = function (grunt) {
-  return  {
+  return {
     options: {
       jshintrc: '.jshintrc'
     },
-    core: {
+    core   : {
       src: 'dist/js/app.js'
     },
-    demo: {
+    demo   : {
       src: 'dist/js/demo.js'
     },
-    pages: {
+    pages  : {
       src: 'dist/js/pages/*.js'
     }
   };
