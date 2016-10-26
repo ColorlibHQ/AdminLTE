@@ -18,31 +18,31 @@ const Treeview = (($) => {
   const JQUERY_NO_CONFLICT = $.fn[NAME]
 
   const Event = {
-    SELECTED: `selected${EVENT_KEY}`,
-    EXPANDED: `expanded${EVENT_KEY}`,
-    COLLAPSED: `collapsed${EVENT_KEY}`,
+    SELECTED     : `selected${EVENT_KEY}`,
+    EXPANDED     : `expanded${EVENT_KEY}`,
+    COLLAPSED    : `collapsed${EVENT_KEY}`,
     LOAD_DATA_API: `load${EVENT_KEY}`
   }
 
   const Selector = {
-    LI: '.nav-item',
-    LINK: '.nav-link',
+    LI           : '.nav-item',
+    LINK         : '.nav-link',
     TREEVIEW_MENU: '.nav-treeview',
-    OPEN: '.menu-open',
-    DATA_WIDGET: '[data-widget="treeview"]'
+    OPEN         : '.menu-open',
+    DATA_WIDGET  : '[data-widget="treeview"]'
   }
 
   const ClassName = {
-    LI: 'nav-item',
-    LINK: 'nav-link',
+    LI           : 'nav-item',
+    LINK         : 'nav-link',
     TREEVIEW_MENU: 'nav-treeview',
-    OPEN: 'menu-open'
+    OPEN         : 'menu-open'
   }
 
   const Default = {
-    trigger: `${Selector.DATA_WIDGET} ${Selector.LINK}`,
+    trigger       : `${Selector.DATA_WIDGET} ${Selector.LINK}`,
     animationSpeed: 300,
-    accordion: true
+    accordion     : true
   }
 
   /**
