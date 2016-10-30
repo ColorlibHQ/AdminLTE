@@ -133,6 +133,19 @@
     padding: 12px 5px 12px 15px;
 }
 
+.small-box>.inner {
+    direction: rtl;
+}
+
+.small-box .icon {
+    left: 10px;
+    right: auto;
+}
+
+.small-box>.small-box-footer {
+    direction: rtl;
+}
+
 @media (min-width: 768px){
 	.wrapper.rtl .navbar-nav{float:right;}
 	.wrapper.rtl .navbar-nav>li{float:right;}
