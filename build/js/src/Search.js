@@ -28,6 +28,7 @@ const Search = (($) => {
     ACTIVE       : '.active',
     TREEVIEW_MENU: '[data-widget="treeview"]',
     NAV_TREEVIEW : '.nav-treeview',
+    NAV_HEADER   : '.nav-header',
     DATA_WIDGET  : '[data-widget="search"]'
   }
 
@@ -68,12 +69,12 @@ const Search = (($) => {
       this._open_menus = this._config.target.find(Selector.OPEN)
 
       // Prevent form submission
-      this._element.parents('form').first().submit(function (event) {
+      this._element.parents('form').first().submit((event) => {
         event.preventDefault()
       })
 
       // Setup search function
-      this._element.keyup(function (event) {
+      this._element.keyup((event) => {
         event.preventDefault()
 
         let value = $(event.currentTarget).val()
@@ -83,56 +84,68 @@ const Search = (($) => {
         }
 
         this.search(value)
-      }.bind(this))
+      })
     }
 
     search(value) {
-      let _that = this
+      let items   = this._config.target.find(Selector.LI)
+      let headers = this._config.target.find(Selector.NAV_HEADER)
 
       // If the value is back to null
       if (!value) {
+        // Show all headers
+        headers.css('display', 'block')
+
         // Close all treeviews
-        this._config.target.find(Selector.LI)
-          .css('display', 'block')
+        items.css('display', 'block')
+          .removeClass(ClassName.OPEN)
           .find(Selector.NAV_TREEVIEW)
           .css('display', 'none')
 
         // Open the originally opened treeviews
-        this._config.target.find(Selector.OPEN).find(Selector.NAV_TREEVIEW).css('display', 'block')
-        this._open_menus.each(function () {
-          if (!$(this).hasClass(ClassName.OPEN)) {
-            $(this).addClass(Selector.OPEN).css('display', 'block')
-            $(this).children(Selector.NAV_TREEVIEW).css('display', 'block')
+        for (let menu of this._open_menus) {
+          if (!$(menu).hasClass(ClassName.OPEN)) {
+            $(menu).addClass(ClassName.OPEN).css('display', 'block')
+            $(menu).children(Selector.NAV_TREEVIEW).css('display', 'block')
           }
-        })
+        }
+
         return
       }
 
-      // Search through the tree elements
-      this._config.target.find(Selector.LI).each(function () {
-        let text = $(this).children(Selector.LINK).first().text()
+      // Hide all elements
+      items.css('display', 'none')
+      headers.css('display', 'none')
 
-        if (!_that._config.case_sensitive) {
+      // Search through the tree elements
+      for (let item of items) {
+        let text = $(item).children('a').text()
+
+        if (!this._config.case_sensitive) {
           text = text.toLowerCase()
         }
 
-        if (text.search(value) == -1) {
-          // No results
-          $(this).css('display', 'none')
-        } else { // Found the result
+        if (text.indexOf(value) != -1) {
+          // Found the result
           // Make the parent LI visible
-          $(this).parents(Selector.LI)
+          $(item).parents(Selector.LI)
+            .css('display', 'block')
+            .addClass('menu-open')
+
+          $(item).parents(Selector.NAV_TREEVIEW)
             .css('display', 'block')
 
-          // Make the parent nav-treeview visible
-          $(this).parents(Selector.NAV_TREEVIEW)
-            .addClass('menu-open')
+          // If this is a treeview parent, make all of its children visible
+          $(item).children(Selector.NAV_TREEVIEW)
             .css('display', 'block')
+            .children(Selector.LI)
+            .css('display', 'block')
+            .addClass('menu-open')
 
           // Make this element visible
-          $(this).css('display', 'block')
+          $(item).css('display', 'block')
         }
-      })
+      }
     }
 
 
