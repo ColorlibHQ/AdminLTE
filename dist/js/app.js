@@ -242,12 +242,15 @@ function _init() {
       var _this = this;
       _this.fix();
       _this.fixSidebar();
+      $('body, html, .wrapper').css('height', 'auto');
       $(window, ".wrapper").resize(function () {
         _this.fix();
         _this.fixSidebar();
       });
     },
     fix: function () {
+      // Remove overflow from .wrapper if layout-boxed exists
+      $(".layout-boxed > .wrapper").css('overflow', 'hidden');
       //Get window height and the wrapper height
       var neg = $('.main-header').outerHeight() + $('.main-footer').outerHeight();
       var window_height = $(window).height();

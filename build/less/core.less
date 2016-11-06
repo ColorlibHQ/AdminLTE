@@ -4,7 +4,7 @@
  */
 html,
 body {
-  min-height: 100%;
+  height: 100%;
   .layout-boxed & {
     height: 100%;
   }
@@ -22,9 +22,10 @@ body {
 /* Layout */
 .wrapper {
   .clearfix();
-  min-height: 100%;
+  height: 100%;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   .layout-boxed & {
     max-width: 1250px;
     margin: 0 auto;
