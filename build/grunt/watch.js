@@ -12,7 +12,7 @@ module.exports = function (grunt) {
       tasks: ['concat', 'babel', 'uglify', 'notify:watch']
     },
     js  : {
-      files: ['dist/js/adminlte.js', 'dist/js/app.js'],
+      files: ['dist/js/adminlte.js'],
       tasks: ['uglify', 'notify:watch']
     }
   };

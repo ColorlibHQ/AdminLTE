@@ -130,6 +130,16 @@ var Layout = function ($) {
   }();
 
   /**
+   * Data API
+   * ====================================================
+   */
+
+
+  $(window).on('load', function () {
+    Layout._jQueryInterface.call($('body'));
+  });
+
+  /**
    * jQuery API
    * ====================================================
    */
