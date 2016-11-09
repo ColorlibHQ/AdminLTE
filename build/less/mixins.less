@@ -313,3 +313,16 @@
     }
   }
 }
+
+//Font-Family mixin
+.font-family() when (@custom-font-name = '') {
+	font-family: '@{google-font-name}', @fonts;
+}
+.font-family() when not (@custom-font-name = '') {
+	font-family: '@{custom-font-name}', @fonts;
+}
+
+//Conditional Import mixin
+.import-google-fonts() when (@custom-font-name = '') {
+	@import url('@{google-font-import-url}');
+}
