@@ -146,6 +146,11 @@
     direction: rtl;
 }
 
+.navbar-custom-menu>.navbar-nav>li>.dropdown-menu {
+    left: 0;
+    right: auto;
+}
+
 @media(max-width:767px){
   .wrapper.rtl .content-wrapper, .right-side, .main-footer {margin-right: 0;}
   .wrapper.rtl .main-sidebar, .right-side {
