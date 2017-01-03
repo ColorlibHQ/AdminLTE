@@ -13,9 +13,9 @@ const Layout = (($) => {
    * ====================================================
    */
 
-  const NAME = 'Layout'
-  const DATA_KEY = 'lte.layout'
-  const EVENT_KEY = `.${DATA_KEY}`
+  const NAME               = 'Layout'
+  const DATA_KEY           = 'lte.layout'
+  const EVENT_KEY          = `.${DATA_KEY}`
   const JQUERY_NO_CONFLICT = $.fn[NAME]
 
   const Event = {
@@ -23,19 +23,19 @@ const Layout = (($) => {
   }
 
   const Selector = {
-    SIDEBAR: '.main-sidebar',
-    HEADER: '.main-header',
-    CONTENT: '.content-wrapper',
-    CONTENT_HEADER: '.content-header',
-    WRAPPER: '.wrapper',
+    SIDEBAR        : '.main-sidebar',
+    HEADER         : '.main-header',
+    CONTENT        : '.content-wrapper',
+    CONTENT_HEADER : '.content-header',
+    WRAPPER        : '.wrapper',
     CONTROL_SIDEBAR: '.control-sidebar',
-    LAYOUT_FIXED: '.layout-fixed',
-    FOOTER: '.main-footer'
+    LAYOUT_FIXED   : '.layout-fixed',
+    FOOTER         : '.main-footer'
   }
 
   const ClassName = {
-    HOLD: 'hold-transition',
-    SIDEBAR: 'main-sidebar',
+    HOLD        : 'hold-transition',
+    SIDEBAR     : 'main-sidebar',
     LAYOUT_FIXED: 'layout-fixed'
   }
 
@@ -56,12 +56,12 @@ const Layout = (($) => {
 
     fixLayoutHeight() {
       let heights = [
-          $(window).height(),
-          $(Selector.HEADER).outerHeight(),
-          $(Selector.FOOTER).outerHeight(),
-          $(Selector.SIDEBAR).height()
-        ],
-        max = this._max(heights)
+            $(window).height(),
+            $(Selector.HEADER).outerHeight(),
+            $(Selector.FOOTER).outerHeight(),
+            $(Selector.SIDEBAR).height()
+          ],
+          max     = this._max(heights)
 
       $(Selector.CONTENT).css('min-height', max - (heights[1] + heights[2]))
     }
@@ -131,7 +131,7 @@ const Layout = (($) => {
 
   $.fn[NAME] = Layout._jQueryInterface
   $.fn[NAME].Constructor = Layout
-  $.fn[NAME].noConflict = function () {
+  $.fn[NAME].noConflict  = function () {
     $.fn[NAME] = JQUERY_NO_CONFLICT
     return Layout._jQueryInterface
   }

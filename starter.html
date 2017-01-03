@@ -38,8 +38,18 @@ to get the desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue">
+<body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
+  <!-- Site Wide Search -->
+  <div class="site-search-block">
+    <a href="#" class="site-search-close" data-widget="site-search"><i class="fa fa-arrow-left"></i></a>
+    <form action="#" method="get">
+      <input name="query" type="search" class="form-control" placeholder="Site Search">
+      <button type="submit" class="site-search-submit"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="site-search-backdrop"></div>
+  </div>
+
   <!-- Navbar -->
   <nav class="main-header navbar navbar-sticky-top bg-primary navbar-dark">
     <!-- Logo -->
@@ -144,14 +154,9 @@ to get the desired effect
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#"><i class="fa fa-search"></i></a>
-        <div class="dropdown-menu">
-          <a href="#" class="dropdown-item"><i class="fa fa-user margin-r-5"></i> Profile</a>
-          <a href="#" class="dropdown-item"><i class="fa fa-user margin-r-5"></i> History</a>
-          <a href="#" class="dropdown-item"><i class="fa fa-user margin-r-5"></i> Usage</a>
-          <a href="#" class="dropdown-item"><i class="fa fa-user margin-r-5"></i> Logout</a>
-        </div>
+      <!-- SEARCH FORM -->
+      <li class="nav-item">
+        <a href="#" class="nav-link" data-widget="site-search"><i class="fa fa-search"></i></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i class="fa fa-th-large"></i></a>

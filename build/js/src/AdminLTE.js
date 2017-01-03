@@ -1,6 +1,6 @@
 /*!
  * AdminLTE v3.0.0-alpha (https://almsaeedstudio.com)
- * Copyright 2014-2016 Abdullah Almsaeed <abdullah@almsaeedstudio.com>
+ * Copyright 2014-2017 Abdullah Almsaeed <abdullah@almsaeedstudio.com>
  * Project website Almsaeed Studio (https://almsaeedstudio.com)
  * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
  */
@@ -12,9 +12,9 @@ const Layout = (($) => {
    * ====================================================
    */
 
-  const NAME = 'Layout'
-  const DATA_KEY = 'lte.layout'
-  const EVENT_KEY = `.${DATA_KEY}`
+  const NAME               = 'Layout'
+  const DATA_KEY           = 'lte.layout'
+  const EVENT_KEY          = `.${DATA_KEY}`
   const JQUERY_NO_CONFLICT = $.fn[NAME]
 
   const Event = {
@@ -22,19 +22,19 @@ const Layout = (($) => {
   }
 
   const Selector = {
-    SIDEBAR: '.main-sidebar',
-    HEADER: '.main-header',
-    CONTENT: '.content-wrapper',
-    CONTENT_HEADER: '.content-header',
-    WRAPPER: '.wrapper',
+    SIDEBAR        : '.main-sidebar',
+    HEADER         : '.main-header',
+    CONTENT        : '.content-wrapper',
+    CONTENT_HEADER : '.content-header',
+    WRAPPER        : '.wrapper',
     CONTROL_SIDEBAR: '.control-sidebar',
-    LAYOUT_FIXED: '.layout-fixed',
-    FOOTER: '.main-footer'
+    LAYOUT_FIXED   : '.layout-fixed',
+    FOOTER         : '.main-footer'
   }
 
   const ClassName = {
-    HOLD: 'hold-transition',
-    SIDEBAR: 'main-sidebar',
+    HOLD        : 'hold-transition',
+    SIDEBAR     : 'main-sidebar',
     LAYOUT_FIXED: 'layout-fixed'
   }
 
@@ -55,12 +55,12 @@ const Layout = (($) => {
 
     fixLayoutHeight() {
       let heights = [
-          $(window).height(),
-          $(Selector.HEADER).outerHeight(),
-          $(Selector.FOOTER).outerHeight(),
-          $(Selector.SIDEBAR).height()
-        ],
-        max = this._max(heights)
+            $(window).height(),
+            $(Selector.HEADER).outerHeight(),
+            $(Selector.FOOTER).outerHeight(),
+            $(Selector.SIDEBAR).height()
+          ],
+          max     = this._max(heights)
 
       $(Selector.CONTENT).css('min-height', max - (heights[1] + heights[2]))
     }
@@ -130,7 +130,7 @@ const Layout = (($) => {
 
   $.fn[NAME] = Layout._jQueryInterface
   $.fn[NAME].Constructor = Layout
-  $.fn[NAME].noConflict = function () {
+  $.fn[NAME].noConflict  = function () {
     $.fn[NAME] = JQUERY_NO_CONFLICT
     return Layout._jQueryInterface
   }
@@ -761,5 +761,127 @@ const Search = (($) => {
   }
 
   return Search
+
+})(jQuery)
+
+const SiteSearch = (($) => {
+  'use strict'
+
+  /**
+   * Constants
+   * ====================================================
+   */
+
+  const NAME               = 'SiteSearch'
+  const DATA_KEY           = 'lte.site-search'
+  const EVENT_KEY          = `.${DATA_KEY}`
+  const JQUERY_NO_CONFLICT = $.fn[NAME]
+
+  const Event = {}
+
+  const Selector = {
+    TOGGLE_BUTTON  : '[data-widget="site-search"]',
+    SEARCH_BLOCK   : '.site-search-block',
+    SEARCH_BACKDROP: '.site-search-backdrop',
+    SEARCH_INPUT   : `.site-search-block .form-control`
+  }
+
+  const ClassName = {
+    OPEN: 'site-search-open'
+  }
+
+  const Default = {
+    transitionSpeed: 300
+  }
+
+  /**
+   * Class Definition
+   * ====================================================
+   */
+
+  class SiteSearch {
+
+    constructor(_element, _options) {
+      this.element = _element
+      this.options = $.extend({}, Default, _options);
+    }
+
+    // Public
+
+    open() {
+      $(Selector.SEARCH_BLOCK).slideDown(this.options.transitionSpeed)
+      $(Selector.SEARCH_BACKDROP).show(0)
+      $(Selector.SEARCH_INPUT).focus();
+      $(Selector.SEARCH_BLOCK).addClass(ClassName.OPEN)
+    }
+
+    close() {
+      $(Selector.SEARCH_BLOCK).slideUp(this.options.transitionSpeed)
+      $(Selector.SEARCH_BACKDROP).hide(0)
+      $(Selector.SEARCH_BLOCK).removeClass(ClassName.OPEN)
+    }
+
+    toggle() {
+      if ($(Selector.SEARCH_BLOCK).hasClass(ClassName.OPEN)) {
+        this.close()
+      } else {
+        this.open()
+      }
+    }
+
+    // Static
+
+    static _jQueryInterface(options) {
+      return this.each(function () {
+        let data = $(this).data(DATA_KEY)
+
+        if (!data) {
+          data = new SiteSearch(this, options)
+          $(this).data(DATA_KEY, data)
+        }
+
+        if(!/toggle|close/.test(options)) {
+          throw Error(`Undefined method ${options}`)
+        }
+
+        data[options]()
+      })
+    }
+  }
+
+  /**
+   * Data API
+   * ====================================================
+   */
+  $(document).on('click', Selector.TOGGLE_BUTTON, (event) => {
+    event.preventDefault();
+
+    let button = $(event.currentTarget)
+
+    if (button.data('widget') !== 'site-search') {
+      button = button.closest(Selector.TOGGLE_BUTTON)
+    }
+
+    SiteSearch._jQueryInterface.call(button, 'toggle')
+  });
+
+  $(document).on('click', Selector.SEARCH_BACKDROP, (event) => {
+    let backdrop = $(event.currentTarget)
+    SiteSearch._jQueryInterface.call(backdrop, 'close')
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME] = SiteSearch._jQueryInterface
+  $.fn[NAME].Constructor = SiteSearch
+  $.fn[NAME].noConflict  = function () {
+    $.fn[NAME] = JQUERY_NO_CONFLICT
+    return SiteSearch._jQueryInterface
+  }
+
+  return SiteSearch
 
 })(jQuery)

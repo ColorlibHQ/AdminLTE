@@ -268,10 +268,10 @@
   }
 
   .box-pane {
-    @include border-radius-sides(0, 0, $box-border-radius, 0);
+    //@include border-radius-sides(0, 0, $box-border-radius, 0);
   }
   .box-pane-right {
-    @include border-radius-sides(0, 0, 0, $box-border-radius);
+    border-bottom-right-radius: $box-border-radius;
   }
 }
 

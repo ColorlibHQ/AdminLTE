@@ -7888,12 +7888,8 @@ body,
   margin: -9px;
 }
 
-.box-body .box-pane {
-  border-radius: 0 0 3px 0;
-}
-
 .box-body .box-pane-right {
-  border-radius: 0 0 0 3px;
+  border-bottom-right-radius: 3px;
 }
 
 .box-footer {
@@ -9188,6 +9184,71 @@ table.text-xs-center, table.text-xs-center td, table.text-xs-center th {
 .users-list-date {
   color: #999;
   font-size: 12px;
+}
+
+.site-search-block {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  background: #fff;
+}
+
+.site-search-block .site-search-backdrop {
+  content: ' ';
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: -1;
+}
+
+.site-search-block .form-control {
+  border: 0;
+  border-radius: 0;
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+.site-search-block,
+.site-search-block .form-control,
+.site-search-block .site-search-close {
+  height: 54px;
+}
+
+.site-search-block .site-search-close,
+.site-search-block .site-search-submit {
+  position: absolute;
+  top: 0;
+  display: block;
+  color: #444;
+  width: 50px;
+  text-align: center;
+  line-height: 54px;
+  cursor: pointer;
+}
+
+.site-search-block .site-search-close:hover,
+.site-search-block .site-search-submit:hover {
+  color: #999;
+  text-decoration: none;
+}
+
+.site-search-block .site-search-close {
+  left: 0;
+}
+
+.site-search-block .site-search-submit {
+  right: 0;
+  background: #fff;
+  border: 0;
+  padding: 0;
 }
 
 /*

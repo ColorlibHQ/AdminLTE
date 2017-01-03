@@ -14,7 +14,8 @@ module.exports = function (grunt) {
         'build/js/src/PushMenu.js',
         'build/js/src/Widget.js',
         'build/js/src/ControlSidebar.js',
-        'build/js/src/Search.js'
+        'build/js/src/Search.js',
+        'build/js/src/SiteSearch.js'
       ],
       dest: 'build/js/src/AdminLTE.js'
     }

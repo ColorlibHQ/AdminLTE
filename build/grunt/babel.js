@@ -1,4 +1,4 @@
-// Compile ECMA6 to ECMA5
+// Compile ES2015 to JS
 'use strict';
 
 module.exports = function (grunt) {
@@ -15,6 +15,7 @@ module.exports = function (grunt) {
         'build/js/dist/Widget.js'        : 'build/js/src/Widget.js',
         'build/js/dist/ControlSidebar.js': 'build/js/src/ControlSidebar.js',
         'build/js/dist/Search.js'        : 'build/js/src/Search.js',
+        'build/js/dist/SiteSearch.js'    : 'build/js/src/SiteSearch.js',
         'dist/js/adminlte.js'            : 'build/js/src/AdminLTE.js'
       }
     }
