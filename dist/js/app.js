@@ -63,6 +63,8 @@ $.AdminLTE.options = {
   //choose to enable the plugin, make sure you load the script
   //before AdminLTE's app.js
   enableFastclick: false,
+  //Control Sidebar Tree views
+  enableControlTreeView: true,
   //Control Sidebar Options
   enableControlSidebar: true,
   controlSidebarOptions: {
@@ -160,7 +162,9 @@ $(function () {
   $.AdminLTE.layout.activate();
 
   //Enable sidebar tree view controls
-  $.AdminLTE.tree('.sidebar');
+  if (o.enableControlTreeView) {
+    $.AdminLTE.tree('.sidebar');
+  }
 
   //Enable control sidebar
   if (o.enableControlSidebar) {
