@@ -4,9 +4,11 @@ module.exports = function (grunt) {
   'use strict';
 
   grunt.initConfig({
+    srcdir: 'build/',
+    dstdir: '../../public/',
     watch: {
       // If any .less file changes in directory "build/less/" run the "less"-task.
-      files: ["build/less/*.less", "build/less/skins/*.less", "dist/js/app.js"],
+      files: ["<%= srcdir %>less/*.less", "<%= srcdir %>less/skins/*.less", "<%= dstdir %>js/app.js"],
       tasks: ["less", "uglify"]
     },
     // "less"-task configuration
@@ -20,21 +22,21 @@ module.exports = function (grunt) {
         },
         files: {
           // compilation.css  :  source.less
-          "dist/css/AdminLTE.css": "build/less/AdminLTE.less",
+          "<%= dstdir %>css/AdminLTE.css": "<%= srcdir %>less/AdminLTE.less",
           //Non minified skin files
-          "dist/css/skins/skin-blue.css": "build/less/skins/skin-blue.less",
-          "dist/css/skins/skin-black.css": "build/less/skins/skin-black.less",
-          "dist/css/skins/skin-yellow.css": "build/less/skins/skin-yellow.less",
-          "dist/css/skins/skin-green.css": "build/less/skins/skin-green.less",
-          "dist/css/skins/skin-red.css": "build/less/skins/skin-red.less",
-          "dist/css/skins/skin-purple.css": "build/less/skins/skin-purple.less",
-          "dist/css/skins/skin-blue-light.css": "build/less/skins/skin-blue-light.less",
-          "dist/css/skins/skin-black-light.css": "build/less/skins/skin-black-light.less",
-          "dist/css/skins/skin-yellow-light.css": "build/less/skins/skin-yellow-light.less",
-          "dist/css/skins/skin-green-light.css": "build/less/skins/skin-green-light.less",
-          "dist/css/skins/skin-red-light.css": "build/less/skins/skin-red-light.less",
-          "dist/css/skins/skin-purple-light.css": "build/less/skins/skin-purple-light.less",
-          "dist/css/skins/_all-skins.css": "build/less/skins/_all-skins.less"
+          "<%= dstdir %>css/skins/skin-blue.css": "<%= srcdir %>less/skins/skin-blue.less",
+          "<%= dstdir %>css/skins/skin-black.css": "<%= srcdir %>less/skins/skin-black.less",
+          "<%= dstdir %>css/skins/skin-yellow.css": "<%= srcdir %>less/skins/skin-yellow.less",
+          "<%= dstdir %>css/skins/skin-green.css": "<%= srcdir %>less/skins/skin-green.less",
+          "<%= dstdir %>css/skins/skin-red.css": "<%= srcdir %>less/skins/skin-red.less",
+          "<%= dstdir %>css/skins/skin-purple.css": "<%= srcdir %>less/skins/skin-purple.less",
+          "<%= dstdir %>css/skins/skin-blue-light.css": "<%= srcdir %>less/skins/skin-blue-light.less",
+          "<%= dstdir %>css/skins/skin-black-light.css": "<%= srcdir %>less/skins/skin-black-light.less",
+          "<%= dstdir %>css/skins/skin-yellow-light.css": "<%= srcdir %>less/skins/skin-yellow-light.less",
+          "<%= dstdir %>css/skins/skin-green-light.css": "<%= srcdir %>less/skins/skin-green-light.less",
+          "<%= dstdir %>css/skins/skin-red-light.css": "<%= srcdir %>less/skins/skin-red-light.less",
+          "<%= dstdir %>css/skins/skin-purple-light.css": "<%= srcdir %>less/skins/skin-purple-light.less",
+          "<%= dstdir %>css/skins/_all-skins.css": "<%= srcdir %>less/skins/_all-skins.less"
         }
       },
       // Production compresses version
@@ -45,21 +47,21 @@ module.exports = function (grunt) {
         },
         files: {
           // compilation.css  :  source.less
-          "dist/css/AdminLTE.min.css": "build/less/AdminLTE.less",
+          "<%= dstdir %>css/AdminLTE.min.css": "<%= srcdir %>less/AdminLTE.less",
           // Skins minified
-          "dist/css/skins/skin-blue.min.css": "build/less/skins/skin-blue.less",
-          "dist/css/skins/skin-black.min.css": "build/less/skins/skin-black.less",
-          "dist/css/skins/skin-yellow.min.css": "build/less/skins/skin-yellow.less",
-          "dist/css/skins/skin-green.min.css": "build/less/skins/skin-green.less",
-          "dist/css/skins/skin-red.min.css": "build/less/skins/skin-red.less",
-          "dist/css/skins/skin-purple.min.css": "build/less/skins/skin-purple.less",
-          "dist/css/skins/skin-blue-light.min.css": "build/less/skins/skin-blue-light.less",
-          "dist/css/skins/skin-black-light.min.css": "build/less/skins/skin-black-light.less",
-          "dist/css/skins/skin-yellow-light.min.css": "build/less/skins/skin-yellow-light.less",
-          "dist/css/skins/skin-green-light.min.css": "build/less/skins/skin-green-light.less",
-          "dist/css/skins/skin-red-light.min.css": "build/less/skins/skin-red-light.less",
-          "dist/css/skins/skin-purple-light.min.css": "build/less/skins/skin-purple-light.less",
-          "dist/css/skins/_all-skins.min.css": "build/less/skins/_all-skins.less"
+          "<%= dstdir %>css/skins/skin-blue.min.css": "<%= srcdir %>less/skins/skin-blue.less",
+          "<%= dstdir %>css/skins/skin-black.min.css": "<%= srcdir %>less/skins/skin-black.less",
+          "<%= dstdir %>css/skins/skin-yellow.min.css": "<%= srcdir %>less/skins/skin-yellow.less",
+          "<%= dstdir %>css/skins/skin-green.min.css": "<%= srcdir %>less/skins/skin-green.less",
+          "<%= dstdir %>css/skins/skin-red.min.css": "<%= srcdir %>less/skins/skin-red.less",
+          "<%= dstdir %>css/skins/skin-purple.min.css": "<%= srcdir %>less/skins/skin-purple.less",
+          "<%= dstdir %>css/skins/skin-blue-light.min.css": "<%= srcdir %>less/skins/skin-blue-light.less",
+          "<%= dstdir %>css/skins/skin-black-light.min.css": "<%= srcdir %>less/skins/skin-black-light.less",
+          "<%= dstdir %>css/skins/skin-yellow-light.min.css": "<%= srcdir %>less/skins/skin-yellow-light.less",
+          "<%= dstdir %>css/skins/skin-green-light.min.css": "<%= srcdir %>less/skins/skin-green-light.less",
+          "<%= dstdir %>css/skins/skin-red-light.min.css": "<%= srcdir %>less/skins/skin-red-light.less",
+          "<%= dstdir %>css/skins/skin-purple-light.min.css": "<%= srcdir %>less/skins/skin-purple-light.less",
+          "<%= dstdir %>css/skins/_all-skins.min.css": "<%= srcdir %>less/skins/_all-skins.less"
         }
       }
     },
@@ -71,7 +73,7 @@ module.exports = function (grunt) {
       },
       my_target: {
         files: {
-          'dist/js/app.min.js': ['dist/js/app.js']
+          '<%= dstdir %>js/app.min.js': ['<%= dstdir %>js/app.js']
         }
       }
     },
@@ -84,7 +86,7 @@ module.exports = function (grunt) {
         cwd: 'documentation/build',
         options: {
           silent: true,
-          includePath: 'documentation/build/include'
+          includePath: 'documentation/<%= srcdir %>include'
         }
       }
     },
@@ -94,9 +96,9 @@ module.exports = function (grunt) {
       dynamic: {
         files: [{
           expand: true,
-          cwd: 'build/img/',
+          cwd: '<%= srcdir %>img/',
           src: ['**/*.{png,jpg,gif,svg,jpeg}'],
-          dest: 'dist/img/'
+          dest: '<%= dstdir %>img/'
         }]
       }
     },
@@ -107,23 +109,23 @@ module.exports = function (grunt) {
         jshintrc: '.jshintrc'
       },
       core: {
-        src: 'dist/js/app.js'
+        src: '<%= dstdir %>js/app.js'
       },
       demo: {
-        src: 'dist/js/demo.js'
+        src: '<%= dstdir %>js/demo.js'
       },
       pages: {
-        src: 'dist/js/pages/*.js'
+        src: '<%= dstdir %>js/pages/*.js'
       }
     },
 
     // Validate CSS files
     csslint: {
       options: {
-        csslintrc: 'build/less/.csslintrc'
+        csslintrc: '<%= srcdir %>less/.csslintrc'
       },
       dist: [
-        'dist/css/AdminLTE.css',
+        '<%= dstdir %>css/AdminLTE.css',
       ]
     },
 
@@ -136,10 +138,10 @@ module.exports = function (grunt) {
     },
 
     // Delete images in build directory
-    // After compressing the images in the build/img dir, there is no need
+    // After compressing the images in the <%= srcdir %>img dir, there is no need
     // for them
     clean: {
-      build: ["build/img/*"]
+      build: ["<%= srcdir %>img/*"]
     }
   });
 
