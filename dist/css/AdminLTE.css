@@ -1777,6 +1777,9 @@ a:focus {
   right: 0;
   left: auto;
 }
+.box-header > .box-tools .dropdown-menu > li > a {
+  color: #444!important;
+}
 .btn-box-tool {
   padding: 5px;
   font-size: 12px;
