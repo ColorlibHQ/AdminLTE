@@ -1607,12 +1607,12 @@ a:focus {
   background: rgba(0, 0, 0, 0.1);
 }
 .box.box-solid.box-default {
-  border: 1px solid #555555;
+  border: 1px solid #d2d6de;
 }
 .box.box-solid.box-default > .box-header {
   color: #444444;
-  background: #555555;
-  background-color: #555555;
+  background: #d2d6de;
+  background-color: #d2d6de;
 }
 .box.box-solid.box-default > .box-header a,
 .box.box-solid.box-default > .box-header .btn {
