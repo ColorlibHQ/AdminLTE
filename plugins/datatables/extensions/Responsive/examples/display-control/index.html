@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+	<link rel="stylesheet" type="text/css" href="../../../../examples/resources/syntax/shCore.css">
+	<link rel="stylesheet" type="text/css" href="../../../../examples/resources/demo.css">
+	<script type="text/javascript" language="javascript" src="../../../../examples/resources/syntax/shCore.js"></script>
+	<script type="text/javascript" language="javascript" src="../../../../examples/resources/demo.js"></script>
+
+	<title>Responsive examples - Display control</title>
+</head>
+
+<body class="dt-example">
+	<div class="container">
+		<section>
+			<h1>Responsive example <span>Display control</span></h1>
+
+			<div class="info">
+				<p>Responsive has two basic modes of operation for controlling the visibility of columns at different display sizes. These two modes can be using either separately
+				or together:</p>
+
+				<ul class="markdown">
+					<li>Manually assigned class names for breakpoints - Assign a column a class name to tell Responsive which breakpoint(s) to show it in.</li>
+					<li>Automatically - for columns without a breakpoint class name, it will be automatically removed if there is no room available on screen to show it. Columns
+					are removed from the right, moving left.</li>
+				</ul>
+
+				<p>This section explores these two options.</p>
+			</div>
+		</section>
+	</div>
+
+	<section>
+		<div class="footer">
+			<div class="gradient"></div>
+
+			<div class="liner">
+				<div class="toc">
+					<div class="toc-group">
+						<h3><a href="./index.html">Display control</a></h3>
+						<ul class="toc">
+							<li><a href="./auto.html">Automatic column hiding</a></li>
+							<li><a href="./classes.html">Class control</a></li>
+							<li><a href="./init-classes.html">Assigned class control</a></li>
+							<li><a href="./fixedHeader.html">With FixedHeader</a></li>
+							<li><a href="./complexHeader.html">Complex headers (rowspan / colspan)</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="epilogue">
+					<p>Please refer to the <a href="http://www.datatables.net">DataTables documentation</a> for full information about its API properties and methods.<br>
+					Additionally, there are a wide range of <a href="http://www.datatables.net/extras">extras</a> and <a href="http://www.datatables.net/plug-ins">plug-ins</a>
+					which extend the capabilities of DataTables.</p>
+
+					<p class="copyright">DataTables designed and created by <a href="http://www.sprymedia.co.uk">SpryMedia Ltd</a> &#169; 2007-2015<br>
+					DataTables is licensed under the <a href="http://www.datatables.net/mit">MIT license</a>.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
