@@ -358,7 +358,7 @@ a:focus {
     padding-left: 10px;
   }
   .content-header > .breadcrumb li:before {
-    color: #222222;
+    color: #97a0b3;
   }
 }
 .navbar-toggle {
@@ -939,7 +939,7 @@ a:focus {
   margin-right: 10px;
 }
 .dropdown-menu > li > a:hover {
-  background-color: #626262;
+  background-color: #e1e3e9;
   color: #333;
 }
 .dropdown-menu > .divider {
@@ -4477,7 +4477,7 @@ table.text-center th {
 }
 .bg-gray-active {
   color: #000;
-  background-color: #3c3c3c !important;
+  background-color: #b5bbc8 !important;
 }
 .bg-black-active {
   background-color: #000000 !important;
@@ -4587,11 +4587,11 @@ table.text-center th {
   color: #d81b60 !important;
 }
 .link-muted {
-  color: #090909;
+  color: #7a869d;
 }
 .link-muted:hover,
 .link-muted:focus {
-  color: #000000;
+  color: #606c84;
 }
 .link-black {
   color: #666;
