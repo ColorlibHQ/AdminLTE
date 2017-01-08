@@ -1,0 +1,151 @@
+.content-tabs {
+  border-bottom: solid 2px #e7ebee;
+  background: #fff !important;
+  border-top: none;
+  height: 41px;
+  .page-tabs {
+    a.active {
+      background: whitesmoke;
+      color: #fff !important;
+      border-right: solid 1px #e7ebee;
+    }
+  }
+  .roll-left {
+    border-right: solid 1px #e7ebee;
+  }
+  .roll-right {
+    border-left: solid 1px #e7ebee;
+  }
+}
+
+#content-wrapper {
+  background-color: #f9f9f9;
+  border-left: 2px solid #e7ebee;
+}
+
+@media (min-width: 768px) {
+  .nav-small {
+    #nav-col {
+      width: 64px;
+    }
+    #content-wrapper {
+      margin-left: 64px;
+    }
+  }
+
+  .content-tabs {
+    position: relative;
+    height: 42px;
+    line-height: 39.5px;
+    background: #fafafa;
+    border-bottom: solid 2px #2c3e50;
+    font-size: 12px;
+    border-top: 1px solid #ddd;
+    .roll-nav {
+      position: absolute;
+      width: 40px;
+      height: 39px;
+      text-align: center;
+      color: #475059;
+      z-index: 2;
+      top: 0;
+    }
+    .roll-left {
+      left: 0;
+      border-right: solid 1px #ddd;
+    }
+    .roll-right {
+      right: 0;
+      border-left: solid 1px #ddd;
+    }
+    button {
+      background: #fff;
+      border: 0;
+      height: 39px;
+      line-height: 39px;
+      width: 40px;
+      outline: 0;
+      &:hover {
+        background: #fafafa;
+      }
+      i {
+        color: #999;
+      }
+    }
+    nav.page-tabs {
+      margin-left: 40px;
+      width: 100000px;
+      height: 40px;
+      overflow: hidden;
+      .page-tabs-content {
+        float: left;
+      }
+    }
+    .page-tabs {
+      a {
+        display: block;
+        float: left;
+        border-right: solid 0px #ddd;
+        padding: 0 15px;
+        padding-right: 8px;
+        text-decoration: none;
+        color: #475059;
+        &:first-child {
+          padding-right: 15px;
+        }
+        i {
+          margin-top: -10px;
+          right: 0px;
+          position: relative;
+          color: #999;
+          &:hover {
+            color: #c00 !important;
+          }
+        }
+      }
+      a.active {
+        background: #2c3e50;
+        color: #fff;
+        border-right: solid 1px #2c3e50;
+        i {
+          &:hover {
+            color: #fff !important;
+          }
+        }
+      }
+    }
+    .roll-right.tabRight {
+      right: 120px;
+    }
+    .roll-right.btn-group {
+      right: 40px;
+      width: 80px;
+      padding: 0;
+      button {
+        width: 80px;
+      }
+    }
+    .roll-right.tabExit {
+      background: #fff;
+      height: 39px;
+      width: 40px;
+      outline: 0;
+    }
+  }
+
+  .page-tabs-list {
+    position: absolute;
+    width: 40px;
+    height: 39px;
+    text-align: center;
+    color: #475059;
+    z-index: 2;
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-tabs {
+    display: none;
+  }
+}

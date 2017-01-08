@@ -4935,3 +4935,198 @@ table.text-center th {
     white-space: normal !important;
   }
 }
+.content-tabs {
+  border-bottom: solid 2px #e7ebee;
+  background: #fff !important;
+  border-top: none;
+  height: 41px;
+}
+.content-tabs .page-tabs a.active {
+  background: whitesmoke;
+  color: #fff !important;
+  border-right: solid 1px #e7ebee;
+}
+.content-tabs .roll-left {
+  border-right: solid 1px #e7ebee;
+}
+.content-tabs .roll-right {
+  border-left: solid 1px #e7ebee;
+}
+#content-wrapper {
+  background-color: #f9f9f9;
+  border-left: 2px solid #e7ebee;
+}
+@media (min-width: 768px) {
+  .nav-small #nav-col {
+    width: 64px;
+  }
+  .nav-small #content-wrapper {
+    margin-left: 64px;
+  }
+  .content-tabs {
+    position: relative;
+    height: 42px;
+    line-height: 39.5px;
+    background: #fafafa;
+    border-bottom: solid 2px #2c3e50;
+    font-size: 12px;
+    border-top: 1px solid #ddd;
+  }
+  .content-tabs .roll-nav {
+    position: absolute;
+    width: 40px;
+    height: 39px;
+    text-align: center;
+    color: #475059;
+    z-index: 2;
+    top: 0;
+  }
+  .content-tabs .roll-left {
+    left: 0;
+    border-right: solid 1px #ddd;
+  }
+  .content-tabs .roll-right {
+    right: 0;
+    border-left: solid 1px #ddd;
+  }
+  .content-tabs button {
+    background: #fff;
+    border: 0;
+    height: 39px;
+    line-height: 39px;
+    width: 40px;
+    outline: 0;
+  }
+  .content-tabs button:hover {
+    background: #fafafa;
+  }
+  .content-tabs button i {
+    color: #999;
+  }
+  .content-tabs nav.page-tabs {
+    margin-left: 40px;
+    width: 100000px;
+    height: 40px;
+    overflow: hidden;
+  }
+  .content-tabs nav.page-tabs .page-tabs-content {
+    float: left;
+  }
+  .content-tabs .page-tabs a {
+    display: block;
+    float: left;
+    border-right: solid 0px #ddd;
+    padding: 0 15px;
+    padding-right: 8px;
+    text-decoration: none;
+    color: #475059;
+  }
+  .content-tabs .page-tabs a:first-child {
+    padding-right: 15px;
+  }
+  .content-tabs .page-tabs a i {
+    margin-top: -10px;
+    right: 0px;
+    position: relative;
+    color: #999;
+  }
+  .content-tabs .page-tabs a i:hover {
+    color: #c00 !important;
+  }
+  .content-tabs .page-tabs a.active {
+    background: #2c3e50;
+    color: #fff;
+    border-right: solid 1px #2c3e50;
+  }
+  .content-tabs .page-tabs a.active i:hover {
+    color: #fff !important;
+  }
+  .content-tabs .roll-right.tabRight {
+    right: 120px;
+  }
+  .content-tabs .roll-right.btn-group {
+    right: 40px;
+    width: 80px;
+    padding: 0;
+  }
+  .content-tabs .roll-right.btn-group button {
+    width: 80px;
+  }
+  .content-tabs .roll-right.tabExit {
+    background: #fff;
+    height: 39px;
+    width: 40px;
+    outline: 0;
+  }
+  .page-tabs-list {
+    position: absolute;
+    width: 40px;
+    height: 39px;
+    text-align: center;
+    color: #475059;
+    z-index: 2;
+    top: 0;
+  }
+}
+@media (max-width: 768px) {
+  .content-tabs {
+    display: none;
+  }
+}
+.nav-link {
+  cursor: pointer;
+}
+.loading-message {
+  display: inline-block;
+  min-width: 125px;
+  padding: 10px;
+  margin: 0 auto;
+  color: #000 !important;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+}
+.loading-message > span {
+  line-height: 20px;
+  vertical-align: middle;
+}
+.loading-message.loading-message-boxed {
+  border: 1px solid #ddd;
+  background-color: #eee;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+}
+.page-loading {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 125px;
+  margin-left: -60px;
+  margin-top: -30px;
+  padding: 7px;
+  text-align: center;
+  color: #333;
+  font-size: 13px;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  vertical-align: middle;
+  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+}
+.page-loading > span {
+  line-height: 20px;
+  vertical-align: middle;
+}
