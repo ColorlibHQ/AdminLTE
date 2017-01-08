@@ -109,6 +109,15 @@
             });
         }
 
+        //另外绑定菜单被点击事件,做其它动作
+        $menu_ul.on("click", "li.treeview a", function () {
+            var $a = $(this);
+
+            if ($a.next().size()==0) {//如果size>0,就认为它是可以展开的
+                //触发左边菜单栏按钮点击事件,关闭菜单栏
+                $($.AdminLTE.options.sidebarToggleSelector).click();
+            }
+        });
     };
 
     $.fn.sidebarMenu.defaults = {

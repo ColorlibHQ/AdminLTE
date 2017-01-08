@@ -5,9 +5,15 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         watch: {
-            // If any .less file changes in directory "build/less/" run the "less"-task.
-            files: ["build/less/*.less", "build/less/skins/*.less", "dist/js/app.js"],
-            tasks: ["less", "uglify"]
+            all: {
+                // If any .less file changes in directory "build/less/" run the "less"-task.
+                files: ["build/less/*.less", "build/less/skins/*.less", "dist/js/app.js", "build/js/**/*.js"],
+                tasks: ["less", "uglify", "concat:iframe"]
+            },
+            js: {
+                files: ["build/js/**/*.js"],
+                tasks: ["concat:iframe"]
+            }
         },
         // "less"-task configuration
         // This task will compile all less files upon saving to create both AdminLTE.css and AdminLTE.min.css
@@ -66,8 +72,7 @@ module.exports = function (grunt) {
         // 连接js
         // This task will concat all js file about iframe into a
         concat: {
-            options: {
-            },
+            options: {},
             iframe: {
                 src: ['build/js/iframe/**/*.js'],//build文件夹下包括子文件夹下的所有文件
                 dest: 'dist/js/app_iframe.js'//合并文件在dist下名为app_iframe的文件
@@ -184,4 +189,5 @@ module.exports = function (grunt) {
 
     // The default task (running "grunt" in console) is "watch"
     grunt.registerTask('default', ['watch']);
+    grunt.registerTask('js', ['watch:js']);
 };
