@@ -12,15 +12,13 @@
  */
 html,
 body {
-  min-height: 100%;
+  height: 100%;
 }
 .layout-boxed html,
 .layout-boxed body {
   height: 100%;
 }
 body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
   overflow-x: hidden;
@@ -28,9 +26,10 @@ body {
 }
 /* Layout */
 .wrapper {
-  min-height: 100%;
+  height: 100%;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .wrapper:before,
 .wrapper:after {
@@ -536,12 +535,20 @@ a:focus {
   padding: 10px 25px 10px 15px;
   font-size: 12px;
 }
+.sidebar-menu li > a > .fa-angle-left,
 .sidebar-menu li > a > .pull-right-container > .fa-angle-left {
   width: auto;
   height: auto;
   padding: 0;
   margin-right: 10px;
 }
+.sidebar-menu li > a > .fa-angle-left {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -8px;
+}
+.sidebar-menu li.active > a > .fa-angle-left,
 .sidebar-menu li.active > a > .pull-right-container > .fa-angle-left {
   -webkit-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -575,6 +582,8 @@ a:focus {
   width: 20px;
 }
 .sidebar-menu .treeview-menu > li > a > .pull-right-container > .fa-angle-left,
+.sidebar-menu .treeview-menu > li > a > .pull-right-container > .fa-angle-down,
+.sidebar-menu .treeview-menu > li > a > .fa-angle-left,
 .sidebar-menu .treeview-menu > li > a > .fa-angle-down {
   width: auto;
 }
@@ -1266,7 +1275,8 @@ a:focus {
 .form-group.has-success label {
   color: #00a65a;
 }
-.form-group.has-success .form-control {
+.form-group.has-success .form-control,
+.form-group.has-success .input-group-addon {
   border-color: #00a65a;
   box-shadow: none;
 }
@@ -1276,7 +1286,8 @@ a:focus {
 .form-group.has-warning label {
   color: #f39c12;
 }
-.form-group.has-warning .form-control {
+.form-group.has-warning .form-control,
+.form-group.has-warning .input-group-addon {
   border-color: #f39c12;
   box-shadow: none;
 }
@@ -1286,7 +1297,8 @@ a:focus {
 .form-group.has-error label {
   color: #dd4b39;
 }
-.form-group.has-error .form-control {
+.form-group.has-error .form-control,
+.form-group.has-error .input-group-addon {
   border-color: #dd4b39;
   box-shadow: none;
 }
