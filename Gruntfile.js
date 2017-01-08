@@ -123,7 +123,7 @@ module.exports = function (grunt) {
         csslintrc: 'build/less/.csslintrc'
       },
       dist: [
-        'dist/css/AdminLTE.css',
+        'dist/css/AdminLTE.css'
       ]
     },
 
