@@ -6,7 +6,7 @@
   "es3"      : true,
   "expr"     : true,
   "jquery"   : true,
-  "latedef"  : "nofunc",
+  "latedef"  : true,
   "laxbreak" : true,
   "nonbsp"   : true,
   "strict"   : true,
