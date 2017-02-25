@@ -1,8 +1,11 @@
-/* Layout
- * ======
+/* Layout()
+ * ========
+ * Implements AdminLTE layout.
  * Fixes the layout height in case min-height fails.
  *
- * @usage activated automatically upon window load
+ * @usage activated automatically upon window load.
+ *        Configure any options by passing data-option="value"
+ *        to the body tag.
  */
 +function ($) {
   'use strict'
@@ -10,7 +13,8 @@
   var DataKey = 'lte.layout'
 
   var Default = {
-    slimscroll: true
+    slimscroll : true,
+    resetHeight: true
   }
 
   var Selector = {
@@ -26,11 +30,13 @@
   }
 
   var ClassName = {
-    fixed: 'fixed'
+    fixed         : 'fixed',
+    holdTransition: 'hold-transition'
   }
 
   var Layout = function (options) {
-    this.options = options
+    this.options      = options
+    this.bindedResize = false
     this.activate()
   }
 
@@ -38,13 +44,19 @@
     this.fix()
     this.fixSidebar()
 
-    $('body').removeClass('hold-transition')
-    $('body, html, ' + Selector.wrapper).css('height', 'auto')
+    $('body').removeClass(ClassName.holdTransition)
 
-    $(window).resize(function () {
-      this.fix()
-      this.fixSidebar()
-    }.bind(this))
+    if (this.options.resetHeight) {
+      $('body, html, ' + Selector.wrapper).css('height', 'auto')
+    }
+
+    if (!this.bindedResize) {
+      $(window).resize(function () {
+        this.fix()
+        this.fixSidebar()
+      }.bind(this))
+      this.bindedResize = true;
+    }
 
     $(Selector.sidebarMenu).on('expanded.tree', function () {
       this.fix()
@@ -120,11 +132,20 @@
   // =================
   function Plugin(option) {
     return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data(DataKey)
-      var options = $.extend({}, Default, $this.data(), typeof option == 'object' && option)
+      var $this = $(this)
+      var data  = $this.data(DataKey)
 
-      if (!data) $this.data(DataKey, (data = new Layout(options)))
+      if (!data) {
+        var options = $.extend({}, Default, $this.data(), typeof option == 'object' && option)
+        $this.data(DataKey, (data = new Layout(options)))
+      }
+
+      if (typeof option == 'string') {
+        if (typeof data[option] == 'undefined') {
+          throw new Error('No method named ' + option)
+        }
+        data[option]()
+      }
     })
   }
 
@@ -143,6 +164,6 @@
   // Layout DATA-API
   // ===============
   $(window).on('load', function () {
-    Plugin.call($('body'), $('body').data())
+    Plugin.call($('body'))
   })
 }(jQuery)
