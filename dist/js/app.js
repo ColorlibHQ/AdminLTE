@@ -10,7 +10,8 @@
  * @version 2.3.8
  * @license MIT <http://opensource.org/licenses/MIT>
  */
-
+/* jshint ignore:start */
+// jscs:disable
 //Make sure jQuery has been loaded before app.js
 if (typeof jQuery === "undefined") {
   throw new Error("AdminLTE requires jQuery");
