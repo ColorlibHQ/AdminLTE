@@ -61,9 +61,8 @@
 .skin-blue-light .left-side {
   background-color: #f9fafc;
 }
-.skin-blue-light .content-wrapper,
-.skin-blue-light .main-footer {
-  border-left: 1px solid #d2d6de;
+.skin-blue-light .main-sidebar {
+  border-right: 1px solid #d2d6de;
 }
 .skin-blue-light .user-panel > .info,
 .skin-blue-light .user-panel > .info > a {
@@ -102,14 +101,14 @@
 .skin-blue-light .sidebar a:hover {
   text-decoration: none;
 }
-.skin-blue-light .treeview-menu > li > a {
+.skin-blue-light .sidebar-menu .treeview-menu > li > a {
   color: #777777;
 }
-.skin-blue-light .treeview-menu > li.active > a,
-.skin-blue-light .treeview-menu > li > a:hover {
+.skin-blue-light .sidebar-menu .treeview-menu > li.active > a,
+.skin-blue-light .sidebar-menu .treeview-menu > li > a:hover {
   color: #000000;
 }
-.skin-blue-light .treeview-menu > li.active > a {
+.skin-blue-light .sidebar-menu .treeview-menu > li.active > a {
   font-weight: 600;
 }
 .skin-blue-light .sidebar-form {

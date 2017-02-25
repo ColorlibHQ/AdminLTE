@@ -61,9 +61,8 @@
 .skin-red-light .left-side {
   background-color: #f9fafc;
 }
-.skin-red-light .content-wrapper,
-.skin-red-light .main-footer {
-  border-left: 1px solid #d2d6de;
+.skin-red-light .main-sidebar {
+  border-right: 1px solid #d2d6de;
 }
 .skin-red-light .user-panel > .info,
 .skin-red-light .user-panel > .info > a {
@@ -102,14 +101,14 @@
 .skin-red-light .sidebar a:hover {
   text-decoration: none;
 }
-.skin-red-light .treeview-menu > li > a {
+.skin-red-light .sidebar-menu .treeview-menu > li > a {
   color: #777777;
 }
-.skin-red-light .treeview-menu > li.active > a,
-.skin-red-light .treeview-menu > li > a:hover {
+.skin-red-light .sidebar-menu .treeview-menu > li.active > a,
+.skin-red-light .sidebar-menu .treeview-menu > li > a:hover {
   color: #000000;
 }
-.skin-red-light .treeview-menu > li.active > a {
+.skin-red-light .sidebar-menu .treeview-menu > li.active > a {
   font-weight: 600;
 }
 .skin-red-light .sidebar-form {
