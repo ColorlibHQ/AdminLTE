@@ -30,7 +30,6 @@ $(function () {
   // bootstrap WYSIHTML5 - text editor
   $('.textarea').wysihtml5();
 
-
   $('.daterange').daterangepicker({
     ranges   : {
       'Today'       : [moment(), moment()],
@@ -199,14 +198,12 @@ $(function () {
   });
 
   /* The todo list plugin */
-  $('.todo-list').todolist({
-    onCheck  : function (ele) {
-      window.console.log('The element has been checked');
-      return ele;
+  $('.todo-list').todoList({
+    onCheck  : function () {
+      window.console.log($(this), 'The element has been checked');
     },
-    onUncheck: function (ele) {
-      window.console.log('The element has been unchecked');
-      return ele;
+    onUnCheck: function () {
+      window.console.log($(this), 'The element has been unchecked');
     }
   });
 
