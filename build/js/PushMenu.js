@@ -2,9 +2,8 @@
  * ==========
  * Adds the push menu functionality to the sidebar.
  *
- * @type Function
  * @usage: $('.btn').pushMenu(options)
- *          or add [data-toggle="offcanvas"] to any toggle button
+ *          or add [data-toggle="push-menu"] to any toggle button
  *          Pass any option as data-option="value"
  */
 +function ($) {
@@ -24,7 +23,7 @@
     mainSidebar   : '.main-sidebar',
     contentWrapper: '.content-wrapper',
     searchInput   : '.sidebar-form .form-control',
-    button        : '[data-toggle="offcanvas"]',
+    button        : '[data-toggle="push-menu"]',
     mini          : '.sidebar-mini',
     expanded      : '.sidebar-expanded-on-hover',
     layoutFixed   : '.fixed'
@@ -172,6 +171,6 @@
     Plugin.call($(this), 'toggle')
   })
   $(window).on('load', function () {
-    Plugin.call($(Selector.button), {})
+    Plugin.call($(Selector.button))
   })
 }(jQuery)
