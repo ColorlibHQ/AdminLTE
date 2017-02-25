@@ -3,7 +3,6 @@
  * Converts a nested list into a multilevel
  * tree view menu.
  *
- * @type Function
  * @Usage: $('.my-menu').tree(options)
  *         or add [data-widget="tree"] to the ul element
  *         Pass any option as data-option="value"
@@ -104,9 +103,7 @@
   Tree.prototype._setUpListeners = function () {
     var that = this
 
-    $(document)
-      .off('click', this.options.trigger)
-      .on('click', this.options.trigger, function (event) {
+    $(this.element).on('click', this.options.trigger, function (event) {
         that.toggle($(this), event)
       })
   }
@@ -136,7 +133,6 @@
     $.fn.tree = old
     return this
   }
-
 
   // Tree Data API
   // =============
