@@ -15,7 +15,7 @@ Introduction
 
 ### Documentation & Installation Guide
 Visit the [online documentation](https://almsaeedstudio.com/docs) for the most
-updated guide. Information will be added on a weekly basis.
+updated guide.
 
 !["AdminLTE Presentation"] (https://almsaeedstudio.com/AdminLTE2.png "AdminLTE Presentation")
 
