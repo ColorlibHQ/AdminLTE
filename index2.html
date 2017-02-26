@@ -43,7 +43,7 @@
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
       <!-- Navbar Right Menu -->
@@ -312,16 +312,17 @@
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
               <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                  <i class="fa fa-search"></i>
                 </button>
               </span>
         </div>
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
+      <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
+        <li class="active treeview menu-open">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             <span class="pull-right-container">
@@ -460,7 +461,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-            <li>
+            <li class="treeview">
               <a href="#"><i class="fa fa-circle-o"></i> Level One
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
@@ -468,7 +469,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                <li>
+                <li class="treeview">
                   <a href="#"><i class="fa fa-circle-o"></i> Level Two
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -1531,14 +1532,14 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 2.2.3 -->
-<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- jQuery 3.1.1 -->
+<script src="plugins/jQuery/jquery-3.1.1.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- FastClick -->
 <script src="plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/app.min.js"></script>
+<script src="dist/js/adminlte.js"></script>
 <!-- Sparkline -->
 <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
