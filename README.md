@@ -13,7 +13,7 @@ Introduction
 ### Looking for Premium Templates?
 **Almsaeed studio just opened a new premium templates website. Hand picked to ensure the best quality and the most affordable prices. Visit https://themequarry.com for more information.**
 
-### Documentation & Installation Guide
+## Documentation & Installation Guide
 Visit the [online documentation](https://almsaeedstudio.com/docs) for the most
 updated guide.
 
