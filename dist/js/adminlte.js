@@ -929,9 +929,8 @@ throw new Error('AdminLTE requires jQuery')
  * ===============
  * Toggles the state of the control sidebar
  *
- * @Usage: $('#my-chat-box').directChat(options)
+ * @Usage: $('#my-chat-box').directChat()
  *         or add [data-widget="direct-chat"] to the trigger
- *         Pass any option as data-option="value"
  */
 +function ($) {
   'use strict'
