@@ -344,4 +344,6 @@ $(function () {
   $('#control-sidebar-home-tab').after($tabPane)
 
   setup()
+
+  $('[data-toggle="tooltip"]').tooltip()
 })
