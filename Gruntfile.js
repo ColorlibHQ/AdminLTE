@@ -138,7 +138,8 @@ module.exports = function (grunt) { // jshint ignore:line
           'build/js/Tree.js',
           'build/js/ControlSidebar.js',
           'build/js/BoxWidget.js',
-          'build/js/TodoList.js'
+          'build/js/TodoList.js',
+          'build/js/DirectChat.js'
         ],
         dest: 'dist/js/adminlte.js'
       }
