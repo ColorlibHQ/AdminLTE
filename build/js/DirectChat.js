@@ -26,9 +26,8 @@
     this.element = element
   }
 
-  DirectChat.prototype.toggle = function () {
-    var box = $(this).parents(Selector.box).first();
-    box.toggleClass(ClassName.open);
+  DirectChat.prototype.toggle = function ($trigger) {
+    $trigger.parents(Selector.box).first().toggleClass(ClassName.open)
   }
 
   // Plugin Definition
@@ -42,7 +41,7 @@
         $this.data(DataKey, (data = new DirectChat($this)))
       }
 
-      if (typeof option == 'string') data.toggle()
+      if (typeof option == 'string') data.toggle($this)
     })
   }
 
