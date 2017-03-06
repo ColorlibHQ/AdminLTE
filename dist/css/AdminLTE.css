@@ -768,15 +768,15 @@ a:focus {
   .sidebar-mini.sidebar-collapse .content-wrapper,
   .sidebar-mini.sidebar-collapse .right-side,
   .sidebar-mini.sidebar-collapse .main-footer {
-    margin-left: 50px !important;
+    margin-left: 50px;
     z-index: 840;
   }
   /*rtl*/
-  .rtl .sidebar-mini.sidebar-collapse .content-wrapper,
-  .rtl .sidebar-mini.sidebar-collapse .right-side,
-  .rtl .sidebar-mini.sidebar-collapse .main-footer {
-    margin-left: inherit;
-    margin-right: 50px !important;
+  .rtl.sidebar-mini.sidebar-collapse .content-wrapper,
+  .rtl.sidebar-mini.sidebar-collapse .right-side,
+  .rtl.sidebar-mini.sidebar-collapse .main-footer {
+    margin-left: initial;
+    margin-right: 50px;
   }
   .sidebar-mini.sidebar-collapse .main-sidebar {
     -webkit-transform: translate(0, 0);
@@ -793,7 +793,7 @@ a:focus {
     margin-right: 0;
   }
   /*rtl*/
-  .rtl .sidebar-mini.sidebar-collapse .sidebar-menu > li > a {
+  .rtl.sidebar-mini.sidebar-collapse .sidebar-menu > li > a {
     margin-right: inherit;
     margin-left: 0;
   }
@@ -801,7 +801,7 @@ a:focus {
     border-top-right-radius: 4px;
   }
   /*rtl*/
-  .rtl .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > span {
+  .rtl.sidebar-mini.sidebar-collapse .sidebar-menu > li > a > span {
     border-top-right-radius: inherit;
     border-top-left-radius: 4px;
   }
@@ -809,7 +809,7 @@ a:focus {
     border-bottom-right-radius: 4px;
   }
   /*rtl*/
-  .rtl .sidebar-mini.sidebar-collapse .sidebar-menu > li:not(.treeview) > a > span {
+  .rtl.sidebar-mini.sidebar-collapse .sidebar-menu > li:not(.treeview) > a > span {
     border-bottom-right-radius: inherit;
     border-bottom-left-radius: 4px;
   }
@@ -819,7 +819,7 @@ a:focus {
     border-bottom-right-radius: 4px;
   }
   /*rtl*/
-  .rtl .sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
+  .rtl.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
     border-bottom-right-radius: inherit;
     border-bottom-left-radius: 4px;
   }
@@ -831,8 +831,8 @@ a:focus {
     left: 50px;
   }
   /*rtl*/
-  .rtl .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right),
-  .rtl .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
+  .rtl.sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right),
+  .rtl.sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
     left: auto;
     right: 50px;
   }
@@ -843,7 +843,7 @@ a:focus {
     background-color: inherit;
   }
   /*rtl*/
-  .rtl .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span {
+  .rtl.sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span {
     margin-left: inherit;
     margin-right: -3px;
     padding: 12px 20px 12px 5px;
@@ -857,7 +857,7 @@ a:focus {
     z-index: 900;
   }
   /*rtl*/
-  .rtl .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > .pull-right-container {
+  .rtl.sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > .pull-right-container {
     float: left;
     left: auto;
     right: 180px !important;
@@ -870,7 +870,7 @@ a:focus {
     margin-left: 0;
   }
   /*rtl*/
-  .rtl .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
+  .rtl.sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
     margin-left: inherit;
     margin-right: 0;
   }
@@ -899,7 +899,7 @@ a:focus {
     margin-left: 50px;
   }
   /*rtl*/
-  .rtl .sidebar-mini.sidebar-collapse .main-header .navbar {
+  .rtl.sidebar-mini.sidebar-collapse .main-header .navbar {
     margin-left: 0;
     margin-right: 50px;
   }
@@ -982,6 +982,12 @@ a:focus {
 .control-sidebar-open .control-sidebar {
   right: 0;
 }
+/*rtl*/
+.rtl.control-sidebar-open .control-sidebar-bg,
+.rtl.control-sidebar-open .control-sidebar {
+  right: auto;
+  left: 0;
+}
 
 @media (min-width: 768px) {
   .control-sidebar-open .content-wrapper,
@@ -990,10 +996,9 @@ a:focus {
     margin-right: 230px;
   }
   /*rtl*/
-  .rtl .control-sidebar-open .content-wrapper,
-  .rtl .control-sidebar-open .right-side,
-  .rtl .control-sidebar-open .main-footer {
-    margin-right: inherit;
+  .rtl.control-sidebar-open .content-wrapper,
+  .rtl.control-sidebar-open .right-side,
+  .rtl.control-sidebar-open .main-footer {
     margin-left: 230px;
   }
 }
@@ -1225,7 +1230,6 @@ a:focus {
   box-shadow: none;
   border-color: #eee;
 }
-/*rtl*/
 .dropdown-menu > li > a {
   color: #777;
 }
@@ -1233,6 +1237,13 @@ a:focus {
 .dropdown-menu > li > a > .fa,
 .dropdown-menu > li > a > .ion {
   margin-right: 10px;
+}
+/*rtl*/
+.rtl .dropdown-menu > li > a > .glyphicon,
+.rtl .dropdown-menu > li > a > .fa,
+.rtl .dropdown-menu > li > a > .ion {
+  margin-right: inherit;
+  margin-left: 10px;
 }
 .dropdown-menu > li > a:hover {
   background-color: #e1e3e9;
@@ -1352,6 +1363,11 @@ a:focus {
   top: 0;
   right: 0;
 }
+/*rtl*/
+.rtl .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > h4 > small {
+  right: inherit;
+  left: 0;
+}
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > p {
   margin: 0 0 0 45px;
   font-size: 12px;
@@ -1464,12 +1480,23 @@ a:focus {
   margin-right: 10px;
   margin-top: -2px;
 }
+/*rtl*/
+.rtl .navbar-nav > .user-menu .user-image {
+  float: right;
+  margin-right: inherit;
+  margin-left: 10px;
+}
 @media (max-width: 767px) {
   .navbar-nav > .user-menu .user-image {
     float: none;
     margin-right: 0;
     margin-top: -8px;
     line-height: 10px;
+  }
+  /*rtl*/
+  .rtl .navbar-nav > .user-menu .user-image {
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 /* Add fade animation to dropdown menus by appending
@@ -1531,9 +1558,18 @@ a:focus {
   right: 0;
   left: auto;
 }
+/*rtl*/
+.rtl .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
+  left: 0;
+  right: auto;
+}
 @media (max-width: 991px) {
   .navbar-custom-menu > .navbar-nav {
     float: right;
+  }
+  /*rtl*/
+  .rtl .navbar-custom-menu > .navbar-nav {
+    float: left;
   }
   .navbar-custom-menu > .navbar-nav > li {
     position: static;
@@ -1544,6 +1580,10 @@ a:focus {
     left: auto;
     border: 1px solid #ddd;
     background: #fff;
+  }
+  .rtl .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
+    left: 5%;
+    right: auto;
   }
 }
 /*
