@@ -53,6 +53,14 @@
       "<h4 class='control-sidebar-heading'>"
       + "Layout Options"
       + "</h4>"
+        //rtl layout
+      + "<div class='form-group'>"
+      + "<label class='control-sidebar-subheading'>"
+      + "<input type='checkbox' data-layout='rtl' class='pull-right'/> "
+      + "Right to Left"
+      + "</label>"
+      + "<p>Activate the Right to Left layout.</p>"
+      + "</div>"
         //Fixed layout
       + "<div class='form-group'>"
       + "<label class='control-sidebar-subheading'>"
@@ -326,8 +334,11 @@
     });
 
     // Reset options
+    if ($('body').hasClass('rtl')) {
+        $("[data-layout='rtl']").attr('checked', 'checked');
+    }
     if ($('body').hasClass('fixed')) {
-      $("[data-layout='fixed']").attr('checked', 'checked');
+        $("[data-layout='fixed']").attr('checked', 'checked');
     }
     if ($('body').hasClass('layout-boxed')) {
       $("[data-layout='layout-boxed']").attr('checked', 'checked');
