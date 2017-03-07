@@ -1230,6 +1230,12 @@ a:focus {
   box-shadow: none;
   border-color: #eee;
 }
+/*rtl*/
+.rtl .dropdown-menu {
+  text-align: right;
+  left: auto;
+  right: 0;
+}
 .dropdown-menu > li > a {
   color: #777;
 }
@@ -5866,5 +5872,56 @@ table.text-center th {
     float: left!important;
 }
 .rtl .progress-bar{
+    float: right;
+}
+.rtl .form-horizontal .control-label{
+    text-align: left;
+    float: right;
+}
+.rtl .checkbox label,
+.rtl .radio label {
+    padding-left: inherit;
+    padding-right: 20px;
+}
+.rtl .checkbox input[type=checkbox], 
+.rtl .checkbox-inline input[type=checkbox],
+.rtl .radio input[type=radio],
+.rtl .radio-inline input[type=radio] {
+    margin-left: auto;
+    margin-right: -20px;
+}
+.rtl .input-group-addon:first-child {
+    border-right: 1px solid #d2d6de; 
+    border-left: 0;
+}
+.rtl .input-group-addon:last-child {
+    border-left: 1px solid #d2d6de;
+    border-right: 0; 
+}
+.rtl .input-group .form-control:last-child,
+.rtl .input-group-addon:last-child,
+.rtl .input-group-btn:first-child > .btn-group:not(:first-child) > .btn,
+.rtl .input-group-btn:first-child > .btn:not(:first-child),
+.rtl .input-group-btn:last-child > .btn,
+.rtl .input-group-btn:last-child > .btn-group>.btn,
+.rtl .input-group-btn:last-child > .dropdown-toggle {
+    border-top-left-radius: inherit;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: 0;
+}
+.rtl .input-group .form-control:first-child,
+.rtl .input-group-addon:first-child,
+.rtl .input-group-btn:first-child > .btn,
+.rtl .input-group-btn:first-child > .btn-group>.btn,
+.rtl .input-group-btn:first-child > .dropdown-toggle,
+.rtl .input-group-btn:last-child > .btn-group:not(:last-child) > .btn,
+.rtl .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: inherit;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: 0;
+}
+.rtl .pagination>li {
     float: right;
 }
