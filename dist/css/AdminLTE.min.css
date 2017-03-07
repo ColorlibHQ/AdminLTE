@@ -1278,6 +1278,12 @@ a:focus {
   color: #444444;
   font-size: 14px;
 }
+/*rtl*/
+.rtl .navbar-nav > .notifications-menu > .dropdown-menu > li.header,
+.rtl .navbar-nav > .messages-menu > .dropdown-menu > li.header,
+.rtl .navbar-nav > .tasks-menu > .dropdown-menu > li.header {
+  text-align: right;
+}
 .navbar-nav > .notifications-menu > .dropdown-menu > li.footer > a,
 .navbar-nav > .messages-menu > .dropdown-menu > li.footer > a,
 .navbar-nav > .tasks-menu > .dropdown-menu > li.footer > a {
@@ -1335,6 +1341,10 @@ a:focus {
   text-overflow: ellipsis;
   padding: 10px;
 }
+/*rtl*/
+.rtl .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
+  text-align: right;
+}
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .glyphicon,
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .fa,
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .ion {
@@ -1355,6 +1365,11 @@ a:focus {
   color: #444444;
   font-size: 15px;
   position: relative;
+}
+/*rtl*/
+.rtl .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > h4 {
+  margin: 0 45px 0 0;
+  text-align: right;
 }
 .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > h4 > small {
   color: #999999;
@@ -1383,6 +1398,10 @@ a:focus {
 }
 .navbar-nav > .tasks-menu > .dropdown-menu > li .menu > li > a {
   padding: 10px;
+}
+/*rtl*/
+.rtl .navbar-nav > .tasks-menu > .dropdown-menu > li .menu > li > a {
+  text-align: right;
 }
 .navbar-nav > .tasks-menu > .dropdown-menu > li .menu > li > a > h3 {
   font-size: 14px;
@@ -1552,6 +1571,10 @@ a:focus {
 /* Fix dropdown menu in navbars */
 .navbar-custom-menu > .navbar-nav > li {
   position: relative;
+}
+/*rtl*/
+.rtl .navbar-custom-menu > .navbar-nav > li {
+  float: right;
 }
 .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
   position: absolute;
@@ -2546,6 +2569,12 @@ a:focus {
 .info-box-content {
   padding: 5px 10px;
   margin-left: 90px;
+}
+/*rtl*/
+.rtl .info-box-content {
+  margin-left: auto;
+  margin-right: 90px;
+  text-align: right;
 }
 .info-box-number {
   display: block;
@@ -5828,4 +5857,14 @@ table.text-center th {
   .table-responsive > .table tr td {
     white-space: normal !important;
   }
+}
+/*rtl*/
+.rtl .pull-left {
+    float: right!important;
+}
+.rtl .pull-right {
+    float: left!important;
+}
+.rtl .progress-bar{
+    float: right;
 }
