@@ -297,6 +297,7 @@ function _init() {
       //Enable slimscroll for fixed layout
       if ($.AdminLTE.options.sidebarSlimScroll) {
         if (typeof $.fn.slimScroll != 'undefined') {
+          var focusedElement = $("input:focus", $(".sidebar"));
           //Destroy if it exists
           $(".sidebar").slimScroll({destroy: true}).height("auto");
           //Add slimscroll
@@ -305,6 +306,10 @@ function _init() {
             color: "rgba(0,0,0,0.2)",
             size: "3px"
           });
+          //Refocus input if it exists after slimscroll init
+          if(focusedElement[0]) {
+            focusedElement.focus();
+          }
         }
       }
     }
