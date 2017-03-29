@@ -22,11 +22,11 @@ Installation
 ------------
 There are multiple ways to install AdminLTE.
 
-####Download:
+#### Download:
 
 Download from Github or [visit Almsaeed Studio](https://almsaeedstudio.com) and download the latest release.
 
-####Using The Command Line:
+#### Using The Command Line:
 
 **Github**
 
