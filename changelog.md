@@ -1,5 +1,5 @@
 ### CHANGE LOG:
-**v2.3.7**
+**v2.3.7:**
 - Merge pull request #1160 from antoniocambados/antoniocambados-patch-1158
 - Merge branch 'rickysang-master'
 - merge pull request #1165
