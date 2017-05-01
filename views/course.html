@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Course</title>
+</head>
+<body>
+
+    <div id="homework">
+
+    </div>
+
+    <div id="discussion">
+        <div id="abstract"></div>
+        <ul class="pagination"></ul>
+        <form role="form">
+            <textarea name="content" id ="content" class="form-control" placeholder="What do you want to Say" rows="10"></textarea>
+            <div>
+                <div class="col-md-12 column" id="blank">
+                    <!--<div class="alert alert-dismissable alert-warning">
+                      <button class="close" type="button" data-dismiss="alert">×</button>
+                      <strong>Attention:</strong> you should fill all the blanks.
+                    </div>-->
+                </div>
+            </div>
+            <button type="button" onclick="publish()">Publish</button>
+        </form>
+    </div>
+
+
+
+    <script src="../public/js/jquery-3.1.1.min.js"></script>
+    <script src="../public/js/d3.min.js"></script>
+    <script src="../public/javascripts/course.js"></script>
+</body>
+</html>
