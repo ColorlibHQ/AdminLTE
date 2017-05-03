@@ -20,6 +20,17 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-cssjanus": "^0.2.4",
     "grunt-image": "^1.0.5",
-    "grunt-includes": "^0.4.5"
+    "grunt-includes": "^0.4.5",
+    "gulp": "^3.9.0",
+    "gulp-batch": "^1.0.5",
+    "gulp-bootlint": "^0.7.1",
+    "gulp-csslint": "^0.2.0",
+    "gulp-image": "^1.3.0",
+    "gulp-include": "^2.1.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-less": "^3.0.5",
+    "gulp-replace": "^0.5.4",
+    "gulp-uglify": "^1.5.1",
+    "gulp-watch": "^4.3.5"
   }
 }
