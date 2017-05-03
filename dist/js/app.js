@@ -7,7 +7,7 @@
  * @Author  Almsaeed Studio
  * @Support <http://www.almsaeedstudio.com>
  * @Email   <abdullah@almsaeedstudio.com>
- * @version 2.3.8
+ * @version 2.3.12
  * @license MIT <http://opensource.org/licenses/MIT>
  */
 
@@ -40,7 +40,7 @@ $.AdminLTE.options = {
   navbarMenuSlimscrollWidth: "3px", //The width of the scroll bar
   navbarMenuHeight: "200px", //The height of the inner menu
   //General animation speed for JS animated elements such as box collapse/expand and
-  //sidebar treeview slide up/down. This options accepts an integer as milliseconds,
+  //sidebar treeview slide up/down. This option accepts an integer as milliseconds,
   //'fast', 'normal', or 'slow'
   animationSpeed: 500,
   //Sidebar push menu toggle button selector
@@ -63,6 +63,8 @@ $.AdminLTE.options = {
   //choose to enable the plugin, make sure you load the script
   //before AdminLTE's app.js
   enableFastclick: false,
+  //Control Sidebar Tree views
+  enableControlTreeView: true,
   //Control Sidebar Options
   enableControlSidebar: true,
   controlSidebarOptions: {
@@ -160,7 +162,9 @@ $(function () {
   $.AdminLTE.layout.activate();
 
   //Enable sidebar tree view controls
-  $.AdminLTE.tree('.sidebar');
+  if (o.enableControlTreeView) {
+    $.AdminLTE.tree('.sidebar');
+  }
 
   //Enable control sidebar
   if (o.enableControlSidebar) {
@@ -184,7 +188,8 @@ $(function () {
   //Activate Bootstrap tooltip
   if (o.enableBSToppltip) {
     $('body').tooltip({
-      selector: o.BSTooltipSelector
+      selector: o.BSTooltipSelector,
+      container: 'body'
     });
   }
 
@@ -252,13 +257,14 @@ function _init() {
       // Remove overflow from .wrapper if layout-boxed exists
       $(".layout-boxed > .wrapper").css('overflow', 'hidden');
       //Get window height and the wrapper height
-      var neg = $('.main-header').outerHeight() + $('.main-footer').outerHeight();
+      var footer_height = $('.main-footer').outerHeight() || 0;
+      var neg = $('.main-header').outerHeight() + footer_height;
       var window_height = $(window).height();
-      var sidebar_height = $(".sidebar").height();
+      var sidebar_height = $(".sidebar").height() || 0;
       //Set the min-height of the content and sidebar based on the
       //the height of the document.
       if ($("body").hasClass("fixed")) {
-        $(".content-wrapper, .right-side").css('min-height', window_height - $('.main-footer').outerHeight());
+        $(".content-wrapper, .right-side").css('min-height', window_height - footer_height);
       } else {
         var postSetWidth;
         if (window_height >= sidebar_height) {
@@ -294,7 +300,7 @@ function _init() {
           //Destroy if it exists
           $(".sidebar").slimScroll({destroy: true}).height("auto");
           //Add slimscroll
-          $(".sidebar").slimscroll({
+          $(".sidebar").slimScroll({
             height: ($(window).height() - $(".main-header").height()) + "px",
             color: "rgba(0,0,0,0.2)",
             size: "3px"

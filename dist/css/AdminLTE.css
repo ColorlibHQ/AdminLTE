@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
 /*!
- *   AdminLTE v2.3.8
+ *   AdminLTE v2.3.12
  *   Author: Almsaeed Studio
  *	 Website: Almsaeed Studio <http://almsaeedstudio.com>
  *   License: Open source - MIT
@@ -636,10 +636,12 @@ a:focus {
     background-color: inherit;
   }
   .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > .pull-right-container {
+    position: relative!important;
     float: right;
     width: auto!important;
-    left: 200px!important;
-    top: 10px!important;
+    left: 180px !important;
+    top: -22px !important;
+    z-index: 900;
   }
   .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > .pull-right-container > .label:not(:first-of-type) {
     display: none;
@@ -1774,6 +1776,9 @@ a:focus {
 .box-header > .box-tools.pull-right .dropdown-menu {
   right: 0;
   left: auto;
+}
+.box-header > .box-tools .dropdown-menu > li > a {
+  color: #444!important;
 }
 .btn-box-tool {
   padding: 5px;

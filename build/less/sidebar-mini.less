@@ -70,10 +70,12 @@
             }
             > a > .pull-right-container {
               //display: block!important;
+              position: relative!important;
               float: right;
               width: auto!important;
-              left: 200px!important;
-              top: 10px!important;
+              left: 200px - 20px!important;
+              top: -22px!important;
+              z-index: 900;
               > .label:not(:first-of-type) {
                 display: none;
               }

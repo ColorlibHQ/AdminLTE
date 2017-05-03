@@ -28,7 +28,7 @@
     border-top-color: @green;
   }
   &.box-default {
-    border-top-color: @gray;
+    border-top-color: @gray-lte;
   }
 
   // collapsed mode
@@ -84,7 +84,7 @@
 
     // Box color variations
     &.box-default {
-      .box-solid-variant(@gray, #444);
+      .box-solid-variant(@gray-lte, #444);
     }
     &.box-primary {
       .box-solid-variant(@light-blue);
@@ -215,6 +215,10 @@
         right: 0;
         left: auto;
       }
+    }
+
+    .dropdown-menu > li > a {
+      color: #444!important;
     }
   }
 }
@@ -380,7 +384,7 @@
       }
 
       .label {
-        background: @gray !important;
+        background: @gray-lte !important;
       }
     }
   }
