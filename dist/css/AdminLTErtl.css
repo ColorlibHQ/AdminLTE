@@ -31,7 +31,7 @@
 
 .wrapper.rtl .sidebar-menu .treeview-menu > li{direction:rtl;text-align: right;}
 
-.skin-yellow .sidebar-menu>li>a{border-left: 0 !important;}
+.sidebar-menu>li>a{border-left: 0 !important;}
 .wrapper.rtl .sidebar-menu li > a {
     direction: rtl;
 }
@@ -67,7 +67,7 @@
     text-align: right;
 }
 
-.skin-yellow .sidebar-menu>li>a {
+.sidebar-menu>li>a {
     border-left: 0px solid transparent;
     border-right: 3px solid transparent;
 }
@@ -159,7 +159,7 @@
     padding: 12px 5px 12px 15px;
 }
 
-.skin-yellow .sidebar-menu>li:hover>a, .skin-yellow .sidebar-menu>li.active>a {
+.sidebar-menu>li:hover>a, .sidebar-menu>li.active>a {
     color: #fff;
     background: #1e282c;
     border-right: 3px #f39c12 solid;
