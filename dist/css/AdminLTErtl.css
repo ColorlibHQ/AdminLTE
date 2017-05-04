@@ -5,6 +5,18 @@
     right: 0;
 }
 
+.control-sidebar.control-sidebar-open, .control-sidebar.control-sidebar-open+.control-sidebar-bg{
+    left: 0;
+}
+
+.control-sidebar-bg, .control-sidebar {
+    top: 0;
+    left: -230px;
+    width: 230px;
+    -webkit-transition: left .3s ease-in-out;
+    -o-transition: left .3s ease-in-out;
+    transition: left .3s ease-in-out;
+}
 .wrapper.rtl .content-wrapper {
     margin-left: auto;
     margin-right: 230px;
