@@ -33,7 +33,7 @@ Download from Github or [visit Almsaeed Studio](https://almsaeedstudio.com) and 
 - Fork the repository ([here is the guide](https://help.github.com/articles/fork-a-repo/)).
 - Clone to your machine
 ```
-git clone https://github.com/YOUR_USERNAME/AdminLTE.git
+git clone https://github.com/almasaeed2010/AdminLTE
 ```
 
 **Bower**
