@@ -17,6 +17,8 @@
     -o-transition: left .3s ease-in-out;
     transition: left .3s ease-in-out;
 }
+
+
 .wrapper.rtl .content-wrapper {
     margin-left: auto;
     margin-right: 230px;
@@ -153,6 +155,12 @@
     left: 10px;
     top: 50%;
     margin-top: -7px;
+}
+
+.navbar-custom-menu>.navbar-nav>li>.dropdown-menu {
+    position: absolute;
+    left: 0;
+    right: auto;
 }
 
 .sidebar-menu li>a>.fa-angle-right, .sidebar-menu li>a>.pull-left-container>.fa-angle-right {
