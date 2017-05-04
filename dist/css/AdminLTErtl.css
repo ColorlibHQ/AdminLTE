@@ -205,6 +205,14 @@
     left: 10px;
 }
 
+.sidebar-menu li.active > a > .fa-angle-right,
+.sidebar-menu li.active > a > .pull-left-container > .fa-angle-right {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
 @media (min-width: 768px){
 
 
