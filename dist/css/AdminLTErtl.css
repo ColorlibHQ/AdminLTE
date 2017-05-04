@@ -159,7 +159,7 @@
     width: auto;
     height: auto;
     padding: 0;
-    margin-left: 10px;
+    margin-left: 4px;
 }
 
 .sidebar-menu>li .label.pull-left, .sidebar-menu>li .badge.pull-left {
@@ -218,11 +218,16 @@
      border-bottom-right-radius: 0;
 	 border-bottom-left-radius: 4px;
   }
-  .sidebar-mini.sidebar-collapse  .wrapper.rtl .sidebar-menu > li:hover > a > span:not(.pull-right), .sidebar-mini.sidebar-collapse  .wrapper.rtl .sidebar-menu > li:hover > .treeview-menu {
+  .sidebar-mini.sidebar-collapse  .wrapper.rtl .sidebar-menu > li:hover > a > span:not(.pull-right),
+  .sidebar-mini.sidebar-collapse  .wrapper.rtl .sidebar-menu > li:hover > .treeview-menu {
     right: 50px;
     left: auto;
     text-align: right;
+    z-index: 3;
   }
+
+  .sidebar-mini.sidebar-collapse  .wrapper.rtl .sidebar-menu > li:hover > a > span.pull-left-container{top: 10px;background: transparent;}  
+  
   .sidebar-mini.sidebar-collapse  .wrapper.rtl .sidebar-menu > li:hover > a > span {
     /* margin-right: 0px; */
     padding: 12px 20px 12px 5px;
@@ -251,25 +256,50 @@
 
 /* SKIN BLUE CHANGES */
 
-.skin-blue .wrapper.rtl .sidebar-menu>li:hover>a, .skin-blue .wrapper.rtl .sidebar-menu>li.active>a {
+.wrapper.rtl .sidebar-menu>li:hover>a, .wrapper.rtl .sidebar-menu>li.active>a {
     border-right-color: rgb(60, 141, 188);
     border-left-color: transparent;
 }
 
-.skin-blue .wrapper.rtl .sidebar-menu>li>a {
+.wrapper.rtl .sidebar-menu>li>a {
     border-right: 3px solid rgba(0, 0, 0, 0);
     border-left: 0;
 }
 
 @media (max-width: 768px){
 
-	.sidebar-collapse .wrapper.rtl .sidebar-menu>li i{}
+	.sidebar-collapse .wrapper.rtl .sidebar-menu>li i{
+	}
+
+	.wrapper.rtl .sidebar-menu>li>a{
+    padding-right: 10px;
+}
 	
 	.wrapper.rtl .main-header .logo {float:none;}
 	.wrapper.rtl .main-header .navbar-custom-menu{
 		float: left;
 		direction: rtl;
 	}
+
+	.sidebar-mini.sidebar-collapse .wrapper.rtl .sidebar-menu>li>a>span,
+	.sidebar-mini.sidebar-collapse .wrapper.rtl .sidebar-menu>li:hover>a>span {
+		margin-left: 0;
+		margin-right: 3px;
+	}
+
+	.sidebar-collapse .wrapper.rtl .sidebar-menu>li > a > i {
+		padding-right: 3px;
+		padding-left: 0;
+	}
+
+	.wrapper.rtl .sidebar-menu > li > a > .fa{
+    margin-right: 0;
+    right: 0;
+}
+
+	.wrapper.rtl .sidebar-menu .treeview-menu>li>a>.fa{
+    margin-right: 5px;
+}
 
 	.navbar-custom-menu>.navbar-nav>li {
 		position: static;
