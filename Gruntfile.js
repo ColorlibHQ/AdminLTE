@@ -6,7 +6,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
     watch: {
       // If any .less file changes in directory "build/less/" run the "less"-task.
-      files: ["build/less/*.less", "build/less/skins/*.less", "dist/js/app.js"],
+      files: ["build/less/*.less", "build/less/skins/*.less", "build/less/plugins/*.less", "dist/js/app.js"],
       tasks: ["less", "uglify"]
     },
     // "less"-task configuration
@@ -24,9 +24,9 @@ module.exports = function (grunt) {
           // AdminLTE without plugins
           "dist/css/alt/AdminLTE-without-plugins.css": "build/less/AdminLTE-without-plugins.less",
           // Separate plugins
-          "dist/css/alt/AdminLTE-select2.css": "build/less/select2.less",
-          "dist/css/alt/AdminLTE-fullcalendar.css": "build/less/fullcalendar.less",
-          "dist/css/alt/AdminLTE-bootstrap-social.css": "build/less/bootstrap-social.less",
+          "dist/css/alt/AdminLTE-select2.css": "build/less/plugins/select2.separate.less",
+          "dist/css/alt/AdminLTE-fullcalendar.css": "build/less/plugins/fullcalendar.separate.less",
+          "dist/css/alt/AdminLTE-bootstrap-social.css": "build/less/plugins/bootstrap-social.separate.less",
           //Non minified skin files
           "dist/css/skins/skin-blue.css": "build/less/skins/skin-blue.less",
           "dist/css/skins/skin-black.css": "build/less/skins/skin-black.less",
@@ -55,9 +55,9 @@ module.exports = function (grunt) {
           // AdminLTE without plugins
           "dist/css/alt/AdminLTE-without-plugins.min.css": "build/less/AdminLTE-without-plugins.less",
           // Separate plugins
-          "dist/css/alt/AdminLTE-select2.min.css": "build/less/select2.less",
-          "dist/css/alt/AdminLTE-fullcalendar.min.css": "build/less/fullcalendar.less",
-          "dist/css/alt/AdminLTE-bootstrap-social.min.css": "build/less/bootstrap-social.less",
+          "dist/css/alt/AdminLTE-select2.min.css": "build/less/plugins/select2.separate.less",
+          "dist/css/alt/AdminLTE-fullcalendar.min.css": "build/less/plugins/fullcalendar.separate.less",
+          "dist/css/alt/AdminLTE-bootstrap-social.min.css": "build/less/plugins/bootstrap-social.separate.less",
           // Skins minified
           "dist/css/skins/skin-blue.min.css": "build/less/skins/skin-blue.less",
           "dist/css/skins/skin-black.min.css": "build/less/skins/skin-black.less",
