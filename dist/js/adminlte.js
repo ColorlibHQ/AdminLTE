@@ -66,7 +66,10 @@ throw new Error('AdminLTE requires jQuery')
     $('body').removeClass(ClassName.holdTransition)
 
     if (this.options.resetHeight) {
-      $('body, html, ' + Selector.wrapper).css('height', 'auto')
+      $('body, html, ' + Selector.wrapper).css({
+        'height'    : 'auto',
+        'min-height': '100%'
+      })
     }
 
     if (!this.bindedResize) {
@@ -74,7 +77,7 @@ throw new Error('AdminLTE requires jQuery')
         this.fix()
         this.fixSidebar()
       }.bind(this))
-      this.bindedResize = true;
+      this.bindedResize = true
     }
 
     $(Selector.sidebarMenu).on('expanded.tree', function () {
@@ -125,7 +128,7 @@ throw new Error('AdminLTE requires jQuery')
   Layout.prototype.fixSidebar = function () {
     // Make sure the body tag has the .fixed class
     if (!$('body').hasClass(ClassName.fixed)) {
-      if (typeof $.fn.slimScroll != 'undefined') {
+      if (typeof $.fn.slimScroll !== 'undefined') {
         $(Selector.sidebar).slimScroll({ destroy: true }).height('auto')
       }
       return
@@ -133,7 +136,7 @@ throw new Error('AdminLTE requires jQuery')
 
     // Enable slimscroll for fixed layout
     if (this.options.slimscroll) {
-      if (typeof $.fn.slimScroll != 'undefined') {
+      if (typeof $.fn.slimScroll !== 'undefined') {
         // Destroy if it exists
         $(Selector.sidebar).slimScroll({ destroy: true }).height('auto')
 
@@ -155,12 +158,12 @@ throw new Error('AdminLTE requires jQuery')
       var data  = $this.data(DataKey)
 
       if (!data) {
-        var options = $.extend({}, Default, $this.data(), typeof option == 'object' && option)
+        var options = $.extend({}, Default, $this.data(), typeof option === 'object' && option)
         $this.data(DataKey, (data = new Layout(options)))
       }
 
-      if (typeof option == 'string') {
-        if (typeof data[option] == 'undefined') {
+      if (typeof option === 'string') {
+        if (typeof data[option] === 'undefined') {
           throw new Error('No method named ' + option)
         }
         data[option]()

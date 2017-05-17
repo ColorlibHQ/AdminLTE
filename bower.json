@@ -29,5 +29,8 @@
     "bower_components",
     "composer.json",
     "documentation"
-  ]
+  ],
+  "dependencies": {
+
+  }
 }
