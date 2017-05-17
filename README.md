@@ -11,6 +11,7 @@ Introduction
 **Download & Preview on [AdminLTE.IO](https://adminlte.io)**
 
 Looking for Premium Templates?
+hello
 ------------------------------
 **We just opened a new premium templates website. Hand picked to ensure the best quality and the most affordable prices. Visit https://themequarry.com for more information.**
 
