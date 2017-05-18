@@ -14,7 +14,7 @@ Introduction
 **AdminLTE.IO just opened a new premium templates website. Hand picked to ensure the best quality and the most affordable prices. Visit https://themequarry.com for more information.**
 
 ## Documentation & Installation Guide
-Visit the [online documentation](https://adminlte.io/docs) for the most
+Visit the [online documentation](https://adminlte.io/themes/AdminLTE/documentation/index.html) for the most
 updated guide.
 
 !["AdminLTE Presentation"](https://adminlte.io/AdminLTE2.png "AdminLTE Presentation")
