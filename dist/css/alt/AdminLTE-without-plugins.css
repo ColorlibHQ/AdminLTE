@@ -2490,6 +2490,9 @@ a:focus {
   margin-bottom: -2px;
   margin-right: 5px;
 }
+.nav-tabs-custom > .nav-tabs > li.disabled > a {
+  color: #777;
+}
 .nav-tabs-custom > .nav-tabs > li > a {
   color: #444;
   border-radius: 0;
