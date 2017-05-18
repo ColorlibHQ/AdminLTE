@@ -17,7 +17,7 @@ Introduction
 Visit the [online documentation](https://adminlte.io/docs) for the most
 updated guide.
 
-!["AdminLTE Presentation"] (https://adminlte.io/AdminLTE2.png "AdminLTE Presentation")
+!["AdminLTE Presentation"](https://adminlte.io/AdminLTE2.png "AdminLTE Presentation")
 
 ### Contribution
 Contribution are always **welcome and recommended**! Here is how:
