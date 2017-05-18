@@ -73,9 +73,12 @@
   border-left: 3px solid transparent;
 }
 .skin-purple .sidebar-menu > li:hover > a,
-.skin-purple .sidebar-menu > li.active > a {
+.skin-purple .sidebar-menu > li.active > a,
+.skin-purple .sidebar-menu > li.menu-open > a {
   color: #ffffff;
   background: #1e282c;
+}
+.skin-purple .sidebar-menu > li.active > a {
   border-left-color: #605ca8;
 }
 .skin-purple .sidebar-menu > li > .treeview-menu {
@@ -88,11 +91,11 @@
 .skin-purple .sidebar a:hover {
   text-decoration: none;
 }
-.skin-purple .treeview-menu > li > a {
+.skin-purple .sidebar-menu .treeview-menu > li > a {
   color: #8aa4af;
 }
-.skin-purple .treeview-menu > li.active > a,
-.skin-purple .treeview-menu > li > a:hover {
+.skin-purple .sidebar-menu .treeview-menu > li.active > a,
+.skin-purple .sidebar-menu .treeview-menu > li > a:hover {
   color: #ffffff;
 }
 .skin-purple .sidebar-form {

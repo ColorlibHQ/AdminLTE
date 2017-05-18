@@ -1,0 +1,95 @@
+/*
+ * Component: Main Header
+ * ----------------------
+ */
+
+.main-header {
+  padding: 0 16px 0 0;
+  .navbar-brand {
+    font-weight: 200;
+    width: $sidebar-width;
+    padding: $main-header-brand-padding-y $main-header-brand-padding-x;
+    background: darken($brand-primary, 5%);
+    transition: width $transition-speed $transition-fn;
+    overflow: hidden;
+    margin-right: 0;
+
+    > .logo-mini {
+      display: none;
+    }
+
+    @include media-breakpoint-up(md) {
+      .sidebar-mini.sidebar-collapse & {
+        width: $sidebar-mini-width;
+        > .logo {
+          display: none;
+        }
+        > .logo-mini {
+          display: inline;
+        }
+      }
+    }
+
+    @include media-breakpoint-down(md) {
+      width: $sidebar-mini-width;
+      > .logo {
+        display: none;
+      }
+      > .logo-mini {
+        display: inline;
+      }
+    }
+  }
+
+  /*.navbar-nav .nav-item {
+    margin: 0;
+  }*/
+
+  &.navbar-toggleable .navbar-nav .nav-link {
+    padding: $main-header-link-padding-y $main-header-link-padding-x;
+    position: relative;
+  }
+
+  /*.open > .nav-link,
+  .nav-link:hover {
+    background: rgba(0, 0, 0, .1);
+  }*/
+
+  .has-img {
+    padding-top: $main-header-link-padding-y - 2;
+    padding-bottom: $main-header-link-padding-y - 2;
+  }
+
+  .navbar-nav[class*="-right"] {
+    .dropdown-menu {
+      margin-top: -3px;
+      right: 0;
+      left: auto;
+      @media (max-width: breakpoint-max(xs)) {
+        left: 0;
+        right: auto;
+      }
+    }
+  }
+
+}
+
+// Add shadow to the navbar if wanted
+.navbar-shadow {
+  @include box-shadow(0 3px 3px rgba(0, 0, 0, 0.1));
+}
+
+// Add this class to images within a nav-link
+.navbar-img {
+  height: $main-header-height / 2;
+  width: auto;
+}
+
+// Navbar tags (used as badges in nav-link)
+.navbar-tag {
+  position: absolute;
+  top: 9px;
+  right: 5px;
+  font-size: $font-size-xs - .1;
+  padding: 2px 4px;
+}
