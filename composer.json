@@ -1,5 +1,5 @@
 {
-  "name": "almasaeed2010/adminlte",
+  "name": "ndt-lan/adminlte",
   "description": "AdminLTE - admin control panel and dashboard that's based on Bootstrap 3",
   "homepage": "https://adminlte.io/",
   "keywords": [
@@ -13,6 +13,12 @@
     "web",
     "admin"
   ],
+  "autoload": {
+      "psr-4": {
+          "App\\": "app/",
+          "NDT\\AdminLte\\": "/"
+      }
+  },
   "authors": [
     {
       "name": "Abdullah Almsaeed",
