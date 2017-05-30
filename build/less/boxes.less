@@ -276,6 +276,23 @@
   border-top: 1px solid @box-border-color;
   padding: @box-padding;
   background-color: @box-footer-bg;
+  position: relative;
+  
+  > .box-tools {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    [data-toggle="tooltip"] {
+      position: relative;
+    }
+    //float: none!important;
+    &.pull-right {
+      .dropdown-menu {
+        right: 0;
+        left: auto;
+      }
+    }
+  }
 }
 
 .chart-legend {
