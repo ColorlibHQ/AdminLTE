@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -13,7 +13,8 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap.css">
+  <!-- <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,b-1.0.3,b-html5-1.0.3,b-print-1.0.3/datatables.min.css" />
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -1613,8 +1614,9 @@
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bootstrap/js/bootstrap.min.js"></script>
 <!-- DataTables -->
-<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!--<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables/dataTables.bootstrap.min.js"></script>-->
+    <script type="text/javascript" src="https://cdn.datatables.net/r/bs/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,b-1.0.3,b-html5-1.0.3,b-print-1.0.3/datatables.min.js"></script>
 <!-- SlimScroll -->
 <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -1626,7 +1628,33 @@
 <!-- page script -->
 <script>
   $(function () {
-    $("#example1").DataTable();
+    var example1 =  $("#example1").DataTable({
+          responsive: true,
+          buttons: ['excelHtml5',
+             {
+                 extend: 'pdfHtml5',
+                 title: "*",
+                 download: 'open'
+             },
+              {
+                  extend: 'print',
+                  autoPrint: true,
+                  customize: function (win) {
+                      $(win.document.body)
+                          .css('font-size', '10pt');
+
+                      $(win.document.body).find('table')
+                          .addClass('compact')
+                          .css('font-size', 'inherit');
+                      var medias = win.document.querySelectorAll('[media="screen"]');
+                      for (var i = 0; i < medias.length; i++) { medias.item(i).media = "all" };
+                  }
+              }
+          ]
+    });
+
+    example1.buttons().container().appendTo($('.col-sm-6:eq(0)', example1.table().container()));
+
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
