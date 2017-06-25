@@ -106,20 +106,20 @@ throw new Error('AdminLTE requires jQuery')
     if ($('body').hasClass(ClassName.fixed)) {
       $(Selector.contentWrapper).css('min-height', windowHeight - footerHeight)
     } else {
-      var postSetWidth
+      var postSetHeight
 
       if (windowHeight >= sidebarHeight) {
         $(Selector.contentWrapper).css('min-height', windowHeight - neg)
-        postSetWidth = windowHeight - neg
+        postSetHeight = windowHeight - neg
       } else {
         $(Selector.contentWrapper).css('min-height', sidebarHeight)
-        postSetWidth = sidebarHeight
+        postSetHeight = sidebarHeight
       }
 
       // Fix for the control sidebar height
       var $controlSidebar = $(Selector.controlSidebar)
       if (typeof $controlSidebar !== 'undefined') {
-        if ($controlSidebar.height() > postSetWidth)
+        if ($controlSidebar.height() > postSetHeight)
           $(Selector.contentWrapper).css('min-height', $controlSidebar.height())
       }
     }
@@ -455,7 +455,7 @@ throw new Error('AdminLTE requires jQuery')
     parent.addClass(ClassName.open)
     tree.slideDown(this.options.animationSpeed, function () {
       $(this.element).trigger(expandedEvent)
-    })
+    }.bind(this))
   }
 
   Tree.prototype.collapse = function (tree, parentLi) {
@@ -466,7 +466,7 @@ throw new Error('AdminLTE requires jQuery')
     tree.slideUp(this.options.animationSpeed, function () {
       tree.find(Selector.open + ' > ' + Selector.treeview).slideUp()
       $(this.element).trigger(collapsedEvent)
-    })
+    }.bind(this))
   }
 
   // Private
@@ -475,8 +475,8 @@ throw new Error('AdminLTE requires jQuery')
     var that = this
 
     $(this.element).on('click', this.options.trigger, function (event) {
-        that.toggle($(this), event)
-      })
+      that.toggle($(this), event)
+    })
   }
 
   // Plugin Definition

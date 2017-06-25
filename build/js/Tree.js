@@ -84,7 +84,7 @@
     parent.addClass(ClassName.open)
     tree.slideDown(this.options.animationSpeed, function () {
       $(this.element).trigger(expandedEvent)
-    })
+    }.bind(this))
   }
 
   Tree.prototype.collapse = function (tree, parentLi) {
@@ -95,7 +95,7 @@
     tree.slideUp(this.options.animationSpeed, function () {
       tree.find(Selector.open + ' > ' + Selector.treeview).slideUp()
       $(this.element).trigger(collapsedEvent)
-    })
+    }.bind(this))
   }
 
   // Private
@@ -104,8 +104,8 @@
     var that = this
 
     $(this.element).on('click', this.options.trigger, function (event) {
-        that.toggle($(this), event)
-      })
+      that.toggle($(this), event)
+    })
   }
 
   // Plugin Definition
