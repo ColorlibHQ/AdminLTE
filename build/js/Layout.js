@@ -26,7 +26,8 @@
     sidebar       : '.sidebar',
     controlSidebar: '.control-sidebar',
     fixed         : '.fixed',
-    sidebarMenu   : '.sidebar-menu'
+    sidebarMenu   : '.sidebar-menu',
+    logo          : '.main-header .logo'
   }
 
   var ClassName = {
@@ -57,7 +58,13 @@
       $(window).resize(function () {
         this.fix()
         this.fixSidebar()
+
+        $(Selector.logo + ', ' + Selector.sidebar).one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+          this.fix()
+          this.fixSidebar()
+        }.bind(this))
       }.bind(this))
+
       this.bindedResize = true
     }
 
@@ -82,25 +89,25 @@
     var windowHeight  = $(window).height()
     var sidebarHeight = $(Selector.sidebar).height() || 0
 
-    // Set the min-height of the content and sidebar based on the
+    // Set the min-height of the content and sidebar based on
     // the height of the document.
     if ($('body').hasClass(ClassName.fixed)) {
       $(Selector.contentWrapper).css('min-height', windowHeight - footerHeight)
     } else {
-      var postSetWidth
+      var postSetHeight
 
       if (windowHeight >= sidebarHeight) {
         $(Selector.contentWrapper).css('min-height', windowHeight - neg)
-        postSetWidth = windowHeight - neg
+        postSetHeight = windowHeight - neg
       } else {
         $(Selector.contentWrapper).css('min-height', sidebarHeight)
-        postSetWidth = sidebarHeight
+        postSetHeight = sidebarHeight
       }
 
       // Fix for the control sidebar height
       var $controlSidebar = $(Selector.controlSidebar)
       if (typeof $controlSidebar !== 'undefined') {
-        if ($controlSidebar.height() > postSetWidth)
+        if ($controlSidebar.height() > postSetHeight)
           $(Selector.contentWrapper).css('min-height', $controlSidebar.height())
       }
     }

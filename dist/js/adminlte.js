@@ -45,7 +45,8 @@ throw new Error('AdminLTE requires jQuery')
     sidebar       : '.sidebar',
     controlSidebar: '.control-sidebar',
     fixed         : '.fixed',
-    sidebarMenu   : '.sidebar-menu'
+    sidebarMenu   : '.sidebar-menu',
+    logo          : '.main-header .logo'
   }
 
   var ClassName = {
@@ -76,7 +77,13 @@ throw new Error('AdminLTE requires jQuery')
       $(window).resize(function () {
         this.fix()
         this.fixSidebar()
+
+        $(Selector.logo + ', ' + Selector.sidebar).one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+          this.fix()
+          this.fixSidebar()
+        }.bind(this))
       }.bind(this))
+
       this.bindedResize = true
     }
 
@@ -101,7 +108,7 @@ throw new Error('AdminLTE requires jQuery')
     var windowHeight  = $(window).height()
     var sidebarHeight = $(Selector.sidebar).height() || 0
 
-    // Set the min-height of the content and sidebar based on the
+    // Set the min-height of the content and sidebar based on
     // the height of the document.
     if ($('body').hasClass(ClassName.fixed)) {
       $(Selector.contentWrapper).css('min-height', windowHeight - footerHeight)
