@@ -1,6 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
 /*!
- *   AdminLTE v2.3.5 Without Third-Party Plugins
+ *   AdminLTE v2.4.0 Without Third-Party Plugins
  *   Author: Almsaeed Studio
  *	 Website: Almsaeed Studio <https://adminlte.io>
  *   License: Open source - MIT
@@ -51,10 +50,8 @@ body {
 }
 /*
  * Content Wrapper - contains the main content
- * ```.right-side has been deprecated as of v2.0.0 in favor of .content-wrapper  ```
  */
 .content-wrapper,
-.right-side,
 .main-footer {
   -webkit-transition: -webkit-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   -moz-transition: -moz-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
@@ -64,27 +61,23 @@ body {
   z-index: 820;
 }
 .layout-top-nav .content-wrapper,
-.layout-top-nav .right-side,
 .layout-top-nav .main-footer {
   margin-left: 0;
 }
 @media (max-width: 767px) {
   .content-wrapper,
-  .right-side,
   .main-footer {
     margin-left: 0;
   }
 }
 @media (min-width: 768px) {
   .sidebar-collapse .content-wrapper,
-  .sidebar-collapse .right-side,
   .sidebar-collapse .main-footer {
     margin-left: 0;
   }
 }
 @media (max-width: 767px) {
   .sidebar-open .content-wrapper,
-  .sidebar-open .right-side,
   .sidebar-open .main-footer {
     -webkit-transform: translate(230px, 0);
     -ms-transform: translate(230px, 0);
@@ -92,8 +85,7 @@ body {
     transform: translate(230px, 0);
   }
 }
-.content-wrapper,
-.right-side {
+.content-wrapper {
   min-height: 100%;
   background-color: #ecf0f5;
   z-index: 800;

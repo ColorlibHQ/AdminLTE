@@ -1,5 +1,5 @@
 /*!
- *   AdminLTE v2.3.12
+ *   AdminLTE v2.4.0
  *   Author: Almsaeed Studio
  *	 Website: Almsaeed Studio <https://adminlte.io>
  *   License: Open source - MIT
@@ -50,10 +50,8 @@ body {
 }
 /*
  * Content Wrapper - contains the main content
- * ```.right-side has been deprecated as of v2.0.0 in favor of .content-wrapper  ```
  */
 .content-wrapper,
-.right-side,
 .main-footer {
   -webkit-transition: -webkit-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   -moz-transition: -moz-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
@@ -63,27 +61,23 @@ body {
   z-index: 820;
 }
 .layout-top-nav .content-wrapper,
-.layout-top-nav .right-side,
 .layout-top-nav .main-footer {
   margin-left: 0;
 }
 @media (max-width: 767px) {
   .content-wrapper,
-  .right-side,
   .main-footer {
     margin-left: 0;
   }
 }
 @media (min-width: 768px) {
   .sidebar-collapse .content-wrapper,
-  .sidebar-collapse .right-side,
   .sidebar-collapse .main-footer {
     margin-left: 0;
   }
 }
 @media (max-width: 767px) {
   .sidebar-open .content-wrapper,
-  .sidebar-open .right-side,
   .sidebar-open .main-footer {
     -webkit-transform: translate(230px, 0);
     -ms-transform: translate(230px, 0);
@@ -91,8 +85,7 @@ body {
     transform: translate(230px, 0);
   }
 }
-.content-wrapper,
-.right-side {
+.content-wrapper {
   min-height: 100%;
   background-color: #ecf0f5;
   z-index: 800;
@@ -4323,6 +4316,28 @@ table.text-center th {
 }
 .select2-container .select2-selection--single .select2-selection__rendered {
   padding-right: 10px;
+}
+.box .datepicker-inline,
+.box .datepicker-inline .datepicker-days,
+.box .datepicker-inline > table,
+.box .datepicker-inline .datepicker-days > table {
+  width: 100%;
+}
+.box .datepicker-inline td:hover,
+.box .datepicker-inline .datepicker-days td:hover,
+.box .datepicker-inline > table td:hover,
+.box .datepicker-inline .datepicker-days > table td:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.box .datepicker-inline td.day.old,
+.box .datepicker-inline .datepicker-days td.day.old,
+.box .datepicker-inline > table td.day.old,
+.box .datepicker-inline .datepicker-days > table td.day.old,
+.box .datepicker-inline td.day.new,
+.box .datepicker-inline .datepicker-days td.day.new,
+.box .datepicker-inline > table td.day.new,
+.box .datepicker-inline .datepicker-days > table td.day.new {
+  color: #777;
 }
 /*
  * General: Miscellaneous
