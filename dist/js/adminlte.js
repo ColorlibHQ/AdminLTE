@@ -203,7 +203,7 @@ throw new Error('AdminLTE requires jQuery')
  * Adds the push menu functionality to the sidebar.
  *
  * @usage: $('.btn').pushMenu(options)
- *          or add [data-toggle="push-menu"] to any toggle button
+ *          or add [data-toggle="push-menu"] to any button
  *          Pass any option as data-option="value"
  */
 +function ($) {
@@ -668,7 +668,7 @@ throw new Error('AdminLTE requires jQuery')
  * Adds box widget functions to boxes.
  *
  * @Usage: $('.my-box').boxWidget(options)
- *         or add [data-widget="box-widget"] to the ul element
+ *         This plugin auto activates on any element using the `.box` class
  *         Pass any option as data-option="value"
  */
 +function ($) {
@@ -729,7 +729,8 @@ throw new Error('AdminLTE requires jQuery')
 
     $(this.element).removeClass(ClassName.collapsed)
 
-    $(Selector.tools)
+    $(this.element)
+      .find(Selector.tools)
       .find('.' + expandIcon)
       .removeClass(expandIcon)
       .addClass(collapseIcon)
@@ -745,7 +746,8 @@ throw new Error('AdminLTE requires jQuery')
     var collapseIcon   = this.options.collapseIcon
     var expandIcon     = this.options.expandIcon
 
-    $(Selector.tools)
+    $(this.element)
+      .find(Selector.tools)
       .find('.' + collapseIcon)
       .removeClass(collapseIcon)
       .addClass(expandIcon)
@@ -773,12 +775,12 @@ throw new Error('AdminLTE requires jQuery')
 
     $(this.element).on('click', this.options.collapseTrigger, function (event) {
       if (event) event.preventDefault()
-      that.toggle($(this))
+      that.toggle()
     })
 
     $(this.element).on('click', this.options.removeTrigger, function (event) {
       if (event) event.preventDefault()
-      that.remove($(this))
+      that.remove()
     })
   }
 

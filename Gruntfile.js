@@ -1,6 +1,5 @@
 // AdminLTE Gruntfile
 module.exports = function (grunt) { // jshint ignore:line
-
   'use strict'
 
   grunt.initConfig({
@@ -9,27 +8,30 @@ module.exports = function (grunt) { // jshint ignore:line
       less : {
         // Compiles less files upon saving
         files: ['build/less/*.less'],
-        tasks: ['less:development', 'less:production']
+        tasks: ['less:development', 'less:production', 'notify:less']
       },
       js   : {
         // Compile js files upon saving
         files: ['build/js/*.js', 'dist/js/app.js'],
-        tasks: ['js']
+        tasks: ['js', 'notify:js']
       },
       skins: {
         // Compile any skin less files upon saving
         files: ['build/less/skins/*.less'],
-        tasks: ['less:skins', 'less:minifiedSkins']
+        tasks: ['less:skins', 'less:minifiedSkins', 'notify:less']
       }
     },
+    // Notify end of tasks
     notify: {
-      less  : {
-        title  : 'LESS Compiler',
-        message: 'LESS finished running'
-      },
-      uglify: {
+      less: {
         options: {
-          title  : 'JS Compiler',
+          title  : 'AdminLTE',
+          message: 'LESS finished running'
+        }
+      },
+      js  : {
+        options: {
+          title  : 'AdminLTE',
           message: 'JS bundler finished running'
         }
       }
