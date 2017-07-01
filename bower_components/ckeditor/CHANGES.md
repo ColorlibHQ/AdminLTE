@@ -1,6 +1,27 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.7.1
+
+New Features:
+
+* Added a new Mexican Spanish localization. Thanks to [David Alexandro Rodriguez](https://www.transifex.com/user/profile/darsco16/)!
+* [#413](https://github.com/ckeditor/ckeditor-dev/issues/413): Added Paste as Plain Text keyboard shortcut to the [Accessibility Help](http://ckeditor.com/addon/a11yhelp) instructions.
+
+Fixed Issues:
+
+* [#515](https://github.com/ckeditor/ckeditor-dev/issues/515): [Chrome] Fixed: Mouse actions on CKEditor scrollbar throw an exception when the [Table Selection](http://ckeditor.com/addon/tableselection) plugin is loaded.
+* [#493](https://github.com/ckeditor/ckeditor-dev/issues/493): Fixed: Selection started from a nested table causes an error in the browser while scrolling down.
+* [#415](https://github.com/ckeditor/ckeditor-dev/issues/415): [Firefox] Fixed: <kbd>Enter</kbd> key breaks the table structure when pressed in a table selection.
+* [#457](https://github.com/ckeditor/ckeditor-dev/issues/457): Fixed: Error thrown when deleting content from the editor with no selection.
+* [#478](https://github.com/ckeditor/ckeditor-dev/issues/478): [Chrome] Fixed:  Error thrown by the [Enter Key](http://ckeditor.com/addon/enterkey) plugin when pressing <kbd>Enter</kbd> with no selection.
+* [#424](https://github.com/ckeditor/ckeditor-dev/issues/424): Fixed: Error thrown by [Tab Key Handling](http://ckeditor.com/addon/tab) and [Indent List](http://ckeditor.com/addon/indentlist) plugins when pressing <kbd>Tab</kbd> with no selection in inline editor.
+* [#476](https://github.com/ckeditor/ckeditor-dev/issues/476): Fixed: Anchors inserted with the [Link](http://ckeditor.com/addon/link) plugin on collapsed selection cannot be edited.
+* [#417](https://github.com/ckeditor/ckeditor-dev/issues/417): Fixed: The [Table Resize](http://ckeditor.com/addon/tableresize) plugin throws an error when used with a table with only header or footer rows.
+* [#523](https://github.com/ckeditor/ckeditor-dev/issues/523): Fixed: The [`editor.getCommandKeystroke`](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-getCommandKeystroke) method does not obtain the correct keystroke.
+* [#534](https://github.com/ckeditor/ckeditor-dev/issues/534): [IE] Fixed: [Paste from Word](http://ckeditor.com/addon/pastefromword) does not work in Quirks Mode.
+* [#450](https://github.com/ckeditor/ckeditor-dev/issues/450): Fixed: [`CKEDITOR.filter`](http://docs.ckeditor.com/#!/api/CKEDITOR.filter) incorrectly transforms the `margin` CSS property.
+
 ## CKEditor 4.7
 
 **Important Notes:**
@@ -54,7 +75,7 @@ Fixed Issues:
 * [#16920](http://dev.ckeditor.com/ticket/16920): Fixed: Several plugins not using the [Dialog](http://ckeditor.com/addon/dialog) plugin as a direct dependency.
 * [PR#336](https://github.com/ckeditor/ckeditor-dev/pull/336): Fixed: Typo in [`CKEDITOR.getCss`](http://docs.ckeditor.com/#!/api/CKEDITOR-method-getCss) API documentation. Thanks to [knusperpixel](https://github.com/knusperpixel)!
 * [#17027](http://dev.ckeditor.com/ticket/17027): Fixed: Command event data should be initialized as an empty object.
-* Fixed the behavior of HTML parser when parsing `src`/`srcdoc` attributes of the `<iframe>` element in a CKEditor setup with ACF turned off and without the [Iframe Dialog](http://ckeditor.com/addon/iframe) plugin. Note: disabling [Advanced Content Filter](http://docs.ckeditor.com/#!/guide/dev_advanced_content_filter) is against [security best practices](http://docs.ckeditor.com/#!/guide/dev_best_practices-section-security), so the problem described above has not been considered a security issue as such.
+* Fixed the behavior of HTML parser when parsing `src`/`srcdoc` attributes of the `<iframe>` element in a CKEditor setup with ACF turned off and without the [Iframe Dialog](http://ckeditor.com/addon/iframe) plugin. The issue was originally reported as a security issue by [Sriramk21](https://twitter.com/sriramk21) from Pegasystems and was later downgraded by the security team into a normal issue due to the requirement of having ACF turned off. Disabling [Advanced Content Filter](http://docs.ckeditor.com/#!/guide/dev_advanced_content_filter) is against [security best practices](http://docs.ckeditor.com/#!/guide/dev_best_practices-section-security), so the problem described above has not been considered a security issue as such.
 
 Other Changes:
 
