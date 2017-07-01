@@ -1,0 +1,23 @@
+<h2>Examples</h2>
+<hr>
+
+{{> example title="Simple input field" content="01_basic" }}
+{{> example title="As a component" content="02_component" }}
+{{> example title="With custom options" description="Sample overriding the initial color and format" content="03_component_options" }}
+{{> example title="Working with events" content="04_events" }}
+{{> example title="Transparent color support" content="05_transparent" }}
+{{> example title="Horizontal mode" content="06_horizontal" }}
+{{> example title="Inline mode" content="07_inline" }}
+{{> example title="Aliased color palette" content="08_palette" }}
+{{> example title="Customized widget size" description="Also showing the support of HTML color names" content="09_size" }}
+{{> example title="Disabled / enabled status" content="10_disabled" }}
+{{> example title="Inside a modal" content="11_modal" }}
+
+
+<script>
+    $(function () {
+        $('.example-code-toggle').on('click', function () {
+            $(this).parent().find('.example-code').toggle();
+        });
+    });
+</script>

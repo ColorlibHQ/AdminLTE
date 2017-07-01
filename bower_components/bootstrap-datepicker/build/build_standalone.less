@@ -1,0 +1,64 @@
+// Datepicker standalone .less buildfile.  Includes all necessary mixins/variables/rules from bootstrap
+// and imports the included datepicker.less to output a minimal standalone datepicker.css
+//
+// Usage:
+//     lessc build_standalone.less datepicker.css
+//
+// Variables, mixins, and rules copied from bootstrap 2.0.2
+
+@import "build.less";
+
+// Dropdown css
+
+@zindexDropdown:                1000;
+@grayDark:                      #333;
+@baseLineHeight:                20px;
+@tableBackground:               transparent; // overall background-color
+@dropdownBackground:            @white;
+@dropdownBorder:                rgba(0,0,0,.2);
+@dropdownLinkColor:             @grayDark;
+@dropdownLinkColorHover:        @white;
+@dropdownLinkBackgroundHover:   @linkColor;
+
+// Drop shadows
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow;
+     -moz-box-shadow: @shadow;
+          box-shadow: @shadow;
+}
+
+// The dropdown menu (ul)
+// ----------------------
+.datepicker{
+  &.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: @zindexDropdown;
+    float: left;
+    display: none; // none by default, but block on "open" of the menu
+    min-width: 160px;
+    list-style: none;
+    background-color: @dropdownBackground;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.2);
+    .border-radius(5px);
+    .box-shadow(0 5px 10px rgba(0,0,0,.2));
+    -webkit-background-clip: padding-box;
+       -moz-background-clip: padding;
+            background-clip: padding-box;
+    *border-right-width: 2px;
+    *border-bottom-width: 2px;
+
+    // Normally inherited from bootstrap's `body`
+    color: #333333;
+    font-size:13px;
+    line-height: @baseLineHeight;
+  }
+
+  &.dropdown-menu, &.datepicker-inline {
+    th, td {
+      padding: 4px 5px;
+    }
+  }
+}

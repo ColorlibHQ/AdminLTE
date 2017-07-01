@@ -1,0 +1,8 @@
+<a href="#" class="btn btn-default" id="cp4">Change background color</a>
+<script>
+    $(function () {
+        $('#cp4').colorpicker().on('changeColor', function (e) {
+            $('body')[0].style.backgroundColor = e.color.toString('rgba');
+        });
+    });
+</script>

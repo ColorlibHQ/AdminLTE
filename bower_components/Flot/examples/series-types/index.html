@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Flot Examples: Series Types</title>
+	<link href="../examples.css" rel="stylesheet" type="text/css">
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../../excanvas.min.js"></script><![endif]-->
+	<script language="javascript" type="text/javascript" src="../../jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="../../jquery.flot.js"></script>
+	<script type="text/javascript">
+
+	$(function() {
+
+		var d1 = [];
+		for (var i = 0; i < 14; i += 0.5) {
+			d1.push([i, Math.sin(i)]);
+		}
+
+		var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
+
+		var d3 = [];
+		for (var i = 0; i < 14; i += 0.5) {
+			d3.push([i, Math.cos(i)]);
+		}
+
+		var d4 = [];
+		for (var i = 0; i < 14; i += 0.1) {
+			d4.push([i, Math.sqrt(i * 10)]);
+		}
+
+		var d5 = [];
+		for (var i = 0; i < 14; i += 0.5) {
+			d5.push([i, Math.sqrt(i)]);
+		}
+
+		var d6 = [];
+		for (var i = 0; i < 14; i += 0.5 + Math.random()) {
+			d6.push([i, Math.sqrt(2*i + Math.sin(i) + 5)]);
+		}
+
+		$.plot("#placeholder", [{
+			data: d1,
+			lines: { show: true, fill: true }
+		}, {
+			data: d2,
+			bars: { show: true }
+		}, {
+			data: d3,
+			points: { show: true }
+		}, {
+			data: d4,
+			lines: { show: true }
+		}, {
+			data: d5,
+			lines: { show: true },
+			points: { show: true }
+		}, {
+			data: d6,
+			lines: { show: true, steps: true }
+		}]);
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+	</script>
+</head>
+<body>
+
+	<div id="header">
+		<h2>Series Types</h2>
+	</div>
+
+	<div id="content">
+
+		<div class="demo-container">
+			<div id="placeholder" class="demo-placeholder"></div>
+		</div>
+
+		<p>Flot supports lines, points, filled areas, bars and any combinations of these, in the same plot and even on the same data series.</p>
+
+	</div>
+
+	<div id="footer">
+		Copyright &copy; 2007 - 2014 IOLA and Ole Laursen
+	</div>
+
+</body>
+</html>

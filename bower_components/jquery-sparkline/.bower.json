@@ -1,0 +1,27 @@
+{
+  "name": "jquery-sparkline",
+  "version": "2.1.3",
+  "homepage": "https://github.com/rkgrep/jquery.sparkline",
+  "authors": [
+    "Gareth Watts <gareth@omnipotent.net>"
+  ],
+  "main": "dist/jquery.sparkline.js",
+  "license": "BSD 3",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "2.1.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.1.3",
+    "commit": "47b1f5a7daaa45739a75f8fd1d7c2948693d66fd"
+  },
+  "_source": "https://github.com/rkgrep/jquery.sparkline.git",
+  "_target": "^2.1.3",
+  "_originalSource": "jquery-sparkline",
+  "_direct": true
+}

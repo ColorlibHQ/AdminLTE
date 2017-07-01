@@ -1,0 +1,23 @@
+{
+	"name": "Select2",
+	"icons": [
+		{
+			"src": "\/images\/android-chrome-36x36.png?v=699Nxpjr2A",
+			"sizes": "36x36",
+			"type": "image\/png",
+			"density": 0.75
+		},
+		{
+			"src": "\/images\/android-chrome-48x48.png?v=699Nxpjr2A",
+			"sizes": "48x48",
+			"type": "image\/png",
+			"density": 1
+		},
+		{
+			"src": "\/images\/android-chrome-72x72.png?v=699Nxpjr2A",
+			"sizes": "72x72",
+			"type": "image\/png",
+			"density": 1.5
+		}
+	]
+}
