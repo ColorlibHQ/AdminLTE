@@ -12,10 +12,11 @@
   var DataKey = 'lte.todolist'
 
   var Default = {
-    iCheck   : false,
-    onCheck  : function () {
+    onCheck  : function (item) {
+      return item
     },
-    onUnCheck: function () {
+    onUnCheck: function (item) {
+      return item
     }
   }
 
