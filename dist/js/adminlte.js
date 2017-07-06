@@ -106,7 +106,8 @@ throw new Error('AdminLTE requires jQuery')
     var footerHeight  = $(Selector.mainFooter).outerHeight() || 0
     var neg           = $(Selector.mainHeader).outerHeight() + footerHeight
     var windowHeight  = $(window).height()
-    var sidebarHeight = $(Selector.sidebar).height() || 0
+    var sidebarHeight = $(Selector.sidebar).outerHeight() || 0
+    var headerHeight = $(Selector.mainHeader).outerHeight() || 0
 
     // Set the min-height of the content and sidebar based on
     // the height of the document.
@@ -115,20 +116,22 @@ throw new Error('AdminLTE requires jQuery')
     } else {
       var postSetHeight
 
-      if (windowHeight >= sidebarHeight) {
-        $(Selector.contentWrapper).css('min-height', windowHeight - neg)
-        postSetHeight = windowHeight - neg
+      if (windowHeight >= sidebarHeight + headerHeight) {
+        $(Selector.contentWrapper).css('min-height', windowHeight - Math.ceil(neg))
+        postSetHeight = windowHeight - Math.ceil(neg)
       } else {
-        $(Selector.contentWrapper).css('min-height', sidebarHeight)
-        postSetHeight = sidebarHeight
+        $(Selector.contentWrapper).css('min-height', sidebarHeight - footerHeight)
+        postSetHeight = sidebarHeight - footerHeight
       }
 
       // Fix for the control sidebar height
-      var $controlSidebar = $(Selector.controlSidebar)
-      if (typeof $controlSidebar !== 'undefined') {
-        if ($controlSidebar.height() > postSetHeight)
-          $(Selector.contentWrapper).css('min-height', $controlSidebar.height())
-      }
+      setTimeout(function() {
+        var $controlSidebar = $(Selector.controlSidebar)
+        if (typeof $controlSidebar !== 'undefined') {
+          if ($controlSidebar.height() > postSetHeight)
+            $(Selector.contentWrapper).css('min-height', $controlSidebar.height())
+        }
+      }, 0);
     }
   }
 
