@@ -12,7 +12,7 @@ module.exports = function (grunt) { // jshint ignore:line
       },
       js   : {
         // Compile js files upon saving
-        files: ['build/js/*.js', 'dist/js/app.js'],
+        files: ['build/js/*.js'],
         tasks: ['js', 'notify:js']
       },
       skins: {
@@ -117,7 +117,6 @@ module.exports = function (grunt) { // jshint ignore:line
       },
       production: {
         files: {
-          'dist/js/app.min.js'     : ['dist/js/app.js'],
           'dist/js/adminlte.min.js': ['dist/js/adminlte.js']
         }
       }
@@ -147,13 +146,14 @@ module.exports = function (grunt) { // jshint ignore:line
       },
       dist   : {
         src : [
+          'build/js/BoxRefresh.js',
+          'build/js/BoxWidget.js',
+          'build/js/ControlSidebar.js',
+          'build/js/DirectChat.js',
           'build/js/Layout.js',
           'build/js/PushMenu.js',
-          'build/js/Tree.js',
-          'build/js/ControlSidebar.js',
-          'build/js/BoxWidget.js',
           'build/js/TodoList.js',
-          'build/js/DirectChat.js'
+          'build/js/Tree.js'
         ],
         dest: 'dist/js/adminlte.js'
       }
