@@ -704,7 +704,7 @@
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- ChartJS -->
-<script src="../../bower_components/Chart.js/Chart.js"></script>
+<script src="../../bower_components/chart.js/dist/Chart.js"></script>
 <!-- FastClick -->
 <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
@@ -725,31 +725,32 @@
 
     // Get context with jQuery - using jQuery's .get() method.
     var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
-    // This will get the first returned node in the jQuery collection.
-    var areaChart       = new Chart(areaChartCanvas)
 
     var areaChartData = {
       labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
         {
-          label               : 'Electronics',
-          fillColor           : 'rgba(210, 214, 222, 1)',
-          strokeColor         : 'rgba(210, 214, 222, 1)',
-          pointColor          : 'rgba(210, 214, 222, 1)',
-          pointStrokeColor    : '#c1c7d1',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40]
-        },
-        {
           label               : 'Digital Goods',
-          fillColor           : 'rgba(60,141,188,0.9)',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.9)',
           strokeColor         : 'rgba(60,141,188,0.8)',
           pointColor          : '#3b8bba',
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [28, 48, 40, 19, 86, 27, 90]
+          data                : [28, 48, 40, 19, 86, 27, 90],
+          fill                : true
+        },
+        {
+          label               : 'Electronics',
+          backgroundColor     : 'rgba(210, 214, 222, 1)',
+          borderColor         : 'rgba(210, 214, 222, 1)',
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : [65, 59, 80, 81, 56, 55, 40],
+          fill                : true
         }
       ]
     }
@@ -793,62 +794,58 @@
       responsive              : true
     }
 
-    //Create the line chart
-    areaChart.Line(areaChartData, areaChartOptions)
+    // Create the line chart
+    var salesChart       = new Chart(areaChartCanvas, {
+      type: 'line',
+      data: areaChartData,
+      options: areaChartOptions
+    });
 
     //-------------
     //- LINE CHART -
     //--------------
     var lineChartCanvas          = $('#lineChart').get(0).getContext('2d')
-    var lineChart                = new Chart(lineChartCanvas)
     var lineChartOptions         = areaChartOptions
+    var lineChartData            = areaChartData
+
+    lineChartData.datasets[0].fill  = false
+    lineChartData.datasets[1].fill  = false
     lineChartOptions.datasetFill = false
-    lineChart.Line(areaChartData, lineChartOptions)
+    var lineChart       = new Chart(lineChartCanvas, {
+      type: 'line',
+      data: lineChartData,
+      options: lineChartOptions
+    });
 
     //-------------
     //- PIE CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
     var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-    var pieChart       = new Chart(pieChartCanvas)
-    var PieData        = [
-      {
-        value    : 700,
-        color    : '#f56954',
-        highlight: '#f56954',
-        label    : 'Chrome'
-      },
-      {
-        value    : 500,
-        color    : '#00a65a',
-        highlight: '#00a65a',
-        label    : 'IE'
-      },
-      {
-        value    : 400,
-        color    : '#f39c12',
-        highlight: '#f39c12',
-        label    : 'FireFox'
-      },
-      {
-        value    : 600,
-        color    : '#00c0ef',
-        highlight: '#00c0ef',
-        label    : 'Safari'
-      },
-      {
-        value    : 300,
-        color    : '#3c8dbc',
-        highlight: '#3c8dbc',
-        label    : 'Opera'
-      },
-      {
-        value    : 100,
-        color    : '#d2d6de',
-        highlight: '#d2d6de',
-        label    : 'Navigator'
-      }
-    ]
+
+    var pieData = {
+      "labels": [
+          "Chrome",
+          "IE",
+          "FireFox",
+          "Safari",
+          "Opera",
+          "Navigator"
+      ],
+      "datasets": [{
+          "label": "My First Dataset",
+          "data": [700, 500, 400, 600, 300, 100],
+          "backgroundColor": [
+              "#f56954",
+              "#00a65a",
+              "#f39c12",
+              "#00c0ef",
+              "#3c8dbc",
+              "#d2d6de"
+          ]
+      }]
+    }
+
     var pieOptions     = {
       //Boolean - Whether we should show a stroke on each segment
       segmentShowStroke    : true,
@@ -873,19 +870,22 @@
       //String - A legend template
       legendTemplate       : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
     }
-    //Create pie or douhnut chart
+    // Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below.
-    pieChart.Doughnut(PieData, pieOptions)
+    var pieChart       = new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: pieData,
+      options: pieOptions
+    });
 
     //-------------
     //- BAR CHART -
     //-------------
-    var barChartCanvas                   = $('#barChart').get(0).getContext('2d')
-    var barChart                         = new Chart(barChartCanvas)
-    var barChartData                     = areaChartData
-    barChartData.datasets[1].fillColor   = '#00a65a'
-    barChartData.datasets[1].strokeColor = '#00a65a'
-    barChartData.datasets[1].pointColor  = '#00a65a'
+    var barChartCanvas                        = $('#barChart').get(0).getContext('2d')
+    var barChart                              = new Chart(barChartCanvas)
+    var barChartData                          = areaChartData
+    barChartData.datasets[1].backgroundColor  = '#00a65a'
+
     var barChartOptions                  = {
       //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
       scaleBeginAtZero        : true,
@@ -915,7 +915,11 @@
     }
 
     barChartOptions.datasetFill = false
-    barChart.Bar(barChartData, barChartOptions)
+    var barChart       = new Chart(barChartCanvas, {
+      type: 'bar',
+      data: barChartData,
+      options: barChartOptions
+    });
   })
 </script>
 </body>

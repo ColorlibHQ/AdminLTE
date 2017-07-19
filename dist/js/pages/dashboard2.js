@@ -13,31 +13,29 @@ $(function () {
 
   // Get context with jQuery - using jQuery's .get() method.
   var salesChartCanvas = $('#salesChart').get(0).getContext('2d');
-  // This will get the first returned node in the jQuery collection.
-  var salesChart       = new Chart(salesChartCanvas);
 
   var salesChartData = {
     labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
       {
-        label               : 'Electronics',
-        fillColor           : 'rgb(210, 214, 222)',
-        strokeColor         : 'rgb(210, 214, 222)',
-        pointColor          : 'rgb(210, 214, 222)',
-        pointStrokeColor    : '#c1c7d1',
-        pointHighlightFill  : '#fff',
-        pointHighlightStroke: 'rgb(220,220,220)',
-        data                : [65, 59, 80, 81, 56, 55, 40]
-      },
-      {
         label               : 'Digital Goods',
-        fillColor           : 'rgba(60,141,188,0.9)',
+        backgroundColor     : 'rgba(60,141,188,0.9)',
         strokeColor         : 'rgba(60,141,188,0.8)',
         pointColor          : '#3b8bba',
         pointStrokeColor    : 'rgba(60,141,188,1)',
         pointHighlightFill  : '#fff',
         pointHighlightStroke: 'rgba(60,141,188,1)',
         data                : [28, 48, 40, 19, 86, 27, 90]
+      },
+      {
+        label               : 'Electronics',
+        backgroundColor     : 'rgb(210, 214, 222)',
+        strokeColor         : 'rgb(210, 214, 222)',
+        pointColor          : 'rgb(210, 214, 222)',
+        pointStrokeColor    : '#c1c7d1',
+        pointHighlightFill  : '#fff',
+        pointHighlightStroke: 'rgb(220,220,220)',
+        data                : [65, 59, 80, 81, 56, 55, 40]
       }
     ]
   };
@@ -82,7 +80,11 @@ $(function () {
   };
 
   // Create the line chart
-  salesChart.Line(salesChartData, salesChartOptions);
+  var salesChart       = new Chart(salesChartCanvas, {
+    type: 'line',
+    data: salesChartData,
+    options: salesChartOptions
+  });
 
   // ---------------------------
   // - END MONTHLY SALES CHART -
@@ -93,45 +95,28 @@ $(function () {
   // -------------
   // Get context with jQuery - using jQuery's .get() method.
   var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
-  var pieChart       = new Chart(pieChartCanvas);
-  var PieData        = [
-    {
-      value    : 700,
-      color    : '#f56954',
-      highlight: '#f56954',
-      label    : 'Chrome'
-    },
-    {
-      value    : 500,
-      color    : '#00a65a',
-      highlight: '#00a65a',
-      label    : 'IE'
-    },
-    {
-      value    : 400,
-      color    : '#f39c12',
-      highlight: '#f39c12',
-      label    : 'FireFox'
-    },
-    {
-      value    : 600,
-      color    : '#00c0ef',
-      highlight: '#00c0ef',
-      label    : 'Safari'
-    },
-    {
-      value    : 300,
-      color    : '#3c8dbc',
-      highlight: '#3c8dbc',
-      label    : 'Opera'
-    },
-    {
-      value    : 100,
-      color    : '#d2d6de',
-      highlight: '#d2d6de',
-      label    : 'Navigator'
-    }
-  ];
+
+  var PieData = {
+    datasets: [{
+        data: [
+            700,
+            400,
+            100,
+            500,
+            300,
+        ],
+        backgroundColor: [
+            'red',
+            'orange',
+            'yellow',
+            'green',
+            'blue',
+        ],
+        label: 'Dataset 1'
+    }],
+    labels: []
+  };
+
   var pieOptions     = {
     // Boolean - Whether we should show a stroke on each segment
     segmentShowStroke    : true,
@@ -160,7 +145,11 @@ $(function () {
   };
   // Create pie or douhnut chart
   // You can switch between pie and douhnut using the method below.
-  pieChart.Doughnut(PieData, pieOptions);
+  var pieChart = new Chart(pieChartCanvas, {
+      type: 'doughnut',
+      data: PieData,
+      options: pieOptions
+  });
   // -----------------
   // - END PIE CHART -
   // -----------------
