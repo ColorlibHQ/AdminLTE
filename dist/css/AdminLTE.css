@@ -4672,7 +4672,7 @@ table.text-center th {
 .text-bold,
 .text-bold.table td,
 .text-bold.table th {
-  font-weight: 700;
+  font-weight: 600;
 }
 .text-sm {
   font-size: 12px;
