@@ -6,7 +6,7 @@ Select2 is a jQuery-based replacement for select boxes. It supports searching,
 remote data sets, and pagination of results.
 
 To get started, checkout examples and documentation at
-https://select2.github.io/
+https://select2.org/
 
 Use cases
 ---------
@@ -43,11 +43,12 @@ the integrations below.
 
 Integrations
 ------------
-Third party developers have create plugins for platforms which allow Select2 to be integrated more natively and quickly. For many platforms, additional plugins are not required because Select2 acts as a standard `<select>` box.
+Third party developers have created plugins for platforms which allow Select2 to be integrated more natively and quickly. For many platforms, additional plugins are not required because Select2 acts as a standard `<select>` box.
 
 Plugins
 
 * [Django]
+  - [django-autocomplete-light]
   - [django-easy-select2]
   - [django-select2]
 * [Meteor] - [meteor-select2]
@@ -88,8 +89,8 @@ Copyright and license
 The license is available within the repository in the [LICENSE][license] file.
 
 [cdnjs]: http://www.cdnjs.com/libraries/select2
-[community]: https://select2.github.io/community.html
-[documentation]: https://select2.github.io/
+[community]: https://select2.org/getting-help
+[documentation]: https://select2.org
 [documentation-folder]: https://github.com/select2/select2/tree/master/docs
 [freenode]: https://freenode.net/
 [jsdelivr]: http://www.jsdelivr.com/#!select2
@@ -102,6 +103,7 @@ The license is available within the repository in the [LICENSE][license] file.
 
 [bootstrap3]: https://getbootstrap.com/
 [django]: https://www.djangoproject.com/
+[django-autocomplete-light]: https://github.com/yourlabs/django-autocomplete-light
 [django-easy-select2]: https://github.com/asyncee/django-easy-select2
 [django-select2]: https://github.com/applegrew/django-select2
 [flat-ui]: http://designmodo.github.io/Flat-UI/

@@ -126,7 +126,7 @@
     if (this.options.slimscroll) {
       if (typeof $.fn.slimScroll !== 'undefined') {
         // Destroy if it exists
-        $(Selector.sidebar).slimScroll({ destroy: true }).height('auto')
+        // $(Selector.sidebar).slimScroll({ destroy: true }).height('auto')
 
         // Add slimscroll
         $(Selector.sidebar).slimScroll({

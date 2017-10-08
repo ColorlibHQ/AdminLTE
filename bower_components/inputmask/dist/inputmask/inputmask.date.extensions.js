@@ -3,7 +3,7 @@
 * https://github.com/RobinHerbots/Inputmask
 * Copyright (c) 2010 - 2017 Robin Herbots
 * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-* Version: 3.3.7
+* Version: 3.3.8
 */
 
 !function(factory) {
@@ -77,6 +77,12 @@
             definitions: {
                 "1": {
                     validator: function(chrs, maskset, pos, strict, opts) {
+                        if ("3" == chrs.charAt(0)) {
+                            if (new RegExp("[2-9]").test(chrs.charAt(1))) return chrs = "30", maskset.buffer[pos] = "0", 
+                            pos++, {
+                                pos: pos
+                            };
+                        }
                         var isValid = opts.regex.val1.test(chrs);
                         return strict || isValid || chrs.charAt(1) !== opts.separator && -1 === "-./".indexOf(chrs.charAt(1)) || !(isValid = opts.regex.val1.test("0" + chrs.charAt(0))) ? isValid : (maskset.buffer[pos - 1] = "0", 
                         {
@@ -113,7 +119,13 @@
                 "2": {
                     validator: function(chrs, maskset, pos, strict, opts) {
                         var frontValue = opts.getFrontValue(maskset.mask, maskset.buffer, opts);
-                        -1 !== frontValue.indexOf(opts.placeholder[0]) && (frontValue = "01" + opts.separator);
+                        if (-1 !== frontValue.indexOf(opts.placeholder[0]) && (frontValue = "01" + opts.separator), 
+                        "1" == chrs.charAt(0)) {
+                            if (new RegExp("[3-9]").test(chrs.charAt(1))) return chrs = "10", maskset.buffer[pos] = "0", 
+                            pos++, {
+                                pos: pos
+                            };
+                        }
                         var isValid = opts.regex.val2(opts.separator).test(frontValue + chrs);
                         return strict || isValid || chrs.charAt(1) !== opts.separator && -1 === "-./".indexOf(chrs.charAt(1)) || !(isValid = opts.regex.val2(opts.separator).test(frontValue + "0" + chrs.charAt(0))) ? isValid : (maskset.buffer[pos - 1] = "0", 
                         {

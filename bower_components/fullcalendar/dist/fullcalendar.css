@@ -1,5 +1,5 @@
 /*!
- * FullCalendar v3.4.0 Stylesheet
+ * FullCalendar v3.5.1 Stylesheet
  * Docs & License: https://fullcalendar.io/
  * (c) 2017 Adam Shaw
  */
@@ -22,36 +22,6 @@ body .fc { /* extra precedence to overcome jqui */
 /* Colors
 --------------------------------------------------------------------------------------------------*/
 
-.fc-unthemed th,
-.fc-unthemed td,
-.fc-unthemed thead,
-.fc-unthemed tbody,
-.fc-unthemed .fc-divider,
-.fc-unthemed .fc-row,
-.fc-unthemed .fc-content, /* for gutter border */
-.fc-unthemed .fc-popover,
-.fc-unthemed .fc-list-view,
-.fc-unthemed .fc-list-heading td {
-	border-color: #ddd;
-}
-
-.fc-unthemed .fc-popover {
-	background-color: #fff;
-}
-
-.fc-unthemed .fc-divider,
-.fc-unthemed .fc-popover .fc-header,
-.fc-unthemed .fc-list-heading td {
-	background: #eee;
-}
-
-.fc-unthemed .fc-popover .fc-header .fc-close {
-	color: #666;
-}
-
-.fc-unthemed td.fc-today {
-	background: #fcf8e3;
-}
 
 .fc-highlight { /* when user is selecting cells */
 	background: #bce8f1;
@@ -66,99 +36,6 @@ body .fc { /* extra precedence to overcome jqui */
 .fc-nonbusiness { /* default look for non-business-hours areas */
 	/* will inherit .fc-bgevent's styles */
 	background: #d7d7d7;
-}
-
-.fc-unthemed .fc-disabled-day {
-	background: #d7d7d7;
-	opacity: .3;
-}
-
-.ui-widget .fc-disabled-day { /* themed */
-	background-image: none;
-}
-
-
-/* Icons (inline elements with styled text that mock arrow icons)
---------------------------------------------------------------------------------------------------*/
-
-.fc-icon {
-	display: inline-block;
-	height: 1em;
-	line-height: 1em;
-	font-size: 1em;
-	text-align: center;
-	overflow: hidden;
-	font-family: "Courier New", Courier, monospace;
-
-	/* don't allow browser text-selection */
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	}
-
-/*
-Acceptable font-family overrides for individual icons:
-	"Arial", sans-serif
-	"Times New Roman", serif
-
-NOTE: use percentage font sizes or else old IE chokes
-*/
-
-.fc-icon:after {
-	position: relative;
-}
-
-.fc-icon-left-single-arrow:after {
-	content: "\02039";
-	font-weight: bold;
-	font-size: 200%;
-	top: -7%;
-}
-
-.fc-icon-right-single-arrow:after {
-	content: "\0203A";
-	font-weight: bold;
-	font-size: 200%;
-	top: -7%;
-}
-
-.fc-icon-left-double-arrow:after {
-	content: "\000AB";
-	font-size: 160%;
-	top: -7%;
-}
-
-.fc-icon-right-double-arrow:after {
-	content: "\000BB";
-	font-size: 160%;
-	top: -7%;
-}
-
-.fc-icon-left-triangle:after {
-	content: "\25C4";
-	font-size: 125%;
-	top: 3%;
-}
-
-.fc-icon-right-triangle:after {
-	content: "\25BA";
-	font-size: 125%;
-	top: 3%;
-}
-
-.fc-icon-down-triangle:after {
-	content: "\25BC";
-	font-size: 125%;
-	top: 2%;
-}
-
-.fc-icon-x:after {
-	content: "\000D7";
-	font-size: 200%;
-	top: 6%;
 }
 
 
@@ -311,24 +188,6 @@ previous button's border...
 .fc-rtl .fc-popover .fc-header .fc-title,
 .fc-ltr .fc-popover .fc-header .fc-close {
 	float: right;
-}
-
-/* unthemed */
-
-.fc-unthemed .fc-popover {
-	border-width: 1px;
-	border-style: solid;
-}
-
-.fc-unthemed .fc-popover .fc-header .fc-close {
-	font-size: .9em;
-	margin-top: 2px;
-}
-
-/* jqui themed */
-
-.fc-popover > .ui-widget-header + .ui-widget-content {
-	border-top: 0; /* where they meet, let the header have the border */
 }
 
 
@@ -488,12 +347,17 @@ temporary rendered events).
 	z-index: 5;
 }
 
-.fc-row .fc-content-skeleton td,
-.fc-row .fc-helper-skeleton td {
+.fc .fc-row .fc-content-skeleton table,
+.fc .fc-row .fc-content-skeleton td,
+.fc .fc-row .fc-helper-skeleton td {
 	/* see-through to the background below */
+	/* extra precedence to prevent theme-provided backgrounds */
 	background: none; /* in case <td>s are globally styled */
 	border-color: transparent;
+}
 
+.fc-row .fc-content-skeleton td,
+.fc-row .fc-helper-skeleton td {
 	/* don't put a border between events and/or the day number */
 	border-bottom: 0;
 }
@@ -530,7 +394,6 @@ temporary rendered events).
 	line-height: 1.3;
 	border-radius: 3px;
 	border: 1px solid #3a87ad; /* default BORDER color */
-	font-weight: normal; /* undo jqui's ui-widget-header bold */
 }
 
 .fc-event,
@@ -538,10 +401,8 @@ temporary rendered events).
 	background-color: #3a87ad; /* default BACKGROUND color */
 }
 
-/* overpower some of bootstrap's and jqui's styles on <a> tags */
 .fc-event,
-.fc-event:hover,
-.ui-widget .fc-event {
+.fc-event:hover {
 	color: #fff; /* default TEXT color */
 	text-decoration: none; /* if <a> has an href */
 }
@@ -815,6 +676,238 @@ a.fc-more:hover {
 
 
 
+/*
+TODO: more distinction between this file and common.css
+*/
+
+/* Colors
+--------------------------------------------------------------------------------------------------*/
+
+.fc-unthemed th,
+.fc-unthemed td,
+.fc-unthemed thead,
+.fc-unthemed tbody,
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-row,
+.fc-unthemed .fc-content, /* for gutter border */
+.fc-unthemed .fc-popover,
+.fc-unthemed .fc-list-view,
+.fc-unthemed .fc-list-heading td {
+	border-color: #ddd;
+}
+
+.fc-unthemed .fc-popover {
+	background-color: #fff;
+}
+
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-popover .fc-header,
+.fc-unthemed .fc-list-heading td {
+	background: #eee;
+}
+
+.fc-unthemed .fc-popover .fc-header .fc-close {
+	color: #666;
+}
+
+.fc-unthemed td.fc-today {
+	background: #fcf8e3;
+}
+
+.fc-unthemed .fc-disabled-day {
+	background: #d7d7d7;
+	opacity: .3;
+}
+
+
+/* Icons (inline elements with styled text that mock arrow icons)
+--------------------------------------------------------------------------------------------------*/
+
+.fc-icon {
+	display: inline-block;
+	height: 1em;
+	line-height: 1em;
+	font-size: 1em;
+	text-align: center;
+	overflow: hidden;
+	font-family: "Courier New", Courier, monospace;
+
+	/* don't allow browser text-selection */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/*
+Acceptable font-family overrides for individual icons:
+	"Arial", sans-serif
+	"Times New Roman", serif
+
+NOTE: use percentage font sizes or else old IE chokes
+*/
+
+.fc-icon:after {
+	position: relative;
+}
+
+.fc-icon-left-single-arrow:after {
+	content: "\02039";
+	font-weight: bold;
+	font-size: 200%;
+	top: -7%;
+}
+
+.fc-icon-right-single-arrow:after {
+	content: "\0203A";
+	font-weight: bold;
+	font-size: 200%;
+	top: -7%;
+}
+
+.fc-icon-left-double-arrow:after {
+	content: "\000AB";
+	font-size: 160%;
+	top: -7%;
+}
+
+.fc-icon-right-double-arrow:after {
+	content: "\000BB";
+	font-size: 160%;
+	top: -7%;
+}
+
+.fc-icon-left-triangle:after {
+	content: "\25C4";
+	font-size: 125%;
+	top: 3%;
+}
+
+.fc-icon-right-triangle:after {
+	content: "\25BA";
+	font-size: 125%;
+	top: 3%;
+}
+
+.fc-icon-down-triangle:after {
+	content: "\25BC";
+	font-size: 125%;
+	top: 2%;
+}
+
+.fc-icon-x:after {
+	content: "\000D7";
+	font-size: 200%;
+	top: 6%;
+}
+
+
+/* Popover
+--------------------------------------------------------------------------------------------------*/
+
+.fc-unthemed .fc-popover {
+	border-width: 1px;
+	border-style: solid;
+}
+
+.fc-unthemed .fc-popover .fc-header .fc-close {
+	font-size: .9em;
+	margin-top: 2px;
+}
+
+
+/* List View
+--------------------------------------------------------------------------------------------------*/
+
+.fc-unthemed .fc-list-item:hover td {
+	background-color: #f5f5f5;
+}
+
+
+
+/* Colors
+--------------------------------------------------------------------------------------------------*/
+
+.ui-widget .fc-disabled-day {
+	background-image: none;
+}
+
+
+/* Popover
+--------------------------------------------------------------------------------------------------*/
+
+.fc-popover > .ui-widget-header + .ui-widget-content {
+	border-top: 0; /* where they meet, let the header have the border */
+}
+
+
+/* Global Event Styles
+--------------------------------------------------------------------------------------------------*/
+
+.ui-widget .fc-event {
+	/* overpower jqui's styles on <a> tags. TODO: more DRY */
+	color: #fff; /* default TEXT color */
+	text-decoration: none; /* if <a> has an href */
+
+	/* undo ui-widget-header bold */
+	font-weight: normal;
+}
+
+
+/* TimeGrid axis running down the side (for both the all-day area and the slot area)
+--------------------------------------------------------------------------------------------------*/
+
+.ui-widget td.fc-axis {
+	font-weight: normal; /* overcome bold */
+}
+
+
+/* TimeGrid Slats (lines that run horizontally)
+--------------------------------------------------------------------------------------------------*/
+
+.fc-time-grid .fc-slats .ui-widget-content { 
+	background: none; /* see through to fc-bg */
+}
+
+
+
+.fc.fc-bootstrap3 a {
+	text-decoration: none;
+}
+
+.fc.fc-bootstrap3 a[data-goto]:hover {
+	text-decoration: underline;
+}
+
+.fc-bootstrap3 hr.fc-divider {
+	border-color: inherit;
+}
+
+.fc-bootstrap3 .fc-today.alert {
+	border-radius: 0;
+}
+
+
+/* Popover
+--------------------------------------------------------------------------------------------------*/
+
+.fc-bootstrap3 .fc-popover .panel-body {
+	padding: 0; /* undo built-in padding */
+}
+
+
+/* TimeGrid Slats (lines that run horizontally)
+--------------------------------------------------------------------------------------------------*/
+
+.fc-bootstrap3 .fc-time-grid .fc-slats table {
+	/* some themes have background color. see through to slats */
+	background: none;
+}
+
+
+
 /* Toolbar
 --------------------------------------------------------------------------------------------------*/
 
@@ -1009,10 +1102,6 @@ a.fc-more:hover {
 	text-align: left;
 }
 
-.ui-widget td.fc-axis {
-	font-weight: normal; /* overcome jqui theme making it bold */
-}
-
 
 /* TimeGrid Structure
 --------------------------------------------------------------------------------------------------*/
@@ -1095,10 +1184,6 @@ a.fc-more:hover {
 
 .fc-time-grid .fc-slats .fc-minor td {
 	border-top-style: dotted;
-}
-
-.fc-time-grid .fc-slats .ui-widget-content { /* for jqui theme */
-	background: none; /* see through to fc-bg */
 }
 
 
@@ -1359,10 +1444,6 @@ be a descendant of the grid when it is being dragged.
 
 .fc-list-item.fc-has-url {
 	cursor: pointer; /* whole row will be clickable */
-}
-
-.fc-list-item:hover td {
-	background-color: #f5f5f5;
 }
 
 .fc-list-item-marker,

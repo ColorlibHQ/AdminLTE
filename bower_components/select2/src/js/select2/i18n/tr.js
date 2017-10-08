@@ -1,6 +1,9 @@
 define(function () {
   // Turkish
   return {
+    errorLoading: function (){
+      return 'Sonuç yüklenemedi';
+    },
     inputTooLong: function (args) {
       var overChars = args.input.length - args.maximum;
 

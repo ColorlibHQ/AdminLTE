@@ -61,7 +61,7 @@
       return
     }
 
-    if (!this.options.followLink || link.attr('href') == '#') {
+    if (!this.options.followLink || link.attr('href') === '#') {
       event.preventDefault()
     }
 

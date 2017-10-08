@@ -148,7 +148,7 @@
         $this.data(DataKey, (data = new PushMenu(options)))
       }
 
-      if (option == 'toggle') data.toggle()
+      if (option === 'toggle') data.toggle()
     })
   }
 

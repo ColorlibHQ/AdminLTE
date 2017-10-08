@@ -639,7 +639,7 @@ throw new Error('AdminLTE requires jQuery')
     if (this.options.slimscroll) {
       if (typeof $.fn.slimScroll !== 'undefined') {
         // Destroy if it exists
-        $(Selector.sidebar).slimScroll({ destroy: true }).height('auto')
+        // $(Selector.sidebar).slimScroll({ destroy: true }).height('auto')
 
         // Add slimscroll
         $(Selector.sidebar).slimScroll({
@@ -842,7 +842,7 @@ throw new Error('AdminLTE requires jQuery')
         $this.data(DataKey, (data = new PushMenu(options)))
       }
 
-      if (option == 'toggle') data.toggle()
+      if (option === 'toggle') data.toggle()
     })
   }
 
@@ -1043,7 +1043,7 @@ throw new Error('AdminLTE requires jQuery')
       return
     }
 
-    if (!this.options.followLink || link.attr('href') == '#') {
+    if (!this.options.followLink || link.attr('href') === '#') {
       event.preventDefault()
     }
 

@@ -46,7 +46,7 @@ body {
   position: relative;
 }
 .layout-boxed {
-  background: url('../../img/boxed-bg.jpg') repeat fixed;
+  background: url('../img/boxed-bg.jpg') repeat fixed;
 }
 /*
  * Content Wrapper - contains the main content

@@ -1,6 +1,6 @@
 {
   "name": "inputmask",
-  "version": "3.3.7",
+  "version": "3.3.8",
   "main": [
     "./dist/inputmask/inputmask.js",
     "./dist/inputmask/inputmask.extensions.js",
@@ -46,14 +46,13 @@
     }
   ],
   "homepage": "http://robinherbots.github.io/Inputmask",
-  "_release": "3.3.7",
+  "_release": "3.3.8",
   "_resolution": {
     "type": "version",
-    "tag": "3.3.7",
-    "commit": "fc80ffa954a99ad9f9e23bd933821cce63e67d31"
+    "tag": "3.3.8",
+    "commit": "42025d8755c734a5f9ed18647e218aa0ba95ddc6"
   },
   "_source": "https://github.com/RobinHerbots/jquery.inputmask.git",
   "_target": "^3.3.7",
-  "_originalSource": "jquery.inputmask",
-  "_direct": true
+  "_originalSource": "jquery.inputmask"
 }

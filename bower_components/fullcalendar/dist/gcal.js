@@ -1,9 +1,9 @@
 /*!
- * FullCalendar v3.4.0 Google Calendar Plugin
+ * FullCalendar v3.5.1 Google Calendar Plugin
  * Docs & License: https://fullcalendar.io/
  * (c) 2017 Adam Shaw
  */
- 
+
 (function(factory) {
 	if (typeof define === 'function' && define.amd) {
 		define([ 'jquery' ], factory);
@@ -17,154 +17,248 @@
 })(function($) {
 
 
-var API_BASE = 'https://www.googleapis.com/calendar/v3/calendars';
 var FC = $.fullCalendar;
+var Promise = FC.Promise;
+var EventSource = FC.EventSource;
+var JsonFeedEventSource = FC.JsonFeedEventSource;
+var EventSourceParser = FC.EventSourceParser;
 var applyAll = FC.applyAll;
 
+;;
 
-FC.sourceNormalizers.push(function(sourceOptions) {
-	var googleCalendarId = sourceOptions.googleCalendarId;
-	var url = sourceOptions.url;
-	var match;
+var GcalEventSource = EventSource.extend({
 
-	// if the Google Calendar ID hasn't been explicitly defined
-	if (!googleCalendarId && url) {
-
-		// detect if the ID was specified as a single string.
-		// will match calendars like "asdf1234@calendar.google.com" in addition to person email calendars.
-		if (/^[^\/]+@([^\/\.]+\.)*(google|googlemail|gmail)\.com$/.test(url)) {
-			googleCalendarId = url;
-		}
-		// try to scrape it out of a V1 or V3 API feed URL
-		else if (
-			(match = /^https:\/\/www.googleapis.com\/calendar\/v3\/calendars\/([^\/]*)/.exec(url)) ||
-			(match = /^https?:\/\/www.google.com\/calendar\/feeds\/([^\/]*)/.exec(url))
-		) {
-			googleCalendarId = decodeURIComponent(match[1]);
-		}
-
-		if (googleCalendarId) {
-			sourceOptions.googleCalendarId = googleCalendarId;
-		}
-	}
+	// TODO: eventually remove "googleCalendar" prefix (API-breaking)
+	googleCalendarApiKey: null,
+	googleCalendarId: null,
+	googleCalendarError: null, // optional function
+	ajaxSettings: null,
 
 
-	if (googleCalendarId) { // is this a Google Calendar?
+	fetch: function(start, end, timezone) {
+		var _this = this;
+		var url = this.buildUrl();
+		var requestParams = this.buildRequestParams(start, end, timezone);
+		var ajaxSettings = this.ajaxSettings;
+		var onSuccess = ajaxSettings.success;
 
-		// make each Google Calendar source uneditable by default
-		if (sourceOptions.editable == null) {
-			sourceOptions.editable = false;
+		if (!requestParams) { // could have failed
+			return Promise.reject();
 		}
 
-		// We want removeEventSource to work, but it won't know about the googleCalendarId primitive.
-		// Shoehorn it into the url, which will function as the unique primitive. Won't cause side effects.
-		// This hack is obsolete since 2.2.3, but keep it so this plugin file is compatible with old versions.
-		sourceOptions.url = googleCalendarId;
-	}
-});
+		return Promise.construct(function(onResolve, onReject) {
+			$.ajax($.extend(
+				{}, // destination
+				JsonFeedEventSource.AJAX_DEFAULTS,
+				ajaxSettings,
+				{
+					url: url,
+					data: requestParams,
+					success: function(responseData) {
+						var rawEventDefs;
+						var successRes;
+
+						if (responseData.error) {
+							_this.reportError('Google Calendar API: ' + responseData.error.message, responseData.error.errors);
+							onReject();
+						}
+						else if (responseData.items) {
+							rawEventDefs = _this.gcalItemsToRawEventDefs(
+								responseData.items,
+								requestParams.timeZone
+							);
+
+							successRes = applyAll(
+								onSuccess,
+								this, // forward `this`
+								// call the success handler(s) and allow it to return a new events array
+								[ rawEventDefs ].concat(Array.prototype.slice.call(arguments, 1))
+							);
+
+							if ($.isArray(successRes)) {
+								rawEventDefs = successRes;
+							}
+
+							onResolve(_this.parseEventDefs(rawEventDefs));
+						}
+					}
+				}
+			));
+		});
+	},
 
 
-FC.sourceFetchers.push(function(sourceOptions, start, end, timezone) {
-	if (sourceOptions.googleCalendarId) {
-		return transformOptions(sourceOptions, start, end, timezone, this); // `this` is the calendar
-	}
-});
+	gcalItemsToRawEventDefs: function(items, gcalTimezone) {
+		var _this = this;
+
+		return items.map(function(item) {
+			return _this.gcalItemToRawEventDef(item, gcalTimezone);
+		});
+	},
 
 
-function transformOptions(sourceOptions, start, end, timezone, calendar) {
-	var url = API_BASE + '/' + encodeURIComponent(sourceOptions.googleCalendarId) + '/events?callback=?'; // jsonp
-	var apiKey = sourceOptions.googleCalendarApiKey || calendar.opt('googleCalendarApiKey');
-	var success = sourceOptions.success;
-	var data;
-	var timezoneArg; // populated when a specific timezone. escaped to Google's liking
+	gcalItemToRawEventDef: function(item, gcalTimezone) {
+		var url = item.htmlLink || null;
 
-	function reportError(message, apiErrorObjs) {
+		// make the URLs for each event show times in the correct timezone
+		if (url && gcalTimezone) {
+			url = injectQsComponent(url, 'ctz=' + gcalTimezone);
+		}
+
+		return {
+			id: item.id,
+			title: item.summary,
+			start: item.start.dateTime || item.start.date, // try timed. will fall back to all-day
+			end: item.end.dateTime || item.end.date, // same
+			url: url,
+			location: item.location,
+			description: item.description
+		};
+	},
+
+
+	buildUrl: function() {
+		return GcalEventSource.API_BASE + '/' +
+			encodeURIComponent(this.googleCalendarId) +
+			'/events?callback=?'; // jsonp
+	},
+
+
+	buildRequestParams: function(start, end, timezone) {
+		var apiKey = this.googleCalendarApiKey || this.calendar.opt('googleCalendarApiKey');
+		var params;
+
+		if (!apiKey) {
+			this.reportError("Specify a googleCalendarApiKey. See http://fullcalendar.io/docs/google_calendar/");
+			return null;
+		}
+
+		// The API expects an ISO8601 datetime with a time and timezone part.
+		// Since the calendar's timezone offset isn't always known, request the date in UTC and pad it by a day on each
+		// side, guaranteeing we will receive all events in the desired range, albeit a superset.
+		// .utc() will set a zone and give it a 00:00:00 time.
+		if (!start.hasZone()) {
+			start = start.clone().utc().add(-1, 'day');
+		}
+		if (!end.hasZone()) {
+			end = end.clone().utc().add(1, 'day');
+		}
+
+		params = $.extend(
+			this.ajaxSettings.data || {},
+			{
+				key: apiKey,
+				timeMin: start.format(),
+				timeMax: end.format(),
+				singleEvents: true,
+				maxResults: 9999
+			}
+		);
+
+		if (timezone && timezone !== 'local') {
+			// when sending timezone names to Google, only accepts underscores, not spaces
+			params.timeZone = timezone.replace(' ', '_');
+		}
+
+		return params;
+	},
+
+
+	reportError: function(message, apiErrorObjs) {
+		var calendar = this.calendar;
+		var calendarOnError = calendar.opt('googleCalendarError');
 		var errorObjs = apiErrorObjs || [ { message: message } ]; // to be passed into error handlers
 
-		// call error handlers
-		(sourceOptions.googleCalendarError || $.noop).apply(calendar, errorObjs);
-		(calendar.opt('googleCalendarError') || $.noop).apply(calendar, errorObjs);
+		if (this.googleCalendarError) {
+			this.googleCalendarError.apply(calendar, errorObjs);
+		}
+
+		if (calendarOnError) {
+			calendarOnError.apply(calendar, errorObjs);
+		}
 
 		// print error to debug console
 		FC.warn.apply(null, [ message ].concat(apiErrorObjs || []));
-	}
+	},
 
-	if (!apiKey) {
-		reportError("Specify a googleCalendarApiKey. See http://fullcalendar.io/docs/google_calendar/");
-		return {}; // an empty source to use instead. won't fetch anything.
-	}
 
-	// The API expects an ISO8601 datetime with a time and timezone part.
-	// Since the calendar's timezone offset isn't always known, request the date in UTC and pad it by a day on each
-	// side, guaranteeing we will receive all events in the desired range, albeit a superset.
-	// .utc() will set a zone and give it a 00:00:00 time.
-	if (!start.hasZone()) {
-		start = start.clone().utc().add(-1, 'day');
-	}
-	if (!end.hasZone()) {
-		end = end.clone().utc().add(1, 'day');
-	}
+	getPrimitive: function() {
+		return this.googleCalendarId;
+	},
 
-	// when sending timezone names to Google, only accepts underscores, not spaces
-	if (timezone && timezone != 'local') {
-		timezoneArg = timezone.replace(' ', '_');
-	}
 
-	data = $.extend({}, sourceOptions.data || {}, {
-		key: apiKey,
-		timeMin: start.format(),
-		timeMax: end.format(),
-		timeZone: timezoneArg,
-		singleEvents: true,
-		maxResults: 9999
-	});
+	applyManualRawProps: function(rawProps) {
+		var superSuccess = EventSource.prototype.applyManualRawProps.apply(this, arguments);
+		var googleCalendarId = rawProps.googleCalendarId;
 
-	return $.extend({}, sourceOptions, {
-		googleCalendarId: null, // prevents source-normalizing from happening again
-		url: url,
-		data: data,
-		startParam: false, // `false` omits this parameter. we already included it above
-		endParam: false, // same
-		timezoneParam: false, // same
-		success: function(data) {
-			var events = [];
-			var successArgs;
-			var successRes;
-
-			if (data.error) {
-				reportError('Google Calendar API: ' + data.error.message, data.error.errors);
-			}
-			else if (data.items) {
-				$.each(data.items, function(i, entry) {
-					var url = entry.htmlLink || null;
-
-					// make the URLs for each event show times in the correct timezone
-					if (timezoneArg && url !== null) {
-						url = injectQsComponent(url, 'ctz=' + timezoneArg);
-					}
-
-					events.push({
-						id: entry.id,
-						title: entry.summary,
-						start: entry.start.dateTime || entry.start.date, // try timed. will fall back to all-day
-						end: entry.end.dateTime || entry.end.date, // same
-						url: url,
-						location: entry.location,
-						description: entry.description
-					});
-				});
-
-				// call the success handler(s) and allow it to return a new events array
-				successArgs = [ events ].concat(Array.prototype.slice.call(arguments, 1)); // forward other jq args
-				successRes = applyAll(success, this, successArgs);
-				if ($.isArray(successRes)) {
-					return successRes;
-				}
-			}
-
-			return events;
+		if (googleCalendarId == null && rawProps.url) {
+			googleCalendarId = parseGoogleCalendarId(rawProps.url);
 		}
-	});
+
+		if (googleCalendarId != null) {
+			this.googleCalendarId = googleCalendarId;
+
+			return superSuccess;
+		}
+
+		return false;
+	},
+
+
+	applyOtherRawProps: function(rawProps) {
+		this.ajaxSettings = rawProps;
+	}
+
+});
+
+
+GcalEventSource.API_BASE = 'https://www.googleapis.com/calendar/v3/calendars';
+
+
+GcalEventSource.allowRawProps({
+	// manually process...
+	url: false,
+	googleCalendarId: false,
+
+	// automatically transfer...
+	googleCalendarApiKey: true,
+	googleCalendarError: true
+});
+
+
+GcalEventSource.parse = function(rawInput, calendar) {
+	var rawProps;
+
+	if (typeof rawInput === 'object') { // long form. might fail in applyManualRawProps
+		rawProps = rawInput;
+	}
+	else if (typeof rawInput === 'string') { // short form
+		rawProps = { url: rawInput }; // url will be parsed with parseGoogleCalendarId
+	}
+
+	if (rawProps) {
+		return EventSource.parse.call(this, rawProps, calendar);
+	}
+
+	return false;
+};
+
+
+function parseGoogleCalendarId(url) {
+	var match;
+
+	// detect if the ID was specified as a single string.
+	// will match calendars like "asdf1234@calendar.google.com" in addition to person email calendars.
+	if (/^[^\/]+@([^\/\.]+\.)*(google|googlemail|gmail)\.com$/.test(url)) {
+		return url;
+	}
+	// try to scrape it out of a V1 or V3 API feed URL
+	else if (
+		(match = /^https:\/\/www.googleapis.com\/calendar\/v3\/calendars\/([^\/]*)/.exec(url)) ||
+		(match = /^https?:\/\/www.google.com\/calendar\/feeds\/([^\/]*)/.exec(url))
+	) {
+		return decodeURIComponent(match[1]);
+	}
 }
 
 
@@ -176,5 +270,13 @@ function injectQsComponent(url, component) {
 	});
 }
 
+
+// expose
+
+EventSourceParser.registerClass(GcalEventSource);
+
+FC.GcalEventSource = GcalEventSource;
+
+;;
 
 });

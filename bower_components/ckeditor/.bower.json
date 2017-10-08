@@ -16,12 +16,12 @@
   "homepage": "http://ckeditor.com",
   "main": "./ckeditor.js",
   "moduleType": "globals",
-  "version": "4.7.1",
-  "_release": "4.7.1",
+  "version": "4.7.3",
+  "_release": "4.7.3",
   "_resolution": {
     "type": "version",
-    "tag": "4.7.1",
-    "commit": "d62153e131ad4187700342fc044cf069c2fb5d8a"
+    "tag": "4.7.3",
+    "commit": "97b8f412f6b36985c734daf0717e81009a885dba"
   },
   "_source": "https://github.com/ckeditor/ckeditor-releases.git",
   "_target": "^4.7.0",

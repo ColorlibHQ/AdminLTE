@@ -1,4 +1,4 @@
-.cke_table-faked-selection-editor *::selection, table.cke_table-faked-selection-table *::selection {
+.cke_table-faked-selection-editor *::selection, table[data-cke-table-faked-selection-table] *::selection {
 	background: transparent;
 }
 

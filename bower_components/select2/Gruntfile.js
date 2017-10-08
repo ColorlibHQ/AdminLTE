@@ -351,7 +351,7 @@ module.exports = function (grunt) {
 
   var ciTasks = [];
 
-  ciTasks.push('compile')
+  ciTasks.push('compile');
   ciTasks.push('connect:tests');
 
   // Can't run Sauce Labs tests in pull requests
