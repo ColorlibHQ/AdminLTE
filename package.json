@@ -1,6 +1,6 @@
 {
   "name": "admin-lte",
-  "version": "2.4.0",
+  "version": "2.4.2",
   "main": "dist/js/adminlte.min.js",
   "repository": {
     "type": "git",
