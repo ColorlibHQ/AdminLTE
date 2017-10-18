@@ -1,0 +1,58 @@
+[{
+    "name": "read_data",
+    "file_name": "/Users/kirilllebedev/Maps/ne_110m_admin_0_map_units/ne_110m_admin_0_map_units.shp"
+},{
+    "name": "join_data",
+    "data": {
+
+    },
+    "fields": [{
+        "name": "region_wb",
+        "type": 4,
+        "width": 100
+    },{
+        "name": "r_wb_code",
+        "type": 4,
+        "width": 4
+    }],
+    "on": "region_wb"
+},{
+    "name": "merge",
+    "fields": [{
+        "name": "code",
+        "type": 4,
+        "width": 2
+    },{
+        "name": "name",
+        "type": 4,
+        "width": 100
+    }],
+    "rules": [{
+        "fields": {
+            "name": "Americas",
+            "code": "AM"
+        },
+        "where": "region_wb in {'Latin America & Caribbean', 'North America'}"
+    },{
+        "fields": {
+            "name": "Europe",
+            "code": "EU"
+        },
+        "where": "region_wb == 'Europe & Central Asia'"
+    },{
+        "fields": {
+            "name": "Asia Pacific and MEIA",
+            "code": "AP"
+        },
+        "where": "region_wb == 'East Asia & Pacific'"
+    },{
+        "fields": {
+            "name": "India and Africa",
+            "code": "IA"
+        },
+        "where": "region_wb in {'Middle East & North Africa', 'South Asia', 'Sub-Saharan Africa'}"
+    }]
+},{
+    "name": "write_data",
+    "file_name": "/Users/kirilllebedev/Maps/continents/continents.shp"
+}]

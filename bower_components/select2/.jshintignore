@@ -1,0 +1,4 @@
+src/js/banner.*.js
+src/js/wrapper.*.js
+tests/vendor/*.js
+tests/helpers.js

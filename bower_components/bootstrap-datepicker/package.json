@@ -1,0 +1,48 @@
+{
+  "name": "bootstrap-datepicker",
+  "description": "A datepicker for Bootstrap",
+  "version": "1.7.1",
+  "license": "Apache-2.0",
+  "keywords": [
+    "datepicker",
+    "bootstrap"
+  ],
+  "main": "./dist/js/bootstrap-datepicker.js",
+  "files": [
+    "build",
+    "dist",
+    "js/**/*.js",
+    "less/*.less",
+    "LICENSE"
+  ],
+  "homepage": "https://github.com/uxsolutions/bootstrap-datepicker",
+  "author": "Andrew Rowls <eternicode@gmail.com>",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uxsolutions/bootstrap-datepicker.git"
+  },
+  "dependencies": {
+    "jquery": ">=1.7.1 <4.0.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-banner": "~0.6.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-compress": "^1.4.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-csslint": "^2.0.0",
+    "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-less": "^1.4.0",
+    "grunt-contrib-qunit": "^1.2.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-jscs": "^3.0.1",
+    "grunt-string-replace": "^1.3.1",
+    "load-grunt-tasks": "^3.5.2",
+    "phantomjs-prebuilt": "~2.1.8",
+    "time-grunt": "^1.4.0"
+  }
+}

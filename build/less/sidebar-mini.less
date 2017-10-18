@@ -42,48 +42,10 @@
           }
 
           > .treeview-menu {
-            //Add some padding to the treeview menu
+            // Add some padding to the treeview menu
             padding-top: 5px;
             padding-bottom: 5px;
             border-bottom-right-radius: 4px;
-          }
-
-          //Show menu items on hover
-          &:hover {
-            > a {
-              //overflow: visible;
-            }
-            > a > span:not(.pull-right),//:not(.pull-right-container),
-            > .treeview-menu {
-              display: block !important;
-              position: absolute;
-              width: @sidebar-width - 50;
-              left: 50px;
-            }
-
-            //position the header & treeview menus
-            > a > span {
-              top: 0;
-              margin-left: -3px;
-              padding: 12px 5px 12px 20px;
-              background-color: inherit;
-            }
-            > a > .pull-right-container {
-              //display: block!important;
-              position: relative!important;
-              float: right;
-              width: auto!important;
-              left: 200px - 20px!important;
-              top: -22px!important;
-              z-index: 900;
-              > .label:not(:first-of-type) {
-                display: none;
-              }
-            }
-            > .treeview-menu {
-              top: 44px;
-              margin-left: 0;
-            }
           }
         }
       }
@@ -121,6 +83,56 @@
         }
       }
     }
+  }
+}
+
+// Show menu items on hover
+.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse {
+  .sidebar-menu > li:hover {
+    > a {
+      //overflow: visible;
+    }
+    > a > span:not(.pull-right), //:not(.pull-right-container),
+    > .treeview-menu {
+      display: block !important;
+      position: absolute;
+      width: @sidebar-width - 50;
+      left: 50px;
+    }
+
+    //position the header & treeview menus
+    > a > span {
+      top: 0;
+      margin-left: -3px;
+      padding: 12px 5px 12px 20px;
+      background-color: inherit;
+    }
+    > a > .pull-right-container {
+      //display: block!important;
+      position: relative !important;
+      float: right;
+      width: auto !important;
+      left: 200px - 20px !important;
+      top: -22px !important;
+      z-index: 900;
+      > .label:not(:first-of-type) {
+        display: none;
+      }
+    }
+    > .treeview-menu {
+      top: 44px;
+      margin-left: 0;
+    }
+  }
+}
+
+.sidebar-expanded-on-hover {
+  .main-footer,
+  .content-wrapper {
+    margin-left: 50px;
+  }
+  .main-sidebar {
+    box-shadow: @sidebar-expanded-shadow;
   }
 }
 

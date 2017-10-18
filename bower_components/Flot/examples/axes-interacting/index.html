@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Flot Examples: Interacting with axes</title>
+	<link href="../examples.css" rel="stylesheet" type="text/css">
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../../excanvas.min.js"></script><![endif]-->
+	<script language="javascript" type="text/javascript" src="../../jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="../../jquery.flot.js"></script>
+	<script type="text/javascript">
+
+	$(function() {
+
+		function generate(start, end, fn) {
+			var res = [];
+			for (var i = 0; i <= 100; ++i) {
+				var x = start + i / 100 * (end - start);
+				res.push([x, fn(x)]);
+			}
+			return res;
+		}
+
+		var data = [
+			{ data: generate(0, 10, function (x) { return Math.sqrt(x);}), xaxis: 1, yaxis:1 },
+			{ data: generate(0, 10, function (x) { return Math.sin(x);}), xaxis: 1, yaxis:2 },
+			{ data: generate(0, 10, function (x) { return Math.cos(x);}), xaxis: 1, yaxis:3 },
+			{ data: generate(2, 10, function (x) { return Math.tan(x);}), xaxis: 2, yaxis: 4 }
+		];
+
+		var plot = $.plot("#placeholder", data, {
+			xaxes: [
+				{ position: 'bottom' },
+				{ position: 'top'}
+			],
+			yaxes: [
+				{ position: 'left' },
+				{ position: 'left' },
+				{ position: 'right' },
+				{ position: 'left' }
+			]
+		});
+
+		// Create a div for each axis
+
+		$.each(plot.getAxes(), function (i, axis) {
+			if (!axis.show)
+				return;
+
+			var box = axis.box;
+
+			$("<div class='axisTarget' style='position:absolute; left:" + box.left + "px; top:" + box.top + "px; width:" + box.width +  "px; height:" + box.height + "px'></div>")
+				.data("axis.direction", axis.direction)
+				.data("axis.n", axis.n)
+				.css({ backgroundColor: "#f00", opacity: 0, cursor: "pointer" })
+				.appendTo(plot.getPlaceholder())
+				.hover(
+					function () { $(this).css({ opacity: 0.10 }) },
+					function () { $(this).css({ opacity: 0 }) }
+				)
+				.click(function () {
+					$("#click").text("You clicked the " + axis.direction + axis.n + "axis!")
+				});
+		});
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+	</script>
+</head>
+<body>
+
+	<div id="header">
+		<h2>Interacting with axes</h2>
+	</div>
+
+	<div id="content">
+
+		<div class="demo-container">
+			<div id="placeholder" class="demo-placeholder"></div>
+		</div>
+
+		<p>With multiple axes, you sometimes need to interact with them. A simple way to do this is to draw the plot, deduce the axis placements and insert a couple of divs on top to catch events.</p>
+
+		<p>Try clicking an axis.</p>
+
+		<p id="click"></p>
+
+	</div>
+
+	<div id="footer">
+		Copyright &copy; 2007 - 2014 IOLA and Ole Laursen
+	</div>
+
+</body>
+</html>

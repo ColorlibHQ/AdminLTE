@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Flot Examples: Image Plots</title>
+	<link href="../examples.css" rel="stylesheet" type="text/css">
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../../excanvas.min.js"></script><![endif]-->
+	<script language="javascript" type="text/javascript" src="../../jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="../../jquery.flot.js"></script>
+	<script language="javascript" type="text/javascript" src="../../jquery.flot.image.js"></script>
+	<script type="text/javascript">
+
+	$(function() {
+
+		var data = [[["hs-2004-27-a-large-web.jpg", -10, -10, 10, 10]]];
+
+		var options = {
+			series: {
+				images: {
+					show: true
+				}
+			},
+			xaxis: {
+				min: -8,
+				max: 4
+			},
+			yaxis: {
+				min: -8,
+				max: 4
+			}
+		};
+
+		$.plot.image.loadDataImages(data, options, function () {
+			$.plot("#placeholder", data, options);
+		});
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+	</script>
+</head>
+<body>
+
+	<div id="header">
+		<h2>Image Plots</h2>
+	</div>
+
+	<div id="content">
+
+		<div class="demo-container" style="width:600px;height:600px;">
+			<div id="placeholder" class="demo-placeholder"></div>
+		</div>
+
+		<p>The Cat's Eye Nebula (<a href="http://hubblesite.org/gallery/album/nebula/pr2004027a/">picture from Hubble</a>).</p>
+
+		<p>With the image plugin, you can plot static images against a set of axes. This is for useful for adding ticks to complex prerendered visualizations. Instead of inputting data points, you specify the images and where their two opposite corners are supposed to be in plot space.</p>
+
+		<p>Images represent a little further complication because you need to make sure they are loaded before you can use them (Flot skips incomplete images). The plugin comes with a couple of helpers for doing that.</p>
+
+	</div>
+
+	<div id="footer">
+		Copyright &copy; 2007 - 2014 IOLA and Ole Laursen
+	</div>
+
+</body>
+</html>

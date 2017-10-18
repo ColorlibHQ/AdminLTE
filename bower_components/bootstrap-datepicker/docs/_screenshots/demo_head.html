@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="script/common.css">
+        <script src="script/common.js"></script>
+        <script>
+            function setup(){
+                var dp = $('.base').datepicker().data('datepicker');
+
+                dp.focusDate = new Date(Date.UTC(2013, 7, 14));
+                dp.update();
+
+                $('.date').datepicker({
+                    format: 'mm-dd-yyyy'
+                });
+                $('.inline').datepicker();
+            }
+        </script>
+    </head>
+    <body data-capture=".base, .date, .datepicker">
+        <div class="row">
+            <div class="col-sm-3">
+                <input type="text" class="form-control base" value="08/03/2013">
+            </div>
+            <div class="col-sm-offset-1 col-sm-3">
+                <div class="input-group date">
+                    <input type="text" class="form-control" value="10-05-2003" readonly>
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-offset-1 col-sm-4 inline" data-date="01/03/2004"></div>
+        </div>
+    </body>
+</html>
