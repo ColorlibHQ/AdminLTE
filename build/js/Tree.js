@@ -95,6 +95,8 @@
     tree.slideUp(this.options.animationSpeed, function () {
       tree.find(Selector.open + ' > ' + Selector.treeview).slideUp()
       $(this.element).trigger(collapsedEvent)
+      // Fix display: block remains on child treeviewMenu
+      tree.find(Selector.treeviewMenu).css('display', 'none')
     }.bind(this))
   }
 
