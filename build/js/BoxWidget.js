@@ -159,5 +159,4 @@
       Plugin.call($(this))
     })
   })
-
 }(jQuery)
