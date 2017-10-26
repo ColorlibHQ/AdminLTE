@@ -1,6 +1,6 @@
 // AdminLTE Gruntfile
 module.exports = function (grunt) { // jshint ignore:line
-  'use strict'
+  'use strict';
 
   grunt.initConfig({
     pkg   : grunt.file.readJSON('package.json'),
@@ -269,43 +269,43 @@ module.exports = function (grunt) { // jshint ignore:line
     clean: {
       build: ['build/img/*']
     }
-  })
+  });
 
   // Load all grunt tasks
 
   // LESS Compiler
-  grunt.loadNpmTasks('grunt-contrib-less')
+  grunt.loadNpmTasks('grunt-contrib-less');
   // Watch File Changes
-  grunt.loadNpmTasks('grunt-contrib-watch')
+  grunt.loadNpmTasks('grunt-contrib-watch');
   // Compress JS Files
-  grunt.loadNpmTasks('grunt-contrib-uglify')
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   // Include Files Within HTML
-  grunt.loadNpmTasks('grunt-includes')
+  grunt.loadNpmTasks('grunt-includes');
   // Optimize images
-  grunt.loadNpmTasks('grunt-image')
+  grunt.loadNpmTasks('grunt-image');
   // Validate JS code
-  grunt.loadNpmTasks('grunt-contrib-jshint')
-  grunt.loadNpmTasks('grunt-jscs')
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-jscs');
   // Delete not needed files
-  grunt.loadNpmTasks('grunt-contrib-clean')
+  grunt.loadNpmTasks('grunt-contrib-clean');
   // Lint CSS
-  grunt.loadNpmTasks('grunt-contrib-csslint')
+  grunt.loadNpmTasks('grunt-contrib-csslint');
   // Lint Bootstrap
-  grunt.loadNpmTasks('grunt-bootlint')
+  grunt.loadNpmTasks('grunt-bootlint');
   // Concatenate JS files
-  grunt.loadNpmTasks('grunt-contrib-concat')
+  grunt.loadNpmTasks('grunt-contrib-concat');
   // Notify
-  grunt.loadNpmTasks('grunt-notify')
+  grunt.loadNpmTasks('grunt-notify');
   // Replace
-  grunt.loadNpmTasks('grunt-text-replace')
+  grunt.loadNpmTasks('grunt-text-replace');
 
   // Linting task
-  grunt.registerTask('lint', ['jshint', 'csslint', 'bootlint'])
+  grunt.registerTask('lint', ['jshint', 'csslint', 'bootlint']);
   // JS task
-  grunt.registerTask('js', ['concat', 'uglify'])
+  grunt.registerTask('js', ['concat', 'uglify']);
   // CSS Task
-  grunt.registerTask('css', ['less:development', 'less:production', 'replace'])
+  grunt.registerTask('css', ['less:development', 'less:production', 'replace']);
 
   // The default task (running 'grunt' in console) is 'watch'
-  grunt.registerTask('default', ['watch'])
-}
+  grunt.registerTask('default', ['watch']);
+};
