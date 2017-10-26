@@ -23,6 +23,7 @@
   var Selector = {
     data     : '.box',
     collapsed: '.collapsed-box',
+    header   : '.box-header',
     body     : '.box-body',
     footer   : '.box-footer',
     tools    : '.box-tools'
@@ -65,12 +66,13 @@
     $(this.element).removeClass(ClassName.collapsed)
 
     $(this.element)
-      .find(Selector.tools)
+      .children(Selector.header + ', ' + Selector.body + ', ' + Selector.footer)
+      .children(Selector.tools)
       .find('.' + expandIcon)
       .removeClass(expandIcon)
       .addClass(collapseIcon)
 
-    $(this.element).find(Selector.body + ', ' + Selector.footer)
+    $(this.element).children(Selector.body + ', ' + Selector.footer)
       .slideDown(this.options.animationSpeed, function () {
         $(this.element).trigger(expandedEvent)
       }.bind(this))
@@ -82,12 +84,13 @@
     var expandIcon     = this.options.expandIcon
 
     $(this.element)
-      .find(Selector.tools)
+      .children(Selector.header + ', ' + Selector.body + ', ' + Selector.footer)
+      .children(Selector.tools)
       .find('.' + collapseIcon)
       .removeClass(collapseIcon)
       .addClass(expandIcon)
 
-    $(this.element).find(Selector.body + ', ' + Selector.footer)
+    $(this.element).children(Selector.body + ', ' + Selector.footer)
       .slideUp(this.options.animationSpeed, function () {
         $(this.element).addClass(ClassName.collapsed)
         $(this.element).trigger(collapsedEvent)
@@ -110,12 +113,14 @@
 
     $(this.element).on('click', this.options.collapseTrigger, function (event) {
       if (event) event.preventDefault()
-      that.toggle()
+      that.toggle($(this))
+      return false
     })
 
     $(this.element).on('click', this.options.removeTrigger, function (event) {
       if (event) event.preventDefault()
-      that.remove()
+      that.remove($(this))
+      return false
     })
   }
 
