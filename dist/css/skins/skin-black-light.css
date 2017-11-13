@@ -141,6 +141,7 @@
   background-color: #fff;
   border: 1px solid transparent;
   height: 35px;
+  border: none;
 }
 .skin-black-light .sidebar-form input[type="text"] {
   color: #666;

@@ -22,6 +22,8 @@ body {
   font-weight: 400;
   overflow-x: hidden;
   overflow-y: auto;
+  font-size: 14px;
+  line-height: 20px;
 }
 /* Layout */
 .wrapper {
@@ -46,7 +48,7 @@ body {
   position: relative;
 }
 .layout-boxed {
-  background: url('../img/boxed-bg.jpg') repeat fixed;
+  background: url('../../img/boxed-bg.jpg') repeat fixed;
 }
 /*
  * Content Wrapper - contains the main content
@@ -144,6 +146,10 @@ body {
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
+}
+b,
+strong {
+  font-weight: 700;
 }
 /* H1 - H6 font */
 h1,
@@ -1233,6 +1239,7 @@ a:focus {
  * ---------------
  */
 .form-control {
+  font-size: 14px;
   border-radius: 0;
   box-shadow: none;
   border-color: #d2d6de;

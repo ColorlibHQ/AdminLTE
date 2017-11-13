@@ -304,7 +304,7 @@ module.exports = function (grunt) { // jshint ignore:line
   // JS task
   grunt.registerTask('js', ['concat', 'uglify']);
   // CSS Task
-  grunt.registerTask('css', ['less:development', 'less:production', 'replace']);
+  grunt.registerTask('css', ['less:development', 'less:production', 'less:skins', 'less:minifiedSkins', 'replace']);
 
   // The default task (running 'grunt' in console) is 'watch'
   grunt.registerTask('default', ['watch']);

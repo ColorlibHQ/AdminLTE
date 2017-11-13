@@ -109,6 +109,7 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
+  border: none;
 }
 .skin-green .sidebar-form input[type="text"] {
   color: #666;
