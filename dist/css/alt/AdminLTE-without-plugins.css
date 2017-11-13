@@ -2590,6 +2590,9 @@ a:focus {
 .pagination.pagination-flat > li > a {
   border-radius: 0 !important;
 }
+.pagination.pagination-sm .page-link {
+  font-size: 12px;
+}
 /*
  * Component: Products List
  * ------------------------

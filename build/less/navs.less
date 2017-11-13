@@ -223,10 +223,15 @@
   > li > a {
     background: #fafafa;
     color: #666;
-  }
-  &.pagination-flat {
+}
+&.pagination-flat {
     > li > a {
-      .border-radius(0) !important;
+        .border-radius(0) !important;
+    }
+}
+&.pagination-sm {
+    .page-link {
+        font-size: @font-size-small;
     }
   }
 }
