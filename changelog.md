@@ -3,6 +3,7 @@
 - Update Bootstrap to v4.0.0-beta.2
 - Change class img-circle to rounded-circle.
 - Change class table-condensed to table-sm.
+- Change class col-xs to col.
 
 **v2.3.11:**
 - Update colors @gray color to @gray-lte
