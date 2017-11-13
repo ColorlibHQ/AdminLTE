@@ -1,0 +1,25 @@
+{
+  "name": "popper.js",
+  "description": "A kickass library to manage your poppers",
+  "main": "dist/umd/popper.js",
+  "authors": [
+    "Contributors (https://github.com/FezVrasta/popper.js/graphs/contributors)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "popperjs",
+    "component",
+    "drop",
+    "tooltip",
+    "popover",
+    "position",
+    "attached"
+  ],
+  "homepage": "https://popper.js.org",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "tests"
+  ]
+}

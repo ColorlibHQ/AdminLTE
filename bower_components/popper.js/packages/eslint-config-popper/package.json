@@ -1,0 +1,15 @@
+{
+  "name": "@popperjs/eslint-config-popper",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Popper.js ESLint config",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "author": "Federico Zivolo <federico.zivolo@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-eslint": "^7.2.3"
+  }
+}

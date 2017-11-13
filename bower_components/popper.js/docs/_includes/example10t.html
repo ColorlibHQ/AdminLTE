@@ -1,0 +1,30 @@
+<div class="rel" id="example10treference1">
+    <p class="bold">It just works</p>
+    <p class="thin">Hover me to see 4 tooltips!</p>
+</div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function(){
+    var index = 0;
+    var popper;
+
+    new Tooltip(document.getElementById("example10treference1"), {
+        placement: "top",
+        title: "Top",
+    });
+    new Tooltip(document.getElementById("example10treference1"), {
+        placement: "right",
+        title: "Right",
+    });
+    new Tooltip(document.getElementById("example10treference1"), {
+        placement: "bottom",
+        title: "Bottom",
+    });
+    new Tooltip(document.getElementById("example10treference1"), {
+        placement: "left",
+        title: "Left",
+    });
+});
+
+</script>

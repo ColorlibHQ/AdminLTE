@@ -1,0 +1,54 @@
+<div class="rel" id="example3reference1">
+    <p class="bold">Drag me</p>
+    <p class="thin">on the edges</p>
+</div>
+
+<div class="popper" id="example3popper1">
+    <p class="bold">Flipping popper</p>
+    <p class="thin">which never flips to right</p>
+    <div class="popper__arrow" x-arrow></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    var example3popper1inst = new Popper(example3reference1, example3popper1, {
+        placement: 'left',
+        modifiers: {
+            flip: {
+                behavior: ['left', 'bottom', 'top'],
+            },
+            preventOverflow: {
+                boundariesElement: example3reference1.parentNode,
+            },
+        }
+    });
+    interact('#example3reference1').draggable({
+        restrict: {
+            restriction: "parent",
+            endOnly: true,
+            elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+        },
+        onmove: dragMoveListener
+    });
+    var x = 0, y = 0;
+    function dragMoveListener (event) {
+        target = event.target,
+            // keep the dragged position in the data-x/data-y attributes
+            x += event.dx,
+            y += event.dy;
+
+        // translate the element
+        target.style.top = y + 'px';
+        target.style.left = x + 'px'
+
+        example3popper1inst.update();
+    }
+
+}, false);
+</script>
+
+<style>
+    #example3reference1:hover {
+        background: rgba(255,255,255,0.2);
+    }
+</style>

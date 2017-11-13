@@ -19,7 +19,7 @@ define(function () {
       var remainingChars = args.minimum - args.input.length;
 
       var message = 'Vă rugăm să introduceți ' + remainingChars +
-        'sau mai multe caractere';
+        ' sau mai multe caractere';
 
       return message;
     },

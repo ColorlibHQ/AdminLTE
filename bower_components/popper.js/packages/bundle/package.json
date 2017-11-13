@@ -1,0 +1,13 @@
+{
+  "name": "@popperjs/bundle",
+  "version": "1.0.2",
+  "main": "index.js",
+  "author": "Federico Zivolo <federico.zivolo@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@popperjs/babel-config": "^1.0.0",
+    "rollup": "^0.43.0",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-babel-minify": "^3.1.2"
+  }
+}

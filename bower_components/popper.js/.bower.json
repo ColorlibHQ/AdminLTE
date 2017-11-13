@@ -1,0 +1,35 @@
+{
+  "name": "popper.js",
+  "description": "A kickass library to manage your poppers",
+  "main": "dist/umd/popper.js",
+  "authors": [
+    "Contributors (https://github.com/FezVrasta/popper.js/graphs/contributors)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "popperjs",
+    "component",
+    "drop",
+    "tooltip",
+    "popover",
+    "position",
+    "attached"
+  ],
+  "homepage": "https://popper.js.org",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "tests"
+  ],
+  "version": "1.12.7",
+  "_release": "1.12.7",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.12.7",
+    "commit": "59fca4408b85bdf6f571e6983fd7df4af5f1625a"
+  },
+  "_source": "https://github.com/FezVrasta/popper.js.git",
+  "_target": "^1.11.0",
+  "_originalSource": "popper.js"
+}

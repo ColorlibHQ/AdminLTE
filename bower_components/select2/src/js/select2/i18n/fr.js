@@ -7,37 +7,21 @@ define(function () {
     inputTooLong: function (args) {
       var overChars = args.input.length - args.maximum;
 
-      var message = 'Supprimez ' + overChars + ' caractère';
-
-      if (overChars !== 1) {
-        message += 's';
-      }
-
-      return message;
+      return 'Supprimez ' + overChars + ' caractère' +
+        (overChars > 1) ? 's' : '';
     },
     inputTooShort: function (args) {
       var remainingChars = args.minimum - args.input.length;
 
-      var message = 'Saisissez ' + remainingChars + ' caractère';
-
-      if (remainingChars !== 1) {
-        message += 's';
-      }
-
-      return message;
+      return 'Saisissez au moins ' + remainingChars + ' caractère' +
+        (remainingChars > 1) ? 's' : '';
     },
     loadingMore: function () {
       return 'Chargement de résultats supplémentaires…';
     },
     maximumSelected: function (args) {
-      var message = 'Vous pouvez seulement sélectionner ' +
-        args.maximum + ' élément';
-
-      if (args.maximum !== 1) {
-        message += 's';
-      }
-
-      return message;
+      return 'Vous pouvez seulement sélectionner ' + args.maximum +
+        ' élément' + (args.maximum > 1) ? 's' : '';
     },
     noResults: function () {
       return 'Aucun résultat trouvé';

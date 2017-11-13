@@ -1,0 +1,18 @@
+<h2 id="example3" tabindex="0">Custom flip behavior</h2>
+<p>
+    Try dragging the reference element on the left side, its popper will move on its bottom edge.
+    Then, try to move the reference element on the bottom left corner, it will move on its top edge.
+</p>
+{% highlight javascript %}
+var popper = new Popper(referenceElement, onLeftPopper, {
+    placement: 'left',
+    modifiers: {
+        flip: {
+            behavior: ['left', 'bottom', 'top']
+        },
+        preventOverflow: {
+            boundariesElement: container,
+        },
+    },
+});
+{% endhighlight %}

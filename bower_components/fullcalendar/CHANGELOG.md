@@ -1,4 +1,51 @@
 
+v3.6.2 (2017-10-23)
+-------------------
+
+Bugfixes:
+- Google Calendar event sources not calling `loading` callback (#3884)
+- `eventDataTransform` w/ eventConstraint shouldn't be called during event resizing (#3859)
+- `navLinks` would go to the previously navigated date (#3869)
+- `nowIndicator` arrow would repeatedly render (#3872)
+- fc-content-skeleton DOM element would repeatedly render on navigation in agenda view
+
+
+v3.6.1 (2017-10-11)
+-------------------
+
+Bugfixes:
+- JSON feed event sources always requesting current page (#3865)
+- multi-day events appearing multiple times in more+ popover (#3856)
+
+
+v3.6.0 (2017-10-10)
+-------------------
+
+Features:
+- `agendaEventMinHeight` for guaranteeing height (#961, #3788) thx @Stafie
+- `columnHeader` can be set to `false` to hide headings (#3438, #3787) thx @caseyjhol
+- export all View classes (#2851, #3831)
+- `updateEvent`, update complex attributes (#2864)
+- Albanian locale (#3847) thx @alensaqe
+
+Bugfixes:
+- objects used as non-standard Event properties ignored by `updateEvent` (#3839)
+- listDay error if event goes over period (#3843)
+- `validDays` with `hiddenDays`, js error when no days active (#3846)
+- json feed Event Source object no longer has `url` property (#3845)
+- `updateEvent`, allDay to timed, when no end, wrong end date (#3144)
+- `removeEvents` by `_id` stopped working (#3828)
+- correct `this` context in FuncEventSource (#3848) thx @declspec
+- js event not received in unselect callback when selecting another cell (#3832)
+
+Incompatibilities:
+- The `viewRender` callback might now be fired AFTER events have been rendered
+  to the DOM. However, the eventRender/eventAfterRender/eventAfterAllRender callbacks
+  will always be fired after `viewRender`, just as before.
+- The internal `Grid` class (accessed via `$.fullCalendar.Grid`) has been removed.
+  For monkeypatching, use DayGrid/TimeGrid directly.
+
+
 v3.5.1 (2017-09-06)
 -------------------
 
@@ -31,10 +78,13 @@ Bugfixes:
 - updateEvent doesn't support ID changes (#2928)
 - Promise then method doesn't forward result (#3744)
 - Korean typo (#3693)
+- fixed switching from any view to listview, eventAfterRender isn't called (#3751)
 
 Incompatibilities:
 - Event Objects obtained from clientEvents or various callbacks are no longer
   references to internally used objects. Rather, they are static object copies.
+- `clientEvents` method no longer returns events in same order as received.
+  Do not depend on order.
 
 
 v3.4.0 (2017-04-27)

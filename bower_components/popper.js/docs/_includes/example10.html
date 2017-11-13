@@ -1,0 +1,78 @@
+<div class="rel" id="example10reference1">
+    <p class="bold">Hey!</p>
+    <p class="thin">Choose where to put your popper!</p>
+    <select id="example10positionSelector">
+        <option value="top">Top</option>
+        <option value="right">Right</option>
+        <option value="bottom">Bottom</option>
+        <option value="left">Left</option>
+    </select>
+</div>
+
+<div class="popper" width="200" id="example10popper1">
+    <p class="bold">Popper on <b id="example10currentPosition" class="currentPosition"></b></p>
+    <div class="popper__arrow" x-arrow></div>
+</div>
+
+<style>
+    #example10positionSelector {
+        margin-top: 1em;
+    }
+    @media (max-width: 460px) {
+        #example10popper1 {
+            max-width: 100px;
+        }
+    }
+</style>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function(){
+    var index = 0;
+    var popper;
+    var code = $('#example10code').html();
+
+    $('#example10positionSelector').on('change', attachPopper).trigger('change');
+
+    // Stop autoflip popper when the user click on the dropdown
+    $('#example10positionSelector').on('click', function() {
+        clearInterval(autoPopperFunctionTimer);
+    });
+
+    var autoPopperFunctionTimer = setInterval(function() {
+        if (index === 0) {
+            $('#example10positionSelector').val('top');
+            $('#example10positionSelector').trigger('change');
+            index++;
+        } else if (index === 1) {
+            $('#example10positionSelector').val('right');
+            $('#example10positionSelector').trigger('change');
+            index++;
+        } else if (index === 2) {
+            $('#example10positionSelector').val('bottom');
+            $('#example10positionSelector').trigger('change');
+            index++;
+        } else {
+            $('#example10positionSelector').val('left');
+            $('#example10positionSelector').trigger('change');
+            index = 0;
+        }
+    }, 4000);
+
+    function attachPopper(evt) {
+        position = evt.target.value;
+
+        //Position of the popper
+        $('#example10code').html(code.replace('position', position));
+        $('.currentPosition').text(position);
+
+        popper && popper.destroy();
+        popper = new Popper(example10reference1, example10popper1, {
+            placement: position,
+            boundariesElement: example10reference1.parentNode
+        });
+
+    }
+});
+
+</script>

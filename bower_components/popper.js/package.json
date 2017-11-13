@@ -1,0 +1,46 @@
+{
+  "name": "popperjs-monorepo",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "bundlesize": "^0.15.3",
+    "jsdoc-to-markdown": "^3.0.0",
+    "lcov-result-merger": "^1.2.0",
+    "lerna": "^2.2.0",
+    "lint-staged": "^4.0.1",
+    "pre-commit": "^1.2.2",
+    "prettier-eslint-cli": "^4.1.1",
+    "wait-on": "^2.0.2",
+    "which-pm-runs-cli": "^1.0.4"
+  },
+  "scripts": {
+    "postinstall": "which-pm-runs --is yarn",
+    "precommit": "lint-staged",
+    "test": "lerna run --parallel test",
+    "test:dev": "lerna run --parallel test:dev",
+    "build": "lerna run build",
+    "docs": "yarn build && for dest in popper tooltip; do jsdoc2md ./packages/$dest/dist/$dest.js > ./docs/_includes/$dest-documentation.md; done",
+    "docs:serve": "cd docs; { wait-on http://localhost:4000; open http://localhost:4000; } & jekyll serve"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier-eslint --write \"**/src/**/*.js\"",
+      "git add"
+    ]
+  },
+  "bundlesize": [
+    {
+      "path": "./packages/popper/dist/popper.min.js",
+      "threshold": "7.5 Kb"
+    },
+    {
+      "path": "./packages/tooltip/dist/tooltip.min.js",
+      "threshold": "2 Kb"
+    }
+  ],
+  "dependencies": {},
+  "workspaces": [
+    "packages/*"
+  ]
+}

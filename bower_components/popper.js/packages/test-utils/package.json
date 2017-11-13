@@ -1,0 +1,15 @@
+{
+  "name": "@popperjs/test-utils",
+  "version": "1.0.0",
+  "main": "setup.js",
+  "description": "Test utils for Popper.js tests",
+  "author": "Federico Zivolo <federico.zivolo@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "dependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint-plugin-jasmine": "^2.6.2"
+  }
+}

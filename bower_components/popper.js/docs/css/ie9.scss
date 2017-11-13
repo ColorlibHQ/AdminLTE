@@ -1,0 +1,138 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import 'libs/skel';
+
+/*
+	Spectral by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+
+/* Spotlight */
+
+	.spotlight {
+		display: block;
+
+		.image {
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		.content {
+			@include padding(4em, 4em);
+			display: inline-block;
+		}
+
+		&:after {
+			clear: both;
+			content: '';
+			display: block;
+		}
+	}
+
+/* Features */
+
+	.features {
+		display: block;
+
+		li {
+			float: left;
+		}
+
+		&:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+	}
+
+/* Banner + Wrapper (style4) */
+
+	#banner,
+	.wrapper.style4 {
+		background-image: url("../../images/banner.jpg");
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		position: relative;
+
+		&:before {
+			background: #000000;
+			content: '';
+			height: 100%;
+			left: 0;
+			opacity: 0.5;
+			position: absolute;
+			top: 0;
+			width: 100%;
+		}
+
+		.inner {
+			position: relative;
+			z-index: 1;
+		}
+	}
+
+/* Banner */
+
+	#banner {
+		@include padding(14em, 0);
+		height: auto;
+
+		&:after {
+			display: none;
+		}
+	}
+
+/* CTA */
+
+	#cta {
+		.inner {
+			header {
+				float: left;
+			}
+
+			.actions {
+				float: left;
+			}
+
+			&:after {
+				clear: both;
+				content: '';
+				display: block;
+			}
+		}
+	}
+
+/* Main */
+
+	#main {
+		> header {
+			background-image: url("../../images/banner.jpg");
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			position: relative;
+
+			&:before {
+				background: #000000;
+				content: '';
+				height: 100%;
+				left: 0;
+				opacity: 0.5;
+				position: absolute;
+				top: 0;
+				width: 100%;
+			}
+
+			> * {
+				position: relative;
+				z-index: 1;
+			}
+		}
+	}

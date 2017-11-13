@@ -1,0 +1,44 @@
+<div class="example2__fake-body nano">
+    <div class="nano-content">
+        <div class="example2__scrol-box">
+            <div class="rel" id="example2reference1">
+                <p class="bold">Scroll me</p>
+                <p class="thin">up and down</p>
+            </div>
+
+            <div class="popper" id="example2popper1">
+                <p class="bold">I follow it</p>
+                <p class="thin">staying between boundaries</p>
+                <div class="popper__arrow" x-arrow></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    var fakeBody = document.querySelector('.example2__fake-body');
+    $('.nano').nanoScroller({ scrollTop: fakeBody.clientHeight / 2 });
+
+    setTimeout(function() {
+        var pop1 = new Popper(example2reference1, example2popper1, {
+            placement: 'left',
+        });
+    }, 1000);
+}, false);
+</script>
+
+<style>
+    .example2__fake-body {
+        overflow-x: scroll;
+        height: 450px;
+        flex: 1;
+    }
+    .example2__scrol-box {
+        height: 200%;
+            display: flex;
+            align-content: center;
+            align-items: center;
+    }
+</style>

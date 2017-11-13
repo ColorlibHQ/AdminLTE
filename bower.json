@@ -35,7 +35,7 @@
     "chart.js": "1.0.*",
     "ckeditor": "^4.7.0",
     "bootstrap-colorpicker": "^2.5.1",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "v4.0.0-beta",
     "jquery": "^3.2.1",
     "datatables.net": "^1.10.15",
     "datatables.net-bs": "^2.1.1",
@@ -58,5 +58,9 @@
     "font-awesome": "^4.7.0",
     "Ionicons": "ionicons#^2.0.1",
     "jquery-ui": "1.11.4"
+  },
+  "resolutions": {
+    "jquery": ">=1.7",
+    "bootstrap": "v4.0.0-beta"
   }
 }

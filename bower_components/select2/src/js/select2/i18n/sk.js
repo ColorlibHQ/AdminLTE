@@ -9,6 +9,9 @@ define(function () {
   };
 
   return {
+    errorLoading: function () {
+      return 'Výsledky sa nepodarilo načítať.';
+    },
     inputTooLong: function (args) {
       var overChars = args.input.length - args.maximum;
 
@@ -34,7 +37,7 @@ define(function () {
       }
     },
     loadingMore: function () {
-      return 'Loading more results…';
+      return 'Načítanie ďalších výsledkov…';
     },
     maximumSelected: function (args) {
       if (args.maximum == 1) {
