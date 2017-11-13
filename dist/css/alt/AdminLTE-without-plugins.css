@@ -394,10 +394,10 @@ a:focus {
   }
 }
 @media (max-width: 991px) {
-  .navbar-collapse.pull-left {
+  .navbar-collapse.float-left {
     float: none !important;
   }
-  .navbar-collapse.pull-left + .navbar-custom-menu {
+  .navbar-collapse.float-left + .navbar-custom-menu {
     display: block;
     position: absolute;
     top: 0;
@@ -527,7 +527,7 @@ a:focus {
   font-size: 12px;
 }
 .sidebar-menu li > a > .fa-angle-left,
-.sidebar-menu li > a > .pull-right-container > .fa-angle-left {
+.sidebar-menu li > a > .float-right-container > .fa-angle-left {
   width: auto;
   height: auto;
   padding: 0;
@@ -543,7 +543,7 @@ a:focus {
   margin-top: -8px;
 }
 .sidebar-menu .menu-open > a > .fa-angle-left,
-.sidebar-menu .menu-open > a > .pull-right-container > .fa-angle-left {
+.sidebar-menu .menu-open > a > .float-right-container > .fa-angle-left {
   -webkit-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   -o-transform: rotate(-90deg);
@@ -591,7 +591,7 @@ a:focus {
   .sidebar-mini.sidebar-collapse .sidebar-form,
   .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > span,
   .sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu,
-  .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > .pull-right,
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > .float-right,
   .sidebar-mini.sidebar-collapse .sidebar-menu li.header {
     display: none !important;
     -webkit-transform: translateZ(0);
@@ -612,7 +612,7 @@ a:focus {
     margin-left: 50px;
   }
 }
-.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right),
+.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > a > span:not(.float-right),
 .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
   display: block !important;
   position: absolute;
@@ -625,7 +625,7 @@ a:focus {
   padding: 12px 5px 12px 20px;
   background-color: inherit;
 }
-.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > a > .pull-right-container {
+.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > a > .float-right-container {
   position: relative !important;
   float: right;
   width: auto !important;
@@ -633,7 +633,7 @@ a:focus {
   top: -22px !important;
   z-index: 900;
 }
-.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > a > .pull-right-container > .label:not(:first-of-type) {
+.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > a > .float-right-container > .label:not(:first-of-type) {
   display: none;
 }
 .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
@@ -664,7 +664,7 @@ a:focus {
 .sidebar-menu li > a {
   position: relative;
 }
-.sidebar-menu li > a > .pull-right-container {
+.sidebar-menu li > a > .float-right-container {
   position: absolute;
   right: 10px;
   top: 50%;
@@ -1751,7 +1751,7 @@ a:focus {
 .box-header > .box-tools [data-toggle="tooltip"] {
   position: relative;
 }
-.box-header > .box-tools.pull-right .dropdown-menu {
+.box-header > .box-tools.float-right .dropdown-menu {
   right: 0;
   left: auto;
 }
@@ -2519,19 +2519,19 @@ a:focus {
 .nav-tabs-custom > .nav-tabs > li:first-of-type.active > a {
   border-left-color: transparent;
 }
-.nav-tabs-custom > .nav-tabs.pull-right {
+.nav-tabs-custom > .nav-tabs.float-right {
   float: none !important;
 }
-.nav-tabs-custom > .nav-tabs.pull-right > li {
+.nav-tabs-custom > .nav-tabs.float-right > li {
   float: right;
 }
-.nav-tabs-custom > .nav-tabs.pull-right > li:first-of-type {
+.nav-tabs-custom > .nav-tabs.float-right > li:first-of-type {
   margin-right: 0;
 }
-.nav-tabs-custom > .nav-tabs.pull-right > li:first-of-type > a {
+.nav-tabs-custom > .nav-tabs.float-right > li:first-of-type > a {
   border-left-width: 1px;
 }
-.nav-tabs-custom > .nav-tabs.pull-right > li:first-of-type.active > a {
+.nav-tabs-custom > .nav-tabs.float-right > li:first-of-type.active > a {
   border-left-color: #f4f4f4;
   border-right-color: transparent;
 }
@@ -3088,8 +3088,8 @@ table.text-center th {
 .treeview-menu > li > a > .ion {
   width: 20px;
 }
-.treeview-menu > li > a > .pull-right-container > .fa-angle-left,
-.treeview-menu > li > a > .pull-right-container > .fa-angle-down,
+.treeview-menu > li > a > .float-right-container > .fa-angle-left,
+.treeview-menu > li > a > .float-right-container > .fa-angle-down,
 .treeview-menu > li > a > .fa-angle-left,
 .treeview-menu > li > a > .fa-angle-down {
   width: auto;
