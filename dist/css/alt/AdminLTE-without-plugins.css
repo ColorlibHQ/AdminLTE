@@ -270,7 +270,7 @@ a:focus {
 .main-header .navbar .nav > li.user > a > .ion {
   margin-right: 5px;
 }
-.main-header .navbar .nav > li > a > .label {
+.main-header .navbar .nav > li > a > .badge {
   position: absolute;
   top: 9px;
   right: 7px;
@@ -515,7 +515,7 @@ a:focus {
 .sidebar-menu > li > a > .ion {
   width: 20px;
 }
-.sidebar-menu > li .label,
+.sidebar-menu > li .badge,
 .sidebar-menu > li .badge {
   margin-right: 5px;
 }
@@ -633,7 +633,7 @@ a:focus {
   top: -22px !important;
   z-index: 900;
 }
-.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > a > .float-right-container > .label:not(:first-of-type) {
+.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > a > .float-right-container > .badge:not(:first-of-type) {
   display: none;
 }
 .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
@@ -1887,7 +1887,7 @@ a:focus {
   margin-left: 5px;
   font-weight: 600;
 }
-.todo-list > li .label {
+.todo-list > li .badge {
   margin-left: 10px;
   font-size: 9px;
 }
@@ -1912,7 +1912,7 @@ a:focus {
   text-decoration: line-through;
   font-weight: 500;
 }
-.todo-list > li.done .label {
+.todo-list > li.done .badge {
   background: #d2d6de !important;
 }
 .todo-list .danger {
@@ -2690,7 +2690,7 @@ table.text-center th {
  * Component: Label
  * ----------------
  */
-.label-default {
+.badge-default {
   background-color: #d2d6de;
   color: #444;
 }
@@ -3442,11 +3442,11 @@ table.text-center th {
 .alert-error,
 .alert-warning,
 .alert-info,
-.label-danger,
-.label-info,
-.label-warning,
-.label-primary,
-.label-success,
+.badge-danger,
+.badge-info,
+.badge-warning,
+.badge-primary,
+.badge-success,
 .modal-primary .modal-body,
 .modal-primary .modal-header,
 .modal-primary .modal-footer,
@@ -3478,21 +3478,21 @@ table.text-center th {
 .callout.callout-danger,
 .alert-danger,
 .alert-error,
-.label-danger,
+.badge-danger,
 .modal-danger .modal-body {
   background-color: #dd4b39 !important;
 }
 .bg-yellow,
 .callout.callout-warning,
 .alert-warning,
-.label-warning,
+.badge-warning,
 .modal-warning .modal-body {
   background-color: #f39c12 !important;
 }
 .bg-aqua,
 .callout.callout-info,
 .alert-info,
-.label-info,
+.badge-info,
 .modal-info .modal-body {
   background-color: #00c0ef !important;
 }
@@ -3500,14 +3500,14 @@ table.text-center th {
   background-color: #0073b7 !important;
 }
 .bg-light-blue,
-.label-primary,
+.badge-primary,
 .modal-primary .modal-body {
   background-color: #3c8dbc !important;
 }
 .bg-green,
 .callout.callout-success,
 .alert-success,
-.label-success,
+.badge-success,
 .modal-success .modal-body {
   background-color: #00a65a !important;
 }
