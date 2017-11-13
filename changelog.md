@@ -1,4 +1,8 @@
 ### CHANGE LOG:
+**v2.4.2 - Bootstrap 4 beta 2:**
+- Update Bootstrap to v4.0.0-beta.2
+- Change class img-circle to rounded-circle.
+
 **v2.3.11:**
 - Update colors @gray color to @gray-lte
 
