@@ -7,6 +7,7 @@
 - Change class pull-* to float-*.
 - Change class label to badge.
 - Change class progress to progress mb-3.
+- An explicit class, .breadcrumb-item, is now required on the descendants of .breadcrumbs.
 
 **v2.3.11:**
 - Update colors @gray color to @gray-lte
