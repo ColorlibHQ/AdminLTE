@@ -4,6 +4,9 @@
 - Change class img-circle to rounded-circle.
 - Change class table-condensed to table-sm.
 - Change class col-xs to col.
+- Change class pull-* to float-*.
+- Change class label to badge.
+- Change class progress to progress mb-3.
 
 **v2.3.11:**
 - Update colors @gray color to @gray-lte
