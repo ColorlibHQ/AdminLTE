@@ -6,8 +6,10 @@
   "license": "MIT",
   "dependencies": {
     "@popperjs/babel-config": "^1.0.0",
-    "rollup": "^0.43.0",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.51.5",
     "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-babel-minify": "^3.1.2"
+    "rollup-plugin-babel-minify": "^3.1.2",
+    "yargs": "^10.0.3"
   }
 }

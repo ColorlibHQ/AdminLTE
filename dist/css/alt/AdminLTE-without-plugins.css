@@ -203,7 +203,7 @@ a:focus {
   margin-bottom: 0;
   margin-left: 230px;
   border: none;
-  min-height: 50px;
+  height: 50px;
   border-radius: 0;
 }
 .layout-top-nav .main-header .navbar {
@@ -238,6 +238,15 @@ a:focus {
     color: inherit;
     background: transparent;
   }
+}
+.main-header .navbar-custom-menu .navbar-nav .nav-link,
+.main-header .navbar-right .navbar-nav .nav-link {
+  padding: 15px;
+  line-height: 20px;
+}
+.main-header .navbar-custom-menu .navbar-nav .nav-link.dropdown-toggle::after,
+.main-header .navbar-right .navbar-nav .nav-link.dropdown-toggle::after {
+  content: none;
 }
 @media (max-width: 767px) {
   .main-header .navbar-right {
@@ -284,6 +293,13 @@ a:focus {
   font-size: 9px;
   padding: 2px 3px;
   line-height: .9;
+}
+@media (max-width: 992px) {
+  .main-header .navbar .nav > li > a > .badge {
+    right: auto;
+    position: fixed;
+    top: auto;
+  }
 }
 .main-header .logo {
   -webkit-transition: width 0.3s ease-in-out;
@@ -942,6 +958,11 @@ a:focus {
 .navbar-nav > .tasks-menu > .dropdown-menu > li {
   position: relative;
 }
+.navbar-nav > .notifications-menu > .dropdown-menu .dropdown-item:active,
+.navbar-nav > .messages-menu > .dropdown-menu .dropdown-item:active,
+.navbar-nav > .tasks-menu > .dropdown-menu .dropdown-item:active {
+  background-color: inherit;
+}
 .navbar-nav > .notifications-menu > .dropdown-menu > li.header,
 .navbar-nav > .messages-menu > .dropdown-menu > li.header,
 .navbar-nav > .tasks-menu > .dropdown-menu > li.header {
@@ -955,6 +976,12 @@ a:focus {
   color: #444444;
   font-size: 14px;
 }
+.navbar-nav > .notifications-menu > .dropdown-menu > li.footer,
+.navbar-nav > .messages-menu > .dropdown-menu > li.footer,
+.navbar-nav > .tasks-menu > .dropdown-menu > li.footer {
+  display: flex;
+  padding: 0;
+}
 .navbar-nav > .notifications-menu > .dropdown-menu > li.footer > a,
 .navbar-nav > .messages-menu > .dropdown-menu > li.footer > a,
 .navbar-nav > .tasks-menu > .dropdown-menu > li.footer > a {
@@ -967,6 +994,7 @@ a:focus {
   padding: 7px 10px;
   border-bottom: 1px solid #eeeeee;
   color: #444 !important;
+  width: 100%;
   text-align: center;
 }
 @media (max-width: 991px) {
@@ -1011,6 +1039,7 @@ a:focus {
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 10px;
+  font-size: 14px;
 }
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .glyphicon,
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .fa,
@@ -1065,6 +1094,7 @@ a:focus {
 .navbar-nav > .tasks-menu > .dropdown-menu > li .menu > li > a > .progress {
   padding: 0;
   margin: 0;
+  width: 100%;
 }
 .navbar-nav > .user-menu > .dropdown-menu {
   border-top-right-radius: 0;
@@ -1106,6 +1136,7 @@ a:focus {
   padding: 15px;
   border-bottom: 1px solid #f4f4f4;
   border-top: 1px solid #dddddd;
+  font-size: 14px;
 }
 .navbar-nav > .user-menu > .dropdown-menu > .user-body:before,
 .navbar-nav > .user-menu > .dropdown-menu > .user-body:after {
@@ -1127,6 +1158,9 @@ a:focus {
 .navbar-nav > .user-menu > .dropdown-menu > .user-footer {
   background-color: #f9f9f9;
   padding: 10px;
+}
+.navbar-nav > .user-menu > .dropdown-menu > .user-footer a {
+  font-size: 14px;
 }
 .navbar-nav > .user-menu > .dropdown-menu > .user-footer:before,
 .navbar-nav > .user-menu > .dropdown-menu > .user-footer:after {

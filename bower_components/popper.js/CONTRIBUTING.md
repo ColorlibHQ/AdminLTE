@@ -91,3 +91,5 @@ yarn build
 # or to build a single project
 yarn build --scope=popper.js # or tooltip.js
 ```
+
+You can also build and watch for changes to automatically refresh the build using the `--watch` option.

@@ -33,6 +33,11 @@
     > li {
       position: relative;
     }
+    .dropdown-item {
+        &:active {
+            background-color: inherit;
+        }
+    }
     width: 280px;
     //Remove padding and margins
     padding: 0 0 0 0;
@@ -50,13 +55,17 @@
   }
 
   //Define footer class
-  > .dropdown-menu > li.footer > a {
+  > .dropdown-menu > li.footer {
+    display: flex;
+    padding: 0;
+    > a {
     .border-radius(0; 0; 4px; 4px);
     font-size: 12px;
     background-color: #fff;
     padding: 7px 10px;
     border-bottom: 1px solid #eeeeee;
     color: #444 !important;
+        width: 100%;
     @media (max-width: @screen-sm-max) {
       background: #fff !important;
       color: #444 !important;
@@ -67,6 +76,7 @@
       text-decoration: none;
       font-weight: normal;
     }
+  }
   }
 
   //Clear inner menu padding and margins
@@ -98,6 +108,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       padding: 10px;
+      font-size: 14px;
       // Icons inside the menu
       > .glyphicon,
       > .fa,
@@ -170,6 +181,7 @@
       > .progress {
         padding: 0;
         margin: 0;
+        width: 100%;
       }
     }
   }
@@ -220,6 +232,7 @@
       padding: 15px;
       border-bottom: 1px solid #f4f4f4;
       border-top: 1px solid #dddddd;
+      font-size: 14px;
       .clearfix();
       a {
         color: #444 !important;
@@ -234,6 +247,9 @@
     > .user-footer {
       background-color: #f9f9f9;
       padding: 10px;
+      a {
+          font-size: 14px;
+      }
       .clearfix();
       .btn-default {
         color: #666666;

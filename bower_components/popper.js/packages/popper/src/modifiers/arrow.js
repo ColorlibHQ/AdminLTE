@@ -63,26 +63,27 @@ export default function arrow(data, options) {
     data.offsets.popper[side] +=
       reference[side] + arrowElementSize - popper[opSide];
   }
+  data.offsets.popper = getClientRect(data.offsets.popper);
 
   // compute center of the popper
   const center = reference[side] + reference[len] / 2 - arrowElementSize / 2;
 
   // Compute the sideValue using the updated popper offsets
   // take popper margin in account because we don't have this info available
-  const popperMarginSide = getStyleComputedProperty(
-    data.instance.popper,
-    `margin${sideCapitalized}`
-  ).replace('px', '');
+  const css = getStyleComputedProperty(data.instance.popper);
+  const popperMarginSide = parseFloat(css[`margin${sideCapitalized}`], 10);
+  const popperBorderSide = parseFloat(css[`border${sideCapitalized}Width`], 10);
   let sideValue =
-    center - getClientRect(data.offsets.popper)[side] - popperMarginSide;
+    center - data.offsets.popper[side] - popperMarginSide - popperBorderSide;
 
   // prevent arrowElement from being placed not contiguously to its popper
   sideValue = Math.max(Math.min(popper[len] - arrowElementSize, sideValue), 0);
 
   data.arrowElement = arrowElement;
-  data.offsets.arrow = {};
-  data.offsets.arrow[side] = Math.round(sideValue);
-  data.offsets.arrow[altSide] = ''; // make sure to unset any eventual altSide value from the DOM node
+  data.offsets.arrow = {
+    [side]: Math.round(sideValue),
+    [altSide]: '', // make sure to unset any eventual altSide value from the DOM node
+  };
 
   return data;
 }

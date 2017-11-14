@@ -12,7 +12,7 @@ export default function getSupportedPropertyName(property) {
   for (let i = 0; i < prefixes.length - 1; i++) {
     const prefix = prefixes[i];
     const toCheck = prefix ? `${prefix}${upperProp}` : property;
-    if (typeof window.document.body.style[toCheck] !== 'undefined') {
+    if (typeof document.body.style[toCheck] !== 'undefined') {
       return toCheck;
     }
   }

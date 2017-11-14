@@ -31,17 +31,17 @@ const miniBanner = `/*
  */`
 
 bundle({
-  moduleName: 'Popper',
-  entry: 'src/index.js',
-  dest: 'popper.js',
+  name: 'Popper',
+  input: 'src/index.js',
+  file: 'popper.js',
   banner,
   miniBanner,
 });
 
 bundle({
-  moduleName: 'PopperUtils',
-  entry: 'src/utils/index.js',
-  dest: 'popper-utils.js',
+  name: 'PopperUtils',
+  input: 'src/utils/index.js',
+  file: 'popper-utils.js',
   banner,
   miniBanner,
 });

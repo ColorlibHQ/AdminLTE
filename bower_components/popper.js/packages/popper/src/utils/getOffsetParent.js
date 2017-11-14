@@ -16,7 +16,7 @@ export default function getOffsetParent(element) {
       return element.ownerDocument.documentElement
     }
 
-    return window.document.documentElement;
+    return document.documentElement;
   }
 
   // .offsetParent will return the closest TD or TABLE in case

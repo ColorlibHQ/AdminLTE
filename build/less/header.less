@@ -13,7 +13,7 @@
     margin-bottom: 0;
     margin-left: @sidebar-width;
     border: none;
-    min-height: @navbar-height;
+    height: @navbar-height;
     border-radius: 0;
     .layout-top-nav & {
       margin-left: 0;
@@ -47,6 +47,13 @@
       a {
         color: inherit;
         background: transparent;
+      }
+    }
+    .navbar-nav .nav-link, {
+      padding: 15px;
+      line-height: 20px;
+      &.dropdown-toggle::after {
+        content: none;
       }
     }
   }
@@ -103,6 +110,17 @@
     font-size: 9px;
     padding: 2px 3px;
     line-height: .9;
+  }
+
+  @media (max-width: @screen-md) {
+    .navbar .nav > li > a > .badge {
+        right: auto;
+        position: fixed;
+        top: auto;
+        // right: 5px;
+        // position: relative;
+        // top: -9px;
+    }
   }
 
   //Logo bar

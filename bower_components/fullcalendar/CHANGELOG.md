@@ -1,4 +1,19 @@
 
+v3.7.0 (2017-11-13)
+-------------------
+
+Bugfixes:
+- `render` method does not re-adjust calendar dimension (#3893)
+- when custom view navigates completely into hidden weekends, JS error ([scheduler-375])
+
+Other:
+- in themes.html demo, fixed broken Bootswatch themes (#3917)
+- moved JavaScript codebase over to TypeScript
+  (same external API; embedded typedefs coming soon)
+
+[scheduler-375]: https://github.com/fullcalendar/fullcalendar-scheduler/issues/375
+
+
 v3.6.2 (2017-10-23)
 -------------------
 

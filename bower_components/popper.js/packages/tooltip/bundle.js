@@ -31,9 +31,9 @@ const miniBanner = `/*
  */`
 
 bundle({
-  moduleName: 'Tooltip',
-  entry: 'src/index.js',
-  dest: 'tooltip.js',
+  name: 'Tooltip',
+  input: 'src/index.js',
+  file: 'tooltip.js',
   banner,
   miniBanner,
 });

@@ -2,8 +2,6 @@ define( [
 	"../data/var/dataPriv"
 ], function( dataPriv ) {
 
-"use strict";
-
 // Mark scripts as having already been evaluated
 function setGlobalEval( elems, refElements ) {
 	var i = 0,

@@ -1,4 +1,4 @@
-const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';
+const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
 const longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
 let timeoutDuration = 0;
 for (let i = 0; i < longerTimeoutBrowsers.length; i += 1) {
@@ -15,7 +15,7 @@ export function microtaskDebounce(fn) {
       return
     }
     called = true
-    Promise.resolve().then(() => {
+    window.Promise.resolve().then(() => {
       called = false
       fn()
     })
