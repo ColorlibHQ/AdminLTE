@@ -767,12 +767,13 @@
         <div class="col-md-6">
           <!-- Custom Tabs -->
           <div class="nav-tabs-custom">
+            <a href="#" class="nav-tabs-header text-muted float-right"><i class="fa fa-gear"></i></a>
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_1" data-toggle="tab">Tab 1</a></li>
-              <li><a href="#tab_2" data-toggle="tab">Tab 2</a></li>
-              <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <li class="nav-item"><a href="#tab_1" class="nav-link active" data-toggle="tab">Tab 1</a></li>
+              <li class="nav-item"><a href="#tab_2" class="nav-link" data-toggle="tab">Tab 2</a></li>
+              <li class="nav-item"><a href="#tab_3" class="nav-link" data-toggle="tab">Tab 3</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
                   Dropdown <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -783,7 +784,6 @@
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
                 </ul>
               </li>
-              <li class="float-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_1">
@@ -830,12 +830,13 @@
         <div class="col-md-6">
           <!-- Custom Tabs (Pulled to the right) -->
           <div class="nav-tabs-custom">
+            <h3 class="nav-tabs-header"><i class="fa fa-th"></i> Custom Tabs</h3>
             <ul class="nav nav-tabs float-right">
-              <li class="active"><a href="#tab_1-1" data-toggle="tab">Tab 1</a></li>
-              <li><a href="#tab_2-2" data-toggle="tab">Tab 2</a></li>
-              <li><a href="#tab_3-2" data-toggle="tab">Tab 3</a></li>
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <li class="nav-item"><a href="#tab_1-1" class="nav-link active" data-toggle="tab">Tab 1</a></li>
+              <li class="nav-item"><a href="#tab_2-2" class="nav-link" data-toggle="tab">Tab 2</a></li>
+              <li class="nav-item"><a href="#tab_3-2" class="nav-link" data-toggle="tab">Tab 3</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" class="nav-link" data-toggle="dropdown" href="#">
                   Dropdown <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -846,9 +847,8 @@
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
                 </ul>
               </li>
-              <li class="float-left header"><i class="fa fa-th"></i> Custom Tabs</li>
             </ul>
-            <div class="tab-content">
+            <div class="tab-content d-inline-block">
               <div class="tab-pane active" id="tab_1-1">
                 <b>How to use:</b>
 
@@ -1454,9 +1454,9 @@
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+      <li class="nav-item"><a href="#control-sidebar-home-tab" class="nav-link" data-toggle="tab"><i class="fa fa-home"></i></a></li>
 
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+      <li class="nav-item"><a href="#control-sidebar-settings-tab" class="nav-link" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">

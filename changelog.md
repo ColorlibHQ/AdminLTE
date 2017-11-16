@@ -7,8 +7,7 @@
 - Change class pull-* to float-*.
 - Change class label to badge.
 - Change class progress to progress mb-3.
-- An explicit class, .breadcrumb-item, is now required on the descendants of .breadcrumbs.
-- Explicit classes (.page-item, .page-link) are now required on the descendants of .paginations
+- See more on https://getbootstrap.com/docs/4.0/migration.
 
 
 **v2.3.11:**

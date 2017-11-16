@@ -70,93 +70,88 @@
     border-bottom-color: #f4f4f4;
 
     .border-top-radius(@box-border-radius);
-    > li {
-      border-top: 3px solid transparent;
-      margin-bottom: -2px;
-
-      &.disabled > a {
-        color: #777;
-      }
-
-      > a {
-        color: #444;
-        .border-radius(0);
-        &.text-muted {
-          color: #999;
+    > .nav-item {
+        // margin-bottom: -2px;
+        margin-right: 5px;
+        .nav-link {
+            border-top: 3px solid transparent;
+            color: #444;
+            &.disabled {
+                color: #777;
+            }
+            &.text-muted {
+                color: #999;
+            }
+            &,
+            &:hover {
+                background: transparent;
+                margin: 0;
+            }
+            &:hover {
+                color: #999;
+            }
+            &:not(.active) {
+                &:hover,
+                &:focus,
+                &:active {
+                    border-color: transparent;
+                }
+            }
+            &.active {
+                border-top-color: @light-blue;
+                border-left-color: #f4f4f4;
+                border-right-color: #f4f4f4;
+                &:hover {
+                    background-color: #fff;
+                    color: #444;
+                }
+            }
         }
-        &,
-        &:hover {
-          background: transparent;
-          margin: 0;
+        // &:first-of-type {
+        //     margin-left: 0;
+        //     .nav-link {
+        //         &.active {
+        //             border-left-color: transparent;
+        //         }
+        //     }
+        // }
+        &:last-of-type {
+            margin-right: 0;
         }
-        &:hover {
-          color: #999;
-        }
-      }
-      &:not(.active) {
-        > a:hover,
-        > a:focus,
-        > a:active {
-          border-color: transparent;
-        }
-      }
-      margin-right: 5px;
-    }
-
-    > li.active {
-      border-top-color: @light-blue;
-      & > a,
-      &:hover > a {
-        background-color: #fff;
-        color: #444;
-      }
-      > a {
-        border-top-color: transparent;
-        border-left-color: #f4f4f4;
-        border-right-color: #f4f4f4;
-      }
-
-    }
-
-    > li:first-of-type {
-      margin-left: 0;
-      &.active {
-        > a {
-          border-left-color: transparent;
-        }
-      }
     }
 
     //Pulled to the right
     &.float-right {
-      float: none !important;
-      > li {
-        float: right;
-      }
-      > li:first-of-type {
+    //   float: none !important;
+    //   > .nav-item {
+    //     float: right;
+    //   }
+      > .nav-item:last-of-type {
         margin-right: 0;
-        > a {
+        > .nav-link {
           border-left-width: 1px;
-        }
-        &.active {
-          > a {
-            border-left-color: #f4f4f4;
-            border-right-color: transparent;
+          &.active {
+              border-left-color: #f4f4f4;
+              border-right-color: transparent;
           }
         }
       }
     }
+  }
 
-    > li.header {
-      line-height: 35px;
-      padding: 0 10px;
-      font-size: 20px;
-      color: #444;
-      > .fa,
-      > .glyphicon,
-      > .ion {
-        margin-right: 5px;
-      }
+  > .nav-tabs-header {
+    line-height: 35px;
+    padding: 0 10px;
+    font-size: 20px;
+    color: #444;
+    float: left;
+    margin-bottom: 0;
+    border-bottom: 1px solid #f4f4f4;;
+    padding-bottom: 4px;
+    > .fa,
+    > .glyphicon,
+    > .ion {
+      margin-right: 5px;
     }
   }
 
@@ -176,44 +171,68 @@
   // Tab color variations
   &.tab-primary {
     > .nav-tabs {
-      > li.active {
-        border-top-color: @light-blue;
+      > .nav-item {
+          .nav-link {
+            &.active {
+                border-top-color: @light-blue;
+            }
+        }
       }
     }
   }
   &.tab-info {
     > .nav-tabs {
-      > li.active {
-        border-top-color: @aqua;
-      }
+        > .nav-item {
+            .nav-link {
+              &.active {
+                border-top-color: @aqua;
+              }
+            }
+        }
     }
   }
   &.tab-danger {
     > .nav-tabs {
-      > li.active {
-        border-top-color: @red;
-      }
+        > .nav-item {
+            .nav-link {
+              &.active {
+                border-top-color: @red;
+              }
+            }
+        }
     }
   }
   &.tab-warning {
     > .nav-tabs {
-      > li.active {
-        border-top-color: @yellow;
-      }
+        > .nav-item {
+            .nav-link {
+              &.active {
+                border-top-color: @yellow;
+              }
+            }
+        }
     }
   }
   &.tab-success {
     > .nav-tabs {
-      > li.active {
-        border-top-color: @green;
-      }
+        > .nav-item {
+            .nav-link {
+              &.active {
+                border-top-color: @green;
+              }
+            }
+        }
     }
   }
   &.tab-default {
     > .nav-tabs {
-      > li.active {
-        border-top-color: @gray-lte;
-      }
+        > .nav-item {
+            .nav-link {
+              &.active {
+                border-top-color: @gray-lte;
+              }
+            }
+        }
     }
   }
 }
