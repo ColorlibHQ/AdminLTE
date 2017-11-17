@@ -1,9 +1,9 @@
 {
-    "name": "datatables.net-bs",
-    "description": "DataTables for jQuery with styling for [Bootstrap](http://getbootstrap.com/)",
+    "name": "datatables.net-bs4",
+    "description": "DataTables for jQuery with styling for [Bootstrap 4](http://getbootstrap.com/)",
     "main": [
-        "js/dataTables.bootstrap.js",
-        "css/dataTables.bootstrap.css"
+        "js/dataTables.bootstrap4.js",
+        "css/dataTables.bootstrap4.css"
     ],
     "keywords": [
         "filter",
@@ -11,11 +11,11 @@
         "DataTables",
         "jQuery",
         "table",
-        "Bootstrap"
+        "Bootstrap 4"
     ],
     "dependencies": {
         "jquery": ">=1.7",
-        "datatables.net": ">=1.10.9"
+        "datatables.net": ">=1.10.13"
     },
     "moduleType": [
         "globals",

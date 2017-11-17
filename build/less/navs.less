@@ -14,48 +14,59 @@
 
 /* NAV PILLS */
 .nav-pills {
-  > li > a {
-    .border-radius(0);
-    border-top: 3px solid transparent;
-    color: #444;
-    > .fa,
-    > .glyphicon,
-    > .ion {
-      margin-right: 5px;
+  > .nav-item {
+      > .nav-link {
+        .border-radius(0);
+        border-top: 3px solid transparent;
+        color: #444;
+        > .fa,
+        > .glyphicon,
+        > .ion {
+            margin-right: 5px;
+        }
+        &.active {
+            font-weight: 600;
+            border-top-color: @light-blue;
+            &:hover {
+                border-top-color: @light-blue;
+            }
+            &:focus {
+                border-top-color: @light-blue;
+            }
+        }
     }
-  }
-  > li.active > a,
-  > li.active > a:hover,
-  > li.active > a:focus {
-    border-top-color: @light-blue;
-  }
-  > li.active > a {
-    font-weight: 600;
-  }
+  }  
 }
 
 /* NAV STACKED */
 .nav-stacked {
-  > li > a {
-    .border-radius(0);
-    border-top: 0;
-    border-left: 3px solid transparent;
-    color: #444;
-  }
-  > li.active > a,
-  > li.active > a:hover {
-    background: transparent;
-    color: #444;
-    border-top: 0;
-    border-left-color: @light-blue;
-  }
+  > .nav-item {
+    > .nav-link {
+        .border-radius(0);
+        border-top: 0;
+        border-left: 3px solid transparent;
+        color: #444;
 
-  > li.header {
-    border-bottom: 1px solid #ddd;
-    color: #777;
-    margin-bottom: 10px;
-    padding: 5px 10px;
-    text-transform: uppercase;
+        &.active {
+            background: transparent;
+            color: #444;
+            border-top: 0;
+            border-left-color: @light-blue;
+            &:hover {
+                background: transparent;
+                color: #444;
+                border-top: 0;
+                border-left-color: @light-blue;
+            }
+        }
+    }
+    &.header {
+        border-bottom: 1px solid #ddd;
+        color: #777;
+        margin-bottom: 10px;
+        padding: 5px 10px;
+        text-transform: uppercase;
+    }
   }
 }
 

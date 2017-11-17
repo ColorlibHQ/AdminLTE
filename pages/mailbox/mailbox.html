@@ -280,10 +280,10 @@
                           <!-- Menu Footer-->
                           <li class="user-footer dropdown-item">
                             <div class="float-left">
-                              <a href="#" class="btn btn-default btn-flat">Profile</a>
+                              <a href="#" class="btn btn-secondary btn-flat">Profile</a>
                             </div>
                             <div class="float-right">
-                              <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                              <a href="#" class="btn btn-secondary btn-flat">Sign out</a>
                             </div>
                           </li>
                         </ul>
@@ -536,14 +536,15 @@
               </div>
             </div>
             <div class="box-body no-padding">
-              <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
-                  <span class="badge badge-primary float-right">12</span></a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
-                <li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
-                <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="badge badge-warning float-right">65</span></a>
+              <ul class="nav flex-column nav-pills nav-stacked">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active"><i class="fa fa-inbox"></i> Inbox <span class="badge badge-primary float-right">12</span></a>
                 </li>
-                <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-envelope-o"></i> Sent</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-file-text-o"></i> Drafts</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-filter"></i> Junk <span class="badge badge-warning float-right">65</span></a>
+                </li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-trash-o"></i> Trash</a></li>
               </ul>
             </div>
             <!-- /.box-body -->
@@ -559,10 +560,10 @@
               </div>
             </div>
             <div class="box-body no-padding">
-              <ul class="nav nav-pills nav-stacked">
-                <li><a href="#"><i class="fa fa-circle-o text-red"></i> Important</a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
+              <ul class="nav flex-column nav-pills nav-stacked">
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-circle-o text-red"></i> Important</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
               </ul>
             </div>
             <!-- /.box-body -->
@@ -576,9 +577,9 @@
               <h3 class="box-title">Inbox</h3>
 
               <div class="box-tools float-right">
-                <div class="has-feedback">
-                  <input type="text" class="form-control input-sm" placeholder="Search Mail">
-                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                <div class="input-group input-group-sm has-feedback">
+                    <input type="text" class="form-control border-right-0" placeholder="Search Mail" aria-label="Search Mail" aria-describedby="basic-addon2">
+                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search"></i></span>
                 </div>
               </div>
               <!-- /.box-tools -->
@@ -587,20 +588,20 @@
             <div class="box-body no-padding">
               <div class="mailbox-controls">
                 <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
+                <button type="button" class="btn btn-secondary btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
                 </button>
                 <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+                  <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-trash-o"></i></button>
+                  <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i></button>
+                  <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-share"></i></button>
                 </div>
                 <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-refresh"></i></button>
                 <div class="float-right">
                   1-50/200
                   <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                    <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-chevron-left"></i></button>
+                    <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-chevron-right"></i></button>
                   </div>
                   <!-- /.btn-group -->
                 </div>
@@ -754,20 +755,20 @@
             <div class="box-footer no-padding">
               <div class="mailbox-controls">
                 <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
+                <button type="button" class="btn btn-secondary btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
                 </button>
                 <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+                  <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-trash-o"></i></button>
+                  <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i></button>
+                  <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-share"></i></button>
                 </div>
                 <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-refresh"></i></button>
                 <div class="float-right">
                   1-50/200
                   <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                    <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-chevron-left"></i></button>
+                    <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-chevron-right"></i></button>
                   </div>
                   <!-- /.btn-group -->
                 </div>

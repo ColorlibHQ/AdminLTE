@@ -283,10 +283,10 @@
                           <!-- Menu Footer-->
                           <li class="user-footer dropdown-item">
                             <div class="float-left">
-                              <a href="#" class="btn btn-default btn-flat">Profile</a>
+                              <a href="#" class="btn btn-secondary btn-flat">Profile</a>
                             </div>
                             <div class="float-right">
-                              <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                              <a href="#" class="btn btn-secondary btn-flat">Sign out</a>
                             </div>
                           </li>
                         </ul>
@@ -539,14 +539,15 @@
               </div>
             </div>
             <div class="box-body no-padding">
-              <ul class="nav nav-pills nav-stacked">
-                <li><a href="mailbox.html"><i class="fa fa-inbox"></i> Inbox
-                  <span class="badge badge-primary float-right">12</span></a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
-                <li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
-                <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="badge badge-warning float-right">65</span></a>
-                </li>
-                <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
+              <ul class="nav flex-column nav-pills nav-stacked">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active"><i class="fa fa-inbox"></i> Inbox <span class="badge badge-primary float-right">12</span></a>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-envelope-o"></i> Sent</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-file-text-o"></i> Drafts</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-filter"></i> Junk <span class="badge badge-warning float-right">65</span></a>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-trash-o"></i> Trash</a></li>
               </ul>
             </div>
             <!-- /.box-body -->
@@ -563,10 +564,10 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
-              <ul class="nav nav-pills nav-stacked">
-                <li><a href="#"><i class="fa fa-circle-o text-red"></i> Important</a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
+              <ul class="nav flex-column nav-pills nav-stacked">
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-circle-o text-red"></i> Important</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
               </ul>
             </div>
             <!-- /.box-body -->
@@ -615,7 +616,7 @@
                     </textarea>
               </div>
               <div class="form-group">
-                <div class="btn btn-default btn-file">
+                <div class="btn btn-secondary btn-file">
                   <i class="fa fa-paperclip"></i> Attachment
                   <input type="file" name="attachment">
                 </div>
@@ -625,10 +626,10 @@
             <!-- /.box-body -->
             <div class="box-footer">
               <div class="float-right">
-                <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button>
+                <button type="button" class="btn btn-secondary"><i class="fa fa-pencil"></i> Draft</button>
                 <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send</button>
               </div>
-              <button type="reset" class="btn btn-default"><i class="fa fa-times"></i> Discard</button>
+              <button type="reset" class="btn btn-secondary"><i class="fa fa-times"></i> Discard</button>
             </div>
             <!-- /.box-footer -->
           </div>

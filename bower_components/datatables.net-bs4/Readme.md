@@ -1,6 +1,6 @@
-# DataTables for jQuery with styling for [Bootstrap](http://getbootstrap.com/)
+# DataTables for jQuery with styling for [Bootstrap 4](http://getbootstrap.com/)
 
-This package contains distribution files required to style [DataTables library](https://datatables.net) for [jQuery](http://jquery.com/) with styling for [Bootstrap](http://getbootstrap.com/).
+This package contains distribution files required to style [DataTables library](https://datatables.net) for [jQuery](http://jquery.com/) with styling for [Bootstrap 4](http://getbootstrap.com/).
 
 DataTables is a table enhancing library which adds features such as paging, ordering, search, scrolling and many more to a static HTML page. A comprehensive API is also available that can be used to manipulate the table. Please refer to the [DataTables web-site](//datatables.net) for a full range of documentation and examples.
 
@@ -14,18 +14,18 @@ For inclusion of this library using a standard `<script>` tag, rather than using
 ### npm
 
 ```
-npm install datatables.net-bs
+npm install datatables.net-bs4
 ```
 
 ```
 var $ = require( 'jquery' );
-require( 'datatables.net-bs' )( window, $ );
+require( 'datatables.net-bs4' )( $ );
 ```
 
 ### bower
 
 ```
-bower install --save datatables.net-bs
+bower install --save datatables.net-bs4
 ```
 
 

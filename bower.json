@@ -38,7 +38,7 @@
     "bootstrap": "v4.0.0-beta",
     "jquery": "^3.2.1",
     "datatables.net": "^1.10.15",
-    "datatables.net-bs": "^2.1.1",
+    "datatables.net-bs4": "^3.2.2",
     "bootstrap-datepicker": "^1.7.0",
     "bootstrap-daterangepicker": "^2.1.25",
     "moment": "^2.18.1",

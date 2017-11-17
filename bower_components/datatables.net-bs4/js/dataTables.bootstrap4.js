@@ -46,19 +46,20 @@ var DataTable = $.fn.dataTable;
 /* Set the defaults for DataTables initialisation */
 $.extend( true, DataTable.defaults, {
 	dom:
-		"<'row'<'col-sm-6'l><'col-sm-6'f>>" +
-		"<'row'<'col-sm-12'tr>>" +
-		"<'row'<'col-sm-5'i><'col-sm-7'p>>",
+		"<'row'<'col-xs-12 col-md-6'l><'col-xs-12 col-md-6'f>>" +
+		"<'row'<'col-xs-12'tr>>" +
+		"<'row'<'col-xs-12 col-md-5'i><'col-xs-12 col-md-7'p>>",
 	renderer: 'bootstrap'
 } );
 
 
 /* Default class modification */
 $.extend( DataTable.ext.classes, {
-	sWrapper:      "dataTables_wrapper form-inline dt-bootstrap",
+	sWrapper:      "dataTables_wrapper form-inline dt-bootstrap4",
 	sFilterInput:  "form-control input-sm",
 	sLengthSelect: "form-control input-sm",
-	sProcessing:   "dataTables_processing panel panel-default"
+	sProcessing:   "dataTables_processing panel panel-default",
+	sPageButton:   "paginate_button page-item"
 } );
 
 
@@ -138,7 +139,8 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 								'aria-controls': settings.sTableId,
 								'aria-label': aria[ button ],
 								'data-dt-idx': counter,
-								'tabindex': settings.iTabIndex
+								'tabindex': settings.iTabIndex,
+								'class': 'page-link'
 							} )
 							.html( btnDisplay )
 						)

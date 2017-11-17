@@ -38,7 +38,7 @@
     "chart.js": "1.0.*",
     "ckeditor": "^4.7.0",
     "datatables.net": "^1.10.15",
-    "datatables.net-bs": "^1.10.15",
+    "datatables.net-bs4": "^1.10.16",
     "fastclick": "^1.0.6",
     "flot": "^0.8.0-alpha",
     "font-awesome": "^4.7.0",
