@@ -8,7 +8,7 @@
   "main": [
     "index2.html",
     "dist/css/AdminLTE.css",
-    "dist/js/app.js",
+    "dist/js/app.js", //You are calling a file that doesn't exist. Please change this line to "dist/js/adminlte.js". Thank you.
     "build/less/AdminLTE.less"
   ],
   "keywords": [
