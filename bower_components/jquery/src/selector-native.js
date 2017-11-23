@@ -6,8 +6,6 @@ define( [
 	"./var/indexOf"
 ], function( jQuery, document, documentElement, hasOwn, indexOf ) {
 
-"use strict";
-
 /*
  * Optional (non-Sizzle) selector module for custom builds.
  *
@@ -39,26 +37,7 @@ var hasDuplicate, sortInput,
 		documentElement.webkitMatchesSelector ||
 		documentElement.mozMatchesSelector ||
 		documentElement.oMatchesSelector ||
-		documentElement.msMatchesSelector,
-
-	// CSS string/identifier serialization
-	// https://drafts.csswg.org/cssom/#common-serializing-idioms
-	rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\x80-\uFFFF\w-]/g,
-	fcssescape = function( ch, asCodePoint ) {
-		if ( asCodePoint ) {
-
-			// U+0000 NULL becomes U+FFFD REPLACEMENT CHARACTER
-			if ( ch === "\0" ) {
-				return "\uFFFD";
-			}
-
-			// Control characters and (dependent upon position) numbers get escaped as code points
-			return ch.slice( 0, -1 ) + "\\" + ch.charCodeAt( ch.length - 1 ).toString( 16 ) + " ";
-		}
-
-		// Other potentially-special ASCII characters get backslash-escaped
-		return "\\" + ch;
-	};
+		documentElement.msMatchesSelector;
 
 function sortOrder( a, b ) {
 
@@ -131,14 +110,7 @@ function uniqueSort( results ) {
 	return results;
 }
 
-function escape( sel ) {
-	return ( sel + "" ).replace( rcssescape, fcssescape );
-}
-
 jQuery.extend( {
-	uniqueSort: uniqueSort,
-	unique: uniqueSort,
-	escapeSelector: escape,
 	find: function( selector, context, results, seed ) {
 		var elem, nodeType,
 			i = 0;
@@ -168,6 +140,8 @@ jQuery.extend( {
 
 		return results;
 	},
+	uniqueSort: uniqueSort,
+	unique: uniqueSort,
 	text: function( elem ) {
 		var node,
 			ret = "",

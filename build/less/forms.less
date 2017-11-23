@@ -3,12 +3,17 @@
  * ---------------
  */
 .form-control {
+    font-size: @font-size-base;
   .border-radius(@input-radius);
   box-shadow: none;
   border-color: @gray-lte;
   &:focus {
     border-color: @light-blue;
     box-shadow: none;
+    + .input-group-addon {
+        border-color: @light-blue;
+        box-shadow: none;
+    }
   }
   &::-moz-placeholder,
   &:-ms-input-placeholder,
@@ -71,7 +76,7 @@
 /* Input group */
 .input-group {
   .input-group-addon {
-    .border-radius(@input-radius);
+    // .border-radius(@input-radius);
     border-color: @gray-lte;
     background-color: #fff;
   }
@@ -95,13 +100,13 @@
   line-height: @input-height-base;
 }
 
-.input-lg + .form-control-feedback.fa,
+.form-control-lg + .form-control-feedback.fa,
 .input-group-lg + .form-control-feedback.fa,
 .form-group-lg .form-control + .form-control-feedback.fa {
   line-height: @input-height-large;
 }
 
-.input-sm + .form-control-feedback.fa,
+.form-control-sm + .form-control-feedback.fa,
 .input-group-sm + .form-control-feedback.fa,
 .form-group-sm .form-control + .form-control-feedback.fa {
   line-height: @input-height-small;

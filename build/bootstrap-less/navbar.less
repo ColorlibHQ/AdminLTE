@@ -346,7 +346,7 @@
   &.btn-sm {
     .navbar-vertical-align(@input-height-small);
   }
-  &.btn-xs {
+  &.btn-sm {
     .navbar-vertical-align(22);
   }
 }
@@ -376,9 +376,9 @@
 // Declared after the navbar components to ensure more specificity on the margins.
 
 @media (min-width: @grid-float-breakpoint) {
-  .navbar-left  { .pull-left(); }
+  .navbar-left  { .float-left(); }
   .navbar-right {
-    .pull-right();
+    .float-right();
     margin-right: -@navbar-padding-horizontal;
 
     ~ .navbar-right {

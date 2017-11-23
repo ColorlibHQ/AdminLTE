@@ -1,0 +1,18 @@
+<div class="rel" id="example20treference1" style="width: 40%">
+    <p class="bold">Manually triggered</p>
+</div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function(){
+    var index = 0;
+    var popper;
+
+    var instance = new Tooltip(document.getElementById("example20treference1"), {
+        title: "Hey there",
+        trigger: "click",
+    });
+    instance.show();
+});
+
+</script>

@@ -1,0 +1,12 @@
+{
+  "name": "@popperjs/babel-config",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Federico Zivolo <federico.zivolo@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-stage-2": "^6.24.1"
+  }
+}

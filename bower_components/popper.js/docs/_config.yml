@@ -1,0 +1,62 @@
+# Welcome to Jekyll!
+#
+
+# Site settings
+title: Popper.js
+encoding: utf-8
+description: A kickass library<br> used to manage poppers in web applications<br><a href="https://medium.com/@FezVrasta/popper-js-v1-5e8b3acd888c" target="_blank">Now much more powerful!</a>
+owner: Federico Zivolo & contributors # or company name
+first_published: 2016 # if migrating another site, the year of your first publish
+email: federico.zivolo@gmail.com
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://popper.js.org" # the base hostname & protocol for your site
+github: https://github.com/FezVrasta/popper.js
+social:
+  twitter: https://twitter.com/FezVr4sta
+  github: https://github.com/FezVrasta
+  medium: https://medium.com/@FezVrasta
+  linkedin-square: https://linkedin.com/in/FezVrasta
+  #email: /contact/
+  #flickr:
+  #instagram:
+  #youtube-square:
+  #spotify:
+  #stack-overflow:
+  #vimeo:
+  #reddit:
+  #stubleupon:
+  #delicious:
+  #pied-piper:
+  #digg:
+  #soundcloud:
+  #deviantart:
+  #angellist:
+  #tumblr-square:
+  #stackexchange:
+  #weibo:
+  #trello:
+  #foursquare:
+  #linux:
+  #bitbucket-square:
+  #vk:
+  #slack:
+  #vine:
+  #weixin:
+  #yelp:
+  #skyatlas:
+  #leanpub:
+  #connectdevelop:
+  #ils:
+  #forumbee:
+  #tripadvisor:
+  #amazon:
+
+# Build settings
+markdown: kramdown
+#sass:
+#  style: compressed
+
+kramdown:
+  parse_block_html: true
+  parse_span_html: true
+  html_to_native: true

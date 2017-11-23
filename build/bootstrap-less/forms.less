@@ -192,12 +192,12 @@ input[type="search"] {
       line-height: @input-height-base;
     }
 
-    &.input-sm,
+    &.form-control-sm,
     .input-group-sm & {
       line-height: @input-height-small;
     }
 
-    &.input-lg,
+    &.form-control-lg,
     .input-group-lg & {
       line-height: @input-height-large;
     }
@@ -310,8 +310,8 @@ input[type="checkbox"] {
   margin-bottom: 0;
   min-height: (@line-height-computed + @font-size-base);
 
-  &.input-lg,
-  &.input-sm {
+  &.form-control-lg,
+  &.form-control-sm {
     padding-left: 0;
     padding-right: 0;
   }
@@ -326,7 +326,7 @@ input[type="checkbox"] {
 // The `.form-group-* form-control` variations are sadly duplicated to avoid the
 // issue documented in https://github.com/twbs/bootstrap/issues/15074.
 
-.input-sm {
+.form-control-sm {
   .input-size(@input-height-small; @padding-small-vertical; @padding-small-horizontal; @font-size-small; @line-height-small; @input-border-radius-small);
 }
 .form-group-sm {
@@ -354,7 +354,7 @@ input[type="checkbox"] {
   }
 }
 
-.input-lg {
+.form-control-lg {
   .input-size(@input-height-large; @padding-large-vertical; @padding-large-horizontal; @font-size-large; @line-height-large; @input-border-radius-large);
 }
 .form-group-lg {
@@ -409,14 +409,14 @@ input[type="checkbox"] {
   text-align: center;
   pointer-events: none;
 }
-.input-lg + .form-control-feedback,
+.form-control-lg + .form-control-feedback,
 .input-group-lg + .form-control-feedback,
 .form-group-lg .form-control + .form-control-feedback {
   width: @input-height-large;
   height: @input-height-large;
   line-height: @input-height-large;
 }
-.input-sm + .form-control-feedback,
+.form-control-sm + .form-control-feedback,
 .input-group-sm + .form-control-feedback,
 .form-group-sm .form-control + .form-control-feedback {
   width: @input-height-small;
@@ -547,7 +547,7 @@ input[type="checkbox"] {
 // Horizontal forms are built on grid classes and allow you to create forms with
 // labels on the left and inputs on the right.
 
-.form-horizontal {
+.form-inline {
 
   // Consistent vertical alignment of radios and checkboxes
   //
@@ -592,7 +592,7 @@ input[type="checkbox"] {
 
   // Form group sizes
   //
-  // Quick utility class for applying `.input-lg` and `.input-sm` styles to the
+  // Quick utility class for applying `.form-control-lg` and `.form-control-sm` styles to the
   // inputs and labels within a `.form-group`.
   .form-group-lg {
     @media (min-width: @screen-sm-min) {

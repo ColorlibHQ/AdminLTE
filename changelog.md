@@ -1,4 +1,15 @@
 ### CHANGE LOG:
+**v2.4.2 - Bootstrap 4 beta 2:**
+- Update Bootstrap to v4.0.0-beta.2
+- Change class img-circle to rounded-circle.
+- Change class table-condensed to table-sm.
+- Change class col-xs to col.
+- Change class pull-* to float-*.
+- Change class label to badge.
+- Change class progress to progress mb-3.
+- See more on https://getbootstrap.com/docs/4.0/migration.
+
+
 **v2.3.11:**
 - Update colors @gray color to @gray-lte
 

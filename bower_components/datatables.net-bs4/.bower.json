@@ -1,0 +1,49 @@
+{
+  "name": "datatables.net-bs4",
+  "description": "DataTables for jQuery with styling for [Bootstrap 4](http://getbootstrap.com/)",
+  "main": [
+    "js/dataTables.bootstrap4.js",
+    "css/dataTables.bootstrap4.css"
+  ],
+  "keywords": [
+    "filter",
+    "sort",
+    "DataTables",
+    "jQuery",
+    "table",
+    "Bootstrap 4"
+  ],
+  "dependencies": {
+    "jquery": ">=1.7",
+    "datatables.net": ">=1.10.13"
+  },
+  "moduleType": [
+    "globals",
+    "amd",
+    "node"
+  ],
+  "ignore": [
+    "composer.json",
+    "datatables.json",
+    "package.json"
+  ],
+  "authors": [
+    {
+      "name": "SpryMedia Ltd",
+      "homepage": "https://datatables.net"
+    }
+  ],
+  "homepage": "https://datatables.net",
+  "license": "MIT",
+  "version": "3.2.2",
+  "_release": "3.2.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "3.2.2",
+    "commit": "957a45f343ac2e69b00b31ac14808672e31b72e9"
+  },
+  "_source": "https://github.com/DataTables/Dist-DataTables-Bootstrap4.git",
+  "_target": "^3.2.2",
+  "_originalSource": "datatables.net-bs4",
+  "_direct": true
+}

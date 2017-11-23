@@ -1,5 +1,5 @@
 /*!
- * FullCalendar v3.5.1 Google Calendar Plugin
+ * FullCalendar v3.7.0 Google Calendar Plugin
  * Docs & License: https://fullcalendar.io/
  * (c) 2017 Adam Shaw
  */
@@ -12,7 +12,7 @@
 		module.exports = factory(require('jquery'));
 	}
 	else {
-		factory(jQuery);
+		factory(window.jQuery);
 	}
 })(function($) {
 
@@ -39,12 +39,14 @@ var GcalEventSource = EventSource.extend({
 		var _this = this;
 		var url = this.buildUrl();
 		var requestParams = this.buildRequestParams(start, end, timezone);
-		var ajaxSettings = this.ajaxSettings;
+		var ajaxSettings = this.ajaxSettings || {};
 		var onSuccess = ajaxSettings.success;
 
 		if (!requestParams) { // could have failed
 			return Promise.reject();
 		}
+
+		this.calendar.pushLoading();
 
 		return Promise.construct(function(onResolve, onReject) {
 			$.ajax($.extend(
@@ -57,6 +59,8 @@ var GcalEventSource = EventSource.extend({
 					success: function(responseData) {
 						var rawEventDefs;
 						var successRes;
+
+						_this.calendar.popLoading();
 
 						if (responseData.error) {
 							_this.reportError('Google Calendar API: ' + responseData.error.message, responseData.error.errors);
@@ -187,8 +191,8 @@ var GcalEventSource = EventSource.extend({
 	},
 
 
-	applyManualRawProps: function(rawProps) {
-		var superSuccess = EventSource.prototype.applyManualRawProps.apply(this, arguments);
+	applyManualStandardProps: function(rawProps) {
+		var superSuccess = EventSource.prototype.applyManualStandardProps.apply(this, arguments);
 		var googleCalendarId = rawProps.googleCalendarId;
 
 		if (googleCalendarId == null && rawProps.url) {
@@ -205,8 +209,11 @@ var GcalEventSource = EventSource.extend({
 	},
 
 
-	applyOtherRawProps: function(rawProps) {
-		this.ajaxSettings = rawProps;
+	applyMiscProps: function(rawProps) {
+		if (!this.ajaxSettings) {
+			this.ajaxSettings = {};
+		}
+		$.extend(this.ajaxSettings, rawProps);
 	}
 
 });
@@ -215,7 +222,7 @@ var GcalEventSource = EventSource.extend({
 GcalEventSource.API_BASE = 'https://www.googleapis.com/calendar/v3/calendars';
 
 
-GcalEventSource.allowRawProps({
+GcalEventSource.defineStandardProps({
 	// manually process...
 	url: false,
 	googleCalendarId: false,
@@ -229,7 +236,7 @@ GcalEventSource.allowRawProps({
 GcalEventSource.parse = function(rawInput, calendar) {
 	var rawProps;
 
-	if (typeof rawInput === 'object') { // long form. might fail in applyManualRawProps
+	if (typeof rawInput === 'object') { // long form. might fail in applyManualStandardProps
 		rawProps = rawInput;
 	}
 	else if (typeof rawInput === 'string') { // short form

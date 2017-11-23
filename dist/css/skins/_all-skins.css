@@ -109,6 +109,7 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
+  border: none;
 }
 .skin-blue .sidebar-form input[type="text"] {
   color: #666;
@@ -264,6 +265,7 @@
   background-color: #fff;
   border: 1px solid transparent;
   height: 35px;
+  border: none;
 }
 .skin-blue-light .sidebar-form input[type="text"] {
   color: #666;
@@ -434,6 +436,7 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
+  border: none;
 }
 .skin-black .sidebar-form input[type="text"] {
   color: #666;
@@ -607,6 +610,7 @@
   background-color: #fff;
   border: 1px solid transparent;
   height: 35px;
+  border: none;
 }
 .skin-black-light .sidebar-form input[type="text"] {
   color: #666;
@@ -746,6 +750,7 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
+  border: none;
 }
 .skin-green .sidebar-form input[type="text"] {
   color: #666;
@@ -893,6 +898,7 @@
   background-color: #fff;
   border: 1px solid transparent;
   height: 35px;
+  border: none;
 }
 .skin-green-light .sidebar-form input[type="text"] {
   color: #666;
@@ -1032,6 +1038,7 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
+  border: none;
 }
 .skin-red .sidebar-form input[type="text"] {
   color: #666;
@@ -1179,6 +1186,7 @@
   background-color: #fff;
   border: 1px solid transparent;
   height: 35px;
+  border: none;
 }
 .skin-red-light .sidebar-form input[type="text"] {
   color: #666;
@@ -1318,6 +1326,7 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
+  border: none;
 }
 .skin-yellow .sidebar-form input[type="text"] {
   color: #666;
@@ -1465,6 +1474,7 @@
   background-color: #fff;
   border: 1px solid transparent;
   height: 35px;
+  border: none;
 }
 .skin-yellow-light .sidebar-form input[type="text"] {
   color: #666;
@@ -1604,6 +1614,7 @@
   background-color: #374850;
   border: 1px solid transparent;
   height: 35px;
+  border: none;
 }
 .skin-purple .sidebar-form input[type="text"] {
   color: #666;
@@ -1751,6 +1762,7 @@
   background-color: #fff;
   border: 1px solid transparent;
   height: 35px;
+  border: none;
 }
 .skin-purple-light .sidebar-form input[type="text"] {
   color: #666;

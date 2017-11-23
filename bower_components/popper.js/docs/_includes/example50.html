@@ -1,0 +1,18 @@
+<div class="rel" id="example5reference1">
+    <p class="bold">Pop</p>
+    <p class="thin">on the bottom</p>
+</div>
+
+<div class="popper" id="example5popper1">
+    <p class="bold">Popper on bottom</p>
+    <p class="thin">Flips when hits viewport</p>
+    <div class="popper__arrow" x-arrow></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        var pop1 = new Popper(example5reference1, example5popper1, {
+            placement: 'bottom'
+        });
+    }, false);
+</script>

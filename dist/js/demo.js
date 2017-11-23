@@ -168,8 +168,8 @@ $(function () {
   })
 
   // Create the tab button
-  var $tabButton = $('<li />', { 'class': 'active' })
-    .html('<a href=\'#control-sidebar-theme-demo-options-tab\' data-toggle=\'tab\'>'
+  var $tabButton = $('<li />', { 'class': 'nav-item' })
+    .html('<a href=\'#control-sidebar-theme-demo-options-tab\' class=\'nav-link active\' data-toggle=\'tab\'>'
       + '<i class="fa fa-wrench"></i>'
       + '</a>')
 
@@ -189,7 +189,7 @@ $(function () {
     // Fixed layout
     + '<div class="form-group">'
     + '<label class="control-sidebar-subheading">'
-    + '<input type="checkbox"data-layout="fixed"class="pull-right"/> '
+    + '<input type="checkbox"data-layout="fixed"class="float-right"/> '
     + 'Fixed layout'
     + '</label>'
     + '<p>Activate the fixed layout. You can\'t use fixed and boxed layouts together</p>'
@@ -197,7 +197,7 @@ $(function () {
     // Boxed layout
     + '<div class="form-group">'
     + '<label class="control-sidebar-subheading">'
-    + '<input type="checkbox"data-layout="layout-boxed" class="pull-right"/> '
+    + '<input type="checkbox"data-layout="layout-boxed" class="float-right"/> '
     + 'Boxed Layout'
     + '</label>'
     + '<p>Activate the boxed layout</p>'
@@ -205,7 +205,7 @@ $(function () {
     // Sidebar Toggle
     + '<div class="form-group">'
     + '<label class="control-sidebar-subheading">'
-    + '<input type="checkbox"data-layout="sidebar-collapse"class="pull-right"/> '
+    + '<input type="checkbox"data-layout="sidebar-collapse"class="float-right"/> '
     + 'Toggle Sidebar'
     + '</label>'
     + '<p>Toggle the left sidebar\'s state (open or collapse)</p>'
@@ -213,7 +213,7 @@ $(function () {
     // Sidebar mini expand on hover toggle
     + '<div class="form-group">'
     + '<label class="control-sidebar-subheading">'
-    + '<input type="checkbox"data-enable="expandOnHover"class="pull-right"/> '
+    + '<input type="checkbox"data-enable="expandOnHover"class="float-right"/> '
     + 'Sidebar Expand on Hover'
     + '</label>'
     + '<p>Let the sidebar mini expand on hover</p>'
@@ -221,7 +221,7 @@ $(function () {
     // Control Sidebar Toggle
     + '<div class="form-group">'
     + '<label class="control-sidebar-subheading">'
-    + '<input type="checkbox"data-controlsidebar="control-sidebar-open"class="pull-right"/> '
+    + '<input type="checkbox"data-controlsidebar="control-sidebar-open"class="float-right"/> '
     + 'Toggle Right Sidebar Slide'
     + '</label>'
     + '<p>Toggle between slide over content and push content effects</p>'
@@ -229,7 +229,7 @@ $(function () {
     // Control Sidebar Skin Toggle
     + '<div class="form-group">'
     + '<label class="control-sidebar-subheading">'
-    + '<input type="checkbox"data-sidebarskin="toggle"class="pull-right"/> '
+    + '<input type="checkbox"data-sidebarskin="toggle"class="float-right"/> '
     + 'Toggle Right Sidebar Skin'
     + '</label>'
     + '<p>Toggle between dark and light skins for the right sidebar</p>'

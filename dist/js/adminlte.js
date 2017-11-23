@@ -1083,7 +1083,7 @@ throw new Error('AdminLTE requires jQuery')
   };
 
   // Private
-  
+
   Tree.prototype._setUpListeners = function () {
     var that = this;
 

@@ -32,7 +32,7 @@
   &:hover,
   &:focus,
   &.focus {
-    color: @btn-default-color;
+    color: @btn-secondary-color;
     text-decoration: none;
   }
 
@@ -63,8 +63,8 @@
 // Alternate buttons
 // --------------------------------------------------
 
-.btn-default {
-  .button-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
+.btn-secondary {
+  .button-variant(@btn-secondary-color; @btn-secondary-bg; @btn-secondary-border);
 }
 .btn-primary {
   .button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
@@ -138,7 +138,7 @@
   // line-height: ensure proper height of button next to small input
   .button-size(@padding-small-vertical; @padding-small-horizontal; @font-size-small; @line-height-small; @btn-border-radius-small);
 }
-.btn-xs {
+.btn-sm {
   .button-size(@padding-xs-vertical; @padding-xs-horizontal; @font-size-small; @line-height-small; @btn-border-radius-small);
 }
 

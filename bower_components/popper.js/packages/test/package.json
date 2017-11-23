@@ -1,0 +1,43 @@
+{
+  "name": "@popperjs/test",
+  "version": "1.0.2",
+  "description": "This package is a list of scripts used by Popper.js and Tooltip.js to test them.",
+  "bin": {
+    "popper-karma": "./bin/karma.js"
+  },
+  "scripts": {
+    "test": "exit 0"
+  },
+  "author": "Federico Zivolo <federico.zivolo@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-istanbul": "^4.1.4",
+    "babel-plugin-module-resolver": "^2.7.1",
+    "babel-preset-minify": "^0.2.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "chai": "^4.0.1",
+    "eslint": "^4.0.0",
+    "eslint-plugin-jasmine": "^2.6.2",
+    "jasmine-core": "^2.6.2",
+    "karma": "^1.7.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-coverage": "^1.1.1",
+    "karma-firefox-launcher": "^1.0.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-mocha-reporter": "^2.2.3",
+    "karma-rollup-preprocessor": "^5.0.0",
+    "karma-safari-launcher": "^1.0.0",
+    "karma-sauce-launcher": "^1.1.0",
+    "karma-sinon": "^1.0.5",
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-watch": "^4.0.0",
+    "sinon": "^2.3.2",
+    "yargs": "^8.0.1"
+  }
+}

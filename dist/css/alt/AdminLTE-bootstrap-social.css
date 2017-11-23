@@ -41,10 +41,10 @@
   width: 28px;
   font-size: 1.4em;
 }
-.btn-social.btn-xs {
+.btn-social.btn-sm {
   padding-left: 30px;
 }
-.btn-social.btn-xs > :first-child {
+.btn-social.btn-sm > :first-child {
   line-height: 20px;
   width: 20px;
   font-size: 1.2em;
@@ -87,10 +87,10 @@
   width: 28px;
   font-size: 1.4em;
 }
-.btn-social-icon.btn-xs {
+.btn-social-icon.btn-sm {
   padding-left: 30px;
 }
-.btn-social-icon.btn-xs > :first-child {
+.btn-social-icon.btn-sm > :first-child {
   line-height: 20px;
   width: 20px;
   font-size: 1.2em;
@@ -112,7 +112,7 @@
   padding-left: 0;
   padding-right: 0;
 }
-.btn-social-icon.btn-xs {
+.btn-social-icon.btn-sm {
   height: 22px;
   width: 22px;
   padding-left: 0;

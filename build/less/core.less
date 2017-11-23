@@ -6,15 +6,17 @@ html,
 body {
   height: 100%;
   .layout-boxed & {
-    height: 100%;
-  }
+      height: 100%;
+    }
 }
 
 body {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  overflow-x: hidden;
-  overflow-y: auto;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-size: @font-size-base;
+    line-height: @line-height-base;
 }
 
 /* Layout */
@@ -130,6 +132,11 @@ body {
   min-height: 250px;
   padding: 15px;
   .container-fixed(@grid-gutter-width);
+}
+
+b,
+strong {
+  font-weight: 700;
 }
 
 /* H1 - H6 font */

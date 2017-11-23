@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" zoomAndPan="disable" preserveAspectRatio="none">
+    <style type="text/css"><![CDATA[ line { stroke: #ffffff; stroke-width: 2; } ]]></style>
+	<line x1="0" y1="1" x2="16" y2="1" />
+	<line x1="0" y1="7" x2="16" y2="7" />
+	<line x1="0" y1="13" x2="16" y2="13" />
+</svg>

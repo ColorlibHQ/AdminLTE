@@ -1,0 +1,52 @@
+{
+  "name": "popper.js",
+  "version": "1.12.8",
+  "description": "A kickass library to manage your poppers",
+  "homepage": "https://popper.js.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FezVrasta/popper.js.git"
+  },
+  "author": "Federico Zivolo <federico.zivolo@gmail.com>",
+  "contributors": [
+    "Contributors (https://github.com/FezVrasta/popper.js/graphs/contributors)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FezVrasta/popper.js/issues"
+  },
+  "keywords": [
+    "popperjs",
+    "component",
+    "drop",
+    "tooltip",
+    "popover",
+    "position",
+    "attached"
+  ],
+  "main": "dist/umd/popper.js",
+  "module": "dist/esm/popper.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "prepare": "yarn build",
+    "postpublish": "nuget-publish && ./bower-publish.sh",
+    "prebuild": "yarn lint",
+    "pretest": "yarn lint",
+    "build": "node bundle.js",
+    "lint": "eslint .",
+    "test": "popper-karma",
+    "test:dev": "BROWSERS=Chrome NODE_ENV=development yarn test",
+    "coverage": "COVERAGE=true yarn test"
+  },
+  "devDependencies": {
+    "@popperjs/bundle": "^1.0.2",
+    "@popperjs/eslint-config-popper": "^1.0.0",
+    "@popperjs/test": "^1.0.0",
+    "@popperjs/test-utils": "^1.0.0",
+    "eslint": "^4.1.1",
+    "nuget-publish": "^1.0.3"
+  },
+  "resolutions": {
+    "micromatch": "^3.0.3"
+  }
+}

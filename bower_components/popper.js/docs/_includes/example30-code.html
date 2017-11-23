@@ -1,0 +1,10 @@
+<h2 id="example2" tabindex="0">Popper on scrolling container</h2>
+<p>
+    In this example we have a relative div which contains a div with <code>overflow: scroll</code>.<br>
+    Inside it, there are our popper and reference elements.
+</p>
+{% highlight javascript %}
+var popper = new Popper(referenceElement, onLeftPopper, {
+    placement: 'left',
+});
+{% endhighlight %}
