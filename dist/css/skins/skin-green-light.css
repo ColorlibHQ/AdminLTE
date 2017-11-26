@@ -61,9 +61,8 @@
 .skin-green-light .left-side {
   background-color: #f9fafc;
 }
-.skin-green-light .content-wrapper,
-.skin-green-light .main-footer {
-  border-left: 1px solid #d2d6de;
+.skin-green-light .main-sidebar {
+  border-right: 1px solid #d2d6de;
 }
 .skin-green-light .user-panel > .info,
 .skin-green-light .user-panel > .info > a {
@@ -102,14 +101,14 @@
 .skin-green-light .sidebar a:hover {
   text-decoration: none;
 }
-.skin-green-light .treeview-menu > li > a {
+.skin-green-light .sidebar-menu .treeview-menu > li > a {
   color: #777777;
 }
-.skin-green-light .treeview-menu > li.active > a,
-.skin-green-light .treeview-menu > li > a:hover {
+.skin-green-light .sidebar-menu .treeview-menu > li.active > a,
+.skin-green-light .sidebar-menu .treeview-menu > li > a:hover {
   color: #000000;
 }
-.skin-green-light .treeview-menu > li.active > a {
+.skin-green-light .sidebar-menu .treeview-menu > li.active > a {
   font-weight: 600;
 }
 .skin-green-light .sidebar-form {

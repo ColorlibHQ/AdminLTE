@@ -73,9 +73,12 @@
   border-left: 3px solid transparent;
 }
 .skin-red .sidebar-menu > li:hover > a,
-.skin-red .sidebar-menu > li.active > a {
+.skin-red .sidebar-menu > li.active > a,
+.skin-red .sidebar-menu > li.menu-open > a {
   color: #ffffff;
   background: #1e282c;
+}
+.skin-red .sidebar-menu > li.active > a {
   border-left-color: #dd4b39;
 }
 .skin-red .sidebar-menu > li > .treeview-menu {
@@ -88,11 +91,11 @@
 .skin-red .sidebar a:hover {
   text-decoration: none;
 }
-.skin-red .treeview-menu > li > a {
+.skin-red .sidebar-menu .treeview-menu > li > a {
   color: #8aa4af;
 }
-.skin-red .treeview-menu > li.active > a,
-.skin-red .treeview-menu > li > a:hover {
+.skin-red .sidebar-menu .treeview-menu > li.active > a,
+.skin-red .sidebar-menu .treeview-menu > li > a:hover {
   color: #ffffff;
 }
 .skin-red .sidebar-form {

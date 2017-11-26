@@ -1,0 +1,13 @@
+{
+  "name": "jquery-knob",
+  "version": "1.2.13",
+  "main": "js/jquery.knob.js",
+  "description": "Nice, downward compatible, touchable, jQuery dial.",
+  "license": "MIT",
+  "ignore": [],
+  "dependencies": {
+    "jquery": ">=1.7.0"
+  },
+  "devDependencies": {}
+}
+

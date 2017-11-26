@@ -1,7 +1,8 @@
 {
   "name": "almasaeed2010/adminlte",
   "description": "AdminLTE - admin control panel and dashboard that's based on Bootstrap 3",
-  "homepage": "http://almsaeedstudio.com/",
+  "homepage": "https://adminlte.io/",
+  "type": "template",
   "keywords": [
     "css",
     "js",
@@ -16,11 +17,14 @@
   "authors": [
     {
       "name": "Abdullah Almsaeed",
-      "email": "support@almsaeedstudio.com"
+      "email": "abdullah@almsaeedstudio.com"
     }
   ],
   "license": "MIT",
   "support": {
     "issues": "https://github.com/almasaeed2010/AdminLTE/issues"
+  },
+  "require": {
+    "composer/installers": "1.*"
   }
 }

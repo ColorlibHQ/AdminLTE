@@ -4,15 +4,14 @@
  */
 /* skin-black navbar */
 .skin-black-light .main-header {
-  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #d2d6de;
 }
 .skin-black-light .main-header .navbar-toggle {
   color: #333;
 }
 .skin-black-light .main-header .navbar-brand {
   color: #333;
-  border-right: 1px solid #eee;
+  border-right: 1px solid #d2d6de;
 }
 .skin-black-light .main-header .navbar {
   background-color: #ffffff;
@@ -39,21 +38,21 @@
 }
 .skin-black-light .main-header .navbar > .sidebar-toggle {
   color: #333;
-  border-right: 1px solid #eee;
+  border-right: 1px solid #d2d6de;
 }
 .skin-black-light .main-header .navbar .navbar-nav > li > a {
-  border-right: 1px solid #eee;
+  border-right: 1px solid #d2d6de;
 }
 .skin-black-light .main-header .navbar .navbar-custom-menu .navbar-nav > li > a,
 .skin-black-light .main-header .navbar .navbar-right > li > a {
-  border-left: 1px solid #eee;
+  border-left: 1px solid #d2d6de;
   border-right-width: 0;
 }
 .skin-black-light .main-header > .logo {
   background-color: #ffffff;
   color: #333333;
   border-bottom: 0 solid transparent;
-  border-right: 1px solid #eee;
+  border-right: 1px solid #d2d6de;
 }
 .skin-black-light .main-header > .logo:hover {
   background-color: #fcfcfc;
@@ -81,9 +80,8 @@
 .skin-black-light .left-side {
   background-color: #f9fafc;
 }
-.skin-black-light .content-wrapper,
-.skin-black-light .main-footer {
-  border-left: 1px solid #d2d6de;
+.skin-black-light .main-sidebar {
+  border-right: 1px solid #d2d6de;
 }
 .skin-black-light .user-panel > .info,
 .skin-black-light .user-panel > .info > a {
@@ -122,14 +120,14 @@
 .skin-black-light .sidebar a:hover {
   text-decoration: none;
 }
-.skin-black-light .treeview-menu > li > a {
+.skin-black-light .sidebar-menu .treeview-menu > li > a {
   color: #777777;
 }
-.skin-black-light .treeview-menu > li.active > a,
-.skin-black-light .treeview-menu > li > a:hover {
+.skin-black-light .sidebar-menu .treeview-menu > li.active > a,
+.skin-black-light .sidebar-menu .treeview-menu > li > a:hover {
   color: #000000;
 }
-.skin-black-light .treeview-menu > li.active > a {
+.skin-black-light .sidebar-menu .treeview-menu > li.active > a {
   font-weight: 600;
 }
 .skin-black-light .sidebar-form {

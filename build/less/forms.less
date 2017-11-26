@@ -5,7 +5,7 @@
 .form-control {
   .border-radius(@input-radius);
   box-shadow: none;
-  border-color: @gray;
+  border-color: @gray-lte;
   &:focus {
     border-color: @light-blue;
     box-shadow: none;
@@ -29,7 +29,8 @@
     label {
       color: @green;
     }
-    .form-control {
+    .form-control,
+    .input-group-addon {
       border-color: @green;
       box-shadow: none;
     }
@@ -42,7 +43,8 @@
     label {
       color: @yellow;
     }
-    .form-control {
+    .form-control,
+    .input-group-addon {
       border-color: @yellow;
       box-shadow: none;
     }
@@ -55,7 +57,8 @@
     label {
       color: @red;
     }
-    .form-control {
+    .form-control,
+    .input-group-addon {
       border-color: @red;
       box-shadow: none;
     }
@@ -69,7 +72,7 @@
 .input-group {
   .input-group-addon {
     .border-radius(@input-radius);
-    border-color: @gray;
+    border-color: @gray-lte;
     background-color: #fff;
   }
 }

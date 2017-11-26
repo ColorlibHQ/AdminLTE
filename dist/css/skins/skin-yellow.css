@@ -73,9 +73,12 @@
   border-left: 3px solid transparent;
 }
 .skin-yellow .sidebar-menu > li:hover > a,
-.skin-yellow .sidebar-menu > li.active > a {
+.skin-yellow .sidebar-menu > li.active > a,
+.skin-yellow .sidebar-menu > li.menu-open > a {
   color: #ffffff;
   background: #1e282c;
+}
+.skin-yellow .sidebar-menu > li.active > a {
   border-left-color: #f39c12;
 }
 .skin-yellow .sidebar-menu > li > .treeview-menu {
@@ -88,11 +91,11 @@
 .skin-yellow .sidebar a:hover {
   text-decoration: none;
 }
-.skin-yellow .treeview-menu > li > a {
+.skin-yellow .sidebar-menu .treeview-menu > li > a {
   color: #8aa4af;
 }
-.skin-yellow .treeview-menu > li.active > a,
-.skin-yellow .treeview-menu > li > a:hover {
+.skin-yellow .sidebar-menu .treeview-menu > li.active > a,
+.skin-yellow .sidebar-menu .treeview-menu > li > a:hover {
   color: #ffffff;
 }
 .skin-yellow .sidebar-form {

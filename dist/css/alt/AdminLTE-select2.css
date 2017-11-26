@@ -57,7 +57,10 @@
 .select2-dropdown .select2-search__field:focus,
 .select2-search--inline .select2-search__field:focus {
   outline: none;
-  border: 1px solid #3c8dbc;
+}
+.select2-container--default.select2-container--focus .select2-selection--multiple,
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  border-color: #3c8dbc !important;
 }
 .select2-container--default .select2-results__option[aria-disabled=true] {
   color: #999;
