@@ -3,6 +3,8 @@
 [![Join the chat at https://gitter.im/uxsolutions/bootstrap-datepicker](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/uxsolutions/bootstrap-datepicker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/uxsolutions/bootstrap-datepicker.svg?branch=master)](https://travis-ci.org/uxsolutions/bootstrap-datepicker)
 [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/uxsolutions/bootstrap-datepicker/master/LICENSE)
+[![npm](https://img.shields.io/npm/dt/bootstrap-datepicker.svg)](https://github.com/uxsolutions/bootstrap-datepicker)
+[![Twitter Follow](https://img.shields.io/twitter/follow/bsdatepicker.svg?style=social&label=Follow)](https://twitter.com/bsdatepicker)
 
 Versions are incremented according to [semver](http://semver.org/).
 

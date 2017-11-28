@@ -40,6 +40,5 @@
   },
   "_source": "https://github.com/HubSpot/pace.git",
   "_target": "^1.0.2",
-  "_originalSource": "pace",
-  "_direct": true
+  "_originalSource": "pace"
 }

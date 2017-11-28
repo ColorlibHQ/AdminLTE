@@ -19,6 +19,5 @@
   },
   "_source": "https://github.com/ftlabs/fastclick.git",
   "_target": "^1.0.6",
-  "_originalSource": "fastclick",
-  "_direct": true
+  "_originalSource": "fastclick"
 }

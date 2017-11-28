@@ -22,6 +22,5 @@
   },
   "_source": "https://github.com/rkgrep/jquery.sparkline.git",
   "_target": "^2.1.3",
-  "_originalSource": "jquery-sparkline",
-  "_direct": true
+  "_originalSource": "jquery-sparkline"
 }

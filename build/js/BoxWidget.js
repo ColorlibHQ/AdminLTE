@@ -7,9 +7,9 @@
  *         Pass any option as data-option="value"
  */
 +function ($) {
-  'use strict'
+  'use strict';
 
-  var DataKey = 'lte.boxwidget'
+  var DataKey = 'lte.boxwidget';
 
   var Default = {
     animationSpeed : 500,
@@ -18,146 +18,150 @@
     collapseIcon   : 'fa-minus',
     expandIcon     : 'fa-plus',
     removeIcon     : 'fa-times'
-  }
+  };
 
   var Selector = {
     data     : '.box',
     collapsed: '.collapsed-box',
+    header   : '.box-header',
     body     : '.box-body',
     footer   : '.box-footer',
     tools    : '.box-tools'
-  }
+  };
 
   var ClassName = {
     collapsed: 'collapsed-box'
-  }
+  };
 
   var Event = {
     collapsed: 'collapsed.boxwidget',
     expanded : 'expanded.boxwidget',
     removed  : 'removed.boxwidget'
-  }
+  };
 
   // BoxWidget Class Definition
   // =====================
   var BoxWidget = function (element, options) {
-    this.element = element
-    this.options = options
+    this.element = element;
+    this.options = options;
 
-    this._setUpListeners()
-  }
+    this._setUpListeners();
+  };
 
   BoxWidget.prototype.toggle = function () {
-    var isOpen = !$(this.element).is(Selector.collapsed)
+    var isOpen = !$(this.element).is(Selector.collapsed);
 
     if (isOpen) {
-      this.collapse()
+      this.collapse();
     } else {
-      this.expand()
+      this.expand();
     }
-  }
+  };
 
   BoxWidget.prototype.expand = function () {
-    var expandedEvent = $.Event(Event.expanded)
-    var collapseIcon  = this.options.collapseIcon
-    var expandIcon    = this.options.expandIcon
+    var expandedEvent = $.Event(Event.expanded);
+    var collapseIcon  = this.options.collapseIcon;
+    var expandIcon    = this.options.expandIcon;
 
-    $(this.element).removeClass(ClassName.collapsed)
+    $(this.element).removeClass(ClassName.collapsed);
 
     $(this.element)
-      .find(Selector.tools)
+      .children(Selector.header + ', ' + Selector.body + ', ' + Selector.footer)
+      .children(Selector.tools)
       .find('.' + expandIcon)
       .removeClass(expandIcon)
-      .addClass(collapseIcon)
+      .addClass(collapseIcon);
 
-    $(this.element).find(Selector.body + ', ' + Selector.footer)
+    $(this.element).children(Selector.body + ', ' + Selector.footer)
       .slideDown(this.options.animationSpeed, function () {
-        $(this.element).trigger(expandedEvent)
-      }.bind(this))
-  }
+        $(this.element).trigger(expandedEvent);
+      }.bind(this));
+  };
 
   BoxWidget.prototype.collapse = function () {
-    var collapsedEvent = $.Event(Event.collapsed)
-    var collapseIcon   = this.options.collapseIcon
-    var expandIcon     = this.options.expandIcon
+    var collapsedEvent = $.Event(Event.collapsed);
+    var collapseIcon   = this.options.collapseIcon;
+    var expandIcon     = this.options.expandIcon;
 
     $(this.element)
-      .find(Selector.tools)
+      .children(Selector.header + ', ' + Selector.body + ', ' + Selector.footer)
+      .children(Selector.tools)
       .find('.' + collapseIcon)
       .removeClass(collapseIcon)
-      .addClass(expandIcon)
+      .addClass(expandIcon);
 
-    $(this.element).find(Selector.body + ', ' + Selector.footer)
+    $(this.element).children(Selector.body + ', ' + Selector.footer)
       .slideUp(this.options.animationSpeed, function () {
-        $(this.element).addClass(ClassName.collapsed)
-        $(this.element).trigger(collapsedEvent)
-      }.bind(this))
-  }
+        $(this.element).addClass(ClassName.collapsed);
+        $(this.element).trigger(collapsedEvent);
+      }.bind(this));
+  };
 
   BoxWidget.prototype.remove = function () {
-    var removedEvent = $.Event(Event.removed)
+    var removedEvent = $.Event(Event.removed);
 
     $(this.element).slideUp(this.options.animationSpeed, function () {
-      $(this.element).trigger(removedEvent)
-      $(this.element).remove()
-    }.bind(this))
-  }
+      $(this.element).trigger(removedEvent);
+      $(this.element).remove();
+    }.bind(this));
+  };
 
   // Private
 
   BoxWidget.prototype._setUpListeners = function () {
-    var that = this
+    var that = this;
 
     $(this.element).on('click', this.options.collapseTrigger, function (event) {
-      if (event) event.preventDefault()
-      that.toggle()
-    })
+      if (event) event.preventDefault();
+      that.toggle($(this));
+      return false;
+    });
 
     $(this.element).on('click', this.options.removeTrigger, function (event) {
-      if (event) event.preventDefault()
-      that.remove()
-    })
-  }
+      if (event) event.preventDefault();
+      that.remove($(this));
+      return false;
+    });
+  };
 
   // Plugin Definition
   // =================
   function Plugin(option) {
     return this.each(function () {
-      var $this = $(this)
-      var data  = $this.data(DataKey)
+      var $this = $(this);
+      var data  = $this.data(DataKey);
 
       if (!data) {
-        var options = $.extend({}, Default, $this.data(), typeof option == 'object' && option)
-        $this.data(DataKey, (data = new BoxWidget($this, options)))
+        var options = $.extend({}, Default, $this.data(), typeof option == 'object' && option);
+        $this.data(DataKey, (data = new BoxWidget($this, options)));
       }
 
       if (typeof option == 'string') {
         if (typeof data[option] == 'undefined') {
-          throw new Error('No method named ' + option)
+          throw new Error('No method named ' + option);
         }
-        data[option]()
+        data[option]();
       }
-    })
+    });
   }
 
-  var old = $.fn.boxWidget
+  var old = $.fn.boxWidget;
 
-  $.fn.boxWidget             = Plugin
-  $.fn.boxWidget.Constructor = BoxWidget
+  $.fn.boxWidget             = Plugin;
+  $.fn.boxWidget.Constructor = BoxWidget;
 
   // No Conflict Mode
   // ================
   $.fn.boxWidget.noConflict = function () {
-    $.fn.boxWidget = old
-    return this
-  }
+    $.fn.boxWidget = old;
+    return this;
+  };
 
   // BoxWidget Data API
   // ==================
   $(window).on('load', function () {
     $(Selector.data).each(function () {
-      Plugin.call($(this))
-    })
-  })
-
-}(jQuery)
+      Plugin.call($(this));
+    });
+  });
+}(jQuery);

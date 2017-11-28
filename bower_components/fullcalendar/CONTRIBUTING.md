@@ -1,7 +1,7 @@
 
 ## Reporting Bugs
 
-Each bug report MUST have a [JSFiddle/JSBin] recreation before any work can begin. [further instructions &raquo;](http://fullcalendar.io/wiki/Reporting-Bugs/)
+Each bug report MUST have a [Codepen/JSFiddle] recreation before any work can begin. [further instructions &raquo;](http://fullcalendar.io/wiki/Reporting-Bugs/)
 
 
 ## Requesting Features
@@ -115,7 +115,7 @@ If you have edited code (including **tests** and **translations**) and would lik
 2. Written automated tests. View the [Automated Test Readme]
 
 
-[JSFiddle/JSBin]: http://fullcalendar.io/wiki/Reporting-Bugs/
+[Codepen/JSFiddle]: http://fullcalendar.io/wiki/Reporting-Bugs/
 [Issue Tracker]: https://github.com/fullcalendar/fullcalendar/issues
 [Using Pull Requests]: https://help.github.com/articles/using-pull-requests/
 [MomentJS locale data]: https://github.com/moment/moment/tree/develop/locale

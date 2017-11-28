@@ -64,6 +64,21 @@ test('white space is trimmed by default', function (assert) {
   });
 });
 
+test('does not create option if text is same but lowercase', function (assert) {
+  var data = new SelectTags($('#qunit-fixture .single'), options);
+
+  data.query({
+    term: 'one'
+  }, function (data) {
+    assert.equal(data.results.length, 1);
+
+    var item = data.results[0];
+
+    assert.equal(item.id, 'One');
+    assert.equal(item.text, 'One');
+  });
+});
+
 test('does not trigger for additional pages', function (assert) {
   var data = new SelectTags($('#qunit-fixture .single'), options);
 

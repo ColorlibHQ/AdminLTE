@@ -1,6 +1,9 @@
 define(function () {
   // Thai
   return {
+    errorLoading: function () {
+      return 'ไม่สามารถค้นข้อมูลได้';
+    },
     inputTooLong: function (args) {
       var overChars = args.input.length - args.maximum;
 

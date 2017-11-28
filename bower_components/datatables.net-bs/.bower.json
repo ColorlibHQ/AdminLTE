@@ -44,6 +44,5 @@
   },
   "_source": "https://github.com/DataTables/Dist-DataTables-Bootstrap.git",
   "_target": "^2.1.1",
-  "_originalSource": "datatables.net-bs",
-  "_direct": true
+  "_originalSource": "datatables.net-bs"
 }

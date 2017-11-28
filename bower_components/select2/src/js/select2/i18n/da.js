@@ -7,16 +7,12 @@ define(function () {
     inputTooLong: function (args) {
       var overChars = args.input.length - args.maximum;
 
-      var message = 'Angiv venligst ' + overChars + ' tegn mindre';
-
-      return message;
+      return 'Angiv venligst ' + overChars + ' tegn mindre';
     },
     inputTooShort: function (args) {
       var remainingChars = args.minimum - args.input.length;
 
-      var message = 'Angiv venligst ' + remainingChars + ' tegn mere';
-
-      return message;
+      return 'Angiv venligst ' + remainingChars + ' tegn mere';
     },
     loadingMore: function () {
       return 'Indlæser flere resultater…';

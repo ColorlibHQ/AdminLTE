@@ -455,3 +455,35 @@ test('data objects use the text of the option', function (assert) {
   assert.equal(item.id, '&');
   assert.equal(item.text, '&');
 });
+
+test('select option construction accepts id=0 (zero) value', function (assert) {
+  var $select = $('#qunit-fixture .single');
+
+  var selectOptions = [{ id: 0, text: 'Zero Value'}];
+  var data = new SelectData($select, selectOptions);
+
+  var optionElem = data.option(selectOptions[0]);
+
+  // If was "Zero Value"", then it ignored id property
+  assert.equal(
+    optionElem[0].value,
+    '0',
+    'Built option value should be "0" (zero as a string).'
+  );
+});
+
+test('select option construction accepts id="" (empty string) value',
+  function (assert) {
+  var $select = $('#qunit-fixture .single');
+
+  var selectOptions = [{ id: '', text: 'Empty String'}];
+  var data = new SelectData($select, selectOptions);
+
+  var optionElem = data.option(selectOptions[0]);
+
+  assert.equal(
+    optionElem[0].value,
+    '',
+    'Built option value should be an empty string.'
+  );
+});
