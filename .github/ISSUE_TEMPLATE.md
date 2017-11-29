@@ -10,9 +10,9 @@
     will be closed.
 --->
 ### Issue type:
-[ ] Feature request <!-- Requesting the implementation of a new feature -->
-[ ] Bug report      <!-- Reporting unexpected or erroneous behavior -->
-[ ] Documentation   <!-- Proposing a modification to the documentation -->
+- [ ] Feature request <!-- Requesting the implementation of a new feature -->
+- [ ] Bug report      <!-- Reporting unexpected or erroneous behavior --> 
+- [ ] Documentation   <!-- Proposing a modification to the documentation -->
 
 <!--
     Please describe the environment.
