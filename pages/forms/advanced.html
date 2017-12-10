@@ -24,6 +24,8 @@
   <link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
+  <!-- jQUery File Input -->
+  <link rel="stylesheet" href="../../bower_components/blueimp-file-upload/css/jquery.fileupload.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -614,6 +616,43 @@
       </div>
       <!-- /.box -->
 
+      <!-- JQUERY FILE UPLOAD EXAMPLE -->
+      <div class="box box-default">
+        <div class="box-header with-border">
+          <h3 class="box-title">jQuery File Upload</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="form-group">
+            <!-- The fileinput-button span is used to style the file input field as button -->
+            <span class="btn btn-success fileinput-button">
+              <i class="glyphicon glyphicon-plus"></i>
+              <span>Select files...</span>
+              <!-- The file input field used as target for the file upload widget -->
+              <input id="fileupload" type="file" name="files[]" multiple>
+            </span>
+            <br><br>
+            <!-- The global progress bar -->
+            <div id="progress" class="progress">
+              <div class="progress-bar progress-bar-success"></div>
+            </div>
+          </div>
+          <!-- The container for the uploaded files -->
+          <div id="files" class="files"></div>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+          Visit <a href="https://blueimp.github.io/jQuery-File-Upload/">jQuery File Upload documentation</a> for more examples and information about
+          the plugin.
+        </div>
+      </div>
+      <!-- /.box -->
+
       <div class="row">
         <div class="col-md-6">
 
@@ -1135,6 +1174,10 @@
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Select2 -->
 <script src="../../bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- jQuery File Upload -->
+<script src="../../bower_components/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="../../bower_components/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="../../bower_components/blueimp-file-upload/js/jquery.fileupload.js"></script>
 <!-- InputMask -->
 <script src="../../plugins/input-mask/jquery.inputmask.js"></script>
 <script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
@@ -1163,6 +1206,37 @@
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
+
+    // jQuery File Upload
+    // Change this to the location of your server-side upload handler:
+    // var url = 'server/php/';
+    // or if you want to test the plugin, use the url below.
+    /*
+    IMPORTANT NOTICE
+
+    All the files are uploaded to Google App Engine (http://code.google.com/appengine/).
+    The uploaded files are publicly accessible,
+    but without a public file listing nobody will see your test uploads,
+    if you don't forward someone the rather cryptic download links.
+    Every file will be automatically deleted after 5 minutes,
+    but might be longer accessible due to caching.
+    */
+    var url = 'https://jquery-file-upload.appspot.com/';
+
+    $('#fileupload').fileupload({
+      url: url,
+      dataType: 'json',
+      done: function (e, data) {
+        $.each(data.result.files, function (index, file) {
+          $('<p/>').text(file.name).appendTo('#files');
+        });
+      },
+      progressall: function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+
+        $('#progress .progress-bar').css('width', progress + '%');
+      }
+    }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
 
     //Datemask dd/mm/yyyy
     $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
