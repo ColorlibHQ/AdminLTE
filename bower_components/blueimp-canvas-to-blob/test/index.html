@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<!--
+/*
+ * JavaScript Canvas to Blob Test
+ * https://github.com/blueimp/JavaScript-Canvas-to-Blob
+ *
+ * Copyright 2012, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * https://opensource.org/licenses/MIT
+ */
+-->
+<html lang="en">
+<head>
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<![endif]-->
+<meta charset="utf-8">
+<title>JavaScript Canvas to Blob Test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="vendor/mocha.css">
+</head>
+<body>
+<div id="mocha"></div>
+<script src="vendor/mocha.js"></script>
+<script src="vendor/chai.js"></script>
+<script>
+window.initMochaPhantomJS && initMochaPhantomJS();
+mocha.setup('bdd');
+</script>
+<script src="vendor/load-image.js"></script>
+<script src="vendor/load-image-scale.js"></script>
+<script src="../js/canvas-to-blob.js"></script>
+<script src="test.js"></script>
+<script>
+mocha.checkLeaks();
+mocha.run();
+</script>
+</body>
+</html>

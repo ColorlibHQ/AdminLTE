@@ -1,0 +1,50 @@
+{
+  "name": "blueimp-canvas-to-blob",
+  "version": "3.14.0",
+  "title": "JavaScript Canvas to Blob",
+  "description": "Canvas to Blob is a polyfill for the standard JavaScript canvas.toBlob method. It can be used to create Blob objects from an HTML canvas element.",
+  "keywords": [
+    "javascript",
+    "canvas",
+    "blob",
+    "convert",
+    "conversion"
+  ],
+  "homepage": "https://github.com/blueimp/JavaScript-Canvas-to-Blob",
+  "author": {
+    "name": "Sebastian Tschan",
+    "url": "https://blueimp.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blueimp/JavaScript-Canvas-to-Blob.git"
+  },
+  "license": "MIT",
+  "main": "./js/canvas-to-blob.js",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "eslint": "^4.5.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "get-port-cli": "^1.1.0",
+    "http-server": "^0.10.0",
+    "mocha-chrome": "^0.1.1",
+    "prettier-eslint-cli": "^4.2.1",
+    "uglify-js": "^3.0.28"
+  },
+  "scripts": {
+    "format": "prettier-eslint --no-semi --single-quote --write **/*.js",
+    "lint": "eslint .",
+    "serve": "http-server . -a 127.0.0.1 -p $PORT -s",
+    "mocha": "mocha-chrome http://127.0.0.1:$PORT/test",
+    "unit": "PORT=$(get-port) concurrently -k -s first 'npm run serve' 'npm run mocha'",
+    "test": "npm run lint && npm run unit",
+    "build": "cd js && uglifyjs canvas-to-blob.js -c -m -o canvas-to-blob.min.js --source-map url=canvas-to-blob.min.js.map",
+    "preversion": "npm test",
+    "version": "npm run build && git add -A js",
+    "postversion": "git push --tags origin master master:gh-pages && npm publish"
+  }
+}

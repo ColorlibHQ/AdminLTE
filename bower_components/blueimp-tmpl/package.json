@@ -1,0 +1,47 @@
+{
+  "name": "blueimp-tmpl",
+  "version": "3.11.0",
+  "title": "JavaScript Templates",
+  "description": "1KB lightweight, fast & powerful JavaScript templating engine with zero dependencies. Compatible with server-side environments like Node.js, module loaders like RequireJS, Browserify or webpack and all web browsers.",
+  "keywords": [
+    "javascript",
+    "templates",
+    "templating"
+  ],
+  "homepage": "https://github.com/blueimp/JavaScript-Templates",
+  "author": {
+    "name": "Sebastian Tschan",
+    "url": "https://blueimp.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blueimp/JavaScript-Templates.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "eslint": "^4.5.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "mocha": "^3.5.0",
+    "prettier-eslint-cli": "^4.2.1",
+    "uglify-js": "^3.0.28"
+  },
+  "scripts": {
+    "format": "prettier-eslint --no-semi --single-quote --write **/*.js",
+    "lint": "eslint .",
+    "unit": "mocha",
+    "test": "npm run lint && npm run unit",
+    "build": "cd js && uglifyjs tmpl.js -c -m -o tmpl.min.js --source-map url=tmpl.min.js.map",
+    "preversion": "npm test",
+    "version": "npm run build && git add -A js",
+    "postversion": "git push --tags origin master master:gh-pages && npm publish"
+  },
+  "bin": {
+    "tmpl.js": "js/compile.js"
+  },
+  "main": "js/tmpl.js"
+}

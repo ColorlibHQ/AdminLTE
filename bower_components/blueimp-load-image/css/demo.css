@@ -1,0 +1,74 @@
+/*
+ * JavaScript Load Image Demo CSS
+ * https://github.com/blueimp/JavaScript-Load-Image
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * https://opensource.org/licenses/MIT
+ */
+
+body {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 1em;
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
+  background: #222;
+  color: #fff;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+a {
+  color: orange;
+  text-decoration: none;
+}
+img {
+  border: 0;
+  vertical-align: middle;
+}
+h1 {
+  line-height: 1em;
+}
+table {
+  width: 100%;
+  word-wrap: break-word;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+tr {
+  background: #fff;
+  color: #222;
+}
+tr:nth-child(odd) {
+  background: #eee;
+  color: #222;
+}
+td {
+  padding: 10px;
+}
+.result,
+.thumbnail {
+  padding: 20px;
+  background: #fff;
+  color: #222;
+  text-align: center;
+}
+.jcrop-holder {
+  margin: 0 auto;
+}
+
+@media (min-width: 481px) {
+  .navigation {
+    list-style: none;
+    padding: 0;
+  }
+  .navigation li {
+    display: inline-block;
+  }
+  .navigation li:not(:first-child):before {
+    content: '| ';
+  }
+}
