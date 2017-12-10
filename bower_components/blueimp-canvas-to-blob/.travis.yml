@@ -1,0 +1,6 @@
+dist: trusty
+addons:
+  chrome: stable
+language: node_js
+node_js:
+  - "stable"
