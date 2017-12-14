@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+-->
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Using TableResize Plugin &mdash; CKEditor Sample</title>
+	<script src="../../../ckeditor.js"></script>
+	<link rel="stylesheet" href="../../../samples/old/sample.css">
+	<meta name="ckeditor-sample-name" content="TableResize plugin">
+	<meta name="ckeditor-sample-group" content="Plugins">
+	<meta name="ckeditor-sample-description" content="Using the TableResize plugin to enable table column resizing.">
+</head>
+<body>
+	<h1 class="samples">
+		<a href="../../../samples/old/index.html">CKEditor Samples</a> &raquo; Using the TableResize Plugin
+	</h1>
+	<div class="warning deprecated">
+		This sample is not maintained anymore. Check out its <a href="http://sdk.ckeditor.com/samples/table.html">brand new version in CKEditor SDK</a>.
+	</div>
+	<div class="description">
+		<p>
+			This sample shows how to configure CKEditor instances to use the
+			<strong>TableResize</strong> (<code>tableresize</code>) plugin that allows
+			the user to edit table columns by using the mouse.
+		</p>
+		<p>
+			The TableResize plugin makes it possible to modify table column width. Hover
+			your mouse over the column border to see the cursor change to indicate that
+			the column can be resized. Click and drag your mouse to set the desired width.
+		</p>
+		<p>
+			By default the plugin is turned off. To add a CKEditor instance using the
+			TableResize plugin, insert the following JavaScript call into your code:
+		</p>
+<pre class="samples">
+CKEDITOR.replace( '<em>textarea_id</em>', {
+	<strong>extraPlugins: 'tableresize'</strong>
+});</pre>
+		<p>
+			Note that <code><em>textarea_id</em></code> in the code above is the <code>id</code> attribute of
+			the <code>&lt;textarea&gt;</code> element to be replaced with CKEditor.
+		</p>
+	</div>
+	<form action="../../../samples/sample_posteddata.php" method="post">
+		<p>
+			<label for="editor1">
+				CKEditor using the <code>tableresize</code> plugin:
+			</label>
+			<textarea cols="80" id="editor1" name="editor1" rows="10">
+				&lt;table style="width: 500px;" border="1"&gt;
+					&lt;caption&gt;
+						A sample table&lt;/caption&gt;
+					&lt;tbody&gt;
+						&lt;tr&gt;
+							&lt;td&gt;
+								Column 1&lt;/td&gt;
+							&lt;td&gt;
+								Column 2&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;td&gt;
+								You can resize a table column.&lt;/td&gt;
+							&lt;td&gt;
+								Hover your mouse over its border.&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr&gt;
+							&lt;td&gt;
+								Watch the cursor change.&lt;/td&gt;
+							&lt;td&gt;
+								Now click and drag to resize.&lt;/td&gt;
+						&lt;/tr&gt;
+					&lt;/tbody&gt;
+				&lt;/table&gt;
+			</textarea>
+			<script>
+
+				// This call can be placed at any point after the
+				// <textarea>, or inside a <head><script> in a
+				// window.onload event handler.
+
+				// Replace the <textarea id="editor"> with an CKEditor
+				// instance, using default configurations.
+				CKEDITOR.replace( 'editor1', {
+					extraPlugins: 'tableresize'
+				});
+
+			</script>
+		</p>
+		<p>
+			<input type="submit" value="Submit">
+		</p>
+	</form>
+	<div id="footer">
+		<hr>
+		<p>
+			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
+		</p>
+		<p id="copy">
+			Copyright &copy; 2003-2017, <a class="samples" href="http://cksource.com/">CKSource</a> - Frederico
+			Knabben. All rights reserved.
+		</p>
+	</div>
+</body>
+</html>

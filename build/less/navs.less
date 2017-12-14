@@ -68,10 +68,16 @@
   > .nav-tabs {
     margin: 0;
     border-bottom-color: #f4f4f4;
+
     .border-top-radius(@box-border-radius);
     > li {
       border-top: 3px solid transparent;
       margin-bottom: -2px;
+
+      &.disabled > a {
+        color: #777;
+      }
+
       > a {
         color: #444;
         .border-radius(0);
@@ -206,7 +212,7 @@
   &.tab-default {
     > .nav-tabs {
       > li.active {
-        border-top-color: @gray;
+        border-top-color: @gray-lte;
       }
     }
   }

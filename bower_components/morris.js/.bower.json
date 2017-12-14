@@ -1,0 +1,30 @@
+{
+  "name": "morris.js",
+  "version": "0.5.1",
+  "main": [
+    "./morris.js",
+    "./morris.css"
+  ],
+  "dependencies": {
+    "jquery": ">= 2.1.0",
+    "raphael": ">= 2.0",
+    "mocha": "~1.17.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.1",
+    "chai": "~1.9.0",
+    "chai-jquery": "~1.2.1",
+    "sinon": "http://sinonjs.org/releases/sinon-1.8.1.js",
+    "sinon-chai": "~2.5.0"
+  },
+  "homepage": "https://github.com/oesmith/morris.js",
+  "_release": "0.5.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.5.1",
+    "commit": "d5cf1410eda7055eaf2c7d218d4cb24ec5ed55c8"
+  },
+  "_source": "https://github.com/oesmith/morris.js.git",
+  "_target": "^0.5.1",
+  "_originalSource": "morris.js"
+}

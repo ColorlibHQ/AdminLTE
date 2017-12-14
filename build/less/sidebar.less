@@ -2,11 +2,8 @@
  * Component: Sidebar
  * ------------------
  */
-//Main Sidebar
-// ``` .left-side has been deprecated as of 2.0.0 in favor of .main-sidebar ```
-
-.main-sidebar,
-.left-side {
+// Main Sidebar
+.main-sidebar {
   position: absolute;
   top: 0;
   left: 0;
@@ -14,21 +11,25 @@
   min-height: 100%;
   width: @sidebar-width;
   z-index: 810;
-  //Using disposable variable to join statements with a comma
-  @transition-rule: @transition-speed @transition-fn,
-  width @transition-speed @transition-fn;
+
+  // Using disposable variable to join statements with a comma
+  @transition-rule: @transition-speed @transition-fn, width @transition-speed @transition-fn;
   .transition-transform(@transition-rule);
+
   @media (max-width: @screen-header-collapse) {
     padding-top: 100px;
   }
+
   @media (max-width: @screen-xs-max) {
     .translate(-@sidebar-width, 0);
   }
+
   .sidebar-collapse & {
     @media (min-width: @screen-sm) {
       .translate(-@sidebar-width, 0);
     }
   }
+
   .sidebar-open & {
     @media (max-width: @screen-xs-max) {
       .translate(0, 0);
@@ -40,14 +41,14 @@
   padding-bottom: 10px;
 }
 
-// remove border from form
+// Remove border from form
 .sidebar-form {
   input:focus {
     border-color: transparent;
   }
 }
 
-//Sidebar user panel
+// Sidebar user panel
 .user-panel {
   position: relative;
   width: 100%;
@@ -119,6 +120,7 @@
     height: auto;
     padding: 0;
     margin-right: 10px;
+    .transition(transform .5s ease);
   }
   li > a > .fa-angle-left {
     position: absolute;
@@ -126,44 +128,14 @@
     right: 10px;
     margin-top: -8px;
   }
-  li.active {
+
+  .menu-open {
     > a > .fa-angle-left,
     > a > .pull-right-container > .fa-angle-left {
       .rotate(-90deg);
     }
-    > .treeview-menu {
-      display: block;
-    }
   }
-
-  // Tree view menu
-  .treeview-menu {
-    display: none;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    padding-left: 5px;
-    .treeview-menu {
-      padding-left: 20px;
-    }
-    > li {
-      margin: 0;
-      > a {
-        padding: 5px 5px 5px 15px;
-        display: block;
-        font-size: 14px;
-        > .fa,
-        > .glyphicon,
-        > .ion {
-          width: 20px;
-        }
-        > .pull-right-container > .fa-angle-left,
-        > .pull-right-container > .fa-angle-down,
-        > .fa-angle-left,
-        > .fa-angle-down {
-          width: auto;
-        }
-      }
-    }
+  .active > .treeview-menu {
+    display: block;
   }
 }

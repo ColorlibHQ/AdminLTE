@@ -1,0 +1,46 @@
+{
+  "name": "raphael",
+  "main": "raphael.min.js",
+  "description": "JavaScript Vector Library",
+  "dependencies": {
+    "eve-raphael": "0.5.0"
+  },
+  "devDependencies": {
+    "requirejs": "2.3.2"
+  },
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "svg",
+    "vml",
+    "javascript"
+  ],
+  "authors": [
+    "Dmitry Baranovskiy"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "*.html",
+    "*.json",
+    "*.markdown",
+    "*.md",
+    "copy.js",
+    "Gruntfile.js",
+    "reference.js"
+  ],
+  "homepage": "https://github.com/DmitryBaranovskiy/raphael",
+  "version": "2.2.7",
+  "_release": "2.2.7",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.2.7",
+    "commit": "f17a2a397af7790c8cb7313a8d3d105cb44e7f4a"
+  },
+  "_source": "https://github.com/DmitryBaranovskiy/raphael.git",
+  "_target": ">= 2.0",
+  "_originalSource": "raphael"
+}
