@@ -1,10 +1,10 @@
 {
-  "name": "admin-lte",
-  "version": "2.3.12",
+  "name": "admin-lte-dijkma",
+  "version": "1.0.0",
   "main": "dist/js/app.min.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/almasaeed2010/AdminLTE.git"
+    "url": "git://github.com/JelleDijkhuizen/AdminLTE.git"
   },
   "license": "MIT",
   "devDependencies": {
