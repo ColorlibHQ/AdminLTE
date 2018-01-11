@@ -1,6 +1,6 @@
 {
   "name": "admin-lte-dijkma",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "dist/js/app.min.js",
   "repository": {
     "type": "git",
