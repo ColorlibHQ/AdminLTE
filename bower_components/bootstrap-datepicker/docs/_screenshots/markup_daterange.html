@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="script/common.css">
+        <script src="script/common.js"></script>
+        <script>
+            function setup(){
+                $('.input-daterange').datepicker({
+                    format: 'yyyy-mm-dd'
+                });
+            }
+        </script>
+    </head>
+    <body data-capture=".input-daterange, .datepicker" data-show="input:first, input:last">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="input-group input-daterange">
+                    <input type="text" class="form-control" value="2012-04-05">
+                    <div class="input-group-addon">to</div>
+                    <input type="text" class="form-control" value="2012-04-19">
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="input-group input-daterange">
+                    <input type="text" class="form-control" value="2012-04-05">
+                    <div class="input-group-addon">to</div>
+                    <input type="text" class="form-control" value="2012-04-19">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

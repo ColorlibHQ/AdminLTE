@@ -1,0 +1,27 @@
+{
+  "name": "eve-raphael",
+  "description": "Simple custom events",
+  "main": "./eve.js",
+  "authors": [
+    "Tomas Alabes (http://tomasalabes.me)"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/tomasAlabes/eve",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "version": "0.5.0",
+  "_release": "0.5.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.5.0",
+    "commit": "93132d5d47a0ce31dbd1b75208b1d4c0e2ad81e8"
+  },
+  "_source": "https://github.com/tomasAlabes/eve.git",
+  "_target": "0.5.0",
+  "_originalSource": "eve-raphael"
+}

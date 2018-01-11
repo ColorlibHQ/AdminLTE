@@ -1,0 +1,76 @@
+// Datepicker .less buildfile.  Includes select mixins/variables from bootstrap
+// and imports the included datepicker.less to output a minimal datepicker.css
+//
+// Usage:
+//     lessc build3.less datepicker.css
+//
+// Variables and mixins copied from Bootstrap 3.3.5
+
+// Variables
+@gray:                   lighten(#000, 33.5%); // #555
+@gray-light:             lighten(#000, 46.7%); // #777
+@gray-lighter:           lighten(#000, 93.5%); // #eee
+
+@brand-primary:         darken(#428bca, 6.5%); // #337ab7
+
+@btn-primary-color:              #fff;
+@btn-primary-bg:                 @brand-primary;
+@btn-primary-border:             darken(@btn-primary-bg, 5%);
+
+@btn-link-disabled-color:        @gray-light;
+
+@state-info-bg:           #d9edf7;
+
+@line-height-base:        1.428571429; // 20/14
+@border-radius-base:      4px;
+
+@dropdown-bg:                   #fff;
+@dropdown-border:               rgba(0,0,0,.15);
+
+
+// Mixins
+
+// Button variants
+.button-variant(@color; @background; @border) {
+  color: @color;
+  background-color: @background;
+  border-color: @border;
+
+  &:focus,
+  &.focus {
+    color: @color;
+    background-color: darken(@background, 10%);
+        border-color: darken(@border, 25%);
+  }
+  &:hover {
+    color: @color;
+    background-color: darken(@background, 10%);
+        border-color: darken(@border, 12%);
+  }
+  &:active,
+  &.active {
+    color: @color;
+    background-color: darken(@background, 10%);
+        border-color: darken(@border, 12%);
+
+    &:hover,
+    &:focus,
+    &.focus {
+      color: @color;
+      background-color: darken(@background, 17%);
+          border-color: darken(@border, 25%);
+    }
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus,
+    &.focus {
+      background-color: @background;
+          border-color: @border;
+    }
+  }
+}
+
+@import "../less/datepicker3.less";

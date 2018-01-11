@@ -1,0 +1,37 @@
+{
+    "name": "knob",
+    "title": "jQuery Knob",
+    "description": "Nice, downward compatible, touchable, jQuery dial.",
+    "keywords": [
+        "dial",
+        "button",
+        "knob",
+        "ui",
+        "input"
+    ],
+    "version": "1.2.13",
+    "author": {
+        "name": "Anthony Terrien",
+        "url": "https://github.com/aterrien"
+    },
+    "maintainers": [
+        {
+            "name": "Anthony Terrien",
+            "email": "kontrol@anthonyterrien.com",
+            "url": "http://anthonyterrien.com/knob"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://opensource.org/licenses/mit-license.php"
+        }
+    ],
+    "bugs": "https://github.com/aterrien/jQuery-Knob/issues",
+    "homepage": "https://github.com/aterrien/jQuery-Knob",
+    "docs": "https://github.com/aterrien/jQuery-Knob",
+    "download": "https://github.com/aterrien/jQuery-Knob/tags",
+    "dependencies": {
+        "jquery": ">=1.7.0"
+    }
+}

@@ -1,5 +1,58 @@
 ### CHANGE LOG:
-**v2.3.7**
+**v2.3.11:**
+- Update colors @gray color to @gray-lte
+
+**v2.3.10:**
+- Fix default box solid color issue
+
+**v2.3.9:**
+- Remove test from starter page
+- Merge branch 'PeterDaveHelloKitchen-image-optimize'
+- Merge PR #1108 to optimize images
+- Fix #1256
+- Fix #1269
+- Fix #1276
+- Fix #1296
+- Fix #1300
+- Allow for adminlte without plugin override
+- Merge pull request #1101 from almasaeed2010/issue-668
+- Causes bootstrap slider to disappear Revert "Merge pull request #1186 from manhhailua/patch-1"
+- Merge pull request #1186 from manhhailua/patch-1
+- Merge pull request #1205 from tyrollins/master
+- Merge pull request #1211 from cquanu/master
+- Merge pull request #1224 from kennynaoh/master
+- Fix typo
+- Merge pull request #1239 from zzzeep/master
+- Fix typo
+- Merge pull request #1242 from gauravmak/patch-1
+- Merge pull request #1264 from Strato/patch-1
+- Merge pull request #1286 from marcusportmann/master
+- Merge branch 'master' of https://github.com/almasaeed2010/AdminLTE
+- add laravel implementation PR #1301
+- Merge pull request #1268 from eryshev/master
+- Happy New Years! <U+1F389>
+- Fixed jumping buttons with Bootstrap tooltip
+- Run LESS
+- Remove font antialiasing
+- Add option to control sidemenu's tree views.
+- Fixed a typo
+- Wrong Spell
+- Fix issue #1191
+- Add yarn lock file
+- Removed redundant punctuation ":"
+- Add CDNJS version badge in readme
+- Update BS to v3.3.7
+- remove unnecessary coma
+- sliders bug fixes
+- optimize png images using zopflipng
+- Provide fix for issue #668
+
+**v2.3.8:**
+- Fix sidebar angle icon issue #1237
+- Update version
+- Update Bootstrap to 3.3.7
+
+**v2.3.7:**
 - Merge pull request #1160 from antoniocambados/antoniocambados-patch-1158
 - Merge branch 'rickysang-master'
 - merge pull request #1165
