@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="assets/qunit.css">
+        <script src="assets/qunit.js"></script>
+        <!-- console.log for test failures: enable locally if you need extra debug info-->
+        <!--<script src="assets/qunit-logging.js"></script>-->
+        <script src="assets/jquery-1.7.1.min.js"></script>
+        <script src="../js/bootstrap-datepicker.js"></script>
+
+        <style>
+            .datepicker {
+                /* Appended to body, abs-pos off the page */
+                position: absolute;
+                display: none;
+                top: -9999em;
+                left: -9999em;
+            }
+        </style>
+
+        <!-- Utilities -->
+        <script src="assets/utils.js"></script>
+
+        <!-- Test suites -->
+        <script src="suites/timezone.js"></script>
+    </head>
+    <body>
+        <h1 id="qunit-header">bootstrap-datepicker</h1>
+        <h2 id="qunit-banner"></h2>
+        <div id="qunit-testrunner-toolbar"></div>
+        <h2 id="qunit-userAgent"></h2>
+        <ol id="qunit-tests"></ol>
+        <div id="qunit-fixture"></div>
+    </body>
+</html>

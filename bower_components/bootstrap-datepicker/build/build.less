@@ -1,0 +1,69 @@
+// Datepicker .less buildfile.  Includes select mixins/variables from bootstrap
+// and imports the included datepicker.less to output a minimal datepicker.css
+//
+// Usage:
+//     lessc build.less datepicker.css
+//
+// Variables and mixins copied from bootstrap 2.0.2
+
+// Variables
+@grayLight:             #999;
+@grayLighter:           #eee;
+@white:                 #fff;
+@linkColor:             #08c;
+@btnPrimaryBackground:  @linkColor;
+@orange:                #f89406;
+@infoBackground:        #d9edf7;
+@baseLineHeight:        18px;
+@baseBorderRadius:      4px;
+
+// Mixins
+
+// Border Radius
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Button backgrounds
+.buttonBackground(@startColor, @endColor) {
+  .gradientBar(@startColor, @endColor);
+  .reset-filter();
+  &:hover, &:active, &.active, &.disabled, &[disabled] {
+    background-color: @endColor;
+  }
+  &:active,
+  &.active {
+    background-color: darken(@endColor, 10%) e("\9");
+  }
+}
+
+// Reset filters for IE
+.reset-filter() {
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+
+// Gradient Bar Colors for buttons and alerts
+.gradientBar(@primaryColor, @secondaryColor) {
+  #gradient > .vertical(@primaryColor, @secondaryColor);
+  border-color: @secondaryColor @secondaryColor darken(@secondaryColor, 15%);
+  border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fadein(rgba(0,0,0,.1), 15%);
+}
+
+// Gradients
+#gradient {
+  .vertical(@startColor: #555, @endColor: #333) {
+    background-color: mix(@startColor, @endColor, 60%);
+    background-image: -moz-linear-gradient(to bottom, @startColor, @endColor); // FF 3.6+
+    background-image: -ms-linear-gradient(to bottom, @startColor, @endColor); // IE10
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@startColor), to(@endColor)); // Safari 4+, Chrome 2+
+    background-image: -webkit-linear-gradient(to bottom, @startColor, @endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(to bottom, @startColor, @endColor); // Opera 11.10
+    background-image: linear-gradient(to bottom, @startColor, @endColor); // The standard
+    background-repeat: repeat-x;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@startColor,@endColor)); // IE9 and down
+  }
+}
+
+@import "../less/datepicker.less";

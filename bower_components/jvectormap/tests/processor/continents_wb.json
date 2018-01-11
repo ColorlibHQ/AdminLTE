@@ -1,0 +1,39 @@
+[{
+    "name": "read_data",
+    "file_name": "/Users/kirilllebedev/Maps/ne_110m_admin_0_map_units/ne_110m_admin_0_map_units.shp"
+},{
+    "name": "buffer",
+    "distance": 0.0000001,
+    "resolution": 1
+},{
+    "name": "join_data",
+    "data": [
+        ["Antarctica", "ANT"],
+        ["East Asia & Pacific", "EAP"],
+        ["Europe & Central Asia", "ECA"],
+        ["Latin America & Caribbean", "LAC"],
+        ["Middle East & North Africa", "MENA"],
+        ["North America", "NA"],
+        ["South Asia", "SA"],
+        ["Sub-Saharan Africa", "SSA"]
+    ],
+    "fields": [{
+        "name": "region_wb",
+        "type": 4,
+        "width": 100
+    },{
+        "name": "r_wb_code",
+        "type": 4,
+        "width": 4
+    }],
+    "on": "region_wb"
+},{
+    "name": "union",
+    "by": "r_wb_code"
+},{
+    "name": "remove_other_fields",
+    "fields": ["r_wb_code", "region_wb"]
+},{
+    "name": "write_data",
+    "file_name": "/Users/kirilllebedev/Maps/continents_wb/continents_wb.shp"
+}]

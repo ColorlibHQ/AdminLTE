@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="script/common.css">
+        <script src="script/common.js"></script>
+        <script>
+            function patch_date(f){
+                var NativeDate = window.Date;
+                var date = function date(y,m,d,h,i,s,j){
+                    switch(arguments.length){
+                        case 0: return date.now ? new NativeDate(date.now) : new NativeDate();
+                        case 1: return new NativeDate(y);
+                        case 2: return new NativeDate(y,m);
+                        case 3: return new NativeDate(y,m,d);
+                        case 4: return new NativeDate(y,m,d,h);
+                        case 5: return new NativeDate(y,m,d,h,i);
+                        case 6: return new NativeDate(y,m,d,h,i,s);
+                        case 7: return new NativeDate(y,y,m,d,h,i,s,j);
+                    }
+                };
+                date.UTC = NativeDate.UTC;
+                return function(){
+                    Array.prototype.push.call(arguments, date);
+                    window.Date = date;
+                    f.apply(this, arguments);
+                    window.Date = NativeDate;
+                };
+            }
+            var setup = patch_date(function(Date){
+                Date.now = new Date(2013, 2, 18);
+                $('input').datepicker({
+                    todayHighlight: true
+                });
+            });
+        </script>
+    </head>
+    <body data-capture="input, .datepicker">
+        <div class="row">
+            <div class="col-sm-3">
+                <input type="text" class="form-control" value="03/03/2013">
+            </div>
+            <div class="col-sm-offset-2 col-sm-3">
+                <input type="text" class="form-control" value="03/18/2013">
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,3 @@
+*.min.js
+!excanvas.min.js
+node_modules/
