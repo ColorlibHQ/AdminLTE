@@ -143,7 +143,7 @@ module.exports = function (grunt) { // jshint ignore:line
                 + '*/\n\n'
                 + '// Make sure jQuery has been loaded\n'
                 + 'if (typeof jQuery === \'undefined\') {\n'
-                + 'throw new Error(\'AdminLTE requires jQuery\')\n'
+                + 'throw new Error(\'We need JQuery!\')\n'
                 + '}\n\n'
             },
             dist   : {
