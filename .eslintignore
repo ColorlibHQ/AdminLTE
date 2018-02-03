@@ -1,0 +1,5 @@
+**/*.min.js
+**/plugins/*
+**/dist/*
+webpack.config.js
+ad.js

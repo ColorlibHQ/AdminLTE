@@ -27,7 +27,7 @@
   > li.active > a,
   > li.active > a:hover,
   > li.active > a:focus {
-    border-top-color: $brand-primary;
+    border-top-color: theme-color("primary");
   }
   > li.active > a {
     font-weight: 600;
@@ -47,7 +47,7 @@
     background: transparent;
     color: #444;
     border-top: 0;
-    border-left-color: $brand-primary;
+    border-left-color: theme-color("primary");
   }
 
   > li.header {
@@ -98,7 +98,7 @@
     }
 
     > li.active {
-      border-top-color: $brand-primary;
+      border-top-color: theme-color("primary");
       & > a,
       &:hover > a {
         background-color: #fff;
@@ -171,42 +171,42 @@
   &.tab-primary {
     > .nav-tabs {
       > li.active {
-        border-top-color: $brand-primary;
+        border-top-color: theme-color("primary");
       }
     }
   }
   &.tab-info {
     > .nav-tabs {
       > li.active {
-        border-top-color: $brand-info;
+        border-top-color: theme-color("info");
       }
     }
   }
   &.tab-danger {
     > .nav-tabs {
       > li.active {
-        border-top-color: $brand-danger;
+        border-top-color: theme-color("danger");
       }
     }
   }
   &.tab-warning {
     > .nav-tabs {
       > li.active {
-        border-top-color: $brand-warning;
+        border-top-color: theme-color("warning");
       }
     }
   }
   &.tab-success {
     > .nav-tabs {
       > li.active {
-        border-top-color: $brand-success;
+        border-top-color: theme-color("success");
       }
     }
   }
   &.tab-default {
     > .nav-tabs {
       > li.active {
-        border-top-color: $gray;
+        border-top-color: $gray-500;
       }
     }
   }

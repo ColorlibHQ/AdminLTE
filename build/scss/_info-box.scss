@@ -19,7 +19,7 @@
     background-color: rgba(0, 0, 0, 0.125);
     margin: 5px 0;
     height: 2px;
-    @include progress-variant(#fff);
+    //@include progress-variant(#fff);
     @include border-radius(0);
   }
   .progress[value]::-webkit-progress-bar {

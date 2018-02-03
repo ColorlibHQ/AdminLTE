@@ -3,8 +3,7 @@
 
 // PATHS
 // --------------------------------------------------------
-$path-to-bootstrap-sass: "../../bower_components/bootstrap/scss" !default;
-$boxed-layout-bg-image-path: "../img/boxed-bg.jpg" !default;
+$boxed-layout-bg-image-path: "/css/img/boxed-bg.jpg" !default;
 
 // COLORS
 // --------------------------------------------------------
@@ -18,10 +17,12 @@ $fuchsia: #F012BE !default;
 $purple: #605ca8 !default;
 $maroon: #D81B60 !default;
 $black: #111 !default;
-$gray-x-light: #d2d6de!default;
+$gray-x-light: #d2d6de !default;
 
 // LAYOUT
 // --------------------------------------------------------
+
+$font-size-root: 16px !default;
 
 // Side bar and logo width
 $sidebar-width: 230px !default;
@@ -31,38 +32,37 @@ $boxed-layout-max-width: 1250px !default;
 $screen-header-collapse: map-get($grid-breakpoints, md) !default;
 
 // Link colors (aka: <a> tags)
-$link-color: $brand-primary !default;
+$link-color: theme-color("primary") !default;
 $link-hover-color: lighten($link-color, 15%) !default;
 
 // Body background (Affects main content background only)
-$main-bg: $gray-lighter !default;
-
+$main-bg: $gray-100 !default;
 
 // MAIN HEADER
 // --------------------------------------------------------
-$main-header-link-padding-y:  15px !default;
-$main-header-link-padding-x:  15px !default;
+$main-header-link-padding-y: 15px !default;
+$main-header-link-padding-x: 15px !default;
 $main-header-brand-padding-y: 12px !default;
 $main-header-brand-padding-x: $main-header-brand-padding-y !default;
-$main-header-height:          (($font-size-root * $line-height-base) + ($main-header-link-padding-y * 2)) !default;
+$main-header-height: (($font-size-root * $line-height-base) + ($main-header-link-padding-y * 2)) !default;
 
 // MAIN FOOTER
 // --------------------------------------------------------
-$main-footer-padding:          15px !default;
+$main-footer-padding: 15px !default;
 $main-footer-border-top-width: 2px !default;
-$main-footer-border-top:       $main-footer-border-top-width solid darken($main-bg, 10%) !default;
-$main-footer-height:           (($font-size-root * $line-height-base) + ($main-footer-padding * 2)) + $main-footer-border-top-width !default;
+$main-footer-border-top: $main-footer-border-top-width solid darken($main-bg, 10%) !default;
+$main-footer-height: (($font-size-root * $line-height-base) + ($main-footer-padding * 2)) + $main-footer-border-top-width !default;
 
 // SIDEBAR SKINS
 // --------------------------------------------------------
 
 // Dark sidebar
-$sidebar-dark-bg: #2c333c !default;//#222d32 !default;
+$sidebar-dark-bg: #2c333c !default; //#222d32 !default;
 $sidebar-dark-hover-bg: darken($sidebar-dark-bg, 4%) !default;
-$sidebar-dark-color: #C2C7D0!default;//lighten($sidebar-dark-bg, 60%) !default;
+$sidebar-dark-color: #C2C7D0 !default; //lighten($sidebar-dark-bg, 60%) !default;
 $sidebar-dark-hover-color: #fff !default;
 $sidebar-dark-submenu-bg: lighten($sidebar-dark-bg, 5%) !default;
-$sidebar-dark-submenu-color: #C2C7D0!default;//lighten($sidebar-dark-submenu-bg, 40%) !default;
+$sidebar-dark-submenu-color: #C2C7D0 !default; //lighten($sidebar-dark-submenu-bg, 40%) !default;
 $sidebar-dark-submenu-hover-color: #fff !default;
 
 // Light sidebar
@@ -91,7 +91,7 @@ $box-boxshadow: 0 1px 1px rgba(0, 0, 0, 0.125) !default;
 $box-padding: 10px !default;
 
 // Box variants
-$box-default-border-top-color: $gray-x-light !default;// #d2d6de !default;
+$box-default-border-top-color: $gray-x-light !default; // #d2d6de !default;
 
 // BUTTONS
 // --------------------------------------------------------
@@ -102,8 +102,6 @@ $btn-boxshadow: none !default;
 $progress-bar-border-radius: 1px !default;
 $progress-bar-sm-border-radius: 1px !default;
 $progress-bar-xs-border-radius: 1px !default;
-
-
 
 // DIRECT CHAT
 // --------------------------------------------------------

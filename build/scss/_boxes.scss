@@ -18,19 +18,19 @@
 
   // Box color variations
   &.box-primary {
-    border-top-color: $brand-primary;
+    border-top-color: theme-color("primary");
   }
   &.box-info {
-    border-top-color: $brand-info;
+    border-top-color: theme-color("info");
   }
   &.box-danger {
-    border-top-color: $brand-danger;
+    border-top-color: theme-color("danger");
   }
   &.box-warning {
-    border-top-color: $brand-warning;
+    border-top-color: theme-color("warning");
   }
   &.box-success {
-    border-top-color: $brand-success;
+    border-top-color: theme-color("success");
   }
   &.box-default {
     border-top-color: $box-default-border-top-color;
@@ -89,22 +89,22 @@
 
     // Box color variations
     &.box-default {
-      @include box-solid-variant($gray, #444);
+      @include box-solid-variant($gray-500, #444);
     }
     &.box-primary {
-      @include box-solid-variant($brand-primary);
+      @include box-solid-variant(theme-color("primary"));
     }
     &.box-info {
-      @include box-solid-variant($brand-info);
+      @include box-solid-variant(theme-color("info"));
     }
     &.box-danger {
-      @include box-solid-variant($brand-danger);
+      @include box-solid-variant(theme-color("danger"));
     }
     &.box-warning {
-      @include box-solid-variant($brand-warning);
+      @include box-solid-variant(theme-color("warning"));
     }
     &.box-success {
-      @include box-solid-variant($brand-success);
+      @include box-solid-variant(theme-color("success"));
     }
 
     > .box-header > .box-tools .btn {
@@ -229,10 +229,10 @@
   padding: 5px;
   font-size: 12px;
   background: transparent;
-  color: $gray-light;
+  color: $gray-200;
   .open &,
   &:hover {
-    color: $gray;
+    color: $gray-500;
   }
   &.btn:active {
     box-shadow: none;
@@ -369,7 +369,7 @@
     .tools {
       display: none;
       float: right;
-      color: $brand-danger;
+      color: theme-color("danger");
       // icons
       > .fa, > .glyphicon, > .ion {
         margin-right: 5px;
@@ -389,26 +389,26 @@
       }
 
       .label {
-        background: $gray !important;
+        background: $gray-500 !important;
       }
     }
   }
 
   // Color varaity
   .danger {
-    border-left-color: $brand-danger;
+    border-left-color: theme-color("danger");
   }
   .warning {
-    border-left-color: $brand-warning;
+    border-left-color: theme-color("warning");
   }
   .info {
-    border-left-color: $brand-info;
+    border-left-color: theme-color("info");
   }
   .success {
-    border-left-color: $brand-success;
+    border-left-color: theme-color("success");
   }
   .primary {
-    border-left-color: $brand-primary;
+    border-left-color: theme-color("primary");
   }
 
   .handle {
@@ -437,10 +437,10 @@
     }
 
     > .online {
-      border: 2px solid $brand-success;
+      border: 2px solid theme-color("success");
     }
     > .offline {
-      border: 2px solid $brand-danger;
+      border: 2px solid theme-color("danger");
     }
 
     // The message body

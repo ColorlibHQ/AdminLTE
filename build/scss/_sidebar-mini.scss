@@ -74,7 +74,7 @@
             > .nav-link > .text {
               top: 0;
               margin-left: -3px;
-              padding: $nav-link-padding;
+              padding: $nav-link-padding-x $nav-link-padding-y;
               background-color: inherit;
               @include border-right-radius($border-radius);
             }
@@ -84,7 +84,7 @@
             }
 
             > .nav-treeview {
-              top: $nav-link-padding;
+              top: $nav-link-padding-y;
               margin-left: 0;
               border-bottom-right-radius: $border-radius;
             }

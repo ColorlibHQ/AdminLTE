@@ -226,7 +226,7 @@
   }
   .content-wrapper,
   .main-footer {
-    border-left: 1px solid $gray;
+    border-left: 1px solid $gray-500;
   }
   // User Panel (resides in the sidebar)
   .user-panel {
@@ -296,7 +296,7 @@
   @include media-breakpoint-up(sm) {
     &.sidebar-mini.sidebar-collapse {
       .sidebar-menu > li > .nav-treeview {
-        border-left: 1px solid $gray;
+        border-left: 1px solid $gray-500;
       }
     }
   }

@@ -9,7 +9,7 @@
     font-weight: 200;
     width: $sidebar-width;
     padding: $main-header-brand-padding-y $main-header-brand-padding-x;
-    background: darken($brand-primary, 5%);
+    background: darken(theme-color("primary"), 5%);
     transition: width $transition-speed $transition-fn;
     overflow: hidden;
     margin-right: 0;
@@ -90,6 +90,6 @@
   position: absolute;
   top: 9px;
   right: 5px;
-  font-size: $font-size-xs - .1;
+  font-size: $font-size-base - .1;
   padding: 2px 4px;
 }

@@ -31,18 +31,18 @@
   // Themes for different contexts
   &.callout-danger {
     @extend  .bg-red;
-    border-color: darken($brand-danger, 10%);
+    border-color: darken(theme-color("danger"), 10%);
   }
   &.callout-warning {
     @extend  .bg-yellow;
-    border-color: darken($brand-warning, 10%);
+    border-color: darken(theme-color("warning"), 10%);
   }
   &.callout-info {
     @extend  .bg-aqua;
-    border-color: darken($brand-info, 10%);
+    border-color: darken(theme-color("info"), 10%);
   }
   &.callout-success {
     @extend  .bg-green;
-    border-color: darken($brand-success, 10%);
+    border-color: darken(theme-color("success"), 10%);
   }
 }

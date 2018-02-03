@@ -9,7 +9,7 @@ $(function () {
 
   "use strict";
 
-  //Make the dashboard widgets sortable Using jquery UI
+  // Make the dashboard widgets sortable Using jquery UI
   $(".connectedSortable").sortable({
     placeholder: "sort-highlight",
     connectWith: ".connectedSortable",
@@ -19,7 +19,7 @@ $(function () {
   });
   $(".connectedSortable .box-header, .connectedSortable .nav-tabs-custom").css("cursor", "move");
 
-  //jQuery UI sortable for the todo list
+  // jQuery UI sortable for the todo list
   $(".todo-list").sortable({
     placeholder: "sort-highlight",
     handle: ".handle",
@@ -27,7 +27,7 @@ $(function () {
     zIndex: 999999
   });
 
-  //bootstrap WYSIHTML5 - text editor
+  // bootstrap WYSIHTML5 - text editor
   $(".textarea").wysihtml5();
 
   $('.daterange').daterangepicker({
@@ -48,7 +48,7 @@ $(function () {
   /* jQueryKnob */
   $(".knob").knob();
 
-  //jvectormap data
+  // jvectormap data
   var visitorsData = {
     "US": 398, //USA
     "SA": 400, //Saudi Arabia
@@ -62,7 +62,7 @@ $(function () {
     "GB": 320, //Great Britain
     "RU": 3000 //Russia
   };
-  //World map by jvectormap
+  // World map by jvectormap
   $('#world-map').vectorMap({
     map: 'world_mill_en',
     backgroundColor: "transparent",
@@ -88,7 +88,7 @@ $(function () {
     }
   });
 
-  //Sparkline charts
+  // Sparkline charts
   var myvalues = [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021];
   $('#sparkline-1').sparkline(myvalues, {
     type: 'line',
@@ -114,10 +114,10 @@ $(function () {
     width: '80'
   });
 
-  //The Calender
+  // The Calender
   $("#calendar").datepicker();
 
-  //SLIMSCROLL FOR CHAT WIDGET
+  // SLIMSCROLL FOR CHAT WIDGET
   $('#chat-box').slimScroll({
     height: '250px'
   });
@@ -175,7 +175,7 @@ $(function () {
     gridTextSize: 10
   });
 
-  //Donut Chart
+  // Donut Chart
   var donut = new Morris.Donut({
     element: 'sales-chart',
     resize: true,
@@ -188,7 +188,7 @@ $(function () {
     hideHover: 'auto'
   });
 
-  //Fix for charts under tabs
+  // Fix for charts under tabs
   $('.box ul.nav a').on('shown.bs.tab', function () {
     area.redraw();
     donut.redraw();

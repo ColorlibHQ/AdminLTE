@@ -1,23 +1,20 @@
 /*!
  *   AdminLTE v3.0.0-alpha
  *   Author: Abdullah Almsaeed
- *	 Website: Almsaeed Studio <http://almsaeedstudio.com>
+ *	 Website: AdminLTE.io <http://adminlte.io>
  *   License: Open source - MIT <http://opensource.org/licenses/MIT>
-!*/
-
+ */
 // Bootstrap
-@import "bootstrap_variables";
-@import "../../bower_components/bootstrap/scss/bootstrap";
-
+@import "~bootstrap/scss/functions";
+@import "bootstrap-variables";
+@import "~bootstrap/scss/bootstrap";
 // MISC
 // ----
 @import "variables";
 @import "mixins";
-
 // Core
 // ----
 @import "layout";
-
 // COMPONENTS
 // ----------
 @import "header";
@@ -44,7 +41,6 @@
 @import "carousel";
 @import "modal";
 @import "social-widgets";
-
 // PAGES
 // -----
 @import "mailbox";
@@ -53,18 +49,15 @@
 @import "404_500_errors";
 @import "invoice";
 @import "profile";
-
 // Plugins
 // -------
 @import "bootstrap-social";
 @import "fullcalendar";
 @import "select2";
-
 // Miscellaneous
 // -------------
 @import "miscellaneous";
 @import "print";
-
 // Skins
 // -----
 @import "skins/all-skins";

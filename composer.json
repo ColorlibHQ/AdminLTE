@@ -1,7 +1,7 @@
 {
   "name": "almasaeed2010/adminlte",
   "description": "AdminLTE - admin control panel and dashboard that's based on Bootstrap 3",
-  "homepage": "http://almsaeedstudio.com/",
+  "homepage": "http://adminlte.io/",
   "keywords": [
     "css",
     "js",
@@ -16,7 +16,7 @@
   "authors": [
     {
       "name": "Abdullah Almsaeed",
-      "email": "support@almsaeedstudio.com"
+      "email": "support@adminlte.io"
     }
   ],
   "license": "MIT",

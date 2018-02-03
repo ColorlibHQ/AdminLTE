@@ -7,11 +7,11 @@
   //Navbar
   .main-header {
     .navbar {
-      @include navbar-variant($brand-danger, #fff);
+      @include navbar-variant(theme-color("danger"), #fff);
       .sidebar-toggle {
         color: #fff;
         &:hover {
-          background-color: darken($brand-danger, 5%);
+          background-color: darken(theme-color("danger"), 5%);
         }
       }
       @media (max-width: $screen-header-collapse) {
@@ -23,7 +23,7 @@
             a {
               color: #fff;
               &:hover {
-                background: darken($brand-danger, 5%);
+                background: darken(theme-color("danger"), 5%);
               }
             }
           }
@@ -32,14 +32,14 @@
     }
     //Logo
     .logo {
-      @include logo-variant($brand-danger);
+      @include logo-variant(theme-color("danger"));
     }
 
     li.user-header {
-      background-color: $brand-danger;
+      background-color: theme-color("danger");
     }
   }
 
   //Create the sidebar skin
-  @include skin-light-sidebar($brand-danger);
+  @include skin-light-sidebar(theme-color("danger"));
 }

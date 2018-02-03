@@ -6,11 +6,11 @@
   //Navbar
   .main-header {/*
     .navbar {
-      @include navbar-variant($brand-primary, #fff);
+      @include navbar-variant(theme-color("primary"), #fff);
       .sidebar-toggle {
         color: #fff;
         &:hover {
-          background-color: darken($brand-primary, 5%);
+          background-color: darken(theme-color("primary"), 5%);
         }
       }
       @media (max-width: $screen-header-collapse) {
@@ -22,7 +22,7 @@
             a {
               color: #fff;
               &:hover {
-                background: darken($brand-primary, 5%);
+                background: darken(theme-color("primary"), 5%);
               }
             }
           }
@@ -31,18 +31,18 @@
     }*/
     //Logo
     .logo {
-      @include logo-variant(darken($brand-primary, 5%));
+      @include logo-variant(darken(theme-color("primary"), 5%));
     }
 
     li.user-header {
-      background-color: $brand-primary;
+      background-color: theme-color("primary");
     }
   }
 
   //Create the sidebar skin
-  @include skin-dark-sidebar($brand-primary);
+  @include skin-dark-sidebar(theme-color("primary"));
 }
 
 .skin-blue.layout-top-nav .main-header > .logo {
-  @include logo-variant($brand-primary);
+  @include logo-variant(theme-color("primary"));
 }

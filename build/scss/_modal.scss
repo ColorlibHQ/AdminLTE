@@ -31,7 +31,7 @@
   .modal-header,
   .modal-footer {
     @extend .bg-light-blue-active;
-    border-color: darken($brand-primary, 10%);
+    border-color: darken(theme-color("primary"), 10%);
   }
 }
 
@@ -42,7 +42,7 @@
   .modal-header,
   .modal-footer {
     @extend .bg-yellow-active;
-    border-color: darken($brand-warning, 10%);
+    border-color: darken(theme-color("warning"), 10%);
   }
 }
 
@@ -53,7 +53,7 @@
   .modal-header,
   .modal-footer {
     @extend .bg-aqua-active;
-    border-color: darken($brand-info, 10%);
+    border-color: darken(theme-color("info"), 10%);
   }
 }
 
@@ -64,7 +64,7 @@
   .modal-header,
   .modal-footer {
     @extend .bg-green-active;
-    border-color: darken($brand-success, 10%);
+    border-color: darken(theme-color("success"), 10%);
   }
 }
 
@@ -75,6 +75,6 @@
   .modal-header,
   .modal-footer {
     @extend .bg-red-active;
-    border-color: darken($brand-danger, 10%);
+    border-color: darken(theme-color("danger"), 10%);
   }
 }

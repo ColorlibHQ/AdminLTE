@@ -5,9 +5,9 @@
 .form-control {
   //@include border-radius($input-radius);
   box-shadow: none;
-  //border-color: $gray;
+  //border-color: $gray-500;
   &:focus {
-    border-color: $brand-primary;
+    border-color: theme-color("primary");
     box-shadow: none;
   }
   &::-moz-placeholder,
@@ -27,30 +27,30 @@
 .form-group {
   &.has-success {
     label {
-      color: $brand-success;
+      color: theme-color("success");
     }
     .form-control {
-      border-color: $brand-success;
+      border-color: theme-color("success");
       box-shadow: none;
     }
   }
 
   &.has-warning {
     label {
-      color: $brand-warning;
+      color: theme-color("warning");
     }
     .form-control {
-      border-color: $brand-warning;
+      border-color: theme-color("warning");
       box-shadow: none;
     }
   }
 
   &.has-error {
     label {
-      color: $brand-danger;
+      color: theme-color("danger");
     }
     .form-control {
-      border-color: $brand-danger;
+      border-color: theme-color("danger");
       box-shadow: none;
     }
   }
@@ -65,7 +65,7 @@
       position: absolute;
       right: 3px;
       top: 0;
-      padding: $input-padding-y $input-padding-x;
+      padding: $input-btn-padding-y $input-btn-padding-x;
       margin-top: -3px;
       border: 0;
       background-color: transparent;
@@ -78,7 +78,7 @@
 .input-group {
   .input-group-addon {
     //@include border-radius($input-radius);
-    border-color: $gray;
+    border-color: $gray-500;
     background-color: #fff;
   }
 }

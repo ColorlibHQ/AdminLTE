@@ -1,17 +1,274 @@
-'use strict';
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = ".";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(1);
+
+__webpack_require__(2);
+
+__webpack_require__(3);
+
+__webpack_require__(4);
+
+__webpack_require__(5);
+
+__webpack_require__(6);
+
+__webpack_require__(7);
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/*!
- * AdminLTE v3.0.0-alpha (https://almsaeedstudio.com)
- * Copyright 2014-2017 Abdullah Almsaeed <abdullah@almsaeedstudio.com>
- * Project website Almsaeed Studio (https://almsaeedstudio.com)
- * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
+/**
+ * --------------------------------------------
+ * AdminLTE ControlSidebar.js
+ * License MIT
+ * --------------------------------------------
  */
+
+var ControlSidebar = function ($) {
+
+  /**
+   * Constants
+   * ====================================================
+   */
+
+  var NAME = 'ControlSidebar';
+  var DATA_KEY = 'lte.control.sidebar';
+  var EVENT_KEY = '.' + DATA_KEY;
+  var JQUERY_NO_CONFLICT = $.fn[NAME];
+  var DATA_API_KEY = '.data-api';
+
+  var Event = {
+    CLICK_DATA_API: 'click' + EVENT_KEY + DATA_API_KEY
+  };
+
+  var Selector = {
+    CONTROL_SIDEBAR: '.control-sidebar',
+    DATA_TOGGLE: '[data-widget="control-sidebar"]'
+  };
+
+  var ClassName = {
+    CONTROL_SIDEBAR_OPEN: 'control-sidebar-open',
+    CONTROL_SIDEBAR_SLIDE: 'control-sidebar-slide-open'
+  };
+
+  var Default = {
+    slide: true
+
+    /**
+     * Class Definition
+     * ====================================================
+     */
+
+  };
+  var ControlSidebar = function () {
+    function ControlSidebar(element, config) {
+      _classCallCheck(this, ControlSidebar);
+
+      this._element = element;
+      this._config = this._getConfig(config);
+    }
+
+    // Public
+
+    _createClass(ControlSidebar, [{
+      key: 'show',
+      value: function show() {
+        // Show the control sidebar
+        if (this._config.slide) {
+          $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE);
+        } else {
+          $('body').removeClass(ClassName.CONTROL_SIDEBAR_OPEN);
+        }
+      }
+    }, {
+      key: 'collapse',
+      value: function collapse() {
+        // Collapse the control sidebar
+        if (this._config.slide) {
+          $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE);
+        } else {
+          $('body').addClass(ClassName.CONTROL_SIDEBAR_OPEN);
+        }
+      }
+    }, {
+      key: 'toggle',
+      value: function toggle() {
+        if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)) {
+          // Open the control sidebar
+          this.show();
+        } else {
+          // Close the control sidebar
+          this.collapse();
+        }
+      }
+
+      // Private
+
+    }, {
+      key: '_getConfig',
+      value: function _getConfig(config) {
+        return $.extend({}, Default, config);
+      }
+
+      // Static
+
+    }], [{
+      key: '_jQueryInterface',
+      value: function _jQueryInterface(operation) {
+        return this.each(function () {
+          var data = $(this).data(DATA_KEY);
+
+          if (!data) {
+            data = new ControlSidebar(this, $(this).data());
+            $(this).data(DATA_KEY, data);
+          }
+
+          if (data[operation] === 'undefined') {
+            throw new Error(operation + ' is not a function');
+          }
+
+          data[operation]();
+        });
+      }
+    }]);
+
+    return ControlSidebar;
+  }();
+
+  /**
+   *
+   * Data Api implementation
+   * ====================================================
+   */
+
+  $(document).on('click', Selector.DATA_TOGGLE, function (event) {
+    event.preventDefault();
+
+    ControlSidebar._jQueryInterface.call($(this), 'toggle');
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME] = ControlSidebar._jQueryInterface;
+  $.fn[NAME].Constructor = ControlSidebar;
+  $.fn[NAME].noConflict = function () {
+    $.fn[NAME] = JQUERY_NO_CONFLICT;
+    return ControlSidebar._jQueryInterface;
+  };
+
+  return ControlSidebar;
+}(jQuery);
+
+exports.default = ControlSidebar;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * --------------------------------------------
+ * AdminLTE Layout.js
+ * License MIT
+ * --------------------------------------------
+ */
+
 var Layout = function ($) {
-  'use strict';
 
   /**
    * Constants
@@ -42,13 +299,13 @@ var Layout = function ($) {
     HOLD: 'hold-transition',
     SIDEBAR: 'main-sidebar',
     LAYOUT_FIXED: 'layout-fixed'
+
+    /**
+     * Class Definition
+     * ====================================================
+     */
+
   };
-
-  /**
-   * Class Definition
-   * ====================================================
-   */
-
   var Layout = function () {
     function Layout(element) {
       _classCallCheck(this, Layout);
@@ -63,8 +320,8 @@ var Layout = function ($) {
     _createClass(Layout, [{
       key: 'fixLayoutHeight',
       value: function fixLayoutHeight() {
-        var heights = [$(window).height(), $(Selector.HEADER).outerHeight(), $(Selector.FOOTER).outerHeight(), $(Selector.SIDEBAR).height()],
-            max = this._max(heights);
+        var heights = [$(window).height(), $(Selector.HEADER).outerHeight(), $(Selector.FOOTER).outerHeight(), $(Selector.SIDEBAR).height()];
+        var max = this._max(heights);
 
         $(Selector.CONTENT).css('min-height', max - (heights[1] + heights[2]));
       }
@@ -153,191 +410,31 @@ var Layout = function ($) {
   return Layout;
 }(jQuery);
 
-var Treeview = function ($) {
+exports.default = Layout;
 
-  /**
-   * Constants
-   * ====================================================
-   */
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
 
-  var NAME = 'Treeview';
-  var DATA_KEY = 'lte.treeview';
-  var EVENT_KEY = '.' + DATA_KEY;
-  var JQUERY_NO_CONFLICT = $.fn[NAME];
+"use strict";
 
-  var Event = {
-    SELECTED: 'selected' + EVENT_KEY,
-    EXPANDED: 'expanded' + EVENT_KEY,
-    COLLAPSED: 'collapsed' + EVENT_KEY,
-    LOAD_DATA_API: 'load' + EVENT_KEY
-  };
 
-  var Selector = {
-    LI: '.nav-item',
-    LINK: '.nav-link',
-    TREEVIEW_MENU: '.nav-treeview',
-    OPEN: '.menu-open',
-    DATA_WIDGET: '[data-widget="treeview"]'
-  };
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-  var ClassName = {
-    LI: 'nav-item',
-    LINK: 'nav-link',
-    TREEVIEW_MENU: 'nav-treeview',
-    OPEN: 'menu-open'
-  };
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-  var Default = {
-    trigger: Selector.DATA_WIDGET + ' ' + Selector.LINK,
-    animationSpeed: 300,
-    accordion: true
-  };
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  /**
-   * Class Definition
-   * ====================================================
-   */
-
-  var Treeview = function () {
-    function Treeview(element, config) {
-      _classCallCheck(this, Treeview);
-
-      this._config = config;
-      this._element = element;
-    }
-
-    // Public
-
-    _createClass(Treeview, [{
-      key: 'init',
-      value: function init() {
-        this._setupListeners();
-      }
-    }, {
-      key: 'expand',
-      value: function expand(treeviewMenu, parentLi) {
-        var _this2 = this;
-
-        var expandedEvent = $.Event(Event.EXPANDED);
-
-        if (this._config.accordion) {
-          var openMenuLi = parentLi.siblings(Selector.OPEN).first();
-          var openTreeview = openMenuLi.find(Selector.TREEVIEW_MENU).first();
-          this.collapse(openTreeview, openMenuLi);
-        }
-
-        treeviewMenu.slideDown(this._config.animationSpeed, function () {
-          parentLi.addClass(ClassName.OPEN);
-          $(_this2._element).trigger(expandedEvent);
-        });
-      }
-    }, {
-      key: 'collapse',
-      value: function collapse(treeviewMenu, parentLi) {
-        var _this3 = this;
-
-        var collapsedEvent = $.Event(Event.COLLAPSED);
-
-        treeviewMenu.slideUp(this._config.animationSpeed, function () {
-          parentLi.removeClass(ClassName.OPEN);
-          $(_this3._element).trigger(collapsedEvent);
-          treeviewMenu.find(Selector.OPEN + ' > ' + Selector.TREEVIEW_MENU).slideUp();
-          treeviewMenu.find(Selector.OPEN).removeClass(ClassName.OPEN);
-        });
-      }
-    }, {
-      key: 'collapseAll',
-      value: function collapseAll() {}
-    }, {
-      key: 'expandAll',
-      value: function expandAll() {}
-    }, {
-      key: 'toggle',
-      value: function toggle(event) {
-        var $relativeTarget = $(event.currentTarget);
-        var treeviewMenu = $relativeTarget.next();
-
-        if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
-          return;
-        }
-
-        event.preventDefault();
-
-        var parentLi = $relativeTarget.parents(Selector.LI).first();
-        var isOpen = parentLi.hasClass(ClassName.OPEN);
-
-        if (isOpen) {
-          this.collapse($(treeviewMenu), parentLi);
-        } else {
-          this.expand($(treeviewMenu), parentLi);
-        }
-      }
-
-      // Private
-
-    }, {
-      key: '_setupListeners',
-      value: function _setupListeners() {
-        var _this4 = this;
-
-        $(document).on('click', this._config.trigger, function (event) {
-          _this4.toggle(event);
-        });
-      }
-
-      // Static
-
-    }], [{
-      key: '_jQueryInterface',
-      value: function _jQueryInterface(config) {
-        return this.each(function () {
-          var data = $(this).data(DATA_KEY);
-          var _config = $.extend({}, Default, $(this).data());
-
-          if (!data) {
-            data = new Treeview($(this), _config);
-            $(this).data(DATA_KEY, data);
-          }
-
-          if (config === 'init') {
-            data[config]();
-          }
-        });
-      }
-    }]);
-
-    return Treeview;
-  }();
-
-  /**
-   * Data API
-   * ====================================================
-   */
-
-  $(window).on(Event.LOAD_DATA_API, function () {
-    $(Selector.DATA_WIDGET).each(function () {
-      var $treeview = $(this);
-      Treeview._jQueryInterface.call($treeview, 'init');
-    });
-  });
-
-  /**
-   * jQuery API
-   * ====================================================
-   */
-
-  $.fn[NAME] = Treeview._jQueryInterface;
-  $.fn[NAME].Constructor = Treeview;
-  $.fn[NAME].noConflict = function () {
-    $.fn[NAME] = JQUERY_NO_CONFLICT;
-    return Treeview._jQueryInterface;
-  };
-
-  return Treeview;
-}(jQuery);
+/**
+ * --------------------------------------------
+ * AdminLTE PushMenu.js
+ * License MIT
+ * --------------------------------------------
+ */
 
 var PushMenu = function ($) {
-  'use strict';
 
   /**
    * Constants
@@ -357,13 +454,13 @@ var PushMenu = function ($) {
   var Selector = {
     COLLAPSED: 'sidebar-collapse',
     TOGGLE_BUTTON: '[data-widget="pushmenu"]'
+
+    /**
+     * Class Definition
+     * ====================================================
+     */
+
   };
-
-  /**
-   * Class Definition
-   * ====================================================
-   */
-
   var PushMenu = function () {
     function PushMenu(element) {
       _classCallCheck(this, PushMenu);
@@ -464,168 +561,29 @@ var PushMenu = function ($) {
   return PushMenu;
 }(jQuery);
 
-var Widget = function ($) {
-  'use strict';
+exports.default = PushMenu;
 
-  var Widget = function () {
-    function Widget(element) {
-      _classCallCheck(this, Widget);
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
 
-      this._element = element;
-    }
+"use strict";
 
-    _createClass(Widget, null, [{
-      key: '_jQueryInterface',
-      value: function _jQueryInterface(element) {
-        var $this = $(element);
-        $this.show();
-      }
-    }]);
 
-    return Widget;
-  }();
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-  return Widget;
-}(jQuery);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var ControlSidebar = function ($) {
-  'use strict';
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  /**
-   * Constants
-   * ====================================================
-   */
-
-  var NAME = 'ControlSidebar';
-  var DATA_KEY = 'lte.control.sidebar';
-  var EVENT_KEY = '.' + DATA_KEY;
-  var JQUERY_NO_CONFLICT = $.fn[NAME];
-  var DATA_API_KEY = '.data-api';
-
-  var Event = {
-    CLICK_DATA_API: 'click' + EVENT_KEY + DATA_API_KEY
-  };
-
-  var Selector = {
-    CONTROL_SIDEBAR: '.control-sidebar',
-    DATA_TOGGLE: '[data-widget="control-sidebar"]'
-  };
-
-  var ClassName = {
-    CONTROL_SIDEBAR_OPEN: 'control-sidebar-open',
-    CONTROL_SIDEBAR_SLIDE: 'control-sidebar-slide-open'
-  };
-
-  var Default = {
-    slide: true
-  };
-
-  /**
-   * Class Definition
-   * ====================================================
-   */
-
-  var ControlSidebar = function () {
-    function ControlSidebar(element, config) {
-      _classCallCheck(this, ControlSidebar);
-
-      this._element = element;
-      this._config = this._getConfig(config);
-    }
-
-    // Public
-
-    _createClass(ControlSidebar, [{
-      key: 'show',
-      value: function show() {
-        // Show the control sidebar
-        if (this._config.slide) {
-          $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE);
-        } else {
-          $('body').removeClass(ClassName.CONTROL_SIDEBAR_OPEN);
-        }
-      }
-    }, {
-      key: 'collapse',
-      value: function collapse() {
-        // Collapse the control sidebar
-        if (this._config.slide) {
-          $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE);
-        } else {
-          $('body').addClass(ClassName.CONTROL_SIDEBAR_OPEN);
-        }
-      }
-    }, {
-      key: 'toggle',
-      value: function toggle() {
-        if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)) {
-          // Open the control sidebar
-          this.show();
-        } else {
-          // Close the control sidebar
-          this.collapse();
-        }
-      }
-
-      // Private
-
-    }, {
-      key: '_getConfig',
-      value: function _getConfig(config) {
-        return $.extend({}, Default, config);
-      }
-
-      // Static
-
-    }], [{
-      key: '_jQueryInterface',
-      value: function _jQueryInterface(operation) {
-        return this.each(function () {
-          var data = $(this).data(DATA_KEY);
-
-          if (!data) {
-            data = new ControlSidebar(this, $(this).data());
-            $(this).data(DATA_KEY, data);
-          }
-
-          if (data[operation] === undefined) {
-            throw new Error(operation + ' is not a function');
-          }
-
-          data[operation]();
-        });
-      }
-    }]);
-
-    return ControlSidebar;
-  }();
-
-  /**
-   *
-   * Data Api implementation
-   * ====================================================
-   */
-
-  $(document).on('click', Selector.DATA_TOGGLE, function (event) {
-    event.preventDefault();
-
-    ControlSidebar._jQueryInterface.call($(this), 'toggle');
-  });
-
-  /**
-   * jQuery API
-   * ====================================================
-   */
-
-  $.fn[NAME] = ControlSidebar._jQueryInterface;
-  $.fn[NAME].Constructor = ControlSidebar;
-  $.fn[NAME].noConflict = function () {
-    $.fn[NAME] = JQUERY_NO_CONFLICT;
-    return ControlSidebar._jQueryInterface;
-  };
-
-  return ControlSidebar;
-}(jQuery);
+/**
+ * --------------------------------------------
+ * AdminLTE Search.js
+ * License MIT
+ * --------------------------------------------
+ */
 
 var Search = function ($) {
 
@@ -663,21 +621,20 @@ var Search = function ($) {
 
   var Default = {
     target: '',
-    case_sensitive: false
+    caseSensitive: false
+
+    /**
+     * Class Definition
+     * ====================================================
+     */
   };
-
-  /**
-   * Class Definition
-   * ====================================================
-   */
-
   var Search = function () {
     function Search(element, config) {
       _classCallCheck(this, Search);
 
       this._config = config;
       this._element = element;
-      this._open_menus = null;
+      this._openMenus = null;
     }
 
     // Public
@@ -685,7 +642,7 @@ var Search = function ($) {
     _createClass(Search, [{
       key: 'init',
       value: function init() {
-        var _this5 = this;
+        var _this = this;
 
         if (this._config.target === '') {
           this._config.target = this._element.closest(Selector.TREEVIEW_MENU);
@@ -694,7 +651,7 @@ var Search = function ($) {
         }
 
         // Set treeview original state
-        this._open_menus = this._config.target.find(Selector.OPEN);
+        this._openMenus = this._config.target.find(Selector.OPEN);
 
         // Prevent form submission
         this._element.parents('form').first().submit(function (event) {
@@ -707,11 +664,11 @@ var Search = function ($) {
 
           var value = $(event.currentTarget).val();
 
-          if (!_this5._config.case_sensitive) {
+          if (!_this._config.caseSensitive) {
             value = value.toLowerCase();
           }
 
-          _this5.search(value);
+          _this.search(value);
         });
       }
     }, {
@@ -734,7 +691,7 @@ var Search = function ($) {
           var _iteratorError = undefined;
 
           try {
-            for (var _iterator = this._open_menus[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            for (var _iterator = this._openMenus[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
               var menu = _step.value;
 
               if (!$(menu).hasClass(ClassName.OPEN)) {
@@ -775,11 +732,11 @@ var Search = function ($) {
 
             var text = $(item).children('a').text();
 
-            if (!this._config.case_sensitive) {
+            if (!this._config.caseSensitive) {
               text = text.toLowerCase();
             }
 
-            if (text.indexOf(value) != -1) {
+            if (parseInt(text.indexOf(value)) !== -1) {
               // Found the result
               // Make the parent LI visible
               $(item).parents(Selector.LI).css('display', 'block').addClass('menu-open');
@@ -859,6 +816,30 @@ var Search = function ($) {
   return Search;
 }(jQuery);
 
+exports.default = Search;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * --------------------------------------------
+ * AdminLTE SiteSearch.js
+ * License MIT
+ * --------------------------------------------
+ */
+
 var SiteSearch = function ($) {
   'use strict';
 
@@ -887,13 +868,13 @@ var SiteSearch = function ($) {
 
   var Default = {
     transitionSpeed: 300
+
+    /**
+     * Class Definition
+     * ====================================================
+     */
+
   };
-
-  /**
-   * Class Definition
-   * ====================================================
-   */
-
   var SiteSearch = function () {
     function SiteSearch(_element, _options) {
       _classCallCheck(this, SiteSearch);
@@ -991,4 +972,259 @@ var SiteSearch = function ($) {
 
   return SiteSearch;
 }(jQuery);
-//# sourceMappingURL=adminlte.js.map
+
+exports.default = SiteSearch;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * --------------------------------------------
+ * AdminLTE Treeview.js
+ * License MIT
+ * --------------------------------------------
+ */
+
+var Treeview = function ($) {
+
+  /**
+   * Constants
+   * ====================================================
+   */
+
+  var NAME = 'Treeview';
+  var DATA_KEY = 'lte.treeview';
+  var EVENT_KEY = '.' + DATA_KEY;
+  var JQUERY_NO_CONFLICT = $.fn[NAME];
+
+  var Event = {
+    SELECTED: 'selected' + EVENT_KEY,
+    EXPANDED: 'expanded' + EVENT_KEY,
+    COLLAPSED: 'collapsed' + EVENT_KEY,
+    LOAD_DATA_API: 'load' + EVENT_KEY
+  };
+
+  var Selector = {
+    LI: '.nav-item',
+    LINK: '.nav-link',
+    TREEVIEW_MENU: '.nav-treeview',
+    OPEN: '.menu-open',
+    DATA_WIDGET: '[data-widget="treeview"]'
+  };
+
+  var ClassName = {
+    LI: 'nav-item',
+    LINK: 'nav-link',
+    TREEVIEW_MENU: 'nav-treeview',
+    OPEN: 'menu-open'
+  };
+
+  var Default = {
+    trigger: Selector.DATA_WIDGET + ' ' + Selector.LINK,
+    animationSpeed: 300,
+    accordion: true
+
+    /**
+     * Class Definition
+     * ====================================================
+     */
+  };
+  var Treeview = function () {
+    function Treeview(element, config) {
+      _classCallCheck(this, Treeview);
+
+      this._config = config;
+      this._element = element;
+    }
+
+    // Public
+
+    _createClass(Treeview, [{
+      key: 'init',
+      value: function init() {
+        this._setupListeners();
+      }
+    }, {
+      key: 'expand',
+      value: function expand(treeviewMenu, parentLi) {
+        var _this = this;
+
+        var expandedEvent = $.Event(Event.EXPANDED);
+
+        if (this._config.accordion) {
+          var openMenuLi = parentLi.siblings(Selector.OPEN).first();
+          var openTreeview = openMenuLi.find(Selector.TREEVIEW_MENU).first();
+          this.collapse(openTreeview, openMenuLi);
+        }
+
+        treeviewMenu.slideDown(this._config.animationSpeed, function () {
+          parentLi.addClass(ClassName.OPEN);
+          $(_this._element).trigger(expandedEvent);
+        });
+      }
+    }, {
+      key: 'collapse',
+      value: function collapse(treeviewMenu, parentLi) {
+        var _this2 = this;
+
+        var collapsedEvent = $.Event(Event.COLLAPSED);
+
+        treeviewMenu.slideUp(this._config.animationSpeed, function () {
+          parentLi.removeClass(ClassName.OPEN);
+          $(_this2._element).trigger(collapsedEvent);
+          treeviewMenu.find(Selector.OPEN + ' > ' + Selector.TREEVIEW_MENU).slideUp();
+          treeviewMenu.find(Selector.OPEN).removeClass(ClassName.OPEN);
+        });
+      }
+    }, {
+      key: 'collapseAll',
+      value: function collapseAll() {}
+    }, {
+      key: 'expandAll',
+      value: function expandAll() {}
+    }, {
+      key: 'toggle',
+      value: function toggle(event) {
+        var $relativeTarget = $(event.currentTarget);
+        var treeviewMenu = $relativeTarget.next();
+
+        if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
+          return;
+        }
+
+        event.preventDefault();
+
+        var parentLi = $relativeTarget.parents(Selector.LI).first();
+        var isOpen = parentLi.hasClass(ClassName.OPEN);
+
+        if (isOpen) {
+          this.collapse($(treeviewMenu), parentLi);
+        } else {
+          this.expand($(treeviewMenu), parentLi);
+        }
+      }
+
+      // Private
+
+    }, {
+      key: '_setupListeners',
+      value: function _setupListeners() {
+        var _this3 = this;
+
+        $(document).on('click', this._config.trigger, function (event) {
+          _this3.toggle(event);
+        });
+      }
+
+      // Static
+
+    }], [{
+      key: '_jQueryInterface',
+      value: function _jQueryInterface(config) {
+        return this.each(function () {
+          var data = $(this).data(DATA_KEY);
+          var _config = $.extend({}, Default, $(this).data());
+
+          if (!data) {
+            data = new Treeview($(this), _config);
+            $(this).data(DATA_KEY, data);
+          }
+
+          if (config === 'init') {
+            data[config]();
+          }
+        });
+      }
+    }]);
+
+    return Treeview;
+  }();
+
+  /**
+   * Data API
+   * ====================================================
+   */
+
+  $(window).on(Event.LOAD_DATA_API, function () {
+    $(Selector.DATA_WIDGET).each(function () {
+      var $treeview = $(this);
+      Treeview._jQueryInterface.call($treeview, 'init');
+    });
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME] = Treeview._jQueryInterface;
+  $.fn[NAME].Constructor = Treeview;
+  $.fn[NAME].noConflict = function () {
+    $.fn[NAME] = JQUERY_NO_CONFLICT;
+    return Treeview._jQueryInterface;
+  };
+
+  return Treeview;
+}(jQuery);
+
+exports.default = Treeview;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * --------------------------------------------
+ * AdminLTE Widget.js
+ * License MIT
+ * --------------------------------------------
+ */
+
+var Widget = function ($) {
+  var Widget = function () {
+    function Widget(element) {
+      _classCallCheck(this, Widget);
+
+      this._element = element;
+    }
+
+    _createClass(Widget, null, [{
+      key: "_jQueryInterface",
+      value: function _jQueryInterface(element) {
+        $(element).show();
+      }
+    }]);
+
+    return Widget;
+  }();
+
+  return Widget;
+}(jQuery);
+
+exports.default = Widget;
+
+/***/ })
+/******/ ]);

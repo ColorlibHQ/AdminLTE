@@ -20,7 +20,7 @@
 }
 
 .select2-container--default.select2-container--open {
-  border-color: $brand-primary;
+  border-color: theme-color("primary");
 }
 
 .select2-dropdown {
@@ -29,7 +29,7 @@
 }
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-  background-color: $brand-primary;
+  background-color: theme-color("primary");
   color: white;
 }
 
@@ -66,7 +66,7 @@
     border: 1px solid $gray-x-light;
     &:focus {
       outline: none;
-      border: 1px solid $brand-primary;
+      border: 1px solid theme-color("primary");
     }
   }
 }
@@ -89,7 +89,7 @@
     border: 1px solid $gray-x-light;
     //border-radius: $input-radius;
     &:focus {
-      border-color: $brand-primary;
+      border-color: theme-color("primary");
     }
   }
   &.select2-container--focus .select2-selection--multiple {
@@ -98,8 +98,8 @@
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
-  background-color: $brand-primary;
-  border-color: darken($brand-primary, 5%);
+  background-color: theme-color("primary");
+  border-color: darken(theme-color("primary"), 5%);
   padding: 1px 10px;
   color: #fff;
 }

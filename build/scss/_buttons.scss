@@ -66,42 +66,42 @@
 }
 
 .btn-primary {
-  background-color: $brand-primary;
-  border-color: darken($brand-primary, 5%);
+  background-color: theme-color("primary");
+  border-color: darken(theme-color("primary"), 5%);
   &:hover, &:active, &.hover {
-    background-color: darken($brand-primary, 5%);
+    background-color: darken(theme-color("primary"), 5%);
   }
 }
 
 .btn-success {
-  background-color: $brand-success;
-  border-color: darken($brand-success, 5%);
+  background-color: theme-color("success");
+  border-color: darken(theme-color("success"), 5%);
   &:hover, &:active, &.hover {
-    background-color: darken($brand-success, 5%);
+    background-color: darken(theme-color("success"), 5%);
   }
 }
 
 .btn-info {
-  background-color: $brand-info;
-  border-color: darken($brand-info, 5%);
+  background-color: theme-color("info");
+  border-color: darken(theme-color("info"), 5%);
   &:hover, &:active, &.hover {
-    background-color: darken($brand-info, 5%);
+    background-color: darken(theme-color("info"), 5%);
   }
 }
 
 .btn-danger {
-  background-color: $brand-danger;
-  border-color: darken($brand-danger, 5%);
+  background-color: theme-color("danger");
+  border-color: darken(theme-color("danger"), 5%);
   &:hover, &:active, &.hover {
-    background-color: darken($brand-danger, 5%);
+    background-color: darken(theme-color("danger"), 5%);
   }
 }
 
 .btn-warning {
-  background-color: $brand-warning;
-  border-color: darken($brand-warning, 5%);
+  background-color: theme-color("warning");
+  border-color: darken(theme-color("warning"), 5%);
   &:hover, &:active, &.hover {
-    background-color: darken($brand-warning, 5%);
+    background-color: darken(theme-color("warning"), 5%);
   }
 }
 

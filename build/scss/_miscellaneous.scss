@@ -83,7 +83,7 @@
 
 .bg-gray {
   color: #000;
-  background-color: $gray;
+  background-color: $gray-500;
 }
 
 .bg-gray-light {
@@ -95,15 +95,15 @@
 }
 
 .bg-red {
-  background-color: $brand-danger;
+  background-color: theme-color("danger");
 }
 
 .bg-yellow {
-  background-color: $brand-warning;
+  background-color: theme-color("warning");
 }
 
 .bg-aqua {
-  background-color: $brand-info;
+  background-color: theme-color("info");
 }
 
 .bg-blue {
@@ -111,11 +111,11 @@
 }
 
 .bg-light-blue {
-  background-color: $brand-primary;
+  background-color: theme-color("primary");
 }
 
 .bg-green {
-  background-color: $brand-success;
+  background-color: theme-color("success");
 }
 
 .bg-navy {
@@ -153,7 +153,7 @@
 // Set of Active Background Colors
 .bg-gray-active {
   color: #000;
-  background-color: darken($gray, 10%);
+  background-color: darken($gray-500, 10%);
 }
 
 .bg-black-active {
@@ -161,15 +161,15 @@
 }
 
 .bg-red-active {
-  background-color: darken($brand-danger, 6%);
+  background-color: darken(theme-color("danger"), 6%);
 }
 
 .bg-yellow-active {
-  background-color: darken($brand-warning, 6%);
+  background-color: darken(theme-color("warning"), 6%);
 }
 
 .bg-aqua-active {
-  background-color: darken($brand-info, 6%);
+  background-color: darken(theme-color("info"), 6%);
 }
 
 .bg-blue-active {
@@ -177,11 +177,11 @@
 }
 
 .bg-light-blue-active {
-  background-color: darken($brand-primary, 6%);
+  background-color: darken(theme-color("primary"), 6%);
 }
 
 .bg-green-active {
-  background-color: darken($brand-success, 5%);
+  background-color: darken(theme-color("success"), 5%);
 }
 
 .bg-navy-active {
@@ -227,15 +227,15 @@
 
 // Text colors
 .text-red {
-  color: $brand-danger;
+  color: theme-color("danger");
 }
 
 .text-yellow {
-  color: $brand-warning;
+  color: theme-color("warning");
 }
 
 .text-aqua {
-  color: $brand-info;
+  color: theme-color("info");
 }
 
 .text-blue {
@@ -247,15 +247,15 @@
 }
 
 .text-light-blue {
-  color: $brand-primary;
+  color: theme-color("primary");
 }
 
 .text-green {
-  color: $brand-success;
+  color: theme-color("success");
 }
 
 .text-gray {
-  color: $gray;
+  color: $gray-500;
 }
 
 .text-navy {
@@ -291,10 +291,10 @@
 }
 
 .link-muted {
-  color: darken($gray, 30%);
+  color: darken($gray-500, 30%);
   &:hover,
   &:focus {
-    color: darken($gray, 40%);
+    color: darken($gray-500, 40%);
   }
 }
 
@@ -364,7 +364,7 @@
 }
 
 .text-xs {
-  font-size: $font-size-xs;
+  font-size: $font-size-base;
 }
 
 // _fix for sparkline tooltip
@@ -381,7 +381,7 @@
 }
 
 .bg-light-blue-gradient {
-  @include gradient($brand-primary, $brand-primary, lighten($brand-primary, 12%));
+  @include gradient(theme-color("primary"), theme-color("primary"), lighten(theme-color("primary"), 12%));
   color: #fff;
 }
 
@@ -391,12 +391,12 @@
 }
 
 .bg-aqua-gradient {
-  @include gradient($brand-info, $brand-info, lighten($brand-info, 7%));
+  @include gradient(theme-color("info"), theme-color("info"), lighten(theme-color("info"), 7%));
   color: #fff;
 }
 
 .bg-yellow-gradient {
-  @include gradient($brand-warning, $brand-warning, lighten($brand-warning, 16%));
+  @include gradient(theme-color("warning"), theme-color("warning"), lighten(theme-color("warning"), 16%));
   color: #fff;
 }
 
@@ -406,12 +406,12 @@
 }
 
 .bg-green-gradient {
-  @include gradient($brand-success, $brand-success, lighten($brand-success, 7%));
+  @include gradient(theme-color("success"), theme-color("success"), lighten(theme-color("success"), 7%));
   color: #fff;
 }
 
 .bg-red-gradient {
-  @include gradient($brand-danger, $brand-danger, lighten($brand-danger, 10%));
+  @include gradient(theme-color("danger"), theme-color("danger"), lighten(theme-color("danger"), 10%));
   color: #fff;
 }
 
@@ -541,12 +541,12 @@
 
 // Image bordered
 .img-bordered {
-  border: 3px solid $gray;
+  border: 3px solid $gray-500;
   padding: 3px;
 }
 
 .img-bordered-sm {
-  border: 2px solid $gray;
+  border: 2px solid $gray-500;
   padding: 2px;
 }
 

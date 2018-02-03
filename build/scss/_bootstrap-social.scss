@@ -7,14 +7,14 @@
  * https://github.com/lipis/bootstrap-social
  */
 
-$bs-height-base: ($line-height-base + $input-padding-y * 2);
-$bs-height-lg: (floor($font-size-lg * $line-height-base) + $input-padding-y-lg * 2);
-$bs-height-sm: (floor($font-size-sm * 1.5) + $input-padding-y-sm * 2);
-$bs-height-xs: (floor($font-size-sm * 1.2) + $input-padding-y-sm + 1);
+$bs-height-base: ($line-height-base + $input-btn-padding-y * 2);
+$bs-height-lg: (floor($font-size-lg * $line-height-base) + $input-btn-padding-y-lg * 2);
+$bs-height-sm: (floor($font-size-sm * 1.5) + $input-btn-padding-y-sm * 2);
+$bs-height-xs: (floor($font-size-sm * 1.2) + $input-btn-padding-y-sm + 1);
 
 .btn-social {
   position: relative;
-  padding-left: ($bs-height-base + $input-padding-x);
+  padding-left: ($bs-height-base + $input-btn-padding-x);
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
@@ -31,7 +31,7 @@ $bs-height-xs: (floor($font-size-sm * 1.2) + $input-padding-y-sm + 1);
     border-right: 1px solid rgba(0, 0, 0, 0.2);
   }
   &.btn-lg {
-    padding-left: ($bs-height-lg + $input-padding-y-lg);
+    padding-left: ($bs-height-lg + $input-btn-padding-y-lg);
     > :first-child {
       line-height: $bs-height-lg;
       width: $bs-height-lg;
@@ -39,7 +39,7 @@ $bs-height-xs: (floor($font-size-sm * 1.2) + $input-padding-y-sm + 1);
     }
   }
   &.btn-sm {
-    padding-left: ($bs-height-sm + $input-padding-y-sm);
+    padding-left: ($bs-height-sm + $input-btn-padding-y-sm);
     > :first-child {
       line-height: $bs-height-sm;
       width: $bs-height-sm;
@@ -47,7 +47,7 @@ $bs-height-xs: (floor($font-size-sm * 1.2) + $input-padding-y-sm + 1);
     }
   }
   &.btn-xs {
-    padding-left: ($bs-height-xs + $input-padding-y-sm);
+    padding-left: ($bs-height-xs + $input-btn-padding-y-sm);
     > :first-child {
       line-height: $bs-height-xs;
       width: $bs-height-xs;
