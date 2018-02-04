@@ -26,6 +26,6 @@
   },
   "require": {
     "composer/installers": "1.*",
-    "bower-asset/jquery": ">=1.9.* <4.0.0"
+    "bower-asset/jquery": ">=1.9.0 <4.0.0"
   }
 }
