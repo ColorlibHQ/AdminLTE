@@ -8,7 +8,7 @@
   "main": [
     "index2.html",
     "dist/css/AdminLTE.css",
-    "dist/js/app.js",
+    "dist/js/adminlte.js",
     "build/less/AdminLTE.less"
   ],
   "keywords": [
