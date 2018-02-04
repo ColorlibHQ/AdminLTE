@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
 Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
-For licensing, see LICENSE.md or http://ckeditor.com/license
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 -->
 <html>
 <head>
@@ -30,7 +30,7 @@ function InsertHTML() {
 	if ( editor.mode == 'wysiwyg' )
 	{
 		// Insert HTML code.
-		// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-insertHtml
+		// https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-insertHtml
 		editor.insertHtml( value );
 	}
 	else
@@ -46,7 +46,7 @@ function InsertText() {
 	if ( editor.mode == 'wysiwyg' )
 	{
 		// Insert as plain text.
-		// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-insertText
+		// https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-insertText
 		editor.insertText( value );
 	}
 	else
@@ -59,7 +59,7 @@ function SetContents() {
 	var value = document.getElementById( 'htmlArea' ).value;
 
 	// Set editor contents (replace current contents).
-	// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-setData
+	// https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-setData
 	editor.setData( value );
 }
 
@@ -68,7 +68,7 @@ function GetContents() {
 	var editor = CKEDITOR.instances.editor1;
 
 	// Get editor contents
-	// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-getData
+	// https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-getData
 	alert( editor.getData() );
 }
 
@@ -80,7 +80,7 @@ function ExecuteCommand( commandName ) {
 	if ( editor.mode == 'wysiwyg' )
 	{
 		// Execute the command.
-		// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-execCommand
+		// https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-execCommand
 		editor.execCommand( commandName );
 	}
 	else
@@ -92,7 +92,7 @@ function CheckDirty() {
 	var editor = CKEDITOR.instances.editor1;
 	// Checks whether the current editor contents present changes when compared
 	// to the contents loaded into the editor at startup
-	// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-checkDirty
+	// https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-checkDirty
 	alert( editor.checkDirty() );
 }
 
@@ -100,7 +100,7 @@ function ResetDirty() {
 	// Get the editor instance that we want to interact with.
 	var editor = CKEDITOR.instances.editor1;
 	// Resets the "dirty state" of the editor (see CheckDirty())
-	// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-resetDirty
+	// https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-resetDirty
 	editor.resetDirty();
 	alert( 'The "IsDirty" status has been reset' );
 }
@@ -125,12 +125,12 @@ function onBlur() {
 		<a href="index.html">CKEditor Samples</a> &raquo; Using CKEditor JavaScript API
 	</h1>
 	<div class="warning deprecated">
-		This sample is not maintained anymore. Check out its <a href="http://sdk.ckeditor.com/samples/api.html">brand new version in CKEditor SDK</a>.
+		This sample is not maintained anymore. Check out its <a href="https://sdk.ckeditor.com/samples/api.html">brand new version in CKEditor SDK</a>.
 	</div>
 	<div class="description">
 	<p>
 		This sample shows how to use the
-		<a class="samples" href="http://docs.ckeditor.com/#!/api/CKEDITOR.editor">CKEditor JavaScript API</a>
+		<a class="samples" href="https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor">CKEditor JavaScript API</a>
 		to interact with the editor at runtime.
 	</p>
 	<p>
@@ -149,7 +149,7 @@ function onBlur() {
 		</noscript>
 	</div>
 	<form action="../../../samples/sample_posteddata.php" method="post">
-		<textarea cols="100" id="editor1" name="editor1" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+		<textarea cols="100" id="editor1" name="editor1" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
 
 		<script>
 			// Replace the <textarea id="editor1"> with an CKEditor instance.
@@ -199,10 +199,10 @@ Second line of text preceded by two line breaks.</textarea>
 	<div id="footer">
 		<hr>
 		<p>
-			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
+			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
 		</p>
 		<p id="copy">
-			Copyright &copy; 2003-2017, <a class="samples" href="http://cksource.com/">CKSource</a> - Frederico
+			Copyright &copy; 2003-2017, <a class="samples" href="https://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.
 		</p>
 	</div>

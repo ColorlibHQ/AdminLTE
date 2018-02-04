@@ -3,7 +3,7 @@
 * https://github.com/RobinHerbots/Inputmask
 * Copyright (c) 2010 - 2017 Robin Herbots
 * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-* Version: 3.3.8
+* Version: 3.3.11
 */
 
 !function(factory) {
@@ -18,8 +18,7 @@
         function reduceVariations(masks, previousVariation, previousmaskGroup) {
             previousVariation = previousVariation || "", previousmaskGroup = previousmaskGroup || maskGroups, 
             "" !== previousVariation && (previousmaskGroup[previousVariation] = {});
-            for (var variation = "", maskGroup = previousmaskGroup[previousVariation] || previousmaskGroup, i = masks.length - 1; i >= 0; i--) mask = masks[i].mask || masks[i], 
-            variation = mask.substr(0, 1), maskGroup[variation] = maskGroup[variation] || [], 
+            for (var variation = "", maskGroup = previousmaskGroup[previousVariation] || previousmaskGroup, i = masks.length - 1; i >= 0; i--) maskGroup[variation = (mask = masks[i].mask || masks[i]).substr(0, 1)] = maskGroup[variation] || [], 
             maskGroup[variation].unshift(mask.substr(1)), masks.splice(i, 1);
             for (var ndx in maskGroup) maskGroup[ndx].length > 500 && reduceVariations(maskGroup[ndx].slice(), ndx, maskGroup);
         }
@@ -30,8 +29,7 @@
             mask;
         }
         var maskGroups = {};
-        return opts.phoneCodes && (opts.phoneCodes && opts.phoneCodes.length > 1e3 && (mask = mask.substr(1, mask.length - 2), 
-        reduceVariations(mask.split(opts.groupmarker.end + opts.alternatormarker + opts.groupmarker.start)), 
+        return opts.phoneCodes && (opts.phoneCodes && opts.phoneCodes.length > 1e3 && (reduceVariations((mask = mask.substr(1, mask.length - 2)).split(opts.groupmarker.end + opts.alternatormarker + opts.groupmarker.start)), 
         mask = rebuild(maskGroups)), mask = mask.replace(/9/g, "\\9")), analyseMaskBase.call(this, mask, regexMask, opts);
     }, Inputmask.extendAliases({
         abstractphone: {

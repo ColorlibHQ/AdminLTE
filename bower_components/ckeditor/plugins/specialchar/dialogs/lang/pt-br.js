@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","pt-br",{euro:"Euro",lsquo:"Aspas simples esquerda",rsquo:"Aspas simples direita",ldquo:"Aspas duplas esquerda",rdquo:"Aspas duplas direita",ndash:"Traço",mdash:"Travessão",iexcl:"Ponto de exclamação invertido",cent:"Cent",pound:"Cerquilha",curren:"Dinheiro",yen:"Yen",brvbar:"Bara interrompida",sect:"Símbolo de Parágrafo",uml:"Trema",copy:"Direito de Cópia",ordf:"Indicador ordinal feminino",laquo:"Aspas duplas angulares esquerda",not:"Negação",reg:"Marca Registrada",
 macr:"Mácron",deg:"Grau",sup2:"2 Superscrito",sup3:"3 Superscrito",acute:"Acento agudo",micro:"Micro",para:"Pé de mosca",middot:"Ponto mediano",cedil:"Cedilha",sup1:"1 Superscrito",ordm:"Indicador ordinal masculino",raquo:"Aspas duplas angulares direita",frac14:"Um quarto",frac12:"Um meio",frac34:"Três quartos",iquest:"Interrogação invertida",Agrave:"A maiúsculo com acento grave",Aacute:"A maiúsculo com acento agudo",Acirc:"A maiúsculo com acento circunflexo",Atilde:"A maiúsculo com til",Auml:"A maiúsculo com trema",

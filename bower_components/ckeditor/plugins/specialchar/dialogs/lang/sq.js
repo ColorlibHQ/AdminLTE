@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","sq",{euro:"Shenja e Euros",lsquo:"Thonjëza majtas me një vi",rsquo:"Thonjëza djathtas me një vi",ldquo:"Thonjëza majtas",rdquo:"Thonjëza djathtas",ndash:"En viza lidhëse",mdash:"Em viza lidhëse",iexcl:"Pikëçuditëse e përmbysur",cent:"Shenja e Centit",pound:"Shejna e Funtit",curren:"Shenja e valutës",yen:"Shenja e Jenit",brvbar:"Viza e këputur",sect:"Shenja e pjesës",uml:"Diaeresis",copy:"Shenja e të drejtave të kopjimit",ordf:"Feminine ordinal indicator",laquo:"Left-pointing double angle quotation mark",
 not:"Nuk ka shenjë",reg:"Shenja e të regjistruarit",macr:"Macron",deg:"Shenja e shkallës",sup2:"Super-skripta dy",sup3:"Super-skripta tre",acute:"Theks i mprehtë",micro:"Shjenja e Mikros",para:"Pilcrow sign",middot:"Pika e Mesme",cedil:"Hark nën shkronja",sup1:"Super-skripta një",ordm:"Masculine ordinal indicator",raquo:"Right-pointing double angle quotation mark",frac14:"Thyesa një të katrat",frac12:"Thyesa një të dytat",frac34:"Thyesa tre të katrat",iquest:"Pikëpyetje e përmbysur",Agrave:"Shkronja e madhe latine A me theks të rëndë",

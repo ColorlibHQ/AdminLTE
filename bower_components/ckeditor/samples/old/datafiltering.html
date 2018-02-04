@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
 Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
-For licensing, see LICENSE.md or http://ckeditor.com/license
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 -->
 <html>
 <head>
@@ -19,7 +19,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 		<a href="index.html">CKEditor Samples</a> &raquo; Data Filtering and Features Activation
 	</h1>
 	<div class="warning deprecated">
-		This sample is not maintained anymore. Check out its <a href="http://sdk.ckeditor.com/samples/acf.html">brand new version in CKEditor SDK</a>.
+		This sample is not maintained anymore. Check out its <a href="https://sdk.ckeditor.com/samples/acf.html">brand new version in CKEditor SDK</a>.
 	</div>
 	<div class="description">
 		<p>
@@ -58,7 +58,7 @@ editor.setData( '&lt;p&gt;Hello world!&lt;/p&gt;' );
 			it provides a set of easy rules that allow adjusting filtering rules
 			and disabling the entire feature when necessary. The config property
 			responsible for this feature is <code><a class="samples"
-			href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-allowedContent">config.allowedContent</a></code>.
+			href="https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-allowedContent">config.allowedContent</a></code>.
 		</p>
 		<p>
 			By "automatic mode" is meant that loaded plugins decide which kind
@@ -67,7 +67,7 @@ editor.setData( '&lt;p&gt;Hello world!&lt;/p&gt;' );
 			automatically allowed. Each plugin is given a set
 			of predefined <abbr title="Advanced Content Filter">ACF</abbr> rules
 			that control the editor until <code><a class="samples"
-			href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-allowedContent">
+			href="https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-allowedContent">
 			config.allowedContent</a></code>
 			is defined manually.
 		</p>
@@ -76,7 +76,7 @@ editor.setData( '&lt;p&gt;Hello world!&lt;/p&gt;' );
 			only: no attributes, no styles, no other tags</strong>.
 			With <abbr title="Advanced Content Filter">ACF</abbr>
 			this is very simple. Basically set <code><a class="samples"
-			href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-allowedContent">
+			href="https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-allowedContent">
 			config.allowedContent</a></code> to <code>'p'</code>:
 		</p>
 <pre class="samples">
@@ -104,13 +104,13 @@ alert( editor.getData() );
 		<p>
 			This is just a small sample of what <abbr title="Advanced Content Filter">ACF</abbr>
 			can do. To know more, please refer to the sample section below and
-			<a href="http://docs.ckeditor.com/#!/guide/dev_advanced_content_filter">the official Advanced Content Filter guide</a>.
+			<a href="https://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_advanced_content_filter">the official Advanced Content Filter guide</a>.
 		</p>
 		<p>
 			You may, of course, want CKEditor to avoid filtering of any kind.
 			To get rid of <abbr title="Advanced Content Filter">ACF</abbr>,
 			basically set <code><a class="samples"
-			href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-allowedContent">
+			href="https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-allowedContent">
 			config.allowedContent</a></code> to <code>true</code> like this:
 		</p>
 <pre class="samples">
@@ -159,7 +159,7 @@ CKEDITOR.replace( <em>textarea_id</em>, {
 			<p>
 				This editor is using default configuration ("automatic mode"). It means that
 				<code><a class="samples"
-				href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-allowedContent">
+				href="https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-allowedContent">
 				config.allowedContent</a></code> is defined by loaded plugins.
 				Each plugin extends filtering rules to make it's own associated content
 				available for the user.
@@ -244,7 +244,7 @@ CKEDITOR.replace( 'editor2', {
 				The same thing happened to subscript/superscript, strike, underline
 				(<code>&lt;u&gt;</code>, <code>&lt;sub&gt;</code>, <code>&lt;sup&gt;</code>
 				are disallowed by <code><a class="samples"
-				href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-allowedContent">
+				href="https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-allowedContent">
 				config.allowedContent</a></code>) and many other buttons.
 			</p>
 		</div>
@@ -399,7 +399,7 @@ CKEDITOR.replace( 'editor4', {
 		<div class="description">
 			<p>
 				This editor is using a custom configuration for <abbr title="Advanced Content Filter">ACF</abbr>.
-				It's using the <a href="http://docs.ckeditor.com/#!/guide/dev_disallowed_content" rel="noopener noreferrer" target="_blank">
+				It's using the <a href="https://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_disallowed_content" rel="noopener noreferrer" target="_blank">
 				Disallowed Content</a> property of the filter to eliminate all <code>title</code> attributes.
 			</p>
 
@@ -454,7 +454,7 @@ CKEDITOR.replace( 'editor6', {
 		<div class="description">
 			<p>
 				This editor is using a custom configuration for <abbr title="Advanced Content Filter">ACF</abbr>.
-				It's using the <a href="http://docs.ckeditor.com/#!/guide/dev_disallowed_content" rel="noopener noreferrer" target="_blank">
+				It's using the <a href="https://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_disallowed_content" rel="noopener noreferrer" target="_blank">
 				Disallowed Content</a> property of the filter to eliminate all <code>a</code> and <code>img</code> tags,
 				while allowing all other tags.
 			</p>
@@ -497,10 +497,10 @@ CKEDITOR.replace( 'editor7', {
 	<div id="footer">
 		<hr>
 		<p>
-			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
+			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
 		</p>
 		<p id="copy">
-			Copyright &copy; 2003-2017, <a class="samples" href="http://cksource.com/">CKSource</a> - Frederico
+			Copyright &copy; 2003-2017, <a class="samples" href="https://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.
 		</p>
 	</div>

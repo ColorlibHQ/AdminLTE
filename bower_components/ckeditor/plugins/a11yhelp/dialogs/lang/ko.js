@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","ko",{title:"접근성 설명",contents:"도움말. 이 창을 닫으시려면 ESC 를 누르세요.",legend:[{name:"일반",items:[{name:"편집기 툴바",legend:"툴바를 탐색하시려면 ${toolbarFocus} 를 투르세요. 이전/다음 툴바 그룹으로 이동하시려면 TAB 키 또는 SHIFT+TAB 키를 누르세요. 이전/다음 툴바 버튼으로 이동하시려면 오른쪽 화살표 키 또는 왼쪽 화살표 키를 누르세요. 툴바 버튼을 활성화 하려면 SPACE 키 또는 ENTER 키를 누르세요."},{name:"편집기 다이얼로그",legend:"TAB 키를 누르면 다음 대화상자로 이동하고, SHIFT+TAB 키를 누르면 이전 대화상자로 이동합니다. 대화상자를 제출하려면 ENTER 키를 누르고, ESC 키를 누르면 대화상자를 취소합니다. 대화상자에 탭이 여러개 있을 때, ALT+F10 키 또는 TAB 키를 누르면 순서에 따라 탭 목록에 도달할 수 있습니다. 탭 목록에 초점이 맞을 때, 오른쪽과 왼쪽 화살표 키를 이용하면 각각 다음과 이전 탭으로 이동할 수 있습니다."},
 {name:"편집기 환경 메뉴",legend:"${contextMenu} 또는 어플리케이션 키를 누르면 환경-메뉴를 열 수 있습니다. 환경-메뉴에서 TAB 키 또는 아래 화살표 키를 누르면 다음 메뉴 옵션으로 이동할 수 있습니다. 이전 옵션으로 이동은 SHIFT+TAB 키 또는 위 화살표 키를 눌러서 할 수 있습니다. 스페이스 키 또는 ENTER 키를 눌러서 메뉴 옵션을 선택할 수 있습니다. 스페이스 키 또는 ENTER 키 또는 오른쪽 화살표 키를 눌러서 하위 메뉴를 열 수 있습니다. 부모 메뉴 항목으로 돌아가려면 ESC 키 또는 왼쪽 화살표 키를 누릅니다. ESC 키를 눌러서 환경-메뉴를 닫습니다."},{name:"편집기 목록 박스",legend:"리스트-박스 내에서, 목록의 다음 항목으로 이동하려면 TAB 키 또는 아래쪽 화살표 키를 누릅니다. 목록의 이전 항목으로 이동하려면 SHIFT+TAB 키 또는 위쪽 화살표 키를 누릅니다. 스페이스 키 또는 ENTER 키를 누르면 목록의 해당 옵션을 선택합니다. ESC 키를 눌러서 리스트-박스를 닫을 수 있습니다."},

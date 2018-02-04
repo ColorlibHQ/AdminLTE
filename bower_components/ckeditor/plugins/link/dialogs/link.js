@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 (function(){CKEDITOR.dialog.add("link",function(c){function t(a,b){var c=a.createRange();c.setStartBefore(b);c.setEndAfter(b);return c}var n=CKEDITOR.plugins.link,q,r=function(){var a=this.getDialog(),b=a.getContentElement("target","popupFeatures"),a=a.getContentElement("target","linkTargetName"),p=this.getValue();if(b&&a)switch(b=b.getElement(),b.hide(),a.setValue(""),p){case "frame":a.setLabel(c.lang.link.targetFrameName);a.getElement().show();break;case "popup":b.show();a.setLabel(c.lang.link.targetPopupName);
 a.getElement().show();break;default:a.setValue(p),a.getElement().hide()}},l=function(a){a.target&&this.setValue(a.target[this.id]||"")},e=function(a){a.advanced&&this.setValue(a.advanced[this.id]||"")},k=function(a){a.target||(a.target={});a.target[this.id]=this.getValue()||""},m=function(a){a.advanced||(a.advanced={});a.advanced[this.id]=this.getValue()||""},g=c.lang.common,b=c.lang.link,d;return{title:b.title,minWidth:"moono-lisa"==(CKEDITOR.skinName||c.config.skin)?450:350,minHeight:240,contents:[{id:"info",

@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","tr",{euro:"Euro işareti",lsquo:"Sol tek tırnak işareti",rsquo:"Sağ tek tırnak işareti",ldquo:"Sol çift tırnak işareti",rdquo:"Sağ çift tırnak işareti",ndash:"En tire",mdash:"Em tire",iexcl:"Ters ünlem işareti",cent:"Cent işareti",pound:"Pound işareti",curren:"Para birimi işareti",yen:"Yen işareti",brvbar:"Kırık bar",sect:"Bölüm işareti",uml:"İki sesli harfin ayrılması",copy:"Telif hakkı işareti",ordf:"Dişil sıralı gösterge",laquo:"Sol-işaret çift açı tırnak işareti",
 not:"Not işareti",reg:"Kayıtlı işareti",macr:"Makron",deg:"Derece işareti",sup2:"İkili üstsimge",sup3:"Üçlü üstsimge",acute:"Aksan işareti",micro:"Mikro işareti",para:"Pilcrow işareti",middot:"Orta nokta",cedil:"Kedilla",sup1:"Üstsimge",ordm:"Eril sıralı gösterge",raquo:"Sağ işaret çift açı tırnak işareti",frac14:"Bayağı kesrin dörtte biri",frac12:"Bayağı kesrin bir yarım",frac34:"Bayağı kesrin dörtte üç",iquest:"Ters soru işareti",Agrave:"Aksanlı latin harfi",Aacute:"Aşırı aksanıyla Latin harfi",

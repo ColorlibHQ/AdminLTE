@@ -1,4 +1,104 @@
 
+v3.8.2 (2018-01-30)
+-------------------
+
+Bugfixes:
+- Fix TypeScript definitions file with strictNullChecks (#4035)
+
+
+v3.8.1 (2018-01-28)
+-------------------
+
+Bugfixes:
+- TypeScript definition file not compatible with noImplicitAny (#4017)
+- ES6 classes are not supported for grid class (#3437)
+- day numbers in month view should be localized (#3339)
+- select helper is resizable, causes js error (#3764)
+- selecting over existing select helper causes js error (#4031)
+- eventOrder doesn't work on custom fields (#3950)
+- aria label on button icons (#4023)
+- dynamic option changes to select/overlap/allow doesn't cause rerender
+
+Locales:
+- added Georgian (#3994)
+- added Bosnian (#4029)
+
+
+v3.8.0 (2017-12-18)
+-------------------
+
+- new settings for month/agenda/basic views (#3078):
+  - `columnHeaderFormat` (renamed from `columnFormat`)
+  - `columnHeaderText`
+  - `columnHeaderHtml`
+- TypeScript definition file (fullcalendar.d.ts) included in npm package (#3889)
+- codebase using SASS, though not taking advantage of it yet (#3463)
+- codebase fully ported to TypeScript / Webpack
+- Afrikaans locale fix (#3862)
+
+
+v3.7.0 (2017-11-13)
+-------------------
+
+Bugfixes:
+- `render` method does not re-adjust calendar dimension (#3893)
+- when custom view navigates completely into hidden weekends, JS error ([scheduler-375])
+
+Other:
+- in themes.html demo, fixed broken Bootswatch themes (#3917)
+- moved JavaScript codebase over to TypeScript
+  (same external API; embedded typedefs coming soon)
+
+[scheduler-375]: https://github.com/fullcalendar/fullcalendar-scheduler/issues/375
+
+
+v3.6.2 (2017-10-23)
+-------------------
+
+Bugfixes:
+- Google Calendar event sources not calling `loading` callback (#3884)
+- `eventDataTransform` w/ eventConstraint shouldn't be called during event resizing (#3859)
+- `navLinks` would go to the previously navigated date (#3869)
+- `nowIndicator` arrow would repeatedly render (#3872)
+- fc-content-skeleton DOM element would repeatedly render on navigation in agenda view
+
+
+v3.6.1 (2017-10-11)
+-------------------
+
+Bugfixes:
+- JSON feed event sources always requesting current page (#3865)
+- multi-day events appearing multiple times in more+ popover (#3856)
+
+
+v3.6.0 (2017-10-10)
+-------------------
+
+Features:
+- `agendaEventMinHeight` for guaranteeing height (#961, #3788) thx @Stafie
+- `columnHeader` can be set to `false` to hide headings (#3438, #3787) thx @caseyjhol
+- export all View classes (#2851, #3831)
+- `updateEvent`, update complex attributes (#2864)
+- Albanian locale (#3847) thx @alensaqe
+
+Bugfixes:
+- objects used as non-standard Event properties ignored by `updateEvent` (#3839)
+- listDay error if event goes over period (#3843)
+- `validDays` with `hiddenDays`, js error when no days active (#3846)
+- json feed Event Source object no longer has `url` property (#3845)
+- `updateEvent`, allDay to timed, when no end, wrong end date (#3144)
+- `removeEvents` by `_id` stopped working (#3828)
+- correct `this` context in FuncEventSource (#3848) thx @declspec
+- js event not received in unselect callback when selecting another cell (#3832)
+
+Incompatibilities:
+- The `viewRender` callback might now be fired AFTER events have been rendered
+  to the DOM. However, the eventRender/eventAfterRender/eventAfterAllRender callbacks
+  will always be fired after `viewRender`, just as before.
+- The internal `Grid` class (accessed via `$.fullCalendar.Grid`) has been removed.
+  For monkeypatching, use DayGrid/TimeGrid directly.
+
+
 v3.5.1 (2017-09-06)
 -------------------
 
@@ -31,10 +131,13 @@ Bugfixes:
 - updateEvent doesn't support ID changes (#2928)
 - Promise then method doesn't forward result (#3744)
 - Korean typo (#3693)
+- fixed switching from any view to listview, eventAfterRender isn't called (#3751)
 
 Incompatibilities:
 - Event Objects obtained from clientEvents or various callbacks are no longer
   references to internally used objects. Rather, they are static object copies.
+- `clientEvents` method no longer returns events in same order as received.
+  Do not depend on order.
 
 
 v3.4.0 (2017-04-27)
@@ -985,7 +1088,7 @@ v1.4.3 (2009-12-22)
 
 - added destroy method
 - Google Calendar event pages respect currentTimezone
-- caching now handled by jQuery's ajax	
+- caching now handled by jQuery's ajax
 - protection from setting aspectRatio to zero
 - bugfixes
 	- parseISO8601 and DST caused certain events to display day before

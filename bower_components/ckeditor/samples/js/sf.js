@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 var SF=function(){function d(a){return(a=a.attributes?a.attributes.getNamedItem("class"):null)?a.value.split(" "):[]}function c(a){var e=document.createAttribute("class");e.value=a.join(" ");return e}var b={attachListener:function(a,e,b){if(a.addEventListener)a.addEventListener(e,b,!1);else if(a.attachEvent)a.attachEvent("on"+e,function(){b.apply(a,arguments)});else throw Error("Could not attach event.");}};b.indexOf=function(){var a=Array.prototype.indexOf;return"function"===a?function(e,b){return a.call(e,
 b)}:function(a,b){for(var c=a.length,d=0;d<c;d++)if(a[d]===b)return d;return-1}}();b.accept=function(a,e){var c;a.children?(c=a.children,e(a)):"number"===typeof a.length&&(c=a);for(var d=c?c.length||0:0;d--;)b.accept(c[d],e)};b.getByClass=function(){var a=document.getElementsByClassName;return"function"===typeof a?function(e,b){"string"===typeof e&&(b=e,e=document);return a.call(e,b)}:function(a,c){"string"===typeof a&&(c=a,a=document.getElementsByTagName("html")[0]);var d=[];b.accept(a,function(a){b.classList.contains(a,

@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","ru",{euro:"Знак евро",lsquo:"Левая одинарная кавычка",rsquo:"Правая одинарная кавычка",ldquo:"Левая двойная кавычка",rdquo:"Левая двойная кавычка",ndash:"Среднее тире",mdash:"Длинное тире",iexcl:"перевёрнутый восклицательный знак",cent:"Цент",pound:"Фунт",curren:"Знак валюты",yen:"Йена",brvbar:"Вертикальная черта с разрывом",sect:"Знак параграфа",uml:"Умлаут",copy:"Знак охраны авторского права",ordf:"Указатель окончания женского рода ...ая",laquo:"Левая кавычка-«ёлочка»",
 not:"Отрицание",reg:"Знак охраны смежных прав\\t",macr:"Макрон",deg:"Градус",sup2:"Надстрочное два",sup3:"Надстрочное три",acute:"Акут",micro:"Микро",para:"Абзац",middot:"Интерпункт",cedil:"Седиль",sup1:"Надстрочная единица",ordm:"Порядковое числительное",raquo:"Правая кавычка-«ёлочка»",frac14:"Одна четвертая",frac12:"Одна вторая",frac34:"Три четвёртых",iquest:"Перевёрнутый вопросительный знак",Agrave:"Латинская заглавная буква А с апострофом",Aacute:"Латинская заглавная буква A с ударением",Acirc:"Латинская заглавная буква А с циркумфлексом",

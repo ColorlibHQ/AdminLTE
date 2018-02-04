@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","ar",{euro:"رمز اليورو",lsquo:"علامة تنصيص فردية علي اليسار",rsquo:"علامة تنصيص فردية علي اليمين",ldquo:"علامة تنصيص مزدوجة علي اليسار",rdquo:"علامة تنصيص مزدوجة علي اليمين",ndash:"En dash",mdash:"Em dash",iexcl:"علامة تعجب مقلوبة",cent:"رمز السنت",pound:"رمز الاسترليني",curren:"رمز العملة",yen:"رمز الين",brvbar:"شريط مقطوع",sect:"رمز القسم",uml:"Diaeresis",copy:"علامة حقوق الطبع",ordf:"Feminine ordinal indicator",laquo:"Left-pointing double angle quotation mark",
 not:"ليست علامة",reg:"علامة مسجّلة",macr:"Macron",deg:"Degree sign",sup2:"Superscript two",sup3:"Superscript three",acute:"Acute accent",micro:"Micro sign",para:"Pilcrow sign",middot:"Middle dot",cedil:"Cedilla",sup1:"Superscript one",ordm:"Masculine ordinal indicator",raquo:"Right-pointing double angle quotation mark",frac14:"Vulgar fraction one quarter",frac12:"Vulgar fraction one half",frac34:"Vulgar fraction three quarters",iquest:"علامة الإستفهام غير صحيحة",Agrave:"Latin capital letter A with grave accent",

@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 (function(){CKEDITOR.plugins.add("codesnippetgeshi",{requires:"ajax,codesnippet",init:function(c){var d=new CKEDITOR.htmlParser.basicWriter,f=new CKEDITOR.plugins.codesnippet.highlighter({languages:a,highlighter:function(b,a,e){b=JSON.stringify({lang:a,html:b});CKEDITOR.ajax.post(CKEDITOR.getUrl(c.config.codeSnippetGeshi_url||""),b,"application/json",function(a){a?(CKEDITOR.htmlParser.fragment.fromHtml(a||"").children[0].writeChildrenHtml(d),e(d.getHtml(!0))):e("")})}});c.plugins.codesnippet.setHighlighter(f)}});
 var a={abap:"ABAP",actionscript:"ActionScript",ada:"Ada",apache:"Apache Configuration",applescript:"AppleScript",asm:"Assembly",asp:"Active Server Pages (ASP)",autoit:"AutoIt",bash:"Bash",basic4gl:"Basic4GL",bf:"Brainfuck",blitzbasic:"Blitz BASIC",bnf:"Backus-Naur Form",c:"C",c_mac:"C (Mac)",caddcl:"AutoCAD DCL",cadlisp:"AutoLISP",cfdg:"CFDG",cfm:"ColdFusion Markup Language",cil:"Common Intermediate Language (CIL)",cobol:"COBOL","cpp-qt":"C++ (Qt toolkit)",cpp:"C++",csharp:"C#",css:"Cascading Style Sheets (CSS)",

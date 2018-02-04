@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","eu",{title:"Erabilerraztasunaren argibideak",contents:"Laguntzaren edukiak. Elkarrizketa-koadro hau ixteko sakatu ESC.",legend:[{name:"Orokorra",items:[{name:"Editorearen tresna-barra",legend:"Sakatu ${toolbarFocus} tresna-barrara nabigatzeko. Tresna-barrako aurreko eta hurrengo taldera joateko erabili TAB eta MAIUS+TAB. Tresna-barrako aurreko eta hurrengo botoira joateko erabili ESKUIN-GEZIA eta EZKER-GEZIA. Sakatu ZURIUNEA edo SARTU tresna-barrako botoia aktibatzeko."},
 {name:"Editorearen elkarrizketa-koadroa",legend:"Elkarrizketa-koadro baten barruan sakatu TAB hurrengo elementura nabigatzeko, sakatu MAIUS+TAB aurreko elementura joateko, sakatu SARTU elkarrizketa-koadroa bidaltzeko eta sakatu ESC uzteko. Elkarrizketa-koadro batek hainbat fitxa dituenean, ALT+F10 erabiliz irits daiteke fitxen zerrendara, edo TAB erabiliz. Fokoa fitxen zerrendak duenean, aurreko eta hurrengo fitxetara joateko erabili EZKER-GEZIA eta ESKUIN-GEZIA."},{name:"Editorearen testuinguru-menua",

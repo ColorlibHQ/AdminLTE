@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","fi",{euro:"Euron merkki",lsquo:"Vasen yksittäinen lainausmerkki",rsquo:"Oikea yksittäinen lainausmerkki",ldquo:"Vasen kaksoislainausmerkki",rdquo:"Oikea kaksoislainausmerkki",ndash:"En dash",mdash:"Em dash",iexcl:"Inverted exclamation mark",cent:"Sentin merkki",pound:"Punnan merkki",curren:"Valuuttamerkki",yen:"Yenin merkki",brvbar:"Broken bar",sect:"Section sign",uml:"Diaeresis",copy:"Copyright sign",ordf:"Feminine ordinal indicator",laquo:"Left-pointing double angle quotation mark",
 not:"Not sign",reg:"Rekisteröity merkki",macr:"Macron",deg:"Asteen merkki",sup2:"Yläindeksi kaksi",sup3:"Yläindeksi kolme",acute:"Acute accent",micro:"Mikron merkki",para:"Pilcrow sign",middot:"Middle dot",cedil:"Cedilla",sup1:"Yläindeksi yksi",ordm:"Masculine ordinal indicator",raquo:"Right-pointing double angle quotation mark",frac14:"Vulgar fraction one quarter",frac12:"Vulgar fraction one half",frac34:"Vulgar fraction three quarters",iquest:"Ylösalaisin oleva kysymysmerkki",Agrave:"Latin capital letter A with grave accent",

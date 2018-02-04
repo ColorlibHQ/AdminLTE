@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","uk",{euro:"Знак євро",lsquo:"Ліві одинарні лапки",rsquo:"Праві одинарні лапки",ldquo:"Ліві подвійні лапки",rdquo:"Праві подвійні лапки",ndash:"Середнє тире",mdash:"Довге тире",iexcl:"Перевернутий знак оклику",cent:"Знак цента",pound:"Знак фунта",curren:"Знак валюти",yen:"Знак єни",brvbar:"Переривчаста вертикальна лінія",sect:"Знак параграфу",uml:"Умлаут",copy:"Знак авторських прав",ordf:"Жіночий порядковий вказівник",laquo:"ліві вказівні подвійні кутові дужки",
 not:"Заперечення",reg:"Знак охорони суміжних прав",macr:"Макрон",deg:"Знак градуса",sup2:"два у верхньому індексі",sup3:"три у верхньому індексі",acute:"Знак акута",micro:"Знак мікро",para:"Знак абзацу",middot:"Інтерпункт",cedil:"Седиль",sup1:"Один у верхньому індексі",ordm:"Чоловічий порядковий вказівник",raquo:"праві вказівні подвійні кутові дужки",frac14:"Одна четвертина",frac12:"Одна друга",frac34:"три четвертих",iquest:"Перевернутий знак питання",Agrave:"Велика латинська A з гравісом",Aacute:"Велика латинська А з акутом",

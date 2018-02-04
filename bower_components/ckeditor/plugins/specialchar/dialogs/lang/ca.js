@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","ca",{euro:"Símbol d'euro",lsquo:"Signe de cometa simple esquerra",rsquo:"Signe de cometa simple dreta",ldquo:"Signe de cometa doble esquerra",rdquo:"Signe de cometa doble dreta",ndash:"Guió",mdash:"Guió baix",iexcl:"Signe d'exclamació inversa",cent:"Símbol de percentatge",pound:"Símbol de lliura",curren:"Símbol de moneda",yen:"Símbol de Yen",brvbar:"Barra trencada",sect:"Símbol de secció",uml:"Dièresi",copy:"Símbol de Copyright",ordf:"Indicador ordinal femení",
 laquo:"Signe de cometes angulars esquerra",not:"Símbol de negació",reg:"Símbol registrat",macr:"Macron",deg:"Símbol de grau",sup2:"Superíndex dos",sup3:"Superíndex tres",acute:"Accent agut",micro:"Símbol de micro",para:"Símbol de calderó",middot:"Punt volat",cedil:"Ce trencada",sup1:"Superíndex u",ordm:"Indicador ordinal masculí",raquo:"Signe de cometes angulars dreta",frac14:"Fracció vulgar un quart",frac12:"Fracció vulgar una meitat",frac34:"Fracció vulgar tres quarts",iquest:"Símbol d'interrogació invertit",

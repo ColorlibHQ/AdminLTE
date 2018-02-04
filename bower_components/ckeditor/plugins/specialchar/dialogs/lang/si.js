@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","si",{euro:"යුරෝ සලකුණ",lsquo:"වමේ තනි උපුටා දක්වීම ",rsquo:"දකුණේ තනි උපුටා දක්වීම ",ldquo:"වමේ දිත්ව  උපුටා දක්වීම ",rdquo:"දකුණේ දිත්ව  උපුටා දක්වීම ",ndash:"En dash",mdash:"Em dash",iexcl:"යටිකුරු හර්ෂදී ",cent:"Cent sign",pound:"Pound sign",curren:"මුල්‍යමය ",yen:"යෙන් ",brvbar:"Broken bar",sect:"තෙරේම් ",uml:"Diaeresis",copy:"පිටපත් අයිතිය ",ordf:"දර්ශකය",laquo:"Left-pointing double angle quotation mark",not:"සලකුණක් නොවේ",reg:"සලකුණක් ලියාපදිංචි කිරීම",
 macr:"මුද්‍රිත ",deg:"සලකුණේ ",sup2:"උඩු ලකුණු දෙක",sup3:"Superscript three",acute:"Acute accent",micro:"Micro sign",para:"Pilcrow sign",middot:"Middle dot",cedil:"Cedilla",sup1:"Superscript one",ordm:"Masculine ordinal indicator",raquo:"Right-pointing double angle quotation mark",frac14:"Vulgar fraction one quarter",frac12:"Vulgar fraction one half",frac34:"Vulgar fraction three quarters",iquest:"Inverted question mark",Agrave:"Latin capital letter A with grave accent",Aacute:"Latin capital letter A with acute accent",

@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 (function(){function k(a,b,d,e){var c=new CKEDITOR.dom.walker(a);if(a=a.startContainer.getAscendant(b,!0)||a.endContainer.getAscendant(b,!0))if(d(a),e)return;for(;a=c.next();)if(a=a.getAscendant(b,!0))if(d(a),e)break}function u(a,b){var d={ul:"ol",ol:"ul"};return-1!==l(b,function(b){return b.element===a||b.element===d[a]})}function q(a){this.styles=null;this.sticky=!1;this.editor=a;this.filter=new CKEDITOR.filter(a.config.copyFormatting_allowRules);!0===a.config.copyFormatting_allowRules&&(this.filter.disabled=
 !0);a.config.copyFormatting_disallowRules&&this.filter.disallow(a.config.copyFormatting_disallowRules)}var l=CKEDITOR.tools.indexOf,r=CKEDITOR.tools.getMouseButton,t=!1;CKEDITOR.plugins.add("copyformatting",{lang:"az,de,en,it,ja,nb,nl,oc,pl,pt-br,ru,sv,tr,zh,zh-cn",icons:"copyformatting",hidpi:!0,init:function(a){var b=CKEDITOR.plugins.copyformatting;b._addScreenReaderContainer();t||(CKEDITOR.document.appendStyleSheet(this.path+"styles/copyformatting.css"),t=!0);a.addContentsCss&&a.addContentsCss(this.path+

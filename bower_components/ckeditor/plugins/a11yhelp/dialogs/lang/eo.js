@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","eo",{title:"Uzindikoj pri atingeblo",contents:"Helpilenhavo. Por fermi tiun dialogon, premu la ESKAPAN klavon.",legend:[{name:"Ĝeneralaĵoj",items:[{name:"Ilbreto de la redaktilo",legend:"Premu ${toolbarFocus} por atingi la ilbreton. Moviĝu al la sekva aŭ antaŭa grupoj de la ilbreto per la klavoj TABA kaj MAJUSKLIGA+TABA. Moviĝu al la sekva aŭ antaŭa butonoj de la ilbreto per la klavoj SAGO DEKSTREN kaj SAGO MALDEKSTREN. Premu la SPACETklavon aŭ la ENENklavon por aktivigi la ilbretbutonon."},
 {name:"Redaktildialogo",legend:"En dialogo, premu la TABAN klavon por navigi al la sekva dialogelemento, premu la MAJUSKLIGAN+TABAN klavon por iri al la antaŭa dialogelemento, premu la ENEN klavon por sendi la dialogon, premu la ESKAPAN klavon por nuligi la dialogon. Kiam dialogo havas multajn langetojn, eblas atingi la langetliston aŭ per ALT+F10 aŭ per la TABA klavo kiel parton de la dialoga taba ordo. En langetlisto, moviĝu al la sekva kaj antaŭa langeto per la klavoj SAGO DEKSTREN KAJ MALDEKSTREN respektive."},

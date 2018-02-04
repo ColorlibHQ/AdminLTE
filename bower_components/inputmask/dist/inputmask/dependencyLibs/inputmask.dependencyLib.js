@@ -3,7 +3,7 @@
 * https://github.com/RobinHerbots/Inputmask
 * Copyright (c) 2010 - 2017 Robin Herbots
 * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-* Version: 3.3.8
+* Version: 3.3.11
 */
 
 !function(factory) {
@@ -34,12 +34,12 @@
     return DependencyLib.prototype = {
         on: function(events, handler) {
             if (isValidElement(this[0])) for (var eventRegistry = this[0].eventRegistry, elem = this[0], _events = events.split(" "), endx = 0; endx < _events.length; endx++) {
-                var nsEvent = _events[endx].split("."), ev = nsEvent[0], namespace = nsEvent[1] || "global";
+                var nsEvent = _events[endx].split(".");
                 !function(ev, namespace) {
                     elem.addEventListener ? elem.addEventListener(ev, handler, !1) : elem.attachEvent && elem.attachEvent("on" + ev, handler), 
                     eventRegistry[ev] = eventRegistry[ev] || {}, eventRegistry[ev][namespace] = eventRegistry[ev][namespace] || [], 
                     eventRegistry[ev][namespace].push(handler);
-                }(ev, namespace);
+                }(nsEvent[0], nsEvent[1] || "global");
             }
             return this;
         },
@@ -84,10 +84,10 @@
                         try {
                             evnt = new CustomEvent(ev, params);
                         } catch (e) {
-                            evnt = document.createEvent("CustomEvent"), evnt.initCustomEvent(ev, params.bubbles, params.cancelable, params.detail);
+                            (evnt = document.createEvent("CustomEvent")).initCustomEvent(ev, params.bubbles, params.cancelable, params.detail);
                         }
                         events.type && DependencyLib.extend(evnt, events), elem.dispatchEvent(evnt);
-                    } else evnt = document.createEventObject(), evnt.eventType = ev, events.type && DependencyLib.extend(evnt, events), 
+                    } else (evnt = document.createEventObject()).eventType = ev, events.type && DependencyLib.extend(evnt, events), 
                     elem.fireEvent("on" + evnt.eventType, evnt);
                 } else if (void 0 !== eventRegistry[ev]) if (arguments[0] = arguments[0].type ? arguments[0] : DependencyLib.Event(arguments[0]), 
                 "global" === namespace) for (var nmsp in eventRegistry[ev]) for (i = 0; i < eventRegistry[ev][nmsp].length; i++) eventRegistry[ev][nmsp][i].apply(elem, arguments); else for (i = 0; i < eventRegistry[ev][namespace].length; i++) eventRegistry[ev][namespace][i].apply(elem, arguments);
@@ -105,7 +105,7 @@
         for ("boolean" == typeof target && (deep = target, target = arguments[i] || {}, 
         i++), "object" == typeof target || DependencyLib.isFunction(target) || (target = {}), 
         i === length && (target = this, i--); i < length; i++) if (null != (options = arguments[i])) for (name in options) src = target[name], 
-        copy = options[name], target !== copy && (deep && copy && (DependencyLib.isPlainObject(copy) || (copyIsArray = DependencyLib.isArray(copy))) ? (copyIsArray ? (copyIsArray = !1, 
+        target !== (copy = options[name]) && (deep && copy && (DependencyLib.isPlainObject(copy) || (copyIsArray = DependencyLib.isArray(copy))) ? (copyIsArray ? (copyIsArray = !1, 
         clone = src && DependencyLib.isArray(src) ? src : []) : clone = src && DependencyLib.isPlainObject(src) ? src : {}, 
         target[name] = DependencyLib.extend(deep, clone, copy)) : void 0 !== copy && (target[name] = copy));
         return target;
@@ -114,8 +114,8 @@
         if (isArraylike(obj)) for (var length = obj.length; i < length && !1 !== callback.call(obj[i], i, obj[i]); i++) ; else for (i in obj) if (!1 === callback.call(obj[i], i, obj[i])) break;
         return obj;
     }, DependencyLib.map = function(elems, callback) {
-        var value, i = 0, length = elems.length, isArray = isArraylike(elems), ret = [];
-        if (isArray) for (;i < length; i++) null != (value = callback(elems[i], i)) && ret.push(value); else for (i in elems) null != (value = callback(elems[i], i)) && ret.push(value);
+        var value, i = 0, length = elems.length, ret = [];
+        if (isArraylike(elems)) for (;i < length; i++) null != (value = callback(elems[i], i)) && ret.push(value); else for (i in elems) null != (value = callback(elems[i], i)) && ret.push(value);
         return [].concat(ret);
     }, DependencyLib.data = function(owner, key, value) {
         if (void 0 === value) return owner.__data ? owner.__data[key] : null;

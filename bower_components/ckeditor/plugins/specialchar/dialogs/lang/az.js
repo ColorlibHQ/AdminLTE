@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","az",{euro:"Avropa valyuta işarəsi",lsquo:"Sol tək dırnaq işarəsi",rsquo:"Sağ tək dırnaq işarəsi",ldquo:"Sol cüt dırnaq işarəsi",rdquo:"Sağ cüt dırnaq işarəsi",ndash:"Çıxma işarəsi",mdash:"Tire",iexcl:"Çevrilmiş nida işarəsi",cent:"Sent işarəsi",pound:"Funt sterlinq işarəsi",curren:"Valyuta işarəsi",yen:"İena işarəsi",brvbar:"Sınmış zolaq",sect:"Paraqraf işarəsi",uml:"Umlyaut",copy:"Müəllif hüquqları haqqında işarəsi",ordf:"Qadın sıra indikatoru (a)",laquo:"Sola göstərən cüt bucaqlı dırnaq",
 not:"QEYRİ işarəsi",reg:"Qeyd olunmuş işarəsi",macr:"Makron",deg:"Dərəcə işarəsi",sup2:"Yuxarı indeks 2",sup3:"Yuxarı indeks 3",acute:"Vurğu işarəsi",micro:"Mikro işarəsi",para:"Abzas işarəsi",middot:"Orta nöqtə",cedil:"Tsedilla işarəsi",sup1:"Yuxarı indeks 1",ordm:"Kişi say indikatoru (o)",raquo:"Sağa göstərən cüt bucaqlı dırnaq",frac14:"Dörddə bir hissə kəsri",frac12:"Bir yarım kəsri",frac34:"Dörddə üç hissə kəsri",iquest:"Çevrilmiş sual işarəsi",Agrave:"Soldan vurğu ilə A",Aacute:"Vurğu ilə A",

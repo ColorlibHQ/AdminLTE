@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","es",{title:"Instrucciones de accesibilidad",contents:"Ayuda. Para cerrar presione ESC.",legend:[{name:"General",items:[{name:"Barra de herramientas del editor",legend:'Presiona ${toolbarFocus} para navegar por la barra de herramientas. Para moverse por los distintos grupos de herramientas usa las teclas TAB y MAY+TAB. Para moverse por las distintas herramientas usa FLECHA DERECHA o FECHA IZQUIERDA. Presiona "espacio" o "intro" para activar la herramienta.'},{name:"Editor de diálogo",
 legend:"Dentro del diálogo, presione TAB para navegar a los siguientes elementos de diálogo, presione SHIFT+TAB para moverse a los anteriores elementos de diálogo, presione ENTER para enviar el diálogo, presiona ESC para cancelar el diálogo. Cuando el diálogo tiene multiples pestañas, la lista de pestañas puede ser abarcada con ALT + F10 or con TAB como parte del orden de pestañas del diálogo. ECon la pestaña enfocada, puede moverse a la siguiente o anterior pestaña con las FLECHAS IZQUIRDA y DERECHA respectivamente."},

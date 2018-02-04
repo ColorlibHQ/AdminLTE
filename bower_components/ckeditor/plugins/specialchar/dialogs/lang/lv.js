@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","lv",{euro:"Euro zīme",lsquo:"Kreisā  vienkārtīga pēdiņa",rsquo:"Labā  vienkārtīga pēdiņa",ldquo:"Kreisā  dubult pēdiņa",rdquo:"Labā dubult pēdiņa",ndash:"En svītra",mdash:"Em svītra",iexcl:"Apgriezta izsaukuma zīme",cent:"Centu naudas zīme",pound:"Sterliņu mārciņu naudas zīme",curren:"Valūtas zīme",yen:"Jenu naudas zīme",brvbar:"Vertikāla pārrauta līnija",sect:"Paragrāfa zīme",uml:"Diakritiska zīme",copy:"Autortiesību zīme",ordf:"Sievišķas kārtas rādītājs",
 laquo:"Kreisā dubult stūra pēdiņu zīme",not:"Neparakstīts",reg:"Reģistrēta zīme",macr:"Garumzīme",deg:"Grādu zīme",sup2:"Augšraksts divi",sup3:"Augšraksts trīs",acute:"Akūta uzsvara zīme",micro:"Mikro zīme",para:"Rindkopas zīme ",middot:"Vidējs punkts",cedil:"Āķītis zem burta",sup1:"Augšraksts viens",ordm:"Vīrišķīgas kārtas rādītājs",raquo:"Labā dubult stūra pēdiņu zīme",frac14:"Vulgāra frakcija 1/4",frac12:"Vulgāra frakcija 1/2",frac34:"Vulgāra frakcija 3/4",iquest:"Apgriezta jautājuma zīme",Agrave:"Lielais latīņu burts A ar uzsvara zīmi",

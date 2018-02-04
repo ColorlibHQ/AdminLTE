@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.dialog.add("select",function(c){function h(a,b,e,d,c){a=f(a);d=d?d.createElement("OPTION"):document.createElement("OPTION");if(a&&d&&"option"==d.getName())CKEDITOR.env.ie?(isNaN(parseInt(c,10))?a.$.options.add(d.$):a.$.options.add(d.$,c),d.$.innerHTML=0<b.length?b:"",d.$.value=e):(null!==c&&c<a.getChildCount()?a.getChild(0>c?0:c).insertBeforeMe(d):a.append(d),d.setText(0<b.length?b:""),d.setValue(e));else return!1;return d}function p(a){a=f(a);for(var b=g(a),e=a.getChildren().count()-1;0<=
 e;e--)a.getChild(e).$.selected&&a.getChild(e).remove();k(a,b)}function q(a,b,e,d){a=f(a);if(0>b)return!1;a=a.getChild(b);a.setText(e);a.setValue(d);return a}function m(a){for(a=f(a);a.getChild(0)&&a.getChild(0).remove(););}function l(a,b,e){a=f(a);var d=g(a);if(0>d)return!1;b=d+b;b=0>b?0:b;b=b>=a.getChildCount()?a.getChildCount()-1:b;if(d==b)return!1;var d=a.getChild(d),c=d.getText(),r=d.getValue();d.remove();d=h(a,c,r,e?e:null,b);k(a,b);return d}function g(a){return(a=f(a))?a.$.selectedIndex:-1}

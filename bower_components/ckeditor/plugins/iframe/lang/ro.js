@@ -1,1 +1,1 @@
-﻿CKEDITOR.plugins.setLang("iframe","ro",{border:"Show frame border",noUrl:"Please type the iframe URL",scrolling:"Enable scrollbars",title:"IFrame Properties",toolbar:"IFrame"});
+﻿CKEDITOR.plugins.setLang("iframe","ro",{border:"Arată bordura chenarului",noUrl:"Te rog scrie URL-ul iframe-ului",scrolling:"Permite bare de defilare",title:"Proprietăți IFrame",toolbar:"IFrame"});

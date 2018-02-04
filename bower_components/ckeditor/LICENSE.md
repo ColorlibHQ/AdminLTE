@@ -1,7 +1,7 @@
 Software License Agreement
 ==========================
 
-CKEditor - The text editor for Internet - http://ckeditor.com
+CKEditor - The text editor for Internet - https://ckeditor.com/
 Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
 
 Licensed under the terms of any of the following licenses at your

@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","de-ch",{euro:"Euro Zeichen",lsquo:"Hochkomma links",rsquo:"Hochkomma rechts",ldquo:"Anführungszeichen links",rdquo:"Anführungszeichen rechts",ndash:"Kleiner Strich",mdash:"Mittlerer Strich",iexcl:"Invertiertes Ausrufezeichen",cent:"Cent-Zeichen",pound:"Pfund-Zeichen",curren:"Währungszeichen",yen:"Yen",brvbar:"Gestrichelte Linie",sect:"Paragrafenzeichen",uml:"Diäresis",copy:"Copyright-Zeichen",ordf:"Feminine ordinal Anzeige",laquo:"Nach links zeigenden Doppel-Winkel Anführungszeichen",
 not:"Not-Zeichen",reg:"Registriert-Zeichen",macr:"Längezeichen",deg:"Grad-Zeichen",sup2:"Hoch 2",sup3:"Hoch 3",acute:"Akzentzeichen ",micro:"Mikro-Zeichen",para:"Pilcrow-Zeichen",middot:"Mittelpunkt",cedil:"Cedilla",sup1:"Hoch 1",ordm:"Männliche Ordnungszahl Anzeige",raquo:"Nach rechts zeigenden Doppel-Winkel Anführungszeichen",frac14:"ein Viertel",frac12:"Hälfte",frac34:"Dreiviertel",iquest:"Umgekehrtes Fragezeichen",Agrave:"Lateinischer Buchstabe A mit AkzentGrave",Aacute:"Lateinischer Buchstabe A mit Akutakzent",

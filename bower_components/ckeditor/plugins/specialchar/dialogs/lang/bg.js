@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","bg",{euro:"Евро знак",lsquo:"Лява маркировка за цитат",rsquo:"Дясна маркировка за цитат",ldquo:"Лява двойна кавичка за цитат",rdquo:"Дясна двойна кавичка за цитат",ndash:"\\\\",mdash:"/",iexcl:"Обърната питанка",cent:"Знак за цент",pound:"Знак за паунд",curren:"Валутен знак",yen:"Знак за йена",brvbar:"Прекъсната линия",sect:"Знак за секция",uml:"Diaeresis",copy:"Знак за Copyright",ordf:"Feminine ordinal indicator",laquo:"Left-pointing double angle quotation mark",
 not:"Not sign",reg:"Registered sign",macr:"Macron",deg:"Degree sign",sup2:"Superscript two",sup3:"Superscript three",acute:"Acute accent",micro:"Micro sign",para:"Pilcrow sign",middot:"Middle dot",cedil:"Cedilla",sup1:"Superscript one",ordm:"Masculine ordinal indicator",raquo:"Right-pointing double angle quotation mark",frac14:"Vulgar fraction one quarter",frac12:"Vulgar fraction one half",frac34:"Vulgar fraction three quarters",iquest:"Inverted question mark",Agrave:"Latin capital letter A with grave accent",

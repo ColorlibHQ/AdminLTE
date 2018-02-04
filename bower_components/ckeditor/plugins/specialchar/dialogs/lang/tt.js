@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","tt",{euro:"Евро тамгасы",lsquo:"Сул бер иңле куштырнаклар",rsquo:"Уң бер иңле куштырнаклар",ldquo:"Сул ике иңле куштырнаклар",rdquo:"Уң ике иңле куштырнаклар",ndash:"Кыска сызык",mdash:"Озын сызык",iexcl:"Әйләндерелгән өндәү билгесе",cent:"Цент тамгасы",pound:"Фунт тамгасы",curren:"Акча берәмлеге тамгасы",yen:"Иена тамгасы",brvbar:"Broken bar",sect:"Параграф билгесе",uml:"Диерезис",copy:"Хокук иясе булу билгесе",ordf:"Feminine ordinal indicator",laquo:"Ачылучы чыршысыман җәя",
 not:"Юклык ишарəсе",reg:"Теркәләнгән булу билгесе",macr:"Макрон",deg:"Градус билгесе",sup2:"Икенче өске индекс",sup3:"Өченче өске индекс",acute:"Басым билгесе",micro:"Микро билгесе",para:"Параграф билгесе",middot:"Уртадагы нокта",cedil:"Седиль",sup1:"Беренче өске индекс",ordm:"Masculine ordinal indicator",raquo:"Ябылучы чыршысыман җәя",frac14:"Гади дүрттән бер билгесе",frac12:"Гади икедән бер билгесе",frac34:"Гади дүрттән өч билгесе",iquest:"Әйләндерелгән өндәү билгесе",Agrave:"Гравис белән латин A баш хәрефе",

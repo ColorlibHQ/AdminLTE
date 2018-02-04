@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","no",{euro:"Eurosymbol",lsquo:"Venstre enkelt anførselstegn",rsquo:"Høyre enkelt anførselstegn",ldquo:"Venstre dobbelt anførselstegn",rdquo:"Høyre anførsesltegn",ndash:"Kort tankestrek",mdash:"Lang tankestrek",iexcl:"Omvendt utropstegn",cent:"Centsymbol",pound:"Pundsymbol",curren:"Valutategn",yen:"Yensymbol",brvbar:"Brutt loddrett strek",sect:"Paragraftegn",uml:"Tøddel",copy:"Copyrighttegn",ordf:"Feminin ordensindikator",laquo:"Venstre anførselstegn",not:"Negasjonstegn",
 reg:"Registrert varemerke-tegn",macr:"Makron",deg:"Gradsymbol",sup2:"Hevet totall",sup3:"Hevet tretall",acute:"Akutt aksent",micro:"Mikrosymbol",para:"Avsnittstegn",middot:"Midtstilt prikk",cedil:"Cedille",sup1:"Hevet ettall",ordm:"Maskulin ordensindikator",raquo:"Høyre anførselstegn",frac14:"Fjerdedelsbrøk",frac12:"Halvbrøk",frac34:"Tre fjerdedelers brøk",iquest:"Omvendt spørsmålstegn",Agrave:"Stor A med grav aksent",Aacute:"Stor A med akutt aksent",Acirc:"Stor A med cirkumfleks",Atilde:"Stor A med tilde",

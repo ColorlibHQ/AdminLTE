@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","hu",{euro:"Euró jel",lsquo:"Bal szimpla idézőjel",rsquo:"Jobb szimpla idézőjel",ldquo:"Bal dupla idézőjel",rdquo:"Jobb dupla idézőjel",ndash:"Rövid gondolatjel",mdash:"Hosszú gondolatjel",iexcl:"Fordított felkiáltójel",cent:"Cent jel",pound:"Font jel",curren:"Valuta jel",yen:"Yen jel",brvbar:"Hosszú kettőspont",sect:"Paragrafus jel",uml:"Kettős hangzó jel",copy:"Szerzői jog jel",ordf:"Női sorrend mutatója",laquo:"Balra mutató duplanyíl",not:"Feltételes kötőjel",
 reg:"Bejegyzett védjegy jele",macr:"Hosszúsági jel",deg:"Fok jel",sup2:"Négyzeten jel",sup3:"Köbön jel",acute:"Éles ékezet",micro:"Mikro-jel",para:"Bekezdés jel",middot:"Közép pont",cedil:"Cédille",sup1:"Elsőn jel",ordm:"Férfi sorrend mutatója",raquo:"Jobbra mutató duplanyíl",frac14:"Egy negyed jel",frac12:"Egy ketted jel",frac34:"Három negyed jel",iquest:"Fordított kérdőjel",Agrave:"Latin nagy A fordított ékezettel",Aacute:"Latin nagy A normál ékezettel",Acirc:"Latin nagy A hajtott ékezettel",Atilde:"Latin nagy A hullámjellel",

@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","gl",{title:"Instrucións de accesibilidade",contents:"Axuda. Para pechar este diálogo prema ESC.",legend:[{name:"Xeral",items:[{name:"Barra de ferramentas do editor",legend:"Prema ${toolbarFocus} para navegar pola barra de ferramentas. Para moverse polos distintos grupos de ferramentas use as teclas TAB e MAIÚS+TAB. Para moverse polas distintas ferramentas use FRECHA DEREITA ou FRECHA ESQUERDA. Prema ESPAZO ou INTRO para activar o botón da barra de ferramentas."},
 {name:"Editor de diálogo",legend:"Dentro do diálogo, prema TAB para navegar cara os seguintes elementos de diálogo, prema MAIÚS+TAB para moverse cara os anteriores elementos de diálogo, prema INTRO para enviar o diálogo, prema ESC para cancelar o diálogo. Cando o diálogo ten múltiples lapelas, a lista de lapelas pode cinguirse con ALT+F10 ou con TAB como parte da orde de lapelas do diálogo. Coa lapela en foco, pode moverse cara a seguinte ou a anterior lapela coas FRECHAS ESQUERDA e DEREICHA respectivamente."},

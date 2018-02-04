@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","es",{euro:"Símbolo de euro",lsquo:"Comilla simple izquierda",rsquo:"Comilla simple derecha",ldquo:"Comilla doble izquierda",rdquo:"Comilla doble derecha",ndash:"Guión corto",mdash:"Guión medio largo",iexcl:"Signo de admiración invertido",cent:"Símbolo centavo",pound:"Símbolo libra",curren:"Símbolo moneda",yen:"Símbolo yen",brvbar:"Barra vertical rota",sect:"Símbolo sección",uml:"Diéresis",copy:"Signo de derechos de autor",ordf:"Indicador ordinal femenino",laquo:"Abre comillas angulares",
 not:"Signo negación",reg:"Signo de marca registrada",macr:"Guión alto",deg:"Signo de grado",sup2:"Superíndice dos",sup3:"Superíndice tres",acute:"Acento agudo",micro:"Signo micro",para:"Signo de pi",middot:"Punto medio",cedil:"Cedilla",sup1:"Superíndice uno",ordm:"Indicador orginal masculino",raquo:"Cierra comillas angulares",frac14:"Fracción ordinaria de un quarto",frac12:"Fracción ordinaria de una mitad",frac34:"Fracción ordinaria de tres cuartos",iquest:"Signo de interrogación invertido",Agrave:"Letra A latina mayúscula con acento grave",

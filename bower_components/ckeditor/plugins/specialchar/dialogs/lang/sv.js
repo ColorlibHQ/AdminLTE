@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","sv",{euro:"Eurotecken",lsquo:"Enkelt vänster citattecken",rsquo:"Enkelt höger citattecken",ldquo:"Dubbelt vänster citattecken",rdquo:"Dubbelt höger citattecken",ndash:"Snedstreck",mdash:"Långt tankstreck",iexcl:"Inverterad utropstecken",cent:"Centtecken",pound:"Pundtecken",curren:"Valutatecken",yen:"Yentecken",brvbar:"Brutet lodrätt streck",sect:"Paragraftecken",uml:"Diaeresis",copy:"Upphovsrättstecken",ordf:"Feminit ordningstalsindikator",laquo:"Vänsterställt dubbelt vinkelcitationstecken",
 not:"Icke-tecken",reg:"Registrerad",macr:"Macron",deg:"Grader",sup2:"Upphöjt två",sup3:"Upphöjt tre",acute:"Akut accent",micro:"Mikrotecken",para:"Alinea",middot:"Centrerad prick",cedil:"Cedilj",sup1:"Upphöjt en",ordm:"Maskulina ordningsändelsen",raquo:"Högerställt dubbelt vinkelcitationstecken",frac14:"Bråktal - en kvart",frac12:"Bråktal - en halv",frac34:"Bråktal - tre fjärdedelar",iquest:"Inverterat frågetecken",Agrave:"Stort A med grav accent",Aacute:"Stort A med akutaccent",Acirc:"Stort A med circumflex",

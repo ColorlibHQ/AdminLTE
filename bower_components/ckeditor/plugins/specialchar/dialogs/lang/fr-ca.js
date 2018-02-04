@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","fr-ca",{euro:"Symbole Euro",lsquo:"Guillemet simple ouvrant",rsquo:"Guillemet simple fermant",ldquo:"Guillemet double ouvrant",rdquo:"Guillemet double fermant",ndash:"Tiret haut",mdash:"Tiret",iexcl:"Point d'exclamation inversé",cent:"Symbole de cent",pound:"Symbole de Livre Sterling",curren:"Symbole monétaire",yen:"Symbole du Yen",brvbar:"Barre scindée",sect:"Symbole de section",uml:"Tréma",copy:"Symbole de copyright",ordf:"Indicateur ordinal féminin",laquo:"Guillemet français ouvrant",
 not:"Indicateur de négation",reg:"Symbole de marque déposée",macr:"Macron",deg:"Degré",sup2:"Exposant 2",sup3:"Exposant 3",acute:"Accent aigüe",micro:"Symbole micro",para:"Paragraphe",middot:"Point médian",cedil:"Cédille",sup1:"Exposant 1",ordm:"Indicateur ordinal masculin",raquo:"Guillemet français fermant",frac14:"Un quart",frac12:"Une demi",frac34:"Trois quart",iquest:"Point d'interrogation inversé",Agrave:"A accent grave",Aacute:"A accent aigüe",Acirc:"A circonflexe",Atilde:"A tilde",Auml:"A tréma",

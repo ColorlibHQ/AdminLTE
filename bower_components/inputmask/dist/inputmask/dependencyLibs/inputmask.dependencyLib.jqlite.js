@@ -3,7 +3,7 @@
 * https://github.com/RobinHerbots/Inputmask
 * Copyright (c) 2010 - 2017 Robin Herbots
 * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-* Version: 3.3.8
+* Version: 3.3.11
 */
 
 !function(factory) {
@@ -35,7 +35,7 @@
         for ("boolean" == typeof target && (deep = target, target = arguments[i] || {}, 
         i++), "object" == typeof target || $.isFunction(target) || (target = {}), i === length && (target = this, 
         i--); i < length; i++) if (null != (options = arguments[i])) for (name in options) src = target[name], 
-        copy = options[name], target !== copy && (deep && copy && ($.isPlainObject(copy) || (copyIsArray = $.isArray(copy))) ? (copyIsArray ? (copyIsArray = !1, 
+        target !== (copy = options[name]) && (deep && copy && ($.isPlainObject(copy) || (copyIsArray = $.isArray(copy))) ? (copyIsArray ? (copyIsArray = !1, 
         clone = src && $.isArray(src) ? src : []) : clone = src && $.isPlainObject(src) ? src : {}, 
         target[name] = $.extend(deep, clone, copy)) : void 0 !== copy && (target[name] = copy));
         return target;
@@ -44,8 +44,8 @@
         if (isArraylike(obj)) for (var length = obj.length; i < length && !1 !== callback.call(obj[i], i, obj[i]); i++) ; else for (i in obj) if (!1 === callback.call(obj[i], i, obj[i])) break;
         return obj;
     }, $.map = function(elems, callback) {
-        var value, i = 0, length = elems.length, isArray = isArraylike(elems), ret = [];
-        if (isArray) for (;i < length; i++) null != (value = callback(elems[i], i)) && ret.push(value); else for (i in elems) null != (value = callback(elems[i], i)) && ret.push(value);
+        var value, i = 0, length = elems.length, ret = [];
+        if (isArraylike(elems)) for (;i < length; i++) null != (value = callback(elems[i], i)) && ret.push(value); else for (i in elems) null != (value = callback(elems[i], i)) && ret.push(value);
         return [].concat(ret);
     }, $.data = function(elem, name, data) {
         return $(elem).data(name, data);

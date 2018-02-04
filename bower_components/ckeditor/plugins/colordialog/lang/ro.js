@@ -1,1 +1,1 @@
-﻿CKEDITOR.plugins.setLang("colordialog","ro",{clear:"Clear",highlight:"Highlight",options:"Color Options",selected:"Selected Color",title:"Select color"});
+﻿CKEDITOR.plugins.setLang("colordialog","ro",{clear:"Clar",highlight:"Evidențiat",options:"Opțiuni culoare",selected:"Culoare selectată",title:"Selectează culoarea"});

@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","pl",{title:"Instrukcje dotyczące dostępności",contents:"Zawartość pomocy. Wciśnij ESC, aby zamknąć to okno.",legend:[{name:"Informacje ogólne",items:[{name:"Pasek narzędzi edytora",legend:"Naciśnij ${toolbarFocus}, by przejść do paska narzędzi. Przejdź do następnej i poprzedniej grupy narzędzi używając TAB oraz SHIFT+TAB. Przejdź do następnego i poprzedniego przycisku paska narzędzi za pomocą STRZAŁKI W PRAWO lub STRZAŁKI W LEWO. Naciśnij SPACJĘ lub ENTER by aktywować przycisk paska narzędzi."},
 {name:"Okno dialogowe edytora",legend:"Wewnątrz okna dialogowego naciśnij TAB, by przejść do kolejnego elementu tego okna lub SHIFT+TAB, by przejść do poprzedniego elementu okna. Naciśnij ENTER w celu zatwierdzenia opcji okna dialogowego lub ESC w celu anulowania zmian. Jeśli okno dialogowe ma kilka zakładek, do listy zakładek można przejść za pomocą ALT+F10 lub TAB. Gdy lista zakładek jest aktywna, możesz przejść do kolejnej i poprzedniej zakładki za pomocą STRZAŁKI W PRAWO i STRZAŁKI W LEWO."},
