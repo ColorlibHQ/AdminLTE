@@ -9,6 +9,10 @@
   @include border-radius($progress-bar-border-radius);
 }
 
+.progress-group {
+  @extend .mb-2;
+}
+
 // size variation
 .progress-sm {
   height: 10px;
@@ -48,17 +52,6 @@
   &.xxs,
   &.progress-xxs {
     width: 3px;
-  }
-}
-
-//Progress Groups
-.progress-group {
-  .progress-text {
-    //display: inline-block;
-    //margin-bottom: 5px;
-  }
-  .progress-number {
-    //float: right;
   }
 }
 

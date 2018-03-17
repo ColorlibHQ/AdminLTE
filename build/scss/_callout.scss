@@ -5,44 +5,44 @@
 
 // Base styles (regardless of theme)
 .callout {
-  @include border-radius(3px);
-  margin: 0 0 20px 0;
-  padding: 15px 30px 15px 15px;
+  @if $enable-rounded {
+    @include border-radius($border-radius);
+  }
+
+  @if $enable-shadows {
+    @extend .elevation-1;
+  } @else {
+    border: 1px solid $gray-300;
+  }
+
+  @extend .mb-3;
+  background-color: $white;
+  padding: .5rem 1rem .5rem .5rem;
   border-left: 5px solid #eee;
+
   a {
-    color: #fff;
+    color: $white;
     text-decoration: underline;
     &:hover {
       color: #eee;
     }
   }
-  h4 {
-    margin-top: 0;
-    font-weight: 600;
-  }
+
   p:last-child {
     margin-bottom: 0;
-  }
-  code,
-  .highlight {
-    background-color: #fff;
   }
 
   // Themes for different contexts
   &.callout-danger {
-    @extend  .bg-red;
-    border-color: darken(theme-color("danger"), 10%);
+    border-left-color: darken(theme-color("danger"), 10%);
   }
   &.callout-warning {
-    @extend  .bg-yellow;
-    border-color: darken(theme-color("warning"), 10%);
+    border-left-color: darken(theme-color("warning"), 10%);
   }
   &.callout-info {
-    @extend  .bg-aqua;
-    border-color: darken(theme-color("info"), 10%);
+    border-left-color: darken(theme-color("info"), 10%);
   }
   &.callout-success {
-    @extend  .bg-green;
-    border-color: darken(theme-color("success"), 10%);
+    border-left-color: darken(theme-color("success"), 10%);
   }
 }

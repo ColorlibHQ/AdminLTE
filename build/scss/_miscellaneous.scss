@@ -2,30 +2,12 @@
  * General: Miscellaneous
  * ----------------------
  */
-// 10px padding and margins
-.pad {
-  padding: 10px;
+a.text-muted:hover {
+  color: theme-color(primary) !important;
 }
 
-.margin {
-  margin: 10px;
-}
-
-.margin-bottom {
-  margin-bottom: 20px;
-}
-
-.margin-bottom-none {
-  margin-bottom: 0;
-}
-
-.margin-r-5 {
-  margin-right: 5px;
-}
-
-// Display inline
-.inline {
-  display: inline;
+.border-transparent {
+  border-color: transparent !important;
 }
 
 // Description Blocks
@@ -48,37 +30,16 @@
 }
 
 // Background colors
-.bg-red,
-.bg-yellow,
-.bg-aqua,
-.bg-blue,
-.bg-light-blue,
-.bg-green,
-.bg-navy,
-.bg-teal,
-.bg-olive,
-.bg-lime,
-.bg-orange,
-.bg-fuchsia,
-.bg-purple,
-.bg-maroon,
-.bg-black,
-.bg-red-active,
-.bg-yellow-active,
-.bg-aqua-active,
-.bg-blue-active,
-.bg-light-blue-active,
-.bg-green-active,
-.bg-navy-active,
-.bg-teal-active,
-.bg-olive-active,
-.bg-lime-active,
-.bg-orange-active,
-.bg-fuchsia-active,
-.bg-purple-active,
-.bg-maroon-active,
-.bg-black-active {
-  color: #fff;
+@each $name, $color in $theme-colors {
+  .bg-#{$name} {
+    &,
+    a {
+      color: color-yiq($color);
+    }
+    a {
+      text-decoration: underline;
+    }
+  }
 }
 
 .bg-gray {
@@ -87,207 +48,21 @@
 }
 
 .bg-gray-light {
-  background-color: #f7f7f7;
+  background-color: lighten($gray-200, 3%);
 }
 
 .bg-black {
   background-color: $black;
-}
-
-.bg-red {
-  background-color: theme-color("danger");
-}
-
-.bg-yellow {
-  background-color: theme-color("warning");
-}
-
-.bg-aqua {
-  background-color: theme-color("info");
-}
-
-.bg-blue {
-  background-color: $blue;
-}
-
-.bg-light-blue {
-  background-color: theme-color("primary");
-}
-
-.bg-green {
-  background-color: theme-color("success");
-}
-
-.bg-navy {
-  background-color: $navy;
-}
-
-.bg-teal {
-  background-color: $teal;
-}
-
-.bg-olive {
-  background-color: $olive;
-}
-
-.bg-lime {
-  background-color: $lime;
-}
-
-.bg-orange {
-  background-color: $orange;
-}
-
-.bg-fuchsia {
-  background-color: $fuchsia;
-}
-
-.bg-purple {
-  background-color: $purple;
-}
-
-.bg-maroon {
-  background-color: $maroon;
-}
-
-// Set of Active Background Colors
-.bg-gray-active {
-  color: #000;
-  background-color: darken($gray-500, 10%);
-}
-
-.bg-black-active {
-  background-color: darken($black, 10%);
-}
-
-.bg-red-active {
-  background-color: darken(theme-color("danger"), 6%);
-}
-
-.bg-yellow-active {
-  background-color: darken(theme-color("warning"), 6%);
-}
-
-.bg-aqua-active {
-  background-color: darken(theme-color("info"), 6%);
-}
-
-.bg-blue-active {
-  background-color: darken($blue, 10%);
-}
-
-.bg-light-blue-active {
-  background-color: darken(theme-color("primary"), 6%);
-}
-
-.bg-green-active {
-  background-color: darken(theme-color("success"), 5%);
-}
-
-.bg-navy-active {
-  background-color: darken($navy, 2%);
-}
-
-.bg-teal-active {
-  background-color: darken($teal, 5%);
-}
-
-.bg-olive-active {
-  background-color: darken($olive, 5%);
-}
-
-.bg-lime-active {
-  background-color: darken($lime, 5%);
-}
-
-.bg-orange-active {
-  background-color: darken($orange, 5%);
-}
-
-.bg-fuchsia-active {
-  background-color: darken($fuchsia, 5%);
-}
-
-.bg-purple-active {
-  background-color: darken($purple, 5%);
-}
-
-.bg-maroon-active {
-  background-color: darken($maroon, 3%);
+  color: color-yiq($black);
 }
 
 .bg-white {
-  background-color: #fff;
+  background-color: $white;
 }
 
 // Disabled!
 [class^="bg-"].disabled {
   opacity: .65;
-}
-
-// Text colors
-.text-red {
-  color: theme-color("danger");
-}
-
-.text-yellow {
-  color: theme-color("warning");
-}
-
-.text-aqua {
-  color: theme-color("info");
-}
-
-.text-blue {
-  color: $blue;
-}
-
-.text-black {
-  color: $black;
-}
-
-.text-light-blue {
-  color: theme-color("primary");
-}
-
-.text-green {
-  color: theme-color("success");
-}
-
-.text-gray {
-  color: $gray-500;
-}
-
-.text-navy {
-  color: $navy;
-}
-
-.text-teal {
-  color: $teal;
-}
-
-.text-olive {
-  color: $olive;
-}
-
-.text-lime {
-  color: $lime;
-}
-
-.text-orange {
-  color: $orange;
-}
-
-.text-fuchsia {
-  color: $fuchsia;
-}
-
-.text-purple {
-  color: $purple;
-}
-
-.text-maroon {
-  color: $maroon;
 }
 
 .link-muted {
@@ -314,16 +89,6 @@
 // Remove borders
 .no-border {
   border: 0 !important;
-}
-
-// Remove padding
-.no-padding {
-  padding: 0 !important;
-}
-
-// Remove margins
-.no-margin {
-  margin: 0 !important;
 }
 
 // Remove box shadow
@@ -353,20 +118,6 @@
   @include border-radius(0 !important);
 }
 
-.text-bold {
-  &, &.table td, &.table th {
-    font-weight: 700;
-  }
-}
-
-.text-sm {
-  font-size: $font-size-sm;
-}
-
-.text-xs {
-  font-size: $font-size-base;
-}
-
 // _fix for sparkline tooltip
 .jqstooltip {
   padding: 5px !important;
@@ -375,54 +126,11 @@
 }
 
 // Gradient Background colors
-.bg-teal-gradient {
-  @include gradient($teal, $teal, lighten($teal, 16%));
-  color: #fff;
-}
-
-.bg-light-blue-gradient {
-  @include gradient(theme-color("primary"), theme-color("primary"), lighten(theme-color("primary"), 12%));
-  color: #fff;
-}
-
-.bg-blue-gradient {
-  @include gradient($blue, $blue, lighten($blue, 7%));
-  color: #fff;
-}
-
-.bg-aqua-gradient {
-  @include gradient(theme-color("info"), theme-color("info"), lighten(theme-color("info"), 7%));
-  color: #fff;
-}
-
-.bg-yellow-gradient {
-  @include gradient(theme-color("warning"), theme-color("warning"), lighten(theme-color("warning"), 16%));
-  color: #fff;
-}
-
-.bg-purple-gradient {
-  @include gradient($purple, $purple, lighten($purple, 16%));
-  color: #fff;
-}
-
-.bg-green-gradient {
-  @include gradient(theme-color("success"), theme-color("success"), lighten(theme-color("success"), 7%));
-  color: #fff;
-}
-
-.bg-red-gradient {
-  @include gradient(theme-color("danger"), theme-color("danger"), lighten(theme-color("danger"), 10%));
-  color: #fff;
-}
-
-.bg-black-gradient {
-  @include gradient($black, $black, lighten($black, 10%));
-  color: #fff;
-}
-
-.bg-maroon-gradient {
-  @include gradient($maroon, $maroon, lighten($maroon, 10%));
-  color: #fff;
+@each $name, $color in $theme-colors {
+  .bg-#{$name}-gradient {
+    @include gradient($color, $color, lighten($color, 10%));
+    color: color-yiq($color);
+  }
 }
 
 // Description Block Extension
@@ -430,16 +138,6 @@
   .description-icon {
     font-size: 16px;
   }
-}
-
-// Remove top padding
-.no-pad-top {
-  padding-top: 0;
-}
-
-// Make position static
-.position-static {
-  position: static !important;
 }
 
 // List utility classes
@@ -452,7 +150,7 @@
 
 .list-seperator {
   height: 1px;
-  background: $box-border-color;
+  background: $card-border-color;
   margin: 15px 0 9px 0;
 }
 
@@ -464,11 +162,6 @@
       color: #222;
     }
   }
-}
-
-// Light font weight
-.font-light {
-  font-weight: 300;
 }
 
 // User block
@@ -606,7 +299,7 @@
 
 // General attachemnt block
 .attachment-block {
-  border: 1px solid $box-border-color;
+  border: 1px solid $card-border-color;
   padding: 5px;
   margin-bottom: 10px;
   background: #f7f7f7;
@@ -649,25 +342,12 @@
   margin-bottom: 10px;
 }
 
-.full-opacity-hover {
-  opacity: .65;
-  &:hover {
-    opacity: 1;
-  }
-}
-
 // Charts
 .chart {
   position: relative;
   overflow: hidden;
-  width: 100%;
-  svg,
-  canvas {
-    width: 100% !important;
-  }
 }
 
-// Icons
-.icon-wide {
-  width: 30px;
+.flex-1 {
+  flex: 1;
 }

@@ -3,19 +3,15 @@
   "parser": "babel-eslint",
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "amd": true
   },
   "extends": "eslint:recommended",
   "plugins": [
     "compat"
   ],
-  "parserOptions": {
-    "ecmaVersion": 8,
-    "sourceType": "module"
-  },
   "globals": {
-    "jQuery": false,
-    "module": true
+    "jQuery": true
   },
   "rules": {
     // Possible Errors
@@ -101,12 +97,12 @@
     "no-unused-expressions": "error",
     "no-useless-call": "error",
     "no-useless-concat": "error",
-    "no-useless-return": "off",
+    "no-useless-return": "error",
     "no-void": "error",
     "no-warning-comments": "off",
     "no-with": "error",
     "prefer-promise-reject-errors": "error",
-    "radix": "off",
+    "radix": "error",
     "require-await": "error",
     "vars-on-top": "error",
     "wrap-iife": "error",
@@ -156,8 +152,7 @@
     "id-blacklist": "error",
     "id-length": "off",
     "id-match": "error",
-    "indent": "off",
-    "indent-legacy": [
+    "indent": [
       "error",
       2,
       {
@@ -167,11 +162,11 @@
     "jsx-quotes": "error",
     "key-spacing": "off",
     "keyword-spacing": "error",
-    "line-comment-position": "off",
     "linebreak-style": [
       "error",
       "unix"
     ],
+    "line-comment-position": "off",
     "lines-around-comment": "off",
     "lines-around-directive": "error",
     "max-depth": [
@@ -191,15 +186,14 @@
         "capIsNewExceptionPattern": "$.*"
       }
     ],
-    "new-parens": "error",
     "newline-after-var": "off",
-    "newline-before-return": "off",
     "newline-per-chained-call": [
       "error",
       {
         "ignoreChainWithDepth": 5
       }
     ],
+    "new-parens": "error",
     "no-array-constructor": "error",
     "no-bitwise": "error",
     "no-continue": "off",
@@ -208,6 +202,7 @@
     "no-mixed-operators": "off",
     "no-multi-assign": "error",
     "no-multiple-empty-lines": "error",
+    "nonblock-statement-body-position": "error",
     "no-negated-condition": "off",
     "no-nested-ternary": "error",
     "no-new-object": "error",
@@ -219,7 +214,6 @@
     "no-underscore-dangle": "off",
     "no-unneeded-ternary": "error",
     "no-whitespace-before-property": "error",
-    "nonblock-statement-body-position": "error",
     "object-curly-newline": [
       "error",
       {
@@ -237,8 +231,12 @@
     ],
     "one-var-declaration-per-line": "error",
     "operator-assignment": "error",
-    "operator-linebreak": "off",
-    "padded-blocks": "off",
+    "operator-linebreak": "error",
+    "padded-blocks": [
+      "error",
+      "never"
+    ],
+    "padding-line-between-statements": "off",
     "quote-props": [
       "error",
       "as-needed"

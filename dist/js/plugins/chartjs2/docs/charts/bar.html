@@ -1,0 +1,1168 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Bar · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="author" content="chartjs">
+
+
+
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+
+
+
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
+
+
+
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+
+
+
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+
+
+
+
+
+
+
+
+        <link rel="stylesheet" href="../style.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+
+    <link rel="next" href="radar.html" />
+
+
+    <link rel="prev" href="line.html" />
+
+
+    <link rel="stylesheet" href="../gitbook/gitbook-plugin-chartjs/style.css">
+    <script src="../gitbook/gitbook-plugin-chartjs/Chart.bundle.js"></script>
+    <script src="../gitbook/gitbook-plugin-chartjs/chartjs-plugin-deferred.js"></script>
+
+
+    </head>
+    <body>
+
+<div class="book">
+    <div class="book-summary">
+
+
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+
+                <nav role="navigation">
+
+
+
+<ul class="summary">
+
+
+
+
+
+
+
+
+
+        <li class="chapter " data-level="1.1" data-path="../">
+
+                <a href="../">
+
+
+                    Chart.js
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.2" data-path="../getting-started/">
+
+                <a href="../getting-started/">
+
+
+                    Getting Started
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.2.1" data-path="../getting-started/installation.html">
+
+                <a href="../getting-started/installation.html">
+
+
+                    Installation
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.2.2" data-path="../getting-started/integration.html">
+
+                <a href="../getting-started/integration.html">
+
+
+                    Integration
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.2.3" data-path="../getting-started/usage.html">
+
+                <a href="../getting-started/usage.html">
+
+
+                    Usage
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.3" data-path="../general/">
+
+                <a href="../general/">
+
+
+                    General
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.3.1" data-path="../general/responsive.html">
+
+                <a href="../general/responsive.html">
+
+
+                    Responsive
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.3.2" data-path="../general/interactions/">
+
+                <a href="../general/interactions/">
+
+
+                    Interactions
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.3.2.1" data-path="../general/interactions/events.html">
+
+                <a href="../general/interactions/events.html">
+
+
+                    Events
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.3.2.2" data-path="../general/interactions/modes.html">
+
+                <a href="../general/interactions/modes.html">
+
+
+                    Modes
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.3.3" data-path="../general/options.html">
+
+                <a href="../general/options.html">
+
+
+                    Options
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.3.4" data-path="../general/colors.html">
+
+                <a href="../general/colors.html">
+
+
+                    Colors
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.3.5" data-path="../general/fonts.html">
+
+                <a href="../general/fonts.html">
+
+
+                    Fonts
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.4" data-path="../configuration/">
+
+                <a href="../configuration/">
+
+
+                    Configuration
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.4.1" data-path="../configuration/animations.html">
+
+                <a href="../configuration/animations.html">
+
+
+                    Animations
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.4.2" data-path="../configuration/layout.html">
+
+                <a href="../configuration/layout.html">
+
+
+                    Layout
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.4.3" data-path="../configuration/legend.html">
+
+                <a href="../configuration/legend.html">
+
+
+                    Legend
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.4.4" data-path="../configuration/title.html">
+
+                <a href="../configuration/title.html">
+
+
+                    Title
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.4.5" data-path="../configuration/tooltip.html">
+
+                <a href="../configuration/tooltip.html">
+
+
+                    Tooltip
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.4.6" data-path="../configuration/elements.html">
+
+                <a href="../configuration/elements.html">
+
+
+                    Elements
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.5" data-path="./">
+
+                <a href="./">
+
+
+                    Charts
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.5.1" data-path="line.html">
+
+                <a href="line.html">
+
+
+                    Line
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter active" data-level="1.5.2" data-path="bar.html">
+
+                <a href="bar.html">
+
+
+                    Bar
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.5.3" data-path="radar.html">
+
+                <a href="radar.html">
+
+
+                    Radar
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.5.4" data-path="doughnut.html">
+
+                <a href="doughnut.html">
+
+
+                    Doughnut & Pie
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.5.5" data-path="polar.html">
+
+                <a href="polar.html">
+
+
+                    Polar Area
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.5.6" data-path="bubble.html">
+
+                <a href="bubble.html">
+
+
+                    Bubble
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.5.7" data-path="scatter.html">
+
+                <a href="scatter.html">
+
+
+                    Scatter
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.5.8" data-path="area.html">
+
+                <a href="area.html">
+
+
+                    Area
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.5.9" data-path="mixed.html">
+
+                <a href="mixed.html">
+
+
+                    Mixed
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.6" data-path="../axes/">
+
+                <a href="../axes/">
+
+
+                    Axes
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.6.1" data-path="../axes/cartesian/">
+
+                <a href="../axes/cartesian/">
+
+
+                    Cartesian
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.6.1.1" data-path="../axes/cartesian/category.html">
+
+                <a href="../axes/cartesian/category.html">
+
+
+                    Category
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.6.1.2" data-path="../axes/cartesian/linear.html">
+
+                <a href="../axes/cartesian/linear.html">
+
+
+                    Linear
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.6.1.3" data-path="../axes/cartesian/logarithmic.html">
+
+                <a href="../axes/cartesian/logarithmic.html">
+
+
+                    Logarithmic
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.6.1.4" data-path="../axes/cartesian/time.html">
+
+                <a href="../axes/cartesian/time.html">
+
+
+                    Time
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.6.2" data-path="../axes/radial/">
+
+                <a href="../axes/radial/">
+
+
+                    Radial
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.6.2.1" data-path="../axes/radial/linear.html">
+
+                <a href="../axes/radial/linear.html">
+
+
+                    Linear
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.6.3" data-path="../axes/labelling.html">
+
+                <a href="../axes/labelling.html">
+
+
+                    Labelling
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.6.4" data-path="../axes/styling.html">
+
+                <a href="../axes/styling.html">
+
+
+                    Styling
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.7" data-path="../developers/">
+
+                <a href="../developers/">
+
+
+                    Developers
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.7.1" data-path="../developers/api.html">
+
+                <a href="../developers/api.html">
+
+
+                    Chart.js API
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.7.2" data-path="../developers/updates.html">
+
+                <a href="../developers/updates.html">
+
+
+                    Updating Charts
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.7.3" data-path="../developers/plugins.html">
+
+                <a href="../developers/plugins.html">
+
+
+                    Plugins
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.7.4" data-path="../developers/charts.html">
+
+                <a href="../developers/charts.html">
+
+
+                    New Charts
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.7.5" data-path="../developers/axes.html">
+
+                <a href="../developers/axes.html">
+
+
+                    New Axes
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.7.6" data-path="../developers/contributing.html">
+
+                <a href="../developers/contributing.html">
+
+
+                    Contributing
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.8" data-path="../notes/">
+
+                <a href="../notes/">
+
+
+                    Additional Notes
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.8.1" data-path="../notes/comparison.html">
+
+                <a href="../notes/comparison.html">
+
+
+                    Comparison Table
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.8.2" data-path="../notes/extensions.html">
+
+                <a href="../notes/extensions.html">
+
+
+                    Popular Extensions
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.8.3" data-path="../notes/license.html">
+
+                <a href="../notes/license.html">
+
+
+                    License
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+
+
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+
+
+    </div>
+
+    <div class="book-body">
+
+            <div class="body-inner">
+
+
+
+<div class="book-header" role="navigation">
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Bar</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+
+                                <section class="normal markdown-section">
+
+                                <h1 id="bar">Bar</h1>
+<p>A bar chart provides a way of showing data values represented as vertical bars. It is sometimes used to show trend data, and the comparison of multiple data sets side by side.</p>
+<p><div class="chartjs-wrapper"><canvas id="chartjs-1" class="chartjs" width="undefined" height="undefined"></canvas><script>new Chart(document.getElementById("chartjs-1"),{"type":"bar","data":{"labels":["January","February","March","April","May","June","July"],"datasets":[{"label":"My First Dataset","data":[65,59,80,81,56,55,40],"fill":false,"backgroundColor":["rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)"],"borderColor":["rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)"],"borderWidth":1}]},"options":{"scales":{"yAxes":[{"ticks":{"beginAtZero":true}}]}}});</script></div></p>
+<h2 id="example-usage">Example Usage</h2>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> myBarChart = <span class="hljs-keyword">new</span> Chart(ctx, {
+    type: <span class="hljs-string">&apos;bar&apos;</span>,
+    data: data,
+    options: options
+});
+</code></pre>
+<h2 id="dataset-properties">Dataset Properties</h2>
+<p>The bar chart allows a number of properties to be specified for each dataset. These are used to set display properties for a specific dataset. For example, the colour of the bars is generally set this way.</p>
+<p>Some properties can be specified as an array. If these are set to an array value, the first value applies to the first bar, the second value to the second bar, and so on.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>String</code></td>
+<td>The label for the dataset which appears in the legend and tooltips.</td>
+</tr>
+<tr>
+<td><code>xAxisID</code></td>
+<td><code>String</code></td>
+<td>The ID of the x axis to plot this dataset on. If not specified, this defaults to the ID of the first found x axis</td>
+</tr>
+<tr>
+<td><code>yAxisID</code></td>
+<td><code>String</code></td>
+<td>The ID of the y axis to plot this dataset on. If not specified, this defaults to the ID of the first found y axis.</td>
+</tr>
+<tr>
+<td><code>backgroundColor</code></td>
+<td><code>Color/Color[]</code></td>
+<td>The fill color of the bar. See <a href="../general/colors.html#colors">Colors</a></td>
+</tr>
+<tr>
+<td><code>borderColor</code></td>
+<td><code>Color/Color[]</code></td>
+<td>The color of the bar border. See <a href="../general/colors.html#colors">Colors</a></td>
+</tr>
+<tr>
+<td><code>borderWidth</code></td>
+<td><code>Number/Number[]</code></td>
+<td>The stroke width of the bar in pixels.</td>
+</tr>
+<tr>
+<td><code>borderSkipped</code></td>
+<td><code>String</code></td>
+<td>Which edge to skip drawing the border for. <a href="#borderskipped">more...</a></td>
+</tr>
+<tr>
+<td><code>hoverBackgroundColor</code></td>
+<td><code>Color/Color[]</code></td>
+<td>The fill colour of the bars when hovered.</td>
+</tr>
+<tr>
+<td><code>hoverBorderColor</code></td>
+<td><code>Color/Color[]</code></td>
+<td>The stroke colour of the bars when hovered.</td>
+</tr>
+<tr>
+<td><code>hoverBorderWidth</code></td>
+<td><code>Number/Number[]</code></td>
+<td>The stroke width of the bars when hovered.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="borderskipped">borderSkipped</h3>
+<p>This setting is used to avoid drawing the bar stroke at the base of the fill. In general, this does not need to be changed except when creating chart types that derive from a bar chart.</p>
+<p>Options are:</p>
+<ul>
+<li>&apos;bottom&apos;</li>
+<li>&apos;left&apos;</li>
+<li>&apos;top&apos;</li>
+<li>&apos;right&apos;</li>
+</ul>
+<h2 id="configuration-options">Configuration Options</h2>
+<p>The bar chart defines the following configuration options. These options are merged with the global chart configuration options, <code>Chart.defaults.global</code>, to form the options passed to the chart.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>barPercentage</code></td>
+<td><code>Number</code></td>
+<td><code>0.9</code></td>
+<td>Percent (0-1) of the available width each bar should be within the category width. 1.0 will take the whole category width and put the bars right next to each other. <a href="#barpercentage-vs-categorypercentage">more...</a></td>
+</tr>
+<tr>
+<td><code>categoryPercentage</code></td>
+<td><code>Number</code></td>
+<td><code>0.8</code></td>
+<td>Percent (0-1) of the available width each category should be within the sample width. <a href="#barpercentage-vs-categorypercentage">more...</a></td>
+</tr>
+<tr>
+<td><code>barThickness</code></td>
+<td><code>Number</code></td>
+<td></td>
+<td>Manually set width of each bar in pixels. If not set, the base sample widths are calculated automatically so that they take the full available widths without overlap. Then, the bars are sized using <code>barPercentage</code> and <code>categoryPercentage</code>.</td>
+</tr>
+<tr>
+<td><code>maxBarThickness</code></td>
+<td><code>Number</code></td>
+<td></td>
+<td>Set this to ensure that bars are not sized thicker than this.</td>
+</tr>
+<tr>
+<td><code>gridLines.offsetGridLines</code></td>
+<td><code>Boolean</code></td>
+<td><code>true</code></td>
+<td>If true, the bars for a particular data point fall between the grid lines. The grid line will move to the left by one half of the tick interval. If false, the grid line will go right down the middle of the bars. <a href="#offsetgridlines">more...</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="offsetgridlines">offsetGridLines</h3>
+<p>If true, the bars for a particular data point fall between the grid lines. The grid line will move to the left by one half of the tick interval, which is the space between the grid lines. If false, the grid line will go right down the middle of the bars. This is set to true for a bar chart while false for other charts by default.</p>
+<p>This setting applies to the axis configuration. If axes are added to the chart, this setting will need to be set for each new axis.</p>
+<pre><code class="lang-javascript">options = {
+    scales: {
+        xAxes: [{
+            gridLines: {
+                offsetGridLines: <span class="hljs-literal">true</span>
+            }
+        }]
+    }
+}
+</code></pre>
+<h2 id="default-options">Default Options</h2>
+<p>It is common to want to apply a configuration setting to all created bar charts. The global bar chart settings are stored in <code>Chart.defaults.bar</code>. Changing the global options only affects charts created after the change. Existing charts are not changed.</p>
+<h2 id="barpercentage-vs-categorypercentage">barPercentage vs categoryPercentage</h2>
+<p>The following shows the relationship between the bar percentage option and the category percentage option.</p>
+<pre><code class="lang-text">// categoryPercentage: 1.0
+// barPercentage: 1.0
+Bar:        | 1.0 | 1.0 |
+Category:   |    1.0    |
+Sample:     |===========|
+
+// categoryPercentage: 1.0
+// barPercentage: 0.5
+Bar:          |.5|  |.5|
+Category:  |      1.0     |
+Sample:    |==============|
+
+// categoryPercentage: 0.5
+// barPercentage: 1.0
+Bar:            |1.||1.|
+Category:       |  .5  |
+Sample:     |==============|
+</code></pre>
+<h2 id="data-structure">Data Structure</h2>
+<p>The <code>data</code> property of a dataset for a bar chart is specified as a an array of numbers. Each point in the data array corresponds to the label at the same index on the x axis.</p>
+<pre><code class="lang-javascript">data: [<span class="hljs-number">20</span>, <span class="hljs-number">10</span>]
+</code></pre>
+<p>You can also specify the dataset as x/y coordinates when using the <a href="time.md">time scale</a>.</p>
+<pre><code class="lang-javascript">data: [{x:<span class="hljs-string">&apos;2016-12-25&apos;</span>, y:<span class="hljs-number">20</span>}, {x:<span class="hljs-string">&apos;2016-12-26&apos;</span>, y:<span class="hljs-number">10</span>}]
+</code></pre>
+<h1 id="stacked-bar-chart">Stacked Bar Chart</h1>
+<p>Bar charts can be configured into stacked bar charts by changing the settings on the X and Y axes to enable stacking. Stacked bar charts can be used to show how one data series is made up of a number of smaller pieces.</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> stackedBar = <span class="hljs-keyword">new</span> Chart(ctx, {
+    type: <span class="hljs-string">&apos;bar&apos;</span>,
+    data: data,
+    options: {
+        scales: {
+            xAxes: [{
+                stacked: <span class="hljs-literal">true</span>
+            }],
+            yAxes: [{
+                stacked: <span class="hljs-literal">true</span>
+            }]
+        }
+    }
+});
+</code></pre>
+<h2 id="dataset-properties">Dataset Properties</h2>
+<p>The following dataset properties are specific to stacked bar charts.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stack</code></td>
+<td><code>String</code></td>
+<td>The ID of the group to which this dataset belongs to (when stacked, each group will be a separate stack)</td>
+</tr>
+</tbody>
+</table>
+<h1 id="horizontal-bar-chart">Horizontal Bar Chart</h1>
+<p>A horizontal bar chart is a variation on a vertical bar chart. It is sometimes used to show trend data, and the comparison of multiple data sets side by side.
+<div class="chartjs-wrapper"><canvas id="chartjs-2" class="chartjs" width="undefined" height="undefined"></canvas><script>new Chart(document.getElementById("chartjs-2"),{"type":"horizontalBar","data":{"labels":["January","February","March","April","May","June","July"],"datasets":[{"label":"My First Dataset","data":[65,59,80,81,56,55,40],"fill":false,"backgroundColor":["rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)"],"borderColor":["rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)"],"borderWidth":1}]},"options":{"scales":{"xAxes":[{"ticks":{"beginAtZero":true}}]}}});</script></div></p>
+<h2 id="example">Example</h2>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> myBarChart = <span class="hljs-keyword">new</span> Chart(ctx, {
+    type: <span class="hljs-string">&apos;horizontalBar&apos;</span>,
+    data: data,
+    options: options
+});
+</code></pre>
+<h2 id="config-options">Config Options</h2>
+<p>The configuration options for the horizontal bar chart are the same as for the <a href="#configuration-options">bar chart</a>. However, any options specified on the x axis in a bar chart, are applied to the y axis in a horizontal bar chart.</p>
+<p>The default horizontal bar configuration is specified in <code>Chart.defaults.horizontalBar</code>.</p>
+
+
+                                </section>
+
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+
+        </div>
+        <div class="no-results">
+
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+
+            </div>
+
+
+
+                <a href="line.html" class="navigation navigation-prev " aria-label="Previous page: Line">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+
+
+                <a href="radar.html" class="navigation navigation-next " aria-label="Next page: Radar">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+
+
+
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Bar","level":"1.5.2","depth":2,"next":{"title":"Radar","level":"1.5.3","depth":2,"path":"charts/radar.md","ref":"charts/radar.md","articles":[]},"previous":{"title":"Line","level":"1.5.1","depth":2,"path":"charts/line.md","ref":"charts/line.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","anchorjs","chartjs","ga"],"root":"./docs","styles":{"website":"style.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchorjs":{"icon":"#","placement":"left","visible":"always"},"ga":{"configuration":"auto","token":"UA-28909194-3"},"theme-default":{"styles":{"website":"style.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{},"chartjs":{"defaults":null},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"theme":"default","author":"chartjs","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"3.2.2"},"file":{"path":"charts/bar.md","mtime":"2017-10-28T15:03:49.266Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-10-28T15:09:53.587Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+
+
+        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+
+
+
+        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+
+
+
+        <script src="../gitbook/gitbook-plugin-anchorjs/anchor-style.js"></script>
+
+
+
+        <script src="../gitbook/gitbook-plugin-ga/plugin.js"></script>
+
+
+
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+
+
+
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+
+
+
+    </body>
+</html>
+

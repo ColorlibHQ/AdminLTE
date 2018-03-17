@@ -1,0 +1,1065 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Chart.js API · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="author" content="chartjs">
+
+
+
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+
+
+
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
+
+
+
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+
+
+
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+
+
+
+
+
+
+
+
+        <link rel="stylesheet" href="../style.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+
+    <link rel="next" href="updates.html" />
+
+
+    <link rel="prev" href="./" />
+
+
+    <link rel="stylesheet" href="../gitbook/gitbook-plugin-chartjs/style.css">
+    <script src="../gitbook/gitbook-plugin-chartjs/Chart.bundle.js"></script>
+    <script src="../gitbook/gitbook-plugin-chartjs/chartjs-plugin-deferred.js"></script>
+
+
+    </head>
+    <body>
+
+<div class="book">
+    <div class="book-summary">
+
+
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+
+                <nav role="navigation">
+
+
+
+<ul class="summary">
+
+
+
+
+
+
+
+
+
+        <li class="chapter " data-level="1.1" data-path="../">
+
+                <a href="../">
+
+
+                    Chart.js
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.2" data-path="../getting-started/">
+
+                <a href="../getting-started/">
+
+
+                    Getting Started
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.2.1" data-path="../getting-started/installation.html">
+
+                <a href="../getting-started/installation.html">
+
+
+                    Installation
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.2.2" data-path="../getting-started/integration.html">
+
+                <a href="../getting-started/integration.html">
+
+
+                    Integration
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.2.3" data-path="../getting-started/usage.html">
+
+                <a href="../getting-started/usage.html">
+
+
+                    Usage
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.3" data-path="../general/">
+
+                <a href="../general/">
+
+
+                    General
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.3.1" data-path="../general/responsive.html">
+
+                <a href="../general/responsive.html">
+
+
+                    Responsive
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.3.2" data-path="../general/interactions/">
+
+                <a href="../general/interactions/">
+
+
+                    Interactions
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.3.2.1" data-path="../general/interactions/events.html">
+
+                <a href="../general/interactions/events.html">
+
+
+                    Events
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.3.2.2" data-path="../general/interactions/modes.html">
+
+                <a href="../general/interactions/modes.html">
+
+
+                    Modes
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.3.3" data-path="../general/options.html">
+
+                <a href="../general/options.html">
+
+
+                    Options
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.3.4" data-path="../general/colors.html">
+
+                <a href="../general/colors.html">
+
+
+                    Colors
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.3.5" data-path="../general/fonts.html">
+
+                <a href="../general/fonts.html">
+
+
+                    Fonts
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.4" data-path="../configuration/">
+
+                <a href="../configuration/">
+
+
+                    Configuration
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.4.1" data-path="../configuration/animations.html">
+
+                <a href="../configuration/animations.html">
+
+
+                    Animations
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.4.2" data-path="../configuration/layout.html">
+
+                <a href="../configuration/layout.html">
+
+
+                    Layout
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.4.3" data-path="../configuration/legend.html">
+
+                <a href="../configuration/legend.html">
+
+
+                    Legend
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.4.4" data-path="../configuration/title.html">
+
+                <a href="../configuration/title.html">
+
+
+                    Title
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.4.5" data-path="../configuration/tooltip.html">
+
+                <a href="../configuration/tooltip.html">
+
+
+                    Tooltip
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.4.6" data-path="../configuration/elements.html">
+
+                <a href="../configuration/elements.html">
+
+
+                    Elements
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.5" data-path="../charts/">
+
+                <a href="../charts/">
+
+
+                    Charts
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.5.1" data-path="../charts/line.html">
+
+                <a href="../charts/line.html">
+
+
+                    Line
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.5.2" data-path="../charts/bar.html">
+
+                <a href="../charts/bar.html">
+
+
+                    Bar
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.5.3" data-path="../charts/radar.html">
+
+                <a href="../charts/radar.html">
+
+
+                    Radar
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.5.4" data-path="../charts/doughnut.html">
+
+                <a href="../charts/doughnut.html">
+
+
+                    Doughnut & Pie
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.5.5" data-path="../charts/polar.html">
+
+                <a href="../charts/polar.html">
+
+
+                    Polar Area
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.5.6" data-path="../charts/bubble.html">
+
+                <a href="../charts/bubble.html">
+
+
+                    Bubble
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.5.7" data-path="../charts/scatter.html">
+
+                <a href="../charts/scatter.html">
+
+
+                    Scatter
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.5.8" data-path="../charts/area.html">
+
+                <a href="../charts/area.html">
+
+
+                    Area
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.5.9" data-path="../charts/mixed.html">
+
+                <a href="../charts/mixed.html">
+
+
+                    Mixed
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.6" data-path="../axes/">
+
+                <a href="../axes/">
+
+
+                    Axes
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.6.1" data-path="../axes/cartesian/">
+
+                <a href="../axes/cartesian/">
+
+
+                    Cartesian
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.6.1.1" data-path="../axes/cartesian/category.html">
+
+                <a href="../axes/cartesian/category.html">
+
+
+                    Category
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.6.1.2" data-path="../axes/cartesian/linear.html">
+
+                <a href="../axes/cartesian/linear.html">
+
+
+                    Linear
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.6.1.3" data-path="../axes/cartesian/logarithmic.html">
+
+                <a href="../axes/cartesian/logarithmic.html">
+
+
+                    Logarithmic
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.6.1.4" data-path="../axes/cartesian/time.html">
+
+                <a href="../axes/cartesian/time.html">
+
+
+                    Time
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.6.2" data-path="../axes/radial/">
+
+                <a href="../axes/radial/">
+
+
+                    Radial
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.6.2.1" data-path="../axes/radial/linear.html">
+
+                <a href="../axes/radial/linear.html">
+
+
+                    Linear
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.6.3" data-path="../axes/labelling.html">
+
+                <a href="../axes/labelling.html">
+
+
+                    Labelling
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.6.4" data-path="../axes/styling.html">
+
+                <a href="../axes/styling.html">
+
+
+                    Styling
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.7" data-path="./">
+
+                <a href="./">
+
+
+                    Developers
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter active" data-level="1.7.1" data-path="api.html">
+
+                <a href="api.html">
+
+
+                    Chart.js API
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.7.2" data-path="updates.html">
+
+                <a href="updates.html">
+
+
+                    Updating Charts
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.7.3" data-path="plugins.html">
+
+                <a href="plugins.html">
+
+
+                    Plugins
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.7.4" data-path="charts.html">
+
+                <a href="charts.html">
+
+
+                    New Charts
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.7.5" data-path="axes.html">
+
+                <a href="axes.html">
+
+
+                    New Axes
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.7.6" data-path="contributing.html">
+
+                <a href="contributing.html">
+
+
+                    Contributing
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+        <li class="chapter " data-level="1.8" data-path="../notes/">
+
+                <a href="../notes/">
+
+
+                    Additional Notes
+
+                </a>
+
+
+
+            <ul class="articles">
+
+
+        <li class="chapter " data-level="1.8.1" data-path="../notes/comparison.html">
+
+                <a href="../notes/comparison.html">
+
+
+                    Comparison Table
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.8.2" data-path="../notes/extensions.html">
+
+                <a href="../notes/extensions.html">
+
+
+                    Popular Extensions
+
+                </a>
+
+
+
+        </li>
+
+        <li class="chapter " data-level="1.8.3" data-path="../notes/license.html">
+
+                <a href="../notes/license.html">
+
+
+                    License
+
+                </a>
+
+
+
+        </li>
+
+
+            </ul>
+
+        </li>
+
+
+
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+
+
+    </div>
+
+    <div class="book-body">
+
+            <div class="body-inner">
+
+
+
+<div class="book-header" role="navigation">
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Chart.js API</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+
+                                <section class="normal markdown-section">
+
+                                <h1 id="chart-prototype-methods">Chart Prototype Methods</h1>
+<p>For each chart, there are a set of global prototype methods on the shared <code>ChartType</code> which you may find useful. These are available on all charts created with Chart.js, but for the examples, let&apos;s use a line chart we&apos;ve made.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// For example:</span>
+<span class="hljs-keyword">var</span> myLineChart = <span class="hljs-keyword">new</span> Chart(ctx, config);
+</code></pre>
+<h2 id="destroy">.destroy()</h2>
+<p>Use this to destroy any chart instances that are created. This will clean up any references stored to the chart object within Chart.js, along with any associated event listeners attached by Chart.js.
+This must be called before the canvas is reused for a new chart.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Destroys a specific chart instance</span>
+myLineChart.destroy();
+</code></pre>
+<h2 id="updateconfig">.update(config)</h2>
+<p>Triggers an update of the chart. This can be safely called after updating the data object. This will update all scales, legends, and then re-render the chart.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// duration is the time for the animation of the redraw in milliseconds</span>
+<span class="hljs-comment">// lazy is a boolean. if true, the animation can be interrupted by other animations</span>
+myLineChart.data.datasets[<span class="hljs-number">0</span>].data[<span class="hljs-number">2</span>] = <span class="hljs-number">50</span>; <span class="hljs-comment">// Would update the first dataset&apos;s value of &apos;March&apos; to be 50</span>
+myLineChart.update(); <span class="hljs-comment">// Calling update now animates the position of March from 90 to 50.</span>
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> replacing the data reference (e.g. <code>myLineChart.data = {datasets: [...]}</code> only works starting <strong>version 2.6</strong>. Prior that, replacing the entire data object could be achieved with the following workaround: <code>myLineChart.config.data = {datasets: [...]}</code>.</p>
+</blockquote>
+<p>A <code>config</code> object can be provided with additional configuration for the update process. This is useful when <code>update</code> is manually called inside an event handler and some different animation is desired.</p>
+<p>The following properties are supported:</p>
+<ul>
+<li><strong>duration</strong> (number): Time for the animation of the redraw in milliseconds</li>
+<li><strong>lazy</strong> (boolean): If true, the animation can be interrupted by other animations</li>
+<li><strong>easing</strong> (string): The animation easing function. See <a href="../configuration/animations.html">Animation Easing</a> for possible values.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="lang-javascript">myChart.update({
+    duration: <span class="hljs-number">800</span>,
+    easing: <span class="hljs-string">&apos;easeOutBounce&apos;</span>
+})
+</code></pre>
+<p>See <a href="updates.html">Updating Charts</a> for more details.</p>
+<h2 id="reset">.reset()</h2>
+<p>Reset the chart to it&apos;s state before the initial animation. A new animation can then be triggered using <code>update</code>.</p>
+<pre><code class="lang-javascript">myLineChart.reset();
+</code></pre>
+<h2 id="renderconfig">.render(config)</h2>
+<p>Triggers a redraw of all chart elements. Note, this does not update elements for new data. Use <code>.update()</code> in that case.</p>
+<p>See <code>.update(config)</code> for more details on the config object.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// duration is the time for the animation of the redraw in milliseconds</span>
+<span class="hljs-comment">// lazy is a boolean. if true, the animation can be interrupted by other animations</span>
+myLineChart.render({
+    duration: <span class="hljs-number">800</span>,
+    lazy: <span class="hljs-literal">false</span>,
+    easing: <span class="hljs-string">&apos;easeOutBounce&apos;</span>
+});
+</code></pre>
+<h2 id="stop">.stop()</h2>
+<p>Use this to stop any current animation loop. This will pause the chart during any current animation frame. Call <code>.render()</code> to re-animate.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stops the charts animation loop at its current frame</span>
+myLineChart.stop();
+<span class="hljs-comment">// =&gt; returns &apos;this&apos; for chainability</span>
+</code></pre>
+<h2 id="resize">.resize()</h2>
+<p>Use this to manually resize the canvas element. This is run each time the canvas container is resized, but you can call this method manually if you change the size of the canvas nodes container element.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Resizes &amp; redraws to fill its container element</span>
+myLineChart.resize();
+<span class="hljs-comment">// =&gt; returns &apos;this&apos; for chainability</span>
+</code></pre>
+<h2 id="clear">.clear()</h2>
+<p>Will clear the chart canvas. Used extensively internally between animation frames, but you might find it useful.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Will clear the canvas that myLineChart is drawn on</span>
+myLineChart.clear();
+<span class="hljs-comment">// =&gt; returns &apos;this&apos; for chainability</span>
+</code></pre>
+<h2 id="tobase64image">.toBase64Image()</h2>
+<p>This returns a base 64 encoded string of the chart in it&apos;s current state.</p>
+<pre><code class="lang-javascript">myLineChart.toBase64Image();
+<span class="hljs-comment">// =&gt; returns png data url of the image on the canvas</span>
+</code></pre>
+<h2 id="generatelegend">.generateLegend()</h2>
+<p>Returns an HTML string of a legend for that chart. The legend is generated from the <code>legendCallback</code> in the options.</p>
+<pre><code class="lang-javascript">myLineChart.generateLegend();
+<span class="hljs-comment">// =&gt; returns HTML string of a legend for this chart</span>
+</code></pre>
+<h2 id="getelementatevente">.getElementAtEvent(e)</h2>
+<p>Calling <code>getElementAtEvent(event)</code> on your Chart instance passing an argument of an event, or jQuery event, will return the single element at the event position. If there are multiple items within range, only the first is returned. The value returned from this method is an array with a single parameter. An array is used to keep a consistent API between the <code>get*AtEvent</code> methods.</p>
+<pre><code class="lang-javascript">myLineChart.getElementAtEvent(e);
+<span class="hljs-comment">// =&gt; returns the first element at the event point.</span>
+</code></pre>
+<p>To get an item that was clicked on, <code>getElementAtEvent</code> can be used.</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clickHandler</span>(<span class="hljs-params">evt</span>) </span>{
+    <span class="hljs-keyword">var</span> item = myChart.getElementAtEvent(evt)[<span class="hljs-number">0</span>];
+
+    <span class="hljs-keyword">if</span> (item) {
+        <span class="hljs-keyword">var</span> label = myChart.data.labels[firstPoint._index];
+        <span class="hljs-keyword">var</span> value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+    }
+}
+</code></pre>
+<h2 id="getelementsatevente">.getElementsAtEvent(e)</h2>
+<p>Looks for the element under the event point, then returns all elements at the same data index. This is used internally for &apos;label&apos; mode highlighting.</p>
+<p>Calling <code>getElementsAtEvent(event)</code> on your Chart instance passing an argument of an event, or jQuery event, will return the point elements that are at that the same position of that event.</p>
+<pre><code class="lang-javascript">canvas.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">evt</span>)</span>{
+    <span class="hljs-keyword">var</span> activePoints = myLineChart.getElementsAtEvent(evt);
+    <span class="hljs-comment">// =&gt; activePoints is an array of points on the canvas that are at the same position as the click event.</span>
+};
+</code></pre>
+<p>This functionality may be useful for implementing DOM based tooltips, or triggering custom behaviour in your application.</p>
+<h2 id="getdatasetatevente">.getDatasetAtEvent(e)</h2>
+<p>Looks for the element under the event point, then returns all elements from that dataset. This is used internally for &apos;dataset&apos; mode highlighting</p>
+<pre><code class="lang-javascript">myLineChart.getDatasetAtEvent(e);
+<span class="hljs-comment">// =&gt; returns an array of elements</span>
+</code></pre>
+<h2 id="getdatasetmetaindex">.getDatasetMeta(index)</h2>
+<p>Looks for the dataset that matches the current index and returns that metadata. This returned data has all of the metadata that is used to construct the chart.</p>
+<p>The <code>data</code> property of the metadata will contain information about each point, rectangle, etc. depending on the chart type.</p>
+<p>Extensive examples of usage are available in the <a href="https://github.com/chartjs/Chart.js/tree/master/test" target="_blank">Chart.js tests</a>.</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> meta = myChart.getDatasetMeta(<span class="hljs-number">0</span>);
+<span class="hljs-keyword">var</span> x = meta.data[<span class="hljs-number">0</span>]._model.x
+</code></pre>
+
+
+                                </section>
+
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+
+        </div>
+        <div class="no-results">
+
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+
+            </div>
+
+
+
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Developers">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+
+
+                <a href="updates.html" class="navigation navigation-next " aria-label="Next page: Updating Charts">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+
+
+
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Chart.js API","level":"1.7.1","depth":2,"next":{"title":"Updating Charts","level":"1.7.2","depth":2,"path":"developers/updates.md","ref":"developers/updates.md","articles":[]},"previous":{"title":"Developers","level":"1.7","depth":1,"path":"developers/README.md","ref":"developers/README.md","articles":[{"title":"Chart.js API","level":"1.7.1","depth":2,"path":"developers/api.md","ref":"developers/api.md","articles":[]},{"title":"Updating Charts","level":"1.7.2","depth":2,"path":"developers/updates.md","ref":"developers/updates.md","articles":[]},{"title":"Plugins","level":"1.7.3","depth":2,"path":"developers/plugins.md","ref":"developers/plugins.md","articles":[]},{"title":"New Charts","level":"1.7.4","depth":2,"path":"developers/charts.md","ref":"developers/charts.md","articles":[]},{"title":"New Axes","level":"1.7.5","depth":2,"path":"developers/axes.md","ref":"developers/axes.md","articles":[]},{"title":"Contributing","level":"1.7.6","depth":2,"path":"developers/contributing.md","ref":"developers/contributing.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","anchorjs","chartjs","ga"],"root":"./docs","styles":{"website":"style.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchorjs":{"icon":"#","placement":"left","visible":"always"},"ga":{"configuration":"auto","token":"UA-28909194-3"},"theme-default":{"styles":{"website":"style.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{},"chartjs":{"defaults":null},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"theme":"default","author":"chartjs","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"3.2.2"},"file":{"path":"developers/api.md","mtime":"2017-10-28T15:03:49.266Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-10-28T15:09:53.587Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+
+
+        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+
+
+
+        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+
+
+
+        <script src="../gitbook/gitbook-plugin-anchorjs/anchor-style.js"></script>
+
+
+
+        <script src="../gitbook/gitbook-plugin-ga/plugin.js"></script>
+
+
+
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+
+
+
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+
+
+
+    </body>
+</html>
+

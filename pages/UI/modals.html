@@ -5,26 +5,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>AdminLTE 3 | Modals</title>
   <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 4 -->
-  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <style>
     .example-modal .modal {
       position: relative;
@@ -41,7 +32,7 @@
     }
   </style>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
@@ -77,7 +68,7 @@
                 <ul class="menu">
                   <li><!-- start message -->
                     <a href="#">
-                      <div class="pull-left">
+                      <div class="float-left">
                         <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
@@ -90,7 +81,7 @@
                   <!-- end message -->
                   <li>
                     <a href="#">
-                      <div class="pull-left">
+                      <div class="float-left">
                         <img src="../../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
@@ -102,7 +93,7 @@
                   </li>
                   <li>
                     <a href="#">
-                      <div class="pull-left">
+                      <div class="float-left">
                         <img src="../../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
@@ -114,7 +105,7 @@
                   </li>
                   <li>
                     <a href="#">
-                      <div class="pull-left">
+                      <div class="float-left">
                         <img src="../../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
@@ -126,7 +117,7 @@
                   </li>
                   <li>
                     <a href="#">
-                      <div class="pull-left">
+                      <div class="float-left">
                         <img src="../../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
@@ -154,29 +145,29 @@
                 <ul class="menu">
                   <li>
                     <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                      <i class="fa fa-users text-info"></i> 5 new members joined today
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
+                      <i class="fa fa-warning text-warning"></i> Very long description here that may not fit into the
                       page and may cause design problems
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
+                      <i class="fa fa-users text-danger"></i> 5 new members joined
                     </a>
                   </li>
 
                   <li>
                     <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                      <i class="fa fa-shopping-cart text-success"></i> 25 sales made
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
+                      <i class="fa fa-user text-danger"></i> You changed your username
                     </a>
                   </li>
                 </ul>
@@ -199,10 +190,10 @@
                     <a href="#">
                       <h3>
                         Design some buttons
-                        <small class="pull-right">20%</small>
+                        <small class="float-right">20%</small>
                       </h3>
                       <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-info" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                           <span class="sr-only">20% Complete</span>
                         </div>
                       </div>
@@ -213,10 +204,10 @@
                     <a href="#">
                       <h3>
                         Create a nice theme
-                        <small class="pull-right">40%</small>
+                        <small class="float-right">40%</small>
                       </h3>
                       <div class="progress xs">
-                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-success" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                           <span class="sr-only">40% Complete</span>
                         </div>
                       </div>
@@ -227,10 +218,10 @@
                     <a href="#">
                       <h3>
                         Some task I need to do
-                        <small class="pull-right">60%</small>
+                        <small class="float-right">60%</small>
                       </h3>
                       <div class="progress xs">
-                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-danger" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                           <span class="sr-only">60% Complete</span>
                         </div>
                       </div>
@@ -241,10 +232,10 @@
                     <a href="#">
                       <h3>
                         Make beautiful transitions
-                        <small class="pull-right">80%</small>
+                        <small class="float-right">80%</small>
                       </h3>
                       <div class="progress xs">
-                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-warning" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                           <span class="sr-only">80% Complete</span>
                         </div>
                       </div>
@@ -277,13 +268,13 @@
               <!-- Menu Body -->
               <li class="user-body">
                 <div class="row">
-                  <div class="col-xs-4 text-xs-center">
+                  <div class="col-4 text-center">
                     <a href="#">Followers</a>
                   </div>
-                  <div class="col-xs-4 text-xs-center">
+                  <div class="col-4 text-center">
                     <a href="#">Sales</a>
                   </div>
-                  <div class="col-xs-4 text-xs-center">
+                  <div class="col-4 text-center">
                     <a href="#">Friends</a>
                   </div>
                 </div>
@@ -291,10 +282,10 @@
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
+                <div class="float-left">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
-                <div class="pull-right">
+                <div class="float-right">
                   <a href="#" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
@@ -310,10 +301,10 @@
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
-        <div class="pull-left image">
+        <div class="float-left image">
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
-        <div class="pull-left info">
+        <div class="float-left info">
           <p>Alexander Pierce</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -322,7 +313,7 @@
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
+              <span class="input-group-append">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
               </span>
@@ -334,7 +325,7 @@
         <li class="header">MAIN NAVIGATION</li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left float-right"></i>
           </a>
           <ul class="treeview-menu">
             <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
@@ -345,7 +336,7 @@
           <a href="#">
             <i class="fa fa-files-o"></i>
             <span>Layout Options</span>
-            <span class="tag tag-primary pull-right">4</span>
+            <span class="tag tag-primary float-right">4</span>
           </a>
           <ul class="treeview-menu">
             <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
@@ -357,14 +348,14 @@
         <li>
           <a href="../widgets.html">
             <i class="fa fa-th"></i> <span>Widgets</span>
-            <small class="label pull-right bg-green">new</small>
+            <small class="label float-right bg-success">new</small>
           </a>
         </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
             <span>Charts</span>
-            <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-angle-left float-right"></i>
           </a>
           <ul class="treeview-menu">
             <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
@@ -377,7 +368,7 @@
           <a href="#">
             <i class="fa fa-laptop"></i>
             <span>UI Elements</span>
-            <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-angle-left float-right"></i>
           </a>
           <ul class="treeview-menu">
             <li><a href="general.html"><i class="fa fa-circle-o"></i> General</a></li>
@@ -391,7 +382,7 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-edit"></i> <span>Forms</span>
-            <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-angle-left float-right"></i>
           </a>
           <ul class="treeview-menu">
             <li><a href="../forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
@@ -402,7 +393,7 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>Tables</span>
-            <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-angle-left float-right"></i>
           </a>
           <ul class="treeview-menu">
             <li><a href="../tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
@@ -412,19 +403,19 @@
         <li>
           <a href="../calendar.html">
             <i class="fa fa-calendar"></i> <span>Calendar</span>
-            <small class="label pull-right bg-red">3</small>
+            <small class="label float-right bg-danger">3</small>
           </a>
         </li>
         <li>
           <a href="../mailbox/mailbox.html">
             <i class="fa fa-envelope"></i> <span>Mailbox</span>
-            <small class="label pull-right bg-yellow">12</small>
+            <small class="label float-right bg-warning">12</small>
           </a>
         </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-folder"></i> <span>Examples</span>
-            <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-angle-left float-right"></i>
           </a>
           <ul class="treeview-menu">
             <li><a href="../examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
@@ -441,16 +432,16 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-share"></i> <span>Multilevel</span>
-            <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-angle-left float-right"></i>
           </a>
           <ul class="treeview-menu">
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
             <li>
-              <a href="#"><i class="fa fa-circle-o"></i> Level One <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#"><i class="fa fa-circle-o"></i> Level One <i class="fa fa-angle-left float-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
                 <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
+                  <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left float-right"></i></a>
                   <ul class="treeview-menu">
                     <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
@@ -463,9 +454,9 @@
         </li>
         <li><a href="../../documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         <li class="header">LABELS</li>
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-danger"></i> <span>Important</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-warning"></i> <span>Warning</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-info"></i> <span>Information</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -507,7 +498,7 @@
                 <p>One fine body&hellip;</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default float-left" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save changes</button>
               </div>
             </div>
@@ -532,7 +523,7 @@
                 <p>One fine body&hellip;</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline float-left" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-outline">Save changes</button>
               </div>
             </div>
@@ -557,7 +548,7 @@
                 <p>One fine body&hellip;</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline float-left" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-outline">Save changes</button>
               </div>
             </div>
@@ -582,7 +573,7 @@
                 <p>One fine body&hellip;</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline float-left" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-outline">Save changes</button>
               </div>
             </div>
@@ -607,7 +598,7 @@
                 <p>One fine body&hellip;</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline float-left" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-outline">Save changes</button>
               </div>
             </div>
@@ -632,7 +623,7 @@
                 <p>One fine body&hellip;</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline float-left" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-outline">Save changes</button>
               </div>
             </div>
@@ -649,10 +640,10 @@
   <!-- /.content-wrapper -->
 
   <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.2
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 3.0.0-alpha
     </div>
-    <strong>Copyright &copy; 2014-2015 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2018 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -671,8 +662,8 @@
         <h3 class="control-sidebar-heading">Recent Activity</h3>
         <ul class="control-sidebar-menu">
           <li>
-            <a href="javascript:;">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-birthday-cake bg-danger"></i>
 
               <div class="menu-info">
                 <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
@@ -682,8 +673,8 @@
             </a>
           </li>
           <li>
-            <a href="javascript:;">
-              <i class="menu-icon fa fa-user bg-yellow"></i>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-user bg-warning"></i>
 
               <div class="menu-info">
                 <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
@@ -693,8 +684,8 @@
             </a>
           </li>
           <li>
-            <a href="javascript:;">
-              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-envelope-o bg-primary"></i>
 
               <div class="menu-info">
                 <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
@@ -704,8 +695,8 @@
             </a>
           </li>
           <li>
-            <a href="javascript:;">
-              <i class="menu-icon fa fa-file-code-o bg-green"></i>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-file-code-o bg-success"></i>
 
               <div class="menu-info">
                 <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
@@ -720,10 +711,10 @@
         <h3 class="control-sidebar-heading">Tasks Progress</h3>
         <ul class="control-sidebar-menu">
           <li>
-            <a href="javascript:;">
+            <a href="javascript:void(0)">
               <h4 class="control-sidebar-subheading">
                 Custom Template Design
-                <span class="tag tag-danger pull-right">70%</span>
+                <span class="tag tag-danger float-right">70%</span>
               </h4>
 
               <div class="progress progress-xxs">
@@ -732,38 +723,38 @@
             </a>
           </li>
           <li>
-            <a href="javascript:;">
+            <a href="javascript:void(0)">
               <h4 class="control-sidebar-subheading">
                 Update Resume
-                <span class="tag tag-success pull-right">95%</span>
+                <span class="tag tag-success float-right">95%</span>
               </h4>
 
               <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                <div class="progress-bar bg-success" style="width: 95%"></div>
               </div>
             </a>
           </li>
           <li>
-            <a href="javascript:;">
+            <a href="javascript:void(0)">
               <h4 class="control-sidebar-subheading">
                 Laravel Integration
-                <span class="tag tag-warning pull-right">50%</span>
+                <span class="tag tag-warning float-right">50%</span>
               </h4>
 
               <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                <div class="progress-bar bg-warning" style="width: 50%"></div>
               </div>
             </a>
           </li>
           <li>
-            <a href="javascript:;">
+            <a href="javascript:void(0)">
               <h4 class="control-sidebar-subheading">
                 Back End Framework
-                <span class="tag tag-primary pull-right">68%</span>
+                <span class="tag tag-primary float-right">68%</span>
               </h4>
 
               <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                <div class="progress-bar bg-primary" style="width: 68%"></div>
               </div>
             </a>
           </li>
@@ -783,7 +774,7 @@
           <div class="form-group">
             <label class="control-sidebar-subheading">
               Report panel usage
-              <input type="checkbox" class="pull-right" checked>
+              <input type="checkbox" class="float-right" checked>
             </label>
 
             <p>
@@ -795,7 +786,7 @@
           <div class="form-group">
             <label class="control-sidebar-subheading">
               Allow mail redirect
-              <input type="checkbox" class="pull-right" checked>
+              <input type="checkbox" class="float-right" checked>
             </label>
 
             <p>
@@ -807,7 +798,7 @@
           <div class="form-group">
             <label class="control-sidebar-subheading">
               Expose author name in posts
-              <input type="checkbox" class="pull-right" checked>
+              <input type="checkbox" class="float-right" checked>
             </label>
 
             <p>
@@ -821,7 +812,7 @@
           <div class="form-group">
             <label class="control-sidebar-subheading">
               Show me as online
-              <input type="checkbox" class="pull-right" checked>
+              <input type="checkbox" class="float-right" checked>
             </label>
           </div>
           <!-- /.form-group -->
@@ -829,7 +820,7 @@
           <div class="form-group">
             <label class="control-sidebar-subheading">
               Turn off notifications
-              <input type="checkbox" class="pull-right">
+              <input type="checkbox" class="float-right">
             </label>
           </div>
           <!-- /.form-group -->
@@ -837,7 +828,7 @@
           <div class="form-group">
             <label class="control-sidebar-subheading">
               Delete chat history
-              <a href="javascript:;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+              <a href="javascript:void(0)" class="text-danger float-right"><i class="fa fa-trash-o"></i></a>
             </label>
           </div>
           <!-- /.form-group -->
@@ -853,14 +844,14 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 2.1.4 -->
-<script src="../../plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- FastClick -->
 <script src="../../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/app.min.js"></script>
+<script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 </body>

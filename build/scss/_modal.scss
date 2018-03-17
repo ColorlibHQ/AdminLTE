@@ -16,65 +16,65 @@
 }
 
 .modal-header {
-  border-bottom-color: $box-border-color;
+  border-bottom-color: $card-border-color;
 }
 
 .modal-footer {
-  border-top-color: $box-border-color;
+  border-top-color: $card-border-color;
 }
 
 //Modal variants
 .modal-primary {
   .modal-body {
-    @extend .bg-light-blue;
+    @extend .bg-primary;
   }
   .modal-header,
   .modal-footer {
-    @extend .bg-light-blue-active;
+    @extend .bg-primary;
     border-color: darken(theme-color("primary"), 10%);
   }
 }
 
 .modal-warning {
   .modal-body {
-    @extend .bg-yellow;
+    @extend .bg-warning;
   }
   .modal-header,
   .modal-footer {
-    @extend .bg-yellow-active;
+    @extend .bg-warning;
     border-color: darken(theme-color("warning"), 10%);
   }
 }
 
 .modal-info {
   .modal-body {
-    @extend .bg-aqua;
+    @extend .bg-info;
   }
   .modal-header,
   .modal-footer {
-    @extend .bg-aqua-active;
+    @extend .bg-info;
     border-color: darken(theme-color("info"), 10%);
   }
 }
 
 .modal-success {
   .modal-body {
-    @extend .bg-green;
+    @extend .bg-success;
   }
   .modal-header,
   .modal-footer {
-    @extend .bg-green-active;
+    @extend .bg-success;
     border-color: darken(theme-color("success"), 10%);
   }
 }
 
 .modal-danger {
   .modal-body {
-    @extend .bg-red;
+    @extend .bg-danger;
   }
   .modal-header,
   .modal-footer {
-    @extend .bg-red-active;
+    @extend .bg-danger;
     border-color: darken(theme-color("danger"), 10%);
   }
 }

@@ -1,0 +1,136 @@
+/*
+ * Component: Main Header
+ * ----------------------
+ */
+.main-header {
+  z-index: $zindex-main-header;
+
+  .navbar-nav .nav-item {
+    margin: 0;
+  }
+
+  .nav-link {
+    position: relative;
+    height: $nav-link-height;
+  }
+
+  .navbar-nav[class*="-right"] {
+    .dropdown-menu {
+      margin-top: -3px;
+      right: 0;
+      left: auto;
+      @media (max-width: breakpoint-max(xs)) {
+        left: 0;
+        right: auto;
+      }
+    }
+  }
+
+}
+
+// Add this class to images within a nav-link
+.navbar-img {
+  height: $main-header-height / 2;
+  width: auto;
+}
+
+// Navbar badge
+.navbar-badge {
+  position: absolute;
+  top: 9px;
+  right: 5px;
+  font-size: .6rem;
+  font-weight: 300;
+  padding: 2px 4px;
+}
+
+.btn-navbar {
+  border-left-width: 0;
+  background-color: transparent;
+}
+
+.form-control-navbar {
+  border-right-width: 0;
+  & + .input-group-append {
+    margin-left: 0;
+  }
+}
+
+.form-control-navbar,
+.btn-navbar {
+  transition: none;
+}
+
+.navbar-dark {
+  .form-control-navbar,
+  .btn-navbar {
+    background-color: $main-header-dark-form-control-bg;
+    border: $main-header-dark-form-control-border;
+  }
+
+  .form-control-navbar {
+    &::placeholder,
+    + .input-group-append > .btn-navbar {
+      color: $main-header-dark-placeholder-color;
+    }
+
+    // Support FF and IE
+    :-moz-placeholder {
+      color: $main-header-dark-placeholder-color;
+    }
+
+    ::-moz-placeholder {
+      color: $main-header-dark-placeholder-color;
+    }
+
+    :-ms-input-placeholder {
+      color: $main-header-dark-placeholder-color;
+    }
+
+    &:focus {
+      &,
+      & + .input-group-append .btn-navbar {
+        border: $main-header-dark-form-control-focused-border !important;
+        background-color: $main-header-dark-form-control-focused-bg;
+        color: $main-header-dark-form-control-focused-color;
+      }
+    }
+  }
+}
+
+.navbar-light {
+  .form-control-navbar,
+  .btn-navbar {
+    background-color: $main-header-light-form-control-bg;
+    border: $main-header-light-form-control-border;
+  }
+
+  .form-control-navbar {
+    &::placeholder,
+    + .input-group-append > .btn-navbar {
+      color: $main-header-light-placeholder-color;
+    }
+
+    // Support FF and IE
+    :-moz-placeholder {
+      color: $main-header-light-placeholder-color;
+    }
+
+    ::-moz-placeholder {
+      color: $main-header-light-placeholder-color;
+    }
+
+    :-ms-input-placeholder {
+      color: $main-header-light-placeholder-color;
+    }
+
+    &:focus {
+      &,
+      & + .input-group-append .btn-navbar {
+        border: $main-header-light-form-control-focused-border !important;
+        background-color: $main-header-light-form-control-focused-bg;
+        color: $main-header-light-form-control-focused-color;
+      }
+    }
+  }
+}

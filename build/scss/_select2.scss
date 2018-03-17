@@ -101,14 +101,14 @@
   background-color: theme-color("primary");
   border-color: darken(theme-color("primary"), 5%);
   padding: 1px 10px;
-  color: #fff;
+  color: $white;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
   margin-right: 5px;
   color: rgba(255, 255, 255, 0.7);
   &:hover {
-    color: #fff;
+    color: $white;
   }
 }
 

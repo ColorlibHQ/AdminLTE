@@ -3,7 +3,7 @@
  * -------------------------
  */
 //General widget style
-.box-widget {
+.card-widget {
   border: none;
   position: relative;
 }
@@ -12,9 +12,11 @@
 .widget-user {
   //User name container
   .widget-user-header {
-    padding: 20px;
+    padding: 1rem;
     height: 120px;
-    @include border-top-radius($box-border-radius);
+    @if $enable-rounded {
+      @include border-top-radius($border-radius);
+    }
   }
   //User name
   .widget-user-username {
@@ -37,11 +39,12 @@
     > img {
       width: 90px;
       height: auto;
-      border: 3px solid #fff;
+      border: 3px solid $white;
     }
   }
-  .box-footer {
-    padding-top: 30px;
+
+  .card-footer {
+    padding-top: 40px;
   }
 }
 
@@ -49,8 +52,8 @@
 .widget-user-2 {
   //User name container
   .widget-user-header {
-    padding: 20px;
-    @include border-top-radius($box-border-radius);
+    padding: 1rem;
+    @include border-top-radius($border-radius);
   }
   //User name
   .widget-user-username {

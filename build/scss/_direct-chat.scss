@@ -3,8 +3,7 @@
  * ----------------------
  */
 .direct-chat {
-  .box-body {
-    @include border-bottom-radius(0);
+  .card-body {
     position: relative;
     overflow-x: hidden;
     padding: 0;
@@ -39,7 +38,10 @@
 }
 
 .direct-chat-text {
-  @include border-radius(5px);
+  @if $enable-rounded {
+    @include border-radius($border-radius-lg);
+  }
+
   position: relative;
   padding: 5px 10px;
   background: $direct-chat-default-msg-bg;
@@ -95,7 +97,7 @@
 .direct-chat-info {
   display: block;
   margin-bottom: 2px;
-  font-size: 12px;
+  font-size: $font-size-sm;
 }
 
 .direct-chat-name {
@@ -121,7 +123,7 @@
   height: 250px;
   width: 100%;
   background: #222d32;
-  color: #fff;
+  color: $white;
   overflow: auto;
 }
 
@@ -147,7 +149,7 @@
 
 .contacts-list-info {
   margin-left: 45px;
-  color: #fff;
+  color: $white;
 }
 
 .contacts-list-name,
@@ -160,7 +162,7 @@
 }
 
 .contacts-list-status {
-  font-size: 12px;
+  font-size: $font-size-sm;
 }
 
 .contacts-list-date {

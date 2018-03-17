@@ -54,7 +54,7 @@
 }
 
 .fc-toolbar {
-  padding: $box-padding;
+  padding: 1rem;
   margin: 0;
 }
 
@@ -90,9 +90,9 @@
   padding: 5px 10px;
   font-weight: bold;
   margin-bottom: 4px;
-  box-shadow: $box-boxshadow;
-  text-shadow: $box-boxshadow;
-  border-radius: $box-border-radius;
+  box-shadow: $card-shadow;
+  text-shadow: $card-shadow;
+  border-radius: $border-radius;
   cursor: move;
   &:hover {
     box-shadow: inset 0 0 90px rgba(0, 0, 0, 0.2);

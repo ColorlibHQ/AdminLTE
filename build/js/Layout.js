@@ -6,7 +6,6 @@
  */
 
 const Layout = (($) => {
-
   /**
    * Constants
    * ====================================================
@@ -44,7 +43,6 @@ const Layout = (($) => {
    */
 
   class Layout {
-
     constructor(element) {
       this._element = element
 
@@ -54,15 +52,16 @@ const Layout = (($) => {
     // Public
 
     fixLayoutHeight() {
-      const heights = [
-        $(window).height(),
-        $(Selector.HEADER).outerHeight(),
-        $(Selector.FOOTER).outerHeight(),
-        $(Selector.SIDEBAR).height()
-      ]
+      const heights = {
+        window : $(window).height(),
+        header : $(Selector.HEADER).outerHeight(),
+        footer : $(Selector.FOOTER).outerHeight(),
+        sidebar: $(Selector.SIDEBAR).height()
+      }
       const max     = this._max(heights)
 
-      $(Selector.CONTENT).css('min-height', max - (heights[1] + heights[2]))
+      $(Selector.CONTENT).css('min-height', max - (heights.header))
+      $(Selector.SIDEBAR).css('min-height', max - heights.header)
     }
 
     // Private
@@ -73,9 +72,11 @@ const Layout = (($) => {
 
       // Activate layout height watcher
       this.fixLayoutHeight()
-      $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', () => {
-        this.fixLayoutHeight()
-      })
+      $(Selector.SIDEBAR)
+        .on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', () => {
+          this.fixLayoutHeight()
+        })
+
       $(window).resize(() => {
         this.fixLayoutHeight()
       })
@@ -87,9 +88,9 @@ const Layout = (($) => {
       // Calculate the maximum number in a list
       let max = 0
 
-      numbers.forEach((v) => {
-        if (v > max) {
-          max = v
+      Object.keys(numbers).forEach((key) => {
+        if (numbers[key] > max) {
+          max = numbers[key]
         }
       })
 
@@ -100,7 +101,8 @@ const Layout = (($) => {
 
     static _jQueryInterface(operation) {
       return this.each(function () {
-        let data = $(this).data(DATA_KEY)
+        let data = $(this)
+          .data(DATA_KEY)
 
         if (!data) {
           data = new Layout(this)
@@ -135,7 +137,6 @@ const Layout = (($) => {
   }
 
   return Layout
-
 })(jQuery)
 
 export default Layout

@@ -2,59 +2,7 @@
  * Component: Form
  * ---------------
  */
-.form-control {
-  //@include border-radius($input-radius);
-  box-shadow: none;
-  //border-color: $gray-500;
-  &:focus {
-    border-color: theme-color("primary");
-    box-shadow: none;
-  }
-  &::-moz-placeholder,
-  &:-ms-input-placeholder,
-  &::-webkit-input-placeholder {
-    color: #bbb;
-    opacity: 1;
-  }
-
-  &:not(select) {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-  }
-}
-
 .form-group {
-  &.has-success {
-    label {
-      color: theme-color("success");
-    }
-    .form-control {
-      border-color: theme-color("success");
-      box-shadow: none;
-    }
-  }
-
-  &.has-warning {
-    label {
-      color: theme-color("warning");
-    }
-    .form-control {
-      border-color: theme-color("warning");
-      box-shadow: none;
-    }
-  }
-
-  &.has-error {
-    label {
-      color: theme-color("danger");
-    }
-    .form-control {
-      border-color: theme-color("danger");
-      box-shadow: none;
-    }
-  }
-
   &.has-icon {
     position: relative;
     .form-control {
@@ -66,20 +14,11 @@
       right: 3px;
       top: 0;
       padding: $input-btn-padding-y $input-btn-padding-x;
-      margin-top: -3px;
+      // margin-top: -3px;
       border: 0;
       background-color: transparent;
       font-size: 1rem;
     }
-  }
-}
-
-/* Input group */
-.input-group {
-  .input-group-addon {
-    //@include border-radius($input-radius);
-    border-color: $gray-500;
-    background-color: #fff;
   }
 }
 
@@ -92,11 +31,7 @@
   }
 }
 
-.icheck > label {
-  padding-left: 0;
-}
-
-/* support Font Awesome icons in form-control */
+/* Support Font Awesome icons in form-control */
 .form-control-feedback.fa {
   line-height: $input-height;
 }
@@ -111,4 +46,8 @@
 .input-group-sm + .form-control-feedback.fa,
 .form-group-sm .form-control + .form-control-feedback.fa {
   line-height: $input-height-sm;
+}
+
+label:not(.form-check-label, .custom-file-label) {
+  font-weight: $font-weight-bold;
 }

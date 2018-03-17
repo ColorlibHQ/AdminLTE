@@ -4,11 +4,19 @@
  */
 
 .small-box {
-  @include border-radius(2px);
+  @if $enable-rounded {
+    @include border-radius($border-radius);
+  }
+
+  @if $enable-shadows {
+    box-shadow: $card-shadow;
+  }
+
+  @extend .mb-3;
   position: relative;
   display: block;
   margin-bottom: 20px;
-  box-shadow: $box-boxshadow;
+
   // content wrapper
   > .inner {
     padding: 10px;
@@ -18,14 +26,14 @@
     position: relative;
     text-align: center;
     padding: 3px 0;
-    color: #fff;
+    color: $white;
     color: rgba(255, 255, 255, 0.8);
     display: block;
     z-index: 10;
     background: rgba(0, 0, 0, 0.1);
     text-decoration: none;
     &:hover {
-      color: #fff;
+      color: $white;
       background: rgba(0, 0, 0, 0.15);
     }
   }
@@ -50,7 +58,7 @@
   }
 
   h3, p {
-    z-index: 5px;
+    z-index: 5;
   }
 
   // the icon
@@ -67,7 +75,6 @@
   // Small box hover state
   &:hover {
     text-decoration: none;
-    color: #f9f9f9;
     // Animate icons on small box hover
     .icon {
       font-size: 95px;

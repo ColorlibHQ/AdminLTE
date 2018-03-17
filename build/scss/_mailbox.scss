@@ -11,12 +11,12 @@
 .mailbox-controls {
   padding: 5px;
   &.with-border {
-    border-bottom: 1px solid $box-border-color;
+    border-bottom: 1px solid $card-border-color;
   }
 }
 
 .mailbox-read-info {
-  border-bottom: 1px solid $box-border-color;
+  border-bottom: 1px solid $card-border-color;
   padding: 10px;
   h3 {
     font-size: 20px;

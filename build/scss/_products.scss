@@ -7,11 +7,12 @@
   margin: 0;
   padding: 0;
   > .item {
-    @include border-radius($box-border-radius);
-    @include box-shadow($box-boxshadow);
+    @if $enable-rounded {
+      @include border-radius($border-radius);
+    }
     @include clearfix();
     padding: 10px 0;
-    background: #fff;
+    background: $white;
   }
   .product-img {
     float: left;
@@ -28,17 +29,16 @@
   }
   .product-description {
     display: block;
-    color: #999;
+    color: $gray-600;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 }
 
-.product-list-in-box > .item {
-  @include box-shadow(none);
+.product-list-in-card > .item {
   @include border-radius(0);
-  border-bottom: 1px solid $box-border-color;
+  border-bottom: 1px solid $card-border-color;
   &:last-of-type {
     border-bottom-width: 0;
   }

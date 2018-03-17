@@ -5,12 +5,8 @@
 html,
 body,
 .wrapper {
-  height: 100%;
+  min-height: 100%;
   overflow-x: hidden;
-}
-
-.layout-boxed {
-  background: url('#{$boxed-layout-bg-image-path}') #ccc repeat;
 }
 
 .wrapper {
@@ -26,27 +22,14 @@ body,
   }
 }
 
-.wrapper:before,
-.main-sidebar:before {
-  content: " ";
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  z-index: -1;
-}
-
-.wrapper:before {
-  background: $main-bg;
-  width: 100%;
-}
-
 .content-wrapper,
-.main-footer {
+.main-footer,
+.main-header {
   @include media-breakpoint-up(md) {
+    @include transition(margin-left $transition-speed $transition-fn);
+
     margin-left: $sidebar-width;
     z-index: 3000;
-    $local-content-transition: margin-right $transition-speed $transition-fn, margin-left $transition-speed $transition-fn;
-    @include transition($local-content-transition);
 
     .sidebar-collapse & {
       margin-left: 0;
@@ -61,26 +44,19 @@ body,
   }
 }
 
-.content-wrapper,
-.main-sidebar {
-  @include calc("min-height", "100% - #{$main-header-height + $main-footer-height}");
-}
-
 .content-wrapper {
   background: $main-bg;
-  > .content-header,
-  > .content {
-    display: table;
-    width: 100%;
-  }
 
   > .content {
-    padding: 15px;
+    padding: $content-padding-y $content-padding-x;
   }
 }
 
 .main-sidebar {
-  float: left;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
 
   &,
   &:before {
@@ -99,7 +75,15 @@ body,
   @include media-breakpoint-down(md) {
     &,
     &:before {
+      box-shadow: none!important;
       margin-left: -$sidebar-width;
+    }
+
+    .sidebar-open & {
+      &,
+      &:before {
+        margin-left: 0;
+      }
     }
   }
 }
@@ -108,13 +92,12 @@ body,
   padding: $main-footer-padding;
   color: #555;
   border-top: $main-footer-border-top;
-  background: #fff;
+  background: $main-footer-bg;
 }
 
 .content-header {
-  padding: 15px;
-  background: #fff;
-  border-bottom: 1px solid $card-border-color;
+  padding: 15px $content-padding-x;
+
   h1 {
     font-size: 1.8rem;
     margin: 0;
@@ -124,5 +107,13 @@ body,
     padding: 0;
     background: transparent;
     line-height: 1.8rem;
+  }
+}
+
+.hold-transition {
+  .content-wrapper,
+  .main-header,
+  .main-footer {
+    transition: none!important;
   }
 }

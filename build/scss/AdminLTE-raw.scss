@@ -1,0 +1,68 @@
+/*!
+ *   AdminLTE v3.0.0-alpha
+ *   Author: Abdullah Almsaeed
+ *	 Website: AdminLTE.io <http://adminlte.io>
+ *   License: Open source - MIT <http://opensource.org/licenses/MIT>
+ */
+//
+// ------------------------------------------------------------------
+// This file is to be included in your custom SCSS. Before importing
+// this file, you should include your custom AdminLTE and Bootstrap
+// variables followed by bootstrap.scss and then this file. It's
+// ok to import this file without custom variables too!
+// NOTE: be sure to keep the license notice in the generated css.
+// ------------------------------------------------------------------
+//
+// VARIABLES AND MIXINS
+// ---------------------------------------------------
+@import "bootstrap-variables";
+@import "variables";
+@import "mixins";
+// Core
+// ---------------------------------------------------
+@import "layout";
+// COMPONENTS
+// ---------------------------------------------------
+@import "main-header";
+@import "brand";
+@import "main-sidebar";
+@import "sidebar-mini";
+@import "control-sidebar";
+@import "dropdown";
+@import "forms";
+@import "progress-bars";
+@import "small-box";
+@import "cards";
+@import "info-box";
+@import "timeline";
+@import "buttons";
+@import "callout";
+@import "alerts";
+@import "navs";
+@import "products";
+@import "table";
+@import "labels";
+@import "direct-chat";
+@import "users-list";
+@import "site-search";
+@import "carousel";
+@import "modal";
+@import "social-widgets";
+// PAGES
+// ---------------------------------------------------
+@import "mailbox";
+@import "lockscreen";
+@import "login_and_register";
+@import "404_500_errors";
+@import "invoice";
+@import "profile";
+// Plugins
+// ---------------------------------------------------
+@import "fullcalendar";
+@import "select2";
+// Miscellaneous
+// ---------------------------------------------------
+@import "miscellaneous";
+@import "print";
+@import "text";
+@import "elevation";

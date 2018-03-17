@@ -1,0 +1,341 @@
+/*
+ * Component: Box
+ * --------------
+ */
+
+.card {
+  @extend .mb-3;
+  @if $enable-shadows {
+    box-shadow: $card-shadow;
+  }
+  overflow: hidden;
+  position: relative;
+
+  &.bg-dark {
+    &,
+    .card-body {
+      color: $white;
+    }
+  }
+
+  // collapsed mode
+  &.collapsed-card {
+    .card-body,
+    .card-footer {
+      display: none;
+    }
+  }
+
+  .nav.flex-column {
+    > li {
+      border-bottom: 1px solid $card-border-color;
+      margin: 0;
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+  }
+
+  // fixed height to 300px
+  &.height-control {
+    .card-body {
+      max-height: 300px;
+      overflow: auto;
+    }
+  }
+
+  .border-right {
+    border-right: 1px solid $card-border-color;
+  }
+
+  .border-left {
+    border-left: 1px solid $card-border-color;
+  }
+}
+
+.card,
+.overlay-wrapper {
+  // Box overlay for LOADING STATE effect
+  > .overlay,
+  > .loading-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .overlay {
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.7);
+    @include border-radius($border-radius);
+    > .fa {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -15px;
+      margin-top: -15px;
+      color: #000;
+      font-size: 30px;
+    }
+  }
+
+  .overlay.dark {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+// Add clearfix to header, body and footer
+.card-header,
+.card-body,
+.card-footer {
+  @include clearfix();
+}
+
+// Box header
+.card-header {
+  position: relative;
+  background-color: transparent;
+  border-bottom: 1px solid $card-border-color;
+
+  @if $enable-rounded {
+    @include border-top-radius($border-radius);
+  }
+
+  .collapsed-card & {
+    border-bottom: none;
+  }
+
+  > .card-tools {
+    position: absolute;
+    right: 1rem;
+    top: .5rem;
+
+    [data-toggle="tooltip"] {
+      position: relative;
+    }
+  }
+}
+
+.card-title {
+  font-size: $card-title-font-size;
+  font-weight: $card-title-font-weight;
+  margin: 0;
+}
+
+// Box Tools Buttons
+.btn-tool {
+  padding: .25rem .5rem;
+  font-size: $font-size-sm;
+  background: transparent;
+  color: $gray-500;
+
+  .btn-group.show &,
+  &:hover {
+    color: $gray-700;
+  }
+
+  .show &,
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+// Box Body
+.card-body {
+  // @include border-radius-sides(0, 0, $border-radius, $border-radius);
+  .no-header & {
+    // @include border-top-radius($border-radius);
+  }
+  // Tables within the box body
+  > .table {
+    margin-bottom: 0;
+    > thead > tr > th,
+    > thead > tr > td {
+      border-top-width: 0;
+    }
+  }
+
+  // Calendar within the box body
+  .fc {
+    margin-top: 5px;
+  }
+
+  .full-width-chart {
+    margin: -19px;
+  }
+
+  &.p-0 .full-width-chart {
+    margin: -9px;
+  }
+}
+
+.chart-legend {
+  @extend .list-unstyled;
+  margin: 10px 0;
+  > li {
+    @media (max-width: map-get($grid-breakpoints, sm)) {
+      float: left;
+      margin-right: 10px;
+    }
+  }
+}
+
+// Comment Box
+.card-comments {
+  background: #f7f7f7;
+  .card-comment {
+    @include clearfix();
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    &:last-of-type {
+      border-bottom: 0;
+    }
+    &:first-of-type {
+      padding-top: 0;
+    }
+    img {
+      @extend .img-sm;
+      float: left;
+    }
+  }
+  .comment-text {
+    margin-left: 40px;
+    color: #555;
+  }
+  .username {
+    color: #444;
+    display: block;
+    font-weight: 600;
+  }
+  .text-muted {
+    font-weight: 400;
+    font-size: 12px;
+  }
+}
+
+// Widgets
+//-----------
+
+// Widget: TODO LIST
+.todo-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: auto;
+  // Todo list element
+  > li {
+    @include border-radius(2px);
+    padding: 10px;
+    background: #f4f4f4;
+    margin-bottom: 2px;
+    border-left: 2px solid #e6e7e8;
+    color: #444;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    > input[type='checkbox'] {
+      margin: 0 10px 0 5px;
+    }
+
+    .text {
+      display: inline-block;
+      margin-left: 5px;
+      font-weight: 600;
+    }
+
+    // Time labels
+    .label {
+      margin-left: 10px;
+      font-size: 9px;
+    }
+
+    // Tools and options box
+    .tools {
+      display: none;
+      float: right;
+      color: theme-color("danger");
+      // icons
+      > .fa, > .glyphicon, > .ion {
+        margin-right: 5px;
+        cursor: pointer;
+      }
+
+    }
+    &:hover .tools {
+      display: inline-block;
+    }
+
+    &.done {
+      color: #999;
+      .text {
+        text-decoration: line-through;
+        font-weight: 500;
+      }
+
+      .label {
+        background: $gray-500 !important;
+      }
+    }
+  }
+
+  // Color varaity
+  .danger {
+    border-left-color: theme-color("danger");
+  }
+  .warning {
+    border-left-color: theme-color("warning");
+  }
+  .info {
+    border-left-color: theme-color("info");
+  }
+  .success {
+    border-left-color: theme-color("success");
+  }
+  .primary {
+    border-left-color: theme-color("primary");
+  }
+
+  .handle {
+    display: inline-block;
+    cursor: move;
+    margin: 0 5px;
+  }
+}
+
+// END TODO WIDGET
+
+// Input in box
+.card-input {
+  max-width: 200px;
+}
+
+@each $name, $color in $theme-colors {
+  .card-#{$name} {
+    &:not(.card-outline) {
+      .card-header {
+        background-color: $color;
+        &,
+        a {
+          color: color-yiq($color);
+        }
+      }
+    }
+
+    &.card-outline {
+      border-top: 3px solid $color;
+    }
+  }
+
+  .bg-#{$name},
+  .bg-#{$name}-gradient,
+  .card-#{$name}:not(.card-outline) {
+    .btn-tool {
+      color: rgba(color-yiq($color), 0.8);
+      &:hover {
+        color: color-yiq($color);
+      }
+    }
+  }
+}

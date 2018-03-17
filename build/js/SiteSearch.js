@@ -6,8 +6,6 @@
  */
 
 const SiteSearch = (($) => {
-  'use strict'
-
   /**
    * Constants
    * ====================================================
@@ -124,7 +122,6 @@ const SiteSearch = (($) => {
   }
 
   return SiteSearch
-
 })(jQuery)
 
 export default SiteSearch

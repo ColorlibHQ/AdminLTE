@@ -108,7 +108,7 @@
   var skin_blue =
       $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-blue' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-          + "<div><span style='display:block; width: 20%; float: left; height: 7px; background: #367fa9;'></span><span class='bg-light-blue' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px; background: #367fa9;'></span><span class='bg-primary' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
           + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
           + "</a>"
           + "<p class='text-xs-center no-margin'>Blue</p>");
@@ -132,7 +132,7 @@
   var skin_green =
       $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-green' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-green-active'></span><span class='bg-green' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-success-active'></span><span class='bg-success' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
           + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
           + "</a>"
           + "<p class='text-xs-center no-margin'>Green</p>");
@@ -140,7 +140,7 @@
   var skin_red =
       $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-red' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-red-active'></span><span class='bg-red' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-danger-active'></span><span class='bg-danger' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
           + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
           + "</a>"
           + "<p class='text-xs-center no-margin'>Red</p>");
@@ -148,7 +148,7 @@
   var skin_yellow =
       $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-yellow' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-yellow-active'></span><span class='bg-yellow' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-warning-active'></span><span class='bg-warning' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
           + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
           + "</a>"
           + "<p class='text-xs-center no-margin'>Yellow</p>");
@@ -158,7 +158,7 @@
   var skin_blue_light =
       $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-blue-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-          + "<div><span style='display:block; width: 20%; float: left; height: 7px; background: #367fa9;'></span><span class='bg-light-blue' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px; background: #367fa9;'></span><span class='bg-primary' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
           + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
           + "</a>"
           + "<p class='text-xs-center no-margin' style='font-size: 12px'>Blue Light</p>");
@@ -182,7 +182,7 @@
   var skin_green_light =
       $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-green-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-green-active'></span><span class='bg-green' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-success-active'></span><span class='bg-success' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
           + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
           + "</a>"
           + "<p class='text-xs-center no-margin' style='font-size: 12px'>Green Light</p>");
@@ -190,7 +190,7 @@
   var skin_red_light =
       $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-red-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-red-active'></span><span class='bg-red' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-danger-active'></span><span class='bg-danger' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
           + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
           + "</a>"
           + "<p class='text-xs-center no-margin' style='font-size: 12px'>Red Light</p>");
@@ -198,7 +198,7 @@
   var skin_yellow_light =
       $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-yellow-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-yellow-active'></span><span class='bg-yellow' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
+          + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-warning-active'></span><span class='bg-warning' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
           + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
           + "</a>"
           + "<p class='text-xs-center no-margin' style='font-size: 12px;'>Yellow Light</p>");

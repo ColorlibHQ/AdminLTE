@@ -1,0 +1,21 @@
+.text-bold {
+  &, &.table td, &.table th {
+    font-weight: 700;
+  }
+}
+
+.text-sm {
+  font-size: $font-size-sm;
+}
+
+.text-xs {
+  font-size: $font-size-base;
+}
+
+.text-lg {
+  font-size: $font-size-lg;
+}
+
+.text-xl {
+  font-size: $font-size-xl;
+}

@@ -6,7 +6,6 @@
  */
 
 const Treeview = (($) => {
-
   /**
    * Constants
    * ====================================================
@@ -50,7 +49,6 @@ const Treeview = (($) => {
    * ====================================================
    */
   class Treeview {
-
     constructor(element, config) {
       this._config  = config
       this._element = element
@@ -88,14 +86,6 @@ const Treeview = (($) => {
       })
     }
 
-    collapseAll() {
-
-    }
-
-    expandAll() {
-
-    }
-
     toggle(event) {
       const $relativeTarget = $(event.currentTarget)
       const treeviewMenu    = $relativeTarget.next()
@@ -128,7 +118,7 @@ const Treeview = (($) => {
 
     static _jQueryInterface(config) {
       return this.each(function () {
-        let data    = $(this).data(DATA_KEY)
+        let data      = $(this).data(DATA_KEY)
         const _config = $.extend({}, Default, $(this).data())
 
         if (!data) {
@@ -150,8 +140,7 @@ const Treeview = (($) => {
 
   $(window).on(Event.LOAD_DATA_API, () => {
     $(Selector.DATA_WIDGET).each(function () {
-      const $treeview = $(this)
-      Treeview._jQueryInterface.call($treeview, 'init')
+      Treeview._jQueryInterface.call($(this), 'init')
     })
   })
 
@@ -168,7 +157,6 @@ const Treeview = (($) => {
   }
 
   return Treeview
-
 })(jQuery)
 
 export default Treeview

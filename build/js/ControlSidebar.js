@@ -6,7 +6,6 @@
  */
 
 const ControlSidebar = (($) => {
-
   /**
    * Constants
    * ====================================================
@@ -24,7 +23,8 @@ const ControlSidebar = (($) => {
 
   const Selector = {
     CONTROL_SIDEBAR: '.control-sidebar',
-    DATA_TOGGLE    : '[data-widget="control-sidebar"]'
+    DATA_TOGGLE    : '[data-widget="control-sidebar"]',
+    MAIN_HEADER    : '.main-header'
   }
 
   const ClassName = {
@@ -42,7 +42,6 @@ const ControlSidebar = (($) => {
    */
 
   class ControlSidebar {
-
     constructor(element, config) {
       this._element = element
       this._config  = this._getConfig(config)
@@ -69,7 +68,11 @@ const ControlSidebar = (($) => {
     }
 
     toggle() {
-      if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)) {
+      this._setMargin()
+
+      const shouldOpen = $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body')
+        .hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)
+      if (shouldOpen) {
         // Open the control sidebar
         this.show()
       } else {
@@ -82,6 +85,12 @@ const ControlSidebar = (($) => {
 
     _getConfig(config) {
       return $.extend({}, Default, config)
+    }
+
+    _setMargin() {
+      $(Selector.CONTROL_SIDEBAR).css({
+        top: $(Selector.MAIN_HEADER).outerHeight()
+      })
     }
 
     // Static
@@ -109,7 +118,6 @@ const ControlSidebar = (($) => {
    * Data Api implementation
    * ====================================================
    */
-
   $(document).on('click', Selector.DATA_TOGGLE, function (event) {
     event.preventDefault()
 
@@ -129,7 +137,6 @@ const ControlSidebar = (($) => {
   }
 
   return ControlSidebar
-
 })(jQuery)
 
 export default ControlSidebar

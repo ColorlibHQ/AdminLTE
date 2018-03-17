@@ -46,7 +46,7 @@
 
 .dropdown-header {
   &:hover {
-    background-color: #fff;
+    background-color: $white;
     color: $gray-200;
   }
 }
@@ -122,7 +122,7 @@
   }
 }
 
-@media (max-width: map-get($grid-breakpoints, sm)) {
+@include media-breakpoint-down(sm) {
   .navbar-custom-menu > .navbar-nav {
     float: right;
     > li {
@@ -132,7 +132,7 @@
         right: 5%;
         left: auto;
         border: 1px solid #ddd;
-        background: #fff;
+        background: $white;
       }
     }
   }

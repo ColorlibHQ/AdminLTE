@@ -1,103 +1,35 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = ".";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/*!
+ * AdminLTE v3.0.0-alpha (https://adminlte.io)
+ * Copyright 2014-2018 Abdullah Almsaeed <abdullah@almsaeedstudio.com>
+ * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
+ */
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+	(factory((global.adminlte = {})));
+}(this, (function (exports) { 'use strict';
 
-"use strict";
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
 
 
-__webpack_require__(1);
-
-__webpack_require__(2);
-
-__webpack_require__(3);
-
-__webpack_require__(4);
-
-__webpack_require__(5);
-
-__webpack_require__(6);
-
-__webpack_require__(7);
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
 
 /**
  * --------------------------------------------
@@ -107,7 +39,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 var ControlSidebar = function ($) {
-
   /**
    * Constants
    * ====================================================
@@ -115,17 +46,11 @@ var ControlSidebar = function ($) {
 
   var NAME = 'ControlSidebar';
   var DATA_KEY = 'lte.control.sidebar';
-  var EVENT_KEY = '.' + DATA_KEY;
   var JQUERY_NO_CONFLICT = $.fn[NAME];
-  var DATA_API_KEY = '.data-api';
-
-  var Event = {
-    CLICK_DATA_API: 'click' + EVENT_KEY + DATA_API_KEY
-  };
-
   var Selector = {
     CONTROL_SIDEBAR: '.control-sidebar',
-    DATA_TOGGLE: '[data-widget="control-sidebar"]'
+    DATA_TOGGLE: '[data-widget="control-sidebar"]',
+    MAIN_HEADER: '.main-header'
   };
 
   var ClassName = {
@@ -144,7 +69,7 @@ var ControlSidebar = function ($) {
   };
   var ControlSidebar = function () {
     function ControlSidebar(element, config) {
-      _classCallCheck(this, ControlSidebar);
+      classCallCheck(this, ControlSidebar);
 
       this._element = element;
       this._config = this._getConfig(config);
@@ -152,67 +77,67 @@ var ControlSidebar = function ($) {
 
     // Public
 
-    _createClass(ControlSidebar, [{
-      key: 'show',
-      value: function show() {
-        // Show the control sidebar
-        if (this._config.slide) {
-          $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE);
-        } else {
-          $('body').removeClass(ClassName.CONTROL_SIDEBAR_OPEN);
+    ControlSidebar.prototype.show = function show() {
+      // Show the control sidebar
+      if (this._config.slide) {
+        $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE);
+      } else {
+        $('body').removeClass(ClassName.CONTROL_SIDEBAR_OPEN);
+      }
+    };
+
+    ControlSidebar.prototype.collapse = function collapse() {
+      // Collapse the control sidebar
+      if (this._config.slide) {
+        $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE);
+      } else {
+        $('body').addClass(ClassName.CONTROL_SIDEBAR_OPEN);
+      }
+    };
+
+    ControlSidebar.prototype.toggle = function toggle() {
+      this._setMargin();
+
+      var shouldOpen = $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE);
+      if (shouldOpen) {
+        // Open the control sidebar
+        this.show();
+      } else {
+        // Close the control sidebar
+        this.collapse();
+      }
+    };
+
+    // Private
+
+    ControlSidebar.prototype._getConfig = function _getConfig(config) {
+      return $.extend({}, Default, config);
+    };
+
+    ControlSidebar.prototype._setMargin = function _setMargin() {
+      $(Selector.CONTROL_SIDEBAR).css({
+        top: $(Selector.MAIN_HEADER).outerHeight()
+      });
+    };
+
+    // Static
+
+    ControlSidebar._jQueryInterface = function _jQueryInterface(operation) {
+      return this.each(function () {
+        var data = $(this).data(DATA_KEY);
+
+        if (!data) {
+          data = new ControlSidebar(this, $(this).data());
+          $(this).data(DATA_KEY, data);
         }
-      }
-    }, {
-      key: 'collapse',
-      value: function collapse() {
-        // Collapse the control sidebar
-        if (this._config.slide) {
-          $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE);
-        } else {
-          $('body').addClass(ClassName.CONTROL_SIDEBAR_OPEN);
+
+        if (data[operation] === 'undefined') {
+          throw new Error(operation + ' is not a function');
         }
-      }
-    }, {
-      key: 'toggle',
-      value: function toggle() {
-        if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)) {
-          // Open the control sidebar
-          this.show();
-        } else {
-          // Close the control sidebar
-          this.collapse();
-        }
-      }
 
-      // Private
-
-    }, {
-      key: '_getConfig',
-      value: function _getConfig(config) {
-        return $.extend({}, Default, config);
-      }
-
-      // Static
-
-    }], [{
-      key: '_jQueryInterface',
-      value: function _jQueryInterface(operation) {
-        return this.each(function () {
-          var data = $(this).data(DATA_KEY);
-
-          if (!data) {
-            data = new ControlSidebar(this, $(this).data());
-            $(this).data(DATA_KEY, data);
-          }
-
-          if (data[operation] === 'undefined') {
-            throw new Error(operation + ' is not a function');
-          }
-
-          data[operation]();
-        });
-      }
-    }]);
+        data[operation]();
+      });
+    };
 
     return ControlSidebar;
   }();
@@ -222,6 +147,7 @@ var ControlSidebar = function ($) {
    * Data Api implementation
    * ====================================================
    */
+
 
   $(document).on('click', Selector.DATA_TOGGLE, function (event) {
     event.preventDefault();
@@ -244,23 +170,6 @@ var ControlSidebar = function ($) {
   return ControlSidebar;
 }(jQuery);
 
-exports.default = ControlSidebar;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 /**
  * --------------------------------------------
  * AdminLTE Layout.js
@@ -269,7 +178,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 var Layout = function ($) {
-
   /**
    * Constants
    * ====================================================
@@ -277,12 +185,7 @@ var Layout = function ($) {
 
   var NAME = 'Layout';
   var DATA_KEY = 'lte.layout';
-  var EVENT_KEY = '.' + DATA_KEY;
   var JQUERY_NO_CONFLICT = $.fn[NAME];
-
-  var Event = {
-    SIDEBAR: 'sidebar'
-  };
 
   var Selector = {
     SIDEBAR: '.main-sidebar',
@@ -308,7 +211,7 @@ var Layout = function ($) {
   };
   var Layout = function () {
     function Layout(element) {
-      _classCallCheck(this, Layout);
+      classCallCheck(this, Layout);
 
       this._element = element;
 
@@ -317,70 +220,69 @@ var Layout = function ($) {
 
     // Public
 
-    _createClass(Layout, [{
-      key: 'fixLayoutHeight',
-      value: function fixLayoutHeight() {
-        var heights = [$(window).height(), $(Selector.HEADER).outerHeight(), $(Selector.FOOTER).outerHeight(), $(Selector.SIDEBAR).height()];
-        var max = this._max(heights);
+    Layout.prototype.fixLayoutHeight = function fixLayoutHeight() {
+      var heights = {
+        window: $(window).height(),
+        header: $(Selector.HEADER).outerHeight(),
+        footer: $(Selector.FOOTER).outerHeight(),
+        sidebar: $(Selector.SIDEBAR).height()
+      };
+      var max = this._max(heights);
 
-        $(Selector.CONTENT).css('min-height', max - (heights[1] + heights[2]));
-      }
+      $(Selector.CONTENT).css('min-height', max - heights.header);
+      $(Selector.SIDEBAR).css('min-height', max - heights.header);
+    };
 
-      // Private
+    // Private
 
-    }, {
-      key: '_init',
-      value: function _init() {
-        var _this = this;
+    Layout.prototype._init = function _init() {
+      var _this = this;
 
-        // Enable transitions
-        $('body').removeClass(ClassName.HOLD);
+      // Enable transitions
+      $('body').removeClass(ClassName.HOLD);
 
-        // Activate layout height watcher
-        this.fixLayoutHeight();
-        $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', function () {
-          _this.fixLayoutHeight();
-        });
-        $(window).resize(function () {
-          _this.fixLayoutHeight();
-        });
+      // Activate layout height watcher
+      this.fixLayoutHeight();
+      $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', function () {
+        _this.fixLayoutHeight();
+      });
 
-        $('body, html').css('height', 'auto');
-      }
-    }, {
-      key: '_max',
-      value: function _max(numbers) {
-        // Calculate the maximum number in a list
-        var max = 0;
+      $(window).resize(function () {
+        _this.fixLayoutHeight();
+      });
 
-        numbers.forEach(function (v) {
-          if (v > max) {
-            max = v;
-          }
-        });
+      $('body, html').css('height', 'auto');
+    };
 
-        return max;
-      }
+    Layout.prototype._max = function _max(numbers) {
+      // Calculate the maximum number in a list
+      var max = 0;
 
-      // Static
+      Object.keys(numbers).forEach(function (key) {
+        if (numbers[key] > max) {
+          max = numbers[key];
+        }
+      });
 
-    }], [{
-      key: '_jQueryInterface',
-      value: function _jQueryInterface(operation) {
-        return this.each(function () {
-          var data = $(this).data(DATA_KEY);
+      return max;
+    };
 
-          if (!data) {
-            data = new Layout(this);
-            $(this).data(DATA_KEY, data);
-          }
+    // Static
 
-          if (operation) {
-            data[operation]();
-          }
-        });
-      }
-    }]);
+    Layout._jQueryInterface = function _jQueryInterface(operation) {
+      return this.each(function () {
+        var data = $(this).data(DATA_KEY);
+
+        if (!data) {
+          data = new Layout(this);
+          $(this).data(DATA_KEY, data);
+        }
+
+        if (operation) {
+          data[operation]();
+        }
+      });
+    };
 
     return Layout;
   }();
@@ -410,23 +312,6 @@ var Layout = function ($) {
   return Layout;
 }(jQuery);
 
-exports.default = Layout;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 /**
  * --------------------------------------------
  * AdminLTE PushMenu.js
@@ -435,7 +320,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 var PushMenu = function ($) {
-
   /**
    * Constants
    * ====================================================
@@ -451,9 +335,24 @@ var PushMenu = function ($) {
     SHOWN: 'shown' + EVENT_KEY
   };
 
+  var Default = {
+    screenCollapseSize: 768
+  };
+
   var Selector = {
+    TOGGLE_BUTTON: '[data-widget="pushmenu"]',
+    SIDEBAR_MINI: '.sidebar-mini',
+    SIDEBAR_COLLAPSED: '.sidebar-collapse',
+    BODY: 'body',
+    OVERLAY: '#sidebar-overlay',
+    WRAPPER: '.wrapper'
+  };
+
+  var ClassName = {
+    SIDEBAR_OPEN: 'sidebar-open',
     COLLAPSED: 'sidebar-collapse',
-    TOGGLE_BUTTON: '[data-widget="pushmenu"]'
+    OPEN: 'sidebar-open',
+    SIDEBAR_MINI: 'sidebar-mini'
 
     /**
      * Class Definition
@@ -462,69 +361,81 @@ var PushMenu = function ($) {
 
   };
   var PushMenu = function () {
-    function PushMenu(element) {
-      _classCallCheck(this, PushMenu);
+    function PushMenu(element, options) {
+      classCallCheck(this, PushMenu);
 
       this._element = element;
-      this._isShown = !$('body').hasClass(Selector.COLLAPSED) || $('body').hasClass('sidebar-open');
+      this._options = $.extend({}, Default, options);
+
+      if (!$(Selector.OVERLAY).length) {
+        this._addOverlay();
+      }
     }
 
     // Public
 
-    _createClass(PushMenu, [{
-      key: 'show',
-      value: function show() {
-        $('body').addClass('sidebar-open').removeClass(Selector.COLLAPSED);
+    PushMenu.prototype.show = function show() {
+      $(Selector.BODY).addClass(ClassName.OPEN).removeClass(ClassName.COLLAPSED);
 
-        this._isShown = true;
+      var shownEvent = $.Event(Event.SHOWN);
+      $(this._element).trigger(shownEvent);
+    };
 
-        var shownEvent = $.Event(Event.SHOWN);
-        $(this._element).trigger(shownEvent);
+    PushMenu.prototype.collapse = function collapse() {
+      $(Selector.BODY).removeClass(ClassName.OPEN).addClass(ClassName.COLLAPSED);
+
+      var collapsedEvent = $.Event(Event.COLLAPSED);
+      $(this._element).trigger(collapsedEvent);
+    };
+
+    PushMenu.prototype.toggle = function toggle() {
+      var isShown = void 0;
+      if ($(window).width() >= this._options.screenCollapseSize) {
+        isShown = !$(Selector.BODY).hasClass(ClassName.COLLAPSED);
+      } else {
+        isShown = $(Selector.BODY).hasClass(ClassName.OPEN);
       }
-    }, {
-      key: 'collapse',
-      value: function collapse() {
-        $('body').removeClass('sidebar-open').addClass(Selector.COLLAPSED);
 
-        this._isShown = false;
-
-        var collapsedEvent = $.Event(Event.COLLAPSED);
-        $(this._element).trigger(collapsedEvent);
+      if (isShown) {
+        this.collapse();
+      } else {
+        this.show();
       }
-    }, {
-      key: 'toggle',
-      value: function toggle() {
+    };
 
-        if (typeof this._isShown === 'undefined') {
-          this._isShown = !$('body').hasClass(Selector.COLLAPSED) || $('body').hasClass('sidebar-open');
+    // Private
+
+
+    PushMenu.prototype._addOverlay = function _addOverlay() {
+      var _this = this;
+
+      var overlay = $('<div />', {
+        id: 'sidebar-overlay'
+      });
+
+      overlay.on('click', function () {
+        _this.collapse();
+      });
+
+      $(Selector.WRAPPER).append(overlay);
+    };
+
+    // Static
+
+    PushMenu._jQueryInterface = function _jQueryInterface(operation) {
+      return this.each(function () {
+        var data = $(this).data(DATA_KEY);
+
+        if (!data) {
+          data = new PushMenu(this);
+          $(this).data(DATA_KEY, data);
         }
 
-        if (this._isShown) {
-          this.collapse();
-        } else {
-          this.show();
+        if (operation) {
+          data[operation]();
         }
-      }
-
-      // Static
-
-    }], [{
-      key: '_jQueryInterface',
-      value: function _jQueryInterface(operation) {
-        return this.each(function () {
-          var data = $(this).data(DATA_KEY);
-
-          if (!data) {
-            data = new PushMenu(this);
-            $(this).data(DATA_KEY, data);
-          }
-
-          if (operation) {
-            data[operation]();
-          }
-        });
-      }
-    }]);
+      });
+    };
 
     return PushMenu;
   }();
@@ -561,435 +472,6 @@ var PushMenu = function ($) {
   return PushMenu;
 }(jQuery);
 
-exports.default = PushMenu;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * --------------------------------------------
- * AdminLTE Search.js
- * License MIT
- * --------------------------------------------
- */
-
-var Search = function ($) {
-
-  /**
-   * Constants
-   * ====================================================
-   */
-
-  var NAME = 'Search';
-  var DATA_KEY = 'lte.search';
-  var EVENT_KEY = '.' + DATA_KEY;
-  var JQUERY_NO_CONFLICT = $.fn[NAME];
-
-  var Event = {
-    LOAD_DATA_API: 'load' + EVENT_KEY
-  };
-
-  var Selector = {
-    LI: '.nav-item',
-    LINK: '.nav-link',
-    OPEN: '.menu-open',
-    ACTIVE: '.active',
-    TREEVIEW_MENU: '[data-widget="treeview"]',
-    NAV_TREEVIEW: '.nav-treeview',
-    NAV_HEADER: '.nav-header',
-    DATA_WIDGET: '[data-widget="search"]'
-  };
-
-  var ClassName = {
-    LI: 'nav-item',
-    LINK: 'nav-link',
-    NAV_TREEVIEW: 'nav-treeview',
-    OPEN: 'menu-open'
-  };
-
-  var Default = {
-    target: '',
-    caseSensitive: false
-
-    /**
-     * Class Definition
-     * ====================================================
-     */
-  };
-  var Search = function () {
-    function Search(element, config) {
-      _classCallCheck(this, Search);
-
-      this._config = config;
-      this._element = element;
-      this._openMenus = null;
-    }
-
-    // Public
-
-    _createClass(Search, [{
-      key: 'init',
-      value: function init() {
-        var _this = this;
-
-        if (this._config.target === '') {
-          this._config.target = this._element.closest(Selector.TREEVIEW_MENU);
-        } else {
-          this._config.target = $(this._config.target);
-        }
-
-        // Set treeview original state
-        this._openMenus = this._config.target.find(Selector.OPEN);
-
-        // Prevent form submission
-        this._element.parents('form').first().submit(function (event) {
-          event.preventDefault();
-        });
-
-        // Setup search function
-        this._element.keyup(function (event) {
-          event.preventDefault();
-
-          var value = $(event.currentTarget).val();
-
-          if (!_this._config.caseSensitive) {
-            value = value.toLowerCase();
-          }
-
-          _this.search(value);
-        });
-      }
-    }, {
-      key: 'search',
-      value: function search(value) {
-        var items = this._config.target.find(Selector.LI);
-        var headers = this._config.target.find(Selector.NAV_HEADER);
-
-        // If the value is back to null
-        if (!value) {
-          // Show all headers
-          headers.css('display', 'block');
-
-          // Close all treeviews
-          items.css('display', 'block').removeClass(ClassName.OPEN).find(Selector.NAV_TREEVIEW).css('display', 'none');
-
-          // Open the originally opened treeviews
-          var _iteratorNormalCompletion = true;
-          var _didIteratorError = false;
-          var _iteratorError = undefined;
-
-          try {
-            for (var _iterator = this._openMenus[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-              var menu = _step.value;
-
-              if (!$(menu).hasClass(ClassName.OPEN)) {
-                $(menu).addClass(ClassName.OPEN).css('display', 'block');
-                $(menu).children(Selector.NAV_TREEVIEW).css('display', 'block');
-              }
-            }
-          } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
-              }
-            } finally {
-              if (_didIteratorError) {
-                throw _iteratorError;
-              }
-            }
-          }
-
-          return;
-        }
-
-        // Hide all elements
-        items.css('display', 'none');
-        headers.css('display', 'none');
-
-        // Search through the tree elements
-        var _iteratorNormalCompletion2 = true;
-        var _didIteratorError2 = false;
-        var _iteratorError2 = undefined;
-
-        try {
-          for (var _iterator2 = items[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-            var item = _step2.value;
-
-            var text = $(item).children('a').text();
-
-            if (!this._config.caseSensitive) {
-              text = text.toLowerCase();
-            }
-
-            if (parseInt(text.indexOf(value)) !== -1) {
-              // Found the result
-              // Make the parent LI visible
-              $(item).parents(Selector.LI).css('display', 'block').addClass('menu-open');
-
-              $(item).parents(Selector.NAV_TREEVIEW).css('display', 'block');
-
-              // If this is a treeview parent, make all of its children visible
-              $(item).children(Selector.NAV_TREEVIEW).css('display', 'block').children(Selector.LI).css('display', 'block').addClass('menu-open');
-
-              // Make this element visible
-              $(item).css('display', 'block');
-            }
-          }
-        } catch (err) {
-          _didIteratorError2 = true;
-          _iteratorError2 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-              _iterator2.return();
-            }
-          } finally {
-            if (_didIteratorError2) {
-              throw _iteratorError2;
-            }
-          }
-        }
-      }
-
-      // Static
-
-    }], [{
-      key: '_jQueryInterface',
-      value: function _jQueryInterface(config) {
-        return this.each(function () {
-          var data = $(this).data(DATA_KEY);
-          var _config = $.extend({}, Default, $(this).data());
-
-          if (!data) {
-            data = new Search($(this), _config);
-            $(this).data(DATA_KEY, data);
-          }
-
-          if (config === 'init') {
-            data[config]();
-          }
-        });
-      }
-    }]);
-
-    return Search;
-  }();
-
-  /**
-   * Data API
-   * ====================================================
-   */
-
-  $(window).on(Event.LOAD_DATA_API, function () {
-    $(Selector.DATA_WIDGET).each(function () {
-      Search._jQueryInterface.call($(this), 'init');
-    });
-  });
-
-  /**
-   * jQuery API
-   * ====================================================
-   */
-
-  $.fn[NAME] = Search._jQueryInterface;
-  $.fn[NAME].Constructor = Search;
-  $.fn[NAME].noConflict = function () {
-    $.fn[NAME] = JQUERY_NO_CONFLICT;
-    return Search._jQueryInterface;
-  };
-
-  return Search;
-}(jQuery);
-
-exports.default = Search;
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * --------------------------------------------
- * AdminLTE SiteSearch.js
- * License MIT
- * --------------------------------------------
- */
-
-var SiteSearch = function ($) {
-  'use strict';
-
-  /**
-   * Constants
-   * ====================================================
-   */
-
-  var NAME = 'SiteSearch';
-  var DATA_KEY = 'lte.site-search';
-  var EVENT_KEY = '.' + DATA_KEY;
-  var JQUERY_NO_CONFLICT = $.fn[NAME];
-
-  var Event = {};
-
-  var Selector = {
-    TOGGLE_BUTTON: '[data-widget="site-search"]',
-    SEARCH_BLOCK: '.site-search-block',
-    SEARCH_BACKDROP: '.site-search-backdrop',
-    SEARCH_INPUT: '.site-search-block .form-control'
-  };
-
-  var ClassName = {
-    OPEN: 'site-search-open'
-  };
-
-  var Default = {
-    transitionSpeed: 300
-
-    /**
-     * Class Definition
-     * ====================================================
-     */
-
-  };
-  var SiteSearch = function () {
-    function SiteSearch(_element, _options) {
-      _classCallCheck(this, SiteSearch);
-
-      this.element = _element;
-      this.options = $.extend({}, Default, _options);
-    }
-
-    // Public
-
-    _createClass(SiteSearch, [{
-      key: 'open',
-      value: function open() {
-        $(Selector.SEARCH_BLOCK).slideDown(this.options.transitionSpeed);
-        $(Selector.SEARCH_BACKDROP).show(0);
-        $(Selector.SEARCH_INPUT).focus();
-        $(Selector.SEARCH_BLOCK).addClass(ClassName.OPEN);
-      }
-    }, {
-      key: 'close',
-      value: function close() {
-        $(Selector.SEARCH_BLOCK).slideUp(this.options.transitionSpeed);
-        $(Selector.SEARCH_BACKDROP).hide(0);
-        $(Selector.SEARCH_BLOCK).removeClass(ClassName.OPEN);
-      }
-    }, {
-      key: 'toggle',
-      value: function toggle() {
-        if ($(Selector.SEARCH_BLOCK).hasClass(ClassName.OPEN)) {
-          this.close();
-        } else {
-          this.open();
-        }
-      }
-
-      // Static
-
-    }], [{
-      key: '_jQueryInterface',
-      value: function _jQueryInterface(options) {
-        return this.each(function () {
-          var data = $(this).data(DATA_KEY);
-
-          if (!data) {
-            data = new SiteSearch(this, options);
-            $(this).data(DATA_KEY, data);
-          }
-
-          if (!/toggle|close/.test(options)) {
-            throw Error('Undefined method ' + options);
-          }
-
-          data[options]();
-        });
-      }
-    }]);
-
-    return SiteSearch;
-  }();
-
-  /**
-   * Data API
-   * ====================================================
-   */
-
-
-  $(document).on('click', Selector.TOGGLE_BUTTON, function (event) {
-    event.preventDefault();
-
-    var button = $(event.currentTarget);
-
-    if (button.data('widget') !== 'site-search') {
-      button = button.closest(Selector.TOGGLE_BUTTON);
-    }
-
-    SiteSearch._jQueryInterface.call(button, 'toggle');
-  });
-
-  $(document).on('click', Selector.SEARCH_BACKDROP, function (event) {
-    var backdrop = $(event.currentTarget);
-    SiteSearch._jQueryInterface.call(backdrop, 'close');
-  });
-
-  /**
-   * jQuery API
-   * ====================================================
-   */
-
-  $.fn[NAME] = SiteSearch._jQueryInterface;
-  $.fn[NAME].Constructor = SiteSearch;
-  $.fn[NAME].noConflict = function () {
-    $.fn[NAME] = JQUERY_NO_CONFLICT;
-    return SiteSearch._jQueryInterface;
-  };
-
-  return SiteSearch;
-}(jQuery);
-
-exports.default = SiteSearch;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 /**
  * --------------------------------------------
  * AdminLTE Treeview.js
@@ -998,7 +480,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 var Treeview = function ($) {
-
   /**
    * Constants
    * ====================================================
@@ -1043,7 +524,7 @@ var Treeview = function ($) {
   };
   var Treeview = function () {
     function Treeview(element, config) {
-      _classCallCheck(this, Treeview);
+      classCallCheck(this, Treeview);
 
       this._config = config;
       this._element = element;
@@ -1051,103 +532,87 @@ var Treeview = function ($) {
 
     // Public
 
-    _createClass(Treeview, [{
-      key: 'init',
-      value: function init() {
-        this._setupListeners();
+    Treeview.prototype.init = function init() {
+      this._setupListeners();
+    };
+
+    Treeview.prototype.expand = function expand(treeviewMenu, parentLi) {
+      var _this = this;
+
+      var expandedEvent = $.Event(Event.EXPANDED);
+
+      if (this._config.accordion) {
+        var openMenuLi = parentLi.siblings(Selector.OPEN).first();
+        var openTreeview = openMenuLi.find(Selector.TREEVIEW_MENU).first();
+        this.collapse(openTreeview, openMenuLi);
       }
-    }, {
-      key: 'expand',
-      value: function expand(treeviewMenu, parentLi) {
-        var _this = this;
 
-        var expandedEvent = $.Event(Event.EXPANDED);
+      treeviewMenu.slideDown(this._config.animationSpeed, function () {
+        parentLi.addClass(ClassName.OPEN);
+        $(_this._element).trigger(expandedEvent);
+      });
+    };
 
-        if (this._config.accordion) {
-          var openMenuLi = parentLi.siblings(Selector.OPEN).first();
-          var openTreeview = openMenuLi.find(Selector.TREEVIEW_MENU).first();
-          this.collapse(openTreeview, openMenuLi);
+    Treeview.prototype.collapse = function collapse(treeviewMenu, parentLi) {
+      var _this2 = this;
+
+      var collapsedEvent = $.Event(Event.COLLAPSED);
+
+      treeviewMenu.slideUp(this._config.animationSpeed, function () {
+        parentLi.removeClass(ClassName.OPEN);
+        $(_this2._element).trigger(collapsedEvent);
+        treeviewMenu.find(Selector.OPEN + ' > ' + Selector.TREEVIEW_MENU).slideUp();
+        treeviewMenu.find(Selector.OPEN).removeClass(ClassName.OPEN);
+      });
+    };
+
+    Treeview.prototype.toggle = function toggle(event) {
+      var $relativeTarget = $(event.currentTarget);
+      var treeviewMenu = $relativeTarget.next();
+
+      if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
+        return;
+      }
+
+      event.preventDefault();
+
+      var parentLi = $relativeTarget.parents(Selector.LI).first();
+      var isOpen = parentLi.hasClass(ClassName.OPEN);
+
+      if (isOpen) {
+        this.collapse($(treeviewMenu), parentLi);
+      } else {
+        this.expand($(treeviewMenu), parentLi);
+      }
+    };
+
+    // Private
+
+    Treeview.prototype._setupListeners = function _setupListeners() {
+      var _this3 = this;
+
+      $(document).on('click', this._config.trigger, function (event) {
+        _this3.toggle(event);
+      });
+    };
+
+    // Static
+
+    Treeview._jQueryInterface = function _jQueryInterface(config) {
+      return this.each(function () {
+        var data = $(this).data(DATA_KEY);
+        var _config = $.extend({}, Default, $(this).data());
+
+        if (!data) {
+          data = new Treeview($(this), _config);
+          $(this).data(DATA_KEY, data);
         }
 
-        treeviewMenu.slideDown(this._config.animationSpeed, function () {
-          parentLi.addClass(ClassName.OPEN);
-          $(_this._element).trigger(expandedEvent);
-        });
-      }
-    }, {
-      key: 'collapse',
-      value: function collapse(treeviewMenu, parentLi) {
-        var _this2 = this;
-
-        var collapsedEvent = $.Event(Event.COLLAPSED);
-
-        treeviewMenu.slideUp(this._config.animationSpeed, function () {
-          parentLi.removeClass(ClassName.OPEN);
-          $(_this2._element).trigger(collapsedEvent);
-          treeviewMenu.find(Selector.OPEN + ' > ' + Selector.TREEVIEW_MENU).slideUp();
-          treeviewMenu.find(Selector.OPEN).removeClass(ClassName.OPEN);
-        });
-      }
-    }, {
-      key: 'collapseAll',
-      value: function collapseAll() {}
-    }, {
-      key: 'expandAll',
-      value: function expandAll() {}
-    }, {
-      key: 'toggle',
-      value: function toggle(event) {
-        var $relativeTarget = $(event.currentTarget);
-        var treeviewMenu = $relativeTarget.next();
-
-        if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
-          return;
+        if (config === 'init') {
+          data[config]();
         }
-
-        event.preventDefault();
-
-        var parentLi = $relativeTarget.parents(Selector.LI).first();
-        var isOpen = parentLi.hasClass(ClassName.OPEN);
-
-        if (isOpen) {
-          this.collapse($(treeviewMenu), parentLi);
-        } else {
-          this.expand($(treeviewMenu), parentLi);
-        }
-      }
-
-      // Private
-
-    }, {
-      key: '_setupListeners',
-      value: function _setupListeners() {
-        var _this3 = this;
-
-        $(document).on('click', this._config.trigger, function (event) {
-          _this3.toggle(event);
-        });
-      }
-
-      // Static
-
-    }], [{
-      key: '_jQueryInterface',
-      value: function _jQueryInterface(config) {
-        return this.each(function () {
-          var data = $(this).data(DATA_KEY);
-          var _config = $.extend({}, Default, $(this).data());
-
-          if (!data) {
-            data = new Treeview($(this), _config);
-            $(this).data(DATA_KEY, data);
-          }
-
-          if (config === 'init') {
-            data[config]();
-          }
-        });
-      }
-    }]);
+      });
+    };
 
     return Treeview;
   }();
@@ -1159,8 +624,7 @@ var Treeview = function ($) {
 
   $(window).on(Event.LOAD_DATA_API, function () {
     $(Selector.DATA_WIDGET).each(function () {
-      var $treeview = $(this);
-      Treeview._jQueryInterface.call($treeview, 'init');
+      Treeview._jQueryInterface.call($(this), 'init');
     });
   });
 
@@ -1179,23 +643,6 @@ var Treeview = function ($) {
   return Treeview;
 }(jQuery);
 
-exports.default = Treeview;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 /**
  * --------------------------------------------
  * AdminLTE Widget.js
@@ -1204,27 +651,173 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 var Widget = function ($) {
+  /**
+   * Constants
+   * ====================================================
+   */
+
+  var NAME = 'Widget';
+  var DATA_KEY = 'lte.widget';
+  var EVENT_KEY = '.' + DATA_KEY;
+  var JQUERY_NO_CONFLICT = $.fn[NAME];
+
+  var Event = {
+    EXPANDED: 'expanded' + EVENT_KEY,
+    COLLAPSED: 'collapsed' + EVENT_KEY,
+    REMOVED: 'removed' + EVENT_KEY
+  };
+
+  var Selector = {
+    DATA_REMOVE: '[data-widget="remove"]',
+    DATA_COLLAPSE: '[data-widget="collapse"]',
+    CARD: '.card',
+    CARD_HEADER: '.card-header',
+    CARD_BODY: '.card-body',
+    CARD_FOOTER: '.card-footer',
+    COLLAPSED: '.collapsed-card'
+  };
+
+  var ClassName = {
+    COLLAPSED: 'collapsed-card'
+  };
+
+  var Default = {
+    animationSpeed: 'normal',
+    collapseTrigger: Selector.DATA_COLLAPSE,
+    removeTrigger: Selector.DATA_REMOVE
+  };
+
   var Widget = function () {
-    function Widget(element) {
-      _classCallCheck(this, Widget);
+    function Widget(element, settings) {
+      classCallCheck(this, Widget);
 
       this._element = element;
+      this._parent = element.parents(Selector.CARD).first();
+      this._settings = $.extend({}, Default, settings);
     }
 
-    _createClass(Widget, null, [{
-      key: "_jQueryInterface",
-      value: function _jQueryInterface(element) {
-        $(element).show();
+    Widget.prototype.collapse = function collapse() {
+      var _this = this;
+
+      this._parent.children(Selector.CARD_BODY + ', ' + Selector.CARD_FOOTER).slideUp(this._settings.animationSpeed, function () {
+        _this._parent.addClass(ClassName.COLLAPSED);
+      });
+
+      var collapsed = $.Event(Event.COLLAPSED);
+
+      this._element.trigger(collapsed, this._parent);
+    };
+
+    Widget.prototype.expand = function expand() {
+      var _this2 = this;
+
+      this._parent.children(Selector.CARD_BODY + ', ' + Selector.CARD_FOOTER).slideDown(this._settings.animationSpeed, function () {
+        _this2._parent.removeClass(ClassName.COLLAPSED);
+      });
+
+      var expanded = $.Event(Event.EXPANDED);
+
+      this._element.trigger(expanded, this._parent);
+    };
+
+    Widget.prototype.remove = function remove() {
+      this._parent.slideUp();
+
+      var removed = $.Event(Event.REMOVED);
+
+      this._element.trigger(removed, this._parent);
+    };
+
+    Widget.prototype.toggle = function toggle() {
+      if (this._parent.hasClass(ClassName.COLLAPSED)) {
+        this.expand();
+        return;
       }
-    }]);
+
+      this.collapse();
+    };
+
+    // Private
+
+    Widget.prototype._init = function _init(card) {
+      var _this3 = this;
+
+      this._parent = card;
+
+      $(this).find(this._settings.collapseTrigger).click(function () {
+        _this3.toggle();
+      });
+
+      $(this).find(this._settings.removeTrigger).click(function () {
+        _this3.remove();
+      });
+    };
+
+    // Static
+
+    Widget._jQueryInterface = function _jQueryInterface(config) {
+      return this.each(function () {
+        var data = $(this).data(DATA_KEY);
+
+        if (!data) {
+          data = new Widget($(this), data);
+          $(this).data(DATA_KEY, typeof config === 'string' ? data : config);
+        }
+
+        if (typeof config === 'string' && config.match(/remove|toggle/)) {
+          data[config]();
+        } else if ((typeof config === 'undefined' ? 'undefined' : _typeof(config)) === 'object') {
+          data._init($(this));
+        }
+      });
+    };
 
     return Widget;
   }();
 
+  /**
+   * Data API
+   * ====================================================
+   */
+
+  $(document).on('click', Selector.DATA_COLLAPSE, function (event) {
+    if (event) {
+      event.preventDefault();
+    }
+
+    Widget._jQueryInterface.call($(this), 'toggle');
+  });
+
+  $(document).on('click', Selector.DATA_REMOVE, function (event) {
+    if (event) {
+      event.preventDefault();
+    }
+
+    Widget._jQueryInterface.call($(this), 'remove');
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME] = Widget._jQueryInterface;
+  $.fn[NAME].Constructor = Widget;
+  $.fn[NAME].noConflict = function () {
+    $.fn[NAME] = JQUERY_NO_CONFLICT;
+    return Widget._jQueryInterface;
+  };
+
   return Widget;
 }(jQuery);
 
-exports.default = Widget;
+exports.ControlSidebar = ControlSidebar;
+exports.Layout = Layout;
+exports.PushMenu = PushMenu;
+exports.Treeview = Treeview;
+exports.Widget = Widget;
 
-/***/ })
-/******/ ]);
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+//# sourceMappingURL=adminlte.js.map

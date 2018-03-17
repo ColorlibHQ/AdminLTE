@@ -44,7 +44,7 @@
 // Box solid color variantion creator
 @mixin box-solid-variant($color, $text-color: #fff) {
   border: 1px solid $color;
-  > .box-header {
+  > .card-header {
     color: $text-color;
     background: $color;
     background-color: $color;
@@ -60,7 +60,7 @@
   .right > .direct-chat-text {
     background: $bg-color;
     border-color: $bg-color;
-    color: $color;
+    color: color-yiq($bg-color);
     &:after,
     &:before {
       border-left-color: $bg-color;
@@ -106,17 +106,13 @@
 
 // Dark Sidebar Mixin
 @mixin skin-dark-sidebar($link-hover-border-color) {
-  // Sidebar background color (Both .wrapper and .left-side are responsible for sidebar bg color)
-  .main-sidebar,
-  .main-sidebar:before {
-    background-color: $sidebar-dark-bg;
-  }
+  // Sidebar background color
+  background-color: $sidebar-dark-bg;
 
   // User Panel (resides in the sidebar)
   .user-panel {
-    .info,
-    .status {
-      color: #fff;
+    a:hover {
+      color: $sidebar-dark-hover-color;
     }
 
     .status {
@@ -144,7 +140,7 @@
   .nav-sidebar > .nav-item {
     // links
     > .nav-link {
-      border-left: 3px solid transparent;
+      // border-left: 3px solid transparent;
       &:active,
       &:focus {
         color: $sidebar-dark-color;
@@ -153,26 +149,28 @@
 
     // Hover and active states
     &.menu-open > .nav-link,
-    &:hover > .nav-link,
-    > .nav-link.active {
+    &:hover > .nav-link {
       color: $sidebar-dark-hover-color;
-      background: $sidebar-dark-hover-bg;
+      background-color: $sidebar-dark-hover-bg;
     }
 
     > .nav-link.active {
-      border-left-color: $link-hover-border-color;
+      color: $sidebar-dark-hover-color;
+      background-color: $link-hover-border-color;
+      @if $enable-shadows {
+        @extend .elevation-1;
+      }
     }
 
     // First Level Submenu
     > .nav-treeview {
-      margin: 0 1px;
       background: $sidebar-dark-submenu-bg;
     }
   }
 
   // Section Heading
   .nav-header {
-    color: darken($sidebar-dark-color, 20%);
+    color: lighten($sidebar-dark-color, 5%);
     background: inherit; //darken($sidebar-dark-bg, 3%);
   }
 
@@ -189,114 +187,119 @@
     > .nav-item {
       > .nav-link {
         color: $sidebar-dark-submenu-color;
-      }
-      > .nav-link.active,
-      > .nav-link:hover {
-        color: $sidebar-dark-submenu-hover-color;
-        background: transparent;
-      }
-    }
-  }
 
-  // Sidebar form
-  .sidebar-form {
-    .form-control {
-      background: $sidebar-dark-submenu-bg;
-      border: 0;
-      &,
-      &:focus + .form-icon {
-        color: $sidebar-dark-hover-color;
+        &:hover {
+          color: $sidebar-dark-submenu-hover-color;
+          background-color: $sidebar-dark-submenu-hover-bg
+        }
       }
-      &:focus {
-        background: lighten($sidebar-dark-submenu-bg, 7%);
+
+      > .nav-link.active {
+        &,
+        &:hover {
+          color: $sidebar-dark-submenu-active-color;
+          background-color: $sidebar-dark-submenu-active-bg;
+        }
       }
-    }
-    .form-icon {
-      color: $sidebar-dark-color;
     }
   }
 }
 
 // Light Sidebar Mixin
-@mixin skin-light-sidebar($icon-active-color) {
+@mixin skin-light-sidebar($link-hover-border-color) {
   // Sidebar background color
-  .main-sidebar,
-  .main-sidebar:before {
-    background-color: $sidebar-light-bg;
-  }
-  .content-wrapper,
-  .main-footer {
-    border-left: 1px solid $gray-500;
-  }
+  background-color: $sidebar-light-bg;
+
   // User Panel (resides in the sidebar)
   .user-panel {
-    > .info,
-    > .info > .nav-link {
+    a:hover {
+      color: $sidebar-light-hover-color;
+    }
+
+    .status {
       color: $sidebar-light-color;
+      background: $sidebar-light-hover-bg;
+      &:hover,
+      &:focus,
+      &:active {
+        color: $sidebar-light-hover-color;
+        background: darken($sidebar-light-hover-bg, 3%);
+      }
+    }
+
+    .dropdown-menu {
+      border-color: darken($sidebar-light-hover-bg, 5%);
+      @include box-shadow(0 2px 4px rgba(0, 0, 0, .4));
+    }
+
+    .dropdown-item {
+      color: $body-color;
     }
   }
+
   // Sidebar Menu. First level links
-  .sidebar-menu > .nav-item {
-    transition: border-left-color .3s ease;
+  .nav-sidebar > .nav-item {
     // links
     > .nav-link {
-      border-left: 3px solid transparent;
-      font-weight: 600;
+      // border-left: 3px solid transparent;
+      &:active,
       &:focus {
         color: $sidebar-light-color;
       }
     }
-    // Hover and active states
-    &:hover > .nav-link,
-    &.active > .nav-link {
-      color: $sidebar-light-hover-color;
-      background: $sidebar-light-hover-bg;
-    }
-    &:hover > .nav-link {
 
+    // Hover and active states
+    &.menu-open > .nav-link,
+    &:hover > .nav-link {
+      color: $sidebar-light-hover-color;
+      background-color: $sidebar-light-hover-bg;
     }
-    &.active {
-      border-left-color: $icon-active-color;
-      > .nav-link {
-        font-weight: 600;
+
+    > .nav-link.active {
+      color: $sidebar-light-active-color;
+      background-color: $link-hover-border-color;
+      @if $enable-shadows {
+        @extend .elevation-1;
       }
     }
+
     // First Level Submenu
     > .nav-treeview {
       background: $sidebar-light-submenu-bg;
     }
   }
-  // Section Headning
+
+  // Section Heading
   .nav-header {
-    color: lighten($sidebar-light-color, 25%);
-    background: $sidebar-light-bg;
+    color: darken($sidebar-light-color, 5%);
+    background: inherit;
   }
+
   // All links within the sidebar menu
-  .sidebar .nav-link {
+  .sidebar a {
     color: $sidebar-light-color;
     &:hover {
       text-decoration: none;
     }
   }
+
   // All submenus
   .nav-treeview {
     > .nav-item {
       > .nav-link {
         color: $sidebar-light-submenu-color;
       }
-      &.active > .nav-link,
+
+      > .nav-link.active {
+        &,
+        &:hover {
+          color: $sidebar-light-submenu-active-color;
+          background-color: $sidebar-light-submenu-active-bg;
+        }
+      }
+
       > .nav-link:hover {
-        color: $sidebar-light-submenu-hover-color;
-      }
-      &.active > .nav-link {
-        font-weight: 600;
-      }
-    }
-  }
-  @include media-breakpoint-up(sm) {
-    &.sidebar-mini.sidebar-collapse {
-      .sidebar-menu > li > .nav-treeview {
-        border-left: 1px solid $gray-500;
+        background-color: $sidebar-light-submenu-hover-bg;
       }
     }
   }

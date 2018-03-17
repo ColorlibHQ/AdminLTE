@@ -5,13 +5,38 @@
 // Add sidebar-mini class to the body tag to activate this feature
 .sidebar-mini {
   // Sidebar mini should work only on large devices
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
+    // A fix for text overflow while transitioning from sidebar mini to full sidebar
+    .nav-sidebar,
+    .nav-sidebar > .nav-header,
+    .nav-sidebar .nav-link {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
     // When the sidebar is collapsed...
     &.sidebar-collapse {
-      // Apply the new margining to the main content and footer
+      .d-hidden-mini {
+        display: none;
+      }
+
+      // Apply the new margins to the main content and footer
       .content-wrapper,
-      .main-footer {
+      .main-footer,
+      .main-header {
         margin-left: $sidebar-mini-width !important;
+      }
+
+      // Make the sidebar headers
+      .nav-sidebar .nav-header {
+        display: none;
+      }
+
+      .sidebar .user-panel > .info,
+      .nav-sidebar .nav-link p,
+      .brand-text {
+        opacity: 0;
+        margin-left: -10px;
       }
 
       // Modify the sidebar to shrink instead of disappearing
@@ -20,88 +45,48 @@
         &:before {
           // Don't go away! Just shrink
           margin-left: 0;
-          width: $sidebar-mini-width !important;
+          width: $sidebar-mini-width;
         }
 
         .user-panel {
-          margin-bottom: 10px;
-
           .image {
             float: none;
           }
         }
-      }
 
-      .nav-sidebar {
-        > .nav-label {
-          border-bottom-right-radius: $border-radius;
-        }
-
-        > .nav-item {
-          position: relative;
-          z-index: 999;
-
-          > .nav-link {
-            margin-right: 0;
-
-            > .nav-icon {
-              width: 100%;
-              text-align: center;
+        &:hover {
+          width: $sidebar-width;
+          .user-panel {
+            text-align: left;
+            .image {
+              float: left;
             }
           }
 
-          > .nav-treeview {
-            // Add some padding to the treeview menu
-            padding-top: 5px;
-            padding-bottom: 5px;
+          .user-panel > .info,
+          .nav-sidebar .nav-link p,
+          .brand-text {
+            opacity: 1;
+            margin-left: 0;
+            display: inline-block;
           }
 
-          // Show menu items on hover
-          &:hover {
-            > .nav-link {
-              overflow: visible;
-            }
+          .brand-image {
+            margin-right: .5rem;
+          }
 
-            > .nav-link > .text,
-            > .nav-treeview {
-              display: block !important;
-              position: absolute;
-              width: $sidebar-width - ($sidebar-mini-width/2);
-              left: $sidebar-mini-width;
-            }
+          // Make the sidebar links, menus, labels, badges
+          // and angle icons disappear
+          .sidebar-form,
+          .user-panel > .info {
+            display: block !important;
+            -webkit-transform: translateZ(0);
+          }
 
-            // position the header & treeview menus
-            > .nav-link > .text {
-              top: 0;
-              margin-left: -3px;
-              padding: $nav-link-padding-x $nav-link-padding-y;
-              background-color: inherit;
-              @include border-right-radius($border-radius);
-            }
-
-            &.has-treeview > .nav-link > .text {
-              border-bottom-right-radius: 0;
-            }
-
-            > .nav-treeview {
-              top: $nav-link-padding-y;
-              margin-left: 0;
-              border-bottom-right-radius: $border-radius;
-            }
+          .nav-sidebar > .nav-item > .nav-link > span {
+            display: inline-block !important;
           }
         }
-      }
-
-      // Make the sidebar links, menus, labels, badges
-      // and angle icons disappear
-      .main-sidebar .user-panel > .info,
-      .sidebar-form,
-      .nav-sidebar > .nav-item > .nav-link > span,
-      .nav-sidebar > .nav-item > .nav-treeview,
-      .nav-sidebar > .nav-item > .nav-link > .pull-right,
-      .nav-sidebar .nav-header {
-        display: none !important;
-        -webkit-transform: translateZ(0);
       }
 
       // Make an element visible only when sidebar mini is active
@@ -110,17 +95,6 @@
       }
     }
   }
-}
-
-// A fix for text overflow while transitioning from sidebar mini to full sidebar
-.nav-sidebar,
-.nav-sidebar > .nav-header {
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.nav-sidebar .nav-link {
-  white-space: normal;
 }
 
 .nav-sidebar {
@@ -138,7 +112,7 @@
 
 .nav-sidebar .nav-item > .nav-link {
   position: relative;
-  > .pull-right {
+  > .float-right {
     position: absolute;
     right: 10px;
     top: 50%;
@@ -146,7 +120,8 @@
   }
 }
 
-// Make an element visible only when sidebar mini is active
-.visible-sidebar-mini {
-  display: none !important;
+.sidebar .nav-link p,
+.main-sidebar .brand-text,
+.sidebar .user-panel .info {
+  @include transition(margin-left $transition-speed linear, opacity .5s ease)
 }

@@ -3,40 +3,44 @@
  * -------------------
  */
 .info-box {
-  display: block;
-  min-height: 80px;
-  background: #fff;
-  width: 100%;
-  box-shadow: $box-boxshadow;
-  @include border-radius(2px);
-  margin-bottom: 15px;
+  @extend .d-flex;
+  @extend .mb-3;
 
-  small {
-    font-size: $font-size-sm;
+  padding: .5rem;
+  min-height: 80px;
+  background: $white;
+
+  @if $enable-shadows {
+    box-shadow: $card-shadow;
   }
 
-  .progress[value] {
+  @if $enable-rounded {
+    border-radius: $border-radius;
+  }
+
+  .progress {
     background-color: rgba(0, 0, 0, 0.125);
     margin: 5px 0;
     height: 2px;
-    //@include progress-variant(#fff);
-    @include border-radius(0);
-  }
-  .progress[value]::-webkit-progress-bar {
-    background-color: rgba(0, 0, 0, 0.125);
+    .progress-bar {
+      background-color: $white;
+    }
   }
 }
 
 .info-box-icon {
-  @include border-left-radius(2px);
+  @extend .d-flex;
+  @extend .align-items-center;
+  @extend .justify-content-center;
+
+  @if $enable-rounded {
+    border-radius: $border-radius;
+  }
+
   display: block;
-  float: left;
-  height: 80px;
-  width: 80px;
+  width: 70px;
   text-align: center;
-  font-size: 40px;
-  line-height: 80px;
-  background: rgba(0, 0, 0, 0.2);
+  font-size: 30px;
 
   > img {
     max-width: 100%;
@@ -45,25 +49,31 @@
 
 .info-box-content {
   padding: 5px 10px;
-  margin-left: 80px;
+  flex: 1;
 }
 
 .info-box-number {
   display: block;
-  font-weight: bold;
+  font-weight: $font-weight-bold;
 }
 
 .progress-description,
 .info-box-text {
   display: block;
-  font-size: $font-size-sm;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.info-box-text {
-  text-transform: uppercase;
+@each $name, $color in $theme-colors {
+  .info-box.bg-#{$name},
+  .info-box.bg-#{$name}-gradient {
+    color: color-yiq($color);
+
+    .progress-bar {
+      background-color: color-yiq($color);
+    }
+  }
 }
 
 .info-box-more {

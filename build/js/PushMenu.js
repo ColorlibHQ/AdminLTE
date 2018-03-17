@@ -6,25 +6,39 @@
  */
 
 const PushMenu = (($) => {
-
   /**
    * Constants
    * ====================================================
    */
 
-  const NAME = 'PushMenu'
-  const DATA_KEY = 'lte.pushmenu'
-  const EVENT_KEY = `.${DATA_KEY}`
+  const NAME               = 'PushMenu'
+  const DATA_KEY           = 'lte.pushmenu'
+  const EVENT_KEY          = `.${DATA_KEY}`
   const JQUERY_NO_CONFLICT = $.fn[NAME]
 
   const Event = {
     COLLAPSED: `collapsed${EVENT_KEY}`,
-    SHOWN: `shown${EVENT_KEY}`
+    SHOWN    : `shown${EVENT_KEY}`
+  }
+
+  const Default = {
+    screenCollapseSize: 768
   }
 
   const Selector = {
-    COLLAPSED: 'sidebar-collapse',
-    TOGGLE_BUTTON: '[data-widget="pushmenu"]'
+    TOGGLE_BUTTON    : '[data-widget="pushmenu"]',
+    SIDEBAR_MINI     : '.sidebar-mini',
+    SIDEBAR_COLLAPSED: '.sidebar-collapse',
+    BODY             : 'body',
+    OVERLAY          : '#sidebar-overlay',
+    WRAPPER          : '.wrapper'
+  }
+
+  const ClassName = {
+    SIDEBAR_OPEN: 'sidebar-open',
+    COLLAPSED   : 'sidebar-collapse',
+    OPEN        : 'sidebar-open',
+    SIDEBAR_MINI: 'sidebar-mini'
   }
 
   /**
@@ -33,45 +47,57 @@ const PushMenu = (($) => {
    */
 
   class PushMenu {
-
-    constructor(element) {
+    constructor(element, options) {
       this._element = element
-      this._isShown = !$('body').hasClass(Selector.COLLAPSED) || $('body').hasClass('sidebar-open')
+      this._options = $.extend({}, Default, options)
+
+      if (!$(Selector.OVERLAY).length) {
+        this._addOverlay()
+      }
     }
 
     // Public
 
     show() {
-      $('body').addClass('sidebar-open')
-        .removeClass(Selector.COLLAPSED)
-
-      this._isShown = true
+      $(Selector.BODY).addClass(ClassName.OPEN).removeClass(ClassName.COLLAPSED)
 
       const shownEvent = $.Event(Event.SHOWN)
       $(this._element).trigger(shownEvent)
     }
 
     collapse() {
-      $('body').removeClass('sidebar-open')
-        .addClass(Selector.COLLAPSED)
-
-      this._isShown = false
+      $(Selector.BODY).removeClass(ClassName.OPEN).addClass(ClassName.COLLAPSED)
 
       const collapsedEvent = $.Event(Event.COLLAPSED)
       $(this._element).trigger(collapsedEvent)
     }
 
     toggle() {
-
-      if (typeof this._isShown === 'undefined') {
-        this._isShown = !$('body').hasClass(Selector.COLLAPSED) || $('body').hasClass('sidebar-open')
+      let isShown
+      if ($(window).width() >= this._options.screenCollapseSize) {
+        isShown = !$(Selector.BODY).hasClass(ClassName.COLLAPSED)
+      } else {
+        isShown = $(Selector.BODY).hasClass(ClassName.OPEN)
       }
 
-      if (this._isShown) {
+      if (isShown) {
         this.collapse()
       } else {
         this.show()
       }
+    }
+
+    // Private
+    _addOverlay() {
+      const overlay = $('<div />', {
+        id: 'sidebar-overlay'
+      })
+
+      overlay.on('click', () => {
+        this.collapse()
+      })
+
+      $(Selector.WRAPPER).append(overlay)
     }
 
     // Static
@@ -116,13 +142,12 @@ const PushMenu = (($) => {
 
   $.fn[NAME] = PushMenu._jQueryInterface
   $.fn[NAME].Constructor = PushMenu
-  $.fn[NAME].noConflict = function () {
+  $.fn[NAME].noConflict  = function () {
     $.fn[NAME] = JQUERY_NO_CONFLICT
     return PushMenu._jQueryInterface
   }
 
   return PushMenu
-
 })(jQuery)
 
 export default PushMenu

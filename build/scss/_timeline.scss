@@ -30,10 +30,10 @@
 
     // The content
     > .timeline-item {
-      @include box-shadow($box-boxshadow);
-      @include border-radius($box-border-radius);
+      @include box-shadow($card-shadow);
+      @include border-radius($border-radius);
       margin-top: 0;
-      background: #fff;
+      background: $white;
       color: #444;
       margin-left: 60px;
       margin-right: 15px;
@@ -50,7 +50,7 @@
       > .timeline-header {
         margin: 0;
         color: #555;
-        border-bottom: 1px solid $box-border-color;
+        border-bottom: 1px solid $card-border-color;
         padding: 10px;
         font-size: 16px;
         line-height: 1.1;
@@ -89,7 +89,7 @@
       font-weight: 600;
       padding: 5px;
       display: inline-block;
-      background-color: #fff;
+      background-color: $white;
 
       @include border-radius(4px);
     }

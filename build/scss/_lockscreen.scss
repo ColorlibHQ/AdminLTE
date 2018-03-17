@@ -4,7 +4,7 @@
  */
 /* ADD THIS CLASS TO THE <BODY> TAG */
 .lockscreen {
-  background: $gray-500;
+  background: $gray-200;
 }
 
 .lockscreen-logo {
@@ -33,7 +33,7 @@
 .lockscreen-item {
   @include border-radius(4px);
   padding: 0;
-  background: #fff;
+  background: $white;
   position: relative;
   margin: 10px auto 30px auto;
   width: 290px;
@@ -45,7 +45,7 @@
   position: absolute;
   left: -10px;
   top: -25px;
-  background: #fff;
+  background: $white;
   padding: 5px;
   z-index: 10;
   > img {
@@ -62,7 +62,7 @@
     border: 0;
   }
   .btn {
-    background-color: #fff;
+    background-color: $white;
     border: 0;
     padding: 0 10px;
   }

@@ -3,11 +3,21 @@
   "description": "Responsive open source admin dashboard and control panel.",
   "version": "3.0.0-alpha",
   "license": "MIT",
-  "author": "Abdullah Almsaeed <abdullah@adminlte.io>",
+  "author": "Abdullah Almsaeed <abdullah@almsaeedstudio.com>",
   "scripts": {
-    "watch": "export NODE_ENV=development && webpack --hide-modules --watch",
-    "dev": "export NODE_ENV=development && webpack --hide-modules",
-    "production": "export NODE_ENV=production && webpack --hide-modules"
+    "css": "npm-run-all --sequential css-compile css-minify",
+    "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 build/scss/AdminLTE.scss dist/css/adminlte.css",
+    "css-minify": "cleancss --level 1 --output dist/css/adminlte.min.css dist/css/adminlte.css",
+    "compile": "npm-run-all --parallel js css",
+    "dev": "npm-run-all --parallel watch sync",
+    "js": "npm-run-all --sequential js-compile js-minify",
+    "js-compile": "rollup -c --sourcemap",
+    "js-minify": "uglifyjs --compress typeofs=false --mangle --comments \"/^!/\" --source-map \"content=dist/js/adminlte.js.map,includeSources,url=adminlte.min.js.map\" --output dist/js/adminlte.min.js dist/js/adminlte.js",
+    "production": "npm-run-all --parallel compile && node build/npm/Publish.js -v",
+    "sync": "browser-sync start --server --files *.html pages/ dist/",
+    "watch": "npm-run-all --parallel watch-css watch-js",
+    "watch-css": "nodemon --watch build/scss -e scss -x \"npm run css\"",
+    "watch-js": "nodemon --watch build/js -e js -x \"npm run js\""
   },
   "keywords": [
     "css",
@@ -21,7 +31,7 @@
     "dashboard"
   ],
   "homepage": "https://adminlte.io",
-  "style": "dist/css/AdminLTE.css",
+  "style": "dist/css/adminlte.css",
   "sass": "build/scss/AdminLTE.scss",
   "repository": {
     "type": "git",
@@ -31,28 +41,36 @@
     "url": "https://github.com/almasaeed2010/AdminLTE/issues"
   },
   "dependencies": {
-    "bootstrap": "github:twbs/bootstrap#v4.0.0-beta.2",
-    "jquery": "^3.2.1",
-    "popper.js": "^1.12.9"
+    "bootstrap": "^4.0.0",
+    "chart.js": "^2.7.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "jquery-ui": "^1.12.1",
+    "popper.js": "^1.13.0"
   },
   "peerDependencies": {
     "font-awesome": "^4.7.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.2",
-    "babel-loader": "^7.1.2",
+    "babel-eslint": "^8.2.2",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",
-    "copy-webpack-plugin": "^4.2.3",
-    "css-loader": "^0.28.7",
-    "eslint": "^4.11.0",
-    "eslint-plugin-compat": "^2.1.0",
+    "browser-sync": "^2.23.6",
+    "clean-css-cli": "^4.1.10",
+    "copy-dir": "^0.3.0",
+    "css-loader": "^0.28.9",
+    "eslint": "^4.18.1",
+    "eslint-plugin-compat": "^2.2.0",
     "extract-text-webpack-plugin": "^3.0.2",
-    "jquery-ui": "^1.12.1",
     "node-sass": "^4.7.2",
+    "nodemon": "^1.15.1",
+    "npm-run-all": "^4.1.2",
     "path": "^0.12.7",
-    "sass-loader": "^6.0.6",
-    "style-loader": "^0.19.0",
-    "webpack": "^3.8.1"
+    "rollup": "^0.55.5",
+    "rollup-plugin-babel": "^3.0.3",
+    "style-loader": "^0.19.1",
+    "uglify-js": "^3.3.11"
   }
 }
