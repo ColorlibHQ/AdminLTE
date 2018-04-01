@@ -1675,7 +1675,7 @@ pre code {
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  box-shadow: none;
+  box-shadow: inset 0 0 0 transparent;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -1689,7 +1689,7 @@ pre code {
   background-color: #ffffff;
   border-color: #80bdff;
   outline: 0;
-  box-shadow: none, 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  box-shadow: inset 0 0 0 transparent, 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 .form-control::placeholder {
@@ -3455,7 +3455,7 @@ tbody.collapse.show {
   background-color: #ffffff;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  box-shadow: none;
+  box-shadow: inset 0 0 0 transparent;
 }
 
 .custom-file-label::after {
@@ -10312,8 +10312,6 @@ label:not(.form-check-label):not(.custom-file-label) {
  */
 .card {
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  position: relative;
 }
 
 .card.bg-dark,
@@ -11126,7 +11124,9 @@ label:not(.form-check-label):not(.custom-file-label) {
   font-size: 12px;
 }
 
-.btn-app > .fa, .btn-app > .glyphicon, .btn-app > .ion {
+.btn-app > .fa,
+.btn-app > .glyphicon,
+.btn-app > .ion {
   font-size: 20px;
   display: block;
 }
@@ -11138,8 +11138,6 @@ label:not(.form-check-label):not(.custom-file-label) {
 }
 
 .btn-app:active, .btn-app:focus {
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 

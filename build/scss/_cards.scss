@@ -8,8 +8,6 @@
   @if $enable-shadows {
     box-shadow: $card-shadow;
   }
-  overflow: hidden;
-  position: relative;
 
   &.bg-dark {
     &,

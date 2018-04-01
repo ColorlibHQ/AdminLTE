@@ -14,6 +14,7 @@
     "js-compile": "rollup -c --sourcemap",
     "js-minify": "uglifyjs --compress typeofs=false --mangle --comments \"/^!/\" --source-map \"content=dist/js/adminlte.js.map,includeSources,url=adminlte.min.js.map\" --output dist/js/adminlte.min.js dist/js/adminlte.js",
     "production": "npm-run-all --parallel compile && node build/npm/Publish.js -v",
+    "plugins": "node build/npm/Publish.js -v",
     "sync": "browser-sync start --server --files *.html pages/ dist/",
     "watch": "npm-run-all --parallel watch-css watch-js",
     "watch-css": "nodemon --watch build/scss -e scss -x \"npm run css\"",
@@ -41,6 +42,7 @@
     "url": "https://github.com/almasaeed2010/AdminLTE/issues"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^1.0.0-beta.1",
     "bootstrap": "^4.0.0",
     "chart.js": "^2.7.1",
     "font-awesome": "^4.7.0",
