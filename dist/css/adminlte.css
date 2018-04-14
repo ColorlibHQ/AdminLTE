@@ -5503,24 +5503,15 @@ button.close, button.mailbox-attachment-close {
   vertical-align: text-top !important;
 }
 
-.bg-primary, .label-primary, .modal-primary .modal-body, .modal-primary .modal-header,
-.modal-primary .modal-footer {
+.bg-primary, .label-primary {
   background-color: #007bff !important;
 }
 
-a.bg-primary:hover, a.label-primary:hover, .modal-primary a.modal-body:hover, .modal-primary a.modal-header:hover,
-.modal-primary a.modal-footer:hover, a.bg-primary:focus, a.label-primary:focus, .modal-primary a.modal-body:focus, .modal-primary a.modal-header:focus,
-.modal-primary a.modal-footer:focus,
+a.bg-primary:hover, a.label-primary:hover, a.bg-primary:focus, a.label-primary:focus,
 button.bg-primary:hover,
 button.label-primary:hover,
-.modal-primary button.modal-body:hover,
-.modal-primary button.modal-header:hover,
-.modal-primary button.modal-footer:hover,
 button.bg-primary:focus,
-button.label-primary:focus,
-.modal-primary button.modal-body:focus,
-.modal-primary button.modal-header:focus,
-.modal-primary button.modal-footer:focus {
+button.label-primary:focus {
   background-color: #0062cc !important;
 }
 
@@ -5534,100 +5525,64 @@ button.bg-secondary:focus {
   background-color: #545b62 !important;
 }
 
-.bg-success, .alert-success, .label-success, .modal-success .modal-body, .modal-success .modal-header,
-.modal-success .modal-footer {
+.bg-success, .alert-success, .label-success {
   background-color: #28a745 !important;
 }
 
-a.bg-success:hover, a.alert-success:hover, a.label-success:hover, .modal-success a.modal-body:hover, .modal-success a.modal-header:hover,
-.modal-success a.modal-footer:hover, a.bg-success:focus, a.alert-success:focus, a.label-success:focus, .modal-success a.modal-body:focus, .modal-success a.modal-header:focus,
-.modal-success a.modal-footer:focus,
+a.bg-success:hover, a.alert-success:hover, a.label-success:hover, a.bg-success:focus, a.alert-success:focus, a.label-success:focus,
 button.bg-success:hover,
 button.alert-success:hover,
 button.label-success:hover,
-.modal-success button.modal-body:hover,
-.modal-success button.modal-header:hover,
-.modal-success button.modal-footer:hover,
 button.bg-success:focus,
 button.alert-success:focus,
-button.label-success:focus,
-.modal-success button.modal-body:focus,
-.modal-success button.modal-header:focus,
-.modal-success button.modal-footer:focus {
+button.label-success:focus {
   background-color: #1e7e34 !important;
 }
 
-.bg-info, .alert-info, .label-info, .modal-info .modal-body, .modal-info .modal-header,
-.modal-info .modal-footer {
+.bg-info, .alert-info, .label-info {
   background-color: #17a2b8 !important;
 }
 
-a.bg-info:hover, a.alert-info:hover, a.label-info:hover, .modal-info a.modal-body:hover, .modal-info a.modal-header:hover,
-.modal-info a.modal-footer:hover, a.bg-info:focus, a.alert-info:focus, a.label-info:focus, .modal-info a.modal-body:focus, .modal-info a.modal-header:focus,
-.modal-info a.modal-footer:focus,
+a.bg-info:hover, a.alert-info:hover, a.label-info:hover, a.bg-info:focus, a.alert-info:focus, a.label-info:focus,
 button.bg-info:hover,
 button.alert-info:hover,
 button.label-info:hover,
-.modal-info button.modal-body:hover,
-.modal-info button.modal-header:hover,
-.modal-info button.modal-footer:hover,
 button.bg-info:focus,
 button.alert-info:focus,
-button.label-info:focus,
-.modal-info button.modal-body:focus,
-.modal-info button.modal-header:focus,
-.modal-info button.modal-footer:focus {
+button.label-info:focus {
   background-color: #117a8b !important;
 }
 
-.bg-warning, .alert-warning, .label-warning, .modal-warning .modal-body, .modal-warning .modal-header,
-.modal-warning .modal-footer {
+.bg-warning, .alert-warning, .label-warning {
   background-color: #ffc107 !important;
 }
 
-a.bg-warning:hover, a.alert-warning:hover, a.label-warning:hover, .modal-warning a.modal-body:hover, .modal-warning a.modal-header:hover,
-.modal-warning a.modal-footer:hover, a.bg-warning:focus, a.alert-warning:focus, a.label-warning:focus, .modal-warning a.modal-body:focus, .modal-warning a.modal-header:focus,
-.modal-warning a.modal-footer:focus,
+a.bg-warning:hover, a.alert-warning:hover, a.label-warning:hover, a.bg-warning:focus, a.alert-warning:focus, a.label-warning:focus,
 button.bg-warning:hover,
 button.alert-warning:hover,
 button.label-warning:hover,
-.modal-warning button.modal-body:hover,
-.modal-warning button.modal-header:hover,
-.modal-warning button.modal-footer:hover,
 button.bg-warning:focus,
 button.alert-warning:focus,
-button.label-warning:focus,
-.modal-warning button.modal-body:focus,
-.modal-warning button.modal-header:focus,
-.modal-warning button.modal-footer:focus {
+button.label-warning:focus {
   background-color: #d39e00 !important;
 }
 
 .bg-danger, .alert-danger,
-.alert-error, .label-danger, .modal-danger .modal-body, .modal-danger .modal-header,
-.modal-danger .modal-footer {
+.alert-error, .label-danger {
   background-color: #dc3545 !important;
 }
 
 a.bg-danger:hover, a.alert-danger:hover,
-a.alert-error:hover, a.label-danger:hover, .modal-danger a.modal-body:hover, .modal-danger a.modal-header:hover,
-.modal-danger a.modal-footer:hover, a.bg-danger:focus, a.alert-danger:focus,
-a.alert-error:focus, a.label-danger:focus, .modal-danger a.modal-body:focus, .modal-danger a.modal-header:focus,
-.modal-danger a.modal-footer:focus,
+a.alert-error:hover, a.label-danger:hover, a.bg-danger:focus, a.alert-danger:focus,
+a.alert-error:focus, a.label-danger:focus,
 button.bg-danger:hover,
 button.alert-danger:hover,
 button.alert-error:hover,
 button.label-danger:hover,
-.modal-danger button.modal-body:hover,
-.modal-danger button.modal-header:hover,
-.modal-danger button.modal-footer:hover,
 button.bg-danger:focus,
 button.alert-danger:focus,
 button.alert-error:focus,
-button.label-danger:focus,
-.modal-danger button.modal-body:focus,
-.modal-danger button.modal-header:focus,
-.modal-danger button.modal-footer:focus {
+button.label-danger:focus {
   background-color: #bd2130 !important;
 }
 
@@ -10612,15 +10567,13 @@ label:not(.form-check-label):not(.custom-file-label) {
   border-top: 3px solid #007bff;
 }
 
-.bg-primary .btn-tool, .label-primary .btn-tool, .modal-primary .modal-body .btn-tool, .modal-primary .modal-header .btn-tool,
-.modal-primary .modal-footer .btn-tool,
+.bg-primary .btn-tool, .label-primary .btn-tool,
 .bg-primary-gradient .btn-tool,
 .card-primary:not(.card-outline) .btn-tool {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.bg-primary .btn-tool:hover, .label-primary .btn-tool:hover, .modal-primary .modal-body .btn-tool:hover, .modal-primary .modal-header .btn-tool:hover,
-.modal-primary .modal-footer .btn-tool:hover,
+.bg-primary .btn-tool:hover, .label-primary .btn-tool:hover,
 .bg-primary-gradient .btn-tool:hover,
 .card-primary:not(.card-outline) .btn-tool:hover {
   color: #ffffff;
@@ -10664,15 +10617,13 @@ label:not(.form-check-label):not(.custom-file-label) {
   border-top: 3px solid #28a745;
 }
 
-.bg-success .btn-tool, .alert-success .btn-tool, .label-success .btn-tool, .modal-success .modal-body .btn-tool, .modal-success .modal-header .btn-tool,
-.modal-success .modal-footer .btn-tool,
+.bg-success .btn-tool, .alert-success .btn-tool, .label-success .btn-tool,
 .bg-success-gradient .btn-tool,
 .card-success:not(.card-outline) .btn-tool {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.bg-success .btn-tool:hover, .alert-success .btn-tool:hover, .label-success .btn-tool:hover, .modal-success .modal-body .btn-tool:hover, .modal-success .modal-header .btn-tool:hover,
-.modal-success .modal-footer .btn-tool:hover,
+.bg-success .btn-tool:hover, .alert-success .btn-tool:hover, .label-success .btn-tool:hover,
 .bg-success-gradient .btn-tool:hover,
 .card-success:not(.card-outline) .btn-tool:hover {
   color: #ffffff;
@@ -10691,15 +10642,13 @@ label:not(.form-check-label):not(.custom-file-label) {
   border-top: 3px solid #17a2b8;
 }
 
-.bg-info .btn-tool, .alert-info .btn-tool, .label-info .btn-tool, .modal-info .modal-body .btn-tool, .modal-info .modal-header .btn-tool,
-.modal-info .modal-footer .btn-tool,
+.bg-info .btn-tool, .alert-info .btn-tool, .label-info .btn-tool,
 .bg-info-gradient .btn-tool,
 .card-info:not(.card-outline) .btn-tool {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.bg-info .btn-tool:hover, .alert-info .btn-tool:hover, .label-info .btn-tool:hover, .modal-info .modal-body .btn-tool:hover, .modal-info .modal-header .btn-tool:hover,
-.modal-info .modal-footer .btn-tool:hover,
+.bg-info .btn-tool:hover, .alert-info .btn-tool:hover, .label-info .btn-tool:hover,
 .bg-info-gradient .btn-tool:hover,
 .card-info:not(.card-outline) .btn-tool:hover {
   color: #ffffff;
@@ -10718,15 +10667,13 @@ label:not(.form-check-label):not(.custom-file-label) {
   border-top: 3px solid #ffc107;
 }
 
-.bg-warning .btn-tool, .alert-warning .btn-tool, .label-warning .btn-tool, .modal-warning .modal-body .btn-tool, .modal-warning .modal-header .btn-tool,
-.modal-warning .modal-footer .btn-tool,
+.bg-warning .btn-tool, .alert-warning .btn-tool, .label-warning .btn-tool,
 .bg-warning-gradient .btn-tool,
 .card-warning:not(.card-outline) .btn-tool {
   color: rgba(31, 45, 61, 0.8);
 }
 
-.bg-warning .btn-tool:hover, .alert-warning .btn-tool:hover, .label-warning .btn-tool:hover, .modal-warning .modal-body .btn-tool:hover, .modal-warning .modal-header .btn-tool:hover,
-.modal-warning .modal-footer .btn-tool:hover,
+.bg-warning .btn-tool:hover, .alert-warning .btn-tool:hover, .label-warning .btn-tool:hover,
 .bg-warning-gradient .btn-tool:hover,
 .card-warning:not(.card-outline) .btn-tool:hover {
   color: #1F2D3D;
@@ -10746,16 +10693,14 @@ label:not(.form-check-label):not(.custom-file-label) {
 }
 
 .bg-danger .btn-tool, .alert-danger .btn-tool,
-.alert-error .btn-tool, .label-danger .btn-tool, .modal-danger .modal-body .btn-tool, .modal-danger .modal-header .btn-tool,
-.modal-danger .modal-footer .btn-tool,
+.alert-error .btn-tool, .label-danger .btn-tool,
 .bg-danger-gradient .btn-tool,
 .card-danger:not(.card-outline) .btn-tool {
   color: rgba(255, 255, 255, 0.8);
 }
 
 .bg-danger .btn-tool:hover, .alert-danger .btn-tool:hover,
-.alert-error .btn-tool:hover, .label-danger .btn-tool:hover, .modal-danger .modal-body .btn-tool:hover, .modal-danger .modal-header .btn-tool:hover,
-.modal-danger .modal-footer .btn-tool:hover,
+.alert-error .btn-tool:hover, .label-danger .btn-tool:hover,
 .bg-danger-gradient .btn-tool:hover,
 .card-danger:not(.card-outline) .btn-tool:hover {
   color: #ffffff;
@@ -10816,11 +10761,11 @@ label:not(.form-check-label):not(.custom-file-label) {
  * -------------------
  */
 .info-box {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
   padding: .5rem;
   min-height: 80px;
   background: #ffffff;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
-  border-radius: 0.25rem;
 }
 
 .info-box .progress {
@@ -10863,14 +10808,12 @@ label:not(.form-check-label):not(.custom-file-label) {
   text-overflow: ellipsis;
 }
 
-.info-box.bg-primary, .info-box.label-primary, .modal-primary .info-box.modal-body, .modal-primary .info-box.modal-header,
-.modal-primary .info-box.modal-footer,
+.info-box.bg-primary, .info-box.label-primary,
 .info-box.bg-primary-gradient {
   color: #ffffff;
 }
 
-.info-box.bg-primary .progress-bar, .info-box.label-primary .progress-bar, .modal-primary .info-box.modal-body .progress-bar, .modal-primary .info-box.modal-header .progress-bar,
-.modal-primary .info-box.modal-footer .progress-bar,
+.info-box.bg-primary .progress-bar, .info-box.label-primary .progress-bar,
 .info-box.bg-primary-gradient .progress-bar {
   background-color: #ffffff;
 }
@@ -10885,52 +10828,44 @@ label:not(.form-check-label):not(.custom-file-label) {
   background-color: #ffffff;
 }
 
-.info-box.bg-success, .info-box.alert-success, .info-box.label-success, .modal-success .info-box.modal-body, .modal-success .info-box.modal-header,
-.modal-success .info-box.modal-footer,
+.info-box.bg-success, .info-box.alert-success, .info-box.label-success,
 .info-box.bg-success-gradient {
   color: #ffffff;
 }
 
-.info-box.bg-success .progress-bar, .info-box.alert-success .progress-bar, .info-box.label-success .progress-bar, .modal-success .info-box.modal-body .progress-bar, .modal-success .info-box.modal-header .progress-bar,
-.modal-success .info-box.modal-footer .progress-bar,
+.info-box.bg-success .progress-bar, .info-box.alert-success .progress-bar, .info-box.label-success .progress-bar,
 .info-box.bg-success-gradient .progress-bar {
   background-color: #ffffff;
 }
 
-.info-box.bg-info, .info-box.alert-info, .info-box.label-info, .modal-info .info-box.modal-body, .modal-info .info-box.modal-header,
-.modal-info .info-box.modal-footer,
+.info-box.bg-info, .info-box.alert-info, .info-box.label-info,
 .info-box.bg-info-gradient {
   color: #ffffff;
 }
 
-.info-box.bg-info .progress-bar, .info-box.alert-info .progress-bar, .info-box.label-info .progress-bar, .modal-info .info-box.modal-body .progress-bar, .modal-info .info-box.modal-header .progress-bar,
-.modal-info .info-box.modal-footer .progress-bar,
+.info-box.bg-info .progress-bar, .info-box.alert-info .progress-bar, .info-box.label-info .progress-bar,
 .info-box.bg-info-gradient .progress-bar {
   background-color: #ffffff;
 }
 
-.info-box.bg-warning, .info-box.alert-warning, .info-box.label-warning, .modal-warning .info-box.modal-body, .modal-warning .info-box.modal-header,
-.modal-warning .info-box.modal-footer,
+.info-box.bg-warning, .info-box.alert-warning, .info-box.label-warning,
 .info-box.bg-warning-gradient {
   color: #1F2D3D;
 }
 
-.info-box.bg-warning .progress-bar, .info-box.alert-warning .progress-bar, .info-box.label-warning .progress-bar, .modal-warning .info-box.modal-body .progress-bar, .modal-warning .info-box.modal-header .progress-bar,
-.modal-warning .info-box.modal-footer .progress-bar,
+.info-box.bg-warning .progress-bar, .info-box.alert-warning .progress-bar, .info-box.label-warning .progress-bar,
 .info-box.bg-warning-gradient .progress-bar {
   background-color: #1F2D3D;
 }
 
 .info-box.bg-danger, .info-box.alert-danger,
-.info-box.alert-error, .info-box.label-danger, .modal-danger .info-box.modal-body, .modal-danger .info-box.modal-header,
-.modal-danger .info-box.modal-footer,
+.info-box.alert-error, .info-box.label-danger,
 .info-box.bg-danger-gradient {
   color: #ffffff;
 }
 
 .info-box.bg-danger .progress-bar, .info-box.alert-danger .progress-bar,
-.info-box.alert-error .progress-bar, .info-box.label-danger .progress-bar, .modal-danger .info-box.modal-body .progress-bar, .modal-danger .info-box.modal-header .progress-bar,
-.modal-danger .info-box.modal-footer .progress-bar,
+.info-box.alert-error .progress-bar, .info-box.label-danger .progress-bar,
 .info-box.bg-danger-gradient .progress-bar {
   background-color: #ffffff;
 }
@@ -10983,7 +10918,7 @@ label:not(.form-check-label):not(.custom-file-label) {
   background: #ddd;
   left: 31px;
   margin: 0;
-  border-radius: 2px;
+  border-radius: 0.25rem;
 }
 
 .timeline > li {
@@ -11042,7 +10977,6 @@ label:not(.form-check-label):not(.custom-file-label) {
   font-size: 15px;
   line-height: 30px;
   position: absolute;
-  color: #666;
   background: #adb5bd;
   border-radius: 50%;
   text-align: center;
@@ -11059,7 +10993,7 @@ label:not(.form-check-label):not(.custom-file-label) {
 }
 
 .timeline-inverse > li > .timeline-item {
-  background: #f0f0f0;
+  background: #f8f9fa;
   border: 1px solid #ddd;
   box-shadow: none;
 }
@@ -11074,8 +11008,6 @@ label:not(.form-check-label):not(.custom-file-label) {
  */
 .btn.btn-flat {
   border-radius: 0;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
   box-shadow: none;
   border-width: 1px;
 }
@@ -11232,6 +11164,14 @@ label:not(.form-check-label):not(.custom-file-label) {
  * Component: Nav
  * --------------
  */
+.nav-pills .nav-link {
+  color: #6c757d;
+}
+
+.nav-pills .nav-link:not(.active):hover {
+  color: #007bff;
+}
+
 /*
  * Component: Products List
  * ------------------------
@@ -11591,71 +11531,6 @@ label:not(.form-check-label):not(.custom-file-label) {
   font-size: 12px;
 }
 
-.site-search-block {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1100;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-  background: #ffffff;
-}
-
-.site-search-block .site-search-backdrop {
-  content: ' ';
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
-  z-index: -1;
-}
-
-.site-search-block .form-control {
-  border: 0;
-  border-radius: 0;
-  padding-left: 60px;
-  padding-right: 60px;
-}
-
-.site-search-block,
-.site-search-block .form-control,
-.site-search-block .site-search-close {
-  height: 2.5rem;
-}
-
-.site-search-block .site-search-close,
-.site-search-block .site-search-submit {
-  position: absolute;
-  top: 0;
-  display: block;
-  color: #444;
-  width: 50px;
-  text-align: center;
-  line-height: 2.5rem;
-  cursor: pointer;
-}
-
-.site-search-block .site-search-close:hover,
-.site-search-block .site-search-submit:hover {
-  color: #999;
-  text-decoration: none;
-}
-
-.site-search-block .site-search-close {
-  left: 0;
-}
-
-.site-search-block .site-search-submit {
-  right: 0;
-  background: #ffffff;
-  border: 0;
-  padding: 0;
-}
-
 /*
  * Component: Carousel
  * -------------------
@@ -11671,59 +11546,6 @@ label:not(.form-check-label):not(.custom-file-label) {
   z-index: 5;
   display: inline-block;
   margin-top: -20px;
-}
-
-/*
- * Component: modal
- * ----------------
- */
-.modal {
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.modal-content {
-  border-radius: 0;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.125);
-  border: 0;
-}
-
-@media (min-width: 576px) {
-  .modal-content {
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.125);
-  }
-}
-
-.modal-header {
-  border-bottom-color: rgba(0, 0, 0, 0.125);
-}
-
-.modal-footer {
-  border-top-color: rgba(0, 0, 0, 0.125);
-}
-
-.modal-primary .modal-header,
-.modal-primary .modal-footer {
-  border-color: #0062cc;
-}
-
-.modal-warning .modal-header,
-.modal-warning .modal-footer {
-  border-color: #d39e00;
-}
-
-.modal-info .modal-header,
-.modal-info .modal-footer {
-  border-color: #117a8b;
-}
-
-.modal-success .modal-header,
-.modal-success .modal-footer {
-  border-color: #1e7e34;
-}
-
-.modal-danger .modal-header,
-.modal-danger .modal-footer {
-  border-color: #bd2130;
 }
 
 /*
@@ -12208,11 +12030,10 @@ label:not(.form-check-label):not(.custom-file-label) {
 }
 
 .external-event {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
   padding: 5px 10px;
   font-weight: bold;
   margin-bottom: 4px;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: 0.25rem;
   cursor: move;
 }
@@ -12367,15 +12188,12 @@ a.text-muted:hover {
   text-transform: uppercase;
 }
 
-.bg-primary, .label-primary, .modal-primary .modal-body, .modal-primary .modal-header,
-.modal-primary .modal-footer,
-.bg-primary a, .label-primary a, .modal-primary .modal-body a, .modal-primary .modal-header a,
-.modal-primary .modal-footer a {
+.bg-primary, .label-primary,
+.bg-primary a, .label-primary a {
   color: #ffffff;
 }
 
-.bg-primary a, .label-primary a, .modal-primary .modal-body a, .modal-primary .modal-header a,
-.modal-primary .modal-footer a {
+.bg-primary a, .label-primary a {
   text-decoration: underline;
 }
 
@@ -12388,54 +12206,42 @@ a.text-muted:hover {
   text-decoration: underline;
 }
 
-.bg-success, .alert-success, .label-success, .modal-success .modal-body, .modal-success .modal-header,
-.modal-success .modal-footer,
-.bg-success a, .alert-success a, .label-success a, .modal-success .modal-body a, .modal-success .modal-header a,
-.modal-success .modal-footer a {
+.bg-success, .alert-success, .label-success,
+.bg-success a, .alert-success a, .label-success a {
   color: #ffffff;
 }
 
-.bg-success a, .alert-success a, .label-success a, .modal-success .modal-body a, .modal-success .modal-header a,
-.modal-success .modal-footer a {
+.bg-success a, .alert-success a, .label-success a {
   text-decoration: underline;
 }
 
-.bg-info, .alert-info, .label-info, .modal-info .modal-body, .modal-info .modal-header,
-.modal-info .modal-footer,
-.bg-info a, .alert-info a, .label-info a, .modal-info .modal-body a, .modal-info .modal-header a,
-.modal-info .modal-footer a {
+.bg-info, .alert-info, .label-info,
+.bg-info a, .alert-info a, .label-info a {
   color: #ffffff;
 }
 
-.bg-info a, .alert-info a, .label-info a, .modal-info .modal-body a, .modal-info .modal-header a,
-.modal-info .modal-footer a {
+.bg-info a, .alert-info a, .label-info a {
   text-decoration: underline;
 }
 
-.bg-warning, .alert-warning, .label-warning, .modal-warning .modal-body, .modal-warning .modal-header,
-.modal-warning .modal-footer,
-.bg-warning a, .alert-warning a, .label-warning a, .modal-warning .modal-body a, .modal-warning .modal-header a,
-.modal-warning .modal-footer a {
+.bg-warning, .alert-warning, .label-warning,
+.bg-warning a, .alert-warning a, .label-warning a {
   color: #1F2D3D;
 }
 
-.bg-warning a, .alert-warning a, .label-warning a, .modal-warning .modal-body a, .modal-warning .modal-header a,
-.modal-warning .modal-footer a {
+.bg-warning a, .alert-warning a, .label-warning a {
   text-decoration: underline;
 }
 
 .bg-danger, .alert-danger,
-.alert-error, .label-danger, .modal-danger .modal-body, .modal-danger .modal-header,
-.modal-danger .modal-footer,
+.alert-error, .label-danger,
 .bg-danger a, .alert-danger a,
-.alert-error a, .label-danger a, .modal-danger .modal-body a, .modal-danger .modal-header a,
-.modal-danger .modal-footer a {
+.alert-error a, .label-danger a {
   color: #ffffff;
 }
 
 .bg-danger a, .alert-danger a,
-.alert-error a, .label-danger a, .modal-danger .modal-body a, .modal-danger .modal-header a,
-.modal-danger .modal-footer a {
+.alert-error a, .label-danger a {
   text-decoration: underline;
 }
 

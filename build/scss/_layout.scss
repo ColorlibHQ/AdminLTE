@@ -13,7 +13,8 @@ body,
   position: relative;
 
   .layout-boxed & {
-    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    @include box-shadow(0 0 10px rgba(0, 0, 0, .3));
+
     &,
     &:before {
       margin: 0 auto;

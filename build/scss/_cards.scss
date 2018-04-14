@@ -5,9 +5,7 @@
 
 .card {
   @extend .mb-3;
-  @if $enable-shadows {
-    box-shadow: $card-shadow;
-  }
+  @include box-shadow($card-shadow);
 
   &.bg-dark {
     &,

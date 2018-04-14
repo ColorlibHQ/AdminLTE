@@ -5,18 +5,12 @@
 .info-box {
   @extend .d-flex;
   @extend .mb-3;
+  @include box-shadow($card-shadow);
+  @include border-radius($border-radius);
 
   padding: .5rem;
   min-height: 80px;
   background: $white;
-
-  @if $enable-shadows {
-    box-shadow: $card-shadow;
-  }
-
-  @if $enable-rounded {
-    border-radius: $border-radius;
-  }
 
   .progress {
     background-color: rgba(0, 0, 0, 0.125);

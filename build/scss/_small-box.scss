@@ -4,15 +4,10 @@
  */
 
 .small-box {
-  @if $enable-rounded {
-    @include border-radius($border-radius);
-  }
-
-  @if $enable-shadows {
-    box-shadow: $card-shadow;
-  }
-
+  @include border-radius($border-radius);
+  @include box-shadow($card-shadow);
   @extend .mb-3;
+
   position: relative;
   display: block;
   margin-bottom: 20px;

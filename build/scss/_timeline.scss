@@ -19,7 +19,7 @@
     background: #ddd;
     left: 31px;
     margin: 0;
-    @include border-radius(2px);
+    @include border-radius($border-radius);
   }
 
   > li {
@@ -74,7 +74,6 @@
       font-size: 15px;
       line-height: 30px;
       position: absolute;
-      color: #666;
       background: $gray-500;
       border-radius: 50%;
       text-align: center;
@@ -99,7 +98,7 @@
 .timeline-inverse {
   > li {
     > .timeline-item {
-      background: #f0f0f0;
+      background: $gray-100;
       border: 1px solid #ddd;
       @include box-shadow(none);
       > .timeline-header {
