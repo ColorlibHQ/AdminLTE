@@ -14625,7 +14625,7 @@ function program17(depth0,data) {
         options = $.extend(true, {}, options);
         options.toolbar = this.toolbar[0];
         
-        this.initializeEditor(this.el[0], options);
+        return this.initializeEditor(this.el[0], options);
       },
 
 
