@@ -60,6 +60,26 @@
 
   $container.append($navbar_variants)
 
+  var $checkbox_container = $('<div />', {
+    'class': 'mb-4'
+  })
+  var $navbar_border = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('.main-header').hasClass('border-bottom'),
+    'class': 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('.main-header').addClass('border-bottom')
+    } else {
+      $('.main-header').removeClass('border-bottom')
+    }
+    console.log($(this).is(':checked'), 'hi')
+  })
+  $checkbox_container.append($navbar_border)
+  $checkbox_container.append('<span>Navbar border</span>')
+  $container.append($checkbox_container)
+
 
   var sidebar_colors = [
     'bg-primary',
@@ -116,7 +136,6 @@
     console.log('added ' + sidebar_class)
   }))
 
-
   var logo_skins = navbar_all_colors
   $container.append('<h6>Brand Logo Variants</h6>')
   var $logo_variants = $('<div />', {
@@ -125,7 +144,7 @@
   $container.append($logo_variants)
   var $clear_btn = $('<a />', {
     href: 'javascript:void(0)'
-  }).text('clear').on('click', function() {
+  }).text('clear').on('click', function () {
     var $logo = $('.brand-link')
     logo_skins.map(function (skin) {
       $logo.removeClass(skin)
