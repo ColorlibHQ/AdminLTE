@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Tooltip · GitBook</title>
+        <title>Tooltip · Chart.js documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -195,7 +195,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="../general/interactions/">
+        <li class="chapter " data-level="1.3.2" data-path="../general/device-pixel-ratio.html">
+            
+                <a href="../general/device-pixel-ratio.html">
+            
+                    
+                    Pixel Ratio
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../general/interactions/">
             
                 <a href="../general/interactions/">
             
@@ -209,7 +222,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.2.1" data-path="../general/interactions/events.html">
+        <li class="chapter " data-level="1.3.3.1" data-path="../general/interactions/events.html">
             
                 <a href="../general/interactions/events.html">
             
@@ -222,7 +235,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2.2" data-path="../general/interactions/modes.html">
+        <li class="chapter " data-level="1.3.3.2" data-path="../general/interactions/modes.html">
             
                 <a href="../general/interactions/modes.html">
             
@@ -240,7 +253,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="../general/options.html">
+        <li class="chapter " data-level="1.3.4" data-path="../general/options.html">
             
                 <a href="../general/options.html">
             
@@ -253,7 +266,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="../general/colors.html">
+        <li class="chapter " data-level="1.3.5" data-path="../general/colors.html">
             
                 <a href="../general/colors.html">
             
@@ -266,7 +279,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5" data-path="../general/fonts.html">
+        <li class="chapter " data-level="1.3.6" data-path="../general/fonts.html">
             
                 <a href="../general/fonts.html">
             
@@ -882,7 +895,7 @@
 <td><code>enabled</code></td>
 <td><code>Boolean</code></td>
 <td><code>true</code></td>
-<td>Are tooltips enabled</td>
+<td>Are on-canvas tooltips enabled</td>
 </tr>
 <tr>
 <td><code>custom</code></td>
@@ -1026,7 +1039,7 @@
 <td><code>footerSpacing</code></td>
 <td><code>Number</code></td>
 <td><code>2</code></td>
-<td>Spacing to add to top and bottom of each fotter line.</td>
+<td>Spacing to add to top and bottom of each footer line.</td>
 </tr>
 <tr>
 <td><code>footerMarginTop</code></td>
@@ -1201,6 +1214,28 @@ Chart.Tooltip.positioners.custom = <span class="hljs-function"><span class="hljs
 </tr>
 </tbody>
 </table>
+<h3 id="label-callback">Label Callback</h3>
+<p>The label callback can change the text that displays for a given data point. A common example to round data values; the following example rounds the data to two decimal places.</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> Chart(ctx, {
+    type: <span class="hljs-string">&apos;line&apos;</span>,
+    data: data,
+    options: {
+        tooltips: {
+            callbacks: {
+                label: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">tooltipItem, data</span>) </span>{
+                    <span class="hljs-keyword">var</span> label = data.datasets[tooltipItem.datasetIndex].label || <span class="hljs-string">&apos;&apos;</span>;
+
+                    <span class="hljs-keyword">if</span> (label) {
+                        label += <span class="hljs-string">&apos;: &apos;</span>;
+                    }
+                    label += <span class="hljs-built_in">Math</span>.round(tooltipItem.yLabel * <span class="hljs-number">100</span>) / <span class="hljs-number">100</span>;
+                    <span class="hljs-keyword">return</span> label;
+                }
+            }
+        }
+    }
+});
+</code></pre>
 <h3 id="label-color-callback">Label Color Callback</h3>
 <p>For example, to return a red box for each item in the tooltip you could do:</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> Chart(ctx, {
@@ -1252,6 +1287,9 @@ Chart.Tooltip.positioners.custom = <span class="hljs-function"><span class="hljs
     data: data,
     options: {
         tooltips: {
+            <span class="hljs-comment">// Disable the on-canvas tooltip</span>
+            enabled: <span class="hljs-literal">false</span>,
+
             custom: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">tooltipModel</span>) </span>{
                 <span class="hljs-comment">// Tooltip Element</span>
                 <span class="hljs-keyword">var</span> tooltipEl = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;chartjs-tooltip&apos;</span>);
@@ -1260,7 +1298,7 @@ Chart.Tooltip.positioners.custom = <span class="hljs-function"><span class="hljs
                 <span class="hljs-keyword">if</span> (!tooltipEl) {
                     tooltipEl = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&apos;div&apos;</span>);
                     tooltipEl.id = <span class="hljs-string">&apos;chartjs-tooltip&apos;</span>;
-                    tooltipEl.innerHTML = <span class="hljs-string">&quot;&lt;table&gt;&lt;/table&gt;&quot;</span>
+                    tooltipEl.innerHTML = <span class="hljs-string">&quot;&lt;table&gt;&lt;/table&gt;&quot;</span>;
                     <span class="hljs-built_in">document</span>.body.appendChild(tooltipEl);
                 }
 
@@ -1299,7 +1337,7 @@ Chart.Tooltip.positioners.custom = <span class="hljs-function"><span class="hljs
                         <span class="hljs-keyword">var</span> style = <span class="hljs-string">&apos;background:&apos;</span> + colors.backgroundColor;
                         style += <span class="hljs-string">&apos;; border-color:&apos;</span> + colors.borderColor;
                         style += <span class="hljs-string">&apos;; border-width: 2px&apos;</span>;
-                        <span class="hljs-keyword">var</span> span = <span class="hljs-string">&apos;&lt;span class=&quot;chartjs-tooltip-key&quot; style=&quot;&apos;</span> + style + <span class="hljs-string">&apos;&quot;&gt;&lt;/span&gt;&apos;</span>;
+                        <span class="hljs-keyword">var</span> span = <span class="hljs-string">&apos;&lt;span style=&quot;&apos;</span> + style + <span class="hljs-string">&apos;&quot;&gt;&lt;/span&gt;&apos;</span>;
                         innerHtml += <span class="hljs-string">&apos;&lt;tr&gt;&lt;td&gt;&apos;</span> + span + body + <span class="hljs-string">&apos;&lt;/td&gt;&lt;/tr&gt;&apos;</span>;
                     });
                     innerHtml += <span class="hljs-string">&apos;&lt;/tbody&gt;&apos;</span>;
@@ -1313,18 +1351,19 @@ Chart.Tooltip.positioners.custom = <span class="hljs-function"><span class="hljs
 
                 <span class="hljs-comment">// Display, position, and set styles for font</span>
                 tooltipEl.style.opacity = <span class="hljs-number">1</span>;
+                tooltipEl.style.position = <span class="hljs-string">&apos;absolute&apos;</span>;
                 tooltipEl.style.left = position.left + tooltipModel.caretX + <span class="hljs-string">&apos;px&apos;</span>;
                 tooltipEl.style.top = position.top + tooltipModel.caretY + <span class="hljs-string">&apos;px&apos;</span>;
-                tooltipEl.style.fontFamily = tooltipModel._fontFamily;
-                tooltipEl.style.fontSize = tooltipModel.fontSize;
-                tooltipEl.style.fontStyle = tooltipModel._fontStyle;
+                tooltipEl.style.fontFamily = tooltipModel._bodyFontFamily;
+                tooltipEl.style.fontSize = tooltipModel.bodyFontSize + <span class="hljs-string">&apos;px&apos;</span>;
+                tooltipEl.style.fontStyle = tooltipModel._bodyFontStyle;
                 tooltipEl.style.padding = tooltipModel.yPadding + <span class="hljs-string">&apos;px &apos;</span> + tooltipModel.xPadding + <span class="hljs-string">&apos;px&apos;</span>;
             }
         }
     }
 });
 </code></pre>
-<p>See <code>samples/tooltips/line-customTooltips.html</code> for examples on how to get started.</p>
+<p>See <a href="http://www.chartjs.org/samples/" target="_blank">samples</a> for examples on how to get started with custom tooltips.</p>
 <h2 id="tooltip-model">Tooltip Model</h2>
 <p>The tooltip model contains parameters that can be used to render the tooltip.</p>
 <pre><code class="lang-javascript">{
@@ -1443,7 +1482,7 @@ Chart.Tooltip.positioners.custom = <span class="hljs-function"><span class="hljs
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Tooltip","level":"1.4.5","depth":2,"next":{"title":"Elements","level":"1.4.6","depth":2,"path":"configuration/elements.md","ref":"configuration/elements.md","articles":[]},"previous":{"title":"Title","level":"1.4.4","depth":2,"path":"configuration/title.md","ref":"configuration/title.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","anchorjs","chartjs","ga"],"root":"./docs","styles":{"website":"style.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchorjs":{"icon":"#","placement":"left","visible":"always"},"ga":{"configuration":"auto","token":"UA-28909194-3"},"theme-default":{"styles":{"website":"style.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{},"chartjs":{"defaults":null},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"theme":"default","author":"chartjs","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"3.2.2"},"file":{"path":"configuration/tooltip.md","mtime":"2017-10-28T15:03:49.266Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-10-28T15:09:53.587Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Tooltip","level":"1.4.5","depth":2,"next":{"title":"Elements","level":"1.4.6","depth":2,"path":"configuration/elements.md","ref":"configuration/elements.md","articles":[]},"previous":{"title":"Title","level":"1.4.4","depth":2,"path":"configuration/title.md","ref":"configuration/title.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","anchorjs","chartjs","ga"],"root":"./docs","styles":{"website":"style.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchorjs":{"icon":"#","placement":"left","visible":"always"},"ga":{"configuration":"auto","token":"UA-28909194-3"},"theme-default":{"styles":{"website":"style.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{},"chartjs":{"defaults":null},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"theme":"default","author":"chartjs","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Chart.js documentation","gitbook":"3.2.2"},"file":{"path":"configuration/tooltip.md","mtime":"2018-03-01T21:46:31.679Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-03-01T21:50:47.970Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1461,7 +1500,7 @@ Chart.Tooltip.positioners.custom = <span class="hljs-function"><span class="hljs
         
     
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script>
         
     
         

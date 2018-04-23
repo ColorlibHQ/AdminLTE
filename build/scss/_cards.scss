@@ -312,6 +312,7 @@
     &:not(.card-outline) {
       .card-header {
         background-color: $color;
+        border-bottom: 0;
         &,
         a {
           color: color-yiq($color);

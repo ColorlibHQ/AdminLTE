@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Responsive · GitBook</title>
+        <title>Responsive · Chart.js documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -60,7 +60,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="interactions/" />
+    <link rel="next" href="device-pixel-ratio.html" />
     
     
     <link rel="prev" href="./" />
@@ -195,7 +195,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="interactions/">
+        <li class="chapter " data-level="1.3.2" data-path="device-pixel-ratio.html">
+            
+                <a href="device-pixel-ratio.html">
+            
+                    
+                    Pixel Ratio
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="interactions/">
             
                 <a href="interactions/">
             
@@ -209,7 +222,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.2.1" data-path="interactions/events.html">
+        <li class="chapter " data-level="1.3.3.1" data-path="interactions/events.html">
             
                 <a href="interactions/events.html">
             
@@ -222,7 +235,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2.2" data-path="interactions/modes.html">
+        <li class="chapter " data-level="1.3.3.2" data-path="interactions/modes.html">
             
                 <a href="interactions/modes.html">
             
@@ -240,7 +253,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="options.html">
+        <li class="chapter " data-level="1.3.4" data-path="options.html">
             
                 <a href="options.html">
             
@@ -253,7 +266,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="colors.html">
+        <li class="chapter " data-level="1.3.5" data-path="colors.html">
             
                 <a href="colors.html">
             
@@ -266,7 +279,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5" data-path="fonts.html">
+        <li class="chapter " data-level="1.3.6" data-path="fonts.html">
             
                 <a href="fonts.html">
             
@@ -919,6 +932,14 @@
 <p>The chart can also be programmatically resized by modifying the container size:</p>
 <pre><code class="lang-javascript">chart.canvas.parentNode.style.height = <span class="hljs-string">&apos;128px&apos;</span>;
 </code></pre>
+<h2 id="printing-resizeable-charts">Printing Resizeable Charts</h2>
+<p>CSS media queries allow changing styles when printing a page. The CSS applied from these media queries may cause charts to need to resize. However, the resize won&apos;t happen automatically. To support resizing charts when printing, one needs to hook the <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeprint" target="_blank">onbeforeprint</a> event and manually trigger resizing of each chart.</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beforePrintHandler</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> id <span class="hljs-keyword">in</span> Chart.instances) {
+    Chart.instances[id].resize()
+  }
+}
+</code></pre>
 
                                 
                                 </section>
@@ -951,7 +972,7 @@
                 </a>
                 
                 
-                <a href="interactions/" class="navigation navigation-next " aria-label="Next page: Interactions">
+                <a href="device-pixel-ratio.html" class="navigation navigation-next " aria-label="Next page: Pixel Ratio">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -962,7 +983,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Responsive","level":"1.3.1","depth":2,"next":{"title":"Interactions","level":"1.3.2","depth":2,"path":"general/interactions/README.md","ref":"general/interactions/README.md","articles":[{"title":"Events","level":"1.3.2.1","depth":3,"path":"general/interactions/events.md","ref":"general/interactions/events.md","articles":[]},{"title":"Modes","level":"1.3.2.2","depth":3,"path":"general/interactions/modes.md","ref":"general/interactions/modes.md","articles":[]}]},"previous":{"title":"General","level":"1.3","depth":1,"path":"general/README.md","ref":"general/README.md","articles":[{"title":"Responsive","level":"1.3.1","depth":2,"path":"general/responsive.md","ref":"general/responsive.md","articles":[]},{"title":"Interactions","level":"1.3.2","depth":2,"path":"general/interactions/README.md","ref":"general/interactions/README.md","articles":[{"title":"Events","level":"1.3.2.1","depth":3,"path":"general/interactions/events.md","ref":"general/interactions/events.md","articles":[]},{"title":"Modes","level":"1.3.2.2","depth":3,"path":"general/interactions/modes.md","ref":"general/interactions/modes.md","articles":[]}]},{"title":"Options","level":"1.3.3","depth":2,"path":"general/options.md","ref":"general/options.md","articles":[]},{"title":"Colors","level":"1.3.4","depth":2,"path":"general/colors.md","ref":"general/colors.md","articles":[]},{"title":"Fonts","level":"1.3.5","depth":2,"path":"general/fonts.md","ref":"general/fonts.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","anchorjs","chartjs","ga"],"root":"./docs","styles":{"website":"style.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchorjs":{"icon":"#","placement":"left","visible":"always"},"ga":{"configuration":"auto","token":"UA-28909194-3"},"theme-default":{"styles":{"website":"style.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{},"chartjs":{"defaults":null},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"theme":"default","author":"chartjs","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"3.2.2"},"file":{"path":"general/responsive.md","mtime":"2017-10-28T15:03:49.270Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-10-28T15:09:53.587Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Responsive","level":"1.3.1","depth":2,"next":{"title":"Pixel Ratio","level":"1.3.2","depth":2,"path":"general/device-pixel-ratio.md","ref":"general/device-pixel-ratio.md","articles":[]},"previous":{"title":"General","level":"1.3","depth":1,"path":"general/README.md","ref":"general/README.md","articles":[{"title":"Responsive","level":"1.3.1","depth":2,"path":"general/responsive.md","ref":"general/responsive.md","articles":[]},{"title":"Pixel Ratio","level":"1.3.2","depth":2,"path":"general/device-pixel-ratio.md","ref":"general/device-pixel-ratio.md","articles":[]},{"title":"Interactions","level":"1.3.3","depth":2,"path":"general/interactions/README.md","ref":"general/interactions/README.md","articles":[{"title":"Events","level":"1.3.3.1","depth":3,"path":"general/interactions/events.md","ref":"general/interactions/events.md","articles":[]},{"title":"Modes","level":"1.3.3.2","depth":3,"path":"general/interactions/modes.md","ref":"general/interactions/modes.md","articles":[]}]},{"title":"Options","level":"1.3.4","depth":2,"path":"general/options.md","ref":"general/options.md","articles":[]},{"title":"Colors","level":"1.3.5","depth":2,"path":"general/colors.md","ref":"general/colors.md","articles":[]},{"title":"Fonts","level":"1.3.6","depth":2,"path":"general/fonts.md","ref":"general/fonts.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","anchorjs","chartjs","ga"],"root":"./docs","styles":{"website":"style.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchorjs":{"icon":"#","placement":"left","visible":"always"},"ga":{"configuration":"auto","token":"UA-28909194-3"},"theme-default":{"styles":{"website":"style.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{},"chartjs":{"defaults":null},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"theme":"default","author":"chartjs","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Chart.js documentation","gitbook":"3.2.2"},"file":{"path":"general/responsive.md","mtime":"2018-03-01T21:46:31.679Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-03-01T21:50:47.970Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -980,7 +1001,7 @@
         
     
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script>
         
     
         

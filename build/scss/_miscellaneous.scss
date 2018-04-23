@@ -34,10 +34,7 @@ a.text-muted:hover {
   .bg-#{$name} {
     &,
     a {
-      color: color-yiq($color);
-    }
-    a {
-      text-decoration: underline;
+      color: color-yiq($color) !important;
     }
   }
 }
@@ -49,15 +46,17 @@ a.text-muted:hover {
 
 .bg-gray-light {
   background-color: lighten($gray-200, 3%);
+  color: color-yiq(lighten($gray-200, 3%)) !important;
 }
 
 .bg-black {
   background-color: $black;
-  color: color-yiq($black);
+  color: color-yiq($black) !important;
 }
 
 .bg-white {
   background-color: $white;
+  color: color-yiq($white) !important;
 }
 
 // Disabled!

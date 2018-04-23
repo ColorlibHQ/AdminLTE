@@ -4,14 +4,14 @@
  */
 
 // General Dropdown Rules
-.dropdown-item {
-  &:first-of-type {
-    @include border-top-radius($border-radius);
-  }
-  &:last-of-type {
-    @include border-bottom-radius($border-radius);
-  }
-}
+//.dropdown-item {
+//  &:first-of-type {
+//    @include border-top-radius($border-radius);
+//  }
+//  &:last-of-type {
+//    @include border-bottom-radius($border-radius);
+//  }
+//}
 
 .dropdown-item-title {
   font-size: $font-size-base;
@@ -42,13 +42,6 @@
   display: block;
   padding: .5rem $dropdown-item-padding-x;
   font-size: $font-size-sm;
-}
-
-.dropdown-header {
-  &:hover {
-    background-color: $white;
-    color: $gray-200;
-  }
 }
 
 /* Add fade animation to dropdown menus by appending
