@@ -4,6 +4,7 @@
   "version": "3.0.0-beta",
   "license": "MIT",
   "author": "Abdullah Almsaeed <abdullah@almsaeedstudio.com>",
+  "main": "dist/js/adminlte.min.js",
   "scripts": {
     "css": "npm-run-all --sequential css-compile css-minify",
     "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 build/scss/AdminLTE.scss dist/css/adminlte.css",
