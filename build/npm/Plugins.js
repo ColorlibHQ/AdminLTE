@@ -30,8 +30,21 @@ const Plugins = [
   },
   // CKEditor
   {
-    from: 'node_modules/@ckeditor/ckeditor5-build-classic/build',
+    from: 'node_modules/@ckeditor/ckeditor5-build-classic/build/',
     to  : 'plugins/ckeditor'
+  },
+  // DataTables
+  {
+    from: 'node_modules/datatables.net/js',
+    to: 'plugins/datatables'
+  },
+  {
+    from: 'node_modules/datatables.net-bs4/js',
+    to: 'plugins/datatables'
+  },
+  {
+    from: 'node_modules/datatables.net-bs4/css',
+    to: 'plugins/datatables'
   }
 ]
 

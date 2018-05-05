@@ -1,5 +1,5 @@
 const Plugins = require('./Plugins')
-const copydir = require('copy-dir')
+const ncp     = require('ncp').ncp
 
 class Publish {
   constructor() {
@@ -27,14 +27,11 @@ class Publish {
   run() {
     // Publish files
     Plugins.forEach((module) => {
-      copydir(module.from, module.to, (stat, filepath, filename) => {
-        if (this.options.verbose) {
-          console.log(`Copied ${filename} from ${module.from} to ${module.to}`)
-        }
-        return true
-      }, error => {
+      ncp(module.from, module.to, error => {
         if (error) {
           console.error(`Error: ${error}`)
+        } else if (this.options.verbose) {
+          console.log(`Copied ${module.from} to ${module.to}`)
         }
       })
     })
