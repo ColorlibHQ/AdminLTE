@@ -1,5 +1,5 @@
 /*!
- * AdminLTE v3.0.0-alpha (https://adminlte.io)
+ * AdminLTE v3.0.0-alpha.2 (https://adminlte.io)
  * Copyright 2014-2018 Abdullah Almsaeed <abdullah@almsaeedstudio.com>
  * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
  */
