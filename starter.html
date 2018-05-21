@@ -10,6 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>AdminLTE 2 | Starter</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
@@ -65,7 +66,6 @@ desired effect
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Admin</b>LTE</span>
     </a>
-
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
       <!-- Sidebar toggle button-->
@@ -113,7 +113,6 @@ desired effect
             </ul>
           </li>
           <!-- /.messages-menu -->
-
           <!-- Notifications Menu -->
           <li class="dropdown notifications-menu">
             <!-- Menu toggle button -->
@@ -228,10 +227,8 @@ desired effect
   </header>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
-
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
@@ -243,7 +240,6 @@ desired effect
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-
       <!-- search form (Optional) -->
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
@@ -255,7 +251,6 @@ desired effect
         </div>
       </form>
       <!-- /.search form -->
-
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
@@ -263,10 +258,11 @@ desired effect
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+          <a href="#">
+            <i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="#">Link in level 2</a></li>
@@ -389,7 +385,7 @@ desired effect
   </aside>
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
-  immediately after the control sidebar -->
+       immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
@@ -400,11 +396,10 @@ desired effect
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
-
 <!-- Optionally, you can add SlimScroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
 </body>
 </html>
