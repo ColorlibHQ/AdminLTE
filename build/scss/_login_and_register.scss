@@ -29,14 +29,20 @@
   }
 }
 
-.login-box-body,
-.register-box-body {
+.login-card-body,
+.register-card-body {
   background: $white;
   padding: 20px;
   border-top: 0;
   color: #666;
-  .form-control-feedback {
-    color: #777;
+  .input-group {
+    .form-control {
+      border-right: none;
+    }
+    .input-group-text {
+      color: #777;
+      background-color: transparent;
+    }
   }
 }
 
