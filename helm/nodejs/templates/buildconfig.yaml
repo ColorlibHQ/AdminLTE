@@ -1,0 +1,38 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: {{ .Values.name | quote }}
+  annotations:
+    description: Defines how to build the application
+spec:
+  source:
+    type: Git
+    git:
+      uri: {{ .Values.source_repository_url | quote }}
+      ref: {{ .Values.source_repository_ref | quote }}
+    contextDir: {{ .Values.context_dir | quote }}
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        namespace: {{ .Values.namespace | quote }}
+        name: nodejs:6
+      env:
+      - name: NPM_MIRROR
+        value: {{ .Values.npm_mirror | quote }}
+  output:
+    to:
+      kind: ImageStreamTag
+      name: {{ print .Values.name ":latest" | quote }}
+  triggers:
+  - type: ImageChange
+  - type: ConfigChange
+  - type: GitHub
+    github:
+      secret: {{ .Values.github_webhook_secret | default (randAlphaNum 40) | quote }}
+  - type: Generic
+    generic:
+      secret: {{ .Values.generic_webhook_secret | default (randAlphaNum 40) | quote }}
+  postCommit:
+    script: npm test

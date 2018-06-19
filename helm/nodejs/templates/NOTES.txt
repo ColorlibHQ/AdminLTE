@@ -1,0 +1,3 @@
+The following service(s) have been created in your project: {{ .Values.name }}.
+
+For more information about using this template, including OpenShift considerations, see https://github.com/openshift/nodejs-ex/blob/master/README.md.
