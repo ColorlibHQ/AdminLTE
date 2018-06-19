@@ -1,0 +1,223 @@
+/*
+Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+*/
+
+.cke_balloon
+{
+	position: absolute;
+	z-index: 10000;
+
+	background: #fff;
+	border: 2px solid #aaa;
+	outline: none;
+}
+
+.cke_balloon_title
+{
+	font-weight: bold;
+	font-size: 12px;
+	cursor: default;
+
+	color: #484848;
+
+	padding: 12px 30px 12px 12px; /* Let's the title and close don't overlap each other - padding-right. */
+	background: #f8f8f8;
+}
+
+/* The close button at the top of the panel. */
+a.cke_balloon_close_button
+{
+	background-image: url(images/close.png);
+	background-repeat: no-repeat;
+	background-position: 50% -1px;
+	position: absolute;
+	cursor: pointer;
+	text-align: center;
+	height: 16px;
+	width: 16px;
+	top: 8px;
+	z-index: 5;
+	opacity: 0.7;
+	filter: alpha(opacity = 70);
+	border: 2px solid transparent;
+	border-radius: 2px;
+}
+
+a.cke_balloon_close_button:focus,
+a.cke_balloon_close_button:active
+{
+	outline: none;
+	border: 2px solid #0079f7;
+}
+
+.cke_balloon_content
+{
+	overflow: hidden;
+	min-height: 68px;
+	padding: 0 6px 6px 6px;
+}
+
+.cke_balloon_close_button:hover
+{
+	opacity: 1;
+	filter: alpha(opacity = 100);
+}
+
+.cke_balloon_close_button:focus:hover
+{
+	opacity: 1;
+	filter: alpha(opacity = 100);
+	border: 2px solid #139FF7;
+}
+
+.cke_hidpi .cke_balloon_close_button
+{
+	background-image: url(images/hidpi/close.png);
+	background-size: 16px;
+}
+
+.cke_balloon_close_button span
+{
+	display: none;
+}
+
+.cke_ltr .cke_balloon_close_button
+{
+	right: 10px;
+}
+
+.cke_rtl .cke_balloon_close_button
+{
+	left: 10px;
+}
+
+.cke_balloon_triangle
+{
+	position: absolute;
+	border-style: solid;
+	display: block;
+	width: 0;
+	height: 0;
+}
+
+.cke_balloon_triangle_inner
+{
+	z-index: 0;
+}
+
+.cke_balloon_triangle_outer
+{
+	z-index: 0;
+}
+
+/* side: [ bottom, top ] */
+.cke_balloon_triangle_outer.cke_balloon_triangle_bottom,
+.cke_balloon_triangle_outer.cke_balloon_triangle_top
+{
+	border-color: #999 transparent;
+}
+
+.cke_balloon_triangle_inner.cke_balloon_triangle_bottom,
+.cke_balloon_triangle_inner.cke_balloon_triangle_top
+{
+	left: -20px;
+}
+
+/* side: [ bottom ] */
+.cke_balloon_triangle_outer.cke_balloon_triangle_bottom
+{
+	border-width: 20px 20px 0;
+	bottom: -20px;
+}
+
+.cke_balloon_triangle_inner.cke_balloon_triangle_bottom
+{
+	border-color: #fff transparent;
+	border-width: 20px 20px 0;
+	top: -22px;
+}
+
+/* side: [ top ] */
+.cke_balloon_triangle_outer.cke_balloon_triangle_top
+{
+	border-width: 0 20px 20px;
+	top: -20px;
+}
+
+.cke_balloon_triangle_inner.cke_balloon_triangle_top
+{
+	border-color: #f8f8f8 transparent;
+	border-width: 0 20px 20px;
+	top: 2px;
+}
+
+/* side: [ left, right ] */
+.cke_balloon_triangle_outer.cke_balloon_triangle_left,
+.cke_balloon_triangle_outer.cke_balloon_triangle_right
+{
+	border-color: transparent #999;
+}
+
+.cke_balloon_triangle_inner.cke_balloon_triangle_left,
+.cke_balloon_triangle_inner.cke_balloon_triangle_right
+{
+	border-color: transparent #fff;
+	top: -20px;
+}
+
+/* side: [ left ] */
+.cke_balloon_triangle_outer.cke_balloon_triangle_left
+{
+	border-width: 20px 20px 20px 0;
+	left: -20px;
+}
+
+.cke_balloon_triangle_inner.cke_balloon_triangle_left
+{
+	border-color: transparent #fff;
+	border-width: 20px 20px 20px 0;
+	left: 2px;
+}
+
+/* side: [ right ] */
+.cke_balloon_triangle_outer.cke_balloon_triangle_right
+{
+	border-width: 20px 0 20px 20px;
+	right: -20px;
+}
+
+.cke_balloon_triangle_inner.cke_balloon_triangle_right
+{
+	border-width: 20px 0 20px 20px;
+	right: 2px;
+}
+
+
+/* align: [ hcenter ] */
+.cke_balloon_triangle_outer.cke_balloon_triangle_align_hcenter
+{
+	left: 50%;
+	margin-left: -20px;
+}
+
+/* align: [ left ] */
+.cke_balloon_triangle_outer.cke_balloon_triangle_align_left
+{
+	left: 20px;
+	margin-left: 0;
+}
+
+/* align: [ right ] */
+.cke_balloon_triangle_outer.cke_balloon_triangle_align_right
+{
+	right: 20px;
+	margin-left: 0;
+}
+
+/* align: [ vcenter ] */
+.cke_balloon_triangle_outer.cke_balloon_triangle_align_vcenter
+{
+	top: 50%;
+	margin-top: -20px;
+}

@@ -1,0 +1,6 @@
+[*]
+indent_style = space
+end_of_line = lf
+
+[*.js]
+indent_size = 2

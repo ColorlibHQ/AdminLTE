@@ -1,0 +1,194 @@
+/*
+ * Component: Direct Chat
+ * ----------------------
+ */
+.direct-chat {
+  .box-body {
+    .border-bottom-radius(0);
+    position: relative;
+    overflow-x: hidden;
+    padding: 0;
+  }
+  &.chat-pane-open {
+    .direct-chat-contacts {
+      .translate(0, 0);
+    }
+  }
+}
+
+.direct-chat-messages {
+  .translate(0, 0);
+  padding: 10px;
+  height: 250px;
+  overflow: auto;
+}
+
+.direct-chat-msg,
+.direct-chat-text {
+  display: block;
+}
+
+.direct-chat-msg {
+  .clearfix();
+  margin-bottom: 10px;
+}
+
+.direct-chat-messages,
+.direct-chat-contacts {
+  .transition-transform(.5s ease-in-out);
+}
+
+.direct-chat-text {
+  .border-radius(5px);
+  position: relative;
+  padding: 5px 10px;
+  background: @direct-chat-default-msg-bg;
+  border: 1px solid @direct-chat-default-msg-border-color;
+  margin: 5px 0 0 50px;
+  color: @direct-chat-default-font-color;
+
+  //Create the arrow
+  &:after,
+  &:before {
+    position: absolute;
+    right: 100%;
+    top: 15px;
+    border: solid transparent;
+    border-right-color: @direct-chat-default-msg-border-color;
+    content: ' ';
+    height: 0;
+    width: 0;
+    pointer-events: none;
+  }
+
+  &:after {
+    border-width: 5px;
+    margin-top: -5px;
+  }
+  &:before {
+    border-width: 6px;
+    margin-top: -6px;
+  }
+  .right & {
+    margin-right: 50px;
+    margin-left: 0;
+    &:after,
+    &:before {
+      right: auto;
+      left: 100%;
+      border-right-color: transparent;
+      border-left-color: @direct-chat-default-msg-border-color;
+    }
+  }
+}
+
+.direct-chat-img {
+  .border-radius(50%);
+  float: left;
+  width: 40px;
+  height: 40px;
+  .right & {
+    float: right;
+  }
+}
+
+.direct-chat-info {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 12px;
+}
+
+.direct-chat-name {
+  font-weight: 600;
+}
+
+.direct-chat-timestamp {
+  color: #999;
+}
+
+//Direct chat contacts pane
+.direct-chat-contacts-open {
+  .direct-chat-contacts {
+    .translate(0, 0);
+  }
+}
+
+.direct-chat-contacts {
+  .translate(101%, 0);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 250px;
+  width: 100%;
+  background: #222d32;
+  color: #fff;
+  overflow: auto;
+}
+
+//Contacts list -- for displaying contacts in direct chat contacts pane
+.contacts-list {
+  &:extend(.list-unstyled);
+  > li {
+    .clearfix();
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin: 0;
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+}
+
+.contacts-list-img {
+  .border-radius(50%);
+  width: 40px;
+  float: left;
+}
+
+.contacts-list-info {
+  margin-left: 45px;
+  color: #fff;
+}
+
+.contacts-list-name,
+.contacts-list-status {
+  display: block;
+}
+
+.contacts-list-name {
+  font-weight: 600;
+}
+
+.contacts-list-status {
+  font-size: 12px;
+}
+
+.contacts-list-date {
+  color: #aaa;
+  font-weight: normal;
+}
+
+.contacts-list-msg {
+  color: #999;
+}
+
+//Direct Chat Variants
+.direct-chat-danger {
+  .direct-chat-variant(@red);
+}
+
+.direct-chat-primary {
+  .direct-chat-variant(@light-blue);
+}
+
+.direct-chat-warning {
+  .direct-chat-variant(@yellow);
+}
+
+.direct-chat-info {
+  .direct-chat-variant(@aqua);
+}
+
+.direct-chat-success {
+  .direct-chat-variant(@green);
+}

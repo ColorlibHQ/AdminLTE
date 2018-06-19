@@ -1,0 +1,51 @@
+{
+  "name": "fullcalendar",
+  "title": "FullCalendar",
+  "description": "Full-sized drag & drop event calendar",
+  "keywords": [
+    "calendar",
+    "event",
+    "full-sized",
+    "jquery-plugin"
+  ],
+  "homepage": "https://fullcalendar.io/",
+  "bugs": "https://fullcalendar.io/wiki/Reporting-Bugs/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fullcalendar/fullcalendar.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Adam Shaw",
+    "email": "arshaw@arshaw.com",
+    "url": "http://arshaw.com/"
+  },
+  "copyright": "2018 Adam Shaw",
+  "dependencies": {
+    "jquery": "2 - 3",
+    "moment": "^2.9.0"
+  },
+  "main": [
+    "dist/fullcalendar.js",
+    "dist/fullcalendar.css"
+  ],
+  "ignore": [
+    "*",
+    "**/.*",
+    "!/dist/**",
+    "!/README.*",
+    "!/LICENSE.*",
+    "!/CHANGELOG.*",
+    "!/CONTRIBUTING.*"
+  ],
+  "version": "3.8.2",
+  "_release": "3.8.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.8.2",
+    "commit": "cca2f934398e8777080fa8375961160bce3cb8f4"
+  },
+  "_source": "https://github.com/fullcalendar/fullcalendar.git",
+  "_target": "^3.4.0",
+  "_originalSource": "fullcalendar"
+}

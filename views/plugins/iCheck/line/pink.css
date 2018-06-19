@@ -1,0 +1,74 @@
+/* iCheck plugin Line skin, pink
+----------------------------------- */
+.icheckbox_line-pink,
+.iradio_line-pink {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 5px 15px 5px 38px;
+    font-size: 13px;
+    line-height: 17px;
+    color: #fff;
+    background: #a77a94;
+    border: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+    .icheckbox_line-pink .icheck_line-icon,
+    .iradio_line-pink .icheck_line-icon {
+        position: absolute;
+        top: 50%;
+        left: 13px;
+        width: 13px;
+        height: 11px;
+        margin: -5px 0 0 0;
+        padding: 0;
+        overflow: hidden;
+        background: url(line.png) no-repeat;
+        border: none;
+    }
+    .icheckbox_line-pink.hover,
+    .icheckbox_line-pink.checked.hover,
+    .iradio_line-pink.hover {
+        background: #B995A9;
+    }
+    .icheckbox_line-pink.checked,
+    .iradio_line-pink.checked {
+        background: #a77a94;
+    }
+        .icheckbox_line-pink.checked .icheck_line-icon,
+        .iradio_line-pink.checked .icheck_line-icon {
+            background-position: -15px 0;
+        }
+    .icheckbox_line-pink.disabled,
+    .iradio_line-pink.disabled {
+        background: #E0D0DA;
+        cursor: default;
+    }
+        .icheckbox_line-pink.disabled .icheck_line-icon,
+        .iradio_line-pink.disabled .icheck_line-icon {
+            background-position: -30px 0;
+        }
+    .icheckbox_line-pink.checked.disabled,
+    .iradio_line-pink.checked.disabled {
+        background: #E0D0DA;
+    }
+        .icheckbox_line-pink.checked.disabled .icheck_line-icon,
+        .iradio_line-pink.checked.disabled .icheck_line-icon {
+            background-position: -45px 0;
+        }
+
+/* Retina support */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (-moz-min-device-pixel-ratio: 1.5),
+       only screen and (-o-min-device-pixel-ratio: 3/2),
+       only screen and (min-device-pixel-ratio: 1.5) {
+    .icheckbox_line-pink .icheck_line-icon,
+    .iradio_line-pink .icheck_line-icon {
+        background-image: url(line@2x.png);
+        -webkit-background-size: 60px 13px;
+        background-size: 60px 13px;
+    }
+}

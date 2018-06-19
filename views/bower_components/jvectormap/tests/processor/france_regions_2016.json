@@ -1,0 +1,74 @@
+[{
+    "name": "read_data",
+    "file_name": "/Users/kirilllebedev/Maps/ne_10m_admin_1_states_provinces_lakes_1.4.0/ne_10m_admin_1_states_provinces_lakes_shp.shp"
+},{
+    "name": "remove",
+    "where": "iso != 'FRA' or objectid == '1493'"
+},{
+    "name": "join_data",
+    "data": [
+        ["FR-D", "FR-X1"],
+        ["FR-I", "FR-X1"],
+        ["FR-B", "FR-X2"],
+        ["FR-L", "FR-X2"],
+        ["FR-T", "FR-X2"],
+        ["FR-P", "FR-X3"],
+        ["FR-Q", "FR-X3"],
+        ["FR-A", "FR-X4"],
+        ["FR-G", "FR-X4"],
+        ["FR-M", "FR-X4"],
+        ["FR-K", "FR-X5"],
+        ["FR-N", "FR-X5"],
+        ["FR-O", "FR-X6"],
+        ["FR-S", "FR-X6"],
+        ["FR-C", "FR-X7"],
+        ["FR-V", "FR-X7"],
+        ["FR-E", "FR-E"],
+        ["FR-F", "FR-F"],
+        ["FR-H", "FR-H"],
+        ["FR-J", "FR-J"],
+        ["FR-R", "FR-R"],
+        ["FR-U", "FR-U"],
+        ["FR-GF", "FR-GF"]
+    ],
+    "fields": [{
+        "name": "HASC_1",
+        "type": 4,
+        "width": 10
+    },{
+        "name": "ISO_2",
+        "type": 4,
+        "width": 5
+    }],
+    "on": "HASC_1"
+},{
+    "name": "join_data",
+    "data": [
+        ["FR-X1", "Bourgogne-Franche-Comté"],
+        ["FR-X2", "Aquitaine-Limousin-Poitou-Charentes"],
+        ["FR-X3", "Normandy"],
+        ["FR-X4", "Alsace-Champagne-Ardenne-Lorraine"],
+        ["FR-X5", "Languedoc-Roussillon-Midi-Pyrénées"],
+        ["FR-X6", "Nord-Pas-de-Calais-Picardie"],
+        ["FR-X7", "Auvergne-Rhône-Alpes"]
+    ],
+    "fields": [{
+        "name": "ISO_2",
+        "type": 4,
+        "width": 5
+    },{
+        "name": "NAME_1",
+        "type": 4,
+        "width": 10
+    }],
+    "on": "ISO_2"
+},{
+    "name": "remove_other_fields",
+    "fields": ["ISO_2", "NAME_1"]
+},{
+    "name": "union",
+    "by": "ISO_2"
+},{
+    "name": "write_data",
+    "file_name": "/Users/kirilllebedev/Maps/france-regions-2016/france-regions-2016.shp"
+}]

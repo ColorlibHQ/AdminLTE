@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Flot Examples: Error Bars</title>
+	<link href="../examples.css" rel="stylesheet" type="text/css">
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../../excanvas.min.js"></script><![endif]-->
+	<script language="javascript" type="text/javascript" src="../../jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="../../jquery.flot.js"></script>
+	<script language="javascript" type="text/javascript" src="../../jquery.flot.errorbars.js"></script>
+	<script language="javascript" type="text/javascript" src="../../jquery.flot.navigate.js"></script>
+	<script type="text/javascript">
+
+	$(function() {
+
+		function drawArrow(ctx, x, y, radius){
+			ctx.beginPath();
+			ctx.moveTo(x + radius, y + radius);
+			ctx.lineTo(x, y);
+			ctx.lineTo(x - radius, y + radius);
+			ctx.stroke();
+		}
+
+		function drawSemiCircle(ctx, x, y, radius){
+			ctx.beginPath();
+			ctx.arc(x, y, radius, 0, Math.PI, false);
+			ctx.moveTo(x - radius, y);
+			ctx.lineTo(x + radius, y);
+			ctx.stroke();
+		}
+
+		var data1 = [
+			[1,1,.5,.1,.3],
+			[2,2,.3,.5,.2],
+			[3,3,.9,.5,.2],
+			[1.5,-.05,.5,.1,.3],
+			[3.15,1.,.5,.1,.3],
+			[2.5,-1.,.5,.1,.3]
+		];
+
+		var data1_points = {
+			show: true,
+			radius: 5,
+			fillColor: "blue", 
+			errorbars: "xy", 
+			xerr: {show: true, asymmetric: true, upperCap: "-", lowerCap: "-"}, 
+			yerr: {show: true, color: "red", upperCap: "-"}
+		};
+
+		var data2 = [
+			[.7,3,.2,.4],
+			[1.5,2.2,.3,.4],
+			[2.3,1,.5,.2]
+		];
+
+		var data2_points = {
+			show: true,
+			radius: 5,
+			errorbars: "y", 
+			yerr: {show:true, asymmetric:true, upperCap: drawArrow, lowerCap: drawSemiCircle}
+		};
+
+		var data3 = [
+			[1,2,.4],
+			[2,0.5,.3],
+			[2.7,2,.5]
+		];
+
+		var data3_points = {
+			//do not show points
+			radius: 0,
+			errorbars: "y", 
+			yerr: {show:true, upperCap: "-", lowerCap: "-", radius: 5}
+		};
+
+		var data4 = [
+			[1.3, 1],
+			[1.75, 2.5],
+			[2.5, 0.5]
+		];
+
+		var data4_errors = [0.1, 0.4, 0.2];
+		for (var i = 0; i < data4.length; i++) {
+			data4_errors[i] = data4[i].concat(data4_errors[i])
+		}
+
+		var data = [
+			{color: "blue", points: data1_points, data: data1, label: "data1"}, 
+			{color: "red",  points: data2_points, data: data2, label: "data2"},
+			{color: "green", lines: {show: true}, points: data3_points, data: data3, label: "data3"},
+			// bars with errors
+			{color: "orange", bars: {show: true, align: "center", barWidth: 0.25}, data: data4, label: "data4"},
+			{color: "orange", points: data3_points, data: data4_errors}
+		];
+
+		$.plot($("#placeholder"), data , {
+			legend: {
+				position: "sw",
+				show: true
+			},
+			series: {
+				lines: {
+					show: false
+				}
+			},
+			xaxis: {
+				min: 0.6,
+				max: 3.1
+			},
+			yaxis: {
+				min: 0,
+				max: 3.5
+			},
+			zoom: {
+				interactive: true
+			},
+			pan: {
+				interactive: true
+			}
+		});
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+	</script>
+</head>
+<body>
+
+	<div id="header">
+		<h2>Error Bars</h2>
+	</div>
+
+	<div id="content">
+
+		<div class="demo-container">
+			<div id="placeholder" class="demo-placeholder"></div>
+		</div>
+
+		<p>With the errorbars plugin you can plot error bars to show standard deviation and other useful statistical properties.</p>
+
+	</div>
+
+	<div id="footer">
+		Copyright &copy; 2007 - 2014 IOLA and Ole Laursen
+	</div>
+
+</body>
+</html>

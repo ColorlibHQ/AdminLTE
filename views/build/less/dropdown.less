@@ -1,0 +1,350 @@
+/*
+ * Component: Dropdown menus
+ * -------------------------
+ */
+
+/*Dropdowns in general*/
+.dropdown-menu {
+  box-shadow: none;
+  border-color: #eee;
+  > li > a {
+    color: #777;
+  }
+  > li > a > .glyphicon,
+  > li > a > .fa,
+  > li > a > .ion {
+    margin-right: 10px;
+  }
+  > li > a:hover {
+    background-color: lighten(@gray-lte, 5%);
+    color: #333;
+  }
+  > .divider {
+    background-color: #eee;
+  }
+}
+
+//Navbar custom dropdown menu
+.navbar-nav > .notifications-menu,
+.navbar-nav > .messages-menu,
+.navbar-nav > .tasks-menu {
+  //fix width and padding
+  > .dropdown-menu {
+    > li {
+      position: relative;
+    }
+    width: 280px;
+    //Remove padding and margins
+    padding: 0 0 0 0;
+    margin: 0;
+    top: 100%;
+  }
+  //Define header class
+  > .dropdown-menu > li.header {
+    .border-radius(4px; 4px; 0; 0);
+    background-color: #ffffff;
+    padding: 7px 10px;
+    border-bottom: 1px solid #f4f4f4;
+    color: #444444;
+    font-size: 14px;
+  }
+
+  //Define footer class
+  > .dropdown-menu > li.footer > a {
+    .border-radius(0; 0; 4px; 4px);
+    font-size: 12px;
+    background-color: #fff;
+    padding: 7px 10px;
+    border-bottom: 1px solid #eeeeee;
+    color: #444 !important;
+    @media (max-width: @screen-sm-max) {
+      background: #fff !important;
+      color: #444 !important;
+    }
+    text-align: center;
+    //Hover state
+    &:hover {
+      text-decoration: none;
+      font-weight: normal;
+    }
+  }
+
+  //Clear inner menu padding and margins
+  > .dropdown-menu > li .menu {
+    max-height: 200px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-x: hidden;
+    > li > a {
+      display: block;
+      white-space: nowrap; /* Prevent text from breaking */
+      border-bottom: 1px solid #f4f4f4;
+      // Hove state
+      &:hover {
+        background: #f4f4f4;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+//Notifications menu
+.navbar-nav > .notifications-menu {
+  > .dropdown-menu > li .menu {
+    // Links inside the menu
+    > li > a {
+      color: #444444;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 10px;
+      // Icons inside the menu
+      > .glyphicon,
+      > .fa,
+      > .ion {
+        width: 20px;
+      }
+    }
+
+  }
+}
+
+//Messages menu
+.navbar-nav > .messages-menu {
+  //Inner menu
+  > .dropdown-menu > li .menu {
+    // Messages menu item
+    > li > a {
+      margin: 0;
+      //line-height: 20px;
+      padding: 10px 10px;
+      // User image
+      > div > img {
+        margin: auto 10px auto auto;
+        width: 40px;
+        height: 40px;
+      }
+      // Message heading
+      > h4 {
+        padding: 0;
+        margin: 0 0 0 45px;
+        color: #444444;
+        font-size: 15px;
+        position: relative;
+        // Small for message time display
+        > small {
+          color: #999999;
+          font-size: 10px;
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+      }
+
+      > p {
+        margin: 0 0 0 45px;
+        font-size: 12px;
+        color: #888888;
+      }
+
+      .clearfix();
+
+    }
+
+  }
+}
+
+//Tasks menu
+.navbar-nav > .tasks-menu {
+  > .dropdown-menu > li .menu {
+    > li > a {
+      padding: 10px;
+
+      > h3 {
+        font-size: 14px;
+        padding: 0;
+        margin: 0 0 10px 0;
+        color: #666666;
+      }
+
+      > .progress {
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+}
+
+//User menu
+.navbar-nav > .user-menu {
+  > .dropdown-menu {
+    .border-top-radius(0);
+    padding: 1px 0 0 0;
+    border-top-width: 0;
+    width: 280px;
+
+    &,
+    > .user-body {
+      .border-bottom-radius(4px);
+    }
+    // Header menu
+    > li.user-header {
+      height: 175px;
+      padding: 10px;
+      text-align: center;
+      // User image
+      > img {
+        z-index: 5;
+        height: 90px;
+        width: 90px;
+        border: 3px solid;
+        border-color: transparent;
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      > p {
+        z-index: 5;
+        color: #fff;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 17px;
+        //text-shadow: 2px 2px 3px #333333;
+        margin-top: 10px;
+        > small {
+          display: block;
+          font-size: 12px;
+        }
+      }
+    }
+
+    // Menu Body
+    > .user-body {
+      padding: 15px;
+      border-bottom: 1px solid #f4f4f4;
+      border-top: 1px solid #dddddd;
+      .clearfix();
+      a {
+        color: #444 !important;
+        @media (max-width: @screen-sm-max) {
+          background: #fff !important;
+          color: #444 !important;
+        }
+      }
+    }
+
+    // Menu Footer
+    > .user-footer {
+      background-color: #f9f9f9;
+      padding: 10px;
+      .clearfix();
+      .btn-default {
+        color: #666666;
+        &:hover {
+          @media (max-width: @screen-sm-max) {
+            background-color: #f9f9f9;
+          }
+        }
+      }
+    }
+  }
+  .user-image {
+    float: left;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: -2px;
+    @media (max-width: @screen-xs-max) {
+      float: none;
+      margin-right: 0;
+      margin-top: -8px;
+      line-height: 10px;
+    }
+  }
+}
+
+/* Add fade animation to dropdown menus by appending
+ the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
+.open:not(.dropup) > .animated-dropdown-menu {
+  backface-visibility: visible !important;
+  .animation(flipInX .7s both);
+
+}
+
+@keyframes flipInX {
+  0% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    transition-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transition-timing-function: ease-in;
+  }
+
+  60% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  100% {
+    transform: perspective(400px);
+  }
+}
+
+@-webkit-keyframes flipInX {
+  0% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    -webkit-transition-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    -webkit-transition-timing-function: ease-in;
+  }
+
+  60% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  100% {
+    -webkit-transform: perspective(400px);
+  }
+}
+
+/* Fix dropdown menu in navbars */
+.navbar-custom-menu > .navbar-nav {
+  > li {
+    position: relative;
+    > .dropdown-menu {
+      position: absolute;
+      right: 0;
+      left: auto;
+    }
+  }
+}
+
+@media (max-width: @screen-sm-max) {
+  .navbar-custom-menu > .navbar-nav {
+    float: right;
+    > li {
+      position: static;
+      > .dropdown-menu {
+        position: absolute;
+        right: 5%;
+        left: auto;
+        border: 1px solid #ddd;
+        background: #fff;
+      }
+    }
+  }
+}

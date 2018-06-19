@@ -1,0 +1,6 @@
+﻿/*
+ Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+*/
+CKEDITOR.dialog.add("embedBase",function(b){var c=b.lang.embedbase;return{title:c.title,minWidth:350,minHeight:50,onLoad:function(){function e(){a.setState(CKEDITOR.DIALOG_STATE_IDLE);d=null}var a=this,d=null;this.on("ok",function(f){f.data.hide=!1;f.stop();a.setState(CKEDITOR.DIALOG_STATE_BUSY);var c=a.getValueOf("info","url");d=a.widget.loadContent(c,{noNotifications:!0,callback:function(){a.widget.isReady()||b.widgets.finalizeCreation(a.widget.wrapper.getParent(!0));b.fire("saveSnapshot");a.hide();
+e()},errorCallback:function(b){a.getContentElement("info","url").select();alert(a.widget.getErrorMessage(b,c,"Given"));e()}})},null,null,15);this.on("cancel",function(a){a.data.hide&&d&&(d.cancel(),e())})},contents:[{id:"info",elements:[{type:"text",id:"url",label:b.lang.common.url,required:!0,setup:function(b){this.setValue(b.data.url)},validate:function(){return this.getDialog().widget.isUrlValid(this.getValue())?!0:c.unsupportedUrlGiven}}]}]}});

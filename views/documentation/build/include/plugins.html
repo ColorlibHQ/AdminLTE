@@ -1,0 +1,47 @@
+<section id="plugins">
+  <h2 class="page-header"><a href="#plugins">Plugins</a></h2>
+  <p class="lead">AdminLTE makes use of the following plugins. For documentation, updates or license information, please visit the provided links.</p>
+  <div class="row bring-up">
+    <div class="col-sm-3">
+      <ul class="list-unstyled">
+        <li><h4>Charts</h4></li>
+        <li><a href="http://www.chartjs.org/" target="_blank">ChartJS</a></li>
+        <li><a href="http://www.flotcharts.org/" target="_blank">Flot</a></li>
+        <li><a href="http://morrisjs.github.io/morris.js/" target="_blank">Morris.js</a></li>
+        <li><a href="http://omnipotent.net/jquery.sparkline/" target="_blank">Sparkline</a></li>
+      </ul>
+    </div><!-- /.col -->
+    <div class="col-sm-3">
+      <ul class="list-unstyled">
+        <li><h4>Form Elements</h4></li>
+        <li><a href="https://github.com/seiyria/bootstrap-slider/">Bootstrap Slider</a></li>
+        <li><a href="http://ionden.com/a/plugins/ion.rangeSlider/en.html" target="_blank">Ion Slider</a></li>
+        <li><a href="http://bootstrap-datepicker.readthedocs.org/" target="_blank">Date Picker</a></li>
+        <li><a href="http://www.daterangepicker.com/" target="_blank">Date Range Picker</a></li>
+        <li><a href="http://mjolnic.com/bootstrap-colorpicker/" target="_blank">Color Picker</a></li>
+        <li><a href="https://github.com/jdewit/bootstrap-timepicker/" target="_blank">Time Picker</a></li>
+        <li><a href="http://fronteed.com/iCheck/" target="_blank">iCheck</a></li>
+        <li><a href="https://github.com/RobinHerbots/jquery.inputmask/" target="_blank">Input Mask</a></li>
+      </ul>
+    </div><!-- /.col -->
+    <div class="col-sm-3">
+      <ul class="list-unstyled">
+        <li><h4>Editors</h4></li>
+        <li><a href="https://github.com/bootstrap-wysiwyg/bootstrap3-wysiwyg/" target="_blank">Bootstrap WYSIHTML5</a></li>
+        <li><a href="http://ckeditor.com/" target="_blank">CK Editor</a></li>
+      </ul>
+    </div><!-- /. col -->
+    <div class="col-sm-3">
+      <ul class="list-unstyled">
+        <li><h4>Other</h4></li>
+        <li><a href="https://datatables.net/examples/styling/bootstrap.html" target="_blank">DataTables</a></li>
+        <li><a href="http://fullcalendar.io/" target="_blank">Full Calendar</a></li>
+        <li><a href="http://jqueryui.com/" target="_blank">jQuery UI</a></li>
+        <li><a href="http://anthonyterrien.com/knob/" target="_blank">jQuery Knob</a></li>
+        <li><a href="http://jvectormap.com/" target="_blank">jVector Map</a></li>
+        <li><a href="http://rocha.la/jQuery-slimScroll/" target="_blank">Slim Scroll</a></li>
+        <li><a href="http://github.hubspot.com/pace/docs/welcome/" target="_blank">Pace</a></li>
+      </ul>
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+</section>

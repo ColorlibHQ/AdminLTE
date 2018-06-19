@@ -1,0 +1,12 @@
+<section id="browsers">
+  <h2 class="page-header"><a href="#browsers">Browser Support</a></h2>
+  <p class="lead">AdminLTE supports the following browsers:</p>
+  <ul>
+    <li>IE9+</li>
+    <li>Firefox (latest)</li>
+    <li>Safari (latest)</li>
+    <li>Chrome (latest)</li>
+    <li>Opera (latest)</li>
+  </ul>
+  <p><b>Note:</b> IE9 does not support transitions or animations. The template will function properly but it won't use animations/transitions on IE9.</p>
+</section>
