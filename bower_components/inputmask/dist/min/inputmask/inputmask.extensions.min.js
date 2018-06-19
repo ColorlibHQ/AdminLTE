@@ -1,9 +1,0 @@
-/*!
-* inputmask.extensions.min.js
-* https://github.com/RobinHerbots/Inputmask
-* Copyright (c) 2010 - 2017 Robin Herbots
-* Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-* Version: 3.3.11
-*/
-
-!function(i){"function"==typeof define&&define.amd?define(["./dependencyLibs/inputmask.dependencyLib","./inputmask"],i):"object"==typeof exports?module.exports=i(require("./dependencyLibs/inputmask.dependencyLib"),require("./inputmask")):i(window.dependencyLib||jQuery,window.Inputmask)}(function(i,n){return n.extendDefinitions({A:{validator:"[A-Za-zА-яЁёÀ-ÿµ]",cardinality:1,casing:"upper"},"&":{validator:"[0-9A-Za-zА-яЁёÀ-ÿµ]",cardinality:1,casing:"upper"},"#":{validator:"[0-9A-Fa-f]",cardinality:1,casing:"upper"}}),n.extendAliases({url:{definitions:{i:{validator:".",cardinality:1}},mask:"(\\http://)|(\\http\\s://)|(ftp://)|(ftp\\s://)i{+}",insertMode:!1,autoUnmask:!1,inputmode:"url"},ip:{mask:"i[i[i]].i[i[i]].i[i[i]].i[i[i]]",definitions:{i:{validator:function(i,n,e,a,t){return e-1>-1&&"."!==n.buffer[e-1]?(i=n.buffer[e-1]+i,i=e-2>-1&&"."!==n.buffer[e-2]?n.buffer[e-2]+i:"0"+i):i="00"+i,new RegExp("25[0-5]|2[0-4][0-9]|[01][0-9][0-9]").test(i)},cardinality:1}},onUnMask:function(i,n,e){return i},inputmode:"numeric"},email:{mask:"*{1,64}[.*{1,64}][.*{1,64}][.*{1,63}]@-{1,63}.-{1,63}[.-{1,63}][.-{1,63}]",greedy:!1,onBeforePaste:function(i,n){return(i=i.toLowerCase()).replace("mailto:","")},definitions:{"*":{validator:"[0-9A-Za-z!#$%&'*+/=?^_`{|}~-]",cardinality:1,casing:"lower"},"-":{validator:"[0-9A-Za-z-]",cardinality:1,casing:"lower"}},onUnMask:function(i,n,e){return i},inputmode:"email"},mac:{mask:"##:##:##:##:##:##"},vin:{mask:"V{13}9{4}",definitions:{V:{validator:"[A-HJ-NPR-Za-hj-npr-z\\d]",cardinality:1,casing:"upper"}},clearIncomplete:!0,autoUnmask:!0}}),n});

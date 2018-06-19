@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("mathjax","ku",{title:"بیرکاری لە TeX",button:"بیرکاری",dialogInput:"TeXەکەت لێرە بنووسە",docUrl:"http://en.wikibooks.org/wiki/LaTeX/Mathematics",docLabel:"بەڵگەنامەکردنی TeX",loading:"بارکردن...",pathName:"بیرکاری"});

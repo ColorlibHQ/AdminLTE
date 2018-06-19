@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("bidi","fa",{ltr:"جهت متن از چپ به راست",rtl:"جهت متن از راست به چپ"});
