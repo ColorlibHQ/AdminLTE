@@ -39,6 +39,8 @@
     "ckeditor": "^4.7.0",
     "datatables.net": "^1.10.15",
     "datatables.net-bs": "^1.10.15",
+	"express": "^4.12.2",
+	"ejs":"^1.0.0",
     "fastclick": "^1.0.6",
     "flot": "^0.8.0-alpha",
     "font-awesome": "^4.7.0",
