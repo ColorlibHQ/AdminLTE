@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","sl",{title:"Navodila za dostopnost",contents:"Vsebina pomoči. Če želite zapreti pogovorno okno, pritisnite ESC.",legend:[{name:"Splošno",items:[{name:"Orodna vrstica urejevalnika",legend:"Pritisnite ${toolbarFocus} za pomik v orodno vrstico. Z TAB in SHIFT+TAB se pomikate na naslednjo in prejšnjo skupino orodne vrstice. Z DESNO PUŠČICO ali LEVO PUŠČICO se pomikate na naslednji in prejšnji gumb orodne vrstice. Pritisnite SPACE ali ENTER, da aktivirate gumb orodne vrstice."},

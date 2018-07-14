@@ -1,0 +1,118 @@
+/*
+Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+*/
+
+.easyimage, .cke_widget_wrapper_easyimage {
+	background: transparent;
+	border: none;
+	outline: 0px;
+	display: block;
+	padding: 0;
+	clear: both;
+}
+
+/*
+The outline is not a part of the element's dimensions. A border needs to be used as an outline to align the linked image with a caption.
+*/
+.easyimage a > img {
+	outline: none;
+	border: 1px solid #0782C1;
+	box-sizing: border-box;
+	padding: 1px;
+}
+
+.cke_widget_wrapper_easyimage figure {
+	margin: 0;
+}
+
+.easyimage img, .cke_widget_uploadeasyimage img {
+	display: block;
+	height: auto;
+	margin: 0 auto;
+	max-width: 100%;
+}
+
+.cke_widget_wrapper_easyimage-side, :not(.cke_widget_wrapper_easyimage):not(.cke_widget_wrapper_easyimage-side) > .easyimage-side,
+.cke_widget_wrapper_easyimage-align-right, :not(.cke_widget_wrapper_easyimage):not(.cke_widget_wrapper_easyimage-align-right) > .easyimage-align-right {
+	/*
+	The :not() selector will be used for Easy Image content ouside of the editor, for example: when the editor was destroyed.
+	See https://github.com/ckeditor/ckeditor-dev/pull/1150#discussion_r150415261 for more details.
+	*/
+	float: right;
+	max-width: 50%;
+	/*
+	In case of placement inside the parent container like a table cell, 'min-width' is needed to prevent the widget from having
+	tiny sizes. The `em` unit is used so it works well and has proper proportions to the textual content around (#1553).
+	*/
+	min-width: 10em;
+	margin-left: 1.5em;
+}
+
+/*
+Overwrite 'max-width: 50%' with 'max-width: 50vw' to prevent the native Chrome bug:
+https://bugs.chromium.org/p/chromium/issues/detail?id=803045 (#1550).
+*/
+body.cke_editable > .cke_widget_wrapper_easyimage-side {
+	max-width: 50vw;
+}
+
+.cke_widget_wrapper_easyimage-align-left, :not(.cke_widget_wrapper_easyimage):not(.cke_widget_wrapper_easyimage-align-left) > .easyimage-align-left {
+	float: left;
+	max-width: 50%;
+	min-width: 10em;
+	margin-right: 1.5em;
+}
+
+.cke_widget_wrapper_easyimage-align-center, :not(.cke_widget_wrapper_easyimage):not(.cke_widget_wrapper_easyimage-align-center) > .easyimage-align-center {
+	margin: 0 auto;
+	max-width: 90%;
+}
+
+.easyimage .cke_widget_editable {
+	background-color: #f7f7f7;
+	/* Add border so when caption is focused, blue border does not cause flickering. */
+	border: 1px solid #f7f7f7;
+	color: #333;
+    padding: .8em;
+}
+
+.cke_widget_wrapper:hover .easyimage .cke_widget_editable {
+	outline: 3px solid transparent;
+}
+
+.cke_widget_wrapper .easyimage .cke_widget_editable.cke_widget_editable_focused {
+	background-color: #fff;
+	border-color: #48a3f5;
+	outline: none;
+}
+
+/* Loaders */
+
+.cke_widget_element.easyimage {
+	position: relative;
+}
+
+.cke_loader {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+.cke_loader .cke_bar {
+	height: 10px;
+	background: #6a9ed1;
+	width: 0;
+}
+
+/* Fancy opacity effect discussed in #1533. Transition is assigned in this awkward way so that it **does not** happen for
+the initial render, otherwise it would start transitioning from opacity 1 to 0.x upon the first render. */
+
+.cke_widget_wrapper_easyimage:not(.cke_widget_wrapper_uploading) figure img {
+	transition: opacity 0.3s ease-in-out;
+}
+
+.cke_widget_wrapper_easyimage.cke_widget_wrapper_uploading figure img {
+	opacity: 0.75;
+}

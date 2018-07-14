@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+-->
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Emoji plugin &mdash; CKEditor Sample</title>
+	<script src="../../../ckeditor.js"></script>
+	<link rel="stylesheet" href="../../../samples/css/samples.css">
+</head>
+<body>
+
+<style>
+	.adjoined-bottom:before {
+		height: 270px;
+	}
+	.content ul.sample-data {
+		margin: 0;
+	}
+	.content .sample-data p {
+		font-size: 1rem;
+		margin: 0;
+	}
+
+</style>
+
+<nav class="navigation-a">
+	<div class="grid-container">
+		<ul class="navigation-a-left grid-width-70">
+			<li><a href="http://ckeditor.com">Project Homepage</a></li>
+			<li><a href="https://github.com/ckeditor/ckeditor-dev/issues">I found a bug</a></li>
+			<li><a href="http://github.com/ckeditor/ckeditor-dev" class="icon-pos-right icon-navigation-a-github">Fork CKEditor on GitHub</a></li>
+		</ul>
+		<ul class="navigation-a-right grid-width-30">
+			<li><a href="http://ckeditor.com/blog-list">CKEditor Blog</a></li>
+		</ul>
+	</div>
+</nav>
+
+<header class="header-a">
+	<div class="grid-container">
+		<h1 class="header-a-logo grid-width-30">
+			<img src="../../../samples/img/logo.svg" onerror="this.src='../../../samples/img/logo.png'; this.onerror=null;" alt="CKEditor Sample">
+		</h1>
+	</div>
+</header>
+
+<main>
+	<div class="adjoined-top">
+		<div class="grid-container">
+			<div class="content grid-width-100">
+				<h1>Emoji plugin</h1>
+				<p>This sample shows the progress of work on Emoji. Type &#8220; : &#8221; to start inserting emoji.</p>
+				<p>Some emoji to type in editor:</p>
+				<ul class="sample-data">
+					<li><p>:beaming_face_with_smiling_eyes:</p></li>
+					<li><p>:skull:</p></li>
+					<li><p>:tractor:</p></li>
+					<li><p>:sparkles:</p></li>
+					<li><p>:bug:</p></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="adjoined-bottom">
+		<div class="grid-container">
+			<div class="grid-width-100">
+				<div id="editor">
+					<p>Type `:` (colon) to select emoji.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+	<footer class="footer-a grid-container">
+		<div class="grid-container">
+			<p class="grid-width-100">
+				CKEditor &ndash; The text editor for the Internet &ndash; <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
+			</p>
+			<p class="grid-width-100" id="copy">
+				Copyright &copy; 2003-2018, <a class="samples" href="http://cksource.com/">CKSource</a> &ndash; Frederico Knabben. All rights reserved.
+			</p>
+		</div>
+	</footer>
+<script>
+	'use strict';
+
+	( function() {
+
+		var editor = CKEDITOR.replace( 'editor', {
+			extraPlugins: 'emoji',
+			toolbarGroups: [
+				{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+				{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+				{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+				{ name: 'forms', groups: [ 'forms' ] },
+				{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+				{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+				{ name: 'links', groups: [ 'links' ] },
+				{ name: 'insert', groups: [ 'insert' ] },
+				{ name: 'colors', groups: [ 'colors' ] },
+				'/',
+				{ name: 'styles', groups: [ 'styles' ] },
+				{ name: 'tools', groups: [ 'tools' ] },
+				{ name: 'others', groups: [ 'others' ] },
+				{ name: 'about', groups: [ 'about' ] }
+			],
+
+			removeButtons: 'Save,Preview,Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Find,Replace,SelectAll,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Strike,Subscript,Superscript,CopyFormatting,RemoveFormat,Outdent,Indent,Blockquote,CreateDiv,JustifyLeft,JustifyCenter,JustifyRight,JustifyBlock,BidiLtr,BidiRtl,Language,Anchor,Flash,Image,Table,HorizontalRule,Smiley,SpecialChar,Iframe,PageBreak,Maximize,ShowBlocks,About'
+		} );
+
+	} )();
+</script>
+
+</body>
+</html>

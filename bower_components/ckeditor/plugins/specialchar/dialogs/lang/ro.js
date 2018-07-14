@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","ro",{euro:"Simbol EURO €",lsquo:"Ghilimea simplă stânga",rsquo:"Ghilimea simplă dreapta",ldquo:"Ghilimea dublă stânga",rdquo:"Ghilimea dublă dreapta",ndash:"liniuță despărțire cu spații",mdash:"liniuță despărțire cuvinte fără spații",iexcl:"semnul exclamației inversat",cent:"simbol cent",pound:"simbol lira sterlină",curren:"simbol monedă",yen:"simbol yen",brvbar:"bara verticală întreruptă",sect:"simbol paragraf",uml:"tréma",copy:"simbol drept de autor",ordf:"Indicatorul ordinal feminin a superscript",

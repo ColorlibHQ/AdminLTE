@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","oc",{title:"Instruccions d'accessibilitat",contents:"Contengut de l'ajuda. Per tampar aquesta fenèstra, quichatz sus la tòca Escap.",legend:[{name:"General",items:[{name:"Barra d'aisinas de l'editor",legend:"Quichar sus ${toolbarFocus} per accedir a la barra d'aisinas. Se desplaçar cap al groupe seguent o precedent de la barra d'aisinas amb las tòcas Tab e Maj+Tab. Se desplaçar cap al boton seguent o precedent de la barra d'aisinas amb las tòcas Sageta dreita e Sageta esquèrra. Quichar sus la barra d'espaci o la tòca Entrada per activer lo boton de barra d'aisinas."},

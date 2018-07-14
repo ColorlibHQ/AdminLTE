@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.dialog.add("mathjax",function(d){var c,b=d.lang.mathjax;return{title:b.title,minWidth:350,minHeight:100,contents:[{id:"info",elements:[{id:"equation",type:"textarea",label:b.dialogInput,onLoad:function(){var a=this;if(!CKEDITOR.env.ie||8!=CKEDITOR.env.version)this.getInputElement().on("keyup",function(){c.setValue("\\("+a.getInputElement().getValue()+"\\)")})},setup:function(a){this.setValue(CKEDITOR.plugins.mathjax.trim(a.data.math))},commit:function(a){a.setData("math","\\("+this.getValue()+

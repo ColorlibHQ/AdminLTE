@@ -2,12 +2,6 @@
 	background: transparent;
 }
 
-.cke_table-faked-selection-editor {
-	/* With love, dedicated for Chrome, until https://bugs.chromium.org/p/chromium/issues/detail?id=702610 is resolved.
-	It will force repaint (without reflow) so that selection is properly displayed.	*/
-	transform: translateZ( 0 );
-}
-
 .cke_table-faked-selection {
 	background: darkgray !important;
 	color: black;

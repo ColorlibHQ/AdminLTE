@@ -1,6 +1,6 @@
 /*
-Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
-For licensing, see LICENSE.md or https://ckeditor.com/license
+Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 
 .cke_balloon.cke_balloontoolbar
@@ -22,14 +22,18 @@ For licensing, see LICENSE.md or https://ckeditor.com/license
 }
 
 /* The .cke_balloon_content container height will be stretched to children height, so padding is properly applied. */
-.cke_balloon.cke_balloontoolbar .cke_balloon_content {
+.cke_balloon.cke_balloontoolbar .cke_balloon_content
+{
 	float: left;
+	min-height: 10px;
+	padding: 3px;
 }
 
 /* Removes bottom margins from buttons/combos so only '.cke_balloon_content' padding decides about balloon toolbar padding. */
 .cke_balloon.cke_balloontoolbar .cke_toolgroup,
-.cke_balloon.cke_balloontoolbar .cke_combo_button {
-	margin-bottom: 0px;
+.cke_balloon.cke_balloontoolbar .cke_combo_button
+{
+	margin-bottom: 0;
 }
 
 .cke_balloon.cke_balloontoolbar .cke_balloon_content > span:last-child > a.cke_combo_button,
@@ -49,12 +53,6 @@ For licensing, see LICENSE.md or https://ckeditor.com/license
 {
 	left: 50%;
 	margin-left: -7px;
-}
-
-.cke_balloon.cke_balloontoolbar .cke_balloon_content
-{
-	min-height: 10px;
-	padding: 3px;
 }
 
 /* side: [ bottom, top ] */

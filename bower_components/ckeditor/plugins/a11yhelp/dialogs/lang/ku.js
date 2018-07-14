@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","ku",{title:"ڕێنمای لەبەردەستدابوون",contents:"پێکهاتەی یارمەتی. کلیك ESC بۆ داخستنی ئەم دیالۆگه.",legend:[{name:"گشتی",items:[{name:"تووڵامرازی دەستكاریكەر",legend:"کلیك ${toolbarFocus} بۆ ڕابەری تووڵامراز. بۆ گواستنەوەی پێشوو داهاتووی گرووپی تووڵامرازی داگرتنی کلیلی TAB لەگەڵ‌ SHIFT+TAB. بۆ گواستنەوەی پێشوو داهاتووی دووگمەی تووڵامرازی لەڕێی کلیلی تیری دەستی ڕاست یان کلیلی تیری دەستی چەپ. کلیکی کلیلی SPACE یان ENTER بۆ چالاککردنی دووگمەی تووڵامراز."},{name:"دیالۆگی دەستكاریكەر",

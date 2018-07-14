@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","nl",{euro:"Euro-teken",lsquo:"Linker enkel aanhalingsteken",rsquo:"Rechter enkel aanhalingsteken",ldquo:"Linker dubbel aanhalingsteken",rdquo:"Rechter dubbel aanhalingsteken",ndash:"En dash",mdash:"Em dash",iexcl:"Omgekeerd uitroepteken",cent:"Cent-teken",pound:"Pond-teken",curren:"Valuta-teken",yen:"Yen-teken",brvbar:"Gebroken streep",sect:"Paragraaf-teken",uml:"Trema",copy:"Copyright-teken",ordf:"Vrouwelijk ordinaal",laquo:"Linker guillemet",not:"Ongelijk-teken",

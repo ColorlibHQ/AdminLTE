@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","fi",{euro:"Euron merkki",lsquo:"Vasen yksittäinen lainausmerkki",rsquo:"Oikea yksittäinen lainausmerkki",ldquo:"Vasen kaksoislainausmerkki",rdquo:"Oikea kaksoislainausmerkki",ndash:"En dash",mdash:"Em dash",iexcl:"Inverted exclamation mark",cent:"Sentin merkki",pound:"Punnan merkki",curren:"Valuuttamerkki",yen:"Yenin merkki",brvbar:"Broken bar",sect:"Section sign",uml:"Diaeresis",copy:"Copyright sign",ordf:"Feminine ordinal indicator",laquo:"Left-pointing double angle quotation mark",

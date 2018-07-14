@@ -1,0 +1,38 @@
+/*
+Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+*/
+
+.cke_autocomplete_panel
+{
+	position: absolute;
+	display: none;
+	box-sizing: border-box;
+	width: 200px;
+	max-height: 300px;
+	overflow: auto;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	background: #FFF;
+	border: 1px solid #b6b6b6;
+	border-bottom-color: #999;
+	border-radius: 3px;
+	font: 12px Arial, Helvetica, Tahoma, Verdana, Sans-Serif;
+}
+.cke_autocomplete_opened
+{
+	display: block;
+}
+.cke_autocomplete_panel > li
+{
+	padding: 5px;
+}
+.cke_autocomplete_panel > li:hover
+{
+	cursor: pointer;
+}
+.cke_autocomplete_selected, .cke_autocomplete_panel > li:hover
+{
+	background-color: #EFF0EF;
+}

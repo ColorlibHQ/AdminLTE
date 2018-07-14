@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.dialog.add("radio",function(c){return{title:c.lang.forms.checkboxAndRadio.radioTitle,minWidth:350,minHeight:140,onShow:function(){delete this.radioButton;var a=this.getParentEditor().getSelection().getSelectedElement();a&&"input"==a.getName()&&"radio"==a.getAttribute("type")&&(this.radioButton=a,this.setupContent(a))},onOk:function(){var a,b=this.radioButton;b||(a=this.getParentEditor(),b=a.document.createElement("input"),b.setAttribute("type","radio"),a.insertElement(b));this.commitContent({element:b})},

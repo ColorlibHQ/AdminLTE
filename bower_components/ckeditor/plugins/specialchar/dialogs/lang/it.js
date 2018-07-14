@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","it",{euro:"Simbolo Euro",lsquo:"Virgoletta singola sinistra",rsquo:"Virgoletta singola destra",ldquo:"Virgolette aperte",rdquo:"Virgolette chiuse",ndash:"Trattino",mdash:"Trattino lungo",iexcl:"Punto esclavamativo invertito",cent:"Simbolo Cent",pound:"Simbolo Sterlina",curren:"Simbolo Moneta",yen:"Simbolo Yen",brvbar:"Barra interrotta",sect:"Simbolo di sezione",uml:"Dieresi",copy:"Simbolo Copyright",ordf:"Indicatore ordinale femminile",laquo:"Virgolette basse aperte",

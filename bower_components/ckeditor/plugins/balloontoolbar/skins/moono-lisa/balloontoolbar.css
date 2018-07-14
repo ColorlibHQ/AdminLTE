@@ -1,79 +1,17 @@
 /*
-Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
-For licensing, see LICENSE.md or http://ckeditor.com/license
+Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
-
-.cke_balloon.cke_balloontoolbar
-{
-	background: #f8f8f8;
-	border: 1px solid #d1d1d1;
-}
-
-.cke_balloon.cke_balloontoolbar .cke_balloon_content
-{
-	min-height: 10px;
-	padding: 3px;
-}
-
-/* side: [ bottom, top ] */
-.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_outer.cke_balloon_triangle_bottom,
-.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_outer.cke_balloon_triangle_top
-{
-	border-color: #d1d1d1 transparent;
-}
-
-.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_inner.cke_balloon_triangle_bottom,
-.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_inner.cke_balloon_triangle_top
-{
-	border-color: #f8f8f8 transparent;
-	left: -7px;
-}
-
-/* side: [ bottom ] */
-.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_outer.cke_balloon_triangle_bottom
-{
-	border-width: 7px 7px 0;
-	bottom: -7px;
-}
-
-.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_inner.cke_balloon_triangle_bottom
-{
-	border-width: 7px 7px 0;
-	top: -8px;
-}
-
-/* side: [ top ] */
-.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_outer.cke_balloon_triangle_top
-{
-	border-width: 0 7px 7px;
-	top: -7px;
-}
-
-.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_inner.cke_balloon_triangle_top
-{
-	border-width: 0 7px 7px;
-}
-
-/* align: [ hcenter ] */
-.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_outer.cke_balloon_triangle_align_hcenter
-{
-	margin-left: -7px;
-}
-
-.cke_balloon.cke_balloontoolbar .cke_toolgroup,
-.cke_balloon.cke_balloontoolbar .cke_combo
-{
-	margin-bottom: 0px;
-}
-
-.cke_balloon.cke_balloontoolbar .cke_combo
-{
-	margin-right: 2px;
-}
 
 .cke_balloon.cke_balloontoolbar span:last-child a:last-child::after,
 .cke_balloon.cke_balloontoolbar span:last-child a:last-child:hover::after,
 .cke_balloon.cke_balloontoolbar span:last-child::after
 {
-	border-right: 0px;
+	border-right: 0;
+}
+
+.cke_balloon.cke_balloontoolbar .cke_combo
+{
+	margin-bottom: 0;
+	margin-right: 2px;
 }

@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","et",{euro:"Euromärk",lsquo:"Alustav ühekordne jutumärk",rsquo:"Lõpetav ühekordne jutumärk",ldquo:"Alustav kahekordne jutumärk",rdquo:"Lõpetav kahekordne jutumärk",ndash:"Enn-kriips",mdash:"Emm-kriips",iexcl:"Pööratud hüüumärk",cent:"Sendimärk",pound:"Naela märk",curren:"Valuutamärk",yen:"Jeeni märk",brvbar:"Katkestatud kriips",sect:"Lõigu märk",uml:"Täpid",copy:"Autoriõiguse märk",ordf:"Feminine ordinal indicator",laquo:"Left-pointing double angle quotation mark",

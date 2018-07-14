@@ -18,12 +18,12 @@
     "/server.js"
   ],
   "homepage": "https://github.com/itsjavi/bootstrap-colorpicker",
-  "version": "2.5.1",
-  "_release": "2.5.1",
+  "version": "2.5.2",
+  "_release": "2.5.2",
   "_resolution": {
     "type": "version",
-    "tag": "2.5.1",
-    "commit": "db978b4d8c3436cdaed6e3a1a065f9f47bb686b1"
+    "tag": "2.5.2",
+    "commit": "d56d0d3d5bee59904d48bce3c47a0029741e10e6"
   },
   "_source": "https://github.com/itsjavi/bootstrap-colorpicker.git",
   "_target": "^2.5.1",

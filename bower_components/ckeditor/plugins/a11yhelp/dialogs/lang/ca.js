@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","ca",{title:"Instruccions d'Accessibilitat",contents:"Continguts de l'Ajuda. Per tancar aquest quadre de diàleg premi ESC.",legend:[{name:"General",items:[{name:"Editor de barra d'eines",legend:"Premi ${toolbarFocus} per desplaçar-se per la barra d'eines. Vagi en el següent i anterior grup de barra d'eines amb TAB i SHIFT+TAB. Vagi en el següent i anterior botó de la barra d'eines amb RIGHT ARROW i LEFT ARROW. Premi SPACE o ENTER per activar el botó de la barra d'eines."},
