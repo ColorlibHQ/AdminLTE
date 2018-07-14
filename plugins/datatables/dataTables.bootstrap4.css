@@ -4,6 +4,7 @@ table.dataTable {
   margin-bottom: 6px !important;
   max-width: none !important;
   border-collapse: separate !important;
+  border-spacing: 0;
 }
 table.dataTable td,
 table.dataTable th {
@@ -25,7 +26,7 @@ div.dataTables_wrapper div.dataTables_length label {
   white-space: nowrap;
 }
 div.dataTables_wrapper div.dataTables_length select {
-  width: 75px;
+  width: auto;
   display: inline-block;
 }
 div.dataTables_wrapper div.dataTables_filter {
@@ -132,6 +133,9 @@ div.dataTables_scrollBody table {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
+div.dataTables_scrollBody table thead .sorting:before,
+div.dataTables_scrollBody table thead .sorting_asc:before,
+div.dataTables_scrollBody table thead .sorting_desc:before,
 div.dataTables_scrollBody table thead .sorting:after,
 div.dataTables_scrollBody table thead .sorting_asc:after,
 div.dataTables_scrollBody table thead .sorting_desc:after {
