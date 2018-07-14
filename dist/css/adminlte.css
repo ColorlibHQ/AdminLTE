@@ -12186,17 +12186,23 @@ label:not(.form-check-label):not(.custom-file-label) {
   }
 }
 
-.login-box-body,
-.register-box-body {
+.login-card-body,
+.register-card-body {
   background: #ffffff;
   padding: 20px;
   border-top: 0;
   color: #666;
 }
 
-.login-box-body .form-control-feedback,
-.register-box-body .form-control-feedback {
+.login-card-body .input-group .form-control,
+.register-card-body .input-group .form-control {
+  border-right: none;
+}
+
+.login-card-body .input-group .input-group-text,
+.register-card-body .input-group .input-group-text {
   color: #777;
+  background-color: transparent;
 }
 
 .login-box-msg,
