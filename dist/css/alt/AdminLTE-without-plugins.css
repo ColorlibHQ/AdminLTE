@@ -46,7 +46,7 @@ body {
   position: relative;
 }
 .layout-boxed {
-  background: url('../img/boxed-bg.jpg') repeat fixed;
+  background-color: #f9fafc;
 }
 /*
  * Content Wrapper - contains the main content
@@ -692,7 +692,7 @@ a:focus {
   padding-top: 50px;
   z-index: 1010;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .control-sidebar {
     padding-top: 100px;
   }
