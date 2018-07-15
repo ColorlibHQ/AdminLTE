@@ -40,6 +40,7 @@
   &:hover,
   &:active,
   &.hover {
+    color: #222;
     background-color: darken(#f4f4f4, 5%);
   }
 }
