@@ -1,3 +1,14 @@
+v3.9.0 (2018-03-04)
+-------------------
+
+- Bootstrap 4 support (#4032, #4065, thx @GeekJosh)
+- add OptionsInput to the fullcalendar.d.ts exports (#4040, #4006)
+- columnHeaderFormat/columnHeaderHtml/columnHeaderText in .d.ts file (#4061, #4085)
+- list-view auto-height not working (#3346, #4071, thx @WhatTheBuild)
+- bump momentjs minimum version to 2.20.1, for locale fixes (#4014)
+- swedish week header translation fix (#4082)
+- dutch year translation (#4069)
+
 
 v3.8.2 (2018-01-30)
 -------------------

@@ -1,9 +1,9 @@
 /*!
- * FullCalendar v3.8.2
+ * FullCalendar v3.9.0
  * Docs & License: https://fullcalendar.io/
  * (c) 2018 Adam Shaw
  *//*!
- * FullCalendar v3.8.2 Print Stylesheet
+ * FullCalendar v3.9.0 Print Stylesheet
  * Docs & License: https://fullcalendar.io/
  * (c) 2018 Adam Shaw
  */.fc-bg,.fc-bgevent-container,.fc-bgevent-skeleton,.fc-business-container,.fc-event .fc-resizer,.fc-helper-container,.fc-helper-skeleton,.fc-highlight-container,.fc-highlight-skeleton{display:none}.fc tbody .fc-row,.fc-time-grid{min-height:0!important}.fc-time-grid .fc-event.fc-not-end:after,.fc-time-grid .fc-event.fc-not-start:before{content:"..."}.fc{max-width:100%!important}.fc-event{background:#fff!important;color:#000!important;page-break-inside:avoid}.fc hr,.fc tbody,.fc td,.fc th,.fc thead,.fc-row{border-color:#ccc!important;background:#fff!important}.fc tbody .fc-row{height:auto!important}.fc tbody .fc-row .fc-content-skeleton{position:static;padding-bottom:0!important}.fc tbody .fc-row .fc-content-skeleton tbody tr:last-child td{padding-bottom:1em}.fc tbody .fc-row .fc-content-skeleton table{height:1em}.fc-more,.fc-more-cell{display:none!important}.fc tr.fc-limited{display:table-row!important}.fc td.fc-limited{display:table-cell!important}.fc-agenda-view .fc-axis,.fc-popover{display:none}.fc-slats,.fc-time-grid hr{display:none!important}.fc button,.fc-button-group,.fc-time-grid .fc-event .fc-time span{display:none}.fc-time-grid .fc-content-skeleton{position:static}.fc-time-grid .fc-content-skeleton table{height:4em}.fc-time-grid .fc-event-container{margin:0!important}.fc-time-grid .fc-event{position:static!important;margin:3px 2px!important}.fc-time-grid .fc-event.fc-not-end{border-bottom-width:1px!important}.fc-time-grid .fc-event.fc-not-start{border-top-width:1px!important}.fc-time-grid .fc-event .fc-time{white-space:normal!important}.fc-time-grid .fc-event .fc-time:after{content:attr(data-full)}.fc-day-grid-container,.fc-scroller,.fc-time-grid-container{overflow:visible!important;height:auto!important}.fc-row{border:0!important;margin:0!important}

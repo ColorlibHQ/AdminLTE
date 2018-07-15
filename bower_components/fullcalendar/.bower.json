@@ -23,7 +23,7 @@
   "copyright": "2018 Adam Shaw",
   "dependencies": {
     "jquery": "2 - 3",
-    "moment": "^2.9.0"
+    "moment": "^2.20.1"
   },
   "main": [
     "dist/fullcalendar.js",
@@ -38,12 +38,12 @@
     "!/CHANGELOG.*",
     "!/CONTRIBUTING.*"
   ],
-  "version": "3.8.2",
-  "_release": "3.8.2",
+  "version": "3.9.0",
+  "_release": "3.9.0",
   "_resolution": {
     "type": "version",
-    "tag": "v3.8.2",
-    "commit": "cca2f934398e8777080fa8375961160bce3cb8f4"
+    "tag": "v3.9.0",
+    "commit": "4025e6ff05563ec3b88794f06f114ca2e369ef11"
   },
   "_source": "https://github.com/fullcalendar/fullcalendar.git",
   "_target": "^3.4.0",

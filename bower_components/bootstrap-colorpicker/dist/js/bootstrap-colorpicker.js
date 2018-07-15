@@ -1,5 +1,5 @@
 /*!
- * Bootstrap Colorpicker v2.5.1
+ * Bootstrap Colorpicker v2.5.2
  * https://itsjavi.com/bootstrap-colorpicker/
  *
  * Originally written by (c) 2012 Stefan Petre
@@ -38,14 +38,9 @@
     val, predefinedColors, fallbackColor, fallbackFormat, hexNumberSignPrefix) {
     this.fallbackValue = fallbackColor ?
       (
-        fallbackColor && (typeof fallbackColor.h !== 'undefined') ?
-        fallbackColor :
-        this.value = {
-          h: 0,
-          s: 0,
-          b: 0,
-          a: 1
-        }
+        (typeof fallbackColor === 'string') ?
+        this.parse(fallbackColor) :
+        fallbackColor
       ) :
       null;
 
@@ -345,21 +340,26 @@
         a: a
       };
     },
-    toHex: function(h, s, b, a) {
-      if (arguments.length === 0) {
+    toHex: function(ignoreFormat, h, s, b, a) {
+      if (arguments.length <= 1) {
         h = this.value.h;
         s = this.value.s;
         b = this.value.b;
         a = this.value.a;
       }
 
+      var prefix = '#';
       var rgb = this.toRGB(h, s, b, a);
 
       if (this.rgbaIsTransparent(rgb)) {
         return 'transparent';
       }
 
-      var hexStr = (this.hexNumberSignPrefix ? '#' : '') + (
+      if (!ignoreFormat) {
+        prefix = (this.hexNumberSignPrefix ? '#' : '');
+      }
+
+      var hexStr = prefix + (
           (1 << 24) +
           (parseInt(rgb.r) << 16) +
           (parseInt(rgb.g) << 8) +
@@ -397,10 +397,10 @@
       };
     },
     toAlias: function(r, g, b, a) {
-      var c, rgb = (arguments.length === 0) ? this.toHex() : this.toHex(r, g, b, a);
+      var c, rgb = (arguments.length === 0) ? this.toHex(true) : this.toHex(true, r, g, b, a);
 
       // support predef. colors in non-hex format too, as defined in the alias itself
-      var original = this.origFormat === 'alias' ? rgb : this.toString(this.origFormat, false);
+      var original = this.origFormat === 'alias' ? rgb : this.toString(false, this.origFormat);
 
       for (var alias in this.colors) {
         c = this.colors[alias].toLowerCase().trim();
@@ -475,6 +475,9 @@
      * @returns {Object} Object containing h,s,b,a,format properties or FALSE if failed to parse
      */
     parse: function(strVal) {
+      if (typeof strVal !== 'string') {
+        return this.fallbackValue;
+      }
       if (arguments.length === 0) {
         return false;
       }
@@ -525,9 +528,10 @@
      *
      * @param {string} [format] (default: rgba)
      * @param {boolean} [translateAlias] Return real color for pre-defined (non-standard) aliases (default: false)
+     * @param {boolean} [forceRawValue] Forces hashtag prefix when getting hex color (default: false)
      * @returns {String}
      */
-    toString: function(format, translateAlias) {
+    toString: function(forceRawValue, format, translateAlias) {
       format = format || this.origFormat || this.fallbackFormat;
       translateAlias = translateAlias || false;
 
@@ -563,7 +567,7 @@
           break;
         case 'hex':
           {
-            return this.toHex();
+            return this.toHex(forceRawValue);
           }
           break;
         case 'alias':
@@ -571,7 +575,7 @@
             c = this.toAlias();
 
             if (c === false) {
-              return this.toString(this.getValidFallbackFormat());
+              return this.toString(forceRawValue, this.getValidFallbackFormat());
             }
 
             if (translateAlias && !(c in Color.webColors) && (c in this.predefinedColors)) {
@@ -787,6 +791,8 @@
       this.updateData(this.color);
     }
 
+    this.disabled = false;
+
     // Setup picker
     var $picker = this.picker = $(this.options.template);
     if (this.options.customClass) {
@@ -975,12 +981,12 @@
       });
     },
     updateData: function(val) {
-      val = val || this.color.toString(this.format, false);
+      val = val || this.color.toString(false, this.format);
       this.element.data('color', val);
       return val;
     },
     updateInput: function(val) {
-      val = val || this.color.toString(this.format, false);
+      val = val || this.color.toString(false, this.format);
       if (this.input !== false) {
         this.input.prop('value', val);
         this.input.trigger('change');
@@ -1011,13 +1017,13 @@
       });
 
       this.picker.find('.colorpicker-saturation')
-        .css('backgroundColor', (this.options.hexNumberSignPrefix ? '' : '#') + this.color.toHex(this.color.value.h, 1, 1, 1));
+        .css('backgroundColor', this.color.toHex(true, this.color.value.h, 1, 1, 1));
 
       this.picker.find('.colorpicker-alpha')
-        .css('backgroundColor', (this.options.hexNumberSignPrefix ? '' : '#') + this.color.toHex());
+        .css('backgroundColor', this.color.toHex(true));
 
       this.picker.find('.colorpicker-color, .colorpicker-color div')
-        .css('backgroundColor', this.color.toString(this.format, true));
+        .css('backgroundColor', this.color.toString(true, this.format));
 
       return val;
     },
@@ -1034,16 +1040,16 @@
         var icn = this.component.find('i').eq(0);
         if (icn.length > 0) {
           icn.css({
-            'backgroundColor': color.toString(this.format, true)
+            'backgroundColor': color.toString(true, this.format)
           });
         } else {
           this.component.css({
-            'backgroundColor': color.toString(this.format, true)
+            'backgroundColor': color.toString(true, this.format)
           });
         }
       }
 
-      return color.toString(this.format, false);
+      return color.toString(false, this.format);
     },
     update: function(force) {
       var val;
@@ -1099,34 +1105,31 @@
       return (this.input !== false);
     },
     isDisabled: function() {
-      if (this.hasInput()) {
-        return (this.input.prop('disabled') === true);
-      }
-      return false;
+      return this.disabled;
     },
     disable: function() {
       if (this.hasInput()) {
         this.input.prop('disabled', true);
-        this.element.trigger({
-          type: 'disable',
-          color: this.color,
-          value: this.getValue()
-        });
-        return true;
       }
-      return false;
+      this.disabled = true;
+      this.element.trigger({
+        type: 'disable',
+        color: this.color,
+        value: this.getValue()
+      });
+      return true;
     },
     enable: function() {
       if (this.hasInput()) {
         this.input.prop('disabled', false);
-        this.element.trigger({
-          type: 'enable',
-          color: this.color,
-          value: this.getValue()
-        });
-        return true;
       }
-      return false;
+      this.disabled = false;
+      this.element.trigger({
+        type: 'enable',
+        color: this.color,
+        value: this.getValue()
+      });
+      return true;
     },
     currentSlider: null,
     mousePointer: {

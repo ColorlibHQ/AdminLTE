@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+-->
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Mentions &mdash; CKEditor Sample</title>
+	<script src="../../../ckeditor.js"></script>
+	<link rel="stylesheet" href="../../../samples/css/samples.css">
+</head>
+<body>
+
+<style>
+	.adjoined-bottom:before {
+		height: 270px;
+	}
+</style>
+
+<nav class="navigation-a">
+	<div class="grid-container">
+		<ul class="navigation-a-left grid-width-70">
+			<li><a href="http://ckeditor.com">Project Homepage</a></li>
+			<li><a href="https://github.com/ckeditor/ckeditor-dev/issues">I found a bug</a></li>
+			<li><a href="http://github.com/ckeditor/ckeditor-dev" class="icon-pos-right icon-navigation-a-github">Fork CKEditor on GitHub</a></li>
+		</ul>
+		<ul class="navigation-a-right grid-width-30">
+			<li><a href="http://ckeditor.com/blog-list">CKEditor Blog</a></li>
+		</ul>
+	</div>
+</nav>
+
+<header class="header-a">
+	<div class="grid-container">
+		<h1 class="header-a-logo grid-width-30">
+			<img src="../../../samples/img/logo.svg" onerror="this.src='../../../samples/img/logo.png'; this.onerror=null;" alt="CKEditor Sample">
+		</h1>
+	</div>
+</header>
+
+<main>
+	<div class="adjoined-top">
+		<div class="grid-container">
+			<div class="content grid-width-100">
+				<h1>Mentions Demo</h1>
+				<p>This sample shows Mentions feature in action. Type &#8220; @ &#8221; to open simple autocompletion with array feed, &#8220; $ &#8221; (min 1 character) to open asynchronous autocompletion with URL string feed or &#8220; # &#8221; (min 2 characters) to open asynchronous autocompletion with custom source of data.</p>
+			</div>
+		</div>
+	</div>
+	<div class="adjoined-bottom">
+		<div class="grid-container">
+			<div class="grid-width-100">
+				<div id="editor">
+					<h1>Mentions plugin</h1>
+					<p>Feel free to mention @anna, @cris, @thomas or anyone else.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<footer class="footer-a grid-container">
+	<div class="grid-container">
+		<p class="grid-width-100">
+			CKEditor &ndash; The text editor for the Internet &ndash; <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
+		</p>
+		<p class="grid-width-100" id="copy">
+			Copyright &copy; 2003-2018, <a class="samples" href="http://cksource.com/">CKSource</a> &ndash; Frederico Knabben. All rights reserved.
+		</p>
+	</div>
+</footer>
+
+<script>
+	'use strict';
+
+	( function() {
+
+		var data = [
+				{ id: 1, name: 'john', fullName: 'John Doe' },
+				{ id: 2, name: 'thomas', fullName: 'Thomas Doe' },
+				{ id: 3, name: 'anna', fullName: 'Anna Doe' },
+				{ id: 4, name: 'annabelle', fullName: 'Annabelle Doe' },
+				{ id: 5, name: 'cris', fullName: 'Cris Doe' },
+				{ id: 6, name: 'julia', fullName: 'Julia Doe' }
+			];
+
+		CKEDITOR.replace( 'editor', {
+			height: 240,
+			extraPlugins: 'mentions,easyimage,sourcearea,toolbar,undo,wysiwygarea,basicstyles',
+			extraAllowedContent: 'h1',
+			toolbar: [
+				{ name: 'document', items: [ 'Source', 'Undo', 'Redo' ] },
+				{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Strike' ] },
+			],
+			mentions: [
+
+				{
+					feed: CKEDITOR.tools.array.map( data, function( item ) {
+									return item.name;
+								} ),
+					minChars: 0
+				},
+				{
+					feed: '{encodedQuery}',
+					marker: '$',
+					minChars: 1,
+					template: '<li data-id="{id}">{fullName}</li>'
+				},
+				{
+					feed: dataCallback,
+					marker: '#',
+					template: '<li data-id="{id}">{name} ({fullName})</li>'
+				}
+			],
+			on: {
+				instanceReady: function() {
+					// We have to stub ajax.load function.
+					CKEDITOR.ajax.load = function( query, callback ) {
+						var results = data.filter( function( item ) {
+								return item.name.indexOf( query ) === 0;
+							} );
+
+						setTimeout( function() {
+							callback( JSON.stringify( results ) );
+						}, Math.random() * 500 );
+					}
+				}
+			}
+		} );
+
+		function dataCallback( opts, callback ) {
+			setTimeout( function() {
+				callback(
+					data.filter( function( item ) {
+						return item.name.indexOf( opts.query ) === 0;
+					} )
+				);
+			}, Math.random() * 500 );
+		}
+
+	} )();
+</script>
+
+</body>
+</html>

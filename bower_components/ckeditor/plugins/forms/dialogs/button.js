@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.dialog.add("button",function(b){function d(a){var b=this.getValue();b?(a.attributes[this.id]=b,"name"==this.id&&(a.attributes["data-cke-saved-name"]=b)):(delete a.attributes[this.id],"name"==this.id&&delete a.attributes["data-cke-saved-name"])}return{title:b.lang.forms.button.title,minWidth:350,minHeight:150,onShow:function(){delete this.button;var a=this.getParentEditor().getSelection().getSelectedElement();a&&a.is("input")&&a.getAttribute("type")in{button:1,reset:1,submit:1}&&(this.button=

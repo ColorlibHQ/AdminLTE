@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+-->
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Autocomplete Smileys &mdash; CKEditor Sample</title>
+	<script src="../../../ckeditor.js"></script>
+	<script src="utils.js"></script>
+	<link rel="stylesheet" href="../../../samples/css/samples.css">
+	<link href="../skins/moono/autocomplete.css" rel="stylesheet">
+</head>
+<body>
+
+<style>
+	.adjoined-bottom:before {
+		height: 270px;
+	}
+	.cke_autocomplete_icon
+	{
+		vertical-align: middle;
+	}
+</style>
+
+<nav class="navigation-a">
+	<div class="grid-container">
+		<ul class="navigation-a-left grid-width-70">
+			<li><a href="http://ckeditor.com">Project Homepage</a></li>
+			<li><a href="https://github.com/ckeditor/ckeditor-dev/issues">I found a bug</a></li>
+			<li><a href="http://github.com/ckeditor/ckeditor-dev" class="icon-pos-right icon-navigation-a-github">Fork CKEditor on GitHub</a></li>
+		</ul>
+		<ul class="navigation-a-right grid-width-30">
+			<li><a href="http://ckeditor.com/blog-list">CKEditor Blog</a></li>
+		</ul>
+	</div>
+</nav>
+
+<header class="header-a">
+	<div class="grid-container">
+		<h1 class="header-a-logo grid-width-30">
+			<img src="../../../samples/img/logo.svg" onerror="this.src='../../../samples/img/logo.png'; this.onerror=null;" alt="CKEditor Sample">
+		</h1>
+	</div>
+</header>
+
+<main>
+	<div class="adjoined-top">
+		<div class="grid-container">
+			<div class="content grid-width-100">
+				<h1>Autocomplete Smileys Demo</h1>
+				<p>This sample shows the progress of work on Autocomplete with Smileys integration. Type 	&#8220; : &#8221; to start smileys autocompletion.</p>
+			</div>
+		</div>
+	</div>
+	<div class="adjoined-bottom">
+		<div class="grid-container">
+			<div class="grid-width-100">
+				<div id="editor">
+					<h1>Apollo 11</h1>
+					<figure class="image easyimage">
+						<img alt="Saturn V carrying Apollo 11" src="../../../samples/img/logo.png">
+					</figure>
+					<p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin">Buzz Aldrin</a>, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the lunar surface 6 hours later on July 21 at 02:56 UTC.</p>
+					<figure class="easyimage easyimage-side">
+						<img alt="Saturn V carrying Apollo 11" src="../../image2/samples/assets/image1.jpg">
+						<figcaption>Saturn V carrying Apollo 11</figcaption>
+					</figure>
+					<p>Armstrong spent about <s>three and a half</s> two and a half hours outside the spacecraft, Aldrin slightly less; and together they collected 47.5 pounds (21.5&nbsp;kg) of lunar material for return to Earth. A third member of the mission, <a href="http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)">Michael Collins</a>, piloted the <a href="http://en.wikipedia.org/wiki/Apollo_Command/Service_Module">command</a> spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for the trip back to Earth.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<footer class="footer-a grid-container">
+	<div class="grid-container">
+		<p class="grid-width-100">
+			CKEditor &ndash; The text editor for the Internet &ndash; <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
+		</p>
+		<p class="grid-width-100" id="copy">
+			Copyright &copy; 2003-2018, <a class="samples" href="http://cksource.com/">CKSource</a> &ndash; Frederico Knabben. All rights reserved.
+		</p>
+	</div>
+</footer>
+
+<script>
+	'use strict';
+
+	( function() {
+		// For simplicity we define the plugin in the sample, but normally
+		// it would be extracted to a separate file.
+		CKEDITOR.plugins.add( 'smileyautocomplete', {
+			requires: 'autocomplete,textmatch,smiley',
+
+			onLoad: function() {
+				var that = this,
+					View = CKEDITOR.plugins.autocomplete.view,
+					Autocomplete = CKEDITOR.plugins.autocomplete;
+
+				function SmileyView( editor ) {
+					// Call the parent class constructor.
+					View.call( this, editor );
+
+					this.itemTemplate = new CKEDITOR.template(
+						'<li data-id="{id}"><img src="{src}" alt="{id}" class="cke_autocomplete_icon"> {name}</li>'
+					);
+				}
+				// Inherit the view methods.
+				SmileyView.prototype = CKEDITOR.tools.prototypedCopy( View.prototype );
+
+				function SmileyAutocomplete( editor ) {
+					var data = that.getData( editor );
+
+					// Call the parent class constructor.
+					Autocomplete.call(
+						this, editor,
+						autocompleteUtils.getTextTestCallback( ':', 0, false ),
+						autocompleteUtils.getSyncDataCallback( data )
+					);
+				}
+				// Inherit the autocomplete methods.
+				SmileyAutocomplete.prototype = CKEDITOR.tools.prototypedCopy( Autocomplete.prototype );
+
+				SmileyAutocomplete.prototype.getHtmlToInsert = function( item ) {
+					return '<img src=' + item.src + ' alt="' + item.id + '" />';
+				};
+
+				SmileyAutocomplete.prototype.getView = function() {
+					return new SmileyView( this.editor );
+				}
+
+				// Expose the smiley autocomplete so it can be used later.
+				CKEDITOR.plugins.smileyAutocomplete = SmileyAutocomplete;
+			},
+
+			getData: function( editor ) {
+				var descriptions = editor.config.smiley_descriptions,
+					images = editor.config.smiley_images,
+					path = editor.config.smiley_path,
+					data = [];
+
+				for ( var i = 0; i < descriptions.length; ++i ) {
+					data.push( {
+						id: descriptions[ i ],
+						name: ':' + descriptions[ i ],
+						src: CKEDITOR.tools.htmlEncode( path + images[ i ] )
+					} );
+				}
+				return data;
+			}
+		} );
+
+		var editor = CKEDITOR.replace( 'editor', {
+			height: 600,
+			extraPlugins: 'smileyautocomplete,autocomplete,textmatch,easyimage,sourcearea,toolbar,undo,wysiwygarea,basicstyles',
+			toolbar: [
+				{ name: 'document', items: [ 'Source', 'Undo', 'Redo' ] },
+				{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Strike' ] },
+			]
+		} );
+
+		editor.on( 'instanceReady', function() {
+			// Use the smiley autocomplete class.
+			new CKEDITOR.plugins.smileyAutocomplete( editor );
+		} );
+	} )();
+</script>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.dialog.add("uicolor",function(f){function B(a){a=a.data.getTarget();var c;"td"==a.getName()&&(c=a.getChild(0).getHtml())&&(n(),r(a),m(c))}function r(a){a&&(g=a,g.setAttribute("aria-selected",!0),g.addClass("cke_colordialog_selected"))}function n(){g&&(g.removeClass("cke_colordialog_selected"),g.removeAttribute("aria-selected"),g=null)}function m(a){k.getContentElement("picker","selectedColor").setValue(a);a||l.getById(t).removeStyle("background-color")}function C(a){!a.name&&(a=new CKEDITOR.event(a));

@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","oc",{euro:"Simbòl èuro",lsquo:"Vergueta simpla dobrenta",rsquo:"Vergueta simpla tampanta",ldquo:"Vergueta dobla dobrenta",rdquo:"Vergueta dobla tampanta",ndash:"Jonhent semi-quadratin",mdash:"Jonhent quadratin",iexcl:"Punt d'exclamacion inversat",cent:"Simbòl cent",pound:"Simbòl Liura sterling",curren:"Simbòl monetari",yen:"Simbòl ièn",brvbar:"Barra verticala separada",sect:"Signe de seccion",uml:"Trèma",copy:"Simbòl Copyright",ordf:"Indicador ordinal femenin",

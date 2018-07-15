@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","hu",{euro:"Euró jel",lsquo:"Bal szimpla idézőjel",rsquo:"Jobb szimpla idézőjel",ldquo:"Bal dupla idézőjel",rdquo:"Jobb dupla idézőjel",ndash:"Rövid gondolatjel",mdash:"Hosszú gondolatjel",iexcl:"Fordított felkiáltójel",cent:"Cent jel",pound:"Font jel",curren:"Valuta jel",yen:"Yen jel",brvbar:"Hosszú kettőspont",sect:"Paragrafus jel",uml:"Kettős hangzó jel",copy:"Szerzői jog jel",ordf:"Női sorrend mutatója",laquo:"Balra mutató duplanyíl",not:"Feltételes kötőjel",

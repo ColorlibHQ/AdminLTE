@@ -1626,13 +1626,13 @@ test('Nav arrow html templates .prev click', function () {
     equal(target.text(), '2011');
 });
 
-test('Visibility of the prev and next arrows for decade/century/millenium views with startDate and endDate', function(){
+test('Visibility of the prev and next arrows for year/decade/century/millenium views with startDate and endDate', function(){
     var input = $('<input />')
                 .appendTo('#qunit-fixture')
                 .val('01/01/2015')
                 .datepicker({
                     format: 'dd/mm/yyyy',
-                    startView: 2,
+                    startView: 1,
                     startDate: '01/12/2014',
                     endDate: '01/12/2016'
                 }),
@@ -1642,6 +1642,12 @@ test('Visibility of the prev and next arrows for decade/century/millenium views 
 
     input.focus();
 
+    target = picker.find('.datepicker-months thead th.prev');
+    ok(!target.hasClass('disabled'), 'Prev switcher is not hidden');
+    target = picker.find('.datepicker-months thead th.next');
+    ok(!target.hasClass('disabled'), 'Next switcher is not hidden');
+
+    picker.find('.datepicker-months thead th.datepicker-switch').click();
     target = picker.find('.datepicker-years thead th.prev');
     ok(target.hasClass('disabled'), 'Prev switcher is hidden');
     target = picker.find('.datepicker-years thead th.next');

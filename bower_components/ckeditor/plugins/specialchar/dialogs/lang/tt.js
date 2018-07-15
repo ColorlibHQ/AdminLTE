@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","tt",{euro:"Евро тамгасы",lsquo:"Сул бер иңле куштырнаклар",rsquo:"Уң бер иңле куштырнаклар",ldquo:"Сул ике иңле куштырнаклар",rdquo:"Уң ике иңле куштырнаклар",ndash:"Кыска сызык",mdash:"Озын сызык",iexcl:"Әйләндерелгән өндәү билгесе",cent:"Цент тамгасы",pound:"Фунт тамгасы",curren:"Акча берәмлеге тамгасы",yen:"Иена тамгасы",brvbar:"Broken bar",sect:"Параграф билгесе",uml:"Диерезис",copy:"Хокук иясе булу билгесе",ordf:"Feminine ordinal indicator",laquo:"Ачылучы чыршысыман җәя",
