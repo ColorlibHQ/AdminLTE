@@ -47,7 +47,7 @@
     "fullcalendar": "^3.4.0",
     "inputmask": "jquery.inputmask#^3.3.7",
     "ion.rangeSlider": "ionrangeslider#^2.2.0",
-    "jvectormap": "^2.0.4",
+    "jvectormap": "^1.2.2",
     "jquery-knob": "^1.2.13",
     "morris.js": "^0.5.1",
     "PACE": "pace#^1.0.2",

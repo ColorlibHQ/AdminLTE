@@ -1,18 +1,17 @@
 #
-# jVectorMap version 2.0.4
+# jVectorMap version 1.2.2
 #
 # Copyright 2011-2013, Kirill Lebedev
+# Licensed under the MIT license.
 #
 
+import argparse
 import sys
-import shapely.geometry
-import shapely.wkb
-import shapely.affinity
 from osgeo import ogr
 from osgeo import osr
 import json
+import shapely.geometry
 import codecs
-import copy
 
 class Map:
   def __init__(self, name, language):
@@ -20,7 +19,7 @@ class Map:
     self.name = name
     self.language = language
     self.width = 0
-    self.height = 0
+    self.heoght = 0
     self.bbox = []
 
   def addPath(self, path, code, name):
@@ -32,20 +31,7 @@ class Map:
 
 
 class Converter:
-  def __init__(self, config):
-    args = {
-      'buffer_distance': -0.4,
-      'simplify_tolerance': 0.2,
-      'longitude0': 0,
-      'projection': 'mill',
-      'name': 'world',
-      'width': 900,
-      'language': 'en',
-      'precision': 2,
-      'insets': []
-    }
-    args.update(config)
-
+  def __init__(self, args):
     self.map = Map(args['name'], args.get('language'))
 
     if args.get('sources'):
@@ -54,15 +40,17 @@ class Converter:
       self.sources = [{
         'input_file': args.get('input_file'),
         'where': args.get('where'),
-        'name_field': args.get('name_field'),
-        'code_field': args.get('code_field'),
+        'codes_file': args.get('codes_file'),
+        'country_name_index': args.get('country_name_index'),
+        'country_code_index': args.get('country_code_index'),
         'input_file_encoding': args.get('input_file_encoding')
       }]
 
     default_source = {
       'where': '',
-      'name_field': 0,
-      'code_field': 1,
+      'codes_file': '',
+      'country_name_index': '0',
+      'country_code_index': '1',
       'input_file_encoding': 'iso-8859-1'
     }
 
@@ -74,31 +62,24 @@ class Converter:
     self.features = {}
     self.width = args.get('width')
     self.minimal_area = args.get('minimal_area')
-    self.longitude0 = float(args.get('longitude0'))
+    self.longitude0 = args.get('longitude0')
     self.projection = args.get('projection')
     self.precision = args.get('precision')
     self.buffer_distance = args.get('buffer_distance')
     self.simplify_tolerance = args.get('simplify_tolerance')
-    self.for_each = args.get('for_each')
-    self.emulate_longitude0 = args.get('emulate_longitude0')
-    if args.get('emulate_longitude0') is None and (self.projection == 'merc' or self.projection =='mill') and self.longitude0 != 0:
-      self.emulate_longitude0 = True
-
     if args.get('viewport'):
       self.viewport = map(lambda s: float(s), args.get('viewport').split(' '))
     else:
       self.viewport = False
 
+
     # spatial reference to convert to
     self.spatialRef = osr.SpatialReference()
-    projString = '+proj='+str(self.projection)+' +a=6381372 +b=6381372 +lat_0=0'
-    if not self.emulate_longitude0:
-      projString += ' +lon_0='+str(self.longitude0)
-    self.spatialRef.ImportFromProj4(projString)
+    self.spatialRef.ImportFromProj4('+proj='+self.projection+' +a=6381372 +b=6381372 +lat_0=0 +lon_0='+str(self.longitude0))
 
     # handle map insets
     if args.get('insets'):
-      self.insets = args.get('insets')
+      self.insets = json.loads(args.get('insets'))
     else:
       self.insets = []
 
@@ -112,28 +93,33 @@ class Converter:
     layer.SetAttributeFilter( sourceConfig['where'].encode('ascii') )
     self.viewportRect = False
 
-    transformation = osr.CoordinateTransformation( layer.GetSpatialRef(), self.spatialRef )
     if self.viewport:
-      layer.SetSpatialFilterRect( *self.viewport )
+      layer.SetSpatialFilterRect( *sourceConfig.get('viewport') )
+      transformation = osr.CoordinateTransformation( layer.GetSpatialRef(), self.spatialRef )
       point1 = transformation.TransformPoint(self.viewport[0], self.viewport[1])
       point2 = transformation.TransformPoint(self.viewport[2], self.viewport[3])
       self.viewportRect = shapely.geometry.box(point1[0], point1[1], point2[0], point2[1])
 
     layer.ResetReading()
 
+    # load codes from external tsv file if present or geodata file otherwise
     codes = {}
-
-    if self.emulate_longitude0:
-      meridian = -180 + self.longitude0
-      p1 = transformation.TransformPoint(-180, 89)
-      p2 = transformation.TransformPoint(meridian, -89)
-      left = shapely.geometry.box(p1[0], p1[1], p2[0], p2[1])
-      p3 = transformation.TransformPoint(meridian, 89)
-      p4 = transformation.TransformPoint(180, -89)
-      right = shapely.geometry.box(p3[0], p3[1], p4[0], p4[1])
+    if sourceConfig.get('codes_file'):
+      for line in codecs.open(sourceConfig.get('codes_file'), 'r', "utf-8"):
+        row = map(lambda s: s.strip(), line.split('\t'))
+        codes[row[1]] = row[0]
+    else:
+      nextCode = 0
+      for feature in layer:
+        code = feature.GetFieldAsString(sourceConfig.get('country_code_index'))
+        if code == '-99':
+          code = '_'+str(nextCode)
+          nextCode += 1
+        name = feature.GetFieldAsString(sourceConfig.get('country_name_index')).decode(sourceConfig.get('input_file_encoding'))
+        codes[name] = code
+      layer.ResetReading()
 
     # load features
-    nextCode = 0
     for feature in layer:
       geometry = feature.GetGeometryRef()
       geometryType = geometry.GetGeometryType()
@@ -142,35 +128,21 @@ class Converter:
         geometry.TransformTo( self.spatialRef )
         shapelyGeometry = shapely.wkb.loads( geometry.ExportToWkb() )
         if not shapelyGeometry.is_valid:
-          shapelyGeometry = shapelyGeometry.buffer(0, 1)
-
-        if self.emulate_longitude0:
-          leftPart = shapely.affinity.translate(shapelyGeometry.intersection(left), p4[0] - p3[0])
-          rightPart = shapely.affinity.translate(shapelyGeometry.intersection(right), p1[0] - p2[0])
-          shapelyGeometry = leftPart.buffer(0.1, 1).union(rightPart.buffer(0.1, 1)).buffer(-0.1, 1)
-
-        if not shapelyGeometry.is_valid:
+          #buffer to fix selfcrosses
           shapelyGeometry = shapelyGeometry.buffer(0, 1)
         shapelyGeometry = self.applyFilters(shapelyGeometry)
         if shapelyGeometry:
-          name = feature.GetFieldAsString(str(sourceConfig.get('name_field'))).decode(sourceConfig.get('input_file_encoding'))
-          code = feature.GetFieldAsString(str(sourceConfig.get('code_field'))).decode(sourceConfig.get('input_file_encoding'))
-          if code in codes:
-            code = '_' + str(nextCode)
-            nextCode += 1
-          codes[code] = name
+          name = feature.GetFieldAsString(sourceConfig.get('country_name_index')).decode(sourceConfig.get('input_file_encoding'))
+          code = codes[name]
           self.features[code] = {"geometry": shapelyGeometry, "name": name, "code": code}
       else:
         raise Exception, "Wrong geometry type: "+geometryType
 
 
   def convert(self, outputFile):
-    print 'Generating '+outputFile
-
     self.loadData()
 
     codes = self.features.keys()
-    main_codes = copy.copy(codes)
     self.map.insets = []
     envelope = []
     for inset in self.insets:
@@ -189,9 +161,9 @@ class Converter:
         )
       )
       for code in inset['codes']:
-        main_codes.remove(code)
+        codes.remove(code)
 
-    insetBbox = self.renderMapInset(main_codes, 0, 0, self.width)
+    insetBbox = self.renderMapInset(codes, 0, 0, self.width)
     insetHeight = (insetBbox[3] - insetBbox[1]) * (self.width / (insetBbox[2] - insetBbox[0]))
 
     envelope.append( shapely.geometry.box( 0, 0, self.width, insetHeight ) )
@@ -210,13 +182,6 @@ class Converter:
 
     open(outputFile, 'w').write( self.map.getJSCode() )
 
-    if self.for_each is not None:
-      for code in codes:
-        childConfig = copy.deepcopy(self.for_each)
-        for param in ('input_file', 'output_file', 'where', 'name'):
-          childConfig[param] = childConfig[param].replace('{{code}}', code.lower())
-        converter = Converter(childConfig)
-        converter.convert(childConfig['output_file'])
 
   def renderMapInset(self, codes, left, top, width):
     envelope = []
@@ -236,7 +201,7 @@ class Converter:
       if geometry.is_empty:
         continue
       if self.simplify_tolerance:
-        geometry = geometry.simplify(self.simplify_tolerance*scale, preserve_topology=True)
+        geometry = geometry.simplify(self.simplify_tolerance, preserve_topology=True)
       if isinstance(geometry, shapely.geometry.multipolygon.MultiPolygon):
         polygons = geometry.geoms
       else:
@@ -288,12 +253,43 @@ class Converter:
     return shapely.geometry.multipolygon.MultiPolygon(polygons)
 
 
-args = {}
-if len(sys.argv) > 1:
-  paramsJson = open(sys.argv[1], 'r').read()
-else:
-  paramsJson = sys.stdin.read()
-paramsJson = json.loads(paramsJson)
+parser = argparse.ArgumentParser(conflict_handler='resolve')
+parser.add_argument('input_file')
+parser.add_argument('output_file')
+parser.add_argument('--country_code_index', type=int)
+parser.add_argument('--country_name_index', type=int)
+parser.add_argument('--codes_file', type=str)
+parser.add_argument('--where', type=str)
+parser.add_argument('--width', type=float)
+parser.add_argument('--insets', type=str)
+parser.add_argument('--minimal_area', type=float)
+parser.add_argument('--buffer_distance', type=float)
+parser.add_argument('--simplify_tolerance', type=float)
+parser.add_argument('--viewport', type=str)
+parser.add_argument('--longitude0', type=str)
+parser.add_argument('--projection', type=str)
+parser.add_argument('--name', type=str)
+parser.add_argument('--language', type=str)
+parser.add_argument('--input_file_encoding', type=str)
+parser.add_argument('--precision', type=int)
+args = vars(parser.parse_args())
 
-converter = Converter(paramsJson)
-converter.convert(paramsJson['output_file'])
+default_args = {
+  'buffer_distance': -0.4,
+  'longitude0': '0',
+  'projection': 'mill',
+  'name': 'world',
+  'language': 'en',
+  'precision': 2,
+  'insets': ''
+}
+
+if args['input_file'][-4:] == 'json':
+  args.update( json.loads( open(args['input_file'], 'r').read() ) )
+
+for key in default_args:
+  if default_args.get(key) and args.get(key) is None:
+    args[key] = default_args[key]
+
+converter = Converter(args)
+converter.convert(args['output_file'])

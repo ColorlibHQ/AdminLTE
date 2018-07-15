@@ -9,61 +9,40 @@
       padding: 0;
       list-style: none;
     }
-
-    .jvectormap-legend .jvectormap-legend-tick-sample {
-      height: 26px;
-    }
-
-    .jvectormap-legend-icons {
-      background: white;
-      border: black 1px solid;
-    }
-
-    .jvectormap-legend-icons {
-      color: black;
-    }
   </style>
 
   <script src="assets/jquery-1.8.2.js"></script>
   <script src="../jquery-jvectormap.js"></script>
-  <script src="../lib/jquery-mousewheel.js"></script>
+  <script src="../jquery-mousewheel.js"></script>
 
-  <script src="../src/jvectormap.js"></script>
+  <script src="../lib/jvectormap.js"></script>
 
-  <script src="../src/abstract-element.js"></script>
-  <script src="../src/abstract-canvas-element.js"></script>
-  <script src="../src/abstract-shape-element.js"></script>
+  <script src="../lib/abstract-element.js"></script>
+  <script src="../lib/abstract-canvas-element.js"></script>
+  <script src="../lib/abstract-shape-element.js"></script>
 
-  <script src="../src/svg-element.js"></script>
-  <script src="../src/svg-group-element.js"></script>
-  <script src="../src/svg-canvas-element.js"></script>
-  <script src="../src/svg-shape-element.js"></script>
-  <script src="../src/svg-path-element.js"></script>
-  <script src="../src/svg-circle-element.js"></script>
-  <script src="../src/svg-image-element.js"></script>
-  <script src="../src/svg-text-element.js"></script>
+  <script src="../lib/svg-element.js"></script>
+  <script src="../lib/svg-group-element.js"></script>
+  <script src="../lib/svg-canvas-element.js"></script>
+  <script src="../lib/svg-shape-element.js"></script>
+  <script src="../lib/svg-path-element.js"></script>
+  <script src="../lib/svg-circle-element.js"></script>
 
-  <script src="../src/vml-element.js"></script>
-  <script src="../src/vml-group-element.js"></script>
-  <script src="../src/vml-canvas-element.js"></script>
-  <script src="../src/vml-shape-element.js"></script>
-  <script src="../src/vml-path-element.js"></script>
-  <script src="../src/vml-circle-element.js"></script>
-  <script src="../src/vml-image-element.js"></script>
+  <script src="../lib/vml-element.js"></script>
+  <script src="../lib/vml-group-element.js"></script>
+  <script src="../lib/vml-canvas-element.js"></script>
+  <script src="../lib/vml-shape-element.js"></script>
+  <script src="../lib/vml-path-element.js"></script>
+  <script src="../lib/vml-circle-element.js"></script>
 
-  <script src="../src/map-object.js"></script>
-  <script src="../src/region.js"></script>
-  <script src="../src/marker.js"></script>
-
-  <script src="../src/vector-canvas.js"></script>
-  <script src="../src/simple-scale.js"></script>
-  <script src="../src/ordinal-scale.js"></script>
-  <script src="../src/numeric-scale.js"></script>
-  <script src="../src/color-scale.js"></script>
-  <script src="../src/legend.js"></script>
-  <script src="../src/data-series.js"></script>
-  <script src="../src/proj.js"></script>
-  <script src="../src/map.js"></script>
+  <script src="../lib/vector-canvas.js"></script>
+  <script src="../lib/simple-scale.js"></script>
+  <script src="../lib/ordinal-scale.js"></script>
+  <script src="../lib/numeric-scale.js"></script>
+  <script src="../lib/color-scale.js"></script>
+  <script src="../lib/data-series.js"></script>
+  <script src="../lib/proj.js"></script>
+  <script src="../lib/world-map.js"></script>
 
   <script src="assets/jquery-jvectormap-us-aea-en.js"></script>
   <script>
@@ -72,93 +51,39 @@
             [61.18, -149.53],
             [21.18, -157.49],
             {latLng: [40.66, -73.56], name: 'New York City', style: {r: 8, fill: 'yellow'}},
-            {latLng: [41.52, -87.37], style: {fill: 'red', r: 10}},
-            {latLng: [35.22, -80.84]},
-            {latLng: [31.52, -87.37]}
+            {latLng: [41.52, -87.37], style: {fill: 'red', r: 10}}
           ],
-          values1 = [408, 512, 550, 781],
-          values2 = [1, 2, 3, 4],
-          values3 = {
-            '4': 'bank',
-            '5': 'factory'
-          };
+          values1 = [1, 2, 3, 4],
+          values2 = [1, 2, 3, 4];
 
-      var map = new jvm.Map({
+      var map = new jvm.WorldMap({
         container: $('.map'),
         map: 'us_aea_en',
-        labels: {
-          regions: {
-            render: function(code){
-              var doNotShow = ['US-RI', 'US-DC'];
-
-              if (doNotShow.indexOf(code) === -1) {
-                return code.split('-')[1];
-              }
-            },
-            offsets: function(code){
-              return {
-                'CA': [-10, 10],
-                'ID': [0, 40],
-                'OK': [25, 0],
-                'LA': [-20, 0],
-                'FL': [45, 0],
-                'KY': [10, 5],
-                'VA': [15, 5],
-                'MI': [30, 30],
-                'AK': [50, -25],
-                'HI': [25, 50]
-              }[code.split('-')[1]];
-            }
-          },
-          markers: {
-            render: function(index){
-              return 'Marker '+index;
-            }
-          }
-        },
         markers: markers,
         series: {
           markers: [{
             attribute: 'fill',
             scale: ['#C8EEFF', '#0071A4'],
             normalizeFunction: 'polynomial',
-            values: values1,
-            legend: {
-              vertical: true
-            }
+            values: values1
           },{
             attribute: 'r',
             scale: [5, 20],
             normalizeFunction: 'polynomial',
             values: values2
-          },{
-            attribute: 'image',
-            scale: {
-              bank: 'assets/icon-bank.png',
-              factory: 'assets/icon-factory.png'
-            },
-            values: values3,
-            legend: {
-              horizontal: true,
-              cssClass: 'jvectormap-legend-icons',
-              title: 'Business type'
-            }
           }],
           regions: [{
             scale: {
               red: '#ff0000',
-              green: '#00ff00'
+              blue: '#00ff00'
             },
             attribute: 'fill',
+            normalizeFunction: 'polynomial',
             values: {
               "US-KS": 'red',
               "US-MO": 'red',
-              "US-IA": 'green',
-              "US-NE": 'green'
-            },
-            legend: {
-              horizontal: true,
-              title: 'Color'
+              "US-IA": 'blue',
+              "US-NE": 'blue'
             }
           },{
             values: {
@@ -166,27 +91,6 @@
               "US-FL": 'blue'
             },
             attribute: 'fill'
-          },{
-            scale: {
-              redGreen: 'assets/bg-red-green.png',
-              yellowBlue: 'assets/bg-yellow-blue.png'
-            },
-            values: {
-              "US-TX": 'redGreen',
-              "US-CA": 'yellowBlue'
-            },
-            attribute: 'fill',
-            legend: {
-              horizontal: true,
-              cssClass: 'jvectormap-legend-bg',
-              title: 'Pattern',
-              labelRender: function(v){
-                return {
-                  redGreen: 'Low',
-                  yellowBlue: 'High'
-                }[v];
-              }
-            }
           }]
         },
         regionsSelectable: true,
@@ -195,8 +99,8 @@
         selectedRegions: JSON.parse( window.localStorage.getItem('jvectormap-selected-regions') || '[]' ),
         selectedMarkers: JSON.parse( window.localStorage.getItem('jvectormap-selected-markers') || '[]' ),
 
-        onMarkerTipShow: function(event, tip, index){
-          tip.html(tip.html()+' (modified marker)');
+        onMarkerLabelShow: function(event, label, index){
+          label.html(label.html()+' (modified marker)');
         },
         onMarkerOver: function(event, index){
           console.log('marker-over', index);
@@ -217,8 +121,8 @@
           }
         },
 
-        onRegionTipShow: function(event, tip, code){
-          tip.html(tip.html()+' (modified)');
+        onRegionLabelShow: function(event, label, code){
+          label.html(label.html()+' (modified)');
         },
         onRegionOver: function(event, code){
           console.log('region-over', code, map.getRegionName(code));
@@ -247,14 +151,14 @@
         var index = $(this).closest('li').attr('data-marker-index');
 
         if ($(this).prop('checked')) {
-          map.addMarker( index, markers[index], [values1[index], values2[index], values3[index]] );
+          map.addMarker( index, markers[index], [values1[index], values2[index]] );
         } else {
           map.removeMarkers( [index] );
         }
       });
       $('.button-add-all').click(function(){
         $('.list-markers :checkbox').prop('checked', true);
-        map.addMarkers(markers, [values1, values2, values3]);
+        map.addMarkers(markers, [values1, values2]);
       });
       $('.button-remove-all').click(function(){
         $('.list-markers :checkbox').prop('checked', false);
@@ -289,8 +193,6 @@
     <li data-marker-index="1"><label><input checked type="checkbox"/> Marker 2</label></li>
     <li data-marker-index="2"><label><input checked type="checkbox"/> Marker 3</label></li>
     <li data-marker-index="3"><label><input checked type="checkbox"/> Marker 4</label></li>
-    <li data-marker-index="4"><label><input checked type="checkbox"/> Marker 5</label></li>
-    <li data-marker-index="5"><label><input checked type="checkbox"/> Marker 6</label></li>
   </ul>
   <input type="button" value="Add all" class="button-add-all"/>
   <input type="button" value="Remove all" class="button-remove-all"/>
