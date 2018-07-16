@@ -12555,53 +12555,53 @@ a.text-muted:hover {
 }
 
 .bg-primary, .label-primary,
-.bg-primary a,
-.label-primary a {
+.bg-primary > a,
+.label-primary > a {
   color: #ffffff !important;
 }
 
 .bg-secondary,
-.bg-secondary a {
+.bg-secondary > a {
   color: #ffffff !important;
 }
 
 .bg-success, .alert-success, .label-success,
-.bg-success a,
-.alert-success a,
-.label-success a {
+.bg-success > a,
+.alert-success > a,
+.label-success > a {
   color: #ffffff !important;
 }
 
 .bg-info, .alert-info, .label-info,
-.bg-info a,
-.alert-info a,
-.label-info a {
+.bg-info > a,
+.alert-info > a,
+.label-info > a {
   color: #ffffff !important;
 }
 
 .bg-warning, .alert-warning, .label-warning,
-.bg-warning a,
-.alert-warning a,
-.label-warning a {
+.bg-warning > a,
+.alert-warning > a,
+.label-warning > a {
   color: #1F2D3D !important;
 }
 
 .bg-danger, .alert-danger,
 .alert-error, .label-danger,
-.bg-danger a,
-.alert-danger a,
-.alert-error a,
-.label-danger a {
+.bg-danger > a,
+.alert-danger > a,
+.alert-error > a,
+.label-danger > a {
   color: #ffffff !important;
 }
 
 .bg-light,
-.bg-light a {
+.bg-light > a {
   color: #1F2D3D !important;
 }
 
 .bg-dark,
-.bg-dark a {
+.bg-dark > a {
   color: #ffffff !important;
 }
 
