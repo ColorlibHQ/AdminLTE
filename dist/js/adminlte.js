@@ -614,7 +614,7 @@ throw new Error('AdminLTE requires jQuery')
     } else {
       var postSetHeight;
 
-      if (windowHeight >= sidebarHeight) {
+      if (windowHeight >= sidebarHeight + headerHeight) {
         $(Selector.contentWrapper).css('min-height', windowHeight - neg);
         postSetHeight = windowHeight - neg;
       } else {
