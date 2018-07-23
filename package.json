@@ -54,6 +54,7 @@
     "jquery-ui": "^1.12.1",
     "jvectormap": "^1.2.2",
     "moment": "^2.18.1",
+    "morgan": "^1.8.2",
     "morris.js": "^0.5.0",
     "pace": "0.0.4",
     "raphael": "^2.2.7",
