@@ -53,6 +53,7 @@
     "jquery-sparkline": "^2.4.0",
     "jquery-ui": "^1.12.1",
     "jvectormap": "^1.2.2",
+    "object-assign": "^3.0.0",
     "moment": "^2.18.1",
     "morgan": "^1.8.2",
     "morris.js": "^0.5.0",
