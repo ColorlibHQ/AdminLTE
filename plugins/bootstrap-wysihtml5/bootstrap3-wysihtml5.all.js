@@ -14183,7 +14183,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return " \n      <span class=\"fa fa-quote-left\"></span>\n    ";
+  return " \n      <span class=\"fas fa-quote-left\"></span>\n    ";
   }
 
 function program5(depth0,data) {
@@ -14309,7 +14309,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "\n      <span class=\"fa fa-font\"></span>\n    ";
+  return "\n      <span class=\"fas fa-font\"></span>\n    ";
   }
 
 function program5(depth0,data) {
@@ -14360,7 +14360,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "\n        <span class=\"fa fa-pencil\"></span>\n      ";
+  return "\n        <span class=\"fas fa-file-alt\"></span>\n      ";
   }
 
 function program5(depth0,data) {
@@ -14403,7 +14403,7 @@ function program3(depth0,data) {
 function program5(depth0,data) {
   
   
-  return "\n      <span class=\"fa fa-file-image-o\"></span>\n    ";
+  return "\n      <span class=\"fas fa-file-image-o\"></span>\n    ";
   }
 
 function program7(depth0,data) {
@@ -14455,7 +14455,7 @@ function program3(depth0,data) {
 function program5(depth0,data) {
   
   
-  return "\n      <span class=\"fa fa-share-square-o\"></span>\n    ";
+  return "\n      <span class=\"fas fa-share-square-o\"></span>\n    ";
   }
 
 function program7(depth0,data) {
@@ -14503,7 +14503,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "\n      <span class=\"fa fa-list-ul\"></span>\n    ";
+  return "\n      <span class=\"fas fa-list-ul\"></span>\n    ";
   }
 
 function program5(depth0,data) {
@@ -14515,7 +14515,7 @@ function program5(depth0,data) {
 function program7(depth0,data) {
   
   
-  return "\n      <span class=\"fa fa-list-ol\"></span>\n    ";
+  return "\n      <span class=\"fas fa-list-ol\"></span>\n    ";
   }
 
 function program9(depth0,data) {
@@ -14527,7 +14527,7 @@ function program9(depth0,data) {
 function program11(depth0,data) {
   
   
-  return "\n      <span class=\"fa fa-outdent\"></span>\n    ";
+  return "\n      <span class=\"fas fa-outdent\"></span>\n    ";
   }
 
 function program13(depth0,data) {
@@ -14539,7 +14539,7 @@ function program13(depth0,data) {
 function program15(depth0,data) {
   
   
-  return "\n      <span class=\"fa fa-indent\"></span>\n    ";
+  return "\n      <span class=\"fas fa-indent\"></span>\n    ";
   }
 
 function program17(depth0,data) {

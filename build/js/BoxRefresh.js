@@ -18,7 +18,7 @@
     content        : '.box-body',
     loadInContent  : true,
     responseType   : '',
-    overlayTemplate: '<div class="overlay"><div class="fa fa-refresh fa-spin"></div></div>',
+    overlayTemplate: '<div class="overlay"><div class="fas fa-sync-alt fa-spin"></div></div>',
     onLoadStart    : function () {
     },
     onLoadDone     : function (response) {

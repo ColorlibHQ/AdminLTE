@@ -175,7 +175,7 @@ $(function () {
     // Create the tab button
     var $tabButton = $('<li />', {'class': 'active'})
         .html('<a href=\'#control-sidebar-theme-demo-options-tab\' data-toggle=\'tab\'>'
-            + '<i class="fa fa-wrench"></i>'
+            + '<i class="fas fa-wrench"></i>'
             + '</a>')
 
     // Add the tab button to the right sidebar tabs

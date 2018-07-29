@@ -2,27 +2,24 @@
 // --------------------------
 
 .fa-icon() {
-  display: inline-block;
-  font: normal normal normal @fa-font-size-base/@fa-line-height-base FontAwesome; // shortening font declaration
-  font-size: inherit; // can't have font-size inherit on line above, so need to override
-  text-rendering: auto; // optimizelegibility throws things off #1094
-  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -.125em;
 }
 
 .fa-icon-rotate(@degrees, @rotation) {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=@{rotation})";
-  -webkit-transform: rotate(@degrees);
-      -ms-transform: rotate(@degrees);
-          transform: rotate(@degrees);
+  transform: rotate(@degrees);
 }
 
 .fa-icon-flip(@horiz, @vert, @rotation) {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=@{rotation}, mirror=1)";
-  -webkit-transform: scale(@horiz, @vert);
-      -ms-transform: scale(@horiz, @vert);
-          transform: scale(@horiz, @vert);
+  transform: scale(@horiz, @vert);
 }
 
 
@@ -31,14 +28,14 @@
 // See: http://a11yproject.com/posts/how-to-hide-content/
 
 .sr-only() {
-  position: absolute;
-  width: 1px;
+  border: 0;
+  clip: rect(0,0,0,0);
   height: 1px;
-  padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0,0,0,0);
-  border: 0;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
 
 // Use in conjunction with .sr-only to only display content when it's focused.
@@ -50,11 +47,11 @@
 .sr-only-focusable() {
   &:active,
   &:focus {
-    position: static;
-    width: auto;
+    clip: auto;
     height: auto;
     margin: 0;
     overflow: visible;
-    clip: auto;
+    position: static;
+    width: auto;
   }
 }
