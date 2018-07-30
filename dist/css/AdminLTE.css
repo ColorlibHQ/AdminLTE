@@ -18,7 +18,7 @@ body {
   height: 100%;
 }
 body {
-  font-fasmily: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
   overflow-x: hidden;
   overflow-y: auto;
@@ -46,7 +46,7 @@ body {
   position: relative;
 }
 .layout-boxed {
-  background-color: #f9fasfc;
+  background-color: #f9fafc;
 }
 /*
  * Content Wrapper - contains the main content
@@ -158,7 +158,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-fasmily: 'Source Sans Pro', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 /* General Links */
 a {
@@ -250,7 +250,7 @@ a:focus {
   background-color: transparent;
   background-image: none;
   padding: 15px 15px;
-  font-fasmily: fontAwesome;
+  font-family: fontAwesome;
 }
 .main-header .sidebar-toggle:before {
   font-family: 'Font Awesome 5 Free';
@@ -292,7 +292,7 @@ a:focus {
   line-height: 50px;
   text-align: center;
   width: 230px;
-  font-fasmily: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0 15px;
   font-weight: 300;
   overflow: hidden;
@@ -862,7 +862,7 @@ a:focus {
 }
 .control-sidebar-light,
 .control-sidebar-light + .control-sidebar-bg {
-  background: #f9fasfc;
+  background: #f9fafc;
   border-left: 1px solid #d2d6de;
 }
 .control-sidebar-light .nav-tabs.control-sidebar-tabs {
@@ -887,7 +887,7 @@ a:focus {
 .control-sidebar-light .nav-tabs.control-sidebar-tabs > li.active > a:hover,
 .control-sidebar-light .nav-tabs.control-sidebar-tabs > li.active > a:focus,
 .control-sidebar-light .nav-tabs.control-sidebar-tabs > li.active > a:active {
-  background: #f9fasfc;
+  background: #f9fafc;
   color: #111;
 }
 .control-sidebar-light .control-sidebar-heading,
@@ -930,7 +930,7 @@ a:focus {
 .navbar-nav > .notifications-menu > .dropdown-menu,
 .navbar-nav > .messages-menu > .dropdown-menu,
 .navbar-nav > .tasks-menu > .dropdown-menu {
-  width: 280px;
+  width: 300px;
   padding: 0 0 0 0;
   margin: 0;
   top: 100%;
@@ -1161,7 +1161,7 @@ a:focus {
 /* Add fasde animation to dropdown menus by appending
  the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
 .open:not(.dropup) > .animated-dropdown-menu {
-  backfasce-visibility: visible !important;
+  backface-visibility: visible !important;
   -webkit-animation: flipInX 0.7s both;
   -o-animation: flipInX 0.7s both;
   animation: flipInX 0.7s both;
@@ -2235,12 +2235,12 @@ a:focus {
 }
 .btn-primary {
   background-color: #3c8dbc;
-  border-color: #367fas9;
+  border-color: #367fa9;
 }
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary.hover {
-  background-color: #367fas9;
+  background-color: #367fa9;
 }
 .btn-success {
   background-color: #00a65a;
@@ -2581,7 +2581,7 @@ a:focus {
 }
 /* PAGINATION */
 .pagination > li > a {
-  background: #fasfasfas;
+  background: #fafafa;
   color: #666;
 }
 .pagination.pagination-flat > li > a {
@@ -4157,7 +4157,7 @@ table.text-center th {
   padding-left: 10px;
 }
 .fc-widget-header {
-  background: #fasfasfas;
+  background: #fafafa;
 }
 .fc-grid {
   width: 100%;
@@ -4307,7 +4307,7 @@ table.text-center th {
 }
 .select2-container--defasult .select2-selection--multiple .select2-selection__choice {
   background-color: #3c8dbc;
-  border-color: #367fas9;
+  border-color: #367fa9;
   padding: 1px 10px;
   color: #fff;
 }
