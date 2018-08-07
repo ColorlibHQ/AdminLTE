@@ -29,7 +29,6 @@
     "less": "^2.7.2"
   },
   "dependencies": {
-    "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
     "bootstrap-colorpicker": "^2.5.1",
     "bootstrap-datepicker": "^1.7.0",
