@@ -267,6 +267,16 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
+				<script>
+					var axios = require('axios')
+					axios.get('https://172.30.0.119/hello')
+					  .then(response => {
+					    console.log("LOGGIRUETSA!!" + response.data);
+					  })
+					  .catch(error => {
+					    console.log(error);
+					  });
+				</script>
                   Ilya Lyubaikin - Backend Developer
                   <small>Member since Nov. 2012</small>
                 </p>
