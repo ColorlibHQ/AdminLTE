@@ -36,9 +36,10 @@
     background-color: rgba(255, 255, 255, 0.1);
   }
   .skin-red .main-header .navbar .dropdown-menu li a {
-    color: #fff;
+    color: #777;
   }
   .skin-red .main-header .navbar .dropdown-menu li a:hover {
+    color: #fff;
     background: #d73925;
   }
 }
