@@ -25,7 +25,25 @@
     "issues": "https://github.com/almasaeed2010/AdminLTE/issues"
   },
   "require": {
-    "composer/installers": "1.*",
     "bower-asset/jquery": ">=1.9.0 <4.0.0"
+  },
+  "archive": {
+    "exclude": [
+      "/.github",
+      "/bower_components",
+      "/build",
+      "/documentation",
+      "/pages",
+      "/plugins",
+      ".npmignore",
+      "bower.json",
+      "Gruntfile.js",
+      "index.html",
+      "index2.html",
+      "package-lock.json",
+      "package.json",
+      "starter.html",
+      "yarn.lock"
+    ]
   }
 }
