@@ -8,7 +8,7 @@ You can see the original DOCS form [here](https://github.com/Si-HaMaDa/AdminLTE-
 And it's the same,
 
 if you have the non-rtl version and you just need to make it support RTL so
-###**Install RTL**
+**Install RTL**
 Just download - dist/rtl - folder and include it's content in your project
 
 
