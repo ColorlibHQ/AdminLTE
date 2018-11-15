@@ -1,4 +1,5 @@
 **AdminLTE-RTL**
+============
 This is the RTL supported version for **AdminLTE**
 IF your project needs RTL support so this is the propper virsion for you
 
@@ -10,8 +11,9 @@ if you have the non-rtl version and you just need to make it support RTL so
 **Install RTL**
 Just download - dist/rtl - folder and include it's content in your project
 
-
 ============
+
+
 Introduction
 ============
 
