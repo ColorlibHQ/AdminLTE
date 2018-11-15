@@ -10,7 +10,7 @@ And it's the same,
 if you have the non-rtl version and you just need to make it support RTL so
 
 ###  **Install RTL**
-Just download - dist/rtl - folder and include it's content in your project
+Just download **- dist/rtl -** folder and include it's content in your project
 
 
 
