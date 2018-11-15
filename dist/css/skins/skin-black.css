@@ -99,7 +99,7 @@
   background: #1e282c;
 }
 .skin-black .sidebar-menu > li.active > a {
-  border-left-color: #ffffff;
+  border-color: #ffffff;
 }
 .skin-black .sidebar-menu > li > .treeview-menu {
   margin: 0 1px;

@@ -79,7 +79,7 @@
   background: #1e282c;
 }
 .skin-purple .sidebar-menu > li.active > a {
-  border-left-color: #605ca8;
+  border-color: #605ca8;
 }
 .skin-purple .sidebar-menu > li > .treeview-menu {
   margin: 0 1px;

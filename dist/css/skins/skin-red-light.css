@@ -87,7 +87,7 @@
   background: #f4f4f5;
 }
 .skin-red-light .sidebar-menu > li.active {
-  border-left-color: #dd4b39;
+  border-color: #dd4b39;
 }
 .skin-red-light .sidebar-menu > li.active > a {
   font-weight: 600;

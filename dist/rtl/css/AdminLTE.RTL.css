@@ -1,0 +1,208 @@
+/*!
+ *   AdminLTE RTL v2.4.8
+ *   Author: SI HaMaDa
+ *   License: Open source - MIT
+ *           Please visit http://opensource.org/licenses/MIT for more information
+ */
+/*
+ * RTL style corrections
+ * -------------------------
+ */
+
+/*
+ * Starter
+ * -------------------------
+ */
+
+.fa-angle-left,
+.fa-angle-right {
+  transform: rotate(180deg)
+}
+
+@media (max-width: 991px) {
+  .navbar-custom-menu .navbar-nav>li {
+    float: right
+  }
+}
+
+@media (max-width: 767px) {
+
+  .main-sidebar {
+    -webkit-transform: translate(230px, 0);
+    -ms-transform: translate(230px, 0);
+    -o-transform: translate(230px, 0);
+    transform: translate(230px, 0);
+  }
+
+  .sidebar-open .content-wrapper,
+  .sidebar-open .main-footer {
+    -webkit-transform: translate(-230px, 0);
+    -ms-transform: translate(-230px, 0);
+    -o-transform: translate(-230px, 0);
+    transform: translate(-230px, 0);
+  }
+
+}
+
+@media (min-width: 767px) {
+
+  .main-header .logo {
+    float: right;
+  }
+
+  .main-header .navbar {
+    margin-left: 0;
+    margin-right: 230px;
+    transition: margin-right .3s ease-in-out;
+  }
+
+  .sidebar-mini.sidebar-collapse .main-header .navbar {
+    margin-left: 0;
+    margin-right: 50px;
+  }
+
+  .navbar-custom-menu>.navbar-nav>li>.dropdown-menu {
+    right: unset;
+    left: 0;
+  }
+
+  .content-wrapper,
+  .main-footer {
+    margin-left: unset;
+    margin-right: 230px
+  }
+
+  .content-header>.breadcrumb {
+    float: right;
+    right: unset;
+    left: 10px;
+  }
+
+  .sidebar-mini.sidebar-collapse .content-wrapper,
+  .sidebar-mini.sidebar-collapse .right-side,
+  .sidebar-mini.sidebar-collapse .main-footer {
+    margin-left: unset !important;
+    margin-right: 50px !important;
+  }
+
+  .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu>li:hover>a>span:not(.pull-right),
+  .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu>li:hover>.treeview-menu {
+    left: unset;
+    right: 50px;
+  }
+
+  .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu>li:hover>a>span {
+    margin-left: unset;
+    margin-right: -3px;
+    padding: 12px 20px 12px 5px;
+  }
+
+  .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu>li:hover>a>.pull-right-container {
+    float: left;
+    left: unset !important;
+    right: 180px !important;
+  }
+
+  .sidebar-mini.sidebar-collapse .sidebar-menu>li>a>span {
+    border-top-right-radius: 0;
+    border-top-left-radius: 4px;
+  }
+
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li:not(.treeview) > a > span {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 4px;
+}
+
+  .sidebar-mini.sidebar-collapse .sidebar-menu>li>.treeview-menu {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 4px;
+  }
+
+
+}
+
+.main-header .sidebar-toggle {
+  float: right;
+}
+
+
+.main-header .navbar-custom-menu,
+.navbar-right {
+  float: left;
+}
+
+
+.navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>h4>small {
+  right: unset;
+  left: 0;
+}
+
+.navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>h4,
+.navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>p {
+  padding: 0;
+  margin: 0 45px 0 0;
+}
+
+.main-sidebar {
+  left: unset;
+  right: 0;
+}
+
+.user-panel>.info {
+  padding: 5px 15px 5px 5px;
+  left: unset;
+  right: 55px;
+}
+
+.sidebar-menu>li>a {
+  padding: 12px 15px 12px 5px;
+}
+
+.skin-blue .sidebar-menu>li>a {
+  border-left: none;
+  border-right: 3px solid transparent;
+}
+
+.treeview-menu {
+  padding-left: unset;
+  padding-right: 5px;
+}
+
+.treeview-menu>li>a {
+  padding: 5px 15px 5px 5px;
+}
+
+.sidebar-menu li>a>.pull-right-container {
+  right: unset;
+  left: 10px;
+}
+
+.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu>li:hover>.treeview-menu {
+  margin-left: unset;
+  margin-right: 0;
+}
+
+
+.content-header>.breadcrumb>li>a>.fa,
+.content-header>.breadcrumb>li>a>.glyphicon,
+.content-header>.breadcrumb>li>a>.ion {
+  margin-right: 0;
+  margin-left: 5px;
+}
+
+.content-header>h1>small {
+  padding-left: unset;
+  padding-right: 4px;
+}
+
+.control-sidebar.control-sidebar-open,
+.control-sidebar.control-sidebar-open+.control-sidebar-bg {
+  right: unset;
+  left: 0;
+}
+
+.control-sidebar-bg,
+.control-sidebar {
+  left: -230px;
+  transition: left .3s ease-in-out;
+}

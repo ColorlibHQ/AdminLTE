@@ -106,7 +106,7 @@
   background: #f4f4f5;
 }
 .skin-black-light .sidebar-menu > li.active {
-  border-left-color: #ffffff;
+  border-color: #ffffff;
 }
 .skin-black-light .sidebar-menu > li.active > a {
   font-weight: 600;

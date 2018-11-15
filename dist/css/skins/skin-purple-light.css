@@ -87,7 +87,7 @@
   background: #f4f4f5;
 }
 .skin-purple-light .sidebar-menu > li.active {
-  border-left-color: #605ca8;
+  border-color: #605ca8;
 }
 .skin-purple-light .sidebar-menu > li.active > a {
   font-weight: 600;

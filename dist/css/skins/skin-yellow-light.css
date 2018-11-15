@@ -87,7 +87,7 @@
   background: #f4f4f5;
 }
 .skin-yellow-light .sidebar-menu > li.active {
-  border-left-color: #f39c12;
+  border-color: #f39c12;
 }
 .skin-yellow-light .sidebar-menu > li.active > a {
   font-weight: 600;
