@@ -10,8 +10,8 @@
  */
 
 /*
- * Starter
- * -------------------------
+ * Starter and main structure
+ * --------------------------
  */
 
 .fa-angle-left,
@@ -108,10 +108,10 @@
     border-top-left-radius: 4px;
   }
 
-  .sidebar-mini.sidebar-collapse .sidebar-menu > li:not(.treeview) > a > span {
+  .sidebar-mini.sidebar-collapse .sidebar-menu>li:not(.treeview)>a>span {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 4px;
-}
+  }
 
   .sidebar-mini.sidebar-collapse .sidebar-menu>li>.treeview-menu {
     border-bottom-right-radius: 0;
@@ -141,6 +141,15 @@
 .navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>p {
   padding: 0;
   margin: 0 45px 0 0;
+}
+
+.navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>div>img {
+  margin: auto auto auto 10px;
+}
+
+.navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>p {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .main-sidebar {
@@ -206,3 +215,11 @@
   left: -230px;
   transition: left .3s ease-in-out;
 }
+
+/*
+ * Starter and main structure
+ * --------------------------
+ */
+
+
+ 
