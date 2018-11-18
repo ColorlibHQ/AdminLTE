@@ -587,3 +587,24 @@ ul.wysihtml5-toolbar>li {
 .bootstrap-timepicker-widget.dropdown-menu.open {
   direction: ltr
 }
+
+.daterangepicker.ltr {
+  direction: rtl;
+  text-align: right;
+}
+
+.daterangepicker td.start-date {
+  border-radius: 0 4px 4px 0;
+}
+
+.daterangepicker td.end-date {
+  border-radius: 4px 0 0 4px;
+}
+
+.daterangepicker.ltr .ranges {
+  float: right;
+}
+
+.ranges {
+  text-align: right;
+}
