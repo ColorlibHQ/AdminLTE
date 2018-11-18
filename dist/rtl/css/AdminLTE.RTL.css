@@ -457,6 +457,7 @@ ul.wysihtml5-toolbar>li {
 .callout {
   border-left: none;
   border-right: 5px solid #eee;
+  padding: 15px 15px 15px 30px;
 }
 
 
@@ -508,4 +509,61 @@ ul.wysihtml5-toolbar>li {
 .img-sm+.img-push {
   margin-left: unset;
   margin-right: 40px;
+}
+
+
+
+
+
+/*
+  *     UI   
+  * ------
+  */
+
+.alert-dismissable,
+.alert-dismissible {
+  padding-right: 15px;
+  padding-left: 35px;
+}
+
+.alert .icon {
+  margin-right: unset;
+  margin-left: 10px;
+}
+
+.btn-app>.badge {
+  right: unset;
+  left: -10px;
+}
+
+.slider.slider-vertical .slider-tick,
+.slider.slider-vertical .slider-handle {
+  margin-left: unset;
+  margin-right: -5px;
+}
+
+.timeline>li>.timeline-item>.time {
+  float: left;
+}
+
+.timeline>li>.fa,
+.timeline>li>.glyphicon,
+.timeline>li>.ion {
+  left: unset;
+  right: 18px;
+}
+
+.timeline>li>.timeline-item {
+  margin-left: 15px;
+  margin-right: 60px;
+}
+
+.timeline::before {
+  left: unset;
+  right: 31px;
+}
+
+.timeline>li {
+  margin-right: unset;
+  margin-left: 10px;
 }
