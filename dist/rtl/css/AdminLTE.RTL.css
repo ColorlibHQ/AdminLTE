@@ -23,6 +23,16 @@
   .navbar-custom-menu .navbar-nav>li {
     float: right
   }
+
+  .navbar-collapse.pull-left+.navbar-custom-menu {
+    right: unset;
+    left: 40px;
+  }
+
+  .navbar-header .navbar-toggle {
+    margin-left: 5px;
+  }
+
 }
 
 @media (max-width: 767px) {
@@ -165,10 +175,7 @@
 
 .sidebar-menu>li>a {
   padding: 12px 15px 12px 5px;
-}
-
-.skin-blue .sidebar-menu>li>a {
-  border-left: none;
+  border-left: none !important;
   border-right: 3px solid transparent;
 }
 
@@ -226,8 +233,8 @@
  * Starter and main structure
  * --------------------------
  */
- 
- 
+
+
 
 
 
@@ -291,16 +298,16 @@ div.chart {
   float: left;
 }
 
-.todo-list > li > input[type="checkbox"] {
+.todo-list>li>input[type="checkbox"] {
   margin: 0 5px 0 10px;
 }
 
-.todo-list > li .text {
+.todo-list>li .text {
   margin-left: unset;
   margin-right: 5px;
 }
 
-.todo-list > li .label {
+.todo-list>li .label {
   margin-left: unset;
   margin-right: 10px;
 }
@@ -355,7 +362,10 @@ ul.wysihtml5-toolbar>li {
 /* Info Boxes Style 2 */
 
 /* Monthly Recap Report */
-.progress-group .progress-number {float: left;}
+.progress-group .progress-number {
+  float: left;
+}
+
 /* Monthly Recap Report */
 
 /* Direct Chat */
@@ -427,11 +437,24 @@ ul.wysihtml5-toolbar>li {
  * ------
  */
 
- 
-  
-  
+
+
+
 /*
   *     Pages   
   * ---------
   */
 
+.layout-top-nav .content-wrapper,
+.layout-top-nav .main-footer {
+  margin-right: 0;
+}
+
+.layout-top-nav .main-header .navbar {
+  margin-right: 0;
+}
+
+.callout {
+  border-left: none;
+  border-right: 5px solid #eee;
+}
