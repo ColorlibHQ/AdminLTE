@@ -356,3 +356,112 @@ ul.wysihtml5-toolbar>li {
   *  Datepicker
   * -----------
   */
+
+
+
+/*
+  *   Info Boxes Style 2 
+  * --------------------
+  */
+
+.info-box-icon {
+  float: right;
+}
+
+.info-box-content {
+  margin-left: unset;
+  margin-right: 90px;
+}
+
+/*
+  *   Info Boxes Style 2 
+  * --------------------
+  */
+
+
+/*
+  *   Direct Chat 
+  * -------------
+  */
+
+.direct-chat-name.pull-left {
+  float: left !important;
+}
+
+.direct-chat-name.pull-right {
+  float: right !important;
+}
+
+.direct-chat-timestamp.pull-left {
+  float: left !important;
+}
+
+.direct-chat-timestamp.pull-right {
+  float: right !important;
+}
+
+.contacts-list-img {
+  float: right;
+}
+
+.contacts-list-info {
+  margin-left: unset;
+  margin-right: 45px;
+}
+
+/*
+  *   Direct Chat 
+  * -------------
+  */
+
+
+
+/*
+  *    USERS LIST  
+  * -------------
+  */
+
+.users-list>li {
+  float: right;
+}
+
+/*
+  *    USERS LIST  
+  * -------------
+  */
+
+
+/*
+  *     TABLE: LATEST ORDERS   
+  * ------------------------
+  */
+
+.sparkbar canvas {
+  transform: rotateY(180deg);
+}
+
+/*
+  *     TABLE: LATEST ORDERS   
+  * ------------------------
+  */
+
+
+
+/*
+  *     Recently Added Products   
+  * ---------------------------
+  */
+
+.products-list .product-img {
+  float: right;
+}
+
+.products-list .product-info {
+  margin-left: unset;
+  margin-right: 60px;
+}
+
+/*
+  *     Recently Added Products   
+  * ---------------------------
+  */
