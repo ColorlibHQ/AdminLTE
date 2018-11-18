@@ -608,3 +608,33 @@ ul.wysihtml5-toolbar>li {
 .ranges {
   text-align: right;
 }
+
+
+/*
+  *     Calendar   
+  * ------------
+  */
+
+.fc-color-picker>li {
+  float: right;
+}
+
+.fc-toolbar .fc-left {
+  float: right;
+}
+
+.fc-toolbar .fc-right {
+  float: left;
+}
+
+.fc .fc-button-group>* {
+  float: right;
+}
+
+.fc-state-default.fc-corner-right {
+  border-radius: 4px 0 0 4px;
+}
+
+.fc-state-default.fc-corner-left {
+  border-radius: 0 4px 4px 0;
+}
