@@ -1,8 +1,10 @@
 $(document).ready(function(){
 
     // Fixing Error when RTL knob
-    var translateX = $('input.knob').css('margin-left').charAt(0) == '-' ? $('input.knob').css('margin-left').substring(1) : '-'+$('input.knob').css('margin-left');
-    $('input.knob').css('transform', 'translateX('+translateX+')');
+    $('input.knob').each(function(){
+        var translateX = $(this).css('margin-left').charAt(0) == '-' ? $(this).css('margin-left').substring(1) : '-'+$(this).css('margin-left');
+        $(this).css('transform', 'translateX('+translateX+')');
+    })
     // Fixing Error when RTL knob
 
 })

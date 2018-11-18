@@ -441,8 +441,8 @@ ul.wysihtml5-toolbar>li {
 
 
 /*
-  *     Pages   
-  * ---------
+  *     Layouts Pages   
+  * -----------------
   */
 
 .layout-top-nav .content-wrapper,
@@ -457,4 +457,55 @@ ul.wysihtml5-toolbar>li {
 .callout {
   border-left: none;
   border-right: 5px solid #eee;
+}
+
+
+
+/*
+  *     Widgets Page   
+  * ----------------
+  */
+
+.widget-user-2 .widget-user-image>img {
+  float: right;
+}
+
+.widget-user-2 .widget-user-username,
+.widget-user-2 .widget-user-desc {
+  margin-left: unset;
+  margin-right: 75px;
+}
+
+.user-block img {
+  float: right;
+}
+
+.user-block .username,
+.user-block .description,
+.user-block .comment {
+  margin-left: unset;
+  margin-right: 50px;
+}
+
+.attachment-block .attachment-img {
+  float: right;
+}
+
+.attachment-block .attachment-pushed {
+  margin-left: unset;
+  margin-right: 110px;
+}
+
+.img-sm,
+.img-md,
+.img-lg,
+.box-comments .box-comment img,
+.user-block.user-block-sm img {
+  float: right;
+}
+
+.box-comments .comment-text,
+.img-sm+.img-push {
+  margin-left: unset;
+  margin-right: 40px;
 }
