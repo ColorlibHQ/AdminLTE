@@ -222,4 +222,137 @@
  */
 
 
- 
+/*
+ * Statics area
+ * ------------
+ */
+
+.small-box .icon {
+  right: unset;
+  left: 10px;
+}
+
+.fa.fa-arrow-circle-right,
+.fa.fa-arrow-circle-left {
+  transform: rotate(180deg)
+}
+
+/*
+  * Statics area
+  * ------------
+  */
+
+
+/*
+  * Charts with tabs
+  * ----------------
+  */
+.nav-tabs-custom>.nav-tabs>li.header {
+  float: left !important;
+}
+
+div.chart {
+  direction: ltr
+}
+
+/*
+  * Charts with tabs
+  * ----------------
+  */
+
+
+/*
+  * Chat Box
+  * --------
+  */
+
+.box-header>.box-tools {
+  right: unset;
+  left: 10px;
+}
+
+.chat .item>.message {
+  margin-left: 0;
+  margin-right: 55px;
+}
+
+.chat .item>.attachment {
+  margin-left: 15px;
+  margin-right: 65px;
+}
+
+/*
+  * Chat Box
+  * --------
+  */
+
+
+
+/*
+  * To Do list
+  * ----------
+  */
+
+.todo-list>li .tools {
+  float: left;
+}
+
+/*
+  * To Do list
+  * ----------
+  */
+
+
+
+/*
+  * wysihtml5 Editor
+  * ----------------
+  */
+
+ul.wysihtml5-toolbar>li {
+  float: right;
+}
+
+/*
+  * wysihtml5 Editor
+  * ----------------
+  */
+
+
+
+/*
+  *  Map box Visitors
+  * -----------------
+  */
+.jvectormap-zoomin,
+.jvectormap-zoomout {
+  box-sizing: content-box;
+  left: unset;
+  right: 10px;
+}
+
+/*
+  *  Map box Visitors
+  * -----------------
+  */
+
+
+
+/*
+  *  Datepicker
+  * -----------
+  */
+
+.box-header>.box-tools.pull-right .dropdown-menu {
+  right: auto;
+  left: 0;
+}
+
+.datepicker {
+  direction: rtl
+}
+
+/*
+  *  Datepicker
+  * -----------
+  */
