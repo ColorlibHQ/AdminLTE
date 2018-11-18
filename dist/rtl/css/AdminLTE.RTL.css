@@ -567,3 +567,23 @@ ul.wysihtml5-toolbar>li {
   margin-right: unset;
   margin-left: 10px;
 }
+
+
+/*
+  *     Forms   
+  * ---------
+  */
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  float: right;
+}
+
+.select2-container--default .select2-results>.select2-results__options,
+.select2-container--default .select2-selection--single,
+.select2-selection .select2-selection--single {
+  direction: rtl
+}
+
+.bootstrap-timepicker-widget.dropdown-menu.open {
+  direction: ltr
+}
