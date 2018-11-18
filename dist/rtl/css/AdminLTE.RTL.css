@@ -216,16 +216,28 @@
   transition: left .3s ease-in-out;
 }
 
+
+.box-header>.box-tools.pull-right .dropdown-menu {
+  right: auto;
+  left: 0;
+}
+
 /*
  * Starter and main structure
  * --------------------------
  */
+ 
+ 
+
 
 
 /*
- * Statics area
- * ------------
+ * Indexs
+ * ------
  */
+
+
+/* Statics area */
 
 .small-box .icon {
   right: unset;
@@ -237,16 +249,10 @@
   transform: rotate(180deg)
 }
 
-/*
-  * Statics area
-  * ------------
-  */
+/* Statics area */
 
 
-/*
-  * Charts with tabs
-  * ----------------
-  */
+/* Charts with tabs */
 .nav-tabs-custom>.nav-tabs>li.header {
   float: left !important;
 }
@@ -255,16 +261,10 @@ div.chart {
   direction: ltr
 }
 
-/*
-  * Charts with tabs
-  * ----------------
-  */
+/* Charts with tabs */
 
 
-/*
-  * Chat Box
-  * --------
-  */
+/* Chat Box */
 
 .box-header>.box-tools {
   right: unset;
@@ -281,49 +281,45 @@ div.chart {
   margin-right: 65px;
 }
 
-/*
-  * Chat Box
-  * --------
-  */
+/* Chat Box */
 
 
 
-/*
-  * To Do list
-  * ----------
-  */
+/* To Do list */
 
 .todo-list>li .tools {
   float: left;
 }
 
-/*
-  * To Do list
-  * ----------
-  */
+.todo-list > li > input[type="checkbox"] {
+  margin: 0 5px 0 10px;
+}
+
+.todo-list > li .text {
+  margin-left: unset;
+  margin-right: 5px;
+}
+
+.todo-list > li .label {
+  margin-left: unset;
+  margin-right: 10px;
+}
+
+/* To Do list */
 
 
 
-/*
-  * wysihtml5 Editor
-  * ----------------
-  */
+/* wysihtml5 Editor */
 
 ul.wysihtml5-toolbar>li {
   float: right;
 }
 
-/*
-  * wysihtml5 Editor
-  * ----------------
-  */
+/* wysihtml5 Editor */
 
 
 
-/*
-  *  Map box Visitors
-  * -----------------
-  */
+/* Map box Visitors */
 .jvectormap-zoomin,
 .jvectormap-zoomout {
   box-sizing: content-box;
@@ -331,38 +327,21 @@ ul.wysihtml5-toolbar>li {
   right: 10px;
 }
 
-/*
-  *  Map box Visitors
-  * -----------------
-  */
+/* Map box Visitors */
 
 
 
-/*
-  *  Datepicker
-  * -----------
-  */
-
-.box-header>.box-tools.pull-right .dropdown-menu {
-  right: auto;
-  left: 0;
-}
+/* Datepicker */
 
 .datepicker {
   direction: rtl
 }
 
-/*
-  *  Datepicker
-  * -----------
-  */
+/* Datepicker */
 
 
 
-/*
-  *   Info Boxes Style 2 
-  * --------------------
-  */
+/* Info Boxes Style 2 */
 
 .info-box-icon {
   float: right;
@@ -373,16 +352,13 @@ ul.wysihtml5-toolbar>li {
   margin-right: 90px;
 }
 
-/*
-  *   Info Boxes Style 2 
-  * --------------------
-  */
+/* Info Boxes Style 2 */
 
+/* Monthly Recap Report */
+.progress-group .progress-number {float: left;}
+/* Monthly Recap Report */
 
-/*
-  *   Direct Chat 
-  * -------------
-  */
+/* Direct Chat */
 
 .direct-chat-name.pull-left {
   float: left !important;
@@ -409,48 +385,30 @@ ul.wysihtml5-toolbar>li {
   margin-right: 45px;
 }
 
-/*
-  *   Direct Chat 
-  * -------------
-  */
+/* Direct Chat */
 
 
 
-/*
-  *    USERS LIST  
-  * -------------
-  */
+/* USERS LIST */
 
 .users-list>li {
   float: right;
 }
 
-/*
-  *    USERS LIST  
-  * -------------
-  */
+/* USERS LIST */
 
 
-/*
-  *     TABLE: LATEST ORDERS   
-  * ------------------------
-  */
+/* TABLE: LATEST ORDERS */
 
 .sparkbar canvas {
   transform: rotateY(180deg);
 }
 
-/*
-  *     TABLE: LATEST ORDERS   
-  * ------------------------
-  */
+/* TABLE: LATEST ORDERS */
 
 
 
-/*
-  *     Recently Added Products   
-  * ---------------------------
-  */
+/* Recently Added Products */
 
 .products-list .product-img {
   float: right;
@@ -461,7 +419,19 @@ ul.wysihtml5-toolbar>li {
   margin-right: 60px;
 }
 
+/* Recently Added Products */
+
+
 /*
-  *     Recently Added Products   
-  * ---------------------------
+ * Indexs
+ * ------
+ */
+
+ 
+  
+  
+/*
+  *     Pages   
+  * ---------
   */
+
