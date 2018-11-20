@@ -13,10 +13,13 @@
  * Starter and main structure
  * --------------------------
  */
-
-.fa-angle-left,
-.fa-angle-right {
-  transform: rotate(180deg)
+.fa.fa-chevron-right,
+.fa.fa-chevron-left,
+.fa.fa-share,
+.fa.fa-reply,
+.fa.fa-angle-left,
+.fa.fa-angle-right {
+  transform: rotateY(180deg);
 }
 
 @media (max-width: 991px) {
@@ -637,4 +640,38 @@ ul.wysihtml5-toolbar>li {
 
 .fc-state-default.fc-corner-left {
   border-radius: 0 4px 4px 0;
+}
+
+
+/*
+  *     Mail   
+  * --------
+  */
+
+.has-feedback .form-control {
+  padding-right: 10px
+}
+
+.nav-pills>li>a>.fa,
+.nav-pills>li>a>.glyphicon,
+.nav-pills>li>a>.ion {
+  margin-right: unset;
+  margin-left: 5px;
+}
+
+.nav-stacked>li>a {
+  border-radius: 0;
+  border-top: 0;
+  border-right: 3px solid transparent;
+  color: #444;
+}
+
+.nav-stacked>li.active>a,
+.nav-stacked>li.active>a:hover {
+  border-left-color: transparent;
+  border-right-color: #3c8dbc;
+}
+
+.mailbox-attachments li {
+  float: right;
 }
