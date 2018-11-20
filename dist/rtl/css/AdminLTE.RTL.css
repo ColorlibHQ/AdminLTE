@@ -18,7 +18,9 @@
 .fa.fa-share,
 .fa.fa-reply,
 .fa.fa-angle-left,
-.fa.fa-angle-right {
+.fa.fa-angle-right,
+.fa.fa-arrow-right,
+.fa.fa-arrow-left {
   transform: rotateY(180deg);
 }
 
@@ -444,8 +446,8 @@ ul.wysihtml5-toolbar>li {
 
 
 /*
-  *     Layouts Pages   
-  * -----------------
+  * Layouts Pages   
+  * -------------
   */
 
 .layout-top-nav .content-wrapper,
@@ -466,8 +468,8 @@ ul.wysihtml5-toolbar>li {
 
 
 /*
-  *     Widgets Page   
-  * ----------------
+  * Widgets Page   
+  * ------------
   */
 
 .widget-user-2 .widget-user-image>img {
@@ -519,8 +521,8 @@ ul.wysihtml5-toolbar>li {
 
 
 /*
-  *     UI   
-  * ------
+  * UI   
+  * --
   */
 
 .alert-dismissable,
@@ -573,8 +575,8 @@ ul.wysihtml5-toolbar>li {
 
 
 /*
-  *     Forms   
-  * ---------
+  * Forms   
+  * -----
   */
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
@@ -614,8 +616,8 @@ ul.wysihtml5-toolbar>li {
 
 
 /*
-  *     Calendar   
-  * ------------
+  * Calendar   
+  * --------
   */
 
 .fc-color-picker>li {
@@ -644,8 +646,8 @@ ul.wysihtml5-toolbar>li {
 
 
 /*
-  *     Mail   
-  * --------
+  * Mail   
+  * ----
   */
 
 .has-feedback .form-control {
@@ -674,4 +676,55 @@ ul.wysihtml5-toolbar>li {
 
 .mailbox-attachments li {
   float: right;
+}
+
+/*
+ * Examples
+ * --------
+ */
+
+.margin-r-5 {
+  margin-right: unset;
+  margin-left: 5px;
+}
+
+/* Login&register */
+.btn-social {
+  padding-left: 10px;
+  padding-right: 44px;
+  text-align: right;
+}
+
+.btn-social> :first-child {
+  left: unset;
+  right: 0;
+  border-right: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.icheck>label {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Look page */
+.lockscreen-image {
+  left: unset;
+  right: -10px;
+}
+
+.lockscreen-credentials {
+  margin-left: unset;
+  margin-right: 70px;
+}
+
+/* 404&500 */
+.error-page>.headline {
+  float: none;
+  text-align: center;
+}
+
+.error-page>.error-content {
+  margin-left: unset;
+  margin-right: unset;
 }
