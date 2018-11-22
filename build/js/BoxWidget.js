@@ -34,10 +34,13 @@
   };
 
   var Event = {
-    collapsed: 'collapsed.boxwidget',
-    expanded : 'expanded.boxwidget',
-    removed  : 'removed.boxwidget'
-  };
+        collapsing: 'collapsing.boxwidget',
+        collapsed: 'collapsed.boxwidget',
+        expanding: 'expanding.boxwidget',
+        expanded: 'expanded.boxwidget',
+        removing: 'removing.boxwidget',
+        removed: 'removed.boxwidget'        
+    };
 
   // BoxWidget Class Definition
   // =====================
@@ -60,6 +63,7 @@
 
   BoxWidget.prototype.expand = function () {
     var expandedEvent = $.Event(Event.expanded);
+    var expandingEvent = $.Event(Event.expanding);
     var collapseIcon  = this.options.collapseIcon;
     var expandIcon    = this.options.expandIcon;
 
@@ -75,11 +79,13 @@
     $(this.element).children(Selector.body + ', ' + Selector.footer)
       .slideDown(this.options.animationSpeed, function () {
         $(this.element).trigger(expandedEvent);
-      }.bind(this));
+      }.bind(this))
+      .trigger(expandingEvent);
   };
 
   BoxWidget.prototype.collapse = function () {
     var collapsedEvent = $.Event(Event.collapsed);
+    var collapsingEvent = $.Event(Event.collapsing);
     var collapseIcon   = this.options.collapseIcon;
     var expandIcon     = this.options.expandIcon;
 
@@ -94,16 +100,19 @@
       .slideUp(this.options.animationSpeed, function () {
         $(this.element).addClass(ClassName.collapsed);
         $(this.element).trigger(collapsedEvent);
-      }.bind(this));
+      }.bind(this))
+      .trigger(expandingEvent);
   };
 
   BoxWidget.prototype.remove = function () {
     var removedEvent = $.Event(Event.removed);
+    var removingEvent = $.Event(Event.removing);
 
     $(this.element).slideUp(this.options.animationSpeed, function () {
       $(this.element).trigger(removedEvent);
       $(this.element).remove();
-    }.bind(this));
+    }.bind(this))
+    .trigger(removingEvent);
   };
 
   // Private
