@@ -3,7 +3,7 @@
 * https://github.com/RobinHerbots/Inputmask
 * Copyright (c) 2010 - 2017 Robin Herbots
 * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-* Version: 3.3.8
+* Version: 3.3.11
 */
 
 !function(factory) {
@@ -107,7 +107,7 @@
                 mask: "+32(64)##-##-##",
                 cc: "BE",
                 cd: "Belgium",
-                city: "La Louvi\xe8re"
+                city: "La Louvière"
             }, {
                 mask: "+32(16)##-##-##",
                 cc: "BE",
@@ -122,7 +122,7 @@
                 mask: "+32(4)###-##-##",
                 cc: "BE",
                 cd: "Belgium",
-                city: "Li\xe8ge (Luik)"
+                city: "Liège (Luik)"
             }, {
                 mask: "+32(15)##-##-##",
                 cc: "BE",

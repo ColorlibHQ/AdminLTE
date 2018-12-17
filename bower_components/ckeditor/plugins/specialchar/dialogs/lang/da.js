@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","da",{euro:"Euro-tegn",lsquo:"Venstre enkelt anførselstegn",rsquo:"Højre enkelt anførselstegn",ldquo:"Venstre dobbelt anførselstegn",rdquo:"Højre dobbelt anførselstegn",ndash:"Bindestreg",mdash:"Tankestreg",iexcl:"Omvendt udråbstegn",cent:"Cent-tegn",pound:"Pund-tegn",curren:"Kurs-tegn",yen:"Yen-tegn",brvbar:"Brudt streg",sect:"Paragraftegn",uml:"Umlaut",copy:"Copyright-tegn",ordf:"Feminin ordinal indikator",laquo:"Venstre dobbel citations-vinkel",not:"Negation",
 reg:"Registreret varemærke tegn",macr:"Macron",deg:"Grad-tegn",sup2:"Superscript to",sup3:"Superscript tre",acute:"Prim-tegn",micro:"Mikro-tegn",para:"Pilcrow-tegn",middot:"Punkt-tegn",cedil:"Cedille",sup1:"Superscript et",ordm:"Maskulin ordinal indikator",raquo:"Højre dobbel citations-vinkel",frac14:"En fjerdedel",frac12:"En halv",frac34:"En tredjedel",iquest:"Omvendt udråbstegn",Agrave:"Stort A med accent grave",Aacute:"Stort A med accent aigu",Acirc:"Stort A med cirkumfleks",Atilde:"Stort A med tilde",

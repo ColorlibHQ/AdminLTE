@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","ko",{euro:"유로화 기호",lsquo:"왼쪽 외 따옴표",rsquo:"오른쪽 외 따옴표",ldquo:"왼쪽 쌍 따옴표",rdquo:"오른쪽 쌍 따옴표",ndash:"반각 대시",mdash:"전각 대시",iexcl:"반전된 느낌표",cent:"센트 기호",pound:"파운드화 기호",curren:"커런시 기호",yen:"위안화 기호",brvbar:"파선",sect:"섹션 기호",uml:"분음 부호",copy:"저작권 기호",ordf:"Feminine ordinal indicator",laquo:"왼쪽 쌍꺽쇠 인용 부호",not:"금지 기호",reg:"등록 기호",macr:"장음 기호",deg:"도 기호",sup2:"위첨자 2",sup3:"위첨자 3",acute:"양음 악센트 부호",micro:"마이크로 기호",para:"단락 기호",middot:"가운데 점",cedil:"세디유",sup1:"위첨자 1",ordm:"Masculine ordinal indicator",
 raquo:"오른쪽 쌍꺽쇠 인용 부호",frac14:"분수 사분의 일",frac12:"분수 이분의 일",frac34:"분수 사분의 삼",iquest:"뒤집힌 물음표",Agrave:"억음 부호가 있는 라틴 대문자 A",Aacute:"양음 악센트 부호가 있는 라틴 대문자 A",Acirc:"곡절 악센트 부호가 있는 라틴 대문자 A",Atilde:"틸데가 있는 라틴 대문자 A",Auml:"분음 기호가 있는 라틴 대문자 A",Aring:"윗고리가 있는 라틴 대문자 A",AElig:"라틴 대문자 Æ",Ccedil:"세디유가 있는 라틴 대문자 C",Egrave:"억음 부호가 있는 라틴 대문자 E",Eacute:"양음 악센트 부호가 있는 라틴 대문자 E",Ecirc:"곡절 악센트 부호가 있는 라틴 대문자 E",Euml:"분음 기호가 있는 라틴 대문자 E",Igrave:"억음 부호가 있는 라틴 대문자 I",Iacute:"양음 악센트 부호가 있는 라틴 대문자 I",Icirc:"곡절 악센트 부호가 있는 라틴 대문자 I",

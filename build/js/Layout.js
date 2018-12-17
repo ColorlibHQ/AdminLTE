@@ -84,8 +84,9 @@
     $(Selector.layoutBoxed + ' > ' + Selector.wrapper).css('overflow', 'hidden');
 
     // Get window height and the wrapper height
-    var footerHeight  = $(Selector.mainFooter).outerHeight() || 0;
-    var neg           = $(Selector.mainHeader).outerHeight() + footerHeight;
+    var footerHeight = $(Selector.mainFooter).outerHeight() || 0;
+    var headerHeight  = $(Selector.mainHeader).outerHeight() || 0;
+    var neg           = headerHeight + footerHeight;
     var windowHeight  = $(window).height();
     var sidebarHeight = $(Selector.sidebar).height() || 0;
 
@@ -96,7 +97,7 @@
     } else {
       var postSetHeight;
 
-      if (windowHeight >= sidebarHeight) {
+      if (windowHeight >= sidebarHeight + headerHeight) {
         $(Selector.contentWrapper).css('min-height', windowHeight - neg);
         postSetHeight = windowHeight - neg;
       } else {

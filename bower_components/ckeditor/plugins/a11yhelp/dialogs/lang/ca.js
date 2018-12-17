@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","ca",{title:"Instruccions d'Accessibilitat",contents:"Continguts de l'Ajuda. Per tancar aquest quadre de diàleg premi ESC.",legend:[{name:"General",items:[{name:"Editor de barra d'eines",legend:"Premi ${toolbarFocus} per desplaçar-se per la barra d'eines. Vagi en el següent i anterior grup de barra d'eines amb TAB i SHIFT+TAB. Vagi en el següent i anterior botó de la barra d'eines amb RIGHT ARROW i LEFT ARROW. Premi SPACE o ENTER per activar el botó de la barra d'eines."},
 {name:"Editor de quadre de diàleg",legend:"Dins d'un quadre de diàleg, premi la tecla TAB per desplaçar-se fins al següent element del quadre de diàleg, premi la tecla Shift + TAB per desplaçar-se a l'anterior element del quadre de diàleg, premi la tecla ENTER per confirmar el quadre de diàleg, premi la tecla ESC per cancel·lar el quadre de diàleg. Quan un quadre de diàleg té diverses pestanyes, la llista de pestanyes pot ser assolit ja sigui amb ALT + F10 o TAB, com a part de l'ordre de tabulació del quadre de diàleg. Amb la llista de pestanyes seleccionada, pot anar a la fitxa següent i anterior amb la tecla FLETXA DRETA i ESQUERRA, respectivament."},

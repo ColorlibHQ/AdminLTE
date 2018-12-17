@@ -1,10 +1,10 @@
 /**
- * jVectorMap version 2.0.4
+ * jVectorMap version 1.2.2
  *
- * Copyright 2011-2014, Kirill Lebedev
+ * Copyright 2011-2013, Kirill Lebedev
+ * Licensed under the MIT license.
  *
  */
-
 (function( $ ){
   var apiParams = {
         set: {
@@ -26,17 +26,18 @@
   $.fn.vectorMap = function(options) {
     var map,
         methodName,
+        event,
         map = this.children('.jvectormap-container').data('mapObject');
 
     if (options === 'addMap') {
-      jvm.Map.maps[arguments[1]] = arguments[2];
+      jvm.WorldMap.maps[arguments[1]] = arguments[2];
     } else if ((options === 'set' || options === 'get') && apiParams[options][arguments[1]]) {
       methodName = arguments[1].charAt(0).toUpperCase()+arguments[1].substr(1);
       return map[options+methodName].apply(map, Array.prototype.slice.call(arguments, 2));
     } else {
       options = options || {};
       options.container = this;
-      map = new jvm.Map(options);
+      map = new jvm.WorldMap(options);
     }
 
     return this;

@@ -47,7 +47,7 @@ export default moment.defineLocale('pa-in', {
     calendar : {
         sameDay : '[ਅਜ] LT',
         nextDay : '[ਕਲ] LT',
-        nextWeek : 'dddd, LT',
+        nextWeek : '[ਅਗਲਾ] dddd, LT',
         lastDay : '[ਕਲ] LT',
         lastWeek : '[ਪਿਛਲੇ] dddd, LT',
         sameElse : 'L'
@@ -56,6 +56,7 @@ export default moment.defineLocale('pa-in', {
         future : '%s ਵਿੱਚ',
         past : '%s ਪਿਛਲੇ',
         s : 'ਕੁਝ ਸਕਿੰਟ',
+        ss : '%d ਸਕਿੰਟ',
         m : 'ਇਕ ਮਿੰਟ',
         mm : '%d ਮਿੰਟ',
         h : 'ਇੱਕ ਘੰਟਾ',

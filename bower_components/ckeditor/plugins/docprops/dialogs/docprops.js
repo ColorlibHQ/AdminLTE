@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.dialog.add("docProps",function(g){function t(a,d){var e=function(){b(this);d(this,this._.parentDialog)},b=function(a){a.removeListener("ok",e);a.removeListener("cancel",b)},f=function(a){a.on("ok",e);a.on("cancel",b)};g.execCommand(a);if(g._.storedDialogs.colordialog)f(g._.storedDialogs.colordialog);else CKEDITOR.on("dialogDefinition",function(b){if(b.data.name==a){var d=b.data.definition;b.removeListener();d.onLoad=CKEDITOR.tools.override(d.onLoad,function(a){return function(){f(this);d.onLoad=
 a;"function"==typeof a&&a.call(this)}})}})}function n(){var a=this.getDialog().getContentElement("general",this.id+"Other");a&&("other"==this.getValue()?(a.getInputElement().removeAttribute("readOnly"),a.focus(),a.getElement().removeClass("cke_disabled")):(a.getInputElement().setAttribute("readOnly",!0),a.getElement().addClass("cke_disabled")))}function k(a,d,e){return function(b,f,c){f=m;b="undefined"!=typeof e?e:this.getValue();!b&&a in f?f[a].remove():b&&a in f?f[a].setAttribute("content",b):b&&

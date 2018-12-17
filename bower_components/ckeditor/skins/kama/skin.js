@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.skin.name="kama";CKEDITOR.skin.ua_editor="ie,iequirks,ie7,ie8";CKEDITOR.skin.ua_dialog="ie,iequirks,ie7,ie8";
 CKEDITOR.skin.chameleon=function(d,c){var b,a="."+d.id;"editor"==c?b=a+" .cke_inner,"+a+" .cke_dialog_tab{background-color:$color;linear-gradient( to bottom,#fff -15px,$color 40px );}"+a+" .cke_toolgroup{linear-gradient( to bottom,#fff,$color 100px );}"+a+" .cke_combo_button{linear-gradient( to top,#fff,$color 100px );}"+a+" .cke_dialog_contents,"+a+" .cke_dialog_footer{background-color:$color !important;}"+a+" .cke_dialog_tab:hover,"+a+" .cke_dialog_tab:active,"+a+" .cke_dialog_tab:focus,"+a+" .cke_dialog_tab_selected{background-color:$color;background-image:none;}":

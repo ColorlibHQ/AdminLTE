@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","oc",{euro:"Simbòl èuro",lsquo:"Vergueta simpla dobrenta",rsquo:"Vergueta simpla tampanta",ldquo:"Vergueta dobla dobrenta",rdquo:"Vergueta dobla tampanta",ndash:"Jonhent semi-quadratin",mdash:"Jonhent quadratin",iexcl:"Punt d'exclamacion inversat",cent:"Simbòl cent",pound:"Simbòl Liura sterling",curren:"Simbòl monetari",yen:"Simbòl ièn",brvbar:"Barra verticala separada",sect:"Signe de seccion",uml:"Trèma",copy:"Simbòl Copyright",ordf:"Indicador ordinal femenin",
 laquo:"Vergueta francesa dobrenta",not:"Croquet de negacion",reg:"Simbòl de marca depausada",macr:"Macron",deg:"Simbòl gra",sup2:"Exponent 2",sup3:"Exponent 3",acute:"Accent agut",micro:"Simbòl micro",para:"Simbòl pè de mòsca",middot:"Punt median",cedil:"Cedilha",sup1:"Exponent 1",ordm:"Indicador ordenal masculin",raquo:"Vergueta francesa tampanta",frac14:"Fraccion un quart",frac12:"Fraccion un mièg",frac34:"Fraccion tres quarts",iquest:"Punt d'interrogacion inversat",Agrave:"A accent grèu majuscula",

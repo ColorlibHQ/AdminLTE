@@ -1,0 +1,9 @@
+[data-cke-caption-hidden] {
+	display: none;
+}
+
+[data-cke-caption-placeholder]::before {
+	display: inline;
+	color: rgba( 0, 0, 0, .4 );
+	content: attr( data-cke-caption-placeholder );
+}

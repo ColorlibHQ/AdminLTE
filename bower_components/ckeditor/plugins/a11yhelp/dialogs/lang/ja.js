@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","ja",{title:"ユーザー補助の説明",contents:"ヘルプ　このダイアログを閉じるには ESCを押してください。",legend:[{name:"全般",items:[{name:"エディターツールバー",legend:"${toolbarFocus} を押すとツールバーのオン/オフ操作ができます。カーソルをツールバーのグループで移動させるにはTabかSHIFT+Tabを押します。グループ内でカーソルを移動させるには、右カーソルか左カーソルを押します。スペースキーやエンターを押すとボタンを有効/無効にすることができます。"},{name:"編集ダイアログ",legend:"Inside a dialog, press TAB to navigate to the next dialog element, press SHIFT+TAB to move to the previous dialog element, press ENTER to submit the dialog, press ESC to cancel the dialog. When a dialog has multiple tabs, the tab list can be reached either with ALT+F10 or with TAB as part of the dialog tabbing order. With tab list focused, move to the next and previous tab with RIGHT and LEFT ARROW, respectively."},
 {name:"エディターのメニュー",legend:"${contextMenu} キーかAPPLICATION KEYを押すとコンテキストメニューが開きます。Tabか下カーソルでメニューのオプション選択が下に移動します。戻るには、SHIFT+Tabか上カーソルです。スペースもしくはENTERキーでメニューオプションを決定できます。現在選んでいるオプションのサブメニューを開くには、スペース、もしくは右カーソルを押します。サブメニューから親メニューに戻るには、ESCか左カーソルを押してください。ESCでコンテキストメニュー自体をキャンセルできます。"},{name:"エディターリストボックス",legend:"リストボックス内で移動するには、Tabか下カーソルで次のアイテムへ移動します。SHIFT+Tabで前のアイテムに戻ります。リストのオプションを選択するには、スペースもしくは、ENTERを押してください。リストボックスを閉じるには、ESCを押してください。"},{name:"エディター要素パスバー",legend:"${elementsPathFocus} を押すとエレメントパスバーを操作出来ます。Tabか右カーソルで次のエレメントを選択できます。前のエレメントを選択するには、SHIFT+Tabか左カーソルです。スペースもしくは、ENTERでエディタ内の対象エレメントを選択出来ます。"}]},

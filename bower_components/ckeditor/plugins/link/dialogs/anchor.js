@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.dialog.add("anchor",function(c){function e(b,a){return b.createFakeElement(b.document.createElement("a",{attributes:a}),"cke_anchor","anchor")}return{title:c.lang.link.anchor.title,minWidth:300,minHeight:60,onOk:function(){var b=CKEDITOR.tools.trim(this.getValueOf("info","txtName")),a={id:b,name:b,"data-cke-saved-name":b};this._.selectedElement?this._.selectedElement.data("cke-realelement")?(b=e(c,a),b.replace(this._.selectedElement),CKEDITOR.env.ie&&c.getSelection().selectElement(b)):this._.selectedElement.setAttributes(a):
 (b=(b=c.getSelection())&&b.getRanges()[0],b.collapsed?(a=e(c,a),b.insertNode(a)):(CKEDITOR.env.ie&&9>CKEDITOR.env.version&&(a["class"]="cke_anchor"),a=new CKEDITOR.style({element:"a",attributes:a}),a.type=CKEDITOR.STYLE_INLINE,a.applyToRange(b)))},onHide:function(){delete this._.selectedElement},onShow:function(){var b=c.getSelection(),a;a=b.getRanges()[0];var d=b.getSelectedElement();a.shrink(CKEDITOR.SHRINK_ELEMENT);a=(d=a.getEnclosedNode())&&d.type===CKEDITOR.NODE_ELEMENT&&("anchor"===d.data("cke-real-element-type")||

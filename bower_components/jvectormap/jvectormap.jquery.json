@@ -9,19 +9,15 @@
     "usa",
     "choropleth"
   ],
-  "version": "2.0.4",
+  "version": "1.2.2",
   "author": {
     "name": "Kirill Lebedev",
     "email" : "echo.bjornd@gmail.com"
   },
   "licenses": [
     {
-      "type": "AGPL",
-      "url": "http://www.gnu.org/copyleft/gpl.html"
-    },
-    {
-      "type": "Commercial",
-      "url": "http://www.binpress.com/license/read/id/3085/app/2122"
+      "type": "MIT",
+      "url": "https://github.com/jquery/jquery-color/blob/2.1.2/MIT-LICENSE.txt"
     }
   ],
   "bugs": "https://github.com/bjornd/jvectormap/issues",

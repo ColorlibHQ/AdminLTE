@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","el",{euro:"Σύμβολο Ευρώ",lsquo:"Αριστερός χαρακτήρας μονού εισαγωγικού",rsquo:"Δεξιός χαρακτήρας μονού εισαγωγικού",ldquo:"Αριστερός χαρακτήρας ευθύγραμμων εισαγωγικών",rdquo:"Δεξιός χαρακτήρας ευθύγραμμων εισαγωγικών",ndash:"Παύλα en",mdash:"Παύλα em",iexcl:"Ανάποδο θαυμαστικό",cent:"Σύμβολο σεντ",pound:"Σύμβολο λίρας",curren:"Σύμβολο συναλλαγματικής μονάδας",yen:"Σύμβολο Γιεν",brvbar:"Σπασμένη μπάρα",sect:"Σύμβολο τμήματος",uml:"Διαίρεση",copy:"Σύμβολο πνευματικών δικαιωμάτων",
 ordf:"Θηλυκός τακτικός δείκτης",laquo:"Γωνιώδη εισαγωγικά αριστερής κατάδειξης",not:"Σύμβολο άρνησης",reg:"Σύμβολο σημάτων κατατεθέν",macr:"Μακρόν",deg:"Σύμβολο βαθμού",sup2:"Εκτεθειμένο δύο",sup3:"Εκτεθειμένο τρία",acute:"Οξεία",micro:"Σύμβολο μικρού",para:"Σύμβολο παραγράφου",middot:"Μέση τελεία",cedil:"Υπογεγραμμένη",sup1:"Εκτεθειμένο ένα",ordm:"Αρσενικός τακτικός δείκτης",raquo:"Γωνιώδη εισαγωγικά δεξιάς κατάδειξης",frac14:"Γνήσιο κλάσμα ενός τετάρτου",frac12:"Γνήσιο κλάσμα ενός δεύτερου",frac34:"Γνήσιο κλάσμα τριών τετάρτων",

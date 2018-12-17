@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","it",{title:"Istruzioni di Accessibilità",contents:"Contenuti di Aiuto. Per chiudere questa finestra premi ESC.",legend:[{name:"Generale",items:[{name:"Barra degli strumenti Editor",legend:"Premere ${toolbarFocus} per passare alla barra degli strumenti. Usare TAB per spostarsi al gruppo successivo, MAIUSC+TAB per spostarsi a quello precedente. Usare FRECCIA DESTRA per spostarsi al pulsante successivo, FRECCIA SINISTRA per spostarsi a quello precedente. Premere SPAZIO o INVIO per attivare il pulsante della barra degli strumenti."},
 {name:"Finestra Editor",legend:"All'interno di una finestra di dialogo è possibile premere TAB per passare all'elemento successivo della finestra, MAIUSC+TAB per passare a quello precedente; premere INVIO per inviare i dati della finestra, oppure ESC per annullare l'operazione. Quando una finestra di dialogo ha più schede, è possibile passare all'elenco delle schede sia con ALT+F10 che con TAB, in base all'ordine delle tabulazioni della finestra. Quando l'elenco delle schede è attivo, premere la FRECCIA DESTRA o la FRECCIA SINISTRA per passare rispettivamente alla scheda successiva o a quella precedente."},

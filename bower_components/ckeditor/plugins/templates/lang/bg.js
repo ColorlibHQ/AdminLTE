@@ -1,1 +1,1 @@
-﻿CKEDITOR.plugins.setLang("templates","bg",{button:"Шаблони",emptyListMsg:"(Няма дефинирани шаблони)",insertOption:"Препокрива актуалното съдържание",options:"Опции за шаблона",selectPromptMsg:"Изберете шаблон \x3cbr\x3e(текущото съдържание на редактора ще бъде загубено):",title:"Шаблони"});
+﻿CKEDITOR.plugins.setLang("templates","bg",{button:"Шаблони",emptyListMsg:"(Няма дефинирани шаблони)",insertOption:"Замяна на актуалното съдържание",options:"Опции за шаблона",selectPromptMsg:"Моля изберете шаблон за отваряне в редактора",title:"Шаблони"});

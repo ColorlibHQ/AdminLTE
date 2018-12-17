@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","pt",{euro:"Símbolo de Euro",lsquo:"Aspa esquerda simples",rsquo:"Aspa direita simples",ldquo:"Aspa esquerda dupla",rdquo:"Aspa direita dupla",ndash:"Travessão simples",mdash:"Travessão longo",iexcl:"Ponto de exclamação invertido",cent:"Símbolo de cêntimo",pound:"Símbolo de Libra",curren:"Símbolo de Moeda",yen:"Símbolo de Iene",brvbar:"Barra quebrada",sect:"Símbolo de secção",uml:"Trema",copy:"Símbolo de direitos de autor",ordf:"Indicador ordinal feminino",laquo:"Aspa esquerda ângulo duplo",
 not:"Não símbolo",reg:"Símbolo de registado",macr:"Mácron",deg:"Símbolo de graus",sup2:"Expoente 2",sup3:"Expoente 3",acute:"Acento agudo",micro:"Símbolo de micro",para:"Símbolo de parágrafo",middot:"Ponto do meio",cedil:"Cedilha",sup1:"Expoente 1",ordm:"Indicador ordinal masculino",raquo:"Aspas ângulo duplo para a direita",frac14:"Fração vulgar 1/4",frac12:"Fração vulgar 1/2",frac34:"Fração vulgar 3/4",iquest:"Ponto de interrogação invertido",Agrave:"Letra maiúscula latina A com acento grave",Aacute:"Letra maiúscula latina A com acento agudo",

@@ -1,0 +1,34 @@
+/*
+Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+*/
+
+.cke_balloon.cke_balloontoolbar
+{
+	background: linear-gradient(to bottom, #f5f5f5, #cfd1cf);
+	filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#f5f5f5', endColorstr='#cfd1cf');
+	border: 1px solid #b6b6b6;
+	border-radius: 0;
+}
+
+.cke_balloon.cke_balloontoolbar .cke_balloon_content
+{
+	padding: 4px;
+}
+
+/* side: [ bottom, top ] */
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_outer.cke_balloon_triangle_bottom,
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_outer.cke_balloon_triangle_top
+{
+	border-color: #b6b6b6 transparent;
+}
+
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_inner.cke_balloon_triangle_bottom
+{
+	border-color: #cfd1cf transparent;
+}
+
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_inner.cke_balloon_triangle_top
+{
+	border-color: #f5f5f5 transparent;
+}

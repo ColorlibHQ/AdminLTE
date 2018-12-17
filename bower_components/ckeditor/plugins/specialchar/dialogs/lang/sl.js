@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","sl",{euro:"Znak za evro",lsquo:"Levi enojni narekovaj",rsquo:"Desni enojni narekovaj",ldquo:"Levi dvojni narekovaj",rdquo:"Desni dvojni narekovaj",ndash:"Pomišljaj",mdash:"Dolgi pomišljaj",iexcl:"Obrnjen klicaj",cent:"Znak za cent",pound:"Znak za funt",curren:"Znak valute",yen:"Znak za jen",brvbar:"Zlomljena črta",sect:"Znak za člen",uml:"Diereza",copy:"Znak avtorskih pravic",ordf:"Ženski zaporedni kazalnik",laquo:"Levi dvojni lomljeni narekovaj",not:"Znak za ne",
 reg:"Registrirani znak",macr:"Nadčrtano",deg:"Znak za stopinje",sup2:"Nadpisano dva",sup3:"Nadpisano tri",acute:"Ostrivec",micro:"Znak za mikro",para:"Znak za odstavek",middot:"Usredinjena pika",cedil:"Cedilla",sup1:"Nadpisano ena",ordm:"Moški zaporedni kazalnik",raquo:"Desno obrnjen dvojni kotni narekovaj",frac14:"Ena četrtina",frac12:"Ena polovica",frac34:"Tri četrtine",iquest:"Obrnjen vprašaj",Agrave:"Velika latinska črka A s krativcem",Aacute:"Velika latinska črka A z ostrivcem",Acirc:"Velika latinska črka A s strešico",

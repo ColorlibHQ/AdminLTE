@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.dialog.add("uicolor",function(f){function B(a){a=a.data.getTarget();var c;"td"==a.getName()&&(c=a.getChild(0).getHtml())&&(n(),r(a),m(c))}function r(a){a&&(g=a,g.setAttribute("aria-selected",!0),g.addClass("cke_colordialog_selected"))}function n(){g&&(g.removeClass("cke_colordialog_selected"),g.removeAttribute("aria-selected"),g=null)}function m(a){k.getContentElement("picker","selectedColor").setValue(a);a||l.getById(t).removeStyle("background-color")}function C(a){!a.name&&(a=new CKEDITOR.event(a));
 var c=!/mouse/.test(a.name),b=a.data.getTarget(),h;"td"==b.getName()&&(h=b.getChild(0).getHtml())&&(u(a),c?e=b:D=b,c&&b.addClass(G(h)?"cke_colordialog_focused_light":"cke_colordialog_focused_dark"),v(h))}function u(a){if(a=!/mouse/.test(a.name)&&e)a.removeClass("cke_colordialog_focused_light"),a.removeClass("cke_colordialog_focused_dark");e||D||v(!1)}function v(a){a?(l.getById(w).setStyle("background-color",a),l.getById(x).setHtml(a)):(l.getById(w).removeStyle("background-color"),l.getById(x).setHtml("\x26nbsp;"))}

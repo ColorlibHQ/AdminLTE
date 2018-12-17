@@ -1,18 +1,19 @@
 /*
-Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
-For licensing, see LICENSE.md or http://ckeditor.com/license
+Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 
 body
 {
 	/* Font */
-	font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
+	/* Emoji fonts are added to visualise them nicely in Internet Explorer. */
+	font-family: sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-size: 12px;
 
 	/* Text color */
 	color: #333;
 
-	/* Remove the background color to make it transparent */
+	/* Remove the background color to make it transparent. */
 	background-color: #fff;
 
 	margin: 20px;
@@ -60,7 +61,7 @@ ol,ul,dl
 {
 	/* IE7: reset rtl list margin. (#7334) */
 	*margin-right: 0px;
-	/* preserved spaces for list items with text direction other than the list. (#6249,#8049)*/
+	/* Preserved spaces for list items with text direction different than the list. (#6249,#8049)*/
 	padding: 0 40px;
 }
 
@@ -113,8 +114,7 @@ span[lang]
 figure
 {
 	text-align: center;
-	border: solid 1px #ccc;
-	border-radius: 2px;
+	outline: solid 1px #ccc;
 	background: rgba(0,0,0,0.05);
 	padding: 10px;
 	margin: 10px 20px;

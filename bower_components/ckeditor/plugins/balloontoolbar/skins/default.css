@@ -1,0 +1,95 @@
+/*
+Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+*/
+
+.cke_balloon.cke_balloontoolbar
+{
+	position: absolute;
+	z-index: 10000;
+	outline: none;
+	background: #f8f8f8;
+	border: 1px solid #d1d1d1;
+}
+
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle
+{
+	position: absolute;
+	border-style: solid;
+	display: block;
+	width: 0;
+	height: 0;
+}
+
+/* The .cke_balloon_content container height will be stretched to children height, so padding is properly applied. */
+.cke_balloon.cke_balloontoolbar .cke_balloon_content
+{
+	float: left;
+	min-height: 10px;
+	padding: 3px;
+}
+
+/* Removes bottom margins from buttons/combos so only '.cke_balloon_content' padding decides about balloon toolbar padding. */
+.cke_balloon.cke_balloontoolbar .cke_toolgroup,
+.cke_balloon.cke_balloontoolbar .cke_combo_button
+{
+	margin-bottom: 0;
+}
+
+.cke_balloon.cke_balloontoolbar .cke_balloon_content > span:last-child > a.cke_combo_button,
+.cke_balloon.cke_balloontoolbar .cke_balloon_content > span:last-child.cke_toolgroup {
+	margin-right: 0;
+	padding-right: 0;
+}
+
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_inner,
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_outer
+{
+	z-index: 0;
+}
+
+/* align: [ hcenter ] */
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_outer.cke_balloon_triangle_align_hcenter
+{
+	left: 50%;
+	margin-left: -7px;
+}
+
+/* side: [ bottom, top ] */
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_outer.cke_balloon_triangle_bottom,
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_outer.cke_balloon_triangle_top
+{
+	border-color: #d1d1d1 transparent;
+}
+
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_inner.cke_balloon_triangle_bottom,
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_inner.cke_balloon_triangle_top
+{
+	border-color: #f8f8f8 transparent;
+	left: -7px;
+}
+
+/* side: [ bottom ] */
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_outer.cke_balloon_triangle_bottom
+{
+	border-width: 7px 7px 0;
+	bottom: -7px;
+}
+
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_inner.cke_balloon_triangle_bottom
+{
+	border-width: 7px 7px 0;
+	top: -8px;
+}
+
+/* side: [ top ] */
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_outer.cke_balloon_triangle_top
+{
+	border-width: 0 7px 7px;
+	top: -7px;
+}
+
+.cke_balloon.cke_balloontoolbar .cke_balloon_triangle_inner.cke_balloon_triangle_top
+{
+	border-width: 0 7px 7px;
+}

@@ -23,7 +23,7 @@ for convenience. It is available under the [MIT license](http://www.opensource.o
 
 The MIT License (MIT)
 
-Copyright (c) 2012-2016 Dan Grossman
+Copyright (c) 2012-2017 Dan Grossman
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

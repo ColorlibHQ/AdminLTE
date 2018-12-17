@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","nl",{title:"Toegankelijkheidsinstructies",contents:"Help-inhoud. Druk op ESC om dit dialoog te sluiten.",legend:[{name:"Algemeen",items:[{name:"Werkbalk tekstverwerker",legend:"Druk op ${toolbarFocus} om naar de werkbalk te navigeren. Om te schakelen naar de volgende en vorige werkbalkgroep, gebruik TAB en SHIFT+TAB. Om te schakelen naar de volgende en vorige werkbalkknop, gebruik de PIJL RECHTS en PIJL LINKS. Druk op SPATIE of ENTER om een werkbalkknop te activeren."},
 {name:"Dialoog tekstverwerker",legend:"In een dialoogvenster, druk op TAB om te navigeren naar het volgende veld. Druk op SHIFT+TAB om naar het vorige veld te navigeren. Druk op ENTER om het dialoogvenster te verzenden. Druk op ESC om het dialoogvenster te sluiten. Bij dialoogvensters met meerdere tabbladen kan de tabset bereikt worden met ALT+F10 of met TAB als onderdeel van de tabvolgorde in het dialoogvenster. Als de tabset focus heeft, kun je schakalen naar het volgende en vorige tabblad met respectievelijk PIJL RECHTS en PIJL LINKS."},

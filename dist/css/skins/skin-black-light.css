@@ -48,23 +48,23 @@
   border-left: 1px solid #d2d6de;
   border-right-width: 0;
 }
-.skin-black-light .main-header > .logo {
+.skin-black-light .main-header .logo {
   background-color: #ffffff;
   color: #333333;
   border-bottom: 0 solid transparent;
   border-right: 1px solid #d2d6de;
 }
-.skin-black-light .main-header > .logo:hover {
+.skin-black-light .main-header .logo:hover {
   background-color: #fcfcfc;
 }
 @media (max-width: 767px) {
-  .skin-black-light .main-header > .logo {
+  .skin-black-light .main-header .logo {
     background-color: #222222;
     color: #ffffff;
     border-bottom: 0 solid transparent;
     border-right: none;
   }
-  .skin-black-light .main-header > .logo:hover {
+  .skin-black-light .main-header .logo:hover {
     background-color: #1f1f1f;
   }
 }

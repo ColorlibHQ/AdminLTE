@@ -1,7 +1,7 @@
 {
   "name": "bootstrap-datepicker",
   "description": "A datepicker for Bootstrap",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "license": "Apache-2.0",
   "keywords": [
     "datepicker",

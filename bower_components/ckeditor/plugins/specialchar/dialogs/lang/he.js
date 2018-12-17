@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","he",{euro:"יורו",lsquo:"סימן ציטוט יחיד שמאלי",rsquo:"סימן ציטוט יחיד ימני",ldquo:"סימן ציטוט כפול שמאלי",rdquo:"סימן ציטוט כפול ימני",ndash:"קו מפריד קצר",mdash:"קו מפריד ארוך",iexcl:"סימן קריאה הפוך",cent:"סנט",pound:"פאונד",curren:"מטבע",yen:"ין",brvbar:"קו שבור",sect:"סימן מקטע",uml:"שתי נקודות אופקיות (Diaeresis)",copy:"סימן זכויות יוצרים (Copyright)",ordf:"סימן אורדינאלי נקבי",laquo:"סימן ציטוט זווית כפולה לשמאל",not:"סימן שלילה מתמטי",reg:"סימן רשום",
 macr:"מקרון (הגיה ארוכה)",deg:"מעלות",sup2:"2 בכתיב עילי",sup3:"3 בכתיב עילי",acute:"סימן דגוש (Acute)",micro:"מיקרו",para:"סימון פסקה",middot:"נקודה אמצעית",cedil:"סדיליה",sup1:"1 בכתיב עילי",ordm:"סימן אורדינאלי זכרי",raquo:"סימן ציטוט זווית כפולה לימין",frac14:"רבע בשבר פשוט",frac12:"חצי בשבר פשוט",frac34:"שלושה רבעים בשבר פשוט",iquest:"סימן שאלה הפוך",Agrave:"אות לטינית A עם גרש (Grave)",Aacute:"Latin capital letter A with acute accent",Acirc:"Latin capital letter A with circumflex",Atilde:"Latin capital letter A with tilde",

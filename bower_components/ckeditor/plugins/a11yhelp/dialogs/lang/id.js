@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","id",{title:"Instruksi Accessibility",contents:"Bantuan. Tekan ESC untuk menutup dialog ini.",legend:[{name:"Umum",items:[{name:"Toolbar Editor",legend:"Tekan ${toolbarFocus} untuk berpindah ke toolbar. Untuk berpindah ke group toolbar selanjutnya dan sebelumnya gunakan TAB dan SHIFT+TAB. Untuk berpindah ke tombol toolbar selanjutnya dan sebelumnya gunakan RIGHT ARROW atau LEFT ARROW. Tekan SPASI atau ENTER untuk mengaktifkan tombol toolbar."},{name:"Dialog Editor",
 legend:"Pada jendela dialog, tekan TAB untuk berpindah pada elemen dialog selanjutnya, tekan SHIFT+TAB untuk berpindah pada elemen dialog sebelumnya, tekan ENTER untuk submit dialog, tekan ESC untuk membatalkan dialog. Pada dialog dengan multi tab, daftar tab dapat diakses dengan ALT+F10 ataupun dengan tombol TAB sesuai urutan tab pada dialog. Jika daftar tab aktif terpilih, untuk berpindah tab dapat menggunakan RIGHT dan LEFT ARROW."},{name:"Context Menu Editor",legend:"Press ${contextMenu} or APPLICATION KEY to open context-menu. Then move to next menu option with TAB or DOWN ARROW. Move to previous option with SHIFT+TAB or UP ARROW. Press SPACE or ENTER to select the menu option. Open sub-menu of current option with SPACE or ENTER or RIGHT ARROW. Go back to parent menu item with ESC or LEFT ARROW. Close context menu with ESC."},

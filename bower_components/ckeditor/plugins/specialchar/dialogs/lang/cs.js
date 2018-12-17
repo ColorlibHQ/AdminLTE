@@ -1,6 +1,6 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","cs",{euro:"Znak eura",lsquo:"Počáteční uvozovka jednoduchá",rsquo:"Koncová uvozovka jednoduchá",ldquo:"Počáteční uvozovka dvojitá",rdquo:"Koncová uvozovka dvojitá",ndash:"En pomlčka",mdash:"Em pomlčka",iexcl:"Obrácený vykřičník",cent:"Znak centu",pound:"Znak libry",curren:"Znak měny",yen:"Znak jenu",brvbar:"Přerušená svislá čára",sect:"Znak oddílu",uml:"Přehláska",copy:"Znak copyrightu",ordf:"Ženský indikátor rodu",laquo:"Znak dvojitých lomených uvozovek vlevo",
 not:"Logistický zápor",reg:"Znak registrace",macr:"Pomlčka nad",deg:"Znak stupně",sup2:"Dvojka jako horní index",sup3:"Trojka jako horní index",acute:"Čárka nad vpravo",micro:"Znak mikro",para:"Znak odstavce",middot:"Tečka uprostřed",cedil:"Ocásek vlevo",sup1:"Jednička jako horní index",ordm:"Mužský indikátor rodu",raquo:"Znak dvojitých lomených uvozovek vpravo",frac14:"Obyčejný zlomek jedna čtvrtina",frac12:"Obyčejný zlomek jedna polovina",frac34:"Obyčejný zlomek tři čtvrtiny",iquest:"Znak obráceného otazníku",

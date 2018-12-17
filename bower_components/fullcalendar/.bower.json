@@ -20,10 +20,10 @@
     "email": "arshaw@arshaw.com",
     "url": "http://arshaw.com/"
   },
-  "copyright": "2017 Adam Shaw",
+  "copyright": "2018 Adam Shaw",
   "dependencies": {
     "jquery": "2 - 3",
-    "moment": "^2.9.0"
+    "moment": "^2.20.1"
   },
   "main": [
     "dist/fullcalendar.js",
@@ -38,12 +38,12 @@
     "!/CHANGELOG.*",
     "!/CONTRIBUTING.*"
   ],
-  "version": "3.5.1",
-  "_release": "3.5.1",
+  "version": "3.9.0",
+  "_release": "3.9.0",
   "_resolution": {
     "type": "version",
-    "tag": "v3.5.1",
-    "commit": "5a0950e9610fb607c5855fe0b7f452bdfbd75fc5"
+    "tag": "v3.9.0",
+    "commit": "4025e6ff05563ec3b88794f06f114ca2e369ef11"
   },
   "_source": "https://github.com/fullcalendar/fullcalendar.git",
   "_target": "^3.4.0",

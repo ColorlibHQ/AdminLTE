@@ -1,5 +1,5 @@
 /*!
- * Bootstrap Colorpicker v2.5.1
+ * Bootstrap Colorpicker v2.5.2
  * https://itsjavi.com/bootstrap-colorpicker/
  *
  * Originally written by (c) 2012 Stefan Petre
