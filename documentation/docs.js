@@ -47,7 +47,8 @@ $(function () {
   })
 
   $($slideToTop).click(function () {
-    $('body').animate({
+    var bodyDom = document.doctype ? document.documentElement : document.body;
+    $(bodyDom).animate({
       scrollTop: 0
     }, 500)
   })
