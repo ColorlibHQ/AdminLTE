@@ -8866,6 +8866,7 @@ body,
   z-index: 1100;
   height: 100vh;
   overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .sidebar {
