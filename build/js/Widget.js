@@ -23,17 +23,21 @@ const Widget = (($) => {
   }
 
   const Selector = {
-    DATA_REMOVE  : '[data-widget="remove"]',
-    DATA_COLLAPSE: '[data-widget="collapse"]',
-    CARD         : '.card',
-    CARD_HEADER  : '.card-header',
-    CARD_BODY    : '.card-body',
-    CARD_FOOTER  : '.card-footer',
-    COLLAPSED    : '.collapsed-card'
+    DATA_REMOVE   : '[data-widget="remove"]',
+    DATA_COLLAPSE : '[data-widget="collapse"]',
+    CARD          : '.card',
+    CARD_HEADER   : '.card-header',
+    CARD_BODY     : '.card-body',
+    CARD_FOOTER   : '.card-footer',
+    COLLAPSED     : '.collapsed-card',
+    COLLAPSE_ICON : '.fa-minus',
+    EXPAND_ICON   : '.fa-plus'
   }
 
   const ClassName = {
-    COLLAPSED: 'collapsed-card'
+    COLLAPSED     : 'collapsed-card',
+    COLLAPSE_ICON : 'fa-minus',
+    EXPAND_ICON   : 'fa-plus'
   }
 
   const Default = {
@@ -55,6 +59,10 @@ const Widget = (($) => {
           this._parent.addClass(ClassName.COLLAPSED)
         })
 
+      this._element.children(Selector.COLLAPSE_ICON)
+        .addClass(ClassName.EXPAND_ICON)
+        .removeClass(ClassName.COLLAPSE_ICON)
+
       const collapsed = $.Event(Event.COLLAPSED)
 
       this._element.trigger(collapsed, this._parent)
@@ -65,6 +73,10 @@ const Widget = (($) => {
         .slideDown(this._settings.animationSpeed, () => {
           this._parent.removeClass(ClassName.COLLAPSED)
         })
+
+      this._element.children(Selector.EXPAND_ICON)
+        .addClass(ClassName.COLLAPSE_ICON)
+        .removeClass(ClassName.EXPAND_ICON)
 
       const expanded = $.Event(Event.EXPANDED)
 
