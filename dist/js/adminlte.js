@@ -54,7 +54,7 @@ throw new Error('AdminLTE requires jQuery')
   var BoxRefresh = function (element, options) {
     this.element  = element;
     this.options  = options;
-    this.$overlay = $(options.overlay);
+    this.$overlay = $(options.overlayTemplate);
 
     if (options.source === '') {
       throw new Error('Source url was not defined. Please specify a url in your BoxRefresh source option.');
@@ -70,7 +70,7 @@ throw new Error('AdminLTE requires jQuery')
 
     $.get(this.options.source, this.options.params, function (response) {
       if (this.options.loadInContent) {
-        $(this.options.content).html(response);
+        $(this.element).find(this.options.content).html(response);
       }
       this.options.onLoadDone.call($(this), response);
       this._removeOverlay();
@@ -80,7 +80,7 @@ throw new Error('AdminLTE requires jQuery')
   // Private
 
   BoxRefresh.prototype._setUpListeners = function () {
-    $(this.element).on('click', Selector.trigger, function (event) {
+    $(this.element).on('click', this.options.trigger, function (event) {
       if (event) event.preventDefault();
       this.load();
     }.bind(this));
@@ -91,7 +91,7 @@ throw new Error('AdminLTE requires jQuery')
   };
 
   BoxRefresh.prototype._removeOverlay = function () {
-    $(this.element).remove(this.$overlay);
+    $(this.$overlay).remove();
   };
 
   // Plugin Definition
