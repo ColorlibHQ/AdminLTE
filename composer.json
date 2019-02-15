@@ -25,7 +25,6 @@
     "issues": "https://github.com/almasaeed2010/AdminLTE/issues"
   },
   "require": {
-    "composer/installers": "1.*",
     "bower-asset/jquery": ">=1.9.0 <4.0.0"
   }
 }

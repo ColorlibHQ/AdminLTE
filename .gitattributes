@@ -1,0 +1,13 @@
+* text=auto
+
+/.github export-ignore
+/bower_components export-ignore
+/build export-ignore
+/documentation export-ignore
+/pages export-ignore
+/plugins export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore
+index.html export-ignore
+index2.html export-ignore
+starter.html export-ignore
