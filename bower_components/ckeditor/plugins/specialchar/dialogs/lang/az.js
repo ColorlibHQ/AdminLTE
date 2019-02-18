@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","az",{euro:"Avropa valyuta işarəsi",lsquo:"Sol tək dırnaq işarəsi",rsquo:"Sağ tək dırnaq işarəsi",ldquo:"Sol cüt dırnaq işarəsi",rdquo:"Sağ cüt dırnaq işarəsi",ndash:"Çıxma işarəsi",mdash:"Tire",iexcl:"Çevrilmiş nida işarəsi",cent:"Sent işarəsi",pound:"Funt sterlinq işarəsi",curren:"Valyuta işarəsi",yen:"İena işarəsi",brvbar:"Sınmış zolaq",sect:"Paraqraf işarəsi",uml:"Umlyaut",copy:"Müəllif hüquqları haqqında işarəsi",ordf:"Qadın sıra indikatoru (a)",laquo:"Sola göstərən cüt bucaqlı dırnaq",

@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","zh",{euro:"歐元符號",lsquo:"左單引號",rsquo:"右單引號",ldquo:"左雙引號",rdquo:"右雙引號",ndash:"短破折號",mdash:"長破折號",iexcl:"倒置的驚嘆號",cent:"美分符號",pound:"英鎊符號",curren:"貨幣符號",yen:"日圓符號",brvbar:"破折號",sect:"章節符號",uml:"分音符號",copy:"版權符號",ordf:"雌性符號",laquo:"左雙角括號",not:"Not 符號",reg:"註冊商標符號",macr:"長音符號",deg:"度數符號",sup2:"上標字 2",sup3:"上標字 3",acute:"尖音符號",micro:"微",para:"段落符號",middot:"中間點",cedil:"字母 C 下面的尾型符號 ",sup1:"上標",ordm:"雄性符號",raquo:"右雙角括號",frac14:"四分之一符號",frac12:"二分之一符號",frac34:"四分之三符號",

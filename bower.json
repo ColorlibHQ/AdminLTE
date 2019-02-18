@@ -35,7 +35,7 @@
     "chart.js": "1.0.*",
     "ckeditor": "^4.7.0",
     "bootstrap-colorpicker": "^2.5.1",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.0",
     "jquery": "^3.2.1",
     "datatables.net": "^1.10.15",
     "datatables.net-bs": "^2.1.1",

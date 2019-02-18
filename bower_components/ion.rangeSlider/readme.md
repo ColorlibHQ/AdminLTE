@@ -6,9 +6,9 @@ Ion.RangeSlider. Is an easy, flexible and responsive range slider with tons of o
 
 ***
 
-* Version: 2.2.0 | *Version 3.x is under development now*
+* Version: 2.3.0 | *Version 3.x is under development now*
 * <a href="http://ionden.com/a/plugins/ion.rangeSlider/en.html">Project page and demos</a>
-* <a href="http://ionden.com/a/plugins/ion.rangeSlider/ion.rangeSlider-2.2.0.zip">Download ZIP</a>
+* <a href="http://ionden.com/a/plugins/ion.rangeSlider/ion.rangeSlider-2.3.0.zip">Download ZIP</a>
 
 ## Description
 * Ion.RangeSlider — cool, comfortable, responsive and easily customizable range slider
@@ -21,7 +21,7 @@ Ion.RangeSlider. Is an easy, flexible and responsive range slider with tons of o
 ![ion.rangeSlider](http://ionden.com/a/plugins/ion.rangeSlider/static/img/ion-range-slider.png)
 
 ## Key features
-* Skin support. (5 skins included and PSD for skin creation)
+* Skin support. (6 skins included)
 * Any number of sliders at one page without conflicts and big performance problems
 * Two slider types single (1 slider) and double (2 sliders)
 * Support of negative and fractional values
@@ -59,18 +59,7 @@ Add the following libraries to the page:
 * ion.rangeSlider.min.js
 
 Add the following stylesheets to the page:
-* <a href="http://necolas.github.io/normalize.css/" target="_blank">normalize.css</a> (optional)
-* ion.rangeSlider.css
-
-Plus, a skin for the slider. 5 skins are included. Choose one:
-* ion.rangeSlider.skinFlat.css + sprite-skin-flat.png
-* ion.rangeSlider.skinHTML5.css + no images
-* ion.rangeSlider.skinModern.css + sprite-skin-modern.png
-* ion.rangeSlider.skinNice.css + sprite-skin-nice.png
-* ion.rangeSlider.skinSimple.css + sprite-skin-simple.png
-
-Or use the included PSD file and design a custom skin.
-
+* ion.rangeSlider.min.css
 
 ## Install with bower
 
@@ -131,6 +120,7 @@ Here you can find bunch of advanced JSFIDDLE demos with different, non-standart 
 
 | Option | Data-Attr | Defaults | Type | Description |
 | --- | --- | --- | --- | --- |
+| `skin` | `data-skin` | `flat` | string | Choose UI skin to use |
 | `type` | `data-type` | `single` | string | Choose slider type, could be `single` - for one handle, or `double` for two handles |
 | `min` | `data-min` | `10` | number | Set slider minimum value |
 | `max` | `data-max` | `100` | number | Set slider maximum value |
@@ -139,7 +129,7 @@ Here you can find bunch of advanced JSFIDDLE demos with different, non-standart 
 | `step` | `data-step` | `1` | number | Set sliders step. Always > 0. Could be fractional |
 | `min_interval` | `data-min-interval` | `-` | number | Set minimum diapason between sliders. Only for **double** type |
 | `max_interval` | `data-max-interval` | `-` | number | Set minimum maximum between sliders. Only for **double** type |
-| `max_drag_interval` | `data-drag-interval` | `false` | boolean | Allow user to drag whole range. Only for **double** type |
+| `drag_interval` | `data-drag-interval` | `false` | boolean | Allow user to drag whole range. Only for **double** type |
 | `values` | `data-values` | `[]` | array | Set up your own array of possible slider values. They could be numbers or strings. If the values array is set up, min, max and step param, can no longer be changed |
 | `from_fixed` | `data-from-fixed` | `false` | boolean | Fix position of left (or single) handle |
 | `from_min` | `data-from-min` | `min` | number | Set minimum limit for left (or single) handle |
@@ -153,7 +143,7 @@ Here you can find bunch of advanced JSFIDDLE demos with different, non-standart 
 | `prettify_separator` | `data-prettify-separator` | ` ` | string | Set up your own separator for long numbers: 10000000 &rarr; 10,000,000 etc. |
 | `prettify` | `-` | `null` | function | Set up your own prettify function. Can be anything. For example, you can set up unix time as slider values and than transform them to cool looking dates |
 | `force_edges` | `data-force-edges` | `false` | boolean | Sliders handles and tooltips will be always inside it's container |
-| `keyboard` | `data-keyboard` | `false` | boolean | Activates keyboard controls. Move left: &larr;, &darr;, A, S. Move right: &rarr;, &uarr;, W, D. |
+| `keyboard` | `data-keyboard` | `true` | boolean | Activates keyboard controls. Move left: &larr;, &darr;, A, S. Move right: &rarr;, &uarr;, W, D. |
 | `grid` | `data-grid` | `true` | boolean | Enables grid of values above the slider |
 | `grid_margin` | `data-grid-margin` | `true` | boolean | Set left and right grid gaps |
 | `grid_num` | `data-grid-num` | `4` | number | Number of grid units |
@@ -202,6 +192,7 @@ Obj: {
 An example of a customised slider:
 ```javascript
 $("#example").ionRangeSlider({
+    skin: "big",
     min: 0,
     max: 10000,
     from: 1000,
@@ -277,8 +268,6 @@ All plugins options are covered in demos.
 
 #### Support Ion-series plugins development:
 
-* Donate through Pledgie service: [![](https://pledgie.com/campaigns/25694.png?skin_name=chrome)](https://pledgie.com/campaigns/25694)
+* [Support the plugin on Patreon](https://www.patreon.com/IonDen)
 
 * Donate direct to my Paypal account: https://www.paypal.me/IonDen
-
-* Donate direct to my Yandex.Money account: http://yasobe.ru/na/razrabotku

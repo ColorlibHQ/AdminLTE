@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","az",{title:"Əlillərə dəstək üzrə təlimat",contents:"Kömək. Pəncərəni bağlamaq üçün ESC basın.",legend:[{name:"Əsas",items:[{name:"Düzəliş edənin alətlər çubuğu",legend:"Panelə keçmək üçün ${toolbarFocus} basın. Növbəti panelə TAB, əvvəlki panelə isə SHIFT+TAB düyməsi vasitəsi ilə keçə bilərsiz. Paneldəki düymələr arasında sol və sağ ox düyməsi ilə keçid edə bilərsiz. Seçilmiş düyməsi SPACE və ya ENTER ilə işlədə bilərsiniz."},{name:"Redaktorun pəncərəsi",legend:"Pəncərə içində növbəti element seçmək üçün TAB düyməni basın, əvvəlki isə - SHIFT+TAB. Təsdiq edilməsi üçün ENTER, imtina edilməsi isə ESC diymələri istifadə edin. Pəncərədə bir neçə vərəq olanda olnarın siyahı ALT+F10 ilə aça bilərsiz. Vərəqlərin siyahı fokus altında olanda ox düymələr vasitəsi ilə onların arasında keçid edə bilərsiz."},

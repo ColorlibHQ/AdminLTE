@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","fr",{title:"Instructions d'accessibilité",contents:"Contenu de l'aide. Pour fermer cette fenêtre, appuyez sur la touche Échap.",legend:[{name:"Général",items:[{name:"Barre d'outils de l'éditeur",legend:"Appuyer sur ${toolbarFocus} pour accéder à la barre d'outils. Se déplacer vers le groupe suivant ou précédent de la barre d'outils avec les touches Tab et Maj+Tab. Se déplacer vers le bouton suivant ou précédent de la barre d'outils avec les touches Flèche droite et Flèche gauche. Appuyer sur la barre d'espace ou la touche Entrée pour activer le bouton de barre d'outils."},

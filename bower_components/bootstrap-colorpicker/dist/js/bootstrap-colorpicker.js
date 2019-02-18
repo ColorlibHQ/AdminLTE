@@ -861,7 +861,7 @@
         'keyup.colorpicker': $.proxy(this.keyup, this)
       });
       this.input.on({
-        'change.colorpicker': $.proxy(this.change, this)
+        'input.colorpicker': $.proxy(this.change, this)
       });
       if (this.component === false) {
         this.element.on({
@@ -1248,7 +1248,24 @@
       return false;
     },
     change: function(e) {
-      this.keyup(e);
+      this.color = this.createColor(this.input.val());
+      // Change format dynamically
+      // Only occurs if user choose the dynamic format by
+      // setting option format to false
+      if (this.color.origFormat && this.options.format === false) {
+        this.format = this.color.origFormat;
+      }
+      if (this.getValue(false) !== false) {
+        this.updateData();
+        this.updateComponent();
+        this.updatePicker();
+      }
+
+      this.element.trigger({
+        type: 'changeColor',
+        color: this.color,
+        value: this.input.val()
+      });
     },
     keyup: function(e) {
       if ((e.keyCode === 38)) {
@@ -1261,20 +1278,8 @@
           this.color.value.a = Math.round((this.color.value.a - 0.01) * 100) / 100;
         }
         this.update(true);
-      } else {
-        this.color = this.createColor(this.input.val());
-        // Change format dynamically
-        // Only occurs if user choose the dynamic format by
-        // setting option format to false
-        if (this.color.origFormat && this.options.format === false) {
-          this.format = this.color.origFormat;
-        }
-        if (this.getValue(false) !== false) {
-          this.updateData();
-          this.updateComponent();
-          this.updatePicker();
-        }
       }
+
       this.element.trigger({
         type: 'changeColor',
         color: this.color,

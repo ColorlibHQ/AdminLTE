@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","km",{euro:"សញ្ញា​អឺរ៉ូ",lsquo:"Left single quotation mark",rsquo:"Right single quotation mark",ldquo:"Left double quotation mark",rdquo:"Right double quotation mark",ndash:"En dash",mdash:"Em dash",iexcl:"Inverted exclamation mark",cent:"សញ្ញា​សេន",pound:"សញ្ញា​ផោន",curren:"សញ្ញា​រូបិយបណ្ណ",yen:"សញ្ញា​យ៉េន",brvbar:"Broken bar",sect:"Section sign",uml:"Diaeresis",copy:"សញ្ញា​រក្សា​សិទ្ធិ",ordf:"Feminine ordinal indicator",laquo:"Left-pointing double angle quotation mark",

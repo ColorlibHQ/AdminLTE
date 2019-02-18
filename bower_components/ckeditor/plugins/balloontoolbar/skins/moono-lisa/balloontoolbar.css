@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 
@@ -14,4 +14,31 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 {
 	margin-bottom: 0;
 	margin-right: 2px;
+}
+
+.cke_balloon.cke_balloontoolbar .cke_combo:first-child a.cke_combo_button
+{
+	margin-left: 0;
+}
+
+.cke_balloon.cke_balloontoolbar .cke_combo:last-child
+{
+	margin-right: 0;
+}
+
+/* Negative value for left margin is needed to overlap separator (#2535). */
+.cke_balloon.cke_balloontoolbar .cke_combo a.cke_combo_button
+{
+	margin: 0 1px 0 -2px;
+}
+
+/* Combo states (#1682). */
+.cke_balloon.cke_balloontoolbar .cke_combo_on a.cke_combo_button,
+.cke_balloon.cke_balloontoolbar .cke_combo_off a.cke_combo_button:hover,
+.cke_balloon.cke_balloontoolbar .cke_combo_off a.cke_combo_button:focus,
+.cke_balloon.cke_balloontoolbar .cke_combo_off a.cke_combo_button:active
+{
+	border: none;
+	padding: 1px;
+	outline: 1px solid #bcbcbc;
 }

@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","ja",{euro:"ユーロ記号",lsquo:"左シングル引用符",rsquo:"右シングル引用符",ldquo:"左ダブル引用符",rdquo:"右ダブル引用符",ndash:"半角ダッシュ",mdash:"全角ダッシュ",iexcl:"逆さ感嘆符",cent:"セント記号",pound:"ポンド記号",curren:"通貨記号",yen:"円記号",brvbar:"上下に分かれた縦棒",sect:"節記号",uml:"分音記号(ウムラウト)",copy:"著作権表示記号",ordf:"女性序数標識",laquo:" 始め二重山括弧引用記号",not:"論理否定記号",reg:"登録商標記号",macr:"長音符",deg:"度記号",sup2:"上つき2, 2乗",sup3:"上つき3, 3乗",acute:"揚音符",micro:"ミクロン記号",para:"段落記号",middot:"中黒",cedil:"セディラ",sup1:"上つき1",ordm:"男性序数標識",raquo:"終わり二重山括弧引用記号",

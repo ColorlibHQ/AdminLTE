@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 -->
 <html>
@@ -30,7 +30,7 @@ function InsertHTML() {
 	if ( editor.mode == 'wysiwyg' )
 	{
 		// Insert HTML code.
-		// https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-insertHtml
+		// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-insertHtml
 		editor.insertHtml( value );
 	}
 	else
@@ -46,7 +46,7 @@ function InsertText() {
 	if ( editor.mode == 'wysiwyg' )
 	{
 		// Insert as plain text.
-		// https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-insertText
+		// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-insertText
 		editor.insertText( value );
 	}
 	else
@@ -59,7 +59,7 @@ function SetContents() {
 	var value = document.getElementById( 'htmlArea' ).value;
 
 	// Set editor contents (replace current contents).
-	// https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-setData
+	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-setData
 	editor.setData( value );
 }
 
@@ -68,7 +68,7 @@ function GetContents() {
 	var editor = CKEDITOR.instances.editor1;
 
 	// Get editor contents
-	// https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-getData
+	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-getData
 	alert( editor.getData() );
 }
 
@@ -80,7 +80,7 @@ function ExecuteCommand( commandName ) {
 	if ( editor.mode == 'wysiwyg' )
 	{
 		// Execute the command.
-		// https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-execCommand
+		// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-execCommand
 		editor.execCommand( commandName );
 	}
 	else
@@ -92,7 +92,7 @@ function CheckDirty() {
 	var editor = CKEDITOR.instances.editor1;
 	// Checks whether the current editor contents present changes when compared
 	// to the contents loaded into the editor at startup
-	// https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-checkDirty
+	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-checkDirty
 	alert( editor.checkDirty() );
 }
 
@@ -100,7 +100,7 @@ function ResetDirty() {
 	// Get the editor instance that we want to interact with.
 	var editor = CKEDITOR.instances.editor1;
 	// Resets the "dirty state" of the editor (see CheckDirty())
-	// https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-resetDirty
+	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-resetDirty
 	editor.resetDirty();
 	alert( 'The "IsDirty" status has been reset' );
 }
@@ -130,7 +130,7 @@ function onBlur() {
 	<div class="description">
 	<p>
 		This sample shows how to use the
-		<a class="samples" href="https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor">CKEditor JavaScript API</a>
+		<a class="samples" href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html">CKEditor JavaScript API</a>
 		to interact with the editor at runtime.
 	</p>
 	<p>
@@ -202,7 +202,7 @@ Second line of text preceded by two line breaks.</textarea>
 			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
 		</p>
 		<p id="copy">
-			Copyright &copy; 2003-2018, <a class="samples" href="https://cksource.com/">CKSource</a> - Frederico
+			Copyright &copy; 2003-2019, <a class="samples" href="https://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.
 		</p>
 	</div>

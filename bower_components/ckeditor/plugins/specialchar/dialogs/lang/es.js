@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","es",{euro:"Símbolo de euro",lsquo:"Comilla simple izquierda",rsquo:"Comilla simple derecha",ldquo:"Comilla doble izquierda",rdquo:"Comilla doble derecha",ndash:"Guión corto",mdash:"Guión medio largo",iexcl:"Signo de admiración invertido",cent:"Símbolo centavo",pound:"Símbolo libra",curren:"Símbolo moneda",yen:"Símbolo yen",brvbar:"Barra vertical rota",sect:"Símbolo sección",uml:"Diéresis",copy:"Signo de derechos de autor",ordf:"Indicador ordinal femenino",laquo:"Abre comillas angulares",

@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","vi",{euro:"Ký hiệu Euro",lsquo:"Dấu ngoặc đơn trái",rsquo:"Dấu ngoặc đơn phải",ldquo:"Dấu ngoặc đôi trái",rdquo:"Dấu ngoặc đôi phải",ndash:"Gạch ngang tiếng anh",mdash:"Gạch ngang Em",iexcl:"Chuyển đổi dấu chấm than",cent:"Ký tự tiền Mỹ",pound:"Ký tự tiền Anh",curren:"Ký tự tiền tệ",yen:"Ký tự tiền Yên Nhật",brvbar:"Thanh hỏng",sect:"Ký tự khu vực",uml:"Dấu tách đôi",copy:"Ký tự bản quyền",ordf:"Phần chỉ thị giống cái",laquo:"Chọn dấu ngoặc đôi trái",not:"Không có ký tự",

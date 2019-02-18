@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","ar",{euro:"رمز اليورو",lsquo:"علامة تنصيص فردية علي اليسار",rsquo:"علامة تنصيص فردية علي اليمين",ldquo:"علامة تنصيص مزدوجة علي اليسار",rdquo:"علامة تنصيص مزدوجة علي اليمين",ndash:"En dash",mdash:"Em dash",iexcl:"علامة تعجب مقلوبة",cent:"رمز السنت",pound:"رمز الاسترليني",curren:"رمز العملة",yen:"رمز الين",brvbar:"شريط مقطوع",sect:"رمز القسم",uml:"Diaeresis",copy:"علامة حقوق الطبع",ordf:"Feminine ordinal indicator",laquo:"Left-pointing double angle quotation mark",

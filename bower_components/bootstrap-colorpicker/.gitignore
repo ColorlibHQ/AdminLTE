@@ -1,0 +1,13 @@
+*~
+.DS_Store
+.DS_Store*
+ehthumbs.db
+Thumbs.db
+*.log
+/node_modules/
+/bower_components/
+/nbproject/
+static_server.js
+*.php
+.idea
+package-lock.json

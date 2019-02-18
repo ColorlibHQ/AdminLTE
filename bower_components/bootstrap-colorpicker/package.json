@@ -1,0 +1,48 @@
+{
+  "name": "bootstrap-colorpicker",
+  "version": "2.5.3",
+  "description": "Fancy and customizable colorpicker plugin for Twitter Bootstrap",
+  "main": "./dist/js/bootstrap-colorpicker.js",
+  "homepage": "https://itsjavi.com/bootstrap-colorpicker/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itsjavi/bootstrap-colorpicker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/itsjavi/bootstrap-colorpicker/issues"
+  },
+  "keywords": [
+    "bootstrap",
+    "colorpicker"
+  ],
+  "author": "Javier Aguilar",
+  "license": "Apache-2.0",
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://opensource.org/licenses/Apache-2.0"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=1.10"
+  },
+  "scripts": {
+    "test": "jasmine"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-assemble": "~0.4.0",
+    "grunt-combine": "~0.8.3",
+    "grunt-contrib-clean": "~1.0.0",
+    "grunt-contrib-cssmin": "~1.0.1",
+    "grunt-contrib-jshint": "~1.0.0",
+    "grunt-contrib-less": "~1.2.0",
+    "grunt-contrib-uglify": "~1.0.0",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-jsbeautifier": "~0.2.10",
+    "grunt-strip-code": "^1.0.6",
+    "jasmine": "^2.6.0",
+    "jquery": ">=1.10",
+    "jsdom": "^10.1.0"
+  }
+}

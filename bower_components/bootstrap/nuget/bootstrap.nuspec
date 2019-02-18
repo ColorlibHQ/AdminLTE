@@ -2,18 +2,18 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>bootstrap</id>
-    <version>3.3.7</version>
+    <version>3.4.1</version>
     <title>Bootstrap CSS</title>
     <authors>Twitter, Inc.</authors>
     <owners>bootstrap</owners>
     <description>The most popular front-end framework for developing responsive, mobile first projects on the web.</description>
-    <releaseNotes>http://blog.getbootstrap.com</releaseNotes>
+    <releaseNotes>https://blog.getbootstrap.com/</releaseNotes>
     <summary>Bootstrap framework in CSS. Includes fonts and JavaScript</summary>
     <language>en-us</language>
-    <projectUrl>http://getbootstrap.com</projectUrl>
-    <iconUrl>http://getbootstrap.com/apple-touch-icon.png</iconUrl>
+    <projectUrl>https://getbootstrap.com/</projectUrl>
+    <iconUrl>https://getbootstrap.com/apple-touch-icon.png</iconUrl>
     <licenseUrl>https://github.com/twbs/bootstrap/blob/master/LICENSE</licenseUrl>
-    <copyright>Copyright 2016</copyright>
+    <copyright>Copyright 2019</copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
       <dependency id="jQuery" version="[1.9.1,4)" />
@@ -24,5 +24,8 @@
     <file src="dist\css\*.*" target="content\Content" />
     <file src="dist\fonts\*.*" target="content\fonts" />
     <file src="dist\js\bootstrap*.js" target="content\Scripts" />
+    <file src="dist\css\*.*" target="contentFiles\Content" />
+    <file src="dist\fonts\*.*" target="contentFiles\fonts" />
+    <file src="dist\js\bootstrap*.js" target="contentFiles\Scripts" />
   </files>
 </package>

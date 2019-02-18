@@ -11,23 +11,31 @@
       "../assets/js/src/customizer.js"
     ],
     "docsJs": [
+      "../assets/js/vendor/requestAnimationFrame-polyfill.js",
+      "../assets/js/vendor/base64.js",
       "../assets/js/vendor/holder.min.js",
-      "../assets/js/vendor/ZeroClipboard.min.js",
+      "../assets/js/vendor/clipboard.min.js",
       "../assets/js/vendor/anchor.min.js",
-      "../assets/js/src/application.js"
+      "../assets/js/src/application.js",
+      "../assets/js/src/search.js",
+      "../assets/js/ie10-viewport-bug-workaround.js",
+      "../assets/js/ie-emulation-modes-warning.js"
     ]
   },
   "config": {
-    "autoprefixerBrowsers": [
-      "Android 2.3",
-      "Android >= 4",
-      "Chrome >= 20",
-      "Firefox >= 24",
-      "Explorer >= 8",
-      "iOS >= 6",
-      "Opera >= 12",
-      "Safari >= 6"
-    ],
+    "autoprefixer": {
+      "browsers": [
+        "Android 2.3",
+        "Android >= 4",
+        "Chrome >= 20",
+        "Firefox >= 24",
+        "Explorer >= 8",
+        "iOS >= 6",
+        "Opera >= 12",
+        "Safari >= 6"
+      ],
+      "cascade": false
+    },
     "jqueryCheck": [
       "if (typeof jQuery === 'undefined') {",
       "  throw new Error('Bootstrap\\'s JavaScript requires jQuery')",

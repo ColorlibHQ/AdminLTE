@@ -1,3 +1,33 @@
+
+v3.10.0 (2019-01-10)
+--------------------
+
+POTENTIALLY BREAKING CHANGE:
+The jquery and moment packages have been moved to peerDependencies. If you are using
+NPM to install fullcalendar, you'll need to explicitly add jquery and moment as
+dependencies of your project. NPM will not install them automatically. (#4136, #4233)
+
+New Features:
+- events from a Google Calendar event source will receive extended props (#4123)
+- export more classes and util functions (#4124)
+- new locales: zh-hk (#4266), be (#4274)
+
+Bugfixes:
+- not accepting dayClicks/selects because of overflow-x:hidden on html/body (#3615)
+- event end time not displayed when duration is one slot, in agenda view (#3049)
+- switching views before event fetch resolves, JS error (#3689)
+- single-day allDay event not showing when time is specified (#3854)
+- prev button doesn't work when previous days are hidden by hiddenDays and dayCount
+  is greater than dateIncrement (#4202)
+- calendar locale not used in all moments objects (#4174)
+- background event background color does not completely fill cells in Chrome (#4145)
+- provide a delta for eventResize when resizing from start (#4135)
+- IE11 memory leak from not removing handler correctly (#4311)
+- make touchstart handlers passive (#4087)
+- fixed typescript definition for: eventAllow (#4243), selectAllow (#4319)
+- fixed locales: de (#4197, #4371), hu (#4203), tr (#4312), ja (#4329)
+
+
 v3.9.0 (2018-03-04)
 -------------------
 

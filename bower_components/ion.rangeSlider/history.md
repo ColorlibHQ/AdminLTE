@@ -2,6 +2,11 @@
 
 # Update History
 
+### Version 2.3.0. December 11, 2018
+* Website update
+* Big skins update
+* Minor bugfixes
+
 ### Version 2.2.0. June 21, 2017
 * Slider has `TabIndex` support now. Issue #321
 * `keyboard_step` option removed as confusing.
@@ -155,6 +160,4 @@
 
 ***
 
-Support the plugin:
-
-[![](https://pledgie.com/campaigns/25694.png?skin_name=chrome)](https://pledgie.com/campaigns/25694)
+[Support the plugin on Patreon](https://www.patreon.com/IonDen)

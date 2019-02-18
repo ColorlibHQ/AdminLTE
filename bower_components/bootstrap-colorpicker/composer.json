@@ -1,0 +1,15 @@
+{
+  "name": "itsjavi/bootstrap-colorpicker",
+  "description": "Fancy and customizable colorpicker plugin for Twitter Bootstrap",
+  "license": "Apache License Version 2.0",
+  "authors": [
+    {
+      "name": "Javier Aguilar",
+      "homepage": "https://itsjavi.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "components/jquery" : ">=1.10"
+  }
+}

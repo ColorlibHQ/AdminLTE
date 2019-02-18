@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("specialchar","ug",{euro:"ياۋرو بەلگىسى",lsquo:"يالاڭ پەش سول",rsquo:"يالاڭ پەش ئوڭ",ldquo:"قوش پەش سول",rdquo:"قوش پەش ئوڭ",ndash:"سىزىقچە",mdash:"سىزىق",iexcl:"ئۈندەش",cent:"تىيىن بەلگىسى",pound:"فوند ستېرلىڭ",curren:"پۇل بەلگىسى",yen:"ياپونىيە يىنى",brvbar:"ئۈزۈك بالداق",sect:"پاراگراف بەلگىسى",uml:"تاۋۇش ئايرىش بەلگىسى",copy:"نەشر ھوقۇقى بەلگىسى",ordf:"Feminine ordinal indicator",laquo:"قوش تىرناق سول",not:"غەيرى بەلگە",reg:"خەتلەتكەن تاۋار ماركىسى",macr:"سوزۇش بەلگىسى",

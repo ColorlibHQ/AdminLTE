@@ -1,5 +1,5 @@
 /*!
- * FullCalendar v3.9.0
+ * FullCalendar v3.10.0
  * Docs & License: https://fullcalendar.io/
  * (c) 2018 Adam Shaw
  */
@@ -75,7 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 266);
+/******/ 	return __webpack_require__(__webpack_require__.s = 270);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -110,19 +110,19 @@ exports.__extends = function (d, b) {
 
 /***/ }),
 
-/***/ 266:
+/***/ 270:
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var exportHooks = __webpack_require__(1);
-var GcalEventSource_1 = __webpack_require__(267);
+var GcalEventSource_1 = __webpack_require__(271);
 exportHooks.EventSourceParser.registerClass(GcalEventSource_1.default);
 exportHooks.GcalEventSource = GcalEventSource_1.default;
 
 
 /***/ }),
 
-/***/ 267:
+/***/ 271:
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -136,10 +136,10 @@ var GcalEventSource = /** @class */ (function (_super) {
     }
     GcalEventSource.parse = function (rawInput, calendar) {
         var rawProps;
-        if (typeof rawInput === 'object') {
+        if (typeof rawInput === 'object') { // long form. might fail in applyManualStandardProps
             rawProps = rawInput;
         }
-        else if (typeof rawInput === 'string') {
+        else if (typeof rawInput === 'string') { // short form
             rawProps = { url: rawInput }; // url will be parsed with parseGoogleCalendarId
         }
         if (rawProps) {
@@ -153,7 +153,7 @@ var GcalEventSource = /** @class */ (function (_super) {
         var requestParams = this.buildRequestParams(start, end, timezone);
         var ajaxSettings = this.ajaxSettings || {};
         var onSuccess = ajaxSettings.success;
-        if (!requestParams) {
+        if (!requestParams) { // could have failed
             return fullcalendar_1.Promise.reject();
         }
         this.calendar.pushLoading();
@@ -199,6 +199,11 @@ var GcalEventSource = /** @class */ (function (_super) {
         if (url && gcalTimezone) {
             url = injectQsComponent(url, 'ctz=' + gcalTimezone);
         }
+        var extendedProperties = {};
+        if (typeof item.extendedProperties === 'object' &&
+            typeof item.extendedProperties.shared === 'object') {
+            extendedProperties = item.extendedProperties.shared;
+        }
         return {
             id: item.id,
             title: item.summary,
@@ -206,7 +211,8 @@ var GcalEventSource = /** @class */ (function (_super) {
             end: item.end.dateTime || item.end.date,
             url: url,
             location: item.location,
-            description: item.description
+            description: item.description,
+            extendedProperties: extendedProperties
         };
     };
     GcalEventSource.prototype.buildUrl = function () {

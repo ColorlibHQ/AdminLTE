@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","zh",{title:"輔助工具指南",contents:"說明內容。若要關閉此對話框請按「ESC」。",legend:[{name:"一般",items:[{name:"編輯器工具列",legend:"請按 ${toolbarFocus} 以導覽到工具列。利用 TAB 或 SHIFT+TAB 以便移動到下一個及前一個工具列群組。利用右方向鍵或左方向鍵以便移動到下一個及上一個工具列按鈕。按下空白鍵或 ENTER 鍵啟用工具列按鈕。"},{name:"編輯器對話方塊",legend:"在對話框中，按下 TAB 鍵以導覽到下一個對話框元素，按下 SHIFT+TAB 以移動到上一個對話框元素，按下 ENTER 以遞交對話框，按下 ESC 以取消對話框。當對話框有多個分頁時，可以使用 ALT+F10 或是在對話框分頁順序中的一部份按下 TAB 以使用分頁列表。焦點在分頁列表上時，分別使用右方向鍵及左方向鍵移動到下一個及上一個分頁。"},{name:"編輯器內容功能表",legend:"請按下「${contextMenu}」或是「應用程式鍵」以開啟內容選單。以「TAB」或是「↓」鍵移動到下一個選單選項。以「SHIFT + TAB」或是「↑」鍵移動到上一個選單選項。按下「空白鍵」或是「ENTER」鍵以選取選單選項。以「空白鍵」或「ENTER」或「→」開啟目前選項之子選單。以「ESC」或「←」回到父選單。以「ESC」鍵關閉內容選單」。"},

@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 CKEDITOR.plugins.setLang("a11yhelp","zh-cn",{title:"辅助功能说明",contents:"帮助内容。要关闭此对话框请按 ESC 键。",legend:[{name:"常规",items:[{name:"编辑器工具栏",legend:"按 ${toolbarFocus} 切换到工具栏，使用 TAB 键和 SHIFT+TAB 组合键移动到上一个和下一个工具栏组。使用左右箭头键移动到上一个或下一个工具栏按钮。按空格键或回车键以选中工具栏按钮。"},{name:"编辑器对话框",legend:"在对话框内，按 TAB 键移动到下一个字段，按 SHIFT + TAB 组合键移动到上一个字段，按 ENTER 键提交对话框，按 ESC 键取消对话框。对于有多选项卡的对话框，可以按 ALT + F10 直接切换到或者按 TAB 键逐步移到选项卡列表，当焦点移到选项卡列表时可以用左右箭头键来移动到前后的选项卡。"},{name:"编辑器上下文菜单",legend:"用 ${contextMenu} 或者“应用程序键”打开上下文菜单。然后用 TAB 键或者下箭头键来移动到下一个菜单项；SHIFT + TAB 组合键或者上箭头键移动到上一个菜单项。用 SPACE 键或者 ENTER 键选择菜单项。用 SPACE 键，ENTER 键或者右箭头键打开子菜单。返回菜单用 ESC 键或者左箭头键。用 ESC 键关闭上下文菜单。"},

@@ -3,7 +3,7 @@
 
 This skin has been made a **default skin** starting from CKEditor 4.6.0 and is maintained by the core developers.
 
-For more information about skins, please check the [CKEditor Skin SDK](https://docs.ckeditor.com/ckeditor4/docs/#!/guide/skin_sdk_intro)
+For more information about skins, please check the [CKEditor Skin SDK](https://ckeditor.com/docs/ckeditor4/latest/guide/skin_sdk_intro.html)
 documentation.
 
 Features
@@ -41,6 +41,6 @@ Other parts:
 License
 -------
 
-Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
 
 For licensing, see LICENSE.md or [https://ckeditor.com/legal/ckeditor-oss-license](https://ckeditor.com/legal/ckeditor-oss-license)

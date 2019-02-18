@@ -1,6 +1,6 @@
 // Ion.RangeSlider
-// version 2.2.0 Build: 380
-// © Denis Ineshin, 2017
+// version 2.3.0 Build: 381
+// © Denis Ineshin, 2018
 // https://github.com/IonDen
 //
 // Project page:    http://ionden.com/a/plugins/ion.rangeSlider/en.html
@@ -11,11 +11,11 @@
 // =====================================================================================================================
 
 ;(function(factory) {
-    if (typeof define === "function" && define.amd) {
+    if (!jQuery && typeof define === "function" && define.amd) {
         define(["jquery"], function (jQuery) {
             return factory(jQuery, document, window, navigator);
         });
-    } else if (typeof exports === "object") {
+    } else if (!jQuery && typeof exports === "object") {
         factory(require("jquery"), document, window, navigator);
     } else {
         factory(jQuery, document, window, navigator);
@@ -121,23 +121,23 @@
 
     var base_html =
         '<span class="irs">' +
-        '<span class="irs-line" tabindex="0"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span>' +
+        '<span class="irs-line" tabindex="0"></span>' +
         '<span class="irs-min">0</span><span class="irs-max">1</span>' +
         '<span class="irs-from">0</span><span class="irs-to">0</span><span class="irs-single">0</span>' +
         '</span>' +
-        '<span class="irs-grid"></span>' +
-        '<span class="irs-bar"></span>';
+        '<span class="irs-grid"></span>';
 
     var single_html =
-        '<span class="irs-bar-edge"></span>' +
+        '<span class="irs-bar irs-bar--single"></span>' +
         '<span class="irs-shadow shadow-single"></span>' +
-        '<span class="irs-slider single"></span>';
+        '<span class="irs-handle single"><i></i><i></i><i></i></span>';
 
     var double_html =
+        '<span class="irs-bar"></span>' +
         '<span class="irs-shadow shadow-from"></span>' +
         '<span class="irs-shadow shadow-to"></span>' +
-        '<span class="irs-slider from"></span>' +
-        '<span class="irs-slider to"></span>';
+        '<span class="irs-handle from"><i></i><i></i><i></i></span>' +
+        '<span class="irs-handle to"><i></i><i></i><i></i></span>';
 
     var disable_html =
         '<span class="irs-disable-mask"></span>';
@@ -156,7 +156,7 @@
      * @constructor
      */
     var IonRangeSlider = function (input, options, plugin_count) {
-        this.VERSION = "2.2.0";
+        this.VERSION = "2.3.0";
         this.input = input;
         this.plugin_count = plugin_count;
         this.current_plugin = 0;
@@ -272,6 +272,7 @@
 
         // default config
         config = {
+            skin: "flat",
             type: "single",
 
             min: 10,
@@ -342,6 +343,7 @@
 
         // config from data-attributes extends js config
         config_from_data = {
+            skin: $inp.data("skin"),
             type: $inp.data("type"),
 
             min: $inp.data("min"),
@@ -503,7 +505,7 @@
          * Appends slider template to a DOM
          */
         append: function () {
-            var container_html = '<span class="irs js-irs-' + this.plugin_count + ' ' + this.options.extra_classes + '"></span>';
+            var container_html = '<span class="irs irs--' + this.options.skin + ' js-irs-' + this.plugin_count + ' ' + this.options.extra_classes + '"></span>';
             this.$cache.input.before(container_html);
             this.$cache.input.prop("readonly", true);
             this.$cache.cont = this.$cache.input.prev();
@@ -516,12 +518,12 @@
             this.$cache.from = this.$cache.cont.find(".irs-from");
             this.$cache.to = this.$cache.cont.find(".irs-to");
             this.$cache.single = this.$cache.cont.find(".irs-single");
-            this.$cache.bar = this.$cache.cont.find(".irs-bar");
             this.$cache.line = this.$cache.cont.find(".irs-line");
             this.$cache.grid = this.$cache.cont.find(".irs-grid");
 
             if (this.options.type === "single") {
                 this.$cache.cont.append(single_html);
+                this.$cache.bar = this.$cache.cont.find(".irs-bar");
                 this.$cache.edge = this.$cache.cont.find(".irs-bar-edge");
                 this.$cache.s_single = this.$cache.cont.find(".single");
                 this.$cache.from[0].style.visibility = "hidden";
@@ -529,6 +531,7 @@
                 this.$cache.shad_single = this.$cache.cont.find(".shadow-single");
             } else {
                 this.$cache.cont.append(double_html);
+                this.$cache.bar = this.$cache.cont.find(".irs-bar");
                 this.$cache.s_from = this.$cache.cont.find(".from");
                 this.$cache.s_to = this.$cache.cont.find(".to");
                 this.$cache.shad_from = this.$cache.cont.find(".shadow-from");
@@ -1390,6 +1393,9 @@
                 this.$cache.bar[0].style.width = this.coords.p_bar_w + "%";
 
                 if (this.options.type === "single") {
+                    this.$cache.bar[0].style.left = 0;
+                    this.$cache.bar[0].style.width = this.coords.p_bar_w + this.coords.p_bar_x + "%";
+
                     this.$cache.s_single[0].style.left = this.coords.p_single_fake + "%";
 
                     this.$cache.single[0].style.left = this.labels.p_single_left + "%";
@@ -2189,18 +2195,11 @@
             this.calcGridMargin();
 
             if (o.grid_snap) {
-
-                if (total > 50) {
-                    big_num = 50 / o.step;
-                    big_p = this.toFixed(o.step / 0.5);
-                } else {
-                    big_num = total / o.step;
-                    big_p = this.toFixed(o.step / (total / 100));
-                }
-
-            } else {
-                big_p = this.toFixed(100 / big_num);
+                big_num = total / o.step;
             }
+
+            if (big_num > 50) big_num = 50;
+            big_p = this.toFixed(100 / big_num);
 
             if (big_num > 4) {
                 small_max = 3;

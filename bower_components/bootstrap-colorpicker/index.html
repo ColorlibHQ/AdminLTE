@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Colorpicker for Twitter Bootstrap</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-85082661-5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date()); gtag('config', 'UA-85082661-5');
+    </script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" rel="stylesheet">
+    <link href="dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    <link href="docs/assets/main.css" rel="stylesheet">
+
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="dist/js/bootstrap-colorpicker.js"></script>
+</head>
+<body>
+    <div class="container">
+      <div class="page-header">
+    <h1><i class="glyphicon glyphicon-tint"></i> Bootstrap Colorpicker 2.5.2
+        <small>for Twitter Bootstrap</small>
+    </h1>
+</div>
+<div class="row">
+    <article class="col-md-12">
+        <p>
+          Fancy and customizable colorpicker plugin for Twitter Bootstrap.
+            Originally written by <a
+                href="https://twitter.com/stefanpetre/" target="_blank">Stefan Petre</a> and maintained by
+            <a href="https://itsjavi.com/" target="_blank">Javi Aguilar</a> and the Github community.
+        </p>
+        <p class="alert alert-warning">
+            <b>NOTE</b> That this is an older version of the library documentation, please check
+            the project <a href="https://github.com/farbelous/bootstrap-colorpicker/blob/master/README.md">README</a>
+            to find the documentation for the newer and latest versions.
+        </p>
+    </article>
+</div>
+<div class="row">
+    <article class="col-md-12">
+        <hr>
+        <div class="social">
+            <a href="https://github.com/farbelous/bootstrap-colorpicker/" target="_blank"
+               class="btn btn-default btn-sm"><span class="octicon octicon-mark-github"></span>
+                Source code
+            </a>
+            <a href="https://github.com/farbelous/bootstrap-colorpicker/releases" target="_blank"
+               class="btn btn-default btn-sm">
+                Latest Releases
+            </a>
+            <a href="https://github.com/farbelous/bootstrap-colorpicker/archive/2.5.2.zip" target="_blank"
+               class="btn btn-success btn-sm"><i class="glyphicon glyphicon-download-alt"></i>
+                Download v2.5.2
+            </a>
+        </div>
+        <hr>
+    </article>
+</div>
+<div class="row">
+    <div class="col-md-7">
+      <h2>Documentation</h2>
+      
+      <hr>
+      
+      <p>Call the colopicker via javascript:</p>
+      <pre class="well">$('.sample-selector').colorpicker({ /*options...*/ });</pre>
+      <h3>Options</h3>
+      
+      <p>
+          You can set colorpicker options either as a plugin parameter or data-* attributes
+      </p>
+      <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+              <th style="width: 100px;">Name</th>
+              <th style="width: 50px;">Type</th>
+              <th style="width: 100px;">Default</th>
+              <th>Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <td>format</td>
+              <td>string</td>
+              <td>false</td>
+              <td>If not false, forces the color format to be hex, rgb or rgba, otherwise the format is
+                  automatically detected.
+              </td>
+          </tr>
+          <tr>
+              <td>color</td>
+              <td>string</td>
+              <td>false</td>
+              <td>If not false, sets the color to this value.</td>
+          </tr>
+          <tr>
+              <td>container</td>
+              <td>string or jQuery Element</td>
+              <td>false</td>
+              <td>If not false, the picker will be contained inside this element, otherwise it will be
+                  appended to the document body.
+              </td>
+          </tr>
+          <tr>
+              <td>component</td>
+              <td>string or jQuery Element</td>
+              <td>'.add-on, .input-group-addon'</td>
+              <td>Children selector for the component or element that trigger the colorpicker and which
+                  background color will change (needs an inner &lt;i&gt; element).
+              </td>
+          </tr>
+          <tr>
+              <td>input</td>
+              <td>string or jQuery Element</td>
+              <td>'input'</td>
+              <td>Children selector for the input that will store the picker selected value.</td>
+          </tr>
+          <tr>
+              <td>hexNumberSignPrefix</td>
+              <td>boolean</td>
+              <td>true</td>
+              <td>If true, put a '&num;' (number sign) before hex strings.
+              </td>
+          </tr>
+          <tr>
+              <td>horizontal</td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>If true, the hue and alpha channel bars will be rendered horizontally, above the saturation
+                  selector.
+              </td>
+          </tr>
+          <tr>
+              <td>inline</td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>If true, forces to show the colorpicker as an inline element.</td>
+          </tr>
+          <tr>
+              <td>sliders</td>
+              <td>object</td>
+              <td><abbr title='please, read the source code to see this value'>[...]</abbr></td>
+              <td>Vertical sliders configuration (read source code if you really need to tweak this).</td>
+          </tr>
+          <tr>
+              <td>slidersHorz</td>
+              <td>object</td>
+              <td><abbr title='please, read the source code to see this value'>[...]</abbr></td>
+              <td>Horizontal sliders configuration (read source code if you really need to tweak this).</td>
+          </tr>
+          <tr>
+              <td>template</td>
+              <td>string</td>
+              <td><abbr title='please, read the source code to see this value'>[...]</abbr></td>
+              <td>Customizes the default colorpicker HTML template.</td>
+          </tr>
+          <tr>
+              <td>align</td>
+              <td>string</td>
+              <td>'right'</td>
+              <td>By default, the colorpicker is aligned to the right of the input. If you need to switch it
+                  to the left, set align to 'left'.
+              </td>
+          </tr>
+          <tr>
+              <td>customClass</td>
+              <td>string</td>
+              <td>null</td>
+              <td>Adds this class to the colorpicker widget.</td>
+          </tr>
+          <tr>
+              <td>colorSelectors</td>
+              <td>object</td>
+              <td>null</td>
+              <td>List of pre selected colors (hex format). If you choose one of these colors, the alias is returned instead of the hex
+                  code.
+              </td>
+          </tr>
+          <tr>
+            <td>fallbackColor</td>
+            <td>string</td>
+            <td>null</td>
+            <td>
+              Fallback color string that will be applied when the color failed to be parsed.
+              If <var>null</var>, it will keep the current color if any.
+            </td>
+          </tr>
+          <tr>
+            <td>fallbackFormat</td>
+            <td>string</td>
+            <td>hex</td>
+            <td>
+              Fallback color format (e.g. when not specified or for alias mode, when selecting non aliased colors)
+            </td>
+          </tr>
+          </tbody>
+      </table>
+      
+      <h3>jQuery API Methods</h3>
+      
+      <p>General usage methods</p>
+      <h4>.colorpicker(options)</h4>
+      
+      <p>Initializes an colorpicker.</p>
+      
+      <h4>.colorpicker('getValue', defaultValue)</h4>
+      
+      <p>Gets the value from the input or the data attribute (if has no input), otherwise returns the default
+          value, which defaults to #000000 if not specified.</p>
+      
+      <h4>.colorpicker('setValue', value)</h4>
+      
+      <p>Set a new value for the color picker (also updates everything). Triggers 'changeColor' event.</p>
+      
+      <h4>.colorpicker('show')</h4>
+      
+      <p>Show the color picker</p>
+      
+      <h4>.colorpicker('hide')</h4>
+      
+      <p>Hide the color picker</p>
+      
+      <h4>.colorpicker('reposition')</h4>
+      
+      <p>Updates the color picker's position relative to the element</p>
+      
+      <h4>.colorpicker('update')</h4>
+      
+      <p>Refreshes the widget colors (this is done automatically)</p>
+      
+      <h4>.colorpicker('enable')</h4>
+      
+      <p>Enable the color picker.</p>
+      
+      <h4>.colorpicker('disable')</h4>
+      
+      <p>Disable the color picker.</p>
+      
+      <h4>.colorpicker('destroy')</h4>
+      
+      <p>Destroys the colorpicker widget and unbind all .colorpicker events from the element and component</p>
+      
+      <h4>.data('colorpicker')</h4>
+      
+      <p>Access to the colorpicker API directly</p>
+      
+      <h4>.data('colorpicker').color</h4>
+      
+      <p>Access to the colorpicker Color object information</p>
+      
+      <hr>
+      
+      <h3>Color object methods</h3>
+      
+      <p>Each triggered events have a color object (avaliable through event.color, see the example at the
+          bottom) used internally by the picker. This object has several useful methods. These are the more
+          commonly used:</p>
+      
+      <h4>.setColor(value)</h4>
+      
+      <p>Set a new color. The value is parsed and tries to do a quess on the format.</p>
+      
+      <h4>.setHue(value)</h4>
+      
+      <p>Set the HUE with a value between 0 and 1.</p>
+      
+      <h4>.setSaturation(value)</h4>
+      
+      <p>Set the saturation with a value between 0 and 1.</p>
+      
+      <h4>.setBrightness(value)</h4>
+      
+      <p>Set the brightness with a value between 0 and 1.</p>
+      
+      <h4>.setAlpha(value)</h4>
+      
+      <p>Set the transparency with a value between 0 and 1.</p>
+      
+      <h4>.toRGB()</h4>
+      
+      <p>Returns a hash with red, green, blue and alpha.</p>
+      
+      <h4>.toHex()</h4>
+      
+      <p>Returns a string with HEX format for the current color.</p>
+      
+      <h4>.toHSL()</h4>
+      
+      <p>Returns a hash with HSLA values.</p>
+      
+      <hr>
+      
+      <h3>Events</h3>
+      
+      <p>The colorpicker plugin exposes some events</p>
+      
+      <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+              <th style="width: 150px;">Event</th>
+              <th>Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <td>create</td>
+              <td>This event fires immediately when the color picker is created.</td>
+          </tr>
+          <tr>
+              <td>showPicker</td>
+              <td>This event fires immediately when the color picker is displayed.</td>
+          </tr>
+          <tr>
+              <td>hidePicker</td>
+              <td>This event is fired immediately when the color picker is hidden.</td>
+          </tr>
+          <tr>
+              <td>changeColor</td>
+              <td>This event is fired when the color is changed.</td>
+          </tr>
+          <tr>
+              <td>disable</td>
+              <td>This event is fired immediately when the color picker is disabled, except if it was
+                  initialized as disabled.
+              </td>
+          </tr>
+          <tr>
+              <td>enable</td>
+              <td>This event is fired immediately when the color picker is enabled, except upon
+                  initialization.
+              </td>
+          </tr>
+          <tr>
+              <td>destroy</td>
+              <td>This event fires immediately when the color picker is destroyed.</td>
+          </tr>
+          </tbody>
+      </table>
+    </div>
+    <div class="col-md-5">
+<h2>Examples</h2>
+<hr>
+
+<div class="example">
+    <div class="example-title">Simple input field</div>
+    
+    <div class="example-content well">
+        <div class="example-content-widget">
+      <input id="cp1" type="text" class="form-control" value="#5367ce"/>
+      <script>
+          $(function () {
+              $('#cp1').colorpicker();
+          });
+      </script>
+        </div>
+        <button type="button" class="btn btn-link btn-xs example-code-toggle" data-toggle="button">View source</button>
+<div class="example-code">&lt;input id=&quot;cp1&quot; type=&quot;text&quot; class=&quot;form-control&quot; value=&quot;#5367ce&quot; &#x2F;&gt;
+&lt;script&gt;
+    $(function() {
+        $(&#39;#cp1&#39;).colorpicker();
+    });
+&lt;&#x2F;script&gt;</div>    </div>
+</div>
+<div class="example">
+    <div class="example-title">As a component</div>
+    
+    <div class="example-content well">
+        <div class="example-content-widget">
+      <div id="cp2" class="input-group colorpicker-component">
+          <input type="text" value="#00AABB" class="form-control"/>
+          <span class="input-group-addon"><i></i></span>
+      </div>
+      <script>
+          $(function () {
+              $('#cp2').colorpicker();
+          });
+      </script>
+        </div>
+        <button type="button" class="btn btn-link btn-xs example-code-toggle" data-toggle="button">View source</button>
+<div class="example-code">&lt;div id=&quot;cp2&quot; class=&quot;input-group colorpicker-component&quot;&gt;
+    &lt;input type=&quot;text&quot; value=&quot;#00AABB&quot; class=&quot;form-control&quot; &#x2F;&gt;
+    &lt;span class=&quot;input-group-addon&quot;&gt;&lt;i&gt;&lt;&#x2F;i&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;div&gt;
+&lt;script&gt;
+    $(function() {
+        $(&#39;#cp2&#39;).colorpicker();
+    });
+&lt;&#x2F;script&gt;</div>    </div>
+</div>
+<div class="example">
+    <div class="example-title">With custom options</div>
+    <div class="example-description">Sample overriding the initial color and format</div>
+    <div class="example-content well">
+        <div class="example-content-widget">
+      <div id="cp3" class="input-group colorpicker-component">
+          <input type="text" value="#00AABB" class="form-control"/>
+          <span class="input-group-addon"><i></i></span>
+      </div>
+      <script>
+          $(function () {
+              $('#cp3').colorpicker({
+                  color: '#AA3399',
+                  format: 'rgb'
+              });
+          });
+      </script>
+        </div>
+        <button type="button" class="btn btn-link btn-xs example-code-toggle" data-toggle="button">View source</button>
+<div class="example-code">&lt;div id=&quot;cp3&quot; class=&quot;input-group colorpicker-component&quot;&gt;
+    &lt;input type=&quot;text&quot; value=&quot;#00AABB&quot; class=&quot;form-control&quot; &#x2F;&gt;
+    &lt;span class=&quot;input-group-addon&quot;&gt;&lt;i&gt;&lt;&#x2F;i&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;div&gt;
+&lt;script&gt;
+    $(function() {
+        $(&#39;#cp3&#39;).colorpicker({
+            color: &#39;#AA3399&#39;,
+            format: &#39;rgb&#39;
+        });
+    });
+&lt;&#x2F;script&gt;</div>    </div>
+</div>
+<div class="example">
+    <div class="example-title">Working with events</div>
+    
+    <div class="example-content well">
+        <div class="example-content-widget">
+      <a href="#" class="btn btn-default" id="cp4">Change background color</a>
+      <script>
+          $(function () {
+              $('#cp4').colorpicker().on('changeColor', function (e) {
+                  $('body')[0].style.backgroundColor = e.color.toString('rgba');
+              });
+          });
+      </script>
+        </div>
+        <button type="button" class="btn btn-link btn-xs example-code-toggle" data-toggle="button">View source</button>
+<div class="example-code">&lt;a href=&quot;#&quot; class=&quot;btn btn-default&quot; id=&quot;cp4&quot;&gt;Change background color&lt;&#x2F;a&gt;
+&lt;script&gt;
+    $(function() {
+        $(&#39;#cp4&#39;).colorpicker().on(&#39;changeColor&#39;, function(e) {
+            $(&#39;body&#39;)[0].style.backgroundColor = e.color.toString(
+                &#39;rgba&#39;);
+        });
+    });
+&lt;&#x2F;script&gt;</div>    </div>
+</div>
+<div class="example">
+    <div class="example-title">Transparent color support</div>
+    
+    <div class="example-content well">
+        <div class="example-content-widget">
+      <input type="text" class="form-control" id="cp5"/>
+      <script>
+          $(function () {
+              $('#cp5').colorpicker({
+                  color: "transparent",
+                  format: "hex"
+              });
+          });
+      </script>
+        </div>
+        <button type="button" class="btn btn-link btn-xs example-code-toggle" data-toggle="button">View source</button>
+<div class="example-code">&lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;cp5&quot; &#x2F;&gt;
+&lt;script&gt;
+    $(function() {
+        $(&#39;#cp5&#39;).colorpicker({
+            color: &quot;transparent&quot;,
+            format: &quot;hex&quot;
+        });
+    });
+&lt;&#x2F;script&gt;</div>    </div>
+</div>
+<div class="example">
+    <div class="example-title">Horizontal mode</div>
+    
+    <div class="example-content well">
+        <div class="example-content-widget">
+      <input type="text" class="form-control" id="cp6" />
+      <script>
+          $(function () {
+              $('#cp6').colorpicker({
+                  color: "#88cc33",
+                  horizontal: true
+              });
+          });
+      </script>
+        </div>
+        <button type="button" class="btn btn-link btn-xs example-code-toggle" data-toggle="button">View source</button>
+<div class="example-code">&lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;cp6&quot; &#x2F;&gt;
+&lt;script&gt;
+    $(function() {
+        $(&#39;#cp6&#39;).colorpicker({
+            color: &quot;#88cc33&quot;,
+            horizontal: true
+        });
+    });
+&lt;&#x2F;script&gt;</div>    </div>
+</div>
+<div class="example">
+    <div class="example-title">Inline mode</div>
+    
+    <div class="example-content well">
+        <div class="example-content-widget">
+      <div id="cp7" class="inl-bl"></div>
+      <style>
+          .inl-bl {
+              display: inline-block;
+          }
+      </style>
+      <script>
+          $(function () {
+              $('#cp7').colorpicker({
+                  color:'#ffaa00',
+                  container: true,
+                  inline:true
+              });
+          });
+      </script>
+        </div>
+        <button type="button" class="btn btn-link btn-xs example-code-toggle" data-toggle="button">View source</button>
+<div class="example-code">&lt;div id=&quot;cp7&quot; class=&quot;inl-bl&quot;&gt;&lt;&#x2F;div&gt;
+&lt;style&gt;
+    .inl-bl {
+        display: inline-block;
+    }
+&lt;&#x2F;style&gt;
+&lt;script&gt;
+    $(function() {
+        $(&#39;#cp7&#39;).colorpicker({
+            color: &#39;#ffaa00&#39;,
+            container: true,
+            inline: true
+        });
+    });
+&lt;&#x2F;script&gt;</div>    </div>
+</div>
+<div class="example">
+    <div class="example-title">Aliased color palette</div>
+    
+    <div class="example-content well">
+        <div class="example-content-widget">
+      <div id="cp8" data-format="alias" class="input-group colorpicker-component">
+        <input type="text" value="primary" class="form-control"/>
+        <span class="input-group-addon"><i></i></span>
+      </div>
+      <script>
+          $(function () {
+              $('#cp8').colorpicker({
+                  colorSelectors: {
+                      'black': '#000000',
+                      'white': '#ffffff',
+                      'red': '#FF0000',
+                      'default': '#777777',
+                      'primary': '#337ab7',
+                      'success': '#5cb85c',
+                      'info': '#5bc0de',
+                      'warning': '#f0ad4e',
+                      'danger': '#d9534f'
+                  }
+              });
+          });
+      </script>
+        </div>
+        <button type="button" class="btn btn-link btn-xs example-code-toggle" data-toggle="button">View source</button>
+<div class="example-code">&lt;div id=&quot;cp8&quot; data-format=&quot;alias&quot; class=&quot;input-group colorpicker-component&quot;&gt;
+    &lt;input type=&quot;text&quot; value=&quot;primary&quot; class=&quot;form-control&quot; &#x2F;&gt;
+    &lt;span class=&quot;input-group-addon&quot;&gt;&lt;i&gt;&lt;&#x2F;i&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;div&gt;
+&lt;script&gt;
+    $(function() {
+        $(&#39;#cp8&#39;).colorpicker({
+            colorSelectors: {
+                &#39;black&#39;: &#39;#000000&#39;,
+                &#39;white&#39;: &#39;#ffffff&#39;,
+                &#39;red&#39;: &#39;#FF0000&#39;,
+                &#39;default&#39;: &#39;#777777&#39;,
+                &#39;primary&#39;: &#39;#337ab7&#39;,
+                &#39;success&#39;: &#39;#5cb85c&#39;,
+                &#39;info&#39;: &#39;#5bc0de&#39;,
+                &#39;warning&#39;: &#39;#f0ad4e&#39;,
+                &#39;danger&#39;: &#39;#d9534f&#39;
+            }
+        });
+    });
+&lt;&#x2F;script&gt;</div>    </div>
+</div>
+<div class="example">
+    <div class="example-title">Customized widget size</div>
+    <div class="example-description">Also showing the support of HTML color names</div>
+    <div class="example-content well">
+        <div class="example-content-widget">
+      <input id="cp9" type="text" class="form-control" value="pink"/>
+      <style>
+          .colorpicker-2x .colorpicker-saturation {
+              width: 200px;
+              height: 200px;
+          }
+      
+          .colorpicker-2x .colorpicker-hue,
+          .colorpicker-2x .colorpicker-alpha {
+              width: 30px;
+              height: 200px;
+          }
+      
+          .colorpicker-2x .colorpicker-color,
+          .colorpicker-2x .colorpicker-color div {
+              height: 30px;
+          }
+      </style>
+      <script>
+          $(function () {
+              $('#cp9').colorpicker({
+                  customClass: 'colorpicker-2x',
+                  sliders: {
+                      saturation: {
+                          maxLeft: 200,
+                          maxTop: 200
+                      },
+                      hue: {
+                          maxTop: 200
+                      },
+                      alpha: {
+                          maxTop: 200
+                      }
+                  }
+              });
+          });
+      </script>
+        </div>
+        <button type="button" class="btn btn-link btn-xs example-code-toggle" data-toggle="button">View source</button>
+<div class="example-code">&lt;input id=&quot;cp9&quot; type=&quot;text&quot; class=&quot;form-control&quot; value=&quot;pink&quot; &#x2F;&gt;
+&lt;style&gt;
+    .colorpicker-2x .colorpicker-saturation {
+        width: 200px;
+        height: 200px;
+    }
+
+    .colorpicker-2x .colorpicker-hue,
+    .colorpicker-2x .colorpicker-alpha {
+        width: 30px;
+        height: 200px;
+    }
+
+    .colorpicker-2x .colorpicker-color,
+    .colorpicker-2x .colorpicker-color div {
+        height: 30px;
+    }
+&lt;&#x2F;style&gt;
+&lt;script&gt;
+    $(function() {
+        $(&#39;#cp9&#39;).colorpicker({
+            customClass: &#39;colorpicker-2x&#39;,
+            sliders: {
+                saturation: {
+                    maxLeft: 200,
+                    maxTop: 200
+                },
+                hue: {
+                    maxTop: 200
+                },
+                alpha: {
+                    maxTop: 200
+                }
+            }
+        });
+    });
+&lt;&#x2F;script&gt;</div>    </div>
+</div>
+<div class="example">
+    <div class="example-title">Disabled / enabled status</div>
+    
+    <div class="example-content well">
+        <div class="example-content-widget">
+      <div id="cp10" class="input-group colorpicker-component">
+          <input disabled type="text" value="" class="form-control"/>
+          <span class="input-group-addon"><i></i></span>
+      </div>
+      <br>
+      <p>
+        <a class="btn btn-sm btn-default enable-button" href="#">Enable</a>
+        <a class="btn btn-sm btn-default disable-button" href="#">Disable</a>
+      </p>
+      <script>
+          $(function () {
+              $(".disable-button").click(function(e) {
+                  e.preventDefault();
+                  $("#cp10").colorpicker('disable');
+              });
+      
+              $(".enable-button").click(function(e) {
+                  e.preventDefault();
+                  $("#cp10").colorpicker('enable');
+              });
+              $('#cp10').colorpicker();
+          });
+      </script>
+        </div>
+        <button type="button" class="btn btn-link btn-xs example-code-toggle" data-toggle="button">View source</button>
+<div class="example-code">&lt;div id=&quot;cp10&quot; class=&quot;input-group colorpicker-component&quot;&gt;
+    &lt;input disabled type=&quot;text&quot; value=&quot;&quot; class=&quot;form-control&quot; &#x2F;&gt;
+    &lt;span class=&quot;input-group-addon&quot;&gt;&lt;i&gt;&lt;&#x2F;i&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;div&gt;
+&lt;br&gt;
+&lt;p&gt;
+    &lt;a class=&quot;btn btn-sm btn-default enable-button&quot; href=&quot;#&quot;&gt;Enable&lt;&#x2F;a&gt;
+    &lt;a class=&quot;btn btn-sm btn-default disable-button&quot; href=&quot;#&quot;&gt;Disable&lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
+&lt;script&gt;
+    $(function() {
+        $(&quot;.disable-button&quot;).click(function(e) {
+            e.preventDefault();
+            $(&quot;#cp10&quot;).colorpicker(&#39;disable&#39;);
+        });
+
+        $(&quot;.enable-button&quot;).click(function(e) {
+            e.preventDefault();
+            $(&quot;#cp10&quot;).colorpicker(&#39;enable&#39;);
+        });
+        $(&#39;#cp10&#39;).colorpicker();
+    });
+&lt;&#x2F;script&gt;</div>    </div>
+</div>
+<div class="example">
+    <div class="example-title">Inside a modal</div>
+    
+    <div class="example-content well">
+        <div class="example-content-widget">
+      <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
+          Show modal
+      </button>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-body">
+                      <div id="cp11" class="input-group colorpicker-component">
+                          <input type="text" value="" class="form-control"/>
+                          <span class="input-group-addon"><i></i></span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <script>
+          $(function () {
+              $('#cp11').colorpicker();
+          });
+      </script>
+        </div>
+        <button type="button" class="btn btn-link btn-xs example-code-toggle" data-toggle="button">View source</button>
+<div class="example-code">&lt;button class=&quot;btn btn-primary btn-md&quot; data-toggle=&quot;modal&quot; data-target=&quot;#myModal&quot;&gt;
+            Show modal
+        &lt;&#x2F;button&gt;
+&lt;div class=&quot;modal fade&quot; id=&quot;myModal&quot; tabindex=&quot;-1&quot; role=&quot;dialog&quot; aria-labelledby=&quot;myModalLabel&quot;
+    aria-hidden=&quot;true&quot;&gt;
+    &lt;div class=&quot;modal-dialog&quot;&gt;
+        &lt;div class=&quot;modal-content&quot;&gt;
+            &lt;div class=&quot;modal-body&quot;&gt;
+                &lt;div id=&quot;cp11&quot; class=&quot;input-group colorpicker-component&quot;&gt;
+                    &lt;input type=&quot;text&quot; value=&quot;&quot; class=&quot;form-control&quot; &#x2F;&gt;
+                    &lt;span class=&quot;input-group-addon&quot;&gt;&lt;i&gt;&lt;&#x2F;i&gt;&lt;&#x2F;span&gt;
+                &lt;&#x2F;div&gt;
+            &lt;&#x2F;div&gt;
+        &lt;&#x2F;div&gt;
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;script&gt;
+    $(function() {
+        $(&#39;#cp11&#39;).colorpicker();
+    });
+&lt;&#x2F;script&gt;</div>    </div>
+</div>
+
+
+<script>
+    $(function () {
+        $('.example-code-toggle').on('click', function () {
+            $(this).parent().find('.example-code').toggle();
+        });
+    });
+</script>
+    </div>
+</div>
+
+    </div>
+</body>
+</html>

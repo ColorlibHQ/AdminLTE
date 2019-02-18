@@ -60,4 +60,4 @@ Ion.RangeSlider. Is an easy, flexible and responsive range slider with tons of o
 
 Support the plugin:
 
-[![](https://pledgie.com/campaigns/25694.png?skin_name=chrome)](https://pledgie.com/campaigns/25694)
+[Support the plugin on Patreon](https://www.patreon.com/IonDen)

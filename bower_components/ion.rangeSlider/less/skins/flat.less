@@ -1,0 +1,125 @@
+.irs--flat {
+    @name: irs;
+
+    @top: 25px;
+    @bottom: 16px;
+    @line_height: 12px;
+    @handle_width: 16px;
+    @handle_height: 18px;
+    @custom_radius: 4px;
+
+    @line_color: #e1e4e9;
+    @bar_color: #ed5565;
+    @handle_color_1: #da4453;
+    @handle_color_2: #a43540;
+    @minmax_text_color: #999;
+    @minmax_bg_color: #e1e4e9;
+    @label_color_1: #ed5565;
+    @label_color_2: white;
+    @grid_color_1: #e1e4e9;
+    @grid_color_2: #999;
+
+
+
+    height: 40px;
+
+    &.irs-with-grid {
+        height: 60px;
+    }
+
+    .@{name}-line {
+        top: @top;
+        height: @line_height;
+        background-color: @line_color;
+        border-radius: @custom_radius;
+    }
+
+    .@{name}-bar {
+        top: @top;
+        height: @line_height;
+        background-color: @bar_color;
+
+        &--single {
+            border-radius: @custom_radius 0 0 @custom_radius;
+        }
+    }
+
+    .@{name}-shadow {
+        height: 1px;
+        bottom: @bottom;
+        background-color: @line_color;
+    }
+
+    .@{name}-handle {
+        top: 22px;
+        width: @handle_width;
+        height: @handle_height;
+        background-color: transparent;
+
+        & > i:first-child {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            margin-left: -1px;
+            background-color: @handle_color_1;
+        }
+
+        &.state_hover,
+        &:hover {
+            & > i:first-child {
+                background-color: @handle_color_2;
+            }
+        }
+    }
+
+    .@{name}-min,
+    .@{name}-max {
+        top: 0;
+        padding: 1px 3px;
+        color: @minmax_text_color;
+        font-size: 10px;
+        line-height: 1.333;
+        text-shadow: none;
+        background-color: @minmax_bg_color;
+        border-radius: @custom_radius;
+    }
+
+    .@{name}-from,
+    .@{name}-to,
+    .@{name}-single {
+        color: @label_color_2;
+        font-size: 10px;
+        line-height: 1.333;
+        text-shadow: none;
+        padding: 1px 5px;
+        background-color: @label_color_1;
+        border-radius: @custom_radius;
+
+        &:before {
+            position: absolute;
+            display: block;
+            content: "";
+            bottom: -6px;
+            left: 50%;
+            width: 0;
+            height: 0;
+            margin-left: -3px;
+            overflow: hidden;
+            border: 3px solid transparent;
+            border-top-color: @label_color_1;
+        }
+    }
+
+    .@{name}-grid {
+        &-pol {
+            background-color: @grid_color_1;
+        }
+
+        &-text {
+            color: @grid_color_2;
+        }
+    }
+}
