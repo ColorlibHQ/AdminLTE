@@ -16,12 +16,16 @@ const Plugins = [
   },
   // Font Awesome
   {
-    from: 'node_modules/font-awesome/css',
-    to  : 'plugins/font-awesome/css'
+    from: 'node_modules/@fortawesome/fontawesome-free/css',
+    to  : 'plugins/fontawesome-free/css'
   },
   {
-    from: 'node_modules/font-awesome/fonts',
-    to  : 'plugins/font-awesome/fonts'
+    from: 'node_modules/@fortawesome/fontawesome-free/webfonts',
+    to  : 'plugins/fontawesome-free/webfonts'
+  },
+  {
+    from: 'node_modules/@fortawesome/fontawesome-free/js',
+    to  : 'plugins/fontawesome-free/js'
   },
   // Chart.js 2
   {
