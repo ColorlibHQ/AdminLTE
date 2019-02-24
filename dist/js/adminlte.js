@@ -1077,7 +1077,7 @@ throw new Error('AdminLTE requires jQuery')
 
     parent.addClass(ClassName.open);
     tree.slideDown(this.options.animationSpeed, function () {
-      $(this.element).trigger(expandedEvent);
+     setTimeout(() => $(this.element).trigger(expandedEvent),0) 
     }.bind(this));
   };
 
@@ -1086,9 +1086,9 @@ throw new Error('AdminLTE requires jQuery')
 
     //tree.find(Selector.open).removeClass(ClassName.open);
     parentLi.removeClass(ClassName.open);
-    tree.slideUp(this.options.animationSpeed, function () {
+    tree.slideUp(this.options.animationSpeed,  function () {
       //tree.find(Selector.open + ' > ' + Selector.treeview).slideUp();
-      $(this.element).trigger(collapsedEvent);
+      setTimeout(() => $(this.element).trigger(collapsedEvent), 0);
     }.bind(this));
   };
 
