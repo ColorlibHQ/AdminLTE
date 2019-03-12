@@ -1,6 +1,6 @@
 /*!
  * AdminLTE v3.0.0-beta.1 (https://adminlte.io)
- * Copyright 2014-2018 Abdullah Almsaeed <abdullah@almsaeedstudio.com>
+ * Copyright 2014-2019 Abdullah Almsaeed <abdullah@almsaeedstudio.com>
  * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
  */
 (function (global, factory) {
@@ -229,7 +229,7 @@ var Layout = function ($) {
       };
       var max = this._max(heights);
 
-      $(Selector.CONTENT).css('min-height', max - heights.header);
+      $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer);
       $(Selector.SIDEBAR).css('min-height', max - heights.header);
     };
 
@@ -674,11 +674,15 @@ var Widget = function ($) {
     CARD_HEADER: '.card-header',
     CARD_BODY: '.card-body',
     CARD_FOOTER: '.card-footer',
-    COLLAPSED: '.collapsed-card'
+    COLLAPSED: '.collapsed-card',
+    COLLAPSE_ICON: '.fa-minus',
+    EXPAND_ICON: '.fa-plus'
   };
 
   var ClassName = {
-    COLLAPSED: 'collapsed-card'
+    COLLAPSED: 'collapsed-card',
+    COLLAPSE_ICON: 'fa-minus',
+    EXPAND_ICON: 'fa-plus'
   };
 
   var Default = {
@@ -703,6 +707,8 @@ var Widget = function ($) {
         _this._parent.addClass(ClassName.COLLAPSED);
       });
 
+      this._element.children(Selector.COLLAPSE_ICON).addClass(ClassName.EXPAND_ICON).removeClass(ClassName.COLLAPSE_ICON);
+
       var collapsed = $.Event(Event.COLLAPSED);
 
       this._element.trigger(collapsed, this._parent);
@@ -714,6 +720,8 @@ var Widget = function ($) {
       this._parent.children(Selector.CARD_BODY + ', ' + Selector.CARD_FOOTER).slideDown(this._settings.animationSpeed, function () {
         _this2._parent.removeClass(ClassName.COLLAPSED);
       });
+
+      this._element.children(Selector.EXPAND_ICON).addClass(ClassName.COLLAPSE_ICON).removeClass(ClassName.EXPAND_ICON);
 
       var expanded = $.Event(Event.EXPANDED);
 

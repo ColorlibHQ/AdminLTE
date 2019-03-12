@@ -8877,6 +8877,12 @@ body,
   height: calc(100% - 4rem);
 }
 
+.main-sidebar::-webkit-scrollbar,
+.sidebar::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
 .user-panel {
   position: relative;
 }
@@ -8952,7 +8958,7 @@ body,
   text-align: center;
   width: 1.6rem;
   font-size: 1.2rem;
-  margin-right: .2rem;
+  margin-right: 0.2rem;
 }
 
 .nav-sidebar > .nav-item .float-right {
@@ -8970,12 +8976,12 @@ body,
 }
 
 .nav-sidebar .nav-header {
-  font-size: .9rem;
+  font-size: 0.9rem;
   padding: 0.5rem;
 }
 
 .nav-sidebar .nav-header:not(:first-of-type) {
-  padding: 1.7rem 1rem .5rem 1rem;
+  padding: 1.7rem 1rem 0.5rem 1rem;
 }
 
 .nav-sidebar .nav-link p {
@@ -11597,7 +11603,7 @@ label:not(.form-check-label):not(.custom-file-label) {
   color: #6c757d;
 }
 
-.nav-pills .nav-link:not(.active):hover {
+.nav-pills .nav-link:not(.active):not(.dropdown-toggle):hover {
   color: #007bff;
 }
 
@@ -12262,10 +12268,44 @@ label:not(.form-check-label):not(.custom-file-label) {
   border-right: none;
 }
 
+.login-card-body .input-group .form-control:focus,
+.register-card-body .input-group .form-control:focus {
+  box-shadow: none;
+}
+
+.login-card-body .input-group .form-control:focus ~ .input-group-append .input-group-text,
+.register-card-body .input-group .form-control:focus ~ .input-group-append .input-group-text {
+  border-color: #80bdff;
+}
+
+.login-card-body .input-group .form-control.is-valid:focus,
+.register-card-body .input-group .form-control.is-valid:focus {
+  box-shadow: none;
+}
+
+.login-card-body .input-group .form-control.is-valid ~ .input-group-append .input-group-text,
+.register-card-body .input-group .form-control.is-valid ~ .input-group-append .input-group-text {
+  border-color: #28a745;
+}
+
+.login-card-body .input-group .form-control.is-invalid:focus,
+.register-card-body .input-group .form-control.is-invalid:focus {
+  box-shadow: none;
+}
+
+.login-card-body .input-group .form-control.is-invalid ~ .input-group-append .input-group-text,
+.register-card-body .input-group .form-control.is-invalid ~ .input-group-append .input-group-text {
+  border-color: #dc3545;
+}
+
 .login-card-body .input-group .input-group-text,
 .register-card-body .input-group .input-group-text {
   color: #777;
   background-color: transparent;
+  border-left: none;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border-bottom-right-radius: 0.25rem !important;
+  border-top-right-radius: 0.25rem !important;
 }
 
 .login-box-msg,
