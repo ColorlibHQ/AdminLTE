@@ -11597,7 +11597,7 @@ label:not(.form-check-label):not(.custom-file-label) {
   color: #6c757d;
 }
 
-.nav-pills .nav-link:not(.active):hover {
+.nav-pills .nav-link:not(.active):not(.dropdown-toggle):hover {
   color: #007bff;
 }
 
@@ -12262,10 +12262,44 @@ label:not(.form-check-label):not(.custom-file-label) {
   border-right: none;
 }
 
+.login-card-body .input-group .form-control:focus,
+.register-card-body .input-group .form-control:focus {
+  box-shadow: none;
+}
+
+.login-card-body .input-group .form-control:focus ~ .input-group-append .input-group-text,
+.register-card-body .input-group .form-control:focus ~ .input-group-append .input-group-text {
+  border-color: #80bdff;
+}
+
+.login-card-body .input-group .form-control.is-valid:focus,
+.register-card-body .input-group .form-control.is-valid:focus {
+  box-shadow: none;
+}
+
+.login-card-body .input-group .form-control.is-valid ~ .input-group-append .input-group-text,
+.register-card-body .input-group .form-control.is-valid ~ .input-group-append .input-group-text {
+  border-color: #28a745;
+}
+
+.login-card-body .input-group .form-control.is-invalid:focus,
+.register-card-body .input-group .form-control.is-invalid:focus {
+  box-shadow: none;
+}
+
+.login-card-body .input-group .form-control.is-invalid ~ .input-group-append .input-group-text,
+.register-card-body .input-group .form-control.is-invalid ~ .input-group-append .input-group-text {
+  border-color: #dc3545;
+}
+
 .login-card-body .input-group .input-group-text,
 .register-card-body .input-group .input-group-text {
   color: #777;
   background-color: transparent;
+  border-left: none;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border-bottom-right-radius: 0.25rem !important;
+  border-top-right-radius: 0.25rem !important;
 }
 
 .login-box-msg,
