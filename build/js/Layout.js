@@ -58,7 +58,6 @@ const Layout = (($) => {
         footer     : $(Selector.FOOTER).outerHeight(),
         sidebar    : $(Selector.SIDEBAR).height(),
       }
-      console.log(heights);
       
       const max = this._max(heights)
 
@@ -88,9 +87,7 @@ const Layout = (($) => {
           this.fixLayoutHeight()
         })
 
-      $(window).resize(() => {
-        console.log('resized');
-        
+      $(window).resize(() => {        
         this.fixLayoutHeight()
       })
 
