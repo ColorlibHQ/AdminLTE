@@ -87,7 +87,7 @@ const Layout = (($) => {
           this.fixLayoutHeight()
         })
 
-      $(window).resize(() => {        
+      $(window).resize(() => {
         this.fixLayoutHeight()
       })
 
