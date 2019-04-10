@@ -241,7 +241,7 @@ throw new Error('AdminLTE requires jQuery')
         $(this.element).addClass(ClassName.collapsed);
         $(this.element).trigger(collapsedEvent);
       }.bind(this))
-      .trigger(expandingEvent);
+      .trigger(collapsingEvent);
   };
 
   BoxWidget.prototype.remove = function () {
