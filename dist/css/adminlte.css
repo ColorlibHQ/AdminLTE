@@ -11171,6 +11171,9 @@ body,
   .sidebar-mini.sidebar-collapse .nav-sidebar .nav-header {
     display: none;
   }
+  .sidebar-mini.sidebar-collapse .nav-sidebar .nav-link p {
+    width: 0;
+  }
   .sidebar-mini.sidebar-collapse .sidebar .user-panel > .info,
   .sidebar-mini.sidebar-collapse .nav-sidebar .nav-link p,
   .sidebar-mini.sidebar-collapse .brand-text {
