@@ -14068,6 +14068,10 @@ a.text-muted:hover {
   flex: 1;
 }
 
+.tooltip {
+  z-index: 1170;
+}
+
 /*
  * Misc: print
  * -----------
