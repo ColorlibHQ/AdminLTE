@@ -12651,6 +12651,10 @@ label:not(.form-check-label):not(.custom-file-label) {
  * Component: Table
  * ----------------
  */
+.table {
+  color: inherit;
+}
+
 .table.no-border,
 .table.no-border td,
 .table.no-border th {
