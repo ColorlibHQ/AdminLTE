@@ -351,7 +351,23 @@ a.text-muted:hover {
   flex: 1;
 }
 
-// Tooltip
-.tooltip {
-  z-index: 1170;
+// Modals
+.modal-content {
+  &.bg-warning {
+    .modal-header,
+    .modal-footer {
+      border-color: $gray-800;
+    }
+  }
+}
+.modal-content {
+  &.bg-primary,
+  &.bg-secondary,
+  &.bg-info,
+  &.bg-danger,
+  &.bg-success, {
+    .close{
+      color: $white;
+    }
+  }
 }
