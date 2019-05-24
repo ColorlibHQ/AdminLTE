@@ -6,9 +6,14 @@
   .nav-link {
     color: $gray-600;
 
-    &:not(.active) {
-      &:not(.dropdown-toggle):hover {
-        color: theme-color("primary")
+    &:not(.active):hover {
+      color: theme-color("primary")
+    }
+  }
+  .nav-item {
+    &.dropdown.show {
+      .nav-link:hover {
+        color: $dropdown-link-active-color;
       }
     }
   }
