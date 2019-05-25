@@ -8,7 +8,7 @@
   "scripts": {
     "css": "npm-run-all --sequential css-compile css-minify",
     "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 build/scss/AdminLTE.scss dist/css/adminlte.css",
-    "css-minify": "cleancss --level 1 --output dist/css/adminlte.min.css dist/css/adminlte.css",
+    "css-minify": "cleancss --level 1 --source-map dist/css/adminlte.css.map --output dist/css/adminlte.min.css dist/css/adminlte.css",
     "compile": "npm-run-all --parallel js css",
     "dev": "npm-run-all --parallel watch sync",
     "js": "npm-run-all --sequential js-compile js-minify",
@@ -48,7 +48,7 @@
     "chart.js": "^2.8.0",
     "datatables.net": "^1.10.19",
     "datatables.net-bs4": "^1.10.19",
-    "font-awesome": "^4.7.0",
+    "@fortawesome/fontawesome-free": "^5.8.2",
     "jquery": "^3.4.1",
     "jquery-ui": "^1.12.1",
     "popper.js": "^1.15.0"

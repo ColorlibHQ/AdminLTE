@@ -16,12 +16,12 @@ const Plugins = [
   },
   // Font Awesome
   {
-    from: 'node_modules/font-awesome/css',
-    to  : 'plugins/font-awesome/css'
+    from: 'node_modules/@fortawesome/fontawesome-free/css',
+    to  : 'plugins/fontawesome-free/css'
   },
   {
-    from: 'node_modules/font-awesome/fonts',
-    to  : 'plugins/font-awesome/fonts'
+    from: 'node_modules/@fortawesome/fontawesome-free/webfonts',
+    to  : 'plugins/fontawesome-free/webfonts'
   },
   // Chart.js 2
   {
@@ -45,6 +45,45 @@ const Plugins = [
   {
     from: 'node_modules/datatables.net-bs4/css',
     to: 'plugins/datatables'
+  },
+
+  // Doc Assets
+  // AdminLTE Dist
+  {
+    from: 'dist/css',
+    to  : 'docs/assets/css'
+  },
+  {
+    from: 'dist/js',
+    to  : 'docs/assets/js'
+  },
+  // jQuery
+  {
+    from: 'node_modules/jquery/dist',
+    to  : 'docs/assets/plugins/jquery'
+  },
+  // Popper
+  {
+    from: 'node_modules/popper.js/dist',
+    to  : 'docs/assets/plugins/popper'
+  },
+  // Bootstrap
+  {
+    from: 'node_modules/bootstrap/dist/js',
+    to  : 'docs/assets/plugins/bootstrap/js'
+  },
+  // Font Awesome
+  {
+    from: 'node_modules/@fortawesome/fontawesome-free/css',
+    to  : 'docs/assets/plugins/fontawesome-free/css'
+  },
+  {
+    from: 'node_modules/@fortawesome/fontawesome-free/webfonts',
+    to  : 'docs/assets/plugins/fontawesome-free/webfonts'
+  },
+  {
+    from: 'plugins/slimScroll',
+    to  : 'docs/assets/plugins/slimScroll'
   }
 ]
 
