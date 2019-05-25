@@ -58,21 +58,40 @@
 
   // the icon
   .icon {
-    transition: all $transition-speed linear;
-    position: absolute;
-    top: -10px;
-    right: 10px;
     z-index: 0;
-    font-size: 90px;
     color: rgba(0, 0, 0, 0.15);
+
+    > i {
+      transition: all $transition-speed linear;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 90px;
+      
+      &.fa, 
+      &.fas,
+      &.far,
+      &.fab {
+        font-size: 70px;
+        top: 20px;
+      }
+    }
+
   }
 
   // Small box hover state
   &:hover {
     text-decoration: none;
     // Animate icons on small box hover
-    .icon {
+    .icon > i {
       font-size: 95px;
+
+      &.fa, 
+      &.fas,
+      &.far,
+      &.fab {
+        font-size: 75px;
+      }
     }
   }
 }

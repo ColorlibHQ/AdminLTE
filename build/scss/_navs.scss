@@ -18,3 +18,29 @@
     }
   }
 }
+
+
+//
+// Color variants
+//
+@each $color, $value in $theme-colors {
+  @if $color==dark or $color==light {
+    .navbar-#{$color} {
+      background-color: $value;
+    }
+  }
+}
+
+@each $color, $value in $theme-colors {
+  @if $color!=dark and $color!=light {
+    .navbar-#{$color} {
+      background-color: $value;
+    }
+  }
+}
+
+@each $color, $value in $colors {
+  .navbar-#{$color} {
+    background-color: $value;
+  }
+}
