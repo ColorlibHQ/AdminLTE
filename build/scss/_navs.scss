@@ -6,10 +6,41 @@
   .nav-link {
     color: $gray-600;
 
-    &:not(.active) {
-      &:not(.dropdown-toggle):hover {
-        color: theme-color("primary")
+    &:not(.active):hover {
+      color: theme-color("primary")
+    }
+  }
+  .nav-item {
+    &.dropdown.show {
+      .nav-link:hover {
+        color: $dropdown-link-active-color;
       }
     }
+  }
+}
+
+
+//
+// Color variants
+//
+@each $color, $value in $theme-colors {
+  @if $color==dark or $color==light {
+    .navbar-#{$color} {
+      background-color: $value;
+    }
+  }
+}
+
+@each $color, $value in $theme-colors {
+  @if $color!=dark and $color!=light {
+    .navbar-#{$color} {
+      background-color: $value;
+    }
+  }
+}
+
+@each $color, $value in $colors {
+  .navbar-#{$color} {
+    background-color: $value;
   }
 }

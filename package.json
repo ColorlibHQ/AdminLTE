@@ -6,9 +6,10 @@
   "author": "Abdullah Almsaeed <abdullah@almsaeedstudio.com>",
   "main": "dist/js/adminlte.min.js",
   "scripts": {
-    "css": "npm-run-all --sequential css-compile css-minify",
+    "css": "npm-run-all --sequential css-compile css-prefix css-minify",
     "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 build/scss/AdminLTE.scss dist/css/adminlte.css",
-    "css-minify": "cleancss --level 1 --output dist/css/adminlte.min.css dist/css/adminlte.css",
+    "css-prefix": "postcss --config build/config/postcss.config.js --replace \"dist/css/*.css\" \"!dist/css/*.min.css\"",
+    "css-minify": "cleancss --level 1 --source-map dist/css/adminlte.css.map --output dist/css/adminlte.min.css dist/css/adminlte.css",
     "compile": "npm-run-all --parallel js css",
     "dev": "npm-run-all --parallel watch sync",
     "js": "npm-run-all --sequential js-compile js-minify",
@@ -48,7 +49,7 @@
     "chart.js": "^2.8.0",
     "datatables.net": "^1.10.19",
     "datatables.net-bs4": "^1.10.19",
-    "font-awesome": "^4.7.0",
+    "@fortawesome/fontawesome-free": "^5.8.2",
     "jquery": "^3.4.1",
     "jquery-ui": "^1.12.1",
     "popper.js": "^1.15.0"
@@ -57,6 +58,7 @@
     "font-awesome": "^4.7.0"
   },
   "devDependencies": {
+    "autoprefixer": "^8.6.5",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
@@ -74,6 +76,7 @@
     "nodemon": "^1.19.0",
     "npm-run-all": "^4.1.5",
     "path": "^0.12.7",
+    "postcss-cli": "^5.0.1",
     "rollup": "^0.55.5",
     "rollup-plugin-babel": "^3.0.7",
     "style-loader": "^0.19.1",

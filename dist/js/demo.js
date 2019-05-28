@@ -15,16 +15,26 @@
   $sidebar.append($container)
 
   var navbar_dark_skins = [
-    'bg-primary',
-    'bg-info',
-    'bg-success',
-    'bg-danger'
+    'navbar-primary',
+    'navbar-secondary',
+    'navbar-info',
+    'navbar-success',
+    'navbar-danger',
+    'navbar-indigo',
+    'navbar-purple',
+    'navbar-pink',
+    'navbar-teal',
+    'navbar-cyan',
+    'navbar-dark',
+    'navbar-gray-dark',
+    'navbar-gray',
   ]
 
   var navbar_light_skins = [
-    'bg-warning',
-    'bg-white',
-    'bg-gray-light'
+    'navbar-light',
+    'navbar-warning',
+    'navbar-white',
+    'navbar-orange',
   ]
 
   $container.append(
@@ -38,7 +48,6 @@
   var navbar_all_colors       = navbar_dark_skins.concat(navbar_light_skins)
   var $navbar_variants_colors = createSkinBlock(navbar_all_colors, function (e) {
     var color = $(this).data('color')
-    console.log('Adding ' + color)
     var $main_header = $('.main-header')
     $main_header.removeClass('navbar-dark').removeClass('navbar-light')
     navbar_all_colors.map(function (color) {
@@ -47,9 +56,7 @@
 
     if (navbar_dark_skins.indexOf(color) > -1) {
       $main_header.addClass('navbar-dark')
-      console.log('AND navbar-dark')
     } else {
-      console.log('AND navbar-light')
       $main_header.addClass('navbar-light')
     }
 

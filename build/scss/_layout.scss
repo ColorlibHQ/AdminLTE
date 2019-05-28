@@ -12,6 +12,10 @@ body,
 .wrapper {
   position: relative;
 
+  & .content-wrapper {
+    min-height: calc(100vh - 112px);
+  }
+
   .layout-boxed & {
     @include box-shadow(0 0 10px rgba(0, 0, 0, .3));
 
@@ -19,6 +23,34 @@ body,
     &:before {
       margin: 0 auto;
       max-width: $boxed-layout-max-width;
+    }
+
+    & .main-sidebar {
+      left: inherit;
+    }
+  }
+
+  .layout-top-nav & {
+    margin-left: 0;
+
+
+    & .main-sidebar {
+      bottom: inherit;
+      height: inherit;
+    }
+
+    .brand-image {
+      height: 33px;
+    }
+
+    & .main-sidebar{
+      display: none;
+    }
+
+    & .content-wrapper,
+    & .main-header,
+    & .main-footer {
+      margin-left: 0;
     }
   }
 }

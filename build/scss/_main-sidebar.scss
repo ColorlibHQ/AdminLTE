@@ -73,6 +73,10 @@
     position: absolute;
     right: 1rem;
     top: 12px;
+
+    &:nth-child(2) {
+      right: 2.5rem;
+    }
   }
 
   .menu-open {
@@ -81,7 +85,7 @@
     }
 
     > .nav-link {
-      .right {
+      i.right {
         @include rotate(-90deg);
       }
     }
@@ -96,6 +100,13 @@
       width: $sidebar-nav-icon-width;
       font-size: 1.2rem;
       margin-right: .2rem;
+      
+      &.fa,
+      &.fas,
+      &.far,
+      &.fab {
+        font-size: 1.1rem;
+      }
     }
 
     .float-right {

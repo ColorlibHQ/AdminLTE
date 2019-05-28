@@ -29,9 +29,20 @@ a.text-muted:hover {
   }
 }
 
-// Background colors
+// Background colors (theme colors)
 @each $name, $color in $theme-colors {
   .bg-#{$name} {
+    &,
+    a {
+      color: color-yiq($color) !important;
+    }
+  }
+}
+
+// Background colors (colors)
+@each $name, $color in $colors {
+  .bg-#{$name} {
+    background-color: #{$color};
     &,
     a {
       color: color-yiq($color) !important;

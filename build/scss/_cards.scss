@@ -65,7 +65,10 @@
     z-index: 50;
     background: rgba(255, 255, 255, 0.7);
     @include border-radius($border-radius);
-    > .fa {
+    > .fa, 
+    > .fas,
+    > .far,
+    > .fab {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -253,7 +256,12 @@
       float: right;
       color: theme-color("danger");
       // icons
-      > .fa, > .glyphicon, > .ion {
+      > .fa, 
+      > .fas, 
+      > .far, 
+      > .fab, 
+      > .glyphicon, 
+      > .ion {
         margin-right: 5px;
         cursor: pointer;
       }
