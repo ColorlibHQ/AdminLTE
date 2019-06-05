@@ -382,6 +382,7 @@ var PushMenu = function ($) {
   };
 
   var Default = {
+    autoCollapseSize: false,
     screenCollapseSize: 768
   };
 
@@ -413,6 +414,8 @@ var PushMenu = function ($) {
       this._element = element;
       this._options = $.extend({}, Default, options);
 
+      this._init();
+
       if (!$(Selector.OVERLAY).length) {
         this._addOverlay();
       }
@@ -434,34 +437,58 @@ var PushMenu = function ($) {
       $(this._element).trigger(collapsedEvent);
     };
 
-    PushMenu.prototype.toggle = function toggle() {
-      var isShown = void 0;
-
+    PushMenu.prototype.isShown = function isShown() {
       if ($(window).width() >= this._options.screenCollapseSize) {
-        isShown = !$(Selector.BODY).hasClass(ClassName.COLLAPSED);
+        return !$(Selector.BODY).hasClass(ClassName.COLLAPSED);
       } else {
-        isShown = $(Selector.BODY).hasClass(ClassName.OPEN);
+        return $(Selector.BODY).hasClass(ClassName.OPEN);
       }
+    };
 
-      if (isShown) {
+    PushMenu.prototype.toggle = function toggle() {
+      if (this.isShown()) {
         this.collapse();
       } else {
         this.show();
       }
     };
 
+    PushMenu.prototype.autoCollapse = function autoCollapse() {
+      console.log(this._options);
+      if (this._options.autoCollapseSize) {
+        if ($(window).width() <= this._options.autoCollapseSize) {
+          if (this.isShown()) {
+            this.toggle();
+          }
+        } else {
+          if (!this.isShown()) {
+            this.toggle();
+          }
+        }
+      }
+    };
+
     // Private
 
+    PushMenu.prototype._init = function _init() {
+      var _this = this;
+
+      this.autoCollapse();
+
+      $(window).resize(function () {
+        _this.autoCollapse();
+      });
+    };
 
     PushMenu.prototype._addOverlay = function _addOverlay() {
-      var _this = this;
+      var _this2 = this;
 
       var overlay = $('<div />', {
         id: 'sidebar-overlay'
       });
 
       overlay.on('click', function () {
-        _this.collapse();
+        _this2.collapse();
       });
 
       $(Selector.WRAPPER).append(overlay);
@@ -479,7 +506,7 @@ var PushMenu = function ($) {
           $(this).data(DATA_KEY, data);
         }
 
-        if (operation) {
+        if (operation === 'init') {
           data[operation]();
         }
       });
@@ -503,6 +530,10 @@ var PushMenu = function ($) {
     }
 
     PushMenu._jQueryInterface.call($(button), 'toggle');
+  });
+
+  $(window).on('load', function () {
+    PushMenu._jQueryInterface.call($(Selector.TOGGLE_BUTTON));
   });
 
   /**
