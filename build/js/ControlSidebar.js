@@ -89,7 +89,7 @@ const ControlSidebar = (($) => {
 
     _setMargin() {
       $(Selector.CONTROL_SIDEBAR).css({
-        top: $(Selector.MAIN_HEADER).outerHeight()
+        top: $(Selector.MAIN_HEADER).innerHeight()
       })
     }
 

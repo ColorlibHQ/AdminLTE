@@ -10,6 +10,7 @@ body,
 }
 
 .wrapper {
+  overflow: hidden;
   position: relative;
 
   & .content-wrapper {
@@ -29,6 +30,28 @@ body,
       left: inherit;
     }
   }
+
+  .layout-navbar-fixed & {
+    .content-wrapper {
+      margin-top: 57px;
+    }
+
+    .main-header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+    }
+  }
+
+  .layout-footer-fixed & {
+    .main-footer {
+      position: fixed;
+      bottom: 0;
+      width: calc(100% - 250px);
+    }
+  }
+
 
   .layout-top-nav & {
     margin-left: 0;
@@ -58,7 +81,7 @@ body,
 .content-wrapper,
 .main-footer,
 .main-header {
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(sm) {
     @include transition(margin-left $transition-speed $transition-fn);
 
     margin-left: $sidebar-width;
@@ -69,7 +92,7 @@ body,
     }
   }
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(sm) {
     &,
     &:before {
       margin-left: 0;
@@ -86,11 +109,6 @@ body,
 }
 
 .main-sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-
   &,
   &:before {
     $local-sidebar-transition: margin-left $transition-speed $transition-fn, width $transition-speed $transition-fn;
@@ -105,7 +123,7 @@ body,
     }
   }
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(sm) {
     &,
     &:before {
       box-shadow: none!important;
@@ -120,6 +138,68 @@ body,
     }
   }
 }
+
+:not(.layout-fixed) {
+  .main-sidebar {
+    position: absolute;
+    top: 0;
+    height: inherit;
+    min-height: 100%;
+  }
+}
+
+.layout-navbar-fixed {
+
+  &.sidebar-collapse {
+    .brand-link {
+      $local-sidebar-transition: width $transition-speed $transition-fn;
+      @include transition($local-sidebar-transition);
+      width: $sidebar-mini-width;
+      height: 57px;
+    }
+
+    .main-sidebar:hover {
+      .brand-link {
+        width: $sidebar-width;
+      }
+    }
+  }
+
+  .sidebar {
+    margin-top: 57px;
+  }
+
+  .brand-link {
+
+    position: fixed;
+    top: 0;
+    z-index: $zindex-main-sidebar;
+    width: $sidebar-width;
+  }
+
+  // Sidebar variants
+  @each $name, $color in $theme-colors {
+    .sidebar-dark-#{$name} .brand-link {
+      background-color: $sidebar-dark-bg;
+    }
+
+    .sidebar-light-#{$name} .brand-link {
+      background-color: $sidebar-light-bg;
+    }
+  }
+}
+
+.layout-fixed {
+  .main-sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    float: none;
+  } 
+}
+
 
 .main-footer {
   padding: $main-footer-padding;

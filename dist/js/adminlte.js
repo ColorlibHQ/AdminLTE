@@ -116,7 +116,7 @@ var ControlSidebar = function ($) {
 
     ControlSidebar.prototype._setMargin = function _setMargin() {
       $(Selector.CONTROL_SIDEBAR).css({
-        top: $(Selector.MAIN_HEADER).outerHeight()
+        top: $(Selector.MAIN_HEADER).innerHeight()
       });
     };
 
@@ -191,6 +191,7 @@ var Layout = function ($) {
     HEADER: '.main-header',
     SIDEBAR: '.main-sidebar .sidebar',
     CONTENT: '.content-wrapper',
+    BRAND: '.brand-link',
     CONTENT_HEADER: '.content-header',
     WRAPPER: '.wrapper',
     CONTROL_SIDEBAR: '.control-sidebar',
@@ -201,7 +202,14 @@ var Layout = function ($) {
   var ClassName = {
     HOLD: 'hold-transition',
     SIDEBAR: 'main-sidebar',
-    LAYOUT_FIXED: 'layout-fixed'
+    LAYOUT_FIXED: 'layout-fixed',
+    NAVBAR_FIXED: 'layout-navbar-fixed',
+    FOOTER_FIXED: 'layout-footer-fixed'
+  };
+
+  var Default = {
+    scrollbarTheme: 'os-theme-light',
+    scrollbarAutoHide: 'l'
 
     /**
      * Class Definition
@@ -210,9 +218,10 @@ var Layout = function ($) {
 
   };
   var Layout = function () {
-    function Layout(element) {
+    function Layout(element, config) {
       classCallCheck(this, Layout);
 
+      this._config = config;
       this._element = element;
 
       this._init();
@@ -230,13 +239,43 @@ var Layout = function ($) {
 
       var max = this._max(heights);
 
-      $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer);
-      $(Selector.SIDEBAR).css('min-height', max - heights.header);
+      if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
+        $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer);
+        // $(Selector.SIDEBAR).css('min-height', max - heights.header)
+        $(Selector.CONTROL_SIDEBAR + ' .control-sidebar-content').css('height', max - heights.header);
 
-      if (!$('body').hasClass(ClassName.LAYOUT_FIXED)) {
-        if (typeof $.fn.slimScroll !== 'undefined') {
-          $(Selector.SIDEBAR).slimScroll({ destroy: true }).slimScroll({ height: max - heights.header });
+        if (typeof $.fn.overlayScrollbars !== 'undefined') {
+          $(Selector.SIDEBAR).overlayScrollbars({
+            className: this._config.scrollbarTheme,
+            sizeAutoCapable: true,
+            scrollbars: {
+              autoHide: this._config.scrollbarAutoHide,
+              clickScrolling: true
+            }
+          });
+          $(Selector.CONTROL_SIDEBAR + ' .control-sidebar-content').overlayScrollbars({
+            className: this._config.scrollbarTheme,
+            sizeAutoCapable: true,
+            scrollbars: {
+              autoHide: this._config.scrollbarAutoHide,
+              clickScrolling: true
+            }
+          });
         }
+      } else {
+        if (heights.window > heights.sidebar) {
+          $(Selector.CONTENT).css('min-height', heights.window - heights.header - heights.footer);
+        } else {
+          $(Selector.CONTENT).css('min-height', heights.sidebar - heights.header);
+        }
+      }
+      if ($('body').hasClass(ClassName.NAVBAR_FIXED)) {
+        $(Selector.BRAND).css('height', heights.header);
+        $(Selector.SIDEBAR).css('margin-top', heights.header);
+        $(Selector.SIDEBAR).css('margin-top', heights.header);
+      }
+      if ($('body').hasClass(ClassName.FOOTER_FIXED)) {
+        $(Selector.CONTENT).css('margin-bottom', heights.footer);
       }
     };
 
@@ -276,17 +315,18 @@ var Layout = function ($) {
 
     // Static
 
-    Layout._jQueryInterface = function _jQueryInterface(operation) {
+    Layout._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var data = $(this).data(DATA_KEY);
+        var _config = $.extend({}, Default, $(this).data());
 
         if (!data) {
-          data = new Layout(this);
+          data = new Layout($(this), _config);
           $(this).data(DATA_KEY, data);
         }
 
-        if (operation) {
-          data[operation]();
+        if (config === 'init') {
+          data[config]();
         }
       });
     };
@@ -298,7 +338,6 @@ var Layout = function ($) {
    * Data API
    * ====================================================
    */
-
 
   $(window).on('load', function () {
     Layout._jQueryInterface.call($('body'));
@@ -397,6 +436,7 @@ var PushMenu = function ($) {
 
     PushMenu.prototype.toggle = function toggle() {
       var isShown = void 0;
+
       if ($(window).width() >= this._options.screenCollapseSize) {
         isShown = !$(Selector.BODY).hasClass(ClassName.COLLAPSED);
       } else {
@@ -432,9 +472,10 @@ var PushMenu = function ($) {
     PushMenu._jQueryInterface = function _jQueryInterface(operation) {
       return this.each(function () {
         var data = $(this).data(DATA_KEY);
+        var _options = $.extend({}, Default, $(this).data());
 
         if (!data) {
-          data = new PushMenu(this);
+          data = new PushMenu(this, _options);
           $(this).data(DATA_KEY, data);
         }
 

@@ -161,6 +161,18 @@
   }
 }
 
+.sidebar-mini-md.sidebar-open {
+  #sidebar-overlay {
+    @include media-breakpoint-up(sm) {
+      display: none;
+    }
+    @include media-breakpoint-down(sm) {
+      display: block;
+    }
+  }
+}
+
+
 // Sidebar variants
 @each $name, $color in $theme-colors {
   .sidebar-dark-#{$name} {
