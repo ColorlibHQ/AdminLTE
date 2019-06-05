@@ -93,7 +93,6 @@ const PushMenu = (($) => {
     }
 
     autoCollapse() {
-      console.log(this._options)
       if (this._options.autoCollapseSize) {
         if ($(window).width() <= this._options.autoCollapseSize) {
           if (this.isShown()) {
