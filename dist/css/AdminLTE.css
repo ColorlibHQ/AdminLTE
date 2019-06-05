@@ -86,7 +86,7 @@ body {
   }
 }
 .content-wrapper {
-  min-height: 100%;
+  min-height: calc(-2%);
   background-color: #ecf0f5;
   z-index: 800;
 }
@@ -4932,6 +4932,9 @@ table.text-center th {
 .chart svg,
 .chart canvas {
   width: 100% !important;
+}
+hr {
+  border-top: 1px solid #555555;
 }
 /*
  * Misc: print

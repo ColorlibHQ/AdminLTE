@@ -7,7 +7,7 @@
 * @Author  Almsaeed Studio
 * @Support <https://www.almsaeedstudio.com>
 * @Email   <abdullah@almsaeedstudio.com>
-* @version 2.4.8
+* @version 2.4.11
 * @repository git://github.com/almasaeed2010/AdminLTE.git
 * @license MIT <http://opensource.org/licenses/MIT>
 */
@@ -1077,7 +1077,7 @@ throw new Error('AdminLTE requires jQuery')
 
     parent.addClass(ClassName.open);
     tree.slideDown(this.options.animationSpeed, function () {
-     setTimeout(() => $(this.element).trigger(expandedEvent),0) 
+      $(this.element).trigger(expandedEvent);
     }.bind(this));
   };
 
@@ -1088,7 +1088,7 @@ throw new Error('AdminLTE requires jQuery')
     parentLi.removeClass(ClassName.open);
     tree.slideUp(this.options.animationSpeed, function () {
       //tree.find(Selector.open + ' > ' + Selector.treeview).slideUp();
-      setTimeout(() => $(this.element).trigger(collapsedEvent), 0);
+      $(this.element).trigger(collapsedEvent);
     }.bind(this));
   };
 
