@@ -22,6 +22,7 @@ const PushMenu = (($) => {
   }
 
   const Default = {
+    autoCollapseSize: false,
     screenCollapseSize: 768
   }
 
@@ -51,6 +52,8 @@ const PushMenu = (($) => {
       this._element = element
       this._options = $.extend({}, Default, options)
 
+      this._init()
+
       if (!$(Selector.OVERLAY).length) {
         this._addOverlay()
       }
@@ -72,22 +75,47 @@ const PushMenu = (($) => {
       $(this._element).trigger(collapsedEvent)
     }
 
-    toggle() {
-      let isShown
+    isShown() {
       if ($(window).width() >= this._options.screenCollapseSize) {
-        isShown = !$(Selector.BODY).hasClass(ClassName.COLLAPSED)
+        return !$(Selector.BODY).hasClass(ClassName.COLLAPSED)
       } else {
-        isShown = $(Selector.BODY).hasClass(ClassName.OPEN)
+        return $(Selector.BODY).hasClass(ClassName.OPEN)
       }
 
-      if (isShown) {
+    }
+
+    toggle() {
+      if (this.isShown()) {
         this.collapse()
       } else {
         this.show()
       }
     }
 
+    autoCollapse() {
+      if (this._options.autoCollapseSize) {
+        if ($(window).width() <= this._options.autoCollapseSize) {
+          if (this.isShown()) {
+            this.toggle()
+          }
+        } else {
+          if (!this.isShown()) {
+            this.toggle()
+          }
+        }
+      }
+    }
+
     // Private
+
+    _init() {
+      this.autoCollapse()
+
+      $(window).resize(() => {
+        this.autoCollapse()
+      })
+    }
+
     _addOverlay() {
       const overlay = $('<div />', {
         id: 'sidebar-overlay'
@@ -105,13 +133,14 @@ const PushMenu = (($) => {
     static _jQueryInterface(operation) {
       return this.each(function () {
         let data = $(this).data(DATA_KEY)
+        const _options = $.extend({}, Default, $(this).data())
 
         if (!data) {
-          data = new PushMenu(this)
+          data = new PushMenu(this, _options)
           $(this).data(DATA_KEY, data)
         }
 
-        if (operation) {
+        if (operation === 'init') {
           data[operation]()
         }
       })
@@ -133,6 +162,10 @@ const PushMenu = (($) => {
     }
 
     PushMenu._jQueryInterface.call($(button), 'toggle')
+  })
+
+  $(window).on('load', () => {
+    PushMenu._jQueryInterface.call($(Selector.TOGGLE_BUTTON))
   })
 
   /**

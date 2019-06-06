@@ -24,6 +24,7 @@ const Layout = (($) => {
     HEADER         : '.main-header',
     SIDEBAR        : '.main-sidebar .sidebar',
     CONTENT        : '.content-wrapper',
+    BRAND          : '.brand-link',
     CONTENT_HEADER : '.content-header',
     WRAPPER        : '.wrapper',
     CONTROL_SIDEBAR: '.control-sidebar',
@@ -34,7 +35,14 @@ const Layout = (($) => {
   const ClassName = {
     HOLD        : 'hold-transition',
     SIDEBAR     : 'main-sidebar',
-    LAYOUT_FIXED: 'layout-fixed'
+    LAYOUT_FIXED: 'layout-fixed',
+    NAVBAR_FIXED: 'layout-navbar-fixed',
+    FOOTER_FIXED: 'layout-footer-fixed',
+  }
+
+  const Default = {
+    scrollbarTheme : 'os-theme-light',
+    scrollbarAutoHide: 'l'
   }
 
   /**
@@ -43,7 +51,8 @@ const Layout = (($) => {
    */
 
   class Layout {
-    constructor(element) {
+    constructor(element, config) {
+      this._config  = config
       this._element = element
 
       this._init()
@@ -58,20 +67,48 @@ const Layout = (($) => {
         footer     : $(Selector.FOOTER).outerHeight(),
         sidebar    : $(Selector.SIDEBAR).height(),
       }
-      
+
       const max = this._max(heights)
 
-      $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer)
-      $(Selector.SIDEBAR).css('min-height', max - heights.header)
 
-      if (!$('body').hasClass(ClassName.LAYOUT_FIXED)) {
-        if (typeof $.fn.slimScroll !== 'undefined') {
-          $(Selector.SIDEBAR)
-            .slimScroll({ destroy: true })
-            .slimScroll({ height: max - heights.header });
+      if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
+        $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer)
+        // $(Selector.SIDEBAR).css('min-height', max - heights.header)
+        $(Selector.CONTROL_SIDEBAR + ' .control-sidebar-content').css('height', max - heights.header)
+        
+        if (typeof $.fn.overlayScrollbars !== 'undefined') {
+          $(Selector.SIDEBAR).overlayScrollbars({
+            className       : this._config.scrollbarTheme,
+            sizeAutoCapable : true,
+            scrollbars : {
+              autoHide: this._config.scrollbarAutoHide, 
+              clickScrolling : true
+            }
+          })
+          $(Selector.CONTROL_SIDEBAR + ' .control-sidebar-content').overlayScrollbars({
+            className       : this._config.scrollbarTheme,
+            sizeAutoCapable : true,
+            scrollbars : {
+              autoHide: this._config.scrollbarAutoHide, 
+              clickScrolling : true
+            }
+          })
+        }
+      } else {
+        if (heights.window > heights.sidebar) {
+          $(Selector.CONTENT).css('min-height', heights.window - heights.header - heights.footer)
+        } else {
+          $(Selector.CONTENT).css('min-height', heights.sidebar - heights.header)
         }
       }
-
+      if ($('body').hasClass(ClassName.NAVBAR_FIXED)) {
+          $(Selector.BRAND).css('height', heights.header)
+          $(Selector.SIDEBAR).css('margin-top', heights.header)
+          $(Selector.SIDEBAR).css('margin-top', heights.header)
+      }
+      if ($('body').hasClass(ClassName.FOOTER_FIXED)) {
+        $(Selector.CONTENT).css('margin-bottom', heights.footer)
+      } 
     }
 
     // Private
@@ -109,18 +146,18 @@ const Layout = (($) => {
 
     // Static
 
-    static _jQueryInterface(operation) {
+    static _jQueryInterface(config) {
       return this.each(function () {
-        let data = $(this)
-          .data(DATA_KEY)
+        let data      = $(this).data(DATA_KEY)
+        const _config = $.extend({}, Default, $(this).data())
 
         if (!data) {
-          data = new Layout(this)
+          data = new Layout($(this), _config)
           $(this).data(DATA_KEY, data)
         }
 
-        if (operation) {
-          data[operation]()
+        if (config === 'init') {
+          data[config]()
         }
       })
     }
@@ -130,6 +167,7 @@ const Layout = (($) => {
    * Data API
    * ====================================================
    */
+
   $(window).on('load', () => {
     Layout._jQueryInterface.call($('body'))
   })

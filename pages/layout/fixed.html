@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Editors</title>
+  <title>AdminLTE 3 | Fixed Layout</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-  <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed">
+<!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light border-bottom">
@@ -209,7 +209,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -232,7 +232,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../layout/fixed.html" class="nav-link">
+                <a href="../layout/fixed.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Fixed</p>
                 </a>
@@ -327,8 +327,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Forms
@@ -349,7 +349,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../forms/editors.html" class="nav-link active">
+                <a href="../forms/editors.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Editors</p>
                 </a>
@@ -534,12 +534,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Text Editors</h1>
+            <h1>Fixed Layout</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Text Editors</li>
+              <li class="breadcrumb-item"><a href="#">Layout</a></li>
+              <li class="breadcrumb-item active">Fixed Layout</li>
             </ol>
           </div>
         </div>
@@ -548,79 +549,35 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card card-info card-outline">
-            <div class="card-header">
-              <h3 class="card-title">
-                CKEditor5
-                <small>Advanced and full of features</small>
-              </h3>
-              <!-- tools box -->
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool btn-sm"
-                        data-widget="collapse"
-                        data-toggle="tooltip"
-                        title="Collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool btn-sm"
-                        data-widget="remove"
-                        data-toggle="tooltip"
-                        title="Remove">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <div class="mb-3">
-                <textarea id="editor1" name="editor1" style="width: 100%">This is my textarea to be replaced with CKEditor.</textarea>
-              </div>
-              <p class="text-sm mb-0">Please adhere to the <a href="https://ckeditor.com/ckeditor-5-builds/#classic">CKEditor</a>
-                license when using it!</p>
-            </div>
-          </div>
-          <!-- /.card -->
 
-          <div class="card card-outline card-info">
-            <div class="card-header">
-              <h3 class="card-title">
-                Bootstrap WYSIHTML5
-                <small>Simple and fast</small>
-              </h3>
-              <!-- tools box -->
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool btn-sm" data-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
-                  <i class="fas fa-minus"></i></button>
-                <button type="button" class="btn btn-tool btn-sm" data-widget="remove" data-toggle="tooltip"
-                        title="Remove">
-                  <i class="fas fa-times"></i></button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body pad">
-              <div class="mb-3">
-                <textarea class="textarea" placeholder="Place some text here"
-                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-              </div>
-              <p class="text-sm mb-0">
-                Editor <a href="https://github.com/bootstrap-wysiwyg/bootstrap3-wysiwyg">Documentation and license
-                information.</a>
-              </p>
-            </div>
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Title</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fas fa-times"></i></button>
           </div>
         </div>
-        <!-- /.col-->
+        <div class="card-body">
+          Start creating your amazing application!
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+          Footer
+        </div>
+        <!-- /.card-footer-->
       </div>
-      <!-- ./row -->
+      <!-- /.card -->
+
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.0-beta.1
@@ -641,35 +598,13 @@
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- FastClick -->
 <script src="../../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<!-- CK Editor -->
-<script src="../../plugins/ckeditor/ckeditor.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<script>
-  $(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    ClassicEditor
-      .create(document.querySelector('#editor1'))
-      .then(function (editor) {
-        // The editor instance
-      })
-      .catch(function (error) {
-        console.error(error)
-      })
-
-    // bootstrap WYSIHTML5 - text editor
-
-    $('.textarea').wysihtml5({
-      toolbar: { fa: true }
-    })
-  })
-</script>
 </body>
 </html>
