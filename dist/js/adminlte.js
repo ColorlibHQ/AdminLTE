@@ -1,6 +1,6 @@
 /*!
  * AdminLTE v3.0.0-beta.1 (https://adminlte.io)
- * Copyright 2014-2019 Abdullah Almsaeed <abdullah@almsaeedstudio.com>
+ * Copyright 2014-2019 Colorlib <http://colorlib.com>
  * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
  */
 (function (global, factory) {
@@ -202,6 +202,7 @@ var Layout = function ($) {
   var ClassName = {
     HOLD: 'hold-transition',
     SIDEBAR: 'main-sidebar',
+    CONTENT_FIXED: 'content-fixed',
     LAYOUT_FIXED: 'layout-fixed',
     NAVBAR_FIXED: 'layout-navbar-fixed',
     FOOTER_FIXED: 'layout-footer-fixed'
@@ -276,6 +277,9 @@ var Layout = function ($) {
       }
       if ($('body').hasClass(ClassName.FOOTER_FIXED)) {
         $(Selector.CONTENT).css('margin-bottom', heights.footer);
+      }
+      if ($('body').hasClass(ClassName.CONTENT_FIXED)) {
+        $(Selector.CONTENT).css('height', $(Selector.CONTENT).css('min-height'));
       }
     };
 

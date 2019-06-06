@@ -35,7 +35,7 @@ npm install admin-lte
 
 - Clone to your machine
 ```
-git clone https://github.com/almasaeed2010/AdminLTE.git
+git clone https://github.com/ColorlibHQ/AdminLTE.git
 ```
 
 Documentation
@@ -75,12 +75,12 @@ reserves the right to change the license of future releases.
 
 Legacy Releases
 ---------------
-- [AdminLTE 2](https://github.com/almasaeed2010/AdminLTE/releases/tag/v2.4.3)
-- [AdminLTE 1](https://github.com/almasaeed2010/AdminLTE/releases/tag/1.3.1)
+- [AdminLTE 2](https://github.com/ColorlibHQ/AdminLTE/releases/tag/v2.4.3)
+- [AdminLTE 1](https://github.com/ColorlibHQ/AdminLTE/releases/tag/1.3.1)
 
 Change log
 ----------
-Visit the [releases](https://github.com/almasaeed2010/AdminLTE/releases) page to view the changelog
+Visit the [releases](https://github.com/ColorlibHQ/AdminLTE/releases) page to view the changelog
 
 Image Credits
 -------------
