@@ -15,12 +15,11 @@
   ],
   "authors": [
     {
-      "name": "Abdullah Almsaeed",
-      "email": "support@adminlte.io"
+      "name": "Colorlib"
     }
   ],
   "license": "MIT",
   "support": {
-    "issues": "https://github.com/almasaeed2010/AdminLTE/issues"
+    "issues": "https://github.com/ColorlibHQ/AdminLTE/issues"
   }
 }
