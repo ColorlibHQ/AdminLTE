@@ -33,11 +33,12 @@ const Layout = (($) => {
   }
 
   const ClassName = {
-    HOLD        : 'hold-transition',
-    SIDEBAR     : 'main-sidebar',
-    LAYOUT_FIXED: 'layout-fixed',
-    NAVBAR_FIXED: 'layout-navbar-fixed',
-    FOOTER_FIXED: 'layout-footer-fixed',
+    HOLD         : 'hold-transition',
+    SIDEBAR      : 'main-sidebar',
+    CONTENT_FIXED: 'content-fixed',
+    LAYOUT_FIXED : 'layout-fixed',
+    NAVBAR_FIXED : 'layout-navbar-fixed',
+    FOOTER_FIXED : 'layout-footer-fixed',
   }
 
   const Default = {
@@ -108,6 +109,9 @@ const Layout = (($) => {
       }
       if ($('body').hasClass(ClassName.FOOTER_FIXED)) {
         $(Selector.CONTENT).css('margin-bottom', heights.footer)
+      }
+      if ($('body').hasClass(ClassName.CONTENT_FIXED)) {
+        $(Selector.CONTENT).css('height', $(Selector.CONTENT).css('min-height'))
       } 
     }
 
