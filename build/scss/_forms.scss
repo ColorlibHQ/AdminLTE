@@ -236,16 +236,16 @@ textarea.form-control {
     &.custom-switch-off-#{$name} { 
       & .custom-control-input ~ .custom-control-label::before {
         background-color: #{$color};
-        border-color: darken($color, 10%);
+        border-color: darken($color, 20%);
       }
       & .custom-control-input ~ .custom-control-label::after {
-        background-color: darken($color, 30%);
+        background-color: darken($color, 25%);
       }
     }
     &.custom-switch-on-#{$name} { 
       & .custom-control-input:checked ~ .custom-control-label::before {
         background-color: #{$color};
-        border-color: darken($color, 10%);
+        border-color: darken($color, 20%);
       }
       & .custom-control-input:checked ~ .custom-control-label::after {
         background-color: lighten($color, 30%);
@@ -258,16 +258,16 @@ textarea.form-control {
     &.custom-switch-off-#{$name} { 
       & .custom-control-input ~ .custom-control-label::before {
         background-color: #{$color};
-        border-color: darken($color, 10%);
+        border-color: darken($color, 20%);
       }
       & .custom-control-input ~ .custom-control-label::after {
-        background-color: darken($color, 30%);
+        background-color: darken($color, 25%);
       }
     }
     &.custom-switch-on-#{$name} { 
       & .custom-control-input:checked ~ .custom-control-label::before {
         background-color: #{$color};
-        border-color: darken($color, 10%);
+        border-color: darken($color, 20%);
       }
       & .custom-control-input:checked ~ .custom-control-label::after {
         background-color: lighten($color, 30%);
