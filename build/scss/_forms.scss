@@ -230,3 +230,50 @@ textarea.form-control {
     }
   }
 }
+
+.custom-switch {
+  @each $name, $color in $theme-colors {
+    &.custom-switch-off-#{$name} { 
+      & .custom-control-input ~ .custom-control-label::before {
+        background-color: #{$color};
+        border-color: darken($color, 10%);
+      }
+      & .custom-control-input ~ .custom-control-label::after {
+        background-color: darken($color, 30%);
+      }
+    }
+    &.custom-switch-on-#{$name} { 
+      & .custom-control-input:checked ~ .custom-control-label::before {
+        background-color: #{$color};
+        border-color: darken($color, 10%);
+      }
+      & .custom-control-input:checked ~ .custom-control-label::after {
+        background-color: lighten($color, 30%);
+      }
+    }
+  }
+
+  // Background colors (colors)
+  @each $name, $color in $colors {
+    &.custom-switch-off-#{$name} { 
+      & .custom-control-input ~ .custom-control-label::before {
+        background-color: #{$color};
+        border-color: darken($color, 10%);
+      }
+      & .custom-control-input ~ .custom-control-label::after {
+        background-color: darken($color, 30%);
+      }
+    }
+    &.custom-switch-on-#{$name} { 
+      & .custom-control-input:checked ~ .custom-control-label::before {
+        background-color: #{$color};
+        border-color: darken($color, 10%);
+      }
+      & .custom-control-input:checked ~ .custom-control-label::after {
+        background-color: lighten($color, 30%);
+      }
+    }
+  }  
+}
+
+
