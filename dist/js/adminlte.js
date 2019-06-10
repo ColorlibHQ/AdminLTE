@@ -509,7 +509,7 @@ var PushMenu = function ($) {
           $(this).data(DATA_KEY, data);
         }
 
-        if (operation === 'init') {
+        if (operation === 'toggle') {
           data[operation]();
         }
       });

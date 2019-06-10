@@ -81,7 +81,6 @@ const PushMenu = (($) => {
       } else {
         return $(Selector.BODY).hasClass(ClassName.OPEN)
       }
-
     }
 
     toggle() {
@@ -140,7 +139,7 @@ const PushMenu = (($) => {
           $(this).data(DATA_KEY, data)
         }
 
-        if (operation === 'init') {
+        if (operation === 'toggle') {
           data[operation]()
         }
       })
