@@ -44,19 +44,23 @@
     "url": "https://github.com/ColorlibHQ/AdminLTE/issues"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^1.0.0-beta.4",
-    "@fortawesome/fontawesome-free": "^5.8.2",
+    "@ckeditor/ckeditor5-build-classic": "^12.2.0",
+    "@fortawesome/fontawesome-free": "^5.9.0",
     "bootstrap": "^4.3.1",
+    "bootstrap-colorpicker": "^3.1.2",
+    "bootstrap-slider": "^10.6.1",
     "chart.js": "^2.8.0",
     "datatables.net": "^1.10.19",
     "datatables.net-bs4": "^1.10.19",
+    "fastclick": "^1.0.6",
+    "flot": "^3.1.1",
     "jquery": "^3.4.1",
     "jquery-ui": "^1.12.1",
+    "moment": "^2.24.0",
     "overlayscrollbars": "^1.7.1",
-    "popper.js": "^1.15.0"
-  },
-  "peerDependencies": {
-    "font-awesome": "^4.7.0"
+    "popper.js": "^1.15.0",
+    "summernote": "^0.8.12",
+    "tempusdominus-bootstrap-4": "^5.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^8.6.5",
@@ -65,7 +69,7 @@
     "babel-eslint": "^8.2.6",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.7.0",
-    "browser-sync": "^2.26.5",
+    "browser-sync": "^2.26.7",
     "clean-css-cli": "^4.3.0",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
@@ -74,13 +78,13 @@
     "fs-extra": "^5.0.0",
     "ncp": "^2.0.0",
     "node-sass": "^4.12.0",
-    "nodemon": "^1.19.0",
+    "nodemon": "^1.19.1",
     "npm-run-all": "^4.1.5",
     "path": "^0.12.7",
     "postcss-cli": "^5.0.1",
     "rollup": "^0.55.5",
     "rollup-plugin-babel": "^3.0.7",
     "style-loader": "^0.19.1",
-    "uglify-js": "^3.5.13"
+    "uglify-js": "^3.6.0"
   }
 }

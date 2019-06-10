@@ -70,6 +70,14 @@ a.text-muted:hover {
   color: color-yiq($white) !important;
 }
 
+// Gradient Background colors
+@each $name, $color in $theme-colors {
+  .bg-#{$name}-gradient {
+    @include gradient($color, $color, lighten($color, 10%));
+    color: color-yiq($color);
+  }
+}
+
 // Disabled!
 [class^="bg-"].disabled {
   opacity: .65;
@@ -133,14 +141,6 @@ a.text-muted:hover {
   padding: 5px !important;
   width: auto !important;
   height: auto !important;
-}
-
-// Gradient Background colors
-@each $name, $color in $theme-colors {
-  .bg-#{$name}-gradient {
-    @include gradient($color, $color, lighten($color, 10%));
-    color: color-yiq($color);
-  }
 }
 
 // Description Block Extension
@@ -363,6 +363,19 @@ a.text-muted:hover {
 }
 
 // Modals
+.modal-dialog {
+  .overlay {
+      display: block;
+      position: absolute;
+      z-index: ($zindex-modal + 2);
+      background: rgba(255, 255, 255, 0.7);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+  }
+}
+
 .modal-content {
   &.bg-warning {
     .modal-header,
@@ -379,6 +392,15 @@ a.text-muted:hover {
   &.bg-success, {
     .close{
       color: $white;
+    }
+  }
+}
+
+// Background colors (colors)
+@each $name, $color in $colors {
+  ##{$name}.slider {
+    .slider-selection {
+      background: $color;
     }
   }
 }

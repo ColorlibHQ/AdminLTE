@@ -343,4 +343,30 @@
       }
     }
   }
+
+  .card.bg-#{$name},
+  .card.bg-#{$name}-gradient {
+    .bootstrap-datetimepicker-widget {
+      .table td,
+      .table th {
+        border: none;
+      }
+      
+      table thead tr:first-child th:hover,
+      table td.day:hover,
+      table td.hour:hover,
+      table td.minute:hover,
+      table td.second:hover {
+        background: darken($color, 8%);
+        color: color-yiq($color);
+      }
+
+
+      table td.active,
+      table td.active:hover {
+        background: lighten($color, 10%);
+        color: color-yiq($color);
+      }
+    }
+  }
 }

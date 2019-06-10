@@ -16,7 +16,7 @@
   <!-- ion slider Nice -->
   <link rel="stylesheet" href="../../plugins/ionslider/ion.rangeSlider.skinNice.css">
   <!-- bootstrap slider -->
-  <link rel="stylesheet" href="../../plugins/bootstrap-slider/slider.css">
+  <link rel="stylesheet" href="../../plugins/bootstrap-slider/css/bootstrap-slider.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
@@ -625,9 +625,9 @@
                     <p>data-slider-id="yellow"</p>
                     <input type="text" value="" class="slider form-control" data-slider-min="-200" data-slider-max="200"
                            data-slider-step="5" data-slider-value="[-100,100]" data-slider-orientation="horizontal"
-                           data-slider-selection="before" data-slider-tooltip="show" data-slider-id="aqua">
+                           data-slider-selection="before" data-slider-tooltip="show" data-slider-id="teal">
 
-                    <p>data-slider-id="aqua"</p>
+                    <p>data-slider-id="teal"</p>
                     <input type="text" value="" class="slider form-control" data-slider-min="-200" data-slider-max="200"
                            data-slider-step="5" data-slider-value="[-100,100]" data-slider-orientation="horizontal"
                            data-slider-selection="before" data-slider-tooltip="show" data-slider-id="purple">
@@ -649,7 +649,7 @@
                            data-slider-selection="before" data-slider-tooltip="show" data-slider-id="yellow">
                     <input type="text" value="" class="slider form-control" data-slider-min="-200" data-slider-max="200"
                            data-slider-step="5" data-slider-value="[-100,100]" data-slider-orientation="vertical"
-                           data-slider-selection="before" data-slider-tooltip="show" data-slider-id="aqua">
+                           data-slider-selection="before" data-slider-tooltip="show" data-slider-id="teal">
                     <input type="text" value="" class="slider form-control" data-slider-min="-200" data-slider-max="200"
                            data-slider-step="5" data-slider-value="[-100,100]" data-slider-orientation="vertical"
                            data-slider-selection="before" data-slider-tooltip="show" data-slider-id="purple">
@@ -698,11 +698,11 @@
 <!-- Ion Slider -->
 <script src="../../plugins/ionslider/ion.rangeSlider.min.js"></script>
 <!-- Bootstrap slider -->
-<script src="../../plugins/bootstrap-slider/bootstrap-slider.js"></script>
+<script src="../../plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
 <script>
   $(function () {
     /* BOOTSTRAP SLIDER */
-    $('.slider').slider()
+    $('.slider').bootstrapSlider()
 
     /* ION SLIDER */
     $('#range_1').ionRangeSlider({
