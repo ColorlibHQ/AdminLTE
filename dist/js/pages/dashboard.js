@@ -28,7 +28,7 @@ $(function () {
   })
 
   // bootstrap WYSIHTML5 - text editor
-  $('.textarea').wysihtml5()
+  $('.textarea').summernote()
 
   $('.daterange').daterangepicker({
     ranges   : {
@@ -115,7 +115,10 @@ $(function () {
   })
 
   // The Calender
-  $('#calendar').datepicker()
+  $('#calendar').datetimepicker({
+    format: 'L',
+    inline: true
+  })
 
   // SLIMSCROLL FOR CHAT WIDGET
   $('#chat-box').overlayScrollbars({

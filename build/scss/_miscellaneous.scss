@@ -70,6 +70,14 @@ a.text-muted:hover {
   color: color-yiq($white) !important;
 }
 
+// Gradient Background colors
+@each $name, $color in $theme-colors {
+  .bg-#{$name}-gradient {
+    @include gradient($color, $color, lighten($color, 10%));
+    color: color-yiq($color);
+  }
+}
+
 // Disabled!
 [class^="bg-"].disabled {
   opacity: .65;
@@ -133,14 +141,6 @@ a.text-muted:hover {
   padding: 5px !important;
   width: auto !important;
   height: auto !important;
-}
-
-// Gradient Background colors
-@each $name, $color in $theme-colors {
-  .bg-#{$name}-gradient {
-    @include gradient($color, $color, lighten($color, 10%));
-    color: color-yiq($color);
-  }
 }
 
 // Description Block Extension
@@ -392,6 +392,15 @@ a.text-muted:hover {
   &.bg-success, {
     .close{
       color: $white;
+    }
+  }
+}
+
+// Background colors (colors)
+@each $name, $color in $colors {
+  ##{$name}.slider {
+    .slider-selection {
+      background: $color;
     }
   }
 }

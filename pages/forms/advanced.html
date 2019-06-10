@@ -16,9 +16,9 @@
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="../../plugins/iCheck/all.css">
   <!-- Bootstrap Color Picker -->
-  <link rel="stylesheet" href="../../plugins/colorpicker/bootstrap-colorpicker.min.css">
-  <!-- Bootstrap time Picker -->
-  <link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">
+  <link rel="stylesheet" href="../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="../../plugins/select2/select2.min.css">
   <!-- Theme style -->
@@ -754,13 +754,12 @@
                   <div class="form-group">
                     <label>Time picker:</label>
 
-                    <div class="input-group">
-                      <input type="text" class="form-control timepicker">
-
-                      <div class="input-group-append">
-                        <span class="input-group-text"><i class="far fa-clock"></i></span>
+                    <div class="input-group date" id="timepicker" data-target-input="nearest">
+                      <input type="text" class="form-control datetimepicker-input" data-target="#timepicker"/>
+                      <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="far fa-clock"></i></div>
                       </div>
-                    </div>
+                      </div>
                     <!-- /.input group -->
                   </div>
                   <!-- /.form group -->
@@ -963,13 +962,13 @@
 <script src="../../plugins/input-mask/jquery.inputmask.js"></script>
 <script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
 <script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="../../plugins/moment/moment.min.js"></script>
 <!-- date-range-picker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap color picker -->
-<script src="../../plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
-<!-- bootstrap time picker -->
-<script src="../../plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- iCheck 1.0.1 -->
 <script src="../../plugins/iCheck/icheck.min.js"></script>
 <!-- FastClick -->
@@ -1034,17 +1033,19 @@
       radioClass   : 'iradio_flat-green'
     })
 
+    //Timepicker
+    $('#timepicker').datetimepicker({
+      format: 'LT'
+    })
+
     //Colorpicker
     $('.my-colorpicker1').colorpicker()
     //color picker with addon
     $('.my-colorpicker2').colorpicker()
 
-    //Timepicker
-    $('.timepicker').timepicker({
-      showInputs: false,
-      upArrowStyle: 'fas fa-chevron-up',
-      downArrowStyle: 'fas fa-chevron-down'
-    })
+    $('.my-colorpicker2').on('colorpickerChange', function(event) {
+      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+    });
   })
 </script>
 </body>
