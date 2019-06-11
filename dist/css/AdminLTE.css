@@ -87,7 +87,7 @@ body {
   }
 }
 .content-wrapper {
-  min-height: calc(-2%);
+  min-height: calc(100% - 102px);
   background-color: #ecf0f5;
   z-index: 800;
 }
@@ -3099,7 +3099,7 @@ table.text-center th {
 }
 .treeview > ul.treeview-menu {
   overflow: hidden;
-  height: 0px;
+  height: auto;
   padding-top: 0px !important;
   padding-bottom: 0px !important;
 }
