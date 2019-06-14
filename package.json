@@ -44,7 +44,6 @@
     "url": "https://github.com/ColorlibHQ/AdminLTE/issues"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^12.2.0",
     "@fortawesome/fontawesome-free": "^5.9.0",
     "@fullcalendar/bootstrap": "^4.2.0",
     "@fullcalendar/core": "^4.2.0",
