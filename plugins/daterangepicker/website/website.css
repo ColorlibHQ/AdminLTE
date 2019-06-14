@@ -1,0 +1,152 @@
+body {
+    font-size: 15px;
+    line-height: 1.6em;
+    position: relative;
+    margin: 0;
+}
+
+.navbar .nav-item {
+    padding: 8px 0 8px 20px;
+}
+
+.navbar .nav-link {
+    font-weight: bold;
+    font-size: 14px;
+    padding: 0;
+}
+
+.navbar-expand-sm .navbar-nav .nav-link {
+    padding: 0;
+}
+
+.well {
+    background: #f5f5f5;
+    border-radius: 4px;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 20px;
+    margin-bottom: 1em;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #08c;
+}
+
+h1:before {
+    content: '#';
+    color: #666;
+    position: relative;
+    padding-right: 5px;
+}
+
+h2 {
+    padding: 0;
+    margin: 20px 0 0 0;
+    font-size: 18px;
+}
+
+h2 a {
+    color: #444;
+    display: block;
+    background: #eee;
+    padding: 8px 12px;
+    margin-bottom: 0;
+    cursor: default;
+    text-decoration: none;
+}
+
+input.form-control {
+    font-size: 14px;
+}
+
+.collapsable {
+    border: 1px solid #eee;
+    padding: 12px;
+    display: block;
+}
+
+label {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.gist {
+   overflow: auto;
+}
+
+.gist .blob-wrapper.data {
+   max-height: 350px;
+   overflow: auto;
+}
+
+.list-group-item {
+    padding: 4px 0;
+    border: 0;
+    font-size: 16px;
+}
+
+.leftcol {
+    position: absolute;
+    top: 180px;
+}
+
+.rightcol {
+    max-width: 950px;
+}
+
+.container {
+    max-width: 1300px;
+}
+
+@media (min-width: 980px) {
+    .rightcol {
+        margin-left: 320px;
+    }
+}
+
+p, pre {
+    margin-bottom: 2em;
+}
+
+ul.nobullets {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+ul.nobullets li {
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    border-bottom: 1px dotted #ddd;
+}
+
+input[type="text"] {
+    padding: 6px;
+    width: 100%;
+    border-radius: 4px;
+}
+
+#footer {
+    background: #222;
+    margin-top: 80px;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+}
+#footer a:link, #footer a:visited {
+    color: #fff;
+    border-bottom: 1px dotted #fff;
+}
+#jumbo {
+    background: #c1deef;
+    color: #000;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+#jumbo h1 {
+    font-size: 28px;
+}
+#jumbo .btn {
+    border-radius: 0;
+    font-size: 16px;
+}

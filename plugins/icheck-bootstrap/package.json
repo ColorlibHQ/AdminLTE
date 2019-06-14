@@ -1,0 +1,55 @@
+{
+  "_from": "icheck-bootstrap",
+  "_id": "icheck-bootstrap@3.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-Rj3SybdcMcayhsP4IJ+hmCNgCKclaFcs/5zwCuLXH1WMo468NegjhZVxbSNKhEjJjnwc4gKETogUmPYSQ9lEZQ==",
+  "_location": "/icheck-bootstrap",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "icheck-bootstrap",
+    "name": "icheck-bootstrap",
+    "escapedName": "icheck-bootstrap",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/icheck-bootstrap/-/icheck-bootstrap-3.0.1.tgz",
+  "_shasum": "60c9c9a71524e1d9dd5bd05167a62fef05cc3a1b",
+  "_spec": "icheck-bootstrap",
+  "_where": "/Users/rejack/Projekte/GitHub/REJack/AdminLTE",
+  "author": {
+    "name": "Hovhannes Bantikyan"
+  },
+  "bugs": {
+    "url": "https://github.com/bantikyan/icheck-bootstrap/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Pure css checkboxes and radio buttons for Twitter Bootstrap.",
+  "files": [
+    "icheck-bootstrap.css",
+    "icheck-bootstrap.min.css"
+  ],
+  "homepage": "https://github.com/bantikyan/icheck-bootstrap#readme",
+  "keywords": [
+    "checkbox",
+    "radio",
+    "bootstrap",
+    "pure",
+    "css"
+  ],
+  "license": "MIT",
+  "main": "icheck-bootstrap.css",
+  "name": "icheck-bootstrap",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bantikyan/icheck-bootstrap.git"
+  },
+  "version": "3.0.1"
+}

@@ -2,13 +2,13 @@
  * OverlayScrollbars
  * https://github.com/KingSora/OverlayScrollbars
  *
- * Version: 1.7.1
+ * Version: 1.7.2
  *
  * Copyright KingSora.
  * https://github.com/KingSora
  *
  * Released under the MIT license.
- * Date: 22.05.2019
+ * Date: 10.06.2019
  */
 
 (function (global, factory) {
@@ -1683,10 +1683,13 @@
                     nativeScrollbarIsOverlaid : nativeScrollbarIsOverlaid,
                     nativeScrollbarStyling : (function() {
                         scrollbarDummyElement.addClass('os-viewport-native-scrollbars-invisible');
+
                         //fix opera bug: scrollbar styles will only appear if overflow value is scroll or auto during the activation of the style.
                         //and set overflow to scroll
-                        scrollbarDummyElement.css(strOverflow, strHidden).hide().css(strOverflow, strScroll).show();
-                        return (scrollbarDummyElement0[LEXICON.oH] - scrollbarDummyElement0[LEXICON.cH]) === 0 && (scrollbarDummyElement0[LEXICON.oW] - scrollbarDummyElement0[LEXICON.cW]) === 0;
+                        //scrollbarDummyElement.css(strOverflow, strHidden).hide().css(strOverflow, strScroll).show();
+                        //return (scrollbarDummyElement0[LEXICON.oH] - scrollbarDummyElement0[LEXICON.cH]) === 0 && (scrollbarDummyElement0[LEXICON.oW] - scrollbarDummyElement0[LEXICON.cW]) === 0;
+                        
+                        return scrollbarDummyElement.css('scrollbar-width') === 'none' || window.getComputedStyle(scrollbarDummyElement0, '::-webkit-scrollbar').getPropertyValue('display') === 'none';
                     })(),
                     overlayScrollbarDummySize : { x: 30, y: 30 },
                     msie : (function() {
@@ -3417,7 +3420,7 @@
                     //set info for padding
                     var paddingAbsoluteX = _paddingX = padding.l + padding.r;
                     var paddingAbsoluteY = _paddingY = padding.t + padding.b;
-                    paddingAbsoluteX *=
+                    paddingAbsoluteX *= paddingAbsolute ? 1 : 0;
                     paddingAbsoluteY *= paddingAbsolute ? 1 : 0;
                     padding.c = checkCacheTRBL(padding, _cssPaddingCache);
 
@@ -3480,7 +3483,11 @@
 
                     //update Textarea
                     var textareaSize = _isTextarea ? textareaUpdate() : false;
-
+                    var textareaDynOrigSize = _isTextarea && textareaSize ? {
+                        w : textareaDynWidth ? textareaSize._dynamicWidth : textareaSize._originalWidth,
+                        h : textareaDynHeight ? textareaSize._dynamicHeight : textareaSize._originalHeight
+                    } : { };
+                    
                     //fix height auto / width auto in cooperation with current padding & boxSizing behavior:
                     if (heightAuto && (heightAutoChanged || paddingAbsoluteChanged || boxSizingChanged || cssMaxValue.c || padding.c || border.c)) {
                         //if (cssMaxValue.ch)
@@ -3511,7 +3518,8 @@
                     if (widthAuto) {
                         if (!cssMaxValue.cw)
                             contentElementCSS[_strMaxMinus + _strWidth] = _strEmpty;
-                        contentGlueElementCSS[_strWidth] = _isTextarea && textareaDynWidth ? textareaSize._dynamicWidth : _strAuto;
+                        //textareaDynOrigSize.w || _strAuto :: doesnt works because applied margin will shift width
+                        contentGlueElementCSS[_strWidth] = _strAuto;
 
                         contentElementCSS[_strWidth] = _strAuto;
                         contentElementCSS[_strFloat] = isRTLRight;
@@ -3522,9 +3530,8 @@
                     if (heightAuto) {
                         if (!cssMaxValue.ch)
                             contentElementCSS[_strMaxMinus + _strHeight] = _strEmpty;
-                        //fix dyn height collapse bug: (doesn't works for width!)
-                        //contentGlueElementCSS[_strHeight] = _isTextarea && textareaDynHeight ? textareaSize._dynamicHeight : _strAuto;
-                        contentGlueElementCSS[_strHeight] = _isTextarea ? textareaDynHeight ? textareaSize._dynamicHeight : _strAuto : _contentElementNative[LEXICON.cH];
+                        //textareaDynOrigSize.h || _contentElementNative[LEXICON.cH] :: use for anti scroll jumping
+                        contentGlueElementCSS[_strHeight] = textareaDynOrigSize.h || _contentElementNative[LEXICON.cH];
                     }
                     else {
                         contentGlueElementCSS[_strHeight] = _strEmpty;
@@ -3567,8 +3574,8 @@
                         var contentMeasureElementGuaranty = _restrictedMeasuring && !hideOverflow4CorrectMeasuring ? _viewportElementNative : contentMeasureElement;
                         var contentSize = {
                             //use clientSize because natively overlaidScrollbars add borders
-                            w: _isTextarea && textareaSize ? (textareaDynWidth ? textareaSize._dynamicWidth : textareaSize._originalWidth) : contentMeasureElement[LEXICON.cW],
-                            h: _isTextarea && textareaSize ? (textareaDynHeight ? textareaSize._dynamicHeight : textareaSize._originalHeight) : contentMeasureElement[LEXICON.cH]
+                            w: textareaDynOrigSize.w || contentMeasureElement[LEXICON.cW],
+                            h: textareaDynOrigSize.h || contentMeasureElement[LEXICON.cH]
                         };
                         var scrollSize = {
                             w: MATH.max(contentMeasureElement[LEXICON.sW], contentMeasureElementGuaranty[LEXICON.sW]),
@@ -3752,14 +3759,23 @@
                                         arrangeChanged = true;
                                     }
                                 };
-                                setContentElementCSS(true);
-                                setContentElementCSS(false);
+
+                                if (_nativeScrollbarStyling) {
+                                    if (ignoreOverlayScrollbarHiding) 
+                                        removeClass(_viewportElement, _classNameViewportNativeScrollbarsInvisible);
+                                    else
+                                        addClass(_viewportElement, _classNameViewportNativeScrollbarsInvisible);
+                                }
+                                else {
+                                    setContentElementCSS(true);
+                                    setContentElementCSS(false);
+                                }
                             }
                             if (ignoreOverlayScrollbarHiding) {
                                 arrangeContent.w = arrangeContent.h = _strEmpty;
                                 arrangeChanged = true;
                             }
-                            if (arrangeChanged) {
+                            if (arrangeChanged && !_nativeScrollbarStyling) {
                                 contentArrangeElementCSS[_strWidth] = hideOverflow.y ? arrangeContent.w : _strEmpty;
                                 contentArrangeElementCSS[_strHeight] = hideOverflow.x ? arrangeContent.h : _strEmpty;
 
@@ -3790,12 +3806,13 @@
                                 };
                                 if (hasOverflow[xy] && hideOverflow[xy + 's']) {
                                     viewportElementCSS[strOverflow + XY] = _strScroll;
-                                    if (!ignoreOverlayScrollbarHiding) {
-                                        viewportElementCSS[strDirection] = -(_nativeScrollbarIsOverlaid[xy] ? _overlayScrollbarDummySize[xy] : _nativeScrollbarSize[xy]);
+                                    if (ignoreOverlayScrollbarHiding || _nativeScrollbarStyling) {
+                                        reset();
+                                    }
+                                    else {
+                                        viewportElementCSS[strDirection] =  -(_nativeScrollbarIsOverlaid[xy] ? _overlayScrollbarDummySize[xy] : _nativeScrollbarSize[xy]);
                                         _contentBorderSize[scrollbarVarsInverted._w_h] = _nativeScrollbarIsOverlaid[xy] ? _overlayScrollbarDummySize[scrollbarVarsInverted._x_y] : 0;
                                     }
-                                    else
-                                        reset();
                                 } else {
                                     viewportElementCSS[strOverflow + XY] = _strEmpty;
                                     reset();
@@ -3803,12 +3820,14 @@
                             };
                             setViewportCSS(true);
                             setViewportCSS(false);
-
-                            // if the scroll container is too small and if there is any overflow with not overlay scrollbar, make viewport element greater in size (Firefox hide Scrollbars fix)
+                            
+                            // if the scroll container is too small and if there is any overflow with no overlay scrollbar (and scrollbar styling isn't possible), 
+                            // make viewport element greater in size (Firefox hide Scrollbars fix)
                             // because firefox starts hiding scrollbars on too small elements
                             // with this behavior the overflow calculation may be incorrect or the scrollbars would appear suddenly
                             // https://bugzilla.mozilla.org/show_bug.cgi?id=292284
-                            if ((_viewportSize.h < _nativeScrollbarMinSize.x || _viewportSize.w < _nativeScrollbarMinSize.y)
+                            if (!_nativeScrollbarStyling 
+                                && (_viewportSize.h < _nativeScrollbarMinSize.x || _viewportSize.w < _nativeScrollbarMinSize.y)
                                 && ((hasOverflow.x && hideOverflow.x && !_nativeScrollbarIsOverlaid.x) || (hasOverflow.y && hideOverflow.y && !_nativeScrollbarIsOverlaid.y))) {
                                 viewportElementCSS[_strPaddingMinus + _strTop] = _nativeScrollbarMinSize.x;
                                 viewportElementCSS[_strMarginMinus + _strTop] = -_nativeScrollbarMinSize.x;
@@ -4193,9 +4212,11 @@
 
                             addClass(_targetElement, _classNameHostElement);
                         }
-
+                        
                         if (_nativeScrollbarStyling)
-                            addClass(_viewportElement, _nativeScrollbarIsOverlaid.x && _nativeScrollbarIsOverlaid.y ? _classNameViewportNativeScrollbarsOverlaid : _classNameViewportNativeScrollbarsInvisible);
+                            addClass(_viewportElement, _classNameViewportNativeScrollbarsInvisible);
+                        if(_nativeScrollbarIsOverlaid.x && _nativeScrollbarIsOverlaid.y)
+                            addClass(_viewportElement, _classNameViewportNativeScrollbarsOverlaid);
                         if (_isBody)
                             addClass(_htmlElement, _classNameHTMLElement);
 

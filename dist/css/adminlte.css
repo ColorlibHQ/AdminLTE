@@ -13739,7 +13739,7 @@ textarea.form-control.is-warning {
 }
 
 .btn-default:hover, .btn-default:active, .btn-default.hover {
-  color: #222;
+  color: #2b2b2b;
   background-color: #e7e7e7;
 }
 
@@ -13770,7 +13770,7 @@ textarea.form-control.is-warning {
 .btn-app:hover {
   background: #f4f4f4;
   color: #444;
-  border-color: #aaa;
+  border-color: #aaaaaa;
 }
 
 .btn-app:active, .btn-app:focus {
@@ -14416,6 +14416,32 @@ textarea.form-control.is-warning {
 }
 
 /*
+ * General: Modals
+ * ----------------------
+ */
+.modal-dialog .overlay {
+  display: block;
+  position: absolute;
+  z-index: 1052;
+  background: rgba(255, 255, 255, 0.7);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-content.bg-warning .modal-header, .modal-content.alert-warning .modal-header, .modal-content.label-warning .modal-header,
+.modal-content.bg-warning .modal-footer,
+.modal-content.alert-warning .modal-footer,
+.modal-content.label-warning .modal-footer {
+  border-color: #343a40;
+}
+
+.modal-content.bg-primary .close, .modal-content.label-primary .close, .modal-content.bg-primary .mailbox-attachment-close, .modal-content.label-primary .mailbox-attachment-close, .modal-content.bg-secondary .close, .modal-content.bg-secondary .mailbox-attachment-close, .modal-content.bg-info .close, .modal-content.alert-info .close, .modal-content.label-info .close, .modal-content.bg-info .mailbox-attachment-close, .modal-content.alert-info .mailbox-attachment-close, .modal-content.label-info .mailbox-attachment-close, .modal-content.bg-danger .close, .modal-content.alert-danger .close, .modal-content.alert-error .close, .modal-content.label-danger .close, .modal-content.bg-danger .mailbox-attachment-close, .modal-content.alert-danger .mailbox-attachment-close, .modal-content.alert-error .mailbox-attachment-close, .modal-content.label-danger .mailbox-attachment-close, .modal-content.bg-success .close, .modal-content.alert-success .close, .modal-content.label-success .close, .modal-content.bg-success .mailbox-attachment-close, .modal-content.alert-success .mailbox-attachment-close, .modal-content.label-success .mailbox-attachment-close {
+  color: #ffffff;
+}
+
+/*
  * Page: Mailbox
  * -------------
  */
@@ -14975,6 +15001,14 @@ textarea.form-control.is-warning {
   border-color: #007bff;
 }
 
+.select2-container--default .select2-selection--multiple .select2-selection__rendered li:first-child.select2-search.select2-search--inline {
+  width: 100%;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered li:first-child.select2-search.select2-search--inline .select2-search__field {
+  width: 100% !important;
+}
+
 .select2-container--default.select2-container--focus .select2-selection--multiple {
   border-color: #d2d6de;
 }
@@ -14995,8 +15029,412 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.select2-container .select2-selection--single .select2-selection__rendered {
+.select2-container .select2-selection--single .select2-selection__rendered li {
   padding-right: 10px;
+}
+
+/*
+ * Plugin: Bootstrap Slider
+ * ---------------------
+ */
+.slider.slider-vertical {
+  height: 100%;
+}
+
+.slider.slider-horizontal {
+  width: 100%;
+}
+
+.slider-blue .slider .slider-selection {
+  background: #007bff;
+}
+
+.slider-indigo .slider .slider-selection {
+  background: #6610f2;
+}
+
+.slider-purple .slider .slider-selection {
+  background: #6f42c1;
+}
+
+.slider-pink .slider .slider-selection {
+  background: #e83e8c;
+}
+
+.slider-red .slider .slider-selection {
+  background: #dc3545;
+}
+
+.slider-orange .slider .slider-selection {
+  background: #fd7e14;
+}
+
+.slider-yellow .slider .slider-selection {
+  background: #ffc107;
+}
+
+.slider-green .slider .slider-selection {
+  background: #28a745;
+}
+
+.slider-teal .slider .slider-selection {
+  background: #20c997;
+}
+
+.slider-cyan .slider .slider-selection {
+  background: #17a2b8;
+}
+
+.slider-white .slider .slider-selection {
+  background: #ffffff;
+}
+
+.slider-gray .slider .slider-selection {
+  background: #6c757d;
+}
+
+.slider-gray-dark .slider .slider-selection {
+  background: #343a40;
+}
+
+/*
+ * Plugin: iCheck Bootstrap
+ * ---------------------
+ */
+.icheck-primary > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-primary > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #007bff;
+}
+
+.icheck-primary > input:first-child:checked + label::before,
+.icheck-primary > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.icheck-secondary > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-secondary > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #6c757d;
+}
+
+.icheck-secondary > input:first-child:checked + label::before,
+.icheck-secondary > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.icheck-success > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-success > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #28a745;
+}
+
+.icheck-success > input:first-child:checked + label::before,
+.icheck-success > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.icheck-info > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-info > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #17a2b8;
+}
+
+.icheck-info > input:first-child:checked + label::before,
+.icheck-info > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.icheck-warning > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-warning > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #ffc107;
+}
+
+.icheck-warning > input:first-child:checked + label::before,
+.icheck-warning > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.icheck-danger > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-danger > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #dc3545;
+}
+
+.icheck-danger > input:first-child:checked + label::before,
+.icheck-danger > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.icheck-light > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-light > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #f8f9fa;
+}
+
+.icheck-light > input:first-child:checked + label::before,
+.icheck-light > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+
+.icheck-dark > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-dark > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #343a40;
+}
+
+.icheck-dark > input:first-child:checked + label::before,
+.icheck-dark > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #343a40;
+  border-color: #343a40;
+}
+
+.icheck-blue > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-blue > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #007bff;
+}
+
+.icheck-blue > input:first-child:checked + label::before,
+.icheck-blue > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.icheck-indigo > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-indigo > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #6610f2;
+}
+
+.icheck-indigo > input:first-child:checked + label::before,
+.icheck-indigo > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #6610f2;
+  border-color: #6610f2;
+}
+
+.icheck-purple > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-purple > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #6f42c1;
+}
+
+.icheck-purple > input:first-child:checked + label::before,
+.icheck-purple > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #6f42c1;
+  border-color: #6f42c1;
+}
+
+.icheck-pink > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-pink > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #e83e8c;
+}
+
+.icheck-pink > input:first-child:checked + label::before,
+.icheck-pink > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #e83e8c;
+  border-color: #e83e8c;
+}
+
+.icheck-red > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-red > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #dc3545;
+}
+
+.icheck-red > input:first-child:checked + label::before,
+.icheck-red > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.icheck-orange > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-orange > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #fd7e14;
+}
+
+.icheck-orange > input:first-child:checked + label::before,
+.icheck-orange > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #fd7e14;
+  border-color: #fd7e14;
+}
+
+.icheck-yellow > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-yellow > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #ffc107;
+}
+
+.icheck-yellow > input:first-child:checked + label::before,
+.icheck-yellow > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.icheck-green > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-green > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #28a745;
+}
+
+.icheck-green > input:first-child:checked + label::before,
+.icheck-green > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.icheck-teal > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-teal > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #20c997;
+}
+
+.icheck-teal > input:first-child:checked + label::before,
+.icheck-teal > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #20c997;
+  border-color: #20c997;
+}
+
+.icheck-cyan > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-cyan > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #17a2b8;
+}
+
+.icheck-cyan > input:first-child:checked + label::before,
+.icheck-cyan > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.icheck-white > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-white > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #ffffff;
+}
+
+.icheck-white > input:first-child:checked + label::before,
+.icheck-white > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+
+.icheck-gray > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-gray > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #6c757d;
+}
+
+.icheck-gray > input:first-child:checked + label::before,
+.icheck-gray > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.icheck-gray-dark > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-gray-dark > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+  border-color: #343a40;
+}
+
+.icheck-gray-dark > input:first-child:checked + label::before,
+.icheck-gray-dark > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: #343a40;
+  border-color: #343a40;
+}
+
+/*
+ * Plugins: jQuery Mapael
+ * ----------------------
+ */
+.mapael .map {
+  position: relative;
+}
+
+.mapael .mapTooltip {
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  word-break: normal;
+  word-spacing: normal;
+  white-space: normal;
+  line-break: auto;
+  background-color: #000;
+  color: #ffffff;
+  display: block;
+  max-width: 200px;
+  padding: 0.25rem 0.5rem;
+  position: absolute;
+  text-align: center;
+  word-wrap: break-word;
+  z-index: 1070;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.mapael .myLegend {
+  background-color: #f4f4e8;
+  border: 1px solid #bebeb4;
+  padding: 10px;
+  width: 600px;
+}
+
+.mapael .zoomButton {
+  border-radius: 0.25rem;
+  background-color: #f4f4f4;
+  color: #444;
+  border: 1px solid #ddd;
+  padding-left: 1px;
+  width: 16px;
+  height: 16px;
+  line-height: 14px;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  font-weight: bold;
+  left: 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.mapael .zoomButton:hover, .mapael .zoomButton:active, .mapael .zoomButton.hover {
+  color: #2b2b2b;
+  background-color: #e7e7e7;
+}
+
+.mapael .zoomReset {
+  top: 10px;
+  line-height: 12px;
+}
+
+.mapael .zoomIn {
+  top: 30px;
+}
+
+.mapael .zoomOut {
+  top: 50px;
+}
+
+/*
+ * Plugins: JQVMap
+ * ---------------
+ */
+.jqvmap-zoomin,
+.jqvmap-zoomout {
+  background-color: #f4f4f4;
+  color: #444;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  width: 15px;
+  height: 15px;
+}
+
+.jqvmap-zoomin:hover, .jqvmap-zoomin:active, .jqvmap-zoomin.hover,
+.jqvmap-zoomout:hover,
+.jqvmap-zoomout:active,
+.jqvmap-zoomout.hover {
+  color: #2b2b2b;
+  background-color: #e7e7e7;
 }
 
 /*
@@ -15537,80 +15975,6 @@ a.text-muted:hover {
 
 .flex-1 {
   flex: 1;
-}
-
-.modal-dialog .overlay {
-  display: block;
-  position: absolute;
-  z-index: 1052;
-  background: rgba(255, 255, 255, 0.7);
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.modal-content.bg-warning .modal-header, .modal-content.alert-warning .modal-header, .modal-content.label-warning .modal-header,
-.modal-content.bg-warning .modal-footer,
-.modal-content.alert-warning .modal-footer,
-.modal-content.label-warning .modal-footer {
-  border-color: #343a40;
-}
-
-.modal-content.bg-primary .close, .modal-content.label-primary .close, .modal-content.bg-primary .mailbox-attachment-close, .modal-content.label-primary .mailbox-attachment-close, .modal-content.bg-secondary .close, .modal-content.bg-secondary .mailbox-attachment-close, .modal-content.bg-info .close, .modal-content.alert-info .close, .modal-content.label-info .close, .modal-content.bg-info .mailbox-attachment-close, .modal-content.alert-info .mailbox-attachment-close, .modal-content.label-info .mailbox-attachment-close, .modal-content.bg-danger .close, .modal-content.alert-danger .close, .modal-content.alert-error .close, .modal-content.label-danger .close, .modal-content.bg-danger .mailbox-attachment-close, .modal-content.alert-danger .mailbox-attachment-close, .modal-content.alert-error .mailbox-attachment-close, .modal-content.label-danger .mailbox-attachment-close, .modal-content.bg-success .close, .modal-content.alert-success .close, .modal-content.label-success .close, .modal-content.bg-success .mailbox-attachment-close, .modal-content.alert-success .mailbox-attachment-close, .modal-content.label-success .mailbox-attachment-close {
-  color: #ffffff;
-}
-
-#blue.slider .slider-selection {
-  background: #007bff;
-}
-
-#indigo.slider .slider-selection {
-  background: #6610f2;
-}
-
-#purple.slider .slider-selection {
-  background: #6f42c1;
-}
-
-#pink.slider .slider-selection {
-  background: #e83e8c;
-}
-
-#red.slider .slider-selection {
-  background: #dc3545;
-}
-
-#orange.slider .slider-selection {
-  background: #fd7e14;
-}
-
-#yellow.slider .slider-selection {
-  background: #ffc107;
-}
-
-#green.slider .slider-selection {
-  background: #28a745;
-}
-
-#teal.slider .slider-selection {
-  background: #20c997;
-}
-
-#cyan.slider .slider-selection {
-  background: #17a2b8;
-}
-
-#white.slider .slider-selection {
-  background: #ffffff;
-}
-
-#gray.slider .slider-selection {
-  background: #6c757d;
-}
-
-#gray-dark.slider .slider-selection {
-  background: #343a40;
 }
 
 /*

@@ -41,6 +41,7 @@
 @import "users-list";
 @import "carousel";
 @import "social-widgets";
+@import "modals";
 // PAGES
 // ---------------------------------------------------
 @import "mailbox";
@@ -51,8 +52,12 @@
 @import "profile";
 // Plugins
 // ---------------------------------------------------
-@import "fullcalendar";
-@import "select2";
+@import "plugins/fullcalendar";
+@import "plugins/select2";
+@import "plugins/bootstrap-slider";
+@import "plugins/icheck-bootstrap";
+@import "plugins/mapael";
+@import "plugins/jqvmap";
 // Miscellaneous
 // ---------------------------------------------------
 @import "miscellaneous";
