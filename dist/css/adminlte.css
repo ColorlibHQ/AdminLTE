@@ -9731,6 +9731,7 @@ body,
 
 .layout-navbar-fixed .wrapper .main-header {
   position: fixed;
+  z-index: 949;
   top: 0;
   right: 0;
   left: 0;
@@ -9738,8 +9739,10 @@ body,
 
 .layout-footer-fixed .wrapper .main-footer {
   position: fixed;
+  z-index: 949;
   bottom: 0;
-  width: calc(100% - 250px);
+  right: 0;
+  left: 0;
 }
 
 .layout-top-nav .wrapper {
@@ -11506,6 +11509,7 @@ body,
   .sidebar-mini.sidebar-collapse .sidebar .user-panel > .info,
   .sidebar-mini.sidebar-collapse .nav-sidebar .nav-link p,
   .sidebar-mini.sidebar-collapse .brand-text {
+    visibility: hidden;
     opacity: 0;
     margin-left: -10px;
   }
@@ -11528,6 +11532,7 @@ body,
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel > .info,
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .nav-sidebar .nav-link p,
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .brand-text {
+    visibility: visible;
     opacity: 1;
     margin-left: 0;
     display: inline-block;
@@ -11572,6 +11577,7 @@ body,
   .sidebar-mini-md.sidebar-collapse .sidebar .user-panel > .info,
   .sidebar-mini-md.sidebar-collapse .nav-sidebar .nav-link p,
   .sidebar-mini-md.sidebar-collapse .brand-text {
+    visibility: hidden;
     opacity: 0;
     margin-left: -10px;
   }
@@ -11594,6 +11600,7 @@ body,
   .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .user-panel > .info,
   .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .nav-sidebar .nav-link p,
   .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .brand-text {
+    visibility: visible;
     opacity: 1;
     margin-left: 0;
     display: inline-block;
@@ -11642,7 +11649,7 @@ body,
 .sidebar .nav-link p,
 .main-sidebar .brand-text,
 .sidebar .user-panel .info {
-  transition: margin-left 0.3s linear, opacity 0.5s ease;
+  transition: margin-left 0.3s linear, opacity 0.3s ease, visibility 0.3s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
