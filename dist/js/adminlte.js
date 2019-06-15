@@ -689,11 +689,14 @@
     var Event = {
       EXPANDED: "expanded" + EVENT_KEY,
       COLLAPSED: "collapsed" + EVENT_KEY,
+      MAXIMIZED: "maximized" + EVENT_KEY,
+      MINIMIZED: "minimized" + EVENT_KEY,
       REMOVED: "removed" + EVENT_KEY
     };
     var Selector = {
       DATA_REMOVE: '[data-widget="remove"]',
       DATA_COLLAPSE: '[data-widget="collapse"]',
+      DATA_MAXIMIZE: '[data-widget="maximize"]',
       CARD: '.card',
       CARD_HEADER: '.card-header',
       CARD_BODY: '.card-body',
@@ -704,8 +707,12 @@
     };
     var ClassName = {
       COLLAPSED: 'collapsed-card',
+      WAS_COLLAPSED: 'was-collapsed',
+      MAXIMIZED: 'maximized-card',
       COLLAPSE_ICON: 'fa-minus',
-      EXPAND_ICON: 'fa-plus'
+      EXPAND_ICON: 'fa-plus',
+      MAXIMIZE_ICON: 'fa-expand',
+      MINIMIZE_ICON: 'fa-compress'
     };
     var Default = {
       animationSpeed: 'normal',
@@ -767,6 +774,48 @@
         }
 
         this.collapse();
+      };
+
+      _proto.toggleMaximize = function toggleMaximize() {
+        var button = this._element.find('i');
+
+        if (this._parent.hasClass(ClassName.MAXIMIZED)) {
+          button.addClass(ClassName.MAXIMIZE_ICON).removeClass(ClassName.MINIMIZE_ICON);
+
+          this._parent.css('cssText', 'height:' + this._parent[0].style.height + ' !important;' + 'width:' + this._parent[0].style.width + ' !important; transition: all .15s;').delay(100).queue(function () {
+            $(this).removeClass(ClassName.MAXIMIZED);
+            $('html').removeClass(ClassName.MAXIMIZED);
+            $(this).trigger(Event.MINIMIZED);
+            $(this).css({
+              'height': 'inherit',
+              'width': 'inherit'
+            });
+
+            if ($(this).hasClass(ClassName.WAS_COLLAPSED)) {
+              $(this).removeClass(ClassName.WAS_COLLAPSED);
+            }
+
+            $(this).dequeue();
+          });
+        } else {
+          button.addClass(ClassName.MINIMIZE_ICON).removeClass(ClassName.MAXIMIZE_ICON);
+
+          this._parent.css({
+            'height': this._parent.height(),
+            'width': this._parent.width(),
+            'transition': 'all .15s'
+          }).delay(150).queue(function () {
+            $(this).addClass(ClassName.MAXIMIZED);
+            $('html').addClass(ClassName.MAXIMIZED);
+            $(this).trigger(Event.MAXIMIZED);
+
+            if ($(this).hasClass(ClassName.COLLAPSED)) {
+              $(this).addClass(ClassName.WAS_COLLAPSED);
+            }
+
+            $(this).dequeue();
+          });
+        }
       } // Private
       ;
 
@@ -821,6 +870,13 @@
       }
 
       Widget._jQueryInterface.call($(this), 'remove');
+    });
+    $(document).on('click', Selector.DATA_MAXIMIZE, function (event) {
+      if (event) {
+        event.preventDefault();
+      }
+
+      Widget._jQueryInterface.call($(this), 'toggleMaximize');
     });
     /**
      * jQuery API

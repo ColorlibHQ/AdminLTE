@@ -70,19 +70,28 @@ a.text-muted:hover {
   color: color-yiq($white) !important;
 }
 
-// Gradient Background colors
+// Gradient Background colors (theme colors)
 @each $name, $color in $theme-colors {
   .bg-#{$name}-gradient {
-    @include gradient($color, $color, lighten($color, 10%));
+    @include gradient-bg($color);
     color: color-yiq($color);
   }
 }
 
-// Disabled!
+// Gradient Background colors (colors)
+@each $name, $color in $colors {
+  .bg-#{$name}-gradient {
+    @include gradient-bg($color);
+    color: color-yiq($color);
+  }
+}
+
+// Backgrund Color Disabled
 [class^="bg-"].disabled {
   opacity: .65;
 }
 
+// Link Styles
 .link-muted {
   color: darken($gray-500, 30%);
   &:hover,
@@ -114,23 +123,6 @@ a.text-muted:hover {
   box-shadow: none !important;
 }
 
-// Unstyled List
-.list-unstyled {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.list-group-unbordered {
-  > .list-group-item {
-    border-left: 0;
-    border-right: 0;
-    border-radius: 0;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
 // Remove border radius
 .flat {
   @include border-radius(0 !important);
@@ -151,6 +143,22 @@ a.text-muted:hover {
 }
 
 // List utility classes
+.list-unstyled {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list-group-unbordered {
+  > .list-group-item {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .list-header {
   font-size: 15px;
   padding: 10px 4px;
@@ -361,3 +369,4 @@ a.text-muted:hover {
 .flex-1 {
   flex: 1;
 }
+

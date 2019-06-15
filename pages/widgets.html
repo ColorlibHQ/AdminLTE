@@ -859,9 +859,10 @@
 
         <!-- =========================================================== -->
         <h4 class="mb-2 mt-4">Cards</h4>
+        <h5 class="mb-2">Abilities</h5>
         <div class="row">
           <div class="col-md-3">
-            <div class="card card-default collapsed-card">
+            <div class="card card-primary collapsed-card">
               <div class="card-header">
                 <h3 class="card-title">Expandable</h3>
 
@@ -883,7 +884,139 @@
           <div class="col-md-3">
             <div class="card card-success">
               <div class="card-header">
+                <h3 class="card-title">Collapsable</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                The body of the card
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3">
+            <div class="card card-warning">
+              <div class="card-header">
                 <h3 class="card-title">Removable</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                The body of the card
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Maximizable</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-widget="maximize"><i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                The body of the card
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">All together</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-widget="maximize"><i class="fas fa-expand"></i>
+                  <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
+                  <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                The body of the card
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3">
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Loading state</h3>
+              </div>
+              <div class="card-body">
+                The body of the card
+              </div>
+              <!-- /.card-body -->
+              <!-- Loading (remove the following to stop the loading)-->
+              <div class="overlay">
+                <i class="fas fa-sync-alt"></i>
+              </div>
+              <!-- end loading -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <!-- =========================================================== -->
+
+        <h5 class="mb-2">Colors Variations</h5>
+
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Primary Outline</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                The body of the card
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3">
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Success Outline</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i>
@@ -903,7 +1036,7 @@
           <div class="col-md-3">
             <div class="card card-warning">
               <div class="card-header">
-                <h3 class="card-title">Collapsable</h3>
+                <h3 class="card-title">Warning Outline</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
@@ -923,34 +1056,27 @@
           <div class="col-md-3">
             <div class="card card-danger">
               <div class="card-header">
-                <h3 class="card-title">Loading state</h3>
+                <h3 class="card-title">Danger Outline</h3>
               </div>
               <div class="card-body">
                 The body of the card
               </div>
               <!-- /.card-body -->
-              <!-- Loading (remove the following to stop the loading)-->
-              <div class="overlay">
-                <i class="fas fa-sync-alt fa-spin"></i>
-              </div>
-              <!-- end loading -->
             </div>
             <!-- /.card -->
           </div>
           <!-- /.col -->
         </div>
         <!-- /.row -->
-
-        <!-- =========================================================== -->
 
         <div class="row">
           <div class="col-md-3">
-            <div class="card card-info collapsed-card cardutline">
+            <div class="card card-outline card-primary">
               <div class="card-header">
-                <h3 class="card-title">Expandable</h3>
+                <h3 class="card-title">Primary Outline</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-plus"></i>
+                  <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
                   </button>
                 </div>
                 <!-- /.card-tools -->
@@ -965,13 +1091,12 @@
           </div>
           <!-- /.col -->
           <div class="col-md-3">
-            <div class="card card-sucress cardutline">
+            <div class="card card-outline card-success">
               <div class="card-header">
-                <h3 class="card-title">Removable</h3>
+                <h3 class="card-title">Success Outline</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-widget="remove">
-                    <i class="fas fa-times"></i>
+                  <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i>
                   </button>
                 </div>
                 <!-- /.card-tools -->
@@ -986,7 +1111,7 @@
           </div>
           <!-- /.col -->
           <div class="col-md-3">
-            <div class="card card-warring cardutline">
+            <div class="card card-outline card-warning">
               <div class="card-header">
                 <h3 class="card-title">Warning Outline</h3>
 
@@ -1006,7 +1131,7 @@
           </div>
           <!-- /.col -->
           <div class="col-md-3">
-            <div class="card card-darger cardutline">
+            <div class="card card-outline card-danger">
               <div class="card-header">
                 <h3 class="card-title">Danger Outline</h3>
               </div>
@@ -1021,7 +1146,82 @@
         </div>
         <!-- /.row -->
 
-        <!-- =========================================================== -->
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card bg-primary">
+              <div class="card-header">
+                <h3 class="card-title">Primary</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                The body of the card
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3">
+            <div class="card bg-success">
+              <div class="card-header">
+                <h3 class="card-title">Success</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                The body of the card
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3">
+            <div class="card bg-warning">
+              <div class="card-header">
+                <h3 class="card-title">Warning</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                The body of the card
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3">
+            <div class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title">Danger</h3>
+              </div>
+              <div class="card-body">
+                The body of the card
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
 
         <div class="row">
           <div class="col-md-3">
