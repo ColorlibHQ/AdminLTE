@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*!
  *   AdminLTE v3.0.0-beta.1
  *   Author: Colorlib
@@ -10275,12 +10276,12 @@ body,
   padding: 0;
 }
 
-.nav-sidebar .nav-treeview > .nav-item > .nav-link {
-  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
-}
-
 .nav-sidebar .nav-treeview > .nav-item > .nav-link > .nav-icon {
   width: 1.6rem;
+}
+
+.nav-sidebar.nav-child-indent   .nav-treeview > .nav-item > .nav-link {
+  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
 }
 
 .nav-sidebar .nav-header {
