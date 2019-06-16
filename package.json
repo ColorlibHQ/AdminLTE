@@ -76,7 +76,9 @@
     "select2": "^4.0.7",
     "sparklines": "^1.2.0",
     "summernote": "^0.8.12",
-    "tempusdominus-bootstrap-4": "^5.1.2"
+    "sweetalert2": "^8.12.1",
+    "tempusdominus-bootstrap-4": "^5.1.2",
+    "toastr": "^2.1.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

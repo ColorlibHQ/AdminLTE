@@ -3,13 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Modals</title>
+  <title>AdminLTE 3 | Modals & Alerts</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
@@ -319,7 +323,7 @@
               <li class="nav-item">
                 <a href="../UI/modals.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Modals</p>
+                  <p>Modals & Alerts</p>
                 </a>
               </li>
             </ul>
@@ -538,14 +542,14 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>
-              Modals
+              Modals & Alerts 
               <small>new</small>
             </h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Modals</li>
+              <li class="breadcrumb-item active">Modals & Alerts</li>
             </ol>
           </div>
         </div>
@@ -607,6 +611,63 @@
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-overlay">
                   Launch Modal with Overlay
                 </button>
+              </div>
+              <!-- /.card -->
+            </div>
+
+            <div class="card card-success card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-edit"></i>
+                  SweetAlert2 Examples
+                </h3>
+              </div>
+              <div class="card-body">
+                <button type="button" class="btn btn-success swalDefaultSuccess">
+                  Launch Success Toast
+                </button>
+                <button type="button" class="btn btn-info swalDefaultInfo">
+                  Launch Info Toast
+                </button>
+                <button type="button" class="btn btn-danger swalDefaultError">
+                  Launch Error Toast
+                </button>
+                <button type="button" class="btn btn-warning swalDefaultWarning">
+                  Launch Warning Toast
+                </button>
+                <button type="button" class="btn btn-default swalDefaultQuestion">
+                  Launch Question Toast
+                </button>
+                <div class="text-muted mt-3">
+                  For more examples look at <a href="https://sweetalert2.github.io/">https://sweetalert2.github.io/</a>
+                </div>
+              </div>
+              <!-- /.card -->
+            </div>
+
+            <div class="card card-success card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-edit"></i>
+                  Toastr Examples
+                </h3>
+              </div>
+              <div class="card-body">
+                <button type="button" class="btn btn-success toastrDefaultSuccess">
+                  Launch Success Toast
+                </button>
+                <button type="button" class="btn btn-info toastrDefaultInfo">
+                  Launch Info Toast
+                </button>
+                <button type="button" class="btn btn-danger toastrDefaultError">
+                  Launch Error Toast
+                </button>
+                <button type="button" class="btn btn-warning toastrDefaultWarning">
+                  Launch Warning Toast
+                </button>
+                <div class="text-muted mt-3">
+                  For more examples look at <a href="https://codeseven.github.io/toastr/">https://codeseven.github.io/toastr/</a>
+                </div>
               </div>
               <!-- /.card -->
             </div>
@@ -893,9 +954,69 @@
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- FastClick -->
 <script src="../../plugins/fastclick/fastclick.js"></script>
+<!-- SweetAlert2 -->
+<script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="../../plugins/toastr/toastr.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+
+<script type="text/javascript">
+  $(function() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    $('.swalDefaultSuccess').click(function() {
+      Toast.fire({
+        type: 'success',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultInfo').click(function() {
+      Toast.fire({
+        type: 'info',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultError').click(function() {
+      Toast.fire({
+        type: 'error',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultWarning').click(function() {
+      Toast.fire({
+        type: 'warning',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultQuestion').click(function() {
+      Toast.fire({
+        type: 'question',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+
+    $('.toastrDefaultSuccess').click(function() {
+      toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    });
+    $('.toastrDefaultInfo').click(function() {
+      toastr.info('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    });
+    $('.toastrDefaultError').click(function() {
+      toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    });
+    $('.toastrDefaultWarning').click(function() {
+      toastr.warning('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    });
+  });
+
+</script>
 </body>
 </html>

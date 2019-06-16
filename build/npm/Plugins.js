@@ -182,10 +182,20 @@ const Plugins = [
     from: 'node_modules/select2/dist/',
     to  : 'plugins/select2'
   },
-  // Select2
+  // Sparklines
   {
     from: 'node_modules/sparklines/source/',
     to  : 'plugins/sparklines'
+  },
+  // SweetAlert2
+  {
+    from: 'node_modules/sweetalert2/dist/',
+    to  : 'plugins/sweetalert2'
+  },
+  // Toastr
+  {
+    from: 'node_modules/toastr/build/',
+    to  : 'plugins/toastr'
   },
 
 

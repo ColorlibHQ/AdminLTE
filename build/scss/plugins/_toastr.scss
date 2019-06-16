@@ -1,0 +1,49 @@
+/*
+ * Plugin: Toastr
+ * ---------------
+ */
+
+// Background to FontAwesome Icons
+// #toast-container > .toast {
+//     background-image: none !important;
+// }
+// #toast-container > .toast .toast-message:before {
+//     font-family: 'Font Awesome 5 Free';
+//     font-size: 24px;
+//     font-weight: 900;
+//     line-height: 18px;
+//     float: left;
+//     color: #FFF;
+//     padding-right: 0.5em;
+//     margin: auto 0.5em auto -1.5em;
+// }        
+// #toast-container > .toast-warning .toast-message:before {
+//     content: "\f06a";
+// }
+// #toast-container > .toast-error .toast-message:before {
+//     content: "\f071";
+// }
+// #toast-container > .toast-info .toast-message:before {
+//     content: "\f05a";
+// }
+// #toast-container > .toast-success .toast-message:before {
+//     content: "\f058";
+// }
+
+
+// Background color
+.toast {
+  background-color: $primary;
+}
+.toast-success {
+  background-color: $success;
+}
+.toast-error {
+  background-color: $danger;
+}
+.toast-info {
+  background-color: $info;
+}
+.toast-warning {
+  background-color: $warning;
+}

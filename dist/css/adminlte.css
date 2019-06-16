@@ -15529,6 +15529,67 @@ html.maximized-card {
 }
 
 /*
+ * Plugin: SweetAlert2
+ * ---------------
+ */
+.swal2-icon.swal2-info {
+  color: #17a2b8;
+  border-color: ligthen(#17a2b8, 20%);
+}
+
+.swal2-icon.swal2-warning {
+  color: #ffc107;
+  border-color: ligthen(#ffc107, 20%);
+}
+
+.swal2-icon.swal2-error {
+  color: #dc3545;
+  border-color: ligthen(#dc3545, 20%);
+}
+
+.swal2-icon.swal2-question {
+  color: #6c757d;
+  border-color: ligthen(#6c757d, 20%);
+}
+
+.swal2-icon.swal2-success {
+  color: #28a745;
+  border-color: ligthen(#28a745, 20%);
+}
+
+.swal2-icon.swal2-success .swal2-success-ring {
+  border-color: ligthen(#28a745, 20%);
+}
+
+.swal2-icon.swal2-success [class^="swal2-success-line"] {
+  background-color: #28a745;
+}
+
+/*
+ * Plugin: Toastr
+ * ---------------
+ */
+.toast {
+  background-color: #007bff;
+}
+
+.toast-success {
+  background-color: #28a745;
+}
+
+.toast-error {
+  background-color: #dc3545;
+}
+
+.toast-info {
+  background-color: #17a2b8;
+}
+
+.toast-warning {
+  background-color: #ffc107;
+}
+
+/*
  * General: Miscellaneous
  * ----------------------
  */

@@ -1,0 +1,36 @@
+/*
+ * Plugin: SweetAlert2
+ * ---------------
+ */
+
+// Icon Colors
+.swal2-icon {
+  &.swal2-info {
+    color: $info;
+    border-color: ligthen($info, 20%);
+  }
+  &.swal2-warning {
+    color: $warning;
+    border-color: ligthen($warning, 20%);
+  }
+  &.swal2-error {
+    color: $danger;
+    border-color: ligthen($danger, 20%);
+  }
+  &.swal2-question {
+    color: $secondary;
+    border-color: ligthen($secondary, 20%);
+  }
+  &.swal2-success {
+    color: $success;
+    border-color: ligthen($success, 20%);
+    
+    .swal2-success-ring {
+      border-color: ligthen($success, 20%);
+    }
+    [class^="swal2-success-line"] {
+      background-color: $success;
+    }
+  }
+
+}
