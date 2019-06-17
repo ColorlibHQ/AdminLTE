@@ -1,0 +1,73 @@
+{
+  "_from": "raphael",
+  "_id": "raphael@2.2.8",
+  "_inBundle": false,
+  "_integrity": "sha512-0kWKcGn4lXTw4eUiOhjspYiG+v0m6zSmTmlO62E0hl2CYKUvCuHER9YKqXYvOn2nj24mYp8jzHOLeBuj/Gn28Q==",
+  "_location": "/raphael",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "raphael",
+    "name": "raphael",
+    "escapedName": "raphael",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/",
+    "/jquery-mapael"
+  ],
+  "_resolved": "https://registry.npmjs.org/raphael/-/raphael-2.2.8.tgz",
+  "_shasum": "4b18443c2c6030c3b492d8d11fbbca14ebe4d3f3",
+  "_spec": "raphael",
+  "_where": "/Users/rejack/Projekte/GitHub/REJack/AdminLTE",
+  "author": {
+    "name": "Dmitry Baranovskiy"
+  },
+  "bugs": {
+    "url": "https://github.com/DmitryBaranovskiy/raphael/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Tomas Alabes",
+      "url": "https://github.com/tomasAlabes"
+    }
+  ],
+  "dependencies": {
+    "eve-raphael": "0.5.0"
+  },
+  "deprecated": false,
+  "description": "JavaScript Vector Library",
+  "devDependencies": {
+    "qunitjs": "^1.0.0",
+    "webpack": "4.29.6",
+    "webpack-cli": "3.3.0"
+  },
+  "homepage": "http://dmitrybaranovskiy.github.io/raphael/",
+  "keywords": [
+    "svg",
+    "vml",
+    "javascript"
+  ],
+  "license": "MIT",
+  "main": "raphael.min.js",
+  "name": "raphael",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DmitryBaranovskiy/raphael.git"
+  },
+  "scripts": {
+    "build-all": "yarn build-dev && yarn build-no-deps && yarn build-no-deps-min && yarn build-prod",
+    "build-dev": "webpack -d",
+    "build-no-deps": "webpack --env.noDeps -d --output-filename raphael.no-deps.js",
+    "build-no-deps-min": "webpack --env.noDeps -p --output-filename raphael.no-deps.min.js",
+    "build-prod": "webpack -p --output-filename raphael.min.js",
+    "prepublishOnly": "yarn build-all",
+    "test": "echo \"Open dev/test/index.html with your browser\" && exit 1"
+  },
+  "version": "2.2.8"
+}

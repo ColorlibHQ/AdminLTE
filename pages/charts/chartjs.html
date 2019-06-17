@@ -319,7 +319,7 @@
               <li class="nav-item">
                 <a href="../UI/modals.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Modals</p>
+                  <p>Modals & Alerts</p>
                 </a>
               </li>
             </ul>
@@ -489,6 +489,12 @@
                   <p>Starter Page</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="../examples/legacy-user-menu.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Legacy User Menu</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-header">MISCELLANEOUS</li>
@@ -580,7 +586,25 @@
                 </div>
               </div>
               <div class="card-body">
-                <canvas id="pieChart" style="height:250px"></canvas>
+                <canvas id="donutChart" style="height:230px"></canvas>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- PIE CHART -->
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Pie Chart</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="pieChart" style="height:230px"></canvas>
               </div>
               <!-- /.card-body -->
             </div>
@@ -623,6 +647,26 @@
               <div class="card-body">
                 <div class="chart">
                   <canvas id="barChart" style="height:230px"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- STACKED BAR CHART -->
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Stacked Bar Chart</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="stackedBarChart" style="height:230px"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -753,11 +797,11 @@
     })
 
     //-------------
-    //- PIE CHART -
+    //- DONUT CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
-    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-    var pieData        = {
+    var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+    var donutData        = {
       labels: [
           'Chrome', 
           'IE',
@@ -773,16 +817,35 @@
         }
       ]
     }
+    var donutOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    var donutChart = new Chart(donutChartCanvas, {
+      type: 'doughnut',
+      data: donutData,
+      options: donutOptions      
+    })
+
+    //-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+    var pieData        = donutData;
     var pieOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
     }
     //Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below.
     var pieChart = new Chart(pieChartCanvas, {
-      type: 'doughnut',
+      type: 'pie',
       data: pieData,
       options: pieOptions      
     })
-    // pieChart.Doughnut(PieData, pieOptions)
 
     //-------------
     //- BAR CHART -
@@ -793,21 +856,43 @@
     var temp1 = areaChartData.datasets[1]
     barChartData.datasets[0] = temp1
     barChartData.datasets[1] = temp0
-    // barChartData.datasets[1].backgroundColor = '#00a65a'
-    // barChartData.datasets[1].borderColor = '#00a65a'
 
     var barChartOptions = {
       responsive              : true,
-      maintainAspectRatio     : true
+      maintainAspectRatio     : false,
+      datasetFill             : false
     }
 
-    barChartOptions.datasetFill = false
     var barChart = new Chart(barChartCanvas, {
       type: 'bar', 
       data: barChartData,
       options: barChartOptions
     })
-    // barChart.Bar(barChartData, barChartOptions)
+
+    //---------------------
+    //- STACKED BAR CHART -
+    //---------------------
+    var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+    var stackedBarChartData = jQuery.extend(true, {}, barChartData)
+
+    var stackedBarChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      scales: {
+        xAxes: [{
+          stacked: true,
+        }],
+        yAxes: [{
+          stacked: true
+        }]
+      }
+    }
+
+    var stackedBarChart = new Chart(stackedBarChartCanvas, {
+      type: 'bar', 
+      data: stackedBarChartData,
+      options: stackedBarChartOptions
+    })
   })
 </script>
 </body>

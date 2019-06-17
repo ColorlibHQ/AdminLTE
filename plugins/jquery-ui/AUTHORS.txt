@@ -1,0 +1,333 @@
+Authors ordered by first contribution
+A list of current team members is available at http://jqueryui.com/about
+
+Paul Bakaus <paul.bakaus@gmail.com>
+Richard Worth <rdworth@gmail.com>
+Yehuda Katz <wycats@gmail.com>
+Sean Catchpole <sean@sunsean.com>
+John Resig <jeresig@gmail.com>
+Tane Piper <piper.tane@gmail.com>
+Dmitri Gaskin <dmitrig01@gmail.com>
+Klaus Hartl <klaus.hartl@gmail.com>
+Stefan Petre <stefan.petre@gmail.com>
+Gilles van den Hoven <gilles@webunity.nl>
+Micheil Bryan Smith <micheil@brandedcode.com>
+Jörn Zaefferer <joern.zaefferer@gmail.com>
+Marc Grabanski <m@marcgrabanski.com>
+Keith Wood <kbwood@iinet.com.au>
+Brandon Aaron <brandon.aaron@gmail.com>
+Scott González <scott.gonzalez@gmail.com>
+Eduardo Lundgren <eduardolundgren@gmail.com>
+Aaron Eisenberger <aaronchi@gmail.com>
+Joan Piedra <theneojp@gmail.com>
+Bruno Basto <b.basto@gmail.com>
+Remy Sharp <remy@leftlogic.com>
+Bohdan Ganicky <bohdan.ganicky@gmail.com>
+David Bolter <david.bolter@gmail.com>
+Chi Cheng <cloudream@gmail.com>
+Ca-Phun Ung <pazu2k@gmail.com>
+Ariel Flesler <aflesler@gmail.com>
+Maggie Wachs <maggie@filamentgroup.com>
+Scott Jehl <scottjehl@gmail.com>
+Todd Parker <todd@filamentgroup.com>
+Andrew Powell <andrew@shellscape.org>
+Brant Burnett <btburnett3@gmail.com>
+Douglas Neiner <doug@dougneiner.com>
+Paul Irish <paul.irish@gmail.com>
+Ralph Whitbeck <ralph.whitbeck@gmail.com>
+Thibault Duplessis <thibault.duplessis@gmail.com>
+Dominique Vincent <dominique.vincent@toitl.com>
+Jack Hsu <jack.hsu@gmail.com>
+Adam Sontag <ajpiano@ajpiano.com>
+Carl Fürstenberg <carl@excito.com>
+Kevin Dalman <development@allpro.net>
+Alberto Fernández Capel <afcapel@gmail.com>
+Jacek Jędrzejewski (http://jacek.jedrzejewski.name)
+Ting Kuei <ting@kuei.com>
+Samuel Cormier-Iijima <sam@chide.it>
+Jon Palmer <jonspalmer@gmail.com>
+Ben Hollis <bhollis@amazon.com>
+Justin MacCarthy <Justin@Rubystars.biz>
+Eyal Kobrigo <kobrigo@hotmail.com>
+Tiago Freire <tiago.freire@gmail.com>
+Diego Tres <diegotres@gmail.com>
+Holger Rüprich <holger@rueprich.de>
+Ziling Zhao <zilingzhao@gmail.com>
+Mike Alsup <malsup@gmail.com>
+Robson Braga Araujo <robsonbraga@gmail.com>
+Pierre-Henri Ausseil <ph.ausseil@gmail.com>
+Christopher McCulloh <cmcculloh@gmail.com>
+Andrew Newcomb <ext.github@preceptsoftware.co.uk>
+Lim Chee Aun <cheeaun@gmail.com>
+Jorge Barreiro <yortx.barry@gmail.com>
+Daniel Steigerwald <daniel@steigerwald.cz>
+John Firebaugh <john_firebaugh@bigfix.com>
+John Enters <github@darkdark.net>
+Andrey Kapitcyn <ru.m157y@gmail.com>
+Dmitry Petrov <dpetroff@gmail.com>
+Eric Hynds <eric@hynds.net>
+Chairat Sunthornwiphat <pipo@sixhead.com>
+Josh Varner <josh.varner@gmail.com>
+Stéphane Raimbault <stephane.raimbault@gmail.com>
+Jay Merrifield <fracmak@gmail.com>
+J. Ryan Stinnett <jryans@gmail.com>
+Peter Heiberg <peter@heiberg.se>
+Alex Dovenmuehle <adovenmuehle@gmail.com>
+Jamie Gegerson <git@jamiegegerson.com>
+Raymond Schwartz <skeetergraphics@gmail.com>
+Phillip Barnes <philbar@gmail.com>
+Kyle Wilkinson <kai@wikyd.org>
+Khaled AlHourani <me@khaledalhourani.com>
+Marian Rudzynski <mr@impaled.org>
+Jean-Francois Remy <jeff@melix.org>
+Doug Blood <dougblood@gmail.com>
+Filippo Cavallarin <filippo.cavallarin@codseq.it>
+Heiko Henning <heiko@thehennings.ch>
+Aliaksandr Rahalevich <saksmlz@gmail.com>
+Mario Visic <mario@mariovisic.com>
+Xavi Ramirez <xavi.rmz@gmail.com>
+Max Schnur <max.schnur@gmail.com>
+Saji Nediyanchath <saji89@gmail.com>
+Corey Frang <gnarf37@gmail.com>
+Aaron Peterson <aaronp123@yahoo.com>
+Ivan Peters <ivan@ivanpeters.com>
+Mohamed Cherif Bouchelaghem <cherifbouchelaghem@yahoo.fr>
+Marcos Sousa <falecomigo@marcossousa.com>
+Michael DellaNoce <mdellanoce@mailtrust.com>
+George Marshall <echosx@gmail.com>
+Tobias Brunner <tobias@strongswan.org>
+Martin Solli <msolli@gmail.com>
+David Petersen <public@petersendidit.com>
+Dan Heberden <danheberden@gmail.com>
+William Kevin Manire <williamkmanire@gmail.com>
+Gilmore Davidson <gilmoreorless@gmail.com>
+Michael Wu <michaelmwu@gmail.com>
+Adam Parod <mystic414@gmail.com>
+Guillaume Gautreau <guillaume+github@ghusse.com>
+Marcel Toele <EleotleCram@gmail.com>
+Dan Streetman <ddstreet@ieee.org>
+Matt Hoskins <matt@nipltd.com>
+Giovanni Giacobbi <giovanni@giacobbi.net>
+Kyle Florence <kyle.florence@gmail.com>
+Pavol Hluchý <lopo@losys.sk>
+Hans Hillen <hans.hillen@gmail.com>
+Mark Johnson <virgofx@live.com>
+Trey Hunner <treyhunner@gmail.com>
+Shane Whittet <whittet@gmail.com>
+Edward A Faulkner <ef@alum.mit.edu>
+Adam Baratz <adam@adambaratz.com>
+Kato Kazuyoshi <kato.kazuyoshi@gmail.com>
+Eike Send <eike.send@gmail.com>
+Kris Borchers <kris.borchers@gmail.com>
+Eddie Monge <eddie@eddiemonge.com>
+Israel Tsadok <itsadok@gmail.com>
+Carson McDonald <carson@ioncannon.net>
+Jason Davies <jason@jasondavies.com>
+Garrison Locke <gplocke@gmail.com>
+David Murdoch <david@davidmurdoch.com>
+Benjamin Scott Boyle <benjamins.boyle@gmail.com>
+Jesse Baird <jebaird@gmail.com>
+Jonathan Vingiano <jvingiano@gmail.com>
+Dylan Just <dev@ephox.com>
+Hiroshi Tomita <tomykaira@gmail.com>
+Glenn Goodrich <glenn.goodrich@gmail.com>
+Tarafder Ashek-E-Elahi <mail.ashek@gmail.com>
+Ryan Neufeld <ryan@neufeldmail.com>
+Marc Neuwirth <marc.neuwirth@gmail.com>
+Philip Graham <philip.robert.graham@gmail.com>
+Benjamin Sterling <benjamin.sterling@kenzomedia.com>
+Wesley Walser <waw325@gmail.com>
+Kouhei Sutou <kou@clear-code.com>
+Karl Kirch <karlkrch@gmail.com>
+Chris Kelly <ckdake@ckdake.com>
+Jason Oster <jay@kodewerx.org>
+Felix Nagel <info@felixnagel.com>
+Alexander Polomoshnov <alex.polomoshnov@gmail.com>
+David Leal <dgleal@gmail.com>
+Igor Milla <igor.fsp.milla@gmail.com>
+Dave Methvin <dave.methvin@gmail.com>
+Florian Gutmann <f.gutmann@chronimo.com>
+Marwan Al Jubeh <marwan.aljubeh@gmail.com>
+Milan Broum <midlis@googlemail.com>
+Sebastian Sauer <info@dynpages.de>
+Gaëtan Muller <m.gaetan89@gmail.com>
+Michel Weimerskirch <michel@weimerskirch.net>
+William Griffiths <william@ycymro.com>
+Stojce Slavkovski <stojce@gmail.com>
+David Soms <david.soms@gmail.com>
+David De Sloovere <david.desloovere@outlook.com>
+Michael P. Jung <michael.jung@terreon.de>
+Shannon Pekary <spekary@gmail.com>
+Dan Wellman <danwellman@hotmail.com>
+Matthew Edward Hutton <meh@corefiling.co.uk>
+James Khoury <james@jameskhoury.com>
+Rob Loach <robloach@gmail.com>
+Alberto Monteiro <betimbrasil@gmail.com>
+Alex Rhea <alex.rhea@gmail.com>
+Krzysztof Rosiński <rozwell69@gmail.com>
+Ryan Olton <oltonr@gmail.com>
+Genie <386@mail.com>
+Rick Waldron <waldron.rick@gmail.com>
+Ian Simpson <spoonlikesham@gmail.com>
+Lev Kitsis <spam4lev@gmail.com>
+TJ VanToll <tj.vantoll@gmail.com>
+Justin Domnitz <jdomnitz@gmail.com>
+Douglas Cerna <douglascerna@yahoo.com>
+Bert ter Heide <bertjh@hotmail.com>
+Jasvir Nagra <jasvir@gmail.com>
+Yuriy Khabarov <13real008@gmail.com>
+Harri Kilpiö <harri.kilpio@gmail.com>
+Lado Lomidze <lado.lomidze@gmail.com>
+Amir E. Aharoni <amir.aharoni@mail.huji.ac.il>
+Simon Sattes <simon.sattes@gmail.com>
+Jo Liss <joliss42@gmail.com>
+Guntupalli Karunakar <karunakarg@yahoo.com>
+Shahyar Ghobadpour <shahyar@gmail.com>
+Lukasz Lipinski <uzza17@gmail.com>
+Timo Tijhof <krinklemail@gmail.com>
+Jason Moon <jmoon@socialcast.com>
+Martin Frost <martinf55@hotmail.com>
+Eneko Illarramendi <eneko@illarra.com>
+EungJun Yi <semtlenori@gmail.com>
+Courtland Allen <courtlandallen@gmail.com>
+Viktar Varvanovich <non4eg@gmail.com>
+Danny Trunk <dtrunk90@gmail.com>
+Pavel Stetina <pavel.stetina@nangu.tv>
+Michael Stay <metaweta@gmail.com>
+Steven Roussey <sroussey@gmail.com>
+Michael Hollis <hollis21@gmail.com>
+Lee Rowlands <lee.rowlands@previousnext.com.au>
+Timmy Willison <timmywillisn@gmail.com>
+Karl Swedberg <kswedberg@gmail.com>
+Baoju Yuan <the_guy_1987@hotmail.com>
+Maciej Mroziński <maciej.k.mrozinski@gmail.com>
+Luis Dalmolin <luis.nh@gmail.com>
+Mark Aaron Shirley <maspwr@gmail.com>
+Martin Hoch <martin@fidion.de>
+Jiayi Yang <tr870829@gmail.com>
+Philipp Benjamin Köppchen <xgxtpbk@gws.ms>
+Sindre Sorhus <sindresorhus@gmail.com>
+Bernhard Sirlinger <bernhard.sirlinger@tele2.de>
+Jared A. Scheel <jared@jaredscheel.com>
+Rafael Xavier de Souza <rxaviers@gmail.com>
+John Chen <zhang.z.chen@intel.com>
+Robert Beuligmann <robertbeuligmann@gmail.com>
+Dale Kocian <dale.kocian@gmail.com>
+Mike Sherov <mike.sherov@gmail.com>
+Andrew Couch <andy@couchand.com>
+Marc-Andre Lafortune <github@marc-andre.ca>
+Nate Eagle <nate.eagle@teamaol.com>
+David Souther <davidsouther@gmail.com>
+Mathias Stenbom <mathias@stenbom.com>
+Sergey Kartashov <ebishkek@yandex.ru>
+Avinash R <nashpapa@gmail.com>
+Ethan Romba <ethanromba@gmail.com>
+Cory Gackenheimer <cory.gack@gmail.com>
+Juan Pablo Kaniefsky <jpkaniefsky@gmail.com>
+Roman Salnikov <bardt.dz@gmail.com>
+Anika Henke <anika@selfthinker.org>
+Samuel Bovée <samycookie2000@yahoo.fr>
+Fabrício Matté <ult_combo@hotmail.com>
+Viktor Kojouharov <vkojouharov@gmail.com>
+Pawel Maruszczyk (http://hrabstwo.net)
+Pavel Selitskas <p.selitskas@gmail.com>
+Bjørn Johansen <post@bjornjohansen.no>
+Matthieu Penant <thieum22@hotmail.com>
+Dominic Barnes <dominic@dbarnes.info>
+David Sullivan <david.sullivan@gmail.com>
+Thomas Jaggi <thomas@responsive.ch>
+Vahid Sohrabloo <vahid4134@gmail.com>
+Travis Carden <travis.carden@gmail.com>
+Bruno M. Custódio <bruno@brunomcustodio.com>
+Nathanael Silverman <nathanael.silverman@gmail.com>
+Christian Wenz <christian@wenz.org>
+Steve Urmston <steve@urm.st>
+Zaven Muradyan <megalivoithos@gmail.com>
+Woody Gilk <shadowhand@deviantart.com>
+Zbigniew Motyka <zbigniew.motyka@gmail.com>
+Suhail Alkowaileet <xsoh.k7@gmail.com>
+Toshi MARUYAMA <marutosijp2@yahoo.co.jp>
+David Hansen <hansede@gmail.com>
+Brian Grinstead <briangrinstead@gmail.com>
+Christian Klammer <christian314159@gmail.com>
+Steven Luscher <jquerycla@steveluscher.com>
+Gan Eng Chin <engchin.gan@gmail.com>
+Gabriel Schulhof <gabriel.schulhof@intel.com>
+Alexander Schmitz <arschmitz@gmail.com>
+Vilhjálmur Skúlason <vis@dmm.is>
+Siebrand Mazeland <siebrand@kitano.nl>
+Mohsen Ekhtiari <mohsenekhtiari@yahoo.com>
+Pere Orga <gotrunks@gmail.com>
+Jasper de Groot <mail@ugomobi.com>
+Stephane Deschamps <stephane.deschamps@gmail.com>
+Jyoti Deka <dekajp@gmail.com>
+Andrei Picus <office.nightcrawler@gmail.com>
+Ondrej Novy <novy@ondrej.org>
+Jacob McCutcheon <jacob.mccutcheon@gmail.com>
+Monika Piotrowicz <monika.piotrowicz@gmail.com>
+Imants Horsts <imants.horsts@inbox.lv>
+Eric Dahl <eric.c.dahl@gmail.com>
+Dave Stein <dave@behance.com>
+Dylan Barrell <dylan@barrell.com>
+Daniel DeGroff <djdegroff@gmail.com>
+Michael Wiencek <mwtuea@gmail.com>
+Thomas Meyer <meyertee@gmail.com>
+Ruslan Yakhyaev <ruslan@ruslan.io>
+Brian J. Dowling <bjd-dev@simplicity.net>
+Ben Higgins <ben@extrahop.com>
+Yermo Lamers <yml@yml.com>
+Patrick Stapleton <github@gdi2290.com>
+Trisha Crowley <trisha.crowley@gmail.com>
+Usman Akeju <akeju00+github@gmail.com>
+Rodrigo Menezes <rod333@gmail.com>
+Jacques Perrault <jacques_perrault@us.ibm.com>
+Frederik Elvhage <frederik.elvhage@googlemail.com>
+Will Holley <willholley@gmail.com>
+Uri Gilad <antishok@gmail.com>
+Richard Gibson <richard.gibson@gmail.com>
+Simen Bekkhus <sbekkhus91@gmail.com>
+Chen Eshchar <eshcharc@gmail.com>
+Bruno Pérel <brunoperel@gmail.com>
+Mohammed Alshehri <m@dralshehri.com>
+Lisa Seacat DeLuca <ldeluca@us.ibm.com>
+Anne-Gaelle Colom <coloma@westminster.ac.uk>
+Adam Foster <slimfoster@gmail.com>
+Luke Page <luke.a.page@gmail.com>
+Daniel Owens <daniel@matchstickmixup.com>
+Michael Orchard <morchard@scottlogic.co.uk>
+Marcus Warren <marcus@envoke.com>
+Nils Heuermann <nils@world-of-scripts.de>
+Marco Ziech <marco@ziech.net>
+Patricia Juarez <patrixd@gmail.com>
+Ben Mosher <me@benmosher.com>
+Ablay Keldibek <atomio.ak@gmail.com>
+Thomas Applencourt <thomas.applencourt@irsamc.ups-tlse.fr>
+Jiabao Wu <jiabao.foss@gmail.com>
+Eric Lee Carraway <github@ericcarraway.com>
+Victor Homyakov <vkhomyackov@gmail.com>
+Myeongjin Lee <aranet100@gmail.com>
+Liran Sharir <lsharir@gmail.com>
+Weston Ruter <weston@xwp.co>
+Mani Mishra <manimishra902@gmail.com>
+Hannah Methvin <hannahmethvin@gmail.com>
+Leonardo Balter <leonardo.balter@gmail.com>
+Benjamin Albert <benjamin_a5@yahoo.com>
+Michał Gołębiowski <m.goleb@gmail.com>
+Alyosha Pushak <alyosha.pushak@gmail.com>
+Fahad Ahmad <fahadahmad41@hotmail.com>
+Matt Brundage <github@mattbrundage.com>
+Francesc Baeta <francesc.baeta@gmail.com>
+Piotr Baran <piotros@wp.pl>
+Mukul Hase <mukulhase@gmail.com>
+Konstantin Dinev <kdinev@mail.bw.edu>
+Rand Scullard <rand@randscullard.com>
+Dan Strohl <dan@wjcg.net>
+Maksim Ryzhikov <rv.maksim@gmail.com>
+Amine HADDAD <haddad@allegorie.tv>
+Amanpreet Singh <apsdehal@gmail.com>
+Alexey Balchunas <bleshik@gmail.com>
+Peter Kehl <peter.kehl@gmail.com>
+Peter Dave Hello <hsu@peterdavehello.org>
+Johannes Schäfer <johnschaefer@gmx.de>
+Ville Skyttä <ville.skytta@iki.fi>
+Ryan Oriecuia <ryan.oriecuia@visioncritical.com>

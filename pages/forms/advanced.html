@@ -12,15 +12,15 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- daterange picker -->
-  <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker-bs3.css">
+  <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
   <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="../../plugins/iCheck/all.css">
+  <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Bootstrap Color Picker -->
   <link rel="stylesheet" href="../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- Select2 -->
-  <link rel="stylesheet" href="../../plugins/select2/select2.min.css">
+  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
@@ -330,7 +330,7 @@
               <li class="nav-item">
                 <a href="../UI/modals.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Modals</p>
+                  <p>Modals & Alerts</p>
                 </a>
               </li>
             </ul>
@@ -500,6 +500,12 @@
                   <p>Starter Page</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="../examples/legacy-user-menu.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Legacy User Menu</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-header">MISCELLANEOUS</li>
@@ -602,7 +608,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Multiple</label>
-                  <select class="form-control select2" multiple="multiple" data-placeholder="Select a State"
+                  <select class="select2" multiple="multiple" data-placeholder="Select a State"
                           style="width: 100%;">
                     <option>Alabama</option>
                     <option>Alaska</option>
@@ -828,97 +834,134 @@
             <!-- iCheck -->
             <div class="card card-success">
               <div class="card-header">
-                <h3 class="card-title">iCheck - Checkbox &amp; Radio Inputs</h3>
+                <h3 class="card-title">iCheck Bootstrap - Checkbox &amp; Radio Inputs</h3>
               </div>
               <div class="card-body">
                 <!-- Minimal style -->
 
                 <!-- checkbox -->
-                <div class="form-group">
-                  <label>
-                    <input type="checkbox" class="minimal" checked>
-                  </label>
-                  <label>
-                    <input type="checkbox" class="minimal">
-                  </label>
-                  <label>
-                    <input type="checkbox" class="minimal" disabled>
-                    Minimal skin checkbox
-                  </label>
+                <div class="form-group clearfix">
+                  <div class="icheck-primary d-inline">
+                    <input type="checkbox" checked>
+                    <label>
+                    </label>
+                  </div>
+                  <div class="icheck-primary d-inline">
+                    <input type="checkbox">
+                    <label>
+                    </label>
+                  </div>
+                  <div class="icheck-primary d-inline">
+                    <input type="checkbox" disabled>
+                    <label>
+                      Primary checkbox
+                    </label>
+                  </div>
                 </div>
 
                 <!-- radio -->
-                <div class="form-group">
-                  <label>
-                    <input type="radio" name="r1" class="minimal" checked>
-                  </label>
-                  <label>
-                    <input type="radio" name="r1" class="minimal">
-                  </label>
-                  <label>
-                    <input type="radio" name="r1" class="minimal" disabled>
-                    Minimal skin radio
-                  </label>
+                <div class="form-group clearfix">
+                  <div class="icheck-primary d-inline">
+                    <input type="radio" name="r1" checked>
+                    <label>
+                    </label>
+                  </div>
+                  <div class="icheck-primary d-inline">
+                    <input type="radio" name="r1">
+                    <label>
+                    </label>
+                  </div>
+                  <div class="icheck-primary d-inline">
+                    <input type="radio" name="r1" disabled>
+                    <label>
+                      Primary radio
+                    </label>
+                  </div>
                 </div>
 
                 <!-- Minimal red style -->
 
                 <!-- checkbox -->
-                <div class="form-group">
-                  <label>
-                    <input type="checkbox" class="minimal-red" checked>
-                  </label>
-                  <label>
-                    <input type="checkbox" class="minimal-red">
-                  </label>
-                  <label>
-                    <input type="checkbox" class="minimal-red" disabled>
-                    Minimal red skin checkbox
-                  </label>
+                <div class="form-group clearfix">
+                  <div class="icheck-danger d-inline">
+                    <input type="checkbox" checked>
+                    <label>
+                    </label>
+                  </div>
+                  <div class="icheck-danger d-inline">
+                    <input type="checkbox">
+                    <label>
+                    </label>
+                  </div>
+                  <div class="icheck-danger d-inline">
+                    <input type="checkbox" disabled>
+                    <label>
+                      Danger checkbox
+                    </label>
+                  </div>
                 </div>
 
                 <!-- radio -->
-                <div class="form-group">
-                  <label>
-                    <input type="radio" name="r2" class="minimal-red" checked>
-                  </label>
-                  <label>
-                    <input type="radio" name="r2" class="minimal-red">
-                  </label>
-                  <label>
-                    <input type="radio" name="r2" class="minimal-red" disabled>
-                    Minimal red skin radio
-                  </label>
+                <div class="form-group clearfix">
+                  <div class="icheck-danger d-inline">
+                    <input type="radio" name="r2" checked>
+                    <label>
+                    </label>
+                  </div>
+                  <div class="icheck-danger d-inline">
+                    <input type="radio" name="r2">
+                    <label>
+                    </label>
+                  </div>
+                  <div class="icheck-danger d-inline">
+                    <input type="radio" name="r2" disabled>
+                    <label>
+                      Danger radio
+                    </label>
+                  </div>
                 </div>
 
                 <!-- Minimal red style -->
 
+
                 <!-- checkbox -->
-                <div class="form-group">
-                  <label>
-                    <input type="checkbox" class="flat-red" checked>
-                  </label>
-                  <label>
-                    <input type="checkbox" class="flat-red">
-                  </label>
-                  <label>
-                    <input type="checkbox" class="flat-red" disabled>
-                    Flat green skin checkbox
-                  </label>
+                <div class="form-group clearfix">
+                  <div class="icheck-success d-inline">
+                    <input type="checkbox" checked>
+                    <label>
+                    </label>
+                  </div>
+                  <div class="icheck-success d-inline">
+                    <input type="checkbox">
+                    <label>
+                    </label>
+                  </div>
+                  <div class="icheck-success d-inline">
+                    <input type="checkbox" disabled>
+                    <label>
+                      Success checkbox
+                    </label>
+                  </div>
                 </div>
 
                 <!-- radio -->
-                <div class="form-group">
-                  <label>
-                    <input type="radio" name="r3" class="flat-red" checked>
-                  </label>
-                  <label>
-                    <input type="radio" name="r3" class="flat-red">
-                  </label>
-                  <label>
-                    <input type="radio" name="r3" class="flat-red" disabled>
-                    Flat green skin radio
-                  </label>
+                <div class="form-group clearfix">
+                  <div class="icheck-success d-inline">
+                    <input type="radio" name="r2" checked>
+                    <label>
+                    </label>
+                  </div>
+                  <div class="icheck-success d-inline">
+                    <input type="radio" name="r2">
+                    <label>
+                    </label>
+                  </div>
+                  <div class="icheck-success d-inline">
+                    <input type="radio" name="r2" disabled>
+                    <label>
+                      Success radio
+                    </label>
+                  </div>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -957,11 +1000,9 @@
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
-<script src="../../plugins/select2/select2.full.min.js"></script>
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
 <!-- InputMask -->
-<script src="../../plugins/input-mask/jquery.inputmask.js"></script>
-<script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-<script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="../../plugins/inputmask/jquery.inputmask.bundle.js"></script>
 <script src="../../plugins/moment/moment.min.js"></script>
 <!-- date-range-picker -->
 <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
@@ -969,8 +1010,6 @@
 <script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- iCheck 1.0.1 -->
-<script src="../../plugins/iCheck/icheck.min.js"></script>
 <!-- FastClick -->
 <script src="../../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
@@ -994,9 +1033,11 @@
     $('#reservation').daterangepicker()
     //Date range picker with time picker
     $('#reservationtime').daterangepicker({
-      timePicker         : true,
+      timePicker: true,
       timePickerIncrement: 30,
-      format             : 'MM/DD/YYYY h:mm A'
+      locale: {
+        format: 'MM/DD/YYYY hh:mm A'
+      }
     })
     //Date range as a button
     $('#daterange-btn').daterangepicker(
@@ -1016,22 +1057,6 @@
         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
       }
     )
-
-    //iCheck for checkbox and radio inputs
-    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-      checkboxClass: 'icheckbox_minimal-blue',
-      radioClass   : 'iradio_minimal-blue'
-    })
-    //Red color scheme for iCheck
-    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-      checkboxClass: 'icheckbox_minimal-red',
-      radioClass   : 'iradio_minimal-red'
-    })
-    //Flat red color scheme for iCheck
-    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-      checkboxClass: 'icheckbox_flat-green',
-      radioClass   : 'iradio_flat-green'
-    })
 
     //Timepicker
     $('#timepicker').datetimepicker({

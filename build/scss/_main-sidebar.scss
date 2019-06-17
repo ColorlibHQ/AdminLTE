@@ -129,6 +129,12 @@
     }
   }
 
+  &.nav-child-indent { 
+    .nav-treeview > .nav-item > .nav-link {
+      padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    }
+  }
+
   .nav-header {
     font-size: .9rem;
     padding: $nav-link-padding-y;

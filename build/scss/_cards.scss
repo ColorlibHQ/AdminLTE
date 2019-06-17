@@ -14,6 +14,30 @@
     }
   }
 
+  &.maximized-card {
+    z-index: 9999;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    &.was-collapsed .card-body {
+      display: block !important;
+    }
+
+    [data-widget="collapse"] {
+      display: none;
+    }
+
+    .card-header,
+    .card-footer {
+      @include border-radius(0 !important);
+    }
+  }
+
   // collapsed mode
   &.collapsed-card {
     .card-body,
@@ -47,6 +71,11 @@
   .border-left {
     border-left: 1px solid $card-border-color;
   }
+}
+
+// Maximized Card Body Scroll fix
+html.maximized-card {
+  overflow: hidden;
 }
 
 .card,

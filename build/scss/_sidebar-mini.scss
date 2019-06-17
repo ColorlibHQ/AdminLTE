@@ -38,6 +38,7 @@
     .sidebar .user-panel > .info,
     .nav-sidebar .nav-link p,
     .brand-text {
+      visibility: hidden;
       opacity: 0;
       margin-left: -10px;
     }
@@ -69,6 +70,7 @@
         .user-panel > .info,
         .nav-sidebar .nav-link p,
         .brand-text {
+          visibility: visible;
           opacity: 1;
           margin-left: 0;
           display: inline-block;
@@ -138,5 +140,5 @@
 .sidebar .nav-link p,
 .main-sidebar .brand-text,
 .sidebar .user-panel .info {
-  @include transition(margin-left $transition-speed linear, opacity .5s ease)
+  @include transition(margin-left $transition-speed linear, opacity $transition-speed ease, visibility $transition-speed ease)
 }

@@ -10,9 +10,12 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- fullCalendar 2.2.5-->
-  <link rel="stylesheet" href="../plugins/fullcalendar/fullcalendar.min.css">
-  <link rel="stylesheet" href="../plugins/fullcalendar/fullcalendar.print.css" media="print">
+  <!-- fullCalendar -->
+  <link rel="stylesheet" href="../plugins/fullcalendar/main.min.css">
+  <link rel="stylesheet" href="../plugins/fullcalendar-interaction/main.min.css">
+  <link rel="stylesheet" href="../plugins/fullcalendar-daygrid/main.min.css">
+  <link rel="stylesheet" href="../plugins/fullcalendar-timegrid/main.min.css">
+  <link rel="stylesheet" href="../plugins/fullcalendar-bootstrap/main.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
@@ -322,7 +325,7 @@
               <li class="nav-item">
                 <a href="UI/modals.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Modals</p>
+                  <p>Modals & Alerts</p>
                 </a>
               </li>
             </ul>
@@ -492,6 +495,12 @@
                   <p>Starter Page</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="examples/legacy-user-menu.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Legacy User Menu</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-header">MISCELLANEOUS</li>
@@ -640,10 +649,10 @@
 
 <!-- jQuery -->
 <script src="../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
+<!-- Bootstrap -->
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- jQuery UI -->
+<script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- FastClick -->
 <script src="../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
@@ -651,8 +660,12 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 <!-- fullCalendar 2.2.5 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-<script src="../plugins/fullcalendar/fullcalendar.min.js"></script>
+<script src="../plugins/moment/moment.min.js"></script>
+<script src="../plugins/fullcalendar/main.min.js"></script>
+<script src="../plugins/fullcalendar-daygrid/main.min.js"></script>
+<script src="../plugins/fullcalendar-timegrid/main.min.js"></script>
+<script src="../plugins/fullcalendar-interaction/main.min.js"></script>
+<script src="../plugins/fullcalendar-bootstrap/main.min.js"></script>
 <!-- Page specific script -->
 <script>
   $(function () {
@@ -690,17 +703,36 @@
     var d    = date.getDate(),
         m    = date.getMonth(),
         y    = date.getFullYear()
-    $('#calendar').fullCalendar({
+
+    var Calendar = FullCalendar.Calendar;
+    var Draggable = FullCalendarInteraction.Draggable;
+
+    var containerEl = document.getElementById('external-events');
+    var checkbox = document.getElementById('drop-remove');
+    var calendarEl = document.getElementById('calendar');
+
+    // initialize the external events
+    // -----------------------------------------------------------------
+
+    new Draggable(containerEl, {
+      itemSelector: '.external-event',
+      eventData: function(eventEl) {
+        console.log(eventEl);
+        return {
+          title: eventEl.innerText,
+          backgroundColor: window.getComputedStyle( eventEl ,null).getPropertyValue('background-color'),
+          borderColor: window.getComputedStyle( eventEl ,null).getPropertyValue('background-color'),
+          textColor: window.getComputedStyle( eventEl ,null).getPropertyValue('color'),
+        };
+      }
+    });
+
+    var calendar = new Calendar(calendarEl, {
+      plugins: [ 'bootstrap', 'interaction', 'dayGrid', 'timeGrid' ],
       header    : {
         left  : 'prev,next today',
         center: 'title',
-        right : 'month,agendaWeek,agendaDay'
-      },
-      buttonText: {
-        today: 'today',
-        month: 'month',
-        week : 'week',
-        day  : 'day'
+        right : 'dayGridMonth,timeGridWeek,timeGridDay'
       },
       //Random default events
       events    : [
@@ -751,32 +783,17 @@
       ],
       editable  : true,
       droppable : true, // this allows things to be dropped onto the calendar !!!
-      drop      : function (date, allDay) { // this function is called when something is dropped
-
-        // retrieve the dropped element's stored Event Object
-        var originalEventObject = $(this).data('eventObject')
-
-        // we need to copy it, so that multiple events don't have a reference to the same object
-        var copiedEventObject = $.extend({}, originalEventObject)
-
-        // assign it the date that was reported
-        copiedEventObject.start           = date
-        copiedEventObject.allDay          = allDay
-        copiedEventObject.backgroundColor = $(this).css('background-color')
-        copiedEventObject.borderColor     = $(this).css('border-color')
-
-        // render the event on the calendar
-        // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-        $('#calendar').fullCalendar('renderEvent', copiedEventObject, true)
-
+      drop      : function(info) {
         // is the "remove after drop" checkbox checked?
-        if ($('#drop-remove').is(':checked')) {
+        if (checkbox.checked) {
           // if so, remove the element from the "Draggable Events" list
-          $(this).remove()
+          info.draggedEl.parentNode.removeChild(info.draggedEl);
         }
+      }    
+    });
 
-      }
-    })
+    calendar.render();
+    // $('#calendar').fullCalendar()
 
     /* ADDING EVENTS */
     var currColor = '#3c8dbc' //Red by default

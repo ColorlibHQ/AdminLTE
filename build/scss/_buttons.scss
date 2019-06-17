@@ -34,14 +34,14 @@
 
 // Button color variations
 .btn-default {
-  background-color: #f4f4f4;
-  color: #444;
-  border-color: #ddd;
+  background-color: $button-default-background-color;
+  color: $button-default-color;
+  border-color: $button-default-border-color;
   &:hover,
   &:active,
   &.hover {
-    color: #222;
-    background-color: darken(#f4f4f4, 5%);
+    color: darken($button-default-color, 10%);
+    background-color: darken($button-default-background-color, 5%);
   }
 }
 
@@ -55,8 +55,8 @@
   height: 60px;
   text-align: center;
   color: #666;
-  border: 1px solid #ddd;
-  background-color: #f4f4f4;
+  border: 1px solid $button-default-border-color;
+  background-color: $button-default-background-color;
   font-size: 12px;
   // Icons within the btn
   > .fa,
@@ -70,9 +70,9 @@
   }
 
   &:hover {
-    background: #f4f4f4;
-    color: #444;
-    border-color: #aaa;
+    background: $button-default-background-color;
+    color: $button-default-color;
+    border-color: darken($button-default-border-color, 20%);
   }
 
   &:active,

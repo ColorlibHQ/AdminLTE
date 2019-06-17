@@ -320,7 +320,7 @@
               <li class="nav-item">
                 <a href="../UI/modals.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Modals</p>
+                  <p>Modals & Alerts</p>
                 </a>
               </li>
             </ul>
@@ -488,6 +488,12 @@
                 <a href="../../starter.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Starter Page</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../examples/legacy-user-menu.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Legacy User Menu</p>
                 </a>
               </li>
             </ul>
@@ -700,6 +706,8 @@
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI -->
+<script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- FastClick -->
@@ -709,13 +717,11 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- FLOT CHARTS -->
-<script src="../../plugins/flot/jquery.flot.min.js"></script>
+<script src="../../plugins/flot/jquery.flot.js"></script>
 <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
-<script src="../../plugins/flot/jquery.flot.resize.min.js"></script>
+<script src="../../plugins/flot-old/jquery.flot.resize.min.js"></script>
 <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
-<script src="../../plugins/flot/jquery.flot.pie.min.js"></script>
-<!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
-<script src="../../plugins/flot/jquery.flot.categories.min.js"></script>
+<script src="../../plugins/flot-old/jquery.flot.pie.min.js"></script>
 <!-- Page script -->
 <script>
   $(function () {
@@ -758,29 +764,35 @@
       return res
     }
 
-    var interactive_plot = $.plot('#interactive', [getRandomData()], {
-      grid  : {
-        borderColor: '#f3f3f3',
-        borderWidth: 1,
-        tickColor  : '#f3f3f3'
-      },
-      series: {
-        shadowSize: 0, // Drawing is faster without shadows
-        color     : '#3c8dbc'
-      },
-      lines : {
-        fill : true, //Converts the line chart to area chart
-        color: '#3c8dbc'
-      },
-      yaxis : {
-        min : 0,
-        max : 100,
-        show: true
-      },
-      xaxis : {
-        show: true
+    var interactive_plot = $.plot('#interactive', [
+        {
+          data: getRandomData(),
+        }
+      ],
+      {
+        grid: {
+          borderColor: '#f3f3f3',
+          borderWidth: 1,
+          tickColor: '#f3f3f3'
+        },
+        series: {
+          color: '#3c8dbc',
+          lines: {
+            lineWidth: 2,
+            show: true,
+            fill: true,
+          },
+        },
+        yaxis: {
+          min: 0,
+          max: 100,
+          show: true
+        },
+        xaxis: {
+          show: true
+        }
       }
-    })
+    )
 
     var updateInterval = 500 //Fetch data ever x milliseconds
     var realtime       = 'on' //If == to on then fetch data every x seconds. else stop fetching
@@ -899,10 +911,10 @@
       },
       series: {
         shadowSize: 0, // Drawing is faster without shadows
-        color     : '#00c0ef'
-      },
-      lines : {
-        fill: true //Converts the line chart to area chart
+        color     : '#00c0ef',
+        lines : {
+          fill: true //Converts the line chart to area chart
+        },
       },
       yaxis : {
         show: false
@@ -920,8 +932,8 @@
      */
 
     var bar_data = {
-      data : [['January', 10], ['February', 8], ['March', 4], ['April', 13], ['May', 17], ['June', 9]],
-      color: '#3c8dbc'
+      data : [[1,10], [2,8], [3,4], [4,13], [5,17], [6,9]],
+      bars: { show: true }
     }
     $.plot('#bar-chart', [bar_data], {
       grid  : {
@@ -930,15 +942,13 @@
         tickColor  : '#f3f3f3'
       },
       series: {
-        bars: {
-          show    : true,
-          barWidth: 0.5,
-          align   : 'center'
-        }
+         bars: {
+          show: true, barWidth: 0.5, align: 'center',
+        },
       },
+      colors: ['#3c8dbc'],
       xaxis : {
-        mode      : 'categories',
-        tickLength: 0
+        ticks: [[1,'January'], [2,'February'], [3,'March'], [4,'April'], [5,'May'], [6,'June']]
       }
     })
     /* END BAR CHART */

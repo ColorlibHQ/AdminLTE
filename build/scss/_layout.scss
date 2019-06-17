@@ -38,6 +38,7 @@ body,
 
     .main-header {
       position: fixed;
+      z-index: $zindex-main-sidebar - 1;
       top: 0;
       right: 0;
       left: 0;
@@ -47,8 +48,10 @@ body,
   .layout-footer-fixed & {
     .main-footer {
       position: fixed;
+      z-index: $zindex-main-sidebar - 1;
       bottom: 0;
-      width: calc(100% - 250px);
+      right: 0;
+      left: 0;
     }
   }
 
