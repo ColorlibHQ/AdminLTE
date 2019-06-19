@@ -61,7 +61,7 @@
 
 @each $name, $color in $theme-colors {
   .info-box.bg-#{$name},
-  .info-box.bg-#{$name}-gradient {
+  .info-box.bg-gradient-#{$name} {
     color: color-yiq($color);
 
     .progress-bar {
