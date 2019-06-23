@@ -29,9 +29,20 @@ a.text-muted:hover {
   }
 }
 
-// Background colors
+// Background colors (theme colors)
 @each $name, $color in $theme-colors {
   .bg-#{$name} {
+    &,
+    a {
+      color: color-yiq($color) !important;
+    }
+  }
+}
+
+// Background colors (colors)
+@each $name, $color in $colors {
+  .bg-#{$name} {
+    background-color: #{$color};
     &,
     a {
       color: color-yiq($color) !important;
@@ -59,11 +70,28 @@ a.text-muted:hover {
   color: color-yiq($white) !important;
 }
 
-// Disabled!
+// Gradient Background colors (theme colors)
+@each $name, $color in $theme-colors {
+  .bg-#{$name}-gradient {
+    @include gradient-bg($color);
+    color: color-yiq($color);
+  }
+}
+
+// Gradient Background colors (colors)
+@each $name, $color in $colors {
+  .bg-#{$name}-gradient {
+    @include gradient-bg($color);
+    color: color-yiq($color);
+  }
+}
+
+// Backgrund Color Disabled
 [class^="bg-"].disabled {
   opacity: .65;
 }
 
+// Link Styles
 .link-muted {
   color: darken($gray-500, 30%);
   &:hover,
@@ -95,7 +123,26 @@ a.text-muted:hover {
   box-shadow: none !important;
 }
 
-// Unstyled List
+// Remove border radius
+.flat {
+  @include border-radius(0 !important);
+}
+
+// _fix for sparkline tooltip
+.jqstooltip {
+  padding: 5px !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+// Description Block Extension
+.description-block {
+  .description-icon {
+    font-size: 16px;
+  }
+}
+
+// List utility classes
 .list-unstyled {
   list-style: none;
   margin: 0;
@@ -112,34 +159,6 @@ a.text-muted:hover {
   }
 }
 
-// Remove border radius
-.flat {
-  @include border-radius(0 !important);
-}
-
-// _fix for sparkline tooltip
-.jqstooltip {
-  padding: 5px !important;
-  width: auto !important;
-  height: auto !important;
-}
-
-// Gradient Background colors
-@each $name, $color in $theme-colors {
-  .bg-#{$name}-gradient {
-    @include gradient($color, $color, lighten($color, 10%));
-    color: color-yiq($color);
-  }
-}
-
-// Description Block Extension
-.description-block {
-  .description-icon {
-    font-size: 16px;
-  }
-}
-
-// List utility classes
 .list-header {
   font-size: 15px;
   padding: 10px 4px;
@@ -350,3 +369,4 @@ a.text-muted:hover {
 .flex-1 {
   flex: 1;
 }
+

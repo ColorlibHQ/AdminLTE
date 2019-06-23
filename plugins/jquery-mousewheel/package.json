@@ -1,0 +1,80 @@
+{
+  "_from": "jquery-mousewheel",
+  "_id": "jquery-mousewheel@3.1.13",
+  "_inBundle": false,
+  "_integrity": "sha1-BvAzXxbjU6aV5yBr9QUDy1I6buU=",
+  "_location": "/jquery-mousewheel",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "jquery-mousewheel",
+    "name": "jquery-mousewheel",
+    "escapedName": "jquery-mousewheel",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/",
+    "/jquery-mapael"
+  ],
+  "_resolved": "https://registry.npmjs.org/jquery-mousewheel/-/jquery-mousewheel-3.1.13.tgz",
+  "_shasum": "06f0335f16e353a695e7206bf50503cb523a6ee5",
+  "_spec": "jquery-mousewheel",
+  "_where": "/Users/rejack/Projekte/GitHub/REJack/AdminLTE",
+  "author": {
+    "name": "jQuery Foundation and other contributors",
+    "url": "https://github.com/jquery/jquery-mousewheel/blob/master/AUTHORS.txt"
+  },
+  "bugs": {
+    "url": "https://github.com/jquery/jquery-mousewheel/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "A jQuery plugin that adds cross-browser mouse wheel support.",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-contrib-jshint": "~0.7.1",
+    "grunt-contrib-uglify": "~0.2.7"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "files": [
+    "ChangeLog.md",
+    "jquery.mousewheel.js",
+    "README.md",
+    "LICENSE.txt"
+  ],
+  "homepage": "https://github.com/jquery/jquery-mousewheel",
+  "jam": {
+    "dependencies": {
+      "jquery": ">=1.2.2"
+    }
+  },
+  "keywords": [
+    "jquery",
+    "mouse",
+    "wheel",
+    "event",
+    "mousewheel",
+    "jquery-plugin",
+    "browser"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jquery/jquery-mousewheel/blob/master/LICENSE.txt"
+    }
+  ],
+  "main": "./jquery.mousewheel.js",
+  "name": "jquery-mousewheel",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jquery/jquery-mousewheel.git"
+  },
+  "version": "3.1.13"
+}

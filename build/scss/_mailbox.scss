@@ -67,6 +67,10 @@
 .mailbox-attachment-size {
   color: #999;
   font-size: 12px;
+  > span {
+    display: inline-block;
+    padding-top: 0.75rem;
+  }
 }
 
 .mailbox-attachment-icon {
@@ -74,6 +78,7 @@
   font-size: 65px;
   color: #666;
   padding: 20px 10px;
+  max-height: 132.5px;
   &.has-img {
     padding: 0;
     > img {

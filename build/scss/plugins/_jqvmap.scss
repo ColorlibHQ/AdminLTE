@@ -1,0 +1,23 @@
+/*
+ * Plugins: JQVMap
+ * ---------------
+ */
+
+// Zoom Button size fixes
+.jqvmap-zoomin,
+.jqvmap-zoomout {
+    background-color: $button-default-background-color;
+    color: $button-default-color;
+    border: 1px solid $button-default-border-color;
+    border-radius: $btn-border-radius;
+
+    width: 15px;
+    height: 15px;
+
+  &:hover,
+  &:active,
+  &.hover {
+    color: darken($button-default-color, 10%);
+    background-color: darken($button-default-background-color, 5%);
+  }
+}

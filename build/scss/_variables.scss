@@ -137,8 +137,8 @@ $attachment-border-radius: 3px !default;
 
 // Z-INDEX
 // --------------------------------------------------------
-$zindex-main-header: 1000 !default;
-$zindex-main-sidebar: 1100 !default;
+$zindex-main-header: 900 !default;
+$zindex-main-sidebar: 950 !default;
 $zindex-sidebar-mini-links: 010 !default;
 
 // TRANSITIONS SETTINGS
@@ -151,3 +151,11 @@ $transition-fn: ease-in-out !default;
 // TEXT
 // --------------------------------------------------------
 $font-size-xl: ($font-size-base * 2);
+
+
+// BUTTON
+// --------------------------------------------------------
+$button-default-background-color: #f4f4f4 !default;
+$button-default-color: #444 !default;
+$button-default-border-color: #ddd !default;
+  

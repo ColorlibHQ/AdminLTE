@@ -14,6 +14,30 @@
     }
   }
 
+  &.maximized-card {
+    z-index: 9999;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    &.was-collapsed .card-body {
+      display: block !important;
+    }
+
+    [data-widget="collapse"] {
+      display: none;
+    }
+
+    .card-header,
+    .card-footer {
+      @include border-radius(0 !important);
+    }
+  }
+
   // collapsed mode
   &.collapsed-card {
     .card-body,
@@ -49,6 +73,11 @@
   }
 }
 
+// Maximized Card Body Scroll fix
+html.maximized-card {
+  overflow: hidden;
+}
+
 .card,
 .overlay-wrapper {
   // Box overlay for LOADING STATE effect
@@ -65,7 +94,10 @@
     z-index: 50;
     background: rgba(255, 255, 255, 0.7);
     @include border-radius($border-radius);
-    > .fa {
+    > .fa, 
+    > .fas,
+    > .far,
+    > .fab {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -253,7 +285,12 @@
       float: right;
       color: theme-color("danger");
       // icons
-      > .fa, > .glyphicon, > .ion {
+      > .fa, 
+      > .fas, 
+      > .far, 
+      > .fab, 
+      > .glyphicon, 
+      > .ion {
         margin-right: 5px;
         cursor: pointer;
       }
@@ -331,6 +368,32 @@
     .btn-tool {
       color: rgba(color-yiq($color), 0.8);
       &:hover {
+        color: color-yiq($color);
+      }
+    }
+  }
+
+  .card.bg-#{$name},
+  .card.bg-#{$name}-gradient {
+    .bootstrap-datetimepicker-widget {
+      .table td,
+      .table th {
+        border: none;
+      }
+      
+      table thead tr:first-child th:hover,
+      table td.day:hover,
+      table td.hour:hover,
+      table td.minute:hover,
+      table td.second:hover {
+        background: darken($color, 8%);
+        color: color-yiq($color);
+      }
+
+
+      table td.active,
+      table td.active:hover {
+        background: lighten($color, 10%);
         color: color-yiq($color);
       }
     }
