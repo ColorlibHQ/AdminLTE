@@ -10229,8 +10229,8 @@ body,
   width: 1.6rem;
 }
 
-.nav-sidebar.nav-child-indent   .nav-treeview > .nav-item > .nav-link {
-  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+.nav-sidebar.nav-child-indent   .nav-treeview {
+  padding-left: 1rem;
 }
 
 .nav-sidebar .nav-header {
