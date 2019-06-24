@@ -9800,13 +9800,8 @@ body,
   height: 57px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .layout-navbar-fixed.sidebar-collapse .brand-link {
-    transition: none;
-  }
-}
-
 .layout-navbar-fixed.sidebar-collapse .main-sidebar:hover .brand-link {
+  transition: width 0.3s ease-in-out;
   width: 250px;
 }
 
@@ -9815,9 +9810,11 @@ body,
 }
 
 .layout-navbar-fixed .brand-link {
+  transition: width 0.3s ease-in-out;
   position: fixed;
+  overflow: hidden;
   top: 0;
-  z-index: 950;
+  z-index: 951;
   width: 250px;
 }
 
