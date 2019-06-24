@@ -155,28 +155,30 @@ body,
 
   &.sidebar-collapse {
     .brand-link {
-      $local-sidebar-transition: width $transition-speed $transition-fn;
-      @include transition($local-sidebar-transition);
+      transition: width $transition-speed $transition-fn;
       width: $sidebar-mini-width;
       height: 57px;
     }
 
     .main-sidebar:hover {
       .brand-link {
+        transition: width $transition-speed $transition-fn;
         width: $sidebar-width;
       }
     }
   }
+
 
   .sidebar {
     margin-top: 57px;
   }
 
   .brand-link {
-
+    transition: width $transition-speed $transition-fn;
     position: fixed;
+    overflow: hidden;
     top: 0;
-    z-index: $zindex-main-sidebar;
+    z-index: $zindex-main-sidebar + 1;
     width: $sidebar-width;
   }
 
