@@ -11464,6 +11464,9 @@ body,
     opacity: 0;
     margin-left: -10px;
   }
+  .sidebar-mini.sidebar-collapse .main-sidebar {
+    overflow-x: hidden;
+  }
   .sidebar-mini.sidebar-collapse .main-sidebar, .sidebar-mini.sidebar-collapse .main-sidebar:before {
     margin-left: 0;
     width: 4.6rem;
@@ -11531,6 +11534,9 @@ body,
     visibility: hidden;
     opacity: 0;
     margin-left: -10px;
+  }
+  .sidebar-mini-md.sidebar-collapse .main-sidebar {
+    overflow-x: hidden;
   }
   .sidebar-mini-md.sidebar-collapse .main-sidebar, .sidebar-mini-md.sidebar-collapse .main-sidebar:before {
     margin-left: 0;
