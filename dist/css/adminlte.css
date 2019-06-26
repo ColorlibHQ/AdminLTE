@@ -14401,6 +14401,42 @@ html.maximized-card {
   color: #ffffff;
 }
 
+.nav-tabs.flex-column {
+  border-right: 1px solid #dee2e6;
+  border-bottom: 0;
+}
+
+.nav-tabs.flex-column .nav-link {
+  margin-right: -1px;
+}
+
+.nav-tabs.flex-column .nav-link:hover, .nav-tabs.flex-column .nav-link:focus {
+  border-color: #e9ecef #dee2e6 #e9ecef #e9ecef;
+}
+
+.nav-tabs.flex-column .nav-link.active,
+.nav-tabs.flex-column .nav-item.show .nav-link {
+  border-color: #dee2e6 #ffffff #dee2e6 #dee2e6;
+}
+
+.nav-tabs.flex-column.nav-tabs-right {
+  border-right: 0;
+  border-left: 1px solid #dee2e6;
+}
+
+.nav-tabs.flex-column.nav-tabs-right .nav-link {
+  margin-left: -1px;
+}
+
+.nav-tabs.flex-column.nav-tabs-right .nav-link:hover, .nav-tabs.flex-column.nav-tabs-right .nav-link:focus {
+  border-color: #e9ecef #e9ecef #e9ecef #dee2e6;
+}
+
+.nav-tabs.flex-column.nav-tabs-right .nav-link.active,
+.nav-tabs.flex-column.nav-tabs-right .nav-item.show .nav-link {
+  border-color: #dee2e6 #dee2e6 #dee2e6 #ffffff;
+}
+
 .navbar-light {
   background-color: #f8f9fa;
 }
