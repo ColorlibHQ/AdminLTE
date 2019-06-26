@@ -159,6 +159,7 @@
     var JQUERY_NO_CONFLICT = $.fn[NAME];
     var Selector = {
       HEADER: '.main-header',
+      MAIN_SIDEBAR: '.main-sidebar',
       SIDEBAR: '.main-sidebar .sidebar',
       CONTENT: '.content-wrapper',
       BRAND: '.brand-link',
@@ -172,6 +173,7 @@
       HOLD: 'hold-transition',
       SIDEBAR: 'main-sidebar',
       CONTENT_FIXED: 'content-fixed',
+      SIDEBAR_FOCUSED: 'sidebar-focused',
       LAYOUT_FIXED: 'layout-fixed',
       NAVBAR_FIXED: 'layout-navbar-fixed',
       FOOTER_FIXED: 'layout-footer-fixed'
@@ -311,6 +313,12 @@
 
     $(window).on('load', function () {
       Layout._jQueryInterface.call($('body'));
+    });
+    $(Selector.SIDEBAR + '   a').on('focusin', function () {
+      $(Selector.MAIN_SIDEBAR).addClass(ClassName.SIDEBAR_FOCUSED);
+    });
+    $(Selector.SIDEBAR + '   a').on('focusout', function () {
+      $(Selector.MAIN_SIDEBAR).removeClass(ClassName.SIDEBAR_FOCUSED);
     });
     /**
      * jQuery API
