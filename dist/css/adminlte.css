@@ -12533,6 +12533,510 @@ textarea.form-control.is-warning {
   background: #7a8793;
 }
 
+.custom-range.custom-range-primary:focus::-webkit-slider-thumb {
+  background-color: #b3d7ff;
+}
+
+.custom-range.custom-range-primary:focus::-moz-range-thumb {
+  background-color: #b3d7ff;
+}
+
+.custom-range.custom-range-primary:focus::-ms-thumb {
+  background-color: #b3d7ff;
+}
+
+.custom-range.custom-range-primary::-webkit-slider-thumb {
+  background-color: #007bff;
+}
+
+.custom-range.custom-range-primary::-moz-range-thumb {
+  background-color: #007bff;
+}
+
+.custom-range.custom-range-primary::-ms-thumb {
+  background-color: #007bff;
+}
+
+.custom-range.custom-range-secondary:focus::-webkit-slider-thumb {
+  background-color: #caced1;
+}
+
+.custom-range.custom-range-secondary:focus::-moz-range-thumb {
+  background-color: #caced1;
+}
+
+.custom-range.custom-range-secondary:focus::-ms-thumb {
+  background-color: #caced1;
+}
+
+.custom-range.custom-range-secondary::-webkit-slider-thumb {
+  background-color: #6c757d;
+}
+
+.custom-range.custom-range-secondary::-moz-range-thumb {
+  background-color: #6c757d;
+}
+
+.custom-range.custom-range-secondary::-ms-thumb {
+  background-color: #6c757d;
+}
+
+.custom-range.custom-range-success:focus::-webkit-slider-thumb {
+  background-color: #9be7ac;
+}
+
+.custom-range.custom-range-success:focus::-moz-range-thumb {
+  background-color: #9be7ac;
+}
+
+.custom-range.custom-range-success:focus::-ms-thumb {
+  background-color: #9be7ac;
+}
+
+.custom-range.custom-range-success::-webkit-slider-thumb {
+  background-color: #28a745;
+}
+
+.custom-range.custom-range-success::-moz-range-thumb {
+  background-color: #28a745;
+}
+
+.custom-range.custom-range-success::-ms-thumb {
+  background-color: #28a745;
+}
+
+.custom-range.custom-range-info:focus::-webkit-slider-thumb {
+  background-color: #90e4f1;
+}
+
+.custom-range.custom-range-info:focus::-moz-range-thumb {
+  background-color: #90e4f1;
+}
+
+.custom-range.custom-range-info:focus::-ms-thumb {
+  background-color: #90e4f1;
+}
+
+.custom-range.custom-range-info::-webkit-slider-thumb {
+  background-color: #17a2b8;
+}
+
+.custom-range.custom-range-info::-moz-range-thumb {
+  background-color: #17a2b8;
+}
+
+.custom-range.custom-range-info::-ms-thumb {
+  background-color: #17a2b8;
+}
+
+.custom-range.custom-range-warning:focus::-webkit-slider-thumb {
+  background-color: #ffeeba;
+}
+
+.custom-range.custom-range-warning:focus::-moz-range-thumb {
+  background-color: #ffeeba;
+}
+
+.custom-range.custom-range-warning:focus::-ms-thumb {
+  background-color: #ffeeba;
+}
+
+.custom-range.custom-range-warning::-webkit-slider-thumb {
+  background-color: #ffc107;
+}
+
+.custom-range.custom-range-warning::-moz-range-thumb {
+  background-color: #ffc107;
+}
+
+.custom-range.custom-range-warning::-ms-thumb {
+  background-color: #ffc107;
+}
+
+.custom-range.custom-range-danger:focus::-webkit-slider-thumb {
+  background-color: #f6cdd1;
+}
+
+.custom-range.custom-range-danger:focus::-moz-range-thumb {
+  background-color: #f6cdd1;
+}
+
+.custom-range.custom-range-danger:focus::-ms-thumb {
+  background-color: #f6cdd1;
+}
+
+.custom-range.custom-range-danger::-webkit-slider-thumb {
+  background-color: #dc3545;
+}
+
+.custom-range.custom-range-danger::-moz-range-thumb {
+  background-color: #dc3545;
+}
+
+.custom-range.custom-range-danger::-ms-thumb {
+  background-color: #dc3545;
+}
+
+.custom-range.custom-range-light:focus::-webkit-slider-thumb {
+  background-color: white;
+}
+
+.custom-range.custom-range-light:focus::-moz-range-thumb {
+  background-color: white;
+}
+
+.custom-range.custom-range-light:focus::-ms-thumb {
+  background-color: white;
+}
+
+.custom-range.custom-range-light::-webkit-slider-thumb {
+  background-color: #f8f9fa;
+}
+
+.custom-range.custom-range-light::-moz-range-thumb {
+  background-color: #f8f9fa;
+}
+
+.custom-range.custom-range-light::-ms-thumb {
+  background-color: #f8f9fa;
+}
+
+.custom-range.custom-range-dark:focus::-webkit-slider-thumb {
+  background-color: #88939e;
+}
+
+.custom-range.custom-range-dark:focus::-moz-range-thumb {
+  background-color: #88939e;
+}
+
+.custom-range.custom-range-dark:focus::-ms-thumb {
+  background-color: #88939e;
+}
+
+.custom-range.custom-range-dark::-webkit-slider-thumb {
+  background-color: #343a40;
+}
+
+.custom-range.custom-range-dark::-moz-range-thumb {
+  background-color: #343a40;
+}
+
+.custom-range.custom-range-dark::-ms-thumb {
+  background-color: #343a40;
+}
+
+.custom-range.custom-range-blue:focus::-webkit-slider-thumb {
+  background-color: #b3d7ff;
+}
+
+.custom-range.custom-range-blue:focus::-moz-range-thumb {
+  background-color: #b3d7ff;
+}
+
+.custom-range.custom-range-blue:focus::-ms-thumb {
+  background-color: #b3d7ff;
+}
+
+.custom-range.custom-range-blue::-webkit-slider-thumb {
+  background-color: #007bff;
+}
+
+.custom-range.custom-range-blue::-moz-range-thumb {
+  background-color: #007bff;
+}
+
+.custom-range.custom-range-blue::-ms-thumb {
+  background-color: #007bff;
+}
+
+.custom-range.custom-range-indigo:focus::-webkit-slider-thumb {
+  background-color: #d2b9fb;
+}
+
+.custom-range.custom-range-indigo:focus::-moz-range-thumb {
+  background-color: #d2b9fb;
+}
+
+.custom-range.custom-range-indigo:focus::-ms-thumb {
+  background-color: #d2b9fb;
+}
+
+.custom-range.custom-range-indigo::-webkit-slider-thumb {
+  background-color: #6610f2;
+}
+
+.custom-range.custom-range-indigo::-moz-range-thumb {
+  background-color: #6610f2;
+}
+
+.custom-range.custom-range-indigo::-ms-thumb {
+  background-color: #6610f2;
+}
+
+.custom-range.custom-range-purple:focus::-webkit-slider-thumb {
+  background-color: #d5c8ed;
+}
+
+.custom-range.custom-range-purple:focus::-moz-range-thumb {
+  background-color: #d5c8ed;
+}
+
+.custom-range.custom-range-purple:focus::-ms-thumb {
+  background-color: #d5c8ed;
+}
+
+.custom-range.custom-range-purple::-webkit-slider-thumb {
+  background-color: #6f42c1;
+}
+
+.custom-range.custom-range-purple::-moz-range-thumb {
+  background-color: #6f42c1;
+}
+
+.custom-range.custom-range-purple::-ms-thumb {
+  background-color: #6f42c1;
+}
+
+.custom-range.custom-range-pink:focus::-webkit-slider-thumb {
+  background-color: #fbddeb;
+}
+
+.custom-range.custom-range-pink:focus::-moz-range-thumb {
+  background-color: #fbddeb;
+}
+
+.custom-range.custom-range-pink:focus::-ms-thumb {
+  background-color: #fbddeb;
+}
+
+.custom-range.custom-range-pink::-webkit-slider-thumb {
+  background-color: #e83e8c;
+}
+
+.custom-range.custom-range-pink::-moz-range-thumb {
+  background-color: #e83e8c;
+}
+
+.custom-range.custom-range-pink::-ms-thumb {
+  background-color: #e83e8c;
+}
+
+.custom-range.custom-range-red:focus::-webkit-slider-thumb {
+  background-color: #f6cdd1;
+}
+
+.custom-range.custom-range-red:focus::-moz-range-thumb {
+  background-color: #f6cdd1;
+}
+
+.custom-range.custom-range-red:focus::-ms-thumb {
+  background-color: #f6cdd1;
+}
+
+.custom-range.custom-range-red::-webkit-slider-thumb {
+  background-color: #dc3545;
+}
+
+.custom-range.custom-range-red::-moz-range-thumb {
+  background-color: #dc3545;
+}
+
+.custom-range.custom-range-red::-ms-thumb {
+  background-color: #dc3545;
+}
+
+.custom-range.custom-range-orange:focus::-webkit-slider-thumb {
+  background-color: #ffdfc5;
+}
+
+.custom-range.custom-range-orange:focus::-moz-range-thumb {
+  background-color: #ffdfc5;
+}
+
+.custom-range.custom-range-orange:focus::-ms-thumb {
+  background-color: #ffdfc5;
+}
+
+.custom-range.custom-range-orange::-webkit-slider-thumb {
+  background-color: #fd7e14;
+}
+
+.custom-range.custom-range-orange::-moz-range-thumb {
+  background-color: #fd7e14;
+}
+
+.custom-range.custom-range-orange::-ms-thumb {
+  background-color: #fd7e14;
+}
+
+.custom-range.custom-range-yellow:focus::-webkit-slider-thumb {
+  background-color: #ffeeba;
+}
+
+.custom-range.custom-range-yellow:focus::-moz-range-thumb {
+  background-color: #ffeeba;
+}
+
+.custom-range.custom-range-yellow:focus::-ms-thumb {
+  background-color: #ffeeba;
+}
+
+.custom-range.custom-range-yellow::-webkit-slider-thumb {
+  background-color: #ffc107;
+}
+
+.custom-range.custom-range-yellow::-moz-range-thumb {
+  background-color: #ffc107;
+}
+
+.custom-range.custom-range-yellow::-ms-thumb {
+  background-color: #ffc107;
+}
+
+.custom-range.custom-range-green:focus::-webkit-slider-thumb {
+  background-color: #9be7ac;
+}
+
+.custom-range.custom-range-green:focus::-moz-range-thumb {
+  background-color: #9be7ac;
+}
+
+.custom-range.custom-range-green:focus::-ms-thumb {
+  background-color: #9be7ac;
+}
+
+.custom-range.custom-range-green::-webkit-slider-thumb {
+  background-color: #28a745;
+}
+
+.custom-range.custom-range-green::-moz-range-thumb {
+  background-color: #28a745;
+}
+
+.custom-range.custom-range-green::-ms-thumb {
+  background-color: #28a745;
+}
+
+.custom-range.custom-range-teal:focus::-webkit-slider-thumb {
+  background-color: #aaf1dc;
+}
+
+.custom-range.custom-range-teal:focus::-moz-range-thumb {
+  background-color: #aaf1dc;
+}
+
+.custom-range.custom-range-teal:focus::-ms-thumb {
+  background-color: #aaf1dc;
+}
+
+.custom-range.custom-range-teal::-webkit-slider-thumb {
+  background-color: #20c997;
+}
+
+.custom-range.custom-range-teal::-moz-range-thumb {
+  background-color: #20c997;
+}
+
+.custom-range.custom-range-teal::-ms-thumb {
+  background-color: #20c997;
+}
+
+.custom-range.custom-range-cyan:focus::-webkit-slider-thumb {
+  background-color: #90e4f1;
+}
+
+.custom-range.custom-range-cyan:focus::-moz-range-thumb {
+  background-color: #90e4f1;
+}
+
+.custom-range.custom-range-cyan:focus::-ms-thumb {
+  background-color: #90e4f1;
+}
+
+.custom-range.custom-range-cyan::-webkit-slider-thumb {
+  background-color: #17a2b8;
+}
+
+.custom-range.custom-range-cyan::-moz-range-thumb {
+  background-color: #17a2b8;
+}
+
+.custom-range.custom-range-cyan::-ms-thumb {
+  background-color: #17a2b8;
+}
+
+.custom-range.custom-range-white:focus::-webkit-slider-thumb {
+  background-color: white;
+}
+
+.custom-range.custom-range-white:focus::-moz-range-thumb {
+  background-color: white;
+}
+
+.custom-range.custom-range-white:focus::-ms-thumb {
+  background-color: white;
+}
+
+.custom-range.custom-range-white::-webkit-slider-thumb {
+  background-color: #ffffff;
+}
+
+.custom-range.custom-range-white::-moz-range-thumb {
+  background-color: #ffffff;
+}
+
+.custom-range.custom-range-white::-ms-thumb {
+  background-color: #ffffff;
+}
+
+.custom-range.custom-range-gray:focus::-webkit-slider-thumb {
+  background-color: #caced1;
+}
+
+.custom-range.custom-range-gray:focus::-moz-range-thumb {
+  background-color: #caced1;
+}
+
+.custom-range.custom-range-gray:focus::-ms-thumb {
+  background-color: #caced1;
+}
+
+.custom-range.custom-range-gray::-webkit-slider-thumb {
+  background-color: #6c757d;
+}
+
+.custom-range.custom-range-gray::-moz-range-thumb {
+  background-color: #6c757d;
+}
+
+.custom-range.custom-range-gray::-ms-thumb {
+  background-color: #6c757d;
+}
+
+.custom-range.custom-range-gray-dark:focus::-webkit-slider-thumb {
+  background-color: #88939e;
+}
+
+.custom-range.custom-range-gray-dark:focus::-moz-range-thumb {
+  background-color: #88939e;
+}
+
+.custom-range.custom-range-gray-dark:focus::-ms-thumb {
+  background-color: #88939e;
+}
+
+.custom-range.custom-range-gray-dark::-webkit-slider-thumb {
+  background-color: #343a40;
+}
+
+.custom-range.custom-range-gray-dark::-moz-range-thumb {
+  background-color: #343a40;
+}
+
+.custom-range.custom-range-gray-dark::-ms-thumb {
+  background-color: #343a40;
+}
+
 /*
  * Component: Progress Bar
  * -----------------------
