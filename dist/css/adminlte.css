@@ -12736,46 +12736,6 @@ html.maximized-card {
   overflow: hidden;
 }
 
-.card > .overlay,
-.card > .loading-img,
-.overlay-wrapper > .overlay,
-.overlay-wrapper > .loading-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.card .overlay,
-.overlay-wrapper .overlay {
-  z-index: 50;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 0.25rem;
-}
-
-.card .overlay > .fa,
-.card .overlay > .fas,
-.card .overlay > .far,
-.card .overlay > .fab,
-.overlay-wrapper .overlay > .fa,
-.overlay-wrapper .overlay > .fas,
-.overlay-wrapper .overlay > .far,
-.overlay-wrapper .overlay > .fab {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -15px;
-  margin-top: -15px;
-  color: #000;
-  font-size: 30px;
-}
-
-.card .overlay.dark,
-.overlay-wrapper .overlay.dark {
-  background: rgba(0, 0, 0, 0.5);
-}
-
 .card-header::after,
 .card-body::after,
 .card-footer::after {
@@ -16682,6 +16642,78 @@ a.text-muted:hover {
 
 .flex-1 {
   flex: 1;
+}
+
+.card > .overlay,
+.card > .loading-img,
+.overlay-wrapper > .overlay,
+.overlay-wrapper > .loading-img,
+.info-box > .overlay,
+.info-box > .loading-img,
+.small-box > .overlay,
+.small-box > .loading-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card .overlay,
+.overlay-wrapper .overlay,
+.info-box .overlay,
+.small-box .overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 0.25rem;
+}
+
+.card .overlay > .fa,
+.card .overlay > .fas,
+.card .overlay > .far,
+.card .overlay > .fab,
+.overlay-wrapper .overlay > .fa,
+.overlay-wrapper .overlay > .fas,
+.overlay-wrapper .overlay > .far,
+.overlay-wrapper .overlay > .fab,
+.info-box .overlay > .fa,
+.info-box .overlay > .fas,
+.info-box .overlay > .far,
+.info-box .overlay > .fab,
+.small-box .overlay > .fa,
+.small-box .overlay > .fas,
+.small-box .overlay > .far,
+.small-box .overlay > .fab {
+  color: #343a40;
+}
+
+.card .overlay.dark,
+.overlay-wrapper .overlay.dark,
+.info-box .overlay.dark,
+.small-box .overlay.dark {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.card .overlay.dark > .fa,
+.card .overlay.dark > .fas,
+.card .overlay.dark > .far,
+.card .overlay.dark > .fab,
+.overlay-wrapper .overlay.dark > .fa,
+.overlay-wrapper .overlay.dark > .fas,
+.overlay-wrapper .overlay.dark > .far,
+.overlay-wrapper .overlay.dark > .fab,
+.info-box .overlay.dark > .fa,
+.info-box .overlay.dark > .fas,
+.info-box .overlay.dark > .far,
+.info-box .overlay.dark > .fab,
+.small-box .overlay.dark > .fa,
+.small-box .overlay.dark > .fas,
+.small-box .overlay.dark > .far,
+.small-box .overlay.dark > .fab {
+  color: #ced4da;
 }
 
 /*

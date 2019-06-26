@@ -416,3 +416,45 @@ a.text-muted:hover {
   flex: 1;
 }
 
+
+// Overlays for Card, InfoBox & SmallBox
+.card,
+.overlay-wrapper,
+.info-box,
+.small-box {
+  // Box overlay for LOADING STATE effect
+  > .overlay,
+  > .loading-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.7);
+    @include border-radius($border-radius);
+    > .fa, 
+    > .fas,
+    > .far,
+    > .fab {
+      color: $gray-800;
+    }
+
+    &.dark {
+      background: rgba(0, 0, 0, 0.5);
+      > .fa, 
+      > .fas,
+      > .far,
+      > .fab {
+        color: $gray-400;
+      }
+    }
+  }
+}
+
