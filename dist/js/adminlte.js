@@ -314,10 +314,10 @@
     $(window).on('load', function () {
       Layout._jQueryInterface.call($('body'));
     });
-    $(Selector.SIDEBAR + '   a').on('focusin', function () {
+    $(Selector.SIDEBAR + ' a').on('focusin', function () {
       $(Selector.MAIN_SIDEBAR).addClass(ClassName.SIDEBAR_FOCUSED);
     });
-    $(Selector.SIDEBAR + '   a').on('focusout', function () {
+    $(Selector.SIDEBAR + ' a').on('focusout', function () {
       $(Selector.MAIN_SIDEBAR).removeClass(ClassName.SIDEBAR_FOCUSED);
     });
     /**

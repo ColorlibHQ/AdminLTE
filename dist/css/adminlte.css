@@ -14581,8 +14581,23 @@ html.maximized-card {
  * Component: Table
  * ----------------
  */
-.table {
+.table:not(.table-dark) {
   color: inherit;
+}
+
+.table.table-head-fixed thead tr:nth-child(1) th {
+  background-color: #ffffff;
+  border-bottom: none;
+  box-shadow: inset 0 1px 0 #dee2e6, inset 0 -1px 0 #dee2e6;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.table.table-head-fixed.table-dark thead tr:nth-child(1) th {
+  background-color: #212529;
+  box-shadow: inset 0 1px 0 #32383e, inset 0 -1px 0 #32383e;
 }
 
 .table.no-border,
@@ -14591,14 +14606,16 @@ html.maximized-card {
   border: 0;
 }
 
-.table.text-center, .table.text-center td, .table.text-center th {
+.table.text-center,
+.table.text-center td,
+.table.text-center th {
   text-align: center;
 }
 
-.table-valign-middle thead > tr > th,
-.table-valign-middle thead > tr > td,
-.table-valign-middle tbody > tr > th,
-.table-valign-middle tbody > tr > td {
+.table .table-valign-middle thead > tr > th,
+.table .table-valign-middle thead > tr > td,
+.table .table-valign-middle tbody > tr > th,
+.table .table-valign-middle tbody > tr > td {
   vertical-align: middle;
 }
 

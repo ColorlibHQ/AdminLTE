@@ -178,11 +178,11 @@ const Layout = (($) => {
     Layout._jQueryInterface.call($('body'))
   })
 
-  $(Selector.SIDEBAR + '   a').on('focusin', () => {
+  $(Selector.SIDEBAR + ' a').on('focusin', () => {
     $(Selector.MAIN_SIDEBAR).addClass(ClassName.SIDEBAR_FOCUSED);
   })
 
-  $(Selector.SIDEBAR + '   a').on('focusout', () => {
+  $(Selector.SIDEBAR + ' a').on('focusout', () => {
     $(Selector.MAIN_SIDEBAR).removeClass(ClassName.SIDEBAR_FOCUSED);
   })
 
