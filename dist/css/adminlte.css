@@ -15381,6 +15381,43 @@ html.maximized-card {
   margin-bottom: 15px;
 }
 
+.product-image {
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+}
+
+.product-image-thumbs  {
+  display: flex;
+  align-items: stretch;
+  margin-top: 2rem;
+}
+
+.product-image-thumb  {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
+  border-radius: 0.25rem;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  display: flex;
+  margin-right: 1rem;
+  max-width: 7rem;
+  padding: 0.5rem;
+}
+
+.product-image-thumb  img {
+  max-width: 100%;
+  height: auto;
+  align-self: center;
+}
+
+.product-image-thumb :hover {
+  opacity: 0.5;
+}
+
+.product-share a {
+  margin-right: 0.5rem;
+}
+
 /*
  * Plugin: Full Calendar
  * ---------------------
@@ -17344,6 +17381,58 @@ a.text-muted:hover {
 
 .text-xl {
   font-size: 2rem;
+}
+
+.text-blue {
+  color: #007bff;
+}
+
+.text-indigo {
+  color: #6610f2;
+}
+
+.text-purple {
+  color: #6f42c1;
+}
+
+.text-pink {
+  color: #e83e8c;
+}
+
+.text-red {
+  color: #dc3545;
+}
+
+.text-orange {
+  color: #fd7e14;
+}
+
+.text-yellow {
+  color: #ffc107;
+}
+
+.text-green {
+  color: #28a745;
+}
+
+.text-teal {
+  color: #20c997;
+}
+
+.text-cyan {
+  color: #17a2b8;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-gray {
+  color: #6c757d;
+}
+
+.text-gray-dark {
+  color: #343a40;
 }
 
 .elevation-0 {

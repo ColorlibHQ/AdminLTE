@@ -19,3 +19,10 @@
 .text-xl {
   font-size: $font-size-xl;
 }
+
+
+@each $name, $color in $colors {
+  .text-#{$name} {
+    color: #{$color};
+  }
+}

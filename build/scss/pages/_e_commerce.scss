@@ -1,0 +1,36 @@
+.product-image {
+  @include img-fluid;
+  width: 100%;
+}
+
+.product-image-thumbs {
+  display: flex;
+  align-items: stretch;
+  margin-top: 2rem;
+}
+
+.product-image-thumb {
+
+  @include box-shadow($thumbnail-box-shadow);
+  @include border-radius($thumbnail-border-radius);
+
+  background-color: $thumbnail-bg;
+  border: $thumbnail-border-width solid $thumbnail-border-color;
+  display: flex;
+  margin-right: 1rem;
+  max-width: 6.5rem + ($thumbnail-padding * 2);
+  padding: $thumbnail-padding * 2;
+
+  img {
+    @include img-fluid;
+    align-self: center;
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.product-share a {
+  margin-right: 0.5rem;
+}
