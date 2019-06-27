@@ -23,7 +23,8 @@
   // Add color to the sidebar toggle button
   .sidebar-toggle {
     color: $font-color;
-    &:hover {
+    &:hover,
+    &:focus {
       color: $hover-color;
       background: $hover-bg;
     }
@@ -36,7 +37,8 @@
   color: $color;
   border-bottom: $border-bottom-width solid $border-bottom-color;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: darken($bg-color, 1%);
   }
 }
@@ -141,15 +143,15 @@
     // links
     > .nav-link {
       // border-left: 3px solid transparent;
-      &:active,
-      &:focus {
+      &:active {
         color: $sidebar-dark-color;
       }
     }
 
     // Hover and active states
     &.menu-open > .nav-link,
-    &:hover > .nav-link {
+    &:hover > .nav-link,
+    & > .nav-link:focus  {
       color: $sidebar-dark-hover-color;
       background-color: $sidebar-dark-hover-bg;
     }
@@ -177,7 +179,8 @@
   // All links within the sidebar menu
   .sidebar a {
     color: $sidebar-dark-color;
-    &:hover {
+    &:hover,
+    &:focus {
       text-decoration: none;
     }
   }
@@ -188,7 +191,8 @@
       > .nav-link {
         color: $sidebar-dark-submenu-color;
 
-        &:hover {
+        &:hover,
+        &:focus {
           color: $sidebar-dark-submenu-hover-color;
           background-color: $sidebar-dark-submenu-hover-bg
         }
@@ -196,7 +200,8 @@
 
       > .nav-link.active {
         &,
-        &:hover {
+        &:hover,
+        &:focus {
           color: $sidebar-dark-submenu-active-color;
           background-color: $sidebar-dark-submenu-active-bg;
         }

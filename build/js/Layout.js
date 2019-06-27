@@ -22,6 +22,7 @@ const Layout = (($) => {
 
   const Selector = {
     HEADER         : '.main-header',
+    MAIN_SIDEBAR   : '.main-sidebar',
     SIDEBAR        : '.main-sidebar .sidebar',
     CONTENT        : '.content-wrapper',
     BRAND          : '.brand-link',
@@ -33,12 +34,13 @@ const Layout = (($) => {
   }
 
   const ClassName = {
-    HOLD         : 'hold-transition',
-    SIDEBAR      : 'main-sidebar',
-    CONTENT_FIXED: 'content-fixed',
-    LAYOUT_FIXED : 'layout-fixed',
-    NAVBAR_FIXED : 'layout-navbar-fixed',
-    FOOTER_FIXED : 'layout-footer-fixed',
+    HOLD           : 'hold-transition',
+    SIDEBAR        : 'main-sidebar',
+    CONTENT_FIXED  : 'content-fixed',
+    SIDEBAR_FOCUSED: 'sidebar-focused',
+    LAYOUT_FIXED   : 'layout-fixed',
+    NAVBAR_FIXED   : 'layout-navbar-fixed',
+    FOOTER_FIXED   : 'layout-footer-fixed',
   }
 
   const Default = {
@@ -174,6 +176,14 @@ const Layout = (($) => {
 
   $(window).on('load', () => {
     Layout._jQueryInterface.call($('body'))
+  })
+
+  $(Selector.SIDEBAR + ' a').on('focusin', () => {
+    $(Selector.MAIN_SIDEBAR).addClass(ClassName.SIDEBAR_FOCUSED);
+  })
+
+  $(Selector.SIDEBAR + ' a').on('focusout', () => {
+    $(Selector.MAIN_SIDEBAR).removeClass(ClassName.SIDEBAR_FOCUSED);
   })
 
   /**

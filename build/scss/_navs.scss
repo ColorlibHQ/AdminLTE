@@ -19,6 +19,45 @@
   }
 }
 
+//
+// Vertical Tabs
+//
+.nav-tabs.flex-column {
+  border-right: $nav-tabs-border-width solid $nav-tabs-border-color;
+  border-bottom: 0;
+
+  .nav-link {
+    margin-right: -$nav-tabs-border-width;
+
+    @include hover-focus {
+      border-color: $gray-200 $nav-tabs-border-color $gray-200 $gray-200;
+    }
+  }
+
+  .nav-link.active,
+  .nav-item.show .nav-link {
+    border-color: $gray-300 $nav-tabs-link-active-bg $gray-300 $gray-300;
+  }
+
+  &.nav-tabs-right {
+    border-right: 0;
+    border-left: $nav-tabs-border-width solid $nav-tabs-border-color;
+
+
+    .nav-link {
+      margin-left: -$nav-tabs-border-width;
+
+      @include hover-focus {
+        border-color: $gray-200 $gray-200 $gray-200 $nav-tabs-border-color;
+      }
+    }
+
+    .nav-link.active,
+    .nav-item.show .nav-link {
+      border-color: $gray-300 $gray-300 $gray-300 $nav-tabs-link-active-bg;
+    }
+  }
+}
 
 //
 // Color variants

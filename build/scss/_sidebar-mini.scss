@@ -45,6 +45,8 @@
 
     // Modify the sidebar to shrink instead of disappearing
     .main-sidebar {
+      overflow-x: hidden;
+
       &,
       &:before {
         // Don't go away! Just shrink
@@ -58,7 +60,8 @@
         }
       }
 
-      &:hover {
+      &:hover, 
+      &.sidebar-focused {
         width: $sidebar-width;
         .user-panel {
           text-align: left;
