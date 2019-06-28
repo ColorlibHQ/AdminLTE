@@ -3,12 +3,6 @@
  * -------------
  */
 
-// text muted hover
-a.text-muted:hover {
-  color: theme-color(primary) !important;
-}
-
-
 // text modification
 .text-bold {
   &, &.table td, &.table th {
