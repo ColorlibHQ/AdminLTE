@@ -288,3 +288,68 @@
   }
 }
 
+// Ribbon
+.ribbon-wrapper {
+  height: $ribbon-wrapper-size;
+  overflow: hidden;
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  z-index: 10;
+  width: $ribbon-wrapper-size;
+
+  &.ribbon-lg {
+    height: $ribbon-lg-wrapper-size;
+    width: $ribbon-lg-wrapper-size;
+
+    .ribbon {
+      top: $ribbon-lg-top;
+      right: $ribbon-lg-right;
+      width: $ribbon-lg-width;
+    }
+  }
+
+  &.ribbon-xl {
+    height: $ribbon-xl-wrapper-size;
+    width: $ribbon-xl-wrapper-size;
+
+    .ribbon {
+      top: $ribbon-xl-top;
+      right: $ribbon-xl-right;
+      width: $ribbon-xl-width;
+    }
+  }
+
+  .ribbon {
+    box-shadow: 0 0 $ribbon-border-size rgba($black, .3);
+    font-size: $ribbon-font-size;
+    line-height: $ribbon-line-height;
+    padding: $ribbon-padding;
+    position: relative;
+    right: $ribbon-right;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgba($black, .4);
+    text-transform: uppercase;
+    top: $ribbon-top;
+    transform: rotate(45deg);
+    width: $ribbon-width;
+
+    &::before,
+    &::after {
+      border-left: $ribbon-border-size solid transparent;
+      border-right: $ribbon-border-size solid transparent;
+      border-top: $ribbon-border-size solid #9e9e9e;
+      bottom: -$ribbon-border-size;
+      content: "";
+      position: absolute;
+    }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
+  }
+}

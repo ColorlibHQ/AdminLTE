@@ -11,19 +11,19 @@
 }
 
 .text-sm {
-  font-size: $font-size-sm;
+  font-size: $font-size-sm !important;
 }
 
 .text-xs {
-  font-size: $font-size-base;
+  font-size: $font-size-base !important;
 }
 
 .text-lg {
-  font-size: $font-size-lg;
+  font-size: $font-size-lg !important;
 }
 
 .text-xl {
-  font-size: $font-size-xl;
+  font-size: $font-size-xl !important;
 }
 
 
