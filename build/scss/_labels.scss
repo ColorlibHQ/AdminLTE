@@ -1,10 +1,11 @@
 /*
- * Component: Label
- * ----------------
+ * Component: Labels
+ * -----------------
  */
+
 .label-default {
   background-color: $gray-500;
-  color: #444;
+  color: $gray-700;
 }
 
 .label-danger {

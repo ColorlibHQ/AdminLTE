@@ -1,6 +1,6 @@
 /*
- * Component: Box
- * --------------
+ * Component: Cards
+ * ----------------
  */
 
 .card {
@@ -15,20 +15,20 @@
   }
 
   &.maximized-card {
-    z-index: 9999;
-    width: 100% !important;
     height: 100% !important;
-    max-width: 100% !important;
+    left: 0;
     max-height: 100% !important;
+    max-width: 100% !important;
     position: fixed;
     top: 0;
-    left: 0;
+    width: 100% !important;
+    z-index: 9999;
     
     &.was-collapsed .card-body {
       display: block !important;
     }
 
-    [data-widget="collapse"] {
+    [data-widget='collapse'] {
       display: none;
     }
 
@@ -50,6 +50,7 @@
     > li {
       border-bottom: 1px solid $card-border-color;
       margin: 0;
+
       &:last-of-type {
         border-bottom: none;
       }
@@ -82,14 +83,14 @@ html.maximized-card {
 .card-header,
 .card-body,
 .card-footer {
-  @include clearfix();
+  @include clearfix;
 }
 
 // Box header
 .card-header {
-  position: relative;
   background-color: transparent;
   border-bottom: 1px solid $card-border-color;
+  position: relative;
 
   @if $enable-rounded {
     @include border-top-radius($border-radius);
@@ -104,7 +105,7 @@ html.maximized-card {
     right: 1rem;
     top: .5rem;
 
-    [data-toggle="tooltip"] {
+    [data-toggle='tooltip'] {
       position: relative;
     }
   }
@@ -118,10 +119,10 @@ html.maximized-card {
 
 // Box Tools Buttons
 .btn-tool {
-  padding: .25rem .5rem;
-  font-size: $font-size-sm;
   background: transparent;
   color: $gray-500;
+  font-size: $font-size-sm;
+  padding: .25rem .5rem;
 
   .btn-group.show &,
   &:hover {
@@ -140,9 +141,11 @@ html.maximized-card {
   .no-header & {
     // @include border-top-radius($border-radius);
   }
+
   // Tables within the box body
   > .table {
     margin-bottom: 0;
+
     > thead > tr > th,
     > thead > tr > td {
       border-top-width: 0;
@@ -166,6 +169,7 @@ html.maximized-card {
 .chart-legend {
   @extend .list-unstyled;
   margin: 10px 0;
+
   > li {
     @media (max-width: map-get($grid-breakpoints, sm)) {
       float: left;
@@ -176,34 +180,41 @@ html.maximized-card {
 
 // Comment Box
 .card-comments {
-  background: #f7f7f7;
+  background: $gray-100;
+
   .card-comment {
-    @include clearfix();
+    @include clearfix;
+    border-bottom: 1px solid $gray-200;
     padding: 8px 0;
-    border-bottom: 1px solid #eee;
+
     &:last-of-type {
       border-bottom: 0;
     }
+
     &:first-of-type {
       padding-top: 0;
     }
+
     img {
       @extend .img-sm;
       float: left;
     }
   }
+
   .comment-text {
+    color: lighten($gray-700, 20%);
     margin-left: 40px;
-    color: #555;
   }
+
   .username {
-    color: #444;
+    color: $gray-700;
     display: block;
     font-weight: 600;
   }
+
   .text-muted {
-    font-weight: 400;
     font-size: 12px;
+    font-weight: 400;
   }
 }
 
@@ -212,18 +223,20 @@ html.maximized-card {
 
 // Widget: TODO LIST
 .todo-list {
-  margin: 0;
-  padding: 0;
   list-style: none;
+  margin: 0;
   overflow: auto;
+  padding: 0;
+
   // Todo list element
   > li {
     @include border-radius(2px);
-    padding: 10px;
-    background: #f4f4f4;
+    background: $gray-100;
+    border-left: 2px solid $gray-200;
+    color: $gray-700;
     margin-bottom: 2px;
-    border-left: 2px solid #e6e7e8;
-    color: #444;
+    padding: 10px;
+
     &:last-of-type {
       margin-bottom: 0;
     }
@@ -234,42 +247,44 @@ html.maximized-card {
 
     .text {
       display: inline-block;
-      margin-left: 5px;
       font-weight: 600;
+      margin-left: 5px;
     }
 
     // Time labels
     .label {
-      margin-left: 10px;
       font-size: 9px;
+      margin-left: 10px;
     }
 
     // Tools and options box
     .tools {
+      color: theme-color('danger');
       display: none;
       float: right;
-      color: theme-color("danger");
-      // icons
-      > .fa, 
-      > .fas, 
-      > .far, 
-      > .fab, 
-      > .glyphicon, 
-      > .ion {
-        margin-right: 5px;
-        cursor: pointer;
-      }
 
+      // icons
+      > .fa,
+      > .fas,
+      > .far,
+      > .fab,
+      > .glyphicon,
+      > .ion {
+        cursor: pointer;
+        margin-right: 5px;
+      }
     }
+
     &:hover .tools {
       display: inline-block;
     }
 
     &.done {
-      color: #999;
+      color: darken($gray-500, 25%);
+
       .text {
-        text-decoration: line-through;
         font-weight: 500;
+        text-decoration: line-through;
       }
 
       .label {
@@ -280,24 +295,28 @@ html.maximized-card {
 
   // Color varaity
   .danger {
-    border-left-color: theme-color("danger");
+    border-left-color: theme-color('danger');
   }
+
   .warning {
-    border-left-color: theme-color("warning");
+    border-left-color: theme-color('warning');
   }
+
   .info {
-    border-left-color: theme-color("info");
+    border-left-color: theme-color('info');
   }
+
   .success {
-    border-left-color: theme-color("success");
+    border-left-color: theme-color('success');
   }
+
   .primary {
-    border-left-color: theme-color("primary");
+    border-left-color: theme-color('primary');
   }
 
   .handle {
-    display: inline-block;
     cursor: move;
+    display: inline-block;
     margin: 0 5px;
   }
 }
@@ -315,6 +334,7 @@ html.maximized-card {
       .card-header {
         background-color: $color;
         border-bottom: 0;
+
         &,
         a {
           color: color-yiq($color);
@@ -332,6 +352,7 @@ html.maximized-card {
   .card-#{$name}:not(.card-outline) {
     .btn-tool {
       color: rgba(color-yiq($color), 0.8);
+
       &:hover {
         color: color-yiq($color);
       }
@@ -345,7 +366,7 @@ html.maximized-card {
       .table th {
         border: none;
       }
-      
+
       table thead tr:first-child th:hover,
       table td.day:hover,
       table td.hour:hover,
@@ -354,7 +375,6 @@ html.maximized-card {
         background: darken($color, 8%);
         color: color-yiq($color);
       }
-
 
       table td.active,
       table td.active:hover {

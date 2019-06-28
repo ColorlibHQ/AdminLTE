@@ -1,28 +1,31 @@
 /*
- * Component: Form
- * ---------------
+ * Component: Forms
+ * ----------------
  */
+ 
 .form-group {
   &.has-icon {
     position: relative;
+
     .form-control {
       padding-right: 35px;
     }
+
     .form-icon {
+      background-color: transparent;
+      border: 0;
       cursor: pointer;
+      font-size: 1rem;
+      // margin-top: -3px;
+      padding: $input-btn-padding-y $input-btn-padding-x;
       position: absolute;
       right: 3px;
       top: 0;
-      padding: $input-btn-padding-y $input-btn-padding-x;
-      // margin-top: -3px;
-      border: 0;
-      background-color: transparent;
-      font-size: 1rem;
     }
   }
 }
 
-/* button groups */
+// Button groups
 .btn-group-vertical {
   .btn {
     &.btn-flat:first-of-type, &.btn-flat:last-of-type {
@@ -31,44 +34,66 @@
   }
 }
 
-/* Support Font Awesome icons in form-control */
+// Support icons in form-control
 .form-control-feedback {
-  &.fa, 
-  &.fas, 
-  &.far, 
-  &.fab {
+  &.fa,
+  &.fas,
+  &.far,
+  &.fab,
+  &.glyphicon,
+  &.ion {
     line-height: $input-height;
   }
 }
 
-.input-lg + .form-control-feedback.fa,
-.input-group-lg + .form-control-feedback.fa,
-.form-group-lg .form-control + .form-control-feedback.fa,
-.input-lg + .form-control-feedback.fas,
-.input-group-lg + .form-control-feedback.fas,
-.form-group-lg .form-control + .form-control-feedback.fas,
-.input-lg + .form-control-feedback.far,
-.input-group-lg + .form-control-feedback.far,
-.form-group-lg .form-control + .form-control-feedback.far,
-.input-lg + .form-control-feedback.fab,
-.input-group-lg + .form-control-feedback.fab,
-.form-group-lg .form-control + .form-control-feedback.fab {
-  line-height: $input-height-lg;
+.input-lg  + .form-control-feedback,
+.input-group-lg + .form-control-feedback {
+  &.fa,
+  &.fas,
+  &.far,
+  &.fab,
+  &.glyphicon,
+  &.ion {
+    line-height: $input-height-lg;
+  }
 }
 
-.input-sm + .form-control-feedback.fa,
-.input-group-sm + .form-control-feedback.fa,
-.form-group-sm .form-control + .form-control-feedback.fa,
-.input-sm + .form-control-feedback.fas,
-.input-group-sm + .form-control-feedback.fas,
-.form-group-sm .form-control + .form-control-feedback.fas,
-.input-sm + .form-control-feedback.far,
-.input-group-sm + .form-control-feedback.far,
-.form-group-sm .form-control + .form-control-feedback.far,
-.input-sm + .form-control-feedback.fab,
-.input-group-sm + .form-control-feedback.fab,
-.form-group-sm .form-control + .form-control-feedback.fab {
-  line-height: $input-height-sm;
+.form-group-lg {
+  .form-control + .form-control-feedback {
+    &.fa,
+    &.fas,
+    &.far,
+    &.fab,
+    &.glyphicon,
+    &.ion {
+      line-height: $input-height-lg;
+    }
+  }
+}
+
+.input-sm  + .form-control-feedback,
+.input-group-sm + .form-control-feedback {
+  &.fa,
+  &.fas,
+  &.far,
+  &.fab,
+  &.glyphicon,
+  &.ion {
+    line-height: $input-height-sm;
+  }
+}
+
+.form-group-sm {
+  .form-control + .form-control-feedback {
+    &.fa,
+    &.fas,
+    &.far,
+    &.fab,
+    &.glyphicon,
+    &.ion {
+      line-height: $input-height-sm;
+    }
+  }
 }
 
 label:not(.form-check-label, .custom-file-label) {
@@ -76,26 +101,26 @@ label:not(.form-check-label, .custom-file-label) {
 }
 
 .warning-feedback {
-  display: none;
-  width: 100%;
-  margin-top: $form-feedback-margin-top;
   @include font-size($form-feedback-font-size);
   color: theme-color('warning');
+  display: none;
+  margin-top: $form-feedback-margin-top;
+  width: 100%;
 }
 
 .warning-tooltip {
+  @include border-radius($form-feedback-tooltip-border-radius);
+  @include font-size($form-feedback-tooltip-font-size);
+  background-color: rgba(theme-color('warning'), $form-feedback-tooltip-opacity);
+  color: color-yiq(theme-color('warning'));
+  display: none;
+  line-height: $form-feedback-tooltip-line-height;
+  margin-top: .1rem;
+  max-width: 100%; // Contain to parent when possible
+  padding: $form-feedback-tooltip-padding-y $form-feedback-tooltip-padding-x;
   position: absolute;
   top: 100%;
   z-index: 5;
-  display: none;
-  max-width: 100%; // Contain to parent when possible
-  padding: $form-feedback-tooltip-padding-y $form-feedback-tooltip-padding-x;
-  margin-top: .1rem;
-  @include font-size($form-feedback-tooltip-font-size);
-  line-height: $form-feedback-tooltip-line-height;
-  color: color-yiq(theme-color('warning'));
-  background-color: rgba(theme-color('warning'), $form-feedback-tooltip-opacity);
-  @include border-radius($form-feedback-tooltip-border-radius);
 }
 
 .form-control {
@@ -176,36 +201,34 @@ textarea.form-control {
   }
 }
 
-.custom-control-input {
-  &.is-warning {
-    ~ .custom-control-label {
-      color: theme-color('warning');
+.custom-control-input.is-warning {
+  ~ .custom-control-label {
+    color: theme-color('warning');
 
-      &::before {
-        border-color: theme-color('warning');
-      }
+    &::before {
+      border-color: theme-color('warning');
+    }
+  }
+
+  ~ .warning-feedback,
+  ~ .warning-tooltip {
+    display: block;
+  }
+
+  &:checked {
+    ~ .custom-control-label::before {
+      @include gradient-bg(lighten(theme-color('warning'), 10%));
+      border-color: lighten(theme-color('warning'), 10%);
+    }
+  }
+
+  &:focus {
+    ~ .custom-control-label::before {
+      box-shadow: 0 0 0 $input-focus-width rgba(theme-color('warning'), .25);
     }
 
-    ~ .warning-feedback,
-    ~ .warning-tooltip {
-      display: block;
-    }
-
-    &:checked {
-      ~ .custom-control-label::before {
-        border-color: lighten(theme-color('warning'), 10%);
-        @include gradient-bg(lighten(theme-color('warning'), 10%));
-      }
-    }
-
-    &:focus {
-      ~ .custom-control-label::before {
-        box-shadow: 0 0 0 $input-focus-width rgba(theme-color('warning'), .25);
-      }
-
-      &:not(:checked) ~ .custom-control-label::before {
-        border-color: theme-color('warning');
-      }
+    &:not(:checked) ~ .custom-control-label::before {
+      border-color: theme-color('warning');
     }
   }
 }
@@ -234,20 +257,23 @@ textarea.form-control {
 // custom switch color variations
 .custom-switch {
   @each $name, $color in $theme-colors {
-    &.custom-switch-off-#{$name} { 
+    &.custom-switch-off-#{$name} {
       & .custom-control-input ~ .custom-control-label::before {
         background: #{$color};
         border-color: darken($color, 20%);
       }
+
       & .custom-control-input ~ .custom-control-label::after {
         background: darken($color, 25%);
       }
     }
-    &.custom-switch-on-#{$name} { 
+
+    &.custom-switch-on-#{$name} {
       & .custom-control-input:checked ~ .custom-control-label::before {
         background: #{$color};
         border-color: darken($color, 20%);
       }
+
       & .custom-control-input:checked ~ .custom-control-label::after {
         background: lighten($color, 30%);
       }
@@ -255,31 +281,34 @@ textarea.form-control {
   }
 
   @each $name, $color in $colors {
-    &.custom-switch-off-#{$name} { 
+    &.custom-switch-off-#{$name} {
       & .custom-control-input ~ .custom-control-label::before {
         background: #{$color};
         border-color: darken($color, 20%);
       }
+
       & .custom-control-input ~ .custom-control-label::after {
         background: darken($color, 25%);
       }
     }
-    &.custom-switch-on-#{$name} { 
+
+    &.custom-switch-on-#{$name} {
       & .custom-control-input:checked ~ .custom-control-label::before {
         background: #{$color};
         border-color: darken($color, 20%);
       }
+
       & .custom-control-input:checked ~ .custom-control-label::after {
         background: lighten($color, 30%);
       }
     }
-  }  
+  }
 }
 
 // custom range color variations
 .custom-range {
   @each $name, $color in $theme-colors {
-    &.custom-range-#{$name} { 
+    &.custom-range-#{$name} {
       &:focus {
         &::-webkit-slider-thumb {
           background-color: lighten($color, 35%);
@@ -293,7 +322,7 @@ textarea.form-control {
           background-color: lighten($color, 35%);
         }
       }
-      
+
       &::-webkit-slider-thumb {
         background-color: $color;
       }
@@ -323,7 +352,7 @@ textarea.form-control {
           background-color: lighten($color, 35%);
         }
       }
-      
+
       &::-webkit-slider-thumb {
         background-color: $color;
       }
@@ -336,7 +365,5 @@ textarea.form-control {
         background-color: $color;
       }
     }
-  }  
+  }
 }
-
-

@@ -1,5 +1,7 @@
-// AdminLTE mixins
-// ===============
+/*
+ * General: Mixins
+ * ---------------
+ */
 
 // Changes the color and the hovering properties of the navbar
 @mixin navbar-variant($color, $font-color: rgba(255, 255, 255, 0.8), $hover-color: #f6f6f6, $hover-bg: rgba(0, 0, 0, 0.1)) {
@@ -25,8 +27,8 @@
     color: $font-color;
     &:hover,
     &:focus {
-      color: $hover-color;
       background: $hover-bg;
+      color: $hover-color;
     }
   }
 }
@@ -34,8 +36,8 @@
 // Logo color variation
 @mixin logo-variant($bg-color, $color: #fff, $border-bottom-color: transparent, $border-bottom-width: 0) {
   background-color: $bg-color;
-  color: $color;
   border-bottom: $border-bottom-width solid $border-bottom-color;
+  color: $color;
 
   &:hover,
   &:focus {
@@ -46,10 +48,12 @@
 // Box solid color variantion creator
 @mixin box-solid-variant($color, $text-color: #fff) {
   border: 1px solid $color;
+
   > .card-header {
-    color: $text-color;
     background: $color;
     background-color: $color;
+    color: $text-color;
+
     a,
     .btn {
       color: $text-color;
@@ -63,16 +67,15 @@
     background: $bg-color;
     border-color: $bg-color;
     color: color-yiq($bg-color);
+
     &:after,
-    &:before {
+    &::before {
       border-left-color: $bg-color;
     }
   }
 }
 
 @mixin translate($x, $y) {
-  -webkit-transform: translate($x, $y);
-  -ms-transform: translate($x, $y); // IE9 only
   transform: translate($x, $y);
 }
 
@@ -118,19 +121,20 @@
     }
 
     .status {
-      color: $sidebar-dark-color;
       background: $sidebar-dark-hover-bg;
+      color: $sidebar-dark-color;
+
       &:hover,
       &:focus,
       &:active {
-        color: $sidebar-dark-hover-color;
         background: darken($sidebar-dark-hover-bg, 3%);
+        color: $sidebar-dark-hover-color;
       }
     }
 
     .dropdown-menu {
-      border-color: darken($sidebar-dark-hover-bg, 5%);
       @include box-shadow(0 2px 4px rgba(0, 0, 0, .4));
+      border-color: darken($sidebar-dark-hover-bg, 5%);
     }
 
     .dropdown-item {
@@ -152,13 +156,14 @@
     &.menu-open > .nav-link,
     &:hover > .nav-link,
     & > .nav-link:focus  {
-      color: $sidebar-dark-hover-color;
       background-color: $sidebar-dark-hover-bg;
+      color: $sidebar-dark-hover-color;
     }
 
     > .nav-link.active {
-      color: $sidebar-dark-hover-color;
       background-color: $link-hover-border-color;
+      color: $sidebar-dark-hover-color;
+
       @if $enable-shadows {
         @extend .elevation-1;
       }
@@ -172,13 +177,14 @@
 
   // Section Heading
   .nav-header {
-    color: lighten($sidebar-dark-color, 5%);
     background: inherit; //darken($sidebar-dark-bg, 3%);
+    color: lighten($sidebar-dark-color, 5%);
   }
 
   // All links within the sidebar menu
   .sidebar a {
     color: $sidebar-dark-color;
+
     &:hover,
     &:focus {
       text-decoration: none;
@@ -193,8 +199,8 @@
 
         &:hover,
         &:focus {
+          background-color: $sidebar-dark-submenu-hover-bg;
           color: $sidebar-dark-submenu-hover-color;
-          background-color: $sidebar-dark-submenu-hover-bg
         }
       }
 
@@ -202,8 +208,8 @@
         &,
         &:hover,
         &:focus {
-          color: $sidebar-dark-submenu-active-color;
           background-color: $sidebar-dark-submenu-active-bg;
+          color: $sidebar-dark-submenu-active-color;
         }
       }
     }
@@ -222,19 +228,20 @@
     }
 
     .status {
-      color: $sidebar-light-color;
       background: $sidebar-light-hover-bg;
+      color: $sidebar-light-color;
+
       &:hover,
       &:focus,
       &:active {
-        color: $sidebar-light-hover-color;
         background: darken($sidebar-light-hover-bg, 3%);
+        color: $sidebar-light-hover-color;
       }
     }
 
     .dropdown-menu {
-      border-color: darken($sidebar-light-hover-bg, 5%);
       @include box-shadow(0 2px 4px rgba(0, 0, 0, .4));
+      border-color: darken($sidebar-light-hover-bg, 5%);
     }
 
     .dropdown-item {
@@ -256,13 +263,14 @@
     // Hover and active states
     &.menu-open > .nav-link,
     &:hover > .nav-link {
-      color: $sidebar-light-hover-color;
       background-color: $sidebar-light-hover-bg;
+      color: $sidebar-light-hover-color;
     }
 
     > .nav-link.active {
-      color: $sidebar-light-active-color;
       background-color: $link-hover-border-color;
+      color: $sidebar-light-active-color;
+      
       @if $enable-shadows {
         @extend .elevation-1;
       }
@@ -276,13 +284,14 @@
 
   // Section Heading
   .nav-header {
-    color: darken($sidebar-light-color, 5%);
     background: inherit;
+    color: darken($sidebar-light-color, 5%);
   }
 
   // All links within the sidebar menu
   .sidebar a {
     color: $sidebar-light-color;
+
     &:hover {
       text-decoration: none;
     }
@@ -298,8 +307,8 @@
       > .nav-link.active {
         &,
         &:hover {
-          color: $sidebar-light-submenu-active-color;
           background-color: $sidebar-light-submenu-active-bg;
+          color: $sidebar-light-submenu-active-color;
         }
       }
 

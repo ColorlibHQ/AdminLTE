@@ -7,6 +7,37 @@
 .progress {
   @include box-shadow(none);
   @include border-radius($progress-bar-border-radius);
+
+  // Vertical bars
+  &.vertical {
+    display: inline-block;
+    height: 200px;
+    margin-right: 10px;
+    position: relative;
+    width: 30px;
+
+    > .progress-bar {
+      bottom: 0;
+      position: absolute;
+      width: 100%;
+    }
+
+    //Sizes
+    &.sm,
+    &.progress-sm {
+      width: 20px;
+    }
+
+    &.xs,
+    &.progress-xs {
+      width: 10px;
+    }
+
+    &.xxs,
+    &.progress-xxs {
+      width: 3px;
+    }
+  }
 }
 
 .progress-group {
@@ -24,35 +55,6 @@
 
 .progress-xxs {
   height: 3px;
-}
-
-// Vertical bars
-.progress.vertical {
-  position: relative;
-  width: 30px;
-  height: 200px;
-  display: inline-block;
-  margin-right: 10px;
-  > .progress-bar {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-  }
-
-  //Sizes
-  &.sm,
-  &.progress-sm {
-    width: 20px;
-  }
-
-  &.xs,
-  &.progress-xs {
-    width: 10px;
-  }
-  &.xxs,
-  &.progress-xxs {
-    width: 3px;
-  }
 }
 
 // Remove margins from progress bars when put in a table

@@ -1,6 +1,6 @@
 /*
- * Component: Dropdown menus
- * -------------------------
+ * Component: Dropdown
+ * -------------------
  */
 
 // General Dropdown Rules
@@ -20,35 +20,38 @@
 
 // Dropdown Sizes
 .dropdown-menu-lg {
-  min-width: 280px;
   max-width: 300px;
+  min-width: 280px;
   padding: 0;
+
   .dropdown-divider {
     margin: 0;
   }
+
   .dropdown-item {
     padding: $dropdown-padding-y $dropdown-item-padding-x;
   }
+
   p {
-    white-space: normal;
     margin: 0;
+    white-space: normal;
   }
 }
 
 // Dropdown header and footer
 .dropdown-footer,
 .dropdown-header {
-  text-align: center;
   display: block;
-  padding: .5rem $dropdown-item-padding-x;
   font-size: $font-size-sm;
+  padding: .5rem $dropdown-item-padding-x;
+  text-align: center;
 }
 
 /* Add fade animation to dropdown menus by appending
  the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
 .open:not(.dropup) > .animated-dropdown-menu {
-  backface-visibility: visible !important;
   @include animation(flipInX .7s both);
+  backface-visibility: visible !important;
 }
 
 @keyframes flipInX {
@@ -178,7 +181,7 @@
       padding: 15px;
       border-bottom: 1px solid #f4f4f4;
       border-top: 1px solid #dddddd;
-      @include clearfix();
+      @include clearfix;
       a {
         color: #444 !important;
         @include media-breakpoint-up(sm) {
@@ -192,7 +195,7 @@
     > .user-footer {
       background-color: #f9f9f9;
       padding: 10px;
-      @include clearfix();
+      @include clearfix;
       .btn-default {
         color: #666666;
         &:hover {

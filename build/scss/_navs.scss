@@ -2,12 +2,13 @@
  * Component: Nav
  * --------------
  */
+
 .nav-pills {
   .nav-link {
     color: $gray-600;
 
     &:not(.active):hover {
-      color: theme-color("primary")
+      color: theme-color('primary')
     }
   }
   .nav-item {
@@ -19,12 +20,10 @@
   }
 }
 
-//
 // Vertical Tabs
-//
 .nav-tabs.flex-column {
-  border-right: $nav-tabs-border-width solid $nav-tabs-border-color;
   border-bottom: 0;
+  border-right: $nav-tabs-border-width solid $nav-tabs-border-color;
 
   .nav-link {
     margin-right: -$nav-tabs-border-width;
@@ -40,8 +39,8 @@
   }
 
   &.nav-tabs-right {
-    border-right: 0;
     border-left: $nav-tabs-border-width solid $nav-tabs-border-color;
+    border-right: 0;
 
 
     .nav-link {
@@ -59,9 +58,7 @@
   }
 }
 
-//
 // Color variants
-//
 @each $color, $value in $theme-colors {
   @if $color==dark or $color==light {
     .navbar-#{$color} {

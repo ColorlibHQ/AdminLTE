@@ -1,9 +1,14 @@
+/*
+ * Component: Brand
+ * ----------------
+ */
+
 .brand-link {
   $brand-link-padding-y: $navbar-brand-padding-y + $navbar-padding-y;
-  padding: $brand-link-padding-y $sidebar-padding-x;
-  font-size: $navbar-brand-font-size;
   display: block;
+  font-size: $navbar-brand-font-size;
   line-height: $line-height-lg;
+  padding: $brand-link-padding-y $sidebar-padding-x;
   white-space: nowrap;
 
   &:hover {
@@ -11,23 +16,23 @@
     text-decoration: none;
   }
 
-  [class*="sidebar-dark"] & {
-    color: rgba(255,255,255,.8);
+  [class*='sidebar-dark'] & {
     border-bottom: 1px solid lighten($dark, 10%);
+    color: rgba($white, .8);
   }
 
-  [class*="sidebar-light"] & {
-    color: rgba(0,0,0,.8);
+  [class*='sidebar-light'] & {
     border-bottom: 1px solid $gray-300;
+    color: rgba($black, .8);
   }
 }
 
 .brand-image {
-  float:left;
+  float: left;
   line-height: .8;
-  max-height: 34px;
-  width: auto;
   margin-left: .8rem;
   margin-right: .5rem;
   margin-top: -3px;
+  max-height: 34px;
+  width: auto;
 }

@@ -1,7 +1,8 @@
 /*
- * Misc: print
+ * Misc: Print
  * -----------
  */
+ 
 @media print {
   //Add to elements that you do not want to show when printing
   .no-print {
@@ -18,9 +19,9 @@
   //This is the only element that should appear, so let's remove the margins
   .content-wrapper,
   .main-footer {
+    @include translate(0, 0);
     margin-left: 0 !important;
     min-height: 0 !important;
-    @include translate(0, 0);
   }
 
   .layout-fixed .content-wrapper {
@@ -29,10 +30,10 @@
 
   //Invoice printing
   .invoice {
-    width: 100%;
     border: 0;
     margin: 0;
     padding: 0;
+    width: 100%;
   }
 
   .invoice-col {
@@ -43,6 +44,7 @@
   //Make sure table content displays properly
   .table-responsive {
     overflow: auto;
+
     > .table tr th,
     > .table tr td {
       white-space: normal !important;
