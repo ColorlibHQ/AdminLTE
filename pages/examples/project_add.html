@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Boxed Layout</title>
+  <title>AdminLTE 3 | Project Edit</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,12 +11,12 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
+  <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-boxed">
+<body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -208,8 +208,8 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Layout Options
@@ -225,7 +225,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../layout/boxed.html" class="nav-link active">
+                <a href="../layout/boxed.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Boxed</p>
                 </a>
@@ -423,8 +423,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Pages
@@ -457,16 +457,16 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../examples/project_add.html" class="nav-link">
+                <a href="../examples/project_add.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Project Add</p>
                 </a>
-              </li>
               <li class="nav-item">
                 <a href="../examples/project_edit.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Project Edit</p>
                 </a>
+              </li>
               </li>
               <li class="nav-item">
                 <a href="../examples/project_detail.html" class="nav-link">
@@ -581,13 +581,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Boxed Layout</h1>
+            <h1>Project Add</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Layout</a></li>
-              <li class="breadcrumb-item active">Boxed Layout</li>
+              <li class="breadcrumb-item active">Project Add</li>
             </ol>
           </div>
         </div>
@@ -596,30 +595,83 @@
 
     <!-- Main content -->
     <section class="content">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">General</h3>
 
-      <!-- Default box -->
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Title</h3>
-
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-              <i class="fas fa-minus"></i></button>
-            <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fas fa-times"></i></button>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                  <i class="fas fa-minus"></i></button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="inputName">Project Name</label>
+                <input type="text" id="inputName" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="inputDescription">Project Description</label>
+                <textarea id="inputDescription" class="form-control" rows="4"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="inputStatus">Status</label>
+                <select class="form-control custom-select">
+                  <option selected disabled>Select one</option>
+                  <option>On Hold</option>
+                  <option>Canceled</option>
+                  <option>Success</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="inputClientCompany">Client Company</label>
+                <input type="text" id="inputClientCompany" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="inputProjectLeader">Project Leader</label>
+                <input type="text" id="inputProjectLeader" class="form-control">
+              </div>
+            </div>
+            <!-- /.card-body -->
           </div>
+          <!-- /.card -->
         </div>
-        <div class="card-body">
-          Start creating your amazing application!
-        </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-          Footer
-        </div>
-        <!-- /.card-footer-->
-      </div>
-      <!-- /.card -->
+        <div class="col-md-6">
+          <div class="card card-secondary">
+            <div class="card-header">
+              <h3 class="card-title">Budget</h3>
 
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                  <i class="fas fa-minus"></i></button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="inputEstimatedBudget">Estimated budget</label>
+                <input type="number" id="inputEstimatedBudget" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="inputSpentBudget">Total amount spent</label>
+                <input type="number" id="inputSpentBudget" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="inputEstimatedDuration">Estimated project duration</label>
+                <input type="number" id="inputEstimatedDuration" class="form-control">
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <a href="#" class="btn btn-secondary">Cancel</a>
+          <input type="submit" value="Create new Porject" class="btn btn-success float-right">
+        </div>
+      </div>
     </section>
     <!-- /.content -->
   </div>

@@ -40,6 +40,7 @@
 @each $name, $color in $colors {
   .bg-#{$name} {
     background-color: #{$color};
+
     &,
     > a {
       color: color-yiq($color) !important;
