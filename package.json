@@ -1,10 +1,10 @@
 {
   "name": "admin-lte",
-  "version": "2.4.10",
+  "version": "2.4.12",
   "main": "dist/js/adminlte.min.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/almasaeed2010/AdminLTE.git"
+    "url": "git://github.com/ColorlibHQ/AdminLTE.git"
   },
   "license": "MIT",
   "devDependencies": {
@@ -52,7 +52,7 @@
     "jquery-ui": "^1.12.1",
     "jvectormap": "^1.2.2",
     "moment": "^2.24.0",
-    "morris.js": "^0.5.0",
+    "morris.js": "github:morrisjs/morris.js",
     "pace": "0.0.4",
     "raphael": "^2.2.7",
     "select2": "^4.0.3",

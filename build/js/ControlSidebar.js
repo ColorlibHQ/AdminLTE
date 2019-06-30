@@ -71,17 +71,20 @@
   };
 
   ControlSidebar.prototype.expand = function () {
+    $(Selector.sidebar).show();
     if (!this.options.slide) {
       $('body').addClass(ClassName.open);
     } else {
       $(Selector.sidebar).addClass(ClassName.open);
     }
 
+
     $(this.element).trigger($.Event(Event.expanded));
   };
 
   ControlSidebar.prototype.collapse = function () {
     $('body, ' + Selector.sidebar).removeClass(ClassName.open);
+    $(Selector.sidebar).fadeOut();
     $(this.element).trigger($.Event(Event.collapsed));
   };
 

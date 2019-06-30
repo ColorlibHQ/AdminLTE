@@ -132,9 +132,8 @@ module.exports = function (grunt) { // jshint ignore:line
         + '* should be included in all pages. It controls some layout\n'
         + '* options and implements exclusive AdminLTE plugins.\n'
         + '*\n'
-        + '* @Author  Almsaeed Studio\n'
-        + '* @Support <https://www.almsaeedstudio.com>\n'
-        + '* @Email   <abdullah@almsaeedstudio.com>\n'
+        + '* @author Colorlib\n'
+        + '* @support <https://github.com/ColorlibHQ/AdminLTE/issues>\n'
         + '* @version <%= pkg.version %>\n'
         + '* @repository <%= pkg.repository.url %>\n'
         + '* @license MIT <http://opensource.org/licenses/MIT>\n'
@@ -150,10 +149,10 @@ module.exports = function (grunt) { // jshint ignore:line
           'build/js/BoxWidget.js',
           'build/js/ControlSidebar.js',
           'build/js/DirectChat.js',
-          'build/js/Layout.js',
           'build/js/PushMenu.js',
           'build/js/TodoList.js',
-          'build/js/Tree.js'
+          'build/js/Tree.js',
+          'build/js/Layout.js',
         ],
         dest: 'dist/js/adminlte.js'
       }
