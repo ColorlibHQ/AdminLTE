@@ -197,6 +197,15 @@ const Plugins = [
     from: 'node_modules/toastr/build/',
     to  : 'plugins/toastr'
   },
+  // jsGrid
+  {
+    from: 'node_modules/jsgrid/dist',
+    to: 'plugins/jsgrid'
+  },
+  {
+    from: 'node_modules/jsgrid/demos/',
+    to: 'plugins/jsgrid/demos'
+  },
 
 
   // // Doc Assets

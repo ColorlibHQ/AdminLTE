@@ -69,6 +69,7 @@
     "jquery-mousewheel": "^3.1.13",
     "jquery-ui-dist": "^1.12.1",
     "jqvmap": "github:CivilError/jqvmap",
+    "jsgrid": "^1.5.3",
     "moment": "^2.24.0",
     "overlayscrollbars": "^1.7.2",
     "popper.js": "^1.15.0",

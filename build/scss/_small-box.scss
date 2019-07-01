@@ -8,9 +8,9 @@
   @include box-shadow($card-shadow);
   @extend .mb-3;
 
-  position: relative;
   display: block;
   margin-bottom: 20px;
+  position: relative;
 
   // content wrapper
   > .inner {
@@ -18,18 +18,19 @@
   }
 
   > .small-box-footer {
+    background: rgba($black, 0.1);
+    color: $white;
+    color: rgba($white, 0.8);
+    display: block;
+    padding: 3px 0;
     position: relative;
     text-align: center;
-    padding: 3px 0;
-    color: $white;
-    color: rgba(255, 255, 255, 0.8);
-    display: block;
-    z-index: 10;
-    background: rgba(0, 0, 0, 0.1);
     text-decoration: none;
+    z-index: 10;
+
     &:hover {
+      background: rgba($black, 0.15);
       color: $white;
-      background: rgba(0, 0, 0, 0.15);
     }
   }
 
@@ -37,16 +38,17 @@
     font-size: 38px;
     font-weight: bold;
     margin: 0 0 10px 0;
-    white-space: nowrap;
     padding: 0;
+    white-space: nowrap;
 
   }
 
   p {
     font-size: 15px;
+
     > small {
-      display: block;
       color: #f9f9f9;
+      display: block;
       font-size: 13px;
       margin-top: 5px;
     }
@@ -58,20 +60,22 @@
 
   // the icon
   .icon {
+    color: rgba($black, 0.15);
     z-index: 0;
-    color: rgba(0, 0, 0, 0.15);
 
     > i {
-      transition: all $transition-speed linear;
-      position: absolute;
-      top: 15px;
-      right: 15px;
       font-size: 90px;
-      
-      &.fa, 
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      transition: all $transition-speed linear;
+
+      &.fa,
       &.fas,
       &.far,
-      &.fab {
+      &.fab,
+      &.glyphicon,
+      &.ion {
         font-size: 70px;
         top: 20px;
       }
@@ -82,14 +86,17 @@
   // Small box hover state
   &:hover {
     text-decoration: none;
+
     // Animate icons on small box hover
     .icon > i {
       font-size: 95px;
 
-      &.fa, 
+      &.fa,
       &.fas,
       &.far,
-      &.fab {
+      &.fab,
+      &.glyphicon,
+      &.ion {
         font-size: 75px;
       }
     }
@@ -100,9 +107,11 @@
   // No need for icons on very small devices
   .small-box {
     text-align: center;
+
     .icon {
       display: none;
     }
+
     p {
       font-size: 12px;
     }

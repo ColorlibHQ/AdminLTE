@@ -1,5 +1,5 @@
 /*
- * Component: alert
+ * Component: Alert
  * ----------------
  */
 
@@ -9,8 +9,9 @@
   }
 
   .close {
-    color: #000;
+    color: $black;
     opacity: .2;
+
     &:hover {
       opacity: .5;
     }
@@ -25,21 +26,21 @@
 //Alert Variants
 .alert-success {
   @extend .bg-success;
-  border-color: darken(theme-color("success"), 5%);
+  border-color: darken(theme-color('success'), 5%);
 }
 
 .alert-danger,
 .alert-error {
   @extend .bg-danger;
-  border-color: darken(theme-color("danger"), 5%);
+  border-color: darken(theme-color('danger'), 5%);
 }
 
 .alert-warning {
   @extend .bg-warning;
-  border-color: darken(theme-color("warning"), 5%);
+  border-color: darken(theme-color('warning'), 5%);
 }
 
 .alert-info {
   @extend .bg-info;
-  border-color: darken(theme-color("info"), 5%);
+  border-color: darken(theme-color('info'), 5%);
 }

@@ -1,0 +1,183 @@
+/*
+ * Misc: Colors
+ * ------------
+ */
+
+// Background colors (theme colors)
+@each $name, $color in $theme-colors {
+  .bg-#{$name} {
+    &,
+    > a {
+      color: color-yiq($color) !important;
+    }
+
+    &.btn {
+      &.disabled,
+      &:disabled,
+      &:not(:disabled):not(.disabled):active,
+      &:not(:disabled):not(.disabled).active,
+      .show > &.dropdown-toggle {
+        background-image: none !important;
+      }
+
+      &:hover {
+        @include bg-gradient-variant('&', darken($color, 7.5%));
+        border-color: darken($color, 10%);
+        color: color-yiq(darken($color, 7.5%));
+      }
+
+      &:active,
+      &.active {
+        @include bg-gradient-variant('&', darken($color, 10%));
+        border-color: darken($color, 12.5%);
+        color: color-yiq(darken($color, 10%));
+      }
+    }
+  }
+}
+
+// Background colors (colors)
+@each $name, $color in $colors {
+  .bg-#{$name} {
+    background-color: #{$color};
+
+    &,
+    > a {
+      color: color-yiq($color) !important;
+    }
+
+    &.btn {
+      &.disabled,
+      &:disabled,
+      &:not(:disabled):not(.disabled):active,
+      &:not(:disabled):not(.disabled).active,
+      .show > &.dropdown-toggle {
+        background-image: none !important;
+      }
+
+      &:hover {
+        @include bg-gradient-variant('&', darken($color, 7.5%));
+        border-color: darken($color, 10%);
+        color: color-yiq(darken($color, 7.5%));
+      }
+
+      &:active,
+      &.active {
+        @include bg-gradient-variant('&', darken($color, 10%));
+        border-color: darken($color, 12.5%);
+        color: color-yiq(darken($color, 10%));
+      }
+    }
+  }
+}
+
+.bg-gray {
+  background-color: $gray-500;
+  color: color-yiq($gray-500);
+}
+
+.bg-gray-light {
+  background-color: lighten($gray-200, 3%);
+  color: color-yiq(lighten($gray-200, 3%)) !important;
+}
+
+.bg-black {
+  background-color: $black;
+  color: color-yiq($black) !important;
+}
+
+.bg-white {
+  background-color: $white;
+  color: color-yiq($white) !important;
+}
+
+// Gradient Background colors (theme colors)
+@each $name, $color in $theme-colors {
+  .bg-gradient-#{$name} {
+    @include bg-gradient-variant('&', $color);
+    color: color-yiq($color);
+
+    &.btn {
+      &.disabled,
+      &:disabled,
+      &:not(:disabled):not(.disabled):active,
+      &:not(:disabled):not(.disabled).active,
+      .show > &.dropdown-toggle {
+        background-image: none !important;
+      }
+
+      &:hover {
+        @include bg-gradient-variant('&', darken($color, 7.5%));
+        border-color: darken($color, 10%);
+        color: color-yiq(darken($color, 7.5%));
+      }
+
+      &:active,
+      &.active {
+        @include bg-gradient-variant('&', darken($color, 10%));
+        border-color: darken($color, 12.5%);
+        color: color-yiq(darken($color, 10%));
+      }
+    }
+  }
+}
+
+// Gradient Background colors (colors)
+@each $name, $color in $colors {
+  .bg-gradient-#{$name} {
+    @include bg-gradient-variant('&', $color);
+    color: color-yiq($color);
+
+    &.btn {
+      &.disabled,
+      &:disabled,
+      &:not(:disabled):not(.disabled):active,
+      &:not(:disabled):not(.disabled).active,
+      .show > &.dropdown-toggle {
+        background-image: none !important;
+      }
+
+      &:hover {
+        @include bg-gradient-variant('&', darken($color, 7.5%));
+        border-color: darken($color, 10%);
+        color: color-yiq(darken($color, 7.5%));
+      }
+
+      &:active,
+      &.active {
+        @include bg-gradient-variant('&', darken($color, 10%));
+        border-color: darken($color, 12.5%);
+        color: color-yiq(darken($color, 10%));
+      }
+    }
+  }
+}
+
+// Backgrund Color Disabled
+[class^='bg-'].disabled {
+  opacity: .65;
+}
+
+// Text muted hover
+a.text-muted:hover {
+  color: theme-color(primary) !important;
+}
+
+// Link Styles
+.link-muted {
+  color: darken($gray-500, 30%);
+
+  &:hover,
+  &:focus {
+    color: darken($gray-500, 40%);
+  }
+}
+
+.link-black {
+  color: $gray-600;
+
+  &:hover,
+  &:focus {
+    color: lighten($gray-500, 20%);
+  }
+}

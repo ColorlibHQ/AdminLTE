@@ -2,26 +2,30 @@
  * Component: Main Header
  * ----------------------
  */
+ 
 .main-header {
   z-index: $zindex-main-header;
 
-  .navbar-nav .nav-item {
-    margin: 0;
-  }
-
   .nav-link {
-    position: relative;
     height: $nav-link-height;
+    position: relative;
   }
 
-  .navbar-nav[class*="-right"] {
-    .dropdown-menu {
-      margin-top: -3px;
-      right: 0;
-      left: auto;
-      @media (max-width: breakpoint-max(xs)) {
-        left: 0;
-        right: auto;
+  .navbar-nav {
+    .nav-item {
+      margin: 0;
+    }
+
+    &[class*='-right'] {
+      .dropdown-menu {
+        left: auto;
+        margin-top: -3px;
+        right: 0;
+
+        @media (max-width: breakpoint-max(xs)) {
+          left: 0;
+          right: auto;
+        }
       }
     }
   }
@@ -35,21 +39,22 @@
 
 // Navbar badge
 .navbar-badge {
-  position: absolute;
-  top: 9px;
-  right: 5px;
   font-size: .6rem;
   font-weight: 300;
   padding: 2px 4px;
+  position: absolute;
+  right: 5px;
+  top: 9px;
 }
 
 .btn-navbar {
-  border-left-width: 0;
   background-color: transparent;
+  border-left-width: 0;
 }
 
 .form-control-navbar {
   border-right-width: 0;
+
   & + .input-group-append {
     margin-left: 0;
   }
@@ -89,8 +94,8 @@
     &:focus {
       &,
       & + .input-group-append .btn-navbar {
-        border: $main-header-dark-form-control-focused-border !important;
         background-color: $main-header-dark-form-control-focused-bg;
+        border: $main-header-dark-form-control-focused-border !important;
         color: $main-header-dark-form-control-focused-color;
       }
     }
@@ -126,8 +131,8 @@
     &:focus {
       &,
       & + .input-group-append .btn-navbar {
-        border: $main-header-light-form-control-focused-border !important;
         background-color: $main-header-light-form-control-focused-bg;
+        border: $main-header-light-form-control-focused-border !important;
         color: $main-header-light-form-control-focused-color;
       }
     }

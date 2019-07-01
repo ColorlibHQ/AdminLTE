@@ -2,20 +2,22 @@
  * Component: Info Box
  * -------------------
  */
+ 
 .info-box {
   @extend .d-flex;
   @extend .mb-3;
   @include box-shadow($card-shadow);
   @include border-radius($border-radius);
 
-  padding: .5rem;
-  min-height: 80px;
   background: $white;
+  min-height: 80px;
+  padding: .5rem;
 
   .progress {
-    background-color: rgba(0, 0, 0, 0.125);
-    margin: 5px 0;
+    background-color: rgba($black, 0.125);
     height: 2px;
+    margin: 5px 0;
+
     .progress-bar {
       background-color: $white;
     }
@@ -32,9 +34,9 @@
   }
 
   display: block;
-  width: 70px;
-  text-align: center;
   font-size: 30px;
+  text-align: center;
+  width: 70px;
 
   > img {
     max-width: 100%;
@@ -42,8 +44,8 @@
 }
 
 .info-box-content {
-  padding: 5px 10px;
   flex: 1;
+  padding: 5px 10px;
 }
 
 .info-box-number {
@@ -54,18 +56,20 @@
 .progress-description,
 .info-box-text {
   display: block;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @each $name, $color in $theme-colors {
-  .info-box.bg-#{$name},
-  .info-box.bg-gradient-#{$name} {
-    color: color-yiq($color);
+  .info-box {
+    .bg-#{$name},
+    .bg-gradient-#{$name} {
+      color: color-yiq($color);
 
-    .progress-bar {
-      background-color: color-yiq($color);
+      .progress-bar {
+        background-color: color-yiq($color);
+      }
     }
   }
 }

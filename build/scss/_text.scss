@@ -1,3 +1,9 @@
+/*
+ * Component: Text
+ * -------------
+ */
+
+// text modification
 .text-bold {
   &, &.table td, &.table th {
     font-weight: 700;
@@ -5,17 +11,25 @@
 }
 
 .text-sm {
-  font-size: $font-size-sm;
+  font-size: $font-size-sm !important;
 }
 
 .text-xs {
-  font-size: $font-size-base;
+  font-size: $font-size-base !important;
 }
 
 .text-lg {
-  font-size: $font-size-lg;
+  font-size: $font-size-lg !important;
 }
 
 .text-xl {
-  font-size: $font-size-xl;
+  font-size: $font-size-xl !important;
+}
+
+
+// text color variations
+@each $name, $color in $colors {
+  .text-#{$name} {
+    color: #{$color};
+  }
 }

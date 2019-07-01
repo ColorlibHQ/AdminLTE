@@ -1,10 +1,7 @@
 /*
- * General: Miscellaneous
- * ----------------------
+ * Misc: Miscellaneous
+ * -------------------
  */
-a.text-muted:hover {
-  color: theme-color(primary) !important;
-}
 
 .border-transparent {
   border-color: transparent !important;
@@ -15,170 +12,21 @@ a.text-muted:hover {
   display: block;
   margin: 10px 0;
   text-align: center;
+
   &.margin-bottom {
     margin-bottom: 25px;
   }
+
   > .description-header {
+    font-size: 16px;
+    font-weight: 600;
     margin: 0;
     padding: 0;
-    font-weight: 600;
-    font-size: 16px;
   }
+
   > .description-text {
     text-transform: uppercase;
   }
-}
-
-// Background colors (theme colors)
-@each $name, $color in $theme-colors {
-  .bg-#{$name} {
-    &,
-    a {
-      color: color-yiq($color) !important;
-    }
-  }
-}
-
-// Background colors (colors)
-@each $name, $color in $colors {
-  .bg-#{$name} {
-    background-color: #{$color};
-    &,
-    a {
-      color: color-yiq($color) !important;
-    }
-  }
-}
-
-.bg-gray {
-  color: #000;
-  background-color: $gray-500;
-}
-
-.bg-gray-light {
-  background-color: lighten($gray-200, 3%);
-  color: color-yiq(lighten($gray-200, 3%)) !important;
-}
-
-.bg-black {
-  background-color: $black;
-  color: color-yiq($black) !important;
-}
-
-.bg-white {
-  background-color: $white;
-  color: color-yiq($white) !important;
-}
-
-// Gradient Background colors (theme colors)
-@each $name, $color in $theme-colors {
-  .bg-gradient-#{$name} {
-    @include bg-gradient-variant('&', $color);
-    color: color-yiq($color);
-
-    &.btn {
-      &.disabled,
-      &:disabled,
-      &:not(:disabled):not(.disabled):active,
-      &:not(:disabled):not(.disabled).active,
-      .show > &.dropdown-toggle {
-        background-image: none !important;
-      }
-
-      &:hover {
-        color: color-yiq(darken($color, 7.5%));
-        @include bg-gradient-variant('&', darken($color, 7.5%));
-        border-color: darken($color, 10%);
-      }
-
-      &:active,
-      &.active {
-        color: color-yiq(darken($color, 10%));
-        @include bg-gradient-variant('&', darken($color, 10%));
-        border-color: darken($color, 12.5%);
-      }
-    }
-  }
-}
-
-// Gradient Background colors (colors)
-@each $name, $color in $colors {
-  .bg-gradient-#{$name} {
-    @include bg-gradient-variant('&', $color);
-    color: color-yiq($color);
-
-    &.btn {
-      &.disabled,
-      &:disabled,
-      &:not(:disabled):not(.disabled):active,
-      &:not(:disabled):not(.disabled).active,
-      .show > &.dropdown-toggle {
-        background-image: none !important;
-      }
-
-      &:hover {
-        color: color-yiq(darken($color, 7.5%));
-        @include bg-gradient-variant('&', darken($color, 7.5%));
-        border-color: darken($color, 10%);
-      }
-
-      &:active,
-      &.active {
-        color: color-yiq(darken($color, 10%));
-        @include bg-gradient-variant('&', darken($color, 10%));
-        border-color: darken($color, 12.5%);
-      }
-    }
-  }
-}
-
-// Backgrund Color Disabled
-[class^="bg-"].disabled {
-  opacity: .65;
-}
-
-// Link Styles
-.link-muted {
-  color: darken($gray-500, 30%);
-  &:hover,
-  &:focus {
-    color: darken($gray-500, 40%);
-  }
-}
-
-.link-black {
-  color: #666;
-  &:hover,
-  &:focus {
-    color: #999;
-  }
-}
-
-// Hide elements by display none only
-.hide {
-  display: none !important;
-}
-
-// Remove borders
-.no-border {
-  border: 0 !important;
-}
-
-// Remove box shadow
-.no-shadow {
-  box-shadow: none !important;
-}
-
-// Remove border radius
-.flat {
-  @include border-radius(0 !important);
-}
-
-// _fix for sparkline tooltip
-.jqstooltip {
-  padding: 5px !important;
-  width: auto !important;
-  height: auto !important;
 }
 
 // Description Block Extension
@@ -189,76 +37,78 @@ a.text-muted:hover {
 }
 
 // List utility classes
-.list-unstyled {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
 .list-group-unbordered {
   > .list-group-item {
     border-left: 0;
-    border-right: 0;
     border-radius: 0;
+    border-right: 0;
     padding-left: 0;
     padding-right: 0;
   }
 }
 
 .list-header {
+  color: $gray-600;
   font-size: 15px;
-  padding: 10px 4px;
   font-weight: bold;
-  color: #666;
+  padding: 10px 4px;
 }
 
 .list-seperator {
-  height: 1px;
   background: $card-border-color;
+  height: 1px;
   margin: 15px 0 9px 0;
 }
 
 .list-link {
   > a {
+    color: $gray-600;
     padding: 4px;
-    color: #777;
+
     &:hover {
-      color: #222;
+      color: $gray-900;
     }
   }
 }
 
 // User block
 .user-block {
-  @include clearfix();
+  @include clearfix;
+
   img {
-    width: 40px;
-    height: 40px;
     float: left;
+    height: 40px;
+    width: 40px;
   }
+
   .username,
   .description,
   .comment {
     display: block;
     margin-left: 50px;
   }
+
   .username {
     font-size: 16px;
     font-weight: 600;
   }
+
   .description {
     color: #999;
     font-size: 13px;
   }
+
   &.user-block-sm {
     img {
       @extend .img-sm;
     }
+
     .username,
     .description,
     .comment {
       margin-left: 40px;
     }
+
     .username {
       font-size: 14px;
     }
@@ -273,8 +123,9 @@ a.text-muted:hover {
 }
 
 .img-sm {
-  width: 30px !important;
   height: 30px !important;
+  width: 30px !important;
+
   + .img-push {
     margin-left: 40px;
   }
@@ -283,6 +134,7 @@ a.text-muted:hover {
 .img-md {
   width: 60px;
   height: 60px;
+
   + .img-push {
     margin-left: 70px;
   }
@@ -291,6 +143,7 @@ a.text-muted:hover {
 .img-lg {
   width: 100px;
   height: 100px;
+
   + .img-push {
     margin-left: 110px;
   }
@@ -344,78 +197,49 @@ a.text-muted:hover {
 }
 
 .size-32 {
-  width: 32px;
   height: 32px;
   line-height: 32px;
+  width: 32px;
 }
 
 .size-40 {
-  width: 40px;
   height: 40px;
   line-height: 40px;
+  width: 40px;
 }
 
 .size-50 {
-  width: 50px;
   height: 50px;
   line-height: 50px;
+  width: 50px;
 }
 
 // General attachemnt block
 .attachment-block {
+  background: $gray-100;
   border: 1px solid $card-border-color;
-  padding: 5px;
   margin-bottom: 10px;
-  background: #f7f7f7;
+  padding: 5px;
 
   .attachment-img {
-    max-width: 100px;
-    max-height: 100px;
-    height: auto;
     float: left;
+    height: auto;
+    max-height: 100px;
+    max-width: 100px;
   }
+
   .attachment-pushed {
     margin-left: 110px;
   }
+
   .attachment-heading {
     margin: 0;
   }
+
   .attachment-text {
     color: #555;
   }
 }
-
-.connectedSortable {
-  min-height: 100px;
-}
-
-.ui-helper-hidden-accessible {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-.sort-highlight {
-  background: #f4f4f4;
-  border: 1px dashed #ddd;
-  margin-bottom: 10px;
-}
-
-// Charts
-.chart {
-  position: relative;
-  overflow: hidden;
-}
-
-.flex-1 {
-  flex: 1;
-}
-
 
 // Overlays for Card, InfoBox & SmallBox
 .card,
@@ -425,36 +249,107 @@ a.text-muted:hover {
   // Box overlay for LOADING STATE effect
   > .overlay,
   > .loading-img {
+    height: 100%;
+    left: 0;
     position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
   }
 
   .overlay {
+    @include border-radius($border-radius);
+    align-items: center;
+    background: rgba($white, 0.7);
     display: flex;
     justify-content: center;
-    align-items: center;
     z-index: 50;
-    background: rgba(255, 255, 255, 0.7);
-    @include border-radius($border-radius);
-    > .fa, 
+
+    > .fa,
     > .fas,
     > .far,
-    > .fab {
+    > .fab,
+    > .glyphicon,
+    > .ion {
       color: $gray-800;
     }
 
     &.dark {
-      background: rgba(0, 0, 0, 0.5);
-      > .fa, 
+      background: rgba($black, 0.5);
+
+      > .fa,
       > .fas,
       > .far,
-      > .fab {
+      > .fab,
+      > .glyphicon,
+      > .ion {
         color: $gray-400;
       }
     }
   }
 }
 
+// Ribbon
+.ribbon-wrapper {
+  height: $ribbon-wrapper-size;
+  overflow: hidden;
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  z-index: 10;
+  width: $ribbon-wrapper-size;
+
+  &.ribbon-lg {
+    height: $ribbon-lg-wrapper-size;
+    width: $ribbon-lg-wrapper-size;
+
+    .ribbon {
+      top: $ribbon-lg-top;
+      right: $ribbon-lg-right;
+      width: $ribbon-lg-width;
+    }
+  }
+
+  &.ribbon-xl {
+    height: $ribbon-xl-wrapper-size;
+    width: $ribbon-xl-wrapper-size;
+
+    .ribbon {
+      top: $ribbon-xl-top;
+      right: $ribbon-xl-right;
+      width: $ribbon-xl-width;
+    }
+  }
+
+  .ribbon {
+    box-shadow: 0 0 $ribbon-border-size rgba($black, .3);
+    font-size: $ribbon-font-size;
+    line-height: $ribbon-line-height;
+    padding: $ribbon-padding;
+    position: relative;
+    right: $ribbon-right;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgba($black, .4);
+    text-transform: uppercase;
+    top: $ribbon-top;
+    transform: rotate(45deg);
+    width: $ribbon-width;
+
+    &::before,
+    &::after {
+      border-left: $ribbon-border-size solid transparent;
+      border-right: $ribbon-border-size solid transparent;
+      border-top: $ribbon-border-size solid #9e9e9e;
+      bottom: -$ribbon-border-size;
+      content: "";
+      position: absolute;
+    }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
+  }
+}
