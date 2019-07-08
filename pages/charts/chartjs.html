@@ -615,7 +615,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <canvas id="areaChart" style="height:250px"></canvas>
+                  <canvas id="areaChart" style="height:250px; min-height:250px"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -634,7 +634,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <canvas id="donutChart" style="height:230px"></canvas>
+                <canvas id="donutChart" style="height:230px; min-height:230px"></canvas>
               </div>
               <!-- /.card-body -->
             </div>
@@ -652,7 +652,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <canvas id="pieChart" style="height:230px"></canvas>
+                <canvas id="pieChart" style="height:230px; min-height:230px"></canvas>
               </div>
               <!-- /.card-body -->
             </div>
@@ -674,7 +674,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <canvas id="lineChart" style="height:250px"></canvas>
+                  <canvas id="lineChart" style="height:250px; min-height:250px"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -694,7 +694,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <canvas id="barChart" style="height:230px"></canvas>
+                  <canvas id="barChart" style="height:230px; min-height:230px"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -714,7 +714,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <canvas id="stackedBarChart" style="height:230px"></canvas>
+                  <canvas id="stackedBarChart" style="height:230px; min-height:230px"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -832,8 +832,8 @@
     //- LINE CHART -
     //--------------
     var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
-    var lineChartOptions = areaChartOptions
-    var lineChartData = areaChartData
+    var lineChartOptions = jQuery.extend(true, {}, areaChartOptions)
+    var lineChartData = jQuery.extend(true, {}, areaChartData)
     lineChartData.datasets[0].fill = false;
     lineChartData.datasets[1].fill = false;
     lineChartOptions.datasetFill = false
