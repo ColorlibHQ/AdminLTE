@@ -1,6 +1,6 @@
 import babel from 'rollup-plugin-babel'
 
-const pkg  = require('./package')
+const pkg  = require('../../package')
 const year = new Date().getFullYear()
 
 const globals = {
@@ -22,7 +22,8 @@ export default {
   },
   plugins: [
     babel({
-      exclude: 'node_modules/**'
+      exclude: 'node_modules/**',
+      externalHelpers: true
     })
   ]
 }
