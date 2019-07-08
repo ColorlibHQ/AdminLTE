@@ -1,6 +1,7 @@
 define([
-  'jquery'
-], function ($) {
+  'jquery',
+  '../utils'
+], function ($, Utils) {
   function InputData (decorated, $element, options) {
     this._currentData = [];
     this._valueSeparator = options.get('valueSeparator') || ',';
@@ -117,7 +118,7 @@ define([
 
   InputData.prototype.addOptions = function (_, $options) {
     var options = $.map($options, function ($option) {
-      return $.data($option[0], 'data');
+      return Utils.GetData($option[0], 'data');
     });
 
     this._currentData.push.apply(this._currentData, options);

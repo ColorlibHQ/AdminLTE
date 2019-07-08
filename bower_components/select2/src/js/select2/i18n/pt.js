@@ -35,6 +35,9 @@ define(function () {
     },
     searching: function () {
       return 'A procurar…';
+    },
+    removeAllItems: function () {
+      return 'Remover todos os itens';
     }
   };
 });

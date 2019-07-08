@@ -38,6 +38,9 @@ define(function () {
     },
     searching: function () {
       return 'Пошук…';
+    },
+    removeAllItems: function () {     
+      return 'Видалити всі елементи';
     }
   };
 });

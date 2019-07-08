@@ -31,6 +31,9 @@ define(function () {
     },
     searching: function () {
       return 'កំពុងស្វែងរក...';
+    },
+    removeAllItems: function () {
+      return 'លុបធាតុទាំងអស់';
     }
   };
 });

@@ -31,6 +31,9 @@ define(function () {
     },
     searching: function () {
       return '검색 중…';
+    },
+    removeAllItems: function () {
+      return '모든 항목 삭제';
     }
   };
 });

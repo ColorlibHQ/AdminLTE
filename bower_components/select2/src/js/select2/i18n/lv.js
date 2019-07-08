@@ -46,6 +46,9 @@ define(function () {
     },
     searching: function () {
       return 'Meklēšana…';
+    },
+    removeAllItems: function () {
+      return 'Noņemt visus vienumus';
     }
   };
 });

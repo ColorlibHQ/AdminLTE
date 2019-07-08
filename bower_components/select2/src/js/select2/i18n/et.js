@@ -48,6 +48,9 @@ define(function () {
     },
     searching: function () {
       return 'Otsin…';
+    },
+    removeAllItems: function () {
+      return 'Eemalda kõik esemed';
     }
   };
 });

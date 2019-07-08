@@ -25,6 +25,9 @@ define(function () {
     },
     searching: function () {
       return 'Haetaan…';
+    },
+    removeAllItems: function () {
+      return 'Poista kaikki kohteet';
     }
   };
 });

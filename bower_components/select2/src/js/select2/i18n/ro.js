@@ -41,6 +41,9 @@ define(function () {
     },
     searching: function () {
       return 'Căutare…';
+    },
+    removeAllItems: function () {
+      return 'Eliminați toate elementele';
     }
   };
 });

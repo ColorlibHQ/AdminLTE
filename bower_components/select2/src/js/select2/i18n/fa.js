@@ -33,6 +33,9 @@ define(function () {
     },
     searching: function () {
       return 'در حال جستجو...';
+    },
+    removeAllItems: function () {
+      return 'همه موارد را حذف کنید';
     }
   };
 });

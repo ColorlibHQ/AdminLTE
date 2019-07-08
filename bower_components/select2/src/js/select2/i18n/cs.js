@@ -56,6 +56,9 @@ define(function () {
     },
     searching: function () {
       return 'Vyhledávání…';
+    },
+    removeAllItems: function () {
+      return 'Odstraňte všechny položky';
     }
   };
 });

@@ -25,6 +25,9 @@ define(function () {
     },
     searching: function () {
       return 'Keresés…';
+    },
+    removeAllItems: function () {
+      return 'Távolítson el minden elemet';
     }
   };
 });

@@ -32,6 +32,9 @@ define(function () {
     },
     searching: function () {
       return 'Söker…';
+    },
+    removeAllItems: function () {
+      return 'Ta bort alla objekt';
     }
   };
 });

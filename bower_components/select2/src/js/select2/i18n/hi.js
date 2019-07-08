@@ -34,6 +34,9 @@ define(function () {
     },
     searching: function () {
       return 'खोज रहा है...';
+    },
+    removeAllItems: function () {
+      return 'सभी वस्तुओं को हटा दें';
     }
   };
 });
