@@ -11701,7 +11701,7 @@ body,
   color: #C2C7D0;
 }
 
-.control-sidebar-dark, .control-sidebar-dark::before {
+.control-sidebar-dark {
   background: #343a40;
 }
 
@@ -11759,7 +11759,7 @@ body,
   color: #4b545c;
 }
 
-.control-sidebar-light, .control-sidebar-light::before {
+.control-sidebar-light {
   background: #ffffff;
   border-left: 1px solid #adb5bd;
 }

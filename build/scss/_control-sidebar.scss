@@ -70,8 +70,7 @@
   }
 
   //  Background
-  &,
-  &::before {
+  & {
     background: $sidebar-dark-bg;
   }
 
@@ -140,8 +139,7 @@
   color: lighten($sidebar-light-color, 10%);
 
   //  Background
-  &,
-  &::before {
+  & {
     background: $sidebar-light-bg;
     border-left: 1px solid $gray-500;
   }
