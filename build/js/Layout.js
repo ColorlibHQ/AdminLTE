@@ -23,6 +23,8 @@
     layoutBoxed   : '.layout-boxed',
     mainFooter    : '.main-footer',
     mainHeader    : '.main-header',
+    mainSidebar   : '.main-sidebar',
+    slimScrollDiv : 'slimScrollDiv',
     sidebar       : '.sidebar',
     controlSidebar: '.control-sidebar',
     fixed         : '.fixed',
@@ -130,9 +132,11 @@
         // $(Selector.sidebar).slimScroll({ destroy: true }).height('auto')
 
         // Add slimscroll
-        $(Selector.sidebar).slimScroll({
-          height: ($(window).height() - $(Selector.mainHeader).height()) + 'px'
-        });
+        if ($(Selector.mainSidebar).find(Selector.slimScrollDiv).length === 0) {
+          $(Selector.sidebar).slimScroll({
+            height: ($(window).height() - $(Selector.mainHeader).height()) + 'px'
+          });
+        }
       }
     }
   };
