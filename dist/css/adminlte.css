@@ -9654,6 +9654,10 @@ a.text-dark:hover, a.text-dark:focus {
  * Core: Layout
  * ------------
  */
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body,
 .wrapper {
@@ -16635,6 +16639,16 @@ html.maximized-card {
 
 .ribbon-wrapper .ribbon::after {
   right: 0;
+}
+
+.back-to-top {
+  bottom: 1.25rem;
+  position: fixed;
+  right: 1.25rem;
+}
+
+.back-to-top:focus {
+  box-shadow: none;
 }
 
 /*

@@ -353,3 +353,14 @@
     }
   }
 }
+
+// Scroll To Top
+.back-to-top {
+  bottom: 1.25rem;
+  position: fixed;
+  right: 1.25rem;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
