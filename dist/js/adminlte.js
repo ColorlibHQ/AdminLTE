@@ -911,6 +911,9 @@ throw new Error('AdminLTE requires jQuery')
     tree.slideUp(this.options.animationSpeed, function () {
       //tree.find(Selector.open + ' > ' + Selector.treeview).slideUp();
       $(this.element).trigger(collapsedEvent);
+
+      // Collapse child items
+      parentLi.find(Selector.treeview).removeClass(ClassName.open).find(Selector.treeviewMenu).hide();
     }.bind(this));
   };
 
