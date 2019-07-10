@@ -28,8 +28,9 @@ const ControlSidebar = (($) => {
   }
 
   const ClassName = {
-    CONTROL_SIDEBAR_OPEN : 'control-sidebar-open',
-    CONTROL_SIDEBAR_SLIDE: 'control-sidebar-slide-open'
+    CONTROL_SIDEBAR_ANIMATE: 'control-sidebar-animate',
+    CONTROL_SIDEBAR_OPEN   : 'control-sidebar-open',
+    CONTROL_SIDEBAR_SLIDE  : 'control-sidebar-slide-open'
   }
 
   const Default = {
@@ -52,7 +53,12 @@ const ControlSidebar = (($) => {
     show() {
       // Show the control sidebar
       if (this._config.slide) {
-        $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE)
+        $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
+        $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function(){
+          $(Selector.CONTROL_SIDEBAR).hide()
+          $('html').removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
+          $(this).dequeue()
+        })
       } else {
         $('body').removeClass(ClassName.CONTROL_SIDEBAR_OPEN)
       }
@@ -61,7 +67,14 @@ const ControlSidebar = (($) => {
     collapse() {
       // Collapse the control sidebar
       if (this._config.slide) {
-        $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE)
+        $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
+        $(Selector.CONTROL_SIDEBAR).show().delay(100).queue(function(){
+          $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function(){
+            $('html').removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
+            $(this).dequeue()
+          })
+          $(this).dequeue()
+        })
       } else {
         $('body').addClass(ClassName.CONTROL_SIDEBAR_OPEN)
       }
