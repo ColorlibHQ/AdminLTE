@@ -88,9 +88,14 @@ body {
   }
 }
 .content-wrapper {
-  min-height: calc(100% - 102px);
+  min-height: calc(100vh - 101px);
   background-color: #ecf0f5;
   z-index: 800;
+}
+@media (max-width: 767px) {
+  .content-wrapper {
+    min-height: calc(100vh - 151px);
+  }
 }
 .main-footer {
   background: #fff;
