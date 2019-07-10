@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-nl" viewBox="0 0 640 480">
+  <g fill-rule="evenodd" stroke-width="1pt" transform="scale(1.25 .9375)">
+    <rect width="512" height="509.8" fill="#fff" rx="0" ry="0"/>
+    <rect width="512" height="169.9" y="342.1" fill="#21468b" rx="0" ry="0"/>
+    <path fill="#ae1c28" d="M0 0h512v170H0z"/>
+  </g>
+</svg>
