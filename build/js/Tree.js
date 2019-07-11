@@ -84,6 +84,7 @@
     parent.addClass(ClassName.open);
     tree.slideDown(this.options.animationSpeed, function () {
       $(this.element).trigger(expandedEvent);
+      parent.height('auto');
     }.bind(this));
   };
 
