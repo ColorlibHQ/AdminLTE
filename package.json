@@ -13,7 +13,7 @@
     "compile": "npm-run-all --parallel js css",
     "dev": "npm-run-all --parallel watch sync",
     "js": "npm-run-all --sequential js-compile js-minify",
-    "js-compile": "rollup -c --sourcemap",
+    "js-compile": "rollup --config build/config/rollup.config.js --sourcemap",
     "js-minify": "uglifyjs --compress typeofs=false --mangle --comments \"/^!/\" --source-map \"content=dist/js/adminlte.js.map,includeSources,url=adminlte.min.js.map\" --output dist/js/adminlte.min.js dist/js/adminlte.js",
     "production": "npm-run-all --parallel compile && node build/npm/Publish.js -v",
     "plugins": "node build/npm/Publish.js -v",
