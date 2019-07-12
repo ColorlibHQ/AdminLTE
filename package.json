@@ -82,10 +82,10 @@
     "toastr": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.5.4",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
     "@babel/plugin-external-helpers": "^7.2.0",
-    "@babel/preset-env": "^7.5.4",
+    "@babel/preset-env": "^7.4.5",
     "autoprefixer": "^8.6.5",
     "babel-eslint": "^8.2.6",
     "browser-sync": "^2.26.7",
@@ -101,8 +101,8 @@
     "npm-run-all": "^4.1.5",
     "path": "^0.12.7",
     "postcss-cli": "^5.0.1",
-    "rollup": "^1.16.7",
-    "rollup-plugin-babel": "^5.0.0-alpha.0",
+    "rollup": "^1.15.1",
+    "rollup-plugin-babel": "^4.3.2",
     "style-loader": "^0.19.1",
     "uglify-js": "^3.6.0"
   }
