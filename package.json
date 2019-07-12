@@ -14,7 +14,7 @@
     "dev": "npm-run-all --parallel watch sync",
     "js": "npm-run-all --sequential js-compile js-minify",
     "js-compile": "rollup -c --sourcemap",
-    "js-minify": "uglifyjs --compress typeofs=false --mangle --comments \"/^!/\" --source-map \"content=dist/js/adminlte.js.map,includeSources,url=adminlte.min.js.map\" --output dist/js/adminlte.min.js dist/js/adminlte.js",
+    "js-minify": "terser --compress typeofs=false --mangle --comments \"/^!/\" --source-map \"content=dist/js/adminlte.js.map,includeSources,url=adminlte.min.js.map\" --output dist/js/adminlte.min.js dist/js/adminlte.js",
     "production": "npm-run-all --parallel compile && node build/npm/Publish.js -v",
     "plugins": "node build/npm/Publish.js -v",
     "sync": "browser-sync start --server --files *.html pages/ dist/",
@@ -87,7 +87,7 @@
     "@babel/core": "^7.4.5",
     "@babel/plugin-external-helpers": "^7.2.0",
     "@babel/preset-env": "^7.4.5",
-    "autoprefixer": "^8.6.5",
+    "autoprefixer": "^9.6.0",
     "babel-eslint": "^8.2.6",
     "browser-sync": "^2.26.7",
     "clean-css-cli": "^4.3.0",
@@ -105,6 +105,7 @@
     "rollup": "^1.15.1",
     "rollup-plugin-babel": "^4.3.2",
     "style-loader": "^0.19.1",
-    "uglify-js": "^3.6.0"
+    "set-value": "^3.0.1",
+    "terser": "^4.0.0"
   }
 }

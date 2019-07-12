@@ -1,28 +1,32 @@
 {
-  "_from": "@fullcalendar/interaction",
+  "_args": [
+    [
+      "@fullcalendar/interaction@4.2.0",
+      "/Users/rejack/Projekte/GitHub/REJack/AdminLTE"
+    ]
+  ],
+  "_from": "@fullcalendar/interaction@4.2.0",
   "_id": "@fullcalendar/interaction@4.2.0",
   "_inBundle": false,
   "_integrity": "sha512-wwAyocUp1HEY7c7xCymR9EGdh7AWZrwNiBQlIpP3ne0eJT0U4ZjlnoOoels3VPsTJ9a6pdO1/XoGjEvL1T5y4g==",
   "_location": "/@fullcalendar/interaction",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "@fullcalendar/interaction",
+    "raw": "@fullcalendar/interaction@4.2.0",
     "name": "@fullcalendar/interaction",
     "escapedName": "@fullcalendar%2finteraction",
     "scope": "@fullcalendar",
-    "rawSpec": "",
+    "rawSpec": "4.2.0",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "4.2.0"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/@fullcalendar/interaction/-/interaction-4.2.0.tgz",
-  "_shasum": "312e83f575aed67c33aec69884664d436aaedef2",
-  "_spec": "@fullcalendar/interaction",
+  "_spec": "4.2.0",
   "_where": "/Users/rejack/Projekte/GitHub/REJack/AdminLTE",
   "author": {
     "name": "Adam Shaw",
@@ -32,9 +36,7 @@
   "bugs": {
     "url": "https://fullcalendar.io/reporting-bugs"
   },
-  "bundleDependencies": false,
   "copyright": "2019 Adam Shaw",
-  "deprecated": false,
   "description": "Provides functionality for event drag-n-drop, resizing, dateClick, and selectable actions",
   "docs": "https://fullcalendar.io/docs/editable",
   "homepage": "https://fullcalendar.io/",

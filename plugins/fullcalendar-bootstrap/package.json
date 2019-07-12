@@ -1,28 +1,32 @@
 {
-  "_from": "@fullcalendar/bootstrap",
+  "_args": [
+    [
+      "@fullcalendar/bootstrap@4.2.0",
+      "/Users/rejack/Projekte/GitHub/REJack/AdminLTE"
+    ]
+  ],
+  "_from": "@fullcalendar/bootstrap@4.2.0",
   "_id": "@fullcalendar/bootstrap@4.2.0",
   "_inBundle": false,
   "_integrity": "sha512-yavoxeP13f7MCeSuEk9aQHd0z82yvENw3yjbxZZHBtIY1/E/FOPZRGZYFmwffIvvz7AOs9W+Pt6hxzFLsPW02Q==",
   "_location": "/@fullcalendar/bootstrap",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "@fullcalendar/bootstrap",
+    "raw": "@fullcalendar/bootstrap@4.2.0",
     "name": "@fullcalendar/bootstrap",
     "escapedName": "@fullcalendar%2fbootstrap",
     "scope": "@fullcalendar",
-    "rawSpec": "",
+    "rawSpec": "4.2.0",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "4.2.0"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/@fullcalendar/bootstrap/-/bootstrap-4.2.0.tgz",
-  "_shasum": "8ddf310e3247502ff49a1ec852eb84d443cc942b",
-  "_spec": "@fullcalendar/bootstrap",
+  "_spec": "4.2.0",
   "_where": "/Users/rejack/Projekte/GitHub/REJack/AdminLTE",
   "author": {
     "name": "Adam Shaw",
@@ -32,9 +36,7 @@
   "bugs": {
     "url": "https://fullcalendar.io/reporting-bugs"
   },
-  "bundleDependencies": false,
   "copyright": "2019 Adam Shaw",
-  "deprecated": false,
   "description": "Bootstrap 4 theming for your calendar",
   "docs": "https://fullcalendar.io/docs/bootstrap-theme",
   "homepage": "https://fullcalendar.io/",

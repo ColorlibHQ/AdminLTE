@@ -1,28 +1,32 @@
 {
-  "_from": "raphael",
+  "_args": [
+    [
+      "raphael@2.2.8",
+      "/Users/rejack/Projekte/GitHub/REJack/AdminLTE"
+    ]
+  ],
+  "_from": "raphael@2.2.8",
   "_id": "raphael@2.2.8",
   "_inBundle": false,
   "_integrity": "sha512-0kWKcGn4lXTw4eUiOhjspYiG+v0m6zSmTmlO62E0hl2CYKUvCuHER9YKqXYvOn2nj24mYp8jzHOLeBuj/Gn28Q==",
   "_location": "/raphael",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "raphael",
+    "raw": "raphael@2.2.8",
     "name": "raphael",
     "escapedName": "raphael",
-    "rawSpec": "",
+    "rawSpec": "2.2.8",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "2.2.8"
   },
   "_requiredBy": [
-    "#USER",
     "/",
     "/jquery-mapael"
   ],
   "_resolved": "https://registry.npmjs.org/raphael/-/raphael-2.2.8.tgz",
-  "_shasum": "4b18443c2c6030c3b492d8d11fbbca14ebe4d3f3",
-  "_spec": "raphael",
+  "_spec": "2.2.8",
   "_where": "/Users/rejack/Projekte/GitHub/REJack/AdminLTE",
   "author": {
     "name": "Dmitry Baranovskiy"
@@ -30,7 +34,6 @@
   "bugs": {
     "url": "https://github.com/DmitryBaranovskiy/raphael/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Tomas Alabes",
@@ -40,7 +43,6 @@
   "dependencies": {
     "eve-raphael": "0.5.0"
   },
-  "deprecated": false,
   "description": "JavaScript Vector Library",
   "devDependencies": {
     "qunitjs": "^1.0.0",

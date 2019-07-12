@@ -1,28 +1,32 @@
 {
-  "_from": "@fullcalendar/timegrid",
+  "_args": [
+    [
+      "@fullcalendar/timegrid@4.2.0",
+      "/Users/rejack/Projekte/GitHub/REJack/AdminLTE"
+    ]
+  ],
+  "_from": "@fullcalendar/timegrid@4.2.0",
   "_id": "@fullcalendar/timegrid@4.2.0",
   "_inBundle": false,
   "_integrity": "sha512-JtojTR+1uc1/WNzejcmsI5/2Jg007QprK5IpR8ocUVEcHXaBBXU6CPGirEWKyfk7QPZ7KzmJCykQ68QHiptyKA==",
   "_location": "/@fullcalendar/timegrid",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "@fullcalendar/timegrid",
+    "raw": "@fullcalendar/timegrid@4.2.0",
     "name": "@fullcalendar/timegrid",
     "escapedName": "@fullcalendar%2ftimegrid",
     "scope": "@fullcalendar",
-    "rawSpec": "",
+    "rawSpec": "4.2.0",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "4.2.0"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/@fullcalendar/timegrid/-/timegrid-4.2.0.tgz",
-  "_shasum": "e2372ba108f5da8e38c915366c2101b4365ff409",
-  "_spec": "@fullcalendar/timegrid",
+  "_spec": "4.2.0",
   "_where": "/Users/rejack/Projekte/GitHub/REJack/AdminLTE",
   "author": {
     "name": "Adam Shaw",
@@ -32,12 +36,10 @@
   "bugs": {
     "url": "https://fullcalendar.io/reporting-bugs"
   },
-  "bundleDependencies": false,
   "copyright": "2019 Adam Shaw",
   "dependencies": {
     "@fullcalendar/daygrid": "~4.2.0"
   },
-  "deprecated": false,
   "description": "Display your events on a grid of time slots",
   "docs": "https://fullcalendar.io/docs/timegrid-view",
   "homepage": "https://fullcalendar.io/",
