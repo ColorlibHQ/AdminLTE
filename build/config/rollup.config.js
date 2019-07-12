@@ -23,7 +23,7 @@ export default {
   plugins: [
     babel({
       exclude: 'node_modules/**',
-      externalHelpers: true
+      babelHelpers: "external"
     })
   ]
 }
