@@ -10610,6 +10610,24 @@ body,
   width: auto;
 }
 
+.brand-image-xs {
+  float: left;
+  line-height: .8;
+  margin-left: .8rem;
+  margin-right: .5rem;
+  margin-top: -3px;
+  max-height: 34px;
+  width: auto;
+}
+
+.brand-image-xl {
+  line-height: .8;
+  margin-bottom: -10px;
+  margin-top: -14px;
+  max-height: 40px;
+  width: auto;
+}
+
 /**
  * Component: Main Sidebar
  * -----------------------
@@ -11950,6 +11968,40 @@ body,
  * Component: Sidebar Mini
  * -----------------------
  */
+.logo-xs,
+.logo-xl {
+  margin: 0;
+  opacity: 1;
+  position: absolute;
+  visibility: visible;
+}
+
+.logo-xs.brand-image-xs,
+.logo-xl.brand-image-xs {
+  left: 18px;
+  top: 12px;
+}
+
+.logo-xs.brand-image-xl,
+.logo-xl.brand-image-xl {
+  left: 12px;
+  top: 6px;
+}
+
+.logo-xs {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.logo-xs.brand-image-xl {
+  left: 16px;
+  top: 8px;
+}
+
+.brand-link.logo-switch::before {
+  content: '\00a0';
+}
+
 @media (min-width: 992px) {
   .sidebar-mini .nav-sidebar,
   .sidebar-mini .nav-sidebar > .nav-header,
@@ -11978,6 +12030,15 @@ body,
     opacity: 0;
     visibility: hidden;
   }
+  .sidebar-mini.sidebar-collapse .logo-xl {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .sidebar-mini.sidebar-collapse .logo-xs {
+    display: inline-block;
+    opacity: 1;
+    visibility: visible;
+  }
   .sidebar-mini.sidebar-collapse .main-sidebar {
     overflow-x: hidden;
   }
@@ -11999,13 +12060,19 @@ body,
   }
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel > .info,
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .nav-sidebar .nav-link p,
-  .sidebar-mini.sidebar-collapse .main-sidebar:hover .brand-text, .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .user-panel > .info,
+  .sidebar-mini.sidebar-collapse .main-sidebar:hover .brand-text,
+  .sidebar-mini.sidebar-collapse .main-sidebar:hover .logo-xl, .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .user-panel > .info,
   .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .nav-sidebar .nav-link p,
-  .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .brand-text {
+  .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .brand-text,
+  .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .logo-xl {
     display: inline-block;
     margin-left: 0;
     opacity: 1;
     visibility: visible;
+  }
+  .sidebar-mini.sidebar-collapse .main-sidebar:hover .logo-xs, .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .logo-xs {
+    opacity: 0;
+    visibility: hidden;
   }
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .brand-image, .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .brand-image {
     margin-right: .5rem;
@@ -12052,6 +12119,15 @@ body,
     opacity: 0;
     visibility: hidden;
   }
+  .sidebar-mini-md.sidebar-collapse .logo-xl {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .sidebar-mini-md.sidebar-collapse .logo-xs {
+    display: inline-block;
+    opacity: 1;
+    visibility: visible;
+  }
   .sidebar-mini-md.sidebar-collapse .main-sidebar {
     overflow-x: hidden;
   }
@@ -12073,13 +12149,19 @@ body,
   }
   .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .user-panel > .info,
   .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .nav-sidebar .nav-link p,
-  .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .brand-text, .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .user-panel > .info,
+  .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .brand-text,
+  .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .logo-xl, .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .user-panel > .info,
   .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .nav-sidebar .nav-link p,
-  .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .brand-text {
+  .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .brand-text,
+  .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .logo-xl {
     display: inline-block;
     margin-left: 0;
     opacity: 1;
     visibility: visible;
+  }
+  .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .logo-xs, .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .logo-xs {
+    opacity: 0;
+    visibility: hidden;
   }
   .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .brand-image, .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .brand-image {
     margin-right: .5rem;
@@ -12125,6 +12207,8 @@ body,
 
 .sidebar .nav-link p,
 .main-sidebar .brand-text,
+.main-sidebar .logo-xs,
+.main-sidebar .logo-xl,
 .sidebar .user-panel .info {
   transition: margin-left 0.3s linear, opacity 0.3s ease, visibility 0.3s ease;
 }
@@ -12132,6 +12216,8 @@ body,
 @media (prefers-reduced-motion: reduce) {
   .sidebar .nav-link p,
   .main-sidebar .brand-text,
+  .main-sidebar .logo-xs,
+  .main-sidebar .logo-xl,
   .sidebar .user-panel .info {
     transition: none;
   }
