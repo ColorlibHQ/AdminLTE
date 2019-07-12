@@ -4,6 +4,7 @@
  */
  
 .main-header {
+  border: $main-header-bottom-border;
   z-index: $zindex-main-header;
 
   .nav-link {
