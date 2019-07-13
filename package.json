@@ -13,7 +13,7 @@
     "compile": "npm-run-all --parallel js css",
     "dev": "npm-run-all --parallel watch sync",
     "js": "npm-run-all --sequential js-compile js-minify",
-    "js-compile": "rollup -c --sourcemap",
+    "js-compile": "rollup --config build/config/rollup.config.js --sourcemap",
     "js-minify": "terser --compress typeofs=false --mangle --comments \"/^!/\" --source-map \"content=dist/js/adminlte.js.map,includeSources,url=adminlte.min.js.map\" --output dist/js/adminlte.min.js dist/js/adminlte.js",
     "production": "npm-run-all --parallel compile && node build/npm/Publish.js -v",
     "plugins": "node build/npm/Publish.js -v",
@@ -83,10 +83,10 @@
     "toastr": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
     "@babel/plugin-external-helpers": "^7.2.0",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-env": "^7.5.4",
     "autoprefixer": "^9.6.0",
     "babel-eslint": "^8.2.6",
     "browser-sync": "^2.26.7",
@@ -102,8 +102,8 @@
     "npm-run-all": "^4.1.5",
     "path": "^0.12.7",
     "postcss-cli": "^5.0.1",
-    "rollup": "^1.15.1",
-    "rollup-plugin-babel": "^4.3.2",
+    "rollup": "^1.16.7",
+    "rollup-plugin-babel": "^4.3.3",
     "style-loader": "^0.19.1",
     "set-value": "^3.0.1",
     "terser": "^4.0.0"
