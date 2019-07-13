@@ -9,12 +9,12 @@
     "css": "npm-run-all --sequential css-compile css-prefix css-minify",
     "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 build/scss/AdminLTE.scss dist/css/adminlte.css",
     "css-prefix": "postcss --config build/config/postcss.config.js --replace \"dist/css/*.css\" \"!dist/css/*.min.css\"",
-    "css-minify": "cleancss --level 1 --source-map --output dist/css/adminlte.min.css dist/css/adminlte.css",
+    "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output dist/css/adminlte.min.css dist/css/adminlte.css",
     "compile": "npm-run-all --parallel js css",
     "dev": "npm-run-all --parallel watch sync",
     "js": "npm-run-all --sequential js-compile js-minify",
     "js-compile": "rollup --config build/config/rollup.config.js --sourcemap",
-    "js-minify": "uglifyjs --compress typeofs=false --mangle --comments \"/^!/\" --source-map \"content=dist/js/adminlte.js.map,includeSources,url=adminlte.min.js.map\" --output dist/js/adminlte.min.js dist/js/adminlte.js",
+    "js-minify": "terser --compress typeofs=false --mangle --comments \"/^!/\" --source-map \"content=dist/js/adminlte.js.map,includeSources,url=adminlte.min.js.map\" --output dist/js/adminlte.min.js dist/js/adminlte.js",
     "production": "npm-run-all --parallel compile && node build/npm/Publish.js -v",
     "plugins": "node build/npm/Publish.js -v",
     "sync": "browser-sync start --server --files *.html pages/ dist/",
@@ -59,6 +59,7 @@
     "datatables.net-bs4": "^1.10.19",
     "daterangepicker": "^3.0.5",
     "fastclick": "^1.0.6",
+    "flag-icon-css": "^3.3.0",
     "flot": "^3.1.1",
     "icheck-bootstrap": "^3.0.1",
     "inputmask": "^4.0.8",
@@ -86,7 +87,7 @@
     "@babel/core": "^7.5.4",
     "@babel/plugin-external-helpers": "^7.2.0",
     "@babel/preset-env": "^7.5.4",
-    "autoprefixer": "^8.6.5",
+    "autoprefixer": "^9.6.0",
     "babel-eslint": "^8.2.6",
     "browser-sync": "^2.26.7",
     "clean-css-cli": "^4.3.0",
@@ -104,6 +105,7 @@
     "rollup": "^1.16.7",
     "rollup-plugin-babel": "^4.3.3",
     "style-loader": "^0.19.1",
-    "uglify-js": "^3.6.0"
+    "set-value": "^3.0.1",
+    "terser": "^4.0.0"
   }
 }

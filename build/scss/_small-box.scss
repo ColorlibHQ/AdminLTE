@@ -35,21 +35,56 @@
   }
 
   h3 {
-    font-size: 38px;
+    @include font-size(2.2rem);
     font-weight: bold;
     margin: 0 0 10px 0;
     padding: 0;
     white-space: nowrap;
+  }
 
+  @include media-breakpoint-up(lg) {
+    .col-xl-2 &,
+    .col-lg-2 &,
+    .col-md-2 & {
+      h3 {
+        @include font-size(1.6rem);
+      }
+    }
+
+    .col-xl-3 &,
+    .col-lg-3 &,
+    .col-md-3 & {
+      h3 {
+        @include font-size(1.6rem);
+      }
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .col-xl-2 &,
+    .col-lg-2 &,
+    .col-md-2 & {
+      h3 {
+        @include font-size(2.2rem);
+      }
+    }
+
+    .col-xl-3 &,
+    .col-lg-3 &,
+    .col-md-3 & {
+      h3 {
+        @include font-size(2.2rem);
+      }
+    }
   }
 
   p {
-    font-size: 15px;
+    font-size: 1rem;
 
     > small {
       color: #f9f9f9;
       display: block;
-      font-size: 13px;
+      font-size: 0.9rem;
       margin-top: 5px;
     }
   }

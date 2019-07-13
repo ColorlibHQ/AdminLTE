@@ -1,28 +1,32 @@
 {
-  "_from": "@fullcalendar/core",
+  "_args": [
+    [
+      "@fullcalendar/core@4.2.0",
+      "/Users/rejack/Projekte/GitHub/REJack/AdminLTE"
+    ]
+  ],
+  "_from": "@fullcalendar/core@4.2.0",
   "_id": "@fullcalendar/core@4.2.0",
   "_inBundle": false,
   "_integrity": "sha512-4kd5OGHxjMtwI0gUHKwAYzmR0Z79Qf8y0ARx2Ruh20JdVy3Tznn6oKwdpkUbaXWrLXNDoXYRkBiFCIgC27VNCw==",
   "_location": "/@fullcalendar/core",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "@fullcalendar/core",
+    "raw": "@fullcalendar/core@4.2.0",
     "name": "@fullcalendar/core",
     "escapedName": "@fullcalendar%2fcore",
     "scope": "@fullcalendar",
-    "rawSpec": "",
+    "rawSpec": "4.2.0",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "4.2.0"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/@fullcalendar/core/-/core-4.2.0.tgz",
-  "_shasum": "16716d6617137e54fceeb03c72f5124c92b86e58",
-  "_spec": "@fullcalendar/core",
+  "_spec": "4.2.0",
   "_where": "/Users/rejack/Projekte/GitHub/REJack/AdminLTE",
   "author": {
     "name": "Adam Shaw",
@@ -32,9 +36,7 @@
   "bugs": {
     "url": "https://fullcalendar.io/reporting-bugs"
   },
-  "bundleDependencies": false,
   "copyright": "2019 Adam Shaw",
-  "deprecated": false,
   "description": "Provides core functionality, including the Calendar class",
   "docs": "https://fullcalendar.io/docs/initialize-es6",
   "homepage": "https://fullcalendar.io/",

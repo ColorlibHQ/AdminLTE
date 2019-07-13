@@ -3,6 +3,10 @@
  * --------------------------
  */
  
+html.control-sidebar-animate {
+  overflow-x: hidden;
+}
+
 .control-sidebar {
   position: absolute;
   top: $main-header-height;
@@ -11,6 +15,7 @@
   &,
   &::before {
     bottom: 0;
+    display: none;
     right: -$control-sidebar-width;
     width: $control-sidebar-width;
     @include transition(right $transition-speed $transition-fn);
@@ -29,6 +34,8 @@
 .control-sidebar-open {
   @include media-breakpoint-up(md) {
     .control-sidebar {
+      display: block;
+
       &,
       &::before {
         right: 0;
@@ -54,6 +61,8 @@
 // Control sidebar slide over content state
 .control-sidebar-slide-open {
   .control-sidebar {
+    display: block;
+
     &,
     &::before {
       right: 0;
@@ -70,8 +79,7 @@
   }
 
   //  Background
-  &,
-  &::before {
+  & {
     background: $sidebar-dark-bg;
   }
 
@@ -140,8 +148,7 @@
   color: lighten($sidebar-light-color, 10%);
 
   //  Background
-  &,
-  &::before {
+  & {
     background: $sidebar-light-bg;
     border-left: 1px solid $gray-500;
   }

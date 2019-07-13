@@ -104,17 +104,6 @@ const Layout = (($) => {
           $(Selector.CONTENT).css('min-height', heights.sidebar - heights.header)
         }
       }
-      if ($('body').hasClass(ClassName.NAVBAR_FIXED)) {
-          $(Selector.BRAND).css('height', heights.header)
-          $(Selector.SIDEBAR).css('margin-top', heights.header)
-          $(Selector.SIDEBAR).css('margin-top', heights.header)
-      }
-      if ($('body').hasClass(ClassName.FOOTER_FIXED)) {
-        $(Selector.CONTENT).css('margin-bottom', heights.footer)
-      }
-      if ($('body').hasClass(ClassName.CONTENT_FIXED)) {
-        $(Selector.CONTENT).css('height', $(Selector.CONTENT).css('min-height'))
-      } 
     }
 
     // Private

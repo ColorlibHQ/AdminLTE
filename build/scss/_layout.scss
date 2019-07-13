@@ -3,15 +3,17 @@
  * ------------
  */
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body,
 .wrapper {
   min-height: 100%;
-  overflow-x: hidden;
 }
 
 .wrapper {
-  overflow: hidden;
   position: relative;
 
   & .content-wrapper {
@@ -33,8 +35,47 @@ body,
   }
 
   .layout-navbar-fixed & {
+    &.sidebar-collapse {
+      .brand-link {
+        height: $main-header-height;
+        transition: width $transition-speed $transition-fn;
+        width: $sidebar-mini-width;
+      }
+
+      .main-sidebar:hover {
+        .brand-link {
+          transition: width $transition-speed $transition-fn;
+          width: $sidebar-width;
+        }
+      }
+    }
+
+    .sidebar {
+      margin-top: $main-header-height;
+    }
+
+    .brand-link {
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      transition: width $transition-speed $transition-fn;
+      width: $sidebar-width;
+      z-index: $zindex-main-sidebar + 1;
+    }
+
+    // Sidebar variants brand-link fix
+    @each $name, $color in $theme-colors {
+      .sidebar-dark-#{$name} .brand-link {
+        background-color: $sidebar-dark-bg;
+      }
+
+      .sidebar-light-#{$name} .brand-link {
+        background-color: $sidebar-light-bg;
+      }
+    }
+
     .content-wrapper {
-      margin-top: 57px;
+      margin-top: $main-header-height;
     }
 
     .main-header {
@@ -43,6 +84,96 @@ body,
       right: 0;
       top: 0;
       z-index: $zindex-main-sidebar - 1;
+    }
+  }
+
+  .layout-navbar-not-fixed & {
+    .brand-link {
+      position: static;
+    }
+
+    .sidebar,
+    .content-wrapper {
+      margin-top: 0px;
+    }
+
+    .main-header {
+      position: static;
+    }
+  }
+
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+      .layout#{$infix}-navbar-fixed & {
+        &.sidebar-collapse {
+          .brand-link {
+            height: $main-header-height;
+            transition: width $transition-speed $transition-fn;
+            width: $sidebar-mini-width;
+          }
+
+          .main-sidebar:hover {
+            .brand-link {
+              transition: width $transition-speed $transition-fn;
+              width: $sidebar-width;
+            }
+          }
+        }
+
+        .sidebar {
+          margin-top: $main-header-height;
+        }
+
+        .brand-link {
+          overflow: hidden;
+          position: fixed;
+          top: 0;
+          transition: width $transition-speed $transition-fn;
+          width: $sidebar-width;
+          z-index: $zindex-main-sidebar + 1;
+        }
+
+        // Sidebar variants brand-link fix
+        @each $name, $color in $theme-colors {
+          .sidebar-dark-#{$name} .brand-link {
+            background-color: $sidebar-dark-bg;
+          }
+
+          .sidebar-light-#{$name} .brand-link {
+            background-color: $sidebar-light-bg;
+          }
+        }
+
+        .content-wrapper {
+          margin-top: $main-header-height;
+        }
+
+        .main-header {
+          left: 0;
+          position: fixed;
+          right: 0;
+          top: 0;
+          z-index: $zindex-main-sidebar - 1;
+        }
+      }
+
+      .layout#{$infix}-navbar-not-fixed & {
+        .brand-link {
+          position: static;
+        }
+
+        .sidebar,
+        .content-wrapper {
+          margin-top: 0px;
+        }
+
+        .main-header {
+          position: static;
+        }
+      }
+
     }
   }
 
@@ -56,6 +187,41 @@ body,
     }
   }
 
+  .layout-footer-not-fixed & {
+    .main-footer {
+      position: static;
+    }
+
+    .content-wrapper {
+      margin-bottom: 0px;
+    }
+  }
+
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+      .layout#{$infix}-footer-fixed & {
+        .main-footer {
+          bottom: 0;
+          left: 0;
+          position: fixed;
+          right: 0;
+          z-index: $zindex-main-sidebar - 1;
+        }
+
+        .content-wrapper {
+          margin-bottom: $main-footer-height;
+        }
+      }
+
+      .layout#{$infix}-footer-not-fixed & {
+        .main-footer {
+          position: static;
+        }
+      }
+    }
+  }
 
   .layout-top-nav & {
     margin-left: 0;
@@ -152,48 +318,6 @@ body,
   }
 }
 
-.layout-navbar-fixed {
-
-  &.sidebar-collapse {
-    .brand-link {
-      height: 57px;
-      transition: width $transition-speed $transition-fn;
-      width: $sidebar-mini-width;
-    }
-
-    .main-sidebar:hover {
-      .brand-link {
-        transition: width $transition-speed $transition-fn;
-        width: $sidebar-width;
-      }
-    }
-  }
-
-  .sidebar {
-    margin-top: 57px;
-  }
-
-  .brand-link {
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    transition: width $transition-speed $transition-fn;
-    width: $sidebar-width;
-    z-index: $zindex-main-sidebar + 1;
-  }
-
-  // Sidebar variants
-  @each $name, $color in $theme-colors {
-    .sidebar-dark-#{$name} .brand-link {
-      background-color: $sidebar-dark-bg;
-    }
-
-    .sidebar-light-#{$name} .brand-link {
-      background-color: $sidebar-light-bg;
-    }
-  }
-}
-
 .layout-fixed {
   .main-sidebar {
     bottom: 0;
@@ -204,7 +328,6 @@ body,
     top: 0;
   }
 }
-
 
 .main-footer {
   background: $main-footer-bg;

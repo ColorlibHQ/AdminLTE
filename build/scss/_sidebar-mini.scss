@@ -44,6 +44,17 @@
       visibility: hidden;
     }
 
+    .logo-xl {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .logo-xs {
+      display: inline-block;
+      opacity: 1;
+      visibility: visible;
+    }
+
     // Modify the sidebar to shrink instead of disappearing
     .main-sidebar {
       overflow-x: hidden;
@@ -75,11 +86,17 @@
 
         .user-panel > .info,
         .nav-sidebar .nav-link p,
-        .brand-text {
+        .brand-text,
+        .logo-xl {
           display: inline-block;
           margin-left: 0;
           opacity: 1;
           visibility: visible;
+        }
+
+        .logo-xs {
+          opacity: 0;
+          visibility: hidden;
         }
 
         .brand-image {
@@ -107,6 +124,43 @@
   }
 }
 
+
+// Logo style
+.logo-xs,
+.logo-xl {
+  margin: 0;
+  opacity: 1;
+  position: absolute;
+  visibility: visible;
+
+  &.brand-image-xs {
+    left: 18px;
+    top: 12px;
+  }
+
+  &.brand-image-xl {
+    left: 12px;
+    top: 6px;
+  }
+}
+
+.logo-xs {
+  opacity: 0;
+  visibility: hidden;
+
+  &.brand-image-xl {
+    left: 16px;
+    top: 8px;
+  }
+}
+
+.brand-link {
+  &.logo-switch {
+    &::before {
+      content: '\00a0';
+    }
+  }
+}
 
 // Add sidebar-mini class to the body tag to activate this feature
 .sidebar-mini {
@@ -148,6 +202,8 @@
 
 .sidebar .nav-link p,
 .main-sidebar .brand-text,
+.main-sidebar .logo-xs,
+.main-sidebar .logo-xl,
 .sidebar .user-panel .info {
   @include transition(margin-left $transition-speed linear, opacity $transition-speed ease, visibility $transition-speed ease)
 }

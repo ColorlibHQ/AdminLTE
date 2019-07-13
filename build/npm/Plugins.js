@@ -206,6 +206,15 @@ const Plugins = [
     from: 'node_modules/jsgrid/demos/',
     to: 'plugins/jsgrid/demos'
   },
+  // flag-icon-css
+  {
+    from: 'node_modules/flag-icon-css/css',
+    to: 'plugins/flag-icon-css/css'
+  },
+  {
+    from: 'node_modules/flag-icon-css/flags',
+    to: 'plugins/flag-icon-css/flags'
+  },
 
 
   // // Doc Assets

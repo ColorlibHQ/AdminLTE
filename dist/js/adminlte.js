@@ -29,6 +29,7 @@
       MAIN_HEADER: '.main-header'
     };
     var ClassName = {
+      CONTROL_SIDEBAR_ANIMATE: 'control-sidebar-animate',
       CONTROL_SIDEBAR_OPEN: 'control-sidebar-open',
       CONTROL_SIDEBAR_SLIDE: 'control-sidebar-slide-open'
     };
@@ -55,7 +56,12 @@
       _proto.show = function show() {
         // Show the control sidebar
         if (this._config.slide) {
-          $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE);
+          $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE);
+          $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
+            $(Selector.CONTROL_SIDEBAR).hide();
+            $('html').removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE);
+            $(this).dequeue();
+          });
         } else {
           $('body').removeClass(ClassName.CONTROL_SIDEBAR_OPEN);
         }
@@ -64,7 +70,14 @@
       _proto.collapse = function collapse() {
         // Collapse the control sidebar
         if (this._config.slide) {
-          $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE);
+          $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE);
+          $(Selector.CONTROL_SIDEBAR).show().delay(100).queue(function () {
+            $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
+              $('html').removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE);
+              $(this).dequeue();
+            });
+            $(this).dequeue();
+          });
         } else {
           $('body').addClass(ClassName.CONTROL_SIDEBAR_OPEN);
         }
@@ -240,20 +253,6 @@
           } else {
             $(Selector.CONTENT).css('min-height', heights.sidebar - heights.header);
           }
-        }
-
-        if ($('body').hasClass(ClassName.NAVBAR_FIXED)) {
-          $(Selector.BRAND).css('height', heights.header);
-          $(Selector.SIDEBAR).css('margin-top', heights.header);
-          $(Selector.SIDEBAR).css('margin-top', heights.header);
-        }
-
-        if ($('body').hasClass(ClassName.FOOTER_FIXED)) {
-          $(Selector.CONTENT).css('margin-bottom', heights.footer);
-        }
-
-        if ($('body').hasClass(ClassName.CONTENT_FIXED)) {
-          $(Selector.CONTENT).css('height', $(Selector.CONTENT).css('min-height'));
         }
       } // Private
       ;
