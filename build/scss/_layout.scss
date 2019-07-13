@@ -50,7 +50,7 @@ body,
       }
     }
 
-    &.fixed {
+    &.layout-fixed {
       .sidebar {
         margin-top: $main-header-height;
       }
@@ -124,7 +124,7 @@ body,
           }
         }
 
-        &.fixed {
+        &.layout-fixed {
           .sidebar {
             margin-top: $main-header-height;
           }
