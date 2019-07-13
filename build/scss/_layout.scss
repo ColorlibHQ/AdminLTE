@@ -50,8 +50,10 @@ body,
       }
     }
 
-    .sidebar {
-      margin-top: $main-header-height;
+    &.fixed {
+      .sidebar {
+        margin-top: $main-header-height;
+      }
     }
 
     .brand-link {
@@ -122,8 +124,10 @@ body,
           }
         }
 
-        .sidebar {
-          margin-top: $main-header-height;
+        &.fixed {
+          .sidebar {
+            margin-top: $main-header-height;
+          }
         }
 
         .brand-link {

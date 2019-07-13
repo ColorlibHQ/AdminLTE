@@ -10178,7 +10178,7 @@ body,
   width: 250px;
 }
 
-.layout-navbar-fixed .wrapper .sidebar {
+.layout-navbar-fixed .wrapper.fixed .sidebar {
   margin-top: calc(3.5rem + 1px);
 }
 
@@ -10291,7 +10291,7 @@ body,
   width: 250px;
 }
 
-.layout-navbar-fixed .wrapper .sidebar {
+.layout-navbar-fixed .wrapper.fixed .sidebar {
   margin-top: calc(3.5rem + 1px);
 }
 
@@ -10403,7 +10403,7 @@ body,
     transition: width 0.3s ease-in-out;
     width: 250px;
   }
-  .layout-sm-navbar-fixed .wrapper .sidebar {
+  .layout-sm-navbar-fixed .wrapper.fixed .sidebar {
     margin-top: calc(3.5rem + 1px);
   }
   .layout-sm-navbar-fixed .wrapper .brand-link {
@@ -10494,7 +10494,7 @@ body,
     transition: width 0.3s ease-in-out;
     width: 250px;
   }
-  .layout-md-navbar-fixed .wrapper .sidebar {
+  .layout-md-navbar-fixed .wrapper.fixed .sidebar {
     margin-top: calc(3.5rem + 1px);
   }
   .layout-md-navbar-fixed .wrapper .brand-link {
@@ -10585,7 +10585,7 @@ body,
     transition: width 0.3s ease-in-out;
     width: 250px;
   }
-  .layout-lg-navbar-fixed .wrapper .sidebar {
+  .layout-lg-navbar-fixed .wrapper.fixed .sidebar {
     margin-top: calc(3.5rem + 1px);
   }
   .layout-lg-navbar-fixed .wrapper .brand-link {
@@ -10676,7 +10676,7 @@ body,
     transition: width 0.3s ease-in-out;
     width: 250px;
   }
-  .layout-xl-navbar-fixed .wrapper .sidebar {
+  .layout-xl-navbar-fixed .wrapper.fixed .sidebar {
     margin-top: calc(3.5rem + 1px);
   }
   .layout-xl-navbar-fixed .wrapper .brand-link {
