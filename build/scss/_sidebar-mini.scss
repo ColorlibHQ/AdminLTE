@@ -121,6 +121,18 @@
     .visible-sidebar-mini {
       display: block !important;
     }
+
+    &.layout-fixed {
+      .main-sidebar:hover {
+        .brand-link {
+          width: $sidebar-width;
+        }
+      }
+
+      .brand-link {
+        width: $sidebar-mini-width;
+      }
+    }
   }
 }
 

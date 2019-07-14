@@ -364,3 +364,65 @@
     box-shadow: none;
   }
 }
+
+// Pre
+pre {
+  padding: .75rem;
+}
+
+// Blockquotes styles
+blockquote {
+  background: $white;
+  border-left: .7rem solid $primary;
+  margin: 1.5em .7rem;
+  padding: 0.5em .7rem;
+
+  .box & {
+    background: $gray-200;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $primary;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  @each $color, $value in $theme-colors {
+    &.quote-#{$color} {
+      border-color: $value;
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: $value;
+      }
+    }
+  }
+
+  @each $color, $value in $colors {
+    &.quote-#{$color} {
+      border-color: $value;
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: $value;
+      }
+    }
+  }
+}
