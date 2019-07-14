@@ -1,14 +1,30 @@
+// System / Log files 
 *.DS_Store
 *.log
+
+// Archives
 *.zip
+
+// Sass Cache
+.sass-cache
+
+// Project files
 .idea
 nbproject
 nbproject/private
-node_modules
-.sass-cache
-bower_components
-ad.js
-TODO
-test.html
 .vscode/
 .vs/
+
+// Node / Bower
+node_modules/
+bower_components/
+
+// Docs
+docs/_site
+.jekyll-cache/
+.jekyll-metadata
+
+// ETC
+TODO
+test.html
+ad.js
