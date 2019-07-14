@@ -122,16 +122,14 @@
       display: block !important;
     }
 
-    .main-sidebar:hover {
-      .brand-link {
-        &.logo-switch {
+    &.layout-fixed {
+      .main-sidebar:hover {
+        .brand-link {
           width: $sidebar-width;
         }
       }
-    }
 
-    .brand-link {
-      &.logo-switch {
+      .brand-link {
         width: $sidebar-mini-width;
       }
     }

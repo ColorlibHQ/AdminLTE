@@ -14599,10 +14599,10 @@ body,
   .sidebar-mini.sidebar-collapse .visible-sidebar-mini {
     display: block !important;
   }
-  .sidebar-mini.sidebar-collapse .main-sidebar:hover .brand-link.logo-switch {
+  .sidebar-mini.sidebar-collapse.layout-fixed .main-sidebar:hover .brand-link {
     width: 250px;
   }
-  .sidebar-mini.sidebar-collapse .brand-link.logo-switch {
+  .sidebar-mini.sidebar-collapse.layout-fixed .brand-link {
     width: 4.6rem;
   }
 }
@@ -14694,10 +14694,10 @@ body,
   .sidebar-mini-md.sidebar-collapse .visible-sidebar-mini {
     display: block !important;
   }
-  .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .brand-link.logo-switch {
+  .sidebar-mini-md.sidebar-collapse.layout-fixed .main-sidebar:hover .brand-link {
     width: 250px;
   }
-  .sidebar-mini-md.sidebar-collapse .brand-link.logo-switch {
+  .sidebar-mini-md.sidebar-collapse.layout-fixed .brand-link {
     width: 4.6rem;
   }
 }
