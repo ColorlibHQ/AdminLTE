@@ -121,6 +121,20 @@
     .visible-sidebar-mini {
       display: block !important;
     }
+
+    .main-sidebar:hover {
+      .brand-link {
+        &.logo-switch {
+          width: $sidebar-width;
+        }
+      }
+    }
+
+    .brand-link {
+      &.logo-switch {
+        width: $sidebar-mini-width;
+      }
+    }
   }
 }
 

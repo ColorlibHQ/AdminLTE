@@ -193,4 +193,14 @@
   }
 }
 
+@each $name, $color in $colors {
+  .sidebar-dark-#{$name} {
+    @include skin-dark-sidebar($color)
+  }
+
+  .sidebar-light-#{$name} {
+    @include skin-light-sidebar($color)
+  }
+}
+
 
