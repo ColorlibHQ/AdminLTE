@@ -308,11 +308,24 @@ a:focus {
   font-weight: 300;
   overflow: hidden;
 }
+.main-header .logo img {
+  padding: 4px;
+  object-fit: contain;
+  margin: 0 auto;
+}
 .main-header .logo .logo-lg {
   display: block;
 }
+.main-header .logo .logo-lg img {
+  max-width: 200px;
+  max-height: 50px;
+}
 .main-header .logo .logo-mini {
   display: none;
+}
+.main-header .logo .logo-mini img {
+  max-width: 50px;
+  max-height: 50px;
 }
 .main-header .navbar-brand {
   color: #fff;
