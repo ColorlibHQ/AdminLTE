@@ -320,12 +320,27 @@ a:focus {
   max-width: 200px;
   max-height: 50px;
 }
+.main-header .logo .logo-lg .brandlogo-image {
+  margin-top: 8px;
+  margin-right: 10px;
+  margin-left: -5px;
+}
 .main-header .logo .logo-mini {
   display: none;
 }
 .main-header .logo .logo-mini img {
   max-width: 50px;
   max-height: 50px;
+}
+.main-header .logo .logo-mini .brandlogo-image {
+  margin-top: 8px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.main-header .logo .brandlogo-image {
+  float: left;
+  height: 34px;
+  width: auto;
 }
 .main-header .navbar-brand {
   color: #fff;
