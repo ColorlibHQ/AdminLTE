@@ -900,8 +900,7 @@ throw new Error('AdminLTE requires jQuery')
     parent.addClass(ClassName.open);
     tree.slideDown(this.options.animationSpeed, function () {
       $(this.element).trigger(expandedEvent);
-      parent.css('background', 'red').height('auto');
-      console.log("parent.height('auto');");
+      parent.height('auto');
     }.bind(this));
   };
 
