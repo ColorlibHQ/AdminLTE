@@ -144,8 +144,8 @@ $attachment-border-radius: 3px !default;
 
 // Z-INDEX
 // --------------------------------------------------------
-$zindex-main-header: 900 !default;
-$zindex-main-sidebar: 950 !default;
+$zindex-main-header: $zindex-fixed + 2 !default;
+$zindex-main-sidebar: $zindex-fixed + 6 !default;
 $zindex-sidebar-mini-links: 010 !default;
 
 // TRANSITIONS SETTINGS

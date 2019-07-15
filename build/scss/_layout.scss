@@ -40,6 +40,13 @@ body,
     }
   }
 
+  .layout-navbar-fixed.sidebar-collapse & {
+    .brand-link {
+      height: $main-header-height;
+      width: $sidebar-mini-width;
+    }
+  }
+
   .layout-navbar-fixed & {
     a.anchor {
       display: block;
@@ -47,18 +54,10 @@ body,
       top: calc((#{$main-header-height-inner} + #{$main-header-bottom-border-width} + (#{$main-header-link-padding-y} * 2)) / -1);
     }
 
-    &.sidebar-collapse {
+    .main-sidebar:hover {
       .brand-link {
-        height: $main-header-height;
         transition: width $transition-speed $transition-fn;
-        width: $sidebar-mini-width;
-      }
-
-      .main-sidebar:hover {
-        .brand-link {
-          transition: width $transition-speed $transition-fn;
-          width: $sidebar-width;
-        }
+        width: $sidebar-width;
       }
     }
 
@@ -335,6 +334,10 @@ body,
 }
 
 .layout-fixed {
+  .brand-link {
+    width: $sidebar-width;
+  }
+
   .main-sidebar {
     bottom: 0;
     float: none;

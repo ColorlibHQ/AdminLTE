@@ -9,6 +9,7 @@
   font-size: $navbar-brand-font-size;
   line-height: $line-height-lg;
   padding: $brand-link-padding-y $sidebar-padding-x;
+  transition: width $transition-speed $transition-fn;
   white-space: nowrap;
 
   &:hover {
