@@ -31,7 +31,7 @@
     "documentation"
   ],
   "dependencies": {
-    "bootstrap-slider": "@dev",
+    "bootstrap-slider": "879a98d",
     "chart.js": "1.0.*",
     "ckeditor": "^4.7.0",
     "bootstrap-colorpicker": "^2.5.1",
