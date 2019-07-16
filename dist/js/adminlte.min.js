@@ -6,7 +6,7 @@
 *
 * @author Colorlib
 * @support <https://github.com/ColorlibHQ/AdminLTE/issues>
-* @version 2.4.14
+* @version 2.4.15
 * @repository git://github.com/ColorlibHQ/AdminLTE.git
 * @license MIT <http://opensource.org/licenses/MIT>
 */
