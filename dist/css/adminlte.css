@@ -14566,6 +14566,9 @@ body,
   .sidebar-mini.sidebar-collapse .main-sidebar:hover, .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused {
     width: 250px;
   }
+  .sidebar-mini.sidebar-collapse .main-sidebar:hover .brand-link, .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .brand-link {
+    width: 250px;
+  }
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel, .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .user-panel {
     text-align: left;
   }
@@ -14659,6 +14662,9 @@ body,
     float: none;
   }
   .sidebar-mini-md.sidebar-collapse .main-sidebar:hover, .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused {
+    width: 250px;
+  }
+  .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .brand-link, .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .brand-link {
     width: 250px;
   }
   .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .user-panel, .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .user-panel {

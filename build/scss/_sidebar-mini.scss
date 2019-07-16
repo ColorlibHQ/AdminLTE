@@ -72,9 +72,13 @@
         }
       }
 
-      &:hover, 
+      &:hover,
       &.sidebar-focused {
         width: $sidebar-width;
+        
+        .brand-link {
+          width: $sidebar-width;
+        }
 
         .user-panel {
           text-align: left;
