@@ -42,8 +42,8 @@ navigation:
   subitems: 
     - title: Main Header
       url: components/main-header.html
-    - title: Sidebar
-      url: components/sidebar.html
+    - title: Main Sidebar
+      url: components/main-sidebar.html
     - title: Control Sidebar
       url: components/control-sidebar.html
     - title: Card

@@ -18,6 +18,11 @@ Visit the releases section on Github and download the [latest release](https://g
 npm install admin-lte --save
 ```
 
+###### __Via Yarn__
+```bash
+npm add admin-lte
+```
+
 ###### __Via Bower__
 ```bash
 bower install admin-lte

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Main Header
+title: Main Header Component
 ---
 
 > ##### Reminder!

@@ -34,37 +34,43 @@ AdminLTE 3.0 provides a set of options to apply to your main layout. Each one of
 
 AdminLTE 3.0 provides a set of color variations to apply to your sidebar (light & dark) & navbar. You can combine any available color with these class prefixes:
 
-- navbar-*
-- sidebar-dark-*
-- sidebar-light-*
+- `.navbar-*`
+- `.sidebar-dark-*`
+- `.sidebar-light-*`
 
 > ###### Info
-> You can combine navbar-* with navbar-light or navbar-dark.
+> You can combine `.navbar-*` with `.navbar-light` or `.navbar-dark`.
 
 The following colors are available:
 
-
+##### Theme Colors
 <div class="row">
-  <div class="col-sm-6">
-    <ul>
-      <li><i class="fas fa-square-full text-primary fa-lg"></i> Primary (primary) / Blue (blue)</li>
-      <li><i class="fas fa-square-full text-secondary fa-lg"></i> Secondary (secondary) / Gray (gray)</li>
-      <li><i class="fas fa-square-full text-success fa-lg"></i> Success (success) / Green (green)</li>
-      <li><i class="fas fa-square-full text-info fa-lg"></i> Info (info) / Cyan (cyan)</li>
-      <li><i class="fas fa-square-full text-warning fa-lg"></i> Warning (warning) / Yellow (yellow)</li>
-      <li><i class="fas fa-square-full text-danger fa-lg"></i> Danger (danger) / Red (red)</li>
-      <li><i class="fas fa-square-full text-light fa-lg"></i> Light (light)</li>
-      <li><i class="fas fa-square-full text-dark fa-lg"></i> Dark (dark) / Gray Dark (gray-dark)</li>
-    </ul>
-  </div>
-  <div class="col-sm-6">
-    <ul>
-      <li><i class="fas fa-square-full text-indigo fa-lg"></i> Indigo (indigo)</li>
-      <li><i class="fas fa-square-full text-purple fa-lg"></i> Purple (purple)</li>
-      <li><i class="fas fa-square-full text-pink fa-lg"></i> Pink (pink)</li>
-      <li><i class="fas fa-square-full text-orange fa-lg"></i> Orange (orange)</li>
-      <li><i class="fas fa-square-full text-teal fa-lg"></i> Teal (teal)</li>
-      <li><i class="fas fa-square-full text-white fa-lg"></i> White (white)</li>
-    </ul>
-  </div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-primary"> Primary (primary) / Blue (blue)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-secondary"> Secondary (secondary) / Gray (gray)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-success"> Success (success) / Green (green)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-info"> Info (info) / Cyan (cyan)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-warning"> Warning (warning) / Yellow (yellow)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-danger"> Danger (danger) / Red (red)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-light"> Light (light)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-dark"> Dark (dark) / Gray Dark (gray-dark)</div>
 </div>
+
+##### Colors
+{: .mt-4}
+<div class="row">
+  <div class="col-sm-4 col-lg-3 p-3 bg-indigo"> Indigo (indigo)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-navy"> Navy (navy)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-purple"> Purple (purple)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-fuchsia"> Fuchsia (fuchsia)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-pink"> Pink (pink)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-maroon"> Maroon (maroon)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-orange"> Orange (orange)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-lime"> Lime (lime)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-teal"> Teal (teal)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-olive"> Olive (olive)</div>
+</div>
+
+> ##### Tip!
+> You can use these color variations even with `.text-*`, `.bg-*` & much more.
+{: .quote-info}
+
