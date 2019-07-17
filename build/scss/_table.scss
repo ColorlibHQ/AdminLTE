@@ -12,7 +12,7 @@
   &.table-head-fixed {
     thead tr:nth-child(1) th {
       background-color: $white;
-      border-bottom: none;
+      border-bottom: 0;
       box-shadow: inset 0 1px 0 $table-border-color,
                   inset 0 -1px 0 $table-border-color;
       position: sticky;

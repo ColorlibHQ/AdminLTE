@@ -17,6 +17,14 @@ $maroon: #D81B60 !default;
 $black: #111 !default;
 $gray-x-light: #d2d6de !default;
 
+$colors: map-merge((
+    'navy': $navy,
+    'olive': $olive,
+    'lime': $lime,
+    'fuchsia': $fuchsia,
+    'maroon': $maroon,
+), $colors);
+
 // LAYOUT
 // --------------------------------------------------------
 

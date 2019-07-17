@@ -3,10 +3,79 @@
  * ---------------
  */
 
-// Changes the color and the hovering properties of the navbar
+
+// Cards Variant
+@mixin cards-variant($name, $color) {
+  .card-#{$name} {
+    &:not(.card-outline) {
+      .card-header {
+        background-color: $color;
+        border-bottom: 0;
+
+        &,
+        a {
+          color: color-yiq($color);
+        }
+      }
+    }
+
+    &.card-outline {
+      border-top: 3px solid $color;
+    }
+  }
+
+  .bg-#{$name},
+  .bg-#{$name}-gradient,
+  .card-#{$name}:not(.card-outline) {
+    .btn-tool {
+      color: rgba(color-yiq($color), 0.8);
+
+      &:hover {
+        color: color-yiq($color);
+      }
+    }
+  }
+
+  .card.bg-#{$name},
+  .card.bg-#{$name}-gradient {
+    .bootstrap-datetimepicker-widget {
+      .table td,
+      .table th {
+        border: none;
+      }
+
+      table thead tr:first-child th:hover,
+      table td.day:hover,
+      table td.hour:hover,
+      table td.minute:hover,
+      table td.second:hover {
+        background: darken($color, 8%);
+        color: color-yiq($color);
+      }
+
+      table td.active,
+      table td.active:hover {
+        background: lighten($color, 10%);
+        color: color-yiq($color);
+      }
+    }
+  }
+}
+
+// Sidebar Color
+@mixin sidebar-color($color) {
+  .nav-sidebar > .nav-item {
+    & > .nav-link.active {
+      background-color: $color;
+      color: color-yiq($color);
+    }
+  }
+}
+
+
 @mixin navbar-variant($color, $font-color: rgba(255, 255, 255, 0.8), $hover-color: #f6f6f6, $hover-bg: rgba(0, 0, 0, 0.1)) {
   background-color: $color;
-  // Navbar links
+
   .nav > li > a {
     color: $font-color;
   }
@@ -42,22 +111,6 @@
   &:hover,
   &:focus {
     background-color: darken($bg-color, 1%);
-  }
-}
-
-// Box solid color variantion creator
-@mixin box-solid-variant($color, $text-color: #fff) {
-  border: 1px solid $color;
-
-  > .card-header {
-    background: $color;
-    background-color: $color;
-    color: $text-color;
-
-    a,
-    .btn {
-      color: $text-color;
-    }
   }
 }
 
@@ -107,214 +160,3 @@
   background: -o-linear-gradient($stop, $start);
 }
 
-// Skins Mixins
-
-// Dark Sidebar Mixin
-@mixin skin-dark-sidebar($link-hover-border-color) {
-  // Sidebar background color
-  background-color: $sidebar-dark-bg;
-
-  // User Panel (resides in the sidebar)
-  .user-panel {
-    a:hover {
-      color: $sidebar-dark-hover-color;
-    }
-
-    .status {
-      background: $sidebar-dark-hover-bg;
-      color: $sidebar-dark-color;
-
-      &:hover,
-      &:focus,
-      &:active {
-        background: darken($sidebar-dark-hover-bg, 3%);
-        color: $sidebar-dark-hover-color;
-      }
-    }
-
-    .dropdown-menu {
-      @include box-shadow(0 2px 4px rgba(0, 0, 0, .4));
-      border-color: darken($sidebar-dark-hover-bg, 5%);
-    }
-
-    .dropdown-item {
-      color: $body-color;
-    }
-  }
-
-  // Sidebar Menu. First level links
-  .nav-sidebar > .nav-item {
-    // links
-    > .nav-link {
-      // border-left: 3px solid transparent;
-      &:active {
-        color: $sidebar-dark-color;
-      }
-    }
-
-    // Hover and active states
-    &.menu-open > .nav-link,
-    &:hover > .nav-link,
-    & > .nav-link:focus  {
-      background-color: $sidebar-dark-hover-bg;
-      color: $sidebar-dark-hover-color;
-    }
-
-    > .nav-link.active {
-      background-color: $link-hover-border-color;
-      color: $sidebar-dark-hover-color;
-
-      @if $enable-shadows {
-        @extend .elevation-1;
-      }
-    }
-
-    // First Level Submenu
-    > .nav-treeview {
-      background: $sidebar-dark-submenu-bg;
-    }
-  }
-
-  // Section Heading
-  .nav-header {
-    background: inherit; //darken($sidebar-dark-bg, 3%);
-    color: lighten($sidebar-dark-color, 5%);
-  }
-
-  // All links within the sidebar menu
-  .sidebar a {
-    color: $sidebar-dark-color;
-
-    &:hover,
-    &:focus {
-      text-decoration: none;
-    }
-  }
-
-  // All submenus
-  .nav-treeview {
-    > .nav-item {
-      > .nav-link {
-        color: $sidebar-dark-submenu-color;
-
-        &:hover,
-        &:focus {
-          background-color: $sidebar-dark-submenu-hover-bg;
-          color: $sidebar-dark-submenu-hover-color;
-        }
-      }
-
-      > .nav-link.active {
-        &,
-        &:hover,
-        &:focus {
-          background-color: $sidebar-dark-submenu-active-bg;
-          color: $sidebar-dark-submenu-active-color;
-        }
-      }
-    }
-  }
-}
-
-// Light Sidebar Mixin
-@mixin skin-light-sidebar($link-hover-border-color) {
-  // Sidebar background color
-  background-color: $sidebar-light-bg;
-
-  // User Panel (resides in the sidebar)
-  .user-panel {
-    a:hover {
-      color: $sidebar-light-hover-color;
-    }
-
-    .status {
-      background: $sidebar-light-hover-bg;
-      color: $sidebar-light-color;
-
-      &:hover,
-      &:focus,
-      &:active {
-        background: darken($sidebar-light-hover-bg, 3%);
-        color: $sidebar-light-hover-color;
-      }
-    }
-
-    .dropdown-menu {
-      @include box-shadow(0 2px 4px rgba(0, 0, 0, .4));
-      border-color: darken($sidebar-light-hover-bg, 5%);
-    }
-
-    .dropdown-item {
-      color: $body-color;
-    }
-  }
-
-  // Sidebar Menu. First level links
-  .nav-sidebar > .nav-item {
-    // links
-    > .nav-link {
-      // border-left: 3px solid transparent;
-      &:active,
-      &:focus {
-        color: $sidebar-light-color;
-      }
-    }
-
-    // Hover and active states
-    &.menu-open > .nav-link,
-    &:hover > .nav-link {
-      background-color: $sidebar-light-hover-bg;
-      color: $sidebar-light-hover-color;
-    }
-
-    > .nav-link.active {
-      background-color: $link-hover-border-color;
-      color: $sidebar-light-active-color;
-      
-      @if $enable-shadows {
-        @extend .elevation-1;
-      }
-    }
-
-    // First Level Submenu
-    > .nav-treeview {
-      background: $sidebar-light-submenu-bg;
-    }
-  }
-
-  // Section Heading
-  .nav-header {
-    background: inherit;
-    color: darken($sidebar-light-color, 5%);
-  }
-
-  // All links within the sidebar menu
-  .sidebar a {
-    color: $sidebar-light-color;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-
-  // All submenus
-  .nav-treeview {
-    > .nav-item {
-      > .nav-link {
-        color: $sidebar-light-submenu-color;
-      }
-
-      > .nav-link.active {
-        &,
-        &:hover {
-          background-color: $sidebar-light-submenu-active-bg;
-          color: $sidebar-light-submenu-active-color;
-        }
-      }
-
-      > .nav-link:hover {
-        background-color: $sidebar-light-submenu-hover-bg;
-      }
-    }
-  }
-}
