@@ -18770,7 +18770,7 @@ html.maximized-card {
 .select2-selection .select2-selection--single {
   border: 1px solid #d2d6de;
   padding: 6px 12px;
-  height: 34px;
+  height: calc(2.25rem + 2px);
 }
 
 .select2-container--default.select2-container--open {
@@ -18798,7 +18798,7 @@ html.maximized-card {
   padding-left: 0;
   padding-right: 0;
   height: auto;
-  margin-top: -4px;
+  margin-top: -3px;
 }
 
 .select2-container[dir="rtl"] .select2-selection--single .select2-selection__rendered {
@@ -18807,8 +18807,8 @@ html.maximized-card {
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
-  height: 28px;
-  right: 3px;
+  height: 31px;
+  right: 6px;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
@@ -18839,6 +18839,7 @@ html.maximized-card {
 }
 
 .select2-container--default .select2-selection--multiple {
+  min-height: calc(2.25rem + 2px);
   border: 1px solid #d2d6de;
 }
 
@@ -18861,7 +18862,7 @@ html.maximized-card {
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
   background-color: #007bff;
   border-color: #006fe6;
-  padding: 1px 10px;
+  padding: 0 10px;
   color: #ffffff;
 }
 
