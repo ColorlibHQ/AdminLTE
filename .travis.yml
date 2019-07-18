@@ -1,0 +1,24 @@
+language: node_js
+
+node_js:
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+
+env:
+  - INSTALL=bower
+  - INSTALL=yarn
+  - INSTALL=npm
+
+matrix:
+  fast_finish: true
+
+install:
+  - if [ "bower" == $INSTALL ]; then yarn global add bower && bower install; fi
+  - if [ "yarn" == $INSTALL ]; then yarn install; fi
+  - if [ "npm" == $INSTALL ]; then npm install; fi
+
+script:
+  - echo 'Tests must be configured'
