@@ -1,7 +1,6 @@
-/*
- * Misc: Miscellaneous
- * -------------------
- */
+//
+// Misc: Miscellaneous
+//
 
 .border-transparent {
   border-color: transparent !important;
@@ -27,10 +26,8 @@
   > .description-text {
     text-transform: uppercase;
   }
-}
 
-// Description Block Extension
-.description-block {
+  // Description Block Extension
   .description-icon {
     font-size: 16px;
   }
@@ -57,7 +54,7 @@
 .list-seperator {
   background: $card-border-color;
   height: 1px;
-  margin: 15px 0 9px 0;
+  margin: 15px 0 9px;
 }
 
 .list-link {
@@ -237,7 +234,7 @@
   }
 
   .attachment-text {
-    color: #555;
+    color: $gray-700;
   }
 }
 
@@ -295,16 +292,16 @@
   position: absolute;
   right: -2px;
   top: -2px;
-  z-index: 10;
   width: $ribbon-wrapper-size;
+  z-index: 10;
 
   &.ribbon-lg {
     height: $ribbon-lg-wrapper-size;
     width: $ribbon-lg-wrapper-size;
 
     .ribbon {
-      top: $ribbon-lg-top;
       right: $ribbon-lg-right;
+      top: $ribbon-lg-top;
       width: $ribbon-lg-width;
     }
   }
@@ -314,8 +311,8 @@
     width: $ribbon-xl-wrapper-size;
 
     .ribbon {
-      top: $ribbon-xl-top;
       right: $ribbon-xl-right;
+      top: $ribbon-xl-top;
       width: $ribbon-xl-width;
     }
   }
@@ -340,7 +337,7 @@
       border-right: $ribbon-border-size solid transparent;
       border-top: $ribbon-border-size solid #9e9e9e;
       bottom: -$ribbon-border-size;
-      content: "";
+      content: '';
       position: absolute;
     }
 

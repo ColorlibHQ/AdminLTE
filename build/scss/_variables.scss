@@ -1,19 +1,18 @@
-/*
- * Core: Variables
- * ---------------
- */
+//
+// Core: Variables
+//
 
 // COLORS
 // --------------------------------------------------------
 $blue: #0073b7 !default;
-$navy: #001F3F !default;
-$teal: #39CCCC !default;
-$olive: #3D9970 !default;
-$lime: #01FF70 !default;
-$orange: #FF851B !default;
-$fuchsia: #F012BE !default;
+$navy: #001f3f !default;
+$teal: #39cccc !default;
+$olive: #3d9970 !default;
+$lime: #01ff70 !default;
+$orange: #ff851b !default;
+$fuchsia: #f012be !default;
 $purple: #605ca8 !default;
-$maroon: #D81B60 !default;
+$maroon: #d81b60 !default;
 $black: #111 !default;
 $gray-x-light: #d2d6de !default;
 
@@ -128,7 +127,7 @@ $control-sidebar-width: $sidebar-width !default;
 
 // Cards
 // --------------------------------------------------------
-$card-border-color: #f4f4f4 !default;
+$card-border-color: $gray-100 !default;
 $card-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2) !default;
 $card-title-font-size: $font-size-lg;
 $card-title-font-weight: $font-weight-normal;
@@ -170,7 +169,7 @@ $font-size-xl: ($font-size-base * 2);
 
 // BUTTON
 // --------------------------------------------------------
-$button-default-background-color: #f4f4f4 !default;
+$button-default-background-color: $gray-100 !default;
 $button-default-color: #444 !default;
 $button-default-border-color: #ddd !default;
   

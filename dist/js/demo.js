@@ -73,17 +73,17 @@
   var $navbar_border = $('<input />', {
     type   : 'checkbox',
     value  : 1,
-    checked: $('.main-header').hasClass('border-bottom'),
+    checked: $('.main-header').hasClass('border-bottom-0'),
     'class': 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
-      $('.main-header').addClass('border-bottom')
+      $('.main-header').addClass('border-bottom-0')
     } else {
-      $('.main-header').removeClass('border-bottom')
+      $('.main-header').removeClass('border-bottom-0')
     }
   })
   $checkbox_container.append($navbar_border)
-  $checkbox_container.append('<span>Navbar border</span>')
+  $checkbox_container.append('<span>No Navbar border</span>')
   $container.append($checkbox_container)
 
 
@@ -92,7 +92,17 @@
     'bg-warning',
     'bg-info',
     'bg-danger',
-    'bg-success'
+    'bg-success',
+    'bg-indigo',
+    'bg-navy',
+    'bg-purple',
+    'bg-fuchsia',
+    'bg-pink',
+    'bg-maroon',
+    'bg-orange',
+    'bg-lime',
+    'bg-teal',
+    'bg-olive'
   ]
 
   var sidebar_skins = [
@@ -101,11 +111,31 @@
     'sidebar-dark-info',
     'sidebar-dark-danger',
     'sidebar-dark-success',
+    'sidebar-dark-indigo',
+    'sidebar-dark-navy',
+    'sidebar-dark-purple',
+    'sidebar-dark-fuchsia',
+    'sidebar-dark-pink',
+    'sidebar-dark-maroon',
+    'sidebar-dark-orange',
+    'sidebar-dark-lime',
+    'sidebar-dark-teal',
+    'sidebar-dark-olive',
     'sidebar-light-primary',
     'sidebar-light-warning',
     'sidebar-light-info',
     'sidebar-light-danger',
-    'sidebar-light-success'
+    'sidebar-light-success',
+    'sidebar-light-indigo',
+    'sidebar-light-navy',
+    'sidebar-light-purple',
+    'sidebar-light-fuchsia',
+    'sidebar-light-pink',
+    'sidebar-light-maroon',
+    'sidebar-light-orange',
+    'sidebar-light-lime',
+    'sidebar-light-teal',
+    'sidebar-light-olive'
   ]
 
   $container.append('<h6>Dark Sidebar Variants</h6>')

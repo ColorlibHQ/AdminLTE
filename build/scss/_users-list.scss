@@ -1,10 +1,10 @@
-/*
- * Component: Users List
- * ---------------------
- */
+//
+// Component: Users List
+//
 
 .users-list {
   @extend .list-unstyled;
+
   > li {
     float: left;
     padding: 10px;

@@ -1,7 +1,6 @@
-/*
- * Core: Layout
- * ------------
- */
+//
+// Core: Layout
+//
 
 html {
   scroll-behavior: smooth;
@@ -21,7 +20,7 @@ body,
   }
 
   .layout-boxed & {
-    @include box-shadow(0 0 10px rgba($black, .3));
+    @include box-shadow(0 0 10 rgba($black, .3));
 
     &,
     &::before {
@@ -101,7 +100,7 @@ body,
 
     .sidebar,
     .content-wrapper {
-      margin-top: 0px;
+      margin-top: 0;
     }
 
     .main-header {
@@ -181,7 +180,7 @@ body,
 
         .sidebar,
         .content-wrapper {
-          margin-top: 0px;
+          margin-top: 0;
         }
 
         .main-header {
@@ -208,7 +207,7 @@ body,
     }
 
     .content-wrapper {
-      margin-bottom: 0px;
+      margin-bottom: 0;
     }
   }
 

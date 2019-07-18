@@ -1,11 +1,12 @@
-/*
- * Component: Products
- * -------------------
- */
+//
+// Component: Products
+//
+
 .products-list {
   list-style: none;
   margin: 0;
   padding: 0;
+
   > .item {
     @include clearfix;
 
@@ -19,6 +20,7 @@
 
   .product-img {
     float: left;
+
     img {
       height: 50px;
       width: 50px;

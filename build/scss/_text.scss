@@ -1,7 +1,6 @@
-/*
- * Component: Text
- * -------------
- */
+//
+// Component: Text
+//
 
 // text modification
 .text-bold {
@@ -25,7 +24,6 @@
 .text-xl {
   font-size: $font-size-xl !important;
 }
-
 
 // text color variations
 @each $name, $color in $colors {

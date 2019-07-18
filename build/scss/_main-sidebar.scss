@@ -1,7 +1,6 @@
-/**
- * Component: Main Sidebar
- * -----------------------
- */
+//
+// Component: Main Sidebar
+//
 
 .main-sidebar {
   height: 100vh;
@@ -62,7 +61,7 @@
   // All levels
   .nav-item {
     > .nav-link {
-      margin-bottom: 0.2rem;
+      margin-bottom: .2rem;
 
       .right {
         @include transition(transform $transition-fn $transition-speed);
@@ -143,7 +142,7 @@
     padding: $nav-link-padding-y;
 
     &:not(:first-of-type) {
-      padding: 1.7rem 1rem .5rem 1rem;
+      padding: 1.7rem 1rem .5rem;
     }
   }
 

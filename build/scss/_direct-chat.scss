@@ -1,7 +1,6 @@
-/*
- * Component: Direct Chat
- * ----------------------
- */
+//
+// Component: Direct Chat
+//
  
 .direct-chat {
   .card-body {
@@ -100,7 +99,7 @@
   }
 }
 
-.direct-chat-info {
+.direct-chat-infos {
   display: block;
   font-size: $font-size-sm;
   margin-bottom: 2px;
@@ -182,23 +181,15 @@
   color: darken($gray-500, 25%);
 }
 
-//Direct Chat Variants
-.direct-chat-danger {
-  @include direct-chat-variant(theme-color('danger'));
+// Color variants
+@each $name, $color in $theme-colors {
+  .direct-chat-#{$name} {
+    @include direct-chat-variant($color);
+  }
 }
 
-.direct-chat-primary {
-  @include direct-chat-variant(theme-color('primary'));
-}
-
-.direct-chat-warning {
-  @include direct-chat-variant(theme-color('warning'));
-}
-
-.direct-chat-info {
-  @include direct-chat-variant(theme-color('info'));
-}
-
-.direct-chat-success {
-  @include direct-chat-variant(theme-color('success'));
+@each $name, $color in $colors {
+  .direct-chat-#{$name} {
+    @include direct-chat-variant($color);
+  }
 }

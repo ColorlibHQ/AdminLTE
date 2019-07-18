@@ -1,7 +1,6 @@
-/*
- * Plugin: Toastr
- * --------------
- */
+//
+// Plugin: Toastr
+//
 
 // Background to FontAwesome Icons
 // #toast-container > .toast {
@@ -35,15 +34,19 @@
 .toast {
   background-color: $primary;
 }
+
 .toast-success {
   background-color: $success;
 }
+
 .toast-error {
   background-color: $danger;
 }
+
 .toast-info {
   background-color: $info;
 }
+
 .toast-warning {
   background-color: $warning;
 }
