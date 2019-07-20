@@ -1,5 +1,5 @@
 const Plugins = require('./Plugins')
-const ncp     = require('ncp').ncp
+const fse     = require('fs-extra')
 
 class Publish {
   constructor() {
@@ -27,7 +27,7 @@ class Publish {
   run() {
     // Publish files
     Plugins.forEach((module) => {
-      ncp(module.from, module.to, error => {
+      fse.copy(module.from, module.to, error => {
         if (error) {
           console.error(`Error: ${error}`)
         } else if (this.options.verbose) {
