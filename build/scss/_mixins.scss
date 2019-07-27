@@ -349,17 +349,43 @@
 @mixin custom-range-variant($name, $color) {
   &.custom-range-#{$name} {
     &:focus {
-      &::-webkit-slider-thumb,
-      &::-moz-range-thumb,
-      &::-ms-thumb {
+      outline: none;
+
+      &::-webkit-slider-thumb {
+        box-shadow: 0 0 0 1px $body-bg, 0 0 0 $input-btn-focus-width rgba($color, .25);
+      }
+
+      &::-moz-range-thumb     {
+        box-shadow: 0 0 0 1px $body-bg, 0 0 0 $input-btn-focus-width rgba($color, .25);
+      }
+
+      &::-ms-thumb            {
+        box-shadow: 0 0 0 1px $body-bg, 0 0 0 $input-btn-focus-width rgba($color, .25);
+      }
+    }
+
+    &::-webkit-slider-thumb {
+      background-color: $color;
+
+      &:active {
         background-color: lighten($color, 35%);
       }
     }
 
-    &::-webkit-slider-thumb,
-    &::-moz-range-thumb,
+    &::-moz-range-thumb {
+      background-color: $color;
+
+      &:active {
+        background-color: lighten($color, 35%);
+      }
+    }
+
     &::-ms-thumb {
       background-color: $color;
+
+      &:active {
+        background-color: lighten($color, 35%);
+      }
     }
   }
 }
