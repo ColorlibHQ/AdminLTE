@@ -722,16 +722,12 @@
         return this.each(function () {
           var data = $(this).data(DATA_KEY);
 
-          var _config = $.extend({}, Default, $(this).data());
-
           if (!data) {
-            data = new DirectChat($(this), _config);
+            data = new DirectChat($(this));
             $(this).data(DATA_KEY, data);
           }
 
-          if (config === 'init') {
-            data[config]();
-          }
+          data[config]();
         });
       };
 

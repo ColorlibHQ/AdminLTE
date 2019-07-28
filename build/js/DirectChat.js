@@ -45,16 +45,13 @@ const DirectChat = (($) => {
     static _jQueryInterface(config) {
       return this.each(function () {
         let data      = $(this).data(DATA_KEY)
-        const _config = $.extend({}, Default, $(this).data())
 
         if (!data) {
-          data = new DirectChat($(this), _config)
+          data = new DirectChat($(this))
           $(this).data(DATA_KEY, data)
         }
 
-        if (config === 'init') {
-          data[config]()
-        }
+        data[config]()
       })
     }
   }
