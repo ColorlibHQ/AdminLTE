@@ -251,8 +251,8 @@ html.maximized-card {
     }
 
     // Time labels
-    .label {
-      font-size: 9px;
+    .badge {
+      font-size: .7rem;
       margin-left: 10px;
     }
 
@@ -286,7 +286,7 @@ html.maximized-card {
         text-decoration: line-through;
       }
 
-      .label {
+      .badge {
         background: $gray-500 !important;
       }
     }
