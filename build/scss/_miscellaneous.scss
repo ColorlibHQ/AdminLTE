@@ -423,3 +423,20 @@ blockquote {
     }
   }
 }
+
+
+// Tab Custom Content
+
+.tab-custom-content {
+  border-top: $nav-tabs-border-width solid $nav-tabs-border-color;
+  margin-top: .5rem;
+  padding-top: .5rem;
+}
+
+.nav + .tab-custom-content {
+  border-top: none;
+  border-bottom: $nav-tabs-border-width solid $nav-tabs-border-color;
+  margin-top: 0;
+  margin-bottom: .5rem;
+  padding-bottom: .5rem;
+}

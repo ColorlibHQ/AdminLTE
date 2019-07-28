@@ -19193,6 +19193,20 @@ blockquote.quote-gray-dark h6 {
   color: #343a40;
 }
 
+.tab-custom-content {
+  border-top: 1px solid #dee2e6;
+  margin-top: .5rem;
+  padding-top: .5rem;
+}
+
+.nav + .tab-custom-content {
+  border-top: none;
+  border-bottom: 1px solid #dee2e6;
+  margin-top: 0;
+  margin-bottom: .5rem;
+  padding-bottom: .5rem;
+}
+
 @media print {
   .no-print, .main-sidebar,
   .main-header,
