@@ -14356,8 +14356,8 @@ html.maximized-card {
   margin-left: 5px;
 }
 
-.todo-list > li .label {
-  font-size: 9px;
+.todo-list > li .badge {
+  font-size: .7rem;
   margin-left: 10px;
 }
 
@@ -14390,7 +14390,7 @@ html.maximized-card {
   text-decoration: line-through;
 }
 
-.todo-list > li.done .label {
+.todo-list > li.done .badge {
   background: #adb5bd !important;
 }
 
