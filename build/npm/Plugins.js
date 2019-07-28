@@ -215,6 +215,11 @@ const Plugins = [
     from: 'node_modules/flag-icon-css/flags',
     to: 'plugins/flag-icon-css/flags'
   },
+  // bootstrap4-duallistbox
+  {
+    from: 'node_modules/bootstrap4-duallistbox/dist',
+    to: 'plugins/bootstrap4-duallistbox/'
+  },
 
 
   // AdminLTE Dist
