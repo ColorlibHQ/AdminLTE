@@ -46,13 +46,20 @@ The following colors are available:
 ##### Theme Colors
 <div class="row">
   <div class="col-sm-4 col-lg-3 p-3 bg-primary"> Primary (primary) / Blue (blue)</div>
-  <div class="col-sm-4 col-lg-3 p-3 bg-secondary"> Secondary (secondary) / Gray (gray)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-secondary"> Secondary (secondary)</div>
   <div class="col-sm-4 col-lg-3 p-3 bg-success"> Success (success) / Green (green)</div>
   <div class="col-sm-4 col-lg-3 p-3 bg-info"> Info (info) / Cyan (cyan)</div>
   <div class="col-sm-4 col-lg-3 p-3 bg-warning"> Warning (warning) / Yellow (yellow)</div>
   <div class="col-sm-4 col-lg-3 p-3 bg-danger"> Danger (danger) / Red (red)</div>
+</div>
+
+##### Black/White Nuances
+{: .mt-4}
+<div class="row">
+  <div class="col-sm-4 col-lg-3 p-3 bg-black"> Black (black)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-gray-dark"> Gray Dark (gray-dark)</div>
+  <div class="col-sm-4 col-lg-3 p-3 bg-gray"> Gray (gray)</div>
   <div class="col-sm-4 col-lg-3 p-3 bg-light"> Light (light)</div>
-  <div class="col-sm-4 col-lg-3 p-3 bg-dark"> Dark (dark) / Gray Dark (gray-dark)</div>
 </div>
 
 ##### Colors

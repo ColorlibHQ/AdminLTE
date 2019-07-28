@@ -15980,6 +15980,7 @@ html.maximized-card {
   background: #ffffff;
   min-height: 80px;
   padding: .5rem;
+  position: relative;
 }
 
 .info-box .progress {

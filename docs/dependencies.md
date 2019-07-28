@@ -19,40 +19,41 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
 {: .lead}
 
 <div class="row px-3">
-	<div class="col-sm-3">
-	  <ul class="list-unstyled">
-	    <li><h4>Charts</h4></li>
-	    <li><a href="http://www.chartjs.org/" target="_blank">ChartJS</a></li>
-	    <li><a href="http://www.flotcharts.org/" target="_blank">Flot</a></li>
-	    <li><a href="https://github.com/mariusGundersen/sparkline" target="_blank">Sparkline</a></li>
-	  </ul>
-	</div>
-	<div class="col-sm-3">
-	  <ul class="list-unstyled">
-	    <li><h4>Editors</h4></li>
-	    <li><a href="https://summernote.org/" target="_blank">Summernote</a></li>
-	  </ul>
-	</div>
-	<div class="col-sm-3">
-	  <ul class="list-unstyled">
-	    <li><h4>Form Elements</h4></li>
-	    <li><a href="https://farbelous.io/bootstrap-colorpicker/">Bootstrap Colorpicker</a></li>
+  <div class="col-sm-3">
+    <ul class="list-unstyled">
+      <li><h4>Charts</h4></li>
+      <li><a href="http://www.chartjs.org/" target="_blank">ChartJS</a></li>
+      <li><a href="http://www.flotcharts.org/" target="_blank">Flot</a></li>
+      <li><a href="https://github.com/mariusGundersen/sparkline" target="_blank">Sparkline</a></li>
+    </ul>
+  </div>
+  <div class="col-sm-3">
+    <ul class="list-unstyled">
+      <li><h4>Editors</h4></li>
+      <li><a href="https://summernote.org/" target="_blank">Summernote</a></li>
+    </ul>
+  </div>
+  <div class="col-sm-3">
+    <ul class="list-unstyled">
+      <li><h4>Form Elements</h4></li>
+      <li><a href="https://farbelous.io/bootstrap-colorpicker/">Bootstrap Colorpicker</a></li>
       <li><a href="https://github.com/seiyria/bootstrap-slider/">Bootstrap Slider</a></li>
-	    <li><a href="http://www.daterangepicker.com/" target="_blank">Date Range Picker</a></li>
-	    <li><a href="https://github.com/bantikyan/icheck-bootstrap#readme" target="_blank">iCheck Bootstrap</a></li>
-	    <li><a href="https://github.com/RobinHerbots/Inputmask/" target="_blank">Inputmask</a></li>
-	    <li><a href="http://ionden.com/a/plugins/ion.rangeSlider/" target="_blank">Ion.RangeSlider</a></li>
-	    <li><a href="https://select2.org/" target="_blank">Select2</a></li>
-	    <li><a href="https://tempusdominus.github.io/bootstrap-4/" target="_blank">Tempus Dominus</a></li>
-	  </ul>
-	</div>
-	<div class="col-sm-3">
-	  <ul class="list-unstyled">
-	    <li><h4>Icon Packs</h4></li>
-	    <li><a href="https://fontawesome.com/" target="_blank">FontAwesome 5</a></li>
-	    <li><a href="https://github.com/lipis/flag-icon-css#readme" target="_blank">flag-icon-css</a></li>
-	  </ul>
-	</div>
+      <li><a href="http://www.daterangepicker.com/" target="_blank">Date Range Picker</a></li>
+      <li><a href="https://github.com/bantikyan/icheck-bootstrap#readme" target="_blank">iCheck Bootstrap</a></li>
+      <li><a href="https://github.com/RobinHerbots/Inputmask/" target="_blank">Inputmask</a></li>
+      <li><a href="http://ionden.com/a/plugins/ion.rangeSlider/" target="_blank">Ion.RangeSlider</a></li>
+      <li><a href="https://select2.org/" target="_blank">Select2</a></li>
+      <li><a href="https://tempusdominus.github.io/bootstrap-4/" target="_blank">Tempus Dominus</a></li>
+      <li><a href="https://github.com/istvan-ujjmeszaros/bootstrap-duallistbox#readme" target="_blank">Bootstrap4 Duallistbox</a></li>
+    </ul>
+  </div>
+  <div class="col-sm-3">
+    <ul class="list-unstyled">
+      <li><h4>Icon Packs</h4></li>
+      <li><a href="https://fontawesome.com/" target="_blank">FontAwesome 5</a></li>
+      <li><a href="https://github.com/lipis/flag-icon-css#readme" target="_blank">flag-icon-css</a></li>
+    </ul>
+  </div>
 </div>
 <div class="row px-3">
   <div class="col-sm-3">
