@@ -38,5 +38,5 @@ The following code should be placed within the `.wrapper` div. I prefer to place
 Once you create the sidebar, you will need a toggle button to open/close it. By adding the attribute data-toggle="control-sidebar" to any button, it will automatically act as the toggle button. 
 
 ```html
-<a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">Toggle Control Sidebar</a>
+<a class="nav-link" data-widget="control-sidebar" href="#">Toggle Control Sidebar</a>
 ```
