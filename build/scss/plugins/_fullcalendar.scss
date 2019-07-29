@@ -1,15 +1,15 @@
-/*
- * Plugin: Full Calendar
- * ---------------------
- */
+//
+// Plugin: Full Calendar
+//
 
 // Buttons
 .fc-button {
-  background: #f4f4f4;
+  background: $gray-100;
   background-image: none;
-  color: #444;
-  border-color: #ddd;
   border-bottom-color: #ddd;
+  border-color: #ddd;
+  color: $gray-700;
+
   &:hover,
   &:active,
   &.hover {
@@ -19,9 +19,9 @@
 
 // Calendar title
 .fc-header-title h2 {
+  color: #666;
   font-size: 15px;
   line-height: 1.6em;
-  color: #666;
   margin-left: 10px;
 }
 
@@ -39,8 +39,8 @@
 }
 
 .fc-grid {
-  width: 100%;
   border: 0;
+  width: 100%;
 }
 
 .fc-widget-header:first-of-type,
@@ -55,8 +55,8 @@
 }
 
 .fc-toolbar {
-  padding: 1rem;
   margin: 0;
+  padding: 1rem;
 }
 
 .fc-day-number {
@@ -69,13 +69,21 @@
   list-style: none;
   margin: 0;
   padding: 0;
+
   > li {
     float: left;
     font-size: 30px;
-    margin-right: 5px;
     line-height: 30px;
-    .fa {
+    margin-right: 5px;
+
+    .fa,
+    .fas,
+    .far,
+    .fab,
+    .glyphicon,
+    .ion {
       transition: transform linear .3s;
+
       &:hover {
         @include rotate(30deg);
       }
@@ -90,11 +98,11 @@
 .external-event {
   @include box-shadow($card-shadow);
 
-  padding: 5px 10px;
-  font-weight: bold;
-  margin-bottom: 4px;
   border-radius: $border-radius;
   cursor: move;
+  font-weight: bold;
+  margin-bottom: 4px;
+  padding: 5px 10px;
 
   &:hover {
     @include box-shadow(inset 0 0 90px rgba(0, 0, 0, 0.2));

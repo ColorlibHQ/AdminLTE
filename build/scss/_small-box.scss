@@ -1,7 +1,6 @@
-/*
- * Component: Small Box
- * --------------------
- */
+//
+// Component: Small Box
+//
 
 .small-box {
   @include border-radius($border-radius);
@@ -19,7 +18,6 @@
 
   > .small-box-footer {
     background: rgba($black, 0.1);
-    color: $white;
     color: rgba($white, 0.8);
     display: block;
     padding: 3px 0;
@@ -82,14 +80,15 @@
     font-size: 1rem;
 
     > small {
-      color: #f9f9f9;
+      color: $gray-100;
       display: block;
       font-size: 0.9rem;
       margin-top: 5px;
     }
   }
 
-  h3, p {
+  h3,
+  p {
     z-index: 5;
   }
 

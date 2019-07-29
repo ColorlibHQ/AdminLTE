@@ -1,7 +1,6 @@
-/*
- * Core: Layout
- * ------------
- */
+//
+// Core: Layout
+//
 
 html {
   scroll-behavior: smooth;
@@ -21,7 +20,7 @@ body,
   }
 
   .layout-boxed & {
-    @include box-shadow(0 0 10px rgba($black, .3));
+    @include box-shadow(0 0 10 rgba($black, .3));
 
     &,
     &::before {
@@ -40,6 +39,13 @@ body,
     }
   }
 
+  .layout-navbar-fixed.sidebar-collapse & {
+    .brand-link {
+      height: $main-header-height;
+      width: $sidebar-mini-width;
+    }
+  }
+
   .layout-navbar-fixed & {
     a.anchor {
       display: block;
@@ -47,18 +53,10 @@ body,
       top: calc((#{$main-header-height-inner} + #{$main-header-bottom-border-width} + (#{$main-header-link-padding-y} * 2)) / -1);
     }
 
-    &.sidebar-collapse {
+    .main-sidebar:hover {
       .brand-link {
-        height: $main-header-height;
         transition: width $transition-speed $transition-fn;
-        width: $sidebar-mini-width;
-      }
-
-      .main-sidebar:hover {
-        .brand-link {
-          transition: width $transition-speed $transition-fn;
-          width: $sidebar-width;
-        }
+        width: $sidebar-width;
       }
     }
 
@@ -102,7 +100,7 @@ body,
 
     .sidebar,
     .content-wrapper {
-      margin-top: 0px;
+      margin-top: 0;
     }
 
     .main-header {
@@ -182,7 +180,7 @@ body,
 
         .sidebar,
         .content-wrapper {
-          margin-top: 0px;
+          margin-top: 0;
         }
 
         .main-header {
@@ -209,7 +207,7 @@ body,
     }
 
     .content-wrapper {
-      margin-bottom: 0px;
+      margin-bottom: 0;
     }
   }
 
@@ -335,6 +333,10 @@ body,
 }
 
 .layout-fixed {
+  .brand-link {
+    width: $sidebar-width;
+  }
+
   .main-sidebar {
     bottom: 0;
     float: none;

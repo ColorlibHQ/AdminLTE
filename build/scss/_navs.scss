@@ -1,16 +1,16 @@
-/*
- * Component: Nav
- * --------------
- */
+//
+// Component: Nav
+//
 
 .nav-pills {
   .nav-link {
     color: $gray-600;
 
     &:not(.active):hover {
-      color: theme-color('primary')
+      color: theme-color('primary');
     }
   }
+
   .nav-item {
     &.dropdown.show {
       .nav-link:hover {
@@ -60,7 +60,7 @@
 
 // Color variants
 @each $color, $value in $theme-colors {
-  @if $color==dark or $color==light {
+  @if $color == dark or $color == light {
     .navbar-#{$color} {
       background-color: $value;
     }
@@ -68,7 +68,7 @@
 }
 
 @each $color, $value in $theme-colors {
-  @if $color!=dark and $color!=light {
+  @if $color != dark and $color != light {
     .navbar-#{$color} {
       background-color: $value;
     }

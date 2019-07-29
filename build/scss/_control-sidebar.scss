@@ -1,7 +1,6 @@
-/*
- * Component: Control Sidebar
- * --------------------------
- */
+//
+// Component: Control Sidebar
+//
  
 html.control-sidebar-animate {
   overflow-x: hidden;
@@ -150,6 +149,6 @@ html.control-sidebar-animate {
   //  Background
   & {
     background: $sidebar-light-bg;
-    border-left: 1px solid $gray-500;
+    border-left: $main-header-bottom-border;
   }
 }

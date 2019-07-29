@@ -21,6 +21,8 @@
   <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
@@ -240,9 +242,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../layout/fixed.html" class="nav-link">
+                <a href="../layout/fixed-sidebar.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed</p>
+                  <p>Fixed Sidebar</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -700,6 +702,45 @@
         </div>
         <!-- /.card -->
 
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Bootstrap Duallistbox</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-remove"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Multiple</label>
+                  <select class="duallistbox" multiple="multiple">
+                    <option selected>Alabama</option>
+                    <option>Alaska</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+            Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
+            the plugin.
+          </div>
+        </div>
+        <!-- /.card -->
+
         <div class="row">
           <div class="col-md-6">
 
@@ -1055,6 +1096,8 @@
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
 <script src="../../plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 <!-- InputMask -->
 <script src="../../plugins/inputmask/jquery.inputmask.bundle.js"></script>
 <script src="../../plugins/moment/moment.min.js"></script>
@@ -1116,6 +1159,9 @@
     $('#timepicker').datetimepicker({
       format: 'LT'
     })
+    
+    //Bootstrap Duallistbox
+    $('.duallistbox').bootstrapDualListbox()
 
     //Colorpicker
     $('.my-colorpicker1').colorpicker()

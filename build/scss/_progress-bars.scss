@@ -1,7 +1,6 @@
-/*
- * Component: Progress Bar
- * -----------------------
- */
+//
+// Component: Progress Bar
+//
 
 //General CSS
 .progress {
@@ -59,7 +58,9 @@
 
 // Remove margins from progress bars when put in a table
 .table {
-  tr > td .progress {
-    margin: 0;
+  tr > td {
+    .progress {
+      margin: 0;
+    }
   }
 }

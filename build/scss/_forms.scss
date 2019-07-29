@@ -1,7 +1,6 @@
-/*
- * Component: Forms
- * ----------------
- */
+//
+// Component: Forms
+//
  
 .form-group {
   &.has-icon {
@@ -28,7 +27,8 @@
 // Button groups
 .btn-group-vertical {
   .btn {
-    &.btn-flat:first-of-type, &.btn-flat:last-of-type {
+    &.btn-flat:first-of-type,
+    &.btn-flat:last-of-type {
       @include border-radius(0);
     }
   }
@@ -257,113 +257,21 @@ textarea.form-control {
 // custom switch color variations
 .custom-switch {
   @each $name, $color in $theme-colors {
-    &.custom-switch-off-#{$name} {
-      & .custom-control-input ~ .custom-control-label::before {
-        background: #{$color};
-        border-color: darken($color, 20%);
-      }
-
-      & .custom-control-input ~ .custom-control-label::after {
-        background: darken($color, 25%);
-      }
-    }
-
-    &.custom-switch-on-#{$name} {
-      & .custom-control-input:checked ~ .custom-control-label::before {
-        background: #{$color};
-        border-color: darken($color, 20%);
-      }
-
-      & .custom-control-input:checked ~ .custom-control-label::after {
-        background: lighten($color, 30%);
-      }
-    }
+    @include custom-switch-variant($name, $color);
   }
 
   @each $name, $color in $colors {
-    &.custom-switch-off-#{$name} {
-      & .custom-control-input ~ .custom-control-label::before {
-        background: #{$color};
-        border-color: darken($color, 20%);
-      }
-
-      & .custom-control-input ~ .custom-control-label::after {
-        background: darken($color, 25%);
-      }
-    }
-
-    &.custom-switch-on-#{$name} {
-      & .custom-control-input:checked ~ .custom-control-label::before {
-        background: #{$color};
-        border-color: darken($color, 20%);
-      }
-
-      & .custom-control-input:checked ~ .custom-control-label::after {
-        background: lighten($color, 30%);
-      }
-    }
+    @include custom-switch-variant($name, $color);
   }
 }
 
 // custom range color variations
 .custom-range {
   @each $name, $color in $theme-colors {
-    &.custom-range-#{$name} {
-      &:focus {
-        &::-webkit-slider-thumb {
-          background-color: lighten($color, 35%);
-        }
-
-        &::-moz-range-thumb {
-          background-color: lighten($color, 35%);
-        }
-
-        &::-ms-thumb {
-          background-color: lighten($color, 35%);
-        }
-      }
-
-      &::-webkit-slider-thumb {
-        background-color: $color;
-      }
-
-      &::-moz-range-thumb {
-        background-color: $color;
-      }
-
-      &::-ms-thumb {
-        background-color: $color;
-      }
-    }
+    @include custom-range-variant($name, $color);
   }
 
   @each $name, $color in $colors {
-    &.custom-range-#{$name} { 
-      &:focus {
-        &::-webkit-slider-thumb {
-          background-color: lighten($color, 35%);
-        }
-
-        &::-moz-range-thumb {
-          background-color: lighten($color, 35%);
-        }
-
-        &::-ms-thumb {
-          background-color: lighten($color, 35%);
-        }
-      }
-
-      &::-webkit-slider-thumb {
-        background-color: $color;
-      }
-
-      &::-moz-range-thumb {
-        background-color: $color;
-      }
-
-      &::-ms-thumb {
-        background-color: $color;
-      }
-    }
+    @include custom-range-variant($name, $color);
   }
 }

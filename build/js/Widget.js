@@ -170,7 +170,7 @@ const Widget = (($) => {
           $(this).data(DATA_KEY, typeof config === 'string' ? data : config)
         }
 
-        if (typeof config === 'string' && config.match(/remove|toggle/)) {
+        if (typeof config === 'string' && config.match(/collapse|expand|remove|toggle|toggleMaximize/)) {
           data[config]()
         } else if (typeof config === 'object') {
           data._init($(this))
