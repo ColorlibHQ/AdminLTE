@@ -1,5 +1,7 @@
+source 'https://rubygems.org'
 gem "rouge"
 
 group :jekyll_plugins do
+  gem "github-pages"
   gem "jekyll-seo-tag"
 end
