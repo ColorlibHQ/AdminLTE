@@ -1,12 +1,216 @@
-/*
- * General: Mixins
- * ---------------
- */
+//
+// General: Mixins
+//
 
-// Changes the color and the hovering properties of the navbar
+
+// Cards Variant
+@mixin cards-variant($name, $color) {
+  .card-#{$name} {
+    &:not(.card-outline) {
+      .card-header {
+        background-color: $color;
+        border-bottom: 0;
+
+        &,
+        a {
+          color: color-yiq($color);
+        }
+      }
+    }
+
+    &.card-outline {
+      border-top: 3px solid $color;
+    }
+  }
+
+  .bg-#{$name},
+  .bg-#{$name}-gradient,
+  .card-#{$name}:not(.card-outline) {
+    .btn-tool {
+      color: rgba(color-yiq($color), 0.8);
+
+      &:hover {
+        color: color-yiq($color);
+      }
+    }
+  }
+
+  .card.bg-#{$name},
+  .card.bg-#{$name}-gradient {
+    .bootstrap-datetimepicker-widget {
+      .table td,
+      .table th {
+        border: none;
+      }
+
+      table thead tr:first-child th:hover,
+      table td.day:hover,
+      table td.hour:hover,
+      table td.minute:hover,
+      table td.second:hover {
+        background: darken($color, 8%);
+        color: color-yiq($color);
+      }
+
+      table td.active,
+      table td.active:hover {
+        background: lighten($color, 10%);
+        color: color-yiq($color);
+      }
+    }
+  }
+}
+
+// Sidebar Color
+@mixin sidebar-color($color) {
+  .nav-sidebar > .nav-item {
+    & > .nav-link.active {
+      background-color: $color;
+      color: color-yiq($color);
+    }
+  }
+}
+
+// Sidebar Mini Breakpoints
+@mixin sidebar-mini-breakpoint() {
+  // A fix for text overflow while transitioning from sidebar mini to full sidebar
+  .nav-sidebar,
+  .nav-sidebar > .nav-header,
+  .nav-sidebar .nav-link {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  // When the sidebar is collapsed...
+  &.sidebar-collapse {
+    .d-hidden-mini {
+      display: none;
+    }
+
+    // Apply the new margins to the main content and footer
+    .content-wrapper,
+    .main-footer,
+    .main-header {
+      margin-left: $sidebar-mini-width !important;
+    }
+
+    // Make the sidebar headers
+    .nav-sidebar .nav-header {
+      display: none;
+    }
+
+    .nav-sidebar .nav-link p {
+      width: 0;
+    }
+
+    .sidebar .user-panel > .info,
+    .nav-sidebar .nav-link p,
+    .brand-text {
+      margin-left: -10px;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .logo-xl {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .logo-xs {
+      display: inline-block;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    // Modify the sidebar to shrink instead of disappearing
+    .main-sidebar {
+      overflow-x: hidden;
+
+      &,
+      &::before {
+        // Don't go away! Just shrink
+        margin-left: 0;
+        width: $sidebar-mini-width;
+      }
+
+      .user-panel {
+        .image {
+          float: none;
+        }
+      }
+
+      &:hover,
+      &.sidebar-focused {
+        width: $sidebar-width;
+
+        .brand-link {
+          width: $sidebar-width;
+        }
+
+        .user-panel {
+          text-align: left;
+
+          .image {
+            float: left;
+          }
+        }
+
+        .user-panel > .info,
+        .nav-sidebar .nav-link p,
+        .brand-text,
+        .logo-xl {
+          display: inline-block;
+          margin-left: 0;
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .logo-xs {
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        .brand-image {
+          margin-right: .5rem;
+        }
+
+        // Make the sidebar links, menus, labels, badges
+        // and angle icons disappear
+        .sidebar-form,
+        .user-panel > .info {
+          display: block !important;
+          -webkit-transform: translateZ(0);
+        }
+
+        .nav-sidebar > .nav-item > .nav-link > span {
+          display: inline-block !important;
+        }
+      }
+    }
+
+    // Make an element visible only when sidebar mini is active
+    .visible-sidebar-mini {
+      display: block !important;
+    }
+
+    &.layout-fixed {
+      .main-sidebar:hover {
+        .brand-link {
+          width: $sidebar-width;
+        }
+      }
+
+      .brand-link {
+        width: $sidebar-mini-width;
+      }
+    }
+  }
+}
+
+// Navbar Variant
 @mixin navbar-variant($color, $font-color: rgba(255, 255, 255, 0.8), $hover-color: #f6f6f6, $hover-bg: rgba(0, 0, 0, 0.1)) {
   background-color: $color;
-  // Navbar links
+
   .nav > li > a {
     color: $font-color;
   }
@@ -25,6 +229,7 @@
   // Add color to the sidebar toggle button
   .sidebar-toggle {
     color: $font-color;
+
     &:hover,
     &:focus {
       background: $hover-bg;
@@ -33,7 +238,7 @@
   }
 }
 
-// Logo color variation
+// Logo color Variant
 @mixin logo-variant($bg-color, $color: #fff, $border-bottom-color: transparent, $border-bottom-width: 0) {
   background-color: $bg-color;
   border-bottom: $border-bottom-width solid $border-bottom-color;
@@ -45,22 +250,6 @@
   }
 }
 
-// Box solid color variantion creator
-@mixin box-solid-variant($color, $text-color: #fff) {
-  border: 1px solid $color;
-
-  > .card-header {
-    background: $color;
-    background-color: $color;
-    color: $text-color;
-
-    a,
-    .btn {
-      color: $text-color;
-    }
-  }
-}
-
 // Direct Chat Variant
 @mixin direct-chat-variant($bg-color, $color: #fff) {
   .right > .direct-chat-text {
@@ -68,13 +257,141 @@
     border-color: $bg-color;
     color: color-yiq($bg-color);
 
-    &:after,
+    &::after,
     &::before {
       border-left-color: $bg-color;
     }
   }
 }
 
+// Background Variant
+@mixin background-variant($name, $color) {
+  .bg-#{$name} {
+    background-color: #{$color};
+
+    &,
+    > a {
+      color: color-yiq($color) !important;
+    }
+
+    &.btn {
+      &:hover {
+        border-color: darken($color, 10%);
+        color: color-yiq(darken($color, 7.5%));
+      }
+
+      &:active,
+      &.active {
+        border-color: darken($color, 12.5%);
+        color: color-yiq(darken($color, 10%));
+      }
+    }
+  }
+}
+
+// Background Gradient Variant
+@mixin background-gradient-variant($name, $color) {
+  .bg-gradient-#{$name} {
+    @include bg-gradient-variant('&', $color);
+    color: color-yiq($color);
+
+    &.btn {
+      &.disabled,
+      &:disabled,
+      &:not(:disabled):not(.disabled):active,
+      &:not(:disabled):not(.disabled).active,
+      .show > &.dropdown-toggle {
+        background-image: none !important;
+      }
+
+      &:hover {
+        @include bg-gradient-variant('&', darken($color, 7.5%));
+        border-color: darken($color, 10%);
+        color: color-yiq(darken($color, 7.5%));
+      }
+
+      &:active,
+      &.active {
+        @include bg-gradient-variant('&', darken($color, 10%));
+        border-color: darken($color, 12.5%);
+        color: color-yiq(darken($color, 10%));
+      }
+    }
+  }
+}
+
+// Custom Switch Variant
+@mixin custom-switch-variant($name, $color) {
+  &.custom-switch-off-#{$name} {
+    & .custom-control-input ~ .custom-control-label::before {
+      background: #{$color};
+      border-color: darken($color, 20%);
+    }
+
+    & .custom-control-input ~ .custom-control-label::after {
+      background: darken($color, 25%);
+    }
+  }
+
+  &.custom-switch-on-#{$name} {
+    & .custom-control-input:checked ~ .custom-control-label::before {
+      background: #{$color};
+      border-color: darken($color, 20%);
+    }
+
+    & .custom-control-input:checked ~ .custom-control-label::after {
+      background: lighten($color, 30%);
+    }
+  }
+}
+
+// Custom Range Variant
+@mixin custom-range-variant($name, $color) {
+  &.custom-range-#{$name} {
+    &:focus {
+      outline: none;
+
+      &::-webkit-slider-thumb {
+        box-shadow: 0 0 0 1px $body-bg, 0 0 0 $input-btn-focus-width rgba($color, .25);
+      }
+
+      &::-moz-range-thumb     {
+        box-shadow: 0 0 0 1px $body-bg, 0 0 0 $input-btn-focus-width rgba($color, .25);
+      }
+
+      &::-ms-thumb            {
+        box-shadow: 0 0 0 1px $body-bg, 0 0 0 $input-btn-focus-width rgba($color, .25);
+      }
+    }
+
+    &::-webkit-slider-thumb {
+      background-color: $color;
+
+      &:active {
+        background-color: lighten($color, 35%);
+      }
+    }
+
+    &::-moz-range-thumb {
+      background-color: $color;
+
+      &:active {
+        background-color: lighten($color, 35%);
+      }
+    }
+
+    &::-ms-thumb {
+      background-color: $color;
+
+      &:active {
+        background-color: lighten($color, 35%);
+      }
+    }
+  }
+}
+
+
+// ETC
 @mixin translate($x, $y) {
   transform: translate($x, $y);
 }
@@ -85,12 +402,10 @@
 }
 
 @mixin calc($property, $expression) {
-  #{$property}: -webkit-calc(#{$expression});
   #{$property}: calc(#{$expression});
 }
 
 @mixin rotate($value) {
-  -ms-transform: rotate($value);
   transform: rotate($value);
 }
 
@@ -107,214 +422,3 @@
   background: -o-linear-gradient($stop, $start);
 }
 
-// Skins Mixins
-
-// Dark Sidebar Mixin
-@mixin skin-dark-sidebar($link-hover-border-color) {
-  // Sidebar background color
-  background-color: $sidebar-dark-bg;
-
-  // User Panel (resides in the sidebar)
-  .user-panel {
-    a:hover {
-      color: $sidebar-dark-hover-color;
-    }
-
-    .status {
-      background: $sidebar-dark-hover-bg;
-      color: $sidebar-dark-color;
-
-      &:hover,
-      &:focus,
-      &:active {
-        background: darken($sidebar-dark-hover-bg, 3%);
-        color: $sidebar-dark-hover-color;
-      }
-    }
-
-    .dropdown-menu {
-      @include box-shadow(0 2px 4px rgba(0, 0, 0, .4));
-      border-color: darken($sidebar-dark-hover-bg, 5%);
-    }
-
-    .dropdown-item {
-      color: $body-color;
-    }
-  }
-
-  // Sidebar Menu. First level links
-  .nav-sidebar > .nav-item {
-    // links
-    > .nav-link {
-      // border-left: 3px solid transparent;
-      &:active {
-        color: $sidebar-dark-color;
-      }
-    }
-
-    // Hover and active states
-    &.menu-open > .nav-link,
-    &:hover > .nav-link,
-    & > .nav-link:focus  {
-      background-color: $sidebar-dark-hover-bg;
-      color: $sidebar-dark-hover-color;
-    }
-
-    > .nav-link.active {
-      background-color: $link-hover-border-color;
-      color: $sidebar-dark-hover-color;
-
-      @if $enable-shadows {
-        @extend .elevation-1;
-      }
-    }
-
-    // First Level Submenu
-    > .nav-treeview {
-      background: $sidebar-dark-submenu-bg;
-    }
-  }
-
-  // Section Heading
-  .nav-header {
-    background: inherit; //darken($sidebar-dark-bg, 3%);
-    color: lighten($sidebar-dark-color, 5%);
-  }
-
-  // All links within the sidebar menu
-  .sidebar a {
-    color: $sidebar-dark-color;
-
-    &:hover,
-    &:focus {
-      text-decoration: none;
-    }
-  }
-
-  // All submenus
-  .nav-treeview {
-    > .nav-item {
-      > .nav-link {
-        color: $sidebar-dark-submenu-color;
-
-        &:hover,
-        &:focus {
-          background-color: $sidebar-dark-submenu-hover-bg;
-          color: $sidebar-dark-submenu-hover-color;
-        }
-      }
-
-      > .nav-link.active {
-        &,
-        &:hover,
-        &:focus {
-          background-color: $sidebar-dark-submenu-active-bg;
-          color: $sidebar-dark-submenu-active-color;
-        }
-      }
-    }
-  }
-}
-
-// Light Sidebar Mixin
-@mixin skin-light-sidebar($link-hover-border-color) {
-  // Sidebar background color
-  background-color: $sidebar-light-bg;
-
-  // User Panel (resides in the sidebar)
-  .user-panel {
-    a:hover {
-      color: $sidebar-light-hover-color;
-    }
-
-    .status {
-      background: $sidebar-light-hover-bg;
-      color: $sidebar-light-color;
-
-      &:hover,
-      &:focus,
-      &:active {
-        background: darken($sidebar-light-hover-bg, 3%);
-        color: $sidebar-light-hover-color;
-      }
-    }
-
-    .dropdown-menu {
-      @include box-shadow(0 2px 4px rgba(0, 0, 0, .4));
-      border-color: darken($sidebar-light-hover-bg, 5%);
-    }
-
-    .dropdown-item {
-      color: $body-color;
-    }
-  }
-
-  // Sidebar Menu. First level links
-  .nav-sidebar > .nav-item {
-    // links
-    > .nav-link {
-      // border-left: 3px solid transparent;
-      &:active,
-      &:focus {
-        color: $sidebar-light-color;
-      }
-    }
-
-    // Hover and active states
-    &.menu-open > .nav-link,
-    &:hover > .nav-link {
-      background-color: $sidebar-light-hover-bg;
-      color: $sidebar-light-hover-color;
-    }
-
-    > .nav-link.active {
-      background-color: $link-hover-border-color;
-      color: $sidebar-light-active-color;
-      
-      @if $enable-shadows {
-        @extend .elevation-1;
-      }
-    }
-
-    // First Level Submenu
-    > .nav-treeview {
-      background: $sidebar-light-submenu-bg;
-    }
-  }
-
-  // Section Heading
-  .nav-header {
-    background: inherit;
-    color: darken($sidebar-light-color, 5%);
-  }
-
-  // All links within the sidebar menu
-  .sidebar a {
-    color: $sidebar-light-color;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-
-  // All submenus
-  .nav-treeview {
-    > .nav-item {
-      > .nav-link {
-        color: $sidebar-light-submenu-color;
-      }
-
-      > .nav-link.active {
-        &,
-        &:hover {
-          background-color: $sidebar-light-submenu-active-bg;
-          color: $sidebar-light-submenu-active-color;
-        }
-      }
-
-      > .nav-link:hover {
-        background-color: $sidebar-light-submenu-hover-bg;
-      }
-    }
-  }
-}

@@ -1,7 +1,6 @@
-/*
- * Component: Info Box
- * -------------------
- */
+//
+// Component: Info Box
+//
  
 .info-box {
   @extend .d-flex;
@@ -12,9 +11,10 @@
   background: $white;
   min-height: 80px;
   padding: .5rem;
+  position: relative;
 
   .progress {
-    background-color: rgba($black, 0.125);
+    background-color: rgba($black, .125);
     height: 2px;
     margin: 5px 0;
 
@@ -105,7 +105,7 @@
     .col-lg-2 &,
     .col-md-2 & {
       .progress-description {
-        @include font-size(0.75rem);
+        @include font-size(.75rem);
         display: block;
       }
     }
@@ -114,7 +114,7 @@
     .col-lg-3 &,
     .col-md-3 & {
       .progress-description {
-        @include font-size(0.75rem);
+        @include font-size(.75rem);
         display: block;
       }
     }

@@ -1,12 +1,11 @@
-/*
- * Pages: Invoice
- * --------------
- */
+//
+// Pages: Invoice
+//
 
 .invoice {
-  position: relative;
   background: $white;
   border: 1px solid $card-border-color;
+  position: relative;
 }
 
 .invoice-title {

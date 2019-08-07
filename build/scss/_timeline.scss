@@ -1,11 +1,10 @@
-/*
- * Component: Timeline
- * -------------------
- */
+//
+// Component: Timeline
+//
 
 .timeline {
   list-style: none;
-  margin: 0 0 30px 0;
+  margin: 0 0 30px;
   padding: 0;
   position: relative;
 
@@ -33,7 +32,7 @@
       @include box-shadow($card-shadow);
       @include border-radius($border-radius);
       background: $white;
-      color: #444;
+      color: $gray-700;
       margin-left: 60px;
       margin-right: 15px;
       margin-top: 0;
@@ -50,7 +49,7 @@
 
       > .timeline-header {
         border-bottom: 1px solid $card-border-color;
-        color: #555;
+        color: $gray-700;
         font-size: 16px;
         line-height: 1.1;
         margin: 0;
@@ -62,7 +61,8 @@
       }
 
       // Item body and footer
-      > .timeline-body, > .timeline-footer {
+      > .timeline-body,
+      > .timeline-footer {
         padding: 10px;
       }
 
@@ -92,7 +92,7 @@
   > .time-label {
     > span {
       @include border-radius(4px);
-      
+
       background-color: $white;
       display: inline-block;
       font-weight: 600;

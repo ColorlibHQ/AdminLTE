@@ -1,7 +1,6 @@
-/*
- * Component: Alert
- * ----------------
- */
+//
+// Component: Alert
+//
 
 .alert {
   .icon {
@@ -43,4 +42,9 @@
 .alert-info {
   @extend .bg-info;
   border-color: darken(theme-color('info'), 5%);
+}
+
+.alert-primary {
+  @extend .bg-primary;
+  border-color: darken(theme-color('primary'), 5%);
 }

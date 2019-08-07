@@ -1,7 +1,6 @@
-/*
- * Component: Brand
- * ----------------
- */
+//
+// Component: Brand
+//
 
 .brand-link {
   $brand-link-padding-y: $navbar-brand-padding-y + $navbar-padding-y;
@@ -9,6 +8,7 @@
   font-size: $navbar-brand-font-size;
   line-height: $line-height-lg;
   padding: $brand-link-padding-y $sidebar-padding-x;
+  transition: width $transition-speed $transition-fn;
   white-space: nowrap;
 
   &:hover {

@@ -1,7 +1,6 @@
-/*
- * Component: Main Header
- * ----------------------
- */
+//
+// Component: Main Header
+//
  
 .main-header {
   border-bottom: $main-header-bottom-border;
@@ -79,19 +78,6 @@
       color: $main-header-dark-placeholder-color;
     }
 
-    // Support FF and IE
-    :-moz-placeholder {
-      color: $main-header-dark-placeholder-color;
-    }
-
-    ::-moz-placeholder {
-      color: $main-header-dark-placeholder-color;
-    }
-
-    :-ms-input-placeholder {
-      color: $main-header-dark-placeholder-color;
-    }
-
     &:focus {
       &,
       & + .input-group-append .btn-navbar {
@@ -111,21 +97,11 @@
   }
 
   .form-control-navbar {
+    &:ms-placeholder,
+    &:moz-placeholder,
+    &::moz-placeholder,
     &::placeholder,
     + .input-group-append > .btn-navbar {
-      color: $main-header-light-placeholder-color;
-    }
-
-    // Support FF and IE
-    :-moz-placeholder {
-      color: $main-header-light-placeholder-color;
-    }
-
-    ::-moz-placeholder {
-      color: $main-header-light-placeholder-color;
-    }
-
-    :-ms-input-placeholder {
       color: $main-header-light-placeholder-color;
     }
 

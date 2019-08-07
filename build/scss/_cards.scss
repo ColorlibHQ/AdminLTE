@@ -1,7 +1,6 @@
-/*
- * Component: Cards
- * ----------------
- */
+//
+// Component: Cards
+//
 
 .card {
   @extend .mb-3;
@@ -23,7 +22,7 @@
     top: 0;
     width: 100% !important;
     z-index: 9999;
-    
+
     &.was-collapsed .card-body {
       display: block !important;
     }
@@ -52,7 +51,7 @@
       margin: 0;
 
       &:last-of-type {
-        border-bottom: none;
+        border-bottom: 0;
       }
     }
   }
@@ -97,7 +96,7 @@ html.maximized-card {
   }
 
   .collapsed-card & {
-    border-bottom: none;
+    border-bottom: 0;
   }
 
   > .card-tools {
@@ -252,8 +251,8 @@ html.maximized-card {
     }
 
     // Time labels
-    .label {
-      font-size: 9px;
+    .badge {
+      font-size: .7rem;
       margin-left: 10px;
     }
 
@@ -287,31 +286,23 @@ html.maximized-card {
         text-decoration: line-through;
       }
 
-      .label {
+      .badge {
         background: $gray-500 !important;
       }
     }
   }
 
-  // Color varaity
-  .danger {
-    border-left-color: theme-color('danger');
+  // Color variants
+  @each $name, $color in $theme-colors {
+    .#{$name} {
+      border-left-color: $color;
+    }
   }
 
-  .warning {
-    border-left-color: theme-color('warning');
-  }
-
-  .info {
-    border-left-color: theme-color('info');
-  }
-
-  .success {
-    border-left-color: theme-color('success');
-  }
-
-  .primary {
-    border-left-color: theme-color('primary');
+  @each $name, $color in $colors {
+    .#{$name} {
+      border-left-color: $color;
+    }
   }
 
   .handle {
@@ -328,59 +319,11 @@ html.maximized-card {
   max-width: 200px;
 }
 
+// Color variants
 @each $name, $color in $theme-colors {
-  .card-#{$name} {
-    &:not(.card-outline) {
-      .card-header {
-        background-color: $color;
-        border-bottom: 0;
+  @include cards-variant($name, $color);
+}
 
-        &,
-        a {
-          color: color-yiq($color);
-        }
-      }
-    }
-
-    &.card-outline {
-      border-top: 3px solid $color;
-    }
-  }
-
-  .bg-#{$name},
-  .bg-#{$name}-gradient,
-  .card-#{$name}:not(.card-outline) {
-    .btn-tool {
-      color: rgba(color-yiq($color), 0.8);
-
-      &:hover {
-        color: color-yiq($color);
-      }
-    }
-  }
-
-  .card.bg-#{$name},
-  .card.bg-#{$name}-gradient {
-    .bootstrap-datetimepicker-widget {
-      .table td,
-      .table th {
-        border: none;
-      }
-
-      table thead tr:first-child th:hover,
-      table td.day:hover,
-      table td.hour:hover,
-      table td.minute:hover,
-      table td.second:hover {
-        background: darken($color, 8%);
-        color: color-yiq($color);
-      }
-
-      table td.active,
-      table td.active:hover {
-        background: lighten($color, 10%);
-        color: color-yiq($color);
-      }
-    }
-  }
+@each $name, $color in $colors {
+  @include cards-variant($name, $color);
 }

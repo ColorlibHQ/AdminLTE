@@ -1,0 +1,96 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+markdown:  kramdown
+kramdown:
+  auto_ids: false
+
+highlighter: rouge
+plugins:
+  - jekyll-seo-tag
+
+title: AdminLTE v3 Documentaion
+version: v3.0.0-beta.2
+description: >- # this means to ignore newlines until "baseurl:"
+  AdminLTE v3 Documentaion
+
+navigation:
+- title: Installation
+  url: index.html
+  icon: fas fa-microchip
+- title: Dependencies & Plugins
+  url: dependencies.html
+  icon: fas fa-handshake
+- title: Layout
+  url: layout.html
+  icon: fas fa-copy
+- title: Components
+  icon: fas fa-th
+  url: components
+  subitems: 
+    - title: Main Header
+      url: components/main-header.html
+    - title: Main Sidebar
+      url: components/main-sidebar.html
+    - title: Control Sidebar
+      url: components/control-sidebar.html
+    - title: Card
+      url: components/cards.html
+    - title: Small-/ Info-Box
+      url: components/boxes.html
+    - title: Direct Chat
+      url: components/direct-chat.html
+- title: JavaScript
+  icon: fas fa-code
+  url: javascript
+  subitems: 
+    - title: Layout
+      url: javascript/layout.html
+    - title: Push Menu
+      url: javascript/push-menu.html
+    - title: Treeview
+      url: javascript/treeview.html
+    - title: Widget
+      url: javascript/widget.html
+    # - title: CardRefresh
+    #   url: javascript/card-refresh.html
+    - title: Control Sidebar
+      url: javascript/control-sidebar.html
+    - title: Direct Chat
+      url: javascript/direct-chat.html
+    - title: Todo List
+      url: javascript/todo-list.html
+- title: Browser Support
+  url: browser-support.html
+  icon: fab fa-chrome
+- title: Upgrade Guide
+  url: upgrade-guide.html
+  icon: fas fa-hand-point-up
+- title: Implementations
+  url: implementations.html
+  icon: fas fa-bookmark
+- title: FAQ
+  url: faq.html
+  icon: fas fa-question-circle
+- title: License
+  url: license.html
+  icon: fas fa-file-alt
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+exclude:
+  - Gemfile
+  - Gemfile.lock
