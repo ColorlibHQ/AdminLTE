@@ -24,7 +24,7 @@
   }
 
   .bg-#{$name},
-  .bg-#{$name}-gradient,
+  .bg-gradient-#{$name},
   .card-#{$name}:not(.card-outline) {
     .btn-tool {
       color: rgba(color-yiq($color), 0.8);
@@ -36,7 +36,7 @@
   }
 
   .card.bg-#{$name},
-  .card.bg-#{$name}-gradient {
+  .card.bg-gradient-#{$name} {
     .bootstrap-datetimepicker-widget {
       .table td,
       .table th {
