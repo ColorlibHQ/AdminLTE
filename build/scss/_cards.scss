@@ -7,6 +7,10 @@
   @include box-shadow($card-shadow);
 
   &.bg-dark {
+    .card-header {
+      border-color: $card-dark-border-color;
+    }
+
     &,
     .card-body {
       color: $white;
