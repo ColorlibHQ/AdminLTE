@@ -94,6 +94,7 @@ html.maximized-card {
   background-color: transparent;
   border-bottom: 1px solid $card-border-color;
   position: relative;
+  padding: ($card-spacer-y / 3) * 2 $card-spacer-x;
 
   @if $enable-rounded {
     @include border-top-radius($border-radius);
@@ -104,9 +105,8 @@ html.maximized-card {
   }
 
   > .card-tools {
-    position: absolute;
-    right: 1rem;
-    top: .5rem;
+    float: right;
+    margin-right: -$card-spacer-y/3;
 
     [data-toggle='tooltip'] {
       position: relative;
@@ -115,9 +115,11 @@ html.maximized-card {
 }
 
 .card-title {
+  float: left;
   font-size: $card-title-font-size;
   font-weight: $card-title-font-weight;
   margin: 0;
+  padding: $card-spacer-y/3 0;
 }
 
 // Box Tools Buttons
