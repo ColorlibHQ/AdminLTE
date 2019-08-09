@@ -59,7 +59,7 @@ define([
 
     container.on('focus', function (evt) {
       if (!container.isOpen()) {
-        self.$selection.focus();
+        self.$selection.trigger('focus');
       }
     });
   };

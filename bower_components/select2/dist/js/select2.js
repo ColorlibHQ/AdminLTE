@@ -1,5 +1,5 @@
 /*!
- * Select2 4.0.7
+ * Select2 4.0.8
  * https://select2.github.io
  *
  * Released under the MIT license
@@ -1014,7 +1014,12 @@ S2.define('select2/results',[
       'aria-selected': 'false'
     };
 
-    if (data.disabled) {
+    var matches = window.Element.prototype.matches ||
+      window.Element.prototype.msMatchesSelector ||
+      window.Element.prototype.webkitMatchesSelector;
+
+    if ((data.element != null && matches.call(data.element, ':disabled')) ||
+        (data.element == null && data.disabled)) {
       delete attrs['aria-selected'];
       attrs['aria-disabled'] = 'true';
     }
@@ -1477,10 +1482,8 @@ S2.define('select2/selection/base',[
       self.$selection.removeAttr('aria-activedescendant');
       self.$selection.removeAttr('aria-owns');
 
-      window.setTimeout(function () {
-        self.$selection.focus();
-      }, 0);
-    
+      self.$selection.trigger('focus');
+
       self._detachCloseHandler(container);
     });
 
@@ -1616,7 +1619,7 @@ S2.define('select2/selection/single',[
 
     container.on('focus', function (evt) {
       if (!container.isOpen()) {
-        self.$selection.focus();
+        self.$selection.trigger('focus');
       }
     });
   };
@@ -2109,13 +2112,7 @@ S2.define('select2/selection/search',[
 
     this.resizeSearch();
     if (searchHadFocus) {
-      var isTagInput = this.$element.find('[data-select2-tag]').length;
-      if (isTagInput) {
-        // fix IE11 bug where tag input lost focus
-        this.$element.focus();
-      } else {
-        this.$search.focus();
-      }
+      this.$search.trigger('focus');
     }
   };
 
@@ -3805,7 +3802,7 @@ S2.define('select2/data/tokenizer',[
       // Replace the search term if we have the search box
       if (this.$search.length) {
         this.$search.val(tokenData.term);
-        this.$search.focus();
+        this.$search.trigger('focus');
       }
 
       params.term = tokenData.term;
@@ -4051,10 +4048,10 @@ S2.define('select2/dropdown/search',[
     container.on('open', function () {
       self.$search.attr('tabindex', 0);
 
-      self.$search.focus();
+      self.$search.trigger('focus');
 
       window.setTimeout(function () {
-        self.$search.focus();
+        self.$search.trigger('focus');
       }, 0);
     });
 
@@ -4062,12 +4059,12 @@ S2.define('select2/dropdown/search',[
       self.$search.attr('tabindex', -1);
 
       self.$search.val('');
-      self.$search.blur();
+      self.$search.trigger('blur');
     });
 
     container.on('focus', function () {
       if (!container.isOpen()) {
-        self.$search.focus();
+        self.$search.trigger('focus');
       }
     });
 
@@ -4166,6 +4163,7 @@ S2.define('select2/dropdown/infiniteScroll',[
 
     if (this.showLoadingMore(data)) {
       this.$results.append(this.$loadingMore);
+      this.loadMoreIfNeeded();
     }
   };
 
@@ -4184,25 +4182,27 @@ S2.define('select2/dropdown/infiniteScroll',[
       self.loading = true;
     });
 
-    this.$results.on('scroll', function () {
-      var isLoadMoreVisible = $.contains(
-        document.documentElement,
-        self.$loadingMore[0]
-      );
+    this.$results.on('scroll', this.loadMoreIfNeeded.bind(this));
+  };
 
-      if (self.loading || !isLoadMoreVisible) {
-        return;
-      }
+  InfiniteScroll.prototype.loadMoreIfNeeded = function () {
+    var isLoadMoreVisible = $.contains(
+      document.documentElement,
+      this.$loadingMore[0]
+    );
 
-      var currentOffset = self.$results.offset().top +
-        self.$results.outerHeight(false);
-      var loadingMoreOffset = self.$loadingMore.offset().top +
-        self.$loadingMore.outerHeight(false);
+    if (this.loading || !isLoadMoreVisible) {
+      return;
+    }
 
-      if (currentOffset + 50 >= loadingMoreOffset) {
-        self.loadMore();
-      }
-    });
+    var currentOffset = this.$results.offset().top +
+      this.$results.outerHeight(false);
+    var loadingMoreOffset = this.$loadingMore.offset().top +
+      this.$loadingMore.outerHeight(false);
+
+    if (currentOffset + 50 >= loadingMoreOffset) {
+      this.loadMore();
+    }
   };
 
   InfiniteScroll.prototype.loadMore = function () {
@@ -5341,6 +5341,12 @@ S2.define('select2/core',[
       }
 
       return null;
+    }
+
+    if (method == 'computedstyle') {
+      var computedStyle = window.getComputedStyle($element[0]);
+
+      return computedStyle.width;
     }
 
     return method;

@@ -44,3 +44,7 @@ QUnit.testStart(function(testDetails){
     }
   });
 });
+
+define('qunit', function () {
+  return QUnit;
+})

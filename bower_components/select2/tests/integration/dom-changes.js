@@ -255,3 +255,34 @@ test('removing a selected option changes the value', function (assert) {
 
   syncDone();
 });
+
+test('searching tags does not loose focus', function (assert) {
+  assert.expect(1);
+
+  var asyncDone = assert.async();
+  var $ = require('jquery');
+  var Options = require('select2/options');
+  var Select2 = require('select2/core');
+
+  var $select = $(
+    '<select multiple="multiple">' +
+    '  <option value="1">Text1</option>' +
+    ' <option value="2">Text2</option>' +
+    '</select>'
+  );
+
+  $('#qunit-fixture').append($select);
+
+  var select = new Select2($select, {tags: true});
+
+  var inputEl = select.selection.$search[0];
+  inputEl.focus();
+
+  select.on('selection:update', function() {
+    assert.equal(document.activeElement, inputEl);
+    asyncDone();
+  });
+
+  select.selection.trigger('query', {term: 'f'});
+  select.selection.trigger('query', {term: 'ff'});
+});

@@ -6,9 +6,9 @@ Bootstrap-datepicker provides a flexible datepicker widget in the Bootstrap styl
 .. figure:: _static/screenshots/demo_head.png
     :align: center
 
-Versions are incremented according to `semver <http://semver.org/>`_.
+Versions are incremented according to `semver <https://semver.org/>`_.
 
-`Online Demo <https://eternicode.github.io/bootstrap-datepicker/>`_
+`Online Demo <https://uxsolutions.github.io/bootstrap-datepicker>`_
 
 
 Requirements

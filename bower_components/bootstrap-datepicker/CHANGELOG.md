@@ -1,6 +1,24 @@
 Changelog
 =========
 
+1.9.0
+-----
+
+## Features
+ * Added clearDates for clears range (#2114)
+
+## Bugfix
+ * Hide today button when before start or after end date (#2474)
+ * Fix navigation buttons states (#2277)
+ * Fix updateNavArrows bug (#2230)
+
+## Locales
+### Bugfix
+ * Added monthsTitle to Latvian locale (#2255)
+ * Rename en-CA locale file to match the rest of the files (#2217)
+ * Fix cs locale date format (#2275)
+ * Added translation for months (fixing the default 'en' locale) (#2271)
+
 1.7.1
 -----
 
@@ -49,7 +67,7 @@ Changelog
  * en-IE (#1800)
  * ar-tn (#1863)
  * Added Sinhala (si) locale (#2025)
- * Occitan locale (#2024 + #2026) 
+ * Occitan locale (#2024 + #2026)
  * [l10n]Add breton translation (#2028)
  * Added Tajik language (#2117)
  * Add Uzbek latin and cyrill locales (#2152)
@@ -112,19 +130,19 @@ Features
  * Replace arrow entities for glyphicon + template + libs snippets (Fixes: #610 #833 #1007)
  * added class .disabled to dow header
  * Rename "remove" to "destroy" and create alias
- 
+
 Bugfix
 
  * Month/year view keyboard navigation
  * fix changeMonth, changeYear not triggered when selecting day from prev/next month
  * Fix default arrows for BS2 and screenshots (for docs)
  * Extend beforeShowMonth event functionality to work like beforeShowDay and beforeShowYear
- 
+
 Locale changes
 
  * Correct date format for ko locale
  * Add en-AU (Australian English) locale
- 
+
 Repository
 
  * Add CSS sourcemap
@@ -143,17 +161,17 @@ Bugfixes
  * Use document scrollTop instead of body scrollTop when using the body container
  * Fix focus for disabled week days (Fixes: #1365, #1187, #1648)
  * Fixes enableOnReadOnly bug when datepicker is of type component
- 
+
 Translations
  * Added missing translations for slovak translation. (Fixes: #1521)
  * Added missing date format for norwegian (nb) locale (Fixes #1690)
  * Armenian translation short names
  * adding Today translation, default date format for the lithuanian translation
- 
+
 Docs
  * Document data-api on container
  * Added docs for the different stylesheet files. (Fixes #1459)
- 
+
 Repository
  * Enable travis container builds for faster builds
 
@@ -181,7 +199,7 @@ Features
 Bugfixes:
  * Scrolling on mobile device closes datepicker
  * Use $.on() instead $.bind()
- * Fixed right-click and edit-menu paste 
+ * Fixed right-click and edit-menu paste
  * Ported prototype fix for Prototype Compability
  * Fixed issue with startview year
  * Fixed padding inconsistency with twitter bootstrap 3
@@ -190,10 +208,10 @@ Bugfixes:
  * Fixes the issue with a date change firing mulitple change events
  * removed hard dependency on bootstrap (because of twbs-sass package)
  * Clearing the date should reset to defaultViewDate
- * Datepicker orientation mix up - top = bottom and bottom = top 
+ * Datepicker orientation mix up - top = bottom and bottom = top
  * Fix cursor thead styles
  * Fix date-reset issue when navigating to next with invalid date
- * Using orientation:auto but date picker still appears above, cut off, when there plenty of space below. 
+ * Using orientation:auto but date picker still appears above, cut off, when there plenty of space below.
  * lots of orientation fixes
 
 Locale changes:
@@ -275,16 +293,16 @@ Repo changes:
 * Add package name and version to npm package.json
 
 Bugfixes:
-* Remove font-family declaration for datepicker 
+* Remove font-family declaration for datepicker
 * Don't deselect date unless datepicker is multidate
 * Removed comment from compiled CSS.
 * Don't clear input after typing date and hitting Enter when keyboard nav is disabled
-* Fixing the ui displaying 'undefined nan' when typing dates in Firefox & IE 
-* Reset tooltip to a default empty value 
-* Fix colspan if calendarWeeks & clearBtn are true 
+* Fixing the ui displaying 'undefined nan' when typing dates in Firefox & IE
+* Reset tooltip to a default empty value
+* Fix colspan if calendarWeeks & clearBtn are true
 * Removed fixed width and height in large and small group addon
 * z-index calculation should not stop at first element
-* Fix IE8 bug with Array#splice with one argument 
+* Fix IE8 bug with Array#splice with one argument
 
 Documentation:
 * ghpages: jQuery js not being loaded when using HTTPS
@@ -306,7 +324,7 @@ Updated languages:
 * Fixed Albanian translation typo's
 * Add missing clear and format localization value for Russian translation
 * Updated Serbian translation
-* Fixed Ukrainian iso code to uk instead of ua 
+* Fixed Ukrainian iso code to uk instead of ua
 * Updated greek translation
 * Update Catalan and Spanish localizations
 * Added missing armenian translations
@@ -351,7 +369,7 @@ Locale changes:
 * De-duplicated Ukrainian files from `uk` and `ua` to just `ua`
 
 Repository changes:
-* Documentation has been moved from the base `README.md` file to the `docs/` folder, and been re-written to use sphinx docs.  The docs are now viewable online at http://bootstrap-datepicker.readthedocs.org/.  The [gh-pages](http://eternicode.github.io/bootstrap-datepicker/) branch has been reduced to the sandbox demo.
+* Documentation has been moved from the base `README.md` file to the `docs/` folder, and been re-written to use sphinx docs.  The docs are now viewable online at https://bootstrap-datepicker.readthedocs.org/.  The [gh-pages](https://uxsolutions.github.io/bootstrap-datepicker/) branch has been reduced to the sandbox demo.
 * Changed the js file header to point at repo/demo/docs urls instead of eyecon.ro
 * The css files are now the output of the standalone build scripts instead of `build/build.less` etc.
 * `composer.json` now supports component-installer
@@ -399,11 +417,11 @@ Locale changes:
 
 1.1.3
  ----------
- 
+
  Clicking the clear button now triggers the input's `change` and datepicker's `changeDate` events.
  Fixed a bug that broke the event-attached `format` function.
- 
- 
+
+
 1.1.2
 ----------
 
@@ -465,7 +483,7 @@ Small optimizations release
 v1.0.1
 ------
 
-* Support for [Bower](http://twitter.github.com/bower/)
+* Support for [Bower](https://bower.io/)
 * Component pickers are now aligned under the input, not the add-on element.
 * Japanese locale now has "today" and "format".
 * "remove" method removes `.data().date` if the datepicker is on a non-input.

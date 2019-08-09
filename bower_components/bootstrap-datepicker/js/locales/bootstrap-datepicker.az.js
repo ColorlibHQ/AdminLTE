@@ -7,6 +7,8 @@
         months: ["Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun", "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"],
         monthsShort: ["Yan", "Fev", "Mar", "Apr", "May", "İyun", "İyul", "Avq", "Sen", "Okt", "Noy", "Dek"],
         today: "Bu gün",
-        weekStart: 1
+        weekStart: 1,
+        clear: "Təmizlə",
+        monthsTitle: 'Aylar'
     };
 }(jQuery));

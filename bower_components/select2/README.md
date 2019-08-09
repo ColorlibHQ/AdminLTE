@@ -1,8 +1,8 @@
 Select2
 =======
 [![Build Status][travis-ci-image]][travis-ci-status]
-[![cdnjs](https://img.shields.io/cdnjs/v/select2.svg)](https://cdnjs.com/libraries/select2)
-[![jsdelivr](https://data.jsdelivr.com/v1/package/npm/select2/badge)](https://www.jsdelivr.com/package/npm/select2)
+[![cdnjs](https://img.shields.io/cdnjs/v/select2.svg)][cdnjs]
+[![jsdelivr](https://data.jsdelivr.com/v1/package/npm/select2/badge)][jsdelivr]
 
 Select2 is a jQuery-based replacement for select boxes. It supports searching,
 remote data sets, and pagination of results.
@@ -32,10 +32,6 @@ Browser compatibility
 * Firefox 10+
 * Safari 3+
 * Opera 10.6+
-
-Select2 is automatically tested on the following browsers.
-
-[![Sauce Labs Test Status][saucelabs-matrix]][saucelabs-status]
 
 Usage
 -----
@@ -81,8 +77,7 @@ make a pull request back to Select2 here on GitHub.
 Documentation
 -------------
 The documentation for Select2 is available
-[through GitHub Pages][documentation] and is located within this repository
-in the [`docs` folder][documentation-folder].
+[through GitHub Pages][documentation] and is located within the [separate `select2/docs` repository][documentation-repository].
 
 Community
 ---------
@@ -96,16 +91,15 @@ The license is available within the repository in the [LICENSE][license] file.
 [cdnjs]: http://www.cdnjs.com/libraries/select2
 [community]: https://select2.org/getting-help
 [documentation]: https://select2.org
-[documentation-folder]: https://github.com/select2/select2/tree/master/docs
+[documentation-repository]: https://github.com/select2/docs
 [freenode]: https://freenode.net/
-[jsdelivr]: http://www.jsdelivr.com/#!select2
+[jsdelivr]: https://www.jsdelivr.com/package/npm/select2
 [license]: LICENSE.md
 [releases]: https://github.com/select2/select2/releases
-[saucelabs-matrix]: https://saucelabs.com/browser-matrix/select2.svg
-[saucelabs-status]: https://saucelabs.com/u/select2
 [travis-ci-image]: https://img.shields.io/travis/select2/select2/master.svg
 [travis-ci-status]: https://travis-ci.org/select2/select2
 
+[angularjs]: https://angularjs.org/
 [bootstrap3]: https://getbootstrap.com/
 [bootstrap4]: https://getbootstrap.com/
 [django]: https://www.djangoproject.com/
@@ -115,6 +109,7 @@ The license is available within the repository in the [LICENSE][license] file.
 [drupal]: https://www.drupal.org/
 [drupal-select2]: https://www.drupal.org/project/select2
 [flat-ui]: http://designmodo.github.io/Flat-UI/
+[mdr-angular-select2]: https://github.com/modulr/mdr-angular-select2
 [meteor]: https://www.meteor.com/
 [meteor-select2]: https://github.com/nate-strauser/meteor-select2
 [metro-ui]: http://metroui.org.ua/
@@ -130,5 +125,3 @@ The license is available within the repository in the [LICENSE][license] file.
 [wicketstuff-select2]: https://github.com/wicketstuff/core/tree/master/select2-parent
 [yii2]: http://www.yiiframework.com/
 [yii2-widget-select2]: https://github.com/kartik-v/yii2-widget-select2
-[angularjs]: https://angularjs.org/
-[mdr-angular-select2]: https://github.com/modulr/mdr-angular-select2

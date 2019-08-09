@@ -162,6 +162,12 @@ define([
       return null;
     }
 
+    if (method == 'computedstyle') {
+      var computedStyle = window.getComputedStyle($element[0]);
+
+      return computedStyle.width;
+    }
+
     return method;
   };
 

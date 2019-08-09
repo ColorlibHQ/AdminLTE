@@ -1,7 +1,7 @@
 "Moono" Skin
 ====================
 
-This skin has been chosen for the **default skin** of CKEditor 4.x (replaced by "Moono-lisa" skin since CKEditor 4.6.0),
+This skin has been chosen for the **default skin** of CKEditor 4.x.x (replaced by "Moono-lisa" skin since CKEditor 4.6.0),
 elected from the CKEditor [skin contest](https://ckeditor.com/blog/CKEditor-4-Skin-Contest-Winner/) and further shaped by
 the CKEditor team. "Moono" is maintained by the core developers.
 

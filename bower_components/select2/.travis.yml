@@ -1,22 +1,20 @@
 language: node_js
 
-sudo: false
-
 node_js:
-  - 0.10
-
-env:
-  global:
-    - secure: XMNK8GVxkwKa6oLl7nJwgg/wmY1YDk5rrMd+UXz26EDCsMDbiy1P7GhN2fEiBSLaQ7YfEuvaDcmzQxTrT0YTHp1PDzb2o9J4tIDdEkqPcv1y8xMaYDfmsN0rBPdBwZEg9H5zUgi7OdUbrGswSYxsKCE3x8EOqK89104HyOo1LN4=
-    - secure: BU5BPRx6H4O3WJ509YPixjUxg+hDF3z2BVJX6NiGmKWweqvCEYFfiiHLwDEgp/ynRcF9vGVi1V4Ly1jq7f8NIajbDZ5q443XchZFYFg78K/EwD5mK6LYt16zb7+Jn0KbzwHeGRGzc9AvcEYlW6i634cSCm4n3BnqtF5PpogSzdw=
+  - "8"
 
 script:
-  - grunt ci
+  - grunt
 
 notifications:
   email: false
-  irc:
-    channels:
-      - "chat.freenode.net#select2"
-    on_success: change
-    on_failure: always
+
+deploy:
+  - provider: npm
+    email:
+      secure: T/xRKPHPI1GwomNYb3nvMntS805vdzewDKNwB+lDS6WOfXQx9td5CIbkhpfAW3zVjdbsXFVSOzufesY+RtF4gq8yvW5FhV7py6gwnEyW8LybgYssUd08W/fMoiCjORRXxwqnoHEh956z3Z9De4Q9ow47m8iniAsKRR1I1DHaKs0=
+    api_key:
+      secure: BCdGeRjm8i9V+gbaVNIYk7+zLyeLOQDm6eCH+NYVX137gkNBoYqL/U7GGfHoWxEvrVgN8tcCM6RrS5qU+Wu/Wy/esz1PeSoFxKEIJx+p6BCzACFl1tJWqdm/JlmnuCiZdHs6TTtfKQwaJAK4H0Kfp5qJZS9QA/RxBpkfBQZW9VY=
+    on:
+      tags: true
+    skip_cleanup: true

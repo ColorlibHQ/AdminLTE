@@ -1,1 +1,1 @@
-﻿CKEDITOR.plugins.setLang("colordialog","sr",{clear:"Clear",highlight:"Highlight",options:"Color Options",selected:"Selected Color",title:"Select color"});
+﻿CKEDITOR.plugins.setLang("colordialog","sr",{clear:"Брисање",highlight:"Истицање",options:"Врсте боја",selected:"Одабрано",title:"Одаберите боју"});

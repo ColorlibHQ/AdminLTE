@@ -1,5 +1,29 @@
 # Change Log
 
+## 4.0.8
+
+### New features / improvements
+
+* Test against and fix compatibility with jQuery 3.4.1 (#5531)
+* Results respect disabled state of `<option>` (#5560)
+* Add `computedstyle` option for calculating the width (#5559)
+
+### Bug fixes
+
+* Fix tag creation being broken in 4.0.7 (#5558)
+* Fix infinite scroll when the scrollbar is not visible (#5575)
+* Revert change to focusing behaviour in 4.0.6 (#5576)
+
+### Translations
+
+* Fix wording in French translations (#5521)
+
+### Miscellaneous
+
+* Update grunt-contrib-qunit to latest version (#5530)
+* Removed unused `.select2-selection__placeholder` CSS definitions for multiple selects (#5508)
+* Remove deprecated jQuery shorthand (#5564)
+
 ## 4.0.7
 
 ### New features/improvements

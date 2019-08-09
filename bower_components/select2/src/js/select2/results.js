@@ -175,7 +175,12 @@ define([
       'aria-selected': 'false'
     };
 
-    if (data.disabled) {
+    var matches = window.Element.prototype.matches ||
+      window.Element.prototype.msMatchesSelector ||
+      window.Element.prototype.webkitMatchesSelector;
+
+    if ((data.element != null && matches.call(data.element, ':disabled')) ||
+        (data.element == null && data.disabled)) {
       delete attrs['aria-selected'];
       attrs['aria-disabled'] = 'true';
     }

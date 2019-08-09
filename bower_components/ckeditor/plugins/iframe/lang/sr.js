@@ -1,1 +1,1 @@
-﻿CKEDITOR.plugins.setLang("iframe","sr",{border:"Show frame border",noUrl:"Please type the iframe URL",scrolling:"Enable scrollbars",title:"IFrame Properties",toolbar:"IFrame"});
+﻿CKEDITOR.plugins.setLang("iframe","sr",{border:"Прикажи границу оквира",noUrl:"Унесите  iframe УРЛ",scrolling:"Укљзчи померајуће траке.",title:"IFrame подешавање",toolbar:"IFrame"});

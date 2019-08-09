@@ -17,4 +17,4 @@ $ make html
 
 The docs will be generated, the output files will be placed in the `_build/html/` directory, and can be browsed (locally) with any browser.
 
-The docs can also be found online at <http://bootstrap-datepicker.readthedocs.org/>.
+The docs can also be found online at <https://bootstrap-datepicker.readthedocs.org/>.

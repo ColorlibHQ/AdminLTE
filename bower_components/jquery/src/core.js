@@ -27,7 +27,7 @@ define( [
 "use strict";
 
 var
-	version = "3.3.1",
+	version = "3.4.1",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -156,25 +156,28 @@ jQuery.extend = jQuery.fn.extend = function() {
 
 			// Extend the base object
 			for ( name in options ) {
-				src = target[ name ];
 				copy = options[ name ];
 
+				// Prevent Object.prototype pollution
 				// Prevent never-ending loop
-				if ( target === copy ) {
+				if ( name === "__proto__" || target === copy ) {
 					continue;
 				}
 
 				// Recurse if we're merging plain objects or arrays
 				if ( deep && copy && ( jQuery.isPlainObject( copy ) ||
 					( copyIsArray = Array.isArray( copy ) ) ) ) {
+					src = target[ name ];
 
-					if ( copyIsArray ) {
-						copyIsArray = false;
-						clone = src && Array.isArray( src ) ? src : [];
-
+					// Ensure proper type for the source value
+					if ( copyIsArray && !Array.isArray( src ) ) {
+						clone = [];
+					} else if ( !copyIsArray && !jQuery.isPlainObject( src ) ) {
+						clone = {};
 					} else {
-						clone = src && jQuery.isPlainObject( src ) ? src : {};
+						clone = src;
 					}
+					copyIsArray = false;
 
 					// Never move original objects, clone them
 					target[ name ] = jQuery.extend( deep, clone, copy );
@@ -227,9 +230,6 @@ jQuery.extend( {
 	},
 
 	isEmptyObject: function( obj ) {
-
-		/* eslint-disable no-unused-vars */
-		// See https://github.com/eslint/eslint/issues/6125
 		var name;
 
 		for ( name in obj ) {
@@ -239,8 +239,8 @@ jQuery.extend( {
 	},
 
 	// Evaluates a script in a global context
-	globalEval: function( code ) {
-		DOMEval( code );
+	globalEval: function( code, options ) {
+		DOMEval( code, { nonce: options && options.nonce } );
 	},
 
 	each: function( obj, callback ) {
