@@ -36,7 +36,7 @@
     "ckeditor": "^4.7",
     "bootstrap-colorpicker": "^2.5.1",
     "bootstrap": "^3.4",
-    "jquery": "^3.2.1",
+    "jquery": "^3.4.1",
     "datatables.net": "^1.10.15",
     "datatables.net-bs": "^2.1.1",
     "bootstrap-datepicker": "^1.7",
