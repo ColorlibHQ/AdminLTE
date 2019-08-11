@@ -5489,6 +5489,24 @@ fieldset[disabled] .btn-yahoo.focus {
 hr {
   border-top: 1px solid #555555;
 }
+#red .slider-selection {
+  background: #f56954;
+}
+#blue .slider-selection {
+  background: #3c8dbc;
+}
+#green .slider-selection {
+  background: #00a65a;
+}
+#yellow .slider-selection {
+  background: #f39c12;
+}
+#aqua .slider-selection {
+  background: #00c0ef;
+}
+#purple .slider-selection {
+  background: #932ab6;
+}
 /*
  * Misc: print
  * -----------

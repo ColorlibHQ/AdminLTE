@@ -33,7 +33,7 @@
     "bootstrap-colorpicker": "^2.5.3",
     "bootstrap-datepicker": "^1.8",
     "bootstrap-daterangepicker": "^2.1.25",
-    "bootstrap-slider": "^9.8",
+    "bootstrap-slider": "^9.10.0",
     "bootstrap-timepicker": "^0.5.2",
     "chart.js": "^1",
     "ckeditor": "^4.11.2",
