@@ -34,7 +34,7 @@ const ControlSidebar = (($) => {
   }
 
   const Default = {
-    slide: true
+    controlsidebarSlide: true
   }
 
   /**
@@ -52,11 +52,11 @@ const ControlSidebar = (($) => {
 
     show() {
       // Show the control sidebar
-      if (this._config.slide) {
+      if (this._config.controlsidebarSlide) {
         $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
-        $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function(){
-          $(Selector.CONTROL_SIDEBAR).hide()
+        $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(50).queue(function(){
           $('html').removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
+          $(Selector.CONTROL_SIDEBAR).fadeOut()
           $(this).dequeue()
         })
       } else {
@@ -66,10 +66,10 @@ const ControlSidebar = (($) => {
 
     collapse() {
       // Collapse the control sidebar
-      if (this._config.slide) {
+      if (this._config.controlsidebarSlide) {
         $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
-        $(Selector.CONTROL_SIDEBAR).show().delay(100).queue(function(){
-          $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function(){
+        $(Selector.CONTROL_SIDEBAR).show().delay(50).queue(function(){
+          $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(50).queue(function(){
             $('html').removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
             $(this).dequeue()
           })
