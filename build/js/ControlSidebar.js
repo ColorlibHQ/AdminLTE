@@ -12,7 +12,7 @@
   var DataKey = 'lte.controlsidebar';
 
   var Default = {
-    slide: true
+    controlsidebarSlide: true
   };
 
   var Selector = {
@@ -26,7 +26,8 @@
   };
 
   var ClassName = {
-    open : 'control-sidebar-open',
+    open: 'control-sidebar-open',
+    transition: 'control-sidebar-hold-transition',
     fixed: 'fixed'
   };
 
@@ -72,8 +73,11 @@
 
   ControlSidebar.prototype.expand = function () {
     $(Selector.sidebar).show();
-    if (!this.options.slide) {
-      $('body').addClass(ClassName.open);
+    if (!this.options.controlsidebarSlide) {
+      $('body').addClass(ClassName.transition).addClass(ClassName.open).delay(50).queue(function(){
+        $('body').removeClass(ClassName.transition);
+        $(this).dequeue()
+      })
     } else {
       $(Selector.sidebar).addClass(ClassName.open);
     }
@@ -83,7 +87,14 @@
   };
 
   ControlSidebar.prototype.collapse = function () {
-    $('body, ' + Selector.sidebar).removeClass(ClassName.open);
+    if (!this.options.controlsidebarSlide) {
+      $('body').addClass(ClassName.transition).removeClass(ClassName.open).delay(50).queue(function(){
+        $('body').removeClass(ClassName.transition);
+        $(this).dequeue()
+      })
+    } else {
+      $(Selector.sidebar).removeClass(ClassName.open);
+    }
     $(Selector.sidebar).fadeOut();
     $(this.element).trigger($.Event(Event.collapsed));
   };

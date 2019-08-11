@@ -749,6 +749,11 @@ a:focus {
 .control-sidebar.control-sidebar-open + .control-sidebar-bg {
   right: 0;
 }
+.control-sidebar-hold-transition .control-sidebar-bg,
+.control-sidebar-hold-transition .control-sidebar,
+.control-sidebar-hold-transition .content-wrapper {
+  transition: none;
+}
 .control-sidebar-open .control-sidebar-bg,
 .control-sidebar-open .control-sidebar {
   right: 0;
