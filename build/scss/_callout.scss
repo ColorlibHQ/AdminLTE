@@ -1,7 +1,6 @@
-/*
- * Component: Callout
- * ------------------
- */
+//
+// Component: Callout
+//
 
 // Base styles (regardless of theme)
 .callout {
@@ -17,14 +16,15 @@
 
   @extend .mb-3;
   background-color: $white;
+  border-left: 5px solid $gray-200;
   padding: .5rem 1rem .5rem .5rem;
-  border-left: 5px solid #eee;
 
   a {
     color: $white;
     text-decoration: underline;
+
     &:hover {
-      color: #eee;
+      color: $gray-200;
     }
   }
 
@@ -34,15 +34,18 @@
 
   // Themes for different contexts
   &.callout-danger {
-    border-left-color: darken(theme-color("danger"), 10%);
+    border-left-color: darken(theme-color('danger'), 10%);
   }
+
   &.callout-warning {
-    border-left-color: darken(theme-color("warning"), 10%);
+    border-left-color: darken(theme-color('warning'), 10%);
   }
+
   &.callout-info {
-    border-left-color: darken(theme-color("info"), 10%);
+    border-left-color: darken(theme-color('info'), 10%);
   }
+
   &.callout-success {
-    border-left-color: darken(theme-color("success"), 10%);
+    border-left-color: darken(theme-color('success'), 10%);
   }
 }

@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    padding: 10px;
+    color: #262626;
+    font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+h1 {
+    margin: 0 0 8px 0;
+    font-size: 24px;
+    font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
+    font-weight: 300;
+}
+
+h2 {
+    margin: 16px 0 8px 0;
+    font-size: 18px;
+    font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
+    font-weight: 300;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: #2ba6cb;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #258faf;
+}
+
+input, button, select {
+    font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
+    font-weight: 300;
+    font-size: 14px;
+    padding: 2px;
+}
+
+.navigation {
+    width: 200px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    border-right: 1px solid #e9e9e9;
+}
+
+.navigation li {
+    margin: 10px 0;
+}
+
+.demo-frame {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 200px;
+}
+
+iframe[name='demo'] {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+}

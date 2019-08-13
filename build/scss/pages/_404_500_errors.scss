@@ -1,0 +1,43 @@
+//
+// Pages: 400 and 500 error pages
+//
+ 
+.error-page {
+  margin: 20px auto 0;
+  width: 600px;
+
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }
+
+  //For the error number e.g: 404
+  > .headline {
+    float: left;
+    font-size: 100px;
+    font-weight: 300;
+
+    @include media-breakpoint-down(sm) {
+      float: none;
+      text-align: center;
+    }
+  }
+
+  //For the message
+  > .error-content {
+    display: block;
+    margin-left: 190px;
+
+    @include media-breakpoint-down(sm) {
+      margin-left: 0;
+    }
+
+    > h3 {
+      font-size: 25px;
+      font-weight: 300;
+
+      @include media-breakpoint-down(sm) {
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "_args": [
+    [
+      "@fullcalendar/core@4.2.0",
+      "/Users/rejack/Projekte/GitHub/REJack/AdminLTE"
+    ]
+  ],
+  "_from": "@fullcalendar/core@4.2.0",
+  "_id": "@fullcalendar/core@4.2.0",
+  "_inBundle": false,
+  "_integrity": "sha512-4kd5OGHxjMtwI0gUHKwAYzmR0Z79Qf8y0ARx2Ruh20JdVy3Tznn6oKwdpkUbaXWrLXNDoXYRkBiFCIgC27VNCw==",
+  "_location": "/@fullcalendar/core",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@fullcalendar/core@4.2.0",
+    "name": "@fullcalendar/core",
+    "escapedName": "@fullcalendar%2fcore",
+    "scope": "@fullcalendar",
+    "rawSpec": "4.2.0",
+    "saveSpec": null,
+    "fetchSpec": "4.2.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@fullcalendar/core/-/core-4.2.0.tgz",
+  "_spec": "4.2.0",
+  "_where": "/Users/rejack/Projekte/GitHub/REJack/AdminLTE",
+  "author": {
+    "name": "Adam Shaw",
+    "email": "arshaw@arshaw.com",
+    "url": "http://arshaw.com/"
+  },
+  "bugs": {
+    "url": "https://fullcalendar.io/reporting-bugs"
+  },
+  "copyright": "2019 Adam Shaw",
+  "description": "Provides core functionality, including the Calendar class",
+  "docs": "https://fullcalendar.io/docs/initialize-es6",
+  "homepage": "https://fullcalendar.io/",
+  "keywords": [
+    "calendar",
+    "event",
+    "full-sized"
+  ],
+  "license": "MIT",
+  "main": "main.js",
+  "name": "@fullcalendar/core",
+  "releaseDate": "2019-06-02",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fullcalendar/fullcalendar.git",
+    "homepage": "https://github.com/fullcalendar/fullcalendar"
+  },
+  "title": "FullCalendar Core Package",
+  "types": "main.d.ts",
+  "unpkg": "main.min.js",
+  "version": "4.2.0"
+}

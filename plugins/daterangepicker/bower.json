@@ -1,0 +1,20 @@
+{
+  "name": "daterangepicker",
+  "main": [
+    "daterangepicker.js",
+    "daterangepicker.css"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "moment.js",
+    "moment.min.js"
+  ],
+  "dependencies": {
+    "jquery": "1.9.1 - 3",
+    "moment": ">=2.9.0"
+ }
+}

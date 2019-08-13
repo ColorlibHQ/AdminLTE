@@ -1,32 +1,31 @@
-/**
- * Component: Sidebar
- * ------------------
- */
+//
+// Component: Main Sidebar
+//
 
 .main-sidebar {
-  z-index: $zindex-main-sidebar;
   height: 100vh;
   overflow-y: hidden;
+  z-index: $zindex-main-sidebar;
 }
 
 .sidebar {
+  height: calc(100% - 4rem);
+  overflow-y: auto;
   padding-bottom: $sidebar-padding-y;
-  padding-top: $sidebar-padding-y;
   padding-left: $sidebar-padding-x;
   padding-right: $sidebar-padding-x;
-  overflow-y: auto;
-  height: calc(100% - 4rem);
+  padding-top: $sidebar-padding-y;
 }
 
 // Sidebar user panel
 .user-panel {
   position: relative;
 
-  [class*="sidebar-dark"] & {
+  [class*='sidebar-dark'] & {
     border-bottom: 1px solid lighten($dark, 12%);
   }
 
-  [class*="sidebar-light"] & {
+  [class*='sidebar-light'] & {
     border-bottom: 1px solid $gray-300;
   }
 
@@ -37,13 +36,13 @@
   }
 
   .image {
-    padding-left: $nav-link-padding-x - .2;
     display: inline-block;
+    padding-left: $nav-link-padding-x - .2;
   }
 
   img {
-    width: $sidebar-user-image-width;
     height: auto;
+    width: $sidebar-user-image-width;
   }
 
   .info {
@@ -62,7 +61,8 @@
   // All levels
   .nav-item {
     > .nav-link {
-      margin-bottom: 0.2rem;
+      margin-bottom: .2rem;
+
       .right {
         @include transition(transform $transition-fn $transition-speed);
       }
@@ -73,6 +73,10 @@
     position: absolute;
     right: 1rem;
     top: 12px;
+
+    &:nth-child(2) {
+      right: 2.5rem;
+    }
   }
 
   .menu-open {
@@ -81,7 +85,7 @@
     }
 
     > .nav-link {
-      .right {
+      i.right {
         @include rotate(-90deg);
       }
     }
@@ -92,10 +96,19 @@
     margin-bottom: 0;
 
     .nav-icon {
-      text-align: center;
-      width: $sidebar-nav-icon-width;
       font-size: 1.2rem;
       margin-right: .2rem;
+      text-align: center;
+      width: $sidebar-nav-icon-width;
+
+      &.fa,
+      &.fas,
+      &.far,
+      &.fab,
+      &.glyphicon,
+      &.ion {
+        font-size: 1.1rem;
+      }
     }
 
     .float-right {
@@ -118,12 +131,18 @@
     }
   }
 
+  &.nav-child-indent {
+    .nav-treeview {
+      padding-left: 1rem;
+    }
+  }
+
   .nav-header {
     font-size: .9rem;
     padding: $nav-link-padding-y;
 
     &:not(:first-of-type) {
-      padding: 1.7rem 1rem .5rem 1rem;
+      padding: 1.7rem 1rem .5rem;
     }
   }
 
@@ -134,31 +153,257 @@
 }
 
 #sidebar-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: none;
-  background-color: rgba(0, 0, 0, 0.1);
-  z-index: $zindex-main-sidebar - 1;
-
   @include media-breakpoint-down(md) {
     .sidebar-open & {
       display: block;
+    }
+  }
+
+  background-color: rgba($black, 0.1);
+  bottom: 0;
+  display: none;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: $zindex-main-sidebar - 1;
+}
+
+.sidebar-mini-md {
+  &.sidebar-open {
+    #sidebar-overlay {
+      @include media-breakpoint-up(sm) {
+        display: none;
+      }
+      @include media-breakpoint-down(sm) {
+        display: block;
+      }
+    }
+  }
+}
+
+[class*='sidebar-light-'] {
+  // Sidebar background color
+  background-color: $sidebar-light-bg;
+
+  // User Panel (resides in the sidebar)
+  .user-panel {
+    a:hover {
+      color: $sidebar-light-hover-color;
+    }
+
+    .status {
+      background: $sidebar-light-hover-bg;
+      color: $sidebar-light-color;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: darken($sidebar-light-hover-bg, 3%);
+        color: $sidebar-light-hover-color;
+      }
+    }
+
+    .dropdown-menu {
+      @include box-shadow(0 2px 4px rgba(0, 0, 0, .4));
+      border-color: darken($sidebar-light-hover-bg, 5%);
+    }
+
+    .dropdown-item {
+      color: $body-color;
+    }
+  }
+
+  // Sidebar Menu. First level links
+  .nav-sidebar > .nav-item {
+    // links
+    > .nav-link {
+      // border-left: 3px solid transparent;
+      &:active,
+      &:focus {
+        color: $sidebar-light-color;
+      }
+    }
+
+    // Hover and active states
+    &.menu-open > .nav-link,
+    &:hover > .nav-link {
+      background-color: $sidebar-light-hover-bg;
+      color: $sidebar-light-hover-color;
+    }
+
+    > .nav-link.active {
+      color: $sidebar-light-active-color;
+
+      @if $enable-shadows {
+        @extend .elevation-1;
+      }
+    }
+
+    // First Level Submenu
+    > .nav-treeview {
+      background: $sidebar-light-submenu-bg;
+    }
+  }
+
+  // Section Heading
+  .nav-header {
+    background: inherit;
+    color: darken($sidebar-light-color, 5%);
+  }
+
+  // All links within the sidebar menu
+  .sidebar {
+    a {
+      color: $sidebar-light-color;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  // All submenus
+  .nav-treeview {
+    > .nav-item {
+      > .nav-link {
+        color: $sidebar-light-submenu-color;
+      }
+
+      > .nav-link.active {
+        &,
+        &:hover {
+          background-color: $sidebar-light-submenu-active-bg;
+          color: $sidebar-light-submenu-active-color;
+        }
+      }
+
+      > .nav-link:hover {
+        background-color: $sidebar-light-submenu-hover-bg;
+      }
+    }
+  }
+}
+
+[class*='sidebar-dark-'] {
+  // Sidebar background color
+  background-color: $sidebar-dark-bg;
+
+  // User Panel (resides in the sidebar)
+  .user-panel {
+    a:hover {
+      color: $sidebar-dark-hover-color;
+    }
+
+    .status {
+      background: $sidebar-dark-hover-bg;
+      color: $sidebar-dark-color;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: darken($sidebar-dark-hover-bg, 3%);
+        color: $sidebar-dark-hover-color;
+      }
+    }
+
+    .dropdown-menu {
+      @include box-shadow(0 2px 4px rgba(0, 0, 0, .4));
+      border-color: darken($sidebar-dark-hover-bg, 5%);
+    }
+
+    .dropdown-item {
+      color: $body-color;
+    }
+  }
+
+  // Sidebar Menu. First level links
+  .nav-sidebar > .nav-item {
+    // links
+    > .nav-link {
+      // border-left: 3px solid transparent;
+      &:active {
+        color: $sidebar-dark-color;
+      }
+    }
+
+    // Hover and active states
+    &.menu-open > .nav-link,
+    &:hover > .nav-link,
+    & > .nav-link:focus  {
+      background-color: $sidebar-dark-hover-bg;
+      color: $sidebar-dark-hover-color;
+    }
+
+    > .nav-link.active {
+      color: $sidebar-dark-hover-color;
+
+      @if $enable-shadows {
+        @extend .elevation-1;
+      }
+    }
+
+    // First Level Submenu
+    > .nav-treeview {
+      background: $sidebar-dark-submenu-bg;
+    }
+  }
+
+  // Section Heading
+  .nav-header {
+    background: inherit; //darken($sidebar-dark-bg, 3%);
+    color: lighten($sidebar-dark-color, 5%);
+  }
+
+  // All links within the sidebar menu
+  .sidebar {
+    a {
+      color: $sidebar-dark-color;
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+
+  // All submenus
+  .nav-treeview {
+    > .nav-item {
+      > .nav-link {
+        color: $sidebar-dark-submenu-color;
+
+        &:hover,
+        &:focus {
+          background-color: $sidebar-dark-submenu-hover-bg;
+          color: $sidebar-dark-submenu-hover-color;
+        }
+      }
+
+      > .nav-link.active {
+        &,
+        &:hover,
+        &:focus {
+          background-color: $sidebar-dark-submenu-active-bg;
+          color: $sidebar-dark-submenu-active-color;
+        }
+      }
     }
   }
 }
 
 // Sidebar variants
 @each $name, $color in $theme-colors {
-  .sidebar-dark-#{$name} {
-    @include skin-dark-sidebar($color)
-  }
-
+  .sidebar-dark-#{$name},
   .sidebar-light-#{$name} {
-    @include skin-light-sidebar($color)
+    @include sidebar-color($color)
   }
 }
 
+@each $name, $color in $colors {
+  .sidebar-dark-#{$name},
+  .sidebar-light-#{$name} {
+    @include sidebar-color($color)
+  }
+}
 

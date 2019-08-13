@@ -1,7 +1,6 @@
-/*
- * Component: Dropdown menus
- * -------------------------
- */
+//
+// Component: Dropdown
+//
 
 // General Dropdown Rules
 //.dropdown-item {
@@ -20,35 +19,58 @@
 
 // Dropdown Sizes
 .dropdown-menu-lg {
-  min-width: 280px;
   max-width: 300px;
+  min-width: 280px;
   padding: 0;
+
   .dropdown-divider {
     margin: 0;
   }
+
   .dropdown-item {
     padding: $dropdown-padding-y $dropdown-item-padding-x;
   }
+
   p {
-    white-space: normal;
     margin: 0;
+    white-space: normal;
+  }
+}
+
+// Dropdown Sizes
+.dropdown-menu-xl {
+  max-width: 420px;
+  min-width: 360px;
+  padding: 0;
+
+  .dropdown-divider {
+    margin: 0;
+  }
+
+  .dropdown-item {
+    padding: $dropdown-padding-y $dropdown-item-padding-x;
+  }
+
+  p {
+    margin: 0;
+    white-space: normal;
   }
 }
 
 // Dropdown header and footer
 .dropdown-footer,
 .dropdown-header {
-  text-align: center;
   display: block;
-  padding: .5rem $dropdown-item-padding-x;
   font-size: $font-size-sm;
+  padding: .5rem $dropdown-item-padding-x;
+  text-align: center;
 }
 
-/* Add fade animation to dropdown menus by appending
- the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
+// Add fade animation to dropdown menus by appending 
+// the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)
 .open:not(.dropup) > .animated-dropdown-menu {
-  backface-visibility: visible !important;
   @include animation(flipInX .7s both);
+  backface-visibility: visible !important;
 }
 
 @keyframes flipInX {
@@ -77,33 +99,7 @@
   }
 }
 
-@-webkit-keyframes flipInX {
-  0% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-    -webkit-transition-timing-function: ease-in;
-    opacity: 0;
-  }
-
-  40% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-    -webkit-transition-timing-function: ease-in;
-  }
-
-  60% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
-    opacity: 1;
-  }
-
-  80% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
-  }
-
-  100% {
-    -webkit-transform: perspective(400px);
-  }
-}
-
-/* Fix dropdown menu in navbars */
+// Fix dropdown menu in navbars
 .navbar-custom-menu > .navbar-nav {
   > li {
     position: relative;
@@ -128,5 +124,101 @@
         background: $white;
       }
     }
+  }
+}
+
+// User Menu
+.navbar-nav > .user-menu {
+  > .nav-link:after {
+    content:none;
+  }
+
+  > .dropdown-menu {
+    @include border-top-radius(0);
+    padding: 0;
+    border-top-width: 0;
+    width: 280px;
+
+    &,
+    > .user-body {
+      @include border-bottom-radius(4px);
+    }
+
+    // Header menu
+    > li.user-header {
+      height: 175px;
+      padding: 10px;
+      text-align: center;
+
+      // User image
+      > img {
+        z-index: 5;
+        height: 90px;
+        width: 90px;
+        border: 3px solid;
+        border-color: transparent;
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+
+      > p {
+        z-index: 5;
+        font-size: 17px;
+        //text-shadow: 2px 2px 3px #333333;
+        margin-top: 10px;
+
+        > small {
+          display: block;
+          font-size: 12px;
+        }
+      }
+    }
+
+    // Menu Body
+    > .user-body {
+      @include clearfix;
+      border-bottom: 1px solid $gray-700;
+      border-top: 1px solid $gray-300;
+      padding: 15px;
+
+      a {
+        @include media-breakpoint-up(sm) {
+          background: $white !important;
+          color: $gray-700 !important;
+        }
+      }
+    }
+
+    // Menu Footer
+    > .user-footer {
+      @include clearfix;
+      background-color: $gray-100;
+      padding: 10px;
+
+      .btn-default {
+        color: $gray-600;
+
+        &:hover {
+          @include media-breakpoint-up(sm) {
+            background-color: $gray-100;
+          }
+        }
+      }
+    }
+  }
+
+  .user-image {
+    @include media-breakpoint-up(sm) {
+      float: none;
+      line-height: 10px;
+      margin-right: 0;
+      margin-top: -8px;
+    }
+
+    border-radius: 50%;
+    float: left;
+    height: 25px;
+    margin-right: 10px;
+    margin-top: -2px;
+    width: 25px;
   }
 }

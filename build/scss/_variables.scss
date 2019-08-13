@@ -1,19 +1,28 @@
-// AdminLTE 3 Variables.less
-// =========================
+//
+// Core: Variables
+//
 
 // COLORS
 // --------------------------------------------------------
 $blue: #0073b7 !default;
-$navy: #001F3F !default;
-$teal: #39CCCC !default;
-$olive: #3D9970 !default;
-$lime: #01FF70 !default;
-$orange: #FF851B !default;
-$fuchsia: #F012BE !default;
+$navy: #001f3f !default;
+$teal: #39cccc !default;
+$olive: #3d9970 !default;
+$lime: #01ff70 !default;
+$orange: #ff851b !default;
+$fuchsia: #f012be !default;
 $purple: #605ca8 !default;
-$maroon: #D81B60 !default;
+$maroon: #d81b60 !default;
 $black: #111 !default;
 $gray-x-light: #d2d6de !default;
+
+$colors: map-merge((
+    'navy': $navy,
+    'olive': $olive,
+    'lime': $lime,
+    'fuchsia': $fuchsia,
+    'maroon': $maroon,
+), $colors);
 
 // LAYOUT
 // --------------------------------------------------------
@@ -40,11 +49,15 @@ $content-padding-x: $navbar-padding-x !default;
 
 // MAIN HEADER
 // --------------------------------------------------------
+$main-header-bottom-border-width: $border-width !default;
+$main-header-bottom-border-color: $gray-300 !default;
+$main-header-bottom-border: $main-header-bottom-border-width solid $main-header-bottom-border-color !default;
 $main-header-link-padding-y: $navbar-padding-y !default;
 $main-header-link-padding-x: $navbar-padding-x !default;
 $main-header-brand-padding-y: $navbar-brand-padding-y !default;
 $main-header-brand-padding-x: $navbar-padding-x !default;
-$main-header-height: (($font-size-root * $line-height-base) + ($main-header-link-padding-y * 2)) !default;
+$main-header-height-inner: ($nav-link-height + ($main-header-link-padding-y * 2)) !default;
+$main-header-height: calc(#{$main-header-height-inner} + #{$main-header-bottom-border-width}) !default;
 
 // Main header skins
 $main-header-dark-form-control-bg: hsla(100, 100%, 100%, 0.2) !default;
@@ -63,11 +76,12 @@ $main-header-light-placeholder-color: hsla(0, 0%, 0%, 0.6) !default;
 
 // MAIN FOOTER
 // --------------------------------------------------------
-$main-footer-padding: 15px !default;
+$main-footer-padding: 1rem !default;
 $main-footer-border-top-width: 1px !default;
 $main-footer-border-top-color: $gray-300 !default;
 $main-footer-border-top: $main-footer-border-top-width solid $main-footer-border-top-color !default;
-$main-footer-height: 30px; //(($font-size-root * $line-height-base) + ($main-footer-padding * 2)) + $main-footer-border-top-width !default;
+$main-footer-height-inner: (($font-size-root * $line-height-base) + ($main-footer-padding * 2)) !default;
+$main-footer-height: calc(#{$main-footer-height-inner} + #{$main-footer-border-top-width}) !default;
 $main-footer-bg: $white;
 
 // SIDEBAR SKINS
@@ -113,7 +127,7 @@ $control-sidebar-width: $sidebar-width !default;
 
 // Cards
 // --------------------------------------------------------
-$card-border-color: #f4f4f4 !default;
+$card-border-color: $gray-100 !default;
 $card-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2) !default;
 $card-title-font-size: $font-size-lg;
 $card-title-font-weight: $font-weight-normal;
@@ -137,8 +151,8 @@ $attachment-border-radius: 3px !default;
 
 // Z-INDEX
 // --------------------------------------------------------
-$zindex-main-header: 1000 !default;
-$zindex-main-sidebar: 1100 !default;
+$zindex-main-header: $zindex-fixed + 2 !default;
+$zindex-main-sidebar: $zindex-fixed + 6 !default;
 $zindex-sidebar-mini-links: 010 !default;
 
 // TRANSITIONS SETTINGS
@@ -151,3 +165,29 @@ $transition-fn: ease-in-out !default;
 // TEXT
 // --------------------------------------------------------
 $font-size-xl: ($font-size-base * 2);
+
+
+// BUTTON
+// --------------------------------------------------------
+$button-default-background-color: $gray-100 !default;
+$button-default-color: #444 !default;
+$button-default-border-color: #ddd !default;
+  
+// RIBBON
+// --------------------------------------------------------
+$ribbon-border-size: 3px !default;
+$ribbon-line-height: 100% !default;
+$ribbon-padding: .375rem 0 !default;
+$ribbon-font-size: .8rem !default;
+$ribbon-width: 110px !default;
+$ribbon-wrapper-size: 90px !default;
+$ribbon-top: 9px !default;
+$ribbon-right: -12px !default;
+$ribbon-lg-wrapper-size: 180px !default;
+$ribbon-lg-width: 160px !default;
+$ribbon-lg-top: 26px !default;
+$ribbon-lg-right: -59px !default;
+$ribbon-xl-wrapper-size: 240px !default;
+$ribbon-xl-width: 240px !default;
+$ribbon-xl-top: 59px !default;
+$ribbon-xl-right: -48px !default;

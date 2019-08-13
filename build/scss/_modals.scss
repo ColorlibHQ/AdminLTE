@@ -1,0 +1,39 @@
+//
+// Component: Modals
+//
+
+// Overlay
+.modal-dialog {
+  .overlay {
+    background-color: $black;
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: .7;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: ($zindex-modal + 2);
+  }
+}
+
+
+// BG Color Variations Fixes
+.modal-content {
+  &.bg-warning {
+    .modal-header,
+    .modal-footer {
+      border-color: $gray-800;
+    }
+  }
+
+  &.bg-primary,
+  &.bg-secondary,
+  &.bg-info,
+  &.bg-danger,
+  &.bg-success, {
+    .close {
+      color: $white;
+    }
+  }
+}

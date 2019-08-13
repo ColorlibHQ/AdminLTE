@@ -1,0 +1,64 @@
+{
+  "_args": [
+    [
+      "@fullcalendar/interaction@4.2.0",
+      "/Users/rejack/Projekte/GitHub/REJack/AdminLTE"
+    ]
+  ],
+  "_from": "@fullcalendar/interaction@4.2.0",
+  "_id": "@fullcalendar/interaction@4.2.0",
+  "_inBundle": false,
+  "_integrity": "sha512-wwAyocUp1HEY7c7xCymR9EGdh7AWZrwNiBQlIpP3ne0eJT0U4ZjlnoOoels3VPsTJ9a6pdO1/XoGjEvL1T5y4g==",
+  "_location": "/@fullcalendar/interaction",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@fullcalendar/interaction@4.2.0",
+    "name": "@fullcalendar/interaction",
+    "escapedName": "@fullcalendar%2finteraction",
+    "scope": "@fullcalendar",
+    "rawSpec": "4.2.0",
+    "saveSpec": null,
+    "fetchSpec": "4.2.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@fullcalendar/interaction/-/interaction-4.2.0.tgz",
+  "_spec": "4.2.0",
+  "_where": "/Users/rejack/Projekte/GitHub/REJack/AdminLTE",
+  "author": {
+    "name": "Adam Shaw",
+    "email": "arshaw@arshaw.com",
+    "url": "http://arshaw.com/"
+  },
+  "bugs": {
+    "url": "https://fullcalendar.io/reporting-bugs"
+  },
+  "copyright": "2019 Adam Shaw",
+  "description": "Provides functionality for event drag-n-drop, resizing, dateClick, and selectable actions",
+  "docs": "https://fullcalendar.io/docs/editable",
+  "homepage": "https://fullcalendar.io/",
+  "keywords": [
+    "calendar",
+    "event",
+    "full-sized"
+  ],
+  "license": "MIT",
+  "main": "main.js",
+  "name": "@fullcalendar/interaction",
+  "peerDependencies": {
+    "@fullcalendar/core": "~4.2.0"
+  },
+  "releaseDate": "2019-06-02",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fullcalendar/fullcalendar.git",
+    "homepage": "https://github.com/fullcalendar/fullcalendar"
+  },
+  "title": "FullCalendar Interaction Plugin",
+  "types": "main.d.ts",
+  "unpkg": "main.min.js",
+  "version": "4.2.0"
+}

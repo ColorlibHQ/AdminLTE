@@ -1,0 +1,65 @@
+{
+  "_args": [
+    [
+      "@fullcalendar/daygrid@4.2.0",
+      "/Users/rejack/Projekte/GitHub/REJack/AdminLTE"
+    ]
+  ],
+  "_from": "@fullcalendar/daygrid@4.2.0",
+  "_id": "@fullcalendar/daygrid@4.2.0",
+  "_inBundle": false,
+  "_integrity": "sha512-9C61TowLTTZ657cErdylkdRYxXj5HO0NgogQgYX9X2wz7yvn6loiyGx6oq0o6OFf+e/Z4Ey06j7f/fqn/BPYEQ==",
+  "_location": "/@fullcalendar/daygrid",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@fullcalendar/daygrid@4.2.0",
+    "name": "@fullcalendar/daygrid",
+    "escapedName": "@fullcalendar%2fdaygrid",
+    "scope": "@fullcalendar",
+    "rawSpec": "4.2.0",
+    "saveSpec": null,
+    "fetchSpec": "4.2.0"
+  },
+  "_requiredBy": [
+    "/",
+    "/@fullcalendar/timegrid"
+  ],
+  "_resolved": "https://registry.npmjs.org/@fullcalendar/daygrid/-/daygrid-4.2.0.tgz",
+  "_spec": "4.2.0",
+  "_where": "/Users/rejack/Projekte/GitHub/REJack/AdminLTE",
+  "author": {
+    "name": "Adam Shaw",
+    "email": "arshaw@arshaw.com",
+    "url": "http://arshaw.com/"
+  },
+  "bugs": {
+    "url": "https://fullcalendar.io/reporting-bugs"
+  },
+  "copyright": "2019 Adam Shaw",
+  "description": "Display events on Month view or DayGrid view",
+  "docs": "https://fullcalendar.io/docs/month-view",
+  "homepage": "https://fullcalendar.io/",
+  "keywords": [
+    "calendar",
+    "event",
+    "full-sized"
+  ],
+  "license": "MIT",
+  "main": "main.js",
+  "name": "@fullcalendar/daygrid",
+  "peerDependencies": {
+    "@fullcalendar/core": "~4.2.0"
+  },
+  "releaseDate": "2019-06-02",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fullcalendar/fullcalendar.git",
+    "homepage": "https://github.com/fullcalendar/fullcalendar"
+  },
+  "title": "FullCalendar Day Grid Plugin",
+  "types": "main.d.ts",
+  "unpkg": "main.min.js",
+  "version": "4.2.0"
+}
