@@ -29,7 +29,7 @@ html.control-sidebar-animate {
   }
 }
 
-.control-sidebar-push {
+.control-sidebar-push-slide {
     .content-wrapper,
     .main-footer {
       @include transition(margin-right $transition-speed $transition-fn);
@@ -48,7 +48,8 @@ html.control-sidebar-animate {
       }
     }
 
-    &.control-sidebar-push {
+    &.control-sidebar-push,
+    &.control-sidebar-push-slide {
       .content-wrapper,
       .main-footer {
         margin-right: $control-sidebar-width;
@@ -78,7 +79,8 @@ html.control-sidebar-animate {
     }
   }
 
-  &.control-sidebar-push {
+  &.control-sidebar-push,
+  &.control-sidebar-push-slide {
     .content-wrapper,
     .main-footer {
       margin-right: $control-sidebar-width;
