@@ -30,8 +30,8 @@ const ControlSidebar = (($) => {
 
   const ClassName = {
     CONTROL_SIDEBAR_ANIMATE: 'control-sidebar-animate',
-    CONTROL_SIDEBAR_OPEN   : 'control-sidebar-open',
-    CONTROL_SIDEBAR_SLIDE  : 'control-sidebar-slide-open'
+    CONTROL_SIDEBAR_OPEN: 'control-sidebar-open',
+    CONTROL_SIDEBAR_SLIDE: 'control-sidebar-slide-open'
   }
 
   const Default = {
@@ -55,9 +55,9 @@ const ControlSidebar = (($) => {
       // Show the control sidebar
       if (this._config.controlsidebarSlide) {
         $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
-        $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(50).queue(function(){
+        $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function(){
+          $(Selector.CONTROL_SIDEBAR).hide()
           $('html').removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
-          $(Selector.CONTROL_SIDEBAR).fadeOut()
           $(this).dequeue()
         })
       } else {
@@ -72,8 +72,8 @@ const ControlSidebar = (($) => {
       // Collapse the control sidebar
       if (this._config.controlsidebarSlide) {
         $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
-        $(Selector.CONTROL_SIDEBAR).show().delay(50).queue(function(){
-          $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(50).queue(function(){
+        $(Selector.CONTROL_SIDEBAR).show().delay(10).queue(function(){
+          $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function(){
             $('html').removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
             $(this).dequeue()
           })
@@ -88,8 +88,6 @@ const ControlSidebar = (($) => {
     }
 
     toggle() {
-      this._setMargin()
-
       const shouldOpen = $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body')
         .hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)
       if (shouldOpen) {
@@ -105,12 +103,6 @@ const ControlSidebar = (($) => {
 
     _getConfig(config) {
       return $.extend({}, Default, config)
-    }
-
-    _setMargin() {
-      $(Selector.CONTROL_SIDEBAR).css({
-        top: $(Selector.MAIN_HEADER).innerHeight()
-      })
     }
 
     // Static
