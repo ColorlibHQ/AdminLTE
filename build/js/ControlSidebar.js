@@ -18,7 +18,8 @@ const ControlSidebar = (($) => {
   const DATA_API_KEY       = '.data-api'
 
   const Event = {
-    CLICK_DATA_API: `click${EVENT_KEY}${DATA_API_KEY}`
+    COLLAPSED: `collapsed${EVENT_KEY}`,
+    EXPANDED: `expanded${EVENT_KEY}`
   }
 
   const Selector = {
@@ -62,6 +63,9 @@ const ControlSidebar = (($) => {
       } else {
         $('body').removeClass(ClassName.CONTROL_SIDEBAR_OPEN)
       }
+
+      const expandedEvent = $.Event(Event.EXPANDED)
+      $(this._element).trigger(expandedEvent)
     }
 
     collapse() {
@@ -78,6 +82,9 @@ const ControlSidebar = (($) => {
       } else {
         $('body').addClass(ClassName.CONTROL_SIDEBAR_OPEN)
       }
+
+      const collapsedEvent = $.Event(Event.COLLAPSED)
+      $(this._element).trigger(collapsedEvent)
     }
 
     toggle() {
