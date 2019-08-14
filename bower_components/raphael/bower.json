@@ -10,8 +10,7 @@
   },
   "moduleType": [
     "amd",
-    "globals",
-    "node"
+    "globals"
   ],
   "keywords": ["svg", "vml", "javascript"],
   "authors": [

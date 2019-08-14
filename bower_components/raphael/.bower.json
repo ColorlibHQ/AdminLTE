@@ -10,8 +10,7 @@
   },
   "moduleType": [
     "amd",
-    "globals",
-    "node"
+    "globals"
   ],
   "keywords": [
     "svg",
@@ -33,12 +32,12 @@
     "reference.js"
   ],
   "homepage": "https://github.com/DmitryBaranovskiy/raphael",
-  "version": "2.2.8",
-  "_release": "2.2.8",
+  "version": "2.3.0",
+  "_release": "2.3.0",
   "_resolution": {
     "type": "version",
-    "tag": "v2.2.8",
-    "commit": "6f9a07d8fb8f54c891450d3e28120ce57fe8d30b"
+    "tag": "v2.3.0",
+    "commit": "d8fbe4be81d362837f95e33886b80fb41de443b4"
   },
   "_source": "https://github.com/DmitryBaranovskiy/raphael.git",
   "_target": ">= 2.0",

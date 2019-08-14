@@ -1,4 +1,11 @@
 
+v3.10.1 (2019-08-10)
+--------------------
+
+Released solely to change the [package description text](https://www.npmjs.com/package/fullcalendar)
+to reference v4 packages.
+
+
 v3.10.0 (2019-01-10)
 --------------------
 
