@@ -1,5 +1,5 @@
 /*!
- * jQuery UI CSS Framework 1.11.4
+ * jQuery UI CSS Framework 1.12.1
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -13,6 +13,8 @@
 @import url("accordion.css");
 @import url("autocomplete.css");
 @import url("button.css");
+@import url("checkboxradio.css");
+@import url("controlgroup.css");
 @import url("datepicker.css");
 @import url("dialog.css");
 @import url("draggable.css");

@@ -20,6 +20,6 @@
     "commit": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
   },
   "_source": "https://github.com/jquery/jquery-dist.git",
-  "_target": ">=1.7",
+  "_target": "^3.4.1",
   "_originalSource": "jquery"
 }

@@ -55,7 +55,7 @@
     "jquery-sparkline": "^2.1.3",
     "font-awesome": "^4.7",
     "Ionicons": "ionicons#^2.0.1",
-    "jquery-ui": "1.11.4",
+    "jquery-ui": "^1.12.1",
     "seiyria-bootstrap-slider": "^10.6.2"
   },
   "resolutions": {

@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Menu 1.11.4
+ * jQuery UI Menu 1.12.1
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -13,19 +13,20 @@
 	padding: 0;
 	margin: 0;
 	display: block;
-	outline: none;
+	outline: 0;
 }
 .ui-menu .ui-menu {
 	position: absolute;
 }
 .ui-menu .ui-menu-item {
-	position: relative;
 	margin: 0;
-	padding: 3px 1em 3px .4em;
 	cursor: pointer;
-	min-height: 0; /* support: IE7 */
 	/* support: IE10, see #8844 */
 	list-style-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
+}
+.ui-menu .ui-menu-item-wrapper {
+	position: relative;
+	padding: 3px 1em 3px .4em;
 }
 .ui-menu .ui-menu-divider {
 	margin: 5px 0;
@@ -43,7 +44,7 @@
 .ui-menu-icons {
 	position: relative;
 }
-.ui-menu-icons .ui-menu-item {
+.ui-menu-icons .ui-menu-item-wrapper {
 	padding-left: 2em;
 }
 
