@@ -108,3 +108,17 @@
     }
   }
 }
+
+.timeline-inverse {
+  > div {
+    > .timeline-item {
+      @include box-shadow(none);
+      background: $gray-100;
+      border: 1px solid $gray-300;
+
+      > .timeline-header {
+        border-bottom-color: $gray-300;
+      }
+    }
+  }
+}
