@@ -18,27 +18,29 @@ const PushMenu = (($) => {
 
   const Event = {
     COLLAPSED: `collapsed${EVENT_KEY}`,
-    SHOWN    : `shown${EVENT_KEY}`
+    SHOWN: `shown${EVENT_KEY}`
   }
 
   const Default = {
     autoCollapseSize: false,
-    screenCollapseSize: 768
+    screenCollapseSize: 768,
+    enableRemember: false,
+    noTransitionAfterReload: true
   }
 
   const Selector = {
-    TOGGLE_BUTTON    : '[data-widget="pushmenu"]',
-    SIDEBAR_MINI     : '.sidebar-mini',
+    TOGGLE_BUTTON: '[data-widget="pushmenu"]',
+    SIDEBAR_MINI: '.sidebar-mini',
     SIDEBAR_COLLAPSED: '.sidebar-collapse',
-    BODY             : 'body',
-    OVERLAY          : '#sidebar-overlay',
-    WRAPPER          : '.wrapper'
+    BODY: 'body',
+    OVERLAY: '#sidebar-overlay',
+    WRAPPER: '.wrapper'
   }
 
   const ClassName = {
     SIDEBAR_OPEN: 'sidebar-open',
-    COLLAPSED   : 'sidebar-collapse',
-    OPEN        : 'sidebar-open',
+    COLLAPSED: 'sidebar-collapse',
+    OPEN: 'sidebar-open',
     SIDEBAR_MINI: 'sidebar-mini'
   }
 
@@ -64,12 +66,20 @@ const PushMenu = (($) => {
     show() {
       $(Selector.BODY).addClass(ClassName.OPEN).removeClass(ClassName.COLLAPSED)
 
+      if(this._options.enableRemember) {
+          localStorage.setItem(`remember${EVENT_KEY}`, ClassName.OPEN);
+      }
+
       const shownEvent = $.Event(Event.SHOWN)
       $(this._element).trigger(shownEvent)
     }
 
     collapse() {
       $(Selector.BODY).removeClass(ClassName.OPEN).addClass(ClassName.COLLAPSED)
+
+      if(this._options.enableRemember) {
+          localStorage.setItem(`remember${EVENT_KEY}`, ClassName.COLLAPSED);
+      }
 
       const collapsedEvent = $.Event(Event.COLLAPSED)
       $(this._element).trigger(collapsedEvent)
@@ -105,9 +115,26 @@ const PushMenu = (($) => {
       }
     }
 
+    remember() {
+      if(this._options.enableRemember) {
+        var toggleState = localStorage.getItem(`remember${EVENT_KEY}`);
+        if (toggleState == ClassName.COLLAPSED){
+          if (this._options.noTransitionAfterReload) {
+            $("body").addClass('hold-transition').addClass(ClassName.COLLAPSED).delay(10).queue(function() {
+              $(this).removeClass('hold-transition');
+              $(this).dequeue()
+            });
+          } else {
+            $("body").addClass(ClassName.COLLAPSED);
+          }
+        }
+      }
+    }
+
     // Private
 
     _init() {
+      this.remember()
       this.autoCollapse()
 
       $(window).resize(() => {
