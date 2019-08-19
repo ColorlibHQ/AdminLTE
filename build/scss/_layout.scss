@@ -385,6 +385,10 @@ body,
 .hold-transition {
   .content-wrapper,
   .main-header,
+  .main-sidebar,
+  .main-sidebar *,
+  .control-sidebar,
+  .control-sidebar *,
   .main-footer {
     transition: none !important;
   }
