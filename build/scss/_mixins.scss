@@ -147,6 +147,10 @@
       &.sidebar-focused {
         width: $sidebar-width;
 
+        .nav-sidebar.nav-child-indent .nav-treeview {
+          padding-left: 1rem;
+        }
+
         .brand-link {
           width: $sidebar-width;
         }

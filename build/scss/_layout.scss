@@ -313,6 +313,10 @@ body,
     &::before {
       margin-left: -$sidebar-width;
     }
+
+    .nav-sidebar.nav-child-indent .nav-treeview {
+      padding: 0;
+    }
   }
 
   @include media-breakpoint-down(sm) {
