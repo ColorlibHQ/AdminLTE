@@ -52,6 +52,10 @@
         color: color-yiq($color);
       }
 
+      table td.today::before {
+        border-bottom-color: color-yiq($color);
+      }
+
       table td.active,
       table td.active:hover {
         background: lighten($color, 10%);
