@@ -70,7 +70,7 @@ body,
       top: 0;
       transition: width $transition-speed $transition-fn;
       width: $sidebar-width;
-      z-index: $zindex-main-sidebar + 1;
+      z-index: $zindex-main-header + 1;
     }
 
     // Sidebar variants brand-link fix
@@ -93,7 +93,7 @@ body,
       position: fixed;
       right: 0;
       top: 0;
-      z-index: $zindex-main-sidebar - 1;
+      z-index: $zindex-main-header - 1;
     }
   }
 
@@ -154,7 +154,7 @@ body,
           top: 0;
           transition: width $transition-speed $transition-fn;
           width: $sidebar-width;
-          z-index: $zindex-main-sidebar + 1;
+          z-index: $zindex-main-header + 1;
         }
 
         // Sidebar variants brand-link fix
