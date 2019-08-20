@@ -1,0 +1,55 @@
+{
+  "_from": "@sweetalert2/theme-bootstrap-4",
+  "_id": "@sweetalert2/theme-bootstrap-4@2.1.0",
+  "_inBundle": false,
+  "_integrity": "sha512-Ji33Ixo45EjGrGUX0Z+RqsI0X45r3NW464MigYhA9olUy4uOlwfTkumKpeudrY+tMZYDM2OP0LR9ndHBcyArbw==",
+  "_location": "/@sweetalert2/theme-bootstrap-4",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@sweetalert2/theme-bootstrap-4",
+    "name": "@sweetalert2/theme-bootstrap-4",
+    "escapedName": "@sweetalert2%2ftheme-bootstrap-4",
+    "scope": "@sweetalert2",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@sweetalert2/theme-bootstrap-4/-/theme-bootstrap-4-2.1.0.tgz",
+  "_shasum": "e409b0d043bc1ed1bd47925c7571949b0cdaa3d0",
+  "_spec": "@sweetalert2/theme-bootstrap-4",
+  "_where": "/Users/rejack/Projekte/GitHub/REJack/AdminLTE",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/sweetalert2/sweetalert2-themes/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Bootstrap 4 theme for SweetAlert2",
+  "files": [
+    "*.css",
+    "*.scss"
+  ],
+  "homepage": "https://sweetalert2.github.io/",
+  "keywords": [
+    "sweetalert2",
+    "bootstrap-4",
+    "theme",
+    "themes",
+    "theming",
+    "sass"
+  ],
+  "license": "MIT",
+  "main": "bootstrap-4.css",
+  "name": "@sweetalert2/theme-bootstrap-4",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sweetalert2/sweetalert2-themes.git"
+  },
+  "version": "2.1.0"
+}

@@ -51,6 +51,7 @@
     "@fullcalendar/interaction": "^4.2.0",
     "@fullcalendar/timegrid": "^4.2.0",
     "@lgaitan/pace-progress": "^1.0.7",
+    "@sweetalert2/theme-bootstrap-4": "^2.1.0",
     "bootstrap": "^4.3.1",
     "bootstrap-colorpicker": "^3.1.2",
     "bootstrap-slider": "^10.6.1",
@@ -79,7 +80,7 @@
     "select2": "^4.0.7",
     "sparklines": "^1.2.0",
     "summernote": "^0.8.12",
-    "sweetalert2": "^8.12.1",
+    "sweetalert2": "^8.16.2",
     "tempusdominus-bootstrap-4": "^5.1.2",
     "toastr": "^2.1.4"
   },
