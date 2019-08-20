@@ -12,7 +12,7 @@ const ControlSidebar = (($) => {
    */
 
   const NAME               = 'ControlSidebar'
-  const DATA_KEY           = 'lte.control.sidebar'
+  const DATA_KEY           = 'lte.controlsidebar'
   const EVENT_KEY          = `.${DATA_KEY}`
   const JQUERY_NO_CONFLICT = $.fn[NAME]
   const DATA_API_KEY       = '.data-api'
