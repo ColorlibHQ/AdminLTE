@@ -62,8 +62,8 @@ navigation:
       url: javascript/push-menu.html
     - title: Treeview
       url: javascript/treeview.html
-    - title: Widget
-      url: javascript/widget.html
+    - title: Card Widget
+      url: javascript/card-widget.html
     # - title: CardRefresh
     #   url: javascript/card-refresh.html
     - title: Control Sidebar

@@ -4,7 +4,7 @@ import PushMenu from './PushMenu'
 import Treeview from './Treeview'
 import DirectChat from './DirectChat'
 import TodoList from './TodoList'
-import Widget from './Widget'
+import CardWidget from './CardWidget'
 
 export {
   ControlSidebar,
@@ -13,5 +13,5 @@ export {
   Treeview,
   DirectChat,
   TodoList,
-  Widget
+  CardWidget
 }
