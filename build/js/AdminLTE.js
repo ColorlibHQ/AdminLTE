@@ -5,6 +5,7 @@ import Treeview from './Treeview'
 import DirectChat from './DirectChat'
 import TodoList from './TodoList'
 import CardWidget from './CardWidget'
+import CardRefresh from './CardRefresh'
 
 export {
   ControlSidebar,
@@ -13,5 +14,6 @@ export {
   Treeview,
   DirectChat,
   TodoList,
-  CardWidget
+  CardWidget,
+  CardRefresh
 }

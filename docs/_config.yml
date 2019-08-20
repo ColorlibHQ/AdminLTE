@@ -64,8 +64,8 @@ navigation:
       url: javascript/treeview.html
     - title: Card Widget
       url: javascript/card-widget.html
-    # - title: CardRefresh
-    #   url: javascript/card-refresh.html
+    - title: CardRefresh
+      url: javascript/card-refresh.html
     - title: Control Sidebar
       url: javascript/control-sidebar.html
     - title: Direct Chat
