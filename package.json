@@ -7,7 +7,7 @@
   "main": "dist/js/adminlte.min.js",
   "scripts": {
     "css": "npm-run-all --sequential css-compile css-prefix css-minify",
-    "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 build/scss/AdminLTE.scss dist/css/adminlte.css",
+    "css-compile": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js --output-style expanded --source-map true --source-map-contents true --precision 6 build/scss/AdminLTE.scss dist/css/adminlte.css",
     "css-prefix": "postcss --config build/config/postcss.config.js --replace \"dist/css/*.css\" \"!dist/css/*.min.css\"",
     "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output dist/css/adminlte.min.css dist/css/adminlte.css",
     "compile": "npm-run-all --parallel js css",
@@ -99,14 +99,15 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "fs-extra": "^5.0.0",
     "node-sass": "^4.12.0",
+    "node-sass-package-importer": "^5.3.2",
     "nodemon": "^1.19.1",
     "npm-run-all": "^4.1.5",
     "path": "^0.12.7",
     "postcss-cli": "^5.0.1",
     "rollup": "^1.16.7",
     "rollup-plugin-babel": "^4.3.3",
-    "style-loader": "^0.19.1",
     "set-value": "^3.0.1",
+    "style-loader": "^0.19.1",
     "terser": "^4.0.0"
   }
 }
