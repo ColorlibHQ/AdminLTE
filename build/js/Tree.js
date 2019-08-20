@@ -82,7 +82,7 @@
     }
 
     parent.addClass(ClassName.open);
-    tree.slideDown(this.options.animationSpeed, function () {
+    tree.stop().slideDown(this.options.animationSpeed, function () {
       $(this.element).trigger(expandedEvent);
       parent.height('auto');
     }.bind(this));
@@ -93,7 +93,7 @@
 
     //tree.find(Selector.open).removeClass(ClassName.open);
     parentLi.removeClass(ClassName.open);
-    tree.slideUp(this.options.animationSpeed, function () {
+    tree.stop().slideUp(this.options.animationSpeed, function () {
       //tree.find(Selector.open + ' > ' + Selector.treeview).slideUp();
       $(this.element).trigger(collapsedEvent);
 
