@@ -9,7 +9,7 @@ html.control-sidebar-animate {
 .control-sidebar {
   position: absolute;
   top: $main-header-height;
-  z-index: 830;
+  z-index: $zindex-control-sidebar;
 
   &,
   &::before {
@@ -17,17 +17,24 @@ html.control-sidebar-animate {
     display: none;
     right: -$control-sidebar-width;
     width: $control-sidebar-width;
-    @include transition(right $transition-speed $transition-fn);
+    @include transition(right $transition-speed $transition-fn, display $transition-speed $transition-fn);
   }
 
   &::before {
-    content: " ";
+    content: '';
     display: block;
     position: fixed;
     top: 0;
     z-index: -1;
   }
 }
+
+.control-sidebar-push-slide {
+    .content-wrapper,
+    .main-footer {
+      @include transition(margin-right $transition-speed $transition-fn);
+    }
+  }
 
 // Control sidebar open state
 .control-sidebar-open {
@@ -41,9 +48,12 @@ html.control-sidebar-animate {
       }
     }
 
-    .content-wrapper,
-    .main-footer {
-      margin-right: $control-sidebar-width;
+    &.control-sidebar-push,
+    &.control-sidebar-push-slide {
+      .content-wrapper,
+      .main-footer {
+        margin-right: $control-sidebar-width;
+      }
     }
   }
 
@@ -65,6 +75,15 @@ html.control-sidebar-animate {
     &,
     &::before {
       right: 0;
+      @include transition(right $transition-speed $transition-fn, display $transition-speed $transition-fn);
+    }
+  }
+
+  &.control-sidebar-push,
+  &.control-sidebar-push-slide {
+    .content-wrapper,
+    .main-footer {
+      margin-right: $control-sidebar-width;
     }
   }
 }

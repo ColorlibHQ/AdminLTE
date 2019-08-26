@@ -24,7 +24,7 @@
   }
 
   .bg-#{$name},
-  .bg-#{$name}-gradient,
+  .bg-gradient-#{$name},
   .card-#{$name}:not(.card-outline) {
     .btn-tool {
       color: rgba(color-yiq($color), 0.8);
@@ -36,7 +36,7 @@
   }
 
   .card.bg-#{$name},
-  .card.bg-#{$name}-gradient {
+  .card.bg-gradient-#{$name} {
     .bootstrap-datetimepicker-widget {
       .table td,
       .table th {
@@ -50,6 +50,10 @@
       table td.second:hover {
         background: darken($color, 8%);
         color: color-yiq($color);
+      }
+
+      table td.today::before {
+        border-bottom-color: color-yiq($color);
       }
 
       table td.active,
@@ -142,6 +146,10 @@
       &:hover,
       &.sidebar-focused {
         width: $sidebar-width;
+
+        .nav-sidebar.nav-child-indent .nav-treeview {
+          padding-left: 1rem;
+        }
 
         .brand-link {
           width: $sidebar-width;
@@ -262,6 +270,32 @@
       border-left-color: $bg-color;
     }
   }
+
+  @each $name, $color in $theme-colors {
+    &.bg-#{$name},
+    &.bg-gradient-#{$name} {
+      .direct-chat-timestamp {
+        @if (color-yiq($color) == $yiq-text-dark) {
+          color: lighten(color-yiq($color), 10%);
+        } @else {
+          color: darken(color-yiq($color), 20%);
+        }
+      }
+    }
+  }
+
+  @each $name, $color in $colors {
+    &.bg-#{$name},
+    &.bg-gradient-#{$name} {
+      .direct-chat-timestamp {
+        @if (color-yiq($color) == $yiq-text-dark) {
+          color: lighten(color-yiq($color), 10%);
+        } @else {
+          color: darken(color-yiq($color), 20%);
+        }
+      }
+    }
+  }
 }
 
 // Background Variant
@@ -277,13 +311,13 @@
     &.btn {
       &:hover {
         border-color: darken($color, 10%);
-        color: color-yiq(darken($color, 7.5%));
+        color: darken(color-yiq($color), 7.5%);
       }
 
       &:active,
       &.active {
         border-color: darken($color, 12.5%);
-        color: color-yiq(darken($color, 10%));
+        color: darken(color-yiq($color), 10%);
       }
     }
   }
@@ -307,14 +341,14 @@
       &:hover {
         @include bg-gradient-variant('&', darken($color, 7.5%));
         border-color: darken($color, 10%);
-        color: color-yiq(darken($color, 7.5%));
+        color: darken(color-yiq($color), 7.5%);
       }
 
       &:active,
       &.active {
         @include bg-gradient-variant('&', darken($color, 10%));
         border-color: darken($color, 12.5%);
-        color: color-yiq(darken($color, 10%));
+        color: darken(color-yiq($color), 10%);
       }
     }
   }

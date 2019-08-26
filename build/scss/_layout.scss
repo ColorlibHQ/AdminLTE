@@ -47,6 +47,10 @@ body,
   }
 
   .layout-navbar-fixed & {
+    .control-sidebar {
+      top: 0;
+    }
+
     a.anchor {
       display: block;
       position: relative;
@@ -66,7 +70,7 @@ body,
       top: 0;
       transition: width $transition-speed $transition-fn;
       width: $sidebar-width;
-      z-index: $zindex-main-sidebar + 1;
+      z-index: $zindex-main-header + 1;
     }
 
     // Sidebar variants brand-link fix
@@ -89,7 +93,7 @@ body,
       position: fixed;
       right: 0;
       top: 0;
-      z-index: $zindex-main-sidebar - 1;
+      z-index: $zindex-main-header - 1;
     }
   }
 
@@ -119,6 +123,10 @@ body,
       }
 
       .layout#{$infix}-navbar-fixed & {
+        .control-sidebar {
+          top: 0;
+        }
+
         a.anchor {
           display: block;
           position: relative;
@@ -146,7 +154,7 @@ body,
           top: 0;
           transition: width $transition-speed $transition-fn;
           width: $sidebar-width;
-          z-index: $zindex-main-sidebar + 1;
+          z-index: $zindex-main-header + 1;
         }
 
         // Sidebar variants brand-link fix
@@ -197,7 +205,7 @@ body,
       left: 0;
       position: fixed;
       right: 0;
-      z-index: $zindex-main-sidebar - 1;
+      z-index: $zindex-main-footer;
     }
   }
 
@@ -221,7 +229,7 @@ body,
           left: 0;
           position: fixed;
           right: 0;
-          z-index: $zindex-main-sidebar - 1;
+          z-index: $zindex-main-footer;
         }
 
         .content-wrapper {
@@ -305,6 +313,10 @@ body,
     &::before {
       margin-left: -$sidebar-width;
     }
+
+    .nav-sidebar.nav-child-indent .nav-treeview {
+      padding: 0;
+    }
   }
 
   @include media-breakpoint-down(sm) {
@@ -373,6 +385,10 @@ body,
 .hold-transition {
   .content-wrapper,
   .main-header,
+  .main-sidebar,
+  .main-sidebar *,
+  .control-sidebar,
+  .control-sidebar *,
   .main-footer {
     transition: none !important;
   }

@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Widget Plugin
+title: Card Widget Plugin
 ---
 
-The widget plugin provides the functionality for collapsing, expanding and removing a card. 
+The card widget plugin provides the functionality for collapsing, expanding and removing a card. 
 
 ##### Usage
 This plugin can be activated as a jQuery plugin or using the data api. 
@@ -13,7 +13,7 @@ This plugin can be activated as a jQuery plugin or using the data api.
 
 This plugin provides two data-api attributes. Any element using one of the following attributes should be placed within the `.card-tools` div, which is usually in the card header. For more information about the [card HTML structure]({% link components/cards.md %}), visit the card component documentation 
 
-`data-widget="collapse"`
+`data-card-widget="collapse"`
 <br />
 This attribute, when attached to a button, allows the box to be collapsed/expanded when clicked. 
 <div class="row">
@@ -22,7 +22,7 @@ This attribute, when attached to a button, allows the box to be collapsed/expand
       <div class="card-header">
         <h3 class="card-title">Collapsible Card Example</h3>
         <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i></button>
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
         </div>
       </div>
       <div class="card-body">
@@ -37,7 +37,7 @@ This attribute, when attached to a button, allows the box to be collapsed/expand
     <h3 class="card-title">Collapsible Card Example</h3>
     <div class="card-tools">
       <!-- Collapse Button -->
-      <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i></button>
+      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
     </div>
     <!-- /.card-tools -->
   </div>
@@ -53,7 +53,7 @@ This attribute, when attached to a button, allows the box to be collapsed/expand
   </div>
 </div>
 
-`data-widget="remove"`
+`data-card-widget="remove"`
 <br />
 This attribute, when attached to a button, allows the box to be removed when clicked. 
 <div class="row">
@@ -62,7 +62,7 @@ This attribute, when attached to a button, allows the box to be removed when cli
       <div class="card-header">
         <h3 class="card-title">Removable Card Example</h3>
         <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
         </div>
       </div>
       <div class="card-body">
@@ -77,7 +77,7 @@ This attribute, when attached to a button, allows the box to be removed when cli
     <h3 class="card-title">Removable Card Example</h3>
     <div class="card-tools">
       <!-- Remove Button -->
-      <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-times"></i></button>
+      <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
     </div>
     <!-- /.card-tools -->
   </div>
@@ -93,7 +93,7 @@ This attribute, when attached to a button, allows the box to be removed when cli
   </div>
 </div>
 
-`data-widget="maximize"`
+`data-card-widget="maximize"`
 <br />
 This attribute, when attached to a button, allows the box to be maximize/minimize when clicked. 
 <div class="row">
@@ -102,7 +102,7 @@ This attribute, when attached to a button, allows the box to be maximize/minimiz
       <div class="card-header">
         <h3 class="card-title">Maximizable Card Example</h3>
         <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-widget="maximize"><i class="fas fa-expand"></i></button>
+          <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
         </div>
       </div>
       <div class="card-body">
@@ -117,7 +117,7 @@ This attribute, when attached to a button, allows the box to be maximize/minimiz
     <h3 class="card-title">Maximizable Card Example</h3>
     <div class="card-tools">
       <!-- Maximize Button -->
-      <button type="button" class="btn btn-tool" data-widget="maximize"><i class="fas fa-expand"></i></button>
+      <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
     </div>
     <!-- /.card-tools -->
   </div>
@@ -136,7 +136,7 @@ This attribute, when attached to a button, allows the box to be maximize/minimiz
 
 ###### jQuery
 {: .text-bold }
-To activate any button using jQuery, you must provide the removeTrigger and collapseTrigger options. Otherwise, the plugin will assume the default `data-widget` selectors. 
+To activate any button using jQuery, you must provide the removeTrigger and collapseTrigger options. Otherwise, the plugin will assume the default `data-card-widget` selectors. 
 
 ```js
 $('#my-card').Widget(options)
@@ -149,14 +149,15 @@ $('#my-card').Widget(options)
 | Name | Type | Default | Description
 |-|-|-|-
 |animationSpeed | Number | 300 | Speed of slide down/up animation in milliseconds.
-|collapseTrigger | String | `[data-widget="remove"]` | jQuery selector to the element responsible for collapsing the box.
-|removeTrigger | String | `[data-widget="collapse"]` | jQuery selector to the element responsible for removing the box.
+|collapseTrigger | String | `[data-card-widget="remove"]` | jQuery selector to the element responsible for collapsing the box.
+|removeTrigger | String | `[data-card-widget="collapse"]` | jQuery selector to the element responsible for removing the box.
+|maximizeTrigger | String | `[data-card-widget="maximize"]` | jQuery selector to the element responsible for maximizing the box.
 {: .table .table-bordered .bg-light}
 
 > ##### Tip!
 > You can use any option via the data-attributes like this.
 > ```html
-> <button type="button" class="btn btn-tool" data-widget="collapse" data-animation-speed="1000"><i class="fas fa-minus"></i></button>
+> <button type="button" class="btn btn-tool" data-card-widget="collapse" data-animation-speed="1000"><i class="fas fa-minus"></i></button>
 > ```
 {: .quote-info}
 
@@ -166,14 +167,14 @@ $('#my-card').Widget(options)
 |---
 | Event Type | Description
 |-|-
-|expanded.lte.widget | Triggered after a card expanded.
-|collapsed.lte.widget | Triggered after a card collapsed.
-|maximized.lte.widget | Triggered after a card maximized.
-|minimized.lte.widget | Triggered after a card minimized.
-|removed.lte.widget | Triggered after a card removed.
+|expanded.lte.cardwidget | Triggered after a card expanded.
+|collapsed.lte.cardwidget | Triggered after a card collapsed.
+|maximized.lte.cardwidget | Triggered after a card maximized.
+|minimized.lte.cardwidget | Triggered after a card minimized.
+|removed.lte.cardwidget | Triggered after a card removed.
 {: .table .table-bordered .bg-light}
 
-Example: `$('#my-card').on('expanded.lte.widget', handleExpandedEvent)`
+Example: `$('#my-card').on('expanded.lte.cardwidget', handleExpandedEvent)`
 
 
 ##### Methods
@@ -186,6 +187,8 @@ Example: `$('#my-card').on('expanded.lte.widget', handleExpandedEvent)`
 |expand | Expands the card
 |remove | Removes the card
 |toggle | Toggles the state of the card between expanded and collapsed
+|maximize | Maximizes the card
+|minimize | Minimizes the card
 |toggleMaximize | Toggles the state of the card between maximized and minimized
 {: .table .table-bordered .bg-light}
 

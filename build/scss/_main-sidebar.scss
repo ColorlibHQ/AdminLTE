@@ -133,6 +133,7 @@
 
   &.nav-child-indent {
     .nav-treeview {
+      transition: padding $transition-speed $transition-fn;
       padding-left: 1rem;
     }
   }

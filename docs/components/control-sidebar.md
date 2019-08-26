@@ -7,6 +7,11 @@ Control sidebar is the right sidebar. It can be used for many purposes and is ex
 
 The following code should be placed within the `.wrapper` div. I prefer to place it right after the footer.
 
+##### Control Sidebar Push
+{: .text-bold .text-dark}
+By adding the `.control-sidebar-push` to `body`, the sidebar pushes the content away instead of overlaying the content.
+You can also add `.control-sidebar-push-slide` to `body`, to push the content away with an transition.
+
 ##### Dark Sidebar Markup
 {: .text-bold .text-dark}
 ```html

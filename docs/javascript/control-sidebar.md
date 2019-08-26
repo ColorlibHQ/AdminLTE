@@ -54,7 +54,8 @@ $("#my-toggle-button").ControlSidebar('toggle');
 |---
 | Event Type | Description
 |-|-
-|  | 
+|expanded.lte.controlsidebar | Triggered after a control sidebar expands.
+|collapsed.lte.controlsidebar | Triggered after a control sidebar collapses.
 {: .table .table-bordered .bg-light}
 
-Example: `$('#toggle-button').on('shown.lte.control.sidebar', handleExpandedEvent)`
+Example: `$('#toggle-button').on('expanded.lte.controlsidebar', handleExpandedEvent)`

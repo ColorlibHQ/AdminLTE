@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- Bootstrap4 Duallistbox -->
   <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
   <!-- Theme style -->
@@ -631,8 +632,8 @@
             <h3 class="card-title">Select2</h3>
 
             <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i></button>
-              <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-remove"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
             </div>
           </div>
           <!-- /.card-header -->
@@ -713,8 +714,8 @@
             <h3 class="card-title">Bootstrap Duallistbox</h3>
 
             <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i></button>
-              <button type="button" class="btn btn-tool" data-widget="remove"><i class="fas fa-remove"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
             </div>
           </div>
           <!-- /.card-header -->
@@ -943,18 +944,18 @@
                 <!-- checkbox -->
                 <div class="form-group clearfix">
                   <div class="icheck-primary d-inline">
-                    <input type="checkbox" checked>
-                    <label>
+                    <input type="checkbox" id="checkboxPrimary1" checked>
+                    <label for="checkboxPrimary1">
                     </label>
                   </div>
                   <div class="icheck-primary d-inline">
-                    <input type="checkbox">
-                    <label>
+                    <input type="checkbox" id="checkboxPrimary2">
+                    <label for="checkboxPrimary2">
                     </label>
                   </div>
                   <div class="icheck-primary d-inline">
-                    <input type="checkbox" disabled>
-                    <label>
+                    <input type="checkbox" id="checkboxPrimary3" disabled>
+                    <label for="checkboxPrimary3">
                       Primary checkbox
                     </label>
                   </div>
@@ -963,18 +964,18 @@
                 <!-- radio -->
                 <div class="form-group clearfix">
                   <div class="icheck-primary d-inline">
-                    <input type="radio" name="r1" checked>
-                    <label>
+                    <input type="radio" id="radioPrimary1" name="r1" checked>
+                    <label for="radioPrimary1">
                     </label>
                   </div>
                   <div class="icheck-primary d-inline">
-                    <input type="radio" name="r1">
-                    <label>
+                    <input type="radio" id="radioPrimary2" name="r1">
+                    <label for="radioPrimary2">
                     </label>
                   </div>
                   <div class="icheck-primary d-inline">
-                    <input type="radio" name="r1" disabled>
-                    <label>
+                    <input type="radio" id="radioPrimary3" name="r1" disabled>
+                    <label for="radioPrimary3">
                       Primary radio
                     </label>
                   </div>
@@ -985,18 +986,18 @@
                 <!-- checkbox -->
                 <div class="form-group clearfix">
                   <div class="icheck-danger d-inline">
-                    <input type="checkbox" checked>
-                    <label>
+                    <input type="checkbox" checked id="checkboxDanger1">
+                    <label for="checkboxDanger1">
                     </label>
                   </div>
                   <div class="icheck-danger d-inline">
-                    <input type="checkbox">
-                    <label>
+                    <input type="checkbox" id="checkboxDanger2">
+                    <label for="checkboxDanger2">
                     </label>
                   </div>
                   <div class="icheck-danger d-inline">
-                    <input type="checkbox" disabled>
-                    <label>
+                    <input type="checkbox" disabled id="checkboxDanger3">
+                    <label for="checkboxDanger3">
                       Danger checkbox
                     </label>
                   </div>
@@ -1005,18 +1006,18 @@
                 <!-- radio -->
                 <div class="form-group clearfix">
                   <div class="icheck-danger d-inline">
-                    <input type="radio" name="r2" checked>
-                    <label>
+                    <input type="radio" name="r2" checked id="radioDanger1">
+                    <label for="radioDanger1">
                     </label>
                   </div>
                   <div class="icheck-danger d-inline">
-                    <input type="radio" name="r2">
-                    <label>
+                    <input type="radio" name="r2" id="radioDanger2">
+                    <label for="radioDanger2">
                     </label>
                   </div>
                   <div class="icheck-danger d-inline">
-                    <input type="radio" name="r2" disabled>
-                    <label>
+                    <input type="radio" name="r2" disabled id="radioDanger3">
+                    <label for="radioDanger3">
                       Danger radio
                     </label>
                   </div>
@@ -1028,18 +1029,18 @@
                 <!-- checkbox -->
                 <div class="form-group clearfix">
                   <div class="icheck-success d-inline">
-                    <input type="checkbox" checked>
-                    <label>
+                    <input type="checkbox" checked id="checkboxSuccess1">
+                    <label for="checkboxSuccess1">
                     </label>
                   </div>
                   <div class="icheck-success d-inline">
-                    <input type="checkbox">
-                    <label>
+                    <input type="checkbox" id="checkboxSuccess2">
+                    <label for="checkboxSuccess2">
                     </label>
                   </div>
                   <div class="icheck-success d-inline">
-                    <input type="checkbox" disabled>
-                    <label>
+                    <input type="checkbox" disabled id="checkboxSuccess3">
+                    <label for="checkboxSuccess3">
                       Success checkbox
                     </label>
                   </div>
@@ -1048,18 +1049,18 @@
                 <!-- radio -->
                 <div class="form-group clearfix">
                   <div class="icheck-success d-inline">
-                    <input type="radio" name="r2" checked>
-                    <label>
+                    <input type="radio" name="r3" checked id="radioSuccess1">
+                    <label for="radioSuccess1">
                     </label>
                   </div>
                   <div class="icheck-success d-inline">
-                    <input type="radio" name="r2">
-                    <label>
+                    <input type="radio" name="r3" id="radioSuccess2">
+                    <label for="radioSuccess2">
                     </label>
                   </div>
                   <div class="icheck-success d-inline">
-                    <input type="radio" name="r2" disabled>
-                    <label>
+                    <input type="radio" name="r3" disabled id="radioSuccess3">
+                    <label for="radioSuccess3">
                       Success radio
                     </label>
                   </div>
@@ -1123,7 +1124,9 @@
 <script>
   $(function () {
     //Initialize Select2 Elements
-    $('.select2').select2()
+    $('.select2').select2({
+      theme: 'bootstrap4'
+    })
 
     //Datemask dd/mm/yyyy
     $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })

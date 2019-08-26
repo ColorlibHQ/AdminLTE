@@ -9,6 +9,11 @@
     border-color: #{$color};
   }
 
+  .icheck-#{$name} > input:first-child:not(:checked):not(:disabled):focus + label::before,
+  .icheck-#{$name} > input:first-child:not(:checked):not(:disabled):focus + input[type="hidden"] + label::before {
+    border-color: #{$color};
+  }
+
   .icheck-#{$name} > input:first-child:checked + label::before,
   .icheck-#{$name} > input:first-child:checked + input[type="hidden"] + label::before {
     background-color: #{$color};
@@ -20,6 +25,11 @@
 @each $name, $color in $colors {
   .icheck-#{$name} > input:first-child:not(:checked):not(:disabled):hover + label::before,
   .icheck-#{$name} > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #{$color};
+  }
+
+  .icheck-#{$name} > input:first-child:not(:checked):not(:disabled):focus + label::before,
+  .icheck-#{$name} > input:first-child:not(:checked):not(:disabled):focus + input[type="hidden"] + label::before {
     border-color: #{$color};
   }
 

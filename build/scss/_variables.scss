@@ -128,6 +128,7 @@ $control-sidebar-width: $sidebar-width !default;
 // Cards
 // --------------------------------------------------------
 $card-border-color: $gray-100 !default;
+$card-dark-border-color: lighten($gray-900, 10%) !default;
 $card-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2) !default;
 $card-title-font-size: $font-size-lg;
 $card-title-font-weight: $font-weight-normal;
@@ -151,8 +152,10 @@ $attachment-border-radius: 3px !default;
 
 // Z-INDEX
 // --------------------------------------------------------
-$zindex-main-header: $zindex-fixed + 2 !default;
-$zindex-main-sidebar: $zindex-fixed + 6 !default;
+$zindex-main-header: $zindex-fixed + 4 !default;
+$zindex-main-sidebar: $zindex-fixed + 8 !default;
+$zindex-main-footer: $zindex-fixed + 1 !default;
+$zindex-control-sidebar: $zindex-fixed + 2 !default;
 $zindex-sidebar-mini-links: 010 !default;
 
 // TRANSITIONS SETTINGS
@@ -179,15 +182,15 @@ $ribbon-border-size: 3px !default;
 $ribbon-line-height: 100% !default;
 $ribbon-padding: .375rem 0 !default;
 $ribbon-font-size: .8rem !default;
-$ribbon-width: 110px !default;
-$ribbon-wrapper-size: 90px !default;
-$ribbon-top: 9px !default;
-$ribbon-right: -12px !default;
-$ribbon-lg-wrapper-size: 180px !default;
+$ribbon-width: 90px !default;
+$ribbon-wrapper-size: 70px !default;
+$ribbon-top: 10px !default;
+$ribbon-right: -2px !default;
+$ribbon-lg-wrapper-size: 120px !default;
 $ribbon-lg-width: 160px !default;
 $ribbon-lg-top: 26px !default;
-$ribbon-lg-right: -59px !default;
-$ribbon-xl-wrapper-size: 240px !default;
+$ribbon-lg-right: 0px !default;
+$ribbon-xl-wrapper-size: 180px !default;
 $ribbon-xl-width: 240px !default;
-$ribbon-xl-top: 59px !default;
-$ribbon-xl-right: -48px !default;
+$ribbon-xl-top: 47px !default;
+$ribbon-xl-right: 4px !default;

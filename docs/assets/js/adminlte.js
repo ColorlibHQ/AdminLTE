@@ -21,8 +21,13 @@
      * ====================================================
      */
     var NAME = 'ControlSidebar';
-    var DATA_KEY = 'lte.control.sidebar';
+    var DATA_KEY = 'lte.controlsidebar';
+    var EVENT_KEY = "." + DATA_KEY;
     var JQUERY_NO_CONFLICT = $.fn[NAME];
+    var Event = {
+      COLLAPSED: "collapsed" + EVENT_KEY,
+      EXPANDED: "expanded" + EVENT_KEY
+    };
     var Selector = {
       CONTROL_SIDEBAR: '.control-sidebar',
       DATA_TOGGLE: '[data-widget="control-sidebar"]',
@@ -34,7 +39,7 @@
       CONTROL_SIDEBAR_SLIDE: 'control-sidebar-slide-open'
     };
     var Default = {
-      slide: true
+      controlsidebarSlide: true
       /**
        * Class Definition
        * ====================================================
@@ -55,7 +60,7 @@
 
       _proto.show = function show() {
         // Show the control sidebar
-        if (this._config.slide) {
+        if (this._config.controlsidebarSlide) {
           $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE);
           $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
             $(Selector.CONTROL_SIDEBAR).hide();
@@ -65,13 +70,16 @@
         } else {
           $('body').removeClass(ClassName.CONTROL_SIDEBAR_OPEN);
         }
+
+        var expandedEvent = $.Event(Event.EXPANDED);
+        $(this._element).trigger(expandedEvent);
       };
 
       _proto.collapse = function collapse() {
         // Collapse the control sidebar
-        if (this._config.slide) {
+        if (this._config.controlsidebarSlide) {
           $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE);
-          $(Selector.CONTROL_SIDEBAR).show().delay(100).queue(function () {
+          $(Selector.CONTROL_SIDEBAR).show().delay(10).queue(function () {
             $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
               $('html').removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE);
               $(this).dequeue();
@@ -81,11 +89,12 @@
         } else {
           $('body').addClass(ClassName.CONTROL_SIDEBAR_OPEN);
         }
+
+        var collapsedEvent = $.Event(Event.COLLAPSED);
+        $(this._element).trigger(collapsedEvent);
       };
 
       _proto.toggle = function toggle() {
-        this._setMargin();
-
         var shouldOpen = $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE);
 
         if (shouldOpen) {
@@ -100,12 +109,6 @@
 
       _proto._getConfig = function _getConfig(config) {
         return $.extend({}, Default, config);
-      };
-
-      _proto._setMargin = function _setMargin() {
-        $(Selector.CONTROL_SIDEBAR).css({
-          top: $(Selector.MAIN_HEADER).innerHeight()
-        });
       } // Static
       ;
 
@@ -356,7 +359,9 @@
     };
     var Default = {
       autoCollapseSize: false,
-      screenCollapseSize: 768
+      screenCollapseSize: 768,
+      enableRemember: false,
+      noTransitionAfterReload: true
     };
     var Selector = {
       TOGGLE_BUTTON: '[data-widget="pushmenu"]',
@@ -397,12 +402,22 @@
 
       _proto.show = function show() {
         $(Selector.BODY).addClass(ClassName.OPEN).removeClass(ClassName.COLLAPSED);
+
+        if (this._options.enableRemember) {
+          localStorage.setItem("remember" + EVENT_KEY, ClassName.OPEN);
+        }
+
         var shownEvent = $.Event(Event.SHOWN);
         $(this._element).trigger(shownEvent);
       };
 
       _proto.collapse = function collapse() {
         $(Selector.BODY).removeClass(ClassName.OPEN).addClass(ClassName.COLLAPSED);
+
+        if (this._options.enableRemember) {
+          localStorage.setItem("remember" + EVENT_KEY, ClassName.COLLAPSED);
+        }
+
         var collapsedEvent = $.Event(Event.COLLAPSED);
         $(this._element).trigger(collapsedEvent);
       };
@@ -435,12 +450,30 @@
             }
           }
         }
+      };
+
+      _proto.remember = function remember() {
+        if (this._options.enableRemember) {
+          var toggleState = localStorage.getItem("remember" + EVENT_KEY);
+
+          if (toggleState == ClassName.COLLAPSED) {
+            if (this._options.noTransitionAfterReload) {
+              $("body").addClass('hold-transition').addClass(ClassName.COLLAPSED).delay(10).queue(function () {
+                $(this).removeClass('hold-transition');
+                $(this).dequeue();
+              });
+            } else {
+              $("body").addClass(ClassName.COLLAPSED);
+            }
+          }
+        }
       } // Private
       ;
 
       _proto._init = function _init() {
         var _this = this;
 
+        this.remember();
         this.autoCollapse();
         $(window).resize(function () {
           _this.autoCollapse();
@@ -585,7 +618,7 @@
           this.collapse(openTreeview, openMenuLi);
         }
 
-        treeviewMenu.slideDown(this._config.animationSpeed, function () {
+        treeviewMenu.stop().slideDown(this._config.animationSpeed, function () {
           parentLi.addClass(ClassName.OPEN);
           $(_this._element).trigger(expandedEvent);
         });
@@ -595,7 +628,7 @@
         var _this2 = this;
 
         var collapsedEvent = $.Event(Event.COLLAPSED);
-        treeviewMenu.slideUp(this._config.animationSpeed, function () {
+        treeviewMenu.stop().slideUp(this._config.animationSpeed, function () {
           parentLi.removeClass(ClassName.OPEN);
           $(_this2._element).trigger(collapsedEvent);
           treeviewMenu.find(Selector.OPEN + " > " + Selector.TREEVIEW_MENU).slideUp();
@@ -692,6 +725,9 @@
     var NAME = 'DirectChat';
     var DATA_KEY = 'lte.directchat';
     var JQUERY_NO_CONFLICT = $.fn[NAME];
+    var Event = {
+      TOGGLED: "toggled{EVENT_KEY}"
+    };
     var Selector = {
       DATA_TOGGLE: '[data-widget="chat-pane-toggle"]',
       DIRECT_CHAT: '.direct-chat'
@@ -715,6 +751,8 @@
 
       _proto.toggle = function toggle() {
         $(this._element).parents(Selector.DIRECT_CHAT).first().toggleClass(ClassName.DIRECT_CHAT_OPEN);
+        var toggledEvent = $.Event(Event.TOGGLED);
+        $(this._element).trigger(toggledEvent);
       } // Static
       ;
 
@@ -883,17 +921,17 @@
 
   /**
    * --------------------------------------------
-   * AdminLTE Widget.js
+   * AdminLTE CardWidget.js
    * License MIT
    * --------------------------------------------
    */
-  var Widget = function ($) {
+  var CardWidget = function ($) {
     /**
      * Constants
      * ====================================================
      */
-    var NAME = 'Widget';
-    var DATA_KEY = 'lte.widget';
+    var NAME = 'CardWidget';
+    var DATA_KEY = 'lte.cardwidget';
     var EVENT_KEY = "." + DATA_KEY;
     var JQUERY_NO_CONFLICT = $.fn[NAME];
     var Event = {
@@ -903,43 +941,48 @@
       MINIMIZED: "minimized" + EVENT_KEY,
       REMOVED: "removed" + EVENT_KEY
     };
+    var ClassName = {
+      CARD: 'card',
+      COLLAPSED: 'collapsed-card',
+      WAS_COLLAPSED: 'was-collapsed',
+      MAXIMIZED: 'maximized-card'
+    };
     var Selector = {
-      DATA_REMOVE: '[data-widget="remove"]',
-      DATA_COLLAPSE: '[data-widget="collapse"]',
-      DATA_MAXIMIZE: '[data-widget="maximize"]',
-      CARD: '.card',
+      DATA_REMOVE: '[data-card-widget="remove"]',
+      DATA_COLLAPSE: '[data-card-widget="collapse"]',
+      DATA_MAXIMIZE: '[data-card-widget="maximize"]',
+      CARD: "." + ClassName.CARD,
       CARD_HEADER: '.card-header',
       CARD_BODY: '.card-body',
       CARD_FOOTER: '.card-footer',
-      COLLAPSED: '.collapsed-card',
-      COLLAPSE_ICON: '.fa-minus',
-      EXPAND_ICON: '.fa-plus'
-    };
-    var ClassName = {
-      COLLAPSED: 'collapsed-card',
-      WAS_COLLAPSED: 'was-collapsed',
-      MAXIMIZED: 'maximized-card',
-      COLLAPSE_ICON: 'fa-minus',
-      EXPAND_ICON: 'fa-plus',
-      MAXIMIZE_ICON: 'fa-expand',
-      MINIMIZE_ICON: 'fa-compress'
+      COLLAPSED: "." + ClassName.COLLAPSED
     };
     var Default = {
       animationSpeed: 'normal',
       collapseTrigger: Selector.DATA_COLLAPSE,
-      removeTrigger: Selector.DATA_REMOVE
+      removeTrigger: Selector.DATA_REMOVE,
+      maximizeTrigger: Selector.DATA_MAXIMIZE,
+      collapseIcon: 'fa-minus',
+      expandIcon: 'fa-plus',
+      maximizeIcon: 'fa-expand',
+      minimizeIcon: 'fa-compress'
     };
 
-    var Widget =
+    var CardWidget =
     /*#__PURE__*/
     function () {
-      function Widget(element, settings) {
+      function CardWidget(element, settings) {
         this._element = element;
         this._parent = element.parents(Selector.CARD).first();
+
+        if (element.hasClass(ClassName.CARD)) {
+          this._parent = element;
+        }
+
         this._settings = $.extend({}, Default, settings);
       }
 
-      var _proto = Widget.prototype;
+      var _proto = CardWidget.prototype;
 
       _proto.collapse = function collapse() {
         var _this = this;
@@ -948,7 +991,7 @@
           _this._parent.addClass(ClassName.COLLAPSED);
         });
 
-        this._element.children(Selector.COLLAPSE_ICON).addClass(ClassName.EXPAND_ICON).removeClass(ClassName.COLLAPSE_ICON);
+        this._element.children(this._settings.collapseTrigger + ' .' + this._settings.collapseIcon).addClass(this._settings.expandIcon).removeClass(this._settings.collapseIcon);
 
         var collapsed = $.Event(Event.COLLAPSED);
 
@@ -962,7 +1005,7 @@
           _this2._parent.removeClass(ClassName.COLLAPSED);
         });
 
-        this._element.children(Selector.EXPAND_ICON).addClass(ClassName.COLLAPSE_ICON).removeClass(ClassName.EXPAND_ICON);
+        this._element.children(this._settings.collapseTrigger + ' .' + this._settings.expandIcon).addClass(this._settings.collapseIcon).removeClass(this._settings.expandIcon);
 
         var expanded = $.Event(Event.EXPANDED);
 
@@ -986,46 +1029,59 @@
         this.collapse();
       };
 
+      _proto.maximize = function maximize() {
+        this._element.children(this._settings.maximizeTrigger + ' .' + this._settings.maximizeIcon).addClass(this._settings.minimizeIcon).removeClass(this._settings.maximizeIcon);
+
+        this._parent.css({
+          'height': this._parent.height(),
+          'width': this._parent.width(),
+          'transition': 'all .15s'
+        }).delay(150).queue(function () {
+          $(this).addClass(ClassName.MAXIMIZED);
+          $('html').addClass(ClassName.MAXIMIZED);
+
+          if ($(this).hasClass(ClassName.COLLAPSED)) {
+            $(this).addClass(ClassName.WAS_COLLAPSED);
+          }
+
+          $(this).dequeue();
+        });
+
+        var maximized = $.Event(Event.MAXIMIZED);
+
+        this._element.trigger(maximized, this._parent);
+      };
+
+      _proto.minimize = function minimize() {
+        this._element.children(this._settings.maximizeTrigger + ' .' + this._settings.minimizeIcon).addClass(this._settings.maximizeIcon).removeClass(this._settings.minimizeIcon);
+
+        this._parent.css('cssText', 'height:' + this._parent[0].style.height + ' !important;' + 'width:' + this._parent[0].style.width + ' !important; transition: all .15s;').delay(10).queue(function () {
+          $(this).removeClass(ClassName.MAXIMIZED);
+          $('html').removeClass(ClassName.MAXIMIZED);
+          $(this).css({
+            'height': 'inherit',
+            'width': 'inherit'
+          });
+
+          if ($(this).hasClass(ClassName.WAS_COLLAPSED)) {
+            $(this).removeClass(ClassName.WAS_COLLAPSED);
+          }
+
+          $(this).dequeue();
+        });
+
+        var MINIMIZED = $.Event(Event.MINIMIZED);
+
+        this._element.trigger(MINIMIZED, this._parent);
+      };
+
       _proto.toggleMaximize = function toggleMaximize() {
-        var button = this._element.find('i');
-
         if (this._parent.hasClass(ClassName.MAXIMIZED)) {
-          button.addClass(ClassName.MAXIMIZE_ICON).removeClass(ClassName.MINIMIZE_ICON);
-
-          this._parent.css('cssText', 'height:' + this._parent[0].style.height + ' !important;' + 'width:' + this._parent[0].style.width + ' !important; transition: all .15s;').delay(100).queue(function () {
-            $(this).removeClass(ClassName.MAXIMIZED);
-            $('html').removeClass(ClassName.MAXIMIZED);
-            $(this).trigger(Event.MINIMIZED);
-            $(this).css({
-              'height': 'inherit',
-              'width': 'inherit'
-            });
-
-            if ($(this).hasClass(ClassName.WAS_COLLAPSED)) {
-              $(this).removeClass(ClassName.WAS_COLLAPSED);
-            }
-
-            $(this).dequeue();
-          });
-        } else {
-          button.addClass(ClassName.MINIMIZE_ICON).removeClass(ClassName.MAXIMIZE_ICON);
-
-          this._parent.css({
-            'height': this._parent.height(),
-            'width': this._parent.width(),
-            'transition': 'all .15s'
-          }).delay(150).queue(function () {
-            $(this).addClass(ClassName.MAXIMIZED);
-            $('html').addClass(ClassName.MAXIMIZED);
-            $(this).trigger(Event.MAXIMIZED);
-
-            if ($(this).hasClass(ClassName.COLLAPSED)) {
-              $(this).addClass(ClassName.WAS_COLLAPSED);
-            }
-
-            $(this).dequeue();
-          });
+          this.minimize();
+          return;
         }
+
+        this.maximize();
       } // Private
       ;
 
@@ -1036,30 +1092,31 @@
         $(this).find(this._settings.collapseTrigger).click(function () {
           _this3.toggle();
         });
+        $(this).find(this._settings.maximizeTrigger).click(function () {
+          _this3.toggleMaximize();
+        });
         $(this).find(this._settings.removeTrigger).click(function () {
           _this3.remove();
         });
       } // Static
       ;
 
-      Widget._jQueryInterface = function _jQueryInterface(config) {
-        return this.each(function () {
-          var data = $(this).data(DATA_KEY);
+      CardWidget._jQueryInterface = function _jQueryInterface(config) {
+        var data = $(this).data(DATA_KEY);
 
-          if (!data) {
-            data = new Widget($(this), data);
-            $(this).data(DATA_KEY, typeof config === 'string' ? data : config);
-          }
+        if (!data) {
+          data = new CardWidget($(this), data);
+          $(this).data(DATA_KEY, typeof config === 'string' ? data : config);
+        }
 
-          if (typeof config === 'string' && config.match(/collapse|expand|remove|toggle|toggleMaximize/)) {
-            data[config]();
-          } else if (typeof config === 'object') {
-            data._init($(this));
-          }
-        });
+        if (typeof config === 'string' && config.match(/collapse|expand|remove|toggle|maximize|minimize|toggleMaximize/)) {
+          data[config]();
+        } else if (typeof config === 'object') {
+          data._init($(this));
+        }
       };
 
-      return Widget;
+      return CardWidget;
     }();
     /**
      * Data API
@@ -1072,45 +1129,208 @@
         event.preventDefault();
       }
 
-      Widget._jQueryInterface.call($(this), 'toggle');
+      CardWidget._jQueryInterface.call($(this), 'toggle');
     });
     $(document).on('click', Selector.DATA_REMOVE, function (event) {
       if (event) {
         event.preventDefault();
       }
 
-      Widget._jQueryInterface.call($(this), 'remove');
+      CardWidget._jQueryInterface.call($(this), 'remove');
     });
     $(document).on('click', Selector.DATA_MAXIMIZE, function (event) {
       if (event) {
         event.preventDefault();
       }
 
-      Widget._jQueryInterface.call($(this), 'toggleMaximize');
+      CardWidget._jQueryInterface.call($(this), 'toggleMaximize');
     });
     /**
      * jQuery API
      * ====================================================
      */
 
-    $.fn[NAME] = Widget._jQueryInterface;
-    $.fn[NAME].Constructor = Widget;
+    $.fn[NAME] = CardWidget._jQueryInterface;
+    $.fn[NAME].Constructor = CardWidget;
 
     $.fn[NAME].noConflict = function () {
       $.fn[NAME] = JQUERY_NO_CONFLICT;
-      return Widget._jQueryInterface;
+      return CardWidget._jQueryInterface;
     };
 
-    return Widget;
+    return CardWidget;
   }(jQuery);
 
+  /**
+   * --------------------------------------------
+   * AdminLTE CardRefresh.js
+   * License MIT
+   * --------------------------------------------
+   */
+  var CardRefresh = function ($) {
+    /**
+     * Constants
+     * ====================================================
+     */
+    var NAME = 'CardRefresh';
+    var DATA_KEY = 'lte.cardrefresh';
+    var EVENT_KEY = "." + DATA_KEY;
+    var JQUERY_NO_CONFLICT = $.fn[NAME];
+    var Event = {
+      LOADED: "loaded" + EVENT_KEY,
+      OVERLAY_ADDED: "overlay.added" + EVENT_KEY,
+      OVERLAY_REMOVED: "overlay.removed" + EVENT_KEY
+    };
+    var ClassName = {
+      CARD: 'card'
+    };
+    var Selector = {
+      CARD: "." + ClassName.CARD,
+      DATA_REFRESH: '[data-card-widget="card-refresh"]'
+    };
+    var Default = {
+      source: '',
+      sourceSelector: '',
+      params: {},
+      trigger: Selector.DATA_REFRESH,
+      content: '.card-body',
+      loadInContent: true,
+      loadOnInit: true,
+      responseType: '',
+      overlayTemplate: '<div class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i></div>',
+      onLoadStart: function onLoadStart() {},
+      onLoadDone: function onLoadDone(response) {
+        return response;
+      }
+    };
+
+    var CardRefresh =
+    /*#__PURE__*/
+    function () {
+      function CardRefresh(element, settings) {
+        this._element = element;
+        this._parent = element.parents(Selector.CARD).first();
+        this._settings = $.extend({}, Default, settings);
+        this._overlay = $(this._settings.overlayTemplate);
+
+        if (element.hasClass(ClassName.CARD)) {
+          this._parent = element;
+        }
+
+        if (this._settings.source === '') {
+          throw new Error('Source url was not defined. Please specify a url in your CardRefresh source option.');
+        }
+
+        this._init();
+
+        if (this._settings.loadOnInit) {
+          this.load();
+        }
+      }
+
+      var _proto = CardRefresh.prototype;
+
+      _proto.load = function load() {
+        this._addOverlay();
+
+        this._settings.onLoadStart.call($(this));
+
+        $.get(this._settings.source, this._settings.params, function (response) {
+          if (this._settings.loadInContent) {
+            if (this._settings.sourceSelector != '') {
+              response = $(response).find(this._settings.sourceSelector).html();
+            }
+
+            this._parent.find(this._settings.content).html(response);
+          }
+
+          this._settings.onLoadDone.call($(this), response);
+
+          this._removeOverlay();
+        }.bind(this), this._settings.responseType !== '' && this._settings.responseType);
+        var loadedEvent = $.Event(Event.LOADED);
+        $(this._element).trigger(loadedEvent);
+      };
+
+      _proto._addOverlay = function _addOverlay() {
+        this._parent.append(this._overlay);
+
+        var overlayAddedEvent = $.Event(Event.OVERLAY_ADDED);
+        $(this._element).trigger(overlayAddedEvent);
+      };
+
+      _proto._removeOverlay = function _removeOverlay() {
+        this._parent.find(this._overlay).remove();
+
+        var overlayRemovedEvent = $.Event(Event.OVERLAY_REMOVED);
+        $(this._element).trigger(overlayRemovedEvent);
+      };
+
+      // Private
+      _proto._init = function _init(card) {
+        var _this = this;
+
+        $(this).find(this._settings.trigger).on('click', function () {
+          _this.load();
+        });
+      } // Static
+      ;
+
+      CardRefresh._jQueryInterface = function _jQueryInterface(config) {
+        var data = $(this).data(DATA_KEY);
+        var options = $(this).data();
+
+        if (!data) {
+          data = new CardRefresh($(this), options);
+          $(this).data(DATA_KEY, typeof config === 'string' ? data : config);
+        }
+
+        if (typeof config === 'string' && config.match(/load/)) {
+          data[config]();
+        } else if (typeof config === 'object') {
+          data._init($(this));
+        }
+      };
+
+      return CardRefresh;
+    }();
+    /**
+     * Data API
+     * ====================================================
+     */
+
+
+    $(document).on('click', Selector.DATA_REFRESH, function (event) {
+      if (event) {
+        event.preventDefault();
+      }
+
+      CardRefresh._jQueryInterface.call($(this), 'load');
+    });
+    /**
+     * jQuery API
+     * ====================================================
+     */
+
+    $.fn[NAME] = CardRefresh._jQueryInterface;
+    $.fn[NAME].Constructor = CardRefresh;
+
+    $.fn[NAME].noConflict = function () {
+      $.fn[NAME] = JQUERY_NO_CONFLICT;
+      return CardRefresh._jQueryInterface;
+    };
+
+    return CardRefresh;
+  }(jQuery);
+
+  exports.CardRefresh = CardRefresh;
+  exports.CardWidget = CardWidget;
   exports.ControlSidebar = ControlSidebar;
   exports.DirectChat = DirectChat;
   exports.Layout = Layout;
   exports.PushMenu = PushMenu;
   exports.TodoList = TodoList;
   exports.Treeview = Treeview;
-  exports.Widget = Widget;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

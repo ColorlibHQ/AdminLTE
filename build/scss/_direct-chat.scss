@@ -122,7 +122,7 @@
 
 .direct-chat-contacts {
   @include translate(101%, 0);
-  background: $gray-900;
+  background: $dark;
   bottom: 0;
   color: $white;
   height: 250px;
@@ -130,6 +130,22 @@
   position: absolute;
   top: 0;
   width: 100%;
+}
+
+.direct-chat-contacts-light {
+  background: $light;
+
+  .contacts-list-name {
+    color: $gray-700;
+  }
+
+  .contacts-list-date {
+    color: $gray-600;
+  }
+
+  .contacts-list-msg {
+    color: darken($gray-600, 10%);
+  }
 }
 
 //Contacts list -- for displaying contacts in direct chat contacts pane
@@ -173,12 +189,12 @@
 }
 
 .contacts-list-date {
-  color: $gray-500;
+  color: $gray-400;
   font-weight: normal;
 }
 
 .contacts-list-msg {
-  color: darken($gray-500, 25%);
+  color: darken($gray-400, 10%);
 }
 
 // Color variants

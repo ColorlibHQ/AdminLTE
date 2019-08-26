@@ -12,13 +12,14 @@ const ControlSidebar = (($) => {
    */
 
   const NAME               = 'ControlSidebar'
-  const DATA_KEY           = 'lte.control.sidebar'
+  const DATA_KEY           = 'lte.controlsidebar'
   const EVENT_KEY          = `.${DATA_KEY}`
   const JQUERY_NO_CONFLICT = $.fn[NAME]
   const DATA_API_KEY       = '.data-api'
 
   const Event = {
-    CLICK_DATA_API: `click${EVENT_KEY}${DATA_API_KEY}`
+    COLLAPSED: `collapsed${EVENT_KEY}`,
+    EXPANDED: `expanded${EVENT_KEY}`
   }
 
   const Selector = {
@@ -29,12 +30,12 @@ const ControlSidebar = (($) => {
 
   const ClassName = {
     CONTROL_SIDEBAR_ANIMATE: 'control-sidebar-animate',
-    CONTROL_SIDEBAR_OPEN   : 'control-sidebar-open',
-    CONTROL_SIDEBAR_SLIDE  : 'control-sidebar-slide-open'
+    CONTROL_SIDEBAR_OPEN: 'control-sidebar-open',
+    CONTROL_SIDEBAR_SLIDE: 'control-sidebar-slide-open'
   }
 
   const Default = {
-    slide: true
+    controlsidebarSlide: true
   }
 
   /**
@@ -52,7 +53,7 @@ const ControlSidebar = (($) => {
 
     show() {
       // Show the control sidebar
-      if (this._config.slide) {
+      if (this._config.controlsidebarSlide) {
         $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
         $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function(){
           $(Selector.CONTROL_SIDEBAR).hide()
@@ -62,13 +63,16 @@ const ControlSidebar = (($) => {
       } else {
         $('body').removeClass(ClassName.CONTROL_SIDEBAR_OPEN)
       }
+
+      const expandedEvent = $.Event(Event.EXPANDED)
+      $(this._element).trigger(expandedEvent)
     }
 
     collapse() {
       // Collapse the control sidebar
-      if (this._config.slide) {
+      if (this._config.controlsidebarSlide) {
         $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
-        $(Selector.CONTROL_SIDEBAR).show().delay(100).queue(function(){
+        $(Selector.CONTROL_SIDEBAR).show().delay(10).queue(function(){
           $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function(){
             $('html').removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
             $(this).dequeue()
@@ -78,11 +82,12 @@ const ControlSidebar = (($) => {
       } else {
         $('body').addClass(ClassName.CONTROL_SIDEBAR_OPEN)
       }
+
+      const collapsedEvent = $.Event(Event.COLLAPSED)
+      $(this._element).trigger(collapsedEvent)
     }
 
     toggle() {
-      this._setMargin()
-
       const shouldOpen = $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body')
         .hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)
       if (shouldOpen) {
@@ -98,12 +103,6 @@ const ControlSidebar = (($) => {
 
     _getConfig(config) {
       return $.extend({}, Default, config)
-    }
-
-    _setMargin() {
-      $(Selector.CONTROL_SIDEBAR).css({
-        top: $(Selector.MAIN_HEADER).innerHeight()
-      })
     }
 
     // Static

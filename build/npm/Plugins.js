@@ -182,6 +182,10 @@ const Plugins = [
     from: 'node_modules/select2/dist/',
     to  : 'plugins/select2'
   },
+  {
+    from: 'node_modules/@ttskch/select2-bootstrap4-theme/dist/',
+    to  : 'plugins/select2-bootstrap4-theme'
+  },
   // Sparklines
   {
     from: 'node_modules/sparklines/source/',
@@ -191,6 +195,10 @@ const Plugins = [
   {
     from: 'node_modules/sweetalert2/dist/',
     to  : 'plugins/sweetalert2'
+  },
+  {
+    from: 'node_modules/@sweetalert2/theme-bootstrap-4/',
+    to  : 'plugins/sweetalert2-theme-bootstrap-4'
   },
   // Toastr
   {
