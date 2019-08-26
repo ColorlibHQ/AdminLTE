@@ -20,7 +20,7 @@ npm install admin-lte@3.0.0-beta.2 --save
 
 ###### __Via Yarn__
 ```bash
-npm add admin-lte@3.0.0-beta.2
+yarn add admin-lte@3.0.0-beta.2
 ```
 
 ###### __Via Bower__
