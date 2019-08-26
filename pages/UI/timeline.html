@@ -3,15 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Project Edit</title>
+  <title>AdminLTE 3 | Timeline</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- overlayScrollbars -->
+  <!-- AdminLTE css -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -435,8 +432,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Pages
@@ -469,16 +466,16 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../examples/project_add.html" class="nav-link active">
+                <a href="../examples/project_add.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Project Add</p>
                 </a>
+              </li>
               <li class="nav-item">
                 <a href="../examples/project_edit.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Project Edit</p>
                 </a>
-              </li>
               </li>
               <li class="nav-item">
                 <a href="../examples/project_detail.html" class="nav-link">
@@ -494,8 +491,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
                 Extras
@@ -546,7 +543,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../examples/blank.html" class="nav-link">
+                <a href="../examples/blank.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Blank Page</p>
                 </a>
@@ -599,12 +596,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Project Add</h1>
+            <h1>Timeline</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Project Add</li>
+              <li class="breadcrumb-item active">Timeline</li>
             </ol>
           </div>
         </div>
@@ -613,83 +610,115 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">General</h3>
+      <div class="container-fluid">
+        
+        <!-- Timelime example  -->
+        <div class="row">
+          <div class="col-md-12">
+            <!-- The time line -->
+            <div class="timeline">
+              <!-- timeline time label -->
+              <div class="time-label">
+                <span class="bg-red">10 Feb. 2014</span>
+              </div>
+              <!-- /.timeline-label -->
+              <!-- timeline item -->
+              <div>
+                <i class="fas fa-envelope bg-blue"></i>
+                <div class="timeline-item">
+                  <span class="time"><i class="fas fa-clock"></i> 12:05</span>
+                  <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
 
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                  <i class="fas fa-minus"></i></button>
+                  <div class="timeline-body">
+                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                    weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                    jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                    quora plaxo ideeli hulu weebly balihoo...
+                  </div>
+                  <div class="timeline-footer">
+                    <a class="btn btn-primary btn-sm">Read more</a>
+                    <a class="btn btn-danger btn-sm">Delete</a>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="card-body">
-              <div class="form-group">
-                <label for="inputName">Project Name</label>
-                <input type="text" id="inputName" class="form-control">
+              <!-- END timeline item -->
+              <!-- timeline item -->
+              <div>
+                <i class="fas fa-user bg-green"></i>
+                <div class="timeline-item">
+                  <span class="time"><i class="fas fa-clock"></i> 5 mins ago</span>
+                  <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="inputDescription">Project Description</label>
-                <textarea id="inputDescription" class="form-control" rows="4"></textarea>
+              <!-- END timeline item -->
+              <!-- timeline item -->
+              <div>
+                <i class="fas fa-comments bg-yellow"></i>
+                <div class="timeline-item">
+                  <span class="time"><i class="fas fa-clock"></i> 27 mins ago</span>
+                  <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+                  <div class="timeline-body">
+                    Take me to your leader!
+                    Switzerland is small and neutral!
+                    We are more like Germany, ambitious and misunderstood!
+                  </div>
+                  <div class="timeline-footer">
+                    <a class="btn btn-warning btn-sm">View comment</a>
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="inputStatus">Status</label>
-                <select class="form-control custom-select">
-                  <option selected disabled>Select one</option>
-                  <option>On Hold</option>
-                  <option>Canceled</option>
-                  <option>Success</option>
-                </select>
+              <!-- END timeline item -->
+              <!-- timeline time label -->
+              <div class="time-label">
+                <span class="bg-green">3 Jan. 2014</span>
               </div>
-              <div class="form-group">
-                <label for="inputClientCompany">Client Company</label>
-                <input type="text" id="inputClientCompany" class="form-control">
+              <!-- /.timeline-label -->
+              <!-- timeline item -->
+              <div>
+                <i class="fa fa-camera bg-purple"></i>
+                <div class="timeline-item">
+                  <span class="time"><i class="fas fa-clock"></i> 2 days ago</span>
+                  <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+                  <div class="timeline-body">
+                    <img src="http://placehold.it/150x100" alt="...">
+                    <img src="http://placehold.it/150x100" alt="...">
+                    <img src="http://placehold.it/150x100" alt="...">
+                    <img src="http://placehold.it/150x100" alt="...">
+                    <img src="http://placehold.it/150x100" alt="...">
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="inputProjectLeader">Project Leader</label>
-                <input type="text" id="inputProjectLeader" class="form-control">
-              </div>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <div class="col-md-6">
-          <div class="card card-secondary">
-            <div class="card-header">
-              <h3 class="card-title">Budget</h3>
+              <!-- END timeline item -->
+              <!-- timeline item -->
+              <div>
+                <i class="fas fa-video bg-maroon"></i>
 
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                  <i class="fas fa-minus"></i></button>
+                <div class="timeline-item">
+                  <span class="time"><i class="fas fa-clock"></i> 5 days ago</span>
+
+                  <h3 class="timeline-header"><a href="#">Mr. Doe</a> shared a video</h3>
+
+                  <div class="timeline-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tMWkeBIohBs" frameborder="0" allowfullscreen=""></iframe>
+                    </div>
+                  </div>
+                  <div class="timeline-footer">
+                    <a href="#" class="btn btn-sm bg-maroon">See comments</a>
+                  </div>
+                </div>
+              </div>
+              <!-- END timeline item -->
+              <div>
+                <i class="fas fa-clock bg-gray"></i>
               </div>
             </div>
-            <div class="card-body">
-              <div class="form-group">
-                <label for="inputEstimatedBudget">Estimated budget</label>
-                <input type="number" id="inputEstimatedBudget" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputSpentBudget">Total amount spent</label>
-                <input type="number" id="inputSpentBudget" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputEstimatedDuration">Estimated project duration</label>
-                <input type="number" id="inputEstimatedDuration" class="form-control">
-              </div>
-            </div>
-            <!-- /.card-body -->
           </div>
-          <!-- /.card -->
+          <!-- /.col -->
         </div>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <a href="#" class="btn btn-secondary">Cancel</a>
-          <input type="submit" value="Create new Porject" class="btn btn-success float-right">
-        </div>
-      </div>
+      <!-- /.timeline -->
+
     </section>
     <!-- /.content -->
   </div>
