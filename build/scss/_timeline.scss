@@ -3,11 +3,9 @@
 //
 
 .timeline {
-  list-style: none;
-  margin: 0 0 30px;
+  margin: 0 0 45px;
   padding: 0;
   position: relative;
-
   // The line
   &::before {
     @include border-radius($border-radius);
@@ -20,13 +18,17 @@
     top: 0;
     width: 4px;
   }
+  // Element
+  > div {
+    &::before,
+    &::after {
+      content: "";
+      display: table;
+    }
 
-  > li {
-    @include clearfix;
     margin-bottom: 15px;
     margin-right: 10px;
     position: relative;
-
     // The content
     > .timeline-item {
       @include box-shadow($card-shadow);
@@ -38,7 +40,6 @@
       margin-top: 0;
       padding: 0;
       position: relative;
-
       // The time and header
       > .time {
         color: #999;
@@ -46,7 +47,7 @@
         font-size: 12px;
         padding: 10px;
       }
-
+      // Header
       > .timeline-header {
         border-bottom: 1px solid $card-border-color;
         color: $gray-700;
@@ -54,21 +55,30 @@
         line-height: 1.1;
         margin: 0;
         padding: 10px;
-
+        // Link in header
         > a {
           font-weight: 600;
         }
       }
-
       // Item body and footer
       > .timeline-body,
       > .timeline-footer {
         padding: 10px;
       }
 
-    }
+      > .timeline-body {
+        > img {
+          margin: 10px;
+        }
+      }
 
-    // The icons
+      > .timeline-footer {
+        > a {
+          color: $white;
+        }
+      }
+    }
+    // The icons at line
     > .fa,
     > .fas,
     > .far,
@@ -87,12 +97,10 @@
       width: 30px;
     }
   }
-
   // Time label
   > .time-label {
     > span {
       @include border-radius(4px);
-
       background-color: $white;
       display: inline-block;
       font-weight: 600;
@@ -102,7 +110,7 @@
 }
 
 .timeline-inverse {
-  > li {
+  > div {
     > .timeline-item {
       @include box-shadow(none);
       background: $gray-100;
