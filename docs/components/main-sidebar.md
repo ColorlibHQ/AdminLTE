@@ -73,4 +73,16 @@ The sidebar used in this page to the left provides an example of what your sideb
 ```
 {: .max-height-300}
 
+
+#### Additional Classes
+
+##### Navbar
+- `.nav-child-indent` Child indent
+- `.nav-compact` Compact nav items
+
+
+> ##### Tip!
+> You can also use `.text-sm` on `.nav-sidebar` for smaller font.
+{: .quote-info}
+
 For more infromation about the JS part of the sidebar, please visit the [PushMenu plugin page]({% link javascript/push-menu.md %})
