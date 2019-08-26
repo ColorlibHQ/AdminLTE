@@ -52,6 +52,8 @@ navigation:
       url: components/boxes.html
     - title: Direct Chat
       url: components/direct-chat.html
+    - title: Ribbons
+      url: components/ribbons.html
 - title: JavaScript
   icon: fas fa-code
   url: javascript
