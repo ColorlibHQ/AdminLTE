@@ -37,6 +37,38 @@
   }
 }
 
+// Dropdown Submenu
+.dropdown-submenu {
+  position: relative;
+
+  & > a:after {
+    @include caret-right;
+    float: right;
+    margin-left: .5rem;
+    margin-top: .5rem;
+  }
+
+  & > .dropdown-menu {
+    left: 100%;
+    margin-left: 0px;
+    margin-top: 0px;
+    top: 0;
+  }
+}
+
+// Dropdown Hover
+.dropdown-hover {
+  &.nav-item.dropdown:hover,
+  .dropdown-submenu:hover,
+  &.dropdown-submenu:hover {
+    > ul.dropdown-menu {
+      display: block;
+    }
+  }
+}
+
+
+
 // Dropdown Sizes
 .dropdown-menu-xl {
   max-width: 420px;
