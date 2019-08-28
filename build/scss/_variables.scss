@@ -175,6 +175,13 @@ $font-size-xl: ($font-size-base * 2);
 $button-default-background-color: $gray-100 !default;
 $button-default-color: #444 !default;
 $button-default-border-color: #ddd !default;
+
+$button-padding-y-xs: .125rem !default;
+$button-padding-x-xs: .25rem !default;
+$button-line-height-xs: $line-height-sm !default;
+$button-font-size-xs: ($font-size-base * .75) !default;
+$button-border-radius-xs: .15rem !default;
+
   
 // RIBBON
 // --------------------------------------------------------

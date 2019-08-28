@@ -58,10 +58,11 @@
 
 // Dropdown Hover
 .dropdown-hover {
+  &:hover,
   &.nav-item.dropdown:hover,
   .dropdown-submenu:hover,
   &.dropdown-submenu:hover {
-    > ul.dropdown-menu {
+    > .dropdown-menu {
       display: block;
     }
   }
