@@ -62,6 +62,7 @@
     "datatables.net-bs4": "^1.10.19",
     "daterangepicker": "^3.0.5",
     "fastclick": "^1.0.6",
+    "filterizr": "^2.2.3",
     "flag-icon-css": "^3.3.0",
     "flot": "^3.1.1",
     "icheck-bootstrap": "^3.0.1",

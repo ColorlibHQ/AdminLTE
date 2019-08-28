@@ -228,7 +228,11 @@ const Plugins = [
     from: 'node_modules/bootstrap4-duallistbox/dist',
     to: 'plugins/bootstrap4-duallistbox/'
   },
-
+  // filterizr
+  {
+    from: 'node_modules/filterizr/dist',
+    to: 'plugins/filterizr/'
+  },
 
   // AdminLTE Dist
   {
