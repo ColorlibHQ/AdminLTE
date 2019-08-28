@@ -67,7 +67,7 @@ define(["eve"], function(eve) {
             }
         }
     }
-    R.version = "2.2.0";
+    R.version = "2.3.0";
     R.eve = eve;
     var loaded,
         separator = /[, ]+/,

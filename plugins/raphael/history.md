@@ -1,3 +1,8 @@
+2.3.0
+------------------
+  * Unminified versions now without sourcemaps (#1110)
+  * `start` script for building all versions (#1109)
+
 2.2.8
 ------------------
   * Downgraded qunit to v1 to make tests work again

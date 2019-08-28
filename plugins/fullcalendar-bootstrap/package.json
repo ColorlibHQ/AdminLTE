@@ -1,32 +1,28 @@
 {
-  "_args": [
-    [
-      "@fullcalendar/bootstrap@4.2.0",
-      "/Users/rejack/Projekte/GitHub/REJack/AdminLTE"
-    ]
-  ],
-  "_from": "@fullcalendar/bootstrap@4.2.0",
-  "_id": "@fullcalendar/bootstrap@4.2.0",
+  "_from": "@fullcalendar/bootstrap@4.3.0",
+  "_id": "@fullcalendar/bootstrap@4.3.0",
   "_inBundle": false,
-  "_integrity": "sha512-yavoxeP13f7MCeSuEk9aQHd0z82yvENw3yjbxZZHBtIY1/E/FOPZRGZYFmwffIvvz7AOs9W+Pt6hxzFLsPW02Q==",
+  "_integrity": "sha512-Ue0Bm2m765jY2LKRsD7ZyoeYNJeeyXxyzSeMdYY4AHFZTevTlcxv1T7ZYPRDBhseewLwiFHP8e0Okfdiji+BCg==",
   "_location": "/@fullcalendar/bootstrap",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@fullcalendar/bootstrap@4.2.0",
+    "raw": "@fullcalendar/bootstrap@4.3.0",
     "name": "@fullcalendar/bootstrap",
     "escapedName": "@fullcalendar%2fbootstrap",
     "scope": "@fullcalendar",
-    "rawSpec": "4.2.0",
+    "rawSpec": "4.3.0",
     "saveSpec": null,
-    "fetchSpec": "4.2.0"
+    "fetchSpec": "4.3.0"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@fullcalendar/bootstrap/-/bootstrap-4.2.0.tgz",
-  "_spec": "4.2.0",
+  "_resolved": "https://registry.npmjs.org/@fullcalendar/bootstrap/-/bootstrap-4.3.0.tgz",
+  "_shasum": "c989968f92c4ec26a0ff7dfc35b186aa38978ba1",
+  "_spec": "@fullcalendar/bootstrap@4.3.0",
   "_where": "/Users/rejack/Projekte/GitHub/REJack/AdminLTE",
   "author": {
     "name": "Adam Shaw",
@@ -36,7 +32,9 @@
   "bugs": {
     "url": "https://fullcalendar.io/reporting-bugs"
   },
+  "bundleDependencies": false,
   "copyright": "2019 Adam Shaw",
+  "deprecated": false,
   "description": "Bootstrap 4 theming for your calendar",
   "docs": "https://fullcalendar.io/docs/bootstrap-theme",
   "homepage": "https://fullcalendar.io/",
@@ -47,11 +45,11 @@
   ],
   "license": "MIT",
   "main": "main.js",
+  "module": "main.esm.js",
   "name": "@fullcalendar/bootstrap",
   "peerDependencies": {
-    "@fullcalendar/core": "~4.2.0"
+    "@fullcalendar/core": "~4.3.0"
   },
-  "releaseDate": "2019-06-02",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fullcalendar/fullcalendar.git",
@@ -60,5 +58,5 @@
   "title": "FullCalendar Bootstrap Plugin",
   "types": "main.d.ts",
   "unpkg": "main.min.js",
-  "version": "4.2.0"
+  "version": "4.3.0"
 }

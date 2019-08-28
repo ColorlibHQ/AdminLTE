@@ -1,5 +1,5 @@
 /*!
-* sweetalert2 v8.16.2
+* sweetalert2 v8.16.3
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -2886,7 +2886,7 @@ Object.keys(instanceMethods).forEach(function (key) {
   };
 });
 SweetAlert.DismissReason = DismissReason;
-SweetAlert.version = '8.16.2';
+SweetAlert.version = '8.16.3';
 
 var Swal = SweetAlert;
 Swal["default"] = Swal;
