@@ -81,6 +81,7 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
       <li><a href="https://github.com/bbmumford/jqvmap#readme" target="_blank">jQuery Vector Map</a></li>
       <li><a href="https://kingsora.github.io/OverlayScrollbars/" target="_blank">Overlay Scrollbars</a></li>
       <li><a href="https://github.com/lgaitan/pace#readme" target="_blank">Pace Progress</a></li>
+      <li><a href="https://github.com/giotiskl/filterizr#readme" target="_blank">FilterizR</a></li>
     </ul>
   </div>
   <div class="col-sm-3">
@@ -89,6 +90,8 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
       <li><a href="https://github.com/jquery/jquery-mousewheel#readme" target="_blank">jQuery Mousewheel</a></li>
       <li><a href="https://momentjs.com/" target="_blank">Moment.js</a></li>
       <li><a href="https://dmitrybaranovskiy.github.io/raphael/" target="_blank">Raphaël</a></li>
+      <li><a href="https://github.com/bpampuch/pdfmake#readme" target="_blank">pdfmake</a></li>
+      <li><a href="https://github.com/Stuk/jszip#readme" target="_blank">jszip</a></li>
     </ul>
   </div>
 </div>
