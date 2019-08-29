@@ -20,6 +20,7 @@ node_modules/
 bower_components/
 
 // Docs
+Gemfile.lock
 docs/_site
 .jekyll-cache/
 .jekyll-metadata
