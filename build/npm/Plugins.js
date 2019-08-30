@@ -374,6 +374,11 @@ const Plugins = [
     from: 'node_modules/filterizr/dist',
     to: 'plugins/filterizr/'
   },
+  // ekko-lightbox
+  {
+    from: 'node_modules/ekko-lightbox/dist',
+    to: 'plugins/ekko-lightbox/'
+  },
 
   // AdminLTE Dist
   {
