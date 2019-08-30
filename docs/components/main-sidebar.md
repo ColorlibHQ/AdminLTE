@@ -76,6 +76,9 @@ The sidebar used in this page to the left provides an example of what your sideb
 
 #### Additional Classes
 
+##### Sidebar
+- `.sidebar-no-expand` Disables Auto Expand on Hover/Focus
+
 ##### Navbar
 - `.nav-child-indent` Child indent
 - `.nav-compact` Compact nav items
