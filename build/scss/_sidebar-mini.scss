@@ -52,6 +52,31 @@
   }
 }
 
+.sidebar-collapse {
+  .sidebar-no-expand.main-sidebar.sidebar-focused,
+  .sidebar-no-expand.main-sidebar:hover {
+    width: $sidebar-mini-width;
+
+
+    .user-panel .image {
+      float: none !important;
+    }
+
+    .brand-text,
+    .user-panel > .info,
+    .nav-sidebar .nav-link p {
+      margin-left: -10px;
+      opacity: 0;
+      visibility: hidden;
+      width: 0;
+    }
+
+    .nav-sidebar > .nav-item .nav-icon {
+      margin-right: 0;
+    }
+  }
+}
+
 .nav-sidebar {
   position: relative;
 
