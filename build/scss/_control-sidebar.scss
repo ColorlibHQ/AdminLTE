@@ -7,13 +7,14 @@ html.control-sidebar-animate {
 }
 
 .control-sidebar {
+  bottom: $main-footer-height;
   position: absolute;
   top: $main-header-height;
   z-index: $zindex-control-sidebar;
-
+  
   &,
   &::before {
-    bottom: 0;
+    bottom: $main-footer-height;
     display: none;
     right: -$control-sidebar-width;
     width: $control-sidebar-width;

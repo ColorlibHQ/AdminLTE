@@ -38,13 +38,15 @@ $("#my-toggle-button").ControlSidebar('toggle');
 |---
 | Name | Type | Default | Description
 |-|-|-|-
-|slide | Boolean | TRUE | Whether the sidebar should slide over the content or push the content to make space for itself.
+|controlsidebarSlide | Boolean | TRUE | Whether the sidebar should slide over the content or push the content to make space for itself.
+|scrollbarTheme | Boolean | `os-theme-light` | Scrollbar Theme used while SideBar Fixed
+|scrollbarAutoHide | Boolean | `l` | Scrollbar auto-hide trigger
 {: .table .table-bordered .bg-light}
 
 > ##### Tip!
 > You can use any option via the data-attributes like this to enable auto collapse sidebar on 768 pixels width.
 > ```html
-> <a href="#" data-widget="control-sidebar" data-slide="false">Toggle Control Sidebar</a>
+> <a href="#" data-widget="control-sidebar" data-controlsidebar-slide="false">Toggle Control Sidebar</a>
 > ```
 {: .quote-info}
 
