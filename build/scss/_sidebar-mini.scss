@@ -57,6 +57,9 @@
   .sidebar-no-expand.main-sidebar:hover {
     width: $sidebar-mini-width;
 
+    .brand-link {
+      width: $sidebar-mini-width !important;
+    }
 
     .user-panel .image {
       float: none !important;
