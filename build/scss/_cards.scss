@@ -94,7 +94,7 @@ html.maximized-card {
   background-color: transparent;
   border-bottom: 1px solid $card-border-color;
   position: relative;
-  padding: 0 $card-spacer-x;
+  padding: (($card-spacer-y / 3) * 2) $card-spacer-x;
 
   @if $enable-rounded {
     @include border-top-radius($border-radius);
@@ -119,7 +119,6 @@ html.maximized-card {
   font-size: $card-title-font-size;
   font-weight: $card-title-font-weight;
   margin: 0;
-  padding: $card-spacer-y 0;
 }
 
 // Box Tools Buttons
@@ -127,7 +126,7 @@ html.maximized-card {
   background: transparent;
   color: $gray-500;
   font-size: $font-size-sm;
-  margin: ($card-spacer-y / 2) 0;
+  margin: -(($card-spacer-y / 3) * 2) 0;
   padding: .25rem .5rem;
 
   .btn-group.show &,
