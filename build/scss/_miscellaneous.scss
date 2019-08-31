@@ -70,7 +70,7 @@
 
 // User block
 .user-block {
-  @include clearfix;
+  float: left;
 
   img {
     float: left;
@@ -88,11 +88,13 @@
   .username {
     font-size: 16px;
     font-weight: 600;
+    margin-top: -1px;
   }
 
   .description {
-    color: #999;
+    color: $gray-600;
     font-size: 13px;
+    margin-top: -3px;
   }
 
   &.user-block-sm {
