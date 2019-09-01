@@ -16,7 +16,7 @@ body,
   position: relative;
 
   & .content-wrapper {
-    min-height: calc(100vh - 112px);
+    min-height: calc(100vh - #{$main-header-height} - #{$main-footer-height});
   }
 
   .layout-boxed & {
@@ -34,6 +34,9 @@ body,
   }
 
   .layout-navbar-fixed.layout-fixed & {
+    .control-sidebar {
+      top: $main-header-height;
+    }
     .sidebar {
       margin-top: $main-header-height;
     }
@@ -117,6 +120,9 @@ body,
       $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
       .layout#{$infix}-navbar-fixed.layout-fixed & {
+        .control-sidebar {
+          top: $main-header-height;
+        }
         .sidebar {
           margin-top: $main-header-height;
         }
@@ -200,6 +206,12 @@ body,
   }
 
   .layout-footer-fixed & {
+    .control-sidebar {
+      bottom: 0;
+    }
+  }
+
+  .layout-footer-fixed & {
     .main-footer {
       bottom: 0;
       left: 0;
@@ -222,6 +234,11 @@ body,
   @each $breakpoint in map-keys($grid-breakpoints) {
     @include media-breakpoint-up($breakpoint) {
       $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+      .layout#{$infix}-footer-fixed & {
+        .control-sidebar {
+          bottom: 0;
+        }
+      }
 
       .layout#{$infix}-footer-fixed & {
         .main-footer {
@@ -356,6 +373,18 @@ body,
     left: 0;
     position: fixed;
     top: 0;
+  }
+
+  .control-sidebar {
+    bottom: 0;
+    float: none;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+
+    .control-sidebar-content {
+      height: calc(100vh - #{$main-header-height});
+    }
   }
 }
 

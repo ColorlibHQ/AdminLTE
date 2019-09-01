@@ -335,6 +335,12 @@
                   <p>Timeline</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="../UI/ribbons.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ribbons</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview menu-open">
@@ -402,6 +408,14 @@
               <p>
                 Calendar
                 <span class="badge badge-info right">2</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../gallery.html" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Gallery
               </p>
             </a>
           </li>
@@ -826,11 +840,6 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-
-          </div>
-          <!--/.col (left) -->
-          <!-- right column -->
-          <div class="col-md-6">
             <!-- Horizontal Form -->
             <div class="card card-info">
               <div class="card-header">
@@ -870,6 +879,11 @@
               </form>
             </div>
             <!-- /.card -->
+
+          </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
             <!-- general form elements disabled -->
             <div class="card card-warning">
               <div class="card-header">
@@ -878,24 +892,35 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <form role="form">
-                  <!-- text input -->
-                  <div class="form-group">
-                    <label>Text</label>
-                    <input type="text" class="form-control" placeholder="Enter ...">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Text</label>
+                        <input type="text" class="form-control" placeholder="Enter ...">
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Text Disabled</label>
+                        <input type="text" class="form-control" placeholder="Enter ..." disabled>
+                      </div>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label>Text Disabled</label>
-                    <input type="text" class="form-control" placeholder="Enter ..." disabled>
-                  </div>
-
-                  <!-- textarea -->
-                  <div class="form-group">
-                    <label>Textarea</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label>Textarea Disabled</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter ..." disabled></textarea>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- textarea -->
+                      <div class="form-group">
+                        <label>Textarea</label>
+                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Textarea Disabled</label>
+                        <textarea class="form-control" rows="3" placeholder="Enter ..." disabled></textarea>
+                      </div>
+                    </div>
                   </div>
 
                   <!-- input states -->
@@ -915,104 +940,242 @@
                     <input type="text" class="form-control is-invalid" id="inputError" placeholder="Enter ...">
                   </div>
 
-                  <!-- checkbox -->
-                  <div class="form-group">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="option1">
-                      <label class="form-check-label">Checkbox</label>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- checkbox -->
+                      <div class="form-group">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox">
+                          <label class="form-check-label">Checkbox</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" checked>
+                          <label class="form-check-label">Checkbox checked</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" disabled>
+                          <label class="form-check-label">Checkbox disabled</label>
+                        </div>
+                      </div>
+                    </div> 
+                    <div class="col-sm-6">
+                      <!-- radio -->
+                      <div class="form-group">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="radio1">
+                          <label class="form-check-label">Radio</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="radio1" checked>
+                          <label class="form-check-label">Radio checked</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" disabled>
+                          <label class="form-check-label">Radio disabled</label>
+                        </div>
+                      </div>
                     </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="option1" disabled>
-                      <label class="form-check-label">Checkbox disabled</label>
-                    </div>
-                  </div>
-
-                  <!-- radio -->
-                  <div class="form-group">
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" value="option1">
-                      <label class="form-check-label">Radio</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" value="option1" disabled>
-                      <label class="form-check-label">Radio disabled</label>
-                    </div>
-                  </div>
-
-                  <!-- select -->
-                  <div class="form-group">
-                    <label>Select</label>
-                    <select class="form-control">
-                      <option>option 1</option>
-                      <option>option 2</option>
-                      <option>option 3</option>
-                      <option>option 4</option>
-                      <option>option 5</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label>Select Disabled</label>
-                    <select class="form-control" disabled>
-                      <option>option 1</option>
-                      <option>option 2</option>
-                      <option>option 3</option>
-                      <option>option 4</option>
-                      <option>option 5</option>
-                    </select>
                   </div>
 
-                  <!-- Select multiple-->
-                  <div class="form-group">
-                    <label>Select Multiple</label>
-                    <select multiple class="form-control">
-                      <option>option 1</option>
-                      <option>option 2</option>
-                      <option>option 3</option>
-                      <option>option 4</option>
-                      <option>option 5</option>
-                    </select>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- select -->
+                      <div class="form-group">
+                        <label>Select</label>
+                        <select class="form-control">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Select Disabled</label>
+                        <select class="form-control" disabled>
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label>Select Multiple Disabled</label>
-                    <select multiple class="form-control" disabled>
-                      <option>option 1</option>
-                      <option>option 2</option>
-                      <option>option 3</option>
-                      <option>option 4</option>
-                      <option>option 5</option>
-                    </select>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- Select multiple-->
+                      <div class="form-group">
+                        <label>Select Multiple</label>
+                        <select multiple class="form-control">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Select Multiple Disabled</label>
+                        <select multiple class="form-control" disabled>
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- general form elements disabled -->
+            <div class="card card-secondary">
+              <div class="card-header">
+                <h3 class="card-title">Custom Elements</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <form role="form">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- checkbox -->
+                      <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="option1">
+                          <label for="customCheckbox1" class="custom-control-label">Custom Checkbox</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input" type="checkbox" id="customCheckbox2" checked>
+                          <label for="customCheckbox2" class="custom-control-label">Custom Checkbox checked</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input" type="checkbox" id="customCheckbox3" disabled>
+                          <label for="customCheckbox3" class="custom-control-label">Custom Checkbox disabled</label>
+                        </div>
+                      </div>
+                    </div> 
+                    <div class="col-sm-6">
+                      <!-- radio -->
+                      <div class="form-group">
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio">
+                          <label for="customRadio1" class="custom-control-label">Custom Radio</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" checked>
+                          <label for="customRadio2" class="custom-control-label">Custom Radio checked</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" id="customRadio3" disabled>
+                          <label for="customRadio3" class="custom-control-label">Custom Radio disabled</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- select -->
+                      <div class="form-group">
+                        <label>Custom Select</label>
+                        <select class="custom-select">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Custom Select Disabled</label>
+                        <select class="custom-select" disabled>
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- Select multiple-->
+                      <div class="form-group">
+                        <label>Custom Select Multiple</label>
+                        <select multiple class="custom-select">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Custom Select Multiple Disabled</label>
+                        <select multiple class="custom-select" disabled>
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
 
                   <div class="form-group">
                     <div class="custom-control custom-switch">
                       <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                      <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+                      <label class="custom-control-label" for="customSwitch1">Toggle this custom switch element</label>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                       <input type="checkbox" class="custom-control-input" id="customSwitch3">
-                      <label class="custom-control-label" for="customSwitch3">Toggle this switch element with Custom Colors danger/success</label>
+                      <label class="custom-control-label" for="customSwitch3">Toggle this custom switch element with custom colors danger/success</label>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="custom-control custom-switch">
                       <input type="checkbox" class="custom-control-input" disabled id="customSwitch2">
-                      <label class="custom-control-label" for="customSwitch2">Disabled switch element</label>
+                      <label class="custom-control-label" for="customSwitch2">Disabled custom switch element</label>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="customRange1">Example range</label>
+                    <label for="customRange1">Custom range</label>
                     <input type="range" class="custom-range" id="customRange1">
                   </div>
                   <div class="form-group">
-                    <label for="customRange1">Example range (custom-range-danger)</label>
+                    <label for="customRange1">Custom range (custom-range-danger)</label>
                     <input type="range" class="custom-range custom-range-danger" id="customRange1">
                   </div>
                   <div class="form-group">
-                    <label for="customRange1">Example range (custom-range-teal)</label>
+                    <label for="customRange1">Custom range (custom-range-teal)</label>
                     <input type="range" class="custom-range custom-range-teal" id="customRange1">
+                  </div>
+                  <div class="form-group">
+                    <label for="customFile">Custom File</label>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="customFile">
+                      <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
                   </div>
                 </form>
               </div>
@@ -1030,7 +1193,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.0-beta.2
+      <b>Version</b> 3.0.0-rc.1
     </div>
     <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
     reserved.
@@ -1048,8 +1211,6 @@
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- FastClick -->
-<script src="../../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->

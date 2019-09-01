@@ -17,10 +17,10 @@
   @extend .mb-3;
   background-color: $white;
   border-left: 5px solid $gray-200;
-  padding: .5rem 1rem .5rem .5rem;
+  padding: 1rem;
 
   a {
-    color: $white;
+    color: $gray-700;
     text-decoration: underline;
 
     &:hover {

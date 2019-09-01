@@ -929,15 +929,6 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-end, body.swal2-no-backdrop .sw
   color: #f27474;
 }
 
-> .swal2-input,
-> .swal2-file,
-> .swal2-textarea,
-> .swal2-select,
-> .swal2-radio,
-> .swal2-checkbox {
-  display: none;
-}
-
 .swal2-content {
   z-index: 1;
   justify-content: center;

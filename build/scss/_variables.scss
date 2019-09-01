@@ -130,7 +130,7 @@ $control-sidebar-width: $sidebar-width !default;
 $card-border-color: $gray-100 !default;
 $card-dark-border-color: lighten($gray-900, 10%) !default;
 $card-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2) !default;
-$card-title-font-size: $font-size-lg;
+$card-title-font-size: 1.1rem;
 $card-title-font-weight: $font-weight-normal;
 
 // PROGRESS BARS
@@ -154,8 +154,8 @@ $attachment-border-radius: 3px !default;
 // --------------------------------------------------------
 $zindex-main-header: $zindex-fixed + 4 !default;
 $zindex-main-sidebar: $zindex-fixed + 8 !default;
-$zindex-main-footer: $zindex-fixed + 1 !default;
-$zindex-control-sidebar: $zindex-fixed + 2 !default;
+$zindex-main-footer: $zindex-fixed + 2 !default;
+$zindex-control-sidebar: $zindex-fixed + 1 !default;
 $zindex-sidebar-mini-links: 010 !default;
 
 // TRANSITIONS SETTINGS
@@ -175,6 +175,13 @@ $font-size-xl: ($font-size-base * 2);
 $button-default-background-color: $gray-100 !default;
 $button-default-color: #444 !default;
 $button-default-border-color: #ddd !default;
+
+$button-padding-y-xs: .125rem !default;
+$button-padding-x-xs: .25rem !default;
+$button-line-height-xs: $line-height-sm !default;
+$button-font-size-xs: ($font-size-base * .75) !default;
+$button-border-radius-xs: .15rem !default;
+
   
 // RIBBON
 // --------------------------------------------------------

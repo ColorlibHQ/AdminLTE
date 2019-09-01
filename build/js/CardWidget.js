@@ -70,7 +70,7 @@ const CardWidget = (($) => {
         .slideUp(this._settings.animationSpeed, () => {
           this._parent.addClass(ClassName.COLLAPSED)
         })
-      this._element.children(this._settings.collapseTrigger + ' .' + this._settings.collapseIcon)
+      this._parent.find(this._settings.collapseTrigger + ' .' + this._settings.collapseIcon)
         .addClass(this._settings.expandIcon)
         .removeClass(this._settings.collapseIcon)
 
@@ -85,7 +85,7 @@ const CardWidget = (($) => {
           this._parent.removeClass(ClassName.COLLAPSED)
         })
 
-      this._element.children(this._settings.collapseTrigger + ' .' + this._settings.expandIcon)
+      this._parent.find(this._settings.collapseTrigger + ' .' + this._settings.expandIcon)
         .addClass(this._settings.collapseIcon)
         .removeClass(this._settings.expandIcon)
 
@@ -112,7 +112,7 @@ const CardWidget = (($) => {
     }
     
     maximize() {
-      this._element.children(this._settings.maximizeTrigger + ' .' + this._settings.maximizeIcon)
+      this._parent.find(this._settings.maximizeTrigger + ' .' + this._settings.maximizeIcon)
         .addClass(this._settings.minimizeIcon)
         .removeClass(this._settings.maximizeIcon)
       this._parent.css({
@@ -134,7 +134,7 @@ const CardWidget = (($) => {
     }
 
     minimize() {
-      this._element.children(this._settings.maximizeTrigger + ' .' + this._settings.minimizeIcon)
+      this._parent.find(this._settings.maximizeTrigger + ' .' + this._settings.minimizeIcon)
         .addClass(this._settings.maximizeIcon)
         .removeClass(this._settings.minimizeIcon)
       this._parent.css('cssText', 'height:' + this._parent[0].style.height + ' !important;' +

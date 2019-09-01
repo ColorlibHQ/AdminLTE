@@ -7,7 +7,7 @@
 @mixin cards-variant($name, $color) {
   .card-#{$name} {
     &:not(.card-outline) {
-      .card-header {
+      > .card-header {
         background-color: $color;
         border-bottom: 0;
 
@@ -362,6 +362,10 @@
       border-color: darken($color, 20%);
     }
 
+    & .custom-control-input:focus ~ .custom-control-label::before {
+      box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
+    }
+
     & .custom-control-input ~ .custom-control-label::after {
       background: darken($color, 25%);
     }
@@ -371,6 +375,10 @@
     & .custom-control-input:checked ~ .custom-control-label::before {
       background: #{$color};
       border-color: darken($color, 20%);
+    }
+
+    & .custom-control-input:checked:focus ~ .custom-control-label::before {
+      box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
     }
 
     & .custom-control-input:checked ~ .custom-control-label::after {
@@ -386,15 +394,15 @@
       outline: none;
 
       &::-webkit-slider-thumb {
-        box-shadow: 0 0 0 1px $body-bg, 0 0 0 $input-btn-focus-width rgba($color, .25);
+        box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
       }
 
       &::-moz-range-thumb     {
-        box-shadow: 0 0 0 1px $body-bg, 0 0 0 $input-btn-focus-width rgba($color, .25);
+        box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
       }
 
       &::-ms-thumb            {
-        box-shadow: 0 0 0 1px $body-bg, 0 0 0 $input-btn-focus-width rgba($color, .25);
+        box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
       }
     }
 

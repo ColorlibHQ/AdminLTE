@@ -1,8 +1,9 @@
 /*!
-FullCalendar Day Grid Plugin v4.2.0
+FullCalendar Day Grid Plugin v4.3.0
 Docs & License: https://fullcalendar.io/
 (c) 2019 Adam Shaw
 */
+
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@fullcalendar/core')) :
     typeof define === 'function' && define.amd ? define(['exports', '@fullcalendar/core'], factory) :
@@ -213,14 +214,14 @@ Docs & License: https://fullcalendar.io/
         }
         // Builds the HTML to be used for the default element for an individual segment
         SimpleDayGridEventRenderer.prototype.renderSegHtml = function (seg, mirrorInfo) {
-            var options = this.context.options;
+            var _a = this.context, view = _a.view, options = _a.options;
             var eventRange = seg.eventRange;
             var eventDef = eventRange.def;
             var eventUi = eventRange.ui;
             var allDay = eventDef.allDay;
-            var isDraggable = eventUi.startEditable;
-            var isResizableFromStart = allDay && seg.isStart && eventUi.durationEditable && options.eventResizableFromStart;
-            var isResizableFromEnd = allDay && seg.isEnd && eventUi.durationEditable;
+            var isDraggable = view.computeEventDraggable(eventDef, eventUi);
+            var isResizableFromStart = allDay && seg.isStart && view.computeEventStartResizable(eventDef, eventUi);
+            var isResizableFromEnd = allDay && seg.isEnd && view.computeEventEndResizable(eventDef, eventUi);
             var classes = this.getSegClasses(seg, isDraggable, isResizableFromStart || isResizableFromEnd, mirrorInfo);
             var skinCss = core.cssToStr(this.getSkinCss(eventUi));
             var timeHtml = '';
@@ -508,6 +509,7 @@ Docs & License: https://fullcalendar.io/
         return DayGridMirrorRenderer;
     }(DayGridEventRenderer));
 
+    var EMPTY_CELL_HTML = '<td style="pointer-events:none"></td>';
     var DayGridFillRenderer = /** @class */ (function (_super) {
         __extends(DayGridFillRenderer, _super);
         function DayGridFillRenderer(dayGrid) {
@@ -562,14 +564,14 @@ Docs & License: https://fullcalendar.io/
             if (startCol > 0) {
                 core.appendToElement(trEl, 
                 // will create (startCol + 1) td's
-                new Array(startCol + 1).join('<td></td>'));
+                new Array(startCol + 1).join(EMPTY_CELL_HTML));
             }
             seg.el.colSpan = endCol - startCol;
             trEl.appendChild(seg.el);
             if (endCol < colCnt) {
                 core.appendToElement(trEl, 
                 // will create (colCnt - endCol) td's
-                new Array(colCnt - endCol + 1).join('<td></td>'));
+                new Array(colCnt - endCol + 1).join(EMPTY_CELL_HTML));
             }
             var introHtml = dayGrid.renderProps.renderIntroHtml();
             if (introHtml) {
@@ -1486,7 +1488,7 @@ Docs & License: https://fullcalendar.io/
         };
         /* Scroll
         ------------------------------------------------------------------------------------------------------------------*/
-        DayGridView.prototype.computeDateScroll = function (timeMs) {
+        DayGridView.prototype.computeDateScroll = function (duration) {
             return { top: 0 };
         };
         DayGridView.prototype.queryDateScroll = function () {

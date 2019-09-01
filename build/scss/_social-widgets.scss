@@ -17,15 +17,16 @@
       @include border-top-radius($border-radius);
     }
 
-    height: 120px;
+    height: 135px;
     padding: 1rem;
+    text-align: center;
   }
 
   //User name
   .widget-user-username {
     font-size: 25px;
     font-weight: 300;
-    margin-bottom: 5px;
+    margin-bottom: 0;
     margin-top: 0;
     text-shadow: 0 1px 1px rgba($black, 0.2);
   }
@@ -40,7 +41,7 @@
     left: 50%;
     margin-left: -45px;
     position: absolute;
-    top: 65px;
+    top: 80px;
 
     > img {
       border: 3px solid $white;
@@ -50,7 +51,7 @@
   }
 
   .card-footer {
-    padding-top: 40px;
+    padding-top: 50px;
   }
 }
 

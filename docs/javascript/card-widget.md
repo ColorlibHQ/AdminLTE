@@ -139,7 +139,7 @@ This attribute, when attached to a button, allows the box to be maximize/minimiz
 To activate any button using jQuery, you must provide the removeTrigger and collapseTrigger options. Otherwise, the plugin will assume the default `data-card-widget` selectors. 
 
 ```js
-$('#my-card').Widget(options)
+$('#my-card').CardWidget(options)
 ```
 
 ##### Options
@@ -192,4 +192,4 @@ Example: `$('#my-card').on('expanded.lte.cardwidget', handleExpandedEvent)`
 |toggleMaximize | Toggles the state of the card between maximized and minimized
 {: .table .table-bordered .bg-light}
 
-Example: `$('#my-card-widget').Widget('toggle')`
+Example: `$('#my-card-widget').CardWidget('toggle')` or `$('#my-card').CardWidget('toggle')`

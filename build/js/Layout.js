@@ -77,18 +77,9 @@ const Layout = (($) => {
       if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
         $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer)
         // $(Selector.SIDEBAR).css('min-height', max - heights.header)
-        $(Selector.CONTROL_SIDEBAR + ' .control-sidebar-content').css('height', max - heights.header)
         
         if (typeof $.fn.overlayScrollbars !== 'undefined') {
           $(Selector.SIDEBAR).overlayScrollbars({
-            className       : this._config.scrollbarTheme,
-            sizeAutoCapable : true,
-            scrollbars : {
-              autoHide: this._config.scrollbarAutoHide, 
-              clickScrolling : true
-            }
-          })
-          $(Selector.CONTROL_SIDEBAR + ' .control-sidebar-content').overlayScrollbars({
             className       : this._config.scrollbarTheme,
             sizeAutoCapable : true,
             scrollbars : {

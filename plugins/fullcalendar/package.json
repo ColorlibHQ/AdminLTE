@@ -1,32 +1,28 @@
 {
-  "_args": [
-    [
-      "@fullcalendar/core@4.2.0",
-      "/Users/rejack/Projekte/GitHub/REJack/AdminLTE"
-    ]
-  ],
-  "_from": "@fullcalendar/core@4.2.0",
-  "_id": "@fullcalendar/core@4.2.0",
+  "_from": "@fullcalendar/core@4.3.1",
+  "_id": "@fullcalendar/core@4.3.1",
   "_inBundle": false,
-  "_integrity": "sha512-4kd5OGHxjMtwI0gUHKwAYzmR0Z79Qf8y0ARx2Ruh20JdVy3Tznn6oKwdpkUbaXWrLXNDoXYRkBiFCIgC27VNCw==",
+  "_integrity": "sha512-Eh+p/wpMkWGu26f8NpfQK9ecQMoZxX/aopv+0+4/CH+Ip0paP6iEc40JYgTz7RFl0bFqV1dvwyGyUZ4+9ZeySA==",
   "_location": "/@fullcalendar/core",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@fullcalendar/core@4.2.0",
+    "raw": "@fullcalendar/core@4.3.1",
     "name": "@fullcalendar/core",
     "escapedName": "@fullcalendar%2fcore",
     "scope": "@fullcalendar",
-    "rawSpec": "4.2.0",
+    "rawSpec": "4.3.1",
     "saveSpec": null,
-    "fetchSpec": "4.2.0"
+    "fetchSpec": "4.3.1"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@fullcalendar/core/-/core-4.2.0.tgz",
-  "_spec": "4.2.0",
+  "_resolved": "https://registry.npmjs.org/@fullcalendar/core/-/core-4.3.1.tgz",
+  "_shasum": "a061c6d2e998d4155439dbc8aefdfe01cdf648d8",
+  "_spec": "@fullcalendar/core@4.3.1",
   "_where": "/Users/rejack/Projekte/GitHub/REJack/AdminLTE",
   "author": {
     "name": "Adam Shaw",
@@ -36,7 +32,9 @@
   "bugs": {
     "url": "https://fullcalendar.io/reporting-bugs"
   },
+  "bundleDependencies": false,
   "copyright": "2019 Adam Shaw",
+  "deprecated": false,
   "description": "Provides core functionality, including the Calendar class",
   "docs": "https://fullcalendar.io/docs/initialize-es6",
   "homepage": "https://fullcalendar.io/",
@@ -47,8 +45,8 @@
   ],
   "license": "MIT",
   "main": "main.js",
+  "module": "main.esm.js",
   "name": "@fullcalendar/core",
-  "releaseDate": "2019-06-02",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fullcalendar/fullcalendar.git",
@@ -57,5 +55,5 @@
   "title": "FullCalendar Core Package",
   "types": "main.d.ts",
   "unpkg": "main.min.js",
-  "version": "4.2.0"
+  "version": "4.3.1"
 }

@@ -6,6 +6,7 @@ import DirectChat from './DirectChat'
 import TodoList from './TodoList'
 import CardWidget from './CardWidget'
 import CardRefresh from './CardRefresh'
+import Dropdown from './Dropdown'
 
 export {
   ControlSidebar,
@@ -15,5 +16,6 @@ export {
   DirectChat,
   TodoList,
   CardWidget,
-  CardRefresh
+  CardRefresh,
+  Dropdown
 }

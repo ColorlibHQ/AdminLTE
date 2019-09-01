@@ -1,4 +1,4 @@
-# Raphaël: Cross-browser vector graphics the easy way.
+# Raphaël: Cross-browser vector graphics the easy way
 
 Visit the library website for more information: ~~[http://raphaeljs.com](http://raphaeljs.com/)~~ [https://dmitrybaranovskiy.github.io/raphael/](https://dmitrybaranovskiy.github.io/raphael/)
 
@@ -7,26 +7,28 @@ Visit the library website for more information: ~~[http://raphaeljs.com](http://
 You need to have NPM installed to build the library.
 
 * `git clone https://github.com/DmitryBaranovskiy/raphael.git`
-* `npm run start`
-* `npm run build`
+* `yarn install --frozen-lockfile`
+* `yarn build-all`
 
-To run tests you need to open `dev/test/index.html` in your browser, there's no automated way right now.
+To run tests you need to run `npx bower install` open `dev/test/index.html` in your browser, there's no automated way right now.
 
 ## Dependencies
+
 * [eve](https://github.com/adobe-webplatform/eve)
 
-
-## Distributable 
+## Distributable
 
 All files are UMD compliant.
 
 You can use:
+
 * `raphael.min.js` (includes `eve` and it's minified)
 * `raphael.js` (includes `eve` and it's not minified)
 * `raphael.no-deps.js` (doesn't include `eve` it's not minified)
 * `raphael.no-deps.min.js`  (doesn't include `eve` it's minified)
 
 ## Where to start
+
 Check [Raphael-boilerplate](https://github.com/tomasAlabes/raphael-boilerplate) to see examples of loading.
 
 Raphael can be loaded in a script tag or with AMD:
@@ -42,10 +44,8 @@ define([ "path/to/raphael" ], function( Raphael ) {
 Versions will be released as we gather and test new PRs. 
 As there are a lot of browsers being supported it might take a while to accept a PR, we will use the feedback from other users too.
 
-
 You can use the `raphaelTest.html` to try things, you need to start a server in the root dir to start testing things there.
 Something like running `python -m SimpleHTTPServer` in the `raphael` directory and hitting `http://localhost:8000/dev/raphaelTest.html` with the browser. You should run `npm run start` before this can work.
-
 
 ## Collaborators
 
@@ -60,7 +60,6 @@ Something like running `python -m SimpleHTTPServer` in the `raphael` directory a
 * [snap](https://github.com/adobe-webplatform/Snap.svg)
 * [react-raphael](https://github.com/liuhong1happy/react-raphael)
 
-
 ## Books
 
 * [Learning Raphael JS Vector Graphics](http://shop.oreilly.com/product/9781782169161.do)
@@ -69,8 +68,8 @@ Something like running `python -m SimpleHTTPServer` in the `raphael` directory a
 
 ## Copyright and license
 
-Copyright © 2008-2013 Dmitry Baranovskiy (http://dmitrybaranovskiy.github.io/raphael/)
+Copyright © 2008-2013 Dmitry Baranovskiy (`http://dmitrybaranovskiy.github.io/raphael/`)
 
-Copyright © 2008-2013 Sencha Labs (http://sencha.com)
+Copyright © 2008-2013 Sencha Labs (`http://sencha.com`)
 
-Licensed under the **MIT** (http://dmitrybaranovskiy.github.io/raphael/license.html) license.
+Licensed under the **MIT** (`http://dmitrybaranovskiy.github.io/raphael/license.html`) license.

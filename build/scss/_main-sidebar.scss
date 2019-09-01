@@ -69,13 +69,19 @@
     }
   }
 
+  .nav-link > .right,
   .nav-link > p > .right {
     position: absolute;
     right: 1rem;
-    top: 12px;
+    top: .7rem;
+
+    i,
+    span {
+      margin-left: .5rem;
+    }
 
     &:nth-child(2) {
-      right: 2.5rem;
+      right: 2.2rem;
     }
   }
 
@@ -408,3 +414,25 @@
   }
 }
 
+
+// Nav Compact
+.nav-compact {
+  .nav-link,
+  .nav-header {
+    padding: ($nav-link-padding-y / 2) ($nav-link-padding-x / 2);
+  }
+
+  .nav-header:not(:first-of-type) {
+    padding: ($nav-link-padding-y * 1.5) ($nav-link-padding-x / 2) ($nav-link-padding-y / 2);
+  }
+
+  .nav-link > .right,
+  .nav-link > p > .right {
+    top: .5rem;
+    right: .5rem;
+
+    &:nth-child(2) {
+      right: 1.6rem;
+    }
+  }
+}

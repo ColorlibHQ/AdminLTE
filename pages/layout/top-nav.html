@@ -40,6 +40,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li class="nav-item d-none d-sm-inline-block">
           <a href="#" class="nav-link">Contact</a>
         </li>
+        <li class="nav-item dropdown">
+          <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
+          <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+            <li><a href="#" class="dropdown-item">Some action </a></li>
+            <li><a href="#" class="dropdown-item">Some other action</a></li>
+
+            <li class="dropdown-divider"></li>
+
+            <!-- Level two dropdown-->
+            <li class="dropdown-submenu dropdown-hover">
+              <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Hover for action</a>
+              <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                <li>
+                  <a tabindex="-1" href="#" class="dropdown-item">level 2</a>
+                </li>
+
+                <!-- Level three dropdown-->
+                <li class="dropdown-submenu">
+                  <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">level 2</a>
+                  <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
+                    <li><a href="#" class="dropdown-item">3rd level</a></li>
+                    <li><a href="#" class="dropdown-item">3rd level</a></li>
+                  </ul>
+                </li>
+                <!-- End Level three -->
+
+                <li><a href="#" class="dropdown-item">level 2</a></li>
+                <li><a href="#" class="dropdown-item">level 2</a></li>
+              </ul>
+            </li>
+            <!-- End Level two -->
+          </ul>
+        </li>
       </ul>
 
       <!-- SEARCH FORM -->
@@ -207,7 +240,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col-lg-6">
             <div class="card">
               <div class="card-header">
-                <h5 class="m-0">Featured</h5>
+                <h5 class="card-title m-0">Featured</h5>
               </div>
               <div class="card-body">
                 <h6 class="card-title">Special title treatment</h6>
@@ -219,7 +252,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <div class="card card-primary card-outline">
               <div class="card-header">
-                <h5 class="m-0">Featured</h5>
+                <h5 class="card-title m-0">Featured</h5>
               </div>
               <div class="card-body">
                 <h6 class="card-title">Special title treatment</h6>
@@ -267,6 +300,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<!-- <script src="../../dist/js/adminlte.min.js"></script> -->
+<script src="../../dist/js/adminlte.min.js"></script>
 </body>
 </html>
