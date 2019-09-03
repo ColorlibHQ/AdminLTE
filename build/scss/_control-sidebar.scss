@@ -39,31 +39,20 @@ html.control-sidebar-animate {
 
 // Control sidebar open state
 .control-sidebar-open {
-  @include media-breakpoint-up(md) {
-    .control-sidebar {
-      display: block;
+  .control-sidebar {
+    display: block;
 
-      &,
-      &::before {
-        right: 0;
-      }
-    }
-
-    &.control-sidebar-push,
-    &.control-sidebar-push-slide {
-      .content-wrapper,
-      .main-footer {
-        margin-right: $control-sidebar-width;
-      }
+    &,
+    &::before {
+      right: 0;
     }
   }
 
-  @include media-breakpoint-down(md) {
-    .control-sidebar {
-      &,
-      &::before {
-        right: 0;
-      }
+  &.control-sidebar-push,
+  &.control-sidebar-push-slide {
+    .content-wrapper,
+    .main-footer {
+      margin-right: $control-sidebar-width;
     }
   }
 }
