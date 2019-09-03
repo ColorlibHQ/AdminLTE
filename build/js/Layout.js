@@ -65,18 +65,18 @@ const Layout = (($) => {
 
     fixLayoutHeight() {
       const heights = {
-        window     : $(window).height(),
-        header     : $(Selector.HEADER).outerHeight(),
-        footer     : $(Selector.FOOTER).outerHeight(),
-        sidebar    : $(Selector.SIDEBAR).height(),
+        window: $(window).height(),
+        header: $(Selector.HEADER).length !== 0 ? $(Selector.HEADER).outerHeight() : 0,
+        footer: $(Selector.FOOTER).length !== 0 ? $(Selector.FOOTER).outerHeight() : 0,
+        sidebar: $(Selector.SIDEBAR).length !== 0 ? $(Selector.SIDEBAR).height() : 0,
       }
 
       const max = this._max(heights)
 
-
+      console.log(heights);
+      $(Selector.CONTENT).css('min-height', max - heights.footer)
+      
       if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
-        $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer)
-        // $(Selector.SIDEBAR).css('min-height', max - heights.header)
         
         if (typeof $.fn.overlayScrollbars !== 'undefined') {
           $(Selector.SIDEBAR).overlayScrollbars({
@@ -87,12 +87,6 @@ const Layout = (($) => {
               clickScrolling : true
             }
           })
-        }
-      } else {
-        if (heights.window > heights.sidebar) {
-          $(Selector.CONTENT).css('min-height', heights.window - heights.header - heights.footer)
-        } else {
-          $(Selector.CONTENT).css('min-height', heights.sidebar - heights.header)
         }
       }
     }
