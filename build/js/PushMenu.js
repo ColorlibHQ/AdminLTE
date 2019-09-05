@@ -120,12 +120,21 @@ const PushMenu = (($) => {
         var toggleState = localStorage.getItem(`remember${EVENT_KEY}`);
         if (toggleState == ClassName.COLLAPSED){
           if (this._options.noTransitionAfterReload) {
-            $("body").addClass('hold-transition').addClass(ClassName.COLLAPSED).delay(10).queue(function() {
+              $("body").addClass('hold-transition').addClass(ClassName.COLLAPSED).delay(50).queue(function() {
+                $(this).removeClass('hold-transition');
+                $(this).dequeue()
+              });
+          } else {
+            $("body").addClass(ClassName.COLLAPSED);
+          }
+        } else {
+          if (this._options.noTransitionAfterReload) {
+            $("body").addClass('hold-transition').removeClass(ClassName.COLLAPSED).delay(50).queue(function() {
               $(this).removeClass('hold-transition');
               $(this).dequeue()
             });
           } else {
-            $("body").addClass(ClassName.COLLAPSED);
+            $("body").removeClass(ClassName.COLLAPSED);
           }
         }
       }

@@ -94,9 +94,6 @@ const Layout = (($) => {
     // Private
 
     _init() {
-      // Enable transitions
-      $('body').removeClass(ClassName.HOLD)
-
       // Activate layout height watcher
       this.fixLayoutHeight()
       $(Selector.SIDEBAR)
