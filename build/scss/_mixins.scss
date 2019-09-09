@@ -314,10 +314,13 @@
         color: darken(color-yiq($color), 7.5%);
       }
 
+      &:not(:disabled):not(.disabled):active,
+      &:not(:disabled):not(.disabled).active,
       &:active,
       &.active {
+        background-color: darken($color, 10%) !important;
         border-color: darken($color, 12.5%);
-        color: darken(color-yiq($color), 10%);
+        color: color-yiq(darken($color, 10%));
       }
     }
   }
@@ -344,11 +347,13 @@
         color: darken(color-yiq($color), 7.5%);
       }
 
+      &:not(:disabled):not(.disabled):active,
+      &:not(:disabled):not(.disabled).active,
       &:active,
       &.active {
         @include bg-gradient-variant('&', darken($color, 10%));
         border-color: darken($color, 12.5%);
-        color: darken(color-yiq($color), 10%);
+        color: color-yiq(darken($color, 10%));
       }
     }
   }
