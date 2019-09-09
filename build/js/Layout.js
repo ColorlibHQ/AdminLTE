@@ -106,6 +106,8 @@ const Layout = (($) => {
       })
 
       $('body, html').css('height', 'auto')
+
+      $('body.hold-transition').removeClass('hold-transition')
     }
 
     _max(numbers) {
