@@ -56,6 +56,8 @@ navigation:
       url: components/timeline.html
     - title: Ribbons
       url: components/ribbons.html
+    - title: Plugins
+      url: components/plugins.html
 - title: JavaScript
   icon: fas fa-code
   url: javascript
