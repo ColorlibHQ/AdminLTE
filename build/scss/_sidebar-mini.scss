@@ -64,6 +64,20 @@
       float: none !important;
     }
 
+    .logo-xs {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .logo-xl {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .nav-sidebar.nav-child-indent .nav-treeview {
+      padding-left: 0;
+    }
+
     .brand-text,
     .user-panel > .info,
     .nav-sidebar .nav-link p {
