@@ -290,6 +290,23 @@
       }
     }
   }
+
+  // Flat style
+  .nav-flat {
+    .nav-item {
+      .nav-treeview {
+        .nav-treeview {
+          border-color: $sidebar-light-submenu-active-bg;
+        }
+
+        > .nav-item {
+          > .nav-link {
+            border-color: $sidebar-light-submenu-active-bg;
+          }
+        }
+      }
+    }
+  }
 }
 
 [class*='sidebar-dark-'] {
@@ -397,6 +414,23 @@
       }
     }
   }
+
+  // Flat Style
+  .nav-flat {
+    .nav-item {
+      .nav-treeview {
+        .nav-treeview {
+          border-color: $sidebar-dark-submenu-active-bg;
+        }
+
+        > .nav-item {
+          > .nav-link {
+            border-color: $sidebar-dark-submenu-active-bg;
+          }
+        }
+      }
+    }
+  }
 }
 
 // Sidebar variants
@@ -411,6 +445,41 @@
   .sidebar-dark-#{$name},
   .sidebar-light-#{$name} {
     @include sidebar-color($color)
+  }
+}
+
+// Nav Flat
+.nav-flat {
+  margin: 0 -$sidebar-padding-x;
+
+  &.nav-child-indent {
+    .nav-treeview {
+      padding-left: 0 !important;
+
+      .nav-treeview {
+        border-left: .2rem solid;
+      }
+    }
+  }
+
+  .nav-item {
+    > .nav-link {
+      border-radius: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &.nav-sidebar > .nav-item {
+    .nav-treeview,
+    > .nav-treeview {
+      background: rgba($white, .05);
+
+      .nav-item {
+        > .nav-link {
+          border-left: .2rem solid;
+        }
+      }
+    }
   }
 }
 
