@@ -58,6 +58,11 @@ $main-header-brand-padding-y: $navbar-brand-padding-y !default;
 $main-header-brand-padding-x: $navbar-padding-x !default;
 $main-header-height-inner: ($nav-link-height + ($main-header-link-padding-y * 2)) !default;
 $main-header-height: calc(#{$main-header-height-inner} + #{$main-header-bottom-border-width}) !default;
+$nav-link-sm-padding-y: .35rem !default;
+$nav-link-sm-height: ($font-size-sm * $line-height-sm + $nav-link-sm-padding-y * 1.785) !default;
+$main-header-height-sm-inner: ($nav-link-sm-height + ($main-header-link-padding-y * 2)) !default;
+$main-header-height-sm: calc(#{$main-header-height-sm-inner} + #{$main-header-bottom-border-width}) !default;
+
 
 // Main header skins
 $main-header-dark-form-control-bg: hsla(100, 100%, 100%, 0.2) !default;
