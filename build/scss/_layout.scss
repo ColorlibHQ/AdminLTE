@@ -132,6 +132,12 @@ body,
     }
   }
 
+  .layout-navbar-not-fixed.layout-fixed & {
+    .sidebar {
+      margin-top: 0;
+    }
+  }
+
   @each $breakpoint in map-keys($grid-breakpoints) {
     @include media-breakpoint-up($breakpoint) {
       $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
@@ -236,6 +242,11 @@ body,
         }
       }
 
+      .layout#{$infix}-navbar-not-fixed.layout-fixed & {
+        .sidebar {
+          margin-top: 0;
+        }
+      }
     }
   }
 
