@@ -56,6 +56,7 @@
     "bootstrap": "^4.3.1",
     "bootstrap-colorpicker": "^3.1.2",
     "bootstrap-slider": "^10.6.2",
+    "bootstrap-switch": "^3.4.0",
     "bootstrap4-duallistbox": "^4.0.1",
     "chart.js": "^2.8.0",
     "datatables.net": "^1.10.19",
