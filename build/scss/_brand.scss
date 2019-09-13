@@ -16,6 +16,10 @@
     text-decoration: none;
   }
 
+  .text-sm & {
+    font-size: inherit;
+  }
+
   [class*='sidebar-dark'] & {
     border-bottom: 1px solid lighten($dark, 10%);
     color: rgba($white, .8);
@@ -50,7 +54,8 @@
     width: auto;
   }
 
-  &.text-sm {
+  &.text-sm,
+  .text-sm & {
     .brand-image {
       height: 29px;
       margin-bottom: -.25rem;

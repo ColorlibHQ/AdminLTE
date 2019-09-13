@@ -51,6 +51,16 @@ body,
     }
   }
 
+  .layout-navbar-fixed.layout-fixed.text-sm & {
+    .control-sidebar {
+      top: $main-header-height-sm;
+    }
+
+    .sidebar {
+      margin-top: $main-header-height-sm;
+    }
+  }
+
   .layout-navbar-fixed.sidebar-collapse & {
     .brand-link {
       height: $main-header-height;
@@ -59,6 +69,12 @@ body,
       &.text-sm {
         height: $main-header-height-sm;
       }
+    }
+  }
+
+  .layout-navbar-fixed.sidebar-collapse.text-sm & {
+    .brand-link {
+      height: $main-header-height-sm;
     }
   }
 
@@ -117,6 +133,12 @@ body,
     }
   }
 
+  .layout-navbar-fixed.text-sm & {
+    .content-wrapper {
+      margin-top: $main-header-height-sm;
+    }
+  }
+
   .layout-navbar-not-fixed & {
     .brand-link {
       position: static;
@@ -147,6 +169,7 @@ body,
           top: $main-header-height;
         }
 
+        .text-sm & .main-header ~ .control-sidebar,
         .main-header.text-sm ~ .control-sidebar {
           top: $main-header-height-sm;
         }
@@ -155,7 +178,18 @@ body,
           margin-top: $main-header-height;
         }
 
+        .text-sm & .brand-link ~ .sidebar,
         .brand-link.text-sm ~ .sidebar {
+          margin-top: $main-header-height-sm;
+        }
+      }
+
+      .layout#{$infix}-navbar-fixed.layout-fixed.text-sm & {
+        .control-sidebar {
+          top: $main-header-height-sm;
+        }
+
+        .sidebar {
           margin-top: $main-header-height-sm;
         }
       }
@@ -177,6 +211,7 @@ body,
             transition: width $transition-speed $transition-fn;
             width: $sidebar-mini-width;
 
+            .text-sm &,
             &.text-sm {
               height: $main-header-height-sm;
             }
@@ -214,6 +249,7 @@ body,
           margin-top: $main-header-height;
         }
 
+        .text-sm & .main-header ~ .content-wrapper,
         .main-header.text-sm ~ .content-wrapper {
           margin-top: $main-header-height-sm;
         }
@@ -224,6 +260,12 @@ body,
           right: 0;
           top: 0;
           z-index: $zindex-main-sidebar - 1;
+        }
+      }
+
+      .layout#{$infix}-navbar-fixed.text-sm & {
+        .content-wrapper {
+          margin-top: $main-header-height-sm;
         }
       }
 
@@ -439,6 +481,7 @@ body,
   color: lighten($gray-700, 25%);
   padding: $main-footer-padding;
 
+  .text-sm &,
   &.text-sm {
     padding: $main-footer-padding * .812;
   }

@@ -11,6 +11,7 @@
     position: relative;
   }
 
+  .text-sm &,
   &.text-sm {
     .nav-link {
       height: $nav-link-sm-height;
