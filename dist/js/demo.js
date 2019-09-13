@@ -56,6 +56,21 @@
   var $no_border_container = $('<div />', {'class': 'mb-1'}).append($no_border_checkbox).append('<span>No Navbar border</span>')
   $container.append($no_border_container)
 
+  var $text_sm_body_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('body').hasClass('text-sm'),
+    'class': 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('body').addClass('text-sm')
+    } else {
+      $('body').removeClass('text-sm')
+    }
+  })
+  var $text_sm_body_container = $('<div />', {'class': 'mb-1'}).append($text_sm_body_checkbox).append('<span>Body small text</span>')
+  $container.append($text_sm_body_container)
+
   var $text_sm_header_checkbox = $('<input />', {
     type   : 'checkbox',
     value  : 1,
