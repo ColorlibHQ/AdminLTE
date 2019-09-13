@@ -301,7 +301,10 @@
 
         > .nav-item {
           > .nav-link {
-            border-color: $sidebar-light-submenu-active-bg;
+            &,
+            &.active {
+              border-color: $sidebar-light-submenu-active-bg;
+            }
           }
         }
       }
@@ -425,7 +428,10 @@
 
         > .nav-item {
           > .nav-link {
-            border-color: $sidebar-dark-submenu-active-bg;
+            &,
+            &.active {
+              border-color: $sidebar-dark-submenu-active-bg;
+            }
           }
         }
       }
