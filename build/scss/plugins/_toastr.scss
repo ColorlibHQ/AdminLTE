@@ -30,23 +30,25 @@
 // }
 
 
-// Background color
-.toast {
-  background-color: $primary;
-}
+#toast-container {
+  // Background color
+  .toast {
+    background-color: $primary;
+  }
 
-.toast-success {
-  background-color: $success;
-}
+  .toast-success {
+    background-color: $success;
+  }
 
-.toast-error {
-  background-color: $danger;
-}
+  .toast-error {
+    background-color: $danger;
+  }
 
-.toast-info {
-  background-color: $info;
-}
+  .toast-info {
+    background-color: $info;
+  }
 
-.toast-warning {
-  background-color: $warning;
+  .toast-warning {
+    background-color: $warning;
+  }
 }

@@ -166,6 +166,7 @@ $zindex-main-sidebar: $zindex-fixed + 8 !default;
 $zindex-main-footer: $zindex-fixed + 2 !default;
 $zindex-control-sidebar: $zindex-fixed + 1 !default;
 $zindex-sidebar-mini-links: 010 !default;
+$zindex-toasts: $zindex-main-sidebar + 2 !default;
 
 // TRANSITIONS SETTINGS
 // --------------------------------------------------------

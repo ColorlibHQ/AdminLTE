@@ -80,6 +80,8 @@ navigation:
       url: javascript/direct-chat.html
     - title: Todo List
       url: javascript/todo-list.html
+    - title: Toasts
+      url: javascript/toasts.html
 - title: Browser Support
   url: browser-support.html
   icon: fab fa-chrome
