@@ -105,6 +105,9 @@ For custom colored custom-switch you can add this classes:
 - `.custom-switch-off-*` (for custom switch off)
 - `.custom-switch-on-*` (for custom switch on)
 
+##### Toasts
+You can also use `bg-*` beside the `.toast` to get a nice colored toast.
+
 ##### Plugin Support
 You can use the all the colors above with these plugins:
 - Bootstrap Slider
