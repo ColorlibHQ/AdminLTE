@@ -475,6 +475,28 @@
     }
   }
 
+  .nav-icon {
+    @include transition(margin-left $transition-fn $transition-speed);
+  }
+
+  .nav-treeview {
+    .nav-icon {
+      margin-left: -.2rem;
+    }
+  }
+
+  .sidebar-collapse & {
+    .nav-icon {
+      margin-left: .5rem;
+    }
+
+    .nav-treeview {
+      .nav-icon {
+        margin-left: .3rem;
+      }
+    }
+  }
+
   &.nav-sidebar > .nav-item {
     .nav-treeview,
     > .nav-treeview {

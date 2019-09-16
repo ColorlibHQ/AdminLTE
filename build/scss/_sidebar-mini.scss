@@ -90,6 +90,18 @@
     .nav-sidebar > .nav-item .nav-icon {
       margin-right: 0;
     }
+
+    .nav-flat {
+      .nav-icon {
+        margin-left: .5rem;
+      }
+
+      .nav-treeview {
+        .nav-icon {
+          margin-left: .3rem;
+        }
+      }
+    }
   }
 }
 

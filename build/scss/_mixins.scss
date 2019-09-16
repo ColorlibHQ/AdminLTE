@@ -173,6 +173,18 @@
           visibility: visible;
         }
 
+        .nav-flat {
+          .nav-icon {
+            margin-left: 0;
+          }
+
+          .nav-treeview {
+            .nav-icon {
+              margin-left: -.2rem;
+            }
+          }
+        }
+
         .logo-xs {
           opacity: 0;
           visibility: hidden;
