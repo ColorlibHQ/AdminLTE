@@ -73,7 +73,6 @@ const Layout = (($) => {
 
       const max = this._max(heights)
 
-      console.log(heights);
       $(Selector.CONTENT).css('min-height', max - heights.footer)
       
       if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
