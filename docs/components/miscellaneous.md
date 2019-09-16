@@ -5,6 +5,10 @@ title: Miscellaneous
 AdminLTE has smaller custom classes that not related to other components are listed here.
 
 
+### Dropdown Menu Large
+You can add the `.dropdown-menu-lg` to `.dropdown-menu` for a bigger dropdown menu.
+
+
 ### Dropdown Hover
 You can add the `.dropdown-hover` class beside this classes:
 - `.dropdown` (to use hover for the whole dropdown menu)
