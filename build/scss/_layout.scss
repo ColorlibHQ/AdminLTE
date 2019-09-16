@@ -490,9 +490,17 @@ body,
 .content-header {
   padding: 15px $content-padding-x;
 
+  .text-sm & {
+    padding: 10px $content-padding-x;
+  }
+
   h1 {
     font-size: 1.8rem;
     margin: 0;
+
+    .text-sm & {
+      font-size: 1.5rem;
+    }
   }
 
   .breadcrumb {
@@ -500,8 +508,14 @@ body,
     line-height: 1.8rem;
     margin-bottom: 0;
     padding: 0;
+
+    .text-sm & {
+      line-height: 1.5rem;
+    }
   }
 }
+
+
 
 .hold-transition {
   .content-wrapper,
