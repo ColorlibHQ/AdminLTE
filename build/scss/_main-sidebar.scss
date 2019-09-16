@@ -456,7 +456,7 @@
 
 // Nav Flat
 .nav-flat {
-  margin: 0 -$sidebar-padding-x;
+  margin: (-$sidebar-padding-x/2) (-$sidebar-padding-x) 0;
 
   &.nav-child-indent {
     .nav-treeview {
