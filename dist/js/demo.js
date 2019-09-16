@@ -146,6 +146,21 @@
   var $child_indent_sidebar_container = $('<div />', {'class': 'mb-1'}).append($child_indent_sidebar_checkbox).append('<span>Sidebar nav child indent</span>')
   $container.append($child_indent_sidebar_container)
 
+  var $no_expand_sidebar_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('.main-sidebar').hasClass('sidebar-no-expand'),
+    'class': 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('.main-sidebar').addClass('sidebar-no-expand')
+    } else {
+      $('.main-sidebar').removeClass('sidebar-no-expand')
+    }
+  })
+  var $no_expand_sidebar_container = $('<div />', {'class': 'mb-1'}).append($no_expand_sidebar_checkbox).append('<span>Main Sidebar disable hover/focus auto expand</span>')
+  $container.append($no_expand_sidebar_container)
+
   var $text_sm_brand_checkbox = $('<input />', {
     type   : 'checkbox',
     value  : 1,
