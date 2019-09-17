@@ -17,6 +17,12 @@
   margin: 0;
 }
 
+.dropdown-icon {
+  &::after {
+    margin-left: 0;
+  }
+}
+
 // Dropdown Sizes
 .dropdown-menu-lg {
   max-width: 300px;
