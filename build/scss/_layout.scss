@@ -352,6 +352,11 @@ body,
   .layout-top-nav & {
     margin-left: 0;
 
+    & .text-sm {
+      .brand-image {
+        margin-top: -.5rem;
+      }
+    }
 
     & .main-sidebar {
       bottom: inherit;

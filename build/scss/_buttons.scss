@@ -30,6 +30,10 @@
       top: 0;
     }
   }
+
+  .text-sm & {
+    font-size: $font-size-sm !important;
+  }
 }
 
 // Button color variations
