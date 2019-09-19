@@ -19,6 +19,12 @@ nbproject/private
 node_modules/
 bower_components/
 
+// Plugins
+/plugins/*/*.md
+/plugins/*/*.html
+/plugins/*/package.json
+
+
 // Docs
 Gemfile.lock
 docs/_site
