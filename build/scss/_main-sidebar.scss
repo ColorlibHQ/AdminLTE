@@ -176,19 +176,6 @@
   z-index: $zindex-main-sidebar - 1;
 }
 
-.sidebar-mini-md {
-  &.sidebar-open {
-    #sidebar-overlay {
-      @include media-breakpoint-up(sm) {
-        display: none;
-      }
-      @include media-breakpoint-down(sm) {
-        display: block;
-      }
-    }
-  }
-}
-
 [class*='sidebar-light-'] {
   // Sidebar background color
   background-color: $sidebar-light-bg;
