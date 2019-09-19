@@ -316,7 +316,7 @@
 
     colors.map(function (color) {
       var $color = $('<div />', {
-        'class': (typeof color === 'object' ? color.join(' ') : color) + ' elevation-2'
+        'class': (typeof color === 'object' ? color.join(' ') : color).replace('navbar-', 'bg-') + ' elevation-2'
       })
 
       $block.append($color)
