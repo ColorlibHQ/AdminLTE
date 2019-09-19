@@ -1,4 +1,4 @@
-const Plugins = require('./Plugins')
+const Plugins = require('./DocsPlugins')
 const fse     = require('fs-extra')
 
 class Publish {
