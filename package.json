@@ -50,7 +50,7 @@
     "url": "https://github.com/ColorlibHQ/AdminLTE/issues"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.10.2",
+    "@fortawesome/fontawesome-free": "^5.11.1",
     "@fullcalendar/bootstrap": "^4.3.0",
     "@fullcalendar/core": "^4.3.1",
     "@fullcalendar/daygrid": "^4.3.0",
@@ -82,7 +82,7 @@
     "ekko-lightbox": "^5.3.0",
     "fastclick": "^1.0.6",
     "filterizr": "^2.2.3",
-    "flag-icon-css": "^3.3.0",
+    "flag-icon-css": "^3.4.0",
     "flot": "^3.2.9",
     "icheck-bootstrap": "^3.0.1",
     "inputmask": "^4.0.8",
@@ -103,7 +103,7 @@
     "select2": "^4.0.10",
     "sparklines": "^1.2.0",
     "summernote": "^0.8.12",
-    "sweetalert2": "^8.17.3",
+    "sweetalert2": "^8.17.6",
     "tempusdominus-bootstrap-4": "^5.1.2",
     "toastr": "^2.1.4"
   },
