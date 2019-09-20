@@ -101,6 +101,21 @@
   var $text_sm_sidebar_container = $('<div />', {'class': 'mb-1'}).append($text_sm_sidebar_checkbox).append('<span>Sidebar nav small text</span>')
   $container.append($text_sm_sidebar_container)
 
+  var $text_sm_footer_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('.main-footer').hasClass('text-sm'),
+    'class': 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('.main-footer').addClass('text-sm')
+    } else {
+      $('.main-footer').removeClass('text-sm')
+    }
+  })
+  var $text_sm_footer_container = $('<div />', {'class': 'mb-1'}).append($text_sm_footer_checkbox).append('<span>Footer small text</span>')
+  $container.append($text_sm_footer_container)
+
   var $flat_sidebar_checkbox = $('<input />', {
     type   : 'checkbox',
     value  : 1,
