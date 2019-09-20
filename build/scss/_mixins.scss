@@ -15,11 +15,30 @@
         a {
           color: color-yiq($color);
         }
+
+        a.active {
+          color: color-yiq($white);
+        }
       }
     }
 
+
     &.card-outline {
       border-top: 3px solid $color;
+    }
+
+    &.card-outline-tabs {
+      border-top: 0;
+
+      > .card-header {
+        a {
+          border-top: 3px solid transparent;
+
+          &.active {
+            border-top: 3px solid $color;
+          }
+        }
+      }
     }
   }
 
