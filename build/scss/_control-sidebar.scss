@@ -30,6 +30,21 @@ html.control-sidebar-animate {
   }
 }
 
+body.text-sm {
+  .control-sidebar {
+    bottom: $main-footer-height-sm;
+    top: $main-header-height-sm;
+  }
+}
+
+.main-header.text-sm ~ .control-sidebar {
+  top: $main-header-height-sm;
+}
+
+.main-footer.text-sm ~ .control-sidebar {
+  bottom: $main-footer-height-sm;
+}
+
 .control-sidebar-push-slide {
     .content-wrapper,
     .main-footer {

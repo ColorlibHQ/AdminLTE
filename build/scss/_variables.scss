@@ -82,11 +82,14 @@ $main-header-light-placeholder-color: hsla(0, 0%, 0%, 0.6) !default;
 // MAIN FOOTER
 // --------------------------------------------------------
 $main-footer-padding: 1rem !default;
+$main-footer-padding-sm: $main-footer-padding * .812 !default;
 $main-footer-border-top-width: 1px !default;
 $main-footer-border-top-color: $gray-300 !default;
 $main-footer-border-top: $main-footer-border-top-width solid $main-footer-border-top-color !default;
 $main-footer-height-inner: (($font-size-root * $line-height-base) + ($main-footer-padding * 2)) !default;
 $main-footer-height: calc(#{$main-footer-height-inner} + #{$main-footer-border-top-width}) !default;
+$main-footer-height-sm-inner: (($font-size-sm * $line-height-base) + ($main-footer-padding-sm * 2)) !default;
+$main-footer-height-sm: calc(#{$main-footer-height-sm-inner} + #{$main-footer-border-top-width}) !default;
 $main-footer-bg: $white;
 
 // SIDEBAR SKINS

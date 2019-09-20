@@ -358,6 +358,7 @@
   bottom: 1.25rem;
   position: fixed;
   right: 1.25rem;
+  z-index: $zindex-control-sidebar + 1;
 
   &:focus {
     box-shadow: none;
