@@ -18,6 +18,11 @@ AdminLTE depends on two main frameworks. The downloadable package contains both 
 AdminLTE makes use of the following plugins. For documentation, updates or license information, please visit the provided links.
 {: .lead}
 
+> Note!
+> You need to load the js/css files of the plugin that you want to use.
+> AdminLTE doesn't load automatically all plugins, this would cause huge load times on every page load.
+{:.quote-warning}
+
 <div class="row px-3">
   <div class="col-sm-3">
     <ul class="list-unstyled">
