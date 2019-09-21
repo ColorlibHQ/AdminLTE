@@ -22,19 +22,43 @@
       }
     }
 
-
     &.card-outline {
       border-top: 3px solid $color;
+
+      .nav-item {
+        border-bottom: 0;
+
+        &:first-child .nav-link {
+          margin-left: -1px;
+          border-left: 0;
+        }
+      }
     }
 
     &.card-outline-tabs {
       border-top: 0;
 
       > .card-header {
+        .nav-item {
+          &:first-child .nav-link {
+            margin-left: -1px;
+            border-left: 0;
+          }
+        }
+
         a {
           border-top: 3px solid transparent;
 
+          &:hover {
+            border-top: $nav-tabs-border-width solid $nav-tabs-border-color;
+            margin-top: 2px;
+          }
+
           &.active {
+            &:hover {
+              margin-top: 0;
+            }
+
             border-top: 3px solid $color;
           }
         }

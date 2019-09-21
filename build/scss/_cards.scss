@@ -354,3 +354,13 @@ html.maximized-card {
 @each $name, $color in $colors {
   @include cards-variant($name, $color);
 }
+
+
+// Nav Tabs override
+.card-default {
+  .nav-item {
+    &:first-child .nav-link {
+      border-left: 0;
+    }
+  }
+}
