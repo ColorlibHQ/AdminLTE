@@ -52,9 +52,15 @@ AdminLTE 3.0 provides a set of color variations to apply to your sidebar (light 
 - `.navbar-*`
 - `.sidebar-dark-*`
 - `.sidebar-light-*`
+- `.accent-*`
+
+> ###### New
+> You can use override the link/accent color in AdminLTE, you can add `.accent-*` to `body`.
+{: .quote-info}
 
 > ###### Info
 > You can combine `.navbar-*` with `.navbar-light` or `.navbar-dark`.
+{: .quote-info}
 
 The following colors are available:
 
