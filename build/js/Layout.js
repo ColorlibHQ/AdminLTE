@@ -30,7 +30,9 @@ const Layout = (($) => {
     WRAPPER        : '.wrapper',
     CONTROL_SIDEBAR: '.control-sidebar',
     LAYOUT_FIXED   : '.layout-fixed',
-    FOOTER         : '.main-footer'
+    FOOTER         : '.main-footer',
+    LOGIN_BOX      : '.login-box',
+    REGISTER_BOX   : '.register-box'
   }
 
   const ClassName = {
@@ -41,6 +43,8 @@ const Layout = (($) => {
     LAYOUT_FIXED   : 'layout-fixed',
     NAVBAR_FIXED   : 'layout-navbar-fixed',
     FOOTER_FIXED   : 'layout-footer-fixed',
+    LOGIN_PAGE     : 'login-page',
+    REGISTER_PAGE  : 'register-page',
   }
 
   const Default = {
@@ -76,7 +80,6 @@ const Layout = (($) => {
       $(Selector.CONTENT).css('min-height', max - heights.footer)
       
       if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
-        
         if (typeof $.fn.overlayScrollbars !== 'undefined') {
           $(Selector.SIDEBAR).overlayScrollbars({
             className       : this._config.scrollbarTheme,
@@ -104,7 +107,13 @@ const Layout = (($) => {
         this.fixLayoutHeight()
       })
 
-      $('body, html').css('height', 'auto')
+      if (!$('body').hasClass(ClassName.LOGIN_PAGE) && !$('body').hasClass(ClassName.REGISTER_PAGE)) {
+        $('body, html').css('height', 'auto')
+      } else if ($('body').hasClass(ClassName.LOGIN_PAGE) || $('body').hasClass(ClassName.REGISTER_PAGE)) {
+        let box_height = $(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).height()
+
+        $('body').css('min-height', box_height);
+      }
 
       $('body.hold-transition').removeClass('hold-transition')
     }
