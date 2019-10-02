@@ -5,7 +5,6 @@
 // Logo style
 .logo-xs,
 .logo-xl {
-  margin: 0;
   opacity: 1;
   position: absolute;
   visibility: visible;
@@ -65,6 +64,20 @@
       float: none !important;
     }
 
+    .logo-xs {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .logo-xl {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .nav-sidebar.nav-child-indent .nav-treeview {
+      padding-left: 0;
+    }
+
     .brand-text,
     .user-panel > .info,
     .nav-sidebar .nav-link p {
@@ -76,6 +89,18 @@
 
     .nav-sidebar > .nav-item .nav-icon {
       margin-right: 0;
+    }
+
+    .nav-flat {
+      .nav-icon {
+        margin-left: .5rem;
+      }
+
+      .nav-treeview {
+        .nav-icon {
+          margin-left: .3rem;
+        }
+      }
     }
   }
 }

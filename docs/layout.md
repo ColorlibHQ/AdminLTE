@@ -52,9 +52,15 @@ AdminLTE 3.0 provides a set of color variations to apply to your sidebar (light 
 - `.navbar-*`
 - `.sidebar-dark-*`
 - `.sidebar-light-*`
+- `.accent-*`
+
+> ###### New
+> You can use override the link/accent color in AdminLTE, you can add `.accent-*` to `body`.
+{: .quote-info}
 
 > ###### Info
 > You can combine `.navbar-*` with `.navbar-light` or `.navbar-dark`.
+{: .quote-info}
 
 The following colors are available:
 
@@ -104,6 +110,9 @@ For custom colored custom-range you can add this classes:
 For custom colored custom-switch you can add this classes:
 - `.custom-switch-off-*` (for custom switch off)
 - `.custom-switch-on-*` (for custom switch on)
+
+##### Toasts
+You can also use `bg-*` beside the `.toast` to get a nice colored toast.
 
 ##### Plugin Support
 You can use the all the colors above with these plugins:

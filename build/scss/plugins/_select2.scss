@@ -3,34 +3,30 @@
 //
 
 //Signle select
-.select2-container--default,
-.select2-selection {
-  &.select2-container--focus,
-  &:focus,
-  &:active {
-    outline: none;
-  }
+// .select2-container--default,
+// .select2-selection {
+//   &.select2-container--focus,
+//   &:focus,
+//   &:active {
+//     outline: none;
+//   }
+// }
+
+.select2-container--default {
   .select2-selection--single {
-    border: 1px solid $gray-x-light;
+    border: $input-border-width solid $input-border-color;
     //border-radius: $input-radius;
     padding: 6px 12px;
     height: $input-height;
   }
-}
 
-.select2-container--default {
   &.select2-container--open {
-    border-color: theme-color("primary");
+    border-color: $primary;
   }
 
   & .select2-dropdown {
-    border: 1px solid $gray-x-light;
+    border: $input-border-width solid $input-border-color;
     //border-radius: $input-radius;
-  }
-
-  & .select2-results__option--highlighted[aria-selected] {
-    background-color: theme-color("primary");
-    color: white;
   }
 
   & .select2-results__option {
@@ -63,66 +59,130 @@
   .select2-dropdown,
   .select2-search--inline {
     .select2-search__field {
-      border: 1px solid $gray-x-light;
+      border: $input-border-width solid $input-border-color;
+
       &:focus {
         outline: none;
-        border: 1px solid theme-color("primary");
+        border: $input-border-width solid $input-focus-border-color;
       }
     }
   }
 
-  & .select2-results__option[aria-disabled=true] {
-    color: #999;
+  .select2-dropdown {
+    &.select2-dropdown--below {
+      border-top: 0;
+    }
+
+    &.select2-dropdown--above {
+      border-bottom: 0;
+    }
   }
 
-  & .select2-results__option[aria-selected=true] {
-    background-color: #ddd;
-    &,
-    &:hover {
-      color: #444;
+  .select2-results__option {
+    &[aria-disabled='true'] {
+      color: $gray-600;
+    }
+
+    &[aria-selected='true'] {
+      $color: $gray-300;
+
+      background-color: $color;
+
+      &,
+      &:hover {
+        color: color-yiq($color);
+      }
+    }
+  }
+
+  .select2-results__option--highlighted {
+    $color: $primary;
+    background-color: $color;
+    color: color-yiq($color);
+
+    &[aria-selected] {
+      $color: darken($color, 3%);
+
+      &,
+      &:hover {
+        background-color: $color;
+        color: color-yiq($color);
+      }
     }
   }
 
   //Multiple select
   & {
     .select2-selection--multiple {
-      min-height: $input-height;
-      border: 1px solid $gray-x-light;
-      //border-radius: $input-radius;
+      border: $input-border-width solid $input-border-color;
+      height: $input-height;
+
       &:focus {
-        border-color: theme-color("primary");
+        border-color: $input-focus-border-color;
       }
 
-      .select2-selection__rendered li:first-child.select2-search.select2-search--inline {
-        width: 100%;
+      .select2-selection__rendered {
+        padding: 0 $input-padding-y;
 
-        .select2-search__field {
-          width: 100% !important;
+        li:first-child.select2-search.select2-search--inline {
+          width: 100%;
+
+          .select2-search__field {
+            width: 100% !important;
+          }
+        }
+
+
+        .select2-search.select2-search--inline {
+          .select2-search__field {
+            border: 0;
+            margin-top: 6px;
+          }
         }
       }
     }
+
     &.select2-container--focus .select2-selection--multiple {
-      border-color: $gray-x-light;
+      border-color: $input-focus-border-color;
+
+      .select2-search__field {
+        border: 0;
+      }
     }
   }
 
-  & .select2-selection--multiple .select2-selection__choice {
-    background-color: theme-color("primary");
-    border-color: darken(theme-color("primary"), 5%);
-    padding: 0 10px;
-    color: $white;
-  }
+  .select2-selection--multiple {
+    .select2-selection__choice {
+      background-color: $primary;
+      border-color: darken($primary, 5%);
+      color: color-yiq($primary);
+      padding: 0 10px;
+    }
 
-  & .select2-selection--multiple .select2-selection__choice__remove {
-    margin-right: 5px;
-    color: rgba(255, 255, 255, 0.7);
-    &:hover {
-      color: $white;
+    .select2-selection__choice__remove {
+      color: rgba(255, 255, 255, 0.7);
+      float: right;
+      margin-left: 5px;
+      margin-right: -2px;
+
+      &:hover {
+        color: $white;
+      }
     }
   }
 
   & .select2-selection--single .select2-selection__rendered li {
     padding-right: 10px;
   }
+}
 
+
+// Background colors (theme colors)
+@each $name, $color in $theme-colors {
+  @include select2-variant($name, $color);
+}
+
+// Background colors (colors)
+@each $name, $color in $colors {
+  @include select2-variant($name, $color);
 }

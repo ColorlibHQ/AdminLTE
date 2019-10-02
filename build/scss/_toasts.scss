@@ -1,0 +1,56 @@
+//
+// Component: Toasts
+//
+
+.toasts-top-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: $zindex-toasts;
+
+  &.fixed {
+    position: fixed;
+  }
+}
+
+.toasts-top-left {
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: $zindex-toasts;
+
+  &.fixed {
+    position: fixed;
+  }
+}
+
+.toasts-bottom-right {
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  z-index: $zindex-toasts;
+
+  &.fixed {
+    position: fixed;
+  }
+}
+
+.toasts-bottom-left {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  z-index: $zindex-toasts;
+
+  &.fixed {
+    position: fixed;
+  }
+}
+
+.toast {
+  @each $name, $color in $theme-colors {
+    @include toast-variant($name, $color);
+  }
+  @each $name, $color in $colors {
+    @include toast-variant($name, $color);
+  }
+}

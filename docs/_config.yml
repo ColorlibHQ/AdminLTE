@@ -22,7 +22,7 @@ plugins:
   - jekyll-seo-tag
 
 title: AdminLTE v3 Documentaion
-version: v3.0.0-beta.2
+version: v3.0.0-rc.2
 description: >- # this means to ignore newlines until "baseurl:"
   AdminLTE v3 Documentaion
 
@@ -56,6 +56,10 @@ navigation:
       url: components/timeline.html
     - title: Ribbons
       url: components/ribbons.html
+    - title: Miscellaneous
+      url: components/miscellaneous.html
+    - title: Plugins
+      url: components/plugins.html
 - title: JavaScript
   icon: fas fa-code
   url: javascript
@@ -76,6 +80,8 @@ navigation:
       url: javascript/direct-chat.html
     - title: Todo List
       url: javascript/todo-list.html
+    - title: Toasts
+      url: javascript/toasts.html
 - title: Browser Support
   url: browser-support.html
   icon: fab fa-chrome

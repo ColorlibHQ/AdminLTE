@@ -93,8 +93,8 @@ html.maximized-card {
 .card-header {
   background-color: transparent;
   border-bottom: 1px solid $card-border-color;
-  position: relative;
   padding: (($card-spacer-y / 2) * 2) $card-spacer-x;
+  position: relative;
 
   @if $enable-rounded {
     @include border-top-radius($border-radius);
@@ -106,7 +106,13 @@ html.maximized-card {
 
   > .card-tools {
     float: right;
-    margin-right: -$card-spacer-x/2;
+    margin-right: -$card-spacer-x / 2;
+
+    .nav,
+    .pagination {
+      margin-bottom: -$card-spacer-y / 2;
+      margin-top: -$card-spacer-y / 2;
+    }
 
     [data-toggle='tooltip'] {
       position: relative;
@@ -120,6 +126,11 @@ html.maximized-card {
   font-weight: $card-title-font-weight;
   margin: 0;
 }
+
+.card-text {
+  clear: both;
+}
+
 
 // Box Tools Buttons
 .btn-tool {
@@ -140,12 +151,22 @@ html.maximized-card {
   }
 }
 
+.text-sm {
+  .card-title {
+    font-size: $card-title-font-size-sm;
+  }
+
+  .nav-link {
+    padding: $card-nav-link-padding-sm-y $card-nav-link-padding-sm-x; 
+  }
+}
+
 // Box Body
 .card-body {
   // @include border-radius-sides(0, 0, $border-radius, $border-radius);
-  .no-header & {
-    // @include border-top-radius($border-radius);
-  }
+  // .no-header & {
+  //   @include border-top-radius($border-radius);
+  // }
 
   // Tables within the box body
   > .table {
@@ -332,4 +353,14 @@ html.maximized-card {
 
 @each $name, $color in $colors {
   @include cards-variant($name, $color);
+}
+
+
+// Nav Tabs override
+.card-default {
+  .nav-item {
+    &:first-child .nav-link {
+      border-left: 0;
+    }
+  }
 }

@@ -1,5 +1,5 @@
 /*!
- *   AdminLTE v3.0.0-rc.1
+ *   AdminLTE v3.0.0-rc.2
  *   Author: Colorlib
  *	 Website: AdminLTE.io <http://adminlte.io>
  *   License: Open source - MIT <http://opensource.org/licenses/MIT>
@@ -48,6 +48,7 @@
 @import 'carousel';
 @import 'social-widgets';
 @import 'modals';
+@import 'toasts';
 
 // Pages
 // ---------------------------------------------------
@@ -62,6 +63,7 @@
 
 // Plugins
 // ---------------------------------------------------
+@import 'plugins/mixins';
 @import 'plugins/fullcalendar';
 @import 'plugins/select2';
 @import 'plugins/bootstrap-slider';
@@ -70,6 +72,8 @@
 @import 'plugins/jqvmap';
 @import 'plugins/sweetalert2';
 @import 'plugins/toastr';
+@import 'plugins/pace';
+@import 'plugins/bootstrap-switch';
 @import 'plugins/miscellaneous';
 
 // Miscellaneous

@@ -37,8 +37,27 @@ body,
     .control-sidebar {
       top: $main-header-height;
     }
+
+    .main-header.text-sm ~ .control-sidebar {
+      top: $main-header-height-sm;
+    }
+
     .sidebar {
       margin-top: $main-header-height;
+    }
+
+    .brand-link.text-sm ~ .sidebar {
+      margin-top: $main-header-height-sm;
+    }
+  }
+
+  .layout-navbar-fixed.layout-fixed.text-sm & {
+    .control-sidebar {
+      top: $main-header-height-sm;
+    }
+
+    .sidebar {
+      margin-top: $main-header-height-sm;
     }
   }
 
@@ -46,6 +65,16 @@ body,
     .brand-link {
       height: $main-header-height;
       width: $sidebar-mini-width;
+
+      &.text-sm {
+        height: $main-header-height-sm;
+      }
+    }
+  }
+
+  .layout-navbar-fixed.sidebar-collapse.text-sm & {
+    .brand-link {
+      height: $main-header-height-sm;
     }
   }
 
@@ -78,11 +107,11 @@ body,
 
     // Sidebar variants brand-link fix
     @each $name, $color in $theme-colors {
-      .sidebar-dark-#{$name} .brand-link {
+      .sidebar-dark-#{$name} .brand-link:not([class*="navbar"]) {
         background-color: $sidebar-dark-bg;
       }
 
-      .sidebar-light-#{$name} .brand-link {
+      .sidebar-light-#{$name} .brand-link:not([class*="navbar"]) {
         background-color: $sidebar-light-bg;
       }
     }
@@ -91,12 +120,22 @@ body,
       margin-top: $main-header-height;
     }
 
+    .main-header.text-sm ~ .content-wrapper {
+      margin-top: $main-header-height-sm;
+    }
+
     .main-header {
       left: 0;
       position: fixed;
       right: 0;
       top: 0;
       z-index: $zindex-main-header - 1;
+    }
+  }
+
+  .layout-navbar-fixed.text-sm & {
+    .content-wrapper {
+      margin-top: $main-header-height-sm;
     }
   }
 
@@ -115,6 +154,12 @@ body,
     }
   }
 
+  .layout-navbar-not-fixed.layout-fixed & {
+    .sidebar {
+      margin-top: 0;
+    }
+  }
+
   @each $breakpoint in map-keys($grid-breakpoints) {
     @include media-breakpoint-up($breakpoint) {
       $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
@@ -123,8 +168,29 @@ body,
         .control-sidebar {
           top: $main-header-height;
         }
+
+        .text-sm & .main-header ~ .control-sidebar,
+        .main-header.text-sm ~ .control-sidebar {
+          top: $main-header-height-sm;
+        }
+
         .sidebar {
           margin-top: $main-header-height;
+        }
+
+        .text-sm & .brand-link ~ .sidebar,
+        .brand-link.text-sm ~ .sidebar {
+          margin-top: $main-header-height-sm;
+        }
+      }
+
+      .layout#{$infix}-navbar-fixed.layout-fixed.text-sm & {
+        .control-sidebar {
+          top: $main-header-height-sm;
+        }
+
+        .sidebar {
+          margin-top: $main-header-height-sm;
         }
       }
 
@@ -144,6 +210,11 @@ body,
             height: $main-header-height;
             transition: width $transition-speed $transition-fn;
             width: $sidebar-mini-width;
+
+            .text-sm &,
+            &.text-sm {
+              height: $main-header-height-sm;
+            }
           }
 
           .main-sidebar:hover {
@@ -165,11 +236,11 @@ body,
 
         // Sidebar variants brand-link fix
         @each $name, $color in $theme-colors {
-          .sidebar-dark-#{$name} .brand-link {
+          .sidebar-dark-#{$name} .brand-link:not([class*="navbar"]) {
             background-color: $sidebar-dark-bg;
           }
 
-          .sidebar-light-#{$name} .brand-link {
+          .sidebar-light-#{$name} .brand-link:not([class*="navbar"]) {
             background-color: $sidebar-light-bg;
           }
         }
@@ -178,12 +249,23 @@ body,
           margin-top: $main-header-height;
         }
 
+        .text-sm & .main-header ~ .content-wrapper,
+        .main-header.text-sm ~ .content-wrapper {
+          margin-top: $main-header-height-sm;
+        }
+
         .main-header {
           left: 0;
           position: fixed;
           right: 0;
           top: 0;
           z-index: $zindex-main-sidebar - 1;
+        }
+      }
+
+      .layout#{$infix}-navbar-fixed.text-sm & {
+        .content-wrapper {
+          margin-top: $main-header-height-sm;
         }
       }
 
@@ -202,6 +284,11 @@ body,
         }
       }
 
+      .layout#{$infix}-navbar-not-fixed.layout-fixed & {
+        .sidebar {
+          margin-top: 0;
+        }
+      }
     }
   }
 
@@ -265,6 +352,11 @@ body,
   .layout-top-nav & {
     margin-left: 0;
 
+    & .text-sm {
+      .brand-image {
+        margin-top: -.5rem;
+      }
+    }
 
     & .main-sidebar {
       bottom: inherit;
@@ -393,14 +485,27 @@ body,
   border-top: $main-footer-border-top;
   color: lighten($gray-700, 25%);
   padding: $main-footer-padding;
+
+  .text-sm &,
+  &.text-sm {
+    padding: $main-footer-padding-sm;
+  }
 }
 
 .content-header {
   padding: 15px $content-padding-x;
 
+  .text-sm & {
+    padding: 10px $content-padding-x;
+  }
+
   h1 {
     font-size: 1.8rem;
     margin: 0;
+
+    .text-sm & {
+      font-size: 1.5rem;
+    }
   }
 
   .breadcrumb {
@@ -408,8 +513,14 @@ body,
     line-height: 1.8rem;
     margin-bottom: 0;
     padding: 0;
+
+    .text-sm & {
+      line-height: 1.5rem;
+    }
   }
 }
+
+
 
 .hold-transition {
   .content-wrapper,

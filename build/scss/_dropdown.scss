@@ -12,9 +12,25 @@
 //  }
 //}
 
+.text-sm {
+  .dropdown-menu {
+    font-size: $font-size-sm !important;
+  }
+
+  .dropdown-toggle::after {
+    vertical-align: .2rem
+  }
+}
+
 .dropdown-item-title {
   font-size: $font-size-base;
   margin: 0;
+}
+
+.dropdown-icon {
+  &::after {
+    margin-left: 0;
+  }
 }
 
 // Dropdown Sizes

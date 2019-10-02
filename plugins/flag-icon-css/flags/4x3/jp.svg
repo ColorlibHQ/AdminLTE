@@ -6,6 +6,6 @@
   </defs>
   <g fill-rule="evenodd" stroke-width="1pt" clip-path="url(#a)" transform="translate(88 -32)">
     <path fill="#fff" d="M-128 32h720v480h-720z"/>
-    <ellipse cx="523.1" cy="344.1" fill="#d30000" rx="194.9" ry="194.9" transform="translate(-168.4 8.6) scale(.76554)"/>
+    <circle cx="523.1" cy="344.1" r="194.9" fill="#d30000" transform="translate(-168.4 8.6) scale(.76554)"/>
   </g>
 </svg>

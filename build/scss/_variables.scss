@@ -58,6 +58,11 @@ $main-header-brand-padding-y: $navbar-brand-padding-y !default;
 $main-header-brand-padding-x: $navbar-padding-x !default;
 $main-header-height-inner: ($nav-link-height + ($main-header-link-padding-y * 2)) !default;
 $main-header-height: calc(#{$main-header-height-inner} + #{$main-header-bottom-border-width}) !default;
+$nav-link-sm-padding-y: .35rem !default;
+$nav-link-sm-height: ($font-size-sm * $line-height-sm + $nav-link-sm-padding-y * 1.785) !default;
+$main-header-height-sm-inner: ($nav-link-sm-height + ($main-header-link-padding-y * 2)) !default;
+$main-header-height-sm: calc(#{$main-header-height-sm-inner} + #{$main-header-bottom-border-width}) !default;
+
 
 // Main header skins
 $main-header-dark-form-control-bg: hsla(100, 100%, 100%, 0.2) !default;
@@ -77,11 +82,14 @@ $main-header-light-placeholder-color: hsla(0, 0%, 0%, 0.6) !default;
 // MAIN FOOTER
 // --------------------------------------------------------
 $main-footer-padding: 1rem !default;
+$main-footer-padding-sm: $main-footer-padding * .812 !default;
 $main-footer-border-top-width: 1px !default;
 $main-footer-border-top-color: $gray-300 !default;
 $main-footer-border-top: $main-footer-border-top-width solid $main-footer-border-top-color !default;
 $main-footer-height-inner: (($font-size-root * $line-height-base) + ($main-footer-padding * 2)) !default;
 $main-footer-height: calc(#{$main-footer-height-inner} + #{$main-footer-border-top-width}) !default;
+$main-footer-height-sm-inner: (($font-size-sm * $line-height-base) + ($main-footer-padding-sm * 2)) !default;
+$main-footer-height-sm: calc(#{$main-footer-height-sm-inner} + #{$main-footer-border-top-width}) !default;
 $main-footer-bg: $white;
 
 // SIDEBAR SKINS
@@ -131,7 +139,11 @@ $card-border-color: $gray-100 !default;
 $card-dark-border-color: lighten($gray-900, 10%) !default;
 $card-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2) !default;
 $card-title-font-size: 1.1rem;
+$card-title-font-size-sm: 1rem;
 $card-title-font-weight: $font-weight-normal;
+$card-nav-link-padding-sm-y: .4rem;
+$card-nav-link-padding-sm-x: .8rem;
+
 
 // PROGRESS BARS
 // --------------------------------------------------------
@@ -157,6 +169,7 @@ $zindex-main-sidebar: $zindex-fixed + 8 !default;
 $zindex-main-footer: $zindex-fixed + 2 !default;
 $zindex-control-sidebar: $zindex-fixed + 1 !default;
 $zindex-sidebar-mini-links: 010 !default;
+$zindex-toasts: $zindex-main-sidebar + 2 !default;
 
 // TRANSITIONS SETTINGS
 // --------------------------------------------------------
@@ -167,6 +180,7 @@ $transition-fn: ease-in-out !default;
 
 // TEXT
 // --------------------------------------------------------
+$font-size-xs: ($font-size-base * .75);
 $font-size-xl: ($font-size-base * 2);
 
 

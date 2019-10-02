@@ -15,11 +15,54 @@
         a {
           color: color-yiq($color);
         }
+
+        a.active {
+          color: color-yiq($white);
+        }
       }
     }
 
     &.card-outline {
       border-top: 3px solid $color;
+
+      .nav-item {
+        border-bottom: 0;
+
+        &:first-child .nav-link {
+          margin-left: -1px;
+          border-left: 0;
+        }
+      }
+    }
+
+    &.card-outline-tabs {
+      border-top: 0;
+
+      > .card-header {
+        .nav-item {
+          &:first-child .nav-link {
+            margin-left: -1px;
+            border-left: 0;
+          }
+        }
+
+        a {
+          border-top: 3px solid transparent;
+
+          &:hover {
+            border-top: $nav-tabs-border-width solid $nav-tabs-border-color;
+            margin-top: 2px;
+          }
+
+          &.active {
+            &:hover {
+              margin-top: 0;
+            }
+
+            border-top: 3px solid $color;
+          }
+        }
+      }
     }
   }
 
@@ -173,6 +216,18 @@
           visibility: visible;
         }
 
+        .nav-flat {
+          .nav-icon {
+            margin-left: 0;
+          }
+
+          .nav-treeview {
+            .nav-icon {
+              margin-left: -.2rem;
+            }
+          }
+        }
+
         .logo-xs {
           opacity: 0;
           visibility: hidden;
@@ -314,10 +369,13 @@
         color: darken(color-yiq($color), 7.5%);
       }
 
+      &:not(:disabled):not(.disabled):active,
+      &:not(:disabled):not(.disabled).active,
       &:active,
       &.active {
+        background-color: darken($color, 10%) !important;
         border-color: darken($color, 12.5%);
-        color: darken(color-yiq($color), 10%);
+        color: color-yiq(darken($color, 10%));
       }
     }
   }
@@ -344,11 +402,13 @@
         color: darken(color-yiq($color), 7.5%);
       }
 
+      &:not(:disabled):not(.disabled):active,
+      &:not(:disabled):not(.disabled).active,
       &:active,
       &.active {
         @include bg-gradient-variant('&', darken($color, 10%));
         border-color: darken($color, 12.5%);
-        color: darken(color-yiq($color), 10%);
+        color: color-yiq(darken($color, 10%));
       }
     }
   }
@@ -432,6 +492,54 @@
   }
 }
 
+// Toast Variant
+@mixin toast-variant($name, $color) {
+  &.bg-#{$name} {
+    background: rgba($color, .9) !important;
+    @if (color-yiq($color) == $yiq-text-light) {
+
+      .close {
+        color: color-yiq($color);
+        text-shadow: 0 1px 0 #000;
+      }
+    }
+
+    .toast-header {
+      background: rgba($color, .85);
+      color: color-yiq($color);
+    }
+  }
+}
+
+// Accent Variant
+@mixin accent-variant($name, $color) {
+  &.accent-#{$name} {
+    $link-color: $color;
+    $link-hover-color: darken($color, 15%);
+    $pagination-active-bg: $color;
+    $pagination-active-border-color: $color;
+
+    a {
+      color: $link-color;
+
+      @include hover {
+        color: $link-hover-color;
+      }
+    }
+
+    .page-item {
+      &.active .page-link {
+        background-color: $pagination-active-bg;
+        border-color: $pagination-active-border-color;
+      }
+
+      &.disabled .page-link {
+        background-color: $pagination-disabled-bg;
+        border-color: $pagination-disabled-border-color;
+      }
+    }
+  }
+}
 
 // ETC
 @mixin translate($x, $y) {

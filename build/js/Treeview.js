@@ -87,13 +87,23 @@ const Treeview = (($) => {
     }
 
     toggle(event) {
+
       const $relativeTarget = $(event.currentTarget)
-      const treeviewMenu    = $relativeTarget.next()
+      const $parent = $relativeTarget.parent()
+
+      let treeviewMenu = $parent.find(Selector.TREEVIEW_MENU)
 
       if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
-        return
-      }
 
+        if (!$parent.is(Selector.LI)) {
+          treeviewMenu = $parent.parent().find(Selector.TREEVIEW_MENU)
+        }
+
+        if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
+          return
+        }
+      }
+      
       event.preventDefault()
 
       const parentLi = $relativeTarget.parents(Selector.LI).first()

@@ -74,6 +74,35 @@ The sidebar used in this page to the left provides an example of what your sideb
 {: .max-height-300}
 
 
+#### Alternate Logo
+You can use two logo images instead of logo with text, you only need to change the markup to this:
+```html
+<a href="#" class="brand-link logo-switch">
+  <img src="dist/img/logo-xs.png" alt="AdminLTE Docs Logo Small" class="brand-image-xl logo-xs">
+  <img src="dist/img/logo-xl.png" alt="AdminLTE Docs Logo Large" class="brand-image-xs logo-xl" style="left: 12px">
+</a>
+```
+> Example from v3.0 docs.
+
+Based on the example above, you can replace `.brand-image-xl` on `.logo-xs` with `.brand-image-xs` or vice versa on `.logo-xl` for changed logo sizes.
+
+
+#### Search Form in Sidebar
+You can add this code above user-panel or nav-sidebar:
+```html
+<form class="form-inline">
+  <div class="input-group">
+    <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+    <div class="input-group-append">
+      <button class="btn btn-sidebar" type="submit">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </div>
+</form>
+```
+{: .max-height-300}
+
 #### Additional Classes
 
 ##### Sidebar
@@ -82,10 +111,11 @@ The sidebar used in this page to the left provides an example of what your sideb
 ##### Navbar
 - `.nav-child-indent` Child indent
 - `.nav-compact` Compact nav items
+- `.nav-flat` Flat nav style
 
 
 > ##### Tip!
-> You can also use `.text-sm` on `.nav-sidebar` for smaller font.
+> You can also use `.text-sm` on `.nav-sidebar` or `.brand-link` for smaller font.
 {: .quote-info}
 
 For more infromation about the JS part of the sidebar, please visit the [PushMenu plugin page]({% link javascript/push-menu.md %})

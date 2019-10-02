@@ -6,7 +6,7 @@
 .register-logo {
   font-size: 2.1rem;
   font-weight: 300;
-  margin-bottom: 0.9rem;
+  margin-bottom: .9rem;
   text-align: center;
 
   a {
@@ -16,12 +16,15 @@
 
 .login-page,
 .register-page {
+  align-items: center;
   background: $gray-200;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
 }
 
 .login-box,
 .register-box {
-  margin: 7% auto;
   width: 360px;
 
   @media (max-width: map-get($grid-breakpoints, sm)) {
@@ -72,9 +75,9 @@
 
     .input-group-text {
       background-color: transparent;
-      border-bottom-right-radius: $border-radius !important;
+      border-bottom-right-radius: $border-radius;
       border-left: 0;
-      border-top-right-radius: $border-radius !important;
+      border-top-right-radius: $border-radius;
       color: #777;
       transition: $input-transition;
     }

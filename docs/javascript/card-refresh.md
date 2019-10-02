@@ -29,23 +29,6 @@ The jQuery API provides more customizable options that allows the developer to p
 |---
 | Name | Type | Default | Description
 |-|-|-|-
-
-
-    source: '',
-    sourceSelector: '',
-    params: {},
-    trigger: Selector.DATA_REFRESH,
-    content: '.card-body',
-    loadInContent: true,
-    loadOnInit: true,
-    responseType: '',
-    overlayTemplate: '<div class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i></div>',
-    onLoadStart: function () {
-    },
-    onLoadDone: function (response) {
-      return response;
-    }
-
 | source | String | '' | The URL to the source.
 | sourceSelector | String | '' | A selector to get return only the content of the selector.
 | params | Object | {} | GET query paramaters (example: {search_term: 'layout'}, which renders to URL/?search_term=layout)

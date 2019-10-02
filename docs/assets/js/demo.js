@@ -39,8 +39,144 @@
 
   $container.append(
     '<h5>Customize AdminLTE</h5><hr class="mb-2"/>'
-    + '<h6>Navbar Variants</h6>'
   )
+
+  var $no_border_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('.main-header').hasClass('border-bottom-0'),
+    'class': 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('.main-header').addClass('border-bottom-0')
+    } else {
+      $('.main-header').removeClass('border-bottom-0')
+    }
+  })
+  var $no_border_container = $('<div />', {'class': 'mb-1'}).append($no_border_checkbox).append('<span>No Navbar border</span>')
+  $container.append($no_border_container)
+
+  var $text_sm_body_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('body').hasClass('text-sm'),
+    'class': 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('body').addClass('text-sm')
+    } else {
+      $('body').removeClass('text-sm')
+    }
+  })
+  var $text_sm_body_container = $('<div />', {'class': 'mb-1'}).append($text_sm_body_checkbox).append('<span>Body small text</span>')
+  $container.append($text_sm_body_container)
+
+  var $text_sm_header_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('.main-header').hasClass('text-sm'),
+    'class': 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('.main-header').addClass('text-sm')
+    } else {
+      $('.main-header').removeClass('text-sm')
+    }
+  })
+  var $text_sm_header_container = $('<div />', {'class': 'mb-1'}).append($text_sm_header_checkbox).append('<span>Navbar small text</span>')
+  $container.append($text_sm_header_container)
+
+  var $text_sm_sidebar_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('.nav-sidebar').hasClass('text-sm'),
+    'class': 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('.nav-sidebar').addClass('text-sm')
+    } else {
+      $('.nav-sidebar').removeClass('text-sm')
+    }
+  })
+  var $text_sm_sidebar_container = $('<div />', {'class': 'mb-1'}).append($text_sm_sidebar_checkbox).append('<span>Sidebar nav small text</span>')
+  $container.append($text_sm_sidebar_container)
+
+  var $flat_sidebar_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('.nav-sidebar').hasClass('nav-flat'),
+    'class': 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('.nav-sidebar').addClass('nav-flat')
+    } else {
+      $('.nav-sidebar').removeClass('nav-flat')
+    }
+  })
+  var $flat_sidebar_container = $('<div />', {'class': 'mb-1'}).append($flat_sidebar_checkbox).append('<span>Sidebar nav flat style</span>')
+  $container.append($flat_sidebar_container)
+
+  var $compact_sidebar_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('.nav-sidebar').hasClass('nav-compact'),
+    'class': 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('.nav-sidebar').addClass('nav-compact')
+    } else {
+      $('.nav-sidebar').removeClass('nav-compact')
+    }
+  })
+  var $compact_sidebar_container = $('<div />', {'class': 'mb-1'}).append($compact_sidebar_checkbox).append('<span>Sidebar nav compact</span>')
+  $container.append($compact_sidebar_container)
+
+  var $child_indent_sidebar_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('.nav-sidebar').hasClass('nav-child-indent'),
+    'class': 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('.nav-sidebar').addClass('nav-child-indent')
+    } else {
+      $('.nav-sidebar').removeClass('nav-child-indent')
+    }
+  })
+  var $child_indent_sidebar_container = $('<div />', {'class': 'mb-1'}).append($child_indent_sidebar_checkbox).append('<span>Sidebar nav child indent</span>')
+  $container.append($child_indent_sidebar_container)
+
+  var $no_expand_sidebar_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('.main-sidebar').hasClass('sidebar-no-expand'),
+    'class': 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('.main-sidebar').addClass('sidebar-no-expand')
+    } else {
+      $('.main-sidebar').removeClass('sidebar-no-expand')
+    }
+  })
+  var $no_expand_sidebar_container = $('<div />', {'class': 'mb-1'}).append($no_expand_sidebar_checkbox).append('<span>Main Sidebar disable hover/focus auto expand</span>')
+  $container.append($no_expand_sidebar_container)
+
+  var $text_sm_brand_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('.brand-link').hasClass('text-sm'),
+    'class': 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('.brand-link').addClass('text-sm')
+    } else {
+      $('.brand-link').removeClass('text-sm')
+    }
+  })
+  var $text_sm_brand_container = $('<div />', {'class': 'mb-4'}).append($text_sm_brand_checkbox).append('<span>Brand small text</span>')
+  $container.append($text_sm_brand_container)
+
+  $container.append('<h6>Navbar Variants</h6>')
 
   var $navbar_variants        = $('<div />', {
     'class': 'd-flex'
@@ -66,26 +202,6 @@
   $navbar_variants.append($navbar_variants_colors)
 
   $container.append($navbar_variants)
-
-  var $checkbox_container = $('<div />', {
-    'class': 'mb-4'
-  })
-  var $navbar_border = $('<input />', {
-    type   : 'checkbox',
-    value  : 1,
-    checked: $('.main-header').hasClass('border-bottom-0'),
-    'class': 'mr-1'
-  }).on('click', function () {
-    if ($(this).is(':checked')) {
-      $('.main-header').addClass('border-bottom-0')
-    } else {
-      $('.main-header').removeClass('border-bottom-0')
-    }
-  })
-  $checkbox_container.append($navbar_border)
-  $checkbox_container.append('<span>No Navbar border</span>')
-  $container.append($checkbox_container)
-
 
   var sidebar_colors = [
     'bg-primary',

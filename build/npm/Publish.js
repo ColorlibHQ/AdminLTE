@@ -27,13 +27,15 @@ class Publish {
   run() {
     // Publish files
     Plugins.forEach((module) => {
-      fse.copy(module.from, module.to, error => {
-        if (error) {
-          console.error(`Error: ${error}`)
-        } else if (this.options.verbose) {
+      try {
+        fse.copySync(module.from, module.to)
+
+        if (this.options.verbose) {
           console.log(`Copied ${module.from} to ${module.to}`)
         }
-      })
+      } catch (err) {
+        console.error(`Error: ${err}`)
+      }
     })
   }
 }

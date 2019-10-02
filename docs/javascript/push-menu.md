@@ -28,7 +28,6 @@ $('.sidebar-toggle-btn').PushMenu(options)
 | Name | Type | Default | Description
 |-|-|-|-
 |autoCollapseSize | Boolean/Number | FALSE | Screen width in pixels to trigger auto collapse sidebar
-|screenCollapseSize | Number | 768 | Screen width in pixels for small screens.
 |enableRemember | Boolean | FALSE | Remember sidebar state and set after page refresh.
 |noTransitionAfterReload | Boolean | TRUE | Hold Transition after page refresh.
 {: .table .table-bordered .bg-light}

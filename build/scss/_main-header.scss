@@ -11,6 +11,24 @@
     position: relative;
   }
 
+  .text-sm &,
+  &.text-sm {
+    .nav-link {
+      height: $nav-link-sm-height;
+      padding: $nav-link-sm-padding-y $nav-link-padding-x;
+
+      > .fa,
+      > .fas,
+      > .far,
+      > .fab,
+      > .glyphicon,
+      > .ion {
+        font-size: $font-size-sm;
+      }
+    }
+
+  }
+
   .navbar-nav {
     .nav-item {
       margin: 0;
