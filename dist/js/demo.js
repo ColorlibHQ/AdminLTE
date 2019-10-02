@@ -236,6 +236,24 @@
     'bg-olive'
   ]
 
+  var accent_colors = [
+    'accent-primary',
+    'accent-warning',
+    'accent-info',
+    'accent-danger',
+    'accent-success',
+    'accent-indigo',
+    'accent-navy',
+    'accent-purple',
+    'accent-fuchsia',
+    'accent-pink',
+    'accent-maroon',
+    'accent-orange',
+    'accent-lime',
+    'accent-teal',
+    'accent-olive'
+  ]
+
   var sidebar_skins = [
     'sidebar-dark-primary',
     'sidebar-dark-warning',
@@ -268,6 +286,22 @@
     'sidebar-light-teal',
     'sidebar-light-olive'
   ]
+
+  $container.append('<h6>Accent Color Variants</h6>')
+  var $accent_variants = $('<div />', {
+    'class': 'd-flex'
+  })
+  $container.append($accent_variants)
+  $container.append(createSkinBlock(accent_colors, function () {
+    var color         = $(this).data('color')
+    var accent_class = color
+    var $body      = $('body')
+    accent_colors.map(function (skin) {
+      $body.removeClass(skin)
+    })
+
+    $body.addClass(accent_class)
+  }))
 
   $container.append('<h6>Dark Sidebar Variants</h6>')
   var $sidebar_variants = $('<div />', {
@@ -331,7 +365,7 @@
 
     colors.map(function (color) {
       var $color = $('<div />', {
-        'class': (typeof color === 'object' ? color.join(' ') : color).replace('navbar-', 'bg-') + ' elevation-2'
+        'class': (typeof color === 'object' ? color.join(' ') : color).replace('navbar-', 'bg-').replace('accent-', 'bg-') + ' elevation-2'
       })
 
       $block.append($color)
