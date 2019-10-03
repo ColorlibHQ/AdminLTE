@@ -63,6 +63,15 @@
   }
 }
 
+.navbar-no-expand {
+  flex-direction: row;
+
+  .nav-link {
+    padding-left: $navbar-nav-link-padding-x;
+    padding-right: $navbar-nav-link-padding-x;
+  }
+}
+
 // Color variants
 @each $color, $value in $theme-colors {
   @if $color == dark or $color == light {
