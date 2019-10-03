@@ -108,10 +108,11 @@ html.maximized-card {
     float: right;
     margin-right: -$card-spacer-x / 2;
 
+    .input-group,
     .nav,
     .pagination {
-      margin-bottom: -$card-spacer-y / 2;
-      margin-top: -$card-spacer-y / 2;
+      margin-bottom: -$card-spacer-y / 2.5;
+      margin-top: -$card-spacer-y / 2.5;
     }
 
     [data-toggle='tooltip'] {
