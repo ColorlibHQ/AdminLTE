@@ -28,7 +28,11 @@ class Publish {
     // Publish files
     Plugins.forEach((module) => {
       try {
-        fse.copySync(module.from, module.to)
+        if (fse.existsSync(module.from)) {
+          fse.copySync(module.from, module.to)
+        } else {
+          fse.copySync(module.from.replace('node_modules/', '../'), module.to)
+        }
 
         if (this.options.verbose) {
           console.log(`Copied ${module.from} to ${module.to}`)
