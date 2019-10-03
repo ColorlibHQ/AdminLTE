@@ -12,8 +12,8 @@
 .sidebar {
   padding-bottom: $sidebar-padding-y;
   padding-top: $sidebar-padding-y;
-  padding-left: $sidebar-padding-x;
   padding-right: $sidebar-padding-x;
+  padding-left: $sidebar-padding-x;
   overflow-y: auto;
   height: calc(100% - 4rem);
 }
@@ -37,7 +37,7 @@
   }
 
   .image {
-    padding-left: $nav-link-padding-x - .2;
+    padding-right: $nav-link-padding-x - .2;
     display: inline-block;
   }
 
@@ -48,7 +48,7 @@
 
   .info {
     display: inline-block;
-    padding: 5px 5px 5px 10px;
+    padding: 5px 10px 5px 5px;
   }
 
   .status,
@@ -71,7 +71,7 @@
 
   .nav-link > p > .right {
     position: absolute;
-    right: 1rem;
+    left: 1rem;
     top: 12px;
   }
 
@@ -95,7 +95,7 @@
       text-align: center;
       width: $sidebar-nav-icon-width;
       font-size: 1.2rem;
-      margin-right: .2rem;
+      margin-left: .2rem;
     }
 
     .float-right {
@@ -136,8 +136,8 @@
 #sidebar-overlay {
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
   bottom: 0;
   display: none;
   background-color: rgba(0, 0, 0, 0.1);

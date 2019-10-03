@@ -27,20 +27,20 @@ body,
 .main-footer,
 .main-header {
   @include media-breakpoint-up(md) {
-    @include transition(margin-left $transition-speed $transition-fn);
+    @include transition(margin-right $transition-speed $transition-fn);
 
-    margin-left: $sidebar-width;
+    margin-right: $sidebar-width;
     z-index: 3000;
 
     .sidebar-collapse & {
-      margin-left: 0;
+      margin-right: 0;
     }
   }
 
   @include media-breakpoint-down(md) {
     &,
     &:before {
-      margin-left: 0;
+      margin-right: 0;
     }
   }
 }
@@ -56,12 +56,12 @@ body,
 .main-sidebar {
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   bottom: 0;
 
   &,
   &:before {
-    $local-sidebar-transition: margin-left $transition-speed $transition-fn, width $transition-speed $transition-fn;
+    $local-sidebar-transition: margin-right $transition-speed $transition-fn, width $transition-speed $transition-fn;
     @include transition($local-sidebar-transition);
     width: $sidebar-width;
   }
@@ -69,7 +69,7 @@ body,
   .sidebar-collapse & {
     &,
     &:before {
-      margin-left: -$sidebar-width;
+      margin-right: -$sidebar-width;
     }
   }
 
@@ -77,13 +77,13 @@ body,
     &,
     &:before {
       box-shadow: none!important;
-      margin-left: -$sidebar-width;
+      margin-right: -$sidebar-width;
     }
 
     .sidebar-open & {
       &,
       &:before {
-        margin-left: 0;
+        margin-right: 0;
       }
     }
   }

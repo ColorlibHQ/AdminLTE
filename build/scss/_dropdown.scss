@@ -109,21 +109,21 @@
     position: relative;
     > .dropdown-menu {
       position: absolute;
-      right: 0;
-      left: auto;
+      left: 0;
+      right: auto;
     }
   }
 }
 
 @include media-breakpoint-down(sm) {
   .navbar-custom-menu > .navbar-nav {
-    float: right;
+    float: left;
     > li {
       position: static;
       > .dropdown-menu {
         position: absolute;
-        right: 5%;
-        left: auto;
+        left: 5%;
+        right: auto;
         border: 1px solid #ddd;
         background: $white;
       }

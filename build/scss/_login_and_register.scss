@@ -37,7 +37,7 @@
   color: #666;
   .input-group {
     .form-control {
-      border-right: none;
+      border-left: none;
 
       &:focus {
         box-shadow: none;
@@ -67,11 +67,11 @@
     .input-group-text {
       color: #777;
       background-color: transparent;
-      border-left: none;
+      border-right: none;
       transition: $input-transition;
       // Fix boostrap issue temporarily https://github.com/twbs/bootstrap/issues/25110
-      border-bottom-right-radius: $border-radius !important;
-      border-top-right-radius: $border-radius !important;
+      border-bottom-left-radius: $border-radius !important;
+      border-top-left-radius: $border-radius !important;
     }
   }
 }

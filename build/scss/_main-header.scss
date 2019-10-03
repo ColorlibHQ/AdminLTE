@@ -17,11 +17,11 @@
   .navbar-nav[class*="-right"] {
     .dropdown-menu {
       margin-top: -3px;
-      right: 0;
-      left: auto;
+      left: 0;
+      right: auto;
       @media (max-width: breakpoint-max(xs)) {
-        left: 0;
-        right: auto;
+        right: 0;
+        left: auto;
       }
     }
   }
@@ -38,21 +38,21 @@
 .navbar-badge {
   position: absolute;
   top: 9px;
-  right: 5px;
+  left: 5px;
   font-size: .6rem;
   font-weight: 300;
   padding: 2px 4px;
 }
 
 .btn-navbar {
-  border-left-width: 0;
+  border-right-width: 0;
   background-color: transparent;
 }
 
 .form-control-navbar {
-  border-right-width: 0;
+  border-left-width: 0;
   & + .input-group-append {
-    margin-left: 0;
+    margin-right: 0;
   }
 }
 

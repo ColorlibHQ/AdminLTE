@@ -169,13 +169,13 @@ a.text-muted:hover {
   img {
     width: 40px;
     height: 40px;
-    float: left;
+    float: right;
   }
   .username,
   .description,
   .comment {
     display: block;
-    margin-left: 50px;
+    margin-right: 50px;
   }
   .username {
     font-size: 16px;
@@ -192,7 +192,7 @@ a.text-muted:hover {
     .username,
     .description,
     .comment {
-      margin-left: 40px;
+      margin-right: 40px;
     }
     .username {
       font-size: 14px;
@@ -204,14 +204,14 @@ a.text-muted:hover {
 .img-sm,
 .img-md,
 .img-lg {
-  float: left;
+  float: right;
 }
 
 .img-sm {
   width: 30px !important;
   height: 30px !important;
   + .img-push {
-    margin-left: 40px;
+    margin-right: 40px;
   }
 }
 
@@ -219,7 +219,7 @@ a.text-muted:hover {
   width: 60px;
   height: 60px;
   + .img-push {
-    margin-left: 70px;
+    margin-right: 70px;
   }
 }
 
@@ -227,7 +227,7 @@ a.text-muted:hover {
   width: 100px;
   height: 100px;
   + .img-push {
-    margin-left: 110px;
+    margin-right: 110px;
   }
 }
 
@@ -307,10 +307,10 @@ a.text-muted:hover {
     max-width: 100px;
     max-height: 100px;
     height: auto;
-    float: left;
+    float: right;
   }
   .attachment-pushed {
-    margin-left: 110px;
+    margin-right: 110px;
   }
   .attachment-heading {
     margin: 0;

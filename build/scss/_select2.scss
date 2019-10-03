@@ -40,20 +40,20 @@
 }
 
 .select2-container .select2-selection--single .select2-selection__rendered {
-  padding-left: 0;
   padding-right: 0;
+  padding-left: 0;
   height: auto;
   margin-top: -4px;
 }
 
 .select2-container[dir="rtl"] .select2-selection--single .select2-selection__rendered {
-  padding-right: 6px;
-  padding-left: 20px;
+  padding-left: 6px;
+  padding-right: 20px;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
   height: 28px;
-  right: 3px;
+  left: 3px;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
@@ -105,7 +105,7 @@
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-  margin-right: 5px;
+  margin-left: 5px;
   color: rgba(255, 255, 255, 0.7);
   &:hover {
     color: $white;
@@ -113,5 +113,5 @@
 }
 
 .select2-container .select2-selection--single .select2-selection__rendered {
-  padding-right: 10px;
+  padding-left: 10px;
 }

@@ -10,9 +10,9 @@
   &,
   &:before {
     width: $control-sidebar-width;
-    right: -$control-sidebar-width;
+    left: -$control-sidebar-width;
     bottom: 0;
-    @include transition(right $transition-speed $transition-fn);
+    @include transition(left $transition-speed $transition-fn);
   }
 
   &:before {
@@ -30,13 +30,13 @@
     .control-sidebar {
       &,
       &:before {
-        right: 0;
+        left: 0;
       }
     }
 
     .content-wrapper,
     .main-footer {
-      margin-right: $control-sidebar-width;
+      margin-left: $control-sidebar-width;
     }
   }
 
@@ -44,7 +44,7 @@
     .control-sidebar {
       &,
       &:before {
-        right: 0;
+        left: 0;
       }
     }
   }
@@ -55,7 +55,7 @@
   .control-sidebar {
     &,
     &:before {
-      right: 0;
+      left: 0;
     }
   }
 }
@@ -117,7 +117,7 @@
       &:active,
       &:focus,
       &.active {
-        border-left-color: transparent;
+        border-right-color: transparent;
         border-bottom-color: transparent;
         border-top-color: transparent;
         color: $sidebar-dark-hover-color;
@@ -142,6 +142,6 @@
   &,
   &:before {
     background: $sidebar-light-bg;
-    border-left: 1px solid $gray-500;
+    border-right: 1px solid $gray-500;
   }
 }

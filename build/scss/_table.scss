@@ -33,10 +33,10 @@
   tbody > tr > th,
   tbody > tr > td {
     &:first-of-type {
-      @extend .pl-4;
+      @extend .pr-4;
     }
     &:last-of-type {
-      @extend .pr-4;
+      @extend .pl-4;
     }
   }
 }

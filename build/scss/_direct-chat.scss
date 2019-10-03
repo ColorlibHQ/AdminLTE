@@ -1,196 +1,210 @@
-/*
- * Component: Direct Chat
- * ----------------------
- */
+//
+// Component: Direct Chat
+//
+
 .direct-chat {
-  .card-body {
-    position: relative;
-    overflow-x: hidden;
-    padding: 0;
-  }
-  &.chat-pane-open {
-    .direct-chat-contacts {
-      @include translate(0, 0);
+    .card-body {
+        overflow-x: hidden;
+        padding: 0;
+        position: relative;
     }
-  }
+
+    &.chat-pane-open {
+        .direct-chat-contacts {
+            @include translate(0, 0);
+        }
+    }
 }
 
 .direct-chat-messages {
-  @include translate(0, 0);
-  padding: 10px;
-  height: 250px;
-  overflow: auto;
+    @include translate(0, 0);
+    height: 250px;
+    overflow: auto;
+    padding: 10px;
 }
 
 .direct-chat-msg,
 .direct-chat-text {
-  display: block;
+    display: block;
 }
 
 .direct-chat-msg {
-  @include clearfix();
-  margin-bottom: 10px;
+    @include clearfix;
+    margin-bottom: 10px;
 }
 
 .direct-chat-messages,
 .direct-chat-contacts {
-  transition: transform .5s ease-in-out;
+    transition: transform .5s ease-in-out;
 }
 
 .direct-chat-text {
-  @if $enable-rounded {
-    @include border-radius($border-radius-lg);
-  }
-
-  position: relative;
-  padding: 5px 10px;
-  background: $direct-chat-default-msg-bg;
-  border: 1px solid $direct-chat-default-msg-border-color;
-  margin: 5px 0 0 50px;
-  color: $direct-chat-default-font-color;
-
-  //Create the arrow
-  &:after,
-  &:before {
-    position: absolute;
-    right: 100%;
-    top: 15px;
-    border: solid transparent;
-    border-right-color: $direct-chat-default-msg-border-color;
-    content: ' ';
-    height: 0;
-    width: 0;
-    pointer-events: none;
-  }
-
-  &:after {
-    border-width: 5px;
-    margin-top: -5px;
-  }
-  &:before {
-    border-width: 6px;
-    margin-top: -6px;
-  }
-  .right & {
-    margin-right: 50px;
-    margin-left: 0;
-    &:after,
-    &:before {
-      right: auto;
-      left: 100%;
-      border-right-color: transparent;
-      border-left-color: $direct-chat-default-msg-border-color;
+    @if $enable-rounded {
+        @include border-radius($border-radius-lg);
     }
-  }
+
+    background: $direct-chat-default-msg-bg;
+    border: 1px solid $direct-chat-default-msg-border-color;
+    color: $direct-chat-default-font-color;
+    margin: 5px 50px 0 0;
+    padding: 5px 10px;
+    position: relative;
+    //Create the arrow
+    &::after,
+    &::before {
+        border: solid transparent;
+        border-left-color: $direct-chat-default-msg-border-color;
+        content: ' ';
+        height: 0;
+        pointer-events: none;
+        position: absolute;
+        left: 100%;
+        top: 15px;
+        width: 0;
+    }
+
+    &::after {
+        border-width: 5px;
+        margin-top: -5px;
+    }
+
+    &::before {
+        border-width: 6px;
+        margin-top: -6px;
+    }
+
+    .right & {
+        margin-right: 0;
+        margin-left: 50px;
+
+        &::after,
+        &::before {
+            border-right-color: $direct-chat-default-msg-border-color;
+            border-left-color: transparent;
+            right: 100%;
+            left: auto;
+        }
+    }
 }
 
 .direct-chat-img {
-  @include border-radius(50%);
-  float: left;
-  width: 40px;
-  height: 40px;
-  .right & {
+    @include border-radius(50%);
     float: right;
-  }
+    height: 40px;
+    width: 40px;
+
+    .right & {
+        float: left;
+    }
 }
 
-.direct-chat-info {
-  display: block;
-  margin-bottom: 2px;
-  font-size: $font-size-sm;
+.direct-chat-infos {
+    display: block;
+    font-size: $font-size-sm;
+    margin-bottom: 2px;
 }
 
 .direct-chat-name {
-  font-weight: 600;
+    font-weight: 600;
 }
 
 .direct-chat-timestamp {
-  color: #999;
+    color: darken($gray-500, 25%);
 }
 
 //Direct chat contacts pane
 .direct-chat-contacts-open {
-  .direct-chat-contacts {
-    @include translate(0, 0);
-  }
+    .direct-chat-contacts {
+        @include translate(0, 0);
+    }
 }
 
 .direct-chat-contacts {
-  @include translate(101%, 0);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  height: 250px;
-  width: 100%;
-  background: #222d32;
-  color: $white;
-  overflow: auto;
+    @include translate(101%, 0);
+    background: $dark;
+    bottom: 0;
+    color: $white;
+    height: 250px;
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.direct-chat-contacts-light {
+    background: $light;
+
+    .contacts-list-name {
+        color: $gray-700;
+    }
+
+    .contacts-list-date {
+        color: $gray-600;
+    }
+
+    .contacts-list-msg {
+        color: darken($gray-600, 10%);
+    }
 }
 
 //Contacts list -- for displaying contacts in direct chat contacts pane
 .contacts-list {
-  @extend .list-unstyled;
-  > li {
-    @include clearfix();
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    margin: 0;
-    &:last-of-type {
-      border-bottom: none;
+    @extend .list-unstyled;
+
+    > li {
+        @include clearfix;
+        border-bottom: 1px solid rgba($black, 0.2);
+        margin: 0;
+        padding: 10px;
+
+        &:last-of-type {
+            border-bottom: 0;
+        }
     }
-  }
 }
 
 .contacts-list-img {
-  @include border-radius(50%);
-  width: 40px;
-  float: left;
+    @include border-radius(50%);
+    float: right;
+    width: 40px;
 }
 
 .contacts-list-info {
-  margin-left: 45px;
-  color: $white;
+    color: $white;
+    margin-right: 45px;
 }
 
 .contacts-list-name,
 .contacts-list-status {
-  display: block;
+    display: block;
 }
 
 .contacts-list-name {
-  font-weight: 600;
+    font-weight: 600;
 }
 
 .contacts-list-status {
-  font-size: $font-size-sm;
+    font-size: $font-size-sm;
 }
 
 .contacts-list-date {
-  color: #aaa;
-  font-weight: normal;
+    color: $gray-400;
+    font-weight: normal;
 }
 
 .contacts-list-msg {
-  color: #999;
+    color: darken($gray-400, 10%);
 }
 
-//Direct Chat Variants
-.direct-chat-danger {
-  @include direct-chat-variant(theme-color("danger"));
+// Color variants
+@each $name, $color in $theme-colors {
+    .direct-chat-#{$name} {
+        @include direct-chat-variant($color);
+    }
 }
 
-.direct-chat-primary {
-  @include direct-chat-variant(theme-color("primary"));
-}
-
-.direct-chat-warning {
-  @include direct-chat-variant(theme-color("warning"));
-}
-
-.direct-chat-info {
-  @include direct-chat-variant(theme-color("info"));
-}
-
-.direct-chat-success {
-  @include direct-chat-variant(theme-color("success"));
+@each $name, $color in $colors {
+    .direct-chat-#{$name} {
+        @include direct-chat-variant($color);
+    }
 }

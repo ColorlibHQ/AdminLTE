@@ -6,12 +6,12 @@
   &.has-icon {
     position: relative;
     .form-control {
-      padding-right: 35px;
+      padding-left: 35px;
     }
     .form-icon {
       cursor: pointer;
       position: absolute;
-      right: 3px;
+      left: 3px;
       top: 0;
       padding: $input-btn-padding-y $input-btn-padding-x;
       // margin-top: -3px;

@@ -40,11 +40,11 @@
 .mailbox-attachments {
   @extend .list-unstyled;
   li {
-    float: left;
+    float: right;
     width: 200px;
     border: 1px solid #eee;
     margin-bottom: 10px;
-    margin-right: 10px;
+    margin-left: 10px;
   }
 }
 

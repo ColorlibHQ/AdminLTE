@@ -43,7 +43,7 @@
 .lockscreen-image {
   @include border-radius(50%);
   position: absolute;
-  left: -10px;
+  right: -10px;
   top: -25px;
   background: $white;
   padding: 5px;
@@ -57,7 +57,7 @@
 
 /* Contains the password input and the login button */
 .lockscreen-credentials {
-  margin-left: 70px;
+  margin-right: 70px;
   .form-control {
     border: 0;
   }

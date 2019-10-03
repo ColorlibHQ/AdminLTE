@@ -24,7 +24,7 @@
       .content-wrapper,
       .main-footer,
       .main-header {
-        margin-left: $sidebar-mini-width !important;
+        margin-right: $sidebar-mini-width !important;
       }
 
       // Make the sidebar headers
@@ -36,7 +36,7 @@
       .nav-sidebar .nav-link p,
       .brand-text {
         opacity: 0;
-        margin-left: -10px;
+        margin-right: -10px;
       }
 
       // Modify the sidebar to shrink instead of disappearing
@@ -44,7 +44,7 @@
         &,
         &:before {
           // Don't go away! Just shrink
-          margin-left: 0;
+          margin-right: 0;
           width: $sidebar-mini-width;
         }
 
@@ -57,9 +57,9 @@
         &:hover {
           width: $sidebar-width;
           .user-panel {
-            text-align: left;
+            text-align: right;
             .image {
-              float: left;
+              float: right;
             }
           }
 
@@ -67,12 +67,12 @@
           .nav-sidebar .nav-link p,
           .brand-text {
             opacity: 1;
-            margin-left: 0;
+            margin-right: 0;
             display: inline-block;
           }
 
           .brand-image {
-            margin-right: .5rem;
+            margin-left: .5rem;
           }
 
           // Make the sidebar links, menus, labels, badges
@@ -114,7 +114,7 @@
   position: relative;
   > .float-right {
     position: absolute;
-    right: 10px;
+    left: 10px;
     top: 50%;
     margin-top: -7px;
   }
@@ -123,5 +123,5 @@
 .sidebar .nav-link p,
 .main-sidebar .brand-text,
 .sidebar .user-panel .info {
-  @include transition(margin-left $transition-speed linear, opacity .5s ease)
+  @include transition(margin-right $transition-speed linear, opacity .5s ease)
 }

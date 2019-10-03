@@ -21,15 +21,15 @@
   font-size: 15px;
   line-height: 1.6em;
   color: #666;
-  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .fc-header-right {
-  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .fc-header-left {
-  padding-left: 10px;
+  padding-right: 10px;
 }
 
 // Calendar table header cells
@@ -44,13 +44,13 @@
 
 .fc-widget-header:first-of-type,
 .fc-widget-content:first-of-type {
-  border-left: 0;
   border-right: 0;
+  border-left: 0;
 }
 
 .fc-widget-header:last-of-type,
 .fc-widget-content:last-of-type {
-  border-right: 0;
+  border-left: 0;
 }
 
 .fc-toolbar {
@@ -61,7 +61,7 @@
 .fc-day-number {
   font-size: 20px;
   font-weight: 300;
-  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .fc-color-picker {
@@ -69,9 +69,9 @@
   margin: 0;
   padding: 0;
   > li {
-    float: left;
+    float: right;
     font-size: 30px;
-    margin-right: 5px;
+    margin-left: 5px;
     line-height: 30px;
     .fa {
       transition: transform linear .3s;

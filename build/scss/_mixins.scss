@@ -63,7 +63,7 @@
     color: color-yiq($bg-color);
     &:after,
     &:before {
-      border-left-color: $bg-color;
+      border-right-color: $bg-color;
     }
   }
 }

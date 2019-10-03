@@ -41,11 +41,11 @@
   }
 
   .border-right {
-    border-right: 1px solid $card-border-color;
+    border-left: 1px solid $card-border-color;
   }
 
   .border-left {
-    border-left: 1px solid $card-border-color;
+    border-right: 1px solid $card-border-color;
   }
 }
 
@@ -56,7 +56,7 @@
   > .loading-img {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
     height: 100%;
   }
@@ -68,8 +68,8 @@
     > .fa {
       position: absolute;
       top: 50%;
-      left: 50%;
-      margin-left: -15px;
+      right: 50%;
+      margin-right: -15px;
       margin-top: -15px;
       color: #000;
       font-size: 30px;
@@ -104,7 +104,7 @@
 
   > .card-tools {
     position: absolute;
-    right: 1rem;
+    left: 1rem;
     top: .5rem;
 
     [data-toggle="tooltip"] {
@@ -171,8 +171,8 @@
   margin: 10px 0;
   > li {
     @media (max-width: map-get($grid-breakpoints, sm)) {
-      float: left;
-      margin-right: 10px;
+      float: right;
+      margin-left: 10px;
     }
   }
 }
@@ -192,11 +192,11 @@
     }
     img {
       @extend .img-sm;
-      float: left;
+      float: right;
     }
   }
   .comment-text {
-    margin-left: 40px;
+    margin-right: 40px;
     color: #555;
   }
   .username {
@@ -225,36 +225,36 @@
     padding: 10px;
     background: #f4f4f4;
     margin-bottom: 2px;
-    border-left: 2px solid #e6e7e8;
+    border-right: 2px solid #e6e7e8;
     color: #444;
     &:last-of-type {
       margin-bottom: 0;
     }
 
     > input[type='checkbox'] {
-      margin: 0 10px 0 5px;
+      margin: 0 5px 0 10px;
     }
 
     .text {
       display: inline-block;
-      margin-left: 5px;
+      margin-right: 5px;
       font-weight: 600;
     }
 
     // Time labels
     .label {
-      margin-left: 10px;
+      margin-right: 10px;
       font-size: 9px;
     }
 
     // Tools and options box
     .tools {
       display: none;
-      float: right;
+      float: left;
       color: theme-color("danger");
       // icons
       > .fa, > .glyphicon, > .ion {
-        margin-right: 5px;
+        margin-left: 5px;
         cursor: pointer;
       }
 

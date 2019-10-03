@@ -18,7 +18,7 @@
   //This is the only element that should appear, so let's remove the margins
   .content-wrapper,
   .main-footer {
-    margin-left: 0 !important;
+    margin-right: 0 !important;
     min-height: 0 !important;
     @include translate(0, 0);
   }
@@ -36,7 +36,7 @@
   }
 
   .invoice-col {
-    float: left;
+    float: right;
     width: 33.3333333%;
   }
 
