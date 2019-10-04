@@ -513,7 +513,7 @@
 
 // Accent Variant
 @mixin accent-variant($name, $color) {
-  &.accent-#{$name} {
+  .accent-#{$name} {
     $link-color: $color;
     $link-hover-color: darken($color, 15%);
     $pagination-active-bg: $color;
