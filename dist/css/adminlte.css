@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- *   AdminLTE v3.0.0-rc.3
+ *   AdminLTE v3.0.0-rc.4
  *   Author: Colorlib
  *	 Website: AdminLTE.io <http://adminlte.io>
  *   License: Open source - MIT <http://opensource.org/licenses/MIT>
@@ -15028,10 +15028,11 @@ html.maximized-card {
   margin-right: -0.625rem;
 }
 
+.card-header > .card-tools .input-group,
 .card-header > .card-tools .nav,
 .card-header > .card-tools .pagination {
-  margin-bottom: -0.375rem;
-  margin-top: -0.375rem;
+  margin-bottom: -0.3rem;
+  margin-top: -0.3rem;
 }
 
 .card-header > .card-tools [data-toggle='tooltip'] {
@@ -18455,6 +18456,16 @@ html.maximized-card {
   border-color: #dee2e6 #dee2e6 #dee2e6 transparent;
 }
 
+.navbar-no-expand {
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.navbar-no-expand .nav-link {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .navbar-light {
   background-color: #f8f9fa;
 }
@@ -18642,10 +18653,10 @@ html.maximized-card {
   text-align: center;
 }
 
-.table .table-valign-middle thead > tr > th,
-.table .table-valign-middle thead > tr > td,
-.table .table-valign-middle tbody > tr > th,
-.table .table-valign-middle tbody > tr > td {
+.table.table-valign-middle thead > tr > th,
+.table.table-valign-middle thead > tr > td,
+.table.table-valign-middle tbody > tr > th,
+.table.table-valign-middle tbody > tr > td {
   vertical-align: middle;
 }
 
