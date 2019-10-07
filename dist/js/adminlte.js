@@ -747,11 +747,11 @@
       _proto.toggle = function toggle(event) {
         var $relativeTarget = $(event.currentTarget);
         var $parent = $relativeTarget.parent();
-        var treeviewMenu = $parent.find(Selector.TREEVIEW_MENU);
+        var treeviewMenu = $parent.find('> ' + Selector.TREEVIEW_MENU);
 
         if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
           if (!$parent.is(Selector.LI)) {
-            treeviewMenu = $parent.parent().find(Selector.TREEVIEW_MENU);
+            treeviewMenu = $parent.parent().find('> ' + Selector.TREEVIEW_MENU);
           }
 
           if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
