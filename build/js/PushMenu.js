@@ -22,7 +22,7 @@ const PushMenu = (($) => {
   }
 
   const Default = {
-    autoCollapseSize: false,
+    autoCollapseSize: 992,
     enableRemember: false,
     noTransitionAfterReload: true
   }

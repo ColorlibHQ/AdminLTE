@@ -465,7 +465,7 @@
       SHOWN: "shown" + EVENT_KEY
     };
     var Default = {
-      autoCollapseSize: false,
+      autoCollapseSize: 992,
       enableRemember: false,
       noTransitionAfterReload: true
     };
