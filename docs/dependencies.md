@@ -82,6 +82,7 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
       <li><a href="https://fullcalendar.io/">FullCalendar 4</a></li>
       <li><a href="https://github.com/aterrien/jQuery-Knob#readme">jQuery Knob</a></li>
       <li><a href="https://jqueryui.com/" target="_blank">jQuery UI</a></li>
+      <li><a href="https://jqueryvalidation.org/" target="_blank">jQuery Validation</a></li>
       <li><a href="https://www.vincentbroute.fr/mapael/" target="_blank">jQuery Mapael</a></li>
       <li><a href="https://github.com/bbmumford/jqvmap#readme" target="_blank">jQuery Vector Map</a></li>
       <li><a href="https://kingsora.github.io/OverlayScrollbars/" target="_blank">Overlay Scrollbars</a></li>
