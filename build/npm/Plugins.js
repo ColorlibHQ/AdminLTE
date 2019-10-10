@@ -384,6 +384,11 @@ const Plugins = [
     from: 'node_modules/bootstrap-switch/dist',
     to: 'plugins/bootstrap-switch/'
   },
+  // jQuery Validate
+  {
+    from: 'node_modules/jquery-validation/dist/',
+    to  : 'plugins/jquery-validation'
+  },
 ]
 
 module.exports = Plugins
