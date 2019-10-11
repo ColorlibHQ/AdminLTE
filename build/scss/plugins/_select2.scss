@@ -115,7 +115,7 @@
   & {
     .select2-selection--multiple {
       border: $input-border-width solid $input-border-color;
-      height: $input-height;
+      //height: $input-height;
 
       &:focus {
         border-color: $input-focus-border-color;
