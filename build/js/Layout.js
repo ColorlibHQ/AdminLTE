@@ -77,9 +77,11 @@ const Layout = (($) => {
 
       const max = this._max(heights)
 
-      $(Selector.CONTENT).css('min-height', max - heights.footer)
-      
+      $(Selector.CONTENT).css('min-height', max - heights.header)
+
       if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
+        $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer)
+
         if (typeof $.fn.overlayScrollbars !== 'undefined') {
           $(Selector.SIDEBAR).overlayScrollbars({
             className       : this._config.scrollbarTheme,
