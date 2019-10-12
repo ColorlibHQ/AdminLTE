@@ -115,7 +115,7 @@
   & {
     .select2-selection--multiple {
       border: $input-border-width solid $input-border-color;
-      height: $input-height;
+      min-height: $input-height;
 
       &:focus {
         border-color: $input-focus-border-color;
@@ -123,6 +123,7 @@
 
       .select2-selection__rendered {
         padding: 0 $input-padding-y;
+        margin-bottom: -$input-padding-x/2;
 
         li:first-child.select2-search.select2-search--inline {
           width: 100%;
