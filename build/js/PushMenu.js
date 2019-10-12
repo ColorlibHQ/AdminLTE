@@ -52,11 +52,6 @@ const PushMenu = (($) => {
       this._element = element
       this._options = $.extend({}, Default, options)
 
-
-      if (!$(Selector.BODY).hasClass(ClassName.COLLAPSED) && !$(Selector.BODY).hasClass(ClassName.OPEN)) {
-        $(Selector.BODY).addClass(ClassName.OPEN)
-      }
-
       if (!$(Selector.OVERLAY).length) {
         this._addOverlay()
       }
@@ -67,7 +62,13 @@ const PushMenu = (($) => {
     // Public
 
     show() {
-      $(Selector.BODY).addClass(ClassName.OPEN).removeClass(ClassName.COLLAPSED)
+      if (this._options.autoCollapseSize) {
+        if ($(window).width() <= this._options.autoCollapseSize) {
+          $(Selector.BODY).addClass(ClassName.OPEN)
+        }
+      }
+
+      $(Selector.BODY).removeClass(ClassName.COLLAPSED)
 
       if(this._options.enableRemember) {
           localStorage.setItem(`remember${EVENT_KEY}`, ClassName.OPEN)
@@ -78,7 +79,13 @@ const PushMenu = (($) => {
     }
 
     collapse() {
-      $(Selector.BODY).removeClass(ClassName.OPEN).addClass(ClassName.COLLAPSED)
+      if (this._options.autoCollapseSize) {
+        if ($(window).width() <= this._options.autoCollapseSize) {
+          $(Selector.BODY).removeClass(ClassName.OPEN)
+        }
+      }
+
+      $(Selector.BODY).addClass(ClassName.COLLAPSED)
 
       if(this._options.enableRemember) {
           localStorage.setItem(`remember${EVENT_KEY}`, ClassName.COLLAPSED)
@@ -89,7 +96,7 @@ const PushMenu = (($) => {
     }
 
     toggle() {
-      if ($(Selector.BODY).hasClass(ClassName.OPEN)) {
+      if (!$(Selector.BODY).hasClass(ClassName.COLLAPSED  )) {
         this.collapse()
       } else {
         this.show()
@@ -99,12 +106,14 @@ const PushMenu = (($) => {
     autoCollapse() {
       if (this._options.autoCollapseSize) {
         if ($(window).width() <= this._options.autoCollapseSize) {
-          if ($(Selector.BODY).hasClass(ClassName.OPEN)) {
-            this.toggle()
+          if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
+            this.collapse()
           }
         } else {
           if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
-            this.toggle()
+            this.show()
+          } else {
+            $(Selector.BODY).removeClass(ClassName.OPEN)
           }
         }
       }
