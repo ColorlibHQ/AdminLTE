@@ -1,26 +1,35 @@
 /*!
- * jQuery UI Effects 1.11.4
+ * jQuery UI Effects 1.12.1
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
- *
- * http://api.jqueryui.com/category/effects-core/
  */
-(function( factory ) {
+
+//>>label: Effects Core
+//>>group: Effects
+// jscs:disable maximumLineLength
+//>>description: Extends the internal jQuery effects. Includes morphing and easing. Required by all other effects.
+// jscs:enable maximumLineLength
+//>>docs: http://api.jqueryui.com/category/effects-core/
+//>>demos: http://jqueryui.com/effect/
+
+( function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
-		define( [ "jquery" ], factory );
+		define( [ "jquery", "./version" ], factory );
 	} else {
 
 		// Browser globals
 		factory( jQuery );
 	}
-}(function( $ ) {
+}( function( $ ) {
 
 var dataSpace = "ui-effects-",
+	dataSpaceStyle = "ui-effects-style",
+	dataSpaceAnimated = "ui-effects-animated",
 
 	// Create a local jQuery because jQuery Color relies on it and the
 	// global may not exist with AMD and a custom build (#10199)
@@ -40,13 +49,15 @@ $.effects = {
  *
  * Date: Wed Jan 16 08:47:09 2013 -0600
  */
-(function( jQuery, undefined ) {
+( function( jQuery, undefined ) {
 
-	var stepHooks = "backgroundColor borderBottomColor borderLeftColor borderRightColor borderTopColor color columnRuleColor outlineColor textDecorationColor textEmphasisColor",
+	var stepHooks = "backgroundColor borderBottomColor borderLeftColor borderRightColor " +
+		"borderTopColor color columnRuleColor outlineColor textDecorationColor textEmphasisColor",
 
-	// plusequals test for += 100 -= 100
+	// Plusequals test for += 100 -= 100
 	rplusequals = /^([\-+])=\s*(\d+\.?\d*)/,
-	// a set of RE's that can match strings and generate color tuples.
+
+	// A set of RE's that can match strings and generate color tuples.
 	stringParsers = [ {
 			re: /rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
 			parse: function( execResult ) {
@@ -68,7 +79,8 @@ $.effects = {
 				];
 			}
 		}, {
-			// this regex ignores A-F because it's compared against an already lowercased string
+
+			// This regex ignores A-F because it's compared against an already lowercased string
 			re: /#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})/,
 			parse: function( execResult ) {
 				return [
@@ -78,7 +90,8 @@ $.effects = {
 				];
 			}
 		}, {
-			// this regex ignores A-F because it's compared against an already lowercased string
+
+			// This regex ignores A-F because it's compared against an already lowercased string
 			re: /#([a-f0-9])([a-f0-9])([a-f0-9])/,
 			parse: function( execResult ) {
 				return [
@@ -100,7 +113,7 @@ $.effects = {
 			}
 		} ],
 
-	// jQuery.Color( )
+	// JQuery.Color( )
 	color = jQuery.Color = function( color, green, blue, alpha ) {
 		return new jQuery.Color.fn.parse( color, green, blue, alpha );
 	},
@@ -154,20 +167,20 @@ $.effects = {
 	},
 	support = color.support = {},
 
-	// element for support tests
+	// Element for support tests
 	supportElem = jQuery( "<p>" )[ 0 ],
 
-	// colors = jQuery.Color.names
+	// Colors = jQuery.Color.names
 	colors,
 
-	// local aliases of functions called often
+	// Local aliases of functions called often
 	each = jQuery.each;
 
-// determine rgba support immediately
+// Determine rgba support immediately
 supportElem.style.cssText = "background-color:rgba(1,1,1,.5)";
 support.rgba = supportElem.style.backgroundColor.indexOf( "rgba" ) > -1;
 
-// define cache name and alpha properties
+// Define cache name and alpha properties
 // for rgba and hsla spaces
 each( spaces, function( spaceName, space ) {
 	space.cache = "_" + spaceName;
@@ -176,13 +189,13 @@ each( spaces, function( spaceName, space ) {
 		type: "percent",
 		def: 1
 	};
-});
+} );
 
 function clamp( value, prop, allowEmpty ) {
 	var type = propTypes[ prop.type ] || {};
 
 	if ( value == null ) {
-		return (allowEmpty || !prop.def) ? null : prop.def;
+		return ( allowEmpty || !prop.def ) ? null : prop.def;
 	}
 
 	// ~~ is an short way of doing floor for positive numbers
@@ -195,12 +208,13 @@ function clamp( value, prop, allowEmpty ) {
 	}
 
 	if ( type.mod ) {
-		// we add mod before modding to make sure that negatives values
+
+		// We add mod before modding to make sure that negatives values
 		// get converted properly: -10 -> 350
-		return (value + type.mod) % type.mod;
+		return ( value + type.mod ) % type.mod;
 	}
 
-	// for now all property types without mod have min and max
+	// For now all property types without mod have min and max
 	return 0 > value ? 0 : type.max < value ? type.max : value;
 }
 
@@ -219,20 +233,20 @@ function stringParse( string ) {
 		if ( values ) {
 			parsed = inst[ spaceName ]( values );
 
-			// if this was an rgba parse the assignment might happen twice
+			// If this was an rgba parse the assignment might happen twice
 			// oh well....
 			inst[ spaces[ spaceName ].cache ] = parsed[ spaces[ spaceName ].cache ];
 			rgba = inst._rgba = parsed._rgba;
 
-			// exit each( stringParsers ) here because we matched
+			// Exit each( stringParsers ) here because we matched
 			return false;
 		}
-	});
+	} );
 
 	// Found a stringParser that handled it
 	if ( rgba.length ) {
 
-		// if this came from a parsed string, force "transparent" when alpha is 0
+		// If this came from a parsed string, force "transparent" when alpha is 0
 		// chrome, (and maybe others) return "transparent" as rgba(0,0,0,0)
 		if ( rgba.join() === "0,0,0,0" ) {
 			jQuery.extend( rgba, colors.transparent );
@@ -240,7 +254,7 @@ function stringParse( string ) {
 		return inst;
 	}
 
-	// named colors
+	// Named colors
 	return colors[ string ];
 }
 
@@ -259,7 +273,7 @@ color.fn = jQuery.extend( color.prototype, {
 			type = jQuery.type( red ),
 			rgba = this._rgba = [];
 
-		// more than 1 argument specified - assume ( red, green, blue, alpha )
+		// More than 1 argument specified - assume ( red, green, blue, alpha )
 		if ( green !== undefined ) {
 			red = [ red, green, blue, alpha ];
 			type = "array";
@@ -272,7 +286,7 @@ color.fn = jQuery.extend( color.prototype, {
 		if ( type === "array" ) {
 			each( spaces.rgba.props, function( key, prop ) {
 				rgba[ prop.idx ] = clamp( red[ prop.idx ], prop );
-			});
+			} );
 			return this;
 		}
 
@@ -282,16 +296,16 @@ color.fn = jQuery.extend( color.prototype, {
 					if ( red[ space.cache ] ) {
 						inst[ space.cache ] = red[ space.cache ].slice();
 					}
-				});
+				} );
 			} else {
 				each( spaces, function( spaceName, space ) {
 					var cache = space.cache;
 					each( space.props, function( key, prop ) {
 
-						// if the cache doesn't exist, and we know how to convert
+						// If the cache doesn't exist, and we know how to convert
 						if ( !inst[ cache ] && space.to ) {
 
-							// if the value was null, we don't need to copy it
+							// If the value was null, we don't need to copy it
 							// if the key was alpha, we don't need to copy it either
 							if ( key === "alpha" || red[ key ] == null ) {
 								return;
@@ -299,20 +313,22 @@ color.fn = jQuery.extend( color.prototype, {
 							inst[ cache ] = space.to( inst._rgba );
 						}
 
-						// this is the only case where we allow nulls for ALL properties.
+						// This is the only case where we allow nulls for ALL properties.
 						// call clamp with alwaysAllowEmpty
 						inst[ cache ][ prop.idx ] = clamp( red[ key ], prop, true );
-					});
+					} );
 
-					// everything defined but alpha?
-					if ( inst[ cache ] && jQuery.inArray( null, inst[ cache ].slice( 0, 3 ) ) < 0 ) {
-						// use the default of 1
+					// Everything defined but alpha?
+					if ( inst[ cache ] &&
+							jQuery.inArray( null, inst[ cache ].slice( 0, 3 ) ) < 0 ) {
+
+						// Use the default of 1
 						inst[ cache ][ 3 ] = 1;
 						if ( space.from ) {
 							inst._rgba = space.from( inst[ cache ] );
 						}
 					}
-				});
+				} );
 			}
 			return this;
 		}
@@ -325,17 +341,17 @@ color.fn = jQuery.extend( color.prototype, {
 		each( spaces, function( _, space ) {
 			var localCache,
 				isCache = is[ space.cache ];
-			if (isCache) {
+			if ( isCache ) {
 				localCache = inst[ space.cache ] || space.to && space.to( inst._rgba ) || [];
 				each( space.props, function( _, prop ) {
 					if ( isCache[ prop.idx ] != null ) {
 						same = ( isCache[ prop.idx ] === localCache[ prop.idx ] );
 						return same;
 					}
-				});
+				} );
 			}
 			return same;
-		});
+		} );
 		return same;
 	},
 	_space: function() {
@@ -345,7 +361,7 @@ color.fn = jQuery.extend( color.prototype, {
 			if ( inst[ space.cache ] ) {
 				used.push( spaceName );
 			}
-		});
+		} );
 		return used.pop();
 	},
 	transition: function( other, distance ) {
@@ -363,11 +379,12 @@ color.fn = jQuery.extend( color.prototype, {
 				endValue = end[ index ],
 				type = propTypes[ prop.type ] || {};
 
-			// if null, don't override start value
+			// If null, don't override start value
 			if ( endValue === null ) {
 				return;
 			}
-			// if null - use end
+
+			// If null - use end
 			if ( startValue === null ) {
 				result[ index ] = endValue;
 			} else {
@@ -380,11 +397,12 @@ color.fn = jQuery.extend( color.prototype, {
 				}
 				result[ index ] = clamp( ( endValue - startValue ) * distance + startValue, prop );
 			}
-		});
+		} );
 		return this[ spaceName ]( result );
 	},
 	blend: function( opaque ) {
-		// if we are already opaque - return ourself
+
+		// If we are already opaque - return ourself
 		if ( this._rgba[ 3 ] === 1 ) {
 			return this;
 		}
@@ -395,13 +413,13 @@ color.fn = jQuery.extend( color.prototype, {
 
 		return color( jQuery.map( rgb, function( v, i ) {
 			return ( 1 - a ) * blend[ i ] + a * v;
-		}));
+		} ) );
 	},
 	toRgbaString: function() {
 		var prefix = "rgba(",
 			rgba = jQuery.map( this._rgba, function( v, i ) {
 				return v == null ? ( i > 2 ? 1 : 0 ) : v;
-			});
+			} );
 
 		if ( rgba[ 3 ] === 1 ) {
 			rgba.pop();
@@ -417,12 +435,12 @@ color.fn = jQuery.extend( color.prototype, {
 					v = i > 2 ? 1 : 0;
 				}
 
-				// catch 1 and 2
+				// Catch 1 and 2
 				if ( i && i < 3 ) {
 					v = Math.round( v * 100 ) + "%";
 				}
 				return v;
-			});
+			} );
 
 		if ( hsla[ 3 ] === 1 ) {
 			hsla.pop();
@@ -440,18 +458,18 @@ color.fn = jQuery.extend( color.prototype, {
 
 		return "#" + jQuery.map( rgba, function( v ) {
 
-			// default to 0 when nulls exist
+			// Default to 0 when nulls exist
 			v = ( v || 0 ).toString( 16 );
 			return v.length === 1 ? "0" + v : v;
-		}).join("");
+		} ).join( "" );
 	},
 	toString: function() {
 		return this._rgba[ 3 ] === 0 ? "transparent" : this.toRgbaString();
 	}
-});
+} );
 color.fn.parse.prototype = color.fn;
 
-// hsla conversions adapted from:
+// Hsla conversions adapted from:
 // https://code.google.com/p/maashaack/source/browse/packages/graphics/trunk/src/graphics/colors/HUE2RGB.as?r=5021
 
 function hue2rgb( p, q, h ) {
@@ -459,7 +477,7 @@ function hue2rgb( p, q, h ) {
 	if ( h * 6 < 1 ) {
 		return p + ( q - p ) * h * 6;
 	}
-	if ( h * 2 < 1) {
+	if ( h * 2 < 1 ) {
 		return q;
 	}
 	if ( h * 3 < 2 ) {
@@ -493,7 +511,7 @@ spaces.hsla.to = function( rgba ) {
 		h = ( 60 * ( r - g ) / diff ) + 240;
 	}
 
-	// chroma (diff) == 0 means greyscale which, by definition, saturation = 0%
+	// Chroma (diff) == 0 means greyscale which, by definition, saturation = 0%
 	// otherwise, saturation is based on the ratio of chroma (diff) to lightness (add)
 	if ( diff === 0 ) {
 		s = 0;
@@ -502,7 +520,7 @@ spaces.hsla.to = function( rgba ) {
 	} else {
 		s = diff / ( 2 - add );
 	}
-	return [ Math.round(h) % 360, s, l, a == null ? 1 : a ];
+	return [ Math.round( h ) % 360, s, l, a == null ? 1 : a ];
 };
 
 spaces.hsla.from = function( hsla ) {
@@ -530,10 +548,10 @@ each( spaces, function( spaceName, space ) {
 		to = space.to,
 		from = space.from;
 
-	// makes rgba() and hsla()
+	// Makes rgba() and hsla()
 	color.fn[ spaceName ] = function( value ) {
 
-		// generate a cache for this space if it doesn't exist
+		// Generate a cache for this space if it doesn't exist
 		if ( to && !this[ cache ] ) {
 			this[ cache ] = to( this._rgba );
 		}
@@ -552,7 +570,7 @@ each( spaces, function( spaceName, space ) {
 				val = local[ prop.idx ];
 			}
 			local[ prop.idx ] = clamp( val, prop );
-		});
+		} );
 
 		if ( from ) {
 			ret = color( from( local ) );
@@ -563,9 +581,10 @@ each( spaces, function( spaceName, space ) {
 		}
 	};
 
-	// makes red() green() blue() alpha() hue() saturation() lightness()
+	// Makes red() green() blue() alpha() hue() saturation() lightness()
 	each( props, function( key, prop ) {
-		// alpha is included in more than one space
+
+		// Alpha is included in more than one space
 		if ( color.fn[ key ] ) {
 			return;
 		}
@@ -596,10 +615,10 @@ each( spaces, function( spaceName, space ) {
 			local[ prop.idx ] = value;
 			return this[ fn ]( local );
 		};
-	});
-});
+	} );
+} );
 
-// add cssHook and .fx.step function for each named hook.
+// Add cssHook and .fx.step function for each named hook.
 // accept a space separated string of properties
 color.hook = function( hook ) {
 	var hooks = hook.split( " " );
@@ -609,12 +628,13 @@ color.hook = function( hook ) {
 				var parsed, curElem,
 					backgroundColor = "";
 
-				if ( value !== "transparent" && ( jQuery.type( value ) !== "string" || ( parsed = stringParse( value ) ) ) ) {
+				if ( value !== "transparent" && ( jQuery.type( value ) !== "string" ||
+						( parsed = stringParse( value ) ) ) ) {
 					value = color( parsed || value );
 					if ( !support.rgba && value._rgba[ 3 ] !== 1 ) {
 						curElem = hook === "backgroundColor" ? elem.parentNode : elem;
 						while (
-							(backgroundColor === "" || backgroundColor === "transparent") &&
+							( backgroundColor === "" || backgroundColor === "transparent" ) &&
 							curElem && curElem.style
 						) {
 							try {
@@ -634,7 +654,9 @@ color.hook = function( hook ) {
 				try {
 					elem.style[ hook ] = value;
 				} catch ( e ) {
-					// wrapped to prevent IE from throwing errors on "invalid" values like 'auto' or 'inherit'
+
+					// Wrapped to prevent IE from throwing errors on "invalid" values like
+					// 'auto' or 'inherit'
 				}
 			}
 		};
@@ -646,7 +668,7 @@ color.hook = function( hook ) {
 			}
 			jQuery.cssHooks[ hook ].set( fx.elem, fx.start.transition( fx.end, fx.pos ) );
 		};
-	});
+	} );
 
 };
 
@@ -658,7 +680,7 @@ jQuery.cssHooks.borderColor = {
 
 		each( [ "Top", "Right", "Bottom", "Left" ], function( i, part ) {
 			expanded[ "border" + part + "Color" ] = value;
-		});
+		} );
 		return expanded;
 	}
 };
@@ -667,6 +689,7 @@ jQuery.cssHooks.borderColor = {
 // Usage of any of the other color names requires adding yourself or including
 // jquery.color.svg-names.js.
 colors = jQuery.Color.names = {
+
 	// 4.1. Basic color keywords
 	aqua: "#00ffff",
 	black: "#000000",
@@ -691,12 +714,12 @@ colors = jQuery.Color.names = {
 	_default: "#ffffff"
 };
 
-})( jQuery );
+} )( jQuery );
 
 /******************************************************************************/
 /****************************** CLASS ANIMATIONS ******************************/
 /******************************************************************************/
-(function() {
+( function() {
 
 var classAnimationActions = [ "add", "remove", "toggle" ],
 	shorthandStyles = {
@@ -711,14 +734,17 @@ var classAnimationActions = [ "add", "remove", "toggle" ],
 		padding: 1
 	};
 
-$.each([ "borderLeftStyle", "borderRightStyle", "borderBottomStyle", "borderTopStyle" ], function( _, prop ) {
-	$.fx.step[ prop ] = function( fx ) {
-		if ( fx.end !== "none" && !fx.setAttr || fx.pos === 1 && !fx.setAttr ) {
-			jQuery.style( fx.elem, prop, fx.end );
-			fx.setAttr = true;
-		}
-	};
-});
+$.each(
+	[ "borderLeftStyle", "borderRightStyle", "borderBottomStyle", "borderTopStyle" ],
+	function( _, prop ) {
+		$.fx.step[ prop ] = function( fx ) {
+			if ( fx.end !== "none" && !fx.setAttr || fx.pos === 1 && !fx.setAttr ) {
+				jQuery.style( fx.elem, prop, fx.end );
+				fx.setAttr = true;
+			}
+		};
+	}
+);
 
 function getElementStyles( elem ) {
 	var key, len,
@@ -735,7 +761,8 @@ function getElementStyles( elem ) {
 				styles[ $.camelCase( key ) ] = style[ key ];
 			}
 		}
-	// support: Opera, IE <9
+
+	// Support: Opera, IE <9
 	} else {
 		for ( key in style ) {
 			if ( typeof style[ key ] === "string" ) {
@@ -765,7 +792,7 @@ function styleDifference( oldStyle, newStyle ) {
 	return diff;
 }
 
-// support: jQuery <1.8
+// Support: jQuery <1.8
 if ( !$.fn.addBack ) {
 	$.fn.addBack = function( selector ) {
 		return this.add( selector == null ?
@@ -783,275 +810,448 @@ $.effects.animateClass = function( value, duration, easing, callback ) {
 			applyClassChange,
 			allAnimations = o.children ? animated.find( "*" ).addBack() : animated;
 
-		// map the animated objects to store the original styles.
-		allAnimations = allAnimations.map(function() {
+		// Map the animated objects to store the original styles.
+		allAnimations = allAnimations.map( function() {
 			var el = $( this );
 			return {
 				el: el,
 				start: getElementStyles( this )
 			};
-		});
+		} );
 
-		// apply class change
+		// Apply class change
 		applyClassChange = function() {
-			$.each( classAnimationActions, function(i, action) {
+			$.each( classAnimationActions, function( i, action ) {
 				if ( value[ action ] ) {
 					animated[ action + "Class" ]( value[ action ] );
 				}
-			});
+			} );
 		};
 		applyClassChange();
 
-		// map all animated objects again - calculate new styles and diff
-		allAnimations = allAnimations.map(function() {
+		// Map all animated objects again - calculate new styles and diff
+		allAnimations = allAnimations.map( function() {
 			this.end = getElementStyles( this.el[ 0 ] );
 			this.diff = styleDifference( this.start, this.end );
 			return this;
-		});
+		} );
 
-		// apply original class
+		// Apply original class
 		animated.attr( "class", baseClass );
 
-		// map all animated objects again - this time collecting a promise
-		allAnimations = allAnimations.map(function() {
+		// Map all animated objects again - this time collecting a promise
+		allAnimations = allAnimations.map( function() {
 			var styleInfo = this,
 				dfd = $.Deferred(),
-				opts = $.extend({}, o, {
+				opts = $.extend( {}, o, {
 					queue: false,
 					complete: function() {
 						dfd.resolve( styleInfo );
 					}
-				});
+				} );
 
 			this.el.animate( this.diff, opts );
 			return dfd.promise();
-		});
+		} );
 
-		// once all animations have completed:
-		$.when.apply( $, allAnimations.get() ).done(function() {
+		// Once all animations have completed:
+		$.when.apply( $, allAnimations.get() ).done( function() {
 
-			// set the final class
+			// Set the final class
 			applyClassChange();
 
-			// for each animated element,
+			// For each animated element,
 			// clear all css properties that were animated
 			$.each( arguments, function() {
 				var el = this.el;
-				$.each( this.diff, function(key) {
+				$.each( this.diff, function( key ) {
 					el.css( key, "" );
-				});
-			});
+				} );
+			} );
 
-			// this is guarnteed to be there if you use jQuery.speed()
+			// This is guarnteed to be there if you use jQuery.speed()
 			// it also handles dequeuing the next anim...
 			o.complete.call( animated[ 0 ] );
-		});
-	});
+		} );
+	} );
 };
 
-$.fn.extend({
-	addClass: (function( orig ) {
+$.fn.extend( {
+	addClass: ( function( orig ) {
 		return function( classNames, speed, easing, callback ) {
 			return speed ?
 				$.effects.animateClass.call( this,
 					{ add: classNames }, speed, easing, callback ) :
 				orig.apply( this, arguments );
 		};
-	})( $.fn.addClass ),
+	} )( $.fn.addClass ),
 
-	removeClass: (function( orig ) {
+	removeClass: ( function( orig ) {
 		return function( classNames, speed, easing, callback ) {
 			return arguments.length > 1 ?
 				$.effects.animateClass.call( this,
 					{ remove: classNames }, speed, easing, callback ) :
 				orig.apply( this, arguments );
 		};
-	})( $.fn.removeClass ),
+	} )( $.fn.removeClass ),
 
-	toggleClass: (function( orig ) {
+	toggleClass: ( function( orig ) {
 		return function( classNames, force, speed, easing, callback ) {
 			if ( typeof force === "boolean" || force === undefined ) {
 				if ( !speed ) {
-					// without speed parameter
+
+					// Without speed parameter
 					return orig.apply( this, arguments );
 				} else {
 					return $.effects.animateClass.call( this,
-						(force ? { add: classNames } : { remove: classNames }),
+						( force ? { add: classNames } : { remove: classNames } ),
 						speed, easing, callback );
 				}
 			} else {
-				// without force parameter
+
+				// Without force parameter
 				return $.effects.animateClass.call( this,
 					{ toggle: classNames }, force, speed, easing );
 			}
 		};
-	})( $.fn.toggleClass ),
+	} )( $.fn.toggleClass ),
 
-	switchClass: function( remove, add, speed, easing, callback) {
+	switchClass: function( remove, add, speed, easing, callback ) {
 		return $.effects.animateClass.call( this, {
 			add: add,
 			remove: remove
 		}, speed, easing, callback );
 	}
-});
+} );
 
-})();
+} )();
 
 /******************************************************************************/
 /*********************************** EFFECTS **********************************/
 /******************************************************************************/
 
-(function() {
+( function() {
+
+if ( $.expr && $.expr.filters && $.expr.filters.animated ) {
+	$.expr.filters.animated = ( function( orig ) {
+		return function( elem ) {
+			return !!$( elem ).data( dataSpaceAnimated ) || orig( elem );
+		};
+	} )( $.expr.filters.animated );
+}
+
+if ( $.uiBackCompat !== false ) {
+	$.extend( $.effects, {
+
+		// Saves a set of properties in a data storage
+		save: function( element, set ) {
+			var i = 0, length = set.length;
+			for ( ; i < length; i++ ) {
+				if ( set[ i ] !== null ) {
+					element.data( dataSpace + set[ i ], element[ 0 ].style[ set[ i ] ] );
+				}
+			}
+		},
+
+		// Restores a set of previously saved properties from a data storage
+		restore: function( element, set ) {
+			var val, i = 0, length = set.length;
+			for ( ; i < length; i++ ) {
+				if ( set[ i ] !== null ) {
+					val = element.data( dataSpace + set[ i ] );
+					element.css( set[ i ], val );
+				}
+			}
+		},
+
+		setMode: function( el, mode ) {
+			if ( mode === "toggle" ) {
+				mode = el.is( ":hidden" ) ? "show" : "hide";
+			}
+			return mode;
+		},
+
+		// Wraps the element around a wrapper that copies position properties
+		createWrapper: function( element ) {
+
+			// If the element is already wrapped, return it
+			if ( element.parent().is( ".ui-effects-wrapper" ) ) {
+				return element.parent();
+			}
+
+			// Wrap the element
+			var props = {
+					width: element.outerWidth( true ),
+					height: element.outerHeight( true ),
+					"float": element.css( "float" )
+				},
+				wrapper = $( "<div></div>" )
+					.addClass( "ui-effects-wrapper" )
+					.css( {
+						fontSize: "100%",
+						background: "transparent",
+						border: "none",
+						margin: 0,
+						padding: 0
+					} ),
+
+				// Store the size in case width/height are defined in % - Fixes #5245
+				size = {
+					width: element.width(),
+					height: element.height()
+				},
+				active = document.activeElement;
+
+			// Support: Firefox
+			// Firefox incorrectly exposes anonymous content
+			// https://bugzilla.mozilla.org/show_bug.cgi?id=561664
+			try {
+				active.id;
+			} catch ( e ) {
+				active = document.body;
+			}
+
+			element.wrap( wrapper );
+
+			// Fixes #7595 - Elements lose focus when wrapped.
+			if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
+				$( active ).trigger( "focus" );
+			}
+
+			// Hotfix for jQuery 1.4 since some change in wrap() seems to actually
+			// lose the reference to the wrapped element
+			wrapper = element.parent();
+
+			// Transfer positioning properties to the wrapper
+			if ( element.css( "position" ) === "static" ) {
+				wrapper.css( { position: "relative" } );
+				element.css( { position: "relative" } );
+			} else {
+				$.extend( props, {
+					position: element.css( "position" ),
+					zIndex: element.css( "z-index" )
+				} );
+				$.each( [ "top", "left", "bottom", "right" ], function( i, pos ) {
+					props[ pos ] = element.css( pos );
+					if ( isNaN( parseInt( props[ pos ], 10 ) ) ) {
+						props[ pos ] = "auto";
+					}
+				} );
+				element.css( {
+					position: "relative",
+					top: 0,
+					left: 0,
+					right: "auto",
+					bottom: "auto"
+				} );
+			}
+			element.css( size );
+
+			return wrapper.css( props ).show();
+		},
+
+		removeWrapper: function( element ) {
+			var active = document.activeElement;
+
+			if ( element.parent().is( ".ui-effects-wrapper" ) ) {
+				element.parent().replaceWith( element );
+
+				// Fixes #7595 - Elements lose focus when wrapped.
+				if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
+					$( active ).trigger( "focus" );
+				}
+			}
+
+			return element;
+		}
+	} );
+}
 
 $.extend( $.effects, {
-	version: "1.11.4",
+	version: "1.12.1",
 
-	// Saves a set of properties in a data storage
-	save: function( element, set ) {
-		for ( var i = 0; i < set.length; i++ ) {
-			if ( set[ i ] !== null ) {
-				element.data( dataSpace + set[ i ], element[ 0 ].style[ set[ i ] ] );
-			}
+	define: function( name, mode, effect ) {
+		if ( !effect ) {
+			effect = mode;
+			mode = "effect";
 		}
+
+		$.effects.effect[ name ] = effect;
+		$.effects.effect[ name ].mode = mode;
+
+		return effect;
 	},
 
-	// Restores a set of previously saved properties from a data storage
-	restore: function( element, set ) {
-		var val, i;
-		for ( i = 0; i < set.length; i++ ) {
-			if ( set[ i ] !== null ) {
-				val = element.data( dataSpace + set[ i ] );
-				// support: jQuery 1.6.2
-				// http://bugs.jquery.com/ticket/9917
-				// jQuery 1.6.2 incorrectly returns undefined for any falsy value.
-				// We can't differentiate between "" and 0 here, so we just assume
-				// empty string since it's likely to be a more common value...
-				if ( val === undefined ) {
-					val = "";
-				}
-				element.css( set[ i ], val );
-			}
+	scaledDimensions: function( element, percent, direction ) {
+		if ( percent === 0 ) {
+			return {
+				height: 0,
+				width: 0,
+				outerHeight: 0,
+				outerWidth: 0
+			};
 		}
+
+		var x = direction !== "horizontal" ? ( ( percent || 100 ) / 100 ) : 1,
+			y = direction !== "vertical" ? ( ( percent || 100 ) / 100 ) : 1;
+
+		return {
+			height: element.height() * y,
+			width: element.width() * x,
+			outerHeight: element.outerHeight() * y,
+			outerWidth: element.outerWidth() * x
+		};
+
 	},
 
-	setMode: function( el, mode ) {
-		if (mode === "toggle") {
-			mode = el.is( ":hidden" ) ? "show" : "hide";
+	clipToBox: function( animation ) {
+		return {
+			width: animation.clip.right - animation.clip.left,
+			height: animation.clip.bottom - animation.clip.top,
+			left: animation.clip.left,
+			top: animation.clip.top
+		};
+	},
+
+	// Injects recently queued functions to be first in line (after "inprogress")
+	unshift: function( element, queueLength, count ) {
+		var queue = element.queue();
+
+		if ( queueLength > 1 ) {
+			queue.splice.apply( queue,
+				[ 1, 0 ].concat( queue.splice( queueLength, count ) ) );
+		}
+		element.dequeue();
+	},
+
+	saveStyle: function( element ) {
+		element.data( dataSpaceStyle, element[ 0 ].style.cssText );
+	},
+
+	restoreStyle: function( element ) {
+		element[ 0 ].style.cssText = element.data( dataSpaceStyle ) || "";
+		element.removeData( dataSpaceStyle );
+	},
+
+	mode: function( element, mode ) {
+		var hidden = element.is( ":hidden" );
+
+		if ( mode === "toggle" ) {
+			mode = hidden ? "show" : "hide";
+		}
+		if ( hidden ? mode === "hide" : mode === "show" ) {
+			mode = "none";
 		}
 		return mode;
 	},
 
 	// Translates a [top,left] array into a baseline value
-	// this should be a little more flexible in the future to handle a string & hash
 	getBaseline: function( origin, original ) {
 		var y, x;
+
 		switch ( origin[ 0 ] ) {
-			case "top": y = 0; break;
-			case "middle": y = 0.5; break;
-			case "bottom": y = 1; break;
-			default: y = origin[ 0 ] / original.height;
+		case "top":
+			y = 0;
+			break;
+		case "middle":
+			y = 0.5;
+			break;
+		case "bottom":
+			y = 1;
+			break;
+		default:
+			y = origin[ 0 ] / original.height;
 		}
+
 		switch ( origin[ 1 ] ) {
-			case "left": x = 0; break;
-			case "center": x = 0.5; break;
-			case "right": x = 1; break;
-			default: x = origin[ 1 ] / original.width;
+		case "left":
+			x = 0;
+			break;
+		case "center":
+			x = 0.5;
+			break;
+		case "right":
+			x = 1;
+			break;
+		default:
+			x = origin[ 1 ] / original.width;
 		}
+
 		return {
 			x: x,
 			y: y
 		};
 	},
 
-	// Wraps the element around a wrapper that copies position properties
-	createWrapper: function( element ) {
+	// Creates a placeholder element so that the original element can be made absolute
+	createPlaceholder: function( element ) {
+		var placeholder,
+			cssPosition = element.css( "position" ),
+			position = element.position();
 
-		// if the element is already wrapped, return it
-		if ( element.parent().is( ".ui-effects-wrapper" )) {
-			return element.parent();
-		}
+		// Lock in margins first to account for form elements, which
+		// will change margin if you explicitly set height
+		// see: http://jsfiddle.net/JZSMt/3/ https://bugs.webkit.org/show_bug.cgi?id=107380
+		// Support: Safari
+		element.css( {
+			marginTop: element.css( "marginTop" ),
+			marginBottom: element.css( "marginBottom" ),
+			marginLeft: element.css( "marginLeft" ),
+			marginRight: element.css( "marginRight" )
+		} )
+		.outerWidth( element.outerWidth() )
+		.outerHeight( element.outerHeight() );
 
-		// wrap the element
-		var props = {
-				width: element.outerWidth(true),
-				height: element.outerHeight(true),
+		if ( /^(static|relative)/.test( cssPosition ) ) {
+			cssPosition = "absolute";
+
+			placeholder = $( "<" + element[ 0 ].nodeName + ">" ).insertAfter( element ).css( {
+
+				// Convert inline to inline block to account for inline elements
+				// that turn to inline block based on content (like img)
+				display: /^(inline|ruby)/.test( element.css( "display" ) ) ?
+					"inline-block" :
+					"block",
+				visibility: "hidden",
+
+				// Margins need to be set to account for margin collapse
+				marginTop: element.css( "marginTop" ),
+				marginBottom: element.css( "marginBottom" ),
+				marginLeft: element.css( "marginLeft" ),
+				marginRight: element.css( "marginRight" ),
 				"float": element.css( "float" )
-			},
-			wrapper = $( "<div></div>" )
-				.addClass( "ui-effects-wrapper" )
-				.css({
-					fontSize: "100%",
-					background: "transparent",
-					border: "none",
-					margin: 0,
-					padding: 0
-				}),
-			// Store the size in case width/height are defined in % - Fixes #5245
-			size = {
-				width: element.width(),
-				height: element.height()
-			},
-			active = document.activeElement;
+			} )
+			.outerWidth( element.outerWidth() )
+			.outerHeight( element.outerHeight() )
+			.addClass( "ui-effects-placeholder" );
 
-		// support: Firefox
-		// Firefox incorrectly exposes anonymous content
-		// https://bugzilla.mozilla.org/show_bug.cgi?id=561664
-		try {
-			active.id;
-		} catch ( e ) {
-			active = document.body;
+			element.data( dataSpace + "placeholder", placeholder );
 		}
 
-		element.wrap( wrapper );
+		element.css( {
+			position: cssPosition,
+			left: position.left,
+			top: position.top
+		} );
 
-		// Fixes #7595 - Elements lose focus when wrapped.
-		if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
-			$( active ).focus();
-		}
-
-		wrapper = element.parent(); //Hotfix for jQuery 1.4 since some change in wrap() seems to actually lose the reference to the wrapped element
-
-		// transfer positioning properties to the wrapper
-		if ( element.css( "position" ) === "static" ) {
-			wrapper.css({ position: "relative" });
-			element.css({ position: "relative" });
-		} else {
-			$.extend( props, {
-				position: element.css( "position" ),
-				zIndex: element.css( "z-index" )
-			});
-			$.each([ "top", "left", "bottom", "right" ], function(i, pos) {
-				props[ pos ] = element.css( pos );
-				if ( isNaN( parseInt( props[ pos ], 10 ) ) ) {
-					props[ pos ] = "auto";
-				}
-			});
-			element.css({
-				position: "relative",
-				top: 0,
-				left: 0,
-				right: "auto",
-				bottom: "auto"
-			});
-		}
-		element.css(size);
-
-		return wrapper.css( props ).show();
+		return placeholder;
 	},
 
-	removeWrapper: function( element ) {
-		var active = document.activeElement;
+	removePlaceholder: function( element ) {
+		var dataKey = dataSpace + "placeholder",
+				placeholder = element.data( dataKey );
 
-		if ( element.parent().is( ".ui-effects-wrapper" ) ) {
-			element.parent().replaceWith( element );
-
-			// Fixes #7595 - Elements lose focus when wrapped.
-			if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
-				$( active ).focus();
-			}
+		if ( placeholder ) {
+			placeholder.remove();
+			element.removeData( dataKey );
 		}
+	},
 
-		return element;
+	// Removes a placeholder if it exists and restores
+	// properties that were modified during placeholder creation
+	cleanUp: function( element ) {
+		$.effects.restoreStyle( element );
+		$.effects.removePlaceholder( element );
 	},
 
 	setTransition: function( element, list, factor, value ) {
@@ -1061,49 +1261,49 @@ $.extend( $.effects, {
 			if ( unit[ 0 ] > 0 ) {
 				value[ x ] = unit[ 0 ] * factor + unit[ 1 ];
 			}
-		});
+		} );
 		return value;
 	}
-});
+} );
 
-// return an effect options object for the given parameters:
+// Return an effect options object for the given parameters:
 function _normalizeArguments( effect, options, speed, callback ) {
 
-	// allow passing all options as the first parameter
+	// Allow passing all options as the first parameter
 	if ( $.isPlainObject( effect ) ) {
 		options = effect;
 		effect = effect.effect;
 	}
 
-	// convert to an object
+	// Convert to an object
 	effect = { effect: effect };
 
-	// catch (effect, null, ...)
+	// Catch (effect, null, ...)
 	if ( options == null ) {
 		options = {};
 	}
 
-	// catch (effect, callback)
+	// Catch (effect, callback)
 	if ( $.isFunction( options ) ) {
 		callback = options;
 		speed = null;
 		options = {};
 	}
 
-	// catch (effect, speed, ?)
+	// Catch (effect, speed, ?)
 	if ( typeof options === "number" || $.fx.speeds[ options ] ) {
 		callback = speed;
 		speed = options;
 		options = {};
 	}
 
-	// catch (effect, options, callback)
+	// Catch (effect, options, callback)
 	if ( $.isFunction( speed ) ) {
 		callback = speed;
 		speed = null;
 	}
 
-	// add options to effect
+	// Add options to effect
 	if ( options ) {
 		$.extend( effect, options );
 	}
@@ -1120,6 +1320,7 @@ function _normalizeArguments( effect, options, speed, callback ) {
 }
 
 function standardAnimationOption( option ) {
+
 	// Valid standard speeds (nothing, number, named speed)
 	if ( !option || typeof option === "number" || $.fx.speeds[ option ] ) {
 		return true;
@@ -1144,54 +1345,116 @@ function standardAnimationOption( option ) {
 	return false;
 }
 
-$.fn.extend({
+$.fn.extend( {
 	effect: function( /* effect, options, speed, callback */ ) {
 		var args = _normalizeArguments.apply( this, arguments ),
-			mode = args.mode,
+			effectMethod = $.effects.effect[ args.effect ],
+			defaultMode = effectMethod.mode,
 			queue = args.queue,
-			effectMethod = $.effects.effect[ args.effect ];
+			queueName = queue || "fx",
+			complete = args.complete,
+			mode = args.mode,
+			modes = [],
+			prefilter = function( next ) {
+				var el = $( this ),
+					normalizedMode = $.effects.mode( el, mode ) || defaultMode;
+
+				// Sentinel for duck-punching the :animated psuedo-selector
+				el.data( dataSpaceAnimated, true );
+
+				// Save effect mode for later use,
+				// we can't just call $.effects.mode again later,
+				// as the .show() below destroys the initial state
+				modes.push( normalizedMode );
+
+				// See $.uiBackCompat inside of run() for removal of defaultMode in 1.13
+				if ( defaultMode && ( normalizedMode === "show" ||
+						( normalizedMode === defaultMode && normalizedMode === "hide" ) ) ) {
+					el.show();
+				}
+
+				if ( !defaultMode || normalizedMode !== "none" ) {
+					$.effects.saveStyle( el );
+				}
+
+				if ( $.isFunction( next ) ) {
+					next();
+				}
+			};
 
 		if ( $.fx.off || !effectMethod ) {
-			// delegate to the original method (e.g., .show()) if possible
+
+			// Delegate to the original method (e.g., .show()) if possible
 			if ( mode ) {
-				return this[ mode ]( args.duration, args.complete );
+				return this[ mode ]( args.duration, complete );
 			} else {
 				return this.each( function() {
-					if ( args.complete ) {
-						args.complete.call( this );
+					if ( complete ) {
+						complete.call( this );
 					}
-				});
+				} );
 			}
 		}
 
 		function run( next ) {
-			var elem = $( this ),
-				complete = args.complete,
-				mode = args.mode;
+			var elem = $( this );
+
+			function cleanup() {
+				elem.removeData( dataSpaceAnimated );
+
+				$.effects.cleanUp( elem );
+
+				if ( args.mode === "hide" ) {
+					elem.hide();
+				}
+
+				done();
+			}
 
 			function done() {
 				if ( $.isFunction( complete ) ) {
-					complete.call( elem[0] );
+					complete.call( elem[ 0 ] );
 				}
+
 				if ( $.isFunction( next ) ) {
 					next();
 				}
 			}
 
-			// If the element already has the correct final state, delegate to
-			// the core methods so the internal tracking of "olddisplay" works.
-			if ( elem.is( ":hidden" ) ? mode === "hide" : mode === "show" ) {
-				elem[ mode ]();
-				done();
+			// Override mode option on a per element basis,
+			// as toggle can be either show or hide depending on element state
+			args.mode = modes.shift();
+
+			if ( $.uiBackCompat !== false && !defaultMode ) {
+				if ( elem.is( ":hidden" ) ? mode === "hide" : mode === "show" ) {
+
+					// Call the core method to track "olddisplay" properly
+					elem[ mode ]();
+					done();
+				} else {
+					effectMethod.call( elem[ 0 ], args, done );
+				}
 			} else {
-				effectMethod.call( elem[0], args, done );
+				if ( args.mode === "none" ) {
+
+					// Call the core method to track "olddisplay" properly
+					elem[ mode ]();
+					done();
+				} else {
+					effectMethod.call( elem[ 0 ], args, cleanup );
+				}
 			}
 		}
 
-		return queue === false ? this.each( run ) : this.queue( queue || "fx", run );
+		// Run prefilter on all elements first to ensure that
+		// any showing or hiding happens before placeholder creation,
+		// which ensures that any layout changes are correctly captured.
+		return queue === false ?
+			this.each( prefilter ).each( run ) :
+			this.queue( queueName, prefilter ).queue( queueName, run );
 	},
 
-	show: (function( orig ) {
+	show: ( function( orig ) {
 		return function( option ) {
 			if ( standardAnimationOption( option ) ) {
 				return orig.apply( this, arguments );
@@ -1201,9 +1464,9 @@ $.fn.extend({
 				return this.effect.call( this, args );
 			}
 		};
-	})( $.fn.show ),
+	} )( $.fn.show ),
 
-	hide: (function( orig ) {
+	hide: ( function( orig ) {
 		return function( option ) {
 			if ( standardAnimationOption( option ) ) {
 				return orig.apply( this, arguments );
@@ -1213,9 +1476,9 @@ $.fn.extend({
 				return this.effect.call( this, args );
 			}
 		};
-	})( $.fn.hide ),
+	} )( $.fn.hide ),
 
-	toggle: (function( orig ) {
+	toggle: ( function( orig ) {
 		return function( option ) {
 			if ( standardAnimationOption( option ) || typeof option === "boolean" ) {
 				return orig.apply( this, arguments );
@@ -1225,10 +1488,9 @@ $.fn.extend({
 				return this.effect.call( this, args );
 			}
 		};
-	})( $.fn.toggle ),
+	} )( $.fn.toggle ),
 
-	// helper functions
-	cssUnit: function(key) {
+	cssUnit: function( key ) {
 		var style = this.css( key ),
 			val = [];
 
@@ -1236,20 +1498,92 @@ $.fn.extend({
 			if ( style.indexOf( unit ) > 0 ) {
 				val = [ parseFloat( style ), unit ];
 			}
-		});
+		} );
 		return val;
-	}
-});
+	},
 
-})();
+	cssClip: function( clipObj ) {
+		if ( clipObj ) {
+			return this.css( "clip", "rect(" + clipObj.top + "px " + clipObj.right + "px " +
+				clipObj.bottom + "px " + clipObj.left + "px)" );
+		}
+		return parseClip( this.css( "clip" ), this );
+	},
+
+	transfer: function( options, done ) {
+		var element = $( this ),
+			target = $( options.to ),
+			targetFixed = target.css( "position" ) === "fixed",
+			body = $( "body" ),
+			fixTop = targetFixed ? body.scrollTop() : 0,
+			fixLeft = targetFixed ? body.scrollLeft() : 0,
+			endPosition = target.offset(),
+			animation = {
+				top: endPosition.top - fixTop,
+				left: endPosition.left - fixLeft,
+				height: target.innerHeight(),
+				width: target.innerWidth()
+			},
+			startPosition = element.offset(),
+			transfer = $( "<div class='ui-effects-transfer'></div>" )
+				.appendTo( "body" )
+				.addClass( options.className )
+				.css( {
+					top: startPosition.top - fixTop,
+					left: startPosition.left - fixLeft,
+					height: element.innerHeight(),
+					width: element.innerWidth(),
+					position: targetFixed ? "fixed" : "absolute"
+				} )
+				.animate( animation, options.duration, options.easing, function() {
+					transfer.remove();
+					if ( $.isFunction( done ) ) {
+						done();
+					}
+				} );
+	}
+} );
+
+function parseClip( str, element ) {
+		var outerWidth = element.outerWidth(),
+			outerHeight = element.outerHeight(),
+			clipRegex = /^rect\((-?\d*\.?\d*px|-?\d+%|auto),?\s*(-?\d*\.?\d*px|-?\d+%|auto),?\s*(-?\d*\.?\d*px|-?\d+%|auto),?\s*(-?\d*\.?\d*px|-?\d+%|auto)\)$/,
+			values = clipRegex.exec( str ) || [ "", 0, outerWidth, outerHeight, 0 ];
+
+		return {
+			top: parseFloat( values[ 1 ] ) || 0,
+			right: values[ 2 ] === "auto" ? outerWidth : parseFloat( values[ 2 ] ),
+			bottom: values[ 3 ] === "auto" ? outerHeight : parseFloat( values[ 3 ] ),
+			left: parseFloat( values[ 4 ] ) || 0
+		};
+}
+
+$.fx.step.clip = function( fx ) {
+	if ( !fx.clipInit ) {
+		fx.start = $( fx.elem ).cssClip();
+		if ( typeof fx.end === "string" ) {
+			fx.end = parseClip( fx.end, fx.elem );
+		}
+		fx.clipInit = true;
+	}
+
+	$( fx.elem ).cssClip( {
+		top: fx.pos * ( fx.end.top - fx.start.top ) + fx.start.top,
+		right: fx.pos * ( fx.end.right - fx.start.right ) + fx.start.right,
+		bottom: fx.pos * ( fx.end.bottom - fx.start.bottom ) + fx.start.bottom,
+		left: fx.pos * ( fx.end.left - fx.start.left ) + fx.start.left
+	} );
+};
+
+} )();
 
 /******************************************************************************/
 /*********************************** EASING ***********************************/
 /******************************************************************************/
 
-(function() {
+( function() {
 
-// based on easing equations from Robert Penner (http://www.robertpenner.com/easing)
+// Based on easing equations from Robert Penner (http://www.robertpenner.com/easing)
 
 var baseEasings = {};
 
@@ -1257,7 +1591,7 @@ $.each( [ "Quad", "Cubic", "Quart", "Quint", "Expo" ], function( i, name ) {
 	baseEasings[ name ] = function( p ) {
 		return Math.pow( p, i + 2 );
 	};
-});
+} );
 
 $.extend( baseEasings, {
 	Sine: function( p ) {
@@ -1268,7 +1602,7 @@ $.extend( baseEasings, {
 	},
 	Elastic: function( p ) {
 		return p === 0 || p === 1 ? p :
-			-Math.pow( 2, 8 * (p - 1) ) * Math.sin( ( (p - 1) * 80 - 7.5 ) * Math.PI / 15 );
+			-Math.pow( 2, 8 * ( p - 1 ) ) * Math.sin( ( ( p - 1 ) * 80 - 7.5 ) * Math.PI / 15 );
 	},
 	Back: function( p ) {
 		return p * p * ( 3 * p - 2 );
@@ -1280,7 +1614,7 @@ $.extend( baseEasings, {
 		while ( p < ( ( pow2 = Math.pow( 2, --bounce ) ) - 1 ) / 11 ) {}
 		return 1 / Math.pow( 4, 3 - bounce ) - 7.5625 * Math.pow( ( pow2 * 3 - 2 ) / 22 - p, 2 );
 	}
-});
+} );
 
 $.each( baseEasings, function( name, easeIn ) {
 	$.easing[ "easeIn" + name ] = easeIn;
@@ -1292,10 +1626,10 @@ $.each( baseEasings, function( name, easeIn ) {
 			easeIn( p * 2 ) / 2 :
 			1 - easeIn( p * -2 + 2 ) / 2;
 	};
-});
+} );
 
-})();
+} )();
 
 return $.effects;
 
-}));
+} ) );

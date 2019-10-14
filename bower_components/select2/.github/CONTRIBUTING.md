@@ -18,7 +18,7 @@ In general, the Github issue tracker should **only** be used for **bug reports**
 2. If you are not conversationally proficient in English, **do not just post a machine translation** (e.g. Google Translate). Post in your native language, so that others who speak your language can help. You may post a machine translation below it for the general community to decipher.
 3. Any code snippets should be formatted using [Markdown code fences](https://learn.userfrosting.com/troubleshooting/getting-help#use-markdown-to-format-blocks-of-code) and properly indented. Poorly formatted code is difficult to read and reflects badly on you as a programmer.
 4. Check what you write for spelling and grammar issues. If you want others to take the time to read your question carefully, you must write your question carefully.
-5. When possible create and link to a [minimal, complete, and verifiable](https://stackoverflow.com/help/mcve) example by cloning our [JSBin template](http://jsbin.com/goqiqolete/edit?html,js,output). Code dumps, zip files, etc are NOT acceptable.
+5. When possible create and link to a [minimal, complete, and verifiable](https://stackoverflow.com/help/mcve) example by cloning our [JSBin template](http://jsbin.com/goqagokoye/edit?html,js,output). Code dumps, zip files, etc are NOT acceptable.
 6. Include relevant screenshots or animations, if possible. Drag your screenshots directly into the forums or issue tracker text box. They will automatically be uploaded and the Markdown to display them will be generated.  Avoid third-party image hosts, or links which require extra clicks to view the image (except IRC, where this is unavoidable).
 
 ### Stack Overflow

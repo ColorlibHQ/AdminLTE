@@ -1,6 +1,6 @@
 {
   "name": "raphael",
-  "main": "raphael.min.js",
+  "main": "raphael.js",
   "description": "JavaScript Vector Library",
   "dependencies": {
     "eve-raphael": "0.5.0"
@@ -10,8 +10,7 @@
   },
   "moduleType": [
     "amd",
-    "globals",
-    "node"
+    "globals"
   ],
   "keywords": [
     "svg",
@@ -33,12 +32,12 @@
     "reference.js"
   ],
   "homepage": "https://github.com/DmitryBaranovskiy/raphael",
-  "version": "2.2.7",
-  "_release": "2.2.7",
+  "version": "2.3.0",
+  "_release": "2.3.0",
   "_resolution": {
     "type": "version",
-    "tag": "v2.2.7",
-    "commit": "f17a2a397af7790c8cb7313a8d3d105cb44e7f4a"
+    "tag": "v2.3.0",
+    "commit": "d8fbe4be81d362837f95e33886b80fb41de443b4"
   },
   "_source": "https://github.com/DmitryBaranovskiy/raphael.git",
   "_target": ">= 2.0",

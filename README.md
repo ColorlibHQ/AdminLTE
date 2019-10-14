@@ -1,17 +1,20 @@
 Introduction
 ============
 
+[![Build Status](https://img.shields.io/travis/ColorlibHQ/AdminLTE.svg)](https://travis-ci.org/ColorlibHQ/AdminLTE)
 ![Bower version](https://img.shields.io/bower/v/adminlte.svg)
 [![npm version](https://img.shields.io/npm/v/admin-lte.svg)](https://www.npmjs.com/package/admin-lte)
 [![Packagist](https://img.shields.io/packagist/v/almasaeed2010/adminlte.svg)](https://packagist.org/packages/almasaeed2010/adminlte)
 [![CDNJS](https://img.shields.io/cdnjs/v/admin-lte.svg)](https://cdnjs.com/libraries/admin-lte)
 
-**AdminLTE** -- is a fully responsive admin template. Based on **[Bootstrap 3](https://github.com/twbs/bootstrap)** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself.
+**AdminLTE** -- is a fully responsive admin template. Based on **[Bootstrap 3 & 4](https://github.com/twbs/bootstrap)** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself.
 
 **Download & Preview on [AdminLTE.IO](https://adminlte.io)**
 
-### Looking for Premium Templates?
-**AdminLTE.IO just opened a new premium templates website. Hand picked to ensure the best quality and the most affordable prices. Visit https://themequarry.com for more information.**
+### Looking for More Templates?
+- **[Admin  Templates](http://dashboardpack.com/)** by DashboardPack
+- **[Bootstrap Templates](https://colorlib.com/wp/cat/bootstrap/)** by Colorlib
+- **[Admin Dashboards](https://colorlib.com/wp/free-bootstrap-admin-dashboard-templates/)** by varios template designers and developers based on Bootstrap, Vue, React, Angular and more.  
 
 ## Documentation & Installation Guide
 Visit the [online documentation](https://adminlte.io/docs) for the most
@@ -39,10 +42,10 @@ AdminLTE is an open source project by [AdminLTE.IO](https://adminlte.io) that is
 reserves the right to change the license of future releases. Wondering what you can or can't do? View the [license guide](https://adminlte.io/docs/license).
 
 ### Legacy Releases
-AdminLTE 1.x can be easily upgraded to 2.x using [this guide](https://adminlte.io/themes/AdminLTE/documentation/index.html#upgrade), but if you intend to keep using AdminLTE 1.x, you can download the latest release from the [releases](https://github.com/almasaeed2010/AdminLTE/releases) section above.
+AdminLTE 1.x can be easily upgraded to 2.x using [this guide](https://adminlte.io/themes/AdminLTE/documentation/index.html#upgrade), but if you intend to keep using AdminLTE 1.x, you can download the latest release from the [releases](https://github.com/ColorlibHQ/AdminLTE/releases) section above.
 
 ### Change log
-**For the most recent change log, visit the [releases page](https://github.com/almasaeed2010/AdminLTE/releases) or the [changelog file](https://github.com/almasaeed2010/AdminLTE/blob/master/changelog.md).** We will add detailed release notes to each new release. 
+**For the most recent change log, visit the [releases page](https://github.com/ColorlibHQ/AdminLTE/releases).** We will add detailed release notes to each new release.
 
 ### Image Credits
 - [Pixeden](http://www.pixeden.com/psd-web-elements/flat-responsive-showcase-psd)
@@ -50,8 +53,3 @@ AdminLTE 1.x can be easily upgraded to 2.x using [this guide](https://adminlte.i
 - [Pickaface](http://pickaface.net/)
 - [Unsplash](https://unsplash.com/)
 - [Uifaces](http://uifaces.com/)
-
-### Donations
-Donations are **greatly appreciated!**
-
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif "AdminLTE Presentation")](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=629XCUSXBHCBC "Donate")

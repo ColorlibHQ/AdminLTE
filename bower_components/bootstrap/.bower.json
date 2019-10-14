@@ -39,6 +39,6 @@
     "commit": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
   },
   "_source": "https://github.com/twbs/bootstrap.git",
-  "_target": "^3.4.0",
+  "_target": "^3.4",
   "_originalSource": "bootstrap"
 }

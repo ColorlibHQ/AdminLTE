@@ -72,10 +72,12 @@ test('empty update clears the selection', function (assert) {
   var $rendered = $selection.find('.select2-selection__rendered');
 
   $rendered.text('testing');
+  $rendered.attr('title', 'testing');
 
   selection.update([]);
 
   assert.equal($rendered.text(), '');
+  assert.equal($rendered.attr('title'), undefined);
 });
 
 test('update renders the data text', function (assert) {

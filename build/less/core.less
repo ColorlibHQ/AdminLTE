@@ -70,9 +70,15 @@ body {
 }
 
 .content-wrapper  {
-  min-height: 100%;
+  min-height: ~"calc(100vh - 101px)";
   background-color: @content-bg;
   z-index: 800;
+}
+
+@media (max-width: @screen-header-collapse) {
+  .content-wrapper  {
+    min-height: ~"calc(100vh - 151px)";
+  }
 }
 
 .main-footer {

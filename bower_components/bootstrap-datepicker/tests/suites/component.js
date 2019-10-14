@@ -1,11 +1,15 @@
 module('Component', {
     setup: function(){
-        this.component = $('<div class="input-append date" id="datepicker">'+
-                                '<input size="16" type="text" value="12-02-2012" readonly>'+
-                                '<span class="add-on"><i class="icon-th"></i></span>'+
-                            '</div>')
-                        .appendTo('#qunit-fixture')
-                        .datepicker({format: "dd-mm-yyyy"});
+        this.fieldset = $('<fieldset>' +
+                                '<div class="input-append date" id="datepicker">'+
+                                    '<input size="16" type="text" value="12-02-2012" readonly>'+
+                                    '<span class="add-on"><i class="icon-th"></i></span>'+
+                                '</div>' +
+                            '<fieldset>')
+                        .appendTo('#qunit-fixture');
+
+        this.component = this.fieldset.find('.input-append')
+                            .datepicker({format: "dd-mm-yyyy"});
         this.input = this.component.find('input');
         this.addon = this.component.find('.add-on');
         this.dp = this.component.data('datepicker');
@@ -34,6 +38,9 @@ test('Dont activation (by disabled) by component', function(){
     this.addon.click();
     ok(!this.picker.is(':visible'));
     this.input.prop('disabled', false);
+    this.fieldset.prop('disabled', true);
+    this.addon.click();
+    ok(!this.picker.is(':visible'));
 });
 
 test('simple keyboard nav test', function(){

@@ -47,6 +47,9 @@ define(function () {
     },
     searching: function () {
       return 'Buscando…';
+    },
+    removeAllItems: function () {
+      return 'Eliminar todos los elementos';
     }
   };
 });

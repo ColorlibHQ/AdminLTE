@@ -12,9 +12,7 @@ define(function () {
     inputTooShort: function (args) {
       var remainingChars = args.minimum - args.input.length;
 
-      var message = 'Vennligst skriv inn ' + remainingChars + ' tegn til';
-
-      return message + ' tegn til';
+      return 'Vennligst skriv inn ' + remainingChars + ' tegn til';
     },
     loadingMore: function () {
       return 'Laster flere resultater…';
@@ -27,6 +25,9 @@ define(function () {
     },
     searching: function () {
       return 'Søker…';
+    },
+    removeAllItems: function () {
+      return 'Fjern alle elementer';
     }
   };
 });

@@ -5,7 +5,7 @@
 For information on how to get started and how to use jQuery, please see [jQuery's documentation](http://api.jquery.com/).
 For source files and issues, please visit the [jQuery repo](https://github.com/jquery/jquery).
 
-If upgrading, please see the [blog post for 3.3.1](https://blog.jquery.com/2017/03/20/jquery-3.3.1-now-available/). This includes notable differences from the previous version and a more readable changelog.
+If upgrading, please see the [blog post for 3.4.1](https://blog.jquery.com/2019/05/01/jquery-3-4-1-triggering-focus-events-in-ie-and-finding-root-elements-in-ios-10/). This includes notable differences from the previous version and a more readable changelog.
 
 ## Including jQuery
 
@@ -16,7 +16,7 @@ Below are some of the most common ways to include jQuery.
 #### Script tag
 
 ```html
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 ```
 
 #### Babel

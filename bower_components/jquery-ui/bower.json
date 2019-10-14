@@ -1,11 +1,12 @@
 {
   "name": "jquery-ui",
-  "version": "1.11.4",
+  "version": "1.12.1",
   "main": [
     "jquery-ui.js"
   ],
   "ignore": [
   ],
+  "license": "MIT",
   "dependencies": {
     "jquery": ">=1.6"
   }

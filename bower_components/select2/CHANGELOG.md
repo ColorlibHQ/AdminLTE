@@ -1,5 +1,78 @@
 # Change Log
 
+## 4.0.8
+
+### New features / improvements
+
+* Test against and fix compatibility with jQuery 3.4.1 (#5531)
+* Results respect disabled state of `<option>` (#5560)
+* Add `computedstyle` option for calculating the width (#5559)
+
+### Bug fixes
+
+* Fix tag creation being broken in 4.0.7 (#5558)
+* Fix infinite scroll when the scrollbar is not visible (#5575)
+* Revert change to focusing behaviour in 4.0.6 (#5576)
+
+### Translations
+
+* Fix wording in French translations (#5521)
+
+### Miscellaneous
+
+* Update grunt-contrib-qunit to latest version (#5530)
+* Removed unused `.select2-selection__placeholder` CSS definitions for multiple selects (#5508)
+* Remove deprecated jQuery shorthand (#5564)
+
+## 4.0.7
+
+### New features/improvements
+- Do not close on select if Ctrl or Meta (Cmd) keys being held (#5222)
+
+### Bug fixes
+- Fixed issue where single select boxes would automatically reopen when they were closed (#5490, #5492)
+
+### Miscellaneous
+- Move almost and jquery-mousewheel to devDependencies (#5489)
+
+## 4.0.6
+
+### New features/improvements
+- Add style property to package.json (#5019)
+- Implement `clear` and `clearing` events (#5058)
+- Add `scrollAfterSelect` option (#5150)
+- Add missing diacritics (#4118, #4337, #5464)
+
+### Bug fixes
+- Fix up arrow error when there are no options in dropdown (#5127)
+- Add `;` before beginning of factory wrapper (#5089)
+- Fix IE11 issue with select losing focus after selecting an item (#4860)
+- Clear tooltip from `select2-selection__rendered` when selection is cleared (#4640, #4746)
+- Fix keyboard not closing when closing dropdown on iOS 10 (#4680)
+- User-defined types not normalized properly when passed in as data (#4632)
+- Perform deep merge for `Defaults.set()` (#4364)
+- Fix "the results could not be loaded" displaying during AJAX request (#4356)
+- Cache objects in `Utils.__cache` instead of using `$.data` (#4346, #5486)
+- Removing the double event binding registration of `selection:update` (#4306)
+
+#### Accessibility
+- Improve `.select2-hidden-accessible` (#4908)
+- Add role and aria-readonly attributes to single selection dropdown value (#4881)
+
+### Translations
+- Add Turkmen translations (`tk`) (#5125)
+- Fix error in French translations (#5122)
+- Add Albanian translation (`sq`) (#5199)
+- Add Georgian translation (`ka`) (#5179)
+- Add Nepali translation (`ne`) (#5295)
+- Add Bangla translation (`bn`) (#5248)
+- Add `removeAllItems` translation for clear "x" title (#5291)
+- Fix wording in Vietnamese translations (#5387)
+- Fix error in Russian translation (#5401)
+
+### Miscellaneous
+-  Remove duplicate CSS selector in classic theme (#5115)
+
 ## 4.0.5
 
 ### Bug fixes

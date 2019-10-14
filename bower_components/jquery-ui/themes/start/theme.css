@@ -1,5 +1,5 @@
 /*!
- * jQuery UI CSS Framework 1.11.4
+ * jQuery UI CSS Framework 1.12.1
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -28,6 +28,9 @@
 	font-family: Verdana,Arial,sans-serif;
 	font-size: 1em;
 }
+.ui-widget.ui-widget-content {
+	border: 1px solid #77d5f7;
+}
 .ui-widget-content {
 	border: 1px solid #a6c9e2;
 	background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
@@ -50,7 +53,13 @@
 ----------------------------------*/
 .ui-state-default,
 .ui-widget-content .ui-state-default,
-.ui-widget-header .ui-state-default {
+.ui-widget-header .ui-state-default,
+.ui-button,
+
+/* We use html here because we need a greater specificity to make sure disabled
+works properly when clicked or hovered */
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
 	border: 1px solid #77d5f7;
 	background: #0078ae url("images/ui-bg_glass_45_0078ae_1x400.png") 50% 50% repeat-x;
 	font-weight: normal;
@@ -58,7 +67,11 @@
 }
 .ui-state-default a,
 .ui-state-default a:link,
-.ui-state-default a:visited {
+.ui-state-default a:visited,
+a.ui-button,
+a:link.ui-button,
+a:visited.ui-button,
+.ui-button {
 	color: #ffffff;
 	text-decoration: none;
 }
@@ -67,7 +80,9 @@
 .ui-widget-header .ui-state-hover,
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
-.ui-widget-header .ui-state-focus {
+.ui-widget-header .ui-state-focus,
+.ui-button:hover,
+.ui-button:focus {
 	border: 1px solid #448dae;
 	background: #79c9ec url("images/ui-bg_glass_75_79c9ec_1x400.png") 50% 50% repeat-x;
 	font-weight: normal;
@@ -80,17 +95,31 @@
 .ui-state-focus a,
 .ui-state-focus a:hover,
 .ui-state-focus a:link,
-.ui-state-focus a:visited {
+.ui-state-focus a:visited,
+a.ui-button:hover,
+a.ui-button:focus {
 	color: #026890;
 	text-decoration: none;
 }
+
+.ui-visual-focus {
+	box-shadow: 0 0 3px 1px rgb(94, 158, 214);
+}
 .ui-state-active,
 .ui-widget-content .ui-state-active,
-.ui-widget-header .ui-state-active {
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
 	border: 1px solid #acdd4a;
 	background: #6eac2c url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png") 50% 50% repeat-x;
 	font-weight: normal;
 	color: #ffffff;
+}
+.ui-icon-background,
+.ui-state-active .ui-icon-background {
+	border: #acdd4a;
+	background-color: #ffffff;
 }
 .ui-state-active a,
 .ui-state-active a:link,
@@ -107,6 +136,10 @@
 	border: 1px solid #fcd113;
 	background: #f8da4e url("images/ui-bg_glass_55_f8da4e_1x400.png") 50% 50% repeat-x;
 	color: #915608;
+}
+.ui-state-checked {
+	border: 1px solid #fcd113;
+	background: #f8da4e;
 }
 .ui-state-highlight a,
 .ui-widget-content .ui-state-highlight a,
@@ -168,41 +201,45 @@
 .ui-widget-header .ui-icon {
 	background-image: url("images/ui-icons_d8e7f3_256x240.png");
 }
-.ui-state-default .ui-icon {
-	background-image: url("images/ui-icons_e0fdff_256x240.png");
-}
 .ui-state-hover .ui-icon,
-.ui-state-focus .ui-icon {
+.ui-state-focus .ui-icon,
+.ui-button:hover .ui-icon,
+.ui-button:focus .ui-icon {
 	background-image: url("images/ui-icons_056b93_256x240.png");
 }
-.ui-state-active .ui-icon {
+.ui-state-active .ui-icon,
+.ui-button:active .ui-icon {
 	background-image: url("images/ui-icons_f5e175_256x240.png");
 }
-.ui-state-highlight .ui-icon {
+.ui-state-highlight .ui-icon,
+.ui-button .ui-state-highlight.ui-icon {
 	background-image: url("images/ui-icons_f7a50d_256x240.png");
 }
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {
 	background-image: url("images/ui-icons_fcd113_256x240.png");
 }
+.ui-button .ui-icon {
+	background-image: url("images/ui-icons_e0fdff_256x240.png");
+}
 
 /* positioning */
 .ui-icon-blank { background-position: 16px 16px; }
-.ui-icon-carat-1-n { background-position: 0 0; }
-.ui-icon-carat-1-ne { background-position: -16px 0; }
-.ui-icon-carat-1-e { background-position: -32px 0; }
-.ui-icon-carat-1-se { background-position: -48px 0; }
-.ui-icon-carat-1-s { background-position: -64px 0; }
-.ui-icon-carat-1-sw { background-position: -80px 0; }
-.ui-icon-carat-1-w { background-position: -96px 0; }
-.ui-icon-carat-1-nw { background-position: -112px 0; }
-.ui-icon-carat-2-n-s { background-position: -128px 0; }
-.ui-icon-carat-2-e-w { background-position: -144px 0; }
+.ui-icon-caret-1-n { background-position: 0 0; }
+.ui-icon-caret-1-ne { background-position: -16px 0; }
+.ui-icon-caret-1-e { background-position: -32px 0; }
+.ui-icon-caret-1-se { background-position: -48px 0; }
+.ui-icon-caret-1-s { background-position: -65px 0; }
+.ui-icon-caret-1-sw { background-position: -80px 0; }
+.ui-icon-caret-1-w { background-position: -96px 0; }
+.ui-icon-caret-1-nw { background-position: -112px 0; }
+.ui-icon-caret-2-n-s { background-position: -128px 0; }
+.ui-icon-caret-2-e-w { background-position: -144px 0; }
 .ui-icon-triangle-1-n { background-position: 0 -16px; }
 .ui-icon-triangle-1-ne { background-position: -16px -16px; }
 .ui-icon-triangle-1-e { background-position: -32px -16px; }
 .ui-icon-triangle-1-se { background-position: -48px -16px; }
-.ui-icon-triangle-1-s { background-position: -64px -16px; }
+.ui-icon-triangle-1-s { background-position: -65px -16px; }
 .ui-icon-triangle-1-sw { background-position: -80px -16px; }
 .ui-icon-triangle-1-w { background-position: -96px -16px; }
 .ui-icon-triangle-1-nw { background-position: -112px -16px; }
@@ -212,7 +249,7 @@
 .ui-icon-arrow-1-ne { background-position: -16px -32px; }
 .ui-icon-arrow-1-e { background-position: -32px -32px; }
 .ui-icon-arrow-1-se { background-position: -48px -32px; }
-.ui-icon-arrow-1-s { background-position: -64px -32px; }
+.ui-icon-arrow-1-s { background-position: -65px -32px; }
 .ui-icon-arrow-1-sw { background-position: -80px -32px; }
 .ui-icon-arrow-1-w { background-position: -96px -32px; }
 .ui-icon-arrow-1-nw { background-position: -112px -32px; }
@@ -224,7 +261,7 @@
 .ui-icon-arrowstop-1-e { background-position: -208px -32px; }
 .ui-icon-arrowstop-1-s { background-position: -224px -32px; }
 .ui-icon-arrowstop-1-w { background-position: -240px -32px; }
-.ui-icon-arrowthick-1-n { background-position: 0 -48px; }
+.ui-icon-arrowthick-1-n { background-position: 1px -48px; }
 .ui-icon-arrowthick-1-ne { background-position: -16px -48px; }
 .ui-icon-arrowthick-1-e { background-position: -32px -48px; }
 .ui-icon-arrowthick-1-se { background-position: -48px -48px; }
@@ -396,15 +433,11 @@
 
 /* Overlays */
 .ui-widget-overlay {
-	background: #aaaaaa url("images/ui-bg_flat_75_aaaaaa_40x100.png") 50% 50% repeat-x;
+	background: #aaaaaa;
 	opacity: .3;
 	filter: Alpha(Opacity=30); /* support: IE8 */
 }
 .ui-widget-shadow {
-	margin: 5px 0 0 5px;
-	padding: 0px;
-	background: #999999 url("images/ui-bg_flat_55_999999_40x100.png") 50% 50% repeat-x;
-	opacity: .45;
-	filter: Alpha(Opacity=45); /* support: IE8 */
-	border-radius: 5px;
+	-webkit-box-shadow: 5px 5px 0px #999999;
+	box-shadow: 5px 5px 0px #999999;
 }

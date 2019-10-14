@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Spinner 1.11.4
+ * jQuery UI Spinner 1.12.1
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -19,14 +19,14 @@
 	border: none;
 	background: none;
 	color: inherit;
-	padding: 0;
+	padding: .222em 0;
 	margin: .2em 0;
 	vertical-align: middle;
 	margin-left: .4em;
-	margin-right: 22px;
+	margin-right: 2em;
 }
 .ui-spinner-button {
-	width: 16px;
+	width: 1.6em;
 	height: 50%;
 	font-size: .5em;
 	padding: 0;
@@ -40,26 +40,13 @@
 }
 /* more specificity required here to override default borders */
 .ui-spinner a.ui-spinner-button {
-	border-top: none;
-	border-bottom: none;
-	border-right: none;
-}
-/* vertically center icon */
-.ui-spinner .ui-icon {
-	position: absolute;
-	margin-top: -8px;
-	top: 50%;
-	left: 0;
+	border-top-style: none;
+	border-bottom-style: none;
+	border-right-style: none;
 }
 .ui-spinner-up {
 	top: 0;
 }
 .ui-spinner-down {
 	bottom: 0;
-}
-
-/* TR overrides */
-.ui-spinner .ui-icon-triangle-1-s {
-	/* need to fix icons sprite */
-	background-position: -65px -16px;
 }

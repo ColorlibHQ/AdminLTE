@@ -25,6 +25,9 @@ define(function () {
     },
     searching: function () {
       return 'Mencari…';
+    },
+    removeAllItems: function () {
+      return 'Hapus semua item';
     }
   };
 });

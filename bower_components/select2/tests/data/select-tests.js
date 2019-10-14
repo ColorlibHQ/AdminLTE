@@ -130,7 +130,10 @@ test('multiple sets the value', function (assert) {
 
   var data = new SelectData($select, selectOptions);
 
-  assert.equal($select.val(), null);
+  assert.ok(
+    $select.val() == null || $select.val().length == 0,
+    'nothing should be selected'
+  );
 
   data.select({
     id: 'Two',
@@ -486,4 +489,69 @@ test('select option construction accepts id="" (empty string) value',
     '',
     'Built option value should be an empty string.'
   );
+});
+
+test('user-defined types are normalized properly', function (assert) {
+  var $select = $('#qunit-fixture .user-defined'),
+
+  UserDefinedType = function (id, text) {
+    var self = this;
+
+    self.id = id;
+    self.text = text;
+
+    return self;
+  };
+
+  var testData = [
+    'Test',
+    {
+        id: 4,
+        text: 'item'
+    },
+    new UserDefinedType(1, 'aaaaaa')
+  ];
+
+  var data = new SelectData($select, selectOptions);
+
+  var normalizedItem = data._normalizeItem(testData[0]);
+  var normalizedItem2 = data._normalizeItem(testData[1]);
+  var normalizedItem3 = data._normalizeItem(testData[2]);
+
+  assert.equal(
+    testData[0],
+    normalizedItem.id,
+    'id property should be equal to text after normalize'
+  );
+
+  assert.equal(
+    testData[0],
+    normalizedItem.text,
+    'text property should be equal after normalize'
+  );
+
+  assert.equal(
+    testData[1].id,
+    normalizedItem2.id,
+    'id property should be equal after normalize'
+  );
+
+  assert.equal(
+    testData[1].text,
+    normalizedItem2.text,
+    'text property should be equal after normalize'
+  );
+
+  assert.equal(
+    testData[2].id,
+    normalizedItem3.id,
+    'id property should be equal after normalize'
+  );
+
+  assert.equal(
+    testData[2].text,
+    normalizedItem3.text,
+    'text property should be equal after normalize'
+  );
+
 });

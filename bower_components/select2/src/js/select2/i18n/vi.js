@@ -4,18 +4,15 @@ define(function () {
     inputTooLong: function (args) {
       var overChars = args.input.length - args.maximum;
 
-      var message = 'Vui lòng nhập ít hơn ' + overChars + ' ký tự';
-
-      if (overChars != 1) {
-        message += 's';
-      }
+      var message = 'Vui lòng xóa bớt ' + overChars + ' ký tự';
 
       return message;
     },
     inputTooShort: function (args) {
       var remainingChars = args.minimum - args.input.length;
 
-      var message = 'Vui lòng nhập nhiều hơn ' + remainingChars + ' ký tự';
+      var message = 'Vui lòng nhập thêm từ ' + remainingChars +
+                    ' ký tự trở lên';
 
       return message;
     },
@@ -32,6 +29,9 @@ define(function () {
     },
     searching: function () {
       return 'Đang tìm…';
+    },
+    removeAllItems: function () {
+      return 'Xóa tất cả các mục';
     }
   };
 });

@@ -31,6 +31,9 @@ define(function () {
     },
     searching: function () {
       return 'กำลังค้นข้อมูล…';
+    },
+    removeAllItems: function () {
+      return 'ลบรายการทั้งหมด';
     }
   };
 });

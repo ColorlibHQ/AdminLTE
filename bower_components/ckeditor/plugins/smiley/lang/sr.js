@@ -1,1 +1,1 @@
-﻿CKEDITOR.plugins.setLang("smiley","sr",{options:"Smiley Options",title:"Унеси смајлија",toolbar:"Смајли"});
+﻿CKEDITOR.plugins.setLang("smiley","sr",{options:"Емотикон опције",title:"Унеси емотикон",toolbar:"Емотикони"});

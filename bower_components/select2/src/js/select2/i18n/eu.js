@@ -46,6 +46,9 @@ define(function () {
     },
     searching: function () {
       return 'Bilatzen…';
+    },
+    removeAllItems: function () {
+      return 'Kendu elementu guztiak';
     }
   };
 });

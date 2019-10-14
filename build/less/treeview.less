@@ -1,4 +1,4 @@
-// Tree view menu
+	// Tree view menu
 .treeview-menu {
 	display: none;
 	list-style: none;
@@ -26,5 +26,20 @@
 	      width: auto;
 	    }
 	  }
+	}
+}
+
+.treeview {
+	> ul.treeview-menu {
+		overflow: hidden;
+		height:auto;
+		padding-top:0px !important;
+		padding-bottom: 0px !important;
+	}
+}
+.treeview.menu-open {
+	> ul.treeview-menu {
+		 overflow: visible;
+  		height:auto;
 	}
 }

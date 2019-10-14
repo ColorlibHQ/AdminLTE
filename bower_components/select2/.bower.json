@@ -11,14 +11,14 @@
     "url": "git@github.com:select2/select2.git"
   },
   "homepage": "https://github.com/ivaynberg/select2",
-  "version": "4.0.5",
-  "_release": "4.0.5",
+  "version": "4.0.8",
+  "_release": "4.0.8",
   "_resolution": {
     "type": "version",
-    "tag": "4.0.5",
-    "commit": "ebf10c93db7d6d7a0d1330119d4c6f32cbd231d7"
+    "tag": "4.0.8",
+    "commit": "a389a6da47f613ea9de3efc7a6dcf5cbda167608"
   },
   "_source": "https://github.com/ivaynberg/select2.git",
-  "_target": "^4.0.3",
+  "_target": "^4.0.7",
   "_originalSource": "select2"
 }

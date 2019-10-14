@@ -1,6 +1,6 @@
 {
   "name": "raphael",
-  "main": "raphael.min.js",
+  "main": "raphael.js",
   "description": "JavaScript Vector Library",
   "dependencies": {
     "eve-raphael": "0.5.0"
@@ -10,8 +10,7 @@
   },
   "moduleType": [
     "amd",
-    "globals",
-    "node"
+    "globals"
   ],
   "keywords": ["svg", "vml", "javascript"],
   "authors": [

@@ -81,6 +81,14 @@
     &:active {
       background: transparent;
     }
+
+    &.fa5 {
+      font-family: "Font Awesome\ 5 Free";
+      &:before {
+        content: "\f0c9";
+        font-weight: 900;
+      }
+    }
   }
   .sidebar-toggle .icon-bar {
     display: none;
@@ -119,14 +127,47 @@
     padding: 0 15px;
     font-weight: 300;
     overflow: hidden;
+
+    img {
+      padding: 4px;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+
     //Add support to sidebar mini by allowing the user to create
     //2 logo designs. mini and lg
     .logo-lg {
       //should be visibile when sidebar isn't collapsed
       display: block;
+
+      img {
+        max-width: 200px;
+        max-height: 50px;
+      }
+      .brandlogo-image {
+        margin-top: 8px;
+        margin-right: 10px;
+        margin-left: -5px;
+      }
     }
     .logo-mini {
       display: none;
+
+      img {
+        max-width: 50px;
+        max-height: 50px;
+      }
+      .brandlogo-image {
+        margin-top: 8px;
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+    }
+
+    .brandlogo-image {
+      float: left;
+      height: 34px;
+      width: auto;
     }
   }
   //Navbar Brand. Alternative logo with layout-top-nav

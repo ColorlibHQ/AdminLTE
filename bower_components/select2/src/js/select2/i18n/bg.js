@@ -42,6 +42,9 @@ define(function () {
     },
     searching: function () {
       return 'Търсене…';
+    },
+    removeAllItems: function () {
+      return 'Премахнете всички елементи';
     }
   };
 });

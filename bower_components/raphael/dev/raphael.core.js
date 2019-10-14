@@ -67,7 +67,7 @@ define(["eve"], function(eve) {
             }
         }
     }
-    R.version = "2.2.0";
+    R.version = "2.3.0";
     R.eve = eve;
     var loaded,
         separator = /[, ]+/,
@@ -122,7 +122,8 @@ define(["eve"], function(eve) {
         appendChild = "appendChild",
         apply = "apply",
         concat = "concat",
-        supportsTouch = ('ontouchstart' in g.win) || g.win.DocumentTouch && g.doc instanceof DocumentTouch, //taken from Modernizr touch test
+        //taken from Modernizr touch test: https://github.com/Modernizr/Modernizr/blob/master/feature-detects/touchevents.js#L40
+        supportsTouch = ('ontouchstart' in window) || window.TouchEvent || window.DocumentTouch && document instanceof DocumentTouch,
         E = "",
         S = " ",
         Str = String,
@@ -1137,7 +1138,17 @@ define(["eve"], function(eve) {
         }
         data.toString = R._path2string;
         return data;
-    });
+    }, this, function(elem) {
+        if (!elem) return elem;
+        var newData = [];
+        for (var i = 0; i < elem.length; i++) {
+            var newLevel = [];
+            for (var j = 0; j < elem[i].length; j++) {
+                newLevel.push(elem[i][j]);
+            }
+            newData.push(newLevel);
+        }
+      return newData; } );
     // PATHS
     var paths = function (ps) {
         var p = paths.ps = paths.ps || {};
@@ -3120,7 +3131,7 @@ define(["eve"], function(eve) {
     \*/
     elproto.removeData = function (key) {
         if (key == null) {
-            eldata[this.id] = {};
+            delete eldata[this.id];
         } else {
             eldata[this.id] && delete eldata[this.id][key];
         }
@@ -3222,7 +3233,7 @@ define(["eve"], function(eve) {
             onstart && eve.on("raphael.drag.start." + this.id, onstart);
             onmove && eve.on("raphael.drag.move." + this.id, onmove);
             onend && eve.on("raphael.drag.end." + this.id, onend);
-            eve("raphael.drag.start." + this.id, start_scope || move_scope || this, e.clientX + scrollX, e.clientY + scrollY, e);
+            eve("raphael.drag.start." + this.id, start_scope || move_scope || this, this._drag.x, this._drag.y, e);
         }
         this._drag = {};
         draggable.push({el: this, start: start});

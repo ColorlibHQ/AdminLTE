@@ -1,1 +1,1 @@
-﻿CKEDITOR.plugins.setLang("pagebreak","sr",{alt:"Page Break",toolbar:"Insert Page Break for Printing"});
+﻿CKEDITOR.plugins.setLang("pagebreak","sr",{alt:"Прелом странице",toolbar:"Уметните прелом странице"});

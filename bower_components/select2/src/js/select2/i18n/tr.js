@@ -31,6 +31,9 @@ define(function () {
     },
     searching: function () {
       return 'Aranıyor…';
+    },
+    removeAllItems: function () {     
+      return 'Tüm öğeleri kaldır';
     }
   };
 });

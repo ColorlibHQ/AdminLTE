@@ -42,6 +42,9 @@ define(function () {
     },
     searching: function () {
       return 'Пребарување…';
+    },
+    removeAllItems: function () {
+      return 'Отстрани ги сите предмети';
     }
   };
 });

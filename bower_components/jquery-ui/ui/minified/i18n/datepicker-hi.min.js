@@ -1,4 +1,0 @@
-/*! jQuery UI - v1.11.4 - 2015-03-13
-* http://jqueryui.com
-* Copyright jQuery Foundation and other contributors; Licensed MIT */
-(function(t){"function"==typeof define&&define.amd?define(["../datepicker"],t):t(jQuery.datepicker)})(function(t){return t.regional.hi={closeText:"बंद",prevText:"पिछला",nextText:"अगला",currentText:"आज",monthNames:["जनवरी ","फरवरी","मार्च","अप्रेल","मई","जून","जूलाई","अगस्त ","सितम्बर","अक्टूबर","नवम्बर","दिसम्बर"],monthNamesShort:["जन","फर","मार्च","अप्रेल","मई","जून","जूलाई","अग","सित","अक्ट","नव","दि"],dayNames:["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],dayNamesShort:["रवि","सोम","मंगल","बुध","गुरु","शुक्र","शनि"],dayNamesMin:["रवि","सोम","मंगल","बुध","गुरु","शुक्र","शनि"],weekHeader:"हफ्ता",dateFormat:"dd/mm/yy",firstDay:1,isRTL:!1,showMonthAfterYear:!1,yearSuffix:""},t.setDefaults(t.regional.hi),t.regional.hi});

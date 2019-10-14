@@ -23,6 +23,8 @@
     layoutBoxed   : '.layout-boxed',
     mainFooter    : '.main-footer',
     mainHeader    : '.main-header',
+    mainSidebar   : '.main-sidebar',
+    slimScrollDiv : 'slimScrollDiv',
     sidebar       : '.sidebar',
     controlSidebar: '.control-sidebar',
     fixed         : '.fixed',
@@ -84,11 +86,11 @@
     $(Selector.layoutBoxed + ' > ' + Selector.wrapper).css('overflow', 'hidden');
 
     // Get window height and the wrapper height
-    var footerHeight = $(Selector.mainFooter).outerHeight() || 0;
+    var footerHeight  = $(Selector.mainFooter).outerHeight() || 0;
     var headerHeight  = $(Selector.mainHeader).outerHeight() || 0;
     var neg           = headerHeight + footerHeight;
     var windowHeight  = $(window).height();
-    var sidebarHeight = $(Selector.sidebar).height() || 0;
+    var sidebarHeight = $(Selector.sidebar).outerHeight() || 0;
 
     // Set the min-height of the content and sidebar based on
     // the height of the document.
@@ -130,9 +132,11 @@
         // $(Selector.sidebar).slimScroll({ destroy: true }).height('auto')
 
         // Add slimscroll
-        $(Selector.sidebar).slimScroll({
-          height: ($(window).height() - $(Selector.mainHeader).height()) + 'px'
-        });
+        if ($(Selector.mainSidebar).find(Selector.slimScrollDiv).length === 0) {
+          $(Selector.sidebar).slimScroll({
+            height: ($(window).height() - $(Selector.mainHeader).height()) + 'px'
+          });
+        }
       }
     }
   };

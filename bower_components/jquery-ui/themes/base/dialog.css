@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Dialog 1.11.4
+ * jQuery UI Dialog 1.12.1
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -9,7 +9,6 @@
  * http://api.jqueryui.com/dialog/#theming
  */
 .ui-dialog {
-	overflow: hidden;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -58,12 +57,44 @@
 	margin: .5em .4em .5em 0;
 	cursor: pointer;
 }
+.ui-dialog .ui-resizable-n {
+	height: 2px;
+	top: 0;
+}
+.ui-dialog .ui-resizable-e {
+	width: 2px;
+	right: 0;
+}
+.ui-dialog .ui-resizable-s {
+	height: 2px;
+	bottom: 0;
+}
+.ui-dialog .ui-resizable-w {
+	width: 2px;
+	left: 0;
+}
+.ui-dialog .ui-resizable-se,
+.ui-dialog .ui-resizable-sw,
+.ui-dialog .ui-resizable-ne,
+.ui-dialog .ui-resizable-nw {
+	width: 7px;
+	height: 7px;
+}
 .ui-dialog .ui-resizable-se {
-	width: 12px;
-	height: 12px;
-	right: -5px;
-	bottom: -5px;
-	background-position: 16px 16px;
+	right: 0;
+	bottom: 0;
+}
+.ui-dialog .ui-resizable-sw {
+	left: 0;
+	bottom: 0;
+}
+.ui-dialog .ui-resizable-ne {
+	right: 0;
+	top: 0;
+}
+.ui-dialog .ui-resizable-nw {
+	left: 0;
+	top: 0;
 }
 .ui-draggable .ui-dialog-titlebar {
 	cursor: move;

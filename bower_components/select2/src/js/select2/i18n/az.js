@@ -22,6 +22,9 @@ define(function () {
     },
     searching: function () {
       return 'Axtarılır…';
+    },
+     removeAllItems: function () {
+      return 'Bütün elementləri sil';
     }
   };
 });

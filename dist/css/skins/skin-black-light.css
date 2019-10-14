@@ -4,7 +4,8 @@
  */
 /* skin-black navbar */
 .skin-black-light .main-header {
-  border-bottom: 1px solid #d2d6de;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
 }
 .skin-black-light .main-header .navbar-toggle {
   color: #333;
