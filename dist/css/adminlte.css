@@ -15345,6 +15345,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-primary:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-primary.card-outline {
   border-top: 3px solid #007bff;
 }
@@ -15354,8 +15358,8 @@ html.maximized-card {
 }
 
 .card-primary.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-primary.card-outline-tabs {
@@ -15363,8 +15367,8 @@ html.maximized-card {
 }
 
 .card-primary.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-primary.card-outline-tabs > .card-header a {
@@ -15450,6 +15454,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-secondary:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-secondary.card-outline {
   border-top: 3px solid #6c757d;
 }
@@ -15459,8 +15467,8 @@ html.maximized-card {
 }
 
 .card-secondary.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-secondary.card-outline-tabs {
@@ -15468,8 +15476,8 @@ html.maximized-card {
 }
 
 .card-secondary.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-secondary.card-outline-tabs > .card-header a {
@@ -15549,6 +15557,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-success:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-success.card-outline {
   border-top: 3px solid #28a745;
 }
@@ -15558,8 +15570,8 @@ html.maximized-card {
 }
 
 .card-success.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-success.card-outline-tabs {
@@ -15567,8 +15579,8 @@ html.maximized-card {
 }
 
 .card-success.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-success.card-outline-tabs > .card-header a {
@@ -15654,6 +15666,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-info:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-info.card-outline {
   border-top: 3px solid #17a2b8;
 }
@@ -15663,8 +15679,8 @@ html.maximized-card {
 }
 
 .card-info.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-info.card-outline-tabs {
@@ -15672,8 +15688,8 @@ html.maximized-card {
 }
 
 .card-info.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-info.card-outline-tabs > .card-header a {
@@ -15759,6 +15775,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-warning:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-warning.card-outline {
   border-top: 3px solid #ffc107;
 }
@@ -15768,8 +15788,8 @@ html.maximized-card {
 }
 
 .card-warning.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-warning.card-outline-tabs {
@@ -15777,8 +15797,8 @@ html.maximized-card {
 }
 
 .card-warning.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-warning.card-outline-tabs > .card-header a {
@@ -15864,6 +15884,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-danger:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-danger.card-outline {
   border-top: 3px solid #dc3545;
 }
@@ -15873,8 +15897,8 @@ html.maximized-card {
 }
 
 .card-danger.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-danger.card-outline-tabs {
@@ -15882,8 +15906,8 @@ html.maximized-card {
 }
 
 .card-danger.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-danger.card-outline-tabs > .card-header a {
@@ -15975,6 +15999,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-light:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-light.card-outline {
   border-top: 3px solid #f8f9fa;
 }
@@ -15984,8 +16012,8 @@ html.maximized-card {
 }
 
 .card-light.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-light.card-outline-tabs {
@@ -15993,8 +16021,8 @@ html.maximized-card {
 }
 
 .card-light.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-light.card-outline-tabs > .card-header a {
@@ -16074,6 +16102,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-dark:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-dark.card-outline {
   border-top: 3px solid #343a40;
 }
@@ -16083,8 +16115,8 @@ html.maximized-card {
 }
 
 .card-dark.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-dark.card-outline-tabs {
@@ -16092,8 +16124,8 @@ html.maximized-card {
 }
 
 .card-dark.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-dark.card-outline-tabs > .card-header a {
@@ -16173,6 +16205,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-navy:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-navy.card-outline {
   border-top: 3px solid #001f3f;
 }
@@ -16182,8 +16218,8 @@ html.maximized-card {
 }
 
 .card-navy.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-navy.card-outline-tabs {
@@ -16191,8 +16227,8 @@ html.maximized-card {
 }
 
 .card-navy.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-navy.card-outline-tabs > .card-header a {
@@ -16272,6 +16308,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-olive:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-olive.card-outline {
   border-top: 3px solid #3d9970;
 }
@@ -16281,8 +16321,8 @@ html.maximized-card {
 }
 
 .card-olive.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-olive.card-outline-tabs {
@@ -16290,8 +16330,8 @@ html.maximized-card {
 }
 
 .card-olive.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-olive.card-outline-tabs > .card-header a {
@@ -16371,6 +16411,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-lime:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-lime.card-outline {
   border-top: 3px solid #01ff70;
 }
@@ -16380,8 +16424,8 @@ html.maximized-card {
 }
 
 .card-lime.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-lime.card-outline-tabs {
@@ -16389,8 +16433,8 @@ html.maximized-card {
 }
 
 .card-lime.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-lime.card-outline-tabs > .card-header a {
@@ -16470,6 +16514,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-fuchsia:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-fuchsia.card-outline {
   border-top: 3px solid #f012be;
 }
@@ -16479,8 +16527,8 @@ html.maximized-card {
 }
 
 .card-fuchsia.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-fuchsia.card-outline-tabs {
@@ -16488,8 +16536,8 @@ html.maximized-card {
 }
 
 .card-fuchsia.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-fuchsia.card-outline-tabs > .card-header a {
@@ -16569,6 +16617,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-maroon:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-maroon.card-outline {
   border-top: 3px solid #d81b60;
 }
@@ -16578,8 +16630,8 @@ html.maximized-card {
 }
 
 .card-maroon.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-maroon.card-outline-tabs {
@@ -16587,8 +16639,8 @@ html.maximized-card {
 }
 
 .card-maroon.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-maroon.card-outline-tabs > .card-header a {
@@ -16668,6 +16720,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-blue:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-blue.card-outline {
   border-top: 3px solid #007bff;
 }
@@ -16677,8 +16733,8 @@ html.maximized-card {
 }
 
 .card-blue.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-blue.card-outline-tabs {
@@ -16686,8 +16742,8 @@ html.maximized-card {
 }
 
 .card-blue.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-blue.card-outline-tabs > .card-header a {
@@ -16767,6 +16823,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-indigo:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-indigo.card-outline {
   border-top: 3px solid #6610f2;
 }
@@ -16776,8 +16836,8 @@ html.maximized-card {
 }
 
 .card-indigo.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-indigo.card-outline-tabs {
@@ -16785,8 +16845,8 @@ html.maximized-card {
 }
 
 .card-indigo.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-indigo.card-outline-tabs > .card-header a {
@@ -16866,6 +16926,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-purple:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-purple.card-outline {
   border-top: 3px solid #6f42c1;
 }
@@ -16875,8 +16939,8 @@ html.maximized-card {
 }
 
 .card-purple.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-purple.card-outline-tabs {
@@ -16884,8 +16948,8 @@ html.maximized-card {
 }
 
 .card-purple.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-purple.card-outline-tabs > .card-header a {
@@ -16965,6 +17029,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-pink:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-pink.card-outline {
   border-top: 3px solid #e83e8c;
 }
@@ -16974,8 +17042,8 @@ html.maximized-card {
 }
 
 .card-pink.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-pink.card-outline-tabs {
@@ -16983,8 +17051,8 @@ html.maximized-card {
 }
 
 .card-pink.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-pink.card-outline-tabs > .card-header a {
@@ -17064,6 +17132,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-red:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-red.card-outline {
   border-top: 3px solid #dc3545;
 }
@@ -17073,8 +17145,8 @@ html.maximized-card {
 }
 
 .card-red.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-red.card-outline-tabs {
@@ -17082,8 +17154,8 @@ html.maximized-card {
 }
 
 .card-red.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-red.card-outline-tabs > .card-header a {
@@ -17163,6 +17235,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-orange:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-orange.card-outline {
   border-top: 3px solid #fd7e14;
 }
@@ -17172,8 +17248,8 @@ html.maximized-card {
 }
 
 .card-orange.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-orange.card-outline-tabs {
@@ -17181,8 +17257,8 @@ html.maximized-card {
 }
 
 .card-orange.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-orange.card-outline-tabs > .card-header a {
@@ -17262,6 +17338,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-yellow:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-yellow.card-outline {
   border-top: 3px solid #ffc107;
 }
@@ -17271,8 +17351,8 @@ html.maximized-card {
 }
 
 .card-yellow.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-yellow.card-outline-tabs {
@@ -17280,8 +17360,8 @@ html.maximized-card {
 }
 
 .card-yellow.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-yellow.card-outline-tabs > .card-header a {
@@ -17361,6 +17441,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-green:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-green.card-outline {
   border-top: 3px solid #28a745;
 }
@@ -17370,8 +17454,8 @@ html.maximized-card {
 }
 
 .card-green.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-green.card-outline-tabs {
@@ -17379,8 +17463,8 @@ html.maximized-card {
 }
 
 .card-green.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-green.card-outline-tabs > .card-header a {
@@ -17460,6 +17544,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-teal:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-teal.card-outline {
   border-top: 3px solid #20c997;
 }
@@ -17469,8 +17557,8 @@ html.maximized-card {
 }
 
 .card-teal.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-teal.card-outline-tabs {
@@ -17478,8 +17566,8 @@ html.maximized-card {
 }
 
 .card-teal.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-teal.card-outline-tabs > .card-header a {
@@ -17559,6 +17647,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-cyan:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-cyan.card-outline {
   border-top: 3px solid #17a2b8;
 }
@@ -17568,8 +17660,8 @@ html.maximized-card {
 }
 
 .card-cyan.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-cyan.card-outline-tabs {
@@ -17577,8 +17669,8 @@ html.maximized-card {
 }
 
 .card-cyan.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-cyan.card-outline-tabs > .card-header a {
@@ -17658,6 +17750,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-white:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-white.card-outline {
   border-top: 3px solid #ffffff;
 }
@@ -17667,8 +17763,8 @@ html.maximized-card {
 }
 
 .card-white.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-white.card-outline-tabs {
@@ -17676,8 +17772,8 @@ html.maximized-card {
 }
 
 .card-white.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-white.card-outline-tabs > .card-header a {
@@ -17757,6 +17853,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-gray:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-gray.card-outline {
   border-top: 3px solid #6c757d;
 }
@@ -17766,8 +17866,8 @@ html.maximized-card {
 }
 
 .card-gray.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-gray.card-outline-tabs {
@@ -17775,8 +17875,8 @@ html.maximized-card {
 }
 
 .card-gray.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-gray.card-outline-tabs > .card-header a {
@@ -17856,6 +17956,10 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
+.card-gray-dark:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
+  margin-left: -1px;
+}
+
 .card-gray-dark.card-outline {
   border-top: 3px solid #343a40;
 }
@@ -17865,8 +17969,8 @@ html.maximized-card {
 }
 
 .card-gray-dark.card-outline .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-gray-dark.card-outline-tabs {
@@ -17874,8 +17978,8 @@ html.maximized-card {
 }
 
 .card-gray-dark.card-outline-tabs > .card-header .nav-item:first-child .nav-link {
-  margin-left: -1px;
   border-left: 0;
+  margin-left: 0;
 }
 
 .card-gray-dark.card-outline-tabs > .card-header a {
