@@ -19,6 +19,12 @@
         a.active {
           color: color-yiq($white);
         }
+
+        .nav-item {
+          &:first-child .nav-link {
+            margin-left: -1px;
+          }
+        }
       }
     }
 
@@ -29,8 +35,8 @@
         border-bottom: 0;
 
         &:first-child .nav-link {
-          margin-left: -1px;
           border-left: 0;
+          margin-left: 0;
         }
       }
     }
@@ -41,8 +47,8 @@
       > .card-header {
         .nav-item {
           &:first-child .nav-link {
-            margin-left: -1px;
             border-left: 0;
+            margin-left: 0;
           }
         }
 
