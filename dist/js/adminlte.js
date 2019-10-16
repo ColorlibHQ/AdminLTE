@@ -344,7 +344,11 @@
 
         var max = this._max(heights);
 
-        $(Selector.CONTENT).css('min-height', max - heights.header);
+        if (max == heights.window) {
+          $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer);
+        } else {
+          $(Selector.CONTENT).css('min-height', max - heights.header);
+        }
 
         if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
           $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer);
