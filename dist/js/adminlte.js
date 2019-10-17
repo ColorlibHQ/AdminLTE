@@ -344,9 +344,15 @@
 
         var max = this._max(heights);
 
-        $(Selector.CONTENT).css('min-height', max - heights.footer);
+        if (max == heights.window) {
+          $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer);
+        } else {
+          $(Selector.CONTENT).css('min-height', max - heights.header);
+        }
 
         if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
+          $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer);
+
           if (typeof $.fn.overlayScrollbars !== 'undefined') {
             $(Selector.SIDEBAR).overlayScrollbars({
               className: this._config.scrollbarTheme,
@@ -494,10 +500,6 @@
         this._element = element;
         this._options = $.extend({}, Default, options);
 
-        if (!$(Selector.BODY).hasClass(ClassName.COLLAPSED) && !$(Selector.BODY).hasClass(ClassName.OPEN)) {
-          $(Selector.BODY).addClass(ClassName.OPEN);
-        }
-
         if (!$(Selector.OVERLAY).length) {
           this._addOverlay();
         }
@@ -509,7 +511,13 @@
       var _proto = PushMenu.prototype;
 
       _proto.show = function show() {
-        $(Selector.BODY).addClass(ClassName.OPEN).removeClass(ClassName.COLLAPSED);
+        if (this._options.autoCollapseSize) {
+          if ($(window).width() <= this._options.autoCollapseSize) {
+            $(Selector.BODY).addClass(ClassName.OPEN);
+          }
+        }
+
+        $(Selector.BODY).removeClass(ClassName.COLLAPSED);
 
         if (this._options.enableRemember) {
           localStorage.setItem("remember" + EVENT_KEY, ClassName.OPEN);
@@ -520,7 +528,13 @@
       };
 
       _proto.collapse = function collapse() {
-        $(Selector.BODY).removeClass(ClassName.OPEN).addClass(ClassName.COLLAPSED);
+        if (this._options.autoCollapseSize) {
+          if ($(window).width() <= this._options.autoCollapseSize) {
+            $(Selector.BODY).removeClass(ClassName.OPEN);
+          }
+        }
+
+        $(Selector.BODY).addClass(ClassName.COLLAPSED);
 
         if (this._options.enableRemember) {
           localStorage.setItem("remember" + EVENT_KEY, ClassName.COLLAPSED);
@@ -531,7 +545,7 @@
       };
 
       _proto.toggle = function toggle() {
-        if ($(Selector.BODY).hasClass(ClassName.OPEN)) {
+        if (!$(Selector.BODY).hasClass(ClassName.COLLAPSED)) {
           this.collapse();
         } else {
           this.show();
@@ -541,12 +555,14 @@
       _proto.autoCollapse = function autoCollapse() {
         if (this._options.autoCollapseSize) {
           if ($(window).width() <= this._options.autoCollapseSize) {
-            if ($(Selector.BODY).hasClass(ClassName.OPEN)) {
-              this.toggle();
+            if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
+              this.collapse();
             }
           } else {
             if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
-              this.toggle();
+              this.show();
+            } else {
+              $(Selector.BODY).removeClass(ClassName.OPEN);
             }
           }
         }
