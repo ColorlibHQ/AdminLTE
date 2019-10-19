@@ -1,5 +1,5 @@
 /*!
- * AdminLTE v3.0.0-rc.1 (https://adminlte.io)
+ * AdminLTE v3.0.0-rc.5 (https://adminlte.io)
  * Copyright 2014-2019 Colorlib <http://colorlib.com>
  * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
  */
@@ -297,7 +297,9 @@
       WRAPPER: '.wrapper',
       CONTROL_SIDEBAR: '.control-sidebar',
       LAYOUT_FIXED: '.layout-fixed',
-      FOOTER: '.main-footer'
+      FOOTER: '.main-footer',
+      LOGIN_BOX: '.login-box',
+      REGISTER_BOX: '.register-box'
     };
     var ClassName = {
       HOLD: 'hold-transition',
@@ -306,7 +308,9 @@
       SIDEBAR_FOCUSED: 'sidebar-focused',
       LAYOUT_FIXED: 'layout-fixed',
       NAVBAR_FIXED: 'layout-navbar-fixed',
-      FOOTER_FIXED: 'layout-footer-fixed'
+      FOOTER_FIXED: 'layout-footer-fixed',
+      LOGIN_PAGE: 'login-page',
+      REGISTER_PAGE: 'register-page'
     };
     var Default = {
       scrollbarTheme: 'os-theme-light',
@@ -340,9 +344,15 @@
 
         var max = this._max(heights);
 
-        $(Selector.CONTENT).css('min-height', max - heights.footer);
+        if (max == heights.window) {
+          $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer);
+        } else {
+          $(Selector.CONTENT).css('min-height', max - heights.header);
+        }
 
         if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
+          $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer);
+
           if (typeof $.fn.overlayScrollbars !== 'undefined') {
             $(Selector.SIDEBAR).overlayScrollbars({
               className: this._config.scrollbarTheme,
@@ -368,7 +378,14 @@
         $(window).resize(function () {
           _this.fixLayoutHeight();
         });
-        $('body, html').css('height', 'auto');
+
+        if (!$('body').hasClass(ClassName.LOGIN_PAGE) && !$('body').hasClass(ClassName.REGISTER_PAGE)) {
+          $('body, html').css('height', 'auto');
+        } else if ($('body').hasClass(ClassName.LOGIN_PAGE) || $('body').hasClass(ClassName.REGISTER_PAGE)) {
+          var box_height = $(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).height();
+          $('body').css('min-height', box_height);
+        }
+
         $('body.hold-transition').removeClass('hold-transition');
       };
 
@@ -454,8 +471,7 @@
       SHOWN: "shown" + EVENT_KEY
     };
     var Default = {
-      autoCollapseSize: false,
-      screenCollapseSize: 768,
+      autoCollapseSize: 992,
       enableRemember: false,
       noTransitionAfterReload: true
     };
@@ -470,8 +486,7 @@
     var ClassName = {
       SIDEBAR_OPEN: 'sidebar-open',
       COLLAPSED: 'sidebar-collapse',
-      OPEN: 'sidebar-open',
-      SIDEBAR_MINI: 'sidebar-mini'
+      OPEN: 'sidebar-open'
     };
     /**
      * Class Definition
@@ -485,18 +500,24 @@
         this._element = element;
         this._options = $.extend({}, Default, options);
 
-        this._init();
-
         if (!$(Selector.OVERLAY).length) {
           this._addOverlay();
         }
+
+        this._init();
       } // Public
 
 
       var _proto = PushMenu.prototype;
 
       _proto.show = function show() {
-        $(Selector.BODY).addClass(ClassName.OPEN).removeClass(ClassName.COLLAPSED);
+        if (this._options.autoCollapseSize) {
+          if ($(window).width() <= this._options.autoCollapseSize) {
+            $(Selector.BODY).addClass(ClassName.OPEN);
+          }
+        }
+
+        $(Selector.BODY).removeClass(ClassName.COLLAPSED);
 
         if (this._options.enableRemember) {
           localStorage.setItem("remember" + EVENT_KEY, ClassName.OPEN);
@@ -507,7 +528,13 @@
       };
 
       _proto.collapse = function collapse() {
-        $(Selector.BODY).removeClass(ClassName.OPEN).addClass(ClassName.COLLAPSED);
+        if (this._options.autoCollapseSize) {
+          if ($(window).width() <= this._options.autoCollapseSize) {
+            $(Selector.BODY).removeClass(ClassName.OPEN);
+          }
+        }
+
+        $(Selector.BODY).addClass(ClassName.COLLAPSED);
 
         if (this._options.enableRemember) {
           localStorage.setItem("remember" + EVENT_KEY, ClassName.COLLAPSED);
@@ -517,16 +544,8 @@
         $(this._element).trigger(collapsedEvent);
       };
 
-      _proto.isShown = function isShown() {
-        if ($(window).width() >= this._options.screenCollapseSize) {
-          return !$(Selector.BODY).hasClass(ClassName.COLLAPSED);
-        } else {
-          return $(Selector.BODY).hasClass(ClassName.OPEN);
-        }
-      };
-
       _proto.toggle = function toggle() {
-        if (this.isShown()) {
+        if (!$(Selector.BODY).hasClass(ClassName.COLLAPSED)) {
           this.collapse();
         } else {
           this.show();
@@ -536,12 +555,14 @@
       _proto.autoCollapse = function autoCollapse() {
         if (this._options.autoCollapseSize) {
           if ($(window).width() <= this._options.autoCollapseSize) {
-            if (this.isShown()) {
-              this.toggle();
+            if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
+              this.collapse();
             }
           } else {
-            if (!this.isShown()) {
-              this.toggle();
+            if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
+              this.show();
+            } else {
+              $(Selector.BODY).removeClass(ClassName.OPEN);
             }
           }
         }
@@ -741,10 +762,13 @@
 
       _proto.toggle = function toggle(event) {
         var $relativeTarget = $(event.currentTarget);
-        var treeviewMenu = $relativeTarget.parent().find(Selector.TREEVIEW_MENU);
+        var $parent = $relativeTarget.parent();
+        var treeviewMenu = $parent.find('> ' + Selector.TREEVIEW_MENU);
 
         if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
-          treeviewMenu = $relativeTarget.parent().parent().find(Selector.TREEVIEW_MENU);
+          if (!$parent.is(Selector.LI)) {
+            treeviewMenu = $parent.parent().find('> ' + Selector.TREEVIEW_MENU);
+          }
 
           if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
             return;

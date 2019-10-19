@@ -101,6 +101,21 @@
   var $text_sm_sidebar_container = $('<div />', {'class': 'mb-1'}).append($text_sm_sidebar_checkbox).append('<span>Sidebar nav small text</span>')
   $container.append($text_sm_sidebar_container)
 
+  var $text_sm_footer_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('.main-footer').hasClass('text-sm'),
+    'class': 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('.main-footer').addClass('text-sm')
+    } else {
+      $('.main-footer').removeClass('text-sm')
+    }
+  })
+  var $text_sm_footer_container = $('<div />', {'class': 'mb-1'}).append($text_sm_footer_checkbox).append('<span>Footer small text</span>')
+  $container.append($text_sm_footer_container)
+
   var $flat_sidebar_checkbox = $('<input />', {
     type   : 'checkbox',
     value  : 1,
@@ -221,6 +236,24 @@
     'bg-olive'
   ]
 
+  var accent_colors = [
+    'accent-primary',
+    'accent-warning',
+    'accent-info',
+    'accent-danger',
+    'accent-success',
+    'accent-indigo',
+    'accent-navy',
+    'accent-purple',
+    'accent-fuchsia',
+    'accent-pink',
+    'accent-maroon',
+    'accent-orange',
+    'accent-lime',
+    'accent-teal',
+    'accent-olive'
+  ]
+
   var sidebar_skins = [
     'sidebar-dark-primary',
     'sidebar-dark-warning',
@@ -253,6 +286,22 @@
     'sidebar-light-teal',
     'sidebar-light-olive'
   ]
+
+  $container.append('<h6>Accent Color Variants</h6>')
+  var $accent_variants = $('<div />', {
+    'class': 'd-flex'
+  })
+  $container.append($accent_variants)
+  $container.append(createSkinBlock(accent_colors, function () {
+    var color         = $(this).data('color')
+    var accent_class = color
+    var $body      = $('body')
+    accent_colors.map(function (skin) {
+      $body.removeClass(skin)
+    })
+
+    $body.addClass(accent_class)
+  }))
 
   $container.append('<h6>Dark Sidebar Variants</h6>')
   var $sidebar_variants = $('<div />', {
@@ -316,7 +365,7 @@
 
     colors.map(function (color) {
       var $color = $('<div />', {
-        'class': (typeof color === 'object' ? color.join(' ') : color) + ' elevation-2'
+        'class': (typeof color === 'object' ? color.join(' ') : color).replace('navbar-', 'bg-').replace('accent-', 'bg-') + ' elevation-2'
       })
 
       $block.append($color)
