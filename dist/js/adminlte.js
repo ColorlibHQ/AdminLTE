@@ -552,13 +552,17 @@
         }
       };
 
-      _proto.autoCollapse = function autoCollapse() {
+      _proto.autoCollapse = function autoCollapse(resize) {
+        if (resize === void 0) {
+          resize = false;
+        }
+
         if (this._options.autoCollapseSize) {
           if ($(window).width() <= this._options.autoCollapseSize) {
             if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
               this.collapse();
             }
-          } else {
+          } else if (resize == true) {
             if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
               this.show();
             } else {
@@ -601,7 +605,7 @@
         this.remember();
         this.autoCollapse();
         $(window).resize(function () {
-          _this.autoCollapse();
+          _this.autoCollapse(true);
         });
       };
 
