@@ -91,7 +91,10 @@
   }
 
   .form-control-navbar {
-    &::placeholder,
+    &::placeholder {
+      color: $main-header-dark-placeholder-color;
+    }
+
     + .input-group-append > .btn-navbar {
       color: $main-header-dark-placeholder-color;
     }
@@ -115,10 +118,10 @@
   }
 
   .form-control-navbar {
-    &:ms-placeholder,
-    &:moz-placeholder,
-    &::moz-placeholder,
-    &::placeholder,
+    &::placeholder {
+      color: $main-header-light-placeholder-color;
+    }
+
     + .input-group-append > .btn-navbar {
       color: $main-header-light-placeholder-color;
     }
