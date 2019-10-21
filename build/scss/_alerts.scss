@@ -22,29 +22,16 @@
   }
 }
 
+
 //Alert Variants
-.alert-success {
-  @extend .bg-success;
-  border-color: darken(theme-color('success'), 5%);
-}
+@each $color, $value in $theme-colors {
+  .alert-#{$color} {
+    color: color-yiq($value);
+    background: $value;
+    border-color: darken($value, 5%);
+  }
 
-.alert-danger,
-.alert-error {
-  @extend .bg-danger;
-  border-color: darken(theme-color('danger'), 5%);
-}
-
-.alert-warning {
-  @extend .bg-warning;
-  border-color: darken(theme-color('warning'), 5%);
-}
-
-.alert-info {
-  @extend .bg-info;
-  border-color: darken(theme-color('info'), 5%);
-}
-
-.alert-primary {
-  @extend .bg-primary;
-  border-color: darken(theme-color('primary'), 5%);
+  .alert-default-#{$color} {
+    @include alert-variant(theme-color-level($color, $alert-bg-level), theme-color-level($color, $alert-border-level), theme-color-level($color, $alert-color-level));
+  }
 }
