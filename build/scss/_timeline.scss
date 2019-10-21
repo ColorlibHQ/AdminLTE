@@ -70,6 +70,9 @@
         > img {
           margin: 10px;
         }
+        > dl, ol, ul {
+          margin: 0;
+        }
       }
 
       > .timeline-footer {
