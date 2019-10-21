@@ -71,7 +71,7 @@ const PushMenu = (($) => {
       $(Selector.BODY).removeClass(ClassName.COLLAPSED)
 
       if(this._options.enableRemember) {
-          localStorage.setItem(`remember${EVENT_KEY}`, ClassName.OPEN)
+        localStorage.setItem(`remember${EVENT_KEY}`, ClassName.OPEN)
       }
 
       const shownEvent = $.Event(Event.SHOWN)
@@ -88,7 +88,7 @@ const PushMenu = (($) => {
       $(Selector.BODY).addClass(ClassName.COLLAPSED)
 
       if(this._options.enableRemember) {
-          localStorage.setItem(`remember${EVENT_KEY}`, ClassName.COLLAPSED)
+        localStorage.setItem(`remember${EVENT_KEY}`, ClassName.COLLAPSED)
       }
 
       const collapsedEvent = $.Event(Event.COLLAPSED)
@@ -103,13 +103,13 @@ const PushMenu = (($) => {
       }
     }
 
-    autoCollapse() {
+    autoCollapse(resize = false) {
       if (this._options.autoCollapseSize) {
         if ($(window).width() <= this._options.autoCollapseSize) {
           if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
             this.collapse()
           }
-        } else {
+        } else if (resize == true) {
           if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
             this.show()
           } else {
@@ -151,7 +151,7 @@ const PushMenu = (($) => {
       this.autoCollapse()
 
       $(window).resize(() => {
-        this.autoCollapse()
+        this.autoCollapse(true)
       })
     }
 
