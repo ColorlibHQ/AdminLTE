@@ -6562,15 +6562,13 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   vertical-align: text-top !important;
 }
 
-.bg-primary, .alert-primary {
+.bg-primary {
   background-color: #007bff !important;
 }
 
-a.bg-primary:hover, a.alert-primary:hover, a.bg-primary:focus, a.alert-primary:focus,
+a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
-button.alert-primary:hover,
-button.bg-primary:focus,
-button.alert-primary:focus {
+button.bg-primary:focus {
   background-color: #0062cc !important;
 }
 
@@ -6584,56 +6582,43 @@ button.bg-secondary:focus {
   background-color: #545b62 !important;
 }
 
-.bg-success, .alert-success {
+.bg-success {
   background-color: #28a745 !important;
 }
 
-a.bg-success:hover, a.alert-success:hover, a.bg-success:focus, a.alert-success:focus,
+a.bg-success:hover, a.bg-success:focus,
 button.bg-success:hover,
-button.alert-success:hover,
-button.bg-success:focus,
-button.alert-success:focus {
+button.bg-success:focus {
   background-color: #1e7e34 !important;
 }
 
-.bg-info, .alert-info {
+.bg-info {
   background-color: #17a2b8 !important;
 }
 
-a.bg-info:hover, a.alert-info:hover, a.bg-info:focus, a.alert-info:focus,
+a.bg-info:hover, a.bg-info:focus,
 button.bg-info:hover,
-button.alert-info:hover,
-button.bg-info:focus,
-button.alert-info:focus {
+button.bg-info:focus {
   background-color: #117a8b !important;
 }
 
-.bg-warning, .alert-warning {
+.bg-warning {
   background-color: #ffc107 !important;
 }
 
-a.bg-warning:hover, a.alert-warning:hover, a.bg-warning:focus, a.alert-warning:focus,
+a.bg-warning:hover, a.bg-warning:focus,
 button.bg-warning:hover,
-button.alert-warning:hover,
-button.bg-warning:focus,
-button.alert-warning:focus {
+button.bg-warning:focus {
   background-color: #d39e00 !important;
 }
 
-.bg-danger, .alert-danger,
-.alert-error {
+.bg-danger {
   background-color: #dc3545 !important;
 }
 
-a.bg-danger:hover, a.alert-danger:hover,
-a.alert-error:hover, a.bg-danger:focus, a.alert-danger:focus,
-a.alert-error:focus,
+a.bg-danger:hover, a.bg-danger:focus,
 button.bg-danger:hover,
-button.alert-danger:hover,
-button.alert-error:hover,
-button.bg-danger:focus,
-button.alert-danger:focus,
-button.alert-error:focus {
+button.bg-danger:focus {
   background-color: #bd2130 !important;
 }
 
@@ -11364,27 +11349,26 @@ body,
   border: 0;
 }
 
-.navbar-dark .form-control-navbar::-webkit-input-placeholder,
-.navbar-dark .form-control-navbar + .input-group-append > .btn-navbar {
+.navbar-dark .form-control-navbar::-webkit-input-placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.navbar-dark .form-control-navbar::-moz-placeholder,
-.navbar-dark .form-control-navbar + .input-group-append > .btn-navbar {
+.navbar-dark .form-control-navbar::-moz-placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.navbar-dark .form-control-navbar:-ms-input-placeholder,
-.navbar-dark .form-control-navbar + .input-group-append > .btn-navbar {
+.navbar-dark .form-control-navbar:-ms-input-placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.navbar-dark .form-control-navbar::-ms-input-placeholder,
-.navbar-dark .form-control-navbar + .input-group-append > .btn-navbar {
+.navbar-dark .form-control-navbar::-ms-input-placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.navbar-dark .form-control-navbar::placeholder,
+.navbar-dark .form-control-navbar::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
 .navbar-dark .form-control-navbar + .input-group-append > .btn-navbar {
   color: rgba(255, 255, 255, 0.6);
 }
@@ -11402,27 +11386,26 @@ body,
   border: 0;
 }
 
-.navbar-light .form-control-navbar:ms-placeholder, .navbar-light .form-control-navbar:moz-placeholder, .navbar-light .form-control-navbar::moz-placeholder, .navbar-light .form-control-navbar::-webkit-input-placeholder,
-.navbar-light .form-control-navbar + .input-group-append > .btn-navbar {
+.navbar-light .form-control-navbar::-webkit-input-placeholder {
   color: rgba(0, 0, 0, 0.6);
 }
 
-.navbar-light .form-control-navbar:ms-placeholder, .navbar-light .form-control-navbar:moz-placeholder, .navbar-light .form-control-navbar::moz-placeholder, .navbar-light .form-control-navbar::-moz-placeholder,
-.navbar-light .form-control-navbar + .input-group-append > .btn-navbar {
+.navbar-light .form-control-navbar::-moz-placeholder {
   color: rgba(0, 0, 0, 0.6);
 }
 
-.navbar-light .form-control-navbar:ms-placeholder, .navbar-light .form-control-navbar:moz-placeholder, .navbar-light .form-control-navbar::moz-placeholder, .navbar-light .form-control-navbar:-ms-input-placeholder,
-.navbar-light .form-control-navbar + .input-group-append > .btn-navbar {
+.navbar-light .form-control-navbar:-ms-input-placeholder {
   color: rgba(0, 0, 0, 0.6);
 }
 
-.navbar-light .form-control-navbar:ms-placeholder, .navbar-light .form-control-navbar:moz-placeholder, .navbar-light .form-control-navbar::moz-placeholder, .navbar-light .form-control-navbar::-ms-input-placeholder,
-.navbar-light .form-control-navbar + .input-group-append > .btn-navbar {
+.navbar-light .form-control-navbar::-ms-input-placeholder {
   color: rgba(0, 0, 0, 0.6);
 }
 
-.navbar-light .form-control-navbar:ms-placeholder, .navbar-light .form-control-navbar:moz-placeholder, .navbar-light .form-control-navbar::moz-placeholder, .navbar-light .form-control-navbar::placeholder,
+.navbar-light .form-control-navbar::placeholder {
+  color: rgba(0, 0, 0, 0.6);
+}
+
 .navbar-light .form-control-navbar + .input-group-append > .btn-navbar {
   color: rgba(0, 0, 0, 0.6);
 }
@@ -15388,35 +15371,30 @@ html.maximized-card {
   margin-top: 0;
 }
 
-.bg-primary .btn-tool, .alert-primary .btn-tool,
+.bg-primary .btn-tool,
 .bg-gradient-primary .btn-tool,
 .card-primary:not(.card-outline) .btn-tool {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.bg-primary .btn-tool:hover, .alert-primary .btn-tool:hover,
+.bg-primary .btn-tool:hover,
 .bg-gradient-primary .btn-tool:hover,
 .card-primary:not(.card-outline) .btn-tool:hover {
   color: #ffffff;
 }
 
-.card.bg-primary .bootstrap-datetimepicker-widget .table td, .card.alert-primary .bootstrap-datetimepicker-widget .table td,
+.card.bg-primary .bootstrap-datetimepicker-widget .table td,
 .card.bg-primary .bootstrap-datetimepicker-widget .table th,
-.card.alert-primary .bootstrap-datetimepicker-widget .table th,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget .table td,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-primary .bootstrap-datetimepicker-widget table thead tr:first-child th:hover, .card.alert-primary .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-primary .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
 .card.bg-primary .bootstrap-datetimepicker-widget table td.day:hover,
-.card.alert-primary .bootstrap-datetimepicker-widget table td.day:hover,
 .card.bg-primary .bootstrap-datetimepicker-widget table td.hour:hover,
-.card.alert-primary .bootstrap-datetimepicker-widget table td.hour:hover,
 .card.bg-primary .bootstrap-datetimepicker-widget table td.minute:hover,
-.card.alert-primary .bootstrap-datetimepicker-widget table td.minute:hover,
 .card.bg-primary .bootstrap-datetimepicker-widget table td.second:hover,
-.card.alert-primary .bootstrap-datetimepicker-widget table td.second:hover,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.day:hover,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.hour:hover,
@@ -15426,14 +15404,13 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card.bg-primary .bootstrap-datetimepicker-widget table td.today::before, .card.alert-primary .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-primary .bootstrap-datetimepicker-widget table td.today::before,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-primary .bootstrap-datetimepicker-widget table td.active, .card.alert-primary .bootstrap-datetimepicker-widget table td.active,
+.card.bg-primary .bootstrap-datetimepicker-widget table td.active,
 .card.bg-primary .bootstrap-datetimepicker-widget table td.active:hover,
-.card.alert-primary .bootstrap-datetimepicker-widget table td.active:hover,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.active,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.active:hover {
   background: #3395ff;
@@ -15600,35 +15577,30 @@ html.maximized-card {
   margin-top: 0;
 }
 
-.bg-success .btn-tool, .alert-success .btn-tool,
+.bg-success .btn-tool,
 .bg-gradient-success .btn-tool,
 .card-success:not(.card-outline) .btn-tool {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.bg-success .btn-tool:hover, .alert-success .btn-tool:hover,
+.bg-success .btn-tool:hover,
 .bg-gradient-success .btn-tool:hover,
 .card-success:not(.card-outline) .btn-tool:hover {
   color: #ffffff;
 }
 
-.card.bg-success .bootstrap-datetimepicker-widget .table td, .card.alert-success .bootstrap-datetimepicker-widget .table td,
+.card.bg-success .bootstrap-datetimepicker-widget .table td,
 .card.bg-success .bootstrap-datetimepicker-widget .table th,
-.card.alert-success .bootstrap-datetimepicker-widget .table th,
 .card.bg-gradient-success .bootstrap-datetimepicker-widget .table td,
 .card.bg-gradient-success .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-success .bootstrap-datetimepicker-widget table thead tr:first-child th:hover, .card.alert-success .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-success .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
 .card.bg-success .bootstrap-datetimepicker-widget table td.day:hover,
-.card.alert-success .bootstrap-datetimepicker-widget table td.day:hover,
 .card.bg-success .bootstrap-datetimepicker-widget table td.hour:hover,
-.card.alert-success .bootstrap-datetimepicker-widget table td.hour:hover,
 .card.bg-success .bootstrap-datetimepicker-widget table td.minute:hover,
-.card.alert-success .bootstrap-datetimepicker-widget table td.minute:hover,
 .card.bg-success .bootstrap-datetimepicker-widget table td.second:hover,
-.card.alert-success .bootstrap-datetimepicker-widget table td.second:hover,
 .card.bg-gradient-success .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
 .card.bg-gradient-success .bootstrap-datetimepicker-widget table td.day:hover,
 .card.bg-gradient-success .bootstrap-datetimepicker-widget table td.hour:hover,
@@ -15638,14 +15610,13 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card.bg-success .bootstrap-datetimepicker-widget table td.today::before, .card.alert-success .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-success .bootstrap-datetimepicker-widget table td.today::before,
 .card.bg-gradient-success .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-success .bootstrap-datetimepicker-widget table td.active, .card.alert-success .bootstrap-datetimepicker-widget table td.active,
+.card.bg-success .bootstrap-datetimepicker-widget table td.active,
 .card.bg-success .bootstrap-datetimepicker-widget table td.active:hover,
-.card.alert-success .bootstrap-datetimepicker-widget table td.active:hover,
 .card.bg-gradient-success .bootstrap-datetimepicker-widget table td.active,
 .card.bg-gradient-success .bootstrap-datetimepicker-widget table td.active:hover {
   background: #34ce57;
@@ -15709,35 +15680,30 @@ html.maximized-card {
   margin-top: 0;
 }
 
-.bg-info .btn-tool, .alert-info .btn-tool,
+.bg-info .btn-tool,
 .bg-gradient-info .btn-tool,
 .card-info:not(.card-outline) .btn-tool {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.bg-info .btn-tool:hover, .alert-info .btn-tool:hover,
+.bg-info .btn-tool:hover,
 .bg-gradient-info .btn-tool:hover,
 .card-info:not(.card-outline) .btn-tool:hover {
   color: #ffffff;
 }
 
-.card.bg-info .bootstrap-datetimepicker-widget .table td, .card.alert-info .bootstrap-datetimepicker-widget .table td,
+.card.bg-info .bootstrap-datetimepicker-widget .table td,
 .card.bg-info .bootstrap-datetimepicker-widget .table th,
-.card.alert-info .bootstrap-datetimepicker-widget .table th,
 .card.bg-gradient-info .bootstrap-datetimepicker-widget .table td,
 .card.bg-gradient-info .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-info .bootstrap-datetimepicker-widget table thead tr:first-child th:hover, .card.alert-info .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-info .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
 .card.bg-info .bootstrap-datetimepicker-widget table td.day:hover,
-.card.alert-info .bootstrap-datetimepicker-widget table td.day:hover,
 .card.bg-info .bootstrap-datetimepicker-widget table td.hour:hover,
-.card.alert-info .bootstrap-datetimepicker-widget table td.hour:hover,
 .card.bg-info .bootstrap-datetimepicker-widget table td.minute:hover,
-.card.alert-info .bootstrap-datetimepicker-widget table td.minute:hover,
 .card.bg-info .bootstrap-datetimepicker-widget table td.second:hover,
-.card.alert-info .bootstrap-datetimepicker-widget table td.second:hover,
 .card.bg-gradient-info .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
 .card.bg-gradient-info .bootstrap-datetimepicker-widget table td.day:hover,
 .card.bg-gradient-info .bootstrap-datetimepicker-widget table td.hour:hover,
@@ -15747,14 +15713,13 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card.bg-info .bootstrap-datetimepicker-widget table td.today::before, .card.alert-info .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-info .bootstrap-datetimepicker-widget table td.today::before,
 .card.bg-gradient-info .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-info .bootstrap-datetimepicker-widget table td.active, .card.alert-info .bootstrap-datetimepicker-widget table td.active,
+.card.bg-info .bootstrap-datetimepicker-widget table td.active,
 .card.bg-info .bootstrap-datetimepicker-widget table td.active:hover,
-.card.alert-info .bootstrap-datetimepicker-widget table td.active:hover,
 .card.bg-gradient-info .bootstrap-datetimepicker-widget table td.active,
 .card.bg-gradient-info .bootstrap-datetimepicker-widget table td.active:hover {
   background: #1fc8e3;
@@ -15818,35 +15783,30 @@ html.maximized-card {
   margin-top: 0;
 }
 
-.bg-warning .btn-tool, .alert-warning .btn-tool,
+.bg-warning .btn-tool,
 .bg-gradient-warning .btn-tool,
 .card-warning:not(.card-outline) .btn-tool {
   color: rgba(31, 45, 61, 0.8);
 }
 
-.bg-warning .btn-tool:hover, .alert-warning .btn-tool:hover,
+.bg-warning .btn-tool:hover,
 .bg-gradient-warning .btn-tool:hover,
 .card-warning:not(.card-outline) .btn-tool:hover {
   color: #1F2D3D;
 }
 
-.card.bg-warning .bootstrap-datetimepicker-widget .table td, .card.alert-warning .bootstrap-datetimepicker-widget .table td,
+.card.bg-warning .bootstrap-datetimepicker-widget .table td,
 .card.bg-warning .bootstrap-datetimepicker-widget .table th,
-.card.alert-warning .bootstrap-datetimepicker-widget .table th,
 .card.bg-gradient-warning .bootstrap-datetimepicker-widget .table td,
 .card.bg-gradient-warning .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-warning .bootstrap-datetimepicker-widget table thead tr:first-child th:hover, .card.alert-warning .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-warning .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
 .card.bg-warning .bootstrap-datetimepicker-widget table td.day:hover,
-.card.alert-warning .bootstrap-datetimepicker-widget table td.day:hover,
 .card.bg-warning .bootstrap-datetimepicker-widget table td.hour:hover,
-.card.alert-warning .bootstrap-datetimepicker-widget table td.hour:hover,
 .card.bg-warning .bootstrap-datetimepicker-widget table td.minute:hover,
-.card.alert-warning .bootstrap-datetimepicker-widget table td.minute:hover,
 .card.bg-warning .bootstrap-datetimepicker-widget table td.second:hover,
-.card.alert-warning .bootstrap-datetimepicker-widget table td.second:hover,
 .card.bg-gradient-warning .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
 .card.bg-gradient-warning .bootstrap-datetimepicker-widget table td.day:hover,
 .card.bg-gradient-warning .bootstrap-datetimepicker-widget table td.hour:hover,
@@ -15856,14 +15816,13 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
-.card.bg-warning .bootstrap-datetimepicker-widget table td.today::before, .card.alert-warning .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-warning .bootstrap-datetimepicker-widget table td.today::before,
 .card.bg-gradient-warning .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #1F2D3D;
 }
 
-.card.bg-warning .bootstrap-datetimepicker-widget table td.active, .card.alert-warning .bootstrap-datetimepicker-widget table td.active,
+.card.bg-warning .bootstrap-datetimepicker-widget table td.active,
 .card.bg-warning .bootstrap-datetimepicker-widget table td.active:hover,
-.card.alert-warning .bootstrap-datetimepicker-widget table td.active:hover,
 .card.bg-gradient-warning .bootstrap-datetimepicker-widget table td.active,
 .card.bg-gradient-warning .bootstrap-datetimepicker-widget table td.active:hover {
   background: #ffce3a;
@@ -15927,40 +15886,30 @@ html.maximized-card {
   margin-top: 0;
 }
 
-.bg-danger .btn-tool, .alert-danger .btn-tool, .alert-error .btn-tool,
+.bg-danger .btn-tool,
 .bg-gradient-danger .btn-tool,
 .card-danger:not(.card-outline) .btn-tool {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.bg-danger .btn-tool:hover, .alert-danger .btn-tool:hover, .alert-error .btn-tool:hover,
+.bg-danger .btn-tool:hover,
 .bg-gradient-danger .btn-tool:hover,
 .card-danger:not(.card-outline) .btn-tool:hover {
   color: #ffffff;
 }
 
-.card.bg-danger .bootstrap-datetimepicker-widget .table td, .card.alert-danger .bootstrap-datetimepicker-widget .table td, .card.alert-error .bootstrap-datetimepicker-widget .table td,
+.card.bg-danger .bootstrap-datetimepicker-widget .table td,
 .card.bg-danger .bootstrap-datetimepicker-widget .table th,
-.card.alert-danger .bootstrap-datetimepicker-widget .table th,
-.card.alert-error .bootstrap-datetimepicker-widget .table th,
 .card.bg-gradient-danger .bootstrap-datetimepicker-widget .table td,
 .card.bg-gradient-danger .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-danger .bootstrap-datetimepicker-widget table thead tr:first-child th:hover, .card.alert-danger .bootstrap-datetimepicker-widget table thead tr:first-child th:hover, .card.alert-error .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-danger .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
 .card.bg-danger .bootstrap-datetimepicker-widget table td.day:hover,
-.card.alert-danger .bootstrap-datetimepicker-widget table td.day:hover,
-.card.alert-error .bootstrap-datetimepicker-widget table td.day:hover,
 .card.bg-danger .bootstrap-datetimepicker-widget table td.hour:hover,
-.card.alert-danger .bootstrap-datetimepicker-widget table td.hour:hover,
-.card.alert-error .bootstrap-datetimepicker-widget table td.hour:hover,
 .card.bg-danger .bootstrap-datetimepicker-widget table td.minute:hover,
-.card.alert-danger .bootstrap-datetimepicker-widget table td.minute:hover,
-.card.alert-error .bootstrap-datetimepicker-widget table td.minute:hover,
 .card.bg-danger .bootstrap-datetimepicker-widget table td.second:hover,
-.card.alert-danger .bootstrap-datetimepicker-widget table td.second:hover,
-.card.alert-error .bootstrap-datetimepicker-widget table td.second:hover,
 .card.bg-gradient-danger .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
 .card.bg-gradient-danger .bootstrap-datetimepicker-widget table td.day:hover,
 .card.bg-gradient-danger .bootstrap-datetimepicker-widget table td.hour:hover,
@@ -15970,15 +15919,13 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card.bg-danger .bootstrap-datetimepicker-widget table td.today::before, .card.alert-danger .bootstrap-datetimepicker-widget table td.today::before, .card.alert-error .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-danger .bootstrap-datetimepicker-widget table td.today::before,
 .card.bg-gradient-danger .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-danger .bootstrap-datetimepicker-widget table td.active, .card.alert-danger .bootstrap-datetimepicker-widget table td.active, .card.alert-error .bootstrap-datetimepicker-widget table td.active,
+.card.bg-danger .bootstrap-datetimepicker-widget table td.active,
 .card.bg-danger .bootstrap-datetimepicker-widget table td.active:hover,
-.card.alert-danger .bootstrap-datetimepicker-widget table td.active:hover,
-.card.alert-error .bootstrap-datetimepicker-widget table td.active:hover,
 .card.bg-gradient-danger .bootstrap-datetimepicker-widget table td.active,
 .card.bg-gradient-danger .bootstrap-datetimepicker-widget table td.active:hover {
   background: #e4606d;
@@ -18099,12 +18046,12 @@ html.maximized-card {
   white-space: nowrap;
 }
 
-.info-box .info-box .bg-primary, .info-box .info-box .alert-primary,
+.info-box .info-box .bg-primary,
 .info-box .info-box .bg-gradient-primary {
   color: #ffffff;
 }
 
-.info-box .info-box .bg-primary .progress-bar, .info-box .info-box .alert-primary .progress-bar,
+.info-box .info-box .bg-primary .progress-bar,
 .info-box .info-box .bg-gradient-primary .progress-bar {
   background-color: #ffffff;
 }
@@ -18119,43 +18066,42 @@ html.maximized-card {
   background-color: #ffffff;
 }
 
-.info-box .info-box .bg-success, .info-box .info-box .alert-success,
+.info-box .info-box .bg-success,
 .info-box .info-box .bg-gradient-success {
   color: #ffffff;
 }
 
-.info-box .info-box .bg-success .progress-bar, .info-box .info-box .alert-success .progress-bar,
+.info-box .info-box .bg-success .progress-bar,
 .info-box .info-box .bg-gradient-success .progress-bar {
   background-color: #ffffff;
 }
 
-.info-box .info-box .bg-info, .info-box .info-box .alert-info,
+.info-box .info-box .bg-info,
 .info-box .info-box .bg-gradient-info {
   color: #ffffff;
 }
 
-.info-box .info-box .bg-info .progress-bar, .info-box .info-box .alert-info .progress-bar,
+.info-box .info-box .bg-info .progress-bar,
 .info-box .info-box .bg-gradient-info .progress-bar {
   background-color: #ffffff;
 }
 
-.info-box .info-box .bg-warning, .info-box .info-box .alert-warning,
+.info-box .info-box .bg-warning,
 .info-box .info-box .bg-gradient-warning {
   color: #1F2D3D;
 }
 
-.info-box .info-box .bg-warning .progress-bar, .info-box .info-box .alert-warning .progress-bar,
+.info-box .info-box .bg-warning .progress-bar,
 .info-box .info-box .bg-gradient-warning .progress-bar {
   background-color: #1F2D3D;
 }
 
-.info-box .info-box .bg-danger, .info-box .info-box .alert-danger,
-.info-box .info-box .alert-error,
+.info-box .info-box .bg-danger,
 .info-box .info-box .bg-gradient-danger {
   color: #ffffff;
 }
 
-.info-box .info-box .bg-danger .progress-bar, .info-box .info-box .alert-danger .progress-bar, .info-box .info-box .alert-error .progress-bar,
+.info-box .info-box .bg-danger .progress-bar,
 .info-box .info-box .bg-gradient-danger .progress-bar {
   background-color: #ffffff;
 }
@@ -18299,6 +18245,10 @@ html.maximized-card {
 
 .timeline > div > .timeline-item > .timeline-body > img {
   margin: 10px;
+}
+
+.timeline > div > .timeline-item > .timeline-body > dl, .timeline > div > .timeline-item > .timeline-body ol, .timeline > div > .timeline-item > .timeline-body ul {
+  margin: 0;
 }
 
 .timeline > div > .timeline-item > .timeline-footer > a {
@@ -18485,25 +18435,164 @@ html.maximized-card {
   text-decoration: underline;
 }
 
+.alert-primary {
+  color: #ffffff;
+  background: #007bff;
+  border-color: #006fe6;
+}
+
+.alert-default-primary {
+  color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
+}
+
+.alert-default-primary hr {
+  border-top-color: #9fcdff;
+}
+
+.alert-default-primary .alert-link {
+  color: #002752;
+}
+
+.alert-secondary {
+  color: #ffffff;
+  background: #6c757d;
+  border-color: #60686f;
+}
+
+.alert-default-secondary {
+  color: #383d41;
+  background-color: #e2e3e5;
+  border-color: #d6d8db;
+}
+
+.alert-default-secondary hr {
+  border-top-color: #c8cbcf;
+}
+
+.alert-default-secondary .alert-link {
+  color: #202326;
+}
+
 .alert-success {
+  color: #ffffff;
+  background: #28a745;
   border-color: #23923d;
 }
 
-.alert-danger,
-.alert-error {
-  border-color: #d32535;
+.alert-default-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
 }
 
-.alert-warning {
-  border-color: #edb100;
+.alert-default-success hr {
+  border-top-color: #b1dfbb;
+}
+
+.alert-default-success .alert-link {
+  color: #0b2e13;
 }
 
 .alert-info {
+  color: #ffffff;
+  background: #17a2b8;
   border-color: #148ea1;
 }
 
-.alert-primary {
-  border-color: #006fe6;
+.alert-default-info {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+
+.alert-default-info hr {
+  border-top-color: #abdde5;
+}
+
+.alert-default-info .alert-link {
+  color: #062c33;
+}
+
+.alert-warning {
+  color: #1F2D3D;
+  background: #ffc107;
+  border-color: #edb100;
+}
+
+.alert-default-warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+
+.alert-default-warning hr {
+  border-top-color: #ffe8a1;
+}
+
+.alert-default-warning .alert-link {
+  color: #533f03;
+}
+
+.alert-danger {
+  color: #ffffff;
+  background: #dc3545;
+  border-color: #d32535;
+}
+
+.alert-default-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.alert-default-danger hr {
+  border-top-color: #f1b0b7;
+}
+
+.alert-default-danger .alert-link {
+  color: #491217;
+}
+
+.alert-light {
+  color: #1F2D3D;
+  background: #f8f9fa;
+  border-color: #e9ecef;
+}
+
+.alert-default-light {
+  color: #818182;
+  background-color: #fefefe;
+  border-color: #fdfdfe;
+}
+
+.alert-default-light hr {
+  border-top-color: #ececf6;
+}
+
+.alert-default-light .alert-link {
+  color: #686868;
+}
+
+.alert-dark {
+  color: #ffffff;
+  background: #343a40;
+  border-color: #292d32;
+}
+
+.alert-default-dark {
+  color: #1b1e21;
+  background-color: #d6d8d9;
+  border-color: #c6c8ca;
+}
+
+.alert-default-dark hr {
+  border-top-color: #b9bbbe;
+}
+
+.alert-default-dark .alert-link {
+  color: #040505;
 }
 
 .nav-pills .nav-link {
@@ -18967,7 +19056,7 @@ html.maximized-card {
   border-left-color: #007bff;
 }
 
-.direct-chat-primary.bg-primary .direct-chat-timestamp, .direct-chat-primary.alert-primary .direct-chat-timestamp, .direct-chat-primary.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-primary.bg-primary .direct-chat-timestamp, .direct-chat-primary.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -18975,19 +19064,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-primary.bg-success .direct-chat-timestamp, .direct-chat-primary.alert-success .direct-chat-timestamp, .direct-chat-primary.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-primary.bg-success .direct-chat-timestamp, .direct-chat-primary.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-primary.bg-info .direct-chat-timestamp, .direct-chat-primary.alert-info .direct-chat-timestamp, .direct-chat-primary.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-primary.bg-info .direct-chat-timestamp, .direct-chat-primary.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-primary.bg-warning .direct-chat-timestamp, .direct-chat-primary.alert-warning .direct-chat-timestamp, .direct-chat-primary.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-primary.bg-warning .direct-chat-timestamp, .direct-chat-primary.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-primary.bg-danger .direct-chat-timestamp, .direct-chat-primary.alert-danger .direct-chat-timestamp, .direct-chat-primary.alert-error .direct-chat-timestamp, .direct-chat-primary.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-primary.bg-danger .direct-chat-timestamp, .direct-chat-primary.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19081,7 +19170,7 @@ html.maximized-card {
   border-left-color: #6c757d;
 }
 
-.direct-chat-secondary.bg-primary .direct-chat-timestamp, .direct-chat-secondary.alert-primary .direct-chat-timestamp, .direct-chat-secondary.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-secondary.bg-primary .direct-chat-timestamp, .direct-chat-secondary.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19089,19 +19178,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-secondary.bg-success .direct-chat-timestamp, .direct-chat-secondary.alert-success .direct-chat-timestamp, .direct-chat-secondary.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-secondary.bg-success .direct-chat-timestamp, .direct-chat-secondary.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-secondary.bg-info .direct-chat-timestamp, .direct-chat-secondary.alert-info .direct-chat-timestamp, .direct-chat-secondary.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-secondary.bg-info .direct-chat-timestamp, .direct-chat-secondary.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-secondary.bg-warning .direct-chat-timestamp, .direct-chat-secondary.alert-warning .direct-chat-timestamp, .direct-chat-secondary.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-secondary.bg-warning .direct-chat-timestamp, .direct-chat-secondary.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-secondary.bg-danger .direct-chat-timestamp, .direct-chat-secondary.alert-danger .direct-chat-timestamp, .direct-chat-secondary.alert-error .direct-chat-timestamp, .direct-chat-secondary.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-secondary.bg-danger .direct-chat-timestamp, .direct-chat-secondary.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19195,7 +19284,7 @@ html.maximized-card {
   border-left-color: #28a745;
 }
 
-.direct-chat-success.bg-primary .direct-chat-timestamp, .direct-chat-success.alert-primary .direct-chat-timestamp, .direct-chat-success.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-success.bg-primary .direct-chat-timestamp, .direct-chat-success.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19203,19 +19292,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-success.bg-success .direct-chat-timestamp, .direct-chat-success.alert-success .direct-chat-timestamp, .direct-chat-success.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-success.bg-success .direct-chat-timestamp, .direct-chat-success.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-success.bg-info .direct-chat-timestamp, .direct-chat-success.alert-info .direct-chat-timestamp, .direct-chat-success.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-success.bg-info .direct-chat-timestamp, .direct-chat-success.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-success.bg-warning .direct-chat-timestamp, .direct-chat-success.alert-warning .direct-chat-timestamp, .direct-chat-success.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-success.bg-warning .direct-chat-timestamp, .direct-chat-success.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-success.bg-danger .direct-chat-timestamp, .direct-chat-success.alert-danger .direct-chat-timestamp, .direct-chat-success.alert-error .direct-chat-timestamp, .direct-chat-success.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-success.bg-danger .direct-chat-timestamp, .direct-chat-success.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19309,7 +19398,7 @@ html.maximized-card {
   border-left-color: #17a2b8;
 }
 
-.direct-chat-info.bg-primary .direct-chat-timestamp, .direct-chat-info.alert-primary .direct-chat-timestamp, .direct-chat-info.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-info.bg-primary .direct-chat-timestamp, .direct-chat-info.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19317,19 +19406,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-info.bg-success .direct-chat-timestamp, .direct-chat-info.alert-success .direct-chat-timestamp, .direct-chat-info.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-info.bg-success .direct-chat-timestamp, .direct-chat-info.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-info.bg-info .direct-chat-timestamp, .direct-chat-info.alert-info .direct-chat-timestamp, .direct-chat-info.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-info.bg-info .direct-chat-timestamp, .direct-chat-info.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-info.bg-warning .direct-chat-timestamp, .direct-chat-info.alert-warning .direct-chat-timestamp, .direct-chat-info.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-info.bg-warning .direct-chat-timestamp, .direct-chat-info.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-info.bg-danger .direct-chat-timestamp, .direct-chat-info.alert-danger .direct-chat-timestamp, .direct-chat-info.alert-error .direct-chat-timestamp, .direct-chat-info.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-info.bg-danger .direct-chat-timestamp, .direct-chat-info.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19423,7 +19512,7 @@ html.maximized-card {
   border-left-color: #ffc107;
 }
 
-.direct-chat-warning.bg-primary .direct-chat-timestamp, .direct-chat-warning.alert-primary .direct-chat-timestamp, .direct-chat-warning.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-warning.bg-primary .direct-chat-timestamp, .direct-chat-warning.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19431,19 +19520,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-warning.bg-success .direct-chat-timestamp, .direct-chat-warning.alert-success .direct-chat-timestamp, .direct-chat-warning.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-warning.bg-success .direct-chat-timestamp, .direct-chat-warning.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-warning.bg-info .direct-chat-timestamp, .direct-chat-warning.alert-info .direct-chat-timestamp, .direct-chat-warning.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-warning.bg-info .direct-chat-timestamp, .direct-chat-warning.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-warning.bg-warning .direct-chat-timestamp, .direct-chat-warning.alert-warning .direct-chat-timestamp, .direct-chat-warning.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-warning.bg-warning .direct-chat-timestamp, .direct-chat-warning.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-warning.bg-danger .direct-chat-timestamp, .direct-chat-warning.alert-danger .direct-chat-timestamp, .direct-chat-warning.alert-error .direct-chat-timestamp, .direct-chat-warning.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-warning.bg-danger .direct-chat-timestamp, .direct-chat-warning.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19537,7 +19626,7 @@ html.maximized-card {
   border-left-color: #dc3545;
 }
 
-.direct-chat-danger.bg-primary .direct-chat-timestamp, .direct-chat-danger.alert-primary .direct-chat-timestamp, .direct-chat-danger.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-danger.bg-primary .direct-chat-timestamp, .direct-chat-danger.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19545,19 +19634,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-danger.bg-success .direct-chat-timestamp, .direct-chat-danger.alert-success .direct-chat-timestamp, .direct-chat-danger.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-danger.bg-success .direct-chat-timestamp, .direct-chat-danger.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-danger.bg-info .direct-chat-timestamp, .direct-chat-danger.alert-info .direct-chat-timestamp, .direct-chat-danger.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-danger.bg-info .direct-chat-timestamp, .direct-chat-danger.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-danger.bg-warning .direct-chat-timestamp, .direct-chat-danger.alert-warning .direct-chat-timestamp, .direct-chat-danger.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-danger.bg-warning .direct-chat-timestamp, .direct-chat-danger.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-danger.bg-danger .direct-chat-timestamp, .direct-chat-danger.alert-danger .direct-chat-timestamp, .direct-chat-danger.alert-error .direct-chat-timestamp, .direct-chat-danger.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-danger.bg-danger .direct-chat-timestamp, .direct-chat-danger.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19651,7 +19740,7 @@ html.maximized-card {
   border-left-color: #f8f9fa;
 }
 
-.direct-chat-light.bg-primary .direct-chat-timestamp, .direct-chat-light.alert-primary .direct-chat-timestamp, .direct-chat-light.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-light.bg-primary .direct-chat-timestamp, .direct-chat-light.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19659,19 +19748,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-light.bg-success .direct-chat-timestamp, .direct-chat-light.alert-success .direct-chat-timestamp, .direct-chat-light.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-light.bg-success .direct-chat-timestamp, .direct-chat-light.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-light.bg-info .direct-chat-timestamp, .direct-chat-light.alert-info .direct-chat-timestamp, .direct-chat-light.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-light.bg-info .direct-chat-timestamp, .direct-chat-light.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-light.bg-warning .direct-chat-timestamp, .direct-chat-light.alert-warning .direct-chat-timestamp, .direct-chat-light.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-light.bg-warning .direct-chat-timestamp, .direct-chat-light.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-light.bg-danger .direct-chat-timestamp, .direct-chat-light.alert-danger .direct-chat-timestamp, .direct-chat-light.alert-error .direct-chat-timestamp, .direct-chat-light.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-light.bg-danger .direct-chat-timestamp, .direct-chat-light.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19765,7 +19854,7 @@ html.maximized-card {
   border-left-color: #343a40;
 }
 
-.direct-chat-dark.bg-primary .direct-chat-timestamp, .direct-chat-dark.alert-primary .direct-chat-timestamp, .direct-chat-dark.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-dark.bg-primary .direct-chat-timestamp, .direct-chat-dark.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19773,19 +19862,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-dark.bg-success .direct-chat-timestamp, .direct-chat-dark.alert-success .direct-chat-timestamp, .direct-chat-dark.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-dark.bg-success .direct-chat-timestamp, .direct-chat-dark.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-dark.bg-info .direct-chat-timestamp, .direct-chat-dark.alert-info .direct-chat-timestamp, .direct-chat-dark.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-dark.bg-info .direct-chat-timestamp, .direct-chat-dark.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-dark.bg-warning .direct-chat-timestamp, .direct-chat-dark.alert-warning .direct-chat-timestamp, .direct-chat-dark.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-dark.bg-warning .direct-chat-timestamp, .direct-chat-dark.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-dark.bg-danger .direct-chat-timestamp, .direct-chat-dark.alert-danger .direct-chat-timestamp, .direct-chat-dark.alert-error .direct-chat-timestamp, .direct-chat-dark.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-dark.bg-danger .direct-chat-timestamp, .direct-chat-dark.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19879,7 +19968,7 @@ html.maximized-card {
   border-left-color: #001f3f;
 }
 
-.direct-chat-navy.bg-primary .direct-chat-timestamp, .direct-chat-navy.alert-primary .direct-chat-timestamp, .direct-chat-navy.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-navy.bg-primary .direct-chat-timestamp, .direct-chat-navy.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19887,19 +19976,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-navy.bg-success .direct-chat-timestamp, .direct-chat-navy.alert-success .direct-chat-timestamp, .direct-chat-navy.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-navy.bg-success .direct-chat-timestamp, .direct-chat-navy.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-navy.bg-info .direct-chat-timestamp, .direct-chat-navy.alert-info .direct-chat-timestamp, .direct-chat-navy.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-navy.bg-info .direct-chat-timestamp, .direct-chat-navy.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-navy.bg-warning .direct-chat-timestamp, .direct-chat-navy.alert-warning .direct-chat-timestamp, .direct-chat-navy.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-navy.bg-warning .direct-chat-timestamp, .direct-chat-navy.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-navy.bg-danger .direct-chat-timestamp, .direct-chat-navy.alert-danger .direct-chat-timestamp, .direct-chat-navy.alert-error .direct-chat-timestamp, .direct-chat-navy.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-navy.bg-danger .direct-chat-timestamp, .direct-chat-navy.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -19993,7 +20082,7 @@ html.maximized-card {
   border-left-color: #3d9970;
 }
 
-.direct-chat-olive.bg-primary .direct-chat-timestamp, .direct-chat-olive.alert-primary .direct-chat-timestamp, .direct-chat-olive.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-olive.bg-primary .direct-chat-timestamp, .direct-chat-olive.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20001,19 +20090,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-olive.bg-success .direct-chat-timestamp, .direct-chat-olive.alert-success .direct-chat-timestamp, .direct-chat-olive.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-olive.bg-success .direct-chat-timestamp, .direct-chat-olive.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-olive.bg-info .direct-chat-timestamp, .direct-chat-olive.alert-info .direct-chat-timestamp, .direct-chat-olive.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-olive.bg-info .direct-chat-timestamp, .direct-chat-olive.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-olive.bg-warning .direct-chat-timestamp, .direct-chat-olive.alert-warning .direct-chat-timestamp, .direct-chat-olive.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-olive.bg-warning .direct-chat-timestamp, .direct-chat-olive.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-olive.bg-danger .direct-chat-timestamp, .direct-chat-olive.alert-danger .direct-chat-timestamp, .direct-chat-olive.alert-error .direct-chat-timestamp, .direct-chat-olive.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-olive.bg-danger .direct-chat-timestamp, .direct-chat-olive.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20107,7 +20196,7 @@ html.maximized-card {
   border-left-color: #01ff70;
 }
 
-.direct-chat-lime.bg-primary .direct-chat-timestamp, .direct-chat-lime.alert-primary .direct-chat-timestamp, .direct-chat-lime.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-lime.bg-primary .direct-chat-timestamp, .direct-chat-lime.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20115,19 +20204,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-lime.bg-success .direct-chat-timestamp, .direct-chat-lime.alert-success .direct-chat-timestamp, .direct-chat-lime.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-lime.bg-success .direct-chat-timestamp, .direct-chat-lime.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-lime.bg-info .direct-chat-timestamp, .direct-chat-lime.alert-info .direct-chat-timestamp, .direct-chat-lime.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-lime.bg-info .direct-chat-timestamp, .direct-chat-lime.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-lime.bg-warning .direct-chat-timestamp, .direct-chat-lime.alert-warning .direct-chat-timestamp, .direct-chat-lime.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-lime.bg-warning .direct-chat-timestamp, .direct-chat-lime.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-lime.bg-danger .direct-chat-timestamp, .direct-chat-lime.alert-danger .direct-chat-timestamp, .direct-chat-lime.alert-error .direct-chat-timestamp, .direct-chat-lime.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-lime.bg-danger .direct-chat-timestamp, .direct-chat-lime.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20221,7 +20310,7 @@ html.maximized-card {
   border-left-color: #f012be;
 }
 
-.direct-chat-fuchsia.bg-primary .direct-chat-timestamp, .direct-chat-fuchsia.alert-primary .direct-chat-timestamp, .direct-chat-fuchsia.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-fuchsia.bg-primary .direct-chat-timestamp, .direct-chat-fuchsia.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20229,19 +20318,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-fuchsia.bg-success .direct-chat-timestamp, .direct-chat-fuchsia.alert-success .direct-chat-timestamp, .direct-chat-fuchsia.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-fuchsia.bg-success .direct-chat-timestamp, .direct-chat-fuchsia.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-fuchsia.bg-info .direct-chat-timestamp, .direct-chat-fuchsia.alert-info .direct-chat-timestamp, .direct-chat-fuchsia.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-fuchsia.bg-info .direct-chat-timestamp, .direct-chat-fuchsia.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-fuchsia.bg-warning .direct-chat-timestamp, .direct-chat-fuchsia.alert-warning .direct-chat-timestamp, .direct-chat-fuchsia.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-fuchsia.bg-warning .direct-chat-timestamp, .direct-chat-fuchsia.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-fuchsia.bg-danger .direct-chat-timestamp, .direct-chat-fuchsia.alert-danger .direct-chat-timestamp, .direct-chat-fuchsia.alert-error .direct-chat-timestamp, .direct-chat-fuchsia.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-fuchsia.bg-danger .direct-chat-timestamp, .direct-chat-fuchsia.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20335,7 +20424,7 @@ html.maximized-card {
   border-left-color: #d81b60;
 }
 
-.direct-chat-maroon.bg-primary .direct-chat-timestamp, .direct-chat-maroon.alert-primary .direct-chat-timestamp, .direct-chat-maroon.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-maroon.bg-primary .direct-chat-timestamp, .direct-chat-maroon.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20343,19 +20432,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-maroon.bg-success .direct-chat-timestamp, .direct-chat-maroon.alert-success .direct-chat-timestamp, .direct-chat-maroon.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-maroon.bg-success .direct-chat-timestamp, .direct-chat-maroon.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-maroon.bg-info .direct-chat-timestamp, .direct-chat-maroon.alert-info .direct-chat-timestamp, .direct-chat-maroon.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-maroon.bg-info .direct-chat-timestamp, .direct-chat-maroon.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-maroon.bg-warning .direct-chat-timestamp, .direct-chat-maroon.alert-warning .direct-chat-timestamp, .direct-chat-maroon.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-maroon.bg-warning .direct-chat-timestamp, .direct-chat-maroon.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-maroon.bg-danger .direct-chat-timestamp, .direct-chat-maroon.alert-danger .direct-chat-timestamp, .direct-chat-maroon.alert-error .direct-chat-timestamp, .direct-chat-maroon.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-maroon.bg-danger .direct-chat-timestamp, .direct-chat-maroon.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20449,7 +20538,7 @@ html.maximized-card {
   border-left-color: #007bff;
 }
 
-.direct-chat-blue.bg-primary .direct-chat-timestamp, .direct-chat-blue.alert-primary .direct-chat-timestamp, .direct-chat-blue.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-blue.bg-primary .direct-chat-timestamp, .direct-chat-blue.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20457,19 +20546,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-blue.bg-success .direct-chat-timestamp, .direct-chat-blue.alert-success .direct-chat-timestamp, .direct-chat-blue.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-blue.bg-success .direct-chat-timestamp, .direct-chat-blue.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-blue.bg-info .direct-chat-timestamp, .direct-chat-blue.alert-info .direct-chat-timestamp, .direct-chat-blue.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-blue.bg-info .direct-chat-timestamp, .direct-chat-blue.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-blue.bg-warning .direct-chat-timestamp, .direct-chat-blue.alert-warning .direct-chat-timestamp, .direct-chat-blue.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-blue.bg-warning .direct-chat-timestamp, .direct-chat-blue.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-blue.bg-danger .direct-chat-timestamp, .direct-chat-blue.alert-danger .direct-chat-timestamp, .direct-chat-blue.alert-error .direct-chat-timestamp, .direct-chat-blue.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-blue.bg-danger .direct-chat-timestamp, .direct-chat-blue.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20563,7 +20652,7 @@ html.maximized-card {
   border-left-color: #6610f2;
 }
 
-.direct-chat-indigo.bg-primary .direct-chat-timestamp, .direct-chat-indigo.alert-primary .direct-chat-timestamp, .direct-chat-indigo.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-indigo.bg-primary .direct-chat-timestamp, .direct-chat-indigo.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20571,19 +20660,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-indigo.bg-success .direct-chat-timestamp, .direct-chat-indigo.alert-success .direct-chat-timestamp, .direct-chat-indigo.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-indigo.bg-success .direct-chat-timestamp, .direct-chat-indigo.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-indigo.bg-info .direct-chat-timestamp, .direct-chat-indigo.alert-info .direct-chat-timestamp, .direct-chat-indigo.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-indigo.bg-info .direct-chat-timestamp, .direct-chat-indigo.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-indigo.bg-warning .direct-chat-timestamp, .direct-chat-indigo.alert-warning .direct-chat-timestamp, .direct-chat-indigo.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-indigo.bg-warning .direct-chat-timestamp, .direct-chat-indigo.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-indigo.bg-danger .direct-chat-timestamp, .direct-chat-indigo.alert-danger .direct-chat-timestamp, .direct-chat-indigo.alert-error .direct-chat-timestamp, .direct-chat-indigo.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-indigo.bg-danger .direct-chat-timestamp, .direct-chat-indigo.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20677,7 +20766,7 @@ html.maximized-card {
   border-left-color: #6f42c1;
 }
 
-.direct-chat-purple.bg-primary .direct-chat-timestamp, .direct-chat-purple.alert-primary .direct-chat-timestamp, .direct-chat-purple.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-purple.bg-primary .direct-chat-timestamp, .direct-chat-purple.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20685,19 +20774,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-purple.bg-success .direct-chat-timestamp, .direct-chat-purple.alert-success .direct-chat-timestamp, .direct-chat-purple.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-purple.bg-success .direct-chat-timestamp, .direct-chat-purple.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-purple.bg-info .direct-chat-timestamp, .direct-chat-purple.alert-info .direct-chat-timestamp, .direct-chat-purple.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-purple.bg-info .direct-chat-timestamp, .direct-chat-purple.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-purple.bg-warning .direct-chat-timestamp, .direct-chat-purple.alert-warning .direct-chat-timestamp, .direct-chat-purple.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-purple.bg-warning .direct-chat-timestamp, .direct-chat-purple.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-purple.bg-danger .direct-chat-timestamp, .direct-chat-purple.alert-danger .direct-chat-timestamp, .direct-chat-purple.alert-error .direct-chat-timestamp, .direct-chat-purple.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-purple.bg-danger .direct-chat-timestamp, .direct-chat-purple.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20791,7 +20880,7 @@ html.maximized-card {
   border-left-color: #e83e8c;
 }
 
-.direct-chat-pink.bg-primary .direct-chat-timestamp, .direct-chat-pink.alert-primary .direct-chat-timestamp, .direct-chat-pink.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-pink.bg-primary .direct-chat-timestamp, .direct-chat-pink.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20799,19 +20888,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-pink.bg-success .direct-chat-timestamp, .direct-chat-pink.alert-success .direct-chat-timestamp, .direct-chat-pink.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-pink.bg-success .direct-chat-timestamp, .direct-chat-pink.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-pink.bg-info .direct-chat-timestamp, .direct-chat-pink.alert-info .direct-chat-timestamp, .direct-chat-pink.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-pink.bg-info .direct-chat-timestamp, .direct-chat-pink.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-pink.bg-warning .direct-chat-timestamp, .direct-chat-pink.alert-warning .direct-chat-timestamp, .direct-chat-pink.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-pink.bg-warning .direct-chat-timestamp, .direct-chat-pink.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-pink.bg-danger .direct-chat-timestamp, .direct-chat-pink.alert-danger .direct-chat-timestamp, .direct-chat-pink.alert-error .direct-chat-timestamp, .direct-chat-pink.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-pink.bg-danger .direct-chat-timestamp, .direct-chat-pink.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20905,7 +20994,7 @@ html.maximized-card {
   border-left-color: #dc3545;
 }
 
-.direct-chat-red.bg-primary .direct-chat-timestamp, .direct-chat-red.alert-primary .direct-chat-timestamp, .direct-chat-red.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-red.bg-primary .direct-chat-timestamp, .direct-chat-red.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -20913,19 +21002,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-red.bg-success .direct-chat-timestamp, .direct-chat-red.alert-success .direct-chat-timestamp, .direct-chat-red.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-red.bg-success .direct-chat-timestamp, .direct-chat-red.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-red.bg-info .direct-chat-timestamp, .direct-chat-red.alert-info .direct-chat-timestamp, .direct-chat-red.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-red.bg-info .direct-chat-timestamp, .direct-chat-red.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-red.bg-warning .direct-chat-timestamp, .direct-chat-red.alert-warning .direct-chat-timestamp, .direct-chat-red.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-red.bg-warning .direct-chat-timestamp, .direct-chat-red.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-red.bg-danger .direct-chat-timestamp, .direct-chat-red.alert-danger .direct-chat-timestamp, .direct-chat-red.alert-error .direct-chat-timestamp, .direct-chat-red.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-red.bg-danger .direct-chat-timestamp, .direct-chat-red.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21019,7 +21108,7 @@ html.maximized-card {
   border-left-color: #fd7e14;
 }
 
-.direct-chat-orange.bg-primary .direct-chat-timestamp, .direct-chat-orange.alert-primary .direct-chat-timestamp, .direct-chat-orange.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-orange.bg-primary .direct-chat-timestamp, .direct-chat-orange.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21027,19 +21116,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-orange.bg-success .direct-chat-timestamp, .direct-chat-orange.alert-success .direct-chat-timestamp, .direct-chat-orange.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-orange.bg-success .direct-chat-timestamp, .direct-chat-orange.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-orange.bg-info .direct-chat-timestamp, .direct-chat-orange.alert-info .direct-chat-timestamp, .direct-chat-orange.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-orange.bg-info .direct-chat-timestamp, .direct-chat-orange.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-orange.bg-warning .direct-chat-timestamp, .direct-chat-orange.alert-warning .direct-chat-timestamp, .direct-chat-orange.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-orange.bg-warning .direct-chat-timestamp, .direct-chat-orange.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-orange.bg-danger .direct-chat-timestamp, .direct-chat-orange.alert-danger .direct-chat-timestamp, .direct-chat-orange.alert-error .direct-chat-timestamp, .direct-chat-orange.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-orange.bg-danger .direct-chat-timestamp, .direct-chat-orange.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21133,7 +21222,7 @@ html.maximized-card {
   border-left-color: #ffc107;
 }
 
-.direct-chat-yellow.bg-primary .direct-chat-timestamp, .direct-chat-yellow.alert-primary .direct-chat-timestamp, .direct-chat-yellow.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-yellow.bg-primary .direct-chat-timestamp, .direct-chat-yellow.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21141,19 +21230,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-yellow.bg-success .direct-chat-timestamp, .direct-chat-yellow.alert-success .direct-chat-timestamp, .direct-chat-yellow.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-yellow.bg-success .direct-chat-timestamp, .direct-chat-yellow.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-yellow.bg-info .direct-chat-timestamp, .direct-chat-yellow.alert-info .direct-chat-timestamp, .direct-chat-yellow.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-yellow.bg-info .direct-chat-timestamp, .direct-chat-yellow.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-yellow.bg-warning .direct-chat-timestamp, .direct-chat-yellow.alert-warning .direct-chat-timestamp, .direct-chat-yellow.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-yellow.bg-warning .direct-chat-timestamp, .direct-chat-yellow.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-yellow.bg-danger .direct-chat-timestamp, .direct-chat-yellow.alert-danger .direct-chat-timestamp, .direct-chat-yellow.alert-error .direct-chat-timestamp, .direct-chat-yellow.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-yellow.bg-danger .direct-chat-timestamp, .direct-chat-yellow.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21247,7 +21336,7 @@ html.maximized-card {
   border-left-color: #28a745;
 }
 
-.direct-chat-green.bg-primary .direct-chat-timestamp, .direct-chat-green.alert-primary .direct-chat-timestamp, .direct-chat-green.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-green.bg-primary .direct-chat-timestamp, .direct-chat-green.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21255,19 +21344,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-green.bg-success .direct-chat-timestamp, .direct-chat-green.alert-success .direct-chat-timestamp, .direct-chat-green.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-green.bg-success .direct-chat-timestamp, .direct-chat-green.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-green.bg-info .direct-chat-timestamp, .direct-chat-green.alert-info .direct-chat-timestamp, .direct-chat-green.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-green.bg-info .direct-chat-timestamp, .direct-chat-green.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-green.bg-warning .direct-chat-timestamp, .direct-chat-green.alert-warning .direct-chat-timestamp, .direct-chat-green.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-green.bg-warning .direct-chat-timestamp, .direct-chat-green.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-green.bg-danger .direct-chat-timestamp, .direct-chat-green.alert-danger .direct-chat-timestamp, .direct-chat-green.alert-error .direct-chat-timestamp, .direct-chat-green.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-green.bg-danger .direct-chat-timestamp, .direct-chat-green.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21361,7 +21450,7 @@ html.maximized-card {
   border-left-color: #20c997;
 }
 
-.direct-chat-teal.bg-primary .direct-chat-timestamp, .direct-chat-teal.alert-primary .direct-chat-timestamp, .direct-chat-teal.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-teal.bg-primary .direct-chat-timestamp, .direct-chat-teal.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21369,19 +21458,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-teal.bg-success .direct-chat-timestamp, .direct-chat-teal.alert-success .direct-chat-timestamp, .direct-chat-teal.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-teal.bg-success .direct-chat-timestamp, .direct-chat-teal.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-teal.bg-info .direct-chat-timestamp, .direct-chat-teal.alert-info .direct-chat-timestamp, .direct-chat-teal.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-teal.bg-info .direct-chat-timestamp, .direct-chat-teal.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-teal.bg-warning .direct-chat-timestamp, .direct-chat-teal.alert-warning .direct-chat-timestamp, .direct-chat-teal.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-teal.bg-warning .direct-chat-timestamp, .direct-chat-teal.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-teal.bg-danger .direct-chat-timestamp, .direct-chat-teal.alert-danger .direct-chat-timestamp, .direct-chat-teal.alert-error .direct-chat-timestamp, .direct-chat-teal.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-teal.bg-danger .direct-chat-timestamp, .direct-chat-teal.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21475,7 +21564,7 @@ html.maximized-card {
   border-left-color: #17a2b8;
 }
 
-.direct-chat-cyan.bg-primary .direct-chat-timestamp, .direct-chat-cyan.alert-primary .direct-chat-timestamp, .direct-chat-cyan.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-cyan.bg-primary .direct-chat-timestamp, .direct-chat-cyan.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21483,19 +21572,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-cyan.bg-success .direct-chat-timestamp, .direct-chat-cyan.alert-success .direct-chat-timestamp, .direct-chat-cyan.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-cyan.bg-success .direct-chat-timestamp, .direct-chat-cyan.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-cyan.bg-info .direct-chat-timestamp, .direct-chat-cyan.alert-info .direct-chat-timestamp, .direct-chat-cyan.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-cyan.bg-info .direct-chat-timestamp, .direct-chat-cyan.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-cyan.bg-warning .direct-chat-timestamp, .direct-chat-cyan.alert-warning .direct-chat-timestamp, .direct-chat-cyan.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-cyan.bg-warning .direct-chat-timestamp, .direct-chat-cyan.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-cyan.bg-danger .direct-chat-timestamp, .direct-chat-cyan.alert-danger .direct-chat-timestamp, .direct-chat-cyan.alert-error .direct-chat-timestamp, .direct-chat-cyan.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-cyan.bg-danger .direct-chat-timestamp, .direct-chat-cyan.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21589,7 +21678,7 @@ html.maximized-card {
   border-left-color: #ffffff;
 }
 
-.direct-chat-white.bg-primary .direct-chat-timestamp, .direct-chat-white.alert-primary .direct-chat-timestamp, .direct-chat-white.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-white.bg-primary .direct-chat-timestamp, .direct-chat-white.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21597,19 +21686,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-white.bg-success .direct-chat-timestamp, .direct-chat-white.alert-success .direct-chat-timestamp, .direct-chat-white.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-white.bg-success .direct-chat-timestamp, .direct-chat-white.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-white.bg-info .direct-chat-timestamp, .direct-chat-white.alert-info .direct-chat-timestamp, .direct-chat-white.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-white.bg-info .direct-chat-timestamp, .direct-chat-white.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-white.bg-warning .direct-chat-timestamp, .direct-chat-white.alert-warning .direct-chat-timestamp, .direct-chat-white.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-white.bg-warning .direct-chat-timestamp, .direct-chat-white.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-white.bg-danger .direct-chat-timestamp, .direct-chat-white.alert-danger .direct-chat-timestamp, .direct-chat-white.alert-error .direct-chat-timestamp, .direct-chat-white.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-white.bg-danger .direct-chat-timestamp, .direct-chat-white.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21703,7 +21792,7 @@ html.maximized-card {
   border-left-color: #6c757d;
 }
 
-.direct-chat-gray.bg-primary .direct-chat-timestamp, .direct-chat-gray.alert-primary .direct-chat-timestamp, .direct-chat-gray.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-gray.bg-primary .direct-chat-timestamp, .direct-chat-gray.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21711,19 +21800,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-gray.bg-success .direct-chat-timestamp, .direct-chat-gray.alert-success .direct-chat-timestamp, .direct-chat-gray.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-gray.bg-success .direct-chat-timestamp, .direct-chat-gray.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-gray.bg-info .direct-chat-timestamp, .direct-chat-gray.alert-info .direct-chat-timestamp, .direct-chat-gray.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-gray.bg-info .direct-chat-timestamp, .direct-chat-gray.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-gray.bg-warning .direct-chat-timestamp, .direct-chat-gray.alert-warning .direct-chat-timestamp, .direct-chat-gray.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-gray.bg-warning .direct-chat-timestamp, .direct-chat-gray.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-gray.bg-danger .direct-chat-timestamp, .direct-chat-gray.alert-danger .direct-chat-timestamp, .direct-chat-gray.alert-error .direct-chat-timestamp, .direct-chat-gray.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-gray.bg-danger .direct-chat-timestamp, .direct-chat-gray.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21817,7 +21906,7 @@ html.maximized-card {
   border-left-color: #343a40;
 }
 
-.direct-chat-gray-dark.bg-primary .direct-chat-timestamp, .direct-chat-gray-dark.alert-primary .direct-chat-timestamp, .direct-chat-gray-dark.bg-gradient-primary .direct-chat-timestamp {
+.direct-chat-gray-dark.bg-primary .direct-chat-timestamp, .direct-chat-gray-dark.bg-gradient-primary .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -21825,19 +21914,19 @@ html.maximized-card {
   color: #cccccc;
 }
 
-.direct-chat-gray-dark.bg-success .direct-chat-timestamp, .direct-chat-gray-dark.alert-success .direct-chat-timestamp, .direct-chat-gray-dark.bg-gradient-success .direct-chat-timestamp {
+.direct-chat-gray-dark.bg-success .direct-chat-timestamp, .direct-chat-gray-dark.bg-gradient-success .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-gray-dark.bg-info .direct-chat-timestamp, .direct-chat-gray-dark.alert-info .direct-chat-timestamp, .direct-chat-gray-dark.bg-gradient-info .direct-chat-timestamp {
+.direct-chat-gray-dark.bg-info .direct-chat-timestamp, .direct-chat-gray-dark.bg-gradient-info .direct-chat-timestamp {
   color: #cccccc;
 }
 
-.direct-chat-gray-dark.bg-warning .direct-chat-timestamp, .direct-chat-gray-dark.alert-warning .direct-chat-timestamp, .direct-chat-gray-dark.bg-gradient-warning .direct-chat-timestamp {
+.direct-chat-gray-dark.bg-warning .direct-chat-timestamp, .direct-chat-gray-dark.bg-gradient-warning .direct-chat-timestamp {
   color: #30465f;
 }
 
-.direct-chat-gray-dark.bg-danger .direct-chat-timestamp, .direct-chat-gray-dark.alert-danger .direct-chat-timestamp, .direct-chat-gray-dark.alert-error .direct-chat-timestamp, .direct-chat-gray-dark.bg-gradient-danger .direct-chat-timestamp {
+.direct-chat-gray-dark.bg-danger .direct-chat-timestamp, .direct-chat-gray-dark.bg-gradient-danger .direct-chat-timestamp {
   color: #cccccc;
 }
 
@@ -22057,13 +22146,12 @@ html.maximized-card {
   z-index: 1052;
 }
 
-.modal-content.bg-warning .modal-header, .modal-content.alert-warning .modal-header,
-.modal-content.bg-warning .modal-footer,
-.modal-content.alert-warning .modal-footer {
+.modal-content.bg-warning .modal-header,
+.modal-content.bg-warning .modal-footer {
   border-color: #343a40;
 }
 
-.modal-content.bg-primary .close, .modal-content.alert-primary .close, .modal-content.bg-primary .mailbox-attachment-close, .modal-content.alert-primary .mailbox-attachment-close, .modal-content.bg-secondary .close, .modal-content.bg-secondary .mailbox-attachment-close, .modal-content.bg-info .close, .modal-content.alert-info .close, .modal-content.bg-info .mailbox-attachment-close, .modal-content.alert-info .mailbox-attachment-close, .modal-content.bg-danger .close, .modal-content.alert-danger .close, .modal-content.alert-error .close, .modal-content.bg-danger .mailbox-attachment-close, .modal-content.alert-danger .mailbox-attachment-close, .modal-content.alert-error .mailbox-attachment-close, .modal-content.bg-success .close, .modal-content.alert-success .close, .modal-content.bg-success .mailbox-attachment-close, .modal-content.alert-success .mailbox-attachment-close {
+.modal-content.bg-primary .close, .modal-content.bg-primary .mailbox-attachment-close, .modal-content.bg-secondary .close, .modal-content.bg-secondary .mailbox-attachment-close, .modal-content.bg-info .close, .modal-content.bg-info .mailbox-attachment-close, .modal-content.bg-danger .close, .modal-content.bg-danger .mailbox-attachment-close, .modal-content.bg-success .close, .modal-content.bg-success .mailbox-attachment-close {
   color: #ffffff;
   text-shadow: 0 1px 0 #000;
 }
@@ -22112,16 +22200,16 @@ html.maximized-card {
   position: fixed;
 }
 
-.toast.bg-primary, .toast.alert-primary {
+.toast.bg-primary {
   background: rgba(0, 123, 255, 0.9) !important;
 }
 
-.toast.bg-primary .close, .toast.alert-primary .close, .toast.bg-primary .mailbox-attachment-close, .toast.alert-primary .mailbox-attachment-close {
+.toast.bg-primary .close, .toast.bg-primary .mailbox-attachment-close {
   color: #ffffff;
   text-shadow: 0 1px 0 #000;
 }
 
-.toast.bg-primary .toast-header, .toast.alert-primary .toast-header {
+.toast.bg-primary .toast-header {
   background: rgba(0, 123, 255, 0.85);
   color: #ffffff;
 }
@@ -22140,54 +22228,53 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.toast.bg-success, .toast.alert-success {
+.toast.bg-success {
   background: rgba(40, 167, 69, 0.9) !important;
 }
 
-.toast.bg-success .close, .toast.alert-success .close, .toast.bg-success .mailbox-attachment-close, .toast.alert-success .mailbox-attachment-close {
+.toast.bg-success .close, .toast.bg-success .mailbox-attachment-close {
   color: #ffffff;
   text-shadow: 0 1px 0 #000;
 }
 
-.toast.bg-success .toast-header, .toast.alert-success .toast-header {
+.toast.bg-success .toast-header {
   background: rgba(40, 167, 69, 0.85);
   color: #ffffff;
 }
 
-.toast.bg-info, .toast.alert-info {
+.toast.bg-info {
   background: rgba(23, 162, 184, 0.9) !important;
 }
 
-.toast.bg-info .close, .toast.alert-info .close, .toast.bg-info .mailbox-attachment-close, .toast.alert-info .mailbox-attachment-close {
+.toast.bg-info .close, .toast.bg-info .mailbox-attachment-close {
   color: #ffffff;
   text-shadow: 0 1px 0 #000;
 }
 
-.toast.bg-info .toast-header, .toast.alert-info .toast-header {
+.toast.bg-info .toast-header {
   background: rgba(23, 162, 184, 0.85);
   color: #ffffff;
 }
 
-.toast.bg-warning, .toast.alert-warning {
+.toast.bg-warning {
   background: rgba(255, 193, 7, 0.9) !important;
 }
 
-.toast.bg-warning .toast-header, .toast.alert-warning .toast-header {
+.toast.bg-warning .toast-header {
   background: rgba(255, 193, 7, 0.85);
   color: #1F2D3D;
 }
 
-.toast.bg-danger, .toast.alert-danger,
-.toast.alert-error {
+.toast.bg-danger {
   background: rgba(220, 53, 69, 0.9) !important;
 }
 
-.toast.bg-danger .close, .toast.alert-danger .close, .toast.alert-error .close, .toast.bg-danger .mailbox-attachment-close, .toast.alert-danger .mailbox-attachment-close, .toast.alert-error .mailbox-attachment-close {
+.toast.bg-danger .close, .toast.bg-danger .mailbox-attachment-close {
   color: #ffffff;
   text-shadow: 0 1px 0 #000;
 }
 
-.toast.bg-danger .toast-header, .toast.alert-danger .toast-header, .toast.alert-error .toast-header {
+.toast.bg-danger .toast-header {
   background: rgba(220, 53, 69, 0.85);
   color: #ffffff;
 }
@@ -29733,22 +29820,21 @@ blockquote.quote-gray-dark h6 {
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22) !important;
 }
 
-.bg-primary, .alert-primary {
+.bg-primary {
   background-color: #007bff !important;
 }
 
-.bg-primary, .alert-primary,
-.bg-primary > a,
-.alert-primary > a {
+.bg-primary,
+.bg-primary > a {
   color: #ffffff !important;
 }
 
-.bg-primary.btn:hover, .btn.alert-primary:hover {
+.bg-primary.btn:hover {
   border-color: #0062cc;
   color: #ececec;
 }
 
-.bg-primary.btn:not(:disabled):not(.disabled):active, .btn.alert-primary:not(:disabled):not(.disabled):active, .bg-primary.btn:not(:disabled):not(.disabled).active, .btn.alert-primary:not(:disabled):not(.disabled).active, .bg-primary.btn:active, .btn.alert-primary:active, .bg-primary.btn.active, .btn.active.alert-primary {
+.bg-primary.btn:not(:disabled):not(.disabled):active, .bg-primary.btn:not(:disabled):not(.disabled).active, .bg-primary.btn:active, .bg-primary.btn.active {
   background-color: #0062cc !important;
   border-color: #005cbf;
   color: #ffffff;
@@ -29774,93 +29860,81 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-success, .alert-success {
+.bg-success {
   background-color: #28a745 !important;
 }
 
-.bg-success, .alert-success,
-.bg-success > a,
-.alert-success > a {
+.bg-success,
+.bg-success > a {
   color: #ffffff !important;
 }
 
-.bg-success.btn:hover, .btn.alert-success:hover {
+.bg-success.btn:hover {
   border-color: #1e7e34;
   color: #ececec;
 }
 
-.bg-success.btn:not(:disabled):not(.disabled):active, .btn.alert-success:not(:disabled):not(.disabled):active, .bg-success.btn:not(:disabled):not(.disabled).active, .btn.alert-success:not(:disabled):not(.disabled).active, .bg-success.btn:active, .btn.alert-success:active, .bg-success.btn.active, .btn.active.alert-success {
+.bg-success.btn:not(:disabled):not(.disabled):active, .bg-success.btn:not(:disabled):not(.disabled).active, .bg-success.btn:active, .bg-success.btn.active {
   background-color: #1e7e34 !important;
   border-color: #1c7430;
   color: #ffffff;
 }
 
-.bg-info, .alert-info {
+.bg-info {
   background-color: #17a2b8 !important;
 }
 
-.bg-info, .alert-info,
-.bg-info > a,
-.alert-info > a {
+.bg-info,
+.bg-info > a {
   color: #ffffff !important;
 }
 
-.bg-info.btn:hover, .btn.alert-info:hover {
+.bg-info.btn:hover {
   border-color: #117a8b;
   color: #ececec;
 }
 
-.bg-info.btn:not(:disabled):not(.disabled):active, .btn.alert-info:not(:disabled):not(.disabled):active, .bg-info.btn:not(:disabled):not(.disabled).active, .btn.alert-info:not(:disabled):not(.disabled).active, .bg-info.btn:active, .btn.alert-info:active, .bg-info.btn.active, .btn.active.alert-info {
+.bg-info.btn:not(:disabled):not(.disabled):active, .bg-info.btn:not(:disabled):not(.disabled).active, .bg-info.btn:active, .bg-info.btn.active {
   background-color: #117a8b !important;
   border-color: #10707f;
   color: #ffffff;
 }
 
-.bg-warning, .alert-warning {
+.bg-warning {
   background-color: #ffc107 !important;
 }
 
-.bg-warning, .alert-warning,
-.bg-warning > a,
-.alert-warning > a {
+.bg-warning,
+.bg-warning > a {
   color: #1F2D3D !important;
 }
 
-.bg-warning.btn:hover, .btn.alert-warning:hover {
+.bg-warning.btn:hover {
   border-color: #d39e00;
   color: #121a24;
 }
 
-.bg-warning.btn:not(:disabled):not(.disabled):active, .btn.alert-warning:not(:disabled):not(.disabled):active, .bg-warning.btn:not(:disabled):not(.disabled).active, .btn.alert-warning:not(:disabled):not(.disabled).active, .bg-warning.btn:active, .btn.alert-warning:active, .bg-warning.btn.active, .btn.active.alert-warning {
+.bg-warning.btn:not(:disabled):not(.disabled):active, .bg-warning.btn:not(:disabled):not(.disabled).active, .bg-warning.btn:active, .bg-warning.btn.active {
   background-color: #d39e00 !important;
   border-color: #c69500;
   color: #1F2D3D;
 }
 
-.bg-danger, .alert-danger,
-.alert-error {
+.bg-danger {
   background-color: #dc3545 !important;
 }
 
-.bg-danger, .alert-danger,
-.alert-error,
-.bg-danger > a,
-.alert-danger > a,
-.alert-error > a {
+.bg-danger,
+.bg-danger > a {
   color: #ffffff !important;
 }
 
-.bg-danger.btn:hover, .btn.alert-danger:hover,
-.btn.alert-error:hover {
+.bg-danger.btn:hover {
   border-color: #bd2130;
   color: #ececec;
 }
 
-.bg-danger.btn:not(:disabled):not(.disabled):active, .btn.alert-danger:not(:disabled):not(.disabled):active,
-.btn.alert-error:not(:disabled):not(.disabled):active, .bg-danger.btn:not(:disabled):not(.disabled).active, .btn.alert-danger:not(:disabled):not(.disabled).active,
-.btn.alert-error:not(:disabled):not(.disabled).active, .bg-danger.btn:active, .btn.alert-danger:active,
-.btn.alert-error:active, .bg-danger.btn.active, .btn.active.alert-danger,
-.btn.active.alert-error {
+.bg-danger.btn:not(:disabled):not(.disabled):active, .bg-danger.btn:not(:disabled):not(.disabled).active, .bg-danger.btn:active, .bg-danger.btn.active {
   background-color: #bd2130 !important;
   border-color: #b21f2d;
   color: #ffffff;
