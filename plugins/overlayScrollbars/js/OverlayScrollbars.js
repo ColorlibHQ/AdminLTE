@@ -2,13 +2,13 @@
  * OverlayScrollbars
  * https://github.com/KingSora/OverlayScrollbars
  *
- * Version: 1.9.1
+ * Version: 1.10.0
  *
  * Copyright KingSora | Rene Haas.
  * https://github.com/KingSora
  *
  * Released under the MIT license.
- * Date: 03.08.2019
+ * Date: 11.10.2019
  */
 
 (function (global, factory) {
@@ -48,248 +48,81 @@
             oW : 'offsetWidth',
             cW : 'clientWidth',
             sW : 'scrollWidth',
-            hOP : 'hasOwnProperty'
+            hOP : 'hasOwnProperty',
+            bCR : 'getBoundingClientRect'
         };
-        var VENDORS = {
+        var VENDORS = (function() {
             //https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix
-            _jsCache : { },
-            _cssCache : { },
-            _cssPrefixes : ['-webkit-', '-moz-', '-o-', '-ms-'],
-            _jsPrefixes : ['WebKit', 'Moz', 'O', 'MS'],
-            _cssProperty : function(name) {
-                var cache = this._cssCache;
-
-                if(cache[name])
-                    return cache[name];
-
-                var prefixes = this._cssPrefixes;
-                var uppercasedName = this._firstLetterToUpper(name);
-                var elmStyle = document.createElement('div')[LEXICON.s];
-                var resultPossibilities;
-                var i = 0;
-                var v = 0;
-                var currVendorWithoutDashes;
-
-                for (; i < prefixes.length; i++) {
-                    currVendorWithoutDashes = prefixes[i].replace(/-/g, '');
-                    resultPossibilities = [
-                        name, //transition
-                        prefixes[i] + name, //-webkit-transition
-                        currVendorWithoutDashes + uppercasedName, //webkitTransition
-                        this._firstLetterToUpper(currVendorWithoutDashes) + uppercasedName //WebkitTransition
-                    ];
-                    for(v = 0; v < resultPossibilities[LEXICON.l]; v++) {
-                        if(elmStyle[resultPossibilities[v]] !== undefined) {
-                            cache[name] = resultPossibilities[v];
-                            return resultPossibilities[v];
-                        }
-                    }
-                }
-
-                return null;
-            },
-            _jsAPI : function(name, isInterface, fallback) {
-                var prefixes = this._jsPrefixes;
-                var cache = this._jsCache;
-                var i = 0;
-                var result = cache[name];
-                if(!result) {
-                    result = window[name];
-                    for(; i < prefixes[LEXICON.l]; i++)
-                        result = result || window[(isInterface ? prefixes[i] : prefixes[i].toLowerCase()) + this._firstLetterToUpper(name)];
-                    cache[name] = result;
-                }
-                return result || fallback;
-            },
-            _firstLetterToUpper : function(str) {
+            var jsCache = { };
+            var cssCache = { };
+            var cssPrefixes = ['-webkit-', '-moz-', '-o-', '-ms-'];
+            var jsPrefixes = ['WebKit', 'Moz', 'O', 'MS'];
+            function firstLetterToUpper(str) {
                 return str.charAt(0).toUpperCase() + str.slice(1);
             }
-        };
-        var COMPATIBILITY = {
-            /**
-             * Gets the current window width.
-             * @returns {Number|number} The current window width in pixel.
-             */
-            wW: function() {
-                return window.innerWidth || document.documentElement[LEXICON.cW] || document.body[LEXICON.cW];
-            },
+          
+            return {
+                _cssPrefixes: cssPrefixes,
+                _jsPrefixes: jsPrefixes,
+                _cssProperty : function(name) {
+                    var result = cssCache[name];
+                    
+                    if(cssCache[LEXICON.hOP](name))
+                        return result;
 
-            /**
-             * Gets the current window height.
-             * @returns {Number|number} The current window height in pixel.
-             */
-            wH: function() {
-                return window.innerHeight || document.documentElement[LEXICON.cH] || document.body[LEXICON.cH];
-            },
+                    var uppercasedName = firstLetterToUpper(name);
+                    var elmStyle = document.createElement('div')[LEXICON.s];
+                    var resultPossibilities;
+                    var i = 0;
+                    var v;
+                    var currVendorWithoutDashes;
 
-            /**
-             * Gets the MutationObserver Object or undefined if not supported.
-             * @returns {MutationObserver|*|undefined} The MutationsObserver Object or undefined.
-             */
-            mO: function() {
-                return VENDORS._jsAPI('MutationObserver', true);
-            },
-
-            /**
-             * Gets the ResizeObserver Object or undefined if not supported.
-             * @returns {MutationObserver|*|undefined} The ResizeObserver Object or undefined.
-             */
-            rO: function() {
-                return VENDORS._jsAPI('ResizeObserver', true);
-            },
-
-            /**
-             * Gets the RequestAnimationFrame method or it's corresponding polyfill.
-             * @returns {*|Function} The RequestAnimationFrame method or it's corresponding polyfill.
-             */
-            rAF: function() {
-                return VENDORS._jsAPI('requestAnimationFrame', false, function (func) { return window.setTimeout(func, 1000 / 60); });
-            },
-
-            /**
-             * Gets the CancelAnimationFrame method or it's corresponding polyfill.
-             * @returns {*|Function} The CancelAnimationFrame method or it's corresponding polyfill.
-             */
-            cAF: function() {
-                return VENDORS._jsAPI('cancelAnimationFrame', false, function (id) { return window.clearTimeout(id); });
-            },
-
-            /**
-             * Gets the current time.
-             * @returns {number} The current time.
-             */
-            now: function() {
-                return Date.now && Date.now() || new Date().getTime();
-            },
-
-            /**
-             * Stops the propagation of the given event.
-             * @param event The event of which the propagation shall be stoped.
-             */
-            stpP: function(event) {
-                if(event.stopPropagation)
-                    event.stopPropagation();
-                else
-                    event.cancelBubble = true;
-            },
-
-            /**
-             * Prevents the default action of the given event.
-             * @param event The event of which the default action shall be prevented.
-             */
-            prvD: function(event) {
-                if(event.preventDefault && event.cancelable)
-                    event.preventDefault();
-                else
-                    event.returnValue = false;
-            },
-
-            /**
-             * Gets the pageX and pageY values of the given mouse event.
-             * @param event The mouse event of which the pageX and pageX shall be got.
-             * @returns {{x: number, y: number}} x = pageX value, y = pageY value.
-             */
-            page: function(event) {
-                event = event.originalEvent || event;
-
-                var strPage = 'page';
-                var strClient = 'client';
-                var strX = 'X';
-                var strY = 'Y';
-                var target = event.target || event.srcElement || document;
-                var eventDoc = target.ownerDocument || document;
-                var doc = eventDoc.documentElement;
-                var body = eventDoc.body;
-
-                //if touch event return return pageX/Y of it
-                if(event.touches !== undefined) {
-                    var touch = event.touches[0];
-                    return {
-                        x : touch[strPage + strX],
-                        y : touch[strPage + strY]
+                    for (; i < cssPrefixes.length; i++) {
+                        currVendorWithoutDashes = cssPrefixes[i].replace(/-/g, '');
+                        resultPossibilities = [
+                            name, //transition
+                            cssPrefixes[i] + name, //-webkit-transition
+                            currVendorWithoutDashes + uppercasedName, //webkitTransition
+                            firstLetterToUpper(currVendorWithoutDashes) + uppercasedName //WebkitTransition
+                        ];
+                        for(v = 0; v < resultPossibilities[LEXICON.l]; v++) {
+                            if(elmStyle[resultPossibilities[v]] !== undefined) {
+                                result = resultPossibilities[v];
+                                break;
+                            }
+                        }
                     }
+                    
+                    cssCache[name] = result;
+                    return result;
+                },
+                _jsAPI : function(name, isInterface, fallback) {
+                    var i = 0;
+                    var result = jsCache[name];
+                    
+                    if(!jsCache[LEXICON.hOP](name)) {
+                        result = window[name];
+                        for(; i < jsPrefixes[LEXICON.l]; i++)
+                            result = result || window[(isInterface ? jsPrefixes[i] : jsPrefixes[i].toLowerCase()) + firstLetterToUpper(name)];
+                        jsCache[name] = result;
+                    }
+                    return result || fallback;
                 }
-
-                // Calculate pageX/Y if not native supported
-                if (!event[strPage + strX] && event[strClient + strX] && event[strClient + strX] != null) {
-
-                    return {
-                        x : event[strClient + strX] +
-                        (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
-                        (doc && doc.clientLeft || body && body.clientLeft || 0),
-                        y : event[strClient + strY] +
-                        (doc && doc.scrollTop || body && body.scrollTop || 0) -
-                        (doc && doc.clientTop || body && body.clientTop || 0)
-                    }
-                }
-                return {
-                    x : event[strPage + strX],
-                    y : event[strPage + strY]
-                };
-            },
-
-            /**
-             * Gets the clicked mouse button of the given mouse event.
-             * @param event The mouse event of which the clicked button shal be got.
-             * @returns {number} The number of the clicked mouse button. (0 : none | 1 : leftButton | 2 : middleButton | 3 : rightButton)
-             */
-            mBtn: function(event) {
-                var button = event.button;
-                if (!event.which && button !== undefined)
-                    return (button & 1 ? 1 : (button & 2 ? 3 : (button & 4 ? 2 : 0)));
-                else
-                    return event.which;
-            },
-
-            /**
-             * Checks whether a item is in the given array and returns its index.
-             * @param item The item of which the position in the array shall be determined.
-             * @param arr The array.
-             * @returns {number} The zero based index of the item or -1 if the item isn't in the array.
-             */
-            inA : function(item, arr) {
-                for (var i = 0; i < arr[LEXICON.l]; i++)
-                    //Sometiems in IE a "SCRIPT70" Permission denied error occurs if HTML elements in a iFrame are compared
-                    try {
-                        if (arr[i] === item)
-                            return i;
-                    }
-                    catch(e) { }
-                return -1;
-            },
-
-            /**
-             * Returns true if the given value is a array.
-             * @param arr The potential array.
-             * @returns {boolean} True if the given value is a array, false otherwise.
-             */
-            isA: function(arr) {
-                var def = Array.isArray;
-                return def ? def(arr) : this.type(arr) == TYPES.a;
-            },
-
-            /**
-             * Determine the internal JavaScript [[Class]] of the given object.
-             * @param obj The object of which the type shall be determined.
-             * @returns {string} The type of the given object.
-             */
-            type: function(obj) {
-                if (obj === undefined)
-                    return obj + "";
-                if (obj === null)
-                    return obj + "";
-                return Object[LEXICON.p].toString.call(obj).replace(/^\[object (.+)\]$/, '$1').toLowerCase();
-            },
-
-
-            bind: function(func, thisObj) {
+                
+            }
+        })();
+        var COMPATIBILITY = (function() {
+            function windowSize(x) {
+                return x ? window.innerWidth || document.documentElement[LEXICON.cW] || document.body[LEXICON.cW] : window.innerHeight || document.documentElement[LEXICON.cH] || document.body[LEXICON.cH];
+            }
+            function bind(func, thisObj) {
                 if (typeof func != TYPES.f) {
                     throw "Can't bind function!";
                     // closest thing possible to the ECMAScript 5
                     // internal IsCallable function
                     //throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
                 }
-                var proto     = LEXICON.p;
+                var proto   = LEXICON.p;
                 var aArgs   = Array[proto].slice.call(arguments, 2);
                 var fNOP    = function() {};
                 var fBound  = function() { return func.apply(this instanceof fNOP ? this : thisObj, aArgs.concat(Array[proto].slice.call(arguments))); };
@@ -300,20 +133,188 @@
 
                 return fBound;
             }
+            
+            return {
+                /**
+                 * Gets the current window width.
+                 * @returns {Number|number} The current window width in pixel.
+                 */
+                wW: bind(windowSize, 0, true),
 
-            /**
-             * Gets the vendor-prefixed CSS property by the given name.
-             * For example the given name is "transform" and you're using a old Firefox browser then the returned value would be "-moz-transform".
-             * If the browser doesn't need a vendor-prefix, then the returned string is the given name.
-             * If the browser doesn't support the given property name at all (not even with a vendor-prefix) the returned value is null.
-             * @param propName The unprefixed CSS property name.
-             * @returns {string|null} The vendor-prefixed CSS property or null if the browser doesn't support the given CSS property.
+                /**
+                 * Gets the current window height.
+                 * @returns {Number|number} The current window height in pixel.
+                 */
+                wH: bind(windowSize, 0),
 
-            cssProp : function(propName) {
-                return VENDORS._cssProperty(propName);
+                /**
+                 * Gets the MutationObserver Object or undefined if not supported.
+                 * @returns {MutationObserver|*|undefined} The MutationsObserver Object or undefined.
+                 */
+                mO: bind(VENDORS._jsAPI, 0, 'MutationObserver', true),
+
+                /**
+                 * Gets the ResizeObserver Object or undefined if not supported.
+                 * @returns {MutationObserver|*|undefined} The ResizeObserver Object or undefined.
+                 */
+                rO: bind(VENDORS._jsAPI, 0, 'ResizeObserver', true),
+
+                /**
+                 * Gets the RequestAnimationFrame method or it's corresponding polyfill.
+                 * @returns {*|Function} The RequestAnimationFrame method or it's corresponding polyfill.
+                 */
+                rAF: bind(VENDORS._jsAPI, 0, 'requestAnimationFrame', false, function (func) { return window.setTimeout(func, 1000 / 60); }),
+
+                /**
+                 * Gets the CancelAnimationFrame method or it's corresponding polyfill.
+                 * @returns {*|Function} The CancelAnimationFrame method or it's corresponding polyfill.
+                 */
+                cAF: bind(VENDORS._jsAPI, 0, 'cancelAnimationFrame', false, function (id) { return window.clearTimeout(id); }),
+
+                /**
+                 * Gets the current time.
+                 * @returns {number} The current time.
+                 */
+                now: function() {
+                    return Date.now && Date.now() || new Date().getTime();
+                },
+
+                /**
+                 * Stops the propagation of the given event.
+                 * @param event The event of which the propagation shall be stoped.
+                 */
+                stpP: function(event) {
+                    if(event.stopPropagation)
+                        event.stopPropagation();
+                    else
+                        event.cancelBubble = true;
+                },
+
+                /**
+                 * Prevents the default action of the given event.
+                 * @param event The event of which the default action shall be prevented.
+                 */
+                prvD: function(event) {
+                    if(event.preventDefault && event.cancelable)
+                        event.preventDefault();
+                    else
+                        event.returnValue = false;
+                },
+
+                /**
+                 * Gets the pageX and pageY values of the given mouse event.
+                 * @param event The mouse event of which the pageX and pageX shall be got.
+                 * @returns {{x: number, y: number}} x = pageX value, y = pageY value.
+                 */
+                page: function(event) {
+                    event = event.originalEvent || event;
+
+                    var strPage = 'page';
+                    var strClient = 'client';
+                    var strX = 'X';
+                    var strY = 'Y';
+                    var target = event.target || event.srcElement || document;
+                    var eventDoc = target.ownerDocument || document;
+                    var doc = eventDoc.documentElement;
+                    var body = eventDoc.body;
+
+                    //if touch event return return pageX/Y of it
+                    if(event.touches !== undefined) {
+                        var touch = event.touches[0];
+                        return {
+                            x : touch[strPage + strX],
+                            y : touch[strPage + strY]
+                        }
+                    }
+
+                    // Calculate pageX/Y if not native supported
+                    if (!event[strPage + strX] && event[strClient + strX] && event[strClient + strX] != null) {
+
+                        return {
+                            x : event[strClient + strX] +
+                            (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
+                            (doc && doc.clientLeft || body && body.clientLeft || 0),
+                            y : event[strClient + strY] +
+                            (doc && doc.scrollTop || body && body.scrollTop || 0) -
+                            (doc && doc.clientTop || body && body.clientTop || 0)
+                        }
+                    }
+                    return {
+                        x : event[strPage + strX],
+                        y : event[strPage + strY]
+                    };
+                },
+
+                /**
+                 * Gets the clicked mouse button of the given mouse event.
+                 * @param event The mouse event of which the clicked button shal be got.
+                 * @returns {number} The number of the clicked mouse button. (0 : none | 1 : leftButton | 2 : middleButton | 3 : rightButton)
+                 */
+                mBtn: function(event) {
+                    var button = event.button;
+                    if (!event.which && button !== undefined)
+                        return (button & 1 ? 1 : (button & 2 ? 3 : (button & 4 ? 2 : 0)));
+                    else
+                        return event.which;
+                },
+
+                /**
+                 * Checks whether a item is in the given array and returns its index.
+                 * @param item The item of which the position in the array shall be determined.
+                 * @param arr The array.
+                 * @returns {number} The zero based index of the item or -1 if the item isn't in the array.
+                 */
+                inA : function(item, arr) {
+                    for (var i = 0; i < arr[LEXICON.l]; i++)
+                        //Sometiems in IE a "SCRIPT70" Permission denied error occurs if HTML elements in a iFrame are compared
+                        try {
+                            if (arr[i] === item)
+                                return i;
+                        }
+                        catch(e) { }
+                    return -1;
+                },
+
+                /**
+                 * Returns true if the given value is a array.
+                 * @param arr The potential array.
+                 * @returns {boolean} True if the given value is a array, false otherwise.
+                 */
+                isA: function(arr) {
+                    var def = Array.isArray;
+                    return def ? def(arr) : this.type(arr) == TYPES.a;
+                },
+
+                /**
+                 * Determine the internal JavaScript [[Class]] of the given object.
+                 * @param obj The object of which the type shall be determined.
+                 * @returns {string} The type of the given object.
+                 */
+                type: function(obj) {
+                    if (obj === undefined)
+                        return obj + '';
+                    if (obj === null)
+                        return obj + '';
+                    return Object[LEXICON.p].toString.call(obj).replace(/^\[object (.+)\]$/, '$1').toLowerCase();
+                },
+
+
+                bind: bind
+
+                /**
+                 * Gets the vendor-prefixed CSS property by the given name.
+                 * For example the given name is "transform" and you're using a old Firefox browser then the returned value would be "-moz-transform".
+                 * If the browser doesn't need a vendor-prefix, then the returned string is the given name.
+                 * If the browser doesn't support the given property name at all (not even with a vendor-prefix) the returned value is null.
+                 * @param propName The unprefixed CSS property name.
+                 * @returns {string|null} The vendor-prefixed CSS property or null if the browser doesn't support the given CSS property.
+
+                cssProp: function(propName) {
+                    return VENDORS._cssProperty(propName);
+                }
+                */
             }
-            */
-        };
+        })();
 
         var MATH = Math;
         var JQUERY = window.jQuery;
@@ -511,22 +512,22 @@
             var _animations = [ ];
             var _type = COMPATIBILITY.type;
             var _cssNumber = {
-                "animationIterationCount": true,
-                "columnCount": true,
-                "fillOpacity": true,
-                "flexGrow": true,
-                "flexShrink": true,
-                "fontWeight": true,
-                "lineHeight": true,
-                "opacity": true,
-                "order": true,
-                "orphans": true,
-                "widows": true,
-                "zIndex": true,
-                "zoom": true
+                animationIterationCount: true,
+                columnCount: true,
+                fillOpacity: true,
+                flexGrow: true,
+                flexShrink: true,
+                fontWeight: true,
+                lineHeight: true,
+                opacity: true,
+                order: true,
+                orphans: true,
+                widows: true,
+                zIndex: true,
+                zoom: true
             };
 
-            var extend = function() {
+            function extend() {
                 var src, copyIsArray, copy, name, options, clone, target = arguments[0] || {},
                     i = 1,
                     length = arguments[LEXICON.l],
@@ -589,24 +590,24 @@
                 return target;
             };
 
-            var inArray = function(item, arr, fromIndex) {
+            function inArray(item, arr, fromIndex) {
                 for (var i = fromIndex || 0; i < arr[LEXICON.l]; i++)
                     if (arr[i] === item)
                         return i;
                 return -1;
             }
             
-            var isFunction = function(obj) {
+            function isFunction(obj) {
                 return _type(obj) == TYPES.f;
             };
 
-            var isEmptyObject = function(obj) {
+            function isEmptyObject(obj) {
                 for (var name in obj )
                     return false;
                 return true;
             };
 
-            var isPlainObject = function(obj) {
+            function isPlainObject(obj) {
                 if (!obj || _type(obj) != TYPES.o)
                     return false;
 
@@ -626,7 +627,7 @@
                 return _type(key) == TYPES.u || hasOwnProperty.call(obj, key);
             };
 
-            var each = function(obj, callback) {
+            function each(obj, callback) {
                 var i = 0;
 
                 if (isArrayLike(obj)) {
@@ -643,44 +644,6 @@
                 }
 
                 return obj;
-            };
-
-            var FakejQuery = function (selector) {
-                if(arguments[LEXICON.l] === 0)
-                    return this;
-
-                var base = new FakejQuery();
-                var elements = selector;
-                var i = 0;
-                var elms;
-                var el;
-
-                if(_type(selector) == TYPES.s) {
-                    elements = [ ];
-                    if(selector.charAt(0) === '<') {
-                        el = document.createElement('div');
-                        el.innerHTML = selector;
-                        elms = el.children;
-                    }
-                    else {
-                        elms = document.querySelectorAll(selector);
-                    }
-
-                    for(; i < elms[LEXICON.l]; i++)
-                        elements.push(elms[i]);
-                }
-
-                if(elements) {
-                    if(_type(elements) != TYPES.s && (!isArrayLike(elements) || elements === window || elements === elements.self))
-                        elements = [ elements ];
-
-                    for(i = 0; i < elements[LEXICON.l]; i++)
-                        base[i] = elements[i];
-
-                    base[LEXICON.l] = elements[LEXICON.l];
-                }
-
-                return base;
             };
 
             function isArrayLike(obj) {
@@ -914,6 +877,48 @@
                     }
                 }
             }
+            
+            function elementIsVisible(el) {
+                return !!(el[LEXICON.oW] || el[LEXICON.oH] || el.getClientRects()[LEXICON.l]);
+            }
+
+            function FakejQuery(selector) {
+                if(arguments[LEXICON.l] === 0)
+                    return this;
+
+                var base = new FakejQuery();
+                var elements = selector;
+                var i = 0;
+                var elms;
+                var el;
+
+                if(_type(selector) == TYPES.s) {
+                    elements = [ ];
+                    if(selector.charAt(0) === '<') {
+                        el = document.createElement('div');
+                        el.innerHTML = selector;
+                        elms = el.children;
+                    }
+                    else {
+                        elms = document.querySelectorAll(selector);
+                    }
+
+                    for(; i < elms[LEXICON.l]; i++)
+                        elements.push(elms[i]);
+                }
+
+                if(elements) {
+                    if(_type(elements) != TYPES.s && (!isArrayLike(elements) || elements === window || elements === elements.self))
+                        elements = [ elements ];
+
+                    for(i = 0; i < elements[LEXICON.l]; i++)
+                        base[i] = elements[i];
+
+                    base[LEXICON.l] = elements[LEXICON.l];
+                }
+
+                return base;
+            };
 
             FakejQuery[LEXICON.p] = {
 
@@ -986,7 +991,7 @@
                             el.dispatchEvent(event);
                         }
                         else {
-                            el.fireEvent("on" + eventName);
+                            el.fireEvent('on' + eventName);
                         }
                     });
                 },
@@ -1235,7 +1240,7 @@
 
                 offset : function() {
                     var el = this[0];
-                    var rect = el.getBoundingClientRect();
+                    var rect = el[LEXICON.bCR]();
                     var scrollLeft = window.pageXOffset || document.documentElement[_strScrollLeft];
                     var scrollTop = window.pageYOffset || document.documentElement[_strScrollTop];
                     return {
@@ -1342,14 +1347,15 @@
                 },
 
                 is : function(selector) {
+                    
                     var el;
                     var i;
                     for(i = 0; i < this[LEXICON.l]; i++) {
                         el = this[i];
-                        if(selector === ":visible")
-                            return !!(el[LEXICON.oW] || el[LEXICON.oH] || el.getClientRects()[LEXICON.l]);
-                        if(selector === ":hidden")
-                            return !!!(el[LEXICON.oW] || el[LEXICON.oH] || el.getClientRects()[LEXICON.l]);
+                        if(selector === ':visible')
+                            return elementIsVisible(el);
+                        if(selector === ':hidden')
+                            return !elementIsVisible(el);
                         if((el.matches && el.matches(selector)) || matches(el, selector))
                             return true;
                     }
@@ -1565,7 +1571,7 @@
                                     var dataDiffValue = diffData[prop];
                                     var dataValue = data[prop];
                                     var dataValueType = type(dataValue);
-                                    var propPrefix = prevPropName ? prevPropName + "." : "";
+                                    var propPrefix = prevPropName ? prevPropName + '.' : '';
                                     var error = "The option \"" + propPrefix + prop + "\" wasn't set, because";
                                     var errorPossibleTypes = [ ];
                                     var errorRestrictedStrings = [ ];
@@ -1639,8 +1645,8 @@
                                         }
                                         else if(writeErrors) {
                                             console.warn(error + " it doesn't accept the type [ " + dataValueType.toUpperCase() + " ] with the value of \"" + dataValue + "\".\r\n" +
-                                                "Accepted types are: [ " + errorPossibleTypes.join(", ").toUpperCase() + " ]." +
-                                                (errorRestrictedStrings[length] > 0 ? "\r\nValid strings are: [ " + errorRestrictedStrings.join(", ").split(restrictedStringsPossibilitiesSplit).join(", ") + " ]." : ""));
+                                                "Accepted types are: [ " + errorPossibleTypes.join(', ').toUpperCase() + " ]." +
+                                                (errorRestrictedStrings[length] > 0 ? "\r\nValid strings are: [ " + errorRestrictedStrings.join(', ').split(restrictedStringsPossibilitiesSplit).join(', ') + " ]." : ''));
                                         }
                                         delete data[prop];
                                     }
@@ -1658,7 +1664,7 @@
                         */
                         
                         if(!isEmptyObj(objectCopy) && writeErrors)
-                            console.warn("The following options are discarded due to invalidity:\r\n" + window.JSON.stringify(objectCopy, null, 2));
+                            console.warn('The following options are discarded due to invalidity:\r\n' + window.JSON.stringify(objectCopy, null, 2));
 
                         return {
                             _default : validatedOptions,
@@ -1701,9 +1707,36 @@
                     x: nativeScrollbarSize.x === 0,
                     y: nativeScrollbarSize.y === 0
                 };
+                var msie = (function() {
+                    var ua = window.navigator.userAgent;
+                    var strIndexOf = 'indexOf';
+                    var strSubString = 'substring';
+                    var msie = ua[strIndexOf]('MSIE ');
+                    var trident = ua[strIndexOf]('Trident/');
+                    var edge = ua[strIndexOf]('Edge/');
+                    var rv = ua[strIndexOf]('rv:');
+                    var result;
+                    var parseIntFunc = parseInt;
+
+                    // IE 10 or older => return version number
+                    if (msie > 0)
+                        result = parseIntFunc(ua[strSubString](msie + 5, ua[strIndexOf]('.', msie)), 10);
+
+                    // IE 11 => return version number
+                    else if (trident > 0)
+                        result = parseIntFunc(ua[strSubString](rv + 3, ua[strIndexOf]('.', rv)), 10);
+
+                    // Edge (IE 12+) => return version number
+                    else if (edge > 0)
+                        result = parseIntFunc(ua[strSubString](edge + 5, ua[strIndexOf]('.', edge)), 10);
+
+                    // other browser
+                    return result;
+                })();
 
                 FRAMEWORK.extend(_base, {
                     defaultOptions : defaultOptions,
+                    msie : msie,
                     autoUpdateLoop : false,
                     autoUpdateRecommended : !COMPATIBILITY.mO(),
                     nativeScrollbarSize : nativeScrollbarSize,
@@ -1712,7 +1745,7 @@
                         var result = false;
                         scrollbarDummyElement.addClass('os-viewport-native-scrollbars-invisible');
                         try {
-                            result = scrollbarDummyElement.css('scrollbar-width') === 'none' || window.getComputedStyle(scrollbarDummyElement0, '::-webkit-scrollbar').getPropertyValue('display') === 'none';
+                            result = (scrollbarDummyElement.css('scrollbar-width') === 'none' && (msie > 9 || !msie)) || window.getComputedStyle(scrollbarDummyElement0, '::-webkit-scrollbar').getPropertyValue('display') === 'none';
                         } catch (ex) { }
                         
                         //fix opera bug: scrollbar styles will only appear if overflow value is scroll or auto during the activation of the style.
@@ -1723,32 +1756,6 @@
                         return result;
                     })(),
                     overlayScrollbarDummySize : { x: 30, y: 30 },
-                    msie : (function() {
-                        var ua = window.navigator.userAgent;
-                        var strIndexOf = 'indexOf';
-                        var strSubString = 'substring';
-                        var msie = ua[strIndexOf]('MSIE ');
-                        var trident = ua[strIndexOf]('Trident/');
-                        var edge = ua[strIndexOf]('Edge/');
-                        var rv = ua[strIndexOf]('rv:');
-                        var result;
-                        var parseIntFunc = parseInt;
-
-                        // IE 10 or older => return version number
-                        if (msie > 0)
-                            result = parseIntFunc(ua[strSubString](msie + 5, ua[strIndexOf]('.', msie)), 10);
-
-                        // IE 11 => return version number
-                        else if (trident > 0)
-                            result = parseIntFunc(ua[strSubString](rv + 3, ua[strIndexOf]('.', rv)), 10);
-
-                        // Edge (IE 12+) => return version number
-                        else if (edge > 0)
-                            result = parseIntFunc(ua[strSubString](edge + 5, ua[strIndexOf]('.', edge)), 10);
-
-                        // other browser
-                        return result;
-                    })(),
                     cssCalc : (function() {
                         var dummyStyle = document.createElement('div')[LEXICON.s];
                         var strCalc = 'calc';
@@ -1796,8 +1803,8 @@
                             n : dummyContainerChildOffset.left - dummyContainerScrollOffsetAfterScroll.left === 0
                         };
                     })(),
-                    supportTransform : VENDORS._cssProperty('transform') !== null,
-                    supportTransition : VENDORS._cssProperty('transition') !== null,
+                    supportTransform : VENDORS._cssProperty('transform') !== undefined,
+                    supportTransition : VENDORS._cssProperty('transition') !== undefined,
                     supportPassiveEvents : (function() {
                         var supportsPassive = false;
                         try {
@@ -2046,7 +2053,7 @@
                 var _isTextarea;
                 var _isBody;
                 var _documentMixed;
-                var _isTextareaHostGenerated;
+                var _domExists;
 
                 //general:
                 var _isBorderBox;
@@ -2148,7 +2155,19 @@
                 var _classNameScrollbarVertical = _classNameScrollbar + _strMinusVertical;
                 var _classNameDragging = _cassNamesPrefix + 'dragging';
                 var _classNameThemeNone = _cassNamesPrefix + 'theme-none';
-
+                var _classNamesDynamicDestroy = [
+                    _classNameViewportNativeScrollbarsInvisible,
+                    _classNameViewportNativeScrollbarsOverlaid,
+                    _classNameScrollbarTrackOff,
+                    _classNameScrollbarHandleOff,
+                    _classNameScrollbarUnusable,
+                    _classNameScrollbarAutoHidden,
+                    _classNameScrollbarCornerResize,
+                    _classNameScrollbarCornerResizeB,
+                    _classNameScrollbarCornerResizeH,
+                    _classNameScrollbarCornerResizeV,
+                    _classNameDragging].join(_strSpace);
+                        
                 //callbacks:
                 var _callbacksInitQeueue = [ ];
 
@@ -2252,8 +2271,10 @@
                 var _mutationObserverAttrsTextarea = ['wrap', 'cols', 'rows'];
                 var _mutationObserverAttrsHost = [LEXICON.i, LEXICON.c, LEXICON.s, 'open'];
 
+                //events:
+                var _destroyEvents = [ ];
+
                 //textarea:
-                var _textareaEvents;
                 var _textareaHasFocus;
 
                 //scrollbars:
@@ -2266,35 +2287,49 @@
                 var _scrollbarsAutoHideLeave;
                 var _scrollbarsHandleHovered;
                 var _scrollbarsHandlesDefineScrollPos;
-
+                
                 //resize
-                var _resizeReconnectMutationObserver;
                 var _resizeNone;
                 var _resizeBoth;
                 var _resizeHorizontal;
                 var _resizeVertical;
-                var _resizeOnMouseTouchDown;
                 
                 
-                //==== Passive Event Listener ====//
+                //==== Event Listener ====//
 
                 /**
-                 * Adds or removes a passive event listener from the given element.
+                 * Adds or removes a event listener from the given element. 
                  * @param element The element to which the event listener shall be applied or removed.
                  * @param eventNames The name(s) of the events.
                  * @param listener The method which shall be called.
                  * @param remove True if the handler shall be removed, false or undefined if the handler shall be added.
                  */
-                function setupPassiveEventListener(element, eventNames, listener, remove, notPassive) {
+                function setupResponsiveEventListener(element, eventNames, listener, remove, passive) {
+                    var collected = type(eventNames) == TYPES.a && type(listener) == TYPES.a;
                     var method = remove ? 'removeEventListener' : 'addEventListener';
-                    var events = eventNames.split(_strSpace);
+                    var onOff = remove ? 'off' : 'on';
+                    var events = collected ? false : eventNames.split(_strSpace)
                     var i = 0;
 
-                    for (; i < events[LEXICON.l]; i++) {
-                        element[0][method](events[i], listener, { passive: !notPassive });
+                    if(collected) {
+                        for (; i < eventNames[LEXICON.l]; i++)
+                            setupResponsiveEventListener(element, eventNames[i], listener[i], remove);
+                    }
+                    else {
+                        for (; i < events[LEXICON.l]; i++) {
+                            if(_supportPassiveEvents)
+                                element[0][method](events[i], listener, { passive: passive || false });
+                            else
+                                element[onOff](events[i], listener);
+                        }
                     }
                 }
 
+
+                function addDestroyEventListener(element, eventNames, listener, passive) {
+                    setupResponsiveEventListener(element, eventNames, listener, false, passive);
+                    _destroyEvents.push(COMPATIBILITY.bind(setupResponsiveEventListener, 0, element, eventNames, listener, true, passive));
+                }
 
                 //==== Resize Observer ====//
 
@@ -2305,16 +2340,16 @@
                  */
                 function setupResizeObserver(targetElement, onElementResizedCallback) {
                     if(targetElement) {
+                        var resizeObserver = COMPATIBILITY.rO();
+                        var strAnimationStartEvent = 'animationstart mozAnimationStart webkitAnimationStart MSAnimationStart';
+                        var strChildNodes = 'childNodes';
+                        var constScroll = 3333333;
+                        var callback = function () {
+                            targetElement[_strScrollTop](constScroll)[_strScrollLeft](_isRTL ? _rtlScrollBehavior.n ? -constScroll : _rtlScrollBehavior.i ? 0 : constScroll : constScroll);
+                            onElementResizedCallback();
+                        };
                         //add resize observer:
                         if(onElementResizedCallback) {
-                            var constMaximum = 3333333;
-                            var resizeObserver = COMPATIBILITY.rO();
-                            var strAnimationStartEvent = 'animationstart mozAnimationStart webkitAnimationStart MSAnimationStart';
-                            var strChildNodes = 'childNodes';
-                            var callback = function () {
-                                targetElement[_strScrollTop](constMaximum)[_strScrollLeft](_isRTL ? _rtlScrollBehavior.n ? -constMaximum : _rtlScrollBehavior.i ? 0 : constMaximum : constMaximum);
-                                onElementResizedCallback();
-                            };
                             if (_supportResizeObserver) {
                                 var element = targetElement.append(generateDiv(_classNameResizeObserverElement + ' observed')).contents()[0];
                                 var observer = element[_strResizeObserverProperty] = new resizeObserver(callback);
@@ -2324,12 +2359,12 @@
                                 if (_msieVersion > 9 || !_autoUpdateRecommended) {
                                     targetElement.prepend(
                                         generateDiv(_classNameResizeObserverElement,
-                                            generateDiv({ className : _classNameResizeObserverItemElement, dir : "ltr" },
+                                            generateDiv({ c : _classNameResizeObserverItemElement, dir : 'ltr' },
                                                 generateDiv(_classNameResizeObserverItemElement,
                                                     generateDiv(_classNameResizeObserverItemFinalElement)
                                                 ) +
                                                 generateDiv(_classNameResizeObserverItemElement,
-                                                    generateDiv({ className : _classNameResizeObserverItemFinalElement, style : 'width: 200%; height: 200%' })
+                                                    generateDiv({ c : _classNameResizeObserverItemFinalElement, style : 'width: 200%; height: 200%' })
                                                 )
                                             )
                                         )
@@ -2360,8 +2395,8 @@
                                          expandElement[_strScrollLeft](sizeResetWidth)[_strScrollTop](sizeResetHeight);
                                          shrinkElement[_strScrollLeft](sizeResetWidth)[_strScrollTop](sizeResetHeight);
                                          */
-                                        expandElement[_strScrollLeft](constMaximum)[_strScrollTop](constMaximum);
-                                        shrinkElement[_strScrollLeft](constMaximum)[_strScrollTop](constMaximum);
+                                        expandElement[_strScrollLeft](constScroll)[_strScrollTop](constScroll);
+                                        shrinkElement[_strScrollLeft](constScroll)[_strScrollTop](constScroll);
                                     };
                                     var onResized = function () {
                                         rAFId = 0;
@@ -2408,8 +2443,8 @@
                                         onScroll(false);
                                     });
                                     //lets assume that the divs will never be that large and a constant value is enough
-                                    expandChildCSS[_strWidth] = constMaximum;
-                                    expandChildCSS[_strHeight] = constMaximum;
+                                    expandChildCSS[_strWidth] = constScroll;
+                                    expandChildCSS[_strHeight] = constScroll;
                                     expandElementChild.css(expandChildCSS);
 
                                     reset();
@@ -2441,9 +2476,8 @@
                                 }
                             }
 
-                            //direction change detection:
                             if (targetElement[0] === _sizeObserverElementNative) {
-                                var directionChanged = function () {
+                                var directionChanged = function() {
                                     var dir = _hostElement.css('direction');
                                     var css = {};
                                     var scrollLeftValue = 0;
@@ -2452,27 +2486,28 @@
                                         if (dir === 'ltr') {
                                             css[_strLeft] = 0;
                                             css[_strRight] = _strAuto;
-                                            scrollLeftValue = constMaximum;
+                                            scrollLeftValue = constScroll;
                                         }
                                         else {
                                             css[_strLeft] = _strAuto;
                                             css[_strRight] = 0;
-                                            scrollLeftValue = _rtlScrollBehavior.n ? -constMaximum : _rtlScrollBehavior.i ? 0 : constMaximum;
+                                            scrollLeftValue = _rtlScrollBehavior.n ? -constScroll : _rtlScrollBehavior.i ? 0 : constScroll;
                                         }
+                                        //execution order is important for IE!!!
                                         _sizeObserverElement.children().eq(0).css(css);
-                                        targetElement[_strScrollLeft](scrollLeftValue)[_strScrollTop](constMaximum);
+                                        _sizeObserverElement[_strScrollLeft](scrollLeftValue)[_strScrollTop](constScroll);
                                         _cssDirectionDetectedCache = dir;
                                         result = true;
                                     }
                                     return result;
                                 };
                                 directionChanged();
-                                targetElement.on(_strScroll, function (event) {
+                                addDestroyEventListener(targetElement, _strScroll, function(event) {
                                     if (directionChanged())
                                         update();
                                     COMPATIBILITY.prvD(event);
                                     COMPATIBILITY.stpP(event);
-                                    return false;
+                                    return false;    
                                 });
                             }
                         }
@@ -2707,33 +2742,6 @@
                     }
                 }
 
-                 /**
-                 * Adds or removes mouse & touch events of the host element. (for handling auto-hiding of the scrollbars)
-                 * @param destroy Indicates whether the events shall be added or removed.
-                 */
-                function setupHostMouseTouchEvents(destroy) {
-                    var strOnOff = destroy ? 'off' : 'on';
-                    var setupEvent = function(target, name, listener) {
-                        if(_supportPassiveEvents)
-                            setupPassiveEventListener(target, name, listener, destroy);
-                        else
-                            target[strOnOff](name, listener);
-                    };
-
-                    if(_scrollbarsAutoHideMove && !destroy)
-                        setupEvent(_hostElement, _strMouseTouchMoveEvent, hostOnMouseMove);
-                    else {
-                        if(destroy)
-                            setupEvent(_hostElement, _strMouseTouchMoveEvent, hostOnMouseMove);
-                        setupEvent(_hostElement, _strMouseTouchEnter, hostOnMouseEnter);
-                        setupEvent(_hostElement, _strMouseTouchLeave, hostOnMouseLeave);
-                    }
-
-                    //if the plugin is initialized and the mouse is over the host element, make the scrollbars visible
-                    if(!_initialized && !destroy)
-                        _hostElement.one("mouseover", hostOnMouseEnter);
-                }
-
                 /**
                  * Prevents text from deselection if attached to the document element on the mousedown event of a DOM element.
                  * @param event The select start event.
@@ -2748,6 +2756,25 @@
                  */
                 function imgOnLoad() {
                     update({ _contentSizeChanged : true });
+                }
+
+                 /**
+                 * Adds or removes mouse & touch events of the host element. (for handling auto-hiding of the scrollbars)
+                 * @param destroy Indicates whether the events shall be added or removed.
+                 */
+                function setupHostMouseTouchEvents(destroy) {
+                    setupResponsiveEventListener(_hostElement, 
+                        _strMouseTouchMoveEvent, 
+                        hostOnMouseMove, 
+                        (_scrollbarsAutoHideMove ? destroy : true), true);
+                    setupResponsiveEventListener(_hostElement, 
+                        [ _strMouseTouchEnter, _strMouseTouchLeave ],
+                        [ hostOnMouseEnter, hostOnMouseLeave ], 
+                        (_scrollbarsAutoHideMove ? true : destroy), true);
+
+                    //if the plugin is initialized and the mouse is over the host element, make the scrollbars visible
+                    if(!_initialized && !destroy)
+                        _hostElement.one('mouseover', hostOnMouseEnter);
                 }
 
 
@@ -3370,7 +3397,7 @@
                     var sizeAutoObserverElementBCRect;
                     //exception occurs in IE8 sometimes (unknown exception)
                     try {
-                        sizeAutoObserverElementBCRect = _sizeAutoObserverAdded ? _sizeAutoObserverElementNative.getBoundingClientRect() : null;
+                        sizeAutoObserverElementBCRect = _sizeAutoObserverAdded ? _sizeAutoObserverElementNative[LEXICON.bCR]() : null;
                     } catch (ex) {
                         return;
                     }
@@ -3737,7 +3764,7 @@
                         var hasOverflow = { };
                         var hideOverflow = { };
                         var canScroll = { };
-                        var viewportRect = _paddingElementNative.getBoundingClientRect();
+                        var viewportRect = _paddingElementNative[LEXICON.bCR]();
                         var setOverflowVariables = function(horizontal) {
                             var scrollbarVars = getScrollbarVars(horizontal);
                             var scrollbarVarsInverted = getScrollbarVars(!horizontal);
@@ -4021,12 +4048,6 @@
                         if (_isBody)
                             addClass(_hostElement, _classNameHostResizeDisabled);
                         if (resizeChanged) {
-                            var setupCornerEvents = function(remove) {
-                                if(_supportPassiveEvents)
-                                    setupPassiveEventListener(_scrollbarCornerElement, _strMouseTouchDownEvent, _resizeOnMouseTouchDown, remove, true);
-                                else
-                                    _scrollbarCornerElement[remove ? 'off' : 'on'](_strMouseTouchDownEvent, _resizeOnMouseTouchDown);
-                            };
                             removeClass(_scrollbarCornerElement, [ 
                                     _classNameScrollbarCornerResize,
                                     _classNameScrollbarCornerResizeB,
@@ -4034,7 +4055,6 @@
                                     _classNameScrollbarCornerResizeV].join(_strSpace));
                             if (_resizeNone) {
                                 addClass(_hostElement, _classNameHostResizeDisabled);
-                                setupCornerEvents(true);
                             }
                             else {
                                 removeClass(_hostElement, _classNameHostResizeDisabled);
@@ -4045,9 +4065,6 @@
                                     addClass(_scrollbarCornerElement, _classNameScrollbarCornerResizeH);
                                 else if (_resizeVertical)
                                     addClass(_scrollbarCornerElement, _classNameScrollbarCornerResizeV);
-
-                                setupCornerEvents(true);
-                                setupCornerEvents();
                             }
                         }
 
@@ -4115,25 +4132,25 @@
 
                         //callbacks:
                         if (cssDirectionChanged) {
-                            dispatchCallback("onDirectionChanged", {
+                            dispatchCallback('onDirectionChanged', {
                                 isRTL: _isRTL,
                                 dir: cssDirection
                             });
                         }
                         if (hostSizeChanged) {
-                            dispatchCallback("onHostSizeChanged", {
+                            dispatchCallback('onHostSizeChanged', {
                                 width: _hostSizeCache.w,
                                 height: _hostSizeCache.h
                             });
                         }
                         if (contentSizeChanged) {
-                            dispatchCallback("onContentSizeChanged", {
+                            dispatchCallback('onContentSizeChanged', {
                                 width: _contentScrollSizeCache.w,
                                 height: _contentScrollSizeCache.h
                             });
                         }
                         if (hasOverflow.c || hideOverflow.c) {
-                            dispatchCallback("onOverflowChanged", {
+                            dispatchCallback('onOverflowChanged', {
                                 x: hasOverflow.x,
                                 y: hasOverflow.y,
                                 xScrollable: hideOverflow.xs,
@@ -4142,7 +4159,7 @@
                             });
                         }
                         if (overflowAmount.c) {
-                            dispatchCallback("onOverflowAmountChanged", {
+                            dispatchCallback('onOverflowAmountChanged', {
                                 x: overflowAmount.x,
                                 y: overflowAmount.y
                             });
@@ -4164,7 +4181,7 @@
                     //freezeResizeObserver(_sizeObserverElement, false);
                     //freezeResizeObserver(_sizeAutoObserverElement, false);
 
-                    dispatchCallback("onUpdated", { forced: force });
+                    dispatchCallback('onUpdated', { forced: force });
                 }
 
                 
@@ -4192,16 +4209,20 @@
                  * @param destroy Indicates whether the DOM shall be build or destroyed.
                  */
                 function setupStructureDOM(destroy) {
+                    var strParent = 'parent';
+                    var classNameResizeObserverHost = 'os-resize-observer-host';
+                    var classNameTextareaElementFull = _classNameTextareaElement + _strSpace + _classNameTextInherit;
+                    var textareaClass = _isTextarea ? _strSpace + _classNameTextInherit : _strEmpty;
                     var adoptAttrs = _currentPreparedOptions.textarea.inheritedAttrs;
                     var adoptAttrsMap = { };
                     var applyAdoptedAttrs = function() {
                         var applyAdoptedAttrsElm = destroy ? _targetElement : _hostElement;
-                        each(adoptAttrsMap, function(k, v) {
-                            if(type(v) == TYPES.s) {
-                                if(k == LEXICON.c)
-                                    applyAdoptedAttrsElm.addClass(v);
+                        each(adoptAttrsMap, function(key, value) {
+                            if(type(value) == TYPES.s) {
+                                if(key == LEXICON.c)
+                                    applyAdoptedAttrsElm.addClass(value);
                                 else
-                                    applyAdoptedAttrsElm.attr(k, v);
+                                    applyAdoptedAttrsElm.attr(key, value);
                             }
                         });
                     };
@@ -4221,53 +4242,64 @@
                         _classNameTextareaElement,
                         _classNameTextInherit,
                         _classNameCache].join(_strSpace);
-                    adoptAttrs = type(adoptAttrs) == TYPES.s ? adoptAttrs.split(' ') : adoptAttrs;
-                    if(type(adoptAttrs) == TYPES.a) {
+                    var hostElementCSS = { };
+                    
+                    //get host element as first element, because that's the most upper element and required for the other elements
+                    _hostElement = _hostElement || (_isTextarea ? (_domExists ? _targetElement[strParent]()[strParent]()[strParent]()[strParent]() : FRAMEWORK(generateDiv(_classNameHostTextareaElement))) : _targetElement);
+                    _contentElement = _contentElement || selectOrGenerateDivByClass(_classNameContentElement + textareaClass);
+                    _viewportElement = _viewportElement || selectOrGenerateDivByClass(_classNameViewportElement + textareaClass);
+                    _paddingElement = _paddingElement || selectOrGenerateDivByClass(_classNamePaddingElement + textareaClass);
+                    _sizeObserverElement = _sizeObserverElement || selectOrGenerateDivByClass(classNameResizeObserverHost);
+                    _textareaCoverElement = _textareaCoverElement || (_isTextarea ? selectOrGenerateDivByClass(_classNameTextareaCoverElement) : undefined);
+                    
+                    //on destroy, remove all generated class names from the host element before collecting the adopted attributes 
+                    //to prevent adopting generated class names
+                    if(destroy)
+                        removeClass(_hostElement, hostElementClassNames);
+                    
+                    //collect all adopted attributes
+                    adoptAttrs = type(adoptAttrs) == TYPES.s ? adoptAttrs.split(_strSpace) : adoptAttrs;
+                    if(type(adoptAttrs) == TYPES.a && _isTextarea) {
                         each(adoptAttrs, function(i, v) {
-                            if(type(v) == TYPES.s)
+                            if(type(v) == TYPES.s) {
                                 adoptAttrsMap[v] = destroy ? _hostElement.attr(v) : _targetElement.attr(v);
+                            }
                         });
                     }
 
                     if(!destroy) {
-                        if (_isTextarea) {
-                            var hostElementCSS = {};
-                            var parent = _targetElement.parent();
-                            _isTextareaHostGenerated = !(parent.hasClass(_classNameHostTextareaElement) && parent.children()[LEXICON.l] === 1);
-
-                            if (!_currentPreparedOptions.sizeAutoCapable) {
+                        if(_isTextarea) {
+                            if(!_currentPreparedOptions.sizeAutoCapable) {
                                 hostElementCSS[_strWidth] = _targetElement.css(_strWidth);
                                 hostElementCSS[_strHeight] = _targetElement.css(_strHeight);
                             }
-                            if(_isTextareaHostGenerated)
-                                _targetElement.wrap(generateDiv(_classNameHostTextareaElement));
-
-                            _hostElement = _targetElement.parent();
-                            _hostElement.css(hostElementCSS)
-                                .wrapInner(generateDiv(_classNameContentElement + _strSpace + _classNameTextInherit))
-                                .wrapInner(generateDiv(_classNameViewportElement + _strSpace + _classNameTextInherit))
-                                .wrapInner(generateDiv(_classNamePaddingElement + _strSpace + _classNameTextInherit));
-                            _contentElement = findFirst(_hostElement, _strDot + _classNameContentElement);
-                            _viewportElement = findFirst(_hostElement, _strDot + _classNameViewportElement);
-                            _paddingElement = findFirst(_hostElement, _strDot + _classNamePaddingElement);
-                            _textareaCoverElement = FRAMEWORK(generateDiv(_classNameTextareaCoverElement));
-                            _contentElement.prepend(_textareaCoverElement);
-
-                            addClass(_targetElement, _classNameTextareaElement + _strSpace + _classNameTextInherit);
-
-                            if(_isTextareaHostGenerated)
-                                applyAdoptedAttrs();
+                            
+                            if(!_domExists)
+                                _targetElement.addClass(_classNameTextInherit).wrap(_hostElement);
+                            
+                            //jQuery clones elements in wrap functions, so we have to select them again
+                            _hostElement = _targetElement[strParent]().css(hostElementCSS);
                         }
-                        else {
-                            _hostElement = _targetElement;
-                            _hostElement.wrapInner(generateDiv(_classNameContentElement))
-                                .wrapInner(generateDiv(_classNameViewportElement))
-                                .wrapInner(generateDiv(_classNamePaddingElement));
+                        
+                        if(!_domExists) {
+                            //add the correct class to the target element
+                            addClass(_targetElement, _isTextarea ? classNameTextareaElementFull : _classNameHostElement);
+
+                            //wrap the content into the generated elements to create the required DOM
+                            _hostElement.wrapInner(_contentElement)
+                                .wrapInner(_viewportElement)
+                                .wrapInner(_paddingElement)
+                                .prepend(_sizeObserverElement);
+                            
+                            //jQuery clones elements in wrap functions, so we have to select them again
                             _contentElement = findFirst(_hostElement, _strDot + _classNameContentElement);
                             _viewportElement = findFirst(_hostElement, _strDot + _classNameViewportElement);
                             _paddingElement = findFirst(_hostElement, _strDot + _classNamePaddingElement);
-
-                            addClass(_targetElement, _classNameHostElement);
+                                    
+                            if(_isTextarea) {
+                                _contentElement.prepend(_textareaCoverElement);
+                                applyAdoptedAttrs();
+                            }
                         }
                         
                         if (_nativeScrollbarStyling)
@@ -4277,9 +4309,6 @@
                         if (_isBody)
                             addClass(_htmlElement, _classNameHTMLElement);
 
-                        _sizeObserverElement = FRAMEWORK(generateDiv('os-resize-observer-host'));
-                        _hostElement.prepend(_sizeObserverElement);
-
                         _sizeObserverElementNative = _sizeObserverElement[0];
                         _hostElementNative = _hostElement[0];
                         _paddingElementNative = _paddingElement[0];
@@ -4287,37 +4316,43 @@
                         _contentElementNative = _contentElement[0];
                     }
                     else {
-                        _contentElement.contents()
-                            .unwrap()
-                            .unwrap()
-                            .unwrap();
-
-                        removeClass(_hostElement, hostElementClassNames);
-                        if (_isTextarea) {
-                            _targetElement.removeAttr(LEXICON.s);
-
-                            if(_isTextareaHostGenerated)
-                                applyAdoptedAttrs();
-
-                            removeClass(_targetElement, hostElementClassNames);
-                            remove(_textareaCoverElement);
-
-                            if(_isTextareaHostGenerated) {
-                                _targetElement.unwrap();
-                                remove(_hostElement);
-                            }
-                            else {
-                                addClass(_hostElement, _classNameHostTextareaElement);
-                            }
+                        if(_domExists && _initialized) {
+                            //clear size observer
+                            _sizeObserverElement.children().remove();
+                            
+                            //remove the style property and classes from already generated elements
+                            each([ _paddingElement, _viewportElement, _contentElement, _textareaCoverElement ], function(i, elm) { 
+                                if(elm) {
+                                    removeClass(elm.removeAttr(LEXICON.s), _classNamesDynamicDestroy);
+                                }
+                            });
+                            
+                            //add classes to the host element which was removed previously to match the expected DOM
+                            addClass(_hostElement, _isTextarea ? _classNameHostTextareaElement : _classNameHostElement);
                         }
                         else {
-                            removeClass(_targetElement, _classNameHostElement);
+                            //remove size observer
+                            remove(_sizeObserverElement);
+                            
+                            //unwrap the content to restore DOM
+                            _contentElement.contents()
+                                .unwrap()
+                                .unwrap()
+                                .unwrap();
+                            
+                            if(_isTextarea) {
+                                _targetElement.unwrap();
+                                remove(_hostElement);
+                                remove(_textareaCoverElement);
+                                applyAdoptedAttrs();
+                            }
                         }
-
+                        
+                        if (_isTextarea)
+                            _targetElement.removeAttr(LEXICON.s);
+                        
                         if (_isBody)
                             removeClass(_htmlElement, _classNameHTMLElement);
-
-                        remove(_sizeObserverElement);
                     }
                 }
 
@@ -4325,7 +4360,7 @@
                  * Adds or removes all wrapper elements interactivity events.
                  * @param destroy Indicates whether the Events shall be added or removed.
                  */
-                function setupStructureEvents(destroy) {
+                function setupStructureEvents() {
                     var textareaKeyDownRestrictedKeyCodes = [
                         112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 123,    //F1 to F12
                         33, 34,                                                   //page up, page down
@@ -4334,136 +4369,130 @@
                     ];
                     var textareaKeyDownKeyCodesList = [ ];
                     var textareaUpdateIntervalID;
-                    var scrollStopDelay = 175;
                     var scrollStopTimeoutId;
-                    var strOnOff = destroy ? 'off' : 'on';
-                    var updateTextarea;
-                    var viewportOnScroll;
+                    var scrollStopDelay = 175;
+                    var strFocus = 'focus';
 
-                    if(!destroy && _isTextarea) {
-                        _textareaEvents = { };
-                        updateTextarea = function(doClearInterval) {
-                            textareaUpdate();
-                            _base.update(_strAuto);
-                            if(doClearInterval)
-                                clearInterval(textareaUpdateIntervalID);
-                        };
-                        _textareaEvents[_strScroll] = function(event) {
-                            _targetElement[_strScrollLeft](_rtlScrollBehavior.i && _normalizeRTLCache ? 9999999 : 0);
-                            _targetElement[_strScrollTop](0);
-                            COMPATIBILITY.prvD(event);
-                            COMPATIBILITY.stpP(event);
-                            return false;
-                        };
-                        _textareaEvents['drop'] = function() {
-                            setTimeout(function () {
-                                if(!_destroyed)
-                                    updateTextarea();
-                            }, 50);
-                        };
-                        _textareaEvents['focus'] = function() {
-                            _textareaHasFocus = true;
-                        };
-                        _textareaEvents['focusout'] = function() {
-                            _textareaHasFocus = false;
-                            textareaKeyDownKeyCodesList = [ ];
-                            updateTextarea(true);
-                        };
-                        if (_msieVersion > 9 || !_autoUpdateRecommended) {
-                            _textareaEvents['input'] = function textareaOnInput() {
+                    function updateTextarea(doClearInterval) {
+                        textareaUpdate();
+                        _base.update(_strAuto);
+                        if(doClearInterval && _autoUpdateRecommended)
+                            clearInterval(textareaUpdateIntervalID);
+                    }
+                    function textareaOnScroll(event) {
+                        _targetElement[_strScrollLeft](_rtlScrollBehavior.i && _normalizeRTLCache ? 9999999 : 0);
+                        _targetElement[_strScrollTop](0);
+                        COMPATIBILITY.prvD(event);
+                        COMPATIBILITY.stpP(event);
+                        return false;
+                    }
+                    function textareaOnDrop(event) {
+                        setTimeout(function () {
+                            if(!_destroyed)
                                 updateTextarea();
+                        }, 50);
+                    }
+                    function textareaOnFocus() {
+                        _textareaHasFocus = true;
+                        addClass(_hostElement, strFocus);
+                    }
+                    function textareaOnFocusout() {
+                        _textareaHasFocus = false;
+                        textareaKeyDownKeyCodesList = [ ];
+                        removeClass(_hostElement, strFocus);
+                        updateTextarea(true);
+                    }  
+                    function textareaOnKeyDown(event) {
+                        var keyCode = event.keyCode;
+                        
+                        if (inArray(keyCode, textareaKeyDownRestrictedKeyCodes) < 0) {
+                            if (!textareaKeyDownKeyCodesList[LEXICON.l]) {
+                                updateTextarea();
+                                textareaUpdateIntervalID = setInterval(updateTextarea, 1000 / 60);
                             }
-                        }
-                        else {
-                            _textareaEvents[_strKeyDownEvent] = function textareaOnKeyDown(event) {
-                                var keyCode = event.keyCode;
-                                if (inArray(keyCode, textareaKeyDownRestrictedKeyCodes) > -1)
-                                    return;
-                                if (!textareaKeyDownKeyCodesList.length) {
-                                    updateTextarea();
-                                    textareaUpdateIntervalID = setInterval(updateTextarea, 1000 / 60);
-                                }
-                                if (inArray(keyCode, textareaKeyDownKeyCodesList) === -1)
-                                    textareaKeyDownKeyCodesList.push(keyCode);
-                            };
-                            _textareaEvents[_strKeyUpEvent] = function(event) {
-                                var keyCode = event.keyCode;
-                                var index = inArray(keyCode, textareaKeyDownKeyCodesList);
-
-                                if (inArray(keyCode, textareaKeyDownRestrictedKeyCodes) > -1)
-                                    return;
-                                if (index > -1)
-                                    textareaKeyDownKeyCodesList.splice(index, 1);
-                                if (!textareaKeyDownKeyCodesList.length)
-                                    updateTextarea(true);
-                            };
+                            if (inArray(keyCode, textareaKeyDownKeyCodesList) < 0)
+                                textareaKeyDownKeyCodesList.push(keyCode);
                         }
                     }
+                    function textareaOnKeyUp(event) {
+                        var keyCode = event.keyCode;
+                        var index = inArray(keyCode, textareaKeyDownKeyCodesList);
 
-                    if (_isTextarea) {
-                        each(_textareaEvents, function(key, value) {
-                            _targetElement[strOnOff](key, value);
-                        });
+                        if (inArray(keyCode, textareaKeyDownRestrictedKeyCodes) < 0) {
+                            if (index > -1)
+                                textareaKeyDownKeyCodesList.splice(index, 1);
+                            if (!textareaKeyDownKeyCodesList[LEXICON.l])
+                                updateTextarea(true);
+                        }
+                    }  
+                    function contentOnTransitionEnd(event) {
+                        if (_autoUpdateCache === true)
+                            return;
+                        event = event.originalEvent || event;
+                        if (isSizeAffectingCSSProperty(event.propertyName))
+                            _base.update(_strAuto);
                     }
-                    else {
-                        _contentElement[strOnOff](_strTransitionEndEvent, function (event) {
-                            if (_autoUpdateCache === true)
-                                return;
-                            event = event.originalEvent || event;
-                            if (isSizeAffectingCSSProperty(event.propertyName))
-                                _base.update(_strAuto);
-                        });
-                    }
+                    function viewportOnScroll(event) {
+                        if (!_sleeping) {
+                            if (scrollStopTimeoutId !== undefined)
+                                clearTimeout(scrollStopTimeoutId);
+                            else {
+                                if (_scrollbarsAutoHideScroll || _scrollbarsAutoHideMove)
+                                    refreshScrollbarsAutoHide(true);
 
-                    if(!destroy) {
-                        viewportOnScroll = function(event) {
-                            if (!_sleeping) {
-                                if (scrollStopTimeoutId !== undefined)
+                                if (!nativeOverlayScrollbarsAreActive())
+                                    addClass(_hostElement, _classNameHostScrolling);
+
+                                dispatchCallback('onScrollStart', event);
+                            }
+
+                            //if a scrollbars handle gets dragged, the mousemove event is responsible for refreshing the handle offset
+                            //because if CSS scroll-snap is used, the handle offset gets only refreshed on every snap point
+                            //this looks laggy & clunky, it looks much better if the offset refreshes with the mousemove
+                            if(!_scrollbarsHandlesDefineScrollPos) {
+                                refreshScrollbarHandleOffset(true);
+                                refreshScrollbarHandleOffset(false);
+                            }
+                            dispatchCallback('onScroll', event);
+
+                            scrollStopTimeoutId = setTimeout(function () {
+                                if(!_destroyed) {
+                                    //OnScrollStop:
                                     clearTimeout(scrollStopTimeoutId);
-                                else {
+                                    scrollStopTimeoutId = undefined;
+
                                     if (_scrollbarsAutoHideScroll || _scrollbarsAutoHideMove)
-                                        refreshScrollbarsAutoHide(true);
+                                        refreshScrollbarsAutoHide(false);
 
                                     if (!nativeOverlayScrollbarsAreActive())
-                                        addClass(_hostElement, _classNameHostScrolling);
+                                        removeClass(_hostElement, _classNameHostScrolling);
 
-                                    dispatchCallback("onScrollStart", event);
+                                    dispatchCallback('onScrollStop', event);
                                 }
-
-                                //if a scrollbars handle gets dragged, the mousemove event is responsible for refreshing the handle offset
-                                //because if CSS scroll-snap is used, the handle offset gets only refreshed on every snap point
-                                //this looks laggy & clunky, it looks much better if the offset refreshes with the mousemove
-                                if(!_scrollbarsHandlesDefineScrollPos) {
-                                    refreshScrollbarHandleOffset(true);
-                                    refreshScrollbarHandleOffset(false);
-                                }
-                                dispatchCallback("onScroll", event);
-
-                                scrollStopTimeoutId = setTimeout(function () {
-                                    if(!_destroyed) {
-                                        //OnScrollStop:
-                                        clearTimeout(scrollStopTimeoutId);
-                                        scrollStopTimeoutId = undefined;
-
-                                        if (_scrollbarsAutoHideScroll || _scrollbarsAutoHideMove)
-                                            refreshScrollbarsAutoHide(false);
-
-                                        if (!nativeOverlayScrollbarsAreActive())
-                                            removeClass(_hostElement, _classNameHostScrolling);
-
-                                        dispatchCallback("onScrollStop", event);
-                                    }
-                                }, scrollStopDelay);
-                            }
-                        };
-
-                        if (_supportPassiveEvents)
-                            setupPassiveEventListener(_viewportElement, _strScroll, viewportOnScroll);
-                        else
-                            _viewportElement.on(_strScroll, viewportOnScroll);
+                            }, scrollStopDelay);
+                        }
                     }
-                }
 
+
+                    if (_isTextarea) {                         
+                        if (_msieVersion > 9 || !_autoUpdateRecommended) {
+                            addDestroyEventListener(_targetElement, 'input', updateTextarea);
+                        }
+                        else {
+                            addDestroyEventListener(_targetElement, 
+                                [ _strKeyDownEvent, _strKeyUpEvent ],
+                                [ textareaOnKeyDown, textareaOnKeyUp ]);
+                        }
+                        
+                        addDestroyEventListener(_targetElement, 
+                            [ _strScroll, 'drop', strFocus, strFocus + 'out' ],
+                            [ textareaOnScroll, textareaOnDrop, textareaOnFocus, textareaOnFocusout ]);
+                    }
+                    else {
+                        addDestroyEventListener(_contentElement, _strTransitionEndEvent, contentOnTransitionEnd);
+                    }
+                    addDestroyEventListener(_viewportElement, _strScroll, viewportOnScroll, true);
+                }
 
 
                 //==== Scrollbars ====//
@@ -4473,25 +4502,60 @@
                  * @param destroy Indicates whether the DOM shall be build or destroyed.
                  */
                 function setupScrollbarsDOM(destroy) {
+                    var selectOrGenerateScrollbarDOM = function(isHorizontal) {
+                        var scrollbarClassName = isHorizontal ? _classNameScrollbarHorizontal : _classNameScrollbarVertical;
+                        var scrollbar = selectOrGenerateDivByClass(_classNameScrollbar + _strSpace + scrollbarClassName, true);
+                        var track = selectOrGenerateDivByClass(_classNameScrollbarTrack, scrollbar);
+                        var handle = selectOrGenerateDivByClass(_classNameScrollbarHandle, scrollbar);
+
+                        if(!_domExists && !destroy) {
+                            scrollbar.append(track);
+                            track.append(handle);
+                        }
+                        
+                        return {
+                            _scrollbar: scrollbar,
+                            _track: track,
+                            _handle: handle
+                        };
+                    };
+                    function resetScrollbarDOM(isHorizontal) {
+                        var scrollbarVars = getScrollbarVars(isHorizontal);
+                        var scrollbar = scrollbarVars._scrollbar;
+                        var track = scrollbarVars._track;
+                        var handle = scrollbarVars._handle;
+                        
+                        if(_domExists && _initialized) {
+                            each([ scrollbar, track, handle ], function(i, elm) { 
+                                removeClass(elm.removeAttr(LEXICON.s), _classNamesDynamicDestroy);
+                            });
+                        }
+                        else {
+                            remove(scrollbar || selectOrGenerateScrollbarDOM(isHorizontal)._scrollbar);
+                        }
+                    }
+                    var horizontalElements;
+                    var verticalElements;
+                    
                     if(!destroy) {
-                        _scrollbarHorizontalElement = FRAMEWORK(generateDiv(_classNameScrollbar + _strSpace + _classNameScrollbarHorizontal));
-                        _scrollbarHorizontalTrackElement = FRAMEWORK(generateDiv(_classNameScrollbarTrack));
-                        _scrollbarHorizontalHandleElement = FRAMEWORK(generateDiv(_classNameScrollbarHandle));
-                        _scrollbarVerticalElement = FRAMEWORK(generateDiv(_classNameScrollbar + _strSpace + _classNameScrollbarVertical));
-                        _scrollbarVerticalTrackElement = FRAMEWORK(generateDiv(_classNameScrollbarTrack));
-                        _scrollbarVerticalHandleElement = FRAMEWORK(generateDiv(_classNameScrollbarHandle));
+                        horizontalElements = selectOrGenerateScrollbarDOM(true);
+                        verticalElements = selectOrGenerateScrollbarDOM();
+                        
+                        _scrollbarHorizontalElement = horizontalElements._scrollbar;
+                        _scrollbarHorizontalTrackElement = horizontalElements._track;
+                        _scrollbarHorizontalHandleElement = horizontalElements._handle;
+                        _scrollbarVerticalElement = verticalElements._scrollbar;
+                        _scrollbarVerticalTrackElement = verticalElements._track;
+                        _scrollbarVerticalHandleElement = verticalElements._handle;
 
-                        _scrollbarHorizontalElement.append(_scrollbarHorizontalTrackElement);
-                        _scrollbarHorizontalTrackElement.append(_scrollbarHorizontalHandleElement);
-                        _scrollbarVerticalElement.append(_scrollbarVerticalTrackElement);
-                        _scrollbarVerticalTrackElement.append(_scrollbarVerticalHandleElement);
-
-                        _paddingElement.after(_scrollbarVerticalElement);
-                        _paddingElement.after(_scrollbarHorizontalElement);
+                        if(!_domExists) {
+                            _paddingElement.after(_scrollbarVerticalElement);
+                            _paddingElement.after(_scrollbarHorizontalElement);
+                        }
                     }
                     else {
-                        remove(_scrollbarHorizontalElement);
-                        remove(_scrollbarVerticalElement);
+                        resetScrollbarDOM(true);
+                        resetScrollbarDOM();
                     }
                 }
 
@@ -4515,21 +4579,6 @@
                     var mouseDownOffset;
                     var mouseDownInvertedScale;
                     
-                    function setupEvent(element, eventNames, listener) {
-                        var collected = type(eventNames) == TYPES.a && type(listener) == TYPES.a;
-                        var i = 0;
-                        
-                        if(collected) {
-                            for (; i < eventNames[LEXICON.l]; i++)
-                                setupEvent(element, eventNames[i], listener[i]);
-                        }
-                        else {
-                            if(_supportPassiveEvents)
-                                setupPassiveEventListener(element, eventNames, listener, false, true);
-                            else
-                                element.on(eventNames, listener);
-                        }
-                    }
                     function getPointerPosition(event) {
                         return _msieVersion && insideIFrame ? event['screen' + XY] : COMPATIBILITY.page(event)[xy]; //use screen coordinates in EDGE & IE because the page values are incorrect in frames.
                     }
@@ -4581,11 +4630,10 @@
                     function documentMouseTouchUp(event) {
                         event = event || event.originalEvent;
 
-                        _documentElement.off(_strMouseTouchMoveEvent, documentDragMove)
-                            .off(_strMouseTouchUpEvent, documentMouseTouchUp)
-                            .off(_strKeyDownEvent, documentKeyDown)
-                            .off(_strKeyUpEvent, documentKeyUp)
-                            .off(_strSelectStartEvent, documentOnSelectStart);
+                        setupResponsiveEventListener(_documentElement,
+                            [ _strMouseTouchMoveEvent, _strMouseTouchUpEvent, _strKeyDownEvent, _strKeyUpEvent, _strSelectStartEvent ],
+                            [ documentDragMove, documentMouseTouchUp, documentKeyDown, documentKeyUp, documentOnSelectStart ],
+                            true);
 
                         if(_scrollbarsHandlesDefineScrollPos)
                             refreshScrollbarHandleOffset(isHorizontal, true);
@@ -4609,7 +4657,7 @@
                         }
 
                         if(event) {
-                            var rect = _hostElementNative.getBoundingClientRect();
+                            var rect = _hostElementNative[LEXICON.bCR]();
                             var mouseInsideHost = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
 
                             //if mouse is outside host element
@@ -4638,9 +4686,9 @@
                         addClass(scrollbarVars._handle, strActive);
                         addClass(scrollbarVars._scrollbar, strActive);
 
-                        _documentElement.on(_strMouseTouchMoveEvent, documentDragMove)
-                            .on(_strMouseTouchUpEvent, documentMouseTouchUp)
-                            .on(_strSelectStartEvent, documentOnSelectStart);
+                        setupResponsiveEventListener(_documentElement,
+                            [ _strMouseTouchMoveEvent, _strMouseTouchUpEvent, _strSelectStartEvent ],
+                            [ documentDragMove, documentMouseTouchUp, documentOnSelectStart ]);
 
                         if(_msieVersion || !_documentMixed)
                             COMPATIBILITY.prvD(event);
@@ -4749,10 +4797,9 @@
                             addClass(scrollbarVars._track, strActive);
                             addClass(scrollbarVars._scrollbar, strActive);
 
-                            _documentElement.on(_strMouseTouchUpEvent, documentMouseTouchUp)
-                                .on(_strKeyDownEvent, documentKeyDown)
-                                .on(_strKeyUpEvent, documentKeyUp)
-                                .on(_strSelectStartEvent, documentOnSelectStart);
+                            setupResponsiveEventListener(_documentElement,
+                                [ _strMouseTouchUpEvent, _strKeyDownEvent, _strKeyUpEvent, _strSelectStartEvent ],
+                                [ documentMouseTouchUp, documentKeyDown, documentKeyUp, documentOnSelectStart ]);
 
                             scrollAction();
                             COMPATIBILITY.prvD(event);
@@ -4774,18 +4821,18 @@
                         COMPATIBILITY.stpP(event);
                     }
                     
-                    setupEvent(scrollbarVars._handle, 
+                    addDestroyEventListener(scrollbarVars._handle, 
                         _strMouseTouchDownEvent, 
                         onHandleMouseTouchDown);
-                    setupEvent(scrollbarVars._track,
+                    addDestroyEventListener(scrollbarVars._track,
                         [_strMouseTouchDownEvent, _strMouseTouchEnter, _strMouseTouchLeave], 
                         [onTrackMouseTouchDown, onTrackMouseTouchEnter, onTrackMouseTouchLeave]);
-                    setupEvent(scrollbarVars._scrollbar, 
+                    addDestroyEventListener(scrollbarVars._scrollbar, 
                         _strMouseTouchDownEvent, 
                         onScrollbarMouseTouchDown);
 
                     if (_supportTransition) {
-                        scrollbarVars._scrollbar.on(_strTransitionEndEvent, function(event) {
+                        addDestroyEventListener(scrollbarVars._scrollbar, _strTransitionEndEvent, function(event) {
                             if (event.target !== scrollbarVars._scrollbar[0])
                                 return;
                             refreshScrollbarHandleLength(isHorizontal);
@@ -4858,7 +4905,7 @@
                     var digit = 1000000;
                     //get and apply intended handle length
                     var handleRatio = MATH.min(1, (_hostSizeCache[scrollbarVars._w_h] - (_paddingAbsoluteCache ? (isHorizontal ? _paddingX : _paddingY) : 0)) / _contentScrollSizeCache[scrollbarVars._w_h]);
-                    handleCSS[scrollbarVars._width_height] = (MATH.floor(handleRatio * 100 * digit) / digit) + "%"; //the last * digit / digit is for flooring to the 4th digit
+                    handleCSS[scrollbarVars._width_height] = (MATH.floor(handleRatio * 100 * digit) / digit) + '%'; //the last * digit / digit is for flooring to the 4th digit
 
                     if (!nativeOverlayScrollbarsAreActive())
                         scrollbarVars._handle.css(handleCSS);
@@ -4994,12 +5041,20 @@
                  * @param destroy Indicates whether the DOM shall be build or destroyed.
                  */
                 function setupScrollbarCornerDOM(destroy) {
+                    _scrollbarCornerElement = _scrollbarCornerElement || selectOrGenerateDivByClass(_classNameScrollbarCorner, true);
+                    
                     if(!destroy) {
-                         _scrollbarCornerElement = FRAMEWORK(generateDiv(_classNameScrollbarCorner));
-                        _hostElement.append(_scrollbarCornerElement);
+                        if(!_domExists) {
+                            _hostElement.append(_scrollbarCornerElement);
+                        }
                     }
                     else {
-                        remove(_scrollbarCornerElement);
+                        if(_domExists && _initialized) {
+                            removeClass(_scrollbarCornerElement.removeAttr(LEXICON.s), _classNamesDynamicDestroy);
+                        }
+                        else {
+                            remove(_scrollbarCornerElement);
+                        }
                     }
                  }
 
@@ -5011,32 +5066,8 @@
                     var mouseDownPosition = { };
                     var mouseDownSize = { };
                     var mouseDownInvertedScale = { };
-
-                    _resizeOnMouseTouchDown = function(event) {
-                        if (onMouseTouchDownContinue(event)) {
-                            if (_mutationObserversConnected) {
-                                _resizeReconnectMutationObserver = true;
-                                disconnectMutationObservers();
-                            }
-
-                            mouseDownPosition = getCoordinates(event);
-
-                            mouseDownSize.w = _hostElementNative[LEXICON.oW] - (!_isBorderBox ? _paddingX : 0);
-                            mouseDownSize.h = _hostElementNative[LEXICON.oH] - (!_isBorderBox ? _paddingY : 0);
-                            mouseDownInvertedScale = getHostElementInvertedScale();
-
-                            _documentElement.on(_strSelectStartEvent, documentOnSelectStart)
-                                .on(_strMouseTouchMoveEvent, documentDragMove)
-                                .on(_strMouseTouchUpEvent, documentMouseTouchUp);
-
-                            addClass(_bodyElement, _classNameDragging);
-                            if (_scrollbarCornerElement.setCapture)
-                                _scrollbarCornerElement.setCapture();
-
-                            COMPATIBILITY.prvD(event);
-                            COMPATIBILITY.stpP(event);
-                        }
-                    };
+                    var reconnectMutationObserver;
+                    
                     function documentDragMove(event) {
                         if (onMouseTouchDownContinue(event)) {
                             var pageOffset = getCoordinates(event);
@@ -5055,20 +5086,21 @@
                     function documentMouseTouchUp(event) {
                         var eventIsTrusted = event !== undefined;
 
-                        _documentElement.off(_strSelectStartEvent, documentOnSelectStart)
-                            .off(_strMouseTouchMoveEvent, documentDragMove)
-                            .off(_strMouseTouchUpEvent, documentMouseTouchUp);
+                        setupResponsiveEventListener(_documentElement,
+                                [ _strSelectStartEvent, _strMouseTouchMoveEvent, _strMouseTouchUpEvent ],
+                                [ documentOnSelectStart, documentDragMove, documentMouseTouchUp ],
+                                true);
 
                         removeClass(_bodyElement, _classNameDragging);
                         if (_scrollbarCornerElement.releaseCapture)
                             _scrollbarCornerElement.releaseCapture();
 
                         if (eventIsTrusted) {
-                            if (_resizeReconnectMutationObserver)
+                            if (reconnectMutationObserver)
                                 connectMutationObservers();
                             _base.update(_strAuto);
                         }
-                        _resizeReconnectMutationObserver = false;
+                        reconnectMutationObserver = false;
                     }
                     function onMouseTouchDownContinue(event) {
                         var originalEvent = event.originalEvent || event;
@@ -5078,6 +5110,32 @@
                     function getCoordinates(event) {
                         return _msieVersion && insideIFrame ? { x : event.screenX , y : event.screenY } : COMPATIBILITY.page(event);
                     }
+                
+                    addDestroyEventListener(_scrollbarCornerElement, _strMouseTouchDownEvent, function(event) {
+                        if (onMouseTouchDownContinue(event) && !_resizeNone) {
+                            if (_mutationObserversConnected) {
+                                reconnectMutationObserver = true;
+                                disconnectMutationObservers();
+                            }
+
+                            mouseDownPosition = getCoordinates(event);
+
+                            mouseDownSize.w = _hostElementNative[LEXICON.oW] - (!_isBorderBox ? _paddingX : 0);
+                            mouseDownSize.h = _hostElementNative[LEXICON.oH] - (!_isBorderBox ? _paddingY : 0);
+                            mouseDownInvertedScale = getHostElementInvertedScale();
+
+                            setupResponsiveEventListener(_documentElement,
+                                [ _strSelectStartEvent, _strMouseTouchMoveEvent, _strMouseTouchUpEvent ],
+                                [ documentOnSelectStart, documentDragMove, documentMouseTouchUp ]);
+
+                            addClass(_bodyElement, _classNameDragging);
+                            if (_scrollbarCornerElement.setCapture)
+                                _scrollbarCornerElement.setCapture();
+
+                            COMPATIBILITY.prvD(event);
+                            COMPATIBILITY.stpP(event);
+                        }
+                    });
                 }
 
 
@@ -5170,7 +5228,7 @@
                  * @returns {{x: number, y: number}} The scale of the host-element.
                  */
                 function getHostElementInvertedScale() {
-                    var rect = _paddingElementNative.getBoundingClientRect();
+                    var rect = _paddingElementNative[LEXICON.bCR]();
                     return {
                         x :  _supportTransform ? 1 / (MATH.round(rect.width) / _paddingElementNative[LEXICON.oW]) || 1 : 1,
                         y :  _supportTransform ? 1 / (MATH.round(rect.height) / _paddingElementNative[LEXICON.oH]) || 1 : 1
@@ -5295,19 +5353,37 @@
                         'class="' + classesOrAttrs + '"' :
                             (function() {
                                 var key;
-                                var attrs = '';
+                                var attrs = _strEmpty;
                                 if(FRAMEWORK.isPlainObject(classesOrAttrs)) {
                                     for (key in classesOrAttrs)
-                                        attrs += (key === 'className' ? 'class' : key) + '="' + classesOrAttrs[key] + '" ';
+                                        attrs += (key === 'c' ? 'class' : key) + '="' + classesOrAttrs[key] + '" ';
                                 }
                                 return attrs;
                             })() :
                             _strEmpty) +
                         '>' +
-                        (content ? content : _strEmpty) +
+                        (content || _strEmpty) +
                         '</div>';
                 }
-
+                
+                /**
+                 * Selects or generates a div with the given class attribute.
+                 * @param className The class names (divided by spaces) of the div which shall be selected or generated.
+                 * @param selectParentOrOnlyChildren The parent element from which of the element shall be selected. (if undefined or boolean its hostElement)
+                 * If its a boolean it decides whether only the children of the host element shall be selected.
+                 * @returns {*} The generated or selected element.
+                 */
+                function selectOrGenerateDivByClass(className, selectParentOrOnlyChildren) {
+                    var onlyChildren = type(selectParentOrOnlyChildren) == TYPES.b;
+                    var selectParent = onlyChildren ? _hostElement : (selectParentOrOnlyChildren || _hostElement);
+                    
+                    return (_domExists && !selectParent[LEXICON.l]) 
+                        ? null
+                        : _domExists 
+                            ? selectParent[onlyChildren ? 'children' : 'find'](_strDot + className.replace(/\s/g, _strDot)).eq(0)
+                            : FRAMEWORK(generateDiv(className))
+                }
+                
                 /**
                  * Gets the value of the given property from the given object.
                  * @param obj The object from which the property value shall be got.
@@ -5443,6 +5519,9 @@
                  * undefined otherwise.
                  */
                 _base.update = function (force) {
+                    if(_destroyed)
+                        return;
+                    
                     var attrsChanged;
                     var contentSizeC;
                     var isString = type(force) == TYPES.s;
@@ -5451,6 +5530,7 @@
                     var doUpdateAuto;
                     var mutHost;
                     var mutContent;
+                    
                     if(isString) {
                         if (force === _strAuto) {
                             attrsChanged = meaningfulAttrsChanged();
@@ -5531,6 +5611,9 @@
                  * Restore the DOM, disconnects all observers, remove all resize observers and put the instance to sleep.
                  */
                 _base.destroy = function () {
+                    if(_destroyed)
+                        return;
+                    
                     //remove this instance from auto update loop
                     autoUpdateLoop.remove(_base);
 
@@ -5545,11 +5628,12 @@
                     for(var extName in _extensions)
                         _base.removeExt(extName);
 
+                    //remove all 'destroy' events
+                    while(_destroyEvents[LEXICON.l] > 0)
+                        _destroyEvents.pop()();
+
                     //remove all events from host element
                     setupHostMouseTouchEvents(true);
-
-                    //remove all events from structure
-                    setupStructureEvents(true);
 
                     //remove all helper / detection elements
                     if (_contentGlueElement)
@@ -5574,7 +5658,7 @@
 
                     //remove this instance from the instances list
                     INSTANCES(pluginTargetElement, 0);
-                    dispatchCallback("onDestroyed");
+                    dispatchCallback('onDestroyed');
 
                     //remove all properties and methods
                     //for (var property in _base)
@@ -5744,14 +5828,14 @@
                             refreshScrollbarHandleOffset(false);
                         completeCallback();
                     };
-                    var checkSettingsStringValue = function (currValue, allowedValues) {
+                    function checkSettingsStringValue(currValue, allowedValues) {
                         for (i = 0; i < allowedValues[strLength]; i++) {
                             if (currValue === allowedValues[i])
                                 return true;
                         }
                         return false;
-                    };
-                    var getRawScroll = function (isX, coordinates) {
+                    }
+                    function getRawScroll(isX, coordinates) {
                         var coordinateProps = isX ? coordinatesXAxisProps : coordinatesYAxisProps;
                         coordinates = type(coordinates) == TYPES.s || type(coordinates) == TYPES.n ? [ coordinates, coordinates ] : coordinates;
 
@@ -5764,8 +5848,8 @@
                                 if (coordinateProps[i] in coordinates)
                                     return coordinates[coordinateProps[i]];
                         }
-                    };
-                    var getFinalScroll = function (isX, rawScroll) {
+                    }
+                    function getFinalScroll(isX, rawScroll) {
                         var isString = type(rawScroll) == TYPES.s;
                         var operator;
                         var amount;
@@ -5832,8 +5916,8 @@
                             finalValue = isRTLisX && _rtlScrollBehavior.n ? MATH.min(0, MATH.max(maxScroll, finalValue)) : MATH.max(0, MATH.min(maxScroll, finalValue));
                         }
                         return finalValue === currScroll ? undefined : finalValue;
-                    };
-                    var getPerAxisValue = function (value, valueInternalType, defaultValue, allowedValues) {
+                    }
+                    function getPerAxisValue(value, valueInternalType, defaultValue, allowedValues) {
                         var resultDefault = [ defaultValue, defaultValue ];
                         var valueType = type(value);
                         var valueArrLength;
@@ -5864,8 +5948,8 @@
                         else
                             value = resultDefault;
                         return { x : value[0], y : value[1] };
-                    };
-                    var generateMargin = function (marginTopRightBottomLeftArray) {
+                    }
+                    function generateMargin(marginTopRightBottomLeftArray) {
                         var result = [ ];
                         var currValue;
                         var currValueType;
@@ -5881,7 +5965,7 @@
                                 result.push(currValueType == TYPES.n ? currValue : 0);
                         }
                         return result;
-                    };
+                    }
 
                     if (possibleElementIsJQuery || possibleElementIsHTMLElement) {
                         //get settings
@@ -5893,113 +5977,113 @@
                         var marginType = type(margin);
                         var marginLength;
                         finalElement = possibleElementIsJQuery ? possibleElement : FRAMEWORK(possibleElement);
-                        if (finalElement[strLength] === 0)
-                            return;
-
-                        //margin can be [ boolean, number, array of 2, array of 4, object ]
-                        if (marginType == TYPES.n || marginType == TYPES.b)
-                            margin = generateMargin([margin, margin, margin, margin]);
-                        else if (marginType == TYPES.a) {
-                            marginLength = margin[strLength];
-                            if(marginLength === 2)
-                                margin = generateMargin([margin[0], margin[1], margin[0], margin[1]]);
-                            else if(marginLength >= 4)
-                                margin = generateMargin(margin);
+                        
+                        if (finalElement[strLength] > 0) {
+                            //margin can be [ boolean, number, array of 2, array of 4, object ]
+                            if (marginType == TYPES.n || marginType == TYPES.b)
+                                margin = generateMargin([margin, margin, margin, margin]);
+                            else if (marginType == TYPES.a) {
+                                marginLength = margin[strLength];
+                                if(marginLength === 2)
+                                    margin = generateMargin([margin[0], margin[1], margin[0], margin[1]]);
+                                else if(marginLength >= 4)
+                                    margin = generateMargin(margin);
+                                else
+                                    margin = marginDefault;
+                            }
+                            else if (marginType == TYPES.o)
+                                margin = generateMargin([margin[_strTop], margin[_strRight], margin[_strBottom], margin[_strLeft]]);
                             else
                                 margin = marginDefault;
-                        }
-                        else if (marginType == TYPES.o)
-                            margin = generateMargin([margin[_strTop], margin[_strRight], margin[_strBottom], margin[_strLeft]]);
-                        else
-                            margin = marginDefault;
 
-                        //block = type(block) === TYPES.b ? block ? [ strNearest, strBegin ] : [ strNearest, strEnd ] : block;
-                        settingsAxis = checkSettingsStringValue(axis, elementObjSettingsAxisValues) ? axis : 'xy';
-                        settingsScroll = getPerAxisValue(scroll, TYPES.s, strAlways, elementObjSettingsScrollValues);
-                        settingsBlock = getPerAxisValue(block, TYPES.s, strBegin, elementObjSettingsBlockValues);
-                        settingsMargin = margin;
+                            //block = type(block) === TYPES.b ? block ? [ strNearest, strBegin ] : [ strNearest, strEnd ] : block;
+                            settingsAxis = checkSettingsStringValue(axis, elementObjSettingsAxisValues) ? axis : 'xy';
+                            settingsScroll = getPerAxisValue(scroll, TYPES.s, strAlways, elementObjSettingsScrollValues);
+                            settingsBlock = getPerAxisValue(block, TYPES.s, strBegin, elementObjSettingsBlockValues);
+                            settingsMargin = margin;
 
-                        var viewportScroll = {
-                            l: _scrollHorizontalInfo._currentScroll,
-                            t: _scrollVerticalInfo._currentScroll
-                        };
-                        // use padding element instead of viewport element because padding element has never padding, margin or position applied.
-                        var viewportOffset = _paddingElement.offset();
-
-                        //get coordinates
-                        var elementOffset = finalElement.offset();
-                        var doNotScroll = {
-                            x : settingsScroll.x == strNever || settingsAxis == _strY,
-                            y : settingsScroll.y == strNever || settingsAxis == _strX
-                        };
-                        elementOffset[_strTop] -= settingsMargin[0];
-                        elementOffset[_strLeft] -= settingsMargin[3];
-                        var elementScrollCoordinates = {
-                            x: MATH.round(elementOffset[_strLeft] - viewportOffset[_strLeft] + viewportScroll.l),
-                            y: MATH.round(elementOffset[_strTop] - viewportOffset[_strTop] + viewportScroll.t)
-                        };
-                        if (_isRTL) {
-                            if (!_rtlScrollBehavior.n && !_rtlScrollBehavior.i)
-                                elementScrollCoordinates.x = MATH.round(viewportOffset[_strLeft] - elementOffset[_strLeft] + viewportScroll.l);
-                            if (_rtlScrollBehavior.n && normalizeRTL)
-                                elementScrollCoordinates.x *= -1;
-                            if (_rtlScrollBehavior.i && normalizeRTL)
-                                elementScrollCoordinates.x = MATH.round(viewportOffset[_strLeft] - elementOffset[_strLeft] + (_scrollHorizontalInfo._maxScroll - viewportScroll.l));
-                        }
-
-                        //measuring is required
-                        if (settingsBlock.x != strBegin || settingsBlock.y != strBegin || settingsScroll.x == strIfNeeded || settingsScroll.y == strIfNeeded || _isRTL) {
-                            var measuringElm = finalElement[0];
-                            var rawElementSize = _supportTransform ? measuringElm.getBoundingClientRect() : {
-                                width : measuringElm[LEXICON.oW],
-                                height : measuringElm[LEXICON.oH]
+                            var viewportScroll = {
+                                l: _scrollHorizontalInfo._currentScroll,
+                                t: _scrollVerticalInfo._currentScroll
                             };
-                            var elementSize = {
-                                w: rawElementSize[_strWidth] + settingsMargin[3] + settingsMargin[1],
-                                h: rawElementSize[_strHeight] + settingsMargin[0] + settingsMargin[2]
-                            };
-                            var finalizeBlock = function(isX) {
-                                var vars = getScrollbarVars(isX);
-                                var wh = vars._w_h;
-                                var lt = vars._left_top;
-                                var xy = vars._x_y;
-                                var blockIsEnd = settingsBlock[xy] == (isX ? _isRTL ? strBegin : strEnd : strEnd);
-                                var blockIsCenter = settingsBlock[xy] == strCenter;
-                                var blockIsNearest = settingsBlock[xy] == strNearest;
-                                var scrollNever = settingsScroll[xy] == strNever;
-                                var scrollIfNeeded = settingsScroll[xy] == strIfNeeded;
-                                var vpSize = _viewportSize[wh];
-                                var vpOffset = viewportOffset[lt];
-                                var elSize = elementSize[wh];
-                                var elOffset = elementOffset[lt];
-                                var divide = blockIsCenter ? 2 : 1;
-                                var elementCenterOffset = elOffset + (elSize / 2);
-                                var viewportCenterOffset = vpOffset + (vpSize / 2);
-                                var isInView =
-                                    elSize <= vpSize
-                                    && elOffset >= vpOffset
-                                    && elOffset + elSize <= vpOffset + vpSize;
+                            // use padding element instead of viewport element because padding element has never padding, margin or position applied.
+                            var viewportOffset = _paddingElement.offset();
 
-                                if(scrollNever)
-                                    doNotScroll[xy] = true;
-                                else if(!doNotScroll[xy]) {
-                                    if (blockIsNearest || scrollIfNeeded) {
-                                        doNotScroll[xy] = scrollIfNeeded ? isInView : false;
-                                        blockIsEnd = elSize < vpSize ? elementCenterOffset > viewportCenterOffset : elementCenterOffset < viewportCenterOffset;
+                            //get coordinates
+                            var elementOffset = finalElement.offset();
+                            var doNotScroll = {
+                                x : settingsScroll.x == strNever || settingsAxis == _strY,
+                                y : settingsScroll.y == strNever || settingsAxis == _strX
+                            };
+                            elementOffset[_strTop] -= settingsMargin[0];
+                            elementOffset[_strLeft] -= settingsMargin[3];
+                            var elementScrollCoordinates = {
+                                x: MATH.round(elementOffset[_strLeft] - viewportOffset[_strLeft] + viewportScroll.l),
+                                y: MATH.round(elementOffset[_strTop] - viewportOffset[_strTop] + viewportScroll.t)
+                            };
+                            if (_isRTL) {
+                                if (!_rtlScrollBehavior.n && !_rtlScrollBehavior.i)
+                                    elementScrollCoordinates.x = MATH.round(viewportOffset[_strLeft] - elementOffset[_strLeft] + viewportScroll.l);
+                                if (_rtlScrollBehavior.n && normalizeRTL)
+                                    elementScrollCoordinates.x *= -1;
+                                if (_rtlScrollBehavior.i && normalizeRTL)
+                                    elementScrollCoordinates.x = MATH.round(viewportOffset[_strLeft] - elementOffset[_strLeft] + (_scrollHorizontalInfo._maxScroll - viewportScroll.l));
+                            }
+
+                            //measuring is required
+                            if (settingsBlock.x != strBegin || settingsBlock.y != strBegin || settingsScroll.x == strIfNeeded || settingsScroll.y == strIfNeeded || _isRTL) {
+                                var measuringElm = finalElement[0];
+                                var rawElementSize = _supportTransform ? measuringElm[LEXICON.bCR]() : {
+                                    width : measuringElm[LEXICON.oW],
+                                    height : measuringElm[LEXICON.oH]
+                                };
+                                var elementSize = {
+                                    w: rawElementSize[_strWidth] + settingsMargin[3] + settingsMargin[1],
+                                    h: rawElementSize[_strHeight] + settingsMargin[0] + settingsMargin[2]
+                                };
+                                var finalizeBlock = function(isX) {
+                                    var vars = getScrollbarVars(isX);
+                                    var wh = vars._w_h;
+                                    var lt = vars._left_top;
+                                    var xy = vars._x_y;
+                                    var blockIsEnd = settingsBlock[xy] == (isX ? _isRTL ? strBegin : strEnd : strEnd);
+                                    var blockIsCenter = settingsBlock[xy] == strCenter;
+                                    var blockIsNearest = settingsBlock[xy] == strNearest;
+                                    var scrollNever = settingsScroll[xy] == strNever;
+                                    var scrollIfNeeded = settingsScroll[xy] == strIfNeeded;
+                                    var vpSize = _viewportSize[wh];
+                                    var vpOffset = viewportOffset[lt];
+                                    var elSize = elementSize[wh];
+                                    var elOffset = elementOffset[lt];
+                                    var divide = blockIsCenter ? 2 : 1;
+                                    var elementCenterOffset = elOffset + (elSize / 2);
+                                    var viewportCenterOffset = vpOffset + (vpSize / 2);
+                                    var isInView =
+                                        elSize <= vpSize
+                                        && elOffset >= vpOffset
+                                        && elOffset + elSize <= vpOffset + vpSize;
+
+                                    if(scrollNever)
+                                        doNotScroll[xy] = true;
+                                    else if(!doNotScroll[xy]) {
+                                        if (blockIsNearest || scrollIfNeeded) {
+                                            doNotScroll[xy] = scrollIfNeeded ? isInView : false;
+                                            blockIsEnd = elSize < vpSize ? elementCenterOffset > viewportCenterOffset : elementCenterOffset < viewportCenterOffset;
+                                        }
+                                        elementScrollCoordinates[xy] -= blockIsEnd || blockIsCenter ? ((vpSize / divide) - (elSize / divide)) * (isX && _isRTL && normalizeRTL ? -1 : 1) : 0;
                                     }
-                                    elementScrollCoordinates[xy] -= blockIsEnd || blockIsCenter ? ((vpSize / divide) - (elSize / divide)) * (isX && _isRTL && normalizeRTL ? -1 : 1) : 0;
-                                }
-                            };
-                            finalizeBlock(true);
-                            finalizeBlock(false);
+                                };
+                                finalizeBlock(true);
+                                finalizeBlock(false);
+                            }
+
+                            if (doNotScroll.y)
+                                delete elementScrollCoordinates.y;
+                            if (doNotScroll.x)
+                                delete elementScrollCoordinates.x;
+
+                            coordinates = elementScrollCoordinates;
                         }
-
-                        if (doNotScroll.y)
-                            delete elementScrollCoordinates.y;
-                        if (doNotScroll.x)
-                            delete elementScrollCoordinates.x;
-
-                        coordinates = elementScrollCoordinates;
                     }
 
                     finalScroll[_strScrollLeft] = getFinalScroll(true, getRawScroll(true, coordinates));
@@ -6216,12 +6300,6 @@
                     //parse & set options but don't update
                     setOptions(extendDeep({ }, _defaultOptions, options));
 
-                    //check if the plugin hasn't to be initialized
-                    if (_nativeScrollbarIsOverlaid.x && _nativeScrollbarIsOverlaid.x && !_currentPreparedOptions.nativeScrollbarsOverlaid.initialize) {
-                        dispatchCallback("onInitializationWithdrawn");
-                        return false;
-                    }
-
                     _cssCalc = globals.cssCalc;
                     _msieVersion = globals.msie;
                     _autoUpdateRecommended = globals.autoUpdateRecommended;
@@ -6243,28 +6321,114 @@
                     _isBody = _targetElement.is('body');
                     _documentMixed = _documentElementNative !== document;
 
+                    /* On a div Element The if checks only whether:
+                     * - the targetElement has the class "os-host"
+                     * - the targetElement has a a child with the class "os-padding"
+                     * 
+                     * If that's the case, its assumed the DOM has already the following structure:
+                     * (The ".os-host" element is the targetElement)
+                     *
+                     *  <div class="os-host">
+                     *      <div class="os-resize-observer-host"></div>
+                     *      <div class="os-padding">
+                     *          <div class="os-viewport">
+                     *              <div class="os-content"></div>
+                     *          </div>
+                     *      </div>
+                     *      <div class="os-scrollbar os-scrollbar-horizontal ">
+                     *          <div class="os-scrollbar-track">
+                     *              <div class="os-scrollbar-handle"></div>
+                     *          </div>
+                     *      </div>
+                     *      <div class="os-scrollbar os-scrollbar-vertical">
+                     *          <div class="os-scrollbar-track">
+                     *              <div class="os-scrollbar-handle"></div>
+                     *          </div>
+                     *      </div>
+                     *      <div class="os-scrollbar-corner"></div>
+                     *  </div>
+                     *
+                     * =====================================================================================
+                     * 
+                     * On a Textarea Element The if checks only whether:
+                     * - the targetElement has the class "os-textarea" 
+                     * - the targetElement is inside a element with the class "os-content" 
+                     * 
+                     * If that's the case, its assumed the DOM has already the following structure:
+                     * (The ".os-textarea" (textarea) element is the targetElement)
+                     *
+                     *  <div class="os-host-textarea">
+                     *      <div class="os-resize-observer-host"></div>
+                     *      <div class="os-padding os-text-inherit">
+                     *          <div class="os-viewport os-text-inherit">
+                     *              <div class="os-content os-text-inherit">
+                     *                  <div class="os-textarea-cover"></div>
+                     *                  <textarea class="os-textarea os-text-inherit"></textarea>
+                     *              </div>
+                     *          </div>
+                     *      </div>
+                     *      <div class="os-scrollbar os-scrollbar-horizontal ">
+                     *          <div class="os-scrollbar-track">
+                     *              <div class="os-scrollbar-handle"></div>
+                     *          </div>
+                     *      </div>
+                     *      <div class="os-scrollbar os-scrollbar-vertical">
+                     *          <div class="os-scrollbar-track">
+                     *              <div class="os-scrollbar-handle"></div>
+                     *          </div>
+                     *      </div>
+                     *      <div class="os-scrollbar-corner"></div>
+                     *  </div>
+                     */
+                    _domExists = _isTextarea 
+                        ? _targetElement.hasClass(_classNameTextareaElement) && _targetElement.parent().hasClass(_classNameContentElement)
+                        : _targetElement.hasClass(_classNameHostElement) && _targetElement.children(_strDot + _classNamePaddingElement)[LEXICON.l];
+
                     var initBodyScroll;
+                    var bodyMouseTouchDownListener;
+
+                    //check if the plugin hasn't to be initialized
+                    if (_nativeScrollbarIsOverlaid.x && _nativeScrollbarIsOverlaid.y && !_currentPreparedOptions.nativeScrollbarsOverlaid.initialize) {
+                        dispatchCallback('onInitializationWithdrawn');
+                        if(_domExists) {
+                            setupStructureDOM(true);
+                            setupScrollbarsDOM(true);
+                            setupScrollbarCornerDOM(true);
+                        }
+                        
+                        _destroyed = true;
+                        _sleeping = true;
+                        
+                        return _base;
+                    }
+
                     if (_isBody) {
                         initBodyScroll = {};
                         initBodyScroll.l = MATH.max(_targetElement[_strScrollLeft](), _htmlElement[_strScrollLeft](), _windowElement[_strScrollLeft]());
                         initBodyScroll.t = MATH.max(_targetElement[_strScrollTop](), _htmlElement[_strScrollTop](), _windowElement[_strScrollTop]());
+                        
+                        bodyMouseTouchDownListener = function() {
+                            _viewportElement.removeAttr('tabindex');
+                            setupResponsiveEventListener(_viewportElement, _strMouseTouchDownEvent, bodyMouseTouchDownListener, true, true);
+                        }
                     }
 
-                    //build OverlayScrollbars DOM and Events
+                    //build OverlayScrollbars DOM
                     setupStructureDOM();
-                    setupStructureEvents();
-
-                    //build Scrollbars DOM and Events
                     setupScrollbarsDOM();
+                    setupScrollbarCornerDOM();
+                    
+                    //create OverlayScrollbars events
+                    setupStructureEvents();
                     setupScrollbarEvents(true);
                     setupScrollbarEvents(false);
-
-                    //build Scrollbar Corner DOM and Events
-                    setupScrollbarCornerDOM();
                     setupScrollbarCornerEvents();
 
                     //create mutation observers
                     createMutationObservers();
+
+                    //build resize observer for the host element
+                    setupResizeObserver(_sizeObserverElement, hostOnResized);
 
                     if(_isBody) {
                         //apply the body scroll to handle it right in the update method
@@ -6275,25 +6439,21 @@
                             //set a tabindex to make the viewportElement focusable
                             _viewportElement.attr('tabindex', '-1');
                             _viewportElementNative.focus();
+                            
                             /* the tabindex has to be removed due to;
                              * If you set the tabindex attribute on an <div>, then its child content cannot be scrolled with the arrow keys unless you set tabindex on the content, too
                              * https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
                              */
-                            _viewportElement.one(_strMouseTouchDownEvent, function() {
-                                _viewportElement.removeAttr('tabindex');
-                            });
+                            setupResponsiveEventListener(_viewportElement, _strMouseTouchDownEvent, bodyMouseTouchDownListener, false, true);
                         }
                     }
-
-                    //build resize observer for the host element
-                    setupResizeObserver(_sizeObserverElement, hostOnResized);
 
                     //update for the first time & initialize cache
                     _base.update(_strAuto);
 
                     //the plugin is initialized now!
                     _initialized = true;
-                    dispatchCallback("onInitialized");
+                    dispatchCallback('onInitialized');
 
                     //call all callbacks which would fire before the initialized was complete
                     each(_callbacksInitQeueue, function(index, value) { dispatchCallback(value.n, value.a); });
@@ -6313,14 +6473,14 @@
                             addClass(_hostElement, _classNameHostTransition);
                     }, 333);
 
-                    return _initialized;
-                }
-
-                if (construct(pluginTargetElement, options, extensions)) {
-                    INSTANCES(pluginTargetElement, _base);
                     return _base;
                 }
-                _base = undefined;
+
+                if(_plugin.valid(construct(pluginTargetElement, options, extensions))) {
+                    INSTANCES(pluginTargetElement, _base);
+                }
+                
+                return _base;
             }
 
             /**

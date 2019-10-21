@@ -1,8 +1,8 @@
 .select2-container--bootstrap4 .select2-selection--single {
-  height: calc(1.5em + 0.75rem + 2px) !important; }
+  height: calc(2.25rem + 2px) !important; }
   .select2-container--bootstrap4 .select2-selection--single .select2-selection__placeholder {
     color: #757575;
-    line-height: calc(1.5em + 0.75rem); }
+    line-height: 2.25rem; }
   .select2-container--bootstrap4 .select2-selection--single .select2-selection__arrow {
     position: absolute;
     top: 50%;
@@ -20,7 +20,7 @@
       margin-top: -2px;
       position: absolute; }
   .select2-container--bootstrap4 .select2-selection--single .select2-selection__rendered {
-    line-height: calc(1.5em + 0.75rem); }
+    line-height: 2.25rem; }
 
 .select2-search--dropdown .select2-search__field {
   border: 1px solid #ced4da;
@@ -30,7 +30,7 @@
   color: #6c757d; }
 
 .select2-container--bootstrap4 .select2-selection--multiple {
-  min-height: calc(1.5em + 0.75rem + 2px) !important; }
+  min-height: calc(2.25rem + 2px) !important; }
   .select2-container--bootstrap4 .select2-selection--multiple .select2-selection__rendered {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -73,13 +73,26 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
 
+.input-group > .select2-container--bootstrap4:not(:last-child) .select2-selection {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0; }
+
 .select2-container--bootstrap4 .select2-selection {
+  background-color: #fff;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
+  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   width: 100%; }
+  @media screen and (prefers-reduced-motion: reduce) {
+    .select2-container--bootstrap4 .select2-selection {
+      -webkit-transition: none;
+      transition: none; } }
 
 .select2-container--bootstrap4.select2-container--focus .select2-selection {
-  border-color: #17a2b8;
+  border-color: #80bdff;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
           box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
 

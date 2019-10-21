@@ -117,23 +117,16 @@ $.extend( DataTable.ext.buttons, {
 					}
 				} )
 				.on( 'column-reorder.dt'+conf.namespace, function (e, settings, details) {
-					// Don't rename buttons based on column name if the button
-					// controls more than one column!
 					if ( dt.columns( conf.columns ).count() !== 1 ) {
 						return;
 					}
 
-					conf.columns = $.inArray( conf.columns, details.mapping );
-					button.attr( 'data-cv-idx', conf.columns );
+					// This button controls the same column index but the text for the column has
+					// changed
+					button.text( conf._columnText( dt, conf ) );
 
-					// Reorder buttons for new table order
-					button
-						.parent()
-						.children('[data-cv-idx]')
-						.sort( function (a, b) {
-							return (a.getAttribute('data-cv-idx')*1) - (b.getAttribute('data-cv-idx')*1);
-						} )
-						.appendTo(button.parent());
+					// Since its a different column, we need to check its visibility
+					that.active( dt.column( conf.columns ).visible() );
 				} );
 
 			this.active( dt.column( conf.columns ).visible() );

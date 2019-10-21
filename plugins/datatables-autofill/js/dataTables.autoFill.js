@@ -1,15 +1,15 @@
-/*! AutoFill 2.3.3
- * ©2008-2018 SpryMedia Ltd - datatables.net/license
+/*! AutoFill 2.3.4
+ * ©2008-2019 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     AutoFill
  * @description Add Excel like click and drag auto-fill options to DataTables
- * @version     2.3.3
+ * @version     2.3.4
  * @file        dataTables.autoFill.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
- * @copyright   Copyright 2010-2018 SpryMedia Ltd.
+ * @copyright   Copyright 2010-2019 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -603,11 +603,8 @@ $.extend( AutoFill.prototype, {
 			// jQuery doesn't give a `table` as the offset parent oddly, so use DOM directly
 			currOffsetParent = $( currNode.offsetParent );
 
-			top += positionTop + currOffsetParent.scrollTop();
-			left += positionLeft + currOffsetParent.scrollLeft();
-
-			top += parseInt( currOffsetParent.css('margin-top') ) * 1;
-			top += parseInt( currOffsetParent.css('border-top-width') ) * 1;
+			top += positionTop + parseInt( currOffsetParent.css('border-top-width') ) * 1;
+			left += positionLeft + parseInt( currOffsetParent.css('border-left-width') ) * 1;
 
 			// Emergency fall back. Shouldn't happen, but just in case!
 			if ( currNode.nodeName.toLowerCase() === 'body' ) {
@@ -757,6 +754,7 @@ $.extend( AutoFill.prototype, {
 		var selected   = [];
 		var dtSettings = dt.settings()[0];
 		var dtColumns  = dtSettings.aoColumns;
+		var enabledColumns = dt.columns( this.c.columns ).indexes();
 
 		// Can't use Array.prototype.map as IE8 doesn't support it
 		// Can't use $.map as jQuery flattens 2D arrays
@@ -772,6 +770,10 @@ $.extend( AutoFill.prototype, {
 
 					if ( editField !== undefined ) {
 						data = dtSettings.oApi._fnGetObjectDataFn( editField )( dt.row( cellIndex.row ).data() );
+					}
+
+					if ( enabledColumns.indexOf(cellIndex.column) === -1 ) {
+						return;
 					}
 
 					return {
@@ -1100,7 +1102,7 @@ AutoFill.actions = {
  * @static
  * @type      String
  */
-AutoFill.version = '2.3.3';
+AutoFill.version = '2.3.4';
 
 
 /**

@@ -1,15 +1,15 @@
-/*! RowGroup 1.1.0
- * ©2017-2018 SpryMedia Ltd - datatables.net/license
+/*! RowGroup 1.1.1
+ * ©2017-2019 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     RowGroup
  * @description RowGrouping for DataTables
- * @version     1.1.0
+ * @version     1.1.1
  * @file        dataTables.rowGroup.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     datatables.net
- * @copyright   Copyright 2017-2018 SpryMedia Ltd.
+ * @copyright   Copyright 2017-2019 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -229,6 +229,7 @@ $.extend( RowGroup.prototype, {
 		var dt = this.s.dt;
 		var group, last;
 		var data = [];
+		var that = this;
 
 		for ( var i=0, ien=rows.length ; i<ien ; i++ ) {
 			var rowIndex = rows[i];
@@ -318,7 +319,7 @@ $.extend( RowGroup.prototype, {
 			display = this.c.emptyDataGroup;
 		}
 
-		if ( display === undefined ) {
+		if ( display === undefined || display === null ) {
 			return null;
 		}
 		
@@ -406,7 +407,7 @@ RowGroup.defaults = {
 };
 
 
-RowGroup.version = "1.1.0";
+RowGroup.version = "1.1.1";
 
 
 $.fn.dataTable.RowGroup = RowGroup;

@@ -1,16 +1,16 @@
-/*! Select for DataTables 1.3.0
- * 2015-2018 SpryMedia Ltd - datatables.net/license/mit
+/*! Select for DataTables 1.3.1
+ * 2015-2019 SpryMedia Ltd - datatables.net/license/mit
  */
 
 /**
  * @summary     Select for DataTables
  * @description A collection of API methods, events and buttons for DataTables
  *   that provides selection options of the items in a DataTable
- * @version     1.3.0
+ * @version     1.3.1
  * @file        dataTables.select.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     datatables.net/forums
- * @copyright   Copyright 2015-2018 SpryMedia Ltd.
+ * @copyright   Copyright 2015-2019 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -54,7 +54,7 @@ var DataTable = $.fn.dataTable;
 // Version information for debugger
 DataTable.select = {};
 
-DataTable.select.version = '1.3.0';
+DataTable.select.version = '1.3.1';
 
 DataTable.select.init = function ( dt ) {
 	var ctx = dt.settings()[0];
@@ -68,6 +68,7 @@ DataTable.select.init = function ( dt ) {
 	var items = 'row';
 	var style = 'api';
 	var blurable = false;
+	var toggleable = true;
 	var info = true;
 	var selector = 'td, th';
 	var className = 'selected';
@@ -87,6 +88,10 @@ DataTable.select.init = function ( dt ) {
 	else if ( $.isPlainObject( opts ) ) {
 		if ( opts.blurable !== undefined ) {
 			blurable = opts.blurable;
+		}
+		
+		if ( opts.toggleable !== undefined ) {
+			toggleable = opts.toggleable;
 		}
 
 		if ( opts.info !== undefined ) {
@@ -119,6 +124,7 @@ DataTable.select.init = function ( dt ) {
 	dt.select.items( items );
 	dt.select.style( style );
 	dt.select.blurable( blurable );
+	dt.select.toggleable( toggleable );
 	dt.select.info( info );
 	ctx._select.className = className;
 
@@ -180,15 +186,17 @@ The `_select` object contains the following properties:
 
 ```
 {
-	items:string     - Can be `rows`, `columns` or `cells`. Defines what item 
-	                   will be selected if the user is allowed to activate row
-	                   selection using the mouse.
-	style:string     - Can be `none`, `single`, `multi` or `os`. Defines the
-	                   interaction style when selecting items
-	blurable:boolean - If row selection can be cleared by clicking outside of
-	                   the table
-	info:boolean     - If the selection summary should be shown in the table
-	                   information elements
+	items:string       - Can be `rows`, `columns` or `cells`. Defines what item 
+	                     will be selected if the user is allowed to activate row
+	                     selection using the mouse.
+	style:string       - Can be `none`, `single`, `multi` or `os`. Defines the
+	                     interaction style when selecting items
+	blurable:boolean   - If row selection can be cleared by clicking outside of
+	                     the table
+	toggleable:boolean - If row selection can be cancelled by repeated clicking
+	                     on the row
+	info:boolean       - If the selection summary should be shown in the table
+	                     information elements
 }
 ```
 
@@ -314,7 +322,7 @@ function disableMouseSelection( dt )
 		.off( 'mouseup.dtSelect', selector )
 		.off( 'click.dtSelect', selector );
 
-	$('body').off( 'click.dtSelect' + dt.table().node().id );
+	$('body').off( 'click.dtSelect' + _safeId(dt.table().node()) );
 }
 
 /**
@@ -410,7 +418,7 @@ function enableMouseSelection ( dt )
 		} );
 
 	// Blurable
-	$('body').on( 'click.dtSelect' + dt.table().node().id, function ( e ) {
+	$('body').on( 'click.dtSelect' + _safeId(dt.table().node()), function ( e ) {
 		if ( ctx._select.blurable ) {
 			// If the click was inside the DataTables container, don't blur
 			if ( $(e.target).parents().filter( dt.table().container() ).length ) {
@@ -670,7 +678,12 @@ function clear( ctx, force )
 function typeSelect ( e, dt, ctx, type, idx )
 {
 	var style = dt.select.style();
+	var toggleable = dt.select.toggleable();
 	var isSelected = dt[type]( idx, { selected: true } ).any();
+	
+	if ( isSelected && ! toggleable ) {
+		return;
+	}
 
 	if ( style === 'os' ) {
 		if ( e.ctrlKey || e.metaKey ) {
@@ -720,6 +733,10 @@ function typeSelect ( e, dt, ctx, type, idx )
 	else {
 		dt[ type ]( idx ).select( ! isSelected );
 	}
+}
+
+function _safeId( node ) {
+	return node.id.replace(/[^a-zA-Z0-9\-\_]/g, '-');
 }
 
 
@@ -806,6 +823,16 @@ apiRegister( 'select.blurable()', function ( flag ) {
 
 	return this.iterator( 'table', function ( ctx ) {
 		ctx._select.blurable = flag;
+	} );
+} );
+
+apiRegister( 'select.toggleable()', function ( flag ) {
+	if ( flag === undefined ) {
+		return this.context[0]._select.toggleable;
+	}
+
+	return this.iterator( 'table', function ( ctx ) {
+		ctx._select.toggleable = flag;
 	} );
 } );
 

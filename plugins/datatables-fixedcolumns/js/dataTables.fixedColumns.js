@@ -1,11 +1,11 @@
-/*! FixedColumns 3.2.6
+/*! FixedColumns 3.8.0
  * ©2010-2018 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     FixedColumns
  * @description Freeze columns in place on a scrolling DataTable
- * @version     3.2.6
+ * @version     3.8.0
  * @file        dataTables.fixedColumns.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
@@ -449,6 +449,25 @@ $.extend( FixedColumns.prototype , {
 		}
 	},
 
+	fnToFixedNode: function ( rowIdx, colIdx )
+	{
+		var found;
+
+		if ( colIdx < this.s.iLeftColumns ) {
+			found = $(this.dom.clone.left.body).find('[data-dt-row='+rowIdx+'][data-dt-column='+colIdx+']');
+		}
+		else if ( colIdx >= this.s.iRightColumns ) {
+			found = $(this.dom.clone.right.body).find('[data-dt-row='+rowIdx+'][data-dt-column='+colIdx+']');
+		}
+
+		if ( found && found.length ) {
+			return found[0];
+		}
+
+		// Fallback - non-fixed node
+		var table = new $.fn.dataTable.Api(this.s.dt);
+		return table.cell(rowIdx, colIdx).node();
+	},
 
 
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -735,7 +754,7 @@ $.extend( FixedColumns.prototype , {
 			$('<div class="DTFC_ScrollWrapper" style="position:relative; clear:both;">'+
 				'<div class="DTFC_LeftWrapper" style="position:absolute; top:0; left:0;" aria-hidden="true">'+
 					'<div class="DTFC_LeftHeadWrapper" style="position:relative; top:0; left:0; overflow:hidden;"></div>'+
-					'<div class="DTFC_LeftBodyWrapper" style="position:relative; top:0; left:0; overflow:hidden;">'+
+					'<div class="DTFC_LeftBodyWrapper" style="position:relative; top:0; left:0; height:0; overflow:hidden;">'+
 						'<div class="DTFC_LeftBodyLiner" style="position:relative; top:0; left:0; overflow-y:scroll;"></div>'+
 					'</div>'+
 					'<div class="DTFC_LeftFootWrapper" style="position:relative; top:0; left:0; overflow:hidden;"></div>'+
@@ -744,7 +763,7 @@ $.extend( FixedColumns.prototype , {
 					'<div class="DTFC_RightHeadWrapper" style="position:relative; top:0; left:0;">'+
 						'<div class="DTFC_RightHeadBlocker DTFC_Blocker" style="position:absolute; top:0; bottom:0;"></div>'+
 					'</div>'+
-					'<div class="DTFC_RightBodyWrapper" style="position:relative; top:0; left:0; overflow:hidden;">'+
+					'<div class="DTFC_RightBodyWrapper" style="position:relative; top:0; left:0; height:0; overflow:hidden;">'+
 						'<div class="DTFC_RightBodyLiner" style="position:relative; top:0; left:0; overflow-y:scroll;"></div>'+
 					'</div>'+
 					'<div class="DTFC_RightFootWrapper" style="position:relative; top:0; left:0;">'+
@@ -1525,7 +1544,7 @@ FixedColumns.defaults = /** @lends FixedColumns.defaults */{
  *  @default   See code
  *  @static
  */
-FixedColumns.version = "3.2.6";
+FixedColumns.version = "3.8.0";
 
 
 
@@ -1594,6 +1613,14 @@ DataTable.Api.register( 'fixedColumns().cellIndex()', function ( cell ) {
 	else {
 		return this.cell( cell ).index();
 	}
+} );
+
+DataTable.Api.registerPlural( 'cells().fixedNodes()', 'cell().fixedNode()', function () {
+	return this.iterator( 'cell', function ( settings, row, column ) {
+		return settings._oFixedColumns
+			? settings._oFixedColumns.fnToFixedNode( row, column )
+			: this.node();
+	}, 1 );
 } );
 
 

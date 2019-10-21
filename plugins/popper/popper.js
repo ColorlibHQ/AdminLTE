@@ -1,6 +1,6 @@
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.15.0
+ * @version 1.16.0
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
@@ -22,16 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
+var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined' && typeof navigator !== 'undefined';
 
-const longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
-let timeoutDuration = 0;
-for (let i = 0; i < longerTimeoutBrowsers.length; i += 1) {
-  if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
-    timeoutDuration = 1;
-    break;
+const timeoutDuration = function () {
+  const longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
+  for (let i = 0; i < longerTimeoutBrowsers.length; i += 1) {
+    if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
+      return 1;
+    }
   }
-}
+  return 0;
+}();
 
 function microtaskDebounce(fn) {
   let called = false;
@@ -144,6 +145,17 @@ function getScrollParent(element) {
   }
 
   return getScrollParent(getParentNode(element));
+}
+
+/**
+ * Returns the reference node of the reference object, or the reference object itself.
+ * @method
+ * @memberof Popper.Utils
+ * @param {Element|Object} reference - the reference element (the popper will be relative to this)
+ * @returns {Element} parent
+ */
+function getReferenceNode(reference) {
+  return reference && reference.referenceNode ? reference.referenceNode : reference;
 }
 
 const isIE11 = isBrowser && !!(window.MSInputMethodContext && document.documentMode);
@@ -405,8 +417,8 @@ function getBoundingClientRect(element) {
 
   // subtract scrollbar size from sizes
   const sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
-  const width = sizes.width || element.clientWidth || result.right - result.left;
-  const height = sizes.height || element.clientHeight || result.bottom - result.top;
+  const width = sizes.width || element.clientWidth || result.width;
+  const height = sizes.height || element.clientHeight || result.height;
 
   let horizScrollbar = element.offsetWidth - width;
   let vertScrollbar = element.offsetHeight - height;
@@ -552,7 +564,7 @@ function getBoundaries(popper, reference, padding, boundariesElement, fixedPosit
   // NOTE: 1 DOM access here
 
   let boundaries = { top: 0, left: 0 };
-  const offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+  const offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, getReferenceNode(reference));
 
   // Handle viewport case
   if (boundariesElement === 'viewport') {
@@ -662,7 +674,7 @@ function computeAutoPlacement(placement, refRect, popper, reference, boundariesE
  * @returns {Object} An object containing the offsets which will be applied to the popper
  */
 function getReferenceOffsets(state, popper, reference, fixedPosition = null) {
-  const commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+  const commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, getReferenceNode(reference));
   return getOffsetRectRelativeToArbitraryNode(reference, commonOffsetParent, fixedPosition);
 }
 
@@ -914,7 +926,7 @@ function destroy() {
 
   this.disableEventListeners();
 
-  // remove the popper if user explicity asked for the deletion on destroy
+  // remove the popper if user explicitly asked for the deletion on destroy
   // do not use `remove` because IE11 doesn't support it
   if (this.options.removeOnDestroy) {
     this.popper.parentNode.removeChild(this.popper);

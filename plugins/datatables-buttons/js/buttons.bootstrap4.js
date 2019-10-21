@@ -38,14 +38,14 @@ var DataTable = $.fn.dataTable;
 $.extend( true, DataTable.Buttons.defaults, {
 	dom: {
 		container: {
-			className: 'dt-buttons btn-group'
+			className: 'dt-buttons btn-group flex-wrap'
 		},
 		button: {
 			className: 'btn btn-secondary'
 		},
 		collection: {
 			tag: 'div',
-			className: 'dt-button-collection dropdown-menu',
+			className: 'dropdown-menu',
 			button: {
 				tag: 'a',
 				className: 'dt-button dropdown-item',

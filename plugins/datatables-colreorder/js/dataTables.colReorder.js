@@ -1,15 +1,15 @@
-/*! ColReorder 1.5.1
- * ©2010-2018 SpryMedia Ltd - datatables.net/license
+/*! ColReorder 1.5.2
+ * ©2010-2019 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     ColReorder
  * @description Provide the ability to reorder columns in a DataTable
- * @version     1.5.1
+ * @version     1.5.2
  * @file        dataTables.colReorder.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
- * @copyright   Copyright 2010-2018 SpryMedia Ltd.
+ * @copyright   Copyright 2010-2019 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -917,7 +917,7 @@ $.extend( ColReorder.prototype, {
 		var that = this;
 		$(nTh)
 			.on( 'mousedown.ColReorder', function (e) {
-				if ( that.s.enable ) {
+				if ( that.s.enable && e.which === 1 ) {
 					that._fnMouseDown.call( that, e, nTh );
 				}
 			} )
@@ -1004,26 +1004,68 @@ $.extend( ColReorder.prototype, {
 		} );
 
 		/* Based on the current mouse position, calculate where the insert should go */
-		var bSet = false;
+		var target;
 		var lastToIndex = this.s.mouse.toIndex;
+		var cursorXPosiotion = this._fnCursorPosition(e, 'pageX');
+		var targetsPrev = function (i) {
+			while (i >= 0) {
+				i--;
 
-		for ( var i=1, iLen=this.s.aoTargets.length ; i<iLen ; i++ )
-		{
-			if ( this._fnCursorPosition(e, 'pageX') < this.s.aoTargets[i-1].x + ((this.s.aoTargets[i].x-this.s.aoTargets[i-1].x)/2) )
-			{
-				this.dom.pointer.css( 'left', this.s.aoTargets[i-1].x );
-				this.s.mouse.toIndex = this.s.aoTargets[i-1].to;
-				bSet = true;
-				break;
+				if (i <= 0) {
+					return null;
+				}
+
+				if (that.s.aoTargets[i+1].x !== that.s.aoTargets[i].x) {
+					return that.s.aoTargets[i];
+				}
 			}
+		};
+		var firstNotHidden = function () {
+			for (var i=0 ; i<that.s.aoTargets.length-1 ; i++) {
+				if (that.s.aoTargets[i].x !== that.s.aoTargets[i+1].x) {
+					return that.s.aoTargets[i];
+				}
+			}
+		};
+		var lastNotHidden = function () {
+			for (var i=that.s.aoTargets.length-1 ; i>0 ; i--) {
+				if (that.s.aoTargets[i].x !== that.s.aoTargets[i-1].x) {
+					return that.s.aoTargets[i];
+				}
+			}
+		};
+
+        for (var i = 1; i < this.s.aoTargets.length; i++) {
+			var prevTarget = targetsPrev(i);
+			if (! prevTarget) {
+				prevTarget = firstNotHidden();
+			}
+
+			var prevTargetMiddle = prevTarget.x + (this.s.aoTargets[i].x - prevTarget.x) / 2;
+
+            if (this._fnIsLtr()) {
+                if (cursorXPosiotion < prevTargetMiddle ) {
+                    target = prevTarget;
+                    break;
+                }
+            }
+            else {
+                if (cursorXPosiotion > prevTargetMiddle) {
+                    target = prevTarget;
+                    break;
+                }
+            }
 		}
 
-		// The insert element wasn't positioned in the array (less than
-		// operator), so we put it at the end
-		if ( !bSet )
-		{
-			this.dom.pointer.css( 'left', this.s.aoTargets[this.s.aoTargets.length-1].x );
-			this.s.mouse.toIndex = this.s.aoTargets[this.s.aoTargets.length-1].to;
+        if (target) {
+            this.dom.pointer.css('left', target.x);
+            this.s.mouse.toIndex = target.to;
+        }
+        else {
+			// The insert element wasn't positioned in the array (less than
+			// operator), so we put it at the end
+			this.dom.pointer.css( 'left', lastNotHidden().x );
+			this.s.mouse.toIndex = lastNotHidden().to;
 		}
 
 		// Perform reordering if realtime updating is on and the column has moved
@@ -1094,38 +1136,60 @@ $.extend( ColReorder.prototype, {
 	"_fnRegions": function ()
 	{
 		var aoColumns = this.s.dt.aoColumns;
+        var isLTR = this._fnIsLtr();
+		this.s.aoTargets.splice(0, this.s.aoTargets.length);
+		var lastBound = $(this.s.dt.nTable).offset().left;
 
-		this.s.aoTargets.splice( 0, this.s.aoTargets.length );
+        var aoColumnBounds = [];
+        $.each(aoColumns, function (i, column) {
+            if (column.bVisible && column.nTh.style.display !== 'none') {
+                var nth = $(column.nTh);
+				var bound = nth.offset().left;
 
-		this.s.aoTargets.push( {
-			"x":  $(this.s.dt.nTable).offset().left,
-			"to": 0
-		} );
+                if (isLTR) {
+                    bound += nth.outerWidth();
+                }
 
-		var iToPoint = 0;
-		var total = this.s.aoTargets[0].x;
+                aoColumnBounds.push({
+                    index: i,
+                    bound: bound
+				});
 
-		for ( var i=0, iLen=aoColumns.length ; i<iLen ; i++ )
-		{
-			/* For the column / header in question, we want it's position to remain the same if the
-			 * position is just to it's immediate left or right, so we only increment the counter for
-			 * other columns
-			 */
-			if ( i != this.s.mouse.fromIndex )
-			{
-				iToPoint++;
+				lastBound = bound;
 			}
-
-			if ( aoColumns[i].bVisible && aoColumns[i].nTh.style.display !=='none' )
-			{
-				total += $(aoColumns[i].nTh).outerWidth();
-
-				this.s.aoTargets.push( {
-					"x":  total,
-					"to": iToPoint
-				} );
+			else {
+                aoColumnBounds.push({
+					index: i,
+					bound: lastBound
+                });
 			}
-		}
+		});
+
+        var firstColumn = aoColumnBounds[0];
+		var firstColumnWidth = $(aoColumns[firstColumn.index].nTh).outerWidth();
+
+        this.s.aoTargets.push({
+            to: 0,
+			x: firstColumn.bound - firstColumnWidth
+        });
+
+        for (var i = 0; i < aoColumnBounds.length; i++) {
+            var columnBound = aoColumnBounds[i];
+            var iToPoint = columnBound.index;
+
+            /* For the column / header in question, we want it's position to remain the same if the
+            * position is just to it's immediate left or right, so we only increment the counter for
+            * other columns
+            */
+            if (columnBound.index < this.s.mouse.fromIndex) {
+                iToPoint++;
+            }
+
+            this.s.aoTargets.push({
+				to: iToPoint,
+                x: columnBound.bound
+            });
+        }
 
 		/* Disallow columns for being reordered by drag and drop, counting right to left */
 		if ( this.s.fixedRight !== 0 )
@@ -1219,7 +1283,11 @@ $.extend( ColReorder.prototype, {
 			return e.originalEvent.touches[0][ prop ];
 		}
 		return e[ prop ];
-	}
+    },
+
+    _fnIsLtr: function () {
+        return $(this.s.dt.nTable).css('direction') !== "rtl";
+    }
 } );
 
 
@@ -1306,7 +1374,7 @@ ColReorder.defaults = {
  *  @type      String
  *  @default   As code
  */
-ColReorder.version = "1.5.1";
+ColReorder.version = "1.5.2";
 
 
 
@@ -1397,6 +1465,7 @@ $.fn.dataTable.Api.register( 'colReorder.transpose()', function ( idx, dir ) {
 $.fn.dataTable.Api.register( 'colReorder.move()', function( from, to, drop, invalidateRows ) {
 	if (this.context.length) {
 		this.context[0]._colReorder.s.dt.oInstance.fnColReorder( from, to, drop, invalidateRows );
+		this.context[0]._colReorder._fnSetColumnIndexes();
 	}
 	return this;
 } );

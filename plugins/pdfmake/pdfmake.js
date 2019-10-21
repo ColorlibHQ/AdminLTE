@@ -1,4 +1,4 @@
-/*! pdfmake v0.1.59, @license MIT, @link http://pdfmake.org */
+/*! pdfmake v0.1.60, @license MIT, @link http://pdfmake.org */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -10824,6 +10824,23 @@ TextTools.prototype.sizeOfString = function (text, styleContextStack) {
 	};
 };
 
+/**
+ * Returns size of the specified rotated string (without breaking it) using the current style
+ *
+ * @param  {string} text text to be measured
+ * @param  {number} angle
+ * @param  {object} styleContextStack current style stack
+ * @returns {object} size of the specified string
+ */
+TextTools.prototype.sizeOfRotatedText = function (text, angle, styleContextStack) {
+	var angleRad = angle * Math.PI / -180;
+	var size = this.sizeOfString(text, styleContextStack);
+	return {
+		width: Math.abs(size.height * Math.sin(angleRad)) + Math.abs(size.width * Math.cos(angleRad)),
+		height: Math.abs(size.width * Math.sin(angleRad)) + Math.abs(size.height * Math.cos(angleRad))
+	};
+}
+
 TextTools.prototype.widthOfString = function (text, font, fontSize, characterSpacing, fontFeatures) {
 	return widthOfString(text, font, fontSize, characterSpacing, fontFeatures);
 };
@@ -19870,14 +19887,13 @@ function renderWatermark(page, pdfKitDoc) {
 
 	pdfKitDoc.save();
 
-	var angle = Math.atan2(pdfKitDoc.page.height, pdfKitDoc.page.width) * -180 / Math.PI;
-	pdfKitDoc.rotate(angle, { origin: [pdfKitDoc.page.width / 2, pdfKitDoc.page.height / 2] });
+	pdfKitDoc.rotate(watermark.angle, { origin: [pdfKitDoc.page.width / 2, pdfKitDoc.page.height / 2] });
 
-	var x = pdfKitDoc.page.width / 2 - watermark.size.size.width / 2;
-	var y = pdfKitDoc.page.height / 2 - watermark.size.size.height / 4;
+	var x = pdfKitDoc.page.width / 2 - watermark._size.size.width / 2;
+	var y = pdfKitDoc.page.height / 2 - watermark._size.size.height / 2;
 
 	pdfKitDoc._font = watermark.font;
-	pdfKitDoc.fontSize(watermark.size.fontSize);
+	pdfKitDoc.fontSize(watermark.fontSize);
 	pdfKitDoc.text(watermark.text, x, y, { lineBreak: false });
 
 	pdfKitDoc.restore();
@@ -59957,6 +59973,8 @@ var TableProcessor = __webpack_require__(449);
 var Line = __webpack_require__(211);
 var isString = __webpack_require__(0).isString;
 var isArray = __webpack_require__(0).isArray;
+var isUndefined = __webpack_require__(0).isUndefined;
+var isNull = __webpack_require__(0).isNull;
 var pack = __webpack_require__(0).pack;
 var offsetVector = __webpack_require__(0).offsetVector;
 var fontStringify = __webpack_require__(0).fontStringify;
@@ -60201,31 +60219,55 @@ LayoutBuilder.prototype.addWatermark = function (watermark, fontProvider, defaul
 	}
 
 	watermark.font = watermark.font || defaultStyle.font || 'Roboto';
+	watermark.fontSize = watermark.fontSize || 'auto';
 	watermark.color = watermark.color || 'black';
 	watermark.opacity = watermark.opacity || 0.6;
 	watermark.bold = watermark.bold || false;
 	watermark.italics = watermark.italics || false;
+	watermark.angle = !isUndefined(watermark.angle) && !isNull(watermark.angle) ? watermark.angle : null;
+
+	if (watermark.angle === null) {
+		watermark.angle = Math.atan2(this.pageSize.height, this.pageSize.width) * -180 / Math.PI;
+	}
+
+	if (watermark.fontSize === 'auto') {
+		watermark.fontSize = getWatermarkFontSize(this.pageSize, watermark, fontProvider);
+	}
 
 	var watermarkObject = {
 		text: watermark.text,
 		font: fontProvider.provideFont(watermark.font, watermark.bold, watermark.italics),
-		size: getSize(this.pageSize, watermark, fontProvider),
+		fontSize: watermark.fontSize,
 		color: watermark.color,
-		opacity: watermark.opacity
+		opacity: watermark.opacity,
+		angle: watermark.angle
 	};
+
+	watermarkObject._size = getWatermarkSize(watermark, fontProvider);
 
 	var pages = this.writer.context().pages;
 	for (var i = 0, l = pages.length; i < l; i++) {
 		pages[i].watermark = watermarkObject;
 	}
 
-	function getSize(pageSize, watermark, fontProvider) {
-		var width = pageSize.width;
-		var height = pageSize.height;
-		var targetWidth = Math.sqrt(width * width + height * height) * 0.8; /* page diagonal * sample factor */
+	function getWatermarkSize(watermark, fontProvider) {
 		var textTools = new TextTools(fontProvider);
 		var styleContextStack = new StyleContextStack(null, { font: watermark.font, bold: watermark.bold, italics: watermark.italics });
-		var size;
+
+		styleContextStack.push({
+			fontSize: watermark.fontSize
+		});
+
+		var size = textTools.sizeOfString(watermark.text, styleContextStack);
+		var rotatedSize = textTools.sizeOfRotatedText(watermark.text, watermark.angle, styleContextStack);
+
+		return { size: size, rotatedSize: rotatedSize };
+	}
+
+	function getWatermarkFontSize(pageSize, watermark, fontProvider) {
+		var textTools = new TextTools(fontProvider);
+		var styleContextStack = new StyleContextStack(null, { font: watermark.font, bold: watermark.bold, italics: watermark.italics });
+		var rotatedSize;
 
 		/**
 		 * Binary search the best font size.
@@ -60239,20 +60281,25 @@ LayoutBuilder.prototype.addWatermark = function (watermark, fontProvider, defaul
 			styleContextStack.push({
 				fontSize: c
 			});
-			size = textTools.sizeOfString(watermark.text, styleContextStack);
-			if (size.width > targetWidth) {
+			rotatedSize = textTools.sizeOfRotatedText(watermark.text, watermark.angle, styleContextStack);
+			if (rotatedSize.width > pageSize.width) {
 				b = c;
 				c = (a + b) / 2;
-			} else if (size.width < targetWidth) {
-				a = c;
-				c = (a + b) / 2;
+			} else if (rotatedSize.width < pageSize.width) {
+				if (rotatedSize.height > pageSize.height) {
+					b = c;
+					c = (a + b) / 2;
+				} else {
+					a = c;
+					c = (a + b) / 2;
+				}
 			}
 			styleContextStack.pop();
 		}
 		/*
 		 End binary search
 		 */
-		return { size: size, fontSize: c };
+		return c;
 	}
 };
 
@@ -63602,7 +63649,7 @@ TableProcessor.prototype.drawHorizontalLine = function (lineIndex, writer, overr
 				if (lineIndex > 0) {
 					cellAbove = body[lineIndex - 1][i];
 					bottomBorder = cellAbove.border ? cellAbove.border[3] : this.layout.defaultBorder;
-					if (cellAbove.borderColor) {
+					if (bottomBorder && cellAbove.borderColor) {
 						borderColor = cellAbove.borderColor[3];
 					}
 				}
@@ -63611,7 +63658,7 @@ TableProcessor.prototype.drawHorizontalLine = function (lineIndex, writer, overr
 				if (lineIndex < body.length) {
 					currentCell = body[lineIndex][i];
 					topBorder = currentCell.border ? currentCell.border[1] : this.layout.defaultBorder;
-					if (borderColor == null && currentCell.borderColor) {
+					if (topBorder && borderColor == null && currentCell.borderColor) {
 						borderColor = currentCell.borderColor[1];
 					}
 				}
@@ -63622,7 +63669,7 @@ TableProcessor.prototype.drawHorizontalLine = function (lineIndex, writer, overr
 			if (cellAbove && cellAbove._rowSpanCurrentOffset) {
 				rowCellAbove = body[lineIndex - 1 - cellAbove._rowSpanCurrentOffset][i];
 				rowBottomBorder = rowCellAbove && rowCellAbove.border ? rowCellAbove.border[3] : this.layout.defaultBorder;
-				if (rowCellAbove && rowCellAbove.borderColor) {
+				if (rowBottomBorder && rowCellAbove && rowCellAbove.borderColor) {
 					borderColor = rowCellAbove.borderColor[3];
 				}
 			}
@@ -63705,7 +63752,9 @@ TableProcessor.prototype.drawVerticalLine = function (x, y0, y1, vLineColIndex, 
 	if (vLineColIndex > 0) {
 		cellBefore = body[vLineRowIndex][beforeVLineColIndex];
 		if (cellBefore && cellBefore.borderColor) {
-			borderColor = cellBefore.borderColor[2];
+			if (cellBefore.border ? cellBefore.border[2] : this.layout.defaultBorder) {
+				borderColor = cellBefore.borderColor[2];
+			}
 		}
 	}
 
@@ -63713,21 +63762,27 @@ TableProcessor.prototype.drawVerticalLine = function (x, y0, y1, vLineColIndex, 
 	if (borderColor == null && vLineColIndex < body.length) {
 		currentCell = body[vLineRowIndex][vLineColIndex];
 		if (currentCell && currentCell.borderColor) {
-			borderColor = currentCell.borderColor[0];
+			if (currentCell.border ? currentCell.border[0] : this.layout.defaultBorder) {
+				borderColor = currentCell.borderColor[0];
+			}
 		}
 	}
 
 	if (borderColor == null && cellBefore && cellBefore._rowSpanCurrentOffset) {
 		var rowCellBeforeAbove = body[vLineRowIndex - cellBefore._rowSpanCurrentOffset][beforeVLineColIndex];
 		if (rowCellBeforeAbove.borderColor) {
-			borderColor = rowCellBeforeAbove.borderColor[2];
+			if (rowCellBeforeAbove.border ? rowCellBeforeAbove.border[2] : this.layout.defaultBorder) {
+				borderColor = rowCellBeforeAbove.borderColor[2];
+			}
 		}
 	}
 
 	if (borderColor == null && currentCell && currentCell._rowSpanCurrentOffset) {
 		var rowCurrentCellAbove = body[vLineRowIndex - currentCell._rowSpanCurrentOffset][vLineColIndex];
 		if (rowCurrentCellAbove.borderColor) {
-			borderColor = rowCurrentCellAbove.borderColor[2];
+			if (rowCurrentCellAbove.border ? rowCurrentCellAbove.border[2] : this.layout.defaultBorder) {
+				borderColor = rowCurrentCellAbove.borderColor[2];
+			}
 		}
 	}
 
