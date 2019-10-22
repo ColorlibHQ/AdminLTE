@@ -15359,8 +15359,7 @@ html.maximized-card {
 }
 
 .card-primary.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-primary.card-outline-tabs > .card-header a.active {
@@ -15462,8 +15461,7 @@ html.maximized-card {
 }
 
 .card-secondary.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-secondary.card-outline-tabs > .card-header a.active {
@@ -15565,8 +15563,7 @@ html.maximized-card {
 }
 
 .card-success.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-success.card-outline-tabs > .card-header a.active {
@@ -15668,8 +15665,7 @@ html.maximized-card {
 }
 
 .card-info.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-info.card-outline-tabs > .card-header a.active {
@@ -15771,8 +15767,7 @@ html.maximized-card {
 }
 
 .card-warning.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-warning.card-outline-tabs > .card-header a.active {
@@ -15874,8 +15869,7 @@ html.maximized-card {
 }
 
 .card-danger.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-danger.card-outline-tabs > .card-header a.active {
@@ -15977,8 +15971,7 @@ html.maximized-card {
 }
 
 .card-light.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-light.card-outline-tabs > .card-header a.active {
@@ -16080,8 +16073,7 @@ html.maximized-card {
 }
 
 .card-dark.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-dark.card-outline-tabs > .card-header a.active {
@@ -16183,8 +16175,7 @@ html.maximized-card {
 }
 
 .card-navy.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-navy.card-outline-tabs > .card-header a.active {
@@ -16286,8 +16277,7 @@ html.maximized-card {
 }
 
 .card-olive.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-olive.card-outline-tabs > .card-header a.active {
@@ -16389,8 +16379,7 @@ html.maximized-card {
 }
 
 .card-lime.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-lime.card-outline-tabs > .card-header a.active {
@@ -16492,8 +16481,7 @@ html.maximized-card {
 }
 
 .card-fuchsia.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-fuchsia.card-outline-tabs > .card-header a.active {
@@ -16595,8 +16583,7 @@ html.maximized-card {
 }
 
 .card-maroon.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-maroon.card-outline-tabs > .card-header a.active {
@@ -16698,8 +16685,7 @@ html.maximized-card {
 }
 
 .card-blue.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-blue.card-outline-tabs > .card-header a.active {
@@ -16801,8 +16787,7 @@ html.maximized-card {
 }
 
 .card-indigo.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-indigo.card-outline-tabs > .card-header a.active {
@@ -16904,8 +16889,7 @@ html.maximized-card {
 }
 
 .card-purple.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-purple.card-outline-tabs > .card-header a.active {
@@ -17007,8 +16991,7 @@ html.maximized-card {
 }
 
 .card-pink.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-pink.card-outline-tabs > .card-header a.active {
@@ -17110,8 +17093,7 @@ html.maximized-card {
 }
 
 .card-red.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-red.card-outline-tabs > .card-header a.active {
@@ -17213,8 +17195,7 @@ html.maximized-card {
 }
 
 .card-orange.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-orange.card-outline-tabs > .card-header a.active {
@@ -17316,8 +17297,7 @@ html.maximized-card {
 }
 
 .card-yellow.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-yellow.card-outline-tabs > .card-header a.active {
@@ -17419,8 +17399,7 @@ html.maximized-card {
 }
 
 .card-green.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-green.card-outline-tabs > .card-header a.active {
@@ -17522,8 +17501,7 @@ html.maximized-card {
 }
 
 .card-teal.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-teal.card-outline-tabs > .card-header a.active {
@@ -17625,8 +17603,7 @@ html.maximized-card {
 }
 
 .card-cyan.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-cyan.card-outline-tabs > .card-header a.active {
@@ -17728,8 +17705,7 @@ html.maximized-card {
 }
 
 .card-white.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-white.card-outline-tabs > .card-header a.active {
@@ -17831,8 +17807,7 @@ html.maximized-card {
 }
 
 .card-gray.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-gray.card-outline-tabs > .card-header a.active {
@@ -17934,8 +17909,7 @@ html.maximized-card {
 }
 
 .card-gray-dark.card-outline-tabs > .card-header a:hover {
-  border-top: 1px solid #dee2e6;
-  margin-top: 2px;
+  border-top: 3px solid #dee2e6;
 }
 
 .card-gray-dark.card-outline-tabs > .card-header a.active {
