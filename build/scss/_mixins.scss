@@ -56,8 +56,7 @@
           border-top: 3px solid transparent;
 
           &:hover {
-            border-top: $nav-tabs-border-width solid $nav-tabs-border-color;
-            margin-top: 2px;
+            border-top: 3px solid $nav-tabs-border-color;
           }
 
           &.active {
