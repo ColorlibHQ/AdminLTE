@@ -110,9 +110,7 @@ const PushMenu = (($) => {
             this.collapse()
           }
         } else if (resize == true) {
-          if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
-            this.show()
-          } else {
+          if ($(Selector.BODY).hasClass(ClassName.OPEN)) {
             $(Selector.BODY).removeClass(ClassName.OPEN)
           }
         }

@@ -31,6 +31,7 @@ const Layout = (($) => {
     CONTROL_SIDEBAR: '.control-sidebar',
     LAYOUT_FIXED   : '.layout-fixed',
     FOOTER         : '.main-footer',
+    PUSHMENU_BTN   : '[data-widget="pushmenu"]',
     LOGIN_BOX      : '.login-box',
     REGISTER_BOX   : '.register-box'
   }
@@ -105,7 +106,12 @@ const Layout = (($) => {
       // Activate layout height watcher
       this.fixLayoutHeight()
       $(Selector.SIDEBAR)
-        .on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', () => {
+        .on('collapsed.lte.treeview expanded.lte.treeview', () => {
+          this.fixLayoutHeight()
+        })
+
+      $(Selector.PUSHMENU_BTN)
+        .on('collapsed.lte.pushmenu shown.lte.pushmenu', () => {
           this.fixLayoutHeight()
         })
 
