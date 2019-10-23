@@ -389,6 +389,11 @@ const Plugins = [
     from: 'node_modules/jquery-validation/dist/',
     to  : 'plugins/jquery-validation'
   },
+  // bs-custom-file-input
+  {
+    from: 'node_modules/bs-custom-file-input/dist/',
+    to  : 'plugins/bs-custom-file-input'
+  },
 ]
 
 module.exports = Plugins

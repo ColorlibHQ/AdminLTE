@@ -1240,7 +1240,8 @@
                     <input type="range" class="custom-range custom-range-teal" id="customRange1">
                   </div>
                   <div class="form-group">
-                    <label for="customFile">Custom File</label>
+                    <!-- <label for="customFile">Custom File</label> -->
+
                     <div class="custom-file">
                       <input type="file" class="custom-file-input" id="customFile">
                       <label class="custom-file-label" for="customFile">Choose file</label>
@@ -1282,9 +1283,16 @@
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+  bsCustomFileInput.init();
+});
+</script>
 </body>
 </html>

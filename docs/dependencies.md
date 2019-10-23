@@ -50,6 +50,7 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
       <li><a href="https://select2.org/" target="_blank">Select2</a></li>
       <li><a href="https://tempusdominus.github.io/bootstrap-4/" target="_blank">Tempus Dominus</a></li>
       <li><a href="https://github.com/istvan-ujjmeszaros/bootstrap-duallistbox#readme" target="_blank">Bootstrap4 Duallistbox</a></li>
+      <li><a href="https://github.com/Johann-S/bs-custom-file-input#readme" target="_blank">bs-custom-file-input</a></li>
     </ul>
   </div>
   <div class="col-sm-3">
