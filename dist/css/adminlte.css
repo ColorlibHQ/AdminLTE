@@ -23152,7 +23152,7 @@ html.maximized-card {
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__rendered {
-  padding: 0 0.375rem;
+  padding: 0 0.375rem 0.28125rem;
   margin-bottom: -0.375rem;
 }
 
