@@ -11111,39 +11111,73 @@ body,
   margin-left: 0;
 }
 
-@media (min-width: 576px) {
-  .content-wrapper,
-  .main-footer,
-  .main-header {
+@media (min-width: 768px) {
+  body:not(.sidebar-mini-md) .content-wrapper,
+  body:not(.sidebar-mini-md) .main-footer,
+  body:not(.sidebar-mini-md) .main-header {
     transition: margin-left 0.3s ease-in-out;
     margin-left: 250px;
-    z-index: 3000;
   }
 }
 
-@media (min-width: 576px) and (prefers-reduced-motion: reduce) {
-  .content-wrapper,
-  .main-footer,
-  .main-header {
+@media (min-width: 768px) and (prefers-reduced-motion: reduce) {
+  body:not(.sidebar-mini-md) .content-wrapper,
+  body:not(.sidebar-mini-md) .main-footer,
+  body:not(.sidebar-mini-md) .main-header {
     transition: none;
   }
 }
 
-@media (min-width: 576px) {
-  .sidebar-collapse .content-wrapper, .sidebar-collapse
-  .main-footer, .sidebar-collapse
-  .main-header {
+@media (min-width: 768px) {
+  .sidebar-collapse body:not(.sidebar-mini-md) .content-wrapper, .sidebar-collapse
+  body:not(.sidebar-mini-md) .main-footer, .sidebar-collapse
+  body:not(.sidebar-mini-md) .main-header {
     margin-left: 0;
   }
 }
 
-@media (max-width: 767.98px) {
-  .content-wrapper, .content-wrapper::before,
-  .main-footer,
-  .main-footer::before,
-  .main-header,
-  .main-header::before {
+@media (max-width: 991.98px) {
+  body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .content-wrapper::before,
+  body:not(.sidebar-mini-md) .main-footer,
+  body:not(.sidebar-mini-md) .main-footer::before,
+  body:not(.sidebar-mini-md) .main-header,
+  body:not(.sidebar-mini-md) .main-header::before {
     margin-left: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .sidebar-mini-md .content-wrapper,
+  .sidebar-mini-md .main-footer,
+  .sidebar-mini-md .main-header {
+    transition: margin-left 0.3s ease-in-out;
+    margin-left: 250px;
+  }
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: reduce) {
+  .sidebar-mini-md .content-wrapper,
+  .sidebar-mini-md .main-footer,
+  .sidebar-mini-md .main-header {
+    transition: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .sidebar-collapse .sidebar-mini-md .content-wrapper, .sidebar-collapse
+  .sidebar-mini-md .main-footer, .sidebar-collapse
+  .sidebar-mini-md .main-header {
+    margin-left: 4.6rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .sidebar-mini-md .content-wrapper, .sidebar-mini-md .content-wrapper::before,
+  .sidebar-mini-md .main-footer,
+  .sidebar-mini-md .main-footer::before,
+  .sidebar-mini-md .main-header,
+  .sidebar-mini-md .main-header::before {
+    margin-left: 4.6rem;
   }
 }
 
