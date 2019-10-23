@@ -13,7 +13,7 @@ export default {
     banner: `/*!
  * AdminLTE v${pkg.version} (${pkg.homepage})
  * Copyright 2014-${year} ${pkg.author}
- * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
+ * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */`,
     file  : 'dist/js/adminlte.js',
     format: 'umd',
