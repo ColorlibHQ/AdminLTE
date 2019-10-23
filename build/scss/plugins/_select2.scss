@@ -175,6 +175,20 @@
   & .select2-selection--single .select2-selection__rendered li {
     padding-right: 10px;
   }
+
+  .input-group-prepend ~ & {
+    .select2-selection {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    }
+  }
+
+  .input-group > &:not(:last-child) {
+    .select2-selection {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
 }
 
 

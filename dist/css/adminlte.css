@@ -23199,6 +23199,16 @@ html.maximized-card {
   padding-right: 10px;
 }
 
+.input-group-prepend ~ .select2-container--default .select2-selection {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.input-group > .select2-container--default:not(:last-child) .select2-selection {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
 .select2-container--default .select2-primary.select2-dropdown .select2-search__field:focus,
 .select2-container--default .select2-primary .select2-dropdown .select2-search__field:focus,
 .select2-container--default .select2-primary .select2-search--inline .select2-search__field:focus,
