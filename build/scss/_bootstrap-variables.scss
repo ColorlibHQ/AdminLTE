@@ -410,7 +410,7 @@ $input-focus-color:                     $input-color !default;
 $input-focus-width:                     0 !default;
 $input-focus-box-shadow:                none !default;
 
-$input-placeholder-color:               $gray-600 !default;
+$input-placeholder-color:               lighten($gray-600, 15%) !default;
 
 $input-height-border:                   $input-border-width * 2 !default;
 

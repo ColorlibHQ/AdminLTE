@@ -1904,27 +1904,27 @@ pre code {
 }
 
 .form-control::-webkit-input-placeholder {
-  color: #6c757d;
+  color: #939ba2;
   opacity: 1;
 }
 
 .form-control::-moz-placeholder {
-  color: #6c757d;
+  color: #939ba2;
   opacity: 1;
 }
 
 .form-control:-ms-input-placeholder {
-  color: #6c757d;
+  color: #939ba2;
   opacity: 1;
 }
 
 .form-control::-ms-input-placeholder {
-  color: #6c757d;
+  color: #939ba2;
   opacity: 1;
 }
 
 .form-control::placeholder {
-  color: #6c757d;
+  color: #939ba2;
   opacity: 1;
 }
 
