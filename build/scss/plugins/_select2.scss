@@ -191,6 +191,12 @@
   }
 }
 
+// Select2 Bootstrap4 Theme overrides
+.select2-container--bootstrap4 {
+  &.select2-container--focus .select2-selection {
+    box-shadow: none;
+  }
+}
 
 // Background colors (theme colors)
 @each $name, $color in $theme-colors {

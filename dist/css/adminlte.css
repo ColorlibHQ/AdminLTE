@@ -23209,6 +23209,10 @@ html.maximized-card {
   border-top-right-radius: 0;
 }
 
+.select2-container--bootstrap4.select2-container--focus .select2-selection {
+  box-shadow: none;
+}
+
 .select2-container--default .select2-primary.select2-dropdown .select2-search__field:focus,
 .select2-container--default .select2-primary .select2-dropdown .select2-search__field:focus,
 .select2-container--default .select2-primary .select2-search--inline .select2-search__field:focus,
