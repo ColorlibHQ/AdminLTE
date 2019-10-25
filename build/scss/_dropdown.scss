@@ -259,15 +259,15 @@
     @include media-breakpoint-up(sm) {
       float: none;
       line-height: 10px;
-      margin-right: 0;
+      margin-right: .4rem;
       margin-top: -8px;
     }
 
     border-radius: 50%;
     float: left;
-    height: 25px;
+    height: $sidebar-user-image-width;
     margin-right: 10px;
     margin-top: -2px;
-    width: 25px;
+    width: $sidebar-user-image-width;
   }
 }
