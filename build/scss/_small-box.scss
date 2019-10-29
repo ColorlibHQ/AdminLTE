@@ -5,7 +5,6 @@
 .small-box {
   @include border-radius($border-radius);
   @include box-shadow($card-shadow);
-  @extend .mb-3;
 
   display: block;
   margin-bottom: 20px;

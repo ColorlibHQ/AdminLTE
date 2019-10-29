@@ -3,12 +3,12 @@
 //
  
 .info-box {
-  @extend .d-flex;
-  @extend .mb-3;
   @include box-shadow($card-shadow);
   @include border-radius($border-radius);
 
   background: $white;
+  display: flex;
+  margin-bottom: map-get($spacers, 3);
   min-height: 80px;
   padding: .5rem;
   position: relative;
@@ -24,16 +24,14 @@
   }
 
   .info-box-icon {
-    @extend .d-flex;
-    @extend .align-items-center;
-    @extend .justify-content-center;
-
     @if $enable-rounded {
       border-radius: $border-radius;
     }
 
+    align-items: center;
     display: block;
     font-size: 1.875rem;
+    justify-content: center;
     text-align: center;
     width: 70px;
 

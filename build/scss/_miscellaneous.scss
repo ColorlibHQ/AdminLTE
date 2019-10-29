@@ -99,7 +99,8 @@
 
   &.user-block-sm {
     img {
-      @extend .img-sm;
+      width: $img-size-sm;
+      height: $img-size-sm;
     }
 
     .username,
@@ -122,29 +123,29 @@
 }
 
 .img-sm {
-  height: 30px !important;
-  width: 30px !important;
+  height: $img-size-sm;
+  width: $img-size-sm;
 
   + .img-push {
-    margin-left: 40px;
+    margin-left: $img-size-sm + $img-size-push;
   }
 }
 
 .img-md {
-  width: 60px;
-  height: 60px;
+  width: $img-size-md;
+  height: $img-size-md;
 
   + .img-push {
-    margin-left: 70px;
+    margin-left: $img-size-md + $img-size-push;
   }
 }
 
 .img-lg {
-  width: 100px;
-  height: 100px;
+  width: $img-size-lg;
+  height: $img-size-lg;
 
   + .img-push {
-    margin-left: 110px;
+    margin-left: $img-size-lg + $img-size-push;
   }
 }
 

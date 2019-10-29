@@ -1,0 +1,81 @@
+//
+// Mixins: Custom Forms
+//
+
+// Custom Switch Variant
+@mixin custom-switch-variant($name, $color) {
+  &.custom-switch-off-#{$name} {
+    & .custom-control-input ~ .custom-control-label::before {
+      background: #{$color};
+      border-color: darken($color, 20%);
+    }
+
+    & .custom-control-input:focus ~ .custom-control-label::before {
+      box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
+    }
+
+    & .custom-control-input ~ .custom-control-label::after {
+      background: darken($color, 25%);
+    }
+  }
+
+  &.custom-switch-on-#{$name} {
+    & .custom-control-input:checked ~ .custom-control-label::before {
+      background: #{$color};
+      border-color: darken($color, 20%);
+    }
+
+    & .custom-control-input:checked:focus ~ .custom-control-label::before {
+      box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
+    }
+
+    & .custom-control-input:checked ~ .custom-control-label::after {
+      background: lighten($color, 30%);
+    }
+  }
+}
+
+// Custom Range Variant
+@mixin custom-range-variant($name, $color) {
+  &.custom-range-#{$name} {
+    &:focus {
+      outline: none;
+
+      &::-webkit-slider-thumb {
+        box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
+      }
+
+      &::-moz-range-thumb     {
+        box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
+      }
+
+      &::-ms-thumb            {
+        box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
+      }
+    }
+
+    &::-webkit-slider-thumb {
+      background-color: $color;
+
+      &:active {
+        background-color: lighten($color, 35%);
+      }
+    }
+
+    &::-moz-range-thumb {
+      background-color: $color;
+
+      &:active {
+        background-color: lighten($color, 35%);
+      }
+    }
+
+    &::-ms-thumb {
+      background-color: $color;
+
+      &:active {
+        background-color: lighten($color, 35%);
+      }
+    }
+  }
+}

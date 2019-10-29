@@ -1,0 +1,34 @@
+//
+// Mixins: Accent
+//
+
+// Accent Variant
+@mixin accent-variant($name, $color) {
+  .accent-#{$name} {
+    $link-color: $color;
+    $link-hover-color: darken($color, 15%);
+    $pagination-active-bg: $color;
+    $pagination-active-border-color: $color;
+
+    a {
+      color: $link-color;
+
+      @include hover {
+        color: $link-hover-color;
+      }
+    }
+
+    .page-item {
+      &.active .page-link {
+        background-color: $pagination-active-bg;
+        border-color: $pagination-active-border-color;
+      }
+
+      &.disabled .page-link {
+        background-color: $pagination-disabled-bg;
+        border-color: $pagination-disabled-border-color;
+      }
+    }
+  }
+}
+

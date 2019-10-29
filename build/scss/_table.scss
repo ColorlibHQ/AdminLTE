@@ -63,11 +63,11 @@
     tbody > tr > th,
     tbody > tr > td {
       &:first-of-type {
-        @extend .pl-4;
+        padding-left: map-get($spacers, 4);
       }
 
       &:last-of-type {
-        @extend .pr-4;
+        padding-right: map-get($spacers, 4);
       }
     }
   }

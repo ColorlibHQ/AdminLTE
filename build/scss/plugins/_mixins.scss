@@ -37,26 +37,24 @@
           &:focus {
             border-color: lighten($color, 25%);
           }
+
+          .select2-selection__choice {
+            background-color: $color;
+            border-color: darken($color, 5%);
+            color: color-yiq($color);
+          }
+
+          .select2-selection__choice__remove {
+            color: rgba(color-yiq($color), 0.7);
+
+            &:hover {
+              color: color-yiq($color);
+            }
+          }
         }
 
         &.select2-container--focus .select2-selection--multiple {
           border-color: lighten($color, 25%);
-        }
-      }
-
-      .select2-selection--multiple {
-        .select2-selection__choice {
-          background-color: $color;
-          border-color: darken($color, 5%);
-          color: color-yiq($color);
-        }
-
-        .select2-selection__choice__remove {
-          color: rgba(color-yiq($color), 0.7);
-
-          &:hover {
-            color: color-yiq($color);
-          }
         }
       }
     }

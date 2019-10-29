@@ -14,6 +14,19 @@
       @include translate(0, 0);
     }
   }
+
+
+  &.timestamp-light {
+    .direct-chat-timestamp {
+      color: lighten(color-yiq($yiq-text-light), 10%);
+    }
+  }
+
+  &.timestamp-dark {
+    .direct-chat-timestamp {
+      color: darken(color-yiq($yiq-text-dark), 20%);
+    }
+  }
 }
 
 .direct-chat-messages {
@@ -150,7 +163,7 @@
 
 //Contacts list -- for displaying contacts in direct chat contacts pane
 .contacts-list {
-  @extend .list-unstyled;
+  @include list-unstyled;
 
   > li {
     @include clearfix;

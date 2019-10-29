@@ -1,0 +1,64 @@
+//
+// Mixins: Backgrounds
+//
+
+// Background Variant
+@mixin background-variant($name, $color) {
+  .bg-#{$name} {
+    background-color: #{$color} !important;
+
+    &,
+    > a {
+      color: color-yiq($color) !important;
+    }
+
+    &.btn {
+      &:hover {
+        border-color: darken($color, 10%);
+        color: darken(color-yiq($color), 7.5%);
+      }
+
+      &:not(:disabled):not(.disabled):active,
+      &:not(:disabled):not(.disabled).active,
+      &:active,
+      &.active {
+        background-color: darken($color, 10%) !important;
+        border-color: darken($color, 12.5%);
+        color: color-yiq(darken($color, 10%));
+      }
+    }
+  }
+}
+
+// Background Gradient Variant
+@mixin background-gradient-variant($name, $color) {
+  .bg-gradient-#{$name} {
+    @include bg-gradient-variant('&', $color);
+    color: color-yiq($color);
+
+    &.btn {
+      &.disabled,
+      &:disabled,
+      &:not(:disabled):not(.disabled):active,
+      &:not(:disabled):not(.disabled).active,
+      .show > &.dropdown-toggle {
+        background-image: none !important;
+      }
+
+      &:hover {
+        @include bg-gradient-variant('&', darken($color, 7.5%));
+        border-color: darken($color, 10%);
+        color: darken(color-yiq($color), 7.5%);
+      }
+
+      &:not(:disabled):not(.disabled):active,
+      &:not(:disabled):not(.disabled).active,
+      &:active,
+      &.active {
+        @include bg-gradient-variant('&', darken($color, 10%));
+        border-color: darken($color, 12.5%);
+        color: color-yiq(darken($color, 10%));
+      }
+    }
+  }
+}

@@ -3,8 +3,8 @@
 //
 
 .card {
-  @extend .mb-3;
   @include box-shadow($card-shadow);
+  margin-bottom: map-get($spacers, 3);
 
   &.bg-dark {
     .card-header {
@@ -74,6 +74,56 @@
 
   .border-left {
     border-left: 1px solid $card-border-color;
+  }
+
+  &:not(.card-outline) {
+    > .card-header {
+      border-bottom: 0;
+
+      .nav-item {
+        &:first-child .nav-link {
+          margin-left: -1px;
+        }
+      }
+    }
+  }
+
+  &.card-outline {
+    .nav-item {
+      border-bottom: 0;
+
+      &:first-child .nav-link {
+        border-left: 0;
+        margin-left: 0;
+      }
+    }
+  }
+
+  &.card-outline-tabs {
+    border-top: 0;
+
+    > .card-header {
+      .nav-item {
+        &:first-child .nav-link {
+          border-left: 0;
+          margin-left: 0;
+        }
+      }
+
+      a {
+        border-top: 3px solid transparent;
+
+        &:hover {
+          border-top: 3px solid $nav-tabs-border-color;
+        }
+
+        &.active {
+          &:hover {
+            margin-top: 0;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -194,7 +244,7 @@ html.maximized-card {
 }
 
 .chart-legend {
-  @extend .list-unstyled;
+  @include list-unstyled;
   margin: 10px 0;
 
   > li {
@@ -223,7 +273,8 @@ html.maximized-card {
     }
 
     img {
-      @extend .img-sm;
+      height: $card-img-size;
+      width: $card-img-size;
       float: left;
     }
   }

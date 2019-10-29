@@ -230,7 +230,7 @@
       color: $sidebar-light-active-color;
 
       @if $enable-shadows {
-        @extend .elevation-1;
+        box-shadow: map-get($elevations, 1);
       }
     }
 
@@ -353,7 +353,7 @@
       color: $sidebar-dark-hover-color;
 
       @if $enable-shadows {
-        @extend .elevation-1;
+        box-shadow: map-get($elevations, 1);
       }
     }
 

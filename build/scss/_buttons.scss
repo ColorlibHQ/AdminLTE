@@ -3,6 +3,11 @@
 //
 
 .btn {
+  &.disabled,
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   // Flat buttons
   &.btn-flat {
     @include border-radius(0);

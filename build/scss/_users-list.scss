@@ -3,7 +3,7 @@
 //
 
 .users-list {
-  @extend .list-unstyled;
+  @include list-unstyled;
 
   > li {
     float: left;
