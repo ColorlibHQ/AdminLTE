@@ -1,7 +1,7 @@
 /*!
- * AdminLTE v3.0.0-rc.5 (https://adminlte.io)
+ * AdminLTE v3.0.0-rc.6 (https://adminlte.io)
  * Copyright 2014-2019 Colorlib <http://colorlib.com>
- * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
+ * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -298,6 +298,7 @@
       CONTROL_SIDEBAR: '.control-sidebar',
       LAYOUT_FIXED: '.layout-fixed',
       FOOTER: '.main-footer',
+      PUSHMENU_BTN: '[data-widget="pushmenu"]',
       LOGIN_BOX: '.login-box',
       REGISTER_BOX: '.register-box'
     };
@@ -372,7 +373,10 @@
 
         // Activate layout height watcher
         this.fixLayoutHeight();
-        $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', function () {
+        $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview', function () {
+          _this.fixLayoutHeight();
+        });
+        $(Selector.PUSHMENU_BTN).on('collapsed.lte.pushmenu shown.lte.pushmenu', function () {
           _this.fixLayoutHeight();
         });
         $(window).resize(function () {
@@ -552,16 +556,18 @@
         }
       };
 
-      _proto.autoCollapse = function autoCollapse() {
+      _proto.autoCollapse = function autoCollapse(resize) {
+        if (resize === void 0) {
+          resize = false;
+        }
+
         if (this._options.autoCollapseSize) {
           if ($(window).width() <= this._options.autoCollapseSize) {
             if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
               this.collapse();
             }
-          } else {
-            if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
-              this.show();
-            } else {
+          } else if (resize == true) {
+            if ($(Selector.BODY).hasClass(ClassName.OPEN)) {
               $(Selector.BODY).removeClass(ClassName.OPEN);
             }
           }
@@ -601,7 +607,7 @@
         this.remember();
         this.autoCollapse();
         $(window).resize(function () {
-          _this.autoCollapse();
+          _this.autoCollapse(true);
         });
       };
 
