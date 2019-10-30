@@ -118,10 +118,10 @@ $sidebar-dark-header-color: $white !default;
 
 // Light sidebar
 $sidebar-light-bg: $white !default;
-$sidebar-light-hover-bg: lighten(#f0f0f1, 1.5%) !default;
+$sidebar-light-hover-bg: rgba($black, .1) !default;
 $sidebar-light-color: $gray-800 !default;
 $sidebar-light-hover-color: $gray-900 !default;
-$sidebar-light-active-color: $white !default;
+$sidebar-light-active-color: $black !default;
 $sidebar-light-submenu-bg: transparent !default;
 $sidebar-light-submenu-color: #777 !default;
 $sidebar-light-submenu-hover-color: #000 !default;

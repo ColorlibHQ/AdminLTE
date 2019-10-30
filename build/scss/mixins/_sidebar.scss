@@ -10,6 +10,12 @@
       color: color-yiq($color);
     }
   }
+
+  .nav-sidebar.nav-legacy > .nav-item {
+    & > .nav-link.active {
+      border-color: $color;
+    }
+  }
 }
 
 // Sidebar Mini Breakpoints
