@@ -2,6 +2,10 @@
 // Misc: Miscellaneous
 //
 
+a::-moz-focus-inner {
+  border: 0;
+}
+
 .border-transparent {
   border-color: transparent !important;
 }
