@@ -2,10 +2,6 @@
 // Misc: Miscellaneous
 //
 
-a::-moz-focus-inner {
-  border: 0;
-}
-
 .border-transparent {
   border-color: transparent !important;
 }
@@ -447,4 +443,14 @@ blockquote {
   margin-top: 0;
   margin-bottom: .5rem;
   padding-bottom: .5rem;
+}
+
+// Remove Firefox Focusring
+a,
+button,
+input {
+  &:-moz-focusring {
+    border: 0;
+    outline: none;
+  }
 }

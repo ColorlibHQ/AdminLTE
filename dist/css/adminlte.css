@@ -25701,10 +25701,6 @@ html.maximized-card {
   position: relative;
 }
 
-a::-moz-focus-inner {
-  border: 0;
-}
-
 .border-transparent {
   border-color: transparent !important;
 }
@@ -26475,6 +26471,13 @@ blockquote.quote-gray-dark h6 {
   margin-top: 0;
   margin-bottom: .5rem;
   padding-bottom: .5rem;
+}
+
+a:-moz-focusring,
+button:-moz-focusring,
+input:-moz-focusring {
+  border: 0;
+  outline: none;
 }
 
 @media print {
