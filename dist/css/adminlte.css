@@ -19842,7 +19842,7 @@ html.maximized-card {
 
 .select2-container--default .select2-selection--single {
   border: 1px solid #ced4da;
-  padding: 0.46875rem 0.375rem;
+  padding: 0.46875rem 0.75rem;
   height: calc(2.25rem + 2px);
 }
 
@@ -19933,12 +19933,13 @@ html.maximized-card {
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__rendered {
-  padding: 0 0.375rem 0.28125rem;
+  padding: 0 0.375rem 0.375rem;
   margin-bottom: -0.375rem;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__rendered li:first-child.select2-search.select2-search--inline {
   width: 100%;
+  margin-left: 0.375rem;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__rendered li:first-child.select2-search.select2-search--inline .select2-search__field {

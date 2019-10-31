@@ -16,7 +16,7 @@
   .select2-selection--single {
     border: $input-border-width solid $input-border-color;
     //border-radius: $input-radius;
-    padding:  ($input-padding-y * 1.25) $input-padding-y;
+    padding: ($input-padding-y * 1.25) $input-padding-x;
     height: $input-height;
   }
 
@@ -122,11 +122,12 @@
       }
 
       .select2-selection__rendered {
-        padding: 0 $input-padding-y ($input-padding-y * .75);
-        margin-bottom: -$input-padding-x/2;
+        padding: 0 $input-padding-x / 2 $input-padding-y;
+        margin-bottom: -$input-padding-x / 2;
 
         li:first-child.select2-search.select2-search--inline {
           width: 100%;
+          margin-left: $input-padding-x / 2;
 
           .select2-search__field {
             width: 100% !important;
