@@ -112,6 +112,8 @@ You can add this code above user-panel or nav-sidebar:
 - `.nav-child-indent` Child indent
 - `.nav-compact` Compact nav items
 - `.nav-flat` Flat nav style
+- `.nav-legacy` Legacy v2 nav style
+- `.nav-collapse-hide-child` Hide nav item submenus on collapsed sidebar
 
 
 > ##### Tip!
