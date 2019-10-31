@@ -2,7 +2,6 @@ language: node_js
 
 node_js:
   - 8
-  - 9
   - 10
   - 11
   - 12
@@ -10,11 +9,6 @@ node_js:
 env:
   - INSTALL=yarn
   - INSTALL=npm
-
-jobs:
-  exclude:
-  - node_js: 9
-    env: INSTALL=yarn
 
 matrix:
   fast_finish: true
