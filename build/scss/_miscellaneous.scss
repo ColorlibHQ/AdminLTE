@@ -448,7 +448,7 @@ blockquote {
 // Remove Firefox Focusring
 a,
 button,
-input {
+input.btn {
   &:-moz-focusring {
     border: 0;
     outline: none;

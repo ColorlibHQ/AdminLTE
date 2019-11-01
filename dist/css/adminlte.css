@@ -26485,7 +26485,7 @@ blockquote.quote-gray-dark h6 {
 
 a:-moz-focusring,
 button:-moz-focusring,
-input:-moz-focusring {
+input.btn:-moz-focusring {
   border: 0;
   outline: none;
 }
