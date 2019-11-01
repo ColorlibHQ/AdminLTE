@@ -2,7 +2,7 @@
 name: Bug report for AdminLTE v2.4.x
 about: Create a report to help us improve AdminLTE v2.4.x
 title: "[BUG]"
-labels: bug
+labels: Bug, v2
 assignees: ''
 
 ---

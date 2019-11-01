@@ -2,7 +2,7 @@
 name: Feature request for AdminLTE v3.x
 about: Suggest an idea for this project
 title: "[FEATURE]"
-labels: enhancement
+labels: Enhancement, v3
 assignees: ''
 
 ---
