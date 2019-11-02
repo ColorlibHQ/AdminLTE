@@ -4,7 +4,7 @@ Introduction
 **AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 4](https://getbootstrap.com)** framework.
 Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.
 
-**Download & Preview on [AdminLTE.io](https://adminlte.io)**
+**Preview on [AdminLTE.io](https://adminlte.io/themes/v3)**
 
 Looking for Premium Templates?
 ------------------------------
@@ -22,17 +22,26 @@ There are multiple ways to install AdminLTE.
 
 #### Download:
 
-Download from Github or [visit AdminLTE.io](https://adminlte.io) and download the latest release.
+Download from [Github releases](https://github.com/ColorlibHQ/AdminLTE/releases).
 
 #### Using The Command Line:
 
-**NPM**
+__Via NPM__
 ```bash
-npm install admin-lte
+npm install admin-lte@^3.0 --save
 ```
 
-**Github**
+__Via Yarn__
+```bash
+yarn add admin-lte@^3.0
+```
 
+__Via Composer__
+```bash
+composer require "almasaeed2010/adminlte=~3.0"
+```
+
+__Via Git__
 - Clone to your machine
 ```
 git clone https://github.com/ColorlibHQ/AdminLTE.git
@@ -40,7 +49,7 @@ git clone https://github.com/ColorlibHQ/AdminLTE.git
 
 Documentation
 -------------
-Visit the [online documentation](https://adminlte.io/themes/AdminLTE/documentation/index.html) for the most
+Visit the [online documentation](https://adminlte.io/docs/3.0/) for the most
 updated guide. Information will be added on a weekly basis.
 
 Browser Support
@@ -75,7 +84,7 @@ reserves the right to change the license of future releases.
 
 Legacy Releases
 ---------------
-- [AdminLTE 2](https://github.com/ColorlibHQ/AdminLTE/releases/tag/v2.4.3)
+- [AdminLTE 2](https://github.com/ColorlibHQ/AdminLTE/releases/tag/v2.4.18)
 - [AdminLTE 1](https://github.com/ColorlibHQ/AdminLTE/releases/tag/1.3.1)
 
 Change log
