@@ -6,9 +6,13 @@ title: Implementations
 Thanks to many of AdminLTE users, there are multiple implementations of the template for easy integration with back-end frameworks. The following are some of them: 
 
 
+##### AdminLTE v3.0
+{: .text-bold .text-dark .mt-3}
+- [Laravel-AdminLTE v3.x](https://github.com/jeroennoten/Laravel-AdminLTE) by [Jeroen Noten](https://github.com/jeroennoten)
+
 ##### AdminLTE v2.4
 {: .text-bold .text-dark .mt-3}
-- [Laravel-AdminLTE](https://github.com/jeroennoten/Laravel-AdminLTE) by [Jeroen Noten](https://github.com/jeroennoten)
+- [Laravel-AdminLTE v1.x & v2.x](https://github.com/jeroennoten/Laravel-AdminLTE) by [Jeroen Noten](https://github.com/jeroennoten)
 - [Laravel 5 package](https://github.com/acacha/adminlte-laravel) by [Sergi Tur Badenas](https://github.com/acacha)
 - [Yii 2](https://github.com/dmstr/yii2-adminlte-asset) by [Tobias Munk](https://github.com/schmunk42)
 
