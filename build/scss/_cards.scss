@@ -76,25 +76,27 @@
     border-left: 1px solid $card-border-color;
   }
 
-  &:not(.card-outline) {
-    > .card-header {
-      border-bottom: 0;
+  &.card-tabs {
+    &:not(.card-outline) {
+      & .card-header {
+        border-bottom: 0;
 
-      .nav-item {
-        &:first-child .nav-link {
-          margin-left: -1px;
+        .nav-item {
+          &:first-child .nav-link {
+            margin-left: -1px;
+          }
         }
       }
     }
-  }
 
-  &.card-outline {
-    .nav-item {
-      border-bottom: 0;
+    &.card-outline {
+      .nav-item {
+        border-bottom: 0;
 
-      &:first-child .nav-link {
-        border-left: 0;
-        margin-left: 0;
+        &:first-child .nav-link {
+          border-left: 0;
+          margin-left: 0;
+        }
       }
     }
   }
@@ -102,7 +104,7 @@
   &.card-outline-tabs {
     border-top: 0;
 
-    > .card-header {
+    .card-header {
       .nav-item {
         &:first-child .nav-link {
           border-left: 0;
@@ -125,6 +127,7 @@
       }
     }
   }
+
 }
 
 // Maximized Card Body Scroll fix
