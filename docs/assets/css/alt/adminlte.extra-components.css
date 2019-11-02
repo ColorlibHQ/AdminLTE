@@ -1,5 +1,5 @@
 /*!
- *   AdminLTE v3.0.0-rc.6
+ *   AdminLTE v3.0.0
  *     Only Extra Components
  *   Author: Colorlib
  *	 Website: AdminLTE.io <http://adminlte.io>
@@ -149,7 +149,7 @@
 .info-box .info-box-icon {
   border-radius: 0.25rem;
   align-items: center;
-  display: block;
+  display: flex;
   font-size: 1.875rem;
   justify-content: center;
   text-align: center;

@@ -131,6 +131,21 @@
   var $flat_sidebar_container = $('<div />', {'class': 'mb-1'}).append($flat_sidebar_checkbox).append('<span>Sidebar nav flat style</span>')
   $container.append($flat_sidebar_container)
 
+  var $legacy_sidebar_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('.nav-sidebar').hasClass('nav-legacy'),
+    'class': 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('.nav-sidebar').addClass('nav-legacy')
+    } else {
+      $('.nav-sidebar').removeClass('nav-legacy')
+    }
+  })
+  var $legacy_sidebar_container = $('<div />', {'class': 'mb-1'}).append($legacy_sidebar_checkbox).append('<span>Sidebar nav legacy style</span>')
+  $container.append($legacy_sidebar_container)
+
   var $compact_sidebar_checkbox = $('<input />', {
     type   : 'checkbox',
     value  : 1,
