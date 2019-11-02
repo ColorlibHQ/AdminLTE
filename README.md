@@ -75,8 +75,14 @@ Contribution are always **welcome and recommended**! Here is how:
 - Make your changes
 - Create a pull request
 
-#### Contribution Requirements:
+#### Compile dist files
+To compile the dist files you need nodejs/npm, clone/download the repo then:
 
+1. `npm install` (install npm deps)
+2. _Optional:_ `npm dev` (developer mode, autocompile with browsersync support for live demo)
+3. `npm run production` (compile css/js files)
+
+#### Contribution Requirements:
 - When you contribute, you agree to give a non-exclusive license to AdminLTE.io to use that contribution in any context as we (AdminLTE.io) see appropriate.
 - If you use content provided by another party, it must be appropriately licensed using an [open source](http://opensource.org/licenses) license.
 - Contributions are only accepted through Github pull requests.
