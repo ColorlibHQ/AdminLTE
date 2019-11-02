@@ -9,7 +9,7 @@ Introduction
 
 **AdminLTE** -- is a fully responsive admin template. Based on **[Bootstrap 3 & 4](https://github.com/twbs/bootstrap)** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself.
 
-**Download & Preview on [AdminLTE.IO](https://adminlte.io)**
+**Preview on [AdminLTE.IO](https://adminlte.io)**
 
 ### Looking for More Templates?
 - **[Admin  Templates](http://dashboardpack.com/)** by DashboardPack
