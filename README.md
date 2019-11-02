@@ -7,7 +7,7 @@ Introduction
 [![Packagist](https://img.shields.io/packagist/v/almasaeed2010/adminlte.svg)](https://packagist.org/packages/almasaeed2010/adminlte)
 [![CDNJS](https://img.shields.io/cdnjs/v/admin-lte.svg)](https://cdnjs.com/libraries/admin-lte)
 
-**AdminLTE** -- is a fully responsive admin template. Based on **[Bootstrap 3 & 4](https://github.com/twbs/bootstrap)** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself.
+**AdminLTE** -- is a fully responsive admin template. Based on **[Bootstrap 3](https://github.com/twbs/bootstrap)** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself.
 
 **Preview on [AdminLTE.IO](https://adminlte.io/themes/v2.4.x/)**
 
@@ -30,8 +30,15 @@ Contribution are always **welcome and recommended**! Here is how:
 - Make your changes
 - Create a pull request
 
-#### Contribution Requirements:
+#### Compile dist files
+To compile the dist files you need nodejs/npm, clone/download the repo then:
 
+1. `npm install` (install npm deps)
+2. _Optional:_ `grunt watch` (developer mode, autocompile with browsersync support for live demo)
+3. `grunt css` (compile css files)
+4. `grunt js` (compile js files)
+
+#### Contribution Requirements:
 - When you contribute, you agree to give a non-exclusive license to AdminLTE.IO to use that contribution in any context as we (AdminLTE.IO) see appropriate.
 - If you use content provided by another party, it must be appropriately licensed using an [open source](http://opensource.org/licenses) license.
 - Contributions are only accepted through Github pull requests.
