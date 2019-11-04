@@ -152,6 +152,7 @@
   justify-content: center;
   padding: 0.625em;
   overflow-x: hidden;
+  transition: background-color 0.1s;
   background-color: transparent;
   -webkit-overflow-scrolling: touch;
 }
@@ -229,9 +230,6 @@
   .swal2-container .swal2-modal {
     margin: 0 !important;
   }
-}
-.swal2-container.swal2-fade {
-  transition: background-color 0.1s;
 }
 .swal2-container.swal2-shown {
   background-color: rgba(0, 0, 0, 0.4);
@@ -565,7 +563,6 @@
   min-width: 1.5em;
   height: 1.5em;
   margin: 0 0.625em;
-  zoom: normal;
   border-radius: 50%;
   background-color: #f27474;
   color: #fff;
@@ -581,7 +578,6 @@
   width: 5em;
   height: 5em;
   margin: 1.25em auto 1.875em;
-  zoom: normal;
   border: 0.25em solid transparent;
   border-radius: 50%;
   font-family: inherit;

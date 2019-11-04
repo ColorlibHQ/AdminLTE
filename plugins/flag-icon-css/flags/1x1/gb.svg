@@ -1,15 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-gb" viewBox="0 0 512 512">
-  <defs>
-    <clipPath id="a">
-      <path fill-opacity=".7" d="M250 0h500v500H250z"/>
-    </clipPath>
-  </defs>
-  <g clip-path="url(#a)" transform="translate(-256) scale(1.024)">
-    <g stroke-width="1pt">
-      <path fill="#012169" d="M0 0h1000v500H0z"/>
-      <path fill="#fff" d="M0 0v55.9L888.2 500H1000v-55.9L111.8.1H0zm1000 0v55.9L111.8 500H0v-55.9L888.2 0H1000z"/>
-      <path fill="#fff" d="M416.7 0v500h166.6V0H416.7zM0 166.7v166.6h1000V166.7H0z"/>
-      <path fill="#c8102e" d="M0 200v100h1000V200H0zM450 0v500h100V0H450zM0 500l333.3-166.7H408L74.5 500H0zM0 0l333.3 166.7h-74.5L0 37.3V0zm592.1 166.7L925.5 0h74.5L666.7 166.7H592zm408 333.3L666.6 333.3h74.5L1000 462.7V500z"/>
-    </g>
-  </g>
+  <path fill="#012169" d="M0 0h512v512H0z"/>
+  <path fill="#FFF" d="M512 0v64L322 256l190 187v69h-67L254 324 68 512H0v-68l186-187L0 74V0h62l192 188L440 0z"/>
+  <path d="M184 324l11 34L42 512H0v-3l184-185zm124-12l54 8 150 147v45L308 312zM512 0L320 196l-4-44L466 0h46zM0 1l193 189-59-8L0 49V1z" fill="#C8102E"/>
+  <path d="M176 0v512h160V0H176zM0 176v160h512V176H0z" fill="#FFF"/>
+  <path d="M0 208v96h512v-96H0zM208 0v512h96V0h-96z" fill="#C8102E"/>
 </svg>
