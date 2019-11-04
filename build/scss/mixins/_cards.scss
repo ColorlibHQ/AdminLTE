@@ -4,25 +4,23 @@
 
 @mixin cards-variant($name, $color) {
   .card-#{$name} {
-    &.card-tabs {
-      &:not(.card-outline) {
-        .card-header {
-          background-color: $color;
+    &:not(.card-outline) {
+      .card-header {
+        background-color: $color;
 
-          &,
-          a {
-            color: color-yiq($color);
-          }
+        &,
+        a {
+          color: color-yiq($color);
+        }
 
-          a.active {
-            color: color-yiq($white);
-          }
+        a.active {
+          color: color-yiq($white);
         }
       }
+    }
 
-      &.card-outline {
-        border-top: 3px solid $color;
-      }
+    &.card-outline {
+      border-top: 3px solid $color;
     }
 
     &.card-outline-tabs {
