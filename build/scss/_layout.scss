@@ -380,6 +380,17 @@ body,
 }
 
 
+body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) {
+  .content-wrapper,
+  .main-footer,
+  .main-header {
+    &,
+    &::before {
+      margin-left: 0;
+    }
+  }
+}
+
 body:not(.sidebar-mini-md) {
   .content-wrapper,
   .main-footer,

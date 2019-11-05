@@ -11111,6 +11111,14 @@ body,
   margin-left: 0;
 }
 
+body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .content-wrapper, body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .content-wrapper::before,
+body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-footer,
+body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-footer::before,
+body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header,
+body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::before {
+  margin-left: 0;
+}
+
 @media (min-width: 768px) {
   body:not(.sidebar-mini-md) .content-wrapper,
   body:not(.sidebar-mini-md) .main-footer,
