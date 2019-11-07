@@ -4,7 +4,7 @@ title: Layout
 ---
 
 > ##### Tip!
-> The starter page is a good place to start building your app if you'd like to start from scratch.
+> The [starter page](https://adminlte.io/themes/v3/starter.html) is a good place to start building your app if you'd like to start from scratch.
 {: .quote-info .mt-0}
 
 The layout consists of four major parts:
