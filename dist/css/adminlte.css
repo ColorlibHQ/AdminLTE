@@ -21297,6 +21297,10 @@ html.maximized-card {
   border-color: #6d7a86;
 }
 
+.slider .tooltip.in {
+  opacity: 0.9;
+}
+
 .slider.slider-vertical {
   height: 100%;
 }

@@ -2,6 +2,11 @@
 // Plugin: Bootstrap Slider
 //
 
+// Tooltip fix
+.slider .tooltip.in {
+  opacity: $tooltip-opacity;
+}
+
 // Style override
 .slider {
   &.slider-vertical {
