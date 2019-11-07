@@ -444,13 +444,3 @@ blockquote {
   margin-bottom: .5rem;
   padding-bottom: .5rem;
 }
-
-// Remove Firefox Focusring
-a,
-button,
-input.btn {
-  &:-moz-focusring {
-    border: 0;
-    outline: none;
-  }
-}

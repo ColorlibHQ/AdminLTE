@@ -11537,6 +11537,11 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   z-index: 1038;
 }
 
+.main-sidebar a:-moz-focusring {
+  border: 0;
+  outline: none;
+}
+
 .sidebar {
   height: calc(100% - 4rem);
   overflow-y: auto;
@@ -26495,13 +26500,6 @@ blockquote.quote-gray-dark h6 {
   margin-top: 0;
   margin-bottom: .5rem;
   padding-bottom: .5rem;
-}
-
-a:-moz-focusring,
-button:-moz-focusring,
-input.btn:-moz-focusring {
-  border: 0;
-  outline: none;
 }
 
 @media print {

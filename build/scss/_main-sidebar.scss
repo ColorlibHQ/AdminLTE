@@ -6,6 +6,15 @@
   height: 100vh;
   overflow-y: hidden;
   z-index: $zindex-main-sidebar;
+
+  // Remove Firefox Focusring
+  a {
+    &:-moz-focusring {
+      border: 0;
+      outline: none;
+    }
+  }
+
 }
 
 .sidebar {
