@@ -514,7 +514,7 @@
 
       var _proto = PushMenu.prototype;
 
-      _proto.show = function show() {
+      _proto.expand = function expand() {
         if (this._options.autoCollapseSize) {
           if ($(window).width() <= this._options.autoCollapseSize) {
             $(Selector.BODY).addClass(ClassName.OPEN);
@@ -552,7 +552,7 @@
         if (!$(Selector.BODY).hasClass(ClassName.COLLAPSED)) {
           this.collapse();
         } else {
-          this.show();
+          this.expand();
         }
       };
 
@@ -635,7 +635,7 @@
             $(this).data(DATA_KEY, data);
           }
 
-          if (operation === 'toggle') {
+          if (typeof operation === 'string' && operation.match(/collapse|expand|toggle/)) {
             data[operation]();
           }
         });
@@ -710,12 +710,15 @@
       LI: 'nav-item',
       LINK: 'nav-link',
       TREEVIEW_MENU: 'nav-treeview',
-      OPEN: 'menu-open'
+      OPEN: 'menu-open',
+      SIDEBAR_COLLAPSED: 'sidebar-collapse'
     };
     var Default = {
       trigger: Selector.DATA_WIDGET + " " + Selector.LINK,
       animationSpeed: 300,
-      accordion: true
+      accordion: true,
+      expandSidebar: true,
+      sidebarButtonSelector: '[data-widget="pushmenu"]'
     };
     /**
      * Class Definition
@@ -752,6 +755,10 @@
           parentLi.addClass(ClassName.OPEN);
           $(_this._element).trigger(expandedEvent);
         });
+
+        if (this._config.expandSidebar) {
+          this._expandSidebar();
+        }
       };
 
       _proto.collapse = function collapse(treeviewMenu, parentLi) {
@@ -799,6 +806,12 @@
         $(document).on('click', this._config.trigger, function (event) {
           _this3.toggle(event);
         });
+      };
+
+      _proto._expandSidebar = function _expandSidebar() {
+        if ($('body').hasClass(ClassName.SIDEBAR_COLLAPSED)) {
+          $(this._config.sidebarButtonSelector).PushMenu('expand');
+        }
       } // Static
       ;
 

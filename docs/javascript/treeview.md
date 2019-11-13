@@ -40,6 +40,8 @@ $('ul').Treeview(options)
 |animationSpeed | Number | 300 | Speed of slide down/up animation in milliseconds.
 |accordion | Boolean | TRUE | Whether to collapse the open menu when expanding another.
 |trigger | String | `[data-widget="treeview"] .nav-link` |  Selector of the element that should respond to the click and result in expanding or collapsing it sibling sub menu. 
+|expandSidebar | Boolean | FALSE | Whether to expand sidebar on open menu.
+|sidebarButtonSelector | String | `[data-widget="pushmenu"]` | Selector of the sidebar button.
 {: .table .table-bordered .bg-light}
 
 > ##### Tip!

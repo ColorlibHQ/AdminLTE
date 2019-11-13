@@ -61,7 +61,7 @@ const PushMenu = (($) => {
 
     // Public
 
-    show() {
+    expand() {
       if (this._options.autoCollapseSize) {
         if ($(window).width() <= this._options.autoCollapseSize) {
           $(Selector.BODY).addClass(ClassName.OPEN)
@@ -96,10 +96,10 @@ const PushMenu = (($) => {
     }
 
     toggle() {
-      if (!$(Selector.BODY).hasClass(ClassName.COLLAPSED  )) {
+      if (!$(Selector.BODY).hasClass(ClassName.COLLAPSED)) {
         this.collapse()
       } else {
-        this.show()
+        this.expand()
       }
     }
 
@@ -177,7 +177,7 @@ const PushMenu = (($) => {
           $(this).data(DATA_KEY, data)
         }
 
-        if (operation === 'toggle') {
+        if (typeof operation === 'string' && operation.match(/collapse|expand|toggle/)) {
           data[operation]()
         }
       })

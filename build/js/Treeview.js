@@ -32,16 +32,19 @@ const Treeview = (($) => {
   }
 
   const ClassName = {
-    LI           : 'nav-item',
-    LINK         : 'nav-link',
-    TREEVIEW_MENU: 'nav-treeview',
-    OPEN         : 'menu-open'
+    LI               : 'nav-item',
+    LINK             : 'nav-link',
+    TREEVIEW_MENU    : 'nav-treeview',
+    OPEN             : 'menu-open',
+    SIDEBAR_COLLAPSED: 'sidebar-collapse'
   }
 
   const Default = {
-    trigger       : `${Selector.DATA_WIDGET} ${Selector.LINK}`,
-    animationSpeed: 300,
-    accordion     : true
+    trigger              : `${Selector.DATA_WIDGET} ${Selector.LINK}`,
+    animationSpeed       : 300,
+    accordion            : true,
+    expandSidebar        : true,
+    sidebarButtonSelector: '[data-widget="pushmenu"]'
   }
 
   /**
@@ -73,6 +76,10 @@ const Treeview = (($) => {
         parentLi.addClass(ClassName.OPEN)
         $(this._element).trigger(expandedEvent)
       })
+
+      if (this._config.expandSidebar) {
+        this._expandSidebar()
+      }
     }
 
     collapse(treeviewMenu, parentLi) {
@@ -122,6 +129,12 @@ const Treeview = (($) => {
       $(document).on('click', this._config.trigger, (event) => {
         this.toggle(event)
       })
+    }
+
+    _expandSidebar() {
+      if ($('body').hasClass(ClassName.SIDEBAR_COLLAPSED)) {
+        $(this._config.sidebarButtonSelector).PushMenu('expand')
+      }
     }
 
     // Static
