@@ -201,8 +201,8 @@ const Toasts = (($) => {
 
     static _jQueryInterface(option, config) {
       return this.each(function () {
-        const _config = $.extend({}, Default, config)
-        var toast = new Toasts($(this), _config)
+        const _options = $.extend({}, Default, config)
+        var toast = new Toasts($(this), _options)
 
         if (option === 'create') {
           toast[option]()

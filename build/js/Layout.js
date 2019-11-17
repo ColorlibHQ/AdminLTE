@@ -147,11 +147,11 @@ const Layout = (($) => {
 
     static _jQueryInterface(config) {
       return this.each(function () {
-        let data      = $(this).data(DATA_KEY)
-        const _config = $.extend({}, Default, $(this).data())
+        let data = $(this).data(DATA_KEY)
+        const _options = $.extend({}, Default, $(this).data())
 
         if (!data) {
-          data = new Layout($(this), _config)
+          data = new Layout($(this), _options)
           $(this).data(DATA_KEY, data)
         }
 

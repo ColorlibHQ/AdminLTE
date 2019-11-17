@@ -118,10 +118,10 @@ const CardRefresh = (($) => {
 
     static _jQueryInterface(config) {
       let data = $(this).data(DATA_KEY)
-      let options = $(this).data()
+      const _options = $.extend({}, Default, $(this).data())
 
       if (!data) {
-        data = new CardRefresh($(this), options)
+        data = new CardRefresh($(this), _options)
         $(this).data(DATA_KEY, typeof config === 'string' ? data: config)
       }
 

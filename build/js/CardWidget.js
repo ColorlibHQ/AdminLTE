@@ -188,9 +188,10 @@ const CardWidget = (($) => {
 
     static _jQueryInterface(config) {
       let data = $(this).data(DATA_KEY)
+      const _options = $.extend({}, Default, $(this).data())
 
       if (!data) {
-        data = new CardWidget($(this), data)
+        data = new CardWidget($(this), _options)
         $(this).data(DATA_KEY, typeof config === 'string' ? data: config)
       }
 

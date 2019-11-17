@@ -52,6 +52,11 @@
       FOOTER_LG_FIXED: 'layout-lg-footer-fixed',
       FOOTER_XL_FIXED: 'layout-xl-footer-fixed'
     };
+    var Default = {
+      controlsidebarSlide: true,
+      scrollbarTheme: 'os-theme-light',
+      scrollbarAutoHide: 'l'
+    };
     /**
      * Class Definition
      * ====================================================
@@ -230,8 +235,10 @@
         return this.each(function () {
           var data = $(this).data(DATA_KEY);
 
+          var _options = $.extend({}, Default, $(this).data());
+
           if (!data) {
-            data = new ControlSidebar(this, $(this).data());
+            data = new ControlSidebar(this, _options);
             $(this).data(DATA_KEY, data);
           }
 
@@ -409,10 +416,10 @@
         return this.each(function () {
           var data = $(this).data(DATA_KEY);
 
-          var _config = $.extend({}, Default, $(this).data());
+          var _options = $.extend({}, Default, $(this).data());
 
           if (!data) {
-            data = new Layout($(this), _config);
+            data = new Layout($(this), _options);
             $(this).data(DATA_KEY, data);
           }
 
@@ -819,10 +826,10 @@
         return this.each(function () {
           var data = $(this).data(DATA_KEY);
 
-          var _config = $.extend({}, Default, $(this).data());
+          var _options = $.extend({}, Default, $(this).data());
 
           if (!data) {
-            data = new Treeview($(this), _config);
+            data = new Treeview($(this), _options);
             $(this).data(DATA_KEY, data);
           }
 
@@ -1028,10 +1035,10 @@
         return this.each(function () {
           var data = $(this).data(DATA_KEY);
 
-          var _config = $.extend({}, Default, $(this).data());
+          var _options = $.extend({}, Default, $(this).data());
 
           if (!data) {
-            data = new TodoList($(this), _config);
+            data = new TodoList($(this), _options);
             $(this).data(DATA_KEY, data);
           }
 
@@ -1253,8 +1260,10 @@
       CardWidget._jQueryInterface = function _jQueryInterface(config) {
         var data = $(this).data(DATA_KEY);
 
+        var _options = $.extend({}, Default, $(this).data());
+
         if (!data) {
-          data = new CardWidget($(this), data);
+          data = new CardWidget($(this), _options);
           $(this).data(DATA_KEY, typeof config === 'string' ? data : config);
         }
 
@@ -1427,10 +1436,11 @@
 
       CardRefresh._jQueryInterface = function _jQueryInterface(config) {
         var data = $(this).data(DATA_KEY);
-        var options = $(this).data();
+
+        var _options = $.extend({}, Default, $(this).data());
 
         if (!data) {
-          data = new CardRefresh($(this), options);
+          data = new CardRefresh($(this), _options);
           $(this).data(DATA_KEY, typeof config === 'string' ? data : config);
         }
 
@@ -1757,9 +1767,9 @@
 
       Toasts._jQueryInterface = function _jQueryInterface(option, config) {
         return this.each(function () {
-          var _config = $.extend({}, Default, config);
+          var _options = $.extend({}, Default, config);
 
-          var toast = new Toasts($(this), _config);
+          var toast = new Toasts($(this), _options);
 
           if (option === 'create') {
             toast[option]();

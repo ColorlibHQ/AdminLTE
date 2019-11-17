@@ -246,9 +246,10 @@ const ControlSidebar = (($) => {
     static _jQueryInterface(operation) {
       return this.each(function () {
         let data = $(this).data(DATA_KEY)
+        const _options = $.extend({}, Default, $(this).data())
 
         if (!data) {
-          data = new ControlSidebar(this, $(this).data())
+          data = new ControlSidebar(this, _options)
           $(this).data(DATA_KEY, data)
         }
 
