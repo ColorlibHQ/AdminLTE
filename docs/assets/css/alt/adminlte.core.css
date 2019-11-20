@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- *   AdminLTE v3.0.0
+ *   AdminLTE v3.0.1
  *     Only Core
  *   Author: Colorlib
  *   Website: AdminLTE.io <http://adminlte.io>
@@ -10547,6 +10547,14 @@ body,
   margin-left: 0;
 }
 
+body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .content-wrapper, body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .content-wrapper::before,
+body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-footer,
+body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-footer::before,
+body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header,
+body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::before {
+  margin-left: 0;
+}
+
 @media (min-width: 768px) {
   body:not(.sidebar-mini-md) .content-wrapper,
   body:not(.sidebar-mini-md) .main-footer,
@@ -10931,6 +10939,11 @@ body,
   height: 100vh;
   overflow-y: hidden;
   z-index: 1038;
+}
+
+.main-sidebar a:-moz-focusring {
+  border: 0;
+  outline: none;
 }
 
 .sidebar {
@@ -12367,7 +12380,6 @@ body.text-sm .control-sidebar {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   padding: 0;
-  border-top-width: 0;
   width: 280px;
 }
 
@@ -13394,13 +13406,6 @@ blockquote.quote-gray-dark h6 {
   margin-top: 0;
   margin-bottom: .5rem;
   padding-bottom: .5rem;
-}
-
-a:-moz-focusring,
-button:-moz-focusring,
-input.btn:-moz-focusring {
-  border: 0;
-  outline: none;
 }
 
 @media print {

@@ -1,5 +1,5 @@
 /*!
- * AdminLTE v3.0.0 (https://adminlte.io)
+ * AdminLTE v3.0.1 (https://adminlte.io)
  * Copyright 2014-2019 Colorlib <http://colorlib.com>
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
@@ -7,7 +7,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
   (global = global || self, factory(global.adminlte = {}));
-}(this, function (exports) { 'use strict';
+}(this, (function (exports) { 'use strict';
 
   /**
    * --------------------------------------------
@@ -51,6 +51,11 @@
       FOOTER_MD_FIXED: 'layout-md-footer-fixed',
       FOOTER_LG_FIXED: 'layout-lg-footer-fixed',
       FOOTER_XL_FIXED: 'layout-xl-footer-fixed'
+    };
+    var Default = {
+      controlsidebarSlide: true,
+      scrollbarTheme: 'os-theme-light',
+      scrollbarAutoHide: 'l'
     };
     /**
      * Class Definition
@@ -230,8 +235,10 @@
         return this.each(function () {
           var data = $(this).data(DATA_KEY);
 
+          var _options = $.extend({}, Default, $(this).data());
+
           if (!data) {
-            data = new ControlSidebar(this, $(this).data());
+            data = new ControlSidebar(this, _options);
             $(this).data(DATA_KEY, data);
           }
 
@@ -409,10 +416,10 @@
         return this.each(function () {
           var data = $(this).data(DATA_KEY);
 
-          var _config = $.extend({}, Default, $(this).data());
+          var _options = $.extend({}, Default, $(this).data());
 
           if (!data) {
-            data = new Layout($(this), _config);
+            data = new Layout($(this), _options);
             $(this).data(DATA_KEY, data);
           }
 
@@ -514,7 +521,7 @@
 
       var _proto = PushMenu.prototype;
 
-      _proto.show = function show() {
+      _proto.expand = function expand() {
         if (this._options.autoCollapseSize) {
           if ($(window).width() <= this._options.autoCollapseSize) {
             $(Selector.BODY).addClass(ClassName.OPEN);
@@ -552,7 +559,7 @@
         if (!$(Selector.BODY).hasClass(ClassName.COLLAPSED)) {
           this.collapse();
         } else {
-          this.show();
+          this.expand();
         }
       };
 
@@ -635,7 +642,7 @@
             $(this).data(DATA_KEY, data);
           }
 
-          if (operation === 'toggle') {
+          if (typeof operation === 'string' && operation.match(/collapse|expand|toggle/)) {
             data[operation]();
           }
         });
@@ -710,12 +717,15 @@
       LI: 'nav-item',
       LINK: 'nav-link',
       TREEVIEW_MENU: 'nav-treeview',
-      OPEN: 'menu-open'
+      OPEN: 'menu-open',
+      SIDEBAR_COLLAPSED: 'sidebar-collapse'
     };
     var Default = {
       trigger: Selector.DATA_WIDGET + " " + Selector.LINK,
       animationSpeed: 300,
-      accordion: true
+      accordion: true,
+      expandSidebar: false,
+      sidebarButtonSelector: '[data-widget="pushmenu"]'
     };
     /**
      * Class Definition
@@ -752,6 +762,10 @@
           parentLi.addClass(ClassName.OPEN);
           $(_this._element).trigger(expandedEvent);
         });
+
+        if (this._config.expandSidebar) {
+          this._expandSidebar();
+        }
       };
 
       _proto.collapse = function collapse(treeviewMenu, parentLi) {
@@ -799,6 +813,12 @@
         $(document).on('click', this._config.trigger, function (event) {
           _this3.toggle(event);
         });
+      };
+
+      _proto._expandSidebar = function _expandSidebar() {
+        if ($('body').hasClass(ClassName.SIDEBAR_COLLAPSED)) {
+          $(this._config.sidebarButtonSelector).PushMenu('expand');
+        }
       } // Static
       ;
 
@@ -806,10 +826,10 @@
         return this.each(function () {
           var data = $(this).data(DATA_KEY);
 
-          var _config = $.extend({}, Default, $(this).data());
+          var _options = $.extend({}, Default, $(this).data());
 
           if (!data) {
-            data = new Treeview($(this), _config);
+            data = new Treeview($(this), _options);
             $(this).data(DATA_KEY, data);
           }
 
@@ -1015,10 +1035,10 @@
         return this.each(function () {
           var data = $(this).data(DATA_KEY);
 
-          var _config = $.extend({}, Default, $(this).data());
+          var _options = $.extend({}, Default, $(this).data());
 
           if (!data) {
-            data = new TodoList($(this), _config);
+            data = new TodoList($(this), _options);
             $(this).data(DATA_KEY, data);
           }
 
@@ -1240,8 +1260,10 @@
       CardWidget._jQueryInterface = function _jQueryInterface(config) {
         var data = $(this).data(DATA_KEY);
 
+        var _options = $.extend({}, Default, $(this).data());
+
         if (!data) {
-          data = new CardWidget($(this), data);
+          data = new CardWidget($(this), _options);
           $(this).data(DATA_KEY, typeof config === 'string' ? data : config);
         }
 
@@ -1414,10 +1436,11 @@
 
       CardRefresh._jQueryInterface = function _jQueryInterface(config) {
         var data = $(this).data(DATA_KEY);
-        var options = $(this).data();
+
+        var _options = $.extend({}, Default, $(this).data());
 
         if (!data) {
-          data = new CardRefresh($(this), options);
+          data = new CardRefresh($(this), _options);
           $(this).data(DATA_KEY, typeof config === 'string' ? data : config);
         }
 
@@ -1744,9 +1767,9 @@
 
       Toasts._jQueryInterface = function _jQueryInterface(option, config) {
         return this.each(function () {
-          var _config = $.extend({}, Default, config);
+          var _options = $.extend({}, Default, config);
 
-          var toast = new Toasts($(this), _config);
+          var toast = new Toasts($(this), _options);
 
           if (option === 'create') {
             toast[option]();
@@ -1786,5 +1809,5 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=adminlte.js.map

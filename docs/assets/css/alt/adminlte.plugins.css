@@ -1,9 +1,9 @@
 @charset "UTF-8";
 /*!
- *   AdminLTE v3.0.0
+ *   AdminLTE v3.0.1
  *     Only Plugins
  *   Author: Colorlib
- *	 Website: AdminLTE.io <http://adminlte.io>
+ *   Website: AdminLTE.io <http://adminlte.io>
  *   License: Open source - MIT <http://opensource.org/licenses/MIT>
  */
 .fc-button {
@@ -1546,6 +1546,10 @@
 .select2-container--default .select2-gray-dark.select2-container--focus .select2-selection--multiple,
 .select2-gray-dark .select2-container--default.select2-container--focus .select2-selection--multiple {
   border-color: #6d7a86;
+}
+
+.slider .tooltip.in {
+  opacity: 0.9;
 }
 
 .slider.slider-vertical {
