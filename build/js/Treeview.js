@@ -43,7 +43,7 @@ const Treeview = (($) => {
     trigger              : `${Selector.DATA_WIDGET} ${Selector.LINK}`,
     animationSpeed       : 300,
     accordion            : true,
-    expandSidebar        : true,
+    expandSidebar        : false,
     sidebarButtonSelector: '[data-widget="pushmenu"]'
   }
 
