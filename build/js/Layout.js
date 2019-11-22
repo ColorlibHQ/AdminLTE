@@ -29,6 +29,8 @@ const Layout = (($) => {
     CONTENT_HEADER : '.content-header',
     WRAPPER        : '.wrapper',
     CONTROL_SIDEBAR: '.control-sidebar',
+    CONTROL_SIDEBAR_CONTENT: '.control-sidebar-content',
+    CONTROL_SIDEBAR_BTN: '[data-widget="control-sidebar"]',
     LAYOUT_FIXED   : '.layout-fixed',
     FOOTER         : '.main-footer',
     PUSHMENU_BTN   : '[data-widget="pushmenu"]',
@@ -46,6 +48,8 @@ const Layout = (($) => {
     FOOTER_FIXED   : 'layout-footer-fixed',
     LOGIN_PAGE     : 'login-page',
     REGISTER_PAGE  : 'register-page',
+    CONTROL_SIDEBAR_SLIDE_OPEN: 'control-sidebar-slide-open',
+    CONTROL_SIDEBAR_OPEN: 'control-sidebar-open',
   }
 
   const Default = {
@@ -68,17 +72,26 @@ const Layout = (($) => {
 
     // Public
 
-    fixLayoutHeight() {
+    fixLayoutHeight(extra = null) {
+      let control_sidebar = 0
+
+      if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || extra == 'control_sidebar') {
+        control_sidebar = $(Selector.CONTROL_SIDEBAR_CONTENT).height()
+      }
+
       const heights = {
         window: $(window).height(),
         header: $(Selector.HEADER).length !== 0 ? $(Selector.HEADER).outerHeight() : 0,
         footer: $(Selector.FOOTER).length !== 0 ? $(Selector.FOOTER).outerHeight() : 0,
         sidebar: $(Selector.SIDEBAR).length !== 0 ? $(Selector.SIDEBAR).height() : 0,
+        control_sidebar: control_sidebar,
       }
 
       const max = this._max(heights)
 
-      if (max == heights.window) {
+      if (max == heights.control_sidebar) {
+        $(Selector.CONTENT).css('min-height', max)
+      } else if (max == heights.window) {
         $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer)
       } else {
         $(Selector.CONTENT).css('min-height', max - heights.header)
@@ -113,6 +126,14 @@ const Layout = (($) => {
       $(Selector.PUSHMENU_BTN)
         .on('collapsed.lte.pushmenu shown.lte.pushmenu', () => {
           this.fixLayoutHeight()
+        })
+
+      $(Selector.CONTROL_SIDEBAR_BTN)
+        .on('collapsed.lte.controlsidebar', () => {
+          this.fixLayoutHeight()
+        })
+        .on('expanded.lte.controlsidebar', () => {
+          this.fixLayoutHeight('control_sidebar')
         })
 
       $(window).resize(() => {

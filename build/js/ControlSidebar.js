@@ -69,7 +69,7 @@ const ControlSidebar = (($) => {
 
     // Public
 
-    show() {
+    collapse() {
       // Show the control sidebar
       if (this._config.controlsidebarSlide) {
         $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
@@ -82,11 +82,11 @@ const ControlSidebar = (($) => {
         $('body').removeClass(ClassName.CONTROL_SIDEBAR_OPEN)
       }
 
-      const expandedEvent = $.Event(Event.EXPANDED)
-      $(this._element).trigger(expandedEvent)
+      const collapsedEvent = $.Event(Event.COLLAPSED)
+      $(this._element).trigger(collapsedEvent)
     }
 
-    collapse() {
+    show() {
       // Collapse the control sidebar
       if (this._config.controlsidebarSlide) {
         $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
@@ -101,19 +101,19 @@ const ControlSidebar = (($) => {
         $('body').addClass(ClassName.CONTROL_SIDEBAR_OPEN)
       }
 
-      const collapsedEvent = $.Event(Event.COLLAPSED)
-      $(this._element).trigger(collapsedEvent)
+      const expandedEvent = $.Event(Event.EXPANDED)
+      $(this._element).trigger(expandedEvent)
     }
 
     toggle() {
-      const shouldOpen = $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body')
+      const shouldClose = $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body')
         .hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)
-      if (shouldOpen) {
-        // Open the control sidebar
-        this.show()
-      } else {
+      if (shouldClose) {
         // Close the control sidebar
         this.collapse()
+      } else {
+        // Open the control sidebar
+        this.show()
       }
     }
 
@@ -289,3 +289,4 @@ const ControlSidebar = (($) => {
 })(jQuery)
 
 export default ControlSidebar
+  
