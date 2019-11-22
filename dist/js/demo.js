@@ -319,10 +319,10 @@
   }))
 
   $container.append('<h6>Dark Sidebar Variants</h6>')
-  var $sidebar_variants = $('<div />', {
+  var $sidebar_variants_dark = $('<div />', {
     'class': 'd-flex'
   })
-  $container.append($sidebar_variants)
+  $container.append($sidebar_variants_dark)
   $container.append(createSkinBlock(sidebar_colors, function () {
     var color         = $(this).data('color')
     var sidebar_class = 'sidebar-dark-' + color.replace('bg-', '')
@@ -335,10 +335,10 @@
   }))
 
   $container.append('<h6>Light Sidebar Variants</h6>')
-  var $sidebar_variants = $('<div />', {
+  var $sidebar_variants_light = $('<div />', {
     'class': 'd-flex'
   })
-  $container.append($sidebar_variants)
+  $container.append($sidebar_variants_light)
   $container.append(createSkinBlock(sidebar_colors, function () {
     var color         = $(this).data('color')
     var sidebar_class = 'sidebar-light-' + color.replace('bg-', '')
