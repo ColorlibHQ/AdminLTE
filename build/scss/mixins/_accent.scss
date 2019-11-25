@@ -18,6 +18,15 @@
       }
     }
 
+    [class*="sidebar-light-"],
+    &[class*="sidebar-dark-"] {
+        .nav-sidebar .nav-treeview > .nav-item > {
+        .nav-link:not(.active):hover {
+          color: $color;
+        }
+      }
+    }
+    
     .page-item {
       &.active .page-link {
         background-color: $pagination-active-bg;
