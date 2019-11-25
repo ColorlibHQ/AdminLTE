@@ -10165,6 +10165,22 @@ body,
   height: calc(2.93725rem + 1px);
 }
 
+body:not(.layout-fixed).layout-navbar-fixed .wrapper .main-sidebar {
+  margin-top: calc(calc(3.5rem + 1px) / -1);
+}
+
+body:not(.layout-fixed).layout-navbar-fixed .wrapper .main-sidebar .sidebar  {
+  margin-top: calc(3.5rem + 1px);
+}
+
+body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar {
+  margin-top: calc(calc(2.93725rem + 1px) / -1);
+}
+
+body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar .sidebar  {
+  margin-top: calc(2.93725rem + 1px);
+}
+
 .layout-navbar-fixed .wrapper .control-sidebar {
   top: 0;
 }
@@ -10435,6 +10451,22 @@ body,
   margin-top: calc(2.93725rem + 1px);
 }
 
+body:not(.layout-fixed).layout-navbar-fixed .wrapper .main-sidebar {
+  margin-top: calc(calc(3.5rem + 1px) / -1);
+}
+
+body:not(.layout-fixed).layout-navbar-fixed .wrapper .main-sidebar .sidebar  {
+  margin-top: calc(3.5rem + 1px);
+}
+
+body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar {
+  margin-top: calc(calc(2.93725rem + 1px) / -1);
+}
+
+body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar .sidebar  {
+  margin-top: calc(2.93725rem + 1px);
+}
+
 .layout-navbar-not-fixed .wrapper .brand-link {
   position: static;
 }
@@ -10566,6 +10598,18 @@ body,
   .layout-sm-navbar-fixed.text-sm .wrapper .content-wrapper {
     margin-top: calc(2.93725rem + 1px);
   }
+  body:not(.layout-fixed).layout-sm-navbar-fixed .wrapper .main-sidebar {
+    margin-top: calc(calc(3.5rem + 1px) / -1);
+  }
+  body:not(.layout-fixed).layout-sm-navbar-fixed .wrapper .main-sidebar .sidebar  {
+    margin-top: calc(3.5rem + 1px);
+  }
+  body:not(.layout-fixed).layout-sm-navbar-fixed.text-sm .wrapper .main-sidebar {
+    margin-top: calc(calc(2.93725rem + 1px) / -1);
+  }
+  body:not(.layout-fixed).layout-sm-navbar-fixed.text-sm .wrapper .main-sidebar .sidebar  {
+    margin-top: calc(2.93725rem + 1px);
+  }
   .layout-sm-navbar-not-fixed .wrapper .brand-link {
     position: static;
   }
@@ -10693,6 +10737,18 @@ body,
     z-index: 1037;
   }
   .layout-md-navbar-fixed.text-sm .wrapper .content-wrapper {
+    margin-top: calc(2.93725rem + 1px);
+  }
+  body:not(.layout-fixed).layout-md-navbar-fixed .wrapper .main-sidebar {
+    margin-top: calc(calc(3.5rem + 1px) / -1);
+  }
+  body:not(.layout-fixed).layout-md-navbar-fixed .wrapper .main-sidebar .sidebar  {
+    margin-top: calc(3.5rem + 1px);
+  }
+  body:not(.layout-fixed).layout-md-navbar-fixed.text-sm .wrapper .main-sidebar {
+    margin-top: calc(calc(2.93725rem + 1px) / -1);
+  }
+  body:not(.layout-fixed).layout-md-navbar-fixed.text-sm .wrapper .main-sidebar .sidebar  {
     margin-top: calc(2.93725rem + 1px);
   }
   .layout-md-navbar-not-fixed .wrapper .brand-link {
@@ -10824,6 +10880,18 @@ body,
   .layout-lg-navbar-fixed.text-sm .wrapper .content-wrapper {
     margin-top: calc(2.93725rem + 1px);
   }
+  body:not(.layout-fixed).layout-lg-navbar-fixed .wrapper .main-sidebar {
+    margin-top: calc(calc(3.5rem + 1px) / -1);
+  }
+  body:not(.layout-fixed).layout-lg-navbar-fixed .wrapper .main-sidebar .sidebar  {
+    margin-top: calc(3.5rem + 1px);
+  }
+  body:not(.layout-fixed).layout-lg-navbar-fixed.text-sm .wrapper .main-sidebar {
+    margin-top: calc(calc(2.93725rem + 1px) / -1);
+  }
+  body:not(.layout-fixed).layout-lg-navbar-fixed.text-sm .wrapper .main-sidebar .sidebar  {
+    margin-top: calc(2.93725rem + 1px);
+  }
   .layout-lg-navbar-not-fixed .wrapper .brand-link {
     position: static;
   }
@@ -10951,6 +11019,18 @@ body,
     z-index: 1037;
   }
   .layout-xl-navbar-fixed.text-sm .wrapper .content-wrapper {
+    margin-top: calc(2.93725rem + 1px);
+  }
+  body:not(.layout-fixed).layout-xl-navbar-fixed .wrapper .main-sidebar {
+    margin-top: calc(calc(3.5rem + 1px) / -1);
+  }
+  body:not(.layout-fixed).layout-xl-navbar-fixed .wrapper .main-sidebar .sidebar  {
+    margin-top: calc(3.5rem + 1px);
+  }
+  body:not(.layout-fixed).layout-xl-navbar-fixed.text-sm .wrapper .main-sidebar {
+    margin-top: calc(calc(2.93725rem + 1px) / -1);
+  }
+  body:not(.layout-fixed).layout-xl-navbar-fixed.text-sm .wrapper .main-sidebar .sidebar  {
     margin-top: calc(2.93725rem + 1px);
   }
   .layout-xl-navbar-not-fixed .wrapper .brand-link {
