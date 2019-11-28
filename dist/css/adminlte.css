@@ -15734,16 +15734,16 @@ html.maximized-card {
   max-width: 200px;
 }
 
-.card-primary:not(.card-outline) .card-header {
+.card-primary:not(.card-outline) > .card-header {
   background-color: #007bff;
 }
 
-.card-primary:not(.card-outline) .card-header,
-.card-primary:not(.card-outline) .card-header a {
+.card-primary:not(.card-outline) > .card-header,
+.card-primary:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-primary:not(.card-outline) .card-header a.active {
+.card-primary:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -15751,11 +15751,11 @@ html.maximized-card {
   border-top: 3px solid #007bff;
 }
 
-.card-primary.card-outline-tabs .card-header a:hover {
+.card-primary.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-primary.card-outline-tabs .card-header a.active {
+.card-primary.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #007bff;
 }
 
@@ -15805,16 +15805,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-secondary:not(.card-outline) .card-header {
+.card-secondary:not(.card-outline) > .card-header {
   background-color: #6c757d;
 }
 
-.card-secondary:not(.card-outline) .card-header,
-.card-secondary:not(.card-outline) .card-header a {
+.card-secondary:not(.card-outline) > .card-header,
+.card-secondary:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-secondary:not(.card-outline) .card-header a.active {
+.card-secondary:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -15822,11 +15822,11 @@ html.maximized-card {
   border-top: 3px solid #6c757d;
 }
 
-.card-secondary.card-outline-tabs .card-header a:hover {
+.card-secondary.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-secondary.card-outline-tabs .card-header a.active {
+.card-secondary.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #6c757d;
 }
 
@@ -15876,16 +15876,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-success:not(.card-outline) .card-header {
+.card-success:not(.card-outline) > .card-header {
   background-color: #28a745;
 }
 
-.card-success:not(.card-outline) .card-header,
-.card-success:not(.card-outline) .card-header a {
+.card-success:not(.card-outline) > .card-header,
+.card-success:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-success:not(.card-outline) .card-header a.active {
+.card-success:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -15893,11 +15893,11 @@ html.maximized-card {
   border-top: 3px solid #28a745;
 }
 
-.card-success.card-outline-tabs .card-header a:hover {
+.card-success.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-success.card-outline-tabs .card-header a.active {
+.card-success.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #28a745;
 }
 
@@ -15947,16 +15947,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-info:not(.card-outline) .card-header {
+.card-info:not(.card-outline) > .card-header {
   background-color: #17a2b8;
 }
 
-.card-info:not(.card-outline) .card-header,
-.card-info:not(.card-outline) .card-header a {
+.card-info:not(.card-outline) > .card-header,
+.card-info:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-info:not(.card-outline) .card-header a.active {
+.card-info:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -15964,11 +15964,11 @@ html.maximized-card {
   border-top: 3px solid #17a2b8;
 }
 
-.card-info.card-outline-tabs .card-header a:hover {
+.card-info.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-info.card-outline-tabs .card-header a.active {
+.card-info.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #17a2b8;
 }
 
@@ -16018,16 +16018,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-warning:not(.card-outline) .card-header {
+.card-warning:not(.card-outline) > .card-header {
   background-color: #ffc107;
 }
 
-.card-warning:not(.card-outline) .card-header,
-.card-warning:not(.card-outline) .card-header a {
+.card-warning:not(.card-outline) > .card-header,
+.card-warning:not(.card-outline) > .card-header a {
   color: #1F2D3D;
 }
 
-.card-warning:not(.card-outline) .card-header a.active {
+.card-warning:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -16035,11 +16035,11 @@ html.maximized-card {
   border-top: 3px solid #ffc107;
 }
 
-.card-warning.card-outline-tabs .card-header a:hover {
+.card-warning.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-warning.card-outline-tabs .card-header a.active {
+.card-warning.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #ffc107;
 }
 
@@ -16089,16 +16089,16 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
-.card-danger:not(.card-outline) .card-header {
+.card-danger:not(.card-outline) > .card-header {
   background-color: #dc3545;
 }
 
-.card-danger:not(.card-outline) .card-header,
-.card-danger:not(.card-outline) .card-header a {
+.card-danger:not(.card-outline) > .card-header,
+.card-danger:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-danger:not(.card-outline) .card-header a.active {
+.card-danger:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -16106,11 +16106,11 @@ html.maximized-card {
   border-top: 3px solid #dc3545;
 }
 
-.card-danger.card-outline-tabs .card-header a:hover {
+.card-danger.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-danger.card-outline-tabs .card-header a.active {
+.card-danger.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #dc3545;
 }
 
@@ -16160,16 +16160,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-light:not(.card-outline) .card-header {
+.card-light:not(.card-outline) > .card-header {
   background-color: #f8f9fa;
 }
 
-.card-light:not(.card-outline) .card-header,
-.card-light:not(.card-outline) .card-header a {
+.card-light:not(.card-outline) > .card-header,
+.card-light:not(.card-outline) > .card-header a {
   color: #1F2D3D;
 }
 
-.card-light:not(.card-outline) .card-header a.active {
+.card-light:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -16177,11 +16177,11 @@ html.maximized-card {
   border-top: 3px solid #f8f9fa;
 }
 
-.card-light.card-outline-tabs .card-header a:hover {
+.card-light.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-light.card-outline-tabs .card-header a.active {
+.card-light.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #f8f9fa;
 }
 
@@ -16231,16 +16231,16 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
-.card-dark:not(.card-outline) .card-header {
+.card-dark:not(.card-outline) > .card-header {
   background-color: #343a40;
 }
 
-.card-dark:not(.card-outline) .card-header,
-.card-dark:not(.card-outline) .card-header a {
+.card-dark:not(.card-outline) > .card-header,
+.card-dark:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-dark:not(.card-outline) .card-header a.active {
+.card-dark:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -16248,11 +16248,11 @@ html.maximized-card {
   border-top: 3px solid #343a40;
 }
 
-.card-dark.card-outline-tabs .card-header a:hover {
+.card-dark.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-dark.card-outline-tabs .card-header a.active {
+.card-dark.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #343a40;
 }
 
@@ -16302,16 +16302,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-navy:not(.card-outline) .card-header {
+.card-navy:not(.card-outline) > .card-header {
   background-color: #001f3f;
 }
 
-.card-navy:not(.card-outline) .card-header,
-.card-navy:not(.card-outline) .card-header a {
+.card-navy:not(.card-outline) > .card-header,
+.card-navy:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-navy:not(.card-outline) .card-header a.active {
+.card-navy:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -16319,11 +16319,11 @@ html.maximized-card {
   border-top: 3px solid #001f3f;
 }
 
-.card-navy.card-outline-tabs .card-header a:hover {
+.card-navy.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-navy.card-outline-tabs .card-header a.active {
+.card-navy.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #001f3f;
 }
 
@@ -16373,16 +16373,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-olive:not(.card-outline) .card-header {
+.card-olive:not(.card-outline) > .card-header {
   background-color: #3d9970;
 }
 
-.card-olive:not(.card-outline) .card-header,
-.card-olive:not(.card-outline) .card-header a {
+.card-olive:not(.card-outline) > .card-header,
+.card-olive:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-olive:not(.card-outline) .card-header a.active {
+.card-olive:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -16390,11 +16390,11 @@ html.maximized-card {
   border-top: 3px solid #3d9970;
 }
 
-.card-olive.card-outline-tabs .card-header a:hover {
+.card-olive.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-olive.card-outline-tabs .card-header a.active {
+.card-olive.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #3d9970;
 }
 
@@ -16444,16 +16444,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-lime:not(.card-outline) .card-header {
+.card-lime:not(.card-outline) > .card-header {
   background-color: #01ff70;
 }
 
-.card-lime:not(.card-outline) .card-header,
-.card-lime:not(.card-outline) .card-header a {
+.card-lime:not(.card-outline) > .card-header,
+.card-lime:not(.card-outline) > .card-header a {
   color: #1F2D3D;
 }
 
-.card-lime:not(.card-outline) .card-header a.active {
+.card-lime:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -16461,11 +16461,11 @@ html.maximized-card {
   border-top: 3px solid #01ff70;
 }
 
-.card-lime.card-outline-tabs .card-header a:hover {
+.card-lime.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-lime.card-outline-tabs .card-header a.active {
+.card-lime.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #01ff70;
 }
 
@@ -16515,16 +16515,16 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
-.card-fuchsia:not(.card-outline) .card-header {
+.card-fuchsia:not(.card-outline) > .card-header {
   background-color: #f012be;
 }
 
-.card-fuchsia:not(.card-outline) .card-header,
-.card-fuchsia:not(.card-outline) .card-header a {
+.card-fuchsia:not(.card-outline) > .card-header,
+.card-fuchsia:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-fuchsia:not(.card-outline) .card-header a.active {
+.card-fuchsia:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -16532,11 +16532,11 @@ html.maximized-card {
   border-top: 3px solid #f012be;
 }
 
-.card-fuchsia.card-outline-tabs .card-header a:hover {
+.card-fuchsia.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-fuchsia.card-outline-tabs .card-header a.active {
+.card-fuchsia.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #f012be;
 }
 
@@ -16586,16 +16586,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-maroon:not(.card-outline) .card-header {
+.card-maroon:not(.card-outline) > .card-header {
   background-color: #d81b60;
 }
 
-.card-maroon:not(.card-outline) .card-header,
-.card-maroon:not(.card-outline) .card-header a {
+.card-maroon:not(.card-outline) > .card-header,
+.card-maroon:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-maroon:not(.card-outline) .card-header a.active {
+.card-maroon:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -16603,11 +16603,11 @@ html.maximized-card {
   border-top: 3px solid #d81b60;
 }
 
-.card-maroon.card-outline-tabs .card-header a:hover {
+.card-maroon.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-maroon.card-outline-tabs .card-header a.active {
+.card-maroon.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #d81b60;
 }
 
@@ -16657,16 +16657,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-blue:not(.card-outline) .card-header {
+.card-blue:not(.card-outline) > .card-header {
   background-color: #007bff;
 }
 
-.card-blue:not(.card-outline) .card-header,
-.card-blue:not(.card-outline) .card-header a {
+.card-blue:not(.card-outline) > .card-header,
+.card-blue:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-blue:not(.card-outline) .card-header a.active {
+.card-blue:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -16674,11 +16674,11 @@ html.maximized-card {
   border-top: 3px solid #007bff;
 }
 
-.card-blue.card-outline-tabs .card-header a:hover {
+.card-blue.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-blue.card-outline-tabs .card-header a.active {
+.card-blue.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #007bff;
 }
 
@@ -16728,16 +16728,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-indigo:not(.card-outline) .card-header {
+.card-indigo:not(.card-outline) > .card-header {
   background-color: #6610f2;
 }
 
-.card-indigo:not(.card-outline) .card-header,
-.card-indigo:not(.card-outline) .card-header a {
+.card-indigo:not(.card-outline) > .card-header,
+.card-indigo:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-indigo:not(.card-outline) .card-header a.active {
+.card-indigo:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -16745,11 +16745,11 @@ html.maximized-card {
   border-top: 3px solid #6610f2;
 }
 
-.card-indigo.card-outline-tabs .card-header a:hover {
+.card-indigo.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-indigo.card-outline-tabs .card-header a.active {
+.card-indigo.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #6610f2;
 }
 
@@ -16799,16 +16799,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-purple:not(.card-outline) .card-header {
+.card-purple:not(.card-outline) > .card-header {
   background-color: #6f42c1;
 }
 
-.card-purple:not(.card-outline) .card-header,
-.card-purple:not(.card-outline) .card-header a {
+.card-purple:not(.card-outline) > .card-header,
+.card-purple:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-purple:not(.card-outline) .card-header a.active {
+.card-purple:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -16816,11 +16816,11 @@ html.maximized-card {
   border-top: 3px solid #6f42c1;
 }
 
-.card-purple.card-outline-tabs .card-header a:hover {
+.card-purple.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-purple.card-outline-tabs .card-header a.active {
+.card-purple.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #6f42c1;
 }
 
@@ -16870,16 +16870,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-pink:not(.card-outline) .card-header {
+.card-pink:not(.card-outline) > .card-header {
   background-color: #e83e8c;
 }
 
-.card-pink:not(.card-outline) .card-header,
-.card-pink:not(.card-outline) .card-header a {
+.card-pink:not(.card-outline) > .card-header,
+.card-pink:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-pink:not(.card-outline) .card-header a.active {
+.card-pink:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -16887,11 +16887,11 @@ html.maximized-card {
   border-top: 3px solid #e83e8c;
 }
 
-.card-pink.card-outline-tabs .card-header a:hover {
+.card-pink.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-pink.card-outline-tabs .card-header a.active {
+.card-pink.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #e83e8c;
 }
 
@@ -16941,16 +16941,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-red:not(.card-outline) .card-header {
+.card-red:not(.card-outline) > .card-header {
   background-color: #dc3545;
 }
 
-.card-red:not(.card-outline) .card-header,
-.card-red:not(.card-outline) .card-header a {
+.card-red:not(.card-outline) > .card-header,
+.card-red:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-red:not(.card-outline) .card-header a.active {
+.card-red:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -16958,11 +16958,11 @@ html.maximized-card {
   border-top: 3px solid #dc3545;
 }
 
-.card-red.card-outline-tabs .card-header a:hover {
+.card-red.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-red.card-outline-tabs .card-header a.active {
+.card-red.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #dc3545;
 }
 
@@ -17012,16 +17012,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-orange:not(.card-outline) .card-header {
+.card-orange:not(.card-outline) > .card-header {
   background-color: #fd7e14;
 }
 
-.card-orange:not(.card-outline) .card-header,
-.card-orange:not(.card-outline) .card-header a {
+.card-orange:not(.card-outline) > .card-header,
+.card-orange:not(.card-outline) > .card-header a {
   color: #1F2D3D;
 }
 
-.card-orange:not(.card-outline) .card-header a.active {
+.card-orange:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -17029,11 +17029,11 @@ html.maximized-card {
   border-top: 3px solid #fd7e14;
 }
 
-.card-orange.card-outline-tabs .card-header a:hover {
+.card-orange.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-orange.card-outline-tabs .card-header a.active {
+.card-orange.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #fd7e14;
 }
 
@@ -17083,16 +17083,16 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
-.card-yellow:not(.card-outline) .card-header {
+.card-yellow:not(.card-outline) > .card-header {
   background-color: #ffc107;
 }
 
-.card-yellow:not(.card-outline) .card-header,
-.card-yellow:not(.card-outline) .card-header a {
+.card-yellow:not(.card-outline) > .card-header,
+.card-yellow:not(.card-outline) > .card-header a {
   color: #1F2D3D;
 }
 
-.card-yellow:not(.card-outline) .card-header a.active {
+.card-yellow:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -17100,11 +17100,11 @@ html.maximized-card {
   border-top: 3px solid #ffc107;
 }
 
-.card-yellow.card-outline-tabs .card-header a:hover {
+.card-yellow.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-yellow.card-outline-tabs .card-header a.active {
+.card-yellow.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #ffc107;
 }
 
@@ -17154,16 +17154,16 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
-.card-green:not(.card-outline) .card-header {
+.card-green:not(.card-outline) > .card-header {
   background-color: #28a745;
 }
 
-.card-green:not(.card-outline) .card-header,
-.card-green:not(.card-outline) .card-header a {
+.card-green:not(.card-outline) > .card-header,
+.card-green:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-green:not(.card-outline) .card-header a.active {
+.card-green:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -17171,11 +17171,11 @@ html.maximized-card {
   border-top: 3px solid #28a745;
 }
 
-.card-green.card-outline-tabs .card-header a:hover {
+.card-green.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-green.card-outline-tabs .card-header a.active {
+.card-green.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #28a745;
 }
 
@@ -17225,16 +17225,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-teal:not(.card-outline) .card-header {
+.card-teal:not(.card-outline) > .card-header {
   background-color: #20c997;
 }
 
-.card-teal:not(.card-outline) .card-header,
-.card-teal:not(.card-outline) .card-header a {
+.card-teal:not(.card-outline) > .card-header,
+.card-teal:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-teal:not(.card-outline) .card-header a.active {
+.card-teal:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -17242,11 +17242,11 @@ html.maximized-card {
   border-top: 3px solid #20c997;
 }
 
-.card-teal.card-outline-tabs .card-header a:hover {
+.card-teal.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-teal.card-outline-tabs .card-header a.active {
+.card-teal.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #20c997;
 }
 
@@ -17296,16 +17296,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-cyan:not(.card-outline) .card-header {
+.card-cyan:not(.card-outline) > .card-header {
   background-color: #17a2b8;
 }
 
-.card-cyan:not(.card-outline) .card-header,
-.card-cyan:not(.card-outline) .card-header a {
+.card-cyan:not(.card-outline) > .card-header,
+.card-cyan:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-cyan:not(.card-outline) .card-header a.active {
+.card-cyan:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -17313,11 +17313,11 @@ html.maximized-card {
   border-top: 3px solid #17a2b8;
 }
 
-.card-cyan.card-outline-tabs .card-header a:hover {
+.card-cyan.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-cyan.card-outline-tabs .card-header a.active {
+.card-cyan.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #17a2b8;
 }
 
@@ -17367,16 +17367,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-white:not(.card-outline) .card-header {
+.card-white:not(.card-outline) > .card-header {
   background-color: #ffffff;
 }
 
-.card-white:not(.card-outline) .card-header,
-.card-white:not(.card-outline) .card-header a {
+.card-white:not(.card-outline) > .card-header,
+.card-white:not(.card-outline) > .card-header a {
   color: #1F2D3D;
 }
 
-.card-white:not(.card-outline) .card-header a.active {
+.card-white:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -17384,11 +17384,11 @@ html.maximized-card {
   border-top: 3px solid #ffffff;
 }
 
-.card-white.card-outline-tabs .card-header a:hover {
+.card-white.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-white.card-outline-tabs .card-header a.active {
+.card-white.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #ffffff;
 }
 
@@ -17438,16 +17438,16 @@ html.maximized-card {
   color: #1F2D3D;
 }
 
-.card-gray:not(.card-outline) .card-header {
+.card-gray:not(.card-outline) > .card-header {
   background-color: #6c757d;
 }
 
-.card-gray:not(.card-outline) .card-header,
-.card-gray:not(.card-outline) .card-header a {
+.card-gray:not(.card-outline) > .card-header,
+.card-gray:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-gray:not(.card-outline) .card-header a.active {
+.card-gray:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -17455,11 +17455,11 @@ html.maximized-card {
   border-top: 3px solid #6c757d;
 }
 
-.card-gray.card-outline-tabs .card-header a:hover {
+.card-gray.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-gray.card-outline-tabs .card-header a.active {
+.card-gray.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #6c757d;
 }
 
@@ -17509,16 +17509,16 @@ html.maximized-card {
   color: #ffffff;
 }
 
-.card-gray-dark:not(.card-outline) .card-header {
+.card-gray-dark:not(.card-outline) > .card-header {
   background-color: #343a40;
 }
 
-.card-gray-dark:not(.card-outline) .card-header,
-.card-gray-dark:not(.card-outline) .card-header a {
+.card-gray-dark:not(.card-outline) > .card-header,
+.card-gray-dark:not(.card-outline) > .card-header a {
   color: #ffffff;
 }
 
-.card-gray-dark:not(.card-outline) .card-header a.active {
+.card-gray-dark:not(.card-outline) > .card-header a.active {
   color: #1F2D3D;
 }
 
@@ -17526,11 +17526,11 @@ html.maximized-card {
   border-top: 3px solid #343a40;
 }
 
-.card-gray-dark.card-outline-tabs .card-header a:hover {
+.card-gray-dark.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-gray-dark.card-outline-tabs .card-header a.active {
+.card-gray-dark.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #343a40;
 }
 

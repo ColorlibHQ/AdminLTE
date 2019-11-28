@@ -5,7 +5,7 @@
 @mixin cards-variant($name, $color) {
   .card-#{$name} {
     &:not(.card-outline) {
-      .card-header {
+      > .card-header {
         background-color: $color;
 
         &,
@@ -24,7 +24,7 @@
     }
 
     &.card-outline-tabs {
-      .card-header {
+      > .card-header {
         a {
           &:hover {
             border-top: 3px solid $nav-tabs-border-color;
