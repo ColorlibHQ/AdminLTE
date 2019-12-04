@@ -96,7 +96,7 @@
   }
 }
 
-label:not(.form-check-label, .custom-file-label) {
+label:not(.form-check-label):not(.custom-file-label) {
   font-weight: $font-weight-bold;
 }
 
