@@ -1,5 +1,5 @@
 /*!
- * Select2 4.0.11
+ * Select2 4.0.12
  * https://select2.github.io
  *
  * Released under the MIT license
@@ -4498,7 +4498,10 @@ S2.define('select2/dropdown/attachBody',[
       left: 0
     };
 
-    if ($.contains(document.body, $offsetParent[0])) {
+    if (
+      $.contains(document.body, $offsetParent[0]) ||
+      $offsetParent[0].isConnected
+      ) {
       parentOffset = $offsetParent.offset();
     }
 
