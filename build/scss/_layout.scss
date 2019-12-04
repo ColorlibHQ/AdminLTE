@@ -493,6 +493,13 @@ body:not(.sidebar-mini-md) {
     width: $sidebar-width;
   }
 
+  .sidebar-collapse:not(.sidebar-mini):not(.sidebar-mini-md) & {
+    &,
+    &::before {
+      box-shadow: none !important;
+    }
+  }
+
   .sidebar-collapse & {
     &,
     &::before {
