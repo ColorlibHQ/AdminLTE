@@ -28110,10 +28110,12 @@ a.text-muted:hover {
   color: #e6e8ea;
 }
 
+.accent-primary .btn-link,
 .accent-primary a {
   color: #007bff;
 }
 
+.accent-primary .btn-link:hover,
 .accent-primary a:hover {
   color: #0056b3;
 }
@@ -28132,10 +28134,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-secondary .btn-link,
 .accent-secondary a {
   color: #6c757d;
 }
 
+.accent-secondary .btn-link:hover,
 .accent-secondary a:hover {
   color: #494f54;
 }
@@ -28154,10 +28158,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-success .btn-link,
 .accent-success a {
   color: #28a745;
 }
 
+.accent-success .btn-link:hover,
 .accent-success a:hover {
   color: #19692c;
 }
@@ -28176,10 +28182,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-info .btn-link,
 .accent-info a {
   color: #17a2b8;
 }
 
+.accent-info .btn-link:hover,
 .accent-info a:hover {
   color: #0f6674;
 }
@@ -28198,10 +28206,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-warning .btn-link,
 .accent-warning a {
   color: #ffc107;
 }
 
+.accent-warning .btn-link:hover,
 .accent-warning a:hover {
   color: #ba8b00;
 }
@@ -28220,10 +28230,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-danger .btn-link,
 .accent-danger a {
   color: #dc3545;
 }
 
+.accent-danger .btn-link:hover,
 .accent-danger a:hover {
   color: #a71d2a;
 }
@@ -28242,10 +28254,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-light .btn-link,
 .accent-light a {
   color: #f8f9fa;
 }
 
+.accent-light .btn-link:hover,
 .accent-light a:hover {
   color: #cbd3da;
 }
@@ -28264,10 +28278,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-dark .btn-link,
 .accent-dark a {
   color: #343a40;
 }
 
+.accent-dark .btn-link:hover,
 .accent-dark a:hover {
   color: #121416;
 }
@@ -28286,10 +28302,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-navy .btn-link,
 .accent-navy a {
   color: #001f3f;
 }
 
+.accent-navy .btn-link:hover,
 .accent-navy a:hover {
   color: black;
 }
@@ -28308,10 +28326,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-olive .btn-link,
 .accent-olive a {
   color: #3d9970;
 }
 
+.accent-olive .btn-link:hover,
 .accent-olive a:hover {
   color: #276248;
 }
@@ -28330,10 +28350,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-lime .btn-link,
 .accent-lime a {
   color: #01ff70;
 }
 
+.accent-lime .btn-link:hover,
 .accent-lime a:hover {
   color: #00b44e;
 }
@@ -28352,10 +28374,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-fuchsia .btn-link,
 .accent-fuchsia a {
   color: #f012be;
 }
 
+.accent-fuchsia .btn-link:hover,
 .accent-fuchsia a:hover {
   color: #ab0b87;
 }
@@ -28374,10 +28398,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-maroon .btn-link,
 .accent-maroon a {
   color: #d81b60;
 }
 
+.accent-maroon .btn-link:hover,
 .accent-maroon a:hover {
   color: #941342;
 }
@@ -28396,10 +28422,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-blue .btn-link,
 .accent-blue a {
   color: #007bff;
 }
 
+.accent-blue .btn-link:hover,
 .accent-blue a:hover {
   color: #0056b3;
 }
@@ -28418,10 +28446,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-indigo .btn-link,
 .accent-indigo a {
   color: #6610f2;
 }
 
+.accent-indigo .btn-link:hover,
 .accent-indigo a:hover {
   color: #4709ac;
 }
@@ -28440,10 +28470,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-purple .btn-link,
 .accent-purple a {
   color: #6f42c1;
 }
 
+.accent-purple .btn-link:hover,
 .accent-purple a:hover {
   color: #4e2d89;
 }
@@ -28462,10 +28494,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-pink .btn-link,
 .accent-pink a {
   color: #e83e8c;
 }
 
+.accent-pink .btn-link:hover,
 .accent-pink a:hover {
   color: #c21766;
 }
@@ -28484,10 +28518,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-red .btn-link,
 .accent-red a {
   color: #dc3545;
 }
 
+.accent-red .btn-link:hover,
 .accent-red a:hover {
   color: #a71d2a;
 }
@@ -28506,10 +28542,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-orange .btn-link,
 .accent-orange a {
   color: #fd7e14;
 }
 
+.accent-orange .btn-link:hover,
 .accent-orange a:hover {
   color: #c35a02;
 }
@@ -28528,10 +28566,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-yellow .btn-link,
 .accent-yellow a {
   color: #ffc107;
 }
 
+.accent-yellow .btn-link:hover,
 .accent-yellow a:hover {
   color: #ba8b00;
 }
@@ -28550,10 +28590,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-green .btn-link,
 .accent-green a {
   color: #28a745;
 }
 
+.accent-green .btn-link:hover,
 .accent-green a:hover {
   color: #19692c;
 }
@@ -28572,10 +28614,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-teal .btn-link,
 .accent-teal a {
   color: #20c997;
 }
 
+.accent-teal .btn-link:hover,
 .accent-teal a:hover {
   color: #158765;
 }
@@ -28594,10 +28638,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-cyan .btn-link,
 .accent-cyan a {
   color: #17a2b8;
 }
 
+.accent-cyan .btn-link:hover,
 .accent-cyan a:hover {
   color: #0f6674;
 }
@@ -28616,10 +28662,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-white .btn-link,
 .accent-white a {
   color: #ffffff;
 }
 
+.accent-white .btn-link:hover,
 .accent-white a:hover {
   color: #d9d9d9;
 }
@@ -28638,10 +28686,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-gray .btn-link,
 .accent-gray a {
   color: #6c757d;
 }
 
+.accent-gray .btn-link:hover,
 .accent-gray a:hover {
   color: #494f54;
 }
@@ -28660,10 +28710,12 @@ a.text-muted:hover {
   border-color: #dee2e6;
 }
 
+.accent-gray-dark .btn-link,
 .accent-gray-dark a {
   color: #343a40;
 }
 
+.accent-gray-dark .btn-link:hover,
 .accent-gray-dark a:hover {
   color: #121416;
 }
@@ -28680,5 +28732,37 @@ a.text-muted:hover {
 .accent-gray-dark .page-item.disabled .page-link {
   background-color: #ffffff;
   border-color: #dee2e6;
+}
+
+[class*="accent-"] a.btn-primary {
+  color: #ffffff;
+}
+
+[class*="accent-"] a.btn-secondary {
+  color: #ffffff;
+}
+
+[class*="accent-"] a.btn-success {
+  color: #ffffff;
+}
+
+[class*="accent-"] a.btn-info {
+  color: #ffffff;
+}
+
+[class*="accent-"] a.btn-warning {
+  color: #1F2D3D;
+}
+
+[class*="accent-"] a.btn-danger {
+  color: #ffffff;
+}
+
+[class*="accent-"] a.btn-light {
+  color: #1F2D3D;
+}
+
+[class*="accent-"] a.btn-dark {
+  color: #ffffff;
 }
 /*# sourceMappingURL=adminlte.css.map */
