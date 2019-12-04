@@ -13254,6 +13254,10 @@ body.text-sm .control-sidebar {
   padding-right: 1rem;
 }
 
+.navbar-no-expand .dropdown-menu {
+  position: absolute;
+}
+
 .navbar-light {
   background-color: #f8f9fa;
 }

@@ -70,6 +70,10 @@
     padding-left: $navbar-nav-link-padding-x;
     padding-right: $navbar-nav-link-padding-x;
   }
+
+  .dropdown-menu {
+    position: absolute;
+  }
 }
 
 // Color variants
