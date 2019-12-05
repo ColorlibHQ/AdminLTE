@@ -5,6 +5,7 @@
 // COLORS
 // --------------------------------------------------------
 $blue: #0073b7 !default;
+$lightblue: #3c8dbc !default;
 $navy: #001f3f !default;
 $teal: #39cccc !default;
 $olive: #3d9970 !default;
@@ -17,6 +18,7 @@ $black: #111 !default;
 $gray-x-light: #d2d6de !default;
 
 $colors: map-merge((
+    'lightblue': $lightblue,
     'navy': $navy,
     'olive': $olive,
     'lime': $lime,
