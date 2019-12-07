@@ -19,6 +19,25 @@
       }
     }
 
+    .custom-control-input:checked ~ .custom-control-label {
+      &::before {
+        background: $color;
+        border-color: darken($color, 20%);
+      }
+
+      &::after {
+        $newColor: color-yiq($color);
+        background-image: str-replace($custom-checkbox-indicator-icon-checked, str-replace(#{$custom-control-indicator-checked-color}, '#', '%23'), str-replace(#{$newColor}, '#', '%23'));
+      }
+    }
+
+    .form-control:focus:not(.is-invalid):not(.is-warning):not(.is-valid),
+    .custom-select:focus,
+    .custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
+    .custom-file-input:focus ~ .custom-file-label {
+      border-color: lighten($color, 25%);
+    }
+
     [class*="sidebar-light-"],
     &[class*="sidebar-dark-"] {
         .nav-sidebar .nav-treeview > .nav-item > {
