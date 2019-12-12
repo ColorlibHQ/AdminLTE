@@ -166,7 +166,7 @@ const Layout = (($) => {
 
     // Static
 
-    static _jQueryInterface(config) {
+    static _jQueryInterface(config = '') {
       return this.each(function () {
         let data = $(this).data(DATA_KEY)
         const _options = $.extend({}, Default, $(this).data())
@@ -176,8 +176,8 @@ const Layout = (($) => {
           $(this).data(DATA_KEY, data)
         }
 
-        if (config === 'init') {
-          data[config]()
+        if (config === 'init' || config === '') {
+          data['_init']()
         }
       })
     }

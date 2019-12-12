@@ -435,6 +435,10 @@
       ;
 
       Layout._jQueryInterface = function _jQueryInterface(config) {
+        if (config === void 0) {
+          config = '';
+        }
+
         return this.each(function () {
           var data = $(this).data(DATA_KEY);
 
@@ -445,8 +449,8 @@
             $(this).data(DATA_KEY, data);
           }
 
-          if (config === 'init') {
-            data[config]();
+          if (config === 'init' || config === '') {
+            data['_init']();
           }
         });
       };
