@@ -112,6 +112,18 @@
         }
       }
     }
+
+    .nav-flat.nav-compact {
+      .nav-icon {
+        margin-left: 1.05rem;
+      }
+
+      .nav-treeview {
+        .nav-icon {
+          margin-left: .85rem;
+        }
+      }
+    }
   }
 }
 

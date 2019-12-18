@@ -12259,8 +12259,8 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   margin-left: .45rem;
 }
 
-.sidebar-mini .main-sidebar:hover .nav-compact.nav-compact .nav-icon,
-.sidebar-mini-md .main-sidebar:hover .nav-compact.nav-compact .nav-icon,
+.sidebar-mini .main-sidebar:not(.sidebar-no-expand):hover .nav-compact.nav-compact .nav-icon,
+.sidebar-mini-md .main-sidebar:not(.sidebar-no-expand):hover .nav-compact.nav-compact .nav-icon,
 .sidebar-mini .main-sidebar.sidebar-focused .nav-compact.nav-compact .nav-icon,
 .sidebar-mini-md .main-sidebar.sidebar-focused .nav-compact.nav-compact .nav-icon {
   margin-left: 0;
@@ -12373,6 +12373,16 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 
 .sidebar-mini.sidebar-collapse .nav-legacy.nav-compact > .nav-item .nav-link.active > .nav-icon,
 .sidebar-mini-md.sidebar-collapse .nav-legacy.nav-compact > .nav-item .nav-link.active > .nav-icon {
+  margin-left: 1.05rem;
+}
+
+.sidebar-mini.sidebar-collapse .nav-legacy.nav-compact > .nav-item > .nav-link .nav-icon,
+.sidebar-mini-md.sidebar-collapse .nav-legacy.nav-compact > .nav-item > .nav-link .nav-icon {
+  margin-left: 1.05rem;
+}
+
+.sidebar-mini.sidebar-collapse .nav-legacy.nav-compact > .nav-item > .nav-link.active > .nav-icon,
+.sidebar-mini-md.sidebar-collapse .nav-legacy.nav-compact > .nav-item > .nav-link.active > .nav-icon {
   margin-left: .85rem;
 }
 
@@ -12396,42 +12406,58 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   margin-left: .85rem;
 }
 
-.sidebar-mini .main-sidebar:hover .nav-legacy.nav-compact > .nav-item .nav-link .nav-icon, .sidebar-mini .main-sidebar:hover .nav-legacy.nav-flat > .nav-item .nav-link .nav-icon,
-.sidebar-mini-md .main-sidebar:hover .nav-legacy.nav-compact > .nav-item .nav-link .nav-icon,
-.sidebar-mini-md .main-sidebar:hover .nav-legacy.nav-flat > .nav-item .nav-link .nav-icon,
+.sidebar-mini .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-compact > .nav-item .nav-link .nav-icon,
+.sidebar-mini-md .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-compact > .nav-item .nav-link .nav-icon,
 .sidebar-mini .main-sidebar.sidebar-focused .nav-legacy.nav-compact > .nav-item .nav-link .nav-icon,
+.sidebar-mini-md .main-sidebar.sidebar-focused .nav-legacy.nav-compact > .nav-item .nav-link .nav-icon {
+  margin-left: 0;
+}
+
+.sidebar-mini .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-compact > .nav-item .nav-link.active > .nav-icon,
+.sidebar-mini-md .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-compact > .nav-item .nav-link.active > .nav-icon,
+.sidebar-mini .main-sidebar.sidebar-focused .nav-legacy.nav-compact > .nav-item .nav-link.active > .nav-icon,
+.sidebar-mini-md .main-sidebar.sidebar-focused .nav-legacy.nav-compact > .nav-item .nav-link.active > .nav-icon {
+  margin-left: 0;
+}
+
+.sidebar-mini .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-compact > .nav-item > .nav-link .nav-icon,
+.sidebar-mini-md .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-compact > .nav-item > .nav-link .nav-icon,
+.sidebar-mini .main-sidebar.sidebar-focused .nav-legacy.nav-compact > .nav-item > .nav-link .nav-icon,
+.sidebar-mini-md .main-sidebar.sidebar-focused .nav-legacy.nav-compact > .nav-item > .nav-link .nav-icon {
+  margin-left: 0;
+}
+
+.sidebar-mini .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-compact > .nav-item > .nav-link.active > .nav-icon,
+.sidebar-mini-md .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-compact > .nav-item > .nav-link.active > .nav-icon,
+.sidebar-mini .main-sidebar.sidebar-focused .nav-legacy.nav-compact > .nav-item > .nav-link.active > .nav-icon,
+.sidebar-mini-md .main-sidebar.sidebar-focused .nav-legacy.nav-compact > .nav-item > .nav-link.active > .nav-icon {
+  margin-left: -3px;
+}
+
+.sidebar-mini .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-flat > .nav-item .nav-link .nav-icon,
+.sidebar-mini-md .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-flat > .nav-item .nav-link .nav-icon,
 .sidebar-mini .main-sidebar.sidebar-focused .nav-legacy.nav-flat > .nav-item .nav-link .nav-icon,
-.sidebar-mini-md .main-sidebar.sidebar-focused .nav-legacy.nav-compact > .nav-item .nav-link .nav-icon,
 .sidebar-mini-md .main-sidebar.sidebar-focused .nav-legacy.nav-flat > .nav-item .nav-link .nav-icon {
   margin-left: -3px;
 }
 
-.sidebar-mini .main-sidebar:hover .nav-legacy.nav-compact > .nav-item .nav-link.active > .nav-icon, .sidebar-mini .main-sidebar:hover .nav-legacy.nav-flat > .nav-item .nav-link.active > .nav-icon,
-.sidebar-mini-md .main-sidebar:hover .nav-legacy.nav-compact > .nav-item .nav-link.active > .nav-icon,
-.sidebar-mini-md .main-sidebar:hover .nav-legacy.nav-flat > .nav-item .nav-link.active > .nav-icon,
-.sidebar-mini .main-sidebar.sidebar-focused .nav-legacy.nav-compact > .nav-item .nav-link.active > .nav-icon,
+.sidebar-mini .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-flat > .nav-item .nav-link.active > .nav-icon,
+.sidebar-mini-md .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-flat > .nav-item .nav-link.active > .nav-icon,
 .sidebar-mini .main-sidebar.sidebar-focused .nav-legacy.nav-flat > .nav-item .nav-link.active > .nav-icon,
-.sidebar-mini-md .main-sidebar.sidebar-focused .nav-legacy.nav-compact > .nav-item .nav-link.active > .nav-icon,
 .sidebar-mini-md .main-sidebar.sidebar-focused .nav-legacy.nav-flat > .nav-item .nav-link.active > .nav-icon {
   margin-left: -3px;
 }
 
-.sidebar-mini .main-sidebar:hover .nav-legacy.nav-compact > .nav-item > .nav-link .nav-icon, .sidebar-mini .main-sidebar:hover .nav-legacy.nav-flat > .nav-item > .nav-link .nav-icon,
-.sidebar-mini-md .main-sidebar:hover .nav-legacy.nav-compact > .nav-item > .nav-link .nav-icon,
-.sidebar-mini-md .main-sidebar:hover .nav-legacy.nav-flat > .nav-item > .nav-link .nav-icon,
-.sidebar-mini .main-sidebar.sidebar-focused .nav-legacy.nav-compact > .nav-item > .nav-link .nav-icon,
+.sidebar-mini .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-flat > .nav-item > .nav-link .nav-icon,
+.sidebar-mini-md .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-flat > .nav-item > .nav-link .nav-icon,
 .sidebar-mini .main-sidebar.sidebar-focused .nav-legacy.nav-flat > .nav-item > .nav-link .nav-icon,
-.sidebar-mini-md .main-sidebar.sidebar-focused .nav-legacy.nav-compact > .nav-item > .nav-link .nav-icon,
 .sidebar-mini-md .main-sidebar.sidebar-focused .nav-legacy.nav-flat > .nav-item > .nav-link .nav-icon {
   margin-left: 0;
 }
 
-.sidebar-mini .main-sidebar:hover .nav-legacy.nav-compact > .nav-item > .nav-link.active > .nav-icon, .sidebar-mini .main-sidebar:hover .nav-legacy.nav-flat > .nav-item > .nav-link.active > .nav-icon,
-.sidebar-mini-md .main-sidebar:hover .nav-legacy.nav-compact > .nav-item > .nav-link.active > .nav-icon,
-.sidebar-mini-md .main-sidebar:hover .nav-legacy.nav-flat > .nav-item > .nav-link.active > .nav-icon,
-.sidebar-mini .main-sidebar.sidebar-focused .nav-legacy.nav-compact > .nav-item > .nav-link.active > .nav-icon,
+.sidebar-mini .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-flat > .nav-item > .nav-link.active > .nav-icon,
+.sidebar-mini-md .main-sidebar:not(.sidebar-no-expand):hover .nav-legacy.nav-flat > .nav-item > .nav-link.active > .nav-icon,
 .sidebar-mini .main-sidebar.sidebar-focused .nav-legacy.nav-flat > .nav-item > .nav-link.active > .nav-icon,
-.sidebar-mini-md .main-sidebar.sidebar-focused .nav-legacy.nav-compact > .nav-item > .nav-link.active > .nav-icon,
 .sidebar-mini-md .main-sidebar.sidebar-focused .nav-legacy.nav-flat > .nav-item > .nav-link.active > .nav-icon {
   margin-left: -3px;
 }
@@ -12860,6 +12886,16 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 .sidebar-collapse .sidebar-no-expand.main-sidebar.sidebar-focused .nav-flat .nav-treeview .nav-icon,
 .sidebar-collapse .sidebar-no-expand.main-sidebar:hover .nav-flat .nav-treeview .nav-icon {
   margin-left: .3rem;
+}
+
+.sidebar-collapse .sidebar-no-expand.main-sidebar.sidebar-focused .nav-flat.nav-compact .nav-icon,
+.sidebar-collapse .sidebar-no-expand.main-sidebar:hover .nav-flat.nav-compact .nav-icon {
+  margin-left: 1.05rem;
+}
+
+.sidebar-collapse .sidebar-no-expand.main-sidebar.sidebar-focused .nav-flat.nav-compact .nav-treeview .nav-icon,
+.sidebar-collapse .sidebar-no-expand.main-sidebar:hover .nav-flat.nav-compact .nav-treeview .nav-icon {
+  margin-left: .85rem;
 }
 
 .nav-sidebar {
