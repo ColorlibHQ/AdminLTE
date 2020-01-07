@@ -2,6 +2,15 @@
 // Component: Cards
 //
 
+// Color variants
+@each $name, $color in $theme-colors {
+  @include cards-variant($name, $color);
+}
+
+@each $name, $color in $colors {
+  @include cards-variant($name, $color);
+}
+
 .card {
   @include box-shadow($card-shadow);
   margin-bottom: map-get($spacers, 3);
@@ -211,7 +220,7 @@ html.maximized-card {
   }
 
   .nav-link {
-    padding: $card-nav-link-padding-sm-y $card-nav-link-padding-sm-x; 
+    padding: $card-nav-link-padding-sm-y $card-nav-link-padding-sm-x;
   }
 }
 
@@ -400,16 +409,6 @@ html.maximized-card {
 .card-input {
   max-width: 200px;
 }
-
-// Color variants
-@each $name, $color in $theme-colors {
-  @include cards-variant($name, $color);
-}
-
-@each $name, $color in $colors {
-  @include cards-variant($name, $color);
-}
-
 
 // Nav Tabs override
 .card-default {
