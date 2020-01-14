@@ -79,7 +79,7 @@ Contribution are always **welcome and recommended**! Here is how:
 To compile the dist files you need nodejs/npm, clone/download the repo then:
 
 1. `npm install` (install npm deps)
-2. _Optional:_ `npm dev` (developer mode, autocompile with browsersync support for live demo)
+2. _Optional:_ `npm run dev` (developer mode, autocompile with browsersync support for live demo)
 3. `npm run production` (compile css/js files)
 
 #### Contribution Requirements:
