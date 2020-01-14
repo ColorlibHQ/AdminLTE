@@ -392,23 +392,17 @@ body,
   .layout-top-nav & {
     margin-left: 0;
 
-    & .text-sm {
+    .main-header {    
       .brand-image {
         margin-top: -.5rem;
+        margin-right: .2rem;
+        height: 33px;
       }
     }
 
     & .main-sidebar {
       bottom: inherit;
       height: inherit;
-    }
-
-    .brand-image {
-      height: 33px;
-    }
-
-    & .main-sidebar {
-      display: none;
     }
 
     & .content-wrapper,

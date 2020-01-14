@@ -11168,21 +11168,15 @@ body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar .side
   margin-left: 0;
 }
 
-.layout-top-nav .wrapper .text-sm .brand-image {
+.layout-top-nav .wrapper .main-header .brand-image {
   margin-top: -.5rem;
+  margin-right: .2rem;
+  height: 33px;
 }
 
 .layout-top-nav .wrapper .main-sidebar {
   bottom: inherit;
   height: inherit;
-}
-
-.layout-top-nav .wrapper .brand-image {
-  height: 33px;
-}
-
-.layout-top-nav .wrapper .main-sidebar {
-  display: none;
 }
 
 .layout-top-nav .wrapper .content-wrapper,
