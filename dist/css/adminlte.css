@@ -27163,6 +27163,17 @@ blockquote.quote-gray-dark h6 {
   padding-bottom: .5rem;
 }
 
+.badge-btn  {
+  border-radius: 0.15rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  padding: 0.25rem 0.5rem;
+}
+
+.badge-btn.badge-pill {
+  padding: .375rem .6rem;
+}
+
 @media print {
   .no-print, .main-sidebar,
   .main-header,
