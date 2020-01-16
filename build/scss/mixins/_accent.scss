@@ -11,12 +11,17 @@
     $pagination-active-border-color: $color;
 
     .btn-link,
-    a {
+    a:not(.dropdown-item  ) {
       color: $link-color;
 
       @include hover {
         color: $link-hover-color;
       }
+    }
+
+    .dropdown-item.active {
+      background: $color;
+      color: color-yiq($color);
     }
 
     .custom-control-input:checked ~ .custom-control-label {

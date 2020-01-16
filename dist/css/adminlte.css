@@ -28765,13 +28765,18 @@ a.text-muted:hover {
 }
 
 .accent-primary .btn-link,
-.accent-primary a {
+.accent-primary a:not(.dropdown-item) {
   color: #007bff;
 }
 
 .accent-primary .btn-link:hover,
-.accent-primary a:hover {
+.accent-primary a:not(.dropdown-item):hover {
   color: #0056b3;
+}
+
+.accent-primary .dropdown-item.active {
+  background: #007bff;
+  color: #ffffff;
 }
 
 .accent-primary .custom-control-input:checked ~ .custom-control-label::before {
@@ -28805,13 +28810,18 @@ a.text-muted:hover {
 }
 
 .accent-secondary .btn-link,
-.accent-secondary a {
+.accent-secondary a:not(.dropdown-item) {
   color: #6c757d;
 }
 
 .accent-secondary .btn-link:hover,
-.accent-secondary a:hover {
+.accent-secondary a:not(.dropdown-item):hover {
   color: #494f54;
+}
+
+.accent-secondary .dropdown-item.active {
+  background: #6c757d;
+  color: #ffffff;
 }
 
 .accent-secondary .custom-control-input:checked ~ .custom-control-label::before {
@@ -28845,13 +28855,18 @@ a.text-muted:hover {
 }
 
 .accent-success .btn-link,
-.accent-success a {
+.accent-success a:not(.dropdown-item) {
   color: #28a745;
 }
 
 .accent-success .btn-link:hover,
-.accent-success a:hover {
+.accent-success a:not(.dropdown-item):hover {
   color: #19692c;
+}
+
+.accent-success .dropdown-item.active {
+  background: #28a745;
+  color: #ffffff;
 }
 
 .accent-success .custom-control-input:checked ~ .custom-control-label::before {
@@ -28885,13 +28900,18 @@ a.text-muted:hover {
 }
 
 .accent-info .btn-link,
-.accent-info a {
+.accent-info a:not(.dropdown-item) {
   color: #17a2b8;
 }
 
 .accent-info .btn-link:hover,
-.accent-info a:hover {
+.accent-info a:not(.dropdown-item):hover {
   color: #0f6674;
+}
+
+.accent-info .dropdown-item.active {
+  background: #17a2b8;
+  color: #ffffff;
 }
 
 .accent-info .custom-control-input:checked ~ .custom-control-label::before {
@@ -28925,13 +28945,18 @@ a.text-muted:hover {
 }
 
 .accent-warning .btn-link,
-.accent-warning a {
+.accent-warning a:not(.dropdown-item) {
   color: #ffc107;
 }
 
 .accent-warning .btn-link:hover,
-.accent-warning a:hover {
+.accent-warning a:not(.dropdown-item):hover {
   color: #ba8b00;
+}
+
+.accent-warning .dropdown-item.active {
+  background: #ffc107;
+  color: #1F2D3D;
 }
 
 .accent-warning .custom-control-input:checked ~ .custom-control-label::before {
@@ -28965,13 +28990,18 @@ a.text-muted:hover {
 }
 
 .accent-danger .btn-link,
-.accent-danger a {
+.accent-danger a:not(.dropdown-item) {
   color: #dc3545;
 }
 
 .accent-danger .btn-link:hover,
-.accent-danger a:hover {
+.accent-danger a:not(.dropdown-item):hover {
   color: #a71d2a;
+}
+
+.accent-danger .dropdown-item.active {
+  background: #dc3545;
+  color: #ffffff;
 }
 
 .accent-danger .custom-control-input:checked ~ .custom-control-label::before {
@@ -29005,13 +29035,18 @@ a.text-muted:hover {
 }
 
 .accent-light .btn-link,
-.accent-light a {
+.accent-light a:not(.dropdown-item) {
   color: #f8f9fa;
 }
 
 .accent-light .btn-link:hover,
-.accent-light a:hover {
+.accent-light a:not(.dropdown-item):hover {
   color: #cbd3da;
+}
+
+.accent-light .dropdown-item.active {
+  background: #f8f9fa;
+  color: #1F2D3D;
 }
 
 .accent-light .custom-control-input:checked ~ .custom-control-label::before {
@@ -29045,13 +29080,18 @@ a.text-muted:hover {
 }
 
 .accent-dark .btn-link,
-.accent-dark a {
+.accent-dark a:not(.dropdown-item) {
   color: #343a40;
 }
 
 .accent-dark .btn-link:hover,
-.accent-dark a:hover {
+.accent-dark a:not(.dropdown-item):hover {
   color: #121416;
+}
+
+.accent-dark .dropdown-item.active {
+  background: #343a40;
+  color: #ffffff;
 }
 
 .accent-dark .custom-control-input:checked ~ .custom-control-label::before {
@@ -29085,13 +29125,18 @@ a.text-muted:hover {
 }
 
 .accent-lightblue .btn-link,
-.accent-lightblue a {
+.accent-lightblue a:not(.dropdown-item) {
   color: #3c8dbc;
 }
 
 .accent-lightblue .btn-link:hover,
-.accent-lightblue a:hover {
+.accent-lightblue a:not(.dropdown-item):hover {
   color: #296282;
+}
+
+.accent-lightblue .dropdown-item.active {
+  background: #3c8dbc;
+  color: #ffffff;
 }
 
 .accent-lightblue .custom-control-input:checked ~ .custom-control-label::before {
@@ -29125,13 +29170,18 @@ a.text-muted:hover {
 }
 
 .accent-navy .btn-link,
-.accent-navy a {
+.accent-navy a:not(.dropdown-item) {
   color: #001f3f;
 }
 
 .accent-navy .btn-link:hover,
-.accent-navy a:hover {
+.accent-navy a:not(.dropdown-item):hover {
   color: black;
+}
+
+.accent-navy .dropdown-item.active {
+  background: #001f3f;
+  color: #ffffff;
 }
 
 .accent-navy .custom-control-input:checked ~ .custom-control-label::before {
@@ -29165,13 +29215,18 @@ a.text-muted:hover {
 }
 
 .accent-olive .btn-link,
-.accent-olive a {
+.accent-olive a:not(.dropdown-item) {
   color: #3d9970;
 }
 
 .accent-olive .btn-link:hover,
-.accent-olive a:hover {
+.accent-olive a:not(.dropdown-item):hover {
   color: #276248;
+}
+
+.accent-olive .dropdown-item.active {
+  background: #3d9970;
+  color: #ffffff;
 }
 
 .accent-olive .custom-control-input:checked ~ .custom-control-label::before {
@@ -29205,13 +29260,18 @@ a.text-muted:hover {
 }
 
 .accent-lime .btn-link,
-.accent-lime a {
+.accent-lime a:not(.dropdown-item) {
   color: #01ff70;
 }
 
 .accent-lime .btn-link:hover,
-.accent-lime a:hover {
+.accent-lime a:not(.dropdown-item):hover {
   color: #00b44e;
+}
+
+.accent-lime .dropdown-item.active {
+  background: #01ff70;
+  color: #1F2D3D;
 }
 
 .accent-lime .custom-control-input:checked ~ .custom-control-label::before {
@@ -29245,13 +29305,18 @@ a.text-muted:hover {
 }
 
 .accent-fuchsia .btn-link,
-.accent-fuchsia a {
+.accent-fuchsia a:not(.dropdown-item) {
   color: #f012be;
 }
 
 .accent-fuchsia .btn-link:hover,
-.accent-fuchsia a:hover {
+.accent-fuchsia a:not(.dropdown-item):hover {
   color: #ab0b87;
+}
+
+.accent-fuchsia .dropdown-item.active {
+  background: #f012be;
+  color: #ffffff;
 }
 
 .accent-fuchsia .custom-control-input:checked ~ .custom-control-label::before {
@@ -29285,13 +29350,18 @@ a.text-muted:hover {
 }
 
 .accent-maroon .btn-link,
-.accent-maroon a {
+.accent-maroon a:not(.dropdown-item) {
   color: #d81b60;
 }
 
 .accent-maroon .btn-link:hover,
-.accent-maroon a:hover {
+.accent-maroon a:not(.dropdown-item):hover {
   color: #941342;
+}
+
+.accent-maroon .dropdown-item.active {
+  background: #d81b60;
+  color: #ffffff;
 }
 
 .accent-maroon .custom-control-input:checked ~ .custom-control-label::before {
@@ -29325,13 +29395,18 @@ a.text-muted:hover {
 }
 
 .accent-blue .btn-link,
-.accent-blue a {
+.accent-blue a:not(.dropdown-item) {
   color: #007bff;
 }
 
 .accent-blue .btn-link:hover,
-.accent-blue a:hover {
+.accent-blue a:not(.dropdown-item):hover {
   color: #0056b3;
+}
+
+.accent-blue .dropdown-item.active {
+  background: #007bff;
+  color: #ffffff;
 }
 
 .accent-blue .custom-control-input:checked ~ .custom-control-label::before {
@@ -29365,13 +29440,18 @@ a.text-muted:hover {
 }
 
 .accent-indigo .btn-link,
-.accent-indigo a {
+.accent-indigo a:not(.dropdown-item) {
   color: #6610f2;
 }
 
 .accent-indigo .btn-link:hover,
-.accent-indigo a:hover {
+.accent-indigo a:not(.dropdown-item):hover {
   color: #4709ac;
+}
+
+.accent-indigo .dropdown-item.active {
+  background: #6610f2;
+  color: #ffffff;
 }
 
 .accent-indigo .custom-control-input:checked ~ .custom-control-label::before {
@@ -29405,13 +29485,18 @@ a.text-muted:hover {
 }
 
 .accent-purple .btn-link,
-.accent-purple a {
+.accent-purple a:not(.dropdown-item) {
   color: #6f42c1;
 }
 
 .accent-purple .btn-link:hover,
-.accent-purple a:hover {
+.accent-purple a:not(.dropdown-item):hover {
   color: #4e2d89;
+}
+
+.accent-purple .dropdown-item.active {
+  background: #6f42c1;
+  color: #ffffff;
 }
 
 .accent-purple .custom-control-input:checked ~ .custom-control-label::before {
@@ -29445,13 +29530,18 @@ a.text-muted:hover {
 }
 
 .accent-pink .btn-link,
-.accent-pink a {
+.accent-pink a:not(.dropdown-item) {
   color: #e83e8c;
 }
 
 .accent-pink .btn-link:hover,
-.accent-pink a:hover {
+.accent-pink a:not(.dropdown-item):hover {
   color: #c21766;
+}
+
+.accent-pink .dropdown-item.active {
+  background: #e83e8c;
+  color: #ffffff;
 }
 
 .accent-pink .custom-control-input:checked ~ .custom-control-label::before {
@@ -29485,13 +29575,18 @@ a.text-muted:hover {
 }
 
 .accent-red .btn-link,
-.accent-red a {
+.accent-red a:not(.dropdown-item) {
   color: #dc3545;
 }
 
 .accent-red .btn-link:hover,
-.accent-red a:hover {
+.accent-red a:not(.dropdown-item):hover {
   color: #a71d2a;
+}
+
+.accent-red .dropdown-item.active {
+  background: #dc3545;
+  color: #ffffff;
 }
 
 .accent-red .custom-control-input:checked ~ .custom-control-label::before {
@@ -29525,13 +29620,18 @@ a.text-muted:hover {
 }
 
 .accent-orange .btn-link,
-.accent-orange a {
+.accent-orange a:not(.dropdown-item) {
   color: #fd7e14;
 }
 
 .accent-orange .btn-link:hover,
-.accent-orange a:hover {
+.accent-orange a:not(.dropdown-item):hover {
   color: #c35a02;
+}
+
+.accent-orange .dropdown-item.active {
+  background: #fd7e14;
+  color: #1F2D3D;
 }
 
 .accent-orange .custom-control-input:checked ~ .custom-control-label::before {
@@ -29565,13 +29665,18 @@ a.text-muted:hover {
 }
 
 .accent-yellow .btn-link,
-.accent-yellow a {
+.accent-yellow a:not(.dropdown-item) {
   color: #ffc107;
 }
 
 .accent-yellow .btn-link:hover,
-.accent-yellow a:hover {
+.accent-yellow a:not(.dropdown-item):hover {
   color: #ba8b00;
+}
+
+.accent-yellow .dropdown-item.active {
+  background: #ffc107;
+  color: #1F2D3D;
 }
 
 .accent-yellow .custom-control-input:checked ~ .custom-control-label::before {
@@ -29605,13 +29710,18 @@ a.text-muted:hover {
 }
 
 .accent-green .btn-link,
-.accent-green a {
+.accent-green a:not(.dropdown-item) {
   color: #28a745;
 }
 
 .accent-green .btn-link:hover,
-.accent-green a:hover {
+.accent-green a:not(.dropdown-item):hover {
   color: #19692c;
+}
+
+.accent-green .dropdown-item.active {
+  background: #28a745;
+  color: #ffffff;
 }
 
 .accent-green .custom-control-input:checked ~ .custom-control-label::before {
@@ -29645,13 +29755,18 @@ a.text-muted:hover {
 }
 
 .accent-teal .btn-link,
-.accent-teal a {
+.accent-teal a:not(.dropdown-item) {
   color: #20c997;
 }
 
 .accent-teal .btn-link:hover,
-.accent-teal a:hover {
+.accent-teal a:not(.dropdown-item):hover {
   color: #158765;
+}
+
+.accent-teal .dropdown-item.active {
+  background: #20c997;
+  color: #ffffff;
 }
 
 .accent-teal .custom-control-input:checked ~ .custom-control-label::before {
@@ -29685,13 +29800,18 @@ a.text-muted:hover {
 }
 
 .accent-cyan .btn-link,
-.accent-cyan a {
+.accent-cyan a:not(.dropdown-item) {
   color: #17a2b8;
 }
 
 .accent-cyan .btn-link:hover,
-.accent-cyan a:hover {
+.accent-cyan a:not(.dropdown-item):hover {
   color: #0f6674;
+}
+
+.accent-cyan .dropdown-item.active {
+  background: #17a2b8;
+  color: #ffffff;
 }
 
 .accent-cyan .custom-control-input:checked ~ .custom-control-label::before {
@@ -29725,13 +29845,18 @@ a.text-muted:hover {
 }
 
 .accent-white .btn-link,
-.accent-white a {
+.accent-white a:not(.dropdown-item) {
   color: #ffffff;
 }
 
 .accent-white .btn-link:hover,
-.accent-white a:hover {
+.accent-white a:not(.dropdown-item):hover {
   color: #d9d9d9;
+}
+
+.accent-white .dropdown-item.active {
+  background: #ffffff;
+  color: #1F2D3D;
 }
 
 .accent-white .custom-control-input:checked ~ .custom-control-label::before {
@@ -29765,13 +29890,18 @@ a.text-muted:hover {
 }
 
 .accent-gray .btn-link,
-.accent-gray a {
+.accent-gray a:not(.dropdown-item) {
   color: #6c757d;
 }
 
 .accent-gray .btn-link:hover,
-.accent-gray a:hover {
+.accent-gray a:not(.dropdown-item):hover {
   color: #494f54;
+}
+
+.accent-gray .dropdown-item.active {
+  background: #6c757d;
+  color: #ffffff;
 }
 
 .accent-gray .custom-control-input:checked ~ .custom-control-label::before {
@@ -29805,13 +29935,18 @@ a.text-muted:hover {
 }
 
 .accent-gray-dark .btn-link,
-.accent-gray-dark a {
+.accent-gray-dark a:not(.dropdown-item) {
   color: #343a40;
 }
 
 .accent-gray-dark .btn-link:hover,
-.accent-gray-dark a:hover {
+.accent-gray-dark a:not(.dropdown-item):hover {
   color: #121416;
+}
+
+.accent-gray-dark .dropdown-item.active {
+  background: #343a40;
+  color: #ffffff;
 }
 
 .accent-gray-dark .custom-control-input:checked ~ .custom-control-label::before {
