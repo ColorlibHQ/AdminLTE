@@ -17544,11 +17544,11 @@ textarea.form-control.is-warning {
   border-left: 1px solid rgba(0, 0, 0, 0.125);
 }
 
-.card.card-tabs:not(.card-outline) .card-header {
+.card.card-tabs:not(.card-outline) > .card-header {
   border-bottom: 0;
 }
 
-.card.card-tabs:not(.card-outline) .card-header .nav-item:first-child .nav-link {
+.card.card-tabs:not(.card-outline) > .card-header .nav-item:first-child .nav-link {
   margin-left: -1px;
 }
 

@@ -87,7 +87,7 @@
 
   &.card-tabs {
     &:not(.card-outline) {
-      & .card-header {
+      & > .card-header {
         border-bottom: 0;
 
         .nav-item {
