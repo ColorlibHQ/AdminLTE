@@ -12823,9 +12823,19 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   }
 }
 
+.sidebar-collapse .main-sidebar.sidebar-focused .nav-header,
+.sidebar-collapse .main-sidebar:hover .nav-header {
+  display: inline-block;
+}
+
 .sidebar-collapse .sidebar-no-expand.main-sidebar.sidebar-focused,
 .sidebar-collapse .sidebar-no-expand.main-sidebar:hover {
   width: 4.6rem;
+}
+
+.sidebar-collapse .sidebar-no-expand.main-sidebar.sidebar-focused .nav-header,
+.sidebar-collapse .sidebar-no-expand.main-sidebar:hover .nav-header {
+  display: none;
 }
 
 .sidebar-collapse .sidebar-no-expand.main-sidebar.sidebar-focused .brand-link,

@@ -62,9 +62,20 @@
 }
 
 .sidebar-collapse {
+  .main-sidebar.sidebar-focused,
+  .main-sidebar:hover {
+    .nav-header {
+      display: inline-block;
+    }
+  }
+
   .sidebar-no-expand.main-sidebar.sidebar-focused,
   .sidebar-no-expand.main-sidebar:hover {
     width: $sidebar-mini-width;
+
+    .nav-header {
+      display: none;
+    }
 
     .brand-link {
       width: $sidebar-mini-width !important;
