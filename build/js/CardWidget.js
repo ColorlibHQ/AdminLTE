@@ -70,7 +70,8 @@ const CardWidget = (($) => {
         .slideUp(this._settings.animationSpeed, () => {
           this._parent.addClass(ClassName.COLLAPSED)
         })
-      this._parent.find(this._settings.collapseTrigger + ' .' + this._settings.collapseIcon)
+
+      this._parent.find('> ' + Selector.CARD_HEADER + ' ' + this._settings.collapseTrigger + ' .' + this._settings.collapseIcon)
         .addClass(this._settings.expandIcon)
         .removeClass(this._settings.collapseIcon)
 
@@ -85,7 +86,7 @@ const CardWidget = (($) => {
           this._parent.removeClass(ClassName.COLLAPSED)
         })
 
-      this._parent.find(this._settings.collapseTrigger + ' .' + this._settings.expandIcon)
+      this._parent.find('> ' + Selector.CARD_HEADER + ' ' + this._settings.collapseTrigger + ' .' + this._settings.expandIcon)
         .addClass(this._settings.collapseIcon)
         .removeClass(this._settings.expandIcon)
 
