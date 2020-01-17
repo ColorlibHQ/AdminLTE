@@ -1,5 +1,5 @@
 /*!
- *   AdminLTE v3.0.1
+ *   AdminLTE v3.0.2
  *     Only Pages
  *   Author: Colorlib
  *   Website: AdminLTE.io <http://adminlte.io>
@@ -214,6 +214,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   align-items: center;
   background: #e9ecef;
   display: flex;
+  flex-direction: column;
   height: 100vh;
   justify-content: center;
 }

@@ -1,5 +1,5 @@
 /*!
- *   AdminLTE v3.0.1
+ *   AdminLTE v3.0.2
  *     Only Extra Components
  *   Author: Colorlib
  *   Website: AdminLTE.io <http://adminlte.io>
@@ -753,6 +753,16 @@
 
 .direct-chat-dark .right > .direct-chat-text::after, .direct-chat-dark .right > .direct-chat-text::before {
   border-left-color: #343a40;
+}
+
+.direct-chat-lightblue .right > .direct-chat-text {
+  background: #3c8dbc;
+  border-color: #3c8dbc;
+  color: #ffffff;
+}
+
+.direct-chat-lightblue .right > .direct-chat-text::after, .direct-chat-lightblue .right > .direct-chat-text::before {
+  border-left-color: #3c8dbc;
 }
 
 .direct-chat-navy .right > .direct-chat-text {

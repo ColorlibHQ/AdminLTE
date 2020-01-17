@@ -23,6 +23,8 @@
     'navbar-indigo',
     'navbar-purple',
     'navbar-pink',
+    'navbar-navy',
+    'navbar-lightblue',
     'navbar-teal',
     'navbar-cyan',
     'navbar-dark',
@@ -240,6 +242,7 @@
     'bg-danger',
     'bg-success',
     'bg-indigo',
+    'bg-lightblue',
     'bg-navy',
     'bg-purple',
     'bg-fuchsia',
@@ -258,6 +261,7 @@
     'accent-danger',
     'accent-success',
     'accent-indigo',
+    'accent-lightblue',
     'accent-navy',
     'accent-purple',
     'accent-fuchsia',
@@ -276,6 +280,7 @@
     'sidebar-dark-danger',
     'sidebar-dark-success',
     'sidebar-dark-indigo',
+    'sidebar-dark-lightblue',
     'sidebar-dark-navy',
     'sidebar-dark-purple',
     'sidebar-dark-fuchsia',
@@ -291,6 +296,7 @@
     'sidebar-light-danger',
     'sidebar-light-success',
     'sidebar-light-indigo',
+    'sidebar-light-lightblue',
     'sidebar-light-navy',
     'sidebar-light-purple',
     'sidebar-light-fuchsia',
@@ -319,10 +325,10 @@
   }))
 
   $container.append('<h6>Dark Sidebar Variants</h6>')
-  var $sidebar_variants = $('<div />', {
+  var $sidebar_variants_dark = $('<div />', {
     'class': 'd-flex'
   })
-  $container.append($sidebar_variants)
+  $container.append($sidebar_variants_dark)
   $container.append(createSkinBlock(sidebar_colors, function () {
     var color         = $(this).data('color')
     var sidebar_class = 'sidebar-dark-' + color.replace('bg-', '')
@@ -335,10 +341,10 @@
   }))
 
   $container.append('<h6>Light Sidebar Variants</h6>')
-  var $sidebar_variants = $('<div />', {
+  var $sidebar_variants_light = $('<div />', {
     'class': 'd-flex'
   })
-  $container.append($sidebar_variants)
+  $container.append($sidebar_variants_light)
   $container.append(createSkinBlock(sidebar_colors, function () {
     var color         = $(this).data('color')
     var sidebar_class = 'sidebar-light-' + color.replace('bg-', '')
