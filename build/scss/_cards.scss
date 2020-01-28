@@ -108,6 +108,34 @@
         }
       }
     }
+
+    .card-tools {
+      margin: .3rem .5rem;
+    }
+
+    &:not(.expanding-card).collapsed-card {
+      .card-header {
+        border-bottom: 0;
+
+        .nav-tabs {
+          border-bottom: 0;
+
+          .nav-item {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    &.expanding-card {
+      .card-header {
+        .nav-tabs {
+          .nav-item {
+            margin-bottom: -1px;
+          }
+        }
+      }
+    }
   }
 
   &.card-outline-tabs {
@@ -131,6 +159,32 @@
         &.active {
           &:hover {
             margin-top: 0;
+          }
+        }
+      }
+    }
+
+    .card-tools {
+      margin: .5rem .5rem .3rem;
+    }
+
+    &:not(.expanding-card).collapsed-card .card-header {
+      border-bottom: 0;
+
+      .nav-tabs {
+        border-bottom: 0;
+
+        .nav-item {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &.expanding-card {
+      .card-header {
+        .nav-tabs {
+          .nav-item {
+            margin-bottom: -1px;
           }
         }
       }
