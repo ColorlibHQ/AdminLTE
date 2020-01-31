@@ -8,6 +8,7 @@ import CardWidget from './CardWidget'
 import CardRefresh from './CardRefresh'
 import Dropdown from './Dropdown'
 import Toasts from './Toasts'
+import ExpandableTable from './ExpandableTable'
 
 export {
   ControlSidebar,
@@ -19,5 +20,6 @@ export {
   CardWidget,
   CardRefresh,
   Dropdown,
-  Toasts
+  Toasts,
+  ExpandableTable
 }
