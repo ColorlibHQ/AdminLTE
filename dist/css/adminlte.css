@@ -20285,9 +20285,31 @@ html.maximized-card {
   border-right: 0;
 }
 
-.fc-toolbar {
+.fc-toolbar,
+.fc-toolbar.fc-header-toolbar {
   margin: 0;
   padding: 1rem;
+}
+
+@media (max-width: 575.98px) {
+  .fc-toolbar {
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .fc-toolbar .fc-left {
+    -ms-flex-order: 1;
+    order: 1;
+    margin-bottom: .5rem;
+  }
+  .fc-toolbar .fc-center {
+    -ms-flex-order: 0;
+    order: 0;
+    margin-bottom: .375rem;
+  }
+  .fc-toolbar .fc-right {
+    -ms-flex-order: 2;
+    order: 2;
+  }
 }
 
 .fc-day-number {

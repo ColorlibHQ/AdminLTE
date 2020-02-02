@@ -54,9 +54,30 @@
   border-right: 0;
 }
 
-.fc-toolbar {
+.fc-toolbar,
+.fc-toolbar.fc-header-toolbar {
   margin: 0;
   padding: 1rem;
+}
+
+@include media-breakpoint-down(xs) {
+  .fc-toolbar {
+    flex-direction: column;
+
+    .fc-left {
+      order: 1;
+      margin-bottom: .5rem;
+    }
+
+    .fc-center {
+      order: 0;
+      margin-bottom: .375rem;
+    }
+
+    .fc-right {
+      order: 2;
+    }
+  }
 }
 
 .fc-day-number {
