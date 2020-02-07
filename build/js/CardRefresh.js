@@ -62,12 +62,6 @@ const CardRefresh = (($) => {
       if (this._settings.source === '') {
         throw new Error('Source url was not defined. Please specify a url in your CardRefresh source option.');
       }
-
-      this._init();
-
-      if (this._settings.loadOnInit) {
-        this.load();
-      }
     }
 
     load() {
@@ -112,6 +106,10 @@ const CardRefresh = (($) => {
       $(this).find(this._settings.trigger).on('click', () => {
         this.load()
       })
+
+      if (this._settings.loadOnInit) {
+        this.load()
+      }
     }
 
     // Static
@@ -127,7 +125,7 @@ const CardRefresh = (($) => {
 
       if (typeof config === 'string' && config.match(/load/)) {
         data[config]()
-      } else if (typeof config === 'object') {
+      } else {
         data._init($(this))
       }
     }
@@ -144,6 +142,12 @@ const CardRefresh = (($) => {
     }
 
     CardRefresh._jQueryInterface.call($(this), 'load')
+  })
+
+  $(document).ready(function () {
+    $(Selector.DATA_REFRESH).each(function() {
+      CardRefresh._jQueryInterface.call($(this))
+    })
   })
 
   /**

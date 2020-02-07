@@ -1406,12 +1406,6 @@
         if (this._settings.source === '') {
           throw new Error('Source url was not defined. Please specify a url in your CardRefresh source option.');
         }
-
-        this._init();
-
-        if (this._settings.loadOnInit) {
-          this.load();
-        }
       }
 
       var _proto = CardRefresh.prototype;
@@ -1459,6 +1453,10 @@
         $(this).find(this._settings.trigger).on('click', function () {
           _this.load();
         });
+
+        if (this._settings.loadOnInit) {
+          this.load();
+        }
       } // Static
       ;
 
@@ -1474,7 +1472,7 @@
 
         if (typeof config === 'string' && config.match(/load/)) {
           data[config]();
-        } else if (typeof config === 'object') {
+        } else {
           data._init($(this));
         }
       };
@@ -1493,6 +1491,11 @@
       }
 
       CardRefresh._jQueryInterface.call($(this), 'load');
+    });
+    $(document).ready(function () {
+      $(Selector.DATA_REFRESH).each(function () {
+        CardRefresh._jQueryInterface.call($(this));
+      });
     });
     /**
      * jQuery API
