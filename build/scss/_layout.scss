@@ -33,6 +33,13 @@ body,
     }
   }
 
+  .layout-fixed & .sidebar {
+    height: calc(100vh - (#{$main-header-height-inner} + #{$main-header-bottom-border-width}));
+  }
+  .layout-fixed.text-sm & .sidebar {
+    height: calc(100vh - (#{$main-header-height-sm-inner} + #{$main-header-bottom-border-width}));
+  }
+
   .layout-navbar-fixed.layout-fixed & {
     .control-sidebar {
       top: $main-header-height;

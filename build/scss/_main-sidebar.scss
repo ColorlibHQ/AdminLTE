@@ -18,7 +18,7 @@
 }
 
 .sidebar {
-  height: calc(100% - 4rem);
+  height: calc(100% - (#{$main-header-height-inner} + #{$main-header-bottom-border-width}));
   overflow-y: auto;
   padding-bottom: $sidebar-padding-y;
   padding-left: $sidebar-padding-x;

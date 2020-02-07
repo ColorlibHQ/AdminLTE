@@ -10128,6 +10128,14 @@ body,
   left: inherit;
 }
 
+.layout-fixed .wrapper .sidebar  {
+  height: calc(100vh - (3.5rem + 1px));
+}
+
+.layout-fixed.text-sm .wrapper .sidebar  {
+  height: calc(100vh - (2.93725rem + 1px));
+}
+
 .layout-navbar-fixed.layout-fixed .wrapper .control-sidebar {
   top: calc(3.5rem + 1px);
 }
@@ -11621,7 +11629,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 }
 
 .sidebar {
-  height: calc(100% - 4rem);
+  height: calc(100% - (3.5rem + 1px));
   overflow-y: auto;
   padding-bottom: 0;
   padding-left: 0.5rem;
