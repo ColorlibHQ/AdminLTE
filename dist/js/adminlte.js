@@ -1528,8 +1528,14 @@
     var DATA_KEY = 'lte.dropdown';
     var JQUERY_NO_CONFLICT = $.fn[NAME];
     var Selector = {
-      DROPDOWN_MENU: 'ul.dropdown-menu',
+      NAVBAR: '.navbar',
+      DROPDOWN_MENU: '.dropdown-menu',
+      DROPDOWN_MENU_ACTIVE: '.dropdown-menu.show',
       DROPDOWN_TOGGLE: '[data-toggle="dropdown"]'
+    };
+    var ClassName = {
+      DROPDOWN_HOVER: 'dropdown-hover',
+      DROPDOWN_RIGHT: 'dropdown-menu-right'
     };
     var Default = {};
     /**
@@ -1558,6 +1564,35 @@
         this._element.parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
           $('.dropdown-submenu .show').removeClass("show").hide();
         });
+      };
+
+      _proto.fixPosition = function fixPosition() {
+        var elm = $(Selector.DROPDOWN_MENU_ACTIVE);
+
+        if (elm.length !== 0) {
+          if (elm.hasClass(ClassName.DROPDOWN_RIGHT)) {
+            elm.css('left', 'inherit');
+            elm.css('right', 0);
+          } else {
+            elm.css('left', 0);
+            elm.css('right', 'inherit');
+          }
+
+          var offset = elm.offset();
+          var width = elm.width();
+          var windowWidth = $(window).width();
+          var visiblePart = windowWidth - offset.left;
+
+          if (offset.left < 0) {
+            elm.css('left', 'inherit');
+            elm.css('right', offset.left - 5);
+          } else {
+            if (visiblePart < width) {
+              elm.css('left', 'inherit');
+              elm.css('right', 0);
+            }
+          }
+        }
       } // Static
       ;
 
@@ -1572,7 +1607,7 @@
             $(this).data(DATA_KEY, data);
           }
 
-          if (config === 'toggleSubmenu') {
+          if (config === 'toggleSubmenu' || config == 'fixPosition') {
             data[config]();
           }
         });
@@ -1591,13 +1626,13 @@
       event.stopPropagation();
 
       Dropdown._jQueryInterface.call($(this), 'toggleSubmenu');
-    }); // $(Selector.SIDEBAR + ' a').on('focusin', () => {
-    //   $(Selector.MAIN_SIDEBAR).addClass(ClassName.SIDEBAR_FOCUSED);
-    // })
-    // $(Selector.SIDEBAR + ' a').on('focusout', () => {
-    //   $(Selector.MAIN_SIDEBAR).removeClass(ClassName.SIDEBAR_FOCUSED);
-    // })
-
+    });
+    $(Selector.NAVBAR + ' ' + Selector.DROPDOWN_TOGGLE).on("click", function (event) {
+      event.preventDefault();
+      setTimeout(function () {
+        Dropdown._jQueryInterface.call($(this), 'fixPosition');
+      }, 1);
+    });
     /**
      * jQuery API
      * ====================================================
