@@ -11754,6 +11754,20 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   padding-left: 1rem;
 }
 
+.text-sm .nav-sidebar.nav-child-indent .nav-treeview {
+  padding-left: .5rem;
+}
+
+.nav-sidebar.nav-child-indent.nav-legacy .nav-treeview .nav-treeview {
+  padding-left: 2rem;
+  margin-left: -1rem;
+}
+
+.text-sm .nav-sidebar.nav-child-indent.nav-legacy .nav-treeview .nav-treeview {
+  padding-left: 1rem;
+  margin-left: -.5rem;
+}
+
 .nav-sidebar .nav-header {
   font-size: .9rem;
   padding: 0.5rem;
@@ -12396,8 +12410,12 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   margin-bottom: 0;
 }
 
-.nav-legacy.nav-sidebar > .nav-item > .nav-link > .nav-icon {
+.nav-legacy.nav-sidebar .nav-item > .nav-link > .nav-icon {
   margin-left: .55rem;
+}
+
+.text-sm .nav-legacy.nav-sidebar .nav-item > .nav-link > .nav-icon {
+  margin-left: .75rem;
 }
 
 .nav-legacy.nav-sidebar > .nav-item > .nav-link.active {
@@ -12410,9 +12428,18 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   margin-left: calc(.55rem - 3px);
 }
 
+.text-sm .nav-legacy.nav-sidebar > .nav-item > .nav-link.active > .nav-icon {
+  margin-left: calc(.75rem - 3px);
+}
+
+.text-sm .nav-legacy.nav-sidebar.nav-flat .nav-treeview .nav-item > .nav-link > .nav-icon {
+  margin-left: calc(.75rem - 3px);
+}
+
 .sidebar-mini .nav-legacy > .nav-item .nav-link .nav-icon,
 .sidebar-mini-md .nav-legacy > .nav-item .nav-link .nav-icon {
   transition: margin-left ease-in-out 0.3s;
+  margin-left: .75rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -12420,6 +12447,36 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   .sidebar-mini-md .nav-legacy > .nav-item .nav-link .nav-icon {
     transition: none;
   }
+}
+
+.sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .nav-legacy.nav-child-indent .nav-treeview,
+.sidebar-mini.sidebar-collapse .main-sidebar:hover .nav-legacy.nav-child-indent .nav-treeview,
+.sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .nav-legacy.nav-child-indent .nav-treeview,
+.sidebar-mini-md.sidebar-collapse .main-sidebar:hover .nav-legacy.nav-child-indent .nav-treeview {
+  padding-left: 1rem;
+}
+
+.sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .nav-legacy.nav-child-indent .nav-treeview .nav-treeview,
+.sidebar-mini.sidebar-collapse .main-sidebar:hover .nav-legacy.nav-child-indent .nav-treeview .nav-treeview,
+.sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .nav-legacy.nav-child-indent .nav-treeview .nav-treeview,
+.sidebar-mini-md.sidebar-collapse .main-sidebar:hover .nav-legacy.nav-child-indent .nav-treeview .nav-treeview {
+  padding-left: 2rem;
+  margin-left: -1rem;
+}
+
+.sidebar-mini.sidebar-collapse.text-sm .main-sidebar.sidebar-focused .nav-legacy.nav-child-indent .nav-treeview,
+.sidebar-mini.sidebar-collapse.text-sm .main-sidebar:hover .nav-legacy.nav-child-indent .nav-treeview,
+.sidebar-mini-md.sidebar-collapse.text-sm .main-sidebar.sidebar-focused .nav-legacy.nav-child-indent .nav-treeview,
+.sidebar-mini-md.sidebar-collapse.text-sm .main-sidebar:hover .nav-legacy.nav-child-indent .nav-treeview {
+  padding-left: .5rem;
+}
+
+.sidebar-mini.sidebar-collapse.text-sm .main-sidebar.sidebar-focused .nav-legacy.nav-child-indent .nav-treeview .nav-treeview,
+.sidebar-mini.sidebar-collapse.text-sm .main-sidebar:hover .nav-legacy.nav-child-indent .nav-treeview .nav-treeview,
+.sidebar-mini-md.sidebar-collapse.text-sm .main-sidebar.sidebar-focused .nav-legacy.nav-child-indent .nav-treeview .nav-treeview,
+.sidebar-mini-md.sidebar-collapse.text-sm .main-sidebar:hover .nav-legacy.nav-child-indent .nav-treeview .nav-treeview {
+  padding-left: 1rem;
+  margin-left: -.5rem;
 }
 
 .sidebar-mini.sidebar-collapse .nav-legacy > .nav-item > .nav-link .nav-icon,
@@ -12430,6 +12487,22 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 .sidebar-mini.sidebar-collapse .nav-legacy > .nav-item > .nav-link.active > .nav-icon,
 .sidebar-mini-md.sidebar-collapse .nav-legacy > .nav-item > .nav-link.active > .nav-icon {
   margin-left: .36rem;
+}
+
+.sidebar-mini.sidebar-collapse .nav-legacy.nav-child-indent .nav-treeview .nav-treeview,
+.sidebar-mini-md.sidebar-collapse .nav-legacy.nav-child-indent .nav-treeview .nav-treeview {
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.sidebar-mini.sidebar-collapse.text-sm .nav-legacy > .nav-item > .nav-link .nav-icon,
+.sidebar-mini-md.sidebar-collapse.text-sm .nav-legacy > .nav-item > .nav-link .nav-icon {
+  margin-left: .75rem;
+}
+
+.sidebar-mini.sidebar-collapse.text-sm .nav-legacy > .nav-item > .nav-link.active > .nav-icon,
+.sidebar-mini-md.sidebar-collapse.text-sm .nav-legacy > .nav-item > .nav-link.active > .nav-icon {
+  margin-left: calc(.75rem - 3px);
 }
 
 [class*='sidebar-dark'] .nav-legacy.nav-sidebar > .nav-item .nav-treeview,
@@ -12473,7 +12546,9 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 }
 
 .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .nav-collapse-hide-child .menu-open > .nav-treeview,
-.sidebar-mini.sidebar-collapse .main-sidebar:hover .nav-collapse-hide-child .menu-open > .nav-treeview {
+.sidebar-mini.sidebar-collapse .main-sidebar:hover .nav-collapse-hide-child .menu-open > .nav-treeview,
+.sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .nav-collapse-hide-child .menu-open > .nav-treeview,
+.sidebar-mini-md.sidebar-collapse .main-sidebar:hover .nav-collapse-hide-child .menu-open > .nav-treeview {
   max-height: -webkit-min-content;
   max-height: -moz-min-content;
   max-height: min-content;
@@ -12494,6 +12569,11 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 .nav-compact .nav-link > .right,
 .nav-compact .nav-link > p > .right {
   top: .465rem;
+}
+
+.text-sm .nav-compact .nav-link > .right,
+.text-sm .nav-compact .nav-link > p > .right {
+  top: .7rem;
 }
 
 [class*='sidebar-dark'] .form-control-sidebar,
@@ -12834,26 +12914,6 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 .sidebar-collapse .sidebar-no-expand.main-sidebar.sidebar-focused .nav-sidebar > .nav-item .nav-icon,
 .sidebar-collapse .sidebar-no-expand.main-sidebar:hover .nav-sidebar > .nav-item .nav-icon {
   margin-right: 0;
-}
-
-.sidebar-collapse .sidebar-no-expand.main-sidebar.sidebar-focused .nav-flat .nav-icon,
-.sidebar-collapse .sidebar-no-expand.main-sidebar:hover .nav-flat .nav-icon {
-  margin-left: .5rem;
-}
-
-.sidebar-collapse .sidebar-no-expand.main-sidebar.sidebar-focused .nav-flat .nav-treeview .nav-icon,
-.sidebar-collapse .sidebar-no-expand.main-sidebar:hover .nav-flat .nav-treeview .nav-icon {
-  margin-left: .3rem;
-}
-
-.sidebar-collapse .sidebar-no-expand.main-sidebar.sidebar-focused .nav-flat.nav-compact .nav-icon,
-.sidebar-collapse .sidebar-no-expand.main-sidebar:hover .nav-flat.nav-compact .nav-icon {
-  margin-left: 1.05rem;
-}
-
-.sidebar-collapse .sidebar-no-expand.main-sidebar.sidebar-focused .nav-flat.nav-compact .nav-treeview .nav-icon,
-.sidebar-collapse .sidebar-no-expand.main-sidebar:hover .nav-flat.nav-compact .nav-treeview .nav-icon {
-  margin-left: .85rem;
 }
 
 .nav-sidebar {
