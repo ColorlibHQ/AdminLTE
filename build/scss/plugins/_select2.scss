@@ -21,7 +21,9 @@
   }
 
   &.select2-container--open {
-    border-color: $primary;
+    .select2-selection--single {
+      border-color: lighten($primary, 25%);
+    }
   }
 
   & .select2-dropdown {
