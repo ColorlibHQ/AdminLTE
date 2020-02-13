@@ -28987,7 +28987,7 @@ a.text-muted:hover {
   color: #0056b3;
 }
 
-.accent-primary .dropdown-item.active {
+.accent-primary .dropdown-item:active, .accent-primary .dropdown-item.active {
   background: #007bff;
   color: #ffffff;
 }
@@ -29044,7 +29044,7 @@ a.text-muted:hover {
   color: #494f54;
 }
 
-.accent-secondary .dropdown-item.active {
+.accent-secondary .dropdown-item:active, .accent-secondary .dropdown-item.active {
   background: #6c757d;
   color: #ffffff;
 }
@@ -29101,7 +29101,7 @@ a.text-muted:hover {
   color: #19692c;
 }
 
-.accent-success .dropdown-item.active {
+.accent-success .dropdown-item:active, .accent-success .dropdown-item.active {
   background: #28a745;
   color: #ffffff;
 }
@@ -29158,7 +29158,7 @@ a.text-muted:hover {
   color: #0f6674;
 }
 
-.accent-info .dropdown-item.active {
+.accent-info .dropdown-item:active, .accent-info .dropdown-item.active {
   background: #17a2b8;
   color: #ffffff;
 }
@@ -29215,7 +29215,7 @@ a.text-muted:hover {
   color: #ba8b00;
 }
 
-.accent-warning .dropdown-item.active {
+.accent-warning .dropdown-item:active, .accent-warning .dropdown-item.active {
   background: #ffc107;
   color: #1F2D3D;
 }
@@ -29272,7 +29272,7 @@ a.text-muted:hover {
   color: #a71d2a;
 }
 
-.accent-danger .dropdown-item.active {
+.accent-danger .dropdown-item:active, .accent-danger .dropdown-item.active {
   background: #dc3545;
   color: #ffffff;
 }
@@ -29329,7 +29329,7 @@ a.text-muted:hover {
   color: #cbd3da;
 }
 
-.accent-light .dropdown-item.active {
+.accent-light .dropdown-item:active, .accent-light .dropdown-item.active {
   background: #f8f9fa;
   color: #1F2D3D;
 }
@@ -29386,7 +29386,7 @@ a.text-muted:hover {
   color: #121416;
 }
 
-.accent-dark .dropdown-item.active {
+.accent-dark .dropdown-item:active, .accent-dark .dropdown-item.active {
   background: #343a40;
   color: #ffffff;
 }
@@ -29443,7 +29443,7 @@ a.text-muted:hover {
   color: #296282;
 }
 
-.accent-lightblue .dropdown-item.active {
+.accent-lightblue .dropdown-item:active, .accent-lightblue .dropdown-item.active {
   background: #3c8dbc;
   color: #ffffff;
 }
@@ -29500,7 +29500,7 @@ a.text-muted:hover {
   color: black;
 }
 
-.accent-navy .dropdown-item.active {
+.accent-navy .dropdown-item:active, .accent-navy .dropdown-item.active {
   background: #001f3f;
   color: #ffffff;
 }
@@ -29557,7 +29557,7 @@ a.text-muted:hover {
   color: #276248;
 }
 
-.accent-olive .dropdown-item.active {
+.accent-olive .dropdown-item:active, .accent-olive .dropdown-item.active {
   background: #3d9970;
   color: #ffffff;
 }
@@ -29614,7 +29614,7 @@ a.text-muted:hover {
   color: #00b44e;
 }
 
-.accent-lime .dropdown-item.active {
+.accent-lime .dropdown-item:active, .accent-lime .dropdown-item.active {
   background: #01ff70;
   color: #1F2D3D;
 }
@@ -29671,7 +29671,7 @@ a.text-muted:hover {
   color: #ab0b87;
 }
 
-.accent-fuchsia .dropdown-item.active {
+.accent-fuchsia .dropdown-item:active, .accent-fuchsia .dropdown-item.active {
   background: #f012be;
   color: #ffffff;
 }
@@ -29728,7 +29728,7 @@ a.text-muted:hover {
   color: #941342;
 }
 
-.accent-maroon .dropdown-item.active {
+.accent-maroon .dropdown-item:active, .accent-maroon .dropdown-item.active {
   background: #d81b60;
   color: #ffffff;
 }
@@ -29785,7 +29785,7 @@ a.text-muted:hover {
   color: #0056b3;
 }
 
-.accent-blue .dropdown-item.active {
+.accent-blue .dropdown-item:active, .accent-blue .dropdown-item.active {
   background: #007bff;
   color: #ffffff;
 }
@@ -29842,7 +29842,7 @@ a.text-muted:hover {
   color: #4709ac;
 }
 
-.accent-indigo .dropdown-item.active {
+.accent-indigo .dropdown-item:active, .accent-indigo .dropdown-item.active {
   background: #6610f2;
   color: #ffffff;
 }
@@ -29899,7 +29899,7 @@ a.text-muted:hover {
   color: #4e2d89;
 }
 
-.accent-purple .dropdown-item.active {
+.accent-purple .dropdown-item:active, .accent-purple .dropdown-item.active {
   background: #6f42c1;
   color: #ffffff;
 }
@@ -29956,7 +29956,7 @@ a.text-muted:hover {
   color: #c21766;
 }
 
-.accent-pink .dropdown-item.active {
+.accent-pink .dropdown-item:active, .accent-pink .dropdown-item.active {
   background: #e83e8c;
   color: #ffffff;
 }
@@ -30013,7 +30013,7 @@ a.text-muted:hover {
   color: #a71d2a;
 }
 
-.accent-red .dropdown-item.active {
+.accent-red .dropdown-item:active, .accent-red .dropdown-item.active {
   background: #dc3545;
   color: #ffffff;
 }
@@ -30070,7 +30070,7 @@ a.text-muted:hover {
   color: #c35a02;
 }
 
-.accent-orange .dropdown-item.active {
+.accent-orange .dropdown-item:active, .accent-orange .dropdown-item.active {
   background: #fd7e14;
   color: #1F2D3D;
 }
@@ -30127,7 +30127,7 @@ a.text-muted:hover {
   color: #ba8b00;
 }
 
-.accent-yellow .dropdown-item.active {
+.accent-yellow .dropdown-item:active, .accent-yellow .dropdown-item.active {
   background: #ffc107;
   color: #1F2D3D;
 }
@@ -30184,7 +30184,7 @@ a.text-muted:hover {
   color: #19692c;
 }
 
-.accent-green .dropdown-item.active {
+.accent-green .dropdown-item:active, .accent-green .dropdown-item.active {
   background: #28a745;
   color: #ffffff;
 }
@@ -30241,7 +30241,7 @@ a.text-muted:hover {
   color: #158765;
 }
 
-.accent-teal .dropdown-item.active {
+.accent-teal .dropdown-item:active, .accent-teal .dropdown-item.active {
   background: #20c997;
   color: #ffffff;
 }
@@ -30298,7 +30298,7 @@ a.text-muted:hover {
   color: #0f6674;
 }
 
-.accent-cyan .dropdown-item.active {
+.accent-cyan .dropdown-item:active, .accent-cyan .dropdown-item.active {
   background: #17a2b8;
   color: #ffffff;
 }
@@ -30355,7 +30355,7 @@ a.text-muted:hover {
   color: #d9d9d9;
 }
 
-.accent-white .dropdown-item.active {
+.accent-white .dropdown-item:active, .accent-white .dropdown-item.active {
   background: #ffffff;
   color: #1F2D3D;
 }
@@ -30412,7 +30412,7 @@ a.text-muted:hover {
   color: #494f54;
 }
 
-.accent-gray .dropdown-item.active {
+.accent-gray .dropdown-item:active, .accent-gray .dropdown-item.active {
   background: #6c757d;
   color: #ffffff;
 }
@@ -30469,7 +30469,7 @@ a.text-muted:hover {
   color: #121416;
 }
 
-.accent-gray-dark .dropdown-item.active {
+.accent-gray-dark .dropdown-item:active, .accent-gray-dark .dropdown-item.active {
   background: #343a40;
   color: #ffffff;
 }

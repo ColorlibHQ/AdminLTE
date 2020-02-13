@@ -20,6 +20,7 @@
     }
 
     .dropdown-item {
+      &:active,
       &.active {
         background: $color;
         color: color-yiq($color);
