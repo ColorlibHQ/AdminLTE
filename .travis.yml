@@ -10,6 +10,11 @@ env:
   - INSTALL=yarn
   - INSTALL=npm
 
+jobs:
+  exclude:
+  - node_js: 8
+    env: INSTALL=yarn
+
 matrix:
   fast_finish: true
 
