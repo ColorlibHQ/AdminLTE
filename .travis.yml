@@ -10,13 +10,12 @@ env:
   - INSTALL=yarn
   - INSTALL=npm
 
-jobs:
-  exclude:
-    - node_js: 8
-      env: INSTALL=yarn
 
 matrix:
   fast_finish: true
+  exclude:
+    - node_js: 8
+      env: INSTALL=yarn
 
 install:
   - if [ "yarn" == $INSTALL ]; then yarn install; fi
