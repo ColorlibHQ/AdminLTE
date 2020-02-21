@@ -690,7 +690,7 @@
   }
 
   .sidebar-mini &,
-  .sidebar-mini-md &, {
+  .sidebar-mini-md & {
     > .nav-item .nav-link {
       .nav-icon {
         @include transition(margin-left $transition-fn $transition-speed);
@@ -728,7 +728,7 @@
   }
 
   .sidebar-mini.sidebar-collapse &,
-  .sidebar-mini-md.sidebar-collapse &, {
+  .sidebar-mini-md.sidebar-collapse & {
     > .nav-item > .nav-link {
       .nav-icon {
         margin-left: .55rem;
@@ -753,7 +753,7 @@
 
 
   .sidebar-mini.sidebar-collapse.text-sm &,
-  .sidebar-mini-md.sidebar-collapse.text-sm &, {
+  .sidebar-mini-md.sidebar-collapse.text-sm & {
     > .nav-item > .nav-link {
       .nav-icon {
         margin-left: .75rem;
