@@ -12,8 +12,8 @@ env:
 
 jobs:
   exclude:
-  - node_js: 8
-    env: INSTALL=yarn
+    - node_js: 8
+      env: INSTALL=yarn
 
 matrix:
   fast_finish: true
