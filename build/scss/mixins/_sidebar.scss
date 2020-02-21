@@ -90,10 +90,6 @@
       &.sidebar-focused {
         width: $sidebar-width;
 
-        .nav-sidebar.nav-child-indent .nav-treeview {
-          padding-left: 1rem;
-        }
-
         .brand-link {
           width: $sidebar-width;
         }
@@ -114,18 +110,6 @@
           margin-left: 0;
           opacity: 1;
           visibility: visible;
-        }
-
-        .nav-flat {
-          .nav-icon {
-            margin-left: 0;
-          }
-
-          .nav-treeview {
-            .nav-icon {
-              margin-left: -.2rem;
-            }
-          }
         }
 
         .logo-xs {

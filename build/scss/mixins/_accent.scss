@@ -11,7 +11,7 @@
     $pagination-active-border-color: $color;
 
     .btn-link,
-    a:not(.dropdown-item  ) {
+    a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link) {
       color: $link-color;
 
       @include hover {
@@ -19,9 +19,12 @@
       }
     }
 
-    .dropdown-item.active {
-      background: $color;
-      color: color-yiq($color);
+    .dropdown-item {
+      &:active,
+      &.active {
+        background: $color;
+        color: color-yiq($color);
+      }
     }
 
     .custom-control-input:checked ~ .custom-control-label {
@@ -42,15 +45,6 @@
     .custom-file-input:focus ~ .custom-file-label {
       border-color: lighten($color, 25%);
     }
-
-    [class*="sidebar-light-"],
-    &[class*="sidebar-dark-"] {
-        .nav-sidebar .nav-treeview > .nav-item > {
-        .nav-link:not(.active):hover {
-          color: $color;
-        }
-      }
-    }
     
     .page-item {
       &.active .page-link {
@@ -61,6 +55,30 @@
       &.disabled .page-link {
         background-color: $pagination-disabled-bg;
         border-color: $pagination-disabled-border-color;
+      }
+    }
+
+    [class*="sidebar-dark-"] {
+      .sidebar {
+        a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link) {
+          color: $sidebar-dark-color;
+      
+          @include hover {
+            color: $sidebar-dark-hover-color;
+          }
+        }
+      }
+    }
+
+    [class*="sidebar-light-"] {
+      .sidebar {
+        a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link) {
+          color: $sidebar-light-color;
+
+          @include hover {
+            color: $sidebar-light-hover-color;
+          }
+        }
       }
     }
   }

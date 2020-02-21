@@ -17,12 +17,15 @@ const Dropdown = (($) => {
   const JQUERY_NO_CONFLICT = $.fn[NAME]
 
   const Selector = {
-    DROPDOWN_MENU: 'ul.dropdown-menu',
+    NAVBAR: '.navbar',
+    DROPDOWN_MENU: '.dropdown-menu',
+    DROPDOWN_MENU_ACTIVE: '.dropdown-menu.show',
     DROPDOWN_TOGGLE: '[data-toggle="dropdown"]',
   }
 
   const ClassName = {
-    DROPDOWN_HOVER: '.dropdown-hover'
+    DROPDOWN_HOVER: 'dropdown-hover',
+    DROPDOWN_RIGHT: 'dropdown-menu-right'
   }
 
   const Default = {
@@ -43,16 +46,44 @@ const Dropdown = (($) => {
     // Public
 
     toggleSubmenu() {
-      this._element.siblings().show().toggleClass("show");
+      this._element.siblings().show().toggleClass("show")
 
       if (! this._element.next().hasClass('show')) {
-        this._element.parents('.dropdown-menu').first().find('.show').removeClass("show").hide();
+        this._element.parents('.dropdown-menu').first().find('.show').removeClass("show").hide()
       }
 
       this._element.parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
-        $('.dropdown-submenu .show').removeClass("show").hide();
-      });
+        $('.dropdown-submenu .show').removeClass("show").hide()
+      })
+    }
 
+    fixPosition() {
+      let elm = $(Selector.DROPDOWN_MENU_ACTIVE)
+
+      if (elm.length !== 0) {
+        if (elm.hasClass(ClassName.DROPDOWN_RIGHT)) {
+          elm.css('left', 'inherit')
+          elm.css('right', 0)
+        } else {
+          elm.css('left', 0)
+          elm.css('right', 'inherit')
+        }
+
+        let offset = elm.offset()
+        let width = elm.width()
+        let windowWidth = $(window).width()
+        let visiblePart = windowWidth - offset.left
+
+        if (offset.left < 0) {
+          elm.css('left', 'inherit')
+          elm.css('right', (offset.left - 5))
+        } else {
+          if (visiblePart < width) {
+            elm.css('left', 'inherit')
+            elm.css('right', 0)
+          }
+        }
+      }  
     }
 
     // Static
@@ -67,7 +98,7 @@ const Dropdown = (($) => {
           $(this).data(DATA_KEY, data)
         }
 
-        if (config === 'toggleSubmenu') {
+        if (config === 'toggleSubmenu' || config == 'fixPosition') {
           data[config]()
         }
       })
@@ -80,19 +111,19 @@ const Dropdown = (($) => {
    */
 
   $(Selector.DROPDOWN_MENU + ' ' + Selector.DROPDOWN_TOGGLE).on("click", function(event) {
-    event.preventDefault();
-    event.stopPropagation();
+    event.preventDefault()
+    event.stopPropagation()
 
     Dropdown._jQueryInterface.call($(this), 'toggleSubmenu')
   });
 
-  // $(Selector.SIDEBAR + ' a').on('focusin', () => {
-  //   $(Selector.MAIN_SIDEBAR).addClass(ClassName.SIDEBAR_FOCUSED);
-  // })
+  $(Selector.NAVBAR + ' ' + Selector.DROPDOWN_TOGGLE).on("click", function(event) {
+    event.preventDefault()
 
-  // $(Selector.SIDEBAR + ' a').on('focusout', () => {
-  //   $(Selector.MAIN_SIDEBAR).removeClass(ClassName.SIDEBAR_FOCUSED);
-  // })
+    setTimeout(function() {
+      Dropdown._jQueryInterface.call($(this), 'fixPosition')
+    }, 1)
+  });
 
   /**
    * jQuery API
