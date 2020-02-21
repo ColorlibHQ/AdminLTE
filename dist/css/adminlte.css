@@ -20547,32 +20547,43 @@ html.maximized-card {
   box-shadow: none;
 }
 
-.text-sm .select2-container--default .select2-selection--single {
+select.form-control-sm ~ .select2-container--default {
+  font-size: 0.875rem;
+}
+
+.text-sm .select2-container--default .select2-selection--single,
+select.form-control-sm ~ .select2-container--default .select2-selection--single {
   height: calc(1.8125rem + 2px);
 }
 
-.text-sm .select2-container--default .select2-selection--single .select2-selection__rendered {
+.text-sm .select2-container--default .select2-selection--single .select2-selection__rendered,
+select.form-control-sm ~ .select2-container--default .select2-selection--single .select2-selection__rendered {
   margin-top: -.4rem;
 }
 
-.text-sm .select2-container--default .select2-selection--single .select2-selection__arrow {
+.text-sm .select2-container--default .select2-selection--single .select2-selection__arrow,
+select.form-control-sm ~ .select2-container--default .select2-selection--single .select2-selection__arrow {
   top: -.12rem;
 }
 
-.text-sm .select2-container--default .select2-selection--multiple {
+.text-sm .select2-container--default .select2-selection--multiple,
+select.form-control-sm ~ .select2-container--default .select2-selection--multiple {
   min-height: calc(1.8125rem + 2px);
 }
 
-.text-sm .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+.text-sm .select2-container--default .select2-selection--multiple .select2-selection__rendered,
+select.form-control-sm ~ .select2-container--default .select2-selection--multiple .select2-selection__rendered {
   padding: 0 0.25rem 0.25rem;
   margin-top: -0.1rem;
 }
 
-.text-sm .select2-container--default .select2-selection--multiple .select2-selection__rendered li:first-child.select2-search.select2-search--inline {
+.text-sm .select2-container--default .select2-selection--multiple .select2-selection__rendered li:first-child.select2-search.select2-search--inline,
+select.form-control-sm ~ .select2-container--default .select2-selection--multiple .select2-selection__rendered li:first-child.select2-search.select2-search--inline {
   margin-left: 0.25rem;
 }
 
-.text-sm .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-search.select2-search--inline .select2-search__field {
+.text-sm .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-search.select2-search--inline .select2-search__field,
+select.form-control-sm ~ .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-search.select2-search--inline .select2-search__field {
   margin-top: 6px;
 }
 

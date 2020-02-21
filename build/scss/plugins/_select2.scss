@@ -213,8 +213,15 @@
   }
 }
 
-// text-sm override
-.text-sm {
+// text-sm / form-control-sm override
+select.form-control-sm ~ {
+  .select2-container--default {
+    font-size: $font-size-sm;
+  }
+}
+
+.text-sm,
+select.form-control-sm ~ {
   .select2-container--default {
     .select2-selection--single {
       height: $input-height-sm;
