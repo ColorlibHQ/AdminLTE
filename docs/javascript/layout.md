@@ -16,6 +16,7 @@ This plugin is activated automatically upon window load.
 |-|-|-|-
 |scrollbarTheme | Boolean | `os-theme-light` | Scrollbar Theme used while SideBar Fixed
 |scrollbarAutoHide | Boolean | `l` | Scrollbar auto-hide trigger
+|loginRegisterAutoHeight | Boolean|Integer | true | Login & Register Height Correction
 |---
 {: .table .table-bordered .bg-light}
 
@@ -33,6 +34,7 @@ This plugin is activated automatically upon window load.
 | Method | Description
 |-|-
 |fixLayoutHeight | Fix the content / control sidebar height and activates OverlayScrollbars for sidebar / control sidebar
+|fixLoginRegisterHeight | Fix the login & register body height
 {: .table .table-bordered .bg-light}
 
 Example: `$('body').Layout('fixLayoutHeight')`

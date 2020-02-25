@@ -326,7 +326,8 @@
     };
     var Default = {
       scrollbarTheme: 'os-theme-light',
-      scrollbarAutoHide: 'l'
+      scrollbarAutoHide: 'l',
+      loginRegisterAutoHeight: true
     };
     /**
      * Class Definition
@@ -389,6 +390,18 @@
             });
           }
         }
+      };
+
+      _proto.fixLoginRegisterHeight = function fixLoginRegisterHeight() {
+        if ($(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).length === 0) {
+          $('body, html').css('height', 'auto');
+        } else if ($(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).length !== 0) {
+          var box_height = $(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).height();
+
+          if ($('body').css('min-height') !== box_height) {
+            $('body').css('min-height', box_height);
+          }
+        }
       } // Private
       ;
 
@@ -397,6 +410,13 @@
 
         // Activate layout height watcher
         this.fixLayoutHeight();
+
+        if (this._config.loginRegisterAutoHeight === true) {
+          this.fixLoginRegisterHeight();
+        } else if (Number.isInteger(this._config.loginRegisterAutoHeight)) {
+          setInterval(this.fixLoginRegisterHeight, this._config.loginRegisterAutoHeight);
+        }
+
         $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview', function () {
           _this.fixLayoutHeight();
         });
@@ -411,14 +431,6 @@
         $(window).resize(function () {
           _this.fixLayoutHeight();
         });
-
-        if ($(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).length === 0) {
-          $('body, html').css('height', 'auto');
-        } else if ($(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).length !== 0) {
-          var box_height = $(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).height();
-          $('body').css('min-height', box_height);
-        }
-
         $('body.hold-transition').removeClass('hold-transition');
       };
 
@@ -451,6 +463,8 @@
 
           if (config === 'init' || config === '') {
             data['_init']();
+          } else if (config === 'fixLayoutHeight' || config === 'fixLoginRegisterHeight') {
+            data[config]();
           }
         });
       };
