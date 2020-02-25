@@ -140,9 +140,9 @@ const Layout = (($) => {
         this.fixLayoutHeight()
       })
 
-      if (!$('body').hasClass(ClassName.LOGIN_PAGE) && !$('body').hasClass(ClassName.REGISTER_PAGE)) {
+      if ($(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).length === 0) {
         $('body, html').css('height', 'auto')
-      } else if ($('body').hasClass(ClassName.LOGIN_PAGE) || $('body').hasClass(ClassName.REGISTER_PAGE)) {
+      } else if ($(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).length !== 0) {
         let box_height = $(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).height()
 
         $('body').css('min-height', box_height);

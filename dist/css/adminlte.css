@@ -20033,7 +20033,7 @@ html.maximized-card {
 @media (max-width: 576px) {
   .login-box,
   .register-box {
-    margin-top: 20px;
+    margin-top: .5rem;
     width: 90%;
   }
 }
