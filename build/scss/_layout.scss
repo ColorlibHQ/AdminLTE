@@ -68,7 +68,8 @@ body,
     }
   }
 
-  .layout-navbar-fixed.sidebar-collapse & {
+  .layout-navbar-fixed.sidebar-mini.sidebar-collapse &,
+  .layout-navbar-fixed.sidebar-mini-md.sidebar-collapse & {
     .brand-link {
       height: $main-header-height;
       width: $sidebar-mini-width;
@@ -79,7 +80,8 @@ body,
     }
   }
 
-  .layout-navbar-fixed.sidebar-collapse.text-sm & {
+  .layout-navbar-fixed.sidebar-mini.sidebar-collapse.text-sm &,
+  .layout-navbar-fixed.sidebar-mini-md.sidebar-collapse.text-sm & {
     .brand-link {
       height: $main-header-height-sm;
     }
