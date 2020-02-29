@@ -113,6 +113,12 @@
   font-size: $font-size-sm;
   padding: .5rem $dropdown-item-padding-x;
   text-align: center;
+  color: #8a93a2;
+  white-space: nowrap;
+}
+
+.dropdown-bg-color {
+  background-color: #ebedef!important;
 }
 
 // Add fade animation to dropdown menus by appending 
