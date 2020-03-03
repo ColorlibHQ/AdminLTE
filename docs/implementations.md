@@ -12,6 +12,7 @@ Thanks to many of AdminLTE users, there are multiple implementations of the temp
 - [django-adminlte3](https://github.com/d-demirci/django-adminlte3) by [d-demirci](https://github.com/d-demirci)
 - [AdminLTE3.MVC](https://www.nuget.org/packages/AdminLTE3.MVC/) by [somaraj](https://github.com/somaraj)
 - [admin-lte-dotnet](https://github.com/iyilm4z/admin-lte-dotnet) by [iyilm4z](https://github.com/iyilm4z)
+- [WebPx.AdminLTE.AspNetCore](https://github.com/WebPx/WebPx.AdminLTE.AspNetCore) by [WebPx](https://github.com/WebPx)
 
 ##### AdminLTE v2.4
 {: .text-bold .text-dark .mt-3}
