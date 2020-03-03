@@ -6,6 +6,9 @@ title: Upgrade Guide
 #### Migration from v2.4.x
 The first step to migrate AdminLTE v2.4.x to v3.0 is upgrade the Bootstrap 3 base code to Bootstrap 4, the full instruction <a href="https://getbootstrap.com/docs/4.3/migration/">here</a> after you upgraded the base code you need to update the markups.
 
+#### CSS / JS Files
+Since AdminLTE v3.0 Bootstrap 4 is complete included in AdminLTE's CSS file. You will not need to load the Bootstrap CSS file `bootstrap(.min).css`, but you will need the Bootstrap JS file `bootstrap(.min).js`.
+
 ##### Main Header
 The biggest change in Main Header is the Logo is moved to Main Sidebar and the Main Header has now color variations, here are all changes:
 
