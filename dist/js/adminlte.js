@@ -327,6 +327,7 @@
     var Default = {
       scrollbarTheme: 'os-theme-light',
       scrollbarAutoHide: 'l',
+      panelAutoHeight: true,
       loginRegisterAutoHeight: true
     };
     /**
@@ -368,16 +369,26 @@
 
         var max = this._max(heights);
 
-        if (max == heights.control_sidebar) {
-          $(Selector.CONTENT).css('min-height', max);
-        } else if (max == heights.window) {
-          $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer);
-        } else {
-          $(Selector.CONTENT).css('min-height', max - heights.header);
+        var offset = this._config.panelAutoHeight;
+
+        if (offset === true) {
+          offset = 0;
+        }
+
+        if (offset !== false) {
+          if (max == heights.control_sidebar) {
+            $(Selector.CONTENT).css('min-height', max + offset);
+          } else if (max == heights.window) {
+            $(Selector.CONTENT).css('min-height', max + offset - heights.header - heights.footer);
+          } else {
+            $(Selector.CONTENT).css('min-height', max + offset - heights.header);
+          }
         }
 
         if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
-          $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer);
+          if (offset !== false) {
+            $(Selector.CONTENT).css('min-height', max + offset - heights.header - heights.footer);
+          }
 
           if (typeof $.fn.overlayScrollbars !== 'undefined') {
             $(Selector.SIDEBAR).overlayScrollbars({
