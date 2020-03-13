@@ -12,6 +12,10 @@
           border-color: lighten($color, 25%);
         }
       }
+
+      &.select2-container--focus .select2-selection--single {
+        border-color: lighten($color, 25%);
+      }
     }
 
     .select2-container--default &,
@@ -60,7 +64,7 @@
             }
           }
         }
-
+  
         &.select2-container--focus .select2-selection--multiple {
           border-color: lighten($color, 25%);
         }
