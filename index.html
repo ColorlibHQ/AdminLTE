@@ -376,7 +376,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar bg-white elevation-4 shadow">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="" class="brand-link">
       <img src="dist/img/virus.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-bold text-shadow " style="color:black;text-shadow: 0.5px 0.5px #FF0000;">COVID-19 INDIA</span>
@@ -435,29 +435,7 @@
               </p>
             </a>
           </li>
-		   <div class="card bg-gradient-white border border-black">
-              <div class="card-header border-0">
 
-                <h3 class="card-title">
-                  <i class="far fa-calendar-alt"></i>
-                  Calendar
-                </h3>
-                <!-- tools card -->
-                <div class="card-tools">
-                  <!-- button with a dropdown -->
-                  
-                  <button type="button" class="btn btn-dark btn-sm" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  
-                </div>
-                <!-- /. tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body pt-0">
-                <!--The calendar -->
-                <div id="calendar" style="width: 100%"></div>
-              </div>
           <!-- <li class="nav-item"> -->
             <!-- <a href="pages/widgets.html" class="nav-link"> -->
               <!-- <i class="nav-icon fas fa-th"></i> -->
@@ -2009,13 +1987,10 @@
               </div><!-- /.card-body -->
             </div>
             <!-- solid sales graph -->
-            <div class="card" style="background: #757F9A;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #D7DDE8, #757F9A);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-">
+            <div class="card bg-gradient-white" style="color:black !important;" >
               <div class="card-header border-0">
                 <h3 class="card-title">
-                  <i class="fas fa-th mr-1"></i>
+                  <i class="fas fa-th mr-1" style="color:red;"></i>
                   Sales Graph
                 </h3>
 
@@ -2066,7 +2041,35 @@ background: linear-gradient(to bottom, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, 
             </div>
             <!-- /.card -->
 
-            
+            <!-- Calendar -->
+            <div class="card bg-gradient-white">
+              <div class="card-header border-0">
+
+                <h3 class="card-title">
+                  <i class="far fa-calendar-alt" style="color:red;"></i>
+                  Calendar
+                </h3>
+                <!-- tools card -->
+                <div class="card-tools">
+                  <!-- button with a dropdown -->
+                  
+                  <button type="button" class="btn btn-dark btn-sm" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-dark btn-sm" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+                <!-- /. tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body pt-0">
+                <!--The calendar -->
+                <div id="calendar" style="width: 100%"></div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
           </section>
           <!-- right col -->
         </div>
