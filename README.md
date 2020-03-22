@@ -6,14 +6,14 @@ Introduction
 [![Packagist](https://img.shields.io/packagist/v/almasaeed2010/adminlte.svg)](https://packagist.org/packages/almasaeed2010/adminlte)
 [![CDNJS](https://img.shields.io/cdnjs/v/admin-lte.svg)](https://cdnjs.com/libraries/admin-lte)
 
-**AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 4](https://getbootstrap.com)** framework.
+**COVID19** is a fully responsive administration template. Based on **[Bootstrap 4](https://getbootstrap.com)** framework.
 Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.
 
-**Preview on [AdminLTE.io](https://adminlte.io/themes/v3)**
+**Preview on [COVID19.io](https://adminlte.io/themes/v3)**
 
 Looking for Premium Templates?
 ------------------------------
-AdminLTE.io just opened a new premium templates page. Hand picked to ensure the best quality and the most affordable
+COVID19.io just opened a new premium templates page. Hand picked to ensure the best quality and the most affordable
 prices. Visit https://adminlte.io/premium for more information.
 
 !["AdminLTE Presentation"](https://adminlte.io/AdminLTE3.png "AdminLTE Presentation")
@@ -49,7 +49,7 @@ composer require "almasaeed2010/adminlte=~3.0"
 __Via Git__
 - Clone to your machine
 ```
-git clone https://github.com/ColorlibHQ/AdminLTE.git
+git clone https://github.com/elComrades/COVID19.git
 ```
 
 Documentation
