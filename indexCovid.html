@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,1411 +29,1398 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
   <style>
-  .control-sidebar-content{
-    display: none !important;
+
+  #frame .content {
+  float: right;
+
+  overflow: hidden;
+  position: relative;
+}
+@media screen and (max-width: 735px) {
+  #frame .content {
+    width: calc(100% - 58px);
+    min-width: 300px !important;
+	height:100%
   }
-    #frame .content {
-      float: right;
+}
+@media screen and (min-width: 900px) {
+  #frame .content {
+    width:100%;
+	height:100%
+  }
+}
+#frame .content .contact-profile {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background: #f5f5f5;
+}
+#frame .content .contact-profile img {
+  width: 40px;
+  border-radius: 50%;
+  float: left;
+  margin: 9px 12px 0 9px;
+}
+#frame .content .contact-profile p {
+  text-align:center;
+  font-size:25px;
+  font-weight:bold;
+}
+#frame .content .contact-profile .social-media {
+  float: right;
+}
+#frame .content .contact-profile .social-media i {
+  margin-left: 14px;
+  cursor: pointer;
+}
+#frame .content .contact-profile .social-media i:nth-last-child(1) {
+  margin-right: 20px;
+}
+#frame .content .contact-profile .social-media i:hover {
+  color: #435f7a;
+}
+#frame .content .messages {
+  height: 100%;
 
-      overflow: hidden;
-      position: relative;
-    }
+  max-height: calc(100% - 63px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+@media screen and (max-width: 735px) {
+  #frame .content .messages {
+    max-height: calc(100% - 105px);
+  }
+}
+#frame .content .messages::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+#frame .content .messages::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+#frame .content .messages ul li {
+  display: inline-block;
+  clear: both;
+  float: left;
+  margin: 15px 15px 5px 15px;
+  width: calc(100% - 25px);
+  font-size: 0.9em;
+}
+#frame .content .messages ul li:nth-last-child(1) {
+  margin-bottom: 20px;
+}
+#frame .content .messages ul li.sent img {
+  margin: 6px 8px 0 0;
+}
+#frame .content .messages ul li.sent p {
+  background: #dae0e5;
+  color: #f5f5f5;
+}
+#frame .content .messages ul li.replies img {
+  float: right;
+  margin: 6px 0 0 8px;
+}
+#frame .content .messages ul li.replies p {
+  background: #dae0e5;
+  float: right;
+}
+#frame .content .messages ul li img {
+  width: 22px;
+  border-radius: 50%;
+  float: left;
+}
+#frame .content .messages ul li p {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 20px;
+  max-width: 205px;
+  line-height: 130%;
+  color:darkblue;
+}
+@media screen and (min-width: 735px) {
+  #frame .content .messages ul li p {
+    max-width: 300px;
+  }
+}
+#frame .content .message-input {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 99;
+}
+#frame .content .message-input .wrap {
+  position: relative;
+}
+#frame .content .message-input .wrap input {
+  font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
+  float: left;
+  border: none;
+  width: calc(100% - 90px);
+  padding: 11px 32px 10px 8px;
+  font-size: 0.8em;
+  color: #32465a;
+}
+@media screen and (max-width: 735px) {
+  #frame .content .message-input .wrap input {
+    padding: 15px 32px 16px 8px;
+  }
+}
+#frame .content .message-input .wrap input:focus {
+  outline: none;
+}
+#frame .content .message-input .wrap .attachment {
+  position: absolute;
+  right: 60px;
+  z-index: 4;
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #435f7a;
+  opacity: .5;
+  cursor: pointer;
+}
+@media screen and (max-width: 735px) {
+  #frame .content .message-input .wrap .attachment {
+    margin-top: 17px;
+    right: 65px;
+  }
+}
+#frame .content .message-input .wrap .attachment:hover {
+  opacity: 1;
+}
+#frame .content .message-input .wrap button {
+  float: right;
+  border: none;
+  width: 50px;
+  padding: 12px 0;
+  cursor: pointer;
+  background: #32465a;
+  color: #f5f5f5;
+}
+@media screen and (max-width: 735px) {
+  #frame .content .message-input .wrap button {
+    padding: 16px 0;
+  }
+}
+#frame .content .message-input .wrap button:hover {
+  background: #435f7a;
+}
+#frame .content .message-input .wrap button:focus {
+  outline: none;
+}
 
-    @media screen and (max-width: 735px) {
-      #frame .content {
-        width: calc(100% - 58px);
-        min-width: 300px !important;
-        height: 100%
-      }
-    }
+.btn-dark {
+	font-family: Raleway-SemiBold;
+	font-size: 13px;
+	color: rgba(41, 43, 44, 0.75);
+	letter-spacing: 1px;
+	line-height: 15px;
+	border: 2px solid rgba(41, 43, 44, 0.75);
+	border-radius: 40px;
+	background: transparent;
+	transition: all 0.3s ease 0s;
+}
 
-    @media screen and (min-width: 900px) {
-      #frame .content {
-        width: 100%;
-        height: 100%
-      }
-    }
-
-    #frame .content .contact-profile {
-      width: 100%;
-      height: 60px;
-      line-height: 60px;
-      background: #f5f5f5;
-    }
-
-    #frame .content .contact-profile img {
-      width: 40px;
-      border-radius: 50%;
-      float: left;
-      margin: 9px 12px 0 9px;
-    }
-
-    #frame .content .contact-profile p {
-      text-align: center;
-      font-size: 25px;
-      font-weight: bold;
-    }
-
-    #frame .content .contact-profile .social-media {
-      float: right;
-    }
-
-    #frame .content .contact-profile .social-media i {
-      margin-left: 14px;
-      cursor: pointer;
-    }
-
-    #frame .content .contact-profile .social-media i:nth-last-child(1) {
-      margin-right: 20px;
-    }
-
-    #frame .content .contact-profile .social-media i:hover {
-      color: #435f7a;
-    }
-
-    #frame .content .messages {
-      height: 100%;
-
-      max-height: calc(100% - 63px);
-      overflow-y: auto;
-      overflow-x: hidden;
-    }
-
-    @media screen and (max-width: 735px) {
-      #frame .content .messages {
-        max-height: calc(100% - 105px);
-      }
-    }
-
-    #frame .content .messages::-webkit-scrollbar {
-      width: 8px;
-      background: transparent;
-    }
-
-    #frame .content .messages::-webkit-scrollbar-thumb {
-      background-color: rgba(0, 0, 0, 0.3);
-    }
-
-    #frame .content .messages ul li {
-      display: inline-block;
-      clear: both;
-      float: left;
-      margin: 15px 15px 5px 15px;
-      width: calc(100% - 25px);
-      font-size: 0.9em;
-    }
-
-    #frame .content .messages ul li:nth-last-child(1) {
-      margin-bottom: 20px;
-    }
-
-    #frame .content .messages ul li.sent img {
-      margin: 6px 8px 0 0;
-    }
-
-    #frame .content .messages ul li.sent p {
-      background: #dae0e5;
-      color: #f5f5f5;
-    }
-
-    #frame .content .messages ul li.replies img {
-      float: right;
-      margin: 6px 0 0 8px;
-    }
-
-    #frame .content .messages ul li.replies p {
-      background: #dae0e5;
-      float: right;
-    }
-
-    #frame .content .messages ul li img {
-      width: 22px;
-      border-radius: 50%;
-      float: left;
-    }
-
-    #frame .content .messages ul li p {
-      display: inline-block;
-      padding: 10px 15px;
-      border-radius: 20px;
-      max-width: 205px;
-      line-height: 130%;
-      color: darkblue;
-    }
-
-    @media screen and (min-width: 735px) {
-      #frame .content .messages ul li p {
-        max-width: 300px;
-      }
-    }
-
-    #frame .content .message-input {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      z-index: 99;
-    }
-
-    #frame .content .message-input .wrap {
-      position: relative;
-    }
-
-    #frame .content .message-input .wrap input {
-      font-family: "proxima-nova", "Source Sans Pro", sans-serif;
-      float: left;
-      border: none;
-      width: calc(100% - 90px);
-      padding: 11px 32px 10px 8px;
-      font-size: 0.8em;
-      color: #32465a;
-    }
-
-    @media screen and (max-width: 735px) {
-      #frame .content .message-input .wrap input {
-        padding: 15px 32px 16px 8px;
-      }
-    }
-
-    #frame .content .message-input .wrap input:focus {
-      outline: none;
-    }
-
-    #frame .content .message-input .wrap .attachment {
-      position: absolute;
-      right: 60px;
-      z-index: 4;
-      margin-top: 10px;
-      font-size: 1.1em;
-      color: #435f7a;
-      opacity: .5;
-      cursor: pointer;
-    }
-
-    @media screen and (max-width: 735px) {
-      #frame .content .message-input .wrap .attachment {
-        margin-top: 17px;
-        right: 65px;
-      }
-    }
-
-    #frame .content .message-input .wrap .attachment:hover {
-      opacity: 1;
-    }
-
-    #frame .content .message-input .wrap button {
-      float: right;
-      border: none;
-      width: 50px;
-      padding: 12px 0;
-      cursor: pointer;
-      background: #32465a;
-      color: #f5f5f5;
-    }
-
-    @media screen and (max-width: 735px) {
-      #frame .content .message-input .wrap button {
-        padding: 16px 0;
-      }
-    }
-
-    #frame .content .message-input .wrap button:hover {
-      background: #435f7a;
-    }
-
-    #frame .content .message-input .wrap button:focus {
-      outline: none;
-    }
-
-    .btn-dark {
-      font-family: Raleway-SemiBold;
-      font-size: 13px;
-      color: rgba(41, 43, 44, 0.75);
-      letter-spacing: 1px;
-      line-height: 15px;
-      border: 2px solid rgba(41, 43, 44, 0.75);
-      border-radius: 40px;
-      background: transparent;
-      transition: all 0.3s ease 0s;
-    }
-
-    .btn-dark :hover {
-      color: #FFF;
-      background: rgba(41, 43, 44, 0.75);
-      border: 2px solid rgba(41, 43, 44, 0.75);
-    }
+.btn-dark :hover {
+	color: #FFF;
+	background: rgba(41, 43, 44, 0.75);
+	border: 2px solid rgba(41, 43, 44, 0.75);
+}
 
 
 
-    .btn-primary {
-      font-family: Raleway-SemiBold;
-      font-size: 13px;
-      color: rgba(2, 117, 216, 0.75);
-      letter-spacing: 1px;
-      line-height: 15px;
-      border: 2px solid rgba(2, 117, 216, 0.75);
-      border-radius: 40px;
-      background: transparent;
-      transition: all 0.3s ease 0s;
-    }
+.btn-primary {
+	font-family: Raleway-SemiBold;
+	font-size: 13px;
+	color: rgba(2, 117, 216, 0.75);
+	letter-spacing: 1px;
+	line-height: 15px;
+	border: 2px solid rgba(2, 117, 216, 0.75);
+	border-radius: 40px;
+	background: transparent;
+	transition: all 0.3s ease 0s;
+}
 
-    .btn-primary:hover {
-      color: #FFF;
-      background: rgb(2, 117, 216, 0.75);
-      border: 2px solid rgb(2, 117, 216, 0.75);
-    }
+.btn-primary:hover {
+	color: #FFF;
+	background: rgb(2, 117, 216, 0.75);
+	border: 2px solid rgb(2, 117, 216, 0.75);
+}
 
-    .btn-success {
-      font-family: Raleway-SemiBold;
-      font-size: 13px;
-      color: rgba(103, 192, 103, 0.75);
-      letter-spacing: 1px;
-      line-height: 15px;
-      border: 2px solid rgba(103, 192, 103, 0.75);
-      border-radius: 40px;
-      background: transparent;
-      transition: all 0.3s ease 0s;
-    }
+.btn-success {
+	font-family: Raleway-SemiBold;
+	font-size: 13px;
+	color: rgba(103, 192, 103, 0.75);
+	letter-spacing: 1px;
+	line-height: 15px;
+	border: 2px solid rgba(103, 192, 103, 0.75);
+	border-radius: 40px;
+	background: transparent;
+	transition: all 0.3s ease 0s;
+}
 
-    .btn-success:hover {
-      color: #FFF;
-      background: rgb(103, 192, 103, 0.75);
-      border: 2px solid rgb(103, 192, 103, 0.75);
-    }
+.btn-success:hover {
+	color: #FFF;
+	background: rgb(103, 192, 103, 0.75);
+	border: 2px solid rgb(103, 192, 103, 0.75);
+}
 
-    .btn-danger {
-      font-family: Raleway-SemiBold;
-      font-size: 13px;
-      color: rgba(217, 83, 78, 0.75);
-      letter-spacing: 1px;
-      line-height: 15px;
-      border: 2px solid rgba(217, 83, 78, 0.75);
-      border-radius: 40px;
-      background: transparent;
-      transition: all 0.3s ease 0s;
-    }
+.btn-danger {
+	font-family: Raleway-SemiBold;
+	font-size: 13px;
+	color: rgba(217, 83, 78, 0.75);
+	letter-spacing: 1px;
+	line-height: 15px;
+	border: 2px solid rgba(217, 83, 78, 0.75);
+	border-radius: 40px;
+	background: transparent;
+	transition: all 0.3s ease 0s;
+}
 
-    .btn-danger:hover {
-      color: #FFF;
-      background: rgba(217, 83, 78, 0.75);
-      border: 2px solid rgba(217, 83, 78, 0.75);
-    }
+.btn-danger:hover {
+	color: #FFF;
+	background: rgba(217, 83, 78, 0.75);
+	border: 2px solid rgba(217, 83, 78, 0.75);
+}
+.btn-warning {
+	font-family: Raleway-SemiBold;
+	font-size: 13px;
+	color: rgba(240, 173, 78, 0.75);
+	letter-spacing: 1px;
+	line-height: 15px;
+	border: 2px solid rgba(240, 173, 78, 0.75);
+	border-radius: 40px;
+	background: transparent;
+	transition: all 0.3s ease 0s;
+}
 
-    .btn-warning {
-      font-family: Raleway-SemiBold;
-      font-size: 13px;
-      color: rgba(240, 173, 78, 0.75);
-      letter-spacing: 1px;
-      line-height: 15px;
-      border: 2px solid rgba(240, 173, 78, 0.75);
-      border-radius: 40px;
-      background: transparent;
-      transition: all 0.3s ease 0s;
-    }
+.btn-warning:hover {
+	color: #FFF;
+	background: rgba(240, 173, 78, 0.75);
+	border: 2px solid rgba(240, 173, 78, 0.75);
+}
 
-    .btn-warning:hover {
-      color: #FFF;
-      background: rgba(240, 173, 78, 0.75);
-      border: 2px solid rgba(240, 173, 78, 0.75);
-    }
+#newsscroll::-webkit-scrollbar {
 
-    #newsscroll::-webkit-scrollbar {
+  background: transparent;
+  width: 0.2em !important;
+  outline: 1px solid slategrey !important;
+        border-radius: 10px !important;
+    scroll-behavior: smooth !important;
+}
+#newsscroll::-webkit-scrollbar-thumb {
+  background-color: black;
+  corner
+}
 
-      background: transparent;
-      width: 0.2em !important;
-      outline: 1px solid slategrey !important;
-      border-radius: 10px !important;
-      scroll-behavior: smooth !important;
-    }
+#pagescroll::-webkit-scrollbar {
 
-    #newsscroll::-webkit-scrollbar-thumb {
-      background-color: black;
-      corner
-    }
+  background: transparent;
+  width: 0.5em !important;
+  outline: 1px solid grey !important;
+        border-radius: 10px !important;
+    scroll-behavior: smooth !important;
+}
+#pagescroll::-webkit-scrollbar-thumb {
+  background-color:grey;
+  corner
+}
 
-    #pagescroll::-webkit-scrollbar {
+.highcharts-figure, .highcharts-data-table table {
+    min-width: 360px;
+    max-width: 800px;
+    margin: 1em auto;
+}
 
-      background: transparent;
-      width: 0.5em !important;
-      outline: 1px solid grey !important;
-      border-radius: 10px !important;
-      scroll-behavior: smooth !important;
-    }
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+    padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
 
-    #pagescroll::-webkit-scrollbar-thumb {
-      background-color: grey;
-      corner
-    }
+
   </style>
 </head>
-
 <body class="hold-transition sidebar-mini layout-fixed" id="pagescroll">
-  <div class="wrapper">
+<div class="wrapper">
 
-    <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      <!-- Left navbar links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link"><b>Dashboard of the COVID-19 Virus Outbreak in INDIA</b></a>
-        </li>
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="" class="nav-link">Home</a>
+      </li>
+	  <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link"><b>Dashboard of the COVID-19 Virus Outbreak in INDIA</b></a>
+      </li>
 
-      </ul>
+    </ul>
 
-      <!-- SEARCH FORM -->
+    <!-- SEARCH FORM -->
 
-      <!-- Right navbar links -->
-      <ul class="navbar-nav ml-auto">
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
 
-        <form class="form-inline ml-3">
-          <div class="input-group input-group-sm">
-            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-navbar" type="submit">
-                <i class="fas fa-search"></i>
-              </button>
-            </div>
-          </div>
-        </form>
+    <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
 
-        <li class="nav-item">
-          <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-            <img class="direct-chat-img animated flip delay-0.2s" src="dist/img/bot.svg">
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <!-- /.navbar -->
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
+          <img class="direct-chat-img animated flip delay-0.2s" src="dist/img/bot.svg" >
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
 
-    <!-- Main Sidebar Container -->
-    <aside class="main-sidebar bg-white elevation-4 shadow">
-      <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
-        <img src="dist/img/virus.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-bold text-shadow " style="color:black;text-shadow: 0.5px 0.5px #FF0000;">COVID-19 INDIA</span>
-      </a>
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar bg-white elevation-4 shadow">
+    <!-- Brand Logo -->
+    <a href="" class="brand-link">
+      <img src="dist/img/virus.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-bold text-shadow " style="color:black;text-shadow: 0.5px 0.5px #FF0000;">COVID-19 INDIA</span>
+    </a>
 
-      <!-- Sidebar -->
-      <div class="sidebar">
+    <!-- Sidebar -->
+    <div class="sidebar">
 
 
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
-                <i class="nav-icon fas fa-info-circle	"></i>
-                <p>
-                  About
-                  <!-- <span class="right badge badge-danger">New</span> -->
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                  Dashboard Stats
-                  <!-- <span class="right badge badge-danger">New</span> -->
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
-                <i class="nav-icon fab fa-hire-a-helper"></i>
-                <p>
-                  Helpline
-                  <!-- <span class="right badge badge-danger">New</span> -->
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
-                <i class="nav-icon fas fa-rss-square"></i>
-                <p>
-                  News Feed
-                  <!-- <span class="right badge badge-danger">New</span> -->
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
-                <i class="nav-icon far fa-question-circle"></i>
-                <p>
-                  FAQ's
-                </p>
-              </a>
-            </li>
-            <!-- <li class="nav-item"> -->
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-info-circle	"></i>
+              <p>
+                About
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+		   <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Dashboard Stats
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+		   <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon fab fa-hire-a-helper"></i>
+              <p>
+                Helpline
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+		   <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-rss-square"></i>
+              <p>
+                News Feed
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+		   <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon far fa-question-circle"></i>
+              <p>
+                FAQ's
+              </p>
+            </a>
+          </li>
+
+          <!-- <li class="nav-item"> -->
             <!-- <a href="pages/widgets.html" class="nav-link"> -->
-            <!-- <i class="nav-icon fas fa-th"></i> -->
-            <!-- <p> -->
-            <!-- Dashboard Stats -->
-            <!-- </p> -->
+              <!-- <i class="nav-icon fas fa-th"></i> -->
+              <!-- <p> -->
+                <!-- Dashboard Stats -->
+              <!-- </p> -->
             <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item has-treeview"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item has-treeview"> -->
             <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="nav-icon fas fa-copy"></i> -->
-            <!-- <p> -->
-            <!-- Layout Options -->
-            <!-- <i class="fas fa-angle-left right"></i> -->
-            <!-- <span class="badge badge-info right">6</span> -->
-            <!-- </p> -->
+              <!-- <i class="nav-icon fas fa-copy"></i> -->
+              <!-- <p> -->
+                <!-- Layout Options -->
+                <!-- <i class="fas fa-angle-left right"></i> -->
+                <!-- <span class="badge badge-info right">6</span> -->
+              <!-- </p> -->
             <!-- </a> -->
             <!-- <ul class="nav nav-treeview"> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/layout/top-nav.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Top Navigation</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/layout/top-nav-sidebar.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Top Navigation + Sidebar</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/layout/boxed.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Boxed</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/layout/fixed-sidebar.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Fixed Sidebar</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/layout/fixed-topnav.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Fixed Navbar</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/layout/fixed-footer.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Fixed Footer</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/layout/collapsed-sidebar.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Collapsed Sidebar</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/layout/top-nav.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Top Navigation</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/layout/top-nav-sidebar.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Top Navigation + Sidebar</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/layout/boxed.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Boxed</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/layout/fixed-sidebar.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Fixed Sidebar</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/layout/fixed-topnav.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Fixed Navbar</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/layout/fixed-footer.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Fixed Footer</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/layout/collapsed-sidebar.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Collapsed Sidebar</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
             <!-- </ul> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item has-treeview"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item has-treeview"> -->
             <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="nav-icon fas fa-chart-pie"></i> -->
-            <!-- <p> -->
-            <!-- Charts -->
-            <!-- <i class="right fas fa-angle-left"></i> -->
-            <!-- </p> -->
+              <!-- <i class="nav-icon fas fa-chart-pie"></i> -->
+              <!-- <p> -->
+                <!-- Charts -->
+                <!-- <i class="right fas fa-angle-left"></i> -->
+              <!-- </p> -->
             <!-- </a> -->
             <!-- <ul class="nav nav-treeview"> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/charts/chartjs.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>ChartJS</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/charts/flot.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Flot</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/charts/inline.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Inline</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/charts/chartjs.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>ChartJS</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/charts/flot.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Flot</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/charts/inline.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Inline</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
             <!-- </ul> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item has-treeview"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item has-treeview"> -->
             <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="nav-icon fas fa-tree"></i> -->
-            <!-- <p> -->
-            <!-- UI Elements -->
-            <!-- <i class="fas fa-angle-left right"></i> -->
-            <!-- </p> -->
+              <!-- <i class="nav-icon fas fa-tree"></i> -->
+              <!-- <p> -->
+                <!-- UI Elements -->
+                <!-- <i class="fas fa-angle-left right"></i> -->
+              <!-- </p> -->
             <!-- </a> -->
             <!-- <ul class="nav nav-treeview"> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/UI/general.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>General</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/UI/icons.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Icons</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/UI/buttons.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Buttons</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/UI/sliders.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Sliders</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/UI/modals.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Modals & Alerts</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/UI/navbar.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Navbar & Tabs</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/UI/timeline.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Timeline</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/UI/ribbons.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Ribbons</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/UI/general.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>General</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/UI/icons.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Icons</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/UI/buttons.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Buttons</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/UI/sliders.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Sliders</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/UI/modals.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Modals & Alerts</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/UI/navbar.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Navbar & Tabs</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/UI/timeline.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Timeline</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/UI/ribbons.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Ribbons</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
             <!-- </ul> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item has-treeview"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item has-treeview"> -->
             <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="nav-icon fas fa-edit"></i> -->
-            <!-- <p> -->
-            <!-- Forms -->
-            <!-- <i class="fas fa-angle-left right"></i> -->
-            <!-- </p> -->
+              <!-- <i class="nav-icon fas fa-edit"></i> -->
+              <!-- <p> -->
+                <!-- Forms -->
+                <!-- <i class="fas fa-angle-left right"></i> -->
+              <!-- </p> -->
             <!-- </a> -->
             <!-- <ul class="nav nav-treeview"> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/forms/general.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>General Elements</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/forms/advanced.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Advanced Elements</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/forms/editors.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Editors</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/forms/validation.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Validation</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/forms/general.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>General Elements</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/forms/advanced.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Advanced Elements</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/forms/editors.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Editors</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/forms/validation.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Validation</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
             <!-- </ul> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item has-treeview"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item has-treeview"> -->
             <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="nav-icon fas fa-table"></i> -->
-            <!-- <p> -->
-            <!-- Tables -->
-            <!-- <i class="fas fa-angle-left right"></i> -->
-            <!-- </p> -->
+              <!-- <i class="nav-icon fas fa-table"></i> -->
+              <!-- <p> -->
+                <!-- Tables -->
+                <!-- <i class="fas fa-angle-left right"></i> -->
+              <!-- </p> -->
             <!-- </a> -->
             <!-- <ul class="nav nav-treeview"> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/tables/simple.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Simple Tables</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/tables/data.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>DataTables</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/tables/jsgrid.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>jsGrid</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/tables/simple.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Simple Tables</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/tables/data.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>DataTables</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/tables/jsgrid.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>jsGrid</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
             <!-- </ul> -->
-            <!-- </li> -->
-            <!-- <li class="nav-header">EXAMPLES</li> -->
-            <!-- <li class="nav-item"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-header">EXAMPLES</li> -->
+          <!-- <li class="nav-item"> -->
             <!-- <a href="pages/calendar.html" class="nav-link"> -->
-            <!-- <i class="nav-icon far fa-calendar-alt"></i> -->
-            <!-- <p> -->
-            <!-- Calendar -->
-            <!-- <span class="badge badge-info right">2</span> -->
-            <!-- </p> -->
+              <!-- <i class="nav-icon far fa-calendar-alt"></i> -->
+              <!-- <p> -->
+                <!-- Calendar -->
+                <!-- <span class="badge badge-info right">2</span> -->
+              <!-- </p> -->
             <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item"> -->
             <!-- <a href="pages/gallery.html" class="nav-link"> -->
-            <!-- <i class="nav-icon far fa-image"></i> -->
-            <!-- <p> -->
-            <!-- Gallery -->
-            <!-- </p> -->
+              <!-- <i class="nav-icon far fa-image"></i> -->
+              <!-- <p> -->
+                <!-- Gallery -->
+              <!-- </p> -->
             <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item has-treeview"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item has-treeview"> -->
             <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="nav-icon far fa-envelope"></i> -->
-            <!-- <p> -->
-            <!-- Mailbox -->
-            <!-- <i class="fas fa-angle-left right"></i> -->
-            <!-- </p> -->
+              <!-- <i class="nav-icon far fa-envelope"></i> -->
+              <!-- <p> -->
+                <!-- Mailbox -->
+                <!-- <i class="fas fa-angle-left right"></i> -->
+              <!-- </p> -->
             <!-- </a> -->
             <!-- <ul class="nav nav-treeview"> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/mailbox/mailbox.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Inbox</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/mailbox/compose.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Compose</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/mailbox/read-mail.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Read</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/mailbox/mailbox.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Inbox</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/mailbox/compose.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Compose</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/mailbox/read-mail.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Read</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
             <!-- </ul> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item has-treeview"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item has-treeview"> -->
             <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="nav-icon fas fa-book"></i> -->
-            <!-- <p> -->
-            <!-- Pages -->
-            <!-- <i class="fas fa-angle-left right"></i> -->
-            <!-- </p> -->
+              <!-- <i class="nav-icon fas fa-book"></i> -->
+              <!-- <p> -->
+                <!-- Pages -->
+                <!-- <i class="fas fa-angle-left right"></i> -->
+              <!-- </p> -->
             <!-- </a> -->
             <!-- <ul class="nav nav-treeview"> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/invoice.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Invoice</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/profile.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Profile</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/e_commerce.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>E-commerce</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/projects.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Projects</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/project_add.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Project Add</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/project_edit.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Project Edit</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/project_detail.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Project Detail</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/contacts.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Contacts</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/invoice.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Invoice</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/profile.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Profile</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/e_commerce.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>E-commerce</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/projects.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Projects</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/project_add.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Project Add</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/project_edit.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Project Edit</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/project_detail.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Project Detail</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/contacts.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Contacts</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
             <!-- </ul> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item has-treeview"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item has-treeview"> -->
             <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="nav-icon far fa-plus-square"></i> -->
-            <!-- <p> -->
-            <!-- Extras -->
-            <!-- <i class="fas fa-angle-left right"></i> -->
-            <!-- </p> -->
+              <!-- <i class="nav-icon far fa-plus-square"></i> -->
+              <!-- <p> -->
+                <!-- Extras -->
+                <!-- <i class="fas fa-angle-left right"></i> -->
+              <!-- </p> -->
             <!-- </a> -->
             <!-- <ul class="nav nav-treeview"> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/login.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Login</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/register.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Register</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/forgot-password.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Forgot Password</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/recover-password.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Recover Password</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/lockscreen.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Lockscreen</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/legacy-user-menu.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Legacy User Menu</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/language-menu.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Language Menu</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/404.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Error 404</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/500.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Error 500</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/pace.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Pace</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="pages/examples/blank.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Blank Page</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="starter.html" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Starter Page</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/login.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Login</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/register.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Register</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/forgot-password.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Forgot Password</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/recover-password.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Recover Password</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/lockscreen.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Lockscreen</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/legacy-user-menu.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Legacy User Menu</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/language-menu.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Language Menu</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/404.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Error 404</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/500.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Error 500</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/pace.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Pace</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="pages/examples/blank.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Blank Page</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="starter.html" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Starter Page</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
             <!-- </ul> -->
-            <!-- </li> -->
-            <!-- <li class="nav-header">MISCELLANEOUS</li> -->
-            <!-- <li class="nav-item"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-header">MISCELLANEOUS</li> -->
+          <!-- <li class="nav-item"> -->
             <!-- <a href="https://adminlte.io/docs/3.0" class="nav-link"> -->
-            <!-- <i class="nav-icon fas fa-file"></i> -->
-            <!-- <p>Documentation</p> -->
+              <!-- <i class="nav-icon fas fa-file"></i> -->
+              <!-- <p>Documentation</p> -->
             <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-header">MULTI LEVEL EXAMPLE</li> -->
-            <!-- <li class="nav-item"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-header">MULTI LEVEL EXAMPLE</li> -->
+          <!-- <li class="nav-item"> -->
             <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="fas fa-circle nav-icon"></i> -->
-            <!-- <p>Level 1</p> -->
+              <!-- <i class="fas fa-circle nav-icon"></i> -->
+              <!-- <p>Level 1</p> -->
             <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item has-treeview"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item has-treeview"> -->
             <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="nav-icon fas fa-circle"></i> -->
-            <!-- <p> -->
-            <!-- Level 1 -->
-            <!-- <i class="right fas fa-angle-left"></i> -->
-            <!-- </p> -->
+              <!-- <i class="nav-icon fas fa-circle"></i> -->
+              <!-- <p> -->
+                <!-- Level 1 -->
+                <!-- <i class="right fas fa-angle-left"></i> -->
+              <!-- </p> -->
             <!-- </a> -->
             <!-- <ul class="nav nav-treeview"> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Level 2</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item has-treeview"> -->
-            <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p> -->
-            <!-- Level 2 -->
-            <!-- <i class="right fas fa-angle-left"></i> -->
-            <!-- </p> -->
-            <!-- </a> -->
-            <!-- <ul class="nav nav-treeview"> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="far fa-dot-circle nav-icon"></i> -->
-            <!-- <p>Level 3</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="far fa-dot-circle nav-icon"></i> -->
-            <!-- <p>Level 3</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="far fa-dot-circle nav-icon"></i> -->
-            <!-- <p>Level 3</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="#" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Level 2</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item has-treeview"> -->
+                <!-- <a href="#" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p> -->
+                    <!-- Level 2 -->
+                    <!-- <i class="right fas fa-angle-left"></i> -->
+                  <!-- </p> -->
+                <!-- </a> -->
+                <!-- <ul class="nav nav-treeview"> -->
+                  <!-- <li class="nav-item"> -->
+                    <!-- <a href="#" class="nav-link"> -->
+                      <!-- <i class="far fa-dot-circle nav-icon"></i> -->
+                      <!-- <p>Level 3</p> -->
+                    <!-- </a> -->
+                  <!-- </li> -->
+                  <!-- <li class="nav-item"> -->
+                    <!-- <a href="#" class="nav-link"> -->
+                      <!-- <i class="far fa-dot-circle nav-icon"></i> -->
+                      <!-- <p>Level 3</p> -->
+                    <!-- </a> -->
+                  <!-- </li> -->
+                  <!-- <li class="nav-item"> -->
+                    <!-- <a href="#" class="nav-link"> -->
+                      <!-- <i class="far fa-dot-circle nav-icon"></i> -->
+                      <!-- <p>Level 3</p> -->
+                    <!-- </a> -->
+                  <!-- </li> -->
+                <!-- </ul> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="#" class="nav-link"> -->
+                  <!-- <i class="far fa-circle nav-icon"></i> -->
+                  <!-- <p>Level 2</p> -->
+                <!-- </a> -->
+              <!-- </li> -->
             <!-- </ul> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item"> -->
             <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="far fa-circle nav-icon"></i> -->
-            <!-- <p>Level 2</p> -->
+              <!-- <i class="fas fa-circle nav-icon"></i> -->
+              <!-- <p>Level 1</p> -->
             <!-- </a> -->
-            <!-- </li> -->
-            <!-- </ul> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-header">LABELS</li> -->
+          <!-- <li class="nav-item"> -->
             <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="fas fa-circle nav-icon"></i> -->
-            <!-- <p>Level 1</p> -->
+              <!-- <i class="nav-icon far fa-circle text-danger"></i> -->
+              <!-- <p class="text">Important</p> -->
             <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-header">LABELS</li> -->
-            <!-- <li class="nav-item"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item"> -->
             <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="nav-icon far fa-circle text-danger"></i> -->
-            <!-- <p class="text">Important</p> -->
+              <!-- <i class="nav-icon far fa-circle text-warning"></i> -->
+              <!-- <p>Warning</p> -->
             <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item"> -->
             <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="nav-icon far fa-circle text-warning"></i> -->
-            <!-- <p>Warning</p> -->
+              <!-- <i class="nav-icon far fa-circle text-info"></i> -->
+              <!-- <p>Informational</p> -->
             <!-- </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item"> -->
-            <!-- <a href="#" class="nav-link"> -->
-            <!-- <i class="nav-icon far fa-circle text-info"></i> -->
-            <!-- <p>Informational</p> -->
-            <!-- </a> -->
-            <!-- </li> -->
-          </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-    </aside>
+          <!-- </li> -->
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Dashboard</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">COVID-19 INDIA</li>
-              </ol>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" >
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">COVID-19 INDIA</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-2 col-sm-6 col-6">
-              <!-- small box -->
-              <div class="small-box border border-info shadow">
-                <div class="inner">
-                  <h3>150</h3>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-2 col-sm-6 col-6">
+            <!-- small box -->
+            <div class="small-box border border-info shadow">
+              <div class="inner">
+                <h3>150</h3>
 
-                  <p>Total Cases</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag text-info"></i>
-                </div>
+                <p>Total Cases</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag text-info"></i>
               </div>
             </div>
-            <!-- ./col -->
-            <div class="col-lg-2 col-sm-6 col-6">
-              <!-- small box -->
-              <div class="small-box border border-success shadow">
-                <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                  <p>All Indian Cases</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add text-success"></i>
-                </div>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-2 col-sm-6 col-6">
-              <!-- small box -->
-              <div class="small-box border border-warning shadow">
-                <div class="inner">
-                  <h3>44</h3>
-
-                  <p>Foreign Cases</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add text-warning"></i>
-                </div>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-2 col-sm-6 col-6">
-              <!-- small box -->
-              <div class="small-box border border-danger shadow">
-                <div class="inner">
-                  <h3>65</h3>
-
-                  <p>Total Death</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-pie-graph text-danger"></i>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-2 col-sm-6 col-6">
-              <!-- small box -->
-              <div class="small-box border border-secondary shadow">
-                <div class="inner">
-                  <h3>65</h3>
-
-                  <p>Total Cured</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars text-secondary"></i>
-                </div>
-              </div>
-
-            </div>
-            <div class="col-lg-2 col-sm-6 col-6">
-              <!-- small box -->
-              <div class="small-box border border-primary shadow">
-                <div class="inner">
-                  <h3>65</h3>
-
-                  <p>In Hospital</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-medkit text-primary"></i>
-                </div>
-              </div>
-
-            </div>
-            <!-- ./col -->
           </div>
-          <!-- /.row -->
-          <!-- Main row -->
-          <div class="row">
-            <!-- Left col -->
-            <section class="col-lg-6 connectedSortable">
-              <!-- Custom tabs (Charts with tabs)-->
+          <!-- ./col -->
+          <div class="col-lg-2 col-sm-6 col-6">
+            <!-- small box -->
+            <div class="small-box border border-success shadow">
+              <div class="inner">
+                <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-
-              <!-- DIRECT CHAT -->
-              <div class="card direct-chat direct-chat-primary">
-                <div class="card-header">
-                  <h3 class="card-title"><i class="fas fa-rss-square" style="color:red;"></i> News Feeds</h3>
-
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-dark btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-minus"></i>
-                    </button>
-
-
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <!-- Conversations are loaded here -->
-                  <div class="direct-chat-messages" id="newsscroll">
-                    <!-- Message. Default to the left -->
-                    <div class="direct-chat-msg">
-                      <div class="direct-chat-infos clearfix">
-                        <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
-                      </div>
-                      <img class="direct-chat-img" src="dist/img/news.svg">
-
-                      <div class="direct-chat-text">
-                        Is this template really for free? That's unbelievable!
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
-
-                    <!-- Message to the right -->
-                    <div class="direct-chat-msg right">
-                      <div class="direct-chat-infos clearfix">
-                        <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
-                      </div>
-                      <img class="direct-chat-img" src="dist/img/news.svg">
-
-                      <div class="direct-chat-text">
-                        You better believe it!
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
-
-                    <!-- Message. Default to the left -->
-                    <div class="direct-chat-msg">
-                      <div class="direct-chat-infos clearfix">
-                        <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
-                      </div>
-                      <!-- /.direct-chat-infos -->
-                      <img class="direct-chat-img" src="dist/img/news.svg">
-                      <!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        Working with AdminLTE on a great new app! Wanna join?
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
-
-                    <!-- Message to the right -->
-                    <div class="direct-chat-msg right">
-                      <div class="direct-chat-infos clearfix">
-                        <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
-                      </div>
-                      <!-- /.direct-chat-infos -->
-                      <img class="direct-chat-img" src="dist/img/news.svg">
-                      <!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        I would love to.
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-
-                    <div class="direct-chat-msg">
-                      <div class="direct-chat-infos clearfix">
-                        <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
-                      </div>
-                      <!-- /.direct-chat-infos -->
-                      <img class="direct-chat-img" src="dist/img/news.svg">
-                      <!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        Working with AdminLTE on a great new app! Wanna join?
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
-
-                    <!-- Message to the right -->
-                    <div class="direct-chat-msg right">
-                      <div class="direct-chat-infos clearfix">
-                        <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
-                      </div>
-                      <!-- /.direct-chat-infos -->
-                      <img class="direct-chat-img" src="dist/img/news.svg">
-                      <!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        I would love to.
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-
-                    <div class="direct-chat-msg">
-                      <div class="direct-chat-infos clearfix">
-                        <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
-                      </div>
-                      <!-- /.direct-chat-infos -->
-                      <img class="direct-chat-img" src="dist/img/news.svg">
-                      <!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        Working with AdminLTE on a great new app! Wanna join?
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
-
-                    <!-- Message to the right -->
-                    <div class="direct-chat-msg right">
-                      <div class="direct-chat-infos clearfix">
-                        <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
-                      </div>
-                      <!-- /.direct-chat-infos -->
-                      <img class="direct-chat-img" src="dist/img/news.svg">
-                      <!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        I would love to.
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
-
-                  </div>
-                  <!--/.direct-chat-messages-->
-
-                  <!-- Contacts are loaded here -->
-
-                  <!-- /.direct-chat-pane -->
-                </div>
-                <!-- /.card-body -->
-
-                <!-- /.card-footer-->
+                <p>All Indian Cases</p>
               </div>
-              <!--/.direct-chat -->
+              <div class="icon">
+                <i class="ion ion-person-add text-success"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-2 col-sm-6 col-6">
+            <!-- small box -->
+            <div class="small-box border border-warning shadow">
+              <div class="inner">
+                <h3>44</h3>
+
+                <p>Foreign Cases</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add text-warning"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-2 col-sm-6 col-6">
+            <!-- small box -->
+            <div class="small-box border border-danger shadow">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Total Death</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph text-danger"></i>
+              </div>
+            </div>
+          </div>
+		        <div class="col-lg-2 col-sm-6 col-6">
+            <!-- small box -->
+            <div class="small-box border border-secondary shadow">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Total Cured</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars text-secondary"></i>
+              </div>
+            </div>
+
+          </div>
+		   <div class="col-lg-2 col-sm-6 col-6">
+            <!-- small box -->
+            <div class="small-box border border-primary shadow">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>In Hospital</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-medkit text-primary"></i>
+              </div>
+            </div>
+
+          </div>
+          <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+          <!-- Left col -->
+          <section class="col-lg-6 connectedSortable">
+            <!-- Custom tabs (Charts with tabs)-->
 
 
-              <!-- DIRECT CHAT -->
-              <div class="card direct-chat direct-chat-primary">
-                <div class="card-header">
-                  <h3 class="card-title"> <img class="img" src="dist/img/faq.png"> Frequently Asked Questions (FAQ's)</h3>
+            <!-- DIRECT CHAT -->
+            <div class="card direct-chat direct-chat-primary">
+              <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-rss-square" style="color:red;"></i> News Feeds</h3>
 
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-dark btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-minus"></i>
-                    </button>
-
-
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <!-- Conversations are loaded here -->
-                  <div class="direct-chat-messages" id="newsscroll">
-                    <div class="panel-group" id="accordion">
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h5 class="panel-title">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><img class="img " src="dist/img/question.svg" width="25x" height="25px"> What is 2019 Noval Coronavirus ?</a>
-                          </h5>
-                        </div>
-                        <div id="collapseOne" class="panel-collapse collapse in">
-                          <div class="panel-body">
-                            2019 Novel Coronavirus, or 2019-nCoV, is a new virus first identifiedin Wuhan, Hubie Province, China. It is named novel as it has not been previously identified.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h5 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen"><img class="img " src="dist/img/question.svg" width="25x" height="25px"> What is the source of 2019 Novel
-                              Coronavirus ?</a>
-                          </h5>
-                        </div>
-                        <div id="collapseTen" class="panel-collapse collapse">
-                          <div class="panel-body">
-                            At present exact source of infection of 2019 novel Corona virus has not need identified. Coronaviruses are a large family of virus, some causing illness in people and others that circulate among animals. Initially, many of
-                            the patients in the outbreak in Wuhan, China reportedly had some link to large seafood and aimal market, suggesting the virus likely emerged from an animal source.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h5 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven"><img class="img " src="dist/img/question.svg" width="25x" height="25px"> What are the initial symptoms of Noval
-                              Coronavirus ?</a>
-                          </h5>
-                        </div>
-                        <div id="collapseEleven" class="panel-collapse collapse">
-                          <div class="panel-body">
-                            Current symptoms reported for patients with 2019-nCoV include acute onset of fever, cough, and difficulty in breathing.
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h5 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><img class="img " src="dist/img/question.svg" width="25x" height="25px"> How does the virus spread ?</a>
-                          </h5>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse">
-                          <div class="panel-body">
-                            The specific modes of transmission of the virus is not clear yet since it is a novel virus. The virus probably orignally emerged from an animal source but now seems to be spreading from person-to-person. It's not clear yet
-                            how easily 2019-nCoV spreads from person-to-person. It is thought to have happened mainly when a infected person coughs or sneezes, similar to how influenza and other respiratory pathogens spread.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h5 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><img class="img " src="dist/img/question.svg" width="25x" height="25px"> what is GoI doing about 2019-nCoV ?</a>
-                          </h5>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse">
-                          <div class="panel-body">
-                            A 24*7 helpline has been setup by the GoI at NCDC, New Delhi to answer all queries regarding the diseases. The GoI is closely monitoring the situation and has ascertained the level of preparedness in every State of India.
-                            As this is an emerging, rapidly evolving the GoI will continue to provide updated information as it becomes available.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h5 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><img class="img " src="dist/img/question.svg" width="25x" height="25px"> Is there a vaccine to get protection from
-                              2019 novel Corona Virus ?</a>
-                          </h5>
-                        </div>
-                        <div id="collapseFive" class="panel-collapse collapse">
-                          <div class="panel-body">
-                            Currently, there is no vaccine available to protect against 2019-novel Corona Virus.
-                            <br />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h5 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix"><img class="img " src="dist/img/question.svg" width="25x" height="25px"> Is it safe to travel to Wuhan, China or
-                              other countries where 2019-nCoV 2019 cases have occured ?</a>
-                          </h5>
-                        </div>
-                        <div id="collapseSix" class="panel-collapse collapse">
-                          <div class="panel-body">
-                            All nonessential travel to China is to be avoided. If the travel is unavoidable- At all times follow the simple public health measures:
-                            <ul>
-                              <li>Obeserve good personel hygiene.</li>
-                              <li>Monitor your health closely.</li>
-                              <li>Seek medical attention promptly if you feel sick.</li>
-                              <li>If you feel sick during travel, inform airline crew about your illness and seek mask from the airline crew</li>
-                              <li>For futher detials kindly check Travel advisory issued by MoHFW, GoI available on website (<a href="https://www.mohfw.gov.in">www.mohfw.gov.in</a>).</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h5 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEight"><img class="img " src="dist/img/question.svg" width="25x" height="25px"> What are the treatments ?</a>
-                          </h5>
-                        </div>
-                        <div id="collapseEight" class="panel-collapse collapse">
-                          <div class="panel-body">
-                            There is no specific antiviral treatment available for 2019-novel Corona Virus infection. People infected with 2019-novel Corona Virus should receive supportive care to help relieve symptoms.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h5 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNine"><img class="img " src="dist/img/question.svg" width="25x" height="25px"> How can I help protect myself ?</a>
-                          </h5>
-                        </div>
-                        <div id="collapseNine" class="panel-collapse collapse">
-                          <div class="panel-body">
-                            There is currently no vaccine to prevent 2019-nCoV infection. The best way to prevent infection is to avoid being exposed to this virus.
-                            <ul>
-                              <li>All non-essential travel to China or affected countaries* to be avoided.</li>
-                              <li>Observe good personal hygiene.</li>
-                              <li>Prectice frequent hand washing with soap.</li>
-                              <li>Cover your mouth when coughing and sneezing.</li>
-                              *The list of affected countries is available on WHO website (<a href="https://www.who.int">www.who.int</a>) and would be updated time to time.
+                <div class="card-tools">
+                  <button type="button" class="btn btn-dark btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
 
 
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h5 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><img class="img " src="dist/img/question.svg" width="25x" height="25px"> What should I do if I had close contact
-                              with someone who is confirmed case of 2019-nCoV ?</a>
-                          </h5>
-                        </div>
-                        <div id="collapseFour" class="panel-collapse collapse">
-                          <div class="panel-body">
-                            Self monitor your health starting from the day of last contact with such a case and continue for 28 days. Watch for the development of acute onset of signs and symptoms.
-                            <ul>
-                              <li>Fever</li>
-                              <li>Cough</li>
-                              <li>Shortness of breath or difficulty in breathing</li>
-                              If you observe any of the above symptoms visit the nearest health facility for further advice and treatment. Further you must furnish the details of exposure of such patient to your health care worker.
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h5 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven"><img class="img " src="dist/img/question.svg" width="25x" height="25px"> Should I be tested for 2019-novel Corona
-                              Virus ?</a>
-                          </h5>
-                        </div>
-                        <div id="collapseSeven" class="panel-collapse collapse">
-                          <div class="panel-body">
-                            If you develop acute onset of fever and symptoms of respiratory illness, such as cough or shortness of breath, you should visit nearest health facility and the doctor's will decide if you need to tested for 2019-novel
-                            Corona Virus depending upon your history of travel to China/ affected countries or contact with any suspected/ lab confirmed case.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!--/.direct-chat-messages-->
-
-                    <!-- Contacts are loaded here -->
-
-                    <!-- /.direct-chat-pane -->
-                  </div>
-                  <!-- /.card-body -->
-
-                  <!-- /.card-footer-->
                 </div>
               </div>
-              <!-- TO DO List -->
-              <div class="card">
+              <!-- /.card-header -->
+              <div class="card-body">
+                <!-- Conversations are loaded here -->
+                <div class="direct-chat-messages" id="newsscroll" >
+                  <!-- Message. Default to the left -->
+                  <div class="direct-chat-msg">
+                    <div class="direct-chat-infos clearfix">
+                      <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
+                    </div>
+                                     <img class="direct-chat-img" src="dist/img/news.svg" >
+
+                    <div class="direct-chat-text">
+                      Is this template really for free? That's unbelievable!
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+                  <!-- /.direct-chat-msg -->
+
+                  <!-- Message to the right -->
+                  <div class="direct-chat-msg right">
+                    <div class="direct-chat-infos clearfix">
+                      <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
+                    </div>
+                                      <img class="direct-chat-img" src="dist/img/news.svg" >
+
+                    <div class="direct-chat-text">
+                      You better believe it!
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+                  <!-- /.direct-chat-msg -->
+
+                  <!-- Message. Default to the left -->
+                  <div class="direct-chat-msg">
+                    <div class="direct-chat-infos clearfix">
+                      <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
+                    </div>
+                    <!-- /.direct-chat-infos -->
+                    <img class="direct-chat-img" src="dist/img/news.svg" >
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                      Working with AdminLTE on a great new app! Wanna join?
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+                  <!-- /.direct-chat-msg -->
+
+                  <!-- Message to the right -->
+                  <div class="direct-chat-msg right">
+                    <div class="direct-chat-infos clearfix">
+                      <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
+                    </div>
+                    <!-- /.direct-chat-infos -->
+                    <img class="direct-chat-img" src="dist/img/news.svg" >
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                      I would love to.
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+
+				       <div class="direct-chat-msg">
+                    <div class="direct-chat-infos clearfix">
+                      <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
+                    </div>
+                    <!-- /.direct-chat-infos -->
+                    <img class="direct-chat-img" src="dist/img/news.svg" >
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                      Working with AdminLTE on a great new app! Wanna join?
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+                  <!-- /.direct-chat-msg -->
+
+                  <!-- Message to the right -->
+                  <div class="direct-chat-msg right">
+                    <div class="direct-chat-infos clearfix">
+                      <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
+                    </div>
+                    <!-- /.direct-chat-infos -->
+                    <img class="direct-chat-img" src="dist/img/news.svg" >
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                      I would love to.
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+
+				       <div class="direct-chat-msg">
+                    <div class="direct-chat-infos clearfix">
+                      <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
+                    </div>
+                    <!-- /.direct-chat-infos -->
+                    <img class="direct-chat-img" src="dist/img/news.svg" >
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                      Working with AdminLTE on a great new app! Wanna join?
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+                  <!-- /.direct-chat-msg -->
+
+                  <!-- Message to the right -->
+                  <div class="direct-chat-msg right">
+                    <div class="direct-chat-infos clearfix">
+                      <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
+                    </div>
+                    <!-- /.direct-chat-infos -->
+                    <img class="direct-chat-img" src="dist/img/news.svg" >
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                      I would love to.
+                    </div>
+                    <!-- /.direct-chat-text -->
+                  </div>
+                  <!-- /.direct-chat-msg -->
+
+                </div>
+                <!--/.direct-chat-messages-->
+
+                <!-- Contacts are loaded here -->
+
+                <!-- /.direct-chat-pane -->
+              </div>
+              <!-- /.card-body -->
+
+              <!-- /.card-footer-->
+            </div>
+            <!--/.direct-chat -->
+
+
+ <!-- DIRECT CHAT -->
+            <div class="card direct-chat direct-chat-primary">
+              <div class="card-header">
+                <h3 class="card-title">          <img class="img" src="dist/img/faq.png"> Frequently Asked Questions (FAQ's)</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-dark btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+
+
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <!-- Conversations are loaded here -->
+                <div class="direct-chat-messages" id="newsscroll" >
+                 <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > What is 2019 Noval Coronavirus ?</a>
+                </h5>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    2019 Novel Coronavirus, or 2019-nCoV, is a new virus first identifiedin Wuhan, Hubie Province, China. It is named novel as it has not been previously identified.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > What is the source of 2019 Novel Coronavirus ?</a>
+                </h5>
+            </div>
+            <div id="collapseTen" class="panel-collapse collapse">
+                <div class="panel-body">
+                  At present exact source of infection of 2019 novel Corona virus has not need identified. Coronaviruses are a large family of virus, some causing illness in people and others that circulate among animals. Initially, many of the patients in the outbreak in Wuhan, China reportedly had some link to large seafood and aimal market, suggesting the virus likely emerged from an animal source.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > What are the initial symptoms of Noval Coronavirus ?</a>
+                </h5>
+            </div>
+            <div id="collapseEleven" class="panel-collapse collapse">
+                <div class="panel-body">
+				Current symptoms reported for patients with 2019-nCoV include acute onset of fever, cough, and difficulty in breathing.
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > How does the virus spread ?</a>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+				The specific modes of transmission of the virus is not clear yet since it is a novel virus. The virus probably orignally emerged from an animal source but now seems to be spreading from person-to-person. It's not clear yet how easily 2019-nCoV spreads from person-to-person. It is thought to have happened mainly when a infected person coughs or sneezes, similar to how influenza and other respiratory pathogens spread.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > what is GoI doing about 2019-nCoV ?</a>
+                </h5>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                   A 24*7 helpline has been setup by the GoI at NCDC, New Delhi to answer all queries regarding the diseases. The GoI is closely monitoring the situation and has ascertained the level of preparedness in every State of India. As this is an emerging, rapidly evolving the GoI will continue to provide updated information as it becomes available.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > Is there a vaccine to get protection from 2019 novel Corona Virus ?</a>
+                </h5>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Currently, there is no vaccine available to protect against 2019-novel Corona Virus.
+                    <br />
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > Is it safe to travel to Wuhan, China or other countries where 2019-nCoV 2019 cases have occured ?</a>
+                </h5>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse">
+                <div class="panel-body">
+                    All nonessential travel to China is to be avoided. If the travel is unavoidable- At all times follow the simple public health measures:
+                    <ul>
+                        <li>Obeserve good personel hygiene.</li>
+                        <li>Monitor your health closely.</li>
+                        <li>Seek medical attention promptly if you feel sick.</li>
+						<li>If you feel sick during travel, inform airline crew about your illness and seek mask from the airline crew</li>
+						<li>For futher detials kindly check Travel advisory issued by MoHFW, GoI available on website (<a href="https://www.mohfw.gov.in">www.mohfw.gov.in</a>).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEight"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > What are the treatments ?</a>
+                </h5>
+            </div>
+            <div id="collapseEight" class="panel-collapse collapse">
+                <div class="panel-body">
+                    There is no specific antiviral treatment available for 2019-novel Corona Virus infection. People infected with 2019-novel Corona Virus should receive supportive care to help relieve symptoms.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNine"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > How can I help protect myself ?</a>
+                </h5>
+            </div>
+            <div id="collapseNine" class="panel-collapse collapse">
+                <div class="panel-body">
+                    There is currently no vaccine to prevent 2019-nCoV infection. The best way to prevent infection is to avoid being exposed to this virus.
+					<ul>
+					<li>All non-essential travel to China or affected countaries* to be avoided.</li>
+					<li>Observe good personal hygiene.</li>
+					<li>Prectice frequent hand washing with soap.</li>
+					<li>Cover your mouth when coughing and sneezing.</li>
+					*The list of affected countries is available on WHO website (<a href="https://www.who.int">www.who.int</a>) and would be updated time to time.
+
+
+					</ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > What should I do if I had close contact with someone who is confirmed case of 2019-nCoV ?</a>
+                </h5>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Self monitor your health starting from the day of last contact with such a case and continue for 28 days. Watch for the development of acute onset of signs and symptoms.
+					<ul>
+					<li>Fever</li>
+					<li>Cough</li>
+					<li>Shortness of breath or difficulty in breathing</li>
+					If you observe any of the above symptoms visit the nearest health facility for further advice and treatment. Further you must furnish the details of exposure of such patient to your health care worker.
+					</ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > Should I be tested for 2019-novel Corona Virus ?</a>
+                </h5>
+            </div>
+            <div id="collapseSeven" class="panel-collapse collapse">
+                <div class="panel-body">
+                    If you develop acute onset of fever and symptoms of respiratory illness, such as cough or shortness of breath, you should visit nearest health facility and the doctor's will decide if you need to tested for 2019-novel Corona Virus depending upon your history of travel to China/ affected countries or contact with any suspected/ lab confirmed case.
+                </div>
+            </div>
+        </div>
+    </div>
+                <!--/.direct-chat-messages-->
+
+                <!-- Contacts are loaded here -->
+
+                <!-- /.direct-chat-pane -->
+              </div>
+              <!-- /.card-body -->
+
+              <!-- /.card-footer-->
+            </div></div>
+            <!-- TO DO List -->
+            <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">
                     <i class="nav-icon fab fa-hire-a-helper" style="color:red;"></i>
@@ -1486,192 +1472,181 @@
               </div>
 
 
-              <!-- /.card -->
-            </section>
-            <!-- /.Left col -->
-            <!-- right col (We are only adding the ID to make the widgets sortable)-->
-            <section class="col-lg-6 connectedSortable">
+            <!-- /.card -->
+          </section>
+          <!-- /.Left col -->
+          <!-- right col (We are only adding the ID to make the widgets sortable)-->
+          <section class="col-lg-6 connectedSortable">
 
-              <!-- Map card -->
-              <div class="card bg-gradient-white">
-                <div class="card-header border-0 mb-0">
-                  <h3 class="card-title">
-                    <i class="fas fa-map-marker-alt mr-1" style="color:red;"></i>
-                    State Wise Cases Projection
-                  </h3>
+            <!-- Map card -->
+            <div class="card bg-gradient-white">
+              <div class="card-header border-0 mb-0">
+                <h3 class="card-title">
+                  <i class="fas fa-map-marker-alt mr-1" style="color:red;"></i>
+                  State Wise Cases Projection
+                </h3>
 
-                  <!-- card tools -->
-                  <div class="card-tools">
+                <!-- card tools -->
+                <div class="card-tools">
 
-                    <button type="button" class="btn btn-dark btn-sm" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                  </div>
-                  <!-- /.card-tools -->
+                  <button type="button"
+                          class="btn btn-dark btn-sm"
+                          data-card-widget="collapse"
+                          data-toggle="tooltip"
+                          title="Collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
                 </div>
-                <div class="card-body mt-0 mb-0">
-                  <div id="map" style="height: 550px; width: 100%;"></div>
-                </div>
-                <!-- /.card-body-->
-                <div class="card-footer bg-transparent">
-
-                  <!-- /.row -->
-                </div>
+                <!-- /.card-tools -->
               </div>
-              <!-- /.card -->
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">
-                    <i class="fas fa-chart-pie mr-1"></i>
-                    Sales
-                  </h3>
-                  <div class="card-tools">
-                    <ul class="nav nav-pills ml-auto">
-                      <li class="nav-item">
-                        <a class="nav-link border border-dark" href="#revenue-chart" data-toggle="tab">Area</a>
-                      </li>&nbsp;
-                      <li class="nav-item">
-                        <a class="nav-link border border-dark" href="#sales-chart" data-toggle="tab">Donut</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div><!-- /.card-header -->
-                <div class="card-body">
-                  <div class="tab-content p-0">
-                    <!-- Morris chart - Sales -->
-                    <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
+              <div class="card-body mt-0 mb-0">
+                <div id="map" style="height: 550px; width: 100%;"></div>
+              </div>
+              <!-- /.card-body-->
+              <div class="card-footer bg-transparent">
+
+                <!-- /.row -->
+              </div>
+            </div>
+            <!-- /.card -->
+
+			<div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-chart-area mr-1" style="color:red;"></i>
+                  Sales
+                </h3>
+                <div class="card-tools">
+				 <button type="button"
+                          class="btn btn-dark btn-sm"
+                          data-card-widget="collapse"
+                          data-toggle="tooltip"
+                          title="Collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <!-- <ul class="nav nav-pills ml-auto"> -->
+                    <!-- <li class="nav-item"> -->
+                      <!-- <a class="nav-link border border-dark" href="#revenue-chart" data-toggle="tab" >Area</a> -->
+                    <!-- </li>&nbsp; -->
+                    <!-- <li class="nav-item"> -->
+                      <!-- <a class="nav-link border border-dark" href="#sales-chart" data-toggle="tab">Donut</a> -->
+                    <!-- </li> -->
+
+                  <!-- </ul> -->
+
+                </div>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content p-0">
+                  <!-- Morris chart - Sales -->
+                  <div class="chart tab-pane active" id="revenue-chart"
+                       style="position: relative; height: 300px;">
                       <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                    </div>
-                    <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                      <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
-                    </div>
+                   </div>
+                  <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                    <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
                   </div>
-                  <div class="row">
-                    <div class="col-4 text-center">
-                      <div id="sparkline-1"></div>
-                      <div class="text-black">Visitors</div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-4 text-center">
-                      <div id="sparkline-2"></div>
-                      <div class="text-black">Online</div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-4 text-center">
-                      <div id="sparkline-3"></div>
-                      <div class="text-black">Sales</div>
-                    </div>
-                    <!-- ./col -->
+                </div>
+				 <div class="row">
+                  <div class="col-4 text-center">
+                    <div id="sparkline-1"></div>
+                    <div class="text-black">Visitors</div>
                   </div>
-                </div><!-- /.card-body -->
+                  <!-- ./col -->
+                  <div class="col-4 text-center">
+                    <div id="sparkline-2"></div>
+                    <div class="text-black">Online</div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-4 text-center">
+                    <div id="sparkline-3"></div>
+                    <div class="text-black">Sales</div>
+                  </div>
+                  <!-- ./col -->
+                </div>
+              </div><!-- /.card-body -->
+            </div>
+            <!-- solid sales graph -->
+
+            <div class="card bg-gradient-white" style="color:black !important;" >
+              <div class="card-header border-0">
+                <h3 class="card-title">
+                  <i class="fas fa-chart-line mr-1" style="color:red;"></i>
+                  Increase in 2019-nCoV Cases per week
+                </h3>
+
+                <div class="card-tools">
+ <button type="button"
+                          class="btn btn-dark btn-sm"
+                          data-card-widget="collapse"
+                          data-toggle="tooltip"
+                          title="Collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <!-- <button type="button" class="btn bg-dark btn-sm" data-card-widget="remove"> -->
+                    <!-- <i class="fas fa-times"></i> -->
+                  <!-- </button> -->
+                </div>
               </div>
-              <!-- solid sales graph -->
-              <div class="card" style="background: #757F9A;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #D7DDE8, #757F9A);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-">
-                <div class="card-header border-0">
-                  <h3 class="card-title">
-                    <i class="fas fa-th mr-1"></i>
-                    Sales Graph
-                  </h3>
+              <div class="card-body">
+                <!-- <canvas class="chart" id="line-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas> -->
+				<figure class="highcharts-figure">
+    <div id="container"></div>
 
-                  <div class="card-tools">
-                    <button type="button" class="btn bg-dark btn-sm" data-card-widget="collapse">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn bg-dark btn-sm" data-card-widget="remove">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <canvas class="chart" id="line-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer bg-transparent">
-                  <div class="row">
-                    <div class="col-4 text-center">
-                      <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                      <div class="text-white">Mail-Orders</div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-4 text-center">
-                      <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                      <div class="text-white">Online</div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-4 text-center">
-                      <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                      <div class="text-white">In-Store</div>
-                    </div>
-                    <!-- ./col -->
-                  </div>
-                  <!-- /.row -->
-                </div>
-                <!-- /.card-footer -->
+</figure>
               </div>
-              <!-- /.card -->
+              <!-- /.card-body -->
 
-              <!-- Calendar -->
-              <div class="card bg-gradient-success">
-                <div class="card-header border-0">
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
 
-                  <h3 class="card-title">
-                    <i class="far fa-calendar-alt"></i>
-                    Calendar
-                  </h3>
-                  <!-- tools card -->
-                  <div class="card-tools">
-                    <!-- button with a dropdown -->
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                        <i class="fas fa-bars"></i></button>
-                      <div class="dropdown-menu float-right" role="menu">
-                        <a href="#" class="dropdown-item">Add new event</a>
-                        <a href="#" class="dropdown-item">Clear events</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">View calendar</a>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                  <!-- /. tools -->
+            <!-- Calendar -->
+            <div class="card bg-gradient-white">
+              <div class="card-header border-0">
+
+                <h3 class="card-title">
+                  <i class="far fa-calendar-alt" style="color:red;"></i>
+                  Calendar
+                </h3>
+                <!-- tools card -->
+                <div class="card-tools">
+                  <!-- button with a dropdown -->
+
+                  <button type="button" class="btn btn-dark btn-sm" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body pt-0">
-                  <!--The calendar -->
-                  <div id="calendar" style="width: 100%"></div>
-                </div>
-                <!-- /.card-body -->
+                <!-- /. tools -->
               </div>
-              <!-- /.card -->
-            </section>
-            <!-- right col -->
-          </div>
-          <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
-      </section>
-      <!-- /.content -->
+              <!-- /.card-header -->
+              <div class="card-body pt-0">
+                <!--The calendar -->
+                <div id="calendar" style="width: 100%"></div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </section>
+          <!-- right col -->
+        </div>
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2020 <a href="https://www.mohfw.gov.in/">Ministry of Health & Family Welfare</a>.</strong>
+
+    <div class="float-right d-none d-sm-inline-block">
+    <strong>Designed & Developed By <a href="https://cdac.in/">Center for Development of Advanced Computing</a>.</strong>
     </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-      <strong>Copyright &copy; 2020 <a href="https://www.mohfw.gov.in/">Ministry of Health & Family Welfare</a>.</strong>
+  </footer>
 
-      <div class="float-right d-none d-sm-inline-block">
-        <strong>Designed & Developed By <a href="https://cdac.in/">Center for Development of Advanced Computing</a>.</strong>
-      </div>
-    </footer>
-
-    <!-- Control Sidebar -->
+  <!-- Control Sidebar -->
+ <!-- Control Sidebar -->
     <aside class="control-sidebar bg-white" style="width:400px !important;overflow-y:auto !important;">
       <!-- Control sidebar content goes here -->
       <div id="frame">
@@ -1699,383 +1674,380 @@ background: linear-gradient(to bottom, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, 
         </div>
       </div>
     </aside>
-    <!-- /.control-sidebar -->
-  </div>
-  <!-- ./wrapper -->
 
-  <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
-  <!-- jQuery UI 1.11.4 -->
-  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-  <script>
-    $.widget.bridge('uibutton', $.ui.button)
-  </script>
-  <!-- Bootstrap 4 -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- ChartJS -->
-  <script src="plugins/chart.js/Chart.min.js"></script>
-  <!-- Sparkline -->
-  <script src="plugins/sparklines/sparkline.js"></script>
-  <!-- JQVMap -->
-  <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-  <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-  <!-- jQuery Knob Chart -->
-  <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-  <!-- daterangepicker -->
-  <script src="plugins/moment/moment.min.js"></script>
-  <script src="plugins/daterangepicker/daterangepicker.js"></script>
-  <!-- Tempusdominus Bootstrap 4 -->
-  <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-  <!-- Summernote -->
-  <script src="plugins/summernote/summernote-bs4.min.js"></script>
-  <!-- overlayScrollbars -->
-  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.js"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="dist/js/pages/dashboard.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
 
-  <!-- list.min.js-->
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="plugins/moment/moment.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="dist/js/pages/dashboard.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<!-- list.min.js-->
   <script src="plugins/list.js/1.5.0/dist/list.min.js"></script>
+ <script>
 
-  <script>
-    function initMap() {
-      // The location of Uluru
-      var uluru = {
-        lat: 23.1294,
-        lng: 83.1861
-      };
-      // The map, centered at Uluru
-      var map = new google.maps.Map(
-        document.getElementById('map'), {
-          zoom: 4.55,
-          center: uluru
-        });
-      // The marker, positioned at Uluru
-      //	a var marker = new google.maps.Marker({position: uluru, map: map});
 
+ function initMap() {
+  // The location of Uluru
+  var uluru = {lat: 23.1294, lng:83.1861};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 4.55, center: uluru});
+  // The marker, positioned at Uluru
+ //	a var marker = new google.maps.Marker({position: uluru, map: map});
+
+}
+    </script>
+    <script async defer
+    src="https://maps.google.co.in/maps/api/js?key=AIzaSyB9o2-H1VP2p3JwxC8f-yr_Le7UpuwovPE&callback=initMap">
+    </script>
+
+
+	<script>
+
+var age = 0;
+var gender = -1;
+var working = 0;
+var travel = 0;
+var job = 0;
+var abroad = 0;
+var cb_tick= false;
+var close_contact = 0;
+var checked_boses = 0;
+var chk_symp1_yes_value_val = 0;
+var severe_status_val = 0;
+var checked_boses2 = 0;
+var checked_boses3 = 0;
+var score = 0;
+
+function start(){
+	$('<li class="replies"><p>' + "How old are you" + '</p></li>').appendTo($('.messages ul'));
+	$('<li class=""><p><input class="form-control-sm" type="number" id="age" name="age" value="0" min="1" max="120" required placeholder="Age"style=" background-color:#dae0e5 !important;color:darkblue;"></p></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_age()">Done</button></li>').appendTo($('.messages ul'));
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+};
+function update_age(){
+	age = document.getElementById("age").value;
+	age = parseInt(age);
+	if (age>=0 && age<=5)
+		score+=1;
+	if (age>=6 && age<=20)
+		score+=0.75;
+	if (age>=21 && age<=50)
+		score+=0.50;
+	if (age>=51)
+		score+=1;
+	/* alert(age); */
+	$('<li class="replies"><p>' + "Your Gender" + '</p></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_gender(0)">Male &#128104;</button></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_gender(1)">Female &#128103;</button></li>').appendTo($('.messages ul'));
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+};
+function update_gender(ch){
+	gender = ch;
+	/* alert(gender); */
+	$('<li class="replies"><p>' + "Are you working?" + '</p></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_working(1)">YES</button></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_working(0)">NO</button></li>').appendTo($('.messages ul'));
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+};
+function update_working(ch){
+	working = ch;
+	/* alert(working); */
+	if (working){
+		$('<li class="replies"><p>' + "How do you travel?" + '</p></li>').appendTo($('.messages ul'));
+		$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_travel(0.5)">Personal Vehicle</button></li>').appendTo($('.messages ul'));
+		$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_travel(1)">Public Transport</button></li>').appendTo($('.messages ul'));
+		$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+	}
+	else{
+		score+=0.5;
+		$('<li class="replies"><p>' + "Have you lived in any of the following countaries?" + '</p></li>').appendTo($('.messages ul'));
+		$('<li class="sent"><label><input type="checkbox" id="cb_1" value="1" onclick="update_abroad(1)">China</label></li>').appendTo($('.messages ul'));
+		$('<li class="sent"><label><input type="checkbox" id="cb_2" value="1" onclick="update_abroad(1)">Italy</label></li>').appendTo($('.messages ul'));
+		$('<li class="sent"><label><input type="checkbox" id="cb_3" value="1" onclick="update_abroad(1)">Iran</label></li>').appendTo($('.messages ul'));
+		$('<li class="sent"><label><input type="checkbox" id="cb_4" value="1" onclick="update_abroad(1)">USA</label></li>').appendTo($('.messages ul'));
+		$('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" onclick="update_abroad(1)">France</label></li>').appendTo($('.messages ul'));
+		$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0">Other</label></li>').appendTo($('.messages ul'));
+		$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_abroad(0)">Done</button></li>').appendTo($('.messages ul'));
+		$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+	}
+};
+function update_travel(ch){
+	travel = ch;
+	/* alert(travel); */
+	score+=parseInt(ch);
+	$('<li class="replies"><p>' + "What kind of work do you do?" + '</p></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(1)">Health Staff</button></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(0.5)">Animal Industry</button></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(0.2)">Work from Home</button></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(0.3)">Other</button></li>').appendTo($('.messages ul'));
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+};
+function update_job(ch){
+	job = ch;
+	score+=parseInt(ch);
+	/* alert(job); */
+	$('<li class="replies"><p>' + "Have you lived in any of the following countaries?" + '</p></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb_1" value="1" >China</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb_2" value="1" >Italy</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb_3" value="1" >Iran</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb_4" value="1" >USA</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" >France</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0">Other</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_abroad(0)">Done</button></li>').appendTo($('.messages ul'));
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+};
+function update_abroad(msg){
+	if (msg){
+		abroad=1
+	}
+	if (document.getElementById("cb_1").checked)
+		score+=5;
+	if (document.getElementById("cb_2").checked)
+		score+=5;
+	if (document.getElementById("cb_3").checked)
+		score+=5;
+	if (document.getElementById("cb_4").checked)
+		score+=5;
+	if (document.getElementById("cb_5").checked)
+		score+=5;
+	if (document.getElementById("cb_6").checked)
+		score+=0.5;
+	/* alert(abroad); */
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+	update_contact();
+};
+function update_contact(){
+	$('<li class="replies"><p>' + "Have you been in close contact with someone who has corona?" + '</p></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_close_contact(5)">Yes</button></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_close_contact(1)">No</button></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn-primary" onclick="update_close_contact(1)">Dont Know</button></li>').appendTo($('.messages ul'));
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+};
+function update_close_contact(ch){
+	close_contact = ch;
+	score+=parseInt(ch);
+	/* alert(ch); */
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+	update_symp1();
+};
+function update_symp1(){
+	$('<li class="replies"><p>' + "Do you have any of the following symptoms?" + '</p></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb2_1" value="1" >Cough</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb2_2" value="1" >Fever</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb2_3" value="1" >Difficulty Breathing</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb2_4" value="1" >Pain in throat</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb2_5" value="1" >Tiredness</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chlsympt1()">Done</button></li>').appendTo($('.messages ul'));
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+};
+function chlsympt1(){
+	if (document.getElementById("cb2_1").checked){
+		score+=0.6;
+		checked_boses=1;}
+	if (document.getElementById("cb2_2").checked){
+		score+=1;
+		checked_boses=1;}
+	if (document.getElementById("cb2_3").checked){
+		score+=1;
+		checked_boses=1;}
+	if (document.getElementById("cb2_4").checked){
+		score+=0.6;
+		checked_boses=1;}
+	if (document.getElementById("cb2_5").checked){
+		score+=0.6;
+		checked_boses=1;}
+	/* alert(checked_boses); */
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+	if (checked_boses)
+		chk_symp1_yes();
+	else
+		add_sympt();
+};
+function chk_symp1_yes(){
+	$('<li class="replies"><p>' + "How long have you being facing these symptomps?" + '</p></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chk_symp1_yes_value(0.3)">Hours</button></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chk_symp1_yes_value(0.7)">Days</button></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chk_symp1_yes_value(1)">Weeks</button></li>').appendTo($('.messages ul'));
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+};
+function chk_symp1_yes_value(ch){
+	chk_symp1_yes_value_val = ch;
+	score+=parseInt(ch);
+	/* alert(chk_symp1_yes_value_val); */
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+	how_severe();
+};
+function how_severe(){
+	$('<li class="replies"><p>' + "How severe are your symptomps?" + '</p></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="severe_status(0.5)">Mild</button></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="severe_status(0.75)">Moderate</button></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="severe_status(1)">Severe</button></li>').appendTo($('.messages ul'));
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+};
+function severe_status(ch){
+	severe_status_val = ch;
+	score+=parseInt(ch);
+	/* alert(severe_status_val); */
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+	add_sympt();
+};
+function add_sympt(){
+	$('<li class="replies"><p>' + "Do you have any of the following symptoms?" + '</p></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb3_1" value="1" >Body ache</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb3_2" value="1" >Nausera</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb3_3" value="1" >Headache</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb3_4" value="1" >Diarrea</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chkaddsympt()">Done</button></li>').appendTo($('.messages ul'));
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+};
+function chkaddsympt(){
+	if (document.getElementById("cb3_1").checked)
+		score+=0.75;
+	if (document.getElementById("cb3_2").checked)
+		score+=0.6;
+	if (document.getElementById("cb3_3").checked)
+		score+=0.8;
+	if (document.getElementById("cb3_4").checked)
+		score+=0.5;
+	/* alert(checked_boses2); */
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+	previous_conditions();
+};
+function previous_conditions(){
+	$('<li class="replies"><p>' + "Have you been diagnosed with the following?" + '</p></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb4_1" value="1" >Heart disease</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb4_2" value="1" >Diabetes</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb4_3" value="1" >Lung diseases</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb4_4" value="1" >Hypertension</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><label><input type="checkbox" id="cb4_5" value="1" >Cancer</label></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="precond()">Done</button></li>').appendTo($('.messages ul'));
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+};
+function precond(){
+	if (document.getElementById("cb4_1").checked)
+		score+=2;
+	if (document.getElementById("cb4_2").checked)
+		score+=1;
+	if (document.getElementById("cb4_3").checked)
+		score+=2;
+	if (document.getElementById("cb4_4").checked)
+		score+=1;
+	if (document.getElementById("cb4_5").checked)
+		score+=2;
+	/* alert(checked_boses3); */
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+	results();
+};
+function results(){
+	/* score = parseInt(age)+parseInt(working)+parseInt(travel)+parseInt(job)+parseInt(abroad)+parseInt(close_contact)+parseInt(chk_symp1_yes_value_val)+parseInt(severe_status_val)+parseInt(checked_boses)+parseInt(checked_boses2)+parseInt(checked_boses3); */
+	/* alert(score); */
+	if (score>=0 && score<=4)
+		$('<li class="sent"><div class="p-3 mb-2 bg-success text-white">Low Risk. Keep monitoring. Your score is '+score+'. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
+	if (score>=4.1 && score<=7.5)
+		$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">Medium Risk. Need not to panis. Your score is '+score+'. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
+	if (score>=7.6)
+		$('<li class="sent"><div class="p-3 mb-2 bg-danger text-white">High Risk. Contact your doctor immediately. Your score is '+score+'. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
+	$('<li class="sent"><button type="button" class="btn btn-primary" onclick="window.location.reload();">Start Over</button></li>').appendTo($('.messages ul'));
+	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+};
+
+Highcharts.chart('container', {
+
+    title: {
+        text: 'Growth in number of Cases of 2019-nCoV'
+    },
+
+    subtitle: {
+        text: 'Source: mohfw.gov.in'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Number of cases'
+        }
+    },
+
+    xAxis: {
+        accessibility: {
+            rangeDescription: 'Range: 1 to 23'
+        }
+    },
+
+    legend: {
+        layout: 'vertical',
+        align: 'bottom',
+        //verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+            pointStart: 1
+        }
+    },
+
+    series: [{
+        name:'Cases',
+        data: [2,9,17,2,15,32,8,5,11,15]
+    }],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
     }
-  </script>
-  <script async defer src="https://maps.google.co.in/maps/api/js?key=AIzaSyB9o2-H1VP2p3JwxC8f-yr_Le7UpuwovPE&callback=initMap">
-  </script>
 
-
-  <script>
-    var age = 0;
-    var gender = -1;
-    var working = 0;
-    var travel = 0;
-    var job = 0;
-    var abroad = 0;
-    var cb_tick = false;
-    var close_contact = 0;
-    var checked_boses = 0;
-    var chk_symp1_yes_value_val = 0;
-    var severe_status_val = 0;
-    var checked_boses2 = 0;
-    var checked_boses3 = 0;
-    var score = 0;
-
-    function start() {
-      $('<li class="replies"><p>' + "How old are you" + '</p></li>').appendTo($('.messages ul'));
-      $('<li class=""><p><input class="form-control-sm" type="number" id="age" name="age" value="0" min="1" max="120" required placeholder="Age"style=" background-color:#dae0e5 !important;color:darkblue;"></p></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_age()">Done</button></li>').appendTo($('.messages ul'));
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-    };
-
-    function update_age() {
-      age = document.getElementById("age").value;
-      age = parseInt(age);
-      if (age >= 0 && age <= 5)
-        score += 1;
-      if (age >= 6 && age <= 20)
-        score += 0.75;
-      if (age >= 21 && age <= 50)
-        score += 0.50;
-      if (age >= 51)
-        score += 1;
-      /* alert(age); */
-      $('<li class="replies"><p>' + "Your Gender" + '</p></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-success" onclick="update_gender(0)">Male &#128104;</button></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_gender(1)">Female &#128103;</button></li>').appendTo($('.messages ul'));
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-    };
-
-    function update_gender(ch) {
-      gender = ch;
-      /* alert(gender); */
-      $('<li class="replies"><p>' + "Are you working?" + '</p></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-success" onclick="update_working(1)">YES</button></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_working(0)">NO</button></li>').appendTo($('.messages ul'));
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-    };
-
-    function update_working(ch) {
-      working = ch;
-      /* alert(working); */
-      if (working) {
-        $('<li class="replies"><p>' + "How do you travel?" + '</p></li>').appendTo($('.messages ul'));
-        $('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_travel(0.5)">Personal Vehicle</button></li>').appendTo($('.messages ul'));
-        $('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_travel(1)">Public Transport</button></li>').appendTo($('.messages ul'));
-        $(".messages").animate({
-          scrollTop: $(document).height()
-        }, "fast");
-      } else {
-        score += 0.5;
-        $('<li class="replies"><p>' + "Have you lived in any of the following countaries?" + '</p></li>').appendTo($('.messages ul'));
-        $('<li class="sent"><label><input type="checkbox" id="cb_1" value="1" onclick="update_abroad(1)">China</label></li>').appendTo($('.messages ul'));
-        $('<li class="sent"><label><input type="checkbox" id="cb_2" value="1" onclick="update_abroad(1)">Italy</label></li>').appendTo($('.messages ul'));
-        $('<li class="sent"><label><input type="checkbox" id="cb_3" value="1" onclick="update_abroad(1)">Iran</label></li>').appendTo($('.messages ul'));
-        $('<li class="sent"><label><input type="checkbox" id="cb_4" value="1" onclick="update_abroad(1)">USA</label></li>').appendTo($('.messages ul'));
-        $('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" onclick="update_abroad(1)">France</label></li>').appendTo($('.messages ul'));
-        $('<li class="sent"><label><input type="checkbox" id="cb_6" value="0">Other</label></li>').appendTo($('.messages ul'));
-        $('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_abroad(0)">Done</button></li>').appendTo($('.messages ul'));
-        $(".messages").animate({
-          scrollTop: $(document).height()
-        }, "fast");
-      }
-    };
-
-    function update_travel(ch) {
-      travel = ch;
-      /* alert(travel); */
-      score += parseInt(ch);
-      $('<li class="replies"><p>' + "What kind of work do you do?" + '</p></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(1)">Health Staff</button></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(0.5)">Animal Industry</button></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(0.2)">Work from Home</button></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(0.3)">Other</button></li>').appendTo($('.messages ul'));
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-    };
-
-    function update_job(ch) {
-      job = ch;
-      score += parseInt(ch);
-      /* alert(job); */
-      $('<li class="replies"><p>' + "Have you lived in any of the following countaries?" + '</p></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb_1" value="1" >China</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb_2" value="1" >Italy</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb_3" value="1" >Iran</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb_4" value="1" >USA</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" >France</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb_6" value="0">Other</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_abroad(0)">Done</button></li>').appendTo($('.messages ul'));
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-    };
-
-    function update_abroad(msg) {
-      if (msg) {
-        abroad = 1
-      }
-      if (document.getElementById("cb_1").checked)
-        score += 5;
-      if (document.getElementById("cb_2").checked)
-        score += 5;
-      if (document.getElementById("cb_3").checked)
-        score += 5;
-      if (document.getElementById("cb_4").checked)
-        score += 5;
-      if (document.getElementById("cb_5").checked)
-        score += 5;
-      if (document.getElementById("cb_6").checked)
-        score += 0.5;
-      /* alert(abroad); */
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-      update_contact();
-    };
-
-    function update_contact() {
-      $('<li class="replies"><p>' + "Have you been in close contact with someone who has corona?" + '</p></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-success" onclick="update_close_contact(5)">Yes</button></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_close_contact(1)">No</button></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn-primary" onclick="update_close_contact(1)">Dont Know</button></li>').appendTo($('.messages ul'));
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-    };
-
-    function update_close_contact(ch) {
-      close_contact = ch;
-      score += parseInt(ch);
-      /* alert(ch); */
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-      update_symp1();
-    };
-
-    function update_symp1() {
-      $('<li class="replies"><p>' + "Do you have any of the following symptoms?" + '</p></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb2_1" value="1" >Cough</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb2_2" value="1" >Fever</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb2_3" value="1" >Difficulty Breathing</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb2_4" value="1" >Pain in throat</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb2_5" value="1" >Tiredness</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="chlsympt1()">Done</button></li>').appendTo($('.messages ul'));
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-    };
-
-    function chlsympt1() {
-      if (document.getElementById("cb2_1").checked) {
-        score += 0.6;
-        checked_boses = 1;
-      }
-      if (document.getElementById("cb2_2").checked) {
-        score += 1;
-        checked_boses = 1;
-      }
-      if (document.getElementById("cb2_3").checked) {
-        score += 1;
-        checked_boses = 1;
-      }
-      if (document.getElementById("cb2_4").checked) {
-        score += 0.6;
-        checked_boses = 1;
-      }
-      if (document.getElementById("cb2_5").checked) {
-        score += 0.6;
-        checked_boses = 1;
-      }
-      /* alert(checked_boses); */
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-      if (checked_boses)
-        chk_symp1_yes();
-      else
-        add_sympt();
-    };
-
-    function chk_symp1_yes() {
-      $('<li class="replies"><p>' + "How long have you being facing these symptomps?" + '</p></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="chk_symp1_yes_value(0.3)">Hours</button></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="chk_symp1_yes_value(0.7)">Days</button></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="chk_symp1_yes_value(1)">Weeks</button></li>').appendTo($('.messages ul'));
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-    };
-
-    function chk_symp1_yes_value(ch) {
-      chk_symp1_yes_value_val = ch;
-      score += parseInt(ch);
-      /* alert(chk_symp1_yes_value_val); */
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-      how_severe();
-    };
-
-    function how_severe() {
-      $('<li class="replies"><p>' + "How severe are your symptomps?" + '</p></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="severe_status(0.5)">Mild</button></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="severe_status(0.75)">Moderate</button></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="severe_status(1)">Severe</button></li>').appendTo($('.messages ul'));
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-    };
-
-    function severe_status(ch) {
-      severe_status_val = ch;
-      score += parseInt(ch);
-      /* alert(severe_status_val); */
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-      add_sympt();
-    };
-
-    function add_sympt() {
-      $('<li class="replies"><p>' + "Do you have any of the following symptoms?" + '</p></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb3_1" value="1" >Body ache</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb3_2" value="1" >Nausera</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb3_3" value="1" >Headache</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb3_4" value="1" >Diarrea</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="chkaddsympt()">Done</button></li>').appendTo($('.messages ul'));
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-    };
-
-    function chkaddsympt() {
-      if (document.getElementById("cb3_1").checked)
-        score += 0.75;
-      if (document.getElementById("cb3_2").checked)
-        score += 0.6;
-      if (document.getElementById("cb3_3").checked)
-        score += 0.8;
-      if (document.getElementById("cb3_4").checked)
-        score += 0.5;
-      /* alert(checked_boses2); */
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-      previous_conditions();
-    };
-
-    function previous_conditions() {
-      $('<li class="replies"><p>' + "Have you been diagnosed with the following?" + '</p></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb4_1" value="1" >Heart disease</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb4_2" value="1" >Diabetes</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb4_3" value="1" >Lung diseases</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb4_4" value="1" >Hypertension</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><label><input type="checkbox" id="cb4_5" value="1" >Cancer</label></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="precond()">Done</button></li>').appendTo($('.messages ul'));
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-    };
-
-    function precond() {
-      if (document.getElementById("cb4_1").checked)
-        score += 2;
-      if (document.getElementById("cb4_2").checked)
-        score += 1;
-      if (document.getElementById("cb4_3").checked)
-        score += 2;
-      if (document.getElementById("cb4_4").checked)
-        score += 1;
-      if (document.getElementById("cb4_5").checked)
-        score += 2;
-      /* alert(checked_boses3); */
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-      results();
-    };
-
-    function results() {
-      /* score = parseInt(age)+parseInt(working)+parseInt(travel)+parseInt(job)+parseInt(abroad)+parseInt(close_contact)+parseInt(chk_symp1_yes_value_val)+parseInt(severe_status_val)+parseInt(checked_boses)+parseInt(checked_boses2)+parseInt(checked_boses3); */
-      /* alert(score); */
-      if (score >= 0 && score <= 4)
-        $('<li class="sent"><div class="p-3 mb-2 bg-success text-white">Low Risk. Keep monitoring. Your score is ' + score + '. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
-      if (score >= 4.1 && score <= 7.5)
-        $('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">Medium Risk. Need not to panis. Your score is ' + score + '. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
-      if (score >= 7.6)
-        $('<li class="sent"><div class="p-3 mb-2 bg-danger text-white">High Risk. Contact your doctor immediately. Your score is ' + score + '. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
-      $('<li class="sent"><button type="button" class="btn btn-primary" onclick="window.location.reload();">Start Over</button></li>').appendTo($('.messages ul'));
-      $(".messages").animate({
-        scrollTop: $(document).height()
-      }, "fast");
-    };
+});
 
 
 
@@ -2147,7 +2119,6 @@ background: linear-gradient(to bottom, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, 
       ]);
 
     });
-  </script>
+</script>
 </body>
-
 </html>
