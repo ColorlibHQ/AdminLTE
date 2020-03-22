@@ -30,6 +30,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
   <style>
+  .control-sidebar-content{
+    display: none !important;
+  }
     #frame .content {
       float: right;
 
@@ -1669,12 +1672,12 @@ background: linear-gradient(to bottom, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, 
     </footer>
 
     <!-- Control Sidebar -->
-    <aside class="control-sidebar bg-white" style="width:400px !important;overflow: scroll !important;">
+    <aside class="control-sidebar bg-white" style="width:400px !important;overflow-y:auto !important;">
       <!-- Control sidebar content goes here -->
       <div id="frame">
 
 
-        <div class="content shadow">
+        <div class="content shadow" style="    height: 550px;">
           <div class="contact-profile shadow rounded border border-dark">
             <img src="dist/img/bot.svg" class="animated flip delay-0.2s">
             <p class="animated fadeIn delay-0.2s">Corona Bot</p>
