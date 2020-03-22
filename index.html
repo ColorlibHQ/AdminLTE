@@ -298,7 +298,7 @@
 	background: rgba(240, 173, 78, 0.75);
 	border: 2px solid rgba(240, 173, 78, 0.75);
 }
-
+ 
 #newsscroll::-webkit-scrollbar {
  
   background: transparent;
@@ -311,11 +311,25 @@
   background-color: black;
   corner
 }
-  
+
+#pagescroll::-webkit-scrollbar {
+ 
+  background: transparent;
+  width: 0.5em !important;
+  outline: 1px solid grey !important;
+        border-radius: 10px !important;
+    scroll-behavior: smooth !important;
+}
+#pagescroll::-webkit-scrollbar-thumb {
+  background-color:grey;
+  corner
+} 
+
+
   
   </style>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" id="pagescroll">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -415,9 +429,9 @@
           </li>
 		   <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-tasks"></i>
+              <i class="nav-icon far fa-question-circle"></i>
               <p>
-                Symptoms Checker
+                FAQ's
               </p>
             </a>
           </li>
@@ -923,7 +937,7 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" >
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -1036,12 +1050,12 @@
         <!-- Main row -->
         <div class="row">
           <!-- Left col -->
-          <section class="col-lg-7 connectedSortable">
+          <section class="col-lg-6 connectedSortable">
             <!-- Custom tabs (Charts with tabs)-->
             
 
             <!-- DIRECT CHAT -->
-            <div class="card direct-chat direct-chat-primary" style="height:350px;">
+            <div class="card direct-chat direct-chat-primary">
               <div class="card-header">
                 <h3 class="card-title"><i class="fas fa-rss-square" style="color:red;"></i> News Feeds</h3>
 
@@ -1050,14 +1064,13 @@
                     <i class="fas fa-minus"></i>
                   </button>
                  
-                  <button type="button" class="btn btn-dark btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-                  </button>
+                  
                 </div>
               </div>
               <!-- /.card-header -->
-              <div class="card-body" style="overflow:auto;" id="newsscroll">
+              <div class="card-body">
                 <!-- Conversations are loaded here -->
-                <div class="direct-chat">
+                <div class="direct-chat-messages" id="newsscroll" >
                   <!-- Message. Default to the left -->
                   <div class="direct-chat-msg">
                     <div class="direct-chat-infos clearfix">
@@ -1114,7 +1127,8 @@
                     </div>
                     <!-- /.direct-chat-text -->
                   </div>
-				   <div class="direct-chat-msg">
+				  
+				       <div class="direct-chat-msg">
                     <div class="direct-chat-infos clearfix">
                       <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
                     </div>
@@ -1141,34 +1155,8 @@
                     </div>
                     <!-- /.direct-chat-text -->
                   </div>
-				   <div class="direct-chat-msg">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="dist/img/news.svg" >
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                      Working with AdminLTE on a great new app! Wanna join?
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
-
-                  <!-- Message to the right -->
-                  <div class="direct-chat-msg right">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="dist/img/news.svg" >
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                      I would love to.
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-				   <div class="direct-chat-msg">
+				  
+				       <div class="direct-chat-msg">
                     <div class="direct-chat-infos clearfix">
                       <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
                     </div>
@@ -1210,28 +1198,219 @@
             </div>
             <!--/.direct-chat -->
 
+
+ <!-- DIRECT CHAT -->
+            <div class="card direct-chat direct-chat-primary">
+              <div class="card-header">
+                <h3 class="card-title">          <img class="img" src="dist/img/faq.png"> Frequently Asked Questions (FAQ's)</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-dark btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                 
+                
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <!-- Conversations are loaded here -->
+                <div class="direct-chat-messages" id="newsscroll" >
+                 <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > What is 2019 Noval Coronavirus ?</a>
+                </h5>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    2019 Novel Coronavirus, or 2019-nCoV, is a new virus first identifiedin Wuhan, Hubie Province, China. It is named novel as it has not been previously identified.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > What is the source of 2019 Novel Coronavirus ?</a>
+                </h5>
+            </div>
+            <div id="collapseTen" class="panel-collapse collapse">
+                <div class="panel-body">
+                  At present exact source of infection of 2019 novel Corona virus has not need identified. Coronaviruses are a large family of virus, some causing illness in people and others that circulate among animals. Initially, many of the patients in the outbreak in Wuhan, China reportedly had some link to large seafood and aimal market, suggesting the virus likely emerged from an animal source. 
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > What are the initial symptoms of Noval Coronavirus ?</a>
+                </h5>
+            </div>
+            <div id="collapseEleven" class="panel-collapse collapse">
+                <div class="panel-body">
+				Current symptoms reported for patients with 2019-nCoV include acute onset of fever, cough, and difficulty in breathing.
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > How does the virus spread ?</a>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+				The specific modes of transmission of the virus is not clear yet since it is a novel virus. The virus probably orignally emerged from an animal source but now seems to be spreading from person-to-person. It's not clear yet how easily 2019-nCoV spreads from person-to-person. It is thought to have happened mainly when a infected person coughs or sneezes, similar to how influenza and other respiratory pathogens spread.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > what is GoI doing about 2019-nCoV ?</a>
+                </h5>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                   A 24*7 helpline has been setup by the GoI at NCDC, New Delhi to answer all queries regarding the diseases. The GoI is closely monitoring the situation and has ascertained the level of preparedness in every State of India. As this is an emerging, rapidly evolving the GoI will continue to provide updated information as it becomes available.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > Is there a vaccine to get protection from 2019 novel Corona Virus ?</a>
+                </h5>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Currently, there is no vaccine available to protect against 2019-novel Corona Virus.
+                    <br />
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > Is it safe to travel to Wuhan, China or other countries where 2019-nCoV 2019 cases have occured ?</a>
+                </h5>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse">
+                <div class="panel-body">
+                    All nonessential travel to China is to be avoided. If the travel is unavoidable- At all times follow the simple public health measures:
+                    <ul>
+                        <li>Obeserve good personel hygiene.</li>
+                        <li>Monitor your health closely.</li>
+                        <li>Seek medical attention promptly if you feel sick.</li>
+						<li>If you feel sick during travel, inform airline crew about your illness and seek mask from the airline crew</li>
+						<li>For futher detials kindly check Travel advisory issued by MoHFW, GoI available on website (<a href="https://www.mohfw.gov.in">www.mohfw.gov.in</a>).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEight"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > What are the treatments ?</a>
+                </h5>
+            </div>
+            <div id="collapseEight" class="panel-collapse collapse">
+                <div class="panel-body">
+                    There is no specific antiviral treatment available for 2019-novel Corona Virus infection. People infected with 2019-novel Corona Virus should receive supportive care to help relieve symptoms. 
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNine"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > How can I help protect myself ?</a>
+                </h5>
+            </div>
+            <div id="collapseNine" class="panel-collapse collapse">
+                <div class="panel-body">
+                    There is currently no vaccine to prevent 2019-nCoV infection. The best way to prevent infection is to avoid being exposed to this virus.
+					<ul>
+					<li>All non-essential travel to China or affected countaries* to be avoided.</li>
+					<li>Observe good personal hygiene.</li>
+					<li>Prectice frequent hand washing with soap.</li>
+					<li>Cover your mouth when coughing and sneezing.</li>
+					*The list of affected countries is available on WHO website (<a href="https://www.who.int">www.who.int</a>) and would be updated time to time.
+
+
+					</ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > What should I do if I had close contact with someone who is confirmed case of 2019-nCoV ?</a>
+                </h5>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Self monitor your health starting from the day of last contact with such a case and continue for 28 days. Watch for the development of acute onset of signs and symptoms.
+					<ul>
+					<li>Fever</li>
+					<li>Cough</li>
+					<li>Shortness of breath or difficulty in breathing</li>
+					If you observe any of the above symptoms visit the nearest health facility for further advice and treatment. Further you must furnish the details of exposure of such patient to your health care worker.
+					</ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > Should I be tested for 2019-novel Corona Virus ?</a>
+                </h5>
+            </div>
+            <div id="collapseSeven" class="panel-collapse collapse">
+                <div class="panel-body">
+                    If you develop acute onset of fever and symptoms of respiratory illness, such as cough or shortness of breath, you should visit nearest health facility and the doctor's will decide if you need to tested for 2019-novel Corona Virus depending upon your history of travel to China/ affected countries or contact with any suspected/ lab confirmed case.
+                </div>
+            </div>
+        </div>
+    </div>
+                <!--/.direct-chat-messages-->
+
+                <!-- Contacts are loaded here -->
+               
+                <!-- /.direct-chat-pane -->
+              </div>
+              <!-- /.card-body -->
+              
+              <!-- /.card-footer-->
+            </div></div>
             <!-- TO DO List -->
-            <div class="card">
+            <div class="card"  >
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="nav-icon fab fa-hire-a-helper" style="color:red;"></i>
-                  Central Helpline Number for corona-virus: - <b style="color:red;">+91-11-23978046</b>
+                  Central Helpline Number: <b style="color:red;">+91-11-23978046</b>
                 </h3>
 
                 <div class="card-tools">
-                  <ul class="pagination pagination-sm">
-                    <li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#thirdpage" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
-                  </ul>
+				 <button type="button" class="btn btn-dark btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+            
+				  
+                 
+                  <button type="button" class="btn btn-dark btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                  </button>
                 </div>
+				
               </div>
           
               <div class="card-body">
-                
+                      <div  class="panel-collapse collapse show" aria-expanded="true" style="">
+
             <ul class="list-group pull-down" id="contact-list">
+			
                 <li class="list-group-item">
                     <div class="row">
                         
@@ -1646,7 +1825,7 @@
                         </div>
                     </div>
                 </li>
-				<li class="list-group-item" id="thirdpage">
+				<li class="list-group-item">
                     <div class="row">
                         
                         <div class="col-12 col-sm-6 col-md-12 text-center text-sm-left">
@@ -1659,7 +1838,7 @@
                         </div>
                     </div>
                 </li>
-				<li class="list-group-item" id="thirdpage">
+				<li class="list-group-item">
                     <div class="row">
                         
                         <div class="col-12 col-sm-6 col-md-12 text-center text-sm-left">
@@ -1672,7 +1851,7 @@
                         </div>
                     </div>
                 </li>
-				<li class="list-group-item" id="thirdpage">
+				<li class="list-group-item">
                     <div class="row">
                         
                         <div class="col-12 col-sm-6 col-md-12 text-center text-sm-left">
@@ -1689,8 +1868,24 @@
                
             </ul>
             <!--/contacts list-->
-        
+       </div> 
               </div>
+			  
+			  <div class="card-footer bg-white ml-auto">
+    
+				 
+                  <ul class="pagination pagination-sm no-margin ">
+                    <li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
+                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
+                  </ul>
+				  
+                 
+                 
+               
+					</div>
               
              
             </div>
@@ -1700,7 +1895,7 @@
           </section>
           <!-- /.Left col -->
           <!-- right col (We are only adding the ID to make the widgets sortable)-->
-          <section class="col-lg-5 connectedSortable">
+          <section class="col-lg-6 connectedSortable">
 
             <!-- Map card -->
             <div class="card bg-gradient-white">
@@ -1882,7 +2077,7 @@ background: linear-gradient(to bottom, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, 
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="https://www.mohfw.gov.in/">Ministry of Health and Family Welfare</a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="https://www.mohfw.gov.in/">Ministry of Health & Family Welfare</a>.</strong>
    
     <div class="float-right d-none d-sm-inline-block">
     <strong>Designed & Developed By <a href="https://cdac.in/">Center for Development of Advanced Computing</a>.</strong>
