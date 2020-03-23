@@ -2477,6 +2477,32 @@ Highcharts.chart('container', {
 					
 					},
 				});
+								
+				
+	<!-- object.onload = function(){newsfeed()}; -->
+	document.addEventListener("DOMContentLoaded", function() {
+		newsfeed();
+	});
+	
+	function newsfeed(){
+			alert("Inside newsfeed");
+			var myurl ='https://newsapi.org/v2/everything?q=corona in india&apiKey=db7f4ed8533240f39bafa44572908166';		
+			$.ajax({
+				type : "GET",
+				url : myurl,
+				dataType : "json",
+				success : function(result) {
+					for (key in result["articles"]){
+						console.log(result["articles"][key]["title"]);
+						console.log(result["articles"][key]["url"]);			
+				},
+				error : function(results) {
+					alert("There is an error. " + results.stringfy);
+				
+				},
+			});
+	}
+
 </script>
 </body>
 </html>
