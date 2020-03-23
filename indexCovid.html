@@ -27,7 +27,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-  
+
   <script async defer src="https://maps.google.co.in/maps/api/js?key=AIzaSyB9o2-H1VP2p3JwxC8f-yr_Le7UpuwovPE&callback=initMap">
     </script>
 
@@ -1529,7 +1529,7 @@
                     <i class="fas fa-minus"></i>
                   </button>
                   <!-- <ul class="nav nav-pills ml-auto"> -->
-                  
+
                     <!-- <li class="nav-item"> -->
                       <!-- <a class="nav-link border border-dark" href="#sales-chart" data-toggle="tab">Donut</a> -->
                     <!-- </li> -->
@@ -1539,7 +1539,7 @@
                 </div>
               </div><!-- /.card-header -->
               <div class="card-body">
-               
+
               </div><!-- /.card-body -->
             </div>
             <!-- solid sales graph -->
@@ -1577,7 +1577,7 @@
             </div>
             <!-- /.card -->
 
-           
+
           </section>
           <!-- right col -->
         </div>
@@ -1686,7 +1686,7 @@
 <!-- } -->
 
     <!-- </script> -->
-	
+
 	<script>
 function initMap() {
     var map;
@@ -1694,11 +1694,11 @@ function initMap() {
     var mapOptions = {
         mapTypeId: 'roadmap'
     };
-                    
+
     // Display a map on the web page
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
     map.setTilt(50);
-        
+
     // Multiple markers location, latitude, and longitude
     var markers = [
          ['New Delhi', 28.6139, 77.2090],
@@ -1724,10 +1724,10 @@ function initMap() {
 	  ['Uttar Pradesh', 26.8467, 80.9462],
 	  ['Uttarakhand', 30.0668, 79.0193],
 	  ['West Bengal', 22.9868, 87.8550]
-	  
-	  
+
+
     ];
-                        
+
     // Info window content
     var infoWindowContent = [
         ['<div class="info_content">' +
@@ -1820,12 +1820,12 @@ function initMap() {
         '<h6>West Bengal</h6>' +
         '<p>Total Confirmed cases (Indian National)-7<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' +
         '</div>']
-    ];	
-        
+    ];
+
     // Add multiple markers to map
     var infoWindow = new google.maps.InfoWindow(), marker, i;
-    
-    // Place each marker on the map  
+
+    // Place each marker on the map
     for( i = 0; i < markers.length; i++ ) {
         var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
         bounds.extend(position);
@@ -1834,8 +1834,8 @@ function initMap() {
             map: map,
             title: markers[i][0]
         });
-        
-        // Add info window to marker    
+
+        // Add info window to marker
         google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
             return function() {
                 infoWindow.setContent(infoWindowContent[i][0]);
@@ -1852,7 +1852,7 @@ function initMap() {
         this.setZoom(4.55);
         google.maps.event.removeListener(boundsListener);
     });
-    
+
 }
 // Load initialize function
 google.maps.event.addDomListener(window, 'load', initMap);
@@ -2445,48 +2445,48 @@ Highcharts.chart('container', {
       ]);
 
     });
-	
-	
-	
+
+
+
 	var myurl ='https://api.rootnet.in/covid19-in/stats/latest';
-		
+
 				$.ajax({
 					type : "GET",
 					url : myurl,
 					dataType : "json",
 					success : function(result) {
 					console.log(result.data.summary);
-					$('#total').val(JSON.stringify(result.data.summary.total));
-					$('.totalCase').val(JSON.stringify(result.data.summary.confirmedCasesIndian));
-					$('.totalCase').val(JSON.stringify(result.data.summary.confirmedCasesForeign));
-					$('.totalCase').val(JSON.stringify(result.data.summary.discharged));
-					$('.totalCase').val(JSON.stringify(result.data.summary.deaths));
-					$('.totalCase').val(JSON.stringify(result.data.summary.confirmedButLocationUnidentified));
+					$('#total').html(JSON.stringify(result.data.summary.total));
+					$('.totalCase').html(JSON.stringify(result.data.summary.confirmedCasesIndian));
+					$('.totalCase').html(JSON.stringify(result.data.summary.confirmedCasesForeign));
+					$('.totalCase').html(JSON.stringify(result.data.summary.discharged));
+					$('.totalCase').html(JSON.stringify(result.data.summary.deaths));
+					$('.totalCase').html(JSON.stringify(result.data.summary.confirmedButLocationUnidentified));
 
 					var regional = result.data.regional;
 					for(key in regional){
 
 					var location =	regional[key].loc
 					var cases =	regional[key].confirmedCasesIndian
-					//your code to append location and case in some ellemnt 
+					//your code to append location and case in some ellemnt
 					}
-						
+
 					},
 					error : function(results) {
 						alert("There is an error. " + results.stringfy);
-					
+
 					},
 				});
-								
-				
+
+
 	<!-- object.onload = function(){newsfeed()}; -->
 	document.addEventListener("DOMContentLoaded", function() {
 		newsfeed();
 	});
-	
+
 	function newsfeed(){
 			<!-- alert("Inside newsfeed"); -->
-			var myurl ='https://newsapi.org/v2/everything?q=corona in india&apiKey=db7f4ed8533240f39bafa44572908166';		
+			var myurl ='https://newsapi.org/v2/everything?q=corona in india&apiKey=db7f4ed8533240f39bafa44572908166';
 			$.ajax({
 				type : "GET",
 				url : myurl,
@@ -2494,12 +2494,12 @@ Highcharts.chart('container', {
 				success : function(result) {
 					for (key in result["articles"]){
 						console.log(result["articles"][key]["title"]);
-						console.log(result["articles"][key]["url"]);			
+						console.log(result["articles"][key]["url"]);
 						}
 				},
 				error : function(results) {
 					alert("There is an error. " + results.stringfy);
-				
+
 				},
 			});
 	}
