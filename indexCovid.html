@@ -27,6 +27,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  
+  <script async defer src="https://maps.google.co.in/maps/api/js?key=AIzaSyB9o2-H1VP2p3JwxC8f-yr_Le7UpuwovPE&callback=initMap">
+    </script>
 
   <style>
 .control-sidebar-content{
@@ -1001,7 +1004,7 @@
             <!-- small box -->
             <div class="small-box border border-info shadow">
               <div class="inner">
-                <h3 id="total"></h3><h3>8</h3>
+                <h3 id="total"></h3><h3>*</h3>
 
                 <p>Total Cases</p>
               </div>
@@ -1761,23 +1764,21 @@ function initMap() {
 	  ['Himachal Pradesh', 31.1048, 77.1734],
 	  ['Karnataka', 15.3173, 75.7139],
 	  ['Kerala', 10.8505, 76.2711],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
-	  ['Bihar', 25.0961, 85.3131],
+	  ['Madhya Pradesh', 22.9734, 78.6569],
+	  ['Maharashtra', 19.7515, 75.7139],
+	  ['Odisha', 20.9517, 85.0985],
+	  ['Puducherry', 11.9416, 79.8083],
+	  ['Punjab', 31.1471, 75.3412],
+	  ['Rajasthan', 27.0238, 74.2179],
+	  ['Tamil Nadu', 11.1271, 78.6569],
+	  ['Telangana', 18.1124, 79.0193],
+	  ['Chandigarh', 30.7333, 76.7794],
+	  ['Jammu and Kashmir', 33.7782, 76.5762],
+	  ['Ladakh', 34.152588, 	77.577049],
+	  ['Uttar Pradesh', 26.8467, 80.9462],
+	  ['Uttarakhand', 30.0668, 79.0193],
+	  ['West Bengal', 22.9868, 87.8550]
+	  
 	  
     ];
                         
@@ -1788,11 +1789,90 @@ function initMap() {
         '<p>Total Confirmed cases (Indian National)-28<br>Total Confirmed cases ( Foreign National )-1<br>Cured/Discharged/Migrated-5<br>Death-1</p>' + '</div>'],
         ['<div class="info_content">' +
         '<h6>Andhra Pradesh</h6>' +
-        '<p>Total Confirmed cases (Indian National)-28<br>Total Confirmed cases ( Foreign National )-1<br>Cured/Discharged/Migrated-5<br>Death-1</p>' +
+        '<p>Total Confirmed cases (Indian National)-5<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' +
         '</div>'],
         ['<div class="info_content">' +
         '<h6>Bihar</h6>' +
-        '<p>Total Confirmed cases (Indian National)-28<br>Total Confirmed cases ( Foreign National )-1<br>Cured/Discharged/Migrated-5<br>Death-1</p>' +
+        '<p>Total Confirmed cases (Indian National)-2<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-1</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Chhattisgarh</h6>' +
+        '<p>Total Confirmed cases (Indian National)-1<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Gujarat</h6>' +
+        '<p>Total Confirmed cases (Indian National)-18<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-1</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Haryana</h6>' +
+        '<p>Total Confirmed cases (Indian National)-7<br>Total Confirmed cases ( Foreign National )-14<br>Cured/Discharged/Migrated-0<br>Death-0</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Himachal Pradesh</h6>' +
+        '<p>Total Confirmed cases (Indian National)-2<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Karnataka</h6>' +
+        '<p>Total Confirmed cases (Indian National)-26<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-2<br>Death-1</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Kerala</h6>' +
+        '<p>Total Confirmed cases (Indian National)-60<br>Total Confirmed cases ( Foreign National )-7<br>Cured/Discharged/Migrated-3<br>Death-0</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Madhya Pradesh</h6>' +
+        '<p>Total Confirmed cases (Indian National)-6<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Maharashtra</h6>' +
+        '<p>Total Confirmed cases (Indian National)64<br>Total Confirmed cases ( Foreign National )-3<br>Cured/Discharged/Migrated-0<br>Death-2</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Odisha</h6>' +
+        '<p>Total Confirmed cases (Indian National)-2<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Puducherry</h6>' +
+        '<p>Total Confirmed cases (Indian National)-1<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Punjab</h6>' +
+        '<p>Total Confirmed cases (Indian National)-21<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-1</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Rajasthan</h6>' +
+        '<p>Total Confirmed cases (Indian National)-25<br>Total Confirmed cases ( Foreign National )-2<br>Cured/Discharged/Migrated-3<br>Death-0</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Tamil Nadu</h6>' +
+        '<p>Total Confirmed cases (Indian National)-7<br>Total Confirmed cases ( Foreign National )-2<br>Cured/Discharged/Migrated-1<br>Death-0</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Telangana</h6>' +
+        '<p>Total Confirmed cases (Indian National)-15<br>Total Confirmed cases ( Foreign National )-11<br>Cured/Discharged/Migrated-1<br>Death-0</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Chandigarh</h6>' +
+        '<p>Total Confirmed cases (Indian National)-5<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Jammu and Kashmir</h6>' +
+        '<p>Total Confirmed cases (Indian National)-4<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Ladakh</h6>' +
+        '<p>Total Confirmed cases (Indian National)-13<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>Uttar Pradesh</h6>' +
+        '<p>Total Confirmed cases (Indian National)-27<br>Total Confirmed cases ( Foreign National )-1<br>Cured/Discharged/Migrated-9<br>Death-0</p>' +
+        '</div>'], ['<div class="info_content">' +
+        '<h6>Uttarakhand</h6>' +
+        '<p>Total Confirmed cases (Indian National)-3<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' +
+        '</div>'],
+		 ['<div class="info_content">' +
+        '<h6>West Bengal</h6>' +
+        '<p>Total Confirmed cases (Indian National)-7<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' +
         '</div>']
     ];	
         
@@ -1833,8 +1913,7 @@ google.maps.event.addDomListener(window, 'load', initMap);
 
 </script>
 
-<script async defer src="https://maps.google.co.in/maps/api/js?key=AIzaSyB9o2-H1VP2p3JwxC8f-yr_Le7UpuwovPE&callback=initMap">
-    </script>
+
 
 
 	<script>
@@ -2431,7 +2510,7 @@ Highcharts.chart('container', {
 					dataType : "json",
 					success : function(result) {
 					console.log(result.data.summary);
-					$('.totalCase').val(JSON.stringify(result.data.summary.total));
+					$('#total').val(JSON.stringify(result.data.summary.total));
 					$('.totalCase').val(JSON.stringify(result.data.summary.confirmedCasesIndian));
 					$('.totalCase').val(JSON.stringify(result.data.summary.confirmedCasesForeign));
 					$('.totalCase').val(JSON.stringify(result.data.summary.discharged));
