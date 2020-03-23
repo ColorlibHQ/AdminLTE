@@ -1001,7 +1001,7 @@
             <!-- small box -->
             <div class="small-box border border-info shadow">
               <div class="inner">
-                <h3>150</h3>
+                <h3 id="total"></h3><h3>8</h3>
 
                 <p>Total Cases</p>
               </div>
@@ -1015,9 +1015,9 @@
             <!-- small box -->
             <div class="small-box border border-success shadow">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>15,27,327</h3>
 
-                <p>All Indian Cases</p>
+                <p>Screened at Airport</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add text-success"></i>
@@ -1029,9 +1029,9 @@
             <!-- small box -->
             <div class="small-box border border-warning shadow">
               <div class="inner">
-                <h3>44</h3>
+                <h3>1</h3>
 
-                <p>Foreign Cases</p>
+                <p>Migrated Patient</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add text-warning"></i>
@@ -1043,7 +1043,7 @@
             <!-- small box -->
             <div class="small-box border border-danger shadow">
               <div class="inner">
-                <h3>65</h3>
+                <h3>7</h3>
 
                 <p>Total Death</p>
               </div>
@@ -1056,7 +1056,7 @@
             <!-- small box -->
             <div class="small-box border border-secondary shadow">
               <div class="inner">
-                <h3>65</h3>
+                <h3>23</h3>
 
                 <p>Total Cured</p>
               </div>
@@ -1070,7 +1070,7 @@
             <!-- small box -->
             <div class="small-box border border-primary shadow">
               <div class="inner">
-                <h3>65</h3>
+                <h3>378</h3>
 
                 <p>In Hospital</p>
               </div>
@@ -1115,7 +1115,7 @@
                                      <img class="direct-chat-img" src="dist/img/news.svg" >
 
                     <div class="direct-chat-text">
-                      Is this template really for free? That's unbelievable!
+                      LASTEST FEEDS
                     </div>
                     <!-- /.direct-chat-text -->
                   </div>
@@ -1129,7 +1129,7 @@
                                       <img class="direct-chat-img" src="dist/img/news.svg" >
 
                     <div class="direct-chat-text">
-                      You better believe it!
+                    LASTEST FEEDS
                     </div>
                     <!-- /.direct-chat-text -->
                   </div>
@@ -1144,7 +1144,7 @@
                     <img class="direct-chat-img" src="dist/img/news.svg" >
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
-                      Working with AdminLTE on a great new app! Wanna join?
+                      LASTEST FEEDS
                     </div>
                     <!-- /.direct-chat-text -->
                   </div>
@@ -1159,7 +1159,7 @@
                     <img class="direct-chat-img" src="dist/img/news.svg" >
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
-                      I would love to.
+                     LASTEST FEEDS
                     </div>
                     <!-- /.direct-chat-text -->
                   </div>
@@ -1172,7 +1172,7 @@
                     <img class="direct-chat-img" src="dist/img/news.svg" >
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
-                      Working with AdminLTE on a great new app! Wanna join?
+                      LASTEST FEEDS
                     </div>
                     <!-- /.direct-chat-text -->
                   </div>
@@ -1187,7 +1187,7 @@
                     <img class="direct-chat-img" src="dist/img/news.svg" >
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
-                      I would love to.
+                      LASTEST FEEDS
                     </div>
                     <!-- /.direct-chat-text -->
                   </div>
@@ -1200,7 +1200,7 @@
                     <img class="direct-chat-img" src="dist/img/news.svg" >
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
-                      Working with AdminLTE on a great new app! Wanna join?
+                      LASTEST FEEDS
                     </div>
                     <!-- /.direct-chat-text -->
                   </div>
@@ -1215,7 +1215,7 @@
                     <img class="direct-chat-img" src="dist/img/news.svg" >
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
-                      I would love to.
+                      LASTEST FEEDS
                     </div>
                     <!-- /.direct-chat-text -->
                   </div>
@@ -1722,22 +1722,94 @@
 
 <!-- list.min.js-->
   <script src="plugins/list.js/1.5.0/dist/list.min.js"></script>
- <script>
+ <!-- <script> -->
 
 
- function initMap() {
-  // The location of Uluru
-  var uluru = {lat: 23.1294, lng:83.1861};
-  // The map, centered at Uluru
-  var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 4.55, center: uluru});
-  // The marker, positioned at Uluru
- //	a var marker = new google.maps.Marker({position: uluru, map: map});
+ <!-- function initMap() { -->
+  <!-- // The location of Uluru -->
+  <!-- var uluru = {lat: 23.1294, lng:83.1861}; -->
+  <!-- // The map, centered at Uluru -->
+  <!-- var map = new google.maps.Map( -->
+      <!-- document.getElementById('map'), {zoom: 4.55, center: uluru}); -->
+  <!-- // The marker, positioned at Uluru -->
+ <!-- //	a var marker = new google.maps.Marker({position: uluru, map: map}); -->
 
+<!-- } -->
+
+    <!-- </script> -->
+	
+	<script>
+function initMap() {
+    var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap'
+    };
+                    
+    // Display a map on the web page
+    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    map.setTilt(50);
+        
+    // Multiple markers location, latitude, and longitude
+    var markers = [
+         ['New Delhi', 28.6139, 77.2090],
+	  ['Andhra Pradesh', 15.9129, 79.7400],
+	  ['Bihar', 25.0961, 85.3131]
+    ];
+                        
+    // Info window content
+    var infoWindowContent = [
+        ['<div class="info_content">' +
+        '<h6>New Delhi</h6>' +
+        '<p>Total Confirmed cases (Indian National)-28<br>Total Confirmed cases ( Foreign National )-1<br>Cured/Discharged/Migrated-5<br>Death-1</p>' + '</div>'],
+        ['<div class="info_content">' +
+        '<h6>Andhra Pradesh</h6>' +
+        '<p>The Brooklyn Public Library (BPL) is the public library system of the borough of Brooklyn, in New York City.</p>' +
+        '</div>'],
+        ['<div class="info_content">' +
+        '<h6>Bihar</h6>' +
+        '<p>The Prospect Park Zoo is a 12-acre (4.9 ha) zoo located off Flatbush Avenue on the eastern side of Prospect Park, Brooklyn, New York City.</p>' +
+        '</div>']
+    ];	
+        
+    // Add multiple markers to map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+    
+    // Place each marker on the map  
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: markers[i][0]
+        });
+        
+        // Add info window to marker    
+        google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+            return function() {
+                infoWindow.setContent(infoWindowContent[i][0]);
+                infoWindow.open(map, marker);
+            }
+        })(marker, i));
+
+        // Center the map to fit all markers on the screen
+        map.fitBounds(bounds);
+    }
+
+    // Set zoom level
+    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+        this.setZoom(4.55);
+        google.maps.event.removeListener(boundsListener);
+    });
+    
 }
-    </script>
-    <script async defer
-    src="https://maps.google.co.in/maps/api/js?key=AIzaSyB9o2-H1VP2p3JwxC8f-yr_Le7UpuwovPE&callback=initMap">
+// Load initialize function
+google.maps.event.addDomListener(window, 'load', initMap);
+
+</script>
+
+<script async defer src="https://maps.google.co.in/maps/api/js?key=AIzaSyB9o2-H1VP2p3JwxC8f-yr_Le7UpuwovPE&callback=initMap">
     </script>
 
 
@@ -2324,6 +2396,38 @@ Highcharts.chart('container', {
       ]);
 
     });
+	
+	
+	
+	var myurl ='https://api.rootnet.in/covid19-in/stats/latest';
+		
+				$.ajax({
+					type : "GET",
+					url : myurl,
+					dataType : "json",
+					success : function(result) {
+					console.log(result.data.summary);
+					$('.totalCase').val(JSON.stringify(result.data.summary.total));
+					$('.totalCase').val(JSON.stringify(result.data.summary.confirmedCasesIndian));
+					$('.totalCase').val(JSON.stringify(result.data.summary.confirmedCasesForeign));
+					$('.totalCase').val(JSON.stringify(result.data.summary.discharged));
+					$('.totalCase').val(JSON.stringify(result.data.summary.deaths));
+					$('.totalCase').val(JSON.stringify(result.data.summary.confirmedButLocationUnidentified));
+
+					var regional = result.data.regional;
+					for(key in regional){
+
+					var location =	regional[key].loc
+					var cases =	regional[key].confirmedCasesIndian
+					//your code to append location and case in some ellemnt 
+					}
+						
+					},
+					error : function(results) {
+						alert("There is an error. " + results.stringfy);
+					
+					},
+				});
 </script>
 </body>
 </html>
