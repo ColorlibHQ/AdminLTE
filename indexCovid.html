@@ -380,8 +380,8 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="" class="nav-link">Home</a>
       </li>
-	  <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link"><b>Dashboard of the COVID-19 Virus Outbreak in INDIA</b></a>
+	  <li class="nav-item ">
+        <a href="" class="nav-link" style="color:black;"><b>Dashboard of the COVID-19 Virus Outbreak in INDIA</b></a>
       </li>
 
     </ul>
@@ -1018,7 +1018,7 @@
             <!-- small box -->
             <div class="small-box border border-success shadow">
               <div class="inner">
-                <h3>393</h3>
+                <h3 id="cic"></h3>
 
                 <p>Indian Cases</p>
               </div>
@@ -1032,7 +1032,7 @@
             <!-- small box -->
             <div class="small-box border border-warning shadow">
               <div class="inner">
-                <h3>40</h3>
+                <h3 id="cfc"></h3>
 
                 <p>Foriegn Cases</p>
               </div>
@@ -1046,7 +1046,7 @@
             <!-- small box -->
             <div class="small-box border border-danger shadow">
               <div class="inner">
-                <h3>9</h3>
+                <h3 id="deaths"></h3>
 
                 <p>Total Death</p>
               </div>
@@ -1059,7 +1059,7 @@
             <!-- small box -->
             <div class="small-box border border-secondary shadow">
               <div class="inner">
-                <h3>35</h3>
+                <h3 id="discharged"></h3>
 
                 <p>Total Cured</p>
               </div>
@@ -1073,7 +1073,7 @@
             <!-- small box -->
             <div class="small-box border border-primary shadow">
               <div class="inner">
-                <h3>378</h3>
+                <h3>420</h3>
 
                 <p>In Hospital</p>
               </div>
@@ -1109,120 +1109,25 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <!-- Conversations are loaded here -->
-                <div class="direct-chat-messages" id="newsscroll"  style="min-height:450px;">
+                <div class="direct-chat-messages" id="newsscroll"  style="min-height:400px;">
                   <!-- Message. Default to the left -->
-                  <div class="direct-chat-msg">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
-                    </div>
-                                     <img class="direct-chat-img" src="dist/img/news.svg" >
-
-                    <div class="direct-chat-text">
-                      LASTEST FEEDS
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
-
-                  <!-- Message to the right -->
-                  <div class="direct-chat-msg right">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
-                    </div>
-                                      <img class="direct-chat-img" src="dist/img/news.svg" >
-
-                    <div class="direct-chat-text">
-                    LASTEST FEEDS
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
-
-                  <!-- Message. Default to the left -->
-                  <div class="direct-chat-msg">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="dist/img/news.svg" >
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                      LASTEST FEEDS
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
-
-                  <!-- Message to the right -->
-                  <div class="direct-chat-msg right">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="dist/img/news.svg" >
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                     LASTEST FEEDS
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-
-				       <div class="direct-chat-msg">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="dist/img/news.svg" >
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                      LASTEST FEEDS
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
-
-                  <!-- Message to the right -->
-                  <div class="direct-chat-msg right">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="dist/img/news.svg" >
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                      LASTEST FEEDS
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-
-				       <div class="direct-chat-msg">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="dist/img/news.svg" >
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                      LASTEST FEEDS
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
-
-                  <!-- Message to the right -->
-                  <div class="direct-chat-msg right">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="dist/img/news.svg" >
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                      LASTEST FEEDS
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
+                   <div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action">First item</a>
+    <a href="#" class="list-group-item list-group-item-action">Second item</a>
+    <a href="#" class="list-group-item list-group-item-action">Third item</a>
+	    <a href="#" class="list-group-item list-group-item-action">First item</a>
+    <a href="#" class="list-group-item list-group-item-action">Second item</a>
+    <a href="#" class="list-group-item list-group-item-action">Third item</a>
+	    <a href="#" class="list-group-item list-group-item-action">First item</a>
+    <a href="#" class="list-group-item list-group-item-action">Second item</a>
+    <a href="#" class="list-group-item list-group-item-action">Third item</a>
+	    <a href="#" class="list-group-item list-group-item-action">First item</a>
+    <a href="#" class="list-group-item list-group-item-action">Second item</a>
+    <a href="#" class="list-group-item list-group-item-action">Third item</a>
+	    <a href="#" class="list-group-item list-group-item-action">First item</a>
+    <a href="#" class="list-group-item list-group-item-action">Second item</a>
+    <a href="#" class="list-group-item list-group-item-action">Third item</a>
+  </div>
 
                 </div>
                 <!--/.direct-chat-messages-->
@@ -1254,12 +1159,11 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <!-- Conversations are loaded here -->
-                <div class="direct-chat-messages" id="newsscroll" style="min-height:450px;" >
                  <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
+        <div class="panel panel-default p-2">
             <div class="panel-heading">
                 <h5 class="panel-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > What is 2019 Noval Coronavirus ?</a>
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px" > What is 2019 Noval Coronavirus ?</a>
                 </h5>
             </div>
             <div id="collapseOne" class="panel-collapse collapse in">
@@ -1268,10 +1172,10 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-default p-2">
             <div class="panel-heading">
                 <h5 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > What is the source of 2019 Novel Coronavirus ?</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px" > What is the source of 2019 Novel Coronavirus ?</a>
                 </h5>
             </div>
             <div id="collapseTen" class="panel-collapse collapse">
@@ -1280,10 +1184,10 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-default p-2">
             <div class="panel-heading">
                 <h5 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > What are the initial symptoms of Noval Coronavirus ?</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px" > What are the initial symptoms of Noval Coronavirus ?</a>
                 </h5>
             </div>
             <div id="collapseEleven" class="panel-collapse collapse">
@@ -1293,10 +1197,10 @@
             </div>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default p-2">
             <div class="panel-heading">
                 <h5 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > How does the virus spread ?</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px" > How does the virus spread ?</a>
                 </h5>
             </div>
             <div id="collapseTwo" class="panel-collapse collapse">
@@ -1305,10 +1209,10 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-default p-2">
             <div class="panel-heading">
                 <h5 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > what is GoI doing about 2019-nCoV ?</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px" > what is GoI doing about 2019-nCoV ?</a>
                 </h5>
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
@@ -1317,10 +1221,10 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-default p-2">
             <div class="panel-heading">
                 <h5 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > Is there a vaccine to get protection from 2019 novel Corona Virus ?</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px" > Is there a vaccine to get protection from 2019 novel Corona Virus ?</a>
                 </h5>
             </div>
             <div id="collapseFive" class="panel-collapse collapse">
@@ -1330,10 +1234,10 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-default p-2">
             <div class="panel-heading">
                 <h5 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > Is it safe to travel to Wuhan, China or other countries where 2019-nCoV 2019 cases have occured ?</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px" > Is it safe to travel to Wuhan, China or other countries where 2019-nCoV 2019 cases have occured ?</a>
                 </h5>
             </div>
             <div id="collapseSix" class="panel-collapse collapse">
@@ -1349,10 +1253,10 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-default p-2">
             <div class="panel-heading">
                 <h5 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEight"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > What are the treatments ?</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEight"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px" > What are the treatments ?</a>
                 </h5>
             </div>
             <div id="collapseEight" class="panel-collapse collapse">
@@ -1361,10 +1265,10 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-default p-2">
             <div class="panel-heading">
                 <h5 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNine"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > How can I help protect myself ?</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNine"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px" > How can I help protect myself ?</a>
                 </h5>
             </div>
             <div id="collapseNine" class="panel-collapse collapse">
@@ -1383,10 +1287,10 @@
             </div>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default p-2">
             <div class="panel-heading">
                 <h5 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > What should I do if I had close contact with someone who is confirmed case of 2019-nCoV ?</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px" > What should I do if I had close contact with someone who is confirmed case of 2019-nCoV ?</a>
                 </h5>
             </div>
             <div id="collapseFour" class="panel-collapse collapse">
@@ -1401,10 +1305,10 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-default p-2">
             <div class="panel-heading">
                 <h5 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven"><img class="img " src="dist/img/question.svg" width="25x" height="25px" > Should I be tested for 2019-novel Corona Virus ?</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px" > Should I be tested for 2019-novel Corona Virus ?</a>
                 </h5>
             </div>
             <div id="collapseSeven" class="panel-collapse collapse">
@@ -1419,7 +1323,7 @@
                 <!-- Contacts are loaded here -->
 
                 <!-- /.direct-chat-pane -->
-              </div>
+              
               <!-- /.card-body -->
 
               <!-- /.card-footer-->
@@ -1451,7 +1355,7 @@
 
                     <div id="hacker-list" >
 
-        <input class="form-control search " type="search" placeholder="Search by State" aria-label="Search">
+        <input class="form-control search " type="search" placeholder="Search by State" aria-label="Search">&nbsp;
 
                       <ul class="list overflow-auto" id="newsscroll" style="max-height:495px;">
                         <li data-id="1">
@@ -2457,11 +2361,11 @@ Highcharts.chart('container', {
 					success : function(result) {
 					console.log(result.data.summary);
 					$('#total').html(JSON.stringify(result.data.summary.total));
-					$('.totalCase').html(JSON.stringify(result.data.summary.confirmedCasesIndian));
-					$('.totalCase').html(JSON.stringify(result.data.summary.confirmedCasesForeign));
-					$('.totalCase').html(JSON.stringify(result.data.summary.discharged));
-					$('.totalCase').html(JSON.stringify(result.data.summary.deaths));
-					$('.totalCase').html(JSON.stringify(result.data.summary.confirmedButLocationUnidentified));
+					$('#cic').html(JSON.stringify(result.data.summary.confirmedCasesIndian));
+					$('#cfc').html(JSON.stringify(result.data.summary.confirmedCasesForeign));
+					$('#discharged').html(JSON.stringify(result.data.summary.discharged));
+					$('#deaths').html(JSON.stringify(result.data.summary.deaths));
+					$('#clu').html(JSON.stringify(result.data.summary.confirmedButLocationUnidentified));
 
 					var regional = result.data.regional;
 					for(key in regional){
@@ -2503,7 +2407,11 @@ Highcharts.chart('container', {
 				},
 			});
 	}
+	
+	
 
 </script>
+
+
 </body>
 </html>
