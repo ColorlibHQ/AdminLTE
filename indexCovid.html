@@ -1004,7 +1004,7 @@
             <!-- small box -->
             <div class="small-box border border-info shadow">
               <div class="inner">
-                <p><h3 id="total"></h3>*</p>
+               <h3 id="total">467</h3>
 
                 <p>Total Cases</p>
               </div>
@@ -1018,9 +1018,9 @@
             <!-- small box -->
             <div class="small-box border border-success shadow">
               <div class="inner">
-                <h3>15,27,327</h3>
+                <h3>393</h3>
 
-                <p>Screened at Airport</p>
+                <p>Indian Cases</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add text-success"></i>
@@ -1032,9 +1032,9 @@
             <!-- small box -->
             <div class="small-box border border-warning shadow">
               <div class="inner">
-                <h3>1</h3>
+                <h3>40</h3>
 
-                <p>Migrated Patient</p>
+                <p>Foriegn Cases</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add text-warning"></i>
@@ -1046,7 +1046,7 @@
             <!-- small box -->
             <div class="small-box border border-danger shadow">
               <div class="inner">
-                <h3>7</h3>
+                <h3>9</h3>
 
                 <p>Total Death</p>
               </div>
@@ -1059,7 +1059,7 @@
             <!-- small box -->
             <div class="small-box border border-secondary shadow">
               <div class="inner">
-                <h3>23</h3>
+                <h3>35</h3>
 
                 <p>Total Cured</p>
               </div>
@@ -1094,7 +1094,7 @@
 
 
             <!-- DIRECT CHAT -->
-            <div class="card direct-chat direct-chat-primary " id="newsCard">
+            <div class="card direct-chat direct-chat-primary " id="newsCard" >
               <div class="card-header">
                 <h3 class="card-title"><i class="fas fa-rss-square" style="color:red;"></i> News Feeds</h3>
 
@@ -1109,7 +1109,7 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <!-- Conversations are loaded here -->
-                <div class="direct-chat-messages" id="newsscroll" >
+                <div class="direct-chat-messages" id="newsscroll"  style="min-height:450px;">
                   <!-- Message. Default to the left -->
                   <div class="direct-chat-msg">
                     <div class="direct-chat-infos clearfix">
@@ -1254,7 +1254,7 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <!-- Conversations are loaded here -->
-                <div class="direct-chat-messages" id="newsscroll" >
+                <div class="direct-chat-messages" id="newsscroll" style="min-height:450px;" >
                  <div class="panel-group" id="accordion">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -1449,11 +1449,11 @@
 
 
 
-                    <div id="hacker-list">
+                    <div id="hacker-list" >
 
         <input class="form-control search " type="search" placeholder="Search by State" aria-label="Search">
 
-                      <ul class="list overflow-auto" id="newsscroll" style="max-height:400px;">
+                      <ul class="list overflow-auto" id="newsscroll" style="max-height:495px;">
                         <li data-id="1">
                           <a href="#" class="link place">Andhra Pradesh</a>
                           <br>
@@ -1517,8 +1517,8 @@
 			<div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                  <i class="fas fa-chart-area mr-1" style="color:red;"></i>
-                  Sales
+                  <i class="fas fa-chart-pie mr-1" style="color:red;"></i>
+                  Cases 2019-nCoV
                 </h3>
                 <div class="card-tools">
 				 <button type="button"
@@ -1529,9 +1529,7 @@
                     <i class="fas fa-minus"></i>
                   </button>
                   <!-- <ul class="nav nav-pills ml-auto"> -->
-                    <!-- <li class="nav-item"> -->
-                      <!-- <a class="nav-link border border-dark" href="#revenue-chart" data-toggle="tab" >Area</a> -->
-                    <!-- </li>&nbsp; -->
+                  
                     <!-- <li class="nav-item"> -->
                       <!-- <a class="nav-link border border-dark" href="#sales-chart" data-toggle="tab">Donut</a> -->
                     <!-- </li> -->
@@ -1541,33 +1539,7 @@
                 </div>
               </div><!-- /.card-header -->
               <div class="card-body">
-                <div class="tab-content p-0">
-                  <!-- Morris chart - Sales -->
-                  <div class="chart tab-pane active" id="revenue-chart"
-                       style="position: relative; height: 300px;">
-                      <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                   </div>
-                  <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                    <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
-                  </div>
-                </div>
-				 <div class="row">
-                  <div class="col-4 text-center">
-                    <div id="sparkline-1"></div>
-                    <div class="text-black">Visitors</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <div id="sparkline-2"></div>
-                    <div class="text-black">Online</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <div id="sparkline-3"></div>
-                    <div class="text-black">Sales</div>
-                  </div>
-                  <!-- ./col -->
-                </div>
+               
               </div><!-- /.card-body -->
             </div>
             <!-- solid sales graph -->
@@ -1605,33 +1577,7 @@
             </div>
             <!-- /.card -->
 
-            <!-- Calendar -->
-            <div class="card bg-gradient-white">
-              <div class="card-header border-0">
-
-                <h3 class="card-title">
-                  <i class="far fa-calendar-alt" style="color:red;"></i>
-                  Calendar
-                </h3>
-                <!-- tools card -->
-                <div class="card-tools">
-                  <!-- button with a dropdown -->
-
-                  <button type="button" class="btn btn-dark btn-sm" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-
-                </div>
-                <!-- /. tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body pt-0">
-                <!--The calendar -->
-                <div id="calendar" style="width: 100%"></div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+           
           </section>
           <!-- right col -->
         </div>
