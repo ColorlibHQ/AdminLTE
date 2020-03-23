@@ -1008,7 +1008,7 @@
 
                 <p>Total Cases</p>
               </div>
-              <div class="icon">
+              <div class="icon" >
                 <i class="ion ion-bag text-info"></i>
               </div>
             </div>
@@ -1443,7 +1443,7 @@
                 </div>
               </div><!-- /.card-header -->
               <div class="card-body">
-
+<canvas id="myChart"></canvas>
               </div><!-- /.card-body -->
             </div>
             <!-- solid sales graph -->
@@ -1572,6 +1572,7 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://cdnjs.com/libraries/Chart.js"></script>
 
 <!-- list.min.js-->
   <script src="plugins/list.js/1.5.0/dist/list.min.js"></script>
@@ -2409,7 +2410,33 @@ Highcharts.chart('container', {
 	}
 	
 	
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Total Cases', 'Total Deaths', 'Total Cured'],
+    datasets: [{
+      label: 'Cases 2019-nCoV',
+      data: [468,9, 35],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+   	//cutoutPercentage: 40,
+    responsive: true,
 
+  }
+});
 </script>
 
 
