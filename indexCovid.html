@@ -1730,7 +1730,7 @@
 
 			// Set zoom level
 			var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-				this.setZoom(4.55);
+				this.setZoom(4.6);
 				google.maps.event.removeListener(boundsListener);
 			});
 
@@ -2337,7 +2337,7 @@
 			labels: ['Total Cases','Total Cured','Total Deaths'],
 			datasets: [{
 			  label: 'Cases 2019-nCoV',
-			  data: [468,35, 9],
+			  data: [492,37, 9],
 			  backgroundColor: [
 				'rgba(255, 99, 132, 2)',
 				'rgba(144,238,144, 2)',
@@ -2368,7 +2368,7 @@
 				
 				datasets: [{
 						label: "Day Wise Increase in 2019-nCoV Cases",
-						data: [47,60,73,82,84,110,114,137,151,173,223,283,360,467],
+						data: [47,60,73,82,84,110,114,137,151,173,223,283,360,467,492],
 						 backgroundColor: ['rgba(255, 99, 132,0.5)'],
 			  borderColor: ['rgba(255,99,132,5)'],
 			  borderWidth: 2
