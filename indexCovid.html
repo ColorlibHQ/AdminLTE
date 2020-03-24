@@ -460,7 +460,7 @@
 					<a href="#newsCard" class="nav-link">
 					  <i class="nav-icon fas fa-rss-square"></i>
 					  <p>
-						News Feed
+						Guidelines
 						<!-- <span class="right badge badge-danger">New</span> -->
 					  </p>
 					</a>
@@ -1073,7 +1073,7 @@
 					<!-- small box -->
 					<div class="small-box border border-primary shadow bg-gradient-white">
 					  <div class="inner">
-						<h3>420</h3>
+						<h3>447</h3>
 
 						<p>In Hospital</p>
 					  </div>
@@ -1096,7 +1096,7 @@
 					<!-- DIRECT CHAT -->
 					<div class="card direct-chat direct-chat-primary " id="newsCard" >
 					  <div class="card-header">
-						<h3 class="card-title"><i class="far fa-newspaper" style="color:red;"></i> Guidelines</h3>
+						<h3 class="card-title"><i class="fas fa-rss-square" style="color:red;"></i> Guidelines</h3>
 
 						<div class="card-tools">
 						  <button type="button" class="btn btn-dark btn-tool" data-card-widget="collapse">
@@ -1109,7 +1109,7 @@
 					  <!-- /.card-header -->
 					  <div class="card-body">
 						<!-- Conversations are loaded here -->
-						<div class="direct-chat-messages" id="newsscroll"  style="min-height:300px;">
+						<div class="direct-chat-messages" id="newsscroll"  style="min-height:330px;">
 						  <!-- Message. Default to the left -->
 						   <div class="list-group">
 								<a href="https://www.mohfw.gov.in/pdf/SocialDistancingAdvisorybyMOHFW.pdf" class="list-group-item list-group-item-action" target="_blank">Advisory - Social Distancing</a>
@@ -1147,9 +1147,11 @@
 						</div>
 					  </div>
 					  <!-- /.card-header -->
-					  <div class="card-body">
+					  <div class="card-body" >
+					  						<div class="direct-chat-messages" id="newsscroll"  style="min-height:400px;">
+
 						<!-- Conversations are loaded here -->
-						 <div class="panel-group" id="accordion">
+						 <div class="panel-group" id="accordion" >
 				<div class="panel panel-default p-2">
 					<div class="panel-heading">
 						<h5 class="panel-title">
@@ -1306,6 +1308,7 @@
 							If you develop acute onset of fever and symptoms of respiratory illness, such as cough or shortness of breath, you should visit nearest health facility and the doctor's will decide if you need to tested for 2019-novel Corona Virus depending upon your history of travel to China/ affected countries or contact with any suspected/ lab confirmed case.
 						</div>
 					</div>
+					</div>
 				</div>
 			</div>
 						<!--/.direct-chat-messages-->
@@ -1347,7 +1350,7 @@
 
 				<input class="form-control search " type="search" placeholder="Search by State" aria-label="Search">&nbsp;
 
-							  <ul class="list overflow-auto" id="newsscroll" style="max-height:495px;">
+							  <ul class="list overflow-auto" id="newsscroll" style="max-height:400px;">
 								<li data-id="1">
 								  <a href="#" class="link place">Andhra Pradesh</a>
 								  <br>
@@ -2339,9 +2342,16 @@
 						dataType : "json",
 						success : function(result) {
 							for (key in result["articles"]){
-								console.log(result["articles"][key]["title"]);
-								console.log(result["articles"][key]["url"]);
+								//console.log(result["articles"][key]["title"]);
+								//console.log(result["articles"][key]["url"]);
+								var title= result["articles"][key].title;
+								var url=result["articles"][key].url;
+								console.log(title);
+								console.log(url);
+								$('#newsfeed').append("<a href='"+url+"' class='list-group-item list-group-item-action'>"+title+"</a>");
 								}
+							
+
 						},
 						error : function(results) {
 							alert("There is an error. " + results.stringfy);
