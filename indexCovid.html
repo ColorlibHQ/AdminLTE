@@ -1780,26 +1780,32 @@
 			if (age>=51)
 				score+=1;
 			/* alert(age); */
+			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Your Gender" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_gender(0)">Male &#128104;</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_gender(1)">Female &#128103;</button></li>').appendTo($('.messages ul'));
+			
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function update_gender(ch){
+		function update_gender(ch){			
 			gender = ch;
 			/* alert(gender); */
+			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Are you working?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_working(1)">YES</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_working(0)">NO</button></li>').appendTo($('.messages ul'));
+			
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function update_working(ch){
+		function update_working(ch){			
 			working = ch;
+			$('.messages ul').empty();
 			/* alert(working); */
 			if (working){
 				$('<li class="replies"><p>' + "How do you travel?" + '</p></li>').appendTo($('.messages ul'));
 				$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_travel(0.5)">Personal Vehicle</button></li>').appendTo($('.messages ul'));
 				$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_travel(1)">Public Transport</button></li>').appendTo($('.messages ul'));
+				
 				$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			}
 			else{
@@ -1812,23 +1818,27 @@
 				$('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" onclick="update_abroad(1)">France</label></li>').appendTo($('.messages ul'));
 				$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0">Other</label></li>').appendTo($('.messages ul'));
 				$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_abroad(0)">Done</button></li>').appendTo($('.messages ul'));
+				
 				$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			}
 		};
 		function update_travel(ch){
 			travel = ch;
 			/* alert(travel); */
+			$('.messages ul').empty();
 			score+=parseInt(ch);
 			$('<li class="replies"><p>' + "What kind of work do you do?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(1)">Health Staff</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(0.5)">Animal Industry</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(0.2)">Work from Home</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(0.3)">Other</button></li>').appendTo($('.messages ul'));
+			
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function update_job(ch){
+		function update_job(ch){			
 			job = ch;
 			score+=parseInt(ch);
+			$('.messages ul').empty();
 			/* alert(job); */
 			$('<li class="replies"><p>' + "Have you lived in any of the following countaries?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb_1" value="1" >China</label></li>').appendTo($('.messages ul'));
@@ -1838,9 +1848,11 @@
 			$('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" >France</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0">Other</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_abroad(0)">Done</button></li>').appendTo($('.messages ul'));
+			
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
 		function update_abroad(msg){
+			
 			if (msg){
 				abroad=1
 			}
@@ -1861,20 +1873,23 @@
 			update_contact();
 		};
 		function update_contact(){
+			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Have you been in close contact with someone who has corona?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_close_contact(5)">Yes</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_close_contact(1)">No</button></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><button type="button" class="btn-primary" onclick="update_close_contact(1)">Dont Know</button></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><button type="button" class="btn-primary" onclick="update_close_contact(1)">Dont Know</button></li>').appendTo($('.messages ul'));			
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function update_close_contact(ch){
+		function update_close_contact(ch){			
 			close_contact = ch;
 			score+=parseInt(ch);
 			/* alert(ch); */
+			
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			update_symp1();
 		};
 		function update_symp1(){
+			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Do you have any of the following symptoms?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb2_1" value="1" >Cough</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb2_2" value="1" >Fever</label></li>').appendTo($('.messages ul'));
@@ -1884,7 +1899,7 @@
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chlsympt1()">Done</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function chlsympt1(){
+		function chlsympt1(){			
 			if (document.getElementById("cb2_1").checked){
 				score+=0.6;
 				checked_boses=1;}
@@ -1900,7 +1915,7 @@
 			if (document.getElementById("cb2_5").checked){
 				score+=0.6;
 				checked_boses=1;}
-			/* alert(checked_boses); */
+			/* alert(checked_boses); */			
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			if (checked_boses)
 				chk_symp1_yes();
@@ -1908,34 +1923,37 @@
 				add_sympt();
 		};
 		function chk_symp1_yes(){
+			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "How long have you being facing these symptomps?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chk_symp1_yes_value(0.3)">Hours</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chk_symp1_yes_value(0.7)">Days</button></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chk_symp1_yes_value(1)">Weeks</button></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chk_symp1_yes_value(1)">Weeks</button></li>').appendTo($('.messages ul'));			
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
 		function chk_symp1_yes_value(ch){
 			chk_symp1_yes_value_val = ch;
 			score+=parseInt(ch);
-			/* alert(chk_symp1_yes_value_val); */
+			/* alert(chk_symp1_yes_value_val); */			
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			how_severe();
 		};
 		function how_severe(){
+			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "How severe are your symptomps?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="severe_status(0.5)">Mild</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="severe_status(0.75)">Moderate</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="severe_status(1)">Severe</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function severe_status(ch){
+		function severe_status(ch){			
 			severe_status_val = ch;
 			score+=parseInt(ch);
-			/* alert(severe_status_val); */
+			/* alert(severe_status_val); */			
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			add_sympt();
 		};
 		function add_sympt(){
+			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Do you have any of the following symptoms?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb3_1" value="1" >Body ache</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb3_2" value="1" >Nausera</label></li>').appendTo($('.messages ul'));
@@ -1944,7 +1962,7 @@
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chkaddsympt()">Done</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function chkaddsympt(){
+		function chkaddsympt(){			
 			if (document.getElementById("cb3_1").checked)
 				score+=0.75;
 			if (document.getElementById("cb3_2").checked)
@@ -1953,11 +1971,12 @@
 				score+=0.8;
 			if (document.getElementById("cb3_4").checked)
 				score+=0.5;
-			/* alert(checked_boses2); */
+			/* alert(checked_boses2); */			
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			previous_conditions();
 		};
 		function previous_conditions(){
+			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Have you been diagnosed with the following?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb4_1" value="1" >Heart disease</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb4_2" value="1" >Diabetes</label></li>').appendTo($('.messages ul'));
@@ -1967,7 +1986,7 @@
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="precond()">Done</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function precond(){
+		function precond(){			
 			if (document.getElementById("cb4_1").checked)
 				score+=2;
 			if (document.getElementById("cb4_2").checked)
@@ -1978,19 +1997,20 @@
 				score+=1;
 			if (document.getElementById("cb4_5").checked)
 				score+=2;
-			/* alert(checked_boses3); */
+			/* alert(checked_boses3); */			
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			results();
 		};
 		function results(){
+			$('.messages ul').empty();
 			/* score = parseInt(age)+parseInt(working)+parseInt(travel)+parseInt(job)+parseInt(abroad)+parseInt(close_contact)+parseInt(chk_symp1_yes_value_val)+parseInt(severe_status_val)+parseInt(checked_boses)+parseInt(checked_boses2)+parseInt(checked_boses3); */
 			/* alert(score); */
 			if (score>=0 && score<=4)
-				$('<li class="sent"><div class="p-3 mb-2 bg-success text-white">Low Risk. Keep monitoring. Your score is '+score+'. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><div class="p-3 mb-2 bg-success text-white">You do not show signs of concern. Keep monitoring. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
 			if (score>=4.1 && score<=7.5)
-				$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">Medium Risk. Need not to panis. Your score is '+score+'. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">You responses shows some signs of concern, please contact your doctor. Need not to panic. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
 			if (score>=7.6)
-				$('<li class="sent"><div class="p-3 mb-2 bg-danger text-white">High Risk. Contact your doctor immediately. Your score is '+score+'. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><div class="p-3 mb-2 bg-danger text-white">Based on your answers your condition seems alarming. Contact your doctor immediately. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="window.location.reload();">Start Over</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
