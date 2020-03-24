@@ -2319,9 +2319,16 @@
 						dataType : "json",
 						success : function(result) {
 							for (key in result["articles"]){
-								console.log(result["articles"][key]["title"]);
-								console.log(result["articles"][key]["url"]);
+								//console.log(result["articles"][key]["title"]);
+								//console.log(result["articles"][key]["url"]);
+								var title= result["articles"][key].title;
+								var url=result["articles"][key].url;
+								console.log(title);
+								console.log(url);
+								$('#newsfeed').append("<a href='"+url+"' class='list-group-item list-group-item-action'>"+title+"</a>");
 								}
+							
+
 						},
 						error : function(results) {
 							alert("There is an error. " + results.stringfy);
