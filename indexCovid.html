@@ -2014,9 +2014,27 @@
 				$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">You responses shows some signs of concern, please contact your doctor. Need not to panic. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
 			if (score>=7.6)
 				$('<li class="sent"><div class="p-3 mb-2 bg-danger text-white">Based on your answers your condition seems alarming. Contact your doctor immediately. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="window.location.reload();">Start Over</button></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="start_over();">Start Over</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
+		function start_over(){
+			$('.messages ul').empty();
+			age = 0;
+			gender = -1;
+			working = 0;
+			travel = 0;
+			job = 0;
+			abroad = 0;
+			cb_tick= false;
+			close_contact = 0;
+			checked_boses = 0;
+			chk_symp1_yes_value_val = 0;
+			severe_status_val = 0;
+			checked_boses2 = 0;
+			checked_boses3 = 0;
+			score = 0;
+			start();
+		}
 
 
 
