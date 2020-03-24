@@ -28,8 +28,6 @@
 		  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 		  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
-		  <script async defer src="https://maps.google.co.in/maps/api/js?key=AIzaSyB9o2-H1VP2p3JwxC8f-yr_Le7UpuwovPE&callback=initMap">
-			</script>
 
 		  <style>
 		.control-sidebar-content{
@@ -1316,7 +1314,7 @@
 						<!-- Contacts are loaded here -->
 
 						<!-- /.direct-chat-pane -->
-					  
+
 					  <!-- /.card-body -->
 
 					  <!-- /.card-footer-->
@@ -1425,7 +1423,7 @@
 								  title="Collapse">
 							<i class="fas fa-minus"></i>
 						  </button>
-						 
+
 						</div>
 					  </div><!-- /.card-header -->
 					  <div class="card-body">
@@ -1449,7 +1447,7 @@
 								  title="Collapse">
 							<i class="fas fa-minus"></i>
 						  </button>
-					 
+
 						  <!-- </button> -->
 						</div>
 					  </div>
@@ -1557,193 +1555,168 @@
 
 		<!-- list.min.js-->
 		  <script src="plugins/list.js/1.5.0/dist/list.min.js"></script>
-		 <!-- <script> -->
 
 
-		 <!-- function initMap() { -->
-		  <!-- // The location of Uluru -->
-		  <!-- var uluru = {lat: 23.1294, lng:83.1861}; -->
-		  <!-- // The map, centered at Uluru -->
-		  <!-- var map = new google.maps.Map( -->
-			  <!-- document.getElementById('map'), {zoom: 4.55, center: uluru}); -->
-		  <!-- // The marker, positioned at Uluru -->
-		 <!-- //	a var marker = new google.maps.Marker({position: uluru, map: map}); -->
+				<script async defer src="https://maps.google.co.in/maps/api/js?key=AIzaSyB9o2-H1VP2p3JwxC8f-yr_Le7UpuwovPE&callback=initMap"></script>
 
-		<!-- } -->
+			<script>
 
-			<!-- </script> -->
-
-			<!-- <script> -->
-		<!-- function initMap() { -->
-			<!-- var map; -->
-			<!-- var bounds = new google.maps.LatLngBounds(); -->
-			<!-- var mapOptions = { -->
-				<!-- mapTypeId: 'roadmap' -->
-			<!-- }; -->
-
-			<!-- // Display a map on the web page -->
-			<!-- map = new google.maps.Map(document.getElementById("map"), mapOptions); -->
-			<!-- map.setTilt(50); -->
-
-			<!-- // Multiple markers location, latitude, and longitude -->
-			<!-- var markers = [ -->
-				 <!-- ['New Delhi', 28.6139, 77.2090], -->
-			  <!-- ['Andhra Pradesh', 15.9129, 79.7400], -->
-			  <!-- ['Bihar', 25.0961, 85.3131], -->
-			  <!-- ['Chhattisgarh', 21.2787, 81.8661], -->
-			  <!-- ['Gujarat', 22.2587, 71.1924], -->
-			  <!-- ['Haryana', 29.0588, 76.0856], -->
-			  <!-- ['Himachal Pradesh', 31.1048, 77.1734], -->
-			  <!-- ['Karnataka', 15.3173, 75.7139], -->
-			  <!-- ['Kerala', 10.8505, 76.2711], -->
-			  <!-- ['Madhya Pradesh', 22.9734, 78.6569], -->
-			  <!-- ['Maharashtra', 19.7515, 75.7139], -->
-			  <!-- ['Odisha', 20.9517, 85.0985], -->
-			  <!-- ['Puducherry', 11.9416, 79.8083], -->
-			  <!-- ['Punjab', 31.1471, 75.3412], -->
-			  <!-- ['Rajasthan', 27.0238, 74.2179], -->
-			  <!-- ['Tamil Nadu', 11.1271, 78.6569], -->
-			  <!-- ['Telangana', 18.1124, 79.0193], -->
-			  <!-- ['Chandigarh', 30.7333, 76.7794], -->
-			  <!-- ['Jammu and Kashmir', 33.7782, 76.5762], -->
-			  <!-- ['Ladakh', 34.152588, 	77.577049], -->
-			  <!-- ['Uttar Pradesh', 26.8467, 80.9462], -->
-			  <!-- ['Uttarakhand', 30.0668, 79.0193], -->
-			  <!-- ['West Bengal', 22.9868, 87.8550] -->
+			//Map code start here
+			var apiPrashantCall =null;
+			var markers = null;
+			var infoWindowContent=null;
+			var cordinatList = {indianState:
+			{
+			'New Delhi': { lat:28.6139, long: 77.2090},
+			'Andhra Pradesh': { lat:15.9129, long: 79.7400},
+			'Bihar': { lat:25.0961, long: 85.3131},
+			'Chhattisgarh': { lat:21.2787, long: 81.8661},
+			'Gujarat': { lat:22.2587, long: 71.1924},
+			'Haryana': { lat:29.0588, long: 76.0856},
+			'Himachal Pradesh': { lat:31.1048, long: 77.1734},
+			'Karnataka': { lat:15.3173, long: 75.7139},
+			'Kerala': { lat:10.8505, long: 76.2711},
+			'Madhya Pradesh': { lat:22.9734, long: 78.6569},
+			'Maharashtra': { lat:19.7515, long: 75.7139},
+			'Odisha': { lat:20.9517, long: 85.0985},
+			'Puducherry': { lat:11.9416, long: 79.8083},
+			'Punjab': { lat:31.1471, long: 75.3412},
+			'Rajasthan': { lat:27.0238, long: 74.2179},
+			'Tamil Nadu': { lat:11.1271, long: 78.6569},
+			'Telangana': { lat:18.1124, long: 79.0193},
+			'Chandigarh': { lat:30.7333, long: 76.7794},
+			'Jammu and Kashmir': { lat:33.7782, long: 76.5762},
+			'Ladakh': { lat:34.152588, long:  77.577049},
+			'Uttar Pradesh': { lat:26.8467, long: 80.9462},
+			'Uttarakhand': { lat:30.0668, long: 79.0193},
+			'West Bengal': { lat:22.9868, long: 87.8550},
+			}}
+			;
 
 
-			<!-- ]; -->
 
-			<!-- // Info window content -->
-			<!-- var infoWindowContent = [ -->
-				<!-- ['<div class="info_content">' + -->
-				<!-- '<h6>New Delhi</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-28<br>Total Confirmed cases ( Foreign National )-1<br>Cured/Discharged/Migrated-5<br>Death-1</p>' + '</div>'], -->
-				<!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Andhra Pradesh</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-5<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' + -->
-				<!-- '</div>'], -->
-				<!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Bihar</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-2<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-1</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Chhattisgarh</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-1<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Gujarat</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-18<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-1</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Haryana</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-7<br>Total Confirmed cases ( Foreign National )-14<br>Cured/Discharged/Migrated-0<br>Death-0</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Himachal Pradesh</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-2<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Karnataka</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-26<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-2<br>Death-1</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Kerala</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-60<br>Total Confirmed cases ( Foreign National )-7<br>Cured/Discharged/Migrated-3<br>Death-0</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Madhya Pradesh</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-6<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Maharashtra</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)64<br>Total Confirmed cases ( Foreign National )-3<br>Cured/Discharged/Migrated-0<br>Death-2</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Odisha</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-2<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Puducherry</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-1<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Punjab</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-21<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-1</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Rajasthan</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-25<br>Total Confirmed cases ( Foreign National )-2<br>Cured/Discharged/Migrated-3<br>Death-0</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Tamil Nadu</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-7<br>Total Confirmed cases ( Foreign National )-2<br>Cured/Discharged/Migrated-1<br>Death-0</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Telangana</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-15<br>Total Confirmed cases ( Foreign National )-11<br>Cured/Discharged/Migrated-1<br>Death-0</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Chandigarh</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-5<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Jammu and Kashmir</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-4<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Ladakh</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-13<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>Uttar Pradesh</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-27<br>Total Confirmed cases ( Foreign National )-1<br>Cured/Discharged/Migrated-9<br>Death-0</p>' + -->
-				<!-- '</div>'], ['<div class="info_content">' + -->
-				<!-- '<h6>Uttarakhand</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-3<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' + -->
-				<!-- '</div>'], -->
-				 <!-- ['<div class="info_content">' + -->
-				<!-- '<h6>West Bengal</h6>' + -->
-				<!-- '<p>Total Confirmed cases (Indian National)-7<br>Total Confirmed cases ( Foreign National )-0<br>Cured/Discharged/Migrated-0<br>Death-0</p>' + -->
-				<!-- '</div>'] -->
-			<!-- ]; -->
+				var myurl ='https://api.rootnet.in/covid19-in/stats/latest';
 
-			<!-- // Add multiple markers to map -->
-			<!-- var infoWindow = new google.maps.InfoWindow(), marker, i; -->
+						apiPrashantCall=  $.ajax({
+								type : "GET",
+								url : myurl,
+								dataType : "json",
+								success : function(result) {
+								//console.log(result.data.summary);
+								$('#total').html(JSON.stringify(result.data.summary.total));
+								$('#cic').html(JSON.stringify(result.data.summary.confirmedCasesIndian));
+								$('#cfc').html(JSON.stringify(result.data.summary.confirmedCasesForeign));
+								$('#discharged').html(JSON.stringify(result.data.summary.discharged));
+								$('#deaths').html(JSON.stringify(result.data.summary.deaths));
+								$('#clu').html(JSON.stringify(result.data.summary.confirmedButLocationUnidentified));
 
-			<!-- // Place each marker on the map -->
-			<!-- for( i = 0; i < markers.length; i++ ) { -->
-				<!-- var position = new google.maps.LatLng(markers[i][1], markers[i][2]); -->
-				<!-- bounds.extend(position); -->
-				<!-- marker = new google.maps.Marker({ -->
-					<!-- position: position, -->
-					<!-- map: map, -->
-					<!-- title: markers[i][0] -->
-				<!-- }); -->
+								var regional = result.data.regional;
 
-				<!-- // Add info window to marker -->
-				<!-- google.maps.event.addListener(marker, 'mouseover', (function(marker, i) { -->
-					<!-- return function() { -->
-						<!-- infoWindow.setContent(infoWindowContent[i][0]); -->
-						<!-- infoWindow.open(map, marker); -->
-					<!-- } -->
-				<!-- })(marker, i)); -->
+								var mapMarkerCoord=[];
+								var mapMarkerHtml=[];
 
-				<!-- // Center the map to fit all markers on the screen -->
-				<!-- map.fitBounds(bounds); -->
-			<!-- } -->
+								for(key in regional){
+								var apiInSateDtl = regional[key]
+								var apiInSateName = apiInSateDtl.loc;
+								var inConfCases = apiInSateDtl.confirmedCasesIndian;
+								var frnConfCases =  apiInSateDtl.confirmedCasesForeign;
+								var dischargedCont =  apiInSateDtl.discharged;
+								var deathCont = apiInSateDtl.deaths;
 
-			<!-- // Set zoom level -->
-			<!-- var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) { -->
-				<!-- this.setZoom(4.6); -->
-				<!-- google.maps.event.removeListener(boundsListener); -->
-			<!-- }); -->
+								 var inStateDtlHardCode = cordinatList.indianState;
+								 for (inStateName in inStateDtlHardCode){
+									 if(inStateName==apiInSateName){
+										 var inStateLat= inStateDtlHardCode[inStateName].lat;
+										 var inStateLong= inStateDtlHardCode[inStateName].long;
 
-		<!-- } -->
-		<!-- // Load initialize function -->
-		<!-- google.maps.event.addDomListener(window, 'load', initMap); -->
+										 var mapMarkerCoordState=[inStateName, inStateLat, inStateLong];
+										 mapMarkerCoord.push(mapMarkerCoordState);
 
-		<!-- </script> -->
+										 var mapMarkerHtmlState=[
+											 '<div class="info_content">'
+											 +'<h6>'+inStateName+'</h6>'
+											 +'<p>Total Confirmed cases (Indian National)-'+inConfCases
+											 +'<br>Total Confirmed cases ( Foreign National )'+frnConfCases
+											 +'<br>Cured/Discharged/Migrated-'+dischargedCont
+											 +'<br>Death-'+deathCont
+											 +'</p>'
+											 +'</div>'
+										 ];
+
+										 mapMarkerHtml.push(mapMarkerHtmlState);
+									 }
+
+								 }
+								}
+
+
+								mapMarkerHtml.length = mapMarkerCoord.length;
+
+								markers = mapMarkerCoord;
+								infoWindowContent = mapMarkerHtml;
+								//console.log(JSON.stringify(mapMarkerCoord));
+							 // console.log(JSON.stringify(mapMarkerHtml));
+								},
+								error : function(results) {
+									alert("There is an error. " + results.stringfy);
+
+								},
+							});
+
+			function initMap() {
+					var map;
+					var bounds = new google.maps.LatLngBounds();
+					var mapOptions = {
+							mapTypeId: 'roadmap'
+					};
+
+					// Display a map on the web page
+					map = new google.maps.Map(document.getElementById("map"), mapOptions);
+					map.setTilt(50);
+
+					// Add multiple markers to map
+					var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+					// Place each marker on the map
+					for( i = 0; i < markers.length; i++ ) {
+							var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+							bounds.extend(position);
+							marker = new google.maps.Marker({
+									position: position,
+									map: map,
+									title: markers[i][0]
+							});
+
+							// Add info window to marker
+							google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+									return function() {
+											infoWindow.setContent(infoWindowContent[i][0]);
+											infoWindow.open(map, marker);
+									}
+							})(marker, i));
+
+							// Center the map to fit all markers on the screen
+							map.fitBounds(bounds);
+					}
+
+					// Set zoom level
+					var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+							this.setZoom(4.55);
+							google.maps.event.removeListener(boundsListener);
+					});
+
+			}
+
+			// Load initialize function
+			$.when( apiPrashantCall ).then(function( data, textStatus, jqXHR ) {
+			//alert( jqXHR.status ); // Alerts 200
+			google.maps.event.addDomListener(window, 'load', initMap);
+
+			});
+
+
+
+			</script>
 
 
 
@@ -1787,20 +1760,20 @@
 			$('<li class="replies"><p>' + "Your Gender" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_gender(0)">Male &#128104;</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_gender(1)">Female &#128103;</button></li>').appendTo($('.messages ul'));
-			
+
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function update_gender(ch){			
+		function update_gender(ch){
 			gender = ch;
 			/* alert(gender); */
 			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Are you working?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_working(1)">YES</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_working(0)">NO</button></li>').appendTo($('.messages ul'));
-			
+
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function update_working(ch){			
+		function update_working(ch){
 			working = ch;
 			$('.messages ul').empty();
 			/* alert(working); */
@@ -1808,7 +1781,7 @@
 				$('<li class="replies"><p>' + "How do you travel?" + '</p></li>').appendTo($('.messages ul'));
 				$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_travel(0.5)">Personal Vehicle</button></li>').appendTo($('.messages ul'));
 				$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_travel(1)">Public Transport</button></li>').appendTo($('.messages ul'));
-				
+
 				$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			}
 			else{
@@ -1821,7 +1794,7 @@
 				$('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" onclick="update_abroad(1)">France</label></li>').appendTo($('.messages ul'));
 				$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0">Other</label></li>').appendTo($('.messages ul'));
 				$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_abroad(0)">Done</button></li>').appendTo($('.messages ul'));
-				
+
 				$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			}
 		};
@@ -1835,10 +1808,10 @@
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(0.5)">Animal Industry</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(0.2)">Work from Home</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(0.3)">Other</button></li>').appendTo($('.messages ul'));
-			
+
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function update_job(ch){			
+		function update_job(ch){
 			job = ch;
 			score+=parseInt(ch);
 			$('.messages ul').empty();
@@ -1851,11 +1824,11 @@
 			$('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" >France</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0">Other</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_abroad(0)">Done</button></li>').appendTo($('.messages ul'));
-			
+
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
 		function update_abroad(msg){
-			
+
 			if (msg){
 				abroad=1
 			}
@@ -1880,14 +1853,14 @@
 			$('<li class="replies"><p>' + "Have you been in close contact with someone who has corona?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_close_contact(5)">Yes</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_close_contact(1)">No</button></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><button type="button" class="btn-primary" onclick="update_close_contact(1)">Dont Know</button></li>').appendTo($('.messages ul'));			
+			$('<li class="sent"><button type="button" class="btn-primary" onclick="update_close_contact(1)">Dont Know</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function update_close_contact(ch){			
+		function update_close_contact(ch){
 			close_contact = ch;
 			score+=parseInt(ch);
 			/* alert(ch); */
-			
+
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			update_symp1();
 		};
@@ -1902,7 +1875,7 @@
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chlsympt1()">Done</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function chlsympt1(){			
+		function chlsympt1(){
 			if (document.getElementById("cb2_1").checked){
 				score+=0.6;
 				checked_boses=1;}
@@ -1918,7 +1891,7 @@
 			if (document.getElementById("cb2_5").checked){
 				score+=0.6;
 				checked_boses=1;}
-			/* alert(checked_boses); */			
+			/* alert(checked_boses); */
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			if (checked_boses)
 				chk_symp1_yes();
@@ -1930,13 +1903,13 @@
 			$('<li class="replies"><p>' + "How long have you being facing these symptomps?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chk_symp1_yes_value(0.3)">Hours</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chk_symp1_yes_value(0.7)">Days</button></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chk_symp1_yes_value(1)">Weeks</button></li>').appendTo($('.messages ul'));			
+			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chk_symp1_yes_value(1)">Weeks</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
 		function chk_symp1_yes_value(ch){
 			chk_symp1_yes_value_val = ch;
 			score+=parseInt(ch);
-			/* alert(chk_symp1_yes_value_val); */			
+			/* alert(chk_symp1_yes_value_val); */
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			how_severe();
 		};
@@ -1948,10 +1921,10 @@
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="severe_status(1)">Severe</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function severe_status(ch){			
+		function severe_status(ch){
 			severe_status_val = ch;
 			score+=parseInt(ch);
-			/* alert(severe_status_val); */			
+			/* alert(severe_status_val); */
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			add_sympt();
 		};
@@ -1965,7 +1938,7 @@
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chkaddsympt()">Done</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function chkaddsympt(){			
+		function chkaddsympt(){
 			if (document.getElementById("cb3_1").checked)
 				score+=0.75;
 			if (document.getElementById("cb3_2").checked)
@@ -1974,7 +1947,7 @@
 				score+=0.8;
 			if (document.getElementById("cb3_4").checked)
 				score+=0.5;
-			/* alert(checked_boses2); */			
+			/* alert(checked_boses2); */
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			previous_conditions();
 		};
@@ -1989,7 +1962,7 @@
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="precond()">Done</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 		};
-		function precond(){			
+		function precond(){
 			if (document.getElementById("cb4_1").checked)
 				score+=2;
 			if (document.getElementById("cb4_2").checked)
@@ -2000,7 +1973,7 @@
 				score+=1;
 			if (document.getElementById("cb4_5").checked)
 				score+=2;
-			/* alert(checked_boses3); */			
+			/* alert(checked_boses3); */
 			$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			results();
 		};
@@ -2314,38 +2287,10 @@
 
 
 
-			<!-- var myurl ='https://api.rootnet.in/covid19-in/stats/latest'; -->
-
-						<!-- $.ajax({ -->
-							<!-- type : "GET", -->
-							<!-- url : myurl, -->
-							<!-- dataType : "json", -->
-							<!-- success : function(result) { -->
-							<!-- console.log(result.data.summary); -->
-							<!-- $('#total').html(JSON.stringify(result.data.summary.total)); -->
-							<!-- $('#cic').html(JSON.stringify(result.data.summary.confirmedCasesIndian)); -->
-							<!-- $('#cfc').html(JSON.stringify(result.data.summary.confirmedCasesForeign)); -->
-							<!-- $('#discharged').html(JSON.stringify(result.data.summary.discharged)); -->
-							<!-- $('#deaths').html(JSON.stringify(result.data.summary.deaths)); -->
-							<!-- $('#clu').html(JSON.stringify(result.data.summary.confirmedButLocationUnidentified)); -->
-
-							<!-- var regional = result.data.regional; -->
-							<!-- for(key in regional){ -->
-
-							<!-- var location =	regional[key].loc -->
-							<!-- var cases =	regional[key].confirmedCasesIndian -->
-							<!-- //your code to append location and case in some ellemnt -->
-							<!-- } -->
-
-							<!-- }, -->
-							<!-- error : function(results) { -->
-								<!-- alert("There is an error. " + results.stringfy); -->
-
-							<!-- }, -->
-						<!-- }); -->
 
 
-			<!-- object.onload = function(){newsfeed()}; -->
+
+		 // object.onload = function(){newsfeed()};
 			document.addEventListener("DOMContentLoaded", function() {
 				newsfeed();
 
@@ -2364,11 +2309,11 @@
 								//console.log(result["articles"][key]["url"]);
 								var title= result["articles"][key].title;
 								var url=result["articles"][key].url;
-								console.log(title);
-								console.log(url);
+								// console.log(title);
+								// console.log(url);
 								$('#newsfeed').append("<a href='"+url+"' class='list-group-item list-group-item-action'>"+title+"</a>");
 								}
-							
+
 
 						},
 						error : function(results) {
@@ -2377,8 +2322,8 @@
 						},
 					});
 			}
-			
-			
+
+
 		var ctx = document.getElementById("myChart");
 
 		var myChart = new Chart(ctx, {
@@ -2392,13 +2337,13 @@
 				'rgba(255, 99, 132, 2)',
 				'rgba(144,238,144, 2)',
 				'rgba(105,105,105, 2)'
-				
+
 			  ],
 			  borderColor: [
 				'rgba(255,99,132,5)',
 				'rgba(144,238,144, 5)',
 				'rgba(105,105,105, 5)'
-				
+
 			  ],
 			  borderWidth: 2
 			}]
@@ -2415,7 +2360,7 @@
 		  type: 'line',
 		  data: {
 				labels: [10,11, 12, 13, 14, 15, 16, 17, 18, 19, 20,21,22,23,24,25,26,27,28,29,30,31],
-				
+
 				datasets: [{
 						label: "Day Wise Increase in 2019-nCoV Cases",
 						data: [47,60,73,82,84,110,114,137,151,173,223,283,360,467,492],
@@ -2432,8 +2377,10 @@
 		  }
 		});
 
-		  
+
 		  </script>
+
+
 
 		</body>
 		</html>

@@ -162,9 +162,9 @@ $(function () {
   }
 
   // This will get the first returned node in the jQuery collection.
-  var salesChart = new Chart(salesChartCanvas, { 
-      type: 'line', 
-      data: salesChartData, 
+  var salesChart = new Chart(salesChartCanvas, {
+      type: 'line',
+      data: salesChartData,
       options: salesChartOptions
     }
   )
@@ -173,9 +173,9 @@ $(function () {
   var pieChartCanvas = $('#sales-chart-canvas').get(0).getContext('2d')
   var pieData        = {
     labels: [
-        'Instore Sales', 
+        'Instore Sales',
         'Download Sales',
-        'Mail-Order Sales', 
+        'Mail-Order Sales',
     ],
     datasets: [
       {
@@ -196,7 +196,7 @@ $(function () {
   var pieChart = new Chart(pieChartCanvas, {
     type: 'doughnut',
     data: pieData,
-    options: pieOptions      
+    options: pieOptions
   });
 
   // Sales graph chart
@@ -254,9 +254,9 @@ $(function () {
   }
 
   // This will get the first returned node in the jQuery collection.
-  var salesGraphChart = new Chart(salesGraphChartCanvas, { 
-      type: 'line', 
-      data: salesGraphChartData, 
+  var salesGraphChart = new Chart(salesGraphChartCanvas, {
+      type: 'line',
+      data: salesGraphChartData,
       options: salesGraphChartOptions
     }
   )
