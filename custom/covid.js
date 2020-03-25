@@ -143,7 +143,9 @@ function initMap() {
   var map;
   var bounds = new google.maps.LatLngBounds();
   var mapOptions = {
-    mapTypeId: 'roadmap'
+    mapTypeId: 'roadmap',
+	streetViewControl: false,
+    mapTypeControl: false
   };
 
   // Display a map on the web page
