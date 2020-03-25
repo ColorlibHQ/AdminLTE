@@ -2,6 +2,17 @@
 <html>
 
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161859093-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-161859093-1');
+	</script>
+
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>COVID-19 INDIA Dashboard</title>
@@ -423,7 +434,7 @@
 					<a class="nav-link" data-widget="pushmenu" href="#"><img class="img" src="dist/img/open-menu.svg" width="20px" height="20px">
 </a>
 				</li>
-				
+
 				<li class="nav-item ">
 					<a href="" class="nav-link" style="color:black;"><b>Dashboard of the COVID-19 Virus Outbreak in INDIA</b></a>
 				</li>
@@ -450,7 +461,7 @@
 				<li class="nav-item">
 					<form class="form-inline">
 						<!-- <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><b>Ask Corona Bot</b> -->
-						<h5><span class="badge badge-secondary right">Ask Corona Bot <i class="far fa-hand-point-right"></i></span><h5>
+						<h5><span class="badge badge-secondary right" data-widget="control-sidebar" data-slide="true">Ask Corona Bot <i class="far fa-hand-point-right"></i></span><h5>
 							<img class="direct-chat-img animated flip delay-0.2s" data-widget="control-sidebar" data-slide="true" src="dist/img/bot.svg" style="float: right;">
 						</a>
 					</form>
@@ -502,9 +513,9 @@
 									<!-- <span class="right badge badge-danger">New</span> -->
 								</p>
 							</a>
-							
+
 						</li>
-						
+
 						<li class="nav-item">
 							<a href="#faqCard" class="nav-link">
 								<i class="nav-icon far fa-question-circle"></i>
@@ -536,7 +547,7 @@
 						<i class="fas fa-map-marker-alt nav-icon"></i>
 						<p>State Wise Cases Map</p>
 						</a>
-						</li>	
+						</li>
 						<li class="nav-item">
 						<a href="#doughnutCard" class="nav-link">
 						<i class="fas fa-chart-pie nav-icon"></i>
@@ -549,8 +560,8 @@
 						<p>Increase in 2019-nCoV</p>
 						</a>
 						</li>
-						
-						
+
+
 
 						<!-- <li class="nav-item"> -->
 						<!-- <a href="pages/widgets.html" class="nav-link"> -->
@@ -2264,8 +2275,7 @@
 
 
 
-		$(document).ready(function() {
-
+	//	$(document).ready(function() {
 			var options = {
 				valueNames: [
 					'place',
@@ -2535,7 +2545,7 @@
 
 			]);
 
-		});
+	//	});
 
 
 
