@@ -478,9 +478,9 @@
 				 with font-awesome or any other icon font library -->
 						<li class="nav-item">
 							<a href="" class="nav-link">
-								<i class="nav-icon fas fa-info-circle	"></i>
+								<i class="nav-icon fas fa-home"></i>
 								<p>
-									About
+									Home
 									<!-- <span class="right badge badge-danger">New</span> -->
 								</p>
 							</a>
@@ -495,23 +495,16 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="#helplineCard" class="nav-link">
-								<i class="nav-icon fab fa-hire-a-helper"></i>
-								<p>
-									Helpline
-									<!-- <span class="right badge badge-danger">New</span> -->
-								</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="#newsCard" class="nav-link">
+						<a href="#newsCard" class="nav-link">
 								<i class="nav-icon fas fa-rss-square"></i>
 								<p>
 									Guidelines
 									<!-- <span class="right badge badge-danger">New</span> -->
 								</p>
 							</a>
+							
 						</li>
+						
 						<li class="nav-item">
 							<a href="#faqCard" class="nav-link">
 								<i class="nav-icon far fa-question-circle"></i>
@@ -520,6 +513,44 @@
 								</p>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="#helplineCard" class="nav-link">
+								<i class="nav-icon fab fa-hire-a-helper"></i>
+								<p>
+									Helpline
+									<!-- <span class="right badge badge-danger">New</span> -->
+								</p>
+							</a>
+						</li>
+						<li class="nav-item has-treeview">
+						<a href="#" class="nav-link">
+						<i class="nav-icon far fa-chart-bar"></i>
+						<p>
+						Graphs
+						<i class="fas fa-angle-left right"></i>
+						</p>
+						</a>
+						<ul class="nav nav-treeview">
+						<li class="nav-item">
+						<a href="#mapCard" class="nav-link">
+						<i class="fas fa-map-marker-alt nav-icon"></i>
+						<p>State Wise Cases Map</p>
+						</a>
+						</li>	
+						<li class="nav-item">
+						<a href="#doughnutCard" class="nav-link">
+						<i class="fas fa-chart-pie nav-icon"></i>
+						<p>Cases 2019-nCoV</p>
+						</a>
+						</li>
+						<li class="nav-item">
+						<a href="#lineCard" class="nav-link">
+						<i class="fas fa-chart-line nav-icon"></i>
+						<p>Increase in 2019-nCoV</p>
+						</a>
+						</li>
+						
+						
 
 						<!-- <li class="nav-item"> -->
 						<!-- <a href="pages/widgets.html" class="nav-link"> -->
@@ -1439,7 +1470,7 @@
 						<section class="col-lg-6 connectedSortable">
 
 							<!-- Map card -->
-							<div class="card bg-gradient-white">
+							<div class="card bg-gradient-white" id="mapCard">
 								<div class="card-header border-0 mb-0">
 									<h3 class="card-title">
 										<i class="fas fa-map-marker-alt mr-1" style="color:red;"></i>
@@ -1466,7 +1497,7 @@
 							</div>
 							<!-- /.card -->
 
-							<div class="card">
+							<div class="card" id="doughnutCard">
 								<div class="card-header">
 									<h3 class="card-title">
 										<i class="fas fa-chart-pie mr-1" style="color:red;"></i>
@@ -1485,7 +1516,7 @@
 							</div>
 							<!-- solid sales graph -->
 
-							<div class="card bg-gradient-white" style="color:black !important;">
+							<div class="card bg-gradient-white" style="color:black !important;" id="lineCard">
 								<div class="card-header border-0">
 									<h3 class="card-title">
 										<i class="fas fa-chart-line mr-1" style="color:red;"></i>
