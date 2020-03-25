@@ -260,10 +260,10 @@ function generateMapMarkers(regionalData) {
         var mapMarkerHtmlState = [
           '<div class="info_content">' +
           '<h6>' + inStateName + '</h6>' +
-          '<p>Total Confirmed cases (Indian National)-' + inConfCases +
-          '<br>Total Confirmed cases ( Foreign National )' + frnConfCases +
-          '<br>Cured/Discharged/Migrated-' + dischargedCont +
-          '<br>Death-' + deathCont +
+          '<p><span class="badge badge-secondary">Total Confirmed cases (Indian National) </span><span class="badge badge-dark float-right">'+ inConfCases +'</span>'+
+          '<br><span class="badge badge-warning">Total Confirmed cases ( Foreign National ) </span><span class="badge badge-dark float-right">' + frnConfCases +'</span>'+
+          '<br><span class="badge badge-success">Cured/Discharged/Migrated </span><span class="badge badge-dark float-right">' + dischargedCont +'</span>'+
+          '<br><span class="badge badge-danger">Death </span><span class="badge badge-dark float-right">' + deathCont +'</span>'+
           '</p>' +
           '</div>'
         ];
