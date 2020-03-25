@@ -185,6 +185,7 @@ function initMap() {
 
 }
 
+
 var apiUrlLatestCases = 'https://api.rootnet.in/covid19-in/stats/latest';
 ajaxLatestCases = $.ajax({
   type: "GET",
@@ -204,6 +205,7 @@ ajaxLatestCases = $.ajax({
     alert("There is an error. " + results.stringfy);
   },
 });
+
 
 var apiUrlDailyStats = 'https://api.rootnet.in/covid19-in/stats/daily';
 ajaxDailyStats = $.ajax({
