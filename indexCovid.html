@@ -526,7 +526,7 @@
 							<a href="#faqCard" class="nav-link">
 								<i class="nav-icon far fa-question-circle"></i>
 								<p>
-									FAQ's
+									FAQs
 								</p>
 							</a>
 						</li>
@@ -563,7 +563,7 @@
 						<li class="nav-item">
 						<a href="#lineCard" class="nav-link">
 						<i class="fas fa-chart-line nav-icon"></i>
-						<p>Increase in 2019-nCoV</p>
+						<p>Trend in 2019-nCoV</p>
 						</a>
 						</li>
 
@@ -1159,7 +1159,7 @@
 									<h3 id="deaths"></h3>
 <img class="img float-right" src="dist/img/nuclear.svg" width="42px" height="42px">
 
-									<p>Total Death</p>
+									<p>Total Deaths</p>
 								</div>
 								<!-- <div class="icon"> -->
 									<!-- <i class="ion ion-pie-graph text-danger"></i> -->
@@ -1171,12 +1171,13 @@
 							<div class="small-box border border-secondary shadow bg-gradient-white">
 								<div class="inner">
 									<h3 id="discharged"></h3>
+<img class="img float-right" src="dist/img/cured.svg" width="42px" height="42px">
 
 									<p>Total Cured</p>
 								</div>
-								<div class="icon">
-									<i class="ion ion-stats-bars text-secondary"></i>
-								</div>
+								<!-- <div class="icon"> -->
+									<!-- <i class="ion ion-stats-bars text-secondary"></i> -->
+								<!-- </div> -->
 							</div>
 
 						</div>
@@ -1252,7 +1253,7 @@
 											<div class="panel panel-default p-2">
 												<div class="panel-heading">
 													<h5 class="panel-title">
-														<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px"> What is 2019 Noval Coronavirus ?</a>
+														<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px"> What is 2019 Novel Coronavirus ?</a>
 													</h5>
 												</div>
 												<div id="collapseOne" class="panel-collapse collapse in">
@@ -1305,7 +1306,7 @@
 											<div class="panel panel-default p-2">
 												<div class="panel-heading">
 													<h5 class="panel-title">
-														<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px"> what is GoI doing about 2019-nCoV
+														<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px"> What is GoI doing about 2019-nCoV
 															?</a>
 													</h5>
 												</div>
@@ -1539,7 +1540,7 @@
 								<div class="card-header border-0">
 									<h3 class="card-title">
 										<i class="fas fa-chart-line mr-1" style="color:red;"></i>
-										Increase in 2019-nCoV Cases
+										Trend in 2019-nCoV Cases
 									</h3>
 
 									<div class="card-tools">
@@ -1985,7 +1986,7 @@
 			if (score >= 0 && score <= 4)
 				$('<li class="sent"><div class="p-3 mb-2 bg-success text-white">You do not show signs of concern. Keep monitoring. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
 			if (score >= 4.1 && score <= 7.5)
-				$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">You responses shows enough signs of concern, please contact your doctor. Need not to panic. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">Your responses show enough signs of concern, please contact your doctor. Need not to panic. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
 			if (score >= 7.6)
 				$('<li class="sent"><div class="p-3 mb-2 bg-danger text-white">Based on your answers your condition seems alarming. Contact your doctor immediately. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="start_over();">Start Over</button></li>').appendTo($('.messages ul'));
