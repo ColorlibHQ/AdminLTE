@@ -1525,7 +1525,7 @@
 		<!-- ChartJS -->
 		<script src="plugins/chart.js/Chart.min.js"></script>
 		<!-- Sparkline -->
-		<script src="plugins/sparklines/sparkline.js"></script>
+		<!-- <script src="plugins/sparklines/sparkline.js"></script> -->
 		<!-- JQVMap -->
 		<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
 		<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
@@ -1543,7 +1543,7 @@
 		<!-- AdminLTE App -->
 		<script src="dist/js/adminlte.js"></script>
 		<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-		<script src="dist/js/pages/dashboard.js"></script>
+		<!-- <script src="dist/js/pages/dashboard.js"></script> -->
 		<!-- AdminLTE for demo purposes -->
 		<script src="dist/js/demo.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
@@ -1557,7 +1557,7 @@
 		  <script src="plugins/list.js/1.5.0/dist/list.min.js"></script>
 
 
-				<script async defer src="https://maps.google.co.in/maps/api/js?key=AIzaSyB9o2-H1VP2p3JwxC8f-yr_Le7UpuwovPE&callback=initMap"></script>
+				<script async defer SameSite=None src="https://maps.google.co.in/maps/api/js?key=AIzaSyB9o2-H1VP2p3JwxC8f-yr_Le7UpuwovPE&callback=initMap"></script>
 
 			<script>
 
@@ -1678,6 +1678,7 @@
 					var infoWindow = new google.maps.InfoWindow(), marker, i;
 
 					// Place each marker on the map
+					if(markers){
 					for( i = 0; i < markers.length; i++ ) {
 							var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
 							bounds.extend(position);
@@ -1698,7 +1699,7 @@
 							// Center the map to fit all markers on the screen
 							map.fitBounds(bounds);
 					}
-
+}
 					// Set zoom level
 					var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
 							this.setZoom(4.55);

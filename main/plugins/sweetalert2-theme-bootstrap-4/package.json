@@ -1,0 +1,57 @@
+{
+  "_args": [
+    [
+      "@sweetalert2/theme-bootstrap-4@2.2.1",
+      "D:\\Projects\\NodeJs\\COVID19"
+    ]
+  ],
+  "_from": "@sweetalert2/theme-bootstrap-4@2.2.1",
+  "_id": "@sweetalert2/theme-bootstrap-4@2.2.1",
+  "_inBundle": false,
+  "_integrity": "sha512-EzAc/HFO16wuZCmawdv0mxRknXtQ5XYmms8gHCcRBqVJsolwl0xKanH8wC2tf4O6dFLou6ZndNqii8ArQO66pA==",
+  "_location": "/@sweetalert2/theme-bootstrap-4",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@sweetalert2/theme-bootstrap-4@2.2.1",
+    "name": "@sweetalert2/theme-bootstrap-4",
+    "escapedName": "@sweetalert2%2ftheme-bootstrap-4",
+    "scope": "@sweetalert2",
+    "rawSpec": "2.2.1",
+    "saveSpec": null,
+    "fetchSpec": "2.2.1"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@sweetalert2/theme-bootstrap-4/-/theme-bootstrap-4-2.2.1.tgz",
+  "_spec": "2.2.1",
+  "_where": "D:\\Projects\\NodeJs\\COVID19",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/sweetalert2/sweetalert2-themes/issues"
+  },
+  "description": "Bootstrap 4 theme for SweetAlert2",
+  "files": [
+    "*.css",
+    "*.scss"
+  ],
+  "homepage": "https://sweetalert2.github.io/",
+  "keywords": [
+    "sweetalert2",
+    "bootstrap-4",
+    "theme",
+    "themes",
+    "theming",
+    "sass"
+  ],
+  "license": "MIT",
+  "main": "bootstrap-4.css",
+  "name": "@sweetalert2/theme-bootstrap-4",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sweetalert2/sweetalert2-themes.git"
+  },
+  "version": "2.2.1"
+}
