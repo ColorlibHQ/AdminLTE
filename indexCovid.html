@@ -2319,63 +2319,7 @@
 				},
 			});
 		}
-<<<<<<< HEAD
-=======
 
-
-		var ctx = document.getElementById("myChart");
-
-		var myChart = new Chart(ctx, {
-			type: 'doughnut',
-			data: {
-				labels: ['Total Cases', 'Total Cured', 'Total Deaths'],
-				datasets: [{
-					label: 'Cases 2019-nCoV',
-					data: [562, 41, 9],
-					backgroundColor: [
-						'rgba(255, 99, 132, 2)',
-						'rgba(144,238,144, 2)',
-						'rgba(105,105,105, 2)'
-
-					],
-					borderColor: [
-						'rgba(255,99,132,5)',
-						'rgba(144,238,144, 5)',
-						'rgba(105,105,105, 5)'
-
-					],
-					borderWidth: 2
-				}]
-			},
-			options: {
-				//cutoutPercentage: 40,
-				responsive: true,
-
-			}
-		});
-
-		var ctx = document.getElementById("lineChart").getContext("2d");
-		var lineChart = new Chart(ctx, {
-			type: 'line',
-			data: {
-				labels: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
-
-				datasets: [{
-					label: "Day Wise Increase in 2019-nCoV Cases",
-					data: [47, 60, 73, 82, 84, 110, 114, 137, 151, 173, 223, 283, 360, 467, 519,562],
-					backgroundColor: ['rgba(255, 99, 132,0.5)'],
-					borderColor: ['rgba(255,99,132,5)'],
-					borderWidth: 2
-				}]
-			},
-			options: {
-				//cutoutPercentage: 40,
-				responsive: true,
-				xAxisID: "dd"
-
-			}
-		});
->>>>>>> production
 	</script>
 
 
