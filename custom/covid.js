@@ -162,6 +162,7 @@ function initMap() {
       marker = new google.maps.Marker({
         position: position,
         map: map,
+		optimized: false,
         title: markers[i][0]
       });
 

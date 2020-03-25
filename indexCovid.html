@@ -442,7 +442,7 @@
 				</li>
 
 				<li class="nav-item ">
-					<a href="" class="nav-link" style="color:black;"><b>Dashboard of the COVID-19 Virus Outbreak in INDIA</b></a>
+					<a href="" class="nav-link" style="color:black;"><b>Dashboard for COVID-19 Virus Outbreak in INDIA</b></a>
 				</li>
 
 			</ul>
@@ -467,9 +467,9 @@
 				<li class="nav-item">
 					<form class="form-inline">
 						<!-- <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><b>Ask Corona Bot</b> -->
-						<h5><span class="badge badge-secondary right" data-widget="control-sidebar" data-slide="true">Ask Corona Bot <i class="far fa-hand-point-right"></i></span><h5>
-							<img class="direct-chat-img animated flip delay-0.2s" data-widget="control-sidebar" data-slide="true" src="dist/img/bot.svg" style="float: right;">
-						</a>
+						<h5><span class="badge badge-secondary right" data-widget="control-sidebar" data-slide="true">Ask Corona Bot <i class="far fa-hand-point-right"></i></span><img class="direct-chat-img animated flip delay-0.2s" data-widget="control-sidebar" data-slide="true" src="dist/img/bot.svg" style="float: right;"><h5>
+							
+					
 					</form>
 				</li>
 			</ul>
@@ -1101,12 +1101,13 @@
 							<div class="small-box border border-info shadow bg-gradient-white">
 								<div class="inner">
 									<h3 id="totalCases"></h3>
+<img class="img float-right" src="dist/img/totalcase.svg" width="42px" height="42px">
 
 									<p>Total Cases</p>
+									
 								</div>
-								<div class="icon">
-									<i class="ion ion-bag text-info"></i>
-								</div>
+								
+								
 							</div>
 						</div>
 
@@ -1115,12 +1116,11 @@
 							<div class="small-box border border-info shadow bg-gradient-white">
 								<div class="inner">
 									<h3 id="totalActive"></h3>
+<img class="img float-right" src="dist/img/activecase.svg" width="42px" height="42px">
 
 									<p>Total Active Cases</p>
 								</div>
-								<div class="icon">
-									<i class="ion ion-bag text-info"></i>
-								</div>
+								
 							</div>
 						</div>
 						<!-- ./col -->
@@ -1129,12 +1129,11 @@
 							<div class="small-box border border-success shadow bg-gradient-white">
 								<div class="inner">
 									<h3 id="cic"></h3>
+<img class="img float-right" src="dist/img/india.svg" width="42px" height="42px">
 
 									<p>Indian Cases</p>
 								</div>
-								<div class="icon">
-									<i class="ion ion-person-add text-success"></i>
-								</div>
+								
 							</div>
 						</div>
 						<!-- ./col -->
@@ -1143,12 +1142,13 @@
 							<div class="small-box border border-warning shadow bg-gradient-white">
 								<div class="inner">
 									<h3 id="cfc"></h3>
+<img class="img float-right" src="dist/img/globe.svg" width="42px" height="42px">
 
 									<p>Foriegn Cases</p>
 								</div>
-								<div class="icon">
-									<i class="ion ion-person-add text-warning"></i>
-								</div>
+								<!-- <div class="icon"> -->
+									<!-- <i class="ion ion-person-add text-warning"></i> -->
+								<!-- </div> -->
 							</div>
 						</div>
 						<!-- ./col -->
@@ -1157,12 +1157,13 @@
 							<div class="small-box border border-danger shadow bg-gradient-white">
 								<div class="inner">
 									<h3 id="deaths"></h3>
+<img class="img float-right" src="dist/img/nuclear.svg" width="42px" height="42px">
 
 									<p>Total Death</p>
 								</div>
-								<div class="icon">
-									<i class="ion ion-pie-graph text-danger"></i>
-								</div>
+								<!-- <div class="icon"> -->
+									<!-- <i class="ion ion-pie-graph text-danger"></i> -->
+								<!-- </div> -->
 							</div>
 						</div>
 						<div class="col-lg-2 col-sm-6 col-6">
@@ -1278,7 +1279,7 @@
 												<div class="panel-heading">
 													<h5 class="panel-title">
 														<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px"> What are the initial symptoms of
-															Noval Coronavirus ?</a>
+															Novel Coronavirus ?</a>
 													</h5>
 												</div>
 												<div id="collapseEleven" class="panel-collapse collapse">
@@ -1920,7 +1921,7 @@
 			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Do you have any of the following symptoms?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb3_1" value="1" >Body ache</label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb3_2" value="1" >Nausera</label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label><input type="checkbox" id="cb3_2" value="1" >Nausea</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb3_3" value="1" >Headache</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb3_4" value="1" >Diarrea</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chkaddsympt()">Done</button></li>').appendTo($('.messages ul'));
@@ -1984,7 +1985,7 @@
 			if (score >= 0 && score <= 4)
 				$('<li class="sent"><div class="p-3 mb-2 bg-success text-white">You do not show signs of concern. Keep monitoring. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
 			if (score >= 4.1 && score <= 7.5)
-				$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">You responses shows some signs of concern, please contact your doctor. Need not to panic. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">You responses shows enough signs of concern, please contact your doctor. Need not to panic. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
 			if (score >= 7.6)
 				$('<li class="sent"><div class="p-3 mb-2 bg-danger text-white">Based on your answers your condition seems alarming. Contact your doctor immediately. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="start_over();">Start Over</button></li>').appendTo($('.messages ul'));
