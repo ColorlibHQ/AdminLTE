@@ -1089,13 +1089,28 @@
 				<div class="container-fluid">
 					<!-- Small boxes (Stat box) -->
 					<div class="row">
+
 						<div class="col-lg-2 col-sm-6 col-6">
 							<!-- small box -->
 							<div class="small-box border border-info shadow bg-gradient-white">
 								<div class="inner">
-									<h3 id="total"></h3>
+									<h3 id="totalCases"></h3>
 
 									<p>Total Cases</p>
+								</div>
+								<div class="icon">
+									<i class="ion ion-bag text-info"></i>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-sm-6 col-6">
+							<!-- small box -->
+							<div class="small-box border border-info shadow bg-gradient-white">
+								<div class="inner">
+									<h3 id="totalActive"></h3>
+
+									<p>Total Active Cases</p>
 								</div>
 								<div class="icon">
 									<i class="ion ion-bag text-info"></i>
@@ -1158,21 +1173,7 @@
 							</div>
 
 						</div>
-						<div class="col-lg-2 col-sm-6 col-6">
-							<!-- small box -->
-							<div class="small-box border border-primary shadow bg-gradient-white">
-								<div class="inner">
-									<h3>510</h3>
 
-									<p>In Hospital</p>
-								</div>
-								<div class="icon">
-									<i class="ion ion-medkit text-primary"></i>
-								</div>
-							</div>
-
-						</div>
-						<!-- ./col -->
 					</div>
 					<!-- /.row -->
 					<!-- Main row -->
@@ -1647,275 +1648,8 @@
 	<!-- list.min.js-->
 	<script src="plugins/list.js/1.5.0/dist/list.min.js"></script>
 
-
+	<script src="custom/covid.js"></script>
 	<script async defer SameSite=None src="https://maps.google.co.in/maps/api/js?key=AIzaSyB9o2-H1VP2p3JwxC8f-yr_Le7UpuwovPE&callback=initMap"></script>
-
-	<script>
-		//Map code start here
-		var apiPrashantCall = null;
-		var markers = null;
-		var infoWindowContent = null;
-		var cordinatList = {
-			indianState: {
-				'Delhi': {
-					lat: 28.6139,
-					long: 77.2090
-				},
-				'Andhra Pradesh': {
-					lat: 15.9129,
-					long: 79.7400
-				},
-				'Bihar': {
-					lat: 25.0961,
-					long: 85.3131
-				},
-				'Chhattisgarh': {
-					lat: 21.2787,
-					long: 81.8661
-				},
-				'Gujarat': {
-					lat: 22.2587,
-					long: 71.1924
-				},
-				'Haryana': {
-					lat: 29.0588,
-					long: 76.0856
-				},
-				'Himachal Pradesh': {
-					lat: 31.1048,
-					long: 77.1734
-				},
-				'Karnataka': {
-					lat: 15.3173,
-					long: 75.7139
-				},
-				'Kerala': {
-					lat: 10.8505,
-					long: 76.2711
-				},
-				'Madhya Pradesh': {
-					lat: 22.9734,
-					long: 78.6569
-				},
-				'Maharashtra': {
-					lat: 19.7515,
-					long: 75.7139
-				},
-				'Odisha': {
-					lat: 20.9517,
-					long: 85.0985
-				},
-				'Puducherry': {
-					lat: 11.9416,
-					long: 79.8083
-				},
-				'Punjab': {
-					lat: 31.1471,
-					long: 75.3412
-				},
-				'Rajasthan': {
-					lat: 27.0238,
-					long: 74.2179
-				},
-				'Tamil Nadu': {
-					lat: 11.1271,
-					long: 78.6569
-				},
-				'Telangana': {
-					lat: 18.1124,
-					long: 79.0193
-				},
-				'Chandigarh': {
-					lat: 30.7333,
-					long: 76.7794
-				},
-				'Jammu and Kashmir': {
-					lat: 33.7782,
-					long: 76.5762
-				},
-				'Ladakh': {
-					lat: 34.152588,
-					long: 77.577049
-				},
-				'Uttar Pradesh': {
-					lat: 26.8467,
-					long: 80.9462
-				},
-				'Uttarakhand': {
-					lat: 30.0668,
-					long: 79.0193
-				},
-				'West Bengal': {
-					lat: 22.9868,
-					long: 87.8550
-				},
-				'Goa': {
-					lat: 15.2993,
-					long: 74.1240
-				},
-				'Jharkhand': {
-					lat: 23.6102,
-					long: 85.2799
-				},
-				'Manipur': {
-					lat: 24.6637,
-					long: 93.9063
-				},
-				'Mizoram': {
-					lat: 23.1645,
-					long: 92.9376
-				},
-				'Assam': {
-					lat: 26.2006,
-					long: 92.9376
-				},
-				'Nagaland': {
-					lat: 26.1584,
-					long: 94.5624
-				},
-				'Tripura': {
-					lat: 23.9408,
-					long: 91.9882
-				},
-				'Meghalaya': {
-					lat: 25.4670,
-					long: 91.3662
-				},
-				'Sikkim': {
-					lat: 27.5330,
-					long: 88.5122
-				},
-				'Arunachal Pradesh': {
-					lat: 28.2180,
-					long: 94.7278
-				}
-			}
-		};
-
-
-
-		var myurl = 'https://api.rootnet.in/covid19-in/stats/latest';
-
-		apiPrashantCall = $.ajax({
-			type: "GET",
-			url: myurl,
-			dataType: "json",
-			success: function(result) {
-				//console.log(result.data.summary);
-				$('#total').html(JSON.stringify(result.data.summary.total));
-				$('#cic').html(JSON.stringify(result.data.summary.confirmedCasesIndian));
-				$('#cfc').html(JSON.stringify(result.data.summary.confirmedCasesForeign));
-				$('#discharged').html(JSON.stringify(result.data.summary.discharged));
-				$('#deaths').html(JSON.stringify(result.data.summary.deaths));
-				$('#clu').html(JSON.stringify(result.data.summary.confirmedButLocationUnidentified));
-
-				var regional = result.data.regional;
-
-				var mapMarkerCoord = [];
-				var mapMarkerHtml = [];
-
-				for (key in regional) {
-					var apiInSateDtl = regional[key]
-					var apiInSateName = apiInSateDtl.loc;
-					var inConfCases = apiInSateDtl.confirmedCasesIndian;
-					var frnConfCases = apiInSateDtl.confirmedCasesForeign;
-					var dischargedCont = apiInSateDtl.discharged;
-					var deathCont = apiInSateDtl.deaths;
-
-					var inStateDtlHardCode = cordinatList.indianState;
-					for (inStateName in inStateDtlHardCode) {
-						if (inStateName == apiInSateName) {
-							var inStateLat = inStateDtlHardCode[inStateName].lat;
-							var inStateLong = inStateDtlHardCode[inStateName].long;
-
-							var mapMarkerCoordState = [inStateName, inStateLat, inStateLong];
-							mapMarkerCoord.push(mapMarkerCoordState);
-
-							var mapMarkerHtmlState = [
-								'<div class="info_content">' +
-								'<h6>' + inStateName + '</h6>' +
-								'<p>Total Confirmed cases (Indian National)-' + inConfCases +
-								'<br>Total Confirmed cases ( Foreign National )' + frnConfCases +
-								'<br>Cured/Discharged/Migrated-' + dischargedCont +
-								'<br>Death-' + deathCont +
-								'</p>' +
-								'</div>'
-							];
-
-							mapMarkerHtml.push(mapMarkerHtmlState);
-						}
-
-					}
-				}
-
-
-				mapMarkerHtml.length = mapMarkerCoord.length;
-
-				markers = mapMarkerCoord;
-				infoWindowContent = mapMarkerHtml;
-				//console.log(JSON.stringify(mapMarkerCoord));
-				// console.log(JSON.stringify(mapMarkerHtml));
-			},
-			error: function(results) {
-				alert("There is an error. " + results.stringfy);
-
-			},
-		});
-
-		function initMap() {
-			var map;
-			var bounds = new google.maps.LatLngBounds();
-			var mapOptions = {
-				mapTypeId: 'roadmap'
-			};
-
-			// Display a map on the web page
-			map = new google.maps.Map(document.getElementById("map"), mapOptions);
-			map.setTilt(50);
-
-			// Add multiple markers to map
-			var infoWindow = new google.maps.InfoWindow(),
-				marker, i;
-
-			// Place each marker on the map
-			if (markers) {
-				for (i = 0; i < markers.length; i++) {
-					var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-					bounds.extend(position);
-					marker = new google.maps.Marker({
-						position: position,
-						map: map,
-						title: markers[i][0]
-					});
-
-					// Add info window to marker
-					google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
-						return function() {
-							infoWindow.setContent(infoWindowContent[i][0]);
-							infoWindow.open(map, marker);
-						}
-					})(marker, i));
-
-					// Center the map to fit all markers on the screen
-					map.fitBounds(bounds);
-				}
-			}
-			// Set zoom level
-			var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-				this.setZoom(4.6);
-				google.maps.event.removeListener(boundsListener);
-			});
-
-		}
-
-		// Load initialize function
-		$.when(apiPrashantCall).then(function(data, textStatus, jqXHR) {
-			//alert( jqXHR.status ); // Alerts 200
-			google.maps.event.addDomListener(window, 'load', initMap);
-
-		});
-	</script>
-
 
 
 
@@ -2586,59 +2320,6 @@
 			});
 		}
 
-
-		var ctx = document.getElementById("myChart");
-
-		var myChart = new Chart(ctx, {
-			type: 'doughnut',
-			data: {
-				labels: ['Total Cases', 'Total Cured', 'Total Deaths'],
-				datasets: [{
-					label: 'Cases 2019-nCoV',
-					data: [562, 41, 9],
-					backgroundColor: [
-						'rgba(255, 99, 132, 2)',
-						'rgba(144,238,144, 2)',
-						'rgba(105,105,105, 2)'
-
-					],
-					borderColor: [
-						'rgba(255,99,132,5)',
-						'rgba(144,238,144, 5)',
-						'rgba(105,105,105, 5)'
-
-					],
-					borderWidth: 2
-				}]
-			},
-			options: {
-				//cutoutPercentage: 40,
-				responsive: true,
-
-			}
-		});
-
-		var ctx = document.getElementById("lineChart").getContext("2d");
-		var lineChart = new Chart(ctx, {
-			type: 'line',
-			data: {
-				labels: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
-
-				datasets: [{
-					label: "Day Wise Increase in 2019-nCoV Cases",
-					data: [47, 60, 73, 82, 84, 110, 114, 137, 151, 173, 223, 283, 360, 467, 519,562],
-					backgroundColor: ['rgba(255, 99, 132,0.5)'],
-					borderColor: ['rgba(255,99,132,5)'],
-					borderWidth: 2
-				}]
-			},
-			options: {
-				//cutoutPercentage: 40,
-				responsive: true,
-				xAxisID: "dd"
-
-			}
-		});
 	</script>
 
 
