@@ -154,6 +154,10 @@ function initMap() {
   var infoWindow = new google.maps.InfoWindow(),
     marker, i;
 
+	var image={
+	url:"dist/img/marker.svg",
+	scaledSize: new google.maps.Size(35, 35)
+}
   // Place each marker on the map
   if (markers) {
     for (i = 0; i < markers.length; i++) {
@@ -163,7 +167,9 @@ function initMap() {
         position: position,
         map: map,
 		optimized: false,
+		icon:image,
         title: markers[i][0]
+	
       });
 
       // Add info window to marker
@@ -261,9 +267,9 @@ function generateMapMarkers(regionalData) {
           '<div class="info_content">' +
           '<h6>' + inStateName + '</h6>' +
           '<p><span class="badge badge-secondary">Total Indian cases </span><span class="badge badge-dark float-right ml-5">'+ inConfCases +'</span>'+
-          '<br><span class="badge badge-warning">Total Foreign cases </span><span class="badge badge-dark float-right">' + frnConfCases +'</span>'+
-          '<br><span class="badge badge-success">Total Cured </span><span class="badge badge-dark float-right">' + dischargedCont +'</span>'+
-          '<br><span class="badge badge-danger">Deaths </span><span class="badge badge-dark float-right">' + deathCont +'</span>'+
+          '<br><span class="badge badge-warning">Total Foreign cases </span><span class="badge badge-dark float-right ml-5">' + frnConfCases +'</span>'+
+          '<br><span class="badge badge-success">Total Cured </span><span class="badge badge-dark float-right ml-5">' + dischargedCont +'</span>'+
+          '<br><span class="badge badge-danger">Deaths </span><span class="badge badge-dark float-right ml-5">' + deathCont +'</span>'+
           '</p>' +
           '</div>'
         ];
