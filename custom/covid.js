@@ -232,9 +232,10 @@ ajaxDailyStats = $.ajax({
 
 //set values in dashboard tiles
 function setDashboardStats(statsSummary) {
-  var totalCases= statsSummary.total+statsSummary.discharged + statsSummary.deaths;
-  $('#totalCases').html(totalCases);
-  $('#totalActive').html(JSON.stringify(statsSummary.total));
+  var totalActive= statsSummary.total-statsSummary.discharged - statsSummary.deaths;
+
+  $('#totalCases').html(JSON.stringify(statsSummary.total));
+  $('#totalActive').html(totalActive);
   $('#cic').html(JSON.stringify(statsSummary.confirmedCasesIndian));
   $('#cfc').html(JSON.stringify(statsSummary.confirmedCasesForeign));
   $('#discharged').html(JSON.stringify(statsSummary.discharged));
