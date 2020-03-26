@@ -171,7 +171,7 @@ function initMap() {
 		optimized: false,
 		icon:image,
         title: markers[i][0]
-	
+
       });
 
       // Add info window to marker
@@ -341,7 +341,7 @@ function generateLineGraph(dailyStats) {
       labels: dateLable,
 
       datasets: [{
-        label: "Tota Cases Reached",
+        label: "Total Cases Reached",
         data: casesLable,
         backgroundColor: ['rgba(0, 0, 0, 0.1)'],
         borderColor: ['rgba(255,99,132,5)'],
