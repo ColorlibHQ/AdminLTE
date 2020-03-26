@@ -143,7 +143,7 @@ function initMap() {
   var indiaCenter = new google.maps.LatLng(20.5937, 78.9629);
   var indiaBorderBounds={
         north: 37.6,
-        south: 8.4,
+        south: 7,
         west: 68.7,
         east: 97.25,
       };
