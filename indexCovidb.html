@@ -1,3 +1,9 @@
+<!--
+#Project   : COVID19
+#Team      : https://github.com/orgs/elComrades/people
+#Author    : github.com/prashantmi, github.com/deepandu
+						 github.com/abhijatchaturvedi, github.com/siddharthsrivastava
+-->
 <!DOCTYPE html>
 <html>
 
@@ -5,11 +11,14 @@
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161859093-1"></script>
 	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+		window.dataLayer = window.dataLayer || [];
 
-	  gtag('config', 'UA-161859093-1');
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-161859093-1');
 	</script>
 
 
@@ -421,6 +430,75 @@
 			background: #f1f7ff;
 		}
 	</style>
+	<style>
+		/* The container */
+	.container1 {
+	  display: block;
+	  position: relative;
+	  padding-left: 30px;
+	  margin-bottom: 12px;
+	  cursor: pointer;
+	  font-size: 15px;
+	  -webkit-user-select: none;
+	  -moz-user-select: none;
+	  -ms-user-select: none;
+	  user-select: none;
+	}
+
+	/* Hide the browser's default checkbox */
+	.container1 input {
+	  position: absolute;
+	  opacity: 0;
+	  cursor: pointer;
+	  height: 0;
+	  width: 0;
+	}
+
+	/* Create a custom checkbox */
+	.checkmark {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  height: 20px;
+	  width: 20px;
+	  background-color: #eee;
+	}
+
+	/* On mouse-over, add a grey background color */
+	.container1:hover input ~ .checkmark {
+	  background-color: #ccc;
+	}
+
+	/* When the checkbox is checked, add a blue background */
+	.container1 input:checked ~ .checkmark {
+	  background-color: #2196F3;
+	}
+
+	/* Create the checkmark/indicator (hidden when not checked) */
+	.checkmark:after {
+	  content: "";
+	  position: absolute;
+	  display: none;
+	}
+
+	/* Show the checkmark when checked */
+	.container1 input:checked ~ .checkmark:after {
+	  display: block;
+	}
+
+	/* Style the checkmark/indicator */
+	.container1 .checkmark:after {
+	  left: 9px;
+	  top: 5px;
+	  width: 5px;
+	  height: 10px;
+	  border: solid white;
+	  border-width: 0 3px 3px 0;
+	  -webkit-transform: rotate(45deg);
+	  -ms-transform: rotate(45deg);
+	  transform: rotate(45deg);
+	}
+	</style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed" id="pagescroll">
@@ -432,11 +510,11 @@
 			<ul class="navbar-nav">
 				<li class="nav-item">
 					<a class="nav-link" data-widget="pushmenu" href="#"><img class="img" src="dist/img/open-menu.svg" width="20px" height="20px">
-</a>
+					</a>
 				</li>
 
-				<li class="nav-item ">
-					<a href="" class="nav-link" style="color:black;"><b>Dashboard of the COVID-19 Virus Outbreak in INDIA</b></a>
+				<li class="nav-item mt-2 ">
+					<a href="" style="color:black;"><b>Dashboard for COVID-19 Virus Outbreak in INDIA </b><img class="img" src="dist/img/indianflag.svg" width="20px" height="20px"></a>
 				</li>
 
 			</ul>
@@ -447,23 +525,25 @@
 			<ul class="navbar-nav ml-auto">
 
 				<!-- <form class="form-inline ml-3"> -->
-					<!-- <a href="" class="nav-link" style="color:black;"><b>Ask Corona Bot</b></a> -->
-					<!-- <div class="input-group input-group-sm"> -->
-						<!-- <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"> -->
-						<!-- <div class="input-group-append"> -->
-							<!-- <button class="btn btn-navbar" type="submit"> -->
-								<!-- <i class="fas fa-search"></i> -->
-							<!-- </button> -->
-						<!-- </div> -->
-					<!-- </div> -->
+				<!-- <a href="" class="nav-link" style="color:black;"><b>Ask Corona Bot</b></a> -->
+				<!-- <div class="input-group input-group-sm"> -->
+				<!-- <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"> -->
+				<!-- <div class="input-group-append"> -->
+				<!-- <button class="btn btn-navbar" type="submit"> -->
+				<!-- <i class="fas fa-search"></i> -->
+				<!-- </button> -->
+				<!-- </div> -->
+				<!-- </div> -->
 				<!-- </form> -->
 
 				<li class="nav-item">
 					<form class="form-inline">
 						<!-- <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><b>Ask Corona Bot</b> -->
-						<h5><span class="badge badge-secondary right" data-widget="control-sidebar" data-slide="true">Ask Corona Bot <i class="far fa-hand-point-right"></i></span><h5>
-							<img class="direct-chat-img animated flip delay-0.2s" data-widget="control-sidebar" data-slide="true" src="dist/img/bot.svg" style="float: right;">
-						</a>
+						<h5 style="cursor: pointer;"><span class="badge badge-secondary" data-widget="control-sidebar" data-slide="true">Ask Corona Bot <i class="far fa-hand-point-right"></i></span><img class="direct-chat-img animated flip delay-0.2s"
+								data-widget="control-sidebar" data-slide="true" src="dist/img/bot.svg" style="float: right;">
+							<h5>
+
+
 					</form>
 				</li>
 			</ul>
@@ -506,7 +586,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-						<a href="#newsCard" class="nav-link">
+							<a href="#newsCard" class="nav-link">
 								<i class="nav-icon fas fa-rss-square"></i>
 								<p>
 									Guidelines
@@ -520,7 +600,7 @@
 							<a href="#faqCard" class="nav-link">
 								<i class="nav-icon far fa-question-circle"></i>
 								<p>
-									FAQ's
+									FAQs
 								</p>
 							</a>
 						</li>
@@ -534,530 +614,530 @@
 							</a>
 						</li>
 						<li class="nav-item has-treeview">
-						<a href="#" class="nav-link">
-						<i class="nav-icon far fa-chart-bar"></i>
-						<p>
-						Graphs
-						<i class="fas fa-angle-left right"></i>
-						</p>
-						</a>
-						<ul class="nav nav-treeview">
-						<li class="nav-item">
-						<a href="#mapCard" class="nav-link">
-						<i class="fas fa-map-marker-alt nav-icon"></i>
-						<p>State Wise Cases Map</p>
-						</a>
-						</li>
-						<li class="nav-item">
-						<a href="#doughnutCard" class="nav-link">
-						<i class="fas fa-chart-pie nav-icon"></i>
-						<p>Cases 2019-nCoV</p>
-						</a>
-						</li>
-						<li class="nav-item">
-						<a href="#lineCard" class="nav-link">
-						<i class="fas fa-chart-line nav-icon"></i>
-						<p>Increase in 2019-nCoV</p>
-						</a>
-						</li>
+							<a href="#" class="nav-link">
+								<i class="nav-icon far fa-chart-bar"></i>
+								<p>
+									Graphs
+									<i class="fas fa-angle-left right"></i>
+								</p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="#mapCard" class="nav-link">
+										<i class="fas fa-map-marker-alt nav-icon"></i>
+										<p>State Wise Cases Map</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="#doughnutCard" class="nav-link">
+										<i class="fas fa-chart-pie nav-icon"></i>
+										<p>Cases 2019-nCoV</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="#lineCard" class="nav-link">
+										<i class="fas fa-chart-line nav-icon"></i>
+										<p>Trend of 2019-nCoV</p>
+									</a>
+								</li>
 
 
 
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/widgets.html" class="nav-link"> -->
-						<!-- <i class="nav-icon fas fa-th"></i> -->
-						<!-- <p> -->
-						<!-- Dashboard Stats -->
-						<!-- </p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item has-treeview"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="nav-icon fas fa-copy"></i> -->
-						<!-- <p> -->
-						<!-- Layout Options -->
-						<!-- <i class="fas fa-angle-left right"></i> -->
-						<!-- <span class="badge badge-info right">6</span> -->
-						<!-- </p> -->
-						<!-- </a> -->
-						<!-- <ul class="nav nav-treeview"> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/layout/top-nav.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Top Navigation</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/layout/top-nav-sidebar.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Top Navigation + Sidebar</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/layout/boxed.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Boxed</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/layout/fixed-sidebar.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Fixed Sidebar</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/layout/fixed-topnav.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Fixed Navbar</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/layout/fixed-footer.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Fixed Footer</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/layout/collapsed-sidebar.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Collapsed Sidebar</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- </ul> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item has-treeview"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="nav-icon fas fa-chart-pie"></i> -->
-						<!-- <p> -->
-						<!-- Charts -->
-						<!-- <i class="right fas fa-angle-left"></i> -->
-						<!-- </p> -->
-						<!-- </a> -->
-						<!-- <ul class="nav nav-treeview"> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/charts/chartjs.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>ChartJS</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/charts/flot.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Flot</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/charts/inline.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Inline</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- </ul> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item has-treeview"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="nav-icon fas fa-tree"></i> -->
-						<!-- <p> -->
-						<!-- UI Elements -->
-						<!-- <i class="fas fa-angle-left right"></i> -->
-						<!-- </p> -->
-						<!-- </a> -->
-						<!-- <ul class="nav nav-treeview"> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/UI/general.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>General</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/UI/icons.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Icons</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/UI/buttons.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Buttons</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/UI/sliders.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Sliders</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/UI/modals.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Modals & Alerts</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/UI/navbar.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Navbar & Tabs</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/UI/timeline.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Timeline</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/UI/ribbons.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Ribbons</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- </ul> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item has-treeview"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="nav-icon fas fa-edit"></i> -->
-						<!-- <p> -->
-						<!-- Forms -->
-						<!-- <i class="fas fa-angle-left right"></i> -->
-						<!-- </p> -->
-						<!-- </a> -->
-						<!-- <ul class="nav nav-treeview"> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/forms/general.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>General Elements</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/forms/advanced.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Advanced Elements</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/forms/editors.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Editors</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/forms/validation.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Validation</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- </ul> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item has-treeview"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="nav-icon fas fa-table"></i> -->
-						<!-- <p> -->
-						<!-- Tables -->
-						<!-- <i class="fas fa-angle-left right"></i> -->
-						<!-- </p> -->
-						<!-- </a> -->
-						<!-- <ul class="nav nav-treeview"> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/tables/simple.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Simple Tables</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/tables/data.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>DataTables</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/tables/jsgrid.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>jsGrid</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- </ul> -->
-						<!-- </li> -->
-						<!-- <li class="nav-header">EXAMPLES</li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/calendar.html" class="nav-link"> -->
-						<!-- <i class="nav-icon far fa-calendar-alt"></i> -->
-						<!-- <p> -->
-						<!-- Calendar -->
-						<!-- <span class="badge badge-info right">2</span> -->
-						<!-- </p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/gallery.html" class="nav-link"> -->
-						<!-- <i class="nav-icon far fa-image"></i> -->
-						<!-- <p> -->
-						<!-- Gallery -->
-						<!-- </p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item has-treeview"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="nav-icon far fa-envelope"></i> -->
-						<!-- <p> -->
-						<!-- Mailbox -->
-						<!-- <i class="fas fa-angle-left right"></i> -->
-						<!-- </p> -->
-						<!-- </a> -->
-						<!-- <ul class="nav nav-treeview"> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/mailbox/mailbox.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Inbox</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/mailbox/compose.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Compose</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/mailbox/read-mail.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Read</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- </ul> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item has-treeview"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="nav-icon fas fa-book"></i> -->
-						<!-- <p> -->
-						<!-- Pages -->
-						<!-- <i class="fas fa-angle-left right"></i> -->
-						<!-- </p> -->
-						<!-- </a> -->
-						<!-- <ul class="nav nav-treeview"> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/invoice.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Invoice</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/profile.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Profile</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/e_commerce.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>E-commerce</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/projects.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Projects</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/project_add.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Project Add</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/project_edit.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Project Edit</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/project_detail.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Project Detail</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/contacts.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Contacts</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- </ul> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item has-treeview"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="nav-icon far fa-plus-square"></i> -->
-						<!-- <p> -->
-						<!-- Extras -->
-						<!-- <i class="fas fa-angle-left right"></i> -->
-						<!-- </p> -->
-						<!-- </a> -->
-						<!-- <ul class="nav nav-treeview"> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/login.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Login</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/register.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Register</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/forgot-password.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Forgot Password</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/recover-password.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Recover Password</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/lockscreen.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Lockscreen</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/legacy-user-menu.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Legacy User Menu</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/language-menu.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Language Menu</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/404.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Error 404</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/500.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Error 500</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/pace.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Pace</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="pages/examples/blank.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Blank Page</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="starter.html" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Starter Page</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- </ul> -->
-						<!-- </li> -->
-						<!-- <li class="nav-header">MISCELLANEOUS</li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="https://adminlte.io/docs/3.0" class="nav-link"> -->
-						<!-- <i class="nav-icon fas fa-file"></i> -->
-						<!-- <p>Documentation</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-header">MULTI LEVEL EXAMPLE</li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="fas fa-circle nav-icon"></i> -->
-						<!-- <p>Level 1</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item has-treeview"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="nav-icon fas fa-circle"></i> -->
-						<!-- <p> -->
-						<!-- Level 1 -->
-						<!-- <i class="right fas fa-angle-left"></i> -->
-						<!-- </p> -->
-						<!-- </a> -->
-						<!-- <ul class="nav nav-treeview"> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Level 2</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item has-treeview"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p> -->
-						<!-- Level 2 -->
-						<!-- <i class="right fas fa-angle-left"></i> -->
-						<!-- </p> -->
-						<!-- </a> -->
-						<!-- <ul class="nav nav-treeview"> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="far fa-dot-circle nav-icon"></i> -->
-						<!-- <p>Level 3</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="far fa-dot-circle nav-icon"></i> -->
-						<!-- <p>Level 3</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="far fa-dot-circle nav-icon"></i> -->
-						<!-- <p>Level 3</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- </ul> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="far fa-circle nav-icon"></i> -->
-						<!-- <p>Level 2</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- </ul> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="fas fa-circle nav-icon"></i> -->
-						<!-- <p>Level 1</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-header">LABELS</li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="nav-icon far fa-circle text-danger"></i> -->
-						<!-- <p class="text">Important</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="nav-icon far fa-circle text-warning"></i> -->
-						<!-- <p>Warning</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-						<!-- <li class="nav-item"> -->
-						<!-- <a href="#" class="nav-link"> -->
-						<!-- <i class="nav-icon far fa-circle text-info"></i> -->
-						<!-- <p>Informational</p> -->
-						<!-- </a> -->
-						<!-- </li> -->
-					</ul>
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/widgets.html" class="nav-link"> -->
+								<!-- <i class="nav-icon fas fa-th"></i> -->
+								<!-- <p> -->
+								<!-- Dashboard Stats -->
+								<!-- </p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item has-treeview"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="nav-icon fas fa-copy"></i> -->
+								<!-- <p> -->
+								<!-- Layout Options -->
+								<!-- <i class="fas fa-angle-left right"></i> -->
+								<!-- <span class="badge badge-info right">6</span> -->
+								<!-- </p> -->
+								<!-- </a> -->
+								<!-- <ul class="nav nav-treeview"> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/layout/top-nav.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Top Navigation</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/layout/top-nav-sidebar.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Top Navigation + Sidebar</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/layout/boxed.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Boxed</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/layout/fixed-sidebar.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Fixed Sidebar</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/layout/fixed-topnav.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Fixed Navbar</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/layout/fixed-footer.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Fixed Footer</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/layout/collapsed-sidebar.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Collapsed Sidebar</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- </ul> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item has-treeview"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="nav-icon fas fa-chart-pie"></i> -->
+								<!-- <p> -->
+								<!-- Charts -->
+								<!-- <i class="right fas fa-angle-left"></i> -->
+								<!-- </p> -->
+								<!-- </a> -->
+								<!-- <ul class="nav nav-treeview"> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/charts/chartjs.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>ChartJS</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/charts/flot.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Flot</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/charts/inline.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Inline</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- </ul> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item has-treeview"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="nav-icon fas fa-tree"></i> -->
+								<!-- <p> -->
+								<!-- UI Elements -->
+								<!-- <i class="fas fa-angle-left right"></i> -->
+								<!-- </p> -->
+								<!-- </a> -->
+								<!-- <ul class="nav nav-treeview"> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/UI/general.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>General</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/UI/icons.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Icons</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/UI/buttons.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Buttons</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/UI/sliders.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Sliders</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/UI/modals.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Modals & Alerts</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/UI/navbar.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Navbar & Tabs</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/UI/timeline.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Timeline</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/UI/ribbons.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Ribbons</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- </ul> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item has-treeview"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="nav-icon fas fa-edit"></i> -->
+								<!-- <p> -->
+								<!-- Forms -->
+								<!-- <i class="fas fa-angle-left right"></i> -->
+								<!-- </p> -->
+								<!-- </a> -->
+								<!-- <ul class="nav nav-treeview"> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/forms/general.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>General Elements</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/forms/advanced.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Advanced Elements</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/forms/editors.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Editors</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/forms/validation.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Validation</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- </ul> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item has-treeview"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="nav-icon fas fa-table"></i> -->
+								<!-- <p> -->
+								<!-- Tables -->
+								<!-- <i class="fas fa-angle-left right"></i> -->
+								<!-- </p> -->
+								<!-- </a> -->
+								<!-- <ul class="nav nav-treeview"> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/tables/simple.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Simple Tables</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/tables/data.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>DataTables</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/tables/jsgrid.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>jsGrid</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- </ul> -->
+								<!-- </li> -->
+								<!-- <li class="nav-header">EXAMPLES</li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/calendar.html" class="nav-link"> -->
+								<!-- <i class="nav-icon far fa-calendar-alt"></i> -->
+								<!-- <p> -->
+								<!-- Calendar -->
+								<!-- <span class="badge badge-info right">2</span> -->
+								<!-- </p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/gallery.html" class="nav-link"> -->
+								<!-- <i class="nav-icon far fa-image"></i> -->
+								<!-- <p> -->
+								<!-- Gallery -->
+								<!-- </p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item has-treeview"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="nav-icon far fa-envelope"></i> -->
+								<!-- <p> -->
+								<!-- Mailbox -->
+								<!-- <i class="fas fa-angle-left right"></i> -->
+								<!-- </p> -->
+								<!-- </a> -->
+								<!-- <ul class="nav nav-treeview"> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/mailbox/mailbox.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Inbox</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/mailbox/compose.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Compose</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/mailbox/read-mail.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Read</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- </ul> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item has-treeview"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="nav-icon fas fa-book"></i> -->
+								<!-- <p> -->
+								<!-- Pages -->
+								<!-- <i class="fas fa-angle-left right"></i> -->
+								<!-- </p> -->
+								<!-- </a> -->
+								<!-- <ul class="nav nav-treeview"> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/invoice.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Invoice</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/profile.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Profile</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/e_commerce.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>E-commerce</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/projects.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Projects</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/project_add.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Project Add</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/project_edit.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Project Edit</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/project_detail.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Project Detail</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/contacts.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Contacts</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- </ul> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item has-treeview"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="nav-icon far fa-plus-square"></i> -->
+								<!-- <p> -->
+								<!-- Extras -->
+								<!-- <i class="fas fa-angle-left right"></i> -->
+								<!-- </p> -->
+								<!-- </a> -->
+								<!-- <ul class="nav nav-treeview"> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/login.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Login</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/register.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Register</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/forgot-password.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Forgot Password</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/recover-password.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Recover Password</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/lockscreen.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Lockscreen</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/legacy-user-menu.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Legacy User Menu</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/language-menu.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Language Menu</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/404.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Error 404</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/500.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Error 500</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/pace.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Pace</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="pages/examples/blank.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Blank Page</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="starter.html" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Starter Page</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- </ul> -->
+								<!-- </li> -->
+								<!-- <li class="nav-header">MISCELLANEOUS</li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="https://adminlte.io/docs/3.0" class="nav-link"> -->
+								<!-- <i class="nav-icon fas fa-file"></i> -->
+								<!-- <p>Documentation</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-header">MULTI LEVEL EXAMPLE</li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="fas fa-circle nav-icon"></i> -->
+								<!-- <p>Level 1</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item has-treeview"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="nav-icon fas fa-circle"></i> -->
+								<!-- <p> -->
+								<!-- Level 1 -->
+								<!-- <i class="right fas fa-angle-left"></i> -->
+								<!-- </p> -->
+								<!-- </a> -->
+								<!-- <ul class="nav nav-treeview"> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Level 2</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item has-treeview"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p> -->
+								<!-- Level 2 -->
+								<!-- <i class="right fas fa-angle-left"></i> -->
+								<!-- </p> -->
+								<!-- </a> -->
+								<!-- <ul class="nav nav-treeview"> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="far fa-dot-circle nav-icon"></i> -->
+								<!-- <p>Level 3</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="far fa-dot-circle nav-icon"></i> -->
+								<!-- <p>Level 3</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="far fa-dot-circle nav-icon"></i> -->
+								<!-- <p>Level 3</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- </ul> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="far fa-circle nav-icon"></i> -->
+								<!-- <p>Level 2</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- </ul> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="fas fa-circle nav-icon"></i> -->
+								<!-- <p>Level 1</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-header">LABELS</li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="nav-icon far fa-circle text-danger"></i> -->
+								<!-- <p class="text">Important</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="nav-icon far fa-circle text-warning"></i> -->
+								<!-- <p>Warning</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+								<!-- <li class="nav-item"> -->
+								<!-- <a href="#" class="nav-link"> -->
+								<!-- <i class="nav-icon far fa-circle text-info"></i> -->
+								<!-- <p>Informational</p> -->
+								<!-- </a> -->
+								<!-- </li> -->
+							</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
 			</div>
@@ -1089,31 +1169,33 @@
 				<div class="container-fluid">
 					<!-- Small boxes (Stat box) -->
 					<div class="row">
+
 						<div class="col-lg-2 col-sm-6 col-6">
 							<!-- small box -->
 							<div class="small-box border border-info shadow bg-gradient-white">
 								<div class="inner">
-									<h3 id="total"></h3>
+									<h3 id="totalCases"></h3>
+									<img class="img float-right" src="dist/img/totalcase.svg" width="42px" height="42px">
 
 									<p>Total Cases</p>
+
 								</div>
-								<div class="icon">
-									<i class="ion ion-bag text-info"></i>
-								</div>
+
+
 							</div>
 						</div>
-						<!-- ./col -->
+
+
 						<div class="col-lg-2 col-sm-6 col-6">
 							<!-- small box -->
 							<div class="small-box border border-success shadow bg-gradient-white">
 								<div class="inner">
 									<h3 id="cic"></h3>
+									<img class="img float-right" src="dist/img/india.svg" width="42px" height="42px">
 
 									<p>Indian Cases</p>
 								</div>
-								<div class="icon">
-									<i class="ion ion-person-add text-success"></i>
-								</div>
+
 							</div>
 						</div>
 						<!-- ./col -->
@@ -1122,26 +1204,43 @@
 							<div class="small-box border border-warning shadow bg-gradient-white">
 								<div class="inner">
 									<h3 id="cfc"></h3>
+									<img class="img float-right" src="dist/img/globe.svg" width="42px" height="42px">
 
-									<p>Foriegn Cases</p>
+									<p>Foreign Cases</p>
 								</div>
-								<div class="icon">
-									<i class="ion ion-person-add text-warning"></i>
-								</div>
+								<!-- <div class="icon"> -->
+								<!-- <i class="ion ion-person-add text-warning"></i> -->
+								<!-- </div> -->
 							</div>
 						</div>
 						<!-- ./col -->
+
+						<div class="col-lg-2 col-sm-6 col-6">
+							<!-- small box -->
+							<div class="small-box border border-info shadow bg-gradient-white">
+								<div class="inner">
+									<h3 id="totalActive"></h3>
+									<img class="img float-right" src="dist/img/activecase.svg" width="42px" height="42px">
+
+									<p>Active Cases</p>
+								</div>
+
+							</div>
+						</div>
+						<!-- ./col -->
+
 						<div class="col-lg-2 col-sm-6 col-6">
 							<!-- small box -->
 							<div class="small-box border border-danger shadow bg-gradient-white">
 								<div class="inner">
 									<h3 id="deaths"></h3>
+									<img class="img float-right" src="dist/img/nuclear.svg" width="42px" height="42px">
 
-									<p>Total Death</p>
+									<p>Total Deaths</p>
 								</div>
-								<div class="icon">
-									<i class="ion ion-pie-graph text-danger"></i>
-								</div>
+								<!-- <div class="icon"> -->
+								<!-- <i class="ion ion-pie-graph text-danger"></i> -->
+								<!-- </div> -->
 							</div>
 						</div>
 						<div class="col-lg-2 col-sm-6 col-6">
@@ -1149,30 +1248,17 @@
 							<div class="small-box border border-secondary shadow bg-gradient-white">
 								<div class="inner">
 									<h3 id="discharged"></h3>
+									<img class="img float-right" src="dist/img/cured.svg" width="42px" height="42px">
 
-									<p>Total Cured</p>
+									<p>Cured/Migrated</p>
 								</div>
-								<div class="icon">
-									<i class="ion ion-stats-bars text-secondary"></i>
-								</div>
+								<!-- <div class="icon"> -->
+								<!-- <i class="ion ion-stats-bars text-secondary"></i> -->
+								<!-- </div> -->
 							</div>
 
 						</div>
-						<div class="col-lg-2 col-sm-6 col-6">
-							<!-- small box -->
-							<div class="small-box border border-primary shadow bg-gradient-white">
-								<div class="inner">
-									<h3>510</h3>
 
-									<p>In Hospital</p>
-								</div>
-								<div class="icon">
-									<i class="ion ion-medkit text-primary"></i>
-								</div>
-							</div>
-
-						</div>
-						<!-- ./col -->
 					</div>
 					<!-- /.row -->
 					<!-- Main row -->
@@ -1244,7 +1330,7 @@
 											<div class="panel panel-default p-2">
 												<div class="panel-heading">
 													<h5 class="panel-title">
-														<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px"> What is 2019 Noval Coronavirus ?</a>
+														<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px"> What is 2019 Novel Coronavirus ?</a>
 													</h5>
 												</div>
 												<div id="collapseOne" class="panel-collapse collapse in">
@@ -1271,7 +1357,7 @@
 												<div class="panel-heading">
 													<h5 class="panel-title">
 														<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px"> What are the initial symptoms of
-															Noval Coronavirus ?</a>
+															Novel Coronavirus ?</a>
 													</h5>
 												</div>
 												<div id="collapseEleven" class="panel-collapse collapse">
@@ -1297,7 +1383,7 @@
 											<div class="panel panel-default p-2">
 												<div class="panel-heading">
 													<h5 class="panel-title">
-														<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px"> what is GoI doing about 2019-nCoV
+														<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><img class="img " src="dist/img/right-arrow.svg" width="18x" height="18px"> What is GoI doing about 2019-nCoV
 															?</a>
 													</h5>
 												</div>
@@ -1453,7 +1539,7 @@
 
 											<ul class="list overflow-auto" id="newsscroll" style="max-height:425px;">
 												<li data-id="1">
-													<a href="#" class="link place">Andhra Pradesh</a>
+													<a href="#!" class="link place">Andhra Pradesh</a>
 													<br>
 
 													<a class="phoneNo timestamp fas fa-mobile-alt" data-timestamp="1234" style="color:black"> 0866-2410978</a>
@@ -1485,7 +1571,7 @@
 								<div class="card-header border-0 mb-0">
 									<h3 class="card-title">
 										<i class="fas fa-map-marker-alt mr-1" style="color:red;"></i>
-										State Wise Cases Projection
+										State Wise Case Information
 									</h3>
 
 									<!-- card tools -->
@@ -1531,7 +1617,7 @@
 								<div class="card-header border-0">
 									<h3 class="card-title">
 										<i class="fas fa-chart-line mr-1" style="color:red;"></i>
-										Increase in 2019-nCoV Cases
+										Trend of 2019-nCoV Cases
 									</h3>
 
 									<div class="card-tools">
@@ -1647,275 +1733,8 @@
 	<!-- list.min.js-->
 	<script src="plugins/list.js/1.5.0/dist/list.min.js"></script>
 
-
+	<script src="custom/covid.js"></script>
 	<script async defer SameSite=None src="https://maps.google.co.in/maps/api/js?key=AIzaSyB9o2-H1VP2p3JwxC8f-yr_Le7UpuwovPE&callback=initMap"></script>
-
-	<script>
-		//Map code start here
-		var apiPrashantCall = null;
-		var markers = null;
-		var infoWindowContent = null;
-		var cordinatList = {
-			indianState: {
-				'Delhi': {
-					lat: 28.6139,
-					long: 77.2090
-				},
-				'Andhra Pradesh': {
-					lat: 15.9129,
-					long: 79.7400
-				},
-				'Bihar': {
-					lat: 25.0961,
-					long: 85.3131
-				},
-				'Chhattisgarh': {
-					lat: 21.2787,
-					long: 81.8661
-				},
-				'Gujarat': {
-					lat: 22.2587,
-					long: 71.1924
-				},
-				'Haryana': {
-					lat: 29.0588,
-					long: 76.0856
-				},
-				'Himachal Pradesh': {
-					lat: 31.1048,
-					long: 77.1734
-				},
-				'Karnataka': {
-					lat: 15.3173,
-					long: 75.7139
-				},
-				'Kerala': {
-					lat: 10.8505,
-					long: 76.2711
-				},
-				'Madhya Pradesh': {
-					lat: 22.9734,
-					long: 78.6569
-				},
-				'Maharashtra': {
-					lat: 19.7515,
-					long: 75.7139
-				},
-				'Odisha': {
-					lat: 20.9517,
-					long: 85.0985
-				},
-				'Puducherry': {
-					lat: 11.9416,
-					long: 79.8083
-				},
-				'Punjab': {
-					lat: 31.1471,
-					long: 75.3412
-				},
-				'Rajasthan': {
-					lat: 27.0238,
-					long: 74.2179
-				},
-				'Tamil Nadu': {
-					lat: 11.1271,
-					long: 78.6569
-				},
-				'Telangana': {
-					lat: 18.1124,
-					long: 79.0193
-				},
-				'Chandigarh': {
-					lat: 30.7333,
-					long: 76.7794
-				},
-				'Jammu and Kashmir': {
-					lat: 33.7782,
-					long: 76.5762
-				},
-				'Ladakh': {
-					lat: 34.152588,
-					long: 77.577049
-				},
-				'Uttar Pradesh': {
-					lat: 26.8467,
-					long: 80.9462
-				},
-				'Uttarakhand': {
-					lat: 30.0668,
-					long: 79.0193
-				},
-				'West Bengal': {
-					lat: 22.9868,
-					long: 87.8550
-				},
-				'Goa': {
-					lat: 15.2993,
-					long: 74.1240
-				},
-				'Jharkhand': {
-					lat: 23.6102,
-					long: 85.2799
-				},
-				'Manipur': {
-					lat: 24.6637,
-					long: 93.9063
-				},
-				'Mizoram': {
-					lat: 23.1645,
-					long: 92.9376
-				},
-				'Assam': {
-					lat: 26.2006,
-					long: 92.9376
-				},
-				'Nagaland': {
-					lat: 26.1584,
-					long: 94.5624
-				},
-				'Tripura': {
-					lat: 23.9408,
-					long: 91.9882
-				},
-				'Meghalaya': {
-					lat: 25.4670,
-					long: 91.3662
-				},
-				'Sikkim': {
-					lat: 27.5330,
-					long: 88.5122
-				},
-				'Arunachal Pradesh': {
-					lat: 28.2180,
-					long: 94.7278
-				}
-			}
-		};
-
-
-
-		var myurl = 'https://api.rootnet.in/covid19-in/stats/latest';
-
-		apiPrashantCall = $.ajax({
-			type: "GET",
-			url: myurl,
-			dataType: "json",
-			success: function(result) {
-				//console.log(result.data.summary);
-				$('#total').html(JSON.stringify(result.data.summary.total));
-				$('#cic').html(JSON.stringify(result.data.summary.confirmedCasesIndian));
-				$('#cfc').html(JSON.stringify(result.data.summary.confirmedCasesForeign));
-				$('#discharged').html(JSON.stringify(result.data.summary.discharged));
-				$('#deaths').html(JSON.stringify(result.data.summary.deaths));
-				$('#clu').html(JSON.stringify(result.data.summary.confirmedButLocationUnidentified));
-
-				var regional = result.data.regional;
-
-				var mapMarkerCoord = [];
-				var mapMarkerHtml = [];
-
-				for (key in regional) {
-					var apiInSateDtl = regional[key]
-					var apiInSateName = apiInSateDtl.loc;
-					var inConfCases = apiInSateDtl.confirmedCasesIndian;
-					var frnConfCases = apiInSateDtl.confirmedCasesForeign;
-					var dischargedCont = apiInSateDtl.discharged;
-					var deathCont = apiInSateDtl.deaths;
-
-					var inStateDtlHardCode = cordinatList.indianState;
-					for (inStateName in inStateDtlHardCode) {
-						if (inStateName == apiInSateName) {
-							var inStateLat = inStateDtlHardCode[inStateName].lat;
-							var inStateLong = inStateDtlHardCode[inStateName].long;
-
-							var mapMarkerCoordState = [inStateName, inStateLat, inStateLong];
-							mapMarkerCoord.push(mapMarkerCoordState);
-
-							var mapMarkerHtmlState = [
-								'<div class="info_content">' +
-								'<h6>' + inStateName + '</h6>' +
-								'<p>Total Confirmed cases (Indian National)-' + inConfCases +
-								'<br>Total Confirmed cases ( Foreign National )' + frnConfCases +
-								'<br>Cured/Discharged/Migrated-' + dischargedCont +
-								'<br>Death-' + deathCont +
-								'</p>' +
-								'</div>'
-							];
-
-							mapMarkerHtml.push(mapMarkerHtmlState);
-						}
-
-					}
-				}
-
-
-				mapMarkerHtml.length = mapMarkerCoord.length;
-
-				markers = mapMarkerCoord;
-				infoWindowContent = mapMarkerHtml;
-				//console.log(JSON.stringify(mapMarkerCoord));
-				// console.log(JSON.stringify(mapMarkerHtml));
-			},
-			error: function(results) {
-				alert("There is an error. " + results.stringfy);
-
-			},
-		});
-
-		function initMap() {
-			var map;
-			var bounds = new google.maps.LatLngBounds();
-			var mapOptions = {
-				mapTypeId: 'roadmap'
-			};
-
-			// Display a map on the web page
-			map = new google.maps.Map(document.getElementById("map"), mapOptions);
-			map.setTilt(50);
-
-			// Add multiple markers to map
-			var infoWindow = new google.maps.InfoWindow(),
-				marker, i;
-
-			// Place each marker on the map
-			if (markers) {
-				for (i = 0; i < markers.length; i++) {
-					var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-					bounds.extend(position);
-					marker = new google.maps.Marker({
-						position: position,
-						map: map,
-						title: markers[i][0]
-					});
-
-					// Add info window to marker
-					google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
-						return function() {
-							infoWindow.setContent(infoWindowContent[i][0]);
-							infoWindow.open(map, marker);
-						}
-					})(marker, i));
-
-					// Center the map to fit all markers on the screen
-					map.fitBounds(bounds);
-				}
-			}
-			// Set zoom level
-			var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-				this.setZoom(4.6);
-				google.maps.event.removeListener(boundsListener);
-			});
-
-		}
-
-		// Load initialize function
-		$.when(apiPrashantCall).then(function(data, textStatus, jqXHR) {
-			//alert( jqXHR.status ); // Alerts 200
-			google.maps.event.addDomListener(window, 'load', initMap);
-
-		});
-	</script>
-
 
 
 
@@ -1958,8 +1777,9 @@
 			/* alert(age); */
 			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Your Gender" + '</p></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_gender(0)">Male &#128104;</button></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_gender(1)">Female &#128103;</button></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_gender(0)">Male <i class="fa fa-mars"></button></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_gender(1)">Female <i class="fa fa-venus"></button></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_gender(0.5)">Other <i class="fa fa-transgender"></i></button></li>').appendTo($('.messages ul'));
 
 			$(".messages").animate({
 				scrollTop: $(document).height()
@@ -1993,14 +1813,26 @@
 				}, "fast");
 			} else {
 				score += 0.5;
-				$('<li class="replies"><p>' + "Have you lived in any of the following countaries?" + '</p></li>').appendTo($('.messages ul'));
-				$('<li class="sent"><label><input type="checkbox" id="cb_1" value="1" onclick="update_abroad(1)">China</label></li>').appendTo($('.messages ul'));
-				$('<li class="sent"><label><input type="checkbox" id="cb_2" value="1" onclick="update_abroad(1)">Italy</label></li>').appendTo($('.messages ul'));
-				$('<li class="sent"><label><input type="checkbox" id="cb_3" value="1" onclick="update_abroad(1)">Iran</label></li>').appendTo($('.messages ul'));
-				$('<li class="sent"><label><input type="checkbox" id="cb_4" value="1" onclick="update_abroad(1)">USA</label></li>').appendTo($('.messages ul'));
-				$('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" onclick="update_abroad(1)">France</label></li>').appendTo($('.messages ul'));
-				$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0">Other</label></li>').appendTo($('.messages ul'));
-				$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_abroad(0)">Done</button></li>').appendTo($('.messages ul'));
+				$('<li class="replies"><p>' + "Have you lived in any of the following countaries during last one month?" + '</p></li>').appendTo($('.messages ul'));
+
+				$('<li class="sent"><label class="container1">China<input type="checkbox" id="cb_1" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label class="container1">Italy<input type="checkbox" id="cb_2" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label class="container1">Iran<input type="checkbox" id="cb_3" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label class="container1">USA<input type="checkbox" id="cb_4" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label class="container1">France<input type="checkbox" id="cb_5" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label class="container1">South Korea<input type="checkbox" id="cb_6" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label class="container1">Other<input type="checkbox" id="cb_7" value="0" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+
+				/*$('<li class="sent"><label><input type="checkbox" id="cb_1" value="1" name="countaries[]">China</label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label><input type="checkbox" id="cb_2" value="1" name="countaries[]">Italy</label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label><input type="checkbox" id="cb_3" value="1" name="countaries[]">Iran</label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label><input type="checkbox" id="cb_4" value="1" name="countaries[]">USA</label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" name="countaries[]">France</label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0" name="countaries[]">Other</label></li>').appendTo($('.messages ul'));*/
+				$('<li class="sent"><button type="button" class="btn btn-primary" id="countaries_btn" onclick="update_abroad(0)">Done</button></li>').appendTo($('.messages ul'));
+
+				//var atLeastOneIsChecked = $('input[name="countaries[]"]:checked').length > 0;
+				//alert (atLeastOneIsChecked);
 
 				$(".messages").animate({
 					scrollTop: $(document).height()
@@ -2029,14 +1861,23 @@
 			score += parseInt(ch);
 			$('.messages ul').empty();
 			/* alert(job); */
-			$('<li class="replies"><p>' + "Have you lived in any of the following countaries?" + '</p></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb_1" value="1" >China</label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb_2" value="1" >Italy</label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb_3" value="1" >Iran</label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb_4" value="1" >USA</label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" >France</label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0">Other</label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_abroad(0)">Done</button></li>').appendTo($('.messages ul'));
+			$('<li class="replies"><p>' + "Have you lived in any of the following countaries during last one month?" + '</p></li>').appendTo($('.messages ul'));
+
+			$('<li class="sent"><label class="container1">China<input type="checkbox" id="cb_1" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Italy<input type="checkbox" id="cb_2" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Iran<input type="checkbox" id="cb_3" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">USA<input type="checkbox" id="cb_4" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">France<input type="checkbox" id="cb_5" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">South Korea<input type="checkbox" id="cb_6" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Other<input type="checkbox" id="cb_7" value="0" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+
+			/*$('<li class="sent"><label><input type="checkbox" id="cb_1" value="1" name="countaries">China</label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label><input type="checkbox" id="cb_2" value="1" name="countaries">Italy</label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label><input type="checkbox" id="cb_3" value="1" name="countaries">Iran</label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label><input type="checkbox" id="cb_4" value="1" name="countaries">USA</label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" name="countaries">France</label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0" name="countaries">Other</label></li>').appendTo($('.messages ul'));*/
+			$('<li class="sent"><button type="button" class="btn btn-primary" id="countaries_btn" onclick="update_abroad(0)">Done</button></li>').appendTo($('.messages ul'));
 
 			$(".messages").animate({
 				scrollTop: $(document).height()
@@ -2059,6 +1900,8 @@
 			if (document.getElementById("cb_5").checked)
 				score += 5;
 			if (document.getElementById("cb_6").checked)
+				score += 5;
+			if (document.getElementById("cb_7").checked)
 				score += 0.5;
 			/* alert(abroad); */
 			$(".messages").animate({
@@ -2069,7 +1912,7 @@
 
 		function update_contact() {
 			$('.messages ul').empty();
-			$('<li class="replies"><p>' + "Have you been in close contact with someone who has corona?" + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="replies"><p>' + "Have you been in close contact with someone who has corona virus?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_close_contact(5)">Yes</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_close_contact(1)">No</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn-primary" onclick="update_close_contact(1)">Dont Know</button></li>').appendTo($('.messages ul'));
@@ -2092,11 +1935,19 @@
 		function update_symp1() {
 			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Do you have any of the following symptoms?" + '</p></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb2_1" value="1" >Cough</label></li>').appendTo($('.messages ul'));
+
+			$('<li class="sent"><label class="container1">Cough<input type="checkbox" id="cb2_1" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Fever<input type="checkbox" id="cb2_2" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Difficulty Breathing<input type="checkbox" id="cb2_3" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Pain in throat<input type="checkbox" id="cb2_4" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Tiredness<input type="checkbox" id="cb2_5" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+
+
+			/*$('<li class="sent"><label><input type="checkbox" id="cb2_1" value="1" >Cough</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb2_2" value="1" >Fever</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb2_3" value="1" >Difficulty Breathing</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb2_4" value="1" >Pain in throat</label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb2_5" value="1" >Tiredness</label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label><input type="checkbox" id="cb2_5" value="1" >Tiredness</label></li>').appendTo($('.messages ul'));*/
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chlsympt1()">Done</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({
 				scrollTop: $(document).height()
@@ -2179,10 +2030,16 @@
 		function add_sympt() {
 			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Do you have any of the following symptoms?" + '</p></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb3_1" value="1" >Body ache</label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb3_2" value="1" >Nausera</label></li>').appendTo($('.messages ul'));
+
+			$('<li class="sent"><label class="container1">Body ache<input type="checkbox" id="cb3_1" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Nausea<input type="checkbox" id="cb3_2" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Headache<input type="checkbox" id="cb3_3" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Diarrea<input type="checkbox" id="cb3_4" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+
+			/*$('<li class="sent"><label><input type="checkbox" id="cb3_1" value="1" >Body ache</label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label><input type="checkbox" id="cb3_2" value="1" >Nausea</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb3_3" value="1" >Headache</label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb3_4" value="1" >Diarrea</label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label><input type="checkbox" id="cb3_4" value="1" >Diarrea</label></li>').appendTo($('.messages ul'));*/
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chkaddsympt()">Done</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({
 				scrollTop: $(document).height()
@@ -2208,11 +2065,18 @@
 		function previous_conditions() {
 			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Have you been diagnosed with the following?" + '</p></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb4_1" value="1" >Heart disease</label></li>').appendTo($('.messages ul'));
+
+			$('<li class="sent"><label class="container1">Heart disease<input type="checkbox" id="cb4_1" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Diabetes<input type="checkbox" id="cb4_2" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Lung diseases<input type="checkbox" id="cb4_3" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Hypertension<input type="checkbox" id="cb4_4" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Cancer<input type="checkbox" id="cb4_5" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+
+			/*$('<li class="sent"><label><input type="checkbox" id="cb4_1" value="1" >Heart disease</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb4_2" value="1" >Diabetes</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb4_3" value="1" >Lung diseases</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb4_4" value="1" >Hypertension</label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb4_5" value="1" >Cancer</label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label><input type="checkbox" id="cb4_5" value="1" >Cancer</label></li>').appendTo($('.messages ul'));*/
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="precond()">Done</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({
 				scrollTop: $(document).height()
@@ -2244,7 +2108,7 @@
 			if (score >= 0 && score <= 4)
 				$('<li class="sent"><div class="p-3 mb-2 bg-success text-white">You do not show signs of concern. Keep monitoring. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
 			if (score >= 4.1 && score <= 7.5)
-				$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">You responses shows some signs of concern, please contact your doctor. Need not to panic. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">Your responses show enough signs of concern, please contact your doctor. Need not to panic. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
 			if (score >= 7.6)
 				$('<li class="sent"><div class="p-3 mb-2 bg-danger text-white">Based on your answers your condition seems alarming. Contact your doctor immediately. For any queries contact +91-11-23978046.</div></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="start_over();">Start Over</button></li>').appendTo($('.messages ul'));
@@ -2275,7 +2139,7 @@
 
 
 
-	//	$(document).ready(function() {
+		$(document).ready(function() {
 			var options = {
 				valueNames: [
 					'place',
@@ -2297,11 +2161,11 @@
 			var hackerList = new List('hacker-list', options);
 
 			hackerList.add([{
-					place: 'Andaman and Nicobar Islands',
+					place: 'Andaman & Nicobar Islands',
 					phoneNo: ' 03192-232102',
 					id: 2,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 
 				{
@@ -2309,119 +2173,119 @@
 					phoneNo: ' 9436055743',
 					id: 3,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Assam',
 					phoneNo: ' 6913347770',
 					id: 4,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Bihar',
 					phoneNo: ' 9436055743',
 					id: 5,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Chandigarh ',
 					phoneNo: ' 9779558282',
 					id: 6,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Chhattisgarh',
 					phoneNo: ' 104',
 					id: 7,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
-					place: 'Dadra and Nagar Haveli and Daman and Diu',
+					place: 'Dadra & Nagar Haveli/Daman & Diu',
 					phoneNo: ' 104',
 					id: 8,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Delhi',
 					phoneNo: ' 011-22307145',
 					id: 9,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Goa',
 					phoneNo: ' 104',
 					id: 10,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Gujarat',
 					phoneNo: ' 104',
 					id: 11,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Haryana',
 					phoneNo: ' 8558893911',
 					id: 12,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Himachal Pradesh',
 					phoneNo: ' 104',
 					id: 13,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
-					place: 'Jammu amd Kashmir',
+					place: 'Jammu & Kashmir',
 					phoneNo: ' 01912520982, 0194-2440283',
 					id: 14,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Jharkhand',
 					phoneNo: ' 104',
 					id: 15,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Karnataka',
 					phoneNo: ' 104',
 					id: 16,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Kerala',
 					phoneNo: ' 0471-2552056',
 					id: 17,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Ladakh',
 					phoneNo: ' 01982256462',
 					id: 18,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Lakshadweep',
 					phoneNo: ' 104',
 					id: 19,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Madhya Pradesh',
@@ -2435,117 +2299,117 @@
 					phoneNo: ' 020-26127394',
 					id: 21,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Manipur',
 					phoneNo: ' 3852411668',
 					id: 22,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Meghalaya',
 					phoneNo: ' 108',
 					id: 23,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Mizoram',
 					phoneNo: ' 102',
 					id: 24,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Nagaland',
 					phoneNo: ' 7005539653',
 					id: 25,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Odisha',
 					phoneNo: ' 9439994859',
 					id: 26,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Puducherry',
 					phoneNo: ' 104',
 					id: 27,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Punjab',
 					phoneNo: ' 104',
 					id: 28,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Rajasthan',
 					phoneNo: ' 0141-2225624',
 					id: 29,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Sikkim',
 					phoneNo: ' 104',
 					id: 30,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Tamil Nadu',
 					phoneNo: ' 044-29510500',
 					id: 31,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Telangana',
 					phoneNo: ' 104',
 					id: 32,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Tripura',
 					phoneNo: ' 0381-2315879',
 					id: 33,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Uttarakhand',
 					phoneNo: ' 104',
 					id: 34,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'Uttar Pradesh',
 					phoneNo: ' 18001805145',
 					id: 35,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				},
 				{
 					place: 'West Bengal',
 					phoneNo: ' 800313444222, 03323412600',
 					id: 36,
 					timestamp: '1337',
-					link: '#'
+					link: '#!'
 				}
 
 			]);
 
-	//	});
+		});
 
 
 
@@ -2585,60 +2449,6 @@
 				},
 			});
 		}
-
-
-		var ctx = document.getElementById("myChart");
-
-		var myChart = new Chart(ctx, {
-			type: 'doughnut',
-			data: {
-				labels: ['Total Cases', 'Total Cured', 'Total Deaths'],
-				datasets: [{
-					label: 'Cases 2019-nCoV',
-					data: [562, 41, 9],
-					backgroundColor: [
-						'rgba(255, 99, 132, 2)',
-						'rgba(144,238,144, 2)',
-						'rgba(105,105,105, 2)'
-
-					],
-					borderColor: [
-						'rgba(255,99,132,5)',
-						'rgba(144,238,144, 5)',
-						'rgba(105,105,105, 5)'
-
-					],
-					borderWidth: 2
-				}]
-			},
-			options: {
-				//cutoutPercentage: 40,
-				responsive: true,
-
-			}
-		});
-
-		var ctx = document.getElementById("lineChart").getContext("2d");
-		var lineChart = new Chart(ctx, {
-			type: 'line',
-			data: {
-				labels: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
-
-				datasets: [{
-					label: "Day Wise Increase in 2019-nCoV Cases",
-					data: [47, 60, 73, 82, 84, 110, 114, 137, 151, 173, 223, 283, 360, 467, 519,562],
-					backgroundColor: ['rgba(255, 99, 132,0.5)'],
-					borderColor: ['rgba(255,99,132,5)'],
-					borderWidth: 2
-				}]
-			},
-			options: {
-				//cutoutPercentage: 40,
-				responsive: true,
-				xAxisID: "dd"
-
-			}
-		});
 	</script>
 
 
