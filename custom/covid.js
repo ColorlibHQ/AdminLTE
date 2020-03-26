@@ -312,6 +312,13 @@ function initMap() {
           infoWindow.open(map, marker);
         }
       })(marker, i));
+	  
+	   google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infoWindow.setContent(infoWindowContent[i][0]);
+          infoWindow.open(map, marker);
+        }
+      })(marker, i));
 
       // Center the map to fit all markers on the screen
       map.fitBounds(bounds);
