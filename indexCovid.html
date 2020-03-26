@@ -430,6 +430,75 @@
 			background: #f1f7ff;
 		}
 	</style>
+	<style>
+		/* The container */
+	.container1 {
+	  display: block;
+	  position: relative;
+	  padding-left: 30px;
+	  margin-bottom: 12px;
+	  cursor: pointer;
+	  font-size: 15px;
+	  -webkit-user-select: none;
+	  -moz-user-select: none;
+	  -ms-user-select: none;
+	  user-select: none;
+	}
+
+	/* Hide the browser's default checkbox */
+	.container1 input {
+	  position: absolute;
+	  opacity: 0;
+	  cursor: pointer;
+	  height: 0;
+	  width: 0;
+	}
+
+	/* Create a custom checkbox */
+	.checkmark {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  height: 20px;
+	  width: 20px;
+	  background-color: #eee;
+	}
+
+	/* On mouse-over, add a grey background color */
+	.container1:hover input ~ .checkmark {
+	  background-color: #ccc;
+	}
+
+	/* When the checkbox is checked, add a blue background */
+	.container1 input:checked ~ .checkmark {
+	  background-color: #2196F3;
+	}
+
+	/* Create the checkmark/indicator (hidden when not checked) */
+	.checkmark:after {
+	  content: "";
+	  position: absolute;
+	  display: none;
+	}
+
+	/* Show the checkmark when checked */
+	.container1 input:checked ~ .checkmark:after {
+	  display: block;
+	}
+
+	/* Style the checkmark/indicator */
+	.container1 .checkmark:after {
+	  left: 9px;
+	  top: 5px;
+	  width: 5px;
+	  height: 10px;
+	  border: solid white;
+	  border-width: 0 3px 3px 0;
+	  -webkit-transform: rotate(45deg);
+	  -ms-transform: rotate(45deg);
+	  transform: rotate(45deg);
+	}
+	</style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed" id="pagescroll">
@@ -1708,8 +1777,9 @@
 			/* alert(age); */
 			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Your Gender" + '</p></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_gender(0)">Male &#128104;</button></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_gender(1)">Female &#128103;</button></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_gender(0)">Male <i class="fa fa-mars"></button></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_gender(1)">Female <i class="fa fa-venus"></button></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_gender(0.5)">Other <i class="fa fa-transgender"></i></button></li>').appendTo($('.messages ul'));
 
 			$(".messages").animate({
 				scrollTop: $(document).height()
@@ -1743,21 +1813,33 @@
 				}, "fast");
 			} else {
 				score += 0.5;
-				$('<li class="replies"><p>' + "Have you lived in any of the following countaries?" + '</p></li>').appendTo($('.messages ul'));
-				$('<li class="sent"><label><input type="checkbox" id="cb_1" value="1" name="countaries">China</label></li>').appendTo($('.messages ul'));
-				$('<li class="sent"><label><input type="checkbox" id="cb_2" value="1" name="countaries">Italy</label></li>').appendTo($('.messages ul'));
-				$('<li class="sent"><label><input type="checkbox" id="cb_3" value="1" name="countaries">Iran</label></li>').appendTo($('.messages ul'));
-				$('<li class="sent"><label><input type="checkbox" id="cb_4" value="1" name="countaries">USA</label></li>').appendTo($('.messages ul'));
-				$('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" name="countaries">France</label></li>').appendTo($('.messages ul'));
-				$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0" name="countaries">Other</label></li>').appendTo($('.messages ul'));
+				$('<li class="replies"><p>' + "Have you lived in any of the following countaries during last one month?" + '</p></li>').appendTo($('.messages ul'));
+				
+				$('<li class="sent"><label class="container1">China<input type="checkbox" id="cb_1" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label class="container1">Italy<input type="checkbox" id="cb_2" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label class="container1">Iran<input type="checkbox" id="cb_3" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label class="container1">USA<input type="checkbox" id="cb_4" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label class="container1">France<input type="checkbox" id="cb_5" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label class="container1">South Korea<input type="checkbox" id="cb_6" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label class="container1">Other<input type="checkbox" id="cb_7" value="0" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+				
+				/*$('<li class="sent"><label><input type="checkbox" id="cb_1" value="1" name="countaries[]">China</label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label><input type="checkbox" id="cb_2" value="1" name="countaries[]">Italy</label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label><input type="checkbox" id="cb_3" value="1" name="countaries[]">Iran</label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label><input type="checkbox" id="cb_4" value="1" name="countaries[]">USA</label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" name="countaries[]">France</label></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0" name="countaries[]">Other</label></li>').appendTo($('.messages ul'));*/
 				$('<li class="sent"><button type="button" class="btn btn-primary" id="countaries_btn" onclick="update_abroad(0)">Done</button></li>').appendTo($('.messages ul'));
+				
+				//var atLeastOneIsChecked = $('input[name="countaries[]"]:checked').length > 0;
+				//alert (atLeastOneIsChecked);
 
 				$(".messages").animate({
 					scrollTop: $(document).height()
 				}, "fast");
 			}
 		};
-
+		
 		function update_travel(ch) {
 			travel = ch;
 			/* alert(travel); */
@@ -1779,13 +1861,22 @@
 			score += parseInt(ch);
 			$('.messages ul').empty();
 			/* alert(job); */
-			$('<li class="replies"><p>' + "Have you lived in any of the following countaries?" + '</p></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb_1" value="1" name="countaries">China</label></li>').appendTo($('.messages ul'));
+			$('<li class="replies"><p>' + "Have you lived in any of the following countaries during last one month?" + '</p></li>').appendTo($('.messages ul'));
+			
+			$('<li class="sent"><label class="container1">China<input type="checkbox" id="cb_1" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Italy<input type="checkbox" id="cb_2" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Iran<input type="checkbox" id="cb_3" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">USA<input type="checkbox" id="cb_4" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">France<input type="checkbox" id="cb_5" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">South Korea<input type="checkbox" id="cb_6" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Other<input type="checkbox" id="cb_7" value="0" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			
+			/*$('<li class="sent"><label><input type="checkbox" id="cb_1" value="1" name="countaries">China</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb_2" value="1" name="countaries">Italy</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb_3" value="1" name="countaries">Iran</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb_4" value="1" name="countaries">USA</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" name="countaries">France</label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0" name="countaries">Other</label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0" name="countaries">Other</label></li>').appendTo($('.messages ul'));*/
 			$('<li class="sent"><button type="button" class="btn btn-primary" id="countaries_btn" onclick="update_abroad(0)">Done</button></li>').appendTo($('.messages ul'));
 
 			$(".messages").animate({
@@ -1819,7 +1910,7 @@
 
 		function update_contact() {
 			$('.messages ul').empty();
-			$('<li class="replies"><p>' + "Have you been in close contact with someone who has corona?" + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="replies"><p>' + "Have you been in close contact with someone who has corona virus?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_close_contact(5)">Yes</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_close_contact(1)">No</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn-primary" onclick="update_close_contact(1)">Dont Know</button></li>').appendTo($('.messages ul'));
@@ -1842,11 +1933,19 @@
 		function update_symp1() {
 			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Do you have any of the following symptoms?" + '</p></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb2_1" value="1" >Cough</label></li>').appendTo($('.messages ul'));
+			
+			$('<li class="sent"><label class="container1">Cough<input type="checkbox" id="cb2_1" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Fever<input type="checkbox" id="cb2_2" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Difficulty Breathing<input type="checkbox" id="cb2_3" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Pain in throat<input type="checkbox" id="cb2_4" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Tiredness<input type="checkbox" id="cb2_5" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			
+			
+			/*$('<li class="sent"><label><input type="checkbox" id="cb2_1" value="1" >Cough</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb2_2" value="1" >Fever</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb2_3" value="1" >Difficulty Breathing</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb2_4" value="1" >Pain in throat</label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb2_5" value="1" >Tiredness</label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label><input type="checkbox" id="cb2_5" value="1" >Tiredness</label></li>').appendTo($('.messages ul'));*/
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chlsympt1()">Done</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({
 				scrollTop: $(document).height()
@@ -1929,10 +2028,16 @@
 		function add_sympt() {
 			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Do you have any of the following symptoms?" + '</p></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb3_1" value="1" >Body ache</label></li>').appendTo($('.messages ul'));
+			
+			$('<li class="sent"><label class="container1">Body ache<input type="checkbox" id="cb3_1" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Nausea<input type="checkbox" id="cb3_2" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Headache<input type="checkbox" id="cb3_3" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Diarrea<input type="checkbox" id="cb3_4" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			
+			/*$('<li class="sent"><label><input type="checkbox" id="cb3_1" value="1" >Body ache</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb3_2" value="1" >Nausea</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb3_3" value="1" >Headache</label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb3_4" value="1" >Diarrea</label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label><input type="checkbox" id="cb3_4" value="1" >Diarrea</label></li>').appendTo($('.messages ul'));*/
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="chkaddsympt()">Done</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({
 				scrollTop: $(document).height()
@@ -1958,11 +2063,18 @@
 		function previous_conditions() {
 			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Have you been diagnosed with the following?" + '</p></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb4_1" value="1" >Heart disease</label></li>').appendTo($('.messages ul'));
+			
+			$('<li class="sent"><label class="container1">Heart disease<input type="checkbox" id="cb4_1" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Diabetes<input type="checkbox" id="cb4_2" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Lung diseases<input type="checkbox" id="cb4_3" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Hypertension<input type="checkbox" id="cb4_4" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Cancer<input type="checkbox" id="cb4_5" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			
+			/*$('<li class="sent"><label><input type="checkbox" id="cb4_1" value="1" >Heart disease</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb4_2" value="1" >Diabetes</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb4_3" value="1" >Lung diseases</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb4_4" value="1" >Hypertension</label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label><input type="checkbox" id="cb4_5" value="1" >Cancer</label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label><input type="checkbox" id="cb4_5" value="1" >Cancer</label></li>').appendTo($('.messages ul'));*/
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="precond()">Done</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({
 				scrollTop: $(document).height()
