@@ -1,6 +1,6 @@
 //Map code start here
 var apiPrashantCall = null;
-var markers = null;
+var mapFinalMarkerCoords = null;
 var infoWindowContent = null;
 var cordinatList = {
   indianState: {
@@ -140,12 +140,104 @@ var cordinatList = {
 };
 
 function initMap() {
+  var indiaCenter = new google.maps.LatLng(20.5937, 78.9629);
+  var indiaBorderBounds={
+        north: 37.6,
+        south: 8.4,
+        west: 68.7,
+        east: 97.25,
+      };
   var map;
   var bounds = new google.maps.LatLngBounds();
   var mapOptions = {
     mapTypeId: 'roadmap',
-	streetViewControl: false,
-    mapTypeControl: false
+    zoom: 1,
+    position: markerPosition,
+    restriction: {
+            latLngBounds: indiaBorderBounds,
+            strictBounds: false,
+          },
+    streetViewControl: false,
+    mapTypeControl: false,
+    //draggable: false,
+    scrollwheel: false,
+    backgroundColor: '#FFF',
+    disableDefaultUI: true,
+    zoomControl: true,
+    scaleControl: false,
+    fullscreenControl: true,
+    //mapTypeId:google.maps.MapTypeId.ROADMAP
+    styles: [{
+        "featureType": "administrative.country",
+        "stylers": [{
+          "weight": 1
+        }]
+      },
+      {
+        "featureType": "administrative.locality",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      },
+      {
+        "featureType": "administrative.neighborhood",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      },
+      {
+        "featureType": "administrative.province",
+        "stylers": [{
+          "weight": 1.5
+        }]
+      },
+      {
+        "featureType": "poi",
+        "elementType": "labels.text",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      },
+      {
+        "featureType": "poi.business",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      },
+      {
+        "featureType": "road",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      },
+      {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      },
+      {
+        "featureType": "road",
+        "elementType": "labels.icon",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      },
+      {
+        "featureType": "transit",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      },
+      {
+        "featureType": "water",
+        "elementType": "labels.text",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }
+    ]
   };
 
   // Display a map on the web page
@@ -156,21 +248,21 @@ function initMap() {
   var infoWindow = new google.maps.InfoWindow(),
     marker, i;
 
-	var image={
-	url:"dist/img/marker.svg",
-	scaledSize: new google.maps.Size(35, 35)
-}
+  var markerImage = {
+    url: "dist/img/marker.svg",
+    scaledSize: new google.maps.Size(35, 35)
+  }
   // Place each marker on the map
-  if (markers) {
-    for (i = 0; i < markers.length; i++) {
-      var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-      bounds.extend(position);
+  if (mapFinalMarkerCoords) {
+    for (i = 0; i < mapFinalMarkerCoords.length; i++) {
+      var markerPosition = new google.maps.LatLng(mapFinalMarkerCoords[i][1], mapFinalMarkerCoords[i][2]);
+      bounds.extend(markerPosition);
       marker = new google.maps.Marker({
-        position: position,
+        position: markerPosition,
         map: map,
-		optimized: false,
-		icon:image,
-        title: markers[i][0]
+        optimized: false,
+        icon: markerImage,
+        title: mapFinalMarkerCoords[i][0]
 
       });
 
@@ -232,7 +324,7 @@ ajaxDailyStats = $.ajax({
 
 //set values in dashboard tiles
 function setDashboardStats(statsSummary) {
-  var totalActive= statsSummary.total-statsSummary.discharged - statsSummary.deaths;
+  var totalActive = statsSummary.total - statsSummary.discharged - statsSummary.deaths;
 
   $('#totalCases').html(JSON.stringify(statsSummary.total));
   $('#totalActive').html(totalActive);
@@ -269,10 +361,10 @@ function generateMapMarkers(regionalData) {
         var mapMarkerHtmlState = [
           '<div class="info_content">' +
           '<h6>' + inStateName + '</h6>' +
-          '<p><span class="badge badge-secondary">Total Indian cases </span><span class="badge badge-dark float-right ml-5">'+ inConfCases +'</span>'+
-          '<br><span class="badge badge-warning">Total Foreign cases </span><span class="badge badge-dark float-right ml-5">' + frnConfCases +'</span>'+
-          '<br><span class="badge badge-success">Total Cured </span><span class="badge badge-dark float-right ml-5">' + dischargedCont +'</span>'+
-          '<br><span class="badge badge-danger">Deaths </span><span class="badge badge-dark float-right ml-5">' + deathCont +'</span>'+
+          '<p><span class="badge badge-secondary">Total Indian cases </span><span class="badge badge-dark float-right ml-5">' + inConfCases + '</span>' +
+          '<br><span class="badge badge-warning">Total Foreign cases </span><span class="badge badge-dark float-right ml-5">' + frnConfCases + '</span>' +
+          '<br><span class="badge badge-success">Total Cured </span><span class="badge badge-dark float-right ml-5">' + dischargedCont + '</span>' +
+          '<br><span class="badge badge-danger">Deaths </span><span class="badge badge-dark float-right ml-5">' + deathCont + '</span>' +
           '</p>' +
           '</div>'
         ];
@@ -282,7 +374,7 @@ function generateMapMarkers(regionalData) {
   }
   mapMarkerHtml.length = mapMarkerCoord.length;
 
-  markers = mapMarkerCoord;
+  mapFinalMarkerCoords = mapMarkerCoord;
   infoWindowContent = mapMarkerHtml;
 
   // Load initialize gogle map function initMap
