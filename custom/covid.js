@@ -245,47 +245,47 @@ function initMap() {
   map.setTilt(50);
 
   // Add multiple markers to map
-  var infoWindow = new google.maps.InfoWindow(), userGeoMarker, marker, i;
+  var infoWindow = new google.maps.InfoWindow(), marker, i;
 
-  var userGeoMarkerImage = {
-    url: "dist/img/geolocationWithBase.svg",
-    scaledSize: new google.maps.Size(35, 35)
-  }
+ // var userGeoMarkerImage = {
+   // url: "dist/img/geolocationWithBase.svg",
+    //scaledSize: new google.maps.Size(35, 35)
+ // }
 
     // Try HTML5 user geolocation.
-   if (navigator.geolocation) {
-     navigator.geolocation.getCurrentPosition(function(position) {
-       var userGeoLocation = {
-         lat: position.coords.latitude,
-         lng: position.coords.longitude
-       };
+   // if (navigator.geolocation) {
+     // navigator.geolocation.getCurrentPosition(function(position) {
+       // var userGeoLocation = {
+         // lat: position.coords.latitude,
+         // lng: position.coords.longitude
+       // };
 
-       infoWindow.setPosition(userGeoLocation);
-       infoWindow.setContent('Your Location');
-       infoWindow.open(map);
-       //map.setCenter(pos);
+       // infoWindow.setPosition(userGeoLocation);
+       // infoWindow.setContent('Your Location');
+       // infoWindow.open(map);
+      // map.setCenter(pos);
 
-       userGeoMarker = new google.maps.Marker({
-         position: userGeoLocation,
-         map: map,
-         optimized: false,
-         icon: userGeoMarkerImage,
-         title: 'Your Location'
-       });
+       // userGeoMarker = new google.maps.Marker({
+         // position: userGeoLocation,
+         // map: map,
+         // optimized: false,
+         // icon: userGeoMarkerImage,
+         // title: 'Your Location'
+       // });
 
-       // Add info window to user geo location
-       google.maps.event.addListener(userGeoMarker, 'mouseover', (function() {
-           infoWindow.setContent('Your Location');
-           infoWindow.open(map);
-       }));
+       //Add info window to user geo location
+       // google.maps.event.addListener(userGeoMarker, 'mouseover', (function() {
+           // infoWindow.setContent('Your Location');
+           // infoWindow.open(map);
+       // }));
 
-     }, function() {
-       handleLocationError(true, infoWindow, map.getCenter());
-     });
-   } else {
-     // Browser doesn't support Geolocation
-     handleLocationError(false, infoWindow, map.getCenter());
-   }
+     // }, function() {
+       // handleLocationError(true, infoWindow, map.getCenter());
+     // });
+   // } else {
+     //Browser doesn't support Geolocation
+     // handleLocationError(false, infoWindow, map.getCenter());
+   // }
 
   var markerImage = {
     url: "dist/img/marker.svg",
