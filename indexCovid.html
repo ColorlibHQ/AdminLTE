@@ -1770,8 +1770,8 @@
 		var score = 0;
 
 		function start() {
-			$('<li class="replies"><p>' + "How old are you" + '</p></li>').appendTo($('.messages ul'));
-			$('<li class=""><p><input class="form-control-sm" type="number" id="age" name="age" value="0" min="1" max="120" required placeholder="Age"style=" background-color:#dae0e5 !important;color:darkblue;"></p></li>').appendTo($('.messages ul'));
+			$('<li class="replies"><p>' + "Your age?" + '</p></li>').appendTo($('.messages ul'));
+			$('<li class=""><input class="form-control-sm" type="number" id="age" name="age" value="0" min="1" max="120" required placeholder="Age"style=" background-color:#dae0e5 !important;color:darkblue;"></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_age()">Done</button></li>').appendTo($('.messages ul'));
 			$(".messages").animate({
 				scrollTop: $(document).height()
@@ -1791,7 +1791,7 @@
 				score += 1;
 			/* alert(age); */
 			$('.messages ul').empty();
-			$('<li class="replies"><p>' + "Your Gender" + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="replies"><p>' + "Your Gender?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-success" onclick="update_gender(0)">Male <i class="fa fa-mars"></button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-danger" onclick="update_gender(1)">Female <i class="fa fa-venus"></button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_gender(0.5)">Other <i class="fa fa-transgender"></i></button></li>').appendTo($('.messages ul'));
@@ -1819,7 +1819,7 @@
 			$('.messages ul').empty();
 			/* alert(working); */
 			if (working) {
-				$('<li class="replies"><p>' + "How do you travel?" + '</p></li>').appendTo($('.messages ul'));
+				$('<li class="replies"><p>' + "How do you commute to your work?" + '</p></li>').appendTo($('.messages ul'));
 				$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_travel(0.5)">Personal Vehicle</button></li>').appendTo($('.messages ul'));
 				$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_travel(1)">Public Transport</button></li>').appendTo($('.messages ul'));
 
@@ -1828,7 +1828,7 @@
 				}, "fast");
 			} else {
 				score += 0.5;
-				$('<li class="replies"><p>' + "Have you lived in any of the following countaries during last one month?" + '</p></li>').appendTo($('.messages ul'));
+				$('<li class="replies"><p>' + "Have you visited any of the following countaries during last one month?" + '</p></li>').appendTo($('.messages ul'));
 				
 				$('<li class="sent"><label class="container1">China<input type="checkbox" id="cb_1" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
 				$('<li class="sent"><label class="container1">Italy<input type="checkbox" id="cb_2" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
@@ -1860,7 +1860,7 @@
 			/* alert(travel); */
 			$('.messages ul').empty();
 			score += parseInt(ch);
-			$('<li class="replies"><p>' + "What kind of work do you do?" + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="replies"><p>' + "What is the nature of your work?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(1)">Health Staff</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(0.5)">Animal Industry</button></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="update_job(0.2)">Work from Home</button></li>').appendTo($('.messages ul'));
@@ -1876,7 +1876,7 @@
 			score += parseInt(ch);
 			$('.messages ul').empty();
 			/* alert(job); */
-			$('<li class="replies"><p>' + "Have you lived in any of the following countaries during last one month?" + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="replies"><p>' + "Have you visited any of the following countaries during last one month?" + '</p></li>').appendTo($('.messages ul'));
 			
 			$('<li class="sent"><label class="container1">China<input type="checkbox" id="cb_1" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label class="container1">Italy<input type="checkbox" id="cb_2" value="1" name="countaries[]"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
@@ -2079,7 +2079,7 @@
 
 		function previous_conditions() {
 			$('.messages ul').empty();
-			$('<li class="replies"><p>' + "Have you been diagnosed with the following?" + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="replies"><p>' + "Do you have medical history with any of the following diseases?" + '</p></li>').appendTo($('.messages ul'));
 			
 			$('<li class="sent"><label class="container1">Heart disease<input type="checkbox" id="cb4_1" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label class="container1">Diabetes<input type="checkbox" id="cb4_2" value="1"><span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
