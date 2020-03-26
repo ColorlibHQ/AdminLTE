@@ -151,7 +151,7 @@ function initMap() {
   var bounds = new google.maps.LatLngBounds();
   var mapOptions = {
     mapTypeId: 'roadmap',
-    zoom: 1,
+    zoom: 0,
     position: markerPosition,
     restriction: {
             latLngBounds: indiaBorderBounds,
