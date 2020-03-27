@@ -4,6 +4,10 @@ var mapFinalMarkerCoords = null;
 var infoWindowContent = null;
 var cordinatList = {
   indianState: {
+    'Andaman and Nicobar Islands':{
+      lat: 11.7401,
+      long: 92.6586
+    },
     'Delhi': {
       lat: 28.6139,
       long: 77.2090
@@ -161,7 +165,7 @@ function initMap() {
     mapTypeControl: false,
     //draggable: false,
     scrollwheel: false,
-    backgroundColor: '#FFF',
+    //backgroundColor: '#FFF',
     disableDefaultUI: true,
     zoomControl: true,
     scaleControl: false,
@@ -312,7 +316,7 @@ function initMap() {
           infoWindow.open(map, marker);
         }
       })(marker, i));
-	  
+
 	   google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
           infoWindow.setContent(infoWindowContent[i][0]);
