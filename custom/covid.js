@@ -462,12 +462,12 @@ function generateDonutChart(statsSummary) {
         label: 'Cases 2019-nCoV',
         data: dognutChartValArry,
         backgroundColor: [
-          randomColorGenerator(),
-        randomColorGenerator(),
-          randomColorGenerator()
-          // 'rgba(255, 99, 132, 2)',
-          // 'rgba(144,238,144, 2)',
-          // 'rgba(105,105,105, 2)'
+         // randomColorGenerator(),
+        //randomColorGenerator(),
+          //randomColorGenerator()
+		   'rgba(255,99,132,1)',
+           'rgba(144,238,144,1)',
+           'rgba(105,105,105, 1)'
 
         ],
         // borderColor: [
