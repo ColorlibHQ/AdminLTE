@@ -48,7 +48,7 @@
 			<!-- Google Font: Source Sans Pro -->
 			<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 			<style>
 				.control-sidebar-content {
@@ -498,6 +498,50 @@
 			  -ms-transform: rotate(45deg);
 			  transform: rotate(45deg);
 			}
+			
+			.fa {
+  padding: 8px;
+  font-size: 15px;
+  width: 30px;
+  border-radius: 100%;
+  text-align: center;
+  text-decoration: none;
+ 
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+
+.fa-instagram {
+  background: #eb4924;
+  color: white;
+}
+
+.fa-whatsapp {
+  background: #128C7E;;
+  color: white;
+}
+
+
 			</style>
 		</head>
 
@@ -587,7 +631,7 @@
 								</li>
 								<li class="nav-item">
 									<a href="#newsCard" class="nav-link">
-										<i class="nav-icon fas fa-newspaper"></i>
+										<i class="nav-icon fas fa-rss-square"></i>
 										<p>
 											Guidelines
 											<!-- <span class="right badge badge-danger">New</span> -->
@@ -641,17 +685,35 @@
 											</a>
 										</li>
 										</ul>
-										
+
 										</li >
 										<li class="nav-item ml-3">
-											<a class="img-circle btn-floating btn-sm bg-blue shadow" href="https://twitter.com/intent/tweet?button_hashtag=indiafightscorona&ref_src=twsrc%5Etfw"type="button" role="button">
-									<i class="fab fa-twitter"></i></a>	
-								&nbsp;&nbsp;&nbsp;<b>#indiafightscorona</b>
+											<a class="fa fa-twitter shadow" target="_blank" href="https://twitter.com/intent/tweet?button_hashtag=indiafightscorona&ref_src=twsrc%5Etfw">
+									</a>	
+								&nbsp;&nbsp;&nbsp;<a target="_blank" href="https://twitter.com/intent/tweet?button_hashtag=indiafightscorona&ref_src=twsrc%5Etfw">#indiafightscorona</a>
 									</li>
+									<li class="nav-item ml-3 mt-1 ">
+	
+										<a  class="fa fa-linkedin shadow" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http://220.156.188.202/ml_war/COVID19/indexCovid.html&title=#indiafightscorona&source=http://www.eraktkosh.com"></a>
+
+	
+								&nbsp;&nbsp;&nbsp;<b>Share on Linkedin</b>
+									</li>
+									<li class="nav-item ml-3 mt-1">
+											<a href="" target="_blank" class="fa fa-instagram shadow"></a>
+								&nbsp;&nbsp;&nbsp;<b>Share on Instagram</b>
+									</li>	
+									<li class="nav-item ml-3 mt-1">
+								<a class="fa fa-facebook shadow" target="_blank" href="https://www.facebook.com/sharer.php?u=http://220.156.188.202/ml_war/COVID19/indexCovid.html"></a>
+								&nbsp;&nbsp;&nbsp;<b>Share on Facebook</b>
+									</li>
+								<li class="nav-item ml-3 mt-1">
+											<a target="_blank" href="whatsapp://send?&text=COVID-19 INDIA Dashboard http://220.156.188.202/ml_war/COVID19/indexCovid.html" class="fa fa-whatsapp shadow"></a>	
+								&nbsp;&nbsp;&nbsp;<b>Share on Whatsapp</b>
+									</li>									
 
 
 
-									
 						</nav>
 						<!-- /.sidebar-menu -->
 					</div>
@@ -665,7 +727,7 @@
 						<div class="container-fluid">
 							<div class="row mb-2">
 								<div class="col-sm-6">
-									<h1 class="m-0 text-dark">Dashboard 
+									<h1 class="m-0 text-dark">Dashboard
 
 								</div><!-- /.col -->
 								<div class="col-sm-6">
@@ -786,7 +848,7 @@
 									<!-- DIRECT CHAT -->
 									<div class="card direct-chat direct-chat-primary " id="newsCard">
 										<div class="card-header">
-											<h3 class="card-title"><i class="fas fa-newspaper" style="color:red;"></i> Guidelines</h3>
+											<h3 class="card-title"><i class="fas fa-rss-square" style="color:red;"></i> Guidelines</h3>
 
 											<div class="card-tools">
 												<button type="button" class="btn btn-dark btn-tool" data-card-widget="collapse">
@@ -808,15 +870,15 @@
 													<a href="https://www.mohfw.gov.in/pdf/Useofmaskbypublic.pdf" class="list-group-item list-group-item-action" target="_blank">Guidelines on use of masks by public</a>
 													<a href="https://www.mohfw.gov.in/pdf/advisoryformassgathering.pdf" class="list-group-item list-group-item-action" target="_blank">Advisory - Mass Gatherings</a>
 													<div  class="list-group-item list-group-item-action " ><h5><span class="badge badge-success"><a href="https://covid.icmr.org.in/index.php/testing-facilities" target="_blank" style="color:white">ICMR COVID-19 Testing Laboratories</a></span></h5>
-													
-													
-													
-													
-													
-													
-													
+
+
+
+
+
+
+
 													</div>
-			
+
 
 			</div>
 
@@ -1201,13 +1263,13 @@
 							<div class="messages shadow rounded border border-dark" id="mssg">
 								<ul>
 									<li class="replies">
-										<p>Hello I am Corona Bot. And I am here to help you to diagnose with novel corona virus.</p>
+										<p>Hello I am Corona Bot. And I am here to help you during novel corona virus outbreak.</p>
 									</li>
 									<li class="replies">
 										<p>Warning: Do not take this as medical advise. Consult your doctor if you feel sick.</p>
 									</li>
 									<li class="sent">
-										<button type="button" class="btn btn-success" onclick="start()">Risk Analyzer. &#128077;</button>
+										<button type="button" class="btn btn-success" onclick="start()">Risk Analyzer. &#129298;</button>
 										<button type="button" class="btn btn-danger" onclick="quiz()">Take Quiz. &#129299;</button>
 									</li>
 								</ul>
@@ -1291,14 +1353,14 @@
 		var checked_boses3 = 0;
 		var score = 0;
 		var quiz_score = 0;
-		
+
 		function quiz(){
 			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Do you Wash your hands frequently?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label class="container1">Yes I do<input type="radio" value="1" name="q1" onclick="q1_c(1);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label class="container1">No I Don\'t<input type="radio" value="1" name="q1" onclick="q1_c(0);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
 		}
-		
+
 		function q1_c(ch){
 			$("input[type=radio]").attr('disabled', true);
 			if (ch){
@@ -1338,7 +1400,7 @@
 				quiz_score+=1;
 				}
 			else
-				$('<li class="replies"><p style="color: red;">' + "One must cover his/her mouth while sneeze." + '</p></li>').appendTo($('.messages ul'));
+				$('<li class="replies"><p style="color: red;">' + "One must cover his/her mouth while sneezing/coughing." + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="q4()">Next</button></li>').appendTo($('.messages ul'));
 		}
 		function q4(){
@@ -1370,7 +1432,7 @@
 				quiz_score+=1;
 				}
 			else
-				$('<li class="replies"><p style="color: red;">' + "You must visit the doctor immediately." + '</p></li>').appendTo($('.messages ul'));
+				$('<li class="replies"><p style="color: red;">' + "You must contact the doctor immediately. Alternatively, contact helpline +91-11-23978046" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="submit_quiz()">Submit</button></li>').appendTo($('.messages ul'));
 		}
 		function submit_quiz(){
@@ -1378,19 +1440,19 @@
 			if (quiz_score >= 3)
 				$('<li class="sent"><div class="p-3 mb-2 bg-success text-white">Congratulations! You are aware about corona virus.</div></li>').appendTo($('.messages ul'));
 			else
-				$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">You needs to know about corona virus. How about you go through our FAQ section to start with.</div></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">You should make yourself more aware about corona virus. How about you go through our FAQ section to start with.</div></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="start_over()">Finish</button></li>').appendTo($('.messages ul'));
 		}
-		
+
 		function chk(){
 		if ($('input[type=checkbox]').is(":checked")) {
 			$("#none_btn").html("Done");
 			$("#none_btn").removeClass("btn btn-primary");
-			$("#none_btn").addClass("btn btn-success"); 
+			$("#none_btn").addClass("btn btn-success");
 		}
 		return false;
 		}
-		
+
 		function start() {
 			$('<li class="replies"><p>' + "Your age?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class=""><input class="form-control-sm" type="number" id="age" name="age" value="0" min="1" max="120" required placeholder="Age" style="background-color:#dae0e5 !important;color:darkblue;"></li>').appendTo($('.messages ul'));
@@ -1515,7 +1577,7 @@
 			$('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" name="countaries">France</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0" name="countaries">Other</label></li>').appendTo($('.messages ul'));*/
 			$('<li class="sent"><button type="button" class="btn btn-primary" id="none_btn" onclick="update_abroad(0)">None</button></li>').appendTo($('.messages ul'));
-			
+
 			$(".messages").animate({
 				scrollTop: $(document).height()
 			}, "fast");
@@ -2059,7 +2121,7 @@
 
 		// object.onload = function(){newsfeed()};
 		document.addEventListener("DOMContentLoaded", function() {
-			newsfeed();
+		//	newsfeed();
 
 		});
 
