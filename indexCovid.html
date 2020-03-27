@@ -1300,6 +1300,7 @@
 		}
 		
 		function q1_c(ch){
+			$("input[type=radio]").attr('disabled', true);
 			if (ch){
 				$('<li class="replies"><p style="color: green;">' + "Good. Correct Answer. By washing your hands regularly, you can keep the virus at bay." + '</p></li>').appendTo($('.messages ul'));
 				quiz_score+=1;
@@ -1315,6 +1316,7 @@
 			$('<li class="sent"><label class="container1">Not often<input type="radio" value="1" name="q1" onclick="q2_c(0);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
 		}
 		function q2_c(ch){
+			$("input[type=radio]").attr('disabled', true);
 			if (ch){
 				$('<li class="replies"><p style="color: green;">' + "Good. Correct Answer. Corona Virus spreads when you touch your eyes, nose and mouth." + '</p></li>').appendTo($('.messages ul'));
 				quiz_score+=1;
@@ -1330,6 +1332,7 @@
 			$('<li class="sent"><label class="container1">No<input type="radio" value="1" name="q1" onclick="q3_c(0);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
 		}
 		function q3_c(ch){
+			$("input[type=radio]").attr('disabled', true);
 			if (ch){
 				$('<li class="replies"><p style="color: green;">' + "Good. You take care of people around you." + '</p></li>').appendTo($('.messages ul'));
 				quiz_score+=1;
@@ -1345,6 +1348,7 @@
 			$('<li class="sent"><label class="container1">No<input type="radio" value="1" name="q1" onclick="q4_c(0);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
 		}
 		function q4_c(ch){
+			$("input[type=radio]").attr('disabled', true);
 			if (ch){
 				$('<li class="replies"><p style="color: red;">' + "Do take very good care of yourself" + '</p></li>').appendTo($('.messages ul'));
 				quiz_score+=1;
@@ -1360,6 +1364,7 @@
 			$('<li class="sent"><label class="container1">No<input type="radio" value="1" name="q1" onclick="q5_c(0);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
 		}
 		function q5_c(ch){
+			$("input[type=radio]").attr('disabled', true);
 			if (ch){
 				$('<li class="replies"><p style="color: green;">' + "Good. Seek immediate medical care." + '</p></li>').appendTo($('.messages ul'));
 				quiz_score+=1;
