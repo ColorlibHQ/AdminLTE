@@ -1208,6 +1208,7 @@
 									</li>
 									<li class="sent">
 										<button type="button" class="btn btn-success" onclick="start()">Let's Start. &#128077;</button>
+										<button type="button" class="btn btn-danger" onclick="quiz()">Take Corona Quiz. &#129299;</button>
 									</li>
 								</ul>
 							</div>
@@ -1289,6 +1290,92 @@
 		var checked_boses2 = 0;
 		var checked_boses3 = 0;
 		var score = 0;
+		var quiz_score = 0;
+		
+		function quiz(){
+			$('.messages ul').empty();
+			$('<li class="replies"><p>' + "Do you Wash your hands frequently?" + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Yes I do<input type="radio" value="1" name="q1" onclick="q1_c(1);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">No I Don\'t<input type="radio" value="1" name="q1" onclick="q1_c(0);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+		}
+		
+		function q1_c(ch){
+			if (ch){
+				$('<li class="replies"><p style="color: green;">' + "Good. Correct Answer. By washing your hands regularly, you can keep the virus at bay." + '</p></li>').appendTo($('.messages ul'));
+				quiz_score+=1;
+				}
+			else
+				$('<li class="replies"><p style="color: red;">' + "You must wash hands at regular interval. By washing your hands regularly, you can keep the virus at bay." + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="q2()">Next</button></li>').appendTo($('.messages ul'));
+		}
+		function q2(){
+			$('.messages ul').empty();
+			$('<li class="replies"><p>' + "Do you often touch your eyes, nose and mouth?" + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Regularly<input type="radio" value="1" name="q1" onclick="q2_c(1);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Not often<input type="radio" value="1" name="q1" onclick="q2_c(0);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+		}
+		function q2_c(ch){
+			if (ch){
+				$('<li class="replies"><p style="color: green;">' + "Good. Correct Answer. Corona Virus spreads when you touch your eyes, nose and mouth." + '</p></li>').appendTo($('.messages ul'));
+				quiz_score+=1;
+				}
+			else
+				$('<li class="replies"><p style="color: red;">' + "You must avoid that. Corona Virus spreads when you touch your eyes, nose and mouth." + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="q3()">Next</button></li>').appendTo($('.messages ul'));
+		}
+		function q3(){
+			$('.messages ul').empty();
+			$('<li class="replies"><p>' + "Do you cover your mouth and nose with your bent elbow or tissue when you cough or sneeze?" + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Yes<input type="radio" value="1" name="q1" onclick="q3_c(1);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">No<input type="radio" value="1" name="q1" onclick="q3_c(0);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+		}
+		function q3_c(ch){
+			if (ch){
+				$('<li class="replies"><p style="color: green;">' + "Good. You take care of people around you." + '</p></li>').appendTo($('.messages ul'));
+				quiz_score+=1;
+				}
+			else
+				$('<li class="replies"><p style="color: red;">' + "One must cover his/her mouth while sneeze." + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="q4()">Next</button></li>').appendTo($('.messages ul'));
+		}
+		function q4(){
+			$('.messages ul').empty();
+			$('<li class="replies"><p>' + "Are you a patient of any Cardiovascular or Chronic respiratory disease, Diabetes, Hypertension or Cancer?" + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Yes<input type="radio" value="1" name="q1" onclick="q4_c(1);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">No<input type="radio" value="1" name="q1" onclick="q4_c(0);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+		}
+		function q4_c(ch){
+			if (ch){
+				$('<li class="replies"><p style="color: red;">' + "Do take very good care of yourself" + '</p></li>').appendTo($('.messages ul'));
+				quiz_score+=1;
+				}
+			else
+				$('<li class="replies"><p style="color: green;">' + "Congratulations. People with medical history are at high risk of corona infection." + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="q5()">Next</button></li>').appendTo($('.messages ul'));
+		}
+		function q5(){
+			$('.messages ul').empty();
+			$('<li class="replies"><p>' + "If you find yourself with fever, cough or difficulty in breathing, do you know exactly what to do in the current scenario?" + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Yes<input type="radio" value="1" name="q1" onclick="q5_c(1);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">No<input type="radio" value="1" name="q1" onclick="q5_c(0);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+		}
+		function q5_c(ch){
+			if (ch){
+				$('<li class="replies"><p style="color: green;">' + "Good. Seek immediate medical care." + '</p></li>').appendTo($('.messages ul'));
+				quiz_score+=1;
+				}
+			else
+				$('<li class="replies"><p style="color: red;">' + "You must visit the doctor immediately." + '</p></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="submit_quiz()">Submit</button></li>').appendTo($('.messages ul'));
+		}
+		function submit_quiz(){
+			$('.messages ul').empty();
+			if (quiz_score >= 3)
+				$('<li class="sent"><div class="p-3 mb-2 bg-success text-white">Congratulations! You are aware about corona virus.</div></li>').appendTo($('.messages ul'));
+			else
+				$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">You needs to know about corona virus. How about you go through our FAQ section to start with.</div></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="start_over()">Finish</button></li>').appendTo($('.messages ul'));
+		}
 		
 		function chk(){
 		if ($('input[type=checkbox]').is(":checked")) {
@@ -1678,9 +1765,11 @@
 			checked_boses2 = 0;
 			checked_boses3 = 0;
 			score = 0;
+			quiz_score = 0;
 			$('<li class="replies"><p>Hello I am Corona Bot. And I am here to help you to diagnose with novel corona virus.</p></li>').appendTo($('.messages ul'));
 			$('<li class="replies"><p>Warning: Do not take this as medical advise. Consult your doctor if you feel sick.</p></li>').appendTo($('.messages ul'));
-			start();
+			$('<li class="sent"> <button type="button" class="btn btn-success" onclick="start()">Let\'s Start. &#128077;</button> <button type="button" class="btn btn-danger" onclick="quiz()">Take Corona Quiz. &#129299;</button> </li>').appendTo($('.messages ul'));
+			//start();
 		}
 
 

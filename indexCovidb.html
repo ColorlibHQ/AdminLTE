@@ -1746,6 +1746,7 @@
 							</li>
 							<li class="sent">
 								<button type="button" class="btn btn-success" onclick="start()">Let's Start. &#128077;</button>
+								<button type="button" class="btn btn-danger" onclick="quiz()">Take Corona Quiz. &#129299;</button>
 							</li>
 						</ul>
 					</div>
@@ -2073,6 +2074,11 @@
 				scrollTop: $(document).height()
 			}, "fast");
 		};
+		
+		function quiz(){
+			alert ("inside quiz");
+			
+		}
 
 		function chk_symp1_yes_value(ch) {
 			chk_symp1_yes_value_val = ch;
