@@ -1201,13 +1201,13 @@
 							<div class="messages shadow rounded border border-dark" id="mssg">
 								<ul>
 									<li class="replies">
-										<p>Hello I am Corona Bot. And I am here to help you to diagnose with novel corona virus.</p>
+										<p>Hello I am Corona Bot. And I am here to help you during novel corona virus outbreak.</p>
 									</li>
 									<li class="replies">
 										<p>Warning: Do not take this as medical advise. Consult your doctor if you feel sick.</p>
 									</li>
 									<li class="sent">
-										<button type="button" class="btn btn-success" onclick="start()">Risk Analyzer. &#128077;</button>
+										<button type="button" class="btn btn-success" onclick="start()">Risk Analyzer. &#129298;</button>
 										<button type="button" class="btn btn-danger" onclick="quiz()">Take Quiz. &#129299;</button>
 									</li>
 								</ul>
@@ -1338,7 +1338,7 @@
 				quiz_score+=1;
 				}
 			else
-				$('<li class="replies"><p style="color: red;">' + "One must cover his/her mouth while sneeze." + '</p></li>').appendTo($('.messages ul'));
+				$('<li class="replies"><p style="color: red;">' + "One must cover his/her mouth while sneezing/coughing." + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="q4()">Next</button></li>').appendTo($('.messages ul'));
 		}
 		function q4(){
@@ -1378,7 +1378,7 @@
 			if (quiz_score >= 3)
 				$('<li class="sent"><div class="p-3 mb-2 bg-success text-white">Congratulations! You are aware about corona virus.</div></li>').appendTo($('.messages ul'));
 			else
-				$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">You needs to know about corona virus. How about you go through our FAQ section to start with.</div></li>').appendTo($('.messages ul'));
+				$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">You should make yourself more aware about corona virus. How about you go through our FAQ section to start with.</div></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="start_over()">Finish</button></li>').appendTo($('.messages ul'));
 		}
 		
