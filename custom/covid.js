@@ -342,12 +342,16 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   //infoWindow.open(map);
 }
 
+var coronaCasesSummary=null;
+
 var apiUrlLatestCases = 'https://api.rootnet.in/covid19-in/stats/latest';
-ajaxLatestCases = $.ajax({
+var ajaxLatestCases = $.ajax({
   type: "GET",
   url: apiUrlLatestCases,
   dataType: "json",
   success: function(result) {
+    coronaCasesSummary=result.data.summary;
+
     //set values in dashboard tiles
     setDashboardStats(result.data.summary);
 
@@ -371,6 +375,10 @@ ajaxDailyStats = $.ajax({
   success: function(result) {
     //generate line graph for corona Cases daywise
     generateLineGraph(result.data);
+$.when(ajaxLatestCases).then(function(){
+    generateLineDblGraph(coronaCasesSummary, result.data);
+});
+
   },
   error: function(results) {
     alert("There is an error. " + results.stringfy);
@@ -436,6 +444,10 @@ function generateMapMarkers(regionalData) {
   google.maps.event.addDomListener(window, 'load', initMap);
 }
 
+var randomColorGenerator = function () {
+    return '#' + (Math.random().toString(16) + '0000000').slice(2, 8);
+};
+
 //generate and set donut Chart for covi19 cases
 function generateDonutChart(statsSummary) {
   var dognutChartValArry = [statsSummary.total, statsSummary.discharged, statsSummary.deaths];
@@ -449,17 +461,17 @@ function generateDonutChart(statsSummary) {
         label: 'Cases 2019-nCoV',
         data: dognutChartValArry,
         backgroundColor: [
-          'rgba(255, 99, 132, 2)',
-          'rgba(144,238,144, 2)',
-          'rgba(105,105,105, 2)'
+          randomColorGenerator(),
+        randomColorGenerator(),
+          randomColorGenerator()
 
         ],
-        borderColor: [
-          'rgba(255,99,132,5)',
-          'rgba(144,238,144, 5)',
-          'rgba(105,105,105, 5)'
-
-        ],
+        // borderColor: [
+        //   'rgba(255,99,132,5)',
+        //   'rgba(144,238,144, 5)',
+        //   'rgba(105,105,105, 5)'
+        //
+        // ],
         borderWidth: 2
       }]
     },
@@ -471,31 +483,112 @@ function generateDonutChart(statsSummary) {
   });
 }
 
+
 //generate line graph for corona Cases daywise
 function generateLineGraph(dailyStats) {
   var dateLable = [];
-  var casesLable = [];
+  var totalCasesData = [];
+  var totalActiveCasesData = [];
+  var dailyCaseCountData = [];
+
+var i=0;
   for (dayIndex in dailyStats) {
     var dayStats = dailyStats[dayIndex];
     dateLable.push(dayStats.day);
-    casesLable.push(dayStats.summary.total);
+    totalCasesData.push(dayStats.summary.total);
+    totalActiveCasesData.push(dayStats.summary.total - dayStats.summary.deaths - dayStats.summary.discharged);
+    var dayCaseCount = totalCasesData[i]-totalCasesData[i-1];
+    dayCaseCount = dayCaseCount<0?0:dayCaseCount;
+    dailyCaseCountData.push(dayCaseCount);
+    i++;
   }
-  casesLable.length = dateLable.length;
+  totalCasesData.length = dateLable.length;
 
   var ctx = document.getElementById("lineChart").getContext("2d");
   var lineChart = new Chart(ctx, {
     type: 'line',
     data: {
       labels: dateLable,
-
       datasets: [{
         label: "Total Cases Reached",
-        data: casesLable,
+        data: totalCasesData,
         backgroundColor: ['rgba(0, 0, 0, 0.1)'],
-        borderColor: ['rgba(255,99,132,5)'],
+        borderColor: randomColorGenerator(),
         borderWidth: 2,
         fill: false
-      }]
+      },
+      {
+        label: "Total Active Cases Reached",
+        data: totalActiveCasesData,
+        backgroundColor: ['rgba(0, 0, 0, 0.1)'],
+        borderColor: randomColorGenerator(),
+        borderWidth: 2,
+        fill: false
+      },
+      {
+        label: "Daily Increase Count",
+        data: dailyCaseCountData,
+        backgroundColor: ['rgba(0, 0, 0, 0.1)'],
+        borderColor: randomColorGenerator(),
+        borderWidth: 2,
+        fill: false
+      }
+    ]
+    },
+    options: {
+      //cutoutPercentage: 40,
+      responsive: true,
+      xAxisID: "dd"
+
+    }
+  });
+}
+
+
+//generate bar graph for doubling corona Cases daywise
+function generateLineDblGraph(statsSummary, dailyStats) {
+
+var dublingCasesDateArr =[];
+var totalCaseCount =statsSummary.total
+var ttcase= totalCaseCount;
+var dublingCasesArr=[totalCaseCount];
+
+  while(ttcase != 0 && ttcase > 0){
+    var halfOfTtlCase = parseInt(ttcase/2);
+    dublingCasesArr.unshift(halfOfTtlCase);
+    ttcase = halfOfTtlCase;
+    //dublingCasesArr.push(dublingCasesArr);
+  }
+
+  var dayCout=0;
+  for (dayIndex in dailyStats) {
+    var dayStats = dailyStats[dayIndex];
+    for(k=0; k<dublingCasesArr.length; k++){
+      if(dublingCasesArr[k] == dayStats.summary.total || (dublingCasesArr[k] < dayStats.summary.total && dublingCasesArr[k+1] > dayStats.summary.total)){
+        dublingCasesDateArr.push(dayStats.day);
+      }
+    }
+    dayCout++;
+  }
+//dublingCasesArr.length = dublingCasesDateArr.length;
+
+console.log(dublingCasesArr);
+console.log(dublingCasesDateArr);
+
+  var ctx = document.getElementById("lineChart2").getContext("2d");
+  var lineChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: dublingCasesDateArr,
+      datasets: [{
+        label: "Total Cases Doubled By",
+        data: dublingCasesArr,
+        backgroundColor: ['rgba(0, 0, 0, 0.1)'],
+        borderColor: randomColorGenerator(),
+        borderWidth: 2,
+        fill: false
+      }
+    ]
     },
     options: {
       //cutoutPercentage: 40,
