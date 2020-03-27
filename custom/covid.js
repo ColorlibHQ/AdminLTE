@@ -353,13 +353,13 @@ var ajaxLatestCases = $.ajax({
     coronaCasesSummary=result.data.summary;
 
     //set values in dashboard tiles
-    setDashboardStats(result.data.summary);
+      setDashboardStats(result.data.summary);
 
     //generate and set donut Chart for covi19 cases
-    generateDonutChart(result.data.summary);
+      generateDonutChart(result.data.summary);
 
     //generate and set markers coordinate and marker html for map
-    generateMapMarkers(result.data.regional);
+      generateMapMarkers(result.data.regional);
   },
   error: function(results) {
     alert("There is an error. " + results.stringfy);
@@ -375,9 +375,10 @@ ajaxDailyStats = $.ajax({
   success: function(result) {
     //generate line graph for corona Cases daywise
     generateLineGraph(result.data);
-$.when(ajaxLatestCases).then(function(){
-    generateLineDblGraph(coronaCasesSummary, result.data);
-});
+
+    $.when(ajaxLatestCases).then(function(){
+        generateLineDblGraph(coronaCasesSummary, result.data);
+    });
 
   },
   error: function(results) {
@@ -552,30 +553,80 @@ var i=0;
 function generateLineDblGraph(statsSummary, dailyStats) {
 
 var dublingCasesDateArr =[];
+var dublingCasesValArr =[];
+
 var totalCaseCount =statsSummary.total
 var ttcase= totalCaseCount;
-var dublingCasesArr=[totalCaseCount];
+var expectedDublingArr=[totalCaseCount];
 
   while(ttcase != 0 && ttcase > 0){
     var halfOfTtlCase = parseInt(ttcase/2);
-    dublingCasesArr.unshift(halfOfTtlCase);
+    expectedDublingArr.unshift(halfOfTtlCase);
     ttcase = halfOfTtlCase;
-    //dublingCasesArr.push(dublingCasesArr);
+    //expectedDublingArr.push(expectedDublingArr);
   }
 
-  var dayCout=0;
-  for (dayIndex in dailyStats) {
-    var dayStats = dailyStats[dayIndex];
-    for(k=0; k<dublingCasesArr.length; k++){
-      if(dublingCasesArr[k] == dayStats.summary.total || (dublingCasesArr[k] < dayStats.summary.total && dublingCasesArr[k+1] > dayStats.summary.total)){
-        dublingCasesDateArr.push(dayStats.day);
-      }
-    }
-    dayCout++;
-  }
-//dublingCasesArr.length = dublingCasesDateArr.length;
+  // var dayCout=0;
+  // for (dayIndex in dailyStats) {
+  //   var dayStats = dailyStats[dayIndex];
+  //   for(k=0; k<expectedDublingArr.length; k++){
+  //     if((expectedDublingArr[k] == dayStats.summary.total || expectedDublingArr[k] < dayStats.summary.total) && expectedDublingArr[k+1] > dayStats.summary.total){
+  //       dublingCasesDateArr.push(dayStats.day);
+  //     }
+  //   }
+  //   dayCout++;
+  // }
 
-console.log(dublingCasesArr);
+
+    //
+    // for(var k=expectedDublingArr.length-1; k>0; k--){
+    //   for (var dayIndex=dailyStats.length-1; dayIndex>0; dayIndex--) {
+    //     var dayStats = dailyStats[dayIndex];
+    //     if(expectedDublingArr[k] == dayStats.summary.total){
+    //       dublingCasesDateArr.push(dayStats.day);
+    //       break;
+    //     } else{
+    //       var temp=null;
+    //       while(expectedDublingArr[k]<dayStats.summary.total && (expectedDublingArr[k+1]>dayStats.summary.total || expectedDublingArr[k+1]==dayStats.summary.total)){
+    //         temp=dayStats.day;
+    //       }
+    //       dublingCasesDateArr.push(temp);
+    //       break;
+    //     }
+    //   }
+    // }
+
+    dublingCasesDateArr.push(dailyStats[dailyStats.length-1].day);
+    dublingCasesValArr.push(dailyStats[dailyStats.length-1].summary.total);
+    var dayIndex = dailyStats.length-1;
+
+    for(var k=expectedDublingArr.length-2; k>0; k--){
+          var tempDate=null;
+          var tempVal=null;
+          if(dayIndex==0)
+          break;
+          var dayStats = dailyStats[dayIndex];
+          while(expectedDublingArr[k]<dayStats.summary.total && (expectedDublingArr[k+1]>dayStats.summary.total || expectedDublingArr[k+1]==dayStats.summary.total))
+          {
+            tempDate=dayStats.day;
+            tempVal=dayStats.summary.total;
+
+            if(dayIndex==0)
+            break;
+
+            dayIndex--;
+            dayStats = dailyStats[dayIndex];
+          }
+          dublingCasesDateArr.unshift(tempDate);
+          dublingCasesValArr.unshift(tempVal);
+        }
+
+
+
+//expectedDublingArr.length = dublingCasesDateArr.length;
+
+console.log(expectedDublingArr);
+console.log(dublingCasesValArr);
 console.log(dublingCasesDateArr);
 
   var ctx = document.getElementById("lineChart2").getContext("2d");
@@ -584,8 +635,8 @@ console.log(dublingCasesDateArr);
     data: {
       labels: dublingCasesDateArr,
       datasets: [{
-        label: "Total Cases Doubled By",
-        data: dublingCasesArr,
+        label: "Total Cases Almost Doubled By",
+        data: dublingCasesValArr,
         backgroundColor: ['rgba(0, 0, 0, 0.1)'],
         borderColor: randomColorGenerator(),
         borderWidth: 2,
