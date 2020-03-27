@@ -470,13 +470,15 @@ function generateDonutChart(statsSummary) {
            'rgba(105,105,105, 1)'
 
         ],
-        // borderColor: [
-        //   'rgba(255,99,132,5)',
+         borderColor: [
+          'rgba(0,0,0,5)',
+		  'rgba(0,0,0,5)',
+		  'rgba(0,0,0,5)'
         //   'rgba(144,238,144, 5)',
         //   'rgba(105,105,105, 5)'
         //
-        // ],
-        borderWidth: 2
+         ],
+        borderWidth: 1
       }]
     },
     options: {
