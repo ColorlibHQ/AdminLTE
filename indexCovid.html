@@ -24,12 +24,6 @@
 
 			<meta charset="utf-8">
 			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<meta property="og:image" content="http://example.com/ogp.jpg" />
-			<meta property="og:image:secure_url" content="https://secure.example.com/ogp.jpg" />
-			<meta property="og:image:type" content="image/jpeg" />
-			<meta property="og:image:width" content="400" />
-			<meta property="og:image:height" content="300" />
-			<meta property="og:image:alt" content="A shiny red apple with a bite taken out" />
 			<title>COVID-19 INDIA Dashboard</title>
 			<!-- Tell the browser to be responsive to screen width -->
 			<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,7 +48,7 @@
 			<!-- Google Font: Source Sans Pro -->
 			<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 			<style>
 				.control-sidebar-content {
@@ -504,128 +498,6 @@
 			  -ms-transform: rotate(45deg);
 			  transform: rotate(45deg);
 			}
-			
-			
-			.fa {
-  padding: 5px;
-  font-size: 16px;
-  width: 25px;
-  text-align: center;
-  border-radius: 100%;
-  text-decoration: none;
-  margin: 5px 2px;
-}
-
-.fa:hover {
-    opacity: 0.7;
-}
-
-.fa-facebook {
-  background: #3B5998;
-  color: white;
-}
-
-.fa-twitter {
-  background: #55ACEE;
-  color: white;
-}
-
-.fa-google {
-  background: #dd4b39;
-  color: white;
-}
-
-.fa-linkedin {
-  background: #007bb5;
-  color: white;
-}
-
-.fa-youtube {
-  background: #bb0000;
-  color: white;
-}
-
-.fa-instagram {
-  background: #eb4924;
-  color: white;
-}
-
-.fa-pinterest {
-  background: #cb2027;
-  color: white;
-}
-
-.fa-snapchat-ghost {
-  background: #fffc00;
-  color: white;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-
-.fa-skype {
-  background: #00aff0;
-  color: white;
-}
-
-.fa-android {
-  background: #a4c639;
-  color: white;
-}
-
-.fa-dribbble {
-  background: #ea4c89;
-  color: white;
-}
-
-.fa-vimeo {
-  background: #45bbff;
-  color: white;
-}
-
-.fa-tumblr {
-  background: #2c4762;
-  color: white;
-}
-
-.fa-whatsapp {
-  background: #00b489;
-  color: white;
-}
-
-.fa-foursquare {
-  background: #45bbff;
-  color: white;
-}
-
-.fa-stumbleupon {
-  background: #eb4924;
-  color: white;
-}
-
-.fa-flickr {
-  background: #f40083;
-  color: white;
-}
-
-.fa-yahoo {
-  background: #430297;
-  color: white;
-}
-
-.fa-soundcloud {
-  background: #ff5500;
-  color: white;
-}
-
-.fa-reddit {
-  background: #ff5700;
-  color: white;
-}
-
-.fa-rss {
-  background: #ff6600;
-  color: white;
-}
-
 			</style>
 		</head>
 
@@ -772,29 +644,10 @@
 										
 										</li >
 										<li class="nav-item ml-3">
-											<a class="fa fa-twitter shadow" href="https://twitter.com/intent/tweet?button_hashtag=indiafightscorona&ref_src=twsrc%5Etfw">
-									</a>	
+											<a class="img-circle btn-floating btn-sm bg-blue shadow" href="https://twitter.com/intent/tweet?button_hashtag=indiafightscorona&ref_src=twsrc%5Etfw"type="button" role="button">
+									<i class="fab fa-twitter"></i></a>	
 								&nbsp;&nbsp;&nbsp;<b>#indiafightscorona</b>
 									</li>
-									<li class="nav-item ml-3 mt-1">
-	
-										<a href="#" class="fa fa-linkedin"></a>
-
-	
-								&nbsp;&nbsp;&nbsp;<b>Share on Linkedin</b>
-									</li>
-									<li class="nav-item ml-3 mt-1">
-											<a href="#" class="fa fa-instagram"></a>
-								&nbsp;&nbsp;&nbsp;<b>Share on Instagram</b>
-									</li>	
-									<li class="nav-item ml-3 mt-1">
-								<a href="#" class="fa fa-facebook"></a>
-								&nbsp;&nbsp;&nbsp;<b>Share on Facebook</b>
-									</li>
-<li class="nav-item ml-3 mt-1">
-											<a href="#" class="fa fa-whatsapp"></a>	
-								&nbsp;&nbsp;&nbsp;<b>Share on Whatsapp</b>
-									</li>									
 
 
 
@@ -1459,8 +1312,8 @@
 		function q2(){
 			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Do you often touch your eyes, nose and mouth?" + '</p></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label class="container1">Regularly<input type="radio" value="1" name="q1" onclick="q2_c(1);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
-			$('<li class="sent"><label class="container1">Not often<input type="radio" value="1" name="q1" onclick="q2_c(0);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Regularly<input type="radio" value="1" name="q1" onclick="q2_c(0);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
+			$('<li class="sent"><label class="container1">Not often<input type="radio" value="1" name="q1" onclick="q2_c(1);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
 		}
 		function q2_c(ch){
 			$("input[type=radio]").attr('disabled', true);
