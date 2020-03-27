@@ -641,17 +641,17 @@
 											</a>
 										</li>
 										</ul>
-										
+
 										</li >
 										<li class="nav-item ml-3">
 											<a class="img-circle btn-floating btn-sm bg-blue shadow" href="https://twitter.com/intent/tweet?button_hashtag=indiafightscorona&ref_src=twsrc%5Etfw"type="button" role="button">
-									<i class="fab fa-twitter"></i></a>	
+									<i class="fab fa-twitter"></i></a>
 								&nbsp;&nbsp;&nbsp;<b>#indiafightscorona</b>
 									</li>
 
 
 
-									
+
 						</nav>
 						<!-- /.sidebar-menu -->
 					</div>
@@ -665,7 +665,7 @@
 						<div class="container-fluid">
 							<div class="row mb-2">
 								<div class="col-sm-6">
-									<h1 class="m-0 text-dark">Dashboard 
+									<h1 class="m-0 text-dark">Dashboard
 
 								</div><!-- /.col -->
 								<div class="col-sm-6">
@@ -808,15 +808,15 @@
 													<a href="https://www.mohfw.gov.in/pdf/Useofmaskbypublic.pdf" class="list-group-item list-group-item-action" target="_blank">Guidelines on use of masks by public</a>
 													<a href="https://www.mohfw.gov.in/pdf/advisoryformassgathering.pdf" class="list-group-item list-group-item-action" target="_blank">Advisory - Mass Gatherings</a>
 													<div  class="list-group-item list-group-item-action " ><h5><span class="badge badge-success"><a href="https://covid.icmr.org.in/index.php/testing-facilities" target="_blank" style="color:white">ICMR COVID-19 Testing Laboratories</a></span></h5>
-													
-													
-													
-													
-													
-													
-													
+
+
+
+
+
+
+
 													</div>
-			
+
 
 			</div>
 
@@ -1291,14 +1291,14 @@
 		var checked_boses3 = 0;
 		var score = 0;
 		var quiz_score = 0;
-		
+
 		function quiz(){
 			$('.messages ul').empty();
 			$('<li class="replies"><p>' + "Do you Wash your hands frequently?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label class="container1">Yes I do<input type="radio" value="1" name="q1" onclick="q1_c(1);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label class="container1">No I Don\'t<input type="radio" value="1" name="q1" onclick="q1_c(0);"> <span class="checkmark"></span> </label></li>').appendTo($('.messages ul'));
 		}
-		
+
 		function q1_c(ch){
 			$("input[type=radio]").attr('disabled', true);
 			if (ch){
@@ -1381,16 +1381,16 @@
 				$('<li class="sent"><div class="p-3 mb-2 bg-warning text-dark">You needs to know about corona virus. How about you go through our FAQ section to start with.</div></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><button type="button" class="btn btn-primary" onclick="start_over()">Finish</button></li>').appendTo($('.messages ul'));
 		}
-		
+
 		function chk(){
 		if ($('input[type=checkbox]').is(":checked")) {
 			$("#none_btn").html("Done");
 			$("#none_btn").removeClass("btn btn-primary");
-			$("#none_btn").addClass("btn btn-success"); 
+			$("#none_btn").addClass("btn btn-success");
 		}
 		return false;
 		}
-		
+
 		function start() {
 			$('<li class="replies"><p>' + "Your age?" + '</p></li>').appendTo($('.messages ul'));
 			$('<li class=""><input class="form-control-sm" type="number" id="age" name="age" value="0" min="1" max="120" required placeholder="Age" style="background-color:#dae0e5 !important;color:darkblue;"></li>').appendTo($('.messages ul'));
@@ -1515,7 +1515,7 @@
 			$('<li class="sent"><label><input type="checkbox" id="cb_5" value="1" name="countaries">France</label></li>').appendTo($('.messages ul'));
 			$('<li class="sent"><label><input type="checkbox" id="cb_6" value="0" name="countaries">Other</label></li>').appendTo($('.messages ul'));*/
 			$('<li class="sent"><button type="button" class="btn btn-primary" id="none_btn" onclick="update_abroad(0)">None</button></li>').appendTo($('.messages ul'));
-			
+
 			$(".messages").animate({
 				scrollTop: $(document).height()
 			}, "fast");
@@ -2059,7 +2059,7 @@
 
 		// object.onload = function(){newsfeed()};
 		document.addEventListener("DOMContentLoaded", function() {
-			newsfeed();
+		//	newsfeed();
 
 		});
 
