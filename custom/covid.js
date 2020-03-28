@@ -613,10 +613,10 @@ console.log(dublingCasesDateArr);
   var lineChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: dublingCasesValArr ,
+      labels:  dublingCasesDayCountArr,
       datasets: [{
         label: "Total Cases Almost Doubled In",
-        data: dublingCasesDayCountArr,
+        data: dublingCasesValArr,
         backgroundColor: ['rgba(0, 0, 0, 0.1)'],
         borderColor: randomColorGenerator(),
         borderWidth: 2,
