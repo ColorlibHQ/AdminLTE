@@ -637,6 +637,12 @@ console.log(dublingCasesDateArr);
           beginAtZero: true,
           callback: function(value) {if (value % 1 === 0) {return value;}}
         }
+      }],
+      xAxes: [{
+        ticks: {
+          stepSize: 100,
+          callback: function(value) {if (value % 1 === 0) {return value;}}
+        }
       }]
     }
 
