@@ -620,7 +620,7 @@ console.log(dublingCasesDateArr);
       datasets: [{
         label: "Total Cases Almost Doubled In",
         data: dublingCasesDayCountArr,
-        backgroundColor: ['rgba(0, 0, 0, 0.1)'],
+        backgroundColor: randomColorGenerator(),
         borderColor: randomColorGenerator(),
         borderWidth: 2,
         fill: true
