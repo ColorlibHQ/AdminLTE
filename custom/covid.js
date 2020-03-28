@@ -597,6 +597,8 @@ var expectedDublingArr=[totalCaseCount];
 
 
 //dublingCasesDayCountArr.push(0);
+dublingCasesDayCountArr.push((moment(dublingCasesDateArr[0]) - moment(dailyStats[0].day))/1000/60/60/24);
+
 for(y=1; y<dublingCasesDateArr.length; y++){
   var dayDiff = moment(dublingCasesDateArr[y]) - moment(dublingCasesDateArr[y-1]);
   dublingCasesDayCountArr.push(dayDiff/1000/60/60/24);
@@ -610,11 +612,11 @@ console.log(dublingCasesDateArr);
 
   var ctx = document.getElementById("lineChart2").getContext("2d");
   var lineChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
       labels: dublingCasesValArr ,
       datasets: [{
-        label: "No. of days to double the total count",
+        label: "Total Cases Almost Doubled In",
         data: dublingCasesDayCountArr,
         backgroundColor: randomColorGenerator(),//['rgba(0, 0, 0, 0.1)'],
         //borderColor: "aqua",//randomColorGenerator(),
