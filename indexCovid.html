@@ -909,6 +909,28 @@
 							<!-- Custom tabs (Charts with tabs)-->
 
 
+								<div class="card bg-gradient-white" style="color:black !important;" id="lineCard">
+								<div class="card-header border-0">
+									<h3 class="card-title">
+										<i class="fas fa-chart-line mr-1" style="color:red;"></i>
+										Trend of 2019-nCoV Cases
+									</h3>
+
+									<div class="card-tools">
+										<button type="button" class="btn btn-dark btn-sm" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+											<i class="fas fa-minus"></i>
+										</button>
+
+										<!-- </button> -->
+									</div>
+								</div>
+								<div class="card-body">
+									<canvas id="lineChart"></canvas>
+								</div>
+								<!-- /.card-body -->
+
+								<!-- /.card-footer -->
+							</div>
 							<!-- DIRECT CHAT -->
 							<div class="card direct-chat direct-chat-primary " id="newsCard">
 								<div class="card-header">
@@ -1216,37 +1238,7 @@
 
 							</div>
 
-							<div class="card" id="tweet">
-								<div class="card-header">
-									<h3 class="card-title"><i class="fab fa-twitter mr-1"></i>Tweets-MoHFW INDIA</h3>
-
-									<div class="card-tools">
-										<button type="button" class="btn btn-dark btn-tool" data-card-widget="collapse">
-											<i class="fas fa-minus"></i>
-										</button>
-
-
-
-
-									</div>
-
-								</div>
-
-								<div class="card-body">
-									<div class="panel-collapse collapse show" aria-expanded="true">
-										<div class="direct-chat-messages" id="newsscroll" style="min-height:320px;">
-											<a class="twitter-timeline" href="https://twitter.com/MoHFW_INDIA?ref_src=twsrc%5Etfw"></a>
-
-
-
-										</div>
-									</div>
-								</div>
-
-
-
-
-							</div>
+							
 
 
 							<!-- /.card -->
@@ -1283,50 +1275,7 @@
 							</div>
 							<!-- /.card -->
 
-							<div class="card" id="doughnutCard">
-								<div class="card-header">
-									<h3 class="card-title">
-										<i class="fas fa-chart-pie mr-1" style="color:red;"></i>
-										Cases 2019-nCoV
-									</h3>
-									<div class="card-tools">
-										<button type="button" class="btn btn-dark btn-sm" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-											<i class="fas fa-minus"></i>
-										</button>
-
-									</div>
-								</div><!-- /.card-header -->
-								<div class="card-body">
-									<canvas id="myChart"></canvas>
-								</div><!-- /.card-body -->
-							</div>
-							<!-- solid sales graph -->
-
-							<div class="card bg-gradient-white" style="color:black !important;" id="lineCard">
-								<div class="card-header border-0">
-									<h3 class="card-title">
-										<i class="fas fa-chart-line mr-1" style="color:red;"></i>
-										Trend of 2019-nCoV Cases
-									</h3>
-
-									<div class="card-tools">
-										<button type="button" class="btn btn-dark btn-sm" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-											<i class="fas fa-minus"></i>
-										</button>
-
-										<!-- </button> -->
-									</div>
-								</div>
-								<div class="card-body">
-									<canvas id="lineChart"></canvas>
-								</div>
-								<!-- /.card-body -->
-
-								<!-- /.card-footer -->
-							</div>
-							<!-- /.card -->
-
-							<div class="card bg-gradient-white" style="color:black !important;" id="lineCard2">
+								<div class="card bg-gradient-white" style="color:black !important;" id="lineCard2">
 								<div class="card-header border-0">
 									<h3 class="card-title">
 										<i class="fas fa-chart-line mr-1" style="color:red;"></i>
@@ -1347,7 +1296,63 @@
 								<!-- /.card-body -->
 
 								<!-- /.card-footer -->
+							</div>	
+								
+							<div class="card" id="doughnutCard">
+								<div class="card-header">
+									<h3 class="card-title">
+										<i class="fas fa-chart-pie mr-1" style="color:red;"></i>
+										Cases 2019-nCoV
+									</h3>
+									<div class="card-tools">
+										<button type="button" class="btn btn-dark btn-sm" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+											<i class="fas fa-minus"></i>
+										</button>
+
+									</div>
+								</div><!-- /.card-header -->
+								<div class="card-body">
+									<canvas id="myChart"></canvas>
+								</div><!-- /.card-body -->
 							</div>
+							<!-- solid sales graph -->
+
+								<div class="card" id="tweet">
+								<div class="card-header">
+									<h3 class="card-title"><i class="fab fa-twitter mr-1"></i>Tweets-MoHFW INDIA</h3>
+
+									<div class="card-tools">
+										<button type="button" class="btn btn-dark btn-tool" data-card-widget="collapse">
+											<i class="fas fa-minus"></i>
+										</button>
+
+
+
+
+									</div>
+
+								</div>
+
+								<div class="card-body">
+									<div class="panel-collapse collapse show" aria-expanded="true">
+										<div class="direct-chat-messages" id="newsscroll" style="min-height:320px;">
+											<a class="twitter-timeline" href="https://twitter.com/MoHFW_INDIA?ref_src=twsrc%5Etfw"></a>
+
+
+
+										</div>
+									</div>
+								</div>
+
+
+
+
+							</div>
+
+							
+							<!-- /.card -->
+
+							
 							<!-- /.card -->
 
 						</section>
