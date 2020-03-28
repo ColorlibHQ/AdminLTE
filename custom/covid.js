@@ -604,6 +604,8 @@ for(y=1; y<dublingCasesDateArr.length; y++){
   dublingCasesDayCountArr.push(dayDiff/1000/60/60/24);
 }
 //expectedDublingArr.length = dublingCasesDateArr.length;
+dublingCasesValArr.shift();
+dublingCasesDayCountArr.shift();
 
 console.log(expectedDublingArr);
 //dublingCasesValArr.shift();
