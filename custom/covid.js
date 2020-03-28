@@ -517,7 +517,7 @@ var i=0;
     data: {
       labels: dateLable,
       datasets: [{
-        label: "Total Cases Reached",
+        label: "Total Cases ",
         data: totalCasesData,
         backgroundColor: ['rgba(0, 0, 0, 0.1)'],
         borderColor: randomColorGenerator(),
@@ -525,7 +525,7 @@ var i=0;
         fill: false
       },
       {
-        label: "Total Active Cases Reached",
+        label: "Total Active Cases",
         data: totalActiveCasesData,
         backgroundColor: ['rgba(0, 0, 0, 0.1)'],
         borderColor: randomColorGenerator(),
@@ -533,7 +533,7 @@ var i=0;
         fill: false
       },
       {
-        label: "Daily Increase Count",
+        label: "Daily Increase",
         data: dailyCaseCountData,
         backgroundColor: ['rgba(0, 0, 0, 0.1)'],
         borderColor: randomColorGenerator(),
@@ -596,7 +596,7 @@ var expectedDublingArr=[totalCaseCount];
         }
 
 
-dublingCasesDayCountArr.push(0);
+//dublingCasesDayCountArr.push(0);
 for(y=1; y<dublingCasesDateArr.length; y++){
   var dayDiff = moment(dublingCasesDateArr[y]) - moment(dublingCasesDateArr[y-1]);
   dublingCasesDayCountArr.push(dayDiff/1000/60/60/24);
@@ -604,6 +604,7 @@ for(y=1; y<dublingCasesDateArr.length; y++){
 //expectedDublingArr.length = dublingCasesDateArr.length;
 
 console.log(expectedDublingArr);
+dublingCasesValArr.shift();
 console.log(dublingCasesValArr);
 console.log(dublingCasesDateArr);
 
@@ -613,19 +614,27 @@ console.log(dublingCasesDateArr);
     data: {
       labels: dublingCasesValArr ,
       datasets: [{
-        label: "Total Cases Almost Doubled By",
+        label: "No. of days to double the total count",
         data: dublingCasesDayCountArr,
-        backgroundColor: ['rgba(0, 0, 0, 0.1)'],
-        borderColor: randomColorGenerator(),
+        backgroundColor: randomColorGenerator(),//['rgba(0, 0, 0, 0.1)'],
+        //borderColor: "aqua",//randomColorGenerator(),
         borderWidth: 2,
-        fill: false
+        fill: true
       }
     ]
     },
     options: {
       //cutoutPercentage: 40,
       responsive: true,
-      xAxisID: "dd"
+      xAxisID: "dd",
+      scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          callback: function(value) {if (value % 1 === 0) {return value;}}
+        }
+      }]
+    }
 
     }
   });
