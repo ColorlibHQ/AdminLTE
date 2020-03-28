@@ -146,7 +146,7 @@ var cordinatList = {
 function initMap() {
   var indiaCenter = new google.maps.LatLng(20.5937, 78.9629);
   var indiaBorderBounds={
-        north: 37.6,
+        north: 40,
         south: 7,
         west: 68.7,
         east: 97.25,
@@ -442,6 +442,7 @@ function generateMapMarkers(regionalData) {
   infoWindowContent = mapMarkerHtml;
 
   // Load initialize gogle map function initMap
+  if(typeof google !== 'undefined')
   google.maps.event.addDomListener(window, 'load', initMap);
 }
 
@@ -555,6 +556,7 @@ var i=0;
 function generateLineDblGraph(statsSummary, dailyStats) {
 
 var dublingCasesDateArr =[];
+var dublingCasesDayCountArr =[];
 var dublingCasesValArr =[];
 
 var totalCaseCount =statsSummary.total
@@ -567,36 +569,6 @@ var expectedDublingArr=[totalCaseCount];
     ttcase = halfOfTtlCase;
     //expectedDublingArr.push(expectedDublingArr);
   }
-
-  // var dayCout=0;
-  // for (dayIndex in dailyStats) {
-  //   var dayStats = dailyStats[dayIndex];
-  //   for(k=0; k<expectedDublingArr.length; k++){
-  //     if((expectedDublingArr[k] == dayStats.summary.total || expectedDublingArr[k] < dayStats.summary.total) && expectedDublingArr[k+1] > dayStats.summary.total){
-  //       dublingCasesDateArr.push(dayStats.day);
-  //     }
-  //   }
-  //   dayCout++;
-  // }
-
-
-    //
-    // for(var k=expectedDublingArr.length-1; k>0; k--){
-    //   for (var dayIndex=dailyStats.length-1; dayIndex>0; dayIndex--) {
-    //     var dayStats = dailyStats[dayIndex];
-    //     if(expectedDublingArr[k] == dayStats.summary.total){
-    //       dublingCasesDateArr.push(dayStats.day);
-    //       break;
-    //     } else{
-    //       var temp=null;
-    //       while(expectedDublingArr[k]<dayStats.summary.total && (expectedDublingArr[k+1]>dayStats.summary.total || expectedDublingArr[k+1]==dayStats.summary.total)){
-    //         temp=dayStats.day;
-    //       }
-    //       dublingCasesDateArr.push(temp);
-    //       break;
-    //     }
-    //   }
-    // }
 
     dublingCasesDateArr.push(dailyStats[dailyStats.length-1].day);
     dublingCasesValArr.push(dailyStats[dailyStats.length-1].summary.total);
@@ -624,7 +596,11 @@ var expectedDublingArr=[totalCaseCount];
         }
 
 
-
+dublingCasesDayCountArr.push(0);
+for(y=1; y<dublingCasesDateArr.length; y++){
+  var dayDiff = moment(dublingCasesDateArr[y]) - moment(dublingCasesDateArr[y-1]);
+  dublingCasesDayCountArr.push(dayDiff/1000/60/60/24);
+}
 //expectedDublingArr.length = dublingCasesDateArr.length;
 
 console.log(expectedDublingArr);
@@ -633,12 +609,12 @@ console.log(dublingCasesDateArr);
 
   var ctx = document.getElementById("lineChart2").getContext("2d");
   var lineChart = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
-      labels: dublingCasesDateArr,
+      labels: dublingCasesValArr ,
       datasets: [{
         label: "Total Cases Almost Doubled By",
-        data: dublingCasesValArr,
+        data: dublingCasesDayCountArr,
         backgroundColor: ['rgba(0, 0, 0, 0.1)'],
         borderColor: randomColorGenerator(),
         borderWidth: 2,
