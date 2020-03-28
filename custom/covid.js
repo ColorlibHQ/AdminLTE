@@ -606,7 +606,7 @@ for(y=1; y<dublingCasesDateArr.length; y++){
 //expectedDublingArr.length = dublingCasesDateArr.length;
 
 console.log(expectedDublingArr);
-dublingCasesValArr.shift();
+//dublingCasesValArr.shift();
 console.log(dublingCasesValArr);
 console.log(dublingCasesDateArr);
 
