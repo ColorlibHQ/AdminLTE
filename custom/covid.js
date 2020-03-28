@@ -571,7 +571,12 @@ var expectedDublingArr=[totalCaseCount];
   }
 
     dublingCasesDateArr.push(dailyStats[dailyStats.length-1].day);
-    dublingCasesValArr.push(dailyStats[dailyStats.length-1].summary.total);
+    //dublingCasesValArr.push(dailyStats[dailyStats.length-1].summary.total);
+
+    var casValTemp = dailyStats[dailyStats.length-1].summary.total;
+    casValTemp+="("+dailyStats[dailyStats.length-1].day+")"
+    dublingCasesValArr.push(casValTemp);
+
     var dayIndex = dailyStats.length-1;
 
     for(var k=expectedDublingArr.length-2; k>0; k--){
@@ -584,6 +589,7 @@ var expectedDublingArr=[totalCaseCount];
           {
             tempDate=dayStats.day;
             tempVal=dayStats.summary.total;
+            tempVal+=" ("+tempDate+")";
 
             if(dayIndex==0)
             break;
