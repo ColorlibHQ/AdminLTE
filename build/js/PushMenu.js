@@ -37,9 +37,9 @@ const PushMenu = (($) => {
   }
 
   const ClassName = {
-    SIDEBAR_OPEN: 'sidebar-open',
     COLLAPSED: 'sidebar-collapse',
-    OPEN: 'sidebar-open'
+    OPEN: 'sidebar-open',
+    CLOSED: 'sidebar-closed'
   }
 
   /**
@@ -68,7 +68,7 @@ const PushMenu = (($) => {
         }
       }
 
-      $(Selector.BODY).removeClass(ClassName.COLLAPSED)
+      $(Selector.BODY).removeClass(ClassName.COLLAPSED).removeClass(ClassName.CLOSED)
 
       if(this._options.enableRemember) {
         localStorage.setItem(`remember${EVENT_KEY}`, ClassName.OPEN)
@@ -81,7 +81,7 @@ const PushMenu = (($) => {
     collapse() {
       if (this._options.autoCollapseSize) {
         if ($(window).width() <= this._options.autoCollapseSize) {
-          $(Selector.BODY).removeClass(ClassName.OPEN)
+          $(Selector.BODY).removeClass(ClassName.OPEN).addClass(ClassName.CLOSED)
         }
       }
 
@@ -112,6 +112,8 @@ const PushMenu = (($) => {
         } else if (resize == true) {
           if ($(Selector.BODY).hasClass(ClassName.OPEN)) {
             $(Selector.BODY).removeClass(ClassName.OPEN)
+          } else if($(Selector.BODY).hasClass(ClassName.CLOSED)) {
+            this.expand()
           }
         }
       }
