@@ -77,7 +77,7 @@ const Layout = (($) => {
     fixLayoutHeight(extra = null) {
       let control_sidebar = 0
 
-      if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || extra == 'control_sidebar') {
+      if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || extra == 'control_sidebar') {
         control_sidebar = $(Selector.CONTROL_SIDEBAR_CONTENT).height()
       }
 
@@ -92,7 +92,7 @@ const Layout = (($) => {
       const max = this._max(heights)
       let offset = this._config.panelAutoHeight
 
-      if (offset === true) {
+      if (offset === true) {
         offset = 0;
       }
 
@@ -198,7 +198,7 @@ const Layout = (($) => {
           $(this).data(DATA_KEY, data)
         }
 
-        if (config === 'init' || config === '') {
+        if (config === 'init' || config === '') {
           data['_init']()
         } else if (config === 'fixLayoutHeight' || config === 'fixLoginRegisterHeight') {
           data[config]()

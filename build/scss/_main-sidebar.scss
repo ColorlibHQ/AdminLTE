@@ -310,7 +310,7 @@
   .nav-flat {
     .nav-item {
       .nav-treeview {
-        .nav-treeview {
+        .nav-treeview {
           border-color: $sidebar-light-submenu-active-bg;
         }
 
@@ -437,7 +437,7 @@
   .nav-flat {
     .nav-item {
       .nav-treeview {
-        .nav-treeview {
+        .nav-treeview {
           border-color: $sidebar-dark-submenu-active-bg;
         }
 
@@ -490,17 +490,17 @@
       border-radius: 0;
       margin-bottom: 0;
 
-      > .nav-icon {
+      > .nav-icon {
         margin-left: .55rem;
       }
     }
   }
 
   &:not(.nav-child-indent) {
-    .nav-treeview {  
+    .nav-treeview {  
       .nav-item {
         > .nav-link {
-          > .nav-icon {
+          > .nav-icon {
             margin-left: .4rem;
           }
         }
@@ -512,29 +512,29 @@
     .nav-treeview {
       padding-left: 0;
 
-      .nav-icon {
+      .nav-icon {
         margin-left: .85rem;
       }
 
       .nav-treeview {
         border-left: .2rem solid;
 
-        .nav-icon {
+        .nav-icon {
           margin-left: 1.15rem;
         }
 
         .nav-treeview {
-          .nav-icon {
+          .nav-icon {
             margin-left: 1.45rem;
           }
 
           .nav-treeview {
-            .nav-icon {
+            .nav-icon {
               margin-left: 1.75rem;
             }
 
             .nav-treeview {
-              .nav-icon {
+              .nav-icon {
                 margin-left: 2.05rem;
               }
             }
@@ -544,9 +544,9 @@
     }
   }
 
-  .sidebar-collapse &.nav-child-indent {
+  .sidebar-collapse &.nav-child-indent {
     .nav-treeview {
-      .nav-icon {
+      .nav-icon {
         margin-left: .55rem;
       }
 
@@ -555,22 +555,22 @@
       }
 
       .nav-treeview {
-        .nav-icon {
+        .nav-icon {
           margin-left: .35rem;
         }
 
         .nav-treeview {
-          .nav-icon {
+          .nav-icon {
             margin-left: .15rem;
           }
 
           .nav-treeview {
-            .nav-icon {
+            .nav-icon {
               margin-left: -.15rem;
             }
 
             .nav-treeview {
-              .nav-icon {
+              .nav-icon {
                 margin-left: -.35rem;
               }
             }
@@ -585,33 +585,33 @@
   .sidebar-mini .main-sidebar.sidebar-focused &,
   .sidebar-mini-md .main-sidebar.sidebar-focused & {
     &.nav-compact.nav-sidebar .nav-treeview {
-      .nav-icon {
+      .nav-icon {
         margin-left: .4rem;
       }
     }
 
     &.nav-sidebar.nav-child-indent .nav-treeview {
-      .nav-icon {
+      .nav-icon {
         margin-left: .85rem;
       }
 
       .nav-treeview {
-        .nav-icon {
+        .nav-icon {
           margin-left: 1.15rem;
         }
 
         .nav-treeview {
-          .nav-icon {
+          .nav-icon {
             margin-left: 1.45rem;
           }
 
           .nav-treeview {
-            .nav-icon {
+            .nav-icon {
               margin-left: 1.75rem;
             }
 
             .nav-treeview {
-              .nav-icon {
+              .nav-icon {
                 margin-left: 2.05rem;
               }
             }
