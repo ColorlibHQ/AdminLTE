@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-vu" viewBox="0 0 640 480">
   <defs>
-    <clipPath id="a">
+    <clipPath id="vu-a">
       <path fill-opacity=".7" d="M0 0h682.7v512H0z"/>
     </clipPath>
   </defs>
-  <g clip-path="url(#a)" transform="scale(.9375)">
+  <g clip-path="url(#vu-a)" transform="scale(.9375)">
     <g fill-rule="evenodd">
       <path d="M0 0l347.4 219.4H768v73.2H347.4L0 512V0z"/>
       <path fill="#ff0" d="M0 493.7L354.7 267H768v-22H354.7L0 18.3v32.9L332.8 256 0 460.8v32.9z"/>

@@ -64,7 +64,7 @@ declare module '@fullcalendar/core' {
     export { computeFallbackHeaderFormat, renderDateCell } from '@fullcalendar/core/common/table-utils';
     export { default as DaySeries } from '@fullcalendar/core/common/DaySeries';
     export { EventInteractionState } from '@fullcalendar/core/interactions/event-interaction-state';
-    export { EventRenderRange, sliceEventStore, hasBgRendering, getElSeg } from '@fullcalendar/core/component/event-rendering';
+    export { EventRenderRange, sliceEventStore, hasBgRendering, getElSeg, computeEventDraggable, computeEventStartResizable, computeEventEndResizable } from '@fullcalendar/core/component/event-rendering';
     export { default as DayTable, DayTableSeg, DayTableCell } from '@fullcalendar/core/common/DayTable';
     export { default as Slicer, SlicedProps } from '@fullcalendar/core/common/slicing-utils';
     export { EventMutation, applyMutationToEventStore } from '@fullcalendar/core/structs/event-mutation';
@@ -743,10 +743,11 @@ declare module '@fullcalendar/core/component/event-splitting' {
 
 declare module '@fullcalendar/core/component/date-rendering' {
     import { DateMarker } from '@fullcalendar/core/datelib/marker';
-    import Component, { ComponentContext } from '@fullcalendar/core/component/Component';
+    import { ComponentContext } from '@fullcalendar/core/component/Component';
     import { DateProfile } from '@fullcalendar/core/DateProfileGenerator';
-    export function buildGotoAnchorHtml(component: Component<any>, gotoOptions: any, attrs: any, innerHtml?: any): string;
-    export function getAllDayHtml(component: Component<any>): any;
+    import { DateEnv } from '@fullcalendar/core/datelib/env';
+    export function buildGotoAnchorHtml(allOptions: any, dateEnv: DateEnv, gotoOptions: any, attrs: any, innerHtml?: any): string;
+    export function getAllDayHtml(allOptions: any): any;
     export function getDayClasses(date: DateMarker, dateProfile: DateProfile, context: ComponentContext, noThemeHighlight?: any): any[];
 }
 
@@ -962,12 +963,18 @@ declare module '@fullcalendar/core/component/Component' {
     import View from '@fullcalendar/core/View';
     import Theme from '@fullcalendar/core/theme/Theme';
     import { DateEnv } from '@fullcalendar/core/datelib/env';
-    export interface ComponentContext {
-        options: any;
-        dateEnv: DateEnv;
-        theme: Theme;
+    import { Duration } from '@fullcalendar/core/datelib/duration';
+    export class ComponentContext {
         calendar: Calendar;
-        view: View;
+        theme: Theme;
+        dateEnv: DateEnv;
+        options: any;
+        view?: View;
+        isRtl: boolean;
+        eventOrderSpecs: any;
+        nextDayThreshold: Duration;
+        constructor(calendar: Calendar, theme: Theme, dateEnv: DateEnv, options: any, view?: View);
+        extend(options?: any, view?: View): ComponentContext;
     }
     export type EqualityFuncHash = {
         [propName: string]: (obj0: any, obj1: any) => boolean;
@@ -978,22 +985,19 @@ declare module '@fullcalendar/core/component/Component' {
         uid: string;
         props: PropsType | null;
         context: ComponentContext;
-        dateEnv: DateEnv;
-        theme: Theme;
-        view: View;
-        calendar: Calendar;
-        isRtl: boolean;
-        constructor(context: ComponentContext, isView?: boolean);
+        constructor();
         static addEqualityFuncs(newFuncs: EqualityFuncHash): void;
-        opt(name: any): any;
-        receiveProps(props: PropsType): void;
-        protected render(props: PropsType): void;
+        receiveProps(props: PropsType, context: ComponentContext): void;
+        protected render(props: PropsType, context: ComponentContext): void;
+        firstContext(context: ComponentContext): void;
+        beforeUpdate(): void;
+        afterUpdate(): void;
         destroy(): void;
     }
 }
 
 declare module '@fullcalendar/core/component/DateComponent' {
-    import Component, { ComponentContext } from '@fullcalendar/core/component/Component';
+    import Component from '@fullcalendar/core/component/Component';
     import { EventRenderRange } from '@fullcalendar/core/component/event-rendering';
     import { DateSpan } from '@fullcalendar/core/structs/date-span';
     import { EventInstanceHash } from '@fullcalendar/core/structs/event';
@@ -1001,7 +1005,6 @@ declare module '@fullcalendar/core/component/DateComponent' {
     import FgEventRenderer from '@fullcalendar/core/component/renderers/FgEventRenderer';
     import FillRenderer from '@fullcalendar/core/component/renderers/FillRenderer';
     import { EventInteractionState } from '@fullcalendar/core/interactions/event-interaction-state';
-    import { EventHandlerName, EventHandlerArgs } from '@fullcalendar/core/types/input-types';
     export type DateComponentHash = {
         [uid: string]: DateComponent<any>;
     };
@@ -1028,17 +1031,12 @@ declare module '@fullcalendar/core/component/DateComponent' {
         mirrorRenderer: FgEventRenderer;
         fillRenderer: FillRenderer;
         el: HTMLElement;
-        constructor(context: ComponentContext, el: HTMLElement, isView?: boolean);
+        constructor(el: HTMLElement);
         destroy(): void;
         buildPositionCaches(): void;
         queryHit(positionLeft: number, positionTop: number, elWidth: number, elHeight: number): Hit | null;
         isInteractionValid(interaction: EventInteractionState): boolean;
         isDateSelectionValid(selection: DateSpan): boolean;
-        publiclyTrigger<T extends EventHandlerName>(name: T, args?: EventHandlerArgs<T>): any;
-        publiclyTriggerAfterSizing<T extends EventHandlerName>(name: T, args: EventHandlerArgs<T>): void;
-        hasPublicHandlers<T extends EventHandlerName>(name: T): boolean;
-        triggerRenderedSegs(segs: Seg[], isMirrors: boolean): void;
-        triggerWillRemoveSegs(segs: Seg[], isMirrors: boolean): void;
         isValidSegDownEl(el: HTMLElement): boolean;
         isValidDateDownEl(el: HTMLElement): boolean;
         isPopover(): boolean;
@@ -1128,7 +1126,6 @@ declare module '@fullcalendar/core/Calendar' {
         actionQueue: any[];
         isReducing: boolean;
         needsRerender: boolean;
-        needsFullRerender: boolean;
         isRendering: boolean;
         renderingPauseDepth: number;
         renderableEventStore: EventStore;
@@ -1150,11 +1147,11 @@ declare module '@fullcalendar/core/Calendar' {
         hydrate(): void;
         buildInitialState(): CalendarState;
         reduce(state: CalendarState, action: Action, calendar: Calendar): CalendarState;
-        requestRerender(needsFull?: boolean): void;
+        requestRerender(): void;
         tryRerender(): void;
         batchRendering(func: any): void;
         executeRender(): void;
-        renderComponent(needsFull: any): void;
+        renderComponent(): void;
         setOption(name: string, val: any): void;
         getOption(name: string): any;
         opt(name: string): any;
@@ -1220,15 +1217,15 @@ declare module '@fullcalendar/core/View' {
     import { Duration } from '@fullcalendar/core/datelib/duration';
     import { EmitterInterface } from '@fullcalendar/core/common/EmitterMixin';
     import { ViewSpec } from '@fullcalendar/core/structs/view-spec';
-    import { ComponentContext } from '@fullcalendar/core/component/Component';
     import DateComponent from '@fullcalendar/core/component/DateComponent';
     import { EventStore } from '@fullcalendar/core/structs/event-store';
-    import { EventUiHash, EventUi } from '@fullcalendar/core/component/event-ui';
+    import { EventUiHash } from '@fullcalendar/core/component/event-ui';
     import { EventRenderRange } from '@fullcalendar/core/component/event-rendering';
     import { DateSpan } from '@fullcalendar/core/structs/date-span';
     import { EventInteractionState } from '@fullcalendar/core/interactions/event-interaction-state';
-    import { EventDef } from '@fullcalendar/core/structs/event';
+    import { ComponentContext } from '@fullcalendar/core/component/Component';
     export interface ViewProps {
+        dateProfileGenerator: DateProfileGenerator;
         dateProfile: DateProfile;
         businessHours: EventStore;
         eventStore: EventStore;
@@ -1249,24 +1246,22 @@ declare module '@fullcalendar/core/View' {
         triggerWith: EmitterInterface['triggerWith'];
         hasHandlers: EmitterInterface['hasHandlers'];
         viewSpec: ViewSpec;
-        dateProfileGenerator: DateProfileGenerator;
         type: string;
         title: string;
         queuedScroll: any;
-        eventOrderSpecs: any;
-        nextDayThreshold: Duration;
         isNowIndicatorRendered: boolean;
         initialNowDate: DateMarker;
         initialNowQueriedMs: number;
         nowIndicatorTimeoutID: any;
         nowIndicatorIntervalID: any;
-        constructor(context: ComponentContext, viewSpec: ViewSpec, dateProfileGenerator: DateProfileGenerator, parentEl: HTMLElement);
+        constructor(viewSpec: ViewSpec, parentEl: HTMLElement);
         initialize(): void;
         readonly activeStart: Date;
         readonly activeEnd: Date;
         readonly currentStart: Date;
         readonly currentEnd: Date;
-        render(props: ViewProps): void;
+        render(props: ViewProps, context: ComponentContext): void;
+        beforeUpdate(): void;
         destroy(): void;
         updateSize(isResize: boolean, viewHeight: number, isAuto: boolean): void;
         updateBaseSize(isResize: boolean, viewHeight: number, isAuto: boolean): void;
@@ -1283,9 +1278,6 @@ declare module '@fullcalendar/core/View' {
         renderEvents(eventStore: EventStore): void;
         unrenderEvents(): void;
         sliceEvents(eventStore: EventStore, allDay: boolean): EventRenderRange[];
-        computeEventDraggable(eventDef: EventDef, eventUi: EventUi): boolean;
-        computeEventStartResizable(eventDef: EventDef, eventUi: EventUi): any;
-        computeEventEndResizable(eventDef: EventDef, eventUi: EventUi): boolean;
         renderEventSelectionWrap(instanceId: string): void;
         unrenderEventSelectionWrap(instanceId: string): void;
         renderEventSelection(instanceId: string): void;
@@ -1298,13 +1290,13 @@ declare module '@fullcalendar/core/View' {
         unrenderEventResizeWrap(state: EventInteractionState): void;
         renderEventResize(state: EventInteractionState): void;
         unrenderEventResize(state: EventInteractionState): void;
-        startNowIndicator(dateProfile: DateProfile): void;
+        startNowIndicator(dateProfile: DateProfile, dateProfileGenerator: DateProfileGenerator): void;
         updateNowIndicator(): void;
         stopNowIndicator(): void;
-        getNowIndicatorUnit(dateProfile: DateProfile): void;
+        getNowIndicatorUnit(dateProfile: DateProfile, dateProfileGenerator: DateProfileGenerator): void;
         renderNowIndicator(date: any): void;
         unrenderNowIndicator(): void;
-        addScroll(scroll: any): void;
+        addScroll(scroll: any, isForced?: boolean): void;
         popScroll(isResize: boolean): void;
         applyQueuedScroll(isResize: boolean): void;
         queryScroll(): any;
@@ -1331,9 +1323,8 @@ declare module '@fullcalendar/core/component/renderers/FgEventRenderer' {
         displayEventEnd: boolean;
         segs: Seg[];
         isSizeDirty: boolean;
-        constructor(context: ComponentContext);
-        renderSegs(segs: Seg[], mirrorInfo?: any): void;
-        unrender(_segs: Seg[], mirrorInfo?: any): void;
+        renderSegs(context: ComponentContext, segs: Seg[], mirrorInfo?: any): void;
+        unrender(context: ComponentContext, _segs: Seg[], mirrorInfo?: any): void;
         abstract renderSegHtml(seg: Seg, mirrorInfo: any): string;
         abstract attachSegs(segs: Seg[], mirrorInfo: any): any;
         abstract detachSegs(segs: Seg[]): any;
@@ -1373,10 +1364,10 @@ declare module '@fullcalendar/core/component/renderers/FillRenderer' {
         containerElsByType: any;
         segsByType: any;
         dirtySizeFlags: any;
-        constructor(context: ComponentContext);
+        constructor();
         getSegsByType(type: string): any;
-        renderSegs(type: any, segs: Seg[]): void;
-        unrender(type: any): void;
+        renderSegs(type: string, context: ComponentContext, segs: Seg[]): void;
+        unrender(type: string, context: ComponentContext): void;
         renderSegEls(type: any, segs: Seg[]): Seg[];
         renderSegHtml(type: any, seg: Seg): string;
         abstract attachSegs(type: any, segs: Seg[]): HTMLElement[] | void;
@@ -2058,7 +2049,7 @@ declare module '@fullcalendar/core/plugin-system' {
     import Calendar, { DatePointTransform, DateSpanTransform, CalendarInteractionClass, OptionChangeHandlerMap } from '@fullcalendar/core/Calendar';
     import { ViewConfigInputHash } from '@fullcalendar/core/structs/view-config';
     import { ViewSpec } from '@fullcalendar/core/structs/view-spec';
-    import View, { ViewProps } from '@fullcalendar/core/View';
+    import { ViewProps } from '@fullcalendar/core/View';
     import { CalendarComponentProps } from '@fullcalendar/core/CalendarComponent';
     import { isPropsValidTester } from '@fullcalendar/core/validation';
     import { eventDragMutationMassager, eventIsDraggableTransformer, EventDropTransformers } from '@fullcalendar/core/interactions/event-dragging';
@@ -2137,7 +2128,7 @@ declare module '@fullcalendar/core/plugin-system' {
     }
     export type ViewPropsTransformerClass = new () => ViewPropsTransformer;
     export interface ViewPropsTransformer {
-        transform(viewProps: ViewProps, viewSpec: ViewSpec, calendarProps: CalendarComponentProps, view: View): any;
+        transform(viewProps: ViewProps, viewSpec: ViewSpec, calendarProps: CalendarComponentProps, allOptions: any): any;
     }
     export type ViewContainerModifier = (contentEl: HTMLElement, calendar: Calendar) => void;
     export function createPlugin(input: PluginDefInput): PluginDef;
@@ -2288,13 +2279,19 @@ declare module '@fullcalendar/core/CalendarComponent' {
         parseBusinessHours: (input: BusinessHoursInput) => EventStore;
         el: HTMLElement;
         contentEl: HTMLElement;
+        elClassNames: string[];
+        savedScroll: any;
         isHeightAuto: boolean;
         viewHeight: number;
-        constructor(context: ComponentContext, el: HTMLElement);
+        constructor(el: HTMLElement);
+        render(props: CalendarComponentProps, context: ComponentContext): void;
         destroy(): void;
-        toggleElClassNames(bool: boolean): void;
-        render(props: CalendarComponentProps): void;
-        renderToolbars(viewSpec: ViewSpec, dateProfile: DateProfile, currentDate: DateMarker, dateProfileGenerator: DateProfileGenerator, title: string): void;
+        _renderSkeleton(context: ComponentContext): void;
+        _unrenderSkeleton(): void;
+        removeElClassNames(): void;
+        updateElClassNames(context: ComponentContext): void;
+        _renderToolbars(viewSpec: ViewSpec, dateProfile: DateProfile, currentDate: DateMarker, title: string): void;
+        _unrenderToolbars(): void;
         renderView(props: CalendarComponentProps, title: string): void;
         updateSize(isResize?: boolean): void;
         computeHeightVars(): void;
@@ -2316,11 +2313,14 @@ declare module '@fullcalendar/core/common/DayHeader' {
     }
     export { DayHeader as default, DayHeader };
     class DayHeader extends Component<DayTableHeaderProps> {
+        parentEl: HTMLElement;
         el: HTMLElement;
         thead: HTMLElement;
-        constructor(context: ComponentContext, parentEl: HTMLElement);
+        constructor(parentEl: HTMLElement);
+        render(props: DayTableHeaderProps, context: ComponentContext): void;
         destroy(): void;
-        render(props: DayTableHeaderProps): void;
+        _renderSkeleton(context: ComponentContext): void;
+        _unrenderSkeleton(): void;
     }
 }
 
@@ -2379,8 +2379,8 @@ declare module '@fullcalendar/core/component/event-rendering' {
     import { DateRange } from '@fullcalendar/core/datelib/date-range';
     import { Duration } from '@fullcalendar/core/datelib/duration';
     import { Seg } from '@fullcalendar/core/component/DateComponent';
-    import View from '@fullcalendar/core/View';
     import { EventUi, EventUiHash } from '@fullcalendar/core/component/event-ui';
+    import { ComponentContext } from '@fullcalendar/core/component/Component';
     export interface EventRenderRange extends EventTuple {
         ui: EventUi;
         range: DateRange;
@@ -2392,12 +2392,17 @@ declare module '@fullcalendar/core/component/event-rendering' {
         fg: EventRenderRange[];
     };
     export function hasBgRendering(def: EventDef): boolean;
-    export function filterSegsViaEls(view: View, segs: Seg[], isMirror: boolean): Seg[];
+    export function filterSegsViaEls(context: ComponentContext, segs: Seg[], isMirror: boolean): Seg[];
     export function getElSeg(el: HTMLElement): Seg | null;
     export function compileEventUis(eventDefs: EventDefHash, eventUiBases: EventUiHash): {
         [key: string]: EventUi;
     };
     export function compileEventUi(eventDef: EventDef, eventUiBases: EventUiHash): EventUi;
+    export function triggerRenderedSegs(context: ComponentContext, segs: Seg[], isMirrors: boolean): void;
+    export function triggerWillRemoveSegs(context: ComponentContext, segs: Seg[], isMirrors: boolean): void;
+    export function computeEventDraggable(context: ComponentContext, eventDef: EventDef, eventUi: EventUi): boolean;
+    export function computeEventStartResizable(context: ComponentContext, eventDef: EventDef, eventUi: EventUi): any;
+    export function computeEventEndResizable(context: ComponentContext, eventDef: EventDef, eventUi: EventUi): boolean;
 }
 
 declare module '@fullcalendar/core/common/DayTable' {
@@ -2435,6 +2440,7 @@ declare module '@fullcalendar/core/common/slicing-utils' {
     import { EventInteractionState } from '@fullcalendar/core/interactions/event-interaction-state';
     import { Duration } from '@fullcalendar/core/datelib/duration';
     import { DateMarker } from '@fullcalendar/core/datelib/marker';
+    import Calendar from '@fullcalendar/core/Calendar';
     export interface SliceableProps {
         dateSelection: DateSpan;
         businessHours: EventStore;
@@ -2456,7 +2462,7 @@ declare module '@fullcalendar/core/common/slicing-utils' {
     export { Slicer as default, Slicer };
     abstract class Slicer<SegType extends Seg, ExtraArgs extends any[] = []> {
         abstract sliceRange(dateRange: DateRange, ...extraArgs: ExtraArgs): SegType[];
-        sliceProps(props: SliceableProps, dateProfile: DateProfile, nextDayThreshold: Duration | null, component: DateComponent<any>, // TODO: kill
+        sliceProps(props: SliceableProps, dateProfile: DateProfile, nextDayThreshold: Duration | null, calendar: Calendar, component: DateComponent<any>, // TODO: kill
         ...extraArgs: ExtraArgs): SlicedProps<SegType>;
         sliceNowDate(// does not memoize
         date: DateMarker, component: DateComponent<any>, // TODO: kill
@@ -2622,9 +2628,7 @@ declare module '@fullcalendar/core/api/EventSourceApi' {
 declare module '@fullcalendar/core/structs/view-config' {
     import View from '@fullcalendar/core/View';
     import { ViewSpec } from '@fullcalendar/core/structs/view-spec';
-    import { ComponentContext } from '@fullcalendar/core/component/Component';
-    import DateProfileGenerator from '@fullcalendar/core/DateProfileGenerator';
-    export type ViewClass = new (context: ComponentContext, viewSpec: ViewSpec, dateProfileGenerator: DateProfileGenerator, parentEl: HTMLElement) => View;
+    export type ViewClass = new (viewSpec: ViewSpec, parentEl: HTMLElement) => View;
     export interface ViewConfigObjectInput {
         type?: string;
         class?: ViewClass;
@@ -2700,7 +2704,7 @@ declare module '@fullcalendar/core/interactions/external-element-dragging' {
 }
 
 declare module '@fullcalendar/core/Toolbar' {
-    import Component, { ComponentContext } from '@fullcalendar/core/component/Component';
+    import Component from '@fullcalendar/core/component/Component';
     export interface ToolbarRenderProps {
         layout: any;
         title: string;
@@ -2713,7 +2717,7 @@ declare module '@fullcalendar/core/Toolbar' {
     class Toolbar extends Component<ToolbarRenderProps> {
         el: HTMLElement;
         viewsWithButtons: any;
-        constructor(context: ComponentContext, extraClassName: any);
+        constructor(extraClassName: any);
         destroy(): void;
         render(props: ToolbarRenderProps): void;
         renderLayout(layout: any): void;

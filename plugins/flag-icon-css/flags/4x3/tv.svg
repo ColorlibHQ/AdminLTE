@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-tv" viewBox="0 0 640 480">
   <defs id="defs830">
-    <clipPath id="a">
+    <clipPath id="tv-a">
       <path id="path827" fill-opacity=".7" d="M0 0h640v480H0z"/>
     </clipPath>
   </defs>

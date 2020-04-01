@@ -2,13 +2,13 @@
  * OverlayScrollbars
  * https://github.com/KingSora/OverlayScrollbars
  *
- * Version: 1.10.0
+ * Version: 1.11.0
  *
  * Copyright KingSora | Rene Haas.
  * https://github.com/KingSora
  *
  * Released under the MIT license.
- * Date: 11.10.2019
+ * Date: 29.02.2020
  */
 
 /*
@@ -96,6 +96,21 @@ body.os-dragging * {
     height: 200%; 
     margin: 10px 0;
 }
+/* fix restricted measuring */
+#os-dummy-scrollbar-size:before,
+#os-dummy-scrollbar-size:after,
+.os-content:before,
+.os-content:after {
+    content: '';
+    display: table;
+    width: 0.01px;
+    height: 0.01px;
+    line-height: 0;
+    font-size: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    visibility: hidden;
+}
 #os-dummy-scrollbar-size,
 .os-viewport {
     -ms-overflow-style: scrollbar !important;
@@ -172,15 +187,6 @@ body.os-dragging * {
     width: 100%;
     visibility: visible;
 }
-.os-content:before,
-.os-content:after {
-    content: '';
-    display: table;
-    width: 0;
-    height: 0;
-    line-height: 0;
-    font-size: 0;
-}
 .os-content > .os-textarea {
     box-sizing: border-box !important;
     direction: inherit !important;
@@ -246,7 +252,7 @@ body.os-dragging * {
 .os-resize-observer-host {
     box-sizing: inherit;
     display: block;
-    opacity: 0;
+    visibility: hidden;
     position: absolute;
     top: 0;
     left: 0;
@@ -263,11 +269,7 @@ body.os-dragging * {
     border-style: solid;
     box-sizing: border-box;
 }
-.os-resize-observer-host:after {
-    content: '';
-}
-.os-resize-observer-host > .os-resize-observer,
-.os-resize-observer-host:after {
+.os-resize-observer-host > .os-resize-observer {
     height: 200%;
     width: 200%;
     padding: inherit;
@@ -276,9 +278,17 @@ body.os-dragging * {
     display: block;
     box-sizing: content-box;
 }
-.os-resize-observer.observed,
-object.os-resize-observer {
-    box-sizing: border-box !important;
+.os-resize-observer-host.observed {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.os-resize-observer-host.observed > .os-resize-observer {
+    position: relative;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
 }
 .os-size-auto-observer {
     box-sizing: inherit !important;
@@ -334,8 +344,27 @@ object.os-resize-observer {
 .os-resize-observer {
     -webkit-animation-duration: 0.001s;
     animation-duration: 0.001s;
-    -webkit-animation-name: hs-resize-observer-dummy-animation;
-    animation-name: hs-resize-observer-dummy-animation;
+    -webkit-animation-name: os-resize-observer-dummy-animation;
+    animation-name: os-resize-observer-dummy-animation;
+}
+object.os-resize-observer {
+    box-sizing: border-box !important;
+}
+@-webkit-keyframes os-resize-observer-dummy-animation {
+    from {
+        z-index: 0;
+    }
+    to {
+        z-index: -1;
+    }
+}
+@keyframes os-resize-observer-dummy-animation {
+    from {
+        z-index: 0;
+    }
+    to {
+        z-index: -1;
+    }
 }
 
 /*
@@ -468,22 +497,6 @@ html.os-html > .os-host > .os-scrollbar {
 } 
 .os-host-overflow-y {
 } 
-@-webkit-keyframes hs-resize-observer-dummy-animation {
-    from {
-        z-index: 0;
-    }
-    to {
-        z-index: -1;
-    }
-}
-@keyframes hs-resize-observer-dummy-animation {
-    from {
-        z-index: 0;
-    }
-    to {
-        z-index: -1;
-    }
-}
 
 /*
 THEMES:

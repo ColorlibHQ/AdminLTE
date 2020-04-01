@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-do" viewBox="0 0 640 480">
   <defs>
-    <clipPath id="a">
+    <clipPath id="do-a">
       <path fill-opacity=".7" d="M-222.6-115.2h958v718.4h-958z"/>
     </clipPath>
   </defs>
-  <g clip-path="url(#a)" transform="matrix(.67 0 0 .67 148.7 77)">
+  <g clip-path="url(#do-a)" transform="matrix(.67 0 0 .67 148.7 77)">
     <path fill="#00319c" fill-rule="evenodd" d="M322 329h446.5v273.9H322z"/>
     <path fill="#d62918" fill-rule="evenodd" d="M-256.7 329.8h445.2v273h-445.2z"/>
     <path fill="#00319c" fill-rule="evenodd" d="M-255.8-115.2h445.2v305.4h-445.2z"/>

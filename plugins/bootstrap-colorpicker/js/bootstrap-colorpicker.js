@@ -1,10 +1,10 @@
 /*!
  * Bootstrap Colorpicker - Bootstrap Colorpicker is a modular color picker plugin for Bootstrap 4.
  * @package bootstrap-colorpicker
- * @version v3.1.2
+ * @version v3.2.0
  * @license MIT
- * @link https://farbelous.github.io/bootstrap-colorpicker/
- * @link https://github.com/farbelous/bootstrap-colorpicker.git
+ * @link https://itsjavi.com/bootstrap-colorpicker/
+ * @link https://github.com/itsjavi/bootstrap-colorpicker.git
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -15,7 +15,7 @@
 		exports["bootstrap-colorpicker"] = factory(require("jquery"));
 	else
 		root["bootstrap-colorpicker"] = factory(root["jQuery"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -54,12 +54,32 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -77,6 +97,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
@@ -85,7 +106,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
 
 /***/ }),
 /* 1 */
@@ -289,6 +310,7 @@ var Extension = function () {
 }();
 
 exports.default = Extension;
+module.exports = exports.default;
 
 /***/ }),
 /* 2 */
@@ -1349,6 +1371,7 @@ exports.default = {
     }
   }
 };
+module.exports = exports.default;
 
 /***/ }),
 /* 4 */
@@ -1558,6 +1581,7 @@ var Palette = function (_Extension) {
 }(_Extension3.default);
 
 exports.default = Palette;
+module.exports = exports.default;
 
 /***/ }),
 /* 5 */
@@ -2719,6 +2743,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var colorPickerIdCounter = 0;
+
 var root = typeof self !== 'undefined' ? self : undefined; // window
 
 /**
@@ -3226,6 +3251,7 @@ var Colorpicker = function () {
 Colorpicker.extensions = _extensions2.default;
 
 exports.default = Colorpicker;
+module.exports = exports.default;
 
 /***/ }),
 /* 9 */
@@ -3448,6 +3474,7 @@ var Debugger = function (_Extension) {
 }(_Extension3.default);
 
 exports.default = Debugger;
+module.exports = exports.default;
 
 /***/ }),
 /* 11 */
@@ -3537,6 +3564,7 @@ var Preview = function (_Extension) {
 }(_Extension3.default);
 
 exports.default = Preview;
+module.exports = exports.default;
 
 /***/ }),
 /* 12 */
@@ -3644,6 +3672,7 @@ var Swatches = function (_Palette) {
 }(_Palette3.default);
 
 exports.default = Swatches;
+module.exports = exports.default;
 
 /***/ }),
 /* 13 */
@@ -3749,6 +3778,7 @@ var SliderHandler = function () {
     key: 'bind',
     value: function bind() {
       var sliders = this.colorpicker.options.horizontal ? this.colorpicker.options.slidersHorz : this.colorpicker.options.sliders;
+
       var sliderClasses = [];
 
       for (var sliderName in sliders) {
@@ -3805,6 +3835,7 @@ var SliderHandler = function () {
 
       // detect the slider and set the limits and callbacks
       var zone = target.closest('div');
+
       var sliders = this.colorpicker.options.horizontal ? this.colorpicker.options.slidersHorz : this.colorpicker.options.sliders;
 
       if (zone.is('.colorpicker')) {
@@ -3919,6 +3950,7 @@ var SliderHandler = function () {
 }();
 
 exports.default = SliderHandler;
+module.exports = exports.default;
 
 /***/ }),
 /* 14 */
@@ -4389,6 +4421,7 @@ var PopupHandler = function () {
 }();
 
 exports.default = PopupHandler;
+module.exports = exports.default;
 
 /***/ }),
 /* 15 */
@@ -4706,6 +4739,7 @@ var InputHandler = function () {
 }();
 
 exports.default = InputHandler;
+module.exports = exports.default;
 
 /***/ }),
 /* 16 */
@@ -4753,7 +4787,7 @@ function Color(obj, model) {
 	var i;
 	var channels;
 
-	if (typeof obj === 'undefined') {
+	if (obj == null) { // eslint-disable-line no-eq-null,eqeqeq
 		this.model = 'rgb';
 		this.color = [0, 0, 0];
 		this.valpha = 1;
@@ -5818,6 +5852,7 @@ var ColorHandler = function () {
       }
 
       var fallback = this.resolveColorDelegate(this.fallback);
+
       var color = new _ColorItem2.default(fallback, this.format);
 
       if (!color.isValid()) {
@@ -5961,6 +5996,7 @@ var ColorHandler = function () {
 }();
 
 exports.default = ColorHandler;
+module.exports = exports.default;
 
 /***/ }),
 /* 23 */
@@ -6087,6 +6123,7 @@ var PickerHandler = function () {
 
       // Set alpha color gradient
       var hexColor = this.color.toHexString();
+
       var alphaBg = '';
 
       if (this.options.horizontal) {
@@ -6113,6 +6150,7 @@ var PickerHandler = function () {
 }();
 
 exports.default = PickerHandler;
+module.exports = exports.default;
 
 /***/ }),
 /* 24 */
@@ -6189,6 +6227,7 @@ var AddonHandler = function () {
       }
 
       var colorStr = this.colorpicker.colorHandler.getColorString();
+
       var styles = { 'background': colorStr };
 
       var icn = this.addon.find('i').eq(0);
@@ -6205,6 +6244,7 @@ var AddonHandler = function () {
 }();
 
 exports.default = AddonHandler;
+module.exports = exports.default;
 
 /***/ })
 /******/ ]);

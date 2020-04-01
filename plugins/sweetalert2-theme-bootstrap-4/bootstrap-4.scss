@@ -140,9 +140,38 @@ $bootstrap-toast-box-shadow:                  0 .25rem .75rem rgba($swal2-black,
 $swal2-padding: 1rem;
 $swal2-border-radius: .3rem;
 
+// ANIMATIONS
+// animate.css/fading_entrances/fadeInDown.css
+@keyframes fadeInDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+// animate.css/fading_exits/fadeOutUp.css
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    transform: translate3d(0, -100%, 0);
+    opacity: 0;
+  }
+}
+
+$swal2-show-animation: fadeInDown .5s;
+$swal2-hide-animation: fadeOutUp .5s;
+
 // BACKDROP
 $swal2-backdrop: rgba($swal2-black, .5);
-$swal2-backdrop-transition: background-color .15s;
+$swal2-backdrop-transition: background-color .5s;
 
 // ICONS
 $swal2-success: $bootstrap-success;
@@ -160,6 +189,8 @@ $swal2-input-font-size: 1rem;
 $swal2-input-padding: $bootstrap-input-padding-y $bootstrap-input-padding-x;
 
 // CLOSE BUTTON
+$swal2-close-button-width: 2em;
+$swal2-close-button-height: 2em;
 $swal2-close-button-line-height: 1;
 $swal2-close-button-color: rgba($swal2-black, .5);
 $swal2-close-button-font-size: 1.5rem;
@@ -194,7 +225,6 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
 }
 
 .swal2-popup {
-  padding: 0;
   border: $bootstrap-input-border-width solid rgba(0, 0, 0, .2);
 
   &.swal2-toast {
@@ -227,11 +257,6 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
   }
 }
 
-.swal2-header {
-  padding: 1rem;
-  border-bottom: $bootstrap-input-border-width solid $bootstrap-input-border-color;
-}
-
 .swal2-title {
   margin: 0;
   font-size: 1.25rem;
@@ -242,7 +267,6 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
 }
 
 .swal2-actions {
-  padding: 0 0 1rem;
   border-radius: $bootstrap-input-border-radius;
 }
 
@@ -284,7 +308,6 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
 .swal2-styled {
   &.swal2-confirm {
     padding: $swal2-input-padding;
-    border: 1px solid $bootstrap-primary;
     font-size: 1rem;
 
     &:hover {
@@ -309,7 +332,6 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
 
   &.swal2-cancel {
     padding: $swal2-input-padding;
-    border: 1px solid $bootstrap-secondary;
     font-size: 1rem;
 
     &:hover {
@@ -517,146 +539,150 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
   }
 }
 
-.swal2-range input {
-  width: 100%;
-  height: calc(#{$bootstrap-custom-range-thumb-height} + #{$bootstrap-custom-range-thumb-focus-box-shadow-width * 3});
-  padding: 0;
-  background-color: transparent;
-  appearance: none;
+.swal2-range {
+  align-items: center;
 
-  &:focus {
-    outline: none;
-
-    &::-webkit-slider-thumb {
-      box-shadow: $bootstrap-custom-range-thumb-focus-box-shadow;
-    }
-
-    &::-moz-range-thumb {
-      box-shadow: $bootstrap-custom-range-thumb-focus-box-shadow;
-    }
-
-    &::-ms-thumb {
-      box-shadow: $bootstrap-custom-range-thumb-focus-box-shadow;
-    }
-  }
-
-  &::-moz-focus-outer {
-    border: 0;
-  }
-
-  &::-webkit-slider-thumb {
-    width: $bootstrap-custom-range-thumb-width;
-    height: $bootstrap-custom-range-thumb-height;
-    margin-top: ($bootstrap-custom-range-track-height - $bootstrap-custom-range-thumb-height) / 2;
-    transition: $bootstrap-custom-forms-transition;
-    border: $bootstrap-custom-range-thumb-border;
-    border-radius: $bootstrap-custom-range-thumb-border-radius;
-    background: $bootstrap-custom-range-thumb-bg;
-    box-shadow: $bootstrap-custom-range-thumb-box-shadow;
-    appearance: none;
-
-    &:active {
-      background: $bootstrap-custom-range-thumb-active-bg;
-    }
-  }
-
-  &::-webkit-slider-runnable-track {
-    width: $bootstrap-custom-range-track-width;
-    height: $bootstrap-custom-range-track-height;
-    border-radius: $bootstrap-custom-range-track-border-radius;
-    border-color: transparent;
-    background-color: $bootstrap-custom-range-track-bg;
-    box-shadow: $bootstrap-custom-range-track-box-shadow;
-    color: transparent;
-    cursor: $bootstrap-custom-range-track-cursor;
-  }
-
-  &::-moz-range-thumb {
-    width: $bootstrap-custom-range-thumb-width;
-    height: $bootstrap-custom-range-thumb-height;
-    margin-top: 1rem;
-    transition: $bootstrap-custom-forms-transition;
-    border: $bootstrap-custom-range-thumb-border;
-    border-radius: $bootstrap-custom-range-thumb-border-radius;
-    background: $bootstrap-custom-range-thumb-bg;
-    box-shadow: $bootstrap-custom-range-thumb-box-shadow;
-    appearance: none;
-
-    &:active {
-      background: $bootstrap-custom-range-thumb-active-bg;
-    }
-  }
-
-  &::-moz-range-track {
-    width: $bootstrap-custom-range-track-width;
-    height: $bootstrap-custom-range-track-height;
-    border-radius: $bootstrap-custom-range-track-border-radius;
-    border-color: transparent;
-    background-color: $bootstrap-custom-range-track-bg;
-    box-shadow: $bootstrap-custom-range-track-box-shadow;
-    color: transparent;
-    cursor: $bootstrap-custom-range-track-cursor;
-  }
-
-  &::-ms-thumb {
-    width: $bootstrap-custom-range-thumb-width;
-    height: $bootstrap-custom-range-thumb-height;
-    margin-top: 0;
-    margin-right: $bootstrap-custom-range-thumb-focus-box-shadow-width;
-    margin-left: $bootstrap-custom-range-thumb-focus-box-shadow-width;
-    transition: $bootstrap-custom-forms-transition;
-    border: $bootstrap-custom-range-thumb-border;
-    border-radius: $bootstrap-custom-range-thumb-border-radius;
-    background: $bootstrap-custom-range-thumb-bg;
-    box-shadow: $bootstrap-custom-range-thumb-box-shadow;
-    appearance: none;
-
-    &:active {
-      background: $bootstrap-custom-range-thumb-active-bg;
-    }
-  }
-
-  &::-ms-track {
-    width: $bootstrap-custom-range-track-width;
-    height: $bootstrap-custom-range-track-height;
-    border-width: $bootstrap-custom-range-thumb-height / 2;
-    border-color: transparent;
+  input {
+    width: 100%;
+    height: calc(#{$bootstrap-custom-range-thumb-height} + #{$bootstrap-custom-range-thumb-focus-box-shadow-width * 3});
+    padding: 0;
     background-color: transparent;
-    box-shadow: $bootstrap-custom-range-track-box-shadow;
-    color: transparent;
-    cursor: $bootstrap-custom-range-track-cursor;
-  }
+    appearance: none;
 
-  &::-ms-fill-lower {
-    border-radius: $bootstrap-custom-range-track-border-radius;
-    background-color: $bootstrap-custom-range-track-bg;
-  }
+    &:focus {
+      outline: none;
 
-  &::-ms-fill-upper {
-    margin-right: 15px;
-    border-radius: $bootstrap-custom-range-track-border-radius;
-    background-color: $bootstrap-custom-range-track-bg;
-  }
+      &::-webkit-slider-thumb {
+        box-shadow: $bootstrap-custom-range-thumb-focus-box-shadow;
+      }
 
-  &:disabled {
+      &::-moz-range-thumb {
+        box-shadow: $bootstrap-custom-range-thumb-focus-box-shadow;
+      }
+
+      &::-ms-thumb {
+        box-shadow: $bootstrap-custom-range-thumb-focus-box-shadow;
+      }
+    }
+
+    &::-moz-focus-outer {
+      border: 0;
+    }
+
     &::-webkit-slider-thumb {
-      background-color: $bootstrap-custom-range-thumb-disabled-bg;
+      width: $bootstrap-custom-range-thumb-width;
+      height: $bootstrap-custom-range-thumb-height;
+      margin-top: ($bootstrap-custom-range-track-height - $bootstrap-custom-range-thumb-height) / 2;
+      transition: $bootstrap-custom-forms-transition;
+      border: $bootstrap-custom-range-thumb-border;
+      border-radius: $bootstrap-custom-range-thumb-border-radius;
+      background: $bootstrap-custom-range-thumb-bg;
+      box-shadow: $bootstrap-custom-range-thumb-box-shadow;
+      appearance: none;
+
+      &:active {
+        background: $bootstrap-custom-range-thumb-active-bg;
+      }
     }
 
     &::-webkit-slider-runnable-track {
-      cursor: default;
+      width: $bootstrap-custom-range-track-width;
+      height: $bootstrap-custom-range-track-height;
+      border-radius: $bootstrap-custom-range-track-border-radius;
+      border-color: transparent;
+      background-color: $bootstrap-custom-range-track-bg;
+      box-shadow: $bootstrap-custom-range-track-box-shadow;
+      color: transparent;
+      cursor: $bootstrap-custom-range-track-cursor;
     }
 
     &::-moz-range-thumb {
-      background-color: $bootstrap-custom-range-thumb-disabled-bg;
+      width: $bootstrap-custom-range-thumb-width;
+      height: $bootstrap-custom-range-thumb-height;
+      margin-top: 1rem;
+      transition: $bootstrap-custom-forms-transition;
+      border: $bootstrap-custom-range-thumb-border;
+      border-radius: $bootstrap-custom-range-thumb-border-radius;
+      background: $bootstrap-custom-range-thumb-bg;
+      box-shadow: $bootstrap-custom-range-thumb-box-shadow;
+      appearance: none;
+
+      &:active {
+        background: $bootstrap-custom-range-thumb-active-bg;
+      }
     }
 
     &::-moz-range-track {
-      cursor: default;
+      width: $bootstrap-custom-range-track-width;
+      height: $bootstrap-custom-range-track-height;
+      border-radius: $bootstrap-custom-range-track-border-radius;
+      border-color: transparent;
+      background-color: $bootstrap-custom-range-track-bg;
+      box-shadow: $bootstrap-custom-range-track-box-shadow;
+      color: transparent;
+      cursor: $bootstrap-custom-range-track-cursor;
     }
 
     &::-ms-thumb {
-      background-color: $bootstrap-custom-range-thumb-disabled-bg;
+      width: $bootstrap-custom-range-thumb-width;
+      height: $bootstrap-custom-range-thumb-height;
+      margin-top: 0;
+      margin-right: $bootstrap-custom-range-thumb-focus-box-shadow-width;
+      margin-left: $bootstrap-custom-range-thumb-focus-box-shadow-width;
+      transition: $bootstrap-custom-forms-transition;
+      border: $bootstrap-custom-range-thumb-border;
+      border-radius: $bootstrap-custom-range-thumb-border-radius;
+      background: $bootstrap-custom-range-thumb-bg;
+      box-shadow: $bootstrap-custom-range-thumb-box-shadow;
+      appearance: none;
+
+      &:active {
+        background: $bootstrap-custom-range-thumb-active-bg;
+      }
+    }
+
+    &::-ms-track {
+      width: $bootstrap-custom-range-track-width;
+      height: $bootstrap-custom-range-track-height;
+      border-width: $bootstrap-custom-range-thumb-height / 2;
+      border-color: transparent;
+      background-color: transparent;
+      box-shadow: $bootstrap-custom-range-track-box-shadow;
+      color: transparent;
+      cursor: $bootstrap-custom-range-track-cursor;
+    }
+
+    &::-ms-fill-lower {
+      border-radius: $bootstrap-custom-range-track-border-radius;
+      background-color: $bootstrap-custom-range-track-bg;
+    }
+
+    &::-ms-fill-upper {
+      margin-right: 15px;
+      border-radius: $bootstrap-custom-range-track-border-radius;
+      background-color: $bootstrap-custom-range-track-bg;
+    }
+
+    &:disabled {
+      &::-webkit-slider-thumb {
+        background-color: $bootstrap-custom-range-thumb-disabled-bg;
+      }
+
+      &::-webkit-slider-runnable-track {
+        cursor: default;
+      }
+
+      &::-moz-range-thumb {
+        background-color: $bootstrap-custom-range-thumb-disabled-bg;
+      }
+
+      &::-moz-range-track {
+        cursor: default;
+      }
+
+      &::-ms-thumb {
+        background-color: $bootstrap-custom-range-thumb-disabled-bg;
+      }
     }
   }
 }

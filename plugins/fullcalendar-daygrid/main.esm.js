@@ -1,10 +1,10 @@
 /*!
-FullCalendar Day Grid Plugin v4.3.0
+FullCalendar Day Grid Plugin v4.4.0
 Docs & License: https://fullcalendar.io/
 (c) 2019 Adam Shaw
 */
 
-import { addWeeks, diffWeeks, DateProfileGenerator, createElement, listenBySelector, removeElement, computeRect, computeClippingRect, applyStyle, cssToStr, htmlEscape, FgEventRenderer, appendToElement, prependToElement, htmlToElement, FillRenderer, memoizeRendering, createFormatter, addDays, DateComponent, rangeContainsMarker, getDayClasses, findElements, PositionCache, buildGotoAnchorHtml, findChildren, insertAfterElement, intersectRanges, ScrollComponent, matchCellWidths, uncompensateScroll, compensateScroll, subtractInnerElHeight, distributeHeight, undistributeHeight, View, Slicer, memoize, DayHeader, DaySeries, DayTable, createPlugin } from '@fullcalendar/core';
+import { addWeeks, diffWeeks, DateProfileGenerator, createElement, listenBySelector, removeElement, computeRect, computeClippingRect, applyStyle, computeEventDraggable, computeEventStartResizable, computeEventEndResizable, cssToStr, htmlEscape, FgEventRenderer, appendToElement, prependToElement, htmlToElement, FillRenderer, memoizeRendering, createFormatter, addDays, DateComponent, rangeContainsMarker, getDayClasses, findElements, PositionCache, buildGotoAnchorHtml, findChildren, insertAfterElement, intersectRanges, memoize, ScrollComponent, matchCellWidths, uncompensateScroll, compensateScroll, subtractInnerElHeight, distributeHeight, undistributeHeight, View, Slicer, DayHeader, DaySeries, DayTable, createPlugin } from '@fullcalendar/core';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -210,14 +210,14 @@ var SimpleDayGridEventRenderer = /** @class */ (function (_super) {
     }
     // Builds the HTML to be used for the default element for an individual segment
     SimpleDayGridEventRenderer.prototype.renderSegHtml = function (seg, mirrorInfo) {
-        var _a = this.context, view = _a.view, options = _a.options;
+        var context = this.context;
         var eventRange = seg.eventRange;
         var eventDef = eventRange.def;
         var eventUi = eventRange.ui;
         var allDay = eventDef.allDay;
-        var isDraggable = view.computeEventDraggable(eventDef, eventUi);
-        var isResizableFromStart = allDay && seg.isStart && view.computeEventStartResizable(eventDef, eventUi);
-        var isResizableFromEnd = allDay && seg.isEnd && view.computeEventEndResizable(eventDef, eventUi);
+        var isDraggable = computeEventDraggable(context, eventDef, eventUi);
+        var isResizableFromStart = allDay && seg.isStart && computeEventStartResizable(context, eventDef, eventUi);
+        var isResizableFromEnd = allDay && seg.isEnd && computeEventEndResizable(context, eventDef, eventUi);
         var classes = this.getSegClasses(seg, isDraggable, isResizableFromStart || isResizableFromEnd, mirrorInfo);
         var skinCss = cssToStr(this.getSkinCss(eventUi));
         var timeHtml = '';
@@ -244,7 +244,7 @@ var SimpleDayGridEventRenderer = /** @class */ (function (_super) {
                 '') +
             '>' +
             '<div class="fc-content">' +
-            (options.dir === 'rtl' ?
+            (context.options.dir === 'rtl' ?
                 titleHtml + ' ' + timeHtml : // put a natural space in between
                 timeHtml + ' ' + titleHtml //
             ) +
@@ -277,7 +277,7 @@ var SimpleDayGridEventRenderer = /** @class */ (function (_super) {
 var DayGridEventRenderer = /** @class */ (function (_super) {
     __extends(DayGridEventRenderer, _super);
     function DayGridEventRenderer(dayGrid) {
-        var _this = _super.call(this, dayGrid.context) || this;
+        var _this = _super.call(this) || this;
         _this.dayGrid = dayGrid;
         return _this;
     }
@@ -320,8 +320,9 @@ var DayGridEventRenderer = /** @class */ (function (_super) {
     // the segments. Returns object with a bunch of internal data about how the render was calculated.
     // NOTE: modifies rowSegs
     DayGridEventRenderer.prototype.renderSegRow = function (row, rowSegs) {
+        var isRtl = this.context.isRtl;
         var dayGrid = this.dayGrid;
-        var colCnt = dayGrid.colCnt, isRtl = dayGrid.isRtl;
+        var colCnt = dayGrid.colCnt;
         var segLevels = this.buildSegLevels(rowSegs); // group into sub-arrays of levels
         var levelCnt = Math.max(1, segLevels.length); // ensure at least one level
         var tbody = document.createElement('tbody');
@@ -386,7 +387,7 @@ var DayGridEventRenderer = /** @class */ (function (_super) {
             emptyCellsUntil(colCnt); // finish off the row
             var introHtml = dayGrid.renderProps.renderIntroHtml();
             if (introHtml) {
-                if (dayGrid.isRtl) {
+                if (isRtl) {
                     appendToElement(tr, introHtml);
                 }
                 else {
@@ -407,7 +408,8 @@ var DayGridEventRenderer = /** @class */ (function (_super) {
     // Stacks a flat array of segments, which are all assumed to be in the same row, into subarrays of vertical levels.
     // NOTE: modifies segs
     DayGridEventRenderer.prototype.buildSegLevels = function (segs) {
-        var _a = this.dayGrid, isRtl = _a.isRtl, colCnt = _a.colCnt;
+        var isRtl = this.context.isRtl;
+        var colCnt = this.dayGrid.colCnt;
         var levels = [];
         var i;
         var seg;
@@ -509,19 +511,19 @@ var EMPTY_CELL_HTML = '<td style="pointer-events:none"></td>';
 var DayGridFillRenderer = /** @class */ (function (_super) {
     __extends(DayGridFillRenderer, _super);
     function DayGridFillRenderer(dayGrid) {
-        var _this = _super.call(this, dayGrid.context) || this;
+        var _this = _super.call(this) || this;
         _this.fillSegTag = 'td'; // override the default tag name
         _this.dayGrid = dayGrid;
         return _this;
     }
-    DayGridFillRenderer.prototype.renderSegs = function (type, segs) {
+    DayGridFillRenderer.prototype.renderSegs = function (type, context, segs) {
         // don't render timed background events
         if (type === 'bgEvent') {
             segs = segs.filter(function (seg) {
                 return seg.eventRange.def.allDay;
             });
         }
-        _super.prototype.renderSegs.call(this, type, segs);
+        _super.prototype.renderSegs.call(this, type, context, segs);
     };
     DayGridFillRenderer.prototype.attachSegs = function (type, segs) {
         var els = [];
@@ -539,7 +541,8 @@ var DayGridFillRenderer = /** @class */ (function (_super) {
     // Generates the HTML needed for one row of a fill. Requires the seg's el to be rendered.
     DayGridFillRenderer.prototype.renderFillRow = function (type, seg) {
         var dayGrid = this.dayGrid;
-        var colCnt = dayGrid.colCnt, isRtl = dayGrid.isRtl;
+        var isRtl = this.context.isRtl;
+        var colCnt = dayGrid.colCnt;
         var leftCol = isRtl ? (colCnt - 1 - seg.lastCol) : seg.firstCol;
         var rightCol = isRtl ? (colCnt - 1 - seg.firstCol) : seg.lastCol;
         var startCol = leftCol;
@@ -571,7 +574,7 @@ var DayGridFillRenderer = /** @class */ (function (_super) {
         }
         var introHtml = dayGrid.renderProps.renderIntroHtml();
         if (introHtml) {
-            if (dayGrid.isRtl) {
+            if (isRtl) {
                 appendToElement(trEl, introHtml);
             }
             else {
@@ -585,23 +588,25 @@ var DayGridFillRenderer = /** @class */ (function (_super) {
 
 var DayTile = /** @class */ (function (_super) {
     __extends(DayTile, _super);
-    function DayTile(context, el) {
-        var _this = _super.call(this, context, el) || this;
+    function DayTile(el) {
+        var _this = _super.call(this, el) || this;
         var eventRenderer = _this.eventRenderer = new DayTileEventRenderer(_this);
         var renderFrame = _this.renderFrame = memoizeRendering(_this._renderFrame);
         _this.renderFgEvents = memoizeRendering(eventRenderer.renderSegs.bind(eventRenderer), eventRenderer.unrender.bind(eventRenderer), [renderFrame]);
         _this.renderEventSelection = memoizeRendering(eventRenderer.selectByInstanceId.bind(eventRenderer), eventRenderer.unselectByInstanceId.bind(eventRenderer), [_this.renderFgEvents]);
         _this.renderEventDrag = memoizeRendering(eventRenderer.hideByHash.bind(eventRenderer), eventRenderer.showByHash.bind(eventRenderer), [renderFrame]);
         _this.renderEventResize = memoizeRendering(eventRenderer.hideByHash.bind(eventRenderer), eventRenderer.showByHash.bind(eventRenderer), [renderFrame]);
-        context.calendar.registerInteractiveComponent(_this, {
-            el: _this.el,
-            useEventCenter: false
-        });
         return _this;
     }
-    DayTile.prototype.render = function (props) {
+    DayTile.prototype.firstContext = function (context) {
+        context.calendar.registerInteractiveComponent(this, {
+            el: this.el,
+            useEventCenter: false
+        });
+    };
+    DayTile.prototype.render = function (props, context) {
         this.renderFrame(props.date);
-        this.renderFgEvents(props.fgSegs);
+        this.renderFgEvents(context, props.fgSegs);
         this.renderEventSelection(props.eventSelection);
         this.renderEventDrag(props.eventDragInstances);
         this.renderEventResize(props.eventResizeInstances);
@@ -609,11 +614,11 @@ var DayTile = /** @class */ (function (_super) {
     DayTile.prototype.destroy = function () {
         _super.prototype.destroy.call(this);
         this.renderFrame.unrender(); // should unrender everything else
-        this.calendar.unregisterInteractiveComponent(this);
+        this.context.calendar.unregisterInteractiveComponent(this);
     };
     DayTile.prototype._renderFrame = function (date) {
-        var _a = this, theme = _a.theme, dateEnv = _a.dateEnv;
-        var title = dateEnv.format(date, createFormatter(this.opt('dayPopoverFormat')) // TODO: cache
+        var _a = this.context, theme = _a.theme, dateEnv = _a.dateEnv, options = _a.options;
+        var title = dateEnv.format(date, createFormatter(options.dayPopoverFormat) // TODO: cache
         );
         this.el.innerHTML =
             '<div class="fc-header ' + theme.getClass('popoverHeader') + '">' +
@@ -652,7 +657,7 @@ var DayTile = /** @class */ (function (_super) {
 var DayTileEventRenderer = /** @class */ (function (_super) {
     __extends(DayTileEventRenderer, _super);
     function DayTileEventRenderer(dayTile) {
-        var _this = _super.call(this, dayTile.context) || this;
+        var _this = _super.call(this) || this;
         _this.dayTile = dayTile;
         return _this;
     }
@@ -713,10 +718,11 @@ var DAY_NUM_FORMAT = createFormatter({ day: 'numeric' });
 var WEEK_NUM_FORMAT = createFormatter({ week: 'numeric' });
 var DayGrid = /** @class */ (function (_super) {
     __extends(DayGrid, _super);
-    function DayGrid(context, el, renderProps) {
-        var _this = _super.call(this, context, el) || this;
+    function DayGrid(el, renderProps) {
+        var _this = _super.call(this, el) || this;
         _this.bottomCoordPadding = 0; // hack for extending the hit area for the last row of the coordinate grid
         _this.isCellSizesDirty = false;
+        _this.renderProps = renderProps;
         var eventRenderer = _this.eventRenderer = new DayGridEventRenderer(_this);
         var fillRenderer = _this.fillRenderer = new DayGridFillRenderer(_this);
         _this.mirrorRenderer = new DayGridMirrorRenderer(_this);
@@ -728,18 +734,17 @@ var DayGrid = /** @class */ (function (_super) {
         _this.renderEventSelection = memoizeRendering(eventRenderer.selectByInstanceId.bind(eventRenderer), eventRenderer.unselectByInstanceId.bind(eventRenderer), [_this.renderFgEvents]);
         _this.renderEventDrag = memoizeRendering(_this._renderEventDrag, _this._unrenderEventDrag, [renderCells]);
         _this.renderEventResize = memoizeRendering(_this._renderEventResize, _this._unrenderEventResize, [renderCells]);
-        _this.renderProps = renderProps;
         return _this;
     }
-    DayGrid.prototype.render = function (props) {
+    DayGrid.prototype.render = function (props, context) {
         var cells = props.cells;
         this.rowCnt = cells.length;
         this.colCnt = cells[0].length;
         this.renderCells(cells, props.isRigid);
-        this.renderBusinessHours(props.businessHourSegs);
-        this.renderDateSelection(props.dateSelectionSegs);
-        this.renderBgEvents(props.bgEventSegs);
-        this.renderFgEvents(props.fgEventSegs);
+        this.renderBusinessHours(context, props.businessHourSegs);
+        this.renderDateSelection(context, props.dateSelectionSegs);
+        this.renderBgEvents(context, props.bgEventSegs);
+        this.renderFgEvents(context, props.fgEventSegs);
         this.renderEventSelection(props.eventSelection);
         this.renderEventDrag(props.eventDrag);
         this.renderEventResize(props.eventResize);
@@ -764,12 +769,12 @@ var DayGrid = /** @class */ (function (_super) {
             eventSelection: ownProps.eventSelection,
             eventDragInstances: ownProps.eventDrag ? ownProps.eventDrag.affectedInstances : null,
             eventResizeInstances: ownProps.eventResize ? ownProps.eventResize.affectedInstances : null
-        });
+        }, this.context);
     };
     /* Date Rendering
     ------------------------------------------------------------------------------------------------------------------*/
     DayGrid.prototype._renderCells = function (cells, isRigid) {
-        var _a = this, view = _a.view, dateEnv = _a.dateEnv;
+        var _a = this.context, calendar = _a.calendar, view = _a.view, isRtl = _a.isRtl, dateEnv = _a.dateEnv;
         var _b = this, rowCnt = _b.rowCnt, colCnt = _b.colCnt;
         var html = '';
         var row;
@@ -780,7 +785,7 @@ var DayGrid = /** @class */ (function (_super) {
         this.el.innerHTML = html;
         this.rowEls = findElements(this.el, '.fc-row');
         this.cellEls = findElements(this.el, '.fc-day, .fc-disabled-day');
-        if (this.isRtl) {
+        if (isRtl) {
             this.cellEls.reverse();
         }
         this.rowPositions = new PositionCache(this.el, this.rowEls, false, true // vertical
@@ -791,7 +796,7 @@ var DayGrid = /** @class */ (function (_super) {
         // trigger dayRender with each cell's element
         for (row = 0; row < rowCnt; row++) {
             for (col = 0; col < colCnt; col++) {
-                this.publiclyTrigger('dayRender', [
+                calendar.publiclyTrigger('dayRender', [
                     {
                         date: dateEnv.toDate(cells[row][col].date),
                         el: this.getCellEl(row, col),
@@ -808,7 +813,7 @@ var DayGrid = /** @class */ (function (_super) {
     // Generates the HTML for a single row, which is a div that wraps a table.
     // `row` is the row number.
     DayGrid.prototype.renderDayRowHtml = function (row, isRigid) {
-        var theme = this.theme;
+        var theme = this.context.theme;
         var classes = ['fc-row', 'fc-week', theme.getClass('dayRow')];
         if (isRigid) {
             classes.push('fc-rigid');
@@ -847,12 +852,13 @@ var DayGrid = /** @class */ (function (_super) {
     /* Grid Number Rendering
     ------------------------------------------------------------------------------------------------------------------*/
     DayGrid.prototype.renderNumberTrHtml = function (row) {
+        var isRtl = this.context.isRtl;
         var intro = this.renderProps.renderNumberIntroHtml(row, this);
         return '' +
             '<tr>' +
-            (this.isRtl ? '' : intro) +
+            (isRtl ? '' : intro) +
             this.renderNumberCellsHtml(row) +
-            (this.isRtl ? intro : '') +
+            (isRtl ? intro : '') +
             '</tr>';
     };
     DayGrid.prototype.renderNumberCellsHtml = function (row) {
@@ -863,7 +869,7 @@ var DayGrid = /** @class */ (function (_super) {
             date = this.props.cells[row][col].date;
             htmls.push(this.renderNumberCellHtml(date));
         }
-        if (this.isRtl) {
+        if (this.context.isRtl) {
             htmls.reverse();
         }
         return htmls.join('');
@@ -871,7 +877,7 @@ var DayGrid = /** @class */ (function (_super) {
     // Generates the HTML for the <td>s of the "number" row in the DayGrid's content skeleton.
     // The number row will only exist if either day numbers or week numbers are turned on.
     DayGrid.prototype.renderNumberCellHtml = function (date) {
-        var _a = this, view = _a.view, dateEnv = _a.dateEnv;
+        var _a = this.context, dateEnv = _a.dateEnv, options = _a.options;
         var html = '';
         var isDateValid = rangeContainsMarker(this.props.dateProfile.activeRange, date); // TODO: called too frequently. cache somehow.
         var isDayNumberVisible = this.getIsDayNumbersVisible() && isDateValid;
@@ -892,11 +898,11 @@ var DayGrid = /** @class */ (function (_super) {
                 '') +
             '>';
         if (this.renderProps.cellWeekNumbersVisible && (date.getUTCDay() === weekCalcFirstDow)) {
-            html += buildGotoAnchorHtml(view, { date: date, type: 'week' }, { 'class': 'fc-week-number' }, dateEnv.format(date, WEEK_NUM_FORMAT) // inner HTML
+            html += buildGotoAnchorHtml(options, dateEnv, { date: date, type: 'week' }, { 'class': 'fc-week-number' }, dateEnv.format(date, WEEK_NUM_FORMAT) // inner HTML
             );
         }
         if (isDayNumberVisible) {
-            html += buildGotoAnchorHtml(view, date, { 'class': 'fc-day-number' }, dateEnv.format(date, DAY_NUM_FORMAT) // inner HTML
+            html += buildGotoAnchorHtml(options, dateEnv, date, { 'class': 'fc-day-number' }, dateEnv.format(date, DAY_NUM_FORMAT) // inner HTML
             );
         }
         html += '</td>';
@@ -905,10 +911,11 @@ var DayGrid = /** @class */ (function (_super) {
     /* Sizing
     ------------------------------------------------------------------------------------------------------------------*/
     DayGrid.prototype.updateSize = function (isResize) {
+        var calendar = this.context.calendar;
         var _a = this, fillRenderer = _a.fillRenderer, eventRenderer = _a.eventRenderer, mirrorRenderer = _a.mirrorRenderer;
         if (isResize ||
             this.isCellSizesDirty ||
-            this.view.calendar.isEventsUpdated // hack
+            calendar.isEventsUpdated // hack
         ) {
             this.buildPositionCaches();
             this.isCellSizesDirty = false;
@@ -966,13 +973,13 @@ var DayGrid = /** @class */ (function (_super) {
     DayGrid.prototype._renderEventDrag = function (state) {
         if (state) {
             this.eventRenderer.hideByHash(state.affectedInstances);
-            this.fillRenderer.renderSegs('highlight', state.segs);
+            this.fillRenderer.renderSegs('highlight', this.context, state.segs);
         }
     };
     DayGrid.prototype._unrenderEventDrag = function (state) {
         if (state) {
             this.eventRenderer.showByHash(state.affectedInstances);
-            this.fillRenderer.unrender('highlight');
+            this.fillRenderer.unrender('highlight', this.context);
         }
     };
     /* Event Resize Visualization
@@ -980,15 +987,15 @@ var DayGrid = /** @class */ (function (_super) {
     DayGrid.prototype._renderEventResize = function (state) {
         if (state) {
             this.eventRenderer.hideByHash(state.affectedInstances);
-            this.fillRenderer.renderSegs('highlight', state.segs);
-            this.mirrorRenderer.renderSegs(state.segs, { isResizing: true, sourceSeg: state.sourceSeg });
+            this.fillRenderer.renderSegs('highlight', this.context, state.segs);
+            this.mirrorRenderer.renderSegs(this.context, state.segs, { isResizing: true, sourceSeg: state.sourceSeg });
         }
     };
     DayGrid.prototype._unrenderEventResize = function (state) {
         if (state) {
             this.eventRenderer.showByHash(state.affectedInstances);
-            this.fillRenderer.unrender('highlight');
-            this.mirrorRenderer.unrender(state.segs, { isResizing: true, sourceSeg: state.sourceSeg });
+            this.fillRenderer.unrender('highlight', this.context);
+            this.mirrorRenderer.unrender(this.context, state.segs, { isResizing: true, sourceSeg: state.sourceSeg });
         }
     };
     /* More+ Link Popover
@@ -1044,7 +1051,8 @@ var DayGrid = /** @class */ (function (_super) {
     // `levelLimit` is a number for the maximum (inclusive) number of levels allowed.
     DayGrid.prototype.limitRow = function (row, levelLimit) {
         var _this = this;
-        var _a = this, colCnt = _a.colCnt, isRtl = _a.isRtl;
+        var colCnt = this.colCnt;
+        var isRtl = this.context.isRtl;
         var rowStruct = this.eventRenderer.rowStructs[row];
         var moreNodes = []; // array of "more" <a> links and <td> DOM nodes
         var col = 0; // col #, left-to-right (not chronologically)
@@ -1143,12 +1151,12 @@ var DayGrid = /** @class */ (function (_super) {
     // Responsible for attaching click handler as well.
     DayGrid.prototype.renderMoreLink = function (row, col, hiddenSegs) {
         var _this = this;
-        var _a = this, view = _a.view, dateEnv = _a.dateEnv;
+        var _a = this.context, calendar = _a.calendar, view = _a.view, dateEnv = _a.dateEnv, options = _a.options, isRtl = _a.isRtl;
         var a = createElement('a', { className: 'fc-more' });
         a.innerText = this.getMoreLinkText(hiddenSegs.length);
         a.addEventListener('click', function (ev) {
-            var clickOption = _this.opt('eventLimitClick');
-            var _col = _this.isRtl ? _this.colCnt - col - 1 : col; // HACK: props.cells has different dir system?
+            var clickOption = options.eventLimitClick;
+            var _col = isRtl ? _this.colCnt - col - 1 : col; // HACK: props.cells has different dir system?
             var date = _this.props.cells[row][_col].date;
             var moreEl = ev.currentTarget;
             var dayEl = _this.getCellEl(row, col);
@@ -1158,7 +1166,7 @@ var DayGrid = /** @class */ (function (_super) {
             var reslicedHiddenSegs = _this.resliceDaySegs(hiddenSegs, date);
             if (typeof clickOption === 'function') {
                 // the returned value can be an atomic option
-                clickOption = _this.publiclyTrigger('eventLimitClick', [
+                clickOption = calendar.publiclyTrigger('eventLimitClick', [
                     {
                         date: dateEnv.toDate(date),
                         allDay: true,
@@ -1175,7 +1183,7 @@ var DayGrid = /** @class */ (function (_super) {
                 _this.showSegPopover(row, col, moreEl, reslicedAllSegs);
             }
             else if (typeof clickOption === 'string') { // a view name
-                view.calendar.zoomTo(date, clickOption);
+                calendar.zoomTo(date, clickOption);
             }
         });
         return a;
@@ -1183,8 +1191,8 @@ var DayGrid = /** @class */ (function (_super) {
     // Reveals the popover that displays all events within a cell
     DayGrid.prototype.showSegPopover = function (row, col, moreLink, segs) {
         var _this = this;
-        var _a = this, calendar = _a.calendar, view = _a.view, theme = _a.theme;
-        var _col = this.isRtl ? this.colCnt - col - 1 : col; // HACK: props.cells has different dir system?
+        var _a = this.context, calendar = _a.calendar, view = _a.view, theme = _a.theme, isRtl = _a.isRtl;
+        var _col = isRtl ? this.colCnt - col - 1 : col; // HACK: props.cells has different dir system?
         var moreWrap = moreLink.parentNode; // the <div> wrapper around the <a>
         var topEl; // the element we want to match the top coordinate of
         var options;
@@ -1200,7 +1208,7 @@ var DayGrid = /** @class */ (function (_super) {
             top: computeRect(topEl).top,
             autoHide: true,
             content: function (el) {
-                _this.segPopoverTile = new DayTile(_this.context, el);
+                _this.segPopoverTile = new DayTile(el);
                 _this.updateSegPopoverTile(_this.props.cells[row][_col].date, segs);
             },
             hide: function () {
@@ -1212,7 +1220,7 @@ var DayGrid = /** @class */ (function (_super) {
         };
         // Determine horizontal coordinate.
         // We use the moreWrap instead of the <td> to avoid border confusion.
-        if (this.isRtl) {
+        if (isRtl) {
             options.right = computeRect(moreWrap).right + 1; // +1 to be over cell border
         }
         else {
@@ -1246,7 +1254,7 @@ var DayGrid = /** @class */ (function (_super) {
     };
     // Generates the text that should be inside a "more" link, given the number of events it represents
     DayGrid.prototype.getMoreLinkText = function (num) {
-        var opt = this.opt('eventLimitText');
+        var opt = this.context.options.eventLimitText;
         if (typeof opt === 'function') {
             return opt(num);
         }
@@ -1278,20 +1286,22 @@ var WEEK_NUM_FORMAT$1 = createFormatter({ week: 'numeric' });
 ----------------------------------------------------------------------------------------------------------------------*/
 // It is a manager for a DayGrid subcomponent, which does most of the heavy lifting.
 // It is responsible for managing width/height.
-var DayGridView = /** @class */ (function (_super) {
-    __extends(DayGridView, _super);
-    function DayGridView(context, viewSpec, dateProfileGenerator, parentEl) {
-        var _this = _super.call(this, context, viewSpec, dateProfileGenerator, parentEl) || this;
+var AbstractDayGridView = /** @class */ (function (_super) {
+    __extends(AbstractDayGridView, _super);
+    function AbstractDayGridView() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.processOptions = memoize(_this._processOptions);
+        _this.renderSkeleton = memoizeRendering(_this._renderSkeleton, _this._unrenderSkeleton);
         /* Header Rendering
         ------------------------------------------------------------------------------------------------------------------*/
         // Generates the HTML that will go before the day-of week header cells
         _this.renderHeadIntroHtml = function () {
-            var theme = _this.theme;
+            var _a = _this.context, theme = _a.theme, options = _a.options;
             if (_this.colWeekNumbersVisible) {
                 return '' +
                     '<th class="fc-week-number ' + theme.getClass('widgetHeader') + '" ' + _this.weekNumberStyleAttr() + '>' +
                     '<span>' + // needed for matchCellWidths
-                    htmlEscape(_this.opt('weekLabel')) +
+                    htmlEscape(options.weekLabel) +
                     '</span>' +
                     '</th>';
             }
@@ -1301,13 +1311,13 @@ var DayGridView = /** @class */ (function (_super) {
         ------------------------------------------------------------------------------------------------------------------*/
         // Generates the HTML that will go before content-skeleton cells that display the day/week numbers
         _this.renderDayGridNumberIntroHtml = function (row, dayGrid) {
-            var dateEnv = _this.dateEnv;
+            var _a = _this.context, options = _a.options, dateEnv = _a.dateEnv;
             var weekStart = dayGrid.props.cells[row][0].date;
             if (_this.colWeekNumbersVisible) {
                 return '' +
                     '<td class="fc-week-number" ' + _this.weekNumberStyleAttr() + '>' +
                     buildGotoAnchorHtml(// aside from link, important for matchCellWidths
-                    _this, { date: weekStart, type: 'week', forceOff: dayGrid.colCnt === 1 }, dateEnv.format(weekStart, WEEK_NUM_FORMAT$1) // inner HTML
+                    options, dateEnv, { date: weekStart, type: 'week', forceOff: dayGrid.colCnt === 1 }, dateEnv.format(weekStart, WEEK_NUM_FORMAT$1) // inner HTML
                     ) +
                     '</td>';
             }
@@ -1315,7 +1325,7 @@ var DayGridView = /** @class */ (function (_super) {
         };
         // Generates the HTML that goes before the day bg cells for each day-row
         _this.renderDayGridBgIntroHtml = function () {
-            var theme = _this.theme;
+            var theme = _this.context.theme;
             if (_this.colWeekNumbersVisible) {
                 return '<td class="fc-week-number ' + theme.getClass('widgetContent') + '" ' + _this.weekNumberStyleAttr() + '></td>';
             }
@@ -1329,52 +1339,64 @@ var DayGridView = /** @class */ (function (_super) {
             }
             return '';
         };
-        _this.el.classList.add('fc-dayGrid-view');
-        _this.el.innerHTML = _this.renderSkeletonHtml();
-        _this.scroller = new ScrollComponent('hidden', // overflow x
-        'auto' // overflow y
-        );
-        var dayGridContainerEl = _this.scroller.el;
-        _this.el.querySelector('.fc-body > tr > td').appendChild(dayGridContainerEl);
-        dayGridContainerEl.classList.add('fc-day-grid-container');
-        var dayGridEl = createElement('div', { className: 'fc-day-grid' });
-        dayGridContainerEl.appendChild(dayGridEl);
-        var cellWeekNumbersVisible;
-        if (_this.opt('weekNumbers')) {
-            if (_this.opt('weekNumbersWithinDays')) {
-                cellWeekNumbersVisible = true;
-                _this.colWeekNumbersVisible = false;
+        return _this;
+    }
+    AbstractDayGridView.prototype._processOptions = function (options) {
+        if (options.weekNumbers) {
+            if (options.weekNumbersWithinDays) {
+                this.cellWeekNumbersVisible = true;
+                this.colWeekNumbersVisible = false;
             }
             else {
-                cellWeekNumbersVisible = false;
-                _this.colWeekNumbersVisible = true;
+                this.cellWeekNumbersVisible = false;
+                this.colWeekNumbersVisible = true;
             }
         }
         else {
-            _this.colWeekNumbersVisible = false;
-            cellWeekNumbersVisible = false;
+            this.colWeekNumbersVisible = false;
+            this.cellWeekNumbersVisible = false;
         }
-        _this.dayGrid = new DayGrid(_this.context, dayGridEl, {
-            renderNumberIntroHtml: _this.renderDayGridNumberIntroHtml,
-            renderBgIntroHtml: _this.renderDayGridBgIntroHtml,
-            renderIntroHtml: _this.renderDayGridIntroHtml,
-            colWeekNumbersVisible: _this.colWeekNumbersVisible,
-            cellWeekNumbersVisible: cellWeekNumbersVisible
-        });
-        return _this;
-    }
-    DayGridView.prototype.destroy = function () {
+    };
+    AbstractDayGridView.prototype.render = function (props, context) {
+        _super.prototype.render.call(this, props, context);
+        this.processOptions(context.options);
+        this.renderSkeleton(context);
+    };
+    AbstractDayGridView.prototype.destroy = function () {
         _super.prototype.destroy.call(this);
+        this.renderSkeleton.unrender();
+    };
+    AbstractDayGridView.prototype._renderSkeleton = function (context) {
+        this.el.classList.add('fc-dayGrid-view');
+        this.el.innerHTML = this.renderSkeletonHtml();
+        this.scroller = new ScrollComponent('hidden', // overflow x
+        'auto' // overflow y
+        );
+        var dayGridContainerEl = this.scroller.el;
+        this.el.querySelector('.fc-body > tr > td').appendChild(dayGridContainerEl);
+        dayGridContainerEl.classList.add('fc-day-grid-container');
+        var dayGridEl = createElement('div', { className: 'fc-day-grid' });
+        dayGridContainerEl.appendChild(dayGridEl);
+        this.dayGrid = new DayGrid(dayGridEl, {
+            renderNumberIntroHtml: this.renderDayGridNumberIntroHtml,
+            renderBgIntroHtml: this.renderDayGridBgIntroHtml,
+            renderIntroHtml: this.renderDayGridIntroHtml,
+            colWeekNumbersVisible: this.colWeekNumbersVisible,
+            cellWeekNumbersVisible: this.cellWeekNumbersVisible
+        });
+    };
+    AbstractDayGridView.prototype._unrenderSkeleton = function () {
+        this.el.classList.remove('fc-dayGrid-view');
         this.dayGrid.destroy();
         this.scroller.destroy();
     };
     // Builds the HTML skeleton for the view.
     // The day-grid component will render inside of a container defined by this HTML.
-    DayGridView.prototype.renderSkeletonHtml = function () {
-        var theme = this.theme;
+    AbstractDayGridView.prototype.renderSkeletonHtml = function () {
+        var _a = this.context, theme = _a.theme, options = _a.options;
         return '' +
             '<table class="' + theme.getClass('tableGrid') + '">' +
-            (this.opt('columnHeader') ?
+            (options.columnHeader ?
                 '<thead class="fc-head">' +
                     '<tr>' +
                     '<td class="fc-head-container ' + theme.getClass('widgetHeader') + '">&nbsp;</td>' +
@@ -1389,27 +1411,27 @@ var DayGridView = /** @class */ (function (_super) {
             '</table>';
     };
     // Generates an HTML attribute string for setting the width of the week number column, if it is known
-    DayGridView.prototype.weekNumberStyleAttr = function () {
+    AbstractDayGridView.prototype.weekNumberStyleAttr = function () {
         if (this.weekNumberWidth != null) {
             return 'style="width:' + this.weekNumberWidth + 'px"';
         }
         return '';
     };
     // Determines whether each row should have a constant height
-    DayGridView.prototype.hasRigidRows = function () {
-        var eventLimit = this.opt('eventLimit');
+    AbstractDayGridView.prototype.hasRigidRows = function () {
+        var eventLimit = this.context.options.eventLimit;
         return eventLimit && typeof eventLimit !== 'number';
     };
     /* Dimensions
     ------------------------------------------------------------------------------------------------------------------*/
-    DayGridView.prototype.updateSize = function (isResize, viewHeight, isAuto) {
+    AbstractDayGridView.prototype.updateSize = function (isResize, viewHeight, isAuto) {
         _super.prototype.updateSize.call(this, isResize, viewHeight, isAuto); // will call updateBaseSize. important that executes first
         this.dayGrid.updateSize(isResize);
     };
     // Refreshes the horizontal dimensions of the view
-    DayGridView.prototype.updateBaseSize = function (isResize, viewHeight, isAuto) {
+    AbstractDayGridView.prototype.updateBaseSize = function (isResize, viewHeight, isAuto) {
         var dayGrid = this.dayGrid;
-        var eventLimit = this.opt('eventLimit');
+        var eventLimit = this.context.options.eventLimit;
         var headRowEl = this.header ? this.header.el : null; // HACK
         var scrollerHeight;
         var scrollbarWidths;
@@ -1460,13 +1482,13 @@ var DayGridView = /** @class */ (function (_super) {
         }
     };
     // given a desired total height of the view, returns what the height of the scroller should be
-    DayGridView.prototype.computeScrollerHeight = function (viewHeight) {
+    AbstractDayGridView.prototype.computeScrollerHeight = function (viewHeight) {
         return viewHeight -
             subtractInnerElHeight(this.el, this.scroller.el); // everything that's NOT the scroller
     };
     // Sets the height of just the DayGrid component in this view
-    DayGridView.prototype.setGridHeight = function (height, isAuto) {
-        if (this.opt('monthMode')) {
+    AbstractDayGridView.prototype.setGridHeight = function (height, isAuto) {
+        if (this.context.options.monthMode) {
             // if auto, make the height of each row the height that it would be if there were 6 weeks
             if (isAuto) {
                 height *= this.dayGrid.rowCnt / 6;
@@ -1484,38 +1506,40 @@ var DayGridView = /** @class */ (function (_super) {
     };
     /* Scroll
     ------------------------------------------------------------------------------------------------------------------*/
-    DayGridView.prototype.computeDateScroll = function (duration) {
+    AbstractDayGridView.prototype.computeDateScroll = function (duration) {
         return { top: 0 };
     };
-    DayGridView.prototype.queryDateScroll = function () {
+    AbstractDayGridView.prototype.queryDateScroll = function () {
         return { top: this.scroller.getScrollTop() };
     };
-    DayGridView.prototype.applyDateScroll = function (scroll) {
+    AbstractDayGridView.prototype.applyDateScroll = function (scroll) {
         if (scroll.top !== undefined) {
             this.scroller.setScrollTop(scroll.top);
         }
     };
-    return DayGridView;
+    return AbstractDayGridView;
 }(View));
-DayGridView.prototype.dateProfileGeneratorClass = DayGridDateProfileGenerator;
+AbstractDayGridView.prototype.dateProfileGeneratorClass = DayGridDateProfileGenerator;
 
 var SimpleDayGrid = /** @class */ (function (_super) {
     __extends(SimpleDayGrid, _super);
-    function SimpleDayGrid(context, dayGrid) {
-        var _this = _super.call(this, context, dayGrid.el) || this;
+    function SimpleDayGrid(dayGrid) {
+        var _this = _super.call(this, dayGrid.el) || this;
         _this.slicer = new DayGridSlicer();
         _this.dayGrid = dayGrid;
-        context.calendar.registerInteractiveComponent(_this, { el: _this.dayGrid.el });
         return _this;
     }
+    SimpleDayGrid.prototype.firstContext = function (context) {
+        context.calendar.registerInteractiveComponent(this, { el: this.dayGrid.el });
+    };
     SimpleDayGrid.prototype.destroy = function () {
         _super.prototype.destroy.call(this);
-        this.calendar.unregisterInteractiveComponent(this);
+        this.context.calendar.unregisterInteractiveComponent(this);
     };
-    SimpleDayGrid.prototype.render = function (props) {
+    SimpleDayGrid.prototype.render = function (props, context) {
         var dayGrid = this.dayGrid;
         var dateProfile = props.dateProfile, dayTable = props.dayTable;
-        dayGrid.receiveProps(__assign({}, this.slicer.sliceProps(props, dateProfile, props.nextDayThreshold, dayGrid, dayTable), { dateProfile: dateProfile, cells: dayTable.cells, isRigid: props.isRigid }));
+        dayGrid.receiveProps(__assign({}, this.slicer.sliceProps(props, dateProfile, props.nextDayThreshold, context.calendar, dayGrid, dayTable), { dateProfile: dateProfile, cells: dayTable.cells, isRigid: props.isRigid }), context);
     };
     SimpleDayGrid.prototype.buildPositionCaches = function () {
         this.dayGrid.buildPositionCaches();
@@ -1550,36 +1574,25 @@ var DayGridSlicer = /** @class */ (function (_super) {
     return DayGridSlicer;
 }(Slicer));
 
-var DayGridView$1 = /** @class */ (function (_super) {
+var DayGridView = /** @class */ (function (_super) {
     __extends(DayGridView, _super);
-    function DayGridView(_context, viewSpec, dateProfileGenerator, parentEl) {
-        var _this = _super.call(this, _context, viewSpec, dateProfileGenerator, parentEl) || this;
+    function DayGridView() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.buildDayTable = memoize(buildDayTable);
-        if (_this.opt('columnHeader')) {
-            _this.header = new DayHeader(_this.context, _this.el.querySelector('.fc-head-container'));
-        }
-        _this.simpleDayGrid = new SimpleDayGrid(_this.context, _this.dayGrid);
         return _this;
     }
-    DayGridView.prototype.destroy = function () {
-        _super.prototype.destroy.call(this);
-        if (this.header) {
-            this.header.destroy();
-        }
-        this.simpleDayGrid.destroy();
-    };
-    DayGridView.prototype.render = function (props) {
-        _super.prototype.render.call(this, props);
+    DayGridView.prototype.render = function (props, context) {
+        _super.prototype.render.call(this, props, context); // will call _renderSkeleton/_unrenderSkeleton
         var dateProfile = this.props.dateProfile;
         var dayTable = this.dayTable =
-            this.buildDayTable(dateProfile, this.dateProfileGenerator);
+            this.buildDayTable(dateProfile, props.dateProfileGenerator);
         if (this.header) {
             this.header.receiveProps({
                 dateProfile: dateProfile,
                 dates: dayTable.headerDates,
                 datesRepDistinctDays: dayTable.rowCnt === 1,
                 renderIntroHtml: this.renderHeadIntroHtml
-            });
+            }, context);
         }
         this.simpleDayGrid.receiveProps({
             dateProfile: dateProfile,
@@ -1592,11 +1605,25 @@ var DayGridView$1 = /** @class */ (function (_super) {
             eventDrag: props.eventDrag,
             eventResize: props.eventResize,
             isRigid: this.hasRigidRows(),
-            nextDayThreshold: this.nextDayThreshold
-        });
+            nextDayThreshold: this.context.nextDayThreshold
+        }, context);
+    };
+    DayGridView.prototype._renderSkeleton = function (context) {
+        _super.prototype._renderSkeleton.call(this, context);
+        if (context.options.columnHeader) {
+            this.header = new DayHeader(this.el.querySelector('.fc-head-container'));
+        }
+        this.simpleDayGrid = new SimpleDayGrid(this.dayGrid);
+    };
+    DayGridView.prototype._unrenderSkeleton = function () {
+        _super.prototype._unrenderSkeleton.call(this);
+        if (this.header) {
+            this.header.destroy();
+        }
+        this.simpleDayGrid.destroy();
     };
     return DayGridView;
-}(DayGridView));
+}(AbstractDayGridView));
 function buildDayTable(dateProfile, dateProfileGenerator) {
     var daySeries = new DaySeries(dateProfile.renderRange, dateProfileGenerator);
     return new DayTable(daySeries, /year|month|week/.test(dateProfile.currentRangeUnit));
@@ -1605,7 +1632,7 @@ function buildDayTable(dateProfile, dateProfileGenerator) {
 var main = createPlugin({
     defaultView: 'dayGridMonth',
     views: {
-        dayGrid: DayGridView$1,
+        dayGrid: DayGridView,
         dayGridDay: {
             type: 'dayGrid',
             duration: { days: 1 }
@@ -1624,4 +1651,4 @@ var main = createPlugin({
 });
 
 export default main;
-export { DayGridView as AbstractDayGridView, DayBgRow, DayGrid, DayGridSlicer, DayGridView$1 as DayGridView, SimpleDayGrid, buildDayTable as buildBasicDayTable };
+export { AbstractDayGridView, DayBgRow, DayGrid, DayGridSlicer, DayGridView, SimpleDayGrid, buildDayTable as buildBasicDayTable };

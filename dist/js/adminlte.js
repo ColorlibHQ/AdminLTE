@@ -62,9 +62,7 @@
      * ====================================================
      */
 
-    var ControlSidebar =
-    /*#__PURE__*/
-    function () {
+    var ControlSidebar = /*#__PURE__*/function () {
       function ControlSidebar(element, config) {
         this._element = element;
         this._config = config;
@@ -335,9 +333,7 @@
      * ====================================================
      */
 
-    var Layout =
-    /*#__PURE__*/
-    function () {
+    var Layout = /*#__PURE__*/function () {
       function Layout(element, config) {
         this._config = config;
         this._element = element;
@@ -555,9 +551,7 @@
      * ====================================================
      */
 
-    var PushMenu =
-    /*#__PURE__*/
-    function () {
+    var PushMenu = /*#__PURE__*/function () {
       function PushMenu(element, options) {
         this._element = element;
         this._options = $.extend({}, Default, options);
@@ -785,9 +779,7 @@
      * ====================================================
      */
 
-    var Treeview =
-    /*#__PURE__*/
-    function () {
+    var Treeview = /*#__PURE__*/function () {
       function Treeview(element, config) {
         this._config = config;
         this._element = element;
@@ -950,9 +942,7 @@
      * ====================================================
      */
 
-    var DirectChat =
-    /*#__PURE__*/
-    function () {
+    var DirectChat = /*#__PURE__*/function () {
       function DirectChat(element, config) {
         this._element = element;
       }
@@ -1042,9 +1032,7 @@
      * ====================================================
      */
 
-    var TodoList =
-    /*#__PURE__*/
-    function () {
+    var TodoList = /*#__PURE__*/function () {
       function TodoList(element, config) {
         this._config = config;
         this._element = element;
@@ -1179,9 +1167,7 @@
       minimizeIcon: 'fa-compress'
     };
 
-    var CardWidget =
-    /*#__PURE__*/
-    function () {
+    var CardWidget = /*#__PURE__*/function () {
       function CardWidget(element, settings) {
         this._element = element;
         this._parent = element.parents(Selector.CARD).first();
@@ -1417,9 +1403,7 @@
       }
     };
 
-    var CardRefresh =
-    /*#__PURE__*/
-    function () {
+    var CardRefresh = /*#__PURE__*/function () {
       function CardRefresh(element, settings) {
         this._element = element;
         this._parent = element.parents(Selector.CARD).first();
@@ -1570,9 +1554,7 @@
      * ====================================================
      */
 
-    var Dropdown =
-    /*#__PURE__*/
-    function () {
+    var Dropdown = /*#__PURE__*/function () {
       function Dropdown(element, config) {
         this._config = config;
         this._element = element;
@@ -1738,9 +1720,7 @@
      * ====================================================
      */
 
-    var Toasts =
-    /*#__PURE__*/
-    function () {
+    var Toasts = /*#__PURE__*/function () {
       function Toasts(element, config) {
         this._config = config;
 

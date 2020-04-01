@@ -1,5 +1,5 @@
 /*!
-FullCalendar Core Package v4.3.1
+FullCalendar Core Package v4.4.0
 Docs & License: https://fullcalendar.io/
 (c) 2019 Adam Shaw
 */
@@ -2392,12 +2392,13 @@ Docs & License: https://fullcalendar.io/
     function hasBgRendering(def) {
         return def.rendering === 'background' || def.rendering === 'inverse-background';
     }
-    function filterSegsViaEls(view, segs, isMirror) {
-        if (view.hasPublicHandlers('eventRender')) {
+    function filterSegsViaEls(context, segs, isMirror) {
+        var calendar = context.calendar, view = context.view;
+        if (calendar.hasPublicHandlers('eventRender')) {
             segs = segs.filter(function (seg) {
-                var custom = view.publiclyTrigger('eventRender', [
+                var custom = calendar.publiclyTrigger('eventRender', [
                     {
-                        event: new EventApi(view.calendar, seg.eventRange.def, seg.eventRange.instance),
+                        event: new EventApi(calendar, seg.eventRange.def, seg.eventRange.instance),
                         isMirror: isMirror,
                         isStart: seg.isStart,
                         isEnd: seg.isEnd,
@@ -2443,6 +2444,65 @@ Docs & License: https://fullcalendar.io/
         }
         uis.push(eventDef.ui);
         return combineEventUis(uis);
+    }
+    // triggers
+    function triggerRenderedSegs(context, segs, isMirrors) {
+        var calendar = context.calendar, view = context.view;
+        if (calendar.hasPublicHandlers('eventPositioned')) {
+            for (var _i = 0, segs_2 = segs; _i < segs_2.length; _i++) {
+                var seg = segs_2[_i];
+                calendar.publiclyTriggerAfterSizing('eventPositioned', [
+                    {
+                        event: new EventApi(calendar, seg.eventRange.def, seg.eventRange.instance),
+                        isMirror: isMirrors,
+                        isStart: seg.isStart,
+                        isEnd: seg.isEnd,
+                        el: seg.el,
+                        view: view
+                    }
+                ]);
+            }
+        }
+        if (!calendar.state.loadingLevel) { // avoid initial empty state while pending
+            calendar.afterSizingTriggers._eventsPositioned = [null]; // fire once
+        }
+    }
+    function triggerWillRemoveSegs(context, segs, isMirrors) {
+        var calendar = context.calendar, view = context.view;
+        for (var _i = 0, segs_3 = segs; _i < segs_3.length; _i++) {
+            var seg = segs_3[_i];
+            calendar.trigger('eventElRemove', seg.el);
+        }
+        if (calendar.hasPublicHandlers('eventDestroy')) {
+            for (var _a = 0, segs_4 = segs; _a < segs_4.length; _a++) {
+                var seg = segs_4[_a];
+                calendar.publiclyTrigger('eventDestroy', [
+                    {
+                        event: new EventApi(calendar, seg.eventRange.def, seg.eventRange.instance),
+                        isMirror: isMirrors,
+                        el: seg.el,
+                        view: view
+                    }
+                ]);
+            }
+        }
+    }
+    // is-interactable
+    function computeEventDraggable(context, eventDef, eventUi) {
+        var calendar = context.calendar, view = context.view;
+        var transformers = calendar.pluginSystem.hooks.isDraggableTransformers;
+        var val = eventUi.startEditable;
+        for (var _i = 0, transformers_1 = transformers; _i < transformers_1.length; _i++) {
+            var transformer = transformers_1[_i];
+            val = transformer(val, eventDef, eventUi, view);
+        }
+        return val;
+    }
+    function computeEventStartResizable(context, eventDef, eventUi) {
+        return eventUi.durationEditable && context.options.eventResizableFromStart;
+    }
+    function computeEventEndResizable(context, eventDef, eventUi) {
+        return eventUi.durationEditable;
     }
 
     // applies the mutation to ALL defs/instances within the event store
@@ -3345,8 +3405,7 @@ Docs & License: https://fullcalendar.io/
     // { date, type, forceOff }
     // `type` is a view-type like "day" or "week". default value is "day".
     // `attrs` and `innerHtml` are use to generate the rest of the HTML tag.
-    function buildGotoAnchorHtml(component, gotoOptions, attrs, innerHtml) {
-        var dateEnv = component.dateEnv;
+    function buildGotoAnchorHtml(allOptions, dateEnv, gotoOptions, attrs, innerHtml) {
         var date;
         var type;
         var forceOff;
@@ -3369,7 +3428,7 @@ Docs & License: https://fullcalendar.io/
         }
         attrs = attrs ? ' ' + attrsToStr(attrs) : ''; // will have a leading space
         innerHtml = innerHtml || '';
-        if (!forceOff && component.opt('navLinks')) {
+        if (!forceOff && allOptions.navLinks) {
             return '<a' + attrs +
                 ' data-goto="' + htmlEscape(JSON.stringify(finalOptions)) + '">' +
                 innerHtml +
@@ -3381,12 +3440,12 @@ Docs & License: https://fullcalendar.io/
                 '</span>';
         }
     }
-    function getAllDayHtml(component) {
-        return component.opt('allDayHtml') || htmlEscape(component.opt('allDayText'));
+    function getAllDayHtml(allOptions) {
+        return allOptions.allDayHtml || htmlEscape(allOptions.allDayText);
     }
     // Computes HTML classNames for a single-day element
     function getDayClasses(date, dateProfile, context, noThemeHighlight) {
-        var calendar = context.calendar, view = context.view, theme = context.theme, dateEnv = context.dateEnv;
+        var calendar = context.calendar, options = context.options, theme = context.theme, dateEnv = context.dateEnv;
         var classes = [];
         var todayStart;
         var todayEnd;
@@ -3395,7 +3454,7 @@ Docs & License: https://fullcalendar.io/
         }
         else {
             classes.push('fc-' + DAY_IDS[date.getUTCDay()]);
-            if (view.opt('monthMode') &&
+            if (options.monthMode &&
                 dateEnv.getMonth(date) !== dateEnv.getMonth(dateProfile.currentRange.start)) {
                 classes.push('fc-other-month');
             }
@@ -3860,34 +3919,54 @@ Docs & License: https://fullcalendar.io/
     Theme.prototype.iconOverridePrefix = '';
 
     var guid = 0;
+    var ComponentContext = /** @class */ (function () {
+        function ComponentContext(calendar, theme, dateEnv, options, view) {
+            this.calendar = calendar;
+            this.theme = theme;
+            this.dateEnv = dateEnv;
+            this.options = options;
+            this.view = view;
+            this.isRtl = options.dir === 'rtl';
+            this.eventOrderSpecs = parseFieldSpecs(options.eventOrder);
+            this.nextDayThreshold = createDuration(options.nextDayThreshold);
+        }
+        ComponentContext.prototype.extend = function (options, view) {
+            return new ComponentContext(this.calendar, this.theme, this.dateEnv, options || this.options, view || this.view);
+        };
+        return ComponentContext;
+    }());
     var Component = /** @class */ (function () {
-        function Component(context, isView) {
-            // HACK to populate view at top of component instantiation call chain
-            if (isView) {
-                context.view = this;
-            }
+        function Component() {
             this.uid = String(guid++);
-            this.context = context;
-            this.dateEnv = context.dateEnv;
-            this.theme = context.theme;
-            this.view = context.view;
-            this.calendar = context.calendar;
-            this.isRtl = this.opt('dir') === 'rtl';
         }
         Component.addEqualityFuncs = function (newFuncs) {
             this.prototype.equalityFuncs = __assign({}, this.prototype.equalityFuncs, newFuncs);
         };
-        Component.prototype.opt = function (name) {
-            return this.context.options[name];
-        };
-        Component.prototype.receiveProps = function (props) {
+        Component.prototype.receiveProps = function (props, context) {
+            var oldContext = this.context;
+            this.context = context;
+            if (!oldContext) {
+                this.firstContext(context);
+            }
             var _a = recycleProps(this.props || {}, props, this.equalityFuncs), anyChanges = _a.anyChanges, comboProps = _a.comboProps;
             this.props = comboProps;
             if (anyChanges) {
-                this.render(comboProps);
+                if (oldContext) {
+                    this.beforeUpdate();
+                }
+                this.render(comboProps, context);
+                if (oldContext) {
+                    this.afterUpdate();
+                }
             }
         };
-        Component.prototype.render = function (props) {
+        Component.prototype.render = function (props, context) {
+        };
+        Component.prototype.firstContext = function (context) {
+        };
+        Component.prototype.beforeUpdate = function () {
+        };
+        Component.prototype.afterUpdate = function () {
         };
         // after destroy is called, this component won't ever be used again
         Component.prototype.destroy = function () {
@@ -3929,8 +4008,8 @@ Docs & License: https://fullcalendar.io/
     */
     var DateComponent = /** @class */ (function (_super) {
         __extends(DateComponent, _super);
-        function DateComponent(context, el, isView) {
-            var _this = _super.call(this, context, isView) || this;
+        function DateComponent(el) {
+            var _this = _super.call(this) || this;
             _this.el = el;
             return _this;
         }
@@ -3938,38 +4017,6 @@ Docs & License: https://fullcalendar.io/
             _super.prototype.destroy.call(this);
             removeElement(this.el);
         };
-        // TODO: WHAT ABOUT (sourceSeg && sourceSeg.component.doesDragMirror)
-        //
-        // Event Drag-n-Drop Rendering (for both events and external elements)
-        // ---------------------------------------------------------------------------------------------------------------
-        /*
-        renderEventDragSegs(state: EventSegUiInteractionState) {
-          if (state) {
-            let { isEvent, segs, sourceSeg } = state
-      
-            if (this.eventRenderer) {
-              this.eventRenderer.hideByHash(state.affectedInstances)
-            }
-      
-            // if the user is dragging something that is considered an event with real event data,
-            // and this component likes to do drag mirrors OR the component where the seg came from
-            // likes to do drag mirrors, then render a drag mirror.
-            if (isEvent && (this.doesDragMirror || sourceSeg && sourceSeg.component.doesDragMirror)) {
-              if (this.mirrorRenderer) {
-                this.mirrorRenderer.renderSegs(segs, { isDragging: true, sourceSeg })
-              }
-            }
-      
-            // if it would be impossible to render a drag mirror OR this component likes to render
-            // highlights, then render a highlight.
-            if (!isEvent || this.doesDragHighlight) {
-              if (this.fillRenderer) {
-                this.fillRenderer.renderSegs('highlight', segs)
-              }
-            }
-          }
-        }
-        */
         // Hit System
         // -----------------------------------------------------------------------------------------------------------------
         DateComponent.prototype.buildPositionCaches = function () {
@@ -3980,7 +4027,7 @@ Docs & License: https://fullcalendar.io/
         // Validation
         // -----------------------------------------------------------------------------------------------------------------
         DateComponent.prototype.isInteractionValid = function (interaction) {
-            var calendar = this.calendar;
+            var calendar = this.context.calendar;
             var dateProfile = this.props.dateProfile; // HACK
             var instances = interaction.mutatedEvents.instances;
             if (dateProfile) { // HACK for DayTile
@@ -3993,68 +4040,13 @@ Docs & License: https://fullcalendar.io/
             return isInteractionValid(interaction, calendar);
         };
         DateComponent.prototype.isDateSelectionValid = function (selection) {
+            var calendar = this.context.calendar;
             var dateProfile = this.props.dateProfile; // HACK
             if (dateProfile && // HACK for DayTile
                 !rangeContainsRange(dateProfile.validRange, selection.range)) {
                 return false;
             }
-            return isDateSelectionValid(selection, this.calendar);
-        };
-        // Triggering
-        // -----------------------------------------------------------------------------------------------------------------
-        // TODO: move to Calendar
-        DateComponent.prototype.publiclyTrigger = function (name, args) {
-            var calendar = this.calendar;
-            return calendar.publiclyTrigger(name, args);
-        };
-        DateComponent.prototype.publiclyTriggerAfterSizing = function (name, args) {
-            var calendar = this.calendar;
-            return calendar.publiclyTriggerAfterSizing(name, args);
-        };
-        DateComponent.prototype.hasPublicHandlers = function (name) {
-            var calendar = this.calendar;
-            return calendar.hasPublicHandlers(name);
-        };
-        DateComponent.prototype.triggerRenderedSegs = function (segs, isMirrors) {
-            var calendar = this.calendar;
-            if (this.hasPublicHandlers('eventPositioned')) {
-                for (var _i = 0, segs_1 = segs; _i < segs_1.length; _i++) {
-                    var seg = segs_1[_i];
-                    this.publiclyTriggerAfterSizing('eventPositioned', [
-                        {
-                            event: new EventApi(calendar, seg.eventRange.def, seg.eventRange.instance),
-                            isMirror: isMirrors,
-                            isStart: seg.isStart,
-                            isEnd: seg.isEnd,
-                            el: seg.el,
-                            view: this // safe to cast because this method is only called on context.view
-                        }
-                    ]);
-                }
-            }
-            if (!calendar.state.loadingLevel) { // avoid initial empty state while pending
-                calendar.afterSizingTriggers._eventsPositioned = [null]; // fire once
-            }
-        };
-        DateComponent.prototype.triggerWillRemoveSegs = function (segs, isMirrors) {
-            var calendar = this.calendar;
-            for (var _i = 0, segs_2 = segs; _i < segs_2.length; _i++) {
-                var seg = segs_2[_i];
-                calendar.trigger('eventElRemove', seg.el);
-            }
-            if (this.hasPublicHandlers('eventDestroy')) {
-                for (var _a = 0, segs_3 = segs; _a < segs_3.length; _a++) {
-                    var seg = segs_3[_a];
-                    this.publiclyTrigger('eventDestroy', [
-                        {
-                            event: new EventApi(calendar, seg.eventRange.def, seg.eventRange.instance),
-                            isMirror: isMirrors,
-                            el: seg.el,
-                            view: this // safe to cast because this method is only called on context.view
-                        }
-                    ]);
-                }
-            }
+            return isDateSelectionValid(selection, calendar);
         };
         // Pointer Interaction Utils
         // -----------------------------------------------------------------------------------------------------------------
@@ -4669,6 +4661,9 @@ Docs & License: https://fullcalendar.io/
             this.compute();
         }
         OptionsManager.prototype.mutate = function (updates, removals, isDynamic) {
+            if (!Object.keys(updates).length && !removals.length) {
+                return;
+            }
             var overrideHash = isDynamic ? this.dynamicOverrides : this.overrides;
             __assign(overrideHash, updates);
             for (var _i = 0, removals_1 = removals; _i < removals_1.length; _i++) {
@@ -5179,6 +5174,7 @@ Docs & License: https://fullcalendar.io/
         else {
             return !calendar.opt('lazyFetching') ||
                 !eventSource.fetchRange ||
+                eventSource.isFetching || // always cancel outdated in-progress fetches
                 fetchRange.start < eventSource.fetchRange.start ||
                 fetchRange.end > eventSource.fetchRange.end;
         }
@@ -5246,7 +5242,8 @@ Docs & License: https://fullcalendar.io/
         var eventSource = sourceHash[sourceId];
         if (eventSource && // not already removed
             fetchId === eventSource.latestFetchId) {
-            return __assign({}, sourceHash, (_a = {}, _a[sourceId] = __assign({}, eventSource, { isFetching: false, fetchRange: fetchRange }), _a));
+            return __assign({}, sourceHash, (_a = {}, _a[sourceId] = __assign({}, eventSource, { isFetching: false, fetchRange: fetchRange // also serves as a marker that at least one fetch has completed
+             }), _a));
         }
         return sourceHash;
     }
@@ -5984,8 +5981,8 @@ Docs & License: https://fullcalendar.io/
 
     var Toolbar = /** @class */ (function (_super) {
         __extends(Toolbar, _super);
-        function Toolbar(context, extraClassName) {
-            var _this = _super.call(this, context) || this;
+        function Toolbar(extraClassName) {
+            var _this = _super.call(this) || this;
             _this._renderLayout = memoizeRendering(_this.renderLayout, _this.unrenderLayout);
             _this._updateTitle = memoizeRendering(_this.updateTitle, null, [_this._renderLayout]);
             _this._updateActiveButton = memoizeRendering(_this.updateActiveButton, null, [_this._renderLayout]);
@@ -6020,7 +6017,7 @@ Docs & License: https://fullcalendar.io/
         };
         Toolbar.prototype.renderSection = function (position, buttonStr) {
             var _this = this;
-            var _a = this, theme = _a.theme, calendar = _a.calendar;
+            var _a = this.context, theme = _a.theme, calendar = _a.calendar;
             var optionsManager = calendar.optionsManager;
             var viewSpecs = calendar.viewSpecs;
             var sectionEl = createElement('div', { className: 'fc-' + position });
@@ -6128,7 +6125,8 @@ Docs & License: https://fullcalendar.io/
             });
         };
         Toolbar.prototype.updateActiveButton = function (buttonName) {
-            var className = this.theme.getClass('buttonActive');
+            var theme = this.context.theme;
+            var className = theme.getClass('buttonActive');
             findElements(this.el, 'button').forEach(function (buttonEl) {
                 if (buttonName && buttonEl.classList.contains('fc-' + buttonName + '-button')) {
                     buttonEl.classList.add(className);
@@ -6148,24 +6146,29 @@ Docs & License: https://fullcalendar.io/
 
     var CalendarComponent = /** @class */ (function (_super) {
         __extends(CalendarComponent, _super);
-        function CalendarComponent(context, el) {
-            var _this = _super.call(this, context) || this;
-            _this._renderToolbars = memoizeRendering(_this.renderToolbars);
+        function CalendarComponent(el) {
+            var _this = _super.call(this) || this;
+            _this.elClassNames = [];
+            _this.renderSkeleton = memoizeRendering(_this._renderSkeleton, _this._unrenderSkeleton);
+            _this.renderToolbars = memoizeRendering(_this._renderToolbars, _this._unrenderToolbars, [_this.renderSkeleton]);
+            _this.buildComponentContext = memoize(buildComponentContext);
             _this.buildViewPropTransformers = memoize(buildViewPropTransformers);
             _this.el = el;
-            prependToElement(el, _this.contentEl = createElement('div', { className: 'fc-view-container' }));
-            var calendar = _this.calendar;
-            for (var _i = 0, _a = calendar.pluginSystem.hooks.viewContainerModifiers; _i < _a.length; _i++) {
-                var modifyViewContainer = _a[_i];
-                modifyViewContainer(_this.contentEl, calendar);
-            }
-            _this.toggleElClassNames(true);
             _this.computeTitle = memoize(computeTitle);
             _this.parseBusinessHours = memoize(function (input) {
-                return parseBusinessHours(input, _this.calendar);
+                return parseBusinessHours(input, _this.context.calendar);
             });
             return _this;
         }
+        CalendarComponent.prototype.render = function (props, context) {
+            this.freezeHeight();
+            var title = this.computeTitle(props.dateProfile, props.viewSpec.options);
+            this.renderSkeleton(context);
+            this.renderToolbars(props.viewSpec, props.dateProfile, props.currentDate, title);
+            this.renderView(props, title);
+            this.updateSize();
+            this.thawHeight();
+        };
         CalendarComponent.prototype.destroy = function () {
             if (this.header) {
                 this.header.destroy();
@@ -6173,40 +6176,57 @@ Docs & License: https://fullcalendar.io/
             if (this.footer) {
                 this.footer.destroy();
             }
-            if (this.view) {
-                this.view.destroy();
-            }
-            removeElement(this.contentEl);
-            this.toggleElClassNames(false);
+            this.renderSkeleton.unrender(); // will call destroyView
             _super.prototype.destroy.call(this);
         };
-        CalendarComponent.prototype.toggleElClassNames = function (bool) {
+        CalendarComponent.prototype._renderSkeleton = function (context) {
+            this.updateElClassNames(context);
+            prependToElement(this.el, this.contentEl = createElement('div', { className: 'fc-view-container' }));
+            var calendar = context.calendar;
+            for (var _i = 0, _a = calendar.pluginSystem.hooks.viewContainerModifiers; _i < _a.length; _i++) {
+                var modifyViewContainer = _a[_i];
+                modifyViewContainer(this.contentEl, calendar);
+            }
+        };
+        CalendarComponent.prototype._unrenderSkeleton = function () {
+            // weird to have this here
+            if (this.view) {
+                this.savedScroll = this.view.queryScroll();
+                this.view.destroy();
+                this.view = null;
+            }
+            removeElement(this.contentEl);
+            this.removeElClassNames();
+        };
+        CalendarComponent.prototype.removeElClassNames = function () {
             var classList = this.el.classList;
-            var dirClassName = 'fc-' + this.opt('dir');
-            var themeClassName = this.theme.getClass('widget');
-            if (bool) {
-                classList.add('fc');
-                classList.add(dirClassName);
-                classList.add(themeClassName);
+            for (var _i = 0, _a = this.elClassNames; _i < _a.length; _i++) {
+                var className = _a[_i];
+                classList.remove(className);
             }
-            else {
-                classList.remove('fc');
-                classList.remove(dirClassName);
-                classList.remove(themeClassName);
+            this.elClassNames = [];
+        };
+        CalendarComponent.prototype.updateElClassNames = function (context) {
+            this.removeElClassNames();
+            var theme = context.theme, options = context.options;
+            this.elClassNames = [
+                'fc',
+                'fc-' + options.dir,
+                theme.getClass('widget')
+            ];
+            var classList = this.el.classList;
+            for (var _i = 0, _a = this.elClassNames; _i < _a.length; _i++) {
+                var className = _a[_i];
+                classList.add(className);
             }
         };
-        CalendarComponent.prototype.render = function (props) {
-            this.freezeHeight();
-            var title = this.computeTitle(props.dateProfile, props.viewSpec.options);
-            this._renderToolbars(props.viewSpec, props.dateProfile, props.currentDate, props.dateProfileGenerator, title);
-            this.renderView(props, title);
-            this.updateSize();
-            this.thawHeight();
-        };
-        CalendarComponent.prototype.renderToolbars = function (viewSpec, dateProfile, currentDate, dateProfileGenerator, title) {
-            var headerLayout = this.opt('header');
-            var footerLayout = this.opt('footer');
-            var now = this.calendar.getNow();
+        CalendarComponent.prototype._renderToolbars = function (viewSpec, dateProfile, currentDate, title) {
+            var _a = this, context = _a.context, header = _a.header, footer = _a.footer;
+            var options = context.options, calendar = context.calendar;
+            var headerLayout = options.header;
+            var footerLayout = options.footer;
+            var dateProfileGenerator = this.props.dateProfileGenerator;
+            var now = calendar.getNow();
             var todayInfo = dateProfileGenerator.build(now);
             var prevInfo = dateProfileGenerator.buildPrev(dateProfile, currentDate);
             var nextInfo = dateProfileGenerator.buildNext(dateProfile, currentDate);
@@ -6218,48 +6238,55 @@ Docs & License: https://fullcalendar.io/
                 isNextEnabled: nextInfo.isValid
             };
             if (headerLayout) {
-                if (!this.header) {
-                    this.header = new Toolbar(this.context, 'fc-header-toolbar');
-                    prependToElement(this.el, this.header.el);
+                if (!header) {
+                    header = this.header = new Toolbar('fc-header-toolbar');
+                    prependToElement(this.el, header.el);
                 }
-                this.header.receiveProps(__assign({ layout: headerLayout }, toolbarProps));
+                header.receiveProps(__assign({ layout: headerLayout }, toolbarProps), context);
             }
-            else if (this.header) {
+            else if (header) {
+                header.destroy();
+                header = this.header = null;
+            }
+            if (footerLayout) {
+                if (!footer) {
+                    footer = this.footer = new Toolbar('fc-footer-toolbar');
+                    appendToElement(this.el, footer.el);
+                }
+                footer.receiveProps(__assign({ layout: footerLayout }, toolbarProps), context);
+            }
+            else if (footer) {
+                footer.destroy();
+                footer = this.footer = null;
+            }
+        };
+        CalendarComponent.prototype._unrenderToolbars = function () {
+            if (this.header) {
                 this.header.destroy();
                 this.header = null;
             }
-            if (footerLayout) {
-                if (!this.footer) {
-                    this.footer = new Toolbar(this.context, 'fc-footer-toolbar');
-                    appendToElement(this.el, this.footer.el);
-                }
-                this.footer.receiveProps(__assign({ layout: footerLayout }, toolbarProps));
-            }
-            else if (this.footer) {
+            if (this.footer) {
                 this.footer.destroy();
                 this.footer = null;
             }
         };
         CalendarComponent.prototype.renderView = function (props, title) {
             var view = this.view;
+            var _a = this.context, calendar = _a.calendar, options = _a.options;
             var viewSpec = props.viewSpec, dateProfileGenerator = props.dateProfileGenerator;
             if (!view || view.viewSpec !== viewSpec) {
                 if (view) {
                     view.destroy();
                 }
-                view = this.view = new viewSpec['class']({
-                    calendar: this.calendar,
-                    view: null,
-                    dateEnv: this.dateEnv,
-                    theme: this.theme,
-                    options: viewSpec.options
-                }, viewSpec, dateProfileGenerator, this.contentEl);
-            }
-            else {
-                view.addScroll(view.queryScroll());
+                view = this.view = new viewSpec['class'](viewSpec, this.contentEl);
+                if (this.savedScroll) {
+                    view.addScroll(this.savedScroll, true);
+                    this.savedScroll = null;
+                }
             }
             view.title = title; // for the API
             var viewProps = {
+                dateProfileGenerator: dateProfileGenerator,
                 dateProfile: props.dateProfile,
                 businessHours: this.parseBusinessHours(viewSpec.options.businessHours),
                 eventStore: props.eventStore,
@@ -6269,20 +6296,20 @@ Docs & License: https://fullcalendar.io/
                 eventDrag: props.eventDrag,
                 eventResize: props.eventResize
             };
-            var transformers = this.buildViewPropTransformers(this.calendar.pluginSystem.hooks.viewPropsTransformers);
+            var transformers = this.buildViewPropTransformers(calendar.pluginSystem.hooks.viewPropsTransformers);
             for (var _i = 0, transformers_1 = transformers; _i < transformers_1.length; _i++) {
                 var transformer = transformers_1[_i];
-                __assign(viewProps, transformer.transform(viewProps, viewSpec, props, view));
+                __assign(viewProps, transformer.transform(viewProps, viewSpec, props, options));
             }
-            view.receiveProps(viewProps);
+            view.receiveProps(viewProps, this.buildComponentContext(this.context, viewSpec, view));
         };
         // Sizing
         // -----------------------------------------------------------------------------------------------------------------
         CalendarComponent.prototype.updateSize = function (isResize) {
             if (isResize === void 0) { isResize = false; }
             var view = this.view;
-            if (isResize) {
-                view.addScroll(view.queryScroll());
+            if (!view) {
+                return; // why?
             }
             if (isResize || this.isHeightAuto == null) {
                 this.computeHeightVars();
@@ -6292,7 +6319,7 @@ Docs & License: https://fullcalendar.io/
             view.popScroll(isResize);
         };
         CalendarComponent.prototype.computeHeightVars = function () {
-            var calendar = this.calendar; // yuck. need to handle dynamic options
+            var calendar = this.context.calendar; // yuck. need to handle dynamic options
             var heightInput = calendar.opt('height');
             var contentHeightInput = calendar.opt('contentHeight');
             this.isHeightAuto = heightInput === 'auto' || contentHeightInput === 'auto';
@@ -6355,7 +6382,7 @@ Docs & License: https://fullcalendar.io/
         else { // for day units or smaller, use the actual day range
             range = dateProfile.activeRange;
         }
-        return this.dateEnv.formatRange(range.start, range.end, createFormatter(viewOptions.titleFormat || computeTitleFormat(dateProfile), viewOptions.titleRangeSeparator), { isEndExclusive: dateProfile.isRangeAllDay });
+        return this.context.dateEnv.formatRange(range.start, range.end, createFormatter(viewOptions.titleFormat || computeTitleFormat(dateProfile), viewOptions.titleRangeSeparator), { isEndExclusive: dateProfile.isRangeAllDay });
     }
     // Generates the format string that should be used to generate the title for the current date range.
     // Attempts to compute the most appropriate format if not explicitly specified with `titleFormat`.
@@ -6378,6 +6405,10 @@ Docs & License: https://fullcalendar.io/
                 return { year: 'numeric', month: 'long', day: 'numeric' };
             }
         }
+    }
+    // build a context scoped to the view
+    function buildComponentContext(context, viewSpec, view) {
+        return context.extend(viewSpec.options, view);
     }
     // Plugin
     // -----------------------------------------------------------------------------------------------------------------
@@ -6420,6 +6451,7 @@ Docs & License: https://fullcalendar.io/
             var _this = _super.call(this, settings) || this;
             _this.handleSegClick = function (ev, segEl) {
                 var component = _this.component;
+                var _a = component.context, calendar = _a.calendar, view = _a.view;
                 var seg = getElSeg(segEl);
                 if (seg && // might be the <div> surrounding the more link
                     component.isValidSegDownEl(ev.target)) {
@@ -6427,12 +6459,12 @@ Docs & License: https://fullcalendar.io/
                     // grab before trigger fired in case trigger trashes DOM thru rerendering
                     var hasUrlContainer = elementClosest(ev.target, '.fc-has-url');
                     var url = hasUrlContainer ? hasUrlContainer.querySelector('a[href]').href : '';
-                    component.publiclyTrigger('eventClick', [
+                    calendar.publiclyTrigger('eventClick', [
                         {
                             el: segEl,
-                            event: new EventApi(component.calendar, seg.eventRange.def, seg.eventRange.instance),
+                            event: new EventApi(component.context.calendar, seg.eventRange.def, seg.eventRange.instance),
                             jsEvent: ev,
-                            view: component.view
+                            view: view
                         }
                     ]);
                     if (url && !ev.defaultPrevented) {
@@ -6477,23 +6509,25 @@ Docs & License: https://fullcalendar.io/
             };
             var component = settings.component;
             _this.removeHoverListeners = listenToHoverBySelector(component.el, component.fgSegSelector + ',' + component.bgSegSelector, _this.handleSegEnter, _this.handleSegLeave);
-            component.calendar.on('eventElRemove', _this.handleEventElRemove);
+            // how to make sure component already has context?
+            component.context.calendar.on('eventElRemove', _this.handleEventElRemove);
             return _this;
         }
         EventHovering.prototype.destroy = function () {
             this.removeHoverListeners();
-            this.component.calendar.off('eventElRemove', this.handleEventElRemove);
+            this.component.context.calendar.off('eventElRemove', this.handleEventElRemove);
         };
         EventHovering.prototype.triggerEvent = function (publicEvName, ev, segEl) {
             var component = this.component;
+            var _a = component.context, calendar = _a.calendar, view = _a.view;
             var seg = getElSeg(segEl);
             if (!ev || component.isValidSegDownEl(ev.target)) {
-                component.publiclyTrigger(publicEvName, [
+                calendar.publiclyTrigger(publicEvName, [
                     {
                         el: segEl,
-                        event: new EventApi(this.component.calendar, seg.eventRange.def, seg.eventRange.instance),
+                        event: new EventApi(calendar, seg.eventRange.def, seg.eventRange.instance),
                         jsEvent: ev,
-                        view: component.view
+                        view: view
                     }
                 ]);
             }
@@ -6538,6 +6572,7 @@ Docs & License: https://fullcalendar.io/
     var Calendar = /** @class */ (function () {
         function Calendar(el, overrides) {
             var _this = this;
+            this.buildComponentContext = memoize(buildComponentContext$1);
             this.parseRawLocales = memoize(parseRawLocales);
             this.buildLocale = memoize(buildLocale);
             this.buildDateEnv = memoize(buildDateEnv);
@@ -6551,7 +6586,6 @@ Docs & License: https://fullcalendar.io/
             this.isReducing = false;
             // isDisplaying: boolean = false // installed in DOM? accepting renders?
             this.needsRerender = false; // needs a render?
-            this.needsFullRerender = false;
             this.isRendering = false; // currently in the executeRender function?
             this.renderingPauseDepth = 0;
             this.buildDelayedRerender = memoize(buildDelayedRerender);
@@ -6591,12 +6625,13 @@ Docs & License: https://fullcalendar.io/
         // -----------------------------------------------------------------------------------------------------------------
         Calendar.prototype.render = function () {
             if (!this.component) {
+                this.component = new CalendarComponent(this.el);
                 this.renderableEventStore = createEmptyEventStore();
                 this.bindHandlers();
                 this.executeRender();
             }
             else {
-                this.requestRerender(true);
+                this.requestRerender();
             }
         };
         Calendar.prototype.destroy = function () {
@@ -6705,12 +6740,12 @@ Docs & License: https://fullcalendar.io/
                     this.publiclyTrigger('loading', [false]);
                 }
                 var view = this.component && this.component.view;
-                if (oldState.eventStore !== newState.eventStore || this.needsFullRerender) {
+                if (oldState.eventStore !== newState.eventStore) {
                     if (oldState.eventStore) {
                         this.isEventsUpdated = true;
                     }
                 }
-                if (oldState.dateProfile !== newState.dateProfile || this.needsFullRerender) {
+                if (oldState.dateProfile !== newState.dateProfile) {
                     if (oldState.dateProfile && view) { // why would view be null!?
                         this.publiclyTrigger('datesDestroy', [
                             {
@@ -6721,7 +6756,7 @@ Docs & License: https://fullcalendar.io/
                     }
                     this.isDatesUpdated = true;
                 }
-                if (oldState.viewType !== newState.viewType || this.needsFullRerender) {
+                if (oldState.viewType !== newState.viewType) {
                     if (oldState.viewType && view) { // why would view be null!?
                         this.publiclyTrigger('viewSkeletonDestroy', [
                             {
@@ -6740,10 +6775,8 @@ Docs & License: https://fullcalendar.io/
         };
         // Render Queue
         // -----------------------------------------------------------------------------------------------------------------
-        Calendar.prototype.requestRerender = function (needsFull) {
-            if (needsFull === void 0) { needsFull = false; }
+        Calendar.prototype.requestRerender = function () {
             this.needsRerender = true;
-            this.needsFullRerender = this.needsFullRerender || needsFull;
             this.delayedRerender(); // will call a debounced-version of tryRerender
         };
         Calendar.prototype.tryRerender = function () {
@@ -6766,12 +6799,10 @@ Docs & License: https://fullcalendar.io/
         // Rendering
         // -----------------------------------------------------------------------------------------------------------------
         Calendar.prototype.executeRender = function () {
-            var needsFullRerender = this.needsFullRerender; // save before clearing
             // clear these BEFORE the render so that new values will accumulate during render
             this.needsRerender = false;
-            this.needsFullRerender = false;
             this.isRendering = true;
-            this.renderComponent(needsFullRerender);
+            this.renderComponent();
             this.isRendering = false;
             // received a rerender request while rendering
             if (this.needsRerender) {
@@ -6781,11 +6812,10 @@ Docs & License: https://fullcalendar.io/
         /*
         don't call this directly. use executeRender instead
         */
-        Calendar.prototype.renderComponent = function (needsFull) {
+        Calendar.prototype.renderComponent = function () {
             var _a = this, state = _a.state, component = _a.component;
             var viewType = state.viewType;
             var viewSpec = this.viewSpecs[viewType];
-            var savedScroll = (needsFull && component) ? component.view.queryScroll() : null;
             if (!viewSpec) {
                 throw new Error("View type \"" + viewType + "\" is not valid");
             }
@@ -6798,26 +6828,7 @@ Docs & License: https://fullcalendar.io/
             var eventUiSingleBase = this.buildEventUiSingleBase(viewSpec.options);
             var eventUiBySource = this.buildEventUiBySource(state.eventSources);
             var eventUiBases = this.eventUiBases = this.buildEventUiBases(renderableEventStore.defs, eventUiSingleBase, eventUiBySource);
-            if (needsFull || !component) {
-                if (component) {
-                    component.freezeHeight(); // next component will unfreeze it
-                    component.destroy();
-                }
-                component = this.component = new CalendarComponent({
-                    calendar: this,
-                    view: null,
-                    dateEnv: this.dateEnv,
-                    theme: this.theme,
-                    options: this.optionsManager.computed
-                }, this.el);
-                this.isViewUpdated = true;
-                this.isDatesUpdated = true;
-                this.isEventsUpdated = true;
-            }
-            component.receiveProps(__assign({}, state, { viewSpec: viewSpec, dateProfile: state.dateProfile, dateProfileGenerator: this.dateProfileGenerators[viewType], eventStore: renderableEventStore, eventUiBases: eventUiBases, dateSelection: state.dateSelection, eventSelection: state.eventSelection, eventDrag: state.eventDrag, eventResize: state.eventResize }));
-            if (savedScroll) {
-                component.view.applyScroll(savedScroll, false);
-            }
+            component.receiveProps(__assign({}, state, { viewSpec: viewSpec, dateProfileGenerator: this.dateProfileGenerators[viewType], dateProfile: state.dateProfile, eventStore: renderableEventStore, eventUiBases: eventUiBases, dateSelection: state.dateSelection, eventSelection: state.eventSelection, eventDrag: state.eventDrag, eventResize: state.eventResize }), this.buildComponentContext(this.theme, this.dateEnv, this.optionsManager.computed));
             if (this.isViewUpdated) {
                 this.isViewUpdated = false;
                 this.publiclyTrigger('viewSkeletonRender', [
@@ -6894,7 +6905,6 @@ Docs & License: https://fullcalendar.io/
             this.optionsManager.mutate(normalUpdates, removals, isDynamic);
             if (anyDifficultOptions) {
                 this.handleOptions(this.optionsManager.computed);
-                this.needsFullRerender = true;
             }
             this.batchRendering(function () {
                 if (anyDifficultOptions) {
@@ -6905,7 +6915,7 @@ Docs & License: https://fullcalendar.io/
                         });
                     }
                     /* HACK
-                    has the same effect as calling this.requestRerender(true)
+                    has the same effect as calling this.requestRerender()
                     but recomputes the state's dateProfile
                     */
                     _this.dispatch({
@@ -7411,6 +7421,9 @@ Docs & License: https://fullcalendar.io/
     EmitterMixin.mixInto(Calendar);
     // for memoizers
     // -----------------------------------------------------------------------------------------------------------------
+    function buildComponentContext$1(theme, dateEnv, options) {
+        return new ComponentContext(this, theme, dateEnv, options, null);
+    }
     function buildDateEnv(locale, timeZone, namedTimeZoneImpl, firstDay, weekNumberCalculation, weekLabel, cmdFormatter) {
         return new DateEnv({
             calendarSystem: 'gregory',
@@ -7452,9 +7465,8 @@ Docs & License: https://fullcalendar.io/
 
     var View = /** @class */ (function (_super) {
         __extends(View, _super);
-        function View(context, viewSpec, dateProfileGenerator, parentEl) {
-            var _this = _super.call(this, context, createElement('div', { className: 'fc-view fc-' + viewSpec.type + '-view' }), true // isView (HACK)
-            ) || this;
+        function View(viewSpec, parentEl) {
+            var _this = _super.call(this, createElement('div', { className: 'fc-view fc-' + viewSpec.type + '-view' })) || this;
             _this.renderDatesMem = memoizeRendering(_this.renderDatesWrap, _this.unrenderDatesWrap);
             _this.renderBusinessHoursMem = memoizeRendering(_this.renderBusinessHours, _this.unrenderBusinessHours, [_this.renderDatesMem]);
             _this.renderDateSelectionMem = memoizeRendering(_this.renderDateSelectionWrap, _this.unrenderDateSelectionWrap, [_this.renderDatesMem]);
@@ -7463,10 +7475,7 @@ Docs & License: https://fullcalendar.io/
             _this.renderEventDragMem = memoizeRendering(_this.renderEventDragWrap, _this.unrenderEventDragWrap, [_this.renderDatesMem]);
             _this.renderEventResizeMem = memoizeRendering(_this.renderEventResizeWrap, _this.unrenderEventResizeWrap, [_this.renderDatesMem]);
             _this.viewSpec = viewSpec;
-            _this.dateProfileGenerator = dateProfileGenerator;
             _this.type = viewSpec.type;
-            _this.eventOrderSpecs = parseFieldSpecs(_this.opt('eventOrder'));
-            _this.nextDayThreshold = createDuration(_this.opt('nextDayThreshold'));
             parentEl.appendChild(_this.el);
             _this.initialize();
             return _this;
@@ -7477,35 +7486,35 @@ Docs & License: https://fullcalendar.io/
             // Date Setting/Unsetting
             // -----------------------------------------------------------------------------------------------------------------
             get: function () {
-                return this.dateEnv.toDate(this.props.dateProfile.activeRange.start);
+                return this.context.dateEnv.toDate(this.props.dateProfile.activeRange.start);
             },
             enumerable: true,
             configurable: true
         });
         Object.defineProperty(View.prototype, "activeEnd", {
             get: function () {
-                return this.dateEnv.toDate(this.props.dateProfile.activeRange.end);
+                return this.context.dateEnv.toDate(this.props.dateProfile.activeRange.end);
             },
             enumerable: true,
             configurable: true
         });
         Object.defineProperty(View.prototype, "currentStart", {
             get: function () {
-                return this.dateEnv.toDate(this.props.dateProfile.currentRange.start);
+                return this.context.dateEnv.toDate(this.props.dateProfile.currentRange.start);
             },
             enumerable: true,
             configurable: true
         });
         Object.defineProperty(View.prototype, "currentEnd", {
             get: function () {
-                return this.dateEnv.toDate(this.props.dateProfile.currentRange.end);
+                return this.context.dateEnv.toDate(this.props.dateProfile.currentRange.end);
             },
             enumerable: true,
             configurable: true
         });
         // General Rendering
         // -----------------------------------------------------------------------------------------------------------------
-        View.prototype.render = function (props) {
+        View.prototype.render = function (props, context) {
             this.renderDatesMem(props.dateProfile);
             this.renderBusinessHoursMem(props.businessHours);
             this.renderDateSelectionMem(props.dateSelection);
@@ -7514,6 +7523,9 @@ Docs & License: https://fullcalendar.io/
             this.renderEventDragMem(props.eventDrag);
             this.renderEventResizeMem(props.eventResize);
         };
+        View.prototype.beforeUpdate = function () {
+            this.addScroll(this.queryScroll());
+        };
         View.prototype.destroy = function () {
             _super.prototype.destroy.call(this);
             this.renderDatesMem.unrender(); // should unrender everything else
@@ -7521,7 +7533,10 @@ Docs & License: https://fullcalendar.io/
         // Sizing
         // -----------------------------------------------------------------------------------------------------------------
         View.prototype.updateSize = function (isResize, viewHeight, isAuto) {
-            var calendar = this.calendar;
+            var calendar = this.context.calendar;
+            if (isResize) {
+                this.addScroll(this.queryScroll()); // NOTE: same code as in beforeUpdate
+            }
             if (isResize || // HACKS...
                 calendar.isViewUpdated ||
                 calendar.isDatesUpdated ||
@@ -7530,6 +7545,7 @@ Docs & License: https://fullcalendar.io/
                 // anything that might cause dimension changes
                 this.updateBaseSize(isResize, viewHeight, isAuto);
             }
+            // NOTE: popScroll is called by CalendarComponent
         };
         View.prototype.updateBaseSize = function (isResize, viewHeight, isAuto) {
         };
@@ -7538,9 +7554,8 @@ Docs & License: https://fullcalendar.io/
         View.prototype.renderDatesWrap = function (dateProfile) {
             this.renderDates(dateProfile);
             this.addScroll({
-                duration: createDuration(this.opt('scrollTime'))
+                duration: createDuration(this.context.options.scrollTime)
             });
-            this.startNowIndicator(dateProfile); // shouldn't render yet because updateSize will be called soon
         };
         View.prototype.unrenderDatesWrap = function () {
             this.stopNowIndicator();
@@ -7573,22 +7588,7 @@ Docs & License: https://fullcalendar.io/
         // util for subclasses
         View.prototype.sliceEvents = function (eventStore, allDay) {
             var props = this.props;
-            return sliceEventStore(eventStore, props.eventUiBases, props.dateProfile.activeRange, allDay ? this.nextDayThreshold : null).fg;
-        };
-        View.prototype.computeEventDraggable = function (eventDef, eventUi) {
-            var transformers = this.calendar.pluginSystem.hooks.isDraggableTransformers;
-            var val = eventUi.startEditable;
-            for (var _i = 0, transformers_1 = transformers; _i < transformers_1.length; _i++) {
-                var transformer = transformers_1[_i];
-                val = transformer(val, eventDef, eventUi, this);
-            }
-            return val;
-        };
-        View.prototype.computeEventStartResizable = function (eventDef, eventUi) {
-            return eventUi.durationEditable && this.opt('eventResizableFromStart');
-        };
-        View.prototype.computeEventEndResizable = function (eventDef, eventUi) {
-            return eventUi.durationEditable;
+            return sliceEventStore(eventStore, props.eventUiBases, props.dateProfile.activeRange, allDay ? this.context.nextDayThreshold : null).fg;
         };
         // Event Selection
         // -----------------------------------------------------------------------------------------------------------------
@@ -7637,17 +7637,18 @@ Docs & License: https://fullcalendar.io/
         // Immediately render the current time indicator and begins re-rendering it at an interval,
         // which is defined by this.getNowIndicatorUnit().
         // TODO: somehow do this for the current whole day's background too
-        View.prototype.startNowIndicator = function (dateProfile) {
+        // USAGE: must be called manually from subclasses' render methods! don't need to call stopNowIndicator tho
+        View.prototype.startNowIndicator = function (dateProfile, dateProfileGenerator) {
             var _this = this;
-            var dateEnv = this.dateEnv;
+            var _a = this.context, calendar = _a.calendar, dateEnv = _a.dateEnv, options = _a.options;
             var unit;
             var update;
             var delay; // ms wait value
-            if (this.opt('nowIndicator')) {
-                unit = this.getNowIndicatorUnit(dateProfile);
+            if (options.nowIndicator && !this.initialNowDate) {
+                unit = this.getNowIndicatorUnit(dateProfile, dateProfileGenerator);
                 if (unit) {
                     update = this.updateNowIndicator.bind(this);
-                    this.initialNowDate = this.calendar.getNow();
+                    this.initialNowDate = calendar.getNow();
                     this.initialNowQueriedMs = new Date().valueOf();
                     // wait until the beginning of the next interval
                     delay = dateEnv.add(dateEnv.startOf(this.initialNowDate, unit), createDuration(1, unit)).valueOf() - this.initialNowDate.valueOf();
@@ -7681,20 +7682,20 @@ Docs & License: https://fullcalendar.io/
         // Immediately unrenders the view's current time indicator and stops any re-rendering timers.
         // Won't cause side effects if indicator isn't rendered.
         View.prototype.stopNowIndicator = function () {
+            if (this.nowIndicatorTimeoutID) {
+                clearTimeout(this.nowIndicatorTimeoutID);
+                this.nowIndicatorTimeoutID = null;
+            }
+            if (this.nowIndicatorIntervalID) {
+                clearInterval(this.nowIndicatorIntervalID);
+                this.nowIndicatorIntervalID = null;
+            }
             if (this.isNowIndicatorRendered) {
-                if (this.nowIndicatorTimeoutID) {
-                    clearTimeout(this.nowIndicatorTimeoutID);
-                    this.nowIndicatorTimeoutID = null;
-                }
-                if (this.nowIndicatorIntervalID) {
-                    clearInterval(this.nowIndicatorIntervalID);
-                    this.nowIndicatorIntervalID = null;
-                }
                 this.unrenderNowIndicator();
                 this.isNowIndicatorRendered = false;
             }
         };
-        View.prototype.getNowIndicatorUnit = function (dateProfile) {
+        View.prototype.getNowIndicatorUnit = function (dateProfile, dateProfileGenerator) {
             // subclasses should implement
         };
         // Renders a current time indicator at the given datetime
@@ -7707,16 +7708,20 @@ Docs & License: https://fullcalendar.io/
         };
         /* Scroller
         ------------------------------------------------------------------------------------------------------------------*/
-        View.prototype.addScroll = function (scroll) {
-            var queuedScroll = this.queuedScroll || (this.queuedScroll = {});
-            __assign(queuedScroll, scroll);
+        View.prototype.addScroll = function (scroll, isForced) {
+            if (isForced) {
+                scroll.isForced = isForced;
+            }
+            __assign(this.queuedScroll || (this.queuedScroll = {}), scroll);
         };
         View.prototype.popScroll = function (isResize) {
             this.applyQueuedScroll(isResize);
             this.queuedScroll = null;
         };
         View.prototype.applyQueuedScroll = function (isResize) {
-            this.applyScroll(this.queuedScroll || {}, isResize);
+            if (this.queuedScroll) {
+                this.applyScroll(this.queuedScroll, isResize);
+            }
         };
         View.prototype.queryScroll = function () {
             var scroll = {};
@@ -7726,8 +7731,8 @@ Docs & License: https://fullcalendar.io/
             return scroll;
         };
         View.prototype.applyScroll = function (scroll, isResize) {
-            var duration = scroll.duration;
-            if (duration != null) {
+            var duration = scroll.duration, isForced = scroll.isForced;
+            if (duration != null && !isForced) {
                 delete scroll.duration;
                 if (this.props.dateProfile) { // dates rendered yet?
                     __assign(scroll, this.computeDateScroll(duration));
@@ -7757,12 +7762,12 @@ Docs & License: https://fullcalendar.io/
     View.prototype.dateProfileGeneratorClass = DateProfileGenerator;
 
     var FgEventRenderer = /** @class */ (function () {
-        function FgEventRenderer(context) {
+        function FgEventRenderer() {
             this.segs = [];
             this.isSizeDirty = false;
-            this.context = context;
         }
-        FgEventRenderer.prototype.renderSegs = function (segs, mirrorInfo) {
+        FgEventRenderer.prototype.renderSegs = function (context, segs, mirrorInfo) {
+            this.context = context;
             this.rangeUpdated(); // called too frequently :(
             // render an `.el` on each seg
             // returns a subset of the segs. segs that were actually rendered
@@ -7770,10 +7775,10 @@ Docs & License: https://fullcalendar.io/
             this.segs = segs;
             this.attachSegs(segs, mirrorInfo);
             this.isSizeDirty = true;
-            this.context.view.triggerRenderedSegs(this.segs, Boolean(mirrorInfo));
+            triggerRenderedSegs(this.context, this.segs, Boolean(mirrorInfo));
         };
-        FgEventRenderer.prototype.unrender = function (_segs, mirrorInfo) {
-            this.context.view.triggerWillRemoveSegs(this.segs, Boolean(mirrorInfo));
+        FgEventRenderer.prototype.unrender = function (context, _segs, mirrorInfo) {
+            triggerWillRemoveSegs(this.context, this.segs, Boolean(mirrorInfo));
             this.detachSegs(this.segs);
             this.segs = [];
         };
@@ -7812,7 +7817,7 @@ Docs & License: https://fullcalendar.io/
                         seg.el = el;
                     }
                 });
-                segs = filterSegsViaEls(this.context.view, segs, Boolean(mirrorInfo));
+                segs = filterSegsViaEls(this.context, segs, Boolean(mirrorInfo));
             }
             return segs;
         };
@@ -7894,7 +7899,7 @@ Docs & License: https://fullcalendar.io/
             };
         };
         FgEventRenderer.prototype.sortEventSegs = function (segs) {
-            var specs = this.context.view.eventOrderSpecs;
+            var specs = this.context.eventOrderSpecs;
             var objs = segs.map(buildSegCompareObj);
             objs.sort(function (obj0, obj1) {
                 return compareByFieldSpecs(obj0, obj1, specs);
@@ -7975,19 +7980,22 @@ Docs & License: https://fullcalendar.io/
          });
     }
 
+    /*
+    TODO: when refactoring this class, make a new FillRenderer instance for each `type`
+    */
     var FillRenderer = /** @class */ (function () {
-        function FillRenderer(context) {
+        function FillRenderer() {
             this.fillSegTag = 'div';
             this.dirtySizeFlags = {};
-            this.context = context;
             this.containerElsByType = {};
             this.segsByType = {};
         }
         FillRenderer.prototype.getSegsByType = function (type) {
             return this.segsByType[type] || [];
         };
-        FillRenderer.prototype.renderSegs = function (type, segs) {
+        FillRenderer.prototype.renderSegs = function (type, context, segs) {
             var _a;
+            this.context = context;
             var renderedSegs = this.renderSegEls(type, segs); // assignes `.el` to each seg. returns successfully rendered segs
             var containerEls = this.attachSegs(type, renderedSegs);
             if (containerEls) {
@@ -7995,16 +8003,16 @@ Docs & License: https://fullcalendar.io/
             }
             this.segsByType[type] = renderedSegs;
             if (type === 'bgEvent') {
-                this.context.view.triggerRenderedSegs(renderedSegs, false); // isMirror=false
+                triggerRenderedSegs(context, renderedSegs, false); // isMirror=false
             }
             this.dirtySizeFlags[type] = true;
         };
         // Unrenders a specific type of fill that is currently rendered on the grid
-        FillRenderer.prototype.unrender = function (type) {
+        FillRenderer.prototype.unrender = function (type, context) {
             var segs = this.segsByType[type];
             if (segs) {
                 if (type === 'bgEvent') {
-                    this.context.view.triggerWillRemoveSegs(segs, false); // isMirror=false
+                    triggerWillRemoveSegs(context, segs, false); // isMirror=false
                 }
                 this.detachSegs(type, segs);
             }
@@ -8029,7 +8037,7 @@ Docs & License: https://fullcalendar.io/
                     }
                 });
                 if (type === 'bgEvent') {
-                    segs = filterSegsViaEls(this.context.view, segs, false // isMirror. background events can never be mirror elements
+                    segs = filterSegsViaEls(this.context, segs, false // isMirror. background events can never be mirror elements
                     );
                 }
                 // correct element type? (would be bad if a non-TD were inserted into a table for example)
@@ -8195,7 +8203,7 @@ Docs & License: https://fullcalendar.io/
         }
     }
     function renderDateCell(dateMarker, dateProfile, datesRepDistinctDays, colCnt, colHeadFormat, context, colspan, otherAttrs) {
-        var view = context.view, dateEnv = context.dateEnv, theme = context.theme, options = context.options;
+        var dateEnv = context.dateEnv, theme = context.theme, options = context.options;
         var isDateValid = rangeContainsMarker(dateProfile.activeRange, dateMarker); // TODO: called too frequently. cache somehow.
         var classNames = [
             'fc-day-header',
@@ -8235,7 +8243,7 @@ Docs & License: https://fullcalendar.io/
             '>' +
             (isDateValid ?
                 // don't make a link if the heading could represent multiple days, or if there's only one day (forceOff)
-                buildGotoAnchorHtml(view, { date: dateMarker, forceOff: !datesRepDistinctDays || colCnt === 1 }, innerHtml) :
+                buildGotoAnchorHtml(options, dateEnv, { date: dateMarker, forceOff: !datesRepDistinctDays || colCnt === 1 }, innerHtml) :
                 // if not valid, display text, but no link
                 innerHtml) +
             '</th>';
@@ -8243,36 +8251,47 @@ Docs & License: https://fullcalendar.io/
 
     var DayHeader = /** @class */ (function (_super) {
         __extends(DayHeader, _super);
-        function DayHeader(context, parentEl) {
-            var _this = _super.call(this, context) || this;
-            parentEl.innerHTML = ''; // because might be nbsp
-            parentEl.appendChild(_this.el = htmlToElement('<div class="fc-row ' + _this.theme.getClass('headerRow') + '">' +
-                '<table class="' + _this.theme.getClass('tableGrid') + '">' +
-                '<thead></thead>' +
-                '</table>' +
-                '</div>'));
-            _this.thead = _this.el.querySelector('thead');
+        function DayHeader(parentEl) {
+            var _this = _super.call(this) || this;
+            _this.renderSkeleton = memoizeRendering(_this._renderSkeleton, _this._unrenderSkeleton);
+            _this.parentEl = parentEl;
             return _this;
         }
-        DayHeader.prototype.destroy = function () {
-            removeElement(this.el);
-        };
-        DayHeader.prototype.render = function (props) {
+        DayHeader.prototype.render = function (props, context) {
             var dates = props.dates, datesRepDistinctDays = props.datesRepDistinctDays;
             var parts = [];
+            this.renderSkeleton(context);
             if (props.renderIntroHtml) {
                 parts.push(props.renderIntroHtml());
             }
-            var colHeadFormat = createFormatter(this.opt('columnHeaderFormat') ||
+            var colHeadFormat = createFormatter(context.options.columnHeaderFormat ||
                 computeFallbackHeaderFormat(datesRepDistinctDays, dates.length));
             for (var _i = 0, dates_1 = dates; _i < dates_1.length; _i++) {
                 var date = dates_1[_i];
-                parts.push(renderDateCell(date, props.dateProfile, datesRepDistinctDays, dates.length, colHeadFormat, this.context));
+                parts.push(renderDateCell(date, props.dateProfile, datesRepDistinctDays, dates.length, colHeadFormat, context));
             }
-            if (this.isRtl) {
+            if (context.isRtl) {
                 parts.reverse();
             }
             this.thead.innerHTML = '<tr>' + parts.join('') + '</tr>';
+        };
+        DayHeader.prototype.destroy = function () {
+            _super.prototype.destroy.call(this);
+            this.renderSkeleton.unrender();
+        };
+        DayHeader.prototype._renderSkeleton = function (context) {
+            var theme = context.theme;
+            var parentEl = this.parentEl;
+            parentEl.innerHTML = ''; // because might be nbsp
+            parentEl.appendChild(this.el = htmlToElement('<div class="fc-row ' + theme.getClass('headerRow') + '">' +
+                '<table class="' + theme.getClass('tableGrid') + '">' +
+                '<thead></thead>' +
+                '</table>' +
+                '</div>'));
+            this.thead = this.el.querySelector('thead');
+        };
+        DayHeader.prototype._unrenderSkeleton = function () {
+            removeElement(this.el);
         };
         return DayHeader;
     }(Component));
@@ -8422,16 +8441,16 @@ Docs & License: https://fullcalendar.io/
             this.sliceEventDrag = memoize(this._sliceInteraction);
             this.sliceEventResize = memoize(this._sliceInteraction);
         }
-        Slicer.prototype.sliceProps = function (props, dateProfile, nextDayThreshold, component) {
+        Slicer.prototype.sliceProps = function (props, dateProfile, nextDayThreshold, calendar, component) {
             var extraArgs = [];
-            for (var _i = 4; _i < arguments.length; _i++) {
-                extraArgs[_i - 4] = arguments[_i];
+            for (var _i = 5; _i < arguments.length; _i++) {
+                extraArgs[_i - 5] = arguments[_i];
             }
             var eventUiBases = props.eventUiBases;
             var eventSegs = this.sliceEventStore.apply(this, [props.eventStore, eventUiBases, dateProfile, nextDayThreshold, component].concat(extraArgs));
             return {
                 dateSelectionSegs: this.sliceDateSelection.apply(this, [props.dateSelection, eventUiBases, component].concat(extraArgs)),
-                businessHourSegs: this.sliceBusinessHours.apply(this, [props.businessHours, dateProfile, nextDayThreshold, component].concat(extraArgs)),
+                businessHourSegs: this.sliceBusinessHours.apply(this, [props.businessHours, dateProfile, nextDayThreshold, calendar, component].concat(extraArgs)),
                 fgEventSegs: eventSegs.fg,
                 bgEventSegs: eventSegs.bg,
                 eventDrag: this.sliceEventDrag.apply(this, [props.eventDrag, eventUiBases, dateProfile, nextDayThreshold, component].concat(extraArgs)),
@@ -8449,15 +8468,15 @@ Docs & License: https://fullcalendar.io/
                 {},
                 component].concat(extraArgs));
         };
-        Slicer.prototype._sliceBusinessHours = function (businessHours, dateProfile, nextDayThreshold, component) {
+        Slicer.prototype._sliceBusinessHours = function (businessHours, dateProfile, nextDayThreshold, calendar, component) {
             var extraArgs = [];
-            for (var _i = 4; _i < arguments.length; _i++) {
-                extraArgs[_i - 4] = arguments[_i];
+            for (var _i = 5; _i < arguments.length; _i++) {
+                extraArgs[_i - 5] = arguments[_i];
             }
             if (!businessHours) {
                 return [];
             }
-            return this._sliceEventStore.apply(this, [expandRecurring(businessHours, computeActiveRange(dateProfile, Boolean(nextDayThreshold)), component.calendar),
+            return this._sliceEventStore.apply(this, [expandRecurring(businessHours, computeActiveRange(dateProfile, Boolean(nextDayThreshold)), calendar),
                 {},
                 dateProfile,
                 nextDayThreshold,
@@ -8503,7 +8522,7 @@ Docs & License: https://fullcalendar.io/
             if (!dateSpan) {
                 return [];
             }
-            var eventRange = fabricateEventRange(dateSpan, eventUiBases, component.calendar);
+            var eventRange = fabricateEventRange(dateSpan, eventUiBases, component.context.calendar);
             var segs = this.sliceRange.apply(this, [dateSpan.range].concat(extraArgs));
             for (var _a = 0, segs_1 = segs; _a < segs_1.length; _a++) {
                 var seg = segs_1[_a];
@@ -8559,10 +8578,11 @@ Docs & License: https://fullcalendar.io/
 
     // exports
     // --------------------------------------------------------------------------------------------------
-    var version = '4.3.1';
+    var version = '4.4.0';
 
     exports.Calendar = Calendar;
     exports.Component = Component;
+    exports.ComponentContext = ComponentContext;
     exports.DateComponent = DateComponent;
     exports.DateEnv = DateEnv;
     exports.DateProfileGenerator = DateProfileGenerator;
@@ -8610,6 +8630,9 @@ Docs & License: https://fullcalendar.io/
     exports.compensateScroll = compensateScroll;
     exports.computeClippingRect = computeClippingRect;
     exports.computeEdges = computeEdges;
+    exports.computeEventDraggable = computeEventDraggable;
+    exports.computeEventEndResizable = computeEventEndResizable;
+    exports.computeEventStartResizable = computeEventStartResizable;
     exports.computeFallbackHeaderFormat = computeFallbackHeaderFormat;
     exports.computeHeightAndMargins = computeHeightAndMargins;
     exports.computeInnerRect = computeInnerRect;

@@ -1,4 +1,117 @@
-(function($) {
+/*!
+ * 
+ * Super simple wysiwyg editor v0.8.16
+ * https://summernote.org
+ * 
+ * 
+ * Copyright 2013- Alan Hong. and other contributors
+ * summernote may be freely distributed under the MIT license.
+ * 
+ * Date: 2020-02-19T09:12Z
+ * 
+ */
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 44);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ 44:
+/***/ (function(module, exports) {
+
+(function ($) {
   $.extend($.summernote.lang, {
     'th-TH': {
       font: {
@@ -11,7 +124,7 @@
         strikethrough: 'ขีดฆ่า',
         subscript: 'ตัวห้อย',
         superscript: 'ตัวยก',
-        size: 'ขนาดตัวอักษร',
+        size: 'ขนาดตัวอักษร'
       },
       image: {
         image: 'รูปภาพ',
@@ -33,14 +146,14 @@
         maximumFileSizeError: 'ไฟล์เกินขนาดที่กำหนด',
         url: 'ที่อยู่ URL ของรูปภาพ',
         remove: 'ลบรูปภาพ',
-        original: 'Original',
+        original: 'Original'
       },
       video: {
         video: 'วีดีโอ',
         videoLink: 'ลิงก์ของวีดีโอ',
         insert: 'แทรกวีดีโอ',
         url: 'ที่อยู่ URL ของวีดีโอ',
-        providers: '(YouTube, Vimeo, Vine, Instagram, DailyMotion หรือ Youku)',
+        providers: '(YouTube, Vimeo, Vine, Instagram, DailyMotion หรือ Youku)'
       },
       link: {
         link: 'ตัวเชื่อมโยง',
@@ -49,7 +162,7 @@
         edit: 'แก้ไข',
         textToDisplay: 'ข้อความที่ให้แสดง',
         url: 'ที่อยู่เว็บไซต์ที่ต้องการให้เชื่อมโยงไปถึง?',
-        openInNewWindow: 'เปิดในหน้าต่างใหม่',
+        openInNewWindow: 'เปิดในหน้าต่างใหม่'
       },
       table: {
         table: 'ตาราง',
@@ -59,10 +172,10 @@
         addColRight: 'เพิ่มคอลัมน์ด้านขวา',
         delRow: 'ลบแถว',
         delCol: 'ลบคอลัมน์',
-        delTable: 'ลบตาราง',
+        delTable: 'ลบตาราง'
       },
       hr: {
-        insert: 'แทรกเส้นคั่น',
+        insert: 'แทรกเส้นคั่น'
       },
       style: {
         style: 'รูปแบบ',
@@ -74,16 +187,16 @@
         h3: 'หัวข้อ 3',
         h4: 'หัวข้อ 4',
         h5: 'หัวข้อ 5',
-        h6: 'หัวข้อ 6',
+        h6: 'หัวข้อ 6'
       },
       lists: {
         unordered: 'รายการแบบไม่มีลำดับ',
-        ordered: 'รายการแบบมีลำดับ',
+        ordered: 'รายการแบบมีลำดับ'
       },
       options: {
         help: 'ช่วยเหลือ',
         fullscreen: 'ขยายเต็มหน้าจอ',
-        codeview: 'ซอร์สโค้ด',
+        codeview: 'ซอร์สโค้ด'
       },
       paragraph: {
         paragraph: 'ย่อหน้า',
@@ -92,7 +205,7 @@
         left: 'จัดหน้าชิดซ้าย',
         center: 'จัดหน้ากึ่งกลาง',
         right: 'จัดหน้าชิดขวา',
-        justify: 'จัดบรรทัดเสมอกัน',
+        justify: 'จัดบรรทัดเสมอกัน'
       },
       color: {
         recent: 'สีที่ใช้ล่าสุด',
@@ -102,7 +215,7 @@
         transparent: 'โปร่งแสง',
         setTransparent: 'ตั้งค่าความโปร่งแสง',
         reset: 'คืนค่า',
-        resetToDefault: 'คืนค่ามาตรฐาน',
+        resetToDefault: 'คืนค่ามาตรฐาน'
       },
       shortcut: {
         shortcuts: 'แป้นลัด',
@@ -111,7 +224,7 @@
         action: 'การกระทำ',
         paragraphFormatting: 'การจัดรูปแบบย่อหน้า',
         documentStyle: 'รูปแบบของเอกสาร',
-        extraKeys: 'Extra keys',
+        extraKeys: 'Extra keys'
       },
       help: {
         'insertParagraph': 'Insert Paragraph',
@@ -140,16 +253,21 @@
         'formatH5': 'เปลี่ยนรูปแบบบล็อคปัจจุบันเป็น H5',
         'formatH6': 'เปลี่ยนรูปแบบบล็อคปัจจุบันเป็น H6',
         'insertHorizontalRule': 'Insert horizontal rule',
-        'linkDialog.show': 'เปิดหน้าแก้ไข Link',
+        'linkDialog.show': 'เปิดหน้าแก้ไข Link'
       },
       history: {
         undo: 'ยกเลิกการกระทำ',
-        redo: 'ทำซ้ำการกระทำ',
+        redo: 'ทำซ้ำการกระทำ'
       },
       specialChar: {
         specialChar: 'SPECIAL CHARACTERS',
-        select: 'Select Special characters',
-      },
-    },
+        select: 'Select Special characters'
+      }
+    }
   });
 })(jQuery);
+
+/***/ })
+
+/******/ });
+});

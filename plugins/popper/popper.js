@@ -1,6 +1,6 @@
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.16.0
+ * @version 1.16.1
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
@@ -335,7 +335,7 @@ function getBordersSize(styles, axis) {
   const sideA = axis === 'x' ? 'Left' : 'Top';
   const sideB = sideA === 'Left' ? 'Right' : 'Bottom';
 
-  return parseFloat(styles[`border${sideA}Width`], 10) + parseFloat(styles[`border${sideB}Width`], 10);
+  return parseFloat(styles[`border${sideA}Width`]) + parseFloat(styles[`border${sideB}Width`]);
 }
 
 function getSize(axis, body, html, computedStyle) {
@@ -445,8 +445,8 @@ function getOffsetRectRelativeToArbitraryNode(children, parent, fixedPosition = 
   const scrollParent = getScrollParent(children);
 
   const styles = getStyleComputedProperty(parent);
-  const borderTopWidth = parseFloat(styles.borderTopWidth, 10);
-  const borderLeftWidth = parseFloat(styles.borderLeftWidth, 10);
+  const borderTopWidth = parseFloat(styles.borderTopWidth);
+  const borderLeftWidth = parseFloat(styles.borderLeftWidth);
 
   // In cases where the parent is fixed, we must ignore negative scroll in offset calc
   if (fixedPosition && isHTML) {
@@ -467,8 +467,8 @@ function getOffsetRectRelativeToArbitraryNode(children, parent, fixedPosition = 
   // differently when margins are applied to it. The margins are included in
   // the box of the documentElement, in the other cases not.
   if (!isIE10 && isHTML) {
-    const marginTop = parseFloat(styles.marginTop, 10);
-    const marginLeft = parseFloat(styles.marginLeft, 10);
+    const marginTop = parseFloat(styles.marginTop);
+    const marginLeft = parseFloat(styles.marginLeft);
 
     offsets.top -= borderTopWidth - marginTop;
     offsets.bottom -= borderTopWidth - marginTop;
@@ -1356,8 +1356,8 @@ function arrow(data, options) {
   // Compute the sideValue using the updated popper offsets
   // take popper margin in account because we don't have this info available
   const css = getStyleComputedProperty(data.instance.popper);
-  const popperMarginSide = parseFloat(css[`margin${sideCapitalized}`], 10);
-  const popperBorderSide = parseFloat(css[`border${sideCapitalized}Width`], 10);
+  const popperMarginSide = parseFloat(css[`margin${sideCapitalized}`]);
+  const popperBorderSide = parseFloat(css[`border${sideCapitalized}Width`]);
   let sideValue = center - data.offsets.popper[side] - popperMarginSide - popperBorderSide;
 
   // prevent arrowElement from being placed not contiguously to its popper
