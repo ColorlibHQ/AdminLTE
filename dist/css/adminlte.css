@@ -10096,7 +10096,7 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
-html {
+html.scroll-smooth {
   scroll-behavior: smooth;
 }
 
