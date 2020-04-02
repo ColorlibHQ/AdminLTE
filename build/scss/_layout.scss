@@ -132,6 +132,7 @@ body,
       position: fixed;
       top: 0;
       transition: width $transition-speed $transition-fn;
+      height: $main-header-height;
       width: $sidebar-width;
       z-index: $zindex-main-header + 1;
     }
@@ -261,6 +262,7 @@ body,
           position: fixed;
           top: 0;
           transition: width $transition-speed $transition-fn;
+          height: $main-header-height;
           width: $sidebar-width;
           z-index: $zindex-main-header + 1;
         }
@@ -543,6 +545,7 @@ body:not(.sidebar-mini-md) {
 
 .layout-fixed {
   .brand-link {
+    height: $main-header-height;
     width: $sidebar-width;
   }
 
