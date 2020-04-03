@@ -1,10 +1,10 @@
 language: node_js
 
 node_js:
-  - 8
   - 10
   - 11
   - 12
+  - 13
 
 env:
   - INSTALL=yarn
@@ -13,9 +13,6 @@ env:
 
 matrix:
   fast_finish: true
-  exclude:
-    - node_js: 8
-      env: INSTALL=yarn
 
 install:
   - if [ "yarn" == $INSTALL ]; then yarn install; fi
