@@ -13,6 +13,9 @@ Thanks to many of AdminLTE users, there are multiple implementations of the temp
 - [AdminLTE3.MVC](https://www.nuget.org/packages/AdminLTE3.MVC/) by [somaraj](https://github.com/somaraj)
 - [admin-lte-dotnet](https://github.com/iyilm4z/admin-lte-dotnet) by [iyilm4z](https://github.com/iyilm4z)
 - [WebPx.AdminLTE.AspNetCore](https://github.com/WebPx/WebPx.AdminLTE.AspNetCore) by [WebPx](https://github.com/WebPx)
+- [AdminLTE-3-Angular](https://github.com/erdkse/adminlte-3-angular) by [erdkse](https://github.com/erdkse)
+- [AdminLTE-3-React](https://github.com/erdkse/adminlte-3-react) by [erdkse](https://github.com/erdkse)
+- [AdminLTE-3-Vue](https://github.com/erdkse/adminlte-3-vue) by [erdkse](https://github.com/erdkse)
 
 ##### AdminLTE v2.4
 {: .text-bold .text-dark .mt-3}
