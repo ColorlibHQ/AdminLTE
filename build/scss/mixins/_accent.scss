@@ -11,7 +11,7 @@
     $pagination-active-border-color: $color;
 
     .btn-link,
-    a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link):not(.page-link) {
+    a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link):not(.page-link):not(.btn) {
       color: $link-color;
 
       @include hover {
