@@ -10356,14 +10356,6 @@ body,
   height: calc(2.93725rem + 1px);
 }
 
-body:not(.layout-fixed).layout-navbar-fixed .wrapper .main-sidebar {
-  margin-top: calc(calc(3.5rem + 1px) / -1);
-}
-
-body:not(.layout-fixed).layout-navbar-fixed .wrapper .main-sidebar .sidebar {
-  margin-top: calc(3.5rem + 1px);
-}
-
 body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar {
   margin-top: calc(calc(2.93725rem + 1px) / -1);
 }
@@ -10642,14 +10634,6 @@ body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar .side
   margin-top: calc(2.93725rem + 1px);
 }
 
-body:not(.layout-fixed).layout-navbar-fixed .wrapper .main-sidebar {
-  margin-top: calc(calc(3.5rem + 1px) / -1);
-}
-
-body:not(.layout-fixed).layout-navbar-fixed .wrapper .main-sidebar .sidebar {
-  margin-top: calc(3.5rem + 1px);
-}
-
 body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar {
   margin-top: calc(calc(2.93725rem + 1px) / -1);
 }
@@ -10789,12 +10773,6 @@ body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar .side
   .layout-sm-navbar-fixed.text-sm .wrapper .content-wrapper {
     margin-top: calc(2.93725rem + 1px);
   }
-  body:not(.layout-fixed).layout-sm-navbar-fixed .wrapper .main-sidebar {
-    margin-top: calc(calc(3.5rem + 1px) / -1);
-  }
-  body:not(.layout-fixed).layout-sm-navbar-fixed .wrapper .main-sidebar .sidebar {
-    margin-top: calc(3.5rem + 1px);
-  }
   body:not(.layout-fixed).layout-sm-navbar-fixed.text-sm .wrapper .main-sidebar {
     margin-top: calc(calc(2.93725rem + 1px) / -1);
   }
@@ -10929,12 +10907,6 @@ body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar .side
   }
   .layout-md-navbar-fixed.text-sm .wrapper .content-wrapper {
     margin-top: calc(2.93725rem + 1px);
-  }
-  body:not(.layout-fixed).layout-md-navbar-fixed .wrapper .main-sidebar {
-    margin-top: calc(calc(3.5rem + 1px) / -1);
-  }
-  body:not(.layout-fixed).layout-md-navbar-fixed .wrapper .main-sidebar .sidebar {
-    margin-top: calc(3.5rem + 1px);
   }
   body:not(.layout-fixed).layout-md-navbar-fixed.text-sm .wrapper .main-sidebar {
     margin-top: calc(calc(2.93725rem + 1px) / -1);
@@ -11071,12 +11043,6 @@ body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar .side
   .layout-lg-navbar-fixed.text-sm .wrapper .content-wrapper {
     margin-top: calc(2.93725rem + 1px);
   }
-  body:not(.layout-fixed).layout-lg-navbar-fixed .wrapper .main-sidebar {
-    margin-top: calc(calc(3.5rem + 1px) / -1);
-  }
-  body:not(.layout-fixed).layout-lg-navbar-fixed .wrapper .main-sidebar .sidebar {
-    margin-top: calc(3.5rem + 1px);
-  }
   body:not(.layout-fixed).layout-lg-navbar-fixed.text-sm .wrapper .main-sidebar {
     margin-top: calc(calc(2.93725rem + 1px) / -1);
   }
@@ -11211,12 +11177,6 @@ body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar .side
   }
   .layout-xl-navbar-fixed.text-sm .wrapper .content-wrapper {
     margin-top: calc(2.93725rem + 1px);
-  }
-  body:not(.layout-fixed).layout-xl-navbar-fixed .wrapper .main-sidebar {
-    margin-top: calc(calc(3.5rem + 1px) / -1);
-  }
-  body:not(.layout-fixed).layout-xl-navbar-fixed .wrapper .main-sidebar .sidebar {
-    margin-top: calc(3.5rem + 1px);
   }
   body:not(.layout-fixed).layout-xl-navbar-fixed.text-sm .wrapper .main-sidebar {
     margin-top: calc(calc(2.93725rem + 1px) / -1);

@@ -91,11 +91,11 @@ body,
 
   body:not(.layout-fixed).layout-navbar-fixed & {
     .main-sidebar {
-      margin-top: calc(#{$main-header-height} / -1);
+      // margin-top: calc(#{$main-header-height} / -1);
 
-      .sidebar {
-        margin-top: $main-header-height;
-      }
+      // .sidebar {
+      //   margin-top: $main-header-height;
+      // }
     }
   }
 
@@ -301,13 +301,13 @@ body,
       }
 
       body:not(.layout-fixed).layout#{$infix}-navbar-fixed & {
-        .main-sidebar {
-          margin-top: calc(#{$main-header-height} / -1);
+        // .main-sidebar {
+        //   margin-top: calc(#{$main-header-height} / -1);
 
-          .sidebar {
-            margin-top: $main-header-height;
-          }
-        }
+        //   .sidebar {
+        //     margin-top: $main-header-height;
+        //   }
+        // }
       }
 
       body:not(.layout-fixed).layout#{$infix}-navbar-fixed.text-sm & {

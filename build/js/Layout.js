@@ -104,6 +104,9 @@ const Layout = (($) => {
         } else {
           $(Selector.CONTENT).css('min-height', (max + offset) - heights.header)
         }
+        if (this._isFooterFixed()) {
+          $(Selector.CONTENT).css('min-height', parseFloat($(Selector.CONTENT).css('min-height')) + heights.footer);
+        }
       }
 
       if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
@@ -142,9 +145,9 @@ const Layout = (($) => {
       // Activate layout height watcher
       this.fixLayoutHeight()
 
-      if (this._config.loginRegisterAutoHeight === true) {      
+      if (this._config.loginRegisterAutoHeight === true) {
         this.fixLoginRegisterHeight()
-      } else if (Number.isInteger(this._config.loginRegisterAutoHeight)) {      
+      } else if (Number.isInteger(this._config.loginRegisterAutoHeight)) {
         setInterval(this.fixLoginRegisterHeight, this._config.loginRegisterAutoHeight);
       }
 
@@ -184,6 +187,10 @@ const Layout = (($) => {
       })
 
       return max
+    }
+
+    _isFooterFixed() {
+      return $('.main-footer').css('position') === 'fixed';
     }
 
     // Static
