@@ -27747,79 +27747,79 @@ blockquote.quote-gray-dark h6 {
 }
 
 .text-lightblue {
-  color: #3c8dbc;
+  color: #3c8dbc !important;
 }
 
 .text-navy {
-  color: #001f3f;
+  color: #001f3f !important;
 }
 
 .text-olive {
-  color: #3d9970;
+  color: #3d9970 !important;
 }
 
 .text-lime {
-  color: #01ff70;
+  color: #01ff70 !important;
 }
 
 .text-fuchsia {
-  color: #f012be;
+  color: #f012be !important;
 }
 
 .text-maroon {
-  color: #d81b60;
+  color: #d81b60 !important;
 }
 
 .text-blue {
-  color: #007bff;
+  color: #007bff !important;
 }
 
 .text-indigo {
-  color: #6610f2;
+  color: #6610f2 !important;
 }
 
 .text-purple {
-  color: #6f42c1;
+  color: #6f42c1 !important;
 }
 
 .text-pink {
-  color: #e83e8c;
+  color: #e83e8c !important;
 }
 
 .text-red {
-  color: #dc3545;
+  color: #dc3545 !important;
 }
 
 .text-orange {
-  color: #fd7e14;
+  color: #fd7e14 !important;
 }
 
 .text-yellow {
-  color: #ffc107;
+  color: #ffc107 !important;
 }
 
 .text-green {
-  color: #28a745;
+  color: #28a745 !important;
 }
 
 .text-teal {
-  color: #20c997;
+  color: #20c997 !important;
 }
 
 .text-cyan {
-  color: #17a2b8;
+  color: #17a2b8 !important;
 }
 
 .text-white {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .text-gray {
-  color: #6c757d;
+  color: #6c757d !important;
 }
 
 .text-gray-dark {
-  color: #343a40;
+  color: #343a40 !important;
 }
 
 .elevation-0 {
