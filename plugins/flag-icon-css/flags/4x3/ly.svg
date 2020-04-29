@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-ly" viewBox="0 0 640 480">
   <defs>
-    <clipPath id="a">
+    <clipPath id="ly-a">
       <path d="M166.7-20h666.6v500H166.7z"/>
     </clipPath>
   </defs>
-  <g clip-path="url(#a)" transform="matrix(.96 0 0 .96 -160 19.2)">
+  <g clip-path="url(#ly-a)" transform="matrix(.96 0 0 .96 -160 19.2)">
     <path fill="#239e46" d="M0-20h1000v500H0z"/>
     <path d="M0-20h1000v375H0z"/>
     <path fill="#e70013" d="M0-20h1000v125H0z"/>

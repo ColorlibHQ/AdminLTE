@@ -288,6 +288,26 @@
   }
 }
 
+.tab-pane {
+  // Box overlay for LOADING STATE effect on Tab Panels
+  > .overlay-wrapper {
+    position: relative;
+    > .overlay {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      flex-direction: column;
+      margin-top: -$card-spacer-x;
+      margin-left: -$card-spacer-x;
+      height: calc(100% + 2 * #{$card-spacer-x});
+      width: calc(100% + 2 * #{$card-spacer-x});
+
+      &.dark {
+        color: $white;
+      }
+    }
+  }
+}
+
 // Ribbon
 .ribbon-wrapper {
   height: $ribbon-wrapper-size;
@@ -447,7 +467,7 @@ blockquote {
 
 
 // Badge BTN Style
-.badge-btn {
+.badge-btn {
   border-radius: $button-border-radius-xs;
   font-size: $button-font-size-xs;
   font-weight: 400;

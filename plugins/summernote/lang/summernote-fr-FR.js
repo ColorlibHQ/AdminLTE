@@ -1,4 +1,117 @@
-(function($) {
+/*!
+ * 
+ * Super simple wysiwyg editor v0.8.16
+ * https://summernote.org
+ * 
+ * 
+ * Copyright 2013- Alan Hong. and other contributors
+ * summernote may be freely distributed under the MIT license.
+ * 
+ * Date: 2020-02-19T09:12Z
+ * 
+ */
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ 19:
+/***/ (function(module, exports) {
+
+(function ($) {
   $.extend($.summernote.lang, {
     'fr-FR': {
       font: {
@@ -11,7 +124,7 @@
         strikethrough: 'Barré',
         superscript: 'Exposant',
         subscript: 'Indice',
-        size: 'Taille de police',
+        size: 'Taille de police'
       },
       image: {
         image: 'Image',
@@ -33,14 +146,14 @@
         maximumFileSizeError: 'Taille maximale du fichier dépassée',
         url: 'URL de l\'image',
         remove: 'Supprimer l\'image',
-        original: 'Original',
+        original: 'Original'
       },
       video: {
         video: 'Vidéo',
         videoLink: 'Lien vidéo',
         insert: 'Insérer une vidéo',
         url: 'URL de la vidéo',
-        providers: '(YouTube, Vimeo, Vine, Instagram, DailyMotion ou Youku)',
+        providers: '(YouTube, Vimeo, Vine, Instagram, DailyMotion ou Youku)'
       },
       link: {
         link: 'Lien',
@@ -49,7 +162,7 @@
         edit: 'Modifier',
         textToDisplay: 'Texte à afficher',
         url: 'URL du lien',
-        openInNewWindow: 'Ouvrir dans une nouvelle fenêtre',
+        openInNewWindow: 'Ouvrir dans une nouvelle fenêtre'
       },
       table: {
         table: 'Tableau',
@@ -59,10 +172,10 @@
         addColRight: 'Ajouter une colonne à droite',
         delRow: 'Supprimer la ligne',
         delCol: 'Supprimer la colonne',
-        delTable: 'Supprimer le tableau',
+        delTable: 'Supprimer le tableau'
       },
       hr: {
-        insert: 'Insérer une ligne horizontale',
+        insert: 'Insérer une ligne horizontale'
       },
       style: {
         style: 'Style',
@@ -74,16 +187,16 @@
         h3: 'Titre 3',
         h4: 'Titre 4',
         h5: 'Titre 5',
-        h6: 'Titre 6',
+        h6: 'Titre 6'
       },
       lists: {
         unordered: 'Liste à puces',
-        ordered: 'Liste numérotée',
+        ordered: 'Liste numérotée'
       },
       options: {
         help: 'Aide',
         fullscreen: 'Plein écran',
-        codeview: 'Afficher le code HTML',
+        codeview: 'Afficher le code HTML'
       },
       paragraph: {
         paragraph: 'Paragraphe',
@@ -92,7 +205,7 @@
         left: 'Aligner à gauche',
         center: 'Centrer',
         right: 'Aligner à droite',
-        justify: 'Justifier',
+        justify: 'Justifier'
       },
       color: {
         recent: 'Dernière couleur sélectionnée',
@@ -102,7 +215,7 @@
         transparent: 'Transparent',
         setTransparent: 'Définir la transparence',
         reset: 'Restaurer',
-        resetToDefault: 'Restaurer la couleur par défaut',
+        resetToDefault: 'Restaurer la couleur par défaut'
       },
       shortcut: {
         shortcuts: 'Raccourcis',
@@ -111,7 +224,7 @@
         action: 'Action',
         paragraphFormatting: 'Mise en forme des paragraphes',
         documentStyle: 'Style du document',
-        extraKeys: 'Touches supplémentaires',
+        extraKeys: 'Touches supplémentaires'
       },
       help: {
         'insertParagraph': 'Insérer paragraphe',
@@ -140,16 +253,21 @@
         'formatH5': 'Changer le paragraphe en cours en entête H5',
         'formatH6': 'Changer le paragraphe en cours en entête H6',
         'insertHorizontalRule': 'Insérer séparation horizontale',
-        'linkDialog.show': 'Afficher fenêtre d\'hyperlien',
+        'linkDialog.show': 'Afficher fenêtre d\'hyperlien'
       },
       history: {
         undo: 'Annuler la dernière action',
-        redo: 'Restaurer la dernière action annulée',
+        redo: 'Restaurer la dernière action annulée'
       },
       specialChar: {
         specialChar: 'Caractères spéciaux',
-        select: 'Choisir des caractères spéciaux',
-      },
-    },
+        select: 'Choisir des caractères spéciaux'
+      }
+    }
   });
 })(jQuery);
+
+/***/ })
+
+/******/ });
+});

@@ -55,6 +55,7 @@ const Layout = (($) => {
   const Default = {
     scrollbarTheme : 'os-theme-light',
     scrollbarAutoHide: 'l',
+    panelAutoHeight: true,
     loginRegisterAutoHeight: true,
   }
 
@@ -76,7 +77,7 @@ const Layout = (($) => {
     fixLayoutHeight(extra = null) {
       let control_sidebar = 0
 
-      if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || extra == 'control_sidebar') {
+      if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || extra == 'control_sidebar') {
         control_sidebar = $(Selector.CONTROL_SIDEBAR_CONTENT).height()
       }
 
@@ -89,17 +90,29 @@ const Layout = (($) => {
       }
 
       const max = this._max(heights)
+      let offset = this._config.panelAutoHeight
 
-      if (max == heights.control_sidebar) {
-        $(Selector.CONTENT).css('min-height', max)
-      } else if (max == heights.window) {
-        $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer)
-      } else {
-        $(Selector.CONTENT).css('min-height', max - heights.header)
+      if (offset === true) {
+        offset = 0;
+      }
+
+      if (offset !== false) {
+        if (max == heights.control_sidebar) {
+          $(Selector.CONTENT).css('min-height', (max + offset))
+        } else if (max == heights.window) {
+          $(Selector.CONTENT).css('min-height', (max + offset) - heights.header - heights.footer)
+        } else {
+          $(Selector.CONTENT).css('min-height', (max + offset) - heights.header)
+        }
+        if (this._isFooterFixed()) {
+          $(Selector.CONTENT).css('min-height', parseFloat($(Selector.CONTENT).css('min-height')) + heights.footer);
+        }
       }
 
       if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
-        $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer)
+        if (offset !== false) {
+          $(Selector.CONTENT).css('min-height', (max + offset) - heights.header - heights.footer)
+        }
 
         if (typeof $.fn.overlayScrollbars !== 'undefined') {
           $(Selector.SIDEBAR).overlayScrollbars({
@@ -132,9 +145,9 @@ const Layout = (($) => {
       // Activate layout height watcher
       this.fixLayoutHeight()
 
-      if (this._config.loginRegisterAutoHeight === true) {      
+      if (this._config.loginRegisterAutoHeight === true) {
         this.fixLoginRegisterHeight()
-      } else if (Number.isInteger(this._config.loginRegisterAutoHeight)) {      
+      } else if (Number.isInteger(this._config.loginRegisterAutoHeight)) {
         setInterval(this.fixLoginRegisterHeight, this._config.loginRegisterAutoHeight);
       }
 
@@ -176,6 +189,10 @@ const Layout = (($) => {
       return max
     }
 
+    _isFooterFixed() {
+      return $('.main-footer').css('position') === 'fixed';
+    }
+
     // Static
 
     static _jQueryInterface(config = '') {
@@ -188,7 +205,7 @@ const Layout = (($) => {
           $(this).data(DATA_KEY, data)
         }
 
-        if (config === 'init' || config === '') {
+        if (config === 'init' || config === '') {
           data['_init']()
         } else if (config === 'fixLayoutHeight' || config === 'fixLoginRegisterHeight') {
           data[config]()

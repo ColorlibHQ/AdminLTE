@@ -178,8 +178,11 @@
       }
     }
 
-    &.select2-container--focus .select2-selection--multiple {
-      border-color: $input-focus-border-color;
+    &.select2-container--focus {
+      .select2-selection--single,
+      .select2-selection--multiple {
+        border-color: $input-focus-border-color;
+      }
 
       .select2-search__field {
         border: 0;

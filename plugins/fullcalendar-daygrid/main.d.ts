@@ -31,9 +31,10 @@ declare module '@fullcalendar/daygrid/SimpleDayGrid' {
     export { SimpleDayGrid as default, SimpleDayGrid };
     class SimpleDayGrid extends DateComponent<SimpleDayGridProps> {
         dayGrid: DayGrid;
-        constructor(context: ComponentContext, dayGrid: DayGrid);
+        constructor(dayGrid: DayGrid);
+        firstContext(context: ComponentContext): void;
         destroy(): void;
-        render(props: SimpleDayGridProps): void;
+        render(props: SimpleDayGridProps, context: ComponentContext): void;
         buildPositionCaches(): void;
         queryHit(positionLeft: number, positionTop: number): Hit;
     }
@@ -43,7 +44,7 @@ declare module '@fullcalendar/daygrid/SimpleDayGrid' {
 }
 
 declare module '@fullcalendar/daygrid/DayGrid' {
-    import { PositionCache, DateMarker, DateComponent, EventSegUiInteractionState, Seg, DateProfile } from '@fullcalendar/core';
+    import { PositionCache, DateMarker, DateComponent, EventSegUiInteractionState, Seg, DateProfile, ComponentContext } from '@fullcalendar/core';
     import Popover from '@fullcalendar/daygrid/Popover';
     import DayGridEventRenderer from '@fullcalendar/daygrid/DayGridEventRenderer';
     import DayTile from '@fullcalendar/daygrid/DayTile';
@@ -89,8 +90,8 @@ declare module '@fullcalendar/daygrid/DayGrid' {
         colPositions: PositionCache;
         segPopover: Popover;
         segPopoverTile: DayTile;
-        constructor(context: any, el: any, renderProps: RenderProps);
-        render(props: DayGridProps): void;
+        constructor(el: any, renderProps: RenderProps);
+        render(props: DayGridProps, context: ComponentContext): void;
         destroy(): void;
         getCellRange(row: any, col: any): {
             start: Date;
@@ -146,16 +147,20 @@ declare module '@fullcalendar/daygrid/DayGrid' {
 }
 
 declare module '@fullcalendar/daygrid/AbstractDayGridView' {
-    import { ScrollComponent, View, ComponentContext, ViewSpec, DateProfileGenerator, Duration } from '@fullcalendar/core';
+    import { ScrollComponent, View, Duration, ComponentContext, ViewProps } from '@fullcalendar/core';
     import DayGrid from '@fullcalendar/daygrid/DayGrid';
-    export { DayGridView as default, DayGridView };
-    abstract class DayGridView extends View {
+    export { AbstractDayGridView as default, AbstractDayGridView };
+    abstract class AbstractDayGridView extends View {
         scroller: ScrollComponent;
         dayGrid: DayGrid;
         colWeekNumbersVisible: boolean;
+        cellWeekNumbersVisible: boolean;
         weekNumberWidth: number;
-        constructor(context: ComponentContext, viewSpec: ViewSpec, dateProfileGenerator: DateProfileGenerator, parentEl: HTMLElement);
+        _processOptions(options: any): void;
+        render(props: ViewProps, context: ComponentContext): void;
         destroy(): void;
+        _renderSkeleton(context: ComponentContext): void;
+        _unrenderSkeleton(): void;
         renderSkeletonHtml(): string;
         weekNumberStyleAttr(): string;
         hasRigidRows(): boolean;
@@ -178,7 +183,7 @@ declare module '@fullcalendar/daygrid/AbstractDayGridView' {
 }
 
 declare module '@fullcalendar/daygrid/DayGridView' {
-    import { DayHeader, ComponentContext, ViewSpec, DateProfileGenerator, DateProfile, ViewProps, DayTable } from '@fullcalendar/core';
+    import { DayHeader, ComponentContext, DateProfileGenerator, DateProfile, ViewProps, DayTable } from '@fullcalendar/core';
     import AbstractDayGridView from '@fullcalendar/daygrid/AbstractDayGridView';
     import SimpleDayGrid from '@fullcalendar/daygrid/SimpleDayGrid';
     export { DayGridView as default, DayGridView };
@@ -186,9 +191,9 @@ declare module '@fullcalendar/daygrid/DayGridView' {
         header: DayHeader;
         simpleDayGrid: SimpleDayGrid;
         dayTable: DayTable;
-        constructor(_context: ComponentContext, viewSpec: ViewSpec, dateProfileGenerator: DateProfileGenerator, parentEl: HTMLElement);
-        destroy(): void;
-        render(props: ViewProps): void;
+        render(props: ViewProps, context: ComponentContext): void;
+        _renderSkeleton(context: ComponentContext): void;
+        _unrenderSkeleton(): void;
     }
     export function buildDayTable(dateProfile: DateProfile, dateProfileGenerator: DateProfileGenerator): DayTable;
 }
@@ -279,8 +284,9 @@ declare module '@fullcalendar/daygrid/DayTile' {
     export { DayTile as default, DayTile };
     class DayTile extends DateComponent<DayTileProps> {
         segContainerEl: HTMLElement;
-        constructor(context: ComponentContext, el: HTMLElement);
-        render(props: DayTileProps): void;
+        constructor(el: HTMLElement);
+        firstContext(context: ComponentContext): void;
+        render(props: DayTileProps, context: ComponentContext): void;
         destroy(): void;
         _renderFrame(date: DateMarker): void;
         queryHit(positionLeft: number, positionTop: number, elWidth: number, elHeight: number): Hit | null;

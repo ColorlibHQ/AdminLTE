@@ -15,19 +15,21 @@ declare module '@fullcalendar/timegrid' {
 }
 
 declare module '@fullcalendar/timegrid/AbstractTimeGridView' {
-    import { ScrollComponent, View, ViewSpec, DateProfileGenerator, ComponentContext, Duration } from '@fullcalendar/core';
+    import { ScrollComponent, View, ComponentContext, Duration, ViewProps } from '@fullcalendar/core';
     import { DayGrid } from '@fullcalendar/daygrid';
     import TimeGrid from '@fullcalendar/timegrid/TimeGrid';
     import AllDaySplitter from '@fullcalendar/timegrid/AllDaySplitter';
-    export { TimeGridView as default, TimeGridView };
-    abstract class TimeGridView extends View {
+    export { AbstractTimeGridView as default, AbstractTimeGridView };
+    abstract class AbstractTimeGridView extends View {
         timeGrid: TimeGrid;
         dayGrid: DayGrid;
         scroller: ScrollComponent;
         axisWidth: any;
         protected splitter: AllDaySplitter;
-        constructor(context: ComponentContext, viewSpec: ViewSpec, dateProfileGenerator: DateProfileGenerator, parentEl: HTMLElement);
+        render(props: ViewProps, context: ComponentContext): void;
         destroy(): void;
+        _renderSkeleton(context: ComponentContext): void;
+        _unrenderSkeleton(): void;
         renderSkeletonHtml(): string;
         getNowIndicatorUnit(): string;
         unrenderNowIndicator(): void;
@@ -51,7 +53,7 @@ declare module '@fullcalendar/timegrid/AbstractTimeGridView' {
 }
 
 declare module '@fullcalendar/timegrid/TimeGridView' {
-    import { DateProfileGenerator, DateProfile, ComponentContext, ViewSpec, DayHeader, DayTable, ViewProps } from '@fullcalendar/core';
+    import { DateProfileGenerator, DateProfile, ComponentContext, DayHeader, DayTable, ViewProps } from '@fullcalendar/core';
     import { SimpleDayGrid } from '@fullcalendar/daygrid';
     import SimpleTimeGrid from '@fullcalendar/timegrid/SimpleTimeGrid';
     import AbstractTimeGridView from '@fullcalendar/timegrid/AbstractTimeGridView';
@@ -60,16 +62,16 @@ declare module '@fullcalendar/timegrid/TimeGridView' {
         header: DayHeader;
         simpleDayGrid: SimpleDayGrid;
         simpleTimeGrid: SimpleTimeGrid;
-        constructor(_context: ComponentContext, viewSpec: ViewSpec, dateProfileGenerator: DateProfileGenerator, parentEl: HTMLElement);
-        destroy(): void;
-        render(props: ViewProps): void;
+        render(props: ViewProps, context: ComponentContext): void;
+        _renderSkeleton(context: ComponentContext): void;
+        _unrenderSkeleton(): void;
         renderNowIndicator(date: any): void;
     }
     export function buildDayTable(dateProfile: DateProfile, dateProfileGenerator: DateProfileGenerator): DayTable;
 }
 
 declare module '@fullcalendar/timegrid/TimeGrid' {
-    import { PositionCache, Duration, DateMarker, DateFormatter, ComponentContext, DateComponent, Seg, EventSegUiInteractionState, DateProfile } from '@fullcalendar/core';
+    import { PositionCache, Duration, DateMarker, DateFormatter, ComponentContext, DateComponent, Seg, EventSegUiInteractionState, DateProfile, Theme } from '@fullcalendar/core';
     export interface RenderProps {
         renderBgIntroHtml: () => string;
         renderIntroHtml: () => string;
@@ -120,12 +122,13 @@ declare module '@fullcalendar/timegrid/TimeGrid' {
         mirrorContainerEls: HTMLElement[];
         highlightContainerEls: HTMLElement[];
         businessContainerEls: HTMLElement[];
-        constructor(context: ComponentContext, el: HTMLElement, renderProps: RenderProps);
-        processOptions(): void;
+        constructor(el: HTMLElement, renderProps: RenderProps);
+        _processOptions(options: any): void;
         computeLabelInterval(slotDuration: any): any;
-        render(props: TimeGridProps): void;
+        render(props: TimeGridProps, context: ComponentContext): void;
         destroy(): void;
         updateSize(isResize: boolean): void;
+        _renderSkeleton(theme: Theme): void;
         _renderSlats(dateProfile: DateProfile): void;
         renderSlatRowHtml(dateProfile: DateProfile): string;
         _renderColumns(cells: TimeGridCell[], dateProfile: DateProfile): void;
@@ -192,9 +195,10 @@ declare module '@fullcalendar/timegrid/SimpleTimeGrid' {
     export { SimpleTimeGrid as default, SimpleTimeGrid };
     class SimpleTimeGrid extends DateComponent<SimpleTimeGridProps> {
         timeGrid: TimeGrid;
-        constructor(context: ComponentContext, timeGrid: TimeGrid);
+        constructor(timeGrid: TimeGrid);
+        firstContext(context: ComponentContext): void;
         destroy(): void;
-        render(props: SimpleTimeGridProps): void;
+        render(props: SimpleTimeGridProps, context: ComponentContext): void;
         renderNowIndicator(date: DateMarker): void;
         buildPositionCaches(): void;
         queryHit(positionLeft: number, positionTop: number): Hit;

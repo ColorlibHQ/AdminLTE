@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-ug" viewBox="0 0 640 480">
   <defs>
-    <clipPath id="a">
+    <clipPath id="ug-a">
       <path fill-opacity=".7" d="M-85.3 0h682.6v512H-85.3z"/>
     </clipPath>
   </defs>
-  <g clip-path="url(#a)" transform="translate(80) scale(.9375)">
+  <g clip-path="url(#ug-a)" transform="translate(80) scale(.9375)">
     <path fill="#ffe700" fill-rule="evenodd" d="M-128 341.4h768v85.3h-768z"/>
     <path fill-rule="evenodd" d="M-128 256h768v85.3h-768z"/>
     <path fill="#de3908" fill-rule="evenodd" d="M-128 170.7h768V256h-768z"/>

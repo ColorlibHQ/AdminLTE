@@ -107,7 +107,7 @@ const CardRefresh = (($) => {
         this.load()
       })
 
-      if (this._settings.loadOnInit) {
+      if (this._settings.loadOnInit) {
         this.load()
       }
     }

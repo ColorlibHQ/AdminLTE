@@ -1,5 +1,5 @@
 /*!
-FullCalendar Interaction Plugin v4.3.0
+FullCalendar Interaction Plugin v4.4.0
 Docs & License: https://fullcalendar.io/
 (c) 2019 Adam Shaw
 */
@@ -1126,11 +1126,12 @@ var DateClicking = /** @class */ (function (_super) {
         // won't even fire if moving was ignored
         _this.handleDragEnd = function (ev) {
             var component = _this.component;
+            var _a = component.context, calendar = _a.calendar, view = _a.view;
             var pointer = _this.dragging.pointer;
             if (!pointer.wasTouchScroll) {
-                var _a = _this.hitDragging, initialHit = _a.initialHit, finalHit = _a.finalHit;
+                var _b = _this.hitDragging, initialHit = _b.initialHit, finalHit = _b.finalHit;
                 if (initialHit && finalHit && isHitsEqual(initialHit, finalHit)) {
-                    component.calendar.triggerDateClick(initialHit.dateSpan, initialHit.dayEl, component.view, ev.origEvent);
+                    calendar.triggerDateClick(initialHit.dateSpan, initialHit.dayEl, view, ev.origEvent);
                 }
             }
         };
@@ -1160,7 +1161,8 @@ var DateSelecting = /** @class */ (function (_super) {
         _this.dragSelection = null;
         _this.handlePointerDown = function (ev) {
             var _a = _this, component = _a.component, dragging = _a.dragging;
-            var canSelect = component.opt('selectable') &&
+            var options = component.context.options;
+            var canSelect = options.selectable &&
                 component.isValidDateDownEl(ev.origEvent.target);
             // don't bother to watch expensive moves if component won't do selection
             dragging.setIgnoreMove(!canSelect);
@@ -1168,10 +1170,10 @@ var DateSelecting = /** @class */ (function (_super) {
             dragging.delay = ev.isTouch ? getComponentTouchDelay(component) : null;
         };
         _this.handleDragStart = function (ev) {
-            _this.component.calendar.unselect(ev); // unselect previous selections
+            _this.component.context.calendar.unselect(ev); // unselect previous selections
         };
         _this.handleHitUpdate = function (hit, isFinal) {
-            var calendar = _this.component.calendar;
+            var calendar = _this.component.context.calendar;
             var dragSelection = null;
             var isInvalid = false;
             if (hit) {
@@ -1200,15 +1202,16 @@ var DateSelecting = /** @class */ (function (_super) {
         _this.handlePointerUp = function (pev) {
             if (_this.dragSelection) {
                 // selection is already rendered, so just need to report selection
-                _this.component.calendar.triggerDateSelect(_this.dragSelection, pev);
+                _this.component.context.calendar.triggerDateSelect(_this.dragSelection, pev);
                 _this.dragSelection = null;
             }
         };
         var component = settings.component;
+        var options = component.context.options;
         var dragging = _this.dragging = new FeaturefulElementDragging(component.el);
         dragging.touchScrollAllowed = false;
-        dragging.minDistance = component.opt('selectMinDistance') || 0;
-        dragging.autoScroller.isEnabled = component.opt('dragScroll');
+        dragging.minDistance = options.selectMinDistance || 0;
+        dragging.autoScroller.isEnabled = options.dragScroll;
         var hitDragging = _this.hitDragging = new HitDragging(_this.dragging, interactionSettingsToStore(settings));
         hitDragging.emitter.on('pointerdown', _this.handlePointerDown);
         hitDragging.emitter.on('dragstart', _this.handleDragStart);
@@ -1222,9 +1225,10 @@ var DateSelecting = /** @class */ (function (_super) {
     return DateSelecting;
 }(Interaction));
 function getComponentTouchDelay(component) {
-    var delay = component.opt('selectLongPressDelay');
+    var options = component.context.options;
+    var delay = options.selectLongPressDelay;
     if (delay == null) {
-        delay = component.opt('longPressDelay');
+        delay = options.longPressDelay;
     }
     return delay;
 }
@@ -1270,19 +1274,20 @@ var EventDragging = /** @class */ (function (_super) {
             var origTarget = ev.origEvent.target;
             var _a = _this, component = _a.component, dragging = _a.dragging;
             var mirror = dragging.mirror;
-            var initialCalendar = component.calendar;
+            var options = component.context.options;
+            var initialCalendar = component.context.calendar;
             var subjectSeg = _this.subjectSeg = getElSeg(ev.subjectEl);
             var eventRange = _this.eventRange = subjectSeg.eventRange;
             var eventInstanceId = eventRange.instance.instanceId;
             _this.relevantEvents = getRelevantEvents(initialCalendar.state.eventStore, eventInstanceId);
-            dragging.minDistance = ev.isTouch ? 0 : component.opt('eventDragMinDistance');
+            dragging.minDistance = ev.isTouch ? 0 : options.eventDragMinDistance;
             dragging.delay =
                 // only do a touch delay if touch and this event hasn't been selected yet
                 (ev.isTouch && eventInstanceId !== component.props.eventSelection) ?
                     getComponentTouchDelay$1(component) :
                     null;
             mirror.parentNode = initialCalendar.el;
-            mirror.revertDuration = component.opt('dragRevertDuration');
+            mirror.revertDuration = options.dragRevertDuration;
             var isValid = component.isValidSegDownEl(origTarget) &&
                 !elementClosest(origTarget, '.fc-resizer'); // NOT on a resizer
             dragging.setIgnoreMove(!isValid);
@@ -1292,7 +1297,8 @@ var EventDragging = /** @class */ (function (_super) {
                 ev.subjectEl.classList.contains('fc-draggable');
         };
         _this.handleDragStart = function (ev) {
-            var initialCalendar = _this.component.calendar;
+            var context = _this.component.context;
+            var initialCalendar = context.calendar;
             var eventRange = _this.eventRange;
             var eventInstanceId = eventRange.instance.instanceId;
             if (ev.isTouch) {
@@ -1312,7 +1318,7 @@ var EventDragging = /** @class */ (function (_super) {
                         el: _this.subjectSeg.el,
                         event: new EventApi(initialCalendar, eventRange.def, eventRange.instance),
                         jsEvent: ev.origEvent,
-                        view: _this.component.view
+                        view: context.view
                     }
                 ]);
             }
@@ -1323,7 +1329,7 @@ var EventDragging = /** @class */ (function (_super) {
             }
             var relevantEvents = _this.relevantEvents;
             var initialHit = _this.hitDragging.initialHit;
-            var initialCalendar = _this.component.calendar;
+            var initialCalendar = _this.component.context.calendar;
             // states based on new hit
             var receivingCalendar = null;
             var mutation = null;
@@ -1337,9 +1343,10 @@ var EventDragging = /** @class */ (function (_super) {
             };
             if (hit) {
                 var receivingComponent = hit.component;
-                receivingCalendar = receivingComponent.calendar;
+                receivingCalendar = receivingComponent.context.calendar;
+                var receivingOptions = receivingComponent.context.options;
                 if (initialCalendar === receivingCalendar ||
-                    receivingComponent.opt('editable') && receivingComponent.opt('droppable')) {
+                    receivingOptions.editable && receivingOptions.droppable) {
                     mutation = computeEventMutation(initialHit, hit, receivingCalendar.pluginSystem.hooks.eventDragMutationMassagers);
                     if (mutation) {
                         mutatedRelevantEvents = applyMutationToEventStore(relevantEvents, receivingCalendar.eventUiBases, mutation, receivingCalendar);
@@ -1385,8 +1392,9 @@ var EventDragging = /** @class */ (function (_super) {
         };
         _this.handleDragEnd = function (ev) {
             if (_this.isDragging) {
-                var initialCalendar_1 = _this.component.calendar;
-                var initialView = _this.component.view;
+                var context = _this.component.context;
+                var initialCalendar_1 = context.calendar;
+                var initialView = context.view;
                 var _a = _this, receivingCalendar = _a.receivingCalendar, validMutation = _a.validMutation;
                 var eventDef = _this.eventRange.def;
                 var eventInstance = _this.eventRange.instance;
@@ -1467,10 +1475,11 @@ var EventDragging = /** @class */ (function (_super) {
             _this.cleanup();
         };
         var component = _this.component;
+        var options = component.context.options;
         var dragging = _this.dragging = new FeaturefulElementDragging(component.el);
         dragging.pointer.selector = EventDragging.SELECTOR;
         dragging.touchScrollAllowed = false;
-        dragging.autoScroller.isEnabled = component.opt('dragScroll');
+        dragging.autoScroller.isEnabled = options.dragScroll;
         var hitDragging = _this.hitDragging = new HitDragging(_this.dragging, interactionSettingsStore);
         hitDragging.useSubjectCenter = settings.useEventCenter;
         hitDragging.emitter.on('pointerdown', _this.handlePointerDown);
@@ -1485,7 +1494,7 @@ var EventDragging = /** @class */ (function (_super) {
     };
     // render a drag state on the next receivingCalendar
     EventDragging.prototype.displayDrag = function (nextCalendar, state) {
-        var initialCalendar = this.component.calendar;
+        var initialCalendar = this.component.context.calendar;
         var prevCalendar = this.receivingCalendar;
         // does the previous calendar need to be cleared?
         if (prevCalendar && prevCalendar !== nextCalendar) {
@@ -1512,7 +1521,7 @@ var EventDragging = /** @class */ (function (_super) {
         }
     };
     EventDragging.prototype.clearDrag = function () {
-        var initialCalendar = this.component.calendar;
+        var initialCalendar = this.component.context.calendar;
         var receivingCalendar = this.receivingCalendar;
         if (receivingCalendar) {
             receivingCalendar.dispatch({ type: 'UNSET_EVENT_DRAG' });
@@ -1542,14 +1551,14 @@ function computeEventMutation(hit0, hit1, massagers) {
     var standardProps = {};
     if (dateSpan0.allDay !== dateSpan1.allDay) {
         standardProps.allDay = dateSpan1.allDay;
-        standardProps.hasEnd = hit1.component.opt('allDayMaintainDuration');
+        standardProps.hasEnd = hit1.component.context.options.allDayMaintainDuration;
         if (dateSpan1.allDay) {
             // means date1 is already start-of-day,
             // but date0 needs to be converted
             date0 = startOfDay(date0);
         }
     }
-    var delta = diffDates(date0, date1, hit0.component.dateEnv, hit0.component === hit1.component ?
+    var delta = diffDates(date0, date1, hit0.component.context.dateEnv, hit0.component === hit1.component ?
         hit0.component.largeUnit :
         null);
     if (delta.milliseconds) { // has hours/minutes/seconds
@@ -1566,9 +1575,10 @@ function computeEventMutation(hit0, hit1, massagers) {
     return mutation;
 }
 function getComponentTouchDelay$1(component) {
-    var delay = component.opt('eventLongPressDelay');
+    var options = component.context.options;
+    var delay = options.eventLongPressDelay;
     if (delay == null) {
-        delay = component.opt('longPressDelay');
+        delay = options.longPressDelay;
     }
     return delay;
 }
@@ -1587,13 +1597,13 @@ var EventDragging$1 = /** @class */ (function (_super) {
             var component = _this.component;
             var seg = _this.querySeg(ev);
             var eventRange = _this.eventRange = seg.eventRange;
-            _this.dragging.minDistance = component.opt('eventDragMinDistance');
+            _this.dragging.minDistance = component.context.options.eventDragMinDistance;
             // if touch, need to be working with a selected event
             _this.dragging.setIgnoreMove(!_this.component.isValidSegDownEl(ev.origEvent.target) ||
                 (ev.isTouch && _this.component.props.eventSelection !== eventRange.instance.instanceId));
         };
         _this.handleDragStart = function (ev) {
-            var calendar = _this.component.calendar;
+            var _a = _this.component.context, calendar = _a.calendar, view = _a.view;
             var eventRange = _this.eventRange;
             _this.relevantEvents = getRelevantEvents(calendar.state.eventStore, _this.eventRange.instance.instanceId);
             _this.draggingSeg = _this.querySeg(ev);
@@ -1603,12 +1613,12 @@ var EventDragging$1 = /** @class */ (function (_super) {
                     el: _this.draggingSeg.el,
                     event: new EventApi(calendar, eventRange.def, eventRange.instance),
                     jsEvent: ev.origEvent,
-                    view: _this.component.view
+                    view: view
                 }
             ]);
         };
         _this.handleHitUpdate = function (hit, isFinal, ev) {
-            var calendar = _this.component.calendar;
+            var calendar = _this.component.context.calendar;
             var relevantEvents = _this.relevantEvents;
             var initialHit = _this.hitDragging.initialHit;
             var eventInstance = _this.eventRange.instance;
@@ -1658,8 +1668,7 @@ var EventDragging$1 = /** @class */ (function (_super) {
             }
         };
         _this.handleDragEnd = function (ev) {
-            var calendar = _this.component.calendar;
-            var view = _this.component.view;
+            var _a = _this.component.context, calendar = _a.calendar, view = _a.view;
             var eventDef = _this.eventRange.def;
             var eventInstance = _this.eventRange.instance;
             var eventApi = new EventApi(calendar, eventDef, eventInstance);
@@ -1710,7 +1719,7 @@ var EventDragging$1 = /** @class */ (function (_super) {
         var dragging = _this.dragging = new FeaturefulElementDragging(component.el);
         dragging.pointer.selector = '.fc-resizer';
         dragging.touchScrollAllowed = false;
-        dragging.autoScroller.isEnabled = component.opt('dragScroll');
+        dragging.autoScroller.isEnabled = component.context.options.dragScroll;
         var hitDragging = _this.hitDragging = new HitDragging(_this.dragging, interactionSettingsToStore(settings));
         hitDragging.emitter.on('pointerdown', _this.handlePointerDown);
         hitDragging.emitter.on('dragstart', _this.handleDragStart);
@@ -1727,7 +1736,7 @@ var EventDragging$1 = /** @class */ (function (_super) {
     return EventDragging;
 }(Interaction));
 function computeMutation(hit0, hit1, isFromStart, instanceRange, transforms) {
-    var dateEnv = hit0.component.dateEnv;
+    var dateEnv = hit0.component.context.dateEnv;
     var date0 = hit0.dateSpan.range.start;
     var date1 = hit1.dateSpan.range.start;
     var delta = diffDates(date0, date1, dateEnv, hit0.component.largeUnit);
@@ -1832,7 +1841,7 @@ var ExternalElementDragging = /** @class */ (function () {
                 origSeg: null
             };
             if (hit) {
-                receivingCalendar = hit.component.calendar;
+                receivingCalendar = hit.component.context.calendar;
                 if (_this.canDropElOnCalendar(ev.subjectEl, receivingCalendar)) {
                     droppableEvent = computeEventForDateSpan(hit.dateSpan, _this.dragMeta, receivingCalendar);
                     interaction.mutatedEvents = eventTupleToStore(droppableEvent);
@@ -1864,7 +1873,7 @@ var ExternalElementDragging = /** @class */ (function () {
             _this.clearDrag();
             if (receivingCalendar && droppableEvent) {
                 var finalHit = _this.hitDragging.finalHit;
-                var finalView = finalHit.component.view;
+                var finalView = finalHit.component.context.view;
                 var dragMeta = _this.dragMeta;
                 var arg = __assign({}, receivingCalendar.buildDatePointApi(finalHit.dateSpan), { draggedEl: pev.subjectEl, jsEvent: pev.origEvent, view: finalView });
                 receivingCalendar.publiclyTrigger('drop', [arg]);

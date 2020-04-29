@@ -1,5 +1,5 @@
 /*!
- * AdminLTE v3.0.3-pre (https://adminlte.io)
+ * AdminLTE v3.0.4 (https://adminlte.io)
  * Copyright 2014-2020 Colorlib <http://colorlib.com>
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
@@ -62,9 +62,7 @@
      * ====================================================
      */
 
-    var ControlSidebar =
-    /*#__PURE__*/
-    function () {
+    var ControlSidebar = /*#__PURE__*/function () {
       function ControlSidebar(element, config) {
         this._element = element;
         this._config = config;
@@ -327,6 +325,7 @@
     var Default = {
       scrollbarTheme: 'os-theme-light',
       scrollbarAutoHide: 'l',
+      panelAutoHeight: true,
       loginRegisterAutoHeight: true
     };
     /**
@@ -334,9 +333,7 @@
      * ====================================================
      */
 
-    var Layout =
-    /*#__PURE__*/
-    function () {
+    var Layout = /*#__PURE__*/function () {
       function Layout(element, config) {
         this._config = config;
         this._element = element;
@@ -368,16 +365,30 @@
 
         var max = this._max(heights);
 
-        if (max == heights.control_sidebar) {
-          $(Selector.CONTENT).css('min-height', max);
-        } else if (max == heights.window) {
-          $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer);
-        } else {
-          $(Selector.CONTENT).css('min-height', max - heights.header);
+        var offset = this._config.panelAutoHeight;
+
+        if (offset === true) {
+          offset = 0;
+        }
+
+        if (offset !== false) {
+          if (max == heights.control_sidebar) {
+            $(Selector.CONTENT).css('min-height', max + offset);
+          } else if (max == heights.window) {
+            $(Selector.CONTENT).css('min-height', max + offset - heights.header - heights.footer);
+          } else {
+            $(Selector.CONTENT).css('min-height', max + offset - heights.header);
+          }
+
+          if (this._isFooterFixed()) {
+            $(Selector.CONTENT).css('min-height', parseFloat($(Selector.CONTENT).css('min-height')) + heights.footer);
+          }
         }
 
         if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
-          $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer);
+          if (offset !== false) {
+            $(Selector.CONTENT).css('min-height', max + offset - heights.header - heights.footer);
+          }
 
           if (typeof $.fn.overlayScrollbars !== 'undefined') {
             $(Selector.SIDEBAR).overlayScrollbars({
@@ -443,6 +454,10 @@
           }
         });
         return max;
+      };
+
+      _proto._isFooterFixed = function _isFooterFixed() {
+        return $('.main-footer').css('position') === 'fixed';
       } // Static
       ;
 
@@ -535,18 +550,16 @@
       WRAPPER: '.wrapper'
     };
     var ClassName = {
-      SIDEBAR_OPEN: 'sidebar-open',
       COLLAPSED: 'sidebar-collapse',
-      OPEN: 'sidebar-open'
+      OPEN: 'sidebar-open',
+      CLOSED: 'sidebar-closed'
     };
     /**
      * Class Definition
      * ====================================================
      */
 
-    var PushMenu =
-    /*#__PURE__*/
-    function () {
+    var PushMenu = /*#__PURE__*/function () {
       function PushMenu(element, options) {
         this._element = element;
         this._options = $.extend({}, Default, options);
@@ -568,7 +581,7 @@
           }
         }
 
-        $(Selector.BODY).removeClass(ClassName.COLLAPSED);
+        $(Selector.BODY).removeClass(ClassName.COLLAPSED).removeClass(ClassName.CLOSED);
 
         if (this._options.enableRemember) {
           localStorage.setItem("remember" + EVENT_KEY, ClassName.OPEN);
@@ -581,7 +594,7 @@
       _proto.collapse = function collapse() {
         if (this._options.autoCollapseSize) {
           if ($(window).width() <= this._options.autoCollapseSize) {
-            $(Selector.BODY).removeClass(ClassName.OPEN);
+            $(Selector.BODY).removeClass(ClassName.OPEN).addClass(ClassName.CLOSED);
           }
         }
 
@@ -616,6 +629,8 @@
           } else if (resize == true) {
             if ($(Selector.BODY).hasClass(ClassName.OPEN)) {
               $(Selector.BODY).removeClass(ClassName.OPEN);
+            } else if ($(Selector.BODY).hasClass(ClassName.CLOSED)) {
+              this.expand();
             }
           }
         }
@@ -772,9 +787,7 @@
      * ====================================================
      */
 
-    var Treeview =
-    /*#__PURE__*/
-    function () {
+    var Treeview = /*#__PURE__*/function () {
       function Treeview(element, config) {
         this._config = config;
         this._element = element;
@@ -937,9 +950,7 @@
      * ====================================================
      */
 
-    var DirectChat =
-    /*#__PURE__*/
-    function () {
+    var DirectChat = /*#__PURE__*/function () {
       function DirectChat(element, config) {
         this._element = element;
       }
@@ -1029,9 +1040,7 @@
      * ====================================================
      */
 
-    var TodoList =
-    /*#__PURE__*/
-    function () {
+    var TodoList = /*#__PURE__*/function () {
       function TodoList(element, config) {
         this._config = config;
         this._element = element;
@@ -1166,9 +1175,7 @@
       minimizeIcon: 'fa-compress'
     };
 
-    var CardWidget =
-    /*#__PURE__*/
-    function () {
+    var CardWidget = /*#__PURE__*/function () {
       function CardWidget(element, settings) {
         this._element = element;
         this._parent = element.parents(Selector.CARD).first();
@@ -1404,9 +1411,7 @@
       }
     };
 
-    var CardRefresh =
-    /*#__PURE__*/
-    function () {
+    var CardRefresh = /*#__PURE__*/function () {
       function CardRefresh(element, settings) {
         this._element = element;
         this._parent = element.parents(Selector.CARD).first();
@@ -1557,9 +1562,7 @@
      * ====================================================
      */
 
-    var Dropdown =
-    /*#__PURE__*/
-    function () {
+    var Dropdown = /*#__PURE__*/function () {
       function Dropdown(element, config) {
         this._config = config;
         this._element = element;
@@ -1725,9 +1728,7 @@
      * ====================================================
      */
 
-    var Toasts =
-    /*#__PURE__*/
-    function () {
+    var Toasts = /*#__PURE__*/function () {
       function Toasts(element, config) {
         this._config = config;
 

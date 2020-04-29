@@ -742,7 +742,7 @@
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
             </div>
           </div>
           <!-- /.card-header -->
@@ -863,7 +863,7 @@
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
             </div>
           </div>
           <!-- /.card-header -->
@@ -945,7 +945,7 @@
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
             </div>
           </div>
           <!-- /.card-header -->
@@ -1115,6 +1115,17 @@
                 <h3 class="card-title">Date picker</h3>
               </div>
               <div class="card-body">
+                <!-- Date -->
+                <div class="form-group">
+                  <label>Date:</label>
+                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.form group -->
                 <!-- Date range -->
                 <div class="form-group">
                   <label>Date range:</label>
@@ -1157,8 +1168,11 @@
                   </div>
                 </div>
                 <!-- /.form group -->
-
               </div>
+                <div class="card-footer">
+                  Visit <a href="https://tempusdominus.github.io/bootstrap-4/Usage/">tempusdominus </a> for more examples and information about
+                  the plugin.
+                </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -1334,7 +1348,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.3-pre
+      <b>Version</b> 3.0.4
     </div>
     <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
     reserved.
@@ -1389,6 +1403,10 @@
     //Money Euro
     $('[data-mask]').inputmask()
 
+    //Date range picker
+    $('#reservationdate').datetimepicker({
+        format: 'L'
+    });
     //Date range picker
     $('#reservation').daterangepicker()
     //Date range picker with time picker
