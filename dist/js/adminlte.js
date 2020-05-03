@@ -442,7 +442,9 @@
         $(window).resize(function () {
           _this.fixLayoutHeight();
         });
-        $('body.hold-transition').removeClass('hold-transition');
+        setTimeout(function () {
+          $('body.hold-transition').removeClass('hold-transition');
+        }, 50);
       };
 
       _proto._max = function _max(numbers) {

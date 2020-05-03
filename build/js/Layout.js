@@ -173,7 +173,10 @@ const Layout = (($) => {
         this.fixLayoutHeight()
       })
 
-      $('body.hold-transition').removeClass('hold-transition')
+      setTimeout(() => {
+        $('body.hold-transition').removeClass('hold-transition')
+
+      }, 50);
     }
 
     _max(numbers) {

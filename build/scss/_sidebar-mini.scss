@@ -61,6 +61,26 @@
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
 .sidebar-collapse {
   .main-sidebar.sidebar-focused,
   .main-sidebar:hover {
@@ -86,12 +106,16 @@
     }
 
     .logo-xs {
-      opacity: 1;
+      animation-name: fadeIn;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
       visibility: visible;
     }
 
     .logo-xl {
-      opacity: 0;
+      animation-name: fadeOut;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
       visibility: hidden;
     }
 
@@ -103,7 +127,9 @@
     .user-panel > .info,
     .nav-sidebar .nav-link p {
       margin-left: -10px;
-      opacity: 0;
+      animation-name: fadeOut;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
       visibility: hidden;
       width: 0;
     }
