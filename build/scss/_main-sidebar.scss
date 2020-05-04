@@ -183,6 +183,9 @@
 
   .nav-link p {
     display: inline-block;
+    animation-name: fadeIn;
+    animation-duration: $transition-speed;
+    animation-fill-mode: both;
     margin: 0;
   }
 }
@@ -818,13 +821,17 @@
 .nav-collapse-hide-child {
   .menu-open > .nav-treeview {
     max-height: min-content;
-    opacity: 1;
+    animation-name: fadeIn;
+    animation-duration: $transition-speed;
+    animation-fill-mode: both;
   }
 
   .sidebar-collapse & {
     .menu-open > .nav-treeview {
       max-height: 0;
-      opacity: 0;
+      animation-name: fadeOut;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
     }
   }
 
@@ -834,7 +841,9 @@
   .sidebar-mini-md.sidebar-collapse .main-sidebar:hover & {
     .menu-open > .nav-treeview {
       max-height: min-content;
-      opacity: 1;
+      animation-name: fadeIn;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
     }
   }
 }

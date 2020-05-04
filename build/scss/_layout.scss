@@ -627,5 +627,6 @@ body:not(.sidebar-mini-md) {
   .control-sidebar *,
   .main-footer {
     transition: none !important;
+    animation-duration: 0s !important;
   }
 }

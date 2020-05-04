@@ -54,18 +54,24 @@
     .nav-sidebar .nav-link p,
     .brand-text {
       margin-left: -10px;
-      opacity: 0;
+      animation-name: fadeOut;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
       visibility: hidden;
     }
 
     .logo-xl {
-      opacity: 0;
+      animation-name: fadeOut;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
       visibility: hidden;
     }
 
     .logo-xs {
       display: inline-block;
-      opacity: 1;
+      animation-name: fadeIn;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
       visibility: visible;
     }
 
@@ -108,12 +114,16 @@
         .logo-xl {
           display: inline-block;
           margin-left: 0;
-          opacity: 1;
+          animation-name: fadeIn;
+          animation-duration: $transition-speed;
+          animation-fill-mode: both;
           visibility: visible;
         }
 
         .logo-xs {
-          opacity: 0;
+          animation-name: fadeOut;
+          animation-duration: $transition-speed;
+          animation-fill-mode: both;
           visibility: hidden;
         }
 

@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icon-css-fk" viewBox="0 0 512 512">
   <defs id="defs784">
+    <linearGradient id="b" x1="444.4" x2="470.9" y1="592.2" y2="577.1" gradientTransform="scale(1.003 .997)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="f" x1="851.8" x2="646.2" y1="369.9" y2="369.9" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
+    <linearGradient id="c" x1="458.2" x2="520.5" y1="562.5" y2="552.8" gradientTransform="scale(.936 1.068)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
+    <linearGradient id="d" x1="472.4" x2="445.3" y1="578.7" y2="580.2" gradientTransform="scale(1.003 .997)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
+    <linearGradient id="e" x1="518" x2="456.4" y1="553.7" y2="558.1" gradientTransform="scale(.936 1.068)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="a">
       <stop id="stop770" offset="0" stop-color="#a43907"/>
       <stop id="stop772" offset="1" stop-color="#fff"/>
     </linearGradient>
-    <linearGradient id="c" x1="458.2" x2="520.5" y1="562.5" y2="552.8" gradientTransform="scale(.936 1.068)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
-    <linearGradient id="d" x1="472.4" x2="445.3" y1="578.7" y2="580.2" gradientTransform="scale(1.003 .997)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
-    <linearGradient id="e" x1="518" x2="456.4" y1="553.7" y2="558.1" gradientTransform="scale(.936 1.068)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
-    <linearGradient id="b" x1="444.4" x2="470.9" y1="592.2" y2="577.1" gradientTransform="scale(1.003 .997)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="g" x1="388.5" x2="677.4" y1="507.2" y2="508.8" gradientTransform="scale(.823 1.215)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="h" x1="579.8" x2="556.8" y1="504.9" y2="505.9" gradientTransform="scale(.835 1.198)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="i" x1="581.4" x2="558.9" y1="512" y2="514.3" gradientTransform="scale(.823 1.215)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>

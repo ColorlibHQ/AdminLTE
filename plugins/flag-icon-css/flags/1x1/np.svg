@@ -8,7 +8,7 @@
     </clipPath>
   </defs>
   <g clip-path="url(#a)">
-    <path style="width:0" fill="#fff" d="M0 0h512v512H0z"/>
+    <path fill="#fff" d="M0 0h512v512H0z" style="width:0"/>
     <g clip-path="url(#b)" transform="translate(0 16)">
       <g fill-rule="evenodd">
         <path fill="#ce0000" stroke="#000063" stroke-width="13" d="M6.5 489.5h378.8L137.4 238.1l257.3.3L6.6-9.5v499z"/>
