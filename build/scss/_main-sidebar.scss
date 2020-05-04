@@ -909,3 +909,8 @@
     background: darken($sidebar-light-bg, 10%);
   }
 }
+
+// Sidebar inline input-group fix
+.sidebar .form-inline .input-group {
+  width: 100%;
+}

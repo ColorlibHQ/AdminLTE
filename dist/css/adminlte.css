@@ -12767,6 +12767,10 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   background: #e6e6e6;
 }
 
+.sidebar .form-inline .input-group {
+  width: 100%;
+}
+
 .logo-xs,
 .logo-xl {
   opacity: 1;
