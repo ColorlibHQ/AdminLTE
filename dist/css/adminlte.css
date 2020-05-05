@@ -12794,6 +12794,10 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   width: 100%;
 }
 
+.sidebar nav .form-inline {
+  margin-bottom: .2rem;
+}
+
 .logo-xs,
 .logo-xl {
   opacity: 1;
