@@ -31,7 +31,7 @@ Download from [Github releases](https://github.com/ColorlibHQ/AdminLTE/releases)
 
 #### Using The Command Line:
 
-_Note: To install it via NPM/Yarn, you need at least Node.js 10 or higher._
+_**Important Note**: To install it via NPM/Yarn, you need at least Node.js 10 or higher._
 
 __Via NPM__
 ```bash
