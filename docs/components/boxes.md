@@ -72,6 +72,11 @@ There are two types of boxes, info boxes & small boxes. Both boxes are used to d
 {: .col-md-4 .col-sm-6 .col-12}
 </div>
 
+> ##### Note!
+> To wrap the text in to a new line add to the info-box-text the class text-wrap.
+> To truncate the text with ... add to the info-box-content the class text-truncate. (Here you should add a tooltip to display the whole pharse)
+{: .quote-danger}
+
 ##### Info Box with Progress Bar
 {: .text-bold .text-dark .mt-4}
 
