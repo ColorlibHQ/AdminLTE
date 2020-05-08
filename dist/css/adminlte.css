@@ -19188,6 +19188,7 @@ html.maximized-card {
   min-height: 80px;
   padding: .5rem;
   position: relative;
+  width: 100%;
 }
 
 .info-box .progress {
@@ -19218,13 +19219,21 @@ html.maximized-card {
 }
 
 .info-box .info-box-content {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 120%;
   -ms-flex: 1;
   flex: 1;
-  padding: 5px 10px;
+  padding: 0 10px;
 }
 
 .info-box .info-box-number {
   display: block;
+  margin-top: .25rem;
   font-weight: 700;
 }
 

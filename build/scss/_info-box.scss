@@ -12,6 +12,7 @@
   min-height: 80px;
   padding: .5rem;
   position: relative;
+  width: 100%;
 
   .progress {
     background-color: rgba($black, .125);
@@ -41,12 +42,17 @@
   }
 
   .info-box-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 120%;
     flex: 1;
-    padding: 5px 10px;
+    padding: 0 10px;
   }
 
   .info-box-number {
     display: block;
+    margin-top: .25rem;
     font-weight: $font-weight-bold;
   }
 
