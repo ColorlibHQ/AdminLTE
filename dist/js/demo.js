@@ -43,6 +43,10 @@
     '<h5>Customize AdminLTE</h5><hr class="mb-2"/>'
   )
 
+  // Defaults
+  $('body').addClass('text-sm')
+  $('.nav-sidebar').addClass('nav-child-indent')
+
   var $no_border_checkbox = $('<input />', {
     type   : 'checkbox',
     value  : 1,
