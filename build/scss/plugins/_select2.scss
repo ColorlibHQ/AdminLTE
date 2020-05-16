@@ -259,6 +259,11 @@ select.form-control-sm ~ {
   }
 }
 
+// Dropdown Fix inside maximized card
+.maximized-card .select2-dropdown {
+  z-index: 9999;
+}
+
 // Background colors (theme colors)
 @each $name, $color in $theme-colors {
   @include select2-variant($name, $color);
