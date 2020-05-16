@@ -52,3 +52,9 @@
     background-color: $warning;
   }
 }
+
+// full width fix
+.toast-bottom-full-width .toast,
+.toast-top-full-width .toast {
+  max-width: inherit;
+}

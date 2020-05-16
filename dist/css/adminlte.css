@@ -23124,6 +23124,11 @@ select.form-control-sm ~ .select2-container--default .select2-selection--multipl
   background-color: #ffc107;
 }
 
+.toast-bottom-full-width .toast,
+.toast-top-full-width .toast {
+  max-width: inherit;
+}
+
 .pace {
   z-index: 1048;
 }
