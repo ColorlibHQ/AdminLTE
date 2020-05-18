@@ -926,3 +926,17 @@
 .sidebar nav .form-inline {
   margin-bottom: .2rem;
 }
+
+// Sidebar Collapse on Layout Boxed
+
+.layout-boxed {
+  &.sidebar-collapse .main-sidebar {
+    margin-left: 0;
+  }
+  .content-wrapper, 
+  .main-header,
+  .main-footer {
+    z-index: 9999;
+    position: relative;
+  }
+}
