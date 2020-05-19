@@ -52,6 +52,10 @@
     line-height: .8;
     max-height: 40px;
     width: auto;
+
+    &.single {
+      margin-top: -.3rem;
+    }
   }
 
   &.text-sm,

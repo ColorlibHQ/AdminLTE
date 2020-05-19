@@ -11748,6 +11748,10 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   width: auto;
 }
 
+.brand-link .brand-image-xl.single {
+  margin-top: -.3rem;
+}
+
 .brand-link.text-sm .brand-image,
 .text-sm .brand-link .brand-image {
   height: 29px;
