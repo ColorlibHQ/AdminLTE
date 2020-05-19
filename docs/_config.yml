@@ -22,7 +22,7 @@ plugins:
   - jekyll-seo-tag
 
 title: AdminLTE v3 Documentaion
-version: v3.0.4
+version: v3.0.5
 description: >- # this means to ignore newlines until "baseurl:"
   AdminLTE v3 Documentaion
 

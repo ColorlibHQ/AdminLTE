@@ -1,7 +1,7 @@
 {
   "name": "admin-lte",
   "description": "Responsive open source admin dashboard and control panel.",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "license": "MIT",
   "author": "Colorlib <http://colorlib.com>",
   "main": "dist/js/adminlte.min.js",
