@@ -928,8 +928,7 @@
 }
 
 // Sidebar Collapse on Layout Boxed
-
-.layout-boxed {
+.layout-boxed:not(.sidebar-mini):not(.sidebar-mini-md) {
   &.sidebar-collapse .main-sidebar {
     margin-left: 0;
   }

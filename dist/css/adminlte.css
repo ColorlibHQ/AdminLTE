@@ -12802,13 +12802,13 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   margin-bottom: .2rem;
 }
 
-.layout-boxed.sidebar-collapse .main-sidebar {
+.layout-boxed:not(.sidebar-mini):not(.sidebar-mini-md).sidebar-collapse .main-sidebar {
   margin-left: 0;
 }
 
-.layout-boxed .content-wrapper,
-.layout-boxed .main-header,
-.layout-boxed .main-footer {
+.layout-boxed:not(.sidebar-mini):not(.sidebar-mini-md) .content-wrapper,
+.layout-boxed:not(.sidebar-mini):not(.sidebar-mini-md) .main-header,
+.layout-boxed:not(.sidebar-mini):not(.sidebar-mini-md) .main-footer {
   z-index: 9999;
   position: relative;
 }
