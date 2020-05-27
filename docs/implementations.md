@@ -16,6 +16,7 @@ Thanks to many of AdminLTE users, there are multiple implementations of the temp
 - [AdminLTE-3-Angular](https://github.com/erdkse/adminlte-3-angular) by [erdkse](https://github.com/erdkse)
 - [AdminLTE-3-React](https://github.com/erdkse/adminlte-3-react) by [erdkse](https://github.com/erdkse)
 - [AdminLTE-3-Vue](https://github.com/erdkse/adminlte-3-vue) by [erdkse](https://github.com/erdkse)
+- [ASP.NET Core MVC / Angular Startup Project](https://github.com/aspnetboilerplate/module-zero-core-template) by [ASP.NET Boilerplate](https://github.com/aspnetboilerplate)
 
 ##### AdminLTE v2.4
 {: .text-bold .text-dark .mt-3}
