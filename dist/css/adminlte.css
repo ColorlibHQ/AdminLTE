@@ -1,5 +1,5 @@
 /*!
- *   AdminLTE v3.0.5
+ *   AdminLTE v3.0.6-pre
  *   Author: Colorlib
  *   Website: AdminLTE.io <http://adminlte.io>
  *   License: Open source - MIT <http://opensource.org/licenses/MIT>
@@ -12802,13 +12802,13 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   margin-bottom: .2rem;
 }
 
-.layout-boxed.sidebar-collapse .main-sidebar {
+.layout-boxed:not(.sidebar-mini):not(.sidebar-mini-md).sidebar-collapse .main-sidebar {
   margin-left: 0;
 }
 
-.layout-boxed .content-wrapper,
-.layout-boxed .main-header,
-.layout-boxed .main-footer {
+.layout-boxed:not(.sidebar-mini):not(.sidebar-mini-md) .content-wrapper,
+.layout-boxed:not(.sidebar-mini):not(.sidebar-mini-md) .main-header,
+.layout-boxed:not(.sidebar-mini):not(.sidebar-mini-md) .main-footer {
   z-index: 9999;
   position: relative;
 }
@@ -19161,7 +19161,9 @@ html.maximized-card {
   position: absolute;
   right: 15px;
   top: 15px;
-  transition: all 0.3s linear;
+  transition: -webkit-transform 0.3s linear;
+  transition: transform 0.3s linear;
+  transition: transform 0.3s linear, -webkit-transform 0.3s linear;
 }
 
 .small-box .icon > i.fa, .small-box .icon > i.fas, .small-box .icon > i.far, .small-box .icon > i.fab, .small-box .icon > i.glyphicon, .small-box .icon > i.ion {
@@ -19173,12 +19175,9 @@ html.maximized-card {
   text-decoration: none;
 }
 
-.small-box:hover .icon > i {
-  font-size: 95px;
-}
-
-.small-box:hover .icon > i.fa, .small-box:hover .icon > i.fas, .small-box:hover .icon > i.far, .small-box:hover .icon > i.fab, .small-box:hover .icon > i.glyphicon, .small-box:hover .icon > i.ion {
-  font-size: 75px;
+.small-box:hover .icon > i, .small-box:hover .icon > i.fa, .small-box:hover .icon > i.fas, .small-box:hover .icon > i.far, .small-box:hover .icon > i.fab, .small-box:hover .icon > i.glyphicon, .small-box:hover .icon > i.ion {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 @media (max-width: 767.98px) {

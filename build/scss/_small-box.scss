@@ -101,7 +101,7 @@
       position: absolute;
       right: 15px;
       top: 15px;
-      transition: all $transition-speed linear;
+      transition: transform $transition-speed linear;
 
       &.fa,
       &.fas,
@@ -122,15 +122,14 @@
 
     // Animate icons on small box hover
     .icon > i {
-      font-size: 95px;
-
+      &,
       &.fa,
       &.fas,
       &.far,
       &.fab,
       &.glyphicon,
       &.ion {
-        font-size: 75px;
+        transform: scale(1.1);
       }
     }
   }
