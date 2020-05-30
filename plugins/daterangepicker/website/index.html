@@ -263,7 +263,7 @@
                                     }, cb);
 
                                     cb(start, end);
-                                    
+
                                 });
                                 </script>
 
@@ -282,7 +282,7 @@
                             <div class="col-4">
                                 <label>Produces:</label>
                                 <input type="text" name="datefilter" class="form-control pull-right" value="" />
-                                 
+
                                 <script type="text/javascript">
                                 $(function() {
 
@@ -367,7 +367,7 @@
                             <code>opens</code>: ('left'/'right'/'center') Whether the picker appears aligned to the left, to the right, or centered under the HTML element it's attached to.
                         </li>
                         <li>
-                            <code>drops</code>: ('down'/'up') Whether the picker appears below (default) or above the HTML element it's attached to.
+                            <code>drops</code>: ('down'/'up'/'auto') Whether the picker appears below (default) or above the HTML element it's attached to.
                         </li>
                         <li>
                             <code>buttonClasses</code>: (string) CSS class names that will be added to both the apply and cancel buttons.
@@ -416,14 +416,14 @@
                     <p>
                         You can programmatically update the <code>startDate</code> and <code>endDate</code>
                         in the picker using the <code>setStartDate</code> and <code>setEndDate</code> methods.
-                        You can access the Date Range Picker object and its functions and properties through 
+                        You can access the Date Range Picker object and its functions and properties through
                         data properties of the element you attached it to.
                     </p>
 
                     <script src="https://gist.github.com/dangrossman/8ff9b1220c9b5682e8bd.js"></script>
 
                     <br/>
-                    
+
                     <ul class="nobullets">
                         <li>
                             <code>setStartDate(Date or string)</code>: Sets the date range picker's currently selected start date to the provided date
@@ -482,7 +482,7 @@
                     <h1 style="margin-top: 30px"><a id="config" href="#config">Configuration Generator</a></h1>
 
                     <div class="well configurator">
-                                       
+
                       <form>
                           <div class="row">
 
@@ -527,6 +527,7 @@
                                 <select id="drops" class="form-control">
                                   <option value="down" selected>down</option>
                                   <option value="up">up</option>
+                                  <option value="auto">auto</option>
                                 </select>
                               </div>
 
@@ -737,7 +738,7 @@
         </script>
 
         <div id="footer">
-            Copyright &copy; 2012-2018 <a href="http://www.dangrossman.info/">Dan Grossman</a>. 
+            Copyright &copy; 2012-2018 <a href="http://www.dangrossman.info/">Dan Grossman</a>.
         </div>
 
     </body>
