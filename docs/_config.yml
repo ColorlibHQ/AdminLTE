@@ -82,10 +82,3 @@ navigation:
   - title: License
     url: license.html
     icon: fas fa-file-alt
-
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-exclude:
-  - Gemfile
-  - Gemfile.lock
