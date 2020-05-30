@@ -3,11 +3,14 @@
 
 name: Node.js Install Test
 
-on: 
+on:
   pull_request:
   release:
     types:
       - created
+
+env:
+  CI: true
 
 jobs:
   install-ubuntu:
@@ -15,7 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 13.x, 14.x]
+        node-version: [10.x, 12.x, 14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -23,14 +26,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
+    - run: npm ci
 
   install-macos:
     runs-on: macos-latest
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 13.x, 14.x]
+        node-version: [10.x, 12.x, 14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -38,14 +41,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
+    - run: npm ci
 
   install-windows:
     runs-on: windows-latest
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 13.x] #14.x doesn't work properly on GitHub actions
+        node-version: [10.x, 12.x, 14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -53,4 +56,4 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
+    - run: npm ci
