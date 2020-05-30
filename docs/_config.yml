@@ -9,6 +9,7 @@ kramdown:
 highlighter: rouge
 plugins:
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 navigation:
   - title: Installation
