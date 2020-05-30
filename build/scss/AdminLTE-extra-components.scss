@@ -7,14 +7,14 @@
  */
 // Bootstrap
 // ---------------------------------------------------
-@import '~bootstrap/scss/functions';
-@import 'bootstrap-variables';
-@import '~bootstrap/scss/mixins';
+@import "~bootstrap/scss/functions";
+@import "bootstrap-variables";
+@import "~bootstrap/scss/mixins";
 // @import '~bootstrap/scss/bootstrap';
 
 // Variables and Mixins
 // ---------------------------------------------------
-@import 'variables';
-@import 'mixins';
+@import "variables";
+@import "mixins";
 
-@import 'parts/extra-components';
+@import "parts/extra-components";

@@ -347,9 +347,7 @@ body,
     .control-sidebar {
       bottom: 0;
     }
-  }
 
-  .layout-footer-fixed & {
     .main-footer {
       bottom: 0;
       left: 0;
@@ -376,9 +374,7 @@ body,
         .control-sidebar {
           bottom: 0;
         }
-      }
 
-      .layout#{$infix}-footer-fixed & {
         .main-footer {
           bottom: 0;
           left: 0;
@@ -403,7 +399,7 @@ body,
   .layout-top-nav & {
     margin-left: 0;
 
-    .main-header {    
+    .main-header {
       .brand-image {
         margin-top: -.5rem;
         margin-right: .2rem;
@@ -615,7 +611,6 @@ body:not(.sidebar-mini-md) {
     }
   }
 }
-
 
 
 .hold-transition {

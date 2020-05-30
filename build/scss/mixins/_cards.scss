@@ -42,7 +42,7 @@
   .bg-gradient-#{$name},
   .card-#{$name}:not(.card-outline) {
     .btn-tool {
-      color: rgba(color-yiq($color), 0.8);
+      color: rgba(color-yiq($color), .8);
 
       &:hover {
         color: color-yiq($color);

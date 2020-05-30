@@ -7,7 +7,7 @@
     color: $gray-600;
 
     &:not(.active):hover {
-      color: theme-color('primary');
+      color: theme-color("primary");
     }
   }
 
@@ -30,7 +30,7 @@
     border-top-right-radius: 0;
     margin-right: -$nav-tabs-border-width;
 
-    @include hover-focus {
+    @include hover-focus () {
       border-color: $gray-200 transparent $gray-200 $gray-200;
     }
   }
@@ -51,7 +51,7 @@
       border-top-right-radius: $nav-tabs-border-radius;
       margin-left: -$nav-tabs-border-width;
 
-      @include hover-focus {
+      @include hover-focus () {
         border-color: $gray-200 $gray-200 $gray-200 transparent;
       }
     }

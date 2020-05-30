@@ -20,12 +20,12 @@
     font-size: inherit;
   }
 
-  [class*='sidebar-dark'] & {
+  [class*="sidebar-dark"] & {
     border-bottom: 1px solid lighten($dark, 10%);
     color: rgba($white, .8);
   }
 
-  [class*='sidebar-light'] & {
+  [class*="sidebar-light"] & {
     border-bottom: 1px solid $gray-300;
     color: rgba($black, .8);
   }

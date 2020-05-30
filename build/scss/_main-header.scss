@@ -1,7 +1,7 @@
 //
 // Component: Main Header
 //
- 
+
 .main-header {
   border-bottom: $main-header-bottom-border;
   z-index: $zindex-main-header;
@@ -34,7 +34,7 @@
       margin: 0;
     }
 
-    &[class*='-right'] {
+    &[class*="-right"] {
       .dropdown-menu {
         left: auto;
         margin-top: -3px;

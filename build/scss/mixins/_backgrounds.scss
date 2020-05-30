@@ -33,7 +33,7 @@
 // Background Gradient Variant
 @mixin background-gradient-variant($name, $color) {
   .bg-gradient-#{$name} {
-    @include bg-gradient-variant('&', $color);
+    @include bg-gradient-variant("&", $color);
     color: color-yiq($color);
 
     &.btn {
@@ -46,7 +46,7 @@
       }
 
       &:hover {
-        @include bg-gradient-variant('&', darken($color, 7.5%));
+        @include bg-gradient-variant("&", darken($color, 7.5%));
         border-color: darken($color, 10%);
         color: darken(color-yiq($color), 7.5%);
       }
@@ -55,7 +55,7 @@
       &:not(:disabled):not(.disabled).active,
       &:active,
       &.active {
-        @include bg-gradient-variant('&', darken($color, 10%));
+        @include bg-gradient-variant("&", darken($color, 10%));
         border-color: darken($color, 12.5%);
         color: color-yiq(darken($color, 10%));
       }

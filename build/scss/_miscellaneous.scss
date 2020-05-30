@@ -47,7 +47,7 @@
 .list-header {
   color: $gray-600;
   font-size: 15px;
-  font-weight: bold;
+  font-weight: 700;
   padding: 10px 4px;
 }
 
@@ -162,7 +162,7 @@
 
 // Rounded and Circle Images
 .img-rounded {
-  @include border-radius($border-radius)
+  @include border-radius($border-radius);
 }
 
 .img-circle {
@@ -259,7 +259,7 @@
   .overlay {
     @include border-radius($border-radius);
     align-items: center;
-    background: rgba($white, 0.7);
+    background: rgba($white, .7);
     display: flex;
     justify-content: center;
     z-index: 50;
@@ -274,7 +274,7 @@
     }
 
     &.dark {
-      background: rgba($black, 0.5);
+      background: rgba($black, .5);
 
       > .fa,
       > .fas,
@@ -360,7 +360,7 @@
       border-right: $ribbon-border-size solid transparent;
       border-top: $ribbon-border-size solid #9e9e9e;
       bottom: -$ribbon-border-size;
-      content: '';
+      content: "";
       position: absolute;
     }
 
@@ -396,7 +396,7 @@ blockquote {
   background: $white;
   border-left: .7rem solid $primary;
   margin: 1.5em .7rem;
-  padding: 0.5em .7rem;
+  padding: .5em .7rem;
 
   .box & {
     background: $gray-200;
@@ -471,7 +471,7 @@ blockquote {
   border-radius: $button-border-radius-xs;
   font-size: $button-font-size-xs;
   font-weight: 400;
-  padding: $button-padding-y-xs*2 $button-padding-x-xs*2;
+  padding: $button-padding-y-xs * 2 $button-padding-x-xs * 2;
 }
 
 .badge-btn.badge-pill {

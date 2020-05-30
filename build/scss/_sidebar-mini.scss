@@ -33,7 +33,7 @@
 .brand-link {
   &.logo-switch {
     &::before {
-      content: '\00a0';
+      content: "\00a0";
     }
   }
 }
@@ -41,7 +41,7 @@
 // Add sidebar-mini class to the body tag to activate this feature
 .sidebar-mini {
   @include media-breakpoint-up(lg) {
-    @include sidebar-mini-breakpoint;
+    @include sidebar-mini-breakpoint ();
   }
 }
 @include media-breakpoint-down(md) {
@@ -52,7 +52,7 @@
 
 .sidebar-mini-md {
   @include media-breakpoint-up(md) {
-    @include sidebar-mini-breakpoint;
+    @include sidebar-mini-breakpoint ();
   }
 }
 @include media-breakpoint-down(sm) {
@@ -170,5 +170,5 @@
 .main-sidebar .logo-xs,
 .main-sidebar .logo-xl,
 .sidebar .user-panel .info {
-  @include transition(margin-left $transition-speed linear, opacity $transition-speed ease, visibility $transition-speed ease)
+  @include transition(margin-left $transition-speed linear, opacity $transition-speed ease, visibility $transition-speed ease);
 }

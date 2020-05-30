@@ -17,14 +17,17 @@ $maroon: #d81b60 !default;
 $black: #111 !default;
 $gray-x-light: #d2d6de !default;
 
-$colors: map-merge((
-    'lightblue': $lightblue,
-    'navy': $navy,
-    'olive': $olive,
-    'lime': $lime,
-    'fuchsia': $fuchsia,
-    'maroon': $maroon,
-), $colors);
+$colors: map-merge(
+  (
+    "lightblue": $lightblue,
+    "navy": $navy,
+    "olive": $olive,
+    "lime": $lime,
+    "fuchsia": $fuchsia,
+    "maroon": $maroon,
+  ),
+  $colors
+);
 
 // LAYOUT
 // --------------------------------------------------------
@@ -33,7 +36,7 @@ $font-size-root: 1rem !default;
 
 // Sidebar
 $sidebar-width: 250px !default;
-$sidebar-padding-x: 0.5rem !default;
+$sidebar-padding-x: .5rem !default;
 $sidebar-padding-y: 0 !default;
 
 // Boxed layout maximum width
@@ -74,19 +77,19 @@ $main-header-height-sm: calc(#{$main-header-height-sm-inner} + #{$main-header-bo
 
 
 // Main header skins
-$main-header-dark-form-control-bg: hsla(100, 100%, 100%, 0.2) !default;
-$main-header-dark-form-control-focused-bg: hsla(100, 100%, 100%, 0.6) !default;
+$main-header-dark-form-control-bg: hsla(100, 100%, 100%, .2) !default;
+$main-header-dark-form-control-focused-bg: hsla(100, 100%, 100%, .6) !default;
 $main-header-dark-form-control-focused-color: $gray-800 !default;
 $main-header-dark-form-control-border: 0 !default;
 $main-header-dark-form-control-focused-border: 0 !default;
-$main-header-dark-placeholder-color: hsla(100, 100%, 100%, 0.6) !default;
+$main-header-dark-placeholder-color: hsla(100, 100%, 100%, .6) !default;
 
 $main-header-light-form-control-bg: darken($gray-100, 2%) !default;
 $main-header-light-form-control-focused-bg: $gray-200 !default;
 $main-header-light-form-control-focused-color: $gray-800 !default;
 $main-header-light-form-control-border: 0 !default;
 $main-header-light-form-control-focused-border: 0 !default;
-$main-header-light-placeholder-color: hsla(0, 0%, 0%, 0.6) !default;
+$main-header-light-placeholder-color: hsla(0, 0%, 0%, .6) !default;
 
 // MAIN FOOTER
 // --------------------------------------------------------
@@ -106,16 +109,16 @@ $main-footer-bg: $white !default;
 
 // Dark sidebar
 $sidebar-dark-bg: $dark !default;
-$sidebar-dark-hover-bg: hsla(100, 100%, 100%, 0.1) !default;
-$sidebar-dark-color: #C2C7D0 !default;
+$sidebar-dark-hover-bg: hsla(100, 100%, 100%, .1) !default;
+$sidebar-dark-color: #c2c7d0 !default;
 $sidebar-dark-hover-color: $white !default;
 $sidebar-dark-active-color: $white !default;
 $sidebar-dark-submenu-bg: transparent !default;
-$sidebar-dark-submenu-color: #C2C7D0 !default;
+$sidebar-dark-submenu-color: #c2c7d0 !default;
 $sidebar-dark-submenu-hover-color: $white !default;
 $sidebar-dark-submenu-hover-bg: $sidebar-dark-hover-bg !default;
 $sidebar-dark-submenu-active-color: $sidebar-dark-bg !default;
-$sidebar-dark-submenu-active-bg: hsla(100, 100%, 100%, 0.9) !default;
+$sidebar-dark-submenu-active-bg: hsla(100, 100%, 100%, .9) !default;
 $sidebar-dark-header-color: $white !default;
 
 // Light sidebar
@@ -184,7 +187,7 @@ $zindex-toasts: $zindex-main-sidebar + 2 !default;
 // --------------------------------------------------------
 
 // Transition global options
-$transition-speed: 0.3s !default;
+$transition-speed: .3s !default;
 $transition-fn: ease-in-out !default;
 
 // TEXT
@@ -205,18 +208,21 @@ $button-line-height-xs: $line-height-sm !default;
 $button-font-size-xs: ($font-size-base * .75) !default;
 $button-border-radius-xs: .15rem !default;
 
-  
+
 // ELEVATION
 // --------------------------------------------------------
 $elevations: ();
-$elevations: map-merge((
-    1: unquote('0 1px 3px ' + rgba($black, 0.12) + ', 0 1px 2px ' + rgba($black, 0.24)),
-    2: unquote('0 3px 6px ' + rgba($black, 0.16) + ', 0 3px 6px ' + rgba($black, 0.23)),
-    3: unquote('0 10px 20px ' + rgba($black, 0.19) + ', 0 6px 6px ' + rgba($black, 0.23)),
-    4: unquote('0 14px 28px ' + rgba($black, 0.25) + ', 0 10px 10px ' + rgba($black, 0.22)),
-    5: unquote('0 19px 38px ' + rgba($black, 0.30) + ', 0 15px 12px ' + rgba($black, 0.22)),
-), $elevations);
-  
+$elevations: map-merge(
+  (
+    1: unquote("0 1px 3px " + rgba($black, .12) + ", 0 1px 2px " + rgba($black, .24)),
+    2: unquote("0 3px 6px " + rgba($black, .16) + ", 0 3px 6px " + rgba($black, .23)),
+    3: unquote("0 10px 20px " + rgba($black, .19) + ", 0 6px 6px " + rgba($black, .23)),
+    4: unquote("0 14px 28px " + rgba($black, .25) + ", 0 10px 10px " + rgba($black, .22)),
+    5: unquote("0 19px 38px " + rgba($black, .3) + ", 0 15px 12px " + rgba($black, .22)),
+  ),
+  $elevations
+);
+
 // RIBBON
 // --------------------------------------------------------
 $ribbon-border-size: 3px !default;
@@ -230,7 +236,7 @@ $ribbon-right: -2px !default;
 $ribbon-lg-wrapper-size: 120px !default;
 $ribbon-lg-width: 160px !default;
 $ribbon-lg-top: 26px !default;
-$ribbon-lg-right: 0px !default;
+$ribbon-lg-right: 0 !default;
 $ribbon-xl-wrapper-size: 180px !default;
 $ribbon-xl-width: 240px !default;
 $ribbon-xl-top: 47px !default;
