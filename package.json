@@ -25,6 +25,7 @@
     "css-minify:extra-components": "npm run css-minify-bash -- dist/css/alt/adminlte.extra-components.min.css dist/css/alt/adminlte.extra-components.css",
     "css-minify:pages": "npm run css-minify-bash -- dist/css/alt/adminlte.pages.min.css dist/css/alt/adminlte.pages.css",
     "css-minify:plugins": "npm run css-minify-bash -- dist/css/alt/adminlte.plugins.min.css dist/css/alt/adminlte.plugins.css",
+    "css-lint": "stylelint \"build/scss/**/*.scss\" --cache --cache-location .cache/.stylelintcache",
     "compile": "npm-run-all --parallel js css-all",
     "dev": "npm-run-all --parallel watch sync",
     "docs": "npm-run-all --sequential docs-clean docs-prepare docs-compile",
@@ -37,11 +38,12 @@
     "js-compile": "rollup --config build/config/rollup.config.js --sourcemap",
     "js-minify": "terser --compress typeofs=false --mangle --comments \"/^!/\" --source-map \"content=dist/js/adminlte.js.map,includeSources,url=adminlte.min.js.map\" --output dist/js/adminlte.min.js dist/js/adminlte.js",
     "production": "npm-run-all --sequential compile plugins",
-    "prepare-release": "npm-run-all --sequential compile plugins docs",
+    "prepare-release": "npm-run-all --sequential production docs",
+    "test": "npm-run-all css-lint production",
     "plugins": "node build/npm/Publish.js -v",
     "sync": "browser-sync start --server --files *.html pages/ dist/",
     "watch": "npm-run-all --parallel watch-css watch-js",
-    "watch-css": "nodemon --watch build/scss -e scss -x \"npm run css\"",
+    "watch-css": "nodemon --watch build/scss -e scss -x \"npm-run-all css-lint css\"",
     "watch-js": "nodemon --watch build/js -e js -x \"npm run js\""
   },
   "keywords": [
@@ -142,6 +144,8 @@
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^7.1.1",
     "rollup": "^2.12.0",
+    "stylelint": "^13.5.0",
+    "stylelint-config-twbs-bootstrap": "^2.0.2",
     "terser": "^4.7.0"
   }
 }
