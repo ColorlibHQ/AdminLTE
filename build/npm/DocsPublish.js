@@ -1,7 +1,8 @@
 'use strict'
 
-const Plugins = require('./DocsPlugins')
+const path = require('path')
 const fse = require('fs-extra')
+const Plugins = require('./DocsPlugins')
 
 class Publish {
   constructor() {
@@ -30,7 +31,12 @@ class Publish {
     // Publish files
     Plugins.forEach(module => {
       try {
-        fse.copySync(module.from, module.to)
+        fse.copySync(module.from, module.to, {
+          // Skip copying dot files
+          filter(src) {
+            return !path.basename(src).startsWith('.')
+          }
+        })
 
         if (this.options.verbose) {
           console.log(`Copied ${module.from} to ${module.to}`)

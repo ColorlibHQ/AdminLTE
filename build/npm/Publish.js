@@ -1,7 +1,8 @@
 'use strict'
 
-const Plugins = require('./Plugins')
+const path = require('path')
 const fse = require('fs-extra')
+const Plugins = require('./Plugins')
 
 class Publish {
   constructor() {
@@ -29,11 +30,18 @@ class Publish {
   run() {
     // Publish files
     Plugins.forEach(module => {
+      const fseOptions = {
+        // Skip copying dot files
+        filter(src) {
+          return !path.basename(src).startsWith('.')
+        }
+      }
+
       try {
         if (fse.existsSync(module.from)) {
-          fse.copySync(module.from, module.to)
+          fse.copySync(module.from, module.to, fseOptions)
         } else {
-          fse.copySync(module.from.replace('node_modules/', '../'), module.to)
+          fse.copySync(module.from.replace('node_modules/', '../'), module.to, fseOptions)
         }
 
         if (this.options.verbose) {
