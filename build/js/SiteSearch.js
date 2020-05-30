@@ -5,24 +5,21 @@
  * --------------------------------------------
  */
 
-const SiteSearch = (($) => {
+const SiteSearch = ($ => {
   /**
    * Constants
    * ====================================================
    */
 
-  const NAME               = 'SiteSearch'
-  const DATA_KEY           = 'lte.site-search'
-  const EVENT_KEY          = `.${DATA_KEY}`
+  const NAME = 'SiteSearch'
+  const DATA_KEY = 'lte.site-search'
   const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-  const Event = {}
-
   const Selector = {
-    TOGGLE_BUTTON  : '[data-widget="site-search"]',
-    SEARCH_BLOCK   : '.site-search-block',
+    TOGGLE_BUTTON: '[data-widget="site-search"]',
+    SEARCH_BLOCK: '.site-search-block',
     SEARCH_BACKDROP: '.site-search-backdrop',
-    SEARCH_INPUT   : '.site-search-block .form-control'
+    SEARCH_INPUT: '.site-search-block .form-control'
   }
 
   const ClassName = {
@@ -39,7 +36,6 @@ const SiteSearch = (($) => {
    */
 
   class SiteSearch {
-
     constructor(_element, _options) {
       this.element = _element
       this.options = $.extend({}, Default, _options)
@@ -80,7 +76,7 @@ const SiteSearch = (($) => {
         }
 
         if (!/toggle|close/.test(options)) {
-          throw Error(`Undefined method ${options}`)
+          throw new Error(`Undefined method ${options}`)
         }
 
         data[options]()
@@ -92,7 +88,7 @@ const SiteSearch = (($) => {
    * Data API
    * ====================================================
    */
-  $(document).on('click', Selector.TOGGLE_BUTTON, (event) => {
+  $(document).on('click', Selector.TOGGLE_BUTTON, event => {
     event.preventDefault()
 
     let button = $(event.currentTarget)
@@ -104,7 +100,7 @@ const SiteSearch = (($) => {
     SiteSearch._jQueryInterface.call(button, 'toggle')
   })
 
-  $(document).on('click', Selector.SEARCH_BACKDROP, (event) => {
+  $(document).on('click', Selector.SEARCH_BACKDROP, event => {
     const backdrop = $(event.currentTarget)
     SiteSearch._jQueryInterface.call(backdrop, 'close')
   })
@@ -116,7 +112,7 @@ const SiteSearch = (($) => {
 
   $.fn[NAME] = SiteSearch._jQueryInterface
   $.fn[NAME].Constructor = SiteSearch
-  $.fn[NAME].noConflict  = function () {
+  $.fn[NAME].noConflict = function () {
     $.fn[NAME] = JQUERY_NO_CONFLICT
     return SiteSearch._jQueryInterface
   }

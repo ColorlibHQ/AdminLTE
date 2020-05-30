@@ -5,30 +5,28 @@
  * --------------------------------------------
  */
 
-const DirectChat = (($) => {
+const DirectChat = ($ => {
   /**
    * Constants
    * ====================================================
    */
 
-  const NAME               = 'DirectChat'
-  const DATA_KEY           = 'lte.directchat'
-  const EVENT_KEY          = `.${DATA_KEY}`
+  const NAME = 'DirectChat'
+  const DATA_KEY = 'lte.directchat'
   const JQUERY_NO_CONFLICT = $.fn[NAME]
-  const DATA_API_KEY       = '.data-api'
 
   const Event = {
-    TOGGLED: `toggled{EVENT_KEY}`
+    TOGGLED: 'toggled{EVENT_KEY}'
   }
 
   const Selector = {
     DATA_TOGGLE: '[data-widget="chat-pane-toggle"]',
     DIRECT_CHAT: '.direct-chat'
-  };
+  }
 
   const ClassName = {
     DIRECT_CHAT_OPEN: 'direct-chat-contacts-open'
-  };
+  }
 
   /**
    * Class Definition
@@ -36,12 +34,12 @@ const DirectChat = (($) => {
    */
 
   class DirectChat {
-    constructor(element, config) {
+    constructor(element) {
       this._element = element
     }
 
     toggle() {
-      $(this._element).parents(Selector.DIRECT_CHAT).first().toggleClass(ClassName.DIRECT_CHAT_OPEN);
+      $(this._element).parents(Selector.DIRECT_CHAT).first().toggleClass(ClassName.DIRECT_CHAT_OPEN)
 
       const toggledEvent = $.Event(Event.TOGGLED)
       $(this._element).trigger(toggledEvent)
@@ -51,7 +49,7 @@ const DirectChat = (($) => {
 
     static _jQueryInterface(config) {
       return this.each(function () {
-        let data      = $(this).data(DATA_KEY)
+        let data = $(this).data(DATA_KEY)
 
         if (!data) {
           data = new DirectChat($(this))
@@ -70,9 +68,12 @@ const DirectChat = (($) => {
    */
 
   $(document).on('click', Selector.DATA_TOGGLE, function (event) {
-    if (event) event.preventDefault();
-    DirectChat._jQueryInterface.call($(this), 'toggle');
-  });
+    if (event) {
+      event.preventDefault()
+    }
+
+    DirectChat._jQueryInterface.call($(this), 'toggle')
+  })
 
   /**
    * jQuery API
@@ -81,7 +82,7 @@ const DirectChat = (($) => {
 
   $.fn[NAME] = DirectChat._jQueryInterface
   $.fn[NAME].Constructor = DirectChat
-  $.fn[NAME].noConflict  = function () {
+  $.fn[NAME].noConflict = function () {
     $.fn[NAME] = JQUERY_NO_CONFLICT
     return DirectChat._jQueryInterface
   }

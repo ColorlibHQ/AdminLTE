@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = (ctx) => ({
+module.exports = () => ({
   map: {
     inline: false,
     annotation: true,
