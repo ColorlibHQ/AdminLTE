@@ -1,10 +1,10 @@
 /*!
  *   AdminLTE v3.1.0-pre
- *     Only Core
  *   Author: Colorlib
  *   Website: AdminLTE.io <https://adminlte.io>
  *   License: Open source - MIT <https://opensource.org/licenses/MIT>
  */
+
 // Bootstrap
 // ---------------------------------------------------
 @import "~bootstrap/scss/functions";
@@ -17,4 +17,8 @@
 @import "mixins";
 
 @import "parts/core";
+@import "parts/components";
+@import "parts/extra-components";
+@import "parts/pages";
+@import "parts/plugins";
 @import "parts/miscellaneous";
