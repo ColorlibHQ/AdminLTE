@@ -77,19 +77,19 @@ $main-header-height-sm: calc(#{$main-header-height-sm-inner} + #{$main-header-bo
 
 
 // Main header skins
-$main-header-dark-form-control-bg: hsla(100, 100%, 100%, .2) !default;
-$main-header-dark-form-control-focused-bg: hsla(100, 100%, 100%, .6) !default;
+$main-header-dark-form-control-bg: rgba(255, 255, 255, .2) !default;
+$main-header-dark-form-control-focused-bg: rgba(255, 255, 255, .6) !default;
 $main-header-dark-form-control-focused-color: $gray-800 !default;
 $main-header-dark-form-control-border: 0 !default;
 $main-header-dark-form-control-focused-border: 0 !default;
-$main-header-dark-placeholder-color: hsla(100, 100%, 100%, .6) !default;
+$main-header-dark-placeholder-color: rgba(255, 255, 255, .6) !default;
 
 $main-header-light-form-control-bg: darken($gray-100, 2%) !default;
 $main-header-light-form-control-focused-bg: $gray-200 !default;
 $main-header-light-form-control-focused-color: $gray-800 !default;
 $main-header-light-form-control-border: 0 !default;
 $main-header-light-form-control-focused-border: 0 !default;
-$main-header-light-placeholder-color: hsla(0, 0%, 0%, .6) !default;
+$main-header-light-placeholder-color: rgba(0, 0, 0, .6) !default;
 
 // MAIN FOOTER
 // --------------------------------------------------------
@@ -109,7 +109,7 @@ $main-footer-bg: $white !default;
 
 // Dark sidebar
 $sidebar-dark-bg: $dark !default;
-$sidebar-dark-hover-bg: hsla(100, 100%, 100%, .1) !default;
+$sidebar-dark-hover-bg: rgba(255, 255, 255, .1) !default;
 $sidebar-dark-color: #c2c7d0 !default;
 $sidebar-dark-hover-color: $white !default;
 $sidebar-dark-active-color: $white !default;
@@ -118,7 +118,7 @@ $sidebar-dark-submenu-color: #c2c7d0 !default;
 $sidebar-dark-submenu-hover-color: $white !default;
 $sidebar-dark-submenu-hover-bg: $sidebar-dark-hover-bg !default;
 $sidebar-dark-submenu-active-color: $sidebar-dark-bg !default;
-$sidebar-dark-submenu-active-bg: hsla(100, 100%, 100%, .9) !default;
+$sidebar-dark-submenu-active-bg: rgba(255, 255, 255, .9) !default;
 $sidebar-dark-header-color: $white !default;
 
 // Light sidebar
