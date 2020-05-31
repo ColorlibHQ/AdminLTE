@@ -17,7 +17,7 @@
     "css-compile:pages": "npm run css-compile-bash -- build/scss/AdminLTE-pages.scss dist/css/alt/adminlte.pages.css",
     "css-compile:plugins": "npm run css-compile-bash -- build/scss/AdminLTE-plugins.scss dist/css/alt/adminlte.plugins.css",
     "css-prefix": "postcss --config build/config/postcss.config.js --replace \"dist/css/**/*.css\" \"!dist/css/**/*.min.css\"",
-    "css-minify-bash": "cleancss --level 1 --source-map --source-map-inline-sources --output ",
+    "css-minify-bash": "cleancss --level 1 --format breakWith=lf --source-map --source-map-inline-sources --output ",
     "css-minify": "npm run css-minify-bash -- dist/css/adminlte.min.css dist/css/adminlte.css",
     "css-minify-splits": "npm-run-all --sequential css-minify:core css-minify:components css-minify:extra-components css-minify:pages css-minify:plugins",
     "css-minify:core": "npm run css-minify-bash -- dist/css/alt/adminlte.core.min.css dist/css/alt/adminlte.core.css",
