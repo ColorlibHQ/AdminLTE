@@ -21,10 +21,10 @@ highlighter: rouge
 plugins:
   - jekyll-seo-tag
 
-title: AdminLTE v3 Documentaion
+title: AdminLTE v3 Documentation
 version: v3.0.5
 description: >- # this means to ignore newlines until "baseurl:"
-  AdminLTE v3 Documentaion
+  AdminLTE v3 Documentation
 
 navigation:
 - title: Installation
