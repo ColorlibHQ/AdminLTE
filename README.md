@@ -26,7 +26,7 @@ There are multiple ways to install AdminLTE.
 
 #### Download:
 
-Download from [Github releases](https://github.com/ColorlibHQ/AdminLTE/releases).
+Download from [GitHub releases](https://github.com/ColorlibHQ/AdminLTE/releases).
 
 #### Using The Command Line:
 
@@ -87,7 +87,7 @@ To compile the dist files you need nodejs/npm, clone/download the repo then:
 #### Contribution Requirements:
 - When you contribute, you agree to give a non-exclusive license to AdminLTE.io to use that contribution in any context as we (AdminLTE.io) see appropriate.
 - If you use content provided by another party, it must be appropriately licensed using an [open source](http://opensource.org/licenses) license.
-- Contributions are only accepted through Github pull requests.
+- Contributions are only accepted through GitHub pull requests.
 - Finally, contributed code must work in all supported browsers (see above for browser support).
 
 License
