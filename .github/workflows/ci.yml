@@ -1,4 +1,4 @@
-name: Node.js Install Test
+name: CI
 
 on:
   pull_request:
@@ -26,9 +26,16 @@ jobs:
           - "windows-latest"
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Clone repository
+        uses: actions/checkout@v2
+
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-      - run: npm ci
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build files
+        run: npm run compile
