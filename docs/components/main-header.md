@@ -4,7 +4,7 @@ title: Main Header Component
 ---
 
 > ##### Reminder!
-> AdminLTE uses all of Bootstrap 4 components. It's a good start to review the [Bootstrap documentation](http://getbootstrap.com) to get an idea of the various components that this documentation __does not__ cover.
+> AdminLTE uses all of Bootstrap 4 components. It's a good start to review the [Bootstrap documentation](https://getbootstrap.com/) to get an idea of the various components that this documentation __does not__ cover.
 {: .quote-orange .mt-0}
 
 

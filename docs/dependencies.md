@@ -27,7 +27,7 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
   <div class="col-sm-3">
     <ul class="list-unstyled">
       <li><h4>Charts</h4></li>
-      <li><a href="http://www.chartjs.org/" target="_blank">ChartJS</a></li>
+      <li><a href="https://www.chartjs.org/" target="_blank">ChartJS</a></li>
       <li><a href="http://www.flotcharts.org/" target="_blank">Flot</a></li>
       <li><a href="https://github.com/mariusGundersen/sparkline" target="_blank">Sparkline</a></li>
     </ul>
