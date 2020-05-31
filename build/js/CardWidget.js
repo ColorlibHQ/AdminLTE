@@ -116,13 +116,15 @@ class CardWidget {
       width: this._parent.width(),
       transition: 'all .15s'
     }).delay(150).queue(function () {
-      $(this).addClass(ClassName.MAXIMIZED)
+      const $element = $(this)
+
+      $element.addClass(ClassName.MAXIMIZED)
       $('html').addClass(ClassName.MAXIMIZED)
-      if ($(this).hasClass(ClassName.COLLAPSED)) {
-        $(this).addClass(ClassName.WAS_COLLAPSED)
+      if ($element.hasClass(ClassName.COLLAPSED)) {
+        $element.addClass(ClassName.WAS_COLLAPSED)
       }
 
-      $(this).dequeue()
+      $element.dequeue()
     })
 
     this._element.trigger($.Event(Event.MAXIMIZED), this._parent)
@@ -135,17 +137,19 @@ class CardWidget {
     this._parent.css('cssText', 'height:' + this._parent[0].style.height + ' !important;' +
       'width:' + this._parent[0].style.width + ' !important; transition: all .15s;'
     ).delay(10).queue(function () {
-      $(this).removeClass(ClassName.MAXIMIZED)
+      const $element = $(this)
+
+      $element.removeClass(ClassName.MAXIMIZED)
       $('html').removeClass(ClassName.MAXIMIZED)
-      $(this).css({
+      $element.css({
         height: 'inherit',
         width: 'inherit'
       })
-      if ($(this).hasClass(ClassName.WAS_COLLAPSED)) {
-        $(this).removeClass(ClassName.WAS_COLLAPSED)
+      if ($element.hasClass(ClassName.WAS_COLLAPSED)) {
+        $element.removeClass(ClassName.WAS_COLLAPSED)
       }
 
-      $(this).dequeue()
+      $element.dequeue()
     })
 
     this._element.trigger($.Event(Event.MINIMIZED), this._parent)

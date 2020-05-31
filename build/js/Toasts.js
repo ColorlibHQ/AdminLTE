@@ -132,14 +132,15 @@ class Toasts {
 
     $(this._getContainerId()).prepend(toast)
 
-    $('body').trigger($.Event(Event.CREATED))
+    const $body = $('body')
 
+    $body.trigger($.Event(Event.CREATED))
     toast.toast('show')
 
     if (this._config.autoremove) {
       toast.on('hidden.bs.toast', function () {
         $(this).delay(200).remove()
-        $('body').trigger($.Event(Event.REMOVED))
+        $body.trigger($.Event(Event.REMOVED))
       })
     }
   }

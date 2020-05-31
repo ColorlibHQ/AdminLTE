@@ -59,9 +59,10 @@ class Layout {
   // Public
 
   fixLayoutHeight(extra = null) {
+    const $body = $('body')
     let controlSidebar = 0
 
-    if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || extra === 'control_sidebar') {
+    if ($body.hasClass(ClassName.CONTROL_SIDEBAR_SLIDE_OPEN) || $body.hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || extra === 'control_sidebar') {
       controlSidebar = $(Selector.CONTROL_SIDEBAR_CONTENT).height()
     }
 
@@ -80,26 +81,28 @@ class Layout {
       offset = 0
     }
 
+    const $contentSelector = $(Selector.CONTENT)
+
     if (offset !== false) {
       if (max === heights.controlSidebar) {
-        $(Selector.CONTENT).css('min-height', (max + offset))
+        $contentSelector.css('min-height', (max + offset))
       } else if (max === heights.window) {
-        $(Selector.CONTENT).css('min-height', (max + offset) - heights.header - heights.footer)
+        $contentSelector.css('min-height', (max + offset) - heights.header - heights.footer)
       } else {
-        $(Selector.CONTENT).css('min-height', (max + offset) - heights.header)
+        $contentSelector.css('min-height', (max + offset) - heights.header)
       }
 
       if (this._isFooterFixed()) {
-        $(Selector.CONTENT).css('min-height', parseFloat($(Selector.CONTENT).css('min-height')) + heights.footer)
+        $contentSelector.css('min-height', parseFloat($contentSelector.css('min-height')) + heights.footer)
       }
     }
 
-    if (!$('body').hasClass(ClassName.LAYOUT_FIXED)) {
+    if (!$body.hasClass(ClassName.LAYOUT_FIXED)) {
       return
     }
 
     if (offset !== false) {
-      $(Selector.CONTENT).css('min-height', (max + offset) - heights.header - heights.footer)
+      $contentSelector.css('min-height', (max + offset) - heights.header - heights.footer)
     }
 
     if (typeof $.fn.overlayScrollbars !== 'undefined') {
@@ -115,13 +118,17 @@ class Layout {
   }
 
   fixLoginRegisterHeight() {
-    if ($(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).length === 0) {
-      $('body, html').css('height', 'auto')
-    } else {
-      const boxHeight = $(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).height()
+    const $body = $('body')
+    const $selector = $(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX)
 
-      if ($('body').css('min-height') !== boxHeight) {
-        $('body').css('min-height', boxHeight)
+    if ($selector.length === 0) {
+      $body.css('height', 'auto')
+      $('html').css('height', 'auto')
+    } else {
+      const boxHeight = $selector.height()
+
+      if ($body.css('min-height') !== boxHeight) {
+        $body.css('min-height', boxHeight)
       }
     }
   }
