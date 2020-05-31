@@ -134,6 +134,10 @@ const ControlSidebar = ($ => {
     }
 
     _fixScrollHeight() {
+      if (!$('body').hasClass(ClassName.LAYOUT_FIXED)) {
+        return
+      }
+
       const heights = {
         scroll: $(document).height(),
         window: $(window).height(),
@@ -148,92 +152,92 @@ const ControlSidebar = ($ => {
       let navbarFixed = false
       let footerFixed = false
 
-      if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
-        if (
-          $('body').hasClass(ClassName.NAVBAR_FIXED) ||
-          $('body').hasClass(ClassName.NAVBAR_SM_FIXED) ||
-          $('body').hasClass(ClassName.NAVBAR_MD_FIXED) ||
-          $('body').hasClass(ClassName.NAVBAR_LG_FIXED) ||
-          $('body').hasClass(ClassName.NAVBAR_XL_FIXED)
-        ) {
-          if ($(Selector.HEADER).css('position') === 'fixed') {
-            navbarFixed = true
-          }
+      if (
+        $('body').hasClass(ClassName.NAVBAR_FIXED) ||
+        $('body').hasClass(ClassName.NAVBAR_SM_FIXED) ||
+        $('body').hasClass(ClassName.NAVBAR_MD_FIXED) ||
+        $('body').hasClass(ClassName.NAVBAR_LG_FIXED) ||
+        $('body').hasClass(ClassName.NAVBAR_XL_FIXED)
+      ) {
+        if ($(Selector.HEADER).css('position') === 'fixed') {
+          navbarFixed = true
         }
+      }
 
-        if (
-          $('body').hasClass(ClassName.FOOTER_FIXED) ||
-          $('body').hasClass(ClassName.FOOTER_SM_FIXED) ||
-          $('body').hasClass(ClassName.FOOTER_MD_FIXED) ||
-          $('body').hasClass(ClassName.FOOTER_LG_FIXED) ||
-          $('body').hasClass(ClassName.FOOTER_XL_FIXED)
-        ) {
-          if ($(Selector.FOOTER).css('position') === 'fixed') {
-            footerFixed = true
-          }
+      if (
+        $('body').hasClass(ClassName.FOOTER_FIXED) ||
+        $('body').hasClass(ClassName.FOOTER_SM_FIXED) ||
+        $('body').hasClass(ClassName.FOOTER_MD_FIXED) ||
+        $('body').hasClass(ClassName.FOOTER_LG_FIXED) ||
+        $('body').hasClass(ClassName.FOOTER_XL_FIXED)
+      ) {
+        if ($(Selector.FOOTER).css('position') === 'fixed') {
+          footerFixed = true
         }
+      }
 
-        if (positions.top === 0 && positions.bottom === 0) {
+      if (positions.top === 0 && positions.bottom === 0) {
+        $(Selector.CONTROL_SIDEBAR).css('bottom', heights.footer)
+        $(Selector.CONTROL_SIDEBAR).css('top', heights.header)
+        $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window - (heights.header + heights.footer))
+      } else if (positions.bottom <= heights.footer) {
+        if (footerFixed === false) {
+          $(Selector.CONTROL_SIDEBAR).css('bottom', heights.footer - positions.bottom)
+          $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window - (heights.footer - positions.bottom))
+        } else {
           $(Selector.CONTROL_SIDEBAR).css('bottom', heights.footer)
-          $(Selector.CONTROL_SIDEBAR).css('top', heights.header)
-          $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window - (heights.header + heights.footer))
-        } else if (positions.bottom <= heights.footer) {
-          if (footerFixed === false) {
-            $(Selector.CONTROL_SIDEBAR).css('bottom', heights.footer - positions.bottom)
-            $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window - (heights.footer - positions.bottom))
-          } else {
-            $(Selector.CONTROL_SIDEBAR).css('bottom', heights.footer)
-          }
-        } else if (positions.top <= heights.header) {
-          if (navbarFixed === false) {
-            $(Selector.CONTROL_SIDEBAR).css('top', heights.header - positions.top)
-            $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window - (heights.header - positions.top))
-          } else {
-            $(Selector.CONTROL_SIDEBAR).css('top', heights.header)
-          }
-        } else if (navbarFixed === false) {
-          $(Selector.CONTROL_SIDEBAR).css('top', 0)
-          $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window)
+        }
+      } else if (positions.top <= heights.header) {
+        if (navbarFixed === false) {
+          $(Selector.CONTROL_SIDEBAR).css('top', heights.header - positions.top)
+          $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window - (heights.header - positions.top))
         } else {
           $(Selector.CONTROL_SIDEBAR).css('top', heights.header)
         }
+      } else if (navbarFixed === false) {
+        $(Selector.CONTROL_SIDEBAR).css('top', 0)
+        $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window)
+      } else {
+        $(Selector.CONTROL_SIDEBAR).css('top', heights.header)
       }
     }
 
     _fixHeight() {
+      if (!$('body').hasClass(ClassName.LAYOUT_FIXED)) {
+        return
+      }
+
       const heights = {
         window: $(window).height(),
         header: $(Selector.HEADER).outerHeight(),
         footer: $(Selector.FOOTER).outerHeight()
       }
 
-      if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
-        let sidebarHeight = heights.window - heights.header
+      let sidebarHeight = heights.window - heights.header
 
-        if (
-          $('body').hasClass(ClassName.FOOTER_FIXED) ||
+      if (
+        $('body').hasClass(ClassName.FOOTER_FIXED) ||
           $('body').hasClass(ClassName.FOOTER_SM_FIXED) ||
           $('body').hasClass(ClassName.FOOTER_MD_FIXED) ||
           $('body').hasClass(ClassName.FOOTER_LG_FIXED) ||
           $('body').hasClass(ClassName.FOOTER_XL_FIXED)
-        ) {
-          if ($(Selector.FOOTER).css('position') === 'fixed') {
-            sidebarHeight = heights.window - heights.header - heights.footer
+      ) {
+        if ($(Selector.FOOTER).css('position') === 'fixed') {
+          sidebarHeight = heights.window - heights.header - heights.footer
+        }
+      }
+
+      $(Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', sidebarHeight)
+
+      if (typeof $.fn.overlayScrollbars !== 'undefined') {
+        $(Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).overlayScrollbars({
+          className: this._config.scrollbarTheme,
+          sizeAutoCapable: true,
+          scrollbars: {
+            autoHide: this._config.scrollbarAutoHide,
+            clickScrolling: true
           }
-        }
-
-        $(Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', sidebarHeight)
-
-        if (typeof $.fn.overlayScrollbars !== 'undefined') {
-          $(Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).overlayScrollbars({
-            className: this._config.scrollbarTheme,
-            sizeAutoCapable: true,
-            scrollbars: {
-              autoHide: this._config.scrollbarAutoHide,
-              clickScrolling: true
-            }
-          })
-        }
+        })
       }
     }
 

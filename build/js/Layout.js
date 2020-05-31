@@ -93,21 +93,23 @@ const Layout = ($ => {
         }
       }
 
-      if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
-        if (offset !== false) {
-          $(Selector.CONTENT).css('min-height', (max + offset) - heights.header - heights.footer)
-        }
+      if (!$('body').hasClass(ClassName.LAYOUT_FIXED)) {
+        return
+      }
 
-        if (typeof $.fn.overlayScrollbars !== 'undefined') {
-          $(Selector.SIDEBAR).overlayScrollbars({
-            className: this._config.scrollbarTheme,
-            sizeAutoCapable: true,
-            scrollbars: {
-              autoHide: this._config.scrollbarAutoHide,
-              clickScrolling: true
-            }
-          })
-        }
+      if (offset !== false) {
+        $(Selector.CONTENT).css('min-height', (max + offset) - heights.header - heights.footer)
+      }
+
+      if (typeof $.fn.overlayScrollbars !== 'undefined') {
+        $(Selector.SIDEBAR).overlayScrollbars({
+          className: this._config.scrollbarTheme,
+          sizeAutoCapable: true,
+          scrollbars: {
+            autoHide: this._config.scrollbarAutoHide,
+            clickScrolling: true
+          }
+        })
       }
     }
 
