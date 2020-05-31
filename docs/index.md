@@ -7,8 +7,8 @@ AdminLTE can be installed using multiple methods. Pick your favorite method from
 
 #### Download
 
-###### __From Github__
-Visit the releases section on Github and download the [latest release](https://github.com/ColorlibHQ/AdminLTE/releases).
+###### __From GitHub__
+Visit the releases section on GitHub and download the [latest release](https://github.com/ColorlibHQ/AdminLTE/releases).
 
 
 #### Command Line

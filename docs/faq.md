@@ -11,5 +11,5 @@ Short answer, no. However, there are forks and tutorials around the web that pro
 
 <!---
 #### How do I get notified of new AdminLTE versions?
-The best option is to subscribe to our mailing list using the [subscription form on Almsaeed Studio](http://almsaeedstudio.com/#subscribe). If that's not appealing to you, you may watch the [repository on Github](https://github.com/almasaeed2010/AdminLTE) or visit [Almsaeed Studio](http://almsaeedstudio.com) every now and then for updates and announcements.
+The best option is to subscribe to our mailing list using the [subscription form on Almsaeed Studio](http://almsaeedstudio.com/#subscribe). If that's not appealing to you, you may watch the [repository on GitHub](https://github.com/almasaeed2010/AdminLTE) or visit [Almsaeed Studio](http://almsaeedstudio.com) every now and then for updates and announcements.
 --->
