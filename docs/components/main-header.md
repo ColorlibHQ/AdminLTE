@@ -161,10 +161,10 @@ The main header contains the navbar. Construction of the navbar differs slightly
         <a href="#" class="nav-link">Contact</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Help
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
           <a class="dropdown-item" href="#">FAQ</a>
           <a class="dropdown-item" href="#">Support</a>
           <div class="dropdown-divider"></div>
@@ -310,10 +310,10 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
         <a href="#" class="nav-link">Contact</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Help
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
           <a class="dropdown-item" href="#">FAQ</a>
           <a class="dropdown-item" href="#">Support</a>
           <div class="dropdown-divider"></div>
@@ -446,10 +446,10 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
           <a href="#" class="nav-link">Contact</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Help
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
             <a class="dropdown-item" href="#">FAQ</a>
             <a class="dropdown-item" href="#">Support</a>
             <div class="dropdown-divider"></div>
