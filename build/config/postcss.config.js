@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = (ctx) => ({
-  map: ctx.file.dirname.includes('examples') ? false : {
+  map: {
     inline: false,
     annotation: true,
     sourcesContent: true
