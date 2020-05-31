@@ -80,8 +80,7 @@ const ControlSidebar = ($ => {
         $('body').removeClass(ClassName.CONTROL_SIDEBAR_OPEN)
       }
 
-      const collapsedEvent = $.Event(Event.COLLAPSED)
-      $(this._element).trigger(collapsedEvent)
+      $(this._element).trigger($.Event(Event.COLLAPSED))
     }
 
     show() {
@@ -99,8 +98,7 @@ const ControlSidebar = ($ => {
         $('body').addClass(ClassName.CONTROL_SIDEBAR_OPEN)
       }
 
-      const expandedEvent = $.Event(Event.EXPANDED)
-      $(this._element).trigger(expandedEvent)
+      $(this._element).trigger($.Event(Event.EXPANDED))
     }
 
     toggle() {

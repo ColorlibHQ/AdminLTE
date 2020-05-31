@@ -72,8 +72,7 @@ const PushMenu = ($ => {
         localStorage.setItem(`remember${EVENT_KEY}`, ClassName.OPEN)
       }
 
-      const shownEvent = $.Event(Event.SHOWN)
-      $(this._element).trigger(shownEvent)
+      $(this._element).trigger($.Event(Event.SHOWN))
     }
 
     collapse() {
@@ -89,8 +88,7 @@ const PushMenu = ($ => {
         localStorage.setItem(`remember${EVENT_KEY}`, ClassName.COLLAPSED)
       }
 
-      const collapsedEvent = $.Event(Event.COLLAPSED)
-      $(this._element).trigger(collapsedEvent)
+      $(this._element).trigger($.Event(Event.COLLAPSED))
     }
 
     toggle() {

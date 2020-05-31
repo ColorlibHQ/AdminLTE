@@ -68,11 +68,9 @@ const Toasts = ($ => {
   class Toasts {
     constructor(element, config) {
       this._config = config
-
       this._prepareContainer()
 
-      const initEvent = $.Event(Event.INIT)
-      $('body').trigger(initEvent)
+      $('body').trigger($.Event(Event.INIT))
     }
 
     // Public
@@ -133,17 +131,14 @@ const Toasts = ($ => {
 
       $(this._getContainerId()).prepend(toast)
 
-      const createdEvent = $.Event(Event.CREATED)
-      $('body').trigger(createdEvent)
+      $('body').trigger($.Event(Event.CREATED))
 
       toast.toast('show')
 
       if (this._config.autoremove) {
         toast.on('hidden.bs.toast', function () {
           $(this).delay(200).remove()
-
-          const removedEvent = $.Event(Event.REMOVED)
-          $('body').trigger(removedEvent)
+          $('body').trigger($.Event(Event.REMOVED))
         })
       }
     }

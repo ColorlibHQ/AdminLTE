@@ -81,22 +81,17 @@ const CardRefresh = ($ => {
         this._removeOverlay()
       }, this._settings.responseType !== '' && this._settings.responseType)
 
-      const loadedEvent = $.Event(Event.LOADED)
-      $(this._element).trigger(loadedEvent)
+      $(this._element).trigger($.Event(Event.LOADED))
     }
 
     _addOverlay() {
       this._parent.append(this._overlay)
-
-      const overlayAddedEvent = $.Event(Event.OVERLAY_ADDED)
-      $(this._element).trigger(overlayAddedEvent)
+      $(this._element).trigger($.Event(Event.OVERLAY_ADDED))
     }
 
     _removeOverlay() {
       this._parent.find(this._overlay).remove()
-
-      const overlayRemovedEvent = $.Event(Event.OVERLAY_REMOVED)
-      $(this._element).trigger(overlayRemovedEvent)
+      $(this._element).trigger($.Event(Event.OVERLAY_REMOVED))
     }
 
     // Private
