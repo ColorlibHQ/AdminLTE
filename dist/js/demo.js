@@ -368,7 +368,7 @@
   var $clear_btn = $('<a />', {
     href: '#'
   }).text('clear').on('click', function (e) {
-    e.preventDefault();
+    e.preventDefault()
     var $logo = $('.brand-link')
     logo_skins.forEach(function (skin) {
       $logo.removeClass(skin)
