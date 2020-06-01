@@ -5,119 +5,117 @@
  * --------------------------------------------
  */
 
-const SiteSearch = ($ => {
-  /**
-   * Constants
-   * ====================================================
-   */
+import $ from 'jquery'
 
-  const NAME = 'SiteSearch'
-  const DATA_KEY = 'lte.site-search'
-  const JQUERY_NO_CONFLICT = $.fn[NAME]
+/**
+ * Constants
+ * ====================================================
+ */
 
-  const Selector = {
-    TOGGLE_BUTTON: '[data-widget="site-search"]',
-    SEARCH_BLOCK: '.site-search-block',
-    SEARCH_BACKDROP: '.site-search-backdrop',
-    SEARCH_INPUT: '.site-search-block .form-control'
+const NAME = 'SiteSearch'
+const DATA_KEY = 'lte.site-search'
+const JQUERY_NO_CONFLICT = $.fn[NAME]
+
+const Selector = {
+  TOGGLE_BUTTON: '[data-widget="site-search"]',
+  SEARCH_BLOCK: '.site-search-block',
+  SEARCH_BACKDROP: '.site-search-backdrop',
+  SEARCH_INPUT: '.site-search-block .form-control'
+}
+
+const ClassName = {
+  OPEN: 'site-search-open'
+}
+
+const Default = {
+  transitionSpeed: 300
+}
+
+/**
+ * Class Definition
+ * ====================================================
+ */
+
+class SiteSearch {
+  constructor(_element, _options) {
+    this.element = _element
+    this.options = $.extend({}, Default, _options)
   }
 
-  const ClassName = {
-    OPEN: 'site-search-open'
+  // Public
+
+  open() {
+    $(Selector.SEARCH_BLOCK).slideDown(this.options.transitionSpeed)
+    $(Selector.SEARCH_BACKDROP).show(0)
+    $(Selector.SEARCH_INPUT).focus()
+    $(Selector.SEARCH_BLOCK).addClass(ClassName.OPEN)
   }
 
-  const Default = {
-    transitionSpeed: 300
+  close() {
+    $(Selector.SEARCH_BLOCK).slideUp(this.options.transitionSpeed)
+    $(Selector.SEARCH_BACKDROP).hide(0)
+    $(Selector.SEARCH_BLOCK).removeClass(ClassName.OPEN)
   }
 
-  /**
-   * Class Definition
-   * ====================================================
-   */
-
-  class SiteSearch {
-    constructor(_element, _options) {
-      this.element = _element
-      this.options = $.extend({}, Default, _options)
+  toggle() {
+    if ($(Selector.SEARCH_BLOCK).hasClass(ClassName.OPEN)) {
+      this.close()
+    } else {
+      this.open()
     }
+  }
 
-    // Public
+  // Static
 
-    open() {
-      $(Selector.SEARCH_BLOCK).slideDown(this.options.transitionSpeed)
-      $(Selector.SEARCH_BACKDROP).show(0)
-      $(Selector.SEARCH_INPUT).focus()
-      $(Selector.SEARCH_BLOCK).addClass(ClassName.OPEN)
-    }
+  static _jQueryInterface(options) {
+    return this.each(function () {
+      let data = $(this).data(DATA_KEY)
 
-    close() {
-      $(Selector.SEARCH_BLOCK).slideUp(this.options.transitionSpeed)
-      $(Selector.SEARCH_BACKDROP).hide(0)
-      $(Selector.SEARCH_BLOCK).removeClass(ClassName.OPEN)
-    }
-
-    toggle() {
-      if ($(Selector.SEARCH_BLOCK).hasClass(ClassName.OPEN)) {
-        this.close()
-      } else {
-        this.open()
+      if (!data) {
+        data = new SiteSearch(this, options)
+        $(this).data(DATA_KEY, data)
       }
-    }
 
-    // Static
+      if (!/toggle|close/.test(options)) {
+        throw new Error(`Undefined method ${options}`)
+      }
 
-    static _jQueryInterface(options) {
-      return this.each(function () {
-        let data = $(this).data(DATA_KEY)
+      data[options]()
+    })
+  }
+}
 
-        if (!data) {
-          data = new SiteSearch(this, options)
-          $(this).data(DATA_KEY, data)
-        }
+/**
+ * Data API
+ * ====================================================
+ */
+$(document).on('click', Selector.TOGGLE_BUTTON, event => {
+  event.preventDefault()
 
-        if (!/toggle|close/.test(options)) {
-          throw new Error(`Undefined method ${options}`)
-        }
+  let button = $(event.currentTarget)
 
-        data[options]()
-      })
-    }
+  if (button.data('widget') !== 'site-search') {
+    button = button.closest(Selector.TOGGLE_BUTTON)
   }
 
-  /**
-   * Data API
-   * ====================================================
-   */
-  $(document).on('click', Selector.TOGGLE_BUTTON, event => {
-    event.preventDefault()
+  SiteSearch._jQueryInterface.call(button, 'toggle')
+})
 
-    let button = $(event.currentTarget)
+$(document).on('click', Selector.SEARCH_BACKDROP, event => {
+  const backdrop = $(event.currentTarget)
+  SiteSearch._jQueryInterface.call(backdrop, 'close')
+})
 
-    if (button.data('widget') !== 'site-search') {
-      button = button.closest(Selector.TOGGLE_BUTTON)
-    }
+/**
+ * jQuery API
+ * ====================================================
+ */
 
-    SiteSearch._jQueryInterface.call(button, 'toggle')
-  })
-
-  $(document).on('click', Selector.SEARCH_BACKDROP, event => {
-    const backdrop = $(event.currentTarget)
-    SiteSearch._jQueryInterface.call(backdrop, 'close')
-  })
-
-  /**
-   * jQuery API
-   * ====================================================
-   */
-
-  $.fn[NAME] = SiteSearch._jQueryInterface
-  $.fn[NAME].Constructor = SiteSearch
-  $.fn[NAME].noConflict = function () {
-    $.fn[NAME] = JQUERY_NO_CONFLICT
-    return SiteSearch._jQueryInterface
-  }
-
-  return SiteSearch
-})(jQuery)
+$.fn[NAME] = SiteSearch._jQueryInterface
+$.fn[NAME].Constructor = SiteSearch
+$.fn[NAME].noConflict = function () {
+  $.fn[NAME] = JQUERY_NO_CONFLICT
+  return SiteSearch._jQueryInterface
+}
 
 export default SiteSearch
