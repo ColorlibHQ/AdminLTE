@@ -138,7 +138,7 @@ const CardRefresh = ($ => {
     CardRefresh._jQueryInterface.call($(this), 'load')
   })
 
-  $(document).ready(() => {
+  $(() => {
     $(Selector.DATA_REFRESH).each(function () {
       CardRefresh._jQueryInterface.call($(this))
     })
