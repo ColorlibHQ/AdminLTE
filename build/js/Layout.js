@@ -131,7 +131,7 @@ const Layout = ($ => {
 
       if (this._config.loginRegisterAutoHeight === true) {
         this.fixLoginRegisterHeight()
-      } else if (this._config.loginRegisterAutoHeight === parseInt(this._config.loginRegisterAutoHeight))) {
+      } else if (this._config.loginRegisterAutoHeight === parseInt(this._config.loginRegisterAutoHeight)) {
         setInterval(this.fixLoginRegisterHeight, this._config.loginRegisterAutoHeight)
       }
 
