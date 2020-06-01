@@ -1,13 +1,13 @@
 /*!
  * 
- * Super simple wysiwyg editor v0.8.16
+ * Super simple wysiwyg editor v0.8.18
  * https://summernote.org
  * 
  * 
  * Copyright 2013- Alan Hong. and other contributors
  * summernote may be freely distributed under the MIT license.
  * 
- * Date: 2020-02-19T09:12Z
+ * Date: 2020-05-20T16:47Z
  * 
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -124,20 +124,22 @@ return /******/ (function(modules) { // webpackBootstrap
         strikethrough: 'Διεγραμμένα',
         subscript: 'Δείκτης',
         superscript: 'Εκθέτης',
-        size: 'Μέγεθος'
+        size: 'Μέγεθος',
+        sizeunit: 'Μονάδα μεγέθους'
       },
       image: {
-        image: 'εικόνα',
+        image: 'Εικόνα',
         insert: 'Εισαγωγή',
         resizeFull: 'Πλήρες μέγεθος',
         resizeHalf: 'Μισό μέγεθος',
         resizeQuarter: '1/4 μέγεθος',
+        resizeNone: 'Αρχικό μέγεθος',
         floatLeft: 'Μετατόπιση αριστερά',
         floatRight: 'Μετατόπιση δεξιά',
         floatNone: 'Χωρίς μετατόπιση',
         shapeRounded: 'Σχήμα: Στρογγυλεμένο',
         shapeCircle: 'Σχήμα: Κύκλος',
-        shapeThumbnail: 'Σχήμα: Thumbnail',
+        shapeThumbnail: 'Σχήμα: Μικρογραφία',
         shapeNone: 'Σχήμα: Κανένα',
         dragImageHere: 'Σύρτε την εικόνα εδώ',
         dropImage: 'Αφήστε την εικόνα',
@@ -146,7 +148,7 @@ return /******/ (function(modules) { // webpackBootstrap
         maximumFileSizeError: 'Το μέγεθος είναι μεγαλύτερο από το μέγιστο επιτρεπτό.',
         url: 'URL',
         remove: 'Αφαίρεση',
-        original: 'Original'
+        original: 'Αρχικό'
       },
       link: {
         link: 'Σύνδεσμος',
@@ -154,25 +156,26 @@ return /******/ (function(modules) { // webpackBootstrap
         unlink: 'Αφαίρεση συνδέσμου',
         edit: 'Επεξεργασία συνδέσμου',
         textToDisplay: 'Κείμενο συνδέσμου',
-        url: 'URL',
-        openInNewWindow: 'Άνοιγμα σε νέο παράθυρο'
+        url: 'Σε ποιo URL πρέπει να πηγαίνει αυτός ο σύνδεσμος;',
+        openInNewWindow: 'Άνοιγμα σε νέο παράθυρο',
+        useProtocol: 'Χρήση προεπιλεγμένου πρωτοκόλλου'
       },
       video: {
         video: 'Βίντεο',
         videoLink: 'Σύνδεσμος Βίντεο',
         insert: 'Εισαγωγή',
         url: 'URL',
-        providers: '(YouTube, Vimeo, Vine, Instagram, DailyMotion or Youku)'
+        providers: '(YouTube, Vimeo, Vine, Instagram, DailyMotion ή Youku)'
       },
       table: {
         table: 'Πίνακας',
-        addRowAbove: 'Add row above',
-        addRowBelow: 'Add row below',
-        addColLeft: 'Add column left',
-        addColRight: 'Add column right',
-        delRow: 'Delete row',
-        delCol: 'Delete column',
-        delTable: 'Delete table'
+        addRowAbove: 'Προσθήκη γραμμής πάνω',
+        addRowBelow: 'Προσθήκη γραμμής κάτω',
+        addColLeft: 'Προσθήκη στήλης αριστερά',
+        addColRight: 'Προσθήκη στήλης δεξία',
+        delRow: 'Διαγραφή γραμμής',
+        delCol: 'Διαγραφή στήλης',
+        delTable: 'Διαγραφή πίνακα'
       },
       hr: {
         insert: 'Εισαγωγή οριζόντιας γραμμής'
@@ -183,11 +186,11 @@ return /******/ (function(modules) { // webpackBootstrap
         blockquote: 'Παράθεση',
         pre: 'Ως έχει',
         h1: 'Κεφαλίδα 1',
-        h2: 'συνδέσμου 2',
-        h3: 'συνδέσμου 3',
-        h4: 'συνδέσμου 4',
-        h5: 'συνδέσμου 5',
-        h6: 'συνδέσμου 6'
+        h2: 'Κεφαλίδα 2',
+        h3: 'Κεφαλίδα 3',
+        h4: 'Κεφαλίδα 4',
+        h5: 'Κεφαλίδα 5',
+        h6: 'Κεφαλίδα 6'
       },
       lists: {
         unordered: 'Αταξινόμητη λίστα',
@@ -215,7 +218,8 @@ return /******/ (function(modules) { // webpackBootstrap
         transparent: 'Διαφανές',
         setTransparent: 'Επιλογή διαφάνειας',
         reset: 'Επαναφορά',
-        resetToDefault: 'Επαναφορά στις προκαθορισμένες τιμές'
+        resetToDefault: 'Επαναφορά στις προκαθορισμένες τιμές',
+        cpSelect: 'Επιλογή'
       },
       shortcut: {
         shortcuts: 'Συντομεύσεις',
@@ -227,6 +231,7 @@ return /******/ (function(modules) { // webpackBootstrap
         extraKeys: 'Επιπλέον συντομεύσεις'
       },
       help: {
+        'escape': 'Έξοδος',
         'insertParagraph': 'Εισαγωγή παραγράφου',
         'undo': 'Αναιρεί την προηγούμενη εντολή',
         'redo': 'Επαναλαμβάνει την προηγούμενη εντολή',
@@ -260,8 +265,11 @@ return /******/ (function(modules) { // webpackBootstrap
         redo: 'Επαναληψη'
       },
       specialChar: {
-        specialChar: 'SPECIAL CHARACTERS',
+        specialChar: 'ΕΙΔΙΚΟΙ ΧΑΡΑΚΤΗΡΕΣ',
         select: 'Επιλέξτε ειδικούς χαρακτήρες'
+      },
+      output: {
+        noSelection: 'Δεν έγινε επιλογή!'
       }
     }
   });

@@ -1,15 +1,15 @@
-/*! FixedColumns 3.8.0
- * ©2010-2018 SpryMedia Ltd - datatables.net/license
+/*! FixedColumns 3.3.1
+ * ©2010-2020 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     FixedColumns
  * @description Freeze columns in place on a scrolling DataTable
- * @version     3.8.0
+ * @version     3.3.1
  * @file        dataTables.fixedColumns.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
- * @copyright   Copyright 2010-2018 SpryMedia Ltd.
+ * @copyright   Copyright 2010-2020 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -542,7 +542,7 @@ $.extend( FixedColumns.prototype , {
 					mouseController = 'main';
 				}
 
-				if ( mouseController === 'main' ) {
+				if ( mouseController === 'main' || mouseController === 'key' ) {
 					if ( that.s.iLeftColumns > 0 ) {
 						that.dom.grid.left.liner.scrollTop = that.dom.scroller.scrollTop;
 					}
@@ -560,7 +560,7 @@ $.extend( FixedColumns.prototype , {
 			// When scrolling the left column, scroll the body and right column
 			$(that.dom.grid.left.liner)
 				.on( 'mouseover.DTFC touchstart.DTFC', function () {
-					if ( ! mouseDown ) {
+					if ( ! mouseDown && mouseController !== 'key' ) {
 						mouseController = 'left';
 					}
 				} )
@@ -577,6 +577,8 @@ $.extend( FixedColumns.prototype , {
 					}
 				} )
 				.on( wheelType, function(e) {
+					mouseController = 'left';
+
 					// Pass horizontal scrolling through
 					var xDelta = e.type === 'wheel' ?
 						-e.originalEvent.deltaX :
@@ -589,7 +591,7 @@ $.extend( FixedColumns.prototype , {
 			// When scrolling the right column, scroll the body and the left column
 			$(that.dom.grid.right.liner)
 				.on( 'mouseover.DTFC touchstart.DTFC', function () {
-					if ( ! mouseDown ) {
+					if ( ! mouseDown && mouseController !== 'key' ) {
 						mouseController = 'right';
 					}
 				} )
@@ -606,6 +608,8 @@ $.extend( FixedColumns.prototype , {
 					}
 				} )
 				.on( wheelType, function(e) {
+					mouseController = 'left';
+
 					// Pass horizontal scrolling through
 					var xDelta = e.type === 'wheel' ?
 						-e.originalEvent.deltaX :
@@ -627,6 +631,10 @@ $.extend( FixedColumns.prototype , {
 				that._fnDraw.call( that, bFirstDraw );
 				bFirstDraw = false;
 			} )
+			.on('key-focus.dt.DTFC', function () {
+				// KeyTable navigation needs to be main focused
+				mouseController = 'key';
+			})
 			.on( 'column-sizing.dt.DTFC', function () {
 				that._fnColCalc();
 				that._fnGridLayout( that );
@@ -641,6 +649,16 @@ $.extend( FixedColumns.prototype , {
 			.on( 'select.dt.DTFC deselect.dt.DTFC', function ( e, dt, type, indexes ) {
 				if ( e.namespace === 'dt' ) {
 					that._fnDraw( false );
+				}
+			} )
+			.on( 'position.dts.dt.DTFC', function (e, tableTop) {
+				// Sync up with Scroller
+				if (that.dom.grid.left.body) {
+					$(that.dom.grid.left.body).find('table').eq(0).css('top', tableTop);
+				}
+
+				if (that.dom.grid.right.body) {
+					$(that.dom.grid.right.body).find('table').eq(0).css('top', tableTop);
 				}
 			} )
 			.on( 'destroy.dt.DTFC', function () {
@@ -1544,7 +1562,7 @@ FixedColumns.defaults = /** @lends FixedColumns.defaults */{
  *  @default   See code
  *  @static
  */
-FixedColumns.version = "3.8.0";
+FixedColumns.version = "3.3.1";
 
 
 
@@ -1619,7 +1637,7 @@ DataTable.Api.registerPlural( 'cells().fixedNodes()', 'cell().fixedNode()', func
 	return this.iterator( 'cell', function ( settings, row, column ) {
 		return settings._oFixedColumns
 			? settings._oFixedColumns.fnToFixedNode( row, column )
-			: this.node();
+			: this.cell(row, column).node();
 	}, 1 );
 } );
 

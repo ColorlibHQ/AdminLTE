@@ -984,10 +984,12 @@ declare module '@fullcalendar/core/component/Component' {
         equalityFuncs: EqualityFuncHash;
         uid: string;
         props: PropsType | null;
+        everRendered: boolean;
         context: ComponentContext;
         constructor();
         static addEqualityFuncs(newFuncs: EqualityFuncHash): void;
         receiveProps(props: PropsType, context: ComponentContext): void;
+        receiveContext(context: ComponentContext): void;
         protected render(props: PropsType, context: ComponentContext): void;
         firstContext(context: ComponentContext): void;
         beforeUpdate(): void;

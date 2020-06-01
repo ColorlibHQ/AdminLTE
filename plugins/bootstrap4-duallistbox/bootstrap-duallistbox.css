@@ -1,5 +1,5 @@
 /*
- *  Bootstrap Duallistbox - v4.0.1
+ *  Bootstrap Duallistbox - v4.0.2
  *  A responsive dual listbox widget optimized for Twitter Bootstrap. It works on all modern browsers and on touch devices.
  *  http://www.virtuosoft.eu/code/bootstrap-duallistbox/
  *
