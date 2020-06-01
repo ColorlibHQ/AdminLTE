@@ -6,6 +6,7 @@
   "author": "Colorlib <https://colorlib.com>",
   "main": "dist/js/adminlte.min.js",
   "scripts": {
+    "bundlewatch": "bundlewatch --config .bundlewatch.config.json",
     "css": "npm-run-all --sequential css-compile css-prefix css-minify",
     "css-all": "npm-run-all --sequential css-compile css-compile-splits css-prefix css-prefix-splits css-minify css-minify-splits",
     "css-compile-bash": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js --output-style expanded --source-map true --source-map-contents true --precision 6 ",
@@ -136,6 +137,7 @@
     "@rollup/plugin-babel": "^5.0.2",
     "autoprefixer": "^9.8.0",
     "browser-sync": "^2.26.7",
+    "bundlewatch": "^0.2.7",
     "clean-css-cli": "^4.3.0",
     "eslint": "^7.1.0",
     "eslint-config-xo": "^0.29.1",

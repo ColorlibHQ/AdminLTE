@@ -39,3 +39,9 @@ jobs:
 
       - name: Build files
         run: npm run compile
+
+      - name: Run bundlewatch
+        run: npm run bundlewatch
+        if: startsWith(matrix.os, 'ubuntu') && startsWith(matrix.node, '12')
+        env:
+          BUNDLEWATCH_GITHUB_TOKEN: "${{ secrets.BUNDLEWATCH_GITHUB_TOKEN }}"
