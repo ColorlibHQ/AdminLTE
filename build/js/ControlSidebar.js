@@ -5,30 +5,28 @@
  * --------------------------------------------
  */
 
-const ControlSidebar = (($) => {
+const ControlSidebar = ($ => {
   /**
    * Constants
    * ====================================================
    */
 
-  const NAME               = 'ControlSidebar'
-  const DATA_KEY           = 'lte.controlsidebar'
-  const EVENT_KEY          = `.${DATA_KEY}`
+  const NAME = 'ControlSidebar'
+  const DATA_KEY = 'lte.controlsidebar'
+  const EVENT_KEY = `.${DATA_KEY}`
   const JQUERY_NO_CONFLICT = $.fn[NAME]
-  const DATA_API_KEY       = '.data-api'
 
   const Event = {
     COLLAPSED: `collapsed${EVENT_KEY}`,
-    EXPANDED: `expanded${EVENT_KEY}`,
+    EXPANDED: `expanded${EVENT_KEY}`
   }
 
   const Selector = {
     CONTROL_SIDEBAR: '.control-sidebar',
     CONTROL_SIDEBAR_CONTENT: '.control-sidebar-content',
     DATA_TOGGLE: '[data-widget="control-sidebar"]',
-    CONTENT: '.content-wrapper',
     HEADER: '.main-header',
-    FOOTER: '.main-footer',
+    FOOTER: '.main-footer'
   }
 
   const ClassName = {
@@ -45,13 +43,13 @@ const ControlSidebar = (($) => {
     FOOTER_SM_FIXED: 'layout-sm-footer-fixed',
     FOOTER_MD_FIXED: 'layout-md-footer-fixed',
     FOOTER_LG_FIXED: 'layout-lg-footer-fixed',
-    FOOTER_XL_FIXED: 'layout-xl-footer-fixed',
+    FOOTER_XL_FIXED: 'layout-xl-footer-fixed'
   }
 
   const Default = {
     controlsidebarSlide: true,
-    scrollbarTheme : 'os-theme-light',
-    scrollbarAutoHide: 'l',
+    scrollbarTheme: 'os-theme-light',
+    scrollbarAutoHide: 'l'
   }
 
   /**
@@ -62,7 +60,7 @@ const ControlSidebar = (($) => {
   class ControlSidebar {
     constructor(element, config) {
       this._element = element
-      this._config  = config
+      this._config = config
 
       this._init()
     }
@@ -73,7 +71,7 @@ const ControlSidebar = (($) => {
       // Show the control sidebar
       if (this._config.controlsidebarSlide) {
         $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
-        $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function(){
+        $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
           $(Selector.CONTROL_SIDEBAR).hide()
           $('html').removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
           $(this).dequeue()
@@ -90,8 +88,8 @@ const ControlSidebar = (($) => {
       // Collapse the control sidebar
       if (this._config.controlsidebarSlide) {
         $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
-        $(Selector.CONTROL_SIDEBAR).show().delay(10).queue(function(){
-          $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function(){
+        $(Selector.CONTROL_SIDEBAR).show().delay(10).queue(function () {
+          $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
             $('html').removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
             $(this).dequeue()
           })
@@ -130,7 +128,7 @@ const ControlSidebar = (($) => {
 
       $(window).scroll(() => {
         if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)) {
-            this._fixScrollHeight()
+          this._fixScrollHeight()
         }
       })
     }
@@ -140,65 +138,64 @@ const ControlSidebar = (($) => {
         scroll: $(document).height(),
         window: $(window).height(),
         header: $(Selector.HEADER).outerHeight(),
-        footer: $(Selector.FOOTER).outerHeight(),
+        footer: $(Selector.FOOTER).outerHeight()
       }
       const positions = {
         bottom: Math.abs((heights.window + $(window).scrollTop()) - heights.scroll),
-        top: $(window).scrollTop(),
+        top: $(window).scrollTop()
       }
 
-      let navbarFixed = false;
-      let footerFixed = false;
+      let navbarFixed = false
+      let footerFixed = false
 
       if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
         if (
-          $('body').hasClass(ClassName.NAVBAR_FIXED)
-          || $('body').hasClass(ClassName.NAVBAR_SM_FIXED)
-          || $('body').hasClass(ClassName.NAVBAR_MD_FIXED)
-          || $('body').hasClass(ClassName.NAVBAR_LG_FIXED)
-          || $('body').hasClass(ClassName.NAVBAR_XL_FIXED)
+          $('body').hasClass(ClassName.NAVBAR_FIXED) ||
+          $('body').hasClass(ClassName.NAVBAR_SM_FIXED) ||
+          $('body').hasClass(ClassName.NAVBAR_MD_FIXED) ||
+          $('body').hasClass(ClassName.NAVBAR_LG_FIXED) ||
+          $('body').hasClass(ClassName.NAVBAR_XL_FIXED)
         ) {
-          if ($(Selector.HEADER).css("position") === "fixed") {
-            navbarFixed = true;
+          if ($(Selector.HEADER).css('position') === 'fixed') {
+            navbarFixed = true
           }
         }
+
         if (
-          $('body').hasClass(ClassName.FOOTER_FIXED)
-          || $('body').hasClass(ClassName.FOOTER_SM_FIXED)
-          || $('body').hasClass(ClassName.FOOTER_MD_FIXED)
-          || $('body').hasClass(ClassName.FOOTER_LG_FIXED)
-          || $('body').hasClass(ClassName.FOOTER_XL_FIXED)
+          $('body').hasClass(ClassName.FOOTER_FIXED) ||
+          $('body').hasClass(ClassName.FOOTER_SM_FIXED) ||
+          $('body').hasClass(ClassName.FOOTER_MD_FIXED) ||
+          $('body').hasClass(ClassName.FOOTER_LG_FIXED) ||
+          $('body').hasClass(ClassName.FOOTER_XL_FIXED)
         ) {
-          if ($(Selector.FOOTER).css("position") === "fixed") {
-            footerFixed = true;
+          if ($(Selector.FOOTER).css('position') === 'fixed') {
+            footerFixed = true
           }
         }
 
         if (positions.top === 0 && positions.bottom === 0) {
-          $(Selector.CONTROL_SIDEBAR).css('bottom', heights.footer);
-          $(Selector.CONTROL_SIDEBAR).css('top', heights.header);
+          $(Selector.CONTROL_SIDEBAR).css('bottom', heights.footer)
+          $(Selector.CONTROL_SIDEBAR).css('top', heights.header)
           $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window - (heights.header + heights.footer))
         } else if (positions.bottom <= heights.footer) {
-          if (footerFixed === false) {  
-            $(Selector.CONTROL_SIDEBAR).css('bottom', heights.footer - positions.bottom);
+          if (footerFixed === false) {
+            $(Selector.CONTROL_SIDEBAR).css('bottom', heights.footer - positions.bottom)
             $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window - (heights.footer - positions.bottom))
           } else {
-            $(Selector.CONTROL_SIDEBAR).css('bottom', heights.footer);
+            $(Selector.CONTROL_SIDEBAR).css('bottom', heights.footer)
           }
         } else if (positions.top <= heights.header) {
           if (navbarFixed === false) {
-            $(Selector.CONTROL_SIDEBAR).css('top', heights.header - positions.top);
+            $(Selector.CONTROL_SIDEBAR).css('top', heights.header - positions.top)
             $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window - (heights.header - positions.top))
           } else {
-            $(Selector.CONTROL_SIDEBAR).css('top', heights.header);
+            $(Selector.CONTROL_SIDEBAR).css('top', heights.header)
           }
+        } else if (navbarFixed === false) {
+          $(Selector.CONTROL_SIDEBAR).css('top', 0)
+          $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window)
         } else {
-          if (navbarFixed === false) {
-            $(Selector.CONTROL_SIDEBAR).css('top', 0);
-            $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window)
-          } else {
-            $(Selector.CONTROL_SIDEBAR).css('top', heights.header);
-          }
+          $(Selector.CONTROL_SIDEBAR).css('top', heights.header)
         }
       }
     }
@@ -207,39 +204,38 @@ const ControlSidebar = (($) => {
       const heights = {
         window: $(window).height(),
         header: $(Selector.HEADER).outerHeight(),
-        footer: $(Selector.FOOTER).outerHeight(),
+        footer: $(Selector.FOOTER).outerHeight()
       }
 
       if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
-        let sidebarHeight = heights.window - heights.header;
+        let sidebarHeight = heights.window - heights.header
 
         if (
-          $('body').hasClass(ClassName.FOOTER_FIXED)
-          || $('body').hasClass(ClassName.FOOTER_SM_FIXED)
-          || $('body').hasClass(ClassName.FOOTER_MD_FIXED)
-          || $('body').hasClass(ClassName.FOOTER_LG_FIXED)
-          || $('body').hasClass(ClassName.FOOTER_XL_FIXED)
+          $('body').hasClass(ClassName.FOOTER_FIXED) ||
+          $('body').hasClass(ClassName.FOOTER_SM_FIXED) ||
+          $('body').hasClass(ClassName.FOOTER_MD_FIXED) ||
+          $('body').hasClass(ClassName.FOOTER_LG_FIXED) ||
+          $('body').hasClass(ClassName.FOOTER_XL_FIXED)
         ) {
-          if ($(Selector.FOOTER).css("position") === "fixed") {
-            sidebarHeight = heights.window - heights.header - heights.footer;
+          if ($(Selector.FOOTER).css('position') === 'fixed') {
+            sidebarHeight = heights.window - heights.header - heights.footer
           }
         }
 
         $(Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', sidebarHeight)
-        
+
         if (typeof $.fn.overlayScrollbars !== 'undefined') {
           $(Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).overlayScrollbars({
-            className       : this._config.scrollbarTheme,
-            sizeAutoCapable : true,
-            scrollbars : {
-              autoHide: this._config.scrollbarAutoHide, 
-              clickScrolling : true
+            className: this._config.scrollbarTheme,
+            sizeAutoCapable: true,
+            scrollbars: {
+              autoHide: this._config.scrollbarAutoHide,
+              clickScrolling: true
             }
           })
         }
       }
     }
-
 
     // Static
 
@@ -280,7 +276,7 @@ const ControlSidebar = (($) => {
 
   $.fn[NAME] = ControlSidebar._jQueryInterface
   $.fn[NAME].Constructor = ControlSidebar
-  $.fn[NAME].noConflict  = function () {
+  $.fn[NAME].noConflict = function () {
     $.fn[NAME] = JQUERY_NO_CONFLICT
     return ControlSidebar._jQueryInterface
   }
@@ -289,4 +285,4 @@ const ControlSidebar = (($) => {
 })(jQuery)
 
 export default ControlSidebar
-  
+

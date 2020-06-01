@@ -5,15 +5,15 @@
  * --------------------------------------------
  */
 
-const PushMenu = (($) => {
+const PushMenu = ($ => {
   /**
    * Constants
    * ====================================================
    */
 
-  const NAME               = 'PushMenu'
-  const DATA_KEY           = 'lte.pushmenu'
-  const EVENT_KEY          = `.${DATA_KEY}`
+  const NAME = 'PushMenu'
+  const DATA_KEY = 'lte.pushmenu'
+  const EVENT_KEY = `.${DATA_KEY}`
   const JQUERY_NO_CONFLICT = $.fn[NAME]
 
   const Event = {
@@ -29,8 +29,6 @@ const PushMenu = (($) => {
 
   const Selector = {
     TOGGLE_BUTTON: '[data-widget="pushmenu"]',
-    SIDEBAR_MINI: '.sidebar-mini',
-    SIDEBAR_COLLAPSED: '.sidebar-collapse',
     BODY: 'body',
     OVERLAY: '#sidebar-overlay',
     WRAPPER: '.wrapper'
@@ -52,7 +50,7 @@ const PushMenu = (($) => {
       this._element = element
       this._options = $.extend({}, Default, options)
 
-      if (!$(Selector.OVERLAY).length) {
+      if ($(Selector.OVERLAY).length === 0) {
         this._addOverlay()
       }
 
@@ -70,7 +68,7 @@ const PushMenu = (($) => {
 
       $(Selector.BODY).removeClass(ClassName.COLLAPSED).removeClass(ClassName.CLOSED)
 
-      if(this._options.enableRemember) {
+      if (this._options.enableRemember) {
         localStorage.setItem(`remember${EVENT_KEY}`, ClassName.OPEN)
       }
 
@@ -87,7 +85,7 @@ const PushMenu = (($) => {
 
       $(Selector.BODY).addClass(ClassName.COLLAPSED)
 
-      if(this._options.enableRemember) {
+      if (this._options.enableRemember) {
         localStorage.setItem(`remember${EVENT_KEY}`, ClassName.COLLAPSED)
       }
 
@@ -96,10 +94,10 @@ const PushMenu = (($) => {
     }
 
     toggle() {
-      if (!$(Selector.BODY).hasClass(ClassName.COLLAPSED)) {
-        this.collapse()
-      } else {
+      if ($(Selector.BODY).hasClass(ClassName.COLLAPSED)) {
         this.expand()
+      } else {
+        this.collapse()
       }
     }
 
@@ -109,10 +107,10 @@ const PushMenu = (($) => {
           if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
             this.collapse()
           }
-        } else if (resize == true) {
+        } else if (resize === true) {
           if ($(Selector.BODY).hasClass(ClassName.OPEN)) {
             $(Selector.BODY).removeClass(ClassName.OPEN)
-          } else if($(Selector.BODY).hasClass(ClassName.CLOSED)) {
+          } else if ($(Selector.BODY).hasClass(ClassName.CLOSED)) {
             this.expand()
           }
         }
@@ -120,26 +118,24 @@ const PushMenu = (($) => {
     }
 
     remember() {
-      if(this._options.enableRemember) {
-        let toggleState = localStorage.getItem(`remember${EVENT_KEY}`)
-        if (toggleState == ClassName.COLLAPSED){
+      if (this._options.enableRemember) {
+        const toggleState = localStorage.getItem(`remember${EVENT_KEY}`)
+        if (toggleState === ClassName.COLLAPSED) {
           if (this._options.noTransitionAfterReload) {
-              $("body").addClass('hold-transition').addClass(ClassName.COLLAPSED).delay(50).queue(function() {
-                $(this).removeClass('hold-transition')
-                $(this).dequeue()
-              })
-          } else {
-            $("body").addClass(ClassName.COLLAPSED)
-          }
-        } else {
-          if (this._options.noTransitionAfterReload) {
-            $("body").addClass('hold-transition').removeClass(ClassName.COLLAPSED).delay(50).queue(function() {
+            $('body').addClass('hold-transition').addClass(ClassName.COLLAPSED).delay(50).queue(function () {
               $(this).removeClass('hold-transition')
               $(this).dequeue()
             })
           } else {
-            $("body").removeClass(ClassName.COLLAPSED)
+            $('body').addClass(ClassName.COLLAPSED)
           }
+        } else if (this._options.noTransitionAfterReload) {
+          $('body').addClass('hold-transition').removeClass(ClassName.COLLAPSED).delay(50).queue(function () {
+            $(this).removeClass('hold-transition')
+            $(this).dequeue()
+          })
+        } else {
+          $('body').removeClass(ClassName.COLLAPSED)
         }
       }
     }
@@ -191,7 +187,7 @@ const PushMenu = (($) => {
    * ====================================================
    */
 
-  $(document).on('click', Selector.TOGGLE_BUTTON, (event) => {
+  $(document).on('click', Selector.TOGGLE_BUTTON, event => {
     event.preventDefault()
 
     let button = event.currentTarget
@@ -214,7 +210,7 @@ const PushMenu = (($) => {
 
   $.fn[NAME] = PushMenu._jQueryInterface
   $.fn[NAME].Constructor = PushMenu
-  $.fn[NAME].noConflict  = function () {
+  $.fn[NAME].noConflict = function () {
     $.fn[NAME] = JQUERY_NO_CONFLICT
     return PushMenu._jQueryInterface
   }

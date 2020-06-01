@@ -37,7 +37,8 @@
     "js": "npm-run-all --sequential js-compile js-minify",
     "js-compile": "rollup --config build/config/rollup.config.js --sourcemap",
     "js-minify": "terser --compress typeofs=false --mangle --comments \"/^!/\" --source-map \"content=dist/js/adminlte.js.map,includeSources,url=adminlte.min.js.map\" --output dist/js/adminlte.min.js dist/js/adminlte.js",
-    "lint": "npm run css-lint",
+    "js-lint": "eslint --cache --cache-location .cache/.eslintcache --report-unused-disable-directives .",
+    "lint": "npm-run-all --continue-on-error --parallel css-lint js-lint",
     "production": "npm-run-all --sequential compile plugins",
     "prepare-release": "npm-run-all --sequential production docs",
     "test": "npm-run-all lint production",
@@ -45,7 +46,7 @@
     "sync": "browser-sync start --server --files *.html pages/ dist/",
     "watch": "npm-run-all --parallel watch-css watch-js",
     "watch-css": "nodemon --watch build/scss -e scss -x \"npm-run-all css-lint css\"",
-    "watch-js": "nodemon --watch build/js -e js -x \"npm run js\""
+    "watch-js": "nodemon --watch build/js -e js -x \"npm-run-all js-lint js\""
   },
   "keywords": [
     "css",
@@ -134,11 +135,13 @@
     "@babel/preset-env": "^7.10.2",
     "@rollup/plugin-babel": "^5.0.2",
     "autoprefixer": "^9.8.0",
-    "babel-eslint": "^10.1.0",
     "browser-sync": "^2.26.7",
     "clean-css-cli": "^4.3.0",
     "eslint": "^7.1.0",
+    "eslint-config-xo": "^0.29.1",
     "eslint-plugin-compat": "^3.7.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-unicorn": "^20.1.0",
     "node-sass": "^4.14.1",
     "node-sass-package-importer": "^5.3.2",
     "nodemon": "^2.0.4",
