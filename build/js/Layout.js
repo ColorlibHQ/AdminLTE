@@ -116,7 +116,7 @@ const Layout = ($ => {
     fixLoginRegisterHeight() {
       if ($(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).length === 0) {
         $('body, html').css('height', 'auto')
-      } else if ($(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).length !== 0) {
+      } else {
         const boxHeight = $(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).height()
 
         if ($('body').css('min-height') !== boxHeight) {
