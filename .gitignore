@@ -26,7 +26,6 @@ bower_components/
 
 
 // Docs
-Gemfile.lock
 docs/_site
 docs_html/
 .jekyll-cache/
