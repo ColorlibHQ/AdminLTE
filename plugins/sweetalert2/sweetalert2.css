@@ -311,7 +311,7 @@
   border-radius: 100%;
   border-color: transparent;
   background-color: transparent !important;
-  color: transparent;
+  color: transparent !important;
   cursor: default;
   -webkit-user-select: none;
      -moz-user-select: none;
