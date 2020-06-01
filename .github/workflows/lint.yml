@@ -1,10 +1,13 @@
 name: Lint
 
 on:
+  push:
+    branches:
+      - devel
+      - master
   pull_request:
-  release:
-    types:
-      - created
+    branches:
+      - "**"
 
 env:
   CI: true

@@ -1,10 +1,12 @@
 name: CI
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
-  release:
-    types:
-      - created
+    branches:
+      - "**"
 
 env:
   CI: true
