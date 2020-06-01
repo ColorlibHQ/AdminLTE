@@ -56,10 +56,5 @@
       "path": "./dist/js/adminlte.min.js",
       "maxSize": "6.5 kB"
     }
-  ],
-  "ci": {
-    "trackBranches": [
-      "master"
-    ]
-  }
+  ]
 }
