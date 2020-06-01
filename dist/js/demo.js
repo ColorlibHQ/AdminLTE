@@ -366,8 +366,9 @@
   })
   $container.append($logo_variants)
   var $clear_btn = $('<a />', {
-    href: 'javascript:void(0)'
-  }).text('clear').on('click', function () {
+    href: '#'
+  }).text('clear').on('click', function (e) {
+    e.preventDefault()
     var $logo = $('.brand-link')
     logo_skins.forEach(function (skin) {
       $logo.removeClass(skin)
