@@ -136,7 +136,7 @@
         .sidebar-form,
         .user-panel > .info {
           display: block !important;
-          -webkit-transform: translateZ(0);
+          transform: translateZ(0);
         }
 
         .nav-sidebar > .nav-item > .nav-link > span {

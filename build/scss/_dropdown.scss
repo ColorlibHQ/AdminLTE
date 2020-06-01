@@ -18,7 +18,7 @@
   }
 
   .dropdown-toggle::after {
-    vertical-align: .2rem
+    vertical-align: .2rem;
   }
 }
 
@@ -57,8 +57,8 @@
 .dropdown-submenu {
   position: relative;
 
-  & > a:after {
-    @include caret-right;
+  & > a::after {
+    @include caret-right ();
     float: right;
     margin-left: .5rem;
     margin-top: .5rem;
@@ -66,8 +66,8 @@
 
   & > .dropdown-menu {
     left: 100%;
-    margin-left: 0px;
-    margin-top: 0px;
+    margin-left: 0;
+    margin-top: 0;
     top: 0;
   }
 }
@@ -83,7 +83,6 @@
     }
   }
 }
-
 
 
 // Dropdown Sizes
@@ -115,7 +114,7 @@
   text-align: center;
 }
 
-// Add fade animation to dropdown menus by appending 
+// Add fade animation to dropdown menus by appending
 // the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)
 .open:not(.dropup) > .animated-dropdown-menu {
   @include animation(flipInX .7s both);
@@ -178,8 +177,8 @@
 
 // User Menu
 .navbar-nav > .user-menu {
-  > .nav-link:after {
-    content:none;
+  > .nav-link::after {
+    content: none;
   }
 
   > .dropdown-menu {
@@ -205,7 +204,7 @@
         width: 90px;
         border: 3px solid;
         border-color: transparent;
-        border-color: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, .2);
       }
 
       > p {
@@ -223,7 +222,7 @@
 
     // Menu Body
     > .user-body {
-      @include clearfix;
+      @include clearfix ();
       border-bottom: 1px solid $gray-700;
       border-top: 1px solid $gray-300;
       padding: 15px;
@@ -238,7 +237,7 @@
 
     // Menu Footer
     > .user-footer {
-      @include clearfix;
+      @include clearfix ();
       background-color: $gray-100;
       padding: 10px;
 

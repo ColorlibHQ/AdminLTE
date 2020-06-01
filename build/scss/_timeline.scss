@@ -11,7 +11,7 @@
     @include border-radius($border-radius);
     background: $gray-300;
     bottom: 0;
-    content: '';
+    content: "";
     left: 31px;
     margin: 0;
     position: absolute;
@@ -70,7 +70,9 @@
         > img {
           margin: 10px;
         }
-        > dl, ol, ul {
+        > dl,
+        ol,
+        ul {
           margin: 0;
         }
       }

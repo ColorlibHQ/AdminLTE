@@ -20,7 +20,7 @@
     overflow: hidden;
     position: relative;
 
-    > input[type='file'] {
+    > input[type="file"] {
       background: $white;
       cursor: inherit;
       display: block;
@@ -88,7 +88,7 @@
 
   &:active,
   &:focus {
-    @include box-shadow(inset 0 3px 5px rgba($black, 0.125));
+    @include box-shadow(inset 0 3px 5px rgba($black, .125));
   }
 
   // The badge

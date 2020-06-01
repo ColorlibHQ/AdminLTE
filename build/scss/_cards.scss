@@ -40,7 +40,7 @@
       display: block !important;
     }
 
-    [data-widget='collapse'] {
+    [data-widget="collapse"] {
       display: none;
     }
 
@@ -202,7 +202,7 @@ html.maximized-card {
 .card-header,
 .card-body,
 .card-footer {
-  @include clearfix;
+  @include clearfix ();
 }
 
 // Box header
@@ -231,7 +231,7 @@ html.maximized-card {
       margin-top: -$card-spacer-y / 2.5;
     }
 
-    [data-toggle='tooltip'] {
+    [data-toggle="tooltip"] {
       position: relative;
     }
   }
@@ -310,7 +310,7 @@ html.maximized-card {
 }
 
 .chart-legend {
-  @include list-unstyled;
+  @include list-unstyled ();
   margin: 10px 0;
 
   > li {
@@ -326,7 +326,7 @@ html.maximized-card {
   background: $gray-100;
 
   .card-comment {
-    @include clearfix;
+    @include clearfix ();
     border-bottom: 1px solid $gray-200;
     padding: 8px 0;
 
@@ -385,7 +385,7 @@ html.maximized-card {
       margin-bottom: 0;
     }
 
-    > input[type='checkbox'] {
+    > input[type="checkbox"] {
       margin: 0 10px 0 5px;
     }
 
@@ -403,7 +403,7 @@ html.maximized-card {
 
     // Tools and options box
     .tools {
-      color: theme-color('danger');
+      color: theme-color("danger");
       display: none;
       float: right;
 

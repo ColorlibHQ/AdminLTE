@@ -4,7 +4,9 @@
 
 // text modification
 .text-bold {
-  &, &.table td, &.table th {
+  &,
+  &.table td,
+  &.table th {
     font-weight: 700;
   }
 }

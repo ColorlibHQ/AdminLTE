@@ -30,11 +30,11 @@
 .user-panel {
   position: relative;
 
-  [class*='sidebar-dark'] & {
+  [class*="sidebar-dark"] & {
     border-bottom: 1px solid lighten($dark, 12%);
   }
 
-  [class*='sidebar-light'] & {
+  [class*="sidebar-light"] & {
     border-bottom: 1px solid $gray-300;
   }
 
@@ -158,12 +158,12 @@
     }
 
     &.nav-legacy {
-      .nav-treeview {      
+      .nav-treeview {
         .nav-treeview {
           padding-left: 2rem;
           margin-left: -1rem;
 
-          .text-sm & {          
+          .text-sm & {
             padding-left: 1rem;
             margin-left: -.5rem;
           }
@@ -197,7 +197,7 @@
     }
   }
 
-  background-color: rgba($black, 0.1);
+  background-color: rgba($black, .1);
   bottom: 0;
   display: none;
   left: 0;
@@ -207,7 +207,7 @@
   z-index: $zindex-main-sidebar - 1;
 }
 
-[class*='sidebar-light-'] {
+[class*="sidebar-light-"] {
   // Sidebar background color
   background-color: $sidebar-light-bg;
 
@@ -330,7 +330,7 @@
   }
 }
 
-[class*='sidebar-dark-'] {
+[class*="sidebar-dark-"] {
   // Sidebar background color
   background-color: $sidebar-dark-bg;
 
@@ -461,14 +461,14 @@
 @each $name, $color in $theme-colors {
   .sidebar-dark-#{$name},
   .sidebar-light-#{$name} {
-    @include sidebar-color($color)
+    @include sidebar-color($color);
   }
 }
 
 @each $name, $color in $colors {
   .sidebar-dark-#{$name},
   .sidebar-light-#{$name} {
-    @include sidebar-color($color)
+    @include sidebar-color($color);
   }
 }
 
@@ -478,7 +478,7 @@
 .sidebar-mini-md .main-sidebar:not(.sidebar-no-expand):hover,
 .sidebar-mini .main-sidebar.sidebar-focused,
 .sidebar-mini-md .main-sidebar.sidebar-focused {
- .nav-compact.nav-sidebar.nav-child-indent:not(.nav-flat) .nav-treeview {
+  .nav-compact.nav-sidebar.nav-child-indent:not(.nav-flat) .nav-treeview {
     padding-left: 1rem;
     margin-left: -.5rem;
   }
@@ -486,7 +486,7 @@
 
 // Nav Flat
 .nav-flat {
-  margin: (-$sidebar-padding-x/2) (-$sidebar-padding-x) 0;
+  margin: (-$sidebar-padding-x / 2) (-$sidebar-padding-x) 0;
 
   .nav-item {
     > .nav-link {
@@ -500,7 +500,7 @@
   }
 
   &:not(.nav-child-indent) {
-    .nav-treeview {  
+    .nav-treeview {
       .nav-item {
         > .nav-link {
           > .nav-icon {
@@ -649,7 +649,7 @@
 }
 
 .nav-legacy {
-  margin: (-$sidebar-padding-x/2) (-$sidebar-padding-x) 0;
+  margin: (-$sidebar-padding-x / 2) (-$sidebar-padding-x) 0;
 
   &.nav-sidebar .nav-item {
     > .nav-link {
@@ -675,7 +675,7 @@
 
         > .nav-icon {
           margin-left: calc(.55rem - 3px);
-          
+
           .text-sm & {
             margin-left: calc(.75rem - 3px);
           }
@@ -746,15 +746,15 @@
       }
     }
 
-    &.nav-child-indent {   
+    &.nav-child-indent {
       .nav-treeview {
         .nav-treeview {
           padding-left: 0;
           margin-left: 0;
         }
       }
-      }
     }
+  }
 
 
   .sidebar-mini.sidebar-collapse.text-sm &,
@@ -772,7 +772,7 @@
     }
   }
 
-  [class*='sidebar-dark'] & {
+  [class*="sidebar-dark"] & {
     &.nav-sidebar > .nav-item {
       .nav-treeview,
       > .nav-treeview {
@@ -794,7 +794,7 @@
     }
   }
 
-  [class*='sidebar-light'] & {
+  [class*="sidebar-light"] & {
     &.nav-sidebar > .nav-item {
       .nav-treeview,
       > .nav-treeview {
@@ -875,7 +875,7 @@
 }
 
 // Sidebar Form Control
-[class*='sidebar-dark'] {
+[class*="sidebar-dark"] {
   .form-control-sidebar,
   .btn-sidebar {
     background: lighten($sidebar-dark-bg, 5%);
@@ -897,7 +897,7 @@
   }
 }
 
-[class*='sidebar-light'] {
+[class*="sidebar-light"] {
   .form-control-sidebar,
   .btn-sidebar {
     background: darken($sidebar-light-bg, 5%);
@@ -932,7 +932,7 @@
   &.sidebar-collapse .main-sidebar {
     margin-left: 0;
   }
-  .content-wrapper, 
+  .content-wrapper,
   .main-header,
   .main-footer {
     z-index: 9999;
