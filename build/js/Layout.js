@@ -60,7 +60,7 @@ const Layout = ($ => {
     fixLayoutHeight(extra = null) {
       let controlSidebar = 0
 
-      if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || extra === 'controlSidebar') {
+      if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || extra === 'control_sidebar') {
         controlSidebar = $(Selector.CONTROL_SIDEBAR_CONTENT).height()
       }
 
@@ -152,7 +152,7 @@ const Layout = ($ => {
           this.fixLayoutHeight()
         })
         .on('expanded.lte.controlsidebar', () => {
-          this.fixLayoutHeight('controlSidebar')
+          this.fixLayoutHeight('control_sidebar')
         })
 
       $(window).resize(() => {
