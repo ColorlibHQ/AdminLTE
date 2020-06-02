@@ -8,9 +8,6 @@ extraction:
     # https://lgtm.com/help/lgtm/javascript-extraction#customizing-index
     # The `index` step extracts information from the files in the codebase.
     index:
-      # Specify a list of include/exclude patterns.
-      filters:
-        - exclude: "**/*.min.js"
       # Specify a list of files and folders to exclude from extraction.
       exclude:
         - bower_components/
