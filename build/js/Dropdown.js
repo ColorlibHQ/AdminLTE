@@ -46,7 +46,7 @@ const Dropdown = ($ => {
       this._element.siblings().show().toggleClass('show')
 
       if (!this._element.next().hasClass('show')) {
-        this._element.parents('.dropdown-menu').first().find('.show').removeClass('show').hide()
+        this._element.parents(Selector.DROPDOWN_MENU).first().find('.show').removeClass('show').hide()
       }
 
       this._element.parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', () => {

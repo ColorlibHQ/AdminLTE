@@ -76,9 +76,7 @@ const CardWidget = ($ => {
         .addClass(this._settings.expandIcon)
         .removeClass(this._settings.collapseIcon)
 
-      const collapsed = $.Event(Event.COLLAPSED)
-
-      this._element.trigger(collapsed, this._parent)
+      this._element.trigger($.Event(Event.COLLAPSED), this._parent)
     }
 
     expand() {
@@ -91,17 +89,12 @@ const CardWidget = ($ => {
         .addClass(this._settings.collapseIcon)
         .removeClass(this._settings.expandIcon)
 
-      const expanded = $.Event(Event.EXPANDED)
-
-      this._element.trigger(expanded, this._parent)
+      this._element.trigger($.Event(Event.EXPANDED), this._parent)
     }
 
     remove() {
       this._parent.slideUp()
-
-      const removed = $.Event(Event.REMOVED)
-
-      this._element.trigger(removed, this._parent)
+      this._element.trigger($.Event(Event.REMOVED), this._parent)
     }
 
     toggle() {
@@ -131,9 +124,7 @@ const CardWidget = ($ => {
         $(this).dequeue()
       })
 
-      const maximized = $.Event(Event.MAXIMIZED)
-
-      this._element.trigger(maximized, this._parent)
+      this._element.trigger($.Event(Event.MAXIMIZED), this._parent)
     }
 
     minimize() {
@@ -156,9 +147,7 @@ const CardWidget = ($ => {
         $(this).dequeue()
       })
 
-      const MINIMIZED = $.Event(Event.MINIMIZED)
-
-      this._element.trigger(MINIMIZED, this._parent)
+      this._element.trigger($.Event(Event.MINIMIZED), this._parent)
     }
 
     toggleMaximize() {

@@ -68,10 +68,9 @@ const TodoList = ($ => {
     // Private
 
     _init() {
-      const that = this
       $(Selector.DATA_TOGGLE).find('input:checkbox:checked').parents('li').toggleClass(ClassName.TODO_LIST_DONE)
       $(Selector.DATA_TOGGLE).on('change', 'input:checkbox', event => {
-        that.toggle($(event.target))
+        this.toggle($(event.target))
       })
     }
 

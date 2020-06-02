@@ -40,9 +40,7 @@ const DirectChat = ($ => {
 
     toggle() {
       $(this._element).parents(Selector.DIRECT_CHAT).first().toggleClass(ClassName.DIRECT_CHAT_OPEN)
-
-      const toggledEvent = $.Event(Event.TOGGLED)
-      $(this._element).trigger(toggledEvent)
+      $(this._element).trigger($.Event(Event.TOGGLED))
     }
 
     // Static

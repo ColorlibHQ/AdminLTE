@@ -72,8 +72,7 @@ const PushMenu = ($ => {
         localStorage.setItem(`remember${EVENT_KEY}`, ClassName.OPEN)
       }
 
-      const shownEvent = $.Event(Event.SHOWN)
-      $(this._element).trigger(shownEvent)
+      $(this._element).trigger($.Event(Event.SHOWN))
     }
 
     collapse() {
@@ -89,8 +88,7 @@ const PushMenu = ($ => {
         localStorage.setItem(`remember${EVENT_KEY}`, ClassName.COLLAPSED)
       }
 
-      const collapsedEvent = $.Event(Event.COLLAPSED)
-      $(this._element).trigger(collapsedEvent)
+      $(this._element).trigger($.Event(Event.COLLAPSED))
     }
 
     toggle() {
@@ -102,41 +100,45 @@ const PushMenu = ($ => {
     }
 
     autoCollapse(resize = false) {
-      if (this._options.autoCollapseSize) {
-        if ($(window).width() <= this._options.autoCollapseSize) {
-          if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
-            this.collapse()
-          }
-        } else if (resize === true) {
-          if ($(Selector.BODY).hasClass(ClassName.OPEN)) {
-            $(Selector.BODY).removeClass(ClassName.OPEN)
-          } else if ($(Selector.BODY).hasClass(ClassName.CLOSED)) {
-            this.expand()
-          }
+      if (!this._options.autoCollapseSize) {
+        return
+      }
+
+      if ($(window).width() <= this._options.autoCollapseSize) {
+        if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
+          this.collapse()
+        }
+      } else if (resize === true) {
+        if ($(Selector.BODY).hasClass(ClassName.OPEN)) {
+          $(Selector.BODY).removeClass(ClassName.OPEN)
+        } else if ($(Selector.BODY).hasClass(ClassName.CLOSED)) {
+          this.expand()
         }
       }
     }
 
     remember() {
-      if (this._options.enableRemember) {
-        const toggleState = localStorage.getItem(`remember${EVENT_KEY}`)
-        if (toggleState === ClassName.COLLAPSED) {
-          if (this._options.noTransitionAfterReload) {
-            $('body').addClass('hold-transition').addClass(ClassName.COLLAPSED).delay(50).queue(function () {
-              $(this).removeClass('hold-transition')
-              $(this).dequeue()
-            })
-          } else {
-            $('body').addClass(ClassName.COLLAPSED)
-          }
-        } else if (this._options.noTransitionAfterReload) {
-          $('body').addClass('hold-transition').removeClass(ClassName.COLLAPSED).delay(50).queue(function () {
+      if (!this._options.enableRemember) {
+        return
+      }
+
+      const toggleState = localStorage.getItem(`remember${EVENT_KEY}`)
+      if (toggleState === ClassName.COLLAPSED) {
+        if (this._options.noTransitionAfterReload) {
+          $('body').addClass('hold-transition').addClass(ClassName.COLLAPSED).delay(50).queue(function () {
             $(this).removeClass('hold-transition')
             $(this).dequeue()
           })
         } else {
-          $('body').removeClass(ClassName.COLLAPSED)
+          $('body').addClass(ClassName.COLLAPSED)
         }
+      } else if (this._options.noTransitionAfterReload) {
+        $('body').addClass('hold-transition').removeClass(ClassName.COLLAPSED).delay(50).queue(function () {
+          $(this).removeClass('hold-transition')
+          $(this).dequeue()
+        })
+      } else {
+        $('body').removeClass(ClassName.COLLAPSED)
       }
     }
 

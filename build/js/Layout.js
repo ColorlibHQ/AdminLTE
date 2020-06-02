@@ -60,7 +60,7 @@ const Layout = ($ => {
     fixLayoutHeight(extra = null) {
       let controlSidebar = 0
 
-      if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || extra === 'controlSidebar') {
+      if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || extra === 'control_sidebar') {
         controlSidebar = $(Selector.CONTROL_SIDEBAR_CONTENT).height()
       }
 
@@ -93,28 +93,30 @@ const Layout = ($ => {
         }
       }
 
-      if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
-        if (offset !== false) {
-          $(Selector.CONTENT).css('min-height', (max + offset) - heights.header - heights.footer)
-        }
+      if (!$('body').hasClass(ClassName.LAYOUT_FIXED)) {
+        return
+      }
 
-        if (typeof $.fn.overlayScrollbars !== 'undefined') {
-          $(Selector.SIDEBAR).overlayScrollbars({
-            className: this._config.scrollbarTheme,
-            sizeAutoCapable: true,
-            scrollbars: {
-              autoHide: this._config.scrollbarAutoHide,
-              clickScrolling: true
-            }
-          })
-        }
+      if (offset !== false) {
+        $(Selector.CONTENT).css('min-height', (max + offset) - heights.header - heights.footer)
+      }
+
+      if (typeof $.fn.overlayScrollbars !== 'undefined') {
+        $(Selector.SIDEBAR).overlayScrollbars({
+          className: this._config.scrollbarTheme,
+          sizeAutoCapable: true,
+          scrollbars: {
+            autoHide: this._config.scrollbarAutoHide,
+            clickScrolling: true
+          }
+        })
       }
     }
 
     fixLoginRegisterHeight() {
       if ($(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).length === 0) {
         $('body, html').css('height', 'auto')
-      } else if ($(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).length !== 0) {
+      } else {
         const boxHeight = $(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).height()
 
         if ($('body').css('min-height') !== boxHeight) {
@@ -150,7 +152,7 @@ const Layout = ($ => {
           this.fixLayoutHeight()
         })
         .on('expanded.lte.controlsidebar', () => {
-          this.fixLayoutHeight('controlSidebar')
+          this.fixLayoutHeight('control_sidebar')
         })
 
       $(window).resize(() => {
