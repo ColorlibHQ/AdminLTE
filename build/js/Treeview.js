@@ -32,6 +32,7 @@ const Treeview = ($ => {
 
   const ClassName = {
     OPEN: 'menu-open',
+    IS_OPENING: 'menu-is-opening',
     SIDEBAR_COLLAPSED: 'sidebar-collapse'
   }
 
@@ -56,6 +57,7 @@ const Treeview = ($ => {
     // Public
 
     init() {
+      $(`${Selector.LI}${Selector.OPEN} ${Selector.TREEVIEW_MENU}`).css('display', 'block')
       this._setupListeners()
     }
 
@@ -68,6 +70,7 @@ const Treeview = ($ => {
         this.collapse(openTreeview, openMenuLi)
       }
 
+      parentLi.addClass(ClassName.IS_OPENING)
       treeviewMenu.stop().slideDown(this._config.animationSpeed, () => {
         parentLi.addClass(ClassName.OPEN)
         $(this._element).trigger(expandedEvent)
@@ -81,8 +84,8 @@ const Treeview = ($ => {
     collapse(treeviewMenu, parentLi) {
       const collapsedEvent = $.Event(Event.COLLAPSED)
 
+      parentLi.removeClass(`${ClassName.IS_OPENING} ${ClassName.OPEN}`)
       treeviewMenu.stop().slideUp(this._config.animationSpeed, () => {
-        parentLi.removeClass(ClassName.OPEN)
         $(this._element).trigger(collapsedEvent)
         treeviewMenu.find(`${Selector.OPEN} > ${Selector.TREEVIEW_MENU}`).slideUp()
         treeviewMenu.find(Selector.OPEN).removeClass(ClassName.OPEN)
