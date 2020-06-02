@@ -24,7 +24,7 @@ navigation:
   - title: Components
     icon: fas fa-th
     url: components
-    subitems: 
+    subitems:
       - title: Main Header
         url: components/main-header.html
       - title: Main Sidebar
@@ -48,7 +48,7 @@ navigation:
   - title: JavaScript
     icon: fas fa-code
     url: javascript
-    subitems: 
+    subitems:
       - title: Layout
         url: javascript/layout.html
       - title: Push Menu
