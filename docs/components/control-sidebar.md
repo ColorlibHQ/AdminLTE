@@ -9,11 +9,13 @@ The following code should be placed within the `.wrapper` div. I prefer to place
 
 ##### Control Sidebar Push
 {: .text-bold .text-dark}
+
 By adding the `.control-sidebar-push` to `body`, the sidebar pushes the content away instead of overlaying the content.
 You can also add `.control-sidebar-push-slide` to `body`, to push the content away with an transition.
 
 ##### Dark Sidebar Markup
 {: .text-bold .text-dark}
+
 ```html
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -27,6 +29,7 @@ You can also add `.control-sidebar-push-slide` to `body`, to push the content aw
 
 ##### Light Sidebar Markup
 {: .text-bold .text-dark .mt-5}
+
 ```html
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-light">
@@ -40,6 +43,7 @@ You can also add `.control-sidebar-push-slide` to `body`, to push the content aw
 
 ##### Control Sidebar Toggle Markup
 {: .text-bold .text-dark .mt-5}
+
 Once you create the sidebar, you will need a toggle button to open/close it. By adding the attribute data-toggle="control-sidebar" to any button, it will automatically act as the toggle button. 
 
 ```html

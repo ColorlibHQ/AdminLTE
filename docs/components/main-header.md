@@ -426,6 +426,7 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
     </ul>
   </div>
 </nav>
+
 ```html
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-light navbar-white">

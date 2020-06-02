@@ -5,17 +5,18 @@ title: Card Widget Plugin
 
 The card widget plugin provides the functionality for collapsing, expanding and removing a card. 
 
-##### Usage
-This plugin can be activated as a jQuery plugin or using the data api. 
+### Usage
 
-###### Data API
-{: .text-bold }
+This plugin can be activated as a jQuery plugin or using the data API. 
 
-This plugin provides two data-api attributes. Any element using one of the following attributes should be placed within the `.card-tools` div, which is usually in the card header. For more information about the [card HTML structure]({% link components/cards.md %}), visit the card component documentation 
+#### Data API
 
-`data-card-widget="collapse"`
-<br />
+This plugin provides two `data-api` attributes. Any element using one of the following attributes should be placed within the `.card-tools` div, which is usually in the card header. For more information about the [card HTML structure]({% link components/cards.md %}), visit the card component documentation 
+
+##### `data-card-widget="collapse"`
+
 This attribute, when attached to a button, allows the box to be collapsed/expanded when clicked. 
+
 <div class="row">
   <div class="col-12 col-md-4">
      <div class="card">
@@ -53,9 +54,10 @@ This attribute, when attached to a button, allows the box to be collapsed/expand
   </div>
 </div>
 
-`data-card-widget="remove"`
-<br />
+##### `data-card-widget="remove"`
+
 This attribute, when attached to a button, allows the box to be removed when clicked. 
+
 <div class="row">
   <div class="col-12 col-md-4">
      <div class="card">
@@ -93,9 +95,10 @@ This attribute, when attached to a button, allows the box to be removed when cli
   </div>
 </div>
 
-`data-card-widget="maximize"`
-<br />
+##### `data-card-widget="maximize"`
+
 This attribute, when attached to a button, allows the box to be maximize/minimize when clicked. 
+
 <div class="row">
   <div class="col-12 col-md-4">
      <div class="card">

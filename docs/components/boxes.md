@@ -5,7 +5,6 @@ title: Boxes Components
 
 There are two types of boxes, info boxes & small boxes. Both boxes are used to display statistical snippets. 
 
-
 ##### Info Box
 {: .text-bold .text-dark .mt-4}
 
@@ -251,6 +250,7 @@ There are two types of boxes, info boxes & small boxes. Both boxes are used to d
 
 ##### Loading Style
 {: .text-bold .text-dark .mt-5}
+
 To simulate a loading state, simply place this code before the `.info-box` / `.small-box` closing tag. 
 
 > ##### Tip!
@@ -315,6 +315,7 @@ To simulate a loading state, simply place this code before the `.info-box` / `.s
 
 
 You can also use a dark loading style with adding `.dark` to `.overlay` like this code.
+
 ```html
 <div class="overlay dark">
   <i class="fas fa-2x fa-sync-alt fa-spin"></i>
