@@ -20,9 +20,31 @@ node_modules/
 bower_components/
 
 # Plugins
-/plugins/*/*.md
-/plugins/*/*.html
-/plugins/*/package.json
+/plugins/**/*.html
+/plugins/**/*.less
+/plugins/**/*.md
+/plugins/**/*.scss
+/plugins/**/*.ts
+/plugins/**/bower.json
+/plugins/**/package.json
+/plugins/**/webpack.config.js
+/plugins/**/demo/
+/plugins/**/demos/
+/plugins/**/dev/
+/plugins/**/example/
+/plugins/**/examples/
+/plugins/**/less/
+/plugins/**/test/
+/plugins/**/tests/
+/plugins/daterangepicker/website/
+/plugins/daterangepicker/drp.png
+!/plugins/**/LICENSE.md
+!/plugins/**/LICENSE.txt
+!/plugins/**/license.md
+!/plugins/**/license.txt
+!/plugins/**/LICENSE
+!/plugins/**/license
+!/plugins/**/COPYING
 
 
 # Docs
