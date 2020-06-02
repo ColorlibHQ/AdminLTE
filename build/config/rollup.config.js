@@ -21,6 +21,7 @@ module.exports = {
     },
     name: 'adminlte'
   },
+  external: ['jquery'],
   plugins: [
     babel({
       exclude: 'node_modules/**',

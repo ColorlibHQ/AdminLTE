@@ -98,7 +98,10 @@
     > .nav-treeview {
       display: block;
     }
+  }
 
+  .menu-open,
+  .menu-is-opening {
     > .nav-link {
       i.right {
         @include rotate(-90deg);
