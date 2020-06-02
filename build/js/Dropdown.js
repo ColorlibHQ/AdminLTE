@@ -69,8 +69,7 @@ class Dropdown {
 
       const offset = $element.offset()
       const width = $element.width()
-      const windowWidth = $(window).width()
-      const visiblePart = windowWidth - offset.left
+      const visiblePart = $(window).width() - offset.left
 
       if (offset.left < 0) {
         $element.css('left', 'inherit')
