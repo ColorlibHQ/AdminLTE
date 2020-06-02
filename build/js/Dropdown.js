@@ -56,28 +56,28 @@ class Dropdown {
   }
 
   fixPosition() {
-    const elm = $(Selector.DROPDOWN_MENU_ACTIVE)
+    const $element = $(Selector.DROPDOWN_MENU_ACTIVE)
 
-    if (elm.length !== 0) {
-      if (elm.hasClass(ClassName.DROPDOWN_RIGHT)) {
-        elm.css('left', 'inherit')
-        elm.css('right', 0)
+    if ($element.length !== 0) {
+      if ($element.hasClass(ClassName.DROPDOWN_RIGHT)) {
+        $element.css('left', 'inherit')
+        $element.css('right', 0)
       } else {
-        elm.css('left', 0)
-        elm.css('right', 'inherit')
+        $element.css('left', 0)
+        $element.css('right', 'inherit')
       }
 
-      const offset = elm.offset()
-      const width = elm.width()
+      const offset = $element.offset()
+      const width = $element.width()
       const windowWidth = $(window).width()
       const visiblePart = windowWidth - offset.left
 
       if (offset.left < 0) {
-        elm.css('left', 'inherit')
-        elm.css('right', (offset.left - 5))
+        $element.css('left', 'inherit')
+        $element.css('right', (offset.left - 5))
       } else if (visiblePart < width) {
-        elm.css('left', 'inherit')
-        elm.css('right', 0)
+        $element.css('left', 'inherit')
+        $element.css('right', 0)
       }
     }
   }
