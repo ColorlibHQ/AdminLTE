@@ -185,10 +185,15 @@
 
   .nav-link p {
     display: inline-block;
+    margin: 0;
+  }
+}
+
+.sidebar-is-opening .nav-sidebar {
+  .nav-link p {
     animation-name: fadeIn;
     animation-duration: $transition-speed;
     animation-fill-mode: both;
-    margin: 0;
   }
 }
 
