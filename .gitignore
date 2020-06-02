@@ -1,37 +1,37 @@
-// System / Log files 
+# System / Log files
 *.DS_Store
 *.log
 
-// Archives
+# Archives
 *.zip
 
-// Sass Cache
+# Sass Cache
 .sass-cache
 
-// Project files
+# Project files
 .idea
 nbproject
 nbproject/private
 .vscode/
 .vs/
 
-// Node / Bower
+# Node / Bower
 node_modules/
 bower_components/
 
-// Plugins
+# Plugins
 /plugins/*/*.md
 /plugins/*/*.html
 /plugins/*/package.json
 
 
-// Docs
+# Docs
 docs/_site
 docs_html/
 .jekyll-cache/
 .jekyll-metadata
 
-// ETC
+# ETC
 TODO
 test.html
 ad.js
