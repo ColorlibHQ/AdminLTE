@@ -51,7 +51,7 @@ bower_components/
 /docs/_site/
 /docs/vendor/
 /docs/.bundle/
-docs_html/
+/docs_html/
 .jekyll-cache/
 .jekyll-metadata
 
