@@ -3,7 +3,6 @@ name: Lint
 on:
   push:
     branches:
-      - devel
       - master
   pull_request:
     branches:
