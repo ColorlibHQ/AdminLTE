@@ -48,8 +48,10 @@ bower_components/
 
 
 # Docs
-docs/_site
-docs_html/
+/docs/_site/
+/docs/vendor/
+/docs/.bundle/
+/docs_html/
 .jekyll-cache/
 .jekyll-metadata
 
