@@ -69,8 +69,7 @@ class Dropdown {
 
       const offset = elm.offset()
       const width = elm.width()
-      const windowWidth = $(window).width()
-      const visiblePart = windowWidth - offset.left
+      const visiblePart = $(window).width() - offset.left
 
       if (offset.left < 0) {
         elm.css('left', 'inherit')
