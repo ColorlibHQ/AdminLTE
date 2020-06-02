@@ -37,6 +37,7 @@ const PushMenu = ($ => {
   const ClassName = {
     COLLAPSED: 'sidebar-collapse',
     OPEN: 'sidebar-open',
+    IS_OPENING: 'sidebar-is-opening',
     CLOSED: 'sidebar-closed'
   }
 
@@ -66,7 +67,7 @@ const PushMenu = ($ => {
         }
       }
 
-      $(Selector.BODY).removeClass(ClassName.COLLAPSED).removeClass(ClassName.CLOSED)
+      $(Selector.BODY).addClass(ClassName.IS_OPENING).removeClass(`${ClassName.COLLAPSED} ${ClassName.CLOSED}`)
 
       if (this._options.enableRemember) {
         localStorage.setItem(`remember${EVENT_KEY}`, ClassName.OPEN)
@@ -82,7 +83,7 @@ const PushMenu = ($ => {
         }
       }
 
-      $(Selector.BODY).addClass(ClassName.COLLAPSED)
+      $(Selector.BODY).removeClass(ClassName.IS_OPENING).addClass(ClassName.COLLAPSED)
 
       if (this._options.enableRemember) {
         localStorage.setItem(`remember${EVENT_KEY}`, ClassName.COLLAPSED)
