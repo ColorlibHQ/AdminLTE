@@ -101,7 +101,7 @@
   }
 
   .menu-open,
-  .menu-opens {
+  .menu-is-opening {
     > .nav-link {
       i.right {
         @include rotate(-90deg);
