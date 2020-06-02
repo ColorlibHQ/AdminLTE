@@ -179,7 +179,7 @@ class Layout {
   }
 
   _isFooterFixed() {
-    return $('.main-footer').css('position') === 'fixed'
+    return $(Selector.FOOTER).css('position') === 'fixed'
   }
 
   // Static
