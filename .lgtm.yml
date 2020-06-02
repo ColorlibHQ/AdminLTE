@@ -9,8 +9,8 @@ extraction:
     index:
       # Specify a list of files and folders to exclude from extraction.
       filters:
-        - exclude: plugins/
+        - exclude: "**/*.min.js"
       exclude:
         - bower_components/
-        - plugins/
         - docs/assets/js/plugins/
+        - plugins/
