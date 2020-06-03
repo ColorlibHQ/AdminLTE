@@ -75,15 +75,12 @@ class Layout {
     }
 
     const max = this._max(heights)
-    let offset = this._config.panelAutoHeight
-
-    if (offset === true) {
-      offset = 0
-    }
+    const { panelAutoHeight } = this._config
+    const offset = panelAutoHeight === true ? 0 : offset
 
     const $contentSelector = $(Selector.CONTENT)
 
-    if (offset !== false) {
+    if (panelAutoHeight !== false) {
       if (max === heights.controlSidebar) {
         $contentSelector.css('min-height', (max + offset))
       } else if (max === heights.window) {
@@ -101,7 +98,7 @@ class Layout {
       return
     }
 
-    if (offset !== false) {
+    if (panelAutoHeight !== false) {
       $contentSelector.css('min-height', (max + offset) - heights.header - heights.footer)
     }
 
