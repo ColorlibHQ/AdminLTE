@@ -58,26 +58,28 @@ class Dropdown {
   fixPosition() {
     const $element = $(Selector.DROPDOWN_MENU_ACTIVE)
 
-    if ($element.length !== 0) {
-      if ($element.hasClass(ClassName.DROPDOWN_RIGHT)) {
-        $element.css('left', 'inherit')
-        $element.css('right', 0)
-      } else {
-        $element.css('left', 0)
-        $element.css('right', 'inherit')
-      }
+    if ($element.length === 0) {
+      return
+    }
 
-      const offset = $element.offset()
-      const width = $element.width()
-      const visiblePart = $(window).width() - offset.left
+    if ($element.hasClass(ClassName.DROPDOWN_RIGHT)) {
+      $element.css('left', 'inherit')
+      $element.css('right', 0)
+    } else {
+      $element.css('left', 0)
+      $element.css('right', 'inherit')
+    }
 
-      if (offset.left < 0) {
-        $element.css('left', 'inherit')
-        $element.css('right', (offset.left - 5))
-      } else if (visiblePart < width) {
-        $element.css('left', 'inherit')
-        $element.css('right', 0)
-      }
+    const offset = $element.offset()
+    const width = $element.width()
+    const visiblePart = $(window).width() - offset.left
+
+    if (offset.left < 0) {
+      $element.css('left', 'inherit')
+      $element.css('right', (offset.left - 5))
+    } else if (visiblePart < width) {
+      $element.css('left', 'inherit')
+      $element.css('right', 0)
     }
   }
 
