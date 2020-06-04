@@ -31,6 +31,7 @@
     "compile": "npm-run-all --parallel js css-all",
     "dev": "npm-run-all --parallel watch sync",
     "docs": "npm-run-all --sequential docs-prepare docs-compile",
+    "docs-lint": "node build/npm/vnu-jar.js",
     "docs-compile": "cd docs/ && bundle exec jekyll build -d ../docs_html",
     "docs-serve": "cd docs/ && bundle exec jekyll serve",
     "docs-prepare": "node build/npm/DocsPublish.js -v",
@@ -152,6 +153,7 @@
     "rollup": "^2.12.1",
     "stylelint": "^13.5.0",
     "stylelint-config-twbs-bootstrap": "^2.0.3",
-    "terser": "^4.7.0"
+    "terser": "^4.7.0",
+    "vnu-jar": "^20.5.29"
   }
 }
