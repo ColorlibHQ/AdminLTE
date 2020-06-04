@@ -23,8 +23,7 @@ const Event = {
 }
 
 const ClassName = {
-  HEADER: 'expandable-header',
-  BODY: 'expandable-body'
+  HEADER: 'expandable-header'
 }
 
 const Selector = {
@@ -49,7 +48,6 @@ class ExpandableTable {
   init() {
     $(Selector.HEADER).each((_, $header) => {
       // Next Child to the header will have the same column span as header
-      console.log($header)
       $($header).next().children().first().attr('colSpan', $($header).children().length)
 
       // Setting up table design for the first time
@@ -120,7 +118,7 @@ $(document).on('click', Selector.HEADER, function () {
 
 $.fn[NAME] = ExpandableTable._jQueryInterface
 $.fn[NAME].Constructor = ExpandableTable
-$.fn[NAME].noConflict  = function () {
+$.fn[NAME].noConflict = function () {
   $.fn[NAME] = JQUERY_NO_CONFLICT
   return ExpandableTable._jQueryInterface
 }
