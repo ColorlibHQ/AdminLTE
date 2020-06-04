@@ -70,3 +70,16 @@
     }
   }
 }
+
+// Expandable Table
+.expandable-body {
+  td {
+    padding: 0;
+    width: 100%;
+
+    > div,
+    > p {
+      padding: $table-cell-padding;
+    }
+  }
+}

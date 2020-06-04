@@ -3,6 +3,7 @@ import CardWidget from './CardWidget'
 import ControlSidebar from './ControlSidebar'
 import DirectChat from './DirectChat'
 import Dropdown from './Dropdown'
+import ExpandableTable from './ExpandableTable'
 import Layout from './Layout'
 import PushMenu from './PushMenu'
 import Toasts from './Toasts'
@@ -15,6 +16,7 @@ export {
   ControlSidebar,
   DirectChat,
   Dropdown,
+  ExpandableTable,
   Layout,
   PushMenu,
   Toasts,
