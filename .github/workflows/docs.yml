@@ -46,7 +46,7 @@ jobs:
       - name: Set up Ruby cache
         uses: actions/cache@v2
         with:
-          path: vendor/bundle
+          path: docs/vendor/bundle
           key: ${{ runner.os }}-ruby-v${{ env.RUBY }}-${{ hashFiles('Gemfile') }}-${{ hashFiles('Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-ruby-v${{ env.RUBY }}-${{ hashFiles('Gemfile') }}-${{ hashFiles('Gemfile.lock') }}
