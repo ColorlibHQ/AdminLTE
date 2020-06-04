@@ -16,7 +16,7 @@ export {
   ControlSidebar,
   DirectChat,
   Dropdown,
-  ExpandableTable
+  ExpandableTable,
   Layout,
   PushMenu,
   Toasts,
