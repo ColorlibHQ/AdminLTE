@@ -6,6 +6,18 @@
 @mixin select2-variant($name, $color) {
   .select2-#{$name} {
 
+    + .select2-container--default {
+      &.select2-container--open {
+        .select2-selection--single {
+          border-color: lighten($color, 25%);
+        }
+      }
+
+      &.select2-container--focus .select2-selection--single {
+        border-color: lighten($color, 25%);
+      }
+    }
+
     .select2-container--default &,
     .select2-container--default {
       &.select2-dropdown,

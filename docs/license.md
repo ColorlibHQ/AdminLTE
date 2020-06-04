@@ -3,7 +3,7 @@ layout: page
 title: License
 ---
 
-AdminLTE is an open source project that is licensed under the [MIT license](http://opensource.org/licenses/MIT). This allows you to do pretty much anything you want as long as you include the copyright in "all copies or substantial portions of the Software." Attribution is not required (though very much appreciated).
+AdminLTE is an open source project that is licensed under the [MIT license](https://opensource.org/licenses/MIT). This allows you to do pretty much anything you want as long as you include the copyright in "all copies or substantial portions of the Software." Attribution is not required (though very much appreciated).
 
 <h5 class="text-bold text-dark mt-3">What You Are <span class="text-success">Allowed</span> To Do With AdminLTE</h5>
 - Use in commercial projects.

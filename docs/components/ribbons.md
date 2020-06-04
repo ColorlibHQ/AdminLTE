@@ -163,3 +163,17 @@ The ribbon comes in three sizes to display more text or use larger font sizes, d
 ```
   </div>
 </div>
+
+##### Image Example Code
+{: .text-bold .text-dark .mt-5}
+
+```html
+<div class="position-relative">
+    <img src="../../dist/img/photo1.png" alt="Photo 1" class="img-fluid">
+    <div class="ribbon-wrapper ribbon-lg">
+        <div class="ribbon bg-success text-lg">
+            Ribbon
+        </div>
+    </div>
+</div>
+```

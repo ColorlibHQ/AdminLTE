@@ -14,7 +14,7 @@
   }
 }
 
-// Mixin 
+// Mixin
 @mixin pace-variant($name, $color) {
   .pace-#{$name} {
     .pace {
@@ -123,7 +123,7 @@
       }
 
       .pace-activity::after,
-      .pace-activity::before {
+      .pace-activity::before {
         border: 5px solid color-yiq($color);
       }
 

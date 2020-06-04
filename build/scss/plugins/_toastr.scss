@@ -12,10 +12,10 @@
 //     font-weight: 900;
 //     line-height: 18px;
 //     float: left;
-//     color: #FFF;
+//     color: $white;
 //     padding-right: 0.5em;
 //     margin: auto 0.5em auto -1.5em;
-// }        
+// }
 // #toast-container > .toast-warning .toast-message:before {
 //     content: "\f06a";
 // }
@@ -51,4 +51,10 @@
   .toast-warning {
     background-color: $warning;
   }
+}
+
+// full width fix
+.toast-bottom-full-width .toast,
+.toast-top-full-width .toast {
+  max-width: inherit;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,12 +9,10 @@
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -23,7 +21,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="../../index3.html" class="nav-link">Home</a>
@@ -133,7 +131,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
       </li>
@@ -732,7 +730,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form">
+              <form>
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
@@ -750,7 +748,7 @@
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
                       <div class="input-group-append">
-                        <span class="input-group-text" id="">Upload</span>
+                        <span class="input-group-text">Upload</span>
                       </div>
                     </div>
                   </div>
@@ -986,7 +984,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form role="form">
+                <form>
                   <div class="row">
                     <div class="col-sm-6">
                       <!-- text input -->
@@ -1052,7 +1050,7 @@
                           <label class="form-check-label">Checkbox disabled</label>
                         </div>
                       </div>
-                    </div> 
+                    </div>
                     <div class="col-sm-6">
                       <!-- radio -->
                       <div class="form-group">
@@ -1139,7 +1137,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form role="form">
+                <form>
                   <div class="row">
                     <div class="col-sm-6">
                       <!-- checkbox -->
@@ -1157,7 +1155,7 @@
                           <label for="customCheckbox3" class="custom-control-label">Custom Checkbox disabled</label>
                         </div>
                       </div>
-                    </div> 
+                    </div>
                     <div class="col-sm-6">
                       <!-- radio -->
                       <div class="form-group">
@@ -1256,12 +1254,12 @@
                     <input type="range" class="custom-range" id="customRange1">
                   </div>
                   <div class="form-group">
-                    <label for="customRange1">Custom range (custom-range-danger)</label>
-                    <input type="range" class="custom-range custom-range-danger" id="customRange1">
+                    <label for="customRange2">Custom range (custom-range-danger)</label>
+                    <input type="range" class="custom-range custom-range-danger" id="customRange2">
                   </div>
                   <div class="form-group">
-                    <label for="customRange1">Custom range (custom-range-teal)</label>
-                    <input type="range" class="custom-range custom-range-teal" id="customRange1">
+                    <label for="customRange3">Custom range (custom-range-teal)</label>
+                    <input type="range" class="custom-range custom-range-teal" id="customRange3">
                   </div>
                   <div class="form-group">
                     <!-- <label for="customFile">Custom File</label> -->
@@ -1289,9 +1287,9 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.3-pre
+      <b>Version</b> 3.1.0-pre
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -1313,8 +1311,8 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<script type="text/javascript">
-$(document).ready(function () {
+<script>
+$(function () {
   bsCustomFileInput.init();
 });
 </script>

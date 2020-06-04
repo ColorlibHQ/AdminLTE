@@ -4,7 +4,7 @@ title: Main Header Component
 ---
 
 > ##### Reminder!
-> AdminLTE uses all of Bootstrap 4 components. It's a good start to review the [Bootstrap documentation](http://getbootstrap.com) to get an idea of the various components that this documentation __does not__ cover.
+> AdminLTE uses all of Bootstrap 4 components. It's a good start to review the [Bootstrap documentation](https://getbootstrap.com/) to get an idea of the various components that this documentation __does not__ cover.
 {: .quote-orange .mt-0}
 
 
@@ -19,7 +19,7 @@ The main header contains the navbar. Construction of the navbar differs slightly
   <!-- Left navbar links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
       <a href="index3.html" class="nav-link">Home</a>
@@ -140,7 +140,7 @@ The main header contains the navbar. Construction of the navbar differs slightly
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
+      <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
           class="fas fa-th-large"></i></a>
     </li>
   </ul>
@@ -152,7 +152,7 @@ The main header contains the navbar. Construction of the navbar differs slightly
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="index3.html" class="nav-link">Home</a>
@@ -161,10 +161,10 @@ The main header contains the navbar. Construction of the navbar differs slightly
         <a href="#" class="nav-link">Contact</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Help
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
           <a class="dropdown-item" href="#">FAQ</a>
           <a class="dropdown-item" href="#">Support</a>
           <div class="dropdown-divider"></div>
@@ -273,7 +273,7 @@ The main header contains the navbar. Construction of the navbar differs slightly
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
             class="fas fa-th-large"></i></a>
       </li>
     </ul>
@@ -310,10 +310,10 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
         <a href="#" class="nav-link">Contact</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Help
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
           <a class="dropdown-item" href="#">FAQ</a>
           <a class="dropdown-item" href="#">Support</a>
           <div class="dropdown-divider"></div>
@@ -420,7 +420,7 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
             class="fas fa-th-large"></i></a>
       </li>
     </ul>
@@ -435,7 +435,6 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
              style="opacity: .8">
         <span class="brand-text font-weight-light">AdminLTE 3</span>
       </a>
-
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -447,10 +446,10 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
           <a href="#" class="nav-link">Contact</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Help
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
             <a class="dropdown-item" href="#">FAQ</a>
             <a class="dropdown-item" href="#">Support</a>
             <div class="dropdown-divider"></div>
@@ -458,7 +457,6 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
           </div>
         </li>
       </ul>
-
       <!-- SEARCH FORM -->
       <form class="form-inline ml-3">
         <div class="input-group input-group-sm">
@@ -470,7 +468,6 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
           </div>
         </div>
       </form>
-
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
@@ -559,7 +556,7 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
+          <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
               class="fas fa-th-large"></i></a>
         </li>
       </ul>

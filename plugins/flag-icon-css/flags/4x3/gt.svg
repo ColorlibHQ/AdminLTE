@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icon-css-gt" viewBox="0 0 640 480">
   <defs>
-    <radialGradient id="d" cx="447.4" cy="308.3" r="16.5" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
-    <radialGradient id="m" cx="477.9" cy="215.3" r=".3" gradientUnits="userSpaceOnUse">
-      <stop offset=".3" stop-color="#a50a0a"/>
-      <stop offset="1" stop-color="#4c0505"/>
+    <radialGradient id="a">
+      <stop offset=".2" stop-color="#f9f0aa"/>
+      <stop offset="1" stop-color="#b07e09"/>
     </radialGradient>
+    <radialGradient id="d" cx="447.4" cy="308.3" r="16.5" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <radialGradient id="e" cx="451.6" cy="313" r="10.9" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <radialGradient id="f" cx="454.1" cy="308.6" r="9.8" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <radialGradient id="g" cx="458.4" cy="307.1" r="17.4" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <radialGradient id="j" cx="446" cy="252.4" r="13" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
-    <radialGradient id="a">
-      <stop offset=".2" stop-color="#f9f0aa"/>
-      <stop offset="1" stop-color="#b07e09"/>
+    <radialGradient id="m" cx="477.9" cy="215.3" r=".3" gradientUnits="userSpaceOnUse">
+      <stop offset=".3" stop-color="#a50a0a"/>
+      <stop offset="1" stop-color="#4c0505"/>
     </radialGradient>
     <radialGradient id="n" cx="489.1" cy="210.3" r=".3" fx="489.1" fy="210.3" gradientTransform="scale(.97707 1.02346)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#fff"/>

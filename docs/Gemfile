@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
-gem "jekyll", "~> 3.8.5"
+group :development, :test do
+  gem 'jekyll', '~> 4.1.0'
+  gem 'jekyll-seo-tag', '~> 2.6.1'
+  gem 'jekyll-sitemap', '~> 1.4.0'
+  gem 'wdm', '~> 0.1.1', :install_if => Gem.win_platform?
+end
 
-gem "rouge"
-
-gem 'github-pages', group: :jekyll_plugins

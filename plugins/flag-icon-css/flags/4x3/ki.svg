@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-ki" viewBox="0 0 640 480">
   <defs>
-    <clipPath id="a">
+    <clipPath id="ki-a">
       <path fill-opacity=".7" d="M-86.3 0h682.6v512H-86.3z"/>
     </clipPath>
   </defs>
-  <g clip-path="url(#a)" transform="translate(81) scale(.9375)">
+  <g clip-path="url(#ki-a)" transform="translate(81) scale(.9375)">
     <path fill="#e73e2d" fill-rule="evenodd" d="M-164.3 0h835.8v306.5h-835.8z"/>
     <path fill="#fec74a" fill-rule="evenodd" stroke="#d8aa3f" stroke-width="1.7" d="M204.3 282.1c-19.4-15.2-55.6-10-61.6-51.3 27.7 21.5 22.7-1.2 64 19.3l-2.4 32z"/>
     <path fill="#fec74a" fill-rule="evenodd" stroke="#d8aa3f" stroke-width="1.7" d="M209.5 263.4c-13.9-20.4-50-26.6-43-67.7 19.9 28.9 22 5.7 55.2 37.9l-12.2 29.8z"/>

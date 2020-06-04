@@ -1,5 +1,10 @@
+#!/usr/bin/env node
+
+'use strict'
+
+const path = require('path')
+const fse = require('fs-extra')
 const Plugins = require('./DocsPlugins')
-const fse     = require('fs-extra')
 
 class Publish {
   constructor() {
@@ -12,7 +17,7 @@ class Publish {
 
   getArguments() {
     if (process.argv.length > 2) {
-      let arg = process.argv[2]
+      const arg = process.argv[2]
       switch (arg) {
         case '-v':
         case '--verbose':
@@ -26,15 +31,20 @@ class Publish {
 
   run() {
     // Publish files
-    Plugins.forEach((module) => {
+    Plugins.forEach(module => {
       try {
-        fse.copySync(module.from, module.to)
+        fse.copySync(module.from, module.to, {
+          // Skip copying dot files
+          filter(src) {
+            return !path.basename(src).startsWith('.')
+          }
+        })
 
         if (this.options.verbose) {
           console.log(`Copied ${module.from} to ${module.to}`)
         }
-      } catch (err) {
-        console.error(`Error: ${err}`)
+      } catch (error) {
+        console.error(`Error: ${error}`)
       }
     })
   }

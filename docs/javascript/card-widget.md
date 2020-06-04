@@ -149,8 +149,8 @@ $('#my-card').CardWidget(options)
 | Name | Type | Default | Description
 |-|-|-|-
 |animationSpeed | Number | 300 | Speed of slide down/up animation in milliseconds.
-|collapseTrigger | String | `[data-card-widget="remove"]` | jQuery selector to the element responsible for collapsing the box.
-|removeTrigger | String | `[data-card-widget="collapse"]` | jQuery selector to the element responsible for removing the box.
+|collapseTrigger | String | `[data-card-widget="collapse"]` | jQuery selector to the element responsible for collapsing the box.
+|removeTrigger | String | `[data-card-widget="remove"]` | jQuery selector to the element responsible for removing the box.
 |maximizeTrigger | String | `[data-card-widget="maximize"]` | jQuery selector to the element responsible for maximizing the box.
 {: .table .table-bordered .bg-light}
 

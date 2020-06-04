@@ -1,26 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icon-css-vg" viewBox="0 0 640 480">
   <defs>
+    <linearGradient id="a">
+      <stop offset="0" stop-color="red"/>
+      <stop offset="1" stop-color="#ff0"/>
+    </linearGradient>
     <linearGradient id="c" x1="103.1" x2="92.5" y1="111.3" y2="107.8" gradientTransform="matrix(.64274 0 0 1.4534 -94.7 29.2)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
-    <linearGradient id="i" x1="103.1" x2="92.5" y1="111.3" y2="107.8" gradientTransform="matrix(.64274 0 0 1.4534 -98 33.7)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="d" x1="103.1" x2="92.5" y1="111.3" y2="107.8" gradientTransform="matrix(.64274 0 0 1.4534 -94.7 30.2)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="e" x1="103.1" x2="92.5" y1="111.3" y2="107.8" gradientTransform="matrix(.64274 0 0 1.4534 -98 31)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="f" x1="103.1" x2="92.5" y1="111.3" y2="107.8" gradientTransform="matrix(.64274 0 0 1.4534 -94.7 32)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="g" x1="103.1" x2="92.5" y1="111.3" y2="107.8" gradientTransform="matrix(.64274 0 0 1.4534 -94.8 32.8)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="h" x1="103.1" x2="92.5" y1="111.3" y2="107.8" gradientTransform="matrix(.64274 0 0 1.4534 -94.8 33.8)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
-    <linearGradient id="a">
-      <stop offset="0" stop-color="red"/>
-      <stop offset="1" stop-color="#ff0"/>
-    </linearGradient>
+    <linearGradient id="i" x1="103.1" x2="92.5" y1="111.3" y2="107.8" gradientTransform="matrix(.64274 0 0 1.4534 -98 33.7)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="j" x1="103.1" x2="92.5" y1="111.3" y2="107.8" gradientTransform="matrix(.64274 0 0 1.4534 -98 32.8)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="k" x1="103.1" x2="92.5" y1="111.3" y2="107.8" gradientTransform="matrix(.64274 0 0 1.4534 -98 32)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="l" x1="103.1" x2="92.5" y1="111.3" y2="107.8" gradientTransform="matrix(.8281 0 0 1.8726 602.8 148.2)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="m" x1="103.1" x2="92.5" y1="111.3" y2="107.8" gradientTransform="matrix(.64274 0 0 1.4534 -98 30.1)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="n" x1="103.1" x2="92.5" y1="111.3" y2="107.8" gradientTransform="matrix(.64274 0 0 1.4534 -95.3 31)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
-    <clipPath id="b">
+    <clipPath id="vg-b">
       <path fill-opacity=".7" d="M0 0h640v480H0z"/>
     </clipPath>
   </defs>
-  <g clip-path="url(#b)">
+  <g clip-path="url(#vg-b)">
     <path fill="#006" d="M0 0h960v480H0z"/>
     <path fill="#006" fill-rule="evenodd" d="M0 0h350v175H0z"/>
     <g stroke-width="1pt">

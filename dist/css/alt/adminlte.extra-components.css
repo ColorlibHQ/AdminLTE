@@ -1,5 +1,5 @@
 /*!
- *   AdminLTE v3.0.2
+ *   AdminLTE v3.0.5
  *     Only Extra Components
  *   Author: Colorlib
  *   Website: AdminLTE.io <http://adminlte.io>
@@ -134,6 +134,7 @@
   min-height: 80px;
   padding: .5rem;
   position: relative;
+  width: 100%;
 }
 
 .info-box .progress {
@@ -161,12 +162,17 @@
 }
 
 .info-box .info-box-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 120%;
   flex: 1;
-  padding: 5px 10px;
+  padding: 0 10px;
 }
 
 .info-box .info-box-number {
   display: block;
+  margin-top: .25rem;
   font-weight: 700;
 }
 

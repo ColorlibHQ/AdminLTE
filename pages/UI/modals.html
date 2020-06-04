@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <!-- Toastr -->
@@ -17,7 +15,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -26,7 +24,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="../../index3.html" class="nav-link">Home</a>
@@ -136,7 +134,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
       </li>
@@ -711,7 +709,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>
-              Modals & Alerts 
+              Modals & Alerts
               <small>new</small>
             </h1>
           </div>
@@ -777,7 +775,7 @@
                 </button>
                 <div class="text-muted mt-3">
                   Instructions for how to use modals are available on the
-                  <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a>
+                  <a href="https://getbootstrap.com/docs/4.5/components/modal/">Bootstrap documentation</a>
                 </div>
               </div>
               <!-- /.card -->
@@ -1159,9 +1157,9 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.3-pre
+      <b>Version</b> 3.1.0-pre
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -1186,9 +1184,9 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 
-<script type="text/javascript">
+<script>
   $(function() {
-    const Toast = Swal.mixin({
+    var Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
@@ -1197,31 +1195,31 @@
 
     $('.swalDefaultSuccess').click(function() {
       Toast.fire({
-        type: 'success',
+        icon: 'success',
         title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
       })
     });
     $('.swalDefaultInfo').click(function() {
       Toast.fire({
-        type: 'info',
+        icon: 'info',
         title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
       })
     });
     $('.swalDefaultError').click(function() {
       Toast.fire({
-        type: 'error',
+        icon: 'error',
         title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
       })
     });
     $('.swalDefaultWarning').click(function() {
       Toast.fire({
-        type: 'warning',
+        icon: 'warning',
         title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
       })
     });
     $('.swalDefaultQuestion').click(function() {
       Toast.fire({
-        type: 'question',
+        icon: 'question',
         title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
       })
     });
@@ -1300,7 +1298,7 @@
     });
     $('.toastsDefaultSuccess').click(function() {
       $(document).Toasts('create', {
-        class: 'bg-success', 
+        class: 'bg-success',
         title: 'Toast Title',
         subtitle: 'Subtitle',
         body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
@@ -1308,7 +1306,7 @@
     });
     $('.toastsDefaultInfo').click(function() {
       $(document).Toasts('create', {
-        class: 'bg-info', 
+        class: 'bg-info',
         title: 'Toast Title',
         subtitle: 'Subtitle',
         body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
@@ -1316,7 +1314,7 @@
     });
     $('.toastsDefaultWarning').click(function() {
       $(document).Toasts('create', {
-        class: 'bg-warning', 
+        class: 'bg-warning',
         title: 'Toast Title',
         subtitle: 'Subtitle',
         body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
@@ -1324,7 +1322,7 @@
     });
     $('.toastsDefaultDanger').click(function() {
       $(document).Toasts('create', {
-        class: 'bg-danger', 
+        class: 'bg-danger',
         title: 'Toast Title',
         subtitle: 'Subtitle',
         body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
@@ -1332,7 +1330,7 @@
     });
     $('.toastsDefaultMaroon').click(function() {
       $(document).Toasts('create', {
-        class: 'bg-maroon', 
+        class: 'bg-maroon',
         title: 'Toast Title',
         subtitle: 'Subtitle',
         body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'

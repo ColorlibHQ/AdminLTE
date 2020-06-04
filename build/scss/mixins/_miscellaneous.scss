@@ -25,11 +25,8 @@
 }
 
 // Gradient background
-@mixin gradient($color: #F5F5F5, $start: #EEE, $stop: #FFF) {
+@mixin gradient($color: #f5f5f5, $start: #eee, $stop: $white) {
   background: $color;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, $start), color-stop(1, $stop));
-  background: -ms-linear-gradient(bottom, $start, $stop);
-  background: -moz-linear-gradient(center bottom, $start 0%, $stop 100%);
-  background: -o-linear-gradient($stop, $start);
+  background: gradient(linear, left bottom, left top, color-stop(0, $start), color-stop(1, $stop));
 }
 

@@ -123,7 +123,7 @@ $.extend( DataTable.ext.buttons, {
 
 					// This button controls the same column index but the text for the column has
 					// changed
-					button.text( conf._columnText( dt, conf ) );
+					that.text( conf._columnText( dt, conf ) );
 
 					// Since its a different column, we need to check its visibility
 					that.active( dt.column( conf.columns ).visible() );

@@ -1,0 +1,60 @@
+{
+  "files": [
+    {
+      "path": "./dist/css/adminlte.css",
+      "maxSize": "80 kB"
+    },
+    {
+      "path": "./dist/css/adminlte.min.css",
+      "maxSize": "72.5 kB"
+    },
+    {
+      "path": "./dist/css/alt/adminlte.components.css",
+      "maxSize": "14 kB"
+    },
+    {
+      "path": "./dist/css/alt/adminlte.components.min.css",
+      "maxSize": "13 kB"
+    },
+    {
+      "path": "./dist/css/alt/adminlte.core.css",
+      "maxSize": "46 kB"
+    },
+    {
+      "path": "./dist/css/alt/adminlte.core.min.css",
+      "maxSize": "43 kB"
+    },
+    {
+      "path": "./dist/css/alt/adminlte.extra-components.css",
+      "maxSize": "4 kB"
+    },
+    {
+      "path": "./dist/css/alt/adminlte.extra-components.min.css",
+      "maxSize": "4 kB"
+    },
+    {
+      "path": "./dist/css/alt/adminlte.pages.css",
+      "maxSize": "3 kB"
+    },
+    {
+      "path": "./dist/css/alt/adminlte.pages.min.css",
+      "maxSize": "3 kB"
+    },
+    {
+      "path": "./dist/css/alt/adminlte.plugins.css",
+      "maxSize": "17 kB"
+    },
+    {
+      "path": "./dist/css/alt/adminlte.plugins.min.css",
+      "maxSize": "16 kB"
+    },
+    {
+      "path": "./dist/js/adminlte.js",
+      "maxSize": "10 kB"
+    },
+    {
+      "path": "./dist/js/adminlte.min.js",
+      "maxSize": "6.5 kB"
+    }
+  ]
+}

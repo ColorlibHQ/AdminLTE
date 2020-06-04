@@ -1,0 +1,29 @@
+/*!
+ *   AdminLTE v3.1.0-pre
+ *   Author: Colorlib
+ *   Website: AdminLTE.io <https://adminlte.io>
+ *   License: Open source - MIT <https://opensource.org/licenses/MIT>
+ */
+
+//
+// ------------------------------------------------------------------
+// This file is to be included in your custom SCSS. Before importing
+// this file, you should include your custom AdminLTE and Bootstrap
+// variables followed by bootstrap.scss and then this file. It's
+// ok to import this file without custom variables too!
+// NOTE: be sure to keep the license notice in the generated css.
+// ------------------------------------------------------------------
+
+//
+// Variables and Mixins
+// ---------------------------------------------------
+@import "bootstrap-variables";
+@import "variables";
+@import "mixins";
+
+@import "parts/core";
+@import "parts/components";
+@import "parts/extra-components";
+@import "parts/pages";
+@import "parts/plugins";
+@import "parts/miscellaneous";

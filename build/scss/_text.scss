@@ -4,7 +4,9 @@
 
 // text modification
 .text-bold {
-  &, &.table td, &.table th {
+  &,
+  &.table td,
+  &.table th {
     font-weight: 700;
   }
 }
@@ -32,6 +34,6 @@
 // text color variations
 @each $name, $color in $colors {
   .text-#{$name} {
-    color: #{$color};
+    color: #{$color} !important;
   }
 }
