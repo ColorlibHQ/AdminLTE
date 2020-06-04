@@ -176,8 +176,10 @@ class ControlSidebar {
     }
 
     if (positions.top === 0 && positions.bottom === 0) {
-      $(Selector.CONTROL_SIDEBAR).css('bottom', heights.footer)
-      $(Selector.CONTROL_SIDEBAR).css('top', heights.header)
+      $(Selector.CONTROL_SIDEBAR).css({
+        bottom: heights.footer,
+        top: heights.header
+      })
       $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window - (heights.header + heights.footer))
     } else if (positions.bottom <= heights.footer) {
       if (footerFixed === false) {

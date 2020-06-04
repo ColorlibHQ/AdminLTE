@@ -63,11 +63,15 @@ class Dropdown {
     }
 
     if ($element.hasClass(ClassName.DROPDOWN_RIGHT)) {
-      $element.css('left', 'inherit')
-      $element.css('right', 0)
+      $element.css({
+        left: 'inherit',
+        right: 0
+      })
     } else {
-      $element.css('left', 0)
-      $element.css('right', 'inherit')
+      $element.css({
+        left: 0,
+        right: 'inherit'
+      })
     }
 
     const offset = $element.offset()
@@ -75,11 +79,15 @@ class Dropdown {
     const visiblePart = $(window).width() - offset.left
 
     if (offset.left < 0) {
-      $element.css('left', 'inherit')
-      $element.css('right', (offset.left - 5))
+      $element.css({
+        left: 'inherit',
+        right: offset.left - 5
+      })
     } else if (visiblePart < width) {
-      $element.css('left', 'inherit')
-      $element.css('right', 0)
+      $element.css({
+        left: 'inherit',
+        right: 0
+      })
     }
   }
 
