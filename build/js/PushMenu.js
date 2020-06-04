@@ -62,13 +62,15 @@ class PushMenu {
   // Public
 
   expand() {
+    const $bodySelector = $(Selector.BODY)
+
     if (this._options.autoCollapseSize) {
       if ($(window).width() <= this._options.autoCollapseSize) {
-        $(Selector.BODY).addClass(ClassName.OPEN)
+        $bodySelector.addClass(ClassName.OPEN)
       }
     }
 
-    $(Selector.BODY).addClass(ClassName.IS_OPENING).removeClass(`${ClassName.COLLAPSED} ${ClassName.CLOSED}`)
+    $bodySelector.addClass(ClassName.IS_OPENING).removeClass(`${ClassName.COLLAPSED} ${ClassName.CLOSED}`)
 
     if (this._options.enableRemember) {
       localStorage.setItem(`remember${EVENT_KEY}`, ClassName.OPEN)
@@ -78,13 +80,15 @@ class PushMenu {
   }
 
   collapse() {
+    const $bodySelector = $(Selector.BODY)
+
     if (this._options.autoCollapseSize) {
       if ($(window).width() <= this._options.autoCollapseSize) {
-        $(Selector.BODY).removeClass(ClassName.OPEN).addClass(ClassName.CLOSED)
+        $bodySelector.removeClass(ClassName.OPEN).addClass(ClassName.CLOSED)
       }
     }
 
-    $(Selector.BODY).removeClass(ClassName.IS_OPENING).addClass(ClassName.COLLAPSED)
+    $bodySelector.removeClass(ClassName.IS_OPENING).addClass(ClassName.COLLAPSED)
 
     if (this._options.enableRemember) {
       localStorage.setItem(`remember${EVENT_KEY}`, ClassName.COLLAPSED)
@@ -106,14 +110,16 @@ class PushMenu {
       return
     }
 
+    const $bodySelector = $(Selector.BODY)
+
     if ($(window).width() <= this._options.autoCollapseSize) {
-      if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
+      if (!$bodySelector.hasClass(ClassName.OPEN)) {
         this.collapse()
       }
     } else if (resize === true) {
-      if ($(Selector.BODY).hasClass(ClassName.OPEN)) {
-        $(Selector.BODY).removeClass(ClassName.OPEN)
-      } else if ($(Selector.BODY).hasClass(ClassName.CLOSED)) {
+      if ($bodySelector.hasClass(ClassName.OPEN)) {
+        $bodySelector.removeClass(ClassName.OPEN)
+      } else if ($bodySelector.hasClass(ClassName.CLOSED)) {
         this.expand()
       }
     }
@@ -124,23 +130,25 @@ class PushMenu {
       return
     }
 
+    const $body = $('body')
     const toggleState = localStorage.getItem(`remember${EVENT_KEY}`)
+
     if (toggleState === ClassName.COLLAPSED) {
       if (this._options.noTransitionAfterReload) {
-        $('body').addClass('hold-transition').addClass(ClassName.COLLAPSED).delay(50).queue(function () {
+        $body.addClass('hold-transition').addClass(ClassName.COLLAPSED).delay(50).queue(function () {
           $(this).removeClass('hold-transition')
           $(this).dequeue()
         })
       } else {
-        $('body').addClass(ClassName.COLLAPSED)
+        $body.addClass(ClassName.COLLAPSED)
       }
     } else if (this._options.noTransitionAfterReload) {
-      $('body').addClass('hold-transition').removeClass(ClassName.COLLAPSED).delay(50).queue(function () {
+      $body.addClass('hold-transition').removeClass(ClassName.COLLAPSED).delay(50).queue(function () {
         $(this).removeClass('hold-transition')
         $(this).dequeue()
       })
     } else {
-      $('body').removeClass(ClassName.COLLAPSED)
+      $body.removeClass(ClassName.COLLAPSED)
     }
   }
 

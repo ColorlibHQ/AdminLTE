@@ -69,42 +69,50 @@ class ControlSidebar {
   // Public
 
   collapse() {
+    const $body = $('body')
+    const $html = $('html')
+
     // Show the control sidebar
     if (this._config.controlsidebarSlide) {
-      $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
-      $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
+      $html.addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
+      $body.removeClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
         $(Selector.CONTROL_SIDEBAR).hide()
-        $('html').removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
+        $html.removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
         $(this).dequeue()
       })
     } else {
-      $('body').removeClass(ClassName.CONTROL_SIDEBAR_OPEN)
+      $body.removeClass(ClassName.CONTROL_SIDEBAR_OPEN)
     }
 
     $(this._element).trigger($.Event(Event.COLLAPSED))
   }
 
   show() {
+    const $body = $('body')
+    const $html = $('html')
+
     // Collapse the control sidebar
     if (this._config.controlsidebarSlide) {
-      $('html').addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
+      $html.addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
       $(Selector.CONTROL_SIDEBAR).show().delay(10).queue(function () {
-        $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
-          $('html').removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
+        $body.addClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
+          $html.removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
           $(this).dequeue()
         })
         $(this).dequeue()
       })
     } else {
-      $('body').addClass(ClassName.CONTROL_SIDEBAR_OPEN)
+      $body.addClass(ClassName.CONTROL_SIDEBAR_OPEN)
     }
 
     $(this._element).trigger($.Event(Event.EXPANDED))
   }
 
   toggle() {
-    const shouldClose = $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body')
-        .hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)
+    const $body = $('body')
+    const shouldClose = $body.hasClass(ClassName.CONTROL_SIDEBAR_OPEN) ||
+        $body.hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)
+
     if (shouldClose) {
       // Close the control sidebar
       this.collapse()
@@ -126,14 +134,20 @@ class ControlSidebar {
     })
 
     $(window).scroll(() => {
-      if ($('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)) {
+      const $body = $('body')
+      const shouldClose = $body.hasClass(ClassName.CONTROL_SIDEBAR_OPEN) ||
+          $body.hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)
+
+      if (shouldClose) {
         this._fixScrollHeight()
       }
     })
   }
 
   _fixScrollHeight() {
-    if (!$('body').hasClass(ClassName.LAYOUT_FIXED)) {
+    const $body = $('body')
+
+    if (!$body.hasClass(ClassName.LAYOUT_FIXED)) {
       return
     }
 
@@ -152,11 +166,11 @@ class ControlSidebar {
     let footerFixed = false
 
     if (
-      $('body').hasClass(ClassName.NAVBAR_FIXED) ||
-        $('body').hasClass(ClassName.NAVBAR_SM_FIXED) ||
-        $('body').hasClass(ClassName.NAVBAR_MD_FIXED) ||
-        $('body').hasClass(ClassName.NAVBAR_LG_FIXED) ||
-        $('body').hasClass(ClassName.NAVBAR_XL_FIXED)
+      $body.hasClass(ClassName.NAVBAR_FIXED) ||
+        $body.hasClass(ClassName.NAVBAR_SM_FIXED) ||
+        $body.hasClass(ClassName.NAVBAR_MD_FIXED) ||
+        $body.hasClass(ClassName.NAVBAR_LG_FIXED) ||
+        $body.hasClass(ClassName.NAVBAR_XL_FIXED)
     ) {
       if ($(Selector.HEADER).css('position') === 'fixed') {
         navbarFixed = true
@@ -164,47 +178,52 @@ class ControlSidebar {
     }
 
     if (
-      $('body').hasClass(ClassName.FOOTER_FIXED) ||
-        $('body').hasClass(ClassName.FOOTER_SM_FIXED) ||
-        $('body').hasClass(ClassName.FOOTER_MD_FIXED) ||
-        $('body').hasClass(ClassName.FOOTER_LG_FIXED) ||
-        $('body').hasClass(ClassName.FOOTER_XL_FIXED)
+      $body.hasClass(ClassName.FOOTER_FIXED) ||
+        $body.hasClass(ClassName.FOOTER_SM_FIXED) ||
+        $body.hasClass(ClassName.FOOTER_MD_FIXED) ||
+        $body.hasClass(ClassName.FOOTER_LG_FIXED) ||
+        $body.hasClass(ClassName.FOOTER_XL_FIXED)
     ) {
       if ($(Selector.FOOTER).css('position') === 'fixed') {
         footerFixed = true
       }
     }
 
+    const $controlSidebar = $(Selector.CONTROL_SIDEBAR)
+    const $controlsidebarContent = $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT)
+
     if (positions.top === 0 && positions.bottom === 0) {
-      $(Selector.CONTROL_SIDEBAR).css({
+      $controlSidebar.css({
         bottom: heights.footer,
         top: heights.header
       })
-      $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window - (heights.header + heights.footer))
+      $controlsidebarContent.css('height', heights.window - (heights.header + heights.footer))
     } else if (positions.bottom <= heights.footer) {
       if (footerFixed === false) {
-        $(Selector.CONTROL_SIDEBAR).css('bottom', heights.footer - positions.bottom)
-        $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window - (heights.footer - positions.bottom))
+        $controlSidebar.css('bottom', heights.footer - positions.bottom)
+        $controlsidebarContent.css('height', heights.window - (heights.footer - positions.bottom))
       } else {
-        $(Selector.CONTROL_SIDEBAR).css('bottom', heights.footer)
+        $controlSidebar.css('bottom', heights.footer)
       }
     } else if (positions.top <= heights.header) {
       if (navbarFixed === false) {
-        $(Selector.CONTROL_SIDEBAR).css('top', heights.header - positions.top)
-        $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window - (heights.header - positions.top))
+        $controlSidebar.css('top', heights.header - positions.top)
+        $controlsidebarContent.css('height', heights.window - (heights.header - positions.top))
       } else {
-        $(Selector.CONTROL_SIDEBAR).css('top', heights.header)
+        $controlSidebar.css('top', heights.header)
       }
     } else if (navbarFixed === false) {
-      $(Selector.CONTROL_SIDEBAR).css('top', 0)
-      $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', heights.window)
+      $controlSidebar.css('top', 0)
+      $controlsidebarContent.css('height', heights.window)
     } else {
-      $(Selector.CONTROL_SIDEBAR).css('top', heights.header)
+      $controlSidebar.css('top', heights.header)
     }
   }
 
   _fixHeight() {
-    if (!$('body').hasClass(ClassName.LAYOUT_FIXED)) {
+    const $body = $('body')
+
+    if (!$body.hasClass(ClassName.LAYOUT_FIXED)) {
       return
     }
 
@@ -217,21 +236,22 @@ class ControlSidebar {
     let sidebarHeight = heights.window - heights.header
 
     if (
-      $('body').hasClass(ClassName.FOOTER_FIXED) ||
-          $('body').hasClass(ClassName.FOOTER_SM_FIXED) ||
-          $('body').hasClass(ClassName.FOOTER_MD_FIXED) ||
-          $('body').hasClass(ClassName.FOOTER_LG_FIXED) ||
-          $('body').hasClass(ClassName.FOOTER_XL_FIXED)
+      $body.hasClass(ClassName.FOOTER_FIXED) ||
+          $body.hasClass(ClassName.FOOTER_SM_FIXED) ||
+          $body.hasClass(ClassName.FOOTER_MD_FIXED) ||
+          $body.hasClass(ClassName.FOOTER_LG_FIXED) ||
+          $body.hasClass(ClassName.FOOTER_XL_FIXED)
     ) {
       if ($(Selector.FOOTER).css('position') === 'fixed') {
         sidebarHeight = heights.window - heights.header - heights.footer
       }
     }
 
-    $(Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).css('height', sidebarHeight)
+    const $controlSidebar = $(Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT)
+    $controlSidebar.css('height', sidebarHeight)
 
     if (typeof $.fn.overlayScrollbars !== 'undefined') {
-      $(Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT).overlayScrollbars({
+      $controlSidebar.overlayScrollbars({
         className: this._config.scrollbarTheme,
         sizeAutoCapable: true,
         scrollbars: {
