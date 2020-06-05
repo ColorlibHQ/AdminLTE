@@ -29,7 +29,7 @@ $bootstrap-switch-handle-border-radius: .1rem;
     border-radius: $bootstrap-switch-border-radius;
     display: inline-block;
     top: 0;
-    transform: translate3d(0, 0, 0);
+    @include translate();
 
   }
 

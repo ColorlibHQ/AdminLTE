@@ -3,8 +3,8 @@
 //
 
 // ETC
-@mixin translate($x, $y) {
-  transform: translate($x, $y);
+@mixin translate($x: 0, $y: 0, $z: 0) {
+  transform: translate3d($x, $y, $z);
 }
 
 // Different radius each side
@@ -29,4 +29,3 @@
   background-color: $color;
   background-image: gradient(linear, left bottom, left top, color-stop(0, $start), color-stop(1, $stop));
 }
-

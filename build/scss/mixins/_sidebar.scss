@@ -135,8 +135,8 @@
         // and angle icons disappear
         .sidebar-form,
         .user-panel > .info {
-          display: block !important;
-          transform: translateZ(0);
+          display: block !important; // TODO: this seems redundant?
+          @include translate(); // TODO: this seems redundant?
         }
 
         .nav-sidebar > .nav-item > .nav-link > span {

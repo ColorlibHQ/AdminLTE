@@ -30,7 +30,7 @@
 }
 
 .direct-chat-messages {
-  @include translate(0, 0);
+  @include translate();
   height: 250px;
   overflow: auto;
   padding: 10px;
@@ -129,12 +129,12 @@
 //Direct chat contacts pane
 .direct-chat-contacts-open {
   .direct-chat-contacts {
-    @include translate(0, 0);
+    @include translate();
   }
 }
 
 .direct-chat-contacts {
-  @include translate(101%, 0);
+  @include translate(101%, 0, 0);
   background-color: $dark;
   bottom: 0;
   color: $white;

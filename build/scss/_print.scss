@@ -18,7 +18,7 @@
   //This is the only element that should appear, so let's remove the margins
   .content-wrapper,
   .main-footer {
-    @include translate(0, 0);
+    @include translate();
     margin-left: 0 !important;
     min-height: 0 !important;
   }
