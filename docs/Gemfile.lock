@@ -14,7 +14,7 @@ GEM
     ffi (1.13.0-x64-mingw32)
     forwardable-extended (2.6.0)
     http_parser.rb (0.6.0)
-    i18n (1.8.2)
+    i18n (1.8.3)
       concurrent-ruby (~> 1.0)
     jekyll (4.1.0)
       addressable (~> 2.4)
