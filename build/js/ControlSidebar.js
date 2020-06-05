@@ -135,10 +135,10 @@ class ControlSidebar {
 
     $(window).scroll(() => {
       const $body = $('body')
-      const shouldClose = $body.hasClass(ClassName.CONTROL_SIDEBAR_OPEN) ||
+      const shouldFixHeight = $body.hasClass(ClassName.CONTROL_SIDEBAR_OPEN) ||
           $body.hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)
 
-      if (shouldClose) {
+      if (shouldFixHeight) {
         this._fixScrollHeight()
       }
     })
