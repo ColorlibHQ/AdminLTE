@@ -2,7 +2,9 @@
 layout: page
 title: Dependencies & Plugins
 ---
+
 #### Dependencies
+
 AdminLTE depends on two main frameworks. The downloadable package contains both of these libraries, so you don't have to manually download them.
 {: .lead}
 
@@ -11,7 +13,6 @@ AdminLTE depends on two main frameworks. The downloadable package contains both 
 - [Popper.js 1.14.7+](https://popper.js.org/)
 - [All other plugins are listed below](#plugins)
 
-<a id="plugins" class="anchor"></a>
 #### Plugins
 {: .mt-4 .anchor}
 

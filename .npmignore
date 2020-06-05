@@ -1,5 +1,5 @@
 /docs/
-!/docs_html/
+/docs_html/
 /plugins/*
 !/plugins/flot-old/
 /.github/

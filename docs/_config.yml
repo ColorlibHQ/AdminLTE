@@ -2,11 +2,9 @@ title: AdminLTE v3 Documentation
 version: v3.1.0-pre
 description: AdminLTE v3 Documentation
 
-markdown: kramdown
-kramdown:
-  auto_ids: false
+baseurl: /docs/3.1
+url: https://adminlte.io
 
-highlighter: rouge
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
