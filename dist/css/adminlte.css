@@ -12846,6 +12846,20 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   content: '\00a0';
 }
 
+.sidebar-mini .nav-sidebar .nav-link,
+.sidebar-mini.sidebar-collapse .main-sidebar:hover .nav-sidebar .nav-link  {
+  white-space: normal !important;
+}
+
+  .sidebar-mini .nav-sidebar .nav-link p,
+  .sidebar-mini.sidebar-collapse .main-sidebar:hover .nav-sidebar .nav-link p {
+      display: inline !important;
+  }
+
+.sidebar-mini.sidebar-collapse .nav-sidebar .nav-link {
+  white-space: nowrap !important;
+}
+
 @media (min-width: 992px) {
   .sidebar-mini .nav-sidebar,
   .sidebar-mini .nav-sidebar > .nav-header,
@@ -12877,7 +12891,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
     animation-duration: 0.3s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
-    visibility: hidden;
+    visibility: hidden !important;
   }
   .sidebar-mini.sidebar-collapse .logo-xl {
     -webkit-animation-name: fadeOut;
@@ -12935,7 +12949,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
     animation-duration: 0.3s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
-    visibility: visible;
+    visibility: visible !important;
   }
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .logo-xs, .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .logo-xs {
     -webkit-animation-name: fadeOut;
