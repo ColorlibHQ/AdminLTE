@@ -1,5 +1,5 @@
 /*! =======================================================
-                      VERSION  10.6.2              
+                      VERSION  11.0.2              
 ========================================================= */
 "use strict";
 
@@ -405,7 +405,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 
 			/*
    	Validate `tooltip_position` against 'orientation`
-   	- if `tooltip_position` is incompatible with orientation, swith it to a default compatible with specified `orientation`
+   	- if `tooltip_position` is incompatible with orientation, switch it to a default compatible with specified `orientation`
    		-- default for "vertical" -> "right", "left" if rtl
    		-- default for "horizontal" -> "top"
    */
@@ -550,7 +550,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 
 				var createAndAppendTooltipSubElements = function createAndAppendTooltipSubElements(tooltipElem) {
 					var arrow = document.createElement("div");
-					arrow.className = "tooltip-arrow";
+					arrow.className = "arrow";
 
 					var inner = document.createElement("div");
 					inner.className = "tooltip-inner";
@@ -652,13 +652,13 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 
 				// Undo inline styles and classes on tooltips
 				[this.tooltip, this.tooltip_min, this.tooltip_max].forEach(function (tooltip) {
-					this._removeProperty(tooltip, 'left');
-					this._removeProperty(tooltip, 'right');
-					this._removeProperty(tooltip, 'top');
+					this._removeProperty(tooltip, 'bs-tooltip-left');
+					this._removeProperty(tooltip, 'bs-tooltip-right');
+					this._removeProperty(tooltip, 'bs-tooltip-top');
 
-					this._removeClass(tooltip, 'right');
-					this._removeClass(tooltip, 'left');
-					this._removeClass(tooltip, 'top');
+					this._removeClass(tooltip, 'bs-tooltip-right');
+					this._removeClass(tooltip, 'bs-tooltip-left');
+					this._removeClass(tooltip, 'bs-tooltip-top');
 				}, this);
 			}
 
@@ -1178,21 +1178,21 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			},
 			_showTooltip: function _showTooltip() {
 				if (this.options.tooltip_split === false) {
-					this._addClass(this.tooltip, 'in');
+					this._addClass(this.tooltip, 'show');
 					this.tooltip_min.style.display = 'none';
 					this.tooltip_max.style.display = 'none';
 				} else {
-					this._addClass(this.tooltip_min, 'in');
-					this._addClass(this.tooltip_max, 'in');
+					this._addClass(this.tooltip_min, 'show');
+					this._addClass(this.tooltip_max, 'show');
 					this.tooltip.style.display = 'none';
 				}
 				this._state.over = true;
 			},
 			_hideTooltip: function _hideTooltip() {
 				if (this._state.inDrag === false && this._alwaysShowTooltip !== true) {
-					this._removeClass(this.tooltip, 'in');
-					this._removeClass(this.tooltip_min, 'in');
-					this._removeClass(this.tooltip_max, 'in');
+					this._removeClass(this.tooltip, 'show');
+					this._removeClass(this.tooltip_min, 'show');
+					this._removeClass(this.tooltip_max, 'show');
 				}
 				this._state.over = false;
 			},
@@ -1473,24 +1473,24 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 
 					if (this.options.tooltip_position === 'bottom') {
 						if (offset_min.right > offset_max.left) {
-							this._removeClass(this.tooltip_max, 'bottom');
-							this._addClass(this.tooltip_max, 'top');
+							this._removeClass(this.tooltip_max, 'bs-tooltip-bottom');
+							this._addClass(this.tooltip_max, 'bs-tooltip-top');
 							this.tooltip_max.style.top = '';
 							this.tooltip_max.style.bottom = 22 + 'px';
 						} else {
-							this._removeClass(this.tooltip_max, 'top');
-							this._addClass(this.tooltip_max, 'bottom');
+							this._removeClass(this.tooltip_max, 'bs-tooltip-top');
+							this._addClass(this.tooltip_max, 'bs-tooltip-bottom');
 							this.tooltip_max.style.top = this.tooltip_min.style.top;
 							this.tooltip_max.style.bottom = '';
 						}
 					} else {
 						if (offset_min.right > offset_max.left) {
-							this._removeClass(this.tooltip_max, 'top');
-							this._addClass(this.tooltip_max, 'bottom');
+							this._removeClass(this.tooltip_max, 'bs-tooltip-top');
+							this._addClass(this.tooltip_max, 'bs-tooltip-bottom');
 							this.tooltip_max.style.top = 18 + 'px';
 						} else {
-							this._removeClass(this.tooltip_max, 'bottom');
-							this._addClass(this.tooltip_max, 'top');
+							this._removeClass(this.tooltip_max, 'bs-tooltip-bottom');
+							this._addClass(this.tooltip_max, 'bs-tooltip-top');
 							this.tooltip_max.style.top = this.tooltip_min.style.top;
 						}
 					}
@@ -1997,17 +1997,17 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 					}
 					var oppositeSide = tooltipPos === 'left' ? 'right' : 'left';
 					tooltips.forEach(function (tooltip) {
-						this._addClass(tooltip, tooltipPos);
+						this._addClass(tooltip, 'bs-tooltip-' + tooltipPos);
 						tooltip.style[oppositeSide] = '100%';
 					}.bind(this));
 				} else if (this.options.tooltip_position === 'bottom') {
 					tooltips.forEach(function (tooltip) {
-						this._addClass(tooltip, 'bottom');
+						this._addClass(tooltip, 'bs-tooltip-bottom');
 						tooltip.style.top = 22 + 'px';
 					}.bind(this));
 				} else {
 					tooltips.forEach(function (tooltip) {
-						this._addClass(tooltip, 'top');
+						this._addClass(tooltip, 'bs-tooltip-top');
 						tooltip.style.top = -this.tooltip.outerHeight - 14 + 'px';
 					}.bind(this));
 				}
