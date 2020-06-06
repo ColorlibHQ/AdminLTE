@@ -169,7 +169,7 @@
         right: 5%;
         left: auto;
         border: 1px solid #ddd;
-        background: $white;
+        background-color: $white;
       }
     }
   }
@@ -229,7 +229,7 @@
 
       a {
         @include media-breakpoint-up(sm) {
-          background: $white !important;
+          background-color: $white !important;
           color: $gray-700 !important;
         }
       }

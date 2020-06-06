@@ -21,7 +21,7 @@
     position: relative;
 
     > input[type="file"] {
-      background: $white;
+      background-color: $white;
       cursor: inherit;
       display: block;
       font-size: 100px;
@@ -80,7 +80,7 @@
   }
 
   &:hover {
-    background: $button-default-background-color;
+    background-color: $button-default-background-color;
     border-color: darken($button-default-border-color, 20%);
     color: $button-default-color;
   }

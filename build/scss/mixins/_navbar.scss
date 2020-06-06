@@ -17,7 +17,7 @@
   .nav .open > a:hover,
   .nav .open > a:focus,
   .nav > .active > a {
-    background: $hover-bg;
+    background-color: $hover-bg;
     color: $hover-color;
   }
 
@@ -27,7 +27,7 @@
 
     &:hover,
     &:focus {
-      background: $hover-bg;
+      background-color: $hover-bg;
       color: $hover-color;
     }
   }
