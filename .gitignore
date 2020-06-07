@@ -38,6 +38,7 @@ bower_components/
 /plugins/**/tests/
 /plugins/daterangepicker/website/
 /plugins/daterangepicker/drp.png
+/plugins/inputmask/bindings/
 !/plugins/**/LICENSE.md
 !/plugins/**/LICENSE.txt
 !/plugins/**/license.md
