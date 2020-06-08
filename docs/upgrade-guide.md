@@ -5,7 +5,7 @@ title: Upgrade Guide
 
 #### Migration from v2.4.x
 
-The first step to migrate AdminLTE v2.4.x to v3.0 is upgrade the Bootstrap 3 base code to Bootstrap 4, the full instruction <a href="https://getbootstrap.com/docs/4.3/migration/">here</a> after you upgraded the base code you need to update the markups.
+The first step to migrate AdminLTE v2.4.x to v3.0 is upgrade the Bootstrap 3 base code to Bootstrap 4, the full instruction [here](https://getbootstrap.com/docs/4.4/migration/) after you upgraded the base code you need to update the markups.
 
 #### CSS / JS Files
 
