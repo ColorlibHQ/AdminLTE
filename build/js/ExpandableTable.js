@@ -23,14 +23,11 @@ const Event = {
 }
 
 const ClassName = {
-  HEADER: 'expandable-header'
 }
 
 const Selector = {
-  HEADER: `.${ClassName.HEADER}`,
-  DATA_SELECTOR: 'data-expandable-table',
-  EXPANDED: 'expanded',
-  COLLAPSED: 'collapsed'
+  DATA_TOGGLE: '[data-widget="expandable-table"]',
+  ARIA_ATTR: 'aria-expanded'
 }
 
 /**
@@ -46,16 +43,12 @@ class ExpandableTable {
   // Public
 
   init() {
-    $(Selector.HEADER).each((_, $header) => {
-      // Next Child to the header will have the same column span as header
-      $($header).next().children().first().attr('colSpan', $($header).children().length)
-
-      // Setting up table design for the first time
-      const $type = $($header).next().attr(Selector.DATA_SELECTOR)
+    $(Selector.DATA_TOGGLE).each((_, $header) => {
+      const $type = $($header).attr(Selector.ARIA_ATTR)
       const $body = $($header).next().children().first().children()
-      if ($type === Selector.EXPANDED) {
+      if ($type === 'true') {
         $body.show()
-      } else if ($type === Selector.COLLAPSED) {
+      } else if ($type === 'false') {
         $body.hide()
         $body.parent().parent().addClass('d-none')
       }
@@ -65,19 +58,20 @@ class ExpandableTable {
   toggleRow() {
     const $element = this._element
     const time = 500
-    const $type = $element.next().attr(Selector.DATA_SELECTOR)
+    const $type = $element.attr(Selector.ARIA_ATTR)
     const $body = $element.next().children().first().children()
+
     $body.stop()
-    if ($type === Selector.EXPANDED) {
+    if ($type === 'true') {
       $body.slideUp(time, () => {
         $element.next().addClass('d-none')
       })
-      $element.next().attr(Selector.DATA_SELECTOR, Selector.COLLAPSED)
+      $element.attr(Selector.ARIA_ATTR, 'false')
       $element.trigger($.Event(Event.COLLAPSED))
-    } else if ($type === Selector.COLLAPSED) {
+    } else if ($type === 'false') {
       $element.next().removeClass('d-none')
       $body.slideDown(time)
-      $element.next().attr(Selector.DATA_SELECTOR, Selector.EXPANDED)
+      $element.attr(Selector.ARIA_ATTR, 'true')
       $element.trigger($.Event(Event.EXPANDED))
     }
   }
@@ -107,7 +101,7 @@ $(ClassName.TABLE).ready(function () {
   ExpandableTable._jQueryInterface.call($(this), 'init')
 })
 
-$(document).on('click', Selector.HEADER, function () {
+$(document).on('click', Selector.DATA_TOGGLE, function () {
   ExpandableTable._jQueryInterface.call($(this), 'toggleRow')
 })
 
