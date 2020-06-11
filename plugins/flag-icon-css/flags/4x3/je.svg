@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icon-css-je" viewBox="0 0 30 18">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icon-css-je" viewBox="0 0 30 22.5">
   <defs>
     <clipPath id="je-a">
       <path fill-opacity=".7" d="M-5.3-6h40v30h-40z"/>
     </clipPath>
   </defs>
-  <g clip-path="url(#je-a)" transform="matrix(.75 0 0 .75 4 2.3)">
+  <g clip-path="url(#je-a)" transform="matrix(.75 0 0 .75 3.975 4.5)">
     <path fill="#fff" d="M-10.3-6h50v30h-50z"/>
     <path fill="#df112d" fill-rule="evenodd" d="M-10.3-6v2L11.6 9l-21.8 13v2H-7l21.8-13 21.7 13h3.2v-2L18 9 39.8-4v-2h-3.3L14.7 7-7-6h-3.2z"/>
     <g transform="translate(-9.7 -6) scale(.20361)">
