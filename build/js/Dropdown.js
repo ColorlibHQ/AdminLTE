@@ -16,17 +16,14 @@ const NAME = 'Dropdown'
 const DATA_KEY = 'lte.dropdown'
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-const Selector = {
-  NAVBAR: '.navbar',
-  DROPDOWN_MENU: '.dropdown-menu',
-  DROPDOWN_MENU_ACTIVE: '.dropdown-menu.show',
-  DROPDOWN_TOGGLE: '[data-toggle="dropdown"]'
-}
+const SELECTOR_NAVBAR = '.navbar'
+const SELECTOR_DROPDOWN_MENU = '.dropdown-menu'
+const SELECTOR_DROPDOWN_MENU_ACTIVE = '.dropdown-menu.show'
+const SELECTOR_DROPDOWN_TOGGLE = '[data-toggle="dropdown"]'
 
-const ClassName = {
-  DROPDOWN_RIGHT: 'dropdown-menu-right'
-}
+const CLASS_NAME_DROPDOWN_RIGHT = 'dropdown-menu-right'
 
+// TODO: this is unused; should be removed along with the extend?
 const Default = {
 }
 
@@ -47,7 +44,7 @@ class Dropdown {
     this._element.siblings().show().toggleClass('show')
 
     if (!this._element.next().hasClass('show')) {
-      this._element.parents(Selector.DROPDOWN_MENU).first().find('.show').removeClass('show').hide()
+      this._element.parents(SELECTOR_DROPDOWN_MENU).first().find('.show').removeClass('show').hide()
     }
 
     this._element.parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', () => {
@@ -56,13 +53,13 @@ class Dropdown {
   }
 
   fixPosition() {
-    const $element = $(Selector.DROPDOWN_MENU_ACTIVE)
+    const $element = $(SELECTOR_DROPDOWN_MENU_ACTIVE)
 
     if ($element.length === 0) {
       return
     }
 
-    if ($element.hasClass(ClassName.DROPDOWN_RIGHT)) {
+    if ($element.hasClass(CLASS_NAME_DROPDOWN_RIGHT)) {
       $element.css({
         left: 'inherit',
         right: 0
@@ -115,14 +112,14 @@ class Dropdown {
  * ====================================================
  */
 
-$(Selector.DROPDOWN_MENU + ' ' + Selector.DROPDOWN_TOGGLE).on('click', function (event) {
+$(SELECTOR_DROPDOWN_MENU + ' ' + SELECTOR_DROPDOWN_TOGGLE).on('click', function (event) {
   event.preventDefault()
   event.stopPropagation()
 
   Dropdown._jQueryInterface.call($(this), 'toggleSubmenu')
 })
 
-$(Selector.NAVBAR + ' ' + Selector.DROPDOWN_TOGGLE).on('click', event => {
+$(SELECTOR_NAVBAR + ' ' + SELECTOR_DROPDOWN_TOGGLE).on('click', event => {
   event.preventDefault()
 
   setTimeout(function () {

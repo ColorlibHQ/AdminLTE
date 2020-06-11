@@ -17,35 +17,29 @@ const DATA_KEY = 'lte.controlsidebar'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-const Event = {
-  COLLAPSED: `collapsed${EVENT_KEY}`,
-  EXPANDED: `expanded${EVENT_KEY}`
-}
+const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
+const EVENT_EXPANDED = `expanded${EVENT_KEY}`
 
-const Selector = {
-  CONTROL_SIDEBAR: '.control-sidebar',
-  CONTROL_SIDEBAR_CONTENT: '.control-sidebar-content',
-  DATA_TOGGLE: '[data-widget="control-sidebar"]',
-  HEADER: '.main-header',
-  FOOTER: '.main-footer'
-}
+const SELECTOR_CONTROL_SIDEBAR = '.control-sidebar'
+const SELECTOR_CONTROL_SIDEBAR_CONTENT = '.control-sidebar-content'
+const SELECTOR_DATA_TOGGLE = '[data-widget="control-sidebar"]'
+const SELECTOR_HEADER = '.main-header'
+const SELECTOR_FOOTER = '.main-footer'
 
-const ClassName = {
-  CONTROL_SIDEBAR_ANIMATE: 'control-sidebar-animate',
-  CONTROL_SIDEBAR_OPEN: 'control-sidebar-open',
-  CONTROL_SIDEBAR_SLIDE: 'control-sidebar-slide-open',
-  LAYOUT_FIXED: 'layout-fixed',
-  NAVBAR_FIXED: 'layout-navbar-fixed',
-  NAVBAR_SM_FIXED: 'layout-sm-navbar-fixed',
-  NAVBAR_MD_FIXED: 'layout-md-navbar-fixed',
-  NAVBAR_LG_FIXED: 'layout-lg-navbar-fixed',
-  NAVBAR_XL_FIXED: 'layout-xl-navbar-fixed',
-  FOOTER_FIXED: 'layout-footer-fixed',
-  FOOTER_SM_FIXED: 'layout-sm-footer-fixed',
-  FOOTER_MD_FIXED: 'layout-md-footer-fixed',
-  FOOTER_LG_FIXED: 'layout-lg-footer-fixed',
-  FOOTER_XL_FIXED: 'layout-xl-footer-fixed'
-}
+const CLASS_NAME_CONTROL_SIDEBAR_ANIMATE = 'control-sidebar-animate'
+const CLASS_NAME_CONTROL_SIDEBAR_OPEN = 'control-sidebar-open'
+const CLASS_NAME_CONTROL_SIDEBAR_SLIDE = 'control-sidebar-slide-open'
+const CLASS_NAME_LAYOUT_FIXED = 'layout-fixed'
+const CLASS_NAME_NAVBAR_FIXED = 'layout-navbar-fixed'
+const CLASS_NAME_NAVBAR_SM_FIXED = 'layout-sm-navbar-fixed'
+const CLASS_NAME_NAVBAR_MD_FIXED = 'layout-md-navbar-fixed'
+const CLASS_NAME_NAVBAR_LG_FIXED = 'layout-lg-navbar-fixed'
+const CLASS_NAME_NAVBAR_XL_FIXED = 'layout-xl-navbar-fixed'
+const CLASS_NAME_FOOTER_FIXED = 'layout-footer-fixed'
+const CLASS_NAME_FOOTER_SM_FIXED = 'layout-sm-footer-fixed'
+const CLASS_NAME_FOOTER_MD_FIXED = 'layout-md-footer-fixed'
+const CLASS_NAME_FOOTER_LG_FIXED = 'layout-lg-footer-fixed'
+const CLASS_NAME_FOOTER_XL_FIXED = 'layout-xl-footer-fixed'
 
 const Default = {
   controlsidebarSlide: true,
@@ -74,17 +68,17 @@ class ControlSidebar {
 
     // Show the control sidebar
     if (this._config.controlsidebarSlide) {
-      $html.addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
-      $body.removeClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
-        $(Selector.CONTROL_SIDEBAR).hide()
-        $html.removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
+      $html.addClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
+      $body.removeClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
+        $(SELECTOR_CONTROL_SIDEBAR).hide()
+        $html.removeClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
         $(this).dequeue()
       })
     } else {
-      $body.removeClass(ClassName.CONTROL_SIDEBAR_OPEN)
+      $body.removeClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN)
     }
 
-    $(this._element).trigger($.Event(Event.COLLAPSED))
+    $(this._element).trigger($.Event(EVENT_COLLAPSED))
   }
 
   show() {
@@ -93,25 +87,25 @@ class ControlSidebar {
 
     // Collapse the control sidebar
     if (this._config.controlsidebarSlide) {
-      $html.addClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
-      $(Selector.CONTROL_SIDEBAR).show().delay(10).queue(function () {
-        $body.addClass(ClassName.CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
-          $html.removeClass(ClassName.CONTROL_SIDEBAR_ANIMATE)
+      $html.addClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
+      $(SELECTOR_CONTROL_SIDEBAR).show().delay(10).queue(function () {
+        $body.addClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
+          $html.removeClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
           $(this).dequeue()
         })
         $(this).dequeue()
       })
     } else {
-      $body.addClass(ClassName.CONTROL_SIDEBAR_OPEN)
+      $body.addClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN)
     }
 
-    $(this._element).trigger($.Event(Event.EXPANDED))
+    $(this._element).trigger($.Event(EVENT_EXPANDED))
   }
 
   toggle() {
     const $body = $('body')
-    const shouldClose = $body.hasClass(ClassName.CONTROL_SIDEBAR_OPEN) ||
-        $body.hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)
+    const shouldClose = $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN) ||
+        $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE)
 
     if (shouldClose) {
       // Close the control sidebar
@@ -135,8 +129,8 @@ class ControlSidebar {
 
     $(window).scroll(() => {
       const $body = $('body')
-      const shouldFixHeight = $body.hasClass(ClassName.CONTROL_SIDEBAR_OPEN) ||
-          $body.hasClass(ClassName.CONTROL_SIDEBAR_SLIDE)
+      const shouldFixHeight = $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN) ||
+          $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE)
 
       if (shouldFixHeight) {
         this._fixScrollHeight()
@@ -147,15 +141,15 @@ class ControlSidebar {
   _fixScrollHeight() {
     const $body = $('body')
 
-    if (!$body.hasClass(ClassName.LAYOUT_FIXED)) {
+    if (!$body.hasClass(CLASS_NAME_LAYOUT_FIXED)) {
       return
     }
 
     const heights = {
       scroll: $(document).height(),
       window: $(window).height(),
-      header: $(Selector.HEADER).outerHeight(),
-      footer: $(Selector.FOOTER).outerHeight()
+      header: $(SELECTOR_HEADER).outerHeight(),
+      footer: $(SELECTOR_FOOTER).outerHeight()
     }
     const positions = {
       bottom: Math.abs((heights.window + $(window).scrollTop()) - heights.scroll),
@@ -166,31 +160,31 @@ class ControlSidebar {
     let footerFixed = false
 
     if (
-      $body.hasClass(ClassName.NAVBAR_FIXED) ||
-        $body.hasClass(ClassName.NAVBAR_SM_FIXED) ||
-        $body.hasClass(ClassName.NAVBAR_MD_FIXED) ||
-        $body.hasClass(ClassName.NAVBAR_LG_FIXED) ||
-        $body.hasClass(ClassName.NAVBAR_XL_FIXED)
+      $body.hasClass(CLASS_NAME_NAVBAR_FIXED) ||
+        $body.hasClass(CLASS_NAME_NAVBAR_SM_FIXED) ||
+        $body.hasClass(CLASS_NAME_NAVBAR_MD_FIXED) ||
+        $body.hasClass(CLASS_NAME_NAVBAR_LG_FIXED) ||
+        $body.hasClass(CLASS_NAME_NAVBAR_XL_FIXED)
     ) {
-      if ($(Selector.HEADER).css('position') === 'fixed') {
+      if ($(SELECTOR_HEADER).css('position') === 'fixed') {
         navbarFixed = true
       }
     }
 
     if (
-      $body.hasClass(ClassName.FOOTER_FIXED) ||
-        $body.hasClass(ClassName.FOOTER_SM_FIXED) ||
-        $body.hasClass(ClassName.FOOTER_MD_FIXED) ||
-        $body.hasClass(ClassName.FOOTER_LG_FIXED) ||
-        $body.hasClass(ClassName.FOOTER_XL_FIXED)
+      $body.hasClass(CLASS_NAME_FOOTER_FIXED) ||
+        $body.hasClass(CLASS_NAME_FOOTER_SM_FIXED) ||
+        $body.hasClass(CLASS_NAME_FOOTER_MD_FIXED) ||
+        $body.hasClass(CLASS_NAME_FOOTER_LG_FIXED) ||
+        $body.hasClass(CLASS_NAME_FOOTER_XL_FIXED)
     ) {
-      if ($(Selector.FOOTER).css('position') === 'fixed') {
+      if ($(SELECTOR_FOOTER).css('position') === 'fixed') {
         footerFixed = true
       }
     }
 
-    const $controlSidebar = $(Selector.CONTROL_SIDEBAR)
-    const $controlsidebarContent = $(Selector.CONTROL_SIDEBAR + ', ' + Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT)
+    const $controlSidebar = $(SELECTOR_CONTROL_SIDEBAR)
+    const $controlsidebarContent = $(SELECTOR_CONTROL_SIDEBAR + ', ' + SELECTOR_CONTROL_SIDEBAR + ' ' + SELECTOR_CONTROL_SIDEBAR_CONTENT)
 
     if (positions.top === 0 && positions.bottom === 0) {
       $controlSidebar.css({
@@ -223,31 +217,31 @@ class ControlSidebar {
   _fixHeight() {
     const $body = $('body')
 
-    if (!$body.hasClass(ClassName.LAYOUT_FIXED)) {
+    if (!$body.hasClass(CLASS_NAME_LAYOUT_FIXED)) {
       return
     }
 
     const heights = {
       window: $(window).height(),
-      header: $(Selector.HEADER).outerHeight(),
-      footer: $(Selector.FOOTER).outerHeight()
+      header: $(SELECTOR_HEADER).outerHeight(),
+      footer: $(SELECTOR_FOOTER).outerHeight()
     }
 
     let sidebarHeight = heights.window - heights.header
 
     if (
-      $body.hasClass(ClassName.FOOTER_FIXED) ||
-          $body.hasClass(ClassName.FOOTER_SM_FIXED) ||
-          $body.hasClass(ClassName.FOOTER_MD_FIXED) ||
-          $body.hasClass(ClassName.FOOTER_LG_FIXED) ||
-          $body.hasClass(ClassName.FOOTER_XL_FIXED)
+      $body.hasClass(CLASS_NAME_FOOTER_FIXED) ||
+          $body.hasClass(CLASS_NAME_FOOTER_SM_FIXED) ||
+          $body.hasClass(CLASS_NAME_FOOTER_MD_FIXED) ||
+          $body.hasClass(CLASS_NAME_FOOTER_LG_FIXED) ||
+          $body.hasClass(CLASS_NAME_FOOTER_XL_FIXED)
     ) {
-      if ($(Selector.FOOTER).css('position') === 'fixed') {
+      if ($(SELECTOR_FOOTER).css('position') === 'fixed') {
         sidebarHeight = heights.window - heights.header - heights.footer
       }
     }
 
-    const $controlSidebar = $(Selector.CONTROL_SIDEBAR + ' ' + Selector.CONTROL_SIDEBAR_CONTENT)
+    const $controlSidebar = $(SELECTOR_CONTROL_SIDEBAR + ' ' + SELECTOR_CONTROL_SIDEBAR_CONTENT)
     $controlSidebar.css('height', sidebarHeight)
 
     if (typeof $.fn.overlayScrollbars !== 'undefined') {
@@ -288,7 +282,7 @@ class ControlSidebar {
  * Data Api implementation
  * ====================================================
  */
-$(document).on('click', Selector.DATA_TOGGLE, function (event) {
+$(document).on('click', SELECTOR_DATA_TOGGLE, function (event) {
   event.preventDefault()
 
   ControlSidebar._jQueryInterface.call($(this), 'toggle')

@@ -17,26 +17,20 @@ const DATA_KEY = 'lte.cardrefresh'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-const Event = {
-  LOADED: `loaded${EVENT_KEY}`,
-  OVERLAY_ADDED: `overlay.added${EVENT_KEY}`,
-  OVERLAY_REMOVED: `overlay.removed${EVENT_KEY}`
-}
+const EVENT_LOADED = `loaded${EVENT_KEY}`
+const EVENT_OVERLAY_ADDED = `overlay.added${EVENT_KEY}`
+const EVENT_OVERLAY_REMOVED = `overlay.removed${EVENT_KEY}`
 
-const ClassName = {
-  CARD: 'card'
-}
+const CLASS_NAME_CARD = 'card'
 
-const Selector = {
-  CARD: `.${ClassName.CARD}`,
-  DATA_REFRESH: '[data-card-widget="card-refresh"]'
-}
+const SELECTOR_CARD = `.${CLASS_NAME_CARD}`
+const SELECTOR_DATA_REFRESH = '[data-card-widget="card-refresh"]'
 
 const Default = {
   source: '',
   sourceSelector: '',
   params: {},
-  trigger: Selector.DATA_REFRESH,
+  trigger: SELECTOR_DATA_REFRESH,
   content: '.card-body',
   loadInContent: true,
   loadOnInit: true,
@@ -52,11 +46,11 @@ const Default = {
 class CardRefresh {
   constructor(element, settings) {
     this._element = element
-    this._parent = element.parents(Selector.CARD).first()
+    this._parent = element.parents(SELECTOR_CARD).first()
     this._settings = $.extend({}, Default, settings)
     this._overlay = $(this._settings.overlayTemplate)
 
-    if (element.hasClass(ClassName.CARD)) {
+    if (element.hasClass(CLASS_NAME_CARD)) {
       this._parent = element
     }
 
@@ -82,17 +76,17 @@ class CardRefresh {
       this._removeOverlay()
     }, this._settings.responseType !== '' && this._settings.responseType)
 
-    $(this._element).trigger($.Event(Event.LOADED))
+    $(this._element).trigger($.Event(EVENT_LOADED))
   }
 
   _addOverlay() {
     this._parent.append(this._overlay)
-    $(this._element).trigger($.Event(Event.OVERLAY_ADDED))
+    $(this._element).trigger($.Event(EVENT_OVERLAY_ADDED))
   }
 
   _removeOverlay() {
     this._parent.find(this._overlay).remove()
-    $(this._element).trigger($.Event(Event.OVERLAY_REMOVED))
+    $(this._element).trigger($.Event(EVENT_OVERLAY_REMOVED))
   }
 
   // Private
@@ -131,7 +125,7 @@ class CardRefresh {
  * ====================================================
  */
 
-$(document).on('click', Selector.DATA_REFRESH, function (event) {
+$(document).on('click', SELECTOR_DATA_REFRESH, function (event) {
   if (event) {
     event.preventDefault()
   }
@@ -140,7 +134,7 @@ $(document).on('click', Selector.DATA_REFRESH, function (event) {
 })
 
 $(() => {
-  $(Selector.DATA_REFRESH).each(function () {
+  $(SELECTOR_DATA_REFRESH).each(function () {
     CardRefresh._jQueryInterface.call($(this))
   })
 })
