@@ -18,7 +18,7 @@ $(function () {
     forcePlaceholderSize: true,
     zIndex: 999999
   })
-  $('.connectedSortable .card-header, .connectedSortable .nav-tabs-custom').css('cursor', 'move')
+  $('.connectedSortable .card-header').css('cursor', 'move')
 
   // jQuery UI sortable for the todo list
   $('.todo-list').sortable({
