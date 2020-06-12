@@ -48,7 +48,7 @@ class ExpandableTable {
   init() {
     $(Selector.HEADER).each((_, $header) => {
       // Next Child to the header will have the same column span as header
-      $($header).next().children().first().attr('colSpan', $($header).children().length)
+      $($header).next().children().first().attr('colspan', $($header).children().length)
 
       // Setting up table design for the first time
       const $type = $($header).next().attr(Selector.DATA_SELECTOR)
