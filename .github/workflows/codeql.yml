@@ -19,6 +19,7 @@ jobs:
       uses: github/codeql-action/init@v1
       with:
         languages: javascript
+        config-file: ./.github/codeql/codeql-config.yml
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v1
