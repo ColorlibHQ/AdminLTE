@@ -4,3 +4,4 @@ paths-ignore:
   - dist/js/adminlte.js
   - dist/js/adminlte.min.js
   - docs/assets/js/
+  - plugins/
