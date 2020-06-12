@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icon-css-je" viewBox="0 0 30 18">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icon-css-je" viewBox="0 0 30 30">
   <defs>
     <clipPath id="a">
       <path fill-opacity=".7" d="M6.2 0h18v18h-18z"/>
     </clipPath>
   </defs>
-  <g clip-path="url(#a)" transform="translate(-10.3 -6) scale(1.6667)">
+  <g clip-path="url(#a)" transform="translate(-10.33354 0) scale(1.6667)">
     <path fill="#fff" d="M0 0h30v18H0z"/>
     <path fill="#df112d" fill-rule="evenodd" d="M0 0v1.2L13 9 0 16.8V18h2l13-7.8L28 18h2v-1.2L17 9l13-7.8V0h-2L15 7.8 2 0H0z"/>
     <g transform="translate(.4) scale(.12217)">
