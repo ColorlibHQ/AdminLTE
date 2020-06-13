@@ -115,7 +115,7 @@ class Layout {
 
   fixLoginRegisterHeight() {
     const $body = $('body')
-    const $selector = $(SELECTOR_LOGIN_BOX + ', ' + SELECTOR_REGISTER_BOX)
+    const $selector = $(`${SELECTOR_LOGIN_BOX}, ${SELECTOR_REGISTER_BOX}`)
 
     if ($selector.length === 0) {
       $body.css('height', 'auto')
@@ -215,11 +215,11 @@ $(window).on('load', () => {
   Layout._jQueryInterface.call($('body'))
 })
 
-$(SELECTOR_SIDEBAR + ' a').on('focusin', () => {
+$(`${SELECTOR_SIDEBAR} a`).on('focusin', () => {
   $(SELECTOR_MAIN_SIDEBAR).addClass(CLASS_NAME_SIDEBAR_FOCUSED)
 })
 
-$(SELECTOR_SIDEBAR + ' a').on('focusout', () => {
+$(`${SELECTOR_SIDEBAR} a`).on('focusout', () => {
   $(SELECTOR_MAIN_SIDEBAR).removeClass(CLASS_NAME_SIDEBAR_FOCUSED)
 })
 
