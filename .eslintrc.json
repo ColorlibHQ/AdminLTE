@@ -39,6 +39,7 @@
       "error",
       "always"
     ],
+    "prefer-template": "error",
     "prefer-named-capture-group": "off",
     "semi": [
       "error",

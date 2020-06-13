@@ -67,7 +67,7 @@ class CardWidget {
         this._parent.addClass(CLASS_NAME_COLLAPSED).removeClass(CLASS_NAME_COLLAPSING)
       })
 
-    this._parent.find('> ' + SELECTOR_CARD_HEADER + ' ' + this._settings.collapseTrigger + ' .' + this._settings.collapseIcon)
+    this._parent.find(`> ${SELECTOR_CARD_HEADER} ${this._settings.collapseTrigger} .${this._settings.collapseIcon}`)
       .addClass(this._settings.expandIcon)
       .removeClass(this._settings.collapseIcon)
 
@@ -80,7 +80,7 @@ class CardWidget {
         this._parent.removeClass(CLASS_NAME_COLLAPSED).removeClass(CLASS_NAME_EXPANDING)
       })
 
-    this._parent.find('> ' + SELECTOR_CARD_HEADER + ' ' + this._settings.collapseTrigger + ' .' + this._settings.expandIcon)
+    this._parent.find(`> ${SELECTOR_CARD_HEADER} ${this._settings.collapseTrigger} .${this._settings.expandIcon}`)
       .addClass(this._settings.collapseIcon)
       .removeClass(this._settings.expandIcon)
 
@@ -102,7 +102,7 @@ class CardWidget {
   }
 
   maximize() {
-    this._parent.find(this._settings.maximizeTrigger + ' .' + this._settings.maximizeIcon)
+    this._parent.find(`${this._settings.maximizeTrigger} .${this._settings.maximizeIcon}`)
       .addClass(this._settings.minimizeIcon)
       .removeClass(this._settings.maximizeIcon)
     this._parent.css({
@@ -125,11 +125,10 @@ class CardWidget {
   }
 
   minimize() {
-    this._parent.find(this._settings.maximizeTrigger + ' .' + this._settings.minimizeIcon)
+    this._parent.find(`${this._settings.maximizeTrigger} .${this._settings.minimizeIcon}`)
       .addClass(this._settings.maximizeIcon)
       .removeClass(this._settings.minimizeIcon)
-    this._parent.css('cssText', 'height:' + this._parent[0].style.height + ' !important;' +
-      'width:' + this._parent[0].style.width + ' !important; transition: all .15s;'
+    this._parent.css('cssText', `height: ${this._parent[0].style.height} !important; width: ${this._parent[0].style.width} !important; transition: all .15s;`
     ).delay(10).queue(function () {
       const $element = $(this)
 

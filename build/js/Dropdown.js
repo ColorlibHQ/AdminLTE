@@ -112,14 +112,14 @@ class Dropdown {
  * ====================================================
  */
 
-$(SELECTOR_DROPDOWN_MENU + ' ' + SELECTOR_DROPDOWN_TOGGLE).on('click', function (event) {
+$(`${SELECTOR_DROPDOWN_MENU} ${SELECTOR_DROPDOWN_TOGGLE}`).on('click', function (event) {
   event.preventDefault()
   event.stopPropagation()
 
   Dropdown._jQueryInterface.call($(this), 'toggleSubmenu')
 })
 
-$(SELECTOR_NAVBAR + ' ' + SELECTOR_DROPDOWN_TOGGLE).on('click', event => {
+$(`${SELECTOR_NAVBAR} ${SELECTOR_DROPDOWN_TOGGLE}`).on('click', event => {
   event.preventDefault()
 
   setTimeout(function () {

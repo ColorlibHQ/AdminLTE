@@ -91,11 +91,11 @@ class Treeview {
     const $relativeTarget = $(event.currentTarget)
     const $parent = $relativeTarget.parent()
 
-    let treeviewMenu = $parent.find('> ' + SELECTOR_TREEVIEW_MENU)
+    let treeviewMenu = $parent.find(`> ${SELECTOR_TREEVIEW_MENU}`)
 
     if (!treeviewMenu.is(SELECTOR_TREEVIEW_MENU)) {
       if (!$parent.is(SELECTOR_LI)) {
-        treeviewMenu = $parent.parent().find('> ' + SELECTOR_TREEVIEW_MENU)
+        treeviewMenu = $parent.parent().find(`> ${SELECTOR_TREEVIEW_MENU}`)
       }
 
       if (!treeviewMenu.is(SELECTOR_TREEVIEW_MENU)) {
