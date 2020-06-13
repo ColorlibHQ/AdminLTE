@@ -14,9 +14,10 @@ import $ from 'jquery'
 
 const NAME = 'DirectChat'
 const DATA_KEY = 'lte.directchat'
+const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-const EVENT_TOGGLED = 'toggled{EVENT_KEY}' // TODO: missing $ and variable EVENT_KEY
+const EVENT_TOGGLED = `toggled${EVENT_KEY}`
 
 const SELECTOR_DATA_TOGGLE = '[data-widget="chat-pane-toggle"]'
 const SELECTOR_DIRECT_CHAT = '.direct-chat'
