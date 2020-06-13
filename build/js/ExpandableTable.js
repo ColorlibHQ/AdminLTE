@@ -22,6 +22,7 @@ const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
 
 const CLASS_NAME_HEADER = 'expandable-header'
 
+const SELECTOR_TABLE = '.expandable-table'
 const SELECTOR_HEADER = `.${CLASS_NAME_HEADER}`
 const SELECTOR_DATA_SELECTOR = 'data-expandable-table'
 const SELECTOR_EXPANDED = 'expanded'
@@ -97,7 +98,7 @@ class ExpandableTable {
   * Data API
   * ====================================================
   */
-$(CLASS_NAME_TABLE).ready(function () {
+$(SELECTOR_TABLE).ready(function () {
   ExpandableTable._jQueryInterface.call($(this), 'init')
 })
 
