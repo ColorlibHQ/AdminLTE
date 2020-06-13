@@ -128,8 +128,11 @@ class CardWidget {
     this._parent.find(`${this._settings.maximizeTrigger} .${this._settings.minimizeIcon}`)
       .addClass(this._settings.maximizeIcon)
       .removeClass(this._settings.minimizeIcon)
-    this._parent.css('cssText', `height: ${this._parent[0].style.height} !important; width: ${this._parent[0].style.width} !important; transition: all .15s;`
-    ).delay(10).queue(function () {
+    this._parent.css({
+      height: `${this._parent[0].style.height} !important`,
+      width: `${this._parent[0].style.width} !important`,
+      transition: 'all .15s'
+    }).delay(10).queue(function () {
       const $element = $(this)
 
       $element.removeClass(CLASS_NAME_MAXIMIZED)
