@@ -156,32 +156,21 @@ class ControlSidebar {
       top: $(window).scrollTop()
     }
 
-    let navbarFixed = false
-    let footerFixed = false
-
-    if (
+    const navbarFixed = (
       $body.hasClass(CLASS_NAME_NAVBAR_FIXED) ||
         $body.hasClass(CLASS_NAME_NAVBAR_SM_FIXED) ||
         $body.hasClass(CLASS_NAME_NAVBAR_MD_FIXED) ||
         $body.hasClass(CLASS_NAME_NAVBAR_LG_FIXED) ||
         $body.hasClass(CLASS_NAME_NAVBAR_XL_FIXED)
-    ) {
-      if ($(SELECTOR_HEADER).css('position') === 'fixed') {
-        navbarFixed = true
-      }
-    }
+    ) && $(SELECTOR_HEADER).css('position') === 'fixed'
 
-    if (
+    const footerFixed = (
       $body.hasClass(CLASS_NAME_FOOTER_FIXED) ||
         $body.hasClass(CLASS_NAME_FOOTER_SM_FIXED) ||
         $body.hasClass(CLASS_NAME_FOOTER_MD_FIXED) ||
         $body.hasClass(CLASS_NAME_FOOTER_LG_FIXED) ||
         $body.hasClass(CLASS_NAME_FOOTER_XL_FIXED)
-    ) {
-      if ($(SELECTOR_FOOTER).css('position') === 'fixed') {
-        footerFixed = true
-      }
-    }
+    ) && $(SELECTOR_FOOTER).css('position') === 'fixed'
 
     const $controlSidebar = $(SELECTOR_CONTROL_SIDEBAR)
     const $controlsidebarContent = $(`${SELECTOR_CONTROL_SIDEBAR}, ${SELECTOR_CONTROL_SIDEBAR} ${SELECTOR_CONTROL_SIDEBAR_CONTENT}`)
