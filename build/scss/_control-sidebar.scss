@@ -95,7 +95,7 @@ body.text-sm {
 
 // Dark skin
 .control-sidebar-dark {
-  background: $sidebar-dark-bg;
+  background-color: $sidebar-dark-bg;
 
   &,
   a,
@@ -168,6 +168,6 @@ body.text-sm {
   color: lighten($sidebar-light-color, 10%);
 
   //  Background
-  background: $sidebar-light-bg;
+  background-color: $sidebar-light-bg;
   border-left: $main-header-bottom-border;
 }

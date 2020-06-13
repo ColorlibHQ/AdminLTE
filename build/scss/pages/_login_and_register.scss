@@ -17,7 +17,7 @@
 .login-page,
 .register-page {
   align-items: center;
-  background: $gray-200;
+  background-color: $gray-200;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -36,7 +36,7 @@
 
 .login-card-body,
 .register-card-body {
-  background: $white;
+  background-color: $white;
   border-top: 0;
   color: #666;
   padding: 20px;

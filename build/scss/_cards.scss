@@ -251,7 +251,7 @@ html.maximized-card {
 
 // Box Tools Buttons
 .btn-tool {
-  background: transparent;
+  background-color: transparent;
   color: $gray-500;
   font-size: $font-size-sm;
   margin: -(($card-spacer-y / 2) * 2) 0;
@@ -323,7 +323,7 @@ html.maximized-card {
 
 // Comment Box
 .card-comments {
-  background: $gray-100;
+  background-color: $gray-100;
 
   .card-comment {
     @include clearfix ();
@@ -375,7 +375,7 @@ html.maximized-card {
   // Todo list element
   > li {
     @include border-radius(2px);
-    background: $gray-100;
+    background-color: $gray-100;
     border-left: 2px solid $gray-200;
     color: $gray-700;
     margin-bottom: 2px;
@@ -431,7 +431,7 @@ html.maximized-card {
       }
 
       .badge {
-        background: $gray-500 !important;
+        background-color: $gray-500 !important;
       }
     }
   }

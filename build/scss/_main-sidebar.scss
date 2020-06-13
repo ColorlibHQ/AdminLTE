@@ -225,13 +225,13 @@
     }
 
     .status {
-      background: $sidebar-light-hover-bg;
+      background-color: $sidebar-light-hover-bg;
       color: $sidebar-light-color;
 
       &:hover,
       &:focus,
       &:active {
-        background: darken($sidebar-light-hover-bg, 3%);
+        background-color: darken($sidebar-light-hover-bg, 3%);
         color: $sidebar-light-hover-color;
       }
     }
@@ -274,13 +274,13 @@
 
     // First Level Submenu
     > .nav-treeview {
-      background: $sidebar-light-submenu-bg;
+      background-color: $sidebar-light-submenu-bg;
     }
   }
 
   // Section Heading
   .nav-header {
-    background: inherit;
+    background-color: inherit;
     color: darken($sidebar-light-color, 5%);
   }
 
@@ -348,13 +348,13 @@
     }
 
     .status {
-      background: $sidebar-dark-hover-bg;
+      background-color: $sidebar-dark-hover-bg;
       color: $sidebar-dark-color;
 
       &:hover,
       &:focus,
       &:active {
-        background: darken($sidebar-dark-hover-bg, 3%);
+        background-color: darken($sidebar-dark-hover-bg, 3%);
         color: $sidebar-dark-hover-color;
       }
     }
@@ -397,13 +397,13 @@
 
     // First Level Submenu
     > .nav-treeview {
-      background: $sidebar-dark-submenu-bg;
+      background-color: $sidebar-dark-submenu-bg;
     }
   }
 
   // Section Heading
   .nav-header {
-    background: inherit; //darken($sidebar-dark-bg, 3%);
+    background-color: inherit; //darken($sidebar-dark-bg, 3%);
     color: lighten($sidebar-dark-color, 5%);
   }
 
@@ -644,7 +644,7 @@
   &.nav-sidebar > .nav-item {
     .nav-treeview,
     > .nav-treeview {
-      background: rgba($white, .05);
+      background-color: rgba($white, .05);
 
       .nav-item {
         > .nav-link {
@@ -676,7 +676,7 @@
   &.nav-sidebar > .nav-item {
     > .nav-link {
       &.active {
-        background: inherit;
+        background-color: inherit;
         border-left: 3px solid transparent;
         box-shadow: none;
 
@@ -783,7 +783,7 @@
     &.nav-sidebar > .nav-item {
       .nav-treeview,
       > .nav-treeview {
-        background: rgba($white, .05);
+        background-color: rgba($white, .05);
       }
 
       > .nav-link.active {
@@ -795,7 +795,7 @@
       &.active,
       &:focus,
       &:hover {
-        background: none;
+        background-color: transparent;
         color: $sidebar-dark-active-color;
       }
     }
@@ -805,7 +805,7 @@
     &.nav-sidebar > .nav-item {
       .nav-treeview,
       > .nav-treeview {
-        background: rgba($black, .05);
+        background-color: rgba($black, .05);
       }
 
       > .nav-link.active {
@@ -817,7 +817,7 @@
       &.active,
       &:focus,
       &:hover {
-        background: none;
+        background-color: transparent;
         color: $sidebar-light-active-color;
       }
     }
@@ -885,7 +885,7 @@
 [class*="sidebar-dark"] {
   .form-control-sidebar,
   .btn-sidebar {
-    background: lighten($sidebar-dark-bg, 5%);
+    background-color: lighten($sidebar-dark-bg, 5%);
     border: 1px solid lighten($sidebar-dark-bg, 15%);
     color: lighten(color-yiq(lighten($sidebar-dark-bg, 5%)), 15%);
   }
@@ -896,18 +896,18 @@
   }
 
   .btn-sidebar:hover {
-    background: lighten($sidebar-dark-bg, 7.5%);
+    background-color: lighten($sidebar-dark-bg, 7.5%);
   }
 
   .btn-sidebar:focus {
-    background: lighten($sidebar-dark-bg, 10%);
+    background-color: lighten($sidebar-dark-bg, 10%);
   }
 }
 
 [class*="sidebar-light"] {
   .form-control-sidebar,
   .btn-sidebar {
-    background: darken($sidebar-light-bg, 5%);
+    background-color: darken($sidebar-light-bg, 5%);
     border: 1px solid darken($sidebar-light-bg, 15%);
     color: color-yiq(darken($sidebar-light-bg, 5%));
   }
@@ -918,11 +918,11 @@
   }
 
   .btn-sidebar:hover {
-    background: darken($sidebar-light-bg, 7.5%);
+    background-color: darken($sidebar-light-bg, 7.5%);
   }
 
   .btn-sidebar:focus {
-    background: darken($sidebar-light-bg, 10%);
+    background-color: darken($sidebar-light-bg, 10%);
   }
 }
 

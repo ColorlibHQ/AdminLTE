@@ -479,7 +479,7 @@ body:not(.sidebar-mini-md) {
 }
 
 .content-wrapper {
-  background: $main-bg;
+  background-color: $main-bg;
 
   > .content {
     padding: $content-padding-y $content-padding-x;
@@ -573,7 +573,7 @@ body:not(.sidebar-mini-md) {
 }
 
 .main-footer {
-  background: $main-footer-bg;
+  background-color: $main-footer-bg;
   border-top: $main-footer-border-top;
   color: lighten($gray-700, 25%);
   padding: $main-footer-padding;
@@ -601,7 +601,7 @@ body:not(.sidebar-mini-md) {
   }
 
   .breadcrumb {
-    background: transparent;
+    background-color: transparent;
     line-height: 1.8rem;
     margin-bottom: 0;
     padding: 0;
