@@ -17,29 +17,23 @@ const DATA_KEY = 'lte.pushmenu'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-const Event = {
-  COLLAPSED: `collapsed${EVENT_KEY}`,
-  SHOWN: `shown${EVENT_KEY}`
-}
+const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
+const EVENT_SHOWN = `shown${EVENT_KEY}`
+
+const SELECTOR_TOGGLE_BUTTON = '[data-widget="pushmenu"]'
+const SELECTOR_BODY = 'body'
+const SELECTOR_OVERLAY = '#sidebar-overlay'
+const SELECTOR_WRAPPER = '.wrapper'
+
+const CLASS_NAME_COLLAPSED = 'sidebar-collapse'
+const CLASS_NAME_OPEN = 'sidebar-open'
+const CLASS_NAME_IS_OPENING = 'sidebar-is-opening'
+const CLASS_NAME_CLOSED = 'sidebar-closed'
 
 const Default = {
   autoCollapseSize: 992,
   enableRemember: false,
   noTransitionAfterReload: true
-}
-
-const Selector = {
-  TOGGLE_BUTTON: '[data-widget="pushmenu"]',
-  BODY: 'body',
-  OVERLAY: '#sidebar-overlay',
-  WRAPPER: '.wrapper'
-}
-
-const ClassName = {
-  COLLAPSED: 'sidebar-collapse',
-  OPEN: 'sidebar-open',
-  IS_OPENING: 'sidebar-is-opening',
-  CLOSED: 'sidebar-closed'
 }
 
 /**
@@ -52,7 +46,7 @@ class PushMenu {
     this._element = element
     this._options = $.extend({}, Default, options)
 
-    if ($(Selector.OVERLAY).length === 0) {
+    if ($(SELECTOR_OVERLAY).length === 0) {
       this._addOverlay()
     }
 
@@ -62,43 +56,43 @@ class PushMenu {
   // Public
 
   expand() {
-    const $bodySelector = $(Selector.BODY)
+    const $bodySelector = $(SELECTOR_BODY)
 
     if (this._options.autoCollapseSize) {
       if ($(window).width() <= this._options.autoCollapseSize) {
-        $bodySelector.addClass(ClassName.OPEN)
+        $bodySelector.addClass(CLASS_NAME_OPEN)
       }
     }
 
-    $bodySelector.addClass(ClassName.IS_OPENING).removeClass(`${ClassName.COLLAPSED} ${ClassName.CLOSED}`)
+    $bodySelector.addClass(CLASS_NAME_IS_OPENING).removeClass(`${CLASS_NAME_COLLAPSED} ${CLASS_NAME_CLOSED}`)
 
     if (this._options.enableRemember) {
-      localStorage.setItem(`remember${EVENT_KEY}`, ClassName.OPEN)
+      localStorage.setItem(`remember${EVENT_KEY}`, CLASS_NAME_OPEN)
     }
 
-    $(this._element).trigger($.Event(Event.SHOWN))
+    $(this._element).trigger($.Event(EVENT_SHOWN))
   }
 
   collapse() {
-    const $bodySelector = $(Selector.BODY)
+    const $bodySelector = $(SELECTOR_BODY)
 
     if (this._options.autoCollapseSize) {
       if ($(window).width() <= this._options.autoCollapseSize) {
-        $bodySelector.removeClass(ClassName.OPEN).addClass(ClassName.CLOSED)
+        $bodySelector.removeClass(CLASS_NAME_OPEN).addClass(CLASS_NAME_CLOSED)
       }
     }
 
-    $bodySelector.removeClass(ClassName.IS_OPENING).addClass(ClassName.COLLAPSED)
+    $bodySelector.removeClass(CLASS_NAME_IS_OPENING).addClass(CLASS_NAME_COLLAPSED)
 
     if (this._options.enableRemember) {
-      localStorage.setItem(`remember${EVENT_KEY}`, ClassName.COLLAPSED)
+      localStorage.setItem(`remember${EVENT_KEY}`, CLASS_NAME_COLLAPSED)
     }
 
-    $(this._element).trigger($.Event(Event.COLLAPSED))
+    $(this._element).trigger($.Event(EVENT_COLLAPSED))
   }
 
   toggle() {
-    if ($(Selector.BODY).hasClass(ClassName.COLLAPSED)) {
+    if ($(SELECTOR_BODY).hasClass(CLASS_NAME_COLLAPSED)) {
       this.expand()
     } else {
       this.collapse()
@@ -110,16 +104,16 @@ class PushMenu {
       return
     }
 
-    const $bodySelector = $(Selector.BODY)
+    const $bodySelector = $(SELECTOR_BODY)
 
     if ($(window).width() <= this._options.autoCollapseSize) {
-      if (!$bodySelector.hasClass(ClassName.OPEN)) {
+      if (!$bodySelector.hasClass(CLASS_NAME_OPEN)) {
         this.collapse()
       }
     } else if (resize === true) {
-      if ($bodySelector.hasClass(ClassName.OPEN)) {
-        $bodySelector.removeClass(ClassName.OPEN)
-      } else if ($bodySelector.hasClass(ClassName.CLOSED)) {
+      if ($bodySelector.hasClass(CLASS_NAME_OPEN)) {
+        $bodySelector.removeClass(CLASS_NAME_OPEN)
+      } else if ($bodySelector.hasClass(CLASS_NAME_CLOSED)) {
         this.expand()
       }
     }
@@ -133,22 +127,22 @@ class PushMenu {
     const $body = $('body')
     const toggleState = localStorage.getItem(`remember${EVENT_KEY}`)
 
-    if (toggleState === ClassName.COLLAPSED) {
+    if (toggleState === CLASS_NAME_COLLAPSED) {
       if (this._options.noTransitionAfterReload) {
-        $body.addClass('hold-transition').addClass(ClassName.COLLAPSED).delay(50).queue(function () {
+        $body.addClass('hold-transition').addClass(CLASS_NAME_COLLAPSED).delay(50).queue(function () {
           $(this).removeClass('hold-transition')
           $(this).dequeue()
         })
       } else {
-        $body.addClass(ClassName.COLLAPSED)
+        $body.addClass(CLASS_NAME_COLLAPSED)
       }
     } else if (this._options.noTransitionAfterReload) {
-      $body.addClass('hold-transition').removeClass(ClassName.COLLAPSED).delay(50).queue(function () {
+      $body.addClass('hold-transition').removeClass(CLASS_NAME_COLLAPSED).delay(50).queue(function () {
         $(this).removeClass('hold-transition')
         $(this).dequeue()
       })
     } else {
-      $body.removeClass(ClassName.COLLAPSED)
+      $body.removeClass(CLASS_NAME_COLLAPSED)
     }
   }
 
@@ -172,7 +166,7 @@ class PushMenu {
       this.collapse()
     })
 
-    $(Selector.WRAPPER).append(overlay)
+    $(SELECTOR_WRAPPER).append(overlay)
   }
 
   // Static
@@ -199,20 +193,20 @@ class PushMenu {
  * ====================================================
  */
 
-$(document).on('click', Selector.TOGGLE_BUTTON, event => {
+$(document).on('click', SELECTOR_TOGGLE_BUTTON, event => {
   event.preventDefault()
 
   let button = event.currentTarget
 
   if ($(button).data('widget') !== 'pushmenu') {
-    button = $(button).closest(Selector.TOGGLE_BUTTON)
+    button = $(button).closest(SELECTOR_TOGGLE_BUTTON)
   }
 
   PushMenu._jQueryInterface.call($(button), 'toggle')
 })
 
 $(window).on('load', () => {
-  PushMenu._jQueryInterface.call($(Selector.TOGGLE_BUTTON))
+  PushMenu._jQueryInterface.call($(SELECTOR_TOGGLE_BUTTON))
 })
 
 /**

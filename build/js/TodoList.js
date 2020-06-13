@@ -16,13 +16,8 @@ const NAME = 'TodoList'
 const DATA_KEY = 'lte.todolist'
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-const Selector = {
-  DATA_TOGGLE: '[data-widget="todo-list"]'
-}
-
-const ClassName = {
-  TODO_LIST_DONE: 'done'
-}
+const SELECTOR_DATA_TOGGLE = '[data-widget="todo-list"]'
+const CLASS_NAME_TODO_LIST_DONE = 'done'
 
 const Default = {
   onCheck(item) {
@@ -49,7 +44,7 @@ class TodoList {
   // Public
 
   toggle(item) {
-    item.parents('li').toggleClass(ClassName.TODO_LIST_DONE)
+    item.parents('li').toggleClass(CLASS_NAME_TODO_LIST_DONE)
     if (!$(item).prop('checked')) {
       this.unCheck($(item))
       return
@@ -69,9 +64,9 @@ class TodoList {
   // Private
 
   _init() {
-    const $toggleSelector = $(Selector.DATA_TOGGLE)
+    const $toggleSelector = $(SELECTOR_DATA_TOGGLE)
 
-    $toggleSelector.find('input:checkbox:checked').parents('li').toggleClass(ClassName.TODO_LIST_DONE)
+    $toggleSelector.find('input:checkbox:checked').parents('li').toggleClass(CLASS_NAME_TODO_LIST_DONE)
     $toggleSelector.on('change', 'input:checkbox', event => {
       this.toggle($(event.target))
     })
@@ -102,7 +97,7 @@ class TodoList {
  */
 
 $(window).on('load', () => {
-  TodoList._jQueryInterface.call($(Selector.DATA_TOGGLE))
+  TodoList._jQueryInterface.call($(SELECTOR_DATA_TOGGLE))
 })
 
 /**
