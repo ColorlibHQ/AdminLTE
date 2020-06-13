@@ -184,7 +184,7 @@ class ControlSidebar {
     }
 
     const $controlSidebar = $(SELECTOR_CONTROL_SIDEBAR)
-    const $controlsidebarContent = $(SELECTOR_CONTROL_SIDEBAR + ', ' + SELECTOR_CONTROL_SIDEBAR + ' ' + SELECTOR_CONTROL_SIDEBAR_CONTENT)
+    const $controlsidebarContent = $(`${SELECTOR_CONTROL_SIDEBAR}, ${SELECTOR_CONTROL_SIDEBAR} ${SELECTOR_CONTROL_SIDEBAR_CONTENT}`)
 
     if (positions.top === 0 && positions.bottom === 0) {
       $controlSidebar.css({
@@ -241,7 +241,7 @@ class ControlSidebar {
       }
     }
 
-    const $controlSidebar = $(SELECTOR_CONTROL_SIDEBAR + ' ' + SELECTOR_CONTROL_SIDEBAR_CONTENT)
+    const $controlSidebar = $(`${SELECTOR_CONTROL_SIDEBAR} ${SELECTOR_CONTROL_SIDEBAR_CONTENT}`)
     $controlSidebar.css('height', sidebarHeight)
 
     if (typeof $.fn.overlayScrollbars !== 'undefined') {
