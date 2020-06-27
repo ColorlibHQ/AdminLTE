@@ -1,5 +1,5 @@
 /*
-* @sweetalert2/themes v3.1.4
+* @sweetalert2/themes v3.2.0
 * Released under the MIT License.
 */
 
@@ -159,7 +159,7 @@
   overflow-x: hidden;
   transition: background-color 0.5s;
   -webkit-overflow-scrolling: touch; }
-  .swal2-container.swal2-backdrop-show {
+  .swal2-container.swal2-backdrop-show, .swal2-container.swal2-noanimation {
     background: rgba(0, 0, 0, 0.5); }
   .swal2-container.swal2-backdrop-hide {
     background: transparent !important; }
@@ -287,7 +287,7 @@
     border-radius: 100%;
     border-color: transparent;
     background-color: transparent !important;
-    color: transparent;
+    color: transparent !important;
     cursor: default;
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -366,7 +366,6 @@
 .swal2-close {
   position: absolute;
   z-index: 2;
-  /* 1617 */
   top: 0;
   right: 0;
   align-items: center;
@@ -378,7 +377,6 @@
   transition: color 0.1s ease-out;
   border: none;
   border-radius: 0;
-  outline: initial;
   background: transparent;
   color: rgba(0, 0, 0, 0.5);
   font-family: serif;
