@@ -128,14 +128,14 @@
     "toastr": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
-    "@rollup/plugin-babel": "^5.0.3",
-    "autoprefixer": "^9.8.0",
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@rollup/plugin-babel": "^5.0.4",
+    "autoprefixer": "^9.8.4",
     "browser-sync": "^2.26.7",
     "bundlewatch": "^0.2.7",
     "clean-css-cli": "^4.3.0",
-    "eslint": "^7.2.0",
+    "eslint": "^7.3.1",
     "eslint-config-xo": "^0.31.0",
     "eslint-plugin-compat": "^3.7.0",
     "eslint-plugin-import": "^2.21.2",
@@ -145,10 +145,10 @@
     "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^7.1.1",
-    "rollup": "^2.15.0",
-    "stylelint": "^13.6.0",
+    "rollup": "^2.18.0",
+    "stylelint": "^13.6.1",
     "stylelint-config-twbs-bootstrap": "^2.0.3",
-    "terser": "^4.7.0",
+    "terser": "^4.8.0",
     "vnu-jar": "^20.5.29"
   }
 }
