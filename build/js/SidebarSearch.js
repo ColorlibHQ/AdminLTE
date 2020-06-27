@@ -38,6 +38,9 @@ const Default = {
   arrowSign: '->',
   minLength: 3,
   maxResults: 7,
+  highlightName: true,
+  highlightPath: false,
+  highlightClass: 'text-light',
   notFoundText: 'No element found!'
 }
 
@@ -152,12 +155,37 @@ class SidebarSearch {
   }
 
   _renderItem(name, link, path) {
+    path = path.join(` ${this.options.arrowSign} `)
+
+    if (this.options.highlightName || this.options.highlightPath) {
+      const searchValue = $(SELECTOR_SEARCH_INPUT).val().toLowerCase()
+      const regExp = new RegExp(searchValue, 'gi')
+
+      if (this.options.highlightName) {
+        name = name.replace(
+          regExp,
+          str => {
+            return `<b class="${this.options.highlightClass}">${str}</b>`
+          }
+        )
+      }
+
+      if (this.options.highlightPath) {
+        path = path.replace(
+          regExp,
+          str => {
+            return `<b class="${this.options.highlightClass}">${str}</b>`
+          }
+        )
+      }
+    }
+
     return `<a href="${link}" class="list-group-item">
         <div class="search-title">
           ${name}
         </div>
         <div class="search-path">
-          ${path.join(` ${this.options.arrowSign} `)}
+          ${path}
         </div>
       </a>`
   }
