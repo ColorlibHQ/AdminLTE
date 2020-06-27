@@ -16,8 +16,8 @@ This plugin is activated automatically upon window load.
 |-|-|-|-
 |scrollbarTheme | Boolean | `os-theme-light` | Scrollbar Theme used while SideBar Fixed
 |scrollbarAutoHide | Boolean | `l` | Scrollbar auto-hide trigger
-|panelAutoHeight | Boolean|Numeric | true | Panel Height Correction (`true` = default correction on load/resize; numeric = offset the correction on load/resize)
-|loginRegisterAutoHeight | Boolean|Integer | true | Login & Register Height Correction (`true` = single correction on load; integer = correction with a interval based on the interger)
+|panelAutoHeight | Boolean\|Numeric | true | Panel Height Correction (`true` = default correction on load/resize; numeric = offset the correction on load/resize)
+|loginRegisterAutoHeight | Boolean\|Integer | true | Login & Register Height Correction (`true` = single correction on load; integer = correction with a interval based on the interger)
 |---
 {: .table .table-bordered .bg-light}
 

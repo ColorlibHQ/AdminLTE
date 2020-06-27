@@ -354,8 +354,8 @@ const Plugins = [
     to: 'plugins/jsgrid'
   },
   {
-    from: 'node_modules/jsgrid/demos/',
-    to: 'plugins/jsgrid/demos'
+    from: 'node_modules/jsgrid/demos/db.js',
+    to: 'plugins/jsgrid/demos/db.js'
   },
   // flag-icon-css
   {

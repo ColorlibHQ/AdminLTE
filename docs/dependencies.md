@@ -2,16 +2,17 @@
 layout: page
 title: Dependencies & Plugins
 ---
+
 #### Dependencies
+
 AdminLTE depends on two main frameworks. The downloadable package contains both of these libraries, so you don't have to manually download them.
 {: .lead}
 
-- [Bootstrap 4](https://getbootstrap.com)
+- [Bootstrap 4](https://getbootstrap.com/)
 - [jQuery 3.3.1+](https://jquery.com/)
 - [Popper.js 1.14.7+](https://popper.js.org/)
 - [All other plugins are listed below](#plugins)
 
-<a id="plugins" class="anchor"></a>
 #### Plugins
 {: .mt-4 .anchor}
 

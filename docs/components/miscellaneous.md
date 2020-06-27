@@ -2,11 +2,14 @@
 layout: page
 title: Miscellaneous
 ---
+
 AdminLTE has smaller custom classes that not related to other components are listed here.
 
 
 ### Text Size 
+
 You can change the font sizes with adding to any element `.text-*` e.g. (`.text-sm`).
+
 - `.text-xs` (0.75rem)
 - `.text-sm` (0.875rem)
 - `.text-md` (1rem)
@@ -19,12 +22,13 @@ You can change the font sizes with adding to any element `.text-*` e.g. (`.text-
 
 
 ### Dropdown Menu Large
+
 You can add the `.dropdown-menu-lg` to `.dropdown-menu` for a bigger dropdown menu.
 
 
 ### Dropdown Hover
+
 You can add the `.dropdown-hover` class beside this classes:
 - `.dropdown` (to use hover for the whole dropdown menu)
 - `.dropdown-menu` (to use hover on a specific menu item & sub menus)
 - `.dropdown-submenu` (to use hover on a specific sub menu item & sub sub menus)
-

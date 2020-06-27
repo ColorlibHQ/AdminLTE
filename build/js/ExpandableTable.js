@@ -17,18 +17,12 @@ const DATA_KEY = 'lte.expandableTable'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-const Event = {
-  EXPANDED: `expanded${EVENT_KEY}`,
-  COLLAPSED: `collapsed${EVENT_KEY}`
-}
+const EVENT_EXPANDED = `expanded${EVENT_KEY}`
+const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
 
-const ClassName = {
-}
-
-const Selector = {
-  DATA_TOGGLE: '[data-widget="expandable-table"]',
-  ARIA_ATTR: 'aria-expanded'
-}
+const SELECTOR_TABLE = '.expandable-table'
+const SELECTOR_DATA_TOGGLE = '[data-widget="expandable-table"]'
+const SELECTOR_ARIA_ATTR = 'aria-expanded'
 
 /**
   * Class Definition
@@ -43,8 +37,8 @@ class ExpandableTable {
   // Public
 
   init() {
-    $(Selector.DATA_TOGGLE).each((_, $header) => {
-      const $type = $($header).attr(Selector.ARIA_ATTR)
+    $(SELECTOR_DATA_TOGGLE).each((_, $header) => {
+      const $type = $($header).attr(SELECTOR_ARIA_ATTR)
       const $body = $($header).next().children().first().children()
       if ($type === 'true') {
         $body.show()
@@ -58,21 +52,24 @@ class ExpandableTable {
   toggleRow() {
     const $element = this._element
     const time = 500
-    const $type = $element.attr(Selector.ARIA_ATTR)
+    const $type = $element.attr(SELECTOR_ARIA_ATTR)
     const $body = $element.next().children().first().children()
+
+    // eslint-disable-next-line no-console
+    console.log($element)
 
     $body.stop()
     if ($type === 'true') {
       $body.slideUp(time, () => {
         $element.next().addClass('d-none')
       })
-      $element.attr(Selector.ARIA_ATTR, 'false')
-      $element.trigger($.Event(Event.COLLAPSED))
+      $element.attr(SELECTOR_ARIA_ATTR, 'false')
+      $element.trigger($.Event(EVENT_COLLAPSED))
     } else if ($type === 'false') {
       $element.next().removeClass('d-none')
       $body.slideDown(time)
-      $element.attr(Selector.ARIA_ATTR, 'true')
-      $element.trigger($.Event(Event.EXPANDED))
+      $element.attr(SELECTOR_ARIA_ATTR, 'true')
+      $element.trigger($.Event(EVENT_EXPANDED))
     }
   }
 
@@ -97,11 +94,11 @@ class ExpandableTable {
   * Data API
   * ====================================================
   */
-$(ClassName.TABLE).ready(function () {
+$(SELECTOR_TABLE).ready(function () {
   ExpandableTable._jQueryInterface.call($(this), 'init')
 })
 
-$(document).on('click', Selector.DATA_TOGGLE, function () {
+$(document).on('click', SELECTOR_DATA_TOGGLE, function () {
   ExpandableTable._jQueryInterface.call($(this), 'toggleRow')
 })
 

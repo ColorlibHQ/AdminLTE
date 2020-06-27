@@ -52,7 +52,7 @@
 }
 
 .list-seperator {
-  background: $card-border-color;
+  background-color: $card-border-color;
   height: 1px;
   margin: 15px 0 9px;
 }
@@ -216,7 +216,7 @@
 
 // General attachemnt block
 .attachment-block {
-  background: $gray-100;
+  background-color: $gray-100;
   border: 1px solid $card-border-color;
   margin-bottom: 10px;
   padding: 5px;
@@ -259,7 +259,7 @@
   .overlay {
     @include border-radius($border-radius);
     align-items: center;
-    background: rgba($white, .7);
+    background-color: rgba($white, .7);
     display: flex;
     justify-content: center;
     z-index: 50;
@@ -273,7 +273,7 @@
     }
 
     &.dark {
-      background: rgba($black, .5);
+      background-color: rgba($black, .5);
 
       > .fa,
       > .fas,
@@ -391,13 +391,13 @@ pre {
 
 // Blockquotes styles
 blockquote {
-  background: $white;
+  background-color: $white;
   border-left: .7rem solid $primary;
   margin: 1.5em .7rem;
   padding: .5em .7rem;
 
   .box & {
-    background: $gray-200;
+    background-color: $gray-200;
   }
 
   p:last-child {

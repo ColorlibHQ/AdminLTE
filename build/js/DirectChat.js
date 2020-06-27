@@ -14,20 +14,15 @@ import $ from 'jquery'
 
 const NAME = 'DirectChat'
 const DATA_KEY = 'lte.directchat'
+const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-const Event = {
-  TOGGLED: 'toggled{EVENT_KEY}'
-}
+const EVENT_TOGGLED = `toggled${EVENT_KEY}`
 
-const Selector = {
-  DATA_TOGGLE: '[data-widget="chat-pane-toggle"]',
-  DIRECT_CHAT: '.direct-chat'
-}
+const SELECTOR_DATA_TOGGLE = '[data-widget="chat-pane-toggle"]'
+const SELECTOR_DIRECT_CHAT = '.direct-chat'
 
-const ClassName = {
-  DIRECT_CHAT_OPEN: 'direct-chat-contacts-open'
-}
+const CLASS_NAME_DIRECT_CHAT_OPEN = 'direct-chat-contacts-open'
 
 /**
  * Class Definition
@@ -40,8 +35,8 @@ class DirectChat {
   }
 
   toggle() {
-    $(this._element).parents(Selector.DIRECT_CHAT).first().toggleClass(ClassName.DIRECT_CHAT_OPEN)
-    $(this._element).trigger($.Event(Event.TOGGLED))
+    $(this._element).parents(SELECTOR_DIRECT_CHAT).first().toggleClass(CLASS_NAME_DIRECT_CHAT_OPEN)
+    $(this._element).trigger($.Event(EVENT_TOGGLED))
   }
 
   // Static
@@ -66,7 +61,7 @@ class DirectChat {
  * ====================================================
  */
 
-$(document).on('click', Selector.DATA_TOGGLE, function (event) {
+$(document).on('click', SELECTOR_DATA_TOGGLE, function (event) {
   if (event) {
     event.preventDefault()
   }

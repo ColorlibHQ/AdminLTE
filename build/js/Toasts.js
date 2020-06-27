@@ -17,35 +17,27 @@ const DATA_KEY = 'lte.toasts'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-const Event = {
-  INIT: `init${EVENT_KEY}`,
-  CREATED: `created${EVENT_KEY}`,
-  REMOVED: `removed${EVENT_KEY}`
-}
+const EVENT_INIT = `init${EVENT_KEY}`
+const EVENT_CREATED = `created${EVENT_KEY}`
+const EVENT_REMOVED = `removed${EVENT_KEY}`
 
-const Selector = {
-  CONTAINER_TOP_RIGHT: '#toastsContainerTopRight',
-  CONTAINER_TOP_LEFT: '#toastsContainerTopLeft',
-  CONTAINER_BOTTOM_RIGHT: '#toastsContainerBottomRight',
-  CONTAINER_BOTTOM_LEFT: '#toastsContainerBottomLeft'
-}
+const SELECTOR_CONTAINER_TOP_RIGHT = '#toastsContainerTopRight'
+const SELECTOR_CONTAINER_TOP_LEFT = '#toastsContainerTopLeft'
+const SELECTOR_CONTAINER_BOTTOM_RIGHT = '#toastsContainerBottomRight'
+const SELECTOR_CONTAINER_BOTTOM_LEFT = '#toastsContainerBottomLeft'
 
-const ClassName = {
-  TOP_RIGHT: 'toasts-top-right',
-  TOP_LEFT: 'toasts-top-left',
-  BOTTOM_RIGHT: 'toasts-bottom-right',
-  BOTTOM_LEFT: 'toasts-bottom-left'
-}
+const CLASS_NAME_TOP_RIGHT = 'toasts-top-right'
+const CLASS_NAME_TOP_LEFT = 'toasts-top-left'
+const CLASS_NAME_BOTTOM_RIGHT = 'toasts-bottom-right'
+const CLASS_NAME_BOTTOM_LEFT = 'toasts-bottom-left'
 
-const Position = {
-  TOP_RIGHT: 'topRight',
-  TOP_LEFT: 'topLeft',
-  BOTTOM_RIGHT: 'bottomRight',
-  BOTTOM_LEFT: 'bottomLeft'
-}
+const POSITION_TOP_RIGHT = 'topRight'
+const POSITION_TOP_LEFT = 'topLeft'
+const POSITION_BOTTOM_RIGHT = 'bottomRight'
+const POSITION_BOTTOM_LEFT = 'bottomLeft'
 
 const Default = {
-  position: Position.TOP_RIGHT,
+  position: POSITION_TOP_RIGHT,
   fixed: true,
   autohide: false,
   autoremove: true,
@@ -71,7 +63,7 @@ class Toasts {
     this._config = config
     this._prepareContainer()
 
-    $('body').trigger($.Event(Event.INIT))
+    $('body').trigger($.Event(EVENT_INIT))
   }
 
   // Public
@@ -134,13 +126,13 @@ class Toasts {
 
     const $body = $('body')
 
-    $body.trigger($.Event(Event.CREATED))
+    $body.trigger($.Event(EVENT_CREATED))
     toast.toast('show')
 
     if (this._config.autoremove) {
       toast.on('hidden.bs.toast', function () {
         $(this).delay(200).remove()
-        $body.trigger($.Event(Event.REMOVED))
+        $body.trigger($.Event(EVENT_REMOVED))
       })
     }
   }
@@ -148,34 +140,34 @@ class Toasts {
   // Static
 
   _getContainerId() {
-    if (this._config.position == Position.TOP_RIGHT) {
-      return Selector.CONTAINER_TOP_RIGHT
+    if (this._config.position == POSITION_TOP_RIGHT) {
+      return SELECTOR_CONTAINER_TOP_RIGHT
     }
 
-    if (this._config.position == Position.TOP_LEFT) {
-      return Selector.CONTAINER_TOP_LEFT
+    if (this._config.position == POSITION_TOP_LEFT) {
+      return SELECTOR_CONTAINER_TOP_LEFT
     }
 
-    if (this._config.position == Position.BOTTOM_RIGHT) {
-      return Selector.CONTAINER_BOTTOM_RIGHT
+    if (this._config.position == POSITION_BOTTOM_RIGHT) {
+      return SELECTOR_CONTAINER_BOTTOM_RIGHT
     }
 
-    if (this._config.position == Position.BOTTOM_LEFT) {
-      return Selector.CONTAINER_BOTTOM_LEFT
+    if (this._config.position == POSITION_BOTTOM_LEFT) {
+      return SELECTOR_CONTAINER_BOTTOM_LEFT
     }
   }
 
   _prepareContainer() {
     if ($(this._getContainerId()).length === 0) {
       const container = $('<div />').attr('id', this._getContainerId().replace('#', ''))
-      if (this._config.position == Position.TOP_RIGHT) {
-        container.addClass(ClassName.TOP_RIGHT)
-      } else if (this._config.position == Position.TOP_LEFT) {
-        container.addClass(ClassName.TOP_LEFT)
-      } else if (this._config.position == Position.BOTTOM_RIGHT) {
-        container.addClass(ClassName.BOTTOM_RIGHT)
-      } else if (this._config.position == Position.BOTTOM_LEFT) {
-        container.addClass(ClassName.BOTTOM_LEFT)
+      if (this._config.position == POSITION_TOP_RIGHT) {
+        container.addClass(CLASS_NAME_TOP_RIGHT)
+      } else if (this._config.position == POSITION_TOP_LEFT) {
+        container.addClass(CLASS_NAME_TOP_LEFT)
+      } else if (this._config.position == POSITION_BOTTOM_RIGHT) {
+        container.addClass(CLASS_NAME_BOTTOM_RIGHT)
+      } else if (this._config.position == POSITION_BOTTOM_LEFT) {
+        container.addClass(CLASS_NAME_BOTTOM_LEFT)
       }
 
       $('body').append(container)

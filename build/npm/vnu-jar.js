@@ -35,7 +35,7 @@ childProcess.exec('java -version', (error, stdout, stderr) => {
     '--skip-non-html',
     // Ignore the language code warnings
     '--no-langdetect',
-    // '--Werror',
+    '--Werror',
     `--filterpattern "${ignores}"`,
     './*.html',
     'docs_html/',

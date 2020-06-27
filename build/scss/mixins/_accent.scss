@@ -22,14 +22,14 @@
     .dropdown-item {
       &:active,
       &.active {
-        background: $color;
+        background-color: $color;
         color: color-yiq($color);
       }
     }
 
     .custom-control-input:checked ~ .custom-control-label {
       &::before {
-        background: $color;
+        background-color: $color;
         border-color: darken($color, 20%);
       }
 

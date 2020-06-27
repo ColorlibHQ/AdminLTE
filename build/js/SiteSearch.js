@@ -16,16 +16,12 @@ const NAME = 'SiteSearch'
 const DATA_KEY = 'lte.site-search'
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-const Selector = {
-  TOGGLE_BUTTON: '[data-widget="site-search"]',
-  SEARCH_BLOCK: '.site-search-block',
-  SEARCH_BACKDROP: '.site-search-backdrop',
-  SEARCH_INPUT: '.site-search-block .form-control'
-}
+const SELECTOR_TOGGLE_BUTTON = '[data-widget="site-search"]'
+const SELECTOR_SEARCH_BLOCK = '.site-search-block'
+const SELECTOR_SEARCH_BACKDROP = '.site-search-backdrop'
+const SELECTOR_SEARCH_INPUT = '.site-search-block .form-control'
 
-const ClassName = {
-  OPEN: 'site-search-open'
-}
+const CLASS_NAME_OPEN = 'site-search-open'
 
 const Default = {
   transitionSpeed: 300
@@ -45,20 +41,20 @@ class SiteSearch {
   // Public
 
   open() {
-    $(Selector.SEARCH_BLOCK).slideDown(this.options.transitionSpeed)
-    $(Selector.SEARCH_BACKDROP).show(0)
-    $(Selector.SEARCH_INPUT).focus()
-    $(Selector.SEARCH_BLOCK).addClass(ClassName.OPEN)
+    $(SELECTOR_SEARCH_BLOCK).slideDown(this.options.transitionSpeed)
+    $(SELECTOR_SEARCH_BACKDROP).show(0)
+    $(SELECTOR_SEARCH_INPUT).focus()
+    $(SELECTOR_SEARCH_BLOCK).addClass(CLASS_NAME_OPEN)
   }
 
   close() {
-    $(Selector.SEARCH_BLOCK).slideUp(this.options.transitionSpeed)
-    $(Selector.SEARCH_BACKDROP).hide(0)
-    $(Selector.SEARCH_BLOCK).removeClass(ClassName.OPEN)
+    $(SELECTOR_SEARCH_BLOCK).slideUp(this.options.transitionSpeed)
+    $(SELECTOR_SEARCH_BACKDROP).hide(0)
+    $(SELECTOR_SEARCH_BLOCK).removeClass(CLASS_NAME_OPEN)
   }
 
   toggle() {
-    if ($(Selector.SEARCH_BLOCK).hasClass(ClassName.OPEN)) {
+    if ($(SELECTOR_SEARCH_BLOCK).hasClass(CLASS_NAME_OPEN)) {
       this.close()
     } else {
       this.open()
@@ -89,19 +85,19 @@ class SiteSearch {
  * Data API
  * ====================================================
  */
-$(document).on('click', Selector.TOGGLE_BUTTON, event => {
+$(document).on('click', SELECTOR_TOGGLE_BUTTON, event => {
   event.preventDefault()
 
   let button = $(event.currentTarget)
 
   if (button.data('widget') !== 'site-search') {
-    button = button.closest(Selector.TOGGLE_BUTTON)
+    button = button.closest(SELECTOR_TOGGLE_BUTTON)
   }
 
   SiteSearch._jQueryInterface.call(button, 'toggle')
 })
 
-$(document).on('click', Selector.SEARCH_BACKDROP, event => {
+$(document).on('click', SELECTOR_SEARCH_BACKDROP, event => {
   const backdrop = $(event.currentTarget)
   SiteSearch._jQueryInterface.call(backdrop, 'close')
 })

@@ -47,9 +47,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: docs/vendor/bundle
-          key: ${{ runner.os }}-ruby-v${{ env.RUBY }}-${{ hashFiles('Gemfile') }}-${{ hashFiles('Gemfile.lock') }}
+          key: ${{ runner.os }}-ruby-v${{ env.RUBY }}-${{ hashFiles('docs/Gemfile') }}-${{ hashFiles('docs/Gemfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-ruby-v${{ env.RUBY }}-${{ hashFiles('Gemfile') }}-${{ hashFiles('Gemfile.lock') }}
+            ${{ runner.os }}-ruby-v${{ env.RUBY }}-${{ hashFiles('docs/Gemfile') }}-${{ hashFiles('docs/Gemfile.lock') }}
             ${{ runner.os }}-ruby-v${{ env.RUBY }}-
 
       - name: Set up Bundler
