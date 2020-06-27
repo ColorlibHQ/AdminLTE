@@ -72,6 +72,15 @@
 }
 
 // Expandable Table
+
+.table-hover tbody tr.expandable-body:hover {
+  background-color: inherit !important;
+}
+
+[data-widget="expandable-table"] {
+  cursor: pointer;
+}
+
 .expandable-body {
   td {
     padding: 0;
