@@ -33,9 +33,7 @@
 // Background Gradient Variant
 @mixin background-gradient-variant($name, $color) {
   .bg-gradient-#{$name} {
-    // Ignore warning for Bootstrap 4 deprecation
-    // TODO: remove bg-gradient-variant dependencies
-    @include bg-gradient-variant("&", $color, true);
+    @include bg-gradient-variant("&", $color);
     color: color-yiq($color);
 
     &.btn {
@@ -48,9 +46,7 @@
       }
 
       &:hover {
-        // Ignore warning for Bootstrap 4 deprecation
-        // TODO: remove bg-gradient-variant dependencies
-        @include bg-gradient-variant("&", darken($color, 7.5%), true);
+        @include bg-gradient-variant("&", darken($color, 7.5%));
         border-color: darken($color, 10%);
         color: darken(color-yiq($color), 7.5%);
       }
@@ -59,9 +55,7 @@
       &:not(:disabled):not(.disabled).active,
       &:active,
       &.active {
-        // Ignore warning for Bootstrap 4 deprecation
-        // TODO: remove bg-gradient-variant dependencies
-        @include bg-gradient-variant("&", darken($color, 10%), true);
+        @include bg-gradient-variant("&", darken($color, 10%));
         border-color: darken($color, 12.5%);
         color: color-yiq(darken($color, 10%));
       }
