@@ -55,9 +55,6 @@ class ExpandableTable {
     const $type = $element.attr(SELECTOR_ARIA_ATTR)
     const $body = $element.next().children().first().children()
 
-    // eslint-disable-next-line no-console
-    console.log($element)
-
     $body.stop()
     if ($type === 'true') {
       $body.slideUp(time, () => {
