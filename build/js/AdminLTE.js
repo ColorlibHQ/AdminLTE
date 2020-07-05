@@ -6,6 +6,7 @@ import Dropdown from './Dropdown'
 import ExpandableTable from './ExpandableTable'
 import Layout from './Layout'
 import PushMenu from './PushMenu'
+import SidebarSearch from './SidebarSearch'
 import Toasts from './Toasts'
 import TodoList from './TodoList'
 import Treeview from './Treeview'
@@ -19,6 +20,7 @@ export {
   ExpandableTable,
   Layout,
   PushMenu,
+  SidebarSearch,
   Toasts,
   TodoList,
   Treeview
