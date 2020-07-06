@@ -36,6 +36,16 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - name: Set up npm cache
+        uses: actions/cache@v2
+        if: ${{ !startsWith(runner.os, 'windows') }}
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-v${{ env.node }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}}
+          restore-keys: |
+            ${{ runner.OS }}-node-v${{ env.node }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}
+            ${{ runner.OS }}-node-v${{ env.node }}-
+
       - name: Install npm dependencies
         run: npm ci
 
