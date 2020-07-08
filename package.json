@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.13.1",
-    "@fullcalendar/bootstrap": "^4.4.2",
+    "@fullcalendar/bootstrap": "^5.1.0",
     "@fullcalendar/core": "^4.4.2",
     "@fullcalendar/daygrid": "^4.4.2",
     "@fullcalendar/interaction": "^4.4.2",
