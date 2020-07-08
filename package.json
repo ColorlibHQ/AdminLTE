@@ -117,7 +117,7 @@
     "jszip": "^3.5.0",
     "moment": "^2.24.0",
     "overlayscrollbars": "^1.12.0",
-    "pdfmake": "^0.1.65",
+    "pdfmake": "^0.1.66",
     "popper.js": "^1.16.1",
     "raphael": "^2.3.0",
     "select2": "^4.0.13",
@@ -128,16 +128,16 @@
     "toastr": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.3",
-    "@babel/preset-env": "^7.10.3",
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
     "@rollup/plugin-babel": "^5.0.4",
     "autoprefixer": "^9.8.4",
     "browser-sync": "^2.26.7",
     "bundlewatch": "^0.2.7",
     "clean-css-cli": "^4.3.0",
-    "eslint": "^7.3.1",
-    "eslint-config-xo": "^0.31.0",
-    "eslint-plugin-compat": "^3.7.0",
+    "eslint": "^7.4.0",
+    "eslint-config-xo": "^0.32.0",
+    "eslint-plugin-compat": "^3.8.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-unicorn": "^20.1.0",
     "node-sass": "^4.14.1",
@@ -145,10 +145,10 @@
     "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^7.1.1",
-    "rollup": "^2.18.1",
+    "rollup": "^2.21.0",
     "stylelint": "^13.6.1",
     "stylelint-config-twbs-bootstrap": "^2.0.3",
     "terser": "^4.8.0",
-    "vnu-jar": "^20.5.29"
+    "vnu-jar": "^20.6.30"
   }
 }
