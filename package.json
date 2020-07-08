@@ -70,7 +70,7 @@
     "@fortawesome/fontawesome-free": "^5.13.1",
     "@fullcalendar/bootstrap": "^4.4.2",
     "@fullcalendar/core": "^4.4.2",
-    "@fullcalendar/daygrid": "^4.4.2",
+    "@fullcalendar/daygrid": "^5.1.0",
     "@fullcalendar/interaction": "^4.4.2",
     "@fullcalendar/timegrid": "^4.4.2",
     "@lgaitan/pace-progress": "^1.0.7",
