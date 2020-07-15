@@ -128,10 +128,10 @@
     "toastr": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.4",
+    "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
-    "@rollup/plugin-babel": "^5.0.4",
-    "autoprefixer": "^9.8.4",
+    "@rollup/plugin-babel": "^5.1.0",
+    "autoprefixer": "^9.8.5",
     "browser-sync": "^2.26.7",
     "bundlewatch": "^0.2.7",
     "clean-css-cli": "^4.3.0",
