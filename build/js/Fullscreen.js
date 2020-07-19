@@ -49,10 +49,8 @@ class Fullscreen {
   }
 
   fullscreen() {
-    if (document.documentElement.showFullscreen) {
-      document.documentElement.showFullscreen()
-    } else if (document.documentElement.mozRequestFullScreen) {
-      document.documentElement.mozRequestFullScreen()
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen()
     } else if (document.documentElement.webkitRequestFullscreen) {
       document.documentElement.webkitRequestFullscreen()
     } else if (document.documentElement.msRequestFullscreen) {
@@ -65,8 +63,6 @@ class Fullscreen {
   windowed() {
     if (document.exitFullscreen) {
       document.exitFullscreen()
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen()
     } else if (document.webkitExitFullscreen) {
       document.webkitExitFullscreen()
     } else if (document.msExitFullscreen) {
