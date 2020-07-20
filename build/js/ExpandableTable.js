@@ -24,13 +24,15 @@ const SELECTOR_TABLE = '.expandable-table'
 const SELECTOR_DATA_TOGGLE = '[data-widget="expandable-table"]'
 const SELECTOR_ARIA_ATTR = 'aria-expanded'
 
+const CLASS_NAME_ROTATE = 'rotate'
+
 /**
   * Class Definition
   * ====================================================
   */
 class ExpandableTable {
-  constructor(element, config) {
-    this._config = config
+  constructor(element, options) {
+    this._options = options
     this._element = element
   }
 
@@ -41,6 +43,7 @@ class ExpandableTable {
       const $type = $($header).attr(SELECTOR_ARIA_ATTR)
       const $body = $($header).next().children().first().children()
       if ($type === 'true') {
+        $($header).find('i:first-child').addClass(CLASS_NAME_ROTATE)
         $body.show()
       } else if ($type === 'false') {
         $body.hide()
@@ -57,12 +60,14 @@ class ExpandableTable {
 
     $body.stop()
     if ($type === 'true') {
+      $element.find('i:first-child').removeClass(CLASS_NAME_ROTATE)
       $body.slideUp(time, () => {
         $element.next().addClass('d-none')
       })
       $element.attr(SELECTOR_ARIA_ATTR, 'false')
       $element.trigger($.Event(EVENT_COLLAPSED))
     } else if ($type === 'false') {
+      $element.find('i:first-child').addClass(CLASS_NAME_ROTATE)
       $element.next().removeClass('d-none')
       $body.slideDown(time)
       $element.attr(SELECTOR_ARIA_ATTR, 'true')
@@ -72,16 +77,17 @@ class ExpandableTable {
 
   // Static
 
-  static _jQueryInterface(config) {
+  static _jQueryInterface(operation) {
     return this.each(function () {
       let data = $(this).data(DATA_KEY)
+
       if (!data) {
         data = new ExpandableTable($(this))
         $(this).data(DATA_KEY, data)
       }
 
-      if (config === 'init' || config === 'toggleRow') {
-        data[config]()
+      if (typeof operation === 'string' && operation.match(/init|toggleRow/)) {
+        data[operation]()
       }
     })
   }
