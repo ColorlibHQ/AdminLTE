@@ -1042,13 +1042,13 @@
 }
 
 .layout-fixed {
-  .sidebar-collapse & {
+  &.sidebar-collapse {
     .hide-on-collapse {
       display: none;
     }
   }
 
-  .sidebar-collapse:hover & {
+  &.sidebar-collapse:hover {
     .hide-on-collapse {
       display: block;
     }
