@@ -40,6 +40,8 @@
   &.fas,
   &.far,
   &.fab,
+  &.fal,
+  &.fad,
   &.ion {
     line-height: $input-height;
   }
@@ -51,6 +53,8 @@
   &.fas,
   &.far,
   &.fab,
+  &.fal,
+  &.fad,
   &.ion {
     line-height: $input-height-lg;
   }
@@ -62,7 +66,9 @@
     &.fas,
     &.far,
     &.fab,
-    &.ion {
+    &.fal,
+    &.fad,
+      &.ion {
       line-height: $input-height-lg;
     }
   }
@@ -74,6 +80,8 @@
   &.fas,
   &.far,
   &.fab,
+  &.fal,
+  &.fad,
   &.ion {
     line-height: $input-height-sm;
   }
@@ -85,7 +93,9 @@
     &.fas,
     &.far,
     &.fab,
-    &.ion {
+    &.fal,
+    &.fad,
+      &.ion {
       line-height: $input-height-sm;
     }
   }
