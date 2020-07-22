@@ -107,6 +107,25 @@ You can add this code above user-panel or nav-sidebar:
 ```
 {: .max-height-300}
 
+
+#### Sidebar Custom Area
+
+You can add a Custom Area inside the Sidebar to display extra buttons or text below your menu entries.
+
+You can simply add this code after the `div.sidebar`:
+
+```html
+<div class="sidebar-custom">
+  <a href="#" class="btn btn-link"><i class="fas fa-cogs"></i></a>
+  <a href="#" class="btn btn-secondary hide-on-collapse pos-right">Help</a>
+</div>
+```
+
+> ##### Warning!
+> The Sidebar Custom Area works only with `.layout-fixed` enabled.
+{: .quote-warning}
+
+
 #### Additional Classes
 
 ##### Sidebar

@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Pace</title>
+  <title>AdminLTE 3 | Fixed Sidebar</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <!-- pace-progress -->
-  <link rel="stylesheet" href="../../plugins/pace-progress/themes/black/pace-theme-flat-top.css">
-  <!-- adminlte-->
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
-<body class="hold-transition sidebar-mini pace-primary">
+<body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -146,7 +146,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
       <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -220,8 +220,8 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Layout Options
@@ -255,9 +255,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../layout/fixed-sidebar-custom.html" class="nav-link">
+                <a href="../layout/fixed-sidebar-custom.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
+                  <p class="">Fixed Sidebar<small> + Custom Area</small></p>
                 </a>
               </li>
               <li class="nav-item">
@@ -538,8 +538,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
                 Extras
@@ -602,7 +602,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../examples/pace.html" class="nav-link active">
+                <a href="../examples/pace.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pace</p>
                 </a>
@@ -717,6 +717,12 @@
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
+
+    <div class="sidebar-custom">
+      <a href="#" class="btn btn-link"><i class="fas fa-cogs"></i></a>
+      <a href="#" class="btn btn-secondary hide-on-collapse pos-right">Help</a>
+    </div>
+    <!-- /.sidebar-custom -->
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
@@ -726,12 +732,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Pace</h1>
+            <h1>Fixed Layout</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Pace</li>
+              <li class="breadcrumb-item"><a href="#">Layout</a></li>
+              <li class="breadcrumb-item active">Fixed Layout</li>
             </ol>
           </div>
         </div>
@@ -741,31 +748,36 @@
     <!-- Main content -->
     <section class="content">
 
-      <!-- Default box -->
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Title</h3>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <!-- Default box -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Title</h3>
 
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-              <i class="fas fa-times"></i>
-            </button>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                Start creating your amazing application!
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                Footer
+              </div>
+              <!-- /.card-footer-->
+            </div>
+            <!-- /.card -->
           </div>
         </div>
-        <div class="card-body">
-          Start creating your amazing application!
-        </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-          Footer
-        </div>
-        <!-- /.card-footer-->
       </div>
-      <!-- /.card -->
-
     </section>
     <!-- /.content -->
   </div>
@@ -790,8 +802,8 @@
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- pace-progress -->
-<script src="../../plugins/pace-progress/pace.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->

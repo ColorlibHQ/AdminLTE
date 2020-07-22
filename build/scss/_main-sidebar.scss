@@ -1029,3 +1029,68 @@
     @include border-bottom-radius(0);
   }
 }
+
+// Custom Area
+.sidebar-custom {
+  [class*="sidebar-dark"] & {
+    border-top: 1px solid lighten($dark, 12%);
+  }
+
+  [class*="sidebar-light"] & {
+    border-top: 1px solid $gray-300;
+  }
+}
+
+.layout-fixed {
+  &.sidebar-collapse {
+    .hide-on-collapse {
+      display: none;
+    }
+  }
+
+  &.sidebar-collapse:hover {
+    .hide-on-collapse {
+      display: block;
+    }
+  }
+
+  .main-sidebar-custom {
+    .sidebar {
+      height: calc(100% - ((#{$main-header-height-inner} + #{$sidebar-custom-height}) + #{$main-header-bottom-border-width}));
+    }
+
+    .sidebar-custom {
+      height: $sidebar-custom-height;
+      padding: $sidebar-custom-padding-x $sidebar-custom-padding-y;
+    }
+  }
+
+  .main-sidebar-custom-lg {
+    .sidebar {
+      height: calc(100% - ((#{$main-header-height-inner} + #{$sidebar-custom-height-lg}) + #{$main-header-bottom-border-width}));
+    }
+
+    .sidebar-custom {
+      height: $sidebar-custom-height-lg;
+    }
+  }
+
+  .main-sidebar-custom-xl {
+    .sidebar {
+      height: calc(100% - ((#{$main-header-height-inner} + #{$sidebar-custom-height-xl}) + #{$main-header-bottom-border-width}));
+    }
+
+    .sidebar-custom {
+      height: $sidebar-custom-height-xl;
+    }
+  }
+
+  .main-sidebar-custom,
+  .main-sidebar-custom-lg,
+  .main-sidebar-custom-xl {
+    .pos-right {
+      position: absolute;
+      right: .5rem;
+    }
+  }
+}
