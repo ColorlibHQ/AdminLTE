@@ -22,12 +22,38 @@
 
   [class*="sidebar-dark"] & {
     border-bottom: 1px solid lighten($dark, 10%);
-    color: rgba($white, .8);
+
+    &,
+    .pushmenu {
+      color: rgba($white, .8);
+
+      &:hover {
+        color: $white;
+      }
+    }
   }
 
   [class*="sidebar-light"] & {
     border-bottom: 1px solid $gray-300;
-    color: rgba($black, .8);
+
+    &,
+    .pushmenu {
+      color: rgba($black, .8);
+
+      &:hover {
+        color: $black;
+      }
+    }
+  }
+
+  .pushmenu {
+    margin-right: $sidebar-padding-x;
+    font-size: $font-size-base;
+  }
+
+  .brand-link {
+    padding: 0;
+    border-bottom: none;
   }
 
   .brand-image {

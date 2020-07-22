@@ -88,6 +88,19 @@ You can use two logo images instead of logo with text, you only need to change t
 
 Based on the example above, you can replace `.brand-image-xl` on `.logo-xs` with `.brand-image-xs` or vice versa on `.logo-xl` for changed logo sizes.
 
+#### Brand with Pushmenu Button
+
+You can place the pushmenu button inside the brand, simply replace the brand-link code with the code below:
+
+```html
+<div class="brand-link d-flex justify-content-between align-items-center">
+  <a class="brand-link" href="index3.html">
+    <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
+    <span class="brand-text font-weight-light">AdminLTE 3</span>
+  </a>
+  <a class="pushmenu" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+</div>
+```
 
 #### Search Form in Sidebar
 
