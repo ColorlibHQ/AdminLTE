@@ -29,8 +29,8 @@ const SELECTOR_ARIA_ATTR = 'aria-expanded'
   * ====================================================
   */
 class ExpandableTable {
-  constructor(element, config) {
-    this._config = config
+  constructor(element, options) {
+    this._options = options
     this._element = element
   }
 
@@ -72,16 +72,17 @@ class ExpandableTable {
 
   // Static
 
-  static _jQueryInterface(config) {
+  static _jQueryInterface(operation) {
     return this.each(function () {
       let data = $(this).data(DATA_KEY)
+
       if (!data) {
         data = new ExpandableTable($(this))
         $(this).data(DATA_KEY, data)
       }
 
-      if (config === 'init' || config === 'toggleRow') {
-        data[config]()
+      if (typeof operation === 'string' && operation.match(/init|toggleRow/)) {
+        data[operation]()
       }
     })
   }
