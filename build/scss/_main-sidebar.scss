@@ -845,9 +845,9 @@
   }
 
   .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused &,
-  .sidebar-mini.sidebar-collapse .main-sidebar:hover &,
+  .sidebar-mini.sidebar-collapse .main-sidebar:not(.sidebar-no-expand):hover &,
   .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused &,
-  .sidebar-mini-md.sidebar-collapse .main-sidebar:hover & {
+  .sidebar-mini-md.sidebar-collapse .main-sidebar:not(.sidebar-no-expand):hover & {
     .menu-open > .nav-treeview {
       max-height: min-content;
       animation-name: fadeIn;
