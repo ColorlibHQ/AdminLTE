@@ -181,6 +181,21 @@
   var $child_indent_sidebar_container = $('<div />', { class: 'mb-1' }).append($child_indent_sidebar_checkbox).append('<span>Sidebar nav child indent</span>')
   $container.append($child_indent_sidebar_container)
 
+  var $child_hide_sidebar_checkbox = $('<input />', {
+    type: 'checkbox',
+    value: 1,
+    checked: $('.nav-sidebar').hasClass('nav-collapse-hide-child'),
+    class: 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('.nav-sidebar').addClass('nav-collapse-hide-child')
+    } else {
+      $('.nav-sidebar').removeClass('nav-collapse-hide-child')
+    }
+  })
+  var $child_hide_sidebar_container = $('<div />', { class: 'mb-1' }).append($child_hide_sidebar_checkbox).append('<span>Sidebar nav child hide on collapse</span>')
+  $container.append($child_hide_sidebar_container)
+
   var $no_expand_sidebar_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
