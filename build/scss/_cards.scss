@@ -40,6 +40,10 @@
       display: block !important;
     }
 
+    .card-body {
+      overflow: auto;
+    }
+
     [data-widget="collapse"] {
       display: none;
     }
