@@ -395,6 +395,11 @@ const Plugins = [
   {
     from: 'node_modules/bs-custom-file-input/dist/',
     to: 'plugins/bs-custom-file-input'
+  },
+  // bs-stepper
+  {
+    from: 'node_modules/bs-stepper/dist/',
+    to: 'plugins/bs-stepper'
   }
 ]
 
