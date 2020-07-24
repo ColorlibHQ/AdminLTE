@@ -115,6 +115,13 @@
       }
     }
 
+    svg {
+      font-size: 70px;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      transition: transform $transition-speed linear;
+    }
   }
 
   // Small box hover state
@@ -122,15 +129,20 @@
     text-decoration: none;
 
     // Animate icons on small box hover
-    .icon > i {
-      &,
-      &.fa,
-      &.fas,
-      &.far,
-      &.fab,
-      &.fal,
-      &.fad,
-      &.ion {
+    .icon {
+      > i {
+        &,
+        &.fa,
+        &.fas,
+        &.far,
+        &.fab,
+        &.fal,
+        &.fad,
+        &.ion {
+          transform: scale(1.1);
+        }
+      }
+      > svg {
         transform: scale(1.1);
       }
     }

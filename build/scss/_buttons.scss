@@ -76,9 +76,14 @@
   > .fab,
   > .fal,
   > .fad,
+  > .svg-inline--fa,
   > .ion {
     display: block;
     font-size: 20px;
+  }
+
+  > .svg-inline--fa {
+    margin: 0 auto;
   }
 
   &:hover {

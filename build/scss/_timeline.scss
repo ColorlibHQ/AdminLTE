@@ -90,10 +90,11 @@
     > .fab,
     > .fal,
     > .fad,
+    > .svg-inline--fa,
     > .ion {
       background-color: $gray-500;
       border-radius: 50%;
-      font-size: 15px;
+      font-size: 16px;
       height: 30px;
       left: 18px;
       line-height: 30px;
@@ -101,6 +102,9 @@
       text-align: center;
       top: 0;
       width: 30px;
+    }
+    > .svg-inline--fa {
+      padding: 7px;
     }
   }
   // Time label
