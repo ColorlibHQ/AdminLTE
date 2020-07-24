@@ -99,6 +99,9 @@ class ControlSidebar {
       $body.addClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN)
     }
 
+    this._fixHeight()
+    this._fixScrollHeight()
+
     $(this._element).trigger($.Event(EVENT_EXPANDED))
   }
 
@@ -183,7 +186,8 @@ class ControlSidebar {
       $controlsidebarContent.css('height', heights.window - (heights.header + heights.footer))
     } else if (positions.bottom <= heights.footer) {
       if (footerFixed === false) {
-        $controlSidebar.css('bottom', heights.footer - positions.bottom)
+        const top = heights.header - positions.top
+        $controlSidebar.css('bottom', heights.footer - positions.bottom).css('top', top >= 0 ? top : 0)
         $controlsidebarContent.css('height', heights.window - (heights.footer - positions.bottom))
       } else {
         $controlSidebar.css('bottom', heights.footer)
