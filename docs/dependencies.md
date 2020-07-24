@@ -37,6 +37,8 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
     <ul class="list-unstyled">
       <li><h4>Editors</h4></li>
       <li><a href="https://summernote.org/" rel="noopener" target="_blank">Summernote</a></li>
+      <li><a href="https://codemirror.net/" rel="noopener" target="_blank">CodeMirror</a></li>
+      <li><a href="https://simplemde.com" rel="noopener" target="_blank">SimpleMDE</a></li>
     </ul>
   </div>
   <div class="col-sm-3">
@@ -52,6 +54,7 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
       <li><a href="https://tempusdominus.github.io/bootstrap-4/" rel="noopener" target="_blank">Tempus Dominus</a></li>
       <li><a href="https://github.com/istvan-ujjmeszaros/bootstrap-duallistbox#readme" rel="noopener" target="_blank">Bootstrap4 Duallistbox</a></li>
       <li><a href="https://github.com/Johann-S/bs-custom-file-input#readme" rel="noopener" target="_blank">bs-custom-file-input</a></li>
+      <li><a href="https://github.com/Johann-S/bs-stepper#readme" rel="noopener" target="_blank">bs-stepper</a></li>
     </ul>
   </div>
   <div class="col-sm-3">

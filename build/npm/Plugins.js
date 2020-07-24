@@ -395,6 +395,42 @@ const Plugins = [
   {
     from: 'node_modules/bs-custom-file-input/dist/',
     to: 'plugins/bs-custom-file-input'
+  },
+  // bs-stepper
+  {
+    from: 'node_modules/bs-stepper/dist/',
+    to: 'plugins/bs-stepper'
+  },
+  // CodeMirror
+  {
+    from: 'node_modules/codemirror/lib/',
+    to: 'plugins/codemirror'
+  },
+  {
+    from: 'node_modules/codemirror/addon/',
+    to: 'plugins/codemirror/addon'
+  },
+  {
+    from: 'node_modules/codemirror/keymap/',
+    to: 'plugins/codemirror/keymap'
+  },
+  {
+    from: 'node_modules/codemirror/mode/',
+    to: 'plugins/codemirror/mode'
+  },
+  {
+    from: 'node_modules/codemirror/theme/',
+    to: 'plugins/codemirror/theme'
+  },
+  // simplemde
+  {
+    from: 'node_modules/simplemde/dist/',
+    to: 'plugins/simplemde'
+  },
+  // dropzonejs
+  {
+    from: 'node_modules/dropzone/dist/',
+    to: 'plugins/dropzone'
   }
 ]
 
