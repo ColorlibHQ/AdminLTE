@@ -64,7 +64,10 @@ class PushMenu {
       }
     }
 
-    $bodySelector.addClass(CLASS_NAME_IS_OPENING).removeClass(`${CLASS_NAME_COLLAPSED} ${CLASS_NAME_CLOSED}`)
+    $bodySelector.addClass(CLASS_NAME_IS_OPENING).removeClass(`${CLASS_NAME_COLLAPSED} ${CLASS_NAME_CLOSED}`).delay(50).queue(function () {
+      $bodySelector.removeClass(CLASS_NAME_IS_OPENING)
+      $(this).dequeue()
+    })
 
     if (this._options.enableRemember) {
       localStorage.setItem(`remember${EVENT_KEY}`, CLASS_NAME_OPEN)
@@ -82,7 +85,7 @@ class PushMenu {
       }
     }
 
-    $bodySelector.removeClass(CLASS_NAME_IS_OPENING).addClass(CLASS_NAME_COLLAPSED)
+    $bodySelector.addClass(CLASS_NAME_COLLAPSED)
 
     if (this._options.enableRemember) {
       localStorage.setItem(`remember${EVENT_KEY}`, CLASS_NAME_COLLAPSED)
