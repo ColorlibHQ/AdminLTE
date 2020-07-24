@@ -18,11 +18,11 @@
     },
     {
       "path": "./dist/css/alt/adminlte.core.css",
-      "maxSize": "46 kB"
+      "maxSize": "48 kB"
     },
     {
       "path": "./dist/css/alt/adminlte.core.min.css",
-      "maxSize": "43 kB"
+      "maxSize": "45 kB"
     },
     {
       "path": "./dist/css/alt/adminlte.extra-components.css",
