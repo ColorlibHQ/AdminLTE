@@ -13,6 +13,11 @@
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
+  <!-- CodeMirror -->
+  <link rel="stylesheet" href="../../plugins/codemirror/codemirror.css">
+  <link rel="stylesheet" href="../../plugins/codemirror/theme/monokai.css">
+  <!-- SimpleMDE -->
+  <link rel="stylesheet" href="../../plugins/simplemde/simplemde.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -744,30 +749,74 @@
           <div class="card card-outline card-info">
             <div class="card-header">
               <h3 class="card-title">
-                Bootstrap WYSIHTML5
-                <small>Simple and fast</small>
+                Summernote
               </h3>
-              <!-- tools box -->
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse" title="Collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool btn-sm" data-card-widget="remove" title="Remove">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-              <!-- /. tools -->
             </div>
             <!-- /.card-header -->
-            <div class="card-body pad">
-              <div class="mb-3">
-                <textarea class="textarea" placeholder="Place some text here"
-                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-              </div>
-              <p class="text-sm mb-0">
-                Editor <a href="https://github.com/summernote/summernote">Documentation and license
-                information.</a>
-              </p>
+            <div class="card-body">
+              <textarea id="summernote">
+                Place <em>some</em> <u>text</u> <strong>here</strong>
+              </textarea>
+            </div>
+            <div class="card-footer">
+              Visit <a href="https://github.com/summernote/summernote/">Summernote</a> documentation for more examples and information about the plugin.
+            </div>
+          </div>
+        </div>
+        <!-- /.col-->
+      </div>
+      <!-- ./row -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-outline card-info">
+            <div class="card-header">
+              <h3 class="card-title">
+                CodeMirror
+              </h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+              <textarea id="codeMirrorDemo" class="p-3">
+<div class="info-box bg-gradient-info">
+  <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+  <div class="info-box-content">
+    <span class="info-box-text">Bookmarks</span>
+    <span class="info-box-number">41,410</span>
+    <div class="progress">
+      <div class="progress-bar" style="width: 70%"></div>
+    </div>
+    <span class="progress-description">
+      70% Increase in 30 Days
+    </span>
+  </div>
+</div>
+              </textarea>
+            </div>
+            <div class="card-footer">
+              Visit <a href="https://codemirror.net/">CodeMirror</a> documentation for more examples and information about the plugin.
+            </div>
+          </div>
+        </div>
+        <!-- /.col-->
+      </div>
+      <!-- ./row -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-outline card-info">
+            <div class="card-header">
+              <h3 class="card-title">
+                SimpleMDE
+              </h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <textarea class="textarea" id="simpleMDE"># Intro
+Go ahead, play around with the editor! Be sure to check out **bold** and *italic* styling,
+or even [links](https://google.com). You can type the Markdown syntax, use the toolbar, or use shortcuts like `cmd-b` or `ctrl-b`.
+</textarea>
+            </div>
+            <div class="card-footer">
+              Visit <a href="https://github.com/sparksuite/simplemde-markdown-editor">SimpleMDE</a> documentation for more examples and information about the plugin.
             </div>
           </div>
         </div>
@@ -803,10 +852,26 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- Summernote -->
 <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+<!-- CodeMirror -->
+<script src="../../plugins/codemirror/codemirror.js"></script>
+<script src="../../plugins/codemirror/mode/css/css.js"></script>
+<script src="../../plugins/codemirror/mode/xml/xml.js"></script>
+<script src="../../plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<!-- SimpleMDE -->
+<script src="../../plugins/simplemde/simplemde.min.js"></script>
 <script>
   $(function () {
     // Summernote
-    $('.textarea').summernote()
+    $('#summernote').summernote()
+
+    // CodeMirror
+    CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+      mode: "htmlmixed",
+      theme: "monokai"
+    });
+
+    // SimpleMDE
+    new SimpleMDE({ element: document.getElementById("simpleMDE") });
   })
 </script>
 </body>
