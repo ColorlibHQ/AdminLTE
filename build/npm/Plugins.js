@@ -426,6 +426,11 @@ const Plugins = [
   {
     from: 'node_modules/simplemde/dist/',
     to: 'plugins/simplemde'
+  },
+  // dropzonejs
+  {
+    from: 'node_modules/dropzone/dist/',
+    to: 'plugins/dropzone'
   }
 ]
 
