@@ -70,15 +70,18 @@ navigation:
   - title: Browser Support
     url: browser-support.html
     icon: fab fa-chrome
-  - title: Upgrade Guide
-    url: upgrade-guide.html
-    icon: fas fa-hand-point-up
   - title: Implementations
     url: implementations.html
     icon: fas fa-bookmark
+  - title: Additional Styles
+    url: additional-styles.html
+    icon: fas fa-mortar-pestle
+  - title: Upgrade Guide
+    url: upgrade-guide.html
+    icon: fas fa-hand-point-up
   - title: FAQ
     url: faq.html
     icon: fas fa-question-circle
   - title: License
     url: license.html
-    icon: fas fa-file-alt
+    icon: fas fa-file-contract
