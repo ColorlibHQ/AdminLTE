@@ -37,6 +37,8 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
     <ul class="list-unstyled">
       <li><h4>Editors</h4></li>
       <li><a href="https://summernote.org/" rel="noopener" target="_blank">Summernote</a></li>
+      <li><a href="https://codemirror.net/" rel="noopener" target="_blank">CodeMirror</a></li>
+      <li><a href="https://simplemde.com" rel="noopener" target="_blank">SimpleMDE</a></li>
     </ul>
   </div>
   <div class="col-sm-3">

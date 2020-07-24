@@ -1,0 +1,135 @@
+/*
+  Name:       material
+  Author:     Mattia Astorino (http://github.com/equinusocio)
+  Website:    https://material-theme.site/
+*/
+
+.cm-s-material-darker.CodeMirror {
+  background-color: #212121;
+  color: #EEFFFF;
+}
+
+.cm-s-material-darker .CodeMirror-gutters {
+  background: #212121;
+  color: #545454;
+  border: none;
+}
+
+.cm-s-material-darker .CodeMirror-guttermarker,
+.cm-s-material-darker .CodeMirror-guttermarker-subtle,
+.cm-s-material-darker .CodeMirror-linenumber {
+  color: #545454;
+}
+
+.cm-s-material-darker .CodeMirror-cursor {
+  border-left: 1px solid #FFCC00;
+}
+
+.cm-s-material-darker div.CodeMirror-selected {
+  background: rgba(97, 97, 97, 0.2);
+}
+
+.cm-s-material-darker.CodeMirror-focused div.CodeMirror-selected {
+  background: rgba(97, 97, 97, 0.2);
+}
+
+.cm-s-material-darker .CodeMirror-line::selection,
+.cm-s-material-darker .CodeMirror-line>span::selection,
+.cm-s-material-darker .CodeMirror-line>span>span::selection {
+  background: rgba(128, 203, 196, 0.2);
+}
+
+.cm-s-material-darker .CodeMirror-line::-moz-selection,
+.cm-s-material-darker .CodeMirror-line>span::-moz-selection,
+.cm-s-material-darker .CodeMirror-line>span>span::-moz-selection {
+  background: rgba(128, 203, 196, 0.2);
+}
+
+.cm-s-material-darker .CodeMirror-activeline-background {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.cm-s-material-darker .cm-keyword {
+  color: #C792EA;
+}
+
+.cm-s-material-darker .cm-operator {
+  color: #89DDFF;
+}
+
+.cm-s-material-darker .cm-variable-2 {
+  color: #EEFFFF;
+}
+
+.cm-s-material-darker .cm-variable-3,
+.cm-s-material-darker .cm-type {
+  color: #f07178;
+}
+
+.cm-s-material-darker .cm-builtin {
+  color: #FFCB6B;
+}
+
+.cm-s-material-darker .cm-atom {
+  color: #F78C6C;
+}
+
+.cm-s-material-darker .cm-number {
+  color: #FF5370;
+}
+
+.cm-s-material-darker .cm-def {
+  color: #82AAFF;
+}
+
+.cm-s-material-darker .cm-string {
+  color: #C3E88D;
+}
+
+.cm-s-material-darker .cm-string-2 {
+  color: #f07178;
+}
+
+.cm-s-material-darker .cm-comment {
+  color: #545454;
+}
+
+.cm-s-material-darker .cm-variable {
+  color: #f07178;
+}
+
+.cm-s-material-darker .cm-tag {
+  color: #FF5370;
+}
+
+.cm-s-material-darker .cm-meta {
+  color: #FFCB6B;
+}
+
+.cm-s-material-darker .cm-attribute {
+  color: #C792EA;
+}
+
+.cm-s-material-darker .cm-property {
+  color: #C792EA;
+}
+
+.cm-s-material-darker .cm-qualifier {
+  color: #DECB6B;
+}
+
+.cm-s-material-darker .cm-variable-3,
+.cm-s-material-darker .cm-type {
+  color: #DECB6B;
+}
+
+
+.cm-s-material-darker .cm-error {
+  color: rgba(255, 255, 255, 1.0);
+  background-color: #FF5370;
+}
+
+.cm-s-material-darker .CodeMirror-matchingbracket {
+  text-decoration: underline;
+  color: white !important;
+}
