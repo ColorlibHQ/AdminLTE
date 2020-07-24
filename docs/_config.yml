@@ -67,6 +67,8 @@ navigation:
         url: javascript/toasts.html
       - title: Sidebar Search
         url: javascript/sidebar-search.html
+      - title: Expandable Tables
+        url: javascript/expandable-tables.html
   - title: Browser Support
     url: browser-support.html
     icon: fab fa-chrome
