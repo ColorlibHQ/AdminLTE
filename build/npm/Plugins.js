@@ -426,11 +426,6 @@ const Plugins = [
     from: 'node_modules/codemirror/theme/',
     to: 'plugins/codemirror/theme'
   },
-  // simplemde
-  {
-    from: 'node_modules/simplemde/dist/',
-    to: 'plugins/simplemde'
-  },
   // dropzonejs
   {
     from: 'node_modules/dropzone/dist/',
