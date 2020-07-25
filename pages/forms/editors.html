@@ -800,29 +800,6 @@
         <!-- /.col-->
       </div>
       <!-- ./row -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card card-outline card-info">
-            <div class="card-header">
-              <h3 class="card-title">
-                SimpleMDE
-              </h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <textarea class="textarea" id="simpleMDE"># Intro
-Go ahead, play around with the editor! Be sure to check out **bold** and *italic* styling,
-or even [links](https://google.com). You can type the Markdown syntax, use the toolbar, or use shortcuts like `cmd-b` or `ctrl-b`.
-</textarea>
-            </div>
-            <div class="card-footer">
-              Visit <a href="https://github.com/sparksuite/simplemde-markdown-editor">SimpleMDE</a> documentation for more examples and information about the plugin.
-            </div>
-          </div>
-        </div>
-        <!-- /.col-->
-      </div>
-      <!-- ./row -->
     </section>
     <!-- /.content -->
   </div>
@@ -857,8 +834,6 @@ or even [links](https://google.com). You can type the Markdown syntax, use the t
 <script src="../../plugins/codemirror/mode/css/css.js"></script>
 <script src="../../plugins/codemirror/mode/xml/xml.js"></script>
 <script src="../../plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
-<!-- SimpleMDE -->
-<script src="../../plugins/simplemde/simplemde.min.js"></script>
 <script>
   $(function () {
     // Summernote
@@ -869,9 +844,6 @@ or even [links](https://google.com). You can type the Markdown syntax, use the t
       mode: "htmlmixed",
       theme: "monokai"
     });
-
-    // SimpleMDE
-    new SimpleMDE({ element: document.getElementById("simpleMDE") });
   })
 </script>
 </body>
