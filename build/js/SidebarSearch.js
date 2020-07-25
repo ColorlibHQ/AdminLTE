@@ -226,12 +226,48 @@ $(document).on('click', SELECTOR_SEARCH_BUTTON, event => {
   SidebarSearch._jQueryInterface.call($(SELECTOR_DATA_WIDGET), 'toggle')
 })
 
-$(document).on('keyup', SELECTOR_SEARCH_INPUT, () => {
+$(document).on('keyup', SELECTOR_SEARCH_INPUT, event => {
+  if (event.keyCode == 38) {
+    event.preventDefault()
+    $(SELECTOR_SEARCH_RESULTS_GROUP).children().last().focus()
+    return
+  }
+
+  if (event.keyCode == 40) {
+    event.preventDefault()
+    $(SELECTOR_SEARCH_RESULTS_GROUP).children().first().focus()
+    return
+  }
+
   let timer = 0
   clearTimeout(timer)
   timer = setTimeout(() => {
     SidebarSearch._jQueryInterface.call($(SELECTOR_DATA_WIDGET), 'search')
   }, 100)
+})
+
+$(document).on('keydown', SELECTOR_SEARCH_RESULTS_GROUP, event => {
+  const $focused = $(':focus')
+
+  if (event.keyCode == 38) {
+    event.preventDefault()
+
+    if ($focused.is(':first-child')) {
+      $focused.siblings().last().focus()
+    } else {
+      $focused.prev().focus()
+    }
+  }
+
+  if (event.keyCode == 40) {
+    event.preventDefault()
+
+    if ($focused.is(':last-child')) {
+      $focused.siblings().first().focus()
+    } else {
+      $focused.next().focus()
+    }
+  }
 })
 
 $(window).on('load', () => {
