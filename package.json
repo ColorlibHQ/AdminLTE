@@ -107,7 +107,7 @@
     "flot": "^4.2.1",
     "fs-extra": "^9.0.1",
     "icheck-bootstrap": "^3.0.1",
-    "inputmask": "^5.0.3",
+    "inputmask": "^5.0.5",
     "ion-rangeslider": "^2.3.1",
     "jquery": "^3.5.1",
     "jquery-knob-chif": "^1.2.13",
