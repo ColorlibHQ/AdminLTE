@@ -76,7 +76,7 @@
     "@lgaitan/pace-progress": "^1.0.7",
     "@sweetalert2/theme-bootstrap-4": "^3.2.0",
     "@ttskch/select2-bootstrap4-theme": "^1.4.0",
-    "bootstrap": "^4.4.1",
+    "bootstrap": "^4.5.2",
     "bootstrap-colorpicker": "^3.2.0",
     "bootstrap-slider": "^11.0.2",
     "bootstrap-switch": "3.3.4",
