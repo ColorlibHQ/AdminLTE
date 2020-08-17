@@ -71,7 +71,7 @@
     "@fullcalendar/bootstrap": "^4.4.2",
     "@fullcalendar/core": "^4.4.2",
     "@fullcalendar/daygrid": "^4.4.2",
-    "@fullcalendar/interaction": "^4.4.2",
+    "@fullcalendar/interaction": "^5.3.0",
     "@fullcalendar/timegrid": "^4.4.2",
     "@lgaitan/pace-progress": "^1.0.7",
     "@sweetalert2/theme-bootstrap-4": "^3.2.0",
