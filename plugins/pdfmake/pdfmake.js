@@ -1,4 +1,4 @@
-/*! pdfmake v0.1.66, @license MIT, @link http://pdfmake.org */
+/*! pdfmake v0.1.68, @license MIT, @link http://pdfmake.org */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -220,12 +220,12 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(3);
-var getOwnPropertyDescriptor = __webpack_require__(53).f;
+var getOwnPropertyDescriptor = __webpack_require__(54).f;
 var createNonEnumerableProperty = __webpack_require__(18);
-var redefine = __webpack_require__(24);
-var setGlobal = __webpack_require__(137);
+var redefine = __webpack_require__(25);
+var setGlobal = __webpack_require__(139);
 var copyConstructorProperties = __webpack_require__(200);
-var isForced = __webpack_require__(142);
+var isForced = __webpack_require__(144);
 
 /*
   options.target      - name of the target object
@@ -1051,7 +1051,7 @@ module.exports =
   // eslint-disable-next-line no-new-func
   Function('return this')();
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(26)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(24)))
 
 /***/ }),
 /* 4 */
@@ -1079,9 +1079,9 @@ var isObject = __webpack_require__(13);
 var has = __webpack_require__(14);
 var classof = __webpack_require__(117);
 var createNonEnumerableProperty = __webpack_require__(18);
-var redefine = __webpack_require__(24);
+var redefine = __webpack_require__(25);
 var defineProperty = __webpack_require__(15).f;
-var getPrototypeOf = __webpack_require__(59);
+var getPrototypeOf = __webpack_require__(60);
 var setPrototypeOf = __webpack_require__(45);
 var wellKnownSymbol = __webpack_require__(6);
 var uid = __webpack_require__(112);
@@ -1234,10 +1234,10 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(3);
-var shared = __webpack_require__(139);
+var shared = __webpack_require__(141);
 var has = __webpack_require__(14);
 var uid = __webpack_require__(112);
-var NATIVE_SYMBOL = __webpack_require__(143);
+var NATIVE_SYMBOL = __webpack_require__(145);
 var USE_SYMBOL_AS_UID = __webpack_require__(202);
 
 var WellKnownSymbolsStore = shared('wks');
@@ -3138,7 +3138,7 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(26)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(24)))
 
 /***/ }),
 /* 11 */
@@ -4057,7 +4057,7 @@ module.exports = function (it, key) {
 var DESCRIPTORS = __webpack_require__(11);
 var IE8_DOM_DEFINE = __webpack_require__(198);
 var anObject = __webpack_require__(16);
-var toPrimitive = __webpack_require__(54);
+var toPrimitive = __webpack_require__(55);
 
 var nativeDefineProperty = Object.defineProperty;
 
@@ -4206,7 +4206,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var store = __webpack_require__(181)('wks');
-var uid = __webpack_require__(129);
+var uid = __webpack_require__(131);
 var Symbol = __webpack_require__(17).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
@@ -4239,13 +4239,39 @@ module.exports = !__webpack_require__(52)(function () {
 
 /***/ }),
 /* 24 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(3);
 var createNonEnumerableProperty = __webpack_require__(18);
 var has = __webpack_require__(14);
-var setGlobal = __webpack_require__(137);
-var inspectSource = __webpack_require__(138);
+var setGlobal = __webpack_require__(139);
+var inspectSource = __webpack_require__(140);
 var InternalStateModule = __webpack_require__(35);
 
 var getInternalState = InternalStateModule.get;
@@ -4278,7 +4304,7 @@ var TEMPLATE = String(String).split('String');
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(29);
@@ -4297,32 +4323,6 @@ exports.f = __webpack_require__(23) ? Object.defineProperty : function definePro
   if ('value' in Attributes) O[P] = Attributes.value;
   return O;
 };
-
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
 
 
 /***/ }),
@@ -4345,7 +4345,7 @@ module.exports = function (it) {
 "use strict";
 
 var toIndexedObject = __webpack_require__(27);
-var addToUnscopables = __webpack_require__(147);
+var addToUnscopables = __webpack_require__(149);
 var Iterators = __webpack_require__(97);
 var InternalStateModule = __webpack_require__(35);
 var defineIterator = __webpack_require__(216);
@@ -4457,8 +4457,8 @@ module.exports = function (METHOD_NAME, options) {
 /* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var TO_STRING_TAG_SUPPORT = __webpack_require__(150);
-var redefine = __webpack_require__(24);
+var TO_STRING_TAG_SUPPORT = __webpack_require__(152);
+var redefine = __webpack_require__(25);
 var toString = __webpack_require__(328);
 
 // `Object.prototype.toString` method
@@ -4716,7 +4716,7 @@ module.exports = safer
 (function() {
   var NumberT, PropertyDescriptor;
 
-  NumberT = __webpack_require__(88).Number;
+  NumberT = __webpack_require__(89).Number;
 
   exports.resolveLength = function(length, stream, parent) {
     var res;
@@ -4762,7 +4762,7 @@ module.exports = safer
 /* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var dP = __webpack_require__(25);
+var dP = __webpack_require__(26);
 var createDesc = __webpack_require__(100);
 module.exports = __webpack_require__(23) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
@@ -4857,7 +4857,7 @@ var isArray = __webpack_require__(115);
 var toAbsoluteIndex = __webpack_require__(43);
 var toLength = __webpack_require__(8);
 var toIndexedObject = __webpack_require__(27);
-var createProperty = __webpack_require__(144);
+var createProperty = __webpack_require__(146);
 var wellKnownSymbol = __webpack_require__(6);
 var arrayMethodHasSpeciesSupport = __webpack_require__(116);
 var arrayMethodUsesToLength = __webpack_require__(31);
@@ -5126,7 +5126,7 @@ process.umask = function() { return 0; };
 
 /*<replacement>*/
 
-var pna = __webpack_require__(122);
+var pna = __webpack_require__(123);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -5142,11 +5142,11 @@ module.exports = Duplex;
 
 /*<replacement>*/
 var util = Object.create(__webpack_require__(98));
-util.inherits = __webpack_require__(85);
+util.inherits = __webpack_require__(86);
 /*</replacement>*/
 
 var Readable = __webpack_require__(240);
-var Writable = __webpack_require__(164);
+var Writable = __webpack_require__(165);
 
 util.inherits(Duplex, Readable);
 
@@ -5397,11 +5397,74 @@ module.exports = function (exec) {
 /* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+/* WEBPACK VAR INJECTION */(function(Buffer, __dirname) {
+
+function VirtualFileSystem() {
+	this.fileSystem = {};
+	this.dataSystem = {};
+}
+
+VirtualFileSystem.prototype.existsSync = function (filename) {
+	filename = fixFilename(filename);
+	return typeof this.fileSystem[filename] !== 'undefined'
+		|| typeof this.dataSystem[filename] !== 'undefined';
+}
+
+VirtualFileSystem.prototype.readFileSync = function (filename, options) {
+	filename = fixFilename(filename);
+
+	var dataContent = this.dataSystem[filename];
+	if (typeof dataContent === 'string' && options === 'utf8') {
+		return dataContent;
+	}
+
+	if (dataContent) {
+		return new Buffer(dataContent, typeof dataContent === 'string' ? 'base64' : undefined);
+	}
+
+	var content = this.fileSystem[filename];
+	if (content) {
+		return content;
+	}
+
+	throw 'File \'' + filename + '\' not found in virtual file system';
+};
+
+VirtualFileSystem.prototype.writeFileSync = function (filename, content) {
+	this.fileSystem[fixFilename(filename)] = content;
+};
+
+VirtualFileSystem.prototype.bindFS = function (data) {
+	this.dataSystem = data || {};
+};
+
+
+function fixFilename(filename) {
+	if (filename.indexOf(__dirname) === 0) {
+		filename = filename.substring(__dirname.length);
+	}
+
+	if (filename.indexOf('/') === 0) {
+		filename = filename.substring(1);
+	}
+
+	return filename;
+}
+
+module.exports = new VirtualFileSystem();
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(10).Buffer, "/"))
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var DESCRIPTORS = __webpack_require__(11);
 var propertyIsEnumerableModule = __webpack_require__(110);
 var createPropertyDescriptor = __webpack_require__(42);
 var toIndexedObject = __webpack_require__(27);
-var toPrimitive = __webpack_require__(54);
+var toPrimitive = __webpack_require__(55);
 var has = __webpack_require__(14);
 var IE8_DOM_DEFINE = __webpack_require__(198);
 
@@ -5420,7 +5483,7 @@ exports.f = DESCRIPTORS ? nativeGetOwnPropertyDescriptor : function getOwnProper
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(13);
@@ -5440,18 +5503,18 @@ module.exports = function (input, PREFERRED_STRING) {
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports) {
 
 module.exports = false;
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var internalObjectKeys = __webpack_require__(201);
-var enumBugKeys = __webpack_require__(140);
+var enumBugKeys = __webpack_require__(142);
 
 var hiddenKeys = enumBugKeys.concat('length', 'prototype');
 
@@ -5463,15 +5526,15 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(16);
 var defineProperties = __webpack_require__(310);
-var enumBugKeys = __webpack_require__(140);
+var enumBugKeys = __webpack_require__(142);
 var hiddenKeys = __webpack_require__(113);
 var html = __webpack_require__(203);
-var documentCreateElement = __webpack_require__(136);
+var documentCreateElement = __webpack_require__(138);
 var sharedKey = __webpack_require__(111);
 
 var GT = '>';
@@ -5547,7 +5610,7 @@ module.exports = Object.create || function create(O, Properties) {
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5564,7 +5627,7 @@ module.exports = function (METHOD_NAME, argument) {
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var has = __webpack_require__(14);
@@ -5587,14 +5650,14 @@ module.exports = CORRECT_PROTOTYPE_GETTER ? Object.getPrototypeOf : function (O)
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $ = __webpack_require__(1);
 var fails = __webpack_require__(4);
-var ArrayBufferModule = __webpack_require__(152);
+var ArrayBufferModule = __webpack_require__(154);
 var anObject = __webpack_require__(16);
 var toAbsoluteIndex = __webpack_require__(43);
 var toLength = __webpack_require__(8);
@@ -5630,7 +5693,7 @@ $({ target: 'ArrayBuffer', proto: true, unsafe: true, forced: INCORRECT_SLICE },
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var createTypedArrayConstructor = __webpack_require__(236);
@@ -5645,7 +5708,7 @@ createTypedArrayConstructor('Uint8', function (init) {
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5664,7 +5727,7 @@ exportTypedArrayMethod('copyWithin', function copyWithin(target, start /* , end 
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5683,13 +5746,13 @@ exportTypedArrayMethod('every', function every(callbackfn /* , thisArg */) {
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var ArrayBufferViewCore = __webpack_require__(5);
-var $fill = __webpack_require__(146);
+var $fill = __webpack_require__(148);
 
 var aTypedArray = ArrayBufferViewCore.aTypedArray;
 var exportTypedArrayMethod = ArrayBufferViewCore.exportTypedArrayMethod;
@@ -5703,7 +5766,7 @@ exportTypedArrayMethod('fill', function fill(value /* , start, end */) {
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5730,7 +5793,7 @@ exportTypedArrayMethod('filter', function filter(callbackfn /* , thisArg */) {
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5749,7 +5812,7 @@ exportTypedArrayMethod('find', function find(predicate /* , thisArg */) {
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5768,7 +5831,7 @@ exportTypedArrayMethod('findIndex', function findIndex(predicate /* , thisArg */
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5787,7 +5850,7 @@ exportTypedArrayMethod('forEach', function forEach(callbackfn /* , thisArg */) {
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5806,7 +5869,7 @@ exportTypedArrayMethod('includes', function includes(searchElement /* , fromInde
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5825,7 +5888,7 @@ exportTypedArrayMethod('indexOf', function indexOf(searchElement /* , fromIndex 
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5870,7 +5933,7 @@ exportTypedArrayMethod(ITERATOR, typedArrayValues, !CORRECT_ITER_NAME);
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5890,7 +5953,7 @@ exportTypedArrayMethod('join', function join(separator) {
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5910,7 +5973,7 @@ exportTypedArrayMethod('lastIndexOf', function lastIndexOf(searchElement /* , fr
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5933,7 +5996,7 @@ exportTypedArrayMethod('map', function map(mapfn /* , thisArg */) {
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5952,7 +6015,7 @@ exportTypedArrayMethod('reduce', function reduce(callbackfn /* , initialValue */
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5971,7 +6034,7 @@ exportTypedArrayMethod('reduceRight', function reduceRight(callbackfn /* , initi
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5999,7 +6062,7 @@ exportTypedArrayMethod('reverse', function reverse() {
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6033,7 +6096,7 @@ exportTypedArrayMethod('set', function set(arrayLike /* , offset */) {
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6066,7 +6129,7 @@ exportTypedArrayMethod('slice', function slice(start, end) {
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6085,7 +6148,7 @@ exportTypedArrayMethod('some', function some(callbackfn /* , thisArg */) {
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6104,7 +6167,7 @@ exportTypedArrayMethod('sort', function sort(comparefn) {
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6132,7 +6195,7 @@ exportTypedArrayMethod('subarray', function subarray(begin, end) {
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6166,7 +6229,7 @@ exportTypedArrayMethod('toLocaleString', function toLocaleString() {
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6194,7 +6257,7 @@ exportTypedArrayMethod('toString', arrayToString, IS_NOT_ARRAY_METHOD);
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports) {
 
 if (typeof Object.create === 'function') {
@@ -6227,7 +6290,7 @@ if (typeof Object.create === 'function') {
 
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;(function (root, factory) {
@@ -6360,7 +6423,7 @@ if (typeof Object.create === 'function') {
 }));
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;(function (root, factory) {
@@ -6626,7 +6689,7 @@ if (typeof Object.create === 'function') {
 }));
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Generated by CoffeeScript 1.7.1
@@ -6738,7 +6801,7 @@ if (typeof Object.create === 'function') {
 
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
@@ -6749,7 +6812,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6771,63 +6834,6 @@ __webpack_require__(178)(String, 'String', function (iterated) {
   return { value: point, done: false };
 });
 
-
-/***/ }),
-/* 91 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(Buffer, __dirname) {
-
-function VirtualFileSystem() {
-	this.fileSystem = {};
-	this.dataSystem = {};
-}
-
-VirtualFileSystem.prototype.readFileSync = function (filename, options) {
-	filename = fixFilename(filename);
-
-	var dataContent = this.dataSystem[filename];
-	if (typeof dataContent === 'string' && options === 'utf8') {
-		return dataContent;
-	}
-
-	if (dataContent) {
-		return new Buffer(dataContent, typeof dataContent === 'string' ? 'base64' : undefined);
-	}
-
-	var content = this.fileSystem[filename];
-	if (content) {
-		return content;
-	}
-
-	throw 'File \'' + filename + '\' not found in virtual file system';
-};
-
-VirtualFileSystem.prototype.writeFileSync = function (filename, content) {
-	this.fileSystem[fixFilename(filename)] = content;
-};
-
-VirtualFileSystem.prototype.bindFS = function (data) {
-	this.dataSystem = data || {};
-};
-
-
-function fixFilename(filename) {
-	if (filename.indexOf(__dirname) === 0) {
-		filename = filename.substring(__dirname.length);
-	}
-
-	if (filename.indexOf('/') === 0) {
-		filename = filename.substring(1);
-	}
-
-	return filename;
-}
-
-module.exports = new VirtualFileSystem();
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(10).Buffer, "/"))
 
 /***/ }),
 /* 92 */
@@ -6891,7 +6897,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var internalObjectKeys = __webpack_require__(201);
-var enumBugKeys = __webpack_require__(140);
+var enumBugKeys = __webpack_require__(142);
 
 // `Object.keys` method
 // https://tc39.github.io/ecma262/#sec-object.keys
@@ -7159,7 +7165,7 @@ module.exports = Object.keys || function keys(O) {
 /* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var def = __webpack_require__(25).f;
+var def = __webpack_require__(26).f;
 var has = __webpack_require__(51);
 var TAG = __webpack_require__(21)('toStringTag');
 
@@ -7176,7 +7182,7 @@ var ctx = __webpack_require__(33);
 var call = __webpack_require__(265);
 var isArrayIter = __webpack_require__(266);
 var anObject = __webpack_require__(29);
-var toLength = __webpack_require__(128);
+var toLength = __webpack_require__(130);
 var getIterFn = __webpack_require__(183);
 var BREAK = {};
 var RETURN = {};
@@ -7313,7 +7319,7 @@ exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
 /* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var shared = __webpack_require__(139);
+var shared = __webpack_require__(141);
 var uid = __webpack_require__(112);
 
 var keys = shared('keys');
@@ -7370,7 +7376,7 @@ module.exports = Array.isArray || function isArray(arg) {
 
 var fails = __webpack_require__(4);
 var wellKnownSymbol = __webpack_require__(6);
-var V8_VERSION = __webpack_require__(145);
+var V8_VERSION = __webpack_require__(147);
 
 var SPECIES = wellKnownSymbol('species');
 
@@ -7393,7 +7399,7 @@ module.exports = function (METHOD_NAME) {
 /* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var TO_STRING_TAG_SUPPORT = __webpack_require__(150);
+var TO_STRING_TAG_SUPPORT = __webpack_require__(152);
 var classofRaw = __webpack_require__(30);
 var wellKnownSymbol = __webpack_require__(6);
 
@@ -7572,6 +7578,139 @@ for (var COLLECTION_NAME in DOMIterables) {
 /* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+module.exports = Stream;
+
+var EE = __webpack_require__(122).EventEmitter;
+var inherits = __webpack_require__(86);
+
+inherits(Stream, EE);
+Stream.Readable = __webpack_require__(164);
+Stream.Writable = __webpack_require__(346);
+Stream.Duplex = __webpack_require__(347);
+Stream.Transform = __webpack_require__(348);
+Stream.PassThrough = __webpack_require__(349);
+
+// Backwards-compat with node 0.4.x
+Stream.Stream = Stream;
+
+
+
+// old-style streams.  Note that the pipe method (the only relevant
+// part of this class) is overridden in the Readable class.
+
+function Stream() {
+  EE.call(this);
+}
+
+Stream.prototype.pipe = function(dest, options) {
+  var source = this;
+
+  function ondata(chunk) {
+    if (dest.writable) {
+      if (false === dest.write(chunk) && source.pause) {
+        source.pause();
+      }
+    }
+  }
+
+  source.on('data', ondata);
+
+  function ondrain() {
+    if (source.readable && source.resume) {
+      source.resume();
+    }
+  }
+
+  dest.on('drain', ondrain);
+
+  // If the 'end' option is not supplied, dest.end() will be called when
+  // source gets the 'end' or 'close' events.  Only dest.end() once.
+  if (!dest._isStdio && (!options || options.end !== false)) {
+    source.on('end', onend);
+    source.on('close', onclose);
+  }
+
+  var didOnEnd = false;
+  function onend() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    dest.end();
+  }
+
+
+  function onclose() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    if (typeof dest.destroy === 'function') dest.destroy();
+  }
+
+  // don't leave dangling pipes when there are errors.
+  function onerror(er) {
+    cleanup();
+    if (EE.listenerCount(this, 'error') === 0) {
+      throw er; // Unhandled stream error in pipe.
+    }
+  }
+
+  source.on('error', onerror);
+  dest.on('error', onerror);
+
+  // remove all the event listeners that were added.
+  function cleanup() {
+    source.removeListener('data', ondata);
+    dest.removeListener('drain', ondrain);
+
+    source.removeListener('end', onend);
+    source.removeListener('close', onclose);
+
+    source.removeListener('error', onerror);
+    dest.removeListener('error', onerror);
+
+    source.removeListener('end', cleanup);
+    source.removeListener('close', cleanup);
+
+    dest.removeListener('close', cleanup);
+  }
+
+  source.on('end', cleanup);
+  source.on('close', cleanup);
+
+  dest.on('close', cleanup);
+
+  dest.emit('pipe', source);
+
+  // Allow for unix-like usage: A.pipe(B).pipe(C)
+  return dest;
+};
+
+
+/***/ }),
+/* 122 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -7629,6 +7768,7 @@ function EventEmitter() {
   EventEmitter.init.call(this);
 }
 module.exports = EventEmitter;
+module.exports.once = once;
 
 // Backwards-compat with node 0.10.x
 EventEmitter.EventEmitter = EventEmitter;
@@ -8020,9 +8160,38 @@ function unwrapListeners(arr) {
   return ret;
 }
 
+function once(emitter, name) {
+  return new Promise(function (resolve, reject) {
+    function eventListener() {
+      if (errorListener !== undefined) {
+        emitter.removeListener('error', errorListener);
+      }
+      resolve([].slice.call(arguments));
+    };
+    var errorListener;
+
+    // Adding an error listener is not optional because
+    // if an error is thrown on an event emitter we cannot
+    // guarantee that the actual event we are waiting will
+    // be fired. The result could be a silent way to create
+    // memory or file descriptor leaks, which is something
+    // we should avoid.
+    if (name !== 'error') {
+      errorListener = function errorListener(err) {
+        emitter.removeListener(name, eventListener);
+        reject(err);
+      };
+
+      emitter.once('error', errorListener);
+    }
+
+    emitter.once(name, eventListener);
+  });
+}
+
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8075,7 +8244,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(47)))
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-disable node/no-deprecated-api */
@@ -8143,7 +8312,309 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 
 
 /***/ }),
-/* 124 */
+/* 125 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+/*<replacement>*/
+
+var Buffer = __webpack_require__(124).Buffer;
+/*</replacement>*/
+
+var isEncoding = Buffer.isEncoding || function (encoding) {
+  encoding = '' + encoding;
+  switch (encoding && encoding.toLowerCase()) {
+    case 'hex':case 'utf8':case 'utf-8':case 'ascii':case 'binary':case 'base64':case 'ucs2':case 'ucs-2':case 'utf16le':case 'utf-16le':case 'raw':
+      return true;
+    default:
+      return false;
+  }
+};
+
+function _normalizeEncoding(enc) {
+  if (!enc) return 'utf8';
+  var retried;
+  while (true) {
+    switch (enc) {
+      case 'utf8':
+      case 'utf-8':
+        return 'utf8';
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return 'utf16le';
+      case 'latin1':
+      case 'binary':
+        return 'latin1';
+      case 'base64':
+      case 'ascii':
+      case 'hex':
+        return enc;
+      default:
+        if (retried) return; // undefined
+        enc = ('' + enc).toLowerCase();
+        retried = true;
+    }
+  }
+};
+
+// Do not cache `Buffer.isEncoding` when checking encoding names as some
+// modules monkey-patch it to support additional encodings
+function normalizeEncoding(enc) {
+  var nenc = _normalizeEncoding(enc);
+  if (typeof nenc !== 'string' && (Buffer.isEncoding === isEncoding || !isEncoding(enc))) throw new Error('Unknown encoding: ' + enc);
+  return nenc || enc;
+}
+
+// StringDecoder provides an interface for efficiently splitting a series of
+// buffers into a series of JS strings without breaking apart multi-byte
+// characters.
+exports.StringDecoder = StringDecoder;
+function StringDecoder(encoding) {
+  this.encoding = normalizeEncoding(encoding);
+  var nb;
+  switch (this.encoding) {
+    case 'utf16le':
+      this.text = utf16Text;
+      this.end = utf16End;
+      nb = 4;
+      break;
+    case 'utf8':
+      this.fillLast = utf8FillLast;
+      nb = 4;
+      break;
+    case 'base64':
+      this.text = base64Text;
+      this.end = base64End;
+      nb = 3;
+      break;
+    default:
+      this.write = simpleWrite;
+      this.end = simpleEnd;
+      return;
+  }
+  this.lastNeed = 0;
+  this.lastTotal = 0;
+  this.lastChar = Buffer.allocUnsafe(nb);
+}
+
+StringDecoder.prototype.write = function (buf) {
+  if (buf.length === 0) return '';
+  var r;
+  var i;
+  if (this.lastNeed) {
+    r = this.fillLast(buf);
+    if (r === undefined) return '';
+    i = this.lastNeed;
+    this.lastNeed = 0;
+  } else {
+    i = 0;
+  }
+  if (i < buf.length) return r ? r + this.text(buf, i) : this.text(buf, i);
+  return r || '';
+};
+
+StringDecoder.prototype.end = utf8End;
+
+// Returns only complete characters in a Buffer
+StringDecoder.prototype.text = utf8Text;
+
+// Attempts to complete a partial non-UTF-8 character using bytes from a Buffer
+StringDecoder.prototype.fillLast = function (buf) {
+  if (this.lastNeed <= buf.length) {
+    buf.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, this.lastNeed);
+    return this.lastChar.toString(this.encoding, 0, this.lastTotal);
+  }
+  buf.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, buf.length);
+  this.lastNeed -= buf.length;
+};
+
+// Checks the type of a UTF-8 byte, whether it's ASCII, a leading byte, or a
+// continuation byte. If an invalid byte is detected, -2 is returned.
+function utf8CheckByte(byte) {
+  if (byte <= 0x7F) return 0;else if (byte >> 5 === 0x06) return 2;else if (byte >> 4 === 0x0E) return 3;else if (byte >> 3 === 0x1E) return 4;
+  return byte >> 6 === 0x02 ? -1 : -2;
+}
+
+// Checks at most 3 bytes at the end of a Buffer in order to detect an
+// incomplete multi-byte UTF-8 character. The total number of bytes (2, 3, or 4)
+// needed to complete the UTF-8 character (if applicable) are returned.
+function utf8CheckIncomplete(self, buf, i) {
+  var j = buf.length - 1;
+  if (j < i) return 0;
+  var nb = utf8CheckByte(buf[j]);
+  if (nb >= 0) {
+    if (nb > 0) self.lastNeed = nb - 1;
+    return nb;
+  }
+  if (--j < i || nb === -2) return 0;
+  nb = utf8CheckByte(buf[j]);
+  if (nb >= 0) {
+    if (nb > 0) self.lastNeed = nb - 2;
+    return nb;
+  }
+  if (--j < i || nb === -2) return 0;
+  nb = utf8CheckByte(buf[j]);
+  if (nb >= 0) {
+    if (nb > 0) {
+      if (nb === 2) nb = 0;else self.lastNeed = nb - 3;
+    }
+    return nb;
+  }
+  return 0;
+}
+
+// Validates as many continuation bytes for a multi-byte UTF-8 character as
+// needed or are available. If we see a non-continuation byte where we expect
+// one, we "replace" the validated continuation bytes we've seen so far with
+// a single UTF-8 replacement character ('\ufffd'), to match v8's UTF-8 decoding
+// behavior. The continuation byte check is included three times in the case
+// where all of the continuation bytes for a character exist in the same buffer.
+// It is also done this way as a slight performance increase instead of using a
+// loop.
+function utf8CheckExtraBytes(self, buf, p) {
+  if ((buf[0] & 0xC0) !== 0x80) {
+    self.lastNeed = 0;
+    return '\ufffd';
+  }
+  if (self.lastNeed > 1 && buf.length > 1) {
+    if ((buf[1] & 0xC0) !== 0x80) {
+      self.lastNeed = 1;
+      return '\ufffd';
+    }
+    if (self.lastNeed > 2 && buf.length > 2) {
+      if ((buf[2] & 0xC0) !== 0x80) {
+        self.lastNeed = 2;
+        return '\ufffd';
+      }
+    }
+  }
+}
+
+// Attempts to complete a multi-byte UTF-8 character using bytes from a Buffer.
+function utf8FillLast(buf) {
+  var p = this.lastTotal - this.lastNeed;
+  var r = utf8CheckExtraBytes(this, buf, p);
+  if (r !== undefined) return r;
+  if (this.lastNeed <= buf.length) {
+    buf.copy(this.lastChar, p, 0, this.lastNeed);
+    return this.lastChar.toString(this.encoding, 0, this.lastTotal);
+  }
+  buf.copy(this.lastChar, p, 0, buf.length);
+  this.lastNeed -= buf.length;
+}
+
+// Returns all complete UTF-8 characters in a Buffer. If the Buffer ended on a
+// partial character, the character's bytes are buffered until the required
+// number of bytes are available.
+function utf8Text(buf, i) {
+  var total = utf8CheckIncomplete(this, buf, i);
+  if (!this.lastNeed) return buf.toString('utf8', i);
+  this.lastTotal = total;
+  var end = buf.length - (total - this.lastNeed);
+  buf.copy(this.lastChar, 0, end);
+  return buf.toString('utf8', i, end);
+}
+
+// For UTF-8, a replacement character is added when ending on a partial
+// character.
+function utf8End(buf) {
+  var r = buf && buf.length ? this.write(buf) : '';
+  if (this.lastNeed) return r + '\ufffd';
+  return r;
+}
+
+// UTF-16LE typically needs two bytes per character, but even if we have an even
+// number of bytes available, we need to check if we end on a leading/high
+// surrogate. In that case, we need to wait for the next two bytes in order to
+// decode the last character properly.
+function utf16Text(buf, i) {
+  if ((buf.length - i) % 2 === 0) {
+    var r = buf.toString('utf16le', i);
+    if (r) {
+      var c = r.charCodeAt(r.length - 1);
+      if (c >= 0xD800 && c <= 0xDBFF) {
+        this.lastNeed = 2;
+        this.lastTotal = 4;
+        this.lastChar[0] = buf[buf.length - 2];
+        this.lastChar[1] = buf[buf.length - 1];
+        return r.slice(0, -1);
+      }
+    }
+    return r;
+  }
+  this.lastNeed = 1;
+  this.lastTotal = 2;
+  this.lastChar[0] = buf[buf.length - 1];
+  return buf.toString('utf16le', i, buf.length - 1);
+}
+
+// For UTF-16LE we do not explicitly append special replacement characters if we
+// end on a partial character, we simply let v8 handle that.
+function utf16End(buf) {
+  var r = buf && buf.length ? this.write(buf) : '';
+  if (this.lastNeed) {
+    var end = this.lastTotal - this.lastNeed;
+    return r + this.lastChar.toString('utf16le', 0, end);
+  }
+  return r;
+}
+
+function base64Text(buf, i) {
+  var n = (buf.length - i) % 3;
+  if (n === 0) return buf.toString('base64', i);
+  this.lastNeed = 3 - n;
+  this.lastTotal = 3;
+  if (n === 1) {
+    this.lastChar[0] = buf[buf.length - 1];
+  } else {
+    this.lastChar[0] = buf[buf.length - 2];
+    this.lastChar[1] = buf[buf.length - 1];
+  }
+  return buf.toString('base64', i, buf.length - n);
+}
+
+function base64End(buf) {
+  var r = buf && buf.length ? this.write(buf) : '';
+  if (this.lastNeed) return r + this.lastChar.toString('base64', 0, 3 - this.lastNeed);
+  return r;
+}
+
+// Pass bytes on through for single-byte encodings (e.g. ascii, latin1, hex)
+function simpleWrite(buf) {
+  return buf.toString(this.encoding);
+}
+
+function simpleEnd(buf) {
+  return buf && buf.length ? this.write(buf) : '';
+}
+
+/***/ }),
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8255,7 +8726,7 @@ exports.setTyped(TYPED_OK);
 
 
 /***/ }),
-/* 125 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;(function (root, factory) {
@@ -8557,14 +9028,14 @@ exports.setTyped(TYPED_OK);
 }));
 
 /***/ }),
-/* 126 */
+/* 128 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 127 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
@@ -8611,7 +9082,7 @@ module.exports = Object.create || function create(O, Properties) {
 
 
 /***/ }),
-/* 128 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
@@ -8623,7 +9094,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 129 */
+/* 131 */
 /***/ (function(module, exports) {
 
 var id = 0;
@@ -8634,13 +9105,13 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 130 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var META = __webpack_require__(129)('meta');
+var META = __webpack_require__(131)('meta');
 var isObject = __webpack_require__(22);
 var has = __webpack_require__(51);
-var setDesc = __webpack_require__(25).f;
+var setDesc = __webpack_require__(26).f;
 var id = 0;
 var isExtensible = Object.isExtensible || function () {
   return true;
@@ -8693,13 +9164,13 @@ var meta = module.exports = {
 
 
 /***/ }),
-/* 131 */
+/* 133 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 132 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var createTypedArrayConstructor = __webpack_require__(236);
@@ -8714,7 +9185,7 @@ createTypedArrayConstructor('Uint32', function (init) {
 
 
 /***/ }),
-/* 133 */
+/* 135 */
 /***/ (function(module, exports) {
 
 var TINF_OK = 0;
@@ -9095,14 +9566,14 @@ module.exports = tinf_uncompress;
 
 
 /***/ }),
-/* 134 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(16);
-var isArrayIteratorMethod = __webpack_require__(148);
+var isArrayIteratorMethod = __webpack_require__(150);
 var toLength = __webpack_require__(8);
 var bind = __webpack_require__(96);
-var getIteratorMethod = __webpack_require__(149);
+var getIteratorMethod = __webpack_require__(151);
 var callWithSafeIterationClosing = __webpack_require__(214);
 
 var Result = function (stopped, result) {
@@ -9144,7 +9615,7 @@ iterate.stop = function (result) {
 
 
 /***/ }),
-/* 135 */
+/* 137 */
 /***/ (function(module, exports) {
 
 module.exports = function (exec) {
@@ -9157,7 +9628,7 @@ module.exports = function (exec) {
 
 
 /***/ }),
-/* 136 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(3);
@@ -9173,7 +9644,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 137 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(3);
@@ -9189,7 +9660,7 @@ module.exports = function (key, value) {
 
 
 /***/ }),
-/* 138 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var store = __webpack_require__(199);
@@ -9207,10 +9678,10 @@ module.exports = store.inspectSource;
 
 
 /***/ }),
-/* 139 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var IS_PURE = __webpack_require__(55);
+var IS_PURE = __webpack_require__(56);
 var store = __webpack_require__(199);
 
 (module.exports = function (key, value) {
@@ -9223,7 +9694,7 @@ var store = __webpack_require__(199);
 
 
 /***/ }),
-/* 140 */
+/* 142 */
 /***/ (function(module, exports) {
 
 // IE8- don't enum bug keys
@@ -9239,14 +9710,14 @@ module.exports = [
 
 
 /***/ }),
-/* 141 */
+/* 143 */
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ }),
-/* 142 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var fails = __webpack_require__(4);
@@ -9273,7 +9744,7 @@ module.exports = isForced;
 
 
 /***/ }),
-/* 143 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var fails = __webpack_require__(4);
@@ -9286,12 +9757,12 @@ module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
 
 
 /***/ }),
-/* 144 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var toPrimitive = __webpack_require__(54);
+var toPrimitive = __webpack_require__(55);
 var definePropertyModule = __webpack_require__(15);
 var createPropertyDescriptor = __webpack_require__(42);
 
@@ -9303,7 +9774,7 @@ module.exports = function (object, key, value) {
 
 
 /***/ }),
-/* 145 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(3);
@@ -9329,7 +9800,7 @@ module.exports = version && +version;
 
 
 /***/ }),
-/* 146 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9353,11 +9824,11 @@ module.exports = function fill(value /* , start = 0, end = @length */) {
 
 
 /***/ }),
-/* 147 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var wellKnownSymbol = __webpack_require__(6);
-var create = __webpack_require__(57);
+var create = __webpack_require__(58);
 var definePropertyModule = __webpack_require__(15);
 
 var UNSCOPABLES = wellKnownSymbol('unscopables');
@@ -9379,7 +9850,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 148 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var wellKnownSymbol = __webpack_require__(6);
@@ -9395,7 +9866,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 149 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var classof = __webpack_require__(117);
@@ -9412,7 +9883,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 150 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var wellKnownSymbol = __webpack_require__(6);
@@ -9426,7 +9897,7 @@ module.exports = String(test) === '[object z]';
 
 
 /***/ }),
-/* 151 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var wellKnownSymbol = __webpack_require__(6);
@@ -9470,7 +9941,7 @@ module.exports = function (exec, SKIP_CLOSING) {
 
 
 /***/ }),
-/* 152 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9481,16 +9952,16 @@ var NATIVE_ARRAY_BUFFER = __webpack_require__(220);
 var createNonEnumerableProperty = __webpack_require__(18);
 var redefineAll = __webpack_require__(221);
 var fails = __webpack_require__(4);
-var anInstance = __webpack_require__(153);
+var anInstance = __webpack_require__(155);
 var toInteger = __webpack_require__(37);
 var toLength = __webpack_require__(8);
 var toIndex = __webpack_require__(222);
 var IEEE754 = __webpack_require__(321);
-var getPrototypeOf = __webpack_require__(59);
+var getPrototypeOf = __webpack_require__(60);
 var setPrototypeOf = __webpack_require__(45);
-var getOwnPropertyNames = __webpack_require__(56).f;
+var getOwnPropertyNames = __webpack_require__(57).f;
 var defineProperty = __webpack_require__(15).f;
-var arrayFill = __webpack_require__(146);
+var arrayFill = __webpack_require__(148);
 var setToStringTag = __webpack_require__(95);
 var InternalStateModule = __webpack_require__(35);
 
@@ -9703,7 +10174,7 @@ module.exports = {
 
 
 /***/ }),
-/* 153 */
+/* 155 */
 /***/ (function(module, exports) {
 
 module.exports = function (it, Constructor, name) {
@@ -9714,7 +10185,7 @@ module.exports = function (it, Constructor, name) {
 
 
 /***/ }),
-/* 154 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9740,7 +10211,7 @@ module.exports = function (CONSTRUCTOR_NAME) {
 
 
 /***/ }),
-/* 155 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var DESCRIPTORS = __webpack_require__(11);
@@ -9768,7 +10239,7 @@ if (DESCRIPTORS && !(NAME in FunctionPrototype)) {
 
 
 /***/ }),
-/* 156 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(37);
@@ -9801,12 +10272,12 @@ module.exports = {
 
 
 /***/ }),
-/* 157 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var charAt = __webpack_require__(156).charAt;
+var charAt = __webpack_require__(158).charAt;
 var InternalStateModule = __webpack_require__(35);
 var defineIterator = __webpack_require__(216);
 
@@ -9837,17 +10308,17 @@ defineIterator(String, 'String', function (iterated) {
 
 
 /***/ }),
-/* 158 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var fixRegExpWellKnownSymbolLogic = __webpack_require__(159);
+var fixRegExpWellKnownSymbolLogic = __webpack_require__(161);
 var anObject = __webpack_require__(16);
 var toLength = __webpack_require__(8);
 var requireObjectCoercible = __webpack_require__(34);
-var advanceStringIndex = __webpack_require__(160);
-var regExpExec = __webpack_require__(161);
+var advanceStringIndex = __webpack_require__(162);
+var regExpExec = __webpack_require__(163);
 
 // @@match logic
 fixRegExpWellKnownSymbolLogic('match', 1, function (MATCH, nativeMatch, maybeCallNative) {
@@ -9888,14 +10359,14 @@ fixRegExpWellKnownSymbolLogic('match', 1, function (MATCH, nativeMatch, maybeCal
 
 
 /***/ }),
-/* 159 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // TODO: Remove from `core-js@4` since it's moved to entry points
 __webpack_require__(118);
-var redefine = __webpack_require__(24);
+var redefine = __webpack_require__(25);
 var fails = __webpack_require__(4);
 var wellKnownSymbol = __webpack_require__(6);
 var regexpExec = __webpack_require__(119);
@@ -10020,12 +10491,12 @@ module.exports = function (KEY, length, exec, sham) {
 
 
 /***/ }),
-/* 160 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var charAt = __webpack_require__(156).charAt;
+var charAt = __webpack_require__(158).charAt;
 
 // `AdvanceStringIndex` abstract operation
 // https://tc39.github.io/ecma262/#sec-advancestringindex
@@ -10035,7 +10506,7 @@ module.exports = function (S, index, unicode) {
 
 
 /***/ }),
-/* 161 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var classof = __webpack_require__(30);
@@ -10063,153 +10534,20 @@ module.exports = function (R, S) {
 
 
 /***/ }),
-/* 162 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-module.exports = Stream;
-
-var EE = __webpack_require__(121).EventEmitter;
-var inherits = __webpack_require__(85);
-
-inherits(Stream, EE);
-Stream.Readable = __webpack_require__(163);
-Stream.Writable = __webpack_require__(346);
-Stream.Duplex = __webpack_require__(347);
-Stream.Transform = __webpack_require__(348);
-Stream.PassThrough = __webpack_require__(349);
-
-// Backwards-compat with node 0.4.x
-Stream.Stream = Stream;
-
-
-
-// old-style streams.  Note that the pipe method (the only relevant
-// part of this class) is overridden in the Readable class.
-
-function Stream() {
-  EE.call(this);
-}
-
-Stream.prototype.pipe = function(dest, options) {
-  var source = this;
-
-  function ondata(chunk) {
-    if (dest.writable) {
-      if (false === dest.write(chunk) && source.pause) {
-        source.pause();
-      }
-    }
-  }
-
-  source.on('data', ondata);
-
-  function ondrain() {
-    if (source.readable && source.resume) {
-      source.resume();
-    }
-  }
-
-  dest.on('drain', ondrain);
-
-  // If the 'end' option is not supplied, dest.end() will be called when
-  // source gets the 'end' or 'close' events.  Only dest.end() once.
-  if (!dest._isStdio && (!options || options.end !== false)) {
-    source.on('end', onend);
-    source.on('close', onclose);
-  }
-
-  var didOnEnd = false;
-  function onend() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    dest.end();
-  }
-
-
-  function onclose() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    if (typeof dest.destroy === 'function') dest.destroy();
-  }
-
-  // don't leave dangling pipes when there are errors.
-  function onerror(er) {
-    cleanup();
-    if (EE.listenerCount(this, 'error') === 0) {
-      throw er; // Unhandled stream error in pipe.
-    }
-  }
-
-  source.on('error', onerror);
-  dest.on('error', onerror);
-
-  // remove all the event listeners that were added.
-  function cleanup() {
-    source.removeListener('data', ondata);
-    dest.removeListener('drain', ondrain);
-
-    source.removeListener('end', onend);
-    source.removeListener('close', onclose);
-
-    source.removeListener('error', onerror);
-    dest.removeListener('error', onerror);
-
-    source.removeListener('end', cleanup);
-    source.removeListener('close', cleanup);
-
-    dest.removeListener('close', cleanup);
-  }
-
-  source.on('end', cleanup);
-  source.on('close', cleanup);
-
-  dest.on('close', cleanup);
-
-  dest.emit('pipe', source);
-
-  // Allow for unix-like usage: A.pipe(B).pipe(C)
-  return dest;
-};
-
-
-/***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(240);
 exports.Stream = exports;
 exports.Readable = exports;
-exports.Writable = __webpack_require__(164);
+exports.Writable = __webpack_require__(165);
 exports.Duplex = __webpack_require__(48);
 exports.Transform = __webpack_require__(243);
 exports.PassThrough = __webpack_require__(345);
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10242,7 +10580,7 @@ exports.PassThrough = __webpack_require__(345);
 
 /*<replacement>*/
 
-var pna = __webpack_require__(122);
+var pna = __webpack_require__(123);
 /*</replacement>*/
 
 module.exports = Writable;
@@ -10280,7 +10618,7 @@ Writable.WritableState = WritableState;
 
 /*<replacement>*/
 var util = Object.create(__webpack_require__(98));
-util.inherits = __webpack_require__(85);
+util.inherits = __webpack_require__(86);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -10295,7 +10633,7 @@ var Stream = __webpack_require__(241);
 
 /*<replacement>*/
 
-var Buffer = __webpack_require__(123).Buffer;
+var Buffer = __webpack_require__(124).Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -10900,309 +11238,7 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(47), __webpack_require__(26)))
-
-/***/ }),
-/* 165 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-/*<replacement>*/
-
-var Buffer = __webpack_require__(123).Buffer;
-/*</replacement>*/
-
-var isEncoding = Buffer.isEncoding || function (encoding) {
-  encoding = '' + encoding;
-  switch (encoding && encoding.toLowerCase()) {
-    case 'hex':case 'utf8':case 'utf-8':case 'ascii':case 'binary':case 'base64':case 'ucs2':case 'ucs-2':case 'utf16le':case 'utf-16le':case 'raw':
-      return true;
-    default:
-      return false;
-  }
-};
-
-function _normalizeEncoding(enc) {
-  if (!enc) return 'utf8';
-  var retried;
-  while (true) {
-    switch (enc) {
-      case 'utf8':
-      case 'utf-8':
-        return 'utf8';
-      case 'ucs2':
-      case 'ucs-2':
-      case 'utf16le':
-      case 'utf-16le':
-        return 'utf16le';
-      case 'latin1':
-      case 'binary':
-        return 'latin1';
-      case 'base64':
-      case 'ascii':
-      case 'hex':
-        return enc;
-      default:
-        if (retried) return; // undefined
-        enc = ('' + enc).toLowerCase();
-        retried = true;
-    }
-  }
-};
-
-// Do not cache `Buffer.isEncoding` when checking encoding names as some
-// modules monkey-patch it to support additional encodings
-function normalizeEncoding(enc) {
-  var nenc = _normalizeEncoding(enc);
-  if (typeof nenc !== 'string' && (Buffer.isEncoding === isEncoding || !isEncoding(enc))) throw new Error('Unknown encoding: ' + enc);
-  return nenc || enc;
-}
-
-// StringDecoder provides an interface for efficiently splitting a series of
-// buffers into a series of JS strings without breaking apart multi-byte
-// characters.
-exports.StringDecoder = StringDecoder;
-function StringDecoder(encoding) {
-  this.encoding = normalizeEncoding(encoding);
-  var nb;
-  switch (this.encoding) {
-    case 'utf16le':
-      this.text = utf16Text;
-      this.end = utf16End;
-      nb = 4;
-      break;
-    case 'utf8':
-      this.fillLast = utf8FillLast;
-      nb = 4;
-      break;
-    case 'base64':
-      this.text = base64Text;
-      this.end = base64End;
-      nb = 3;
-      break;
-    default:
-      this.write = simpleWrite;
-      this.end = simpleEnd;
-      return;
-  }
-  this.lastNeed = 0;
-  this.lastTotal = 0;
-  this.lastChar = Buffer.allocUnsafe(nb);
-}
-
-StringDecoder.prototype.write = function (buf) {
-  if (buf.length === 0) return '';
-  var r;
-  var i;
-  if (this.lastNeed) {
-    r = this.fillLast(buf);
-    if (r === undefined) return '';
-    i = this.lastNeed;
-    this.lastNeed = 0;
-  } else {
-    i = 0;
-  }
-  if (i < buf.length) return r ? r + this.text(buf, i) : this.text(buf, i);
-  return r || '';
-};
-
-StringDecoder.prototype.end = utf8End;
-
-// Returns only complete characters in a Buffer
-StringDecoder.prototype.text = utf8Text;
-
-// Attempts to complete a partial non-UTF-8 character using bytes from a Buffer
-StringDecoder.prototype.fillLast = function (buf) {
-  if (this.lastNeed <= buf.length) {
-    buf.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, this.lastNeed);
-    return this.lastChar.toString(this.encoding, 0, this.lastTotal);
-  }
-  buf.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, buf.length);
-  this.lastNeed -= buf.length;
-};
-
-// Checks the type of a UTF-8 byte, whether it's ASCII, a leading byte, or a
-// continuation byte. If an invalid byte is detected, -2 is returned.
-function utf8CheckByte(byte) {
-  if (byte <= 0x7F) return 0;else if (byte >> 5 === 0x06) return 2;else if (byte >> 4 === 0x0E) return 3;else if (byte >> 3 === 0x1E) return 4;
-  return byte >> 6 === 0x02 ? -1 : -2;
-}
-
-// Checks at most 3 bytes at the end of a Buffer in order to detect an
-// incomplete multi-byte UTF-8 character. The total number of bytes (2, 3, or 4)
-// needed to complete the UTF-8 character (if applicable) are returned.
-function utf8CheckIncomplete(self, buf, i) {
-  var j = buf.length - 1;
-  if (j < i) return 0;
-  var nb = utf8CheckByte(buf[j]);
-  if (nb >= 0) {
-    if (nb > 0) self.lastNeed = nb - 1;
-    return nb;
-  }
-  if (--j < i || nb === -2) return 0;
-  nb = utf8CheckByte(buf[j]);
-  if (nb >= 0) {
-    if (nb > 0) self.lastNeed = nb - 2;
-    return nb;
-  }
-  if (--j < i || nb === -2) return 0;
-  nb = utf8CheckByte(buf[j]);
-  if (nb >= 0) {
-    if (nb > 0) {
-      if (nb === 2) nb = 0;else self.lastNeed = nb - 3;
-    }
-    return nb;
-  }
-  return 0;
-}
-
-// Validates as many continuation bytes for a multi-byte UTF-8 character as
-// needed or are available. If we see a non-continuation byte where we expect
-// one, we "replace" the validated continuation bytes we've seen so far with
-// a single UTF-8 replacement character ('\ufffd'), to match v8's UTF-8 decoding
-// behavior. The continuation byte check is included three times in the case
-// where all of the continuation bytes for a character exist in the same buffer.
-// It is also done this way as a slight performance increase instead of using a
-// loop.
-function utf8CheckExtraBytes(self, buf, p) {
-  if ((buf[0] & 0xC0) !== 0x80) {
-    self.lastNeed = 0;
-    return '\ufffd';
-  }
-  if (self.lastNeed > 1 && buf.length > 1) {
-    if ((buf[1] & 0xC0) !== 0x80) {
-      self.lastNeed = 1;
-      return '\ufffd';
-    }
-    if (self.lastNeed > 2 && buf.length > 2) {
-      if ((buf[2] & 0xC0) !== 0x80) {
-        self.lastNeed = 2;
-        return '\ufffd';
-      }
-    }
-  }
-}
-
-// Attempts to complete a multi-byte UTF-8 character using bytes from a Buffer.
-function utf8FillLast(buf) {
-  var p = this.lastTotal - this.lastNeed;
-  var r = utf8CheckExtraBytes(this, buf, p);
-  if (r !== undefined) return r;
-  if (this.lastNeed <= buf.length) {
-    buf.copy(this.lastChar, p, 0, this.lastNeed);
-    return this.lastChar.toString(this.encoding, 0, this.lastTotal);
-  }
-  buf.copy(this.lastChar, p, 0, buf.length);
-  this.lastNeed -= buf.length;
-}
-
-// Returns all complete UTF-8 characters in a Buffer. If the Buffer ended on a
-// partial character, the character's bytes are buffered until the required
-// number of bytes are available.
-function utf8Text(buf, i) {
-  var total = utf8CheckIncomplete(this, buf, i);
-  if (!this.lastNeed) return buf.toString('utf8', i);
-  this.lastTotal = total;
-  var end = buf.length - (total - this.lastNeed);
-  buf.copy(this.lastChar, 0, end);
-  return buf.toString('utf8', i, end);
-}
-
-// For UTF-8, a replacement character is added when ending on a partial
-// character.
-function utf8End(buf) {
-  var r = buf && buf.length ? this.write(buf) : '';
-  if (this.lastNeed) return r + '\ufffd';
-  return r;
-}
-
-// UTF-16LE typically needs two bytes per character, but even if we have an even
-// number of bytes available, we need to check if we end on a leading/high
-// surrogate. In that case, we need to wait for the next two bytes in order to
-// decode the last character properly.
-function utf16Text(buf, i) {
-  if ((buf.length - i) % 2 === 0) {
-    var r = buf.toString('utf16le', i);
-    if (r) {
-      var c = r.charCodeAt(r.length - 1);
-      if (c >= 0xD800 && c <= 0xDBFF) {
-        this.lastNeed = 2;
-        this.lastTotal = 4;
-        this.lastChar[0] = buf[buf.length - 2];
-        this.lastChar[1] = buf[buf.length - 1];
-        return r.slice(0, -1);
-      }
-    }
-    return r;
-  }
-  this.lastNeed = 1;
-  this.lastTotal = 2;
-  this.lastChar[0] = buf[buf.length - 1];
-  return buf.toString('utf16le', i, buf.length - 1);
-}
-
-// For UTF-16LE we do not explicitly append special replacement characters if we
-// end on a partial character, we simply let v8 handle that.
-function utf16End(buf) {
-  var r = buf && buf.length ? this.write(buf) : '';
-  if (this.lastNeed) {
-    var end = this.lastTotal - this.lastNeed;
-    return r + this.lastChar.toString('utf16le', 0, end);
-  }
-  return r;
-}
-
-function base64Text(buf, i) {
-  var n = (buf.length - i) % 3;
-  if (n === 0) return buf.toString('base64', i);
-  this.lastNeed = 3 - n;
-  this.lastTotal = 3;
-  if (n === 1) {
-    this.lastChar[0] = buf[buf.length - 1];
-  } else {
-    this.lastChar[0] = buf[buf.length - 2];
-    this.lastChar[1] = buf[buf.length - 1];
-  }
-  return buf.toString('base64', i, buf.length - n);
-}
-
-function base64End(buf) {
-  var r = buf && buf.length ? this.write(buf) : '';
-  if (this.lastNeed) return r + this.lastChar.toString('base64', 0, 3 - this.lastNeed);
-  return r;
-}
-
-// Pass bytes on through for single-byte encodings (e.g. ascii, latin1, hex)
-function simpleWrite(buf) {
-  return buf.toString(this.encoding);
-}
-
-function simpleEnd(buf) {
-  return buf && buf.length ? this.write(buf) : '';
-}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(47), __webpack_require__(24)))
 
 /***/ }),
 /* 166 */
@@ -12530,7 +12566,7 @@ module.exports = function (it) {
 /* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE = __webpack_require__(126);
+var pIE = __webpack_require__(128);
 var createDesc = __webpack_require__(100);
 var toIObject = __webpack_require__(50);
 var toPrimitive = __webpack_require__(175);
@@ -12688,7 +12724,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var shared = __webpack_require__(181)('keys');
-var uid = __webpack_require__(129);
+var uid = __webpack_require__(131);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
@@ -12807,7 +12843,7 @@ var global = __webpack_require__(17);
 var core = __webpack_require__(7);
 var LIBRARY = __webpack_require__(104);
 var wksExt = __webpack_require__(186);
-var defineProperty = __webpack_require__(25).f;
+var defineProperty = __webpack_require__(26).f;
 module.exports = function (name) {
   var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty($Symbol, name, { value: wksExt.f(name) });
@@ -12864,7 +12900,7 @@ module.exports = function (it, TYPE) {
 
 var $ = __webpack_require__(1);
 var $indexOf = __webpack_require__(93).indexOf;
-var arrayMethodIsStrict = __webpack_require__(58);
+var arrayMethodIsStrict = __webpack_require__(59);
 var arrayMethodUsesToLength = __webpack_require__(31);
 
 var nativeIndexOf = [].indexOf;
@@ -13444,9 +13480,9 @@ module.exports = Array.isArray || function (arr) {
 var $ = __webpack_require__(1);
 var global = __webpack_require__(3);
 var getBuiltIn = __webpack_require__(36);
-var IS_PURE = __webpack_require__(55);
+var IS_PURE = __webpack_require__(56);
 var DESCRIPTORS = __webpack_require__(11);
-var NATIVE_SYMBOL = __webpack_require__(143);
+var NATIVE_SYMBOL = __webpack_require__(145);
 var USE_SYMBOL_AS_UID = __webpack_require__(202);
 var fails = __webpack_require__(4);
 var has = __webpack_require__(14);
@@ -13455,19 +13491,19 @@ var isObject = __webpack_require__(13);
 var anObject = __webpack_require__(16);
 var toObject = __webpack_require__(19);
 var toIndexedObject = __webpack_require__(27);
-var toPrimitive = __webpack_require__(54);
+var toPrimitive = __webpack_require__(55);
 var createPropertyDescriptor = __webpack_require__(42);
-var nativeObjectCreate = __webpack_require__(57);
+var nativeObjectCreate = __webpack_require__(58);
 var objectKeys = __webpack_require__(94);
-var getOwnPropertyNamesModule = __webpack_require__(56);
+var getOwnPropertyNamesModule = __webpack_require__(57);
 var getOwnPropertyNamesExternal = __webpack_require__(311);
-var getOwnPropertySymbolsModule = __webpack_require__(141);
-var getOwnPropertyDescriptorModule = __webpack_require__(53);
+var getOwnPropertySymbolsModule = __webpack_require__(143);
+var getOwnPropertyDescriptorModule = __webpack_require__(54);
 var definePropertyModule = __webpack_require__(15);
 var propertyIsEnumerableModule = __webpack_require__(110);
 var createNonEnumerableProperty = __webpack_require__(18);
-var redefine = __webpack_require__(24);
-var shared = __webpack_require__(139);
+var redefine = __webpack_require__(25);
+var shared = __webpack_require__(141);
 var sharedKey = __webpack_require__(111);
 var hiddenKeys = __webpack_require__(113);
 var uid = __webpack_require__(112);
@@ -13759,7 +13795,7 @@ hiddenKeys[HIDDEN] = true;
 
 var DESCRIPTORS = __webpack_require__(11);
 var fails = __webpack_require__(4);
-var createElement = __webpack_require__(136);
+var createElement = __webpack_require__(138);
 
 // Thank's IE8 for his funny defineProperty
 module.exports = !DESCRIPTORS && !fails(function () {
@@ -13774,7 +13810,7 @@ module.exports = !DESCRIPTORS && !fails(function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(3);
-var setGlobal = __webpack_require__(137);
+var setGlobal = __webpack_require__(139);
 
 var SHARED = '__core-js_shared__';
 var store = global[SHARED] || setGlobal(SHARED, {});
@@ -13788,7 +13824,7 @@ module.exports = store;
 
 var has = __webpack_require__(14);
 var ownKeys = __webpack_require__(309);
-var getOwnPropertyDescriptorModule = __webpack_require__(53);
+var getOwnPropertyDescriptorModule = __webpack_require__(54);
 var definePropertyModule = __webpack_require__(15);
 
 module.exports = function (target, source) {
@@ -13829,7 +13865,7 @@ module.exports = function (object, names) {
 /* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var NATIVE_SYMBOL = __webpack_require__(143);
+var NATIVE_SYMBOL = __webpack_require__(145);
 
 module.exports = NATIVE_SYMBOL
   // eslint-disable-next-line no-undef
@@ -13979,11 +14015,11 @@ var isArray = __webpack_require__(115);
 var isObject = __webpack_require__(13);
 var toObject = __webpack_require__(19);
 var toLength = __webpack_require__(8);
-var createProperty = __webpack_require__(144);
+var createProperty = __webpack_require__(146);
 var arraySpeciesCreate = __webpack_require__(206);
 var arrayMethodHasSpeciesSupport = __webpack_require__(116);
 var wellKnownSymbol = __webpack_require__(6);
-var V8_VERSION = __webpack_require__(145);
+var V8_VERSION = __webpack_require__(147);
 
 var IS_CONCAT_SPREADABLE = wellKnownSymbol('isConcatSpreadable');
 var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
@@ -14048,8 +14084,8 @@ module.exports = getBuiltIn('navigator', 'userAgent') || '';
 /***/ (function(module, exports, __webpack_require__) {
 
 var $ = __webpack_require__(1);
-var fill = __webpack_require__(146);
-var addToUnscopables = __webpack_require__(147);
+var fill = __webpack_require__(148);
+var addToUnscopables = __webpack_require__(149);
 
 // `Array.prototype.fill` method
 // https://tc39.github.io/ecma262/#sec-array.prototype.fill
@@ -14068,7 +14104,7 @@ addToUnscopables('fill');
 "use strict";
 
 var $forEach = __webpack_require__(20).forEach;
-var arrayMethodIsStrict = __webpack_require__(58);
+var arrayMethodIsStrict = __webpack_require__(59);
 var arrayMethodUsesToLength = __webpack_require__(31);
 
 var STRICT_METHOD = arrayMethodIsStrict('forEach');
@@ -14087,7 +14123,7 @@ module.exports = (!STRICT_METHOD || !USES_TO_LENGTH) ? function forEach(callback
 
 var $ = __webpack_require__(1);
 var from = __webpack_require__(315);
-var checkCorrectnessOfIteration = __webpack_require__(151);
+var checkCorrectnessOfIteration = __webpack_require__(153);
 
 var INCORRECT_ITERATION = !checkCorrectnessOfIteration(function (iterable) {
   Array.from(iterable);
@@ -14127,7 +14163,7 @@ module.exports = function (iterator, fn, value, ENTRIES) {
 
 var $ = __webpack_require__(1);
 var $includes = __webpack_require__(93).includes;
-var addToUnscopables = __webpack_require__(147);
+var addToUnscopables = __webpack_require__(149);
 var arrayMethodUsesToLength = __webpack_require__(31);
 
 var USES_TO_LENGTH = arrayMethodUsesToLength('indexOf', { ACCESSORS: true, 1: 0 });
@@ -14152,13 +14188,13 @@ addToUnscopables('includes');
 
 var $ = __webpack_require__(1);
 var createIteratorConstructor = __webpack_require__(316);
-var getPrototypeOf = __webpack_require__(59);
+var getPrototypeOf = __webpack_require__(60);
 var setPrototypeOf = __webpack_require__(45);
 var setToStringTag = __webpack_require__(95);
 var createNonEnumerableProperty = __webpack_require__(18);
-var redefine = __webpack_require__(24);
+var redefine = __webpack_require__(25);
 var wellKnownSymbol = __webpack_require__(6);
-var IS_PURE = __webpack_require__(55);
+var IS_PURE = __webpack_require__(56);
 var Iterators = __webpack_require__(97);
 var IteratorsCore = __webpack_require__(217);
 
@@ -14247,11 +14283,11 @@ module.exports = function (Iterable, NAME, IteratorConstructor, next, DEFAULT, I
 
 "use strict";
 
-var getPrototypeOf = __webpack_require__(59);
+var getPrototypeOf = __webpack_require__(60);
 var createNonEnumerableProperty = __webpack_require__(18);
 var has = __webpack_require__(14);
 var wellKnownSymbol = __webpack_require__(6);
-var IS_PURE = __webpack_require__(55);
+var IS_PURE = __webpack_require__(56);
 
 var ITERATOR = wellKnownSymbol('iterator');
 var BUGGY_SAFARI_ITERATORS = false;
@@ -14307,7 +14343,7 @@ module.exports = !fails(function () {
 var $ = __webpack_require__(1);
 var IndexedObject = __webpack_require__(92);
 var toIndexedObject = __webpack_require__(27);
-var arrayMethodIsStrict = __webpack_require__(58);
+var arrayMethodIsStrict = __webpack_require__(59);
 
 var nativeJoin = [].join;
 
@@ -14334,7 +14370,7 @@ module.exports = typeof ArrayBuffer !== 'undefined' && typeof DataView !== 'unde
 /* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var redefine = __webpack_require__(24);
+var redefine = __webpack_require__(25);
 
 module.exports = function (target, src, options) {
   for (var key in src) redefine(target, key, src[key], options);
@@ -14368,16 +14404,16 @@ module.exports = function (it) {
 
 var DESCRIPTORS = __webpack_require__(11);
 var global = __webpack_require__(3);
-var isForced = __webpack_require__(142);
-var redefine = __webpack_require__(24);
+var isForced = __webpack_require__(144);
+var redefine = __webpack_require__(25);
 var has = __webpack_require__(14);
 var classof = __webpack_require__(30);
 var inheritIfRequired = __webpack_require__(224);
-var toPrimitive = __webpack_require__(54);
+var toPrimitive = __webpack_require__(55);
 var fails = __webpack_require__(4);
-var create = __webpack_require__(57);
-var getOwnPropertyNames = __webpack_require__(56).f;
-var getOwnPropertyDescriptor = __webpack_require__(53).f;
+var create = __webpack_require__(58);
+var getOwnPropertyNames = __webpack_require__(57).f;
+var getOwnPropertyDescriptor = __webpack_require__(54).f;
 var defineProperty = __webpack_require__(15).f;
 var trim = __webpack_require__(225).trim;
 
@@ -14560,7 +14596,7 @@ module.exports = function () {
 
 "use strict";
 
-var redefine = __webpack_require__(24);
+var redefine = __webpack_require__(25);
 var anObject = __webpack_require__(16);
 var fails = __webpack_require__(4);
 var flags = __webpack_require__(228);
@@ -14592,14 +14628,14 @@ if (NOT_GENERIC || INCORRECT_NAME) {
 
 "use strict";
 
-var fixRegExpWellKnownSymbolLogic = __webpack_require__(159);
+var fixRegExpWellKnownSymbolLogic = __webpack_require__(161);
 var anObject = __webpack_require__(16);
 var toObject = __webpack_require__(19);
 var toLength = __webpack_require__(8);
 var toInteger = __webpack_require__(37);
 var requireObjectCoercible = __webpack_require__(34);
-var advanceStringIndex = __webpack_require__(160);
-var regExpExec = __webpack_require__(161);
+var advanceStringIndex = __webpack_require__(162);
+var regExpExec = __webpack_require__(163);
 
 var max = Math.max;
 var min = Math.min;
@@ -14734,14 +14770,14 @@ fixRegExpWellKnownSymbolLogic('replace', 2, function (REPLACE, nativeReplace, ma
 
 "use strict";
 
-var fixRegExpWellKnownSymbolLogic = __webpack_require__(159);
+var fixRegExpWellKnownSymbolLogic = __webpack_require__(161);
 var isRegExp = __webpack_require__(332);
 var anObject = __webpack_require__(16);
 var requireObjectCoercible = __webpack_require__(34);
 var speciesConstructor = __webpack_require__(38);
-var advanceStringIndex = __webpack_require__(160);
+var advanceStringIndex = __webpack_require__(162);
 var toLength = __webpack_require__(8);
-var callRegExpExec = __webpack_require__(161);
+var callRegExpExec = __webpack_require__(163);
 var regexpExec = __webpack_require__(119);
 var fails = __webpack_require__(4);
 
@@ -14952,25 +14988,25 @@ var global = __webpack_require__(3);
 var DESCRIPTORS = __webpack_require__(11);
 var TYPED_ARRAYS_CONSTRUCTORS_REQUIRES_WRAPPERS = __webpack_require__(335);
 var ArrayBufferViewCore = __webpack_require__(5);
-var ArrayBufferModule = __webpack_require__(152);
-var anInstance = __webpack_require__(153);
+var ArrayBufferModule = __webpack_require__(154);
+var anInstance = __webpack_require__(155);
 var createPropertyDescriptor = __webpack_require__(42);
 var createNonEnumerableProperty = __webpack_require__(18);
 var toLength = __webpack_require__(8);
 var toIndex = __webpack_require__(222);
 var toOffset = __webpack_require__(237);
-var toPrimitive = __webpack_require__(54);
+var toPrimitive = __webpack_require__(55);
 var has = __webpack_require__(14);
 var classof = __webpack_require__(117);
 var isObject = __webpack_require__(13);
-var create = __webpack_require__(57);
+var create = __webpack_require__(58);
 var setPrototypeOf = __webpack_require__(45);
-var getOwnPropertyNames = __webpack_require__(56).f;
+var getOwnPropertyNames = __webpack_require__(57).f;
 var typedArrayFrom = __webpack_require__(337);
 var forEach = __webpack_require__(20).forEach;
-var setSpecies = __webpack_require__(154);
+var setSpecies = __webpack_require__(156);
 var definePropertyModule = __webpack_require__(15);
-var getOwnPropertyDescriptorModule = __webpack_require__(53);
+var getOwnPropertyDescriptorModule = __webpack_require__(54);
 var InternalStateModule = __webpack_require__(35);
 var inheritIfRequired = __webpack_require__(224);
 
@@ -15308,7 +15344,7 @@ module.exports = {
 
 /*<replacement>*/
 
-var pna = __webpack_require__(122);
+var pna = __webpack_require__(123);
 /*</replacement>*/
 
 module.exports = Readable;
@@ -15324,7 +15360,7 @@ var Duplex;
 Readable.ReadableState = ReadableState;
 
 /*<replacement>*/
-var EE = __webpack_require__(121).EventEmitter;
+var EE = __webpack_require__(122).EventEmitter;
 
 var EElistenerCount = function (emitter, type) {
   return emitter.listeners(type).length;
@@ -15337,7 +15373,7 @@ var Stream = __webpack_require__(241);
 
 /*<replacement>*/
 
-var Buffer = __webpack_require__(123).Buffer;
+var Buffer = __webpack_require__(124).Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -15350,7 +15386,7 @@ function _isUint8Array(obj) {
 
 /*<replacement>*/
 var util = Object.create(__webpack_require__(98));
-util.inherits = __webpack_require__(85);
+util.inherits = __webpack_require__(86);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -15454,7 +15490,7 @@ function ReadableState(options, stream) {
   this.decoder = null;
   this.encoding = null;
   if (options.encoding) {
-    if (!StringDecoder) StringDecoder = __webpack_require__(165).StringDecoder;
+    if (!StringDecoder) StringDecoder = __webpack_require__(125).StringDecoder;
     this.decoder = new StringDecoder(options.encoding);
     this.encoding = options.encoding;
   }
@@ -15610,7 +15646,7 @@ Readable.prototype.isPaused = function () {
 
 // backwards compatibility.
 Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = __webpack_require__(165).StringDecoder;
+  if (!StringDecoder) StringDecoder = __webpack_require__(125).StringDecoder;
   this._readableState.decoder = new StringDecoder(enc);
   this._readableState.encoding = enc;
   return this;
@@ -16302,13 +16338,13 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(26), __webpack_require__(47)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(24), __webpack_require__(47)))
 
 /***/ }),
 /* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(121).EventEmitter;
+module.exports = __webpack_require__(122).EventEmitter;
 
 
 /***/ }),
@@ -16320,7 +16356,7 @@ module.exports = __webpack_require__(121).EventEmitter;
 
 /*<replacement>*/
 
-var pna = __webpack_require__(122);
+var pna = __webpack_require__(123);
 /*</replacement>*/
 
 // undocumented cb() API, needed for core, not for public API
@@ -16467,7 +16503,7 @@ var Duplex = __webpack_require__(48);
 
 /*<replacement>*/
 var util = Object.create(__webpack_require__(98));
-util.inherits = __webpack_require__(85);
+util.inherits = __webpack_require__(86);
 /*</replacement>*/
 
 util.inherits(Transform, Duplex);
@@ -16619,7 +16655,7 @@ function done(stream, er, data) {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var Buffer = __webpack_require__(10).Buffer;
-var Transform = __webpack_require__(162).Transform;
+var Transform = __webpack_require__(121).Transform;
 var binding = __webpack_require__(350);
 var util = __webpack_require__(166);
 var assert = __webpack_require__(245).ok;
@@ -17739,7 +17775,7 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(26)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(24)))
 
 /***/ }),
 /* 246 */
@@ -18069,7 +18105,7 @@ module.exports = crc32;
 ;(function (root, factory, undef) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(125));
+		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(127));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -18403,7 +18439,7 @@ module.exports = JSON.parse("[[\"0\",\"\\u0000\",127],[\"a140\",\"　，、。�
 (function() {
   var ArrayT, NumberT, utils;
 
-  NumberT = __webpack_require__(88).Number;
+  NumberT = __webpack_require__(89).Number;
 
   utils = __webpack_require__(40);
 
@@ -18667,7 +18703,7 @@ module.exports = __webpack_require__(41);
 /* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var dP = __webpack_require__(25);
+var dP = __webpack_require__(26);
 var anObject = __webpack_require__(29);
 var getKeys = __webpack_require__(105);
 
@@ -18762,8 +18798,8 @@ module.exports = { "default": __webpack_require__(444), __esModule: true };
 
 "use strict";
 
-var dP = __webpack_require__(25).f;
-var create = __webpack_require__(127);
+var dP = __webpack_require__(26).f;
+var create = __webpack_require__(129);
 var redefineAll = __webpack_require__(189);
 var ctx = __webpack_require__(33);
 var anInstance = __webpack_require__(190);
@@ -18772,7 +18808,7 @@ var $iterDefine = __webpack_require__(178);
 var step = __webpack_require__(255);
 var setSpecies = __webpack_require__(267);
 var DESCRIPTORS = __webpack_require__(23);
-var fastKey = __webpack_require__(130).fastKey;
+var fastKey = __webpack_require__(132).fastKey;
 var validate = __webpack_require__(191);
 var SIZE = DESCRIPTORS ? '_s' : 'size';
 
@@ -18947,7 +18983,7 @@ module.exports = function (it) {
 
 var global = __webpack_require__(17);
 var core = __webpack_require__(7);
-var dP = __webpack_require__(25);
+var dP = __webpack_require__(26);
 var DESCRIPTORS = __webpack_require__(23);
 var SPECIES = __webpack_require__(21)('species');
 
@@ -18968,7 +19004,7 @@ module.exports = function (KEY) {
 
 var global = __webpack_require__(17);
 var $export = __webpack_require__(9);
-var meta = __webpack_require__(130);
+var meta = __webpack_require__(132);
 var fails = __webpack_require__(52);
 var hide = __webpack_require__(41);
 var redefineAll = __webpack_require__(189);
@@ -18976,7 +19012,7 @@ var forOf = __webpack_require__(107);
 var anInstance = __webpack_require__(190);
 var isObject = __webpack_require__(22);
 var setToStringTag = __webpack_require__(106);
-var dP = __webpack_require__(25).f;
+var dP = __webpack_require__(26).f;
 var each = __webpack_require__(451)(0);
 var DESCRIPTORS = __webpack_require__(23);
 
@@ -19213,7 +19249,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(26)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(24)))
 
 /***/ }),
 /* 277 */
@@ -21539,7 +21575,7 @@ var fails = __webpack_require__(4);
 var classof = __webpack_require__(30);
 var bind = __webpack_require__(96);
 var html = __webpack_require__(203);
-var createElement = __webpack_require__(136);
+var createElement = __webpack_require__(138);
 var IS_IOS = __webpack_require__(297);
 
 var location = global.location;
@@ -21679,8 +21715,8 @@ module.exports = function (C, x) {
 var $ = __webpack_require__(1);
 var aFunction = __webpack_require__(44);
 var newPromiseCapabilityModule = __webpack_require__(109);
-var perform = __webpack_require__(135);
-var iterate = __webpack_require__(134);
+var perform = __webpack_require__(137);
+var iterate = __webpack_require__(136);
 
 // `Promise.allSettled` method
 // https://github.com/tc39/proposal-promise-allSettled
@@ -21725,7 +21761,7 @@ $({ target: 'Promise', stat: true }, {
 /***/ (function(module, exports, __webpack_require__) {
 
 var ___EXPOSE_LOADER_IMPORT___ = __webpack_require__(301);
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = __webpack_require__(560);
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = __webpack_require__(563);
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
 if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["pdfMake"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["pdfMake"] = ___EXPOSE_LOADER_IMPORT___;
 module.exports = ___EXPOSE_LOADER_IMPORT___;
@@ -21777,7 +21813,7 @@ Document.prototype._createDoc = function (options, cb) {
 	var PdfPrinter = __webpack_require__(305);
 
 	var printer = new PdfPrinter(this.fonts);
-	__webpack_require__(91).bindFS(this.vfs); // bind virtual file system to file system
+	__webpack_require__(53).bindFS(this.vfs); // bind virtual file system to file system
 
 	if (!isFunction(cb)) {
 		var doc = printer.createPdfKitDocument(this.docDefinition, options);
@@ -21785,8 +21821,8 @@ Document.prototype._createDoc = function (options, cb) {
 		return doc;
 	}
 
-	var URLBrowserResolver = __webpack_require__(546);
-	var urlResolver = new URLBrowserResolver(__webpack_require__(91));
+	var URLBrowserResolver = __webpack_require__(549);
+	var urlResolver = new URLBrowserResolver(__webpack_require__(53));
 
 	for (var font in this.fonts) {
 		if (this.fonts.hasOwnProperty(font)) {
@@ -21801,6 +21837,14 @@ Document.prototype._createDoc = function (options, cb) {
 			}
 			if (this.fonts[font].bolditalics) {
 				urlResolver.resolve(this.fonts[font].bolditalics);
+			}
+		}
+	}
+
+	if (this.docDefinition.images) {
+		for (var image in this.docDefinition.images) {
+			if (this.docDefinition.images.hasOwnProperty(image)) {
+				urlResolver.resolve(this.docDefinition.images[image]);
 			}
 		}
 	}
@@ -22011,7 +22055,7 @@ module.exports = {
 	}
 };
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(10).Buffer, __webpack_require__(26)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(10).Buffer, __webpack_require__(24)))
 
 /***/ }),
 /* 302 */
@@ -22272,7 +22316,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Deprecated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(b,c,d){var e=new XMLHttpRequest;e.open("GET",b),e.responseType="blob",e.onload=function(){a(e.response,c,d)},e.onerror=function(){console.error("could not download file")},e.send()}function d(a){var b=new XMLHttpRequest;b.open("HEAD",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.saveAs||("object"!=typeof window||window!==f?function(){}:(typeof HTMLAnchorElement !== "undefined" && "download" in HTMLAnchorElement.prototype)?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(a,b,d,e){if(e=e||open("","_blank"),e&&(e.document.title=e.document.body.innerText="downloading..."),"string"==typeof a)return c(a,b,d);var g="application/octet-stream"===a.type,h=/constructor/i.test(f.HTMLElement)||f.safari,i=/CriOS\/[\d]+/.test(navigator.userAgent);if((i||g&&h)&&"object"==typeof FileReader){var j=new FileReader;j.onloadend=function(){var a=j.result;a=i?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),e?e.location.href=a:location=a,e=null},j.readAsDataURL(a)}else{var k=f.URL||f.webkitURL,l=k.createObjectURL(a);e?e.location=l:location.href=l,e=null,setTimeout(function(){k.revokeObjectURL(l)},4E4)}});f.saveAs=a.saveAs=a, true&&(module.exports=a)});
 
 //# sourceMappingURL=FileSaver.min.js.map
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(26)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(24)))
 
 /***/ }),
 /* 305 */
@@ -22288,7 +22332,7 @@ var LayoutBuilder = __webpack_require__(533);
 var sizes = __webpack_require__(540);
 var ImageMeasure = __webpack_require__(541);
 var SVGMeasure = __webpack_require__(542);
-var textDecorator = __webpack_require__(543);
+var textDecorator = __webpack_require__(546);
 var TextTools = __webpack_require__(194);
 var isFunction = __webpack_require__(0).isFunction;
 var isString = __webpack_require__(0).isString;
@@ -22300,7 +22344,7 @@ var isUndefined = __webpack_require__(0).isUndefined;
 var getSvgToPDF = function () {
 	try {
 		// optional dependency to support svg nodes
-		return __webpack_require__(544);
+		return __webpack_require__(547);
 	} catch (e) {
 		throw new Error('Please install svg-to-pdfkit to enable svg nodes');
 	}
@@ -22999,9 +23043,9 @@ __webpack_require__(319);
 
 __webpack_require__(320);
 
-__webpack_require__(60);
+__webpack_require__(61);
 
-__webpack_require__(155);
+__webpack_require__(157);
 
 __webpack_require__(223);
 
@@ -23025,9 +23069,9 @@ __webpack_require__(330);
 
 __webpack_require__(331);
 
-__webpack_require__(157);
+__webpack_require__(159);
 
-__webpack_require__(158);
+__webpack_require__(160);
 
 __webpack_require__(230);
 
@@ -23038,8 +23082,6 @@ __webpack_require__(232);
 __webpack_require__(233);
 
 __webpack_require__(334);
-
-__webpack_require__(61);
 
 __webpack_require__(62);
 
@@ -23087,6 +23129,8 @@ __webpack_require__(83);
 
 __webpack_require__(84);
 
+__webpack_require__(85);
+
 __webpack_require__(340);
 
 __webpack_require__(120);
@@ -23096,7 +23140,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _stream = _interopRequireDefault(__webpack_require__(162));
+var _stream = _interopRequireDefault(__webpack_require__(121));
 
 var _zlib = _interopRequireDefault(__webpack_require__(244));
 
@@ -23104,7 +23148,7 @@ var _cryptoJs = _interopRequireDefault(__webpack_require__(362));
 
 var _fontkit = _interopRequireDefault(__webpack_require__(386));
 
-var _events = __webpack_require__(121);
+var _events = __webpack_require__(122);
 
 var _linebreak = _interopRequireDefault(__webpack_require__(290));
 
@@ -23112,7 +23156,7 @@ var _pngJs = _interopRequireDefault(__webpack_require__(531));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var fs = __webpack_require__(91);
+var fs = __webpack_require__(53);
 
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -29275,7 +29319,7 @@ exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(3);
-var inspectSource = __webpack_require__(138);
+var inspectSource = __webpack_require__(140);
 
 var WeakMap = global.WeakMap;
 
@@ -29287,8 +29331,8 @@ module.exports = typeof WeakMap === 'function' && /native code/.test(inspectSour
 /***/ (function(module, exports, __webpack_require__) {
 
 var getBuiltIn = __webpack_require__(36);
-var getOwnPropertyNamesModule = __webpack_require__(56);
-var getOwnPropertySymbolsModule = __webpack_require__(141);
+var getOwnPropertyNamesModule = __webpack_require__(57);
+var getOwnPropertySymbolsModule = __webpack_require__(143);
 var anObject = __webpack_require__(16);
 
 // all object keys, includes non-enumerable and symbols
@@ -29326,7 +29370,7 @@ module.exports = DESCRIPTORS ? Object.defineProperties : function defineProperti
 /***/ (function(module, exports, __webpack_require__) {
 
 var toIndexedObject = __webpack_require__(27);
-var nativeGetOwnPropertyNames = __webpack_require__(56).f;
+var nativeGetOwnPropertyNames = __webpack_require__(57).f;
 
 var toString = {}.toString;
 
@@ -29357,7 +29401,7 @@ module.exports.f = function getOwnPropertyNames(it) {
 
 var $ = __webpack_require__(1);
 var $every = __webpack_require__(20).every;
-var arrayMethodIsStrict = __webpack_require__(58);
+var arrayMethodIsStrict = __webpack_require__(59);
 var arrayMethodUsesToLength = __webpack_require__(31);
 
 var STRICT_METHOD = arrayMethodIsStrict('every');
@@ -29422,10 +29466,10 @@ $({ target: 'Array', proto: true, forced: [].forEach != forEach }, {
 var bind = __webpack_require__(96);
 var toObject = __webpack_require__(19);
 var callWithSafeIterationClosing = __webpack_require__(214);
-var isArrayIteratorMethod = __webpack_require__(148);
+var isArrayIteratorMethod = __webpack_require__(150);
 var toLength = __webpack_require__(8);
-var createProperty = __webpack_require__(144);
-var getIteratorMethod = __webpack_require__(149);
+var createProperty = __webpack_require__(146);
+var getIteratorMethod = __webpack_require__(151);
 
 // `Array.from` method implementation
 // https://tc39.github.io/ecma262/#sec-array.from
@@ -29468,7 +29512,7 @@ module.exports = function from(arrayLike /* , mapfn = undefined, thisArg = undef
 "use strict";
 
 var IteratorPrototype = __webpack_require__(217).IteratorPrototype;
-var create = __webpack_require__(57);
+var create = __webpack_require__(58);
 var createPropertyDescriptor = __webpack_require__(42);
 var setToStringTag = __webpack_require__(95);
 var Iterators = __webpack_require__(97);
@@ -29530,7 +29574,7 @@ $({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT || !USES_TO_LENGT
 
 var $ = __webpack_require__(1);
 var $some = __webpack_require__(20).some;
-var arrayMethodIsStrict = __webpack_require__(58);
+var arrayMethodIsStrict = __webpack_require__(59);
 var arrayMethodUsesToLength = __webpack_require__(31);
 
 var STRICT_METHOD = arrayMethodIsStrict('some');
@@ -29553,8 +29597,8 @@ $({ target: 'Array', proto: true, forced: !STRICT_METHOD || !USES_TO_LENGTH }, {
 
 var $ = __webpack_require__(1);
 var global = __webpack_require__(3);
-var arrayBufferModule = __webpack_require__(152);
-var setSpecies = __webpack_require__(154);
+var arrayBufferModule = __webpack_require__(154);
+var setSpecies = __webpack_require__(156);
 
 var ARRAY_BUFFER = 'ArrayBuffer';
 var ArrayBuffer = arrayBufferModule[ARRAY_BUFFER];
@@ -29713,7 +29757,7 @@ $({ target: 'Object', stat: true, forced: Object.assign !== assign }, {
 var DESCRIPTORS = __webpack_require__(11);
 var fails = __webpack_require__(4);
 var objectKeys = __webpack_require__(94);
-var getOwnPropertySymbolsModule = __webpack_require__(141);
+var getOwnPropertySymbolsModule = __webpack_require__(143);
 var propertyIsEnumerableModule = __webpack_require__(110);
 var toObject = __webpack_require__(19);
 var IndexedObject = __webpack_require__(92);
@@ -29770,7 +29814,7 @@ module.exports = !nativeAssign || fails(function () {
 var $ = __webpack_require__(1);
 var fails = __webpack_require__(4);
 var toObject = __webpack_require__(19);
-var nativeGetPrototypeOf = __webpack_require__(59);
+var nativeGetPrototypeOf = __webpack_require__(60);
 var CORRECT_PROTOTYPE_GETTER = __webpack_require__(218);
 
 var FAILS_ON_PRIMITIVES = fails(function () { nativeGetPrototypeOf(1); });
@@ -29805,7 +29849,7 @@ $({ target: 'Object', stat: true }, {
 
 "use strict";
 
-var TO_STRING_TAG_SUPPORT = __webpack_require__(150);
+var TO_STRING_TAG_SUPPORT = __webpack_require__(152);
 var classof = __webpack_require__(117);
 
 // `Object.prototype.toString` method implementation
@@ -29852,7 +29896,7 @@ exports.BROKEN_CARET = fails(function () {
 "use strict";
 
 var $ = __webpack_require__(1);
-var codeAt = __webpack_require__(156).codeAt;
+var codeAt = __webpack_require__(158).codeAt;
 
 // `String.prototype.codePointAt` method
 // https://tc39.github.io/ecma262/#sec-string.prototype.codepointat
@@ -29958,7 +30002,7 @@ $({ target: 'String', proto: true, forced: forcedStringHTMLMethod('strike') }, {
 /* eslint-disable no-new */
 var global = __webpack_require__(3);
 var fails = __webpack_require__(4);
-var checkCorrectnessOfIteration = __webpack_require__(151);
+var checkCorrectnessOfIteration = __webpack_require__(153);
 var NATIVE_ARRAY_BUFFER_VIEWS = __webpack_require__(5).NATIVE_ARRAY_BUFFER_VIEWS;
 
 var ArrayBuffer = global.ArrayBuffer;
@@ -29998,8 +30042,8 @@ module.exports = function (it) {
 
 var toObject = __webpack_require__(19);
 var toLength = __webpack_require__(8);
-var getIteratorMethod = __webpack_require__(149);
-var isArrayIteratorMethod = __webpack_require__(148);
+var getIteratorMethod = __webpack_require__(151);
+var isArrayIteratorMethod = __webpack_require__(150);
 var bind = __webpack_require__(96);
 var aTypedArrayConstructor = __webpack_require__(5).aTypedArrayConstructor;
 
@@ -30075,7 +30119,7 @@ module.exports = [].copyWithin || function copyWithin(target /* = 0 */, start /*
 var toIndexedObject = __webpack_require__(27);
 var toInteger = __webpack_require__(37);
 var toLength = __webpack_require__(8);
-var arrayMethodIsStrict = __webpack_require__(58);
+var arrayMethodIsStrict = __webpack_require__(59);
 var arrayMethodUsesToLength = __webpack_require__(31);
 
 var min = Math.min;
@@ -30137,7 +30181,7 @@ for (var COLLECTION_NAME in DOMIterables) {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Buffer = __webpack_require__(123).Buffer;
+var Buffer = __webpack_require__(124).Buffer;
 var util = __webpack_require__(343);
 
 function copyBuffer(src, target, offset) {
@@ -30291,7 +30335,7 @@ function config (name) {
   return String(val).toLowerCase() === 'true';
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(26)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(24)))
 
 /***/ }),
 /* 345 */
@@ -30331,7 +30375,7 @@ var Transform = __webpack_require__(243);
 
 /*<replacement>*/
 var util = Object.create(__webpack_require__(98));
-util.inherits = __webpack_require__(85);
+util.inherits = __webpack_require__(86);
 /*</replacement>*/
 
 util.inherits(PassThrough, Transform);
@@ -30350,7 +30394,7 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 /* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(164);
+module.exports = __webpack_require__(165);
 
 
 /***/ }),
@@ -30364,14 +30408,14 @@ module.exports = __webpack_require__(48);
 /* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(163).Transform
+module.exports = __webpack_require__(164).Transform
 
 
 /***/ }),
 /* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(163).PassThrough
+module.exports = __webpack_require__(164).PassThrough
 
 
 /***/ }),
@@ -31007,7 +31051,7 @@ module.exports = ZStream;
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils   = __webpack_require__(124);
+var utils   = __webpack_require__(126);
 var trees   = __webpack_require__(356);
 var adler32 = __webpack_require__(246);
 var crc32   = __webpack_require__(247);
@@ -32890,7 +32934,7 @@ exports.deflateTune = deflateTune;
 
 /* eslint-disable space-unary-ops */
 
-var utils = __webpack_require__(124);
+var utils = __webpack_require__(126);
 
 /* Public constants ==========================================================*/
 /* ===========================================================================*/
@@ -34156,7 +34200,7 @@ module.exports = {
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils         = __webpack_require__(124);
+var utils         = __webpack_require__(126);
 var adler32       = __webpack_require__(246);
 var crc32         = __webpack_require__(247);
 var inflate_fast  = __webpack_require__(359);
@@ -36071,7 +36115,7 @@ module.exports = function inflate_fast(strm, start) {
 //   misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-var utils = __webpack_require__(124);
+var utils = __webpack_require__(126);
 
 var MAXBITS = 15;
 var ENOUGH_LENS = 852;
@@ -36477,7 +36521,7 @@ module.exports = {
 ;(function (root, factory, undef) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(125), __webpack_require__(363), __webpack_require__(364), __webpack_require__(86), __webpack_require__(87), __webpack_require__(167), __webpack_require__(248), __webpack_require__(365), __webpack_require__(249), __webpack_require__(366), __webpack_require__(367), __webpack_require__(368), __webpack_require__(168), __webpack_require__(369), __webpack_require__(49), __webpack_require__(12), __webpack_require__(370), __webpack_require__(371), __webpack_require__(372), __webpack_require__(373), __webpack_require__(374), __webpack_require__(375), __webpack_require__(376), __webpack_require__(377), __webpack_require__(378), __webpack_require__(379), __webpack_require__(380), __webpack_require__(381), __webpack_require__(382), __webpack_require__(383), __webpack_require__(384), __webpack_require__(385));
+		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(127), __webpack_require__(363), __webpack_require__(364), __webpack_require__(87), __webpack_require__(88), __webpack_require__(167), __webpack_require__(248), __webpack_require__(365), __webpack_require__(249), __webpack_require__(366), __webpack_require__(367), __webpack_require__(368), __webpack_require__(168), __webpack_require__(369), __webpack_require__(49), __webpack_require__(12), __webpack_require__(370), __webpack_require__(371), __webpack_require__(372), __webpack_require__(373), __webpack_require__(374), __webpack_require__(375), __webpack_require__(376), __webpack_require__(377), __webpack_require__(378), __webpack_require__(379), __webpack_require__(380), __webpack_require__(381), __webpack_require__(382), __webpack_require__(383), __webpack_require__(384), __webpack_require__(385));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -36792,7 +36836,7 @@ module.exports = {
 ;(function (root, factory, undef) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(125), __webpack_require__(249));
+		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(127), __webpack_require__(249));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -36873,7 +36917,7 @@ module.exports = {
 ;(function (root, factory, undef) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(125));
+		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(127));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -38200,7 +38244,7 @@ module.exports = {
 ;(function (root, factory, undef) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(86), __webpack_require__(87), __webpack_require__(49), __webpack_require__(12));
+		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(87), __webpack_require__(88), __webpack_require__(49), __webpack_require__(12));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -38430,7 +38474,7 @@ module.exports = {
 ;(function (root, factory, undef) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(86), __webpack_require__(87), __webpack_require__(49), __webpack_require__(12));
+		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(87), __webpack_require__(88), __webpack_require__(49), __webpack_require__(12));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -39198,7 +39242,7 @@ module.exports = {
 ;(function (root, factory, undef) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(86), __webpack_require__(87), __webpack_require__(49), __webpack_require__(12));
+		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(87), __webpack_require__(88), __webpack_require__(49), __webpack_require__(12));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -39335,7 +39379,7 @@ module.exports = {
 ;(function (root, factory, undef) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(86), __webpack_require__(87), __webpack_require__(49), __webpack_require__(12));
+		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(87), __webpack_require__(88), __webpack_require__(49), __webpack_require__(12));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -39525,7 +39569,7 @@ module.exports = {
 ;(function (root, factory, undef) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(86), __webpack_require__(87), __webpack_require__(49), __webpack_require__(12));
+		module.exports = exports = factory(__webpack_require__(2), __webpack_require__(87), __webpack_require__(88), __webpack_require__(49), __webpack_require__(12));
 	}
 	else {}
 }(this, function (CryptoJS) {
@@ -39740,10 +39784,10 @@ var StateMachine = _interopDefault(__webpack_require__(505));
 var _Number$EPSILON = _interopDefault(__webpack_require__(507));
 var cloneDeep = _interopDefault(__webpack_require__(510));
 var _Promise = _interopDefault(__webpack_require__(511));
-var inflate = _interopDefault(__webpack_require__(133));
+var inflate = _interopDefault(__webpack_require__(135));
 var brotli = _interopDefault(__webpack_require__(519));
 
-var fs = __webpack_require__(91);
+var fs = __webpack_require__(53);
 
 var fontkit = {};
 fontkit.logErrors = false;
@@ -54695,7 +54739,7 @@ module.exports = fontkit;
 
   exports.VersionedStruct = __webpack_require__(415);
 
-  _ref = __webpack_require__(88);
+  _ref = __webpack_require__(89);
   for (key in _ref) {
     val = _ref[key];
     exports[key] = val;
@@ -54720,7 +54764,7 @@ module.exports = fontkit;
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  stream = __webpack_require__(162);
+  stream = __webpack_require__(121);
 
   DecodeStream = __webpack_require__(169);
 
@@ -55010,7 +55054,7 @@ InternalCodec.prototype.decoder = InternalDecoder;
 //------------------------------------------------------------------------------
 
 // We use node.js internal decoder. Its signature is the same as ours.
-var StringDecoder = __webpack_require__(165).StringDecoder;
+var StringDecoder = __webpack_require__(125).StringDecoder;
 
 if (!StringDecoder.prototype.end) // Node v0.8 doesn't have this method.
     StringDecoder.prototype.end = function() {};
@@ -55269,65 +55313,86 @@ Utf32Encoder.prototype.end = function() {
 function Utf32Decoder(options, codec) {
     this.isLE = codec.isLE;
     this.badChar = codec.iconv.defaultCharUnicode.charCodeAt(0);
-    this.overflow = null;
+    this.overflow = [];
 }
 
 Utf32Decoder.prototype.write = function(src) {
     if (src.length === 0)
         return '';
 
-    // Support Uint8Array
-    if (!Buffer.isBuffer(src)) {
-        src = Buffer.from(src);
-    }
-
-    if (this.overflow)
-        src = Buffer.concat([this.overflow, src]);
-
-    var goodLength = src.length - src.length % 4;
-
-    if (src.length !== goodLength) {
-        this.overflow = src.slice(goodLength);
-        src = src.slice(0, goodLength);
-    }
-    else
-        this.overflow = null;
-
-    var dst = Buffer.alloc(goodLength);
+    var i = 0;
+    var codepoint = 0;
+    var dst = Buffer.alloc(src.length + 4);
     var offset = 0;
+    var isLE = this.isLE;
+    var overflow = this.overflow;
+    var badChar = this.badChar;
 
-    for (var i = 0; i < goodLength; i += 4) {
-        var codepoint = this.isLE ? src.readUInt32LE(i) : src.readUInt32BE(i);
+    if (overflow.length > 0) {
+        for (; i < src.length && overflow.length < 4; i++)
+            overflow.push(src[i]);
+        
+        if (overflow.length === 4) {
+            // NOTE: codepoint is a signed int32 and can be negative.
+            // NOTE: We copied this block from below to help V8 optimize it (it works with array, not buffer).
+            if (isLE) {
+                codepoint = overflow[i] | (overflow[i+1] << 8) | (overflow[i+2] << 16) | (overflow[i+3] << 24);
+            } else {
+                codepoint = overflow[i+3] | (overflow[i+2] << 8) | (overflow[i+1] << 16) | (overflow[i] << 24);
+            }
+            overflow.length = 0;
 
-        if (codepoint < 0x10000) {
-            // Simple 16-bit character
-            dst.writeUInt16LE(codepoint, offset);
-            offset += 2;
+            offset = _writeCodepoint(dst, offset, codepoint, badChar);
         }
-        else {
-            if (codepoint > 0x10FFFF) {
-                // Not a valid Unicode codepoint
-                dst.writeUInt16LE(this.badChar, offset);
-                offset += 2;
-            }
-            else {
-                // Create high and low surrogates.
-                codepoint -= 0x10000;
-                var high = 0xD800 | (codepoint >> 10);
-                var low = 0xDC00 + (codepoint & 0x3FF);
-                dst.writeUInt16LE(high, offset);
-                offset += 2;
-                dst.writeUInt16LE(low, offset);
-                offset += 2;
-            }
+    }
+
+    // Main loop. Should be as optimized as possible.
+    for (; i < src.length - 3; i += 4) {
+        // NOTE: codepoint is a signed int32 and can be negative.
+        if (isLE) {
+            codepoint = src[i] | (src[i+1] << 8) | (src[i+2] << 16) | (src[i+3] << 24);
+        } else {
+            codepoint = src[i+3] | (src[i+2] << 8) | (src[i+1] << 16) | (src[i] << 24);
         }
+        offset = _writeCodepoint(dst, offset, codepoint, badChar);
+    }
+
+    // Keep overflowing bytes.
+    for (; i < src.length; i++) {
+        overflow.push(src[i]);
     }
 
     return dst.slice(0, offset).toString('ucs2');
 };
 
+function _writeCodepoint(dst, offset, codepoint, badChar) {
+    // NOTE: codepoint is signed int32 and can be negative. We keep it that way to help V8 with optimizations.
+    if (codepoint < 0 || codepoint > 0x10FFFF) {
+        // Not a valid Unicode codepoint
+        codepoint = badChar;
+    } 
+
+    // Ephemeral Planes: Write high surrogate.
+    if (codepoint >= 0x10000) {
+        codepoint -= 0x10000;
+
+        var high = 0xD800 | (codepoint >> 10);
+        dst[offset++] = high & 0xff;
+        dst[offset++] = high >> 8;
+
+        // Low surrogate is written below.
+        var codepoint = 0xDC00 | (codepoint & 0x3FF);
+    }
+
+    // Write BMP char or low surrogate.
+    dst[offset++] = codepoint & 0xff;
+    dst[offset++] = codepoint >> 8;
+
+    return offset;
+};
+
 Utf32Decoder.prototype.end = function() {
-    this.overflow = null;
+    this.overflow.length = 0;
 };
 
 // == UTF-32 Auto codec =============================================================
@@ -55370,31 +55435,31 @@ Utf32AutoEncoder.prototype.end = function() {
 
 function Utf32AutoDecoder(options, codec) {
     this.decoder = null;
-    this.initialBytes = [];
-    this.initialBytesLen = 0;
+    this.initialBufs = [];
+    this.initialBufsLen = 0;
     this.options = options || {};
     this.iconv = codec.iconv;
 }
 
 Utf32AutoDecoder.prototype.write = function(buf) {
     if (!this.decoder) { 
-        // Support Uint8Array
-        if (!Buffer.isBuffer(buf)) {
-            buf = Buffer.from(buf);
-        }
-
         // Codec is not chosen yet. Accumulate initial bytes.
-        this.initialBytes.push(buf);
-        this.initialBytesLen += buf.length;
+        this.initialBufs.push(buf);
+        this.initialBufsLen += buf.length;
 
-        if (this.initialBytesLen < 32) // We need more bytes to use space heuristic (see below)
+        if (this.initialBufsLen < 32) // We need more bytes to use space heuristic (see below)
             return '';
 
         // We have enough bytes -> detect endianness.
-        var buf = Buffer.concat(this.initialBytes),
-            encoding = detectEncoding(buf, this.options.defaultEncoding);
+        var encoding = detectEncoding(this.initialBufs, this.options.defaultEncoding);
         this.decoder = this.iconv.getDecoder(encoding, this.options);
-        this.initialBytes.length = this.initialBytesLen = 0;
+
+        var resStr = '';
+        for (var i = 0; i < this.initialBufs.length; i++)
+            resStr += this.decoder.write(this.initialBufs[i]);
+
+        this.initialBufs.length = this.initialBufsLen = 0;
+        return resStr;
     }
 
     return this.decoder.write(buf);
@@ -55402,61 +55467,68 @@ Utf32AutoDecoder.prototype.write = function(buf) {
 
 Utf32AutoDecoder.prototype.end = function() {
     if (!this.decoder) {
-        var buf = Buffer.concat(this.initialBytes),
-            encoding = detectEncoding(buf, this.options.defaultEncoding);
+        var encoding = detectEncoding(this.initialBufs, this.options.defaultEncoding);
         this.decoder = this.iconv.getDecoder(encoding, this.options);
 
-        var res = this.decoder.write(buf),
-            trail = this.decoder.end();
+        var resStr = '';
+        for (var i = 0; i < this.initialBufs.length; i++)
+            resStr += this.decoder.write(this.initialBufs[i]);
 
-        return trail ? (res + trail) : res;
+        var trail = this.decoder.end();
+        if (trail)
+            resStr += trail;
+
+        this.initialBufs.length = this.initialBufsLen = 0;
+        return resStr;
     }
 
     return this.decoder.end();
 };
 
-function detectEncoding(buf, defaultEncoding) {
-    var enc = defaultEncoding || 'utf-32le';
+function detectEncoding(bufs, defaultEncoding) {
+    var b = [];
+    var charsProcessed = 0;
+    var invalidLE = 0, invalidBE = 0;   // Number of invalid chars when decoded as LE or BE.
+    var bmpCharsLE = 0, bmpCharsBE = 0; // Number of BMP chars when decoded as LE or BE.
 
-    if (buf.length >= 4) {
-        // Check BOM.
-        if (buf.readUInt32BE(0) === 0xFEFF) // UTF-32LE BOM
-            enc = 'utf-32be';
-        else if (buf.readUInt32LE(0) === 0xFEFF) // UTF-32LE BOM
-            enc = 'utf-32le';
-        else {
-            // No BOM found. Try to deduce encoding from initial content.
-            // Using the wrong endian-ism for UTF-32 will very often result in codepoints that are beyond
-            // the valid Unicode limit of 0x10FFFF. That will be used as the primary determinant.
-            //
-            // Further, we can suppose the content is mostly plain ASCII chars (U+00**).
-            // So, we count ASCII as if it was LE or BE, and decide from that.
-            var invalidLE = 0, invalidBE = 0;
-            var asciiCharsLE = 0, asciiCharsBE = 0, // Counts of chars in both positions
-                _len = Math.min(buf.length - (buf.length % 4), 128); // Len is always even.
+    outer_loop:
+    for (var i = 0; i < bufs.length; i++) {
+        var buf = bufs[i];
+        for (var j = 0; j < buf.length; j++) {
+            b.push(buf[j]);
+            if (b.length === 4) {
+                if (charsProcessed === 0) {
+                    // Check BOM first.
+                    if (b[0] === 0xFF && b[1] === 0xFE && b[2] === 0 && b[3] === 0) {
+                        return 'utf-32le';
+                    }
+                    if (b[0] === 0 && b[1] === 0 && b[2] === 0xFE && b[3] === 0xFF) {
+                        return 'utf-32be';
+                    }
+                }
 
-            for (var i = 0; i < _len; i += 4) {
-                var b0 = buf[i], b1  = buf[i + 1], b2 = buf[i + 2], b3 = buf[i + 3];
+                if (b[0] !== 0 || b[1] > 0x10) invalidBE++;
+                if (b[3] !== 0 || b[2] > 0x10) invalidLE++;
 
-                if (b0 !== 0 || b1 > 0x10) ++invalidBE;
-                if (b3 !== 0 || b2 > 0x10) ++invalidLE;
+                if (b[0] === 0 && b[1] === 0 && (b[2] !== 0 || b[3] !== 0)) bmpCharsBE++;
+                if ((b[0] !== 0 || b[1] !== 0) && b[2] === 0 && b[3] === 0) bmpCharsLE++;
 
-                if (b0 === 0 && b1 === 0 && b2 === 0 && b3 !== 0) asciiCharsBE++;
-                if (b0 !== 0 && b1 === 0 && b2 === 0 && b3 === 0) asciiCharsLE++;
+                b.length = 0;
+                charsProcessed++;
+
+                if (charsProcessed >= 100) {
+                    break outer_loop;
+                }
             }
-
-            if (invalidBE < invalidLE)
-                enc = 'utf-32be';
-            else if (invalidLE < invalidBE)
-                enc = 'utf-32le';
-            if (asciiCharsBE > asciiCharsLE)
-                enc = 'utf-32be';
-            else if (asciiCharsBE < asciiCharsLE)
-                enc = 'utf-32le';
         }
     }
 
-    return enc;
+    // Make decisions.
+    if (bmpCharsBE - invalidBE > bmpCharsLE - invalidLE)  return 'utf-32be';
+    if (bmpCharsBE - invalidBE < bmpCharsLE - invalidLE)  return 'utf-32le';
+
+    // Couldn't decide (likely all zeros or not enough data).
+    return defaultEncoding || 'utf-32le';
 }
 
 
@@ -55528,6 +55600,7 @@ Utf16BEDecoder.prototype.write = function(buf) {
 }
 
 Utf16BEDecoder.prototype.end = function() {
+    this.overflowByte = -1;
 }
 
 
@@ -55570,8 +55643,8 @@ Utf16Encoder.prototype.end = function() {
 
 function Utf16Decoder(options, codec) {
     this.decoder = null;
-    this.initialBytes = [];
-    this.initialBytesLen = 0;
+    this.initialBufs = [];
+    this.initialBufsLen = 0;
 
     this.options = options || {};
     this.iconv = codec.iconv;
@@ -55579,23 +55652,23 @@ function Utf16Decoder(options, codec) {
 
 Utf16Decoder.prototype.write = function(buf) {
     if (!this.decoder) {
-        // Support Uint8Array
-        if (!Buffer.isBuffer(buf)) {
-            buf = Buffer.from(buf)
-        }
-
         // Codec is not chosen yet. Accumulate initial bytes.
-        this.initialBytes.push(buf);
-        this.initialBytesLen += buf.length;
+        this.initialBufs.push(buf);
+        this.initialBufsLen += buf.length;
         
-        if (this.initialBytesLen < 16) // We need more bytes to use space heuristic (see below)
+        if (this.initialBufsLen < 16) // We need more bytes to use space heuristic (see below)
             return '';
 
         // We have enough bytes -> detect endianness.
-        var buf = Buffer.concat(this.initialBytes),
-            encoding = detectEncoding(buf, this.options.defaultEncoding);
+        var encoding = detectEncoding(this.initialBufs, this.options.defaultEncoding);
         this.decoder = this.iconv.getDecoder(encoding, this.options);
-        this.initialBytes.length = this.initialBytesLen = 0;
+
+        var resStr = '';
+        for (var i = 0; i < this.initialBufs.length; i++)
+            resStr += this.decoder.write(this.initialBufs[i]);
+
+        this.initialBufs.length = this.initialBufsLen = 0;
+        return resStr;
     }
 
     return this.decoder.write(buf);
@@ -55603,47 +55676,61 @@ Utf16Decoder.prototype.write = function(buf) {
 
 Utf16Decoder.prototype.end = function() {
     if (!this.decoder) {
-        var buf = Buffer.concat(this.initialBytes),
-            encoding = detectEncoding(buf, this.options.defaultEncoding);
+        var encoding = detectEncoding(this.initialBufs, this.options.defaultEncoding);
         this.decoder = this.iconv.getDecoder(encoding, this.options);
 
-        var res = this.decoder.write(buf),
-            trail = this.decoder.end();
+        var resStr = '';
+        for (var i = 0; i < this.initialBufs.length; i++)
+            resStr += this.decoder.write(this.initialBufs[i]);
 
-        return trail ? (res + trail) : res;
+        var trail = this.decoder.end();
+        if (trail)
+            resStr += trail;
+
+        this.initialBufs.length = this.initialBufsLen = 0;
+        return resStr;
     }
     return this.decoder.end();
 }
 
-function detectEncoding(buf, defaultEncoding) {
-    var enc = defaultEncoding || 'utf-16le';
+function detectEncoding(bufs, defaultEncoding) {
+    var b = [];
+    var charsProcessed = 0;
+    var asciiCharsLE = 0, asciiCharsBE = 0; // Number of ASCII chars when decoded as LE or BE.
 
-    if (buf.length >= 2) {
-        // Check BOM.
-        if (buf[0] == 0xFE && buf[1] == 0xFF) // UTF-16BE BOM
-            enc = 'utf-16be';
-        else if (buf[0] == 0xFF && buf[1] == 0xFE) // UTF-16LE BOM
-            enc = 'utf-16le';
-        else {
-            // No BOM found. Try to deduce encoding from initial content.
-            // Most of the time, the content has ASCII chars (U+00**), but the opposite (U+**00) is uncommon.
-            // So, we count ASCII as if it was LE or BE, and decide from that.
-            var asciiCharsLE = 0, asciiCharsBE = 0, // Counts of chars in both positions
-                _len = Math.min(buf.length - (buf.length % 2), 64); // Len is always even.
+    outer_loop:
+    for (var i = 0; i < bufs.length; i++) {
+        var buf = bufs[i];
+        for (var j = 0; j < buf.length; j++) {
+            b.push(buf[j]);
+            if (b.length === 2) {
+                if (charsProcessed === 0) {
+                    // Check BOM first.
+                    if (b[0] === 0xFF && b[1] === 0xFE) return 'utf-16le';
+                    if (b[0] === 0xFE && b[1] === 0xFF) return 'utf-16be';
+                }
 
-            for (var i = 0; i < _len; i += 2) {
-                if (buf[i] === 0 && buf[i+1] !== 0) asciiCharsBE++;
-                if (buf[i] !== 0 && buf[i+1] === 0) asciiCharsLE++;
+                if (b[0] === 0 && b[1] !== 0) asciiCharsBE++;
+                if (b[0] !== 0 && b[1] === 0) asciiCharsLE++;
+
+                b.length = 0;
+                charsProcessed++;
+
+                if (charsProcessed >= 100) {
+                    break outer_loop;
+                }
             }
-
-            if (asciiCharsBE > asciiCharsLE)
-                enc = 'utf-16be';
-            else if (asciiCharsBE < asciiCharsLE)
-                enc = 'utf-16le';
         }
     }
 
-    return enc;
+    // Make decisions.
+    // Most of the time, the content has ASCII chars (U+00**), but the opposite (U+**00) is uncommon.
+    // So, we count ASCII as if it was LE or BE, and decide from that.
+    if (asciiCharsBE > asciiCharsLE) return 'utf-16be';
+    if (asciiCharsBE < asciiCharsLE) return 'utf-16le';
+
+    // Couldn't decide (likely all zeros or not enough data).
+    return defaultEncoding || 'utf-16le';
 }
 
 
@@ -55730,7 +55817,7 @@ Utf7Decoder.prototype.write = function(buf) {
                 if (i == lastI && buf[i] == minusChar) {// "+-" -> "+"
                     res += "+";
                 } else {
-                    var b64str = base64Accum + buf.slice(lastI, i).toString();
+                    var b64str = base64Accum + this.iconv.decode(buf.slice(lastI, i), "ascii");
                     res += this.iconv.decode(Buffer.from(b64str, 'base64'), "utf16-be");
                 }
 
@@ -55747,7 +55834,7 @@ Utf7Decoder.prototype.write = function(buf) {
     if (!inBase64) {
         res += this.iconv.decode(buf.slice(lastI), "ascii"); // Write direct chars.
     } else {
-        var b64str = base64Accum + buf.slice(lastI).toString();
+        var b64str = base64Accum + this.iconv.decode(buf.slice(lastI), "ascii");
 
         var canBeDecoded = b64str.length - (b64str.length % 8); // Minimal chunk: 2 quads -> 2x3 bytes -> 3 chars.
         base64Accum = b64str.slice(canBeDecoded); // The rest will be decoded in future.
@@ -55901,7 +55988,7 @@ Utf7IMAPDecoder.prototype.write = function(buf) {
                 if (i == lastI && buf[i] == minusChar) { // "&-" -> "&"
                     res += "&";
                 } else {
-                    var b64str = base64Accum + buf.slice(lastI, i).toString().replace(/,/g, '/');
+                    var b64str = base64Accum + this.iconv.decode(buf.slice(lastI, i), "ascii").replace(/,/g, '/');
                     res += this.iconv.decode(Buffer.from(b64str, 'base64'), "utf16-be");
                 }
 
@@ -55918,7 +56005,7 @@ Utf7IMAPDecoder.prototype.write = function(buf) {
     if (!inBase64) {
         res += this.iconv.decode(buf.slice(lastI), "ascii"); // Write direct chars.
     } else {
-        var b64str = base64Accum + buf.slice(lastI).toString().replace(/,/g, '/');
+        var b64str = base64Accum + this.iconv.decode(buf.slice(lastI), "ascii").replace(/,/g, '/');
 
         var canBeDecoded = b64str.length - (b64str.length % 8); // Minimal chunk: 2 quads -> 2x3 bytes -> 3 chars.
         base64Accum = b64str.slice(canBeDecoded); // The rest will be decoded in future.
@@ -57151,7 +57238,7 @@ DBCSEncoder.prototype.findIdx = findIdx;
 function DBCSDecoder(options, codec) {
     // Decoder state
     this.nodeIdx = 0;
-    this.prevBuf = Buffer.alloc(0);
+    this.prevBytes = [];
 
     // Static data
     this.decodeTables = codec.decodeTables;
@@ -57163,15 +57250,12 @@ function DBCSDecoder(options, codec) {
 DBCSDecoder.prototype.write = function(buf) {
     var newBuf = Buffer.alloc(buf.length*2),
         nodeIdx = this.nodeIdx, 
-        prevBuf = this.prevBuf, prevBufOffset = this.prevBuf.length,
-        seqStart = -this.prevBuf.length, // idx of the start of current parsed sequence.
+        prevBytes = this.prevBytes, prevOffset = this.prevBytes.length,
+        seqStart = -this.prevBytes.length, // idx of the start of current parsed sequence.
         uCode;
 
-    if (prevBufOffset > 0) // Make prev buf overlap a little to make it easier to slice later.
-        prevBuf = Buffer.concat([prevBuf, buf.slice(0, 10)]);
-    
     for (var i = 0, j = 0; i < buf.length; i++) {
-        var curByte = (i >= 0) ? buf[i] : prevBuf[i + prevBufOffset];
+        var curByte = (i >= 0) ? buf[i] : prevBytes[i + prevOffset];
 
         // Lookup in current trie node.
         var uCode = this.decodeTables[nodeIdx][curByte];
@@ -57181,13 +57265,18 @@ DBCSDecoder.prototype.write = function(buf) {
         }
         else if (uCode === UNASSIGNED) { // Unknown char.
             // TODO: Callback with seq.
-            //var curSeq = (seqStart >= 0) ? buf.slice(seqStart, i+1) : prevBuf.slice(seqStart + prevBufOffset, i+1 + prevBufOffset);
-            i = seqStart; // Try to parse again, after skipping first byte of the sequence ('i' will be incremented by 'for' cycle).
             uCode = this.defaultCharUnicode.charCodeAt(0);
+            i = seqStart; // Skip one byte ('i' will be incremented by the for loop) and try to parse again.
         }
         else if (uCode === GB18030_CODE) {
-            var curSeq = (seqStart >= 0) ? buf.slice(seqStart, i+1) : prevBuf.slice(seqStart + prevBufOffset, i+1 + prevBufOffset);
-            var ptr = (curSeq[0]-0x81)*12600 + (curSeq[1]-0x30)*1260 + (curSeq[2]-0x81)*10 + (curSeq[3]-0x30);
+            if (i >= 3) {
+                var ptr = (buf[i-3]-0x81)*12600 + (buf[i-2]-0x30)*1260 + (buf[i-1]-0x81)*10 + (curByte-0x30);
+            } else {
+                var ptr = (prevBytes[i-3+prevOffset]-0x81)*12600 + 
+                          (((i-2 >= 0) ? buf[i-2] : prevBytes[i-2+prevOffset])-0x30)*1260 + 
+                          (((i-1 >= 0) ? buf[i-1] : prevBytes[i-1+prevOffset])-0x81)*10 + 
+                          (curByte-0x30);
+            }
             var idx = findIdx(this.gb18030.gbChars, ptr);
             uCode = this.gb18030.uChars[idx] + ptr - this.gb18030.gbChars[idx];
         }
@@ -57208,13 +57297,13 @@ DBCSDecoder.prototype.write = function(buf) {
             throw new Error("iconv-lite internal error: invalid decoding table value " + uCode + " at " + nodeIdx + "/" + curByte);
 
         // Write the character to buffer, handling higher planes using surrogate pair.
-        if (uCode > 0xFFFF) { 
+        if (uCode >= 0x10000) { 
             uCode -= 0x10000;
-            var uCodeLead = 0xD800 + Math.floor(uCode / 0x400);
+            var uCodeLead = 0xD800 | (uCode >> 10);
             newBuf[j++] = uCodeLead & 0xFF;
             newBuf[j++] = uCodeLead >> 8;
 
-            uCode = 0xDC00 + uCode % 0x400;
+            uCode = 0xDC00 | (uCode & 0x3FF);
         }
         newBuf[j++] = uCode & 0xFF;
         newBuf[j++] = uCode >> 8;
@@ -57224,7 +57313,10 @@ DBCSDecoder.prototype.write = function(buf) {
     }
 
     this.nodeIdx = nodeIdx;
-    this.prevBuf = (seqStart >= 0) ? buf.slice(seqStart) : prevBuf.slice(seqStart + prevBufOffset);
+    this.prevBytes = (seqStart >= 0)
+        ? Array.prototype.slice.call(buf, seqStart)
+        : prevBytes.slice(seqStart + prevOffset).concat(Array.prototype.slice.call(buf));
+
     return newBuf.slice(0, j).toString('ucs2');
 }
 
@@ -57232,18 +57324,19 @@ DBCSDecoder.prototype.end = function() {
     var ret = '';
 
     // Try to parse all remaining chars.
-    while (this.prevBuf.length > 0) {
+    while (this.prevBytes.length > 0) {
         // Skip 1 character in the buffer.
         ret += this.defaultCharUnicode;
-        var buf = this.prevBuf.slice(1);
+        var bytesArr = this.prevBytes.slice(1);
 
         // Parse remaining as usual.
-        this.prevBuf = Buffer.alloc(0);
+        this.prevBytes = [];
         this.nodeIdx = 0;
-        if (buf.length > 0)
-            ret += this.write(buf);
+        if (bytesArr.length > 0)
+            ret += this.write(bytesArr);
     }
 
+    this.prevBytes = [];
     this.nodeIdx = 0;
     return ret;
 }
@@ -57255,7 +57348,7 @@ function findIdx(table, val) {
 
     var l = 0, r = table.length;
     while (l < r-1) { // always table[l] <= val < table[r]
-        var mid = l + Math.floor((r-l+1)/2);
+        var mid = l + ((r-l+1) >> 1);
         if (table[mid] <= val)
             l = mid;
         else
@@ -57555,7 +57648,7 @@ module.exports = function(stream_module) {
     });
 
     IconvLiteDecoderStream.prototype._transform = function(chunk, encoding, done) {
-        if (!Buffer.isBuffer(chunk))
+        if (!Buffer.isBuffer(chunk) && !(chunk instanceof Uint8Array))
             return done(new Error("Iconv decoding stream needs buffers as its input."));
         try {
             var res = this.conv.write(chunk);
@@ -57613,7 +57706,7 @@ module.exports = function(stream_module) {
 
   ArrayT = __webpack_require__(252);
 
-  NumberT = __webpack_require__(88).Number;
+  NumberT = __webpack_require__(89).Number;
 
   utils = __webpack_require__(40);
 
@@ -57807,7 +57900,7 @@ module.exports = function(stream_module) {
 
   utils = __webpack_require__(40);
 
-  NumberT = __webpack_require__(88).Number;
+  NumberT = __webpack_require__(89).Number;
 
   BufferT = (function() {
     function BufferT(length) {
@@ -57991,7 +58084,7 @@ module.exports = function(stream_module) {
 (function() {
   var NumberT, StringT, utils;
 
-  NumberT = __webpack_require__(88).Number;
+  NumberT = __webpack_require__(89).Number;
 
   utils = __webpack_require__(40);
 
@@ -58439,7 +58532,7 @@ module.exports = { "default": __webpack_require__(421), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(102);
-__webpack_require__(90);
+__webpack_require__(91);
 module.exports = __webpack_require__(428);
 
 
@@ -58497,7 +58590,7 @@ module.exports = function () { /* empty */ };
 
 "use strict";
 
-var create = __webpack_require__(127);
+var create = __webpack_require__(129);
 var descriptor = __webpack_require__(100);
 var setToStringTag = __webpack_require__(106);
 var IteratorPrototype = {};
@@ -58518,7 +58611,7 @@ module.exports = function (Constructor, NAME, next) {
 // false -> Array#indexOf
 // true  -> Array#includes
 var toIObject = __webpack_require__(50);
-var toLength = __webpack_require__(128);
+var toLength = __webpack_require__(130);
 var toAbsoluteIndex = __webpack_require__(259);
 module.exports = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
@@ -58546,7 +58639,7 @@ module.exports = function (IS_INCLUDES) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 var has = __webpack_require__(51);
-var toObject = __webpack_require__(89);
+var toObject = __webpack_require__(90);
 var IE_PROTO = __webpack_require__(180)('IE_PROTO');
 var ObjectProto = Object.prototype;
 
@@ -58615,7 +58708,7 @@ module.exports = __webpack_require__(7).Object.freeze;
 
 // 19.1.2.5 Object.freeze(O)
 var isObject = __webpack_require__(22);
-var meta = __webpack_require__(130).onFreeze;
+var meta = __webpack_require__(132).onFreeze;
 
 __webpack_require__(177)('freeze', function ($freeze) {
   return function freeze(it) {
@@ -58634,7 +58727,7 @@ module.exports = { "default": __webpack_require__(433), __esModule: true };
 /* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(90);
+__webpack_require__(91);
 __webpack_require__(102);
 module.exports = __webpack_require__(186).f('iterator');
 
@@ -58650,7 +58743,7 @@ module.exports = { "default": __webpack_require__(435), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(436);
-__webpack_require__(131);
+__webpack_require__(133);
 __webpack_require__(439);
 __webpack_require__(440);
 module.exports = __webpack_require__(7).Symbol;
@@ -58668,11 +58761,11 @@ var has = __webpack_require__(51);
 var DESCRIPTORS = __webpack_require__(23);
 var $export = __webpack_require__(9);
 var redefine = __webpack_require__(256);
-var META = __webpack_require__(130).KEY;
+var META = __webpack_require__(132).KEY;
 var $fails = __webpack_require__(52);
 var shared = __webpack_require__(181);
 var setToStringTag = __webpack_require__(106);
-var uid = __webpack_require__(129);
+var uid = __webpack_require__(131);
 var wks = __webpack_require__(21);
 var wksExt = __webpack_require__(186);
 var wksDefine = __webpack_require__(187);
@@ -58680,15 +58773,15 @@ var enumKeys = __webpack_require__(437);
 var isArray = __webpack_require__(261);
 var anObject = __webpack_require__(29);
 var isObject = __webpack_require__(22);
-var toObject = __webpack_require__(89);
+var toObject = __webpack_require__(90);
 var toIObject = __webpack_require__(50);
 var toPrimitive = __webpack_require__(175);
 var createDesc = __webpack_require__(100);
-var _create = __webpack_require__(127);
+var _create = __webpack_require__(129);
 var gOPNExt = __webpack_require__(438);
 var $GOPD = __webpack_require__(174);
 var $GOPS = __webpack_require__(188);
-var $DP = __webpack_require__(25);
+var $DP = __webpack_require__(26);
 var $keys = __webpack_require__(105);
 var gOPD = $GOPD.f;
 var dP = $DP.f;
@@ -58813,7 +58906,7 @@ if (!USE_NATIVE) {
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
   __webpack_require__(262).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(126).f = $propertyIsEnumerable;
+  __webpack_require__(128).f = $propertyIsEnumerable;
   $GOPS.f = $getOwnPropertySymbols;
 
   if (DESCRIPTORS && !__webpack_require__(104)) {
@@ -58916,7 +59009,7 @@ setToStringTag(global.JSON, 'JSON', true);
 // all enumerable object keys, includes symbols
 var getKeys = __webpack_require__(105);
 var gOPS = __webpack_require__(188);
-var pIE = __webpack_require__(126);
+var pIE = __webpack_require__(128);
 module.exports = function (it) {
   var result = getKeys(it);
   var getSymbols = gOPS.f;
@@ -58988,7 +59081,7 @@ module.exports = __webpack_require__(7).Object.keys;
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 Object.keys(O)
-var toObject = __webpack_require__(89);
+var toObject = __webpack_require__(90);
 var $keys = __webpack_require__(105);
 
 __webpack_require__(177)('keys', function () {
@@ -59015,7 +59108,7 @@ module.exports = function defineProperty(it, key, desc) {
 
 var $export = __webpack_require__(9);
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-$export($export.S + $export.F * !__webpack_require__(23), 'Object', { defineProperty: __webpack_require__(25).f });
+$export($export.S + $export.F * !__webpack_require__(23), 'Object', { defineProperty: __webpack_require__(26).f });
 
 
 /***/ }),
@@ -59076,8 +59169,8 @@ module.exports = { "default": __webpack_require__(449), __esModule: true };
 /* 449 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(131);
-__webpack_require__(90);
+__webpack_require__(133);
+__webpack_require__(91);
 __webpack_require__(102);
 __webpack_require__(450);
 __webpack_require__(454);
@@ -59125,8 +59218,8 @@ module.exports = __webpack_require__(268)(MAP, function (get) {
 // 6 -> Array#findIndex
 var ctx = __webpack_require__(33);
 var IObject = __webpack_require__(172);
-var toObject = __webpack_require__(89);
-var toLength = __webpack_require__(128);
+var toObject = __webpack_require__(90);
+var toLength = __webpack_require__(130);
 var asc = __webpack_require__(452);
 module.exports = function (TYPE, $create) {
   var IS_MAP = TYPE == 1;
@@ -59374,7 +59467,7 @@ module.exports = function create(P, D) {
 
 var $export = __webpack_require__(9);
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-$export($export.S, 'Object', { create: __webpack_require__(127) });
+$export($export.S, 'Object', { create: __webpack_require__(129) });
 
 
 /***/ }),
@@ -60244,8 +60337,8 @@ $export($export.S + $export.F, 'Object', { assign: __webpack_require__(485) });
 var DESCRIPTORS = __webpack_require__(23);
 var getKeys = __webpack_require__(105);
 var gOPS = __webpack_require__(188);
-var pIE = __webpack_require__(126);
-var toObject = __webpack_require__(89);
+var pIE = __webpack_require__(128);
+var toObject = __webpack_require__(90);
 var IObject = __webpack_require__(172);
 var $assign = Object.assign;
 
@@ -60332,7 +60425,7 @@ module.exports = { "default": __webpack_require__(490), __esModule: true };
 /* 490 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(90);
+__webpack_require__(91);
 __webpack_require__(491);
 module.exports = __webpack_require__(7).Array.from;
 
@@ -60345,10 +60438,10 @@ module.exports = __webpack_require__(7).Array.from;
 
 var ctx = __webpack_require__(33);
 var $export = __webpack_require__(9);
-var toObject = __webpack_require__(89);
+var toObject = __webpack_require__(90);
 var call = __webpack_require__(265);
 var isArrayIter = __webpack_require__(266);
-var toLength = __webpack_require__(128);
+var toLength = __webpack_require__(130);
 var createProperty = __webpack_require__(492);
 var getIterFn = __webpack_require__(183);
 
@@ -60387,7 +60480,7 @@ $export($export.S + $export.F * !__webpack_require__(281)(function (iter) { Arra
 
 "use strict";
 
-var $defineProperty = __webpack_require__(25);
+var $defineProperty = __webpack_require__(26);
 var createDesc = __webpack_require__(100);
 
 module.exports = function (object, index, value) {
@@ -60406,8 +60499,8 @@ module.exports = { "default": __webpack_require__(494), __esModule: true };
 /* 494 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(131);
-__webpack_require__(90);
+__webpack_require__(133);
+__webpack_require__(91);
 __webpack_require__(102);
 __webpack_require__(495);
 __webpack_require__(496);
@@ -60673,15 +60766,13 @@ __webpack_require__(28);
 
 __webpack_require__(46);
 
-__webpack_require__(60);
+__webpack_require__(61);
 
 __webpack_require__(32);
 
-__webpack_require__(61);
-
-__webpack_require__(132);
-
 __webpack_require__(62);
+
+__webpack_require__(134);
 
 __webpack_require__(63);
 
@@ -60727,7 +60818,9 @@ __webpack_require__(83);
 
 __webpack_require__(84);
 
-var inflate = __webpack_require__(133);
+__webpack_require__(85);
+
+var inflate = __webpack_require__(135);
 
 var _require = __webpack_require__(502),
     swap32LE = _require.swap32LE; // Shift size for getting the index-1 table offset.
@@ -60869,15 +60962,13 @@ module.exports = UnicodeTrie;
 
 __webpack_require__(28);
 
-__webpack_require__(60);
+__webpack_require__(61);
 
 __webpack_require__(32);
 
-__webpack_require__(61);
-
-__webpack_require__(132);
-
 __webpack_require__(62);
+
+__webpack_require__(134);
 
 __webpack_require__(63);
 
@@ -60922,6 +61013,8 @@ __webpack_require__(82);
 __webpack_require__(83);
 
 __webpack_require__(84);
+
+__webpack_require__(85);
 
 var isBigEndian = new Uint8Array(new Uint32Array([0x12345678]).buffer)[0] === 0x12;
 
@@ -60963,11 +61056,9 @@ __webpack_require__(28);
 
 __webpack_require__(219);
 
-__webpack_require__(60);
+__webpack_require__(61);
 
 __webpack_require__(32);
-
-__webpack_require__(61);
 
 __webpack_require__(62);
 
@@ -61014,6 +61105,8 @@ __webpack_require__(82);
 __webpack_require__(83);
 
 __webpack_require__(84);
+
+__webpack_require__(85);
 
 exports.byteLength = byteLength;
 exports.toByteArray = toByteArray;
@@ -61144,15 +61237,13 @@ __webpack_require__(28);
 
 __webpack_require__(46);
 
-__webpack_require__(60);
+__webpack_require__(61);
 
 __webpack_require__(32);
 
-__webpack_require__(61);
-
-__webpack_require__(132);
-
 __webpack_require__(62);
+
+__webpack_require__(134);
 
 __webpack_require__(63);
 
@@ -61198,9 +61289,11 @@ __webpack_require__(83);
 
 __webpack_require__(84);
 
+__webpack_require__(85);
+
 // Generated by CoffeeScript 1.7.1
 var UnicodeTrie, inflate;
-inflate = __webpack_require__(133);
+inflate = __webpack_require__(135);
 
 UnicodeTrie = function () {
   var DATA_BLOCK_LENGTH, DATA_GRANULARITY, DATA_MASK, INDEX_1_OFFSET, INDEX_2_BLOCK_LENGTH, INDEX_2_BMP_LENGTH, INDEX_2_MASK, INDEX_SHIFT, LSCP_INDEX_2_LENGTH, LSCP_INDEX_2_OFFSET, OMITTED_BMP_INDEX_1_LENGTH, SHIFT_1, SHIFT_1_2, SHIFT_2, UTF8_2B_INDEX_2_LENGTH, UTF8_2B_INDEX_2_OFFSET;
@@ -61298,7 +61391,7 @@ __webpack_require__(28);
 
 __webpack_require__(46);
 
-__webpack_require__(155);
+__webpack_require__(157);
 
 __webpack_require__(32);
 
@@ -61306,9 +61399,9 @@ __webpack_require__(118);
 
 __webpack_require__(229);
 
-__webpack_require__(157);
+__webpack_require__(159);
 
-__webpack_require__(158);
+__webpack_require__(160);
 
 __webpack_require__(120);
 
@@ -62392,8 +62485,8 @@ module.exports = { "default": __webpack_require__(512), __esModule: true };
 /* 512 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(131);
-__webpack_require__(90);
+__webpack_require__(133);
+__webpack_require__(91);
 __webpack_require__(102);
 __webpack_require__(513);
 __webpack_require__(517);
@@ -62989,7 +63082,7 @@ module.exports = BrotliBitReader;
 /***/ (function(module, exports, __webpack_require__) {
 
 var base64 = __webpack_require__(522);
-var fs = __webpack_require__(91);
+var fs = __webpack_require__(53);
 
 /**
  * The normal dictionary-data.js is quite large, which makes it 
@@ -63757,15 +63850,13 @@ __webpack_require__(28);
 
 __webpack_require__(46);
 
-__webpack_require__(60);
+__webpack_require__(61);
 
 __webpack_require__(32);
 
-__webpack_require__(61);
-
-__webpack_require__(132);
-
 __webpack_require__(62);
+
+__webpack_require__(134);
 
 __webpack_require__(63);
 
@@ -63811,7 +63902,9 @@ __webpack_require__(83);
 
 __webpack_require__(84);
 
-var inflate = __webpack_require__(133); // Shift size for getting the index-1 table offset.
+__webpack_require__(85);
+
+var inflate = __webpack_require__(135); // Shift size for getting the index-1 table offset.
 
 
 var SHIFT_1 = 6 + 5; // Shift size for getting the index-2 table offset.
@@ -64211,7 +64304,7 @@ __webpack_require__(46);
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-var fs = __webpack_require__(91);
+var fs = __webpack_require__(53);
 
 var zlib = __webpack_require__(244);
 
@@ -68505,6 +68598,8 @@ module.exports = {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {
 
+var fs = __webpack_require__(53);
+
 function ImageMeasure(pdfKitDoc, imageDictionary) {
 	this.pdfKitDoc = pdfKitDoc;
 	this.imageDictionary = imageDictionary || {};
@@ -68538,6 +68633,10 @@ ImageMeasure.prototype.measureImage = function (src) {
 			return src;
 		}
 
+		if (fs.existsSync(img)) {
+			return fs.readFileSync(img);
+		}
+
 		var index = img.indexOf('base64,');
 		if (index < 0) {
 			return that.imageDictionary[src];
@@ -68558,107 +68657,71 @@ module.exports = ImageMeasure;
 "use strict";
 
 
+var xmldoc = __webpack_require__(543);
+
+/** Strip unit postfix, parse number, but return undefined instead of NaN for bad input */
+function stripUnits(textVal) {
+	var n = parseFloat(textVal);
+	if (typeof n !== 'number' || isNaN(n)) {
+		return undefined;
+	}
+	return n;
+}
+
+/** Make sure it's valid XML and the root tage is <svg/>, returns xmldoc DOM */
+function parseSVG(svgString) {
+	var doc;
+	
+	try {
+		doc = new xmldoc.XmlDocument(svgString);
+	} catch (err) {
+		throw new Error('SVGMeasure: ' + err);
+	}
+
+	if (doc.name !== "svg") {
+		throw new Error('SVGMeasure: expected <svg> document');
+	}
+
+	return doc;
+}
+
 function SVGMeasure() {
 }
 
-SVGMeasure.prototype.getSVGNode = function (svgString) {
-	// remove newlines
-	svgString = svgString.replace(/\r?\n|\r/g, "");
-
-	var svgNodeMatches = svgString.match(/<svg(.*?)>/);
-
-	if (svgNodeMatches) {
-		// extract svg node <svg ... >
-		return svgNodeMatches[0];
-	}
-
-	return "";
-};
-
-SVGMeasure.prototype.getHeightAndWidth = function (svgString) {
-	var svgNode = this.getSVGNode(svgString);
-
-	var widthMatches = svgNode.match(/width="([0-9]+(\.[0-9]+)?)(em|ex|px|in|cm|mm|pt|pc|%)?"/);
-	var heightMatches = svgNode.match(/height="([0-9]+(\.[0-9]+)?)(em|ex|px|in|cm|mm|pt|pc|%)?"/);
-
-	if (widthMatches || heightMatches) {
-		return {
-			width: widthMatches ? +widthMatches[1] : undefined,
-			height: heightMatches ? +heightMatches[1] : undefined
-		};
-	}
-};
-
-SVGMeasure.prototype.getViewboxHeightAndWidth = function (svgString) {
-	var svgNode = this.getSVGNode(svgString);
-
-	var viewboxMatches = svgNode.match(/viewBox="([+-]?(\d*\.)?\d+(,|\s+|,\s+)[+-]?(\d*\.)?\d+(,|\s+|,\s+)[+-]?(\d*\.)?\d+(,|\s+|,\s+)[+-]?(\d*\.)?\d+)"/);
-	if (viewboxMatches) {
-		var viewboxStr = viewboxMatches[1];
-		var allVieboxEntries = viewboxStr.split(" ");
-
-		var viewboxEntries = []; // weeding out empty strings
-		for (var i = 0; i < allVieboxEntries.length; i++) {
-			if (allVieboxEntries[i]) {
-				viewboxEntries.push(allVieboxEntries[i]);
-			}
-		}
-
-		if (viewboxEntries.length === 4) {
-			return { width: +viewboxEntries[2], height: +viewboxEntries[3] };
-		}
-
-		throw new Error("Unexpected svg viewbox format, should have 4 entries but found: '" + viewboxStr + "'");
-	}
-};
-
 SVGMeasure.prototype.measureSVG = function (svgString) {
 
-	var heightAndWidth = this.getHeightAndWidth(svgString);
-	var viewboxHeightAndWidth = this.getViewboxHeightAndWidth(svgString);
+	var doc = parseSVG(svgString);
 
-	return heightAndWidth || viewboxHeightAndWidth || {};
+	var docWidth = stripUnits(doc.attr.width);
+	var docHeight = stripUnits(doc.attr.height);
+
+	if ((docWidth == undefined || docHeight == undefined) && typeof doc.attr.viewBox == 'string') {
+		var viewBoxParts = doc.attr.viewBox.split(/[,\s]+/);
+		if (viewBoxParts.length !== 4) {
+			throw new Error("Unexpected svg viewbox format, should have 4 entries but found: '" + doc.attr.viewBox + "'");
+		}
+		if (docWidth == undefined) {
+			docWidth = stripUnits(viewBoxParts[2]);
+		}
+		if (docHeight == undefined) {
+			docHeight = stripUnits(viewBoxParts[3]);
+		}
+	}
+
+	return {
+		width: docWidth,
+		height: docHeight
+	};
 };
 
 SVGMeasure.prototype.writeDimensions = function (svgString, dimensions) {
 
-	var svgNode = this.getSVGNode(svgString);
+	var doc = parseSVG(svgString);
 
-	if (svgNode) {
+	doc.attr.width = "" + dimensions.width;
+	doc.attr.height = "" + dimensions.height;
 
-		var nodeDimensions = this.getHeightAndWidth(svgString);
-
-		if (dimensions.width) {
-
-			var newWidth = 'width="' + dimensions.width + '"';
-
-			if (nodeDimensions && nodeDimensions.width) {
-				// replace existing width
-				svgNode = svgNode.replace(/width="[0-9]+(\.[0-9]+)?(em|ex|px|in|cm|mm|pt|pc|%)?"/, newWidth);
-			} else {
-				// insert new width
-				svgNode = svgNode.replace(">", " " + newWidth + ">");
-			}
-		}
-
-		if (dimensions.height) {
-
-			var newHeight = 'height="' + dimensions.height + '"';
-
-			if (nodeDimensions && nodeDimensions.height) {
-				// replace existing height
-				svgNode = svgNode.replace(/height="[0-9]+(\.[0-9]+)?(em|ex|px|in|cm|mm|pt|pc|%)?"/, newHeight);
-			} else {
-				// insert new height
-				svgNode = svgNode.replace(">", " " + newHeight + ">");
-			}
-		}
-
-		// insert updated svg node
-		return svgString.replace(/<svg(.*?)>/, svgNode);
-	}
-
-	return svgString;
+	return doc.toString();
 };
 
 module.exports = SVGMeasure;
@@ -68666,6 +68729,1933 @@ module.exports = SVGMeasure;
 
 /***/ }),
 /* 543 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// This file is just added for convenience so this repository can be
+// directly checked out into a project's deps folder
+module.exports = __webpack_require__(544);
+
+
+/***/ }),
+/* 544 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {(function () {
+
+var sax;
+
+if ( true && module.exports && !global.xmldocAssumeBrowser) {
+  // We're being used in a Node-like environment
+  sax = __webpack_require__(545);
+}
+else {
+  // assume it's attached to the Window object in a browser
+  sax = this.sax;
+
+  if (!sax) // no sax for you!
+    throw new Error("Expected sax to be defined. Make sure you're including sax.js before this file.");
+}
+
+/*
+XmlElement is our basic building block. Everything is an XmlElement; even XmlDocument
+behaves like an XmlElement by inheriting its attributes and functions.
+*/
+
+function XmlElement(tag) {
+  // Capture the parser object off of the XmlDocument delegate
+  var parser = delegates[delegates.length - 1].parser;
+
+  this.name = tag.name;
+  this.attr = tag.attributes;
+  this.val = "";
+  this.children = [];
+  this.firstChild = null;
+  this.lastChild = null;
+
+  // Assign parse information
+  this.line = parser.line;
+  this.column = parser.column;
+  this.position = parser.position;
+  this.startTagPosition = parser.startTagPosition;
+}
+
+// Private methods
+
+XmlElement.prototype._addChild = function(child) {
+  // add to our children array
+  this.children.push(child);
+
+  // update first/last pointers
+  if (!this.firstChild) this.firstChild = child;
+  this.lastChild = child;
+};
+
+// SaxParser handlers
+
+XmlElement.prototype._opentag = function(tag) {
+
+  var child = new XmlElement(tag);
+
+  this._addChild(child);
+
+  delegates.unshift(child);
+};
+
+XmlElement.prototype._closetag = function() {
+  delegates.shift();
+};
+
+XmlElement.prototype._text = function(text) {
+  if (typeof this.children === 'undefined')
+    return
+
+  this.val += text;
+
+  this._addChild(new XmlTextNode(text));
+};
+
+XmlElement.prototype._cdata = function(cdata) {
+  this.val += cdata;
+
+  this._addChild(new XmlCDataNode(cdata));
+};
+
+XmlElement.prototype._comment = function(comment) {
+  if (typeof this.children === 'undefined')
+    return
+
+  this._addChild(new XmlCommentNode(comment));
+};
+
+XmlElement.prototype._error = function(err) {
+  throw err;
+};
+
+// Useful functions
+
+XmlElement.prototype.eachChild = function(iterator, context) {
+  for (var i=0, l=this.children.length; i<l; i++)
+    if (this.children[i].type === "element")
+      if (iterator.call(context, this.children[i], i, this.children) === false) return;
+};
+
+XmlElement.prototype.childNamed = function(name) {
+  for (var i=0, l=this.children.length; i<l; i++) {
+    var child = this.children[i];
+    if (child.name === name) return child;
+  }
+  return undefined;
+};
+
+XmlElement.prototype.childrenNamed = function(name) {
+  var matches = [];
+
+  for (var i=0, l=this.children.length; i<l; i++)
+    if (this.children[i].name === name)
+      matches.push(this.children[i]);
+
+  return matches;
+};
+
+XmlElement.prototype.childWithAttribute = function(name,value) {
+  for (var i=0, l=this.children.length; i<l; i++) {
+    var child = this.children[i];
+    if (child.type === "element" && ((value && child.attr[name] === value) || (!value && child.attr[name])))
+      return child;
+  }
+  return undefined;
+};
+
+XmlElement.prototype.descendantWithPath = function(path) {
+  var descendant = this;
+  var components = path.split('.');
+
+  for (var i=0, l=components.length; i<l; i++)
+    if (descendant && descendant.type === "element")
+      descendant = descendant.childNamed(components[i]);
+    else
+      return undefined;
+
+  return descendant;
+};
+
+XmlElement.prototype.valueWithPath = function(path) {
+  var components = path.split('@');
+  var descendant = this.descendantWithPath(components[0]);
+  if (descendant)
+    return components.length > 1 ? descendant.attr[components[1]] : descendant.val;
+  else
+    return undefined;
+};
+
+// String formatting (for debugging)
+
+XmlElement.prototype.toString = function(options) {
+  return this.toStringWithIndent("", options);
+};
+
+XmlElement.prototype.toStringWithIndent = function(indent, options) {
+  var s = indent + "<" + this.name;
+  var linebreak = options && options.compressed ? "" : "\n";
+  var preserveWhitespace = options && options.preserveWhitespace;
+
+  for (var name in this.attr)
+    if (Object.prototype.hasOwnProperty.call(this.attr, name))
+        s += " " + name + '="' + escapeXML(this.attr[name]) + '"';
+
+  if (this.children.length === 1 && this.children[0].type !== "element") {
+    s += ">" + this.children[0].toString(options) + "</" + this.name + ">";
+  }
+  else if (this.children.length) {
+    s += ">" + linebreak;
+
+    var childIndent = indent + (options && options.compressed ? "" : "  ");
+
+    for (var i=0, l=this.children.length; i<l; i++) {
+      s += this.children[i].toStringWithIndent(childIndent, options) + linebreak;
+    }
+
+    s += indent + "</" + this.name + ">";
+  }
+  else if (options && options.html) {
+    var whiteList = [
+      "area", "base", "br", "col", "embed", "frame", "hr", "img", "input",
+      "keygen", "link", "menuitem", "meta", "param", "source", "track", "wbr"
+    ];
+    if (whiteList.indexOf(this.name) !== -1) s += "/>";
+    else s += "></" + this.name + ">";
+  }
+  else {
+    s += "/>";
+  }
+
+  return s;
+};
+
+// Alternative XML nodes
+
+function XmlTextNode (text) {
+  this.text = text;
+}
+
+XmlTextNode.prototype.toString = function(options) {
+  return formatText(escapeXML(this.text), options);
+};
+
+XmlTextNode.prototype.toStringWithIndent = function(indent, options) {
+  return indent+this.toString(options);
+};
+
+function XmlCDataNode (cdata) {
+  this.cdata = cdata;
+}
+
+XmlCDataNode.prototype.toString = function(options) {
+  return "<![CDATA["+formatText(this.cdata, options)+"]]>";
+};
+
+XmlCDataNode.prototype.toStringWithIndent = function(indent, options) {
+  return indent+this.toString(options);
+};
+
+function XmlCommentNode (comment) {
+  this.comment = comment;
+}
+
+XmlCommentNode.prototype.toString = function(options) {
+  return "<!--"+formatText(escapeXML(this.comment), options)+"-->";
+};
+
+XmlCommentNode.prototype.toStringWithIndent = function(indent, options) {
+  return indent+this.toString(options);
+};
+
+// Node type tag
+
+XmlElement.prototype.type = "element";
+XmlTextNode.prototype.type = "text";
+XmlCDataNode.prototype.type = "cdata";
+XmlCommentNode.prototype.type = "comment";
+
+/*
+XmlDocument is the class we expose to the user; it uses the sax parser to create a hierarchy
+of XmlElements.
+*/
+
+function XmlDocument(xml) {
+  xml && (xml = xml.toString().trim());
+
+  if (!xml)
+    throw new Error("No XML to parse!");
+
+  // Stores doctype (if defined)
+  this.doctype = "";
+
+  // Expose the parser to the other delegates while the parser is running
+  this.parser = sax.parser(true); // strict
+  addParserEvents(this.parser);
+
+  // We'll use the file-scoped "delegates" var to remember what elements we're currently
+  // parsing; they will push and pop off the stack as we get deeper into the XML hierarchy.
+  // It's safe to use a global because JS is single-threaded.
+  delegates = [this];
+
+  this.parser.write(xml);
+
+  // Remove the parser as it is no longer needed and should not be exposed to clients
+  delete this.parser;
+}
+
+// make XmlDocument inherit XmlElement's methods
+extend(XmlDocument.prototype, XmlElement.prototype);
+
+XmlDocument.prototype._opentag = function(tag) {
+  if (typeof this.children === 'undefined')
+    // the first tag we encounter should be the root - we'll "become" the root XmlElement
+    XmlElement.call(this,tag);
+  else
+    // all other tags will be the root element's children
+    XmlElement.prototype._opentag.apply(this,arguments);
+};
+
+XmlDocument.prototype._doctype = function(doctype) {
+  this.doctype += doctype;
+}
+
+// file-scoped global stack of delegates
+var delegates = null;
+
+/*
+Helper functions
+*/
+
+function addParserEvents(parser) {
+  parser.onopentag = parser_opentag;
+  parser.onclosetag = parser_closetag;
+  parser.ontext = parser_text;
+  parser.oncdata = parser_cdata;
+  parser.oncomment = parser_comment;
+  parser.ondoctype = parser_doctype;
+  parser.onerror = parser_error;
+}
+
+// create these closures and cache them by keeping them file-scoped
+function parser_opentag() { delegates[0] && delegates[0]._opentag.apply(delegates[0],arguments) }
+function parser_closetag() { delegates[0] && delegates[0]._closetag.apply(delegates[0],arguments) }
+function parser_text() { delegates[0] && delegates[0]._text.apply(delegates[0],arguments) }
+function parser_cdata() { delegates[0] && delegates[0]._cdata.apply(delegates[0],arguments) }
+function parser_comment() { delegates[0] && delegates[0]._comment.apply(delegates[0],arguments) }
+function parser_doctype() { delegates[0] && delegates[0]._doctype.apply(delegates[0],arguments) }
+function parser_error() { delegates[0] && delegates[0]._error.apply(delegates[0],arguments) }
+
+// a relatively standard extend method
+function extend(destination, source) {
+  for (var prop in source)
+    if (source.hasOwnProperty(prop))
+      destination[prop] = source[prop];
+}
+
+// escapes XML entities like "<", "&", etc.
+function escapeXML(value){
+  return value.toString().replace(/&/g, '&amp;').replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, '&apos;').replace(/"/g, '&quot;');
+}
+
+// formats some text for debugging given a few options
+function formatText(text, options) {
+  var finalText = text;
+
+  if (options && options.trimmed && text.length > 25)
+    finalText = finalText.substring(0,25).trim() + "…";
+  if (!(options && options.preserveWhitespace))
+    finalText = finalText.trim();
+
+  return finalText;
+}
+
+// Are we being used in a Node-like environment?
+if ( true && module.exports && !global.xmldocAssumeBrowser)
+    module.exports.XmlDocument = XmlDocument;
+else
+    this.XmlDocument = XmlDocument;
+
+})();
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(24)))
+
+/***/ }),
+/* 545 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(Buffer) {;(function (sax) { // wrapper for non-node envs
+  sax.parser = function (strict, opt) { return new SAXParser(strict, opt) }
+  sax.SAXParser = SAXParser
+  sax.SAXStream = SAXStream
+  sax.createStream = createStream
+
+  // When we pass the MAX_BUFFER_LENGTH position, start checking for buffer overruns.
+  // When we check, schedule the next check for MAX_BUFFER_LENGTH - (max(buffer lengths)),
+  // since that's the earliest that a buffer overrun could occur.  This way, checks are
+  // as rare as required, but as often as necessary to ensure never crossing this bound.
+  // Furthermore, buffers are only tested at most once per write(), so passing a very
+  // large string into write() might have undesirable effects, but this is manageable by
+  // the caller, so it is assumed to be safe.  Thus, a call to write() may, in the extreme
+  // edge case, result in creating at most one complete copy of the string passed in.
+  // Set to Infinity to have unlimited buffers.
+  sax.MAX_BUFFER_LENGTH = 64 * 1024
+
+  var buffers = [
+    'comment', 'sgmlDecl', 'textNode', 'tagName', 'doctype',
+    'procInstName', 'procInstBody', 'entity', 'attribName',
+    'attribValue', 'cdata', 'script'
+  ]
+
+  sax.EVENTS = [
+    'text',
+    'processinginstruction',
+    'sgmldeclaration',
+    'doctype',
+    'comment',
+    'opentagstart',
+    'attribute',
+    'opentag',
+    'closetag',
+    'opencdata',
+    'cdata',
+    'closecdata',
+    'error',
+    'end',
+    'ready',
+    'script',
+    'opennamespace',
+    'closenamespace'
+  ]
+
+  function SAXParser (strict, opt) {
+    if (!(this instanceof SAXParser)) {
+      return new SAXParser(strict, opt)
+    }
+
+    var parser = this
+    clearBuffers(parser)
+    parser.q = parser.c = ''
+    parser.bufferCheckPosition = sax.MAX_BUFFER_LENGTH
+    parser.opt = opt || {}
+    parser.opt.lowercase = parser.opt.lowercase || parser.opt.lowercasetags
+    parser.looseCase = parser.opt.lowercase ? 'toLowerCase' : 'toUpperCase'
+    parser.tags = []
+    parser.closed = parser.closedRoot = parser.sawRoot = false
+    parser.tag = parser.error = null
+    parser.strict = !!strict
+    parser.noscript = !!(strict || parser.opt.noscript)
+    parser.state = S.BEGIN
+    parser.strictEntities = parser.opt.strictEntities
+    parser.ENTITIES = parser.strictEntities ? Object.create(sax.XML_ENTITIES) : Object.create(sax.ENTITIES)
+    parser.attribList = []
+
+    // namespaces form a prototype chain.
+    // it always points at the current tag,
+    // which protos to its parent tag.
+    if (parser.opt.xmlns) {
+      parser.ns = Object.create(rootNS)
+    }
+
+    // mostly just for error reporting
+    parser.trackPosition = parser.opt.position !== false
+    if (parser.trackPosition) {
+      parser.position = parser.line = parser.column = 0
+    }
+    emit(parser, 'onready')
+  }
+
+  if (!Object.create) {
+    Object.create = function (o) {
+      function F () {}
+      F.prototype = o
+      var newf = new F()
+      return newf
+    }
+  }
+
+  if (!Object.keys) {
+    Object.keys = function (o) {
+      var a = []
+      for (var i in o) if (o.hasOwnProperty(i)) a.push(i)
+      return a
+    }
+  }
+
+  function checkBufferLength (parser) {
+    var maxAllowed = Math.max(sax.MAX_BUFFER_LENGTH, 10)
+    var maxActual = 0
+    for (var i = 0, l = buffers.length; i < l; i++) {
+      var len = parser[buffers[i]].length
+      if (len > maxAllowed) {
+        // Text/cdata nodes can get big, and since they're buffered,
+        // we can get here under normal conditions.
+        // Avoid issues by emitting the text node now,
+        // so at least it won't get any bigger.
+        switch (buffers[i]) {
+          case 'textNode':
+            closeText(parser)
+            break
+
+          case 'cdata':
+            emitNode(parser, 'oncdata', parser.cdata)
+            parser.cdata = ''
+            break
+
+          case 'script':
+            emitNode(parser, 'onscript', parser.script)
+            parser.script = ''
+            break
+
+          default:
+            error(parser, 'Max buffer length exceeded: ' + buffers[i])
+        }
+      }
+      maxActual = Math.max(maxActual, len)
+    }
+    // schedule the next check for the earliest possible buffer overrun.
+    var m = sax.MAX_BUFFER_LENGTH - maxActual
+    parser.bufferCheckPosition = m + parser.position
+  }
+
+  function clearBuffers (parser) {
+    for (var i = 0, l = buffers.length; i < l; i++) {
+      parser[buffers[i]] = ''
+    }
+  }
+
+  function flushBuffers (parser) {
+    closeText(parser)
+    if (parser.cdata !== '') {
+      emitNode(parser, 'oncdata', parser.cdata)
+      parser.cdata = ''
+    }
+    if (parser.script !== '') {
+      emitNode(parser, 'onscript', parser.script)
+      parser.script = ''
+    }
+  }
+
+  SAXParser.prototype = {
+    end: function () { end(this) },
+    write: write,
+    resume: function () { this.error = null; return this },
+    close: function () { return this.write(null) },
+    flush: function () { flushBuffers(this) }
+  }
+
+  var Stream
+  try {
+    Stream = __webpack_require__(121).Stream
+  } catch (ex) {
+    Stream = function () {}
+  }
+
+  var streamWraps = sax.EVENTS.filter(function (ev) {
+    return ev !== 'error' && ev !== 'end'
+  })
+
+  function createStream (strict, opt) {
+    return new SAXStream(strict, opt)
+  }
+
+  function SAXStream (strict, opt) {
+    if (!(this instanceof SAXStream)) {
+      return new SAXStream(strict, opt)
+    }
+
+    Stream.apply(this)
+
+    this._parser = new SAXParser(strict, opt)
+    this.writable = true
+    this.readable = true
+
+    var me = this
+
+    this._parser.onend = function () {
+      me.emit('end')
+    }
+
+    this._parser.onerror = function (er) {
+      me.emit('error', er)
+
+      // if didn't throw, then means error was handled.
+      // go ahead and clear error, so we can write again.
+      me._parser.error = null
+    }
+
+    this._decoder = null
+
+    streamWraps.forEach(function (ev) {
+      Object.defineProperty(me, 'on' + ev, {
+        get: function () {
+          return me._parser['on' + ev]
+        },
+        set: function (h) {
+          if (!h) {
+            me.removeAllListeners(ev)
+            me._parser['on' + ev] = h
+            return h
+          }
+          me.on(ev, h)
+        },
+        enumerable: true,
+        configurable: false
+      })
+    })
+  }
+
+  SAXStream.prototype = Object.create(Stream.prototype, {
+    constructor: {
+      value: SAXStream
+    }
+  })
+
+  SAXStream.prototype.write = function (data) {
+    if (typeof Buffer === 'function' &&
+      typeof Buffer.isBuffer === 'function' &&
+      Buffer.isBuffer(data)) {
+      if (!this._decoder) {
+        var SD = __webpack_require__(125).StringDecoder
+        this._decoder = new SD('utf8')
+      }
+      data = this._decoder.write(data)
+    }
+
+    this._parser.write(data.toString())
+    this.emit('data', data)
+    return true
+  }
+
+  SAXStream.prototype.end = function (chunk) {
+    if (chunk && chunk.length) {
+      this.write(chunk)
+    }
+    this._parser.end()
+    return true
+  }
+
+  SAXStream.prototype.on = function (ev, handler) {
+    var me = this
+    if (!me._parser['on' + ev] && streamWraps.indexOf(ev) !== -1) {
+      me._parser['on' + ev] = function () {
+        var args = arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments)
+        args.splice(0, 0, ev)
+        me.emit.apply(me, args)
+      }
+    }
+
+    return Stream.prototype.on.call(me, ev, handler)
+  }
+
+  // this really needs to be replaced with character classes.
+  // XML allows all manner of ridiculous numbers and digits.
+  var CDATA = '[CDATA['
+  var DOCTYPE = 'DOCTYPE'
+  var XML_NAMESPACE = 'http://www.w3.org/XML/1998/namespace'
+  var XMLNS_NAMESPACE = 'http://www.w3.org/2000/xmlns/'
+  var rootNS = { xml: XML_NAMESPACE, xmlns: XMLNS_NAMESPACE }
+
+  // http://www.w3.org/TR/REC-xml/#NT-NameStartChar
+  // This implementation works on strings, a single character at a time
+  // as such, it cannot ever support astral-plane characters (10000-EFFFF)
+  // without a significant breaking change to either this  parser, or the
+  // JavaScript language.  Implementation of an emoji-capable xml parser
+  // is left as an exercise for the reader.
+  var nameStart = /[:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]/
+
+  var nameBody = /[:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u00B7\u0300-\u036F\u203F-\u2040.\d-]/
+
+  var entityStart = /[#:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]/
+  var entityBody = /[#:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u00B7\u0300-\u036F\u203F-\u2040.\d-]/
+
+  function isWhitespace (c) {
+    return c === ' ' || c === '\n' || c === '\r' || c === '\t'
+  }
+
+  function isQuote (c) {
+    return c === '"' || c === '\''
+  }
+
+  function isAttribEnd (c) {
+    return c === '>' || isWhitespace(c)
+  }
+
+  function isMatch (regex, c) {
+    return regex.test(c)
+  }
+
+  function notMatch (regex, c) {
+    return !isMatch(regex, c)
+  }
+
+  var S = 0
+  sax.STATE = {
+    BEGIN: S++, // leading byte order mark or whitespace
+    BEGIN_WHITESPACE: S++, // leading whitespace
+    TEXT: S++, // general stuff
+    TEXT_ENTITY: S++, // &amp and such.
+    OPEN_WAKA: S++, // <
+    SGML_DECL: S++, // <!BLARG
+    SGML_DECL_QUOTED: S++, // <!BLARG foo "bar
+    DOCTYPE: S++, // <!DOCTYPE
+    DOCTYPE_QUOTED: S++, // <!DOCTYPE "//blah
+    DOCTYPE_DTD: S++, // <!DOCTYPE "//blah" [ ...
+    DOCTYPE_DTD_QUOTED: S++, // <!DOCTYPE "//blah" [ "foo
+    COMMENT_STARTING: S++, // <!-
+    COMMENT: S++, // <!--
+    COMMENT_ENDING: S++, // <!-- blah -
+    COMMENT_ENDED: S++, // <!-- blah --
+    CDATA: S++, // <![CDATA[ something
+    CDATA_ENDING: S++, // ]
+    CDATA_ENDING_2: S++, // ]]
+    PROC_INST: S++, // <?hi
+    PROC_INST_BODY: S++, // <?hi there
+    PROC_INST_ENDING: S++, // <?hi "there" ?
+    OPEN_TAG: S++, // <strong
+    OPEN_TAG_SLASH: S++, // <strong /
+    ATTRIB: S++, // <a
+    ATTRIB_NAME: S++, // <a foo
+    ATTRIB_NAME_SAW_WHITE: S++, // <a foo _
+    ATTRIB_VALUE: S++, // <a foo=
+    ATTRIB_VALUE_QUOTED: S++, // <a foo="bar
+    ATTRIB_VALUE_CLOSED: S++, // <a foo="bar"
+    ATTRIB_VALUE_UNQUOTED: S++, // <a foo=bar
+    ATTRIB_VALUE_ENTITY_Q: S++, // <foo bar="&quot;"
+    ATTRIB_VALUE_ENTITY_U: S++, // <foo bar=&quot
+    CLOSE_TAG: S++, // </a
+    CLOSE_TAG_SAW_WHITE: S++, // </a   >
+    SCRIPT: S++, // <script> ...
+    SCRIPT_ENDING: S++ // <script> ... <
+  }
+
+  sax.XML_ENTITIES = {
+    'amp': '&',
+    'gt': '>',
+    'lt': '<',
+    'quot': '"',
+    'apos': "'"
+  }
+
+  sax.ENTITIES = {
+    'amp': '&',
+    'gt': '>',
+    'lt': '<',
+    'quot': '"',
+    'apos': "'",
+    'AElig': 198,
+    'Aacute': 193,
+    'Acirc': 194,
+    'Agrave': 192,
+    'Aring': 197,
+    'Atilde': 195,
+    'Auml': 196,
+    'Ccedil': 199,
+    'ETH': 208,
+    'Eacute': 201,
+    'Ecirc': 202,
+    'Egrave': 200,
+    'Euml': 203,
+    'Iacute': 205,
+    'Icirc': 206,
+    'Igrave': 204,
+    'Iuml': 207,
+    'Ntilde': 209,
+    'Oacute': 211,
+    'Ocirc': 212,
+    'Ograve': 210,
+    'Oslash': 216,
+    'Otilde': 213,
+    'Ouml': 214,
+    'THORN': 222,
+    'Uacute': 218,
+    'Ucirc': 219,
+    'Ugrave': 217,
+    'Uuml': 220,
+    'Yacute': 221,
+    'aacute': 225,
+    'acirc': 226,
+    'aelig': 230,
+    'agrave': 224,
+    'aring': 229,
+    'atilde': 227,
+    'auml': 228,
+    'ccedil': 231,
+    'eacute': 233,
+    'ecirc': 234,
+    'egrave': 232,
+    'eth': 240,
+    'euml': 235,
+    'iacute': 237,
+    'icirc': 238,
+    'igrave': 236,
+    'iuml': 239,
+    'ntilde': 241,
+    'oacute': 243,
+    'ocirc': 244,
+    'ograve': 242,
+    'oslash': 248,
+    'otilde': 245,
+    'ouml': 246,
+    'szlig': 223,
+    'thorn': 254,
+    'uacute': 250,
+    'ucirc': 251,
+    'ugrave': 249,
+    'uuml': 252,
+    'yacute': 253,
+    'yuml': 255,
+    'copy': 169,
+    'reg': 174,
+    'nbsp': 160,
+    'iexcl': 161,
+    'cent': 162,
+    'pound': 163,
+    'curren': 164,
+    'yen': 165,
+    'brvbar': 166,
+    'sect': 167,
+    'uml': 168,
+    'ordf': 170,
+    'laquo': 171,
+    'not': 172,
+    'shy': 173,
+    'macr': 175,
+    'deg': 176,
+    'plusmn': 177,
+    'sup1': 185,
+    'sup2': 178,
+    'sup3': 179,
+    'acute': 180,
+    'micro': 181,
+    'para': 182,
+    'middot': 183,
+    'cedil': 184,
+    'ordm': 186,
+    'raquo': 187,
+    'frac14': 188,
+    'frac12': 189,
+    'frac34': 190,
+    'iquest': 191,
+    'times': 215,
+    'divide': 247,
+    'OElig': 338,
+    'oelig': 339,
+    'Scaron': 352,
+    'scaron': 353,
+    'Yuml': 376,
+    'fnof': 402,
+    'circ': 710,
+    'tilde': 732,
+    'Alpha': 913,
+    'Beta': 914,
+    'Gamma': 915,
+    'Delta': 916,
+    'Epsilon': 917,
+    'Zeta': 918,
+    'Eta': 919,
+    'Theta': 920,
+    'Iota': 921,
+    'Kappa': 922,
+    'Lambda': 923,
+    'Mu': 924,
+    'Nu': 925,
+    'Xi': 926,
+    'Omicron': 927,
+    'Pi': 928,
+    'Rho': 929,
+    'Sigma': 931,
+    'Tau': 932,
+    'Upsilon': 933,
+    'Phi': 934,
+    'Chi': 935,
+    'Psi': 936,
+    'Omega': 937,
+    'alpha': 945,
+    'beta': 946,
+    'gamma': 947,
+    'delta': 948,
+    'epsilon': 949,
+    'zeta': 950,
+    'eta': 951,
+    'theta': 952,
+    'iota': 953,
+    'kappa': 954,
+    'lambda': 955,
+    'mu': 956,
+    'nu': 957,
+    'xi': 958,
+    'omicron': 959,
+    'pi': 960,
+    'rho': 961,
+    'sigmaf': 962,
+    'sigma': 963,
+    'tau': 964,
+    'upsilon': 965,
+    'phi': 966,
+    'chi': 967,
+    'psi': 968,
+    'omega': 969,
+    'thetasym': 977,
+    'upsih': 978,
+    'piv': 982,
+    'ensp': 8194,
+    'emsp': 8195,
+    'thinsp': 8201,
+    'zwnj': 8204,
+    'zwj': 8205,
+    'lrm': 8206,
+    'rlm': 8207,
+    'ndash': 8211,
+    'mdash': 8212,
+    'lsquo': 8216,
+    'rsquo': 8217,
+    'sbquo': 8218,
+    'ldquo': 8220,
+    'rdquo': 8221,
+    'bdquo': 8222,
+    'dagger': 8224,
+    'Dagger': 8225,
+    'bull': 8226,
+    'hellip': 8230,
+    'permil': 8240,
+    'prime': 8242,
+    'Prime': 8243,
+    'lsaquo': 8249,
+    'rsaquo': 8250,
+    'oline': 8254,
+    'frasl': 8260,
+    'euro': 8364,
+    'image': 8465,
+    'weierp': 8472,
+    'real': 8476,
+    'trade': 8482,
+    'alefsym': 8501,
+    'larr': 8592,
+    'uarr': 8593,
+    'rarr': 8594,
+    'darr': 8595,
+    'harr': 8596,
+    'crarr': 8629,
+    'lArr': 8656,
+    'uArr': 8657,
+    'rArr': 8658,
+    'dArr': 8659,
+    'hArr': 8660,
+    'forall': 8704,
+    'part': 8706,
+    'exist': 8707,
+    'empty': 8709,
+    'nabla': 8711,
+    'isin': 8712,
+    'notin': 8713,
+    'ni': 8715,
+    'prod': 8719,
+    'sum': 8721,
+    'minus': 8722,
+    'lowast': 8727,
+    'radic': 8730,
+    'prop': 8733,
+    'infin': 8734,
+    'ang': 8736,
+    'and': 8743,
+    'or': 8744,
+    'cap': 8745,
+    'cup': 8746,
+    'int': 8747,
+    'there4': 8756,
+    'sim': 8764,
+    'cong': 8773,
+    'asymp': 8776,
+    'ne': 8800,
+    'equiv': 8801,
+    'le': 8804,
+    'ge': 8805,
+    'sub': 8834,
+    'sup': 8835,
+    'nsub': 8836,
+    'sube': 8838,
+    'supe': 8839,
+    'oplus': 8853,
+    'otimes': 8855,
+    'perp': 8869,
+    'sdot': 8901,
+    'lceil': 8968,
+    'rceil': 8969,
+    'lfloor': 8970,
+    'rfloor': 8971,
+    'lang': 9001,
+    'rang': 9002,
+    'loz': 9674,
+    'spades': 9824,
+    'clubs': 9827,
+    'hearts': 9829,
+    'diams': 9830
+  }
+
+  Object.keys(sax.ENTITIES).forEach(function (key) {
+    var e = sax.ENTITIES[key]
+    var s = typeof e === 'number' ? String.fromCharCode(e) : e
+    sax.ENTITIES[key] = s
+  })
+
+  for (var s in sax.STATE) {
+    sax.STATE[sax.STATE[s]] = s
+  }
+
+  // shorthand
+  S = sax.STATE
+
+  function emit (parser, event, data) {
+    parser[event] && parser[event](data)
+  }
+
+  function emitNode (parser, nodeType, data) {
+    if (parser.textNode) closeText(parser)
+    emit(parser, nodeType, data)
+  }
+
+  function closeText (parser) {
+    parser.textNode = textopts(parser.opt, parser.textNode)
+    if (parser.textNode) emit(parser, 'ontext', parser.textNode)
+    parser.textNode = ''
+  }
+
+  function textopts (opt, text) {
+    if (opt.trim) text = text.trim()
+    if (opt.normalize) text = text.replace(/\s+/g, ' ')
+    return text
+  }
+
+  function error (parser, er) {
+    closeText(parser)
+    if (parser.trackPosition) {
+      er += '\nLine: ' + parser.line +
+        '\nColumn: ' + parser.column +
+        '\nChar: ' + parser.c
+    }
+    er = new Error(er)
+    parser.error = er
+    emit(parser, 'onerror', er)
+    return parser
+  }
+
+  function end (parser) {
+    if (parser.sawRoot && !parser.closedRoot) strictFail(parser, 'Unclosed root tag')
+    if ((parser.state !== S.BEGIN) &&
+      (parser.state !== S.BEGIN_WHITESPACE) &&
+      (parser.state !== S.TEXT)) {
+      error(parser, 'Unexpected end')
+    }
+    closeText(parser)
+    parser.c = ''
+    parser.closed = true
+    emit(parser, 'onend')
+    SAXParser.call(parser, parser.strict, parser.opt)
+    return parser
+  }
+
+  function strictFail (parser, message) {
+    if (typeof parser !== 'object' || !(parser instanceof SAXParser)) {
+      throw new Error('bad call to strictFail')
+    }
+    if (parser.strict) {
+      error(parser, message)
+    }
+  }
+
+  function newTag (parser) {
+    if (!parser.strict) parser.tagName = parser.tagName[parser.looseCase]()
+    var parent = parser.tags[parser.tags.length - 1] || parser
+    var tag = parser.tag = { name: parser.tagName, attributes: {} }
+
+    // will be overridden if tag contails an xmlns="foo" or xmlns:foo="bar"
+    if (parser.opt.xmlns) {
+      tag.ns = parent.ns
+    }
+    parser.attribList.length = 0
+    emitNode(parser, 'onopentagstart', tag)
+  }
+
+  function qname (name, attribute) {
+    var i = name.indexOf(':')
+    var qualName = i < 0 ? [ '', name ] : name.split(':')
+    var prefix = qualName[0]
+    var local = qualName[1]
+
+    // <x "xmlns"="http://foo">
+    if (attribute && name === 'xmlns') {
+      prefix = 'xmlns'
+      local = ''
+    }
+
+    return { prefix: prefix, local: local }
+  }
+
+  function attrib (parser) {
+    if (!parser.strict) {
+      parser.attribName = parser.attribName[parser.looseCase]()
+    }
+
+    if (parser.attribList.indexOf(parser.attribName) !== -1 ||
+      parser.tag.attributes.hasOwnProperty(parser.attribName)) {
+      parser.attribName = parser.attribValue = ''
+      return
+    }
+
+    if (parser.opt.xmlns) {
+      var qn = qname(parser.attribName, true)
+      var prefix = qn.prefix
+      var local = qn.local
+
+      if (prefix === 'xmlns') {
+        // namespace binding attribute. push the binding into scope
+        if (local === 'xml' && parser.attribValue !== XML_NAMESPACE) {
+          strictFail(parser,
+            'xml: prefix must be bound to ' + XML_NAMESPACE + '\n' +
+            'Actual: ' + parser.attribValue)
+        } else if (local === 'xmlns' && parser.attribValue !== XMLNS_NAMESPACE) {
+          strictFail(parser,
+            'xmlns: prefix must be bound to ' + XMLNS_NAMESPACE + '\n' +
+            'Actual: ' + parser.attribValue)
+        } else {
+          var tag = parser.tag
+          var parent = parser.tags[parser.tags.length - 1] || parser
+          if (tag.ns === parent.ns) {
+            tag.ns = Object.create(parent.ns)
+          }
+          tag.ns[local] = parser.attribValue
+        }
+      }
+
+      // defer onattribute events until all attributes have been seen
+      // so any new bindings can take effect. preserve attribute order
+      // so deferred events can be emitted in document order
+      parser.attribList.push([parser.attribName, parser.attribValue])
+    } else {
+      // in non-xmlns mode, we can emit the event right away
+      parser.tag.attributes[parser.attribName] = parser.attribValue
+      emitNode(parser, 'onattribute', {
+        name: parser.attribName,
+        value: parser.attribValue
+      })
+    }
+
+    parser.attribName = parser.attribValue = ''
+  }
+
+  function openTag (parser, selfClosing) {
+    if (parser.opt.xmlns) {
+      // emit namespace binding events
+      var tag = parser.tag
+
+      // add namespace info to tag
+      var qn = qname(parser.tagName)
+      tag.prefix = qn.prefix
+      tag.local = qn.local
+      tag.uri = tag.ns[qn.prefix] || ''
+
+      if (tag.prefix && !tag.uri) {
+        strictFail(parser, 'Unbound namespace prefix: ' +
+          JSON.stringify(parser.tagName))
+        tag.uri = qn.prefix
+      }
+
+      var parent = parser.tags[parser.tags.length - 1] || parser
+      if (tag.ns && parent.ns !== tag.ns) {
+        Object.keys(tag.ns).forEach(function (p) {
+          emitNode(parser, 'onopennamespace', {
+            prefix: p,
+            uri: tag.ns[p]
+          })
+        })
+      }
+
+      // handle deferred onattribute events
+      // Note: do not apply default ns to attributes:
+      //   http://www.w3.org/TR/REC-xml-names/#defaulting
+      for (var i = 0, l = parser.attribList.length; i < l; i++) {
+        var nv = parser.attribList[i]
+        var name = nv[0]
+        var value = nv[1]
+        var qualName = qname(name, true)
+        var prefix = qualName.prefix
+        var local = qualName.local
+        var uri = prefix === '' ? '' : (tag.ns[prefix] || '')
+        var a = {
+          name: name,
+          value: value,
+          prefix: prefix,
+          local: local,
+          uri: uri
+        }
+
+        // if there's any attributes with an undefined namespace,
+        // then fail on them now.
+        if (prefix && prefix !== 'xmlns' && !uri) {
+          strictFail(parser, 'Unbound namespace prefix: ' +
+            JSON.stringify(prefix))
+          a.uri = prefix
+        }
+        parser.tag.attributes[name] = a
+        emitNode(parser, 'onattribute', a)
+      }
+      parser.attribList.length = 0
+    }
+
+    parser.tag.isSelfClosing = !!selfClosing
+
+    // process the tag
+    parser.sawRoot = true
+    parser.tags.push(parser.tag)
+    emitNode(parser, 'onopentag', parser.tag)
+    if (!selfClosing) {
+      // special case for <script> in non-strict mode.
+      if (!parser.noscript && parser.tagName.toLowerCase() === 'script') {
+        parser.state = S.SCRIPT
+      } else {
+        parser.state = S.TEXT
+      }
+      parser.tag = null
+      parser.tagName = ''
+    }
+    parser.attribName = parser.attribValue = ''
+    parser.attribList.length = 0
+  }
+
+  function closeTag (parser) {
+    if (!parser.tagName) {
+      strictFail(parser, 'Weird empty close tag.')
+      parser.textNode += '</>'
+      parser.state = S.TEXT
+      return
+    }
+
+    if (parser.script) {
+      if (parser.tagName !== 'script') {
+        parser.script += '</' + parser.tagName + '>'
+        parser.tagName = ''
+        parser.state = S.SCRIPT
+        return
+      }
+      emitNode(parser, 'onscript', parser.script)
+      parser.script = ''
+    }
+
+    // first make sure that the closing tag actually exists.
+    // <a><b></c></b></a> will close everything, otherwise.
+    var t = parser.tags.length
+    var tagName = parser.tagName
+    if (!parser.strict) {
+      tagName = tagName[parser.looseCase]()
+    }
+    var closeTo = tagName
+    while (t--) {
+      var close = parser.tags[t]
+      if (close.name !== closeTo) {
+        // fail the first time in strict mode
+        strictFail(parser, 'Unexpected close tag')
+      } else {
+        break
+      }
+    }
+
+    // didn't find it.  we already failed for strict, so just abort.
+    if (t < 0) {
+      strictFail(parser, 'Unmatched closing tag: ' + parser.tagName)
+      parser.textNode += '</' + parser.tagName + '>'
+      parser.state = S.TEXT
+      return
+    }
+    parser.tagName = tagName
+    var s = parser.tags.length
+    while (s-- > t) {
+      var tag = parser.tag = parser.tags.pop()
+      parser.tagName = parser.tag.name
+      emitNode(parser, 'onclosetag', parser.tagName)
+
+      var x = {}
+      for (var i in tag.ns) {
+        x[i] = tag.ns[i]
+      }
+
+      var parent = parser.tags[parser.tags.length - 1] || parser
+      if (parser.opt.xmlns && tag.ns !== parent.ns) {
+        // remove namespace bindings introduced by tag
+        Object.keys(tag.ns).forEach(function (p) {
+          var n = tag.ns[p]
+          emitNode(parser, 'onclosenamespace', { prefix: p, uri: n })
+        })
+      }
+    }
+    if (t === 0) parser.closedRoot = true
+    parser.tagName = parser.attribValue = parser.attribName = ''
+    parser.attribList.length = 0
+    parser.state = S.TEXT
+  }
+
+  function parseEntity (parser) {
+    var entity = parser.entity
+    var entityLC = entity.toLowerCase()
+    var num
+    var numStr = ''
+
+    if (parser.ENTITIES[entity]) {
+      return parser.ENTITIES[entity]
+    }
+    if (parser.ENTITIES[entityLC]) {
+      return parser.ENTITIES[entityLC]
+    }
+    entity = entityLC
+    if (entity.charAt(0) === '#') {
+      if (entity.charAt(1) === 'x') {
+        entity = entity.slice(2)
+        num = parseInt(entity, 16)
+        numStr = num.toString(16)
+      } else {
+        entity = entity.slice(1)
+        num = parseInt(entity, 10)
+        numStr = num.toString(10)
+      }
+    }
+    entity = entity.replace(/^0+/, '')
+    if (isNaN(num) || numStr.toLowerCase() !== entity) {
+      strictFail(parser, 'Invalid character entity')
+      return '&' + parser.entity + ';'
+    }
+
+    return String.fromCodePoint(num)
+  }
+
+  function beginWhiteSpace (parser, c) {
+    if (c === '<') {
+      parser.state = S.OPEN_WAKA
+      parser.startTagPosition = parser.position
+    } else if (!isWhitespace(c)) {
+      // have to process this as a text node.
+      // weird, but happens.
+      strictFail(parser, 'Non-whitespace before first tag.')
+      parser.textNode = c
+      parser.state = S.TEXT
+    }
+  }
+
+  function charAt (chunk, i) {
+    var result = ''
+    if (i < chunk.length) {
+      result = chunk.charAt(i)
+    }
+    return result
+  }
+
+  function write (chunk) {
+    var parser = this
+    if (this.error) {
+      throw this.error
+    }
+    if (parser.closed) {
+      return error(parser,
+        'Cannot write after close. Assign an onready handler.')
+    }
+    if (chunk === null) {
+      return end(parser)
+    }
+    if (typeof chunk === 'object') {
+      chunk = chunk.toString()
+    }
+    var i = 0
+    var c = ''
+    while (true) {
+      c = charAt(chunk, i++)
+      parser.c = c
+
+      if (!c) {
+        break
+      }
+
+      if (parser.trackPosition) {
+        parser.position++
+        if (c === '\n') {
+          parser.line++
+          parser.column = 0
+        } else {
+          parser.column++
+        }
+      }
+
+      switch (parser.state) {
+        case S.BEGIN:
+          parser.state = S.BEGIN_WHITESPACE
+          if (c === '\uFEFF') {
+            continue
+          }
+          beginWhiteSpace(parser, c)
+          continue
+
+        case S.BEGIN_WHITESPACE:
+          beginWhiteSpace(parser, c)
+          continue
+
+        case S.TEXT:
+          if (parser.sawRoot && !parser.closedRoot) {
+            var starti = i - 1
+            while (c && c !== '<' && c !== '&') {
+              c = charAt(chunk, i++)
+              if (c && parser.trackPosition) {
+                parser.position++
+                if (c === '\n') {
+                  parser.line++
+                  parser.column = 0
+                } else {
+                  parser.column++
+                }
+              }
+            }
+            parser.textNode += chunk.substring(starti, i - 1)
+          }
+          if (c === '<' && !(parser.sawRoot && parser.closedRoot && !parser.strict)) {
+            parser.state = S.OPEN_WAKA
+            parser.startTagPosition = parser.position
+          } else {
+            if (!isWhitespace(c) && (!parser.sawRoot || parser.closedRoot)) {
+              strictFail(parser, 'Text data outside of root node.')
+            }
+            if (c === '&') {
+              parser.state = S.TEXT_ENTITY
+            } else {
+              parser.textNode += c
+            }
+          }
+          continue
+
+        case S.SCRIPT:
+          // only non-strict
+          if (c === '<') {
+            parser.state = S.SCRIPT_ENDING
+          } else {
+            parser.script += c
+          }
+          continue
+
+        case S.SCRIPT_ENDING:
+          if (c === '/') {
+            parser.state = S.CLOSE_TAG
+          } else {
+            parser.script += '<' + c
+            parser.state = S.SCRIPT
+          }
+          continue
+
+        case S.OPEN_WAKA:
+          // either a /, ?, !, or text is coming next.
+          if (c === '!') {
+            parser.state = S.SGML_DECL
+            parser.sgmlDecl = ''
+          } else if (isWhitespace(c)) {
+            // wait for it...
+          } else if (isMatch(nameStart, c)) {
+            parser.state = S.OPEN_TAG
+            parser.tagName = c
+          } else if (c === '/') {
+            parser.state = S.CLOSE_TAG
+            parser.tagName = ''
+          } else if (c === '?') {
+            parser.state = S.PROC_INST
+            parser.procInstName = parser.procInstBody = ''
+          } else {
+            strictFail(parser, 'Unencoded <')
+            // if there was some whitespace, then add that in.
+            if (parser.startTagPosition + 1 < parser.position) {
+              var pad = parser.position - parser.startTagPosition
+              c = new Array(pad).join(' ') + c
+            }
+            parser.textNode += '<' + c
+            parser.state = S.TEXT
+          }
+          continue
+
+        case S.SGML_DECL:
+          if ((parser.sgmlDecl + c).toUpperCase() === CDATA) {
+            emitNode(parser, 'onopencdata')
+            parser.state = S.CDATA
+            parser.sgmlDecl = ''
+            parser.cdata = ''
+          } else if (parser.sgmlDecl + c === '--') {
+            parser.state = S.COMMENT
+            parser.comment = ''
+            parser.sgmlDecl = ''
+          } else if ((parser.sgmlDecl + c).toUpperCase() === DOCTYPE) {
+            parser.state = S.DOCTYPE
+            if (parser.doctype || parser.sawRoot) {
+              strictFail(parser,
+                'Inappropriately located doctype declaration')
+            }
+            parser.doctype = ''
+            parser.sgmlDecl = ''
+          } else if (c === '>') {
+            emitNode(parser, 'onsgmldeclaration', parser.sgmlDecl)
+            parser.sgmlDecl = ''
+            parser.state = S.TEXT
+          } else if (isQuote(c)) {
+            parser.state = S.SGML_DECL_QUOTED
+            parser.sgmlDecl += c
+          } else {
+            parser.sgmlDecl += c
+          }
+          continue
+
+        case S.SGML_DECL_QUOTED:
+          if (c === parser.q) {
+            parser.state = S.SGML_DECL
+            parser.q = ''
+          }
+          parser.sgmlDecl += c
+          continue
+
+        case S.DOCTYPE:
+          if (c === '>') {
+            parser.state = S.TEXT
+            emitNode(parser, 'ondoctype', parser.doctype)
+            parser.doctype = true // just remember that we saw it.
+          } else {
+            parser.doctype += c
+            if (c === '[') {
+              parser.state = S.DOCTYPE_DTD
+            } else if (isQuote(c)) {
+              parser.state = S.DOCTYPE_QUOTED
+              parser.q = c
+            }
+          }
+          continue
+
+        case S.DOCTYPE_QUOTED:
+          parser.doctype += c
+          if (c === parser.q) {
+            parser.q = ''
+            parser.state = S.DOCTYPE
+          }
+          continue
+
+        case S.DOCTYPE_DTD:
+          parser.doctype += c
+          if (c === ']') {
+            parser.state = S.DOCTYPE
+          } else if (isQuote(c)) {
+            parser.state = S.DOCTYPE_DTD_QUOTED
+            parser.q = c
+          }
+          continue
+
+        case S.DOCTYPE_DTD_QUOTED:
+          parser.doctype += c
+          if (c === parser.q) {
+            parser.state = S.DOCTYPE_DTD
+            parser.q = ''
+          }
+          continue
+
+        case S.COMMENT:
+          if (c === '-') {
+            parser.state = S.COMMENT_ENDING
+          } else {
+            parser.comment += c
+          }
+          continue
+
+        case S.COMMENT_ENDING:
+          if (c === '-') {
+            parser.state = S.COMMENT_ENDED
+            parser.comment = textopts(parser.opt, parser.comment)
+            if (parser.comment) {
+              emitNode(parser, 'oncomment', parser.comment)
+            }
+            parser.comment = ''
+          } else {
+            parser.comment += '-' + c
+            parser.state = S.COMMENT
+          }
+          continue
+
+        case S.COMMENT_ENDED:
+          if (c !== '>') {
+            strictFail(parser, 'Malformed comment')
+            // allow <!-- blah -- bloo --> in non-strict mode,
+            // which is a comment of " blah -- bloo "
+            parser.comment += '--' + c
+            parser.state = S.COMMENT
+          } else {
+            parser.state = S.TEXT
+          }
+          continue
+
+        case S.CDATA:
+          if (c === ']') {
+            parser.state = S.CDATA_ENDING
+          } else {
+            parser.cdata += c
+          }
+          continue
+
+        case S.CDATA_ENDING:
+          if (c === ']') {
+            parser.state = S.CDATA_ENDING_2
+          } else {
+            parser.cdata += ']' + c
+            parser.state = S.CDATA
+          }
+          continue
+
+        case S.CDATA_ENDING_2:
+          if (c === '>') {
+            if (parser.cdata) {
+              emitNode(parser, 'oncdata', parser.cdata)
+            }
+            emitNode(parser, 'onclosecdata')
+            parser.cdata = ''
+            parser.state = S.TEXT
+          } else if (c === ']') {
+            parser.cdata += ']'
+          } else {
+            parser.cdata += ']]' + c
+            parser.state = S.CDATA
+          }
+          continue
+
+        case S.PROC_INST:
+          if (c === '?') {
+            parser.state = S.PROC_INST_ENDING
+          } else if (isWhitespace(c)) {
+            parser.state = S.PROC_INST_BODY
+          } else {
+            parser.procInstName += c
+          }
+          continue
+
+        case S.PROC_INST_BODY:
+          if (!parser.procInstBody && isWhitespace(c)) {
+            continue
+          } else if (c === '?') {
+            parser.state = S.PROC_INST_ENDING
+          } else {
+            parser.procInstBody += c
+          }
+          continue
+
+        case S.PROC_INST_ENDING:
+          if (c === '>') {
+            emitNode(parser, 'onprocessinginstruction', {
+              name: parser.procInstName,
+              body: parser.procInstBody
+            })
+            parser.procInstName = parser.procInstBody = ''
+            parser.state = S.TEXT
+          } else {
+            parser.procInstBody += '?' + c
+            parser.state = S.PROC_INST_BODY
+          }
+          continue
+
+        case S.OPEN_TAG:
+          if (isMatch(nameBody, c)) {
+            parser.tagName += c
+          } else {
+            newTag(parser)
+            if (c === '>') {
+              openTag(parser)
+            } else if (c === '/') {
+              parser.state = S.OPEN_TAG_SLASH
+            } else {
+              if (!isWhitespace(c)) {
+                strictFail(parser, 'Invalid character in tag name')
+              }
+              parser.state = S.ATTRIB
+            }
+          }
+          continue
+
+        case S.OPEN_TAG_SLASH:
+          if (c === '>') {
+            openTag(parser, true)
+            closeTag(parser)
+          } else {
+            strictFail(parser, 'Forward-slash in opening tag not followed by >')
+            parser.state = S.ATTRIB
+          }
+          continue
+
+        case S.ATTRIB:
+          // haven't read the attribute name yet.
+          if (isWhitespace(c)) {
+            continue
+          } else if (c === '>') {
+            openTag(parser)
+          } else if (c === '/') {
+            parser.state = S.OPEN_TAG_SLASH
+          } else if (isMatch(nameStart, c)) {
+            parser.attribName = c
+            parser.attribValue = ''
+            parser.state = S.ATTRIB_NAME
+          } else {
+            strictFail(parser, 'Invalid attribute name')
+          }
+          continue
+
+        case S.ATTRIB_NAME:
+          if (c === '=') {
+            parser.state = S.ATTRIB_VALUE
+          } else if (c === '>') {
+            strictFail(parser, 'Attribute without value')
+            parser.attribValue = parser.attribName
+            attrib(parser)
+            openTag(parser)
+          } else if (isWhitespace(c)) {
+            parser.state = S.ATTRIB_NAME_SAW_WHITE
+          } else if (isMatch(nameBody, c)) {
+            parser.attribName += c
+          } else {
+            strictFail(parser, 'Invalid attribute name')
+          }
+          continue
+
+        case S.ATTRIB_NAME_SAW_WHITE:
+          if (c === '=') {
+            parser.state = S.ATTRIB_VALUE
+          } else if (isWhitespace(c)) {
+            continue
+          } else {
+            strictFail(parser, 'Attribute without value')
+            parser.tag.attributes[parser.attribName] = ''
+            parser.attribValue = ''
+            emitNode(parser, 'onattribute', {
+              name: parser.attribName,
+              value: ''
+            })
+            parser.attribName = ''
+            if (c === '>') {
+              openTag(parser)
+            } else if (isMatch(nameStart, c)) {
+              parser.attribName = c
+              parser.state = S.ATTRIB_NAME
+            } else {
+              strictFail(parser, 'Invalid attribute name')
+              parser.state = S.ATTRIB
+            }
+          }
+          continue
+
+        case S.ATTRIB_VALUE:
+          if (isWhitespace(c)) {
+            continue
+          } else if (isQuote(c)) {
+            parser.q = c
+            parser.state = S.ATTRIB_VALUE_QUOTED
+          } else {
+            strictFail(parser, 'Unquoted attribute value')
+            parser.state = S.ATTRIB_VALUE_UNQUOTED
+            parser.attribValue = c
+          }
+          continue
+
+        case S.ATTRIB_VALUE_QUOTED:
+          if (c !== parser.q) {
+            if (c === '&') {
+              parser.state = S.ATTRIB_VALUE_ENTITY_Q
+            } else {
+              parser.attribValue += c
+            }
+            continue
+          }
+          attrib(parser)
+          parser.q = ''
+          parser.state = S.ATTRIB_VALUE_CLOSED
+          continue
+
+        case S.ATTRIB_VALUE_CLOSED:
+          if (isWhitespace(c)) {
+            parser.state = S.ATTRIB
+          } else if (c === '>') {
+            openTag(parser)
+          } else if (c === '/') {
+            parser.state = S.OPEN_TAG_SLASH
+          } else if (isMatch(nameStart, c)) {
+            strictFail(parser, 'No whitespace between attributes')
+            parser.attribName = c
+            parser.attribValue = ''
+            parser.state = S.ATTRIB_NAME
+          } else {
+            strictFail(parser, 'Invalid attribute name')
+          }
+          continue
+
+        case S.ATTRIB_VALUE_UNQUOTED:
+          if (!isAttribEnd(c)) {
+            if (c === '&') {
+              parser.state = S.ATTRIB_VALUE_ENTITY_U
+            } else {
+              parser.attribValue += c
+            }
+            continue
+          }
+          attrib(parser)
+          if (c === '>') {
+            openTag(parser)
+          } else {
+            parser.state = S.ATTRIB
+          }
+          continue
+
+        case S.CLOSE_TAG:
+          if (!parser.tagName) {
+            if (isWhitespace(c)) {
+              continue
+            } else if (notMatch(nameStart, c)) {
+              if (parser.script) {
+                parser.script += '</' + c
+                parser.state = S.SCRIPT
+              } else {
+                strictFail(parser, 'Invalid tagname in closing tag.')
+              }
+            } else {
+              parser.tagName = c
+            }
+          } else if (c === '>') {
+            closeTag(parser)
+          } else if (isMatch(nameBody, c)) {
+            parser.tagName += c
+          } else if (parser.script) {
+            parser.script += '</' + parser.tagName
+            parser.tagName = ''
+            parser.state = S.SCRIPT
+          } else {
+            if (!isWhitespace(c)) {
+              strictFail(parser, 'Invalid tagname in closing tag')
+            }
+            parser.state = S.CLOSE_TAG_SAW_WHITE
+          }
+          continue
+
+        case S.CLOSE_TAG_SAW_WHITE:
+          if (isWhitespace(c)) {
+            continue
+          }
+          if (c === '>') {
+            closeTag(parser)
+          } else {
+            strictFail(parser, 'Invalid characters in closing tag')
+          }
+          continue
+
+        case S.TEXT_ENTITY:
+        case S.ATTRIB_VALUE_ENTITY_Q:
+        case S.ATTRIB_VALUE_ENTITY_U:
+          var returnState
+          var buffer
+          switch (parser.state) {
+            case S.TEXT_ENTITY:
+              returnState = S.TEXT
+              buffer = 'textNode'
+              break
+
+            case S.ATTRIB_VALUE_ENTITY_Q:
+              returnState = S.ATTRIB_VALUE_QUOTED
+              buffer = 'attribValue'
+              break
+
+            case S.ATTRIB_VALUE_ENTITY_U:
+              returnState = S.ATTRIB_VALUE_UNQUOTED
+              buffer = 'attribValue'
+              break
+          }
+
+          if (c === ';') {
+            parser[buffer] += parseEntity(parser)
+            parser.entity = ''
+            parser.state = returnState
+          } else if (isMatch(parser.entity.length ? entityBody : entityStart, c)) {
+            parser.entity += c
+          } else {
+            strictFail(parser, 'Invalid character in entity name')
+            parser[buffer] += '&' + parser.entity + c
+            parser.entity = ''
+            parser.state = returnState
+          }
+
+          continue
+
+        default:
+          throw new Error(parser, 'Unknown state: ' + parser.state)
+      }
+    } // while
+
+    if (parser.position >= parser.bufferCheckPosition) {
+      checkBufferLength(parser)
+    }
+    return parser
+  }
+
+  /*! http://mths.be/fromcodepoint v0.1.0 by @mathias */
+  /* istanbul ignore next */
+  if (!String.fromCodePoint) {
+    (function () {
+      var stringFromCharCode = String.fromCharCode
+      var floor = Math.floor
+      var fromCodePoint = function () {
+        var MAX_SIZE = 0x4000
+        var codeUnits = []
+        var highSurrogate
+        var lowSurrogate
+        var index = -1
+        var length = arguments.length
+        if (!length) {
+          return ''
+        }
+        var result = ''
+        while (++index < length) {
+          var codePoint = Number(arguments[index])
+          if (
+            !isFinite(codePoint) || // `NaN`, `+Infinity`, or `-Infinity`
+            codePoint < 0 || // not a valid Unicode code point
+            codePoint > 0x10FFFF || // not a valid Unicode code point
+            floor(codePoint) !== codePoint // not an integer
+          ) {
+            throw RangeError('Invalid code point: ' + codePoint)
+          }
+          if (codePoint <= 0xFFFF) { // BMP code point
+            codeUnits.push(codePoint)
+          } else { // Astral code point; split in surrogate halves
+            // http://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
+            codePoint -= 0x10000
+            highSurrogate = (codePoint >> 10) + 0xD800
+            lowSurrogate = (codePoint % 0x400) + 0xDC00
+            codeUnits.push(highSurrogate, lowSurrogate)
+          }
+          if (index + 1 === length || codeUnits.length > MAX_SIZE) {
+            result += stringFromCharCode.apply(null, codeUnits)
+            codeUnits.length = 0
+          }
+        }
+        return result
+      }
+      /* istanbul ignore next */
+      if (Object.defineProperty) {
+        Object.defineProperty(String, 'fromCodePoint', {
+          value: fromCodePoint,
+          configurable: true,
+          writable: true
+        })
+      } else {
+        String.fromCodePoint = fromCodePoint
+      }
+    }())
+  }
+})( false ? undefined : exports)
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(10).Buffer))
+
+/***/ }),
+/* 546 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68823,7 +70813,7 @@ module.exports = {
 
 
 /***/ }),
-/* 544 */
+/* 547 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68839,7 +70829,7 @@ __webpack_require__(28);
 
 __webpack_require__(46);
 
-__webpack_require__(155);
+__webpack_require__(157);
 
 __webpack_require__(223);
 
@@ -68849,7 +70839,7 @@ __webpack_require__(32);
 
 __webpack_require__(118);
 
-__webpack_require__(158);
+__webpack_require__(160);
 
 __webpack_require__(230);
 
@@ -73168,10 +75158,10 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
 if ( true && module && typeof module.exports !== 'undefined') {
   module.exports = SVGtoPDF;
 }
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(545)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(548)(module)))
 
 /***/ }),
-/* 545 */
+/* 548 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -73199,160 +75189,162 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 546 */
+/* 549 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // Internet Explorer polyfills
-__webpack_require__(547);
-__webpack_require__(557);
+if (typeof window !== 'undefined' && !window.Promise) {
+	__webpack_require__(550);
+}
+__webpack_require__(560);
 
 var fetchUrl = function (url) {
-  return new Promise(function (resolve, reject) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.responseType = 'arraybuffer';
+	return new Promise(function (resolve, reject) {
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', url, true);
+		xhr.responseType = 'arraybuffer';
 
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState !== 4) {
-        return;
-      }
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState !== 4) {
+				return;
+			}
 
-      var ok = xhr.status >= 200 && xhr.status < 300;
-      if (!ok) {
-        setTimeout(function () {
-          reject(new TypeError('Failed to fetch (url: "' + url + '")'));
-        }, 0);
-      }
-    };
+			var ok = xhr.status >= 200 && xhr.status < 300;
+			if (!ok) {
+				setTimeout(function () {
+					reject(new TypeError('Failed to fetch (url: "' + url + '")'));
+				}, 0);
+			}
+		};
 
-    xhr.onload = function () {
-      var ok = xhr.status >= 200 && xhr.status < 300;
-      if (ok) {
-        resolve(xhr.response);
-      }
-    };
+		xhr.onload = function () {
+			var ok = xhr.status >= 200 && xhr.status < 300;
+			if (ok) {
+				resolve(xhr.response);
+			}
+		};
 
-    xhr.onerror = function () {
-      setTimeout(function () {
-        reject(new TypeError('Network request failed (url: "' + url + '")'));
-      }, 0);
-    };
+		xhr.onerror = function () {
+			setTimeout(function () {
+				reject(new TypeError('Network request failed (url: "' + url + '")'));
+			}, 0);
+		};
 
-    xhr.ontimeout = function () {
-      setTimeout(function () {
-        reject(new TypeError('Network request failed (url: "' + url + '")'));
-      }, 0);
-    };
+		xhr.ontimeout = function () {
+			setTimeout(function () {
+				reject(new TypeError('Network request failed (url: "' + url + '")'));
+			}, 0);
+		};
 
-    xhr.send();
-  });
+		xhr.send();
+	});
 };
 
 function URLBrowserResolver(fs) {
-  this.fs = fs;
-  this.resolving = {};
+	this.fs = fs;
+	this.resolving = {};
 }
 
 URLBrowserResolver.prototype.resolve = function (url) {
-  if (!this.resolving[url]) {
-    var _this = this;
-    this.resolving[url] = new Promise(function (resolve, reject) {
-      if (url.toLowerCase().indexOf('https://') === 0 || url.toLowerCase().indexOf('http://') === 0) {
-        fetchUrl(url).then(function (buffer) {
-          _this.fs.writeFileSync(url, buffer);
-          resolve();
-        }, function (result) {
-          reject(result);
-        });
-      } else {
-        // cannot be resolved
-        resolve();
-      }
-    });
-  }
+	if (!this.resolving[url]) {
+		var _this = this;
+		this.resolving[url] = new Promise(function (resolve, reject) {
+			if (url.toLowerCase().indexOf('https://') === 0 || url.toLowerCase().indexOf('http://') === 0) {
+				fetchUrl(url).then(function (buffer) {
+					_this.fs.writeFileSync(url, buffer);
+					resolve();
+				}, function (result) {
+					reject(result);
+				});
+			} else {
+				// cannot be resolved
+				resolve();
+			}
+		});
+	}
 
-  return this.resolving[url];
+	return this.resolving[url];
 }
 
 URLBrowserResolver.prototype.resolved = function () {
-  var _this = this;
-  return new Promise(function (resolve, reject) {
-    Promise.all(Object.values(_this.resolving)).then(function () {
-      resolve();
-    }, function (result) {
-      reject(result);
-    });
-  });
+	var _this = this;
+	return new Promise(function (resolve, reject) {
+		Promise.all(Object.values(_this.resolving)).then(function () {
+			resolve();
+		}, function (result) {
+			reject(result);
+		});
+	});
 }
 
 module.exports = URLBrowserResolver;
 
 
 /***/ }),
-/* 547 */
+/* 550 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var parent = __webpack_require__(548);
-__webpack_require__(553);
-// TODO: Remove from `core-js@4`
-__webpack_require__(554);
-__webpack_require__(555);
+var parent = __webpack_require__(551);
 __webpack_require__(556);
+// TODO: Remove from `core-js@4`
+__webpack_require__(557);
+__webpack_require__(558);
+__webpack_require__(559);
 
 module.exports = parent;
 
 
 /***/ }),
-/* 548 */
+/* 551 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(32);
-__webpack_require__(157);
+__webpack_require__(159);
 __webpack_require__(120);
-__webpack_require__(549);
-__webpack_require__(299);
 __webpack_require__(552);
+__webpack_require__(299);
+__webpack_require__(555);
 var path = __webpack_require__(114);
 
 module.exports = path.Promise;
 
 
 /***/ }),
-/* 549 */
+/* 552 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $ = __webpack_require__(1);
-var IS_PURE = __webpack_require__(55);
+var IS_PURE = __webpack_require__(56);
 var global = __webpack_require__(3);
 var getBuiltIn = __webpack_require__(36);
 var NativePromise = __webpack_require__(295);
-var redefine = __webpack_require__(24);
+var redefine = __webpack_require__(25);
 var redefineAll = __webpack_require__(221);
 var setToStringTag = __webpack_require__(95);
-var setSpecies = __webpack_require__(154);
+var setSpecies = __webpack_require__(156);
 var isObject = __webpack_require__(13);
 var aFunction = __webpack_require__(44);
-var anInstance = __webpack_require__(153);
+var anInstance = __webpack_require__(155);
 var classof = __webpack_require__(30);
-var inspectSource = __webpack_require__(138);
-var iterate = __webpack_require__(134);
-var checkCorrectnessOfIteration = __webpack_require__(151);
+var inspectSource = __webpack_require__(140);
+var iterate = __webpack_require__(136);
+var checkCorrectnessOfIteration = __webpack_require__(153);
 var speciesConstructor = __webpack_require__(38);
 var task = __webpack_require__(296).set;
-var microtask = __webpack_require__(550);
+var microtask = __webpack_require__(553);
 var promiseResolve = __webpack_require__(298);
-var hostReportErrors = __webpack_require__(551);
+var hostReportErrors = __webpack_require__(554);
 var newPromiseCapabilityModule = __webpack_require__(109);
-var perform = __webpack_require__(135);
+var perform = __webpack_require__(137);
 var InternalStateModule = __webpack_require__(35);
-var isForced = __webpack_require__(142);
+var isForced = __webpack_require__(144);
 var wellKnownSymbol = __webpack_require__(6);
-var V8_VERSION = __webpack_require__(145);
+var V8_VERSION = __webpack_require__(147);
 
 var SPECIES = wellKnownSymbol('species');
 var PROMISE = 'Promise';
@@ -73707,11 +75699,11 @@ $({ target: PROMISE, stat: true, forced: INCORRECT_ITERATION }, {
 
 
 /***/ }),
-/* 550 */
+/* 553 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(3);
-var getOwnPropertyDescriptor = __webpack_require__(53).f;
+var getOwnPropertyDescriptor = __webpack_require__(54).f;
 var classof = __webpack_require__(30);
 var macrotask = __webpack_require__(296).set;
 var IS_IOS = __webpack_require__(297);
@@ -73791,7 +75783,7 @@ module.exports = queueMicrotask || function (fn) {
 
 
 /***/ }),
-/* 551 */
+/* 554 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(3);
@@ -73805,19 +75797,19 @@ module.exports = function (a, b) {
 
 
 /***/ }),
-/* 552 */
+/* 555 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $ = __webpack_require__(1);
-var IS_PURE = __webpack_require__(55);
+var IS_PURE = __webpack_require__(56);
 var NativePromise = __webpack_require__(295);
 var fails = __webpack_require__(4);
 var getBuiltIn = __webpack_require__(36);
 var speciesConstructor = __webpack_require__(38);
 var promiseResolve = __webpack_require__(298);
-var redefine = __webpack_require__(24);
+var redefine = __webpack_require__(25);
 
 // Safari bug https://bugs.webkit.org/show_bug.cgi?id=200829
 var NON_GENERIC = !!NativePromise && fails(function () {
@@ -73848,19 +75840,19 @@ if (!IS_PURE && typeof NativePromise == 'function' && !NativePromise.prototype['
 
 
 /***/ }),
-/* 553 */
+/* 556 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $ = __webpack_require__(1);
 var DESCRIPTORS = __webpack_require__(11);
-var getPrototypeOf = __webpack_require__(59);
+var getPrototypeOf = __webpack_require__(60);
 var setPrototypeOf = __webpack_require__(45);
-var create = __webpack_require__(57);
+var create = __webpack_require__(58);
 var defineProperty = __webpack_require__(15);
 var createPropertyDescriptor = __webpack_require__(42);
-var iterate = __webpack_require__(134);
+var iterate = __webpack_require__(136);
 var createNonEnumerableProperty = __webpack_require__(18);
 var InternalStateModule = __webpack_require__(35);
 
@@ -73900,7 +75892,7 @@ $({ global: true }, {
 
 
 /***/ }),
-/* 554 */
+/* 557 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // TODO: Remove from `core-js@4`
@@ -73908,14 +75900,14 @@ __webpack_require__(299);
 
 
 /***/ }),
-/* 555 */
+/* 558 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $ = __webpack_require__(1);
 var newPromiseCapabilityModule = __webpack_require__(109);
-var perform = __webpack_require__(135);
+var perform = __webpack_require__(137);
 
 // `Promise.try` method
 // https://github.com/tc39/proposal-promise-try
@@ -73930,7 +75922,7 @@ $({ target: 'Promise', stat: true }, {
 
 
 /***/ }),
-/* 556 */
+/* 559 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73939,8 +75931,8 @@ var $ = __webpack_require__(1);
 var aFunction = __webpack_require__(44);
 var getBuiltIn = __webpack_require__(36);
 var newPromiseCapabilityModule = __webpack_require__(109);
-var perform = __webpack_require__(135);
-var iterate = __webpack_require__(134);
+var perform = __webpack_require__(137);
+var iterate = __webpack_require__(136);
 
 var PROMISE_ANY_ERROR = 'No one promise resolved';
 
@@ -73983,21 +75975,21 @@ $({ target: 'Promise', stat: true }, {
 
 
 /***/ }),
-/* 557 */
+/* 560 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(558);
+__webpack_require__(561);
 var path = __webpack_require__(114);
 
 module.exports = path.Object.values;
 
 
 /***/ }),
-/* 558 */
+/* 561 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $ = __webpack_require__(1);
-var $values = __webpack_require__(559).values;
+var $values = __webpack_require__(562).values;
 
 // `Object.values` method
 // https://tc39.github.io/ecma262/#sec-object.values
@@ -74009,7 +76001,7 @@ $({ target: 'Object', stat: true }, {
 
 
 /***/ }),
-/* 559 */
+/* 562 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var DESCRIPTORS = __webpack_require__(11);
@@ -74047,7 +76039,7 @@ module.exports = {
 
 
 /***/ }),
-/* 560 */
+/* 563 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74084,7 +76076,7 @@ module.exports = function () {
 
   return g;
 }();
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(26)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(24)))
 
 /***/ })
 /******/ ]);
