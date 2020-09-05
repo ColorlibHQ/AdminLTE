@@ -62,6 +62,17 @@ _**Important Note**: To install it via npm/Yarn, you need at least Node.js 10 or
 Visit the [online documentation](https://adminlte.io/docs/3.0/) for the most
 updated guide. Information will be added on a weekly basis.
 
+## Tutorials
+Here you can find a video tutorials for setup AdminLTE in to Laravel. 
+
+AdminLTE 3
+
+[<img src="https://img.youtube.com/vi/jA7hr2gE9yc/0.jpg" width="300">](https://youtu.be/jA7hr2gE9yc)
+
+AdminLTE 2
+
+[<img src="https://img.youtube.com/vi/8Fa7Ji4lDyI/0.jpg" width="300">](https://youtu.be/8Fa7Ji4lDyI)
+
 ## Browser Support
 
 - IE 10+
