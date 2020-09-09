@@ -158,25 +158,26 @@ class SidebarSearch {
     path = path.join(` ${this.options.arrowSign} `)
 
     if (this.options.highlightName || this.options.highlightPath) {
-      const searchValue = $(SELECTOR_SEARCH_INPUT).val().toLowerCase()
-      const regExp = new RegExp(searchValue, 'gi')
+      const searchValue = $(SELECTOR_SEARCH_INPUT).val()
+      if(searchValue && searchValue != ""){
+        const regExp = new RegExp(searchValue.toLowerCase(), 'gi')
+        if (this.options.highlightName) {
+          name = name.replace(
+            regExp,
+            str => {
+              return `<b class="${this.options.highlightClass}">${str}</b>`
+            }
+          )
+        }
 
-      if (this.options.highlightName) {
-        name = name.replace(
-          regExp,
-          str => {
-            return `<b class="${this.options.highlightClass}">${str}</b>`
-          }
-        )
-      }
-
-      if (this.options.highlightPath) {
-        path = path.replace(
-          regExp,
-          str => {
-            return `<b class="${this.options.highlightClass}">${str}</b>`
-          }
-        )
+        if (this.options.highlightPath) {
+          path = path.replace(
+            regExp,
+            str => {
+              return `<b class="${this.options.highlightClass}">${str}</b>`
+            }
+          )
+        } 
       }
     }
 
