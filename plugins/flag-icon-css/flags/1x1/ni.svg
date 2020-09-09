@@ -1,10 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icon-css-ni" viewBox="0 0 512 512">
   <defs>
+    <linearGradient id="f" x1="498.7" x2="500.6" y1="289.1" y2="283.4" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#510000"/>
+      <stop offset=".3" stop-color="#8a0000"/>
+      <stop offset="1" stop-color="#a00"/>
+    </linearGradient>
     <linearGradient id="g" x1="501.4" x2="502.9" y1="291.4" y2="287.4" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#ff2a2a"/>
       <stop offset="1" stop-color="red"/>
     </linearGradient>
-    <linearGradient id="r" x1="444.5" x2="634.4" y1="317.5" y2="317.5" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="b" x1="484.8" x2="484.8" y1="311.7" y2="317.6" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#F5F549"/>
       <stop offset="1" stop-color="#97C924"/>
@@ -19,11 +23,7 @@
     <linearGradient id="o" x1="444.5" x2="634.4" y1="317.5" y2="317.5" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="p" x1="444.5" x2="634.4" y1="317.5" y2="317.5" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="q" x1="444.5" x2="634.4" y1="317.5" y2="317.5" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
-    <linearGradient id="f" x1="498.7" x2="500.6" y1="289.1" y2="283.4" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#510000"/>
-      <stop offset=".3" stop-color="#8a0000"/>
-      <stop offset="1" stop-color="#a00"/>
-    </linearGradient>
+    <linearGradient id="r" x1="444.5" x2="634.4" y1="317.5" y2="317.5" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="u" x1="484.8" x2="484.8" y1="311.7" y2="317.6" gradientUnits="userSpaceOnUse" xlink:href="#b"/>
     <linearGradient id="x" x1="98.9" x2="125" y1="1440.2" y2="1440.2" gradientTransform="scale(4.45715 .22436)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
     <linearGradient id="j" x1="444.5" x2="634.4" y1="317.5" y2="317.5" gradientUnits="userSpaceOnUse" xlink:href="#a"/>

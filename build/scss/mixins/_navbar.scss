@@ -3,7 +3,7 @@
 //
 
 // Navbar Variant
-@mixin navbar-variant($color, $font-color: rgba(255, 255, 255, 0.8), $hover-color: #f6f6f6, $hover-bg: rgba(0, 0, 0, 0.1)) {
+@mixin navbar-variant($color, $font-color: rgba(255, 255, 255, .8), $hover-color: #f6f6f6, $hover-bg: rgba(0, 0, 0, .1)) {
   background-color: $color;
 
   .nav > li > a {
@@ -17,7 +17,7 @@
   .nav .open > a:hover,
   .nav .open > a:focus,
   .nav > .active > a {
-    background: $hover-bg;
+    background-color: $hover-bg;
     color: $hover-color;
   }
 
@@ -27,7 +27,7 @@
 
     &:hover,
     &:focus {
-      background: $hover-bg;
+      background-color: $hover-bg;
       color: $hover-color;
     }
   }

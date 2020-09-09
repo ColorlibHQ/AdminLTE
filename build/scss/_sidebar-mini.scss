@@ -33,7 +33,7 @@
 .brand-link {
   &.logo-switch {
     &::before {
-      content: '\00a0';
+      content: "\00a0";
     }
   }
 }
@@ -41,7 +41,7 @@
 // Add sidebar-mini class to the body tag to activate this feature
 .sidebar-mini {
   @include media-breakpoint-up(lg) {
-    @include sidebar-mini-breakpoint;
+    @include sidebar-mini-breakpoint ();
   }
 }
 @include media-breakpoint-down(md) {
@@ -52,12 +52,32 @@
 
 .sidebar-mini-md {
   @include media-breakpoint-up(md) {
-    @include sidebar-mini-breakpoint;
+    @include sidebar-mini-breakpoint ();
   }
 }
 @include media-breakpoint-down(sm) {
   .sidebar-mini-md.sidebar-collapse .main-sidebar {
     box-shadow: none !important;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
   }
 }
 
@@ -86,12 +106,16 @@
     }
 
     .logo-xs {
-      opacity: 1;
+      animation-name: fadeIn;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
       visibility: visible;
     }
 
     .logo-xl {
-      opacity: 0;
+      animation-name: fadeOut;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
       visibility: hidden;
     }
 
@@ -103,37 +127,15 @@
     .user-panel > .info,
     .nav-sidebar .nav-link p {
       margin-left: -10px;
-      opacity: 0;
+      animation-name: fadeOut;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
       visibility: hidden;
       width: 0;
     }
 
     .nav-sidebar > .nav-item .nav-icon {
       margin-right: 0;
-    }
-
-    .nav-flat {
-      .nav-icon {
-        margin-left: .5rem;
-      }
-
-      .nav-treeview {
-        .nav-icon {
-          margin-left: .3rem;
-        }
-      }
-    }
-
-    .nav-flat.nav-compact {
-      .nav-icon {
-        margin-left: 1.05rem;
-      }
-
-      .nav-treeview {
-        .nav-icon {
-          margin-left: .85rem;
-        }
-      }
     }
   }
 }
@@ -168,5 +170,5 @@
 .main-sidebar .logo-xs,
 .main-sidebar .logo-xl,
 .sidebar .user-panel .info {
-  @include transition(margin-left $transition-speed linear, opacity $transition-speed ease, visibility $transition-speed ease)
+  @include transition(margin-left $transition-speed linear, opacity $transition-speed ease, visibility $transition-speed ease);
 }

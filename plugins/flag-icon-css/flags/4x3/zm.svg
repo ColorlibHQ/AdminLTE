@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-zm" viewBox="0 0 640 480">
   <defs>
-    <clipPath id="a">
+    <clipPath id="zm-a">
       <path fill-opacity=".7" d="M-170.7 0H512v512h-682.7z"/>
     </clipPath>
   </defs>
-  <g fill-rule="evenodd" clip-path="url(#a)" transform="translate(160) scale(.9375)">
+  <g fill-rule="evenodd" clip-path="url(#zm-a)" transform="translate(160) scale(.9375)">
     <path fill="#198a00" d="M-256 0h768v512h-768z"/>
     <path fill="#ef7d00" d="M421.9 184H512v328h-90.1z"/>
     <path d="M331.9 183.8h90v328h-90z"/>

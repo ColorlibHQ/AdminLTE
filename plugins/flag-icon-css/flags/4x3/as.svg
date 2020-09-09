@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-as" viewBox="0 0 640 480">
   <defs>
-    <clipPath id="a">
+    <clipPath id="as-a">
       <path fill-opacity=".7" d="M0 0h640v480H0z"/>
     </clipPath>
   </defs>
-  <g clip-path="url(#a)">
+  <g clip-path="url(#as-a)">
     <path fill="#006" d="M-374-16H650v512H-374z"/>
     <path fill="#bd1021" fill-rule="evenodd" d="M-374 240L650 496V-16L-374 240z"/>
     <path fill="#fff" fill-rule="evenodd" d="M650 11.4v457.2L-264.3 240 650 11.4z"/>

@@ -16,8 +16,8 @@
   }
 
   > .small-box-footer {
-    background: rgba($black, 0.1);
-    color: rgba($white, 0.8);
+    background-color: rgba($black, .1);
+    color: rgba($white, .8);
     display: block;
     padding: 3px 0;
     position: relative;
@@ -26,15 +26,15 @@
     z-index: 10;
 
     &:hover {
-      background: rgba($black, 0.15);
+      background-color: rgba($black, .15);
       color: $white;
     }
   }
 
   h3 {
     @include font-size(2.2rem);
-    font-weight: bold;
-    margin: 0 0 10px 0;
+    font-weight: 700;
+    margin: 0 0 10px;
     padding: 0;
     white-space: nowrap;
   }
@@ -81,7 +81,7 @@
     > small {
       color: $gray-100;
       display: block;
-      font-size: 0.9rem;
+      font-size: .9rem;
       margin-top: 5px;
     }
   }
@@ -93,7 +93,7 @@
 
   // the icon
   .icon {
-    color: rgba($black, 0.15);
+    color: rgba($black, .15);
     z-index: 0;
 
     > i {
@@ -101,19 +101,27 @@
       position: absolute;
       right: 15px;
       top: 15px;
-      transition: all $transition-speed linear;
+      transition: transform $transition-speed linear;
 
       &.fa,
       &.fas,
       &.far,
       &.fab,
-      &.glyphicon,
+      &.fal,
+      &.fad,
       &.ion {
         font-size: 70px;
         top: 20px;
       }
     }
 
+    svg {
+      font-size: 70px;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      transition: transform $transition-speed linear;
+    }
   }
 
   // Small box hover state
@@ -121,16 +129,21 @@
     text-decoration: none;
 
     // Animate icons on small box hover
-    .icon > i {
-      font-size: 95px;
-
-      &.fa,
-      &.fas,
-      &.far,
-      &.fab,
-      &.glyphicon,
-      &.ion {
-        font-size: 75px;
+    .icon {
+      > i {
+        &,
+        &.fa,
+        &.fas,
+        &.far,
+        &.fab,
+        &.fal,
+        &.fad,
+        &.ion {
+          transform: scale(1.1);
+        }
+      }
+      > svg {
+        transform: scale(1.1);
       }
     }
   }

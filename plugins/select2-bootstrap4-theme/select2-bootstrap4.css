@@ -1,8 +1,8 @@
 .select2-container--bootstrap4 .select2-selection--single {
-  height: calc(2.25rem + 2px) !important; }
+  height: calc(1.5em + 0.75rem + 2px) !important; }
   .select2-container--bootstrap4 .select2-selection--single .select2-selection__placeholder {
     color: #757575;
-    line-height: 2.25rem; }
+    line-height: calc(1.5em + 0.75rem); }
   .select2-container--bootstrap4 .select2-selection--single .select2-selection__arrow {
     position: absolute;
     top: 50%;
@@ -20,7 +20,7 @@
       margin-top: -2px;
       position: absolute; }
   .select2-container--bootstrap4 .select2-selection--single .select2-selection__rendered {
-    line-height: 2.25rem; }
+    line-height: calc(1.5em + 0.75rem); }
 
 .select2-search--dropdown .select2-search__field {
   border: 1px solid #ced4da;
@@ -30,14 +30,16 @@
   color: #6c757d; }
 
 .select2-container--bootstrap4 .select2-selection--multiple {
-  min-height: calc(2.25rem + 2px) !important; }
+  min-height: calc(1.5em + 0.75rem + 2px) !important; }
   .select2-container--bootstrap4 .select2-selection--multiple .select2-selection__rendered {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     list-style: none;
     margin: 0;
-    padding: 0 5px;
+    padding: 0 8px;
     width: 100%; }
+    .select2-container--bootstrap4 .select2-selection--multiple .select2-selection__rendered .select2-search__field {
+      width: 100% !important; }
   .select2-container--bootstrap4 .select2-selection--multiple .select2-selection__choice {
     color: #343a40;
     border: 1px solid #bdc6d0;
@@ -58,6 +60,12 @@
     float: left; }
     .select2-container--bootstrap4 .select2-selection--multiple .select2-selection__choice__remove:hover {
       color: #343a40; }
+  .select2-container--bootstrap4 .select2-selection--multiple .select2-selection__clear {
+    float: none;
+    margin-right: 0;
+    position: absolute !important;
+    top: 0;
+    right: 0.7em; }
 
 .select2-container {
   display: block; }
@@ -86,7 +94,7 @@
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   width: 100%; }
-  @media screen and (prefers-reduced-motion: reduce) {
+  @media (prefers-reduced-motion: reduce) {
     .select2-container--bootstrap4 .select2-selection {
       -webkit-transition: none;
       transition: none; } }
@@ -121,9 +129,11 @@ form.was-validated select:valid ~ .select2-container--bootstrap4 .select2-select
 
 .select2-container--bootstrap4 .select2-dropdown {
   border-color: #ced4da;
-  border-top: none;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0; }
+  border-radius: 0; }
+  .select2-container--bootstrap4 .select2-dropdown.select2-dropdown--below {
+    border-top: none;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem; }
   .select2-container--bootstrap4 .select2-dropdown.select2-dropdown--above {
     border-top: 1px solid #ced4da;
     border-top-left-radius: 0.25rem;
@@ -138,6 +148,8 @@ form.was-validated select:valid ~ .select2-container--bootstrap4 .select2-select
 
 .select2-container--bootstrap4 .select2-results__option[role=group] {
   padding: 0; }
+  .select2-container--bootstrap4 .select2-results__option[role=group] .select2-results__options--nested .select2-results__option {
+    padding-left: 1em; }
 
 .select2-container--bootstrap4 .select2-results > .select2-results__options {
   max-height: 15em;
@@ -149,15 +161,15 @@ form.was-validated select:valid ~ .select2-container--bootstrap4 .select2-select
   color: #6c757d; }
 
 .select2-container--bootstrap4 .select2-selection__clear {
-  width: 1.2em;
-  height: 1.2em;
-  line-height: 1.15em;
-  padding-left: 0.3em;
-  margin-top: 0.5em;
+  width: 0.9em;
+  height: 0.9em;
+  line-height: 0.75em;
+  padding-left: 0.15em;
+  margin-top: 0.7em;
   border-radius: 100%;
-  background-color: #6c757d;
+  background-color: #c8c8c8;
   color: #f8f9fa;
   float: right;
   margin-right: 0.3em; }
   .select2-container--bootstrap4 .select2-selection__clear:hover {
-    background-color: #343a40; }
+    background-color: #afafaf; }

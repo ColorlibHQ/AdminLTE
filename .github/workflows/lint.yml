@@ -1,0 +1,41 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - "**"
+
+env:
+  CI: true
+  NODE: 12.x
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "${{ env.NODE }}"
+
+      - name: Set up npm cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-v${{ env.node }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}}
+          restore-keys: |
+            ${{ runner.OS }}-node-v${{ env.node }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}
+            ${{ runner.OS }}-node-v${{ env.node }}-
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Run lint
+        run: npm run lint

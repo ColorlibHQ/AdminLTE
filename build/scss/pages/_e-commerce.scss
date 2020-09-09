@@ -4,7 +4,7 @@
 
 // product image
 .product-image {
-  @include img-fluid;
+  @include img-fluid ();
   width: 100%;
 }
 
@@ -28,12 +28,12 @@
   padding: $thumbnail-padding * 2;
 
   img {
-    @include img-fluid;
+    @include img-fluid ();
     align-self: center;
   }
 
   &:hover {
-    opacity: 0.5;
+    opacity: .5;
   }
 }
 

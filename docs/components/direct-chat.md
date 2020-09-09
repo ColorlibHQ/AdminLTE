@@ -29,7 +29,7 @@ The direct chat widget extends the card component to create a beautiful chat int
               <span class="direct-chat-name float-left">Alexander Pierce</span>
               <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user1-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user1-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               Is this template really for free? That's unbelievable!
             </div>
@@ -39,7 +39,7 @@ The direct chat widget extends the card component to create a beautiful chat int
               <span class="direct-chat-name float-right">Sarah Bullock</span>
               <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user3-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user3-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               You better believe it!
             </div>
@@ -49,7 +49,7 @@ The direct chat widget extends the card component to create a beautiful chat int
               <span class="direct-chat-name float-left">Alexander Pierce</span>
               <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user1-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user1-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               Working with AdminLTE on a great new app! Wanna join?
             </div>
@@ -59,7 +59,7 @@ The direct chat widget extends the card component to create a beautiful chat int
               <span class="direct-chat-name float-right">Sarah Bullock</span>
               <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user3-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user3-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               I would love to.
             </div>
@@ -70,7 +70,7 @@ The direct chat widget extends the card component to create a beautiful chat int
           <ul class="contacts-list">
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user1-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user1-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Count Dracula
@@ -82,7 +82,7 @@ The direct chat widget extends the card component to create a beautiful chat int
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user7-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user7-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Sarah Doe
@@ -94,7 +94,7 @@ The direct chat widget extends the card component to create a beautiful chat int
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user3-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user3-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Nadia Jolie
@@ -106,7 +106,7 @@ The direct chat widget extends the card component to create a beautiful chat int
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user5-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user5-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Nora S. Vans
@@ -118,7 +118,7 @@ The direct chat widget extends the card component to create a beautiful chat int
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user6-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user6-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     John K.
@@ -130,7 +130,7 @@ The direct chat widget extends the card component to create a beautiful chat int
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user8-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user8-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Kenneth M.
@@ -178,7 +178,7 @@ The direct chat widget extends the card component to create a beautiful chat int
               <span class="direct-chat-name float-left">Alexander Pierce</span>
               <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user1-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user1-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               Is this template really for free? That's unbelievable!
             </div>
@@ -188,7 +188,7 @@ The direct chat widget extends the card component to create a beautiful chat int
               <span class="direct-chat-name float-right">Sarah Bullock</span>
               <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user3-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user3-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               You better believe it!
             </div>
@@ -198,7 +198,7 @@ The direct chat widget extends the card component to create a beautiful chat int
               <span class="direct-chat-name float-left">Alexander Pierce</span>
               <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user1-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user1-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               Working with AdminLTE on a great new app! Wanna join?
             </div>
@@ -208,7 +208,7 @@ The direct chat widget extends the card component to create a beautiful chat int
               <span class="direct-chat-name float-right">Sarah Bullock</span>
               <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user3-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user3-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               I would love to.
             </div>
@@ -219,7 +219,7 @@ The direct chat widget extends the card component to create a beautiful chat int
           <ul class="contacts-list">
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user1-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user1-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Count Dracula
@@ -231,7 +231,7 @@ The direct chat widget extends the card component to create a beautiful chat int
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user7-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user7-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Sarah Doe
@@ -243,7 +243,7 @@ The direct chat widget extends the card component to create a beautiful chat int
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user3-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user3-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Nadia Jolie
@@ -255,7 +255,7 @@ The direct chat widget extends the card component to create a beautiful chat int
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user5-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user5-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Nora S. Vans
@@ -267,7 +267,7 @@ The direct chat widget extends the card component to create a beautiful chat int
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user6-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user6-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     John K.
@@ -279,7 +279,7 @@ The direct chat widget extends the card component to create a beautiful chat int
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user8-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user8-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Kenneth M.
@@ -336,7 +336,7 @@ The direct chat widget extends the card component to create a beautiful chat int
           <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
         </div>
         <!-- /.direct-chat-infos -->
-        <img class="direct-chat-img" src="{{'assets/img/user1-128x128.jpg' | relative_url}}" alt="message user image">
+        <img class="direct-chat-img" src="{{ '/assets/img/user1-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
         <!-- /.direct-chat-img -->
         <div class="direct-chat-text">
           Is this template really for free? That's unbelievable!
@@ -351,7 +351,7 @@ The direct chat widget extends the card component to create a beautiful chat int
           <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
         </div>
         <!-- /.direct-chat-infos -->
-        <img class="direct-chat-img" src="{{'assets/img/user3-128x128.jpg' | relative_url}}" alt="message user image">
+        <img class="direct-chat-img" src="{{ '/assets/img/user3-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
         <!-- /.direct-chat-img -->
         <div class="direct-chat-text">
           You better believe it!
@@ -366,7 +366,7 @@ The direct chat widget extends the card component to create a beautiful chat int
           <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
         </div>
         <!-- /.direct-chat-infos -->
-        <img class="direct-chat-img" src="{{'assets/img/user1-128x128.jpg' | relative_url}}" alt="message user image">
+        <img class="direct-chat-img" src="{{ '/assets/img/user1-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
         <!-- /.direct-chat-img -->
         <div class="direct-chat-text">
           Working with AdminLTE on a great new app! Wanna join?
@@ -381,7 +381,7 @@ The direct chat widget extends the card component to create a beautiful chat int
           <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
         </div>
         <!-- /.direct-chat-infos -->
-        <img class="direct-chat-img" src="{{'assets/img/user3-128x128.jpg' | relative_url}}" alt="message user image">
+        <img class="direct-chat-img" src="{{ '/assets/img/user3-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
         <!-- /.direct-chat-img -->
         <div class="direct-chat-text">
           I would love to.
@@ -396,7 +396,7 @@ The direct chat widget extends the card component to create a beautiful chat int
       <ul class="contacts-list">
         <li>
           <a href="#">
-            <img class="contacts-list-img" src="{{'assets/img/user1-128x128.jpg' | relative_url}}">
+            <img class="contacts-list-img" src="{{ '/assets/img/user1-128x128.jpg' | prepend: site.baseurl }}">
             <div class="contacts-list-info">
               <span class="contacts-list-name">
                 Count Dracula
@@ -410,7 +410,7 @@ The direct chat widget extends the card component to create a beautiful chat int
         <!-- End Contact Item -->
         <li>
           <a href="#">
-            <img class="contacts-list-img" src="{{'assets/img/user7-128x128.jpg' | relative_url}}">
+            <img class="contacts-list-img" src="{{ '/assets/img/user7-128x128.jpg' | prepend: site.baseurl }}">
             <div class="contacts-list-info">
               <span class="contacts-list-name">
                 Sarah Doe
@@ -424,7 +424,7 @@ The direct chat widget extends the card component to create a beautiful chat int
         <!-- End Contact Item -->
         <li>
           <a href="#">
-            <img class="contacts-list-img" src="{{'assets/img/user3-128x128.jpg' | relative_url}}">
+            <img class="contacts-list-img" src="{{ '/assets/img/user3-128x128.jpg' | prepend: site.baseurl }}">
             <div class="contacts-list-info">
               <span class="contacts-list-name">
                 Nadia Jolie
@@ -438,7 +438,7 @@ The direct chat widget extends the card component to create a beautiful chat int
         <!-- End Contact Item -->
         <li>
           <a href="#">
-            <img class="contacts-list-img" src="{{'assets/img/user5-128x128.jpg' | relative_url}}">
+            <img class="contacts-list-img" src="{{ '/assets/img/user5-128x128.jpg' | prepend: site.baseurl }}">
             <div class="contacts-list-info">
               <span class="contacts-list-name">
                 Nora S. Vans
@@ -452,7 +452,7 @@ The direct chat widget extends the card component to create a beautiful chat int
         <!-- End Contact Item -->
         <li>
           <a href="#">
-            <img class="contacts-list-img" src="{{'assets/img/user6-128x128.jpg' | relative_url}}">
+            <img class="contacts-list-img" src="{{ '/assets/img/user6-128x128.jpg' | prepend: site.baseurl }}">
             <div class="contacts-list-info">
               <span class="contacts-list-name">
                 John K.
@@ -466,7 +466,7 @@ The direct chat widget extends the card component to create a beautiful chat int
         <!-- End Contact Item -->
         <li>
           <a href="#">
-            <img class="contacts-list-img" src="{{'assets/img/user8-128x128.jpg' | relative_url}}">
+            <img class="contacts-list-img" src="{{ '/assets/img/user8-128x128.jpg' | prepend: site.baseurl }}">
             <div class="contacts-list-info">
               <span class="contacts-list-name">
                 Kenneth M.
@@ -529,7 +529,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
               <span class="direct-chat-name float-left">Alexander Pierce</span>
               <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user1-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user1-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               Is this template really for free? That's unbelievable!
             </div>
@@ -539,7 +539,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
               <span class="direct-chat-name float-right">Sarah Bullock</span>
               <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user3-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user3-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               You better believe it!
             </div>
@@ -549,7 +549,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
               <span class="direct-chat-name float-left">Alexander Pierce</span>
               <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user1-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user1-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               Working with AdminLTE on a great new app! Wanna join?
             </div>
@@ -559,7 +559,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
               <span class="direct-chat-name float-right">Sarah Bullock</span>
               <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user3-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user3-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               I would love to.
             </div>
@@ -570,7 +570,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
           <ul class="contacts-list">
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user1-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user1-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Count Dracula
@@ -582,7 +582,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user7-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user7-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Sarah Doe
@@ -594,7 +594,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user3-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user3-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Nadia Jolie
@@ -606,7 +606,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user5-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user5-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Nora S. Vans
@@ -618,7 +618,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user6-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user6-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     John K.
@@ -630,7 +630,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user8-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user8-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Kenneth M.
@@ -678,7 +678,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
               <span class="direct-chat-name float-left">Alexander Pierce</span>
               <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user1-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user1-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               Is this template really for free? That's unbelievable!
             </div>
@@ -688,7 +688,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
               <span class="direct-chat-name float-right">Sarah Bullock</span>
               <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user3-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user3-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               You better believe it!
             </div>
@@ -698,7 +698,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
               <span class="direct-chat-name float-left">Alexander Pierce</span>
               <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user1-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user1-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               Working with AdminLTE on a great new app! Wanna join?
             </div>
@@ -708,7 +708,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
               <span class="direct-chat-name float-right">Sarah Bullock</span>
               <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
             </div>
-            <img class="direct-chat-img" src="{{'assets/img/user3-128x128.jpg' | relative_url}}" alt="message user image">
+            <img class="direct-chat-img" src="{{ '/assets/img/user3-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
             <div class="direct-chat-text">
               I would love to.
             </div>
@@ -719,7 +719,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
           <ul class="contacts-list">
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user1-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user1-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Count Dracula
@@ -731,7 +731,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user7-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user7-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Sarah Doe
@@ -743,7 +743,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user3-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user3-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Nadia Jolie
@@ -755,7 +755,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user5-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user5-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Nora S. Vans
@@ -767,7 +767,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user6-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user6-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     John K.
@@ -779,7 +779,7 @@ Of course you can use direct chat with a outline card by adding the class `.card
             </li>
             <li>
               <a href="#">
-                <img class="contacts-list-img" src="{{'assets/img/user8-128x128.jpg' | relative_url}}">
+                <img class="contacts-list-img" src="{{ '/assets/img/user8-128x128.jpg' | prepend: site.baseurl }}" alt="message user image">
                 <div class="contacts-list-info">
                   <span class="contacts-list-name">
                     Kenneth M.

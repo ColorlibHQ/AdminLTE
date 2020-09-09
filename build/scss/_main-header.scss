@@ -1,7 +1,7 @@
 //
 // Component: Main Header
 //
- 
+
 .main-header {
   border-bottom: $main-header-bottom-border;
   z-index: $zindex-main-header;
@@ -21,7 +21,9 @@
       > .fas,
       > .far,
       > .fab,
-      > .glyphicon,
+      > .fal,
+      > .fad,
+      > .svg-inline--fa,
       > .ion {
         font-size: $font-size-sm;
       }
@@ -34,7 +36,7 @@
       margin: 0;
     }
 
-    &[class*='-right'] {
+    &[class*="-right"] {
       .dropdown-menu {
         left: auto;
         margin-top: -3px;

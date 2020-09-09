@@ -26,7 +26,7 @@
 @each $color, $value in $theme-colors {
   .alert-#{$color} {
     color: color-yiq($value);
-    background: $value;
+    background-color: $value;
     border-color: darken($value, 5%);
   }
 

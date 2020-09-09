@@ -1,38 +1,71 @@
-// System / Log files 
+# System / Log files
 *.DS_Store
 *.log
 
-// Archives
+# Archives
 *.zip
 
-// Sass Cache
+# Sass Cache
 .sass-cache
 
-// Project files
+# Project files
 .idea
 nbproject
 nbproject/private
 .vscode/
 .vs/
 
-// Node / Bower
+# Node / Bower
 node_modules/
 bower_components/
 
-// Plugins
-/plugins/*/*.md
-/plugins/*/*.html
-/plugins/*/package.json
+# Plugins
+/plugins/**/*.html
+/plugins/**/*.less
+/plugins/**/*.md
+/plugins/**/*.scss
+/plugins/**/*.ts
+/plugins/**/bower.json
+/plugins/**/package.json
+/plugins/**/webpack.config.js
+/plugins/**/demo/
+/plugins/**/demos/
+/plugins/**/dev/
+/plugins/**/example/
+/plugins/**/examples/
+/plugins/**/less/
+/plugins/**/test/
+/plugins/**/tests/
+/plugins/daterangepicker/website/
+/plugins/daterangepicker/drp.png
+/plugins/daterangepicker/moment.min.js
+/plugins/daterangepicker/package.js
+/plugins/daterangepicker/website.css
+/plugins/daterangepicker/website.js
+/plugins/jquery-ui/AUTHORS.txt
+/plugins/jquery-ui/external/jquery/jquery.js
+/plugins/inputmask/bindings/
+/plugins/flot/plugins/jquery*.js
+!/plugins/flot/plugins/jquery.flot.*.js
+!/plugins/**/LICENSE.md
+!/plugins/**/LICENSE.txt
+!/plugins/**/license.md
+!/plugins/**/license.txt
+!/plugins/**/LICENSE
+!/plugins/**/license
+!/plugins/**/COPYING
 
 
-// Docs
-Gemfile.lock
-docs/_site
-docs_html/
+# Docs
+/docs/_site/
+/docs/vendor/
+/docs/.bundle/
+/docs_html/
 .jekyll-cache/
 .jekyll-metadata
 
-// ETC
+# ETC
 TODO
 test.html
 ad.js
+/.cache/

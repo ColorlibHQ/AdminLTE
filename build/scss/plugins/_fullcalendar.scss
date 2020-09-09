@@ -54,9 +54,30 @@
   border-right: 0;
 }
 
-.fc-toolbar {
+.fc-toolbar,
+.fc-toolbar.fc-header-toolbar {
   margin: 0;
   padding: 1rem;
+}
+
+@include media-breakpoint-down(xs) {
+  .fc-toolbar {
+    flex-direction: column;
+
+    .fc-left {
+      order: 1;
+      margin-bottom: .5rem;
+    }
+
+    .fc-center {
+      order: 0;
+      margin-bottom: .375rem;
+    }
+
+    .fc-right {
+      order: 2;
+    }
+  }
 }
 
 .fc-day-number {
@@ -80,7 +101,9 @@
     .fas,
     .far,
     .fab,
-    .glyphicon,
+    .fal,
+    .fad,
+    .svg-inline--fa,
     .ion {
       transition: transform linear .3s;
 
@@ -100,7 +123,7 @@
 
   border-radius: $border-radius;
   cursor: move;
-  font-weight: bold;
+  font-weight: 700;
   margin-bottom: 4px;
   padding: 5px 10px;
 

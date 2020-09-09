@@ -22,7 +22,7 @@
         weekLabel: "Εβδ",
         allDayText: "Ολοήμερο",
         eventLimitText: "περισσότερα",
-        noEventsMessage: "Δεν υπάρχουν γεγονότα για να εμφανιστεί"
+        noEventsMessage: "Δεν υπάρχουν γεγονότα προς εμφάνιση"
     };
 
     return el;

@@ -1,1 +1,6 @@
-!/docs_html/
+/docs/
+/docs_html/
+/plugins/*
+!/plugins/flot-old/
+/.github/
+/.lgtm.yml

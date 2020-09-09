@@ -1,7 +1,7 @@
 //
 // Component: Direct Chat
 //
- 
+
 .direct-chat {
   .card-body {
     overflow-x: hidden;
@@ -42,7 +42,7 @@
 }
 
 .direct-chat-msg {
-  @include clearfix;
+  @include clearfix ();
   margin-bottom: 10px;
 }
 
@@ -56,7 +56,7 @@
     @include border-radius($border-radius-lg);
   }
 
-  background: $direct-chat-default-msg-bg;
+  background-color: $direct-chat-default-msg-bg;
   border: 1px solid $direct-chat-default-msg-border-color;
   color: $direct-chat-default-font-color;
   margin: 5px 0 0 50px;
@@ -68,7 +68,7 @@
   &::before {
     border: solid transparent;
     border-right-color: $direct-chat-default-msg-border-color;
-    content: ' ';
+    content: " ";
     height: 0;
     pointer-events: none;
     position: absolute;
@@ -135,7 +135,7 @@
 
 .direct-chat-contacts {
   @include translate(101%, 0);
-  background: $dark;
+  background-color: $dark;
   bottom: 0;
   color: $white;
   height: 250px;
@@ -146,7 +146,7 @@
 }
 
 .direct-chat-contacts-light {
-  background: $light;
+  background-color: $light;
 
   .contacts-list-name {
     color: $gray-700;
@@ -163,11 +163,11 @@
 
 //Contacts list -- for displaying contacts in direct chat contacts pane
 .contacts-list {
-  @include list-unstyled;
+  @include list-unstyled ();
 
   > li {
-    @include clearfix;
-    border-bottom: 1px solid rgba($black, 0.2);
+    @include clearfix ();
+    border-bottom: 1px solid rgba($black, .2);
     margin: 0;
     padding: 10px;
 
@@ -203,7 +203,7 @@
 
 .contacts-list-date {
   color: $gray-400;
-  font-weight: normal;
+  font-weight: 400;
 }
 
 .contacts-list-msg {

@@ -175,7 +175,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 	);
 
 	if ( activeEl !== undefined ) {
-		$(host).find( '[data-dt-idx='+activeEl+']' ).focus();
+		$(host).find( '[data-dt-idx='+activeEl+']' ).trigger('focus');
 	}
 };
 

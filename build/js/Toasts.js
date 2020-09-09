@@ -5,225 +5,205 @@
  * --------------------------------------------
  */
 
-const Toasts = (($) => {
-  /**
-   * Constants
-   * ====================================================
-   */
+import $ from 'jquery'
 
-  const NAME               = 'Toasts'
-  const DATA_KEY           = 'lte.toasts'
-  const EVENT_KEY          = `.${DATA_KEY}`
-  const JQUERY_NO_CONFLICT = $.fn[NAME]
+/**
+ * Constants
+ * ====================================================
+ */
 
-  const Event = {
-    INIT: `init${EVENT_KEY}`,
-    CREATED: `created${EVENT_KEY}`,
-    REMOVED: `removed${EVENT_KEY}`,
+const NAME = 'Toasts'
+const DATA_KEY = 'lte.toasts'
+const EVENT_KEY = `.${DATA_KEY}`
+const JQUERY_NO_CONFLICT = $.fn[NAME]
+
+const EVENT_INIT = `init${EVENT_KEY}`
+const EVENT_CREATED = `created${EVENT_KEY}`
+const EVENT_REMOVED = `removed${EVENT_KEY}`
+
+const SELECTOR_CONTAINER_TOP_RIGHT = '#toastsContainerTopRight'
+const SELECTOR_CONTAINER_TOP_LEFT = '#toastsContainerTopLeft'
+const SELECTOR_CONTAINER_BOTTOM_RIGHT = '#toastsContainerBottomRight'
+const SELECTOR_CONTAINER_BOTTOM_LEFT = '#toastsContainerBottomLeft'
+
+const CLASS_NAME_TOP_RIGHT = 'toasts-top-right'
+const CLASS_NAME_TOP_LEFT = 'toasts-top-left'
+const CLASS_NAME_BOTTOM_RIGHT = 'toasts-bottom-right'
+const CLASS_NAME_BOTTOM_LEFT = 'toasts-bottom-left'
+
+const POSITION_TOP_RIGHT = 'topRight'
+const POSITION_TOP_LEFT = 'topLeft'
+const POSITION_BOTTOM_RIGHT = 'bottomRight'
+const POSITION_BOTTOM_LEFT = 'bottomLeft'
+
+const Default = {
+  position: POSITION_TOP_RIGHT,
+  fixed: true,
+  autohide: false,
+  autoremove: true,
+  delay: 1000,
+  fade: true,
+  icon: null,
+  image: null,
+  imageAlt: null,
+  imageHeight: '25px',
+  title: null,
+  subtitle: null,
+  close: true,
+  body: null,
+  class: null
+}
+
+/**
+ * Class Definition
+ * ====================================================
+ */
+class Toasts {
+  constructor(element, config) {
+    this._config = config
+    this._prepareContainer()
+
+    $('body').trigger($.Event(EVENT_INIT))
   }
 
-  const Selector = {
-    BODY: 'toast-body',
-    CONTAINER_TOP_RIGHT: '#toastsContainerTopRight',
-    CONTAINER_TOP_LEFT: '#toastsContainerTopLeft',
-    CONTAINER_BOTTOM_RIGHT: '#toastsContainerBottomRight',
-    CONTAINER_BOTTOM_LEFT: '#toastsContainerBottomLeft',
-  }
+  // Public
 
-  const ClassName = {
-    TOP_RIGHT: 'toasts-top-right',
-    TOP_LEFT: 'toasts-top-left',
-    BOTTOM_RIGHT: 'toasts-bottom-right',
-    BOTTOM_LEFT: 'toasts-bottom-left',
-    FADE: 'fade',
-  }
+  create() {
+    const toast = $('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true"/>')
 
-  const Position = {
-    TOP_RIGHT: 'topRight',
-    TOP_LEFT: 'topLeft',
-    BOTTOM_RIGHT: 'bottomRight',
-    BOTTOM_LEFT: 'bottomLeft',
-  }
+    toast.data('autohide', this._config.autohide)
+    toast.data('animation', this._config.fade)
 
-  const Id = {
-    CONTAINER_TOP_RIGHT: 'toastsContainerTopRight',
-    CONTAINER_TOP_LEFT: 'toastsContainerTopLeft',
-    CONTAINER_BOTTOM_RIGHT: 'toastsContainerBottomRight',
-    CONTAINER_BOTTOM_LEFT: 'toastsContainerBottomLeft',
-  }
-
-  const Default = {
-    position: Position.TOP_RIGHT,
-    fixed: true,
-    autohide: false,
-    autoremove: true,
-    delay: 1000,
-    fade: true,
-    icon: null,
-    image: null,
-    imageAlt: null,
-    imageHeight: '25px',
-    title: null,
-    subtitle: null,
-    close: true,
-    body: null,
-    class: null,
-  }
-
-  /**
-   * Class Definition
-   * ====================================================
-   */
-  class Toasts {
-    constructor(element, config) {
-      this._config  = config
-
-      this._prepareContainer();
-
-      const initEvent = $.Event(Event.INIT)
-      $('body').trigger(initEvent)
+    if (this._config.class) {
+      toast.addClass(this._config.class)
     }
 
-    // Public
-
-    create() {
-      var toast = $('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true"/>')
-
-      toast.data('autohide', this._config.autohide)
-      toast.data('animation', this._config.fade)
-      
-      if (this._config.class) {
-        toast.addClass(this._config.class)
-      }
-
-      if (this._config.delay && this._config.delay != 500) {
-        toast.data('delay', this._config.delay)
-      }
-
-      var toast_header = $('<div class="toast-header">')
-
-      if (this._config.image != null) {
-        var toast_image = $('<img />').addClass('rounded mr-2').attr('src', this._config.image).attr('alt', this._config.imageAlt)
-        
-        if (this._config.imageHeight != null) {
-          toast_image.height(this._config.imageHeight).width('auto')
-        }
-
-        toast_header.append(toast_image)
-      }
-
-      if (this._config.icon != null) {
-        toast_header.append($('<i />').addClass('mr-2').addClass(this._config.icon))
-      }
-
-      if (this._config.title != null) {
-        toast_header.append($('<strong />').addClass('mr-auto').html(this._config.title))
-      }
-
-      if (this._config.subtitle != null) {
-        toast_header.append($('<small />').html(this._config.subtitle))
-      }
-
-      if (this._config.close == true) {
-        var toast_close = $('<button data-dismiss="toast" />').attr('type', 'button').addClass('ml-2 mb-1 close').attr('aria-label', 'Close').append('<span aria-hidden="true">&times;</span>')
-        
-        if (this._config.title == null) {
-          toast_close.toggleClass('ml-2 ml-auto')
-        }
-        
-        toast_header.append(toast_close)
-      }
-
-      toast.append(toast_header)
-
-      if (this._config.body != null) {
-        toast.append($('<div class="toast-body" />').html(this._config.body))
-      }
-
-      $(this._getContainerId()).prepend(toast)
-
-      const createdEvent = $.Event(Event.CREATED)
-      $('body').trigger(createdEvent)
-
-      toast.toast('show')
-
-
-      if (this._config.autoremove) {
-        toast.on('hidden.bs.toast', function () {
-          $(this).delay(200).remove();
-
-          const removedEvent = $.Event(Event.REMOVED)
-          $('body').trigger(removedEvent)
-        })
-      }
-
-
+    if (this._config.delay && this._config.delay != 500) {
+      toast.data('delay', this._config.delay)
     }
 
-    // Static
+    const toastHeader = $('<div class="toast-header">')
 
-    _getContainerId() {
-      if (this._config.position == Position.TOP_RIGHT) {
-        return Selector.CONTAINER_TOP_RIGHT;
-      } else if (this._config.position == Position.TOP_LEFT) {
-        return Selector.CONTAINER_TOP_LEFT;
-      } else if (this._config.position == Position.BOTTOM_RIGHT) {
-        return Selector.CONTAINER_BOTTOM_RIGHT;
-      } else if (this._config.position == Position.BOTTOM_LEFT) {
-        return Selector.CONTAINER_BOTTOM_LEFT;
+    if (this._config.image != null) {
+      const toastImage = $('<img />').addClass('rounded mr-2').attr('src', this._config.image).attr('alt', this._config.imageAlt)
+
+      if (this._config.imageHeight != null) {
+        toastImage.height(this._config.imageHeight).width('auto')
       }
+
+      toastHeader.append(toastImage)
     }
 
-    _prepareContainer() {
-      if ($(this._getContainerId()).length === 0) {
-        var container = $('<div />').attr('id', this._getContainerId().replace('#', ''))
-        if (this._config.position == Position.TOP_RIGHT) {
-          container.addClass(ClassName.TOP_RIGHT)
-        } else if (this._config.position == Position.TOP_LEFT) {
-          container.addClass(ClassName.TOP_LEFT)
-        } else if (this._config.position == Position.BOTTOM_RIGHT) {
-          container.addClass(ClassName.BOTTOM_RIGHT)
-        } else if (this._config.position == Position.BOTTOM_LEFT) {
-          container.addClass(ClassName.BOTTOM_LEFT)
-        }
-
-        $('body').append(container)
-      }
-
-      if (this._config.fixed) {
-        $(this._getContainerId()).addClass('fixed')
-      } else {
-        $(this._getContainerId()).removeClass('fixed')
-      }
+    if (this._config.icon != null) {
+      toastHeader.append($('<i />').addClass('mr-2').addClass(this._config.icon))
     }
 
-    // Static
+    if (this._config.title != null) {
+      toastHeader.append($('<strong />').addClass('mr-auto').html(this._config.title))
+    }
 
-    static _jQueryInterface(option, config) {
-      return this.each(function () {
-        const _options = $.extend({}, Default, config)
-        var toast = new Toasts($(this), _options)
+    if (this._config.subtitle != null) {
+      toastHeader.append($('<small />').html(this._config.subtitle))
+    }
 
-        if (option === 'create') {
-          toast[option]()
-        }
+    if (this._config.close == true) {
+      const toastClose = $('<button data-dismiss="toast" />').attr('type', 'button').addClass('ml-2 mb-1 close').attr('aria-label', 'Close').append('<span aria-hidden="true">&times;</span>')
+
+      if (this._config.title == null) {
+        toastClose.toggleClass('ml-2 ml-auto')
+      }
+
+      toastHeader.append(toastClose)
+    }
+
+    toast.append(toastHeader)
+
+    if (this._config.body != null) {
+      toast.append($('<div class="toast-body" />').html(this._config.body))
+    }
+
+    $(this._getContainerId()).prepend(toast)
+
+    const $body = $('body')
+
+    $body.trigger($.Event(EVENT_CREATED))
+    toast.toast('show')
+
+    if (this._config.autoremove) {
+      toast.on('hidden.bs.toast', function () {
+        $(this).delay(200).remove()
+        $body.trigger($.Event(EVENT_REMOVED))
       })
     }
   }
 
-  /**
-   * jQuery API
-   * ====================================================
-   */
+  // Static
 
-  $.fn[NAME] = Toasts._jQueryInterface
-  $.fn[NAME].Constructor = Toasts
-  $.fn[NAME].noConflict  = function () {
-    $.fn[NAME] = JQUERY_NO_CONFLICT
-    return Toasts._jQueryInterface
+  _getContainerId() {
+    if (this._config.position == POSITION_TOP_RIGHT) {
+      return SELECTOR_CONTAINER_TOP_RIGHT
+    }
+
+    if (this._config.position == POSITION_TOP_LEFT) {
+      return SELECTOR_CONTAINER_TOP_LEFT
+    }
+
+    if (this._config.position == POSITION_BOTTOM_RIGHT) {
+      return SELECTOR_CONTAINER_BOTTOM_RIGHT
+    }
+
+    if (this._config.position == POSITION_BOTTOM_LEFT) {
+      return SELECTOR_CONTAINER_BOTTOM_LEFT
+    }
   }
 
-  return Toasts
-})(jQuery)
+  _prepareContainer() {
+    if ($(this._getContainerId()).length === 0) {
+      const container = $('<div />').attr('id', this._getContainerId().replace('#', ''))
+      if (this._config.position == POSITION_TOP_RIGHT) {
+        container.addClass(CLASS_NAME_TOP_RIGHT)
+      } else if (this._config.position == POSITION_TOP_LEFT) {
+        container.addClass(CLASS_NAME_TOP_LEFT)
+      } else if (this._config.position == POSITION_BOTTOM_RIGHT) {
+        container.addClass(CLASS_NAME_BOTTOM_RIGHT)
+      } else if (this._config.position == POSITION_BOTTOM_LEFT) {
+        container.addClass(CLASS_NAME_BOTTOM_LEFT)
+      }
+
+      $('body').append(container)
+    }
+
+    if (this._config.fixed) {
+      $(this._getContainerId()).addClass('fixed')
+    } else {
+      $(this._getContainerId()).removeClass('fixed')
+    }
+  }
+
+  // Static
+
+  static _jQueryInterface(option, config) {
+    return this.each(function () {
+      const _options = $.extend({}, Default, config)
+      const toast = new Toasts($(this), _options)
+
+      if (option === 'create') {
+        toast[option]()
+      }
+    })
+  }
+}
+
+/**
+ * jQuery API
+ * ====================================================
+ */
+
+$.fn[NAME] = Toasts._jQueryInterface
+$.fn[NAME].Constructor = Toasts
+$.fn[NAME].noConflict = function () {
+  $.fn[NAME] = JQUERY_NO_CONFLICT
+  return Toasts._jQueryInterface
+}
 
 export default Toasts

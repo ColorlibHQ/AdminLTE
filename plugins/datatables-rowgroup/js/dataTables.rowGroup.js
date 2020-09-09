@@ -1,15 +1,15 @@
-/*! RowGroup 1.1.1
- * ©2017-2019 SpryMedia Ltd - datatables.net/license
+/*! RowGroup 1.1.2
+ * ©2017-2020 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     RowGroup
  * @description RowGrouping for DataTables
- * @version     1.1.1
+ * @version     1.1.2
  * @file        dataTables.rowGroup.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     datatables.net
- * @copyright   Copyright 2017-2019 SpryMedia Ltd.
+ * @copyright   Copyright 2017-2020 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -135,6 +135,15 @@ $.extend( RowGroup.prototype, {
 		return this;
 	},
 
+	/**
+	 * Get enabled flag
+	 * @returns boolean
+	 */
+	enabled: function ()
+	{
+		return this.c.enable;
+	},
+
 
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 * Constructor
@@ -143,9 +152,10 @@ $.extend( RowGroup.prototype, {
 	{
 		var that = this;
 		var dt = this.s.dt;
+		var hostSettings = dt.settings()[0];
 
-		dt.on( 'draw.dtrg', function () {
-			if ( that.c.enable ) {
+		dt.on( 'draw.dtrg', function (e, s) {
+			if ( that.c.enable && hostSettings === s ) {
 				that._draw();
 			}
 		} );
@@ -157,10 +167,6 @@ $.extend( RowGroup.prototype, {
 		dt.on( 'destroy', function () {
 			dt.off( '.dtrg' );
 		} );
-
-		dt.on('responsive-resize.dt', function () {
-			that._adjustColspan();
-		})
 	},
 
 
@@ -174,7 +180,7 @@ $.extend( RowGroup.prototype, {
 	 */
 	_adjustColspan: function ()
 	{
-		$( 'tr.'+this.c.className, this.s.dt.table().body() ).find('td')
+		$( 'tr.'+this.c.className, this.s.dt.table().body() ).find('td:visible')
 			.attr( 'colspan', this._colspan() );
 	},
 
@@ -407,7 +413,7 @@ RowGroup.defaults = {
 };
 
 
-RowGroup.version = "1.1.1";
+RowGroup.version = "1.1.2";
 
 
 $.fn.dataTable.RowGroup = RowGroup;
@@ -432,6 +438,14 @@ DataTable.Api.register( 'rowGroup().enable()', function ( opts ) {
 			ctx.rowGroup.enable( opts === undefined ? true : opts );
 		}
 	} );
+} );
+
+DataTable.Api.register( 'rowGroup().enabled()', function () {
+	var ctx = this.context;
+
+	return ctx.length && ctx[0].rowGroup ?
+		ctx[0].rowGroup.enabled() :
+		false;
 } );
 
 DataTable.Api.register( 'rowGroup().dataSrc()', function ( val ) {

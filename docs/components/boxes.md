@@ -5,7 +5,6 @@ title: Boxes Components
 
 There are two types of boxes, info boxes & small boxes. Both boxes are used to display statistical snippets. 
 
-
 ##### Info Box
 {: .text-bold .text-dark .mt-4}
 
@@ -71,6 +70,11 @@ There are two types of boxes, info boxes & small boxes. Both boxes are used to d
 ```
 {: .col-md-4 .col-sm-6 .col-12}
 </div>
+
+> ##### Note!
+> To wrap the text in to a new line add to the info-box-text the class text-wrap.
+> To truncate the text with ... add to the info-box-content the class text-truncate. (Here you should add a tooltip to display the whole pharse)
+{: .quote-danger}
 
 ##### Info Box with Progress Bar
 {: .text-bold .text-dark .mt-4}
@@ -246,6 +250,7 @@ There are two types of boxes, info boxes & small boxes. Both boxes are used to d
 
 ##### Loading Style
 {: .text-bold .text-dark .mt-5}
+
 To simulate a loading state, simply place this code before the `.info-box` / `.small-box` closing tag. 
 
 > ##### Tip!
@@ -310,6 +315,7 @@ To simulate a loading state, simply place this code before the `.info-box` / `.s
 
 
 You can also use a dark loading style with adding `.dark` to `.overlay` like this code.
+
 ```html
 <div class="overlay dark">
   <i class="fas fa-2x fa-sync-alt fa-spin"></i>

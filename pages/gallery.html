@@ -1,21 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Gallery</title>
-  <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Gallery</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
   <!-- Ekko Lightbox -->
   <link rel="stylesheet" href="../plugins/ekko-lightbox/ekko-lightbox.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -24,7 +21,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="../index3.html" class="nav-link">Home</a>
@@ -134,7 +131,12 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
       </li>
@@ -146,10 +148,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../index3.html" class="brand-link">
-      <img src="../dist/img/AdminLTELogo.png"
-           alt="AdminLTE Logo"
-           class="brand-image img-circle elevation-3"
-           style="opacity: .8">
+      <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
@@ -165,12 +164,24 @@
         </div>
       </div>
 
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -208,7 +219,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -243,6 +254,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="layout/fixed-sidebar-custom.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="layout/fixed-topnav.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Fixed Navbar</p>
@@ -262,7 +279,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
@@ -291,7 +308,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
@@ -350,7 +367,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
@@ -385,7 +402,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
@@ -432,7 +449,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
               <p>
@@ -461,7 +478,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
@@ -520,7 +537,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
@@ -605,7 +622,7 @@
           </li>
           <li class="nav-header">MISCELLANEOUS</li>
           <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.0" class="nav-link">
+            <a href="https://adminlte.io/docs/3.0/" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Documentation</p>
             </a>
@@ -617,7 +634,7 @@
               <p>Level 1</p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
               <p>
@@ -632,7 +649,7 @@
                   <p>Level 2</p>
                 </a>
               </li>
-              <li class="nav-item has-treeview">
+              <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
@@ -727,9 +744,7 @@
           <div class="col-12">
             <div class="card card-primary">
               <div class="card-header">
-                <div class="card-title">
-                  FilterizR Gallery with Ekko Lightbox
-                </div>
+                <h4 class="card-title">FilterizR Gallery with Ekko Lightbox</h4>
               </div>
               <div class="card-body">
                 <div>
@@ -825,9 +840,7 @@
           <div class="col-12">
             <div class="card card-primary">
               <div class="card-header">
-                <div class="card-title">
-                  Ekko Lightbox
-                </div>
+                <h4 class="card-title">Ekko Lightbox</h4>
               </div>
               <div class="card-body">
                 <div class="row">
@@ -904,10 +917,9 @@
 
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.3-pre
+      <b>Version</b> 3.1.0-pre
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
@@ -922,16 +934,14 @@
 <script src="../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- jQuery UI -->
-<script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Ekko Lightbox -->
 <script src="../plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
 <!-- Filterizr-->
 <script src="../plugins/filterizr/jquery.filterizr.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
   $(function () {

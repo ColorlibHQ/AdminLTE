@@ -8,13 +8,13 @@
   padding: 0;
 
   > .item {
-    @include clearfix;
+    @include clearfix ();
 
     @if $enable-rounded {
       @include border-radius($border-radius);
     }
 
-    background: $white;
+    background-color: $white;
     padding: 10px 0;
   }
 

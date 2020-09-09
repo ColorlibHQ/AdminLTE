@@ -4,12 +4,18 @@ title: Upgrade Guide
 ---
 
 #### Migration from v2.4.x
-The first step to migrate AdminLTE v2.4.x to v3.0 is upgrade the Bootstrap 3 base code to Bootstrap 4, the full instruction <a href="https://getbootstrap.com/docs/4.3/migration/">here</a> after you upgraded the base code you need to update the markups.
+
+The first step to migrate AdminLTE v2.4.x to v3.0 is upgrade the Bootstrap 3 base code to Bootstrap 4, the full instruction [here](https://getbootstrap.com/docs/4.4/migration/) after you upgraded the base code you need to update the markups.
+
+#### CSS / JS Files
+
+Since AdminLTE v3.0 Bootstrap 4 is complete included in AdminLTE's CSS file. You will not need to load the Bootstrap CSS file `bootstrap(.min).css`, but you will need the Bootstrap JS file `bootstrap(.min).js`.
 
 ##### Main Header
+
 The biggest change in Main Header is the Logo is moved to Main Sidebar and the Main Header has now color variations, here are all changes:
 
-1. Logo 
+1. Logo
   - `<a href="index2.html" class="logo">` moved & rebuild to `.brand-link` inside `.main-sidebar`
 2. Header / Nav
   - `<header class="main-header">` & `<nav class="navbar navbar-static-top">` merged with `<nav class="main-header navbar navbar-expand navbar-white navbar-light">`
@@ -19,6 +25,7 @@ The biggest change in Main Header is the Logo is moved to Main Sidebar and the M
   - `<div class="navbar-custom-menu">` & `<ul class="nav navbar-nav">` merged with `<ul class="navbar-nav ml-auto">`
 
 ##### Main Sidebar
+
 Like above the biggest change is the Main Sidebar contains now the Logo and the sidebar has now color variations, here all changes:
 
 1. Main Sidebar Color
@@ -58,7 +65,7 @@ Old sample entry
 ```
   </div>
   <div class="col-md-6" markdown="1">
-New sample entry 
+New sample entry
 ```html
 <li class="nav-item">
   <a href="pages/widgets.html" class="nav-link">
@@ -85,7 +92,9 @@ Old sample entry (with tree menu)
     </span>
   </a>
   <ul class="treeview-menu">
-    <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+    <li class="active"><a href="index.html">
+      <i class="fa fa-circle-o"></i> Dashboard v1</a>
+    </li>
   </ul>
 </li>
 ```
@@ -93,7 +102,7 @@ Old sample entry (with tree menu)
   <div class="col-md-6" markdown="1">
 New sample entry (with tree menu)
 ```html
-<li class="nav-item has-treeview">
+<li class="nav-item">
   <a href="#" class="nav-link">
     <i class="nav-icon fas fa-tachometer-alt"></i>
     <p>
@@ -115,7 +124,9 @@ New sample entry (with tree menu)
 </div>
 
 ##### Content Header
+
 The biggest change in content header is AdminLTE use here now `.container-fluid`, `.row` & `.col-*` and the breadcrumb markup changed, here are all changes:
+
 - `<section class="content-header">` replaced with `<div class="content-header">`
 - `<div class="container-fluid">` added in `<div class="content-header">`
 - `<h1>` & `<ol class="breadcrumb">` rebuild in `<div class="row">` & `<div class="col-sm-6">`
@@ -166,21 +177,27 @@ New Content Header Markup
 </div>
 
 ##### Content
+
 The content has no change, we only split `<section class="content container-fluid">` in two elements:
+
 - `<section class="content">`
 - `<div class="container-fluid">`
 
 ##### Footer
+
 The footer has only one little change for the right sided div.
 
 - `<div class="pull-right hidden-xs">` changed to `<div class="float-right d-none d-sm-inline">`
 
 ##### Miscellaneous
+
 Here are some other little css/html changes since v3.0:
+
 - `.label` renamed to `.badge`
 
-
 ##### JavaScript Plugins
+
 Here are some other little JavaScript changes since v3.0:
+
 - `data-toggle="*"` renamed to `data-widget="*"` instead of CardWidget items
   - for CardWidget it's now `data-card-widget="*"`
