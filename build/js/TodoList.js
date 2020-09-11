@@ -64,7 +64,7 @@ class TodoList {
   // Private
 
   _init() {
-    const $toggleSelector = $(SELECTOR_DATA_TOGGLE)
+    const $toggleSelector = this._element
 
     $toggleSelector.find('input:checkbox:checked').parents('li').toggleClass(CLASS_NAME_TODO_LIST_DONE)
     $toggleSelector.on('change', 'input:checkbox', event => {
@@ -77,15 +77,18 @@ class TodoList {
   static _jQueryInterface(config) {
     return this.each(function () {
       let data = $(this).data(DATA_KEY)
-      const _options = $.extend({}, Default, $(this).data())
 
       if (!data) {
-        data = new TodoList($(this), _options)
-        $(this).data(DATA_KEY, data)
+        data = $(this).data()
       }
 
+      const _options = $.extend({}, Default, typeof config === 'object' ? config : data)
+      const plugin = new TodoList($(this), _options)
+
+      $(this).data(DATA_KEY, typeof config === 'object' ? config : data)
+
       if (config === 'init') {
-        data[config]()
+        plugin[config]()
       }
     })
   }
