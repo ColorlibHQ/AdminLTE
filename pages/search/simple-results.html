@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Fixed Navbar Layout</title>
+  <title>AdminLTE 3 | Simple Search Results</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -12,8 +12,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-navbar-fixed">
-<!-- Site wrapper -->
+<body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -146,7 +145,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link elevation-4">
+    <a href="../../index3.html" class="brand-link">
       <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
@@ -218,8 +217,8 @@
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Layout Options
@@ -259,7 +258,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../layout/fixed-topnav.html" class="nav-link active">
+                <a href="../layout/fixed-topnav.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Fixed Navbar</p>
                 </a>
@@ -677,8 +676,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-search"></i>
               <p>
                 Search
@@ -687,7 +686,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../search/simple.html" class="nav-link">
+                <a href="../search/simple.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Simple Search</p>
                 </a>
@@ -803,58 +802,77 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Fixed Navbar Layout</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Layout</a></li>
-              <li class="breadcrumb-item active">Fixed Navbar Layout</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
+        <h2 class="text-center display-4">Search</h2>
+      </div>
     </section>
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <!-- Default box -->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Title</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                    <i class="fas fa-times"></i>
-                  </button>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <form action="simple-results.html">
+                        <div class="input-group input-group-lg">
+                            <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here" value="Lorem ipsum">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-lg btn-default">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-              </div>
-              <div class="card-body">
-                Start creating your amazing application!
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer">
-                Footer
-              </div>
-              <!-- /.card-footer-->
             </div>
-            <!-- /.card -->
-          </div>
+            <div class="row mt-3">
+                <div class="col-md-10 offset-md-1">
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="row">
+                                <div class="col px-4">
+                                    <div>
+                                        <div class="float-right">2020-04-20 04:04pm</div>
+                                        <h3>Lorem ipsum dolor sit amet</h3>
+                                        <p class="mb-0">consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <img class="img-fluid" src="../../dist/img/photo1.png" alt="Photo" style="max-height: 160px;">
+                                </div>
+                                <div class="col px-4">
+                                    <div>
+                                        <div class="float-right">2020-04-20 10:14pm</div>
+                                        <h3>Lorem ipsum dolor sit amet</h3>
+                                        <p class="mb-0">consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <iframe width="240" height="160" src="https://www.youtube.com/embed/WEkSYw3o5is?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" class="border-0" allowfullscreen></iframe>
+                                </div>
+                                <div class="col px-4">
+                                    <div>
+                                        <div class="float-right">2020-04-20 11:54pm</div>
+                                        <h3>Lorem ipsum dolor sit amet</h3>
+                                        <p class="mb-0">consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-
+  
+  <!-- Main footer -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.1.0-pre

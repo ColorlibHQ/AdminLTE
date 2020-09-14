@@ -12,6 +12,7 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
@@ -536,6 +537,18 @@
                   <p>Contacts</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="../examples/faq.html" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>FAQ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../examples/contact-us.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contact us</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -548,28 +561,74 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../examples/login.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Login</p>
+                  <p>
+                    Login & Register v1
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="../examples/login.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Login v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/register.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Register v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/forgot-password.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Forgot Password v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/recover-password.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Recover Password v1</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
-                <a href="../examples/register.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Register</p>
+                  <p>
+                    Login & Register v2
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="../examples/forgot-password.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Forgot Password</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../examples/recover-password.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Recover Password</p>
-                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="../examples/login-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Login v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/register-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Register v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/forgot-password-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Forgot Password v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/recover-password-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Recover Password v2</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a href="../examples/lockscreen.html" class="nav-link">
@@ -617,6 +676,29 @@
                 <a href="../../starter.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Starter Page</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Search
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../search/simple.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Simple Search</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../search/enhanced.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Enhanced</p>
                 </a>
               </li>
             </ul>
@@ -1651,11 +1733,19 @@
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables -->
+<!-- DataTables  & Plugins -->
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../../plugins/jszip/jszip.min.js"></script>
+<script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -1664,9 +1754,9 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-    });
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
