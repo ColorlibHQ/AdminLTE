@@ -1,0 +1,24 @@
+body.iframe-mode {
+  .main-sidebar {
+    display: none;
+  }
+  .content-wrapper {
+    margin-left: 0 !important;
+  }
+  .main-header,
+  .main-footer {
+    display: none;
+  }
+}
+
+.content-wrapper {
+  height: 100%;
+
+  &.iframe-mode {
+    iframe {
+      border: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
