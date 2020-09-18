@@ -14,7 +14,7 @@
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height="-48">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -807,14 +807,11 @@
         <li class="nav-item" role="presentation">
           <a class="nav-link bg-danger" href="#" class="iframe-close">Close</a>
         </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link active" id="index-tab" data-toggle="tab" href="#index" role="tab" aria-controls="index" aria-selected="true">Dashboard v1</a>
-        </li>
       </ul>
     </div>
     <div class="tab-content">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="index-tab">
-        <iframe src="index.html"></iframe>
+      <div class="tab-empty">
+        <h2 class="display-4">No tab selected!</h2>
       </div>
     </div>
   </div>
