@@ -19,6 +19,7 @@ const JQUERY_NO_CONFLICT = $.fn[NAME]
 const SELECTOR_DATA_TOGGLE = '[data-widget="iframe"]'
 const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
 const SELECTOR_CONTENT_IFRAME = `${SELECTOR_CONTENT_WRAPPER} iframe`
+const SELECTOR_TAB_NAV = `${SELECTOR_DATA_TOGGLE}.iframe-mode .nav`
 const SELECTOR_TAB_NAVBAR_NAV = `${SELECTOR_DATA_TOGGLE}.iframe-mode .navbar-nav`
 const SELECTOR_TAB_NAVBAR_NAV_ITEM = `${SELECTOR_TAB_NAVBAR_NAV} .nav-item`
 const SELECTOR_TAB_CONTENT = `${SELECTOR_DATA_TOGGLE}.iframe-mode .tab-content`
@@ -130,15 +131,13 @@ class IFrame {
 
   _fixHeight(tabEmpty = false) {
     const contentWrapperHeight = parseFloat($(SELECTOR_CONTENT_WRAPPER).css('min-height'))
-    const panelOffset = $('body').data('panel-auto-height')
+    const navbarHeight = $(SELECTOR_TAB_NAV).outerHeight()
     if (tabEmpty == true) {
       setTimeout(() => {
-        // eslint-disable-next-line no-console
-        console.log(parseFloat(contentWrapperHeight + (panelOffset < 0 ? Math.abs(panelOffset) : panelOffset)))
-        $(SELECTOR_TAB_EMPTY).height(contentWrapperHeight)
+        $(SELECTOR_TAB_EMPTY).height(contentWrapperHeight - navbarHeight)
       }, 50)
     } else {
-      $(SELECTOR_CONTENT_IFRAME).height(contentWrapperHeight)
+      $(SELECTOR_CONTENT_IFRAME).height(contentWrapperHeight - navbarHeight)
     }
   }
 
