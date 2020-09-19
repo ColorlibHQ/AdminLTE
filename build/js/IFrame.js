@@ -21,8 +21,6 @@ const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
 const SELECTOR_CONTENT_IFRAME = `${SELECTOR_CONTENT_WRAPPER} iframe`
 const SELECTOR_TAB_NAVBAR_NAV = `${SELECTOR_DATA_TOGGLE}.iframe-mode .navbar-nav`
 const SELECTOR_TAB_NAVBAR_NAV_ITEM = `${SELECTOR_TAB_NAVBAR_NAV} .nav-item`
-const SELECTOR_NAV_LINK = '.nav-link[role="tab"]'
-const SELECTOR_TAB_NAVBAR_NAV_LINK = `${SELECTOR_TAB_NAVBAR_NAV} ${SELECTOR_NAV_LINK}`
 const SELECTOR_TAB_CONTENT = `${SELECTOR_DATA_TOGGLE}.iframe-mode .tab-content`
 const SELECTOR_TAB_EMPTY = `${SELECTOR_TAB_CONTENT} .tab-empty`
 const SELECTOR_SIDEBAR_MENU_ITEM = '.main-sidebar .nav-item > a.nav-link'
@@ -34,7 +32,9 @@ const Default = {
   },
   changed(item) {
     return item
-  }
+  },
+  autoIframeMode: true,
+  autoShowNewTab: true
 }
 
 /**
@@ -60,33 +60,53 @@ class IFrame {
     this._config.changed.call(item)
   }
 
-  createTab(title, link) {
-    const tabId = `panel-${link.replace('.html', '').replace('./', '').replace('/', '-')}-${Math.floor(Math.random() * 1000)}`
-    const navId = `tab-${link.replace('.html', '').replace('./', '').replace('/', '-')}-${Math.floor(Math.random() * 1000)}`
+  createTab(title, link, autoOpen) {
+    const tabId = `panel-${link.replace('.html', '').replace('./', '').replaceAll('/', '-')}-${Math.floor(Math.random() * 1000)}`
+    const navId = `tab-${link.replace('.html', '').replace('./', '').replaceAll('/', '-')}-${Math.floor(Math.random() * 1000)}`
 
     const newNavItem = `<li class="nav-item" role="presentation"><a class="nav-link" data-toggle="row" id="${navId}" href="#${tabId}" role="tab" aria-controls="${tabId}" aria-selected="false">${title}</a></li>`
     $(SELECTOR_TAB_NAVBAR_NAV).append(newNavItem)
 
     const newTabItem = `<div class="tab-pane fade" id="${tabId}" role="tabpanel" aria-labelledby="${navId}"><iframe src="${link}"></iframe></div>`
     $(SELECTOR_TAB_CONTENT).append(newTabItem)
+
+    if (autoOpen) {
+      this.switchTab(`#${navId}`)
+    }
   }
 
   openTabSidebar(item) {
-    const title = $(item).find('p').text()
-    const link = $(item).attr('href')
-    $(`${SELECTOR_TAB_NAVBAR_NAV} .nav-link[role="tab"]`).tab('dispose')
+    let $item = $(item).clone()
 
-    this.createTab(title, link)
+    if ($item.attr('href') === undefined) {
+      $item = $(item).parent('a').clone()
+    }
 
-    // eslint-disable-next-line no-console
-    console.log($(SELECTOR_TAB_NAVBAR_NAV))
-    $(`${SELECTOR_TAB_NAVBAR_NAV} ${SELECTOR_NAV_LINK}`).tab()
+    const title = $item.find('p').text()
+    const link = $item.attr('href')
+
+    if (link === '#' || link === '' || link === undefined) {
+      return
+    }
+
+    this.createTab(title, link, this._config.autoShowNewTab)
+  }
+
+  switchTab(item) {
+    $(SELECTOR_TAB_EMPTY).hide()
+    $(SELECTOR_TAB_NAVBAR_NAV).find('.active').tab('dispose')
+    $(SELECTOR_TAB_NAVBAR_NAV).find('.active').removeClass('active')
+    this._fixHeight()
+    $(item).tab('show')
+    $(item).parents('li').addClass('active')
   }
 
   // Private
 
   _init() {
-    if ($(SELECTOR_CONTENT_WRAPPER).hasClass(CLASS_NAME_IFRAME_MODE)) {
+    if (window.frameElement && this._config.autoIframeMode) {
+      $('body').addClass(CLASS_NAME_IFRAME_MODE)
+    } else if ($(SELECTOR_CONTENT_WRAPPER).hasClass(CLASS_NAME_IFRAME_MODE)) {
       this._setupListeners()
       this._fixHeight(true)
     }
@@ -100,18 +120,11 @@ class IFrame {
     })
     $(document).on('click', SELECTOR_SIDEBAR_MENU_ITEM, e => {
       e.preventDefault()
-      // eslint-disable-next-line no-console
-      console.log($(e.target))
       this.openTabSidebar(e.target)
     })
     $(document).on('click', SELECTOR_TAB_NAVBAR_NAV_ITEM, e => {
       e.preventDefault()
-      $(SELECTOR_TAB_EMPTY).hide()
-      $(`${SELECTOR_TAB_NAVBAR_NAV} .active`).removeClass('active')
-      $(SELECTOR_TAB_NAVBAR_NAV_LINK).tab('dispose')
-      this._fixHeight()
-      $(e.target).tab('show')
-      $(e.target).parents('li').addClass('active')
+      this.switchTab(e.target)
     })
   }
 
@@ -152,13 +165,7 @@ class IFrame {
  */
 
 $(window).on('load', () => {
-  const gfg = window.frameElement
-
-  if (gfg) {
-    document.body.classList.add(CLASS_NAME_IFRAME_MODE)
-  } else {
-    IFrame._jQueryInterface.call($(SELECTOR_DATA_TOGGLE))
-  }
+  IFrame._jQueryInterface.call($(SELECTOR_DATA_TOGGLE))
 })
 
 /**
