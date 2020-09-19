@@ -17,11 +17,30 @@ body.iframe-mode {
   height: 100%;
 
   &.iframe-mode {
+    .tab-content {
+      position: relative;
+    }
     .tab-empty {
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+    .tab-loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: none;
+      background-color: $main-bg;
+
+      > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
     }
 
     iframe {

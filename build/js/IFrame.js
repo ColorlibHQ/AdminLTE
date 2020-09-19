@@ -24,6 +24,7 @@ const SELECTOR_TAB_NAVBAR_NAV = `${SELECTOR_DATA_TOGGLE}.iframe-mode .navbar-nav
 const SELECTOR_TAB_NAVBAR_NAV_ITEM = `${SELECTOR_TAB_NAVBAR_NAV} .nav-item`
 const SELECTOR_TAB_CONTENT = `${SELECTOR_DATA_TOGGLE}.iframe-mode .tab-content`
 const SELECTOR_TAB_EMPTY = `${SELECTOR_TAB_CONTENT} .tab-empty`
+const SELECTOR_TAB_LOADING = `${SELECTOR_TAB_CONTENT} .tab-loading`
 const SELECTOR_SIDEBAR_MENU_ITEM = '.main-sidebar .nav-item > a.nav-link'
 const CLASS_NAME_IFRAME_MODE = 'iframe-mode'
 
@@ -35,7 +36,8 @@ const Default = {
     return item
   },
   autoIframeMode: true,
-  autoShowNewTab: true
+  autoShowNewTab: true,
+  loadingScreen: true
 }
 
 /**
@@ -72,7 +74,7 @@ class IFrame {
     $(SELECTOR_TAB_CONTENT).append(newTabItem)
 
     if (autoOpen) {
-      this.switchTab(`#${navId}`)
+      this.switchTab(`#${navId}`, this._config.loadingScreen)
     }
   }
 
@@ -93,13 +95,29 @@ class IFrame {
     this.createTab(title, link, this._config.autoShowNewTab)
   }
 
-  switchTab(item) {
+  switchTab(item, loadingScreen = null) {
     $(SELECTOR_TAB_EMPTY).hide()
-    $(SELECTOR_TAB_NAVBAR_NAV).find('.active').tab('dispose')
-    $(SELECTOR_TAB_NAVBAR_NAV).find('.active').removeClass('active')
+    $(`${SELECTOR_TAB_NAVBAR_NAV} .active`).tab('dispose').removeClass('active')
     this._fixHeight()
-    $(item).tab('show')
-    $(item).parents('li').addClass('active')
+    const $item = $(item)
+
+    if (loadingScreen) {
+      const $loadingScreen = $(SELECTOR_TAB_LOADING)
+      $loadingScreen.fadeIn()
+      const tabId = $item.attr('href')
+      $(`${tabId} iframe`).ready(() => {
+        if (typeof loadingScreen === 'number') {
+          setTimeout(() => {
+            $loadingScreen.fadeOut()
+          }, loadingScreen)
+        } else {
+          $loadingScreen.fadeOut()
+        }
+      })
+    }
+
+    $item.tab('show')
+    $item.parents('li').addClass('active')
   }
 
   // Private
@@ -134,7 +152,7 @@ class IFrame {
     const navbarHeight = $(SELECTOR_TAB_NAV).outerHeight()
     if (tabEmpty == true) {
       setTimeout(() => {
-        $(SELECTOR_TAB_EMPTY).height(contentWrapperHeight - navbarHeight)
+        $(`${SELECTOR_TAB_EMPTY}, ${SELECTOR_TAB_LOADING}`).height(contentWrapperHeight - navbarHeight)
       }, 50)
     } else {
       $(SELECTOR_CONTENT_IFRAME).height(contentWrapperHeight - navbarHeight)
