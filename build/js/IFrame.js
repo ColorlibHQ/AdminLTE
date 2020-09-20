@@ -17,6 +17,7 @@ const DATA_KEY = 'lte.iframe'
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
 const SELECTOR_DATA_TOGGLE = '[data-widget="iframe"]'
+const SELECTOR_DATA_TOGGLE_CLOSE = '[data-widget="iframe-close"]'
 const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
 const SELECTOR_CONTENT_IFRAME = `${SELECTOR_CONTENT_WRAPPER} iframe`
 const SELECTOR_TAB_NAV = `${SELECTOR_DATA_TOGGLE}.iframe-mode .nav`
@@ -97,6 +98,7 @@ class IFrame {
       $item = $(item).parent('a').clone()
     }
 
+    $item.find('.right').remove()
     let title = $item.find('p').text()
     if (title === '') {
       title = $item.text()
@@ -160,6 +162,15 @@ class IFrame {
     })
   }
 
+  removeActiveTab() {
+    $(`${SELECTOR_TAB_NAVBAR_NAV_ITEM}.active`).parent().remove()
+    $('.tab-pane.active').remove()
+
+    if ($(SELECTOR_TAB_CONTENT).children().length == $(`${SELECTOR_TAB_EMPTY}, ${SELECTOR_TAB_LOADING}`).length) {
+      $(SELECTOR_TAB_EMPTY).show()
+    }
+  }
+
   // Private
 
   _init() {
@@ -186,6 +197,10 @@ class IFrame {
       e.preventDefault()
       this.tabClick(e.target)
       this.switchTab(e.target)
+    })
+    $(document).on('click', SELECTOR_DATA_TOGGLE_CLOSE, e => {
+      e.preventDefault()
+      this.removeActiveTab()
     })
   }
 
