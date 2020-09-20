@@ -26,7 +26,8 @@ const SELECTOR_TAB_CONTENT = `${SELECTOR_DATA_TOGGLE}.iframe-mode .tab-content`
 const SELECTOR_TAB_EMPTY = `${SELECTOR_TAB_CONTENT} .tab-empty`
 const SELECTOR_TAB_LOADING = `${SELECTOR_TAB_CONTENT} .tab-loading`
 const SELECTOR_SIDEBAR_MENU_ITEM = '.main-sidebar .nav-item > a.nav-link'
-const SELECTOR_HEADER_MENU_ITEM = '.main-header .dropdown-item, .main-header .nav-item'
+const SELECTOR_HEADER_MENU_ITEM = '.main-header .nav-item a.nav-link'
+const SELECTOR_HEADER_DROPDOWN_ITEM = '.main-header a.dropdown-item'
 const CLASS_NAME_IFRAME_MODE = 'iframe-mode'
 
 const Default = {
@@ -40,6 +41,7 @@ const Default = {
     return item
   },
   autoIframeMode: true,
+  autoItemActive: true,
   autoShowNewTab: true,
   loadingScreen: true,
   useNavbarItems: true
@@ -113,11 +115,11 @@ class IFrame {
     $(`${SELECTOR_TAB_NAVBAR_NAV} .active`).tab('dispose').removeClass('active')
     this._fixHeight()
     const $item = $(item)
+    const tabId = $item.attr('href')
 
     if (loadingScreen) {
       const $loadingScreen = $(SELECTOR_TAB_LOADING)
       $loadingScreen.fadeIn()
-      const tabId = $item.attr('href')
       $(`${tabId} iframe`).ready(() => {
         if (typeof loadingScreen === 'number') {
           setTimeout(() => {
@@ -132,6 +134,30 @@ class IFrame {
     $item.tab('show')
     $item.parents('li').addClass('active')
     this.tabChanged($item)
+
+    if (this._config.autoItemActive) {
+      this.setItemActive($(`${tabId} iframe`).attr('src'))
+    }
+  }
+
+  setItemActive(href) {
+    $(`${SELECTOR_SIDEBAR_MENU_ITEM}, ${SELECTOR_HEADER_DROPDOWN_ITEM}`).removeClass('active')
+    $(SELECTOR_HEADER_MENU_ITEM).parent().removeClass('active')
+
+    const $headerMenuItem = $(`${SELECTOR_HEADER_MENU_ITEM}[href$="${href}"]`)
+    const $headerDropdownItem = $(`${SELECTOR_HEADER_DROPDOWN_ITEM}[href$="${href}"]`)
+    const $sidebarMenuItem = $(`${SELECTOR_SIDEBAR_MENU_ITEM}[href$="${href}"]`)
+
+    $headerMenuItem.each((i, e) => {
+      $(e).parent().addClass('active')
+    })
+    $headerDropdownItem.each((i, e) => {
+      $(e).addClass('active')
+    })
+    $sidebarMenuItem.each((i, e) => {
+      $(e).addClass('active')
+      $(e).parents('.nav-treeview').prevAll('.nav-link').addClass('active')
+    })
   }
 
   // Private
@@ -151,11 +177,7 @@ class IFrame {
         this._fixHeight()
       }, 1)
     })
-    $(document).on('click', SELECTOR_SIDEBAR_MENU_ITEM, e => {
-      e.preventDefault()
-      this.openTabSidebar(e.target)
-    })
-    $(document).on('click', SELECTOR_HEADER_MENU_ITEM, e => {
+    $(document).on('click', `${SELECTOR_SIDEBAR_MENU_ITEM}, ${SELECTOR_HEADER_MENU_ITEM}, ${SELECTOR_HEADER_DROPDOWN_ITEM}`, e => {
       e.preventDefault()
       this.tabClick(e.target)
       this.openTabSidebar(e.target)
