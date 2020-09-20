@@ -17,6 +17,14 @@ body.iframe-mode {
   height: 100%;
 
   &.iframe-mode {
+    .navbar-nav {
+      overflow-y: auto;
+      width: 100%;
+
+      .nav-link {
+        white-space: nowrap;
+      }
+    }
     .tab-content {
       position: relative;
     }
