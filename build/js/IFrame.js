@@ -26,6 +26,7 @@ const SELECTOR_TAB_CONTENT = `${SELECTOR_DATA_TOGGLE}.iframe-mode .tab-content`
 const SELECTOR_TAB_EMPTY = `${SELECTOR_TAB_CONTENT} .tab-empty`
 const SELECTOR_TAB_LOADING = `${SELECTOR_TAB_CONTENT} .tab-loading`
 const SELECTOR_SIDEBAR_MENU_ITEM = '.main-sidebar .nav-item > a.nav-link'
+const SELECTOR_HEADER_MENU_ITEM = '.main-header .dropdown-item, .main-header .nav-item'
 const CLASS_NAME_IFRAME_MODE = 'iframe-mode'
 
 const Default = {
@@ -37,7 +38,8 @@ const Default = {
   },
   autoIframeMode: true,
   autoShowNewTab: true,
-  loadingScreen: true
+  loadingScreen: true,
+  useNavbarItems: true
 }
 
 /**
@@ -80,14 +82,16 @@ class IFrame {
 
   openTabSidebar(item) {
     let $item = $(item).clone()
-
     if ($item.attr('href') === undefined) {
       $item = $(item).parent('a').clone()
     }
 
-    const title = $item.find('p').text()
-    const link = $item.attr('href')
+    let title = $item.find('p').text()
+    if (title === '') {
+      title = $item.text()
+    }
 
+    const link = $item.attr('href')
     if (link === '#' || link === '' || link === undefined) {
       return
     }
@@ -138,6 +142,10 @@ class IFrame {
       }, 1)
     })
     $(document).on('click', SELECTOR_SIDEBAR_MENU_ITEM, e => {
+      e.preventDefault()
+      this.openTabSidebar(e.target)
+    })
+    $(document).on('click', SELECTOR_HEADER_MENU_ITEM, e => {
       e.preventDefault()
       this.openTabSidebar(e.target)
     })
