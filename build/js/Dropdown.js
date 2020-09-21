@@ -22,6 +22,7 @@ const SELECTOR_DROPDOWN_MENU_ACTIVE = '.dropdown-menu.show'
 const SELECTOR_DROPDOWN_TOGGLE = '[data-toggle="dropdown"]'
 
 const CLASS_NAME_DROPDOWN_RIGHT = 'dropdown-menu-right'
+const CLASS_NAME_DROPDOWN_SUBMENU = 'dropdown-submenu'
 
 // TODO: this is unused; should be removed along with the extend?
 const Default = {
@@ -121,6 +122,10 @@ $(`${SELECTOR_DROPDOWN_MENU} ${SELECTOR_DROPDOWN_TOGGLE}`).on('click', function 
 
 $(`${SELECTOR_NAVBAR} ${SELECTOR_DROPDOWN_TOGGLE}`).on('click', event => {
   event.preventDefault()
+
+  if ($(event.target).parent().hasClass(CLASS_NAME_DROPDOWN_SUBMENU)) {
+    return
+  }
 
   setTimeout(function () {
     Dropdown._jQueryInterface.call($(this), 'fixPosition')

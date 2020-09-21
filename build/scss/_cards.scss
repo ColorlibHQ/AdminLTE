@@ -34,7 +34,7 @@
     position: fixed;
     top: 0;
     width: 100% !important;
-    z-index: 9999;
+    z-index: $zindex-modal-backdrop;
 
     &.was-collapsed .card-body {
       display: block !important;
