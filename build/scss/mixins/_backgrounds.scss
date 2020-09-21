@@ -33,7 +33,7 @@
 // Background Gradient Variant
 @mixin background-gradient-variant($name, $color) {
   .bg-gradient-#{$name} {
-    @include bg-gradient-variant("&", $color);
+    background: $color linear-gradient(180deg, mix($body-bg, $color, 15%), $color) repeat-x !important;
     color: color-yiq($color);
 
     &.btn {
@@ -46,7 +46,7 @@
       }
 
       &:hover {
-        @include bg-gradient-variant("&", darken($color, 7.5%));
+        background: $color linear-gradient(180deg, mix($body-bg, darken($color, 7.5%), 15%), darken($color, 7.5%)) repeat-x !important;
         border-color: darken($color, 10%);
         color: darken(color-yiq($color), 7.5%);
       }
@@ -55,7 +55,7 @@
       &:not(:disabled):not(.disabled).active,
       &:active,
       &.active {
-        @include bg-gradient-variant("&", darken($color, 10%));
+        background: $color linear-gradient(180deg, mix($body-bg, darken($color, 10%), 15%), darken($color, 10%)) repeat-x !important;
         border-color: darken($color, 12.5%);
         color: color-yiq(darken($color, 10%));
       }
