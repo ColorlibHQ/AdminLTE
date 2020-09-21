@@ -8,7 +8,7 @@
  * Supported Ex commands:
  *   Refer to defaultExCommandMap below.
  *
- * Registers: unnamed, -, a-z, A-Z, 0-9
+ * Registers: unnamed, -, ., :, /, _, a-z, A-Z, 0-9
  *   (Does not respect the special case for number registers when delete
  *    operator is made with these commands: %, (, ),  , /, ?, n, N, {, } )
  *   TODO: Implement the remaining registers.
@@ -141,6 +141,8 @@
     { keys: 'gU', type: 'operator', operator: 'changeCase', operatorArgs: {toLower: false}, isEdit: true },
     { keys: 'n', type: 'motion', motion: 'findNext', motionArgs: { forward: true, toJumplist: true }},
     { keys: 'N', type: 'motion', motion: 'findNext', motionArgs: { forward: false, toJumplist: true }},
+    { keys: 'gn', type: 'motion', motion: 'findAndSelectNextInclusive', motionArgs: { forward: true }},
+    { keys: 'gN', type: 'motion', motion: 'findAndSelectNextInclusive', motionArgs: { forward: false }},
     // Operator-Motion dual commands
     { keys: 'x', type: 'operatorMotion', operator: 'delete', motion: 'moveByCharacters', motionArgs: { forward: true }, operatorMotionArgs: { visualLine: false }},
     { keys: 'X', type: 'operatorMotion', operator: 'delete', motion: 'moveByCharacters', motionArgs: { forward: false }, operatorMotionArgs: { visualLine: true }},
@@ -416,7 +418,7 @@
     var lowerCaseAlphabet = makeKeyRange(97, 26);
     var numbers = makeKeyRange(48, 10);
     var validMarks = [].concat(upperCaseAlphabet, lowerCaseAlphabet, numbers, ['<', '>']);
-    var validRegisters = [].concat(upperCaseAlphabet, lowerCaseAlphabet, numbers, ['-', '"', '.', ':', '/']);
+    var validRegisters = [].concat(upperCaseAlphabet, lowerCaseAlphabet, numbers, ['-', '"', '.', ':', '_', '/']);
 
     function isLine(cm, line) {
       return line >= cm.firstLine() && line <= cm.lastLine();
@@ -1128,6 +1130,8 @@
     }
     RegisterController.prototype = {
       pushText: function(registerName, operator, text, linewise, blockwise) {
+        // The black hole register, "_, means delete/yank to nowhere.
+        if (registerName === '_') return;
         if (linewise && text.charAt(text.length - 1) !== '\n'){
           text += '\n';
         }
@@ -1574,7 +1578,7 @@
         motionArgs.repeat = repeat;
         clearInputState(cm);
         if (motion) {
-          var motionResult = motions[motion](cm, origHead, motionArgs, vim);
+          var motionResult = motions[motion](cm, origHead, motionArgs, vim, inputState);
           vim.lastMotion = motions[motion];
           if (!motionResult) {
             return;
@@ -1772,6 +1776,87 @@
         highlightSearchMatches(cm, query);
         return findNext(cm, prev/** prev */, query, motionArgs.repeat);
       },
+      /**
+       * Find and select the next occurrence of the search query. If the cursor is currently
+       * within a match, then find and select the current match. Otherwise, find the next occurrence in the
+       * appropriate direction.
+       *
+       * This differs from `findNext` in the following ways:
+       *
+       * 1. Instead of only returning the "from", this returns a "from", "to" range.
+       * 2. If the cursor is currently inside a search match, this selects the current match
+       *    instead of the next match.
+       * 3. If there is no associated operator, this will turn on visual mode.
+       */
+      findAndSelectNextInclusive: function(cm, _head, motionArgs, vim, prevInputState) {
+        var state = getSearchState(cm);
+        var query = state.getQuery();
+
+        if (!query) {
+          return;
+        }
+
+        var prev = !motionArgs.forward;
+        prev = (state.isReversed()) ? !prev : prev;
+
+        // next: [from, to] | null
+        var next = findNextFromAndToInclusive(cm, prev, query, motionArgs.repeat, vim);
+
+        // No matches.
+        if (!next) {
+          return;
+        }
+
+        // If there's an operator that will be executed, return the selection.
+        if (prevInputState.operator) {
+          return next;
+        }
+
+        // At this point, we know that there is no accompanying operator -- let's
+        // deal with visual mode in order to select an appropriate match.
+
+        var from = next[0];
+        // For whatever reason, when we use the "to" as returned by searchcursor.js directly,
+        // the resulting selection is extended by 1 char. Let's shrink it so that only the
+        // match is selected.
+        var to = Pos(next[1].line, next[1].ch - 1);
+
+        if (vim.visualMode) {
+          // If we were in visualLine or visualBlock mode, get out of it.
+          if (vim.visualLine || vim.visualBlock) {
+            vim.visualLine = false;
+            vim.visualBlock = false;
+            CodeMirror.signal(cm, "vim-mode-change", {mode: "visual", subMode: ""});
+          }
+
+          // If we're currently in visual mode, we should extend the selection to include
+          // the search result.
+          var anchor = vim.sel.anchor;
+          if (anchor) {
+            if (state.isReversed()) {
+              if (motionArgs.forward) {
+                return [anchor, from];
+              }
+
+              return [anchor, to];
+            } else {
+              if (motionArgs.forward) {
+                return [anchor, to];
+              }
+
+              return [anchor, from];
+            }
+          }
+        } else {
+          // Let's turn visual mode on.
+          vim.visualMode = true;
+          vim.visualLine = false;
+          vim.visualBlock = false;
+          CodeMirror.signal(cm, "vim-mode-change", {mode: "visual", subMode: ""});
+        }
+
+        return prev ? [to, from] : [from, to];
+      },
       goToMark: function(cm, _head, motionArgs, vim) {
         var pos = getMarkPos(cm, vim, motionArgs.selectedCharacter);
         if (pos) {
@@ -1867,8 +1952,8 @@
         // move to previous/next line is triggered.
         if (line < first && cur.line == first){
           return this.moveToStartOfLine(cm, head, motionArgs, vim);
-        }else if (line > last && cur.line == last){
-            return this.moveToEol(cm, head, motionArgs, vim, true);
+        } else if (line > last && cur.line == last){
+            return moveToEol(cm, head, motionArgs, vim, true);
         }
         if (motionArgs.toFirstChar){
           endCh=findFirstNonWhiteSpaceCharacter(cm.getLine(line));
@@ -1970,16 +2055,8 @@
         vim.lastHSPos = cm.charCoords(head,'div').left;
         return moveToColumn(cm, repeat);
       },
-      moveToEol: function(cm, head, motionArgs, vim, keepHPos) {
-        var cur = head;
-        var retval= Pos(cur.line + motionArgs.repeat - 1, Infinity);
-        var end=cm.clipPos(retval);
-        end.ch--;
-        if (!keepHPos) {
-          vim.lastHPos = Infinity;
-          vim.lastHSPos = cm.charCoords(end,'div').left;
-        }
-        return retval;
+      moveToEol: function(cm, head, motionArgs, vim) {
+        return moveToEol(cm, head, motionArgs, vim, false);
       },
       moveToFirstNonWhiteSpaceCharacter: function(cm, head) {
         // Go to the start of the line where the text begins, or the end for
@@ -2069,6 +2146,8 @@
             if (operatorArgs) { operatorArgs.linewise = true; }
             tmp.end.line--;
           }
+        } else if (character === 't') {
+          tmp = expandTagUnderCursor(cm, head, inclusive);
         } else {
           // No text object defined for this, don't move.
           return null;
@@ -3295,6 +3374,49 @@
       return { start: Pos(cur.line, start), end: Pos(cur.line, end) };
     }
 
+    /**
+     * Depends on the following:
+     *
+     * - editor mode should be htmlmixedmode / xml
+     * - mode/xml/xml.js should be loaded
+     * - addon/fold/xml-fold.js should be loaded
+     *
+     * If any of the above requirements are not true, this function noops.
+     *
+     * This is _NOT_ a 100% accurate implementation of vim tag text objects.
+     * The following caveats apply (based off cursory testing, I'm sure there
+     * are other discrepancies):
+     *
+     * - Does not work inside comments:
+     *   ```
+     *   <!-- <div>broken</div> -->
+     *   ```
+     * - Does not work when tags have different cases:
+     *   ```
+     *   <div>broken</DIV>
+     *   ```
+     * - Does not work when cursor is inside a broken tag:
+     *   ```
+     *   <div><brok><en></div>
+     *   ```
+     */
+    function expandTagUnderCursor(cm, head, inclusive) {
+      var cur = head;
+      if (!CodeMirror.findMatchingTag || !CodeMirror.findEnclosingTag) {
+        return { start: cur, end: cur };
+      }
+
+      var tags = CodeMirror.findMatchingTag(cm, head) || CodeMirror.findEnclosingTag(cm, head);
+      if (!tags || !tags.open || !tags.close) {
+        return { start: cur, end: cur };
+      }
+
+      if (inclusive) {
+        return { start: tags.open.from, end: tags.close.to };
+      }
+      return { start: tags.open.to, end: tags.close.from };
+    }
+
     function recordJumpPosition(cm, oldCur, newCur) {
       if (!cursorEqual(oldCur, newCur)) {
         vimGlobalState.jumpList.add(cm, oldCur, newCur);
@@ -3560,6 +3682,18 @@
         // b
         return Pos(lastWord.line, lastWord.from);
       }
+    }
+
+    function moveToEol(cm, head, motionArgs, vim, keepHPos) {
+      var cur = head;
+      var retval= Pos(cur.line + motionArgs.repeat - 1, Infinity);
+      var end=cm.clipPos(retval);
+      end.ch--;
+      if (!keepHPos) {
+        vim.lastHPos = Infinity;
+        vim.lastHSPos = cm.charCoords(end,'div').left;
+      }
+      return retval;
     }
 
     function moveToCharacter(cm, repeat, forward, character) {
@@ -3836,7 +3970,7 @@
       return Pos(curr_index.ln, curr_index.pos);
     }
 
-    // TODO: perhaps this finagling of start and end positions belonds
+    // TODO: perhaps this finagling of start and end positions belongs
     // in codemirror/replaceRange?
     function selectCompanionObject(cm, head, symb, inclusive) {
       var cur = head, start, end;
@@ -4301,6 +4435,42 @@
           }
         }
         return cursor.from();
+      });
+    }
+    /**
+     * Pretty much the same as `findNext`, except for the following differences:
+     *
+     * 1. Before starting the search, move to the previous search. This way if our cursor is
+     * already inside a match, we should return the current match.
+     * 2. Rather than only returning the cursor's from, we return the cursor's from and to as a tuple.
+     */
+    function findNextFromAndToInclusive(cm, prev, query, repeat, vim) {
+      if (repeat === undefined) { repeat = 1; }
+      return cm.operation(function() {
+        var pos = cm.getCursor();
+        var cursor = cm.getSearchCursor(query, pos);
+
+        // Go back one result to ensure that if the cursor is currently a match, we keep it.
+        var found = cursor.find(!prev);
+
+        // If we haven't moved, go back one more (similar to if i==0 logic in findNext).
+        if (!vim.visualMode && found && cursorEqual(cursor.from(), pos)) {
+          cursor.find(!prev);
+        }
+
+        for (var i = 0; i < repeat; i++) {
+          found = cursor.find(prev);
+          if (!found) {
+            // SearchCursor may have returned null because it hit EOF, wrap
+            // around and try again.
+            cursor = cm.getSearchCursor(query,
+                (prev) ? Pos(cm.lastLine()) : Pos(cm.firstLine(), 0) );
+            if (!cursor.find(prev)) {
+              return;
+            }
+          }
+        }
+        return [cursor.from(), cursor.to()];
       });
     }
     function clearSearchHighlight(cm) {

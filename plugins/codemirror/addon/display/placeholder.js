@@ -15,11 +15,13 @@
       cm.on("blur", onBlur);
       cm.on("change", onChange);
       cm.on("swapDoc", onChange);
+      CodeMirror.on(cm.getInputField(), "compositionupdate", cm.state.placeholderCompose = () => onComposition(cm))
       onChange(cm);
     } else if (!val && prev) {
       cm.off("blur", onBlur);
       cm.off("change", onChange);
       cm.off("swapDoc", onChange);
+      CodeMirror.off(cm.getInputField(), "compositionupdate", cm.state.placeholderCompose)
       clearPlaceholder(cm);
       var wrapper = cm.getWrapperElement();
       wrapper.className = wrapper.className.replace(" CodeMirror-empty", "");
@@ -44,6 +46,16 @@
     if (typeof placeHolder == "string") placeHolder = document.createTextNode(placeHolder)
     elt.appendChild(placeHolder)
     cm.display.lineSpace.insertBefore(elt, cm.display.lineSpace.firstChild);
+  }
+
+  function onComposition(cm) {
+    var empty = true, input = cm.getInputField()
+    if (input.nodeName == "TEXTAREA")
+      empty = !input.value
+    else if (cm.lineCount() == 1)
+      empty = !/[^\u200b]/.test(input.querySelector(".CodeMirror-line").textContent)
+    if (empty) clearPlaceholder(cm)
+    else setPlaceholder(cm)
   }
 
   function onBlur(cm) {

@@ -18,20 +18,20 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td.dtr-control:b
 table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th.dtr-control:before {
   top: 50%;
   left: 5px;
-  height: 14px;
-  width: 14px;
+  height: 1em;
+  width: 1em;
   margin-top: -9px;
   display: block;
   position: absolute;
   color: white;
-  border: 2px solid white;
-  border-radius: 14px;
-  box-shadow: 0 0 3px #444;
+  border: 0.15em solid white;
+  border-radius: 1em;
+  box-shadow: 0 0 0.2em #444;
   box-sizing: content-box;
   text-align: center;
   text-indent: 0 !important;
   font-family: 'Courier New', Courier, monospace;
-  line-height: 14px;
+  line-height: 1em;
   content: '+';
   background-color: #0275d8;
 }
@@ -53,33 +53,39 @@ table.dataTable.dtr-inline.collapsed.compact > tbody > tr > th.dtr-control:befor
   line-height: 14px;
   text-indent: 3px;
 }
+table.dataTable.dtr-column > tbody > tr > td.dtr-control,
+table.dataTable.dtr-column > tbody > tr > th.dtr-control,
 table.dataTable.dtr-column > tbody > tr > td.control,
 table.dataTable.dtr-column > tbody > tr > th.control {
   position: relative;
   cursor: pointer;
 }
+table.dataTable.dtr-column > tbody > tr > td.dtr-control:before,
+table.dataTable.dtr-column > tbody > tr > th.dtr-control:before,
 table.dataTable.dtr-column > tbody > tr > td.control:before,
 table.dataTable.dtr-column > tbody > tr > th.control:before {
   top: 50%;
   left: 50%;
-  height: 16px;
-  width: 16px;
-  margin-top: -10px;
-  margin-left: -10px;
+  height: 0.8em;
+  width: 0.8em;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
   display: block;
   position: absolute;
   color: white;
-  border: 2px solid white;
-  border-radius: 14px;
-  box-shadow: 0 0 3px #444;
+  border: 0.15em solid white;
+  border-radius: 1em;
+  box-shadow: 0 0 0.2em #444;
   box-sizing: content-box;
   text-align: center;
   text-indent: 0 !important;
   font-family: 'Courier New', Courier, monospace;
-  line-height: 14px;
+  line-height: 1em;
   content: '+';
   background-color: #0275d8;
 }
+table.dataTable.dtr-column > tbody > tr.parent td.dtr-control:before,
+table.dataTable.dtr-column > tbody > tr.parent th.dtr-control:before,
 table.dataTable.dtr-column > tbody > tr.parent td.control:before,
 table.dataTable.dtr-column > tbody > tr.parent th.control:before {
   content: '-';

@@ -260,24 +260,8 @@ const Plugins = [
 
   // Fullcalendar
   {
-    from: 'node_modules/@fullcalendar/core/',
+    from: 'node_modules/fullcalendar/',
     to: 'plugins/fullcalendar'
-  },
-  {
-    from: 'node_modules/@fullcalendar/bootstrap/',
-    to: 'plugins/fullcalendar-bootstrap'
-  },
-  {
-    from: 'node_modules/@fullcalendar/daygrid/',
-    to: 'plugins/fullcalendar-daygrid'
-  },
-  {
-    from: 'node_modules/@fullcalendar/timegrid/',
-    to: 'plugins/fullcalendar-timegrid'
-  },
-  {
-    from: 'node_modules/@fullcalendar/interaction/',
-    to: 'plugins/fullcalendar-interaction'
   },
   // icheck bootstrap
   {

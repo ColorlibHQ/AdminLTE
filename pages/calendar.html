@@ -10,10 +10,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
   <!-- fullCalendar -->
-  <link rel="stylesheet" href="../plugins/fullcalendar/main.min.css">
-  <link rel="stylesheet" href="../plugins/fullcalendar-daygrid/main.min.css">
-  <link rel="stylesheet" href="../plugins/fullcalendar-timegrid/main.min.css">
-  <link rel="stylesheet" href="../plugins/fullcalendar-bootstrap/main.min.css">
+  <link rel="stylesheet" href="../plugins/fullcalendar/main.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 </head>
@@ -923,11 +920,7 @@
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- fullCalendar 2.2.5 -->
 <script src="../plugins/moment/moment.min.js"></script>
-<script src="../plugins/fullcalendar/main.min.js"></script>
-<script src="../plugins/fullcalendar-daygrid/main.min.js"></script>
-<script src="../plugins/fullcalendar-timegrid/main.min.js"></script>
-<script src="../plugins/fullcalendar-interaction/main.min.js"></script>
-<script src="../plugins/fullcalendar-bootstrap/main.min.js"></script>
+<script src="../plugins/fullcalendar/main.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 <!-- Page specific script -->
@@ -969,7 +962,7 @@
         y    = date.getFullYear()
 
     var Calendar = FullCalendar.Calendar;
-    var Draggable = FullCalendarInteraction.Draggable;
+    var Draggable = FullCalendar.Draggable;
 
     var containerEl = document.getElementById('external-events');
     var checkbox = document.getElementById('drop-remove');
@@ -991,15 +984,14 @@
     });
 
     var calendar = new Calendar(calendarEl, {
-      plugins: [ 'bootstrap', 'interaction', 'dayGrid', 'timeGrid' ],
-      header    : {
+      headerToolbar: {
         left  : 'prev,next today',
         center: 'title',
         right : 'dayGridMonth,timeGridWeek,timeGridDay'
       },
-      'themeSystem': 'bootstrap',
+      themeSystem: 'bootstrap',
       //Random default events
-      events    : [
+      events: [
         {
           title          : 'All Day Event',
           start          : new Date(y, m, 1),

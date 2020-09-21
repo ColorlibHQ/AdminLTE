@@ -1,11 +1,11 @@
-/*! Responsive 2.2.5
+/*! Responsive 2.2.6
  * 2014-2020 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     Responsive
  * @description Responsive tables plug-in for DataTables
- * @version     2.2.5
+ * @version     2.2.6
  * @file        dataTables.responsive.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
@@ -220,7 +220,7 @@ $.extend( Responsive.prototype, {
 
 					that._classLogic();
 					that._resizeAuto();
-					that._resize();
+					that._resize(true);
 
 					that._redrawChildren();
 				}, 100 );
@@ -522,7 +522,7 @@ $.extend( Responsive.prototype, {
 
 			// Split the class name up so multiple rules can be applied if needed
 			for ( var k=0, ken=classNames.length ; k<ken ; k++ ) {
-				var className = $.trim( classNames[k] );
+				var className = classNames[k].trim();
 
 				if ( className === 'all' ) {
 					// Include in all
@@ -537,7 +537,7 @@ $.extend( Responsive.prototype, {
 					hasClass = true;
 					return;
 				}
-				else if ( className === 'control' ) {
+				else if ( className === 'control' || className === 'dtr-control' ) {
 					// Special column that is only visible, when one of the other
 					// columns is hidden. This is used for the details control
 					hasClass = true;
@@ -855,6 +855,8 @@ $.extend( Responsive.prototype, {
 				$('td', dt.table().body()).eq(0).attr('colspan', visible);
 			}
 		}
+
+		that._controlClass();
 	},
 
 
@@ -1441,7 +1443,7 @@ Api.registerPlural( 'columns().responsiveHidden()', 'column().responsiveHidden()
  * @name Responsive.version
  * @static
  */
-Responsive.version = '2.2.5';
+Responsive.version = '2.2.6';
 
 
 $.fn.dataTable.Responsive = Responsive;
