@@ -271,6 +271,25 @@ body.text-sm {
   }
 }
 
+// custom .form-control styles
+.form-control,
+.custom-select {
+  &.form-control-border {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    box-shadow: inherit;
+
+    &.border-width-2 {
+      border-bottom-width: 2px;
+    }
+    &.border-width-3 {
+      border-bottom-width: 3px;
+    }
+  }
+}
+
 // custom switch color variations
 .custom-switch {
   @each $name, $color in $theme-colors {
