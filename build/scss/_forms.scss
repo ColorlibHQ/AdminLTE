@@ -264,6 +264,13 @@ textarea.form-control {
   }
 }
 
+// body.text-sm support
+body.text-sm {
+  .input-group-text {
+    font-size: $font-size-sm;
+  }
+}
+
 // custom switch color variations
 .custom-switch {
   @each $name, $color in $theme-colors {
