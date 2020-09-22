@@ -79,3 +79,32 @@
     }
   }
 }
+
+
+// Custom Control Input Variant
+@mixin custom-control-input-variant($name, $color) {
+  .custom-control-input-#{$name} {
+    &:checked ~ .custom-control-label::before {
+      border-color: $color;
+      @include gradient-bg($color);
+    }
+
+    &:focus ~ .custom-control-label::before {
+      // the mixin is not used here to make sure there is feedback
+      @if $enable-shadows {
+        box-shadow: $input-box-shadow, 0 0 0 $input-btn-focus-width rgba($color, .25);
+      } @else {
+        box-shadow: 0 0 0 $input-btn-focus-width rgba($color, .25);
+      }
+    }
+
+    &:focus:not(:checked) ~ .custom-control-label::before {
+      border-color: lighten($color, 25%);
+    }
+
+    &:not(:disabled):active ~ .custom-control-label::before {
+      background-color: lighten($color, 35%);
+      border-color: lighten($color, 35%);
+    }
+  }
+}

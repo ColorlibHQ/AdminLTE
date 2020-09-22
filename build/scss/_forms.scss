@@ -311,3 +311,12 @@ body.text-sm {
     @include custom-range-variant($name, $color);
   }
 }
+
+// custom control input variations
+@each $name, $color in $theme-colors {
+  @include custom-control-input-variant($name, $color);
+}
+
+@each $name, $color in $colors {
+  @include custom-control-input-variant($name, $color);
+}
