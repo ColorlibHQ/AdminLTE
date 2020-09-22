@@ -19530,9 +19530,10 @@ html.maximized-card {
   flex-direction: column;
   -ms-flex-pack: center;
   justify-content: center;
+  line-height: 1.8;
   -ms-flex: 1;
   flex: 1;
-  padding: 5px 10px;
+  padding: 0 10px;
 }
 
 .info-box .info-box-number {
