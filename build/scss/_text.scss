@@ -37,3 +37,9 @@
     color: #{$color} !important;
   }
 }
+
+.dark-mode {
+  .text-muted {
+    color: $gray-500 !important;
+  }
+}

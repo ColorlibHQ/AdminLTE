@@ -120,3 +120,34 @@
     }
   }
 }
+
+.dark-mode {
+  .table-bordered {
+    &,
+    td,
+    th {
+      border-color: $gray-600;
+    }
+  }
+  .table-hover {
+    tbody tr:hover {
+      color: $gray-300;
+      background-color: lighten($dark, 2.5%);
+      border-color: $gray-600;
+    }
+  }
+  .table {
+    thead th {
+      border-bottom-color: $gray-600;
+    }
+    th,
+    td {
+      border-top-color: $gray-600;
+    }
+    &.table-head-fixed {
+      thead tr:nth-child(1) th {
+        background-color: lighten($dark, 5%);
+      }
+    }
+  }
+}

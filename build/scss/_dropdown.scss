@@ -269,3 +269,21 @@
     width: $sidebar-user-image-width;
   }
 }
+
+.dark-mode {
+  .dropdown-menu {
+    background-color: $dark;
+    color: $white;
+  }
+  .dropdown-item {
+    color: $white;
+
+    &:focus,
+    &:hover {
+      background-color: lighten($dark, 5%);
+    }
+  }
+  .dropdown-divider {
+    border-color: $gray-600;
+  }
+}

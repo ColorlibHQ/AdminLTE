@@ -96,7 +96,7 @@
 
         .nav-item {
           &:first-child .nav-link {
-            margin-left: -1px;
+            border-left-color: transparent;
           }
         }
       }
@@ -476,5 +476,42 @@ html.maximized-card {
     &:first-child .nav-link {
       border-left: 0;
     }
+  }
+}
+
+.dark-mode {
+
+  .card {
+    background-color: $dark;
+    color: color-yiq($dark);
+
+    .nav.flex-column > li {
+      border-bottom-color: $gray-600;
+    }
+    .card-footer {
+      background-color: rgba($black, .1);
+    }
+    &.card-outline-tabs .card-header a:hover {
+      border-color: $gray-600;
+    }
+    &:not(.card-outline) > .card-header a.active {
+      color: $white;
+    }
+  }
+
+  .card-comments {
+    background-color: lighten($dark, 1.25%);
+    .username {
+      color: $gray-400;
+    }
+    .card-comment {
+      border-bottom-color: lighten($dark, 7.5%);
+    }
+  }
+
+  .todo-list > li {
+    background-color: lighten($dark, 5%);
+    border-color: lighten($dark, 7.5%);
+    color: $white;
   }
 }

@@ -330,3 +330,41 @@ body.text-sm {
     @include gradient-bg(transparent);
   }
 }
+
+.dark-mode {
+  .form-control:not(.form-control-navbar):not(.is-invalid),
+  .custom-select,
+  .custom-file-label,
+  .custom-file-label::after,
+  .custom-control-label::before,
+  .input-group-text {
+    background-color: $dark;
+    border-color: $gray-600;
+    color: $white;
+  }
+
+  select {
+    background-color: $dark;
+    color: $white;
+    border-color: $gray-600;
+  }
+
+  .custom-control-input:disabled ~ .custom-control-label::before,
+  .custom-control-input[disabled] ~ .custom-control-label::before {
+    background-color: lighten($dark, 5%);
+    border-color: $gray-600;
+    color: $white;
+  }
+
+  .custom-range {
+    &::-webkit-slider-runnable-track {
+      background-color: lighten($dark, 7.5%);
+    }
+    &::-moz-range-track {
+      background-color: lighten($dark, 7.5%);
+    }
+    &::-ms-track {
+      background-color: lighten($dark, 7.5%);
+    }
+  }
+}

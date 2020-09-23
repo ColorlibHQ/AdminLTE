@@ -132,3 +132,14 @@
     }
   }
 }
+
+.dark-mode {
+  .timeline > div > .timeline-item {
+    background-color: $dark;
+    color: $white;
+
+    > .timeline-header {
+      color: $gray-500;
+    }
+  }
+}

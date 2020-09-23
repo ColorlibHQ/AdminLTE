@@ -625,3 +625,26 @@ body:not(.sidebar-mini-md) {
     animation-duration: 0s !important;
   }
 }
+
+.dark-mode {
+  background-color: lighten($dark, 7.5%);
+
+  .breadcrumb-item {
+    &.active,
+    & + .breadcrumb-item::before {
+      color: $gray-500;
+    }
+  }
+  .main-footer {
+    background-color: $dark;
+    border-color: lighten($dark, 10%);
+  }
+  .content-wrapper {
+    background-color: lighten($dark, 7.5%);
+    color: $white;
+
+    .content-header {
+      color: $white;
+    }
+  }
+}
