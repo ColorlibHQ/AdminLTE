@@ -112,6 +112,16 @@ The following colors are available:
 
 ##### Custom Range / Switch
 
+For custom colored custom-checkbox & custom-radio you can add this classes:
+
+- `.custom-control-input-*`
+
+You can also change the look to outlined checkbox & radio with adding the `.custom-control-input-outline` on the custom control input.
+
+For custom colored custom-range you can add this classes:
+
+- `.custom-range-*`
+
 For custom colored custom-range you can add this classes:
 
 - `.custom-range-*`
