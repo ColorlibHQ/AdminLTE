@@ -483,8 +483,12 @@ html.maximized-card {
 
   .card {
     background-color: $dark;
-    color: color-yiq($dark);
+    color: $white;
 
+    .card {
+      background-color: lighten($dark, 5%);
+      color: $white;
+    }
     .nav.flex-column > li {
       border-bottom-color: $gray-600;
     }

@@ -95,7 +95,10 @@ a.text-muted:hover {
     background-color: lighten($dark, 7.5%) !important;
     color: $white !important;
   }
-  .link-black {
+  .text-black,
+  .text-dark,
+  .link-black,
+  .link-dark {
     color: $gray-400;
   }
 }
