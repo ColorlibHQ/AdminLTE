@@ -627,7 +627,8 @@ body:not(.sidebar-mini-md) {
 }
 
 .dark-mode {
-  background-color: lighten($dark, 7.5%);
+  background-color: lighten($dark, 7.5%) !important;
+  color: $white;
 
   .breadcrumb-item {
     &.active,

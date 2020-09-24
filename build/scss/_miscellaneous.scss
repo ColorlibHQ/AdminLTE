@@ -483,7 +483,7 @@ blockquote {
 }
 
 .dark-mode {
-  a:hover {
+  a:not(.btn):hover {
     color: lighten($link-color, 10%);
   }
   .attachment-block {
@@ -502,6 +502,10 @@ blockquote {
     text-shadow: 0 1px 0 $gray-700;
   }
   .tab-custom-content {
+    border-color: $gray-600;
+  }
+  .list-group-item {
+    background-color: $dark;
     border-color: $gray-600;
   }
 }

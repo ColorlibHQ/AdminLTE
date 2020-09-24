@@ -332,20 +332,25 @@ body.text-sm {
 }
 
 .dark-mode {
-  .form-control:not(.form-control-navbar):not(.is-invalid),
+  .form-control,
   .custom-select,
   .custom-file-label,
   .custom-file-label::after,
   .custom-control-label::before,
   .input-group-text {
     background-color: $dark;
-    border-color: $gray-600;
     color: $white;
   }
-
+  .form-control:not(.form-control-navbar):not(.is-invalid):not(:focus) {
+    border-color: $gray-600;
+  }
   select {
     background-color: $dark;
     color: $white;
+    border-color: $gray-600;
+  }
+
+  .input-group-text {
     border-color: $gray-600;
   }
 
@@ -365,6 +370,32 @@ body.text-sm {
     }
     &::-ms-track {
       background-color: lighten($dark, 7.5%);
+    }
+  }
+
+  .navbar-dark {
+    .btn-navbar,
+    .form-control-navbar {
+      background-color: $dark;
+      border: $input-border-width solid $gray-600;
+    }
+    .btn-navbar {
+      &:hover {
+        background-color: lighten($sidebar-dark-bg, 7.5%);
+      }
+      &:focus {
+        background-color: lighten($sidebar-dark-bg, 10%);
+      }
+    }
+
+    .form-control-navbar + .input-group-prepend,
+    .form-control-navbar + .input-group-append {
+      > .btn-navbar {
+        background-color: lighten($dark, 5%);
+        color: $white;
+        border: $input-border-width solid $gray-600;
+        border-left: none;
+      }
     }
   }
 }

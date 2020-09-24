@@ -286,4 +286,36 @@
   .dropdown-divider {
     border-color: $gray-600;
   }
+
+  .navbar-nav > .user-menu > .dropdown-menu {
+    > .user-footer {
+      background-color: lighten($dark, 2.5%);
+      color: $white;
+
+      .btn-default {
+        color: $white;
+
+        &:hover,
+        &:focus {
+          background-color: lighten($dark, 5%);
+          color: $gray-300;
+        }
+        &:focus {
+          background-color: lighten($dark, 7.5%);
+        }
+      }
+    }
+    > .user-body {
+      border-color: $gray-600;
+    }
+    > .user-body a {
+      background-color: transparent !important;
+      color: $white !important;
+
+      &:hover,
+      &:focus {
+        color: $gray-400 !important;
+      }
+    }
+  }
 }
