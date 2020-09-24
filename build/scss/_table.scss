@@ -58,6 +58,8 @@
   .card-body.p-0 & {
     thead > tr > th,
     thead > tr > td,
+    tfoot > tr > th,
+    tfoot > tr > td,
     tbody > tr > th,
     tbody > tr > td {
       &:first-of-type {
