@@ -2,27 +2,27 @@
   "files": [
     {
       "path": "./dist/css/adminlte.css",
-      "maxSize": "80 kB"
+      "maxSize": "81.5 kB"
     },
     {
       "path": "./dist/css/adminlte.min.css",
-      "maxSize": "74 kB"
+      "maxSize": "77.5 kB"
     },
     {
       "path": "./dist/css/alt/adminlte.components.css",
-      "maxSize": "14 kB"
+      "maxSize": "16 kB"
     },
     {
       "path": "./dist/css/alt/adminlte.components.min.css",
-      "maxSize": "13 kB"
+      "maxSize": "15 kB"
     },
     {
       "path": "./dist/css/alt/adminlte.core.css",
-      "maxSize": "46 kB"
+      "maxSize": "47 kB"
     },
     {
       "path": "./dist/css/alt/adminlte.core.min.css",
-      "maxSize": "43 kB"
+      "maxSize": "44 kB"
     },
     {
       "path": "./dist/css/alt/adminlte.extra-components.css",
