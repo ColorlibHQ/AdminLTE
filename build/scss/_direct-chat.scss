@@ -222,3 +222,25 @@
     @include direct-chat-variant($color);
   }
 }
+
+.dark-mode {
+  .direct-chat-text {
+    background-color: lighten($dark, 7.5%);
+    border-color: lighten($dark, 10%);
+    color: $white;
+
+    &::after,
+    &::before {
+      border-right-color: lighten($dark, 10%);
+    }
+  }
+  .direct-chat-timestamp {
+    color: $gray-500;
+  }
+  .right > .direct-chat-text {
+    &::after,
+    &::before {
+      border-right-color: transparent;
+    }
+  }
+}

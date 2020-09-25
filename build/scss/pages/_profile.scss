@@ -35,3 +35,10 @@
     width: 100%;
   }
 }
+
+.dark-mode {
+  .post {
+    color: $white;
+    border-color: $gray-600;
+  }
+}
