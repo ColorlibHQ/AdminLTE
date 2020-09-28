@@ -15,7 +15,7 @@ body,
 .wrapper {
   position: relative;
 
-  & .content-wrapper {
+  .content-wrapper {
     min-height: calc(100vh - #{$main-header-height} - #{$main-footer-height});
   }
 
@@ -28,7 +28,7 @@ body,
       max-width: $boxed-layout-max-width;
     }
 
-    & .main-sidebar {
+    .main-sidebar {
       left: inherit;
     }
   }
@@ -407,14 +407,14 @@ body,
       }
     }
 
-    & .main-sidebar {
+    .main-sidebar {
       bottom: inherit;
       height: inherit;
     }
 
-    & .content-wrapper,
-    & .main-header,
-    & .main-footer {
+    .content-wrapper,
+    .main-header,
+    .main-footer {
       margin-left: 0;
     }
   }
@@ -632,7 +632,7 @@ body:not(.sidebar-mini-md) {
 
   .breadcrumb-item {
     &.active,
-    & + .breadcrumb-item::before {
+    + .breadcrumb-item::before {
       color: $gray-500;
     }
   }

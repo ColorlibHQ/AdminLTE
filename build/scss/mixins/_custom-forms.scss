@@ -5,31 +5,31 @@
 // Custom Switch Variant
 @mixin custom-switch-variant($name, $color) {
   &.custom-switch-off-#{$name} {
-    & .custom-control-input ~ .custom-control-label::before {
+    .custom-control-input ~ .custom-control-label::before {
       background-color: #{$color};
       border-color: darken($color, 20%);
     }
 
-    & .custom-control-input:focus ~ .custom-control-label::before {
+    .custom-control-input:focus ~ .custom-control-label::before {
       box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
     }
 
-    & .custom-control-input ~ .custom-control-label::after {
+    .custom-control-input ~ .custom-control-label::after {
       background-color: darken($color, 25%);
     }
   }
 
   &.custom-switch-on-#{$name} {
-    & .custom-control-input:checked ~ .custom-control-label::before {
+    .custom-control-input:checked ~ .custom-control-label::before {
       background-color: #{$color};
       border-color: darken($color, 20%);
     }
 
-    & .custom-control-input:checked:focus ~ .custom-control-label::before {
+    .custom-control-input:checked:focus ~ .custom-control-label::before {
       box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
     }
 
-    & .custom-control-input:checked ~ .custom-control-label::after {
+    .custom-control-input:checked ~ .custom-control-label::after {
       background-color: lighten($color, 30%);
     }
   }
