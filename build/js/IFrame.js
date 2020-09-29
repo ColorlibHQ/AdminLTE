@@ -32,13 +32,13 @@ const SELECTOR_HEADER_DROPDOWN_ITEM = '.main-header a.dropdown-item'
 const CLASS_NAME_IFRAME_MODE = 'iframe-mode'
 
 const Default = {
-  tabClick(item) {
+  onTabClick(item) {
     return item
   },
-  tabChanged(item) {
+  onTabChanged(item) {
     return item
   },
-  tabCreated(item) {
+  onTabCreated(item) {
     return item
   },
   autoIframeMode: true,
@@ -63,16 +63,16 @@ class IFrame {
 
   // Public
 
-  tabClick(item) {
-    this._config.tabClick(item)
+  onTabClick(item) {
+    this._config.onTabClick(item)
   }
 
-  tabChanged(item) {
-    this._config.tabChanged(item)
+  onTabChanged(item) {
+    this._config.onTabChanged(item)
   }
 
-  tabCreated(item) {
-    this._config.tabCreated(item)
+  onTabCreated(item) {
+    this._config.onTabCreated(item)
   }
 
   createTab(title, link, autoOpen) {
@@ -89,7 +89,7 @@ class IFrame {
       this.switchTab(`#${navId}`, this._config.loadingScreen)
     }
 
-    this.tabCreated($(`#${navId}`))
+    this.onTabCreated($(`#${navId}`))
   }
 
   openTabSidebar(item) {
@@ -135,7 +135,7 @@ class IFrame {
 
     $item.tab('show')
     $item.parents('li').addClass('active')
-    this.tabChanged($item)
+    this.onTabChanged($item)
 
     if (this._config.autoItemActive) {
       this.setItemActive($(`${tabId} iframe`).attr('src'))
@@ -190,12 +190,12 @@ class IFrame {
     })
     $(document).on('click', `${SELECTOR_SIDEBAR_MENU_ITEM}, ${SELECTOR_HEADER_MENU_ITEM}, ${SELECTOR_HEADER_DROPDOWN_ITEM}`, e => {
       e.preventDefault()
-      this.tabClick(e.target)
+      this.onTabClick(e.target)
       this.openTabSidebar(e.target)
     })
     $(document).on('click', SELECTOR_TAB_NAVBAR_NAV_ITEM, e => {
       e.preventDefault()
-      this.tabClick(e.target)
+      this.onTabClick(e.target)
       this.switchTab(e.target)
     })
     $(document).on('click', SELECTOR_DATA_TOGGLE_CLOSE, e => {
