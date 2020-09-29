@@ -188,16 +188,25 @@ class IFrame {
         this._fixHeight()
       }, 1)
     })
-    $(document).on('click', `${SELECTOR_SIDEBAR_MENU_ITEM}, ${SELECTOR_HEADER_MENU_ITEM}, ${SELECTOR_HEADER_DROPDOWN_ITEM}`, e => {
+    $(document).on('click', SELECTOR_SIDEBAR_MENU_ITEM, e => {
       e.preventDefault()
       this.onTabClick(e.target)
       this.openTabSidebar(e.target)
     })
-    $(document).on('click', SELECTOR_TAB_NAVBAR_NAV_ITEM, e => {
-      e.preventDefault()
-      this.onTabClick(e.target)
-      this.switchTab(e.target)
-    })
+
+    if (this._config.useNavbarItems) {
+      $(document).on('click', `${SELECTOR_HEADER_MENU_ITEM}, ${SELECTOR_HEADER_DROPDOWN_ITEM}`, e => {
+        e.preventDefault()
+        this.onTabClick(e.target)
+        this.openTabSidebar(e.target)
+      })
+      $(document).on('click', SELECTOR_TAB_NAVBAR_NAV_ITEM, e => {
+        e.preventDefault()
+        this.onTabClick(e.target)
+        this.switchTab(e.target)
+      })
+    }
+
     $(document).on('click', SELECTOR_DATA_TOGGLE_CLOSE, e => {
       e.preventDefault()
       this.removeActiveTab()
