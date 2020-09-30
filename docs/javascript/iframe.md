@@ -82,14 +82,10 @@ $('.content-wrapper').IFrame({
 |---
 | Method | Description
 |-|-
-onTabClick(item)
-onTabChanged(item)
-onTabCreated(item)
-createTab(title, link, autoOpen)
-openTabSidebar(item)
-switchTab(item, loadingScreen = null)
-setItemActive(href)
-removeActiveTab()
+|createTab| Create tab by title, link & uniqueName. Available arguments: title `String`, link `String`, uniqueName `String`, autoOpen `Boolean/Optional`.
+|openTabSidebar| Create tab by sidebar menu item. Available arguments: item `String|jQuery Object`, autoOpen `Boolean/Optional`.
+|switchTab| Switch tab by iframe tab navbar item. Available arguments: item `String|jQuery Object`.
+|removeActiveTab| Remove active iframe tab.
 {: .table .table-bordered .bg-light}
 
-Example: `$('.content-wrapper').IFrame('fixLayoutHeight')`
+Example: `$('.content-wrapper').IFrame('createTab', 'Home', 'index.html, 'index', true)`
