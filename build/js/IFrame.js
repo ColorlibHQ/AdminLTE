@@ -75,9 +75,9 @@ class IFrame {
     this._config.onTabCreated(item)
   }
 
-  createTab(title, link, autoOpen) {
-    const tabId = `panel-${link.replace('.html', '').replace('./', '').replaceAll('/', '-')}-${Math.floor(Math.random() * 1000)}`
-    const navId = `tab-${link.replace('.html', '').replace('./', '').replaceAll('/', '-')}-${Math.floor(Math.random() * 1000)}`
+  createTab(title, link, uniqueName, autoOpen) {
+    const tabId = `panel-${uniqueName}-${Math.floor(Math.random() * 1000)}`
+    const navId = `tab-${uniqueName}-${Math.floor(Math.random() * 1000)}`
 
     const newNavItem = `<li class="nav-item" role="presentation"><a class="nav-link" data-toggle="row" id="${navId}" href="#${tabId}" role="tab" aria-controls="${tabId}" aria-selected="false">${title}</a></li>`
     $(SELECTOR_TAB_NAVBAR_NAV).append(newNavItem)
@@ -86,13 +86,29 @@ class IFrame {
     $(SELECTOR_TAB_CONTENT).append(newTabItem)
 
     if (autoOpen) {
-      this.switchTab(`#${navId}`, this._config.loadingScreen)
+      if (this._config.loadingScreen) {
+        const $loadingScreen = $(SELECTOR_TAB_LOADING)
+        $loadingScreen.fadeIn()
+        $(`${tabId} iframe`).ready(() => {
+          if (typeof this._config.loadingScreen === 'number') {
+            this.switchTab(`#${navId}`, this._config.loadingScreen)
+            setTimeout(() => {
+              $loadingScreen.fadeOut()
+            }, this._config.loadingScreen)
+          } else {
+            this.switchTab(`#${navId}`, this._config.loadingScreen)
+            $loadingScreen.fadeOut()
+          }
+        })
+      } else {
+        this.switchTab(`#${navId}`)
+      }
     }
 
     this.onTabCreated($(`#${navId}`))
   }
 
-  openTabSidebar(item) {
+  openTabSidebar(item, autoOpen = this._config.autoShowNewTab) {
     let $item = $(item).clone()
     if ($item.attr('href') === undefined) {
       $item = $(item).parent('a').clone()
@@ -109,57 +125,24 @@ class IFrame {
       return
     }
 
-    this.createTab(title, link, this._config.autoShowNewTab)
+    this.createTab(title, link, link.replace('.html', '').replace('./', '').replaceAll('/', '-'), autoOpen)
   }
 
-  switchTab(item, loadingScreen = null) {
-    $(SELECTOR_TAB_EMPTY).hide()
-    $(`${SELECTOR_TAB_NAVBAR_NAV} .active`).tab('dispose').removeClass('active')
-    this._fixHeight()
+  switchTab(item) {
     const $item = $(item)
     const tabId = $item.attr('href')
 
-    if (loadingScreen) {
-      const $loadingScreen = $(SELECTOR_TAB_LOADING)
-      $loadingScreen.fadeIn()
-      $(`${tabId} iframe`).ready(() => {
-        if (typeof loadingScreen === 'number') {
-          setTimeout(() => {
-            $loadingScreen.fadeOut()
-          }, loadingScreen)
-        } else {
-          $loadingScreen.fadeOut()
-        }
-      })
-    }
+    $(SELECTOR_TAB_EMPTY).hide()
+    $(`${SELECTOR_TAB_NAVBAR_NAV} .active`).tab('dispose').removeClass('active')
+    this._fixHeight()
 
     $item.tab('show')
     $item.parents('li').addClass('active')
     this.onTabChanged($item)
 
     if (this._config.autoItemActive) {
-      this.setItemActive($(`${tabId} iframe`).attr('src'))
+      this._setItemActive($(`${tabId} iframe`).attr('src'))
     }
-  }
-
-  setItemActive(href) {
-    $(`${SELECTOR_SIDEBAR_MENU_ITEM}, ${SELECTOR_HEADER_DROPDOWN_ITEM}`).removeClass('active')
-    $(SELECTOR_HEADER_MENU_ITEM).parent().removeClass('active')
-
-    const $headerMenuItem = $(`${SELECTOR_HEADER_MENU_ITEM}[href$="${href}"]`)
-    const $headerDropdownItem = $(`${SELECTOR_HEADER_DROPDOWN_ITEM}[href$="${href}"]`)
-    const $sidebarMenuItem = $(`${SELECTOR_SIDEBAR_MENU_ITEM}[href$="${href}"]`)
-
-    $headerMenuItem.each((i, e) => {
-      $(e).parent().addClass('active')
-    })
-    $headerDropdownItem.each((i, e) => {
-      $(e).addClass('active')
-    })
-    $sidebarMenuItem.each((i, e) => {
-      $(e).addClass('active')
-      $(e).parents('.nav-treeview').prevAll('.nav-link').addClass('active')
-    })
   }
 
   removeActiveTab() {
@@ -211,6 +194,26 @@ class IFrame {
     })
   }
 
+  _setItemActive(href) {
+    $(`${SELECTOR_SIDEBAR_MENU_ITEM}, ${SELECTOR_HEADER_DROPDOWN_ITEM}`).removeClass('active')
+    $(SELECTOR_HEADER_MENU_ITEM).parent().removeClass('active')
+
+    const $headerMenuItem = $(`${SELECTOR_HEADER_MENU_ITEM}[href$="${href}"]`)
+    const $headerDropdownItem = $(`${SELECTOR_HEADER_DROPDOWN_ITEM}[href$="${href}"]`)
+    const $sidebarMenuItem = $(`${SELECTOR_SIDEBAR_MENU_ITEM}[href$="${href}"]`)
+
+    $headerMenuItem.each((i, e) => {
+      $(e).parent().addClass('active')
+    })
+    $headerDropdownItem.each((i, e) => {
+      $(e).addClass('active')
+    })
+    $sidebarMenuItem.each((i, e) => {
+      $(e).addClass('active')
+      $(e).parents('.nav-treeview').prevAll('.nav-link').addClass('active')
+    })
+  }
+
   _fixHeight(tabEmpty = false) {
     const contentWrapperHeight = parseFloat($(SELECTOR_CONTENT_WRAPPER).css('min-height'))
     const navbarHeight = $(SELECTOR_TAB_NAV).outerHeight()
@@ -225,7 +228,7 @@ class IFrame {
 
   // Static
 
-  static _jQueryInterface(operation) {
+  static _jQueryInterface(operation, ...args) {
     let data = $(this).data(DATA_KEY)
     const _options = $.extend({}, Default, $(this).data())
 
@@ -234,8 +237,8 @@ class IFrame {
       $(this).data(DATA_KEY, data)
     }
 
-    if (typeof operation === 'string' && operation.match(/openTabSidebar/)) {
-      data[operation]()
+    if (typeof operation === 'string' && operation.match(/createTab|openTabSidebar|switchTab|removeActiveTab/)) {
+      data[operation](...args)
     }
   }
 }
