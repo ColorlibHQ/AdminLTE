@@ -1,11 +1,11 @@
-/*! Scroller 2.0.2
+/*! Scroller 2.0.3
  * ©2011-2020 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     Scroller
  * @description Virtual rendering for DataTables
- * @version     2.0.2
+ * @version     2.0.3
  * @file        dataTables.scroller.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
@@ -527,7 +527,7 @@ $.extend( Scroller.prototype, {
 		var loadedState = dt.state.loaded();
 
 		dt.on( 'stateSaveParams.scroller', function ( e, settings, data ) {
-			if ( initialStateSave ) {
+			if ( initialStateSave && loadedState ) {
 				data.scroller = loadedState.scroller;
 				initialStateSave = false;
 			}
@@ -1191,7 +1191,7 @@ Scroller.oDefaults = Scroller.defaults;
  *  @name      Scroller.version
  *  @static
  */
-Scroller.version = "2.0.2";
+Scroller.version = "2.0.3";
 
 
 

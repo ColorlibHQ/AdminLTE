@@ -118,7 +118,8 @@ class Treeview {
   // Private
 
   _setupListeners() {
-    $(document).on('click', this._config.trigger, event => {
+    const elementId = this._element.attr('id') !== undefined ? `#${this._element.attr('id')}` : ''
+    $(document).on('click', `${elementId}${this._config.trigger}`, event => {
       this.toggle(event)
     })
   }

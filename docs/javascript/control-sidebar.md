@@ -61,3 +61,17 @@ $("#my-toggle-button").ControlSidebar('toggle');
 {: .table .table-bordered .bg-light}
 
 Example: `$('#toggle-button').on('expanded.lte.controlsidebar', handleExpandedEvent)`
+
+
+##### Methods
+{: .mt-4}
+
+|---
+| Method | Description
+|-|-
+|collapse | Collapses the control-sidebar
+|show | Show's the control-sidebar
+|toggle | Toggles the state of the control-sidebar expanded and collapsed
+{: .table .table-bordered .bg-light}
+
+Example: `$('#toggle-button').ControlSidebar('toggle')`

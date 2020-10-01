@@ -132,3 +132,24 @@
     }
   }
 }
+
+.dark-mode {
+  .timeline {
+    &::before {
+      background-color: $gray-600;
+    }
+    > div > .timeline-item {
+      background-color: $dark;
+      color: $white;
+      border-color: $gray-600;
+
+      > .timeline-header {
+        color: $gray-400;
+        border-color: $gray-600;
+      }
+      > .time {
+        color: $gray-400;
+      }
+    }
+  }
+}

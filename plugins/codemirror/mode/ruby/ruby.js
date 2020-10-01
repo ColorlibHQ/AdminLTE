@@ -11,25 +11,28 @@
 })(function(CodeMirror) {
 "use strict";
 
+function wordObj(words) {
+  var o = {};
+  for (var i = 0, e = words.length; i < e; ++i) o[words[i]] = true;
+  return o;
+}
+
+var keywordList = [
+  "alias", "and", "BEGIN", "begin", "break", "case", "class", "def", "defined?", "do", "else",
+  "elsif", "END", "end", "ensure", "false", "for", "if", "in", "module", "next", "not", "or",
+  "redo", "rescue", "retry", "return", "self", "super", "then", "true", "undef", "unless",
+  "until", "when", "while", "yield", "nil", "raise", "throw", "catch", "fail", "loop", "callcc",
+  "caller", "lambda", "proc", "public", "protected", "private", "require", "load",
+  "require_relative", "extend", "autoload", "__END__", "__FILE__", "__LINE__", "__dir__"
+], keywords = wordObj(keywordList);
+
+var indentWords = wordObj(["def", "class", "case", "for", "while", "until", "module", "then",
+                           "catch", "loop", "proc", "begin"]);
+var dedentWords = wordObj(["end", "until"]);
+var opening = {"[": "]", "{": "}", "(": ")"};
+var closing = {"]": "[", "}": "{", ")": "("};
+
 CodeMirror.defineMode("ruby", function(config) {
-  function wordObj(words) {
-    var o = {};
-    for (var i = 0, e = words.length; i < e; ++i) o[words[i]] = true;
-    return o;
-  }
-  var keywords = wordObj([
-    "alias", "and", "BEGIN", "begin", "break", "case", "class", "def", "defined?", "do", "else",
-    "elsif", "END", "end", "ensure", "false", "for", "if", "in", "module", "next", "not", "or",
-    "redo", "rescue", "retry", "return", "self", "super", "then", "true", "undef", "unless",
-    "until", "when", "while", "yield", "nil", "raise", "throw", "catch", "fail", "loop", "callcc",
-    "caller", "lambda", "proc", "public", "protected", "private", "require", "load",
-    "require_relative", "extend", "autoload", "__END__", "__FILE__", "__LINE__", "__dir__"
-  ]);
-  var indentWords = wordObj(["def", "class", "case", "for", "while", "until", "module", "then",
-                             "catch", "loop", "proc", "begin"]);
-  var dedentWords = wordObj(["end", "until"]);
-  var opening = {"[": "]", "{": "}", "(": ")"};
-  var closing = {"]": "[", "}": "{", ")": "("};
   var curPunc;
 
   function chain(newtok, stream, state) {
@@ -294,5 +297,7 @@ CodeMirror.defineMode("ruby", function(config) {
 });
 
 CodeMirror.defineMIME("text/x-ruby", "ruby");
+
+CodeMirror.registerHelper("hintWords", "ruby", keywordList);
 
 });

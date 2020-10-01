@@ -8,6 +8,7 @@ Thanks to many of AdminLTE users, there are multiple implementations of the temp
 
 ##### AdminLTE v3.0
 {: .text-bold .text-dark .mt-3}
+- [Setup AdminLTE3 in to Laravel in few minutes](https://youtu.be/jA7hr2gE9yc) by [Shailesh Ladumor](https://github.com/shailesh-ladumor)
 - [Laravel-AdminLTE _v3.x_](https://github.com/jeroennoten/Laravel-AdminLTE) by [Jeroen Noten](https://github.com/jeroennoten)
 - [django-adminlte3](https://github.com/d-demirci/django-adminlte3) by [d-demirci](https://github.com/d-demirci)
 - [AdminLTE3.MVC](https://www.nuget.org/packages/AdminLTE3.MVC/) by [somaraj](https://github.com/somaraj)
@@ -21,6 +22,7 @@ Thanks to many of AdminLTE users, there are multiple implementations of the temp
 
 ##### AdminLTE v2.4
 {: .text-bold .text-dark .mt-3}
+- [Setup AdminLTE2 in to Laravel in few minutes](https://youtu.be/8Fa7Ji4lDyI) by [Shailesh Ladumor](https://github.com/shailesh-ladumor)
 - [Laravel-AdminLTE _v1.x & v2.x_](https://github.com/jeroennoten/Laravel-AdminLTE) by [Jeroen Noten](https://github.com/jeroennoten)
 - [adminlte-laravel](https://github.com/acacha/adminlte-laravel) by [Sergi Tur Badenas](https://github.com/acacha)
 - [yii2-adminlte-asset](https://github.com/dmstr/yii2-adminlte-asset) by [Tobias Munk](https://github.com/schmunk42)

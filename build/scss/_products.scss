@@ -16,6 +16,7 @@
 
     background-color: $white;
     padding: 10px 0;
+
   }
 
   .product-img {
@@ -50,5 +51,18 @@
 
   &:last-of-type {
     border-bottom-width: 0;
+  }
+}
+
+
+.dark-mode {
+  .products-list > .item {
+    background-color: $dark;
+    color: $white;
+    border-bottom-color: $gray-600;
+  }
+
+  .product-description {
+    color: $gray-400;
   }
 }

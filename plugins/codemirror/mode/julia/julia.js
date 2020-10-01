@@ -401,8 +401,8 @@ CodeMirror.defineMode("julia", function(config, parserConf) {
 
     indent: function(state, textAfter) {
       var delta = 0;
-      if ( textAfter === ']' || textAfter === ')' || /^end/.test(textAfter) ||
-           /^else/.test(textAfter) || /^catch/.test(textAfter) || /^elseif/.test(textAfter) ||
+      if ( textAfter === ']' || textAfter === ')' || /^end\b/.test(textAfter) ||
+           /^else/.test(textAfter) || /^catch\b/.test(textAfter) || /^elseif\b/.test(textAfter) ||
            /^finally/.test(textAfter) ) {
         delta = -1;
       }

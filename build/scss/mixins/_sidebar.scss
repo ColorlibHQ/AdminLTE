@@ -5,14 +5,14 @@
 // Sidebar Color
 @mixin sidebar-color($color) {
   .nav-sidebar > .nav-item {
-    & > .nav-link.active {
+    > .nav-link.active {
       background-color: $color;
       color: color-yiq($color);
     }
   }
 
   .nav-sidebar.nav-legacy > .nav-item {
-    & > .nav-link.active {
+    > .nav-link.active {
       border-color: $color;
     }
   }

@@ -61,6 +61,10 @@ class SidebarSearch {
   // Public
 
   init() {
+    if ($(SELECTOR_DATA_WIDGET).length == 0) {
+      return
+    }
+
     if ($(SELECTOR_DATA_WIDGET).next(SELECTOR_SEARCH_RESULTS).length == 0) {
       $(SELECTOR_DATA_WIDGET).after(
         $('<div />', { class: CLASS_NAME_SEARCH_RESULTS })
