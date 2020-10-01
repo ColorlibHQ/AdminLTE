@@ -45,7 +45,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    line-height: 120%;
+    line-height: 1.8;
     flex: 1;
     padding: 0 10px;
   }
@@ -142,5 +142,12 @@
         display: block;
       }
     }
+  }
+}
+
+.dark-mode {
+  .info-box {
+    background-color: $dark;
+    color: $white;
   }
 }

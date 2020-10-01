@@ -32,3 +32,7 @@ You can add the `.dropdown-hover` class beside this classes:
 - `.dropdown` (to use hover for the whole dropdown menu)
 - `.dropdown-menu` (to use hover on a specific menu item & sub menus)
 - `.dropdown-submenu` (to use hover on a specific sub menu item & sub sub menus)
+
+### Form Control Bottom Border Only
+
+You can change the form-control input to a bottom border only style with adding the `.form-control-border` class.

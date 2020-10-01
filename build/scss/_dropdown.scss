@@ -57,14 +57,14 @@
 .dropdown-submenu {
   position: relative;
 
-  & > a::after {
+  > a::after {
     @include caret-right ();
     float: right;
     margin-left: .5rem;
     margin-top: .5rem;
   }
 
-  & > .dropdown-menu {
+  > .dropdown-menu {
     left: 100%;
     margin-left: 0;
     margin-top: 0;
@@ -267,5 +267,55 @@
     margin-right: 10px;
     margin-top: -2px;
     width: $sidebar-user-image-width;
+  }
+}
+
+.dark-mode {
+  .dropdown-menu {
+    background-color: $dark;
+    color: $white;
+  }
+  .dropdown-item {
+    color: $white;
+
+    &:focus,
+    &:hover {
+      background-color: lighten($dark, 5%);
+    }
+  }
+  .dropdown-divider {
+    border-color: $gray-600;
+  }
+
+  .navbar-nav > .user-menu > .dropdown-menu {
+    > .user-footer {
+      background-color: lighten($dark, 2.5%);
+      color: $white;
+
+      .btn-default {
+        color: $white;
+
+        &:hover,
+        &:focus {
+          background-color: lighten($dark, 5%);
+          color: $gray-300;
+        }
+        &:focus {
+          background-color: lighten($dark, 7.5%);
+        }
+      }
+    }
+    > .user-body {
+      border-color: $gray-600;
+    }
+    > .user-body a {
+      background-color: transparent !important;
+      color: $white !important;
+
+      &:hover,
+      &:focus {
+        color: $gray-400 !important;
+      }
+    }
   }
 }

@@ -38,3 +38,35 @@
     }
   }
 }
+
+.dark-mode {
+  .modal-header,
+  .modal-footer {
+    border-color: $gray-600;
+  }
+  .modal-content {
+    background-color: $dark;
+
+    &.bg-warning {
+      .modal-header,
+      .modal-footer {
+        border-color: $gray-600;
+      }
+      .close {
+        color: $dark !important;
+        text-shadow: 0 1px 0 $gray-700 !important;
+      }
+    }
+
+    &.bg-primary,
+    &.bg-secondary,
+    &.bg-info,
+    &.bg-danger,
+    &.bg-success {
+      .modal-header,
+      .modal-footer {
+        border-color: $white;
+      }
+    }
+  }
+}

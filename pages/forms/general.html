@@ -448,6 +448,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="../kanban.html" class="nav-link">
+              <i class="nav-icon fas fa-columns"></i>
+              <p>
+                Kanban Board
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
               <p>
@@ -871,37 +879,50 @@
             </div>
             <!-- /.card -->
 
-            <!-- Form Element sizes -->
-            <div class="card card-success">
+            <!-- general form elements -->
+            <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Different Height</h3>
+                <h3 class="card-title">Different Styles</h3>
               </div>
+              <!-- /.card-header -->
               <div class="card-body">
-                <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg">
-                <br>
-                <input class="form-control" type="text" placeholder="Default input">
-                <br>
-                <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <div class="card card-danger">
-              <div class="card-header">
-                <h3 class="card-title">Different Width</h3>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-3">
-                    <input type="text" class="form-control" placeholder=".col-3">
-                  </div>
-                  <div class="col-4">
-                    <input type="text" class="form-control" placeholder=".col-4">
-                  </div>
-                  <div class="col-5">
-                    <input type="text" class="form-control" placeholder=".col-5">
-                  </div>
+                <h4>Input</h4>
+                <div class="form-group">
+                  <label for="exampleInputBorder">Bottom Border only <code>.form-control-border</code></label>
+                  <input type="text" class="form-control form-control-border" id="exampleInputBorder" placeholder=".form-control-border">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputBorderWidth2">Bottom Border only 2px Border <code>.form-control-border.border-width-2</code></label>
+                  <input type="text" class="form-control form-control-border border-width-2" id="exampleInputBorderWidth2" placeholder=".form-control-border.border-width-2">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputRounded0">Flat <code>.rounded-0</code></label>
+                  <input type="text" class="form-control rounded-0" id="exampleInputRounded0" placeholder=".rounded-0">
+                </div>
+                <h4>Custom Select</h4>
+                <div class="form-group">
+                  <label for="exampleSelectBorder">Bottom Border only <code>.form-control-border</code></label>
+                  <select class="custom-select form-control-border" id="exampleSelectBorder">
+                    <option>Value 1</option>
+                    <option>Value 2</option>
+                    <option>Value 3</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleSelectBorderWidth2">Bottom Border only <code>.form-control-border.border-width-2</code></label>
+                  <select class="custom-select form-control-border border-width-2" id="exampleSelectBorderWidth2">
+                    <option>Value 1</option>
+                    <option>Value 2</option>
+                    <option>Value 3</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleSelectRounded0">Flat <code>.rounded-0</code></label>
+                  <select class="custom-select rounded-0" id="exampleSelectRounded0">
+                    <option>Value 1</option>
+                    <option>Value 2</option>
+                    <option>Value 3</option>
+                  </select>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -1082,6 +1103,43 @@
           <!--/.col (left) -->
           <!-- right column -->
           <div class="col-md-6">
+            <!-- Form Element sizes -->
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Different Height</h3>
+              </div>
+              <div class="card-body">
+                <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg">
+                <br>
+                <input class="form-control" type="text" placeholder="Default input">
+                <br>
+                <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Different Width</h3>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-3">
+                    <input type="text" class="form-control" placeholder=".col-3">
+                  </div>
+                  <div class="col-4">
+                    <input type="text" class="form-control" placeholder=".col-4">
+                  </div>
+                  <div class="col-5">
+                    <input type="text" class="form-control" placeholder=".col-5">
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
             <!-- general form elements disabled -->
             <div class="card card-warning">
               <div class="card-header">
@@ -1259,6 +1317,14 @@
                           <input class="custom-control-input" type="checkbox" id="customCheckbox3" disabled>
                           <label for="customCheckbox3" class="custom-control-label">Custom Checkbox disabled</label>
                         </div>
+                        <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input custom-control-input-danger" type="checkbox" id="customCheckbox4" checked>
+                          <label for="customCheckbox4" class="custom-control-label">Custom Checkbox with custom color</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input custom-control-input-danger custom-control-input-outline" type="checkbox" id="customCheckbox5" checked>
+                          <label for="customCheckbox5" class="custom-control-label">Custom Checkbox with custom color outline</label>
+                        </div>
                       </div>
                     </div>
                     <div class="col-sm-6">
@@ -1275,6 +1341,14 @@
                         <div class="custom-control custom-radio">
                           <input class="custom-control-input" type="radio" id="customRadio3" disabled>
                           <label for="customRadio3" class="custom-control-label">Custom Radio disabled</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input custom-control-input-danger" type="radio" id="customRadio4" name="customRadio2" checked>
+                          <label for="customRadio4" class="custom-control-label">Custom Radio with custom color</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input custom-control-input-danger custom-control-input-outline" type="radio" id="customRadio5" name="customRadio2">
+                          <label for="customRadio5" class="custom-control-label">Custom Radio with custom color outline</label>
                         </div>
                       </div>
                     </div>

@@ -39,3 +39,12 @@
     border-color: #{$color};
   }
 }
+
+.dark-mode {
+  [class*="icheck-"] > input:first-child:not(:checked) {
+    + input[type="hidden"] + label::before,
+    + label::before {
+      border-color: $gray-600;
+    }
+  }
+}

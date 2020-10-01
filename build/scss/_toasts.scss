@@ -46,6 +46,18 @@
   }
 }
 
+.dark-mode {
+  .toast {
+    background-color: rgba($dark, .85);
+    color: $white;
+
+    .toast-header {
+      background-color: rgba($dark, .7);
+      color: $gray-100;
+    }
+  }
+}
+
 .toast {
   @each $name, $color in $theme-colors {
     @include toast-variant($name, $color);

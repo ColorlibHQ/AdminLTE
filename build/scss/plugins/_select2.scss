@@ -272,3 +272,46 @@ select.form-control-sm ~ {
 @each $name, $color in $colors {
   @include select2-variant($name, $color);
 }
+
+.dark-mode {
+  .select2-selection {
+    background-color: $dark;
+    border-color: $gray-600;
+  }
+
+  .select2-container--disabled .select2-selection--single {
+    background-color: lighten($dark, 7.5%);
+  }
+
+  .select2-selection--single {
+    background-color: $dark;
+    border-color: $gray-600;
+
+    .select2-selection__rendered {
+      color: $white;
+    }
+  }
+  .select2-dropdown .select2-search__field,
+  .select2-search--inline .select2-search__field {
+    background-color: $dark;
+    border-color: $gray-600;
+    color: white;
+  }
+  .select2-dropdown {
+    background-color: $dark;
+    border-color: $gray-600;
+    color: white;
+  }
+  .select2-results__option[aria-selected="true"] {
+    background-color: lighten($dark, 5%) !important;
+    color: $gray-300;
+  }
+  .select2-container .select2-search--inline .select2-search__field {
+    background-color: transparent;
+    color: $white;
+  }
+
+  .select2-container--bootstrap4 .select2-selection--multiple .select2-selection__choice {
+    color: $white;
+  }
+}

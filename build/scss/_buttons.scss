@@ -112,3 +112,31 @@
 .btn-xs {
   @include button-size($button-padding-y-xs, $button-padding-x-xs, $button-font-size-xs, $button-line-height-xs, $button-border-radius-xs);
 }
+
+.dark-mode {
+  .btn-default,
+  .btn-app {
+    background-color: lighten($dark, 2.5%);
+    color: $white;
+    border-color: $gray-600;
+
+    &:hover,
+    &:focus {
+      background-color: lighten($dark, 5%);
+      color: $gray-300;
+      border-color: lighten($gray-600, 2.5%);
+    }
+  }
+  .btn-light {
+    background-color: lighten($dark, 7.5%);
+    color: $white;
+    border-color: $gray-600;
+
+    &:hover,
+    &:focus {
+      background-color: lighten($dark, 10%);
+      color: $gray-300;
+      border-color: lighten($gray-600, 5%);
+    }
+  }
+}
