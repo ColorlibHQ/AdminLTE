@@ -50,11 +50,11 @@
     },
     {
       "path": "./dist/js/adminlte.js",
-      "maxSize": "12 kB"
+      "maxSize": "14 kB"
     },
     {
       "path": "./dist/js/adminlte.min.js",
-      "maxSize": "8 kB"
+      "maxSize": "9.5 kB"
     }
   ]
 }
