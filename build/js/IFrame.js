@@ -146,11 +146,17 @@ class IFrame {
   }
 
   removeActiveTab() {
-    $(`${SELECTOR_TAB_NAVBAR_NAV_ITEM}.active`).parent().remove()
+    const $navItem = $(`${SELECTOR_TAB_NAVBAR_NAV_ITEM}.active`)
+    const $navItemParent = $navItem.parent()
+    const navItemIndex = $navItem.index()
+    $navItem.remove()
     $('.tab-pane.active').remove()
 
     if ($(SELECTOR_TAB_CONTENT).children().length == $(`${SELECTOR_TAB_EMPTY}, ${SELECTOR_TAB_LOADING}`).length) {
       $(SELECTOR_TAB_EMPTY).show()
+    } else {
+      const prevNavItemIndex = navItemIndex - 1
+      this.switchTab($navItemParent.children().eq(prevNavItemIndex).find('a'))
     }
   }
 
