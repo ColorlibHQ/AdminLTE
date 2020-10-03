@@ -18,6 +18,8 @@ const JQUERY_NO_CONFLICT = $.fn[NAME]
 
 const SELECTOR_DATA_TOGGLE = '[data-widget="iframe"]'
 const SELECTOR_DATA_TOGGLE_CLOSE = '[data-widget="iframe-close"]'
+const SELECTOR_DATA_TOGGLE_SCROLL_LEFT = '[data-widget="iframe-scrollleft"]'
+const SELECTOR_DATA_TOGGLE_SCROLL_RIGHT = '[data-widget="iframe-scrollright"]'
 const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
 const SELECTOR_CONTENT_IFRAME = `${SELECTOR_CONTENT_WRAPPER} iframe`
 const SELECTOR_TAB_NAV = `${SELECTOR_DATA_TOGGLE}.iframe-mode .nav`
@@ -45,7 +47,9 @@ const Default = {
   autoItemActive: true,
   autoShowNewTab: true,
   loadingScreen: true,
-  useNavbarItems: true
+  useNavbarItems: true,
+  scrollOffset: 40,
+  scrollBehaviorSwap: false
 }
 
 /**
@@ -171,6 +175,11 @@ class IFrame {
     }
   }
 
+  _navScroll(offset) {
+    const leftPos = $(SELECTOR_TAB_NAVBAR_NAV).scrollLeft()
+    $(SELECTOR_TAB_NAVBAR_NAV).animate({ scrollLeft: (leftPos + offset) }, 250, 'linear')
+  }
+
   _setupListeners() {
     $(window).on('resize', () => {
       setTimeout(() => {
@@ -197,6 +206,49 @@ class IFrame {
     $(document).on('click', SELECTOR_DATA_TOGGLE_CLOSE, e => {
       e.preventDefault()
       this.removeActiveTab()
+    })
+    let mousedown = false
+    let mousedownInterval = null
+    $(document).on('mousedown', SELECTOR_DATA_TOGGLE_SCROLL_LEFT, e => {
+      e.preventDefault()
+      clearInterval(mousedownInterval)
+
+      let { scrollOffset } = this._config
+
+      if (!this._config.scrollBehaviorSwap) {
+        scrollOffset = -scrollOffset
+      }
+
+      mousedown = true
+      this._navScroll(scrollOffset)
+
+      mousedownInterval = setInterval(() => {
+        this._navScroll(scrollOffset)
+      }, 250)
+    })
+    $(document).on('mousedown', SELECTOR_DATA_TOGGLE_SCROLL_RIGHT, e => {
+      e.preventDefault()
+      clearInterval(mousedownInterval)
+
+      let { scrollOffset } = this._config
+
+      if (this._config.scrollBehaviorSwap) {
+        scrollOffset = -scrollOffset
+      }
+
+      mousedown = true
+      this._navScroll(scrollOffset)
+
+      mousedownInterval = setInterval(() => {
+        this._navScroll(scrollOffset)
+      }, 250)
+    })
+    $(document).on('mouseup', () => {
+      if (mousedown) {
+        mousedown = false
+        clearInterval(mousedownInterval)
+        mousedownInterval = null
+      }
     })
   }
 
