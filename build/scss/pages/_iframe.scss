@@ -13,7 +13,7 @@ body.iframe-mode {
   }
 }
 
-body.fullscreen-mode {
+body.iframe-mode-fullscreen {
   overflow: hidden;
 }
 
@@ -65,7 +65,7 @@ body.fullscreen-mode {
       }
     }
 
-    body.fullscreen-mode & {
+    body.iframe-mode-fullscreen & {
       position: absolute;
       left: 0;
       top: 0;

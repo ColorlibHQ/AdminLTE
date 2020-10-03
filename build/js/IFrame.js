@@ -33,7 +33,7 @@ const SELECTOR_SIDEBAR_MENU_ITEM = '.main-sidebar .nav-item > a.nav-link'
 const SELECTOR_HEADER_MENU_ITEM = '.main-header .nav-item a.nav-link'
 const SELECTOR_HEADER_DROPDOWN_ITEM = '.main-header a.dropdown-item'
 const CLASS_NAME_IFRAME_MODE = 'iframe-mode'
-const CLASS_NAME_FULLSCREEN_MODE = 'fullscreen-mode'
+const CLASS_NAME_FULLSCREEN_MODE = 'iframe-mode-fullscreen'
 
 const Default = {
   onTabClick(item) {
