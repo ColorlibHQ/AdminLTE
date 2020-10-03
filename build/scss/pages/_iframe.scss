@@ -13,6 +13,10 @@ body.iframe-mode {
   }
 }
 
+body.fullscreen-mode {
+  overflow: hidden;
+}
+
 .content-wrapper {
   height: 100%;
 
@@ -59,6 +63,18 @@ body.iframe-mode {
       .content-wrapper {
         padding-bottom: 0 !important;
       }
+    }
+
+    body.fullscreen-mode & {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin-left: 0 !important;
+      height: 100%;
+      min-height: 100%;
+      z-index: $zindex-main-sidebar + 10;
     }
   }
 }

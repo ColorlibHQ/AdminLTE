@@ -20,6 +20,7 @@ const SELECTOR_DATA_TOGGLE = '[data-widget="iframe"]'
 const SELECTOR_DATA_TOGGLE_CLOSE = '[data-widget="iframe-close"]'
 const SELECTOR_DATA_TOGGLE_SCROLL_LEFT = '[data-widget="iframe-scrollleft"]'
 const SELECTOR_DATA_TOGGLE_SCROLL_RIGHT = '[data-widget="iframe-scrollright"]'
+const SELECTOR_DATA_TOGGLE_FULLSCREEN = '[data-widget="iframe-fullscreen"]'
 const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
 const SELECTOR_CONTENT_IFRAME = `${SELECTOR_CONTENT_WRAPPER} iframe`
 const SELECTOR_TAB_NAV = `${SELECTOR_DATA_TOGGLE}.iframe-mode .nav`
@@ -32,6 +33,7 @@ const SELECTOR_SIDEBAR_MENU_ITEM = '.main-sidebar .nav-item > a.nav-link'
 const SELECTOR_HEADER_MENU_ITEM = '.main-header .nav-item a.nav-link'
 const SELECTOR_HEADER_DROPDOWN_ITEM = '.main-header a.dropdown-item'
 const CLASS_NAME_IFRAME_MODE = 'iframe-mode'
+const CLASS_NAME_FULLSCREEN_MODE = 'fullscreen-mode'
 
 const Default = {
   onTabClick(item) {
@@ -49,7 +51,9 @@ const Default = {
   loadingScreen: true,
   useNavbarItems: true,
   scrollOffset: 40,
-  scrollBehaviorSwap: false
+  scrollBehaviorSwap: false,
+  iconMaximize: 'fa-expand',
+  iconMinimize: 'fa-compress'
 }
 
 /**
@@ -164,6 +168,22 @@ class IFrame {
     }
   }
 
+  toggleFullscreen() {
+    if ($('body').hasClass(CLASS_NAME_FULLSCREEN_MODE)) {
+      $(`${SELECTOR_DATA_TOGGLE_FULLSCREEN} i`).removeClass(this._config.iconMinimize).addClass(this._config.iconMaximize)
+      $('body').removeClass(CLASS_NAME_FULLSCREEN_MODE)
+      $(`${SELECTOR_TAB_EMPTY}, ${SELECTOR_TAB_LOADING}`).height('auto')
+      $(SELECTOR_CONTENT_WRAPPER).height('auto')
+      $(SELECTOR_CONTENT_IFRAME).height('auto')
+    } else {
+      $(`${SELECTOR_DATA_TOGGLE_FULLSCREEN} i`).removeClass(this._config.iconMaximize).addClass(this._config.iconMinimize)
+      $('body').addClass(CLASS_NAME_FULLSCREEN_MODE)
+    }
+
+    $(window).trigger('resize')
+    this._fixHeight(true)
+  }
+
   // Private
 
   _init() {
@@ -206,6 +226,10 @@ class IFrame {
     $(document).on('click', SELECTOR_DATA_TOGGLE_CLOSE, e => {
       e.preventDefault()
       this.removeActiveTab()
+    })
+    $(document).on('click', SELECTOR_DATA_TOGGLE_FULLSCREEN, e => {
+      e.preventDefault()
+      this.toggleFullscreen()
     })
     let mousedown = false
     let mousedownInterval = null
@@ -273,14 +297,21 @@ class IFrame {
   }
 
   _fixHeight(tabEmpty = false) {
-    const contentWrapperHeight = parseFloat($(SELECTOR_CONTENT_WRAPPER).css('min-height'))
-    const navbarHeight = $(SELECTOR_TAB_NAV).outerHeight()
-    if (tabEmpty == true) {
-      setTimeout(() => {
-        $(`${SELECTOR_TAB_EMPTY}, ${SELECTOR_TAB_LOADING}`).height(contentWrapperHeight - navbarHeight)
-      }, 50)
+    if ($('body').hasClass(CLASS_NAME_FULLSCREEN_MODE)) {
+      const windowHeight = $(window).height()
+      $(`${SELECTOR_TAB_EMPTY}, ${SELECTOR_TAB_LOADING}`).height(windowHeight)
+      $(SELECTOR_CONTENT_WRAPPER).height(windowHeight)
+      $(SELECTOR_CONTENT_IFRAME).height(windowHeight)
     } else {
-      $(SELECTOR_CONTENT_IFRAME).height(contentWrapperHeight - navbarHeight)
+      const contentWrapperHeight = parseFloat($(SELECTOR_CONTENT_WRAPPER).css('min-height'))
+      const navbarHeight = $(SELECTOR_TAB_NAV).outerHeight()
+      if (tabEmpty == true) {
+        setTimeout(() => {
+          $(`${SELECTOR_TAB_EMPTY}, ${SELECTOR_TAB_LOADING}`).height(contentWrapperHeight - navbarHeight)
+        }, 50)
+      } else {
+        $(SELECTOR_CONTENT_IFRAME).height(contentWrapperHeight - navbarHeight)
+      }
     }
   }
 
