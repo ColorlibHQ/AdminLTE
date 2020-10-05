@@ -143,7 +143,7 @@
     "node-sass-package-importer": "^5.3.2",
     "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",
-    "postcss-cli": "^7.1.1",
+    "postcss-cli": "^7.1.2",
     "rollup": "^2.28.2",
     "stylelint": "^13.7.2",
     "stylelint-config-twbs-bootstrap": "^2.0.3",
