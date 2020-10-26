@@ -3,6 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/admin-lte/latest.svg)](https://www.npmjs.com/package/admin-lte)
 [![Packagist](https://img.shields.io/packagist/v/almasaeed2010/adminlte.svg)](https://packagist.org/packages/almasaeed2010/adminlte)
 [![CDNJS](https://img.shields.io/cdnjs/v/admin-lte.svg)](https://cdnjs.com/libraries/admin-lte)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/from-referrer/)
 
 **AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 4.4](https://getbootstrap.com/)** framework and also the JS/jQuery plugin.
 Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.
@@ -93,6 +94,16 @@ To compile the dist files you need Node.js/npm, clone/download the repo then:
 1. `npm install` (install npm deps)
 2. _Optional:_ `npm run dev` (developer mode, autocompile with browsersync support for live demo)
 3. `npm run production` (compile css/js files)
+
+### Online one-click setup for contributing
+
+You can use Gitpod(an online IDE which is free for Open Source) for working on issues or making Prs. With a single click it will launch a workspace and automatically:
+
+- clone the `AdminLTE` repo.
+- install the dependencies.
+- run `yarn dev` to start the server.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/from-referrer/)
 
 ### Contribution Requirements:
 
