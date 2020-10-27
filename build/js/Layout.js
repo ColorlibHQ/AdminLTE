@@ -110,6 +110,12 @@ class Layout {
           clickScrolling: true
         }
       })
+      $('body').overlayScrollbars({
+        sizeAutoCapable: true,
+        scrollbars: {
+          clickScrolling: true
+        }
+      })
     }
   }
 

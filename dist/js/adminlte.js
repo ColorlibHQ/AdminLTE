@@ -1213,6 +1213,12 @@
             clickScrolling: true
           }
         });
+        $__default['default']('body').overlayScrollbars({
+          sizeAutoCapable: true,
+          scrollbars: {
+            clickScrolling: true
+          }
+        });
       }
     };
 
