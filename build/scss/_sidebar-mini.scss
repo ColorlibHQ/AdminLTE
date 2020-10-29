@@ -138,6 +138,15 @@
       margin-right: 0;
     }
   }
+  .nav-sidebar {
+    .nav-item {
+      > .nav-link {
+        p {
+          white-space: nowrap !important;
+        }
+      }
+    }
+  }
 }
 
 .nav-sidebar {
