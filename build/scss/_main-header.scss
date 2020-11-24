@@ -49,6 +49,11 @@
       }
     }
   }
+
+  &.dropdown-legacy .dropdown-menu {
+    top: $nav-link-height + $navbar-padding-y;
+    margin-top: 0;
+  }
 }
 
 // Add this class to images within a nav-link

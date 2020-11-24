@@ -570,4 +570,5 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
 
 > ##### Tip!
 > To get a bigger dropdown menu you can add `.dropdown-menu-lg` or `.dropdown-menu-xl` to `.dropdown-menu`.
+> You can also get the legacy dropdown offset with adding `.dropdown-offset-legacy` to `.main-header`.
 {: .quote-info}
