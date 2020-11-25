@@ -31,6 +31,7 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
       <li><a href="https://www.chartjs.org/" rel="noopener" target="_blank">ChartJS</a></li>
       <li><a href="http://www.flotcharts.org/" rel="noopener" target="_blank">Flot</a></li>
       <li><a href="https://github.com/mariusGundersen/sparkline" rel="noopener" target="_blank">Sparkline</a></li>
+      <li><a href="https://github.com/leeoniya/uPlot/" rel="noopener" target="_blank">uPlot</a></li>
     </ul>
   </div>
   <div class="col-sm-3">
