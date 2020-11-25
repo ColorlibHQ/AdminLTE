@@ -426,6 +426,11 @@ const Plugins = [
   {
     from: 'node_modules/dropzone/dist/',
     to: 'plugins/dropzone'
+  },
+  // uPlot
+  {
+    from: 'node_modules/uplot/dist/',
+    to: 'plugins/uplot'
   }
 ]
 
