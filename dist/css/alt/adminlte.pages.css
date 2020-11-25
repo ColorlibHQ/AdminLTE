@@ -1,9 +1,9 @@
 /*!
- *   AdminLTE v3.0.5
+ *   AdminLTE v3.1.0-rc
  *     Only Pages
  *   Author: Colorlib
- *   Website: AdminLTE.io <http://adminlte.io>
- *   License: Open source - MIT <http://opensource.org/licenses/MIT>
+ *   Website: AdminLTE.io <https://adminlte.io>
+ *   License: Open source - MIT <https://opensource.org/licenses/MIT>
  */
 .close, .mailbox-attachment-close {
   float: right;
@@ -11,7 +11,7 @@
   font-weight: 700;
   line-height: 1;
   color: #000;
-  text-shadow: 0 1px 0 #ffffff;
+  text-shadow: 0 1px 0 #fff;
   opacity: .5;
 }
 
@@ -28,7 +28,6 @@ button.close, button.mailbox-attachment-close {
   padding: 0;
   background-color: transparent;
   border: 0;
-  appearance: none;
 }
 
 a.close.disabled, a.disabled.mailbox-attachment-close {
@@ -86,7 +85,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .mailbox-attachment-name {
   color: #666;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .mailbox-attachment-icon,
@@ -96,7 +95,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .mailbox-attachment-info {
-  background: #f8f9fa;
+  background-color: #f8f9fa;
   padding: 10px;
 }
 
@@ -107,7 +106,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .mailbox-attachment-size > span {
   display: inline-block;
-  padding-top: 0.75rem;
+  padding-top: .75rem;
 }
 
 .mailbox-attachment-icon {
@@ -128,7 +127,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .lockscreen {
-  background: #e9ecef;
+  background-color: #e9ecef;
 }
 
 .lockscreen .lockscreen-name {
@@ -155,7 +154,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .lockscreen-item {
   border-radius: 4px;
-  background: #ffffff;
+  background-color: #fff;
   margin: 10px auto 30px;
   padding: 0;
   position: relative;
@@ -164,7 +163,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .lockscreen-image {
   border-radius: 50%;
-  background: #ffffff;
+  background-color: #fff;
   left: -10px;
   padding: 5px;
   position: absolute;
@@ -187,13 +186,29 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .lockscreen-credentials .btn {
-  background-color: #ffffff;
+  background-color: #fff;
   border: 0;
   padding: 0 10px;
 }
 
 .lockscreen-footer {
   margin-top: 10px;
+}
+
+.dark-mode .lockscreen-item {
+  background-color: #343a40;
+}
+
+.dark-mode .lockscreen-logo a {
+  color: #fff;
+}
+
+.dark-mode .lockscreen-credentials .btn {
+  background-color: #343a40;
+}
+
+.dark-mode .lockscreen-image {
+  background-color: #6c757d;
 }
 
 .login-logo,
@@ -211,11 +226,15 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .login-page,
 .register-page {
+  -ms-flex-align: center;
   align-items: center;
-  background: #e9ecef;
+  background-color: #e9ecef;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-direction: column;
   flex-direction: column;
   height: 100vh;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -232,9 +251,14 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   }
 }
 
+.login-box .card,
+.register-box .card {
+  margin-bottom: 0;
+}
+
 .login-card-body,
 .register-card-body {
-  background: #ffffff;
+  background-color: #fff;
   border-top: 0;
   color: #666;
   padding: 20px;
@@ -250,7 +274,9 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   box-shadow: none;
 }
 
+.login-card-body .input-group .form-control:focus ~ .input-group-prepend .input-group-text,
 .login-card-body .input-group .form-control:focus ~ .input-group-append .input-group-text,
+.register-card-body .input-group .form-control:focus ~ .input-group-prepend .input-group-text,
 .register-card-body .input-group .form-control:focus ~ .input-group-append .input-group-text {
   border-color: #80bdff;
 }
@@ -260,7 +286,9 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   box-shadow: none;
 }
 
+.login-card-body .input-group .form-control.is-valid ~ .input-group-prepend .input-group-text,
 .login-card-body .input-group .form-control.is-valid ~ .input-group-append .input-group-text,
+.register-card-body .input-group .form-control.is-valid ~ .input-group-prepend .input-group-text,
 .register-card-body .input-group .form-control.is-valid ~ .input-group-append .input-group-text {
   border-color: #28a745;
 }
@@ -294,6 +322,18 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .social-auth-links {
   margin: 10px 0;
+}
+
+.dark-mode .login-card-body,
+.dark-mode .register-card-body {
+  background-color: #343a40;
+  border-color: #6c757d;
+  color: #fff;
+}
+
+.dark-mode .login-logo a,
+.dark-mode .register-logo a {
+  color: #fff;
 }
 
 .error-page {
@@ -343,13 +383,17 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .invoice {
-  background: #ffffff;
+  background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
   position: relative;
 }
 
 .invoice-title {
   margin-top: 0;
+}
+
+.dark-mode .invoice {
+  background-color: #343a40;
 }
 
 .profile-user-img {
@@ -386,6 +430,11 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   width: 100%;
 }
 
+.dark-mode .post {
+  color: #fff;
+  border-color: #6c757d;
+}
+
 .product-image {
   max-width: 100%;
   height: auto;
@@ -393,7 +442,9 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .product-image-thumbs {
+  -ms-flex-align: stretch;
   align-items: stretch;
+  display: -ms-flexbox;
   display: flex;
   margin-top: 2rem;
 }
@@ -401,8 +452,9 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 .product-image-thumb {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
   border-radius: 0.25rem;
-  background-color: #ffffff;
+  background-color: #fff;
   border: 1px solid #dee2e6;
+  display: -ms-flexbox;
   display: flex;
   margin-right: 1rem;
   max-width: 7rem;
@@ -412,11 +464,12 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 .product-image-thumb img {
   max-width: 100%;
   height: auto;
+  -ms-flex-item-align: center;
   align-self: center;
 }
 
 .product-image-thumb:hover {
-  opacity: 0.5;
+  opacity: .5;
 }
 
 .product-share a {
@@ -442,4 +495,149 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   text-align: center;
 }
 
+body.iframe-mode .main-sidebar {
+  display: none;
+}
+
+body.iframe-mode .content-wrapper {
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+body.iframe-mode .main-header,
+body.iframe-mode .main-footer {
+  display: none;
+}
+
+body.iframe-mode-fullscreen {
+  overflow: hidden;
+}
+
+.content-wrapper {
+  height: 100%;
+}
+
+.content-wrapper.iframe-mode .navbar-nav {
+  overflow-y: auto;
+  width: 100%;
+}
+
+.content-wrapper.iframe-mode .navbar-nav .nav-link {
+  white-space: nowrap;
+}
+
+.content-wrapper.iframe-mode .tab-content {
+  position: relative;
+}
+
+.content-wrapper.iframe-mode .tab-empty {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.content-wrapper.iframe-mode .tab-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: none;
+  background-color: #f4f6f9;
+}
+
+.content-wrapper.iframe-mode .tab-loading > div {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.content-wrapper.iframe-mode iframe {
+  border: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content-wrapper.iframe-mode iframe .content-wrapper {
+  padding-bottom: 0 !important;
+}
+
+body.iframe-mode-fullscreen .content-wrapper.iframe-mode {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin-left: 0 !important;
+  height: 100%;
+  min-height: 100%;
+  z-index: 1048;
+}
+
+.content-wrapper.kanban {
+  height: 1px;
+}
+
+.content-wrapper.kanban .content {
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.content-wrapper.kanban .content .container,
+.content-wrapper.kanban .content .container-fluid {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.content-wrapper.kanban .content-header + .content {
+  height: calc(100% - ((2 * 15px) + (1.8rem * 1.2)));
+}
+
+.content-wrapper.kanban .card .card-body {
+  padding: .5rem;
+}
+
+.content-wrapper.kanban .card.card-row {
+  width: 340px;
+  display: inline-block;
+  margin: 0 .5rem;
+}
+
+.content-wrapper.kanban .card.card-row:first-child {
+  margin-left: 0;
+}
+
+.content-wrapper.kanban .card.card-row .card-body {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.content-wrapper.kanban .card.card-row .card .card-header {
+  padding: .5rem .75rem;
+}
+
+.content-wrapper.kanban .card.card-row .card .card-body {
+  padding: .75rem;
+}
+
+.content-wrapper.kanban .btn-tool.btn-link {
+  text-decoration: underline;
+  padding-left: 0;
+  padding-right: 0;
+}
 /*# sourceMappingURL=adminlte.pages.css.map */
