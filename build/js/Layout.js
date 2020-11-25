@@ -31,6 +31,7 @@ const CLASS_NAME_SIDEBAR_FOCUSED = 'sidebar-focused'
 const CLASS_NAME_LAYOUT_FIXED = 'layout-fixed'
 const CLASS_NAME_CONTROL_SIDEBAR_SLIDE_OPEN = 'control-sidebar-slide-open'
 const CLASS_NAME_CONTROL_SIDEBAR_OPEN = 'control-sidebar-open'
+const CLASS_NAME_LAYOUT_TOP_NAV = 'layout-top-nav'
 
 const Default = {
   scrollbarTheme: 'os-theme-light',
@@ -81,7 +82,11 @@ class Layout {
 
     if (offset !== false) {
       if (max === heights.controlSidebar) {
-        $contentSelector.css('min-height', (max + offset))
+        if ($body.hasClass(CLASS_NAME_LAYOUT_TOP_NAV)) {
+          $contentSelector.css('min-height', (max + offset + heights.header + heights.footer))
+        } else {
+          $contentSelector.css('min-height', (max + offset))
+        }
       } else if (max === heights.window) {
         $contentSelector.css('min-height', (max + offset) - heights.header - heights.footer)
       } else {
@@ -160,6 +165,10 @@ class Layout {
       })
 
     $(window).resize(() => {
+      this.fixLayoutHeight()
+    })
+
+    $(document).ready(() => {
       this.fixLayoutHeight()
     })
 
