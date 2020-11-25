@@ -69,6 +69,7 @@
   width: auto;
   height: auto;
   margin: 0 0.3125em;
+  padding: 0;
 }
 .swal2-popup.swal2-toast .swal2-styled {
   margin: 0 0.3125em;
@@ -287,11 +288,13 @@
 .swal2-actions {
   display: flex;
   z-index: 1;
+  box-sizing: border-box;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   width: 100%;
   margin: 1.25em auto 0;
+  padding: 0 1.6em;
 }
 .swal2-actions:not(.swal2-loading) .swal2-styled[disabled] {
   opacity: 0.4;
@@ -302,41 +305,20 @@
 .swal2-actions:not(.swal2-loading) .swal2-styled:active {
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
 }
-.swal2-actions.swal2-loading .swal2-styled.swal2-confirm {
-  box-sizing: border-box;
-  width: 2.5em;
-  height: 2.5em;
-  margin: 0.46875em;
-  padding: 0;
+
+.swal2-loader {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.2em;
+  height: 2.2em;
+  margin: 0 1.875em;
   -webkit-animation: swal2-rotate-loading 1.5s linear 0s infinite normal;
           animation: swal2-rotate-loading 1.5s linear 0s infinite normal;
-  border: 0.25em solid transparent;
+  border-width: 0.25em;
+  border-style: solid;
   border-radius: 100%;
-  border-color: transparent;
-  background-color: transparent !important;
-  color: transparent !important;
-  cursor: default;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-.swal2-actions.swal2-loading .swal2-styled.swal2-cancel {
-  margin-right: 30px;
-  margin-left: 30px;
-}
-.swal2-actions.swal2-loading :not(.swal2-styled).swal2-confirm::after {
-  content: "";
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  margin-left: 5px;
-  -webkit-animation: swal2-rotate-loading 1.5s linear 0s infinite normal;
-          animation: swal2-rotate-loading 1.5s linear 0s infinite normal;
-  border: 3px solid #999999;
-  border-radius: 50%;
-  border-right-color: transparent;
-  box-shadow: 1px 1px 1px #fff;
+  border-color: #3085d6 transparent #3085d6 transparent;
 }
 
 .swal2-styled {
@@ -353,6 +335,14 @@
   border-radius: 0.25em;
   background: initial;
   background-color: #3085d6;
+  color: #fff;
+  font-size: 1.0625em;
+}
+.swal2-styled.swal2-deny {
+  border: 0;
+  border-radius: 0.25em;
+  background: initial;
+  background-color: #dd6b55;
   color: #fff;
   font-size: 1.0625em;
 }
