@@ -246,6 +246,18 @@ const Plugins = [
     to: 'plugins/datatables-scroller/css'
   },
   {
+    from: 'node_modules/datatables.net-searchpanes/js',
+    to: 'plugins/datatables-searchpanes/js'
+  },
+  {
+    from: 'node_modules/datatables.net-searchpanes-bs4/js',
+    to: 'plugins/datatables-searchpanes/js'
+  },
+  {
+    from: 'node_modules/datatables.net-searchpanes-bs4/css',
+    to: 'plugins/datatables-searchpanes/css'
+  },
+  {
     from: 'node_modules/datatables.net-select/js',
     to: 'plugins/datatables-select/js'
   },
@@ -414,6 +426,11 @@ const Plugins = [
   {
     from: 'node_modules/dropzone/dist/',
     to: 'plugins/dropzone'
+  },
+  // uPlot
+  {
+    from: 'node_modules/uplot/dist/',
+    to: 'plugins/uplot'
   }
 ]
 

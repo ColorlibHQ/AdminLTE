@@ -60,12 +60,18 @@ CodeMirror.defineMode("sparql", function(config) {
       stream.skipToEnd();
       return "comment";
     }
+    else if (ch === "^") {
+      ch = stream.peek();
+      if (ch === "^") stream.eat("^");
+      else stream.eatWhile(operatorChars);
+      return "operator";
+    }
     else if (operatorChars.test(ch)) {
       stream.eatWhile(operatorChars);
       return "operator";
     }
     else if (ch == ":") {
-      stream.eatWhile(/[\w\d\._\-]/);
+      eatPnLocal(stream);
       return "atom";
     }
     else if (ch == "@") {
@@ -75,7 +81,7 @@ CodeMirror.defineMode("sparql", function(config) {
     else {
       stream.eatWhile(/[_\w\d]/);
       if (stream.eat(":")) {
-        stream.eatWhile(/[\w\d_\-]/);
+        eatPnLocal(stream);
         return "atom";
       }
       var word = stream.current();
@@ -86,6 +92,10 @@ CodeMirror.defineMode("sparql", function(config) {
       else
         return "variable";
     }
+  }
+
+  function eatPnLocal(stream) {
+    while (stream.match(/([:\w\d._-]|\\[-\\_~.!$&'()*+,;=/?#@%]|%[a-fA-F0-9][a-fA-F0-9])/));
   }
 
   function tokenLiteral(quote) {

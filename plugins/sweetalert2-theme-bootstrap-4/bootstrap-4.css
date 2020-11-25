@@ -1,5 +1,5 @@
 /*
-* @sweetalert2/themes v3.2.0
+* @sweetalert2/themes v4.0.0
 * Released under the MIT License.
 */
 
@@ -42,7 +42,8 @@
   background: #fff;
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1); }
   .swal2-popup.swal2-toast .swal2-header {
-    flex-direction: row; }
+    flex-direction: row;
+    padding: 0; }
   .swal2-popup.swal2-toast .swal2-title {
     flex-grow: 1;
     justify-content: flex-start;
@@ -59,6 +60,7 @@
     line-height: 0.8; }
   .swal2-popup.swal2-toast .swal2-content {
     justify-content: flex-start;
+    padding: 0;
     font-size: 0.875rem; }
   .swal2-popup.swal2-toast .swal2-icon {
     width: 2em;
@@ -247,7 +249,8 @@
 .swal2-header {
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  padding: 0 1.8em; }
 
 .swal2-title {
   position: relative;
@@ -264,50 +267,33 @@
 .swal2-actions {
   display: flex;
   z-index: 1;
+  box-sizing: border-box;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin: 1.25em auto 0; }
+  margin: 1.25em auto 0;
+  padding: 0 1.6em; }
   .swal2-actions:not(.swal2-loading) .swal2-styled[disabled] {
     opacity: .4; }
   .swal2-actions:not(.swal2-loading) .swal2-styled:hover {
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)); }
   .swal2-actions:not(.swal2-loading) .swal2-styled:active {
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)); }
-  .swal2-actions.swal2-loading .swal2-styled.swal2-confirm {
-    box-sizing: border-box;
-    width: 2.5em;
-    height: 2.5em;
-    margin: .46875em;
-    padding: 0;
-    -webkit-animation: swal2-rotate-loading 1.5s linear 0s infinite normal;
-            animation: swal2-rotate-loading 1.5s linear 0s infinite normal;
-    border: .25em solid transparent;
-    border-radius: 100%;
-    border-color: transparent;
-    background-color: transparent !important;
-    color: transparent !important;
-    cursor: default;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none; }
-  .swal2-actions.swal2-loading .swal2-styled.swal2-cancel {
-    margin-right: 30px;
-    margin-left: 30px; }
-  .swal2-actions.swal2-loading :not(.swal2-styled).swal2-confirm::after {
-    content: '';
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    margin-left: 5px;
-    -webkit-animation: swal2-rotate-loading 1.5s linear 0s infinite normal;
-            animation: swal2-rotate-loading 1.5s linear 0s infinite normal;
-    border: 3px solid #999999;
-    border-radius: 50%;
-    border-right-color: transparent;
-    box-shadow: 1px 1px 1px #fff; }
+
+.swal2-loader {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.2em;
+  height: 2.2em;
+  margin: 0 1.875em;
+  -webkit-animation: swal2-rotate-loading 1.5s linear 0s infinite normal;
+          animation: swal2-rotate-loading 1.5s linear 0s infinite normal;
+  border-width: 0.25em;
+  border-style: solid;
+  border-radius: 100%;
+  border-color: #3085d6 transparent #3085d6 transparent; }
 
 .swal2-styled {
   margin: .3125em;
@@ -321,6 +307,13 @@
     border-radius: 0.25em;
     background: initial;
     background-color: #007bff;
+    color: #fff;
+    font-size: 1.0625em; }
+  .swal2-styled.swal2-deny {
+    border: 0;
+    border-radius: 0.25em;
+    background: initial;
+    background-color: #dd6b55;
     color: #fff;
     font-size: 1.0625em; }
   .swal2-styled.swal2-cancel {
@@ -394,7 +387,7 @@
   z-index: 1;
   justify-content: center;
   margin: 0;
-  padding: 0;
+  padding: 0 1.6em;
   color: #545454;
   font-size: 1.125em;
   font-weight: normal;
@@ -433,13 +426,9 @@
     border: 1px solid #b4dbed;
     outline: none;
     box-shadow: 0 0 3px #c4e6f5; }
-  .swal2-input::-webkit-input-placeholder, .swal2-file::-webkit-input-placeholder, .swal2-textarea::-webkit-input-placeholder {
-    color: #cccccc; }
   .swal2-input::-moz-placeholder, .swal2-file::-moz-placeholder, .swal2-textarea::-moz-placeholder {
     color: #cccccc; }
   .swal2-input:-ms-input-placeholder, .swal2-file:-ms-input-placeholder, .swal2-textarea:-ms-input-placeholder {
-    color: #cccccc; }
-  .swal2-input::-ms-input-placeholder, .swal2-file::-ms-input-placeholder, .swal2-textarea::-ms-input-placeholder {
     color: #cccccc; }
   .swal2-input::placeholder,
   .swal2-file::placeholder,
