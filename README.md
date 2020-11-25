@@ -62,7 +62,7 @@ _**Important Note**: To install it via npm/Yarn, you need at least Node.js 10 or
 
 ## Documentation
 
-Visit the [online documentation](https://adminlte.io/docs/3.0/) for the most
+Visit the [online documentation](https://adminlte.io/docs/3.1/) for the most
 updated guide. Information will be added on a weekly basis.
 
 ## Browsers support
