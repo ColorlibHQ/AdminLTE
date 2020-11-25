@@ -70,6 +70,13 @@ CodeMirror.defineMode('shell', function() {
       stream.eatWhile(/\w/);
       return 'attribute';
     }
+    if (ch == "<") {
+      var heredoc = stream.match(/^<-?\s+(.*)/)
+      if (heredoc) {
+        state.tokens.unshift(tokenHeredoc(heredoc[1]))
+        return 'string-2'
+      }
+    }
     if (/\d/.test(ch)) {
       stream.eatWhile(/\d/);
       if(stream.eol() || !/\w/.test(stream.peek())) {
@@ -128,6 +135,14 @@ CodeMirror.defineMode('shell', function() {
     state.tokens.shift();
     return 'def';
   };
+
+  function tokenHeredoc(delim) {
+    return function(stream, state) {
+      if (stream.sol() && stream.string == delim) state.tokens.shift()
+      stream.skipToEnd()
+      return "string-2"
+    }
+  }
 
   function tokenize(stream, state) {
     return (state.tokens[0] || tokenBase) (stream, state);

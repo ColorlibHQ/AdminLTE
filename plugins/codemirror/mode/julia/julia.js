@@ -255,41 +255,43 @@ CodeMirror.defineMode("julia", function(config, parserConf) {
   }
 
   function tokenCallOrDef(stream, state) {
-    var match = stream.match(/^(\(\s*)/);
-    if (match) {
-      if (state.firstParenPos < 0)
-        state.firstParenPos = state.scopes.length;
-      state.scopes.push('(');
-      state.charsAdvanced += match[1].length;
-    }
-    if (currentScope(state) == '(' && stream.match(/^\)/)) {
-      state.scopes.pop();
-      state.charsAdvanced += 1;
-      if (state.scopes.length <= state.firstParenPos) {
-        var isDefinition = stream.match(/^(\s*where\s+[^\s=]+)*\s*?=(?!=)/, false);
-        stream.backUp(state.charsAdvanced);
+    for (;;) {
+      var match = stream.match(/^(\(\s*)/), charsAdvanced = 0;
+      if (match) {
+        if (state.firstParenPos < 0)
+          state.firstParenPos = state.scopes.length;
+        state.scopes.push('(');
+        charsAdvanced += match[1].length;
+      }
+      if (currentScope(state) == '(' && stream.match(/^\)/)) {
+        state.scopes.pop();
+        charsAdvanced += 1;
+        if (state.scopes.length <= state.firstParenPos) {
+          var isDefinition = stream.match(/^(\s*where\s+[^\s=]+)*\s*?=(?!=)/, false);
+          stream.backUp(charsAdvanced);
+          state.firstParenPos = -1;
+          state.tokenize = tokenBase;
+          if (isDefinition)
+            return "def";
+          return "builtin";
+        }
+      }
+      // Unfortunately javascript does not support multiline strings, so we have
+      // to undo anything done upto here if a function call or definition splits
+      // over two or more lines.
+      if (stream.match(/^$/g, false)) {
+        stream.backUp(charsAdvanced);
+        while (state.scopes.length > state.firstParenPos)
+          state.scopes.pop();
         state.firstParenPos = -1;
-        state.charsAdvanced = 0;
         state.tokenize = tokenBase;
-        if (isDefinition)
-          return "def";
         return "builtin";
       }
+      if (!stream.match(/^[^()]+/)) {
+        stream.next()
+        return null
+      }
     }
-    // Unfortunately javascript does not support multiline strings, so we have
-    // to undo anything done upto here if a function call or definition splits
-    // over two or more lines.
-    if (stream.match(/^$/g, false)) {
-      stream.backUp(state.charsAdvanced);
-      while (state.scopes.length > state.firstParenPos)
-        state.scopes.pop();
-      state.firstParenPos = -1;
-      state.charsAdvanced = 0;
-      state.tokenize = tokenBase;
-      return "builtin";
-    }
-    state.charsAdvanced += stream.match(/^([^()]*)/)[1].length;
-    return state.tokenize(stream, state);
   }
 
   function tokenAnnotation(stream, state) {
@@ -383,7 +385,6 @@ CodeMirror.defineMode("julia", function(config, parserConf) {
         nestedComments: 0,
         nestedGenerators: 0,
         nestedParameters: 0,
-        charsAdvanced: 0,
         firstParenPos: -1
       };
     },

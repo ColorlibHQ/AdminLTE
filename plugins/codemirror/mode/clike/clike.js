@@ -82,14 +82,14 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
       state.tokenize = tokenString(ch);
       return state.tokenize(stream, state);
     }
-    if (isPunctuationChar.test(ch)) {
-      curPunc = ch;
-      return null;
-    }
     if (numberStart.test(ch)) {
       stream.backUp(1)
       if (stream.match(number)) return "number"
       stream.next()
+    }
+    if (isPunctuationChar.test(ch)) {
+      curPunc = ch;
+      return null;
     }
     if (ch == "/") {
       if (stream.eat("*")) {
