@@ -534,6 +534,10 @@ body:not(.sidebar-mini-md) {
     min-height: 100%;
     position: absolute;
     top: 0;
+
+    .sidebar {
+      overflow-y: auto;
+    }
   }
 }
 
