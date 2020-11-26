@@ -27,6 +27,7 @@ const SELECTOR_PUSHMENU_BTN = '[data-widget="pushmenu"]'
 const SELECTOR_LOGIN_BOX = '.login-box'
 const SELECTOR_REGISTER_BOX = '.register-box'
 
+const CLASS_NAME_SIDEBAR_COLLAPSED = 'sidebar-collapse'
 const CLASS_NAME_SIDEBAR_FOCUSED = 'sidebar-focused'
 const CLASS_NAME_LAYOUT_FIXED = 'layout-fixed'
 const CLASS_NAME_CONTROL_SIDEBAR_SLIDE_OPEN = 'control-sidebar-slide-open'
@@ -156,9 +157,18 @@ class Layout {
         this.fixLayoutHeight()
       })
 
+    $(SELECTOR_MAIN_SIDEBAR)
+      .on('mouseenter mouseleave', () => {
+        if ($('body').hasClass(CLASS_NAME_SIDEBAR_COLLAPSED)) {
+          this.fixLayoutHeight()
+        }
+      })
+
     $(SELECTOR_PUSHMENU_BTN)
       .on('collapsed.lte.pushmenu shown.lte.pushmenu', () => {
-        this.fixLayoutHeight()
+        setTimeout(() => {
+          this.fixLayoutHeight()
+        }, 300)
       })
 
     $(SELECTOR_CONTROL_SIDEBAR_BTN)
