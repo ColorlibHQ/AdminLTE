@@ -31,7 +31,6 @@ const CLASS_NAME_SIDEBAR_FOCUSED = 'sidebar-focused'
 const CLASS_NAME_LAYOUT_FIXED = 'layout-fixed'
 const CLASS_NAME_CONTROL_SIDEBAR_SLIDE_OPEN = 'control-sidebar-slide-open'
 const CLASS_NAME_CONTROL_SIDEBAR_OPEN = 'control-sidebar-open'
-const CLASS_NAME_LAYOUT_TOP_NAV = 'layout-top-nav'
 
 const Default = {
   scrollbarTheme: 'os-theme-light',
@@ -83,19 +82,29 @@ class Layout {
 
     if (offset !== false) {
       if (max === heights.controlSidebar) {
-        if ($body.hasClass(CLASS_NAME_LAYOUT_TOP_NAV)) {
-          $contentSelector.css(this._config.panelAutoHeightMode, (max + offset) + heights.header + heights.footer)
-        } else {
-          $contentSelector.css(this._config.panelAutoHeightMode, (max + offset))
-        }
+        $contentSelector.css(this._config.panelAutoHeightMode, (max + offset))
       } else if (max === heights.window) {
-        $contentSelector.css(this._config.panelAutoHeightMode, (max + offset) - heights.header - heights.footer)
+        let diff = max - this._max({ sidebar: heights.sidebar, controlSidebar: heights.controlSidebar })
+
+        if (diff > heights.footer) {
+          diff = 0
+        }
+
+        $contentSelector.css(this._config.panelAutoHeightMode, (max + offset + diff) - heights.header - heights.footer)
+      } else if (max === heights.sidebar) {
+        const diff = heights.sidebar - heights.controlSidebar
+
+        if (diff < heights.footer) {
+          $contentSelector.css(this._config.panelAutoHeightMode, (max + offset) - diff)
+        } else {
+          $contentSelector.css(this._config.panelAutoHeightMode, (max + offset) - heights.footer)
+        }
       } else {
         $contentSelector.css(this._config.panelAutoHeightMode, (max + offset) - heights.header)
       }
 
       if (this._isFooterFixed()) {
-        $contentSelector.css(this._config.panelAutoHeightMode, parseFloat($contentSelector.css(this._config.panelAutoHeightMode)) + heights.footer)
+        $contentSelector.css(this._config.panelAutoHeightMode, parseFloat($contentSelector.css('min-height')) + heights.footer)
       }
     }
 

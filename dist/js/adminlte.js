@@ -1511,7 +1511,6 @@
   var CLASS_NAME_LAYOUT_FIXED$1 = 'layout-fixed';
   var CLASS_NAME_CONTROL_SIDEBAR_SLIDE_OPEN = 'control-sidebar-slide-open';
   var CLASS_NAME_CONTROL_SIDEBAR_OPEN$1 = 'control-sidebar-open';
-  var CLASS_NAME_LAYOUT_TOP_NAV = 'layout-top-nav';
   var Default$6 = {
     scrollbarTheme: 'os-theme-light',
     scrollbarAutoHide: 'l',
@@ -1567,19 +1566,32 @@
 
       if (offset !== false) {
         if (max === heights.controlSidebar) {
-          if ($body.hasClass(CLASS_NAME_LAYOUT_TOP_NAV)) {
-            $contentSelector.css(this._config.panelAutoHeightMode, max + offset + heights.header + heights.footer);
-          } else {
-            $contentSelector.css(this._config.panelAutoHeightMode, max + offset);
-          }
+          $contentSelector.css(this._config.panelAutoHeightMode, max + offset);
         } else if (max === heights.window) {
-          $contentSelector.css(this._config.panelAutoHeightMode, max + offset - heights.header - heights.footer);
+          var diff = max - this._max({
+            sidebar: heights.sidebar,
+            controlSidebar: heights.controlSidebar
+          });
+
+          if (diff > heights.footer) {
+            diff = 0;
+          }
+
+          $contentSelector.css(this._config.panelAutoHeightMode, max + offset + diff - heights.header - heights.footer);
+        } else if (max === heights.sidebar) {
+          var _diff = heights.sidebar - heights.controlSidebar;
+
+          if (_diff < heights.footer) {
+            $contentSelector.css(this._config.panelAutoHeightMode, max + offset - _diff);
+          } else {
+            $contentSelector.css(this._config.panelAutoHeightMode, max + offset - heights.footer);
+          }
         } else {
           $contentSelector.css(this._config.panelAutoHeightMode, max + offset - heights.header);
         }
 
         if (this._isFooterFixed()) {
-          $contentSelector.css(this._config.panelAutoHeightMode, parseFloat($contentSelector.css(this._config.panelAutoHeightMode)) + heights.footer);
+          $contentSelector.css(this._config.panelAutoHeightMode, parseFloat($contentSelector.css('min-height')) + heights.footer);
         }
       }
 
