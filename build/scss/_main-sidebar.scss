@@ -17,6 +17,12 @@
 
 }
 
+body:not(.layout-fixed) {
+  .sidebar {
+    overflow-y: auto;
+  }
+}
+
 .sidebar {
   height: calc(100% - (#{$main-header-height-inner} + #{$main-header-bottom-border-width}));
   overflow-y: initial;
