@@ -61,7 +61,7 @@ class Layout {
     let controlSidebar = 0
 
     if ($body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE_OPEN) || $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN) || extra === 'control_sidebar') {
-      controlSidebar = $(SELECTOR_CONTROL_SIDEBAR_CONTENT).height()
+      controlSidebar = $(SELECTOR_CONTROL_SIDEBAR_CONTENT).outerHeight()
     }
 
     const heights = {
@@ -84,7 +84,7 @@ class Layout {
     if (offset !== false) {
       if (max === heights.controlSidebar) {
         if ($body.hasClass(CLASS_NAME_LAYOUT_TOP_NAV)) {
-          $contentSelector.css(this._config.panelAutoHeightMode, (max + offset) + heights.header + heights.footer)
+          $contentSelector.css(this._config.panelAutoHeightMode, (max + offset) - heights.header - heights.footer)
         } else {
           $contentSelector.css(this._config.panelAutoHeightMode, (max + offset))
         }
@@ -92,6 +92,10 @@ class Layout {
         $contentSelector.css(this._config.panelAutoHeightMode, (max + offset) - heights.header - heights.footer)
       } else {
         $contentSelector.css(this._config.panelAutoHeightMode, (max + offset) - heights.header)
+      }
+
+      if (heights.controlSidebar + heights.footer >= heights.sidebar && heights.controlSidebar != 0) {
+        $contentSelector.css(this._config.panelAutoHeightMode, (heights.controlSidebar + offset))
       }
 
       if (this._isFooterFixed()) {
