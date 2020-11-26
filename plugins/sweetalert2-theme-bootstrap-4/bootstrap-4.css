@@ -1,5 +1,5 @@
 /*
-* @sweetalert2/themes v4.0.0
+* @sweetalert2/themes v4.0.1
 * Released under the MIT License.
 */
 
@@ -89,13 +89,14 @@
     flex-basis: auto !important;
     width: auto;
     height: auto;
-    margin: 0 .3125em; }
+    margin: 0 .3125em;
+    padding: 0; }
   .swal2-popup.swal2-toast .swal2-styled {
     margin: 0 .3125em;
     padding: .3125em .625em;
     font-size: 0.875rem; }
     .swal2-popup.swal2-toast .swal2-styled:focus {
-      box-shadow: 0 0 0 1px #fff, 0 0 0 3px rgba(50, 100, 150, 0.4); }
+      box-shadow: 0 0 0 1px #fff, 0 0 0 3px rgba(100, 150, 200, 0.5); }
   .swal2-popup.swal2-toast .swal2-success {
     border-color: #28a745; }
     .swal2-popup.swal2-toast .swal2-success [class^='swal2-success-circular-line'] {
@@ -293,7 +294,7 @@
   border-width: 0.25em;
   border-style: solid;
   border-radius: 100%;
-  border-color: #3085d6 transparent #3085d6 transparent; }
+  border-color: #2778c4 transparent #2778c4 transparent; }
 
 .swal2-styled {
   margin: .3125em;
@@ -313,7 +314,7 @@
     border: 0;
     border-radius: 0.25em;
     background: initial;
-    background-color: #dd6b55;
+    background-color: #d14529;
     color: #fff;
     font-size: 1.0625em; }
   .swal2-styled.swal2-cancel {
@@ -325,7 +326,7 @@
     font-size: 1.0625em; }
   .swal2-styled:focus {
     outline: none;
-    box-shadow: 0 0 0 1px #fff, 0 0 0 3px rgba(50, 100, 150, 0.4); }
+    box-shadow: 0 0 0 3px rgba(100, 150, 200, 0.5); }
   .swal2-styled::-moz-focus-inner {
     border: 0; }
 
@@ -369,7 +370,7 @@
   overflow: hidden;
   transition: color 0.1s ease-out;
   border: none;
-  border-radius: 0;
+  border-radius: 5px;
   background: transparent;
   color: rgba(0, 0, 0, 0.5);
   font-family: serif;
@@ -380,6 +381,9 @@
     transform: none;
     background: transparent;
     color: #000; }
+  .swal2-close:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 3px rgba(100, 150, 200, 0.5); }
   .swal2-close::-moz-focus-inner {
     border: 0; }
 
@@ -425,7 +429,7 @@
   .swal2-textarea:focus {
     border: 1px solid #b4dbed;
     outline: none;
-    box-shadow: 0 0 3px #c4e6f5; }
+    box-shadow: 0 0 0 3px rgba(100, 150, 200, 0.5); }
   .swal2-input::-moz-placeholder, .swal2-file::-moz-placeholder, .swal2-textarea::-moz-placeholder {
     color: #cccccc; }
   .swal2-input:-ms-input-placeholder, .swal2-file:-ms-input-placeholder, .swal2-textarea:-ms-input-placeholder {
@@ -488,10 +492,16 @@
   .swal2-checkbox input {
     margin: 0 .4em; }
 
+.swal2-input-label {
+  display: flex;
+  justify-content: center;
+  margin: 1em auto; }
+
 .swal2-validation-message {
   display: none;
   align-items: center;
   justify-content: center;
+  margin: 0 -2.7em;
   padding: 0.625em;
   overflow: hidden;
   background: #f0f0f0;
@@ -634,7 +644,9 @@
               animation: swal2-rotate-success-circular-line 4.25s ease-in; }
 
 .swal2-progress-steps {
+  flex-wrap: wrap;
   align-items: center;
+  max-width: 100%;
   margin: 0 0 1.25em;
   padding: 0;
   background: inherit;
@@ -644,15 +656,16 @@
     position: relative; }
   .swal2-progress-steps .swal2-progress-step {
     z-index: 20;
+    flex-shrink: 0;
     width: 2em;
     height: 2em;
     border-radius: 2em;
-    background: #3085d6;
+    background: #2778c4;
     color: #fff;
     line-height: 2em;
     text-align: center; }
     .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step {
-      background: #3085d6; }
+      background: #2778c4; }
       .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step ~ .swal2-progress-step {
         background: #add8e6;
         color: #fff; }
@@ -660,10 +673,11 @@
         background: #add8e6; }
   .swal2-progress-steps .swal2-progress-step-line {
     z-index: 10;
+    flex-shrink: 0;
     width: 2.5em;
     height: .4em;
     margin: 0 -1px;
-    background: #3085d6; }
+    background: #2778c4; }
 
 [class^='swal2'] {
   -webkit-tap-highlight-color: transparent; }
@@ -705,10 +719,6 @@
     width: 100% !important; }
   .swal2-range output {
     display: none; } }
-
-@-moz-document url-prefix() {
-  .swal2-close:focus {
-    outline: 2px solid rgba(50, 100, 150, 0.4); } }
 
 @-webkit-keyframes swal2-toast-show {
   0% {

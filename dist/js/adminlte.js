@@ -1511,6 +1511,7 @@
   var CLASS_NAME_LAYOUT_FIXED$1 = 'layout-fixed';
   var CLASS_NAME_CONTROL_SIDEBAR_SLIDE_OPEN = 'control-sidebar-slide-open';
   var CLASS_NAME_CONTROL_SIDEBAR_OPEN$1 = 'control-sidebar-open';
+  var CLASS_NAME_LAYOUT_TOP_NAV = 'layout-top-nav';
   var Default$6 = {
     scrollbarTheme: 'os-theme-light',
     scrollbarAutoHide: 'l',
@@ -1566,7 +1567,11 @@
 
       if (offset !== false) {
         if (max === heights.controlSidebar) {
-          $contentSelector.css(this._config.panelAutoHeightMode, max + offset);
+          if ($body.hasClass(CLASS_NAME_LAYOUT_TOP_NAV)) {
+            $contentSelector.css(this._config.panelAutoHeightMode, max + offset + heights.header + heights.footer);
+          } else {
+            $contentSelector.css(this._config.panelAutoHeightMode, max + offset);
+          }
         } else if (max === heights.window) {
           $contentSelector.css(this._config.panelAutoHeightMode, max + offset - heights.header - heights.footer);
         } else {
@@ -1639,6 +1644,9 @@
         _this.fixLayoutHeight('control_sidebar');
       });
       $__default['default'](window).resize(function () {
+        _this.fixLayoutHeight();
+      });
+      $__default['default'](document).ready(function () {
         _this.fixLayoutHeight();
       });
       setTimeout(function () {
