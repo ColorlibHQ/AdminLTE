@@ -528,7 +528,7 @@ body:not(.sidebar-mini-md) {
   }
 }
 
-:not(.layout-fixed) {
+body:not(.layout-fixed) {
   .main-sidebar {
     height: inherit;
     min-height: 100%;

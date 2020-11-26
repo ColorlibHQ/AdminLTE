@@ -20,6 +20,7 @@
 .sidebar {
   height: calc(100% - (#{$main-header-height-inner} + #{$main-header-bottom-border-width}));
   overflow-y: initial;
+  scrollbar-width: thin;
   padding-bottom: $sidebar-padding-y;
   padding-left: $sidebar-padding-x;
   padding-right: $sidebar-padding-x;
