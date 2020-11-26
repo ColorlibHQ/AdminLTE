@@ -1,5 +1,5 @@
 /*!
-* sweetalert2 v10.10.2
+* sweetalert2 v10.10.3
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -2647,11 +2647,7 @@
         var option = document.createElement('option');
         option.value = optionValue;
         setInnerHtml(option, optionLabel);
-
-        if (params.inputValue.toString() === optionValue.toString()) {
-          option.selected = true;
-        }
-
+        option.selected = isSelected(optionValue, params.inputValue);
         parent.appendChild(option);
       };
 
@@ -2690,7 +2686,7 @@
         radioInput.name = swalClasses.radio;
         radioInput.value = radioValue;
 
-        if (params.inputValue.toString() === radioValue.toString()) {
+        if (isSelected(radioValue, params.inputValue)) {
           radioInput.checked = true;
         }
 
@@ -2741,6 +2737,10 @@
     }
 
     return result;
+  };
+
+  var isSelected = function isSelected(optionValue, inputValue) {
+    return inputValue && inputValue.toString() === optionValue.toString();
   };
 
   var handleConfirmButtonClick = function handleConfirmButtonClick(instance, innerParams) {
@@ -3403,7 +3403,7 @@
     };
   });
   SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '10.10.2';
+  SweetAlert.version = '10.10.3';
 
   var Swal = SweetAlert;
   Swal["default"] = Swal;
