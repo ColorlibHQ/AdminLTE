@@ -26,6 +26,12 @@
   padding-top: $sidebar-padding-y;
 }
 
+body:not(.layout-fixed) {
+  .sidebar {
+    overflow-y: auto;
+  }
+}
+
 // Sidebar user panel
 .user-panel {
   position: relative;
