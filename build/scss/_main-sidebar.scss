@@ -187,8 +187,9 @@
   }
 
   .nav-link p {
-    display: inline-block;
+    display: inline;
     margin: 0;
+    white-space: normal;
   }
 }
 
