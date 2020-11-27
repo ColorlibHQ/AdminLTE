@@ -122,8 +122,6 @@ class ControlSidebar {
   // Private
 
   _init() {
-    // eslint-disable-next-line no-console
-    console.log('test')
     const $body = $('body')
     const shouldNotHideAll = $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN) ||
         $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE)
