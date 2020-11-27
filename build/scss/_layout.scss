@@ -71,7 +71,8 @@ body,
   }
 
   .layout-navbar-fixed.sidebar-mini.sidebar-collapse &,
-  .layout-navbar-fixed.sidebar-mini-md.sidebar-collapse & {
+  .layout-navbar-fixed.sidebar-mini-md.sidebar-collapse &,
+  .layout-navbar-fixed.sidebar-mini-xs.sidebar-collapse & {
     .brand-link {
       height: $main-header-height;
       width: $sidebar-mini-width;
@@ -83,7 +84,8 @@ body,
   }
 
   .layout-navbar-fixed.sidebar-mini.sidebar-collapse.text-sm &,
-  .layout-navbar-fixed.sidebar-mini-md.sidebar-collapse.text-sm & {
+  .layout-navbar-fixed.sidebar-mini-md.sidebar-collapse.text-sm &,
+  .layout-navbar-fixed.sidebar-mini-xs.sidebar-collapse.text-sm & {
     .brand-link {
       height: $main-header-height-sm;
     }
@@ -421,7 +423,7 @@ body,
 }
 
 
-body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) {
+body.sidebar-collapse:not(.sidebar-mini-xs):not(.sidebar-mini-md):not(.sidebar-mini) {
   .content-wrapper,
   .main-footer,
   .main-header {
@@ -432,7 +434,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) {
   }
 }
 
-body:not(.sidebar-mini-md) {
+body:not(.sidebar-mini-md):not(.sidebar-mini-xs) {
   .content-wrapper,
   .main-footer,
   .main-header {
@@ -478,6 +480,20 @@ body:not(.sidebar-mini-md) {
   }
 }
 
+.sidebar-mini-xs {
+  .content-wrapper,
+  .main-footer,
+  .main-header {
+    @include transition(margin-left $transition-speed $transition-fn);
+
+    margin-left: $sidebar-width;
+
+    .sidebar-collapse & {
+      margin-left: $sidebar-mini-width;
+    }
+  }
+}
+
 .content-wrapper {
   background-color: $main-bg;
 
@@ -494,7 +510,7 @@ body:not(.sidebar-mini-md) {
     width: $sidebar-width;
   }
 
-  .sidebar-collapse:not(.sidebar-mini):not(.sidebar-mini-md) & {
+  .sidebar-collapse:not(.sidebar-mini):not(.sidebar-mini-md):not(.sidebar-mini-xs) & {
     &,
     &::before {
       box-shadow: none !important;
