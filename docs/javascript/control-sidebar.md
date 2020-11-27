@@ -41,6 +41,7 @@ $("#my-toggle-button").ControlSidebar('toggle');
 |controlsidebarSlide | Boolean | TRUE | Whether the sidebar should slide over the content or push the content to make space for itself.
 |scrollbarTheme | Boolean | `os-theme-light` | Scrollbar Theme used while SideBar Fixed
 |scrollbarAutoHide | Boolean | `l` | Scrollbar auto-hide trigger
+|target | String | `.control-sidebar` | Target control-sidebar to handle multiple control-sidebars.
 {: .table .table-bordered .bg-light}
 
 > ##### Tip!

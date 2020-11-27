@@ -44,7 +44,8 @@ const CLASS_NAME_FOOTER_XL_FIXED = 'layout-xl-footer-fixed'
 const Default = {
   controlsidebarSlide: true,
   scrollbarTheme: 'os-theme-light',
-  scrollbarAutoHide: 'l'
+  scrollbarAutoHide: 'l',
+  target: SELECTOR_CONTROL_SIDEBAR
 }
 
 /**
@@ -56,8 +57,6 @@ class ControlSidebar {
   constructor(element, config) {
     this._element = element
     this._config = config
-
-    this._init()
   }
 
   // Public
@@ -65,12 +64,13 @@ class ControlSidebar {
   collapse() {
     const $body = $('body')
     const $html = $('html')
+    const that = this
 
     // Show the control sidebar
     if (this._config.controlsidebarSlide) {
       $html.addClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
       $body.removeClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
-        $(SELECTOR_CONTROL_SIDEBAR).hide()
+        $(that._config.target).hide()
         $html.removeClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
         $(this).dequeue()
       })
@@ -88,7 +88,7 @@ class ControlSidebar {
     // Collapse the control sidebar
     if (this._config.controlsidebarSlide) {
       $html.addClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
-      $(SELECTOR_CONTROL_SIDEBAR).show().delay(10).queue(function () {
+      $(this._config.target).show().delay(10).queue(function () {
         $body.addClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
           $html.removeClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
           $(this).dequeue()
@@ -122,6 +122,19 @@ class ControlSidebar {
   // Private
 
   _init() {
+    // eslint-disable-next-line no-console
+    console.log('test')
+    const $body = $('body')
+    const shouldNotHideAll = $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN) ||
+        $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE)
+
+    if (shouldNotHideAll) {
+      $(SELECTOR_CONTROL_SIDEBAR).not(this._config.target).hide()
+      $(this._config.target).css('display', 'block')
+    } else {
+      $(SELECTOR_CONTROL_SIDEBAR).hide()
+    }
+
     this._fixHeight()
     this._fixScrollHeight()
 
@@ -175,8 +188,8 @@ class ControlSidebar {
         $body.hasClass(CLASS_NAME_FOOTER_XL_FIXED)
     ) && $(SELECTOR_FOOTER).css('position') === 'fixed'
 
-    const $controlSidebar = $(SELECTOR_CONTROL_SIDEBAR)
-    const $controlsidebarContent = $(`${SELECTOR_CONTROL_SIDEBAR}, ${SELECTOR_CONTROL_SIDEBAR} ${SELECTOR_CONTROL_SIDEBAR_CONTENT}`)
+    const $controlSidebar = $(this._config.target)
+    const $controlsidebarContent = $(`${this._config.target}, ${this._config.target} ${SELECTOR_CONTROL_SIDEBAR_CONTENT}`)
 
     if (positions.top === 0 && positions.bottom === 0) {
       $controlSidebar.css({
@@ -234,7 +247,7 @@ class ControlSidebar {
       }
     }
 
-    const $controlSidebar = $(`${SELECTOR_CONTROL_SIDEBAR} ${SELECTOR_CONTROL_SIDEBAR_CONTENT}`)
+    const $controlSidebar = $(`${this._config.target} ${SELECTOR_CONTROL_SIDEBAR_CONTENT}`)
     $controlSidebar.css('height', sidebarHeight)
 
     if (typeof $.fn.overlayScrollbars !== 'undefined') {
@@ -279,6 +292,10 @@ $(document).on('click', SELECTOR_DATA_TOGGLE, function (event) {
   event.preventDefault()
 
   ControlSidebar._jQueryInterface.call($(this), 'toggle')
+})
+
+$(document).ready(() => {
+  ControlSidebar._jQueryInterface.call($(SELECTOR_DATA_TOGGLE), '_init')
 })
 
 /**
