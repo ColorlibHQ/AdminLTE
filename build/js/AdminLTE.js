@@ -5,6 +5,7 @@ import DirectChat from './DirectChat'
 import Dropdown from './Dropdown'
 import ExpandableTable from './ExpandableTable'
 import Fullscreen from './Fullscreen'
+import HeaderSearch from './HeaderSearch'
 import IFrame from './IFrame'
 import Layout from './Layout'
 import PushMenu from './PushMenu'
@@ -21,6 +22,7 @@ export {
   Dropdown,
   ExpandableTable,
   Fullscreen,
+  HeaderSearch,
   IFrame,
   Layout,
   PushMenu,
