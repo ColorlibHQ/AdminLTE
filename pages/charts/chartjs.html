@@ -1077,7 +1077,7 @@
     }
 
     // This will get the first returned node in the jQuery collection.
-    var areaChart       = new Chart(areaChartCanvas, {
+    new Chart(areaChartCanvas, {
       type: 'line',
       data: areaChartData,
       options: areaChartOptions
@@ -1126,7 +1126,7 @@
     }
     //Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below.
-    var donutChart = new Chart(donutChartCanvas, {
+    new Chart(donutChartCanvas, {
       type: 'doughnut',
       data: donutData,
       options: donutOptions
@@ -1144,7 +1144,7 @@
     }
     //Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below.
-    var pieChart = new Chart(pieChartCanvas, {
+    new Chart(pieChartCanvas, {
       type: 'pie',
       data: pieData,
       options: pieOptions
@@ -1166,7 +1166,7 @@
       datasetFill             : false
     }
 
-    var barChart = new Chart(barChartCanvas, {
+    new Chart(barChartCanvas, {
       type: 'bar',
       data: barChartData,
       options: barChartOptions
@@ -1191,7 +1191,7 @@
       }
     }
 
-    var stackedBarChart = new Chart(stackedBarChartCanvas, {
+    new Chart(stackedBarChartCanvas, {
       type: 'bar',
       data: stackedBarChartData,
       options: stackedBarChartOptions
