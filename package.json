@@ -133,7 +133,7 @@
     "@babel/preset-env": "^7.11.5",
     "@rollup/plugin-babel": "^5.2.1",
     "autoprefixer": "^9.8.6",
-    "browser-sync": "^2.26.12",
+    "browser-sync": "^2.26.13",
     "bundlewatch": "^0.3.1",
     "clean-css-cli": "^4.3.0",
     "eslint": "^7.14.0",
