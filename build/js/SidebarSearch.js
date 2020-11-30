@@ -101,7 +101,7 @@ class SidebarSearch {
       this._addNotFound()
     } else {
       endResults.each((i, result) => {
-        $(SELECTOR_SEARCH_RESULTS_GROUP).append(this._renderItem(result.name, result.link, result.path))
+        $(this._renderItem(result.name, result.link, result.path)).appendTo(SELECTOR_SEARCH_RESULTS_GROUP)
       })
     }
 
