@@ -32,11 +32,15 @@
       }
 
       .card-body {
-        height: 100%;
+        height: calc(100% - (12px + (1.8rem * #{$headings-line-height}) + .5rem));
         overflow-y: auto;
       }
 
       .card {
+        &:last-child {
+          margin-bottom: 0;
+          border-bottom-width: 1px;
+        }
         .card-header {
           padding: .5rem .75rem;
         }
