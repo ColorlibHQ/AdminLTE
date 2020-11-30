@@ -88,10 +88,10 @@ class IFrame {
     const navId = `tab-${uniqueName}-${Math.floor(Math.random() * 1000)}`
 
     const newNavItem = `<li class="nav-item" role="presentation"><a class="nav-link" data-toggle="row" id="${navId}" href="#${tabId}" role="tab" aria-controls="${tabId}" aria-selected="false">${title}</a></li>`
-    $(SELECTOR_TAB_NAVBAR_NAV).append(newNavItem)
+    $(SELECTOR_TAB_NAVBAR_NAV).append(escape(newNavItem))
 
     const newTabItem = `<div class="tab-pane fade" id="${tabId}" role="tabpanel" aria-labelledby="${navId}"><iframe src="${link}"></iframe></div>`
-    $(SELECTOR_TAB_CONTENT).append(newTabItem)
+    $(SELECTOR_TAB_CONTENT).append(escape(newTabItem))
 
     if (autoOpen) {
       if (this._config.loadingScreen) {

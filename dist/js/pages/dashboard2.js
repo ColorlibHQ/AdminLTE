@@ -266,3 +266,5 @@ $(function () {
   //   ]
   // })
 })
+
+// lgtm [js/unused-local-variable]
