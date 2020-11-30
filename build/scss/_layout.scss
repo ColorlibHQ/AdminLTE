@@ -434,7 +434,7 @@ body.sidebar-collapse:not(.sidebar-mini-xs):not(.sidebar-mini-md):not(.sidebar-m
   }
 }
 
-body:not(.sidebar-mini-md):not(.sidebar-mini-xs) {
+body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) {
   .content-wrapper,
   .main-footer,
   .main-header {

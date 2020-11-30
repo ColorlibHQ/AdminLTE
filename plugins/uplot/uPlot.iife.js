@@ -4,7 +4,7 @@
 *
 * uPlot.js (μPlot)
 * A small, fast chart for time series, lines, areas, ohlc & bars
-* https://github.com/leeoniya/uPlot (v1.4.4)
+* https://github.com/leeoniya/uPlot (v1.4.6)
 */
 
 var uPlot = (function () {
@@ -552,8 +552,6 @@ var uPlot = (function () {
 
 	var allMults = [1,2,2.5,5];
 
-	var wholeMults = allMults.filter(onlyWhole);
-
 	// ...0.01, 0.02, 0.025, 0.05, 0.1, 0.2, 0.25, 0.5
 	var decIncrs = genIncrs(10, -16, 0, allMults);
 
@@ -565,61 +563,196 @@ var uPlot = (function () {
 
 	var numIncrs = decIncrs.concat(oneIncrs);
 
-	var s = 1,
-		m = 60,
-		h = m * m,
-		d = h * 24,
-		mo = d * 30,
-		y = d * 365;
+	var NL = "\n";
 
-	// min of 1e-3 prevents setting a temporal x ticks too small since Date objects cannot advance ticks smaller than 1ms
-	var timeIncrs =  genIncrs(10, -3, 0, wholeMults).concat([
-		// minute divisors (# of secs)
-		1,
-		5,
-		10,
-		15,
-		30,
-		// hour divisors (# of mins)
-		m,
-		m * 5,
-		m * 10,
-		m * 15,
-		m * 30,
-		// day divisors (# of hrs)
-		h,
-		h * 2,
-		h * 3,
-		h * 4,
-		h * 6,
-		h * 8,
-		h * 12,
-		// month divisors TODO: need more?
-		d,
-		d * 2,
-		d * 3,
-		d * 4,
-		d * 5,
-		d * 6,
-		d * 7,
-		d * 8,
-		d * 9,
-		d * 10,
-		d * 15,
-		// year divisors (# months, approx)
-		mo,
-		mo * 2,
-		mo * 3,
-		mo * 4,
-		mo * 6,
-		// century divisors
-		y,
-		y * 2,
-		y * 5,
-		y * 10,
-		y * 25,
-		y * 50,
-		y * 100 ]);
+	var yyyy    = "{YYYY}";
+	var NLyyyy  = NL + yyyy;
+	var md      = "{M}/{D}";
+	var NLmd    = NL + md;
+	var NLmdyy  = NLmd + "/{YY}";
+
+	var aa      = "{aa}";
+	var hmm     = "{h}:{mm}";
+	var hmmaa   = hmm + aa;
+	var NLhmmaa = NL + hmmaa;
+	var ss      = ":{ss}";
+
+	var _ = null;
+
+	function genTimeStuffs(ms) {
+		var	s  = ms * 1e3,
+			m  = s  * 60,
+			h  = m  * 60,
+			d  = h  * 24,
+			mo = d  * 30,
+			y  = d  * 365;
+
+		// min of 1e-3 prevents setting a temporal x ticks too small since Date objects cannot advance ticks smaller than 1ms
+		var subSecIncrs = ms == 1 ? genIncrs(10, 0, 3, allMults).filter(onlyWhole) : genIncrs(10, -3, 0, allMults);
+
+		var timeIncrs = subSecIncrs.concat([
+			// minute divisors (# of secs)
+			s,
+			s * 5,
+			s * 10,
+			s * 15,
+			s * 30,
+			// hour divisors (# of mins)
+			m,
+			m * 5,
+			m * 10,
+			m * 15,
+			m * 30,
+			// day divisors (# of hrs)
+			h,
+			h * 2,
+			h * 3,
+			h * 4,
+			h * 6,
+			h * 8,
+			h * 12,
+			// month divisors TODO: need more?
+			d,
+			d * 2,
+			d * 3,
+			d * 4,
+			d * 5,
+			d * 6,
+			d * 7,
+			d * 8,
+			d * 9,
+			d * 10,
+			d * 15,
+			// year divisors (# months, approx)
+			mo,
+			mo * 2,
+			mo * 3,
+			mo * 4,
+			mo * 6,
+			// century divisors
+			y,
+			y * 2,
+			y * 5,
+			y * 10,
+			y * 25,
+			y * 50,
+			y * 100 ]);
+
+		// [0]:   minimum num secs in the tick incr
+		// [1]:   default tick format
+		// [2-7]: rollover tick formats
+		// [8]:   mode: 0: replace [1] -> [2-7], 1: concat [1] + [2-7]
+		var _timeAxisStamps = [
+		//   tick incr    default          year                    month   day                   hour    min       sec   mode
+			[y,           yyyy,            _,                      _,      _,                    _,      _,        _,       1],
+			[d * 28,      "{MMM}",         NLyyyy,                 _,      _,                    _,      _,        _,       1],
+			[d,           md,              NLyyyy,                 _,      _,                    _,      _,        _,       1],
+			[h,           "{h}" + aa,      NLmdyy,                 _,      NLmd,                 _,      _,        _,       1],
+			[m,           hmmaa,           NLmdyy,                 _,      NLmd,                 _,      _,        _,       1],
+			[s,           ss,              NLmdyy + " " + hmmaa,   _,      NLmd + " " + hmmaa,   _,      NLhmmaa,  _,       1],
+			[ms,          ss + ".{fff}",   NLmdyy + " " + hmmaa,   _,      NLmd + " " + hmmaa,   _,      NLhmmaa,  _,       1] ];
+
+		// the ensures that axis ticks, values & grid are aligned to logical temporal breakpoints and not an arbitrary timestamp
+		// https://www.timeanddate.com/time/dst/
+		// https://www.timeanddate.com/time/dst/2019.html
+		// https://www.epochconverter.com/timezones
+		function timeAxisSplits(tzDate) {
+			return function (self, axisIdx, scaleMin, scaleMax, foundIncr, foundSpace) {
+				var splits = [];
+				var isYr = foundIncr >= y;
+				var isMo = foundIncr >= mo && foundIncr < y;
+
+				// get the timezone-adjusted date
+				var minDate = tzDate(scaleMin);
+				var minDateTs = minDate * ms;
+
+				// get ts of 12am (this lands us at or before the original scaleMin)
+				var minMin = mkDate(minDate[getFullYear](), isYr ? 0 : minDate[getMonth](), isMo || isYr ? 1 : minDate[getDate]());
+				var minMinTs = minMin * ms;
+
+				if (isMo || isYr) {
+					var moIncr = isMo ? foundIncr / mo : 0;
+					var yrIncr = isYr ? foundIncr / y  : 0;
+				//	let tzOffset = scaleMin - minDateTs;		// needed?
+					var split = minDateTs == minMinTs ? minDateTs : mkDate(minMin[getFullYear]() + yrIncr, minMin[getMonth]() + moIncr, 1) * ms;
+					var splitDate = new Date(split / ms);
+					var baseYear = splitDate[getFullYear]();
+					var baseMonth = splitDate[getMonth]();
+
+					for (var i = 0; split <= scaleMax; i++) {
+						var next = mkDate(baseYear + yrIncr * i, baseMonth + moIncr * i, 1);
+						var offs = next - tzDate(next * ms);
+
+						split = (+next + offs) * ms;
+
+						if (split <= scaleMax)
+							{ splits.push(split); }
+					}
+				}
+				else {
+					var incr0 = foundIncr >= d ? d : foundIncr;
+					var tzOffset = floor(scaleMin) - floor(minDateTs);
+					var split$1 = minMinTs + tzOffset + incrRoundUp(minDateTs - minMinTs, incr0);
+					splits.push(split$1);
+
+					var date0 = tzDate(split$1);
+
+					var prevHour = date0[getHours]() + (date0[getMinutes]() / m) + (date0[getSeconds]() / h);
+					var incrHours = foundIncr / h;
+
+					var minSpace = self.axes[axisIdx]._space;
+					var pctSpace = foundSpace / minSpace;
+
+					while (1) {
+						split$1 = roundDec(split$1 + foundIncr, ms == 1 ? 0 : 3);
+
+						if (split$1 > scaleMax)
+							{ break; }
+
+						if (incrHours > 1) {
+							var expectedHour = floor(roundDec(prevHour + incrHours, 6)) % 24;
+							var splitDate$1 = tzDate(split$1);
+							var actualHour = splitDate$1.getHours();
+
+							var dstShift = actualHour - expectedHour;
+
+							if (dstShift > 1)
+								{ dstShift = -1; }
+
+							split$1 -= dstShift * h;
+
+							prevHour = (prevHour + incrHours) % 24;
+
+							// add a tick only if it's further than 70% of the min allowed label spacing
+							var prevSplit = splits[splits.length - 1];
+							var pctIncr = roundDec((split$1 - prevSplit) / foundIncr, 3);
+
+							if (pctIncr * pctSpace >= .7)
+								{ splits.push(split$1); }
+						}
+						else
+							{ splits.push(split$1); }
+					}
+				}
+
+				return splits;
+			}
+		}
+
+		return [
+			timeIncrs,
+			_timeAxisStamps,
+			timeAxisSplits ];
+	}
+
+	var ref =  genTimeStuffs(1);
+	var timeIncrsMs = ref[0];
+	var _timeAxisStampsMs = ref[1];
+	var timeAxisSplitsMs = ref[2];
+	var ref$1 =  genTimeStuffs(1e-3);
+	var timeIncrsS = ref$1[0];
+	var _timeAxisStampsS = ref$1[1];
+	var timeAxisSplitsS = ref$1[2];
 
 	// base 2
 	var binIncrs = genIncrs(2, -53, 53, [1]);
@@ -639,36 +772,6 @@ var uPlot = (function () {
 		return stampCfg.map(function (s) { return s.map(function (v, i) { return i == 0 || i == 8 || v == null ? v : fmtDate(i == 1 || s[8] == 0 ? v : s[1] + v); }
 		); });
 	}
-
-	var NL = "\n";
-
-	var yyyy = "{YYYY}";
-	var NLyyyy = NL + yyyy;
-	var md = "{M}/{D}";
-	var NLmd = NL + md;
-	var NLmdyy = NLmd + "/{YY}";
-
-	var aa = "{aa}";
-	var hmm = "{h}:{mm}";
-	var hmmaa = hmm + aa;
-	var NLhmmaa = NL + hmmaa;
-	var ss = ":{ss}";
-
-	var _ = null;
-
-	// [0]:   minimum num secs in the tick incr
-	// [1]:   default tick format
-	// [2-7]: rollover tick formats
-	// [8]:   mode: 0: replace [1] -> [2-7], 1: concat [1] + [2-7]
-	var _timeAxisStamps = [
-	//   tick incr    default          year                    month   day                   hour    min       sec   mode
-		[y,           yyyy,            _,                      _,      _,                    _,      _,        _,       1],
-		[d * 28,      "{MMM}",         NLyyyy,                 _,      _,                    _,      _,        _,       1],
-		[d,           md,              NLyyyy,                 _,      _,                    _,      _,        _,       1],
-		[h,           "{h}" + aa,      NLmdyy,                 _,      NLmd,                 _,      _,        _,       1],
-		[m,           hmmaa,           NLmdyy,                 _,      NLmd,                 _,      _,        _,       1],
-		[s,           ss,              NLmdyy + " " + hmmaa,   _,      NLmd + " " + hmmaa,   _,      NLhmmaa,  _,       1],
-		[1e-3,        ss + ".{fff}",   NLmdyy + " " + hmmaa,   _,      NLmd + " " + hmmaa,   _,      NLhmmaa,  _,       1] ];
 
 	// TODO: will need to accept spaces[] and pull incr into the loop when grid will be non-uniform, eg for log scales.
 	// currently we ignore this for months since they're *nearly* uniform and the added complexity is not worth it
@@ -724,93 +827,6 @@ var uPlot = (function () {
 
 	function mkDate(y, m, d) {
 		return new Date(y, m, d);
-	}
-
-	// the ensures that axis ticks, values & grid are aligned to logical temporal breakpoints and not an arbitrary timestamp
-	// https://www.timeanddate.com/time/dst/
-	// https://www.timeanddate.com/time/dst/2019.html
-	// https://www.epochconverter.com/timezones
-	function timeAxisSplits(tzDate) {
-		return function (self, axisIdx, scaleMin, scaleMax, foundIncr, foundSpace) {
-			var splits = [];
-			var isYr = foundIncr >= y;
-			var isMo = foundIncr >= mo && foundIncr < y;
-
-			// get the timezone-adjusted date
-			var minDate = tzDate(scaleMin);
-			var minDateTs = minDate / 1e3;
-
-			// get ts of 12am (this lands us at or before the original scaleMin)
-			var minMin = mkDate(minDate[getFullYear](), isYr ? 0 : minDate[getMonth](), isMo || isYr ? 1 : minDate[getDate]());
-			var minMinTs = minMin / 1e3;
-
-			if (isMo || isYr) {
-				var moIncr = isMo ? foundIncr / mo : 0;
-				var yrIncr = isYr ? foundIncr / y  : 0;
-			//	let tzOffset = scaleMin - minDateTs;		// needed?
-				var split = minDateTs == minMinTs ? minDateTs : mkDate(minMin[getFullYear]() + yrIncr, minMin[getMonth]() + moIncr, 1) / 1e3;
-				var splitDate = new Date(split * 1e3);
-				var baseYear = splitDate[getFullYear]();
-				var baseMonth = splitDate[getMonth]();
-
-				for (var i = 0; split <= scaleMax; i++) {
-					var next = mkDate(baseYear + yrIncr * i, baseMonth + moIncr * i, 1);
-					var offs = next - tzDate(next / 1e3);
-
-					split = (+next + offs) / 1e3;
-
-					if (split <= scaleMax)
-						{ splits.push(split); }
-				}
-			}
-			else {
-				var incr0 = foundIncr >= d ? d : foundIncr;
-				var tzOffset = floor(scaleMin) - floor(minDateTs);
-				var split$1 = minMinTs + tzOffset + incrRoundUp(minDateTs - minMinTs, incr0);
-				splits.push(split$1);
-
-				var date0 = tzDate(split$1);
-
-				var prevHour = date0[getHours]() + (date0[getMinutes]() / m) + (date0[getSeconds]() / h);
-				var incrHours = foundIncr / h;
-
-				var minSpace = self.axes[axisIdx]._space;
-				var pctSpace = foundSpace / minSpace;
-
-				while (1) {
-					split$1 = roundDec(split$1 + foundIncr, 3);
-
-					if (split$1 > scaleMax)
-						{ break; }
-
-					if (incrHours > 1) {
-						var expectedHour = floor(roundDec(prevHour + incrHours, 6)) % 24;
-						var splitDate$1 = tzDate(split$1);
-						var actualHour = splitDate$1.getHours();
-
-						var dstShift = actualHour - expectedHour;
-
-						if (dstShift > 1)
-							{ dstShift = -1; }
-
-						split$1 -= dstShift * h;
-
-						prevHour = (prevHour + incrHours) % 24;
-
-						// add a tick only if it's further than 70% of the min allowed label spacing
-						var prevSplit = splits[splits.length - 1];
-						var pctIncr = roundDec((split$1 - prevSplit) / foundIncr, 3);
-
-						if (pctIncr * pctSpace >= .7)
-							{ splits.push(split$1); }
-					}
-					else
-						{ splits.push(split$1); }
-				}
-			}
-
-			return splits;
-		}
 	}
 
 	function timeSeriesStamp(stampCfg, fmtDate) {
@@ -1236,7 +1252,7 @@ var uPlot = (function () {
 				{ opts = p.opts(self, opts) || opts; }
 		});
 
-
+		var ms = opts.ms || 1e-3;
 
 		var series  = self.series = setDefaults(opts.series || [], xSeriesOpts, ySeriesOpts, false);
 		var axes    = self.axes   = setDefaults(opts.axes   || [], xAxisOpts,   yAxisOpts,    true);
@@ -1312,11 +1328,11 @@ var uPlot = (function () {
 		gutters._y = gutters.y(self);
 
 	//	self.tz = opts.tz || Intl.DateTimeFormat().resolvedOptions().timeZone;
-		var _tzDate  =  (opts.tzDate || (function (ts) { return new Date(ts * 1e3); }));
+		var _tzDate  =  (opts.tzDate || (function (ts) { return new Date(ts / ms); }));
 		var _fmtDate =  (opts.fmtDate || fmtDate);
 
-		var _timeAxisSplits =  timeAxisSplits(_tzDate);
-		var _timeAxisVals   =  timeAxisVals(_tzDate, timeAxisStamps(_timeAxisStamps, _fmtDate));
+		var _timeAxisSplits =  (ms == 1 ? timeAxisSplitsMs(_tzDate) : timeAxisSplitsS(_tzDate));
+		var _timeAxisVals   =  timeAxisVals(_tzDate, timeAxisStamps((ms == 1 ? _timeAxisStampsMs : _timeAxisStampsS), _fmtDate));
 		var _timeSeriesVal  =  timeSeriesVal(_tzDate, timeSeriesStamp(_timeSeriesStamp, _fmtDate));
 
 		var legend     =  assign({show: true, live: true}, opts.legend);
@@ -1472,9 +1488,13 @@ var uPlot = (function () {
 		function convergeSize() {
 			var converged = false;
 
+			var cycleNum = 0;
+
 			while (!converged) {
-				var axesConverged = axesCalc();
-				var guttersConverged = guttersCalc();
+				cycleNum++;
+
+				var axesConverged = axesCalc(cycleNum);
+				var guttersConverged = guttersCalc(cycleNum);
 
 				converged = axesConverged && guttersConverged;
 
@@ -1686,7 +1706,7 @@ var uPlot = (function () {
 				axis.size   = fnOrSelf(axis.size);
 				axis.space  = fnOrSelf(axis.space);
 				axis.rotate = fnOrSelf(axis.rotate);
-				axis.incrs  = fnOrSelf(axis.incrs  || (          sc.distr == 2 ? wholeIncrs : (isTime ? timeIncrs : numIncrs)));
+				axis.incrs  = fnOrSelf(axis.incrs  || (          sc.distr == 2 ? wholeIncrs : (isTime ? (ms == 1 ? timeIncrsMs : timeIncrsS) : numIncrs)));
 				axis.splits = fnOrSelf(axis.splits || (isTime && sc.distr == 1 ? _timeAxisSplits : sc.distr == 3 ? logAxisSplits : numAxisSplits));
 
 				var av = axis.values;
@@ -1705,7 +1725,7 @@ var uPlot = (function () {
 				axis.font      = pxRatioFont(axis.font);
 				axis.labelFont = pxRatioFont(axis.labelFont);
 
-				axis._size   = axis.size(self, null, i);
+				axis._size   = axis.size(self, null, i, 0);
 
 				axis._space  =
 				axis._rotate =
@@ -1790,7 +1810,7 @@ var uPlot = (function () {
 					if (xScaleDistr == 3)
 						{ (assign = rangeLog(_min, _min, scales[xScaleKey].log, false), _min = assign[0], _max = assign[1]); }
 					else if (scales[xScaleKey].time)
-						{ _max = _min + 86400; }
+						{ _max = _min + 86400 / ms; }
 					else
 						{ (assign$1 = rangeNum(_min, _max, 0.1, true), _min = assign$1[0], _max = assign$1[1]); }
 				}
@@ -2331,7 +2351,7 @@ var uPlot = (function () {
 			ctx.translate(-offset, -offset);
 		}
 
-		function axesCalc() {
+		function axesCalc(cycleNum) {
 		//	log("axesCalc()", arguments);
 
 			var converged = true;
@@ -2388,7 +2408,7 @@ var uPlot = (function () {
 
 				var oldSize = axis._size;
 
-				axis._size = axis.size(self, values, i);
+				axis._size = ceil(axis.size(self, values, i, cycleNum));
 
 				if (oldSize != null && axis._size != oldSize)			// ready && ?
 					{ converged = false; }
@@ -2397,14 +2417,14 @@ var uPlot = (function () {
 			return converged;
 		}
 
-		function guttersCalc() {
+		function guttersCalc(cycleNum) {
 			var converged = true;
 
 			var _x = gutters._x;
 			var _y = gutters._y;
 
-			gutters._x = gutters.x(self);
-			gutters._y = gutters.y(self);
+			gutters._x = ceil(gutters.x(self, cycleNum));
+			gutters._y = ceil(gutters.y(self, cycleNum));
 
 			if (gutters._x != _x || gutters._y != _y)
 				{ converged = false; }
