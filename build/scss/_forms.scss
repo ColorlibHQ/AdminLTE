@@ -331,8 +331,35 @@ body.text-sm {
   }
 }
 
+.navbar-dark {
+  .btn-navbar,
+  .form-control-navbar {
+    background-color: lighten($sidebar-dark-bg, 5%);
+    border: 1px solid lighten($sidebar-dark-bg, 15%);
+    color: lighten(color-yiq(lighten($sidebar-dark-bg, 5%)), 15%);
+  }
+  .btn-navbar {
+    &:hover {
+      background-color: lighten($sidebar-dark-bg, 7.5%);
+    }
+    &:focus {
+      background-color: lighten($sidebar-dark-bg, 10%);
+    }
+  }
+
+  .form-control-navbar + .input-group-prepend,
+  .form-control-navbar + .input-group-append {
+    > .btn-navbar {
+      background-color: lighten($sidebar-dark-bg, 5%);
+      color: $white;
+      border: 1px solid lighten($sidebar-dark-bg, 15%);
+      border-left: none;
+    }
+  }
+}
+
 .dark-mode {
-  .form-control,
+  .form-control:not(.form-control-navbar):not(.form-control-sidebar),
   .custom-select,
   .custom-file-label,
   .custom-file-label::after,
@@ -341,7 +368,9 @@ body.text-sm {
     background-color: $dark;
     color: $white;
   }
-  .form-control:not(.form-control-navbar):not(.is-invalid):not(:focus) {
+  .form-control:not(.form-control-navbar):not(.form-control-sidebar):not(.is-invalid):not(:focus),
+  .custom-file-label,
+  .custom-file-label::after {
     border-color: $gray-600;
   }
   select {
@@ -370,32 +399,6 @@ body.text-sm {
     }
     &::-ms-track {
       background-color: lighten($dark, 7.5%);
-    }
-  }
-
-  .navbar-dark {
-    .btn-navbar,
-    .form-control-navbar {
-      background-color: $dark;
-      border: $input-border-width solid $gray-600;
-    }
-    .btn-navbar {
-      &:hover {
-        background-color: lighten($sidebar-dark-bg, 7.5%);
-      }
-      &:focus {
-        background-color: lighten($sidebar-dark-bg, 10%);
-      }
-    }
-
-    .form-control-navbar + .input-group-prepend,
-    .form-control-navbar + .input-group-append {
-      > .btn-navbar {
-        background-color: lighten($dark, 5%);
-        color: $white;
-        border: $input-border-width solid $gray-600;
-        border-left: none;
-      }
     }
   }
 }
