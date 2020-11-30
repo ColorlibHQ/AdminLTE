@@ -101,7 +101,7 @@ class SidebarSearch {
       this._addNotFound()
     } else {
       endResults.each((i, result) => {
-        $(this._renderItem(result.name, result.link, result.path)).appendTo(SELECTOR_SEARCH_RESULTS_GROUP)
+        $(SELECTOR_SEARCH_RESULTS_GROUP).append(this._renderItem(escape(result.name), escape(result.link), escape(result.path)))
       })
     }
 
@@ -195,7 +195,7 @@ class SidebarSearch {
   }
 
   _addNotFound() {
-    $(SELECTOR_SEARCH_RESULTS_GROUP).append(escape(this._renderItem(this.options.notFoundText, '#', [])))
+    $(SELECTOR_SEARCH_RESULTS_GROUP).append(this._renderItem(this.options.notFoundText, '#', []))
   }
 
   // Static
