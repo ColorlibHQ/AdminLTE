@@ -265,3 +265,5 @@ $(function () {
     options: salesGraphChartOptions
   })
 })
+
+// lgtm [js/unused-local-variable]
