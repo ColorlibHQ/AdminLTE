@@ -129,6 +129,11 @@
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
@@ -157,12 +162,24 @@
         </div>
       </div>
 
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -200,7 +217,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -235,6 +252,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="../layout/fixed-sidebar-custom.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="../layout/fixed-topnav.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Fixed Navbar</p>
@@ -254,7 +277,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
@@ -281,9 +304,15 @@
                   <p>Inline</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="../charts/uplot.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>uPlot</p>
+                </a>
+              </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
@@ -342,7 +371,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-edit"></i>
               <p>
@@ -377,7 +406,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
@@ -424,7 +453,15 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
+            <a href="../kanban.html" class="nav-link">
+              <i class="nav-icon fas fa-columns"></i>
+              <p>
+                Kanban Board
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
               <p>
@@ -453,7 +490,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
@@ -510,9 +547,21 @@
                   <p>Contacts</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="../examples/faq.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>FAQ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../examples/contact-us.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contact us</p>
+                </a>
+              </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
@@ -522,28 +571,74 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../examples/login.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Login</p>
+                  <p>
+                    Login & Register v1
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="../examples/login.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Login v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/register.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Register v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/forgot-password.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Forgot Password v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/recover-password.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Recover Password v1</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
-                <a href="../examples/register.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Register</p>
+                  <p>
+                    Login & Register v2
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="../examples/forgot-password.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Forgot Password</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../examples/recover-password.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Recover Password</p>
-                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="../examples/login-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Login v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/register-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Register v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/forgot-password-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Forgot Password v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/recover-password-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Recover Password v2</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a href="../examples/lockscreen.html" class="nav-link">
@@ -595,9 +690,38 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Search
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../search/simple.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Simple Search</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../search/enhanced.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Enhanced</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-header">MISCELLANEOUS</li>
           <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.0/" class="nav-link">
+            <a href="../../iframe.html" class="nav-link">
+              <i class="nav-icon fas fa-ellipsis-h"></i>
+              <p>Tabbed IFrame Plugin</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://adminlte.io/docs/3.1/" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Documentation</p>
             </a>
@@ -609,7 +733,7 @@
               <p>Level 1</p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
               <p>
@@ -624,7 +748,7 @@
                   <p>Level 2</p>
                 </a>
               </li>
-              <li class="nav-item has-treeview">
+              <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
@@ -761,37 +885,50 @@
             </div>
             <!-- /.card -->
 
-            <!-- Form Element sizes -->
-            <div class="card card-success">
+            <!-- general form elements -->
+            <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Different Height</h3>
+                <h3 class="card-title">Different Styles</h3>
               </div>
+              <!-- /.card-header -->
               <div class="card-body">
-                <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg">
-                <br>
-                <input class="form-control" type="text" placeholder="Default input">
-                <br>
-                <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <div class="card card-danger">
-              <div class="card-header">
-                <h3 class="card-title">Different Width</h3>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-3">
-                    <input type="text" class="form-control" placeholder=".col-3">
-                  </div>
-                  <div class="col-4">
-                    <input type="text" class="form-control" placeholder=".col-4">
-                  </div>
-                  <div class="col-5">
-                    <input type="text" class="form-control" placeholder=".col-5">
-                  </div>
+                <h4>Input</h4>
+                <div class="form-group">
+                  <label for="exampleInputBorder">Bottom Border only <code>.form-control-border</code></label>
+                  <input type="text" class="form-control form-control-border" id="exampleInputBorder" placeholder=".form-control-border">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputBorderWidth2">Bottom Border only 2px Border <code>.form-control-border.border-width-2</code></label>
+                  <input type="text" class="form-control form-control-border border-width-2" id="exampleInputBorderWidth2" placeholder=".form-control-border.border-width-2">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputRounded0">Flat <code>.rounded-0</code></label>
+                  <input type="text" class="form-control rounded-0" id="exampleInputRounded0" placeholder=".rounded-0">
+                </div>
+                <h4>Custom Select</h4>
+                <div class="form-group">
+                  <label for="exampleSelectBorder">Bottom Border only <code>.form-control-border</code></label>
+                  <select class="custom-select form-control-border" id="exampleSelectBorder">
+                    <option>Value 1</option>
+                    <option>Value 2</option>
+                    <option>Value 3</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleSelectBorderWidth2">Bottom Border only <code>.form-control-border.border-width-2</code></label>
+                  <select class="custom-select form-control-border border-width-2" id="exampleSelectBorderWidth2">
+                    <option>Value 1</option>
+                    <option>Value 2</option>
+                    <option>Value 3</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleSelectRounded0">Flat <code>.rounded-0</code></label>
+                  <select class="custom-select rounded-0" id="exampleSelectRounded0">
+                    <option>Value 1</option>
+                    <option>Value 2</option>
+                    <option>Value 3</option>
+                  </select>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -972,6 +1109,43 @@
           <!--/.col (left) -->
           <!-- right column -->
           <div class="col-md-6">
+            <!-- Form Element sizes -->
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Different Height</h3>
+              </div>
+              <div class="card-body">
+                <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg">
+                <br>
+                <input class="form-control" type="text" placeholder="Default input">
+                <br>
+                <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Different Width</h3>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-3">
+                    <input type="text" class="form-control" placeholder=".col-3">
+                  </div>
+                  <div class="col-4">
+                    <input type="text" class="form-control" placeholder=".col-4">
+                  </div>
+                  <div class="col-5">
+                    <input type="text" class="form-control" placeholder=".col-5">
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
             <!-- general form elements disabled -->
             <div class="card card-warning">
               <div class="card-header">
@@ -1149,6 +1323,14 @@
                           <input class="custom-control-input" type="checkbox" id="customCheckbox3" disabled>
                           <label for="customCheckbox3" class="custom-control-label">Custom Checkbox disabled</label>
                         </div>
+                        <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input custom-control-input-danger" type="checkbox" id="customCheckbox4" checked>
+                          <label for="customCheckbox4" class="custom-control-label">Custom Checkbox with custom color</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input custom-control-input-danger custom-control-input-outline" type="checkbox" id="customCheckbox5" checked>
+                          <label for="customCheckbox5" class="custom-control-label">Custom Checkbox with custom color outline</label>
+                        </div>
                       </div>
                     </div>
                     <div class="col-sm-6">
@@ -1165,6 +1347,14 @@
                         <div class="custom-control custom-radio">
                           <input class="custom-control-input" type="radio" id="customRadio3" disabled>
                           <label for="customRadio3" class="custom-control-label">Custom Radio disabled</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input custom-control-input-danger" type="radio" id="customRadio4" name="customRadio2" checked>
+                          <label for="customRadio4" class="custom-control-label">Custom Radio with custom color</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input custom-control-input-danger custom-control-input-outline" type="radio" id="customRadio5" name="customRadio2">
+                          <label for="customRadio5" class="custom-control-label">Custom Radio with custom color outline</label>
                         </div>
                       </div>
                     </div>
@@ -1282,7 +1472,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0-pre
+      <b>Version</b> 3.1.0-rc
     </div>
     <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>
@@ -1305,6 +1495,7 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<!-- Page specific script -->
 <script>
 $(function () {
   bsCustomFileInput.init();

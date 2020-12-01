@@ -37,3 +37,29 @@
   overflow: hidden;
   position: relative;
 }
+
+
+.dark-mode {
+  .irs--flat .irs-line {
+    background-color: lighten($dark, 10%);
+  }
+  .jsgrid-edit-row > .jsgrid-cell,
+  .jsgrid-filter-row > .jsgrid-cell,
+  .jsgrid-grid-body, .jsgrid-grid-header,
+  .jsgrid-header-row > .jsgrid-header-cell,
+  .jsgrid-insert-row > .jsgrid-cell,
+  .jsgrid-row > .jsgrid-cell,
+  .jsgrid-alt-row > .jsgrid-cell {
+    border-color: $gray-600;
+  }
+  .jsgrid-header-row > .jsgrid-header-cell,
+  .jsgrid-row > .jsgrid-cell {
+    background-color: $dark;
+  }
+  .jsgrid-alt-row > .jsgrid-cell {
+    background-color: lighten($dark, 2.5%);
+  }
+  .jsgrid-selected-row > .jsgrid-cell {
+    background-color: lighten($dark, 5%);
+  }
+}

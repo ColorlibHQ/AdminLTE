@@ -131,6 +131,11 @@
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
@@ -159,12 +164,24 @@
         </div>
       </div>
 
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -202,7 +219,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -237,6 +254,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="layout/fixed-sidebar-custom.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="layout/fixed-topnav.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Fixed Navbar</p>
@@ -256,7 +279,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
@@ -283,9 +306,15 @@
                   <p>Inline</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="charts/uplot.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>uPlot</p>
+                </a>
+              </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
@@ -344,7 +373,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
@@ -379,7 +408,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
@@ -426,7 +455,15 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
+            <a href="kanban.html" class="nav-link">
+              <i class="nav-icon fas fa-columns"></i>
+              <p>
+                Kanban Board
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
               <p>
@@ -455,7 +492,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
@@ -512,9 +549,21 @@
                   <p>Contacts</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="examples/faq.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>FAQ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="examples/contact-us.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contact us</p>
+                </a>
+              </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
@@ -524,28 +573,74 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="examples/login.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Login</p>
+                  <p>
+                    Login & Register v1
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="examples/login.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Login v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/register.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Register v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/forgot-password.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Forgot Password v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/recover-password.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Recover Password v1</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
-                <a href="examples/register.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Register</p>
+                  <p>
+                    Login & Register v2
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/forgot-password.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Forgot Password</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/recover-password.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Recover Password</p>
-                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="examples/login-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Login v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/register-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Register v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/forgot-password-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Forgot Password v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/recover-password-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Recover Password v2</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a href="examples/lockscreen.html" class="nav-link">
@@ -597,9 +692,38 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Search
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="search/simple.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Simple Search</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="search/enhanced.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Enhanced</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-header">MISCELLANEOUS</li>
           <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.0/" class="nav-link">
+            <a href="../iframe.html" class="nav-link">
+              <i class="nav-icon fas fa-ellipsis-h"></i>
+              <p>Tabbed IFrame Plugin</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://adminlte.io/docs/3.1/" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Documentation</p>
             </a>
@@ -611,7 +735,7 @@
               <p>Level 1</p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
               <p>
@@ -626,7 +750,7 @@
                   <p>Level 2</p>
                 </a>
               </li>
-              <li class="nav-item has-treeview">
+              <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
@@ -894,7 +1018,7 @@
 
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0-pre
+      <b>Version</b> 3.1.0-rc
     </div>
     <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>
@@ -911,16 +1035,14 @@
 <script src="../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- jQuery UI -->
-<script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Ekko Lightbox -->
 <script src="../plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
 <!-- Filterizr-->
 <script src="../plugins/filterizr/jquery.filterizr.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
   $(function () {

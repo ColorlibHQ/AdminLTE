@@ -43,3 +43,12 @@
   color: darken($gray-500, 20%);
   font-size: 12px;
 }
+
+.dark-mode {
+  .users-list-name {
+    color: $gray-400;
+  }
+  .users-list-date {
+    color: $gray-500;
+  }
+}

@@ -32,7 +32,7 @@ The sidebar used in this page to the left provides an example of what your sideb
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-        <li class="nav-item has-treeview menu-open">
+        <li class="nav-item menu-open">
           <a href="#" class="nav-link active">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
@@ -88,6 +88,19 @@ You can use two logo images instead of logo with text, you only need to change t
 
 Based on the example above, you can replace `.brand-image-xl` on `.logo-xs` with `.brand-image-xs` or vice versa on `.logo-xl` for changed logo sizes.
 
+#### Brand with Pushmenu Button
+
+You can place the pushmenu button inside the brand, simply replace the brand-link code with the code below:
+
+```html
+<div class="brand-link d-flex justify-content-between align-items-center">
+  <a class="brand-link" href="index3.html">
+    <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
+    <span class="brand-text font-weight-light">AdminLTE 3</span>
+  </a>
+  <a class="pushmenu" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+</div>
+```
 
 #### Search Form in Sidebar
 
@@ -106,6 +119,25 @@ You can add this code above user-panel or nav-sidebar:
 </form>
 ```
 {: .max-height-300}
+
+
+#### Sidebar Custom Area
+
+You can add a Custom Area inside the Sidebar to display extra buttons or text below your menu entries.
+
+You can simply add this code after the `div.sidebar`:
+
+```html
+<div class="sidebar-custom">
+  <a href="#" class="btn btn-link"><i class="fas fa-cogs"></i></a>
+  <a href="#" class="btn btn-secondary hide-on-collapse pos-right">Help</a>
+</div>
+```
+
+> ##### Warning!
+> The Sidebar Custom Area works only with `.layout-fixed` enabled.
+{: .quote-warning}
+
 
 #### Additional Classes
 

@@ -17,7 +17,7 @@ Add `data-widget="chat-pane-toggle"` to a button to activate the plugin.
 
 ###### jQuery
 {: .text-bold }
-The jQuery API provides more customizable options that allows the developer to handle checking and unchecking the todo list checkbox events. 
+The jQuery API provides more customizable options that allows the developer to toggle the chat contact pane. 
 ```js
 $('#chat-pane-toggle').DirectChat('toggle')
 ```

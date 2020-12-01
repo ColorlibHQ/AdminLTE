@@ -1,11 +1,11 @@
-/*! KeyTable 2.5.2
+/*! KeyTable 2.5.3
  * ©2009-2020 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     KeyTable
  * @description Spreadsheet like keyboard navigation for DataTables
- * @version     2.5.2
+ * @version     2.5.3
  * @file        dataTables.keyTable.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
@@ -50,6 +50,7 @@
 'use strict';
 var DataTable = $.fn.dataTable;
 var namespaceCounter = 0;
+var editorNamespaceCounter = 0;
 
 
 var KeyTable = function ( dt, opts ) {
@@ -275,6 +276,10 @@ $.extend( KeyTable.prototype, {
 					return;
 				}
 
+				if ( that.s.lastFocus && this !== that.s.lastFocus.cell.node() ) {
+					return;
+				}
+
 				that._editor( null, e, true );
 			} );
 
@@ -314,7 +319,7 @@ $.extend( KeyTable.prototype, {
 
 			var lastFocus = that.s.lastFocus;
 
-			if ( lastFocus && lastFocus.node && $(lastFocus.node).closest('body') === document.body ) {
+			if ( lastFocus ) {
 				var relative = that.s.lastFocus.relative;
 				var info = dt.page.info();
 				var row = relative.row + info.start;
@@ -512,7 +517,7 @@ $.extend( KeyTable.prototype, {
 		var dt = this.s.dt;
 		var editor = this.c.editor;
 		var editCell = this.s.lastFocus.cell;
-		var namespace = this.s.namespace;
+		var namespace = this.s.namespace + 'e' + editorNamespaceCounter++;
 
 		// Do nothing if there is already an inline edit in this cell
 		if ( $('div.DTE', editCell.node()).length ) {
@@ -577,7 +582,7 @@ $.extend( KeyTable.prototype, {
 					} );
 
 					// Restore full key navigation on close
-					editor.one( 'close', function () {
+					editor.one( 'close'+namespace, function () {
 						dt.keys.enable( true );
 						dt.off( 'key-blur.editor' );
 						editor.off( namespace );
@@ -1175,7 +1180,7 @@ KeyTable.defaults = {
 
 
 
-KeyTable.version = "2.5.2";
+KeyTable.version = "2.5.3";
 
 
 $.fn.dataTable.KeyTable = KeyTable;

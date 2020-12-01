@@ -2,13 +2,13 @@
  * OverlayScrollbars
  * https://github.com/KingSora/OverlayScrollbars
  *
- * Version: 1.12.0
+ * Version: 1.13.0
  *
  * Copyright KingSora | Rene Haas.
  * https://github.com/KingSora
  *
  * Released under the MIT license.
- * Date: 05.04.2020
+ * Date: 02.08.2020
  */
 
 /*
@@ -149,7 +149,6 @@ body.os-dragging * {
     right: 0;
     width: auto !important;
     height: auto !important;
-    z-index: 1;
 }
 .os-host-overflow > .os-padding {
     overflow: hidden;
@@ -269,26 +268,37 @@ body.os-dragging * {
     border-style: solid;
     box-sizing: border-box;
 }
-.os-resize-observer-host > .os-resize-observer {
-    height: 200%;
-    width: 200%;
-    padding: inherit;
-    border: inherit;
-    margin: 0px;
-    display: block;
-    box-sizing: content-box;
-}
 .os-resize-observer-host.observed {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
+.os-resize-observer-host > .os-resize-observer,
 .os-resize-observer-host.observed > .os-resize-observer {
+    height: 200%;
+    width: 200%;
+    padding: inherit;
+    border: inherit;
+    margin: 0;
+    display: block;
+    box-sizing: content-box;
+}
+.os-resize-observer-host.observed > .os-resize-observer,
+.os-resize-observer-host.observed > .os-resize-observer:before {
+    display: flex;
     position: relative;
     flex-grow: 1;
     flex-shrink: 0;
     flex-basis: auto;
+    box-sizing: border-box;
+}
+.os-resize-observer-host.observed > .os-resize-observer:before {
+    content: '';
+    box-sizing: content-box;
+    padding: inherit;
+    border: inherit;
+    margin: 0;
 }
 .os-size-auto-observer {
     box-sizing: inherit !important;

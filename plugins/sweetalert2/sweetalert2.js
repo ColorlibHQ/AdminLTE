@@ -1,5 +1,5 @@
 /*!
-* sweetalert2 v9.14.4
+* sweetalert2 v10.10.2
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -144,7 +144,7 @@
   function _createSuper(Derived) {
     var hasNativeReflectConstruct = _isNativeReflectConstruct();
 
-    return function () {
+    return function _createSuperInternal() {
       var Super = _getPrototypeOf(Derived),
           result;
 
@@ -216,7 +216,7 @@
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
   /**
-   * Returns the array ob object values (Object.values isn't supported in IE11)
+   * Returns the array of object values (Object.values isn't supported in IE11)
    * @param obj
    */
 
@@ -271,7 +271,7 @@
    * Show a one-time console warning about deprecated params/methods
    */
 
-  var warnAboutDepreation = function warnAboutDepreation(deprecatedParam, useInstead) {
+  var warnAboutDeprecation = function warnAboutDeprecation(deprecatedParam, useInstead) {
     warnOnce("\"".concat(deprecatedParam, "\" is deprecated and will be removed in the next major release. Please use \"").concat(useInstead, "\" instead."));
   };
   /**
@@ -282,6 +282,12 @@
 
   var callIfFunction = function callIfFunction(arg) {
     return typeof arg === 'function' ? arg() : arg;
+  };
+  var hasToPromiseFn = function hasToPromiseFn(arg) {
+    return arg && typeof arg.toPromise === 'function';
+  };
+  var asPromise = function asPromise(arg) {
+    return hasToPromiseFn(arg) ? arg.toPromise() : Promise.resolve(arg);
   };
   var isPromise = function isPromise(arg) {
     return arg && Promise.resolve(arg) === arg;
@@ -333,7 +339,7 @@
 
     return result;
   };
-  var swalClasses = prefix(['container', 'shown', 'height-auto', 'iosfix', 'popup', 'modal', 'no-backdrop', 'no-transition', 'toast', 'toast-shown', 'toast-column', 'show', 'hide', 'close', 'title', 'header', 'content', 'html-container', 'actions', 'confirm', 'cancel', 'footer', 'icon', 'icon-content', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'label', 'textarea', 'inputerror', 'validation-message', 'progress-steps', 'active-progress-step', 'progress-step', 'progress-step-line', 'loading', 'styled', 'top', 'top-start', 'top-end', 'top-left', 'top-right', 'center', 'center-start', 'center-end', 'center-left', 'center-right', 'bottom', 'bottom-start', 'bottom-end', 'bottom-left', 'bottom-right', 'grow-row', 'grow-column', 'grow-fullscreen', 'rtl', 'timer-progress-bar', 'timer-progress-bar-container', 'scrollbar-measure', 'icon-success', 'icon-warning', 'icon-info', 'icon-question', 'icon-error']);
+  var swalClasses = prefix(['container', 'shown', 'height-auto', 'iosfix', 'popup', 'modal', 'no-backdrop', 'no-transition', 'toast', 'toast-shown', 'toast-column', 'show', 'hide', 'close', 'title', 'header', 'content', 'html-container', 'actions', 'confirm', 'deny', 'cancel', 'footer', 'icon', 'icon-content', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'label', 'textarea', 'inputerror', 'input-label', 'validation-message', 'progress-steps', 'active-progress-step', 'progress-step', 'progress-step-line', 'loader', 'loading', 'styled', 'top', 'top-start', 'top-end', 'top-left', 'top-right', 'center', 'center-start', 'center-end', 'center-left', 'center-right', 'bottom', 'bottom-start', 'bottom-end', 'bottom-left', 'bottom-right', 'grow-row', 'grow-column', 'grow-fullscreen', 'rtl', 'timer-progress-bar', 'timer-progress-bar-container', 'scrollbar-measure', 'icon-success', 'icon-warning', 'icon-info', 'icon-question', 'icon-error']);
   var iconTypes = prefix(['success', 'warning', 'info', 'question', 'error']);
 
   var getContainer = function getContainer() {
@@ -381,6 +387,15 @@
   };
   var getConfirmButton = function getConfirmButton() {
     return elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.confirm));
+  };
+  var getDenyButton = function getDenyButton() {
+    return elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.deny));
+  };
+  var getInputLabel = function getInputLabel() {
+    return elementByClass(swalClasses['input-label']);
+  };
+  var getLoader = function getLoader() {
+    return elementBySelector(".".concat(swalClasses.loader));
   };
   var getCancelButton = function getCancelButton() {
     return elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.cancel));
@@ -553,6 +568,10 @@
     }
   };
   var applyNumericalStyle = function applyNumericalStyle(elem, property, value) {
+    if (value === "".concat(parseInt(value))) {
+      value = parseInt(value);
+    }
+
     if (value || parseInt(value) === 0) {
       elem.style[property] = typeof value === 'number' ? "".concat(value, "px") : value;
     } else {
@@ -561,12 +580,17 @@
   };
   var show = function show(elem) {
     var display = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'flex';
-    elem.style.opacity = '';
     elem.style.display = display;
   };
   var hide = function hide(elem) {
-    elem.style.opacity = '';
     elem.style.display = 'none';
+  };
+  var setStyle = function setStyle(parent, selector, property, value) {
+    var el = parent.querySelector(selector);
+
+    if (el) {
+      el.style[property] = value;
+    }
   };
   var toggle = function toggle(elem, condition, display) {
     condition ? show(elem, display) : hide(elem);
@@ -575,8 +599,9 @@
   var isVisible = function isVisible(elem) {
     return !!(elem && (elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length));
   };
-  /* istanbul ignore next */
-
+  var allButtonsAreHidden = function allButtonsAreHidden() {
+    return !isVisible(getConfirmButton()) && !isVisible(getDenyButton()) && !isVisible(getCancelButton());
+  };
   var isScrollable = function isScrollable(elem) {
     return !!(elem.scrollHeight > elem.clientHeight);
   }; // borrowed from https://stackoverflow.com/a/46352119
@@ -624,7 +649,7 @@
     return typeof window === 'undefined' || typeof document === 'undefined';
   };
 
-  var sweetHTML = "\n <div aria-labelledby=\"".concat(swalClasses.title, "\" aria-describedby=\"").concat(swalClasses.content, "\" class=\"").concat(swalClasses.popup, "\" tabindex=\"-1\">\n   <div class=\"").concat(swalClasses.header, "\">\n     <ul class=\"").concat(swalClasses['progress-steps'], "\"></ul>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.error, "\"></div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.question, "\"></div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.warning, "\"></div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.info, "\"></div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.success, "\"></div>\n     <img class=\"").concat(swalClasses.image, "\" />\n     <h2 class=\"").concat(swalClasses.title, "\" id=\"").concat(swalClasses.title, "\"></h2>\n     <button type=\"button\" class=\"").concat(swalClasses.close, "\"></button>\n   </div>\n   <div class=\"").concat(swalClasses.content, "\">\n     <div id=\"").concat(swalClasses.content, "\" class=\"").concat(swalClasses['html-container'], "\"></div>\n     <input class=\"").concat(swalClasses.input, "\" />\n     <input type=\"file\" class=\"").concat(swalClasses.file, "\" />\n     <div class=\"").concat(swalClasses.range, "\">\n       <input type=\"range\" />\n       <output></output>\n     </div>\n     <select class=\"").concat(swalClasses.select, "\"></select>\n     <div class=\"").concat(swalClasses.radio, "\"></div>\n     <label for=\"").concat(swalClasses.checkbox, "\" class=\"").concat(swalClasses.checkbox, "\">\n       <input type=\"checkbox\" />\n       <span class=\"").concat(swalClasses.label, "\"></span>\n     </label>\n     <textarea class=\"").concat(swalClasses.textarea, "\"></textarea>\n     <div class=\"").concat(swalClasses['validation-message'], "\" id=\"").concat(swalClasses['validation-message'], "\"></div>\n   </div>\n   <div class=\"").concat(swalClasses.actions, "\">\n     <button type=\"button\" class=\"").concat(swalClasses.confirm, "\">OK</button>\n     <button type=\"button\" class=\"").concat(swalClasses.cancel, "\">Cancel</button>\n   </div>\n   <div class=\"").concat(swalClasses.footer, "\"></div>\n   <div class=\"").concat(swalClasses['timer-progress-bar-container'], "\">\n     <div class=\"").concat(swalClasses['timer-progress-bar'], "\"></div>\n   </div>\n </div>\n").replace(/(^|\n)\s*/g, '');
+  var sweetHTML = "\n <div aria-labelledby=\"".concat(swalClasses.title, "\" aria-describedby=\"").concat(swalClasses.content, "\" class=\"").concat(swalClasses.popup, "\" tabindex=\"-1\">\n   <div class=\"").concat(swalClasses.header, "\">\n     <ul class=\"").concat(swalClasses['progress-steps'], "\"></ul>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.error, "\"></div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.question, "\"></div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.warning, "\"></div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.info, "\"></div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.success, "\"></div>\n     <img class=\"").concat(swalClasses.image, "\" />\n     <h2 class=\"").concat(swalClasses.title, "\" id=\"").concat(swalClasses.title, "\"></h2>\n     <button type=\"button\" class=\"").concat(swalClasses.close, "\"></button>\n   </div>\n   <div class=\"").concat(swalClasses.content, "\">\n     <div id=\"").concat(swalClasses.content, "\" class=\"").concat(swalClasses['html-container'], "\"></div>\n     <input class=\"").concat(swalClasses.input, "\" />\n     <input type=\"file\" class=\"").concat(swalClasses.file, "\" />\n     <div class=\"").concat(swalClasses.range, "\">\n       <input type=\"range\" />\n       <output></output>\n     </div>\n     <select class=\"").concat(swalClasses.select, "\"></select>\n     <div class=\"").concat(swalClasses.radio, "\"></div>\n     <label for=\"").concat(swalClasses.checkbox, "\" class=\"").concat(swalClasses.checkbox, "\">\n       <input type=\"checkbox\" />\n       <span class=\"").concat(swalClasses.label, "\"></span>\n     </label>\n     <textarea class=\"").concat(swalClasses.textarea, "\"></textarea>\n     <div class=\"").concat(swalClasses['validation-message'], "\" id=\"").concat(swalClasses['validation-message'], "\"></div>\n   </div>\n   <div class=\"").concat(swalClasses.actions, "\">\n     <div class=\"").concat(swalClasses.loader, "\"></div>\n     <button type=\"button\" class=\"").concat(swalClasses.confirm, "\"></button>\n     <button type=\"button\" class=\"").concat(swalClasses.deny, "\"></button>\n     <button type=\"button\" class=\"").concat(swalClasses.cancel, "\"></button>\n   </div>\n   <div class=\"").concat(swalClasses.footer, "\"></div>\n   <div class=\"").concat(swalClasses['timer-progress-bar-container'], "\">\n     <div class=\"").concat(swalClasses['timer-progress-bar'], "\"></div>\n   </div>\n </div>\n").replace(/(^|\n)\s*/g, '');
 
   var resetOldContainer = function resetOldContainer() {
     var oldContainer = getContainer();
@@ -792,49 +817,51 @@
 
   var renderActions = function renderActions(instance, params) {
     var actions = getActions();
+    var loader = getLoader();
     var confirmButton = getConfirmButton();
+    var denyButton = getDenyButton();
     var cancelButton = getCancelButton(); // Actions (buttons) wrapper
 
-    if (!params.showConfirmButton && !params.showCancelButton) {
+    if (!params.showConfirmButton && !params.showDenyButton && !params.showCancelButton) {
       hide(actions);
     } // Custom class
 
 
-    applyCustomClass(actions, params, 'actions'); // Render confirm button
+    applyCustomClass(actions, params, 'actions'); // Render buttons
 
-    renderButton(confirmButton, 'confirm', params); // render Cancel Button
-
+    renderButton(confirmButton, 'confirm', params);
+    renderButton(denyButton, 'deny', params);
     renderButton(cancelButton, 'cancel', params);
-
-    if (params.buttonsStyling) {
-      handleButtonsStyling(confirmButton, cancelButton, params);
-    } else {
-      removeClass([confirmButton, cancelButton], swalClasses.styled);
-      confirmButton.style.backgroundColor = confirmButton.style.borderLeftColor = confirmButton.style.borderRightColor = '';
-      cancelButton.style.backgroundColor = cancelButton.style.borderLeftColor = cancelButton.style.borderRightColor = '';
-    }
+    handleButtonsStyling(confirmButton, denyButton, cancelButton, params);
 
     if (params.reverseButtons) {
-      confirmButton.parentNode.insertBefore(cancelButton, confirmButton);
-    }
+      actions.insertBefore(cancelButton, loader);
+      actions.insertBefore(denyButton, loader);
+      actions.insertBefore(confirmButton, loader);
+    } // Loader
+
+
+    loader.innerHTML = params.loaderHtml;
+    applyCustomClass(loader, params, 'loader');
   };
 
-  function handleButtonsStyling(confirmButton, cancelButton, params) {
-    addClass([confirmButton, cancelButton], swalClasses.styled); // Buttons background colors
+  function handleButtonsStyling(confirmButton, denyButton, cancelButton, params) {
+    if (!params.buttonsStyling) {
+      return removeClass([confirmButton, denyButton, cancelButton], swalClasses.styled);
+    }
+
+    addClass([confirmButton, denyButton, cancelButton], swalClasses.styled); // Buttons background colors
 
     if (params.confirmButtonColor) {
       confirmButton.style.backgroundColor = params.confirmButtonColor;
     }
 
+    if (params.denyButtonColor) {
+      denyButton.style.backgroundColor = params.denyButtonColor;
+    }
+
     if (params.cancelButtonColor) {
       cancelButton.style.backgroundColor = params.cancelButtonColor;
-    } // Loading state
-
-
-    if (!isLoading()) {
-      var confirmButtonBackgroundColor = window.getComputedStyle(confirmButton).getPropertyValue('background-color');
-      confirmButton.style.borderLeftColor = confirmButtonBackgroundColor;
-      confirmButton.style.borderRightColor = confirmButtonBackgroundColor;
     }
   }
 
@@ -1004,6 +1031,18 @@
     }
   };
 
+  var setInputLabel = function setInputLabel(input, prependTo, params) {
+    if (params.inputLabel) {
+      input.id = swalClasses.input;
+      var label = document.createElement('label');
+      var labelClass = swalClasses['input-label'];
+      label.setAttribute('for', input.id);
+      label.className = labelClass;
+      label.innerText = params.inputLabel;
+      prependTo.insertAdjacentElement('beforebegin', label);
+    }
+  };
+
   var getInputContainer = function getInputContainer(inputType) {
     var inputClass = swalClasses[inputType] ? swalClasses[inputType] : swalClasses.input;
     return getChildByClass(getContent(), inputClass);
@@ -1018,12 +1057,14 @@
       warn("Unexpected type of inputValue! Expected \"string\", \"number\" or \"Promise\", got \"".concat(_typeof(params.inputValue), "\""));
     }
 
+    setInputLabel(input, input, params);
     setInputPlaceholder(input, params);
     input.type = params.input;
     return input;
   };
 
   renderInputType.file = function (input, params) {
+    setInputLabel(input, input, params);
     setInputPlaceholder(input, params);
     return input;
   };
@@ -1034,6 +1075,7 @@
     rangeInput.value = params.inputValue;
     rangeInput.type = params.input;
     rangeOutput.value = params.inputValue;
+    setInputLabel(rangeInput, range, params);
     return range;
   };
 
@@ -1049,6 +1091,7 @@
       select.appendChild(placeholder);
     }
 
+    setInputLabel(select, select, params);
     return select;
   };
 
@@ -1070,6 +1113,7 @@
   renderInputType.textarea = function (textarea, params) {
     textarea.value = params.inputValue;
     setInputPlaceholder(textarea, params);
+    setInputLabel(textarea, textarea, params);
 
     if ('MutationObserver' in window) {
       // #1699
@@ -1135,10 +1179,10 @@
   };
 
   var renderIcon = function renderIcon(instance, params) {
-    var innerParams = privateProps.innerParams.get(instance); // if the give icon already rendered, apply the custom class without re-rendering the icon
+    var innerParams = privateProps.innerParams.get(instance); // if the given icon already rendered, apply the styling without re-rendering the icon
 
     if (innerParams && params.icon === innerParams.icon && getIcon()) {
-      applyCustomClass(getIcon(), params, 'icon');
+      applyStyles(getIcon(), params);
       return;
     }
 
@@ -1153,9 +1197,7 @@
       show(icon); // Custom or default content
 
       setContent(icon, params);
-      adjustSuccessIconBackgoundColor(); // Custom class
-
-      applyCustomClass(icon, params, 'icon'); // Animate icon
+      applyStyles(icon, params); // Animate icon
 
       addClass(icon, params.showClass.icon);
     } else {
@@ -1169,6 +1211,15 @@
     for (var i = 0; i < icons.length; i++) {
       hide(icons[i]);
     }
+  };
+
+  var applyStyles = function applyStyles(icon, params) {
+    // Icon color
+    setColor(icon, params); // Success icon background color
+
+    adjustSuccessIconBackgoundColor(); // Custom class
+
+    applyCustomClass(icon, params, 'icon');
   }; // Adjust success icon background color to match the popup background color
 
 
@@ -1199,6 +1250,22 @@
       };
       setInnerHtml(icon, iconContent(defaultIconHtml[params.icon]));
     }
+  };
+
+  var setColor = function setColor(icon, params) {
+    if (!params.iconColor) {
+      return;
+    }
+
+    icon.style.color = params.iconColor;
+    icon.style.borderColor = params.iconColor;
+
+    for (var _i = 0, _arr = ['.swal2-success-line-tip', '.swal2-success-line-long', '.swal2-x-mark-line-left', '.swal2-x-mark-line-right']; _i < _arr.length; _i++) {
+      var sel = _arr[_i];
+      setStyle(icon, sel, 'backgroundColor', params.iconColor);
+    }
+
+    setStyle(icon, '.swal2-success-ring', 'borderColor', params.iconColor);
   };
 
   var iconContent = function iconContent(content) {
@@ -1416,8 +1483,10 @@
     renderActions(instance, params);
     renderFooter(instance, params);
 
-    if (typeof params.onRender === 'function') {
-      params.onRender(getPopup());
+    if (typeof params.didRender === 'function') {
+      params.didRender(getPopup());
+    } else if (typeof params.onRender === 'function') {
+      params.onRender(getPopup()); // @deprecated
     }
   };
 
@@ -1434,6 +1503,13 @@
 
   var clickConfirm = function clickConfirm() {
     return getConfirmButton() && getConfirmButton().click();
+  };
+  /*
+   * Global function to click 'Deny' button
+   */
+
+  var clickDeny = function clickDeny() {
+    return getDenyButton() && getDenyButton().click();
   };
   /*
    * Global function to click 'Cancel' button
@@ -1497,10 +1573,11 @@
   }
 
   /**
-   * Show spinner instead of Confirm button
+   * Shows loader (spinner), this is useful with AJAX requests.
+   * By default the loader be shown instead of the "Confirm" button.
    */
 
-  var showLoading = function showLoading() {
+  var showLoading = function showLoading(buttonToReplace) {
     var popup = getPopup();
 
     if (!popup) {
@@ -1509,11 +1586,22 @@
 
     popup = getPopup();
     var actions = getActions();
-    var confirmButton = getConfirmButton();
+    var loader = getLoader();
+
+    if (!buttonToReplace && isVisible(getConfirmButton())) {
+      buttonToReplace = getConfirmButton();
+    }
+
     show(actions);
-    show(confirmButton, 'inline-block');
+
+    if (buttonToReplace) {
+      hide(buttonToReplace);
+      loader.setAttribute('data-button-to-replace', buttonToReplace.className);
+    }
+
+    loader.parentNode.insertBefore(loader, buttonToReplace);
     addClass([popup, actions], swalClasses.loading);
-    confirmButton.disabled = true;
+    show(loader);
     popup.setAttribute('data-loading', true);
     popup.setAttribute('aria-busy', true);
     popup.focus();
@@ -1620,6 +1708,7 @@
     html: '',
     footer: '',
     icon: undefined,
+    iconColor: undefined,
     iconHtml: undefined,
     toast: false,
     animation: true,
@@ -1643,21 +1732,28 @@
     stopKeydownPropagation: true,
     keydownListenerCapture: false,
     showConfirmButton: true,
+    showDenyButton: false,
     showCancelButton: false,
     preConfirm: undefined,
+    preDeny: undefined,
     confirmButtonText: 'OK',
     confirmButtonAriaLabel: '',
     confirmButtonColor: undefined,
+    denyButtonText: 'No',
+    denyButtonAriaLabel: '',
+    denyButtonColor: undefined,
     cancelButtonText: 'Cancel',
     cancelButtonAriaLabel: '',
     cancelButtonColor: undefined,
     buttonsStyling: true,
     reverseButtons: false,
     focusConfirm: true,
+    focusDeny: false,
     focusCancel: false,
     showCloseButton: false,
     closeButtonHtml: '&times;',
     closeButtonAriaLabel: 'Close this dialog',
+    loaderHtml: '',
     showLoaderOnConfirm: false,
     imageUrl: undefined,
     imageWidth: undefined,
@@ -1670,11 +1766,13 @@
     background: undefined,
     input: undefined,
     inputPlaceholder: '',
+    inputLabel: '',
     inputValue: '',
     inputOptions: {},
     inputAutoTrim: true,
     inputAttributes: {},
     inputValidator: undefined,
+    returnInputValueOnDeny: false,
     validationMessage: undefined,
     grow: false,
     position: 'center',
@@ -1683,17 +1781,29 @@
     progressStepsDistance: undefined,
     onBeforeOpen: undefined,
     onOpen: undefined,
+    willOpen: undefined,
+    didOpen: undefined,
     onRender: undefined,
+    didRender: undefined,
     onClose: undefined,
     onAfterClose: undefined,
+    willClose: undefined,
+    didClose: undefined,
     onDestroy: undefined,
+    didDestroy: undefined,
     scrollbarPadding: true
   };
-  var updatableParams = ['title', 'titleText', 'text', 'html', 'footer', 'icon', 'hideClass', 'customClass', 'allowOutsideClick', 'allowEscapeKey', 'showConfirmButton', 'showCancelButton', 'confirmButtonText', 'confirmButtonAriaLabel', 'confirmButtonColor', 'cancelButtonText', 'cancelButtonAriaLabel', 'cancelButtonColor', 'buttonsStyling', 'reverseButtons', 'imageUrl', 'imageWidth', 'imageHeight', 'imageAlt', 'progressSteps', 'currentProgressStep', 'onClose', 'onAfterClose', 'onDestroy'];
+  var updatableParams = ['allowEscapeKey', 'allowOutsideClick', 'background', 'buttonsStyling', 'cancelButtonAriaLabel', 'cancelButtonColor', 'cancelButtonText', 'closeButtonAriaLabel', 'closeButtonHtml', 'confirmButtonAriaLabel', 'confirmButtonColor', 'confirmButtonText', 'currentProgressStep', 'customClass', 'denyButtonAriaLabel', 'denyButtonColor', 'denyButtonText', 'didClose', 'didDestroy', 'footer', 'hideClass', 'html', 'icon', 'iconColor', 'imageAlt', 'imageHeight', 'imageUrl', 'imageWidth', 'onAfterClose', 'onClose', 'onDestroy', 'progressSteps', 'reverseButtons', 'showCancelButton', 'showCloseButton', 'showConfirmButton', 'showDenyButton', 'text', 'title', 'titleText', 'willClose'];
   var deprecatedParams = {
-    animation: 'showClass" and "hideClass'
+    animation: 'showClass" and "hideClass',
+    onBeforeOpen: 'willOpen',
+    onOpen: 'didOpen',
+    onRender: 'didRender',
+    onClose: 'willClose',
+    onAfterClose: 'didClose',
+    onDestroy: 'didDestroy'
   };
-  var toastIncompatibleParams = ['allowOutsideClick', 'allowEnterKey', 'backdrop', 'focusConfirm', 'focusCancel', 'heightAuto', 'keydownListenerCapture'];
+  var toastIncompatibleParams = ['allowOutsideClick', 'allowEnterKey', 'backdrop', 'focusConfirm', 'focusDeny', 'focusCancel', 'heightAuto', 'keydownListenerCapture'];
   /**
    * Is valid parameter
    * @param {String} paramName
@@ -1733,7 +1843,7 @@
 
   var checkIfParamIsDeprecated = function checkIfParamIsDeprecated(param) {
     if (isDeprecatedParameter(param)) {
-      warnAboutDepreation(param, isDeprecatedParameter(param));
+      warnAboutDeprecation(param, isDeprecatedParameter(param));
     }
   };
   /**
@@ -1764,6 +1874,7 @@
     argsToParams: argsToParams,
     isVisible: isVisible$1,
     clickConfirm: clickConfirm,
+    clickDeny: clickDeny,
     clickCancel: clickCancel,
     getContainer: getContainer,
     getPopup: getPopup,
@@ -1773,10 +1884,13 @@
     getImage: getImage,
     getIcon: getIcon,
     getIcons: getIcons,
+    getInputLabel: getInputLabel,
     getCloseButton: getCloseButton,
     getActions: getActions,
     getConfirmButton: getConfirmButton,
+    getDenyButton: getDenyButton,
     getCancelButton: getCancelButton,
+    getLoader: getLoader,
     getHeader: getHeader,
     getFooter: getFooter,
     getTimerProgressBar: getTimerProgressBar,
@@ -1800,7 +1914,7 @@
   });
 
   /**
-   * Enables buttons and hide loader.
+   * Hides loader and shows back the button which was hidden by .showLoading()
    */
 
   function hideLoading() {
@@ -1812,19 +1926,20 @@
     }
 
     var domCache = privateProps.domCache.get(this);
+    hide(domCache.loader);
+    var buttonToReplace = domCache.popup.getElementsByClassName(domCache.loader.getAttribute('data-button-to-replace'));
 
-    if (!innerParams.showConfirmButton) {
-      hide(domCache.confirmButton);
-
-      if (!innerParams.showCancelButton) {
-        hide(domCache.actions);
-      }
+    if (buttonToReplace.length) {
+      show(buttonToReplace[0], 'inline-block');
+    } else if (allButtonsAreHidden()) {
+      hide(domCache.actions);
     }
 
     removeClass([domCache.popup, domCache.actions], swalClasses.loading);
     domCache.popup.removeAttribute('aria-busy');
     domCache.popup.removeAttribute('data-loading');
     domCache.confirmButton.disabled = false;
+    domCache.denyButton.disabled = false;
     domCache.cancelButton.disabled = false;
   }
 
@@ -1891,7 +2006,7 @@
     var preventTouchMove;
 
     container.ontouchstart = function (e) {
-      preventTouchMove = shouldPreventTouchMove(e.target);
+      preventTouchMove = shouldPreventTouchMove(e);
     };
 
     container.ontouchmove = function (e) {
@@ -1902,8 +2017,13 @@
     };
   };
 
-  var shouldPreventTouchMove = function shouldPreventTouchMove(target) {
+  var shouldPreventTouchMove = function shouldPreventTouchMove(event) {
+    var target = event.target;
     var container = getContainer();
+
+    if (isStylys(event) || isZoom(event)) {
+      return false;
+    }
 
     if (target === container) {
       return true;
@@ -1916,6 +2036,16 @@
     }
 
     return false;
+  };
+
+  var isStylys = function isStylys(event) {
+    // #1786
+    return event.touches && event.touches.length && event.touches[0].touchType === 'stylus';
+  };
+
+  var isZoom = function isZoom(event) {
+    // #1891
+    return event.touches && event.touches.length > 1;
   };
 
   var undoIOSfix = function undoIOSfix() {
@@ -2003,12 +2133,12 @@
    * Instance method to close sweetAlert
    */
 
-  function removePopupAndResetState(instance, container, isToast$$1, onAfterClose) {
+  function removePopupAndResetState(instance, container, isToast$$1, didClose) {
     if (isToast$$1) {
-      triggerOnAfterCloseAndDispose(instance, onAfterClose);
+      triggerDidCloseAndDispose(instance, didClose);
     } else {
       restoreActiveElement().then(function () {
-        return triggerOnAfterCloseAndDispose(instance, onAfterClose);
+        return triggerDidCloseAndDispose(instance, didClose);
       });
       globalState.keydownTarget.removeEventListener('keydown', globalState.keydownHandler, {
         capture: globalState.keydownListenerCapture
@@ -2041,6 +2171,7 @@
       return;
     }
 
+    resolveValue = prepareResolveValue(resolveValue);
     var innerParams = privateProps.innerParams.get(this);
 
     if (!innerParams || hasClass(popup, innerParams.hideClass.popup)) {
@@ -2053,43 +2184,56 @@
     var backdrop = getContainer();
     removeClass(backdrop, innerParams.showClass.backdrop);
     addClass(backdrop, innerParams.hideClass.backdrop);
-    handlePopupAnimation(this, popup, innerParams);
+    handlePopupAnimation(this, popup, innerParams); // Resolve Swal promise
 
-    if (typeof resolveValue !== 'undefined') {
-      resolveValue.isDismissed = typeof resolveValue.dismiss !== 'undefined';
-      resolveValue.isConfirmed = typeof resolveValue.dismiss === 'undefined';
-    } else {
-      resolveValue = {
-        isDismissed: true,
-        isConfirmed: false
-      };
-    } // Resolve Swal promise
-
-
-    swalPromiseResolve(resolveValue || {});
+    swalPromiseResolve(resolveValue);
   }
+
+  var prepareResolveValue = function prepareResolveValue(resolveValue) {
+    // When user calls Swal.close()
+    if (typeof resolveValue === 'undefined') {
+      return {
+        isConfirmed: false,
+        isDenied: false,
+        isDismissed: true
+      };
+    }
+
+    return _extends({
+      isConfirmed: false,
+      isDenied: false,
+      isDismissed: false
+    }, resolveValue);
+  };
 
   var handlePopupAnimation = function handlePopupAnimation(instance, popup, innerParams) {
     var container = getContainer(); // If animation is supported, animate
 
     var animationIsSupported = animationEndEvent && hasCssAnimation(popup);
     var onClose = innerParams.onClose,
-        onAfterClose = innerParams.onAfterClose;
-
-    if (onClose !== null && typeof onClose === 'function') {
-      onClose(popup);
-    }
+        onAfterClose = innerParams.onAfterClose,
+        willClose = innerParams.willClose,
+        didClose = innerParams.didClose;
+    runDidClose(popup, willClose, onClose);
 
     if (animationIsSupported) {
-      animatePopup(instance, popup, container, onAfterClose);
+      animatePopup(instance, popup, container, didClose || onAfterClose);
     } else {
       // Otherwise, remove immediately
-      removePopupAndResetState(instance, container, isToast(), onAfterClose);
+      removePopupAndResetState(instance, container, isToast(), didClose || onAfterClose);
     }
   };
 
-  var animatePopup = function animatePopup(instance, popup, container, onAfterClose) {
-    globalState.swalCloseEventFinishedCallback = removePopupAndResetState.bind(null, instance, container, isToast(), onAfterClose);
+  var runDidClose = function runDidClose(popup, willClose, onClose) {
+    if (willClose !== null && typeof willClose === 'function') {
+      willClose(popup);
+    } else if (onClose !== null && typeof onClose === 'function') {
+      onClose(popup); // @deprecated
+    }
+  };
+
+  var animatePopup = function animatePopup(instance, popup, container, didClose) {
+    globalState.swalCloseEventFinishedCallback = removePopupAndResetState.bind(null, instance, container, isToast(), didClose);
     popup.addEventListener(animationEndEvent, function (e) {
       if (e.target === popup) {
         globalState.swalCloseEventFinishedCallback();
@@ -2098,10 +2242,10 @@
     });
   };
 
-  var triggerOnAfterCloseAndDispose = function triggerOnAfterCloseAndDispose(instance, onAfterClose) {
+  var triggerDidCloseAndDispose = function triggerDidCloseAndDispose(instance, didClose) {
     setTimeout(function () {
-      if (typeof onAfterClose === 'function') {
-        onAfterClose();
+      if (typeof didClose === 'function') {
+        didClose();
       }
 
       instance._destroy();
@@ -2133,10 +2277,10 @@
   }
 
   function enableButtons() {
-    setButtonsDisabled(this, ['confirmButton', 'cancelButton'], false);
+    setButtonsDisabled(this, ['confirmButton', 'denyButton', 'cancelButton'], false);
   }
   function disableButtons() {
-    setButtonsDisabled(this, ['confirmButton', 'cancelButton'], true);
+    setButtonsDisabled(this, ['confirmButton', 'denyButton', 'cancelButton'], true);
   }
   function enableInput() {
     return setInputDisabled(this.getInput(), false);
@@ -2147,10 +2291,14 @@
 
   function showValidationMessage(error) {
     var domCache = privateProps.domCache.get(this);
+    var params = privateProps.innerParams.get(this);
     setInnerHtml(domCache.validationMessage, error);
-    var popupComputedStyle = window.getComputedStyle(domCache.popup);
-    domCache.validationMessage.style.marginLeft = "-".concat(popupComputedStyle.getPropertyValue('padding-left'));
-    domCache.validationMessage.style.marginRight = "-".concat(popupComputedStyle.getPropertyValue('padding-right'));
+    domCache.validationMessage.className = swalClasses['validation-message'];
+
+    if (params.customClass && params.customClass.validationMessage) {
+      addClass(domCache.validationMessage, params.customClass.validationMessage);
+    }
+
     show(domCache.validationMessage);
     var input = this.getInput();
 
@@ -2257,8 +2405,8 @@
       return /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9-]{2,24}$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid email address');
     },
     url: function url(string, validationMessage) {
-      // taken from https://stackoverflow.com/a/3809435 with a small change from #1306
-      return /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,63}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid URL');
+      // taken from https://stackoverflow.com/a/3809435 with a small change from #1306 and #2013
+      return /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-z]{2,63}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid URL');
     }
   };
 
@@ -2309,42 +2457,57 @@
     init(params);
   }
 
+  var SHOW_CLASS_TIMEOUT = 10;
   /**
    * Open popup, add necessary classes and styles, fix scrollbar
    *
-   * @param {Array} params
+   * @param params
    */
 
   var openPopup = function openPopup(params) {
     var container = getContainer();
     var popup = getPopup();
 
-    if (typeof params.onBeforeOpen === 'function') {
-      params.onBeforeOpen(popup);
+    if (typeof params.willOpen === 'function') {
+      params.willOpen(popup);
+    } else if (typeof params.onBeforeOpen === 'function') {
+      params.onBeforeOpen(popup); // @deprecated
     }
 
+    var bodyStyles = window.getComputedStyle(document.body);
+    var initialBodyOverflow = bodyStyles.overflowY;
     addClasses$1(container, popup, params); // scrolling is 'hidden' until animation is done, after that 'auto'
 
-    setScrollingVisibility(container, popup);
+    setTimeout(function () {
+      setScrollingVisibility(container, popup);
+    }, SHOW_CLASS_TIMEOUT);
 
     if (isModal()) {
-      fixScrollContainer(container, params.scrollbarPadding);
+      fixScrollContainer(container, params.scrollbarPadding, initialBodyOverflow);
+      setAriaHidden();
     }
 
     if (!isToast() && !globalState.previousActiveElement) {
       globalState.previousActiveElement = document.activeElement;
     }
 
-    if (typeof params.onOpen === 'function') {
-      setTimeout(function () {
-        return params.onOpen(popup);
-      });
-    }
-
+    runDidOpen(popup, params);
     removeClass(container, swalClasses['no-transition']);
   };
 
-  function swalOpenAnimationFinished(event) {
+  var runDidOpen = function runDidOpen(popup, params) {
+    if (typeof params.didOpen === 'function') {
+      setTimeout(function () {
+        return params.didOpen(popup);
+      });
+    } else if (typeof params.onOpen === 'function') {
+      setTimeout(function () {
+        return params.onOpen(popup);
+      }); // @deprecated
+    }
+  };
+
+  var swalOpenAnimationFinished = function swalOpenAnimationFinished(event) {
     var popup = getPopup();
 
     if (event.target !== popup) {
@@ -2354,7 +2517,7 @@
     var container = getContainer();
     popup.removeEventListener(animationEndEvent, swalOpenAnimationFinished);
     container.style.overflowY = 'auto';
-  }
+  };
 
   var setScrollingVisibility = function setScrollingVisibility(container, popup) {
     if (animationEndEvent && hasCssAnimation(popup)) {
@@ -2365,12 +2528,11 @@
     }
   };
 
-  var fixScrollContainer = function fixScrollContainer(container, scrollbarPadding) {
+  var fixScrollContainer = function fixScrollContainer(container, scrollbarPadding, initialBodyOverflow) {
     iOSfix();
     IEfix();
-    setAriaHidden();
 
-    if (scrollbarPadding) {
+    if (scrollbarPadding && initialBodyOverflow !== 'hidden') {
       fixScrollbar();
     } // sweetalert2/issues/1247
 
@@ -2381,10 +2543,17 @@
   };
 
   var addClasses$1 = function addClasses(container, popup, params) {
-    addClass(container, params.showClass.backdrop);
-    show(popup); // Animate popup right after showing it
+    addClass(container, params.showClass.backdrop); // the workaround with setting/unsetting opacity is needed for #2019 and 2059
 
-    addClass(popup, params.showClass.popup);
+    popup.style.setProperty('opacity', '0', 'important');
+    show(popup);
+    setTimeout(function () {
+      // Animate popup right after showing it
+      addClass(popup, params.showClass.popup); // and remove the opacity workaround
+
+      popup.style.removeProperty('opacity');
+    }, SHOW_CLASS_TIMEOUT); // 10ms in order to fix #2062
+
     addClass([document.documentElement, document.body], swalClasses.shown);
 
     if (params.heightAuto && params.backdrop && !params.toast) {
@@ -2395,7 +2564,7 @@
   var handleInputOptionsAndValue = function handleInputOptionsAndValue(instance, params) {
     if (params.input === 'select' || params.input === 'radio') {
       handleInputOptions(instance, params);
-    } else if (['text', 'email', 'number', 'tel', 'textarea'].indexOf(params.input) !== -1 && isPromise(params.inputValue)) {
+    } else if (['text', 'email', 'number', 'tel', 'textarea'].indexOf(params.input) !== -1 && (hasToPromiseFn(params.inputValue) || isPromise(params.inputValue))) {
       handleInputValue(instance, params);
     }
   };
@@ -2440,9 +2609,9 @@
       return populateInputOptions[params.input](content, formatInputOptions(inputOptions), params);
     };
 
-    if (isPromise(params.inputOptions)) {
+    if (hasToPromiseFn(params.inputOptions) || isPromise(params.inputOptions)) {
       showLoading();
-      params.inputOptions.then(function (inputOptions) {
+      asPromise(params.inputOptions).then(function (inputOptions) {
         instance.hideLoading();
         processInputOptions(inputOptions);
       });
@@ -2456,7 +2625,7 @@
   var handleInputValue = function handleInputValue(instance, params) {
     var input = instance.getInput();
     hide(input);
-    params.inputValue.then(function (inputValue) {
+    asPromise(params.inputValue).then(function (inputValue) {
       input.value = params.input === 'number' ? parseFloat(inputValue) || 0 : "".concat(inputValue);
       show(input);
       input.focus();
@@ -2578,9 +2747,18 @@
     instance.disableButtons();
 
     if (innerParams.input) {
-      handleConfirmWithInput(instance, innerParams);
+      handleConfirmOrDenyWithInput(instance, innerParams, 'confirm');
     } else {
       confirm(instance, innerParams, true);
+    }
+  };
+  var handleDenyButtonClick = function handleDenyButtonClick(instance, innerParams) {
+    instance.disableButtons();
+
+    if (innerParams.returnInputValueOnDeny) {
+      handleConfirmOrDenyWithInput(instance, innerParams, 'deny');
+    } else {
+      deny(instance, innerParams, false);
     }
   };
   var handleCancelButtonClick = function handleCancelButtonClick(instance, dismissWith) {
@@ -2588,34 +2766,66 @@
     dismissWith(DismissReason.cancel);
   };
 
-  var handleConfirmWithInput = function handleConfirmWithInput(instance, innerParams) {
+  var handleConfirmOrDenyWithInput = function handleConfirmOrDenyWithInput(instance, innerParams, type
+  /* type is either 'confirm' or 'deny' */
+  ) {
     var inputValue = getInputValue(instance, innerParams);
 
     if (innerParams.inputValidator) {
-      instance.disableInput();
-      var validationPromise = Promise.resolve().then(function () {
-        return innerParams.inputValidator(inputValue, innerParams.validationMessage);
-      });
-      validationPromise.then(function (validationMessage) {
-        instance.enableButtons();
-        instance.enableInput();
-
-        if (validationMessage) {
-          instance.showValidationMessage(validationMessage);
-        } else {
-          confirm(instance, innerParams, inputValue);
-        }
-      });
+      handleInputValidator(instance, innerParams, inputValue);
     } else if (!instance.getInput().checkValidity()) {
       instance.enableButtons();
       instance.showValidationMessage(innerParams.validationMessage);
+    } else if (type === 'deny') {
+      deny(instance, innerParams, inputValue);
     } else {
       confirm(instance, innerParams, inputValue);
     }
   };
 
+  var handleInputValidator = function handleInputValidator(instance, innerParams, inputValue) {
+    instance.disableInput();
+    var validationPromise = Promise.resolve().then(function () {
+      return asPromise(innerParams.inputValidator(inputValue, innerParams.validationMessage));
+    });
+    validationPromise.then(function (validationMessage) {
+      instance.enableButtons();
+      instance.enableInput();
+
+      if (validationMessage) {
+        instance.showValidationMessage(validationMessage);
+      } else {
+        confirm(instance, innerParams, inputValue);
+      }
+    });
+  };
+
+  var deny = function deny(instance, innerParams, value) {
+    if (innerParams.preDeny) {
+      var preDenyPromise = Promise.resolve().then(function () {
+        return asPromise(innerParams.preDeny(value, innerParams.validationMessage));
+      });
+      preDenyPromise.then(function (preDenyValue) {
+        if (preDenyValue === false) {
+          instance.hideLoading();
+        } else {
+          instance.closePopup({
+            isDenied: true,
+            value: typeof preDenyValue === 'undefined' ? value : preDenyValue
+          });
+        }
+      });
+    } else {
+      instance.closePopup({
+        isDenied: true,
+        value: value
+      });
+    }
+  };
+
   var succeedWith = function succeedWith(instance, value) {
     instance.closePopup({
+      isConfirmed: true,
       value: value
     });
   };
@@ -2628,7 +2838,7 @@
     if (innerParams.preConfirm) {
       instance.resetValidationMessage();
       var preConfirmPromise = Promise.resolve().then(function () {
-        return innerParams.preConfirm(value, innerParams.validationMessage);
+        return asPromise(innerParams.preConfirm(value, innerParams.validationMessage));
       });
       preConfirmPromise.then(function (preConfirmValue) {
         if (isVisible(getValidationMessage()) || preConfirmValue === false) {
@@ -2682,7 +2892,9 @@
 
     getPopup().focus();
   };
-  var arrowKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Left', 'Right', 'Up', 'Down' // IE11
+  var arrowKeysNextButton = ['ArrowRight', 'ArrowDown', 'Right', 'Down' // IE11
+  ];
+  var arrowKeysPreviousButton = ['ArrowLeft', 'ArrowUp', 'Left', 'Up' // IE11
   ];
   var escKeys = ['Escape', 'Esc' // IE11
   ];
@@ -2699,8 +2911,8 @@
       handleEnter(instance, e, innerParams); // TAB
     } else if (e.key === 'Tab') {
       handleTab(e, innerParams); // ARROWS - switch focus between buttons
-    } else if (arrowKeys.indexOf(e.key) !== -1) {
-      handleArrows(); // ESC
+    } else if ([].concat(arrowKeysNextButton, arrowKeysPreviousButton).indexOf(e.key) !== -1) {
+      handleArrows(e.key); // ESC
     } else if (escKeys.indexOf(e.key) !== -1) {
       handleEsc(e, innerParams, dismissWith);
     }
@@ -2746,14 +2958,20 @@
     e.preventDefault();
   };
 
-  var handleArrows = function handleArrows() {
+  var handleArrows = function handleArrows(key) {
     var confirmButton = getConfirmButton();
-    var cancelButton = getCancelButton(); // focus Cancel button if Confirm button is currently focused
+    var denyButton = getDenyButton();
+    var cancelButton = getCancelButton();
 
-    if (document.activeElement === confirmButton && isVisible(cancelButton)) {
-      cancelButton.focus(); // and vice versa
-    } else if (document.activeElement === cancelButton && isVisible(confirmButton)) {
-      confirmButton.focus();
+    if (!([confirmButton, denyButton, cancelButton].indexOf(document.activeElement) !== -1)) {
+      return;
+    }
+
+    var sibling = arrowKeysNextButton.indexOf(key) !== -1 ? 'nextElementSibling' : 'previousElementSibling';
+    var buttonToFocus = document.activeElement[sibling];
+
+    if (buttonToFocus) {
+      buttonToFocus.focus();
     }
   };
 
@@ -2784,7 +3002,7 @@
     domCache.popup.onclick = function () {
       var innerParams = privateProps.innerParams.get(instance);
 
-      if (innerParams.showConfirmButton || innerParams.showCancelButton || innerParams.showCloseButton || innerParams.input) {
+      if (innerParams.showConfirmButton || innerParams.showDenyButton || innerParams.showCancelButton || innerParams.showCloseButton || innerParams.input) {
         return;
       }
 
@@ -2885,6 +3103,7 @@
       // functions to handle all closings/dismissals
       var dismissWith = function dismissWith(dismiss) {
         instance.closePopup({
+          isDismissed: true,
           dismiss: dismiss
         });
       };
@@ -2893,6 +3112,10 @@
 
       domCache.confirmButton.onclick = function () {
         return handleConfirmButtonClick(instance, innerParams);
+      };
+
+      domCache.denyButton.onclick = function () {
+        return handleDenyButtonClick(instance, innerParams);
       };
 
       domCache.cancelButton.onclick = function () {
@@ -2930,7 +3153,9 @@
       content: getContent(),
       actions: getActions(),
       confirmButton: getConfirmButton(),
+      denyButton: getDenyButton(),
       cancelButton: getCancelButton(),
+      loader: getLoader(),
       closeButton: getCloseButton(),
       validationMessage: getValidationMessage(),
       progressSteps: getProgressSteps()
@@ -2970,15 +3195,28 @@
       return blurActiveElement();
     }
 
+    if (!focusButton(domCache, innerParams)) {
+      setFocus(innerParams, -1, 1);
+    }
+  };
+
+  var focusButton = function focusButton(domCache, innerParams) {
+    if (innerParams.focusDeny && isVisible(domCache.denyButton)) {
+      domCache.denyButton.focus();
+      return true;
+    }
+
     if (innerParams.focusCancel && isVisible(domCache.cancelButton)) {
-      return domCache.cancelButton.focus();
+      domCache.cancelButton.focus();
+      return true;
     }
 
     if (innerParams.focusConfirm && isVisible(domCache.confirmButton)) {
-      return domCache.confirmButton.focus();
+      domCache.confirmButton.focus();
+      return true;
     }
 
-    setFocus(innerParams, -1, 1);
+    return false;
   };
 
   var blurActiveElement = function blurActiveElement() {
@@ -3005,7 +3243,7 @@
       if (Swal.isUpdatableParameter(param)) {
         validUpdatableParams[param] = params[param];
       } else {
-        warn("Invalid parameter to update: \"".concat(param, "\". Updatable params are listed here: https://github.com/sweetalert2/sweetalert2/blob/master/src/utils/params.js"));
+        warn("Invalid parameter to update: \"".concat(param, "\". Updatable params are listed here: https://github.com/sweetalert2/sweetalert2/blob/master/src/utils/params.js\n\nIf you think this parameter should be updatable, request it here: https://github.com/sweetalert2/sweetalert2/issues/new?template=02_feature_request.md"));
       }
     });
 
@@ -3042,12 +3280,17 @@
       delete globalState.deferDisposalTimer;
     }
 
-    if (typeof innerParams.onDestroy === 'function') {
-      innerParams.onDestroy();
-    }
-
+    runDidDestroy(innerParams);
     disposeSwal(this);
   }
+
+  var runDidDestroy = function runDidDestroy(innerParams) {
+    if (typeof innerParams.didDestroy === 'function') {
+      innerParams.didDestroy();
+    } else if (typeof innerParams.onDestroy === 'function') {
+      innerParams.onDestroy(); // @deprecated
+    }
+  };
 
   var disposeSwal = function disposeSwal(instance) {
     // Unset this.params so GC will dispose it (#1569)
@@ -3160,7 +3403,7 @@
     };
   });
   SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '9.14.4';
+  SweetAlert.version = '10.10.2';
 
   var Swal = SweetAlert;
   Swal["default"] = Swal;

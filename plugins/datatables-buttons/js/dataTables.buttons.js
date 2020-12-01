@@ -1,4 +1,4 @@
-/*! Buttons for DataTables 1.6.2
+/*! Buttons for DataTables 1.6.5
  * ©2016-2020 SpryMedia Ltd - datatables.net/license
  */
 
@@ -99,7 +99,7 @@ var Buttons = function( dt, config )
 	}
 
 	// For easy configuration of buttons an array can be given
-	if ( $.isArray( config ) ) {
+	if ( Array.isArray( config ) ) {
 		config = { buttons: config };
 	}
 
@@ -508,7 +508,7 @@ $.extend( Buttons.prototype, {
 	{
 		var dt = this.s.dt;
 		var buttonCounter = 0;
-		var buttons = ! $.isArray( button ) ?
+		var buttons = ! Array.isArray( button ) ?
 			[ button ] :
 			button;
 
@@ -521,7 +521,7 @@ $.extend( Buttons.prototype, {
 
 			// If the configuration is an array, then expand the buttons at this
 			// point
-			if ( $.isArray( conf ) ) {
+			if ( Array.isArray( conf ) ) {
 				this._expandButton( attachTo, conf, inCollection, attachPoint );
 				continue;
 			}
@@ -854,7 +854,7 @@ $.extend( Buttons.prototype, {
 			// Loop until we have resolved to a button configuration, or an
 			// array of button configurations (which will be iterated
 			// separately)
-			while ( ! $.isPlainObject(base) && ! $.isArray(base) ) {
+			while ( ! $.isPlainObject(base) && ! Array.isArray(base) ) {
 				if ( base === undefined ) {
 					return;
 				}
@@ -881,7 +881,7 @@ $.extend( Buttons.prototype, {
 				}
 			}
 
-			return $.isArray( base ) ?
+			return Array.isArray( base ) ?
 				base :
 				$.extend( {}, base );
 		};
@@ -896,7 +896,7 @@ $.extend( Buttons.prototype, {
 			}
 
 			var objArray = toConfObject( _dtButtons[ conf.extend ] );
-			if ( $.isArray( objArray ) ) {
+			if ( Array.isArray( objArray ) ) {
 				return objArray;
 			}
 			else if ( ! objArray ) {
@@ -1029,7 +1029,7 @@ $.extend( Buttons.prototype, {
 			display.prepend('<div class="dt-button-collection-title">'+options.collectionTitle+'</div>');
 		}
 
-		_fadeIn( display.insertAfter( hostNode ) );
+		_fadeIn( display.insertAfter( hostNode ), options.fade );
 
 		var tableContainer = $( hostButton.table().container() );
 		var position = display.css( 'position' );
@@ -1039,7 +1039,16 @@ $.extend( Buttons.prototype, {
 			display.css('width', tableContainer.width());
 		}
 
-		if ( position === 'absolute' ) {
+		// Align the popover relative to the DataTables container
+		// Useful for wide popovers such as SearchPanes
+		if (
+			position === 'absolute' &&
+			(
+				display.hasClass( options.rightAlignClassName ) ||
+				display.hasClass( options.leftAlignClassName ) ||
+				options.align === 'dt-container'
+			)
+		) {
 
 			var hostPosition = hostNode.position();
 
@@ -1050,7 +1059,6 @@ $.extend( Buttons.prototype, {
 
 			// calculate overflow when positioned beneath
 			var collectionHeight = display.outerHeight();
-			var collectionWidth = display.outerWidth();
 			var tableBottom = tableContainer.offset().top + tableContainer.height();
 			var listBottom = hostPosition.top + hostNode.outerHeight() + collectionHeight;
 			var bottomOverflow = listBottom - tableBottom;
@@ -1083,12 +1091,12 @@ $.extend( Buttons.prototype, {
 			
 			// You've then got all the numbers you need to do some calculations and if statements,
 			//  so we can do some quick JS maths and apply it only once
-			// If it has the right align class OR the buttons are right aligned,
+			// If it has the right align class OR the buttons are right aligned OR the button container is floated right,
 			//  then calculate left position for the popover to align the popover to the right hand
 			//  side of the button - check to see if the left of the popover is inside the table container.
 			// If not, move the popover so it is, but not more than it means that the popover is to the right of the table container
 			var popoverShuffle = 0;
-			if ( display.hasClass( options.rightAlignClassName ) || options.align === 'button-right' ) {
+			if ( display.hasClass( options.rightAlignClassName )) {
 				popoverShuffle = buttonsRight - popoverRight;
 				if(tableLeft > (popoverLeft + popoverShuffle)){
 					var leftGap = tableLeft - (popoverLeft + popoverShuffle);
@@ -1124,6 +1132,50 @@ $.extend( Buttons.prototype, {
 			display.css('left', display.position().left + popoverShuffle);
 			
 		}
+		else if (position === 'absolute') {
+			// Align relative to the host button
+			var hostPosition = hostNode.position();
+
+			display.css( {
+				top: hostPosition.top + hostNode.outerHeight(),
+				left: hostPosition.left
+			} );
+
+			// calculate overflow when positioned beneath
+			var collectionHeight = display.outerHeight();
+			var top = hostNode.offset().top
+			var popoverShuffle = 0;
+
+			// Get the size of the host buttons (left and width - and ...)
+			var buttonsLeft = hostNode.offset().left;
+			var buttonsWidth = hostNode.outerWidth()
+			var buttonsRight = buttonsLeft + buttonsWidth;
+
+			// Get the size of the popover (left and width - and ...)
+			var popoverLeft = display.offset().left;
+			var popoverWidth = content.width();
+			var popoverRight = popoverLeft + popoverWidth;
+
+			var moveTop = hostPosition.top - collectionHeight - 5;
+			var tableBottom = tableContainer.offset().top + tableContainer.height();
+			var listBottom = hostPosition.top + hostNode.outerHeight() + collectionHeight;
+			var bottomOverflow = listBottom - tableBottom;
+
+			// calculate overflow when positioned above
+			var listTop = hostPosition.top - collectionHeight;
+			var tableTop = tableContainer.offset().top;
+			var topOverflow = tableTop - listTop;
+
+			if ( (bottomOverflow > topOverflow || options.dropup) && -moveTop < tableTop ) {
+				display.css( 'top', moveTop);
+			}
+
+			popoverShuffle = options.align === 'button-right'
+				? buttonsRight - popoverRight
+				: buttonsLeft - popoverLeft;
+
+			display.css('left', display.position().left + popoverShuffle);
+		}
 		else {
 			// Fix position - centre on screen
 			var top = display.height() / 2;
@@ -1148,8 +1200,9 @@ $.extend( Buttons.prototype, {
 			.on( 'click.dtb-collection', function (e) {
 				// andSelf is deprecated in jQ1.8, but we want 1.7 compat
 				var back = $.fn.addBack ? 'addBack' : 'andSelf';
+				var parent = $(e.target).parent()[0];
 
-				if ( ! $(e.target).parents()[back]().filter( content ).length ) {
+				if (( ! $(e.target).parents()[back]().filter( content ).length  && !$(parent).hasClass('dt-buttons')) || $(e.target).hasClass('dt-button-background')) {
 					close();
 				}
 			} )
@@ -1243,7 +1296,7 @@ Buttons.instanceSelector = function ( group, buttons )
 
 	// Flatten the group selector into an array of single options
 	var process = function ( input ) {
-		if ( $.isArray( input ) ) {
+		if ( Array.isArray( input ) ) {
 			for ( var i=0, ien=input.length ; i<ien ; i++ ) {
 				process( input[i] );
 			}
@@ -1257,7 +1310,7 @@ Buttons.instanceSelector = function ( group, buttons )
 			}
 			else {
 				// String selector individual name
-				var idx = $.inArray( $.trim(input), names );
+				var idx = $.inArray( input.trim(), names );
 
 				if ( idx !== -1 ) {
 					ret.push( buttons[ idx ].inst );
@@ -1322,7 +1375,7 @@ Buttons.buttonSelector = function ( insts, selector )
 			return v.node;
 		} );
 
-		if ( $.isArray( selector ) || selector instanceof $ ) {
+		if ( Array.isArray( selector ) || selector instanceof $ ) {
 			for ( i=0, ien=selector.length ; i<ien ; i++ ) {
 				run( selector[i], inst );
 			}
@@ -1351,7 +1404,7 @@ Buttons.buttonSelector = function ( insts, selector )
 				var a = selector.split(',');
 
 				for ( i=0, ien=a.length ; i<ien ; i++ ) {
-					run( $.trim(a[i]), inst );
+					run( a[i].trim(), inst );
 				}
 			}
 			else if ( selector.match( /^\d+(\-\d+)*$/ ) ) {
@@ -1452,7 +1505,7 @@ Buttons.defaults = {
  * @type {string}
  * @static
  */
-Buttons.version = '1.6.2';
+Buttons.version = '1.6.5';
 
 
 $.extend( _dtButtons, {
@@ -1516,8 +1569,8 @@ $.extend( _dtButtons, {
 	},
 	pageLength: function ( dt ) {
 		var lengthMenu = dt.settings()[0].aLengthMenu;
-		var vals = $.isArray( lengthMenu[0] ) ? lengthMenu[0] : lengthMenu;
-		var lang = $.isArray( lengthMenu[0] ) ? lengthMenu[1] : lengthMenu;
+		var vals = Array.isArray( lengthMenu[0] ) ? lengthMenu[0] : lengthMenu;
+		var lang = Array.isArray( lengthMenu[0] ) ? lengthMenu[1] : lengthMenu;
 		var text = function ( dt ) {
 			return dt.i18n( 'buttons.pageLength', {
 				"-1": 'Show all rows',
@@ -1856,7 +1909,7 @@ var _filename = function ( config )
 	}
 
 	if ( filename.indexOf( '*' ) !== -1 ) {
-		filename = $.trim( filename.replace( '*', $('head > title').text() ) );
+		filename = filename.replace( '*', $('head > title').text() ).trim();
 	}
 
 	// Strip characters which the OS will object to
@@ -1971,7 +2024,7 @@ var _exportData = function ( dt, inOpts )
 		str = str.replace( /<!\-\-.*?\-\->/g, '' );
 
 		if ( config.stripHtml ) {
-			str = str.replace( /<[^>]*>/g, '' );
+			str = str.replace( /<([^>'"]*('[^']*'|"[^"]*")?)*>/g, '' );
 		}
 
 		if ( config.trim ) {

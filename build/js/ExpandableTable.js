@@ -20,37 +20,29 @@ const JQUERY_NO_CONFLICT = $.fn[NAME]
 const EVENT_EXPANDED = `expanded${EVENT_KEY}`
 const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
 
-const CLASS_NAME_HEADER = 'expandable-header'
-
 const SELECTOR_TABLE = '.expandable-table'
-const SELECTOR_HEADER = `.${CLASS_NAME_HEADER}`
-const SELECTOR_DATA_SELECTOR = 'data-expandable-table'
-const SELECTOR_EXPANDED = 'expanded'
-const SELECTOR_COLLAPSED = 'collapsed'
+const SELECTOR_DATA_TOGGLE = '[data-widget="expandable-table"]'
+const SELECTOR_ARIA_ATTR = 'aria-expanded'
 
 /**
   * Class Definition
   * ====================================================
   */
 class ExpandableTable {
-  constructor(element, config) {
-    this._config = config
+  constructor(element, options) {
+    this._options = options
     this._element = element
   }
 
   // Public
 
   init() {
-    $(SELECTOR_HEADER).each((_, $header) => {
-      // Next Child to the header will have the same column span as header
-      $($header).next().children().first().attr('colspan', $($header).children().length)
-
-      // Setting up table design for the first time
-      const $type = $($header).next().attr(SELECTOR_DATA_SELECTOR)
+    $(SELECTOR_DATA_TOGGLE).each((_, $header) => {
+      const $type = $($header).attr(SELECTOR_ARIA_ATTR)
       const $body = $($header).next().children().first().children()
-      if ($type === SELECTOR_EXPANDED) {
+      if ($type === 'true') {
         $body.show()
-      } else if ($type === SELECTOR_COLLAPSED) {
+      } else if ($type === 'false') {
         $body.hide()
         $body.parent().parent().addClass('d-none')
       }
@@ -60,35 +52,37 @@ class ExpandableTable {
   toggleRow() {
     const $element = this._element
     const time = 500
-    const $type = $element.next().attr(SELECTOR_DATA_SELECTOR)
+    const $type = $element.attr(SELECTOR_ARIA_ATTR)
     const $body = $element.next().children().first().children()
+
     $body.stop()
-    if ($type === SELECTOR_EXPANDED) {
+    if ($type === 'true') {
       $body.slideUp(time, () => {
         $element.next().addClass('d-none')
       })
-      $element.next().attr(SELECTOR_DATA_SELECTOR, SELECTOR_COLLAPSED)
+      $element.attr(SELECTOR_ARIA_ATTR, 'false')
       $element.trigger($.Event(EVENT_COLLAPSED))
-    } else if ($type === SELECTOR_COLLAPSED) {
+    } else if ($type === 'false') {
       $element.next().removeClass('d-none')
       $body.slideDown(time)
-      $element.next().attr(SELECTOR_DATA_SELECTOR, SELECTOR_EXPANDED)
+      $element.attr(SELECTOR_ARIA_ATTR, 'true')
       $element.trigger($.Event(EVENT_EXPANDED))
     }
   }
 
   // Static
 
-  static _jQueryInterface(config) {
+  static _jQueryInterface(operation) {
     return this.each(function () {
       let data = $(this).data(DATA_KEY)
+
       if (!data) {
         data = new ExpandableTable($(this))
         $(this).data(DATA_KEY, data)
       }
 
-      if (config === 'init' || config === 'toggleRow') {
-        data[config]()
+      if (typeof operation === 'string' && operation.match(/init|toggleRow/)) {
+        data[operation]()
       }
     })
   }
@@ -102,7 +96,7 @@ $(SELECTOR_TABLE).ready(function () {
   ExpandableTable._jQueryInterface.call($(this), 'init')
 })
 
-$(document).on('click', SELECTOR_HEADER, function () {
+$(document).on('click', SELECTOR_DATA_TOGGLE, function () {
   ExpandableTable._jQueryInterface.call($(this), 'toggleRow')
 })
 

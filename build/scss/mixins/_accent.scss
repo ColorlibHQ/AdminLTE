@@ -4,8 +4,8 @@
 
 // Accent Variant
 @mixin accent-variant($name, $color) {
+  $link-color: $color;
   .accent-#{$name} {
-    $link-color: $color;
     $link-hover-color: darken($color, 15%);
     $pagination-active-bg: $color;
     $pagination-active-border-color: $color;
@@ -90,5 +90,14 @@
       }
     }
   }
+  .dark-mode.accent-#{$name} {
+    .page-item {
+      .page-link {
+        &:hover,
+        &:focus {
+          color: lighten($link-color, 5%);
+        }
+      }
+    }
+  }
 }
-

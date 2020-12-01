@@ -129,6 +129,11 @@
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
@@ -157,12 +162,24 @@
         </div>
       </div>
 
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -200,7 +217,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -235,6 +252,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="../layout/fixed-sidebar-custom.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="../layout/fixed-topnav.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Fixed Navbar</p>
@@ -254,7 +277,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
@@ -281,9 +304,15 @@
                   <p>Inline</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="../charts/uplot.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>uPlot</p>
+                </a>
+              </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tree"></i>
               <p>
@@ -342,7 +371,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
@@ -377,7 +406,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
@@ -424,7 +453,15 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
+            <a href="../kanban.html" class="nav-link">
+              <i class="nav-icon fas fa-columns"></i>
+              <p>
+                Kanban Board
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
               <p>
@@ -453,7 +490,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
@@ -510,9 +547,21 @@
                   <p>Contacts</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="../examples/faq.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>FAQ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../examples/contact-us.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contact us</p>
+                </a>
+              </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
@@ -522,28 +571,74 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../examples/login.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Login</p>
+                  <p>
+                    Login & Register v1
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="../examples/login.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Login v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/register.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Register v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/forgot-password.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Forgot Password v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/recover-password.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Recover Password v1</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
-                <a href="../examples/register.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Register</p>
+                  <p>
+                    Login & Register v2
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="../examples/forgot-password.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Forgot Password</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../examples/recover-password.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Recover Password</p>
-                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="../examples/login-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Login v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/register-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Register v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/forgot-password-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Forgot Password v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../examples/recover-password-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Recover Password v2</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a href="../examples/lockscreen.html" class="nav-link">
@@ -595,9 +690,38 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Search
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../search/simple.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Simple Search</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../search/enhanced.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Enhanced</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-header">MISCELLANEOUS</li>
           <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.0/" class="nav-link">
+            <a href="../../iframe.html" class="nav-link">
+              <i class="nav-icon fas fa-ellipsis-h"></i>
+              <p>Tabbed IFrame Plugin</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://adminlte.io/docs/3.1/" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Documentation</p>
             </a>
@@ -609,7 +733,7 @@
               <p>Level 1</p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
               <p>
@@ -624,7 +748,7 @@
                   <p>Level 2</p>
                 </a>
               </li>
-              <li class="nav-item has-treeview">
+              <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
@@ -1183,6 +1307,26 @@
           <!-- ./row -->
         <div class="row">
           <div class="col-md-6">
+            <!-- Buttons with Icons -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Buttons with Icons</h3>
+              </div>
+              <div class="card-body row">
+                <div class="col-md-6">
+                  <button type="button" class="btn btn-primary btn-block"><i class="fa fa-bell"></i> .btn-block</button>
+                  <button type="button" class="btn btn-info btn-block btn-flat"><i class="fa fa-bell"></i> .btn-block .btn-flat</button>
+                  <button type="button" class="btn btn-danger btn-block btn-sm"><i class="fa fa-bell"></i> .btn-block .btn-sm</button>
+                </div>
+                <div class="col-md-6">
+                  <button type="button" class="btn btn-outline-primary btn-block"><i class="fa fa-bell"></i> .btn-block</button>
+                  <button type="button" class="btn btn-outline-info btn-block btn-flat"><i class="fa fa-book"></i> .btn-block .btn-flat</button>
+                  <button type="button" class="btn btn-outline-danger btn-block btn-sm"><i class="fa fa-book"></i> .btn-block .btn-sm</button>
+                </div>
+              </div>
+            </div>
+            <!-- /.card -->
+
             <!-- Block buttons -->
             <div class="card">
               <div class="card-header">
@@ -1225,17 +1369,27 @@
                     </td>
                     <td>
                       <div class="btn-group">
-                        <button type="button" class="btn btn-default"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-default"><i class="fas fa-align-center"></i></button>
-                        <button type="button" class="btn btn-default"><i class="fas fa-align-right"></i></button>
+                        <button type="button" class="btn btn-default">
+                          <i class="fas fa-align-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-default">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-default">
+                          <i class="fas fa-align-right"></i>
+                        </button>
                       </div>
                     </td>
                     <td>
                       <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-flat"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-default btn-flat"><i class="fas fa-align-center"></i>
+                        <button type="button" class="btn btn-default btn-flat">
+                          <i class="fas fa-align-left"></i>
                         </button>
-                        <button type="button" class="btn btn-default btn-flat"><i class="fas fa-align-right"></i>
+                        <button type="button" class="btn btn-default btn-flat">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-default btn-flat">
+                          <i class="fas fa-align-right"></i>
                         </button>
                       </div>
                     </td>
@@ -1267,16 +1421,28 @@
                     </td>
                     <td>
                       <div class="btn-group">
-                        <button type="button" class="btn btn-info"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-info"><i class="fas fa-align-center"></i></button>
-                        <button type="button" class="btn btn-info"><i class="fas fa-align-right"></i></button>
+                        <button type="button" class="btn btn-info">
+                          <i class="fas fa-align-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-info">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-info">
+                          <i class="fas fa-align-right"></i>
+                        </button>
                       </div>
                     </td>
                     <td>
                       <div class="btn-group">
-                        <button type="button" class="btn btn-info btn-flat"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-info btn-flat"><i class="fas fa-align-center"></i></button>
-                        <button type="button" class="btn btn-info btn-flat"><i class="fas fa-align-right"></i></button>
+                        <button type="button" class="btn btn-info btn-flat">
+                          <i class="fas fa-align-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-info btn-flat">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-info btn-flat">
+                          <i class="fas fa-align-right"></i>
+                        </button>
                       </div>
                     </td>
                     <td>
@@ -1307,17 +1473,28 @@
                     </td>
                     <td>
                       <div class="btn-group">
-                        <button type="button" class="btn btn-danger"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fas fa-align-center"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fas fa-align-right"></i></button>
+                        <button type="button" class="btn btn-danger">
+                          <i class="fas fa-align-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                          <i class="fas fa-align-right"></i>
+                        </button>
                       </div>
                     </td>
                     <td>
                       <div class="btn-group">
-                        <button type="button" class="btn btn-danger btn-flat"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-danger btn-flat"><i class="fas fa-align-center"></i>
+                        <button type="button" class="btn btn-danger btn-flat">
+                          <i class="fas fa-align-left"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-flat"><i class="fas fa-align-right"></i></button>
+                        <button type="button" class="btn btn-danger btn-flat">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-flat">
+                          <i class="fas fa-align-right"></i>
+                        </button>
                       </div>
                     </td>
                     <td>
@@ -1348,17 +1525,27 @@
                     </td>
                     <td>
                       <div class="btn-group">
-                        <button type="button" class="btn btn-warning"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-warning"><i class="fas fa-align-center"></i></button>
-                        <button type="button" class="btn btn-warning"><i class="fas fa-align-right"></i></button>
+                        <button type="button" class="btn btn-warning">
+                          <i class="fas fa-align-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning">
+                          <i class="fas fa-align-right"></i>
+                        </button>
                       </div>
                     </td>
                     <td>
                       <div class="btn-group">
-                        <button type="button" class="btn btn-warning btn-flat"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-warning btn-flat"><i class="fas fa-align-center"></i>
+                        <button type="button" class="btn btn-warning btn-flat">
+                          <i class="fas fa-align-left"></i>
                         </button>
-                        <button type="button" class="btn btn-warning btn-flat"><i class="fas fa-align-right"></i>
+                        <button type="button" class="btn btn-warning btn-flat">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-flat">
+                          <i class="fas fa-align-right"></i>
                         </button>
                       </div>
                     </td>
@@ -1390,17 +1577,27 @@
                     </td>
                     <td>
                       <div class="btn-group">
-                        <button type="button" class="btn btn-success"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-success"><i class="fas fa-align-center"></i></button>
-                        <button type="button" class="btn btn-success"><i class="fas fa-align-right"></i></button>
+                        <button type="button" class="btn btn-success">
+                          <i class="fas fa-align-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-success">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-success">
+                          <i class="fas fa-align-right"></i>
+                        </button>
                       </div>
                     </td>
                     <td>
                       <div class="btn-group">
-                        <button type="button" class="btn btn-success btn-flat"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-success btn-flat"><i class="fas fa-align-center"></i>
+                        <button type="button" class="btn btn-success btn-flat">
+                          <i class="fas fa-align-left"></i>
                         </button>
-                        <button type="button" class="btn btn-success btn-flat"><i class="fas fa-align-right"></i>
+                        <button type="button" class="btn btn-success btn-flat">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-success btn-flat">
+                          <i class="fas fa-align-right"></i>
                         </button>
                       </div>
                     </td>
@@ -1738,6 +1935,28 @@
                   <span class="badge bg-danger">531</span>
                   <i class="fas fa-heart"></i> Likes
                 </a>
+
+                <p>Application Buttons with Custom Colors</p>
+                <a class="btn btn-app bg-secondary">
+                  <span class="badge bg-success">300</span>
+                  <i class="fas fa-barcode"></i> Products
+                </a>
+                <a class="btn btn-app bg-success">
+                  <span class="badge bg-purple">891</span>
+                  <i class="fas fa-users"></i> Users
+                </a>
+                <a class="btn btn-app bg-danger">
+                  <span class="badge bg-teal">67</span>
+                  <i class="fas fa-inbox"></i> Orders
+                </a>
+                <a class="btn btn-app bg-warning">
+                  <span class="badge bg-info">12</span>
+                  <i class="fas fa-envelope"></i> Inbox
+                </a>
+                <a class="btn btn-app bg-info">
+                  <span class="badge bg-danger">531</span>
+                  <i class="fas fa-heart"></i> Likes
+                </a>
               </div>
               <!-- /.card-body -->
             </div>
@@ -1773,17 +1992,27 @@
                     </td>
                     <td>
                       <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-default"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-default"><i class="fas fa-align-center"></i></button>
-                        <button type="button" class="btn btn-default"><i class="fas fa-align-right"></i></button>
+                        <button type="button" class="btn btn-default">
+                          <i class="fas fa-align-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-default">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-default">
+                          <i class="fas fa-align-right"></i>
+                        </button>
                       </div>
                     </td>
                     <td>
                       <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-default btn-flat"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-default btn-flat"><i class="fas fa-align-center"></i>
+                        <button type="button" class="btn btn-default btn-flat">
+                          <i class="fas fa-align-left"></i>
                         </button>
-                        <button type="button" class="btn btn-default btn-flat"><i class="fas fa-align-right"></i>
+                        <button type="button" class="btn btn-default btn-flat">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-default btn-flat">
+                          <i class="fas fa-align-right"></i>
                         </button>
                       </div>
                     </td>
@@ -1815,16 +2044,28 @@
                     </td>
                     <td>
                       <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-info"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-info"><i class="fas fa-align-center"></i></button>
-                        <button type="button" class="btn btn-info"><i class="fas fa-align-right"></i></button>
+                        <button type="button" class="btn btn-info">
+                          <i class="fas fa-align-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-info">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-info">
+                          <i class="fas fa-align-right"></i>
+                        </button>
                       </div>
                     </td>
                     <td>
                       <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-info btn-flat"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-info btn-flat"><i class="fas fa-align-center"></i></button>
-                        <button type="button" class="btn btn-info btn-flat"><i class="fas fa-align-right"></i></button>
+                        <button type="button" class="btn btn-info btn-flat">
+                          <i class="fas fa-align-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-info btn-flat">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-info btn-flat">
+                          <i class="fas fa-align-right"></i>
+                        </button>
                       </div>
                     </td>
                     <td>
@@ -1855,17 +2096,28 @@
                     </td>
                     <td>
                       <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-danger"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fas fa-align-center"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fas fa-align-right"></i></button>
+                        <button type="button" class="btn btn-danger">
+                          <i class="fas fa-align-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                          <i class="fas fa-align-right"></i>
+                        </button>
                       </div>
                     </td>
                     <td>
                       <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-danger btn-flat"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-danger btn-flat"><i class="fas fa-align-center"></i>
+                        <button type="button" class="btn btn-danger btn-flat">
+                          <i class="fas fa-align-left"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-flat"><i class="fas fa-align-right"></i></button>
+                        <button type="button" class="btn btn-danger btn-flat">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-flat">
+                          <i class="fas fa-align-right"></i>
+                        </button>
                       </div>
                     </td>
                     <td>
@@ -1896,17 +2148,27 @@
                     </td>
                     <td>
                       <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-warning"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-warning"><i class="fas fa-align-center"></i></button>
-                        <button type="button" class="btn btn-warning"><i class="fas fa-align-right"></i></button>
+                        <button type="button" class="btn btn-warning">
+                          <i class="fas fa-align-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning">
+                          <i class="fas fa-align-right"></i>
+                        </button>
                       </div>
                     </td>
                     <td>
                       <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-warning btn-flat"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-warning btn-flat"><i class="fas fa-align-center"></i>
+                        <button type="button" class="btn btn-warning btn-flat">
+                          <i class="fas fa-align-left"></i>
                         </button>
-                        <button type="button" class="btn btn-warning btn-flat"><i class="fas fa-align-right"></i>
+                        <button type="button" class="btn btn-warning btn-flat">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-flat">
+                          <i class="fas fa-align-right"></i>
                         </button>
                       </div>
                     </td>
@@ -1938,17 +2200,27 @@
                     </td>
                     <td>
                       <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-success"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-success"><i class="fas fa-align-center"></i></button>
-                        <button type="button" class="btn btn-success"><i class="fas fa-align-right"></i></button>
+                        <button type="button" class="btn btn-success">
+                          <i class="fas fa-align-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-success">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-success">
+                          <i class="fas fa-align-right"></i>
+                        </button>
                       </div>
                     </td>
                     <td>
                       <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-success btn-flat"><i class="fas fa-align-left"></i></button>
-                        <button type="button" class="btn btn-success btn-flat"><i class="fas fa-align-center"></i>
+                        <button type="button" class="btn btn-success btn-flat">
+                          <i class="fas fa-align-left"></i>
                         </button>
-                        <button type="button" class="btn btn-success btn-flat"><i class="fas fa-align-right"></i>
+                        <button type="button" class="btn btn-success btn-flat">
+                          <i class="fas fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn btn-success btn-flat">
+                          <i class="fas fa-align-right"></i>
                         </button>
                       </div>
                     </td>
@@ -2021,7 +2293,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0-pre
+      <b>Version</b> 3.1.0-rc
     </div>
     <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>

@@ -1,6 +1,6 @@
 title: AdminLTE v3 Documentation
-version: v3.1.0-pre
-description: AdminLTE v3 Documentation
+version: v3.1.0-rc
+description: AdminLTE v3.1 Documentation
 
 baseurl: /docs/3.1
 url: https://adminlte.io
@@ -65,18 +65,27 @@ navigation:
         url: javascript/todo-list.html
       - title: Toasts
         url: javascript/toasts.html
+      - title: Sidebar Search
+        url: javascript/sidebar-search.html
+      - title: Expandable Tables
+        url: javascript/expandable-tables.html
+      - title: IFrame
+        url: javascript/iframe.html
   - title: Browser Support
     url: browser-support.html
     icon: fab fa-chrome
-  - title: Upgrade Guide
-    url: upgrade-guide.html
-    icon: fas fa-hand-point-up
   - title: Implementations
     url: implementations.html
     icon: fas fa-bookmark
+  - title: Additional Styles
+    url: additional-styles.html
+    icon: fas fa-mortar-pestle
+  - title: Upgrade Guide
+    url: upgrade-guide.html
+    icon: fas fa-hand-point-up
   - title: FAQ
     url: faq.html
     icon: fas fa-question-circle
   - title: License
     url: license.html
-    icon: fas fa-file-alt
+    icon: fas fa-file-contract

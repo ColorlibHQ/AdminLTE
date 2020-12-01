@@ -15,7 +15,7 @@
             {%- endif -%}
           {%- endfor %}
 
-          <li class="nav-item{% if item.subitems %} has-treeview{% endif %}{% if subitem_active == 'true' %} menu-open{% endif %}">
+          <li class="nav-item{% if subitem_active == 'true' %} menu-open{% endif %}">
             {% if item.url == 'index.html' -%}
               {%- assign item_url = '/' -%}
             {%- else -%}

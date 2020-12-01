@@ -45,6 +45,8 @@ bower_components/
 /plugins/jquery-ui/AUTHORS.txt
 /plugins/jquery-ui/external/jquery/jquery.js
 /plugins/inputmask/bindings/
+/plugins/flot/plugins/jquery*.js
+!/plugins/flot/plugins/jquery.flot.*.js
 !/plugins/**/LICENSE.md
 !/plugins/**/LICENSE.txt
 !/plugins/**/license.md

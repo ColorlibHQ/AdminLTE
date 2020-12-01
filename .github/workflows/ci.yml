@@ -36,6 +36,20 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+
+      - name: Set up npm cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-v${{ env.node }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}}
+          restore-keys: |
+            ${{ runner.OS }}-node-v${{ env.node }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}
+            ${{ runner.OS }}-node-v${{ env.node }}-
+
       - name: Install npm dependencies
         run: npm ci
 

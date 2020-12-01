@@ -19,7 +19,8 @@
 
 .sidebar {
   height: calc(100% - (#{$main-header-height-inner} + #{$main-header-bottom-border-width}));
-  overflow-y: auto;
+  overflow-y: initial;
+  scrollbar-width: thin;
   padding-bottom: $sidebar-padding-y;
   padding-left: $sidebar-padding-x;
   padding-right: $sidebar-padding-x;
@@ -124,6 +125,9 @@
       &.fas,
       &.far,
       &.fab,
+      &.fal,
+      &.fad,
+      &.svg-inline--fa,
       &.ion {
         font-size: 1.1rem;
       }
@@ -184,8 +188,9 @@
   }
 
   .nav-link p {
-    display: inline-block;
+    display: inline;
     margin: 0;
+    white-space: normal;
   }
 }
 
@@ -382,7 +387,7 @@
     // Hover and active states
     &.menu-open > .nav-link,
     &:hover > .nav-link,
-    & > .nav-link:focus  {
+    > .nav-link:focus  {
       background-color: $sidebar-dark-hover-bg;
       color: $sidebar-dark-hover-color;
     }
@@ -481,10 +486,13 @@
 
 .sidebar-mini .main-sidebar:not(.sidebar-no-expand),
 .sidebar-mini-md .main-sidebar:not(.sidebar-no-expand),
+.sidebar-mini-xs .main-sidebar:not(.sidebar-no-expand),
 .sidebar-mini .main-sidebar:not(.sidebar-no-expand):hover,
 .sidebar-mini-md .main-sidebar:not(.sidebar-no-expand):hover,
+.sidebar-mini-xs .main-sidebar:not(.sidebar-no-expand):hover,
 .sidebar-mini .main-sidebar.sidebar-focused,
-.sidebar-mini-md .main-sidebar.sidebar-focused {
+.sidebar-mini-md .main-sidebar.sidebar-focused,
+.sidebar-mini-xs .main-sidebar.sidebar-focused {
   .nav-compact.nav-sidebar.nav-child-indent:not(.nav-flat) .nav-treeview {
     padding-left: 1rem;
     margin-left: -.5rem;
@@ -592,8 +600,10 @@
 
   .sidebar-mini .main-sidebar:not(.sidebar-no-expand):hover &,
   .sidebar-mini-md .main-sidebar:not(.sidebar-no-expand):hover &,
+  .sidebar-mini-xs .main-sidebar:not(.sidebar-no-expand):hover &,
   .sidebar-mini .main-sidebar.sidebar-focused &,
-  .sidebar-mini-md .main-sidebar.sidebar-focused & {
+  .sidebar-mini-md .main-sidebar.sidebar-focused &,
+  .sidebar-mini-xs .main-sidebar.sidebar-focused & {
     &.nav-compact.nav-sidebar .nav-treeview {
       .nav-icon {
         margin-left: .4rem;
@@ -702,11 +712,13 @@
   }
 
   .sidebar-mini &,
-  .sidebar-mini-md & {
+  .sidebar-mini-md &,
+  .sidebar-mini-xs & {
     > .nav-item .nav-link {
       .nav-icon {
         @include transition(margin-left $transition-fn $transition-speed);
-        margin-left: .75rem;
+        margin-left: .6rem;
+
       }
     }
   }
@@ -714,7 +726,9 @@
   .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused &.nav-child-indent,
   .sidebar-mini.sidebar-collapse .main-sidebar:hover &.nav-child-indent,
   .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused &.nav-child-indent,
-  .sidebar-mini-md.sidebar-collapse .main-sidebar:hover &.nav-child-indent {
+  .sidebar-mini-md.sidebar-collapse .main-sidebar:hover &.nav-child-indent,
+  .sidebar-mini-xs.sidebar-collapse .main-sidebar.sidebar-focused &.nav-child-indent,
+  .sidebar-mini-xs.sidebar-collapse .main-sidebar:hover &.nav-child-indent {
     .nav-treeview {
       padding-left: 1rem;
 
@@ -728,7 +742,9 @@
   .sidebar-mini.sidebar-collapse.text-sm .main-sidebar.sidebar-focused &.nav-child-indent,
   .sidebar-mini.sidebar-collapse.text-sm .main-sidebar:hover &.nav-child-indent,
   .sidebar-mini-md.sidebar-collapse.text-sm .main-sidebar.sidebar-focused &.nav-child-indent,
-  .sidebar-mini-md.sidebar-collapse.text-sm .main-sidebar:hover &.nav-child-indent {
+  .sidebar-mini-md.sidebar-collapse.text-sm .main-sidebar:hover &.nav-child-indent,
+  .sidebar-mini-xs.sidebar-collapse.text-sm .main-sidebar.sidebar-focused &.nav-child-indent,
+  .sidebar-mini-xs.sidebar-collapse.text-sm .main-sidebar:hover &.nav-child-indent {
     .nav-treeview {
       padding-left: .5rem;
 
@@ -740,7 +756,8 @@
   }
 
   .sidebar-mini.sidebar-collapse &,
-  .sidebar-mini-md.sidebar-collapse & {
+  .sidebar-mini-md.sidebar-collapse &,
+  .sidebar-mini-xs.sidebar-collapse & {
     > .nav-item > .nav-link {
       .nav-icon {
         margin-left: .55rem;
@@ -765,7 +782,8 @@
 
 
   .sidebar-mini.sidebar-collapse.text-sm &,
-  .sidebar-mini-md.sidebar-collapse.text-sm & {
+  .sidebar-mini-md.sidebar-collapse.text-sm &,
+  .sidebar-mini-xs.sidebar-collapse.text-sm & {
     > .nav-item > .nav-link {
       .nav-icon {
         margin-left: .75rem;
@@ -843,9 +861,11 @@
   }
 
   .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused &,
-  .sidebar-mini.sidebar-collapse .main-sidebar:hover &,
+  .sidebar-mini.sidebar-collapse .main-sidebar:not(.sidebar-no-expand):hover &,
   .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused &,
-  .sidebar-mini-md.sidebar-collapse .main-sidebar:hover & {
+  .sidebar-mini-md.sidebar-collapse .main-sidebar:not(.sidebar-no-expand):hover &,
+  .sidebar-mini-xs.sidebar-collapse .main-sidebar.sidebar-focused &,
+  .sidebar-mini-xs.sidebar-collapse .main-sidebar:not(.sidebar-no-expand):hover & {
     .menu-open > .nav-treeview {
       max-height: min-content;
       animation-name: fadeIn;
@@ -902,6 +922,24 @@
   .btn-sidebar:focus {
     background-color: lighten($sidebar-dark-bg, 10%);
   }
+
+  .list-group-item {
+    background-color: lighten($sidebar-dark-bg, 7.5%);
+    border-color: lighten($sidebar-dark-bg, 15%);
+    color: $sidebar-dark-color;
+
+    &:hover {
+      background-color: lighten($sidebar-dark-bg, 10%);
+    }
+
+    &:focus {
+      background-color: lighten($sidebar-dark-bg, 12.5%);
+    }
+
+    .search-path {
+      color: $gray-500;
+    }
+  }
 }
 
 [class*="sidebar-light"] {
@@ -924,6 +962,22 @@
   .btn-sidebar:focus {
     background-color: darken($sidebar-light-bg, 10%);
   }
+
+  .list-group-item {
+    border-color: darken($sidebar-light-bg, 15%);
+
+    &:hover {
+      background-color: darken($sidebar-light-bg, 7.5%);
+    }
+
+    &:focus {
+      background-color: darken($sidebar-light-bg, 10%);
+    }
+
+    .search-path {
+      color: $gray-600;
+    }
+  }
 }
 
 // Sidebar inline input-group fix
@@ -935,7 +989,7 @@
 }
 
 // Sidebar Collapse on Layout Boxed
-.layout-boxed:not(.sidebar-mini):not(.sidebar-mini-md) {
+.layout-boxed:not(.sidebar-mini):not(.sidebar-mini-md):not(.sidebar-mini-xs) {
   &.sidebar-collapse .main-sidebar {
     margin-left: 0;
   }
@@ -944,5 +998,145 @@
   .main-footer {
     z-index: 9999;
     position: relative;
+  }
+}
+
+// Sidebar Search
+.sidebar-collapse {
+  .form-control-sidebar,
+  .form-control-sidebar ~ .input-group-append,
+  .sidebar-search-results {
+    display: none;
+  }
+}
+
+[data-widget="sidebar-search"] {
+  input[type="search"] {
+    &::-ms-clear,
+    &::-ms-reveal {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-decoration,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      display: none;
+    }
+  }
+}
+
+.sidebar-search-results {
+  position: relative;
+  display: none;
+  width: 100%;
+
+  .sidebar-search-open & {
+    display: inline-block;
+  }
+
+  .search-title {
+    margin-bottom: -.1rem;
+  }
+
+  .list-group {
+    position: absolute;
+    width: 100%;
+    z-index: $zindex-main-sidebar + 1;
+
+    > .list-group-item {
+      padding: $input-padding-y $input-padding-x;
+
+      &:-moz-focusring {
+        margin-top: 0;
+        border-left: 1px solid transparent;
+        border-top: 0;
+        border-bottom: 1px solid transparent;
+      }
+
+      &:first-child {
+        margin-top: 0;
+        border-top: 0;
+        @include border-top-radius(0);
+      }
+    }
+  }
+}
+
+.sidebar-search-results .search-path {
+  font-size: $small-font-size;
+}
+
+.sidebar-search-open {
+  .btn,
+  .form-control {
+    @include border-bottom-radius(0);
+  }
+}
+
+// Custom Area
+.sidebar-custom {
+  [class*="sidebar-dark"] & {
+    border-top: 1px solid lighten($dark, 12%);
+  }
+
+  [class*="sidebar-light"] & {
+    border-top: 1px solid $gray-300;
+  }
+}
+
+.layout-fixed {
+  &.sidebar-collapse {
+    .hide-on-collapse {
+      display: none;
+    }
+  }
+
+  &.sidebar-collapse:hover {
+    .hide-on-collapse {
+      display: block;
+    }
+  }
+
+  .main-sidebar-custom {
+    .sidebar {
+      height: calc(100% - ((#{$main-header-height-inner} + #{$sidebar-custom-height}) + #{$main-header-bottom-border-width}));
+    }
+
+    .sidebar-custom {
+      height: $sidebar-custom-height;
+      padding: $sidebar-custom-padding-x $sidebar-custom-padding-y;
+    }
+  }
+
+  .main-sidebar-custom-lg {
+    .sidebar {
+      height: calc(100% - ((#{$main-header-height-inner} + #{$sidebar-custom-height-lg}) + #{$main-header-bottom-border-width}));
+    }
+
+    .sidebar-custom {
+      height: $sidebar-custom-height-lg;
+    }
+  }
+
+  .main-sidebar-custom-xl {
+    .sidebar {
+      height: calc(100% - ((#{$main-header-height-inner} + #{$sidebar-custom-height-xl}) + #{$main-header-bottom-border-width}));
+    }
+
+    .sidebar-custom {
+      height: $sidebar-custom-height-xl;
+    }
+  }
+
+  .main-sidebar-custom,
+  .main-sidebar-custom-lg,
+  .main-sidebar-custom-xl {
+    .pos-right {
+      position: absolute;
+      right: .5rem;
+    }
   }
 }

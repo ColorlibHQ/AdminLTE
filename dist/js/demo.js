@@ -181,6 +181,21 @@
   var $child_indent_sidebar_container = $('<div />', { class: 'mb-1' }).append($child_indent_sidebar_checkbox).append('<span>Sidebar nav child indent</span>')
   $container.append($child_indent_sidebar_container)
 
+  var $child_hide_sidebar_checkbox = $('<input />', {
+    type: 'checkbox',
+    value: 1,
+    checked: $('.nav-sidebar').hasClass('nav-collapse-hide-child'),
+    class: 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('.nav-sidebar').addClass('nav-collapse-hide-child')
+    } else {
+      $('.nav-sidebar').removeClass('nav-collapse-hide-child')
+    }
+  })
+  var $child_hide_sidebar_container = $('<div />', { class: 'mb-1' }).append($child_hide_sidebar_checkbox).append('<span>Sidebar nav child hide on collapse</span>')
+  $container.append($child_hide_sidebar_container)
+
   var $no_expand_sidebar_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
@@ -208,8 +223,23 @@
       $('.brand-link').removeClass('text-sm')
     }
   })
-  var $text_sm_brand_container = $('<div />', { class: 'mb-4' }).append($text_sm_brand_checkbox).append('<span>Brand small text</span>')
+  var $text_sm_brand_container = $('<div />', { class: 'mb-1' }).append($text_sm_brand_checkbox).append('<span>Brand small text</span>')
   $container.append($text_sm_brand_container)
+
+  var $dark_mode_checkbox = $('<input />', {
+    type: 'checkbox',
+    value: 1,
+    checked: $('body').hasClass('dark-mode'),
+    class: 'mr-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('body').addClass('dark-mode')
+    } else {
+      $('body').removeClass('dark-mode')
+    }
+  })
+  var $dark_mode_container = $('<div />', { class: 'mb-4' }).append($dark_mode_checkbox).append('<span>Dark Mode</span>')
+  $container.append($dark_mode_container)
 
   $container.append('<h6>Navbar Variants</h6>')
 

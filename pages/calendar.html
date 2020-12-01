@@ -10,10 +10,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
   <!-- fullCalendar -->
-  <link rel="stylesheet" href="../plugins/fullcalendar/main.min.css">
-  <link rel="stylesheet" href="../plugins/fullcalendar-daygrid/main.min.css">
-  <link rel="stylesheet" href="../plugins/fullcalendar-timegrid/main.min.css">
-  <link rel="stylesheet" href="../plugins/fullcalendar-bootstrap/main.min.css">
+  <link rel="stylesheet" href="../plugins/fullcalendar/main.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 </head>
@@ -134,6 +131,11 @@
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
@@ -162,12 +164,24 @@
         </div>
       </div>
 
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -205,7 +219,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -240,6 +254,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="layout/fixed-sidebar-custom.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="layout/fixed-topnav.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Fixed Navbar</p>
@@ -259,7 +279,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
@@ -286,9 +306,15 @@
                   <p>Inline</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="charts/uplot.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>uPlot</p>
+                </a>
+              </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
@@ -347,7 +373,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
@@ -382,7 +408,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
@@ -429,7 +455,15 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
+            <a href="kanban.html" class="nav-link">
+              <i class="nav-icon fas fa-columns"></i>
+              <p>
+                Kanban Board
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
               <p>
@@ -458,7 +492,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
@@ -515,9 +549,21 @@
                   <p>Contacts</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="examples/faq.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>FAQ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="examples/contact-us.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contact us</p>
+                </a>
+              </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
@@ -527,28 +573,74 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="examples/login.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Login</p>
+                  <p>
+                    Login & Register v1
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="examples/login.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Login v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/register.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Register v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/forgot-password.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Forgot Password v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/recover-password.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Recover Password v1</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
-                <a href="examples/register.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Register</p>
+                  <p>
+                    Login & Register v2
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/forgot-password.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Forgot Password</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/recover-password.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Recover Password</p>
-                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="examples/login-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Login v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/register-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Register v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/forgot-password-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Forgot Password v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/recover-password-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Recover Password v2</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a href="examples/lockscreen.html" class="nav-link">
@@ -600,9 +692,38 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Search
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="search/simple.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Simple Search</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="search/enhanced.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Enhanced</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-header">MISCELLANEOUS</li>
           <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.0/" class="nav-link">
+            <a href="../iframe.html" class="nav-link">
+              <i class="nav-icon fas fa-ellipsis-h"></i>
+              <p>Tabbed IFrame Plugin</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://adminlte.io/docs/3.1/" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Documentation</p>
             </a>
@@ -614,7 +735,7 @@
               <p>Level 1</p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
               <p>
@@ -629,7 +750,7 @@
                   <p>Level 2</p>
                 </a>
               </li>
-              <li class="nav-item has-treeview">
+              <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
@@ -752,7 +873,6 @@
                 </div>
                 <div class="card-body">
                   <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                    <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
                     <ul class="fc-color-picker" id="color-chooser">
                       <li><a class="text-primary" href="#"><i class="fas fa-square"></i></a></li>
                       <li><a class="text-warning" href="#"><i class="fas fa-square"></i></a></li>
@@ -797,7 +917,7 @@
 
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0-pre
+      <b>Version</b> 3.1.0-rc
     </div>
     <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>
@@ -818,15 +938,11 @@
 <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
 <!-- fullCalendar 2.2.5 -->
 <script src="../plugins/moment/moment.min.js"></script>
-<script src="../plugins/fullcalendar/main.min.js"></script>
-<script src="../plugins/fullcalendar-daygrid/main.min.js"></script>
-<script src="../plugins/fullcalendar-timegrid/main.min.js"></script>
-<script src="../plugins/fullcalendar-interaction/main.min.js"></script>
-<script src="../plugins/fullcalendar-bootstrap/main.min.js"></script>
+<script src="../plugins/fullcalendar/main.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
   $(function () {
@@ -866,7 +982,7 @@
         y    = date.getFullYear()
 
     var Calendar = FullCalendar.Calendar;
-    var Draggable = FullCalendarInteraction.Draggable;
+    var Draggable = FullCalendar.Draggable;
 
     var containerEl = document.getElementById('external-events');
     var checkbox = document.getElementById('drop-remove');
@@ -878,7 +994,6 @@
     new Draggable(containerEl, {
       itemSelector: '.external-event',
       eventData: function(eventEl) {
-        console.log(eventEl);
         return {
           title: eventEl.innerText,
           backgroundColor: window.getComputedStyle( eventEl ,null).getPropertyValue('background-color'),
@@ -889,15 +1004,14 @@
     });
 
     var calendar = new Calendar(calendarEl, {
-      plugins: [ 'bootstrap', 'interaction', 'dayGrid', 'timeGrid' ],
-      header    : {
+      headerToolbar: {
         left  : 'prev,next today',
         center: 'title',
         right : 'dayGridMonth,timeGridWeek,timeGridDay'
       },
-      'themeSystem': 'bootstrap',
+      themeSystem: 'bootstrap',
       //Random default events
-      events    : [
+      events: [
         {
           title          : 'All Day Event',
           start          : new Date(y, m, 1),
@@ -960,12 +1074,12 @@
 
     /* ADDING EVENTS */
     var currColor = '#3c8dbc' //Red by default
-    //Color chooser button
+    // Color chooser button
     $('#color-chooser > li > a').click(function (e) {
       e.preventDefault()
-      //Save color
+      // Save color
       currColor = $(this).css('color')
-      //Add color effect to button
+      // Add color effect to button
       $('#add-new-event').css({
         'background-color': currColor,
         'border-color'    : currColor
@@ -973,26 +1087,26 @@
     })
     $('#add-new-event').click(function (e) {
       e.preventDefault()
-      //Get value and make sure it is not null
+      // Get value and make sure it is not null
       var val = $('#new-event').val()
       if (val.length == 0) {
         return
       }
 
-      //Create events
+      // Create events
       var event = $('<div />')
       event.css({
         'background-color': currColor,
         'border-color'    : currColor,
         'color'           : '#fff'
       }).addClass('external-event')
-      event.html(val)
+      event.text(val)
       $('#external-events').prepend(event)
 
-      //Add draggable funtionality
+      // Add draggable funtionality
       ini_events(event)
 
-      //Remove event from text input
+      // Remove event from text input
       $('#new-event').val('')
     })
   })

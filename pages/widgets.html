@@ -131,6 +131,11 @@
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
@@ -159,12 +164,24 @@
         </div>
       </div>
 
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -202,7 +219,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -237,6 +254,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="layout/fixed-sidebar-custom.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="layout/fixed-topnav.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Fixed Navbar</p>
@@ -256,7 +279,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
@@ -283,9 +306,15 @@
                   <p>Inline</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="charts/uplot.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>uPlot</p>
+                </a>
+              </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
@@ -344,7 +373,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
@@ -379,7 +408,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
@@ -426,7 +455,15 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
+            <a href="kanban.html" class="nav-link">
+              <i class="nav-icon fas fa-columns"></i>
+              <p>
+                Kanban Board
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
               <p>
@@ -455,7 +492,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
@@ -512,9 +549,21 @@
                   <p>Contacts</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="examples/faq.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>FAQ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="examples/contact-us.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contact us</p>
+                </a>
+              </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
@@ -524,28 +573,74 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="examples/login.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Login</p>
+                  <p>
+                    Login & Register v1
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="examples/login.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Login v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/register.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Register v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/forgot-password.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Forgot Password v1</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/recover-password.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Recover Password v1</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
-                <a href="examples/register.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Register</p>
+                  <p>
+                    Login & Register v2
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/forgot-password.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Forgot Password</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/recover-password.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Recover Password</p>
-                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="examples/login-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Login v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/register-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Register v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/forgot-password-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Forgot Password v2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="examples/recover-password-v2.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Recover Password v2</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a href="examples/lockscreen.html" class="nav-link">
@@ -597,9 +692,38 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Search
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="search/simple.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Simple Search</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="search/enhanced.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Enhanced</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-header">MISCELLANEOUS</li>
           <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.0/" class="nav-link">
+            <a href="../iframe.html" class="nav-link">
+              <i class="nav-icon fas fa-ellipsis-h"></i>
+              <p>Tabbed IFrame Plugin</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://adminlte.io/docs/3.1/" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Documentation</p>
             </a>
@@ -611,7 +735,7 @@
               <p>Level 1</p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
               <p>
@@ -626,7 +750,7 @@
                   <p>Level 2</p>
                 </a>
               </li>
-              <li class="nav-item has-treeview">
+              <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
@@ -782,8 +906,8 @@
               <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Custom Shadows - None</span>
-                <span class="info-box-number"></span>
+                <span class="info-box-text">Shadows</span>
+                <span class="info-box-number">None</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -795,8 +919,8 @@
               <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Custom Shadows - Small</span>
-                <span class="info-box-number"></span>
+                <span class="info-box-text">Shadows</span>
+                <span class="info-box-number">Small</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -808,8 +932,8 @@
               <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Custom Shadows - Regular</span>
-                <span class="info-box-number"></span>
+                <span class="info-box-text">Shadows</span>
+                <span class="info-box-number">Regular</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -821,8 +945,8 @@
               <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Custom Shadows - Large</span>
-                <span class="info-box-number"></span>
+                <span class="info-box-text">Shadows</span>
+                <span class="info-box-number">Large</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -1223,7 +1347,9 @@
                 <h3 class="card-title">Card Refresh</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="widgets.html" data-source-selector="#card-refresh-content"><i class="fas fa-sync-alt"></i></button>
+                  <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="widgets.html" data-source-selector="#card-refresh-content">
+                    <i class="fas fa-sync-alt"></i>
+                  </button>
                 </div>
                 <!-- /.card-tools -->
               </div>
@@ -1245,10 +1371,18 @@
                 <h3 class="card-title">All together</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="widgets.html" data-source-selector="#card-refresh-content" data-load-on-init="false"><i class="fas fa-sync-alt"></i></button>
-                  <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                  <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="widgets.html" data-source-selector="#card-refresh-content" data-load-on-init="false">
+                    <i class="fas fa-sync-alt"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
                 </div>
                 <!-- /.card-tools -->
               </div>
@@ -1309,7 +1443,8 @@
                 <h3 class="card-title">Shadow - None</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
                 </div>
                 <!-- /.card-tools -->
@@ -1329,7 +1464,8 @@
                 <h3 class="card-title">Shadow - Small</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
                 </div>
                 <!-- /.card-tools -->
@@ -1397,7 +1533,8 @@
                 <h3 class="card-title">Primary</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
                 </div>
                 <!-- /.card-tools -->
@@ -1437,7 +1574,8 @@
                 <h3 class="card-title">Warning</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
                 </div>
                 <!-- /.card-tools -->
@@ -1474,7 +1612,8 @@
                 <h3 class="card-title">Primary Outline</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
                 </div>
                 <!-- /.card-tools -->
@@ -1514,7 +1653,8 @@
                 <h3 class="card-title">Warning Outline</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
                 </div>
                 <!-- /.card-tools -->
@@ -1551,7 +1691,8 @@
                 <h3 class="card-title">Primary</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
                 </div>
                 <!-- /.card-tools -->
@@ -1591,7 +1732,8 @@
                 <h3 class="card-title">Warning</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
                 </div>
                 <!-- /.card-tools -->
@@ -1628,7 +1770,8 @@
                 <h3 class="card-title">Primary Gradient</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
                 </div>
                 <!-- /.card-tools -->
@@ -1668,7 +1811,8 @@
                 <h3 class="card-title">Warning Gradient</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
                 </div>
                 <!-- /.card-tools -->
@@ -1705,18 +1849,20 @@
         <div class="row">
           <div class="col-md-3">
             <!-- DIRECT CHAT PRIMARY -->
-            <div class="card card-prirary cardutline direct-chat direct-chat-primary">
+            <div class="card card-primary card-outline direct-chat direct-chat-primary">
               <div class="card-header">
                 <h3 class="card-title">Direct Chat</h3>
 
                 <div class="card-tools">
-                  <span data-toggle="tooltip" title="3 New Messages" class="badge bg-primary">3</span>
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <span title="3 New Messages" class="badge bg-primary">3</span>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
                   </button>
-                  <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts"
-                          data-widget="chat-pane-toggle">
-                    <i class="fas fa-comments"></i></button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                  <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                    <i class="fas fa-comments"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
                   </button>
                 </div>
               </div>
@@ -1800,18 +1946,20 @@
 
           <div class="col-md-3">
             <!-- DIRECT CHAT SUCCESS -->
-            <div class="card card-sucress cardutline direct-chat direct-chat-success">
+            <div class="card card-success card-outline direct-chat direct-chat-success">
               <div class="card-header">
                 <h3 class="card-title">Direct Chat</h3>
 
                 <div class="card-tools">
-                  <span data-toggle="tooltip" title="3 New Messages" class="badge bg-success">3</span>
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <span title="3 New Messages" class="badge bg-success">3</span>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
-                  <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts"
-                          data-widget="chat-pane-toggle">
-                    <i class="fas fa-comments"></i></button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                  <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                    <i class="fas fa-comments"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
                   </button>
                 </div>
               </div>
@@ -1900,13 +2048,15 @@
                 <h3 class="card-title">Direct Chat</h3>
 
                 <div class="card-tools">
-                  <span data-toggle="tooltip" title="3 New Messages" class="badge bg-danger">3</span>
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <span title="3 New Messages" class="badge bg-danger">3</span>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
-                  <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts"
-                          data-widget="chat-pane-toggle">
-                    <i class="fas fa-comments"></i></button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                  <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                    <i class="fas fa-comments"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
                   </button>
                 </div>
               </div>
@@ -1995,13 +2145,15 @@
                 <h3 class="card-title">Direct Chat</h3>
 
                 <div class="card-tools">
-                  <span data-toggle="tooltip" title="3 New Messages" class="badge">3</span>
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <span title="3 New Messages" class="badge">3</span>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
-                  <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts"
-                          data-widget="chat-pane-toggle">
-                    <i class="fas fa-comments"></i></button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                  <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                    <i class="fas fa-comments"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
                   </button>
                 </div>
               </div>
@@ -2090,18 +2242,20 @@
         <div class="row">
           <div class="col-md-3">
             <!-- DIRECT CHAT PRIMARY -->
-            <div class="card card-prirary cardutline direct-chat direct-chat-primary shadow-none">
+            <div class="card card-primary card-outline direct-chat direct-chat-primary shadow-none">
               <div class="card-header">
                 <h3 class="card-title">Shadow - None</h3>
 
                 <div class="card-tools">
-                  <span data-toggle="tooltip" title="3 New Messages" class="badge bg-primary">3</span>
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <span title="3 New Messages" class="badge bg-primary">3</span>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
-                  <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts"
-                          data-widget="chat-pane-toggle">
-                    <i class="fas fa-comments"></i></button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                  <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                    <i class="fas fa-comments"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
                   </button>
                 </div>
               </div>
@@ -2185,18 +2339,20 @@
 
           <div class="col-md-3">
             <!-- DIRECT CHAT SUCCESS -->
-            <div class="card card-sucress cardutline direct-chat direct-chat-success shadow-sm">
+            <div class="card card-success card-outline direct-chat direct-chat-success shadow-sm">
               <div class="card-header">
                 <h3 class="card-title">Shadow - Small</h3>
 
                 <div class="card-tools">
-                  <span data-toggle="tooltip" title="3 New Messages" class="badge bg-success">3</span>
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <span title="3 New Messages" class="badge bg-success">3</span>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
-                  <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts"
-                          data-widget="chat-pane-toggle">
-                    <i class="fas fa-comments"></i></button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                  <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                    <i class="fas fa-comments"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
                   </button>
                 </div>
               </div>
@@ -2285,13 +2441,15 @@
                 <h3 class="card-title">Shadow - Regular</h3>
 
                 <div class="card-tools">
-                  <span data-toggle="tooltip" title="3 New Messages" class="badge bg-danger">3</span>
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <span title="3 New Messages" class="badge bg-danger">3</span>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
-                  <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts"
-                          data-widget="chat-pane-toggle">
-                    <i class="fas fa-comments"></i></button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                  <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                    <i class="fas fa-comments"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
                   </button>
                 </div>
               </div>
@@ -2380,13 +2538,15 @@
                 <h3 class="card-title">Shadow - Large</h3>
 
                 <div class="card-tools">
-                  <span data-toggle="tooltip" title="3 New Messages" class="badge">3</span>
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <span title="3 New Messages" class="badge">3</span>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
                   </button>
-                  <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts"
-                          data-widget="chat-pane-toggle">
-                    <i class="fas fa-comments"></i></button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                  <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                    <i class="fas fa-comments"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
                   </button>
                 </div>
               </div>
@@ -2617,11 +2777,14 @@
                 </div>
                 <!-- /.user-block -->
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Mark as read">
-                    <i class="far fa-circle"></i></button>
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <button type="button" class="btn btn-tool" title="Mark as read">
+                    <i class="far fa-circle"></i>
                   </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
                   </button>
                 </div>
                 <!-- /.card-tools -->
@@ -2694,11 +2857,14 @@
                 </div>
                 <!-- /.user-block -->
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Mark as read">
-                    <i class="far fa-circle"></i></button>
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <button type="button" class="btn btn-tool" title="Mark as read">
+                    <i class="far fa-circle"></i>
                   </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
                   </button>
                 </div>
                 <!-- /.card-tools -->
@@ -2924,6 +3090,52 @@
           <!-- /.col -->
         </div>
         <!-- /.row -->
+
+        <h5 class="mb-2">Card with Image Overlay</h5>
+        <div class="card card-success">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 col-lg-6 col-xl-4">
+                <div class="card mb-2 bg-gradient-dark">
+                  <img class="card-img-top" src="../dist/img/photo1.png" alt="Dist Photo 1">
+                  <div class="card-img-overlay d-flex flex-column justify-content-end">
+                    <h5 class="card-title text-primary text-white">Card Title</h5>
+                    <p class="card-text text-white pb-2 pt-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor.</p>
+                    <a href="#" class="text-white">Last update 2 mins ago</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-6 col-xl-4">
+                <div class="card mb-2">
+                  <img class="card-img-top" src="../dist/img/photo2.png" alt="Dist Photo 2">
+                  <div class="card-img-overlay d-flex flex-column justify-content-center">
+                    <h5 class="card-title text-white mt-5 pt-2">Card Title</h5>
+                    <p class="card-text pb-2 pt-1 text-white">
+                      Lorem ipsum dolor sit amet, <br>
+                      consectetur adipisicing elit <br>
+                      sed do eiusmod tempor.
+                    </p>
+                    <a href="#" class="text-white">Last update 15 hours ago</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-6 col-xl-4">
+                <div class="card mb-2">
+                  <img class="card-img-top" src="../dist/img/photo3.jpg" alt="Dist Photo 3">
+                  <div class="card-img-overlay">
+                    <h5 class="card-title text-primary">Card Title</h5>
+                    <p class="card-text pb-1 pt-1 text-white">
+                      Lorem ipsum dolor <br>
+                      sit amet, consectetur <br>
+                      adipisicing elit sed <br>
+                      do eiusmod tempor. </p>
+                    <a href="#" class="text-primary">Last update 3 days ago</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -2936,7 +3148,7 @@
 
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0-pre
+      <b>Version</b> 3.1.0-rc
     </div>
     <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>

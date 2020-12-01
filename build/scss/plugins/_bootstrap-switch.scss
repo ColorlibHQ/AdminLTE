@@ -173,3 +173,16 @@ $bootstrap-switch-handle-border-radius: .1rem;
     border-top-left-radius: $bootstrap-switch-handle-border-radius;
   }
 }
+
+.dark-mode {
+  .bootstrap-switch {
+    border-color: $gray-600;
+
+    .bootstrap-switch-handle-off.bootstrap-switch-default,
+    .bootstrap-switch-handle-on.bootstrap-switch-default {
+      background-color: lighten($dark, 2.5%);
+      color: $white;
+      border-color: lighten($dark, 7.5%);
+    }
+  }
+}

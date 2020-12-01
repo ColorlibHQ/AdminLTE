@@ -21,6 +21,9 @@
       > .fas,
       > .far,
       > .fab,
+      > .fal,
+      > .fad,
+      > .svg-inline--fa,
       > .ion {
         font-size: $font-size-sm;
       }
@@ -45,6 +48,11 @@
         }
       }
     }
+  }
+
+  &.dropdown-legacy .dropdown-menu {
+    top: $nav-link-height + $navbar-padding-y;
+    margin-top: 0;
   }
 }
 
@@ -72,7 +80,7 @@
 .form-control-navbar {
   border-right-width: 0;
 
-  & + .input-group-append {
+  + .input-group-append {
     margin-left: 0;
   }
 }
@@ -100,7 +108,7 @@
 
     &:focus {
       &,
-      & + .input-group-append .btn-navbar {
+      + .input-group-append .btn-navbar {
         background-color: $main-header-dark-form-control-focused-bg;
         border: $main-header-dark-form-control-focused-border !important;
         color: $main-header-dark-form-control-focused-color;
@@ -127,7 +135,7 @@
 
     &:focus {
       &,
-      & + .input-group-append .btn-navbar {
+      + .input-group-append .btn-navbar {
         background-color: $main-header-light-form-control-focused-bg;
         border: $main-header-light-form-control-focused-border !important;
         color: $main-header-light-form-control-focused-color;
