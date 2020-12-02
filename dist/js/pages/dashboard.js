@@ -166,8 +166,7 @@ $(function () {
 
   // This will get the first returned node in the jQuery collection.
   // eslint-disable-next-line no-unused-vars
-  var salesChart = new Chart(salesChartCanvas, {
-    // lgtm [js/unused-local-variable]
+  var salesChart = new Chart(salesChartCanvas, { // lgtm [js/unused-local-variable]
     type: 'line',
     data: salesChartData,
     options: salesChartOptions
