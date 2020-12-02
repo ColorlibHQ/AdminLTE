@@ -9,7 +9,7 @@ import IFrame from './IFrame'
 import Layout from './Layout'
 import PushMenu from './PushMenu'
 import SidebarSearch from './SidebarSearch'
-import SiteSearch from './SiteSearch'
+import NavbarSearch from './NavbarSearch'
 import Toasts from './Toasts'
 import TodoList from './TodoList'
 import Treeview from './Treeview'
@@ -26,7 +26,7 @@ export {
   Layout,
   PushMenu,
   SidebarSearch,
-  SiteSearch,
+  NavbarSearch,
   Toasts,
   TodoList,
   Treeview

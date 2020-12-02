@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------
- * AdminLTE SiteSearch.js
+ * AdminLTE NavbarSearch.js
  * License MIT
  * --------------------------------------------
  */
@@ -12,15 +12,15 @@ import $ from 'jquery'
  * ====================================================
  */
 
-const NAME = 'SiteSearch'
-const DATA_KEY = 'lte.site-search'
+const NAME = 'NavbarSearch'
+const DATA_KEY = 'lte.navbar-search'
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-const SELECTOR_TOGGLE_BUTTON = '[data-widget="site-search"]'
-const SELECTOR_SEARCH_BLOCK = '.site-search-block'
-const SELECTOR_SEARCH_INPUT = '.site-search-block .form-control'
+const SELECTOR_TOGGLE_BUTTON = '[data-widget="navbar-search"]'
+const SELECTOR_SEARCH_BLOCK = '.navbar-search-block'
+const SELECTOR_SEARCH_INPUT = '.navbar-search-block .form-control'
 
-const CLASS_NAME_OPEN = 'site-search-open'
+const CLASS_NAME_OPEN = 'navbar-search-open'
 
 const Default = {
   resetOnClose: true
@@ -31,7 +31,7 @@ const Default = {
  * ====================================================
  */
 
-class SiteSearch {
+class NavbarSearch {
   constructor(_element, _options) {
     this._element = _element
     this._config = $.extend({}, Default, _options)
@@ -67,7 +67,7 @@ class SiteSearch {
       let data = $(this).data(DATA_KEY)
 
       if (!data) {
-        data = new SiteSearch(this, options)
+        data = new NavbarSearch(this, options)
         $(this).data(DATA_KEY, data)
       }
 
@@ -89,11 +89,11 @@ $(document).on('click', SELECTOR_TOGGLE_BUTTON, event => {
 
   let button = $(event.currentTarget)
 
-  if (button.data('widget') !== 'site-search') {
+  if (button.data('widget') !== 'navbar-search') {
     button = button.closest(SELECTOR_TOGGLE_BUTTON)
   }
 
-  SiteSearch._jQueryInterface.call(button, 'toggle')
+  NavbarSearch._jQueryInterface.call(button, 'toggle')
 })
 
 /**
@@ -101,11 +101,11 @@ $(document).on('click', SELECTOR_TOGGLE_BUTTON, event => {
  * ====================================================
  */
 
-$.fn[NAME] = SiteSearch._jQueryInterface
-$.fn[NAME].Constructor = SiteSearch
+$.fn[NAME] = NavbarSearch._jQueryInterface
+$.fn[NAME].Constructor = NavbarSearch
 $.fn[NAME].noConflict = function () {
   $.fn[NAME] = JQUERY_NO_CONFLICT
-  return SiteSearch._jQueryInterface
+  return NavbarSearch._jQueryInterface
 }
 
-export default SiteSearch
+export default NavbarSearch
