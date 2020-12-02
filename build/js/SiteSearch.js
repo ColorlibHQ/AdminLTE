@@ -23,7 +23,7 @@ const SELECTOR_SEARCH_INPUT = '.site-search-block .form-control'
 const CLASS_NAME_OPEN = 'site-search-open'
 
 const Default = {
-  transitionSpeed: 300
+  resetOnClose: true
 }
 
 /**
@@ -33,24 +33,23 @@ const Default = {
 
 class SiteSearch {
   constructor(_element, _options) {
-    this.element = _element
-    this.options = $.extend({}, Default, _options)
+    this._element = _element
+    this._config = $.extend({}, Default, _options)
   }
 
   // Public
 
-  init() {
-    // eslint-disable-next-line no-console
-    console.log(this.element)
-  }
-
   open() {
-    $(SELECTOR_SEARCH_BLOCK).addClass(CLASS_NAME_OPEN)
+    $(SELECTOR_SEARCH_BLOCK).css('display', 'flex').hide().fadeIn().addClass(CLASS_NAME_OPEN)
     $(SELECTOR_SEARCH_INPUT).focus()
   }
 
   close() {
-    $(SELECTOR_SEARCH_BLOCK).removeClass(CLASS_NAME_OPEN)
+    $(SELECTOR_SEARCH_BLOCK).fadeOut().removeClass(CLASS_NAME_OPEN)
+
+    if (this._config.resetOnClose) {
+      $(SELECTOR_SEARCH_INPUT).val('')
+    }
   }
 
   toggle() {
@@ -72,7 +71,7 @@ class SiteSearch {
         $(this).data(DATA_KEY, data)
       }
 
-      if (!/toggle|close/.test(options)) {
+      if (!/toggle|close|open/.test(options)) {
         throw new Error(`Undefined method ${options}`)
       }
 
@@ -92,14 +91,6 @@ $(document).on('click', SELECTOR_TOGGLE_BUTTON, event => {
 
   if (button.data('widget') !== 'site-search') {
     button = button.closest(SELECTOR_TOGGLE_BUTTON)
-  }
-
-  SiteSearch._jQueryInterface.call(button, 'toggle')
-})
-$(document).on('ready', () => {
-  const button = $(SELECTOR_TOGGLE_BUTTON)
-  if (button.length == 0) {
-    return
   }
 
   SiteSearch._jQueryInterface.call(button, 'toggle')
