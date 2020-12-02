@@ -143,3 +143,39 @@
     }
   }
 }
+
+// Site Search
+.site-search-block {
+  position: absolute;
+  padding: 0 $nav-link-padding-x;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: none;
+  justify-content: center;
+  flex-direction: column;
+
+  @each $color, $value in $theme-colors {
+    @if $color != dark and $color != light {
+      .navbar-#{$color} & {
+        background-color: $value;
+      }
+    }
+  }
+
+  @each $color, $value in $colors {
+    .navbar-#{$color} & {
+      background-color: $value;
+    }
+  }
+
+  &.site-search-open {
+    display: flex;
+  }
+
+  .input-group {
+    width: 100%;
+  }
+}
