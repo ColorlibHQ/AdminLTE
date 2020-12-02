@@ -71,6 +71,8 @@ navigation:
         url: javascript/expandable-tables.html
       - title: IFrame
         url: javascript/iframe.html
+      - title: Navbar Search
+        url: javascript/navbar-search.html
   - title: Browser Support
     url: browser-support.html
     icon: fab fa-chrome
