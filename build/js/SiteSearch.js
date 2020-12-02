@@ -18,7 +18,6 @@ const JQUERY_NO_CONFLICT = $.fn[NAME]
 
 const SELECTOR_TOGGLE_BUTTON = '[data-widget="site-search"]'
 const SELECTOR_SEARCH_BLOCK = '.site-search-block'
-const SELECTOR_SEARCH_BACKDROP = '.site-search-backdrop'
 const SELECTOR_SEARCH_INPUT = '.site-search-block .form-control'
 
 const CLASS_NAME_OPEN = 'site-search-open'
@@ -40,16 +39,17 @@ class SiteSearch {
 
   // Public
 
+  init() {
+    // eslint-disable-next-line no-console
+    console.log(this.element)
+  }
+
   open() {
-    $(SELECTOR_SEARCH_BLOCK).slideDown(this.options.transitionSpeed)
-    $(SELECTOR_SEARCH_BACKDROP).show(0)
-    $(SELECTOR_SEARCH_INPUT).focus()
     $(SELECTOR_SEARCH_BLOCK).addClass(CLASS_NAME_OPEN)
+    $(SELECTOR_SEARCH_INPUT).focus()
   }
 
   close() {
-    $(SELECTOR_SEARCH_BLOCK).slideUp(this.options.transitionSpeed)
-    $(SELECTOR_SEARCH_BACKDROP).hide(0)
     $(SELECTOR_SEARCH_BLOCK).removeClass(CLASS_NAME_OPEN)
   }
 
@@ -96,10 +96,13 @@ $(document).on('click', SELECTOR_TOGGLE_BUTTON, event => {
 
   SiteSearch._jQueryInterface.call(button, 'toggle')
 })
+$(document).on('ready', () => {
+  const button = $(SELECTOR_TOGGLE_BUTTON)
+  if (button.length == 0) {
+    return
+  }
 
-$(document).on('click', SELECTOR_SEARCH_BACKDROP, event => {
-  const backdrop = $(event.currentTarget)
-  SiteSearch._jQueryInterface.call(backdrop, 'close')
+  SiteSearch._jQueryInterface.call(button, 'toggle')
 })
 
 /**
