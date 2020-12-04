@@ -82,18 +82,18 @@ $main-header-height-sm: calc(#{$main-header-height-sm-inner} + #{$main-header-bo
 
 
 // Main header skins
-$main-header-dark-form-control-bg: rgba(255, 255, 255, .2) !default;
-$main-header-dark-form-control-focused-bg: rgba(255, 255, 255, .6) !default;
-$main-header-dark-form-control-focused-color: $gray-800 !default;
-$main-header-dark-form-control-border: 0 !default;
-$main-header-dark-form-control-focused-border: 0 !default;
-$main-header-dark-placeholder-color: rgba(255, 255, 255, .6) !default;
+$main-header-dark-form-control-bg: $gray-800 !default;
+$main-header-dark-form-control-focused-bg: $gray-700 !default;
+$main-header-dark-form-control-focused-color: $gray-400 !default;
+$main-header-dark-form-control-border-color: $gray-600 !default;
+$main-header-dark-form-control-focused-border-color: $gray-600 !default;
+$main-header-dark-placeholder-color: rgba($white, .6) !default;
 
-$main-header-light-form-control-bg: darken($gray-100, 2%) !default;
-$main-header-light-form-control-focused-bg: $gray-200 !default;
-$main-header-light-form-control-focused-color: $gray-800 !default;
-$main-header-light-form-control-border: 0 !default;
-$main-header-light-form-control-focused-border: 0 !default;
+$main-header-light-form-control-bg: darken($gray-200, 5%) !default;
+$main-header-light-form-control-focused-bg: darken($gray-200, 7.5%) !default;
+$main-header-light-form-control-focused-color: $gray-400 !default;
+$main-header-light-form-control-border-color: $gray-400 !default;
+$main-header-light-form-control-focused-border-color: darken($gray-400, 2.5%) !default;
 $main-header-light-placeholder-color: rgba(0, 0, 0, .6) !default;
 
 // MAIN FOOTER

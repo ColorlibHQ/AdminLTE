@@ -90,16 +90,12 @@
 
 @each $color, $value in $theme-colors {
   @if $color != dark and $color != light {
-    .navbar-#{$color} {
-      background-color: $value;
-    }
+    @include navbar-variant($color, $value);
   }
 }
 
 @each $color, $value in $colors {
-  .navbar-#{$color} {
-    background-color: $value;
-  }
+  @include navbar-variant($color, $value);
 }
 
 .dark-mode {

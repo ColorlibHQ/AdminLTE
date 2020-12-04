@@ -94,7 +94,7 @@
   .form-control-navbar,
   .btn-navbar {
     background-color: $main-header-dark-form-control-bg;
-    border: $main-header-dark-form-control-border;
+    border-color: $main-header-dark-form-control-border-color;
   }
 
   .form-control-navbar {
@@ -110,7 +110,7 @@
       &,
       + .input-group-append .btn-navbar {
         background-color: $main-header-dark-form-control-focused-bg;
-        border: $main-header-dark-form-control-focused-border !important;
+        border-color: $main-header-dark-form-control-focused-border-color !important;
         color: $main-header-dark-form-control-focused-color;
       }
     }
@@ -121,7 +121,7 @@
   .form-control-navbar,
   .btn-navbar {
     background-color: $main-header-light-form-control-bg;
-    border: $main-header-light-form-control-border;
+    border-color: $main-header-light-form-control-border-color;
   }
 
   .form-control-navbar {
@@ -137,7 +137,7 @@
       &,
       + .input-group-append .btn-navbar {
         background-color: $main-header-light-form-control-focused-bg;
-        border: $main-header-light-form-control-focused-border !important;
+        border-color: $main-header-light-form-control-focused-border-color !important;
         color: $main-header-light-form-control-focused-color;
       }
     }
