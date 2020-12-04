@@ -179,7 +179,6 @@ class ControlSidebar {
     const $controlSidebar = $(this._config.target)
 
     if (!$body.hasClass(CLASS_NAME_LAYOUT_FIXED)) {
-      $controlSidebar.attr('style', 'display: block;')
       return
     }
 
