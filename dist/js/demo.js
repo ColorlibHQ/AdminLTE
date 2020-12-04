@@ -141,10 +141,10 @@
   var $sidebar_collapsed_container = $('<div />', { class: 'mb-1' }).append($sidebar_collapsed_checkbox).append('<span>Collapsed</span>')
   $container.append($sidebar_collapsed_container)
 
-  $(document).on('collapsed.lte.pushmenu', '[data-widget="pushmenu"]', function() {
+  $(document).on('collapsed.lte.pushmenu', '[data-widget="pushmenu"]', function () {
     $sidebar_collapsed_checkbox.prop('checked', true)
   })
-  $(document).on('shown.lte.pushmenu', '[data-widget="pushmenu"]', function() {
+  $(document).on('shown.lte.pushmenu', '[data-widget="pushmenu"]', function () {
     $sidebar_collapsed_checkbox.prop('checked', false)
   })
 
