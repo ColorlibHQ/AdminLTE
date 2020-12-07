@@ -131,7 +131,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
-    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-babel": "^5.2.2",
     "autoprefixer": "^9.8.6",
     "browser-sync": "^2.26.13",
     "bundlewatch": "^0.3.1",
