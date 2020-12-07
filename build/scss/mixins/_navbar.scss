@@ -3,32 +3,60 @@
 //
 
 // Navbar Variant
-@mixin navbar-variant($color, $font-color: rgba(255, 255, 255, .8), $hover-color: #f6f6f6, $hover-bg: rgba(0, 0, 0, .1)) {
-  background-color: $color;
+@mixin navbar-variant($name, $color) {
+  .navbar-#{$name} {
+    background-color: $color;
+    color: color-yiq($color);
 
-  .nav > li > a {
-    color: $font-color;
-  }
+    &.navbar-light {
+      .form-control-navbar {
+        &::placeholder {
+          color: rgba($gray-800, .8);
+        }
+        &,
+        + .input-group-append > .btn-navbar {
+          background-color: lighten($color, 4%);
+          border-color: lighten($color, 9%);
+          color: rgba($gray-800, .8);
+        }
 
-  .nav > li > a:hover,
-  .nav > li > a:active,
-  .nav > li > a:focus,
-  .nav .open > a,
-  .nav .open > a:hover,
-  .nav .open > a:focus,
-  .nav > .active > a {
-    background-color: $hover-bg;
-    color: $hover-color;
-  }
+        &:focus {
+          &::placeholder {
+            color: $gray-800;
+          }
+          &,
+          + .input-group-append .btn-navbar {
+            background-color: lighten($color, 5%);
+            border-color: lighten($color, 9%) !important;
+            color: $gray-800;
+          }
+        }
+      }
+    }
+    &.navbar-dark {
+      .form-control-navbar {
+        &::placeholder {
+          color: rgba($white, .8);
+        }
+        &,
+        + .input-group-append > .btn-navbar {
+          background-color: darken($color, 4%);
+          border-color: darken($color, 9%);
+          color: rgba($white, .8);
+        }
 
-  // Add color to the sidebar toggle button
-  .sidebar-toggle {
-    color: $font-color;
-
-    &:hover,
-    &:focus {
-      background-color: $hover-bg;
-      color: $hover-color;
+        &:focus {
+          &::placeholder {
+            color: $white;
+          }
+          &,
+          + .input-group-append .btn-navbar {
+            background-color: darken($color, 5%);
+            border-color: darken($color, 9%) !important;
+            color: $white;
+          }
+        }
+      }
     }
   }
 }

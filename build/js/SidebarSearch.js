@@ -101,7 +101,7 @@ class SidebarSearch {
       this._addNotFound()
     } else {
       endResults.each((i, result) => {
-        $(SELECTOR_SEARCH_RESULTS_GROUP).append(this._renderItem(escape(result.name), escape(result.link), escape(result.path)))
+        $(SELECTOR_SEARCH_RESULTS_GROUP).append(this._renderItem(escape(result.name), escape(result.link), result.path))
       })
     }
 
@@ -160,6 +160,7 @@ class SidebarSearch {
 
   _renderItem(name, link, path) {
     path = path.join(` ${this.options.arrowSign} `)
+    name = unescape(name)
 
     if (this.options.highlightName || this.options.highlightPath) {
       const searchValue = $(SELECTOR_SEARCH_INPUT).val().toLowerCase()
@@ -169,7 +170,7 @@ class SidebarSearch {
         name = name.replace(
           regExp,
           str => {
-            return `<b class="${this.options.highlightClass}">${str}</b>`
+            return `<strong class="${this.options.highlightClass}">${str}</strong>`
           }
         )
       }
@@ -178,20 +179,26 @@ class SidebarSearch {
         path = path.replace(
           regExp,
           str => {
-            return `<b class="${this.options.highlightClass}">${str}</b>`
+            return `<strong class="${this.options.highlightClass}">${str}</strong>`
           }
         )
       }
     }
 
-    return `<a href="${link}" class="list-group-item">
-        <div class="search-title">
-          ${name}
-        </div>
-        <div class="search-path">
-          ${path}
-        </div>
-      </a>`
+    const groupItemElement = $('<a/>', {
+      href: link,
+      class: 'list-group-item'
+    })
+    const searchTitleElement = $('<div/>', {
+      class: 'search-title'
+    }).html(name)
+    const searchPathElement = $('<div/>', {
+      class: 'search-path'
+    }).html(path)
+
+    groupItemElement.append(searchTitleElement).append(searchPathElement)
+
+    return groupItemElement
   }
 
   _addNotFound() {
@@ -243,9 +250,7 @@ $(document).on('keyup', SELECTOR_SEARCH_INPUT, event => {
     return
   }
 
-  let timer = 0
-  clearTimeout(timer)
-  timer = setTimeout(() => {
+  setTimeout(() => {
     SidebarSearch._jQueryInterface.call($(SELECTOR_DATA_WIDGET), 'search')
   }, 100)
 })

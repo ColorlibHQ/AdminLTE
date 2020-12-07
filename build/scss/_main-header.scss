@@ -94,7 +94,7 @@
   .form-control-navbar,
   .btn-navbar {
     background-color: $main-header-dark-form-control-bg;
-    border: $main-header-dark-form-control-border;
+    border-color: $main-header-dark-form-control-border-color;
   }
 
   .form-control-navbar {
@@ -110,7 +110,7 @@
       &,
       + .input-group-append .btn-navbar {
         background-color: $main-header-dark-form-control-focused-bg;
-        border: $main-header-dark-form-control-focused-border !important;
+        border-color: $main-header-dark-form-control-focused-border-color !important;
         color: $main-header-dark-form-control-focused-color;
       }
     }
@@ -121,7 +121,7 @@
   .form-control-navbar,
   .btn-navbar {
     background-color: $main-header-light-form-control-bg;
-    border: $main-header-light-form-control-border;
+    border-color: $main-header-light-form-control-border-color;
   }
 
   .form-control-navbar {
@@ -137,9 +137,45 @@
       &,
       + .input-group-append .btn-navbar {
         background-color: $main-header-light-form-control-focused-bg;
-        border: $main-header-light-form-control-focused-border !important;
+        border-color: $main-header-light-form-control-focused-border-color !important;
         color: $main-header-light-form-control-focused-color;
       }
     }
+  }
+}
+
+// Navbar Search
+.navbar-search-block {
+  position: absolute;
+  padding: 0 $nav-link-padding-x;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: none;
+  justify-content: center;
+  flex-direction: column;
+
+  @each $color, $value in $theme-colors {
+    @if $color != dark and $color != light {
+      .navbar-#{$color} & {
+        background-color: $value;
+      }
+    }
+  }
+
+  @each $color, $value in $colors {
+    .navbar-#{$color} & {
+      background-color: $value;
+    }
+  }
+
+  &.navbar-search-open {
+    display: flex;
+  }
+
+  .input-group {
+    width: 100%;
   }
 }

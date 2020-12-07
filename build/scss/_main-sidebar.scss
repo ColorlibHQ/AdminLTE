@@ -983,6 +983,7 @@
 // Sidebar inline input-group fix
 .sidebar .form-inline .input-group {
   width: 100%;
+  flex-wrap: nowrap;
 }
 .sidebar nav .form-inline {
   margin-bottom: .2rem;
