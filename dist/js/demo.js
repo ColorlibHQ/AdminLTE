@@ -582,6 +582,7 @@
 
     $sidebar_light_variants.find('option').prop('selected', false)
     $sidebar.addClass(sidebar_class)
+    $('.sidebar').removeClass('os-theme-dark').addClass('os-theme-light')
   }, true)
   $container.append($sidebar_dark_variants)
 
@@ -614,6 +615,7 @@
 
     $sidebar_dark_variants.find('option').prop('selected', false)
     $sidebar.addClass(sidebar_class)
+    $('.sidebar').removeClass('os-theme-light').addClass('os-theme-dark')
   }, true)
   $container.append($sidebar_light_variants)
 
