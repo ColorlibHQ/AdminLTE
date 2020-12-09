@@ -38,3 +38,7 @@ composer require "almasaeed2010/adminlte=~3.0"
 ```bash
 git clone https://github.com/ColorlibHQ/AdminLTE.git
 ```
+
+### From CDN
+
+[https://www.jsdelivr.com/package/npm/admin-lte](https://www.jsdelivr.com/package/npm/admin-lte)
