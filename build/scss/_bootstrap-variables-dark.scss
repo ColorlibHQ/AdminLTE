@@ -1,0 +1,30 @@
+// Variables
+//
+// Use this alternative style sheet in dark mode for best user experience
+
+//
+// Color system
+//
+
+// stylelint-disable
+// Below colors from bootwatch darkly
+$blue:    #375a7f !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #e74c3c !default;
+$orange:  #fd7e14 !default;
+$yellow:  #f39c12 !default;
+$green:   #00bc8c !default;
+$teal:    #20c997 !default;
+$cyan:    #3498db !default;
+
+// by darken function
+$lightblue: darken(#3c8dbc, 20%) !default;
+$navy: darken(#001f3f, 5%) !default;
+$olive: darken(#3d9970, 20%) !default;
+$lime: darken(#01ff70, 20%) !default;
+$fuchsia: darken(#f012be, 20%) !default;
+$maroon: darken(#d81b60, 20%) !default;
+$gray-x-light: darken(#d2d6de, 20%) !default;
+// stylelint-enable
