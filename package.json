@@ -80,7 +80,7 @@
     "bs-stepper": "^1.7.0",
     "chart.js": "^2.9.4",
     "codemirror": "^5.58.3",
-    "datatables.net": "^1.10.22",
+    "datatables.net": "^1.10.23",
     "datatables.net-autofill-bs4": "^2.3.5",
     "datatables.net-bs4": "^1.10.22",
     "datatables.net-buttons-bs4": "^1.6.5",
