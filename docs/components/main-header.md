@@ -296,7 +296,7 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
   <div class="container">
     <a href="index3.html" class="navbar-brand">
       <img src="{{ '/assets/img/AdminLTELogo.png' | prepend: site.baseurl }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
+           style="opacity: .8; max-height: 33px;">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
     <!-- Left navbar links -->

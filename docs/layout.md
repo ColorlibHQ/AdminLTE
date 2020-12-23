@@ -49,6 +49,13 @@ You can also use the following classes for responsive changes with placing
 {: .quote-info}
 
 
+#### Dark Mode
+
+AdminLTE 3.1 provides a dark mode option. You can add in body tag:
+
+- `.dark-mode`
+
+
 #### Color Variations
 
 AdminLTE 3.1 provides a set of color variations to apply to your sidebar (light & dark) & navbar. You can combine any available color with these class prefixes:
@@ -64,6 +71,10 @@ AdminLTE 3.1 provides a set of color variations to apply to your sidebar (light 
 
 > ###### Info
 > You can combine `.navbar-*` with `.navbar-light` or `.navbar-dark`.
+{: .quote-info}
+
+> ###### Recommended for Dark Mode
+> You must use only `.navbar-dark` without only combination.
 {: .quote-info}
 
 The following colors are available:
