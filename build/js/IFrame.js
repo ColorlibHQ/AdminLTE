@@ -133,7 +133,7 @@ class IFrame {
       return
     }
 
-    this.createTab(title, link, link.replace('.html', '').replace('./', '').replaceAll('/', '-'), autoOpen)
+    this.createTab(title, link, link.replace('.html', '').replace('./', '').replace(/["&'./=?[\]]/gi, '-').replaceAll('--', ''), autoOpen)
   }
 
   switchTab(item) {
