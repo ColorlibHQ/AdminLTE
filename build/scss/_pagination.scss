@@ -44,16 +44,17 @@
 
 .dark-mode {
   .page-item {
+    &.disabled a,
     &.disabled .page-link {
-      background-color: lighten($dark, 2.5%);
-      border-color: $gray-600;
+      background-color: lighten($dark, 2.5%) !important;
+      border-color: $gray-600 !important;
       color: $gray-600;
     }
     &.active {
       .page-link {
         &:hover,
         &:focus {
-          color: $gray-400;
+          color: $gray-400 !important;
         }
       }
     }
