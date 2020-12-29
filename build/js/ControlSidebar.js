@@ -253,10 +253,8 @@ class ControlSidebar {
 
     let sidebarHeight = heights.window - heights.header
 
-    if (this._isFooterFixed()) {
-      if ($(SELECTOR_FOOTER).css('position') === 'fixed') {
-        sidebarHeight = heights.window - heights.header - heights.footer
-      }
+    if (this._isFooterFixed() && $(SELECTOR_FOOTER).css('position') === 'fixed') {
+      sidebarHeight = heights.window - heights.header - heights.footer
     }
 
     $controlSidebar.css('height', sidebarHeight)
