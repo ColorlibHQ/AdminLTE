@@ -58,10 +58,8 @@ class PushMenu {
   expand() {
     const $bodySelector = $(SELECTOR_BODY)
 
-    if (this._options.autoCollapseSize) {
-      if ($(window).width() <= this._options.autoCollapseSize) {
-        $bodySelector.addClass(CLASS_NAME_OPEN)
-      }
+    if (this._options.autoCollapseSize && $(window).width() <= this._options.autoCollapseSize) {
+      $bodySelector.addClass(CLASS_NAME_OPEN)
     }
 
     $bodySelector.addClass(CLASS_NAME_IS_OPENING).removeClass(`${CLASS_NAME_COLLAPSED} ${CLASS_NAME_CLOSED}`).delay(50).queue(function () {
@@ -79,10 +77,8 @@ class PushMenu {
   collapse() {
     const $bodySelector = $(SELECTOR_BODY)
 
-    if (this._options.autoCollapseSize) {
-      if ($(window).width() <= this._options.autoCollapseSize) {
-        $bodySelector.removeClass(CLASS_NAME_OPEN).addClass(CLASS_NAME_CLOSED)
-      }
+    if (this._options.autoCollapseSize && $(window).width() <= this._options.autoCollapseSize) {
+      $bodySelector.removeClass(CLASS_NAME_OPEN).addClass(CLASS_NAME_CLOSED)
     }
 
     $bodySelector.addClass(CLASS_NAME_COLLAPSED)
