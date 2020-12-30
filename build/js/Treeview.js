@@ -52,7 +52,7 @@ class Treeview {
   // Public
 
   init() {
-    $(`${SELECTOR_LI}${SELECTOR_OPEN} ${SELECTOR_TREEVIEW_MENU}`).css('display', 'block')
+    $(`${SELECTOR_LI}${SELECTOR_OPEN} ${SELECTOR_TREEVIEW_MENU}${SELECTOR_OPEN}`).css('display', 'block')
     this._setupListeners()
   }
 
