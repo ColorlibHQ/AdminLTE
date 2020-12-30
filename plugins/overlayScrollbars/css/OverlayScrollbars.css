@@ -149,6 +149,7 @@ body.os-dragging * {
     right: 0;
     width: auto !important;
     height: auto !important;
+	z-index: 0;
 }
 .os-host-overflow > .os-padding {
     overflow: hidden;

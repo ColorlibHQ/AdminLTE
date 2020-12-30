@@ -18,7 +18,7 @@ FullCalendar.globalLocales.push(function () {
     },
     weekText: 'Ned.',
     allDayText: 'Visu dienu',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+vēl ' + n
     },
     noEventsText: 'Nav notikumu',

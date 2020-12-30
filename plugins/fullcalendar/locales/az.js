@@ -18,7 +18,7 @@ FullCalendar.globalLocales.push(function () {
     },
     weekText: 'Həftə',
     allDayText: 'Bütün Gün',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ daha çox ' + n
     },
     noEventsText: 'Göstərmək üçün hadisə yoxdur',

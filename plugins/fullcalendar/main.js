@@ -1,5 +1,5 @@
 /*!
-FullCalendar v5.3.2
+FullCalendar v5.5.0
 Docs & License: https://fullcalendar.io/
 (c) 2020 Adam Shaw
 */
@@ -54,7 +54,7 @@ var FullCalendar = (function (exports) {
         return r;
     }
 
-    var n,u,i,t,o,r,f={},e=[],c=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i;function s(n,l){for(var u in l)n[u]=l[u];return n}function a(n){var l=n.parentNode;l&&l.removeChild(n);}function h(n,l,u){var i,t,o,r=arguments,f={};for(o in l)"key"==o?i=l[o]:"ref"==o?t=l[o]:f[o]=l[o];if(arguments.length>3)for(u=[u],o=3;o<arguments.length;o++)u.push(r[o]);if(null!=u&&(f.children=u),"function"==typeof n&&null!=n.defaultProps)for(o in n.defaultProps)void 0===f[o]&&(f[o]=n.defaultProps[o]);return v(n,f,i,t,null)}function v(l,u,i,t,o){var r={type:l,props:u,key:i,ref:t,__k:null,__:null,__b:0,__e:null,__d:void 0,__c:null,__h:null,constructor:void 0,__v:o};return null==o&&(r.__v=r),null!=n.vnode&&n.vnode(r),r}function y(){return {current:null}}function p(n){return n.children}function d(n,l){this.props=n,this.context=l;}function _(n,l){if(null==l)return n.__?_(n.__,n.__.__k.indexOf(n)+1):null;for(var u;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e)return u.__e;return "function"==typeof n.type?_(n):null}function w(n){var l,u;if(null!=(n=n.__)&&null!=n.__c){for(n.__e=n.__c.base=null,l=0;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e){n.__e=n.__c.base=u.__e;break}return w(n)}}function k(l){(!l.__d&&(l.__d=!0)&&u.push(l)&&!g.__r++||t!==n.debounceRendering)&&((t=n.debounceRendering)||i)(g);}function g(){for(var n;g.__r=u.length;)n=u.sort(function(n,l){return n.__v.__b-l.__v.__b}),u=[],n.some(function(n){var l,u,i,t,o,r,f;n.__d&&(r=(o=(l=n).__v).__e,(f=l.__P)&&(u=[],(i=s({},o)).__v=i,t=$(f,o,i,l.__n,void 0!==f.ownerSVGElement,null!=o.__h?[r]:null,u,null==r?_(o):r,o.__h),j(u,o),t!=r&&w(o)));});}function m(n,l,u,i,t,o,r,c,s,h){var y,d,w,k,g,m,b,A=i&&i.__k||e,P=A.length;for(s==f&&(s=null!=r?r[0]:P?_(i,0):null),u.__k=[],y=0;y<l.length;y++)if(null!=(k=u.__k[y]=null==(k=l[y])||"boolean"==typeof k?null:"string"==typeof k||"number"==typeof k?v(null,k,null,null,k):Array.isArray(k)?v(p,{children:k},null,null,null):null!=k.__e||null!=k.__c?v(k.type,k.props,k.key,null,k.__v):k)){if(k.__=u,k.__b=u.__b+1,null===(w=A[y])||w&&k.key==w.key&&k.type===w.type)A[y]=void 0;else for(d=0;d<P;d++){if((w=A[d])&&k.key==w.key&&k.type===w.type){A[d]=void 0;break}w=null;}g=$(n,k,w=w||f,t,o,r,c,s,h),(d=k.ref)&&w.ref!=d&&(b||(b=[]),w.ref&&b.push(w.ref,null,k),b.push(d,k.__c||g,k)),null!=g?(null==m&&(m=g),s=x(n,k,w,A,r,g,s),h||"option"!=u.type?"function"==typeof u.type&&(u.__d=s):n.value=""):s&&w.__e==s&&s.parentNode!=n&&(s=_(w));}if(u.__e=m,null!=r&&"function"!=typeof u.type)for(y=r.length;y--;)null!=r[y]&&a(r[y]);for(y=P;y--;)null!=A[y]&&L(A[y],A[y]);if(b)for(y=0;y<b.length;y++)I(b[y],b[++y],b[++y]);}function x(n,l,u,i,t,o,r){var f,e,c;if(void 0!==l.__d)f=l.__d,l.__d=void 0;else if(t==u||o!=r||null==o.parentNode)n:if(null==r||r.parentNode!==n)n.appendChild(o),f=null;else {for(e=r,c=0;(e=e.nextSibling)&&c<i.length;c+=2)if(e==o)break n;n.insertBefore(o,r),f=r;}return void 0!==f?f:o.nextSibling}function A(n,l,u,i,t){var o;for(o in u)"children"===o||"key"===o||o in l||C(n,o,null,u[o],i);for(o in l)t&&"function"!=typeof l[o]||"children"===o||"key"===o||"value"===o||"checked"===o||u[o]===l[o]||C(n,o,l[o],u[o],i);}function P(n,l,u){"-"===l[0]?n.setProperty(l,u):n[l]=null==u?"":"number"!=typeof u||c.test(l)?u:u+"px";}function C(n,l,u,i,t){var o,r,f;if(t&&"className"==l&&(l="class"),"style"===l)if("string"==typeof u)n.style.cssText=u;else {if("string"==typeof i&&(n.style.cssText=i=""),i)for(l in i)u&&l in u||P(n.style,l,"");if(u)for(l in u)i&&u[l]===i[l]||P(n.style,l,u[l]);}else "o"===l[0]&&"n"===l[1]?(o=l!==(l=l.replace(/Capture$/,"")),(r=l.toLowerCase())in n&&(l=r),l=l.slice(2),n.l||(n.l={}),n.l[l+o]=u,f=o?N:z,u?i||n.addEventListener(l,f,o):n.removeEventListener(l,f,o)):"list"!==l&&"tagName"!==l&&"form"!==l&&"type"!==l&&"size"!==l&&"download"!==l&&"href"!==l&&!t&&l in n?n[l]=null==u?"":u:"function"!=typeof u&&"dangerouslySetInnerHTML"!==l&&(l!==(l=l.replace(/xlink:?/,""))?null==u||!1===u?n.removeAttributeNS("http://www.w3.org/1999/xlink",l.toLowerCase()):n.setAttributeNS("http://www.w3.org/1999/xlink",l.toLowerCase(),u):null==u||!1===u&&!/^ar/.test(l)?n.removeAttribute(l):n.setAttribute(l,u));}function z(l){this.l[l.type+!1](n.event?n.event(l):l);}function N(l){this.l[l.type+!0](n.event?n.event(l):l);}function T(n,l,u){var i,t;for(i=0;i<n.__k.length;i++)(t=n.__k[i])&&(t.__=n,t.__e&&("function"==typeof t.type&&t.__k.length>1&&T(t,l,u),l=x(u,t,t,n.__k,null,t.__e,l),"function"==typeof n.type&&(n.__d=l)));}function $(l,u,i,t,o,r,f,e,c){var a,h,v,y,_,w,k,g,b,x,A,P=u.type;if(void 0!==u.constructor)return null;null!=i.__h&&(c=i.__h,e=u.__e=i.__e,u.__h=null,r=[e]),(a=n.__b)&&a(u);try{n:if("function"==typeof P){if(g=u.props,b=(a=P.contextType)&&t[a.__c],x=a?b?b.props.value:a.__:t,i.__c?k=(h=u.__c=i.__c).__=h.__E:("prototype"in P&&P.prototype.render?u.__c=h=new P(g,x):(u.__c=h=new d(g,x),h.constructor=P,h.render=M),b&&b.sub(h),h.props=g,h.state||(h.state={}),h.context=x,h.__n=t,v=h.__d=!0,h.__h=[]),null==h.__s&&(h.__s=h.state),null!=P.getDerivedStateFromProps&&(h.__s==h.state&&(h.__s=s({},h.__s)),s(h.__s,P.getDerivedStateFromProps(g,h.__s))),y=h.props,_=h.state,v)null==P.getDerivedStateFromProps&&null!=h.componentWillMount&&h.componentWillMount(),null!=h.componentDidMount&&h.__h.push(h.componentDidMount);else {if(null==P.getDerivedStateFromProps&&g!==y&&null!=h.componentWillReceiveProps&&h.componentWillReceiveProps(g,x),!h.__e&&null!=h.shouldComponentUpdate&&!1===h.shouldComponentUpdate(g,h.__s,x)||u.__v===i.__v){h.props=g,h.state=h.__s,u.__v!==i.__v&&(h.__d=!1),h.__v=u,u.__e=i.__e,u.__k=i.__k,h.__h.length&&f.push(h),T(u,e,l);break n}null!=h.componentWillUpdate&&h.componentWillUpdate(g,h.__s,x),null!=h.componentDidUpdate&&h.__h.push(function(){h.componentDidUpdate(y,_,w);});}h.context=x,h.props=g,h.state=h.__s,(a=n.__r)&&a(u),h.__d=!1,h.__v=u,h.__P=l,a=h.render(h.props,h.state,h.context),h.state=h.__s,null!=h.getChildContext&&(t=s(s({},t),h.getChildContext())),v||null==h.getSnapshotBeforeUpdate||(w=h.getSnapshotBeforeUpdate(y,_)),A=null!=a&&a.type==p&&null==a.key?a.props.children:a,m(l,Array.isArray(A)?A:[A],u,i,t,o,r,f,e,c),h.base=u.__e,u.__h=null,h.__h.length&&f.push(h),k&&(h.__E=h.__=null),h.__e=!1;}else null==r&&u.__v===i.__v?(u.__k=i.__k,u.__e=i.__e):u.__e=H(i.__e,u,i,t,o,r,f,c);(a=n.diffed)&&a(u);}catch(l){u.__v=null,(c||null!=r)&&(u.__e=e,u.__h=!!c,r[r.indexOf(e)]=null),n.__e(l,u,i);}return u.__e}function j(l,u){n.__c&&n.__c(u,l),l.some(function(u){try{l=u.__h,u.__h=[],l.some(function(n){n.call(u);});}catch(l){n.__e(l,u.__v);}});}function H(n,l,u,i,t,o,r,c){var s,a,h,v,y,p=u.props,d=l.props;if(t="svg"===l.type||t,null!=o)for(s=0;s<o.length;s++)if(null!=(a=o[s])&&((null===l.type?3===a.nodeType:a.localName===l.type)||n==a)){n=a,o[s]=null;break}if(null==n){if(null===l.type)return document.createTextNode(d);n=t?document.createElementNS("http://www.w3.org/2000/svg",l.type):document.createElement(l.type,d.is&&{is:d.is}),o=null,c=!1;}if(null===l.type)p===d||c&&n.data===d||(n.data=d);else {if(null!=o&&(o=e.slice.call(n.childNodes)),h=(p=u.props||f).dangerouslySetInnerHTML,v=d.dangerouslySetInnerHTML,!c){if(null!=o)for(p={},y=0;y<n.attributes.length;y++)p[n.attributes[y].name]=n.attributes[y].value;(v||h)&&(v&&(h&&v.__html==h.__html||v.__html===n.innerHTML)||(n.innerHTML=v&&v.__html||""));}A(n,d,p,t,c),v?l.__k=[]:(s=l.props.children,m(n,Array.isArray(s)?s:[s],l,u,i,"foreignObject"!==l.type&&t,o,r,f,c)),c||("value"in d&&void 0!==(s=d.value)&&(s!==n.value||"progress"===l.type&&!s)&&C(n,"value",s,p.value,!1),"checked"in d&&void 0!==(s=d.checked)&&s!==n.checked&&C(n,"checked",s,p.checked,!1));}return n}function I(l,u,i){try{"function"==typeof l?l(u):l.current=u;}catch(l){n.__e(l,i);}}function L(l,u,i){var t,o,r;if(n.unmount&&n.unmount(l),(t=l.ref)&&(t.current&&t.current!==l.__e||I(t,null,u)),i||"function"==typeof l.type||(i=null!=(o=l.__e)),l.__e=l.__d=void 0,null!=(t=l.__c)){if(t.componentWillUnmount)try{t.componentWillUnmount();}catch(l){n.__e(l,u);}t.base=t.__P=null;}if(t=l.__k)for(r=0;r<t.length;r++)t[r]&&L(t[r],u,i);null!=o&&a(o);}function M(n,l,u){return this.constructor(n,u)}function O(l,u,i){var t,r,c;n.__&&n.__(l,u),r=(t=i===o)?null:i&&i.__k||u.__k,l=h(p,null,[l]),c=[],$(u,(t?u:i||u).__k=l,r||f,f,void 0!==u.ownerSVGElement,i&&!t?[i]:r?null:u.childNodes.length?e.slice.call(u.childNodes):null,c,i||f,t),j(c,l);}function B(n,l){var u={__c:l="__cC"+r++,__:n,Consumer:function(n,l){return n.children(l)},Provider:function(n,u,i){return this.getChildContext||(u=[],(i={})[l]=this,this.getChildContext=function(){return i},this.shouldComponentUpdate=function(n){this.props.value!==n.value&&u.some(k);},this.sub=function(n){u.push(n);var l=n.componentWillUnmount;n.componentWillUnmount=function(){u.splice(u.indexOf(n),1),l&&l.call(n);};}),n.children}};return u.Provider.__=u.Consumer.contextType=u}n={__e:function(n,l){for(var u,i,t,o=l.__h;l=l.__;)if((u=l.__c)&&!u.__)try{if((i=u.constructor)&&null!=i.getDerivedStateFromError&&(u.setState(i.getDerivedStateFromError(n)),t=u.__d),null!=u.componentDidCatch&&(u.componentDidCatch(n),t=u.__d),t)return l.__h=o,u.__E=u}catch(l){n=l;}throw n}},d.prototype.setState=function(n,l){var u;u=null!=this.__s&&this.__s!==this.state?this.__s:this.__s=s({},this.state),"function"==typeof n&&(n=n(s({},u),this.props)),n&&s(u,n),null!=n&&this.__v&&(l&&this.__h.push(l),k(this));},d.prototype.forceUpdate=function(n){this.__v&&(this.__e=!0,n&&this.__h.push(n),k(this));},d.prototype.render=p,u=[],i="function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout,g.__r=0,o=f,r=0;
+    var n,u,i,t,o,r,f={},e=[],c=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i;function s(n,l){for(var u in l)n[u]=l[u];return n}function a(n){var l=n.parentNode;l&&l.removeChild(n);}function v(n,l,u){var i,t,o,r=arguments,f={};for(o in l)"key"==o?i=l[o]:"ref"==o?t=l[o]:f[o]=l[o];if(arguments.length>3)for(u=[u],o=3;o<arguments.length;o++)u.push(r[o]);if(null!=u&&(f.children=u),"function"==typeof n&&null!=n.defaultProps)for(o in n.defaultProps)void 0===f[o]&&(f[o]=n.defaultProps[o]);return h(n,f,i,t,null)}function h(l,u,i,t,o){var r={type:l,props:u,key:i,ref:t,__k:null,__:null,__b:0,__e:null,__d:void 0,__c:null,__h:null,constructor:void 0,__v:null==o?++n.__v:o};return null!=n.vnode&&n.vnode(r),r}function y(){return {current:null}}function p(n){return n.children}function d(n,l){this.props=n,this.context=l;}function _(n,l){if(null==l)return n.__?_(n.__,n.__.__k.indexOf(n)+1):null;for(var u;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e)return u.__e;return "function"==typeof n.type?_(n):null}function w(n){var l,u;if(null!=(n=n.__)&&null!=n.__c){for(n.__e=n.__c.base=null,l=0;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e){n.__e=n.__c.base=u.__e;break}return w(n)}}function k(l){(!l.__d&&(l.__d=!0)&&u.push(l)&&!g.__r++||t!==n.debounceRendering)&&((t=n.debounceRendering)||i)(g);}function g(){for(var n;g.__r=u.length;)n=u.sort(function(n,l){return n.__v.__b-l.__v.__b}),u=[],n.some(function(n){var l,u,i,t,o,r,f;n.__d&&(r=(o=(l=n).__v).__e,(f=l.__P)&&(u=[],(i=s({},o)).__v=o.__v+1,t=$(f,o,i,l.__n,void 0!==f.ownerSVGElement,null!=o.__h?[r]:null,u,null==r?_(o):r,o.__h),j(u,o),t!=r&&w(o)));});}function m(n,l,u,i,t,o,r,c,s,v){var y,d,w,k,g,m,b,A=i&&i.__k||e,P=A.length;for(s==f&&(s=null!=r?r[0]:P?_(i,0):null),u.__k=[],y=0;y<l.length;y++)if(null!=(k=u.__k[y]=null==(k=l[y])||"boolean"==typeof k?null:"string"==typeof k||"number"==typeof k?h(null,k,null,null,k):Array.isArray(k)?h(p,{children:k},null,null,null):null!=k.__e||null!=k.__c?h(k.type,k.props,k.key,null,k.__v):k)){if(k.__=u,k.__b=u.__b+1,null===(w=A[y])||w&&k.key==w.key&&k.type===w.type)A[y]=void 0;else for(d=0;d<P;d++){if((w=A[d])&&k.key==w.key&&k.type===w.type){A[d]=void 0;break}w=null;}g=$(n,k,w=w||f,t,o,r,c,s,v),(d=k.ref)&&w.ref!=d&&(b||(b=[]),w.ref&&b.push(w.ref,null,k),b.push(d,k.__c||g,k)),null!=g?(null==m&&(m=g),s=x(n,k,w,A,r,g,s),v||"option"!=u.type?"function"==typeof u.type&&(u.__d=s):n.value=""):s&&w.__e==s&&s.parentNode!=n&&(s=_(w));}if(u.__e=m,null!=r&&"function"!=typeof u.type)for(y=r.length;y--;)null!=r[y]&&a(r[y]);for(y=P;y--;)null!=A[y]&&L(A[y],A[y]);if(b)for(y=0;y<b.length;y++)I(b[y],b[++y],b[++y]);}function x(n,l,u,i,t,o,r){var f,e,c;if(void 0!==l.__d)f=l.__d,l.__d=void 0;else if(t==u||o!=r||null==o.parentNode)n:if(null==r||r.parentNode!==n)n.appendChild(o),f=null;else {for(e=r,c=0;(e=e.nextSibling)&&c<i.length;c+=2)if(e==o)break n;n.insertBefore(o,r),f=r;}return void 0!==f?f:o.nextSibling}function A(n,l,u,i,t){var o;for(o in u)"children"===o||"key"===o||o in l||C(n,o,null,u[o],i);for(o in l)t&&"function"!=typeof l[o]||"children"===o||"key"===o||"value"===o||"checked"===o||u[o]===l[o]||C(n,o,l[o],u[o],i);}function P(n,l,u){"-"===l[0]?n.setProperty(l,u):n[l]=null==u?"":"number"!=typeof u||c.test(l)?u:u+"px";}function C(n,l,u,i,t){var o,r,f;if(t&&"className"==l&&(l="class"),"style"===l)if("string"==typeof u)n.style.cssText=u;else {if("string"==typeof i&&(n.style.cssText=i=""),i)for(l in i)u&&l in u||P(n.style,l,"");if(u)for(l in u)i&&u[l]===i[l]||P(n.style,l,u[l]);}else "o"===l[0]&&"n"===l[1]?(o=l!==(l=l.replace(/Capture$/,"")),(r=l.toLowerCase())in n&&(l=r),l=l.slice(2),n.l||(n.l={}),n.l[l+o]=u,f=o?N:z,u?i||n.addEventListener(l,f,o):n.removeEventListener(l,f,o)):"list"!==l&&"tagName"!==l&&"form"!==l&&"type"!==l&&"size"!==l&&"download"!==l&&"href"!==l&&!t&&l in n?n[l]=null==u?"":u:"function"!=typeof u&&"dangerouslySetInnerHTML"!==l&&(l!==(l=l.replace(/xlink:?/,""))?null==u||!1===u?n.removeAttributeNS("http://www.w3.org/1999/xlink",l.toLowerCase()):n.setAttributeNS("http://www.w3.org/1999/xlink",l.toLowerCase(),u):null==u||!1===u&&!/^ar/.test(l)?n.removeAttribute(l):n.setAttribute(l,u));}function z(l){this.l[l.type+!1](n.event?n.event(l):l);}function N(l){this.l[l.type+!0](n.event?n.event(l):l);}function T(n,l,u){var i,t;for(i=0;i<n.__k.length;i++)(t=n.__k[i])&&(t.__=n,t.__e&&("function"==typeof t.type&&t.__k.length>1&&T(t,l,u),l=x(u,t,t,n.__k,null,t.__e,l),"function"==typeof n.type&&(n.__d=l)));}function $(l,u,i,t,o,r,f,e,c){var a,v,h,y,_,w,k,g,b,x,A,P=u.type;if(void 0!==u.constructor)return null;null!=i.__h&&(c=i.__h,e=u.__e=i.__e,u.__h=null,r=[e]),(a=n.__b)&&a(u);try{n:if("function"==typeof P){if(g=u.props,b=(a=P.contextType)&&t[a.__c],x=a?b?b.props.value:a.__:t,i.__c?k=(v=u.__c=i.__c).__=v.__E:("prototype"in P&&P.prototype.render?u.__c=v=new P(g,x):(u.__c=v=new d(g,x),v.constructor=P,v.render=M),b&&b.sub(v),v.props=g,v.state||(v.state={}),v.context=x,v.__n=t,h=v.__d=!0,v.__h=[]),null==v.__s&&(v.__s=v.state),null!=P.getDerivedStateFromProps&&(v.__s==v.state&&(v.__s=s({},v.__s)),s(v.__s,P.getDerivedStateFromProps(g,v.__s))),y=v.props,_=v.state,h)null==P.getDerivedStateFromProps&&null!=v.componentWillMount&&v.componentWillMount(),null!=v.componentDidMount&&v.__h.push(v.componentDidMount);else {if(null==P.getDerivedStateFromProps&&g!==y&&null!=v.componentWillReceiveProps&&v.componentWillReceiveProps(g,x),!v.__e&&null!=v.shouldComponentUpdate&&!1===v.shouldComponentUpdate(g,v.__s,x)||u.__v===i.__v){v.props=g,v.state=v.__s,u.__v!==i.__v&&(v.__d=!1),v.__v=u,u.__e=i.__e,u.__k=i.__k,v.__h.length&&f.push(v),T(u,e,l);break n}null!=v.componentWillUpdate&&v.componentWillUpdate(g,v.__s,x),null!=v.componentDidUpdate&&v.__h.push(function(){v.componentDidUpdate(y,_,w);});}v.context=x,v.props=g,v.state=v.__s,(a=n.__r)&&a(u),v.__d=!1,v.__v=u,v.__P=l,a=v.render(v.props,v.state,v.context),v.state=v.__s,null!=v.getChildContext&&(t=s(s({},t),v.getChildContext())),h||null==v.getSnapshotBeforeUpdate||(w=v.getSnapshotBeforeUpdate(y,_)),A=null!=a&&a.type==p&&null==a.key?a.props.children:a,m(l,Array.isArray(A)?A:[A],u,i,t,o,r,f,e,c),v.base=u.__e,u.__h=null,v.__h.length&&f.push(v),k&&(v.__E=v.__=null),v.__e=!1;}else null==r&&u.__v===i.__v?(u.__k=i.__k,u.__e=i.__e):u.__e=H(i.__e,u,i,t,o,r,f,c);(a=n.diffed)&&a(u);}catch(l){u.__v=null,(c||null!=r)&&(u.__e=e,u.__h=!!c,r[r.indexOf(e)]=null),n.__e(l,u,i);}return u.__e}function j(l,u){n.__c&&n.__c(u,l),l.some(function(u){try{l=u.__h,u.__h=[],l.some(function(n){n.call(u);});}catch(l){n.__e(l,u.__v);}});}function H(n,l,u,i,t,o,r,c){var s,a,v,h,y,p=u.props,d=l.props;if(t="svg"===l.type||t,null!=o)for(s=0;s<o.length;s++)if(null!=(a=o[s])&&((null===l.type?3===a.nodeType:a.localName===l.type)||n==a)){n=a,o[s]=null;break}if(null==n){if(null===l.type)return document.createTextNode(d);n=t?document.createElementNS("http://www.w3.org/2000/svg",l.type):document.createElement(l.type,d.is&&{is:d.is}),o=null,c=!1;}if(null===l.type)p===d||c&&n.data===d||(n.data=d);else {if(null!=o&&(o=e.slice.call(n.childNodes)),v=(p=u.props||f).dangerouslySetInnerHTML,h=d.dangerouslySetInnerHTML,!c){if(null!=o)for(p={},y=0;y<n.attributes.length;y++)p[n.attributes[y].name]=n.attributes[y].value;(h||v)&&(h&&(v&&h.__html==v.__html||h.__html===n.innerHTML)||(n.innerHTML=h&&h.__html||""));}A(n,d,p,t,c),h?l.__k=[]:(s=l.props.children,m(n,Array.isArray(s)?s:[s],l,u,i,"foreignObject"!==l.type&&t,o,r,f,c)),c||("value"in d&&void 0!==(s=d.value)&&(s!==n.value||"progress"===l.type&&!s)&&C(n,"value",s,p.value,!1),"checked"in d&&void 0!==(s=d.checked)&&s!==n.checked&&C(n,"checked",s,p.checked,!1));}return n}function I(l,u,i){try{"function"==typeof l?l(u):l.current=u;}catch(l){n.__e(l,i);}}function L(l,u,i){var t,o,r;if(n.unmount&&n.unmount(l),(t=l.ref)&&(t.current&&t.current!==l.__e||I(t,null,u)),i||"function"==typeof l.type||(i=null!=(o=l.__e)),l.__e=l.__d=void 0,null!=(t=l.__c)){if(t.componentWillUnmount)try{t.componentWillUnmount();}catch(l){n.__e(l,u);}t.base=t.__P=null;}if(t=l.__k)for(r=0;r<t.length;r++)t[r]&&L(t[r],u,i);null!=o&&a(o);}function M(n,l,u){return this.constructor(n,u)}function O(l,u,i){var t,r,c;n.__&&n.__(l,u),r=(t=i===o)?null:i&&i.__k||u.__k,l=v(p,null,[l]),c=[],$(u,(t?u:i||u).__k=l,r||f,f,void 0!==u.ownerSVGElement,i&&!t?[i]:r?null:u.childNodes.length?e.slice.call(u.childNodes):null,c,i||f,t),j(c,l);}function B(n,l){var u={__c:l="__cC"+r++,__:n,Consumer:function(n,l){return n.children(l)},Provider:function(n,u,i){return this.getChildContext||(u=[],(i={})[l]=this,this.getChildContext=function(){return i},this.shouldComponentUpdate=function(n){this.props.value!==n.value&&u.some(k);},this.sub=function(n){u.push(n);var l=n.componentWillUnmount;n.componentWillUnmount=function(){u.splice(u.indexOf(n),1),l&&l.call(n);};}),n.children}};return u.Provider.__=u.Consumer.contextType=u}n={__e:function(n,l){for(var u,i,t,o=l.__h;l=l.__;)if((u=l.__c)&&!u.__)try{if((i=u.constructor)&&null!=i.getDerivedStateFromError&&(u.setState(i.getDerivedStateFromError(n)),t=u.__d),null!=u.componentDidCatch&&(u.componentDidCatch(n),t=u.__d),t)return l.__h=o,u.__E=u}catch(l){n=l;}throw n},__v:0},d.prototype.setState=function(n,l){var u;u=null!=this.__s&&this.__s!==this.state?this.__s:this.__s=s({},this.state),"function"==typeof n&&(n=n(s({},u),this.props)),n&&s(u,n),null!=n&&this.__v&&(l&&this.__h.push(l),k(this));},d.prototype.forceUpdate=function(n){this.__v&&(this.__e=!0,n&&this.__h.push(n),k(this));},d.prototype.render=p,u=[],i="function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout,g.__r=0,o=f,r=0;
 
     var globalObj = typeof globalThis !== 'undefined' ? globalThis : window; // // TODO: streamline when killing IE11 support
     if (globalObj.FullCalendarVDom) {
@@ -63,7 +63,7 @@ var FullCalendar = (function (exports) {
     else {
         globalObj.FullCalendarVDom = {
             Component: d,
-            createElement: h,
+            createElement: v,
             render: O,
             createRef: y,
             Fragment: p,
@@ -82,7 +82,7 @@ var FullCalendar = (function (exports) {
             callbackQ.push(callback);
         }
         n.debounceRendering = execCallbackSync;
-        O(h(FakeComponent, {}), document.createElement('div'));
+        O(v(FakeComponent, {}), document.createElement('div'));
         while (callbackQ.length) {
             callbackQ.shift()();
         }
@@ -93,7 +93,7 @@ var FullCalendar = (function (exports) {
         function FakeComponent() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        FakeComponent.prototype.render = function () { return h('div', {}); };
+        FakeComponent.prototype.render = function () { return v('div', {}); };
         FakeComponent.prototype.componentDidMount = function () { this.setState({}); };
         return FakeComponent;
     }(d));
@@ -158,9 +158,15 @@ var FullCalendar = (function (exports) {
             configurable: true
         });
         Object.defineProperty(EventSourceApi.prototype, "url", {
-            // only relevant to json-feed event sources
             get: function () {
                 return this.internalEventSource.meta.url;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(EventSourceApi.prototype, "format", {
+            get: function () {
+                return this.internalEventSource.meta.format; // TODO: bad. not guaranteed
             },
             enumerable: false,
             configurable: true
@@ -2747,6 +2753,7 @@ var FullCalendar = (function (exports) {
         id: String,
         defaultAllDay: Boolean,
         url: String,
+        format: String,
         events: identity,
         eventDataTransform: identity,
         // for any network-related sources
@@ -3394,8 +3401,8 @@ var FullCalendar = (function (exports) {
             if (instance) {
                 var def = this._def;
                 var context_1 = this._context;
-                var eventStore = context_1.getCurrentData().eventStore;
-                var relevantEvents_1 = getRelevantEvents(eventStore, instance.instanceId);
+                var eventStore_1 = context_1.getCurrentData().eventStore;
+                var relevantEvents = getRelevantEvents(eventStore_1, instance.instanceId);
                 var eventConfigBase = {
                     '': {
                         display: '',
@@ -3410,22 +3417,22 @@ var FullCalendar = (function (exports) {
                         classNames: [],
                     },
                 };
-                relevantEvents_1 = applyMutationToEventStore(relevantEvents_1, eventConfigBase, mutation, context_1);
+                relevantEvents = applyMutationToEventStore(relevantEvents, eventConfigBase, mutation, context_1);
                 var oldEvent = new EventApi(context_1, def, instance); // snapshot
-                this._def = relevantEvents_1.defs[def.defId];
-                this._instance = relevantEvents_1.instances[instance.instanceId];
+                this._def = relevantEvents.defs[def.defId];
+                this._instance = relevantEvents.instances[instance.instanceId];
                 context_1.dispatch({
                     type: 'MERGE_EVENTS',
-                    eventStore: relevantEvents_1,
+                    eventStore: relevantEvents,
                 });
                 context_1.emitter.trigger('eventChange', {
                     oldEvent: oldEvent,
                     event: this,
-                    relatedEvents: buildEventApis(relevantEvents_1, context_1, instance),
+                    relatedEvents: buildEventApis(relevantEvents, context_1, instance),
                     revert: function () {
                         context_1.dispatch({
-                            type: 'REMOVE_EVENTS',
-                            eventStore: relevantEvents_1,
+                            type: 'RESET_EVENTS',
+                            eventStore: eventStore_1,
                         });
                     },
                 });
@@ -4505,6 +4512,9 @@ var FullCalendar = (function (exports) {
     function computeScrollbarWidths() {
         var el = document.createElement('div');
         el.style.overflow = 'scroll';
+        el.style.position = 'absolute';
+        el.style.top = '-9999px';
+        el.style.left = '-9999px';
         document.body.appendChild(el);
         var res = computeScrollbarWidthsForEl(el);
         document.body.removeChild(el);
@@ -5056,6 +5066,8 @@ var FullCalendar = (function (exports) {
             case 'ADD_EVENTS': // already parsed, but not expanded
                 return addEvent(eventStore, action.eventStore, // new ones
                 dateProfile ? dateProfile.activeRange : null, context);
+            case 'RESET_EVENTS':
+                return action.eventStore;
             case 'MERGE_EVENTS': // already parsed and expanded
                 return mergeEventStores(eventStore, action.eventStore);
             case 'PREV': // TODO: how do we track all actions that affect dateProfile :(
@@ -5381,22 +5393,13 @@ var FullCalendar = (function (exports) {
         DateComponent.prototype.isValidSegDownEl = function (el) {
             return !this.props.eventDrag && // HACK
                 !this.props.eventResize && // HACK
-                !elementClosest(el, '.fc-event-mirror') &&
-                (this.isPopover() || !this.isInPopover(el));
-            // ^above line ensures we don't detect a seg interaction within a nested component.
-            // it's a HACK because it only supports a popover as the nested component.
+                !elementClosest(el, '.fc-event-mirror');
         };
         DateComponent.prototype.isValidDateDownEl = function (el) {
             return !elementClosest(el, '.fc-event:not(.fc-bg-event)') &&
                 !elementClosest(el, '.fc-daygrid-more-link') && // a "more.." link
                 !elementClosest(el, 'a[data-navlink]') && // a clickable nav link
-                !this.isInPopover(el);
-        };
-        DateComponent.prototype.isPopover = function () {
-            return false;
-        };
-        DateComponent.prototype.isInPopover = function (el) {
-            return Boolean(elementClosest(el, '.fc-popover'));
+                !elementClosest(el, '.fc-popover'); // hack
         };
         return DateComponent;
     }(BaseComponent));
@@ -5407,6 +5410,7 @@ var FullCalendar = (function (exports) {
             id: guid(),
             deps: input.deps || [],
             reducers: input.reducers || [],
+            isLoadingFuncs: input.isLoadingFuncs || [],
             contextInit: [].concat(input.contextInit || []),
             eventRefiners: input.eventRefiners || {},
             eventDefMemberAdders: input.eventDefMemberAdders || [],
@@ -5445,6 +5449,7 @@ var FullCalendar = (function (exports) {
         var isAdded = {};
         var hooks = {
             reducers: [],
+            isLoadingFuncs: [],
             contextInit: [],
             eventRefiners: {},
             eventDefMemberAdders: [],
@@ -5510,6 +5515,7 @@ var FullCalendar = (function (exports) {
     function combineHooks(hooks0, hooks1) {
         return {
             reducers: hooks0.reducers.concat(hooks1.reducers),
+            isLoadingFuncs: hooks0.isLoadingFuncs.concat(hooks1.isLoadingFuncs),
             contextInit: hooks0.contextInit.concat(hooks1.contextInit),
             eventRefiners: __assign(__assign({}, hooks0.eventRefiners), hooks1.eventRefiners),
             eventDefMemberAdders: hooks0.eventDefMemberAdders.concat(hooks1.eventDefMemberAdders),
@@ -6273,14 +6279,13 @@ var FullCalendar = (function (exports) {
         var activeRange = dateProfile ? dateProfile.activeRange : null; // need this check?
         return fetchSourcesByIds(eventSources, excludeStaticSources(eventSources, context), activeRange, context);
     }
-    function computeEventSourceLoadingLevel(eventSources) {
-        var cnt = 0;
+    function computeEventSourcesLoading(eventSources) {
         for (var sourceId in eventSources) {
             if (eventSources[sourceId].isFetching) {
-                cnt += 1;
+                return true;
             }
         }
-        return cnt;
+        return false;
     }
     function addSources(eventSourceHash, sources, fetchRange, context) {
         var hash = {};
@@ -6615,9 +6620,10 @@ var FullCalendar = (function (exports) {
 
     var eventSourceDef$2 = {
         parseMeta: function (refined) {
-            if (refined.url) {
+            if (refined.url && (refined.format === 'json' || !refined.format)) {
                 return {
                     url: refined.url,
+                    format: 'json',
                     method: (refined.method || 'GET').toUpperCase(),
                     extraParams: refined.extraParams,
                     startParam: refined.startParam,
@@ -6811,6 +6817,9 @@ var FullCalendar = (function (exports) {
         simpleRecurringEventsPlugin,
         changeHandlerPlugin,
         createPlugin({
+            isLoadingFuncs: [
+                function (state) { return computeEventSourcesLoading(state.eventSources); },
+            ],
             contentTypeHandlers: {
                 html: function () { return ({ render: injectHtml }); },
                 domNodes: function () { return ({ render: injectDomNodes }); },
@@ -7060,7 +7069,6 @@ var FullCalendar = (function (exports) {
                 businessHours: this.parseContextBusinessHours(calendarContext),
                 eventSources: eventSources,
                 eventUiBases: {},
-                loadingLevel: computeEventSourceLoadingLevel(eventSources),
                 eventStore: createEmptyEventStore(),
                 renderableEventStore: createEmptyEventStore(),
                 dateSelection: null,
@@ -7074,7 +7082,7 @@ var FullCalendar = (function (exports) {
                 var reducer = _c[_b];
                 __assign(initialState, reducer(null, null, contextAndState));
             }
-            if (initialState.loadingLevel) {
+            if (computeIsLoading(initialState, calendarContext)) {
                 this.emitter.trigger('loading', true); // NOT DRY
             }
             this.state = initialState;
@@ -7119,16 +7127,14 @@ var FullCalendar = (function (exports) {
                 currentDate = dateProfile.currentRange.start;
             }
             var eventSources = reduceEventSources(state.eventSources, action, dateProfile, calendarContext);
-            var eventSourceLoadingLevel = computeEventSourceLoadingLevel(eventSources);
             var eventStore = reduceEventStore(state.eventStore, action, eventSources, dateProfile, calendarContext);
-            var renderableEventStore = (eventSourceLoadingLevel && !currentViewData.options.progressiveEventRendering) ?
+            var isEventsLoading = computeEventSourcesLoading(eventSources); // BAD. also called in this func in computeIsLoading
+            var renderableEventStore = (isEventsLoading && !currentViewData.options.progressiveEventRendering) ?
                 (state.renderableEventStore || eventStore) : // try from previous state
                 eventStore;
             var _b = this.buildViewUiProps(calendarContext), eventUiSingleBase = _b.eventUiSingleBase, selectionConfig = _b.selectionConfig; // will memoize obj
             var eventUiBySource = this.buildEventUiBySource(eventSources);
             var eventUiBases = this.buildEventUiBases(renderableEventStore.defs, eventUiSingleBase, eventUiBySource);
-            var prevLoadingLevel = state.loadingLevel || 0;
-            var loadingLevel = eventSourceLoadingLevel;
             var newState = {
                 dynamicOptionOverrides: dynamicOptionOverrides,
                 currentViewType: currentViewType,
@@ -7139,7 +7145,6 @@ var FullCalendar = (function (exports) {
                 renderableEventStore: renderableEventStore,
                 selectionConfig: selectionConfig,
                 eventUiBases: eventUiBases,
-                loadingLevel: loadingLevel,
                 businessHours: this.parseContextBusinessHours(calendarContext),
                 dateSelection: reduceDateSelection(state.dateSelection, action),
                 eventSelection: reduceSelectedEvent(state.eventSelection, action),
@@ -7151,11 +7156,13 @@ var FullCalendar = (function (exports) {
                 var reducer = _c[_i];
                 __assign(newState, reducer(state, action, contextAndState)); // give the OLD state, for old value
             }
+            var wasLoading = computeIsLoading(state, calendarContext);
+            var isLoading = computeIsLoading(newState, calendarContext);
             // TODO: use propSetHandlers in plugin system
-            if (!prevLoadingLevel && loadingLevel) {
+            if (!wasLoading && isLoading) {
                 emitter.trigger('loading', true);
             }
-            else if (prevLoadingLevel && !loadingLevel) {
+            else if (wasLoading && !isLoading) {
                 emitter.trigger('loading', false);
             }
             this.state = newState;
@@ -7397,6 +7404,15 @@ var FullCalendar = (function (exports) {
                 allow: options.selectAllow,
             }, calendarContext),
         };
+    }
+    function computeIsLoading(state, context) {
+        for (var _i = 0, _a = context.pluginHooks.isLoadingFuncs; _i < _a.length; _i++) {
+            var isLoadingFunc = _a[_i];
+            if (isLoadingFunc(state)) {
+                return true;
+            }
+        }
+        return false;
     }
     function parseContextBusinessHours(calendarContext) {
         return parseBusinessHours(calendarContext.options.businessHours, calendarContext);
@@ -8093,6 +8109,9 @@ var FullCalendar = (function (exports) {
             var currentUnitStart = context.dateEnv.startOf(unroundedNow, props.unit);
             var nextUnitStart = context.dateEnv.add(currentUnitStart, createDuration(1, props.unit));
             var waitMs = nextUnitStart.valueOf() - unroundedNow.valueOf();
+            // there is a max setTimeout ms value (https://stackoverflow.com/a/3468650/96342)
+            // ensure no longer than a day
+            waitMs = Math.min(1000 * 60 * 60 * 24, waitMs);
             return {
                 currentState: { nowDate: currentUnitStart, todayRange: buildDayRange(currentUnitStart) },
                 nextState: { nowDate: nextUnitStart, todayRange: buildDayRange(nextUnitStart) },
@@ -8134,7 +8153,7 @@ var FullCalendar = (function (exports) {
             var _a = this.props, dates = _a.dates, dateProfile = _a.dateProfile, datesRepDistinctDays = _a.datesRepDistinctDays, renderIntro = _a.renderIntro;
             var dayHeaderFormat = this.createDayHeaderFormatter(context.options.dayHeaderFormat, datesRepDistinctDays, dates.length);
             return (createElement(NowTimer, { unit: "day" }, function (nowDate, todayRange) { return (createElement("tr", null,
-                renderIntro && renderIntro(),
+                renderIntro && renderIntro('day'),
                 dates.map(function (date) { return (datesRepDistinctDays ? (createElement(TableDateCell, { key: date.toISOString(), date: date, dateProfile: dateProfile, todayRange: todayRange, colCnt: dates.length, dayHeaderFormat: dayHeaderFormat })) : (createElement(TableDowCell, { key: date.getUTCDay(), dow: date.getUTCDay(), dayHeaderFormat: dayHeaderFormat }))); }))); }));
         };
         return DayHeader;
@@ -9011,7 +9030,7 @@ var FullCalendar = (function (exports) {
 
     // exports
     // --------------------------------------------------------------------------------------------------
-    var version = '5.3.2'; // important to type it, so .d.ts has generic string
+    var version = '5.5.0'; // important to type it, so .d.ts has generic string
 
     var Calendar = /** @class */ (function (_super) {
         __extends(Calendar, _super);
@@ -11474,6 +11493,9 @@ var FullCalendar = (function (exports) {
         };
         return TableCell;
     }(DateComponent));
+    TableCell.addPropsEquality({
+        onMoreClick: true,
+    });
     function renderMoreLinkInner(props) {
         return props.text;
     }
@@ -11716,7 +11738,14 @@ var FullCalendar = (function (exports) {
             if (!segIsVisible[instanceId]) {
                 segIsVisible[instanceId] = true;
                 for (var col = seg.firstCol; col <= seg.lastCol; col += 1) {
-                    visibleColPlacements[col].push(placement);
+                    var destPlacements = visibleColPlacements[col];
+                    var newPosition = 0;
+                    // insert while keeping top sorted in each column
+                    while (newPosition < destPlacements.length &&
+                        placement.top >= destPlacements[newPosition].top) {
+                        newPosition += 1;
+                    }
+                    destPlacements.splice(newPosition, 0, placement);
                 }
             }
         }
@@ -11798,7 +11827,9 @@ var FullCalendar = (function (exports) {
                     var normalFgNodes = _this.renderFgSegs(segsByFirstCol[col], segIsHidden, segTops, segMarginTops, selectedInstanceHash, props.todayRange);
                     var mirrorFgNodes = _this.renderFgSegs(mirrorSegsByCol[col], {}, segTops, // use same tops as real rendering
                     {}, {}, props.todayRange, Boolean(props.eventDrag), Boolean(props.eventResize), false);
-                    return (createElement(TableCell, { key: cell.key, elRef: _this.cellElRefs.createRef(cell.key), innerElRef: _this.frameElRefs.createRef(cell.key) /* FF <td> problem, but okay to use for left/right. TODO: rename prop */, dateProfile: props.dateProfile, date: cell.date, showDayNumber: props.showDayNumbers, showWeekNumber: props.showWeekNumbers && col === 0, forceDayTop: props.showWeekNumbers /* even displaying weeknum for row, not necessarily day */, todayRange: props.todayRange, extraHookProps: cell.extraHookProps, extraDataAttrs: cell.extraDataAttrs, extraClassNames: cell.extraClassNames, moreCnt: moreCnts[col], buildMoreLinkText: props.buildMoreLinkText, onMoreClick: props.onMoreClick, segIsHidden: segIsHidden, moreMarginTop: moreTops[col] /* rename */, segsByEachCol: segsByEachCol[col], fgPaddingBottom: paddingBottoms[col], fgContentElRef: _this.fgElRefs.createRef(cell.key), fgContent: ( // Fragment scopes the keys
+                    return (createElement(TableCell, { key: cell.key, elRef: _this.cellElRefs.createRef(cell.key), innerElRef: _this.frameElRefs.createRef(cell.key) /* FF <td> problem, but okay to use for left/right. TODO: rename prop */, dateProfile: props.dateProfile, date: cell.date, showDayNumber: props.showDayNumbers, showWeekNumber: props.showWeekNumbers && col === 0, forceDayTop: props.showWeekNumbers /* even displaying weeknum for row, not necessarily day */, todayRange: props.todayRange, extraHookProps: cell.extraHookProps, extraDataAttrs: cell.extraDataAttrs, extraClassNames: cell.extraClassNames, moreCnt: moreCnts[col], buildMoreLinkText: props.buildMoreLinkText, onMoreClick: function (arg) {
+                            props.onMoreClick(__assign(__assign({}, arg), { fromCol: col }));
+                        }, segIsHidden: segIsHidden, moreMarginTop: moreTops[col] /* rename */, segsByEachCol: segsByEachCol[col], fgPaddingBottom: paddingBottoms[col], fgContentElRef: _this.fgElRefs.createRef(cell.key), fgContent: ( // Fragment scopes the keys
                         createElement(Fragment, null,
                             createElement(Fragment, null, normalFgNodes),
                             createElement(Fragment, null, mirrorFgNodes))), bgContent: ( // Fragment scopes the keys
@@ -11939,6 +11970,9 @@ var FullCalendar = (function (exports) {
         };
         return TableRow;
     }(DateComponent));
+    TableRow.addPropsEquality({
+        onMoreClick: true,
+    });
     TableRow.addStateEquality({
         segHeights: isPropsEqual,
     });
@@ -12032,18 +12066,7 @@ var FullCalendar = (function (exports) {
         __extends(MorePopover, _super);
         function MorePopover() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.handlePopoverEl = function (popoverEl) {
-                _this.popoverEl = popoverEl;
-                if (popoverEl) {
-                    _this.context.registerInteractiveComponent(_this, {
-                        el: popoverEl,
-                        useEventCenter: false,
-                    });
-                }
-                else {
-                    _this.context.unregisterInteractiveComponent(_this);
-                }
-            };
+            _this.rootElRef = createRef();
             return _this;
         }
         MorePopover.prototype.render = function () {
@@ -12051,7 +12074,7 @@ var FullCalendar = (function (exports) {
             var props = this.props;
             var date = props.date, hiddenInstances = props.hiddenInstances, todayRange = props.todayRange, dateProfile = props.dateProfile, selectedInstanceId = props.selectedInstanceId;
             var title = dateEnv.format(date, options.dayPopoverFormat);
-            return (createElement(DayCellRoot, { date: date, dateProfile: dateProfile, todayRange: todayRange, elRef: this.handlePopoverEl }, function (rootElRef, dayClassNames, dataAttrs) { return (createElement(Popover, { elRef: rootElRef, title: title, extraClassNames: ['fc-more-popover'].concat(dayClassNames), extraAttrs: dataAttrs, onClose: props.onCloseClick, alignmentEl: props.alignmentEl, topAlignmentEl: props.topAlignmentEl },
+            return (createElement(DayCellRoot, { date: date, dateProfile: dateProfile, todayRange: todayRange, elRef: this.rootElRef }, function (rootElRef, dayClassNames, dataAttrs) { return (createElement(Popover, { elRef: rootElRef, title: title, extraClassNames: ['fc-more-popover'].concat(dayClassNames), extraAttrs: dataAttrs, onClose: props.onCloseClick, alignmentEl: props.alignmentEl, topAlignmentEl: props.topAlignmentEl },
                 createElement(DayCellContent, { date: date, dateProfile: dateProfile, todayRange: todayRange }, function (innerElRef, innerContent) { return (innerContent &&
                     createElement("div", { className: "fc-more-popover-misc", ref: innerElRef }, innerContent)); }),
                 props.segs.map(function (seg) {
@@ -12061,29 +12084,37 @@ var FullCalendar = (function (exports) {
                         } }, hasListItemDisplay(seg) ? (createElement(TableListItemEvent, __assign({ seg: seg, isDragging: false, isSelected: instanceId === selectedInstanceId, defaultDisplayEventEnd: false }, getSegMeta(seg, todayRange)))) : (createElement(TableBlockEvent, __assign({ seg: seg, isDragging: false, isResizing: false, isDateSelecting: false, isSelected: instanceId === selectedInstanceId, defaultDisplayEventEnd: false }, getSegMeta(seg, todayRange))))));
                 }))); }));
         };
-        MorePopover.prototype.queryHit = function (positionLeft, positionTop, elWidth, elHeight) {
+        MorePopover.prototype.positionToHit = function (positionLeft, positionTop, originEl) {
+            var rootEl = this.rootElRef.current;
+            if (!originEl || !rootEl) { // why?
+                return null;
+            }
+            var originRect = originEl.getBoundingClientRect();
+            var elRect = rootEl.getBoundingClientRect();
+            var newOriginLeft = elRect.left - originRect.left;
+            var newOriginTop = elRect.top - originRect.top;
+            var localLeft = positionLeft - newOriginLeft;
+            var localTop = positionTop - newOriginTop;
             var date = this.props.date;
-            if (positionLeft < elWidth && positionTop < elHeight) {
+            if ( // ugly way to detect intersection
+            localLeft >= 0 && localLeft < elRect.width &&
+                localTop >= 0 && localTop < elRect.height) {
                 return {
-                    component: this,
                     dateSpan: {
                         allDay: true,
                         range: { start: date, end: addDays(date, 1) },
                     },
-                    dayEl: this.popoverEl,
-                    rect: {
-                        left: 0,
-                        top: 0,
-                        right: elWidth,
-                        bottom: elHeight,
+                    dayEl: rootEl,
+                    relativeRect: {
+                        left: newOriginLeft,
+                        top: newOriginTop,
+                        right: elRect.width,
+                        bottom: elRect.height,
                     },
                     layer: 1,
                 };
             }
             return null;
-        };
-        MorePopover.prototype.isPopover = function () {
-            return true; // gross
         };
         return MorePopover;
     }(DateComponent));
@@ -12099,6 +12130,7 @@ var FullCalendar = (function (exports) {
             _this.splitEventDrag = memoize(splitInteractionByRow);
             _this.splitEventResize = memoize(splitInteractionByRow);
             _this.buildBuildMoreLinkText = memoize(buildBuildMoreLinkText);
+            _this.morePopoverRef = createRef();
             _this.rowRefs = new RefMap();
             _this.state = {
                 morePopoverState: null,
@@ -12107,6 +12139,7 @@ var FullCalendar = (function (exports) {
                 _this.rootEl = rootEl;
                 setRef(_this.props.elRef, rootEl);
             };
+            // TODO: bad names "more link click" versus "more click"
             _this.handleMoreLinkClick = function (arg) {
                 var context = _this.context;
                 var dateEnv = context.dateEnv;
@@ -12133,7 +12166,7 @@ var FullCalendar = (function (exports) {
                 }
                 if (!clickOption || clickOption === 'popover') {
                     _this.setState({
-                        morePopoverState: __assign(__assign({}, arg), { currentFgEventSegs: _this.props.fgEventSegs }),
+                        morePopoverState: __assign(__assign({}, arg), { currentFgEventSegs: _this.props.fgEventSegs, fromRow: arg.fromRow, fromCol: arg.fromCol }),
                     });
                 }
                 else if (typeof clickOption === 'string') { // a view name
@@ -12189,8 +12222,10 @@ var FullCalendar = (function (exports) {
                         createElement("tbody", null, props.cells.map(function (cells, row) { return (createElement(TableRow, { ref: _this.rowRefs.createRef(row), key: cells.length
                                 ? cells[0].date.toISOString() /* best? or put key on cell? or use diff formatter? */
                                 : row // in case there are no cells (like when resource view is loading)
-                            , showDayNumbers: rowCnt > 1, showWeekNumbers: props.showWeekNumbers, todayRange: todayRange, dateProfile: dateProfile, cells: cells, renderIntro: props.renderRowIntro, businessHourSegs: businessHourSegsByRow[row], eventSelection: props.eventSelection, bgEventSegs: bgEventSegsByRow[row].filter(isSegAllDay) /* hack */, fgEventSegs: fgEventSegsByRow[row], dateSelectionSegs: dateSelectionSegsByRow[row], eventDrag: eventDragByRow[row], eventResize: eventResizeByRow[row], dayMaxEvents: dayMaxEvents, dayMaxEventRows: dayMaxEventRows, clientWidth: props.clientWidth, clientHeight: props.clientHeight, buildMoreLinkText: buildMoreLinkText, onMoreClick: _this.handleMoreLinkClick })); }))),
-                    (!props.forPrint && morePopoverState && morePopoverState.currentFgEventSegs === props.fgEventSegs) && (createElement(MorePopover, { date: morePopoverState.date, dateProfile: dateProfile, segs: morePopoverState.allSegs, alignmentEl: morePopoverState.dayEl, topAlignmentEl: rowCnt === 1 ? props.headerAlignElRef.current : null, onCloseClick: _this.handleMorePopoverClose, selectedInstanceId: props.eventSelection, hiddenInstances: // yuck
+                            , showDayNumbers: rowCnt > 1, showWeekNumbers: props.showWeekNumbers, todayRange: todayRange, dateProfile: dateProfile, cells: cells, renderIntro: props.renderRowIntro, businessHourSegs: businessHourSegsByRow[row], eventSelection: props.eventSelection, bgEventSegs: bgEventSegsByRow[row].filter(isSegAllDay) /* hack */, fgEventSegs: fgEventSegsByRow[row], dateSelectionSegs: dateSelectionSegsByRow[row], eventDrag: eventDragByRow[row], eventResize: eventResizeByRow[row], dayMaxEvents: dayMaxEvents, dayMaxEventRows: dayMaxEventRows, clientWidth: props.clientWidth, clientHeight: props.clientHeight, buildMoreLinkText: buildMoreLinkText, onMoreClick: function (arg) {
+                                _this.handleMoreLinkClick(__assign(__assign({}, arg), { fromRow: row }));
+                            } })); }))),
+                    (!props.forPrint && morePopoverState && morePopoverState.currentFgEventSegs === props.fgEventSegs) && (createElement(MorePopover, { ref: _this.morePopoverRef, date: morePopoverState.date, dateProfile: dateProfile, segs: morePopoverState.allSegs, alignmentEl: morePopoverState.dayEl, topAlignmentEl: rowCnt === 1 ? props.headerAlignElRef.current : null, onCloseClick: _this.handleMorePopoverClose, selectedInstanceId: props.eventSelection, hiddenInstances: // yuck
                         (props.eventDrag ? props.eventDrag.affectedInstances : null) ||
                             (props.eventResize ? props.eventResize.affectedInstances : null) ||
                             {}, todayRange: todayRange })))); })));
@@ -12205,6 +12240,12 @@ var FullCalendar = (function (exports) {
             false);
         };
         Table.prototype.positionToHit = function (leftPosition, topPosition) {
+            var morePopover = this.morePopoverRef.current;
+            var morePopoverHit = morePopover ? morePopover.positionToHit(leftPosition, topPosition, this.rootEl) : null;
+            var morePopoverState = this.state.morePopoverState;
+            if (morePopoverHit) {
+                return __assign({ row: morePopoverState.fromRow, col: morePopoverState.fromCol }, morePopoverHit);
+            }
             var _a = this, colPositions = _a.colPositions, rowPositions = _a.rowPositions;
             var col = colPositions.leftToIndex(leftPosition);
             var row = rowPositions.topToIndex(topPosition);
@@ -12496,7 +12537,7 @@ var FullCalendar = (function (exports) {
             };
             /* Header Render Methods
             ------------------------------------------------------------------------------------------------------------------*/
-            _this.renderHeadAxis = function (frameHeight) {
+            _this.renderHeadAxis = function (rowKey, frameHeight) {
                 if (frameHeight === void 0) { frameHeight = ''; }
                 var options = _this.context.options;
                 var dateProfile = _this.props.dateProfile;
@@ -12505,7 +12546,7 @@ var FullCalendar = (function (exports) {
                 var navLinkAttrs = (options.navLinks && dayCnt === 1) // only do in day views (to avoid doing in week views that dont need it)
                     ? { 'data-navlink': buildNavLinkData(range.start, 'week'), tabIndex: 0 }
                     : {};
-                if (options.weekNumbers) {
+                if (options.weekNumbers && rowKey === 'day') {
                     return (createElement(WeekNumberRoot, { date: range.start, defaultFormat: DEFAULT_WEEK_NUM_FORMAT$1 }, function (rootElRef, classNames, innerElRef, innerContent) { return (createElement("th", { ref: rootElRef, className: [
                             'fc-timegrid-axis',
                             'fc-scrollgrid-shrink',
@@ -12604,7 +12645,7 @@ var FullCalendar = (function (exports) {
                     chunks: [
                         {
                             key: 'axis',
-                            rowContent: function (arg) { return (createElement("tr", null, _this.renderHeadAxis(arg.rowSyncHeights[0]))); },
+                            rowContent: function (arg) { return (createElement("tr", null, _this.renderHeadAxis('day', arg.rowSyncHeights[0]))); },
                         },
                         {
                             key: 'cols',

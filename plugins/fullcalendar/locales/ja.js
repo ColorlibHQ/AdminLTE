@@ -14,7 +14,7 @@ FullCalendar.globalLocales.push(function () {
     },
     weekText: '週',
     allDayText: '終日',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '他 ' + n + ' 件'
     },
     noEventsText: '表示する予定はありません',

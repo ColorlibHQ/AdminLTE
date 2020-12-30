@@ -18,7 +18,7 @@ FullCalendar.globalLocales.push(function () {
     },
     weekText: 'Сед',
     allDayText: 'Цео дан',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ још ' + n
     },
     noEventsText: 'Нема догађаја за приказ',

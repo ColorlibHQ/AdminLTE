@@ -18,7 +18,7 @@ FullCalendar.globalLocales.push(function () {
     },
     weekText: 'Săpt',
     allDayText: 'Toată ziua',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+alte ' + n
     },
     noEventsText: 'Nu există evenimente de afișat',

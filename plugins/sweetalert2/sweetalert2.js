@@ -1,5 +1,5 @@
 /*!
-* sweetalert2 v10.12.5
+* sweetalert2 v10.12.6
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -3211,7 +3211,7 @@
     domCache.popup.onclick = function () {
       var innerParams = privateProps.innerParams.get(instance);
 
-      if (innerParams.showConfirmButton || innerParams.showDenyButton || innerParams.showCancelButton || innerParams.showCloseButton || innerParams.input) {
+      if (innerParams.showConfirmButton || innerParams.showDenyButton || innerParams.showCancelButton || innerParams.showCloseButton || innerParams.timer || innerParams.input) {
         return;
       }
 
@@ -3616,7 +3616,7 @@
     };
   });
   SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '10.12.5';
+  SweetAlert.version = '10.12.6';
 
   var Swal = SweetAlert;
   Swal["default"] = Swal;

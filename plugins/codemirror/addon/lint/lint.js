@@ -170,6 +170,10 @@
       var anns = annotations[line];
       if (!anns) continue;
 
+      // filter out duplicate messages
+      var message = [];
+      anns = anns.filter(function(item) { return message.indexOf(item.message) > -1 ? false : message.push(item.message) });
+
       var maxSeverity = null;
       var tipLabel = state.hasGutter && document.createDocumentFragment();
 
@@ -187,9 +191,9 @@
           __annotation: ann
         }));
       }
-
+      // use original annotations[line] to show multiple messages
       if (state.hasGutter)
-        cm.setGutterMarker(line, GUTTER_ID, makeMarker(cm, tipLabel, maxSeverity, anns.length > 1,
+        cm.setGutterMarker(line, GUTTER_ID, makeMarker(cm, tipLabel, maxSeverity, annotations[line].length > 1,
                                                        state.options.tooltips));
     }
     if (options.onUpdateLinting) options.onUpdateLinting(annotationsNotSorted, annotations, cm);

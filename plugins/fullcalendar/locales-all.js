@@ -193,7 +193,7 @@
     },
     weekText: 'Həftə',
     allDayText: 'Bütün Gün',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ daha çox ' + n
     },
     noEventsText: 'Göstərmək üçün hadisə yoxdur',
@@ -215,7 +215,7 @@
       list: 'График',
     },
     allDayText: 'Цял ден',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+още ' + n
     },
     noEventsText: 'Няма събития за показване',
@@ -238,7 +238,7 @@
     },
     weekText: 'Sed',
     allDayText: 'Cijeli dan',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ još ' + n
     },
     noEventsText: 'Nema događaja za prikazivanje',
@@ -282,13 +282,35 @@
     },
     weekText: 'Týd',
     allDayText: 'Celý den',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+další: ' + n
     },
     noEventsText: 'Žádné akce k zobrazení',
   };
 
   var l13 = {
+    code: 'cy',
+    week: {
+      dow: 1, // Monday is the first day of the week.
+      doy: 4, // The week that contains Jan 4th is the first week of the year.
+    },
+    buttonText: {
+      prev: 'Blaenorol',
+      next: 'Nesaf',
+      today: 'Heddiw',
+      year: 'Blwyddyn',
+      month: 'Mis',
+      week: 'Wythnos',
+      day: 'Dydd',
+      list: 'Rhestr',
+    },
+    weekText: 'Wythnos',
+    allDayText: 'Trwy\'r dydd',
+    moreLinkText: 'Mwy',
+    noEventsText: 'Dim digwyddiadau',
+  };
+
+  var l14 = {
     code: 'da',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -309,7 +331,31 @@
     noEventsText: 'Ingen arrangementer at vise',
   };
 
-  var l14 = {
+  var l15 = {
+    code: 'de-at',
+    week: {
+      dow: 1, // Monday is the first day of the week.
+      doy: 4, // The week that contains Jan 4th is the first week of the year.
+    },
+    buttonText: {
+      prev: 'Zurück',
+      next: 'Vor',
+      today: 'Heute',
+      year: 'Jahr',
+      month: 'Monat',
+      week: 'Woche',
+      day: 'Tag',
+      list: 'Terminübersicht',
+    },
+    weekText: 'KW',
+    allDayText: 'Ganztägig',
+    moreLinkText: function(n) {
+      return '+ weitere ' + n
+    },
+    noEventsText: 'Keine Ereignisse anzuzeigen',
+  };
+
+  var l16 = {
     code: 'de',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -327,13 +373,13 @@
     },
     weekText: 'KW',
     allDayText: 'Ganztägig',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ weitere ' + n
     },
     noEventsText: 'Keine Ereignisse anzuzeigen',
   };
 
-  var l15 = {
+  var l17 = {
     code: 'el',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -354,7 +400,7 @@
     noEventsText: 'Δεν υπάρχουν γεγονότα προς εμφάνιση',
   };
 
-  var l16 = {
+  var l18 = {
     code: 'en-au',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -362,7 +408,7 @@
     },
   };
 
-  var l17 = {
+  var l19 = {
     code: 'en-gb',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -370,7 +416,7 @@
     },
   };
 
-  var l18 = {
+  var l20 = {
     code: 'en-nz',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -378,7 +424,28 @@
     },
   };
 
-  var l19 = {
+  var l21 = {
+    code: 'eo',
+    week: {
+      dow: 1, // Monday is the first day of the week.
+      doy: 4, // The week that contains Jan 4th is the first week of the year.
+    },
+    buttonText: {
+      prev: 'Antaŭa',
+      next: 'Sekva',
+      today: 'Hodiaŭ',
+      month: 'Monato',
+      week: 'Semajno',
+      day: 'Tago',
+      list: 'Tagordo',
+    },
+    weekText: 'Sm',
+    allDayText: 'Tuta tago',
+    moreLinkText: 'pli',
+    noEventsText: 'Neniuj eventoj por montri',
+  };
+
+  var l22 = {
     code: 'es',
     week: {
       dow: 0, // Sunday is the first day of the week.
@@ -399,7 +466,7 @@
     noEventsText: 'No hay eventos para mostrar',
   };
 
-  var l20 = {
+  var l23 = {
     code: 'es',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -420,7 +487,7 @@
     noEventsText: 'No hay eventos para mostrar',
   };
 
-  var l21 = {
+  var l24 = {
     code: 'et',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -437,13 +504,13 @@
     },
     weekText: 'näd',
     allDayText: 'Kogu päev',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ veel ' + n
     },
     noEventsText: 'Kuvamiseks puuduvad sündmused',
   };
 
-  var l22 = {
+  var l25 = {
     code: 'eu',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -464,7 +531,7 @@
     noEventsText: 'Ez dago ekitaldirik erakusteko',
   };
 
-  var l23 = {
+  var l26 = {
     code: 'fa',
     week: {
       dow: 6, // Saturday is the first day of the week.
@@ -482,13 +549,13 @@
     },
     weekText: 'هف',
     allDayText: 'تمام روز',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return 'بیش از ' + n
     },
     noEventsText: 'هیچ رویدادی به نمایش',
   };
 
-  var l24 = {
+  var l27 = {
     code: 'fi',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -509,7 +576,7 @@
     noEventsText: 'Ei näytettäviä tapahtumia',
   };
 
-  var l25 = {
+  var l28 = {
     code: 'fr',
     buttonText: {
       prev: 'Précédent',
@@ -527,7 +594,7 @@
     noEventsText: 'Aucun événement à afficher',
   };
 
-  var l26 = {
+  var l29 = {
     code: 'fr-ch',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -549,7 +616,7 @@
     noEventsText: 'Aucun événement à afficher',
   };
 
-  var l27 = {
+  var l30 = {
     code: 'fr',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -571,7 +638,7 @@
     noEventsText: 'Aucun événement à afficher',
   };
 
-  var l28 = {
+  var l31 = {
     code: 'gl',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -592,7 +659,7 @@
     noEventsText: 'Non hai eventos para amosar',
   };
 
-  var l29 = {
+  var l32 = {
     code: 'he',
     direction: 'rtl',
     buttonText: {
@@ -610,7 +677,7 @@
     weekText: 'שבוע',
   };
 
-  var l30 = {
+  var l33 = {
     code: 'hi',
     week: {
       dow: 0, // Sunday is the first day of the week.
@@ -627,13 +694,13 @@
     },
     weekText: 'हफ्ता',
     allDayText: 'सभी दिन',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+अधिक ' + n
     },
     noEventsText: 'कोई घटनाओं को प्रदर्शित करने के लिए',
   };
 
-  var l31 = {
+  var l34 = {
     code: 'hr',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -650,13 +717,13 @@
     },
     weekText: 'Tje',
     allDayText: 'Cijeli dan',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ još ' + n
     },
     noEventsText: 'Nema događaja za prikaz',
   };
 
-  var l32 = {
+  var l35 = {
     code: 'hu',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -677,7 +744,30 @@
     noEventsText: 'Nincs megjeleníthető esemény',
   };
 
-  var l33 = {
+  var l36 = {
+    code: 'hy-am',
+    week: {
+      dow: 1, // Monday is the first day of the week.
+      doy: 4, // The week that contains Jan 4th is the first week of the year.
+    },
+    buttonText: {
+      prev: 'Նախորդ',
+      next: 'Հաջորդ',
+      today: 'Այսօր',
+      month: 'Ամիս',
+      week: 'Շաբաթ',
+      day: 'Օր',
+      list: 'Օրվա ցուցակ',
+    },
+    weekText: 'Շաբ',
+    allDayText: 'Ամբողջ օր',
+    moreLinkText: function(n) {
+      return '+ ևս ' + n
+    },
+    noEventsText: 'Բացակայում է իրադարձությունը ցուցադրելու',
+  };
+
+  var l37 = {
     code: 'id',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -698,7 +788,7 @@
     noEventsText: 'Tidak ada acara untuk ditampilkan',
   };
 
-  var l34 = {
+  var l38 = {
     code: 'is',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -719,7 +809,7 @@
     noEventsText: 'Engir viðburðir til að sýna',
   };
 
-  var l35 = {
+  var l39 = {
     code: 'it',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -736,13 +826,13 @@
     },
     weekText: 'Sm',
     allDayText: 'Tutto il giorno',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+altri ' + n
     },
     noEventsText: 'Non ci sono eventi da visualizzare',
   };
 
-  var l36 = {
+  var l40 = {
     code: 'ja',
     buttonText: {
       prev: '前',
@@ -755,13 +845,13 @@
     },
     weekText: '週',
     allDayText: '終日',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '他 ' + n + ' 件'
     },
     noEventsText: '表示する予定はありません',
   };
 
-  var l37 = {
+  var l41 = {
     code: 'ka',
     week: {
       dow: 1,
@@ -778,13 +868,13 @@
     },
     weekText: 'კვ',
     allDayText: 'მთელი დღე',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ კიდევ ' + n
     },
     noEventsText: 'ღონისძიებები არ არის',
   };
 
-  var l38 = {
+  var l42 = {
     code: 'kk',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -801,13 +891,13 @@
     },
     weekText: 'Не',
     allDayText: 'Күні бойы',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ тағы ' + n
     },
     noEventsText: 'Көрсету үшін оқиғалар жоқ',
   };
 
-  var l39 = {
+  var l43 = {
     code: 'ko',
     buttonText: {
       prev: '이전달',
@@ -824,7 +914,7 @@
     noEventsText: '일정이 없습니다',
   };
 
-  var l40 = {
+  var l44 = {
     code: 'lb',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -845,7 +935,7 @@
     noEventsText: 'Nee Evenementer ze affichéieren',
   };
 
-  var l41 = {
+  var l45 = {
     code: 'lt',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -866,7 +956,7 @@
     noEventsText: 'Nėra įvykių rodyti',
   };
 
-  var l42 = {
+  var l46 = {
     code: 'lv',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -883,13 +973,13 @@
     },
     weekText: 'Ned.',
     allDayText: 'Visu dienu',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+vēl ' + n
     },
     noEventsText: 'Nav notikumu',
   };
 
-  var l43 = {
+  var l47 = {
     code: 'mk',
     buttonText: {
       prev: 'претходно',
@@ -902,13 +992,13 @@
     },
     weekText: 'Сед',
     allDayText: 'Цел ден',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+повеќе ' + n
     },
     noEventsText: 'Нема настани за прикажување',
   };
 
-  var l44 = {
+  var l48 = {
     code: 'ms',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -925,13 +1015,13 @@
     },
     weekText: 'Mg',
     allDayText: 'Sepanjang hari',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return 'masih ada ' + n + ' acara'
     },
     noEventsText: 'Tiada peristiwa untuk dipaparkan',
   };
 
-  var l45 = {
+  var l49 = {
     code: 'nb',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -952,7 +1042,7 @@
     noEventsText: 'Ingen hendelser å vise',
   };
 
-  var l46 = {
+  var l50 = {
     code: 'ne', // code for nepal
     week: {
       dow: 7, // Sunday is the first day of the week.
@@ -973,14 +1063,14 @@
     noEventsText: 'देखाउनको लागि कुनै घटनाहरू छैनन्',
   };
 
-  var l47 = {
+  var l51 = {
     code: 'nl',
     week: {
       dow: 1, // Monday is the first day of the week.
       doy: 4, // The week that contains Jan 4th is the first week of the year.
     },
     buttonText: {
-      prev: 'Voorgaand',
+      prev: 'Vorige',
       next: 'Volgende',
       today: 'Vandaag',
       year: 'Jaar',
@@ -994,7 +1084,7 @@
     noEventsText: 'Geen evenementen om te laten zien',
   };
 
-  var l48 = {
+  var l52 = {
     code: 'nn',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1015,7 +1105,7 @@
     noEventsText: 'Ingen hendelser å vise',
   };
 
-  var l49 = {
+  var l53 = {
     code: 'pl',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1036,7 +1126,7 @@
     noEventsText: 'Brak wydarzeń do wyświetlenia',
   };
 
-  var l50 = {
+  var l54 = {
     code: 'pt-br',
     buttonText: {
       prev: 'Anterior',
@@ -1049,13 +1139,13 @@
     },
     weekText: 'Sm',
     allDayText: 'dia inteiro',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return 'mais +' + n
     },
     noEventsText: 'Não há eventos para mostrar',
   };
 
-  var l51 = {
+  var l55 = {
     code: 'pt',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1076,7 +1166,7 @@
     noEventsText: 'Não há eventos para mostrar',
   };
 
-  var l52 = {
+  var l56 = {
     code: 'ro',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1093,13 +1183,13 @@
     },
     weekText: 'Săpt',
     allDayText: 'Toată ziua',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+alte ' + n
     },
     noEventsText: 'Nu există evenimente de afișat',
   };
 
-  var l53 = {
+  var l57 = {
     code: 'ru',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1116,13 +1206,13 @@
     },
     weekText: 'Нед',
     allDayText: 'Весь день',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ ещё ' + n
     },
     noEventsText: 'Нет событий для отображения',
   };
 
-  var l54 = {
+  var l58 = {
     code: 'sk',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1139,13 +1229,13 @@
     },
     weekText: 'Ty',
     allDayText: 'Celý deň',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ďalšie: ' + n
     },
     noEventsText: 'Žiadne akcie na zobrazenie',
   };
 
-  var l55 = {
+  var l59 = {
     code: 'sl',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1166,7 +1256,7 @@
     noEventsText: 'Ni dogodkov za prikaz',
   };
 
-  var l56 = {
+  var l60 = {
     code: 'sq',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1183,13 +1273,13 @@
     },
     weekText: 'Ja',
     allDayText: 'Gjithë ditën',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+më tepër ' + n
     },
     noEventsText: 'Nuk ka evente për të shfaqur',
   };
 
-  var l57 = {
+  var l61 = {
     code: 'sr-cyrl',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1206,13 +1296,13 @@
     },
     weekText: 'Сед',
     allDayText: 'Цео дан',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ још ' + n
     },
     noEventsText: 'Нема догађаја за приказ',
   };
 
-  var l58 = {
+  var l62 = {
     code: 'sr',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1229,13 +1319,13 @@
     },
     weekText: 'Sed',
     allDayText: 'Cеo dan',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ još ' + n
     },
     noEventsText: 'Nеma događaja za prikaz',
   };
 
-  var l59 = {
+  var l63 = {
     code: 'sv',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1256,7 +1346,7 @@
     noEventsText: 'Inga händelser att visa',
   };
 
-  var l60 = {
+  var l64 = {
     code: 'th',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1280,7 +1370,7 @@
     noEventsText: 'ไม่มีกิจกรรมที่จะแสดง',
   };
 
-  var l61 = {
+  var l65 = {
     code: 'tr',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1301,7 +1391,7 @@
     noEventsText: 'Gösterilecek etkinlik yok',
   };
 
-  var l62 = {
+  var l66 = {
     code: 'ug',
     buttonText: {
       month: 'ئاي',
@@ -1312,7 +1402,7 @@
     allDayText: 'پۈتۈن كۈن',
   };
 
-  var l63 = {
+  var l67 = {
     code: 'uk',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1329,13 +1419,13 @@
     },
     weekText: 'Тиж',
     allDayText: 'Увесь день',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ще ' + n + '...'
     },
     noEventsText: 'Немає подій для відображення',
   };
 
-  var l64 = {
+  var l68 = {
     code: 'uz',
     buttonText: {
       month: 'Oy',
@@ -1344,13 +1434,13 @@
       list: 'Kun tartibi',
     },
     allDayText: "Kun bo'yi",
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ yana ' + n
     },
     noEventsText: "Ko'rsatish uchun voqealar yo'q",
   };
 
-  var l65 = {
+  var l69 = {
     code: 'vi',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1367,13 +1457,13 @@
     },
     weekText: 'Tu',
     allDayText: 'Cả ngày',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ thêm ' + n
     },
     noEventsText: 'Không có sự kiện để hiển thị',
   };
 
-  var l66 = {
+  var l70 = {
     code: 'zh-cn',
     week: {
       // GB/T 7408-1994《数据元和交换格式·信息交换·日期和时间表示法》与ISO 8601:1988等效
@@ -1391,13 +1481,13 @@
     },
     weekText: '周',
     allDayText: '全天',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '另外 ' + n + ' 个'
     },
     noEventsText: '没有事件显示',
   };
 
-  var l67 = {
+  var l71 = {
     code: 'zh-tw',
     buttonText: {
       prev: '上月',
@@ -1417,7 +1507,7 @@
   /* eslint max-len: off */
 
   var localesAll = [
-    l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22, l23, l24, l25, l26, l27, l28, l29, l30, l31, l32, l33, l34, l35, l36, l37, l38, l39, l40, l41, l42, l43, l44, l45, l46, l47, l48, l49, l50, l51, l52, l53, l54, l55, l56, l57, l58, l59, l60, l61, l62, l63, l64, l65, l66, l67, 
+    l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22, l23, l24, l25, l26, l27, l28, l29, l30, l31, l32, l33, l34, l35, l36, l37, l38, l39, l40, l41, l42, l43, l44, l45, l46, l47, l48, l49, l50, l51, l52, l53, l54, l55, l56, l57, l58, l59, l60, l61, l62, l63, l64, l65, l66, l67, l68, l69, l70, l71, 
   ];
 
   return localesAll;

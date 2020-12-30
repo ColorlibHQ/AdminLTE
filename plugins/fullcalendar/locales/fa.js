@@ -19,7 +19,7 @@ FullCalendar.globalLocales.push(function () {
     },
     weekText: 'هف',
     allDayText: 'تمام روز',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return 'بیش از ' + n
     },
     noEventsText: 'هیچ رویدادی به نمایش',

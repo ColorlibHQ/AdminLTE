@@ -99,7 +99,7 @@ http://ethanschoonover.com/solarized/img/solarized-palette.png
 
 .cm-s-solarized.cm-s-light div.CodeMirror-selected { background: #eee8d5; }
 .cm-s-solarized.cm-s-light .CodeMirror-line::selection, .cm-s-light .CodeMirror-line > span::selection, .cm-s-light .CodeMirror-line > span > span::selection { background: #eee8d5; }
-.cm-s-solarized.cm-s-light .CodeMirror-line::-moz-selection, .cm-s-ligh .CodeMirror-line > span::-moz-selection, .cm-s-ligh .CodeMirror-line > span > span::-moz-selection { background: #eee8d5; }
+.cm-s-solarized.cm-s-light .CodeMirror-line::-moz-selection, .cm-s-light .CodeMirror-line > span::-moz-selection, .cm-s-light .CodeMirror-line > span > span::-moz-selection { background: #eee8d5; }
 
 /* Editor styling */
 

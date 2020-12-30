@@ -19,6 +19,9 @@
 })(function(CodeMirror) {
   "use strict";
 
+  // default search panel location
+  CodeMirror.defineOption("search", {bottom: false});
+
   function searchOverlay(query, caseInsensitive) {
     if (typeof query == "string")
       query = new RegExp(query.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"), caseInsensitive ? "gi" : "g");
@@ -63,12 +66,13 @@
       selectValueOnOpen: true,
       closeOnEnter: false,
       onClose: function() { clearSearch(cm); },
-      onKeyDown: onKeyDown
+      onKeyDown: onKeyDown,
+      bottom: cm.options.search.bottom
     });
   }
 
   function dialog(cm, text, shortText, deflt, f) {
-    if (cm.openDialog) cm.openDialog(text, f, {value: deflt, selectValueOnOpen: true});
+    if (cm.openDialog) cm.openDialog(text, f, {value: deflt, selectValueOnOpen: true, bottom: cm.options.search.bottom});
     else f(prompt(shortText, deflt));
   }
 

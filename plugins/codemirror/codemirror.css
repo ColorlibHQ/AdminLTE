@@ -19,7 +19,7 @@
 }
 
 .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
-  background-color: white; /* The little square between H and V scrollbars */
+  background-color: transparent; /* The little square between H and V scrollbars */
 }
 
 /* GUTTER */

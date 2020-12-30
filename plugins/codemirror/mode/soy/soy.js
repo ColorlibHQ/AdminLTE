@@ -463,8 +463,15 @@
             return null;
 
           case "tag":
-            var endTag = state.tag[0] == "/";
-            var tagName = endTag ? state.tag.substring(1) : state.tag;
+            var endTag;
+            var tagName;
+            if (state.tag === undefined) {
+              endTag = true;
+              tagName = '';
+            } else {
+              endTag = state.tag[0] == "/";
+              tagName = endTag ? state.tag.substring(1) : state.tag;
+            }
             var tag = tags[tagName];
             if (stream.match(/^\/?}/)) {
               var selfClosed = stream.current() == "/}";
@@ -576,12 +583,11 @@
           return "keyword";
         } else if (match = stream.match(/^<\{/)) {
           state.soyState.push("template-call-expression");
-          state.tag = "print";
           state.indent += 2 * config.indentUnit;
           state.soyState.push("tag");
           return "keyword";
         } else if (match = stream.match(/^<\/>/)) {
-          state.indent -= 2 * config.indentUnit;
+          state.indent -= 1 * config.indentUnit;
           return "keyword";
         }
 

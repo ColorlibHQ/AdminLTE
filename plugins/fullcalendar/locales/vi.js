@@ -18,7 +18,7 @@ FullCalendar.globalLocales.push(function () {
     },
     weekText: 'Tu',
     allDayText: 'Cả ngày',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ thêm ' + n
     },
     noEventsText: 'Không có sự kiện để hiển thị',

@@ -18,7 +18,7 @@ FullCalendar.globalLocales.push(function () {
     },
     weekText: 'Не',
     allDayText: 'Күні бойы',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+ тағы ' + n
     },
     noEventsText: 'Көрсету үшін оқиғалар жоқ',

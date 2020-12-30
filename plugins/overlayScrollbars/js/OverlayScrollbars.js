@@ -2336,10 +2336,9 @@
                     var i = 0;
 
                     var passiveOrOptionsIsObj = FRAMEWORK.isPlainObject(passiveOrOptions);
-                    var passive = _supportPassiveEvents && (passiveOrOptionsIsObj ? (passiveOrOptions._passive || false) : passiveOrOptions);
+                    var passive = (_supportPassiveEvents && (passiveOrOptionsIsObj ? (passiveOrOptions._passive) : passiveOrOptions)) || false;
                     var capture = passiveOrOptionsIsObj && (passiveOrOptions._capture || false);
-                    var useNative = capture || passive;
-                    var nativeParam = passive ? {
+                    var nativeParam = _supportPassiveEvents ? {
                         passive: passive,
                         capture: capture,
                     } : capture;
@@ -2350,7 +2349,7 @@
                     }
                     else {
                         for (; i < events[LEXICON.l]; i++) {
-                            if(useNative) {
+                            if(_supportPassiveEvents) {
                                 element[0][method](events[i], listener, nativeParam);
                             }
                             else {

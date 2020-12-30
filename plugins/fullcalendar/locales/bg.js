@@ -17,7 +17,7 @@ FullCalendar.globalLocales.push(function () {
       list: 'График',
     },
     allDayText: 'Цял ден',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+още ' + n
     },
     noEventsText: 'Няма събития за показване',

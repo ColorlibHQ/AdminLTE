@@ -18,7 +18,7 @@ FullCalendar.globalLocales.push(function () {
     },
     weekText: 'हफ्ता',
     allDayText: 'सभी दिन',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '+अधिक ' + n
     },
     noEventsText: 'कोई घटनाओं को प्रदर्शित करने के लिए',

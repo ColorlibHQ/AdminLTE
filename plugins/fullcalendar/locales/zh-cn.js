@@ -19,7 +19,7 @@ FullCalendar.globalLocales.push(function () {
     },
     weekText: '周',
     allDayText: '全天',
-    moreLinkText(n) {
+    moreLinkText: function(n) {
       return '另外 ' + n + ' 个'
     },
     noEventsText: '没有事件显示',
