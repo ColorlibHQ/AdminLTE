@@ -47,9 +47,6 @@ $sidebar-custom-padding-y: .5rem !default;
 // Boxed layout maximum width
 $boxed-layout-max-width: 1250px !default;
 
-// When to show the smaller logo
-$screen-header-collapse: map-get($grid-breakpoints, md) !default;
-
 // Body background (Affects main content background only)
 $main-bg: #f4f6f9 !default;
 
@@ -70,9 +67,6 @@ $main-header-bottom-border-width: $border-width !default;
 $main-header-bottom-border-color: $gray-300 !default;
 $main-header-bottom-border: $main-header-bottom-border-width solid $main-header-bottom-border-color !default;
 $main-header-link-padding-y: $navbar-padding-y !default;
-$main-header-link-padding-x: $navbar-padding-x !default;
-$main-header-brand-padding-y: $navbar-brand-padding-y !default;
-$main-header-brand-padding-x: $navbar-padding-x !default;
 $main-header-height-inner: ($nav-link-height + ($main-header-link-padding-y * 2)) !default;
 $main-header-height: calc(#{$main-header-height-inner} + #{$main-header-bottom-border-width}) !default;
 $nav-link-sm-padding-y: .35rem !default;
@@ -124,7 +118,6 @@ $sidebar-dark-submenu-hover-color: $white !default;
 $sidebar-dark-submenu-hover-bg: $sidebar-dark-hover-bg !default;
 $sidebar-dark-submenu-active-color: $sidebar-dark-bg !default;
 $sidebar-dark-submenu-active-bg: rgba(255, 255, 255, .9) !default;
-$sidebar-dark-header-color: $white !default;
 
 // Light sidebar
 $sidebar-light-bg: $white !default;
@@ -134,11 +127,9 @@ $sidebar-light-hover-color: $gray-900 !default;
 $sidebar-light-active-color: $black !default;
 $sidebar-light-submenu-bg: transparent !default;
 $sidebar-light-submenu-color: #777 !default;
-$sidebar-light-submenu-hover-color: #000 !default;
 $sidebar-light-submenu-hover-bg: $sidebar-light-hover-bg !default;
 $sidebar-light-submenu-active-color: $sidebar-light-hover-color !default;
 $sidebar-light-submenu-active-bg: $sidebar-light-submenu-hover-bg !default;
-$sidebar-light-header-color: $gray-800 !default;
 
 // SIDEBAR MINI
 // --------------------------------------------------------
@@ -165,19 +156,12 @@ $card-img-size: $img-size-sm !default;
 // PROGRESS BARS
 // --------------------------------------------------------
 $progress-bar-border-radius: 1px !default;
-$progress-bar-sm-border-radius: 1px !default;
-$progress-bar-xs-border-radius: 1px !default;
 
 // DIRECT CHAT
 // --------------------------------------------------------
-$direct-chat-height: 250px !default;
 $direct-chat-default-msg-bg: $gray-x-light !default;
 $direct-chat-default-font-color: #444 !default;
 $direct-chat-default-msg-border-color: $gray-x-light !default;
-
-// CHAT WIDGET
-// --------------------------------------------------------
-$attachment-border-radius: 3px !default;
 
 // Z-INDEX
 // --------------------------------------------------------
@@ -185,7 +169,6 @@ $zindex-main-header: $zindex-fixed + 4 !default;
 $zindex-main-sidebar: $zindex-fixed + 8 !default;
 $zindex-main-footer: $zindex-fixed + 2 !default;
 $zindex-control-sidebar: $zindex-fixed + 1 !default;
-$zindex-sidebar-mini-links: 010 !default;
 $zindex-toasts: $zindex-main-sidebar + 2 !default;
 
 // TRANSITIONS SETTINGS
