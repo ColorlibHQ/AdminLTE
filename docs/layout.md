@@ -11,7 +11,6 @@ The layout consists of four major parts:
 
 - Wrapper `.wrapper`. A div that wraps the whole site.
 - Main Header `.main-header`. Contains the logo and navbar.
-- Sidebar `.sidebar-wrapper`. Contains the user panel and sidebar menu.
 - Content `.content-wrapper`. Contains the page header and content.
 
 #### Layout Options
