@@ -1,0 +1,194 @@
+/*!
+ *   AdminLTE RTL v3.x (RTL fix just for sample pages not real project)
+ *   Author: Ali Shareei <https://github.com/alishareei>
+ *   License: Open source - MIT <https://opensource.org/licenses/MIT>
+ */
+
+/*
+|--------------------------------------------------------------------------
+| Do not use this styles for the real project!
+|--------------------------------------------------------------------------
+|
+| In this file, we try to adapt the original example pages with the RTL mode.
+| In a real project, appropriate classes should be used.
+| For example "float-right" class for sorting an element on the right side.
+| But here we did not want to copy and modify all the sample pages for RTL version.
+|
+| So we reversed some classes like the following:
+| 1. float-right / float-left
+| 2. text-right / text-left
+| 3. pos-right / pos-left
+| 4. float-sm-right / float-sm-left
+| 5. dropdown-menu-right
+| 6. ml-auto / mr-auto, 
+| 7. mr-{x} / ml-{x}
+| and ...
+|
+*/
+ 
+/* --------------------------- Header & Footer --------------------------- */
+/* --- Header: navbar --- */
+.main-header .navbar-nav.ml-auto {
+    margin-left: unset !important;
+    margin-right: auto !important;
+}
+
+.main-header > form.form-inline.ml-3 {
+    margin-left: unset !important;
+    margin-right: 1rem !important;
+}
+
+@media (min-width: 480px) {
+	.main-header .navbar-nav .dropdown-menu-right {
+		left: 0 !important;
+		right: auto !important;
+	}
+}
+
+.main-header .navbar-nav .dropdown-menu-right .dropdown-item span.float-right {
+    float: left !important;
+}
+
+.main-header .navbar-nav .dropdown-menu-right .dropdown-item i.mr-1 {
+	margin-right: unset !important;
+    margin-left: .25rem !important;
+}
+
+.main-header .navbar-nav .dropdown-menu-right .dropdown-item i.mr-2 {
+    margin-right: unset !important;
+    margin-left: .5rem !important;
+}
+
+.main-header .navbar-nav .dropdown-menu-right .dropdown-item .img-circle.mr-3 {
+    margin-right: unset !important;
+    margin-left: 1rem !important;
+}
+
+/* --- Header: breadcrumb --- */
+.breadcrumb.float-sm-right {
+	float: left !important;
+}
+
+/* --- Footer --- */
+footer.main-footer .float-right {
+	float: left !important;
+}
+
+/* --------------------------- Sidebar --------------------------- */
+.layout-fixed .main-sidebar-custom .sidebar-custom .btn.pos-right,
+.layout-fixed .main-sidebar-custom-lg .sidebar-custom .btn.pos-right,
+.layout-fixed .main-sidebar-custom-xl .sidebar-custom .btn.pos-right {
+	right: unset;
+	left: .5rem;
+}
+
+/* --------------------------- Dashboards --------------------------- */
+.card .card-header .card-title i.mr-1{
+	margin-right: unset !important;
+    margin-left: .25rem !important;
+}
+
+.progress-group .float-right,
+.card .card-footer .float-right,
+.card-footer .nav-pills .nav-link .float-right, 
+.products-list .product-info .product-title .float-right {
+    float: left !important;
+}
+
+.card .card-footer .float-left {
+	float: right !important;
+}
+
+.card-body .d-flex p.ml-auto {
+    margin-left: unset !important;
+    margin-right: auto !important;
+	text-align: left !important;
+}
+
+.card-body .d-flex span.mr-2,
+.card-body .table td img.mr-2 {
+    margin-right: unset !important;
+    margin-left: .5rem !important;
+}
+
+.card-body .table td small.mr-1 {
+	margin-right: unset !important;
+    margin-left: .25rem !important;
+}
+
+.card-body .d-flex p.d-flex.text-right {
+	text-align: left !important;
+}
+
+/* --------------------------- Pages --------------------------- */
+.card.card-widget .card-body  .text-muted.float-right {
+    float: left !important;
+}
+
+.card-header .nav-pills.ml-auto {
+    margin-left: unset !important;
+    margin-right: auto !important;
+}
+
+/* --- gallery --- */
+.card-body div .mb-2 .float-right {
+    float: left !important;
+}
+
+.filter-container {
+	direction: ltr;
+}
+
+/* --- mailbox --- */
+.mailbox-controls div.float-right {
+	float: left !important;
+}
+
+.card-body .nav-pills a.nav-link .badge.float-right {
+	float: left !important;
+}
+
+/* --- invoice --- */
+.invoice h4 small.float-right {
+	float: left !important;
+}
+
+.invoice .no-print .btn.float-right {
+	float: left !important;
+	margin-left: 5px;
+}
+
+/* --- profile --- */
+#activity .post .user-block .username a.btn-tool.float-right {
+	float: left !important;
+}
+
+#activity .post p > span.float-right {
+	float: left !important;
+}
+
+.box-profile ul.list-group li > a.float-right {
+	float: left !important;
+}
+
+/* --- project --- */
+section.content .row .col-12 input.btn.float-right {
+	float: left !important;
+}
+
+/* --- contacts --- */
+.align-items-stretch .bg-light .card-body .row .col-7 ul.ml-4 {
+	margin-left: unset !important;
+	margin-right: 1.5rem !important;
+	-webkit-padding-start: 0px;
+	padding-inline-start: 0px;
+}
+
+.align-items-stretch .bg-light .card-footer .text-right {
+	float: left !important;
+}
+
+.contacts-list .contacts-list-info .contacts-list-date.float-right {
+	float: left !important;
+}
+/*# sourceMappingURL=rtl-fix-for-examples.css.map */

@@ -65,7 +65,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('body').hasClass('dark-mode'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('dark-mode')
@@ -73,15 +73,47 @@
       $('body').removeClass('dark-mode')
     }
   })
-  var $dark_mode_container = $('<div />', { class: 'mb-4' }).append($dark_mode_checkbox).append('<span>Dark Mode</span>')
+  var $dark_mode_container = $('<div />', { class: 'mb-1' }).append($dark_mode_checkbox).append('<span>Dark Mode</span>')
   $container.append($dark_mode_container)
+  
+  var $set_rtl_checkbox = $('<input />', {
+    type: 'checkbox',
+    value: 1,
+    checked: $('body').hasClass('rtl-layout'),
+    class: 'mr-1 ml-1'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+		
+      if (!$(".rtl-css-files").length){
+		var cssBasePath = '';
+		$('link[rel="stylesheet"]').each(function (index, element) {
+			var stylePath = $(this).attr('href');
+			if (stylePath && stylePath.indexOf('dist/css') !== -1) {
+				cssBasePath = stylePath.substring(0, stylePath.indexOf('dist/css'));
+				return false;
+			}
+		});
+		  
+        $('head').append('<link class="rtl-css-files" rel="stylesheet" href="'+ cssBasePath +'dist/css/adminlte-rtl.css" disabled>');
+        $('head').append('<link class="rtl-css-files" rel="stylesheet" href="'+ cssBasePath +'dist/css/rtl-fix-for-examples.css" disabled>');
+      }
+	  
+      $('.rtl-css-files').attr('disabled', false);
+      $('body').addClass('rtl-layout')
+    } else {
+      $('.rtl-css-files').attr('disabled', true);
+      $('body').removeClass('rtl-layout')
+    }
+  })
+  var $set_rtl_container = $('<div />', { class: 'mb-4' }).append($set_rtl_checkbox).append('<span>RTL (right to left)</span>')
+  $container.append($set_rtl_container)
 
   $container.append('<h6>Header Options</h6>')
   var $header_fixed_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
     checked: $('body').hasClass('layout-navbar-fixed'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('layout-navbar-fixed')
@@ -96,7 +128,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('.main-header').hasClass('dropdown-legacy'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.main-header').addClass('dropdown-legacy')
@@ -111,7 +143,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('.main-header').hasClass('border-bottom-0'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.main-header').addClass('border-bottom-0')
@@ -128,7 +160,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('body').hasClass('sidebar-collapse'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('sidebar-collapse')
@@ -152,7 +184,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('body').hasClass('layout-fixed'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('layout-fixed')
@@ -169,7 +201,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('body').hasClass('sidebar-mini'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('sidebar-mini')
@@ -184,7 +216,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('body').hasClass('sidebar-mini-md'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('sidebar-mini-md')
@@ -199,7 +231,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('body').hasClass('sidebar-mini-xs'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('sidebar-mini-xs')
@@ -214,7 +246,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('.nav-sidebar').hasClass('nav-flat'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.nav-sidebar').addClass('nav-flat')
@@ -229,7 +261,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('.nav-sidebar').hasClass('nav-legacy'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.nav-sidebar').addClass('nav-legacy')
@@ -244,7 +276,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('.nav-sidebar').hasClass('nav-compact'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.nav-sidebar').addClass('nav-compact')
@@ -259,7 +291,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('.nav-sidebar').hasClass('nav-child-indent'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.nav-sidebar').addClass('nav-child-indent')
@@ -274,7 +306,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('.nav-sidebar').hasClass('nav-collapse-hide-child'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.nav-sidebar').addClass('nav-collapse-hide-child')
@@ -289,7 +321,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('.main-sidebar').hasClass('sidebar-no-expand'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.main-sidebar').addClass('sidebar-no-expand')
@@ -305,7 +337,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('body').hasClass('layout-footer-fixed'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('layout-footer-fixed')
@@ -322,7 +354,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('body').hasClass('text-sm'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('text-sm')
@@ -337,7 +369,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('.main-header').hasClass('text-sm'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.main-header').addClass('text-sm')
@@ -352,7 +384,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('.brand-link').hasClass('text-sm'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.brand-link').addClass('text-sm')
@@ -367,7 +399,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('.nav-sidebar').hasClass('text-sm'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.nav-sidebar').addClass('text-sm')
@@ -382,7 +414,7 @@
     type: 'checkbox',
     value: 1,
     checked: $('.main-footer').hasClass('text-sm'),
-    class: 'mr-1'
+    class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.main-footer').addClass('text-sm')
