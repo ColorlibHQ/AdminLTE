@@ -75,7 +75,7 @@
   })
   var $dark_mode_container = $('<div />', { class: 'mb-1' }).append($dark_mode_checkbox).append('<span>Dark Mode</span>')
   $container.append($dark_mode_container)
-  
+
   var $set_rtl_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
@@ -83,25 +83,24 @@
     class: 'mr-1 ml-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
-		
-      if (!$(".rtl-css-files").length){
-        var cssBasePath = '';
-        $('link[rel="stylesheet"]').each(function (index, element) {
-          var stylePath = $(this).attr('href');
+      if ($('.rtl-css-files').length === 0) {
+        var cssBasePath = ''
+        $('link[rel="stylesheet"]').each(function () {
+          var stylePath = $(this).attr('href')
           if (stylePath && stylePath.indexOf('dist/css') !== -1) {
-            cssBasePath = stylePath.substring(0, stylePath.indexOf('dist/css'));
-            return false;
+            cssBasePath = stylePath.slice(0, stylePath.indexOf('dist/css'))
+            return false
           }
-        });
-		  
-        $('head').append('<link class="rtl-css-files" rel="stylesheet" href="'+ cssBasePath +'dist/css/adminlte-rtl.css" disabled>');
-        $('head').append('<link class="rtl-css-files" rel="stylesheet" href="'+ cssBasePath +'dist/css/rtl-fix-for-examples.css" disabled>');
+        })
+
+        $('head').append('<link class="rtl-css-files" rel="stylesheet" href="' + cssBasePath + 'dist/css/adminlte-rtl.css" disabled>')
+        $('head').append('<link class="rtl-css-files" rel="stylesheet" href="' + cssBasePath + 'dist/css/rtl-fix-for-examples.css" disabled>')
       }
-	  
-      $('.rtl-css-files').attr('disabled', false);
+
+      $('.rtl-css-files').attr('disabled', false)
       $('body').addClass('rtl-layout')
     } else {
-      $('.rtl-css-files').attr('disabled', true);
+      $('.rtl-css-files').attr('disabled', true)
       $('body').removeClass('rtl-layout')
     }
   })
