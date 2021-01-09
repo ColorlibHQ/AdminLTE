@@ -376,9 +376,11 @@ ul {
 	padding-left: unset;
 }
 
+/*
 .custom-switch .custom-control-label::after {
-	right2: -10px;
+	right: -10px;
 }
+*/
 
 .custom-switch .custom-control-label::before {
 	right: -2.35rem;

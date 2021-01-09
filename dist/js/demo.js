@@ -85,14 +85,14 @@
     if ($(this).is(':checked')) {
 		
       if (!$(".rtl-css-files").length){
-		var cssBasePath = '';
-		$('link[rel="stylesheet"]').each(function (index, element) {
-			var stylePath = $(this).attr('href');
-			if (stylePath && stylePath.indexOf('dist/css') !== -1) {
-				cssBasePath = stylePath.substring(0, stylePath.indexOf('dist/css'));
-				return false;
-			}
-		});
+        var cssBasePath = '';
+        $('link[rel="stylesheet"]').each(function (index, element) {
+          var stylePath = $(this).attr('href');
+          if (stylePath && stylePath.indexOf('dist/css') !== -1) {
+            cssBasePath = stylePath.substring(0, stylePath.indexOf('dist/css'));
+            return false;
+          }
+        });
 		  
         $('head').append('<link class="rtl-css-files" rel="stylesheet" href="'+ cssBasePath +'dist/css/adminlte-rtl.css" disabled>');
         $('head').append('<link class="rtl-css-files" rel="stylesheet" href="'+ cssBasePath +'dist/css/rtl-fix-for-examples.css" disabled>');
