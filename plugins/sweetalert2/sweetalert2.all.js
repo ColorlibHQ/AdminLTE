@@ -1,5 +1,5 @@
 /*!
-* sweetalert2 v10.12.6
+* sweetalert2 v10.13.0
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -1038,6 +1038,7 @@
       var labelClass = swalClasses['input-label'];
       label.setAttribute('for', input.id);
       label.className = labelClass;
+      addClass(label, params.customClass.inputLabel);
       label.innerText = params.inputLabel;
       prependTo.insertAdjacentElement('beforebegin', label);
     }
@@ -3390,8 +3391,8 @@
       if (innerParams.timerProgressBar) {
         show(timerProgressBar);
         setTimeout(function () {
-          if (globalState$$1.timeout.running) {
-            // timer can be already stopped at this point
+          if (globalState$$1.timeout && globalState$$1.timeout.running) {
+            // timer can be already stopped or unset at this point
             animateTimerProgressBar(innerParams.timer);
           }
         });
@@ -3616,7 +3617,7 @@
     };
   });
   SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '10.12.6';
+  SweetAlert.version = '10.13.0';
 
   var Swal = SweetAlert;
   Swal["default"] = Swal;

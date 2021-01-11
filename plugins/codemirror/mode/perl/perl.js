@@ -516,7 +516,7 @@ CodeMirror.defineMode("perl",function(){
                 if(stream.match(/^\-?[\d\.]/,false))
                         if(stream.match(/^(\-?(\d*\.\d+(e[+-]?\d+)?|\d+\.\d*)|0x[\da-fA-F]+|0b[01]+|\d+(e[+-]?\d+)?)/))
                                 return 'number';
-                if(stream.match(/^<<(?=\w)/)){                  // NOTE: <<SOMETHING\n...\nSOMETHING\n
+                if(stream.match(/^<<(?=[_a-zA-Z])/)){                  // NOTE: <<SOMETHING\n...\nSOMETHING\n
                         stream.eatWhile(/\w/);
                         return tokenSOMETHING(stream,state,stream.current().substr(2));}
                 if(stream.sol()&&stream.match(/^\=item(?!\w)/)){// NOTE: \n=item...\n=cut\n
@@ -697,7 +697,7 @@ CodeMirror.defineMode("perl",function(){
                                         return "variable-2";}
                         stream.pos=p;}
                 if(/[$@%&]/.test(ch)){
-                        if(stream.eatWhile(/[\w$\[\]]/)||stream.eat("{")&&stream.eatWhile(/[\w$\[\]]/)&&stream.eat("}")){
+                        if(stream.eatWhile(/[\w$]/)||stream.eat("{")&&stream.eatWhile(/[\w$]/)&&stream.eat("}")){
                                 var c=stream.current();
                                 if(PERL[c])
                                         return "variable-2";
