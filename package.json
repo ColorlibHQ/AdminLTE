@@ -143,7 +143,7 @@
     "eslint-plugin-unicorn": "^25.0.1",
     "node-sass": "^5.0.0",
     "node-sass-package-importer": "^5.3.2",
-    "nodemon": "^2.0.6",
+    "nodemon": "^2.0.7",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.2.2",
     "postcss-cli": "^8.3.1",
