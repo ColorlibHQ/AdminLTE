@@ -580,7 +580,7 @@ body:not(.layout-fixed) {
     .control-sidebar-content {
       height: calc(100vh - #{$main-header-height});
       overflow-y: auto;
-      scrollbar-width: thin;
+      @include scrollbar-width-thin();
     }
   }
 }
