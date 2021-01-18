@@ -683,4 +683,8 @@ body:not(.layout-fixed) {
       color: $white;
     }
   }
+  .preloader {
+    background-color: $dark;
+    color: $white;
+  }
 }
