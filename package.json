@@ -16,7 +16,7 @@
     "css-prefix-splits": "postcss --config build/config/postcss.config.js --replace \"dist/css/alt/*.css\" \"!dist/css/alt/*.min.css\"",
     "css-minify-bash": "cleancss --level 1 --format breakWith=lf --source-map --source-map-inline-sources --output ",
     "css-minify": "npm run css-minify-bash -- dist/css/adminlte.min.css dist/css/adminlte.css",
-    "css-minify-splits": "npm-run-all --sequential css-minify:core css-minify:components css-minify:extra-components css-minify:pages css-minify:plugins",
+    "css-minify-splits": "npm-run-all --parallel css-minify:core css-minify:components css-minify:extra-components css-minify:pages css-minify:plugins",
     "css-minify:core": "npm run css-minify-bash -- dist/css/alt/adminlte.core.min.css dist/css/alt/adminlte.core.css",
     "css-minify:components": "npm run css-minify-bash -- dist/css/alt/adminlte.components.min.css dist/css/alt/adminlte.components.css",
     "css-minify:extra-components": "npm run css-minify-bash -- dist/css/alt/adminlte.extra-components.min.css dist/css/alt/adminlte.extra-components.css",
