@@ -67,7 +67,7 @@
     "url": "https://github.com/ColorlibHQ/AdminLTE/issues"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.1",
+    "@fortawesome/fontawesome-free": "^5.15.2",
     "@lgaitan/pace-progress": "^1.0.7",
     "@sweetalert2/theme-bootstrap-4": "^4.0.1",
     "@ttskch/select2-bootstrap4-theme": "^1.4.0",
