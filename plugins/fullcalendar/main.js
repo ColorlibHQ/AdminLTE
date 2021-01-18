@@ -1,5 +1,5 @@
 /*!
-FullCalendar v5.5.0
+FullCalendar v5.5.1
 Docs & License: https://fullcalendar.io/
 (c) 2020 Adam Shaw
 */
@@ -8740,15 +8740,15 @@ var FullCalendar = (function (exports) {
             var bodySectionNodes = [];
             var footSectionNodes = [];
             while (configI < configCnt && (currentConfig = sectionConfigs[configI]).type === 'header') {
-                headSectionNodes.push(this.renderSection(currentConfig, configI, microColGroupNode));
+                headSectionNodes.push(this.renderSection(currentConfig, microColGroupNode));
                 configI += 1;
             }
             while (configI < configCnt && (currentConfig = sectionConfigs[configI]).type === 'body') {
-                bodySectionNodes.push(this.renderSection(currentConfig, configI, microColGroupNode));
+                bodySectionNodes.push(this.renderSection(currentConfig, microColGroupNode));
                 configI += 1;
             }
             while (configI < configCnt && (currentConfig = sectionConfigs[configI]).type === 'footer') {
-                footSectionNodes.push(this.renderSection(currentConfig, configI, microColGroupNode));
+                footSectionNodes.push(this.renderSection(currentConfig, microColGroupNode));
                 configI += 1;
             }
             // firefox bug: when setting height on table and there is a thead or tfoot,
@@ -8761,13 +8761,13 @@ var FullCalendar = (function (exports) {
                 style: { height: props.height },
             }, Boolean(!isBuggy && headSectionNodes.length) && createElement.apply(void 0, __spreadArrays(['thead', {}], headSectionNodes)), Boolean(!isBuggy && bodySectionNodes.length) && createElement.apply(void 0, __spreadArrays(['tbody', {}], bodySectionNodes)), Boolean(!isBuggy && footSectionNodes.length) && createElement.apply(void 0, __spreadArrays(['tfoot', {}], footSectionNodes)), isBuggy && createElement.apply(void 0, __spreadArrays(['tbody', {}], headSectionNodes, bodySectionNodes, footSectionNodes)));
         };
-        SimpleScrollGrid.prototype.renderSection = function (sectionConfig, sectionI, microColGroupNode) {
+        SimpleScrollGrid.prototype.renderSection = function (sectionConfig, microColGroupNode) {
             if ('outerContent' in sectionConfig) {
                 return (createElement(Fragment, { key: sectionConfig.key }, sectionConfig.outerContent));
             }
-            return (createElement("tr", { key: sectionConfig.key, className: getSectionClassNames(sectionConfig, this.props.liquid).join(' ') }, this.renderChunkTd(sectionConfig, sectionI, microColGroupNode, sectionConfig.chunk)));
+            return (createElement("tr", { key: sectionConfig.key, className: getSectionClassNames(sectionConfig, this.props.liquid).join(' ') }, this.renderChunkTd(sectionConfig, microColGroupNode, sectionConfig.chunk)));
         };
-        SimpleScrollGrid.prototype.renderChunkTd = function (sectionConfig, sectionI, microColGroupNode, chunkConfig) {
+        SimpleScrollGrid.prototype.renderChunkTd = function (sectionConfig, microColGroupNode, chunkConfig) {
             if ('outerContent' in chunkConfig) {
                 return chunkConfig.outerContent;
             }
@@ -8781,11 +8781,12 @@ var FullCalendar = (function (exports) {
                 forceYScrollbars ? 'scroll' :
                     !needsYScrolling ? 'hidden' :
                         'auto';
+            var sectionKey = sectionConfig.key;
             var content = renderChunkContent(sectionConfig, chunkConfig, {
                 tableColGroupNode: microColGroupNode,
                 tableMinWidth: '',
-                clientWidth: scrollerClientWidths[sectionI] !== undefined ? scrollerClientWidths[sectionI] : null,
-                clientHeight: scrollerClientHeights[sectionI] !== undefined ? scrollerClientHeights[sectionI] : null,
+                clientWidth: scrollerClientWidths[sectionKey] !== undefined ? scrollerClientWidths[sectionKey] : null,
+                clientHeight: scrollerClientHeights[sectionKey] !== undefined ? scrollerClientHeights[sectionKey] : null,
                 expandRows: sectionConfig.expandRows,
                 syncRowHeights: false,
                 rowSyncHeights: [],
@@ -8793,13 +8794,14 @@ var FullCalendar = (function (exports) {
             });
             return (createElement("td", { ref: chunkConfig.elRef },
                 createElement("div", { className: "fc-scroller-harness" + (isLiquid ? ' fc-scroller-harness-liquid' : '') },
-                    createElement(Scroller, { ref: this.scrollerRefs.createRef(sectionI), elRef: this.scrollerElRefs.createRef(sectionI), overflowY: overflowY, overflowX: !props.liquid ? 'visible' : 'hidden' /* natural height? */, maxHeight: sectionConfig.maxHeight, liquid: isLiquid, liquidIsAbsolute // because its within a harness
+                    createElement(Scroller, { ref: this.scrollerRefs.createRef(sectionKey), elRef: this.scrollerElRefs.createRef(sectionKey), overflowY: overflowY, overflowX: !props.liquid ? 'visible' : 'hidden' /* natural height? */, maxHeight: sectionConfig.maxHeight, liquid: isLiquid, liquidIsAbsolute // because its within a harness
                         : true }, content))));
         };
         SimpleScrollGrid.prototype._handleScrollerEl = function (scrollerEl, key) {
-            var sectionI = parseInt(key, 10);
-            var chunkConfig = this.props.sections[sectionI].chunk;
-            setRef(chunkConfig.scrollerElRef, scrollerEl);
+            var section = getSectionByKey(this.props.sections, key);
+            if (section) {
+                setRef(section.chunk.scrollerElRef, scrollerEl);
+            }
         };
         SimpleScrollGrid.prototype.componentDidMount = function () {
             this.handleSizing();
@@ -8819,26 +8821,27 @@ var FullCalendar = (function (exports) {
         };
         SimpleScrollGrid.prototype.computeScrollerDims = function () {
             var scrollbarWidth = getScrollbarWidths();
-            var sectionCnt = this.props.sections.length;
             var _a = this, scrollerRefs = _a.scrollerRefs, scrollerElRefs = _a.scrollerElRefs;
             var forceYScrollbars = false;
             var scrollerClientWidths = {};
             var scrollerClientHeights = {};
-            for (var sectionI = 0; sectionI < sectionCnt; sectionI += 1) { // along edge
-                var scroller = scrollerRefs.currentMap[sectionI];
+            for (var sectionKey in scrollerRefs.currentMap) {
+                var scroller = scrollerRefs.currentMap[sectionKey];
                 if (scroller && scroller.needsYScrolling()) {
                     forceYScrollbars = true;
                     break;
                 }
             }
-            for (var sectionI = 0; sectionI < sectionCnt; sectionI += 1) { // along edge
-                var scrollerEl = scrollerElRefs.currentMap[sectionI];
+            for (var _i = 0, _b = this.props.sections; _i < _b.length; _i++) {
+                var section = _b[_i];
+                var sectionKey = section.key;
+                var scrollerEl = scrollerElRefs.currentMap[sectionKey];
                 if (scrollerEl) {
                     var harnessEl = scrollerEl.parentNode; // TODO: weird way to get this. need harness b/c doesn't include table borders
-                    scrollerClientWidths[sectionI] = Math.floor(harnessEl.getBoundingClientRect().width - (forceYScrollbars
+                    scrollerClientWidths[sectionKey] = Math.floor(harnessEl.getBoundingClientRect().width - (forceYScrollbars
                         ? scrollbarWidth.y // use global because scroller might not have scrollbars yet but will need them in future
                         : 0));
-                    scrollerClientHeights[sectionI] = Math.floor(harnessEl.getBoundingClientRect().height);
+                    scrollerClientHeights[sectionKey] = Math.floor(harnessEl.getBoundingClientRect().height);
                 }
             }
             return { forceYScrollbars: forceYScrollbars, scrollerClientWidths: scrollerClientWidths, scrollerClientHeights: scrollerClientHeights };
@@ -8849,6 +8852,15 @@ var FullCalendar = (function (exports) {
         scrollerClientWidths: isPropsEqual,
         scrollerClientHeights: isPropsEqual,
     });
+    function getSectionByKey(sections, key) {
+        for (var _i = 0, sections_1 = sections; _i < sections_1.length; _i++) {
+            var section = sections_1[_i];
+            if (section.key === key) {
+                return section;
+            }
+        }
+        return null;
+    }
 
     var EventRoot = /** @class */ (function (_super) {
         __extends(EventRoot, _super);
@@ -9030,7 +9042,7 @@ var FullCalendar = (function (exports) {
 
     // exports
     // --------------------------------------------------------------------------------------------------
-    var version = '5.5.0'; // important to type it, so .d.ts has generic string
+    var version = '5.5.1'; // important to type it, so .d.ts has generic string
 
     var Calendar = /** @class */ (function (_super) {
         __extends(Calendar, _super);
@@ -12754,10 +12766,10 @@ var FullCalendar = (function (exports) {
     }
 
     var TimeColsSlatsCoords = /** @class */ (function () {
-        function TimeColsSlatsCoords(positions, dateProfile, slatMetas) {
+        function TimeColsSlatsCoords(positions, dateProfile, slotDuration) {
             this.positions = positions;
             this.dateProfile = dateProfile;
-            this.slatMetas = slatMetas;
+            this.slotDuration = slotDuration;
         }
         TimeColsSlatsCoords.prototype.safeComputeTop = function (date) {
             var dateProfile = this.dateProfile;
@@ -12783,12 +12795,10 @@ var FullCalendar = (function (exports) {
         // This is a makeshify way to compute the time-top. Assumes all slatMetas dates are uniform.
         // Eventually allow computation with arbirary slat dates.
         TimeColsSlatsCoords.prototype.computeTimeTop = function (duration) {
-            var _a = this, positions = _a.positions, dateProfile = _a.dateProfile, slatMetas = _a.slatMetas;
+            var _a = this, positions = _a.positions, dateProfile = _a.dateProfile;
             var len = positions.els.length;
-            // we assume dates are uniform
-            var slotDurationMs = slatMetas[1].date.valueOf() - slatMetas[0].date.valueOf();
             // floating-point value of # of slots covered
-            var slatCoverage = (duration.milliseconds - asRoughMs(dateProfile.slotMinTime)) / slotDurationMs;
+            var slatCoverage = (duration.milliseconds - asRoughMs(dateProfile.slotMinTime)) / asRoughMs(this.slotDuration);
             var slatIndex;
             var slatRemainder;
             // compute a floating-point number for how many slats should be progressed through.
@@ -12871,13 +12881,13 @@ var FullCalendar = (function (exports) {
             }
         };
         TimeColsSlats.prototype.updateSizing = function () {
-            var props = this.props;
+            var _a = this, context = _a.context, props = _a.props;
             if (props.onCoords &&
                 props.clientWidth !== null // means sizing has stabilized
             ) {
                 var rootEl = this.rootElRef.current;
                 if (rootEl.offsetHeight) { // not hidden by css
-                    props.onCoords(new TimeColsSlatsCoords(new PositionCache(this.rootElRef.current, collectSlatEls(this.slatElRefs.currentMap, props.slatMetas), false, true), this.props.dateProfile, props.slatMetas));
+                    props.onCoords(new TimeColsSlatsCoords(new PositionCache(this.rootElRef.current, collectSlatEls(this.slatElRefs.currentMap, props.slatMetas), false, true), this.props.dateProfile, context.options.slotDuration));
                 }
             }
         };

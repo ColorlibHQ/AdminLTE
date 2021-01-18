@@ -1347,6 +1347,29 @@
   };
 
   var l64 = {
+    code: 'ta-in',
+    week: {
+      dow: 1, // Monday is the first day of the week.
+      doy: 4, // The week that contains Jan 4th is the first week of the year.
+    },
+    buttonText: {
+      prev: 'முந்தைய',
+      next: 'அடுத்தது',
+      today: 'இன்று',
+      month: 'மாதம்',
+      week: 'சனிக்கிழமை',
+      day: 'நாள்',
+      list: 'தினசரி கதை',
+    },
+    weekText: 'வார',
+    allDayText: 'நாள் முழுவதும்',
+    moreLinkText: function(n) {
+      return '+ மேலும் ' + n
+    },
+    noEventsText: 'நிகழ்வைக் காட்டவில்லை',
+  };
+
+  var l65 = {
     code: 'th',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1370,7 +1393,7 @@
     noEventsText: 'ไม่มีกิจกรรมที่จะแสดง',
   };
 
-  var l65 = {
+  var l66 = {
     code: 'tr',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1391,7 +1414,7 @@
     noEventsText: 'Gösterilecek etkinlik yok',
   };
 
-  var l66 = {
+  var l67 = {
     code: 'ug',
     buttonText: {
       month: 'ئاي',
@@ -1402,7 +1425,7 @@
     allDayText: 'پۈتۈن كۈن',
   };
 
-  var l67 = {
+  var l68 = {
     code: 'uk',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1425,7 +1448,7 @@
     noEventsText: 'Немає подій для відображення',
   };
 
-  var l68 = {
+  var l69 = {
     code: 'uz',
     buttonText: {
       month: 'Oy',
@@ -1440,7 +1463,7 @@
     noEventsText: "Ko'rsatish uchun voqealar yo'q",
   };
 
-  var l69 = {
+  var l70 = {
     code: 'vi',
     week: {
       dow: 1, // Monday is the first day of the week.
@@ -1463,7 +1486,7 @@
     noEventsText: 'Không có sự kiện để hiển thị',
   };
 
-  var l70 = {
+  var l71 = {
     code: 'zh-cn',
     week: {
       // GB/T 7408-1994《数据元和交换格式·信息交换·日期和时间表示法》与ISO 8601:1988等效
@@ -1487,7 +1510,7 @@
     noEventsText: '没有事件显示',
   };
 
-  var l71 = {
+  var l72 = {
     code: 'zh-tw',
     buttonText: {
       prev: '上月',
@@ -1507,7 +1530,7 @@
   /* eslint max-len: off */
 
   var localesAll = [
-    l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22, l23, l24, l25, l26, l27, l28, l29, l30, l31, l32, l33, l34, l35, l36, l37, l38, l39, l40, l41, l42, l43, l44, l45, l46, l47, l48, l49, l50, l51, l52, l53, l54, l55, l56, l57, l58, l59, l60, l61, l62, l63, l64, l65, l66, l67, l68, l69, l70, l71, 
+    l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22, l23, l24, l25, l26, l27, l28, l29, l30, l31, l32, l33, l34, l35, l36, l37, l38, l39, l40, l41, l42, l43, l44, l45, l46, l47, l48, l49, l50, l51, l52, l53, l54, l55, l56, l57, l58, l59, l60, l61, l62, l63, l64, l65, l66, l67, l68, l69, l70, l71, l72, 
   ];
 
   return localesAll;
