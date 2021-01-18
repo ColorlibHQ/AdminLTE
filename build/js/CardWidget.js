@@ -186,7 +186,7 @@ class CardWidget {
       $(this).data(DATA_KEY, typeof config === 'string' ? data : config)
     }
 
-    if (typeof config === 'string' && config.match(/collapse|expand|remove|toggle|maximize|minimize|toggleMaximize/)) {
+    if (typeof config === 'string' && /collapse|expand|remove|toggle|maximize|minimize|toggleMaximize/.test(config)) {
       data[config]()
     } else if (typeof config === 'object') {
       data._init($(this))

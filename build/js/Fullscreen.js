@@ -86,7 +86,7 @@ class Fullscreen {
 
     $(this).data(DATA_KEY, typeof config === 'object' ? config : data)
 
-    if (typeof config === 'string' && config.match(/toggle|fullscreen|windowed/)) {
+    if (typeof config === 'string' && /toggle|fullscreen|windowed/.test(config)) {
       plugin[config]()
     } else {
       plugin.init()

@@ -219,7 +219,7 @@ class SidebarSearch {
 
     $(this).data(DATA_KEY, typeof config === 'object' ? config : data)
 
-    if (typeof config === 'string' && config.match(/init|toggle|close|open|search/)) {
+    if (typeof config === 'string' && /init|toggle|close|open|search/.test(config)) {
       plugin[config]()
     } else {
       plugin.init()
