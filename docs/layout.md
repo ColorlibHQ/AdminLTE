@@ -49,6 +49,23 @@ You can also use the following classes for responsive changes with placing
 {: .quote-info}
 
 
+#### Preloader
+
+Preloader to avoid [https://github.com/ColorlibHQ/AdminLTE/discussions/3319](https://github.com/ColorlibHQ/AdminLTE/discussions/3319)
+
+```html
+<div class="wrapper">
+  <!-- Preloader -->
+  <div class="preloader">
+    <img src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60">
+  </div>
+</div>
+```
+
+- Preloader elements should be added inside `.wrapper` element.
+- You can replace image OR modify size OR include any preload items inside `.preloader` element.
+
+
 #### Dark Mode
 
 AdminLTE 3.1 provides a dark mode option. You can add in body tag:
