@@ -111,7 +111,7 @@ class CardRefresh {
       $(this).data(DATA_KEY, typeof config === 'string' ? data : config)
     }
 
-    if (typeof config === 'string' && config.match(/load/)) {
+    if (typeof config === 'string' && /load/.test(config)) {
       data[config]()
     } else {
       data._init($(this))

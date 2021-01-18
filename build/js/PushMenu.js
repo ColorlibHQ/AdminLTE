@@ -180,7 +180,7 @@ class PushMenu {
         $(this).data(DATA_KEY, data)
       }
 
-      if (typeof operation === 'string' && operation.match(/collapse|expand|toggle/)) {
+      if (typeof operation === 'string' && /collapse|expand|toggle/.test(operation)) {
         data[operation]()
       }
     })

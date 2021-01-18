@@ -81,7 +81,7 @@ class ExpandableTable {
         $(this).data(DATA_KEY, data)
       }
 
-      if (typeof operation === 'string' && operation.match(/init|toggleRow/)) {
+      if (typeof operation === 'string' && /init|toggleRow/.test(operation)) {
         data[operation]()
       }
     })

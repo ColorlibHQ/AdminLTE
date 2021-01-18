@@ -326,7 +326,7 @@ class IFrame {
       $(this).data(DATA_KEY, data)
     }
 
-    if (typeof operation === 'string' && operation.match(/createTab|openTabSidebar|switchTab|removeActiveTab/)) {
+    if (typeof operation === 'string' && /createTab|openTabSidebar|switchTab|removeActiveTab/.test(operation)) {
       data[operation](...args)
     }
   }
