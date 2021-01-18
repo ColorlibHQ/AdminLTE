@@ -46,6 +46,7 @@
       "never"
     ],
     "unicorn/filename-case": "off",
+    "unicorn/consistent-destructuring": "off",
     "unicorn/no-array-callback-reference": "off",
     "unicorn/no-for-loop": "off",
     "unicorn/no-null": "off",
