@@ -9,9 +9,9 @@ on:
       - "**"
 
 env:
-  CI: true
-  NODE: 12.x
-  RUBY: 2.6.x
+  FORCE_COLOR: 2
+  NODE: 14.x
+  RUBY: 2.7
 
 jobs:
   run:
@@ -22,54 +22,35 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: "${{ env.NODE }}"
 
       - name: Set up Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ env.RUBY }}
+          ruby-version: "${{ env.RUBY }}"
+          bundler-cache: true
+          working-directory: docs
 
-      - name: Disable gem docs
-        run: 'echo "gem: --no-document" > ~/.gemrc'
-
-      - name: Get npm cache directory
-        id: npm-cache
+      - name: Version info
         run: |
-          echo "::set-output name=dir::$(npm config get cache)"
+          ruby --version
+          gem --version
+          bundle --version
+          java -version
 
       - name: Set up npm cache
         uses: actions/cache@v2
         with:
-          path: ${{ steps.npm-cache.outputs.dir }}
-          key: ${{ runner.os }}-node-v${{ env.node }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}}
+          path: ~/.npm
+          key: ${{ runner.os }}-node-v${{ env.NODE }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}}
           restore-keys: |
-            ${{ runner.OS }}-node-v${{ env.node }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}
-            ${{ runner.OS }}-node-v${{ env.node }}-
-
-      - name: Set up Ruby cache
-        uses: actions/cache@v2
-        with:
-          path: docs/vendor/bundle
-          key: ${{ runner.os }}-ruby-v${{ env.RUBY }}-${{ hashFiles('docs/Gemfile') }}-${{ hashFiles('docs/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-ruby-v${{ env.RUBY }}-${{ hashFiles('docs/Gemfile') }}-${{ hashFiles('docs/Gemfile.lock') }}
-            ${{ runner.os }}-ruby-v${{ env.RUBY }}-
-
-      - name: Set up Bundler
-        run: gem install bundler -v "~> 1.17"
-
-      - run: ruby --version
-      - run: gem --version
-      - run: bundle --version
-      - run: java -version
+            ${{ runner.os }}-node-v${{ env.NODE }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}
+            ${{ runner.os }}-node-v${{ env.NODE }}-
 
       - name: Install npm dependencies
         run: npm ci
-
-      - name: Install bundler dependencies
-        run: bundle install --gemfile docs/Gemfile --deployment --jobs=4 --retry=3 --clean
 
       - name: Build docs
         run: npm run docs-compile
