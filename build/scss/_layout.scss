@@ -12,6 +12,20 @@ body,
   min-height: 100%;
 }
 
+.preloader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $main-bg;
+  height: 100vh;
+  width: 100%;
+  transition: height 200ms linear;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: $zindex-preloader;
+}
+
 .wrapper {
   position: relative;
 
@@ -668,5 +682,9 @@ body:not(.layout-fixed) {
     .content-header {
       color: $white;
     }
+  }
+  .preloader {
+    background-color: $dark;
+    color: $white;
   }
 }
