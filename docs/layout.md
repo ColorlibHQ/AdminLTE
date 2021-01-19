@@ -57,7 +57,7 @@ Preloader to avoid [https://github.com/ColorlibHQ/AdminLTE/discussions/3319](htt
 <div class="wrapper">
   <!-- Preloader -->
   <div class="preloader">
-    <img src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60">
+    <img src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
   </div>
 </div>
 ```
