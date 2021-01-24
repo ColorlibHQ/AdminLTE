@@ -246,6 +246,18 @@ const Plugins = [
     to: 'plugins/datatables-scroller/css'
   },
   {
+    from: 'node_modules/datatables.net-searchbuilder/js',
+    to: 'plugins/datatables-searchbuilder/js'
+  },
+  {
+    from: 'node_modules/datatables.net-searchbuilder-bs4/js',
+    to: 'plugins/datatables-searchbuilder/js'
+  },
+  {
+    from: 'node_modules/datatables.net-searchbuilder-bs4/css',
+    to: 'plugins/datatables-searchbuilder/css'
+  },
+  {
     from: 'node_modules/datatables.net-searchpanes/js',
     to: 'plugins/datatables-searchpanes/js'
   },
