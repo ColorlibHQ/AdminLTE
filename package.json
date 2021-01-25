@@ -134,7 +134,7 @@
     "@babel/preset-env": "^7.12.11",
     "@rollup/plugin-babel": "^5.2.2",
     "autoprefixer": "^10.2.1",
-    "browser-sync": "^2.26.13",
+    "browser-sync": "^2.26.14",
     "bundlewatch": "^0.3.1",
     "clean-css-cli": "^4.3.0",
     "concurrently": "^5.3.0",
