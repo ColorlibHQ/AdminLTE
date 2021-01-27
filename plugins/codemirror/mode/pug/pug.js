@@ -261,7 +261,7 @@ CodeMirror.defineMode("pug", function (config) {
       }
       return 'variable';
     }
-    if (stream.match(/^\+#{/, false)) {
+    if (stream.match('+#{', false)) {
       stream.next();
       state.mixinCallAfter = true;
       return interpolation(stream, state);

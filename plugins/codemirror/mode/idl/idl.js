@@ -62,7 +62,7 @@
     'empty', 'enable_sysrtn', 'eof', 'eos', 'erase',
     'erf', 'erfc', 'erfcx', 'erode', 'errorplot',
     'errplot', 'estimator_filter', 'execute', 'exit', 'exp',
-    'expand', 'expand_path', 'expint', 'extrac', 'extract_slice',
+    'expand', 'expand_path', 'expint', 'extract', 'extract_slice',
     'f_cvf', 'f_pdf', 'factorial', 'fft', 'file_basename',
     'file_chmod', 'file_copy', 'file_delete', 'file_dirname',
     'file_expand_path', 'file_gunzip', 'file_gzip', 'file_info',

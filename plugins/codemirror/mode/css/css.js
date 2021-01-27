@@ -78,8 +78,8 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
       return ret("qualifier", "qualifier");
     } else if (/[:;{}\[\]\(\)]/.test(ch)) {
       return ret(null, ch);
-    } else if (stream.match(/[\w-.]+(?=\()/)) {
-      if (/^(url(-prefix)?|domain|regexp)$/.test(stream.current().toLowerCase())) {
+    } else if (stream.match(/^[\w-.]+(?=\()/)) {
+      if (/^(url(-prefix)?|domain|regexp)$/i.test(stream.current())) {
         state.tokenize = tokenParenthesized;
       }
       return ret("variable callee", "variable");
@@ -108,7 +108,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
 
   function tokenParenthesized(stream, state) {
     stream.next(); // Must be '('
-    if (!stream.match(/\s*[\"\')]/, false))
+    if (!stream.match(/^\s*[\"\')]/, false))
       state.tokenize = tokenString(")");
     else
       state.tokenize = null;
@@ -781,7 +781,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
         }
       },
       ":": function(stream) {
-        if (stream.match(/\s*\{/, false))
+        if (stream.match(/^\s*\{/, false))
           return [null, null]
         return false;
       },

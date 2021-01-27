@@ -72,7 +72,7 @@
         }
       }
 
-      // donot handle --> as valid ruby, make it HTML close comment instead
+      // do not handle --> as valid ruby, make it HTML close comment instead
       if (state.startOfLine && !stream.match("-->", false) && (ch == "=" || ch == "-" )) {
         state.tokenize = ruby;
         return state.tokenize(stream, state);

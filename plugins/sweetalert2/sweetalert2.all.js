@@ -1,5 +1,5 @@
 /*!
-* sweetalert2 v10.13.0
+* sweetalert2 v10.13.1
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -2650,7 +2650,7 @@
 
   var showWarningsForElements = function showWarningsForElements(template) {
     var allowedElements = swalStringParams.concat(['swal-param', 'swal-button', 'swal-image', 'swal-icon', 'swal-input', 'swal-input-option']);
-    toArray(template.querySelectorAll('*')).forEach(function (el) {
+    toArray(template.children).forEach(function (el) {
       var tagName = el.tagName.toLowerCase();
 
       if (allowedElements.indexOf(tagName) === -1) {
@@ -3617,7 +3617,7 @@
     };
   });
   SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '10.13.0';
+  SweetAlert.version = '10.13.1';
 
   var Swal = SweetAlert;
   Swal["default"] = Swal;

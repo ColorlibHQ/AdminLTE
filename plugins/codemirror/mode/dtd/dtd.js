@@ -34,7 +34,7 @@ CodeMirror.defineMode("dtd", function(config) {
       state.tokenize = inBlock("meta", "?>");
       return ret("meta", ch);
     } else if (ch == "#" && stream.eatWhile(/[\w]/)) return ret("atom", "tag");
-    else if (ch == "|") return ret("keyword", "seperator");
+    else if (ch == "|") return ret("keyword", "separator");
     else if (ch.match(/[\(\)\[\]\-\.,\+\?>]/)) return ret(null, ch);//if(ch === ">") return ret(null, "endtag"); else
     else if (ch.match(/[\[\]]/)) return ret("rule", ch);
     else if (ch == "\"" || ch == "'") {
@@ -112,7 +112,7 @@ CodeMirror.defineMode("dtd", function(config) {
     indent: function(state, textAfter) {
       var n = state.stack.length;
 
-      if( textAfter.match(/\]\s+|\]/) )n=n-1;
+      if( textAfter.charAt(0) === ']' )n--;
       else if(textAfter.substr(textAfter.length-1, textAfter.length) === ">"){
         if(textAfter.substr(0,1) === "<") {}
         else if( type == "doindent" && textAfter.length > 1 ) {}

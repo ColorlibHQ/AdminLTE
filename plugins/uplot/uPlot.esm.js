@@ -4,7 +4,7 @@
 *
 * uPlot.js (μPlot)
 * A small, fast chart for time series, lines, areas, ohlc & bars
-* https://github.com/leeoniya/uPlot (v1.6.1)
+* https://github.com/leeoniya/uPlot (v1.6.3)
 */
 
 const FEAT_TIME          = true;
@@ -334,21 +334,33 @@ function assign(targ) {
 }
 
 // nullModes
-const NULL_IGNORE = 0;  // all nulls are ignored by isGap
-const NULL_GAP    = 1;  // alignment nulls are ignored by isGap (default)
-const NULL_EXPAND = 2;  // nulls are expand to include adjacent alignment nulls
+const NULL_IGNORE = 0;  // all nulls are ignored, converted to undefined (e.g. spanGaps: true)
+const NULL_GAP    = 1;  // nulls are retained, alignment artifacts = undefined values (default)
+const NULL_EXPAND = 2;  // nulls are expanded to include adjacent alignment artifacts (undefined values)
+
+// mark all filler nulls as explicit when adjacent to existing explicit nulls (minesweeper)
+function nullExpand(yVals, nullIdxs, alignedLen) {
+	for (let i = 0, xi, lastNullIdx = -inf; i < nullIdxs.length; i++) {
+		let nullIdx = nullIdxs[i];
+
+		if (nullIdx > lastNullIdx) {
+			xi = nullIdx - 1;
+			while (xi >= 0 && yVals[xi] == null)
+				yVals[xi--] = null;
+
+			xi = nullIdx + 1;
+			while (xi < alignedLen && yVals[xi] == null)
+				yVals[lastNullIdx = xi++] = null;
+		}
+	}
+}
 
 // nullModes is a tables-matched array indicating how to treat nulls in each series
 function join(tables, nullModes) {
-	if (tables.length == 1) {
-		return {
-			data: tables[0],
-			isGap: nullModes ? (u, seriesIdx, dataIdx) => nullModes[0][seriesIdx] != NULL_IGNORE : () => true,
-		};
-	}
+	if (tables.length == 1)
+		return tables[0];
 
 	let xVals = new Set();
-	let xNulls = [new Set()];
 
 	for (let ti = 0; ti < tables.length; ti++) {
 		let t = tables[ti];
@@ -357,22 +369,6 @@ function join(tables, nullModes) {
 
 		for (let i = 0; i < len; i++)
 			xVals.add(xs[i]);
-
-		for (let si = 1; si < t.length; si++) {
-			let nulls = new Set();
-
-			// cache original nulls for isGap lookup
-			if (nullModes == null || nullModes[ti][si] == NULL_GAP || nullModes[ti][si] == NULL_EXPAND) {
-				let ys = t[si];
-
-				for (let i = 0; i < len; i++) {
-					if (ys[i] == null)
-						nulls.add(xs[i]);
-				}
-			}
-
-			xNulls.push(nulls);
-		}
 	}
 
 	let data = [Array.from(xVals).sort((a, b) => a - b)];
@@ -384,8 +380,6 @@ function join(tables, nullModes) {
 	for (let i = 0; i < alignedLen; i++)
 		xIdxs.set(data[0][i], i);
 
-	let gsi = 1;
-
 	for (let ti = 0; ti < tables.length; ti++) {
 		let t = tables[ti];
 		let xs = t[0];
@@ -393,55 +387,35 @@ function join(tables, nullModes) {
 		for (let si = 1; si < t.length; si++) {
 			let ys = t[si];
 
-			let yVals = Array(alignedLen).fill(null);
+			let yVals = Array(alignedLen).fill(undefined);
 
-			for (let i = 0; i < ys.length; i++)
-				yVals[xIdxs.get(xs[i])] = ys[i];
+			let nullMode = nullModes ? nullModes[ti][si] : NULL_GAP;
 
-			// mark all filler nulls as explicit when adjacent to existing explicit nulls (minesweeper)
-			if (nullModes && nullModes[ti][si] == NULL_EXPAND) {
-				let nulls = xNulls[gsi];
-				let size = nulls.size;
-				let	i = 0;
-				let xi;
+			let nullIdxs = [];
 
-				let lastAddedX = -inf;
+			for (let i = 0; i < ys.length; i++) {
+				let yVal = ys[i];
+				let alignedIdx = xIdxs.get(xs[i]);
 
-				for (let xVal of nulls.values()) {
-					if (i++ == size)
-						break;
+				if (yVal == null) {
+					if (nullMode != NULL_IGNORE) {
+						yVals[alignedIdx] = yVal;
 
-					if (xVal > lastAddedX) {
-						let xIdx = xIdxs.get(xVal);
-
-						xi = xIdx - 1;
-						while (yVals[xi] === null) {
-							nulls.add(data[0][xi]);
-							xi--;
-						}
-
-						xi = xIdx + 1;
-						while (yVals[xi] === null) {
-							nulls.add(lastAddedX = data[0][xi]);
-							xi++;
-						}
+						if (nullMode == NULL_EXPAND)
+							nullIdxs.push(alignedIdx);
 					}
 				}
+				else
+					yVals[alignedIdx] = yVal;
 			}
 
-			data.push(yVals);
+			nullExpand(yVals, nullIdxs, alignedLen);
 
-			gsi++;
+			data.push(yVals);
 		}
 	}
 
-	return {
-		data: data,
-		isGap(u, seriesIdx, dataIdx) {
-			let xVal = u._data[0][dataIdx];
-			return xNulls[seriesIdx].has(xVal);
-		},
-	};
+	return data;
 }
 
 const microTask = typeof queueMicrotask == "undefined" ? fn => Promise.resolve().then(fn) : queueMicrotask;
@@ -1120,6 +1094,7 @@ const lineMult = 1.5;		// font-size multiplier
 const xAxisOpts = {
 	show: true,
 	scale: "x",
+	stroke: hexBlack,
 	space: 50,
 	gap: 5,
 	size: 50,
@@ -1233,6 +1208,7 @@ function numSeriesVal(self, val) {
 const yAxisOpts = {
 	show: true,
 	scale: "y",
+	stroke: hexBlack,
 	space: 30,
 	gap: 5,
 	size: 50,
@@ -1267,7 +1243,8 @@ function seriesPoints(self, si) {
 
 function seriesFillTo(self, seriesIdx, dataMin, dataMax) {
 	let scale = self.scales[self.series[seriesIdx].scale];
-	return scale.distr == 3 ? scale.min : 0;
+	let isUpperBandEdge = self.bands && self.bands.some(b => b.series[0] == seriesIdx);
+	return scale.distr == 3 || isUpperBandEdge ? scale.min : 0;
 }
 
 const ySeriesOpts = {
@@ -1277,7 +1254,6 @@ const ySeriesOpts = {
 	show: true,
 	band: false,
 	spanGaps: false,
-	isGap: (self, seriesIdx, dataIdx) => true,
 	alpha: 1,
 	points: {
 		show: seriesPoints,
@@ -1513,8 +1489,6 @@ function linear() {
 				drawAcc = drawAccV;
 			}
 
-			const isGap = series.isGap;
-
 			const dir = scaleX.dir * (scaleX.ori == 0 ? 1 : -1);
 
 			const _paths = {stroke: new Path2D(), fill: null, clip: null, band: null};
@@ -1551,7 +1525,7 @@ function linear() {
 						minY = min(outY, minY);
 						maxY = max(outY, maxY);
 					}
-					else if (!accGaps && isGap(u, seriesIdx, i))
+					else if (!accGaps && dataY[i] === null)
 						accGaps = true;
 				}
 				else {
@@ -1572,14 +1546,14 @@ function linear() {
 						minY = maxY = outY;
 
 						// prior pixel can have data but still start a gap if ends with null
-						if (x - accX > 1 && dataY[i - dir] == null && isGap(u, seriesIdx, i - dir))
+						if (x - accX > 1 && dataY[i - dir] === null)
 							_addGap = true;
 					}
 					else {
 						minY = inf;
 						maxY = -inf;
 
-						if (!accGaps && isGap(u, seriesIdx, i))
+						if (!accGaps && dataY[i] === null)
 							accGaps = true;
 					}
 
@@ -1653,7 +1627,7 @@ function spline(opts) {
 				let xPos = valToPosX(xVal, scaleX, xDim, xOff);
 
 				if (yVal == null) {
-					if (series.isGap(u, seriesIdx, i)) {
+					if (yVal === null) {
 						addGap(gaps, prevXPos, xPos);
 						inGap = true;
 					}
@@ -1855,7 +1829,7 @@ function stepped(opts) {
 				let x1 = round(valToPosX(dataX[i], scaleX, xDim, xOff));
 
 				if (yVal1 == null) {
-					if (series.isGap(u, seriesIdx, i)) {
+					if (yVal1 === null) {
 						addGap(gaps, prevXPos, x1);
 						inGap = true;
 					}
@@ -2578,7 +2552,7 @@ function uPlot(opts, data, then) {
 			s.paths  = s.paths || linearPath || retNull;
 			s.fillTo = fnOrSelf(s.fillTo || seriesFillTo);
 
-			s.stroke = fnOrSelf(s.stroke || hexBlack);
+			s.stroke = fnOrSelf(s.stroke || null);
 			s.fill   = fnOrSelf(s.fill || null);
 			s._stroke = s._fill = s._paths = null;
 
@@ -2652,7 +2626,12 @@ function uPlot(opts, data, then) {
 			axis.incrs  = fnOrSelf(axis.incrs  || (          sc.distr == 2 ? wholeIncrs : (isTime ? (ms == 1 ? timeIncrsMs : timeIncrsS) : numIncrs)));
 			axis.splits = fnOrSelf(axis.splits || (isTime && sc.distr == 1 ? _timeAxisSplits : sc.distr == 3 ? logAxisSplits : numAxisSplits));
 
+			axis.stroke       = fnOrSelf(axis.stroke);
+			axis.grid.stroke  = fnOrSelf(axis.grid.stroke);
+			axis.ticks.stroke = fnOrSelf(axis.ticks.stroke);
+
 			let av = axis.values;
+
 			axis.values = (
 				isTime ? (
 					isArr(av) ?
@@ -2714,11 +2693,6 @@ function uPlot(opts, data, then) {
 	let viaAutoScaleX = false;
 
 	function setData(_data, _resetScales) {
-		if (!isArr(_data) && isObj(_data)) {
-			_data.isGap && series.forEach(s => { s.isGap = _data.isGap; });
-			_data = _data.data;
-		}
-
 		_data = _data || [];
 		_data[0] = _data[0] || [];
 
@@ -3079,13 +3053,13 @@ function uPlot(opts, data, then) {
 		ctx.rect(lft, top, wid, hgt);
 		ctx.clip();
 
-		if (clip != null)
-			ctx.clip(clip);
+		clip && ctx.clip(clip);
 
-		if (!fillBands(si, _fill) && _fill != null)
-			ctx.fill(fill);
+		let isUpperEdge = fillBands(si, _fill);
 
-		width && ctx.stroke(stroke);
+		!isUpperEdge && _fill   && fill   && ctx.fill(fill);
+
+		width        && _stroke && stroke && ctx.stroke(stroke);
 
 		ctx.restore();
 
@@ -3288,7 +3262,7 @@ function uPlot(opts, data, then) {
 			let x        = ori == 1 ? finalPos : 0;
 
 			ctx.font         = axis.font[0];
-			ctx.fillStyle    = axis.stroke || hexBlack;									// rgba?
+			ctx.fillStyle    = axis.stroke(self, i);									// rgba?
 			ctx.textAlign    = axis.align == 1 ? LEFT :
 			                   axis.align == 2 ? RIGHT :
 			                   angle > 0 ? LEFT :
@@ -3364,7 +3338,7 @@ function uPlot(opts, data, then) {
 					basePos,
 					tickSize,
 					roundDec(ticks.width * pxRatio, 3),
-					ticks.stroke,
+					ticks.stroke(self, i),
 					ticks.dash,
 					ticks.cap,
 				);
@@ -3382,7 +3356,7 @@ function uPlot(opts, data, then) {
 					ori == 0 ? plotTop : plotLft,
 					ori == 0 ? plotHgt : plotWid,
 					roundDec(grid.width * pxRatio, 3),
-					grid.stroke,
+					grid.stroke(self, i),
 					grid.dash,
 					grid.cap,
 				);

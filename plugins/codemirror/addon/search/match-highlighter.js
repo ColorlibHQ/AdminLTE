@@ -16,7 +16,7 @@
 // highlighted only if the selected text is a word. showToken, when enabled,
 // will cause the current token to be highlighted when nothing is selected.
 // delay is used to specify how much time to wait, in milliseconds, before
-// highlighting the matches. If annotateScrollbar is enabled, the occurences
+// highlighting the matches. If annotateScrollbar is enabled, the occurrences
 // will be highlighted on the scrollbar via the matchesonscrollbar addon.
 
 (function(mod) {

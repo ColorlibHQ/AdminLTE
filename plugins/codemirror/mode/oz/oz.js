@@ -45,7 +45,7 @@ CodeMirror.defineMode("oz", function (conf) {
     }
 
     // Special [] keyword
-    if (stream.match(/(\[])/)) {
+    if (stream.match('[]')) {
         return "keyword"
     }
 
@@ -130,7 +130,7 @@ CodeMirror.defineMode("oz", function (conf) {
       return "operator";
     }
 
-    // If nothing match, we skip the entire alphanumerical block
+    // If nothing match, we skip the entire alphanumeric block
     stream.eatWhile(/\w/);
 
     return "variable";

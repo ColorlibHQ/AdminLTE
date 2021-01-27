@@ -36,7 +36,7 @@
       },
       token: function (stream, state) {
         if (state.state == START) {
-          if (stream.match(/---/, false)) {
+          if (stream.match('---', false)) {
             state.state = FRONTMATTER
             return yamlMode.token(stream, state.inner)
           } else {

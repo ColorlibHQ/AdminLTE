@@ -90,7 +90,7 @@
         return "error";
     }
 
-    function tokenUnsignedNuber(stream, state) {
+    function tokenUnsignedNumber(stream, state) {
       stream.eatWhile(isDigit);
       if (stream.eat('.')) {
         stream.eatWhile(isDigit);
@@ -164,9 +164,9 @@
         else if(ch == '"') {
           state.tokenize = tokenString;
         }
-        // UNSIGNED_NUBER
+        // UNSIGNED_NUMBER
         else if(isDigit.test(ch)) {
-          state.tokenize = tokenUnsignedNuber;
+          state.tokenize = tokenUnsignedNumber;
         }
         // ERROR
         else {

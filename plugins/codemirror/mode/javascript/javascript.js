@@ -624,7 +624,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     if (type == "=>") return cont(typeexpr)
   }
   function typeprops(type) {
-    if (type == "}") return cont()
+    if (type.match(/[\}\)\]]/)) return cont()
     if (type == "," || type == ";") return cont(typeprops)
     return pass(typeprop, typeprops)
   }

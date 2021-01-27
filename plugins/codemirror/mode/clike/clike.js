@@ -350,8 +350,8 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
   function cpp11StringHook(stream, state) {
     stream.backUp(1);
     // Raw strings.
-    if (stream.match(/(R|u8R|uR|UR|LR)/)) {
-      var match = stream.match(/"([^\s\\()]{0,16})\(/);
+    if (stream.match(/^(?:R|u8R|uR|UR|LR)/)) {
+      var match = stream.match(/^"([^\s\\()]{0,16})\(/);
       if (!match) {
         return false;
       }
@@ -360,8 +360,8 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
       return tokenRawString(stream, state);
     }
     // Unicode strings/chars.
-    if (stream.match(/(u8|u|U|L)/)) {
-      if (stream.match(/["']/, /* eat */ false)) {
+    if (stream.match(/^(?:u8|u|U|L)/)) {
+      if (stream.match(/^["']/, /* eat */ false)) {
         return "string";
       }
       return false;
@@ -749,7 +749,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
                 "gl_ModelViewMatrix gl_ProjectionMatrix gl_ModelViewProjectionMatrix " +
                 "gl_TextureMatrix gl_NormalMatrix gl_ModelViewMatrixInverse " +
                 "gl_ProjectionMatrixInverse gl_ModelViewProjectionMatrixInverse " +
-                "gl_TexureMatrixTranspose gl_ModelViewMatrixInverseTranspose " +
+                "gl_TextureMatrixTranspose gl_ModelViewMatrixInverseTranspose " +
                 "gl_ProjectionMatrixInverseTranspose " +
                 "gl_ModelViewProjectionMatrixInverseTranspose " +
                 "gl_TextureMatrixInverseTranspose " +

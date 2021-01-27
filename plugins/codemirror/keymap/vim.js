@@ -737,7 +737,7 @@
         // TODO: Convert keymap into dictionary format for fast lookup.
       },
       // Testing hook, though it might be useful to expose the register
-      // controller anyways.
+      // controller anyway.
       getRegisterController: function() {
         return vimGlobalState.registerController;
       },
@@ -3483,7 +3483,7 @@
         },
         isComplete: function(state) {
           if (state.nextCh === '#') {
-            var token = state.lineText.match(/#(\w+)/)[1];
+            var token = state.lineText.match(/^#(\w+)/)[1];
             if (token === 'endif') {
               if (state.forward && state.depth === 0) {
                 return true;
@@ -4322,7 +4322,7 @@
         raw += ' <span style="color: #888">' + desc + '</span>';
       return raw;
     }
-    var searchPromptDesc = '(Javascript regexp)';
+    var searchPromptDesc = '(JavaScript regexp)';
     function showPrompt(cm, options) {
       var shortText = (options.prefix || '') + ' ' + (options.desc || '');
       var prompt = makePrompt(options.prefix, options.desc);
@@ -5234,7 +5234,7 @@
     * @param {Cursor} lineEnd Line to stop replacing at.
     * @param {RegExp} query Query for performing matches with.
     * @param {string} replaceWith Text to replace matches with. May contain $1,
-    *     $2, etc for replacing captured groups using Javascript replace.
+    *     $2, etc for replacing captured groups using JavaScript replace.
     * @param {function()} callback A callback for when the replace is done.
     */
     function doReplace(cm, confirm, global, lineStart, lineEnd, searchCursor, query,

@@ -80,7 +80,7 @@ CodeMirror.defineMode("julia", function(config, parserConf) {
   // tokenizers
   function tokenBase(stream, state) {
     // Handle multiline comments
-    if (stream.match(/^#=/, false)) {
+    if (stream.match('#=', false)) {
       state.tokenize = tokenComment;
       return state.tokenize(stream, state);
     }
@@ -141,10 +141,10 @@ CodeMirror.defineMode("julia", function(config, parserConf) {
     }
 
     if (inArray(state)) {
-      if (state.lastToken == "end" && stream.match(/^:/)) {
+      if (state.lastToken == "end" && stream.match(':')) {
         return "operator";
       }
-      if (stream.match(/^end/)) {
+      if (stream.match('end')) {
         return "number";
       }
     }
@@ -201,7 +201,7 @@ CodeMirror.defineMode("julia", function(config, parserConf) {
     }
 
     // Handle Chars
-    if (stream.match(/^'/)) {
+    if (stream.match('\'')) {
       state.tokenize = tokenChar;
       return state.tokenize(stream, state);
     }
@@ -263,7 +263,7 @@ CodeMirror.defineMode("julia", function(config, parserConf) {
         state.scopes.push('(');
         charsAdvanced += match[1].length;
       }
-      if (currentScope(state) == '(' && stream.match(/^\)/)) {
+      if (currentScope(state) == '(' && stream.match(')')) {
         state.scopes.pop();
         charsAdvanced += 1;
         if (state.scopes.length <= state.firstParenPos) {
@@ -295,10 +295,10 @@ CodeMirror.defineMode("julia", function(config, parserConf) {
   }
 
   function tokenAnnotation(stream, state) {
-    stream.match(/.*?(?=,|;|{|}|\(|\)|=|$|\s)/);
-    if (stream.match(/^{/)) {
+    stream.match(/.*?(?=[,;{}()=\s]|$)/);
+    if (stream.match('{')) {
       state.nestedParameters++;
-    } else if (stream.match(/^}/) && state.nestedParameters > 0) {
+    } else if (stream.match('}') && state.nestedParameters > 0) {
       state.nestedParameters--;
     }
     if (state.nestedParameters > 0) {
@@ -310,13 +310,13 @@ CodeMirror.defineMode("julia", function(config, parserConf) {
   }
 
   function tokenComment(stream, state) {
-    if (stream.match(/^#=/)) {
+    if (stream.match('#=')) {
       state.nestedComments++;
     }
     if (!stream.match(/.*?(?=(#=|=#))/)) {
       stream.skipToEnd();
     }
-    if (stream.match(/^=#/)) {
+    if (stream.match('=#')) {
       state.nestedComments--;
       if (state.nestedComments == 0)
         state.tokenize = tokenBase;
@@ -347,7 +347,7 @@ CodeMirror.defineMode("julia", function(config, parserConf) {
       return "string";
     }
     if (!stream.match(/^[^']+(?=')/)) { stream.skipToEnd(); }
-    if (stream.match(/^'/)) { state.tokenize = tokenBase; }
+    if (stream.match('\'')) { state.tokenize = tokenBase; }
     return "error";
   }
 

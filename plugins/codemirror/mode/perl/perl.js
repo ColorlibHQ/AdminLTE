@@ -347,7 +347,7 @@ CodeMirror.defineMode("perl",function(){
                 lc                              :1,     // - return lower-case version of a string
                 lcfirst                         :1,     // - return a string with just the next letter in lower case
                 length                          :1,     // - return the number of bytes in a string
-                'link'                          :1,     // - create a hard link in the filesytem
+                'link'                          :1,     // - create a hard link in the filesystem
                 listen                          :1,     // - register your socket as a server
                 local                           : 2,    // - create a temporary value for a global variable (dynamic scoping)
                 localtime                       :1,     // - convert UNIX time into record or string using local time
@@ -441,7 +441,7 @@ CodeMirror.defineMode("perl",function(){
                 state                           :1,     // - declare and assign a state variable (persistent lexical scoping)
                 study                           :1,     // - optimize input data for repeated searches
                 'sub'                           :1,     // - declare a subroutine, possibly anonymously
-                'substr'                        :1,     // - get or alter a portion of a stirng
+                'substr'                        :1,     // - get or alter a portion of a string
                 symlink                         :1,     // - create a symbolic link to a file
                 syscall                         :1,     // - execute an arbitrary system call
                 sysopen                         :1,     // - open a file, pipe, or descriptor

@@ -44,7 +44,7 @@
     {name: "edn", mime: "application/edn", mode: "clojure", ext: ["edn"]},
     {name: "Eiffel", mime: "text/x-eiffel", mode: "eiffel", ext: ["e"]},
     {name: "Elm", mime: "text/x-elm", mode: "elm", ext: ["elm"]},
-    {name: "Embedded Javascript", mime: "application/x-ejs", mode: "htmlembedded", ext: ["ejs"]},
+    {name: "Embedded JavaScript", mime: "application/x-ejs", mode: "htmlembedded", ext: ["ejs"]},
     {name: "Embedded Ruby", mime: "application/x-erb", mode: "htmlembedded", ext: ["erb"]},
     {name: "Erlang", mime: "text/x-erlang", mode: "erlang", ext: ["erl"]},
     {name: "Esper", mime: "text/x-esper", mode: "sql"},

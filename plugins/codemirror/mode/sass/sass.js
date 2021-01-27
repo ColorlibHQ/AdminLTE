@@ -231,7 +231,7 @@ CodeMirror.defineMode("sass", function(config) {
       }
 
       if(ch === "@"){
-        if(stream.match(/@extend/)){
+        if(stream.match('@extend')){
           if(!stream.match(/\s*[\w]/))
             dedent(state);
         }

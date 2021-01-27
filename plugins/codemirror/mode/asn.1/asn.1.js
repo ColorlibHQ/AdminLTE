@@ -190,7 +190,7 @@
     " NetworkAddress BITS BMPString TimeStamp TimeTicks" +
     " TruthValue RowStatus DisplayString GeneralString" +
     " GraphicString IA5String NumericString" +
-    " PrintableString SnmpAdminAtring TeletexString" +
+    " PrintableString SnmpAdminString TeletexString" +
     " UTF8String VideotexString VisibleString StringStore" +
     " ISO646String T61String UniversalString Unsigned32" +
     " Integer32 Gauge Gauge32 Counter Counter32 Counter64"),

@@ -53,7 +53,7 @@
           [["]", null]]
         ], closing, escapes);
       }
-      if (stream.match(/\-\>\w/, false)) {
+      if (stream.match(/^->\w/, false)) {
         // Match object operator
         state.tokenize = matchSequence([
           [["->", null]],
@@ -106,7 +106,7 @@
       },
       "<": function(stream, state) {
         var before;
-        if (before = stream.match(/<<\s*/)) {
+        if (before = stream.match(/^<<\s*/)) {
           var quoted = stream.eat(/['"]/);
           stream.eatWhile(/[\w\.]/);
           var delim = stream.current().slice(before[0].length + (quoted ? 2 : 1));

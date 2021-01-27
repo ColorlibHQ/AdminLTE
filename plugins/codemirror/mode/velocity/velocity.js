@@ -48,7 +48,7 @@ CodeMirror.defineMode("velocity", function() {
             else if (state.inParams)
                 return chain(stream, state, tokenString(ch));
         }
-        // is it one of the special signs []{}().,;? Seperator?
+        // is it one of the special signs []{}().,;? Separator?
         else if (/[\[\]{}\(\),;\.]/.test(ch)) {
             if (ch == "(" && beforeParams)
                 state.inParams = true;
