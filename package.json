@@ -136,7 +136,7 @@
     "@rollup/plugin-babel": "^5.2.2",
     "autoprefixer": "^10.2.3",
     "browser-sync": "^2.26.14",
-    "bundlewatch": "^0.3.1",
+    "bundlewatch": "^0.3.2",
     "clean-css-cli": "^4.3.0",
     "concurrently": "^5.3.0",
     "eslint": "^7.18.0",
