@@ -64,13 +64,13 @@ class ControlSidebar {
   collapse() {
     const $body = $('body')
     const $html = $('html')
-    const that = this
+    const { target } = this._config
 
     // Show the control sidebar
     if (this._config.controlsidebarSlide) {
       $html.addClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
       $body.removeClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
-        $(that._config.target).hide()
+        $(target).hide()
         $html.removeClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
         $(this).dequeue()
       })
