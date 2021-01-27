@@ -48,6 +48,7 @@
     "unicorn/filename-case": "off",
     "unicorn/consistent-destructuring": "off",
     "unicorn/no-array-callback-reference": "off",
+    "unicorn/no-array-for-each": "off",
     "unicorn/no-for-loop": "off",
     "unicorn/no-null": "off",
     "unicorn/no-unused-properties": "error",

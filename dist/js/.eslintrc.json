@@ -35,12 +35,14 @@
       "never"
     ],
     "strict": "error",
+    "unicorn/no-array-for-each": "off",
     "unicorn/no-for-loop": "off",
     "unicorn/no-null": "off",
     "unicorn/prefer-dataset": "off",
     "unicorn/prefer-includes": "off",
     "unicorn/prefer-node-append": "off",
     "unicorn/prefer-query-selector": "off",
+    "unicorn/prefer-spread": "off",
     "unicorn/prevent-abbreviations": "off"
   }
 }
