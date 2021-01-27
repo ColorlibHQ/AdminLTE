@@ -15,8 +15,8 @@
         }
         &,
         + .input-group-append > .btn-navbar {
-          background-color: lighten($color, 4%);
-          border-color: lighten($color, 9%);
+          background-color: darken($color, 4%);
+          border-color: darken($color, 9%);
           color: rgba($gray-800, .8);
         }
 
@@ -26,8 +26,8 @@
           }
           &,
           + .input-group-append .btn-navbar {
-            background-color: lighten($color, 5%);
-            border-color: lighten($color, 9%) !important;
+            background-color: darken($color, 5%);
+            border-color: darken($color, 9%) !important;
             color: $gray-800;
           }
         }
@@ -40,8 +40,8 @@
         }
         &,
         + .input-group-append > .btn-navbar {
-          background-color: darken($color, 4%);
-          border-color: darken($color, 9%);
+          background-color: lighten($color, 4%);
+          border-color: lighten($color, 9%);
           color: rgba($white, .8);
         }
 
@@ -51,8 +51,8 @@
           }
           &,
           + .input-group-append .btn-navbar {
-            background-color: darken($color, 5%);
-            border-color: darken($color, 9%) !important;
+            background-color: lighten($color, 5%);
+            border-color: lighten($color, 9%) !important;
             color: $white;
           }
         }
