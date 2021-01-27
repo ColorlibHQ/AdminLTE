@@ -39,6 +39,7 @@ const Default = {
   scrollbarAutoHide: 'l',
   panelAutoHeight: true,
   panelAutoHeightMode: 'min-height',
+  preloadDuration: 200,
   loginRegisterAutoHeight: true
 }
 
@@ -174,13 +175,16 @@ class Layout {
     setTimeout(() => {
       $('body.hold-transition').removeClass('hold-transition')
     }, 50)
-    const $preloader = $(SELECTOR_PRELOADER)
-    if ($preloader) {
-      $preloader.css('height', 0)
-      setTimeout(() => {
-        $preloader.children().hide()
-      }, 200)
-    }
+
+    setTimeout(() => {
+      const $preloader = $(SELECTOR_PRELOADER)
+      if ($preloader) {
+        $preloader.css('height', 0)
+        setTimeout(() => {
+          $preloader.children().hide()
+        }, 200)
+      }
+    }, this._config.preloadDuration)
   }
 
   _max(numbers) {

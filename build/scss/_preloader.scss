@@ -1,0 +1,24 @@
+//
+// Core: Preloader
+//
+
+.preloader {
+  display: flex;
+  background-color: $main-bg;
+  height: 100vh;
+  width: 100%;
+  transition: height 200ms linear;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: $zindex-preloader;
+}
+
+.dark-mode {
+  .preloader {
+    background-color: $dark-main-bg;
+    color: $white;
+  }
+}
+
+//

@@ -50,6 +50,8 @@ $boxed-layout-max-width: 1250px !default;
 // Body background (Affects main content background only)
 $main-bg: #f4f6f9 !default;
 
+$dark-main-bg: lighten($dark, 7.5%) !important;
+
 // Content padding
 $content-padding-y: 0 !default;
 $content-padding-x: $navbar-padding-x !default;
