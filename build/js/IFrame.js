@@ -30,6 +30,7 @@ const SELECTOR_TAB_CONTENT = `${SELECTOR_DATA_TOGGLE}.iframe-mode .tab-content`
 const SELECTOR_TAB_EMPTY = `${SELECTOR_TAB_CONTENT} .tab-empty`
 const SELECTOR_TAB_LOADING = `${SELECTOR_TAB_CONTENT} .tab-loading`
 const SELECTOR_SIDEBAR_MENU_ITEM = '.main-sidebar .nav-item > a.nav-link'
+const SELECTOR_SIDEBAR_SEARCH_ITEM = '.sidebar-search-results .list-group-item'
 const SELECTOR_HEADER_MENU_ITEM = '.main-header .nav-item a.nav-link'
 const SELECTOR_HEADER_DROPDOWN_ITEM = '.main-header a.dropdown-item'
 const CLASS_NAME_IFRAME_MODE = 'iframe-mode'
@@ -122,7 +123,7 @@ class IFrame {
       $item = $(item).parent('a').clone()
     }
 
-    $item.find('.right').remove()
+    $item.find('.right, .search-path').remove()
     let title = $item.find('p').text()
     if (title === '') {
       title = $item.text()
@@ -206,7 +207,7 @@ class IFrame {
         this._fixHeight()
       }, 1)
     })
-    $(document).on('click', SELECTOR_SIDEBAR_MENU_ITEM, e => {
+    $(document).on('click', `${SELECTOR_SIDEBAR_MENU_ITEM}, ${SELECTOR_SIDEBAR_SEARCH_ITEM}`, e => {
       e.preventDefault()
       this.openTabSidebar(e.target)
     })
