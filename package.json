@@ -71,7 +71,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
     "@lgaitan/pace-progress": "^1.0.7",
-    "@sweetalert2/theme-bootstrap-4": "^4.0.1",
+    "@sweetalert2/theme-bootstrap-4": "^4.0.2",
     "@ttskch/select2-bootstrap4-theme": "^1.4.0",
     "bootstrap": "^4.6.0",
     "bootstrap-colorpicker": "^3.2.0",
