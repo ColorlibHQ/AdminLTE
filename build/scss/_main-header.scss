@@ -142,6 +142,17 @@
       }
     }
   }
+
+  .navbar-search-block {
+    .form-control-navbar {
+      &:focus {
+        &,
+        + .input-group-append .btn-navbar {
+          color: $main-header-light-placeholder-color;
+        }
+      }
+    }
+  }
 }
 
 // Navbar Search
