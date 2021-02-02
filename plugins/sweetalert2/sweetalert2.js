@@ -1,5 +1,5 @@
 /*!
-* sweetalert2 v10.13.1
+* sweetalert2 v10.14.0
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -1789,6 +1789,7 @@
     closeButtonAriaLabel: 'Close this dialog',
     loaderHtml: '',
     showLoaderOnConfirm: false,
+    showLoaderOnDeny: false,
     imageUrl: undefined,
     imageWidth: undefined,
     imageHeight: undefined,
@@ -2650,7 +2651,12 @@
 
   var showWarningsForElements = function showWarningsForElements(template) {
     var allowedElements = swalStringParams.concat(['swal-param', 'swal-button', 'swal-image', 'swal-icon', 'swal-input', 'swal-input-option']);
-    toArray(template.children).forEach(function (el) {
+    toArray(template.querySelectorAll('*')).forEach(function (el) {
+      if (el.parentNode !== template) {
+        // can't use template.children because of IE11
+        return;
+      }
+
       var tagName = el.tagName.toLowerCase();
 
       if (allowedElements.indexOf(tagName) === -1) {
@@ -3011,6 +3017,10 @@
   };
 
   var deny = function deny(instance, innerParams, value) {
+    if (innerParams.showLoaderOnDeny) {
+      showLoading(getDenyButton());
+    }
+
     if (innerParams.preDeny) {
       var preDenyPromise = Promise.resolve().then(function () {
         return asPromise(innerParams.preDeny(value, innerParams.validationMessage));
@@ -3617,7 +3627,7 @@
     };
   });
   SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '10.13.1';
+  SweetAlert.version = '10.14.0';
 
   var Swal = SweetAlert;
   Swal["default"] = Swal;

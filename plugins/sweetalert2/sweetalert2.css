@@ -614,6 +614,7 @@
 .swal2-icon.swal2-error .swal2-x-mark {
   position: relative;
   flex-grow: 1;
+  zoom: 1;
 }
 .swal2-icon.swal2-error [class^=swal2-x-mark-line] {
   display: block;
@@ -666,6 +667,7 @@
 .swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left] {
   top: -0.4375em;
   left: -2.0635em;
+  zoom: 1;
   transform: rotate(-45deg);
   transform-origin: 3.75em 3.75em;
   border-radius: 7.5em 0 0 7.5em;
@@ -673,6 +675,7 @@
 .swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right] {
   top: -0.6875em;
   left: 1.875em;
+  zoom: 1;
   transform: rotate(-45deg);
   transform-origin: 0 3.75em;
   border-radius: 0 7.5em 7.5em 0;
@@ -685,6 +688,7 @@
   box-sizing: content-box;
   width: 100%;
   height: 100%;
+  zoom: 1;
   border: 0.25em solid rgba(165, 220, 134, 0.3);
   border-radius: 50%;
 }
@@ -695,6 +699,7 @@
   left: 1.625em;
   width: 0.4375em;
   height: 5.625em;
+  zoom: 1;
   transform: rotate(-45deg);
 }
 .swal2-icon.swal2-success [class^=swal2-success-line] {
@@ -702,6 +707,7 @@
   position: absolute;
   z-index: 2;
   height: 0.3125em;
+  zoom: 1;
   border-radius: 0.125em;
   background-color: #a5dc86;
 }
