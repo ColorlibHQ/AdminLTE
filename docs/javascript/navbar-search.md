@@ -77,6 +77,7 @@ Or you can place the search button inside the navbar as nav-item with this marku
 | Name | Type | Default | Description
 |-|-|-|-
 | resetOnClose | Boolean | false | Reset Input on Close/Hide.
+|target | String | `.navbar-search-block` | Target navbar-search-block to handle multiple navbar-search-blocks.
 {: .table .table-bordered .bg-light}
 
 
