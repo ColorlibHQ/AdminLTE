@@ -16,11 +16,11 @@ Visit the releases section on GitHub and download the [latest release](https://g
 _**Important Note**: You needed to add separately cdn links for plugins in your project._
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/js/adminlte.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 ```
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
 ```
 
 
@@ -29,19 +29,19 @@ _**Important Note**: You needed to add separately cdn links for plugins in your 
 #### Via NPM
 
 ```bash
-npm install admin-lte@^3.0 --save
+npm install admin-lte@^3.1 --save
 ```
 
 #### Via Yarn
 
 ```bash
-yarn add admin-lte@^3.0
+yarn add admin-lte@^3.1
 ```
 
 #### Via Composer
 
 ```bash
-composer require "almasaeed2010/adminlte=~3.0"
+composer require "almasaeed2010/adminlte=~3.1"
 ```
 
 #### Via Git
