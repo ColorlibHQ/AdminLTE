@@ -4,7 +4,7 @@
 *
 * uPlot.js (μPlot)
 * A small, fast chart for time series, lines, areas, ohlc & bars
-* https://github.com/leeoniya/uPlot (v1.6.3)
+* https://github.com/leeoniya/uPlot (v1.6.4)
 */
 
 var uPlot = (function () {
@@ -336,13 +336,13 @@ var uPlot = (function () {
 	}
 
 	// nullModes
-	var NULL_IGNORE = 0;  // all nulls are ignored, converted to undefined (e.g. spanGaps: true)
-	var NULL_GAP    = 1;  // nulls are retained, alignment artifacts = undefined values (default)
-	var NULL_EXPAND = 2;  // nulls are expanded to include adjacent alignment artifacts (undefined values)
+	var NULL_REMOVE = 0;  // nulls are converted to undefined (e.g. for spanGaps: true)
+	var NULL_RETAIN = 1;  // nulls are retained, with alignment artifacts set to undefined (default)
+	var NULL_EXPAND = 2;  // nulls are expanded to include any adjacent alignment artifacts
 
-	// mark all filler nulls as explicit when adjacent to existing explicit nulls (minesweeper)
+	// sets undefined values to nulls when adjacent to existing nulls (minesweeper)
 	function nullExpand(yVals, nullIdxs, alignedLen) {
-		for (var i = 0, xi = (void 0), lastNullIdx = -inf; i < nullIdxs.length; i++) {
+		for (var i = 0, xi = (void 0), lastNullIdx = -1; i < nullIdxs.length; i++) {
 			var nullIdx = nullIdxs[i];
 
 			if (nullIdx > lastNullIdx) {
@@ -358,10 +358,8 @@ var uPlot = (function () {
 	}
 
 	// nullModes is a tables-matched array indicating how to treat nulls in each series
+	// output is sorted ASC on the joined field (table[0]) and duplicate join values are collapsed
 	function join(tables, nullModes) {
-		if (tables.length == 1)
-			{ return tables[0]; }
-
 		var xVals = new Set();
 
 		for (var ti = 0; ti < tables.length; ti++) {
@@ -391,7 +389,7 @@ var uPlot = (function () {
 
 				var yVals = Array(alignedLen).fill(undefined);
 
-				var nullMode = nullModes ? nullModes[ti$1][si] : NULL_GAP;
+				var nullMode = nullModes ? nullModes[ti$1][si] : NULL_RETAIN;
 
 				var nullIdxs = [];
 
@@ -400,7 +398,7 @@ var uPlot = (function () {
 					var alignedIdx = xIdxs.get(xs$1[i$2]);
 
 					if (yVal == null) {
-						if (nullMode != NULL_IGNORE) {
+						if (nullMode != NULL_REMOVE) {
 							yVals[alignedIdx] = yVal;
 
 							if (nullMode == NULL_EXPAND)
@@ -875,7 +873,7 @@ var uPlot = (function () {
 	var timeAxisSplitsS = ref$1[2];
 
 	// base 2
-	var binIncrs = genIncrs(2, -53, 53, [1]);
+	genIncrs(2, -53, 53, [1]);
 
 	/*
 	console.log({
@@ -1469,9 +1467,11 @@ var uPlot = (function () {
 
 	function _drawAcc(lineTo) {
 		return (stroke, accX, minY, maxY, outY) => {
-			lineTo(stroke, accX, minY);
-			lineTo(stroke, accX, maxY);
-			lineTo(stroke, accX, outY);
+			if (minY != maxY) {
+				lineTo(stroke, accX, minY);
+				lineTo(stroke, accX, maxY);
+				lineTo(stroke, accX, outY);
+			}
 		};
 	}
 
@@ -2083,6 +2083,8 @@ var uPlot = (function () {
 
 		opts = copy(opts);
 
+		var pxAlign = ifNull(opts.pxAlign, true);
+
 		(opts.plugins || []).forEach(p => {
 			if (p.opts)
 				{ opts = p.opts(self, opts) || opts; }
@@ -2551,10 +2553,11 @@ var uPlot = (function () {
 				s.width  = s.width == null ? 1 : s.width;
 				s.paths  = s.paths || linearPath || retNull;
 				s.fillTo = fnOrSelf(s.fillTo || seriesFillTo);
+				s.pxAlign = ifNull(s.pxAlign, true);
 
 				s.stroke = fnOrSelf(s.stroke || null);
 				s.fill   = fnOrSelf(s.fill || null);
-				s._stroke = s._fill = s._paths = null;
+				s._stroke = s._fill = s._paths = s._focus = null;
 
 				var _ptDia = ptDia(s.width, 1);
 				var points = s.points = assign({}, {
@@ -2919,7 +2922,9 @@ var uPlot = (function () {
 			var rad = (p.size - p.width) / 2 * pxRatio;
 			var dia = roundDec(rad * 2, 3);
 
-			ctx.translate(offset, offset);
+			var _pxAlign = pxAlign && s.pxAlign;
+
+			_pxAlign && ctx.translate(offset, offset);
 
 			ctx.save();
 
@@ -2981,7 +2986,7 @@ var uPlot = (function () {
 
 			ctx.restore();
 
-			ctx.translate(-offset, -offset);
+			_pxAlign && ctx.translate(-offset, -offset);
 		}
 
 		// grabs the nearest indices with y data outside of x-scale limits
@@ -3031,14 +3036,14 @@ var uPlot = (function () {
 			var width = roundDec(s.width * pxRatio, 3);
 			var offset = (width % 2) / 2;
 
-			var _stroke = s._stroke = s.stroke(self, si);
-			var _fill   = s._fill   = s.fill(self, si);
-
-			setCtxStyle(_stroke, width, s.dash, s.cap, _fill);
+			var strokeStyle = s._stroke = s.stroke(self, si);
+			var fillStyle   = s._fill   = s.fill(self, si);
 
 			ctx.globalAlpha = s.alpha;
 
-			ctx.translate(offset, offset);
+			var _pxAlign = pxAlign && s.pxAlign;
+
+			_pxAlign && ctx.translate(offset, offset);
 
 			ctx.save();
 
@@ -3063,43 +3068,53 @@ var uPlot = (function () {
 
 			clip && ctx.clip(clip);
 
-			var isUpperEdge = fillBands(si, _fill);
-
-			!isUpperEdge && _fill   && fill   && ctx.fill(fill);
-
-			width        && _stroke && stroke && ctx.stroke(stroke);
+			fillStroke(si, strokeStyle, width, s.dash, s.cap, fillStyle, stroke, fill);
 
 			ctx.restore();
 
-			ctx.translate(-offset, -offset);
+			_pxAlign && ctx.translate(-offset, -offset);
 
 			ctx.globalAlpha = 1;
 		}
 
-		function fillBands(si, seriesFill) {
-			var isUpperEdge = false;
-			var s = series[si];
+		function fillStroke(si, strokeStyle, lineWidth, lineDash, lineCap, fillStyle, strokePath, fillPath) {
+			var didStrokeFill = false;
 
 			// for all bands where this series is the top edge, create upwards clips using the bottom edges
 			// and apply clips + fill with band fill or dfltFill
 			bands.forEach((b, bi) => {
+				// isUpperEdge?
 				if (b.series[0] == si) {
-					isUpperEdge = true;
 					var lowerEdge = series[b.series[1]];
 
 					var clip = (lowerEdge._paths || EMPTY_OBJ).band;
 
+					ctx.save();
+
+					var _fillStyle = null;
+
+					// hasLowerEdge?
 					if (lowerEdge.show && clip) {
-						ctx.save();
-						setCtxStyle(null, null, null, null, b.fill(self, bi) || seriesFill);
+						_fillStyle = b.fill(self, bi) || fillStyle;
 						ctx.clip(clip);
-						ctx.fill(s._paths.fill);
-						ctx.restore();
 					}
+
+					strokeFill(strokeStyle, lineWidth, lineDash, lineCap, _fillStyle, strokePath, fillPath);
+
+					ctx.restore();
+
+					didStrokeFill = true;
 				}
 			});
 
-			return isUpperEdge;
+			if (!didStrokeFill)
+				{ strokeFill(strokeStyle, lineWidth, lineDash, lineCap, fillStyle, strokePath, fillPath); }
+		}
+
+		function strokeFill(strokeStyle, lineWidth, lineDash, lineCap, fillStyle, strokePath, fillPath) {
+			setCtxStyle(strokeStyle, lineWidth, lineDash, lineCap, fillStyle);
+			fillStyle   && fillPath                && ctx.fill(fillPath);
+			strokeStyle && strokePath && lineWidth && ctx.stroke(strokePath);
 		}
 
 		function getIncrSpace(axisIdx, min, max, fullDim) {
@@ -3121,7 +3136,7 @@ var uPlot = (function () {
 		function drawOrthoLines(offs, filts, ori, side, pos0, len, width, stroke, dash, cap) {
 			var offset = (width % 2) / 2;
 
-			ctx.translate(offset, offset);
+			pxAlign && ctx.translate(offset, offset);
 
 			setCtxStyle(stroke, width, dash, cap);
 
@@ -3153,7 +3168,7 @@ var uPlot = (function () {
 
 			ctx.stroke();
 
-			ctx.translate(-offset, -offset);
+			pxAlign && ctx.translate(-offset, -offset);
 		}
 
 		function axesCalc(cycleNum) {
@@ -3206,7 +3221,7 @@ var uPlot = (function () {
 				var splits = scale.distr == 2 ? _splits.map(i => data0[i]) : _splits;
 				var incr   = scale.distr == 2 ? data0[_splits[1]] - data0[_splits[0]] : _incr;
 
-				var values = axis._values  = axis.values(self, axis.filter(self, splits, i, _space, incr), i, _space, incr);
+				var values = axis._values = axis.values(self, axis.filter(self, splits, i, _space, incr), i, _space, incr);
 
 				// rotating of labels only supported on bottom x axis
 				axis._rotate = side == 2 ? axis.rotate(self, values, i, _space) : 0;
@@ -3249,7 +3264,7 @@ var uPlot = (function () {
 				var plotDim = ori == 0 ? plotWid : plotHgt;
 				var plotOff = ori == 0 ? plotLft : plotTop;
 
-				var axisGap  = round(axis.gap * pxRatio);
+				var axisGap = round(axis.gap * pxRatio);
 
 				var ticks = axis.ticks;
 				var tickSize = ticks.show ? round(ticks.size * pxRatio) : 0;
@@ -3284,7 +3299,7 @@ var uPlot = (function () {
 				ctx.textBaseline = angle ||
 				                   ori == 1 ? "middle" : side == 2 ? TOP   : BOTTOM;
 
-				var lineHeight   = axis.font[1] * lineMult;
+				var lineHeight = axis.font[1] * lineMult;
 
 				var canOffs = _splits.map(val => round(getPos(val, scale, plotDim, plotOff)));
 
@@ -3475,7 +3490,9 @@ var uPlot = (function () {
 			queuedCommit = false;
 		}
 
-		self.redraw = rebuildPaths => {
+		self.redraw = (rebuildPaths, recalcAxes) => {
+			shouldConvergeSize = recalcAxes || false;
+
 			if (rebuildPaths !== false)
 				{ _setScale(xScaleKey, scaleX.min, scaleX.max); }
 			else
@@ -3574,10 +3591,10 @@ var uPlot = (function () {
 		var select = self.select = assign({
 			show:   true,
 			over:   true,
-			left:	0,
-			width:	0,
-			top:	0,
-			height:	0,
+			left:   0,
+			width:  0,
+			top:    0,
+			height: 0,
 		}, opts.select);
 
 		var selectDiv = select.show ? placeDiv(SELECT, select.over ? over : under) : null;
@@ -3659,8 +3676,12 @@ var uPlot = (function () {
 			if (i != focusedSeries) {
 			//	log("setFocus()", arguments);
 
+				var allFocused = i == null;
+
 				series.forEach((s, i2) => {
-					_setAlpha(i2, i == null || i2 == 0 || i2 == i ? 1 : focus.alpha);
+					var isFocused = allFocused || i2 == 0 || i2 == i;
+					s._focus = allFocused ? null : isFocused;
+					_setAlpha(i2, isFocused ? 1 : focus.alpha);
 				});
 
 				focusedSeries = i;
