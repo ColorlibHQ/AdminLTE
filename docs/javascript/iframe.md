@@ -51,6 +51,7 @@ $('.content-wrapper').IFrame({
   autoIframeMode: true,
   autoItemActive: true,
   autoShowNewTab: true,
+  allowDuplicates: true,
   loadingScreen: 750,
   useNavbarItems: true
 })
@@ -69,6 +70,7 @@ $('.content-wrapper').IFrame({
 |autoIframeMode | Boolean | true | Whether to automatically add `.iframe-mode` to `body` if page is loaded via iframe.
 |autoItemActive | Boolean | true | Whether to automatically set the sidebar menu item active based on the active iframe.
 |autoShowNewTab | Boolean | true | Whether to automatically display created tab.
+|allowDuplicates | Boolean | true | Whether to allow creation of duplicate tab/iframe.
 |loadingScreen | Boolean/Number | true | [Boolean] Whether to enable iframe loading screen; [Number] Set loading screen hide delay.
 |useNavbarItems | Boolean | true | Whether to open navbar menu items, instead of open only sidebar menu items.
 

@@ -49,6 +49,7 @@ const Default = {
   autoIframeMode: true,
   autoItemActive: true,
   autoShowNewTab: true,
+  allowDuplicates: false,
   loadingScreen: true,
   useNavbarItems: true,
   scrollOffset: 40,
@@ -85,8 +86,13 @@ class IFrame {
   }
 
   createTab(title, link, uniqueName, autoOpen) {
-    const tabId = `panel-${uniqueName}-${Math.floor(Math.random() * 1000)}`
-    const navId = `tab-${uniqueName}-${Math.floor(Math.random() * 1000)}`
+    let tabId = `panel-${uniqueName}`
+    let navId = `tab-${uniqueName}`
+
+    if (this._config.allowDuplicates) {
+      tabId += `-${Math.floor(Math.random() * 1000)}`
+      navId += `-${Math.floor(Math.random() * 1000)}`
+    }
 
     const newNavItem = `<li class="nav-item" role="presentation"><a class="nav-link" data-toggle="row" id="${navId}" href="#${tabId}" role="tab" aria-controls="${tabId}" aria-selected="false">${title}</a></li>`
     $(SELECTOR_TAB_NAVBAR_NAV).append(unescape(escape(newNavItem)))
@@ -134,7 +140,21 @@ class IFrame {
       return
     }
 
-    this.createTab(title, link, link.replace('.html', '').replace('./', '').replace(/["&'./=?[\]]/gi, '-').replace(/(--)/gi, ''), autoOpen)
+    const uniqueName = link.replace('.html', '').replace('./', '').replace(/["&'./=?[\]]/gi, '-').replace(/(--)/gi, '')
+    const navId = `tab-${uniqueName}`
+
+    // eslint-disable-next-line no-console
+    console.log($(`#${navId}`))
+    // eslint-disable-next-line no-console
+    console.log(!this._config.allowDuplicates && $(`#${navId}`).length === 0)
+
+    if (!this._config.allowDuplicates && $(`#${navId}`).length > 0) {
+      return this.switchTab(`#${navId}`)
+    }
+
+    if ((!this._config.allowDuplicates && $(`#${navId}`).length === 0) || this._config.allowDuplicates) {
+      this.createTab(title, link, uniqueName, autoOpen)
+    }
   }
 
   switchTab(item) {
