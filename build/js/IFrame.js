@@ -300,9 +300,9 @@ class IFrame {
   _fixHeight(tabEmpty = false) {
     if ($('body').hasClass(CLASS_NAME_FULLSCREEN_MODE)) {
       const windowHeight = $(window).height()
-      $(`${SELECTOR_TAB_EMPTY}, ${SELECTOR_TAB_LOADING}`).height(windowHeight)
+      const navbarHeight = $(SELECTOR_TAB_NAV).outerHeight()
+      $(`${SELECTOR_TAB_EMPTY}, ${SELECTOR_TAB_LOADING}, ${SELECTOR_CONTENT_IFRAME}`).height(windowHeight - navbarHeight)
       $(SELECTOR_CONTENT_WRAPPER).height(windowHeight)
-      $(SELECTOR_CONTENT_IFRAME).height(windowHeight)
     } else {
       const contentWrapperHeight = parseFloat($(SELECTOR_CONTENT_WRAPPER).css('height'))
       const navbarHeight = $(SELECTOR_TAB_NAV).outerHeight()
