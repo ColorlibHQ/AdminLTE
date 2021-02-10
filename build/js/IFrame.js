@@ -143,11 +143,6 @@ class IFrame {
     const uniqueName = link.replace('.html', '').replace('./', '').replace(/["&'./=?[\]]/gi, '-').replace(/(--)/gi, '')
     const navId = `tab-${uniqueName}`
 
-    // eslint-disable-next-line no-console
-    console.log($(`#${navId}`))
-    // eslint-disable-next-line no-console
-    console.log(!this._config.allowDuplicates && $(`#${navId}`).length === 0)
-
     if (!this._config.allowDuplicates && $(`#${navId}`).length > 0) {
       return this.switchTab(`#${navId}`)
     }
