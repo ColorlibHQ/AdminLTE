@@ -5,7 +5,7 @@
  * --------------------------------------------
  */
 
-import $, { trim } from 'jquery'
+import $ from 'jquery'
 
 /**
  * Constants
@@ -155,7 +155,7 @@ class SidebarSearch {
   }
 
   _trimText(text) {
-    return trim(text.replace(/(\r\n|\n|\r)/gm, ' '))
+    return text.normalize('NFD').replace(/[\u0300-\u036F]/g, '').replace(/(\r\n|\n|\r)/gm, ' ').trim()
   }
 
   _renderItem(name, link, path) {
