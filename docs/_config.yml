@@ -86,7 +86,7 @@ navigation:
     url: upgrade-guide.html
     icon: fas fa-hand-point-up
   - title: Contributing Guide
-    url: contributing.html
+    url: how-to-contribute.html
     icon: fas fa-hands-helping
   - title: FAQ
     url: faq.html
