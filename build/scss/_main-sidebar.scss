@@ -181,11 +181,7 @@
 
   .nav-header {
     font-size: .9rem;
-    padding: $nav-link-padding-y;
-
-    &:not(:first-of-type) {
-      padding: 1.7rem 1rem .5rem;
-    }
+    padding: $nav-link-padding-y ($nav-link-padding-y * 1.5);
   }
 
   .nav-link p {
