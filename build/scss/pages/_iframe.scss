@@ -21,12 +21,23 @@ body.iframe-mode-fullscreen {
   height: 100%;
 
   &.iframe-mode {
+    .btn-iframe-close {
+      color: $danger;
+      position: absolute;
+      line-height: 1;
+      right: .125rem;
+      top: .125rem;
+      z-index: 10;
+    }
     .navbar-nav {
       overflow-y: auto;
       width: 100%;
 
       .nav-link {
         white-space: nowrap;
+      }
+      .nav-item {
+        position: relative;
       }
     }
     .tab-content {

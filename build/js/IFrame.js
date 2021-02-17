@@ -26,6 +26,7 @@ const SELECTOR_CONTENT_IFRAME = `${SELECTOR_CONTENT_WRAPPER} iframe`
 const SELECTOR_TAB_NAV = `${SELECTOR_DATA_TOGGLE}.iframe-mode .nav`
 const SELECTOR_TAB_NAVBAR_NAV = `${SELECTOR_DATA_TOGGLE}.iframe-mode .navbar-nav`
 const SELECTOR_TAB_NAVBAR_NAV_ITEM = `${SELECTOR_TAB_NAVBAR_NAV} .nav-item`
+const SELECTOR_TAB_NAVBAR_NAV_LINK = `${SELECTOR_TAB_NAVBAR_NAV} .nav-link`
 const SELECTOR_TAB_CONTENT = `${SELECTOR_DATA_TOGGLE}.iframe-mode .tab-content`
 const SELECTOR_TAB_EMPTY = `${SELECTOR_TAB_CONTENT} .tab-empty`
 const SELECTOR_TAB_LOADING = `${SELECTOR_TAB_CONTENT} .tab-loading`
@@ -95,7 +96,7 @@ class IFrame {
       navId += `-${Math.floor(Math.random() * 1000)}`
     }
 
-    const newNavItem = `<li class="nav-item" role="presentation"><a class="nav-link" data-toggle="row" id="${navId}" href="#${tabId}" role="tab" aria-controls="${tabId}" aria-selected="false">${title}</a></li>`
+    const newNavItem = `<li class="nav-item" role="presentation"><a href="#" class="btn-iframe-close" data-widget="iframe-close" data-type="only-this"><i class="fas fa-times"></i></a><a class="nav-link" data-toggle="row" id="${navId}" href="#${tabId}" role="tab" aria-controls="${tabId}" aria-selected="false">${title}</a></li>`
     $(SELECTOR_TAB_NAVBAR_NAV).append(unescape(escape(newNavItem)))
 
     const newTabItem = `<div class="tab-pane fade" id="${tabId}" role="tabpanel" aria-labelledby="${navId}"><iframe src="${link}"></iframe></div>`
@@ -170,7 +171,7 @@ class IFrame {
     }
   }
 
-  removeActiveTab(type) {
+  removeActiveTab(type, element) {
     if (type == 'all') {
       $(SELECTOR_TAB_NAVBAR_NAV_ITEM).remove()
       $(SELECTOR_TAB_PANE).remove()
@@ -178,6 +179,20 @@ class IFrame {
     } else if (type == 'all-other') {
       $(`${SELECTOR_TAB_NAVBAR_NAV_ITEM}:not(.active)`).remove()
       $(`${SELECTOR_TAB_PANE}:not(.active)`).remove()
+    } else if (type == 'only-this') {
+      const $navClose = $(element)
+      const $navItem = $navClose.parent('.nav-item')
+      const $navItemParent = $navItem.parent()
+      const navItemIndex = $navItem.index()
+      const tabId = $navClose.siblings('.nav-link').attr('aria-controls')
+      $navItem.remove()
+      $(`#${tabId}`).remove()
+      if ($(SELECTOR_TAB_CONTENT).children().length == $(`${SELECTOR_TAB_EMPTY}, ${SELECTOR_TAB_LOADING}`).length) {
+        $(SELECTOR_TAB_EMPTY).show()
+      } else {
+        const prevNavItemIndex = navItemIndex - 1
+        this.switchTab($navItemParent.children().eq(prevNavItemIndex).find('a'))
+      }
     } else {
       const $navItem = $(`${SELECTOR_TAB_NAVBAR_NAV_ITEM}.active`)
       const $navItemParent = $navItem.parent()
@@ -249,14 +264,25 @@ class IFrame {
       })
     }
 
-    $(document).on('click', SELECTOR_TAB_NAVBAR_NAV_ITEM, e => {
+    $(document).on('click', SELECTOR_TAB_NAVBAR_NAV_LINK, e => {
+      e.preventDefault()
+      this.onTabClick(e.target)
+      this.switchTab(e.target)
+    })
+    $(document).on('click', SELECTOR_TAB_NAVBAR_NAV_LINK, e => {
       e.preventDefault()
       this.onTabClick(e.target)
       this.switchTab(e.target)
     })
     $(document).on('click', SELECTOR_DATA_TOGGLE_CLOSE, e => {
       e.preventDefault()
-      this.removeActiveTab(e.target.attributes['data-type'] ? e.target.attributes['data-type'].nodeValue : null)
+      let { target } = e
+
+      if (target.nodeName == 'I') {
+        target = e.target.offsetParent
+      }
+
+      this.removeActiveTab(target.attributes['data-type'] ? target.attributes['data-type'].nodeValue : null, target)
     })
     $(document).on('click', SELECTOR_DATA_TOGGLE_FULLSCREEN, e => {
       e.preventDefault()
