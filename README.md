@@ -30,7 +30,7 @@ Always Recommended to download from GitHub latest release [AdminLTE 3](https://g
 Visit the [releases](https://github.com/ColorlibHQ/AdminLTE/releases) page to view the changelog.\
 Legacy Releases are [AdminLTE 2](https://github.com/ColorlibHQ/AdminLTE/releases/tag/v2.4.18) / [AdminLTE 1](https://github.com/ColorlibHQ/AdminLTE/releases/tag/1.3.1).
 
-### Grab from [jsdelivr](https://github.com/ColorlibHQ/AdminLTE/releases/latest) CDN :
+### Grab from [jsdelivr](https://www.jsdelivr.com/package/npm/admin-lte) CDN :
 
 _**Important Note**: You needed to add separately cdn links for plugins in your project._
 
