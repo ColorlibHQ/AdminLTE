@@ -141,7 +141,7 @@ class IFrame {
       return
     }
 
-    const uniqueName = link.replace('.html', '').replace('./', '').replace(/["&'./=?[\]]/gi, '-').replace(/(--)/gi, '')
+    const uniqueName = link.replace('./', '').replace(/["&'./:=?[\]]/gi, '-').replace(/(--)/gi, '')
     const navId = `tab-${uniqueName}`
 
     if (!this._config.allowDuplicates && $(`#${navId}`).length > 0) {
@@ -208,7 +208,9 @@ class IFrame {
       $('body').addClass(CLASS_NAME_IFRAME_MODE)
     } else if ($(SELECTOR_CONTENT_WRAPPER).hasClass(CLASS_NAME_IFRAME_MODE)) {
       if ($(SELECTOR_TAB_CONTENT).children().length > 2) {
-        $(`${SELECTOR_TAB_PANE}:first-child`).show()
+        const $el = $(`${SELECTOR_TAB_PANE}:first-child`)
+        $el.show()
+        this._setItemActive($el.find('iframe').attr('src'))
       }
 
       this._setupListeners()
