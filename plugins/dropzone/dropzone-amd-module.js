@@ -9759,7 +9759,7 @@ var dropzone_Dropzone = /*#__PURE__*/function (_Emitter) {
 
 
 dropzone_Dropzone.initClass();
-dropzone_Dropzone.version = "5.7.4"; // This is a map of options for your different dropzones. Add configurations
+dropzone_Dropzone.version = "5.7.6"; // This is a map of options for your different dropzones. Add configurations
 // to this object for your different dropzone elemens.
 //
 // Example:
@@ -9867,9 +9867,9 @@ dropzone_Dropzone.discover = function () {
 
     return result;
   }();
-}; // Since the whole Drag'n'Drop API is pretty new, some browsers implement it,
-// but not correctly.
-// So I created a blacklist of userAgents. Yes, yes. Browser sniffing, I know.
+}; // Some browsers support drag and drog functionality, but not correctly.
+//
+// So I created a blocklist of userAgents. Yes, yes. Browser sniffing, I know.
 // But what to do when browsers *theoretically* support an API, but crash
 // when using it.
 //
@@ -9877,10 +9877,9 @@ dropzone_Dropzone.discover = function () {
 //
 // ** It should only be used on browser that *do* support the API, but
 // incorrectly **
-//
 
 
-dropzone_Dropzone.blacklistedBrowsers = [// The mac os and windows phone version of opera 12 seems to have a problem with the File drag'n'drop API.
+dropzone_Dropzone.blockedBrowsers = [// The mac os and windows phone version of opera 12 seems to have a problem with the File drag'n'drop API.
 /opera.*(Macintosh|Windows Phone).*version\/12/i]; // Checks if the browser is supported
 
 dropzone_Dropzone.isBrowserSupported = function () {
@@ -9890,8 +9889,14 @@ dropzone_Dropzone.isBrowserSupported = function () {
     if (!("classList" in document.createElement("a"))) {
       capableBrowser = false;
     } else {
-      // The browser supports the API, but may be blacklisted.
-      var _iterator25 = dropzone_createForOfIteratorHelper(dropzone_Dropzone.blacklistedBrowsers, true),
+      if (dropzone_Dropzone.blacklistedBrowsers !== undefined) {
+        // Since this has been renamed, this makes sure we don't break older
+        // configuration.
+        dropzone_Dropzone.blockedBrowsers = dropzone_Dropzone.blacklistedBrowsers;
+      } // The browser supports the API, but may be blocked.
+
+
+      var _iterator25 = dropzone_createForOfIteratorHelper(dropzone_Dropzone.blockedBrowsers, true),
           _step25;
 
       try {

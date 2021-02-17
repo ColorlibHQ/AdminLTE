@@ -1,5 +1,5 @@
 /*!
-* sweetalert2 v10.14.0
+* sweetalert2 v10.14.1
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -363,7 +363,7 @@
   };
   var getIcon = function getIcon() {
     var visibleIcon = getIcons().filter(function (icon) {
-      return isVisible(icon);
+      return icon.style.display !== 'none';
     });
     return visibleIcon.length ? visibleIcon[0] : null;
   };
@@ -3627,7 +3627,7 @@
     };
   });
   SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '10.14.0';
+  SweetAlert.version = '10.14.1';
 
   var Swal = SweetAlert;
   Swal["default"] = Swal;
