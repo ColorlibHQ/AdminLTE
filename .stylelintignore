@@ -1,3 +1,4 @@
+**/*.html
 **/*.min.css
 **/dist/
 **/docs_html/
