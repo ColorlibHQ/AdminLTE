@@ -32,6 +32,9 @@ body.iframe-mode-fullscreen {
     .tab-content {
       position: relative;
     }
+    .tab-pane + .tab-empty {
+      display: none;
+    }
     .tab-empty {
       width: 100%;
       display: flex;

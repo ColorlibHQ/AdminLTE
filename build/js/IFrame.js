@@ -29,6 +29,7 @@ const SELECTOR_TAB_NAVBAR_NAV_ITEM = `${SELECTOR_TAB_NAVBAR_NAV} .nav-item`
 const SELECTOR_TAB_CONTENT = `${SELECTOR_DATA_TOGGLE}.iframe-mode .tab-content`
 const SELECTOR_TAB_EMPTY = `${SELECTOR_TAB_CONTENT} .tab-empty`
 const SELECTOR_TAB_LOADING = `${SELECTOR_TAB_CONTENT} .tab-loading`
+const SELECTOR_TAB_PANE = `${SELECTOR_TAB_CONTENT} .tab-pane`
 const SELECTOR_SIDEBAR_MENU_ITEM = '.main-sidebar .nav-item > a.nav-link'
 const SELECTOR_SIDEBAR_SEARCH_ITEM = '.sidebar-search-results .list-group-item'
 const SELECTOR_HEADER_MENU_ITEM = '.main-header .nav-item a.nav-link'
@@ -206,6 +207,10 @@ class IFrame {
     if (window.frameElement && this._config.autoIframeMode) {
       $('body').addClass(CLASS_NAME_IFRAME_MODE)
     } else if ($(SELECTOR_CONTENT_WRAPPER).hasClass(CLASS_NAME_IFRAME_MODE)) {
+      if ($(SELECTOR_TAB_CONTENT).children().length > 2) {
+        $(`${SELECTOR_TAB_PANE}:first-child`).show()
+      }
+
       this._setupListeners()
       this._fixHeight(true)
     }
