@@ -170,18 +170,26 @@ class IFrame {
     }
   }
 
-  removeActiveTab() {
-    const $navItem = $(`${SELECTOR_TAB_NAVBAR_NAV_ITEM}.active`)
-    const $navItemParent = $navItem.parent()
-    const navItemIndex = $navItem.index()
-    $navItem.remove()
-    $('.tab-pane.active').remove()
-
-    if ($(SELECTOR_TAB_CONTENT).children().length == $(`${SELECTOR_TAB_EMPTY}, ${SELECTOR_TAB_LOADING}`).length) {
+  removeActiveTab(type) {
+    if (type == 'all') {
+      $(SELECTOR_TAB_NAVBAR_NAV_ITEM).remove()
+      $(SELECTOR_TAB_PANE).remove()
       $(SELECTOR_TAB_EMPTY).show()
+    } else if (type == 'all-other') {
+      $(`${SELECTOR_TAB_NAVBAR_NAV_ITEM}:not(.active)`).remove()
+      $(`${SELECTOR_TAB_PANE}:not(.active)`).remove()
     } else {
-      const prevNavItemIndex = navItemIndex - 1
-      this.switchTab($navItemParent.children().eq(prevNavItemIndex).find('a'))
+      const $navItem = $(`${SELECTOR_TAB_NAVBAR_NAV_ITEM}.active`)
+      const $navItemParent = $navItem.parent()
+      const navItemIndex = $navItem.index()
+      $navItem.remove()
+      $(`${SELECTOR_TAB_PANE}.active`).remove()
+      if ($(SELECTOR_TAB_CONTENT).children().length == $(`${SELECTOR_TAB_EMPTY}, ${SELECTOR_TAB_LOADING}`).length) {
+        $(SELECTOR_TAB_EMPTY).show()
+      } else {
+        const prevNavItemIndex = navItemIndex - 1
+        this.switchTab($navItemParent.children().eq(prevNavItemIndex).find('a'))
+      }
     }
   }
 
@@ -248,7 +256,7 @@ class IFrame {
     })
     $(document).on('click', SELECTOR_DATA_TOGGLE_CLOSE, e => {
       e.preventDefault()
-      this.removeActiveTab()
+      this.removeActiveTab(e.target.attributes['data-type'] ? e.target.attributes['data-type'].nodeValue : null)
     })
     $(document).on('click', SELECTOR_DATA_TOGGLE_FULLSCREEN, e => {
       e.preventDefault()
