@@ -29,7 +29,7 @@
     "docs": "npm-run-all docs-prepare docs-compile",
     "docs-lint": "node build/npm/vnu-jar.js",
     "docs-compile": "cd docs/ && bundle exec jekyll build -d ../docs_html",
-    "docs-serve": "cd docs/ && bundle exec jekyll serve",
+    "docs-serve": "npm-run-all compile docs-prepare && cd docs/ && bundle exec jekyll serve",
     "docs-prepare": "node build/npm/DocsPublish.js -v",
     "lockfile-lint": "lockfile-lint --allowed-hosts npm --allowed-schemes https: --empty-hostname false --type npm --path package-lock.json",
     "postinstall": "npm run plugins",
