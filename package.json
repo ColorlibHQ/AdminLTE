@@ -38,7 +38,7 @@
     "js-minify": "terser --compress typeofs=false --mangle --comments \"/^!/\" --source-map \"content=dist/js/adminlte.js.map,includeSources,url=adminlte.min.js.map\" --output dist/js/adminlte.min.js dist/js/adminlte.js",
     "js-lint": "eslint --cache --cache-location .cache/.eslintcache --report-unused-disable-directives .",
     "lint": "npm-run-all --continue-on-error --parallel css-lint js-lint lockfile-lint",
-    "production": "npm-run-all compile plugins",
+    "production": "npm-run-all --parallel compile plugins",
     "prepare-release": "npm-run-all production docs",
     "test": "npm-run-all lint production",
     "plugins": "node build/npm/Publish.js -v",
