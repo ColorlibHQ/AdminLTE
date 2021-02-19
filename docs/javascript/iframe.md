@@ -28,15 +28,15 @@ To get the iframe 100% working you need the following content-wrapper markup:
 ```
 
 ##### Usage
-This plugin can be activated as a jQuery plugin or using the data api. 
+This plugin can be activated as a jQuery plugin or using the data api.
 
 ###### Data API
 {: .text-bold }
-Activate the plugin by adding `data-widget="iframe"` to the `.content-wrapper`. If you need to provide onCheck and onUncheck methods, please use the jQuery API. 
+Activate the plugin by adding `data-widget="iframe"` to the `.content-wrapper`. If you need to provide onCheck and onUncheck methods, please use the jQuery API.
 
 ###### jQuery
 {: .text-bold }
-The jQuery API provides more customizable options that allows the developer to handle checking and unchecking the todo list checkbox events. 
+The jQuery API provides more customizable options that allows the developer to handle checking and unchecking the todo list checkbox events.
 ```js
 $('.content-wrapper').IFrame({
   onTabClick(item) {
@@ -73,7 +73,6 @@ $('.content-wrapper').IFrame({
 |allowDuplicates | Boolean | true | Whether to allow creation of duplicate tab/iframe.
 |loadingScreen | Boolean/Number | true | [Boolean] Whether to enable iframe loading screen; [Number] Set loading screen hide delay.
 |useNavbarItems | Boolean | true | Whether to open navbar menu items, instead of open only sidebar menu items.
-
 |---
 {: .table .table-bordered .bg-light}
 

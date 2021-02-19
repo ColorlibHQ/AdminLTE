@@ -8,7 +8,7 @@ title: Dependencies & Plugins
 AdminLTE depends on two main frameworks. The downloadable package contains both of these libraries, so you don't have to manually download them.
 {: .lead}
 
-- [Bootstrap 4.5](https://getbootstrap.com/)
+- [Bootstrap 4.6](https://getbootstrap.com/)
 - [jQuery 3.5.1+](https://jquery.com/)
 - [Popper.js 1.16.1+](https://popper.js.org/)
 - [All other plugins are listed below](#plugins)
@@ -46,7 +46,9 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
       <li><h4>Form Elements</h4></li>
       <li><a href="https://farbelous.io/bootstrap-colorpicker/">Bootstrap Colorpicker</a></li>
       <li><a href="https://github.com/seiyria/bootstrap-slider/">Bootstrap Slider</a></li>
+      <li><a href="https://github.com/Bttstrp/bootstrap-switch">Bootstrap Switch</a></li>
       <li><a href="http://www.daterangepicker.com/" rel="noopener" target="_blank">Date Range Picker</a></li>
+      <li><a href="https://www.dropzonejs.com/" rel="noopener" target="_blank">Dropzone JS</a></li>
       <li><a href="https://github.com/bantikyan/icheck-bootstrap#readme" rel="noopener" target="_blank">iCheck Bootstrap</a></li>
       <li><a href="https://github.com/RobinHerbots/Inputmask/" rel="noopener" target="_blank">Inputmask</a></li>
       <li><a href="http://ionden.com/a/plugins/ion.rangeSlider/" rel="noopener" target="_blank">Ion.RangeSlider</a></li>
@@ -70,6 +72,7 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
     <ul class="list-unstyled">
       <li><h4>Table Grids</h4></li>
       <li><a href="https://datatables.net/" rel="noopener" target="_blank">DataTables</a></li>
+      <li><a href="https://datatables.net/extensions/" rel="noopener" target="_blank">DataTables (Included all open-source extensions with Bootstrap 4 styling)</a></li>
       <li><a href="http://js-grid.com/" rel="noopener" target="_blank">jsGrid</a></li>
     </ul>
   </div>
