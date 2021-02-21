@@ -108,12 +108,12 @@ class IFrame {
         $loadingScreen.fadeIn()
         $(`${tabId} iframe`).ready(() => {
           if (typeof this._config.loadingScreen === 'number') {
-            this.switchTab(`#${navId}`, this._config.loadingScreen)
+            this.switchTab(`#${navId}`)
             setTimeout(() => {
               $loadingScreen.fadeOut()
             }, this._config.loadingScreen)
           } else {
-            this.switchTab(`#${navId}`, this._config.loadingScreen)
+            this.switchTab(`#${navId}`)
             $loadingScreen.fadeOut()
           }
         })
