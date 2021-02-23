@@ -1,11 +1,11 @@
-/*! KeyTable 2.6.0
+/*! KeyTable 2.6.1
  * ©2009-2021 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     KeyTable
  * @description Spreadsheet like keyboard navigation for DataTables
- * @version     2.6.0
+ * @version     2.6.1
  * @file        dataTables.keyTable.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
@@ -524,7 +524,7 @@ $.extend( KeyTable.prototype, {
 		}
 
 		// DataTables draw event
-		if (orig.type === 'draw') {
+		if (orig && orig.type === 'draw') {
 			return;
 		}
 
@@ -551,12 +551,14 @@ $.extend( KeyTable.prototype, {
 			return;
 		}
 
-		orig.stopPropagation();
+		if ( orig ) {
+			orig.stopPropagation();
 
-		// Return key should do nothing - for textareas it would empty the
-		// contents
-		if ( key === 13 ) {
-			orig.preventDefault();
+			// Return key should do nothing - for textareas it would empty the
+			// contents
+			if ( key === 13 ) {
+				orig.preventDefault();
+			}
 		}
 
 		var editInline = function () {
@@ -604,6 +606,7 @@ $.extend( KeyTable.prototype, {
 						$( dt.table().container() ).removeClass('dtk-focus-alt');
 
 						if (that.s.returnSubmit) {
+							that.s.returnSubmit = false;
 							that._emitEvent( 'key-return-submit', [dt, editCell] );
 						}
 					} );
@@ -1207,7 +1210,7 @@ KeyTable.defaults = {
 
 
 
-KeyTable.version = "2.6.0";
+KeyTable.version = "2.6.1";
 
 
 $.fn.dataTable.KeyTable = KeyTable;
@@ -1247,7 +1250,7 @@ DataTable.Api.register( 'keys.enable()', function ( opts ) {
 } );
 
 DataTable.Api.register( 'keys.enabled()', function ( opts ) {
-	let ctx = this.context;
+	var ctx = this.context;
 
 	if (ctx.length) {
 		return ctx[0].keytable

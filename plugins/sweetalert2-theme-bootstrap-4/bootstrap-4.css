@@ -1,5 +1,5 @@
 /*
-* @sweetalert2/themes v4.0.2
+* @sweetalert2/themes v4.0.3
 * Released under the MIT License.
 */
 
@@ -529,7 +529,7 @@
   width: 5em;
   height: 5em;
   margin: 1.25em auto 1.875em;
-  border: .25em solid transparent;
+  border: 0.25em solid transparent;
   border-radius: 50%;
   font-family: inherit;
   line-height: 5em;
