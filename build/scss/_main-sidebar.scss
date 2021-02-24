@@ -302,6 +302,12 @@
     > .nav-item {
       > .nav-link {
         color: $sidebar-light-submenu-color;
+
+        &:hover,
+        &:focus {
+          background-color: $sidebar-light-submenu-hover-bg;
+          color: $sidebar-light-submenu-hover-color;
+        }
       }
 
       > .nav-link.active {
