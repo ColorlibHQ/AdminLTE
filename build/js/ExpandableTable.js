@@ -21,7 +21,7 @@ const EVENT_EXPANDED = `expanded${EVENT_KEY}`
 const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
 
 const SELECTOR_TABLE = '.expandable-table'
-const SELECTOR_BODY = '.expandable-body'
+const SELECTOR_EXPANDABLE_BODY = '.expandable-body'
 const SELECTOR_DATA_TOGGLE = '[data-widget="expandable-table"]'
 const SELECTOR_ARIA_ATTR = 'aria-expanded'
 
@@ -40,7 +40,7 @@ class ExpandableTable {
   init() {
     $(SELECTOR_DATA_TOGGLE).each((_, $header) => {
       const $type = $($header).attr(SELECTOR_ARIA_ATTR)
-      const $body = $($header).next(SELECTOR_BODY).children().first().children()
+      const $body = $($header).next(SELECTOR_EXPANDABLE_BODY).children().first().children()
       if ($type === 'true') {
         $body.show()
       } else if ($type === 'false') {
@@ -54,17 +54,17 @@ class ExpandableTable {
     const $element = this._element
     const time = 500
     const $type = $element.attr(SELECTOR_ARIA_ATTR)
-    const $body = $element.next(SELECTOR_BODY).children().first().children()
+    const $body = $element.next(SELECTOR_EXPANDABLE_BODY).children().first().children()
 
     $body.stop()
     if ($type === 'true') {
       $body.slideUp(time, () => {
-        $element.next(SELECTOR_BODY).addClass('d-none')
+        $element.next(SELECTOR_EXPANDABLE_BODY).addClass('d-none')
       })
       $element.attr(SELECTOR_ARIA_ATTR, 'false')
       $element.trigger($.Event(EVENT_COLLAPSED))
     } else if ($type === 'false') {
-      $element.next(SELECTOR_BODY).removeClass('d-none')
+      $element.next(SELECTOR_EXPANDABLE_BODY).removeClass('d-none')
       $body.slideDown(time)
       $element.attr(SELECTOR_ARIA_ATTR, 'true')
       $element.trigger($.Event(EVENT_EXPANDED))
