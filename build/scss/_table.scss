@@ -82,11 +82,11 @@
 [data-widget="expandable-table"] {
   cursor: pointer;
 
-  i {
+  i.expandable-table-caret {
     transition: transform $transition-speed linear;
   }
   &[aria-expanded="true"] {
-    td > i {
+    td i.expandable-table-caret {
       // stylelint-disable selector-max-attribute
       &[class*="right"] {
         transform: rotate(90deg);
