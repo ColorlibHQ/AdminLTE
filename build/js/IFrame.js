@@ -191,7 +191,7 @@ class IFrame {
         $(SELECTOR_TAB_EMPTY).show()
       } else {
         const prevNavItemIndex = navItemIndex - 1
-        this.switchTab($navItemParent.children().eq(prevNavItemIndex).find('a'))
+        this.switchTab($navItemParent.children().eq(prevNavItemIndex).find('a.nav-link'))
       }
     } else {
       const $navItem = $(`${SELECTOR_TAB_NAVBAR_NAV_ITEM}.active`)
@@ -203,7 +203,7 @@ class IFrame {
         $(SELECTOR_TAB_EMPTY).show()
       } else {
         const prevNavItemIndex = navItemIndex - 1
-        this.switchTab($navItemParent.children().eq(prevNavItemIndex).find('a'))
+        this.switchTab($navItemParent.children().eq(prevNavItemIndex).find('a.nav-link'))
       }
     }
   }
