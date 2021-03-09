@@ -50,8 +50,16 @@
       border-color: $gray-600 !important;
       color: $gray-600;
     }
+
+    .page-link {
+      color: $primary-alt;
+    }
+
     &.active {
       .page-link {
+        background-color: $primary-alt;
+        color: $white;
+
         &:hover,
         &:focus {
           color: $gray-400 !important;
@@ -65,7 +73,7 @@
 
         &:hover,
         &:focus {
-          color: lighten($primary, 5%);
+          color: lighten($primary-alt, 5%);
           background-color: lighten($dark, 5%);
         }
       }

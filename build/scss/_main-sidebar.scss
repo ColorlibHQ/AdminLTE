@@ -1144,3 +1144,21 @@
     }
   }
 }
+
+.dark-mode {
+  @each $name, $color in $theme-colors-alt {
+    .sidebar-dark-#{$name},
+    .sidebar-light-#{$name} {
+      @include sidebar-color($color);
+    }
+  }
+
+  @each $name, $color in $colors-alt {
+    .sidebar-dark-#{$name},
+    .sidebar-light-#{$name} {
+      @include sidebar-color($color);
+    }
+  }
+}
+
+//

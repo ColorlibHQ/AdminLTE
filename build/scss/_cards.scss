@@ -481,6 +481,15 @@ html.maximized-card {
 
 .dark-mode {
 
+  // Color variants
+  @each $name, $color in $theme-colors-alt {
+    @include cards-variant($name, $color);
+  }
+
+  @each $name, $color in $colors-alt {
+    @include cards-variant($name, $color);
+  }
+
   .card {
     background-color: $dark;
     color: $white;
@@ -499,7 +508,7 @@ html.maximized-card {
       border-color: $gray-600;
     }
     &:not(.card-outline) > .card-header a.active {
-      color: $white;
+      color: $dark;
     }
   }
 
@@ -517,5 +526,19 @@ html.maximized-card {
     background-color: lighten($dark, 5%);
     border-color: lighten($dark, 7.5%);
     color: $white;
+  }
+
+  .todo-list {
+    @each $name, $color in $theme-colors-alt {
+      .#{$name} {
+        border-left-color: $color;
+      }
+    }
+
+    @each $name, $color in $colors-alt {
+      .#{$name} {
+        border-left-color: $color;
+      }
+    }
   }
 }

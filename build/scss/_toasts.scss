@@ -55,8 +55,17 @@
       background-color: rgba($dark, .7);
       color: $gray-100;
     }
+
+    @each $name, $color in $theme-colors-alt {
+      @include toast-variant($name, $color);
+    }
+
+    @each $name, $color in $colors-alt {
+      @include toast-variant($name, $color);
+    }
   }
 }
+
 
 .toast {
   @each $name, $color in $theme-colors {
