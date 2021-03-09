@@ -37,6 +37,10 @@ body.iframe-mode-fullscreen {
         animation-fill-mode: both;
         visibility: visible;
       }
+
+      @include on-touch-device () {
+        visibility: visible;
+      }
     }
     .navbar-nav {
       overflow-y: auto;
@@ -55,6 +59,10 @@ body.iframe-mode-fullscreen {
             animation-duration: $transition-speed;
             animation-fill-mode: both;
             visibility: visible;
+
+            @include on-touch-device () {
+              visibility: visible;
+            }
           }
         }
       }
