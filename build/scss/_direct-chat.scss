@@ -243,4 +243,17 @@
       border-right-color: transparent;
     }
   }
+
+  // Color variants
+  @each $name, $color in $theme-colors-alt {
+    .direct-chat-#{$name} {
+      @include direct-chat-variant($color);
+    }
+  }
+
+  @each $name, $color in $colors-alt {
+    .direct-chat-#{$name} {
+      @include direct-chat-variant($color);
+    }
+  }
 }

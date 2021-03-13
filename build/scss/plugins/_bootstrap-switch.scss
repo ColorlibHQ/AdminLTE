@@ -184,5 +184,21 @@ $bootstrap-switch-handle-border-radius: .1rem;
       color: $white;
       border-color: lighten($dark, 7.5%);
     }
+    .bootstrap-switch-handle-on,
+    .bootstrap-switch-handle-off {
+      @each $name, $color in $theme-colors-alt {
+        &.bootstrap-switch-#{$name} {
+          background: $color;
+          color: color-yiq($color);
+        }
+      }
+
+      @each $name, $color in $colors-alt {
+        &.bootstrap-switch-#{$name} {
+          background: $color;
+          color: color-yiq($color);
+        }
+      }
+    }
   }
 }

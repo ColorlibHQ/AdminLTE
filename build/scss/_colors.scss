@@ -101,4 +101,44 @@ a.text-muted:hover {
   .link-dark {
     color: $gray-400;
   }
+
+  // Background colors (theme colors)
+  @each $name, $color in $theme-colors-alt {
+    @include background-variant($name, $color);
+  }
+
+  // Background colors (colors)
+  @each $name, $color in $colors-alt {
+    @include background-variant($name, $color);
+  }
+
+  // Gradient Background colors (theme colors)
+  @each $name, $color in $theme-colors-alt {
+    @include background-gradient-variant($name, $color);
+  }
+
+  // Gradient Background colors (colors)
+  @each $name, $color in $colors-alt {
+    @include background-gradient-variant($name, $color);
+  }
+
+  // Accent colors (theme colors)
+  @each $name, $color in $theme-colors-alt {
+    @include accent-variant($name, $color);
+  }
+
+  [class*="accent-"] {
+    @each $name, $color in $theme-colors-alt {
+      a.btn-#{$name} {
+        color: color-yiq($color);
+      }
+    }
+  }
+
+  // Accent colors (colors)
+  @each $name, $color in $colors-alt {
+    @include accent-variant($name, $color);
+  }
 }
+
+//

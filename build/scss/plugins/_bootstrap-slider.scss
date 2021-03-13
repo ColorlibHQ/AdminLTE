@@ -39,4 +39,20 @@
     background-color: lighten($dark, 10%);
     background-image: none;
   }
+
+  @each $name, $color in $theme-colors-alt {
+    .slider-#{$name} .slider {
+      .slider-selection {
+        background: $color;
+      }
+    }
+  }
+
+  @each $name, $color in $colors-alt {
+    .slider-#{$name} .slider {
+      .slider-selection {
+        background: $color;
+      }
+    }
+  }
 }

@@ -400,5 +400,32 @@ body.text-sm {
     &::-ms-track {
       background-color: lighten($dark, 7.5%);
     }
+
+    @each $name, $color in $theme-colors-alt {
+      @include custom-range-variant($name, $color);
+    }
+
+    @each $name, $color in $colors-alt {
+      @include custom-range-variant($name, $color);
+    }
+  }
+
+  // custom switch color variations
+  .custom-switch {
+    @each $name, $color in $theme-colors-alt {
+      @include custom-switch-variant($name, $color);
+    }
+
+    @each $name, $color in $colors-alt {
+      @include custom-switch-variant($name, $color);
+    }
+  }
+
+  @each $name, $color in $theme-colors-alt {
+    @include custom-control-input-variant($name, $color);
+  }
+
+  @each $name, $color in $colors-alt {
+    @include custom-control-input-variant($name, $color);
   }
 }

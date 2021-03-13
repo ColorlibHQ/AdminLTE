@@ -42,4 +42,10 @@
   .text-muted {
     color: $gray-500 !important;
   }
+
+  @each $name, $color in $colors-alt {
+    .text-#{$name} {
+      color: #{$color} !important;
+    }
+  }
 }

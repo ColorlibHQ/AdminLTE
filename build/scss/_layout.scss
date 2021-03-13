@@ -651,6 +651,38 @@ body:not(.layout-fixed) {
   background-color: $dark-main-bg;
   color: $white;
 
+  .wrapper {
+    .layout-navbar-fixed & {
+      @each $name, $color in $theme-colors-alt {
+        .sidebar-dark-#{$name} .brand-link:not([class*="navbar"]) {
+          background-color: $sidebar-dark-bg;
+        }
+
+        .sidebar-light-#{$name} .brand-link:not([class*="navbar"]) {
+          background-color: $sidebar-light-bg;
+        }
+      }
+    }
+
+    @each $breakpoint in map-keys($grid-breakpoints) {
+      @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+        .layout#{$infix}-navbar-fixed & {
+          @each $name, $color in $theme-colors-alt {
+            .sidebar-dark-#{$name} .brand-link:not([class*="navbar"]) {
+              background-color: $sidebar-dark-bg;
+            }
+
+            .sidebar-light-#{$name} .brand-link:not([class*="navbar"]) {
+              background-color: $sidebar-light-bg;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .breadcrumb-item {
     &.active,
     + .breadcrumb-item::before {

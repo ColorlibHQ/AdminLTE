@@ -495,6 +495,36 @@ blockquote {
   }
   blockquote {
     background-color: lighten($dark, 5%);
+
+    @each $color, $value in $theme-colors {
+      &.quote-#{$color} {
+        border-color: $value;
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          color: $value;
+        }
+      }
+    }
+
+    @each $color, $value in $colors {
+      &.quote-#{$color} {
+        border-color: $value;
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          color: $value;
+        }
+      }
+    }
   }
   .close,
   .mailbox-attachment-close {
