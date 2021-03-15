@@ -4,6 +4,7 @@
     "plugin:compat/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
+    "plugin:sonarjs/recommended",
     "plugin:unicorn/recommended",
     "xo/esnext",
     "xo/browser"
@@ -45,6 +46,7 @@
       "error",
       "never"
     ],
+    "sonarjs/cognitive-complexity": "off",
     "unicorn/filename-case": "off",
     "unicorn/consistent-destructuring": "off",
     "unicorn/no-array-callback-reference": "off",
