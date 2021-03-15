@@ -29,6 +29,7 @@ const CLASS_NAME_COLLAPSED = 'sidebar-collapse'
 const CLASS_NAME_OPEN = 'sidebar-open'
 const CLASS_NAME_IS_OPENING = 'sidebar-is-opening'
 const CLASS_NAME_CLOSED = 'sidebar-closed'
+const CLASS_NAME_HOLD_TRANSITION = 'hold-transition'
 
 const Default = {
   autoCollapseSize: 992,
@@ -128,16 +129,16 @@ class PushMenu {
 
     if (toggleState === CLASS_NAME_COLLAPSED) {
       if (this._options.noTransitionAfterReload) {
-        $body.addClass('hold-transition').addClass(CLASS_NAME_COLLAPSED).delay(50).queue(function () {
-          $(this).removeClass('hold-transition')
+        $body.addClass(CLASS_NAME_HOLD_TRANSITION).addClass(CLASS_NAME_COLLAPSED).delay(50).queue(function () {
+          $(this).removeClass(CLASS_NAME_HOLD_TRANSITION)
           $(this).dequeue()
         })
       } else {
         $body.addClass(CLASS_NAME_COLLAPSED)
       }
     } else if (this._options.noTransitionAfterReload) {
-      $body.addClass('hold-transition').removeClass(CLASS_NAME_COLLAPSED).delay(50).queue(function () {
-        $(this).removeClass('hold-transition')
+      $body.addClass(CLASS_NAME_HOLD_TRANSITION).removeClass(CLASS_NAME_COLLAPSED).delay(50).queue(function () {
+        $(this).removeClass(CLASS_NAME_HOLD_TRANSITION)
         $(this).dequeue()
       })
     } else {

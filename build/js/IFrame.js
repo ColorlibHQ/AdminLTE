@@ -269,10 +269,10 @@ class IFrame {
       this.onTabClick(e.target)
       this.switchTab(e.target)
     })
-    $(document).on('click', SELECTOR_TAB_NAVBAR_NAV_LINK, e => {
-      e.preventDefault()
-      this.onTabClick(e.target)
-      this.switchTab(e.target)
+    $(document).on('click', SELECTOR_TAB_NAVBAR_NAV_LINK, event => {
+      event.preventDefault()
+      this.onTabClick(event.target)
+      this.switchTab(event.target)
     })
     $(document).on('click', SELECTOR_DATA_TOGGLE_CLOSE, e => {
       e.preventDefault()
@@ -362,7 +362,7 @@ class IFrame {
     } else {
       const contentWrapperHeight = parseFloat($(SELECTOR_CONTENT_WRAPPER).css('height'))
       const navbarHeight = $(SELECTOR_TAB_NAV).outerHeight()
-      if (tabEmpty == true) {
+      if (tabEmpty) {
         setTimeout(() => {
           $(`${SELECTOR_TAB_EMPTY}, ${SELECTOR_TAB_LOADING}`).height(contentWrapperHeight - navbarHeight)
         }, 50)

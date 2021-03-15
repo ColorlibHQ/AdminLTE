@@ -106,7 +106,7 @@ class Toasts {
       toastHeader.append($('<small />').html(this._config.subtitle))
     }
 
-    if (this._config.close == true) {
+    if (this._config.close) {
       const toastClose = $('<button data-dismiss="toast" />').attr('type', 'button').addClass('ml-2 mb-1 close').attr('aria-label', 'Close').append('<span aria-hidden="true">&times;</span>')
 
       if (this._config.title == null) {
