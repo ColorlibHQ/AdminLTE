@@ -21,7 +21,6 @@ Thanks to many of AdminLTE users, there are multiple implementations of the temp
 - [AdminLTE-3-CakePHP](https://github.com/arodu/cakelte) by [arodu](https://github.com/arodu)
 - [AdminLTE-3 for Lua Server Pages](https://github.com/RealTimeLogic/LSP-Examples/tree/master/Dashboard) by [Real Time Logic](https://github.com/RealTimeLogic/)
 
-
 ##### AdminLTE v2.4
 {: .text-bold .text-dark .mt-3}
 - [Setup AdminLTE2 in to Laravel in few minutes](https://youtu.be/8Fa7Ji4lDyI) by [Shailesh Ladumor](https://github.com/shailesh-ladumor)
