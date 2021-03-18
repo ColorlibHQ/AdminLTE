@@ -10,8 +10,7 @@ updates:
   - package-ecosystem: bundler
     directory: "/docs/"
     schedule:
-      interval: weekly
-      day: monday
+      interval: monthly
+      day: sunday
       time: "03:00"
-    open-pull-requests-limit: 10
     versioning-strategy: increase
