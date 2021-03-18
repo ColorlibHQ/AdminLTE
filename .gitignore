@@ -60,6 +60,10 @@ bower_components/
 /docs/_site/
 /docs/vendor/
 /docs/.bundle/
+/docs/assets/plugins/
+/docs/assets/js/
+/docs/assets/css/alt/
+/docs/assets/css/adminlte*
 /docs_html/
 .jekyll-cache/
 .jekyll-metadata
