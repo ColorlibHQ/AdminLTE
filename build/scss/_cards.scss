@@ -506,9 +506,10 @@ html.maximized-card {
     }
     &.card-outline-tabs .card-header a:hover {
       border-color: $gray-600;
+      border-bottom-color: transparent;
     }
     &:not(.card-outline) > .card-header a.active {
-      color: $dark;
+      color: $white;
     }
   }
 

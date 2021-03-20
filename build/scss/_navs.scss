@@ -98,7 +98,7 @@
   @include navbar-variant($color, $value);
 }
 
-.dark-mode:not([class*="sidebar-light-"]) {
+.dark-mode *:not([class*="sidebar-light-"]) {
   &.nav-pills .nav-link {
     color: $gray-400;
   }
