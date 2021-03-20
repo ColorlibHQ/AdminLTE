@@ -218,7 +218,8 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
 
   // Parser
 
-  var atomicTypes = {"atom": true, "number": true, "variable": true, "string": true, "regexp": true, "this": true, "jsonld-keyword": true};
+  var atomicTypes = {"atom": true, "number": true, "variable": true, "string": true,
+                     "regexp": true, "this": true, "import": true, "jsonld-keyword": true};
 
   function JSLexical(indented, column, type, align, prev, info) {
     this.indented = indented;
@@ -441,7 +442,6 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     if (type == "{") return contCommasep(objprop, "}", null, maybeop);
     if (type == "quasi") return pass(quasi, maybeop);
     if (type == "new") return cont(maybeTarget(noComma));
-    if (type == "import") return cont(expression);
     return cont();
   }
   function maybeexpression(type) {
@@ -605,7 +605,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     }
   }
   function typeexpr(type, value) {
-    if (value == "keyof" || value == "typeof" || value == "infer") {
+    if (value == "keyof" || value == "typeof" || value == "infer" || value == "readonly") {
       cx.marked = "keyword"
       return cont(value == "typeof" ? expressionNoComma : typeexpr)
     }
@@ -802,6 +802,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   function afterImport(type) {
     if (type == "string") return cont();
     if (type == "(") return pass(expression);
+    if (type == ".") return pass(maybeoperatorComma);
     return pass(importSpec, maybeMoreImports, maybeFrom);
   }
   function importSpec(type, value) {

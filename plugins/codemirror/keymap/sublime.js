@@ -339,7 +339,7 @@
   };
 
 
-  function sortLines(cm, caseSensitive) {
+  function sortLines(cm, caseSensitive, direction) {
     if (cm.isReadOnly()) return CodeMirror.Pass
     var ranges = cm.listSelections(), toSort = [], selected;
     for (var i = 0; i < ranges.length; i++) {
@@ -361,12 +361,12 @@
         var start = Pos(from, 0), end = Pos(to);
         var lines = cm.getRange(start, end, false);
         if (caseSensitive)
-          lines.sort();
+          lines.sort(function(a, b) { return a < b ? -direction : a == b ? 0 : direction; });
         else
           lines.sort(function(a, b) {
             var au = a.toUpperCase(), bu = b.toUpperCase();
             if (au != bu) { a = au; b = bu; }
-            return a < b ? -1 : a == b ? 0 : 1;
+            return a < b ? -direction : a == b ? 0 : direction;
           });
         cm.replaceRange(lines, start, end);
         if (selected) ranges.push({anchor: start, head: Pos(to + 1, 0)});
@@ -375,8 +375,10 @@
     });
   }
 
-  cmds.sortLines = function(cm) { sortLines(cm, true); };
-  cmds.sortLinesInsensitive = function(cm) { sortLines(cm, false); };
+  cmds.sortLines = function(cm) { sortLines(cm, true, 1); };
+  cmds.reverseSortLines = function(cm) { sortLines(cm, true, -1); };
+  cmds.sortLinesInsensitive = function(cm) { sortLines(cm, false, 1); };
+  cmds.reverseSortLinesInsensitive = function(cm) { sortLines(cm, false, -1); };
 
   cmds.nextBookmark = function(cm) {
     var marks = cm.state.sublimeBookmarks;
@@ -609,7 +611,9 @@
     "Cmd-J": "joinLines",
     "Shift-Cmd-D": "duplicateLine",
     "F5": "sortLines",
+    "Shift-F5": "reverseSortLines",
     "Cmd-F5": "sortLinesInsensitive",
+    "Shift-Cmd-F5": "reverseSortLinesInsensitive",
     "F2": "nextBookmark",
     "Shift-F2": "prevBookmark",
     "Cmd-F2": "toggleBookmark",
@@ -671,7 +675,9 @@
     "Ctrl-J": "joinLines",
     "Shift-Ctrl-D": "duplicateLine",
     "F9": "sortLines",
+    "Shift-F9": "reverseSortLines",
     "Ctrl-F9": "sortLinesInsensitive",
+    "Shift-Ctrl-F9": "reverseSortLinesInsensitive",
     "F2": "nextBookmark",
     "Shift-F2": "prevBookmark",
     "Ctrl-F2": "toggleBookmark",

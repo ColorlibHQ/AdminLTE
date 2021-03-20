@@ -1,16 +1,16 @@
-/*! Select for DataTables 1.3.1
- * 2015-2019 SpryMedia Ltd - datatables.net/license/mit
+/*! Select for DataTables 1.3.2
+ * 2015-2021 SpryMedia Ltd - datatables.net/license/mit
  */
 
 /**
  * @summary     Select for DataTables
  * @description A collection of API methods, events and buttons for DataTables
  *   that provides selection options of the items in a DataTable
- * @version     1.3.1
+ * @version     1.3.2
  * @file        dataTables.select.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     datatables.net/forums
- * @copyright   Copyright 2015-2019 SpryMedia Ltd.
+ * @copyright   Copyright 2015-2021 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -54,7 +54,7 @@ var DataTable = $.fn.dataTable;
 // Version information for debugger
 DataTable.select = {};
 
-DataTable.select.version = '1.3.1';
+DataTable.select.version = '1.3.2';
 
 DataTable.select.init = function ( dt ) {
 	var ctx = dt.settings()[0];
@@ -378,7 +378,7 @@ function enableMouseSelection ( dt )
 			}
 
 			var ctx = dt.settings()[0];
-			var wrapperClass = $.trim(dt.settings()[0].oClasses.sWrapper).replace(/ +/g, '.');
+			var wrapperClass = dt.settings()[0].oClasses.sWrapper.trim().replace(/ +/g, '.');
 
 			// Ignore clicks inside a sub-table
 			if ( $(e.target).closest('div.'+wrapperClass)[0] != dt.table().container() ) {
@@ -560,7 +560,12 @@ function init ( ctx ) {
 
 	// On Ajax reload we want to reselect all rows which are currently selected,
 	// if there is an rowId (i.e. a unique value to identify each row with)
-	api.on( 'preXhr.dt.dtSelect', function () {
+	api.on( 'preXhr.dt.dtSelect', function (e, settings) {
+		if (settings !== api.settings()[0]) {
+			// Not triggered by our DataTable!
+			return;
+		}
+
 		// note that column selection doesn't need to be cached and then
 		// reselected, as they are already selected
 		var rows = api.rows( { selected: true } ).ids( true ).filter( function ( d ) {
@@ -596,6 +601,8 @@ function init ( ctx ) {
 
 	// Clean up and release
 	api.on( 'destroy.dtSelect', function () {
+		api.rows({selected: true}).deselect();
+
 		disableMouseSelection( api );
 		api.off( '.dtSelect' );
 	} );
@@ -837,7 +844,7 @@ apiRegister( 'select.toggleable()', function ( flag ) {
 } );
 
 apiRegister( 'select.info()', function ( flag ) {
-	if ( info === undefined ) {
+	if ( flag === undefined ) {
 		return this.context[0]._select.info;
 	}
 
@@ -975,7 +982,7 @@ apiRegisterPlural( 'cells().select()', 'cell().select()', function ( select ) {
 	} );
 
 	this.iterator( 'table', function ( ctx, i ) {
-		eventTrigger( api, 'select', [ 'cell', api[i] ], true );
+		eventTrigger( api, 'select', [ 'cell', api.cells(api[i]).indexes().toArray() ], true );
 	} );
 
 	return this;
@@ -987,6 +994,7 @@ apiRegisterPlural( 'rows().deselect()', 'row().deselect()', function () {
 
 	this.iterator( 'row', function ( ctx, idx ) {
 		ctx.aoData[ idx ]._select_selected = false;
+		ctx._select_lastCell = null;
 		$( ctx.aoData[ idx ].nTr ).removeClass( ctx._select.className );
 	} );
 

@@ -735,7 +735,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
     if (stream.peek() === undefined) { // End of line, set flag to check next line
       state.linkTitle = true;
     } else { // More content on line, check if link title
-      stream.match(/^(?:\s+(?:"(?:[^"\\]|\\\\|\\.)+"|'(?:[^'\\]|\\\\|\\.)+'|\((?:[^)\\]|\\.)+\)))?/, true);
+      stream.match(/^(?:\s+(?:"(?:[^"\\]|\\.)+"|'(?:[^'\\]|\\.)+'|\((?:[^)\\]|\\.)+\)))?/, true);
     }
     state.f = state.inline = inlineNormal;
     return tokenTypes.linkHref + " url";

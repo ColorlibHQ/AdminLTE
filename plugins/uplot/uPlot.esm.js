@@ -4,7 +4,7 @@
 *
 * uPlot.js (μPlot)
 * A small, fast chart for time series, lines, areas, ohlc & bars
-* https://github.com/leeoniya/uPlot (v1.6.5)
+* https://github.com/leeoniya/uPlot (v1.6.7)
 */
 
 const FEAT_TIME          = true;
@@ -255,6 +255,8 @@ const retArg1 = (_0, _1) => _1;
 
 const retNull = _ => null;
 
+const retTrue = _ => true;
+
 function incrRoundUp(num, incr) {
 	return ceil(num/incr)*incr;
 }
@@ -315,15 +317,21 @@ function isObj(v) {
 	return is;
 }
 
-function copy(o) {
+function fastIsObj(v) {
+	return v != null && typeof v == 'object';
+}
+
+function copy(o, _isObj) {
+	_isObj = _isObj || isObj;
+
 	let out;
 
 	if (isArr(o))
-		out = o.map(copy);
-	else if (isObj(o)) {
+		out = o.map(v => copy(v, _isObj));
+	else if (_isObj(o)) {
 		out = {};
 		for (var k in o)
-			out[k] = copy(o[k]);
+			out[k] = copy(o[k], _isObj);
 	}
 	else
 		out = o;
@@ -479,11 +487,15 @@ const win = window;
 const pxRatio = devicePixelRatio;
 
 function addClass(el, c) {
-	c != null && el.classList.add(c);
+	if (c != null) {
+		let cl = el.classList;
+		!cl.contains(c) && cl.add(c);
+	}
 }
 
 function remClass(el, c) {
-	el.classList.remove(c);
+	let cl = el.classList;
+	cl.contains(c) && cl.remove(c);
 }
 
 function setStylePx(el, name, value) {
@@ -585,58 +597,49 @@ function suffix(int) {
 }
 */
 
-const getFullYear = 'getFullYear';
-const getMonth = 'getMonth';
-const getDate = 'getDate';
-const getDay = 'getDay';
-const getHours = 'getHours';
-const getMinutes = 'getMinutes';
-const getSeconds = 'getSeconds';
-const getMilliseconds = 'getMilliseconds';
-
 const subs = {
 	// 2019
-	YYYY:	d => d[getFullYear](),
+	YYYY:	d => d.getFullYear(),
 	// 19
-	YY:		d => (d[getFullYear]()+'').slice(2),
+	YY:		d => (d.getFullYear()+'').slice(2),
 	// July
-	MMMM:	(d, names) => names.MMMM[d[getMonth]()],
+	MMMM:	(d, names) => names.MMMM[d.getMonth()],
 	// Jul
-	MMM:	(d, names) => names.MMM[d[getMonth]()],
+	MMM:	(d, names) => names.MMM[d.getMonth()],
 	// 07
-	MM:		d => zeroPad2(d[getMonth]()+1),
+	MM:		d => zeroPad2(d.getMonth()+1),
 	// 7
-	M:		d => d[getMonth]()+1,
+	M:		d => d.getMonth()+1,
 	// 09
-	DD:		d => zeroPad2(d[getDate]()),
+	DD:		d => zeroPad2(d.getDate()),
 	// 9
-	D:		d => d[getDate](),
+	D:		d => d.getDate(),
 	// Monday
-	WWWW:	(d, names) => names.WWWW[d[getDay]()],
+	WWWW:	(d, names) => names.WWWW[d.getDay()],
 	// Mon
-	WWW:	(d, names) => names.WWW[d[getDay]()],
+	WWW:	(d, names) => names.WWW[d.getDay()],
 	// 03
-	HH:		d => zeroPad2(d[getHours]()),
+	HH:		d => zeroPad2(d.getHours()),
 	// 3
-	H:		d => d[getHours](),
+	H:		d => d.getHours(),
 	// 9 (12hr, unpadded)
-	h:		d => {let h = d[getHours](); return h == 0 ? 12 : h > 12 ? h - 12 : h;},
+	h:		d => {let h = d.getHours(); return h == 0 ? 12 : h > 12 ? h - 12 : h;},
 	// AM
-	AA:		d => d[getHours]() >= 12 ? 'PM' : 'AM',
+	AA:		d => d.getHours() >= 12 ? 'PM' : 'AM',
 	// am
-	aa:		d => d[getHours]() >= 12 ? 'pm' : 'am',
+	aa:		d => d.getHours() >= 12 ? 'pm' : 'am',
 	// a
-	a:		d => d[getHours]() >= 12 ? 'p' : 'a',
+	a:		d => d.getHours() >= 12 ? 'p' : 'a',
 	// 09
-	mm:		d => zeroPad2(d[getMinutes]()),
+	mm:		d => zeroPad2(d.getMinutes()),
 	// 9
-	m:		d => d[getMinutes](),
+	m:		d => d.getMinutes(),
 	// 09
-	ss:		d => zeroPad2(d[getSeconds]()),
+	ss:		d => zeroPad2(d.getSeconds()),
 	// 9
-	s:		d => d[getSeconds](),
+	s:		d => d.getSeconds(),
 	// 374
-	fff:	d => zeroPad3(d[getMilliseconds]()),
+	fff:	d => zeroPad3(d.getMilliseconds()),
 };
 
 function fmtDate(tpl, names) {
@@ -665,13 +668,13 @@ function tzDate(date, tz) {
 	let date2;
 
 	// perf optimization
-	if (tz == 'Etc/UTC')
+	if (tz == 'UTC' || tz == 'Etc/UTC')
 		date2 = new Date(+date + date.getTimezoneOffset() * 6e4);
 	else if (tz == localTz)
 		date2 = date;
 	else {
 		date2 = new Date(date.toLocaleString('en-US', {timeZone: tz}));
-		date2.setMilliseconds(date[getMilliseconds]());
+		date2.setMilliseconds(date.getMilliseconds());
 	}
 
 	return date2;
@@ -802,17 +805,17 @@ function genTimeStuffs(ms) {
 			let minDateTs = minDate * ms;
 
 			// get ts of 12am (this lands us at or before the original scaleMin)
-			let minMin = mkDate(minDate[getFullYear](), isYr ? 0 : minDate[getMonth](), isMo || isYr ? 1 : minDate[getDate]());
+			let minMin = mkDate(minDate.getFullYear(), isYr ? 0 : minDate.getMonth(), isMo || isYr ? 1 : minDate.getDate());
 			let minMinTs = minMin * ms;
 
 			if (isMo || isYr) {
 				let moIncr = isMo ? foundIncr / mo : 0;
 				let yrIncr = isYr ? foundIncr / y  : 0;
 			//	let tzOffset = scaleMin - minDateTs;		// needed?
-				let split = minDateTs == minMinTs ? minDateTs : mkDate(minMin[getFullYear]() + yrIncr, minMin[getMonth]() + moIncr, 1) * ms;
+				let split = minDateTs == minMinTs ? minDateTs : mkDate(minMin.getFullYear() + yrIncr, minMin.getMonth() + moIncr, 1) * ms;
 				let splitDate = new Date(split / ms);
-				let baseYear = splitDate[getFullYear]();
-				let baseMonth = splitDate[getMonth]();
+				let baseYear = splitDate.getFullYear();
+				let baseMonth = splitDate.getMonth();
 
 				for (let i = 0; split <= scaleMax; i++) {
 					let next = mkDate(baseYear + yrIncr * i, baseMonth + moIncr * i, 1);
@@ -832,7 +835,7 @@ function genTimeStuffs(ms) {
 
 				let date0 = tzDate(split);
 
-				let prevHour = date0[getHours]() + (date0[getMinutes]() / m) + (date0[getSeconds]() / h);
+				let prevHour = date0.getHours() + (date0.getMinutes() / m) + (date0.getSeconds() / h);
 				let incrHours = foundIncr / h;
 
 				let minSpace = self.axes[axisIdx]._space;
@@ -921,12 +924,12 @@ function timeAxisVals(tzDate, stamps) {
 		return splits.map(split => {
 			let date = tzDate(split);
 
-			let newYear = date[getFullYear]();
-			let newMnth = date[getMonth]();
-			let newDate = date[getDate]();
-			let newHour = date[getHours]();
-			let newMins = date[getMinutes]();
-			let newSecs = date[getSeconds]();
+			let newYear = date.getFullYear();
+			let newMnth = date.getMonth();
+			let newDate = date.getDate();
+			let newHour = date.getHours();
+			let newMins = date.getMinutes();
+			let newSecs = date.getSeconds();
 
 			let stamp = (
 				newYear != prevYear && s[2] ||
@@ -1839,6 +1842,8 @@ function catmullRomFitting(xCoords, yCoords, alpha, moveTo, bezierCurveTo) {
 
 function stepped(opts) {
 	const align = ifNull(opts.align, 1);
+	// whether to draw ascenders/descenders at null/gap bondaries
+	const ascDesc = ifNull(opts.ascDesc, false);
 
 	return (u, seriesIdx, idx0, idx1) => {
 		return orient(u, seriesIdx, (series, dataX, dataY, scaleX, scaleY, valToPosX, valToPosY, xOff, yOff, xDim, yDim) => {
@@ -1883,8 +1888,9 @@ function stepped(opts) {
 						let halfStroke = (series.width * pxRatio) / 2;
 
 						let lastGap = gaps[gaps.length - 1];
-						lastGap[0] += halfStroke;
-						lastGap[1] -= halfStroke;
+
+						lastGap[0] += (ascDesc || align ==  1) ? halfStroke : -halfStroke;
+						lastGap[1] -= (ascDesc || align == -1) ? halfStroke : -halfStroke;
 					}
 
 					inGap = false;
@@ -2181,7 +2187,9 @@ function uPlot(opts, data, then) {
 
 				let rn = sc.range;
 
-				if (scaleKey != xScaleKey && !isArr(rn) && isObj(rn)) {
+				let rangeIsArr = isArr(rn);
+
+				if (scaleKey != xScaleKey && !rangeIsArr && isObj(rn)) {
 					let cfg = rn;
 					// this is similar to snapNumY
 					rn = (self, dataMin, dataMax) => dataMin == null ? nullMinMax : rangeNum(dataMin, dataMax, cfg);
@@ -2192,7 +2200,7 @@ function uPlot(opts, data, then) {
 					(sc.distr == 3 ? snapLogY : sc.distr == 4 ? snapAsinhY : snapNumY)
 				));
 
-				sc.auto = fnOrSelf(sc.auto);
+				sc.auto = fnOrSelf(rangeIsArr ? false : sc.auto);
 
 				sc.clamp = fnOrSelf(sc.clamp || clampScale);
 
@@ -2269,8 +2277,10 @@ function uPlot(opts, data, then) {
 	for (let k in scales) {
 		let sc = scales[k];
 
-		if (sc.min != null || sc.max != null)
+		if (sc.min != null || sc.max != null) {
 			pendScales[k] = {min: sc.min, max: sc.max};
+			sc.min = sc.max = null;
+		}
 	}
 
 //	self.tz = opts.tz || Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -2772,7 +2782,7 @@ function uPlot(opts, data, then) {
 			else
 				_setScale(xScaleKey, xsc.min, xsc.max);
 
-			shouldSetCursor = true;
+			shouldSetCursor = cursor.left >= 0;
 			shouldSetLegend = true;
 			commit();
 		}
@@ -2828,7 +2838,7 @@ function uPlot(opts, data, then) {
 	//	log("setScales()", arguments);
 
 		// wip scales
-		let wipScales = copy(scales);
+		let wipScales = copy(scales, fastIsObj);
 
 		for (let k in wipScales) {
 			let wsc = wipScales[k];
@@ -2955,7 +2965,7 @@ function uPlot(opts, data, then) {
 			}
 
 			if (cursor.show)
-				shouldSetCursor = true;
+				shouldSetCursor = cursor.left >= 0;
 		}
 
 		for (let k in pendScales)
@@ -3501,6 +3511,13 @@ function uPlot(opts, data, then) {
 			shouldSetSize = false;
 		}
 
+		if (fullWidCss > 0 && fullHgtCss > 0) {
+			ctx.clearRect(0, 0, can.width, can.height);
+			fire("drawClear");
+			drawOrder.forEach(fn => fn());
+			fire("draw");
+		}
+
 	//	if (shouldSetSelect) {
 		// TODO: update .u-select metrics (if visible)
 		//	setStylePx(selectDiv, TOP, select.top = 0);
@@ -3516,13 +3533,6 @@ function uPlot(opts, data, then) {
 		}
 
 	//	if (FEAT_LEGEND && legend.show && legend.live && shouldSetLegend) {}
-
-		if (fullWidCss > 0 && fullHgtCss > 0) {
-			ctx.clearRect(0, 0, can.width, can.height);
-			fire("drawClear");
-			drawOrder.forEach(fn => fn());
-			fire("draw");
-		}
 
 		if (!ready) {
 			ready = true;
@@ -3677,7 +3687,6 @@ function uPlot(opts, data, then) {
 
 		let s = series[i];
 
-		// will this cause redundant commit() if both show and focus are set?
 		if (opts.focus != null)
 			setFocus(i);
 
@@ -3691,12 +3700,12 @@ function uPlot(opts, data, then) {
 
 		fire("setSeries", i, opts);
 
-		pub && sync.pub("setSeries", self, i, opts);
+		pub && pubSync("setSeries", self, i, opts);
 	}
 
 	self.setSeries = setSeries;
 
-	function _alpha(i, value) {
+	function setAlpha(i, value) {
 		series[i].alpha = value;
 
 		if (cursor.show && cursorPts[i])
@@ -3704,11 +3713,6 @@ function uPlot(opts, data, then) {
 
 		if (showLegend && legendRows[i])
 			legendRows[i][0].parentNode.style.opacity = value;
-	}
-
-	function _setAlpha(i, value) {
-
-		_alpha(i, value);
 	}
 
 	// y-distance
@@ -3724,14 +3728,16 @@ function uPlot(opts, data, then) {
 
 			let allFocused = i == null;
 
+			let _setAlpha = focus.alpha != 1;
+
 			series.forEach((s, i2) => {
 				let isFocused = allFocused || i2 == 0 || i2 == i;
 				s._focus = allFocused ? null : isFocused;
-				_setAlpha(i2, isFocused ? 1 : focus.alpha);
+				_setAlpha && setAlpha(i2, isFocused ? 1 : focus.alpha);
 			});
 
 			focusedSeries = i;
-			commit();
+			_setAlpha && commit();
 		}
 	}
 
@@ -4004,7 +4010,7 @@ function uPlot(opts, data, then) {
 				let uni = drag.uni;
 
 				if (uni != null) {
-					// only calc drag status if they pass the dist asinh
+					// only calc drag status if they pass the dist thresh
 					if (dragX && dragY) {
 						dragX = rawDX >= uni;
 						dragY = rawDY >= uni;
@@ -4074,7 +4080,7 @@ function uPlot(opts, data, then) {
 		if (ts != null) {
 			// this is not technically a "mousemove" event, since it's debounced, rename to setCursor?
 			// since this is internal, we can tweak it later
-			sync.pub(mousemove, self, mouseLeft1, mouseTop1, xDim, yDim, idx);
+			pubSync(mousemove, self, mouseLeft1, mouseTop1, xDim, yDim, idx);
 
 			if (cursorFocus) {
 				let o = syncOpts.setSeries;
@@ -4199,7 +4205,7 @@ function uPlot(opts, data, then) {
 
 		if (e != null) {
 			onMouse(mouseup, doc, mouseUp);
-			sync.pub(mousedown, self, mouseLeft0, mouseTop0, plotWidCss, plotHgtCss, null);
+			pubSync(mousedown, self, mouseLeft0, mouseTop0, plotWidCss, plotHgtCss, null);
 		}
 	}
 
@@ -4263,7 +4269,7 @@ function uPlot(opts, data, then) {
 
 		if (e != null) {
 			offMouse(mouseup, doc);
-			sync.pub(mouseup, self, mouseLeft1, mouseTop1, plotWidCss, plotHgtCss, null);
+			pubSync(mouseup, self, mouseLeft1, mouseTop1, plotWidCss, plotHgtCss, null);
 		}
 	}
 
@@ -4322,7 +4328,7 @@ function uPlot(opts, data, then) {
 		hideSelect();
 
 		if (e != null)
-			sync.pub(dblclick, self, mouseLeft1, mouseTop1, plotWidCss, plotHgtCss, null);
+			pubSync(dblclick, self, mouseLeft1, mouseTop1, plotWidCss, plotHgtCss, null);
 	}
 
 	// internal pub/sub
@@ -4373,6 +4379,10 @@ function uPlot(opts, data, then) {
 	const syncOpts = assign({
 		key: null,
 		setSeries: false,
+		filters: {
+			pub: retTrue,
+			sub: retTrue,
+		},
 		scales: [xScaleKey, null]
 	}, cursor.sync);
 
@@ -4380,10 +4390,16 @@ function uPlot(opts, data, then) {
 
 	const sync = _sync(syncKey);
 
+	function pubSync(type, src, x, y, w, h, i) {
+		if (syncOpts.filters.pub(type, src, x, y, w, h, i))
+			sync.pub(type, src, x, y, w, h, i);
+	}
+
 	sync.sub(self);
 
 	function pub(type, src, x, y, w, h, i) {
-		events[type](null, src, x, y, w, h, i);
+		if (syncOpts.filters.sub(type, src, x, y, w, h, i))
+			events[type](null, src, x, y, w, h, i);
 	}
 
 	(self.pub = pub);
@@ -4409,6 +4425,8 @@ function uPlot(opts, data, then) {
 			autoScaleX();
 
 		_setSize(opts.width, opts.height);
+
+		updateCursor();
 
 		setSelect(select, false);
 	}

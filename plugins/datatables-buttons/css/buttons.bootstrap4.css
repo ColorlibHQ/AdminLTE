@@ -182,7 +182,7 @@ div.dt-buttons a.btn.processing:after {
   margin: -8px 0 0 -8px;
   box-sizing: border-box;
   display: block;
-  content: ' ';
+  content: " ";
   border: 2px solid #282828;
   border-radius: 50%;
   border-left-color: transparent;

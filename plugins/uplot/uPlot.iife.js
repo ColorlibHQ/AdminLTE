@@ -4,7 +4,7 @@
 *
 * uPlot.js (μPlot)
 * A small, fast chart for time series, lines, areas, ohlc & bars
-* https://github.com/leeoniya/uPlot (v1.6.5)
+* https://github.com/leeoniya/uPlot (v1.6.7)
 */
 
 var uPlot = (function () {
@@ -265,6 +265,8 @@ var uPlot = (function () {
 
 	var retNull = _ => null;
 
+	var retTrue = _ => true;
+
 	function incrRoundUp(num, incr) {
 		return ceil(num/incr)*incr;
 	}
@@ -325,15 +327,21 @@ var uPlot = (function () {
 		return is;
 	}
 
-	function copy(o) {
+	function fastIsObj(v) {
+		return v != null && typeof v == 'object';
+	}
+
+	function copy(o, _isObj) {
+		_isObj = _isObj || isObj;
+
 		var out;
 
 		if (isArr(o))
-			{ out = o.map(copy); }
-		else if (isObj(o)) {
+			{ out = o.map(v => copy(v, _isObj)); }
+		else if (_isObj(o)) {
 			out = {};
 			for (var k in o)
-				{ out[k] = copy(o[k]); }
+				{ out[k] = copy(o[k], _isObj); }
 		}
 		else
 			{ out = o; }
@@ -489,11 +497,15 @@ var uPlot = (function () {
 	var pxRatio = devicePixelRatio;
 
 	function addClass(el, c) {
-		c != null && el.classList.add(c);
+		if (c != null) {
+			var cl = el.classList;
+			!cl.contains(c) && cl.add(c);
+		}
 	}
 
 	function remClass(el, c) {
-		el.classList.remove(c);
+		var cl = el.classList;
+		cl.contains(c) && cl.remove(c);
 	}
 
 	function setStylePx(el, name, value) {
@@ -593,58 +605,49 @@ var uPlot = (function () {
 	}
 	*/
 
-	var getFullYear = 'getFullYear';
-	var getMonth = 'getMonth';
-	var getDate = 'getDate';
-	var getDay = 'getDay';
-	var getHours = 'getHours';
-	var getMinutes = 'getMinutes';
-	var getSeconds = 'getSeconds';
-	var getMilliseconds = 'getMilliseconds';
-
 	var subs = {
 		// 2019
-		YYYY:	d => d[getFullYear](),
+		YYYY:	d => d.getFullYear(),
 		// 19
-		YY:		d => (d[getFullYear]()+'').slice(2),
+		YY:		d => (d.getFullYear()+'').slice(2),
 		// July
-		MMMM:	(d, names) => names.MMMM[d[getMonth]()],
+		MMMM:	(d, names) => names.MMMM[d.getMonth()],
 		// Jul
-		MMM:	(d, names) => names.MMM[d[getMonth]()],
+		MMM:	(d, names) => names.MMM[d.getMonth()],
 		// 07
-		MM:		d => zeroPad2(d[getMonth]()+1),
+		MM:		d => zeroPad2(d.getMonth()+1),
 		// 7
-		M:		d => d[getMonth]()+1,
+		M:		d => d.getMonth()+1,
 		// 09
-		DD:		d => zeroPad2(d[getDate]()),
+		DD:		d => zeroPad2(d.getDate()),
 		// 9
-		D:		d => d[getDate](),
+		D:		d => d.getDate(),
 		// Monday
-		WWWW:	(d, names) => names.WWWW[d[getDay]()],
+		WWWW:	(d, names) => names.WWWW[d.getDay()],
 		// Mon
-		WWW:	(d, names) => names.WWW[d[getDay]()],
+		WWW:	(d, names) => names.WWW[d.getDay()],
 		// 03
-		HH:		d => zeroPad2(d[getHours]()),
+		HH:		d => zeroPad2(d.getHours()),
 		// 3
-		H:		d => d[getHours](),
+		H:		d => d.getHours(),
 		// 9 (12hr, unpadded)
-		h:		d => {var h = d[getHours](); return h == 0 ? 12 : h > 12 ? h - 12 : h;},
+		h:		d => {var h = d.getHours(); return h == 0 ? 12 : h > 12 ? h - 12 : h;},
 		// AM
-		AA:		d => d[getHours]() >= 12 ? 'PM' : 'AM',
+		AA:		d => d.getHours() >= 12 ? 'PM' : 'AM',
 		// am
-		aa:		d => d[getHours]() >= 12 ? 'pm' : 'am',
+		aa:		d => d.getHours() >= 12 ? 'pm' : 'am',
 		// a
-		a:		d => d[getHours]() >= 12 ? 'p' : 'a',
+		a:		d => d.getHours() >= 12 ? 'p' : 'a',
 		// 09
-		mm:		d => zeroPad2(d[getMinutes]()),
+		mm:		d => zeroPad2(d.getMinutes()),
 		// 9
-		m:		d => d[getMinutes](),
+		m:		d => d.getMinutes(),
 		// 09
-		ss:		d => zeroPad2(d[getSeconds]()),
+		ss:		d => zeroPad2(d.getSeconds()),
 		// 9
-		s:		d => d[getSeconds](),
+		s:		d => d.getSeconds(),
 		// 374
-		fff:	d => zeroPad3(d[getMilliseconds]()),
+		fff:	d => zeroPad3(d.getMilliseconds()),
 	};
 
 	function fmtDate(tpl, names) {
@@ -673,13 +676,13 @@ var uPlot = (function () {
 		var date2;
 
 		// perf optimization
-		if (tz == 'Etc/UTC')
+		if (tz == 'UTC' || tz == 'Etc/UTC')
 			{ date2 = new Date(+date + date.getTimezoneOffset() * 6e4); }
 		else if (tz == localTz)
 			{ date2 = date; }
 		else {
 			date2 = new Date(date.toLocaleString('en-US', {timeZone: tz}));
-			date2.setMilliseconds(date[getMilliseconds]());
+			date2.setMilliseconds(date.getMilliseconds());
 		}
 
 		return date2;
@@ -808,17 +811,17 @@ var uPlot = (function () {
 				var minDateTs = minDate * ms;
 
 				// get ts of 12am (this lands us at or before the original scaleMin)
-				var minMin = mkDate(minDate[getFullYear](), isYr ? 0 : minDate[getMonth](), isMo || isYr ? 1 : minDate[getDate]());
+				var minMin = mkDate(minDate.getFullYear(), isYr ? 0 : minDate.getMonth(), isMo || isYr ? 1 : minDate.getDate());
 				var minMinTs = minMin * ms;
 
 				if (isMo || isYr) {
 					var moIncr = isMo ? foundIncr / mo : 0;
 					var yrIncr = isYr ? foundIncr / y  : 0;
 				//	let tzOffset = scaleMin - minDateTs;		// needed?
-					var split = minDateTs == minMinTs ? minDateTs : mkDate(minMin[getFullYear]() + yrIncr, minMin[getMonth]() + moIncr, 1) * ms;
+					var split = minDateTs == minMinTs ? minDateTs : mkDate(minMin.getFullYear() + yrIncr, minMin.getMonth() + moIncr, 1) * ms;
 					var splitDate = new Date(split / ms);
-					var baseYear = splitDate[getFullYear]();
-					var baseMonth = splitDate[getMonth]();
+					var baseYear = splitDate.getFullYear();
+					var baseMonth = splitDate.getMonth();
 
 					for (var i = 0; split <= scaleMax; i++) {
 						var next = mkDate(baseYear + yrIncr * i, baseMonth + moIncr * i, 1);
@@ -838,7 +841,7 @@ var uPlot = (function () {
 
 					var date0 = tzDate(split$1);
 
-					var prevHour = date0[getHours]() + (date0[getMinutes]() / m) + (date0[getSeconds]() / h);
+					var prevHour = date0.getHours() + (date0.getMinutes() / m) + (date0.getSeconds() / h);
 					var incrHours = foundIncr / h;
 
 					var minSpace = self.axes[axisIdx]._space;
@@ -932,12 +935,12 @@ var uPlot = (function () {
 			return splits.map(split => {
 				var date = tzDate(split);
 
-				var newYear = date[getFullYear]();
-				var newMnth = date[getMonth]();
-				var newDate = date[getDate]();
-				var newHour = date[getHours]();
-				var newMins = date[getMinutes]();
-				var newSecs = date[getSeconds]();
+				var newYear = date.getFullYear();
+				var newMnth = date.getMonth();
+				var newDate = date.getDate();
+				var newHour = date.getHours();
+				var newMins = date.getMinutes();
+				var newSecs = date.getSeconds();
 
 				var stamp = (
 					newYear != prevYear && s[2] ||
@@ -1843,6 +1846,8 @@ var uPlot = (function () {
 
 	function stepped(opts) {
 		var align = ifNull(opts.align, 1);
+		// whether to draw ascenders/descenders at null/gap bondaries
+		var ascDesc = ifNull(opts.ascDesc, false);
 
 		return (u, seriesIdx, idx0, idx1) => {
 			return orient(u, seriesIdx, (series, dataX, dataY, scaleX, scaleY, valToPosX, valToPosY, xOff, yOff, xDim, yDim) => {
@@ -1887,8 +1892,9 @@ var uPlot = (function () {
 							var halfStroke = (series.width * pxRatio) / 2;
 
 							var lastGap = gaps[gaps.length - 1];
-							lastGap[0] += halfStroke;
-							lastGap[1] -= halfStroke;
+
+							lastGap[0] += (ascDesc || align ==  1) ? halfStroke : -halfStroke;
+							lastGap[1] -= (ascDesc || align == -1) ? halfStroke : -halfStroke;
 						}
 
 						inGap = false;
@@ -2185,7 +2191,9 @@ var uPlot = (function () {
 
 					var rn = sc.range;
 
-					if (scaleKey != xScaleKey && !isArr(rn) && isObj(rn)) {
+					var rangeIsArr = isArr(rn);
+
+					if (scaleKey != xScaleKey && !rangeIsArr && isObj(rn)) {
 						var cfg = rn;
 						// this is similar to snapNumY
 						rn = (self, dataMin, dataMax) => dataMin == null ? nullMinMax : rangeNum(dataMin, dataMax, cfg);
@@ -2196,7 +2204,7 @@ var uPlot = (function () {
 						(sc.distr == 3 ? snapLogY : sc.distr == 4 ? snapAsinhY : snapNumY)
 					));
 
-					sc.auto = fnOrSelf(sc.auto);
+					sc.auto = fnOrSelf(rangeIsArr ? false : sc.auto);
 
 					sc.clamp = fnOrSelf(sc.clamp || clampScale);
 
@@ -2273,8 +2281,10 @@ var uPlot = (function () {
 		for (var k$1 in scales) {
 			var sc = scales[k$1];
 
-			if (sc.min != null || sc.max != null)
-				{ pendScales[k$1] = {min: sc.min, max: sc.max}; }
+			if (sc.min != null || sc.max != null) {
+				pendScales[k$1] = {min: sc.min, max: sc.max};
+				sc.min = sc.max = null;
+			}
 		}
 
 	//	self.tz = opts.tz || Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -2783,7 +2793,7 @@ var uPlot = (function () {
 				else
 					{ _setScale(xScaleKey, xsc.min, xsc.max); }
 
-				shouldSetCursor = true;
+				shouldSetCursor = cursor.left >= 0;
 				shouldSetLegend = true;
 				commit();
 			}
@@ -2841,7 +2851,7 @@ var uPlot = (function () {
 		//	log("setScales()", arguments);
 
 			// wip scales
-			var wipScales = copy(scales);
+			var wipScales = copy(scales, fastIsObj);
 
 			for (var k in wipScales) {
 				var wsc = wipScales[k];
@@ -2968,7 +2978,7 @@ var uPlot = (function () {
 				}
 
 				if (cursor.show)
-					{ shouldSetCursor = true; }
+					{ shouldSetCursor = cursor.left >= 0; }
 			}
 
 			for (var k$5 in pendScales)
@@ -3522,6 +3532,13 @@ var uPlot = (function () {
 				shouldSetSize = false;
 			}
 
+			if (fullWidCss > 0 && fullHgtCss > 0) {
+				ctx.clearRect(0, 0, can.width, can.height);
+				fire("drawClear");
+				drawOrder.forEach(fn => fn());
+				fire("draw");
+			}
+
 		//	if (shouldSetSelect) {
 			// TODO: update .u-select metrics (if visible)
 			//	setStylePx(selectDiv, TOP, select.top = 0);
@@ -3537,13 +3554,6 @@ var uPlot = (function () {
 			}
 
 		//	if (FEAT_LEGEND && legend.show && legend.live && shouldSetLegend) {}
-
-			if (fullWidCss > 0 && fullHgtCss > 0) {
-				ctx.clearRect(0, 0, can.width, can.height);
-				fire("drawClear");
-				drawOrder.forEach(fn => fn());
-				fire("draw");
-			}
 
 			if (!ready) {
 				ready = true;
@@ -3698,7 +3708,6 @@ var uPlot = (function () {
 
 			var s = series[i];
 
-			// will this cause redundant commit() if both show and focus are set?
 			if (opts.focus != null)
 				{ setFocus(i); }
 
@@ -3712,12 +3721,12 @@ var uPlot = (function () {
 
 			fire("setSeries", i, opts);
 
-			pub && sync.pub("setSeries", self, i, opts);
+			pub && pubSync("setSeries", self, i, opts);
 		}
 
 		self.setSeries = setSeries;
 
-		function _alpha(i, value) {
+		function setAlpha(i, value) {
 			series[i].alpha = value;
 
 			if (cursor.show && cursorPts[i])
@@ -3725,11 +3734,6 @@ var uPlot = (function () {
 
 			if (showLegend && legendRows[i])
 				{ legendRows[i][0].parentNode.style.opacity = value; }
-		}
-
-		function _setAlpha(i, value) {
-
-			_alpha(i, value);
 		}
 
 		// y-distance
@@ -3745,14 +3749,16 @@ var uPlot = (function () {
 
 				var allFocused = i == null;
 
+				var _setAlpha = focus.alpha != 1;
+
 				series.forEach((s, i2) => {
 					var isFocused = allFocused || i2 == 0 || i2 == i;
 					s._focus = allFocused ? null : isFocused;
-					_setAlpha(i2, isFocused ? 1 : focus.alpha);
+					_setAlpha && setAlpha(i2, isFocused ? 1 : focus.alpha);
 				});
 
 				focusedSeries = i;
-				commit();
+				_setAlpha && commit();
 			}
 		}
 
@@ -4033,7 +4039,7 @@ var uPlot = (function () {
 					var uni = drag.uni;
 
 					if (uni != null) {
-						// only calc drag status if they pass the dist asinh
+						// only calc drag status if they pass the dist thresh
 						if (dragX && dragY) {
 							dragX = rawDX >= uni;
 							dragY = rawDY >= uni;
@@ -4103,7 +4109,7 @@ var uPlot = (function () {
 			if (ts != null) {
 				// this is not technically a "mousemove" event, since it's debounced, rename to setCursor?
 				// since this is internal, we can tweak it later
-				sync.pub(mousemove, self, mouseLeft1, mouseTop1, xDim, yDim, idx);
+				pubSync(mousemove, self, mouseLeft1, mouseTop1, xDim, yDim, idx);
 
 				if (cursorFocus) {
 					var o = syncOpts.setSeries;
@@ -4232,7 +4238,7 @@ var uPlot = (function () {
 
 			if (e != null) {
 				onMouse(mouseup, doc, mouseUp);
-				sync.pub(mousedown, self, mouseLeft0, mouseTop0, plotWidCss, plotHgtCss, null);
+				pubSync(mousedown, self, mouseLeft0, mouseTop0, plotWidCss, plotHgtCss, null);
 			}
 		}
 
@@ -4299,7 +4305,7 @@ var uPlot = (function () {
 
 			if (e != null) {
 				offMouse(mouseup, doc);
-				sync.pub(mouseup, self, mouseLeft1, mouseTop1, plotWidCss, plotHgtCss, null);
+				pubSync(mouseup, self, mouseLeft1, mouseTop1, plotWidCss, plotHgtCss, null);
 			}
 		}
 
@@ -4358,7 +4364,7 @@ var uPlot = (function () {
 			hideSelect();
 
 			if (e != null)
-				{ sync.pub(dblclick, self, mouseLeft1, mouseTop1, plotWidCss, plotHgtCss, null); }
+				{ pubSync(dblclick, self, mouseLeft1, mouseTop1, plotWidCss, plotHgtCss, null); }
 		}
 
 		// internal pub/sub
@@ -4409,6 +4415,10 @@ var uPlot = (function () {
 		var syncOpts = assign({
 			key: null,
 			setSeries: false,
+			filters: {
+				pub: retTrue,
+				sub: retTrue,
+			},
 			scales: [xScaleKey, null]
 		}, cursor.sync);
 
@@ -4416,10 +4426,16 @@ var uPlot = (function () {
 
 		var sync = _sync(syncKey);
 
+		function pubSync(type, src, x, y, w, h, i) {
+			if (syncOpts.filters.pub(type, src, x, y, w, h, i))
+				{ sync.pub(type, src, x, y, w, h, i); }
+		}
+
 		sync.sub(self);
 
 		function pub(type, src, x, y, w, h, i) {
-			events[type](null, src, x, y, w, h, i);
+			if (syncOpts.filters.sub(type, src, x, y, w, h, i))
+				{ events[type](null, src, x, y, w, h, i); }
 		}
 
 		(self.pub = pub);
@@ -4445,6 +4461,8 @@ var uPlot = (function () {
 				{ autoScaleX(); }
 
 			_setSize(opts.width, opts.height);
+
+			updateCursor();
 
 			setSelect(select, false);
 		}

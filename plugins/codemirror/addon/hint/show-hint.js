@@ -360,7 +360,7 @@
     close: function() {
       if (this.completion.widget != this) return;
       this.completion.widget = null;
-      this.hints.parentNode.removeChild(this.hints);
+      if (this.hints.parentNode) this.hints.parentNode.removeChild(this.hints);
       this.completion.cm.removeKeyMap(this.keyMap);
 
       var cm = this.completion.cm;

@@ -1,5 +1,5 @@
-/*! Buttons for DataTables 1.6.5
- * ©2016-2020 SpryMedia Ltd - datatables.net/license
+/*! Buttons for DataTables 1.7.0
+ * ©2016-2021 SpryMedia Ltd - datatables.net/license
  */
 
 (function( factory ){
@@ -585,7 +585,7 @@ $.extend( Buttons.prototype, {
 		}
 
 		// Make sure that the button is available based on whatever requirements
-		// it has. For example, Flash buttons require Flash
+		// it has. For example, PDF button require pdfmake
 		if ( config.available && ! config.available( dt, config ) ) {
 			return false;
 		}
@@ -1464,6 +1464,41 @@ Buttons.buttonSelector = function ( insts, selector )
 	return ret;
 };
 
+/**
+ * Default function used for formatting output data.
+ * @param {*} str Data to strip
+ */
+Buttons.stripData = function ( str, config ) {
+	if ( typeof str !== 'string' ) {
+		return str;
+	}
+
+	// Always remove script tags
+	str = str.replace( /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '' );
+
+	// Always remove comments
+	str = str.replace( /<!\-\-.*?\-\->/g, '' );
+
+	if ( config.stripHtml ) {
+		str = str.replace( /<[^>]*>/g, '' );
+	}
+
+	if ( config.trim ) {
+		str = str.replace( /^\s+|\s+$/g, '' );
+	}
+
+	if ( config.stripNewlines ) {
+		str = str.replace( /\n/g, ' ' );
+	}
+
+	if ( config.decodeEntities ) {
+		_exportTextarea.innerHTML = str;
+		str = _exportTextarea.value;
+	}
+
+	return str;
+};
+
 
 /**
  * Buttons defaults. For full documentation, please refer to the docs/option
@@ -1485,10 +1520,7 @@ Buttons.defaults = {
 			className: ''
 		},
 		button: {
-			// Flash buttons will not work with `<button>` in IE - it has to be `<a>`
-			tag: 'ActiveXObject' in window ?
-				'a' :
-				'button',
+			tag: 'button',
 			className: 'dt-button',
 			active: 'active',
 			disabled: 'disabled'
@@ -1505,7 +1537,7 @@ Buttons.defaults = {
  * @type {string}
  * @static
  */
-Buttons.version = '1.6.5';
+Buttons.version = '1.7.0';
 
 
 $.extend( _dtButtons, {
@@ -1536,47 +1568,53 @@ $.extend( _dtButtons, {
 		if ( _dtButtons.copyHtml5 ) {
 			return 'copyHtml5';
 		}
-		if ( _dtButtons.copyFlash && _dtButtons.copyFlash.available( dt, conf ) ) {
-			return 'copyFlash';
-		}
 	},
 	csv: function ( dt, conf ) {
-		// Common option that will use the HTML5 or Flash export buttons
 		if ( _dtButtons.csvHtml5 && _dtButtons.csvHtml5.available( dt, conf ) ) {
 			return 'csvHtml5';
 		}
-		if ( _dtButtons.csvFlash && _dtButtons.csvFlash.available( dt, conf ) ) {
-			return 'csvFlash';
-		}
 	},
 	excel: function ( dt, conf ) {
-		// Common option that will use the HTML5 or Flash export buttons
 		if ( _dtButtons.excelHtml5 && _dtButtons.excelHtml5.available( dt, conf ) ) {
 			return 'excelHtml5';
 		}
-		if ( _dtButtons.excelFlash && _dtButtons.excelFlash.available( dt, conf ) ) {
-			return 'excelFlash';
-		}
 	},
 	pdf: function ( dt, conf ) {
-		// Common option that will use the HTML5 or Flash export buttons
 		if ( _dtButtons.pdfHtml5 && _dtButtons.pdfHtml5.available( dt, conf ) ) {
 			return 'pdfHtml5';
-		}
-		if ( _dtButtons.pdfFlash && _dtButtons.pdfFlash.available( dt, conf ) ) {
-			return 'pdfFlash';
 		}
 	},
 	pageLength: function ( dt ) {
 		var lengthMenu = dt.settings()[0].aLengthMenu;
-		var vals = Array.isArray( lengthMenu[0] ) ? lengthMenu[0] : lengthMenu;
-		var lang = Array.isArray( lengthMenu[0] ) ? lengthMenu[1] : lengthMenu;
+		var vals = [];
+		var lang = [];
 		var text = function ( dt ) {
 			return dt.i18n( 'buttons.pageLength', {
 				"-1": 'Show all rows',
 				_:    'Show %d rows'
 			}, dt.page.len() );
 		};
+
+		// Support for DataTables 1.x 2D array
+		if (Array.isArray( lengthMenu[0] )) {
+			vals = lengthMenu[0];
+			lang = lengthMenu[1];
+		}
+		else {
+			for (var i=0 ; i<lengthMenu.length ; i++) {
+				var option = lengthMenu[i];
+
+				// Support for DataTables 2 object in the array
+				if ($.isPlainObject(option)) {
+					vals.push(option.value);
+					lang.push(option.label);
+				}
+				else {
+					vals.push(option);
+					lang.push(option);
+				}
+			}
+		}
 
 		return {
 			extend: 'collection',
@@ -1980,9 +2018,6 @@ var _message = function ( dt, option, position )
 
 
 
-
-
-
 var _exportTextarea = $('<textarea/>')[0];
 var _exportData = function ( dt, inOpts )
 {
@@ -2000,49 +2035,17 @@ var _exportData = function ( dt, inOpts )
 		trim:           true,
 		format:         {
 			header: function ( d ) {
-				return strip( d );
+				return Buttons.stripData( d, config );
 			},
 			footer: function ( d ) {
-				return strip( d );
+				return Buttons.stripData( d, config );
 			},
 			body: function ( d ) {
-				return strip( d );
+				return Buttons.stripData( d, config );
 			}
 		},
 		customizeData: null
 	}, inOpts );
-
-	var strip = function ( str ) {
-		if ( typeof str !== 'string' ) {
-			return str;
-		}
-
-		// Always remove script tags
-		str = str.replace( /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '' );
-
-		// Always remove comments
-		str = str.replace( /<!\-\-.*?\-\->/g, '' );
-
-		if ( config.stripHtml ) {
-			str = str.replace( /<([^>'"]*('[^']*'|"[^"]*")?)*>/g, '' );
-		}
-
-		if ( config.trim ) {
-			str = str.replace( /^\s+|\s+$/g, '' );
-		}
-
-		if ( config.stripNewlines ) {
-			str = str.replace( /\n/g, ' ' );
-		}
-
-		if ( config.decodeEntities ) {
-			_exportTextarea.innerHTML = str;
-			str = _exportTextarea.value;
-		}
-
-		return str;
-	};
-
 
 	var header = dt.columns( config.columns ).indexes().map( function (idx) {
 		var el = dt.column( idx ).header();

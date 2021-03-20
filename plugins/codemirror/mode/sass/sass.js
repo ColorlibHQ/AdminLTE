@@ -445,7 +445,12 @@ CodeMirror.defineMode("sass", function(config) {
 
     indent: function(state) {
       return state.scopes[0].offset;
-    }
+    },
+
+    blockCommentStart: "/*",
+    blockCommentEnd: "*/",
+    lineComment: "//",
+    fold: "indent"
   };
 }, "css");
 

@@ -6181,7 +6181,7 @@
       var out = [];
       for (var i = 0; i < ranges.length; i++)
         { out[i] = new Range(clipPos(this, ranges[i].anchor),
-                           clipPos(this, ranges[i].head)); }
+                           clipPos(this, ranges[i].head || ranges[i].anchor)); }
       if (primary == null) { primary = Math.min(ranges.length - 1, this.sel.primIndex); }
       setSelection(this, normalizeSelection(this.cm, out, primary), options);
     }),
@@ -8766,6 +8766,7 @@
 
     var input = this, cm = input.cm;
     var div = input.div = display.lineDiv;
+    div.contentEditable = true;
     disableBrowserMagic(div, cm.options.spellcheck, cm.options.autocorrect, cm.options.autocapitalize);
 
     function belongsToInput(e) {
@@ -9793,7 +9794,7 @@
 
   addLegacyProps(CodeMirror);
 
-  CodeMirror.version = "5.59.4";
+  CodeMirror.version = "5.60.0";
 
   return CodeMirror;
 
