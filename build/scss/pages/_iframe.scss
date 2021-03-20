@@ -120,3 +120,11 @@ body.iframe-mode-fullscreen {
     }
   }
 }
+
+.permanent-btn-iframe-close {
+  .btn-iframe-close {
+    animation: none !important;
+    visibility: visible !important;
+    opacity: 1;
+  }
+}
