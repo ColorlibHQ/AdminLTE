@@ -98,12 +98,12 @@
   @include navbar-variant($color, $value);
 }
 
-.dark-mode *:not([class*="sidebar-light-"]) {
-  &.nav-pills .nav-link {
+.dark-mode {
+  .nav-pills .nav-link {
     color: $gray-400;
   }
 
-  &.nav-tabs {
+  .nav-tabs {
     border-color: lighten($dark, 15%);
 
     .nav-link:focus,

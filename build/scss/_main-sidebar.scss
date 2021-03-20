@@ -1159,6 +1159,18 @@
       @include sidebar-color($color);
     }
   }
+
+  [class*="sidebar-light-"] {
+    .sidebar {
+      a {
+        color: $sidebar-light-color;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
 }
 
 //
