@@ -166,7 +166,7 @@ $(function () {
 
   // This will get the first returned node in the jQuery collection.
   // eslint-disable-next-line no-unused-vars
-  var salesChart = new Chart(salesChartCanvas, {
+  var salesChart = new Chart(salesChartCanvas, { // lgtm[js/unused-local-variable]
     type: 'line',
     data: salesChartData,
     options: salesChartOptions
@@ -197,7 +197,7 @@ $(function () {
   // Create pie or douhnut chart
   // You can switch between pie and douhnut using the method below.
   // eslint-disable-next-line no-unused-vars
-  var pieChart = new Chart(pieChartCanvas, {
+  var pieChart = new Chart(pieChartCanvas, { // lgtm[js/unused-local-variable]
     type: 'doughnut',
     data: pieData,
     options: pieOptions
@@ -259,7 +259,7 @@ $(function () {
 
   // This will get the first returned node in the jQuery collection.
   // eslint-disable-next-line no-unused-vars
-  var salesGraphChart = new Chart(salesGraphChartCanvas, {
+  var salesGraphChart = new Chart(salesGraphChartCanvas, { // lgtm[js/unused-local-variable]
     type: 'line',
     data: salesGraphChartData,
     options: salesGraphChartOptions
