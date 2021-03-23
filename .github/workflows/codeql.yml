@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - v4-dev
       - "!dependabot/**"
   pull_request:
     # The branches below must be a subset of the branches above
