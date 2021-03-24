@@ -35,16 +35,18 @@
   }
 }
 
-.dark-mode {
-  @each $color, $value in $theme-colors-alt {
-    .alert-#{$color} {
-      color: color-yiq($value);
-      background-color: $value;
-      border-color: darken($value, 5%);
-    }
+@if $enable-dark-mode {
+  .dark-mode {
+    @each $color, $value in $theme-colors-alt {
+      .alert-#{$color} {
+        color: color-yiq($value);
+        background-color: $value;
+        border-color: darken($value, 5%);
+      }
 
-    .alert-default-#{$color} {
-      @include alert-variant(theme-color-level($color, $alert-bg-level), theme-color-level($color, $alert-border-level), theme-color-level($color, $alert-color-level));
+      .alert-default-#{$color} {
+        @include alert-variant(theme-color-level($color, $alert-bg-level), theme-color-level($color, $alert-border-level), theme-color-level($color, $alert-color-level));
+      }
     }
   }
 }

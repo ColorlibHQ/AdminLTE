@@ -1145,28 +1145,30 @@
   }
 }
 
-.dark-mode {
-  @each $name, $color in $theme-colors-alt {
-    .sidebar-dark-#{$name},
-    .sidebar-light-#{$name} {
-      @include sidebar-color($color);
+@if $enable-dark-mode {
+  .dark-mode {
+    @each $name, $color in $theme-colors-alt {
+      .sidebar-dark-#{$name},
+      .sidebar-light-#{$name} {
+        @include sidebar-color($color);
+      }
     }
-  }
 
-  @each $name, $color in $colors-alt {
-    .sidebar-dark-#{$name},
-    .sidebar-light-#{$name} {
-      @include sidebar-color($color);
+    @each $name, $color in $colors-alt {
+      .sidebar-dark-#{$name},
+      .sidebar-light-#{$name} {
+        @include sidebar-color($color);
+      }
     }
-  }
 
-  [class*="sidebar-light-"] {
-    .sidebar {
-      a {
-        color: $sidebar-light-color;
+    [class*="sidebar-light-"] {
+      .sidebar {
+        a {
+          color: $sidebar-light-color;
 
-        &:hover {
-          text-decoration: none;
+          &:hover {
+            text-decoration: none;
+          }
         }
       }
     }

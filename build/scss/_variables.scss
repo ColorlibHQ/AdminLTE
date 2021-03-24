@@ -233,3 +233,9 @@ $ribbon-xl-wrapper-size: 180px !default;
 $ribbon-xl-width: 240px !default;
 $ribbon-xl-top: 47px !default;
 $ribbon-xl-right: 4px !default;
+
+// ENABLE DARK MODE
+// --------------------------------------------------------
+$enable-dark-mode: true !default;  // requires `@import "variables-alt";`
+
+//

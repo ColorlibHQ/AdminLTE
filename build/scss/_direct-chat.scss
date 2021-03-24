@@ -223,37 +223,41 @@
   }
 }
 
-.dark-mode {
-  .direct-chat-text {
-    background-color: lighten($dark, 7.5%);
-    border-color: lighten($dark, 10%);
-    color: $white;
+@if $enable-dark-mode {
+  .dark-mode {
+    .direct-chat-text {
+      background-color: lighten($dark, 7.5%);
+      border-color: lighten($dark, 10%);
+      color: $white;
 
-    &::after,
-    &::before {
-      border-right-color: lighten($dark, 10%);
+      &::after,
+      &::before {
+        border-right-color: lighten($dark, 10%);
+      }
     }
-  }
-  .direct-chat-timestamp {
-    color: $gray-500;
-  }
-  .right > .direct-chat-text {
-    &::after,
-    &::before {
-      border-right-color: transparent;
+    .direct-chat-timestamp {
+      color: $gray-500;
     }
-  }
+    .right > .direct-chat-text {
+      &::after,
+      &::before {
+        border-right-color: transparent;
+      }
+    }
 
-  // Color variants
-  @each $name, $color in $theme-colors-alt {
-    .direct-chat-#{$name} {
-      @include direct-chat-variant($color);
+    // Color variants
+    @each $name, $color in $theme-colors-alt {
+      .direct-chat-#{$name} {
+        @include direct-chat-variant($color);
+      }
     }
-  }
 
-  @each $name, $color in $colors-alt {
-    .direct-chat-#{$name} {
-      @include direct-chat-variant($color);
+    @each $name, $color in $colors-alt {
+      .direct-chat-#{$name} {
+        @include direct-chat-variant($color);
+      }
     }
   }
 }
+
+//

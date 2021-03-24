@@ -42,41 +42,45 @@
   }
 }
 
-.dark-mode {
-  .page-item {
-    &.disabled a,
-    &.disabled .page-link {
-      background-color: lighten($dark, 2.5%) !important;
-      border-color: $gray-600 !important;
-      color: $gray-600;
-    }
+@if $enable-dark-mode {
+  .dark-mode {
+    .page-item {
+      &.disabled a,
+      &.disabled .page-link {
+        background-color: lighten($dark, 2.5%) !important;
+        border-color: $gray-600 !important;
+        color: $gray-600;
+      }
 
-    .page-link {
-      color: $primary-alt;
-    }
-
-    &.active {
       .page-link {
-        background-color: $primary-alt;
-        color: $white;
+        color: $primary-alt;
+      }
 
-        &:hover,
-        &:focus {
-          color: $gray-400 !important;
+      &.active {
+        .page-link {
+          background-color: $primary-alt;
+          color: $white;
+
+          &:hover,
+          &:focus {
+            color: $gray-400 !important;
+          }
         }
       }
-    }
-    &:not(.active) {
-      .page-link {
-        background-color: $dark;
-        border-color: $gray-600;
+      &:not(.active) {
+        .page-link {
+          background-color: $dark;
+          border-color: $gray-600;
 
-        &:hover,
-        &:focus {
-          color: lighten($primary-alt, 5%);
-          background-color: lighten($dark, 5%);
+          &:hover,
+          &:focus {
+            color: lighten($primary-alt, 5%);
+            background-color: lighten($dark, 5%);
+          }
         }
       }
     }
   }
 }
+
+//

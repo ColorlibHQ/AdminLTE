@@ -36,9 +36,13 @@
   }
 }
 
-.dark-mode {
-  .post {
-    color: $white;
-    border-color: $gray-600;
+@if $enable-dark-mode {
+  .dark-mode {
+    .post {
+      color: $white;
+      border-color: $gray-600;
+    }
   }
 }
+
+//

@@ -44,11 +44,15 @@
   font-size: 12px;
 }
 
-.dark-mode {
-  .users-list-name {
-    color: $gray-400;
-  }
-  .users-list-date {
-    color: $gray-500;
+@if $enable-dark-mode {
+  .dark-mode {
+    .users-list-name {
+      color: $gray-400;
+    }
+    .users-list-date {
+      color: $gray-500;
+    }
   }
 }
+
+//

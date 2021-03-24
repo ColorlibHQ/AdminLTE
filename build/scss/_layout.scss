@@ -647,58 +647,62 @@ body:not(.layout-fixed) {
   }
 }
 
-.dark-mode {
-  background-color: $dark-main-bg;
-  color: $white;
+@if $enable-dark-mode {
+  .dark-mode {
+    background-color: $dark-main-bg;
+    color: $white;
 
-  .wrapper {
-    .layout-navbar-fixed & {
-      @each $name, $color in $theme-colors-alt {
-        .sidebar-dark-#{$name} .brand-link:not([class*="navbar"]) {
-          background-color: $sidebar-dark-bg;
-        }
+    .wrapper {
+      .layout-navbar-fixed & {
+        @each $name, $color in $theme-colors-alt {
+          .sidebar-dark-#{$name} .brand-link:not([class*="navbar"]) {
+            background-color: $sidebar-dark-bg;
+          }
 
-        .sidebar-light-#{$name} .brand-link:not([class*="navbar"]) {
-          background-color: $sidebar-light-bg;
+          .sidebar-light-#{$name} .brand-link:not([class*="navbar"]) {
+            background-color: $sidebar-light-bg;
+          }
         }
       }
-    }
 
-    @each $breakpoint in map-keys($grid-breakpoints) {
-      @include media-breakpoint-up($breakpoint) {
-        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+      @each $breakpoint in map-keys($grid-breakpoints) {
+        @include media-breakpoint-up($breakpoint) {
+          $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-        .layout#{$infix}-navbar-fixed & {
-          @each $name, $color in $theme-colors-alt {
-            .sidebar-dark-#{$name} .brand-link:not([class*="navbar"]) {
-              background-color: $sidebar-dark-bg;
-            }
+          .layout#{$infix}-navbar-fixed & {
+            @each $name, $color in $theme-colors-alt {
+              .sidebar-dark-#{$name} .brand-link:not([class*="navbar"]) {
+                background-color: $sidebar-dark-bg;
+              }
 
-            .sidebar-light-#{$name} .brand-link:not([class*="navbar"]) {
-              background-color: $sidebar-light-bg;
+              .sidebar-light-#{$name} .brand-link:not([class*="navbar"]) {
+                background-color: $sidebar-light-bg;
+              }
             }
           }
         }
       }
     }
-  }
 
-  .breadcrumb-item {
-    &.active,
-    + .breadcrumb-item::before {
-      color: $gray-500;
+    .breadcrumb-item {
+      &.active,
+      + .breadcrumb-item::before {
+        color: $gray-500;
+      }
     }
-  }
-  .main-footer {
-    background-color: $dark;
-    border-color: lighten($dark, 10%);
-  }
-  .content-wrapper {
-    background-color: lighten($dark, 7.5%);
-    color: $white;
-
-    .content-header {
+    .main-footer {
+      background-color: $dark;
+      border-color: lighten($dark, 10%);
+    }
+    .content-wrapper {
+      background-color: lighten($dark, 7.5%);
       color: $white;
+
+      .content-header {
+        color: $white;
+      }
     }
   }
 }
+
+//

@@ -482,60 +482,64 @@ blockquote {
   padding: .375rem .6rem;
 }
 
-.dark-mode {
-  a:not(.btn):hover {
-    color: lighten($link-color, 10%);
-  }
-  .attachment-block {
-    background-color: lighten($dark, 3.75%);
-
-    .attachment-text {
-      color: $gray-400;
+@if $enable-dark-mode {
+  .dark-mode {
+    a:not(.btn):hover {
+      color: lighten($link-color, 10%);
     }
-  }
-  blockquote {
-    background-color: lighten($dark, 5%);
+    .attachment-block {
+      background-color: lighten($dark, 3.75%);
 
-    @each $color, $value in $theme-colors {
-      &.quote-#{$color} {
-        border-color: $value;
+      .attachment-text {
+        color: $gray-400;
+      }
+    }
+    blockquote {
+      background-color: lighten($dark, 5%);
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-          color: $value;
+      @each $color, $value in $theme-colors {
+        &.quote-#{$color} {
+          border-color: $value;
+
+          h1,
+          h2,
+          h3,
+          h4,
+          h5,
+          h6 {
+            color: $value;
+          }
+        }
+      }
+
+      @each $color, $value in $colors {
+        &.quote-#{$color} {
+          border-color: $value;
+
+          h1,
+          h2,
+          h3,
+          h4,
+          h5,
+          h6 {
+            color: $value;
+          }
         }
       }
     }
-
-    @each $color, $value in $colors {
-      &.quote-#{$color} {
-        border-color: $value;
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-          color: $value;
-        }
-      }
+    .close,
+    .mailbox-attachment-close {
+      color: $gray-500;
+      text-shadow: 0 1px 0 $gray-700;
     }
-  }
-  .close,
-  .mailbox-attachment-close {
-    color: $gray-500;
-    text-shadow: 0 1px 0 $gray-700;
-  }
-  .tab-custom-content {
-    border-color: $gray-600;
-  }
-  .list-group-item {
-    background-color: $dark;
-    border-color: $gray-600;
+    .tab-custom-content {
+      border-color: $gray-600;
+    }
+    .list-group-item {
+      background-color: $dark;
+      border-color: $gray-600;
+    }
   }
 }
+
+//

@@ -14,10 +14,12 @@
   z-index: $zindex-preloader;
 }
 
-.dark-mode {
-  .preloader {
-    background-color: $dark-main-bg;
-    color: $white;
+@if $enable-dark-mode {
+  .dark-mode {
+    .preloader {
+      background-color: $dark-main-bg;
+      color: $white;
+    }
   }
 }
 

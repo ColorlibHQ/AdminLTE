@@ -145,21 +145,25 @@
   }
 }
 
-.dark-mode {
-  .info-box {
-    background-color: $dark;
-    color: $white;
-    @each $name, $color in $theme-colors-alt {
-      .info-box {
-        .bg-#{$name},
-        .bg-gradient-#{$name} {
-          color: color-yiq($color);
+@if $enable-dark-mode {
+  .dark-mode {
+    .info-box {
+      background-color: $dark;
+      color: $white;
+      @each $name, $color in $theme-colors-alt {
+        .info-box {
+          .bg-#{$name},
+          .bg-gradient-#{$name} {
+            color: color-yiq($color);
 
-          .progress-bar {
-            background-color: color-yiq($color);
+            .progress-bar {
+              background-color: color-yiq($color);
+            }
           }
         }
       }
     }
   }
 }
+
+//

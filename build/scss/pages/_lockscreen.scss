@@ -77,17 +77,21 @@
   margin-top: 10px;
 }
 
-.dark-mode {
-  .lockscreen-item {
-    background-color: $dark;
-  }
-  .lockscreen-logo a {
-    color: $white;
-  }
-  .lockscreen-credentials .btn {
-    background-color: $dark;
-  }
-  .lockscreen-image {
-    background-color: $gray-600;
+@if $enable-dark-mode {
+  .dark-mode {
+    .lockscreen-item {
+      background-color: $dark;
+    }
+    .lockscreen-logo a {
+      color: $white;
+    }
+    .lockscreen-credentials .btn {
+      background-color: $dark;
+    }
+    .lockscreen-image {
+      background-color: $gray-600;
+    }
   }
 }
+
+//

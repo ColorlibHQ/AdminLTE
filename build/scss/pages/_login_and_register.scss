@@ -102,17 +102,21 @@
   margin: 10px 0;
 }
 
-.dark-mode {
-  .login-card-body,
-  .register-card-body {
-    background-color: $dark;
-    border-color: $gray-600;
-    color: $white;
-  }
-  .login-logo,
-  .register-logo {
-    a {
+@if $enable-dark-mode {
+  .dark-mode {
+    .login-card-body,
+    .register-card-body {
+      background-color: $dark;
+      border-color: $gray-600;
       color: $white;
+    }
+    .login-logo,
+    .register-logo {
+      a {
+        color: $white;
+      }
     }
   }
 }
+
+//

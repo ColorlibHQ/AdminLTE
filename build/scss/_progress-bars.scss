@@ -65,8 +65,12 @@
   }
 }
 
-.dark-mode {
-  .progress {
-    background: lighten($dark, 7.5%);
+@if $enable-dark-mode {
+  .dark-mode {
+    .progress {
+      background: lighten($dark, 7.5%);
+    }
   }
 }
+
+//

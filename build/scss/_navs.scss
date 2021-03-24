@@ -98,71 +98,75 @@
   @include navbar-variant($color, $value);
 }
 
-.dark-mode {
-  .nav-pills .nav-link {
-    color: $gray-400;
-  }
+@if $enable-dark-mode {
+  .dark-mode {
+    .nav-pills .nav-link {
+      color: $gray-400;
+    }
 
-  .nav-tabs {
-    border-color: lighten($dark, 15%);
-
-    .nav-link:focus,
-    .nav-link:hover {
+    .nav-tabs {
       border-color: lighten($dark, 15%);
-    }
 
-    .nav-item.show .nav-link,
-    .nav-link.active {
-      background-color: $dark;
-      border-color: lighten($dark, 15%) lighten($dark, 15%) transparent lighten($dark, 15%);
-      color: $white;
-    }
-
-    &.flex-column {
-      .nav-item.show .nav-link,
-      .nav-link {
-        &.active,
-        &:focus,
-        &:hover {
-          border-color: lighten($dark, 15%) transparent lighten($dark, 15%) lighten($dark, 15%);
-        }
-        &:focus,
-        &:hover {
-          background-color: lighten($dark, 5%);
-        }
-      }
-      &.nav-tabs-right {
+      .nav-link:focus,
+      .nav-link:hover {
         border-color: lighten($dark, 15%);
+      }
+
+      .nav-item.show .nav-link,
+      .nav-link.active {
+        background-color: $dark;
+        border-color: lighten($dark, 15%) lighten($dark, 15%) transparent lighten($dark, 15%);
+        color: $white;
+      }
+
+      &.flex-column {
+        .nav-item.show .nav-link,
         .nav-link {
           &.active,
           &:focus,
           &:hover {
-            border-color: lighten($dark, 15%) lighten($dark, 15%) lighten($dark, 15%) transparent;
+            border-color: lighten($dark, 15%) transparent lighten($dark, 15%) lighten($dark, 15%);
+          }
+          &:focus,
+          &:hover {
+            background-color: lighten($dark, 5%);
+          }
+        }
+        &.nav-tabs-right {
+          border-color: lighten($dark, 15%);
+          .nav-link {
+            &.active,
+            &:focus,
+            &:hover {
+              border-color: lighten($dark, 15%) lighten($dark, 15%) lighten($dark, 15%) transparent;
+            }
           }
         }
       }
     }
-  }
 
-  // Color variants
-  @each $color, $value in $theme-colors-alt {
-    @if $color == dark or $color == light {
-      .navbar-#{$color} {
-        background-color: $value;
-        @if $color == dark {
-          border-color: lighten($dark, 10%);
+    // Color variants
+    @each $color, $value in $theme-colors-alt {
+      @if $color == dark or $color == light {
+        .navbar-#{$color} {
+          background-color: $value;
+          @if $color == dark {
+            border-color: lighten($dark, 10%);
+          }
         }
       }
     }
-  }
 
-  @each $color, $value in $theme-colors-alt {
-    @if $color != dark and $color != light {
+    @each $color, $value in $theme-colors-alt {
+      @if $color != dark and $color != light {
+        @include navbar-variant($color, $value);
+      }
+    }
+
+    @each $color, $value in $colors-alt {
       @include navbar-variant($color, $value);
     }
   }
-
-  @each $color, $value in $colors-alt {
-    @include navbar-variant($color, $value);
-  }
 }
+
+//

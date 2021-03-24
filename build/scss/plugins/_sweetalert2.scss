@@ -38,14 +38,18 @@
   }
 }
 
-.dark-mode {
-  .swal2-popup {
-    background-color: $dark;
-    color: $gray-200;
-
-    .swal2-content,
-    .swal2-title {
+@if $enable-dark-mode {
+  .dark-mode {
+    .swal2-popup {
+      background-color: $dark;
       color: $gray-200;
+
+      .swal2-content,
+      .swal2-title {
+        color: $gray-200;
+      }
     }
   }
 }
+
+//

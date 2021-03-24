@@ -54,15 +54,18 @@
   }
 }
 
+@if $enable-dark-mode {
+  .dark-mode {
+    .products-list > .item {
+      background-color: $dark;
+      color: $white;
+      border-bottom-color: $gray-600;
+    }
 
-.dark-mode {
-  .products-list > .item {
-    background-color: $dark;
-    color: $white;
-    border-bottom-color: $gray-600;
-  }
-
-  .product-description {
-    color: $gray-400;
+    .product-description {
+      color: $gray-400;
+    }
   }
 }
+
+//

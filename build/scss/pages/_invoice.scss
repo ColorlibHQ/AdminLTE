@@ -12,8 +12,12 @@
   margin-top: 0;
 }
 
-.dark-mode {
-  .invoice {
-    background-color: $dark;
+@if $enable-dark-mode {
+  .dark-mode {
+    .invoice {
+      background-color: $dark;
+    }
   }
 }
+
+//
