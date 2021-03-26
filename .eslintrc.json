@@ -1,0 +1,49 @@
+{
+  "root": true,
+  "extends": [
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:unicorn/recommended",
+    "xo",
+    "xo/browser"
+  ],
+  "rules": {
+    "capitalized-comments": "off",
+    "indent": [
+      "error",
+      2,
+      {
+        "MemberExpression": "off",
+        "SwitchCase": 1
+      }
+    ],
+    "max-params": [
+      "warn",
+      5
+    ],
+    "multiline-ternary": [
+      "error",
+      "always-multiline"
+    ],
+    "new-cap": [
+      "error",
+      {
+        "properties": false
+      }
+    ],
+    "no-eq-null": "off",
+    "no-negated-condition": "off",
+    "no-console": "error",
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "unicorn/filename-case": "off",
+    "unicorn/no-null": "off",
+    "unicorn/prevent-abbreviations": "off"
+  }
+}

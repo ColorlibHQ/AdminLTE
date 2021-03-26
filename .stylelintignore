@@ -4,3 +4,4 @@
 **/dist/
 **/docs_html/
 **/plugins/
+**/.cache/

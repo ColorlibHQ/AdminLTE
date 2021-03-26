@@ -1,0 +1,64 @@
+//
+// Core: Sidebar Mini
+//
+
+.sidebar-collapse {
+  .main-sidebar {
+    min-width: $sidebar-mini-width;
+    max-width: $sidebar-mini-width;
+  }
+
+  // Make the sidebar headers
+  .nav-sidebar .nav-header {
+    display: none;
+  }
+
+  .nav-sidebar .nav-link span {
+    width: 0;
+    white-space: nowrap;
+  }
+
+  .sidebar .user-panel > .info,
+  .nav-sidebar .nav-link span,
+  .brand-text {
+    margin-left: -10px;
+    animation-name: fadeOut;
+    animation-duration: $transition-speed;
+    animation-fill-mode: both;
+    visibility: hidden;
+  }
+}
+
+.sidebar-collapse:not(.layout-fixed) {
+  .sidebar {
+    overflow: visible;
+
+    .nav-sidebar .nav-item:hover {
+      position: relative;
+
+      .nav-link {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      span {
+        animation: none;
+        z-index: $zindex-sidebar + 12;
+        visibility: visible;
+        display: inline-block;
+        position: absolute;
+        width: $sidebar-width;
+        left: $sidebar-mini-width;
+        top: 0;
+        background-color: inherit;
+        padding: inherit;
+        padding-left: 1rem;
+        margin-left: -1rem;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+}
+
+//

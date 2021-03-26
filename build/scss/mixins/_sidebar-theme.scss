@@ -1,0 +1,44 @@
+//
+// Mixins: Sidebar Theme
+//
+
+@mixin sidebar-theme(
+  $sidebar-bg,
+  $sidebar-color
+) {
+
+  .wrapper {
+    background: $sidebar-bg;
+  }
+
+  .main-sidebar {
+    color: $sidebar-color;
+  }
+
+  // Sidebar navigation menu
+  .nav-sidebar {
+    // All levels
+    .nav-link {
+      color: $sidebar-color;
+
+      &:hover,
+      .active {
+        color: color-constract($sidebar-dark-color);
+      }
+    }
+  }
+
+  .sidebar-collapse:not(.layout-fixed) {
+    .sidebar {
+      .nav-sidebar .nav-item:hover {
+        .nav-link:not(.active) {
+          span {
+            background-color: $sidebar-bg;
+          }
+        }
+      }
+    }
+  }
+}
+
+//
