@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": true,
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true
+  },
+  "include": [
+    "build/ts/**/*"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "plugins"
+  ]
+}

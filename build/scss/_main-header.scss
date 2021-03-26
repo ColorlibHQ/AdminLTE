@@ -1,0 +1,31 @@
+//
+// Core: Main Header
+//
+
+.main-header {
+  background-color: $white;
+  border-bottom: $main-header-bottom-border;
+  z-index: $zindex-main-header;
+
+  .nav-link {
+    color: $dark;
+  }
+}
+
+@include dark-mode() {
+  .main-header {
+    background-color: $dark-alt;
+    border-bottom-color: tint-color($dark-alt, 10%);
+
+    .nav-link {
+      color: $gray-400-alt;
+
+      &:hover,
+      &:focus {
+        color: $white-alt;
+      }
+    }
+  }
+}
+
+//

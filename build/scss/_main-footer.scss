@@ -1,0 +1,24 @@
+//
+// Core: Main Footer
+//
+
+.main-footer {
+  background-color: $main-footer-bg;
+  border-top: $main-footer-border-top;
+  color: $main-footer-color;
+  padding: $main-footer-padding;
+
+  .text-sm &,
+  &.text-sm {
+    padding: $main-footer-padding-sm;
+  }
+}
+
+@include dark-mode() {
+  .main-footer {
+    background-color: $main-footer-bg-alt;
+    border-top-color: tint-color($dark, 10%);
+  }
+}
+
+//

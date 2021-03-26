@@ -1,0 +1,41 @@
+//
+// Core: Brand
+//
+
+// .brand-container {
+// display: inline-block;
+// }
+
+.brand-container {
+  display: flex;
+  font-size: $navbar-brand-font-size;
+  padding: $brand-link-padding-y $sidebar-padding-x;
+  white-space: nowrap;
+  border-bottom: $brand-link-border-buttom solid tint-color($dark, 10%);
+
+  &:hover {
+    color: $white;
+    text-decoration: none;
+  }
+
+  // TODO: crete utility for opacity for image
+  .brand-image {
+    float: left;
+    line-height: .8;
+    margin-left: .8rem;
+    margin-right: .5rem;
+    margin-top: -3px;
+    max-height: 33px;
+    width: auto;
+  }
+
+  .brand-text {
+    color: $sidebar-dark-color;
+  }
+
+  .sidebar-mini-icon {
+    color: $gray-400;
+    margin-left: auto;
+    order: 2;
+  }
+}

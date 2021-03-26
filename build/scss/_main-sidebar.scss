@@ -1,0 +1,86 @@
+//
+// Core: Main Sidebar
+//
+
+// Default Sidebar Theme
+@include sidebar-theme($sidebar-dark-bg, $sidebar-dark-color);
+
+.main-sidebar {
+  @include transition($sidebar-transition);
+  z-index: $zindex-sidebar;
+  min-width: $sidebar-width;
+  max-width: $sidebar-width;
+}
+
+@include media-breakpoint-down(sm) {
+  :not(.layout-fixed).main-sidebar {
+    margin-left: -#{$sidebar-width};
+
+    .sidebar-open & {
+      transform: translateX($sidebar-width);
+
+      .sidebar-mini-icon {
+        display: none;
+        transition: display $transition-speed;
+      }
+    }
+  }
+}
+
+.sidebar {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: $sidebar-padding-y;
+  padding-left: $sidebar-padding-x;
+  padding-right: $sidebar-padding-x;
+  padding-top: $sidebar-padding-y;
+  @include scrollbar-color-gray();
+  @include scrollbar-width-none();
+
+  &:hover {
+    @include scrollbar-width-thin();
+  }
+}
+
+// Sidebar navigation menu
+.nav-sidebar {
+  // All levels
+  .nav-link > .right,
+  .nav-link > span > .right {
+    position: absolute;
+    right: 1rem;
+    top: .7rem;
+  }
+
+  .nav-link {
+    position: relative;
+
+    span {
+      display: inline-block;
+      padding-left: .5rem;
+    }
+
+    .nav-icon {
+      padding-left: .3rem;
+    }
+  }
+
+  .nav-header {
+    font-size: .9rem;
+    padding: $nav-link-padding-y ($nav-link-padding-y * 1.5);
+  }
+
+  // Tree view menu
+  .nav-treeview {
+    display: none;
+    list-style: none;
+    padding: 0;
+  }
+
+  .menu-open > .nav-treeview {
+    display: block;
+  }
+}
+
+//

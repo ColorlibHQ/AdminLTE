@@ -1,0 +1,12 @@
+{
+  "files": [
+    {
+      "path": "./dist/css/adminlte.css",
+      "maxSize": "25 kB"
+    },
+    {
+      "path": "./dist/css/adminlte.min.css",
+      "maxSize": "23 kB"
+    }
+  ]
+}

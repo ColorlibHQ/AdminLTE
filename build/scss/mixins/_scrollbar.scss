@@ -1,0 +1,38 @@
+//
+// Mixins: Scrollbar
+//
+
+@mixin scrollbar-color-gray() {
+  scrollbar-color: #a9a9a9 transparent;
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #a9a9a9;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+}
+
+@mixin scrollbar-width-thin() {
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: .5rem;
+    height: .5rem;
+  }
+}
+
+@mixin scrollbar-width-none() {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+//
