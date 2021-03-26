@@ -1,0 +1,96 @@
+
+// LAYOUT
+// --------------------------------------------------------
+
+$font-size-root:              1rem !default;
+
+// Sidebar
+// --------------------------------------------------------
+$sidebar-width:               250px !default;
+$sidebar-padding-x:           .5rem !default;
+$sidebar-padding-y:           0 !default;
+$sidebar-custom-height:       4rem !default;
+$sidebar-custom-height-lg:    6rem !default;
+$sidebar-custom-height-xl:    8rem !default;
+$sidebar-custom-padding-x:    .85rem !default;
+$sidebar-custom-padding-y:    .5rem !default;
+// $sidebar-bg:                  $dark !default;
+$sidebar-transition:          margin-left .35s ease-in-out, left .35s ease-in-out, margin-right .35s ease-in-out, right .35s ease-in-out !default;
+$sidebar-scrollbar-width:     thin;
+$sidebar-scrollbar-color:     $gray-500 transparent;
+
+// SIDEBAR SKINS
+// --------------------------------------------------------
+
+// Dark sidebar
+$sidebar-dark-bg: $dark !default;
+$sidebar-dark-hover-bg: rgba(255, 255, 255, .1) !default;
+$sidebar-dark-color: #c2c7d0 !default;
+$sidebar-dark-hover-color: $white !default;
+$sidebar-dark-active-color: $white !default;
+$sidebar-dark-submenu-bg: transparent !default;
+$sidebar-dark-submenu-color: #c2c7d0 !default;
+$sidebar-dark-submenu-hover-color: $white !default;
+$sidebar-dark-submenu-hover-bg: $sidebar-dark-hover-bg !default;
+$sidebar-dark-submenu-active-color: $sidebar-dark-bg !default;
+$sidebar-dark-submenu-active-bg: rgba(255, 255, 255, .9) !default;
+
+// Light sidebar
+$sidebar-light-bg: $white !default;
+$sidebar-light-hover-bg: rgba($black, .1) !default;
+$sidebar-light-color: $gray-800 !default;
+$sidebar-light-hover-color: $gray-900 !default;
+$sidebar-light-active-color: $black !default;
+$sidebar-light-submenu-bg: transparent !default;
+$sidebar-light-submenu-color: #777 !default;
+$sidebar-light-submenu-hover-color: $black !default;
+$sidebar-light-submenu-hover-bg: $sidebar-light-hover-bg !default;
+$sidebar-light-submenu-active-color: $sidebar-light-hover-color !default;
+$sidebar-light-submenu-active-bg: $sidebar-light-submenu-hover-bg !default;
+
+// SIDEBAR MINI
+// --------------------------------------------------------
+$sidebar-mini-width: ($nav-link-padding-x + $sidebar-padding-x + .8rem) * 2 !default;
+$sidebar-nav-icon-width: $sidebar-mini-width - (($sidebar-padding-x + $nav-link-padding-x) * 2) !default;
+$sidebar-user-image-width: $sidebar-nav-icon-width + ($nav-link-padding-x / 2) !default;
+
+// CONTROL SIDEBAR
+// --------------------------------------------------------
+$control-sidebar-width: $sidebar-width !default;
+
+// MAIN HEADER
+// --------------------------------------------------------
+$main-header-bottom-border-width: $border-width !default;
+$main-header-bottom-border-color: $gray-300 !default;
+$main-header-bottom-border:       $main-header-bottom-border-width solid $main-header-bottom-border-color !default;
+$main-header-link-padding-y:      $navbar-padding-y !default;
+$main-header-height-inner:        ($nav-link-height + ($main-header-link-padding-y * 2)) !default;
+$main-header-height:              add($main-header-height-inner, $main-header-bottom-border-width) !default;
+$nav-link-sm-padding-y:           .35rem !default;
+$nav-link-sm-height:              ($font-size-sm * $line-height-sm + $nav-link-sm-padding-y * 1.785) !default;
+$main-header-height-sm-inner:     ($nav-link-sm-height + ($main-header-link-padding-y * 2)) !default;
+$main-header-height-sm:           add($main-header-height-sm-inner, $main-header-bottom-border-width) !default;
+
+// MAIN FOOTER
+// --------------------------------------------------------
+$main-footer-padding:          1rem !default;
+$main-footer-padding-sm:       $main-footer-padding * .812 !default;
+$main-footer-border-top-width: 1px !default;
+$main-footer-border-top-color: $gray-300 !default;
+$main-footer-border-top:       $main-footer-border-top-width solid $main-footer-border-top-color !default;
+$main-footer-height-inner:     (($font-size-root * $line-height-base) + ($main-footer-padding * 2)) !default;
+$main-footer-height:           add($main-footer-height-inner, $main-footer-border-top-width) !default;
+$main-footer-height-sm-inner:  (($font-size-sm * $line-height-base) + ($main-footer-padding-sm * 2)) !default;
+$main-footer-height-sm:        add($main-footer-height-sm-inner, $main-footer-border-top-width) !default;
+$main-footer-bg:               $white !default;
+
+// Z-INDEX
+// --------------------------------------------------------
+$zindex-main-header:      $zindex-fixed + 4 !default;
+$zindex-main-sidebar:     $zindex-fixed + 8 !default;
+$zindex-main-footer:      $zindex-fixed + 2 !default;
+$zindex-control-sidebar:  $zindex-fixed + 1 !default;
+$zindex-toasts:           $zindex-main-sidebar + 2 !default;
+$zindex-preloader:        9999 !default;
+
+//

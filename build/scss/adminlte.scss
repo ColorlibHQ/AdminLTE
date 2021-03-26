@@ -11,6 +11,12 @@
 @import "variables";
 @import "bootstrap/scss/bootstrap";
 
+// Variables and Mixins
+// ---------------------------------------------------
+@import "static-variables";
+@import "mixins";
+
 @import "layout";
+@import "main-sidebar";
 
 //

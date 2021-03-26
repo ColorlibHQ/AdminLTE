@@ -3,12 +3,8 @@
     "stylelint-config-twbs-bootstrap/scss"
   ],
   "rules": {
-    "scss/selector-no-union-class-name": true,
-    "scss/operator-no-unspaced": null,
     "declaration-no-important": null,
-    "declaration-block-no-duplicate-properties": null,
     "order/properties-order": null,
-    "property-no-unknown": null,
     "selector-max-class": null,
     "selector-max-combinators": null,
     "selector-max-compound-selectors": null,
