@@ -1,0 +1,175 @@
+// Variables
+//
+// Variables should follow the `$component-state-property-size` formula for
+// consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
+
+
+//
+// Color system
+//
+
+// stylelint-disable
+$white:        #fff !default;
+$gray-100:     #f8f9fa !default;
+$gray-200:     #e9ecef !default;
+$gray-300:     #dee2e6 !default;
+$gray-400:     #ced4da !default;
+$gray-500:     #adb5bd !default;
+$gray-600:     #6c757d !default;
+$gray-700:     #495057 !default;
+$gray-800:     #343a40 !default;
+$gray-900:     #212529 !default;
+$black:        #000 !default;
+$gray-x-light: #d2d6de !default;
+
+$grays: () !default;
+$grays: map-merge((
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray-500,
+  "600": $gray-600,
+  "700": $gray-700,
+  "800": $gray-800,
+  "900": $gray-900
+), $grays);
+
+// Generic colors
+$blue:         #0948b3 !default;
+$indigo:       #31316a !default;
+$purple:       #8965e0 !default;
+$pink:         #c96480 !default;
+$red:          #fa5252 !default;
+$orange:       #ff9f89 !default;
+$yellow:       #f5b759 !default;
+$green:        #05a677 !default;
+$teal:         #1e90ff !default;
+$cyan:         #63b1bd !default;
+$blue-dark:    #262b40 !default;
+$brown:        #b9a084 !default;
+$soft-apricot: #f3b773 !default;
+$soft-green:   #2ca58d !default;
+$soft-indigo:  #f5e8ff !default;
+$soft-almond:  #fde9ca !default;
+$soft-blue:    #3c8dbc !default;
+$navy:         #001f3f !default;
+$olive:        #3d9970 !default;
+$lime:         #01ff70 !default;
+$fuchsia:      #f012be !default;
+$maroon:       #d81b60 !default;
+
+$colors: () !default;
+$colors: map-merge((
+  "blue":       $blue,
+  "indigo":     $indigo,
+  "purple":     $purple,
+  "pink":       $pink,
+  "red":        $red,
+  "orange":     $orange,
+  "yellow":     $yellow,
+  "green":      $green,
+  "teal":       $teal,
+  "cyan":       $cyan,
+  "white":      $white,
+  "gray":       $gray-600,
+  "gray-dark":  $gray-800
+), $colors);
+
+// Color scheme
+$primary:       $blue !default;
+$secondary:     $gray-600 !default;
+$tertiary:      $soft-apricot !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+
+// Brands colors
+$facebook:  #3b5999 !default;
+$twitter:   #1da1f2 !default;
+$google:    #db4337 !default;
+$instagram: #e4405f !default;
+$pinterest: #bd081c !default;
+$youtube:   #cd201f !default;
+$slack:     #3aaf85 !default;
+$dribbble:  #ea4c89 !default;
+$github:    #222222 !default;
+$dropbox:   #1e90ff !default;
+$twitch:    #4b367c !default;
+$paypal:    #ecb32c !default;
+$behance:   #0057ff !default;
+$reddit:    #e84422 !default;
+
+// Brand colors
+$brand-colors: () !default;
+$brand-colors: map-merge((
+  "facebook":  $facebook,
+  "twitter":   $twitter,
+  "google":    $google,
+  "instagram": $instagram,
+  "pinterest": $pinterest,
+  "youtube":   $youtube,
+  "slack":     $slack,
+  "dribbble":  $dribbble,
+  "dropbox":   $dropbox,
+  "twitch":    $twitch,
+  "paypal":    $paypal,
+  "behance":   $behance,
+  "reddit":    $reddit,
+  "github":    $github
+), $brand-colors);
+
+// Theme colors
+$theme-colors: () !default;
+$theme-colors: map-merge((
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "tertiary":   $tertiary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+), $theme-colors);
+// stylelint-enable
+
+// Customize the light and dark text colors for use in our color contrast function.
+$color-contrast-dark:      $dark !default;
+$color-contrast-light:     $white !default;
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+
+$enable-caret:                true !default;
+$enable-rounded:              true !default;
+$enable-shadows:              true !default;
+$enable-gradients:            false !default;
+$enable-transitions:          true !default;
+$enable-reduced-motion:       true !default;
+$enable-smooth-scroll:        true !default;
+$enable-grid-classes:         true !default;
+$enable-button-pointers:      true !default;
+$enable-rfs:                  true !default;
+$enable-validation-icons:     true !default;
+$enable-negative-margins:     false !default;
+$enable-deprecation-messages: true !default;
+$enable-important-utilities:  true !default;
+
+// Prefix for :root CSS variables
+
+$variable-prefix:             bs- !default;
+
+// Body
+//
+// Settings for the `<body>` element.
+
+$body-bg:                   $gray-200 !default;
+$body-color:                $gray-900 !default;
+$body-text-align:           null !default;
+
+//
