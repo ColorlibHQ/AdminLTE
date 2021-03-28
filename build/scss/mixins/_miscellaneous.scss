@@ -30,13 +30,4 @@
   background-image: gradient(linear, left bottom, left top, color-stop(0, $start), color-stop(1, $stop));
 }
 
-@mixin scrollbar-width-thin() {
-  scrollbar-width: thin;
-  scrollbar-color: #a9a9a9 transparent;
-}
-
-@mixin scrollbar-width-none() {
-  scrollbar-width: none;
-}
-
 //
