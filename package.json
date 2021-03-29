@@ -148,7 +148,7 @@
     "postcss": "^8.2.8",
     "postcss-cli": "^8.3.1",
     "postcss-scrollbar": "^0.3.0",
-    "rollup": "^2.42.1",
+    "rollup": "^2.43.1",
     "stylelint": "^13.12.0",
     "stylelint-config-twbs-bootstrap": "^2.1.0",
     "terser": "^5.6.1",
