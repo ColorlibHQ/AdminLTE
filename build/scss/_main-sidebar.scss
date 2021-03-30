@@ -3,27 +3,24 @@
 //
 
 .main-sidebar {
+  color: $sidebar-dark-color;
   min-width: $sidebar-width;
   max-width: $sidebar-width;
   transition: $sidebar-transition;
-}
 
-.sidebar {
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding-bottom: $sidebar-padding-y;
-  padding-left: $sidebar-padding-x;
-  padding-right: $sidebar-padding-x;
-  padding-top: $sidebar-padding-y;
-  @include scrollbar-color-gray();
-  @include scrollbar-width-none();
+  .sidebar {
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: $sidebar-padding-y;
+    padding-left: $sidebar-padding-x;
+    padding-right: $sidebar-padding-x;
+    padding-top: $sidebar-padding-y;
+    @include scrollbar-color-gray();
+    @include scrollbar-width-none();
 
-  &:hover {
-    @include scrollbar-width-thin();
-  }
-
-  .is-sidebar-fixed & {
-    max-height: 100vh;
+    &:hover {
+      @include scrollbar-width-thin();
+    }
   }
 }
 

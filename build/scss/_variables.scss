@@ -1,175 +1,95 @@
-// Variables
-//
-// Variables should follow the `$component-state-property-size` formula for
-// consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
+// Variables for AdminLTE
 
+// LAYOUT
+// --------------------------------------------------------
 
-//
-// Color system
-//
+$font-size-root:              1rem !default;
 
-// stylelint-disable
-$white:        #fff !default;
-$gray-100:     #f8f9fa !default;
-$gray-200:     #e9ecef !default;
-$gray-300:     #dee2e6 !default;
-$gray-400:     #ced4da !default;
-$gray-500:     #adb5bd !default;
-$gray-600:     #6c757d !default;
-$gray-700:     #495057 !default;
-$gray-800:     #343a40 !default;
-$gray-900:     #212529 !default;
-$black:        #000 !default;
-$gray-x-light: #d2d6de !default;
+// Sidebar
+// --------------------------------------------------------
+$sidebar-width:               265px !default;
+$sidebar-padding-x:           .5rem !default;
+$sidebar-padding-y:           0 !default;
+$sidebar-custom-height:       4rem !default;
+$sidebar-custom-height-lg:    6rem !default;
+$sidebar-custom-height-xl:    8rem !default;
+$sidebar-custom-padding-x:    .85rem !default;
+$sidebar-custom-padding-y:    .5rem !default;
+// $sidebar-bg:                  $dark !default;
+$sidebar-transition:          margin-left .35s ease-in-out, left .35s ease-in-out, margin-right .35s ease-in-out, right .35s ease-in-out !default;
 
-$grays: () !default;
-$grays: map-merge((
-  "100": $gray-100,
-  "200": $gray-200,
-  "300": $gray-300,
-  "400": $gray-400,
-  "500": $gray-500,
-  "600": $gray-600,
-  "700": $gray-700,
-  "800": $gray-800,
-  "900": $gray-900
-), $grays);
+// SIDEBAR SKINS
+// --------------------------------------------------------
 
-// Generic colors
-$blue:         #0948b3 !default;
-$indigo:       #31316a !default;
-$purple:       #8965e0 !default;
-$pink:         #c96480 !default;
-$red:          #fa5252 !default;
-$orange:       #ff9f89 !default;
-$yellow:       #f5b759 !default;
-$green:        #05a677 !default;
-$teal:         #1e90ff !default;
-$cyan:         #63b1bd !default;
-$blue-dark:    #262b40 !default;
-$brown:        #b9a084 !default;
-$soft-apricot: #f3b773 !default;
-$soft-green:   #2ca58d !default;
-$soft-indigo:  #f5e8ff !default;
-$soft-almond:  #fde9ca !default;
-$soft-blue:    #3c8dbc !default;
-$navy:         #001f3f !default;
-$olive:        #3d9970 !default;
-$lime:         #01ff70 !default;
-$fuchsia:      #f012be !default;
-$maroon:       #d81b60 !default;
+// Dark sidebar
+$sidebar-dark-bg:                     $dark !default;
+$sidebar-dark-hover-bg:             rgba(255, 255, 255, .1) !default;
+$sidebar-dark-color:                #c2c7d0 !default;
+$sidebar-dark-hover-color:            $white !default;
+$sidebar-dark-active-color:           $white !default;
+$sidebar-dark-submenu-bg:             transparent !default;
+$sidebar-dark-submenu-color:        #c2c7d0 !default;
+$sidebar-dark-submenu-hover-color:    $white !default;
+$sidebar-dark-submenu-hover-bg:       $sidebar-dark-hover-bg !default;
+$sidebar-dark-submenu-active-color:   $sidebar-dark-bg !default;
+$sidebar-dark-submenu-active-bg:    rgba(255, 255, 255, .9) !default;
 
-$colors: () !default;
-$colors: map-merge((
-  "blue":       $blue,
-  "indigo":     $indigo,
-  "purple":     $purple,
-  "pink":       $pink,
-  "red":        $red,
-  "orange":     $orange,
-  "yellow":     $yellow,
-  "green":      $green,
-  "teal":       $teal,
-  "cyan":       $cyan,
-  "white":      $white,
-  "gray":       $gray-600,
-  "gray-dark":  $gray-800
-), $colors);
+// Light sidebar
+$sidebar-light-bg:                    $white !default;
+$sidebar-light-hover-bg:              rgba($black, .1) !default;
+$sidebar-light-color:                 $gray-800 !default;
+$sidebar-light-hover-color:           $gray-900 !default;
+$sidebar-light-active-color:          $black !default;
+$sidebar-light-submenu-bg:            transparent !default;
+$sidebar-light-submenu-color:        #777 !default;
+$sidebar-light-submenu-hover-color:    $black !default;
+$sidebar-light-submenu-hover-bg:       $sidebar-light-hover-bg !default;
+$sidebar-light-submenu-active-color:   $sidebar-light-hover-color !default;
+$sidebar-light-submenu-active-bg:      $sidebar-light-submenu-hover-bg !default;
 
-// Color scheme
-$primary:       $blue !default;
-$secondary:     $gray-600 !default;
-$tertiary:      $soft-apricot !default;
-$success:       $green !default;
-$info:          $cyan !default;
-$warning:       $yellow !default;
-$danger:        $red !default;
-$light:         $gray-100 !default;
-$dark:          $gray-800 !default;
+// SIDEBAR MINI
+// --------------------------------------------------------
+$sidebar-mini-width:          ($nav-link-padding-x + $sidebar-padding-x + .8rem) * 2 !default;
+$sidebar-nav-icon-width:      $sidebar-mini-width - (($sidebar-padding-x + $nav-link-padding-x) * 2) !default;
+$sidebar-user-image-width:    $sidebar-nav-icon-width + ($nav-link-padding-x / 2) !default;
 
-// Brands colors
-$facebook:  #3b5999 !default;
-$twitter:   #1da1f2 !default;
-$google:    #db4337 !default;
-$instagram: #e4405f !default;
-$pinterest: #bd081c !default;
-$youtube:   #cd201f !default;
-$slack:     #3aaf85 !default;
-$dribbble:  #ea4c89 !default;
-$github:    #222222 !default;
-$dropbox:   #1e90ff !default;
-$twitch:    #4b367c !default;
-$paypal:    #ecb32c !default;
-$behance:   #0057ff !default;
-$reddit:    #e84422 !default;
+// CONTROL SIDEBAR
+// --------------------------------------------------------
+$control-sidebar-width:       $sidebar-width !default;
 
-// Brand colors
-$brand-colors: () !default;
-$brand-colors: map-merge((
-  "facebook":  $facebook,
-  "twitter":   $twitter,
-  "google":    $google,
-  "instagram": $instagram,
-  "pinterest": $pinterest,
-  "youtube":   $youtube,
-  "slack":     $slack,
-  "dribbble":  $dribbble,
-  "dropbox":   $dropbox,
-  "twitch":    $twitch,
-  "paypal":    $paypal,
-  "behance":   $behance,
-  "reddit":    $reddit,
-  "github":    $github
-), $brand-colors);
+// MAIN HEADER
+// --------------------------------------------------------
+$main-header-bottom-border-width:  $border-width !default;
+$main-header-bottom-border-color:  $gray-300 !default;
+$main-header-bottom-border:        $main-header-bottom-border-width solid $main-header-bottom-border-color !default;
+$main-header-link-padding-y:       $navbar-padding-y !default;
+$main-header-height-inner:         ($nav-link-height + ($main-header-link-padding-y * 2)) !default;
+$main-header-height:               add($main-header-height-inner, $main-header-bottom-border-width) !default;
+$nav-link-sm-padding-y:            .35rem !default;
+$nav-link-sm-height:               ($font-size-sm * $line-height-sm + $nav-link-sm-padding-y * 1.785) !default;
+$main-header-height-sm-inner:      ($nav-link-sm-height + ($main-header-link-padding-y * 2)) !default;
+$main-header-height-sm:            add($main-header-height-sm-inner, $main-header-bottom-border-width) !default;
 
-// Theme colors
-$theme-colors: () !default;
-$theme-colors: map-merge((
-  "primary":    $primary,
-  "secondary":  $secondary,
-  "tertiary":   $tertiary,
-  "success":    $success,
-  "info":       $info,
-  "warning":    $warning,
-  "danger":     $danger,
-  "light":      $light,
-  "dark":       $dark
-), $theme-colors);
-// stylelint-enable
+// MAIN FOOTER
+// --------------------------------------------------------
+$main-footer-padding:           1rem !default;
+$main-footer-padding-sm:        $main-footer-padding * .812 !default;
+$main-footer-border-top-width:  1px !default;
+$main-footer-border-top-color:  $gray-300 !default;
+$main-footer-border-top:        $main-footer-border-top-width solid $main-footer-border-top-color !default;
+$main-footer-height-inner:      (($font-size-root * $line-height-base) + ($main-footer-padding * 2)) !default;
+$main-footer-height:            add($main-footer-height-inner, $main-footer-border-top-width) !default;
+$main-footer-height-sm-inner:   (($font-size-sm * $line-height-base) + ($main-footer-padding-sm * 2)) !default;
+$main-footer-height-sm:         add($main-footer-height-sm-inner, $main-footer-border-top-width) !default;
+$main-footer-bg:                $white !default;
 
-// Customize the light and dark text colors for use in our color contrast function.
-$color-contrast-dark:      $dark !default;
-$color-contrast-light:     $white !default;
-
-// Options
-//
-// Quickly modify global styling by enabling or disabling optional features.
-
-$enable-caret:                true !default;
-$enable-rounded:              true !default;
-$enable-shadows:              true !default;
-$enable-gradients:            false !default;
-$enable-transitions:          true !default;
-$enable-reduced-motion:       true !default;
-$enable-smooth-scroll:        true !default;
-$enable-grid-classes:         true !default;
-$enable-button-pointers:      true !default;
-$enable-rfs:                  true !default;
-$enable-validation-icons:     true !default;
-$enable-negative-margins:     false !default;
-$enable-deprecation-messages: true !default;
-$enable-important-utilities:  true !default;
-
-// Prefix for :root CSS variables
-
-$variable-prefix:             bs- !default;
-
-// Body
-//
-// Settings for the `<body>` element.
-
-$body-bg:                   $gray-200 !default;
-$body-color:                $gray-900 !default;
-$body-text-align:           null !default;
+// Z-INDEX
+// --------------------------------------------------------
+$zindex-main-header:      $zindex-fixed + 4 !default;
+$zindex-sidebar:          $zindex-fixed + 8 !default;
+$zindex-main-footer:      $zindex-fixed + 2 !default;
+$zindex-control-sidebar:  $zindex-fixed + 1 !default;
+$zindex-toasts:           $zindex-sidebar + 2 !default;
+$zindex-preloader:        9999 !default;
 
 //

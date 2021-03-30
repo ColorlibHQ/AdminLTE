@@ -7,17 +7,9 @@
   display: flex;
   width: 100%;
   background: $sidebar-dark-bg;
-
-  .is-sidebar-dark & {
-    background: $sidebar-dark-bg !important;
-  }
-
-  .is-sidebar-light & {
-    background: $sidebar-light-bg !important;
-  }
 }
 
-.main {
+.content-wrapper {
   display: flex;
   width: 100%;
   min-width: 0;
@@ -48,7 +40,4 @@
   max-width: 100vw;
 }
 
-.main-header {
-  height: $main-header-height;
-}
 //
