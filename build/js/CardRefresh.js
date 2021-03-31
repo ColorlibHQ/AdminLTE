@@ -36,6 +36,7 @@ const Default = {
   loadOnInit: true,
   responseType: '',
   overlayTemplate: '<div class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i></div>',
+  errorTemplate: '<span class="text-danger"></span>',
   onLoadStart() {},
   onLoadDone(response) {
     return response
@@ -76,6 +77,9 @@ class CardRefresh {
       this._removeOverlay()
     }, this._settings.responseType !== '' && this._settings.responseType).fail((jqXHR, textStatus, errorThrown) => {
       this._removeOverlay()
+      let msg = $(this.__settings.errorTemplate).text(errorThrown)
+      this._parent.find(this._settings.content).empty().append(msg)
+      
       this._settings.onLoadFail.call($(this), jqXHR, textStatus, errorThrown)
     })
 
