@@ -39,7 +39,8 @@ const Default = {
   onLoadStart() {},
   onLoadDone(response) {
     return response
-  }
+  },
+  onLoadFail(jqXHR, textStatus, errorThrown) {}
 }
 
 class CardRefresh {
@@ -73,7 +74,10 @@ class CardRefresh {
 
       this._settings.onLoadDone.call($(this), response)
       this._removeOverlay()
-    }, this._settings.responseType !== '' && this._settings.responseType)
+    }, this._settings.responseType !== '' && this._settings.responseType).fail((jqXHR, textStatus, errorThrown) => {
+      this._removeOverlay();
+      this._settings.onLoadFail.call($(this), jqXHR, textStatus, errorThrown);
+    });
 
     $(this._element).trigger($.Event(EVENT_LOADED))
   }
