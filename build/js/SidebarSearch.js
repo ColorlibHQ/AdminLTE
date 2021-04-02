@@ -101,7 +101,7 @@ class SidebarSearch {
       this._addNotFound()
     } else {
       endResults.each((i, result) => {
-        $(SELECTOR_SEARCH_RESULTS_GROUP).append(this._renderItem(escape(result.name), escape(result.link), result.path))
+        $(SELECTOR_SEARCH_RESULTS_GROUP).append(this._renderItem(escape(result.name), encodeURI(result.link), result.path))
       })
     }
 
@@ -161,6 +161,7 @@ class SidebarSearch {
   _renderItem(name, link, path) {
     path = path.join(` ${this.options.arrowSign} `)
     name = unescape(name)
+    link = decodeURI(link)
 
     if (this.options.highlightName || this.options.highlightPath) {
       const searchValue = $(SELECTOR_SEARCH_INPUT).val().toLowerCase()
