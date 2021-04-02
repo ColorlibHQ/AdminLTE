@@ -3,9 +3,9 @@ require('esbuild').build({
   bundle: true,
   sourcemap: true,
   format: 'iife',
-  outfile: 'dist/js/adminlte.js',
+  outfile: 'dist/js/adminlte.js'
 }).catch(() => {
-  return process.exit(1);
+  return process.exit(1)
 })
 
 //

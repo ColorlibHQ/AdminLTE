@@ -5,6 +5,13 @@
 
 $font-size-root:              1rem !default;
 
+// TRANSITIONS SETTINGS
+// --------------------------------------------------------
+
+// Transition global options
+$transition-speed: .3s !default;
+$transition-fn: ease-in-out !default;
+
 // Sidebar
 // --------------------------------------------------------
 $sidebar-width:               250px !default;
@@ -15,8 +22,7 @@ $sidebar-custom-height-lg:    6rem !default;
 $sidebar-custom-height-xl:    8rem !default;
 $sidebar-custom-padding-x:    .85rem !default;
 $sidebar-custom-padding-y:    .5rem !default;
-// $sidebar-bg:                  $dark !default;
-$sidebar-transition:          margin-left .35s ease-in-out, left .35s ease-in-out, margin-right .35s ease-in-out, right .35s ease-in-out !default;
+$sidebar-transition:          min-width $transition-speed $transition-fn, max-width $transition-speed $transition-fn;
 
 // SIDEBAR SKINS
 // --------------------------------------------------------

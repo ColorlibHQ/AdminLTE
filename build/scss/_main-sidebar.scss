@@ -1,12 +1,13 @@
 //
-// Component: Main Sidebar
+// Core: Main Sidebar
 //
 
 .main-sidebar {
+  z-index: $zindex-sidebar;
   color: $sidebar-dark-color;
+  @include transition($sidebar-transition);
   min-width: $sidebar-width;
   max-width: $sidebar-width;
-  transition: $sidebar-transition;
 
   .sidebar {
     overflow-x: hidden;
@@ -21,6 +22,13 @@
     &:hover {
       @include scrollbar-width-thin();
     }
+  }
+}
+
+.sidebar {
+  .nav-sidebar .nav-link span {
+    display: inline-block;
+    padding-left: .5rem;
   }
 }
 

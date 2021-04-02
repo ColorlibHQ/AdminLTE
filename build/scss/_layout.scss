@@ -14,24 +14,11 @@
   width: 100%;
   min-width: 0;
   min-height: 100vh;
-  transition: $sidebar-transition;
   background: $body-bg;
   flex-direction: column;
   overflow: hidden;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-}
-
-.main-footer {
-  background-color: $main-footer-bg;
-  border-top: $main-footer-border-top;
-  color: lighten($gray-700, 25%);
-  padding: $main-footer-padding;
-
-  .text-sm &,
-  &.text-sm {
-    padding: $main-footer-padding-sm;
-  }
 }
 
 .content {

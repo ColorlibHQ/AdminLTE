@@ -1,12 +1,36 @@
 {
+  "root": true,
+  "extends": [
+    "plugin:unicorn/recommended"
+  ],
   "parserOptions": {
     "ecmaVersion": 6,
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true
     }
   },
-
   "env": {
-      "es6": true
+    "es6": true
+  },
+  "rules": {
+    "capitalized-comments": "off",
+    "indent": [
+      "error",
+      2,
+      {
+        "MemberExpression": "off",
+        "SwitchCase": 1
+      }
+    ],
+    "multiline-ternary": [
+      "error",
+      "always-multiline"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "unicorn/prevent-abbreviations": "off",
+    "quotes": ["error", "single"]
   }
 }

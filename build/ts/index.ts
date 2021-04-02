@@ -11,8 +11,8 @@ const CLASS_NAME_SIDEBAR_COLLAPSE = 'sidebar-collapse'
 class AdminLTE {
   constructor() {
     let btn = document.querySelector(SELECTOR_TOGGLE_BUTTON)
-    btn.addEventListener("click", () => {
-      return this.toggleSidebar();
+    btn.addEventListener('click', () => {
+      return this.toggleSidebar()
     })
   }
 
@@ -26,6 +26,6 @@ class AdminLTE {
   }
 }
 
-new AdminLTE();
+new AdminLTE()
 
 //

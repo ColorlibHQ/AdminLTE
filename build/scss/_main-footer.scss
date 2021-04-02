@@ -1,0 +1,15 @@
+//
+// Core: Main Footer
+//
+
+.main-footer {
+  background-color: $main-footer-bg;
+  border-top: $main-footer-border-top;
+  color: lighten($gray-700, 25%);
+  padding: $main-footer-padding;
+
+  .text-sm &,
+  &.text-sm {
+    padding: $main-footer-padding-sm;
+  }
+}
