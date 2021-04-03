@@ -1102,6 +1102,16 @@
 }
 
 .layout-fixed {
+  &:not(.sidebar-collapse) {
+    .main-sidebar .sidebar {
+      .user-panel,
+      .form-inline,
+      .nav-sidebar .nav-item .nav-link {
+        width: calc(#{$sidebar-width} - .5rem * 2);
+      }
+    }
+  }
+
   &.sidebar-collapse {
     .hide-on-collapse {
       display: none;
