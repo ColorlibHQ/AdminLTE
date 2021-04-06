@@ -26,6 +26,7 @@ body,
     &::before {
       margin: 0 auto;
       max-width: $boxed-layout-max-width;
+      overflow: hidden;
     }
 
     .main-sidebar {
