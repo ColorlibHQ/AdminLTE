@@ -379,6 +379,14 @@ body.text-sm {
     border-color: $gray-600;
   }
 
+  .custom-select {
+    background: $dark $custom-select-dark-background;
+
+    &[multiple]{
+      background: $dark;
+    }
+  }
+
   .input-group-text {
     border-color: $gray-600;
   }
