@@ -31,6 +31,10 @@
   &:hover {
     @include scrollbar-width-thin();
   }
+
+  .brand-link.border-bottom-0 ~ & {
+    height: calc(100% - #{$main-header-height-inner});
+  }
 }
 
 // Sidebar user panel
