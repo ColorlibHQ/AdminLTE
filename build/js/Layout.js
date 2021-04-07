@@ -33,6 +33,7 @@ const CLASS_NAME_SIDEBAR_FOCUSED = 'sidebar-focused'
 const CLASS_NAME_LAYOUT_FIXED = 'layout-fixed'
 const CLASS_NAME_CONTROL_SIDEBAR_SLIDE_OPEN = 'control-sidebar-slide-open'
 const CLASS_NAME_CONTROL_SIDEBAR_OPEN = 'control-sidebar-open'
+const CLASS_NAME_IFRAME_MODE = 'iframe-mode'
 
 const Default = {
   scrollbarTheme: 'os-theme-light',
@@ -117,7 +118,11 @@ class Layout {
     const $body = $('body')
     const $selector = $(`${SELECTOR_LOGIN_BOX}, ${SELECTOR_REGISTER_BOX}`)
 
-    if ($selector.length === 0) {
+    if ($body.hasClass(CLASS_NAME_IFRAME_MODE)) {
+      $body.css('height', '100%')
+      $('.wrapper').css('height', '100%')
+      $('html').css('height', '100%')
+    } else if ($selector.length === 0) {
       $body.css('height', 'auto')
       $('html').css('height', 'auto')
     } else {
