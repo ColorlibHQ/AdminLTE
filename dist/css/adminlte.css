@@ -3458,11 +3458,11 @@ input[type="button"].btn-block {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
 }
 
-.dropdown-menu a.dropdown-item:first-child:hover, .dropdown-menu a.dropdown-item:first-child:active {
+.dropdown-menu > .dropdown-item:first-child:hover, .dropdown-menu > .dropdown-item:first-child:active {
   border-radius: 0.25em 0.25em 0 0;
 }
 
-.dropdown-menu a.dropdown-item:last-child:hover, .dropdown-menu a.dropdown-item:last-child:active {
+.dropdown-menu > .dropdown-item:last-child:hover, .dropdown-menu > .dropdown-item:last-child:active {
   border-radius: 0 0 0.25em 0.25em;
 }
 
