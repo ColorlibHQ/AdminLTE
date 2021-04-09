@@ -3459,19 +3459,19 @@ input[type="button"].btn-block {
 }
 
 div.dropdown-menu a.dropdown-item:first-child:hover {
-  border-radius: .25rem .25rem 0 0;
+  border-radius: 0.25em 0.25em 0 0;
 }
 
 div.dropdown-menu a.dropdown-item:first-child:active {
-  border-radius: .25rem .25rem 0 0;
+  border-radius: 0.25em 0.25em 0 0;
 }
 
 div.dropdown-menu a.dropdown-item:last-child:hover {
-  border-radius: 0 0 .25rem .25rem;
+  border-radius: 0 0 0.25em 0.25em;
 }
 
 div.dropdown-menu a.dropdown-item:last-child:active {
-  border-radius: 0 0 .25rem .25rem;
+  border-radius: 0 0 0.25em 0.25em;
 }
 
 .dropdown-menu-left {
