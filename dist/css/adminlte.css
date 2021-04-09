@@ -3458,6 +3458,22 @@ input[type="button"].btn-block {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
 }
 
+div.dropdown-menu a.dropdown-item:first-child:hover {
+  border-radius: .25rem .25rem 0 0;
+}
+
+div.dropdown-menu a.dropdown-item:first-child:active {
+  border-radius: .25rem .25rem 0 0;
+}
+
+div.dropdown-menu a.dropdown-item:last-child:hover {
+  border-radius: 0 0 .25rem .25rem;
+}
+
+div.dropdown-menu a.dropdown-item:last-child:active {
+  border-radius: 0 0 .25rem .25rem;
+}
+
 .dropdown-menu-left {
   right: auto;
   left: 0;
