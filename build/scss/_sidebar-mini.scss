@@ -16,16 +16,10 @@
   .nav-sidebar .nav-link span {
     width: 0;
     white-space: nowrap;
-    // display: inline-block;
-    display: none;
-  }
-
-  .nav-sidebar .nav-link .nav-icon {
-    padding-left: .3rem;
   }
 
   .sidebar .user-panel > .info,
-  // .nav-sidebar .nav-link span,
+  .nav-sidebar .nav-link span,
   .brand-text {
     margin-left: -10px;
     animation-name: fadeOut;
@@ -39,21 +33,29 @@
   .sidebar {
     overflow: visible;
 
-    .nav .nav-item:hover {
+    .nav-sidebar .nav-item:hover {
       position: relative;
+
+      .nav-link {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
       span {
+        animation: none;
         z-index: $zindex-sidebar + 12;
         visibility: visible;
         display: inline-block;
         position: absolute;
-        width: subtract($sidebar-width, $sidebar-mini-width);
+        width: $sidebar-width;
         left: $sidebar-mini-width;
-
         top: 0;
         background-color: inherit;
         padding: inherit;
-        border-radius: inherit;
+        padding-left: 1rem;
         margin-left: -1rem;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
       }
     }
   }

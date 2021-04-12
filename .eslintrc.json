@@ -1,17 +1,12 @@
 {
   "root": true,
   "extends": [
-    "plugin:unicorn/recommended"
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:unicorn/recommended",
+    "xo/esnext",
+    "xo/browser"
   ],
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    }
-  },
-  "env": {
-    "es6": true
-  },
   "rules": {
     "capitalized-comments": "off",
     "indent": [
@@ -22,15 +17,30 @@
         "SwitchCase": 1
       }
     ],
+    "max-params": [
+      "warn",
+      5
+    ],
     "multiline-ternary": [
       "error",
       "always-multiline"
+    ],
+    "new-cap": [
+      "error",
+      {
+        "properties": false
+      }
+    ],
+    "no-console": "error",
+    "object-curly-spacing": [
+      "error",
+      "always"
     ],
     "semi": [
       "error",
       "never"
     ],
-    "unicorn/prevent-abbreviations": "off",
-    "quotes": ["error", "single"]
+    "unicorn/filename-case": "off",
+    "unicorn/prevent-abbreviations": "off"
   }
 }

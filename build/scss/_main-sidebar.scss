@@ -2,33 +2,72 @@
 // Core: Main Sidebar
 //
 
+// Default Sidebar Theme
+@include sidebar-theme($sidebar-dark-bg, $sidebar-dark-color);
+
 .main-sidebar {
-  z-index: $zindex-sidebar;
-  color: $sidebar-dark-color;
+  // z-index: $zindex-sidebar;
   @include transition($sidebar-transition);
   min-width: $sidebar-width;
   max-width: $sidebar-width;
-
-  .sidebar {
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding-bottom: $sidebar-padding-y;
-    padding-left: $sidebar-padding-x;
-    padding-right: $sidebar-padding-x;
-    padding-top: $sidebar-padding-y;
-    @include scrollbar-color-gray();
-    @include scrollbar-width-none();
-
-    &:hover {
-      @include scrollbar-width-thin();
-    }
-  }
 }
 
 .sidebar {
-  .nav-sidebar .nav-link span {
-    display: inline-block;
-    padding-left: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: $sidebar-padding-y;
+  padding-left: $sidebar-padding-x;
+  padding-right: $sidebar-padding-x;
+  padding-top: $sidebar-padding-y;
+  @include scrollbar-color-gray();
+  @include scrollbar-width-none();
+
+  &:hover {
+    @include scrollbar-width-thin();
+  }
+}
+
+// Sidebar navigation menu
+.nav-sidebar {
+  // All levels
+  .nav-link > .right,
+  .nav-link > span > .right {
+    position: absolute;
+    right: 1rem;
+    top: .7rem;
+  }
+
+  .nav-link {
+    position: relative;
+
+    span {
+      display: inline-block;
+      padding-left: .5rem;
+    }
+
+    .nav-icon {
+      padding-left: .3rem;
+    }
+  }
+
+  .nav-header {
+    font-size: .9rem;
+    padding: $nav-link-padding-y ($nav-link-padding-y * 1.5);
+  }
+
+  // Tree view menu
+  .nav-treeview {
+    display: none;
+    list-style: none;
+    padding: 0;
+
+    > .nav-item {
+      > .nav-link {
+        > .nav-icon {
+          width: $sidebar-nav-icon-width;
+        }
+      }
+    }
   }
 }
 

@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AdminLTE v4</title>
   <link rel="stylesheet" href="dist/css/adminlte.css">
-  <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+  <!-- <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css"> -->
   <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 </head>
 
-<body class="sidebar-mini sidebar-collapse">
+<body class="sidebar-mini">
   <div class="wrapper">
     <!-- Main Sidebar Container -->
     <nav class="main-sidebar">
@@ -30,6 +30,27 @@
                   Simple Link
                 </span>
               </a>
+            </li>
+            <li class="nav-header">MULTI LEVEL EXAMPLE</li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-circle"></i>
+                <span>
+                  Level 1
+                  <i class="right fas fa-angle-left"></i>
+                </span>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-circle"></i>
+                    <span>
+                      Level 2
+                      <i class="right fas fa-angle-left"></i>
+                    </span>
+                  </a>
+                </li>
+              </ul>
             </li>
           </ul>
         </nav>
