@@ -1154,11 +1154,11 @@
   var SELECTOR_DATA_TOGGLE_FULLSCREEN = '[data-widget="iframe-fullscreen"]';
   var SELECTOR_CONTENT_WRAPPER = '.content-wrapper';
   var SELECTOR_CONTENT_IFRAME = SELECTOR_CONTENT_WRAPPER + " iframe";
-  var SELECTOR_TAB_NAV = SELECTOR_DATA_TOGGLE$1 + ".iframe-mode .nav";
-  var SELECTOR_TAB_NAVBAR_NAV = SELECTOR_DATA_TOGGLE$1 + ".iframe-mode .navbar-nav";
+  var SELECTOR_TAB_NAV = SELECTOR_CONTENT_WRAPPER + ".iframe-mode .nav";
+  var SELECTOR_TAB_NAVBAR_NAV = SELECTOR_CONTENT_WRAPPER + ".iframe-mode .navbar-nav";
   var SELECTOR_TAB_NAVBAR_NAV_ITEM = SELECTOR_TAB_NAVBAR_NAV + " .nav-item";
   var SELECTOR_TAB_NAVBAR_NAV_LINK = SELECTOR_TAB_NAVBAR_NAV + " .nav-link";
-  var SELECTOR_TAB_CONTENT = SELECTOR_DATA_TOGGLE$1 + ".iframe-mode .tab-content";
+  var SELECTOR_TAB_CONTENT = SELECTOR_CONTENT_WRAPPER + ".iframe-mode .tab-content";
   var SELECTOR_TAB_EMPTY = SELECTOR_TAB_CONTENT + " .tab-empty";
   var SELECTOR_TAB_LOADING = SELECTOR_TAB_CONTENT + " .tab-loading";
   var SELECTOR_TAB_PANE = SELECTOR_TAB_CONTENT + " .tab-pane";
@@ -1166,7 +1166,7 @@
   var SELECTOR_SIDEBAR_SEARCH_ITEM = '.sidebar-search-results .list-group-item';
   var SELECTOR_HEADER_MENU_ITEM = '.main-header .nav-item a.nav-link';
   var SELECTOR_HEADER_DROPDOWN_ITEM = '.main-header a.dropdown-item';
-  var CLASS_NAME_IFRAME_MODE = 'iframe-mode';
+  var CLASS_NAME_IFRAME_MODE$1 = 'iframe-mode';
   var CLASS_NAME_FULLSCREEN_MODE = 'iframe-mode-fullscreen';
   var Default$7 = {
     onTabClick: function onTabClick(item) {
@@ -1359,9 +1359,9 @@
       if ($__default['default']('body').hasClass(CLASS_NAME_FULLSCREEN_MODE)) {
         $__default['default'](SELECTOR_DATA_TOGGLE_FULLSCREEN + " i").removeClass(this._config.iconMinimize).addClass(this._config.iconMaximize);
         $__default['default']('body').removeClass(CLASS_NAME_FULLSCREEN_MODE);
-        $__default['default'](SELECTOR_TAB_EMPTY + ", " + SELECTOR_TAB_LOADING).height('auto');
-        $__default['default'](SELECTOR_CONTENT_WRAPPER).height('auto');
-        $__default['default'](SELECTOR_CONTENT_IFRAME).height('auto');
+        $__default['default'](SELECTOR_TAB_EMPTY + ", " + SELECTOR_TAB_LOADING).height('100%');
+        $__default['default'](SELECTOR_CONTENT_WRAPPER).height('100%');
+        $__default['default'](SELECTOR_CONTENT_IFRAME).height('100%');
       } else {
         $__default['default'](SELECTOR_DATA_TOGGLE_FULLSCREEN + " i").removeClass(this._config.iconMaximize).addClass(this._config.iconMinimize);
         $__default['default']('body').addClass(CLASS_NAME_FULLSCREEN_MODE);
@@ -1374,19 +1374,21 @@
     ;
 
     _proto._init = function _init() {
+      if ($__default['default'](SELECTOR_TAB_CONTENT).children().length > 2) {
+        var $el = $__default['default'](SELECTOR_TAB_PANE + ":first-child");
+        $el.show();
+
+        this._setItemActive($el.find('iframe').attr('src'));
+      }
+
+      this._setupListeners();
+
+      this._fixHeight(true);
+    };
+
+    _proto._initFrameElement = function _initFrameElement() {
       if (window.frameElement && this._config.autoIframeMode) {
-        $__default['default']('body').addClass(CLASS_NAME_IFRAME_MODE);
-      } else if ($__default['default'](SELECTOR_CONTENT_WRAPPER).hasClass(CLASS_NAME_IFRAME_MODE)) {
-        if ($__default['default'](SELECTOR_TAB_CONTENT).children().length > 2) {
-          var $el = $__default['default'](SELECTOR_TAB_PANE + ":first-child");
-          $el.show();
-
-          this._setItemActive($el.find('iframe').attr('src'));
-        }
-
-        this._setupListeners();
-
-        this._fixHeight(true);
+        $__default['default']('body').addClass(CLASS_NAME_IFRAME_MODE$1);
       }
     };
 
@@ -1537,24 +1539,24 @@
     } // Static
     ;
 
-    IFrame._jQueryInterface = function _jQueryInterface(operation) {
-      var data = $__default['default'](this).data(DATA_KEY$7);
+    IFrame._jQueryInterface = function _jQueryInterface(config) {
+      if ($__default['default'](SELECTOR_DATA_TOGGLE$1).length > 0) {
+        var data = $__default['default'](this).data(DATA_KEY$7);
 
-      var _options = $__default['default'].extend({}, Default$7, $__default['default'](this).data());
-
-      if (!data) {
-        data = new IFrame(this, _options);
-        $__default['default'](this).data(DATA_KEY$7, data);
-      }
-
-      if (typeof operation === 'string' && /createTab|openTabSidebar|switchTab|removeActiveTab/.test(operation)) {
-        var _data;
-
-        for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-          args[_key - 1] = arguments[_key];
+        if (!data) {
+          data = $__default['default'](this).data();
         }
 
-        (_data = data)[operation].apply(_data, args);
+        var _options = $__default['default'].extend({}, Default$7, typeof config === 'object' ? config : data);
+
+        var plugin = new IFrame($__default['default'](this), _options);
+        $__default['default'](this).data(DATA_KEY$7, typeof config === 'object' ? config : data);
+
+        if (typeof config === 'string' && /createTab|openTabSidebar|switchTab|removeActiveTab/.test(config)) {
+          plugin[config]();
+        }
+      } else {
+        new IFrame($__default['default'](this), Default$7)._initFrameElement();
       }
     };
 
@@ -1612,6 +1614,7 @@
   var CLASS_NAME_LAYOUT_FIXED = 'layout-fixed';
   var CLASS_NAME_CONTROL_SIDEBAR_SLIDE_OPEN = 'control-sidebar-slide-open';
   var CLASS_NAME_CONTROL_SIDEBAR_OPEN = 'control-sidebar-open';
+  var CLASS_NAME_IFRAME_MODE = 'iframe-mode';
   var Default$6 = {
     scrollbarTheme: 'os-theme-light',
     scrollbarAutoHide: 'l',
@@ -1700,7 +1703,11 @@
       var $body = $__default['default']('body');
       var $selector = $__default['default'](SELECTOR_LOGIN_BOX + ", " + SELECTOR_REGISTER_BOX);
 
-      if ($selector.length === 0) {
+      if ($body.hasClass(CLASS_NAME_IFRAME_MODE)) {
+        $body.css('height', '100%');
+        $__default['default']('.wrapper').css('height', '100%');
+        $__default['default']('html').css('height', '100%');
+      } else if ($selector.length === 0) {
         $body.css('height', 'auto');
         $__default['default']('html').css('height', 'auto');
       } else {
@@ -2153,7 +2160,7 @@
         this._addNotFound();
       } else {
         endResults.each(function (i, result) {
-          $__default['default'](SELECTOR_SEARCH_RESULTS_GROUP).append(_this2._renderItem(escape(result.name), escape(result.link), result.path));
+          $__default['default'](SELECTOR_SEARCH_RESULTS_GROUP).append(_this2._renderItem(escape(result.name), encodeURI(result.link), result.path));
         });
       }
 
@@ -2218,6 +2225,7 @@
 
       path = path.join(" " + this.options.arrowSign + " ");
       name = unescape(name);
+      link = decodeURI(link);
 
       if (this.options.highlightName || this.options.highlightPath) {
         var searchValue = $__default['default'](SELECTOR_SEARCH_INPUT$1).val().toLowerCase();

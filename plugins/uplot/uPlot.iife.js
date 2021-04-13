@@ -4,27 +4,13 @@
 *
 * uPlot.js (μPlot)
 * A small, fast chart for time series, lines, areas, ohlc & bars
-* https://github.com/leeoniya/uPlot (v1.6.7)
+* https://github.com/leeoniya/uPlot (v1.6.8)
 */
 
 var uPlot = (function () {
 	'use strict';
 
 	var FEAT_TIME          = true;
-
-	function debounce(fn, time) {
-		var pending = null;
-
-		function run() {
-			pending = null;
-			fn();
-		}
-
-		return function() {
-			clearTimeout(pending);
-			pending = setTimeout(run, time);
-		}
-	}
 
 	// binary search for index of closest value
 	function closestIdx(num, arr, lo, hi) {
@@ -260,6 +246,8 @@ var uPlot = (function () {
 	function fnOrSelf(v) {
 		return typeof v == "function" ? v : () => v;
 	}
+
+	var retArg0 = _0 => _0;
 
 	var retArg1 = (_0, _1) => _1;
 
@@ -538,13 +526,14 @@ var uPlot = (function () {
 	}
 
 	var evOpts = {passive: true};
+	var evOpts2 = assign({capture: true}, evOpts);
 
-	function on(ev, el, cb) {
-		el.addEventListener(ev, cb, evOpts);
+	function on(ev, el, cb, capt) {
+		el.addEventListener(ev, cb, capt ? evOpts2 : evOpts);
 	}
 
-	function off(ev, el, cb) {
-		el.removeEventListener(ev, cb, evOpts);
+	function off(ev, el, cb, capt) {
+		el.removeEventListener(ev, cb, capt ? evOpts2 : evOpts);
 	}
 
 	var months = [
@@ -808,26 +797,26 @@ var uPlot = (function () {
 
 				// get the timezone-adjusted date
 				var minDate = tzDate(scaleMin);
-				var minDateTs = minDate * ms;
+				var minDateTs = roundDec(minDate * ms, 3);
 
 				// get ts of 12am (this lands us at or before the original scaleMin)
 				var minMin = mkDate(minDate.getFullYear(), isYr ? 0 : minDate.getMonth(), isMo || isYr ? 1 : minDate.getDate());
-				var minMinTs = minMin * ms;
+				var minMinTs = roundDec(minMin * ms, 3);
 
 				if (isMo || isYr) {
 					var moIncr = isMo ? foundIncr / mo : 0;
 					var yrIncr = isYr ? foundIncr / y  : 0;
 				//	let tzOffset = scaleMin - minDateTs;		// needed?
-					var split = minDateTs == minMinTs ? minDateTs : mkDate(minMin.getFullYear() + yrIncr, minMin.getMonth() + moIncr, 1) * ms;
-					var splitDate = new Date(split / ms);
+					var split = minDateTs == minMinTs ? minDateTs : roundDec(mkDate(minMin.getFullYear() + yrIncr, minMin.getMonth() + moIncr, 1) * ms, 3);
+					var splitDate = new Date(round(split / ms));
 					var baseYear = splitDate.getFullYear();
 					var baseMonth = splitDate.getMonth();
 
 					for (var i = 0; split <= scaleMax; i++) {
 						var next = mkDate(baseYear + yrIncr * i, baseMonth + moIncr * i, 1);
-						var offs = next - tzDate(next * ms);
+						var offs = next - tzDate(roundDec(next * ms, 3));
 
-						split = (+next + offs) * ms;
+						split = roundDec((+next + offs) * ms, 3);
 
 						if (split <= scaleMax)
 							{ splits.push(split); }
@@ -983,10 +972,6 @@ var uPlot = (function () {
 		return (self, val) => stamp(tzDate(val));
 	}
 
-	var legendWidth = 2;
-
-	var legendDash = "solid";
-
 	function legendStroke(self, seriesIdx) {
 		var s = self.series[seriesIdx];
 		return s.width ? s.stroke(self, seriesIdx) : s.points.width ? s.points.stroke(self, seriesIdx) : null;
@@ -995,6 +980,18 @@ var uPlot = (function () {
 	function legendFill(self, seriesIdx) {
 		return self.series[seriesIdx].fill(self, seriesIdx);
 	}
+
+	var legendOpts = {
+		show: true,
+		width: 2,
+		stroke: legendStroke,
+		fill: legendFill,
+		dash: "solid",
+		live: true,
+		isolate: false,
+		idx: null,
+		values: [],
+	};
 
 	function cursorPointShow(self, si) {
 		var o = self.cursor.points;
@@ -1502,6 +1499,10 @@ var uPlot = (function () {
 		}
 	}
 
+	function pxRoundGen(pxAlign) {
+		return pxAlign == 0 ? retArg0 : pxAlign == 1 ? round : v => incrRound(v, pxAlign);
+	}
+
 	// orientation-inverting canvas functions
 	function moveToH(p, x, y) { p.moveTo(x, y); }
 	function moveToV(p, y, x) { p.moveTo(x, y); }
@@ -1514,10 +1515,13 @@ var uPlot = (function () {
 	function bezierCurveToH(p, bp1x, bp1y, bp2x, bp2y, p2x, p2y) { p.bezierCurveTo(bp1x, bp1y, bp2x, bp2y, p2x, p2y); }function bezierCurveToV(p, bp1y, bp1x, bp2y, bp2x, p2y, p2x) { p.bezierCurveTo(bp1x, bp1y, bp2x, bp2y, p2x, p2y); }
 
 	function _drawAcc(lineTo) {
-		return (stroke, accX, minY, maxY, outY) => {
+		return (stroke, accX, minY, maxY, inY, outY) => {
 			if (minY != maxY) {
-				lineTo(stroke, accX, minY);
-				lineTo(stroke, accX, maxY);
+				if (inY != minY && outY != minY)
+					{ lineTo(stroke, accX, minY); }
+				if (inY != maxY && outY != maxY)
+					{ lineTo(stroke, accX, maxY); }
+
 				lineTo(stroke, accX, outY);
 			}
 		};
@@ -1529,6 +1533,8 @@ var uPlot = (function () {
 	function linear() {
 		return (u, seriesIdx, idx0, idx1) => {
 			return orient(u, seriesIdx, (series, dataX, dataY, scaleX, scaleY, valToPosX, valToPosY, xOff, yOff, xDim, yDim) => {
+				var pxRound = series.pxRound;
+
 				var lineTo, drawAcc;
 
 				if (scaleX.ori == 0) {
@@ -1547,11 +1553,11 @@ var uPlot = (function () {
 
 				var minY = inf,
 					maxY = -inf,
-					outY, outX, drawnAtX;
+					inY, outY, outX, drawnAtX;
 
 				var gaps = [];
 
-				var accX = round(valToPosX(dataX[dir == 1 ? idx0 : idx1], scaleX, xDim, xOff));
+				var accX = pxRound(valToPosX(dataX[dir == 1 ? idx0 : idx1], scaleX, xDim, xOff));
 				var accGaps = false;
 
 				// data edges
@@ -1564,14 +1570,16 @@ var uPlot = (function () {
 					{ addGap(gaps, xOff, lftX); }
 
 				for (var i = dir == 1 ? idx0 : idx1; i >= idx0 && i <= idx1; i += dir) {
-					var x = round(valToPosX(dataX[i], scaleX, xDim, xOff));
+					var x = pxRound(valToPosX(dataX[i], scaleX, xDim, xOff));
 
 					if (x == accX) {
 						if (dataY[i] != null) {
-							outY = round(valToPosY(dataY[i], scaleY, yDim, yOff));
+							outY = pxRound(valToPosY(dataY[i], scaleY, yDim, yOff));
 
-							if (minY == inf)
-								{ lineTo(stroke, x, outY); }
+							if (minY == inf) {
+								lineTo(stroke, x, outY);
+								inY = outY;
+							}
 
 							minY = min(outY, minY);
 							maxY = max(outY, maxY);
@@ -1583,7 +1591,7 @@ var uPlot = (function () {
 						var _addGap = false;
 
 						if (minY != inf) {
-							drawAcc(stroke, accX, minY, maxY, outY);
+							drawAcc(stroke, accX, minY, maxY, inY, outY);
 							outX = drawnAtX = accX;
 						}
 						else if (accGaps) {
@@ -1592,9 +1600,9 @@ var uPlot = (function () {
 						}
 
 						if (dataY[i] != null) {
-							outY = round(valToPosY(dataY[i], scaleY, yDim, yOff));
+							outY = pxRound(valToPosY(dataY[i], scaleY, yDim, yOff));
 							lineTo(stroke, x, outY);
-							minY = maxY = outY;
+							minY = maxY = inY = outY;
 
 							// prior pixel can have data but still start a gap if ends with null
 							if (x - accX > 1 && dataY[i - dir] === null)
@@ -1615,7 +1623,7 @@ var uPlot = (function () {
 				}
 
 				if (minY != inf && minY != maxY && drawnAtX != accX)
-					{ drawAcc(stroke, accX, minY, maxY, outY); }
+					{ drawAcc(stroke, accX, minY, maxY, inY, outY); }
 
 				if (rgtX < xOff + xDim)
 					{ addGap(gaps, rgtX, xOff + xDim); }
@@ -1623,7 +1631,7 @@ var uPlot = (function () {
 				if (series.fill != null) {
 					var fill = _paths.fill = new Path2D(stroke);
 
-					var fillTo = round(valToPosY(series.fillTo(u, seriesIdx, series.min, series.max), scaleY, yDim, yOff));
+					var fillTo = pxRound(valToPosY(series.fillTo(u, seriesIdx, series.min, series.max), scaleY, yDim, yOff));
 
 					lineTo(fill, rgtX, fillTo);
 					lineTo(fill, lftX, fillTo);
@@ -1646,6 +1654,8 @@ var uPlot = (function () {
 	function spline(opts) {
 		return (u, seriesIdx, idx0, idx1) => {
 			return orient(u, seriesIdx, (series, dataX, dataY, scaleX, scaleY, valToPosX, valToPosY, xOff, yOff, xDim, yDim) => {
+				var pxRound = series.pxRound;
+
 				var moveTo, bezierCurveTo, lineTo;
 
 				if (scaleX.ori == 0) {
@@ -1666,7 +1676,7 @@ var uPlot = (function () {
 
 				var gaps = [];
 				var inGap = false;
-				var firstXPos = round(valToPosX(dataX[_dir == 1 ? idx0 : idx1], scaleX, xDim, xOff));
+				var firstXPos = pxRound(valToPosX(dataX[_dir == 1 ? idx0 : idx1], scaleX, xDim, xOff));
 				var prevXPos = firstXPos;
 
 				var xCoords = [];
@@ -1695,14 +1705,14 @@ var uPlot = (function () {
 					}
 				}
 
-				var _paths = {stroke: catmullRomFitting(xCoords, yCoords, 0.5, moveTo, bezierCurveTo), fill: null, clip: null, band: null};
+				var _paths = {stroke: catmullRomFitting(xCoords, yCoords, 0.5, moveTo, bezierCurveTo, pxRound), fill: null, clip: null, band: null};
 				var stroke = _paths.stroke;
 
 				if (series.fill != null) {
 					var fill = _paths.fill = new Path2D(stroke);
 
 					var fillTo = series.fillTo(u, seriesIdx, series.min, series.max);
-					var minY = round(valToPosY(fillTo, scaleY, yDim, yOff));
+					var minY = pxRound(valToPosY(fillTo, scaleY, yDim, yOff));
 
 					lineTo(fill, prevXPos, minY);
 					lineTo(fill, firstXPos, minY);
@@ -1736,7 +1746,7 @@ var uPlot = (function () {
 
 	// adapted from https://gist.github.com/nicholaswmin/c2661eb11cad5671d816 (MIT)
 
-	function catmullRomFitting(xCoords, yCoords, alpha, moveTo, bezierCurveTo) {
+	function catmullRomFitting(xCoords, yCoords, alpha, moveTo, bezierCurveTo, pxRound) {
 		var path = new Path2D();
 
 		var dataLen = xCoords.length;
@@ -1767,7 +1777,7 @@ var uPlot = (function () {
 			d1pow2A,
 			d1powA;
 
-		moveTo(path, round(xCoords[0]), round(yCoords[0]));
+		moveTo(path, pxRound(xCoords[0]), pxRound(yCoords[0]));
 
 		for (var i = 0; i < dataLen - 1; i++) {
 			var p0i = i == 0 ? 0 : i - 1;
@@ -1851,6 +1861,8 @@ var uPlot = (function () {
 
 		return (u, seriesIdx, idx0, idx1) => {
 			return orient(u, seriesIdx, (series, dataX, dataY, scaleX, scaleY, valToPosX, valToPosY, xOff, yOff, xDim, yDim) => {
+				var pxRound = series.pxRound;
+
 				var lineTo = scaleX.ori == 0 ? lineToH : lineToV;
 
 				var _paths = {stroke: new Path2D(), fill: null, clip: null, band: null};
@@ -1863,8 +1875,8 @@ var uPlot = (function () {
 
 				var gaps = [];
 				var inGap = false;
-				var prevYPos  = round(valToPosY(dataY[_dir == 1 ? idx0 : idx1], scaleY, yDim, yOff));
-				var firstXPos = round(valToPosX(dataX[_dir == 1 ? idx0 : idx1], scaleX, xDim, xOff));
+				var prevYPos  = pxRound(valToPosY(dataY[_dir == 1 ? idx0 : idx1], scaleY, yDim, yOff));
+				var firstXPos = pxRound(valToPosX(dataX[_dir == 1 ? idx0 : idx1], scaleX, xDim, xOff));
 				var prevXPos = firstXPos;
 
 				lineTo(stroke, firstXPos, prevYPos);
@@ -1872,7 +1884,7 @@ var uPlot = (function () {
 				for (var i = _dir == 1 ? idx0 : idx1; i >= idx0 && i <= idx1; i += _dir) {
 					var yVal1 = dataY[i];
 
-					var x1 = round(valToPosX(dataX[i], scaleX, xDim, xOff));
+					var x1 = pxRound(valToPosX(dataX[i], scaleX, xDim, xOff));
 
 					if (yVal1 == null) {
 						if (yVal1 === null) {
@@ -1882,7 +1894,7 @@ var uPlot = (function () {
 						continue;
 					}
 
-					var y1 = round(valToPosY(yVal1, scaleY, yDim, yOff));
+					var y1 = pxRound(valToPosY(yVal1, scaleY, yDim, yOff));
 
 					if (inGap) {
 						addGap(gaps, prevXPos, x1);
@@ -1915,7 +1927,7 @@ var uPlot = (function () {
 					var fill = _paths.fill = new Path2D(stroke);
 
 					var fillTo = series.fillTo(u, seriesIdx, series.min, series.max);
-					var minY = round(valToPosY(fillTo, scaleY, yDim, yOff));
+					var minY = pxRound(valToPosY(fillTo, scaleY, yDim, yOff));
 
 					lineTo(fill, prevXPos, minY);
 					lineTo(fill, firstXPos, minY);
@@ -1945,6 +1957,8 @@ var uPlot = (function () {
 
 		return (u, seriesIdx, idx0, idx1) => {
 			return orient(u, seriesIdx, (series, dataX, dataY, scaleX, scaleY, valToPosX, valToPosY, xOff, yOff, xDim, yDim) => {
+				var pxRound = series.pxRound;
+
 				var rect = scaleX.ori == 0 ? rectH : rectV;
 
 				var colWid = valToPosX(dataX[1], scaleX, xDim, xOff) - valToPosX(dataX[0], scaleX, xDim, xOff);
@@ -1955,9 +1969,9 @@ var uPlot = (function () {
 
 				var y0Pos = valToPosY(fillToY, scaleY, yDim, yOff);
 
-				var strokeWidth = round(series.width * pxRatio);
+				var strokeWidth = pxRound(series.width * pxRatio);
 
-				var barWid = round(min(maxWidth, colWid - gapWid) - strokeWidth);
+				var barWid = pxRound(min(maxWidth, colWid - gapWid) - strokeWidth);
 
 				var xShift = align == 1 ? 0 : align == -1 ? barWid : barWid / 2;
 
@@ -2003,9 +2017,9 @@ var uPlot = (function () {
 					var xPos = valToPosX(xVal, scaleX, xDim, xOff);
 					var yPos = valToPosY(yVal, scaleY, yDim, yOff);
 
-					var lft = round(xPos - xShift);
-					var btm = round(max(yPos, y0Pos));
-					var top = round(min(yPos, y0Pos));
+					var lft = pxRound(xPos - xShift);
+					var btm = pxRound(max(yPos, y0Pos));
+					var top = pxRound(min(yPos, y0Pos));
 					var barHgt = btm - top;
 
 					dataY[i] != null && rect(stroke, lft, top, barWid, barHgt);
@@ -2025,6 +2039,17 @@ var uPlot = (function () {
 			});
 		};
 	}
+
+	var cursorPlots = new Set();
+
+	function invalidateRects() {
+		cursorPlots.forEach(u => {
+			u.syncRect(true);
+		});
+	}
+
+	on(resize, win, invalidateRects);
+	on(scroll, win, invalidateRects, true);
 
 	var linearPath = linear() ;
 
@@ -2143,7 +2168,9 @@ var uPlot = (function () {
 
 		opts = copy(opts);
 
-		var pxAlign = ifNull(opts.pxAlign, true);
+		var pxAlign = +ifNull(opts.pxAlign, 1);
+
+		var pxRound = pxRoundGen(pxAlign);
 
 		(opts.plugins || []).forEach(p => {
 			if (p.opts)
@@ -2288,48 +2315,56 @@ var uPlot = (function () {
 		}
 
 	//	self.tz = opts.tz || Intl.DateTimeFormat().resolvedOptions().timeZone;
-		var _tzDate  = (opts.tzDate || (ts => new Date(ts / ms)));
+		var _tzDate  = (opts.tzDate || (ts => new Date(round(ts / ms))));
 		var _fmtDate = (opts.fmtDate || fmtDate);
 
 		var _timeAxisSplits = (ms == 1 ? timeAxisSplitsMs(_tzDate) : timeAxisSplitsS(_tzDate));
 		var _timeAxisVals   = timeAxisVals(_tzDate, timeAxisStamps((ms == 1 ? _timeAxisStampsMs : _timeAxisStampsS), _fmtDate));
 		var _timeSeriesVal  = timeSeriesVal(_tzDate, timeSeriesStamp(_timeSeriesStamp, _fmtDate));
 
-		var legend     = assign({show: true, live: true}, opts.legend);
+		var legend     = (self.legend = assign({}, legendOpts, opts.legend));
 		var showLegend = legend.show;
 
 		{
-			legend.width  = fnOrSelf(ifNull(legend.width, legendWidth));
-			legend.dash   = fnOrSelf(legend.dash   || legendDash);
-			legend.stroke = fnOrSelf(legend.stroke || legendStroke);
-			legend.fill   = fnOrSelf(legend.fill   || legendFill);
+			legend.width  = fnOrSelf(legend.width);
+			legend.dash   = fnOrSelf(legend.dash);
+			legend.stroke = fnOrSelf(legend.stroke);
+			legend.fill   = fnOrSelf(legend.fill);
 		}
 
 		var legendEl;
 		var legendRows = [];
 		var legendCols;
 		var multiValLegend = false;
+		var NULL_LEGEND_VALUES = {};
+
+		if (legend.live) {
+			var getMultiVals = series[1] ? series[1].values : null;
+			multiValLegend = getMultiVals != null;
+			legendCols = multiValLegend ? getMultiVals(self, 1, 0) : {_: 0};
+
+			for (var k$2 in legendCols)
+				{ NULL_LEGEND_VALUES[k$2] = "--"; }
+		}
 
 		if (showLegend) {
 			legendEl = placeTag("table", LEGEND, root);
 
-			var getMultiVals = series[1] ? series[1].values : null;
-			multiValLegend = getMultiVals != null;
-
 			if (multiValLegend) {
 				var head = placeTag("tr", LEGEND_THEAD, legendEl);
 				placeTag("th", null, head);
-				legendCols = getMultiVals(self, 1, 0);
 
 				for (var key in legendCols)
 					{ placeTag("th", LEGEND_LABEL, head).textContent = key; }
 			}
 			else {
-				legendCols = {_: 0};
 				addClass(legendEl, LEGEND_INLINE);
 				legend.live && addClass(legendEl, LEGEND_LIVE);
 			}
 		}
+
+		var son  = {show: true};
+		var soff = {show: false};
 
 		function initLegendRow(s, i) {
 			if (i == 0 && (multiValLegend || !legend.live))
@@ -2365,7 +2400,18 @@ var uPlot = (function () {
 					if (cursor._lock)
 						{ return; }
 
-					setSeries(series.indexOf(s), {show: !s.show}, syncOpts.setSeries);
+					var seriesIdx = series.indexOf(s);
+
+					if (e.ctrlKey != legend.isolate) {
+						// if any other series is shown, isolate this one. else show all
+						var isolate = series.some((s, i) => i > 0 && i != seriesIdx && s.show);
+
+						series.forEach((s, i) => {
+							i > 0 && setSeries(i, isolate ? (i == seriesIdx ? son : soff) : son, syncOpts.setSeries);
+						});
+					}
+					else
+						{ setSeries(seriesIdx, {show: !s.show}, syncOpts.setSeries); }
 				});
 
 				if (cursorFocus) {
@@ -2401,8 +2447,16 @@ var uPlot = (function () {
 
 		function offMouse(ev, targ, fn) {
 			var targListeners = mouseListeners.get(targ) || {};
-			off(ev, targ, targListeners[ev]);
-			targListeners[ev] = null;
+
+			for (var k in targListeners) {
+				if (ev == null || k == ev) {
+					off(k, targ, targListeners[k]);
+					delete targListeners[k];
+				}
+			}
+
+			if (ev == null)
+				{ mouseListeners.delete(targ); }
 		}
 
 		var fullWidCss = 0;
@@ -2622,7 +2676,8 @@ var uPlot = (function () {
 				s.width  = s.width == null ? 1 : s.width;
 				s.paths  = s.paths || linearPath || retNull;
 				s.fillTo = fnOrSelf(s.fillTo || seriesFillTo);
-				s.pxAlign = ifNull(s.pxAlign, true);
+				s.pxAlign = +ifNull(s.pxAlign, pxAlign);
+				s.pxRound = pxRoundGen(s.pxAlign);
 
 				s.stroke = fnOrSelf(s.stroke || null);
 				s.fill   = fnOrSelf(s.fill || null);
@@ -2642,8 +2697,10 @@ var uPlot = (function () {
 				points.stroke = fnOrSelf(points.stroke);
 			}
 
-			if (showLegend)
-				{ legendRows.splice(i, 0, initLegendRow(s, i)); }
+			if (showLegend) {
+				legendRows.splice(i, 0, initLegendRow(s, i));
+				legend.values.push(null);	// NULL_LEGEND_VALS not yet avil here :(
+			}
 
 			if (cursor.show) {
 				var pt = initCursorPt(s, i);
@@ -2663,7 +2720,16 @@ var uPlot = (function () {
 
 		function delSeries(i) {
 			series.splice(i, 1);
-			showLegend && legendRows.splice(i, 1)[0][0].parentNode.remove();
+
+			if (showLegend) {
+				legend.values.splice(i, 1);
+
+				var tr = legendRows.splice(i, 1)[0][0].parentNode;
+				var label = tr.firstChild;
+				offMouse(null, label);
+				tr.remove();
+			}
+
 			cursorPts.length > 1 && cursorPts.splice(i, 1)[0].remove();
 
 			// TODO: de-init no-longer-needed scales?
@@ -2705,9 +2771,14 @@ var uPlot = (function () {
 				var av = axis.values;
 
 				axis.values = (
+					// static array of tick values
+					isArr(av) && !isArr(av[0]) ? fnOrSelf(av) :
+					// temporal
 					isTime ? (
+						// config array of fmtDate string tpls
 						isArr(av) ?
 							timeAxisVals(_tzDate, timeAxisStamps(av, _fmtDate)) :
+						// fmtDate string tpl
 						isStr(av) ?
 							timeAxisVal(_tzDate, av) :
 						av || _timeAxisVals
@@ -2768,11 +2839,10 @@ var uPlot = (function () {
 		var viaAutoScaleX = false;
 
 		function setData(_data, _resetScales) {
-			_data = _data || [];
-			_data[0] = _data[0] || [];
+			data = (_data || []).slice();
+			data[0] = data[0] || [];
 
-			self.data = _data;
-			data = _data.slice();
+			self.data = data.slice();
 			data0 = data[0];
 			dataLen = data0.length;
 
@@ -2825,7 +2895,7 @@ var uPlot = (function () {
 					else if (xScaleDistr == 4)
 						{ (assign$1 = rangeAsinh(_min, _min, scaleX.log, false), _min = assign$1[0], _max = assign$1[1]); }
 					else if (scaleX.time)
-						{ _max = _min + 86400 / ms; }
+						{ _max = _min + round(86400 / ms); }
 					else
 						{ (assign$2 = rangeNum(_min, _max, 0.1, true), _min = assign$2[0], _max = assign$2[1]); }
 				}
@@ -2991,6 +3061,7 @@ var uPlot = (function () {
 
 			var s = series[si];
 			var p = s.points;
+			var _pxRound = s.pxRound;
 
 			var width = roundDec(p.width * pxRatio, 3);
 			var offset = (width % 2) / 2;
@@ -2999,7 +3070,7 @@ var uPlot = (function () {
 			var rad = (p.size - p.width) / 2 * pxRatio;
 			var dia = roundDec(rad * 2, 3);
 
-			var _pxAlign = pxAlign && s.pxAlign;
+			var _pxAlign = s.pxAlign == 1;
 
 			_pxAlign && ctx.translate(offset, offset);
 
@@ -3037,8 +3108,8 @@ var uPlot = (function () {
 
 			for (var pi = i0; pi <= i1; pi++) {
 				if (data[si][pi] != null) {
-					var x = round(valToPosX(data[0][pi],  scaleX, xDim, xOff));
-					var y = round(valToPosY(data[si][pi], scaleY, yDim, yOff));
+					var x = _pxRound(valToPosX(data[0][pi],  scaleX, xDim, xOff));
+					var y = _pxRound(valToPosY(data[si][pi], scaleY, yDim, yOff));
 
 					moveTo(path, x + rad, y);
 					arc(path, x, y, rad, 0, PI * 2);
@@ -3118,7 +3189,7 @@ var uPlot = (function () {
 
 			ctx.globalAlpha = s.alpha;
 
-			var _pxAlign = pxAlign && s.pxAlign;
+			var _pxAlign = s.pxAlign == 1;
 
 			_pxAlign && ctx.translate(offset, offset);
 
@@ -3213,7 +3284,7 @@ var uPlot = (function () {
 		function drawOrthoLines(offs, filts, ori, side, pos0, len, width, stroke, dash, cap) {
 			var offset = (width % 2) / 2;
 
-			pxAlign && ctx.translate(offset, offset);
+			pxAlign == 1 && ctx.translate(offset, offset);
 
 			setCtxStyle(stroke, width, dash, cap);
 
@@ -3245,7 +3316,7 @@ var uPlot = (function () {
 
 			ctx.stroke();
 
-			pxAlign && ctx.translate(-offset, -offset);
+			pxAlign == 1 && ctx.translate(-offset, -offset);
 		}
 
 		function axesCalc(cycleNum) {
@@ -3359,7 +3430,7 @@ var uPlot = (function () {
 				// rotating of labels only supported on bottom x axis
 				var angle = axis._rotate * -PI/180;
 
-				var basePos  = round(axis._pos * pxRatio);
+				var basePos  = pxRound(axis._pos * pxRatio);
 				var shiftAmt = tickSize + axisGap;
 				var shiftDir = ori == 0 && side == 0 || ori == 1 && side == 3 ? -1 : 1;
 				var finalPos = basePos + shiftAmt * shiftDir;
@@ -3378,7 +3449,7 @@ var uPlot = (function () {
 
 				var lineHeight = axis.font[1] * lineMult;
 
-				var canOffs = _splits.map(val => round(getPos(val, scale, plotDim, plotOff)));
+				var canOffs = _splits.map(val => pxRound(getPos(val, scale, plotDim, plotOff)));
 
 				axis._values.forEach((val, i) => {
 					if (val == null)
@@ -3525,7 +3596,7 @@ var uPlot = (function () {
 				can.width  = round(fullWidCss * pxRatio);
 				can.height = round(fullHgtCss * pxRatio);
 
-				syncRect();
+				syncRect(false);
 
 				fire("setSize");
 
@@ -3847,6 +3918,56 @@ var uPlot = (function () {
 		var setSelX = scaleX.ori == 0 ? setSelH : setSelV;
 		var setSelY = scaleX.ori == 1 ? setSelH : setSelV;
 
+		function syncLegend() {
+			if (showLegend && legend.live) {
+				for (var i = 0; i < series.length; i++) {
+					if (i == 0 && multiValLegend)
+						{ continue; }
+
+					var vals = legend.values[i];
+
+					var j = 0;
+
+					for (var k in vals)
+						{ legendRows[i][j++].firstChild.nodeValue = vals[k]; }
+				}
+			}
+		}
+
+		function setLegend(opts, _fire) {
+			if (opts != null) {
+				var idx = opts.idx;
+
+				legend.idx = idx;
+				series.forEach((s, sidx) => {
+					(sidx > 0 || !multiValLegend) && setLegendValues(sidx, idx);
+				});
+			}
+
+			if (showLegend && legend.live)
+				{ syncLegend(); }
+
+			shouldSetLegend = false;
+
+			_fire !== false && fire("setLegend");
+		}
+
+		self.setLegend = setLegend;
+
+		function setLegendValues(sidx, idx) {
+			var val;
+
+			if (idx == null)
+				{ val = NULL_LEGEND_VALUES; }
+			else {
+				var s = series[sidx];
+				var src = sidx == 0 && xScaleDistr == 2 ? data0 : data[sidx];
+				val = multiValLegend ? s.values(self, sidx, idx) : {_: s.value(self, src[idx], sidx, idx)};
+			}
+
+			legend.values[sidx] = val;
+		}
+
 		function updateCursor(ts, src) {
 			var assign;
 
@@ -3863,6 +3984,7 @@ var uPlot = (function () {
 			}
 
 			var idx;
+			var idxChanged = false;
 
 			// when zooming to an x scale range between datapoints the binary search
 			// for nearest min/max indices results in this condition. cheap hack :D
@@ -3882,18 +4004,17 @@ var uPlot = (function () {
 					if (i > 0) {
 						cursorPts.length > 1 && trans(cursorPts[i], -10, -10, plotWidCss, plotHgtCss);
 					}
-
-					if (showLegend && legend.live) {
-						if (i == 0 && multiValLegend)
-							{ continue; }
-
-						for (var j = 0; j < legendRows[i].length; j++)
-							{ legendRows[i][j].firstChild.nodeValue = '--'; }
-					}
 				}
 
 				if (cursorFocus)
 					{ setSeries(null, FOCUS_TRUE, syncOpts.setSeries); }
+
+				if (legend.live) {
+					idxChanged = true;
+
+					for (var i$1 = 0; i$1 < series.length; i$1++)
+						{ legend.values[i$1] = NULL_LEGEND_VALUES; }
+				}
 			}
 			else {
 			//	let pctY = 1 - (y / rect.height);
@@ -3906,14 +4027,14 @@ var uPlot = (function () {
 
 				var xPos = incrRoundUp(valToPosX(data[0][idx], scaleX, xDim, 0), 0.5);
 
-				for (var i$1 = 0; i$1 < series.length; i$1++) {
-					var s = series[i$1];
+				for (var i$2 = 0; i$2 < series.length; i$2++) {
+					var s = series[i$2];
 
-					var idx2  = cursor.dataIdx(self, i$1, idx, valAtPosX);
+					var idx2  = cursor.dataIdx(self, i$2, idx, valAtPosX);
 					var xPos2 = idx2 == idx ? xPos : incrRoundUp(valToPosX(data[0][idx2], scaleX, xDim, 0), 0.5);
 
-					if (i$1 > 0 && s.show) {
-						var valAtIdx = data[i$1][idx2];
+					if (i$2 > 0 && s.show) {
+						var valAtIdx = data[i$2][idx2];
 
 						var yPos = valAtIdx == null ? -10 : incrRoundUp(valToPosY(valAtIdx, scales[s.scale], yDim, 0), 0.5);
 
@@ -3922,7 +4043,7 @@ var uPlot = (function () {
 
 							if (dist <= closestDist) {
 								closestDist = dist;
-								closestSeries = i$1;
+								closestSeries = i$2;
 							}
 						}
 
@@ -3937,25 +4058,23 @@ var uPlot = (function () {
 							vPos = xPos2;
 						}
 
-						cursorPts.length > 1 && trans(cursorPts[i$1], hPos, vPos, plotWidCss, plotHgtCss);
+						cursorPts.length > 1 && trans(cursorPts[i$2], hPos, vPos, plotWidCss, plotHgtCss);
 					}
 
-					if (showLegend && legend.live) {
-						if ((idx2 == cursor.idx && !shouldSetLegend) || i$1 == 0 && multiValLegend)
+					if (legend.live) {
+						if ((idx2 == cursor.idx && !shouldSetLegend) || i$2 == 0 && multiValLegend)
 							{ continue; }
 
-						var src$1 = i$1 == 0 && xScaleDistr == 2 ? data0 : data[i$1];
+						idxChanged = true;
 
-						var vals = multiValLegend ? s.values(self, i$1, idx2) : {_: s.value(self, src$1[idx2], i$1, idx2)};
-
-						var j$1 = 0;
-
-						for (var k in vals)
-							{ legendRows[i$1][j$1++].firstChild.nodeValue = vals[k]; }
+						setLegendValues(i$2, idx2);
 					}
 				}
+			}
 
-				shouldSetLegend = false;
+			if (idxChanged) {
+				legend.idx = idx;
+				setLegend();
 			}
 
 			// nit: cursor.drag.setSelect is assumed always true
@@ -4133,8 +4252,8 @@ var uPlot = (function () {
 
 		var rect = null;
 
-		function syncRect() {
-			rect = over.getBoundingClientRect();
+		function syncRect(defer) {
+			rect = defer ? null : over.getBoundingClientRect();
 		}
 
 		function mouseMove(e, src, _l, _t, _w, _h, _i) {
@@ -4151,6 +4270,9 @@ var uPlot = (function () {
 
 		function cacheMouse(e, src, _l, _t, _w, _h, _i, initial, snap) {
 			var assign;
+
+			if (rect == null)
+				{ syncRect(false); }
 
 			if (e != null) {
 				_l = e.clientX - rect.left;
@@ -4378,8 +4500,6 @@ var uPlot = (function () {
 			setSeries(idx, opts);
 		};
 
-		var deb;
-
 		if (cursor.show) {
 			onMouse(mousedown,  over, mouseDown);
 			onMouse(mousemove,  over, mouseMove);
@@ -4388,10 +4508,7 @@ var uPlot = (function () {
 
 			onMouse(dblclick, over, dblClick);
 
-			deb = debounce(syncRect, 100);
-
-			on(resize, win, deb);
-			on(scroll, win, deb);
+			cursorPlots.add(self);
 
 			self.syncRect = syncRect;
 		}
@@ -4442,8 +4559,8 @@ var uPlot = (function () {
 
 		function destroy() {
 			sync.unsub(self);
-			off(resize, win, deb);
-			off(scroll, win, deb);
+			cursorPlots.delete(self);
+			mouseListeners.clear();
 			root.remove();
 			fire("destroy");
 		}
