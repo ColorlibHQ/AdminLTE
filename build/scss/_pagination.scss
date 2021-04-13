@@ -42,7 +42,7 @@
   }
 }
 
-.dark-mode {
+@include dark-mode () {
   .page-item {
     &.disabled a,
     &.disabled .page-link {

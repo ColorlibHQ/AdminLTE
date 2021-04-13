@@ -14,7 +14,7 @@
   z-index: $zindex-preloader;
 }
 
-.dark-mode {
+@include dark-mode () {
   .preloader {
     background-color: $dark-main-bg;
     color: $white;

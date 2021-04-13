@@ -145,7 +145,7 @@
   }
 }
 
-.dark-mode {
+@include dark-mode () {
   .info-box {
     background-color: $dark;
     color: $white;

@@ -1,0 +1,16 @@
+/*!
+ *   AdminLTE v3.1.0
+ *     Without Dark mode
+ *   Author: Colorlib
+ *   Website: AdminLTE.io <https://adminlte.io>
+ *   License: Open source - MIT <https://opensource.org/licenses/MIT>
+ */
+
+// DISABLE DARK MODE
+$enable-dark-mode: false !default;  // stylelint-disable-line
+
+// AdminLTE Original file
+// ---------------------------------------------------
+@import "../adminlte";
+
+//

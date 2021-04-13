@@ -479,7 +479,7 @@ html.maximized-card {
   }
 }
 
-.dark-mode {
+@include dark-mode () {
 
   // Color variants
   @each $name, $color in $theme-colors-alt {
