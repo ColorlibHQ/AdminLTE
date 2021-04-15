@@ -92,7 +92,7 @@
     }
   }
   @include dark-mode () {
-    .accent-#{$name} {
+    &.accent-#{$name} {
       .page-item {
         .page-link {
           &:hover,
