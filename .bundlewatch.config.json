@@ -33,6 +33,14 @@
       "maxSize": "4.5 kB"
     },
     {
+      "path": "./dist/css/alt/adminlte.light.css",
+      "maxSize": "87.7 kB"
+    },
+    {
+      "path": "./dist/css/alt/adminlte.light.min.css",
+      "maxSize": "83.3 kB"
+    },
+    {
       "path": "./dist/css/alt/adminlte.pages.css",
       "maxSize": "3.5 kB"
     },
