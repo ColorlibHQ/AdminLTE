@@ -40,7 +40,7 @@
   }
 }
 
-.dark-mode {
+@include dark-mode () {
   [class*="icheck-"] > input:first-child:not(:checked) {
     + input[type="hidden"] + label::before,
     + label::before {

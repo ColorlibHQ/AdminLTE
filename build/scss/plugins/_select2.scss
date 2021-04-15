@@ -273,7 +273,7 @@ select.form-control-sm ~ {
   @include select2-variant($name, $color);
 }
 
-.dark-mode {
+@include dark-mode () {
   .select2-selection {
     background-color: $dark;
     border-color: $gray-600;
