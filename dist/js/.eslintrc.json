@@ -26,10 +26,13 @@
       "error",
       "always-multiline"
     ],
+    "no-var": "off",
     "object-curly-spacing": [
       "error",
       "always"
     ],
+    "object-shorthand": "off",
+    "prefer-arrow-callback": "off",
     "semi": [
       "error",
       "never"
