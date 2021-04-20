@@ -1,4 +1,4 @@
-const ready = callback => {
+const ready = (callback: () => void) => {
   if (document.readyState !== 'loading') {
     callback()
   } else {
@@ -6,4 +6,6 @@ const ready = callback => {
   }
 }
 
-export { ready }
+export {
+  ready
+}

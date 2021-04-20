@@ -45,5 +45,17 @@
     "unicorn/filename-case": "off",
     "unicorn/no-null": "off",
     "unicorn/prevent-abbreviations": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": [
+        "xo-typescript"
+      ],
+      "rules": {
+        "@typescript-eslint/indent": "off",
+        "@typescript-eslint/semi": "off"
+      }
+    }
+  ]
 }

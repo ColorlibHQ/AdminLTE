@@ -2,6 +2,7 @@
 
 const { babel } = require('@rollup/plugin-babel')
 const { nodeResolve } = require('@rollup/plugin-node-resolve')
+const typescript = require('@rollup/plugin-typescript')
 
 const pkg = require('../../package')
 const year = new Date().getFullYear()
@@ -12,7 +13,7 @@ const banner = `/*!
  */`
 
 module.exports = {
-  input: 'build/js/AdminLTE.js',
+  input: 'build/ts/AdminLTE.ts',
   output: {
     banner,
     file: 'dist/js/adminlte.js',
@@ -22,9 +23,11 @@ module.exports = {
   plugins: [
     babel({
       exclude: 'node_modules/**',
+      extensions: ['.js', '.ts'],
       // Include the helpers in the bundle, at most one copy of each
       babelHelpers: 'bundled'
     }),
-    nodeResolve()
+    nodeResolve(),
+    typescript()
   ]
 }

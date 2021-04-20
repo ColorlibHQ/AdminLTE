@@ -7,6 +7,7 @@ module.exports = {
         bugfixes: true,
         modules: false
       }
-    ]
+    ],
+    "@babel/typescript"
   ]
 };
