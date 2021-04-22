@@ -2,13 +2,16 @@
   "compilerOptions": {
     "noFallthroughCasesInSwitch": true,
     "noUnusedParameters": true,
-    "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noImplicitAny": true,
     "target": "esnext",
     "module": "esnext",
-    "strict": true
+    "strict": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true
   },
   "include": [
     "build/ts/**/*"
