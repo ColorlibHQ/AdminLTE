@@ -1,7 +1,6 @@
 'use strict'
 
 const { babel } = require('@rollup/plugin-babel')
-const { nodeResolve } = require('@rollup/plugin-node-resolve')
 const typescript = require('@rollup/plugin-typescript')
 
 const pkg = require('../../package')
@@ -21,13 +20,11 @@ module.exports = {
     name: 'adminlte'
   },
   plugins: [
+    typescript(),
     babel({
       exclude: 'node_modules/**',
-      extensions: ['.js', '.ts'],
       // Include the helpers in the bundle, at most one copy of each
       babelHelpers: 'bundled'
-    }),
-    nodeResolve(),
-    typescript()
+    })
   ]
 }

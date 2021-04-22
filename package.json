@@ -24,7 +24,7 @@
     "lint": "npm-run-all --continue-on-error --parallel css-lint js-lint lockfile-lint",
     "compile": "npm-run-all css js",
     "sync": "browser-sync start --server --files *.html pages/ dist/",
-    "watch": "concurrently \"npm:watch-js\" \"npm:watch-css\"",
+    "watch": "concurrently \"npm:watch-*\"",
     "watch-css": "nodemon --watch build/scss -e scss -x \"npm-run-all css-lint css\"",
     "watch-js": "nodemon --watch build/ts -e ts -x \"npm-run-all js-lint js\""
   },
@@ -59,9 +59,7 @@
   "devDependencies": {
     "@babel/core": "^7.13.16",
     "@babel/preset-env": "^7.13.15",
-    "@babel/preset-typescript": "^7.13.0",
     "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-node-resolve": "^11.2.1",
     "@rollup/plugin-typescript": "^8.2.1",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
