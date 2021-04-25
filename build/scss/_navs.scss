@@ -98,7 +98,7 @@
   @include navbar-variant($color, $value);
 }
 
-.dark-mode {
+@include dark-mode () {
   .nav-pills .nav-link {
     color: $gray-400;
   }

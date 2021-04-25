@@ -358,7 +358,7 @@ body.text-sm {
   }
 }
 
-.dark-mode {
+@include dark-mode () {
   .form-control:not(.form-control-navbar):not(.form-control-sidebar),
   .custom-select,
   .custom-file-label,

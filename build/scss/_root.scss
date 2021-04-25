@@ -1,4 +1,4 @@
-.dark-mode {
+@include dark-mode () {
   :root {
     // Custom variable values only support SassScript inside `#{}`.
     @each $color, $value in $colors-alt {

@@ -240,3 +240,9 @@ $ribbon-xl-right: 4px !default;
 $custom-select-dark-indicator-color:     $white !default;
 $custom-select-dark-indicator:           url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'><path fill='#{$custom-select-dark-indicator-color}' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>") !default;
 $custom-select-dark-background:          escape-svg($custom-select-dark-indicator) right $custom-select-padding-x center / $custom-select-bg-size no-repeat !default; // Used so we can have multiple background elements (e.g., arrow and feedback icon)
+
+// ENABLE DARK MODE
+// --------------------------------------------------------
+$enable-dark-mode: true !default;  // requires `@import "variables-alt";`
+
+//

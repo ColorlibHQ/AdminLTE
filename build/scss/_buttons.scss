@@ -113,7 +113,7 @@
   @include button-size($button-padding-y-xs, $button-padding-x-xs, $button-font-size-xs, $button-line-height-xs, $button-border-radius-xs);
 }
 
-.dark-mode {
+@include dark-mode () {
   .btn-default,
   .btn-app {
     background-color: lighten($dark, 2.5%);

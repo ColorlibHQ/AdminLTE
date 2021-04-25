@@ -90,7 +90,7 @@ a.text-muted:hover {
   }
 }
 
-.dark-mode {
+@include dark-mode () {
   .bg-light {
     background-color: lighten($dark, 7.5%) !important;
     color: $white !important;

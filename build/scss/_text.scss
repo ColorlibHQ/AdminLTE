@@ -38,7 +38,7 @@
   }
 }
 
-.dark-mode {
+@include dark-mode () {
   .text-muted {
     color: $gray-500 !important;
   }

@@ -50,7 +50,7 @@
   }
 }
 
-.dark-mode {
+@include dark-mode () {
   .callout {
     background-color: lighten($dark, 5%);
 

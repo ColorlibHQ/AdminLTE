@@ -46,7 +46,7 @@
   }
 }
 
-.dark-mode {
+@include dark-mode () {
   .toast {
     background-color: rgba($dark, .85);
     color: $white;

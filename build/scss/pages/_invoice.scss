@@ -12,7 +12,7 @@
   margin-top: 0;
 }
 
-.dark-mode {
+@include dark-mode () {
   .invoice {
     background-color: $dark;
   }
