@@ -19,22 +19,13 @@
 
 .sidebar {
   height: calc(100% - (#{$main-header-height-inner} + #{$main-header-bottom-border-width}));
-  overflow-x: hidden;
+  overflow-x: none;
   overflow-y: initial;
   padding-bottom: $sidebar-padding-y;
   padding-left: $sidebar-padding-x;
   padding-right: $sidebar-padding-x;
   padding-top: $sidebar-padding-y;
-  @include scrollbar-color-gray();
-  @include scrollbar-width-none();
-
-  &:hover {
-    @include scrollbar-width-thin();
-  }
-
-  .brand-link.border-bottom-0 ~ & {
-    height: calc(100% - #{$main-header-height-inner});
-  }
+  @include scrollbar-width-thin();
 }
 
 // Sidebar user panel
@@ -114,7 +105,6 @@
   .menu-open,
   .menu-is-opening {
     > .nav-link {
-      svg.right,
       i.right {
         @include rotate(-90deg);
       }
@@ -1155,7 +1145,7 @@
   }
 }
 
-@include dark-mode () {
+.dark-mode {
   @each $name, $color in $theme-colors-alt {
     .sidebar-dark-#{$name},
     .sidebar-light-#{$name} {

@@ -5,7 +5,7 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:unicorn/recommended",
-    "xo",
+    "xo/esnext",
     "xo/browser"
   ],
   "env": {

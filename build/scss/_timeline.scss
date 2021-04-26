@@ -133,7 +133,7 @@
   }
 }
 
-@include dark-mode () {
+.dark-mode {
   .timeline {
     &::before {
       background-color: $gray-600;

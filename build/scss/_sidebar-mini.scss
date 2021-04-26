@@ -395,6 +395,13 @@
             }
           }
         }
+        .sidebar {
+          @include scrollbar-width-thin();
+        }
+      }
+
+      .sidebar {
+        @include scrollbar-width-none();
       }
     }
 

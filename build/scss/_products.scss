@@ -55,7 +55,7 @@
 }
 
 
-@include dark-mode () {
+.dark-mode {
   .products-list > .item {
     background-color: $dark;
     color: $white;

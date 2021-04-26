@@ -44,7 +44,7 @@
   font-size: 12px;
 }
 
-@include dark-mode () {
+.dark-mode {
   .users-list-name {
     color: $gray-400;
   }

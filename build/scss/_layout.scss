@@ -26,7 +26,6 @@ body,
     &::before {
       margin: 0 auto;
       max-width: $boxed-layout-max-width;
-      overflow: hidden;
     }
 
     .main-sidebar {
@@ -150,19 +149,6 @@ body,
       }
     }
 
-    @each $name, $color in $colors {
-      .sidebar-dark-#{$name} .brand-link:not([class*="navbar"]) {
-        background-color: $sidebar-dark-bg;
-      }
-
-      .sidebar-light-#{$name} .brand-link:not([class*="navbar"]) {
-        background-color: $sidebar-light-bg;
-      }
-    }
-
-    .main-header.border-bottom-0 ~ .content-wrapper {
-      margin-top: $main-header-height-inner;
-    }
     .content-wrapper {
       margin-top: $main-header-height;
     }
@@ -279,6 +265,17 @@ body,
           transition: width $transition-speed $transition-fn;
           width: $sidebar-width;
           z-index: $zindex-main-header + 1;
+        }
+
+        // Sidebar variants brand-link fix
+        @each $name, $color in $theme-colors {
+          .sidebar-dark-#{$name} .brand-link:not([class*="navbar"]) {
+            background-color: $sidebar-dark-bg;
+          }
+
+          .sidebar-light-#{$name} .brand-link:not([class*="navbar"]) {
+            background-color: $sidebar-light-bg;
+          }
         }
 
         .content-wrapper {
@@ -584,7 +581,6 @@ body:not(.layout-fixed) {
       height: calc(100vh - #{$main-header-height});
       overflow-y: auto;
       @include scrollbar-width-thin();
-      @include scrollbar-color-gray();
     }
   }
 }
@@ -651,7 +647,7 @@ body:not(.layout-fixed) {
   }
 }
 
-@include dark-mode () {
+.dark-mode {
   background-color: $dark-main-bg;
   color: $white;
 

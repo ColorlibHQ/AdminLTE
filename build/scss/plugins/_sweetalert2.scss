@@ -38,7 +38,7 @@
   }
 }
 
-@include dark-mode () {
+.dark-mode {
   .swal2-popup {
     background-color: $dark;
     color: $gray-200;

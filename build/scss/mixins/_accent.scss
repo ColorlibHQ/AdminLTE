@@ -91,14 +91,12 @@
       }
     }
   }
-  @include dark-mode () {
-    &.accent-#{$name} {
-      .page-item {
-        .page-link {
-          &:hover,
-          &:focus {
-            color: lighten($link-color, 5%);
-          }
+  .dark-mode.accent-#{$name} {
+    .page-item {
+      .page-link {
+        &:hover,
+        &:focus {
+          color: lighten($link-color, 5%);
         }
       }
     }

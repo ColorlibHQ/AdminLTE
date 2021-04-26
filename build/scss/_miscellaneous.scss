@@ -482,7 +482,7 @@ blockquote {
   padding: .375rem .6rem;
 }
 
-@include dark-mode () {
+.dark-mode {
   a:not(.btn):hover {
     color: lighten($link-color, 10%);
   }

@@ -358,7 +358,7 @@ body.text-sm {
   }
 }
 
-@include dark-mode () {
+.dark-mode {
   .form-control:not(.form-control-navbar):not(.form-control-sidebar),
   .custom-select,
   .custom-file-label,
@@ -377,14 +377,6 @@ body.text-sm {
     background-color: $dark;
     color: $white;
     border-color: $gray-600;
-  }
-
-  .custom-select {
-    background: $dark $custom-select-dark-background;
-
-    &[multiple]{
-      background: $dark;
-    }
   }
 
   .input-group-text {

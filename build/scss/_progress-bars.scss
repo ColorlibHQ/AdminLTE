@@ -65,7 +65,7 @@
   }
 }
 
-@include dark-mode () {
+.dark-mode {
   .progress {
     background: lighten($dark, 7.5%);
   }

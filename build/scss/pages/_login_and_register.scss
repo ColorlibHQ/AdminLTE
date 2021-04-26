@@ -102,7 +102,7 @@
   margin: 10px 0;
 }
 
-@include dark-mode () {
+.dark-mode {
   .login-card-body,
   .register-card-body {
     background-color: $dark;

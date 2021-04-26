@@ -433,7 +433,7 @@ var FullCalendar = (function (exports) {
             contentWidthEl.getBoundingClientRect().width;
     }
 
-    var DAY_IDS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    var DAY_IDS = ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'];
     // Adding
     function addWeeks(m, n) {
         var a = dateToUtcArray(m);
@@ -4070,16 +4070,16 @@ var FullCalendar = (function (exports) {
             prevYear: 'prev year',
             nextYear: 'next year',
             year: 'year',
-            today: 'today',
-            month: 'month',
-            week: 'week',
-            day: 'day',
-            list: 'list',
+            today: 'hoy',
+            month: 'mes',
+            week: 'semana',
+            day: 'día',
+            list: 'lista',
         },
-        weekText: 'W',
-        allDayText: 'all-day',
-        moreLinkText: 'more',
-        noEventsText: 'No events to display',
+        weekText: 'S',
+        allDayText: 'todo el día',
+        moreLinkText: 'más',
+        noEventsText: 'No hay más eventos para mostrar',
     };
     function organizeRawLocales(explicitRawLocales) {
         var defaultCode = explicitRawLocales.length > 0 ? explicitRawLocales[0].code : 'en';

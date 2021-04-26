@@ -7,6 +7,9 @@ module.exports = {
     sourcesContent: true
   },
   plugins: [
+    require('postcss-scrollbar')({
+      edgeAutohide: true
+    }),
     require('autoprefixer')({
       cascade: false
     })

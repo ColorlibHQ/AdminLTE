@@ -43,7 +43,7 @@
   }
 }
 
-@include dark-mode () {
+.dark-mode {
   .modal-header,
   .modal-footer {
     border-color: $gray-600;

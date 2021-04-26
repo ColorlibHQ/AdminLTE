@@ -77,7 +77,7 @@
   margin-top: 10px;
 }
 
-@include dark-mode () {
+.dark-mode {
   .lockscreen-item {
     background-color: $dark;
   }
