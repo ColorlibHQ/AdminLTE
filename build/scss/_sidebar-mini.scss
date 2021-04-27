@@ -247,6 +247,12 @@
   &.sidebar-mini-md,
   &.sidebar-mini-xs {
     .main-sidebar {
+
+      // Hide the sidebar search results when mini mode is active.
+      .sidebar-search-results {
+        display: none;
+      }
+
       .nav-sidebar {
         .nav-link {
           width: $sidebar-mini-width - $sidebar-padding-x * 2;
@@ -277,6 +283,19 @@
         }
         .nav-header {
           display: inline-block;
+        }
+
+        // Show sidebar search when hover/focus on the sidebar mini mode.
+        &:not(.sidebar-no-expand) {
+          .form-control-sidebar {
+            display: inline-block;
+          }
+          .form-control-sidebar ~ .input-group-append {
+            display: flex;
+          }
+          .sidebar-search-open .sidebar-search-results {
+            display: inline-block;
+          }
         }
 
         .nav-child-indent {
