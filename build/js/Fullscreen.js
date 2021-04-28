@@ -19,6 +19,8 @@ const JQUERY_NO_CONFLICT = $.fn[NAME]
 const SELECTOR_DATA_WIDGET = '[data-widget="fullscreen"]'
 const SELECTOR_ICON = `${SELECTOR_DATA_WIDGET} i`
 
+const FULLSCREEN_EVENTS = 'webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange'
+
 const Default = {
   minimizeIcon: 'fa-compress-arrows-alt',
   maximizeIcon: 'fa-expand-arrows-alt'
@@ -48,6 +50,17 @@ class Fullscreen {
     }
   }
 
+  toggleIcon() {
+    if (document.fullscreenElement ||
+      document.mozFullScreenElement ||
+      document.webkitFullscreenElement ||
+      document.msFullscreenElement) {
+      $(SELECTOR_ICON).removeClass(this.options.maximizeIcon).addClass(this.options.minimizeIcon)
+    } else {
+      $(SELECTOR_ICON).removeClass(this.options.minimizeIcon).addClass(this.options.maximizeIcon)
+    }
+  }
+
   fullscreen() {
     if (document.documentElement.requestFullscreen) {
       document.documentElement.requestFullscreen()
@@ -56,8 +69,6 @@ class Fullscreen {
     } else if (document.documentElement.msRequestFullscreen) {
       document.documentElement.msRequestFullscreen()
     }
-
-    $(SELECTOR_ICON).removeClass(this.options.maximizeIcon).addClass(this.options.minimizeIcon)
   }
 
   windowed() {
@@ -68,8 +79,6 @@ class Fullscreen {
     } else if (document.msExitFullscreen) {
       document.msExitFullscreen()
     }
-
-    $(SELECTOR_ICON).removeClass(this.options.minimizeIcon).addClass(this.options.maximizeIcon)
   }
 
   // Static
@@ -86,7 +95,7 @@ class Fullscreen {
 
     $(this).data(DATA_KEY, typeof config === 'object' ? config : data)
 
-    if (typeof config === 'string' && /toggle|fullscreen|windowed/.test(config)) {
+    if (typeof config === 'string' && /toggle|toggleIcon|fullscreen|windowed/.test(config)) {
       plugin[config]()
     } else {
       plugin.init()
@@ -100,6 +109,12 @@ class Fullscreen {
   */
 $(document).on('click', SELECTOR_DATA_WIDGET, function () {
   Fullscreen._jQueryInterface.call($(this), 'toggle')
+})
+
+// Detect fullscreen events to show the right icon.
+
+$(document).on(FULLSCREEN_EVENTS, () => {
+  Fullscreen._jQueryInterface.call($(SELECTOR_DATA_WIDGET), 'toggleIcon')
 })
 
 /**
