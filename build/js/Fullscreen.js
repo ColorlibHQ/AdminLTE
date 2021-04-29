@@ -19,7 +19,7 @@ const JQUERY_NO_CONFLICT = $.fn[NAME]
 const SELECTOR_DATA_WIDGET = '[data-widget="fullscreen"]'
 const SELECTOR_ICON = `${SELECTOR_DATA_WIDGET} i`
 
-const FULLSCREEN_EVENTS = 'webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange'
+const EVENT_FULLSCREEN_CHANGE = 'webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange'
 
 const Default = {
   minimizeIcon: 'fa-compress-arrows-alt',
@@ -111,9 +111,7 @@ $(document).on('click', SELECTOR_DATA_WIDGET, function () {
   Fullscreen._jQueryInterface.call($(this), 'toggle')
 })
 
-// Detect fullscreen events to show the right icon.
-
-$(document).on(FULLSCREEN_EVENTS, () => {
+$(document).on(EVENT_FULLSCREEN_CHANGE, () => {
   Fullscreen._jQueryInterface.call($(SELECTOR_DATA_WIDGET), 'toggleIcon')
 })
 
