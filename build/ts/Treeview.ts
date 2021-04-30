@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------
- * AdminLTE PushMenu.ts
+ * AdminLTE Treeview.ts
  * License MIT
  * --------------------------------------------
  */
@@ -15,21 +15,23 @@ import {
  * ------------------------------------------------------------------------
  */
 
-const CLASS_NAME_SIDEBAR_COLLAPSE = 'sidebar-collapse'
+const CLASS_NAME_MENU_OPEN = 'menu-open'
 
-const SELECTOR_DATA_TOGGLE = '[data-widget="pushmenu"]'
+const SELECTOR_NAV_ITEM = '.nav-item'
+const SELECTOR_DATA_TOGGLE = '[data-widget="treeview"]'
 
 /**
  * Class Definition
  * ====================================================
  */
 
-class PushMenu {
-  toggle(): void {
-    if (document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
-      document.body.classList.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
+class Treeview {
+  toggle(treeviewMenu: Element): void {
+    const navItem = treeviewMenu.closest(SELECTOR_NAV_ITEM)
+    if (navItem?.classList.contains(CLASS_NAME_MENU_OPEN)) {
+      navItem.classList.remove(CLASS_NAME_MENU_OPEN)
     } else {
-      document.body.classList.add(CLASS_NAME_SIDEBAR_COLLAPSE)
+      navItem?.classList.add(CLASS_NAME_MENU_OPEN)
     }
   }
 }
@@ -44,13 +46,17 @@ const button = document.querySelectorAll(SELECTOR_DATA_TOGGLE)
 
 windowReady(() => {
   for (const btn of button) {
-    btn.addEventListener('click', () => {
-      const data = new PushMenu()
-      data.toggle()
+    btn.addEventListener('click', event => {
+      event.preventDefault()
+
+      const treeviewMenu = event.target as Element
+
+      const data = new Treeview()
+      data.toggle(treeviewMenu)
     })
   }
 })
 
-export default PushMenu
+export default Treeview
 
 //

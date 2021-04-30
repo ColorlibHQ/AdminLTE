@@ -1,11 +1,20 @@
-const ready = (callback: () => void) => {
-  if (document.readyState !== 'loading') {
-    callback()
+const domReady = (callBack: () => void): void => {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', callBack)
   } else {
-    document.addEventListener('DOMContentLoaded', callback)
+    callBack()
+  }
+}
+
+const windowReady = (callBack: () => void): void => {
+  if (document.readyState === 'complete') {
+    callBack()
+  } else {
+    window.addEventListener('load', callBack)
   }
 }
 
 export {
-  ready
+  domReady,
+  windowReady
 }

@@ -53,8 +53,19 @@
         "xo-typescript"
       ],
       "rules": {
-        "@typescript-eslint/indent": "off",
-        "@typescript-eslint/semi": "off"
+        "@typescript-eslint/indent": [
+          "error",
+          2,
+          {
+            "MemberExpression": "off",
+            "SwitchCase": 1
+          }
+        ],
+        "@typescript-eslint/semi": [
+          "error",
+          "never"
+        ],
+        "@typescript-eslint/no-explicit-any": "error"
       }
     }
   ]

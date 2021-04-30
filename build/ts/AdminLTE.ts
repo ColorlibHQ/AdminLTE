@@ -1,14 +1,9 @@
-/**
- * --------------------------------------------
- * AdminLTE AdminLTE.js
- * License MIT
- * --------------------------------------------
- */
-
 import PushMenu from './PushMenu'
+import Treeview from './Treeview'
 
 export {
-  PushMenu
+  PushMenu,
+  Treeview
 }
 
 //

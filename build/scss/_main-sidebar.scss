@@ -60,14 +60,10 @@
     display: none;
     list-style: none;
     padding: 0;
+  }
 
-    > .nav-item {
-      > .nav-link {
-        > .nav-icon {
-          width: $sidebar-nav-icon-width;
-        }
-      }
-    }
+  .menu-open > .nav-treeview {
+    display: block;
   }
 }
 
