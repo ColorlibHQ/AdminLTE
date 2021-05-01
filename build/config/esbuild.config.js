@@ -1,8 +1,7 @@
 'use strict'
 
 const esbuild = require('esbuild')
-const browserslist = require('browserslist')
-const { resolveToEsbuildTarget } = require('esbuild-plugin-browserslist')
+const { getTarget } = require('./getTarget')
 
 const pkg = require('../../package')
 const year = new Date().getFullYear()
@@ -12,12 +11,6 @@ const banner = `/*!
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */`
 
-const target = resolveToEsbuildTarget(
-  browserslist('defaults', {
-    printUnknownTargets: false
-  })
-)
-
 esbuild.build({
   entryPoints: ['build/ts/AdminLTE.ts'],
   bundle: true,
@@ -26,7 +19,6 @@ esbuild.build({
   banner: {
     js: banner
   },
-  target,
+  target: getTarget(['es', 'chrome', 'edge', 'firefox', 'ios', 'safari']),
   outfile: 'dist/js/adminlte.js'
 }).catch(error => console.error(error))
-
