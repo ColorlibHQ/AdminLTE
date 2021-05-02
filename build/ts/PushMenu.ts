@@ -15,9 +15,13 @@ import {
  * ------------------------------------------------------------------------
  */
 
+const CLASS_NAME_SIDEBAR_MINI = 'sidebar-mini'
+const CLASS_NAME_SIDEBAR_MINI_HAD = 'sidebar-mini-had'
 const CLASS_NAME_SIDEBAR_COLLAPSE = 'sidebar-collapse'
+const CLASS_NAME_SIDEBAR_CLOSE = 'sidebar-close'
 
-const SELECTOR_DATA_TOGGLE = '[data-widget="pushmenu"]'
+const SELECTOR_MINI_TOGGLE = '[data-pushmenu="mini"]'
+const SELECTOR_FULL_TOGGLE = '[data-pushmenu="full"]'
 
 /**
  * Class Definition
@@ -25,11 +29,34 @@ const SELECTOR_DATA_TOGGLE = '[data-widget="pushmenu"]'
  */
 
 class PushMenu {
-  toggle(): void {
-    if (document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
-      document.body.classList.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
-    } else {
-      document.body.classList.add(CLASS_NAME_SIDEBAR_COLLAPSE)
+  toggle(state: string): void {
+    const bodyClass = document.body.classList
+    if (state === 'full') {
+      bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
+
+      if (bodyClass.contains(CLASS_NAME_SIDEBAR_CLOSE)) {
+        bodyClass.remove(CLASS_NAME_SIDEBAR_CLOSE)
+      } else {
+        bodyClass.add(CLASS_NAME_SIDEBAR_CLOSE)
+      }
+
+      if (bodyClass.contains(CLASS_NAME_SIDEBAR_MINI)) {
+        bodyClass.remove(CLASS_NAME_SIDEBAR_MINI)
+        bodyClass.add(CLASS_NAME_SIDEBAR_MINI_HAD)
+      }
+    } else if (state === 'mini') {
+      bodyClass.remove(CLASS_NAME_SIDEBAR_CLOSE)
+
+      if (bodyClass.contains(CLASS_NAME_SIDEBAR_MINI_HAD)) {
+        bodyClass.remove(CLASS_NAME_SIDEBAR_MINI_HAD)
+        bodyClass.add(CLASS_NAME_SIDEBAR_MINI)
+      }
+
+      if (bodyClass.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
+        bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
+      } else {
+        bodyClass.add(CLASS_NAME_SIDEBAR_COLLAPSE)
+      }
     }
   }
 }
@@ -40,13 +67,20 @@ class PushMenu {
  * ------------------------------------------------------------------------
  */
 
-const button = document.querySelectorAll(SELECTOR_DATA_TOGGLE)
-
 windowReady(() => {
-  for (const btn of button) {
+  const fullBtn = document.querySelectorAll(SELECTOR_FULL_TOGGLE)
+  const miniBtn = document.querySelectorAll(SELECTOR_MINI_TOGGLE)
+  for (const btn of fullBtn) {
     btn.addEventListener('click', () => {
       const data = new PushMenu()
-      data.toggle()
+      data.toggle('full')
+    })
+  }
+
+  for (const btn of miniBtn) {
+    btn.addEventListener('click', () => {
+      const data = new PushMenu()
+      data.toggle('mini')
     })
   }
 })

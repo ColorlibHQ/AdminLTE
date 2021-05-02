@@ -6,7 +6,6 @@
 @include sidebar-theme($sidebar-dark-bg, $sidebar-dark-color);
 
 .main-sidebar {
-  // z-index: $zindex-sidebar;
   @include transition($sidebar-transition);
   min-width: $sidebar-width;
   max-width: $sidebar-width;

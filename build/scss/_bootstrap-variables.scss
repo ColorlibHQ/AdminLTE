@@ -7,7 +7,6 @@
 // Color system
 //
 
-// stylelint-disable
 $white:    #fff !default;
 $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
@@ -20,6 +19,7 @@ $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
 $black:    #000 !default;
 
+// stylelint-disable
 $grays: () !default;
 $grays: map-merge((
   "100": $gray-100,
@@ -32,6 +32,7 @@ $grays: map-merge((
   "800": $gray-800,
   "900": $gray-900
 ), $grays);
+// stylelint-enable
 
 $blue:    #0d6efd !default;
 $indigo:  #6610f2 !default;
@@ -44,19 +45,7 @@ $green:   #198754 !default;
 $teal:    #20c997 !default;
 $cyan:    #0dcaf0 !default;
 
-$blue-dark:     #262b40 !default; // Custom variable
-$brown:         #b9a084 !default; // Custom variable
-$apricot:       #f3b773 !default; // Custom variable
-$soft-green:    #1BC5BD !default; // Custom variable
-$soft-indigo:   #f5e8ff !default; // Custom variable
-$soft-almond:   #fde9ca !default; // Custom variable
-$soft-blue:     #3c8dbc !default; // Custom variable
-$navy:          #001f3f !default; // Custom variable
-$olive:         #3d9970 !default; // Custom variable
-$lime:          #01ff70 !default; // Custom variable
-$fuchsia:       #f012be !default; // Custom variable
-$maroon:        #d81b60 !default; // Custom variable
-
+// stylelint-disable
 $colors: () !default;
 $colors: map-merge((
   "blue":       $blue,
@@ -73,12 +62,12 @@ $colors: map-merge((
   "gray":       $gray-600,
   "gray-dark":  $gray-800
 ), $colors);
+// stylelint-enable
 
 // Color scheme
 
 $primary:       $blue !default;
 $secondary:     $gray-600 !default;
-$tertiary:      $apricot !default; // Custom variable
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
@@ -86,11 +75,11 @@ $danger:        $red !default;
 $light:         $gray-100 !default;
 $dark:          $gray-800 !default;
 
+// stylelint-disable
 $theme-colors: () !default;
 $theme-colors: map-merge((
   "primary":    $primary,
   "secondary":  $secondary,
-  "tertiary":   $tertiary, // Custom variable
   "success":    $success,
   "info":       $info,
   "warning":    $warning,
@@ -98,46 +87,7 @@ $theme-colors: map-merge((
   "light":      $light,
   "dark":       $dark
 ), $theme-colors);
-
-// Brands colors
-$facebook:   #3b5999 !default; // Custom variable
-$twitter:    #1da1f2 !default; // Custom variable
-$google:     #db4337 !default; // Custom variable
-$instagram:  #e4405f !default; // Custom variable
-$pinterest:  #bd081c !default; // Custom variable
-$youtube:    #cd201f !default; // Custom variable
-$slack:      #3aaf85 !default; // Custom variable
-$dribbble:   #ea4c89 !default; // Custom variable
-$github:     #222222 !default; // Custom variable
-$dropbox:    #1e90ff !default; // Custom variable
-$twitch:     #4b367c !default; // Custom variable
-$paypal:     #ecb32c !default; // Custom variable
-$behance:    #0057ff !default; // Custom variable
-$reddit:     #e84422 !default; // Custom variable
-
-// Brand colors
-$brand-colors: () !default;
-$brand-colors: map-merge((
-  "facebook":  $facebook,
-  "twitter":   $twitter,
-  "google":    $google,
-  "instagram": $instagram,
-  "pinterest": $pinterest,
-  "youtube":   $youtube,
-  "slack":     $slack,
-  "dribbble":  $dribbble,
-  "dropbox":   $dropbox,
-  "twitch":    $twitch,
-  "paypal":    $paypal,
-  "behance":   $behance,
-  "reddit":    $reddit,
-  "github":    $github
-), $brand-colors); // Custom variable
 // stylelint-enable
-
-// Customize the light and dark text colors for use in our color contrast function.
-// $color-contrast-dark:         $dark !default;
-// $color-contrast-light:        $white !default;
 
 // Options
 //

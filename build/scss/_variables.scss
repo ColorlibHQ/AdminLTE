@@ -22,7 +22,7 @@ $sidebar-custom-height-lg:    6rem !default;
 $sidebar-custom-height-xl:    8rem !default;
 $sidebar-custom-padding-x:    .85rem !default;
 $sidebar-custom-padding-y:    .5rem !default;
-$sidebar-transition:          min-width $transition-speed $transition-fn, max-width $transition-speed $transition-fn;
+$sidebar-transition:          min-width $transition-speed $transition-fn, max-width $transition-speed $transition-fn, margin-left $transition-speed $transition-fn, margin-right $transition-speed $transition-fn;
 
 // SIDEBAR SKINS
 // --------------------------------------------------------

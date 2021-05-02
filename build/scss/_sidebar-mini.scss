@@ -2,7 +2,7 @@
 // Core: Sidebar Mini
 //
 
-.sidebar-collapse {
+.sidebar-mini.sidebar-collapse {
   .main-sidebar {
     min-width: $sidebar-mini-width;
     max-width: $sidebar-mini-width;
@@ -20,16 +20,27 @@
 
   .sidebar .user-panel > .info,
   .nav-sidebar .nav-link span,
-  .brand-text {
+  .brand-link {
     margin-left: -10px;
     animation-name: fadeOut;
     animation-duration: $transition-speed;
     animation-fill-mode: both;
     visibility: hidden;
+    // max-width: 0;
+  }
+
+  .brand-link {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .sidebar-mini-icon {
+    order: 1;
+    margin-left: 1rem;
   }
 }
 
-.sidebar-collapse:not(.layout-fixed) {
+.sidebar-mini.sidebar-collapse:not(.layout-fixed) {
   .sidebar {
     overflow: visible;
 
