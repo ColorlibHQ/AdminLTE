@@ -25,8 +25,8 @@
     "compile": "npm-run-all --parallel css js",
     "sync": "browser-sync start --server --files *.html pages/ dist/",
     "watch": "concurrently \"npm:watch-*\"",
-    "watch-css": "nodemon --watch build/scss -e scss -x \"npm-run-all css-compile css-prefix\"",
-    "watch-js": "nodemon --watch build/ts -e ts -x \"npm-run-all js-compile\""
+    "watch-css": "nodemon --watch build/scss -e scss -x \"npm-run-all css-lint css\"",
+    "watch-js": "nodemon --watch build/ts -e ts -x \"npm-run-all js-lint js\""
   },
   "keywords": [
     "css",
