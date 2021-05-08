@@ -7,10 +7,22 @@
   border-top: $main-footer-border-top;
   color: $main-footer-color;
   padding: $main-footer-padding;
+  width: inherit;
 
   .text-sm &,
   &.text-sm {
     padding: $main-footer-padding-sm;
+  }
+}
+
+.layout-footer-fixed {
+  .main-footer {
+    position: fixed;
+    bottom: 0;
+  }
+
+  .content {
+    margin-bottom: $main-footer-height;
   }
 }
 

@@ -13,22 +13,26 @@
 }
 
 @include media-breakpoint-down(sm) {
-  :not(.layout-fixed).main-sidebar {
+  .main-sidebar {
     margin-left: -#{$sidebar-width};
 
     .sidebar-open & {
       transform: translateX($sidebar-width);
+    }
+  }
 
-      .sidebar-mini-icon {
-        display: none;
-        transition: display $transition-speed;
-      }
+  .sidebar-mini-icon {
+    visibility: hidden;
+  }
+
+  .sidebar-open {
+    .content-wrapper {
+      opacity: .9;
     }
   }
 }
 
 .sidebar {
-  height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   padding-bottom: $sidebar-padding-y;

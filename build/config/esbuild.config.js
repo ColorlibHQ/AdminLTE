@@ -14,6 +14,7 @@ const banner = `/*!
 esbuild.build({
   entryPoints: ['build/ts/adminlte.ts'],
   bundle: true,
+  format: 'iife',
   minify: false,
   sourcemap: true,
   banner: {

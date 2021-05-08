@@ -6,7 +6,6 @@
   align-items: stretch;
   display: flex;
   width: 100%;
-  overflow: clip;
 
   .sidebar-rtl {
     flex-direction: row-reverse;
@@ -39,7 +38,7 @@
 
 .content {
   flex: 1;
-  width: 100vw;
+  width: 100%;
   max-width: 100vw;
   padding: 1rem;
 }

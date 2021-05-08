@@ -6,7 +6,7 @@
  */
 
 import {
-  windowReady
+  domReady
 } from './util/index'
 
 /**
@@ -22,16 +22,9 @@ const CLASS_NAME_SIDEBAR_CLOSE = 'sidebar-close'
 const CLASS_NAME_SIDEBAR_OPEN = 'sidebar-open'
 const CLASS_NAME_SIDEBAR_OPENING = 'sidebar-is-opening'
 const CLASS_NAME_SIDEBAR_COLLAPSING = 'sidebar-is-collapsing'
-const CLASS_NAME_SIDEBAR_SM = 'sidebar-sm'
-const CLASS_NAME_SIDEBAR_HOVER = 'sidebar-hover'
 
-const SELECTOR_SIDEBAR = '.sidebar'
-// const SELECTOR_MAIN_SIDEBAR = '.main-sidebar'
-// const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
 const SELECTOR_MINI_TOGGLE = '[data-pushmenu="mini"]'
 const SELECTOR_FULL_TOGGLE = '[data-pushmenu="full"]'
-const SELECTOR_SIDEBAR_SM = `.${CLASS_NAME_SIDEBAR_SM}`
-const SELECTOR_CONTENT = '.content'
 
 /**
  * Class Definition
@@ -124,21 +117,7 @@ class PushMenu {
  * ------------------------------------------------------------------------
  */
 
-windowReady(() => {
-  function addSidebaBreakPoint() {
-    const widthOutput: number = window.innerWidth
-    const bodyClass = document.body.classList
-    if (widthOutput >= 576) {
-      bodyClass.remove(CLASS_NAME_SIDEBAR_SM)
-    } else {
-      bodyClass.add(CLASS_NAME_SIDEBAR_SM)
-    }
-  }
-
-  addSidebaBreakPoint()
-
-  window.addEventListener('resize', addSidebaBreakPoint)
-
+domReady(() => {
   const fullBtn = document.querySelectorAll(SELECTOR_FULL_TOGGLE)
   const miniBtn = document.querySelectorAll(SELECTOR_MINI_TOGGLE)
 
@@ -155,42 +134,6 @@ windowReady(() => {
       data.toggle('mini')
     })
   }
-
-  const selSidebar = document.querySelector(SELECTOR_SIDEBAR)
-
-  selSidebar?.addEventListener('mouseover', () => {
-    const bodyClass = document.body.classList
-    bodyClass.add(CLASS_NAME_SIDEBAR_HOVER)
-  })
-
-  selSidebar?.addEventListener('mouseout', () => {
-    const bodyClass = document.body.classList
-    bodyClass.remove(CLASS_NAME_SIDEBAR_HOVER)
-  })
-
-  function removeOverlaySidebar() {
-    const bodyClass = document.body.classList
-    if (bodyClass.contains(CLASS_NAME_SIDEBAR_SM)) {
-      bodyClass.remove(CLASS_NAME_SIDEBAR_OPEN)
-      bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
-      bodyClass.add(CLASS_NAME_SIDEBAR_CLOSE)
-    }
-  }
-
-  let selSidebarSm = document.querySelector(SELECTOR_SIDEBAR_SM)
-  let selContentWrapper = selSidebarSm?.querySelector(SELECTOR_CONTENT)
-
-  window.addEventListener('resize', () => {
-    selSidebarSm = document.querySelector(SELECTOR_SIDEBAR_SM)
-    selContentWrapper = selSidebarSm?.querySelector(SELECTOR_CONTENT)
-    selContentWrapper?.addEventListener('touchstart', removeOverlaySidebar)
-    selContentWrapper?.addEventListener('click', removeOverlaySidebar)
-  })
-
-  selContentWrapper?.addEventListener('touchstart', removeOverlaySidebar)
-  selContentWrapper?.addEventListener('click', removeOverlaySidebar)
-
-  window.addEventListener('resize', removeOverlaySidebar)
 })
 
 export default PushMenu

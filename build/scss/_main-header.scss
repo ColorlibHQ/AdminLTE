@@ -5,10 +5,26 @@
 .main-header {
   background-color: $white;
   border-bottom: $main-header-bottom-border;
+  width: inherit;
   z-index: $zindex-main-header;
 
   .nav-link {
     color: $dark;
+
+    &:hover,
+    &:focus {
+      color: $black;
+    }
+  }
+}
+
+.layout-navbar-fixed {
+  .main-header {
+    position: fixed;
+  }
+
+  .content {
+    margin-top: $main-header-height;
   }
 }
 

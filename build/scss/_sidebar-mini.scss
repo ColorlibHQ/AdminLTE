@@ -2,6 +2,13 @@
 // Core: Sidebar Mini
 //
 
+// A fix for text overflow while transitioning from sidebar mini to full sidebar
+.nav-sidebar,
+.nav-sidebar > .nav-header,
+.nav-sidebar .nav-link {
+  white-space: nowrap;
+}
+
 .sidebar-mini.sidebar-collapse {
   .main-sidebar {
     min-width: $sidebar-mini-width;
@@ -45,7 +52,7 @@
     }
 
     .nav-sidebar .nav-header {
-      display: block;
+      display: inline-block;
     }
 
     .sidebar .user-panel > .info,
