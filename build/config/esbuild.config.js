@@ -13,13 +13,17 @@ const banner = `/*!
 
 esbuild.build({
   entryPoints: ['build/ts/adminlte.ts'],
-  bundle: true,
-  format: 'iife',
-  minify: false,
-  sourcemap: true,
   banner: {
     js: banner
   },
+  bundle: true,
+  color: true,
+  format: 'iife',
+  sourcemap: true,
   target: getTarget(['es', 'chrome', 'edge', 'firefox', 'ios', 'safari']),
   outfile: 'dist/js/adminlte.js'
-}).catch(error => console.error(error))
+}).then(
+  console.log('build/ts/adminlte.ts is BUILD')
+).catch(
+  error => console.error(error)
+)

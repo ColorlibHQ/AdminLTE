@@ -9,8 +9,8 @@ $font-size-root:              1rem !default;
 // --------------------------------------------------------
 
 // Transition global options
-$transition-speed: .3s !default;
-$transition-fn: ease-in-out !default;
+$transition-speed:            .3s !default;
+$transition-fn:               ease-in-out !default;
 
 // Sidebar
 // --------------------------------------------------------
@@ -45,12 +45,12 @@ $sidebar-dark-submenu-active-color:   $sidebar-dark-bg !default;
 $sidebar-dark-submenu-active-bg:    rgba(255, 255, 255, .9) !default;
 
 // Light sidebar
-$sidebar-light-bg:                    $white !default;
-$sidebar-light-hover-bg:              rgba($black, .1) !default;
-$sidebar-light-color:                 $gray-800 !default;
-$sidebar-light-hover-color:           $gray-900 !default;
-$sidebar-light-active-color:          $black !default;
-$sidebar-light-submenu-bg:            transparent !default;
+$sidebar-light-bg:                     $white !default;
+$sidebar-light-hover-bg:               rgba($black, .1) !default;
+$sidebar-light-color:                  $gray-800 !default;
+$sidebar-light-hover-color:            $gray-900 !default;
+$sidebar-light-active-color:           $black !default;
+$sidebar-light-submenu-bg:             transparent !default;
 $sidebar-light-submenu-color:        #777 !default;
 $sidebar-light-submenu-hover-color:    $black !default;
 $sidebar-light-submenu-hover-bg:       $sidebar-light-hover-bg !default;
@@ -96,24 +96,24 @@ $main-footer-color:             tint-color($gray-700, 25%) !default;
 
 // BRAND LINK
 // --------------------------------------------------------
-$brand-link-padding-y:     $navbar-brand-padding-y + $navbar-padding-y;
-$brand-link-border-buttom: 1px;
+$brand-link-padding-y:        $navbar-brand-padding-y + $navbar-padding-y;
+$brand-link-border-buttom:    1px;
 
 // Z-INDEX
 // --------------------------------------------------------
-$zindex-main-header:      $zindex-fixed + 4 !default;
-$zindex-sidebar:          $zindex-fixed + 8 !default;
-$zindex-main-footer:      $zindex-fixed + 2 !default;
-$zindex-control-sidebar:  $zindex-fixed + 1 !default;
-$zindex-toasts:           $zindex-sidebar + 2 !default;
-$zindex-content-wrapper:  $zindex-sidebar - 2 !default;
-$zindex-preloader:        $zindex-toasts + 2 !default;
+$zindex-main-header:          $zindex-fixed + 4 !default;
+$zindex-sidebar:              $zindex-fixed + 8 !default;
+$zindex-main-footer:          $zindex-fixed + 2 !default;
+$zindex-control-sidebar:      $zindex-fixed + 1 !default;
+$zindex-toasts:               $zindex-sidebar + 2 !default;
+$zindex-content-wrapper:      $zindex-sidebar - 2 !default;
+$zindex-preloader:            $zindex-toasts + 2 !default;
 
 // Body background (Affects main content background only)
-$main-bg:               #f4f6f9 !default;
-$main-color:              $black !default;
+$main-bg:                   #f4f6f9 !default;
+$main-color:                  $black !default;
 
 // Dark mode
-$enable-dark-mode:        true !default;
+$enable-dark-mode:            false !default;
 
 //
