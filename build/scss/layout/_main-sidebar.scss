@@ -6,6 +6,7 @@
 @include sidebar-theme($sidebar-dark-bg, $sidebar-dark-color);
 
 .main-sidebar {
+  grid-area: main-sidebar;
   @include transition($sidebar-transition);
   z-index: $zindex-sidebar;
   min-width: $sidebar-width;
@@ -13,39 +14,25 @@
 }
 
 @include media-breakpoint-down(sm) {
-  .main-sidebar {
-    margin-left: -#{$sidebar-width};
+  // .main-sidebar {
+  //   margin-left: -#{$sidebar-width};
 
-    .sidebar-open & {
-      transform: translateX($sidebar-width);
-    }
-  }
+  //   .sidebar-open & {
+  //     transform: translateX($sidebar-width);
+  //   }
+  // }
 
-  .sidebar-mini-icon {
-    visibility: hidden;
-  }
+  // .sidebar-mini-icon {
+  //   visibility: hidden;
+  // }
 
-  .sidebar-open {
-    .content-wrapper {
-      opacity: .9;
-    }
-  }
+  // .sidebar-open {
+  //   .content-wrapper {
+  //     opacity: .9;
+  //   }
+  // }
 }
 
-.sidebar {
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding-bottom: $sidebar-padding-y;
-  padding-left: $sidebar-padding-x;
-  padding-right: $sidebar-padding-x;
-  padding-top: $sidebar-padding-y;
-  @include scrollbar-color-gray();
-  @include scrollbar-width-none();
-
-  &:hover {
-    @include scrollbar-width-thin();
-  }
-}
 
 // Sidebar navigation menu
 .nav-sidebar {

@@ -24,8 +24,12 @@
 
       &:hover,
       .active {
-        color: color-constract($sidebar-dark-color);
+        color: color-constract($sidebar-color);
       }
+    }
+
+    .nav-treeview {
+      background-color: $sidebar-bg;
     }
   }
 

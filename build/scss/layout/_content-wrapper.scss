@@ -1,0 +1,12 @@
+.content-wrapper {
+  grid-area: content-wrapper;
+  background-color: $main-bg;
+  color: $main-color;
+}
+
+@include dark-mode() {
+  .content-wrapper {
+    background-color: $main-bg-alt;
+    color: $main-color-alt;
+  }
+}

@@ -3,6 +3,7 @@
 //
 
 .main-header {
+  grid-area: main-header;
   background-color: $white;
   border-bottom: $main-header-bottom-border;
   width: inherit;
@@ -20,11 +21,11 @@
 
 .layout-navbar-fixed {
   .main-header {
-    position: fixed;
+    // position: fixed;
   }
 
-  .content {
-    margin-top: $main-header-height;
+  .content-wrapper {
+    // margin-top: $main-header-height;
   }
 }
 

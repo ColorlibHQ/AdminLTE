@@ -21,7 +21,7 @@ const CLASS_NAME_SIDEBAR_OPEN = 'sidebar-open'
 const CLASS_NAME_SIDEBAR_SM = 'sidebar-sm'
 
 const SELECTOR_SIDEBAR_SM = `.${CLASS_NAME_SIDEBAR_SM}`
-const SELECTOR_CONTENT = '.content'
+const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
 
 class SidebarOverlay {
   addSidebaBreakPoint(): void {
@@ -45,7 +45,7 @@ class SidebarOverlay {
 
   init(): void {
     const selSidebarSm = document.querySelector(SELECTOR_SIDEBAR_SM)
-    const selContentWrapper = selSidebarSm?.querySelector(SELECTOR_CONTENT)
+    const selContentWrapper = selSidebarSm?.querySelector(SELECTOR_CONTENT_WRAPPER)
 
     selContentWrapper?.addEventListener('touchstart', this.removeOverlaySidebar)
     selContentWrapper?.addEventListener('click', this.removeOverlaySidebar)

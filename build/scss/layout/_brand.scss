@@ -3,6 +3,7 @@
 //
 
 .brand-container {
+  grid-area: brand;
   display: flex;
   font-size: $navbar-brand-font-size;
   padding: $brand-link-padding-y $sidebar-padding-x;

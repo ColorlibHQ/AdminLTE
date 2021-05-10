@@ -16,7 +16,7 @@ $transition-fn:               ease-in-out !default;
 // --------------------------------------------------------
 $sidebar-width:               250px !default;
 $sidebar-padding-x:           .5rem !default;
-$sidebar-padding-y:           0 !default;
+$sidebar-padding-y:           .5rem !default;
 $sidebar-custom-height:       4rem !default;
 $sidebar-custom-height-lg:    6rem !default;
 $sidebar-custom-height-xl:    8rem !default;
@@ -24,6 +24,7 @@ $sidebar-custom-padding-x:    .85rem !default;
 $sidebar-custom-padding-y:    .5rem !default;
 $sidebar-transition:          min-width $transition-speed $transition-fn,
   max-width $transition-speed $transition-fn,
+  margin-top $transition-speed $transition-fn,
   margin-left $transition-speed $transition-fn,
   margin-right $transition-speed $transition-fn,
   transform $transition-speed $transition-fn;
@@ -62,6 +63,11 @@ $sidebar-light-submenu-active-bg:      $sidebar-light-submenu-hover-bg !default;
 $sidebar-mini-width:          ($nav-link-padding-x + $sidebar-padding-x + .8rem) * 2 !default;
 $sidebar-nav-icon-width:      $sidebar-mini-width - (($sidebar-padding-x + $nav-link-padding-x) * 2) !default;
 $sidebar-user-image-width:    $sidebar-nav-icon-width + ($nav-link-padding-x / 2) !default;
+
+// SIDEBAR HORIZONTAL
+// --------------------------------------------------------
+$sidebar-horizontal-width:    100%;
+$sidebar-horizontal-height:   80px !default;
 
 // CONTROL SIDEBAR
 // --------------------------------------------------------
@@ -104,6 +110,7 @@ $brand-link-border-buttom:    1px;
 $zindex-main-header:          $zindex-fixed + 4 !default;
 $zindex-sidebar:              $zindex-fixed + 8 !default;
 $zindex-main-footer:          $zindex-fixed + 2 !default;
+$zindex-sidebar-horizontal:   $zindex-main-header - 2 !default;
 $zindex-control-sidebar:      $zindex-fixed + 1 !default;
 $zindex-toasts:               $zindex-sidebar + 2 !default;
 $zindex-content-wrapper:      $zindex-sidebar - 2 !default;

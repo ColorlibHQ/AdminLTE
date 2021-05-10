@@ -3,6 +3,7 @@
 //
 
 .main-footer {
+  grid-area: main-footer;
   background-color: $main-footer-bg;
   border-top: $main-footer-border-top;
   color: $main-footer-color;
@@ -21,7 +22,7 @@
     bottom: 0;
   }
 
-  .content {
+  .content-wrapper {
     margin-bottom: $main-footer-height;
   }
 }

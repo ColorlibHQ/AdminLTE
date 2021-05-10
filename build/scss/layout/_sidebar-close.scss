@@ -1,0 +1,25 @@
+.sidebar-close:not(.sidebar-horizontal) .main-sidebar {
+  margin-left: -250px;
+}
+
+@include media-breakpoint-up(sm) {
+  .layout-fixed {
+    // .main-header,
+    // .content-wrapper,
+    // .main-footer {
+    //   margin-left: 0;
+    // }
+    // .main-header,
+    // .content-wrapper,
+    // .main-footer {
+    //   margin-left: $sidebar-width;
+    // }
+    // &.sidebar-collapse {
+    //   .main-header,
+    //   .content-wrapper,
+    //   .main-footer {
+    //     margin-left: $sidebar-mini-width;
+    //   }
+    // }
+  }
+}
