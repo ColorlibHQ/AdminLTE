@@ -41,6 +41,7 @@
     "unicorn/no-array-for-each": "off",
     "unicorn/no-for-loop": "off",
     "unicorn/no-null": "off",
+    "unicorn/numeric-separators-style": "off",
     "unicorn/prefer-dataset": "off",
     "unicorn/prefer-includes": "off",
     "unicorn/prefer-module": "off",
