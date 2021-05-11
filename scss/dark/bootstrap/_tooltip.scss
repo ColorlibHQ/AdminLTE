@@ -1,0 +1,50 @@
+// Base class
+.tooltip {
+  opacity: 0;
+
+  &.show { opacity: $tooltip-opacity-alt; }
+}
+
+.bs-tooltip-top,
+.bs-tooltip-auto[data-popper-placement^="top"] {
+  .tooltip-arrow {
+    &::before {
+      border-top-color: $tooltip-arrow-color-alt;
+    }
+  }
+}
+
+.bs-tooltip-end,
+.bs-tooltip-auto[data-popper-placement^="right"] {
+  .tooltip-arrow {
+    &::before {
+      border-right-color: $tooltip-arrow-color-alt;
+    }
+  }
+}
+
+.bs-tooltip-bottom,
+.bs-tooltip-auto[data-popper-placement^="bottom"] {
+  .tooltip-arrow {
+    &::before {
+      border-bottom-color: $tooltip-arrow-color-alt;
+    }
+  }
+}
+
+.bs-tooltip-start,
+.bs-tooltip-auto[data-popper-placement^="left"] {
+  .tooltip-arrow {
+    &::before {
+      border-left-color: $tooltip-arrow-color-alt;
+    }
+  }
+}
+
+// ***NOTE***: Do not use @extend as that would extend the base class and the dark class
+
+// Wrapper for the tooltip content
+.tooltip-inner {
+  color: $tooltip-color-alt;
+  background-color: $tooltip-bg-alt;
+}

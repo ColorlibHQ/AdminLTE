@@ -1,0 +1,15 @@
+// Used https://github.com/vinorodrigues/bootstrap-dark-5/releases/tag/v1.0.0
+
+// Dark mode Enable using prefers-color-scheme
+$enable-dark-mode:            true;
+
+// AdminLTE
+// ---------------------------------------------------
+@import "../adminlte";
+// stylelint-disable no-invalid-position-at-import-rule
+@include color-scheme-alt(alternative-color-scheme($default-color-scheme)) {
+  @import "../parts/dark";
+}
+
+// Additional Global Utilities
+@import "../dark/bootstrap/utilities/api-all";

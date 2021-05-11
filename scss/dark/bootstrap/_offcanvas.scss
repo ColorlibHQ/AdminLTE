@@ -1,0 +1,22 @@
+
+.offcanvas {
+  color: $offcanvas-color-alt;
+  background-color: $offcanvas-bg-color-alt;
+  @include box-shadow($offcanvas-box-shadow-alt);
+}
+
+.offcanvas-start {
+  border-right: $offcanvas-border-width solid $offcanvas-border-color-alt;
+}
+
+.offcanvas-end {
+  border-left: $offcanvas-border-width solid $offcanvas-border-color-alt;
+}
+
+.offcanvas-top {
+  border-bottom: $offcanvas-border-width solid $offcanvas-border-color-alt;
+}
+
+.offcanvas-bottom {
+  border-top: $offcanvas-border-width solid $offcanvas-border-color-alt;
+}

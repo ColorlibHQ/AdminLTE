@@ -1,0 +1,7 @@
+// Base class
+
+.badge {
+  color: $badge-color-alt;
+  // THIS DOES NOTHING
+  // @include gradient-bg();
+}

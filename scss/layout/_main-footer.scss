@@ -26,12 +26,3 @@
     margin-bottom: $main-footer-height;
   }
 }
-
-@include dark-mode() {
-  .main-footer {
-    background-color: $main-footer-bg-alt;
-    border-top-color: tint-color($dark, 10%);
-  }
-}
-
-//

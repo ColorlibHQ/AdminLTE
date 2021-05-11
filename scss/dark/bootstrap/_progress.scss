@@ -1,0 +1,15 @@
+
+.progress {
+  background-color: $progress-bg-alt;
+  @include box-shadow($progress-box-shadow-alt);
+}
+
+.progress-bar {
+  color: $progress-bar-color-alt;
+  background-color: $progress-bar-bg-alt;
+}
+
+.progress-bar-striped {
+  // THIS DOES NOTHING
+  // @include gradient-striped();
+}

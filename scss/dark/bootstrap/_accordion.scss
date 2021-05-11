@@ -1,0 +1,51 @@
+// Base styles
+
+.accordion-button {
+  color: $accordion-button-color-alt;
+  background-color: $accordion-button-bg-alt;
+
+  &:not(.collapsed) {
+    color: $accordion-button-active-color-alt;
+    background-color: $accordion-button-active-bg-alt;
+    box-shadow: inset 0 ($accordion-border-width * -1) 0 $accordion-border-color-alt;
+
+    &::after {
+      background-image: escape-svg($accordion-button-active-icon-alt);
+    }
+  }
+
+  // Accordion icon
+  &::after {
+    background-image: escape-svg($accordion-button-icon-alt);
+  }
+
+  &:hover {
+    z-index: 2;
+  }
+
+  &:focus {
+    border-color: $accordion-button-focus-border-color-alt;
+    box-shadow: $accordion-button-focus-box-shadow-alt;
+  }
+}
+
+.accordion-item {
+  background-color: $accordion-bg-alt;
+  border: $accordion-border-width solid $accordion-border-color-alt;
+}
+
+// Flush accordion items
+
+.accordion-flush {
+  .accordion-collapse {
+    border-width: 0;
+  }
+
+  .accordion-item {
+    border-right: 0;
+    border-left: 0;
+
+    &:first-child { border-top: 0; }
+    &:last-child { border-bottom: 0; }
+  }
+}

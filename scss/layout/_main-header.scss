@@ -28,21 +28,3 @@
     // margin-top: $main-header-height;
   }
 }
-
-@include dark-mode() {
-  .main-header {
-    background-color: $dark-alt;
-    border-bottom-color: tint-color($dark-alt, 10%);
-
-    .nav-link {
-      color: $gray-400-alt;
-
-      &:hover,
-      &:focus {
-        color: $white-alt;
-      }
-    }
-  }
-}
-
-//

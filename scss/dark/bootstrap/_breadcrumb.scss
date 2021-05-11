@@ -1,0 +1,20 @@
+.breadcrumb {
+  background-color: $breadcrumb-bg-alt;
+}
+
+.breadcrumb-item {
+  // The separator between breadcrumbs (by default, a forward-slash: "/")
+  + .breadcrumb-item {
+    padding-left: $breadcrumb-item-padding-x;
+
+    &::before {
+      color: $breadcrumb-divider-color-alt;
+      // TODO: DO I NEED THIS?
+      // content: var(--#{$variable-prefix}breadcrumb-divider, escape-svg($breadcrumb-divider)) #{"/* rtl:"} var(--#{$variable-prefix}breadcrumb-divider, escape-svg($breadcrumb-divider-flipped)) #{"*/"};
+    }
+  }
+
+  &.active {
+    color: $breadcrumb-active-color-alt;
+  }
+}

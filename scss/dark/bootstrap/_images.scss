@@ -1,0 +1,14 @@
+// Image thumbnails
+.img-thumbnail {
+  background-color: $thumbnail-bg-alt;
+  border: $thumbnail-border-width solid $thumbnail-border-color-alt;
+  @include box-shadow($thumbnail-box-shadow-alt);
+}
+
+//
+// Figures
+//
+
+.figure-caption {
+  color: $figure-caption-color-alt;
+}

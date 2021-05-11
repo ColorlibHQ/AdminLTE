@@ -1,0 +1,7 @@
+@use "sass:map";
+
+@each $color-scheme in $color-schemes {
+  @include color-scheme-alt($color-scheme) {
+    @include generate-utility(map-get($utilities, "display"), "-#{$color-scheme}");
+  }
+}

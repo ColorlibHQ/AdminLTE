@@ -1,0 +1,17 @@
+.toast {
+  color: $toast-color-alt;
+  background-color: $toast-background-color-alt;
+  border: $toast-border-width solid $toast-border-color-alt;
+  box-shadow: $toast-box-shadow-alt;
+
+  // DO I NEED THIS?
+  // &:not(.showing):not(.show) {
+  //   opacity: 0;
+  // }
+}
+
+.toast-header {
+  color: $toast-header-color-alt;
+  background-color: $toast-header-background-color-alt;
+  border-bottom: $toast-border-width solid $toast-header-border-color-alt;
+}

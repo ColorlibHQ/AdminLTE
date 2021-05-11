@@ -8,17 +8,22 @@
 // Bootstrap
 // ---------------------------------------------------
 @import "bootstrap/scss/functions";
-@import "bootstrap-variables";
-@import "utilities";
+@import "variables"; // little modified are here
+@import "bootstrap/scss/variables";
+@import "dark/variables-alt";  // dark color set is here
+@import "bootstrap/scss/mixins";
+@import "dark/bootstrap/mixins";
+@import "custom-utilities";
+@import "bootstrap/scss/utilities";
+@import "dark/bootstrap/utilities";
+@import "dark/bootstrap/patch";  // missing from BS, unsupported patch/hack
+@import "dark/bootstrap/color-scheme";
 @import "bootstrap/scss/bootstrap";
 
 // Variables and Mixins
 // ---------------------------------------------------
-@import "bootstrap-variables-alt";
-@import "variables";
-@import "variables-alt";
+@import "custom-variables";
+@import "dark/custom-variables-alt"; // dark color set is here
 @import "mixins";
 
 @import "parts/core";
-
-//

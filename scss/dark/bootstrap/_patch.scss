@@ -1,0 +1,50 @@
+//
+// Patch some items missing in BS5
+// @see: https://getbootstrap.com/docs/5.0/utilities/api/
+//
+
+// @import "functions";
+// @import "variables";
+// @import "utilities";
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$colors: map-merge(
+  $colors,
+  (
+    "black": $black
+  )
+);
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$utilities: map-merge(
+  $utilities,
+  (
+    "border-color": map-merge(
+      map-get($utilities, "border-color"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "border-color"), "values"),
+          ("black": $black),
+        ),
+      ),
+    ),
+    "color": map-merge(
+      map-get($utilities, "color"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "color"), "values"),
+          ("black": $black),
+        ),
+      ),
+    ),
+    "background-color": map-merge(
+      map-get($utilities, "background-color"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "background-color"), "values"),
+          ("black": $black),
+        ),
+      ),
+    ),
+  )
+);

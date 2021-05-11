@@ -1,0 +1,12 @@
+:root {
+  // Custom variable values only support SassScript inside `#{}`.
+  @each $color, $value in $colors-alt {
+    --#{$variable-prefix}#{$color}: #{$value};
+  }
+
+  @each $color, $value in $theme-colors-alt {
+    --#{$variable-prefix}#{$color}: #{$value};
+  }
+
+  --#{$variable-prefix}gradient: #{$gradient-alt};
+}
