@@ -1,9 +1,9 @@
 'use strict'
 
 const esbuild = require('esbuild')
-const { getTarget } = require('./getTarget')
+// const { getTarget } = require('./get.browserslist.target')
 
-const pkg = require('../../package')
+const pkg = require('../package')
 const year = new Date().getFullYear()
 const banner = `/*!
  * AdminLTE v${pkg.version} (${pkg.homepage})
@@ -12,7 +12,7 @@ const banner = `/*!
  */`
 
 esbuild.build({
-  entryPoints: ['build/ts/adminlte.ts'],
+  entryPoints: ['ts/adminlte.ts'],
   banner: {
     js: banner
   },
@@ -20,7 +20,11 @@ esbuild.build({
   color: true,
   format: 'iife',
   sourcemap: true,
-  target: getTarget(['es', 'chrome', 'edge', 'firefox', 'ios', 'safari']),
+  target: ['chrome60'],
+
+  /* will be enable after release of alpha */
+  // target: getTarget(['es', 'chrome', 'edge', 'firefox', 'ios', 'safari']),
+
   outfile: 'dist/js/adminlte.js'
 }).then(
   console.log('build/ts/adminlte.ts is BUILD')

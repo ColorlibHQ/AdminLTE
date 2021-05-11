@@ -11,21 +11,21 @@
     "css-splits": "npm-run-all css-compile-splits css-prefix-splits css-rtl-splits css-minify-splits",
     "css": "npm-run-all css-compile css-prefix css-minify",
     "css-compile-bash": "sass --load-path=node_modules --style expanded --source-map --embed-sources --no-error-css",
-    "css-compile": "npm run css-compile-bash -- build/scss/adminlte.scss:dist/css/adminlte.css",
-    "css-compile-splits": "npm run css-compile-bash -- build/scss/parts/:dist/css/alt/",
-    "css-prefix-bash": "postcss --config build/config/postcss.config.js --replace",
+    "css-compile": "npm run css-compile-bash -- scss/adminlte.scss:dist/css/adminlte.css",
+    "css-compile-splits": "npm run css-compile-bash -- scss/parts/:dist/css/alt/",
+    "css-prefix-bash": "postcss --config build/postcss.config.js --replace",
     "css-prefix": "npm run css-prefix-bash -- \"dist/css/*.css\" \"!dist/css/*.min.css\" \"!dist/css/alt/*.css\"",
     "css-prefix-splits": "npm run css-prefix-bash -- \"dist/css/alt/*.css\" \"!dist/css/alt/*.min.css\" \"!dist/css/alt/*.rtl.css\"",
-    "css-rtl-splits": "cross-env NODE_ENV=RTL postcss --config build/config/postcss.config.js --replace \"dist/css/alt/*.rtl.css\" \"!dist/css/alt/*.min.css\"",
+    "css-rtl-splits": "cross-env NODE_ENV=RTL postcss --config build/postcss.config.js --replace \"dist/css/alt/*.rtl.css\" \"!dist/css/alt/*.min.css\"",
     "css-minify-bash": "cleancss -O1 --format breakWith=lf --with-rebase --source-map --source-map-inline-sources --output ",
     "css-minify": "npm run css-minify-bash -- dist/css/ --batch --batch-suffix \".min\" \"dist/css/*.css\" \"!dist/css/*.min.css\"",
     "css-minify-splits": "npm run css-minify-bash -- dist/css/alt/ --batch --batch-suffix \".min\" \"dist/css/alt/*.css\" \"!dist/css/alt/*.min.css\"",
-    "css-lint": "stylelint \"build/scss/**/*.scss\" --cache --cache-location .cache/.stylelintcache",
+    "css-lint": "stylelint \"scss/**/*.scss\" --cache --cache-location .cache/.stylelintcache",
     "dev": "npm-run-all --parallel watch sync",
     "lockfile-lint": "lockfile-lint --allowed-hosts npm --allowed-schemes https: --empty-hostname false --type npm --path package-lock.json",
     "js": "npm-run-all js-compile js-minify",
     "js-compile": "npm-run-all --parallel ts:build ts:type-check",
-    "ts:build": "node build/config/esbuild.config.js",
+    "ts:build": "node build/esbuild.config.js",
     "ts:type-check": "tsc --noEmit",
     "js-minify": "esbuild dist/js/adminlte.js --minify --sourcemap --outfile=dist/js/adminlte.min.js",
     "js-lint": "eslint --ext=js,ts --cache --cache-location .cache/.eslintcache --report-unused-disable-directives .",
@@ -33,8 +33,8 @@
     "compile": "npm-run-all --parallel css js",
     "sync": "browser-sync start --server --files *.html pages/ dist/",
     "watch": "concurrently \"npm:watch-*\"",
-    "watch-css": "nodemon --watch build/scss -e scss -x \"npm-run-all css-compile css-prefix\"",
-    "watch-js": "nodemon --watch build/ts -e ts -x \"npm-run-all js-compile\""
+    "watch-css": "nodemon --watch scss -e scss -x \"npm-run-all css-compile css-prefix\"",
+    "watch-js": "nodemon --watch ts -e ts -x \"npm-run-all js-compile\""
   },
   "keywords": [
     "css",
@@ -49,7 +49,7 @@
   ],
   "homepage": "https://adminlte.io",
   "style": "dist/css/adminlte.css",
-  "sass": "build/scss/adminlte.scss",
+  "sass": "scss/adminlte.scss",
   "repository": {
     "type": "git",
     "url": "git://github.com/ColorlibHQ/AdminLTE.git"
@@ -63,8 +63,8 @@
     "bootstrap": "^5.0.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.22.1",
-    "@typescript-eslint/parser": "^4.22.1",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
     "autoprefixer": "^10.2.5",
     "browser-sync": "^2.26.14",
     "bundlewatch": "^0.3.2",

@@ -17,12 +17,17 @@ import {
 
 const CLASS_NAME_SIDEBAR_MINI = 'sidebar-mini'
 const CLASS_NAME_SIDEBAR_MINI_HAD = 'sidebar-mini-had'
+const CLASS_NAME_SIDEBAR_HORIZONTAL = 'sidebar-horizontal'
 const CLASS_NAME_SIDEBAR_COLLAPSE = 'sidebar-collapse'
 const CLASS_NAME_SIDEBAR_CLOSE = 'sidebar-close'
 const CLASS_NAME_SIDEBAR_OPEN = 'sidebar-open'
 const CLASS_NAME_SIDEBAR_OPENING = 'sidebar-is-opening'
 const CLASS_NAME_SIDEBAR_COLLAPSING = 'sidebar-is-collapsing'
+const CLASS_NAME_MENU_OPEN = 'menu-open'
 
+const SELECTOR_NAV_SIDEBAR = '.nav-sidebar'
+const SELECTOR_NAV_ITEM = '.nav-item'
+const SELECTOR_NAV_TREEVIEW = '.nav-treeview'
 const SELECTOR_MINI_TOGGLE = '[data-pushmenu="mini"]'
 const SELECTOR_FULL_TOGGLE = '[data-pushmenu="full"]'
 
@@ -50,6 +55,24 @@ class PushMenu {
     }, 1000)
   }
 
+  menusClose(): void {
+    const navTreeview = document.querySelectorAll<HTMLElement>(SELECTOR_NAV_TREEVIEW)
+
+    for (const navTree of navTreeview) {
+      navTree.style.removeProperty('display')
+      navTree.style.removeProperty('height')
+    }
+
+    const navSidebar = document.querySelector(SELECTOR_NAV_SIDEBAR)
+    const navItem = navSidebar?.querySelectorAll(SELECTOR_NAV_ITEM)
+
+    if (navItem) {
+      for (const navI of navItem) {
+        navI.classList.remove(CLASS_NAME_MENU_OPEN)
+      }
+    }
+  }
+
   expand(): void {
     this.sidebarOpening()
     const bodyClass = document.body.classList
@@ -66,10 +89,14 @@ class PushMenu {
 
   close(): void {
     const bodyClass = document.body.classList
+
     bodyClass.add(CLASS_NAME_SIDEBAR_CLOSE)
-    // if (bodyClass.contains(CLASS_NAME_SIDEBAR_SM)) {
     bodyClass.remove(CLASS_NAME_SIDEBAR_OPEN)
-    // }
+    bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
+
+    if (bodyClass.contains(CLASS_NAME_SIDEBAR_HORIZONTAL)) {
+      this.menusClose()
+    }
   }
 
   toggleFull(): void {

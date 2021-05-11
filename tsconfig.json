@@ -14,7 +14,7 @@
     "strictPropertyInitialization": true
   },
   "include": [
-    "build/ts/**/*"
+    "ts/**/*"
   ],
   "exclude": [
     "dist",

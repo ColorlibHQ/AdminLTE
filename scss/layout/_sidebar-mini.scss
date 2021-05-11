@@ -9,7 +9,7 @@
   white-space: nowrap;
 }
 
-.sidebar-mini.sidebar-collapse {
+.sidebar-mini.sidebar-collapse:not(.sidebar-horizontal) {
   .main-sidebar {
     min-width: $sidebar-mini-width;
     max-width: $sidebar-mini-width;
@@ -35,17 +35,7 @@
     visibility: hidden;
   }
 
-  .brand-link {
-    order: 2;
-    margin-left: auto;
-  }
-
-  .sidebar-mini-icon {
-    order: 1;
-    margin-left: 1rem;
-  }
-
-  &.layout-fixed.sidebar-hover {
+  &.sidebar-hover {
     .main-sidebar {
       min-width: $sidebar-width;
       max-width: $sidebar-width;
@@ -64,49 +54,40 @@
       animation-fill-mode: both;
       visibility: visible;
     }
-
-    .brand-link {
-      order: 1;
-    }
-
-    .sidebar-mini-icon {
-      order: 2;
-      margin-left: auto;
-    }
   }
 }
 
-.sidebar-mini.sidebar-collapse:not(.layout-fixed) {
-  .sidebar {
-    overflow: visible;
+// .sidebar-mini.sidebar-collapse:not(.layout-fixed):not(.sidebar-horizontal) {
+//   .sidebar {
+//     overflow: visible;
 
-    .nav-sidebar .nav-item:hover {
-      position: relative;
+//     .nav-sidebar .nav-item:hover {
+//       position: relative;
 
-      .nav-link {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
+//       .nav-link {
+//         border-top-right-radius: 0;
+//         border-bottom-right-radius: 0;
+//       }
 
-      span {
-        animation: none;
-        z-index: $zindex-sidebar + 12;
-        visibility: visible;
-        display: inline-block;
-        position: absolute;
-        width: $sidebar-width;
-        left: $sidebar-mini-width;
-        top: 0;
-        background-color: inherit;
-        padding: inherit;
-        padding-left: 1rem;
-        margin-left: -1rem;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-    }
-  }
-}
+//       span {
+//         animation: none;
+//         z-index: $zindex-sidebar + 12;
+//         visibility: visible;
+//         display: inline-block;
+//         position: absolute;
+//         width: $sidebar-width;
+//         left: $sidebar-mini-width;
+//         top: 0;
+//         background-color: inherit;
+//         padding: inherit;
+//         padding-left: 1rem;
+//         margin-left: -1rem;
+//         border-top-left-radius: 0;
+//         border-bottom-left-radius: 0;
+//       }
+//     }
+//   }
+// }
 
 .sidebar-is-opening {
   .sidebar .user-panel > .info,

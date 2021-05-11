@@ -1,0 +1,56 @@
+//
+// Core: Brand
+//
+
+.brand-container {
+  grid-area: brand;
+  display: grid;
+  grid-template-areas: "brand-link sidebar-mini-icon";
+  grid-auto-flow: column;
+  justify-content: space-between;
+  font-size: $navbar-brand-font-size;
+  padding: $brand-link-padding-y $sidebar-padding-x;
+  white-space: nowrap;
+  border-bottom: $brand-link-border-buttom solid tint-color($dark, 10%);
+
+  .brand-link {
+    grid-area: brand-link;
+  }
+
+  .brand-image {
+    grid-area: brand-img;
+    float: left;
+    line-height: .8;
+    margin-left: .8rem;
+    margin-right: .5rem;
+    margin-top: -3px;
+    max-height: 33px;
+    width: auto;
+  }
+
+  .brand-text {
+    grid-area: brand-text;
+    color: $sidebar-dark-color;
+
+    &:hover {
+      color: $white;
+      text-decoration: none;
+    }
+  }
+
+  .sidebar-mini-icon {
+    grid-area: sidebar-mini-icon;
+    color: $gray-400;
+  }
+}
+
+.sidebar-collapse:not(.sidebar-hover) {
+  .brand-container {
+    grid-template-areas: "sidebar-mini-icon brand-link";
+    justify-content: center;
+
+    .brand-link {
+      display: none;
+    }
+  }
+}
