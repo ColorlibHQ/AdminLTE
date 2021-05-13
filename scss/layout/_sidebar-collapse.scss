@@ -9,7 +9,7 @@
   white-space: nowrap;
 }
 
-.sidebar-mini.sidebar-collapse:not(.sidebar-horizontal) {
+.sidebar-collapse:not(.sidebar-horizontal) {
   .main-sidebar {
     min-width: $sidebar-mini-width;
     max-width: $sidebar-mini-width;
@@ -20,13 +20,13 @@
     display: none;
   }
 
-  .nav-sidebar .nav-link span {
+  .nav-sidebar .nav-link p {
     width: 0;
     white-space: nowrap;
   }
 
   .sidebar .user-panel > .info,
-  .nav-sidebar .nav-link span,
+  .nav-sidebar .nav-link p,
   .brand-link {
     margin-left: -10px;
     animation-name: fadeOut;
@@ -46,7 +46,7 @@
     }
 
     .sidebar .user-panel > .info,
-    .nav-sidebar .nav-link span,
+    .nav-sidebar .nav-link p,
     .brand-link {
       margin-left: 0;
       animation-name: fadeIn;
@@ -91,7 +91,7 @@
 
 .sidebar-is-opening {
   .sidebar .user-panel > .info,
-  .nav-sidebar .nav-link span,
+  .nav-sidebar .nav-link p,
   .brand-link {
     margin-left: 0;
     animation-name: fadeIn;
@@ -103,7 +103,7 @@
 
 .sidebar-is-collapsing {
   .sidebar .user-panel > .info,
-  .nav-sidebar .nav-link span,
+  .nav-sidebar .nav-link p,
   .brand-link {
     margin-left: -10px;
     animation-name: fadeOut;

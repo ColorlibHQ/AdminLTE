@@ -1,19 +1,23 @@
 //
-// Mixins: Sidebar Theme
+// Mixins: Sidebar Variant
 //
 
 @mixin sidebar-variant(
   $sidebar-bg,
-  $sidebar-color
+  $sidebar-hover-bg,
+  $sidebar-color,
+  $sidebar-hover-color,
+  $sidebar-active-color,
+  $sidebar-submenu-bg,
+  $sidebar-submenu-color,
+  $sidebar-submenu-hover-color,
+  $sidebar-submenu-hover-bg,
+  $sidebar-submenu-active-color,
+  $sidebar-submenu-active-bg
 ) {
-
-  // .wrapper {
-  //   background: $sidebar-bg;
-  // }
-
   .main-sidebar {
-    color: $sidebar-color;
     background-color: $sidebar-bg;
+    color: $sidebar-color;
   }
 
   // Sidebar navigation menu
@@ -23,8 +27,12 @@
       color: $sidebar-color;
 
       &:hover,
+      &:focus {
+        color: $sidebar-hover-color;
+      }
+
       .active {
-        color: color-constract($sidebar-color);
+        color: $sidebar-active-color;
       }
     }
 
@@ -37,7 +45,7 @@
   //   .sidebar {
   //     .nav-sidebar .nav-item:hover {
   //       .nav-link:not(.active) {
-  //         span {
+  //         p {
   //           background-color: $sidebar-bg;
   //         }
   //       }

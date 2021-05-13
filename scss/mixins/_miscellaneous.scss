@@ -16,9 +16,9 @@
 //   #{$property}: calc(#{$expression});
 // }
 
-@mixin rotate($value) {
-  transform: rotate($value);
-}
+// @mixin rotate($value) {
+//   transform: rotate($value);
+// }
 
 // @mixin animation($animation) {
 //   animation: $animation;

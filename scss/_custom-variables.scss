@@ -86,6 +86,21 @@ $nav-link-sm-height:               ($font-size-sm * $line-height-sm + $nav-link-
 $main-header-height-sm-inner:      ($nav-link-sm-height + ($main-header-link-padding-y * 2)) !default;
 $main-header-height-sm:            add($main-header-height-sm-inner, $main-header-bottom-border-width) !default;
 
+// HEADER SKINS
+// --------------------------------------------------------
+
+// Dark sidebar
+$header-dark-bg:              $dark;
+$header-dark-color:           $white;
+$header-mobile-dark-bg:       $dark;
+$header-mobile-dark-color:    $white;
+
+// Light sidebar
+$header-light-bg:             $white;
+$header-light-color:          $dark;
+$header-mobile-light-bg:      $light;
+$header-mobile-light-color:   $dark;
+
 // Content padding
 $content-padding-y:           0 !default;
 $content-padding-x:           .5rem !default;
@@ -113,8 +128,10 @@ $brand-link-border-buttom:    1px;
 // --------------------------------------------------------
 $zindex-main-header:          $zindex-fixed + 4 !default;
 $zindex-sidebar:              $zindex-fixed + 8 !default;
+$zindex-main-brand:           $zindex-main-header !default;
 $zindex-main-footer:          $zindex-fixed + 2 !default;
 $zindex-sidebar-horizontal:   $zindex-main-header - 2 !default;
+$zindex-header-mobile:        $zindex-main-brand + 2 !default;
 $zindex-control-sidebar:      $zindex-fixed + 1 !default;
 $zindex-toasts:               $zindex-sidebar + 2 !default;
 $zindex-content-wrapper:      $zindex-sidebar - 2 !default;

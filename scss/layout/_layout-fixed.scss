@@ -14,6 +14,10 @@
       left: 0;
       position: fixed;
       top: auto;
+
+      .sidebar {
+        height: subtract(100vh, add($main-header-height-inner, $main-header-bottom-border-width / 2));
+      }
     }
 
     .main-header,
@@ -40,10 +44,6 @@
     }
   }
 
-  .layout-fixed .wrapper .sidebar {
-    // stylelint-disable-next-line
-    height: calc(100vh - #{$main-header-height-inner});
-  }
   // .layout-fixed.text-sm .wrapper .sidebar {
   //   // stylelint-disable-next-line
   //   height: calc(100vh - (#{$main-header-height-sm-inner} + #{$main-header-bottom-border-width}));

@@ -19,6 +19,7 @@ const CLASS_NAME_SIDEBAR_COLLAPSE = 'sidebar-collapse'
 const CLASS_NAME_SIDEBAR_CLOSE = 'sidebar-close'
 const CLASS_NAME_SIDEBAR_OPEN = 'sidebar-open'
 const CLASS_NAME_LAYOUT_MOBILE = 'layout-mobile'
+const CLASS_NAME_HEADER_MOBILE_OPEN = 'header-mobile-open'
 
 const SELECTOR_SIDEBAR_SM = `.${CLASS_NAME_LAYOUT_MOBILE}`
 const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
@@ -43,6 +44,7 @@ class SidebarOverlay {
     if (bodyClass.contains(CLASS_NAME_LAYOUT_MOBILE)) {
       bodyClass.remove(CLASS_NAME_SIDEBAR_OPEN)
       bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
+      bodyClass.remove(CLASS_NAME_HEADER_MOBILE_OPEN)
       bodyClass.add(CLASS_NAME_SIDEBAR_CLOSE)
     }
   }

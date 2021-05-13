@@ -4,7 +4,7 @@
       "main-sidebar main-brand main-header"
       "main-sidebar content-wrapper main-header"
       "main-sidebar main-footer main-header";
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto 1fr auto;
 
     .main-sidebar {
       position: fixed;
@@ -20,7 +20,23 @@
     }
 
     .main-header {
-      display: none;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      min-height: 100vh;
+      z-index: $zindex-header-mobile;
+      width: $sidebar-width;
+      margin-left: -#{$sidebar-width};
+      align-items: baseline;
+      @include transition($sidebar-transition);
+
+      .navbar-nav {
+        flex-direction: column;
+      }
+
+      .sidebar-full-icon {
+        display: none;
+      }
     }
 
     .brand-link {
@@ -36,6 +52,14 @@
   .sidebar-open {
     .main-sidebar {
       margin-left: 0;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    .header-mobile-open {
+      .main-header {
+        margin-left: 0;
+      }
     }
   }
 }

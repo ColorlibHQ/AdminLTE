@@ -2,8 +2,20 @@
 // Core: Main Sidebar
 //
 
-// Default Sidebar Theme
-@include sidebar-variant($sidebar-dark-bg, $sidebar-dark-color);
+// Default Sidebar Variant
+@include sidebar-variant(
+  $sidebar-dark-bg,
+  $sidebar-dark-hover-bg,
+  $sidebar-dark-color,
+  $sidebar-dark-hover-color,
+  $sidebar-dark-active-color,
+  $sidebar-dark-submenu-bg,
+  $sidebar-dark-submenu-color,
+  $sidebar-dark-submenu-hover-color,
+  $sidebar-dark-submenu-hover-bg,
+  $sidebar-dark-submenu-active-color,
+  $sidebar-dark-submenu-active-bg
+);
 
 .main-sidebar {
   grid-area: main-sidebar;
@@ -12,28 +24,3 @@
   min-width: $sidebar-width;
   max-width: $sidebar-width;
 }
-
-@include media-breakpoint-down(md) {
-  // .main-sidebar {
-  //   display: block;
-  //   position: fixed;
-  // }
-  // .main-sidebar {
-  //   margin-left: -#{$sidebar-width};
-
-  //   .sidebar-open & {
-  //     transform: translateX($sidebar-width);
-  //   }
-  // }
-
-  // .sidebar-mini-icon {
-  //   visibility: hidden;
-  // }
-
-  // .sidebar-open {
-  //   .content-wrapper {
-  //     opacity: .9;
-  //   }
-  // }
-}
-

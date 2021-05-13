@@ -18,7 +18,7 @@
   max-width: $sidebar-width;
   height: min-content;
   @include transition($sidebar-transition);
-  z-index: $zindex-sidebar;
+  z-index: $zindex-main-brand;
 
   .brand-link {
     grid-area: brand-link;

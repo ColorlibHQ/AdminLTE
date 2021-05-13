@@ -1,0 +1,31 @@
+//
+// Mixins: Sidebar Variant
+//
+
+@mixin header-variant(
+  $header-bg,
+  $header-color,
+  $header-mobile-bg,
+  $header-mobile-color
+) {
+  .main-header {
+    background-color: $header-bg;
+    color: $header-color;
+
+    .nav-link {
+      color: $dark;
+
+      &:hover,
+      &:focus {
+        color: $black;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    .main-header {
+      background-color: $header-mobile-bg;
+      color: $header-mobile-color;
+    }
+  }
+}

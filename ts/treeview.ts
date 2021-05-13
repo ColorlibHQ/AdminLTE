@@ -22,7 +22,8 @@ const SELECTOR_NAV_ITEM = '.nav-item'
 const SELECTOR_DATA_TOGGLE = '[data-widget="treeview"]'
 
 const Defaults = {
-  transitionDuration: 300
+  transitionDuration: 300,
+  transitionTimingFuntion: 'linear'
 }
 
 /**
@@ -38,9 +39,7 @@ class Treeview {
 
     const height: number = childNavItem?.scrollHeight ?? 0
 
-    childNavItem?.style.setProperty('transition', `height ${Defaults.transitionDuration}ms`)
     childNavItem?.style.setProperty('overflow', 'hidden')
-    childNavItem?.style.setProperty('display', 'block')
     childNavItem?.style.setProperty('height', '0px')
 
     setTimeout(() => {
@@ -50,14 +49,12 @@ class Treeview {
     setTimeout(() => {
       childNavItem?.style.removeProperty('overflow')
       childNavItem?.style.setProperty('height', 'auto')
+      childNavItem?.style.removeProperty('height')
     }, Defaults.transitionDuration)
   }
 
   close(navItem: Element, childNavItem: HTMLElement | null | undefined): void {
-    navItem.classList.remove(CLASS_NAME_MENU_OPEN)
-
     const height: number = childNavItem?.scrollHeight ?? 0
-    childNavItem?.style.setProperty('transition', `height ${Defaults.transitionDuration}ms`)
 
     childNavItem?.style.setProperty('overflow', 'hidden')
     childNavItem?.style.setProperty('height', `${height}px`)
@@ -67,21 +64,23 @@ class Treeview {
     }, 1)
 
     setTimeout(() => {
-      // childNavItem?.style.removeProperty('height')
-      childNavItem?.style.removeProperty('display')
       childNavItem?.style.removeProperty('overflow')
+      childNavItem?.style.removeProperty('height')
+      navItem.classList.remove(CLASS_NAME_MENU_OPEN)
     }, Defaults.transitionDuration)
   }
 
   toggle(treeviewMenu: Element): void {
     const navItem: HTMLElement | null = treeviewMenu.closest(SELECTOR_NAV_ITEM)
     const childNavItem: HTMLElement | null | undefined = navItem?.querySelector('.nav-treeview')
-
-    if (navItem?.classList.contains(CLASS_NAME_MENU_OPEN)) {
-      this.close(navItem, childNavItem)
-    } else {
-      this.open(navItem, childNavItem)
-    }
+    childNavItem?.style.setProperty('transition', `height ${Defaults.transitionDuration}ms ${Defaults.transitionTimingFuntion}`)
+    setTimeout(() => {
+      if (navItem?.classList.contains(CLASS_NAME_MENU_OPEN)) {
+        this.close(navItem, childNavItem)
+      } else {
+        this.open(navItem, childNavItem)
+      }
+    }, 1)
   }
 }
 
@@ -91,9 +90,8 @@ class Treeview {
  * ------------------------------------------------------------------------
  */
 
-const button = document.querySelectorAll(SELECTOR_DATA_TOGGLE)
-
 domReady(() => {
+  const button = document.querySelectorAll(SELECTOR_DATA_TOGGLE)
   for (const btn of button) {
     btn.addEventListener('click', event => {
       event.preventDefault()

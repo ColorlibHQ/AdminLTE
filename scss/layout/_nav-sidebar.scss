@@ -2,7 +2,7 @@
 .nav-sidebar {
   // All levels
   .nav-link > .right,
-  .nav-link > span > .right {
+  .nav-link > p > .right {
     position: absolute;
     right: 1rem;
     top: .7rem;
@@ -10,10 +10,12 @@
 
   .nav-link {
     position: relative;
+    width: 100%;
 
-    span {
-      display: inline-block;
+    p {
+      display: inline;
       padding-left: .5rem;
+      margin: 0;
     }
 
     .nav-icon {
@@ -28,12 +30,16 @@
 
   // Tree view menu
   .nav-treeview {
-    display: none;
+    // display: none;
     list-style: none;
     padding: 0;
   }
 
-  .menu-open > .nav-treeview {
-    display: block;
+  .nav-item {
+    width: 100%;
+
+    &:not(.menu-open) .nav-treeview {
+      display: none;
+    }
   }
 }

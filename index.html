@@ -13,20 +13,31 @@
   <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 </head>
 
-<body class="sidebar-mini">
+<body class="layout-fixed">
   <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand">
       <div class="container-fluid">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" data-pushmenu="full" href="#" role="button"><i class="fas fa-bars"></i></a>
+            <a class="nav-link sidebar-full-icon" data-pushmenu="full" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">Home</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">Contact</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -40,8 +51,8 @@
       </a>
       <div class="brand-icons mx-2">
         <a class="sidebar-mini-icon mx-1" data-pushmenu="mini" href="#" role="button"><i class="fas fa-angle-double-left"></i></a>
-        <a class="sidebar-full-icon mx-2" data-pushmenu="full" href="#" role="button"><i class="fas fa-bars"></i></a>
         <a class="header-full-icon mx-2" data-pushmenu="header" href="#" role="button"><i class="fas fa-align-right"></i></a>
+        <a class="sidebar-full-icon mx-2" data-pushmenu="full" href="#" role="button"><i class="fas fa-bars"></i></a>
       </div>
     </div>
 
@@ -54,44 +65,44 @@
           <li class="nav-item">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-th"></i>
-              <span>
+              <p>
                 Simple Link
-              </span>
+              </p>
             </a>
           </li>
           <li class="nav-header">MULTI LEVEL EXAMPLE</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
-              <span>
+              <p>
                 Level 1
                 <i class="right fas fa-angle-left"></i>
-              </span>
+              </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon far fa-circle"></i>
-                  <span>
+                  <p>
                     Level 2
                     <i class="right fas fa-angle-left"></i>
-                  </span>
+                  </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="#" class="nav-link">
                       <i class="nav-icon far fa-dot-circle"></i>
-                      <span>
+                      <p>
                         Level 3
-                      </span>
+                      </p>
                     </a>
                   </li>
                 </ul>
                 <a href="#" class="nav-link">
                   <i class="nav-icon far fa-circle"></i>
-                  <span>
+                  <p>
                     Level 2
-                  </span>
+                  </p>
                 </a>
               </li>
             </ul>
@@ -99,9 +110,9 @@
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <span>
+              <p>
                 Simple Link
-              </span>
+              </p>
             </a>
           </li>
         </ul>

@@ -2,21 +2,18 @@
 // Core: Main Header
 //
 
+@include header-variant(
+  $header-light-bg,
+  $header-light-color,
+  $header-mobile-light-bg,
+  $header-mobile-light-color
+);
+
 .main-header {
   grid-area: main-header;
-  background-color: $white;
   border-bottom: $main-header-bottom-border;
   width: inherit;
   z-index: $zindex-main-header;
-
-  .nav-link {
-    color: $dark;
-
-    &:hover,
-    &:focus {
-      color: $black;
-    }
-  }
 }
 
 .layout-navbar-fixed {
