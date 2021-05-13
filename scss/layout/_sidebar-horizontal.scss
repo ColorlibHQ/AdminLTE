@@ -1,62 +1,67 @@
-.sidebar-horizontal {
-  .wrapper {
-    grid-template-areas:
-      "main-header"
-      "main-sidebar"
-      "content-wrapper"
-      "main-footer";
-    grid-template-columns: 1fr;
-    grid-template-rows: max-content max-content auto max-content;
-  }
+@include media-breakpoint-up(md) {
+  .sidebar-horizontal {
+    .wrapper {
+      grid-template-areas:
+        "main-header"
+        "main-sidebar"
+        "content-wrapper"
+        "main-footer";
+      grid-template-columns: auto;
+      grid-template-rows: max-content max-content auto max-content;
+    }
 
-  .main-sidebar {
-    display: grid;
-    height: $sidebar-horizontal-height;
-    min-width: $sidebar-horizontal-width;
-    max-width: $sidebar-horizontal-width;
-    justify-content: start;
-    z-index: $zindex-sidebar-horizontal;
-  }
-
-  .brand-container {
-    display: none;
-  }
-
-  .sidebar {
-    overflow: visible;
-    padding-top: .75rem;
-
-    .nav-sidebar {
+    .main-sidebar {
       display: grid;
-      list-style-type: none;
-      grid-auto-columns: 90px;
-      grid-auto-flow: column;
-      grid-gap: 5px;
+      height: $sidebar-horizontal-height;
+      min-width: $sidebar-horizontal-width;
+      max-width: $sidebar-horizontal-width;
+      justify-content: start;
+      z-index: $zindex-sidebar-horizontal;
+    }
 
-      .nav-header {
-        display: none;
-      }
+    .main-brand {
+      display: none;
+    }
 
-      .nav-item > .nav-link {
+    .sidebar {
+      // overflow: visible;
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      // padding-top: .75rem;
+
+      .nav-sidebar {
         display: grid;
-        grid-auto-flow: row;
-        justify-content: center;
+        list-style-type: none;
+        grid-auto-columns: 130px;
+        grid-auto-flow: column;
+        // grid-gap: 5px;
 
-        .nav-icon {
-          text-align: center;
-          padding-left: 0;
+        .nav-header {
+          display: none;
         }
 
-        span {
-          padding-left: 0;
+        .nav-item > .nav-link {
+          display: grid;
+          grid-auto-flow: row;
+          justify-content: center;
+
+          .nav-icon {
+            text-align: center;
+            padding-left: 0;
+          }
+
+          span {
+            padding-left: 0;
+          }
         }
       }
     }
-  }
 
-  &.sidebar-close {
-    .main-sidebar {
-      margin-top: -#{$sidebar-horizontal-height};
+    &.sidebar-close {
+      .main-sidebar {
+        margin-top: -#{$sidebar-horizontal-height};
+      }
     }
   }
 }

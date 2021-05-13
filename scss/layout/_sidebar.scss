@@ -6,9 +6,5 @@
   padding-right: $sidebar-padding-x;
   padding-top: $sidebar-padding-y;
   @include scrollbar-color-gray();
-  @include scrollbar-width-none();
-
-  &:hover {
-    @include scrollbar-width-thin();
-  }
+  @include scrollbar-width-thin();
 }

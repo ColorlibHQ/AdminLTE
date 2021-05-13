@@ -18,28 +18,39 @@ import {
 const CLASS_NAME_SIDEBAR_COLLAPSE = 'sidebar-collapse'
 const CLASS_NAME_SIDEBAR_CLOSE = 'sidebar-close'
 const CLASS_NAME_SIDEBAR_OPEN = 'sidebar-open'
-const CLASS_NAME_SIDEBAR_SM = 'sidebar-sm'
+const CLASS_NAME_LAYOUT_MOBILE = 'layout-mobile'
 
-const SELECTOR_SIDEBAR_SM = `.${CLASS_NAME_SIDEBAR_SM}`
+const SELECTOR_SIDEBAR_SM = `.${CLASS_NAME_LAYOUT_MOBILE}`
 const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
+
+const Defaults = {
+  onLayouMobile: 768
+}
 
 class SidebarOverlay {
   addSidebaBreakPoint(): void {
     const bodyClass = document.body.classList
     const widthOutput: number = window.innerWidth
-    if (widthOutput > 576) {
-      bodyClass.remove(CLASS_NAME_SIDEBAR_SM)
+    if (widthOutput > Defaults.onLayouMobile) {
+      bodyClass.remove(CLASS_NAME_LAYOUT_MOBILE)
     } else {
-      bodyClass.add(CLASS_NAME_SIDEBAR_SM)
+      bodyClass.add(CLASS_NAME_LAYOUT_MOBILE)
     }
   }
 
   removeOverlaySidebar(): void {
     const bodyClass = document.body.classList
-    if (bodyClass.contains(CLASS_NAME_SIDEBAR_SM)) {
+    if (bodyClass.contains(CLASS_NAME_LAYOUT_MOBILE)) {
       bodyClass.remove(CLASS_NAME_SIDEBAR_OPEN)
       bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
       bodyClass.add(CLASS_NAME_SIDEBAR_CLOSE)
+    }
+  }
+
+  closeSidebar(): void {
+    const widthOutput: number = window.innerWidth
+    if (widthOutput < Defaults.onLayouMobile) {
+      document.body.classList.add(CLASS_NAME_SIDEBAR_CLOSE)
     }
   }
 
@@ -57,6 +68,7 @@ domReady(() => {
 
   data.addSidebaBreakPoint()
   data.init()
+  data.closeSidebar()
 
   window.addEventListener('resize', () => {
     data.addSidebaBreakPoint()

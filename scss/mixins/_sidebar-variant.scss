@@ -2,14 +2,14 @@
 // Mixins: Sidebar Theme
 //
 
-@mixin sidebar-theme(
+@mixin sidebar-variant(
   $sidebar-bg,
   $sidebar-color
 ) {
 
-  .wrapper {
-    background: $sidebar-bg;
-  }
+  // .wrapper {
+  //   background: $sidebar-bg;
+  // }
 
   .main-sidebar {
     color: $sidebar-color;
@@ -33,15 +33,15 @@
     }
   }
 
-  .sidebar-collapse:not(.layout-fixed) {
-    .sidebar {
-      .nav-sidebar .nav-item:hover {
-        .nav-link:not(.active) {
-          span {
-            background-color: $sidebar-bg;
-          }
-        }
-      }
-    }
-  }
+  // .sidebar-collapse:not(.layout-fixed) {
+  //   .sidebar {
+  //     .nav-sidebar .nav-item:hover {
+  //       .nav-link:not(.active) {
+  //         span {
+  //           background-color: $sidebar-bg;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 }

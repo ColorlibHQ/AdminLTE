@@ -3,7 +3,7 @@
 //
 
 // Default Sidebar Theme
-@include sidebar-theme($sidebar-dark-bg, $sidebar-dark-color);
+@include sidebar-variant($sidebar-dark-bg, $sidebar-dark-color);
 
 .main-sidebar {
   grid-area: main-sidebar;
@@ -13,7 +13,11 @@
   max-width: $sidebar-width;
 }
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-down(md) {
+  // .main-sidebar {
+  //   display: block;
+  //   position: fixed;
+  // }
   // .main-sidebar {
   //   margin-left: -#{$sidebar-width};
 
@@ -33,43 +37,3 @@
   // }
 }
 
-
-// Sidebar navigation menu
-.nav-sidebar {
-  // All levels
-  .nav-link > .right,
-  .nav-link > span > .right {
-    position: absolute;
-    right: 1rem;
-    top: .7rem;
-  }
-
-  .nav-link {
-    position: relative;
-
-    span {
-      display: inline-block;
-      padding-left: .5rem;
-    }
-
-    .nav-icon {
-      padding-left: .3rem;
-    }
-  }
-
-  .nav-header {
-    font-size: .9rem;
-    padding: $nav-link-padding-y ($nav-link-padding-y * 1.5);
-  }
-
-  // Tree view menu
-  .nav-treeview {
-    display: none;
-    list-style: none;
-    padding: 0;
-  }
-
-  .menu-open > .nav-treeview {
-    display: block;
-  }
-}

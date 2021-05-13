@@ -33,18 +33,23 @@
     </nav>
     <!-- /.navbar -->
 
-    <!-- Main Sidebar Container -->
-    <nav class="main-sidebar shadow">
-      <div class="brand-container">
-        <a href="#" class="brand-link">
-          <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-80">
-          <span class="brand-text fw-light">AdminLTE 4</span>
-        </a>
-        <a class="sidebar-mini-icon" data-pushmenu="mini" href="#" role="button"><i class="fas fa-angle-double-left"></i></a>
+    <div class="main-brand">
+      <a href="#" class="brand-link">
+        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-80">
+        <span class="brand-text fw-light">AdminLTE 4</span>
+      </a>
+      <div class="brand-icons mx-2">
+        <a class="sidebar-mini-icon mx-1" data-pushmenu="mini" href="#" role="button"><i class="fas fa-angle-double-left"></i></a>
+        <a class="sidebar-full-icon mx-2" data-pushmenu="full" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a class="header-full-icon mx-2" data-pushmenu="header" href="#" role="button"><i class="fas fa-align-right"></i></a>
       </div>
+    </div>
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar shadow">
       <!-- Sidebar -->
-      <!-- Sidebar Menu -->
       <nav class="sidebar">
+        <!-- Sidebar Menu -->
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a href="#" class="nav-link active">
@@ -102,23 +107,40 @@
         </ul>
       </nav>
       <!-- /.sidebar -->
-    </nav>
+    </aside>
 
     <!-- Main content -->
-    <main class="content-wrapper">
-      <div class="container-fluid">
-        <button type="button" class="btn btn-primary">Primary</button>
-        <button type="button" class="btn btn-secondary">Secondary</button>
-        <button type="button" class="btn btn-success">Success</button>
-        <button type="button" class="btn btn-danger">Danger</button>
-        <button type="button" class="btn btn-warning">Warning</button>
-        <button type="button" class="btn btn-info">Info</button>
-        <button type="button" class="btn btn-light">Light</button>
-        <button type="button" class="btn btn-dark">Dark</button>
-        <button type="button" class="btn btn-link">Link</button>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </main>
+    <div class="content-wrapper">
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <div class="fs-3">Dashboard</div>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-end">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Library</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-primary">Primary</button>
+          <button type="button" class="btn btn-secondary">Secondary</button>
+          <button type="button" class="btn btn-success">Success</button>
+          <button type="button" class="btn btn-danger">Danger</button>
+          <button type="button" class="btn btn-warning">Warning</button>
+          <button type="button" class="btn btn-info">Info</button>
+          <button type="button" class="btn btn-light">Light</button>
+          <button type="button" class="btn btn-dark">Dark</button>
+          <button type="button" class="btn btn-link">Link</button>
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+    </div>
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->

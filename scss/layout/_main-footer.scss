@@ -10,10 +10,10 @@
   padding: $main-footer-padding;
   width: inherit;
 
-  .text-sm &,
-  &.text-sm {
-    padding: $main-footer-padding-sm;
-  }
+  // .text-sm &,
+  // &.text-sm {
+  //   padding: $main-footer-padding-sm;
+  // }
 }
 
 .layout-footer-fixed {

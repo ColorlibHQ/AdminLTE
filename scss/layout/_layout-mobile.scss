@@ -1,0 +1,41 @@
+@include media-breakpoint-down(md) {
+  .wrapper {
+    grid-template-areas:
+      "main-sidebar main-brand main-header"
+      "main-sidebar content-wrapper main-header"
+      "main-sidebar main-footer main-header";
+    grid-template-columns: auto auto auto;
+
+    .main-sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      margin-left: -#{$sidebar-width};
+      min-height: 100vh;
+
+      .sidebar {
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+    }
+
+    .main-header {
+      display: none;
+    }
+
+    .brand-link {
+      animation: none;
+    }
+
+    .sidebar-full-icon,
+    .header-full-icon {
+      display: block;
+    }
+  }
+
+  .sidebar-open {
+    .main-sidebar {
+      margin-left: 0;
+    }
+  }
+}
