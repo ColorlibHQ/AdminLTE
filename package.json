@@ -34,6 +34,7 @@
     "js-lint": "eslint --ext=js,ts --cache --cache-location .cache/.eslintcache --report-unused-disable-directives .",
     "lint": "npm-run-all --continue-on-error --parallel css-lint js-lint lockfile-lint",
     "compile": "npm-run-all --parallel css js",
+    "production": "npm-run-all --parallel css-all js",
     "sync": "browser-sync start --server --files *.html pages/ dist/",
     "watch": "concurrently \"npm:watch-*\"",
     "watch-css": "nodemon --watch scss -e scss -x \"npm-run-all css-compile css-prefix\"",
