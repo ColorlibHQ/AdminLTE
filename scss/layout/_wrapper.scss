@@ -8,7 +8,7 @@
   display: grid;
   grid-gap: 0;
   grid-template-areas:
-    "main-brand main-header"
+    "main-sidebar main-header"
     "main-sidebar content-wrapper"
     "main-sidebar main-footer";
   grid-template-columns: auto 1fr;

@@ -4,8 +4,8 @@
 
 @include brand-variant($sidebar-dark-bg, $sidebar-dark-color);
 
-.main-brand {
-  grid-area: main-brand;
+.brand-container {
+  // grid-area: main-brand;
   display: grid;
   grid-template-areas: "brand-link sidebar-mini-icon";
   grid-auto-flow: column;
@@ -14,11 +14,11 @@
   padding: $brand-link-padding-y $sidebar-padding-x;
   white-space: nowrap;
   border-bottom: $brand-link-border-buttom solid tint-color($dark, 10%);
-  min-width: $sidebar-width;
-  max-width: $sidebar-width;
-  height: min-content;
-  @include transition($sidebar-transition);
-  z-index: $zindex-main-brand;
+  // min-width: $sidebar-width;
+  // max-width: $sidebar-width;
+  // height: min-content;
+  // @include transition($sidebar-transition);
+  // z-index: $zindex-main-brand;
 
   .brand-link {
     grid-area: brand-link;
@@ -45,13 +45,13 @@
     }
   }
 
-  .brand-icons {
-    display: inline-flex;
+  // .brand-icons {
+  //   display: inline-flex;
 
-    > * {
-      color: $gray-400;
-    }
-  }
+  //   > * {
+  //     color: $gray-400;
+  //   }
+  // }
 
   .sidebar-full-icon,
   .header-full-icon {
@@ -60,27 +60,28 @@
 
   .sidebar-mini-icon {
     grid-area: sidebar-mini-icon;
+    color: $gray-400;
   }
 }
 
 .sidebar-collapse:not(.sidebar-hover) {
-  .main-brand {
+  .brand-container {
     grid-template-areas: "sidebar-mini-icon brand-link";
     justify-content: center;
-    min-width: $sidebar-mini-width;
-    max-width: $sidebar-mini-width;
+    // min-width: $sidebar-mini-width;
+    // max-width: $sidebar-mini-width;
     .brand-link {
       display: none;
     }
   }
 }
 
-@include media-breakpoint-down(md) {
-  .main-brand {
-    min-width: unset;
-    max-width: unset;
-    .sidebar-mini-icon {
-      display: none;
-    }
-  }
-}
+// @include media-breakpoint-down(md) {
+//   .main-brand {
+//     min-width: unset;
+//     max-width: unset;
+//     .sidebar-mini-icon {
+//       display: none;
+//     }
+//   }
+// }

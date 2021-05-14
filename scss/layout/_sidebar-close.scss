@@ -2,11 +2,11 @@
   .main-sidebar {
     margin-left: -#{$sidebar-width};
   }
-  @include media-breakpoint-up(md) {
-    .main-brand {
-      margin-left: -#{$sidebar-width};
-    }
-  }
+  // @include media-breakpoint-up(md) {
+  //   .main-brand {
+  //     margin-left: -#{$sidebar-width};
+  //   }
+  // }
 }
 
 @include media-breakpoint-up(sm) {

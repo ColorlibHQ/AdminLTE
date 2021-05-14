@@ -105,6 +105,13 @@ $header-mobile-light-color:   $dark;
 $content-padding-y:           0 !default;
 $content-padding-x:           .5rem !default;
 
+// IMAGE SIZES
+// --------------------------------------------------------
+$img-size-sm: 1.875rem !default;
+$img-size-md: 3.75rem !default;
+$img-size-lg: 6.25rem !default;
+$img-size-push: .625rem !default;
+
 // MAIN FOOTER
 // --------------------------------------------------------
 $main-footer-padding:           1rem !default;
@@ -124,14 +131,27 @@ $main-footer-color:             tint-color($gray-700, 25%) !default;
 $brand-link-padding-y:        $navbar-brand-padding-y + $navbar-padding-y;
 $brand-link-border-buttom:    1px;
 
+
+// Cards
+// --------------------------------------------------------
+$card-border-color: $gray-100 !default;
+$card-dark-border-color: tint-color($gray-900, 10%) !default;
+$card-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2) !default;
+$card-title-font-size: 1.1rem !default;
+$card-title-font-size-sm: 1rem !default;
+$card-title-font-weight: $font-weight-normal !default;
+$card-nav-link-padding-sm-y: .4rem !default;
+$card-nav-link-padding-sm-x: .8rem !default;
+$card-img-size: $img-size-sm !default;
+
 // Z-INDEX
 // --------------------------------------------------------
 $zindex-main-header:          $zindex-fixed + 4 !default;
 $zindex-sidebar:              $zindex-fixed + 8 !default;
-$zindex-main-brand:           $zindex-main-header !default;
+// $zindex-main-brand:           $zindex-main-header !default;
 $zindex-main-footer:          $zindex-fixed + 2 !default;
 $zindex-sidebar-horizontal:   $zindex-main-header - 2 !default;
-$zindex-header-mobile:        $zindex-main-brand + 2 !default;
+// $zindex-header-mobile:        $zindex-main-brand + 2 !default;
 $zindex-control-sidebar:      $zindex-fixed + 1 !default;
 $zindex-toasts:               $zindex-sidebar + 2 !default;
 $zindex-content-wrapper:      $zindex-sidebar - 2 !default;

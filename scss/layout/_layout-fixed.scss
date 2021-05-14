@@ -1,12 +1,12 @@
 @include media-breakpoint-up(md) {
   .layout-fixed:not(.sidebar-horizontal) {
-    .main-brand {
-      bottom: 0;
-      float: none;
-      left: 0;
-      position: fixed;
-      top: 0;
-    }
+    // .main-brand {
+    //   bottom: 0;
+    //   float: none;
+    //   left: 0;
+    //   position: fixed;
+    //   top: 0;
+    // }
 
     .main-sidebar {
       bottom: 0;
