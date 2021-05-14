@@ -54,69 +54,71 @@
         </a>
         <span class="brand-icons mx-2">
           <a class="sidebar-mini-icon mx-1" data-pushmenu="mini" href="#" role="button"><i class="fas fa-angle-double-left"></i></a>
-          <a class="header-full-icon mx-2" data-pushmenu="header" href="#" role="button"><i class="fas fa-align-right"></i></a>
-          <a class="sidebar-full-icon mx-2" data-pushmenu="full" href="#" role="button"><i class="fas fa-bars"></i></a>
+          <!-- <a class="header-full-icon mx-2" data-pushmenu="header" href="#" role="button"><i class="fas fa-align-right"></i></a> -->
+          <!-- <a class="sidebar-full-icon mx-2" data-pushmenu="full" href="#" role="button"><i class="fas fa-bars"></i></a> -->
         </span>
       </div>
       <!-- Sidebar -->
-      <nav class="sidebar">
-        <!-- Sidebar Menu -->
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-              </p>
-            </a>
-          </li>
-          <li class="nav-header">MULTI LEVEL EXAMPLE</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-circle"></i>
-              <p>
-                Level 1
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon far fa-circle"></i>
-                  <p>
-                    Level 2
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon far fa-dot-circle"></i>
-                      <p>
-                        Level 3
-                      </p>
-                    </a>
-                  </li>
-                </ul>
-                <a href="#" class="nav-link">
-                  <i class="nav-icon far fa-circle"></i>
-                  <p>
-                    Level 2
-                  </p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <div class="sidebar">
+        <nav class="mt-2">
+          <!-- Sidebar Menu -->
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Simple Link
+                </p>
+              </a>
+            </li>
+            <li class="nav-header">MULTI LEVEL EXAMPLE</li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-circle"></i>
+                <p>
+                  Level 1
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon far fa-circle"></i>
+                    <p>
+                      Level 2
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">
+                        <i class="nav-icon far fa-dot-circle"></i>
+                        <p>
+                          Level 3
+                        </p>
+                      </a>
+                    </li>
+                  </ul>
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon far fa-circle"></i>
+                    <p>
+                      Level 2
+                    </p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Simple Link
+                </p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
       <!-- /.sidebar -->
     </aside>
 
@@ -203,16 +205,22 @@
             <!-- ./col -->
           </div>
           <!-- /.row -->
-          <button type="button" class="btn btn-primary">Primary</button>
-          <button type="button" class="btn btn-secondary">Secondary</button>
-          <button type="button" class="btn btn-success">Success</button>
-          <button type="button" class="btn btn-danger">Danger</button>
-          <button type="button" class="btn btn-warning">Warning</button>
-          <button type="button" class="btn btn-info">Info</button>
-          <button type="button" class="btn btn-light">Light</button>
-          <button type="button" class="btn btn-dark">Dark</button>
-          <button type="button" class="btn btn-link">Link</button>
-          <!-- /.row -->
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-7">
+              <button type="button" class="btn btn-primary">Primary</button>
+              <button type="button" class="btn btn-secondary">Secondary</button>
+              <button type="button" class="btn btn-success">Success</button>
+              <button type="button" class="btn btn-danger">Danger</button>
+              <button type="button" class="btn btn-warning">Warning</button>
+              <button type="button" class="btn btn-info">Info</button>
+              <button type="button" class="btn btn-light">Light</button>
+              <button type="button" class="btn btn-dark">Dark</button>
+              <button type="button" class="btn btn-link">Link</button>
+            </section>
+          </div>
+          <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
       </div>
     </div>
