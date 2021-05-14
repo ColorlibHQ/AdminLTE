@@ -8,7 +8,7 @@ $enable-dark-mode:            true;
 @import "../adminlte";
 // stylelint-disable no-invalid-position-at-import-rule
 @include color-scheme-alt(alternative-color-scheme($default-color-scheme)) {
-  @import "../parts/dark";
+  @import "parts/core";
 }
 
 // Additional Global Utilities
