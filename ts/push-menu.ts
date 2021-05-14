@@ -78,6 +78,7 @@ class PushMenu {
   expand(): void {
     this.sidebarOpening()
     const bodyClass = document.body.classList
+    bodyClass.remove(CLASS_NAME_HEADER_MOBILE_OPEN)
     bodyClass.remove(CLASS_NAME_SIDEBAR_CLOSE)
     bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
     bodyClass.add(CLASS_NAME_SIDEBAR_OPEN)

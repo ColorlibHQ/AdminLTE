@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /**
  * --------------------------------------------
  * AdminLTE treeview.ts
@@ -33,8 +32,6 @@ const Defaults = {
 
 class Treeview {
   open(navItem: Element | null, childNavItem: HTMLElement | null | undefined): void {
-    console.log('🚀 ~ file: treeview.ts ~ line 31 ~ Treeview ~ open ~ childNavItem', childNavItem)
-
     navItem?.classList.add(CLASS_NAME_MENU_OPEN)
 
     const height: number = childNavItem?.scrollHeight ?? 0

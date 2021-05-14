@@ -32,7 +32,7 @@ class SidebarOverlay {
   addSidebaBreakPoint(): void {
     const bodyClass = document.body.classList
     const widthOutput: number = window.innerWidth
-    if (widthOutput > Defaults.onLayouMobile) {
+    if (widthOutput >= Defaults.onLayouMobile) {
       bodyClass.remove(CLASS_NAME_LAYOUT_MOBILE)
     } else {
       bodyClass.add(CLASS_NAME_LAYOUT_MOBILE)
