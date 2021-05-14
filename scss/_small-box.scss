@@ -3,12 +3,10 @@
 //
 
 .small-box {
-  @include border-radius($border-radius);
-  @include box-shadow($card-shadow);
-
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   position: relative;
+  color: $light;
 
   // content wrapper
   > .inner {
@@ -103,13 +101,7 @@
       top: 15px;
       transition: transform $transition-speed linear;
 
-      &.fa,
-      &.fas,
-      &.far,
-      &.fab,
-      &.fal,
-      &.fad,
-      &.ion {
+      &.inner-icon {
         font-size: 70px;
         top: 20px;
       }
@@ -132,13 +124,7 @@
     .icon {
       > i {
         &,
-        &.fa,
-        &.fas,
-        &.far,
-        &.fab,
-        &.fal,
-        &.fad,
-        &.ion {
+        &.inner-icon {
           transform: scale(1.1);
         }
       }
