@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- For RTL verison -->
+<!-- <html lang="en" dir="rtl"> -->
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +11,8 @@
   <title>AdminLTE v4</title>
   <!-- For dark mode use dist/css/alt/adminlte.pcs.css, remove dist/css/adminlte.css -->
   <!-- <link rel="stylesheet" href="dist/css/dark/adminlte-dark.css"> -->
+  <!-- For RTL verison -->
+  <!-- <link rel="stylesheet" href="dist/css/rtl/adminlte.rtl.css"> -->
   <link rel="stylesheet" href="dist/css/adminlte.css">
   <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -46,17 +50,13 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar shadow">
+    <aside class="main-sidebar sidebar-bg-dark sidebar-color-primary shadow">
       <div class="brand-container">
         <a href="#" class="brand-link">
-          <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-80">
+          <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-80 shadow">
           <span class="brand-text fw-light">AdminLTE 4</span>
         </a>
-        <span class="brand-icons mx-2">
-          <a class="sidebar-mini-icon mx-1" data-pushmenu="mini" href="#" role="button"><i class="fas fa-angle-double-left"></i></a>
-          <!-- <a class="header-full-icon mx-2" data-pushmenu="header" href="#" role="button"><i class="fas fa-align-right"></i></a> -->
-          <!-- <a class="sidebar-full-icon mx-2" data-pushmenu="full" href="#" role="button"><i class="fas fa-bars"></i></a> -->
-        </span>
+        <a class="pushmenu mx-1" data-pushmenu="mini" href="#" role="button"><i class="fas fa-angle-double-left"></i></a>
       </div>
       <!-- Sidebar -->
       <div class="sidebar">

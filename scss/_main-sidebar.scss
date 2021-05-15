@@ -2,21 +2,6 @@
 // Core: Main Sidebar
 //
 
-// Default Sidebar Variant
-@include sidebar-variant(
-  $sidebar-dark-bg,
-  $sidebar-dark-hover-bg,
-  $sidebar-dark-color,
-  $sidebar-dark-hover-color,
-  $sidebar-dark-active-color,
-  $sidebar-dark-submenu-bg,
-  $sidebar-dark-submenu-color,
-  $sidebar-dark-submenu-hover-color,
-  $sidebar-dark-submenu-hover-bg,
-  $sidebar-dark-submenu-active-color,
-  $sidebar-dark-submenu-active-bg
-);
-
 .main-sidebar {
   grid-area: main-sidebar;
   @include transition($sidebar-transition);

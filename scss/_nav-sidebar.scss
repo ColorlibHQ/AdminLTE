@@ -1,3 +1,39 @@
+.sidebar-bg-dark {
+  @include nav-treeview-dark (
+    $sidebar-dark-bg,
+    $sidebar-dark-hover-bg,
+    $sidebar-dark-color,
+    $sidebar-dark-hover-color,
+    $sidebar-dark-active-color,
+    $sidebar-dark-submenu-bg,
+    $sidebar-dark-submenu-color,
+    $sidebar-dark-submenu-hover-color,
+    $sidebar-dark-submenu-hover-bg,
+    $sidebar-dark-submenu-active-color,
+    $sidebar-dark-submenu-active-bg
+  );
+}
+
+.sidebar-bg-light {
+  @include nav-treeview-light (
+    $sidebar-light-bg,
+    $sidebar-light-hover-bg,
+    $sidebar-light-color,
+    $sidebar-light-hover-color,
+    $sidebar-light-active-color,
+    $sidebar-light-submenu-bg,
+    $sidebar-light-submenu-color,
+    $sidebar-light-submenu-hover-color,
+    $sidebar-light-submenu-hover-bg,
+    $sidebar-light-submenu-active-color,
+    $sidebar-light-submenu-active-bg
+  );
+}
+
+.sidebar-color-primary {
+  @include sidebar-color($primary);
+}
+
 // Sidebar navigation menu
 .nav-sidebar {
   // All levels

@@ -16,7 +16,7 @@
       top: auto;
 
       .sidebar {
-        height: subtract(100vh, add($main-header-height-inner, $main-header-bottom-border-width / 2));
+        height: subtract(100vh, add($main-header-height-inner, $main-header-bottom-border-width));
       }
     }
 

@@ -25,7 +25,6 @@
     white-space: nowrap;
   }
 
-  .sidebar .user-panel > .info,
   .nav-sidebar .nav-link p,
   .brand-link {
     margin-left: -10px;
@@ -45,7 +44,6 @@
       display: inline-block;
     }
 
-    .sidebar .user-panel > .info,
     .nav-sidebar .nav-link p,
     .brand-link {
       margin-left: 0;
@@ -89,26 +87,24 @@
 //   }
 // }
 
-.sidebar-is-opening {
-  .sidebar .user-panel > .info,
-  .nav-sidebar .nav-link p,
-  .brand-link {
-    margin-left: 0;
-    animation-name: fadeIn;
-    animation-duration: $transition-speed;
-    animation-fill-mode: both;
-    visibility: visible;
-  }
-}
+// .sidebar-is-opening {
+//   .nav-sidebar .nav-link p,
+//   .brand-link {
+//     margin-left: 0;
+//     animation-name: fadeIn;
+//     animation-duration: $transition-speed;
+//     animation-fill-mode: both;
+//     visibility: visible;
+//   }
+// }
 
-.sidebar-is-collapsing {
-  .sidebar .user-panel > .info,
-  .nav-sidebar .nav-link p,
-  .brand-link {
-    margin-left: -10px;
-    animation-name: fadeOut;
-    animation-duration: $transition-speed;
-    animation-fill-mode: both;
-    visibility: visible;
-  }
-}
+// .sidebar-is-collapsing {
+//   .nav-sidebar .nav-link p,
+//   .brand-link {
+//     margin-left: -10px;
+//     animation-name: fadeOut;
+//     animation-duration: $transition-speed;
+//     animation-fill-mode: both;
+//     visibility: visible;
+//   }
+// }

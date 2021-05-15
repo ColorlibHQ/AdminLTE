@@ -2,86 +2,74 @@
 // Core: Brand
 //
 
-@include brand-variant($sidebar-dark-bg, $sidebar-dark-color);
+// @include brand-variant($sidebar-dark-bg, $sidebar-dark-color);
 
 .brand-container {
-  // grid-area: main-brand;
   display: grid;
-  grid-template-areas: "brand-link sidebar-mini-icon";
-  grid-auto-flow: column;
+  grid-template-areas: "brand-link pushmenu";
   justify-content: space-between;
   font-size: $navbar-brand-font-size;
+  transition: width $transition-speed $transition-fn;
   padding: $brand-link-padding-y $sidebar-padding-x;
   white-space: nowrap;
-  border-bottom: $brand-link-border-buttom solid tint-color($dark, 10%);
-  // min-width: $sidebar-width;
-  // max-width: $sidebar-width;
-  // height: min-content;
-  // @include transition($sidebar-transition);
-  // z-index: $zindex-main-brand;
+  overflow: hidden;
 
   .brand-link {
     grid-area: brand-link;
-  }
-
-  .brand-image {
-    grid-area: brand-img;
-    float: left;
-    line-height: .8;
-    margin-left: .8rem;
-    margin-right: .5rem;
-    margin-top: -3px;
-    max-height: 33px;
-    width: auto;
-  }
-
-  .brand-text {
-    grid-area: brand-text;
-    color: $sidebar-dark-color;
 
     &:hover {
       color: $white;
       text-decoration: none;
     }
+
+    .brand-image {
+      float: left;
+      line-height: .8;
+      margin-left: .8rem;
+      margin-right: .5rem;
+      margin-top: -3px;
+      max-height: 33px;
+      width: auto;
+    }
   }
 
-  // .brand-icons {
-  //   display: inline-flex;
-
-  //   > * {
-  //     color: $gray-400;
-  //   }
-  // }
-
-  .sidebar-full-icon,
-  .header-full-icon {
-    display: none;
+  .pushmenu {
+    grid-area: pushmenu;
   }
 
-  .sidebar-mini-icon {
-    grid-area: sidebar-mini-icon;
-    color: $gray-400;
+  .sidebar-bg-dark & {
+    border-bottom: $brand-link-border-buttom solid tint-color($dark, 10%);
+
+    .brand-link,
+    .pushmenu {
+      color: rgba($white, .8);
+
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+
+  .sidebar-bg-light & {
+    border-bottom: $brand-link-border-buttom solid $gray-300;
+
+    .brand-link,
+    .pushmenu {
+      color: rgba($black, .8);
+
+      &:hover {
+        color: $black;
+      }
+    }
   }
 }
 
 .sidebar-collapse:not(.sidebar-hover) {
   .brand-container {
-    grid-template-areas: "sidebar-mini-icon brand-link";
     justify-content: center;
-    // min-width: $sidebar-mini-width;
-    // max-width: $sidebar-mini-width;
+
     .brand-link {
-      display: none;
+      width: 0;
     }
   }
 }
-
-// @include media-breakpoint-down(md) {
-//   .main-brand {
-//     min-width: unset;
-//     max-width: unset;
-//     .sidebar-mini-icon {
-//       display: none;
-//     }
-//   }
-// }
