@@ -55,6 +55,17 @@
   }
 }
 
+.btn-outline-light {
+  color: darken($light, 20%);
+  border-color: darken($light, 20%);
+
+  &.disabled,
+  &:disabled {
+    color: darken($light, 20%);
+    border-color: darken($light, 20%);
+  }
+}
+
 // Application buttons
 .btn-app {
   @include border-radius(3px);
@@ -142,13 +153,21 @@
 
   @each $color, $value in $theme-colors-alt {
     .btn-#{$color} {
-      @include button-variant($value, $value);
+      @if $color == dark {
+        @include button-variant(darken($value, 5%), lighten($value, 10%));
+      } @else {
+        @include button-variant($value, $value);
+      }
     }
   }
 
   @each $color, $value in $theme-colors-alt {
     .btn-outline-#{$color} {
-      @include button-outline-variant($value);
+      @if $color == dark {
+        @include button-outline-variant(darken($value, 20%));
+      } @else {
+        @include button-outline-variant($value);
+      }
     }
   }
 }
