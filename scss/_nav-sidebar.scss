@@ -9,6 +9,7 @@
 
       .right {
         @include transition(transform $transition-fn $transition-speed);
+        transform: none #{"/*rtl:rotate(-180deg)*/"};
       }
     }
 
@@ -57,7 +58,7 @@
     > .nav-link {
       svg.right,
       i.right {
-        @include rotate(-90deg);
+        transform: rotate(-90deg) #{"/*rtl:rotate(-90deg)*/"};
       }
     }
   }
