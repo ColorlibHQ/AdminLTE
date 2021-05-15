@@ -1,6 +1,23 @@
 // Sidebar navigation menu
 .nav-sidebar {
   // All levels
+  .nav-item {
+    width: 100%;
+
+    > .nav-link {
+      margin-bottom: .2rem;
+
+      .right {
+        @include transition(transform $transition-fn $transition-speed);
+      }
+    }
+
+    &:not(.menu-open) .nav-treeview {
+      display: none;
+    }
+  }
+
+  // All levels
   .nav-link > .right,
   .nav-link > p > .right {
     position: absolute;
@@ -35,11 +52,13 @@
     padding: 0;
   }
 
-  .nav-item {
-    width: 100%;
-
-    &:not(.menu-open) .nav-treeview {
-      display: none;
+  .menu-open,
+  .menu-is-opening {
+    > .nav-link {
+      svg.right,
+      i.right {
+        @include rotate(-90deg);
+      }
     }
   }
 }

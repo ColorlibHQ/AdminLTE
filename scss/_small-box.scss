@@ -3,6 +3,9 @@
 //
 
 .small-box {
+  @include border-radius($border-radius);
+  @include box-shadow($card-shadow);
+
   display: block;
   margin-bottom: 1.25rem;
   position: relative;

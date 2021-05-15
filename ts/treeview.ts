@@ -16,6 +16,7 @@ import {
  */
 
 const CLASS_NAME_MENU_OPEN = 'menu-open'
+const CLASS_NAME_MENU_IS_OPEN = 'menu-is-open'
 
 const SELECTOR_NAV_ITEM = '.nav-item'
 const SELECTOR_DATA_TOGGLE = '[data-widget="treeview"]'
@@ -33,6 +34,7 @@ const Defaults = {
 class Treeview {
   open(navItem: Element | null, childNavItem: HTMLElement | null | undefined): void {
     navItem?.classList.add(CLASS_NAME_MENU_OPEN)
+    navItem?.classList.add(CLASS_NAME_MENU_IS_OPEN)
 
     const height: number = childNavItem?.scrollHeight ?? 0
 
@@ -51,6 +53,7 @@ class Treeview {
   }
 
   close(navItem: Element, childNavItem: HTMLElement | null | undefined): void {
+    navItem.classList.remove(CLASS_NAME_MENU_IS_OPEN)
     const height: number = childNavItem?.scrollHeight ?? 0
 
     childNavItem?.style.setProperty('overflow', 'hidden')
