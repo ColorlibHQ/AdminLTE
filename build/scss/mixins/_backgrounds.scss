@@ -60,9 +60,8 @@
 
       &:disabled,
       &.disabled {
-        background: $color linear-gradient(180deg, mix($body-bg, $color, 15%), $color) repeat-x !important;
         background-image: none !important;
-        color: color-yiq($color);
+        border-color: $color;
       }
     }
   }
