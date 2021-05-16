@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable camelcase */
 /* eslint-disable no-undef */
 /* eslint-disable unicorn/prefer-module */
@@ -15,12 +16,24 @@ const postcss = require('gulp-postcss')
 const sourcemaps = require('gulp-sourcemaps')
 const fileinclude = require('gulp-file-include')
 
+const esbuild = require('esbuild')
+// const { getTarget } = require('./get.browserslist.target')
+
+const pkg = require('./package')
+const year = new Date().getFullYear()
+const banner = `/*!
+ * AdminLTE v${pkg.version} (${pkg.homepage})
+ * Copyright 2014-${year} ${pkg.author}
+ * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
+ */`
+
 // Define paths
 
 const paths = {
   dist: {
     base: './dist/',
     css: './dist/css',
+    js: './dist/js',
     html: './dist/pages',
     assets: './dist/assets',
     img: './dist/assets/img',
@@ -37,12 +50,14 @@ const paths = {
     assets: './src/assets/**/*.*',
     partials: './src/partials/**/*.html',
     scss: './src/scss',
+    ts: './src/ts',
     node_modules: './node_modules/',
     vendor: './vendor'
   },
   temp: {
     base: './.temp/',
     css: './.temp/css',
+    js: './.temp/js',
     html: './.temp/pages',
     assets: './.temp/assets',
     vendor: './.temp/vendor'
@@ -77,6 +92,23 @@ gulp.task('scss', () => {
       .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest(paths.temp.css))
       .pipe(browserSync.stream())
+})
+
+gulp.task('ts', () => {
+  return esbuild.build({
+    entryPoints: [paths.src.ts + '/adminlte.ts'],
+    banner: {
+      js: banner
+    },
+    bundle: true,
+    color: true,
+    format: 'iife',
+    sourcemap: true,
+    target: ['chrome60'],
+    outfile: paths.temp.js + '/adminlte.js'
+  }).catch(
+    error => console.error(error)
+  )
 })
 
 gulp.task('index', () => {
@@ -116,12 +148,13 @@ gulp.task('vendor', () => {
     .pipe(gulp.dest(paths.temp.vendor))
 })
 
-gulp.task('serve', gulp.series('scss', 'html', 'index', 'assets', 'vendor', () => {
+gulp.task('serve', gulp.series('scss', 'ts', 'html', 'index', 'assets', 'vendor', () => {
   browserSync.init({
     server: paths.temp.base
   })
 
-  gulp.watch([paths.src.scss + '/**/*.scss', paths.src.scss + '/adminlte.scss'], gulp.series('scss'))
+  gulp.watch([paths.src.scss], gulp.series('scss'))
+  gulp.watch([paths.src.ts], gulp.series('ts'))
   gulp.watch([paths.src.html, paths.src.base + '*.html', paths.src.partials], gulp.series('html', 'index'))
   gulp.watch([paths.src.assets], gulp.series('assets'))
   gulp.watch([paths.src.vendor], gulp.series('vendor'))
