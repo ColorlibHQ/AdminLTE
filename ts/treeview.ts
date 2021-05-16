@@ -94,7 +94,7 @@ domReady(() => {
   const button = document.querySelectorAll(SELECTOR_DATA_TOGGLE)
   for (const btn of button) {
     btn.addEventListener('click', event => {
-      event.preventDefault()
+      // event.preventDefault()
 
       const treeviewMenu = event.target as Element
 
