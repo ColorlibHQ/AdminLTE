@@ -38,8 +38,10 @@ class Treeview {
 
     const height: number = childNavItem?.scrollHeight ?? 0
 
+    childNavItem?.style.setProperty('transition', `height ${Defaults.transitionDuration}ms ${Defaults.transitionTimingFuntion}`)
     childNavItem?.style.setProperty('overflow', 'hidden')
     childNavItem?.style.setProperty('height', '0px')
+    childNavItem?.style.setProperty('display', 'block')
 
     setTimeout(() => {
       childNavItem?.style.setProperty('height', `${height}px`)
@@ -47,15 +49,17 @@ class Treeview {
 
     setTimeout(() => {
       childNavItem?.style.removeProperty('overflow')
-      childNavItem?.style.setProperty('height', 'auto')
       childNavItem?.style.removeProperty('height')
     }, Defaults.transitionDuration)
   }
 
   close(navItem: Element, childNavItem: HTMLElement | null | undefined): void {
     navItem.classList.remove(CLASS_NAME_MENU_IS_OPEN)
+    navItem.classList.remove(CLASS_NAME_MENU_OPEN)
+
     const height: number = childNavItem?.scrollHeight ?? 0
 
+    childNavItem?.style.setProperty('transition', `height ${Defaults.transitionDuration}ms ${Defaults.transitionTimingFuntion}`)
     childNavItem?.style.setProperty('overflow', 'hidden')
     childNavItem?.style.setProperty('height', `${height}px`)
 
@@ -66,21 +70,19 @@ class Treeview {
     setTimeout(() => {
       childNavItem?.style.removeProperty('overflow')
       childNavItem?.style.removeProperty('height')
-      navItem.classList.remove(CLASS_NAME_MENU_OPEN)
+      childNavItem?.style.removeProperty('display')
     }, Defaults.transitionDuration)
   }
 
   toggle(treeviewMenu: Element): void {
     const navItem: HTMLElement | null = treeviewMenu.closest(SELECTOR_NAV_ITEM)
     const childNavItem: HTMLElement | null | undefined = navItem?.querySelector('.nav-treeview')
-    childNavItem?.style.setProperty('transition', `height ${Defaults.transitionDuration}ms ${Defaults.transitionTimingFuntion}`)
-    setTimeout(() => {
-      if (navItem?.classList.contains(CLASS_NAME_MENU_OPEN)) {
-        this.close(navItem, childNavItem)
-      } else {
-        this.open(navItem, childNavItem)
-      }
-    }, 1)
+
+    if (navItem?.classList.contains(CLASS_NAME_MENU_OPEN)) {
+      this.close(navItem, childNavItem)
+    } else {
+      this.open(navItem, childNavItem)
+    }
   }
 }
 

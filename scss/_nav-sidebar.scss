@@ -38,8 +38,6 @@
 .nav-sidebar {
   // All levels
   .nav-item {
-    width: 100%;
-
     > .nav-link {
       margin-bottom: .2rem;
 
@@ -47,10 +45,6 @@
         @include transition(transform $transition-fn $transition-speed);
         transform: none #{"/*rtl:rotate(-180deg)*/"};
       }
-    }
-
-    &:not(.menu-open) .nav-treeview {
-      display: none;
     }
   }
 
@@ -84,9 +78,15 @@
 
   // Tree view menu
   .nav-treeview {
-    // display: none;
+    display: none;
     list-style: none;
     padding: 0;
+  }
+
+  .menu-open {
+    > .nav-treeview {
+      display: block;
+    }
   }
 
   .menu-open,
