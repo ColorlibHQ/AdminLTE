@@ -7,11 +7,11 @@
   "main": "dist/js/adminlte.min.js",
   "scripts": {
     "bundlewatch": "bundlewatch --config .bundlewatch.config.json",
-    "css-lint": "stylelint \"scss/**/*.scss\" --cache --cache-location .cache/.stylelintcache",
+    "css-lint": "stylelint \"src/scss/**/*.scss\" --cache --cache-location .cache/.stylelintcache",
     "lockfile-lint": "lockfile-lint --allowed-hosts npm --allowed-schemes https: --empty-hostname false --type npm --path package-lock.json",
     "ts:type-check": "tsc --noEmit",
     "js-lint": "eslint --ext=js,ts --cache --cache-location .cache/.eslintcache --report-unused-disable-directives .",
-    "lint": "npm-run-all --continue-on-error --parallel css-lint js-lint lockfile-lint"
+    "lint": "npm-run-all --continue-on-error --parallel css-lint js-lint ts:type-check lockfile-lint"
   },
   "keywords": [
     "css",
@@ -40,8 +40,8 @@
     "bootstrap": "^5.0.1"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.23.0",
-    "@typescript-eslint/parser": "^4.23.0",
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
     "autoprefixer": "^10.2.5",
     "browser-sync": "^2.26.14",
     "bundlewatch": "^0.3.2",
@@ -60,6 +60,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^3.0.0",
+    "gulp-stylelint": "^13.0.0",
     "gulp-wait": "0.0.2",
     "lockfile-lint": "^4.6.2",
     "npm-run-all": "^4.1.5",

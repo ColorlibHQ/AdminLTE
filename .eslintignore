@@ -1,6 +1,6 @@
 **/*.min.js
 **/plugins/
-/dist/js/adminlte.js
+/.temp/
+/dist/
 /docs/
 /docs_html/
-/.temp/

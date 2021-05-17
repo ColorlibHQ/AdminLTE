@@ -6,15 +6,17 @@
 const browserSync = require('browser-sync').create()
 const cleanCss = require('gulp-clean-css')
 const del = require('del')
-const gulp = require('gulp')
+const esbuild = require('esbuild')
+const { ESLint } = require('eslint')
+const { src, dest, lastRun, watch, series } = require('gulp')
+const fileinclude = require('gulp-file-include')
 const npmDist = require('gulp-npm-dist')
-const sass = require('gulp-sass')
-const wait = require('gulp-wait')
 const postcss = require('gulp-postcss')
 const rename = require('gulp-rename')
+const sass = require('gulp-sass')
 const sourcemaps = require('gulp-sourcemaps')
-const fileinclude = require('gulp-file-include')
-const esbuild = require('esbuild')
+const gulpStylelint = require('gulp-stylelint')
+const wait = require('gulp-wait')
 
 sass.compiler = require('sass')
 
@@ -100,18 +102,28 @@ function postcssRtlOptions() {
 }
 
 // Compile SCSS
-gulp.task('scss', () => {
-  return gulp.src(paths.src.scss + '/adminlte.scss')
-      .pipe(wait(500))
-      .pipe(sourcemaps.init())
-      .pipe(sass(sassOptions).on('error', sass.logError))
-      .pipe(postcss(postcssOptions))
-      .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest(paths.temp.css))
-      .pipe(browserSync.stream())
-})
+const scss = () => {
+  return src(paths.src.scss + '/adminlte.scss')
+    .pipe(wait(500))
+    .pipe(sourcemaps.init())
+    .pipe(sass(sassOptions).on('error', sass.logError))
+    .pipe(postcss(postcssOptions))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(paths.temp.css))
+    .pipe(browserSync.stream())
+}
 
-gulp.task('ts', () => {
+// Lint SCSS
+const lintScss = () => {
+  return src([paths.src.scss + '/**/*.scss'], { since: lastRun(lintScss) })
+    .pipe(gulpStylelint({
+      reporters: [
+        { formatter: 'string', console: true }
+      ]
+    }))
+}
+
+const ts = () => {
   return esbuild.build({
     entryPoints: [paths.src.ts + '/adminlte.ts'],
     banner: {
@@ -125,71 +137,81 @@ gulp.task('ts', () => {
   }).catch(
     error => console.error(error)
   )
-})
+}
 
-gulp.task('index', () => {
-  return gulp.src([paths.src.base + '*.html'])
-      .pipe(fileinclude({
-        prefix: '@@',
-        basepath: './src/partials/',
-        context: {
-          environment: 'development'
-        }
-      }))
-      .pipe(gulp.dest(paths.temp.base))
-      .pipe(browserSync.stream())
-})
+// Lint TS
+async function lintTs() {
+  const eslint = new ESLint()
+  const results = await eslint.lintFiles([paths.src.ts + '/**/*.ts'])
+  const formatter = await eslint.loadFormatter('stylish')
+  const resultText = formatter.format(results)
+  console.log(resultText)
+}
 
-gulp.task('html', () => {
-  return gulp.src([paths.src.html])
-      .pipe(fileinclude({
-        prefix: '@@',
-        basepath: './src/partials/',
-        context: {
-          environment: 'development'
-        }
-      }))
-      .pipe(gulp.dest(paths.temp.html))
-      .pipe(browserSync.stream())
-})
+const index = () => {
+  return src([paths.src.base + '*.html'])
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: './src/partials/',
+      context: {
+        environment: 'development'
+      }
+    }))
+    .pipe(dest(paths.temp.base))
+    .pipe(browserSync.stream())
+}
 
-gulp.task('assets', () => {
-  return gulp.src([paths.src.assets])
-      .pipe(gulp.dest(paths.temp.assets))
-      .pipe(browserSync.stream())
-})
+const html = () => {
+  return src([paths.src.html])
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: './src/partials/',
+      context: {
+        environment: 'development'
+      }
+    }))
+    .pipe(dest(paths.temp.html))
+    .pipe(browserSync.stream())
+}
 
-gulp.task('vendor', () => {
-  return gulp.src(npmDist(), { base: paths.src.node_modules })
-    .pipe(gulp.dest(paths.temp.vendor))
-})
+const assets = () => {
+  return src([paths.src.assets])
+    .pipe(dest(paths.temp.assets))
+    .pipe(browserSync.stream())
+}
 
-gulp.task('serve', gulp.series('scss', 'ts', 'html', 'index', 'assets', 'vendor', () => {
+const vendor = () => {
+  return src(npmDist({ copyUnminified: true }), { base: paths.src.node_modules })
+    .pipe(dest(paths.temp.vendor))
+}
+
+const serve = () => {
   browserSync.init({
     server: paths.temp.base
   })
 
-  gulp.watch([paths.src.scss], gulp.series('scss'))
-  gulp.watch([paths.src.ts], gulp.series('ts'))
-  gulp.watch([paths.src.html, paths.src.base + '*.html', paths.src.partials], gulp.series('html', 'index'))
-  gulp.watch([paths.src.assets], gulp.series('assets'))
-  gulp.watch([paths.src.vendor], gulp.series('vendor'))
-}))
+  watch([paths.src.scss], series(scss))
+  watch([paths.src.scss], series(lintScss))
+  watch([paths.src.ts], series(ts))
+  watch([paths.src.html, paths.src.base + '*.html', paths.src.partials], series(html, index))
+  watch([paths.src.assets], series(assets))
+  watch([paths.src.vendor], series(vendor))
+}
 
 // Minify CSS
-gulp.task('minify:dist:css', () => {
-  return gulp.src([
+const minifyDistCss = () => {
+  return src([
     paths.dist.css + '/**/*.css'
   ], { base: paths.dist.css })
-  .pipe(sourcemaps.init({ loadMaps: true }))
-  .pipe(cleanCss())
-  .pipe(rename({ suffix: '.min' }))
-  .pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest(paths.dist.css))
-})
+    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(cleanCss())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(paths.dist.css))
+}
 
 // Minify JS
-gulp.task('minify:dist:js', () => {
+const minifyDistJs = () => {
   return esbuild.build({
     entryPoints: [paths.dist.js + '/adminlte.js'],
     format: 'iife',
@@ -200,55 +222,55 @@ gulp.task('minify:dist:js', () => {
   }).catch(
     error => console.error(error)
   )
-})
+}
 
 // Copy assets
-gulp.task('copy:dist:assets', () => {
-  return gulp.src(paths.src.assets)
-      .pipe(gulp.dest(paths.dist.assets))
-})
+const copyDistAssets = () => {
+  return src(paths.src.assets)
+    .pipe(dest(paths.dist.assets))
+}
 
 // Clean
-gulp.task('clean:dist', () => {
+const cleanDist = () => {
   return del([paths.dist.base])
-})
+}
 
 // Compile and copy scss/css
-gulp.task('copy:dist:css', () => {
-  return gulp.src([paths.src.scss + '/adminlte.scss'])
-      .pipe(wait(500))
-      .pipe(sourcemaps.init())
-      .pipe(sass(sassOptions).on('error', sass.logError))
-      .pipe(postcss(postcssOptions))
-      .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest(paths.dist.css))
-})
+const copyDistCss = () => {
+  return src([paths.src.scss + '/adminlte.scss'])
+    .pipe(wait(500))
+    .pipe(sourcemaps.init())
+    .pipe(sass(sassOptions).on('error', sass.logError))
+    .pipe(postcss(postcssOptions))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(paths.dist.css))
+}
 
-gulp.task('copy:dist:css:dark', () => {
-  return gulp.src([paths.src.scss + '/dark/*.scss'])
-      .pipe(wait(500))
-      .pipe(sourcemaps.init())
-      .pipe(sass(sassOptions).on('error', sass.logError))
-      .pipe(postcss(postcssOptions))
-      .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest(paths.dist.css + '/dark'))
-})
+const copyDistCssDark = () => {
+  return src([paths.src.scss + '/dark/*.scss'])
+    .pipe(wait(500))
+    .pipe(sourcemaps.init())
+    .pipe(sass(sassOptions).on('error', sass.logError))
+    .pipe(postcss(postcssOptions))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(paths.dist.css + '/dark'))
+}
 
-gulp.task('copy:dist:css:rtl', () => {
-  return gulp.src([
+const copyDistCssRtl = () => {
+  return src([
     paths.dist.css + '/*.css',
     paths.dist.css + '/dark/*.css'
   ])
-      .pipe(wait(500))
-      .pipe(sourcemaps.init({ loadMaps: true }))
-      .pipe(postcss(postcssRtlOptions))
-      .pipe(rename({ suffix: '.rtl' }))
-      .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest(paths.dist.css + '/rtl'))
-})
+    .pipe(wait(500))
+    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(postcss(postcssRtlOptions))
+    .pipe(rename({ suffix: '.rtl' }))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(paths.dist.css + '/rtl'))
+}
 
 // Compile and copy ts/js
-gulp.task('copy:dist:js', () => {
+const copyDistJs = () => {
   return esbuild.build({
     entryPoints: [paths.src.ts + '/adminlte.ts'],
     banner: {
@@ -262,41 +284,41 @@ gulp.task('copy:dist:js', () => {
   }).catch(
     error => console.error(error)
   )
-})
+}
 
 // Copy Html
-gulp.task('copy:dist:html', () => {
-  return gulp.src([paths.src.html])
-      .pipe(fileinclude({
-        prefix: '@@',
-        basepath: './src/partials/',
-        context: {
-          environment: 'production'
-        }
-      }))
-      .pipe(gulp.dest(paths.dist.html))
-})
+const copyDistHtml = () => {
+  return src([paths.src.html])
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: './src/partials/',
+      context: {
+        environment: 'production'
+      }
+    }))
+    .pipe(dest(paths.dist.html))
+}
 
 // Copy index
-gulp.task('copy:dist:html:index', () => {
-  return gulp.src([paths.src.base + '*.html'])
-      .pipe(fileinclude({
-        prefix: '@@',
-        basepath: './src/partials/',
-        context: {
-          environment: 'production'
-        }
-      }))
-      .pipe(gulp.dest(paths.dist.base))
-})
+const copyDistHtmlIndex = () => {
+  return src([paths.src.base + '*.html'])
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: './src/partials/',
+      context: {
+        environment: 'production'
+      }
+    }))
+    .pipe(dest(paths.dist.base))
+}
 
 // Copy node_modules to vendor
-gulp.task('copy:dist:vendor', () => {
-  return gulp.src(npmDist(), { base: paths.src.node_modules })
-    .pipe(gulp.dest(paths.dist.vendor))
-})
+const copyDistVendor = () => {
+  return src(npmDist({ copyUnminified: true }), { base: paths.src.node_modules })
+    .pipe(dest(paths.dist.vendor))
+}
 
-gulp.task('build', gulp.series('clean:dist', 'copy:dist:css', 'copy:dist:css:dark', 'copy:dist:css:rtl', 'minify:dist:css', 'copy:dist:js', 'minify:dist:js', 'copy:dist:html', 'copy:dist:html:index', 'copy:dist:assets', 'copy:dist:vendor'))
+exports.build = series(lintScss, lintTs, cleanDist, copyDistCss, copyDistCssDark, copyDistCssRtl, minifyDistCss, copyDistJs, minifyDistJs, copyDistHtml, copyDistHtmlIndex, copyDistAssets, copyDistVendor)
 
 // Default
-gulp.task('default', gulp.series('serve'))
+exports.default = series(lintScss, scss, lintTs, ts, html, index, assets, vendor, serve)
