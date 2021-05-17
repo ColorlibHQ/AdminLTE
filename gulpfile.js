@@ -3,7 +3,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable unicorn/prefer-module */
 
-// const autoprefixer = require('autoprefixer')
 const browserSync = require('browser-sync').create()
 const cleanCss = require('gulp-clean-css')
 const del = require('del')
@@ -12,12 +11,12 @@ const npmDist = require('gulp-npm-dist')
 const sass = require('gulp-sass')
 const wait = require('gulp-wait')
 const postcss = require('gulp-postcss')
-// const rtlcss = require('rtlcss')
+const rename = require('gulp-rename')
 const sourcemaps = require('gulp-sourcemaps')
 const fileinclude = require('gulp-file-include')
-
 const esbuild = require('esbuild')
-// const { getTarget } = require('./get.browserslist.target')
+
+sass.compiler = require('sass')
 
 const pkg = require('./package')
 const year = new Date().getFullYear()
@@ -64,7 +63,12 @@ const paths = {
   }
 }
 
-function postcssCallback() {
+const sassOptions = {
+  outputStyle: 'expanded',
+  includePaths: ['./node_modules/']
+}
+
+function postcssOptions() {
   return {
     map: {
       inline: false,
@@ -79,16 +83,29 @@ function postcssCallback() {
   }
 }
 
+function postcssRtlOptions() {
+  return {
+    map: {
+      inline: false,
+      annotation: true,
+      sourcesContent: true
+    },
+    plugins: [
+      require('autoprefixer')({
+        cascade: false
+      }),
+      require('rtlcss')({})
+    ]
+  }
+}
+
 // Compile SCSS
 gulp.task('scss', () => {
   return gulp.src(paths.src.scss + '/adminlte.scss')
       .pipe(wait(500))
       .pipe(sourcemaps.init())
-      .pipe(sass({
-        outputStyle: 'expanded',
-        includePaths: ['./node_modules/']
-      }).on('error', sass.logError))
-      .pipe(postcss(postcssCallback))
+      .pipe(sass(sassOptions).on('error', sass.logError))
+      .pipe(postcss(postcssOptions))
       .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest(paths.temp.css))
       .pipe(browserSync.stream())
@@ -101,7 +118,6 @@ gulp.task('ts', () => {
       js: banner
     },
     bundle: true,
-    color: true,
     format: 'iife',
     sourcemap: true,
     target: ['chrome60'],
@@ -161,12 +177,29 @@ gulp.task('serve', gulp.series('scss', 'ts', 'html', 'index', 'assets', 'vendor'
 }))
 
 // Minify CSS
-gulp.task('minify:css', () => {
+gulp.task('minify:dist:css', () => {
   return gulp.src([
-    paths.dist.css + '/adminlte.css'
-  ])
+    paths.dist.css + '/**/*.css'
+  ], { base: paths.dist.css })
+  .pipe(sourcemaps.init({ loadMaps: true }))
   .pipe(cleanCss())
+  .pipe(rename({ suffix: '.min' }))
+  .pipe(sourcemaps.write('.'))
   .pipe(gulp.dest(paths.dist.css))
+})
+
+// Minify JS
+gulp.task('minify:dist:js', () => {
+  return esbuild.build({
+    entryPoints: [paths.dist.js + '/adminlte.js'],
+    format: 'iife',
+    minify: true,
+    sourcemap: true,
+    target: ['chrome60'],
+    outfile: paths.dist.js + '/adminlte.min.js'
+  }).catch(
+    error => console.error(error)
+  )
 })
 
 // Copy assets
@@ -185,13 +218,50 @@ gulp.task('copy:dist:css', () => {
   return gulp.src([paths.src.scss + '/adminlte.scss'])
       .pipe(wait(500))
       .pipe(sourcemaps.init())
-      .pipe(sass({
-        outputStyle: 'expanded',
-        includePaths: ['./node_modules/']
-      }).on('error', sass.logError))
-      .pipe(postcss(postcssCallback))
+      .pipe(sass(sassOptions).on('error', sass.logError))
+      .pipe(postcss(postcssOptions))
       .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest(paths.dist.css))
+})
+
+gulp.task('copy:dist:css:dark', () => {
+  return gulp.src([paths.src.scss + '/dark/*.scss'])
+      .pipe(wait(500))
+      .pipe(sourcemaps.init())
+      .pipe(sass(sassOptions).on('error', sass.logError))
+      .pipe(postcss(postcssOptions))
+      .pipe(sourcemaps.write('.'))
+      .pipe(gulp.dest(paths.dist.css + '/dark'))
+})
+
+gulp.task('copy:dist:css:rtl', () => {
+  return gulp.src([
+    paths.dist.css + '/*.css',
+    paths.dist.css + '/dark/*.css'
+  ])
+      .pipe(wait(500))
+      .pipe(sourcemaps.init({ loadMaps: true }))
+      .pipe(postcss(postcssRtlOptions))
+      .pipe(rename({ suffix: '.rtl' }))
+      .pipe(sourcemaps.write('.'))
+      .pipe(gulp.dest(paths.dist.css + '/rtl'))
+})
+
+// Compile and copy ts/js
+gulp.task('copy:dist:js', () => {
+  return esbuild.build({
+    entryPoints: [paths.src.ts + '/adminlte.ts'],
+    banner: {
+      js: banner
+    },
+    bundle: true,
+    format: 'iife',
+    sourcemap: true,
+    target: ['chrome60'],
+    outfile: paths.dist.js + '/adminlte.js'
+  }).catch(
+    error => console.error(error)
+  )
 })
 
 // Copy Html
@@ -226,7 +296,7 @@ gulp.task('copy:dist:vendor', () => {
     .pipe(gulp.dest(paths.dist.vendor))
 })
 
-gulp.task('build', gulp.series('clean:dist', 'copy:dist:css', 'copy:dist:html', 'copy:dist:html:index', 'copy:dist:assets', 'copy:dist:vendor'))
+gulp.task('build', gulp.series('clean:dist', 'copy:dist:css', 'copy:dist:css:dark', 'copy:dist:css:rtl', 'minify:dist:css', 'copy:dist:js', 'minify:dist:js', 'copy:dist:html', 'copy:dist:html:index', 'copy:dist:assets', 'copy:dist:vendor'))
 
 // Default
 gulp.task('default', gulp.series('serve'))
