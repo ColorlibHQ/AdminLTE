@@ -4,11 +4,11 @@
 /* eslint-disable unicorn/prefer-module */
 
 const browserSync = require('browser-sync').create()
-const cleanCss = require('gulp-clean-css')
 const del = require('del')
 const esbuild = require('esbuild')
-const { ESLint } = require('eslint')
 const { src, dest, lastRun, watch, series } = require('gulp')
+const cleanCss = require('gulp-clean-css')
+const eslint = require('gulp-eslint7')
 const fileinclude = require('gulp-file-include')
 const npmDist = require('gulp-npm-dist')
 const postcss = require('gulp-postcss')
@@ -140,12 +140,10 @@ const ts = () => {
 }
 
 // Lint TS
-async function lintTs() {
-  const eslint = new ESLint()
-  const results = await eslint.lintFiles([paths.src.ts + '/**/*.ts'])
-  const formatter = await eslint.loadFormatter('stylish')
-  const resultText = formatter.format(results)
-  console.log(resultText)
+const lintTs = () => {
+  return src([paths.src.ts + '/**/*.ts'], { since: lastRun(lintTs) })
+    .pipe(eslint())
+    .pipe(eslint.format())
 }
 
 const index = () => {
@@ -190,9 +188,8 @@ const serve = () => {
     server: paths.temp.base
   })
 
-  watch([paths.src.scss], series(scss))
-  watch([paths.src.scss], series(lintScss))
-  watch([paths.src.ts], series(ts))
+  watch([paths.src.scss], series(lintScss, scss))
+  watch([paths.src.ts], series(lintTs, ts))
   watch([paths.src.html, paths.src.base + '*.html', paths.src.partials], series(html, index))
   watch([paths.src.assets], series(assets))
   watch([paths.src.vendor], series(vendor))
@@ -204,7 +201,7 @@ const minifyDistCss = () => {
     paths.dist.css + '/**/*.css'
   ], { base: paths.dist.css })
     .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(cleanCss())
+    .pipe(cleanCss({ format: { breakWith: 'lf' } }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(paths.dist.css))
@@ -235,9 +232,12 @@ const cleanDist = () => {
   return del([paths.dist.base])
 }
 
-// Compile and copy scss/css
-const copyDistCss = () => {
-  return src([paths.src.scss + '/adminlte.scss'])
+// Compile and copy all scss/css
+const copyDistCssAll = () => {
+  return src([
+    paths.src.scss + '/adminlte.scss',
+    paths.src.scss + '/dark/*.scss'
+  ], { base: paths.src.scss })
     .pipe(wait(500))
     .pipe(sourcemaps.init())
     .pipe(sass(sassOptions).on('error', sass.logError))
@@ -246,21 +246,8 @@ const copyDistCss = () => {
     .pipe(dest(paths.dist.css))
 }
 
-const copyDistCssDark = () => {
-  return src([paths.src.scss + '/dark/*.scss'])
-    .pipe(wait(500))
-    .pipe(sourcemaps.init())
-    .pipe(sass(sassOptions).on('error', sass.logError))
-    .pipe(postcss(postcssOptions))
-    .pipe(sourcemaps.write('.'))
-    .pipe(dest(paths.dist.css + '/dark'))
-}
-
 const copyDistCssRtl = () => {
-  return src([
-    paths.dist.css + '/*.css',
-    paths.dist.css + '/dark/*.css'
-  ])
+  return src(paths.dist.css + '/**/*.css')
     .pipe(wait(500))
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(postcss(postcssRtlOptions))
@@ -318,7 +305,7 @@ const copyDistVendor = () => {
     .pipe(dest(paths.dist.vendor))
 }
 
-exports.build = series(lintScss, lintTs, cleanDist, copyDistCss, copyDistCssDark, copyDistCssRtl, minifyDistCss, copyDistJs, minifyDistJs, copyDistHtml, copyDistHtmlIndex, copyDistAssets, copyDistVendor)
+exports.build = series(lintScss, lintTs, cleanDist, copyDistCssAll, copyDistCssRtl, minifyDistCss, copyDistJs, minifyDistJs, copyDistHtml, copyDistHtmlIndex, copyDistAssets, copyDistVendor)
 
 // Default
 exports.default = series(lintScss, scss, lintTs, ts, html, index, assets, vendor, serve)

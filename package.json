@@ -54,6 +54,7 @@
     "eslint-plugin-unicorn": "^32.0.1",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
+    "gulp-eslint7": "^0.3.1",
     "gulp-file-include": "^2.3.0",
     "gulp-npm-dist": "^1.0.3",
     "gulp-postcss": "^9.0.0",
