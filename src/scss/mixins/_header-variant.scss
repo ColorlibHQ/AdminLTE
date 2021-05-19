@@ -22,7 +22,7 @@
     }
   }
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     .main-header {
       background-color: $header-mobile-bg;
       color: $header-mobile-color;

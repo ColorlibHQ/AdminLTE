@@ -25,7 +25,7 @@ const SELECTOR_SIDEBAR_SM = `.${CLASS_NAME_LAYOUT_MOBILE}`
 const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
 
 const Defaults = {
-  onLayouMobile: 768
+  onLayouMobile: 992
 }
 
 class SidebarOverlay {
