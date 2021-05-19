@@ -117,9 +117,11 @@ const scss = () => {
 const lintScss = () => {
   return src([paths.src.scss + '/**/*.scss'], { since: lastRun(lintScss) })
     .pipe(gulpStylelint({
+      failAfterError: false,
       reporters: [
         { formatter: 'string', console: true }
-      ]
+      ],
+      debug: true
     }))
 }
 
