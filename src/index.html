@@ -5,11 +5,10 @@
   <head>
     @@include('./_head.html', {
       "path": ".",
-      "title": "AdminLTE - Free Bootstrap 5 Admin Dashboard"
+      "title": "AdminLTE 4 | Dashboard"
     })
-    <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   </head>
-
   <body class="layout-fixed">
     <div class="wrapper">
       @@include('./dashboard/_topbar.html', {
@@ -17,25 +16,15 @@
       })
 
       @@include('./dashboard/_sidenav.html', {
+        "mainPage": "dashboard",
+        "page": "index",
         "path": "."
       })
       <!-- Main content -->
       <div class="content-wrapper">
-        <div class="content-header">
-          <div class="container-fluid">
-            <div class="row mb-2">
-              <div class="col-sm-6">
-                <div class="fs-3">Dashboard</div>
-              </div>
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Library</li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
+        @@include('./dashboard/_content-header.html', {
+          "header_name": "Dashboard"
+        })
         <div class="content">
           <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
