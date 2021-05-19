@@ -1,0 +1,53 @@
+//
+// Mixins: Cards Variant
+//
+
+@mixin cards-variant($name, $color) {
+  .card-#{$name} {
+    &:not(.card-outline) {
+      > .card-header {
+        background-color: $color;
+
+        &,
+        a {
+          color: color-contrast($color);
+        }
+
+        a.active {
+          color: color-contrast($white);
+        }
+      }
+    }
+
+    &.card-outline {
+      border-top: 3px solid $color;
+    }
+
+    &.card-outline-tabs {
+      > .card-header {
+        a {
+          &:hover {
+            border-top: 3px solid $nav-tabs-border-color;
+          }
+
+          &.active {
+            border-top: 3px solid $color;
+          }
+        }
+      }
+    }
+  }
+
+  .bg-#{$name},
+  .card-#{$name}:not(.card-outline) {
+    > .card-header {
+      .btn-tool {
+        color: rgba(color-contrast($color), .8);
+
+        &:hover {
+          color: color-contrast($color);
+        }
+      }
+    }
+  }
+}
