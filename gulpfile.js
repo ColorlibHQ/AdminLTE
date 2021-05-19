@@ -6,7 +6,7 @@
 const browserSync = require('browser-sync').create()
 const del = require('del')
 const esbuild = require('esbuild')
-const { src, dest, lastRun, watch, series } = require('gulp')
+const { src, dest, lastRun, watch, series, parallel } = require('gulp')
 const cleanCss = require('gulp-clean-css')
 const eslint = require('gulp-eslint7')
 const fileinclude = require('gulp-file-include')
@@ -308,4 +308,4 @@ const copyDistVendor = () => {
 exports.build = series(lintScss, lintTs, cleanDist, copyDistCssAll, copyDistCssRtl, minifyDistCss, copyDistJs, minifyDistJs, copyDistHtml, copyDistHtmlIndex, copyDistAssets, copyDistVendor)
 
 // Default
-exports.default = series(lintScss, scss, lintTs, ts, html, index, assets, vendor, serve)
+exports.default = series(parallel(lintScss, scss, lintTs, ts, html, index, assets, vendor), serve)
