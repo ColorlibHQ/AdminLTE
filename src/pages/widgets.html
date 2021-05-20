@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- For RTL verison -->
+<!-- <html lang="en" dir="rtl"> -->
+  <head>
+    @@include('./_head.html', {
+      "path": "../",
+      "title": "AdminLTE 4 | General Form Elements"
+    })
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  </head>
+  <body class="layout-fixed">
+    <div class="wrapper">
+      @@include('./dashboard/_topbar.html', {
+        "path": "../"
+      })
+
+      @@include('./dashboard/_sidenav.html', {
+        "mainPage": "pages",
+        "page": "widgets",
+        "path": "../"
+      })
+      <!-- Main content -->
+      <div class="content-wrapper">
+        @@include('./dashboard/_content-header.html', {
+          "header_name": "Widgets"
+        })
+        <!-- Main content -->
+        <div class="content">
+          <div class="container-fluid">
+            <h5 class="mb-2">Info Box</h5>
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                  <span class="info-box-icon bg-primary shadow-sm"><i class="fas fa-cog"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">CPU Traffic</span>
+                    <span class="info-box-number">
+                      10
+                      <small>%</small>
+                    </span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                  <span class="info-box-icon bg-success shadow-sm"><i class="fas fa-shopping-cart"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Sales</span>
+                    <span class="info-box-number">760</span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+
+              <!-- fix for small devices only -->
+              <!-- <div class="clearfix hidden-md-up"></div> -->
+
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                  <span class="info-box-icon bg-warning shadow-sm"><i class="fas fa-users"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">New Members</span>
+                    <span class="info-box-number">2,000</span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                  <span class="info-box-icon bg-danger shadow-sm"><i class="fas fa-thumbs-up"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Likes</span>
+                    <span class="info-box-number">41,410</span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- =========================================================== -->
+            <h5 class="mb-2">Info Box With Custom Shadows <small><i>Using Bootstrap's Shadow Utility</i></small></h5>
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box shadow-none">
+                  <span class="info-box-icon bg-primary shadow-sm"><i class="fas fa-cog"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">CPU Traffic</span>
+                    <span class="info-box-number">
+                      10
+                      <small>%</small>
+                    </span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box shadow-sm">
+                  <span class="info-box-icon bg-success shadow-sm"><i class="fas fa-shopping-cart"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Sales</span>
+                    <span class="info-box-number">760</span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+
+              <!-- fix for small devices only -->
+              <!-- <div class="clearfix hidden-md-up"></div> -->
+
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box shadow">
+                  <span class="info-box-icon bg-warning shadow-sm"><i class="fas fa-users"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">New Members</span>
+                    <span class="info-box-number">2,000</span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box shadow-lg">
+                  <span class="info-box-icon bg-danger shadow-sm"><i class="fas fa-thumbs-up"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Likes</span>
+                    <span class="info-box-number">41,410</span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- =========================================================== -->
+            <h5 class="mt-4 mb-2">Info Box With <code>bg-*</code></h5>
+            <div class="row">
+              <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box bg-primary">
+                  <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Bookmarks</span>
+                    <span class="info-box-number">41,410</span>
+
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 70%"></div>
+                    </div>
+                    <span class="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box bg-success">
+                  <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Likes</span>
+                    <span class="info-box-number">41,410</span>
+
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 70%"></div>
+                    </div>
+                    <span class="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box bg-warning">
+                  <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Events</span>
+                    <span class="info-box-number">41,410</span>
+
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 70%"></div>
+                    </div>
+                    <span class="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box bg-danger">
+                  <span class="info-box-icon"><i class="fas fa-comments"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Comments</span>
+                    <span class="info-box-number">41,410</span>
+
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 70%"></div>
+                    </div>
+                    <span class="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- =========================================================== -->
+            <h5 class="mt-4 mb-2">Info Box With <code>bg-gradient</code></h5>
+            <div class="row">
+              <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box bg-primary bg-gradient">
+                  <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Bookmarks</span>
+                    <span class="info-box-number">41,410</span>
+
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 70%"></div>
+                    </div>
+                    <span class="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box bg-success bg-gradient">
+                  <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Likes</span>
+                    <span class="info-box-number">41,410</span>
+
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 70%"></div>
+                    </div>
+                    <span class="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box bg-warning bg-gradient">
+                  <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Events</span>
+                    <span class="info-box-number">41,410</span>
+
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 70%"></div>
+                    </div>
+                    <span class="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box bg-danger bg-gradient">
+                  <span class="info-box-icon"><i class="fas fa-comments"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Comments</span>
+                    <span class="info-box-number">41,410</span>
+
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 70%"></div>
+                    </div>
+                    <span class="progress-description">
+                      70% Increase in 30 Days
+                    </span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- =========================================================== -->
+
+            <!-- Small Box (Stat card) -->
+            <h5 class="mb-2 mt-4">Small Box</h5>
+            <div class="row">
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-primary">
+                  <div class="inner">
+                    <h3>150</h3>
+
+                    <p>New Orders</p>
+                  </div>
+                  <div class="icon">
+                    <i class="inner-icon ion ion-bag"></i>
+                  </div>
+                  <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                  <div class="inner">
+                    <h3>53<sup class="fs-5">%</sup></h3>
+
+                    <p>Bounce Rate</p>
+                  </div>
+                  <div class="icon">
+                    <i class="inner-icon ion ion-stats-bars"></i>
+                  </div>
+                  <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <h3>44</h3>
+
+                    <p>User Registrations</p>
+                  </div>
+                  <div class="icon">
+                    <i class="inner-icon ion ion-person-add"></i>
+                  </div>
+                  <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                  <div class="inner">
+                    <h3>65</h3>
+
+                    <p>Unique Visitors</p>
+                  </div>
+                  <div class="icon">
+                    <i class="inner-icon ion ion-pie-graph"></i>
+                  </div>
+                  <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+              <!-- ./col -->
+            </div>
+            <!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+
+      @@include('./dashboard/_footer.html', {
+        "path": "../"
+      })
+    </div>
+    <!--  ./wrapper -->
+
+    @@include('./_scripts.html', {
+      "path": "../"
+    })
+  </body>
+</html>

@@ -1,0 +1,81 @@
+//
+// Misc: Colors
+//
+
+// Background colors (theme colors)
+@each $name, $color in $theme-colors {
+  @include background-variant($name, $color);
+}
+
+// Background colors (colors)
+@each $name, $color in $colors {
+  @include background-variant($name, $color);
+}
+
+.bg-gray {
+  background-color: $gray-500;
+  color: color-contrast($gray-500);
+}
+
+.bg-gray-light {
+  background-color: tint-color($gray-200, 3%);
+  color: color-contrast(tint-color($gray-200, 3%)) !important;
+}
+
+.bg-black {
+  background-color: $black;
+  color: color-contrast($black) !important;
+}
+
+.bg-white {
+  background-color: $white;
+  color: color-contrast($white) !important;
+}
+
+// Backgrund Color Disabled
+[class^="bg-"].disabled {
+  opacity: .65;
+}
+
+// Text muted hover
+a.text-muted:hover {
+  color: $primary !important;
+}
+
+// Link Styles
+.link-muted {
+  color: shade-color($gray-500, 30%);
+
+  &:hover,
+  &:focus {
+    color: shade-color($gray-500, 40%);
+  }
+}
+
+.link-black {
+  color: $gray-600;
+
+  &:hover,
+  &:focus {
+    color: tint-color($gray-500, 20%);
+  }
+}
+
+// // Accent colors (theme colors)
+// @each $name, $color in $theme-colors {
+//   @include accent-variant($name, $color);
+// }
+
+// // Accent colors (colors)
+// @each $name, $color in $colors {
+//   @include accent-variant($name, $color);
+// }
+
+// Accent button override fix
+[class*="accent-"] {
+  @each $name, $color in $theme-colors {
+    a.btn-#{$name} {
+      color: color-contrast($color);
+    }
+  }
+}
