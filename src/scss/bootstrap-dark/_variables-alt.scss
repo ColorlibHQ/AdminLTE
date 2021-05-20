@@ -13,17 +13,17 @@ $color-schemes: (
 // items marked //** from https://bootswatch.com/darkly/
 // items marked //~~ from https://uxdesign.cc/dark-mode-ui-design-the-definitive-guide-part-1-color-53dcfaea5129
 
-$white-alt:    $white !default;
-$gray-100-alt: $gray-100 !default;  //~~
-$gray-200-alt: $gray-200 !default;  //~~
-$gray-300-alt: $gray-300 !default;  //~~
-$gray-400-alt: $gray-400 !default;  //~~
-$gray-500-alt: $gray-500 !default;  //~~
-$gray-600-alt: $gray-600 !default;  //~~
-$gray-700-alt: $gray-700 !default;  //~~
-$gray-800-alt: $gray-800 !default;  //~~
-$gray-900-alt: $gray-900 !default;  //~~
-$black-alt:    $black !default;  //~~
+$white-alt:    #fff !default;
+$gray-100-alt: #f8f9fa !default;
+$gray-200-alt: #e9ecef !default;
+$gray-300-alt: #dee2e6 !default;
+$gray-400-alt: #ced4da !default;
+$gray-500-alt: #adb5bd !default;
+$gray-600-alt: #6c757d !default;
+$gray-700-alt: #495057 !default;
+$gray-800-alt: #343a40 !default;
+$gray-900-alt: #212529 !default;
+$black-alt:    #000 !default;
 
 // fusv-disable
 $grays-alt: (

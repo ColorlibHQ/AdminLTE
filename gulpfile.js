@@ -3,20 +3,22 @@
 /* eslint-disable no-undef */
 /* eslint-disable unicorn/prefer-module */
 
+const autoprefix = require('autoprefixer')
 const browserSync = require('browser-sync').create()
 const del = require('del')
 const esbuild = require('esbuild')
-const { src, dest, lastRun, watch, series, parallel } = require('gulp')
+const { src, dest, lastRun, watch, series } = require('gulp')
 const cleanCss = require('gulp-clean-css')
+const dependents = require('gulp-dependents')
 const eslint = require('gulp-eslint7')
 const fileinclude = require('gulp-file-include')
 const npmDist = require('gulp-npm-dist')
 const postcss = require('gulp-postcss')
 const rename = require('gulp-rename')
 const sass = require('gulp-sass')
-const sourcemaps = require('gulp-sourcemaps')
 const gulpStylelint = require('gulp-stylelint')
 const wait = require('gulp-wait')
+const rtlcss = require('rtlcss')
 
 sass.compiler = require('sass')
 
@@ -70,46 +72,28 @@ const sassOptions = {
   includePaths: ['./node_modules/']
 }
 
-function postcssOptions() {
-  return {
-    map: {
-      inline: false,
-      annotation: true,
-      sourcesContent: true
-    },
-    plugins: [
-      require('autoprefixer')({
-        cascade: false
-      })
-    ]
-  }
-}
+const postcssOptions = [
+  autoprefix({ cascade: false })
+]
 
-function postcssRtlOptions() {
-  return {
-    map: {
-      inline: false,
-      annotation: true,
-      sourcesContent: true
-    },
-    plugins: [
-      require('autoprefixer')({
-        cascade: false
-      }),
-      require('rtlcss')({})
-    ]
-  }
-}
+const postcssRtlOptions = [
+  autoprefix({ cascade: false }),
+  rtlcss({})
+]
+
+// From here Dev mode will Start
 
 // Compile SCSS
 const scss = () => {
-  return src(paths.src.scss + '/adminlte.scss')
+  return src(paths.src.scss + '/**/*.scss', {
+    since: lastRun(scss),
+    sourcemaps: true
+  })
     .pipe(wait(500))
-    .pipe(sourcemaps.init())
+    .pipe(dependents())
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(postcss(postcssOptions))
-    .pipe(sourcemaps.write('.'))
-    .pipe(dest(paths.temp.css))
+    .pipe(dest(paths.temp.css, { sourcemaps: '.' }))
     .pipe(browserSync.stream())
 }
 
@@ -197,16 +181,21 @@ const serve = () => {
   watch([paths.src.vendor], series(vendor))
 }
 
+exports.serve = serve
+
+// From here Dist will Start
+
 // Minify CSS
 const minifyDistCss = () => {
   return src([
     paths.dist.css + '/**/*.css'
-  ], { base: paths.dist.css })
-    .pipe(sourcemaps.init({ loadMaps: true }))
+  ], {
+    base: paths.dist.css,
+    sourcemaps: true
+  })
     .pipe(cleanCss({ format: { breakWith: 'lf' } }))
     .pipe(rename({ suffix: '.min' }))
-    .pipe(sourcemaps.write('.'))
-    .pipe(dest(paths.dist.css))
+    .pipe(dest(paths.dist.css, { sourcemaps: '.' }))
 }
 
 // Minify JS
@@ -230,32 +219,26 @@ const copyDistAssets = () => {
 }
 
 // Clean
-const cleanDist = () => {
-  return del([paths.dist.base])
-}
+const cleanDist = () => del([paths.dist.base])
 
 // Compile and copy all scss/css
 const copyDistCssAll = () => {
-  return src([
-    paths.src.scss + '/adminlte.scss',
-    paths.src.scss + '/dark/*.scss'
-  ], { base: paths.src.scss })
+  return src([paths.src.scss + '/**/*.scss'], {
+    base: paths.src.scss,
+    sourcemaps: true
+  })
     .pipe(wait(500))
-    .pipe(sourcemaps.init())
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(postcss(postcssOptions))
-    .pipe(sourcemaps.write('.'))
-    .pipe(dest(paths.dist.css))
+    .pipe(dest(paths.dist.css, { sourcemaps: '.' }))
 }
 
 const copyDistCssRtl = () => {
-  return src(paths.dist.css + '/**/*.css')
+  return src(paths.dist.css + '/*.css', { sourcemaps: true })
     .pipe(wait(500))
-    .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(postcss(postcssRtlOptions))
     .pipe(rename({ suffix: '.rtl' }))
-    .pipe(sourcemaps.write('.'))
-    .pipe(dest(paths.dist.css + '/rtl'))
+    .pipe(dest(paths.dist.css + '/rtl', { sourcemaps: '.' }))
 }
 
 // Compile and copy ts/js
@@ -310,4 +293,4 @@ const copyDistVendor = () => {
 exports.build = series(lintScss, lintTs, cleanDist, copyDistCssAll, copyDistCssRtl, minifyDistCss, copyDistJs, minifyDistJs, copyDistHtml, copyDistHtmlIndex, copyDistAssets, copyDistVendor)
 
 // Default
-exports.default = series(parallel(lintScss, scss, lintTs, ts, html, index, assets, vendor), serve)
+exports.default = series(scss, ts, html, index, assets, vendor, serve)

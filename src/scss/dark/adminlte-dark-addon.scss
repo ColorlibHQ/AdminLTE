@@ -1,0 +1,57 @@
+/*!
+ *   AdminLTE Dark mode Add-on v4.0.0-alpha.1
+ *   Author: Colorlib
+ *   Website: AdminLTE.io <https://adminlte.io>
+ *   License: Open source - MIT <https://opensource.org/licenses/MIT>
+ */
+
+// Configuration
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";  // defaults are here
+@import "../bootstrap-dark/variables-alt";  // dark color set is here
+@import "bootstrap/scss/mixins";
+@import "../bootstrap-dark/mixins";
+@import "bootstrap/scss/utilities";
+@import "../bootstrap-dark/utilities";
+@import "../bootstrap-dark/patch";  // missing from BS, unsupported patch/hack
+
+// stylelint-disable no-invalid-position-at-import-rule
+
+:root { color-scheme: dark; }
+
+// Layout & components
+@import "../bootstrap-dark/root";
+@import "../bootstrap-dark/reboot";
+@import "../bootstrap-dark/type";
+@import "../bootstrap-dark/images";
+@import "../bootstrap-dark/tables";
+@import "../bootstrap-dark/forms";
+@import "../bootstrap-dark/buttons";
+@import "../bootstrap-dark/dropdown";
+@import "../bootstrap-dark/button-group";
+@import "../bootstrap-dark/nav";
+@import "../bootstrap-dark/navbar";
+@import "../bootstrap-dark/card";
+@import "../bootstrap-dark/accordion";
+@import "../bootstrap-dark/breadcrumb";
+@import "../bootstrap-dark/pagination";
+@import "../bootstrap-dark/badge";
+@import "../bootstrap-dark/alert";
+@import "../bootstrap-dark/progress";
+@import "../bootstrap-dark/list-group";
+@import "../bootstrap-dark/close";
+@import "../bootstrap-dark/toasts";
+@import "../bootstrap-dark/modal";
+@import "../bootstrap-dark/tooltip";
+@import "../bootstrap-dark/popover";
+@import "../bootstrap-dark/carousel";
+@import "../bootstrap-dark/offcanvas";
+
+// Helpers
+@import "../bootstrap-dark/helpers";
+
+// Utilities
+@import "../bootstrap-dark/utilities/api";
+
+// Unique to dark-mode
+@import "../bootstrap-dark/dark";
