@@ -16,6 +16,16 @@
   z-index: $zindex-main-header;
 }
 
+// Navbar badge
+.navbar-badge {
+  font-size: .6rem;
+  font-weight: 300;
+  padding: 2px 4px;
+  position: absolute;
+  right: 5px;
+  top: 9px;
+}
+
 .layout-navbar-fixed {
   .main-header {
     // position: fixed;
