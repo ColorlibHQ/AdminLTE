@@ -1,0 +1,39 @@
+//
+// Core: Main Sidebar
+//
+
+.sidebar-bg-dark {
+  @include nav-treeview-dark (
+    $sidebar-dark-bg-alt,
+    $sidebar-dark-hover-bg-alt,
+    $sidebar-dark-color-alt,
+    $sidebar-dark-hover-color-alt,
+    $sidebar-dark-active-color-alt,
+    $sidebar-dark-submenu-bg-alt,
+    $sidebar-dark-submenu-color-alt,
+    $sidebar-dark-submenu-hover-color-alt,
+    $sidebar-dark-submenu-hover-bg-alt,
+    $sidebar-dark-submenu-active-color-alt,
+    $sidebar-dark-submenu-active-bg-alt
+  );
+}
+
+.sidebar-bg-light {
+  @include nav-treeview-light (
+    $sidebar-light-bg-alt,
+    $sidebar-light-hover-bg-alt,
+    $sidebar-light-color-alt,
+    $sidebar-light-hover-color-alt,
+    $sidebar-light-active-color-alt,
+    $sidebar-light-submenu-bg-alt,
+    $sidebar-light-submenu-color-alt,
+    $sidebar-light-submenu-hover-color-alt,
+    $sidebar-light-submenu-hover-bg-alt,
+    $sidebar-light-submenu-active-color-alt,
+    $sidebar-light-submenu-active-bg-alt
+  );
+}
+
+.sidebar-color-primary {
+  @include sidebar-color($primary-alt);
+}

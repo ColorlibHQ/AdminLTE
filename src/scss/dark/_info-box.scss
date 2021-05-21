@@ -1,0 +1,15 @@
+.info-box {
+  background-color: $dark-alt;
+  color: $white-alt;
+  @each $name, $color in $theme-colors-alt {
+    .info-box {
+      .bg-#{$name} {
+        color: color-contrast($color);
+
+        .progress-bar {
+          background-color: color-contrast($color);
+        }
+      }
+    }
+  }
+}

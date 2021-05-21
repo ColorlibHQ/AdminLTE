@@ -13,17 +13,17 @@ $color-schemes: (
 // items marked //** from https://bootswatch.com/darkly/
 // items marked //~~ from https://uxdesign.cc/dark-mode-ui-design-the-definitive-guide-part-1-color-53dcfaea5129
 
-$white-alt:    #fff !default;
+$white-alt:    #f0f6fc !default;
 $gray-100-alt: #f8f9fa !default;
 $gray-200-alt: #e9ecef !default;
 $gray-300-alt: #dee2e6 !default;
 $gray-400-alt: #ced4da !default;
-$gray-500-alt: #adb5bd !default;
-$gray-600-alt: #6c757d !default;
-$gray-700-alt: #495057 !default;
-$gray-800-alt: #343a40 !default;
-$gray-900-alt: #212529 !default;
-$black-alt:    #000 !default;
+$gray-500-alt: #6c757d !default;
+$gray-600-alt: #30363d !default;
+$gray-700-alt: #21262d !default;
+$gray-800-alt: #161b22 !default;
+$gray-900-alt: #0d1117 !default;
+$black-alt:    #010409 !default;
 
 // fusv-disable
 $grays-alt: (
@@ -63,8 +63,8 @@ $colors-alt: (
   "cyan":       $cyan-alt,
   "white":      $white-alt,
   "black":      $black-alt,
-  "gray":       #7e7e7e,  // $gray-600,
-  "gray-dark":  #121212  //$gray-800
+  "gray":       $gray-600-alt,
+  "gray-dark":  $gray-800-alt
 ) !default;
 
 $primary-alt:       $blue-alt !default;
@@ -73,8 +73,8 @@ $success-alt:       $green-alt !default;
 $info-alt:          $cyan-alt !default;
 $warning-alt:       $yellow-alt !default;
 $danger-alt:        $red-alt !default;
-$light-alt:         $gray-400-alt !default;
-$dark-alt:          $gray-800-alt !default;
+$light-alt:         $gray-100-alt !default;
+$dark-alt:          $gray-900-alt !default;
 
 $theme-colors-alt: (
   "primary":    $primary-alt,

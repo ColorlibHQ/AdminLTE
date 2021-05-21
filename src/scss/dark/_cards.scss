@@ -1,0 +1,61 @@
+// Color variants
+@each $name, $color in $theme-colors-alt {
+  @include cards-variant($name, $color);
+}
+
+@each $name, $color in $colors-alt {
+  @include cards-variant($name, $color);
+}
+
+.card {
+  background-color: $dark-alt;
+  color: $white-alt;
+
+  .card {
+    background-color: tint-colors($dark-alt, 5%);
+    color: $white-alt;
+  }
+  .nav.flex-column > li {
+    border-bottom-color: $gray-600-alt;
+  }
+  .card-footer {
+    background-color: rgba($black-alt, .1);
+  }
+  &.card-outline-tabs .card-header a:hover {
+    border-color: $gray-600-alt;
+    border-bottom-color: transparent;
+  }
+  &:not(.card-outline) > .card-header a.active {
+    color: $white-alt;
+  }
+}
+
+.card-comments {
+  background-color: tint-colors($dark-alt, 1.25%);
+  .username {
+    color: $gray-400-alt;
+  }
+  .card-comment {
+    border-bottom-color: tint-colors($dark-alt, 7.5%);
+  }
+}
+
+.todo-list > li {
+  background-color: tint-colors($dark-alt, 5%);
+  border-color: tint-colors($dark-alt, 7.5%);
+  color: $white-alt;
+}
+
+.todo-list {
+  @each $name, $color in $theme-colors-alt {
+    .#{$name} {
+      border-left-color: $color;
+    }
+  }
+
+  @each $name, $color in $colors-alt {
+    .#{$name} {
+      border-left-color: $color;
+    }
+  }
+}

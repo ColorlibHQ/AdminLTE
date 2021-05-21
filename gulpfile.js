@@ -17,7 +17,6 @@ const postcss = require('gulp-postcss')
 const rename = require('gulp-rename')
 const sass = require('gulp-sass')
 const gulpStylelint = require('gulp-stylelint')
-const wait = require('gulp-wait')
 const rtlcss = require('rtlcss')
 
 sass.compiler = require('sass')
@@ -89,7 +88,6 @@ const scss = () => {
     since: lastRun(scss),
     sourcemaps: true
   })
-    .pipe(wait(500))
     .pipe(dependents())
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(postcss(postcssOptions))
@@ -174,7 +172,7 @@ const serve = () => {
     server: paths.temp.base
   })
 
-  watch([paths.src.scss], series(lintScss, scss))
+  watch([paths.src.scss], { delay: 500 }, series(lintScss, scss))
   watch([paths.src.ts], series(lintTs, ts))
   watch([paths.src.html, paths.src.base + '*.html', paths.src.partials], series(html, index))
   watch([paths.src.assets], series(assets))
@@ -227,7 +225,6 @@ const copyDistCssAll = () => {
     base: paths.src.scss,
     sourcemaps: true
   })
-    .pipe(wait(500))
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(postcss(postcssOptions))
     .pipe(dest(paths.dist.css, { sourcemaps: '.' }))
@@ -235,7 +232,6 @@ const copyDistCssAll = () => {
 
 const copyDistCssRtl = () => {
   return src(paths.dist.css + '/*.css', { sourcemaps: true })
-    .pipe(wait(500))
     .pipe(postcss(postcssRtlOptions))
     .pipe(rename({ suffix: '.rtl' }))
     .pipe(dest(paths.dist.css + '/rtl', { sourcemaps: '.' }))
