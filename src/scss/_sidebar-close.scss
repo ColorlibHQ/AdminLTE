@@ -1,10 +1,10 @@
 .sidebar-close:not(.sidebar-horizontal) {
   .main-sidebar {
-    margin-left: -#{$sidebar-width};
+    margin-left: -#{$lte-sidebar-width};
   }
   // @include media-breakpoint-up(md) {
   //   .main-brand {
-  //     margin-left: -#{$sidebar-width};
+  //     margin-left: -#{$lte-sidebar-width};
   //   }
   // }
 }
@@ -19,13 +19,13 @@
     // .main-header,
     // .content-wrapper,
     // .main-footer {
-    //   margin-left: $sidebar-width;
+    //   margin-left: $lte-sidebar-width;
     // }
     // &.sidebar-collapse {
     //   .main-header,
     //   .content-wrapper,
     //   .main-footer {
-    //     margin-left: $sidebar-mini-width;
+    //     margin-left: $lte-sidebar-mini-width;
     //   }
     // }
   }

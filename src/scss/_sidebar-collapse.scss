@@ -11,8 +11,8 @@
 
 .sidebar-collapse:not(.sidebar-horizontal) {
   .main-sidebar {
-    min-width: $sidebar-mini-width;
-    max-width: $sidebar-mini-width;
+    min-width: $lte-sidebar-mini-width;
+    max-width: $lte-sidebar-mini-width;
   }
 
   // Make the sidebar headers
@@ -22,7 +22,7 @@
 
   .nav-sidebar {
     .nav-link {
-      width: $sidebar-mini-width - $sidebar-padding-x * 2;
+      width: $lte-sidebar-mini-width - $lte-sidebar-padding-x * 2;
     }
   }
 
@@ -35,15 +35,15 @@
   .brand-link {
     margin-left: -10px;
     animation-name: fadeOut;
-    animation-duration: $transition-speed;
+    animation-duration: $lte-transition-speed;
     animation-fill-mode: both;
     visibility: hidden;
   }
 
   &.sidebar-hover {
     .main-sidebar {
-      min-width: $sidebar-width;
-      max-width: $sidebar-width;
+      min-width: $lte-sidebar-width;
+      max-width: $lte-sidebar-width;
     }
 
     .nav-sidebar .nav-header {
@@ -51,14 +51,14 @@
     }
 
     .nav-sidebar .nav-link {
-      width: subtract($sidebar-width, $sidebar-padding-x * 2);
+      width: subtract($lte-sidebar-width, $lte-sidebar-padding-x * 2);
     }
 
     .nav-sidebar .nav-link p,
     .brand-link {
       margin-left: 0;
       animation-name: fadeIn;
-      animation-duration: $transition-speed;
+      animation-duration: $lte-transition-speed;
       animation-fill-mode: both;
       visibility: visible;
     }
@@ -79,12 +79,12 @@
 
 //       span {
 //         animation: none;
-//         z-index: $zindex-sidebar + 12;
+//         z-index: $lte-zindex-sidebar + 12;
 //         visibility: visible;
 //         display: inline-block;
 //         position: absolute;
-//         width: $sidebar-width;
-//         left: $sidebar-mini-width;
+//         width: $lte-sidebar-width;
+//         left: $lte-sidebar-mini-width;
 //         top: 0;
 //         background-color: inherit;
 //         padding: inherit;
@@ -102,7 +102,7 @@
 //   .brand-link {
 //     margin-left: 0;
 //     animation-name: fadeIn;
-//     animation-duration: $transition-speed;
+//     animation-duration: $lte-transition-speed;
 //     animation-fill-mode: both;
 //     visibility: visible;
 //   }
@@ -113,7 +113,7 @@
 //   .brand-link {
 //     margin-left: -10px;
 //     animation-name: fadeOut;
-//     animation-duration: $transition-speed;
+//     animation-duration: $lte-transition-speed;
 //     animation-fill-mode: both;
 //     visibility: visible;
 //   }

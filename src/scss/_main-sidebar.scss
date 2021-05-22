@@ -4,33 +4,33 @@
 
 .sidebar-bg-dark {
   @include nav-treeview-dark (
-    $sidebar-dark-bg,
-    $sidebar-dark-hover-bg,
-    $sidebar-dark-color,
-    $sidebar-dark-hover-color,
-    $sidebar-dark-active-color,
-    $sidebar-dark-submenu-bg,
-    $sidebar-dark-submenu-color,
-    $sidebar-dark-submenu-hover-color,
-    $sidebar-dark-submenu-hover-bg,
-    $sidebar-dark-submenu-active-color,
-    $sidebar-dark-submenu-active-bg
+    $lte-sidebar-dark-bg,
+    $lte-sidebar-dark-hover-bg,
+    $lte-sidebar-dark-color,
+    $lte-sidebar-dark-hover-color,
+    $lte-sidebar-dark-active-color,
+    $lte-sidebar-dark-submenu-bg,
+    $lte-sidebar-dark-submenu-color,
+    $lte-sidebar-dark-submenu-hover-color,
+    $lte-sidebar-dark-submenu-hover-bg,
+    $lte-sidebar-dark-submenu-active-color,
+    $lte-sidebar-dark-submenu-active-bg
   );
 }
 
 .sidebar-bg-light {
   @include nav-treeview-light (
-    $sidebar-light-bg,
-    $sidebar-light-hover-bg,
-    $sidebar-light-color,
-    $sidebar-light-hover-color,
-    $sidebar-light-active-color,
-    $sidebar-light-submenu-bg,
-    $sidebar-light-submenu-color,
-    $sidebar-light-submenu-hover-color,
-    $sidebar-light-submenu-hover-bg,
-    $sidebar-light-submenu-active-color,
-    $sidebar-light-submenu-active-bg
+    $lte-sidebar-light-bg,
+    $lte-sidebar-light-hover-bg,
+    $lte-sidebar-light-color,
+    $lte-sidebar-light-hover-color,
+    $lte-sidebar-light-active-color,
+    $lte-sidebar-light-submenu-bg,
+    $lte-sidebar-light-submenu-color,
+    $lte-sidebar-light-submenu-hover-color,
+    $lte-sidebar-light-submenu-hover-bg,
+    $lte-sidebar-light-submenu-active-color,
+    $lte-sidebar-light-submenu-active-bg
   );
 }
 
@@ -40,8 +40,8 @@
 
 .main-sidebar {
   grid-area: main-sidebar;
-  @include transition($sidebar-transition);
-  z-index: $zindex-sidebar;
-  min-width: $sidebar-width;
-  max-width: $sidebar-width;
+  @include transition($lte-sidebar-transition);
+  z-index: $lte-zindex-sidebar;
+  min-width: $lte-sidebar-width;
+  max-width: $lte-sidebar-width;
 }

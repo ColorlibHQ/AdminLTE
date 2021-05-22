@@ -1,0 +1,36 @@
+// SIDEBAR SKINS
+// --------------------------------------------------------
+
+// Dark sidebar
+$lte-sidebar-dark-bg-alt:                     $dark-alt !default;
+$lte-sidebar-dark-hover-bg-alt:             rgba(255, 255, 255, .1) !default;
+$lte-sidebar-dark-color-alt:                #c2c7d0 !default;
+$lte-sidebar-dark-hover-color-alt:            $white-alt !default;
+$lte-sidebar-dark-active-color-alt:           $white-alt !default;
+$lte-sidebar-dark-submenu-bg-alt:             transparent !default;
+$lte-sidebar-dark-submenu-color-alt:        #c2c7d0 !default;
+$lte-sidebar-dark-submenu-hover-color-alt:    $white-alt !default;
+$lte-sidebar-dark-submenu-hover-bg-alt:       $lte-sidebar-dark-hover-bg-alt !default;
+$lte-sidebar-dark-submenu-active-color-alt:   $lte-sidebar-dark-bg-alt !default;
+$lte-sidebar-dark-submenu-active-bg-alt:    rgba(255, 255, 255, .9) !default;
+
+// Light sidebar
+$lte-sidebar-light-bg-alt:                     $white-alt !default;
+$lte-sidebar-light-hover-bg-alt:               rgba($black-alt, .1) !default;
+$lte-sidebar-light-color-alt:                  $gray-800-alt !default;
+$lte-sidebar-light-hover-color-alt:            $gray-900-alt !default;
+$lte-sidebar-light-active-color-alt:           $black-alt !default;
+$lte-sidebar-light-submenu-bg-alt:             transparent !default;
+$lte-sidebar-light-submenu-color-alt:        #777 !default;
+$lte-sidebar-light-submenu-hover-color-alt:    $black-alt !default;
+$lte-sidebar-light-submenu-hover-bg-alt:       $lte-sidebar-light-hover-bg-alt !default;
+$lte-sidebar-light-submenu-active-color-alt:   $lte-sidebar-light-hover-color-alt !default;
+$lte-sidebar-light-submenu-active-bg-alt:      $lte-sidebar-light-submenu-hover-bg-alt !default;
+
+// MAIN FOOTER
+// --------------------------------------------------------
+$lte-main-footer-bg-alt:          $dark-alt !default;
+
+// Body background (Affects main content background only)
+$lte-main-bg-alt:                 $black-alt !default;
+$lte-main-color-alt:              $white-alt !default;

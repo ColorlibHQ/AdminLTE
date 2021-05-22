@@ -4,15 +4,15 @@
 
 .main-footer {
   grid-area: main-footer;
-  background-color: $main-footer-bg;
-  border-top: $main-footer-border-top;
-  color: $main-footer-color;
-  padding: $main-footer-padding;
+  background-color: $lte-main-footer-bg;
+  border-top: $lte-main-footer-border-top;
+  color: $lte-main-footer-color;
+  padding: $lte-main-footer-padding;
   width: inherit;
 
   // .text-sm &,
   // &.text-sm {
-  //   padding: $main-footer-padding-sm;
+  //   padding: $lte-main-footer-padding-sm;
   // }
 }
 
@@ -23,6 +23,6 @@
   }
 
   .content-wrapper {
-    margin-bottom: $main-footer-height;
+    margin-bottom: $lte-main-footer-height;
   }
 }

@@ -10,7 +10,7 @@
       position: fixed;
       top: 0;
       bottom: 0;
-      margin-left: -#{$sidebar-width};
+      margin-left: -#{$lte-sidebar-width};
       min-height: 100vh;
 
       .sidebar {
@@ -25,10 +25,10 @@
     //   bottom: 0;
     //   min-height: 100vh;
     //   z-index: $zindex-header-mobile;
-    //   width: $sidebar-width;
-    //   margin-left: -#{$sidebar-width};
+    //   width: $lte-sidebar-width;
+    //   margin-left: -#{$lte-sidebar-width};
     //   align-items: baseline;
-    //   @include transition($sidebar-transition);
+    //   @include transition($lte-sidebar-transition);
 
     //   .navbar-nav {
     //     flex-direction: column;

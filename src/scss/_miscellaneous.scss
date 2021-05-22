@@ -52,7 +52,7 @@
 }
 
 .list-seperator {
-  background-color: $card-border-color;
+  background-color: $lte-card-border-color;
   height: 1px;
   margin: 15px 0 9px;
 }
@@ -99,8 +99,8 @@
 
   &.user-block-sm {
     img {
-      width: $img-size-sm;
-      height: $img-size-sm;
+      width: $lte-img-size-sm;
+      height: $lte-img-size-sm;
     }
 
     .username,
@@ -123,29 +123,29 @@
 }
 
 .img-sm {
-  height: $img-size-sm;
-  width: $img-size-sm;
+  height: $lte-img-size-sm;
+  width: $lte-img-size-sm;
 
   + .img-push {
-    margin-left: $img-size-sm + $img-size-push;
+    margin-left: $lte-img-size-sm + $lte-img-size-push;
   }
 }
 
 .img-md {
-  width: $img-size-md;
-  height: $img-size-md;
+  width: $lte-img-size-md;
+  height: $lte-img-size-md;
 
   + .img-push {
-    margin-left: $img-size-md + $img-size-push;
+    margin-left: $lte-img-size-md + $lte-img-size-push;
   }
 }
 
 .img-lg {
-  width: $img-size-lg;
-  height: $img-size-lg;
+  width: $lte-img-size-lg;
+  height: $lte-img-size-lg;
 
   + .img-push {
-    margin-left: $img-size-lg + $img-size-push;
+    margin-left: $lte-img-size-lg + $lte-img-size-push;
   }
 }
 
@@ -217,7 +217,7 @@
 // General attachemnt block
 .attachment-block {
   background-color: $gray-100;
-  border: 1px solid $card-border-color;
+  border: 1px solid $lte-card-border-color;
   margin-bottom: 10px;
   padding: 5px;
 
@@ -313,56 +313,56 @@
 
 // Ribbon
 .ribbon-wrapper {
-  height: $ribbon-wrapper-size;
+  height: $lte-ribbon-wrapper-size;
   overflow: hidden;
   position: absolute;
   right: -2px;
   top: -2px;
-  width: $ribbon-wrapper-size;
+  width: $lte-ribbon-wrapper-size;
   z-index: 10;
 
   &.ribbon-lg {
-    height: $ribbon-lg-wrapper-size;
-    width: $ribbon-lg-wrapper-size;
+    height: $lte-ribbon-lg-wrapper-size;
+    width: $lte-ribbon-lg-wrapper-size;
 
     .ribbon {
-      right: $ribbon-lg-right;
-      top: $ribbon-lg-top;
-      width: $ribbon-lg-width;
+      right: $lte-ribbon-lg-right;
+      top: $lte-ribbon-lg-top;
+      width: $lte-ribbon-lg-width;
     }
   }
 
   &.ribbon-xl {
-    height: $ribbon-xl-wrapper-size;
-    width: $ribbon-xl-wrapper-size;
+    height: $lte-ribbon-xl-wrapper-size;
+    width: $lte-ribbon-xl-wrapper-size;
 
     .ribbon {
-      right: $ribbon-xl-right;
-      top: $ribbon-xl-top;
-      width: $ribbon-xl-width;
+      right: $lte-ribbon-xl-right;
+      top: $lte-ribbon-xl-top;
+      width: $lte-ribbon-xl-width;
     }
   }
 
   .ribbon {
-    box-shadow: 0 0 $ribbon-border-size rgba($black, .3);
-    font-size: $ribbon-font-size;
-    line-height: $ribbon-line-height;
-    padding: $ribbon-padding;
+    box-shadow: 0 0 $lte-ribbon-border-size rgba($black, .3);
+    font-size: $lte-ribbon-font-size;
+    line-height: $lte-ribbon-line-height;
+    padding: $lte-ribbon-padding;
     position: relative;
-    right: $ribbon-right;
+    right: $lte-ribbon-right;
     text-align: center;
     text-shadow: 0 -1px 0 rgba($black, .4);
     text-transform: uppercase;
-    top: $ribbon-top;
+    top: $lte-ribbon-top;
     transform: rotate(45deg);
-    width: $ribbon-width;
+    width: $lte-ribbon-width;
 
     &::before,
     &::after {
-      border-left: $ribbon-border-size solid transparent;
-      border-right: $ribbon-border-size solid transparent;
-      border-top: $ribbon-border-size solid #9e9e9e;
-      bottom: -$ribbon-border-size;
+      border-left: $lte-ribbon-border-size solid transparent;
+      border-right: $lte-ribbon-border-size solid transparent;
+      border-top: $lte-ribbon-border-size solid #9e9e9e;
+      bottom: -$lte-ribbon-border-size;
       content: "";
       position: absolute;
     }
@@ -382,7 +382,7 @@
   bottom: 1.25rem;
   position: fixed;
   right: 1.25rem;
-  z-index: $zindex-control-sidebar + 1;
+  z-index: $lte-zindex-control-sidebar + 1;
 
   &:focus {
     box-shadow: none;
@@ -471,10 +471,10 @@ blockquote {
 
 // Badge BTN Style
 .badge-btn {
-  border-radius: $button-border-radius-xs;
-  font-size: $button-font-size-xs;
+  border-radius: $lte-button-border-radius-xs;
+  font-size: $lte-button-font-size-xs;
   font-weight: 400;
-  padding: $button-padding-y-xs * 2 $button-padding-x-xs * 2;
+  padding: $lte-button-padding-y-xs * 2 $lte-button-padding-x-xs * 2;
 }
 
 .badge-btn.badge-pill {

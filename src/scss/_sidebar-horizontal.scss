@@ -12,11 +12,11 @@
 
     .main-sidebar {
       display: grid;
-      height: $sidebar-horizontal-height;
-      min-width: $sidebar-horizontal-width;
-      max-width: $sidebar-horizontal-width;
+      height: $lte-sidebar-horizontal-height;
+      min-width: $lte-sidebar-horizontal-width;
+      max-width: $lte-sidebar-horizontal-width;
       justify-content: start;
-      z-index: $zindex-sidebar-horizontal;
+      z-index: $lte-zindex-sidebar-horizontal;
     }
 
     .brand-container {
@@ -60,7 +60,7 @@
 
     &.sidebar-close {
       .main-sidebar {
-        margin-top: -#{$sidebar-horizontal-height};
+        margin-top: -#{$lte-sidebar-horizontal-height};
       }
     }
   }

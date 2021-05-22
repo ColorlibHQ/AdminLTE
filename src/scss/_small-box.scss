@@ -4,7 +4,7 @@
 
 .small-box {
   @include border-radius($border-radius);
-  @include box-shadow($card-shadow);
+  @include box-shadow($lte-card-shadow);
 
   display: block;
   margin-bottom: 1.25rem;
@@ -101,7 +101,7 @@
       position: absolute;
       right: 15px;
       top: 15px;
-      transition: transform $transition-speed linear;
+      transition: transform $lte-transition-speed linear;
 
       &.inner-icon {
         font-size: 70px;
@@ -114,7 +114,7 @@
       position: absolute;
       right: 15px;
       top: 15px;
-      transition: transform $transition-speed linear;
+      transition: transform $lte-transition-speed linear;
     }
   }
 

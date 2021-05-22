@@ -8,8 +8,8 @@
 // Bootstrap
 // ---------------------------------------------------
 @import "bootstrap/scss/functions";
-@import "variables"; // little modified are here
 @import "bootstrap/scss/variables";
+@import "variables"; // little modified are here
 @import "bootstrap/scss/mixins";
 @import "custom-utilities";
 @import "bootstrap/scss/utilities";
@@ -17,7 +17,6 @@
 
 // Variables and Mixins
 // ---------------------------------------------------
-@import "custom-variables";
 @import "mixins";
 
 @import "parts/core";

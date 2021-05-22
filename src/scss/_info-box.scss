@@ -3,7 +3,7 @@
 //
 
 .info-box {
-  @include box-shadow($card-shadow);
+  @include box-shadow($lte-card-shadow);
   @include border-radius($border-radius);
 
   background-color: $white;

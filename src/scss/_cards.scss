@@ -12,12 +12,12 @@
 }
 
 .card {
-  @include box-shadow($card-shadow);
+  @include box-shadow($lte-card-shadow);
   margin-bottom: map-get($spacers, 3);
 
   &.bg-dark {
     .card-header {
-      border-color: $card-dark-border-color;
+      border-color: $lte-card-dark-border-color;
     }
 
     &,
@@ -64,7 +64,7 @@
 
   .nav.flex-column {
     > li {
-      border-bottom: 1px solid $card-border-color;
+      border-bottom: 1px solid $lte-card-border-color;
       margin: 0;
 
       &:last-of-type {
@@ -82,11 +82,11 @@
   }
 
   .border-right {
-    border-right: 1px solid $card-border-color;
+    border-right: 1px solid $lte-card-border-color;
   }
 
   .border-left {
-    border-left: 1px solid $card-border-color;
+    border-left: 1px solid $lte-card-border-color;
   }
 
   &.card-tabs {
@@ -212,7 +212,7 @@ html.maximized-card {
 // Box header
 .card-header {
   background-color: transparent;
-  border-bottom: 1px solid $card-border-color;
+  border-bottom: 1px solid $lte-card-border-color;
   padding: (($card-spacer-y / 2) * 2) $card-spacer-x;
   position: relative;
 
@@ -243,8 +243,8 @@ html.maximized-card {
 
 .card-title {
   float: left;
-  font-size: $card-title-font-size;
-  font-weight: $card-title-font-weight;
+  font-size: $lte-card-title-font-size;
+  font-weight: $lte-card-title-font-weight;
   margin: 0;
 }
 
@@ -274,11 +274,11 @@ html.maximized-card {
 
 .text-sm {
   .card-title {
-    font-size: $card-title-font-size-sm;
+    font-size: $lte-card-title-font-size-sm;
   }
 
   .nav-link {
-    padding: $card-nav-link-padding-sm-y $card-nav-link-padding-sm-x;
+    padding: $lte-card-nav-link-padding-sm-y $lte-card-nav-link-padding-sm-x;
   }
 }
 
@@ -343,8 +343,8 @@ html.maximized-card {
     }
 
     img {
-      height: $card-img-size;
-      width: $card-img-size;
+      height: $lte-card-img-size;
+      width: $lte-card-img-size;
       float: left;
     }
   }

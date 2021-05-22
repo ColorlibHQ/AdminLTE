@@ -5,7 +5,7 @@
 //General CSS
 .progress {
   @include box-shadow(null);
-  @include border-radius($progress-bar-border-radius);
+  @include border-radius($lte-progress-bar-border-radius);
 
   // Vertical bars
   &.vertical {

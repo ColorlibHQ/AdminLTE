@@ -3,14 +3,14 @@
 //
 
 @mixin header-variant(
-  $header-bg,
-  $header-color,
-  $header-mobile-bg,
-  $header-mobile-color
+  $lte-header-bg,
+  $lte-header-color,
+  $lte-header-mobile-bg,
+  $lte-header-mobile-color
 ) {
   .main-header {
-    background-color: $header-bg;
-    color: $header-color;
+    background-color: $lte-header-bg;
+    color: $lte-header-color;
 
     .nav-link {
       color: $dark;
@@ -24,8 +24,8 @@
 
   @include media-breakpoint-down(lg) {
     .main-header {
-      background-color: $header-mobile-bg;
-      color: $header-mobile-color;
+      background-color: $lte-header-mobile-bg;
+      color: $lte-header-mobile-color;
     }
   }
 }

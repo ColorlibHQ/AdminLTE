@@ -6,7 +6,7 @@
       margin-bottom: .2rem;
 
       .right {
-        @include transition(transform $transition-fn $transition-speed);
+        @include transition(transform $lte-transition-fn $lte-transition-speed);
         transform: none #{"/*rtl:rotate(-180deg)*/"};
       }
     }
@@ -22,8 +22,8 @@
 
   .nav-link {
     position: relative;
-    width: subtract($sidebar-width, $sidebar-padding-x * 2);
-    @include transition(width $transition-fn $transition-speed);
+    width: subtract($lte-sidebar-width, $lte-sidebar-padding-x * 2);
+    @include transition(width $lte-transition-fn $lte-transition-speed);
 
     p {
       display: inline;

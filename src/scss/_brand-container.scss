@@ -2,15 +2,15 @@
 // Core: Brand
 //
 
-// @include brand-variant($sidebar-dark-bg, $sidebar-dark-color);
+// @include brand-variant($lte-sidebar-dark-bg, $lte-sidebar-dark-color);
 
 .brand-container {
   display: grid;
   grid-template-areas: "brand-link pushmenu";
   justify-content: space-between;
   font-size: $navbar-brand-font-size;
-  transition: width $transition-speed $transition-fn;
-  padding: $brand-link-padding-y $sidebar-padding-x;
+  transition: width $lte-transition-speed $lte-transition-fn;
+  padding: $lte-brand-link-padding-y $lte-sidebar-padding-x;
   white-space: nowrap;
   overflow: hidden;
 
@@ -38,7 +38,7 @@
   }
 
   .sidebar-bg-dark & {
-    border-bottom: $brand-link-border-buttom solid tint-color($dark, 10%);
+    border-bottom: $lte-brand-link-border-buttom solid tint-color($dark, 10%);
 
     .brand-link,
     .pushmenu {
@@ -51,7 +51,7 @@
   }
 
   .sidebar-bg-light & {
-    border-bottom: $brand-link-border-buttom solid $gray-300;
+    border-bottom: $lte-brand-link-border-buttom solid $gray-300;
 
     .brand-link,
     .pushmenu {

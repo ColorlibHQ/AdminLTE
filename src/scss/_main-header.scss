@@ -3,17 +3,17 @@
 //
 
 @include header-variant(
-  $header-light-bg,
-  $header-light-color,
-  $header-mobile-light-bg,
-  $header-mobile-light-color
+  $lte-header-light-bg,
+  $lte-header-light-color,
+  $lte-header-mobile-light-bg,
+  $lte-header-mobile-light-color
 );
 
 .main-header {
   grid-area: main-header;
-  border-bottom: $main-header-bottom-border;
+  border-bottom: $lte-main-header-bottom-border;
   width: inherit;
-  z-index: $zindex-main-header;
+  z-index: $lte-zindex-main-header;
 }
 
 // Navbar badge
@@ -32,6 +32,6 @@
   }
 
   .content-wrapper {
-    // margin-top: $main-header-height;
+    // margin-top: $lte-main-header-height;
   }
 }

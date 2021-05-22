@@ -1,18 +1,18 @@
 @mixin nav-treeview-dark(
-  $sidebar-bg,
-  $sidebar-hover-bg,
-  $sidebar-color,
-  $sidebar-hover-color,
-  $sidebar-active-color,
-  $sidebar-submenu-bg,
-  $sidebar-submenu-color,
-  $sidebar-submenu-hover-color,
-  $sidebar-submenu-hover-bg,
-  $sidebar-submenu-active-color,
-  $sidebar-submenu-active-bg
+  $lte-sidebar-bg,
+  $lte-sidebar-hover-bg,
+  $lte-sidebar-color,
+  $lte-sidebar-hover-color,
+  $lte-sidebar-active-color,
+  $lte-sidebar-submenu-bg,
+  $lte-sidebar-submenu-color,
+  $lte-sidebar-submenu-hover-color,
+  $lte-sidebar-submenu-hover-bg,
+  $lte-sidebar-submenu-active-color,
+  $lte-sidebar-submenu-active-bg
 ) {
   // Sidebar background color
-  background-color: $sidebar-bg;
+  background-color: $lte-sidebar-bg;
 
   // Sidebar Menu. First level links
   .nav-sidebar > .nav-item {
@@ -20,7 +20,7 @@
     > .nav-link {
       // border-left: 3px solid transparent;
       &:active {
-        color: $sidebar-color;
+        color: $lte-sidebar-color;
       }
     }
 
@@ -28,30 +28,30 @@
     &.menu-open > .nav-link,
     &:hover > .nav-link,
     > .nav-link:focus  {
-      background-color: $sidebar-hover-bg;
-      color: $sidebar-hover-color;
+      background-color: $lte-sidebar-hover-bg;
+      color: $lte-sidebar-hover-color;
     }
 
     > .nav-link.active {
-      color: $sidebar-hover-color;
+      color: $lte-sidebar-hover-color;
     }
 
     // First Level Submenu
     > .nav-treeview {
-      background-color: $sidebar-submenu-bg;
+      background-color: $lte-sidebar-submenu-bg;
     }
   }
 
   // Section Heading
   .nav-header {
-    background-color: inherit; //darken($sidebar-bg, 3%);
-    color: tint-color($sidebar-color, 5%);
+    background-color: inherit; //darken($lte-sidebar-bg, 3%);
+    color: tint-color($lte-sidebar-color, 5%);
   }
 
   // All links within the sidebar menu
   .sidebar {
     a {
-      color: $sidebar-color;
+      color: $lte-sidebar-color;
 
       &:hover,
       &:focus {
@@ -64,12 +64,12 @@
   .nav-treeview {
     > .nav-item {
       > .nav-link {
-        color: $sidebar-submenu-color;
+        color: $lte-sidebar-submenu-color;
 
         &:hover,
         &:focus {
-          background-color: $sidebar-submenu-hover-bg;
-          color: $sidebar-submenu-hover-color;
+          background-color: $lte-sidebar-submenu-hover-bg;
+          color: $lte-sidebar-submenu-hover-color;
         }
       }
 
@@ -77,8 +77,8 @@
         &,
         &:hover,
         &:focus {
-          background-color: $sidebar-submenu-active-bg;
-          color: $sidebar-submenu-active-color;
+          background-color: $lte-sidebar-submenu-active-bg;
+          color: $lte-sidebar-submenu-active-color;
         }
       }
     }
