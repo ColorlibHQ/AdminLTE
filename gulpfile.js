@@ -84,6 +84,18 @@ const postcssRtlOptions = [
 
 // Compile SCSS
 const scss = () => {
+  return src(paths.src.scss + '/adminlte.scss', { sourcemaps: true })
+    .pipe(sass(sassOptions).on('error', sass.logError))
+    .pipe(postcss(postcssOptions))
+    .pipe(dest(paths.temp.css, { sourcemaps: '.' }))
+    .pipe(browserSync.stream())
+}
+
+/**
+ * Use superScss to build css along with Dark mode
+ */
+
+const superScss = () => {
   return src(paths.src.scss + '/**/*.scss', {
     since: lastRun(scss),
     sourcemaps: true
@@ -102,8 +114,7 @@ const lintScss = () => {
       failAfterError: false,
       reporters: [
         { formatter: 'string', console: true }
-      ],
-      debug: true
+      ]
     }))
 }
 
@@ -179,7 +190,17 @@ const serve = () => {
   watch([paths.src.vendor], series(vendor))
 }
 
-exports.serve = serve
+const superServe = () => {
+  browserSync.init({
+    server: paths.temp.base
+  })
+
+  watch([paths.src.scss], { delay: 500 }, series(lintScss, superScss))
+  watch([paths.src.ts], series(lintTs, ts))
+  watch([paths.src.html, paths.src.base + '*.html', paths.src.partials], series(html, index))
+  watch([paths.src.assets], series(assets))
+  watch([paths.src.vendor], series(vendor))
+}
 
 // From here Dist will Start
 
@@ -286,7 +307,11 @@ const copyDistVendor = () => {
     .pipe(dest(paths.dist.vendor))
 }
 
+// To Dist Before release
 exports.build = series(lintScss, lintTs, cleanDist, copyDistCssAll, copyDistCssRtl, minifyDistCss, copyDistJs, minifyDistJs, copyDistHtml, copyDistHtmlIndex, copyDistAssets, copyDistVendor)
 
-// Default
+// Default - Only for light mode AdminLTE
 exports.default = series(scss, ts, html, index, assets, vendor, serve)
+
+// Super Dev mode for Dark anf Light mode
+exports.super = series(superScss, ts, html, index, assets, vendor, superServe)
