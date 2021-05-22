@@ -97,6 +97,7 @@ class ControlSidebar {
       })
     } else {
       $body.addClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN)
+      $(this._config.target).show()
     }
 
     this._fixHeight()
