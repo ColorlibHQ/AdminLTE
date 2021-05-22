@@ -107,13 +107,13 @@
 
     > div,
     > p {
-      padding: $table-cell-padding-y-lg;
+      padding: $table-cell-padding-y $table-cell-padding-x;
     }
   }
 
   .table {
-    width: subtract(100%, $table-cell-padding-y-lg);
-    margin: 0 0 0 $table-cell-padding-y-lg;
+    width: subtract(100%, $table-cell-padding-x);
+    margin: 0 0 0 $table-cell-padding-x;
 
     tr:first-child {
       td,
