@@ -22,7 +22,8 @@
 
   .nav-link {
     position: relative;
-    width: 100%;
+    width: subtract($sidebar-width, $sidebar-padding-x * 2);
+    @include transition(width $transition-fn $transition-speed);
 
     p {
       display: inline;

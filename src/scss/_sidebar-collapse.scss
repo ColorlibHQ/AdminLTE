@@ -20,6 +20,12 @@
     display: none;
   }
 
+  .nav-sidebar {
+    .nav-link {
+      width: $sidebar-mini-width - $sidebar-padding-x * 2;
+    }
+  }
+
   .nav-sidebar .nav-link p {
     width: 0;
     white-space: nowrap;
@@ -42,6 +48,10 @@
 
     .nav-sidebar .nav-header {
       display: inline-block;
+    }
+
+    .nav-sidebar .nav-link {
+      width: subtract($sidebar-width, $sidebar-padding-x * 2);
     }
 
     .nav-sidebar .nav-link p,
