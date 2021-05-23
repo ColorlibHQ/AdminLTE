@@ -9,7 +9,8 @@
   $lte-sidebar-submenu-hover-color,
   $lte-sidebar-submenu-hover-bg,
   $lte-sidebar-submenu-active-color,
-  $lte-sidebar-submenu-active-bg
+  $lte-sidebar-submenu-active-bg,
+  $lte-sidebar-header-color
 ) {
   // Sidebar background color
   background-color: $lte-sidebar-bg;
@@ -45,7 +46,7 @@
   // Section Heading
   .nav-header {
     background-color: inherit; //darken($lte-sidebar-bg, 3%);
-    color: tint-color($lte-sidebar-color, 5%);
+    color: $lte-sidebar-header-color;
   }
 
   // All links within the sidebar menu

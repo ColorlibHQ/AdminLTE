@@ -28,7 +28,7 @@
 
   // Disabled and read-only inputs
   &:disabled,
-  &:read-only {
+  &[readonly] {
     background-color: $input-disabled-bg-alt;
     border-color: $input-disabled-border-color-alt;
   }
@@ -40,7 +40,7 @@
     border-color: inherit;
   }
 
-  &:hover:not(:disabled):not(:read-only)::file-selector-button {
+  &:hover:not(:disabled):not([readonly])::file-selector-button {
     background-color: $form-file-button-hover-bg-alt;
   }
 
@@ -50,7 +50,7 @@
     border-color: inherit;
   }
 
-  &:hover:not(:disabled):not(:read-only)::-webkit-file-upload-button {
+  &:hover:not(:disabled):not([readonly])::-webkit-file-upload-button {
     background-color: $form-file-button-hover-bg-alt;
   }
 }

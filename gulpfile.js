@@ -9,7 +9,6 @@ const del = require('del')
 const esbuild = require('esbuild')
 const { src, dest, lastRun, watch, series } = require('gulp')
 const cleanCss = require('gulp-clean-css')
-const dependents = require('gulp-dependents')
 const eslint = require('gulp-eslint7')
 const fileinclude = require('gulp-file-include')
 const npmDist = require('gulp-npm-dist')
@@ -91,19 +90,12 @@ const scss = () => {
     .pipe(browserSync.stream())
 }
 
-/**
- * Use superScss to build css along with Dark mode
- */
-
-const superScss = () => {
-  return src(paths.src.scss + '/**/*.scss', {
-    since: lastRun(scss),
-    sourcemaps: true
-  })
-    .pipe(dependents())
+// Compile SCSS Dark
+const scssDark = () => {
+  return src(paths.src.scss + '/dark/adminlte-dark-addon.scss', { sourcemaps: true })
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(postcss(postcssOptions))
-    .pipe(dest(paths.temp.css, { sourcemaps: '.' }))
+    .pipe(dest(paths.temp.css + '/dark', { sourcemaps: '.' }))
     .pipe(browserSync.stream())
 }
 
@@ -183,23 +175,13 @@ const serve = () => {
     server: paths.temp.base
   })
 
-  watch([paths.src.scss], { delay: 500 }, series(lintScss, scss))
+  watch([paths.src.scss], series(lintScss))
+  watch([paths.src.scss + '/**/*.scss', '!' + paths.src.scss + '/bootstrap-dark/**/*.scss', '!' + paths.src.scss + '/dark/**/*.scss'], series(scss))
+  watch([paths.src.scss + '/bootstrap-dark/', paths.src.scss + '/dark/'], series(scssDark))
   watch([paths.src.ts], series(lintTs, ts))
   watch([paths.src.html, paths.src.base + '*.html', paths.src.partials], series(html, index))
   watch([paths.src.assets], series(assets))
-  watch([paths.src.vendor], series(vendor))
-}
-
-const superServe = () => {
-  browserSync.init({
-    server: paths.temp.base
-  })
-
-  watch([paths.src.scss], { delay: 500 }, series(lintScss, superScss))
-  watch([paths.src.ts], series(lintTs, ts))
-  watch([paths.src.html, paths.src.base + '*.html', paths.src.partials], series(html, index))
-  watch([paths.src.assets], series(assets))
-  watch([paths.src.vendor], series(vendor))
+  // watch([paths.src.vendor], series(vendor)) // Probably not required
 }
 
 // From here Dist will Start
@@ -311,7 +293,4 @@ const copyDistVendor = () => {
 exports.build = series(lintScss, lintTs, cleanDist, copyDistCssAll, copyDistCssRtl, minifyDistCss, copyDistJs, minifyDistJs, copyDistHtml, copyDistHtmlIndex, copyDistAssets, copyDistVendor)
 
 // Default - Only for light mode AdminLTE
-exports.default = series(scss, ts, html, index, assets, vendor, serve)
-
-// Super Dev mode for Dark anf Light mode
-exports.super = series(superScss, ts, html, index, assets, vendor, superServe)
+exports.default = series(scss, scssDark, ts, html, index, assets, vendor, serve)

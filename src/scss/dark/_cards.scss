@@ -8,11 +8,11 @@
 }
 
 .card {
-  background-color: $dark-alt;
+  background-color: $gray-900-alt;
   color: $white-alt;
 
   .card {
-    background-color: tint-colors($dark-alt, 5%);
+    background-color: tint-colors($gray-900-alt, 5%);
     color: $white-alt;
   }
   .nav.flex-column > li {
@@ -31,18 +31,18 @@
 }
 
 .card-comments {
-  background-color: tint-colors($dark-alt, 1.25%);
+  background-color: tint-colors($gray-900-alt, 1.25%);
   .username {
     color: $gray-400-alt;
   }
   .card-comment {
-    border-bottom-color: tint-colors($dark-alt, 7.5%);
+    border-bottom-color: tint-colors($gray-900-alt, 7.5%);
   }
 }
 
 .todo-list > li {
-  background-color: tint-colors($dark-alt, 5%);
-  border-color: tint-colors($dark-alt, 7.5%);
+  background-color: tint-colors($gray-900-alt, 5%);
+  border-color: tint-colors($gray-900-alt, 7.5%);
   color: $white-alt;
 }
 

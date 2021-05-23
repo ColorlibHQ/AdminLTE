@@ -53,11 +53,11 @@
 // List group contextual variants
 
 @each $state, $value in $theme-colors-alt {
-  $list-group-background-alt: shift-color($value, $list-group-item-bg-scale-alt);
-  $list-group-color-alt: shift-color($value, $list-group-item-color-scale-alt);
-  @if (contrast-ratio($list-group-background-alt, $list-group-color-alt) < $min-contrast-ratio-alt) {
-    $list-group-color-alt: mix($value, color-contrast($list-group-background-alt, $color-contrast-dark-alt, $color-contrast-light-alt, $min-contrast-ratio-alt), abs($list-group-item-color-scale-alt));
+  $list-group-variant-bg-alt: shift-color($value, $list-group-item-bg-scale-alt);
+  $list-group-variant-color-alt: shift-color($value, $list-group-item-color-scale-alt);
+  @if (contrast-ratio($list-group-variant-bg-alt, $list-group-variant-color-alt) < $min-contrast-ratio-alt) {
+    $list-group-variant-color-alt: mix($value, color-contrast($list-group-variant-bg-alt, $color-contrast-dark-alt, $color-contrast-light-alt, $min-contrast-ratio-alt), abs($list-group-item-color-scale-alt));
   }
 
-  @include list-group-item-variant($state, $list-group-background-alt, $list-group-color-alt);
+  @include list-group-item-variant($state, $list-group-variant-bg-alt, $list-group-variant-color-alt);
 }
