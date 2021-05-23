@@ -8,12 +8,8 @@
 }
 
 .card {
-  background-color: $gray-900-alt;
-  color: $white-alt;
-
   .card {
     background-color: tint-colors($gray-900-alt, 5%);
-    color: $white-alt;
   }
   .nav.flex-column > li {
     border-bottom-color: $gray-600-alt;

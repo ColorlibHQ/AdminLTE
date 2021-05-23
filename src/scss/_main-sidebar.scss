@@ -36,9 +36,9 @@
   );
 }
 
-.sidebar-color-primary {
-  @include sidebar-color($primary);
-}
+// .sidebar-color-primary {
+//   @include sidebar-color($primary);
+// }
 
 .main-sidebar {
   grid-area: main-sidebar;
@@ -46,4 +46,11 @@
   z-index: $lte-zindex-sidebar;
   min-width: $lte-sidebar-width;
   max-width: $lte-sidebar-width;
+
+  .nav-sidebar > .nav-item {
+    > .nav-link.active {
+      background-color: var(--lte-sidebar-menu-active-bg);
+      color: var(--lte-sidebar-menu-active-color);
+    }
+  }
 }

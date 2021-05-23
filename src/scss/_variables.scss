@@ -45,6 +45,13 @@ $navbar-nav-link-padding-x:         1rem;
 // Dynamic Variables
 // --------------------------------------------------------
 :root {
+  // Sidebar
+  --lte-sidebar-width: 250px;
+
+  // Sidebar active links
+  --lte-sidebar-menu-active-bg: #{$primary};
+  --lte-sidebar-menu-active-color: #{$white};
+
   // Dark Sidebar Native Variables
   --lte-sidebar-dark-bg: #343a40;
   --lte-sidebar-dark-hover-bg: rgba(255, 255, 255, .1);
@@ -93,7 +100,7 @@ $lte-font-size-xl: ($font-size-base * 2) !default;
 
 // Sidebar
 // --------------------------------------------------------
-$lte-sidebar-width:               250px !default;
+$lte-sidebar-width:               var(--lte-sidebar-width);
 $lte-sidebar-padding-x:           .5rem !default;
 $lte-sidebar-padding-y:           .5rem !default;
 $lte-sidebar-custom-height:       4rem !default;
@@ -103,10 +110,11 @@ $lte-sidebar-custom-padding-x:    .85rem !default;
 $lte-sidebar-custom-padding-y:    .5rem !default;
 $lte-sidebar-transition:          min-width $lte-transition-speed $lte-transition-fn,
   max-width $lte-transition-speed $lte-transition-fn,
-  margin-top $lte-transition-speed $lte-transition-fn,
   margin-left $lte-transition-speed $lte-transition-fn,
-  margin-right $lte-transition-speed $lte-transition-fn,
-  transform $lte-transition-speed $lte-transition-fn;
+  margin-right $lte-transition-speed $lte-transition-fn;
+
+// margin-top $lte-transition-speed $lte-transition-fn,
+// transform $lte-transition-speed $lte-transition-fn;
 
 // SIDEBAR SKINS
 // --------------------------------------------------------

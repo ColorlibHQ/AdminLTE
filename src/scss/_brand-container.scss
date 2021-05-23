@@ -18,7 +18,6 @@
     grid-area: brand-link;
 
     &:hover {
-      color: $white;
       text-decoration: none;
     }
 
@@ -38,7 +37,7 @@
   }
 
   .sidebar-bg-dark & {
-    border-bottom: $lte-brand-link-border-buttom solid tint-color($dark, 10%);
+    border-bottom: $lte-brand-link-border-buttom solid $gray-700;
 
     .brand-link,
     .pushmenu {

@@ -2,6 +2,10 @@
 // --------------------------------------------------------
 
 :root {
+  // Sidebar active links
+  --lte-sidebar-menu-active-bg: #{$primary-alt};
+  --lte-sidebar-menu-active-color: #{$white-alt};
+
   // Dark Sidebar Native Variables
   --lte-sidebar-dark-bg: #{$dark-alt};
 

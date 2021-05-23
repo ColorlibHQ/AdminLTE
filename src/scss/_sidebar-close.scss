@@ -1,32 +1,6 @@
 .sidebar-close:not(.sidebar-horizontal) {
   .main-sidebar {
-    margin-left: -#{$lte-sidebar-width};
-  }
-  // @include media-breakpoint-up(md) {
-  //   .main-brand {
-  //     margin-left: -#{$lte-sidebar-width};
-  //   }
-  // }
-}
-
-@include media-breakpoint-up(sm) {
-  .layout-fixed {
-    // .main-header,
-    // .content-wrapper,
-    // .main-footer {
-    //   margin-left: 0;
-    // }
-    // .main-header,
-    // .content-wrapper,
-    // .main-footer {
-    //   margin-left: $lte-sidebar-width;
-    // }
-    // &.sidebar-collapse {
-    //   .main-header,
-    //   .content-wrapper,
-    //   .main-footer {
-    //     margin-left: $lte-sidebar-mini-width;
-    //   }
-    // }
+    // stylelint-disable-next-line
+    margin-left: calc(#{$lte-sidebar-width} * -1);
   }
 }
