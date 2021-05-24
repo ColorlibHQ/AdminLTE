@@ -11,26 +11,6 @@
   }
 }
 
-.text-xs {
-  font-size: $lte-font-size-xs !important;
-}
-
-.text-sm {
-  font-size: $font-size-sm !important;
-}
-
-.text-md {
-  font-size: $font-size-base !important;
-}
-
-.text-lg {
-  font-size: $font-size-lg !important;
-}
-
-.text-xl {
-  font-size: $lte-font-size-xl !important;
-}
-
 // text color variations
 @each $name, $color in $colors {
   .text-#{$name} {

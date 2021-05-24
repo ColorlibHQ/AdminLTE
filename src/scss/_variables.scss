@@ -1,46 +1,4 @@
-// Bootstrap Variables
-//
-// Variables should follow the `$component-state-property-size` formula for
-// consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
-
-// Options
-//
-// Quickly modify global styling by enabling or disabling optional features.
-
-$enable-shadows:              true;
-
-// Links
-//
-// Style anchor elements.
-
-$link-decoration:                         none;
-
-// Typography
-//
-// Font, line-height, and color for body text, headings, and more.
-
-// stylelint-disable value-keyword-case
-$font-family-sans-serif:      "Source Sans Pro", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-// stylelint-enable value-keyword-case
-
-// Tables
-//
-// Customizes the `.table` component with basic values, each used across all table variations.
-
-$table-cell-padding-y:        .75rem;
-$table-cell-padding-x:        .75rem;
-
-// Forms
-
-$form-check-input-width:                  1em;
-
-// Navbar
-
-$navbar-nav-link-padding-x:         1rem;
-
-// End of Bootstrap Variables
-
-// Variables for AdminLTE
+// Custom AdminLTE Variables
 
 // Dynamic Variables
 // --------------------------------------------------------
@@ -93,14 +51,9 @@ $lte-font-size-root:              1rem !default;
 $lte-transition-speed:            .3s !default;
 $lte-transition-fn:               ease-in-out !default;
 
-// TEXT
-// --------------------------------------------------------
-$lte-font-size-xs: ($font-size-base * .75) !default;
-$lte-font-size-xl: ($font-size-base * 2) !default;
-
 // Sidebar
 // --------------------------------------------------------
-$lte-sidebar-width:               var(--lte-sidebar-width);
+$lte-sidebar-width:               var(--lte-sidebar-width) !default;
 $lte-sidebar-padding-x:           .5rem !default;
 $lte-sidebar-padding-y:           .5rem !default;
 $lte-sidebar-custom-height:       4rem !default;
