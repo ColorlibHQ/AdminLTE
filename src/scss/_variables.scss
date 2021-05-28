@@ -1,5 +1,9 @@
 // Custom AdminLTE Variables
 
+// COLORS
+// --------------------------------------------------------
+$lte-gray-x-light: #d2d6de !default;
+
 // Dynamic Variables
 // --------------------------------------------------------
 :root {
@@ -189,6 +193,12 @@ $lte-card-img-size: $lte-img-size-sm !default;
 // PROGRESS BARS
 // --------------------------------------------------------
 $lte-progress-bar-border-radius: 1px !default;
+
+// DIRECT CHAT
+// --------------------------------------------------------
+$lte-direct-chat-default-msg-bg: $lte-gray-x-light !default;
+$lte-direct-chat-default-font-color: #444 !default;
+$lte-direct-chat-default-msg-border-color: $lte-gray-x-light !default;
 
 // Z-INDEX
 // --------------------------------------------------------

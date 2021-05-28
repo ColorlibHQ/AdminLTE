@@ -11,6 +11,7 @@ const { src, dest, lastRun, watch, series } = require('gulp')
 const cleanCss = require('gulp-clean-css')
 const eslint = require('gulp-eslint7')
 const fileinclude = require('gulp-file-include')
+const gulpIf = require('gulp-if')
 const npmDist = require('gulp-npm-dist')
 const postcss = require('gulp-postcss')
 const rename = require('gulp-rename')
@@ -110,7 +111,7 @@ const lintScss = () => {
     }))
 }
 
-const ts = () => {
+const tsCompile = () => {
   return esbuild.build({
     entryPoints: [paths.src.ts + '/adminlte.ts'],
     banner: {
@@ -127,10 +128,17 @@ const ts = () => {
 }
 
 // Lint TS
+function isFixed(file) {
+  // Has ESLint fixed the file contents?
+  return file.eslint !== null && file.eslint.fixed
+}
+
 const lintTs = () => {
   return src([paths.src.ts + '/**/*.ts'], { since: lastRun(lintTs) })
-    .pipe(eslint())
+    .pipe(eslint({ fix: true }))
     .pipe(eslint.format())
+    .pipe(gulpIf(isFixed, dest(paths.src.ts)))
+    .pipe(eslint.failAfterError())
 }
 
 const index = () => {
@@ -178,10 +186,9 @@ const serve = () => {
   watch([paths.src.scss], series(lintScss))
   watch([paths.src.scss + '/**/*.scss', '!' + paths.src.scss + '/bootstrap-dark/**/*.scss', '!' + paths.src.scss + '/dark/**/*.scss'], series(scss))
   watch([paths.src.scss + '/bootstrap-dark/', paths.src.scss + '/dark/'], series(scssDark))
-  watch([paths.src.ts], series(lintTs, ts))
+  watch([paths.src.ts], series(lintTs, tsCompile))
   watch([paths.src.html, paths.src.base + '*.html', paths.src.partials], series(html, index))
   watch([paths.src.assets], series(assets))
-  // watch([paths.src.vendor], series(vendor)) // Probably not required
 }
 
 // From here Dist will Start
@@ -293,4 +300,4 @@ const copyDistVendor = () => {
 exports.build = series(lintScss, lintTs, cleanDist, copyDistCssAll, copyDistCssRtl, minifyDistCss, copyDistJs, minifyDistJs, copyDistHtml, copyDistHtmlIndex, copyDistAssets, copyDistVendor)
 
 // Default - Only for light mode AdminLTE
-exports.default = series(scss, scssDark, ts, html, index, assets, vendor, serve)
+exports.default = series(scss, scssDark, tsCompile, html, index, assets, vendor, serve)

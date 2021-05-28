@@ -9,6 +9,8 @@ import {
   domReady
 } from './util/index'
 
+import OverlayScrollbars from 'overlayscrollbars'
+
 /**
  * ------------------------------------------------------------------------
  * Constants
@@ -16,6 +18,13 @@ import {
  */
 
 const CLASS_NAME_RESIZE_ANIMATION_STOPPER = 'resize-animation-stopper'
+
+const SELECTOR_SIDEBAR = '.sidebar'
+
+const Default = {
+  scrollbarTheme: 'os-theme-light',
+  scrollbarAutoHide: 'leave'
+}
 
 /**
  * Class Definition
@@ -38,6 +47,19 @@ class Layout {
 domReady(() => {
   const data = new Layout()
   data.holdTransition()
+
+  if (typeof OverlayScrollbars !== 'undefined') {
+    // @ts-expect-error
+    // eslint-disable-next-line new-cap
+    OverlayScrollbars(document.querySelectorAll(SELECTOR_SIDEBAR), {
+      className: Default.scrollbarTheme,
+      sizeAutoCapable: true,
+      scrollbars: {
+        autoHide: Default.scrollbarAutoHide,
+        clickScrolling: true
+      }
+    })
+  }
 })
 
 export default Layout

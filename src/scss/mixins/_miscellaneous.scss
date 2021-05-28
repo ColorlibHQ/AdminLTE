@@ -3,9 +3,9 @@
 //
 
 // ETC
-// @mixin translate($x, $y) {
-//   transform: translate($x, $y);
-// }
+@mixin translate($x, $y) {
+  transform: translate($x, $y);
+}
 
 // Different radius each side
 // @mixin border-radius-sides($top-left, $top-right, $bottom-left, $bottom-right) {
