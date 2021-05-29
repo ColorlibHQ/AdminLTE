@@ -5,7 +5,7 @@
     > .nav-link {
       margin-bottom: .2rem;
 
-      .right {
+      .end {
         @include transition(transform $lte-transition-fn $lte-transition-speed);
         transform: none #{"/*rtl:rotate(-180deg)*/"};
       }
@@ -13,8 +13,8 @@
   }
 
   // All levels
-  .nav-link > .right,
-  .nav-link > p > .right {
+  .nav-link > .end,
+  .nav-link > p > .end {
     position: absolute;
     right: 1rem;
     top: .7rem;
@@ -57,8 +57,8 @@
   .menu-open,
   .menu-is-opening {
     > .nav-link {
-      svg.right,
-      i.right {
+      svg.end,
+      i.end {
         transform: rotate(-90deg) #{"/*rtl:rotate(-90deg)*/"};
       }
     }
