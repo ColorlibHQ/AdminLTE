@@ -1,0 +1,72 @@
+.direct-chat-text {
+  background-color: $gray-800-alt;
+  border-color: tint-color($gray-800-alt, 10%);
+  color: $white-alt;
+
+  &::after,
+  &::before {
+    border-right-color: $gray-800-alt;
+  }
+}
+
+.direct-chat-timestamp {
+  color: $gray-300-alt;
+}
+
+.end > .direct-chat-text {
+  &::after,
+  &::before {
+    border-right-color: transparent;
+  }
+}
+
+.direct-chat-contacts {
+  background-color: $gray-800-alt;
+  color: $white-alt;
+}
+
+.direct-chat-contacts-light {
+  background-color: $dark-alt;
+
+  .contacts-list-name {
+    color: $light-alt;
+  }
+
+  .contacts-list-date {
+    color: $gray-200-alt;
+  }
+
+  .contacts-list-msg {
+    color: $gray-300-alt;
+  }
+}
+
+//Contacts list -- for displaying contacts in direct chat contacts pane
+.contacts-list > li {
+  border-bottom-color: rgba($white-alt, .2);
+}
+
+.contacts-list-info {
+  color: $white-alt;
+}
+
+.contacts-list-date {
+  color: $gray-300-alt;
+}
+
+.contacts-list-msg {
+  color: $gray-400-alt;
+}
+
+// Color variants
+@each $name, $color in $theme-colors-alt {
+  .direct-chat-#{$name} {
+    @include direct-chat-variant($color);
+  }
+}
+
+@each $name, $color in $colors-alt {
+  .direct-chat-#{$name} {
+    @include direct-chat-variant($color);
+  }
+}

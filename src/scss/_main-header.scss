@@ -12,8 +12,12 @@
 .main-header {
   grid-area: main-header;
   border-bottom: $lte-main-header-bottom-border;
-  width: inherit;
   z-index: $lte-zindex-main-header;
+
+  .nav-link {
+    height: $nav-link-height;
+    position: relative;
+  }
 }
 
 // Navbar badge

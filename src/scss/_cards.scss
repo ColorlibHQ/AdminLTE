@@ -64,7 +64,7 @@
 
   .nav.flex-column {
     > li {
-      border-bottom: 1px solid $lte-card-border-color;
+      border-bottom: 1px solid $card-border-color;
       margin: 0;
 
       &:last-of-type {
@@ -82,11 +82,11 @@
   }
 
   .border-end {
-    border-right: 1px solid $lte-card-border-color;
+    border-right: 1px solid $card-border-color;
   }
 
   .border-start {
-    border-left: 1px solid $lte-card-border-color;
+    border-left: 1px solid $card-border-color;
   }
 
   &.card-tabs {
@@ -212,7 +212,7 @@ html.maximized-card {
 // Box header
 .card-header {
   background-color: transparent;
-  border-bottom: 1px solid $lte-card-border-color;
+  border-bottom: 1px solid $card-border-color;
   padding: (($card-spacer-y / 2) * 2) $card-spacer-x;
   position: relative;
 

@@ -52,7 +52,7 @@
 }
 
 .list-seperator {
-  background-color: $lte-card-border-color;
+  background-color: $card-border-color;
   height: 1px;
   margin: 15px 0 9px;
 }
@@ -217,7 +217,7 @@
 // General attachemnt block
 .attachment-block {
   background-color: $gray-100;
-  border: 1px solid $lte-card-border-color;
+  border: 1px solid $card-border-color;
   margin-bottom: 10px;
   padding: 5px;
 

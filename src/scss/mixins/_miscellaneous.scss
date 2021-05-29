@@ -20,9 +20,9 @@
   transform: rotate($value);
 }
 
-// @mixin animation($animation) {
-//   animation: $animation;
-// }
+@mixin animation($animation) {
+  animation: $animation;
+}
 
 // Gradient background
 // @mixin gradient($color: #f5f5f5, $start: #eee, $stop: $white) {
