@@ -44,7 +44,7 @@
       overflow: auto;
     }
 
-    [data-card-widget="collapse"] {
+    [data-lte-toggle="card-collapse"] {
       display: none;
     }
 
@@ -235,7 +235,7 @@ html.maximized-card {
       margin-top: -$card-spacer-y / 2.5;
     }
 
-    [data-toggle="tooltip"] {
+    [data-bs-toggle="tooltip"] {
       position: relative;
     }
   }

@@ -23,15 +23,15 @@ const CLASS_NAME_SIDEBAR_CLOSE = 'sidebar-close'
 const CLASS_NAME_SIDEBAR_OPEN = 'sidebar-open'
 const CLASS_NAME_SIDEBAR_OPENING = 'sidebar-is-opening'
 const CLASS_NAME_SIDEBAR_COLLAPSING = 'sidebar-is-collapsing'
+const CLASS_NAME_SIDEBAR_IS_HOVER = 'sidebar-is-hover'
 const CLASS_NAME_MENU_OPEN = 'menu-open'
-const CLASS_NAME_HEADER_MOBILE_OPEN = 'header-mobile-open'
 
+const SELECTOR_SIDEBAR = '.sidebar'
 const SELECTOR_NAV_SIDEBAR = '.nav-sidebar'
 const SELECTOR_NAV_ITEM = '.nav-item'
 const SELECTOR_NAV_TREEVIEW = '.nav-treeview'
-const SELECTOR_MINI_TOGGLE = '[data-pushmenu="mini"]'
-const SELECTOR_FULL_TOGGLE = '[data-pushmenu="full"]'
-const SELECTOR_FULL_HEADER = '[data-pushmenu="header"]'
+const SELECTOR_MINI_TOGGLE = '[data-lte-toggle="sidebar-mini"]'
+const SELECTOR_FULL_TOGGLE = '[data-lte-toggle="sidebar-full"]'
 
 /**
  * Class Definition
@@ -39,21 +39,29 @@ const SELECTOR_FULL_HEADER = '[data-pushmenu="header"]'
  */
 
 class PushMenu {
-  sidebarOpening(): void {
-    const bodyClass = document.body.classList
+  _element: HTMLElement | null
+  _config: null
+  _bodyClass: DOMTokenList
+  constructor(element: HTMLElement | null, config: null) {
+    this._element = element
 
-    bodyClass.add(CLASS_NAME_SIDEBAR_OPENING)
+    const bodyElement = document.body as HTMLBodyElement
+    this._bodyClass = bodyElement.classList
+
+    this._config = config
+  }
+
+  sidebarOpening(): void {
+    this._bodyClass.add(CLASS_NAME_SIDEBAR_OPENING)
     setTimeout(() => {
-      bodyClass.remove(CLASS_NAME_SIDEBAR_OPENING)
+      this._bodyClass.remove(CLASS_NAME_SIDEBAR_OPENING)
     }, 1000)
   }
 
   sidebarColllapsing(): void {
-    const bodyClass = document.body.classList
-
-    bodyClass.add(CLASS_NAME_SIDEBAR_COLLAPSING)
+    this._bodyClass.add(CLASS_NAME_SIDEBAR_COLLAPSING)
     setTimeout(() => {
-      bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSING)
+      this._bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSING)
     }, 1000)
   }
 
@@ -77,89 +85,67 @@ class PushMenu {
 
   expand(): void {
     this.sidebarOpening()
-    const bodyClass = document.body.classList
-    bodyClass.remove(CLASS_NAME_HEADER_MOBILE_OPEN)
-    bodyClass.remove(CLASS_NAME_SIDEBAR_CLOSE)
-    bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
-    bodyClass.add(CLASS_NAME_SIDEBAR_OPEN)
+
+    this._bodyClass.remove(CLASS_NAME_SIDEBAR_CLOSE)
+    this._bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
+    this._bodyClass.add(CLASS_NAME_SIDEBAR_OPEN)
   }
 
   collapse(): void {
     this.sidebarColllapsing()
-    const bodyClass = document.body.classList
-    bodyClass.add(CLASS_NAME_SIDEBAR_COLLAPSE)
+
+    this._bodyClass.add(CLASS_NAME_SIDEBAR_COLLAPSE)
   }
 
   close(): void {
-    const bodyClass = document.body.classList
+    this._bodyClass.add(CLASS_NAME_SIDEBAR_CLOSE)
+    this._bodyClass.remove(CLASS_NAME_SIDEBAR_OPEN)
+    this._bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
 
-    bodyClass.add(CLASS_NAME_SIDEBAR_CLOSE)
-    bodyClass.remove(CLASS_NAME_SIDEBAR_OPEN)
-    bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
-
-    if (bodyClass.contains(CLASS_NAME_SIDEBAR_HORIZONTAL)) {
+    if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_HORIZONTAL)) {
       this.menusClose()
     }
   }
 
-  toggleFull(): void {
-    const bodyClass = document.body.classList
+  sidebarHover(): void {
+    const selSidebar = document.querySelector(SELECTOR_SIDEBAR)
+    selSidebar?.addEventListener('mouseover', () => {
+      this._bodyClass.add(CLASS_NAME_SIDEBAR_IS_HOVER)
+    })
 
-    if (bodyClass.contains(CLASS_NAME_SIDEBAR_CLOSE)) {
+    selSidebar?.addEventListener('mouseout', () => {
+      this._bodyClass.remove(CLASS_NAME_SIDEBAR_IS_HOVER)
+    })
+  }
+
+  toggleFull(): void {
+    if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_CLOSE)) {
       this.expand()
     } else {
       this.close()
     }
 
-    if (bodyClass.contains(CLASS_NAME_SIDEBAR_MINI)) {
-      bodyClass.remove(CLASS_NAME_SIDEBAR_MINI)
-      bodyClass.add(CLASS_NAME_SIDEBAR_MINI_HAD)
+    if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_MINI)) {
+      this._bodyClass.remove(CLASS_NAME_SIDEBAR_MINI)
+      this._bodyClass.add(CLASS_NAME_SIDEBAR_MINI_HAD)
     }
   }
 
   toggleMini(): void {
-    const bodyClass = document.body.classList
-
-    if (bodyClass.contains(CLASS_NAME_SIDEBAR_MINI_HAD)) {
-      bodyClass.remove(CLASS_NAME_SIDEBAR_MINI_HAD)
-      bodyClass.add(CLASS_NAME_SIDEBAR_MINI)
+    if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_MINI_HAD)) {
+      this._bodyClass.remove(CLASS_NAME_SIDEBAR_MINI_HAD)
+      this._bodyClass.add(CLASS_NAME_SIDEBAR_MINI)
     }
 
-    if (bodyClass.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
+    if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
       this.expand()
     } else {
       this.collapse()
     }
   }
 
-  toggleHeader(): void {
-    this.close()
-    const bodyClass = document.body.classList
-    if (bodyClass.contains(CLASS_NAME_HEADER_MOBILE_OPEN)) {
-      bodyClass.remove(CLASS_NAME_HEADER_MOBILE_OPEN)
-    } else {
-      bodyClass.add(CLASS_NAME_HEADER_MOBILE_OPEN)
-    }
-  }
-
-  toggle(state: string): void {
-    switch (state) {
-      case 'full': {
-        this.toggleFull()
-        break
-      }
-
-      case 'mini': {
-        this.toggleMini()
-        break
-      }
-
-      case 'header': {
-        this.toggleHeader()
-        break
-      }
-    // No default
-    }
+  init() {
+    this.sidebarHover()
   }
 }
 
@@ -170,32 +156,45 @@ class PushMenu {
  */
 
 domReady(() => {
+  const data = new PushMenu(null, null)
+  data.init()
+
   const fullBtn = document.querySelectorAll(SELECTOR_FULL_TOGGLE)
-  const miniBtn = document.querySelectorAll(SELECTOR_MINI_TOGGLE)
-  const headerBtn = document.querySelectorAll(SELECTOR_FULL_HEADER)
 
   for (const btn of fullBtn) {
-    btn.addEventListener('click', () => {
-      const data = new PushMenu()
-      data.toggle('full')
+    btn.addEventListener('click', event => {
+      event.preventDefault()
+
+      let button = event.currentTarget as HTMLElement | null | undefined
+
+      if (button?.dataset.lteToggle !== 'sidebar-full') {
+        button = button?.closest(SELECTOR_FULL_TOGGLE)
+      }
+
+      if (button) {
+        const data = new PushMenu(button, null)
+        data.toggleFull()
+      }
     })
   }
+
+  const miniBtn = document.querySelectorAll(SELECTOR_MINI_TOGGLE)
 
   for (const btn of miniBtn) {
-    btn.addEventListener('click', () => {
-      const data = new PushMenu()
-      data.toggle('mini')
-    })
-  }
+    btn.addEventListener('click', event => {
+      event.preventDefault()
 
-  for (const btn of headerBtn) {
-    btn.addEventListener('click', () => {
-      const data = new PushMenu()
-      data.toggle('header')
+      let button = event.currentTarget as HTMLElement | null | undefined
+      if (button?.dataset.lteToggle !== 'sidebar-mini') {
+        button = button?.closest(SELECTOR_FULL_TOGGLE)
+      }
+
+      if (button) {
+        const data = new PushMenu(button, null)
+        data.toggleMini()
+      }
     })
   }
 })
 
 export default PushMenu
-
-//

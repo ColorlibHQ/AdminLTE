@@ -40,7 +40,7 @@
     visibility: hidden;
   }
 
-  &.sidebar-hover {
+  &.sidebar-is-hover {
     .main-sidebar {
       min-width: $lte-sidebar-width;
       max-width: $lte-sidebar-width;

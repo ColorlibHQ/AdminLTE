@@ -23,9 +23,9 @@ const CLASS_NAME_EXPANDING = 'expanding-card'
 const CLASS_NAME_WAS_COLLAPSED = 'was-collapsed'
 const CLASS_NAME_MAXIMIZED = 'maximized-card'
 
-const SELECTOR_DATA_REMOVE = '[data-card-widget="remove"]'
-const SELECTOR_DATA_COLLAPSE = '[data-card-widget="collapse"]'
-const SELECTOR_DATA_MAXIMIZE = '[data-card-widget="maximize"]'
+const SELECTOR_DATA_REMOVE = '[data-lte-dismiss="card-remove"]'
+const SELECTOR_DATA_COLLAPSE = '[data-lte-toggle="card-collapse"]'
+const SELECTOR_DATA_MAXIMIZE = '[data-lte-toggle="card-maximize"]'
 const SELECTOR_CARD = `.${CLASS_NAME_CARD}`
 const SELECTOR_CARD_HEADER = '.card-header'
 const SELECTOR_CARD_BODY = '.card-body'
@@ -42,7 +42,7 @@ const Default = {
   minimizeIcon: 'fa-compress'
 }
 
-interface Settings {
+interface Config {
   animationSpeed: number;
   collapseTrigger: string;
   removeTrigger: string;
@@ -56,8 +56,8 @@ interface Settings {
 class CardWidget {
   _element: HTMLElement
   _parent: HTMLElement | null
-  _settings: Settings
-  constructor(element: HTMLElement, settings: Settings) {
+  _config: Config
+  constructor(element: HTMLElement, config: Config) {
     this._element = element
     this._parent = element.closest(SELECTOR_CARD)
 
@@ -65,7 +65,7 @@ class CardWidget {
       this._parent = element
     }
 
-    this._settings = Object.assign({}, Default, settings)
+    this._config = Object.assign({}, Default, config)
   }
 
   collapse() {
@@ -76,7 +76,7 @@ class CardWidget {
     if (elm !== undefined) {
       for (const el of elm) {
         if (el instanceof HTMLElement) {
-          slideUp(el, this._settings.animationSpeed)
+          slideUp(el, this._config.animationSpeed)
         }
       }
     }
@@ -84,12 +84,12 @@ class CardWidget {
     setTimeout(() => {
       this._parent?.classList.add(CLASS_NAME_COLLAPSED)
       this._parent?.classList.remove(CLASS_NAME_COLLAPSING)
-    }, this._settings.animationSpeed)
+    }, this._config.animationSpeed)
 
-    const icon = this._parent?.querySelector(`${SELECTOR_CARD_HEADER} ${this._settings.collapseTrigger} .${this._settings.collapseIcon}`)
+    const icon = this._parent?.querySelector(`${SELECTOR_CARD_HEADER} ${this._config.collapseTrigger} .${this._config.collapseIcon}`)
 
-    icon?.classList.add(this._settings.expandIcon)
-    icon?.classList.remove(this._settings.collapseIcon)
+    icon?.classList.add(this._config.expandIcon)
+    icon?.classList.remove(this._config.collapseIcon)
   }
 
   expand() {
@@ -100,7 +100,7 @@ class CardWidget {
     if (elm !== undefined) {
       for (const el of elm) {
         if (el instanceof HTMLElement) {
-          slideDown(el, this._settings.animationSpeed)
+          slideDown(el, this._config.animationSpeed)
         }
       }
     }
@@ -108,17 +108,17 @@ class CardWidget {
     setTimeout(() => {
       this._parent?.classList.remove(CLASS_NAME_COLLAPSED)
       this._parent?.classList.remove(CLASS_NAME_EXPANDING)
-    }, this._settings.animationSpeed)
+    }, this._config.animationSpeed)
 
-    const icon = this._parent?.querySelector(`${SELECTOR_CARD_HEADER} ${this._settings.collapseTrigger} .${this._settings.expandIcon}`)
+    const icon = this._parent?.querySelector(`${SELECTOR_CARD_HEADER} ${this._config.collapseTrigger} .${this._config.expandIcon}`)
 
-    icon?.classList.add(this._settings.collapseIcon)
-    icon?.classList.remove(this._settings.expandIcon)
+    icon?.classList.add(this._config.collapseIcon)
+    icon?.classList.remove(this._config.expandIcon)
   }
 
   remove() {
     if (this._parent) {
-      slideUp(this._parent, this._settings.animationSpeed)
+      slideUp(this._parent, this._config.animationSpeed)
     }
   }
 
@@ -133,9 +133,9 @@ class CardWidget {
 
   maximize() {
     if (this._parent) {
-      const maxElm = this._parent.querySelector(`${this._settings.maximizeTrigger} .${this._settings.maximizeIcon}`)
-      maxElm?.classList.add(this._settings.minimizeIcon)
-      maxElm?.classList.remove(this._settings.maximizeIcon)
+      const maxElm = this._parent.querySelector(`${this._config.maximizeTrigger} .${this._config.maximizeIcon}`)
+      maxElm?.classList.add(this._config.minimizeIcon)
+      maxElm?.classList.remove(this._config.maximizeIcon)
 
       this._parent.style.height = `${this._parent.scrollHeight}px`
       this._parent.style.width = `${this._parent.scrollWidth}px`
@@ -153,10 +153,10 @@ class CardWidget {
 
   minimize() {
     if (this._parent) {
-      const minElm = this._parent.querySelector(`${this._settings.maximizeTrigger} .${this._settings.minimizeIcon}`)
+      const minElm = this._parent.querySelector(`${this._config.maximizeTrigger} .${this._config.minimizeIcon}`)
 
-      minElm?.classList.add(this._settings.maximizeIcon)
-      minElm?.classList.remove(this._settings.minimizeIcon)
+      minElm?.classList.add(this._config.maximizeIcon)
+      minElm?.classList.remove(this._config.minimizeIcon)
 
       this._parent.style.cssText = `height: ${this._parent.style.height} !important; width: ${this._parent.style.width} !important; transition: all .15s;`
       // console.log('🚀 ~ file: card-widget.ts ~ line 164 ~ CardWidget ~ minimize ~ this._parent.style.height', this._parent.style.height)

@@ -19,7 +19,7 @@ const CLASS_NAME_MENU_OPEN = 'menu-open'
 const CLASS_NAME_MENU_IS_OPEN = 'menu-is-open'
 
 const SELECTOR_NAV_ITEM = '.nav-item'
-const SELECTOR_DATA_TOGGLE = '[data-widget="treeview"]'
+const SELECTOR_DATA_TOGGLE = '[data-lte-toggle="treeview"]'
 
 const Defaults = {
   transitionDuration: 300,

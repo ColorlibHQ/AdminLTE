@@ -1,11 +1,5 @@
 @include media-breakpoint-down(lg) {
   .wrapper {
-    // grid-template-areas:
-    //   "main-sidebar main-header"
-    //   "main-sidebar content-wrapper"
-    //   "main-sidebar main-footer";
-    // grid-template-columns: auto 1fr auto;
-
     .main-sidebar {
       position: fixed;
       top: 0;
@@ -18,35 +12,6 @@
         overflow-y: auto;
       }
     }
-
-    // .main-header {
-    //   position: fixed;
-    //   top: 0;
-    //   bottom: 0;
-    //   min-height: 100vh;
-    //   z-index: $zindex-header-mobile;
-    //   width: $lte-sidebar-width;
-    //   margin-left: -#{$lte-sidebar-width};
-    //   align-items: baseline;
-    //   @include transition($lte-sidebar-transition);
-
-    //   .navbar-nav {
-    //     flex-direction: column;
-    //   }
-
-    //   .sidebar-full-icon {
-    //     display: none;
-    //   }
-    // }
-
-    // .brand-link {
-    //   animation: none;
-    // }
-
-    // .sidebar-full-icon,
-    // .header-full-icon {
-    //   display: block;
-    // }
   }
 
   .sidebar-open {
@@ -54,12 +19,4 @@
       margin-left: 0;
     }
   }
-
-  // @include media-breakpoint-down(md) {
-  //   .header-mobile-open {
-  //     .main-header {
-  //       margin-left: 0;
-  //     }
-  //   }
-  // }
 }

@@ -14,7 +14,7 @@ import {
  * ====================================================
  */
 
-const SELECTOR_DATA_TOGGLE = '[data-widget="chat-pane-toggle"]'
+const SELECTOR_DATA_TOGGLE = '[data-lte-toggle="chat-pane"]'
 const SELECTOR_DIRECT_CHAT = '.direct-chat'
 
 const CLASS_NAME_DIRECT_CHAT_OPEN = 'direct-chat-contacts-open'
