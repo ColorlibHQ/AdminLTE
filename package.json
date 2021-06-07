@@ -69,7 +69,7 @@
     "@sweetalert2/theme-bootstrap-4": "^4.0.5",
     "@ttskch/select2-bootstrap4-theme": "^1.5.2",
     "bootstrap": "^4.6.0",
-    "bootstrap-colorpicker": "^3.3.0",
+    "bootstrap-colorpicker": "^3.4.0",
     "bootstrap-slider": "^11.0.2",
     "bootstrap-switch": "3.3.4",
     "bootstrap4-duallistbox": "^4.0.2",
