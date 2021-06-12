@@ -39,8 +39,8 @@
     "plugins": "node build/npm/Publish.js -v",
     "sync": "browser-sync start --server --files *.html pages/ dist/",
     "watch": "concurrently \"npm run watch-css\" \"npm run watch-js\"",
-    "watch-css": "nodemon --watch build/scss -e scss -x \"npm-run-all css-lint css\"",
-    "watch-js": "nodemon --watch build/js -e js -x \"npm-run-all js-lint js\""
+    "watch-css": "nodemon --legacy-watch --watch build/scss -e scss -x \"npm-run-all css-lint css\"",
+    "watch-js": "nodemon --legacy-watch --watch build/js -e js -x \"npm-run-all js-lint js\""
   },
   "keywords": [
     "css",
