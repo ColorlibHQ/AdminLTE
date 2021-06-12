@@ -37,8 +37,6 @@
     color: color-yiq($color);
 
     &.btn {
-      &.disabled,
-      &:disabled,
       &:not(:disabled):not(.disabled):active,
       &:not(:disabled):not(.disabled).active,
       .show > &.dropdown-toggle {
@@ -58,6 +56,13 @@
         background: $color linear-gradient(180deg, mix($body-bg, darken($color, 10%), 15%), darken($color, 10%)) repeat-x !important;
         border-color: darken($color, 12.5%);
         color: color-yiq(darken($color, 10%));
+      }
+
+      &:disabled,
+      &.disabled {
+        background-image: none !important;
+        border-color: $color;
+        color: color-yiq($color);
       }
     }
   }

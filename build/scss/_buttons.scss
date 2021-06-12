@@ -53,6 +53,12 @@
     background-color: darken($button-default-background-color, 5%);
     color: darken($button-default-color, 10%);
   }
+
+  &.disabled,
+  &:disabled {
+    color: $button-default-color;
+    background-color: $button-default-background-color;
+  }
 }
 
 .btn-outline-light {
