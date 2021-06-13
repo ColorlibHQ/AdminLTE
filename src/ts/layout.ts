@@ -24,12 +24,25 @@ const Default = {
   scrollbarAutoHide: 'leave'
 }
 
+interface Config {
+  scrollbarTheme: string;
+  scrollbarAutoHide: string;
+}
+
 /**
  * Class Definition
  * ====================================================
  */
 
 class Layout {
+  _element: HTMLElement
+  _config: Config
+
+  constructor(element: HTMLElement, config: Config) {
+    this._element = element
+    this._config = Object.assign({}, Default, config)
+  }
+
   holdTransition(): void {
     let resizeTimer: number | undefined
     window.addEventListener('resize', () => {
@@ -43,13 +56,13 @@ class Layout {
 }
 
 domReady(() => {
-  const data = new Layout()
+  const data = new Layout(document.body, Default)
   data.holdTransition()
   // @ts-expect-error
   if (typeof OverlayScrollbars !== 'undefined') {
     // @ts-expect-error
-    // eslint-disable-next-line new-cap
-    OverlayScrollbars(document.querySelectorAll(SELECTOR_SIDEBAR), {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    OverlayScrollbars(document.querySelectorAll(SELECTOR_SIDEBAR), { // eslint-disable-line new-cap
       className: Default.scrollbarTheme,
       sizeAutoCapable: true,
       scrollbars: {
