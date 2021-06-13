@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------
- * AdminLTE card-widget.js
+ * AdminLTE card-widget.ts
  * License MIT
  * --------------------------------------------
  */
@@ -159,7 +159,6 @@ class CardWidget {
       minElm?.classList.remove(this._config.minimizeIcon)
 
       this._parent.style.cssText = `height: ${this._parent.style.height} !important; width: ${this._parent.style.width} !important; transition: all .15s;`
-      // console.log('🚀 ~ file: card-widget.ts ~ line 164 ~ CardWidget ~ minimize ~ this._parent.style.height', this._parent.style.height)
 
       setTimeout(() => {
         document.querySelector('html')?.classList.remove(CLASS_NAME_MAXIMIZED)

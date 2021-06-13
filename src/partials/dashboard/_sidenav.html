@@ -50,6 +50,24 @@
             </p>
           </a>
         </li>
+        <li class="nav-item @@if (context.mainPage === 'layout') {menu-open}">
+          <a href="javascript:void(0)" class="nav-link @@if (context.mainPage === 'layout') {active}">
+            <i class="nav-icon fas fa-circle"></i>
+            <p>
+              Layout Options
+              <span class="badge bg-info float-end me-3">6</span>
+              <i class="end fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="@@path/pages/layout/fixed-sidebar.html" class="nav-link @@if (context.page === 'fixed-sidebar') {active}">
+                <i class="nav-icon far fa-circle"></i>
+                <p>Fixed Sidebar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item @@if (context.mainPage === 'forms') {menu-open}">
           <a href="javascript:void(0)" class="nav-link @@if (context.mainPage === 'forms') {active}">
             <i class="nav-icon fas fa-circle"></i>

@@ -54,3 +54,10 @@
     }
   }
 }
+
+.hold-transition {
+  .main-sidebar {
+    animation: none !important;
+    transition: none !important;
+  }
+}

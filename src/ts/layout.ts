@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------
- * AdminLTE treeview.ts
+ * AdminLTE layout.ts
  * License MIT
  * --------------------------------------------
  */
@@ -9,15 +9,13 @@ import {
   domReady
 } from './util/index'
 
-import OverlayScrollbars from 'overlayscrollbars'
-
 /**
  * ------------------------------------------------------------------------
  * Constants
  * ------------------------------------------------------------------------
  */
 
-const CLASS_NAME_RESIZE_ANIMATION_STOPPER = 'resize-animation-stopper'
+const CLASS_NAME_HOLD_TRANSITIONs = 'hold-transition'
 
 const SELECTOR_SIDEBAR = '.sidebar'
 
@@ -35,10 +33,10 @@ class Layout {
   holdTransition(): void {
     let resizeTimer: number | undefined
     window.addEventListener('resize', () => {
-      document.body.classList.add(CLASS_NAME_RESIZE_ANIMATION_STOPPER)
+      document.body.classList.add(CLASS_NAME_HOLD_TRANSITIONs)
       clearTimeout(resizeTimer)
       resizeTimer = setTimeout(() => {
-        document.body.classList.remove(CLASS_NAME_RESIZE_ANIMATION_STOPPER)
+        document.body.classList.remove(CLASS_NAME_HOLD_TRANSITIONs)
       }, 400)
     })
   }
@@ -47,7 +45,7 @@ class Layout {
 domReady(() => {
   const data = new Layout()
   data.holdTransition()
-
+  // @ts-expect-error
   if (typeof OverlayScrollbars !== 'undefined') {
     // @ts-expect-error
     // eslint-disable-next-line new-cap

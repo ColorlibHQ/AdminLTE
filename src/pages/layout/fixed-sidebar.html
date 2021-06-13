@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- For RTL verison -->
+<!-- <html lang="en" dir="rtl"> -->
+  <head>
+    @@include('./_head.html', {
+      "path": "../..",
+      "title": "AdminLTE 4 | Fixed Sidebar"
+    })
+  </head>
+  <body class="layout-fixed">
+    <div class="wrapper">
+      @@include('./dashboard/_topbar.html', {
+        "path": "../.."
+      })
+
+      @@include('./dashboard/_sidenav.html', {
+        "mainPage": "layout",
+        "page": "fixed-sidebar",
+        "path": "../.."
+      })
+      <!-- Main content -->
+      <div class="content-wrapper">
+        @@include('./dashboard/_content-header.html', {
+          "header_name": "Fixed Layout"
+        })
+        <!-- Main content -->
+        <div class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <!-- Default box -->
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Title</h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button type="button" class="btn btn-tool" data-lte-dismiss="card-remove" title="Remove">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    Start creating your amazing application!
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    Footer
+                  </div>
+                  <!-- /.card-footer-->
+                </div>
+                <!-- /.card -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+
+      @@include('./dashboard/_footer.html', {
+        "path": "../.."
+      })
+    </div>
+    <!--  ./wrapper -->
+
+    @@include('./_scripts.html', {
+      "path": "../.."
+    })
+  </body>
+</html>

@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------
- * AdminLTE treeview.ts
+ * AdminLTE sidebar-overlay.ts
  * License MIT
  * --------------------------------------------
  */
