@@ -6,7 +6,9 @@
  */
 
 import {
-  domReady
+  domReady,
+  slideDown,
+  slideUp
 } from './util/index'
 
 /**
@@ -17,13 +19,16 @@ import {
 
 const CLASS_NAME_MENU_OPEN = 'menu-open'
 const CLASS_NAME_MENU_IS_OPEN = 'menu-is-open'
-
 const SELECTOR_NAV_ITEM = '.nav-item'
+const SELECTOR_TREEVIEW_MENU = '.nav-treeview'
 const SELECTOR_DATA_TOGGLE = '[data-lte-toggle="treeview"]'
 
-const Defaults = {
-  transitionDuration: 300,
-  transitionTimingFuntion: 'linear'
+const Default = {
+  animationSpeed: 300
+}
+
+interface Config {
+  animationSpeed: number;
 }
 
 /**
@@ -32,56 +37,43 @@ const Defaults = {
  */
 
 class Treeview {
-  open(navItem: Element | null, childNavItem: HTMLElement | null | undefined): void {
-    navItem?.classList.add(CLASS_NAME_MENU_OPEN)
-    navItem?.classList.add(CLASS_NAME_MENU_IS_OPEN)
+  _element: HTMLElement
+  _config: Config
+  _navItem: HTMLElement | null
+  _childNavItem: HTMLElement | null | undefined
 
-    const height: number = childNavItem?.scrollHeight ?? 0
+  constructor(element: HTMLElement, config: Config) {
+    this._element = element
 
-    childNavItem?.style.setProperty('transition', `height ${Defaults.transitionDuration}ms ${Defaults.transitionTimingFuntion}`)
-    childNavItem?.style.setProperty('overflow', 'hidden')
-    childNavItem?.style.setProperty('height', '0px')
-    childNavItem?.style.setProperty('display', 'block')
+    this._navItem = this._element.closest(SELECTOR_NAV_ITEM)
+    this._childNavItem = this._navItem?.querySelector(SELECTOR_TREEVIEW_MENU)
 
-    setTimeout(() => {
-      childNavItem?.style.setProperty('height', `${height}px`)
-    }, 1)
-
-    setTimeout(() => {
-      childNavItem?.style.removeProperty('overflow')
-      childNavItem?.style.removeProperty('height')
-    }, Defaults.transitionDuration)
+    this._config = Object.assign({}, Default, config)
   }
 
-  close(navItem: Element, childNavItem: HTMLElement | null | undefined): void {
-    navItem.classList.remove(CLASS_NAME_MENU_IS_OPEN)
-    navItem.classList.remove(CLASS_NAME_MENU_OPEN)
+  open(): void {
+    this._navItem?.classList.add(CLASS_NAME_MENU_OPEN)
+    this._navItem?.classList.add(CLASS_NAME_MENU_IS_OPEN)
 
-    const height: number = childNavItem?.scrollHeight ?? 0
-
-    childNavItem?.style.setProperty('transition', `height ${Defaults.transitionDuration}ms ${Defaults.transitionTimingFuntion}`)
-    childNavItem?.style.setProperty('overflow', 'hidden')
-    childNavItem?.style.setProperty('height', `${height}px`)
-
-    setTimeout(() => {
-      childNavItem?.style.setProperty('height', '0px')
-    }, 1)
-
-    setTimeout(() => {
-      childNavItem?.style.removeProperty('overflow')
-      childNavItem?.style.removeProperty('height')
-      childNavItem?.style.removeProperty('display')
-    }, Defaults.transitionDuration)
+    if (this._childNavItem) {
+      slideDown(this._childNavItem, this._config.animationSpeed)
+    }
   }
 
-  toggle(treeviewMenu: Element): void {
-    const navItem: HTMLElement | null = treeviewMenu.closest(SELECTOR_NAV_ITEM)
-    const childNavItem: HTMLElement | null | undefined = navItem?.querySelector('.nav-treeview')
+  close(): void {
+    this._navItem?.classList.remove(CLASS_NAME_MENU_IS_OPEN)
+    this._navItem?.classList.remove(CLASS_NAME_MENU_OPEN)
 
-    if (navItem?.classList.contains(CLASS_NAME_MENU_OPEN)) {
-      this.close(navItem, childNavItem)
+    if (this._childNavItem) {
+      slideUp(this._childNavItem, this._config.animationSpeed)
+    }
+  }
+
+  toggle(): void {
+    if (this._navItem?.classList.contains(CLASS_NAME_MENU_OPEN)) {
+      this.close()
     } else {
-      this.open(navItem, childNavItem)
+      this.open()
     }
   }
 }
@@ -98,10 +90,10 @@ domReady(() => {
     btn.addEventListener('click', event => {
       // event.preventDefault()
 
-      const treeviewMenu = event.target as Element
+      const treeviewMenu = event.target as HTMLElement
 
-      const data = new Treeview()
-      data.toggle(treeviewMenu)
+      const data = new Treeview(treeviewMenu, Default)
+      data.toggle()
     })
   }
 })
