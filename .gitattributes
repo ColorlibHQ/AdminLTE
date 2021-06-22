@@ -4,3 +4,22 @@
 # Ignores for analysis is used to produce the language stats bar which displays the languages percentages
 plugins/* linguist-vendored=true
 docs/* linguist-vendored=true
+
+# Add export-ignore to trim php packagist download size
+# See https://php.watch/articles/composer-gitattributes
+.github/                        export-ignore
+docs/                           export-ignore
+.babelrc.js                     export-ignore
+.browserslistrc                 export-ignore
+.bundlewatch.config.json        export-ignore
+.editorconfig                   export-ignore
+.eslintignore                   export-ignore
+.eslintrc.json                  export-ignore
+.gitattributes                  export-ignore
+.gitignore                      export-ignore
+.gitpod.yml                     export-ignore
+.lgtm.yml                       export-ignore
+.npmignore                      export-ignore
+.stylelintignore                export-ignore
+.stylelintrc                    export-ignore
+# ...
