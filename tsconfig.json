@@ -1,13 +1,10 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "noFallthroughCasesInSwitch": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noImplicitAny": true,
-    "target": "esnext",
+    "target": "es2018",
     "module": "esnext",
     "strict": true,
     "strictNullChecks": true,

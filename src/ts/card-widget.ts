@@ -8,7 +8,7 @@
 import {
   domReady,
   slideUp,
-  slideDown
+  slideDown,
 } from './util/index'
 
 /**
@@ -39,7 +39,7 @@ const Default = {
   collapseIcon: 'fa-minus',
   expandIcon: 'fa-plus',
   maximizeIcon: 'fa-expand',
-  minimizeIcon: 'fa-compress'
+  minimizeIcon: 'fa-compress',
 }
 
 interface Config {
@@ -69,51 +69,63 @@ class CardWidget {
   }
 
   collapse() {
-    this._parent?.classList.add(CLASS_NAME_COLLAPSING)
+    if (this._parent) {
+      this._parent.classList.add(CLASS_NAME_COLLAPSING)
 
-    const elm = this._parent?.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`)
+      const elm = this._parent?.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`)
 
-    if (elm !== undefined) {
-      for (const el of elm) {
-        if (el instanceof HTMLElement) {
-          slideUp(el, this._config.animationSpeed)
+      if (elm !== undefined) {
+        for (const el of elm) {
+          if (el instanceof HTMLElement) {
+            slideUp(el, this._config.animationSpeed)
+          }
         }
       }
-    }
 
-    setTimeout(() => {
-      this._parent?.classList.add(CLASS_NAME_COLLAPSED)
-      this._parent?.classList.remove(CLASS_NAME_COLLAPSING)
-    }, this._config.animationSpeed)
+      setTimeout(() => {
+        if (this._parent) {
+          this._parent.classList.add(CLASS_NAME_COLLAPSED)
+          this._parent.classList.remove(CLASS_NAME_COLLAPSING)
+        }
+      }, this._config.animationSpeed)
+    }
 
     const icon = this._parent?.querySelector(`${SELECTOR_CARD_HEADER} ${this._config.collapseTrigger} .${this._config.collapseIcon}`)
 
-    icon?.classList.add(this._config.expandIcon)
-    icon?.classList.remove(this._config.collapseIcon)
+    if (icon) {
+      icon.classList.remove(this._config.collapseIcon)
+      icon.classList.add(this._config.expandIcon)
+    }
   }
 
   expand() {
-    this._parent?.classList.add(CLASS_NAME_EXPANDING)
+    if (this._parent) {
+      this._parent.classList.add(CLASS_NAME_EXPANDING)
 
-    const elm = this._parent?.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`)
+      const elm = this._parent?.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`)
 
-    if (elm !== undefined) {
-      for (const el of elm) {
-        if (el instanceof HTMLElement) {
-          slideDown(el, this._config.animationSpeed)
+      if (elm !== undefined) {
+        for (const el of elm) {
+          if (el instanceof HTMLElement) {
+            slideDown(el, this._config.animationSpeed)
+          }
         }
       }
-    }
 
-    setTimeout(() => {
-      this._parent?.classList.remove(CLASS_NAME_COLLAPSED)
-      this._parent?.classList.remove(CLASS_NAME_EXPANDING)
-    }, this._config.animationSpeed)
+      setTimeout(() => {
+        if (this._parent) {
+          this._parent.classList.remove(CLASS_NAME_COLLAPSED)
+          this._parent.classList.remove(CLASS_NAME_EXPANDING)
+        }
+      }, this._config.animationSpeed)
+    }
 
     const icon = this._parent?.querySelector(`${SELECTOR_CARD_HEADER} ${this._config.collapseTrigger} .${this._config.expandIcon}`)
 
-    icon?.classList.add(this._config.collapseIcon)
-    icon?.classList.remove(this._config.expandIcon)
+    if (icon) {
+      icon.classList.add(this._config.collapseIcon)
+      icon.classList.remove(this._config.expandIcon)
+    }
   }
 
   remove() {
@@ -134,18 +146,29 @@ class CardWidget {
   maximize() {
     if (this._parent) {
       const maxElm = this._parent.querySelector(`${this._config.maximizeTrigger} .${this._config.maximizeIcon}`)
-      maxElm?.classList.add(this._config.minimizeIcon)
-      maxElm?.classList.remove(this._config.maximizeIcon)
+
+      if (maxElm) {
+        maxElm.classList.add(this._config.minimizeIcon)
+        maxElm.classList.remove(this._config.maximizeIcon)
+      }
 
       this._parent.style.height = `${this._parent.scrollHeight}px`
       this._parent.style.width = `${this._parent.scrollWidth}px`
       this._parent.style.transition = 'all .15s'
 
       setTimeout(() => {
-        document.querySelector('html')?.classList.add(CLASS_NAME_MAXIMIZED)
-        this._parent?.classList.add(CLASS_NAME_MAXIMIZED)
-        if (this._parent?.classList.contains(CLASS_NAME_COLLAPSED)) {
-          this._parent.classList.add(CLASS_NAME_WAS_COLLAPSED)
+        const htmlTag = document.querySelector('html')
+
+        if (htmlTag) {
+          htmlTag.classList.add(CLASS_NAME_MAXIMIZED)
+        }
+
+        if (this._parent) {
+          this._parent.classList.add(CLASS_NAME_MAXIMIZED)
+
+          if (this._parent.classList.contains(CLASS_NAME_COLLAPSED)) {
+            this._parent.classList.add(CLASS_NAME_WAS_COLLAPSED)
+          }
         }
       }, 150)
     }
@@ -155,13 +178,20 @@ class CardWidget {
     if (this._parent) {
       const minElm = this._parent.querySelector(`${this._config.maximizeTrigger} .${this._config.minimizeIcon}`)
 
-      minElm?.classList.add(this._config.maximizeIcon)
-      minElm?.classList.remove(this._config.minimizeIcon)
+      if (minElm) {
+        minElm.classList.add(this._config.maximizeIcon)
+        minElm.classList.remove(this._config.minimizeIcon)
+      }
 
       this._parent.style.cssText = `height: ${this._parent.style.height} !important; width: ${this._parent.style.width} !important; transition: all .15s;`
 
       setTimeout(() => {
-        document.querySelector('html')?.classList.remove(CLASS_NAME_MAXIMIZED)
+        const htmlTag = document.querySelector('html')
+
+        if (htmlTag) {
+          htmlTag.classList.remove(CLASS_NAME_MAXIMIZED)
+        }
+
         if (this._parent) {
           this._parent.classList.remove(CLASS_NAME_MAXIMIZED)
 

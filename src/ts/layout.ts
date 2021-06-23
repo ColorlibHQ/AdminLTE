@@ -6,7 +6,7 @@
  */
 
 import {
-  domReady
+  domReady,
 } from './util/index'
 
 /**
@@ -21,7 +21,7 @@ const SELECTOR_SIDEBAR = '.sidebar'
 
 const Default = {
   scrollbarTheme: 'os-theme-light',
-  scrollbarAutoHide: 'leave'
+  scrollbarAutoHide: 'leave',
 }
 
 interface Config {
@@ -67,8 +67,8 @@ domReady(() => {
       sizeAutoCapable: true,
       scrollbars: {
         autoHide: Default.scrollbarAutoHide,
-        clickScrolling: true
-      }
+        clickScrolling: true,
+      },
     })
   }
 })

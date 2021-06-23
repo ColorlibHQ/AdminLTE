@@ -6,7 +6,7 @@
  */
 
 import {
-  domReady
+  domReady,
 } from './util/index'
 
 /**
@@ -25,7 +25,7 @@ const SELECTOR_SIDEBAR_SM = `.${CLASS_NAME_LAYOUT_MOBILE}`
 const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
 
 const Defaults = {
-  onLayouMobile: 992
+  onLayouMobile: 992,
 }
 
 class SidebarOverlay {
@@ -60,8 +60,10 @@ class SidebarOverlay {
     const selSidebarSm = document.querySelector(SELECTOR_SIDEBAR_SM)
     const selContentWrapper = selSidebarSm?.querySelector(SELECTOR_CONTENT_WRAPPER)
 
-    selContentWrapper?.addEventListener('touchstart', this.removeOverlaySidebar)
-    selContentWrapper?.addEventListener('click', this.removeOverlaySidebar)
+    if (selContentWrapper) {
+      selContentWrapper.addEventListener('touchstart', this.removeOverlaySidebar)
+      selContentWrapper.addEventListener('click', this.removeOverlaySidebar)
+    }
   }
 }
 

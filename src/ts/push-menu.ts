@@ -6,7 +6,7 @@
  */
 
 import {
-  domReady
+  domReady,
 } from './util/index'
 
 /**
@@ -109,13 +109,16 @@ class PushMenu {
 
   sidebarHover(): void {
     const selSidebar = document.querySelector(SELECTOR_SIDEBAR)
-    selSidebar?.addEventListener('mouseover', () => {
-      this._bodyClass.add(CLASS_NAME_SIDEBAR_IS_HOVER)
-    })
 
-    selSidebar?.addEventListener('mouseout', () => {
-      this._bodyClass.remove(CLASS_NAME_SIDEBAR_IS_HOVER)
-    })
+    if (selSidebar) {
+      selSidebar.addEventListener('mouseover', () => {
+        this._bodyClass.add(CLASS_NAME_SIDEBAR_IS_HOVER)
+      })
+
+      selSidebar.addEventListener('mouseout', () => {
+        this._bodyClass.remove(CLASS_NAME_SIDEBAR_IS_HOVER)
+      })
+    }
   }
 
   toggleFull(): void {

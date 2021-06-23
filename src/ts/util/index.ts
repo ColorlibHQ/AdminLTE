@@ -94,5 +94,5 @@ export {
   windowReady,
   slideUp,
   slideDown,
-  slideToggle
+  slideToggle,
 }

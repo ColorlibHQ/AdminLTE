@@ -11,7 +11,7 @@ export {
   SidebarOverlay,
   Treeview,
   DirectChat,
-  CardWidget
+  CardWidget,
 }
 
 //
