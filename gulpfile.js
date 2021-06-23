@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable camelcase */
 /* eslint-disable no-undef */
 /* eslint-disable unicorn/prefer-module */
@@ -6,7 +5,6 @@
 const autoprefix = require('autoprefixer')
 const browserSync = require('browser-sync').create()
 const del = require('del')
-const esbuild = require('esbuild')
 const { src, dest, lastRun, watch, series } = require('gulp')
 const cleanCss = require('gulp-clean-css')
 const eslint = require('gulp-eslint7')
@@ -17,6 +15,8 @@ const postcss = require('gulp-postcss')
 const rename = require('gulp-rename')
 const sass = require('gulp-sass')
 const gulpStylelint = require('gulp-stylelint')
+const rollup = require('rollup')
+const rollupTypescript = require('@rollup/plugin-typescript')
 const rtlcss = require('rtlcss')
 
 sass.compiler = require('sass')
@@ -39,11 +39,11 @@ const paths = {
     html: './dist/pages',
     assets: './dist/assets',
     img: './dist/assets/img',
-    vendor: './dist/vendor'
+    vendor: './dist/vendor',
   },
   base: {
     base: './',
-    node: './node_modules'
+    node: './node_modules',
   },
   src: {
     base: './src/',
@@ -54,7 +54,7 @@ const paths = {
     scss: './src/scss',
     ts: './src/ts',
     node_modules: './node_modules/',
-    vendor: './vendor'
+    vendor: './vendor',
   },
   temp: {
     base: './.temp/',
@@ -62,70 +62,64 @@ const paths = {
     js: './.temp/js',
     html: './.temp/pages',
     assets: './.temp/assets',
-    vendor: './.temp/vendor'
-  }
+    vendor: './.temp/vendor',
+  },
 }
 
 const sassOptions = {
   outputStyle: 'expanded',
-  includePaths: ['./node_modules/']
+  includePaths: ['./node_modules/'],
 }
 
 const postcssOptions = [
-  autoprefix({ cascade: false })
+  autoprefix({ cascade: false }),
 ]
 
 const postcssRtlOptions = [
   autoprefix({ cascade: false }),
-  rtlcss({})
+  rtlcss({}),
 ]
 
 // From here Dev mode will Start
 
 // Compile SCSS
-const scss = () => {
-  return src(paths.src.scss + '/adminlte.scss', { sourcemaps: true })
+const scss = () => src(paths.src.scss + '/adminlte.scss', { sourcemaps: true })
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(postcss(postcssOptions))
     .pipe(dest(paths.temp.css, { sourcemaps: '.' }))
     .pipe(browserSync.stream())
-}
 
 // Compile SCSS Dark
-const scssDark = () => {
-  return src(paths.src.scss + '/dark/adminlte-dark-addon.scss', { sourcemaps: true })
+const scssDark = () => src(paths.src.scss + '/dark/adminlte-dark-addon.scss', { sourcemaps: true })
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(postcss(postcssOptions))
     .pipe(dest(paths.temp.css + '/dark', { sourcemaps: '.' }))
     .pipe(browserSync.stream())
-}
 
 // Lint SCSS
-const lintScss = () => {
-  return src([paths.src.scss + '/**/*.scss'], { since: lastRun(lintScss) })
+const lintScss = () => src([paths.src.scss + '/**/*.scss'], { since: lastRun(lintScss) })
     .pipe(gulpStylelint({
       failAfterError: false,
       reporters: [
-        { formatter: 'string', console: true }
-      ]
+        { formatter: 'string', console: true },
+      ],
     }))
-}
 
-const tsCompile = () => {
-  return esbuild.build({
-    entryPoints: [paths.src.ts + '/adminlte.ts'],
-    banner: {
-      js: banner
+const tsCompile = () =>
+  rollup.rollup({
+    input: paths.src.ts + '/adminlte.ts',
+    output: {
+      banner,
     },
-    bundle: true,
-    format: 'iife',
+    plugins: [
+      rollupTypescript(),
+    ],
+  }).then(bundle => bundle.write({
+    file: paths.temp.js + '/adminlte.js',
+    format: 'umd',
+    name: 'adminlte',
     sourcemap: true,
-    target: ['chrome60'],
-    outfile: paths.temp.js + '/adminlte.js'
-  }).catch(
-    error => console.error(error)
-  )
-}
+  }))
 
 // Lint TS
 function isFixed(file) {
@@ -133,54 +127,44 @@ function isFixed(file) {
   return file.eslint !== null && file.eslint.fixed
 }
 
-const lintTs = () => {
-  return src([paths.src.ts + '/**/*.ts'], { since: lastRun(lintTs) })
+const lintTs = () => src([paths.src.ts + '/**/*.ts'], { since: lastRun(lintTs) })
     .pipe(eslint({ fix: true }))
     .pipe(eslint.format())
     .pipe(gulpIf(isFixed, dest(paths.src.ts)))
     .pipe(eslint.failAfterError())
-}
 
-const index = () => {
-  return src([paths.src.base + '*.html'])
+const index = () => src([paths.src.base + '*.html'])
     .pipe(fileinclude({
       prefix: '@@',
       basepath: './src/partials/',
       context: {
-        environment: 'development'
-      }
+        environment: 'development',
+      },
     }))
     .pipe(dest(paths.temp.base))
     .pipe(browserSync.stream())
-}
 
-const html = () => {
-  return src([paths.src.html])
+const html = () => src([paths.src.html])
     .pipe(fileinclude({
       prefix: '@@',
       basepath: './src/partials/',
       context: {
-        environment: 'development'
-      }
+        environment: 'development',
+      },
     }))
     .pipe(dest(paths.temp.html))
     .pipe(browserSync.stream())
-}
 
-const assets = () => {
-  return src([paths.src.assets])
+const assets = () => src([paths.src.assets])
     .pipe(dest(paths.temp.assets))
     .pipe(browserSync.stream())
-}
 
-const vendor = () => {
-  return src(npmDist({ copyUnminified: true }), { base: paths.src.node_modules })
+const vendor = () => src(npmDist({ copyUnminified: true }), { base: paths.src.node_modules })
     .pipe(dest(paths.temp.vendor))
-}
 
 const serve = () => {
   browserSync.init({
-    server: paths.temp.base
+    server: paths.temp.base,
   })
 
   watch([paths.src.scss], series(lintScss))
@@ -194,107 +178,97 @@ const serve = () => {
 // From here Dist will Start
 
 // Minify CSS
-const minifyDistCss = () => {
-  return src([
-    paths.dist.css + '/**/*.css'
-  ], {
-    base: paths.dist.css,
-    sourcemaps: true
-  })
+const minifyDistCss = () => src([
+  paths.dist.css + '/**/*.css',
+], {
+  base: paths.dist.css,
+  sourcemaps: true,
+})
     .pipe(cleanCss({ format: { breakWith: 'lf' } }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(dest(paths.dist.css, { sourcemaps: '.' }))
-}
 
 // Minify JS
-const minifyDistJs = () => {
-  return esbuild.build({
-    entryPoints: [paths.dist.js + '/adminlte.js'],
-    format: 'iife',
-    minify: true,
+// Need to add terser
+const minifyDistJs = () =>
+  rollup.rollup({
+    input: paths.src.ts + '/adminlte.ts',
+    output: {
+      banner,
+    },
+    plugins: [
+      rollupTypescript(),
+    ],
+  }).then(bundle => bundle.write({
+    file: paths.temp.js + '/adminlte.js',
+    format: 'umd',
+    name: 'adminlte',
     sourcemap: true,
-    target: ['chrome60'],
-    outfile: paths.dist.js + '/adminlte.min.js'
-  }).catch(
-    error => console.error(error)
-  )
-}
+  }))
 
 // Copy assets
-const copyDistAssets = () => {
-  return src(paths.src.assets)
+const copyDistAssets = () => src(paths.src.assets)
     .pipe(dest(paths.dist.assets))
-}
 
 // Clean
 const cleanDist = () => del([paths.dist.base])
 
 // Compile and copy all scss/css
-const copyDistCssAll = () => {
-  return src([paths.src.scss + '/**/*.scss'], {
-    base: paths.src.scss,
-    sourcemaps: true
-  })
+const copyDistCssAll = () => src([paths.src.scss + '/**/*.scss'], {
+  base: paths.src.scss,
+  sourcemaps: true,
+})
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(postcss(postcssOptions))
     .pipe(dest(paths.dist.css, { sourcemaps: '.' }))
-}
 
-const copyDistCssRtl = () => {
-  return src(paths.dist.css + '/*.css', { sourcemaps: true })
+const copyDistCssRtl = () => src(paths.dist.css + '/*.css', { sourcemaps: true })
     .pipe(postcss(postcssRtlOptions))
     .pipe(rename({ suffix: '.rtl' }))
     .pipe(dest(paths.dist.css + '/rtl', { sourcemaps: '.' }))
-}
 
 // Compile and copy ts/js
-const copyDistJs = () => {
-  return esbuild.build({
-    entryPoints: [paths.src.ts + '/adminlte.ts'],
-    banner: {
-      js: banner
+const copyDistJs = () =>
+  rollup.rollup({
+    input: paths.src.ts + '/adminlte.ts',
+    output: {
+      banner,
     },
-    bundle: true,
-    format: 'iife',
+    plugins: [
+      rollupTypescript(),
+    ],
+  }).then(bundle => bundle.write({
+    file: paths.temp.js + '/adminlte.js',
+    format: 'umd',
+    name: 'adminlte',
     sourcemap: true,
-    target: ['chrome60'],
-    outfile: paths.dist.js + '/adminlte.js'
-  }).catch(
-    error => console.error(error)
-  )
-}
+  }))
 
 // Copy Html
-const copyDistHtml = () => {
-  return src([paths.src.html])
+const copyDistHtml = () => src([paths.src.html])
     .pipe(fileinclude({
       prefix: '@@',
       basepath: './src/partials/',
       context: {
-        environment: 'production'
-      }
+        environment: 'production',
+      },
     }))
     .pipe(dest(paths.dist.html))
-}
 
 // Copy index
-const copyDistHtmlIndex = () => {
-  return src([paths.src.base + '*.html'])
+const copyDistHtmlIndex = () => src([paths.src.base + '*.html'])
     .pipe(fileinclude({
       prefix: '@@',
       basepath: './src/partials/',
       context: {
-        environment: 'production'
-      }
+        environment: 'production',
+      },
     }))
     .pipe(dest(paths.dist.base))
-}
 
 // Copy node_modules to vendor
-const copyDistVendor = () => {
-  return src(npmDist({ copyUnminified: true }), { base: paths.src.node_modules })
+const copyDistVendor = () => src(npmDist({ copyUnminified: true }), { base: paths.src.node_modules })
     .pipe(dest(paths.dist.vendor))
-}
 
 // To Dist Before release
 exports.build = series(lintScss, lintTs, cleanDist, copyDistCssAll, copyDistCssRtl, minifyDistCss, copyDistJs, minifyDistJs, copyDistHtml, copyDistHtmlIndex, copyDistAssets, copyDistVendor)
