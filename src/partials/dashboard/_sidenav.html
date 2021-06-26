@@ -41,15 +41,36 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a href="@@path/pages/widgets.html" class="nav-link @@if (context.page === 'widgets') {active}">
+        <li class="nav-item @@if (context.mainPage === 'widgets') {menu-open}">
+          <a href="javascript:void(0)" class="nav-link @@if (context.mainPage === 'widgets') {active}">
             <i class="nav-icon fas fa-circle"></i>
             <p>
               Widgets
-              <span class="end badge bg-danger">New</span>
+              <i class="end fas fa-angle-left"></i>
             </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="@@path/pages/widgets/small-box.html" class="nav-link @@if (context.page === 'small-box') {active}">
+                <i class="nav-icon far fa-circle"></i>
+                <p>Small Box</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="@@path/pages/widgets/info-box.html" class="nav-link @@if (context.page === 'info-box') {active}">
+                <i class="nav-icon far fa-circle"></i>
+                <p>info Box</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="@@path/pages/widgets/cards.html" class="nav-link @@if (context.page === 'cards') {active}">
+                <i class="nav-icon far fa-circle"></i>
+                <p>Cards</p>
+              </a>
+            </li>
+          </ul>
         </li>
+
         <li class="nav-item @@if (context.mainPage === 'layout') {menu-open}">
           <a href="javascript:void(0)" class="nav-link @@if (context.mainPage === 'layout') {active}">
             <i class="nav-icon fas fa-circle"></i>

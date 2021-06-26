@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- For RTL verison -->
+<!-- <html lang="en" dir="rtl"> -->
+  <head>
+    @@include('./_head.html', {
+      "path": "../..",
+      "title": "AdminLTE 4 | Widgets - Cards"
+    })
+  </head>
+  <body class="layout-fixed">
+    <div class="wrapper">
+      @@include('./dashboard/_topbar.html', {
+        "path": "../.."
+      })
+
+      @@include('./dashboard/_sidenav.html', {
+        "mainPage": "widgets",
+        "page": "cards",
+        "path": "../.."
+      })
+      <!-- Main content -->
+      <div class="content-wrapper">
+        @@include('./dashboard/_content-header.html', {
+          "header_name": "Widgets - Cards"
+        })
+        <!-- Main content -->
+        <div class="content">
+          <div class="container-fluid">
+            <h4 class="mb-2 mt-4">Cards</h4>
+            <h5 class="mb-2">Abilities</h5>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card card-primary collapsed-card">
+                  <div class="card-header">
+                    <h3 class="card-title">Expandable</h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"><i class="fas fa-plus"></i>
+                      </button>
+                    </div>
+                    <!-- /.card-tools -->
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    The body of the card
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="card card-success">
+                  <div class="card-header">
+                    <h3 class="card-title">Collapsable</h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"><i class="fas fa-minus"></i>
+                      </button>
+                    </div>
+                    <!-- /.card-tools -->
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    The body of the card
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="card card-warning">
+                  <div class="card-header">
+                    <h3 class="card-title">Removable</h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-lte-dismiss="card-remove"><i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                    <!-- /.card-tools -->
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    The body of the card
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="card card-danger">
+                  <div class="card-header">
+                    <h3 class="card-title">Maximizable</h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-maximize"><i class="fas fa-expand"></i>
+                      </button>
+                    </div>
+                    <!-- /.card-tools -->
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    The body of the card
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+
+      @@include('./dashboard/_footer.html', {
+        "path": "../.."
+      })
+    </div>
+    <!--  ./wrapper -->
+
+    @@include('./_scripts.html', {
+      "path": "../.."
+    })
+  </body>
+</html>
