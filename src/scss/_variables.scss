@@ -108,7 +108,7 @@ $lte-sidebar-light-header-color:         var(--lte-sidebar-light-header-color) !
 // --------------------------------------------------------
 $lte-sidebar-mini-width:          ($nav-link-padding-x + $lte-sidebar-padding-x + .8rem) * 2 !default;
 $lte-sidebar-nav-icon-width:      $lte-sidebar-mini-width - (($lte-sidebar-padding-x + $nav-link-padding-x) * 2) !default;
-$lte-sidebar-user-image-width:    $lte-sidebar-nav-icon-width + ($nav-link-padding-x / 2) !default;
+$lte-sidebar-user-image-width:    $lte-sidebar-nav-icon-width + ($nav-link-padding-x * .5) !default;
 
 // SIDEBAR HORIZONTAL
 // --------------------------------------------------------
