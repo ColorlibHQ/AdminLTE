@@ -139,6 +139,10 @@ a.text-muted:hover {
   @each $name, $color in $colors-alt {
     @include accent-variant($name, $color);
   }
+
+  .border-dark {
+    border-color: lighten($dark, 10%) !important;
+  }
 }
 
 //
