@@ -1132,6 +1132,8 @@
       height: $sidebar-custom-height;
       padding: $sidebar-custom-padding-x $sidebar-custom-padding-y;
     }
+
+    height: fill-available;
   }
 
   .main-sidebar-custom-lg {
