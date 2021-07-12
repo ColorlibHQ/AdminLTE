@@ -99,7 +99,7 @@ a.text-muted:hover {
   .text-dark,
   .link-black,
   .link-dark {
-    color: $gray-400;
+    color: $gray-400 !important;
   }
 
   // Background colors (theme colors)
