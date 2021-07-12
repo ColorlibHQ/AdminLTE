@@ -1114,6 +1114,15 @@
     }
   }
 
+  &.text-sm .main-sidebar-custom {
+    .sidebar {
+      height: calc(100% - ((#{$main-header-height-sm-inner} + #{$sidebar-custom-height * .95}) + #{$main-header-bottom-border-width}));
+    }
+    .sidebar-custom {
+      height: $sidebar-custom-height * .95;
+      padding: $sidebar-custom-padding-x $sidebar-custom-padding-y;
+    }
+  }
   .main-sidebar-custom {
     .sidebar {
       height: calc(100% - ((#{$main-header-height-inner} + #{$sidebar-custom-height}) + #{$main-header-bottom-border-width}));
