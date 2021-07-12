@@ -259,16 +259,17 @@ class IFrame {
         this._fixHeight()
       }, 1)
     })
-    $(document).on('click', `${SELECTOR_SIDEBAR_MENU_ITEM}, ${SELECTOR_SIDEBAR_SEARCH_ITEM}`, e => {
-      e.preventDefault()
-      this.openTabSidebar(e.target)
-    })
-
-    if (this._config.useNavbarItems) {
-      $(document).on('click', `${SELECTOR_HEADER_MENU_ITEM}, ${SELECTOR_HEADER_DROPDOWN_ITEM}`, e => {
+    if ($('body').hasClass(CLASS_NAME_IFRAME_MODE)) {
+      $(document).on('click', `${SELECTOR_SIDEBAR_MENU_ITEM}, ${SELECTOR_SIDEBAR_SEARCH_ITEM}`, e => {
         e.preventDefault()
         this.openTabSidebar(e.target)
       })
+      if (this._config.useNavbarItems) {
+        $(document).on('click', `${SELECTOR_HEADER_MENU_ITEM}, ${SELECTOR_HEADER_DROPDOWN_ITEM}`, e => {
+          e.preventDefault()
+          this.openTabSidebar(e.target)
+        })
+      }
     }
 
     $(document).on('click', SELECTOR_TAB_NAVBAR_NAV_LINK, e => {
