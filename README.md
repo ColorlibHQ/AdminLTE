@@ -103,6 +103,11 @@ To compile the dist files you need Node.js/npm, clone/download the repo then:
 2. _Optional:_ `npm run dev` (developer mode, autocompile with browsersync support for live demo)
 3. `npm run production` (compile css/js files)
 
+Alternative copmile the dist you need Node.js/yarn.
+
+1. `yarn install` (install yarn deps)
+2. _Optional:_ `yarn run dev` (developer mode, autocompile with browsersync support for live demo)
+3. `yarn run production` (compile css/js files)
 
 ## Contributing
 
