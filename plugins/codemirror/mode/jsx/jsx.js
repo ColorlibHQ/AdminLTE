@@ -104,9 +104,9 @@
 
     function jsToken(stream, state, cx) {
       if (stream.peek() == "<" && jsMode.expressionAllowed(stream, cx.state)) {
-        jsMode.skipExpression(cx.state)
         state.context = new Context(CodeMirror.startState(xmlMode, jsMode.indent(cx.state, "", "")),
                                     xmlMode, 0, state.context)
+        jsMode.skipExpression(cx.state)
         return null
       }
 

@@ -8,7 +8,9 @@
 .cm-s-ayu-mirage .CodeMirror-guttermarker { color: white; }
 .cm-s-ayu-mirage .CodeMirror-guttermarker-subtle { color:  rgba(112, 122, 140, 66); }
 .cm-s-ayu-mirage .CodeMirror-linenumber { color: rgba(61, 66, 77, 99); }
-.cm-s-ayu-mirage .CodeMirror-cursor { border-left: 1px solid #ffcc66; }
+.cm-s-ayu-mirage .CodeMirror-cursor { border-left: 1px solid #ffcc66;  }
+.cm-s-ayu-mirage.cm-fat-cursor .CodeMirror-cursor {background-color: #a2a8a175 !important;}
+.cm-s-ayu-mirage .cm-animate-fat-cursor { background-color: #a2a8a175 !important; }
 
 .cm-s-ayu-mirage span.cm-comment { color: #5c6773; font-style:italic; }
 .cm-s-ayu-mirage span.cm-atom { color: #ae81ff; }

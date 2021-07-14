@@ -1,11 +1,11 @@
-/*! KeyTable 2.6.1
+/*! KeyTable 2.6.2
  * ©2009-2021 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     KeyTable
  * @description Spreadsheet like keyboard navigation for DataTables
- * @version     2.6.1
+ * @version     2.6.2
  * @file        dataTables.keyTable.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
@@ -841,7 +841,7 @@ $.extend( KeyTable.prototype, {
 				break;
 
 			case 27: // esc
-				if ( this.s.blurable && enable === true ) {
+				if ( this.c.blurable && enable === true ) {
 					this._blur();
 				}
 				break;
@@ -1210,7 +1210,7 @@ KeyTable.defaults = {
 
 
 
-KeyTable.version = "2.6.1";
+KeyTable.version = "2.6.2";
 
 
 $.fn.dataTable.KeyTable = KeyTable;

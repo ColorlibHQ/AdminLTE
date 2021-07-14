@@ -11,6 +11,7 @@
 })(function(CodeMirror) {
   "use strict";
   var GUTTER_ID = "CodeMirror-lint-markers";
+  var LINT_LINE_ID = "CodeMirror-lint-line-";
 
   function showTooltip(cm, e, content) {
     var tt = document.createElement("div");
@@ -76,9 +77,21 @@
   function clearMarks(cm) {
     var state = cm.state.lint;
     if (state.hasGutter) cm.clearGutter(GUTTER_ID);
+    if (isHighlightErrorLinesEnabled(state)) clearErrorLines(cm);
     for (var i = 0; i < state.marked.length; ++i)
       state.marked[i].clear();
     state.marked.length = 0;
+  }
+
+  function clearErrorLines(cm) {
+    cm.eachLine(function(line) {
+      var has = line.wrapClass && /\bCodeMirror-lint-line-\w+\b/.exec(line.wrapClass);
+      if (has) cm.removeLineClass(line, "wrap", has[0]);
+    })
+  }
+
+  function isHighlightErrorLinesEnabled(state) {
+    return state.options.highlightLines;
   }
 
   function makeMarker(cm, labels, severity, multiple, tooltips) {
@@ -140,7 +153,9 @@
   }
 
   function startLinting(cm) {
-    var state = cm.state.lint, options = state.options;
+    var state = cm.state.lint;
+    if (!state) return;
+    var options = state.options;
     /*
      * Passing rules in `options` property prevents JSHint (and other linters) from complaining
      * about unrecognized rules like `onUpdateLinting`, `delay`, `lintOnChange`, etc.
@@ -161,8 +176,10 @@
   }
 
   function updateLinting(cm, annotationsNotSorted) {
+    var state = cm.state.lint;
+    if (!state) return;
+    var options = state.options;
     clearMarks(cm);
-    var state = cm.state.lint, options = state.options;
 
     var annotations = groupByLine(annotationsNotSorted);
 
@@ -195,6 +212,9 @@
       if (state.hasGutter)
         cm.setGutterMarker(line, GUTTER_ID, makeMarker(cm, tipLabel, maxSeverity, annotations[line].length > 1,
                                                        state.options.tooltips));
+
+      if (isHighlightErrorLinesEnabled(state))
+        cm.addLineClass(line, "wrap", LINT_LINE_ID + maxSeverity);
     }
     if (options.onUpdateLinting) options.onUpdateLinting(annotationsNotSorted, annotations, cm);
   }
@@ -254,6 +274,6 @@
   });
 
   CodeMirror.defineExtension("performLint", function() {
-    if (this.state.lint) startLinting(this);
+    startLinting(this);
   });
 });

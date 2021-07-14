@@ -24,6 +24,8 @@
     "@inject?": paramData,
     "@state": paramData,
     "template": { soyState: "templ-def", variableScope: true},
+    "extern": {soyState: "param-def"},
+    "export": {soyState: "param-def"},
     "literal": { },
     "msg": {},
     "fallbackmsg": { noEndTag: true, reduceIndent: true},
@@ -46,6 +48,7 @@
     "delcall": { soyState: "templ-ref" },
     "log": {},
     "element": { variableScope: true },
+    "velog": {},
   };
 
   var indentingTags = Object.keys(tags).filter(function(tag) {
@@ -282,6 +285,9 @@
               return "type";
             }
             if (match = stream.match(/^\w+/)) {
+              if (match[0] == 'extern') {
+                return 'keyword';
+              }
               state.variables = prepend(state.variables, match[0]);
               state.soyState.pop();
               state.soyState.push("param-type");
@@ -552,7 +558,8 @@
               state.context = new Context(state.context, state.tag, tag.variableScope ? state.variables : null);
             // Otherwise close the current context.
             } else if (endTag) {
-              if (!state.context || state.context.tag != tagName) {
+              var isBalancedForExtern = tagName == 'extern' && (state.context && state.context.tag == 'export');
+              if (!state.context || ((state.context.tag != tagName) && !isBalancedForExtern)) {
                 tagError = true;
               } else if (state.context) {
                 if (state.context.kind) {

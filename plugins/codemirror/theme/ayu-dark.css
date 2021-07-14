@@ -9,6 +9,8 @@
 .cm-s-ayu-dark .CodeMirror-guttermarker-subtle { color: #3d424d; }
 .cm-s-ayu-dark .CodeMirror-linenumber { color: #3d424d; }
 .cm-s-ayu-dark .CodeMirror-cursor { border-left: 1px solid #e6b450; }
+.cm-s-ayu-dark.cm-fat-cursor .CodeMirror-cursor { background-color: #a2a8a175 !important; }
+.cm-s-ayu-dark .cm-animate-fat-cursor { background-color: #a2a8a175 !important; }
 
 .cm-s-ayu-dark span.cm-comment { color: #626a73; }
 .cm-s-ayu-dark span.cm-atom { color: #ae81ff; }

@@ -11,6 +11,8 @@
 .cm-s-gruvbox-dark .CodeMirror-gutters {background: #282828; border-right: 0px;}
 .cm-s-gruvbox-dark .CodeMirror-linenumber {color: #7c6f64;}
 .cm-s-gruvbox-dark .CodeMirror-cursor { border-left: 1px solid #ebdbb2; }
+.cm-s-gruvbox-dark.cm-fat-cursor .CodeMirror-cursor { background-color: #8e8d8875 !important; }
+.cm-s-gruvbox-dark .cm-animate-fat-cursor { background-color: #8e8d8875 !important; }
 .cm-s-gruvbox-dark div.CodeMirror-selected { background: #928374; }
 .cm-s-gruvbox-dark span.cm-meta { color: #83a598; }
 

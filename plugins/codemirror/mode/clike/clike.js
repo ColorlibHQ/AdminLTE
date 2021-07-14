@@ -659,7 +659,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
       "file import where by get set abstract enum open inner override private public internal " +
       "protected catch finally out final vararg reified dynamic companion constructor init " +
       "sealed field property receiver param sparam lateinit data inline noinline tailrec " +
-      "external annotation crossinline const operator infix suspend actual expect setparam"
+      "external annotation crossinline const operator infix suspend actual expect setparam value"
     ),
     types: words(
       /* package java.lang */

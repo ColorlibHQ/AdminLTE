@@ -1,15 +1,15 @@
-/*! AutoFill 2.3.5
- * ©2008-2020 SpryMedia Ltd - datatables.net/license
+/*! AutoFill 2.3.9
+ * ©2008-2021 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     AutoFill
  * @description Add Excel like click and drag auto-fill options to DataTables
- * @version     2.3.5
+ * @version     2.3.9
  * @file        dataTables.autoFill.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
- * @copyright   Copyright 2010-2020 SpryMedia Ltd.
+ * @copyright   Copyright 2010-2021 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -603,8 +603,8 @@ $.extend( AutoFill.prototype, {
 			// jQuery doesn't give a `table` as the offset parent oddly, so use DOM directly
 			currOffsetParent = $( currNode.offsetParent );
 
-			top += positionTop + parseInt( currOffsetParent.css('border-top-width') ) * 1;
-			left += positionLeft + parseInt( currOffsetParent.css('border-left-width') ) * 1;
+			top += positionTop + parseInt( currOffsetParent.css('border-top-width') || 0 ) * 1;
+			left += positionLeft + parseInt( currOffsetParent.css('border-left-width') || 0 ) * 1;
 
 			// Emergency fall back. Shouldn't happen, but just in case!
 			if ( currNode.nodeName.toLowerCase() === 'body' ) {
@@ -1027,7 +1027,7 @@ AutoFill.actions = {
 		},
 
 		option: function ( dt, cells ) {
-			return dt.i18n('autoFill.fill', 'Fill all cells with <i>'+cells[0][0].label+'</i>' );
+			return dt.i18n('autoFill.fill', 'Fill all cells with <i>%d</i>', cells[0][0].label );
 		},
 
 		execute: function ( dt, cells, node ) {
@@ -1102,7 +1102,7 @@ AutoFill.actions = {
  * @static
  * @type      String
  */
-AutoFill.version = '2.3.5';
+AutoFill.version = '2.3.9';
 
 
 /**

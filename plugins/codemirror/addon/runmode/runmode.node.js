@@ -320,7 +320,7 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
     if (!stream.string && mode.blankLine) { mode.blankLine(state); }
     while (!stream.eol()) {
       var style = mode.token(stream, state);
-      callback(stream.current(), style, i, stream.start, state);
+      callback(stream.current(), style, i, stream.start, state, mode);
       stream.start = stream.pos;
     }
   }

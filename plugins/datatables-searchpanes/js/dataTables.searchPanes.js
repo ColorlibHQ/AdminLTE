@@ -1,18 +1,19 @@
-/*! SearchPanes 1.2.1
+/*! SearchPanes 1.3.0
  * 2019-2020 SpryMedia Ltd - datatables.net/license
  */
 (function () {
     'use strict';
 
     var $;
-    var DataTable;
+    var dataTable;
     function setJQuery(jq) {
         $ = jq;
-        DataTable = jq.fn.dataTable;
+        dataTable = jq.fn.dataTable;
     }
     var SearchPane = /** @class */ (function () {
         /**
          * Creates the panes, sets up the search function
+         *
          * @param paneSettings The settings for the searchPanes
          * @param opts The options for the default features
          * @param idx the index of the column for this pane
@@ -22,17 +23,20 @@
             var _this = this;
             if (panes === void 0) { panes = null; }
             // Check that the required version of DataTables is included
-            if (!DataTable || !DataTable.versionCheck || !DataTable.versionCheck('1.10.0')) {
+            if (!dataTable || !dataTable.versionCheck || !dataTable.versionCheck('1.10.0')) {
                 throw new Error('SearchPane requires DataTables 1.10 or newer');
             }
             // Check that Select is included
-            if (!DataTable.select) {
+            if (!dataTable.select) {
                 throw new Error('SearchPane requires Select');
             }
-            var table = new DataTable.Api(paneSettings);
+            var table = new dataTable.Api(paneSettings);
             this.classes = $.extend(true, {}, SearchPane.classes);
             // Get options from user
             this.c = $.extend(true, {}, SearchPane.defaults, opts);
+            if (opts !== undefined && opts.hideCount !== undefined && opts.viewCount === undefined) {
+                this.c.viewCount = !this.c.hideCount;
+            }
             this.customPaneSettings = panes;
             this.s = {
                 cascadeRegen: false,
@@ -43,6 +47,7 @@
                 dt: table,
                 dtPane: undefined,
                 filteringActive: false,
+                forceViewTotal: false,
                 index: idx,
                 indexes: [],
                 lastCascade: false,
@@ -77,10 +82,13 @@
             this.dom = {
                 buttonGroup: $('<div/>').addClass(this.classes.buttonGroup),
                 clear: $('<button type="button">&#215;</button>')
-                    .addClass(this.classes.dull)
+                    .addClass(this.classes.disabledButton)
+                    .attr('disabled', 'true')
                     .addClass(this.classes.paneButton)
                     .addClass(this.classes.clearButton),
-                container: $('<div/>').addClass(this.classes.container).addClass(this.classes.layout +
+                container: $('<div/>')
+                    .addClass(this.classes.container)
+                    .addClass(this.classes.layout +
                     (layVal < 10 ? layout : layout.split('-')[0] + '-9')),
                 countButton: $('<button type="button"></button>')
                     .addClass(this.classes.paneButton)
@@ -90,7 +98,9 @@
                         ? $(table.column(this.colExists ? this.s.index : 0).header()).text()
                         : this.customPaneSettings.header || 'Custom Pane') + '</th><th/></tr></thead></table>'),
                 lower: $('<div/>').addClass(this.classes.subRow2).addClass(this.classes.narrowButton),
-                nameButton: $('<button type="button"></button>').addClass(this.classes.paneButton).addClass(this.classes.nameButton),
+                nameButton: $('<button type="button"></button>')
+                    .addClass(this.classes.paneButton)
+                    .addClass(this.classes.nameButton),
                 panesContainer: panesContainer,
                 searchBox: $('<input/>').addClass(this.classes.paneInputButton).addClass(this.classes.search),
                 searchButton: $('<button type = "button" class="' + this.classes.searchIcon + '"></button>')
@@ -106,7 +116,7 @@
             this.s.colOpts = this.colExists ? this._getOptions() : this._getBonusOptions();
             var colOpts = this.s.colOpts;
             var clear = $('<button type="button">X</button>').addClass(this.classes.paneButton);
-            $(clear).text(table.i18n('searchPanes.clearPane', 'X'));
+            $(clear).text(table.i18n('searchPanes.clearPane', this.c.i18n.clearPane));
             this.dom.container.addClass(colOpts.className);
             this.dom.container.addClass((this.customPaneSettings !== null && this.customPaneSettings.className !== undefined)
                 ? this.customPaneSettings.className
@@ -152,7 +162,7 @@
             // If the clear button for this pane is clicked clear the selections
             if (this.c.clear) {
                 $(clear).on('click', function () {
-                    var searches = _this.dom.container.find(_this.classes.search);
+                    var searches = _this.dom.container.find('.' + _this.classes.search.replace(/\s+/g, '.'));
                     searches.each(function () {
                         $(this).val('');
                         $(this).trigger('input');
@@ -164,14 +174,11 @@
             //  weird if the width of the panes is lower than expected, this fixes the design.
             // Equally this may occur when the table is resized.
             table.on('draw.dtsp', function () {
-                _this._adjustTopRow();
+                _this.adjustTopRow();
             });
             table.on('buttons-action', function () {
-                _this._adjustTopRow();
+                _this.adjustTopRow();
             });
-            $(window).on('resize.dtsp', DataTable.util.throttle(function () {
-                _this._adjustTopRow();
-            }));
             // When column-reorder is present and the columns are moved, it is necessary to
             //  reassign all of the panes indexes to the new index of the column.
             table.on('column-reorder.dtsp', function (e, settings, details) {
@@ -179,6 +186,62 @@
             });
             return this;
         }
+        /**
+         * Adds a row to the panes table
+         *
+         * @param display the value to be displayed to the user
+         * @param filter the value to be filtered on when searchpanes is implemented
+         * @param shown the number of rows in the table that are currently visible matching this criteria
+         * @param total the total number of rows in the table that match this criteria
+         * @param sort the value to be sorted in the pane table
+         * @param type the value of which the type is to be derived from
+         */
+        SearchPane.prototype.addRow = function (display, filter, shown, total, sort, type, className) {
+            var index;
+            for (var _i = 0, _a = this.s.indexes; _i < _a.length; _i++) {
+                var entry = _a[_i];
+                if (entry.filter === filter) {
+                    index = entry.index;
+                }
+            }
+            if (index === undefined) {
+                index = this.s.indexes.length;
+                this.s.indexes.push({ filter: filter, index: index });
+            }
+            return this.s.dtPane.row.add({
+                className: className,
+                display: display !== '' ?
+                    display :
+                    this.emptyMessage(),
+                filter: filter,
+                index: index,
+                shown: shown,
+                sort: sort,
+                total: total,
+                type: type
+            });
+        };
+        /**
+         * Adjusts the layout of the top row when the screen is resized
+         */
+        SearchPane.prototype.adjustTopRow = function () {
+            var subContainers = this.dom.container.find('.' + this.classes.subRowsContainer.replace(/\s+/g, '.'));
+            var subRow1 = this.dom.container.find('.' + this.classes.subRow1.replace(/\s+/g, '.'));
+            var subRow2 = this.dom.container.find('.' + this.classes.subRow2.replace(/\s+/g, '.'));
+            var topRow = this.dom.container.find('.' + this.classes.topRow.replace(/\s+/g, '.'));
+            // If the width is 0 then it is safe to assume that the pane has not yet been displayed.
+            //  Even if it has, if the width is 0 it won't make a difference if it has the narrow class or not
+            if (($(subContainers[0]).width() < 252 || $(topRow[0]).width() < 252) && $(subContainers[0]).width() !== 0) {
+                $(subContainers[0]).addClass(this.classes.narrow);
+                $(subRow1[0]).addClass(this.classes.narrowSub).removeClass(this.classes.narrowSearch);
+                $(subRow2[0]).addClass(this.classes.narrowSub).removeClass(this.classes.narrowButton);
+            }
+            else {
+                $(subContainers[0]).removeClass(this.classes.narrow);
+                $(subRow1[0]).removeClass(this.classes.narrowSub).addClass(this.classes.narrowSearch);
+                $(subRow2[0]).removeClass(this.classes.narrowSub).addClass(this.classes.narrowButton);
+            }
+        };
         /**
          * In the case of a rebuild there is potential for new data to have been included or removed
          * so all of the rowData must be reset as a precaution.
@@ -227,6 +290,21 @@
             this.s.listSet = false;
         };
         /**
+         * Getting the legacy message is a little complex due a legacy parameter
+         */
+        SearchPane.prototype.emptyMessage = function () {
+            var def = this.c.i18n.emptyMessage;
+            // Legacy parameter support
+            if (this.c.emptyMessage) {
+                def = this.c.emptyMessage;
+            }
+            // Override per column
+            if (this.s.colOpts.emptyMessage !== false && this.s.colOpts.emptyMessage !== null) {
+                def = this.s.colOpts.emptyMessage;
+            }
+            return this.s.dt.i18n('searchPanes.emptyMessage', def);
+        };
+        /**
          * Updates the number of filters that have been applied in the title
          */
         SearchPane.prototype.getPaneCount = function () {
@@ -236,6 +314,7 @@
         };
         /**
          * Rebuilds the panes from the start having deleted the old ones
+         *
          * @param? last boolean to indicate if this is the last pane a selection was made in
          * @param? dataIn data to be used in buildPane
          * @param? init Whether this is the initial draw or not
@@ -281,7 +360,29 @@
             $(this.dom.container).hide();
         };
         /**
-         * Sets the cascadeRegen property of the pane. Accessible from above because as SearchPanes.ts deals with the rebuilds.
+         * Resizes the pane based on the layout that is passed in
+         *
+         * @param layout the layout to be applied to this pane
+         */
+        SearchPane.prototype.resize = function (layout) {
+            this.c.layout = layout;
+            var layVal = parseInt(layout.split('-')[1], 10);
+            $(this.dom.container)
+                .removeClass()
+                .addClass(this.classes.container)
+                .addClass(this.classes.layout +
+                (layVal < 10 ? layout : layout.split('-')[0] + '-9'))
+                .addClass(this.s.colOpts.className)
+                .addClass((this.customPaneSettings !== null && this.customPaneSettings.className !== undefined)
+                ? this.customPaneSettings.className
+                : '')
+                .addClass(this.classes.show);
+            this.adjustTopRow();
+        };
+        /**
+         * Sets the cascadeRegen property of the pane. Accessible from above because as SearchPanes.ts
+         * deals with the rebuilds.
+         *
          * @param val the boolean value that the cascadeRegen property is to be set to
          */
         SearchPane.prototype.setCascadeRegen = function (val) {
@@ -291,6 +392,7 @@
          * This function allows the clearing property to be assigned. This is used when implementing cascadePane.
          * In setting this to true for the clearing of the panes selection on the deselects it forces the pane to
          * repopulate from the entire dataset not just the displayed values.
+         *
          * @param val the boolean value which the clearing property is to be assigned
          */
         SearchPane.prototype.setClear = function (val) {
@@ -298,6 +400,7 @@
         };
         /**
          * Updates the values of all of the panes
+         *
          * @param draw whether this has been triggered by a draw event or not
          */
         SearchPane.prototype.updatePane = function (draw) {
@@ -308,7 +411,7 @@
         };
         /**
          * Updates the panes if one of the options to do so has been set to true
-         *   rather than the filtered message when using viewTotal.
+         * rather than the filtered message when using viewTotal.
          */
         SearchPane.prototype.updateTable = function () {
             var selectedRows = this.s.dtPane.rows({ selected: true }).data().toArray();
@@ -341,12 +444,12 @@
                     }
                 }
                 else {
-                    $(_this.dom.clear).removeClass(_this.classes.dull);
-                    _this.s.selectPresent = true;
+                    $(_this.dom.clear).removeClass(_this.classes.disabledButton).removeAttr('disabled');
                     if (!_this.s.updating) {
+                        _this.s.selectPresent = true;
                         _this._makeSelection();
+                        _this.s.selectPresent = false;
                     }
-                    _this.s.selectPresent = false;
                 }
             });
             // When an item is deselected on the pane, re add the currently selected items to the array
@@ -363,7 +466,7 @@
                     else {
                         _this.s.deselect = true;
                         if (_this.s.dtPane.rows({ selected: true }).data().toArray().length === 0) {
-                            $(_this.dom.clear).addClass(_this.classes.dull);
+                            $(_this.dom.clear).addClass(_this.classes.disabledButton).attr('disabled', 'true');
                         }
                         _this._makeSelection();
                         _this.s.deselect = false;
@@ -373,7 +476,7 @@
             });
             // When saving the state store all of the selected rows for preselection next time around
             this.s.dt.on('stateSaveParams.dtsp', function (e, settings, data) {
-                // If the data being passed in is empty then a state clear must have occured so clear the panes state as well
+                // If the data being passed in is empty then state clear must have occured so clear the panes state as well
                 if ($.isEmptyObject(data)) {
                     _this.s.dtPane.state.clear();
                     return;
@@ -417,7 +520,7 @@
                 originalEvent.stopPropagation();
             });
             this.s.dtPane.on('draw.dtsp', function () {
-                _this._adjustTopRow();
+                _this.adjustTopRow();
             });
             // When the button to order by the name of the options is clicked then
             //  change the ordering to whatever it isn't currently
@@ -435,7 +538,7 @@
             });
             // When the clear button is clicked reset the pane
             $(this.dom.clear).on('click.dtsp', function () {
-                var searches = _this.dom.container.find('.' + _this.classes.search);
+                var searches = _this.dom.container.find('.' + _this.classes.search.replace(/ /g, '.'));
                 searches.each(function () {
                     // set the value of the search box to be an empty string and then search on that, effectively reseting
                     $(this).val('');
@@ -450,7 +553,15 @@
             // When a character is inputted into the searchbox search the pane for matching values.
             // Doing it this way means that no button has to be clicked to trigger a search, it is done asynchronously
             $(this.dom.searchBox).on('input.dtsp', function () {
-                _this.s.dtPane.search($(_this.dom.searchBox).val()).draw();
+                var searchval = $(_this.dom.searchBox).val();
+                _this.s.dtPane.search(searchval).draw();
+                if (searchval.length > 0 ||
+                    (searchval.length === 0 && _this.s.dtPane.rows({ selected: true }).data().toArray().length > 0)) {
+                    _this.dom.clear.removeClass(_this.classes.disabledButton).removeAttr('disabled');
+                }
+                else {
+                    _this.dom.clear.addClass(_this.classes.disabledButton).attr('disabled', 'true');
+                }
                 _this.s.dt.state.save();
             });
             // Make sure to save the state once the pane has been built
@@ -459,6 +570,7 @@
         };
         /**
          * Takes in potentially undetected rows and adds them to the array if they are not yet featured
+         *
          * @param filter the filter value of the potential row
          * @param display the display value of the potential row
          * @param sort the sort value of the potential row
@@ -468,9 +580,9 @@
          */
         SearchPane.prototype._addOption = function (filter, display, sort, type, arrayFilter, bins) {
             // If the filter is an array then take a note of this, and add the elements to the arrayFilter array
-            if (Array.isArray(filter) || filter instanceof DataTable.Api) {
+            if (Array.isArray(filter) || filter instanceof dataTable.Api) {
                 // Convert to an array so that we can work with it
-                if (filter instanceof DataTable.Api) {
+                if (filter instanceof dataTable.Api) {
                     filter = filter.toArray();
                     display = display.toArray();
                 }
@@ -527,68 +639,8 @@
             }
         };
         /**
-         * Adds a row to the panes table
-         * @param display the value to be displayed to the user
-         * @param filter the value to be filtered on when searchpanes is implemented
-         * @param shown the number of rows in the table that are currently visible matching this criteria
-         * @param total the total number of rows in the table that match this criteria
-         * @param sort the value to be sorted in the pane table
-         * @param type the value of which the type is to be derived from
-         */
-        SearchPane.prototype._addRow = function (display, filter, shown, total, sort, type, className) {
-            var index;
-            for (var _i = 0, _a = this.s.indexes; _i < _a.length; _i++) {
-                var entry = _a[_i];
-                if (entry.filter === filter) {
-                    index = entry.index;
-                }
-            }
-            if (index === undefined) {
-                index = this.s.indexes.length;
-                this.s.indexes.push({ filter: filter, index: index });
-            }
-            return this.s.dtPane.row.add({
-                className: className,
-                display: display !== '' ?
-                    display :
-                    this.s.colOpts.emptyMessage !== false ?
-                        this.s.colOpts.emptyMessage :
-                        this.c.emptyMessage,
-                filter: filter,
-                index: index,
-                shown: shown,
-                sort: sort !== '' ?
-                    sort :
-                    this.s.colOpts.emptyMessage !== false ?
-                        this.s.colOpts.emptyMessage :
-                        this.c.emptyMessage,
-                total: total,
-                type: type
-            });
-        };
-        /**
-         * Adjusts the layout of the top row when the screen is resized
-         */
-        SearchPane.prototype._adjustTopRow = function () {
-            var subContainers = this.dom.container.find('.' + this.classes.subRowsContainer);
-            var subRow1 = this.dom.container.find('.dtsp-subRow1');
-            var subRow2 = this.dom.container.find('.dtsp-subRow2');
-            var topRow = this.dom.container.find('.' + this.classes.topRow);
-            // If the width is 0 then it is safe to assume that the pane has not yet been displayed.
-            //  Even if it has, if the width is 0 it won't make a difference if it has the narrow class or not
-            if (($(subContainers[0]).width() < 252 || $(topRow[0]).width() < 252) && $(subContainers[0]).width() !== 0) {
-                $(subContainers[0]).addClass(this.classes.narrow);
-                $(subRow1[0]).addClass(this.classes.narrowSub).removeClass(this.classes.narrowSearch);
-                $(subRow2[0]).addClass(this.classes.narrowSub).removeClass(this.classes.narrowButton);
-            }
-            else {
-                $(subContainers[0]).removeClass(this.classes.narrow);
-                $(subRow1[0]).removeClass(this.classes.narrowSub).addClass(this.classes.narrowSearch);
-                $(subRow2[0]).removeClass(this.classes.narrowSub).addClass(this.classes.narrowButton);
-            }
-        };
-        /**
          * Method to construct the actual pane.
+         *
          * @param selectedRows previously selected Rows to be reselected
          * @last boolean to indicate whether this pane was the last one to have a selection made
          */
@@ -606,8 +658,8 @@
             var colOpts = this.s.colOpts;
             var rowData = this.s.rowData;
             // Other Variables
-            var countMessage = table.i18n('searchPanes.count', '{total}');
-            var filteredMessage = table.i18n('searchPanes.countFiltered', '{shown} ({total})');
+            var countMessage = table.i18n('searchPanes.count', this.c.i18n.count);
+            var filteredMessage = table.i18n('searchPanes.countFiltered', this.c.i18n.countFiltered);
             var loadedFilter = table.state.loaded();
             // If the listeners have not been set yet then using the latest state may result in funny errors
             if (this.s.listSet) {
@@ -657,7 +709,8 @@
                     }
                     var binLength = Object.keys(rowData.binsOriginal).length;
                     var uniqueRatio = this._uniqueRatio(binLength, table.rows()[0].length);
-                    // Don't show the pane if there isn't enough variance in the data, or there is only 1 entry for that pane
+                    // Don't show the pane if there isn't enough variance in the data, or there is only 1 entry
+                    //  for that pane
                     if (this.s.displayed === false && ((colOpts.show === undefined && colOpts.threshold === null ?
                         uniqueRatio > this.c.threshold :
                         uniqueRatio > colOpts.threshold)
@@ -705,7 +758,7 @@
                     }
                     var binLength = Object.keys(rowData.binsTotal).length;
                     var uniqueRatio = this._uniqueRatio(binLength, this.s.tableLength);
-                    // Don't show the pane if there isn't enough variance in the data, or there is only 1 entry for that pane
+                    // Don't show the pane if there isnt enough variance in the data, or there is only 1 entry for that pane
                     if (this.s.displayed === false && ((colOpts.show === undefined && colOpts.threshold === null ?
                         uniqueRatio > this.c.threshold :
                         uniqueRatio > colOpts.threshold)
@@ -745,7 +798,7 @@
             // Declare the datatable for the pane
             var errMode = $.fn.dataTable.ext.errMode;
             $.fn.dataTable.ext.errMode = 'none';
-            var haveScroller = DataTable.Scroller;
+            var haveScroller = dataTable.Scroller;
             this.s.dtPane = $(this.dom.dtP).DataTable($.extend(true, {
                 columnDefs: [
                     {
@@ -759,9 +812,10 @@
                                 return row.type;
                             }
                             var message;
-                            (_this.s.filteringActive || _this.s.showFiltered) && _this.c.viewTotal
-                                ? message = filteredMessage.replace(/{total}/, row.total)
-                                : message = countMessage.replace(/{total}/, row.total);
+                            message = ((_this.s.filteringActive || _this.s.showFiltered) && _this.c.viewTotal) ||
+                                (_this.c.viewTotal && _this.s.forceViewTotal) ?
+                                filteredMessage.replace(/{total}/, row.total) :
+                                countMessage.replace(/{total}/, row.total);
                             message = message.replace(/{shown}/, row.shown);
                             while (message.indexOf('{total}') !== -1) {
                                 message = message.replace(/{total}/, row.total);
@@ -770,20 +824,29 @@
                                 message = message.replace(/{shown}/, row.shown);
                             }
                             // We are displaying the count in the same columne as the name of the search option.
-                            // This is so that there is not need to call columns.adjust(), which in turn speeds up the code
+                            // This is so that there is not need to call columns.adjust()
+                            //  which in turn speeds up the code
                             var pill = '<span class="' + _this.classes.pill + '">' + message + '</span>';
-                            if (_this.c.hideCount || colOpts.hideCount) {
+                            if (!_this.c.viewCount || !colOpts.viewCount) {
                                 pill = '';
                             }
+                            if (type === 'filter') {
+                                return typeof data === 'string' && data.match(/<[^>]*>/) !== null ?
+                                    data.replace(/<[^>]*>/g, '') :
+                                    data;
+                            }
                             return '<div class="' + _this.classes.nameCont + '"><span title="' +
-                                (typeof data === 'string' && data.match(/<[^>]*>/) !== null ? data.replace(/<[^>]*>/g, '') : data) +
+                                (typeof data === 'string' && data.match(/<[^>]*>/) !== null ?
+                                    data.replace(/<[^>]*>/g, '') :
+                                    data) +
                                 '" class="' + _this.classes.name + '">' +
                                 data + '</span>' +
                                 pill + '</div>';
                         },
                         targets: 0,
                         // Accessing the private datatables property to set type based on the original table.
-                        // This is null if not defined by the user, meaning that automatic type detection would take place
+                        // This is null if not defined by the user, meaning that automatic type detection
+                        //  would take place
                         type: table.settings()[0].aoColumns[this.s.index] !== undefined ?
                             table.settings()[0].aoColumns[this.s.index]._sManualType :
                             null
@@ -819,14 +882,31 @@
                 }
                 : undefined, (this.customPaneSettings !== null && this.customPaneSettings.dtOpts !== undefined)
                 ? this.customPaneSettings.dtOpts
+                : {}, $.fn.dataTable.versionCheck('2')
+                ? {
+                    layout: {
+                        bottomLeft: null,
+                        bottomRight: null,
+                        topLeft: null,
+                        topRight: null
+                    }
+                }
                 : {}));
             $(this.dom.dtP).addClass(this.classes.table);
-            // This is hacky but necessary for when datatables is generating the column titles automatically
-            $(this.dom.searchBox).attr('placeholder', colOpts.header !== undefined
-                ? colOpts.header
-                : this.colExists
-                    ? table.settings()[0].aoColumns[this.s.index].sTitle
-                    : this.customPaneSettings.header || 'Custom Pane');
+            // Getting column titles is a little messy
+            var headerText = 'Custom Pane';
+            if (this.customPaneSettings && this.customPaneSettings.header) {
+                headerText = this.customPaneSettings.header;
+            }
+            else if (colOpts.header) {
+                headerText = colOpts.header;
+            }
+            else if (this.colExists) {
+                headerText = $.fn.dataTable.versionCheck('2')
+                    ? table.column(this.s.index).title()
+                    : table.settings()[0].aoColumns[this.s.index].sTitle;
+            }
+            this.dom.searchBox.attr('placeholder', headerText);
             // As the pane table is not in the document yet we must initialise select ourselves
             $.fn.dataTable.select.init(this.s.dtPane);
             $.fn.dataTable.ext.errMode = errMode;
@@ -857,7 +937,7 @@
                             (this.c.cascadePanes && rowData.bins[rowData.arrayFilter[i].filter] !== 0) ||
                             (this.c.cascadePanes && init !== null) ||
                             selected)) {
-                        var row = this._addRow(rowData.arrayFilter[i].display, rowData.arrayFilter[i].filter, init ?
+                        var row = this.addRow(rowData.arrayFilter[i].display, rowData.arrayFilter[i].filter, init ?
                             rowData.binsTotal[rowData.arrayFilter[i].filter] :
                             rowData.bins[rowData.arrayFilter[i].filter], this.c.viewTotal || init
                             ? String(rowData.binsTotal[rowData.arrayFilter[i].filter])
@@ -874,15 +954,15 @@
                     else if (!this.s.dt.page.info().serverSide &&
                         rowData.arrayFilter[i] &&
                         (rowData.bins[rowData.arrayFilter[i].filter] !== undefined || !this.c.cascadePanes)) {
-                        this._addRow(rowData.arrayFilter[i].display, rowData.arrayFilter[i].filter, rowData.bins[rowData.arrayFilter[i].filter], rowData.binsTotal[rowData.arrayFilter[i].filter], rowData.arrayFilter[i].sort, rowData.arrayFilter[i].type);
+                        this.addRow(rowData.arrayFilter[i].display, rowData.arrayFilter[i].filter, rowData.bins[rowData.arrayFilter[i].filter], rowData.binsTotal[rowData.arrayFilter[i].filter], rowData.arrayFilter[i].sort, rowData.arrayFilter[i].type);
                     }
                     else if (!this.s.dt.page.info().serverSide) {
-                        // Just pass an empty string as the message will be calculated based on that in _addRow()
-                        this._addRow('', count_1, count_1, '', '', '');
+                        // Just pass an empty string as the message will be calculated based on that in addRow()
+                        this.addRow('', count_1, count_1, '', '', '');
                     }
                 }
             }
-            DataTable.select.init(this.s.dtPane);
+            dataTable.select.init(this.s.dtPane);
             // If there are custom options set or it is a custom pane then get them
             if (colOpts.options !== undefined ||
                 (this.customPaneSettings !== null && this.customPaneSettings.options !== undefined)) {
@@ -890,7 +970,7 @@
             }
             // Display the pane
             this.s.dtPane.draw();
-            this._adjustTopRow();
+            this.adjustTopRow();
             if (!this.s.listSet) {
                 this._setListeners();
                 this.s.listSet = true;
@@ -900,8 +980,10 @@
                 if (selection !== undefined) {
                     for (var _g = 0, _h = this.s.dtPane.rows().indexes().toArray(); _g < _h.length; _g++) {
                         var row = _h[_g];
-                        if (this.s.dtPane.row(row).data() !== undefined && selection.filter === this.s.dtPane.row(row).data().filter) {
-                            // If this is happening when serverSide processing is happening then different behaviour is needed
+                        if (this.s.dtPane.row(row).data() !== undefined &&
+                            selection.filter === this.s.dtPane.row(row).data().filter) {
+                            // If this is happening when serverSide processing is happening then
+                            //  different behaviour is needed
                             if (this.s.dt.page.info().serverSide) {
                                 this.s.serverSelecting = true;
                                 this.s.dtPane.row(row).select();
@@ -986,9 +1068,10 @@
                     this.customPaneSettings.dtOpts !== undefined &&
                     this.customPaneSettings.dtOpts.searching !== undefined &&
                     !this.customPaneSettings.dtOpts.searching)) {
-                $(this.dom.searchBox).attr('disabled', 'disabled')
+                $(this.dom.searchBox)
                     .removeClass(this.classes.paneInputButton)
-                    .addClass(this.classes.disabledButton);
+                    .addClass(this.classes.disabledButton)
+                    .attr('disabled', 'true');
             }
             $(this.dom.searchBox).appendTo(this.dom.searchCont);
             // Create the contents of the searchCont div. Worth noting that this function will change when using semantic ui
@@ -1001,8 +1084,8 @@
                 $(this.dom.nameButton).appendTo(this.dom.buttonGroup);
             }
             // If the count column is hidden then don't display the ordering button for it
-            if (!this.c.hideCount &&
-                !colOpts.hideCount &&
+            if (this.c.viewCount &&
+                colOpts.viewCount &&
                 this.c.orderable &&
                 colOpts.orderable &&
                 this.c.controls &&
@@ -1015,6 +1098,7 @@
         };
         /**
          * Gets the options for the row for the customPanes
+         *
          * @returns {object} The options for the row extended to include the options from the user.
          */
         SearchPane.prototype._getBonusOptions = function () {
@@ -1029,6 +1113,7 @@
         };
         /**
          * Adds the custom options to the pane
+         *
          * @returns {Array} Returns the array of rows which have been added to the pane
          */
         SearchPane.prototype._getComparisonRows = function () {
@@ -1052,7 +1137,9 @@
             for (var _i = 0, options_1 = options; _i < options_1.length; _i++) {
                 var comp = options_1[_i];
                 // Initialise the object which is to be placed in the row
-                var insert = comp.label !== '' ? comp.label : this.c.emptyMessage;
+                var insert = comp.label !== '' ?
+                    comp.label :
+                    this.emptyMessage();
                 var comparisonObj = {
                     className: comp.className,
                     display: insert,
@@ -1083,13 +1170,14 @@
                 }
                 // If cascadePanes is not active or if it is and the comparisonObj should be shown then add it to the pane
                 if (!this.c.cascadePanes || (this.c.cascadePanes && comparisonObj.shown !== 0)) {
-                    rows.push(this._addRow(comparisonObj.display, comparisonObj.filter, comparisonObj.shown, comparisonObj.total, comparisonObj.sort, comparisonObj.type, comparisonObj.className));
+                    rows.push(this.addRow(comparisonObj.display, comparisonObj.filter, comparisonObj.shown, comparisonObj.total, comparisonObj.sort, comparisonObj.type, comparisonObj.className));
                 }
             }
             return rows;
         };
         /**
          * Gets the options for the row for the customPanes
+         *
          * @returns {object} The options for the row extended to include the options from the user.
          */
         SearchPane.prototype._getOptions = function () {
@@ -1102,10 +1190,18 @@
                 },
                 threshold: null
             };
-            return $.extend(true, {}, SearchPane.defaults, defaultMutator, table.settings()[0].aoColumns[this.s.index].searchPanes);
+            var columnOptions = table.settings()[0].aoColumns[this.s.index].searchPanes;
+            var colOpts = $.extend(true, {}, SearchPane.defaults, defaultMutator, columnOptions);
+            if (columnOptions !== undefined &&
+                columnOptions.hideCount !== undefined &&
+                columnOptions.viewCount === undefined) {
+                colOpts.viewCount = !columnOptions.hideCount;
+            }
+            return colOpts;
         };
         /**
          * This method allows for changes to the panes and table to be made when a selection or a deselection occurs
+         *
          * @param select Denotes whether a selection has been made or not
          */
         SearchPane.prototype._makeSelection = function () {
@@ -1116,6 +1212,7 @@
         };
         /**
          * Fill the array with the values that are currently being displayed in the table
+         *
          * @param last boolean to indicate whether this was the last pane a selection was made in
          */
         SearchPane.prototype._populatePane = function (last) {
@@ -1125,7 +1222,8 @@
             this.s.rowData.bins = {};
             var settings = this.s.dt.settings()[0];
             // If cascadePanes or viewTotal are active it is necessary to get the data which is currently
-            //  being displayed for their functionality. Also make sure that this was not the last pane to have a selection made
+            //  being displayed for their functionality.
+            // Also make sure that this was not the last pane to have a selection made
             if (!this.s.dt.page.info().serverSide) {
                 var indexArray = (this.c.cascadePanes || this.c.viewTotal) && (!this.s.clearing && !last) ?
                     table.rows({ search: 'applied' }).indexes() :
@@ -1138,6 +1236,7 @@
         };
         /**
          * Populates an array with all of the data for the table
+         *
          * @param rowIdx The current row index to be compared
          * @param arrayFilter The array that is to be populated with row Details
          * @param bins The bins object that is to be populated with the row counts
@@ -1176,6 +1275,7 @@
         };
         /**
          * Reloads all of the previous selects into the panes
+         *
          * @param loadedFilter The loaded filters from a previous state
          */
         SearchPane.prototype._reloadSelect = function (loadedFilter) {
@@ -1213,6 +1313,7 @@
         };
         /**
          * This method decides whether a row should contribute to the pane or not
+         *
          * @param filter the value that the row is to be filtered on
          * @param dataIndex the row index
          */
@@ -1222,10 +1323,14 @@
             // For each item selected in the pane, check if it is available in the cell
             for (var _i = 0, _a = this.selections; _i < _a.length; _i++) {
                 var colSelect = _a[_i];
-                if (typeof colSelect.filter === 'string') {
+                if (typeof colSelect.filter === 'string' && typeof filter === 'string') {
                     // The filter value will not have the &amp; in place but a &,
                     //  so we need to do a replace to make sure that they will match
-                    colSelect.filter = colSelect.filter.replaceAll('&amp;', '&');
+                    colSelect.filter = colSelect.filter
+                        .replace(/&amp;/g, '&')
+                        .replace(/&lt;/g, '<')
+                        .replace(/&gt;/g, '>')
+                        .replace(/&quot;/g, '"');
                 }
                 // if the filter is an array then is the column present in it
                 if (Array.isArray(filter)) {
@@ -1247,8 +1352,9 @@
                     }
                 }
                 // otherwise if the two filter values are equal then return true
-                // Loose type checking incase number type in column comparing to a string
                 else if ((filter === colSelect.filter) ||
+                    // Loose type checking incase number type in column comparing to a string
+                    // eslint-disable-next-line eqeqeq
                     (!(typeof filter === 'string' && filter.length === 0) && filter == colSelect.filter) ||
                     (colSelect.filter === null && typeof filter === 'string' && filter === '')) {
                     return true;
@@ -1289,9 +1395,7 @@
             var updating = this.s.updating;
             this.s.updating = true;
             var filters = this.s.dtPane.rows({ selected: true }).data().pluck('filter').toArray();
-            var nullIndex = filters.indexOf(this.s.colOpts.emptyMessage !== false ?
-                this.s.colOpts.emptyMessage :
-                this.c.emptyMessage);
+            var nullIndex = filters.indexOf(this.emptyMessage());
             var container = $(this.s.dtPane.table().container());
             // If null index is found then search for empty cells as a filter.
             if (nullIndex > -1) {
@@ -1308,6 +1412,7 @@
         };
         /**
          * Finds the ratio of the number of different options in the table to the number of rows
+         *
          * @param bins the number of different options in the table
          * @param rowCount the total number of rows in the table
          * @returns {number} returns the ratio
@@ -1324,6 +1429,7 @@
         };
         /**
          * updates the options within the pane
+         *
          * @param draw a flag to define whether this has been called due to a draw event or not
          */
         SearchPane.prototype._updateCommon = function (draw) {
@@ -1333,7 +1439,8 @@
             if (!this.s.dt.page.info().serverSide &&
                 this.s.dtPane !== undefined &&
                 (!this.s.filteringActive || this.c.cascadePanes || draw === true) &&
-                (this.c.cascadePanes !== true || this.s.selectPresent !== true) && (!this.s.lastSelect || !this.s.lastCascade)) {
+                (this.c.cascadePanes !== true || this.s.selectPresent !== true) &&
+                (!this.s.lastSelect || !this.s.lastCascade)) {
                 var colOpts = this.s.colOpts;
                 var selected = this.s.dtPane.rows({ selected: true }).data().toArray();
                 var scrollTop = $(this.s.dtPane.table().node()).parent()[0].scrollTop;
@@ -1344,18 +1451,19 @@
                 if (this.colExists) {
                     // Only run populatePane if the data has not been collected yet
                     if (rowData.arrayFilter.length === 0) {
-                        this._populatePane();
+                        this._populatePane(!this.s.filteringActive);
                     }
                     // If cascadePanes is active and the table has returned to its default state then
                     //  there is a need to update certain parts ofthe rowData.
-                    else if (this.c.cascadePanes
-                        && this.s.dt.rows().data().toArray().length === this.s.dt.rows({ search: 'applied' }).data().toArray().length) {
+                    else if (this.c.cascadePanes &&
+                        this.s.dt.rows().data().toArray().length ===
+                            this.s.dt.rows({ search: 'applied' }).data().toArray().length) {
                         rowData.arrayFilter = rowData.arrayOriginal;
                         rowData.bins = rowData.binsOriginal;
                     }
                     // Otherwise if viewTotal or cascadePanes is active then the data from the table must be read.
                     else if (this.c.viewTotal || this.c.cascadePanes) {
-                        this._populatePane();
+                        this._populatePane(!this.s.filteringActive);
                     }
                     // If the viewTotal option is selected then find the totals for the table
                     if (this.c.viewTotal) {
@@ -1368,19 +1476,22 @@
                         rowData.arrayFilter = rowData.arrayTotals;
                     }
                     var _loop_1 = function (dataP) {
-                        // If both view Total and cascadePanes have been selected and the count of the row is not 0 then add it to pane
+                        // If both view Total and cascadePanes have been selected and the count of the row
+                        //  is not 0 then add it to pane
                         // Do this also if the viewTotal option has been selected and cascadePanes has not
-                        if (dataP && ((rowData.bins[dataP.filter] !== undefined && rowData.bins[dataP.filter] !== 0 && this_1.c.cascadePanes)
-                            || !this_1.c.cascadePanes
-                            || this_1.s.clearing)) {
-                            var row = this_1._addRow(dataP.display, dataP.filter, !this_1.c.viewTotal
-                                ? rowData.bins[dataP.filter]
-                                : rowData.bins[dataP.filter] !== undefined
-                                    ? rowData.bins[dataP.filter]
-                                    : 0, this_1.c.viewTotal
-                                ? String(rowData.binsTotal[dataP.filter])
-                                : rowData.bins[dataP.filter], dataP.sort, dataP.type);
-                            // Find out if the filter was selected in the previous search, if so select it and remove from array.
+                        if (dataP && ((rowData.bins[dataP.filter] !== undefined &&
+                            rowData.bins[dataP.filter] !== 0 && this_1.c.cascadePanes) ||
+                            !this_1.c.cascadePanes ||
+                            this_1.s.clearing)) {
+                            var row = this_1.addRow(dataP.display, dataP.filter, !this_1.c.viewTotal ?
+                                rowData.bins[dataP.filter] :
+                                rowData.bins[dataP.filter] !== undefined ?
+                                    rowData.bins[dataP.filter] :
+                                    0, this_1.c.viewTotal ?
+                                String(rowData.binsTotal[dataP.filter]) :
+                                rowData.bins[dataP.filter], dataP.sort, dataP.type);
+                            // Find out if the filter was selected in the previous search,
+                            //  if so select it and remove from array.
                             var selectIndex = selected.findIndex(function (element) {
                                 return element.filter === dataP.filter;
                             });
@@ -1420,7 +1531,7 @@
                 // longer present in the resulting data set.
                 for (var _c = 0, selected_1 = selected; _c < selected_1.length; _c++) {
                     var selectedEl = selected_1[_c];
-                    var row = this._addRow(selectedEl.display, selectedEl.filter, 0, this.c.viewTotal
+                    var row = this.addRow(selectedEl.display, selectedEl.filter, 0, this.c.viewTotal
                         ? selectedEl.total
                         : 0, selectedEl.display, selectedEl.display);
                     this.s.updating = true;
@@ -1431,7 +1542,7 @@
                 this.s.dtPane.table().node().parentNode.scrollTop = scrollTop;
             }
         };
-        SearchPane.version = '1.1.0';
+        SearchPane.version = '1.3.0';
         SearchPane.classes = {
             buttonGroup: 'dtsp-buttonGroup',
             buttonSub: 'dtsp-buttonSub',
@@ -1441,7 +1552,6 @@
             container: 'dtsp-searchPane',
             countButton: 'dtsp-countButton',
             disabledButton: 'dtsp-disabledButton',
-            dull: 'dtsp-dull',
             hidden: 'dtsp-hidden',
             hide: 'dtsp-hide',
             layout: 'dtsp-',
@@ -1469,14 +1579,20 @@
             cascadePanes: false,
             clear: true,
             combiner: 'or',
-            controls: true,
             container: function (dt) {
                 return dt.table().container();
             },
+            controls: true,
             dtOpts: {},
-            emptyMessage: '<i>No Data</i>',
+            emptyMessage: null,
             hideCount: false,
-            layout: 'columns-3',
+            i18n: {
+                clearPane: '&times;',
+                count: '{total}',
+                countFiltered: '{shown} ({total})',
+                emptyMessage: '<em>No data</em>'
+            },
+            layout: 'auto',
             name: undefined,
             orderable: true,
             orthogonal: {
@@ -1487,20 +1603,22 @@
                 show: undefined,
                 sort: 'sort',
                 threshold: 0.6,
-                type: 'type'
+                type: 'type',
+                viewCount: true
             },
             preSelect: [],
             threshold: 0.6,
+            viewCount: true,
             viewTotal: false
         };
         return SearchPane;
     }());
 
     var $$1;
-    var DataTable$1;
+    var dataTable$1;
     function setJQuery$1(jq) {
         $$1 = jq;
-        DataTable$1 = jq.fn.dataTable;
+        dataTable$1 = jq.fn.dataTable;
     }
     var SearchPanes = /** @class */ (function () {
         function SearchPanes(paneSettings, opts, fromInit) {
@@ -1508,21 +1626,21 @@
             if (fromInit === void 0) { fromInit = false; }
             this.regenerating = false;
             // Check that the required version of DataTables is included
-            if (!DataTable$1 || !DataTable$1.versionCheck || !DataTable$1.versionCheck('1.10.0')) {
+            if (!dataTable$1 || !dataTable$1.versionCheck || !dataTable$1.versionCheck('1.10.0')) {
                 throw new Error('SearchPane requires DataTables 1.10 or newer');
             }
             // Check that Select is included
-            if (!DataTable$1.select) {
+            if (!dataTable$1.select) {
                 throw new Error('SearchPane requires Select');
             }
-            var table = new DataTable$1.Api(paneSettings);
+            var table = new dataTable$1.Api(paneSettings);
             this.classes = $$1.extend(true, {}, SearchPanes.classes);
             // Get options from user
             this.c = $$1.extend(true, {}, SearchPanes.defaults, opts);
             // Add extra elements to DOM object including clear
             this.dom = {
                 clearAll: $$1('<button type="button">Clear All</button>').addClass(this.classes.clearAll),
-                container: $$1('<div/>').addClass(this.classes.panes).text(table.i18n('searchPanes.loadMessage', 'Loading Search Panes...')),
+                container: $$1('<div/>').addClass(this.classes.panes).text(table.i18n('searchPanes.loadMessage', this.c.i18n.loadMessage)),
                 emptyMessage: $$1('<div/>').addClass(this.classes.emptyMessage),
                 options: $$1('<div/>').addClass(this.classes.container),
                 panes: $$1('<div/>').addClass(this.classes.container),
@@ -1551,14 +1669,23 @@
                     if (data.searchPanes === undefined) {
                         data.searchPanes = {};
                     }
+                    if (data.searchPanes_null === undefined) {
+                        data.searchPanes_null = {};
+                    }
                     for (var _i = 0, _a = _this.s.selectionList; _i < _a.length; _i++) {
                         var selection = _a[_i];
                         var src = _this.s.dt.column(selection.index).dataSrc();
                         if (data.searchPanes[src] === undefined) {
                             data.searchPanes[src] = {};
                         }
+                        if (data.searchPanes_null[src] === undefined) {
+                            data.searchPanes_null[src] = {};
+                        }
                         for (var i = 0; i < selection.rows.length; i++) {
                             data.searchPanes[src][i] = selection.rows[i].filter;
+                            if (data.searchPanes[src][i] === null) {
+                                data.searchPanes_null[src][i] = true;
+                            }
                         }
                     }
                 });
@@ -1573,7 +1700,7 @@
                 }
             });
             table.settings()[0]._searchPanes = this;
-            this.dom.clearAll.text(table.i18n('searchPanes.clearMessage', 'Clear All'));
+            this.dom.clearAll.text(table.i18n('searchPanes.clearMessage', this.c.i18n.clearMessage));
             if (this.s.dt.settings()[0]._bInitComplete || fromInit) {
                 this._paneDeclare(table, paneSettings, opts);
             }
@@ -1589,7 +1716,7 @@
          */
         SearchPanes.prototype.clearSelections = function () {
             // Load in all of the searchBoxes in the documents
-            var searches = this.dom.container.find(this.classes.search);
+            var searches = this.dom.container.find('.' + this.classes.search.replace(/\s+/g, '.'));
             // For each searchBox set the input text to be empty and then trigger
             //  an input on them so that they no longer filter the panes
             searches.each(function () {
@@ -1604,7 +1731,6 @@
                     returnArray.push(pane.clearPane());
                 }
             }
-            this.s.dt.draw();
             return returnArray;
         };
         /**
@@ -1641,10 +1767,6 @@
                     undefined, null, maintainSelection));
                 $$1(this.dom.panes).append(pane.dom.container);
             }
-            // Only need to trigger a search if it is not server side processing
-            if (!this.s.dt.page.info().serverSide) {
-                this.s.dt.draw();
-            }
             if (this.c.cascadePanes || this.c.viewTotal) {
                 this.redrawPanes(true);
             }
@@ -1655,6 +1777,8 @@
             this._updateFilterCount();
             this._attachPaneContainer();
             this.s.dt.draw();
+            // Resize the panes incase there has been a change
+            this.resizePanes();
             // If a single pane has been rebuilt then return only that pane
             if (returnArray.length === 1) {
                 return returnArray[0];
@@ -1674,28 +1798,37 @@
             if (!this.s.updating && !this.s.dt.page.info().serverSide) {
                 var filterActive = true;
                 var filterPane = this.s.filterPane;
+                var selectTotal = null;
+                for (var _i = 0, _a = this.s.panes; _i < _a.length; _i++) {
+                    var pane = _a[_i];
+                    if (pane.s.dtPane !== undefined) {
+                        selectTotal += pane.s.dtPane.rows({ selected: true }).data().toArray().length;
+                    }
+                }
                 // If the number of rows currently visible is equal to the number of rows in the table
                 //  then there can't be any filtering taking place
-                if (table.rows({ search: 'applied' }).data().toArray().length === table.rows().data().toArray().length) {
+                if (selectTotal === 0 &&
+                    table.rows({ search: 'applied' }).data().toArray().length === table.rows().data().toArray().length) {
                     filterActive = false;
                 }
                 // Otherwise if viewTotal is active then it is necessary to determine which panes a select is present in.
                 //  If there is only one pane with a selection present then it should not show the filtered message as
                 //  more selections may be made in that pane.
                 else if (this.c.viewTotal) {
-                    for (var _i = 0, _a = this.s.panes; _i < _a.length; _i++) {
-                        var pane = _a[_i];
+                    for (var _b = 0, _c = this.s.panes; _b < _c.length; _b++) {
+                        var pane = _c[_b];
                         if (pane.s.dtPane !== undefined) {
                             var selectLength = pane.s.dtPane.rows({ selected: true }).data().toArray().length;
                             if (selectLength === 0) {
-                                for (var _b = 0, _c = this.s.selectionList; _b < _c.length; _b++) {
-                                    var selection = _c[_b];
+                                for (var _d = 0, _e = this.s.selectionList; _d < _e.length; _d++) {
+                                    var selection = _e[_d];
                                     if (selection.index === pane.s.index && selection.rows.length !== 0) {
                                         selectLength = selection.rows.length;
                                     }
                                 }
                             }
-                            // If filterPane === -1 then a pane with a selection has not been found yet, so set filterPane to that panes index
+                            // If filterPane === -1 then a pane with a selection has not been found yet,
+                            //  so set filterPane to that panes index
                             if (selectLength > 0 && filterPane === -1) {
                                 filterPane = pane.s.index;
                             }
@@ -1706,16 +1839,24 @@
                             }
                         }
                     }
+                    // If the searchbox is in place and filtering is applied then need to cascade down anyway
+                    if (selectTotal === 0) {
+                        filterPane = null;
+                    }
                 }
                 var deselectIdx = void 0;
                 var newSelectionList = [];
                 // Don't run this if it is due to the panes regenerating
                 if (!this.regenerating) {
-                    for (var _d = 0, _e = this.s.panes; _d < _e.length; _d++) {
-                        var pane = _e[_d];
+                    for (var _f = 0, _g = this.s.panes; _f < _g.length; _f++) {
+                        var pane = _g[_f];
                         // Identify the pane where a selection or deselection has been made and add it to the list.
                         if (pane.s.selectPresent) {
-                            this.s.selectionList.push({ index: pane.s.index, rows: pane.s.dtPane.rows({ selected: true }).data().toArray(), protect: false });
+                            this.s.selectionList.push({
+                                index: pane.s.index,
+                                protect: false,
+                                rows: pane.s.dtPane.rows({ selected: true }).data().toArray()
+                            });
                             table.state.save();
                             break;
                         }
@@ -1723,14 +1864,18 @@
                             deselectIdx = pane.s.index;
                             var selectedData = pane.s.dtPane.rows({ selected: true }).data().toArray();
                             if (selectedData.length > 0) {
-                                this.s.selectionList.push({ index: pane.s.index, rows: selectedData, protect: true });
+                                this.s.selectionList.push({
+                                    index: pane.s.index,
+                                    protect: true,
+                                    rows: selectedData
+                                });
                             }
                         }
                     }
                     if (this.s.selectionList.length > 0) {
                         var last = this.s.selectionList[this.s.selectionList.length - 1].index;
-                        for (var _f = 0, _g = this.s.panes; _f < _g.length; _f++) {
-                            var pane = _g[_f];
+                        for (var _h = 0, _j = this.s.panes; _h < _j.length; _h++) {
+                            var pane = _j[_h];
                             pane.s.lastSelect = (pane.s.index === last);
                         }
                     }
@@ -1752,12 +1897,12 @@
                         }
                     }
                     var solePane = -1;
-                    if (newSelectionList.length === 1) {
+                    if (newSelectionList.length === 1 && selectTotal !== null && selectTotal !== 0) {
                         solePane = newSelectionList[0].index;
                     }
                     // Update all of the panes to reflect the current state of the filters
-                    for (var _h = 0, _j = this.s.panes; _h < _j.length; _h++) {
-                        var pane = _j[_h];
+                    for (var _k = 0, _l = this.s.panes; _k < _l.length; _k++) {
+                        var pane = _l[_k];
                         if (pane.s.dtPane !== undefined) {
                             var tempFilter = true;
                             pane.s.filteringActive = true;
@@ -1772,23 +1917,26 @@
                     }
                     // Update the label that shows how many filters are in place
                     this._updateFilterCount();
-                    // If the length of the selections are different then some of them have been removed and a deselect has occured
+                    // If the length of the selections are different then some of them have been
+                    //  removed and a deselect has occured
                     if (newSelectionList.length > 0 && (newSelectionList.length < this.s.selectionList.length || rebuild)) {
-                        this._cascadeRegen(newSelectionList);
+                        this._cascadeRegen(newSelectionList, selectTotal);
                         var last = newSelectionList[newSelectionList.length - 1].index;
-                        for (var _k = 0, _l = this.s.panes; _k < _l.length; _k++) {
-                            var pane = _l[_k];
+                        for (var _m = 0, _o = this.s.panes; _m < _o.length; _m++) {
+                            var pane = _o[_m];
                             pane.s.lastSelect = (pane.s.index === last);
                         }
                     }
                     else if (newSelectionList.length > 0) {
                         // Update all of the other panes as you would just making a normal selection
-                        for (var _m = 0, _o = this.s.panes; _m < _o.length; _m++) {
-                            var paneUpdate = _o[_m];
+                        for (var _p = 0, _q = this.s.panes; _p < _q.length; _p++) {
+                            var paneUpdate = _q[_p];
                             if (paneUpdate.s.dtPane !== undefined) {
                                 var tempFilter = true;
                                 paneUpdate.s.filteringActive = true;
-                                if ((filterPane !== -1 && filterPane !== null && filterPane === paneUpdate.s.index) || filterActive === false) {
+                                if ((filterPane !== -1 && filterPane !== null && filterPane === paneUpdate.s.index) ||
+                                    filterActive === false ||
+                                    paneUpdate.s.index === solePane) {
                                     tempFilter = false;
                                     paneUpdate.s.filteringActive = false;
                                 }
@@ -1799,11 +1947,11 @@
                 }
                 else {
                     var solePane = -1;
-                    if (newSelectionList.length === 1) {
+                    if (newSelectionList.length === 1 && selectTotal !== null && selectTotal !== 0) {
                         solePane = newSelectionList[0].index;
                     }
-                    for (var _p = 0, _q = this.s.panes; _p < _q.length; _p++) {
-                        var pane = _q[_p];
+                    for (var _r = 0, _s = this.s.panes; _r < _s.length; _r++) {
+                        var pane = _s[_r];
                         if (pane.s.dtPane !== undefined) {
                             var tempFilter = true;
                             pane.s.filteringActive = true;
@@ -1819,10 +1967,68 @@
                     // Update the label that shows how many filters are in place
                     this._updateFilterCount();
                 }
-                if (!filterActive) {
+                if (!filterActive || selectTotal === 0) {
                     this.s.selectionList = [];
                 }
             }
+        };
+        /**
+         * Resizes all of the panes
+         */
+        SearchPanes.prototype.resizePanes = function () {
+            if (this.c.layout === 'auto') {
+                var contWidth = $$1(this.s.dt.searchPanes.container()).width();
+                var target = Math.floor(contWidth / 260.0); // The neatest number of panes per row
+                var highest = 1;
+                var highestmod = 0;
+                var dispIndex = [];
+                // Get the indexes of all of the displayed panes
+                for (var _i = 0, _a = this.s.panes; _i < _a.length; _i++) {
+                    var pane = _a[_i];
+                    if (pane.s.displayed) {
+                        dispIndex.push(pane.s.index);
+                    }
+                }
+                var displayCount = dispIndex.length;
+                // If the neatest number is the number we have then use this.
+                if (target === displayCount) {
+                    highest = target;
+                }
+                else {
+                    // Go from the target down and find the value with the most panes left over, this will be the best fit
+                    for (var ppr = target; ppr > 1; ppr--) {
+                        var rem = displayCount % ppr;
+                        if (rem === 0) {
+                            highest = ppr;
+                            highestmod = 0;
+                            break;
+                        }
+                        // If there are more left over at this amount of panes per row (ppr)
+                        //  then it fits better so new values
+                        else if (rem > highestmod) {
+                            highest = ppr;
+                            highestmod = rem;
+                        }
+                    }
+                }
+                // If there is a perfect fit then none are to be wider
+                var widerIndexes = highestmod !== 0 ? dispIndex.slice(dispIndex.length - highestmod, dispIndex.length) : [];
+                for (var _b = 0, _c = this.s.panes; _b < _c.length; _b++) {
+                    var pane = _c[_b];
+                    // Resize the pane with the new layout
+                    if (pane.s.displayed) {
+                        var layout = 'columns-' + (widerIndexes.indexOf(pane.s.index) === -1 ? highest : highestmod);
+                        pane.resize(layout);
+                    }
+                }
+            }
+            else {
+                for (var _d = 0, _e = this.s.panes; _d < _e.length; _d++) {
+                    var pane = _e[_d];
+                    pane.adjustTopRow();
+                }
+            }
+            return this;
         };
         /**
          * Attach the panes, buttons and title to the document
@@ -1870,13 +2076,13 @@
         };
         /**
          * If there are no panes to display then this method is called to either
-         *   display a message in their place or hide them completely.
+         * display a message in their place or hide them completely.
          */
         SearchPanes.prototype._attachMessage = function () {
             // Create a message to display on the screen
             var message;
             try {
-                message = this.s.dt.i18n('searchPanes.emptyPanes', 'No SearchPanes');
+                message = this.s.dt.i18n('searchPanes.emptyPanes', this.c.i18n.emptyPanes);
             }
             catch (error) {
                 message = null;
@@ -1913,14 +2119,15 @@
         };
         /**
          * Prepares the panes for selections to be made when cascade is active and a deselect has occured
+         *
          * @param newSelectionList the list of selections which are to be made
          */
-        SearchPanes.prototype._cascadeRegen = function (newSelectionList) {
+        SearchPanes.prototype._cascadeRegen = function (newSelectionList, selectTotal) {
             // Set this to true so that the actions taken do not cause this to run until it is finished
             this.regenerating = true;
             // If only one pane has been selected then take note of its index
             var solePane = -1;
-            if (newSelectionList.length === 1) {
+            if (newSelectionList.length === 1 && selectTotal !== null && selectTotal !== 0) {
                 solePane = newSelectionList[0].index;
             }
             // Let the pane know that a cascadeRegen is taking place to avoid unexpected behaviour
@@ -1935,16 +2142,39 @@
                 }
                 pane.setClear(false);
             }
+            // Rebin panes
+            this.s.dt.draw();
+            // While all of the selections have been removed, check the table lengths
+            // If they are different, another filter is in place and we need to force viewTotal to be used
+            var noSelectionsTableLength = this.s.dt.rows({ search: 'applied' }).data().toArray().length;
+            var tableLength = this.s.dt.rows().data().toArray().length;
+            if (tableLength !== noSelectionsTableLength) {
+                for (var _b = 0, _c = this.s.panes; _b < _c.length; _b++) {
+                    var pane = _c[_b];
+                    pane.s.forceViewTotal = true;
+                }
+            }
+            for (var _d = 0, _e = this.s.panes; _d < _e.length; _d++) {
+                var pane = _e[_d];
+                pane.updatePane(true);
+            }
             // Remake Selections
             this._makeCascadeSelections(newSelectionList);
             // Set the selection list property to be the list without the selections from the deselect pane
             this.s.selectionList = newSelectionList;
             // The regeneration of selections is over so set it back to false
-            for (var _b = 0, _c = this.s.panes; _b < _c.length; _b++) {
-                var pane = _c[_b];
+            for (var _f = 0, _g = this.s.panes; _f < _g.length; _f++) {
+                var pane = _g[_f];
                 pane.setCascadeRegen(false);
             }
             this.regenerating = false;
+            // ViewTotal has already been forced at this point so can cancel that for future
+            if (tableLength !== noSelectionsTableLength) {
+                for (var _h = 0, _j = this.s.panes; _h < _j.length; _h++) {
+                    var pane = _j[_h];
+                    pane.s.forceViewTotal = false;
+                }
+            }
         };
         /**
          * Attaches the message to the document but does not add any panes
@@ -1954,6 +2184,9 @@
             for (var _i = 0, _a = this.s.panes; _i < _a.length; _i++) {
                 var pane = _a[_i];
                 if (pane.s.displayed === true) {
+                    // Ensure that the empty message is removed if a pane is displayed
+                    $$1(this.dom.emptyMessage).remove();
+                    $$1(this.dom.titleRow).removeClass(this.classes.hide);
                     return;
                 }
             }
@@ -1971,46 +2204,58 @@
         };
         /**
          * Makes all of the selections when cascade is active
+         *
          * @param newSelectionList the list of selections to be made, in the order they were originally selected
          */
         SearchPanes.prototype._makeCascadeSelections = function (newSelectionList) {
-            // make selections in the order they were made previously, excluding those from the pane where a deselect was made
+            // make selections in the order they were made previously,
+            //  excluding those from the pane where a deselect was made
             for (var i = 0; i < newSelectionList.length; i++) {
                 var _loop_1 = function (pane) {
                     if (pane.s.index === newSelectionList[i].index && pane.s.dtPane !== undefined) {
-                        // When regenerating the cascade selections we need this flag so that the panes are only ignored if it
+                        // When regenerating the cascade selections we need this flag so that
+                        //  the panes are only ignored if it
                         //  is the last selection and the pane for that selection
                         if (i === newSelectionList.length - 1) {
                             pane.s.lastCascade = true;
                         }
-                        // if there are any selections currently in the pane then deselect them as we are about to make our new selections
+                        // if there are any selections currently in the pane then
+                        //  deselect them as we are about to make our new selections
                         if (pane.s.dtPane.rows({ selected: true }).data().toArray().length > 0 && pane.s.dtPane !== undefined) {
                             pane.setClear(true);
                             pane.clearPane();
                             pane.setClear(false);
                         }
                         var _loop_2 = function (row) {
+                            var found = false;
                             pane.s.dtPane.rows().every(function (rowIdx) {
                                 if (pane.s.dtPane.row(rowIdx).data() !== undefined &&
                                     row !== undefined &&
                                     pane.s.dtPane.row(rowIdx).data().filter === row.filter) {
+                                    found = true;
                                     pane.s.dtPane.row(rowIdx).select();
                                 }
                             });
+                            if (!found) {
+                                var newRow = pane.addRow(row.display, row.filter, 0, row.total, row.sort, row.type, row.className);
+                                newRow.select();
+                            }
                         };
                         // select every row in the pane that was selected previously
                         for (var _i = 0, _a = newSelectionList[i].rows; _i < _a.length; _i++) {
                             var row = _a[_i];
                             _loop_2(row);
                         }
+                        pane.s.dtPane.draw();
                         // Update the label that shows how many filters are in place
                         this_1._updateFilterCount();
                         pane.s.lastCascade = false;
                     }
                 };
                 var this_1 = this;
-                // As the selections may have been made across the panes in a different order to the pane index we must identify
-                //  which pane has the index of the selection. This is also important for colreorder etc
+                // As the selections may have been made across the panes
+                //  in a different order to the pane index we must identify
+                //   which pane has the index of the selection. This is also important for colreorder etc
                 for (var _i = 0, _a = this.s.panes; _i < _a.length; _i++) {
                     var pane = _a[_i];
                     _loop_1(pane);
@@ -2022,7 +2267,8 @@
         /**
          * Declares the instances of individual searchpanes dependant on the number of columns.
          * It is necessary to run this once preInit has completed otherwise no panes will be
-         *  created as the column count will be 0.
+         * created as the column count will be 0.
+         *
          * @param table the DataTable api for the parent table
          * @param paneSettings the settings passed into the constructor
          * @param opts the options passed into the constructor
@@ -2046,9 +2292,7 @@
             // If a custom ordering is being used
             if (this.c.order.length > 0) {
                 // Make a new Array of panes based upon the order
-                var newPanes = this.c.order.map(function (name, index, values) {
-                    return _this._findPane(name);
-                });
+                var newPanes = this.c.order.map(function (name, index, values) { return _this._findPane(name); });
                 // Remove the old panes from the dom
                 this.dom.panes.empty();
                 this.s.panes = newPanes;
@@ -2063,8 +2307,9 @@
                 this._startup(table);
             }
             else {
-                // Otherwise add the paneStartup function to the list of functions that are to be run when the table is initialised
-                // This will garauntee that the panes are initialised before the init event and init Complete callback is fired
+                // Otherwise add the paneStartup function to the list of functions
+                //  that are to be run when the table is initialised. This will garauntee that the
+                //   panes are initialised before the init event and init Complete callback is fired
                 this.s.dt.settings()[0].aoInitComplete.push({ fn: function () {
                         _this._startup(table);
                     } });
@@ -2072,6 +2317,7 @@
         };
         /**
          * Finds a pane based upon the name of that pane
+         *
          * @param name string representing the name of the pane
          * @returns SearchPane The pane which has that name
          */
@@ -2094,7 +2340,11 @@
                 var pane = _a[_i];
                 // Identify the pane where a selection or deselection has been made and add it to the list.
                 if (pane.s.selectPresent) {
-                    this.s.selectionList.push({ index: pane.s.index, rows: pane.s.dtPane.rows({ selected: true }).data().toArray(), protect: false });
+                    this.s.selectionList.push({
+                        index: pane.s.index,
+                        protect: false,
+                        rows: pane.s.dtPane.rows({ selected: true }).data().toArray()
+                    });
                     table.state.save();
                     pane.s.selectPresent = false;
                     selectPresent = true;
@@ -2103,7 +2353,11 @@
                 else if (pane.s.deselect) {
                     var selectedData = pane.s.dtPane.rows({ selected: true }).data().toArray();
                     if (selectedData.length > 0) {
-                        this.s.selectionList.push({ index: pane.s.index, rows: selectedData, protect: true });
+                        this.s.selectionList.push({
+                            index: pane.s.index,
+                            protect: true,
+                            rows: selectedData
+                        });
                     }
                     selectPresent = true;
                     deselectPresent = true;
@@ -2187,13 +2441,11 @@
                     $$1.fn.dataTable.select.init(pane.s.dtPane);
                 }
             }
-            // Only need to trigger a search if it is not server side processing
-            if (!this.s.dt.page.info().serverSide) {
-                this.s.dt.draw();
-            }
+            this._updateSelection();
         };
         /**
          * Initialises the tables previous/preset selections and initialises callbacks for events
+         *
          * @param table the parent table for which the searchPanes are being created
          */
         SearchPanes.prototype._startup = function (table) {
@@ -2230,9 +2482,9 @@
                 pane.rebuildPane(undefined, Object.keys(this.s.serverData).length > 0 ? this.s.serverData : undefined);
                 $$1(this.dom.panes).append(pane.dom.container);
             }
-            // Only need to trigger a search if it is not server side processing
-            if (!this.s.dt.page.info().serverSide) {
-                this.s.dt.draw();
+            // If the layout is set to auto then the panes need to be resized to their best fit
+            if (this.c.layout === 'auto') {
+                this.resizePanes();
             }
             // Reset the paging if that has been saved in the state
             if (!this.s.stateRead && loadedFilter !== null && loadedFilter !== undefined) {
@@ -2250,15 +2502,20 @@
             this._checkMessage();
             // When a draw is called on the DataTable, update all of the panes incase the data in the DataTable has changed
             table.on('preDraw.dtsps', function () {
-                _this._updateFilterCount();
-                if ((_this.c.cascadePanes || _this.c.viewTotal) && !_this.s.dt.page.info().serverSide) {
-                    _this.redrawPanes();
+                if (!_this.s.updating) {
+                    _this._updateFilterCount();
+                    if ((_this.c.cascadePanes || _this.c.viewTotal) && !_this.s.dt.page.info().serverSide) {
+                        _this.redrawPanes(_this.c.viewTotal);
+                    }
+                    else {
+                        _this._updateSelection();
+                    }
+                    _this.s.filterPane = -1;
                 }
-                else {
-                    _this._updateSelection();
-                }
-                _this.s.filterPane = -1;
             });
+            $$1(window).on('resize.dtsp', dataTable$1.util.throttle(function () {
+                _this.resizePanes();
+            }));
             // Whenever a state save occurs store the selection list in the state object
             this.s.dt.on('stateSaveParams.dtsp', function (e, settings, data) {
                 if (data.searchPanes === undefined) {
@@ -2276,6 +2533,9 @@
                     if (data.searchPanes === undefined) {
                         data.searchPanes = {};
                     }
+                    if (data.searchPanes_null === undefined) {
+                        data.searchPanes_null = {};
+                    }
                     // Count how many filters are being applied
                     var filterCount = 0;
                     for (var _i = 0, _a = _this.s.panes; _i < _a.length; _i++) {
@@ -2284,21 +2544,28 @@
                         if (data.searchPanes[src] === undefined) {
                             data.searchPanes[src] = {};
                         }
+                        if (data.searchPanes_null[src] === undefined) {
+                            data.searchPanes_null[src] = {};
+                        }
                         if (pane.s.dtPane !== undefined) {
                             var rowData = pane.s.dtPane.rows({ selected: true }).data().toArray();
                             for (var i = 0; i < rowData.length; i++) {
                                 data.searchPanes[src][i] = rowData[i].filter;
+                                if (data.searchPanes[src][i] === null) {
+                                    data.searchPanes_null[src][i] = true;
+                                }
                                 filterCount++;
                             }
                         }
                     }
                     if (_this.c.viewTotal) {
-                        _this._prepViewTotal();
+                        _this._prepViewTotal(filterCount);
                     }
                     // If there is a filter to be applied, then we need to read from the start of the result set
                     //  and set the paging to 0. This matches the behaviour of client side processing
                     if (filterCount > 0) {
-                        // If the number of filters has changed we need to read from the start of the result set and reset the paging
+                        // If the number of filters has changed we need to read from the start of the
+                        //  result set and reset the paging
                         if (filterCount !== _this.s.filterCount) {
                             data.start = 0;
                             _this.s.page = 0;
@@ -2323,6 +2590,9 @@
             // If the data is reloaded from the server then it is possible that it has changed completely,
             // so we need to rebuild the panes
             this.s.dt.on('xhr', function (e, settings, json, xhr) {
+                if (settings.nTable !== _this.s.dt.table().node()) {
+                    return;
+                }
                 var processing = false;
                 if (!_this.s.dt.page.info().serverSide) {
                     _this.s.dt.one('preDraw', function () {
@@ -2331,11 +2601,13 @@
                         }
                         var page = _this.s.dt.page();
                         processing = true;
+                        _this.s.updating = true;
                         $$1(_this.dom.panes).empty();
                         for (var _i = 0, _a = _this.s.panes; _i < _a.length; _i++) {
                             var pane = _a[_i];
                             pane.clearData(); // Clears all of the bins and will mean that the data has to be re-read
-                            // Pass a boolean to say whether this is the last choice made for maintaining selections when rebuilding
+                            // Pass a boolean to say whether this is the last choice made for maintaining selections
+                            //  when rebuilding
                             pane.rebuildPane(_this.s.selectionList[_this.s.selectionList.length - 1] !== undefined ?
                                 pane.s.index === _this.s.selectionList[_this.s.selectionList.length - 1].index :
                                 false, undefined, undefined, true);
@@ -2344,6 +2616,7 @@
                         if (!_this.s.dt.page.info().serverSide) {
                             _this.s.dt.draw();
                         }
+                        _this.s.updating = false;
                         if (_this.c.cascadePanes || _this.c.viewTotal) {
                             _this.redrawPanes(_this.c.cascadePanes);
                         }
@@ -2352,7 +2625,9 @@
                         }
                         _this._checkMessage();
                         _this.s.dt.one('draw', function () {
+                            _this.s.updating = true;
                             _this.s.dt.page(page).draw(false);
+                            _this.s.updating = false;
                         });
                     });
                 }
@@ -2387,7 +2662,7 @@
             }
             // If cascadePanes is active then make the previous selections in the order they were previously
             if (this.s.selectionList.length > 0 && this.c.cascadePanes) {
-                this._cascadeRegen(this.s.selectionList);
+                this._cascadeRegen(this.s.selectionList, this.s.selectionList.length);
             }
             // Update the title bar to show how many filters have been selected
             this._updateFilterCount();
@@ -2409,15 +2684,17 @@
                 });
             }
             table.settings()[0]._searchPanes = this;
+            this.s.dt.state.save();
         };
-        SearchPanes.prototype._prepViewTotal = function () {
+        SearchPanes.prototype._prepViewTotal = function (selectTotal) {
             var filterPane = this.s.filterPane;
             var filterActive = false;
             for (var _i = 0, _a = this.s.panes; _i < _a.length; _i++) {
                 var pane = _a[_i];
                 if (pane.s.dtPane !== undefined) {
                     var selectLength = pane.s.dtPane.rows({ selected: true }).data().toArray().length;
-                    // If filterPane === -1 then a pane with a selection has not been found yet, so set filterPane to that panes index
+                    // If filterPane === -1 then a pane with a selection has not been found yet,
+                    //  so set filterPane to that panes index
                     if (selectLength > 0 && filterPane === -1) {
                         filterPane = pane.s.index;
                         filterActive = true;
@@ -2429,12 +2706,16 @@
                     }
                 }
             }
+            if (selectTotal !== null && selectTotal !== 0) {
+                filterPane = null;
+            }
             // Update all of the panes to reflect the current state of the filters
             for (var _b = 0, _c = this.s.panes; _b < _c.length; _b++) {
                 var pane = _c[_b];
                 if (pane.s.dtPane !== undefined) {
                     pane.s.filteringActive = true;
-                    if ((filterPane !== -1 && filterPane !== null && filterPane === pane.s.index) || filterActive === false) {
+                    if ((filterPane !== -1 && filterPane !== null && filterPane === pane.s.index) ||
+                        filterActive === false) {
                         pane.s.filteringActive = false;
                     }
                 }
@@ -2453,10 +2734,16 @@
                 }
             }
             // Run the message through the internationalisation method to improve readability
-            var message = this.s.dt.i18n('searchPanes.title', 'Filters Active - %d', filterCount);
+            var message = this.s.dt.i18n('searchPanes.title', this.c.i18n.title, filterCount);
             $$1(this.dom.title).text(message);
             if (this.c.filterChanged !== undefined && typeof this.c.filterChanged === 'function') {
                 this.c.filterChanged.call(this.s.dt, filterCount);
+            }
+            if (filterCount === 0) {
+                $$1(this.dom.clearAll).addClass(this.classes.disabledButton).attr('disabled', 'true');
+            }
+            else {
+                $$1(this.dom.clearAll).removeClass(this.classes.disabledButton).removeAttr('disabled');
             }
         };
         /**
@@ -2467,16 +2754,21 @@
             for (var _i = 0, _a = this.s.panes; _i < _a.length; _i++) {
                 var pane = _a[_i];
                 if (pane.s.dtPane !== undefined) {
-                    this.s.selectionList.push({ index: pane.s.index, rows: pane.s.dtPane.rows({ selected: true }).data().toArray(), protect: false });
+                    this.s.selectionList.push({
+                        index: pane.s.index,
+                        protect: false,
+                        rows: pane.s.dtPane.rows({ selected: true }).data().toArray()
+                    });
                 }
             }
             this.s.dt.state.save();
         };
-        SearchPanes.version = '1.2.1';
+        SearchPanes.version = '1.3.0';
         SearchPanes.classes = {
             clear: 'dtsp-clear',
             clearAll: 'dtsp-clearAll',
             container: 'dtsp-searchPanes',
+            disabledButton: 'dtsp-disabledButton',
             emptyMessage: 'dtsp-emptyMessage',
             hide: 'dtsp-hidden',
             panes: 'dtsp-panesContainer',
@@ -2488,12 +2780,26 @@
         SearchPanes.defaults = {
             cascadePanes: false,
             clear: true,
+            columns: [],
             container: function (dt) {
                 return dt.table().container();
             },
-            columns: [],
             filterChanged: undefined,
-            layout: 'columns-3',
+            i18n: {
+                clearMessage: 'Clear All',
+                clearPane: '&times;',
+                collapse: {
+                    0: 'SearchPanes',
+                    _: 'SearchPanes (%d)'
+                },
+                count: '{total}',
+                countFiltered: '{shown} ({total})',
+                emptyMessage: '<em>No data</em>',
+                emptyPanes: 'No SearchPanes',
+                loadMessage: 'Loading Search Panes...',
+                title: 'Filters Active - %d'
+            },
+            layout: 'auto',
             order: [],
             panes: [],
             viewTotal: false
@@ -2501,7 +2807,7 @@
         return SearchPanes;
     }());
 
-    /*! SearchPanes 1.2.1
+    /*! SearchPanes 1.3.0
      * 2019-2020 SpryMedia Ltd - datatables.net/license
      */
     // DataTables extensions common UMD. Note that this allows for AMD, CommonJS
@@ -2521,6 +2827,7 @@
                     root = window;
                 }
                 if (!$ || !$.fn.dataTable) {
+                    // eslint-disable-next-line @typescript-eslint/no-var-requires
                     $ = require('datatables.net')(root, $).$;
                 }
                 return factory($, root, root.document);
@@ -2533,7 +2840,7 @@
     }(function ($, window, document) {
         setJQuery($);
         setJQuery$1($);
-        var DataTable = $.fn.dataTable;
+        var dataTable = $.fn.dataTable;
         $.fn.dataTable.SearchPanes = SearchPanes;
         $.fn.DataTable.SearchPanes = SearchPanes;
         $.fn.dataTable.SearchPane = SearchPane;
@@ -2556,6 +2863,12 @@
                 }
             });
         });
+        apiRegister('searchPanes.resizePanes()', function () {
+            var ctx = this.context[0];
+            return ctx._searchPanes ?
+                ctx._searchPanes.resizePanes() :
+                null;
+        });
         apiRegister('searchPanes.container()', function () {
             var ctx = this.context[0];
             return ctx._searchPanes
@@ -2563,10 +2876,10 @@
                 : null;
         });
         $.fn.dataTable.ext.buttons.searchPanesClear = {
-            text: 'Clear Panes',
             action: function (e, dt, node, config) {
                 dt.searchPanes.clearSelections();
-            }
+            },
+            text: 'Clear Panes'
         };
         $.fn.dataTable.ext.buttons.searchPanes = {
             action: function (e, dt, node, config) {
@@ -2580,19 +2893,22 @@
             init: function (dt, node, config) {
                 var panes = new $.fn.dataTable.SearchPanes(dt, $.extend({
                     filterChanged: function (count) {
-                        dt.button(node).text(dt.i18n('searchPanes.collapse', { 0: 'SearchPanes', _: 'SearchPanes (%d)' }, count));
+                        dt.button(node).text(dt.i18n('searchPanes.collapse', panes.c.i18n.collapse, count));
                     }
                 }, config.config));
-                var message = dt.i18n('searchPanes.collapse', 'SearchPanes', 0);
+                var message = dt.i18n('searchPanes.collapse', panes.c.i18n.collapse, 0);
                 dt.button(node).text(message);
                 config._panes = panes;
             },
             text: 'Search Panes'
         };
-        function _init(settings, fromPre) {
+        function _init(settings, options, fromPre) {
+            if (options === void 0) { options = null; }
             if (fromPre === void 0) { fromPre = false; }
-            var api = new DataTable.Api(settings);
-            var opts = api.init().searchPanes || DataTable.defaults.searchPanes;
+            var api = new dataTable.Api(settings);
+            var opts = options
+                ? options
+                : api.init().searchPanes || dataTable.defaults.searchPanes;
             var searchPanes = new SearchPanes(api, opts, fromPre);
             var node = searchPanes.getNode();
             return node;
@@ -2604,20 +2920,20 @@
                 return;
             }
             if (settings.oInit.searchPanes ||
-                DataTable.defaults.searchPanes) {
+                dataTable.defaults.searchPanes) {
                 if (!settings._searchPanes) {
-                    _init(settings, true);
+                    _init(settings, null, true);
                 }
             }
         });
         // DataTables `dom` feature option
-        DataTable.ext.feature.push({
+        dataTable.ext.feature.push({
             cFeature: 'P',
             fnInit: _init
         });
         // DataTables 2 layout feature
-        if (DataTable.ext.features) {
-            DataTable.ext.features.register('searchPanes', _init);
+        if (dataTable.ext.features) {
+            dataTable.ext.features.register('searchPanes', _init);
         }
     }));
 

@@ -24,6 +24,12 @@
 .cm-s-material-ocean .CodeMirror-cursor {
   border-left: 1px solid #FFCC00;
 }
+.cm-s-material-ocean.cm-fat-cursor .CodeMirror-cursor {
+  background-color: #a2a8a175 !important;
+}
+.cm-s-material-ocean .cm-animate-fat-cursor {
+  background-color: #a2a8a175 !important;
+}
 
 .cm-s-material-ocean div.CodeMirror-selected {
   background: rgba(113, 124, 180, 0.2);

@@ -59,6 +59,10 @@
       innerMode: function (state) {
         return {mode: curMode(state), state: state.inner}
       },
+      indent: function(state, a, b) {
+        var mode = curMode(state)
+        return mode.indent ? mode.indent(state.inner, a, b) : CodeMirror.Pass
+      },
       blankLine: function (state) {
         var mode = curMode(state)
         if (mode.blankLine) return mode.blankLine(state.inner)
