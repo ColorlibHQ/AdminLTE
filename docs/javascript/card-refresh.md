@@ -38,7 +38,7 @@ The jQuery API provides more customizable options that allows the developer to p
 | loadInContent | Boolean | TRUE | Whether to automatically render the content.
 | loadOnInit | Boolean | TRUE | Init plugin on page load.
 | responseType | String | '' | Response type (example: 'json' or 'html')
-| adjaxSettings | Object | {} | Additional ajax request settings (example: {method: 'POST'})
+| ajaxSettings | Object | {} | Additional ajax request settings (example: {method: 'POST'})
 | overlayTemplate | String | TRUE | The HTML template for the ajax spinner
 | onLoadStart | Function | Anonymous Function | Called before the ajax request is made
 | onLoadDone | Function | Anonymous Function | Called after the ajax request is made. A `response` parameter is passed to the function that hold the server response. 
