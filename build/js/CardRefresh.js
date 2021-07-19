@@ -38,6 +38,7 @@ const Default = {
   responseType: '',
   overlayTemplate: '<div class="overlay"><i class="fas fa-2x fa-sync-alt fa-spin"></i></div>',
   errorTemplate: '<span class="text-danger"></span>',
+  ajaxSettings: {},
   onLoadStart() {},
   onLoadDone(response) {
     return response
@@ -65,18 +66,22 @@ class CardRefresh {
     this._addOverlay()
     this._settings.onLoadStart.call($(this))
 
-    $.get(this._settings.source, this._settings.params, response => {
-      if (this._settings.loadInContent) {
-        if (this._settings.sourceSelector !== '') {
-          response = $(response).find(this._settings.sourceSelector).html()
+    $.ajax(this._settings.source, $.extend({
+      data: this._settings.params,
+      success: response => {
+        if (this._settings.loadInContent) {
+          if (this._settings.sourceSelector !== '') {
+            response = $(response).find(this._settings.sourceSelector).html()
+          }
+
+          this._parent.find(this._settings.content).html(response)
         }
 
-        this._parent.find(this._settings.content).html(response)
-      }
-
-      this._settings.onLoadDone.call($(this), response)
-      this._removeOverlay()
-    }, this._settings.responseType !== '' && this._settings.responseType)
+        this._settings.onLoadDone.call($(this), response)
+        this._removeOverlay()
+      },
+      dataType: this._settings.responseType !== '' && this._settings.responseType
+    }, this._settings.ajaxSettings)
     .fail((jqXHR, textStatus, errorThrown) => {
       this._removeOverlay()
 
@@ -117,11 +122,11 @@ class CardRefresh {
 
   static _jQueryInterface(config) {
     let data = $(this).data(DATA_KEY)
-    const _options = $.extend({}, Default, $(this).data())
+    const _options = $.extend({}, Default, $(this).data(), typeof config === 'object' ? config : {})
 
     if (!data) {
       data = new CardRefresh($(this), _options)
-      $(this).data(DATA_KEY, typeof config === 'string' ? data : config)
+      $(this).data(DATA_KEY, typeof config === 'string' ? data : null)
     }
 
     if (typeof config === 'string' && /load/.test(config)) {
