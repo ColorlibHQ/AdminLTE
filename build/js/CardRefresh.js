@@ -81,7 +81,7 @@ class CardRefresh {
         this._removeOverlay()
       },
       dataType: this._settings.responseType !== '' && this._settings.responseType
-    }, this._settings.ajaxSettings)
+    }, this._settings.ajaxSettings))
     .fail((jqXHR, textStatus, errorThrown) => {
       this._removeOverlay()
 
