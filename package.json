@@ -149,7 +149,7 @@
     "postcss-cli": "^8.3.1",
     "rollup": "^2.53.2",
     "stylelint": "^13.13.1",
-    "stylelint-config-twbs-bootstrap": "^2.2.1",
+    "stylelint-config-twbs-bootstrap": "^2.2.2",
     "terser": "^5.7.1",
     "vnu-jar": "^21.6.11"
   }
