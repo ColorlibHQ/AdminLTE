@@ -451,19 +451,21 @@
         padding-left: 0;
       }
 
-      .brand-text,
-      .user-panel > .info,
-      .nav-sidebar .nav-link p {
-        margin-left: -10px;
-        animation-name: fadeOut;
-        animation-duration: $transition-speed;
-        animation-fill-mode: both;
-        visibility: hidden;
-        width: 0;
-      }
+      .sidebar {
+        .brand-text,
+        .user-panel > .info,
+        .nav-sidebar .nav-link p {
+          margin-left: -10px;
+          animation-name: fadeOut;
+          animation-duration: $transition-speed;
+          animation-fill-mode: both;
+          visibility: hidden;
+          width: 0;
+        }
 
-      .nav-sidebar > .nav-item .nav-icon {
-        margin-right: 0;
+        .nav-sidebar > .nav-item .nav-icon {
+          margin-right: 0;
+        }
       }
     }
   }
