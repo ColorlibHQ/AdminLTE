@@ -227,14 +227,16 @@ class IFrame {
   // Private
 
   _init() {
-    if ($(SELECTOR_TAB_CONTENT).children().length > 2) {
+    const usingDefTab = ($(SELECTOR_TAB_CONTENT).children().length > 2)
+
+    if (usingDefTab) {
       const $el = $(`${SELECTOR_TAB_PANE}:first-child`)
       $el.show()
       this._setItemActive($el.find('iframe').attr('src'))
     }
 
     this._setupListeners()
-    this._fixHeight(true)
+    this._fixHeight(!usingDefTab)
   }
 
   _initFrameElement() {
