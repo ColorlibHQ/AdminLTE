@@ -21,13 +21,25 @@
         "path": "."
       })
       <!-- Main content -->
-      <div class="content-wrapper">
-        @@include('./dashboard/_content-header.html', {
-          "header_name": "Dashboard v3"
-        })
+      <main class="content-wrapper">
+        <div class="content-header">
+          <div class="container-fluid">
+            <section class="row mb-2">
+              <div class="col-sm-6">
+                <div class="fs-3">Dashboard v3</div>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Dashboard v3</li>
+                </ol>
+              </div>
+            </section>
+          </div>
+        </div>
         <div class="content">
           <div class="container-fluid">
-            <div class="row">
+            <section class="row">
               <div class="col-lg-6">
                 <div class="card">
                   <div class="card-header border-0">
@@ -268,11 +280,11 @@
                 </div>
               </div>
               <!-- /.col-md-6 -->
-            </div>
+            </section>
             <!-- /.row -->
           </div><!-- /.container-fluid -->
         </div>
-      </div>
+      </main>
       <!-- /.content-wrapper -->
 
       @@include('./dashboard/_footer.html', {

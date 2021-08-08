@@ -20,16 +20,28 @@
         "path": "../.."
       })
       <!-- Main content -->
-      <div class="content-wrapper">
-        @@include('./dashboard/_content-header.html', {
-          "header_name": "Widgets - Cards"
-        })
+      <main class="content-wrapper">
+        <div class="content-header">
+          <div class="container-fluid">
+            <section class="row mb-2">
+              <div class="col-sm-6">
+                <div class="fs-3">Cards</div>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Cards</li>
+                </ol>
+              </div>
+            </section>
+          </div>
+        </div>
         <!-- Main content -->
         <div class="content">
           <div class="container-fluid">
             <h4 class="mb-2 mt-4">Cards</h4>
             <h5 class="mb-2">Abilities</h5>
-            <div class="row">
+            <section class="row">
               <div class="col-md-3">
                 <div class="card card-primary collapsed-card">
                   <div class="card-header">
@@ -110,12 +122,12 @@
                 <!-- /.card -->
               </div>
               <!-- /.col -->
-            </div>
+            </section>
             <!-- /.row -->
           </div><!-- /.container-fluid -->
         </div>
         <!-- /.content -->
-      </div>
+      </main>
       <!-- /.content-wrapper -->
 
       @@include('./dashboard/_footer.html', {

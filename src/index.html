@@ -21,14 +21,26 @@
         "path": "."
       })
       <!-- Main content -->
-      <div class="content-wrapper">
-        @@include('./dashboard/_content-header.html', {
-          "header_name": "Dashboard"
-        })
+      <main class="content-wrapper">
+        <div class="content-header">
+          <div class="container-fluid">
+            <section class="row mb-2">
+              <div class="col-sm-6">
+                <div class="fs-3">Dashboard</div>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                </ol>
+              </div>
+            </section>
+          </div>
+        </div>
         <div class="content">
           <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
-            <div class="row">
+            <section class="row">
               <div class="col-lg-3 col-6">
                 <!-- small box -->
                 <div class="small-box bg-primary">
@@ -89,10 +101,10 @@
                 </div>
               </div>
               <!-- ./col -->
-            </div>
+            </section>
             <!-- /.row -->
             <!-- Main row -->
-            <div class="row">
+            <section class="row">
               <!-- Start col -->
               <section class="col-lg-7">
                 <!-- Custom tabs (Charts with tabs)-->
@@ -331,11 +343,11 @@
                 <!--/.direct-chat -->
               </section>
               <!-- /.Start col -->
-            </div>
+            </section>
             <!-- /.row (main row) -->
           </div><!-- /.container-fluid -->
         </div>
-      </div>
+      </main>
       <!-- /.content-wrapper -->
 
       @@include('./dashboard/_footer.html', {

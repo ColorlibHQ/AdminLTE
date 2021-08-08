@@ -20,14 +20,26 @@
         "path": "."
       })
       <!-- Main content -->
-      <div class="content-wrapper">
-        @@include('./dashboard/_content-header.html', {
-          "header_name": "Dashboard v2"
-        })
+      <main class="content-wrapper">
+        <div class="content-header">
+          <div class="container-fluid">
+            <section class="row mb-2">
+              <div class="col-sm-6">
+                <div class="fs-3">Dashboard v2</div>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Dashboard v2</li>
+                </ol>
+              </div>
+            </section>
+          </div>
+        </div>
         <div class="content">
           <div class="container-fluid">
             <!-- Info boxes -->
-            <div class="row">
+            <section class="row">
               <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
                   <span class="info-box-icon bg-primary shadow-sm"><i class="fas fa-cog"></i></span>
@@ -87,10 +99,10 @@
                 <!-- /.info-box -->
               </div>
               <!-- /.col -->
-            </div>
+            </section>
             <!-- /.row -->
 
-            <div class="row">
+            <section class="row">
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
@@ -119,7 +131,7 @@
                   </div>
                   <!-- /.card-header -->
                   <div class="card-body">
-                    <div class="row">
+                    <section class="row">
                       <div class="col-md-8">
                         <p class="text-center">
                           <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
@@ -174,12 +186,12 @@
                         <!-- /.progress-group -->
                       </div>
                       <!-- /.col -->
-                    </div>
+                    </section>
                     <!-- /.row -->
                   </div>
                   <!-- ./card-body -->
                   <div class="card-footer">
-                    <div class="row">
+                    <section class="row">
                       <div class="col-sm-3 col-6">
                         <div class="description-block border-end">
                           <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
@@ -215,7 +227,7 @@
                         </div>
                         <!-- /.description-block -->
                       </div>
-                    </div>
+                    </section>
                     <!-- /.row -->
                   </div>
                   <!-- /.card-footer -->
@@ -223,14 +235,14 @@
                 <!-- /.card -->
               </div>
               <!-- /.col -->
-            </div>
+            </section>
             <!-- /.row -->
 
             <!-- Main row -->
-            <div class="row">
+            <section class="row">
               <!-- Start col -->
               <div class="col-md-8">
-                <div class="row">
+                <section class="row">
                   <div class="col-md-6">
                     <!-- DIRECT CHAT -->
                     <div class="card direct-chat direct-chat-warning">
@@ -507,7 +519,7 @@
                     <!--/.card -->
                   </div>
                   <!-- /.col -->
-                </div>
+                </section>
                 <!-- /.row -->
 
                 <!-- TABLE: LATEST ORDERS -->
@@ -667,7 +679,7 @@
                   </div>
                   <!-- /.card-header -->
                   <div class="card-body">
-                    <div class="row">
+                    <section class="row">
                       <div class="col-md-8">
                         <div class="chart-responsive">
                           <canvas id="pieChart" height="150"></canvas>
@@ -686,7 +698,7 @@
                         </ul>
                       </div>
                       <!-- /.col -->
-                    </div>
+                    </section>
                     <!-- /.row -->
                   </div>
                   <!-- /.card-body -->
@@ -741,7 +753,7 @@
                     <ul class="products-list product-list-in-card ps-2 pe-2">
                       <li class="item">
                         <div class="product-img">
-                          <img src="./assets/img/user3-128x128.jpg " alt="Product Image" class="img-size-50">
+                          <img src="./assets/img/default-150x150.png" alt="Product Image" class="img-size-50">
                         </div>
                         <div class="product-info">
                           <a href="javascript:void(0)" class="product-title">Samsung TV
@@ -754,7 +766,7 @@
                       <!-- /.item -->
                       <li class="item">
                         <div class="product-img">
-                          <img src="./assets/img/user3-128x128.jpg " alt="Product Image" class="img-size-50">
+                          <img src="./assets/img/default-150x150.png" alt="Product Image" class="img-size-50">
                         </div>
                         <div class="product-info">
                           <a href="javascript:void(0)" class="product-title">Bicycle
@@ -767,7 +779,7 @@
                       <!-- /.item -->
                       <li class="item">
                         <div class="product-img">
-                          <img src="./assets/img/user3-128x128.jpg " alt="Product Image" class="img-size-50">
+                          <img src="./assets/img/default-150x150.png" alt="Product Image" class="img-size-50">
                         </div>
                         <div class="product-info">
                           <a href="javascript:void(0)" class="product-title">
@@ -783,7 +795,7 @@
                       <!-- /.item -->
                       <li class="item">
                         <div class="product-img">
-                          <img src="./assets/img/user3-128x128.jpg " alt="Product Image" class="img-size-50">
+                          <img src="./assets/img/default-150x150.png" alt="Product Image" class="img-size-50">
                         </div>
                         <div class="product-info">
                           <a href="javascript:void(0)" class="product-title">PlayStation 4
@@ -805,11 +817,11 @@
                 <!-- /.card -->
               </div>
               <!-- /.col -->
-            </div>
+            </section>
             <!-- /.row -->
           </div><!-- /.container-fluid -->
         </div>
-      </div>
+      </main>
       <!-- /.content-wrapper -->
 
       @@include('./dashboard/_footer.html', {

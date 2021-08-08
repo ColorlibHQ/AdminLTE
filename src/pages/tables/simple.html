@@ -20,14 +20,26 @@
         "path": "../.."
       })
       <!-- Main content -->
-      <div class="content-wrapper">
-        @@include('./dashboard/_content-header.html', {
-          "header_name": "Simple Tables"
-        })
+      <main class="content-wrapper">
+        <div class="content-header">
+          <div class="container-fluid">
+            <section class="row mb-2">
+              <div class="col-sm-6">
+                <div class="fs-3">Simple Tables</div>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Simple Tables</li>
+                </ol>
+              </div>
+            </section>
+          </div>
+        </div>
         <!-- Main content -->
         <div class="content">
           <div class="container-fluid">
-            <div class="row">
+            <section class="row">
               <div class="col-md-6">
                 <div class="card">
                   <div class="card-header">
@@ -303,12 +315,12 @@
                 <!-- /.card -->
               </div>
               <!-- /.col -->
-            </div>
+            </section>
             <!-- /.row -->
           </div><!-- /.container-fluid -->
         </div>
         <!-- /.content -->
-      </div>
+      </main>
       <!-- /.content-wrapper -->
 
       @@include('./dashboard/_footer.html', {

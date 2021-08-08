@@ -20,14 +20,26 @@
         "path": "../.."
       })
       <!-- Main content -->
-      <div class="content-wrapper">
-        @@include('./dashboard/_content-header.html', {
-          "header_name": "Fixed Layout"
-        })
+      <main class="content-wrapper">
+        <div class="content-header">
+          <div class="container-fluid">
+            <section class="row mb-2">
+              <div class="col-sm-6">
+                <div class="fs-3">Fixed Layout</div>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Fixed Layout</li>
+                </ol>
+              </div>
+            </section>
+          </div>
+        </div>
         <!-- Main content -->
         <div class="content">
           <div class="container-fluid">
-            <div class="row">
+            <section class="row">
               <div class="col-12">
                 <!-- Default box -->
                 <div class="card">
@@ -54,12 +66,12 @@
                 </div>
                 <!-- /.card -->
               </div>
-            </div>
+            </section>
             <!-- /.row -->
           </div><!-- /.container-fluid -->
         </div>
         <!-- /.content -->
-      </div>
+      </main>
       <!-- /.content-wrapper -->
 
       @@include('./dashboard/_footer.html', {

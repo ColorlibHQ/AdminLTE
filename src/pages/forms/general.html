@@ -20,14 +20,26 @@
         "path": "../.."
       })
       <!-- Main content -->
-      <div class="content-wrapper">
-        @@include('./dashboard/_content-header.html', {
-          "header_name": "General Form"
-        })
+      <main class="content-wrapper">
+        <div class="content-header">
+          <div class="container-fluid">
+            <section class="row mb-2">
+              <div class="col-sm-6">
+                <div class="fs-3">General Form</div>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">General Form</li>
+                </ol>
+              </div>
+            </section>
+          </div>
+        </div>
         <!-- Main content -->
         <div class="content">
           <div class="container-fluid">
-            <div class="row g-4">
+            <section class="row g-4">
               <!-- Start column -->
               <div class="col-md-6">
                 <!-- general form elements -->
@@ -64,12 +76,12 @@
                 </div>
                 <!-- /.card -->
               </div>
-            </div>
+            </section>
             <!-- /.row -->
           </div><!-- /.container-fluid -->
         </div>
         <!-- /.content -->
-      </div>
+      </main>
       <!-- /.content-wrapper -->
 
       @@include('./dashboard/_footer.html', {
