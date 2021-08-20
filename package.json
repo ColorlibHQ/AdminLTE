@@ -124,7 +124,7 @@
     "sweetalert2": "^10.16.9",
     "tempusdominus-bootstrap-4": "^5.39.0",
     "toastr": "^2.1.4",
-    "uplot": "^1.6.14"
+    "uplot": "^1.6.15"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
