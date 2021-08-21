@@ -12,7 +12,12 @@
     "jquery": true
   },
   "rules": {
+    "arrow-body-style": "off",
     "capitalized-comments": "off",
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
     "eqeqeq": "off",
     "indent": [
       "error",
@@ -39,8 +44,13 @@
       "error",
       "always"
     ],
+    "operator-linebreak": [
+      "error",
+      "after"
+    ],
     "prefer-template": "error",
     "prefer-named-capture-group": "off",
+
     "semi": [
       "error",
       "never"
