@@ -150,7 +150,7 @@
     "rollup": "^2.56.2",
     "stylelint": "^13.13.1",
     "stylelint-config-twbs-bootstrap": "^2.2.3",
-    "terser": "^5.7.1",
+    "terser": "^5.7.2",
     "vnu-jar": "^21.6.11"
   }
 }
