@@ -58,8 +58,10 @@ class Layout {
 domReady(() => {
   const data = new Layout(document.body, Default)
   data.holdTransition()
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
   if (typeof OverlayScrollbars !== 'undefined') {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     OverlayScrollbars(document.querySelectorAll(SELECTOR_SIDEBAR), { // eslint-disable-line new-cap

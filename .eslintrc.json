@@ -51,6 +51,7 @@
     {
       "files": ["*.ts", "*.tsx"],
       "extends": [
+        "plugin:import/typescript",
         "xo-typescript"
       ],
       "rules": {

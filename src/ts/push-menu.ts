@@ -25,6 +25,7 @@ const CLASS_NAME_SIDEBAR_OPENING = 'sidebar-is-opening'
 const CLASS_NAME_SIDEBAR_COLLAPSING = 'sidebar-is-collapsing'
 const CLASS_NAME_SIDEBAR_IS_HOVER = 'sidebar-is-hover'
 const CLASS_NAME_MENU_OPEN = 'menu-open'
+const CLASS_NAME_LAYOUT_MOBILE = 'layout-mobile'
 
 const SELECTOR_SIDEBAR = '.sidebar'
 const SELECTOR_NAV_SIDEBAR = '.nav-sidebar'
@@ -32,6 +33,12 @@ const SELECTOR_NAV_ITEM = '.nav-item'
 const SELECTOR_NAV_TREEVIEW = '.nav-treeview'
 const SELECTOR_MINI_TOGGLE = '[data-lte-toggle="sidebar-mini"]'
 const SELECTOR_FULL_TOGGLE = '[data-lte-toggle="sidebar-full"]'
+const SELECTOR_SIDEBAR_SM = `.${CLASS_NAME_LAYOUT_MOBILE}`
+const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
+
+const Defaults = {
+  onLayouMobile: 992,
+}
 
 /**
  * Class Definition
@@ -121,6 +128,32 @@ class PushMenu {
     }
   }
 
+  addSidebaBreakPoint(): void {
+    const bodyClass = document.body.classList
+    const widthOutput: number = window.innerWidth
+    if (widthOutput >= Defaults.onLayouMobile) {
+      bodyClass.remove(CLASS_NAME_LAYOUT_MOBILE)
+    } else {
+      bodyClass.add(CLASS_NAME_LAYOUT_MOBILE)
+    }
+  }
+
+  removeOverlaySidebar(): void {
+    const bodyClass = document.body.classList
+    if (bodyClass.contains(CLASS_NAME_LAYOUT_MOBILE)) {
+      bodyClass.remove(CLASS_NAME_SIDEBAR_OPEN)
+      bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
+      bodyClass.add(CLASS_NAME_SIDEBAR_CLOSE)
+    }
+  }
+
+  closeSidebar(): void {
+    const widthOutput: number = window.innerWidth
+    if (widthOutput < Defaults.onLayouMobile) {
+      document.body.classList.add(CLASS_NAME_SIDEBAR_CLOSE)
+    }
+  }
+
   toggleFull(): void {
     if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_CLOSE)) {
       this.expand()
@@ -148,7 +181,18 @@ class PushMenu {
   }
 
   init() {
+    this.addSidebaBreakPoint()
     this.sidebarHover()
+
+    const selSidebarSm = document.querySelector(SELECTOR_SIDEBAR_SM)
+    const selContentWrapper = selSidebarSm?.querySelector(SELECTOR_CONTENT_WRAPPER)
+
+    if (selContentWrapper) {
+      selContentWrapper.addEventListener('touchstart', this.removeOverlaySidebar)
+      selContentWrapper.addEventListener('click', this.removeOverlaySidebar)
+    }
+
+    this.closeSidebar()
   }
 }
 
@@ -161,6 +205,10 @@ class PushMenu {
 domReady(() => {
   const data = new PushMenu(null, null)
   data.init()
+
+  window.addEventListener('resize', () => {
+    data.init()
+  })
 
   const fullBtn = document.querySelectorAll(SELECTOR_FULL_TOGGLE)
 
