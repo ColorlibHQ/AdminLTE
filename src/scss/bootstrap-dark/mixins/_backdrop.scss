@@ -1,0 +1,8 @@
+
+@mixin overlay-backdrop-alt($backdrop-bg-alt, $backdrop-opacity-alt) {
+  background-color: $backdrop-bg-alt;
+
+  // Fade for backdrop
+  &.fade { opacity: 0; }
+  &.show { opacity: $backdrop-opacity-alt; }
+}

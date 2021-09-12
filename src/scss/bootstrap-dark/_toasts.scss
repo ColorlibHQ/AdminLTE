@@ -4,8 +4,8 @@
   border: $toast-border-width solid $toast-border-color-alt;
   box-shadow: $toast-box-shadow-alt;
 
-  // DO I NEED THIS?
-  // &:not(.showing):not(.show) {
+  //// DO I NEED THIS?
+  // &.showing {
   //   opacity: 0;
   // }
 }

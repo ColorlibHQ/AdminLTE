@@ -74,7 +74,7 @@
 .popover-header {
   color: $popover-header-color-alt;
   background-color: $popover-header-bg-alt;
-  border-bottom: $popover-border-width solid shade-color($popover-header-bg-alt, 10%);
+  border-bottom: $popover-border-width solid $popover-border-color-alt;
 }
 
 .popover-body {

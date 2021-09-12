@@ -5,6 +5,10 @@
   @include box-shadow($offcanvas-box-shadow-alt);
 }
 
+.offcanvas-backdrop {
+  @include overlay-backdrop-alt($offcanvas-backdrop-bg-alt, $offcanvas-backdrop-opacity-alt);
+}
+
 .offcanvas-start {
   border-right: $offcanvas-border-width solid $offcanvas-border-color-alt;
 }

@@ -4,9 +4,28 @@
     --#{$variable-prefix}#{$color}: #{$value};
   }
 
+  @each $color, $value in $grays-alt {
+    --#{$variable-prefix}gray-#{$color}: #{$value};
+  }
+
   @each $color, $value in $theme-colors-alt {
     --#{$variable-prefix}#{$color}: #{$value};
   }
+
+  @each $color, $value in $theme-colors-rgb-alt {
+    --#{$variable-prefix}#{$color}-rgb: #{$value};
+  }
+
+  --#{$variable-prefix}white-rgb: #{to-rgb($white-alt)};
+  --#{$variable-prefix}black-rgb: #{to-rgb($black-alt)};
+  --#{$variable-prefix}body-rgb: #{to-rgb($body-color-alt)};
+
+  // root and body
+
+  --#{$variable-prefix}body-color: #{$body-color-alt};
+  --#{$variable-prefix}body-bg: #{$body-bg-alt};
+
+  // ?
 
   --#{$variable-prefix}gradient: #{$gradient-alt};
 }

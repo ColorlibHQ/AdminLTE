@@ -9,11 +9,7 @@
 
 // Modal background
 .modal-backdrop {
-  background-color: $modal-backdrop-bg-alt;
-
-  // Fade for backdrop
-  &.fade { opacity: 0; }
-  &.show { opacity: $modal-backdrop-opacity-alt; }
+  @include overlay-backdrop-alt($modal-backdrop-bg-alt, $modal-backdrop-opacity-alt);
 }
 
 // Modal header

@@ -10,8 +10,8 @@
 // Body
 
 body {
-  color: $body-color-alt;
-  background-color: $body-bg-alt; // 2
+  color: var(--#{$variable-prefix}body-color-alt);
+  background-color: var(--#{$variable-prefix}body-bg-alt); // 2
 }
 
 

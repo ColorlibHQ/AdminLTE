@@ -13,17 +13,17 @@ $color-schemes: (
 // items marked //** from https://bootswatch.com/darkly/
 // items marked //~~ from https://uxdesign.cc/dark-mode-ui-design-the-definitive-guide-part-1-color-53dcfaea5129
 
-$white-alt:    #f0f6fc !default;
-$gray-100-alt: #c9d1d9 !default;
-$gray-200-alt: #b1bac4 !default;
-$gray-300-alt: #8b949e !default;
-$gray-400-alt: #6e7681 !default;
-$gray-500-alt: #484f58 !default;
-$gray-600-alt: #30363d !default;
-$gray-700-alt: #21262d !default;
-$gray-800-alt: #161b22 !default;
-$gray-900-alt: #0d1117 !default;
-$black-alt:    #010409 !default;
+$white-alt:    #fafafa !default;
+$gray-100-alt: #e1e1e1 !default;  //~~
+$gray-200-alt: #cfcfcf !default;  //~~
+$gray-300-alt: #b1b1b1 !default;  //~~
+$gray-400-alt: #9e9e9e !default;  //~~
+$gray-500-alt: #7e7e7e !default;  //~~
+$gray-600-alt: #626262 !default;  //~~
+$gray-700-alt: #515151 !default;  //~~
+$gray-800-alt: #3b3b3b !default;  //~~
+$gray-900-alt: #222 !default;  //~~
+$black-alt:    #111 !default;  //~~
 
 // fusv-disable
 $grays-alt: (
@@ -39,7 +39,7 @@ $grays-alt: (
 ) !default;
 // fusv-enable
 
-$blue-alt:    #1f6feb !default;
+$blue-alt:    #375a7f !default;
 $indigo-alt:  #673ab7 !default;  //~~
 $purple-alt:  #654ea3 !default;  // Panatone CotY 2018
 $pink-alt:    #e83e8c !default;
@@ -63,8 +63,8 @@ $colors-alt: (
   "cyan":       $cyan-alt,
   "white":      $white-alt,
   "black":      $black-alt,
-  "gray":       $gray-600-alt,
-  "gray-dark":  $gray-800-alt
+  "gray":       #7e7e7e,  // $gray-600,
+  "gray-dark":  #121212  //$gray-800
 ) !default;
 
 $primary-alt:       $blue-alt !default;
@@ -73,7 +73,7 @@ $success-alt:       $green-alt !default;
 $info-alt:          $cyan-alt !default;
 $warning-alt:       $yellow-alt !default;
 $danger-alt:        $red-alt !default;
-$light-alt:         $gray-100-alt !default;
+$light-alt:         $gray-400-alt !default;
 $dark-alt:          $gray-800-alt !default;
 
 $theme-colors-alt: (
@@ -87,6 +87,8 @@ $theme-colors-alt: (
   "dark":       $dark-alt
 ) !default;
 
+$theme-colors-rgb-alt: map-loop($theme-colors-alt, to-rgb, "$value") !default;
+
 // The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
 // See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
 $min-contrast-ratio-alt:   2.5 !default;
@@ -94,6 +96,227 @@ $min-contrast-ratio-alt:   2.5 !default;
 $color-contrast-dark-alt:      $black-alt !default;
 $color-contrast-light-alt:     $white-alt !default;
 
+// fusv-disable
+$blue-100-alt: tint-color($blue-alt, 80%) !default;
+$blue-200-alt: tint-color($blue-alt, 60%) !default;
+$blue-300-alt: tint-color($blue-alt, 40%) !default;
+$blue-400-alt: tint-color($blue-alt, 20%) !default;
+$blue-500-alt: $blue-alt !default;
+$blue-600-alt: shade-color($blue-alt, 20%) !default;
+$blue-700-alt: shade-color($blue-alt, 40%) !default;
+$blue-800-alt: shade-color($blue-alt, 60%) !default;
+$blue-900-alt: shade-color($blue-alt, 80%) !default;
+
+$indigo-100-alt: tint-color($indigo-alt, 80%) !default;
+$indigo-200-alt: tint-color($indigo-alt, 60%) !default;
+$indigo-300-alt: tint-color($indigo-alt, 40%) !default;
+$indigo-400-alt: tint-color($indigo-alt, 20%) !default;
+$indigo-500-alt: $indigo-alt !default;
+$indigo-600-alt: shade-color($indigo-alt, 20%) !default;
+$indigo-700-alt: shade-color($indigo-alt, 40%) !default;
+$indigo-800-alt: shade-color($indigo-alt, 60%) !default;
+$indigo-900-alt: shade-color($indigo-alt, 80%) !default;
+
+$purple-100-alt: tint-color($purple-alt, 80%) !default;
+$purple-200-alt: tint-color($purple-alt, 60%) !default;
+$purple-300-alt: tint-color($purple-alt, 40%) !default;
+$purple-400-alt: tint-color($purple-alt, 20%) !default;
+$purple-500-alt: $purple-alt !default;
+$purple-600-alt: shade-color($purple-alt, 20%) !default;
+$purple-700-alt: shade-color($purple-alt, 40%) !default;
+$purple-800-alt: shade-color($purple-alt, 60%) !default;
+$purple-900-alt: shade-color($purple-alt, 80%) !default;
+
+$pink-100-alt: tint-color($pink-alt, 80%) !default;
+$pink-200-alt: tint-color($pink-alt, 60%) !default;
+$pink-300-alt: tint-color($pink-alt, 40%) !default;
+$pink-400-alt: tint-color($pink-alt, 20%) !default;
+$pink-500-alt: $pink-alt !default;
+$pink-600-alt: shade-color($pink-alt, 20%) !default;
+$pink-700-alt: shade-color($pink-alt, 40%) !default;
+$pink-800-alt: shade-color($pink-alt, 60%) !default;
+$pink-900-alt: shade-color($pink-alt, 80%) !default;
+
+$red-100-alt: tint-color($red-alt, 80%) !default;
+$red-200-alt: tint-color($red-alt, 60%) !default;
+$red-300-alt: tint-color($red-alt, 40%) !default;
+$red-400-alt: tint-color($red-alt, 20%) !default;
+$red-500-alt: $red-alt !default;
+$red-600-alt: shade-color($red-alt, 20%) !default;
+$red-700-alt: shade-color($red-alt, 40%) !default;
+$red-800-alt: shade-color($red-alt, 60%) !default;
+$red-900-alt: shade-color($red-alt, 80%) !default;
+
+$orange-100-alt: tint-color($orange-alt, 80%) !default;
+$orange-200-alt: tint-color($orange-alt, 60%) !default;
+$orange-300-alt: tint-color($orange-alt, 40%) !default;
+$orange-400-alt: tint-color($orange-alt, 20%) !default;
+$orange-500-alt: $orange-alt !default;
+$orange-600-alt: shade-color($orange-alt, 20%) !default;
+$orange-700-alt: shade-color($orange-alt, 40%) !default;
+$orange-800-alt: shade-color($orange-alt, 60%) !default;
+$orange-900-alt: shade-color($orange-alt, 80%) !default;
+
+$yellow-100-alt: tint-color($yellow-alt, 80%) !default;
+$yellow-200-alt: tint-color($yellow-alt, 60%) !default;
+$yellow-300-alt: tint-color($yellow-alt, 40%) !default;
+$yellow-400-alt: tint-color($yellow-alt, 20%) !default;
+$yellow-500-alt: $yellow-alt !default;
+$yellow-600-alt: shade-color($yellow-alt, 20%) !default;
+$yellow-700-alt: shade-color($yellow-alt, 40%) !default;
+$yellow-800-alt: shade-color($yellow-alt, 60%) !default;
+$yellow-900-alt: shade-color($yellow-alt, 80%) !default;
+
+$green-100-alt: tint-color($green-alt, 80%) !default;
+$green-200-alt: tint-color($green-alt, 60%) !default;
+$green-300-alt: tint-color($green-alt, 40%) !default;
+$green-400-alt: tint-color($green-alt, 20%) !default;
+$green-500-alt: $green-alt !default;
+$green-600-alt: shade-color($green-alt, 20%) !default;
+$green-700-alt: shade-color($green-alt, 40%) !default;
+$green-800-alt: shade-color($green-alt, 60%) !default;
+$green-900-alt: shade-color($green-alt, 80%) !default;
+
+$teal-100-alt: tint-color($teal-alt, 80%) !default;
+$teal-200-alt: tint-color($teal-alt, 60%) !default;
+$teal-300-alt: tint-color($teal-alt, 40%) !default;
+$teal-400-alt: tint-color($teal-alt, 20%) !default;
+$teal-500-alt: $teal-alt !default;
+$teal-600-alt: shade-color($teal-alt, 20%) !default;
+$teal-700-alt: shade-color($teal-alt, 40%) !default;
+$teal-800-alt: shade-color($teal-alt, 60%) !default;
+$teal-900-alt: shade-color($teal-alt, 80%) !default;
+
+$cyan-100-alt: tint-color($cyan-alt, 80%) !default;
+$cyan-200-alt: tint-color($cyan-alt, 60%) !default;
+$cyan-300-alt: tint-color($cyan-alt, 40%) !default;
+$cyan-400-alt: tint-color($cyan-alt, 20%) !default;
+$cyan-500-alt: $cyan-alt !default;
+$cyan-600-alt: shade-color($cyan-alt, 20%) !default;
+$cyan-700-alt: shade-color($cyan-alt, 40%) !default;
+$cyan-800-alt: shade-color($cyan-alt, 60%) !default;
+$cyan-900-alt: shade-color($cyan-alt, 80%) !default;
+
+$blues-alt: (
+  "blue-100": $blue-100-alt,
+  "blue-200": $blue-200-alt,
+  "blue-300": $blue-300-alt,
+  "blue-400": $blue-400-alt,
+  "blue-500": $blue-500-alt,
+  "blue-600": $blue-600-alt,
+  "blue-700": $blue-700-alt,
+  "blue-800": $blue-800-alt,
+  "blue-900": $blue-900-alt
+) !default;
+
+$indigos-alt: (
+  "indigo-100": $indigo-100-alt,
+  "indigo-200": $indigo-200-alt,
+  "indigo-300": $indigo-300-alt,
+  "indigo-400": $indigo-400-alt,
+  "indigo-500": $indigo-500-alt,
+  "indigo-600": $indigo-600-alt,
+  "indigo-700": $indigo-700-alt,
+  "indigo-800": $indigo-800-alt,
+  "indigo-900": $indigo-900-alt
+) !default;
+
+$purples-alt: (
+  "purple-100": $purple-200-alt,
+  "purple-200": $purple-100-alt,
+  "purple-300": $purple-300-alt,
+  "purple-400": $purple-400-alt,
+  "purple-500": $purple-500-alt,
+  "purple-600": $purple-600-alt,
+  "purple-700": $purple-700-alt,
+  "purple-800": $purple-800-alt,
+  "purple-900": $purple-900-alt
+) !default;
+
+$pinks-alt: (
+  "pink-100": $pink-100-alt,
+  "pink-200": $pink-200-alt,
+  "pink-300": $pink-300-alt,
+  "pink-400": $pink-400-alt,
+  "pink-500": $pink-500-alt,
+  "pink-600": $pink-600-alt,
+  "pink-700": $pink-700-alt,
+  "pink-800": $pink-800-alt,
+  "pink-900": $pink-900-alt
+) !default;
+
+$reds-alt: (
+  "red-100": $red-100-alt,
+  "red-200": $red-200-alt,
+  "red-300": $red-300-alt,
+  "red-400": $red-400-alt,
+  "red-500": $red-500-alt,
+  "red-600": $red-600-alt,
+  "red-700": $red-700-alt,
+  "red-800": $red-800-alt,
+  "red-900": $red-900-alt
+) !default;
+
+$oranges-alt: (
+  "orange-100": $orange-100-alt,
+  "orange-200": $orange-200-alt,
+  "orange-300": $orange-300-alt,
+  "orange-400": $orange-400-alt,
+  "orange-500": $orange-500-alt,
+  "orange-600": $orange-600-alt,
+  "orange-700": $orange-700-alt,
+  "orange-800": $orange-800-alt,
+  "orange-900": $orange-900-alt
+) !default;
+
+$yellows-alt: (
+  "yellow-100": $yellow-100-alt,
+  "yellow-200": $yellow-200-alt,
+  "yellow-300": $yellow-300-alt,
+  "yellow-400": $yellow-400-alt,
+  "yellow-500": $yellow-500-alt,
+  "yellow-600": $yellow-600-alt,
+  "yellow-700": $yellow-700-alt,
+  "yellow-800": $yellow-800-alt,
+  "yellow-900": $yellow-900-alt
+) !default;
+
+$greens-alt: (
+  "green-100": $green-100-alt,
+  "green-200": $green-200-alt,
+  "green-300": $green-300-alt,
+  "green-400": $green-400-alt,
+  "green-500": $green-500-alt,
+  "green-600": $green-600-alt,
+  "green-700": $green-700-alt,
+  "green-800": $green-800-alt,
+  "green-900": $green-900-alt
+) !default;
+
+$teals-alt: (
+  "teal-100": $teal-100-alt,
+  "teal-200": $teal-200-alt,
+  "teal-300": $teal-300-alt,
+  "teal-400": $teal-400-alt,
+  "teal-500": $teal-500-alt,
+  "teal-600": $teal-600-alt,
+  "teal-700": $teal-700-alt,
+  "teal-800": $teal-800-alt,
+  "teal-900": $teal-900-alt
+) !default;
+
+$cyans-alt: (
+  "cyan-100": $cyan-100-alt,
+  "cyan-200": $cyan-200-alt,
+  "cyan-300": $cyan-300-alt,
+  "cyan-400": $cyan-400-alt,
+  "cyan-500": $cyan-500-alt,
+  "cyan-600": $cyan-600-alt,
+  "cyan-700": $cyan-700-alt,
+  "cyan-800": $cyan-800-alt,
+  "cyan-900": $cyan-900-alt
+) !default;
+// fusv-enable
 
 // Gradient
 // ______________________________________
@@ -109,12 +332,28 @@ $gradient-alt: linear-gradient(180deg, rgba($black-alt, .15), rgba($black-alt, 0
 $body-bg-alt:                   $gray-900-alt !default;  // $white !default;
 $body-color-alt:                $gray-100-alt !default;  // $gray-900 !default;
 
+// Utilities maps
+// ______________________________________
+
+$utilities-colors-alt: map-merge(
+  $theme-colors-rgb-alt,
+  (
+    "black": to-rgb($black-alt),
+    "white": to-rgb($white-alt),
+    "body":  to-rgb($body-color-alt)
+  )
+) !default;
+
+$utilities-text-colors-alt: map-loop($utilities-colors-alt, rgba-css-var, "$key", "text") !default;
+
+$utilities-bg-colors-alt: map-loop($utilities-colors-alt, rgba-css-var, "$key", "bg") !default;
+
 
 // Links
 // ______________________________________
 // Style anchor elements.
 
-$link-color-alt:                              #58a6ff !default;
+$link-color-alt:                              shift-color($primary-alt, -15%) !default;
 $link-shade-percentage-alt:                   20% !default;  // TODO: should be -20%;
 $link-hover-color-alt:                        tint-color($link-color-alt, $link-shade-percentage-alt) !default;  // TODO: shift-color
 
@@ -157,18 +396,19 @@ $mark-bg-alt:                     rgba($yellow-alt, .5) !default;
 
 $table-color-alt:                 $body-color-alt !default;
 $table-bg-alt:                    transparent !default;
+$table-accent-bg-alt:             transparent !default;
 
 $table-striped-color-alt:         $table-color-alt !default;
 $table-striped-bg-factor-alt:     .05 !default;
-$table-striped-bg-alt:            rgba($black-alt, $table-striped-bg-factor-alt) !default;
+$table-striped-bg-alt:            rgba($white-alt, $table-striped-bg-factor-alt) !default;
 
 $table-active-color-alt:          $table-color-alt !default;
 $table-active-bg-factor-alt:      .1 !default;
-$table-active-bg-alt:             rgba($black-alt, $table-active-bg-factor-alt) !default;
+$table-active-bg-alt:             rgba($white-alt, $table-active-bg-factor-alt) !default;
 
 $table-hover-color-alt:           $table-color-alt !default;
 $table-hover-bg-factor-alt:       .075 !default;
-$table-hover-bg-alt:              rgba($black-alt, $table-hover-bg-factor-alt) !default;
+$table-hover-bg-alt:              rgba($white-alt, $table-hover-bg-factor-alt) !default;
 
 $table-border-factor-alt:         .1 !default;
 $table-border-color-alt:          $border-color-alt !default;
@@ -231,11 +471,11 @@ $form-text-color-alt:                       $text-muted-alt !default;
 
 $form-label-color-alt:                      null !default;
 
-$input-bg-alt:                              $gray-900-alt !default;
-$input-disabled-bg-alt:                     $gray-800-alt !default;
+$input-bg-alt:                              $body-bg-alt !default;
+$input-disabled-bg-alt:                     $gray-900-alt !default;
 $input-disabled-border-color-alt:           null !default;
 
-$input-color-alt:                           $body-color-alt !default;
+$input-color-alt:                           $gray-300-alt !default;
 $input-border-color-alt:                    $gray-700-alt !default;
 $input-box-shadow-alt:                      $box-shadow-inset-alt !default;
 
@@ -310,7 +550,7 @@ $form-range-thumb-disabled-bg-alt:             $gray-500-alt !default;
 
 $form-file-button-color-alt:          $input-color-alt !default;
 $form-file-button-bg-alt:             $input-group-addon-bg-alt !default;
-$form-file-button-hover-bg-alt:       tint-color($form-file-button-bg-alt, 5%) !default;
+$form-file-button-hover-bg-alt:       shade-color($form-file-button-bg-alt, 5%) !default;
 
 $form-floating-label-opacity-alt:     .65 !default;
 
@@ -383,7 +623,7 @@ $navbar-dark-brand-hover-color-alt:           $navbar-dark-active-color-alt !def
 // Dropdown menu container and contents.
 
 $dropdown-color-alt:                    $body-color-alt !default;
-$dropdown-bg-alt:                       $body-bg-alt !default;
+$dropdown-bg-alt:                       $black-alt !default;
 $dropdown-border-color-alt:             rgba($white-alt, .15) !default;
 $dropdown-divider-bg-alt:               $dropdown-border-color-alt !default;
 $dropdown-box-shadow-alt:               $box-shadow-alt !default;
@@ -438,6 +678,13 @@ $pagination-disabled-bg-alt:            $gray-900-alt !default;
 $pagination-disabled-border-color-alt:  $gray-700-alt !default;
 
 
+// Placeholders
+// ______________________________________
+
+$placeholder-opacity-max-alt:  .5 !default;
+$placeholder-opacity-min-alt:  .2 !default;
+
+
 // Cards
 // ______________________________________
 
@@ -445,6 +692,7 @@ $card-border-color-alt: rgba($white-alt, .125) !default;
 $card-cap-bg-alt:       rgba($white-alt, .03) !default;
 $card-cap-color-alt:    null !default;
 $card-color-alt:        null !default;
+$card-box-shadow-alt:   null !default;
 $card-bg-alt:           $gray-900-alt !default;
 
 
@@ -463,7 +711,7 @@ $accordion-button-active-color-alt:           tint-color($primary-alt, 40%) !def
 $accordion-button-focus-border-color-alt:     $input-focus-border-color-alt !default;
 $accordion-button-focus-box-shadow-alt:       $btn-focus-box-shadow-alt !default;
 
-$accordion-icon-color-alt:                    $accordion-color-alt !default;
+$accordion-icon-color-alt:                    $accordion-button-color-alt !default;
 $accordion-icon-active-color-alt:             $accordion-button-active-color-alt !default;
 
 $accordion-button-icon-alt:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-color-alt}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
@@ -593,7 +841,7 @@ $figure-caption-color-alt:              $gray-400-alt !default;
 // Breadcrumbs
 // ______________________________________
 
-$breadcrumb-bg-alt:                     null !default;  // null !default;
+$breadcrumb-bg-alt:                     null !default;
 $breadcrumb-divider-color-alt:          $gray-400-alt !default;
 $breadcrumb-active-color-alt:           $gray-400-alt !default;
 
@@ -644,6 +892,8 @@ $offcanvas-border-color-alt:            $modal-content-border-color-alt !default
 $offcanvas-bg-color-alt:                $modal-content-bg-alt !default;
 $offcanvas-color-alt:                   $modal-content-color-alt !default;
 $offcanvas-box-shadow-alt:              $modal-content-box-shadow-xs-alt !default;
+$offcanvas-backdrop-bg-alt:             $modal-backdrop-bg-alt !default;
+$offcanvas-backdrop-opacity-alt:        $modal-backdrop-opacity-alt !default;
 
 
 // Code

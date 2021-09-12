@@ -15,6 +15,25 @@
   // }
 }
 
+// Generate series of `.navbar-expand-*` responsive classes for configuring
+// where your navbar collapses.
+// TODO : NB!!!  THIS BREAKS THE MEDIA QUERY GENERATION
+// .navbar-expand {
+//   @each $breakpoint in map-keys($grid-breakpoints) {
+//     $next: breakpoint-next($breakpoint, $grid-breakpoints);
+//     $infix: breakpoint-infix($next, $grid-breakpoints);
+//
+//     // stylelint-disable-next-line scss/selector-no-union-class-name
+//     &#{$infix} {
+//       @include media-breakpoint-up($next) {
+//         .offcanvas {
+//           background-color: transparent;
+//         }
+//       }
+//     }
+//   }
+// }
+
 // Navbar themes
 .navbar-light {
   .navbar-brand {

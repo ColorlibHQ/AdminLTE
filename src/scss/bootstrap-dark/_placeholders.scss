@@ -1,0 +1,14 @@
+.placeholder {
+  background-color: currentColor;
+  opacity: $placeholder-opacity-max-alt;
+}
+
+@keyframes placeholder-glow {
+  50% {
+    opacity: $placeholder-opacity-min-alt;
+  }
+}
+
+.placeholder-wave {
+  mask-image: linear-gradient(130deg, $white-alt 55%, rgba(255, 255, 255, (1 - $placeholder-opacity-min-alt)) 75%, $white-alt 95%);
+}

@@ -5,9 +5,9 @@
   // }
 
   > .form-control {
-    // &::placeholder {
-    //   color: transparent;
-    // }
+    &::placeholder {
+      color: transparent;
+    }
   }
 
   > .form-control:focus,

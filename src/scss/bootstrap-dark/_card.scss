@@ -3,6 +3,7 @@
 .card {
   background-color: $card-bg-alt;
   border: $card-border-width solid $card-border-color-alt;
+  @include box-shadow($card-box-shadow-alt);
 }
 
 .card-body {
