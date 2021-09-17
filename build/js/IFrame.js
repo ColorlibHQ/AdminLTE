@@ -53,6 +53,7 @@ const Default = {
   autoShowNewTab: true,
   autoDarkMode: false,
   allowDuplicates: false,
+  allowReload: true,
   loadingScreen: true,
   useNavbarItems: true,
   scrollOffset: 40,
@@ -146,7 +147,7 @@ class IFrame {
     const navId = `tab-${uniqueName}`
 
     if (!this._config.allowDuplicates && $(`#${navId}`).length > 0) {
-      return this.switchTab(`#${navId}`)
+      return this.switchTab(`#${navId}`, this._config.allowReload)
     }
 
     if ((!this._config.allowDuplicates && $(`#${navId}`).length === 0) || this._config.allowDuplicates) {
@@ -154,12 +155,35 @@ class IFrame {
     }
   }
 
-  switchTab(item) {
+  switchTab(item, reload = false) {
     const $item = $(item)
     const tabId = $item.attr('href')
 
     $(SELECTOR_TAB_EMPTY).hide()
+
+    if (reload) {
+      const $loadingScreen = $(SELECTOR_TAB_LOADING)
+      if (this._config.loadingScreen) {
+        $loadingScreen.show(0, () => {
+          $(`${tabId} iframe`).attr('src', $(`${tabId} iframe`).attr('src')).ready(() => {
+            if (this._config.loadingScreen) {
+              if (typeof this._config.loadingScreen === 'number') {
+                setTimeout(() => {
+                  $loadingScreen.fadeOut()
+                }, this._config.loadingScreen)
+              } else {
+                $loadingScreen.fadeOut()
+              }
+            }
+          })
+        })
+      } else {
+        $(`${tabId} iframe`).attr('src', $(`${tabId} iframe`).attr('src'))
+      }
+    }
+
     $(`${SELECTOR_TAB_NAVBAR_NAV} .active`).tab('dispose').removeClass('active')
+
     this._fixHeight()
 
     $item.tab('show')
