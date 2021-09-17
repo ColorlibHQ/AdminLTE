@@ -104,6 +104,7 @@ $('.content-wrapper').IFrame({
 |autoShowNewTab | Boolean | true | Whether to automatically display created tab.
 |autoDarkMode | Boolean | false | Whether to automatically enable dark-mode in iframe pages.
 |allowDuplicates | Boolean | true | Whether to allow creation of duplicate tab/iframe.
+|allowReload | Boolean | true | Whether to allow reload non duplicate tab/iframes.
 |loadingScreen | Boolean/Number | true | [Boolean] Whether to enable iframe loading screen; [Number] Set loading screen hide delay.
 |useNavbarItems | Boolean | true | Whether to open navbar menu items, instead of open only sidebar menu items.
 |---
