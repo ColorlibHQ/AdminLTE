@@ -253,14 +253,18 @@ class IFrame {
   _init() {
     const usingDefTab = ($(SELECTOR_TAB_CONTENT).children().length > 2)
 
-    if (usingDefTab) {
-      const $el = $(`${SELECTOR_TAB_PANE}:first-child`)
-      $el.show()
-      this._setItemActive($el.find('iframe').attr('src'))
-    }
-
     this._setupListeners()
-    this._fixHeight(!usingDefTab)
+    this._fixHeight(true)
+
+    if (usingDefTab) {
+      const $el = $(`${SELECTOR_TAB_PANE}`).first()
+      // eslint-disable-next-line no-console
+      console.log($el)
+      const uniqueName = $el.attr('id').replace('panel-', '')
+      const navId = `#tab-${uniqueName}`
+
+      this.switchTab(navId, true)
+    }
   }
 
   _initFrameElement() {

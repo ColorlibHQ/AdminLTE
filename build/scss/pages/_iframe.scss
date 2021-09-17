@@ -132,3 +132,11 @@ body.iframe-mode-fullscreen {
     opacity: 1;
   }
 }
+
+@include dark-mode () {
+  .content-wrapper.iframe-mode {
+    .tab-loading {
+      background-color: $dark;
+    }
+  }
+}
