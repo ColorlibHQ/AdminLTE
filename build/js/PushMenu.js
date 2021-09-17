@@ -18,6 +18,7 @@ const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
 const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
+const EVENT_COLLAPSED_DONE = `collapsed-done${EVENT_KEY}`
 const EVENT_SHOWN = `shown${EVENT_KEY}`
 
 const SELECTOR_TOGGLE_BUTTON = '[data-widget="pushmenu"]'
@@ -33,7 +34,8 @@ const CLASS_NAME_CLOSED = 'sidebar-closed'
 const Default = {
   autoCollapseSize: 992,
   enableRemember: false,
-  noTransitionAfterReload: true
+  noTransitionAfterReload: true,
+  animationSpeed: 300
 }
 
 /**
@@ -88,6 +90,10 @@ class PushMenu {
     }
 
     $(this._element).trigger($.Event(EVENT_COLLAPSED))
+
+    setTimeout(() => {
+      $(this._element).trigger($.Event(EVENT_COLLAPSED_DONE))
+    }, this._options.animationSpeed)
   }
 
   toggle() {
