@@ -137,6 +137,17 @@ DataTable.ext.buttons.print = {
 
 		// Open a new window for the printable table
 		var win = window.open( '', '' );
+
+		if (! win) {
+			dt.buttons.info(
+				dt.i18n( 'buttons.printErrorTitle', 'Unable to open print view' ),
+				dt.i18n( 'buttons.printErrorMsg', 'Please allow popups in your browser for this site to be able to view the print view.' ),
+				5000
+			);
+
+			return;
+		}
+
 		win.document.close();
 
 		// Inject the title and also a copy of the style and link tags from this

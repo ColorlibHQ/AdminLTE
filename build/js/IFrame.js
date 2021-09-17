@@ -142,7 +142,7 @@ class IFrame {
       return
     }
 
-    const uniqueName = link.replace('./', '').replace(/["&'./:=?[\]]/gi, '-').replace(/(--)/gi, '')
+    const uniqueName = link.replace('./', '').replace(/["#&'./:=?[\]]/gi, '-').replace(/(--)/gi, '')
     const navId = `tab-${uniqueName}`
 
     if (!this._config.allowDuplicates && $(`#${navId}`).length > 0) {
@@ -227,14 +227,16 @@ class IFrame {
   // Private
 
   _init() {
-    if ($(SELECTOR_TAB_CONTENT).children().length > 2) {
+    const usingDefTab = ($(SELECTOR_TAB_CONTENT).children().length > 2)
+
+    if (usingDefTab) {
       const $el = $(`${SELECTOR_TAB_PANE}:first-child`)
       $el.show()
       this._setItemActive($el.find('iframe').attr('src'))
     }
 
     this._setupListeners()
-    this._fixHeight(true)
+    this._fixHeight(!usingDefTab)
   }
 
   _initFrameElement() {
@@ -259,7 +261,7 @@ class IFrame {
         this._fixHeight()
       }, 1)
     })
-    if ($('body').hasClass(CLASS_NAME_IFRAME_MODE)) {
+    if ($(SELECTOR_CONTENT_WRAPPER).hasClass(CLASS_NAME_IFRAME_MODE)) {
       $(document).on('click', `${SELECTOR_SIDEBAR_MENU_ITEM}, ${SELECTOR_SIDEBAR_SEARCH_ITEM}`, e => {
         e.preventDefault()
         this.openTabSidebar(e.target)

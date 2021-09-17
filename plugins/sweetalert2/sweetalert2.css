@@ -1,8 +1,8 @@
 .swal2-popup.swal2-toast {
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   width: auto;
-  padding: 0.625em;
+  padding: 1.25em;
   overflow-y: hidden;
   background: #fff;
   box-shadow: 0 0 0.625em #d9d9d9;
@@ -14,7 +14,18 @@
 .swal2-popup.swal2-toast .swal2-title {
   flex-grow: 1;
   justify-content: flex-start;
-  margin: 0 0.6em;
+  margin: 0 0.625em;
+  font-size: 1em;
+}
+.swal2-popup.swal2-toast .swal2-loading {
+  justify-content: center;
+}
+.swal2-popup.swal2-toast .swal2-input {
+  height: 2em;
+  margin: 0.3125em auto;
+  font-size: 1em;
+}
+.swal2-popup.swal2-toast .swal2-validation-message {
   font-size: 1em;
 }
 .swal2-popup.swal2-toast .swal2-footer {
@@ -30,14 +41,22 @@
 }
 .swal2-popup.swal2-toast .swal2-content {
   justify-content: flex-start;
+  margin: 0 0.625em;
   padding: 0;
   font-size: 1em;
+  text-align: initial;
+}
+.swal2-popup.swal2-toast .swal2-html-container {
+  padding: 0.625em 0 0;
+}
+.swal2-popup.swal2-toast .swal2-html-container:empty {
+  padding: 0;
 }
 .swal2-popup.swal2-toast .swal2-icon {
   width: 2em;
   min-width: 2em;
   height: 2em;
-  margin: 0;
+  margin: 0 0.5em 0 0;
 }
 .swal2-popup.swal2-toast .swal2-icon .swal2-icon-content {
   display: flex;
@@ -65,10 +84,14 @@
   right: 0.3125em;
 }
 .swal2-popup.swal2-toast .swal2-actions {
+  flex: 1;
   flex-basis: auto !important;
+  align-self: stretch;
   width: auto;
+  height: 2.2em;
   height: auto;
   margin: 0 0.3125em;
+  margin-top: 0.3125em;
   padding: 0;
 }
 .swal2-popup.swal2-toast .swal2-styled {
@@ -294,7 +317,7 @@
   justify-content: center;
   width: 100%;
   margin: 1.25em auto 0;
-  padding: 0 1.6em;
+  padding: 0;
 }
 .swal2-actions:not(.swal2-loading) .swal2-styled[disabled] {
   opacity: 0.4;
@@ -336,7 +359,7 @@
   background: initial;
   background-color: #2778c4;
   color: #fff;
-  font-size: 1.0625em;
+  font-size: 1em;
 }
 .swal2-styled.swal2-deny {
   border: 0;
@@ -344,7 +367,7 @@
   background: initial;
   background-color: #d14529;
   color: #fff;
-  font-size: 1.0625em;
+  font-size: 1em;
 }
 .swal2-styled.swal2-cancel {
   border: 0;
@@ -352,7 +375,7 @@
   background: initial;
   background-color: #757575;
   color: #fff;
-  font-size: 1.0625em;
+  font-size: 1em;
 }
 .swal2-styled:focus {
   outline: none;
@@ -549,6 +572,7 @@
 }
 .swal2-radio input,
 .swal2-checkbox input {
+  flex-shrink: 0;
   margin: 0 0.4em;
 }
 
@@ -1344,25 +1368,4 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
   right: 0;
   bottom: 0;
   left: auto;
-}
-body.swal2-toast-column .swal2-toast {
-  flex-direction: column;
-  align-items: stretch;
-}
-body.swal2-toast-column .swal2-toast .swal2-actions {
-  flex: 1;
-  align-self: stretch;
-  height: 2.2em;
-  margin-top: 0.3125em;
-}
-body.swal2-toast-column .swal2-toast .swal2-loading {
-  justify-content: center;
-}
-body.swal2-toast-column .swal2-toast .swal2-input {
-  height: 2em;
-  margin: 0.3125em auto;
-  font-size: 1em;
-}
-body.swal2-toast-column .swal2-toast .swal2-validation-message {
-  font-size: 1em;
 }

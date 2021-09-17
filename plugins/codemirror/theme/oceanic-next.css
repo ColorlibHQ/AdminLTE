@@ -16,6 +16,8 @@
 .cm-s-oceanic-next .CodeMirror-guttermarker-subtle { color: #d0d0d0; }
 .cm-s-oceanic-next .CodeMirror-linenumber { color: #d0d0d0; }
 .cm-s-oceanic-next .CodeMirror-cursor { border-left: 1px solid #f8f8f0; }
+.cm-s-oceanic-next.cm-fat-cursor .CodeMirror-cursor { background-color: #a2a8a175 !important; }
+.cm-s-oceanic-next .cm-animate-fat-cursor { background-color: #a2a8a175 !important; }
 
 .cm-s-oceanic-next span.cm-comment { color: #65737E; }
 .cm-s-oceanic-next span.cm-atom { color: #C594C5; }

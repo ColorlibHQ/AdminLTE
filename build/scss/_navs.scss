@@ -98,6 +98,20 @@
   @include navbar-variant($color, $value);
 }
 
+.navbar-nav-not-expanded {
+  flex-direction: row;
+
+  .dropdown-menu {
+    position: absolute;
+  }
+
+  .nav-link {
+    padding-right: $navbar-nav-link-padding-x;
+    padding-left: $navbar-nav-link-padding-x;
+  }
+}
+
+
 @include dark-mode () {
   .nav-pills .nav-link {
     color: $gray-400;

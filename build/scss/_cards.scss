@@ -62,7 +62,7 @@
     }
   }
 
-  .nav.flex-column {
+  .nav.flex-column:not(.nav-sidebar) {
     > li {
       border-bottom: 1px solid $card-border-color;
       margin: 0;

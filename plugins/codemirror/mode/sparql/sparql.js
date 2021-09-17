@@ -95,7 +95,7 @@ CodeMirror.defineMode("sparql", function(config) {
   }
 
   function eatPnLocal(stream) {
-    while (stream.match(/([:\w\d._-]|\\[-\\_~.!$&'()*+,;=/?#@%]|%[a-fA-F0-9][a-fA-F0-9])/));
+    stream.match(/(\.(?=[\w_\-\\%])|[:\w_-]|\\[-\\_~.!$&'()*+,;=/?#@%]|%[a-f\d][a-f\d])+/i);
   }
 
   function tokenLiteral(quote) {

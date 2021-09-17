@@ -86,9 +86,9 @@ class Layout {
       if (max === heights.controlSidebar) {
         $contentSelector.css(this._config.panelAutoHeightMode, (max + offset))
       } else if (max === heights.window) {
-        $contentSelector.css(this._config.panelAutoHeightMode, (max + offset) - (heights.footer == 0 ? 0 : (heights.header - heights.footer)))
+        $contentSelector.css(this._config.panelAutoHeightMode, (max + offset) - heights.header - heights.footer)
       } else {
-        $contentSelector.css(this._config.panelAutoHeightMode, (max + offset) - (heights.footer == 0 ? 0 : heights.header))
+        $contentSelector.css(this._config.panelAutoHeightMode, (max + offset) - heights.header)
       }
 
       if (this._isFooterFixed()) {
