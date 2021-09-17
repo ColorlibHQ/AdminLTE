@@ -18,7 +18,10 @@ html.control-sidebar-animate {
     display: none;
     right: -$control-sidebar-width;
     width: $control-sidebar-width;
-    @include transition(right $transition-speed $transition-fn, display $transition-speed $transition-fn);
+    @include transition(
+      right $transition-speed $transition-fn,
+      display $transition-speed $transition-fn
+    );
   }
 
   &::before {
@@ -55,7 +58,7 @@ body.text-sm {
 // Control sidebar open state
 .control-sidebar-open {
   .control-sidebar {
-    display: block;
+    display: block !important;
 
     &,
     &::before {
@@ -80,7 +83,10 @@ body.text-sm {
     &,
     &::before {
       right: 0;
-      @include transition(right $transition-speed $transition-fn, display $transition-speed $transition-fn);
+      @include transition(
+        right $transition-speed $transition-fn,
+        display $transition-speed $transition-fn
+      );
     }
   }
 
