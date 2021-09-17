@@ -17,51 +17,55 @@
     var yamlMode = CodeMirror.getMode(config, "yaml")
     var innerMode = CodeMirror.getMode(config, parserConfig && parserConfig.base || "gfm")
 
-    function curMode(state) {
-      return state.state == BODY ? innerMode : yamlMode
+    function localMode(state) {
+      return state.state == FRONTMATTER ? {mode: yamlMode, state: state.yaml} : {mode: innerMode, state: state.inner}
     }
 
     return {
       startState: function () {
         return {
           state: START,
-          inner: CodeMirror.startState(yamlMode)
+          yaml: null,
+          inner: CodeMirror.startState(innerMode)
         }
       },
       copyState: function (state) {
         return {
           state: state.state,
-          inner: CodeMirror.copyState(curMode(state), state.inner)
+          yaml: state.yaml && CodeMirror.copyState(yamlMode, state.yaml),
+          inner: CodeMirror.copyState(innerMode, state.inner)
         }
       },
       token: function (stream, state) {
         if (state.state == START) {
           if (stream.match('---', false)) {
             state.state = FRONTMATTER
-            return yamlMode.token(stream, state.inner)
+            state.yaml = CodeMirror.startState(yamlMode)
+            return yamlMode.token(stream, state.yaml)
           } else {
             state.state = BODY
-            state.inner = CodeMirror.startState(innerMode)
             return innerMode.token(stream, state.inner)
           }
         } else if (state.state == FRONTMATTER) {
           var end = stream.sol() && stream.match(/(---|\.\.\.)/, false)
-          var style = yamlMode.token(stream, state.inner)
+          var style = yamlMode.token(stream, state.yaml)
           if (end) {
             state.state = BODY
-            state.inner = CodeMirror.startState(innerMode)
+            state.yaml = null
           }
           return style
         } else {
           return innerMode.token(stream, state.inner)
         }
       },
-      innerMode: function (state) {
-        return {mode: curMode(state), state: state.inner}
+      innerMode: localMode,
+      indent: function(state, a, b) {
+        var m = localMode(state)
+        return m.mode.indent ? m.mode.indent(m.state, a, b) : CodeMirror.Pass
       },
       blankLine: function (state) {
-        var mode = curMode(state)
-        if (mode.blankLine) return mode.blankLine(state.inner)
+        var m = localMode(state)
+        if (m.mode.blankLine) return m.mode.blankLine(m.state)
       }
     }
   })

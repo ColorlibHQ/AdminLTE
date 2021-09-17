@@ -24,6 +24,12 @@
 .cm-s-material .CodeMirror-cursor {
   border-left: 1px solid #FFCC00;
 }
+.cm-s-material.cm-fat-cursor .CodeMirror-cursor {
+  background-color: #5d6d5c80 !important;
+}
+.cm-s-material .cm-animate-fat-cursor {
+  background-color: #5d6d5c80 !important;
+}
 
 .cm-s-material div.CodeMirror-selected {
   background: rgba(128, 203, 196, 0.2);

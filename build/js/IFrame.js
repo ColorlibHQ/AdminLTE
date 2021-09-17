@@ -261,7 +261,7 @@ class IFrame {
         this._fixHeight()
       }, 1)
     })
-    if ($('body').hasClass(CLASS_NAME_IFRAME_MODE)) {
+    if ($(SELECTOR_CONTENT_WRAPPER).hasClass(CLASS_NAME_IFRAME_MODE)) {
       $(document).on('click', `${SELECTOR_SIDEBAR_MENU_ITEM}, ${SELECTOR_SIDEBAR_SEARCH_ITEM}`, e => {
         e.preventDefault()
         this.openTabSidebar(e.target)

@@ -62,7 +62,7 @@
       var identifiers = parserConf.identifiers|| /^[_A-Za-z\u00A1-\uFFFF][_A-Za-z0-9\u00A1-\uFFFF]*/;
       myKeywords = myKeywords.concat(["nonlocal", "False", "True", "None", "async", "await"]);
       myBuiltins = myBuiltins.concat(["ascii", "bytes", "exec", "print"]);
-      var stringPrefixes = new RegExp("^(([rbuf]|(br)|(fr))?('{3}|\"{3}|['\"]))", "i");
+      var stringPrefixes = new RegExp("^(([rbuf]|(br)|(rb)|(fr)|(rf))?('{3}|\"{3}|['\"]))", "i");
     } else {
       var identifiers = parserConf.identifiers|| /^[_A-Za-z][_A-Za-z0-9]*/;
       myKeywords = myKeywords.concat(["exec", "print"]);
@@ -298,7 +298,10 @@
     }
 
     function tokenLexer(stream, state) {
-      if (stream.sol()) state.beginningOfLine = true;
+      if (stream.sol()) {
+        state.beginningOfLine = true;
+        state.dedent = false;
+      }
 
       var style = state.tokenize(stream, state);
       var current = stream.current();
@@ -315,10 +318,10 @@
 
       // Handle scope changes.
       if (current == "pass" || current == "return")
-        state.dedent += 1;
+        state.dedent = true;
 
       if (current == "lambda") state.lambda = true;
-      if (current == ":" && !state.lambda && top(state).type == "py")
+      if (current == ":" && !state.lambda && top(state).type == "py" && stream.match(/^\s*(?:#|$)/, false))
         pushPyScope(state);
 
       if (current.length == 1 && !/string|comment/.test(style)) {
@@ -332,10 +335,8 @@
           else return ERRORCLASS;
         }
       }
-      if (state.dedent > 0 && stream.eol() && top(state).type == "py") {
-        if (state.scopes.length > 1) state.scopes.pop();
-        state.dedent -= 1;
-      }
+      if (state.dedent && stream.eol() && top(state).type == "py" && state.scopes.length > 1)
+        state.scopes.pop();
 
       return style;
     }
@@ -370,14 +371,16 @@
         if (state.tokenize != tokenBase)
           return state.tokenize.isString ? CodeMirror.Pass : 0;
 
-        var scope = top(state), closing = scope.type == textAfter.charAt(0)
+        var scope = top(state)
+        var closing = scope.type == textAfter.charAt(0) ||
+            scope.type == "py" && !state.dedent && /^(else:|elif |except |finally:)/.test(textAfter)
         if (scope.align != null)
           return scope.align - (closing ? 1 : 0)
         else
           return scope.offset - (closing ? hangingIndent : 0)
       },
 
-      electricInput: /^\s*[\}\]\)]$/,
+      electricInput: /^\s*([\}\]\)]|else:|elif |except |finally:)$/,
       closeBrackets: {triples: "'\""},
       lineComment: "#",
       fold: "indent"

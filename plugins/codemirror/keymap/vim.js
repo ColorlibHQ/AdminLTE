@@ -420,6 +420,9 @@
     var numbers = makeKeyRange(48, 10);
     var validMarks = [].concat(upperCaseAlphabet, lowerCaseAlphabet, numbers, ['<', '>']);
     var validRegisters = [].concat(upperCaseAlphabet, lowerCaseAlphabet, numbers, ['-', '"', '.', ':', '_', '/']);
+    var upperCaseChars;
+    try { upperCaseChars = new RegExp("^[\\p{Lu}]$", "u"); }
+    catch (_) { upperCaseChars = /^[A-Z]$/; }
 
     function isLine(cm, line) {
       return line >= cm.firstLine() && line <= cm.lastLine();
@@ -434,7 +437,7 @@
       return numberRegex.test(k);
     }
     function isUpperCase(k) {
-      return (/^[A-Z]$/).test(k);
+      return upperCaseChars.test(k);
     }
     function isWhiteSpaceString(k) {
       return (/^\s*$/).test(k);
@@ -658,7 +661,7 @@
           this.latestRegister = registerName;
           if (cm.openDialog) {
             this.onRecordingDone = cm.openDialog(
-                '(recording)['+registerName+']', null, {bottom:true});
+                document.createTextNode('(recording)['+registerName+']'), null, {bottom:true});
           }
           this.isRecording = true;
         }

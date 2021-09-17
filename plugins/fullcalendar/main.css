@@ -1,11 +1,12 @@
 
 /* classes attached to <body> */
-
+/* TODO: make fc-event selector work when calender in shadow DOM */
 .fc-not-allowed,
 .fc-not-allowed .fc-event { /* override events' custom cursors */
   cursor: not-allowed;
 }
 
+/* TODO: not attached to body. attached to specific els. move */
 .fc-unselectable {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -367,10 +368,6 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
         /* for most browsers, if a height isn't set on the table, can't do liquid-height within cells */
         /* serves as a min-height. harmless */
     }
-.fc .fc-scrollgrid-section-liquid {
-    height: auto
-
-  }
 .fc .fc-scrollgrid-section-liquid > td {
       height: 100%; /* better than `auto`, for firefox */
     }
@@ -394,9 +391,8 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
 .fc .fc-scrollgrid-section-sticky > * {
     background: #fff;
     background: var(--fc-page-bg-color, #fff);
-    position: -webkit-sticky;
     position: sticky;
-    z-index: 2; /* TODO: var */
+    z-index: 3; /* TODO: var */
     /* TODO: box-shadow when sticking */
   }
 .fc .fc-scrollgrid-section-header.fc-scrollgrid-section-sticky > * {
@@ -411,7 +407,6 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
     margin-bottom: -1px;
   }
 .fc-sticky { /* no .fc wrap because used as child of body */
-  position: -webkit-sticky;
   position: sticky;
 }
 .fc .fc-view-harness {
@@ -659,14 +654,9 @@ A HORIZONTAL event
   right: -4px;
   right: calc(var(--fc-event-resizer-dot-total-width, 8px) / -2);
 }
-
-
-:root {
-  --fc-daygrid-event-dot-width: 8px;
-}
 .fc .fc-popover {
-    position: fixed;
-    top: 0; /* for when not positioned yet */
+    position: absolute;
+    z-index: 9999;
     box-shadow: 0 2px 6px rgba(0,0,0,.15);
   }
 .fc .fc-popover-header {
@@ -694,6 +684,11 @@ A HORIZONTAL event
     background: rgba(208, 208, 208, 0.3);
     background: var(--fc-neutral-bg-color, rgba(208, 208, 208, 0.3));
   }
+
+
+:root {
+  --fc-daygrid-event-dot-width: 8px;
+}
 /* help things clear margins of inner content */
 .fc-daygrid-day-frame,
 .fc-daygrid-day-events,
@@ -814,8 +809,12 @@ A HORIZONTAL event
 }
 .fc .fc-daygrid-day-bottom {
     font-size: .85em;
-    margin: 2px 3px 0;
+    padding: 2px 3px 0
   }
+.fc .fc-daygrid-day-bottom:before {
+  content: "";
+  clear: both;
+  display: table; }
 .fc .fc-daygrid-more-link {
     position: relative;
     z-index: 4;
@@ -843,9 +842,6 @@ A HORIZONTAL event
   /* popover */
 
 }
-.fc .fc-more-popover {
-    z-index: 8;
-  }
 .fc .fc-more-popover .fc-popover-body {
     min-width: 220px;
     padding: 10px;
@@ -1139,14 +1135,14 @@ A VERTICAL event
     min-height: 100%; /* liquid-hack is below */
     position: relative;
   }
-.fc-liquid-hack .fc-timegrid-col-frame {
+.fc-media-screen.fc-liquid-hack .fc-timegrid-col-frame {
   height: auto;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  }
+    }
 .fc-media-screen .fc-timegrid-cols {
     position: absolute; /* no z-index. children will decide and go above slots */
     top: 0;
@@ -1164,9 +1160,6 @@ A VERTICAL event
     top: 0;
     left: 0;
     right: 0;
-  }
-.fc-media-screen .fc-timegrid-event-harness {
-    position: absolute; /* top/left/right/bottom will all be set by JS */
   }
 .fc {
 
@@ -1211,18 +1204,30 @@ A VERTICAL event
 .fc-direction-rtl .fc-timegrid-col-events {
     margin: 0 2px 0 2.5%;
   }
+.fc-timegrid-event-harness {
+  position: absolute /* top/left/right/bottom will all be set by JS */
+}
+.fc-timegrid-event-harness > .fc-timegrid-event {
+    position: absolute; /* absolute WITHIN the harness */
+    top: 0; /* for when not yet positioned */
+    bottom: 0; /* " */
+    left: 0;
+    right: 0;
+  }
 .fc-timegrid-event-harness-inset .fc-timegrid-event,
-.fc-timegrid-event.fc-event-mirror {
+.fc-timegrid-event.fc-event-mirror,
+.fc-timegrid-more-link {
   box-shadow: 0px 0px 0px 1px #fff;
   box-shadow: 0px 0px 0px 1px var(--fc-page-bg-color, #fff);
 }
-.fc-timegrid-event { /* events need to be root */
-
+.fc-timegrid-event,
+.fc-timegrid-more-link { /* events need to be root */
   font-size: .85em;
-
   font-size: var(--fc-small-font-size, .85em);
-  border-radius: 3px
-
+  border-radius: 3px;
+}
+.fc-timegrid-event { /* events need to be root */
+  margin-bottom: 1px /* give some space from bottom */
 }
 .fc-timegrid-event .fc-event-main {
     padding: 1px 1px 0;
@@ -1233,23 +1238,36 @@ A VERTICAL event
     font-size: var(--fc-small-font-size, .85em);
     margin-bottom: 1px;
   }
-.fc-timegrid-event-condensed .fc-event-main-frame {
+.fc-timegrid-event-short .fc-event-main-frame {
     flex-direction: row;
     overflow: hidden;
   }
-.fc-timegrid-event-condensed .fc-event-time:after {
+.fc-timegrid-event-short .fc-event-time:after {
     content: '\00a0-\00a0'; /* dash surrounded by non-breaking spaces */
   }
-.fc-timegrid-event-condensed .fc-event-title {
+.fc-timegrid-event-short .fc-event-title {
     font-size: .85em;
     font-size: var(--fc-small-font-size, .85em)
   }
-.fc-media-screen .fc-timegrid-event {
-    position: absolute; /* absolute WITHIN the harness */
-    top: 0;
-    bottom: 1px; /* stay away from bottom slot line */
-    left: 0;
+.fc-timegrid-more-link { /* does NOT inherit from fc-timegrid-event */
+  position: absolute;
+  z-index: 9999; /* hack */
+  color: inherit;
+  color: var(--fc-more-link-text-color, inherit);
+  background: #d0d0d0;
+  background: var(--fc-more-link-bg-color, #d0d0d0);
+  cursor: pointer;
+  margin-bottom: 1px; /* match space below fc-timegrid-event */
+}
+.fc-timegrid-more-link-inner { /* has fc-sticky */
+  padding: 3px 2px;
+  top: 0;
+}
+.fc-direction-ltr .fc-timegrid-more-link {
     right: 0;
+  }
+.fc-direction-rtl .fc-timegrid-more-link {
+    left: 0;
   }
 .fc {
 
@@ -1336,7 +1354,6 @@ A VERTICAL event
     border-right: 0;
   }
 .fc .fc-list-sticky .fc-list-day > * { /* the cells */
-      position: -webkit-sticky;
       position: sticky;
       top: 0;
       background: #fff;
