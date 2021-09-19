@@ -1,5 +1,5 @@
 /*!
- *   AdminLTE v3.1.0
+ *   AdminLTE v3.2.0-rc
  *     Only Pages
  *   Author: Colorlib
  *   Website: AdminLTE.io <https://adminlte.io>
@@ -472,18 +472,14 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .login-page,
 .register-page {
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
   background-color: #e9ecef;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
   height: 100vh;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
 }
@@ -692,10 +688,8 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .product-image-thumbs {
-  -webkit-align-items: stretch;
   -ms-flex-align: stretch;
   align-items: stretch;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   margin-top: 2rem;
@@ -706,7 +700,6 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   border-radius: 0.25rem;
   background-color: #fff;
   border: 1px solid #dee2e6;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   margin-right: 1rem;
@@ -717,7 +710,6 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 .product-image-thumb img {
   max-width: 100%;
   height: auto;
-  -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
 }
@@ -766,6 +758,10 @@ body.iframe-mode .main-footer {
 
 body.iframe-mode-fullscreen {
   overflow: hidden;
+}
+
+body.iframe-mode-fullscreen.layout-navbar-fixed .wrapper .content-wrapper {
+  margin-top: 0 !important;
 }
 
 .content-wrapper {
@@ -837,13 +833,10 @@ body.iframe-mode-fullscreen {
 
 .content-wrapper.iframe-mode .tab-empty {
   width: 100%;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
 }
@@ -858,13 +851,10 @@ body.iframe-mode-fullscreen {
 }
 
 .content-wrapper.iframe-mode .tab-loading > div {
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
   width: 100%;
@@ -901,6 +891,10 @@ body.iframe-mode-fullscreen .content-wrapper.iframe-mode {
   opacity: 1;
 }
 
+.dark-mode .content-wrapper.iframe-mode .tab-loading {
+  background-color: #343a40;
+}
+
 .content-wrapper.kanban {
   height: 1px;
 }
@@ -916,10 +910,8 @@ body.iframe-mode-fullscreen .content-wrapper.iframe-mode {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: stretch;
   -ms-flex-align: stretch;
   align-items: stretch;
 }

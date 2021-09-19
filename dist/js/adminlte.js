@@ -1,5 +1,5 @@
 /*!
- * AdminLTE v3.1.0 (https://adminlte.io)
+ * AdminLTE v3.2.0-rc (https://adminlte.io)
  * Copyright 2014-2021 Colorlib <https://colorlib.com>
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
@@ -422,6 +422,7 @@
   var EVENT_KEY$5 = "." + DATA_KEY$c;
   var JQUERY_NO_CONFLICT$c = $__default['default'].fn[NAME$c];
   var EVENT_COLLAPSED$3 = "collapsed" + EVENT_KEY$5;
+  var EVENT_COLLAPSED_DONE$1 = "collapsed-done" + EVENT_KEY$5;
   var EVENT_EXPANDED$2 = "expanded" + EVENT_KEY$5;
   var SELECTOR_CONTROL_SIDEBAR = '.control-sidebar';
   var SELECTOR_CONTROL_SIDEBAR_CONTENT$1 = '.control-sidebar-content';
@@ -446,7 +447,8 @@
     controlsidebarSlide: true,
     scrollbarTheme: 'os-theme-light',
     scrollbarAutoHide: 'l',
-    target: SELECTOR_CONTROL_SIDEBAR
+    target: SELECTOR_CONTROL_SIDEBAR,
+    animationSpeed: 300
   };
   /**
    * Class Definition
@@ -463,6 +465,8 @@
     var _proto = ControlSidebar.prototype;
 
     _proto.collapse = function collapse() {
+      var _this = this;
+
       var $body = $__default['default']('body');
       var $html = $__default['default']('html');
       var target = this._config.target; // Show the control sidebar
@@ -479,6 +483,9 @@
       }
 
       $__default['default'](this._element).trigger($__default['default'].Event(EVENT_COLLAPSED$3));
+      setTimeout(function () {
+        $__default['default'](_this._element).trigger($__default['default'].Event(EVENT_COLLAPSED_DONE$1));
+      }, this._config.animationSpeed);
     };
 
     _proto.show = function show() {
@@ -520,7 +527,7 @@
     ;
 
     _proto._init = function _init() {
-      var _this = this;
+      var _this2 = this;
 
       var $body = $__default['default']('body');
       var shouldNotHideAll = $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN$1) || $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE);
@@ -537,16 +544,16 @@
       this._fixScrollHeight();
 
       $__default['default'](window).resize(function () {
-        _this._fixHeight();
+        _this2._fixHeight();
 
-        _this._fixScrollHeight();
+        _this2._fixScrollHeight();
       });
       $__default['default'](window).scroll(function () {
         var $body = $__default['default']('body');
         var shouldFixHeight = $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN$1) || $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE);
 
         if (shouldFixHeight) {
-          _this._fixScrollHeight();
+          _this2._fixScrollHeight();
         }
       });
     };
@@ -1204,6 +1211,7 @@
     autoShowNewTab: true,
     autoDarkMode: false,
     allowDuplicates: false,
+    allowReload: true,
     loadingScreen: true,
     useNavbarItems: true,
     scrollOffset: 40,
@@ -1308,7 +1316,7 @@
       var navId = "tab-" + uniqueName;
 
       if (!this._config.allowDuplicates && $__default['default']("#" + navId).length > 0) {
-        return this.switchTab("#" + navId);
+        return this.switchTab("#" + navId, this._config.allowReload);
       }
 
       if (!this._config.allowDuplicates && $__default['default']("#" + navId).length === 0 || this._config.allowDuplicates) {
@@ -1316,10 +1324,39 @@
       }
     };
 
-    _proto.switchTab = function switchTab(item) {
+    _proto.switchTab = function switchTab(item, reload) {
+      var _this2 = this;
+
+      if (reload === void 0) {
+        reload = false;
+      }
+
       var $item = $__default['default'](item);
       var tabId = $item.attr('href');
       $__default['default'](SELECTOR_TAB_EMPTY).hide();
+
+      if (reload) {
+        var $loadingScreen = $__default['default'](SELECTOR_TAB_LOADING);
+
+        if (this._config.loadingScreen) {
+          $loadingScreen.show(0, function () {
+            $__default['default'](tabId + " iframe").attr('src', $__default['default'](tabId + " iframe").attr('src')).ready(function () {
+              if (_this2._config.loadingScreen) {
+                if (typeof _this2._config.loadingScreen === 'number') {
+                  setTimeout(function () {
+                    $loadingScreen.fadeOut();
+                  }, _this2._config.loadingScreen);
+                } else {
+                  $loadingScreen.fadeOut();
+                }
+              }
+            });
+          });
+        } else {
+          $__default['default'](tabId + " iframe").attr('src', $__default['default'](tabId + " iframe").attr('src'));
+        }
+      }
+
       $__default['default'](SELECTOR_TAB_NAVBAR_NAV + " .active").tab('dispose').removeClass('active');
 
       this._fixHeight();
@@ -1396,16 +1433,20 @@
     ;
 
     _proto._init = function _init() {
-      if ($__default['default'](SELECTOR_TAB_CONTENT).children().length > 2) {
-        var $el = $__default['default'](SELECTOR_TAB_PANE + ":first-child");
-        $el.show();
-
-        this._setItemActive($el.find('iframe').attr('src'));
-      }
+      var usingDefTab = $__default['default'](SELECTOR_TAB_CONTENT).children().length > 2;
 
       this._setupListeners();
 
       this._fixHeight(true);
+
+      if (usingDefTab) {
+        var $el = $__default['default']("" + SELECTOR_TAB_PANE).first(); // eslint-disable-next-line no-console
+
+        console.log($el);
+        var uniqueName = $el.attr('id').replace('panel-', '');
+        var navId = "#tab-" + uniqueName;
+        this.switchTab(navId, true);
+      }
     };
 
     _proto._initFrameElement = function _initFrameElement() {
@@ -1427,26 +1468,26 @@
     };
 
     _proto._setupListeners = function _setupListeners() {
-      var _this2 = this;
+      var _this3 = this;
 
       $__default['default'](window).on('resize', function () {
         setTimeout(function () {
-          _this2._fixHeight();
+          _this3._fixHeight();
         }, 1);
       });
 
-      if ($__default['default']('body').hasClass(CLASS_NAME_IFRAME_MODE$1)) {
+      if ($__default['default'](SELECTOR_CONTENT_WRAPPER).hasClass(CLASS_NAME_IFRAME_MODE$1)) {
         $__default['default'](document).on('click', SELECTOR_SIDEBAR_MENU_ITEM + ", " + SELECTOR_SIDEBAR_SEARCH_ITEM, function (e) {
           e.preventDefault();
 
-          _this2.openTabSidebar(e.target);
+          _this3.openTabSidebar(e.target);
         });
 
         if (this._config.useNavbarItems) {
           $__default['default'](document).on('click', SELECTOR_HEADER_MENU_ITEM + ", " + SELECTOR_HEADER_DROPDOWN_ITEM, function (e) {
             e.preventDefault();
 
-            _this2.openTabSidebar(e.target);
+            _this3.openTabSidebar(e.target);
           });
         }
       }
@@ -1454,16 +1495,16 @@
       $__default['default'](document).on('click', SELECTOR_TAB_NAVBAR_NAV_LINK, function (e) {
         e.preventDefault();
 
-        _this2.onTabClick(e.target);
+        _this3.onTabClick(e.target);
 
-        _this2.switchTab(e.target);
+        _this3.switchTab(e.target);
       });
       $__default['default'](document).on('click', SELECTOR_TAB_NAVBAR_NAV_LINK, function (e) {
         e.preventDefault();
 
-        _this2.onTabClick(e.target);
+        _this3.onTabClick(e.target);
 
-        _this2.switchTab(e.target);
+        _this3.switchTab(e.target);
       });
       $__default['default'](document).on('click', SELECTOR_DATA_TOGGLE_CLOSE, function (e) {
         e.preventDefault();
@@ -1473,47 +1514,47 @@
           target = e.target.offsetParent;
         }
 
-        _this2.removeActiveTab(target.attributes['data-type'] ? target.attributes['data-type'].nodeValue : null, target);
+        _this3.removeActiveTab(target.attributes['data-type'] ? target.attributes['data-type'].nodeValue : null, target);
       });
       $__default['default'](document).on('click', SELECTOR_DATA_TOGGLE_FULLSCREEN, function (e) {
         e.preventDefault();
 
-        _this2.toggleFullscreen();
+        _this3.toggleFullscreen();
       });
       var mousedown = false;
       var mousedownInterval = null;
       $__default['default'](document).on('mousedown', SELECTOR_DATA_TOGGLE_SCROLL_LEFT, function (e) {
         e.preventDefault();
         clearInterval(mousedownInterval);
-        var scrollOffset = _this2._config.scrollOffset;
+        var scrollOffset = _this3._config.scrollOffset;
 
-        if (!_this2._config.scrollBehaviorSwap) {
+        if (!_this3._config.scrollBehaviorSwap) {
           scrollOffset = -scrollOffset;
         }
 
         mousedown = true;
 
-        _this2._navScroll(scrollOffset);
+        _this3._navScroll(scrollOffset);
 
         mousedownInterval = setInterval(function () {
-          _this2._navScroll(scrollOffset);
+          _this3._navScroll(scrollOffset);
         }, 250);
       });
       $__default['default'](document).on('mousedown', SELECTOR_DATA_TOGGLE_SCROLL_RIGHT, function (e) {
         e.preventDefault();
         clearInterval(mousedownInterval);
-        var scrollOffset = _this2._config.scrollOffset;
+        var scrollOffset = _this3._config.scrollOffset;
 
-        if (_this2._config.scrollBehaviorSwap) {
+        if (_this3._config.scrollBehaviorSwap) {
           scrollOffset = -scrollOffset;
         }
 
         mousedown = true;
 
-        _this2._navScroll(scrollOffset);
+        _this3._navScroll(scrollOffset);
 
         mousedownInterval = setInterval(function () {
-          _this2._navScroll(scrollOffset);
+          _this3._navScroll(scrollOffset);
         }, 250);
       });
       $__default['default'](document).on('mouseup', function () {
@@ -1702,9 +1743,9 @@
         if (max === heights.controlSidebar) {
           $contentSelector.css(this._config.panelAutoHeightMode, max + offset);
         } else if (max === heights.window) {
-          $contentSelector.css(this._config.panelAutoHeightMode, max + offset - (heights.footer == 0 ? 0 : heights.header - heights.footer));
+          $contentSelector.css(this._config.panelAutoHeightMode, max + offset - heights.header - heights.footer);
         } else {
-          $contentSelector.css(this._config.panelAutoHeightMode, max + offset - (heights.footer == 0 ? 0 : heights.header));
+          $contentSelector.css(this._config.panelAutoHeightMode, max + offset - heights.header);
         }
 
         if (this._isFooterFixed()) {
@@ -1883,6 +1924,7 @@
   var EVENT_KEY$2 = "." + DATA_KEY$5;
   var JQUERY_NO_CONFLICT$5 = $__default['default'].fn[NAME$5];
   var EVENT_COLLAPSED$1 = "collapsed" + EVENT_KEY$2;
+  var EVENT_COLLAPSED_DONE = "collapsed-done" + EVENT_KEY$2;
   var EVENT_SHOWN = "shown" + EVENT_KEY$2;
   var SELECTOR_TOGGLE_BUTTON$1 = '[data-widget="pushmenu"]';
   var SELECTOR_BODY = 'body';
@@ -1895,7 +1937,8 @@
   var Default$5 = {
     autoCollapseSize: 992,
     enableRemember: false,
-    noTransitionAfterReload: true
+    noTransitionAfterReload: true,
+    animationSpeed: 300
   };
   /**
    * Class Definition
@@ -1937,6 +1980,8 @@
     };
 
     _proto.collapse = function collapse() {
+      var _this = this;
+
       var $bodySelector = $__default['default'](SELECTOR_BODY);
 
       if (this._options.autoCollapseSize && $__default['default'](window).width() <= this._options.autoCollapseSize) {
@@ -1950,6 +1995,9 @@
       }
 
       $__default['default'](this._element).trigger($__default['default'].Event(EVENT_COLLAPSED$1));
+      setTimeout(function () {
+        $__default['default'](_this._element).trigger($__default['default'].Event(EVENT_COLLAPSED_DONE));
+      }, this._options.animationSpeed);
     };
 
     _proto.toggle = function toggle() {
@@ -2013,23 +2061,23 @@
     ;
 
     _proto._init = function _init() {
-      var _this = this;
+      var _this2 = this;
 
       this.remember();
       this.autoCollapse();
       $__default['default'](window).resize(function () {
-        _this.autoCollapse(true);
+        _this2.autoCollapse(true);
       });
     };
 
     _proto._addOverlay = function _addOverlay() {
-      var _this2 = this;
+      var _this3 = this;
 
       var overlay = $__default['default']('<div />', {
         id: 'sidebar-overlay'
       });
       overlay.on('click', function () {
-        _this2.collapse();
+        _this3.collapse();
       });
       $__default['default'](SELECTOR_WRAPPER).append(overlay);
     } // Static
