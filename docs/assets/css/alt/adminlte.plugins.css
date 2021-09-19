@@ -1,5 +1,5 @@
 /*!
- *   AdminLTE v3.1.0
+ *   AdminLTE v3.2.0-rc
  *     Only Plugins
  *   Author: Colorlib
  *   Website: AdminLTE.io <https://adminlte.io>
@@ -305,24 +305,20 @@
 
 @media (max-width: 575.98px) {
   .fc-toolbar {
-    -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
   }
   .fc-toolbar .fc-left {
-    -webkit-order: 1;
     -ms-flex-order: 1;
     order: 1;
     margin-bottom: .5rem;
   }
   .fc-toolbar .fc-center {
-    -webkit-order: 0;
     -ms-flex-order: 0;
     order: 0;
     margin-bottom: .375rem;
   }
   .fc-toolbar .fc-right {
-    -webkit-order: 2;
     -ms-flex-order: 2;
     order: 2;
   }
@@ -9019,6 +9015,73 @@ select.form-control-sm ~ .select2-container--default .select2-selection--multipl
 .dark-mode .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-gray-dark {
   background: #343a40;
   color: #fff;
+}
+
+.dark-mode .daterangepicker {
+  background-color: #3f474e;
+  border: inherit;
+}
+
+.dark-mode .daterangepicker::before, .dark-mode .daterangepicker::after {
+  border-bottom-color: #3f474e;
+}
+
+.dark-mode .daterangepicker td.available:hover,
+.dark-mode .daterangepicker th.available:hover {
+  background-color: #3f474e;
+}
+
+.dark-mode .daterangepicker td.in-range {
+  background-color: #4b545c;
+  color: #fff;
+}
+
+.dark-mode .daterangepicker td.off,
+.dark-mode .daterangepicker td.off.in-range,
+.dark-mode .daterangepicker td.off.start-date,
+.dark-mode .daterangepicker td.off.end-date {
+  background-color: #292d32;
+  color: #fff;
+}
+
+.dark-mode .daterangepicker .ranges li:hover {
+  background-color: #343a40;
+}
+
+.dark-mode .daterangepicker.show-ranges.ltr .drp-calendar {
+  border-color: #4b545c;
+}
+
+.dark-mode .daterangepicker.show-ranges.ltr .drp-calendar.left, .dark-mode .daterangepicker.show-ranges.ltr .drp-calendar.right {
+  border-color: #4b545c;
+  padding-top: 0;
+}
+
+.dark-mode .daterangepicker .drp-buttons {
+  border-color: #4b545c;
+}
+
+.dark-mode .daterangepicker .calendar-table {
+  background-color: #343a40;
+  border-color: #4b545c;
+}
+
+.dark-mode .daterangepicker .calendar-table th,
+.dark-mode .daterangepicker .calendar-table td {
+  color: #fff;
+}
+
+.dark-mode .daterangepicker .calendar-table .next span,
+.dark-mode .daterangepicker .calendar-table .prev span {
+  border-color: #fff;
+}
+
+.dark-mode .daterangepicker select.hourselect,
+.dark-mode .daterangepicker select.minuteselect,
+.dark-mode .daterangepicker select.secondselect,
+.dark-mode .daterangepicker select.ampmselect {
+  background-color: #343a40;
+  border-color: #4b545c;
 }
 
 .jqstooltip {
