@@ -1,4 +1,4 @@
-/*! SearchBuilder 1.1.0
+/*! SearchBuilder 1.2.1
  * ©SpryMedia Ltd - datatables.net/license/mit
  */
 (function () {
@@ -239,8 +239,9 @@
         /**
          * Gets the details required to rebuild the criteria
          */
-        Criteria.prototype.getDetails = function () {
-            var value = this.s.value;
+        Criteria.prototype.getDetails = function (deFormatDates) {
+            if (deFormatDates === void 0) { deFormatDates = false; }
+            this.s.value;
             // This check is in place for if a custom decimal character is in place
             if (this.s.type !== null &&
                 this.s.type.includes('num') &&
@@ -258,11 +259,37 @@
                     this.s.value[i] = splitRD.join('.');
                 }
             }
+            else if (this.s.type !== null && deFormatDates) {
+                if (this.s.type.includes('date') ||
+                    this.s.type.includes('time')) {
+                    for (var i = 0; i < this.s.value.length; i++) {
+                        if (this.s.value[i].match(/^\d{4}-([0]\d|1[0-2])-([0-2]\d|3[01])$/g) === null) {
+                            this.s.value[i] = '';
+                        }
+                    }
+                }
+                else if (this.s.type.includes('moment')) {
+                    for (var i = 0; i < this.s.value.length; i++) {
+                        this.s.value[i] = moment(this.s.value[i], this.s.dateFormat).toISOString();
+                    }
+                }
+                else if (this.s.type.includes('luxon')) {
+                    for (var i = 0; i < this.s.value.length; i++) {
+                        this.s.value[i] = luxon.DateTime.fromFormat(this.s.value[i], this.s.dateFormat).toISO();
+                    }
+                }
+            }
+            if (this.s.type.includes('num') && this.s.dt.page.info().serverSide) {
+                for (var i = 0; i < this.s.value.length; i++) {
+                    this.s.value[i] = this.s.value[i].replace(/[^0-9.]/g, '');
+                }
+            }
             return {
                 condition: this.s.condition,
                 data: this.s.data,
                 origData: this.s.origData,
-                value: value
+                type: this.s.type,
+                value: this.s.value.map(function (a) { return a.toString(); })
             };
         };
         /**
@@ -303,10 +330,13 @@
                 var data_1 = this.dom.data;
                 this.dom.data.children('option').each(function () {
                     if ($$2(this).text() === loadedCriteria.data) {
-                        $$2(this).attr('selected', true);
+                        $$2(this).prop('selected', true);
                         data_1.removeClass(italic_1);
                         foundData = true;
                         dataIdx = $$2(this).val();
+                    }
+                    else {
+                        $$2(this).removeProp('selected');
                     }
                 });
             }
@@ -319,25 +349,40 @@
                 this.dom.dataTitle.remove();
                 this._populateCondition();
                 this.dom.conditionTitle.remove();
-                var condition_1;
+                var condition = void 0;
                 // Check to see if the previously selected condition exists, if so select it
-                this.dom.condition.children('option').each(function () {
+                var options = this.dom.condition.children('option');
+                // eslint-disable-next-line @typescript-eslint/prefer-for-of
+                for (var i = 0; i < options.length; i++) {
+                    var option = $$2(options[i]);
                     if (loadedCriteria.condition !== undefined &&
-                        $$2(this).val() === loadedCriteria.condition &&
+                        option.val() === loadedCriteria.condition &&
                         typeof loadedCriteria.condition === 'string') {
-                        $$2(this).attr('selected', true);
-                        condition_1 = $$2(this).val();
+                        option.prop('selected', true);
+                        condition = option.val();
                     }
-                });
-                this.s.condition = condition_1;
+                    else {
+                        option.removeProp('selected');
+                    }
+                }
+                this.s.condition = condition;
                 // If the condition has been found and selected then the value can be populated and searched
                 if (this.s.condition !== undefined) {
+                    this.dom.conditionTitle.removeProp('selected');
                     this.dom.conditionTitle.remove();
                     this.dom.condition.removeClass(this.classes.italic);
+                    // eslint-disable-next-line @typescript-eslint/prefer-for-of
+                    for (var i = 0; i < options.length; i++) {
+                        var option = $$2(options[i]);
+                        if (option.val() !== this.s.condition) {
+                            option.removeProp('selected');
+                        }
+                        if (option.prop('selected')) ;
+                    }
                     this._populateValue(loadedCriteria);
                 }
                 else {
-                    this.dom.conditionTitle.prependTo(this.dom.condition).attr('selected', 'true');
+                    this.dom.conditionTitle.prependTo(this.dom.condition).prop('selected', true);
                 }
             }
         };
@@ -349,55 +394,81 @@
             this.dom.data
                 .unbind('change')
                 .on('change', function () {
-                _this.dom.dataTitle.attr('selected', 'false');
-                _this.dom.data.removeClass(_this.classes.italic);
-                _this.s.dataIdx = +_this.dom.data.children('option:selected').val();
-                _this.s.data = _this.dom.data.children('option:selected').text();
-                _this.s.origData = _this.dom.data.children('option:selected').attr('origData');
-                _this.c.orthogonal = _this._getOptions().orthogonal;
-                // When the data is changed, the values in condition and value may also change so need to renew them
-                _this._clearCondition();
-                _this._clearValue();
-                _this._populateCondition();
-                // If this criteria was previously active in the search then
-                // remove it from the search and trigger a new search
-                if (_this.s.filled) {
-                    _this.s.filled = false;
-                    _this.s.dt.draw();
-                    _this.setListeners();
+                _this.dom.dataTitle.removeProp('selected');
+                // Need to go over every option to identify the correct selection
+                var options = _this.dom.data.children('option.' + _this.classes.option);
+                // eslint-disable-next-line @typescript-eslint/prefer-for-of
+                for (var i = 0; i < options.length; i++) {
+                    var option = $$2(options[i]);
+                    if (option.val() === _this.dom.data.val()) {
+                        _this.dom.data.removeClass(_this.classes.italic);
+                        option.prop('selected', true);
+                        _this.s.dataIdx = +option.val();
+                        _this.s.data = option.text();
+                        _this.s.origData = option.prop('origData');
+                        _this.c.orthogonal = _this._getOptions().orthogonal;
+                        // When the data is changed, the values in condition and
+                        // value may also change so need to renew them
+                        _this._clearCondition();
+                        _this._clearValue();
+                        _this._populateCondition();
+                        // If this criteria was previously active in the search then
+                        // remove it from the search and trigger a new search
+                        if (_this.s.filled) {
+                            _this.s.filled = false;
+                            _this.s.dt.draw();
+                            _this.setListeners();
+                        }
+                        _this.s.dt.state.save();
+                    }
+                    else {
+                        option.removeProp('selected');
+                    }
                 }
-                _this.s.dt.state.save();
             });
             this.dom.condition
                 .unbind('change')
                 .on('change', function () {
-                _this.dom.conditionTitle.attr('selected', 'false');
-                _this.dom.condition.removeClass(_this.classes.italic);
-                var condDisp = _this.dom.condition.children('option:selected').val();
-                // Find the condition that has been selected and store it internally
-                for (var _i = 0, _a = Object.keys(_this.s.conditions); _i < _a.length; _i++) {
-                    var cond = _a[_i];
-                    if (cond === condDisp) {
-                        _this.s.condition = condDisp;
-                        break;
+                _this.dom.conditionTitle.removeProp('selected');
+                // Need to go over every option to identify the correct selection
+                var options = _this.dom.condition.children('option.' + _this.classes.option);
+                // eslint-disable-next-line @typescript-eslint/prefer-for-of
+                for (var i = 0; i < options.length; i++) {
+                    var option = $$2(options[i]);
+                    if (option.val() === _this.dom.condition.val()) {
+                        _this.dom.condition.removeClass(_this.classes.italic);
+                        option.prop('selected', true);
+                        var condDisp = option.val();
+                        // Find the condition that has been selected and store it internally
+                        for (var _i = 0, _a = Object.keys(_this.s.conditions); _i < _a.length; _i++) {
+                            var cond = _a[_i];
+                            if (cond === condDisp) {
+                                _this.s.condition = condDisp;
+                                break;
+                            }
+                        }
+                        // When the condition is changed, the value selector may switch between
+                        // a select element and an input element
+                        _this._clearValue();
+                        _this._populateValue();
+                        for (var _b = 0, _c = _this.dom.value; _b < _c.length; _b++) {
+                            var val = _c[_b];
+                            // If this criteria was previously active in the search then remove
+                            // it from the search and trigger a new search
+                            if (_this.s.filled && val !== undefined && _this.dom.container.has(val[0]).length !== 0) {
+                                _this.s.filled = false;
+                                _this.s.dt.draw();
+                                _this.setListeners();
+                            }
+                        }
+                        if (_this.dom.value.length === 0 ||
+                            _this.dom.value.length === 1 && _this.dom.value[0] === undefined) {
+                            _this.s.dt.draw();
+                        }
                     }
-                }
-                // When the condition is changed, the value selector may switch between
-                // a select element and an input element
-                _this._clearValue();
-                _this._populateValue();
-                for (var _b = 0, _c = _this.dom.value; _b < _c.length; _b++) {
-                    var val = _c[_b];
-                    // If this criteria was previously active in the search then remove
-                    // it from the search and trigger a new search
-                    if (_this.s.filled && val !== undefined && _this.dom.container.has(val[0]).length !== 0) {
-                        _this.s.filled = false;
-                        _this.s.dt.draw();
-                        _this.setListeners();
+                    else {
+                        option.removeProp('selected');
                     }
-                }
-                if (_this.dom.value.length === 0 || _this.dom.value.length === 1 && _this.dom.value[0] === undefined) {
-                    _this.s.dt.draw();
                 }
             });
         };
@@ -475,7 +546,7 @@
          */
         Criteria.prototype._clearCondition = function () {
             this.dom.condition.empty();
-            this.dom.conditionTitle.attr('selected', 'true').attr('disabled', 'true');
+            this.dom.conditionTitle.prop('selected', true).attr('disabled', 'true');
             this.dom.condition.prepend(this.dom.conditionTitle).prop('selectedIndex', 0);
             this.s.conditions = {};
             this.s.condition = undefined;
@@ -526,7 +597,7 @@
                 }
                 // Append the default valueTitle to the default select element
                 this.dom.valueTitle
-                    .attr('selected', 'true');
+                    .prop('selected', true);
                 this.dom.defaultValue
                     .append(this.dom.valueTitle)
                     .insertAfter(this.dom.condition);
@@ -560,10 +631,19 @@
             if (conditionsLength === 0) {
                 var column = +this.dom.data.children('option:selected').val();
                 this.s.type = this.s.dt.columns().type().toArray()[column];
-                // If the column type is unknown, call a draw to try reading it again
-                if (this.s.type === null) {
-                    this.s.dt.draw(false);
-                    this.setListeners();
+                var colInits = this.s.dt.settings()[0].aoColumns;
+                if (colInits !== undefined) {
+                    var colInit = colInits[column];
+                    if (colInit.searchBuilderType !== undefined && colInit.searchBuilderType !== null) {
+                        this.s.type = colInit.searchBuilderType;
+                    }
+                    else if (this.s.type === undefined || this.s.type === null) {
+                        this.s.type = colInit.sType;
+                    }
+                }
+                // If the column type is still unknown, call a draw to try reading it again
+                if (this.s.type === null || this.s.type === undefined) {
+                    $$2.fn.dataTable.ext.oApi._fnColumnTypes(this.s.dt.settings()[0]);
                     this.s.type = this.s.dt.columns().type().toArray()[column];
                 }
                 // Enable the condition element
@@ -573,7 +653,7 @@
                     .append(this.dom.conditionTitle)
                     .addClass(this.classes.italic);
                 this.dom.conditionTitle
-                    .attr('selected', 'true');
+                    .prop('selected', true);
                 var decimal = this.s.dt.settings()[0].oLanguage.sDecimal;
                 // This check is in place for if a custom decimal character is in place
                 if (decimal !== '' && this.s.type.indexOf(decimal) === this.s.type.length - decimal.length) {
@@ -640,7 +720,7 @@
                         .addClass(this.classes.option)
                         .addClass(this.classes.notItalic);
                     if (this.s.condition !== undefined && this.s.condition === condName) {
-                        newOpt.attr('selected', true);
+                        newOpt.prop('selected', true);
                         this.dom.condition.removeClass(this.classes.italic);
                     }
                     conditionOpts.push(newOpt);
@@ -694,7 +774,11 @@
                             })
                                 .addClass(_this.classes.option)
                                 .addClass(_this.classes.notItalic)
-                                .attr('origData', col.data));
+                                .prop('origData', col.data)
+                                .prop('selected', _this.s.dataIdx === opt.index ? true : false));
+                            if (_this.s.dataIdx === opt.index) {
+                                _this.dom.dataTitle.removeProp('selected');
+                            }
                         }
                     }
                 });
@@ -717,10 +801,11 @@
                     })
                         .addClass(this_1.classes.option)
                         .addClass(this_1.classes.notItalic)
-                        .attr('origData', data.origData);
+                        .prop('origData', data.origData);
                     if (this_1.s.data === data.text) {
                         this_1.s.dataIdx = data.index;
-                        newOpt.attr('selected', true);
+                        this_1.dom.dataTitle.removeProp('selected');
+                        newOpt.prop('selected', true);
                         this_1.dom.data.removeClass(this_1.classes.italic);
                     }
                     this_1.dom.data.append(newOpt);
@@ -926,7 +1011,7 @@
                         }
                         // If this value was previously selected as indicated by preDefined, then select it again
                         if (preDefined !== null && opt.val() === preDefined[0]) {
-                            opt.attr('selected', true);
+                            opt.prop('selected', true);
                             el.removeClass(Criteria.classes.italic);
                         }
                     }
@@ -1007,7 +1092,10 @@
                 .addClass(Criteria.classes.input)
                 .on('input keypress', that._throttle(function (e) {
                 var code = e.keyCode || e.which;
-                if (!that.c.enterSearch || code === 13) {
+                if (!that.c.enterSearch &&
+                    !(that.s.dt.settings()[0].oInit.search !== undefined &&
+                        that.s.dt.settings()[0].oInit.search["return"]) ||
+                    code === 13) {
                     return fn(that, this);
                 }
             }, searchDelay === null ? 100 : searchDelay));
@@ -1037,7 +1125,10 @@
                     .addClass(Criteria.classes.input)
                     .on('input keypress', that._throttle(function (e) {
                     var code = e.keyCode || e.which;
-                    if (!that.c.enterSearch || code === 13) {
+                    if (!that.c.enterSearch &&
+                        !(that.s.dt.settings()[0].oInit.search !== undefined &&
+                            that.s.dt.settings()[0].oInit.search["return"]) ||
+                        code === 13) {
                         return fn(that, this);
                     }
                 }, searchDelay === null ? 100 : searchDelay)),
@@ -1049,7 +1140,10 @@
                     .addClass(Criteria.classes.input)
                     .on('input keypress', that._throttle(function (e) {
                     var code = e.keyCode || e.which;
-                    if (!that.c.enterSearch || code === 13) {
+                    if (!that.c.enterSearch &&
+                        !(that.s.dt.settings()[0].oInit.search !== undefined &&
+                            that.s.dt.settings()[0].oInit.search["return"]) ||
+                        code === 13) {
                         return fn(that, this);
                     }
                 }, searchDelay === null ? 100 : searchDelay))
@@ -1086,7 +1180,9 @@
                 .on('change', that._throttle(function () {
                 return fn(that, this);
             }, searchDelay === null ? 100 : searchDelay))
-                .on('input keypress', that.c.enterSearch ?
+                .on('input keypress', that.c.enterSearch ||
+                that.s.dt.settings()[0].oInit.search !== undefined &&
+                    that.s.dt.settings()[0].oInit.search["return"] ?
                 function (e) {
                     that._throttle(function () {
                         var code = e.keyCode || e.which;
@@ -1137,11 +1233,16 @@
                     function () {
                         fn(that, _this);
                     })
-                    .on('input keypress', !that.c.enterSearch && searchDelay !== null ?
+                    .on('input keypress', !that.c.enterSearch &&
+                    !(that.s.dt.settings()[0].oInit.search !== undefined &&
+                        that.s.dt.settings()[0].oInit.search["return"]) &&
+                    searchDelay !== null ?
                     that.s.dt.settings()[0].oApi._fnThrottle(function () {
                         return fn(that, this);
                     }, searchDelay) :
-                    that.c.enterSearch ?
+                    that.c.enterSearch ||
+                        that.s.dt.settings()[0].oInit.search !== undefined &&
+                            that.s.dt.settings()[0].oInit.search["return"] ?
                         function (e) {
                             var code = e.keyCode || e.which;
                             if (code === 13) {
@@ -1168,11 +1269,16 @@
                     function () {
                         fn(that, _this);
                     })
-                    .on('input keypress', !that.c.enterSearch && searchDelay !== null ?
+                    .on('input keypress', !that.c.enterSearch &&
+                    !(that.s.dt.settings()[0].oInit.search !== undefined &&
+                        that.s.dt.settings()[0].oInit.search["return"]) &&
+                    searchDelay !== null ?
                     that.s.dt.settings()[0].oApi._fnThrottle(function () {
                         return fn(that, this);
                     }, searchDelay) :
-                    that.c.enterSearch ?
+                    that.c.enterSearch ||
+                        that.s.dt.settings()[0].oInit.search !== undefined &&
+                            that.s.dt.settings()[0].oInit.search["return"] ?
                         function (e) {
                             var code = e.keyCode || e.which;
                             if (code === 13) {
@@ -2344,7 +2450,8 @@
          */
         // Eslint upset at empty object but needs to be done
         // eslint-disable-next-line @typescript-eslint/ban-types
-        Group.prototype.getDetails = function () {
+        Group.prototype.getDetails = function (deFormatDates) {
+            if (deFormatDates === void 0) { deFormatDates = false; }
             if (this.s.criteria.length === 0) {
                 return {};
             }
@@ -2355,7 +2462,7 @@
             // NOTE here crit could be either a subgroup or a criteria
             for (var _i = 0, _a = this.s.criteria; _i < _a.length; _i++) {
                 var crit = _a[_i];
-                details.criteria.push(crit.criteria.getDetails());
+                details.criteria.push(crit.criteria.getDetails(deFormatDates));
             }
             return details;
         };
@@ -3031,9 +3138,6 @@
                 return;
             }
             table.settings()[0]._searchBuilder = this;
-            this.s.dt.one('preXhr', function (e, settings, data) {
-                data.searchBuilder = _this.c.preDefined !== false ? _this.c.preDefined : null;
-            });
             // Run the remaining setup when the table is initialised
             if (this.s.dt.settings()[0]._bInitComplete) {
                 this._setUp();
@@ -3050,8 +3154,9 @@
          */
         // eslint upset at empty object but that is what it is
         // eslint-disable-next-line @typescript-eslint/ban-types
-        SearchBuilder.prototype.getDetails = function () {
-            return this.s.topGroup.getDetails();
+        SearchBuilder.prototype.getDetails = function (deFormatDates) {
+            if (deFormatDates === void 0) { deFormatDates = false; }
+            return this.s.topGroup.getDetails(deFormatDates);
         };
         /**
          * Getter for the node of the container for the searchBuilder
@@ -3123,10 +3228,17 @@
             // eslint-disable-next-line no-extra-parens
             if (!dataTable.DateTime) {
                 var types = this.s.dt.columns().type().toArray();
+                if (types === undefined || types.includes(undefined) || types.includes(null)) {
+                    types = [];
+                    for (var _i = 0, _a = this.s.dt.settings()[0].aoColumns; _i < _a.length; _i++) {
+                        var colInit = _a[_i];
+                        types.push(colInit.searchBuilderType !== undefined ? colInit.searchBuilderType : colInit.sType);
+                    }
+                }
                 var columnIdxs = this.s.dt.columns().toArray();
                 // If the types are not yet set then draw to see if they can be retrieved then
-                if (types === undefined) {
-                    this.s.dt.draw(false);
+                if (types === undefined || types.includes(undefined) || types.includes(null)) {
+                    $.fn.dataTable.ext.oApi._fnColumnTypes(this.s.dt.settings()[0]);
                     types = this.s.dt.columns().type().toArray();
                 }
                 for (var i = 0; i < columnIdxs[0].length; i++) {
@@ -3153,6 +3265,11 @@
                 data.page = _this.s.dt.page();
             });
             this._build();
+            this.s.dt.on('preXhr', function (e, settings, data) {
+                if (_this.s.dt.page.info().serverSide) {
+                    data.searchBuilder = _this._collapseArray(_this.getDetails(true));
+                }
+            });
             if (loadState) {
                 var loadedState = this.s.dt.state.loaded();
                 // If the loaded State is not null rebuild based on it for statesave
@@ -3170,9 +3287,35 @@
             }
             this._setEmptyListener();
             this.s.dt.state.save();
-            this.s.dt.on('preXhr', function (e, settings, data) {
-                data.searchBuilder = _this.getDetails();
-            });
+        };
+        SearchBuilder.prototype._collapseArray = function (criteria) {
+            if (criteria.logic === undefined) {
+                if (criteria.value !== undefined) {
+                    criteria.value.sort(function (a, b) {
+                        if (!isNaN(+a)) {
+                            a = +a;
+                            b = +b;
+                        }
+                        if (a < b) {
+                            return -1;
+                        }
+                        else if (b < a) {
+                            return 1;
+                        }
+                        else {
+                            return 0;
+                        }
+                    });
+                    criteria.value1 = criteria.value[0];
+                    criteria.value2 = criteria.value[1];
+                }
+            }
+            else {
+                for (var i = 0; i < criteria.criteria.length; i++) {
+                    criteria.criteria[i] = this._collapseArray(criteria.criteria[i]);
+                }
+            }
+            return criteria;
         };
         /**
          * Updates the title of the SearchBuilder
@@ -3273,6 +3416,7 @@
                 var count = _this.s.topGroup.count();
                 _this._updateTitle(count);
                 _this._filterChanged(count);
+                _this.s.dt.draw();
                 _this.s.dt.state.save();
             });
             this.s.topGroup.dom.container.unbind('dtsb-redrawLogic');
@@ -3315,7 +3459,7 @@
                 _this.dom.clearAll.remove();
             });
         };
-        SearchBuilder.version = '1.1.0';
+        SearchBuilder.version = '1.2.1';
         SearchBuilder.classes = {
             button: 'dtsb-button',
             clearAll: 'dtsb-clearAll',
@@ -3415,7 +3559,7 @@
         return SearchBuilder;
     }());
 
-    /*! SearchBuilder 1.1.0
+    /*! SearchBuilder 1.2.1
      * ©SpryMedia Ltd - datatables.net/license/mit
      */
     // DataTables extensions common UMD. Note that this allows for AMD, CommonJS
@@ -3471,7 +3615,6 @@
         };
         $.fn.dataTable.ext.buttons.searchBuilder = {
             action: function (e, dt, node, config) {
-                e.stopPropagation();
                 this.popover(config._searchBuilder.getNode(), {
                     align: 'dt-container'
                 });
@@ -3492,11 +3635,12 @@
             },
             text: null
         };
-        apiRegister('searchBuilder.getDetails()', function () {
+        apiRegister('searchBuilder.getDetails()', function (deFormatDates) {
+            if (deFormatDates === void 0) { deFormatDates = false; }
             var ctx = this.context[0];
             // If SearchBuilder has not been initialised on this instance then return
             return ctx._searchBuilder ?
-                ctx._searchBuilder.getDetails() :
+                ctx._searchBuilder.getDetails(deFormatDates) :
                 null;
         });
         apiRegister('searchBuilder.rebuild()', function (details) {
