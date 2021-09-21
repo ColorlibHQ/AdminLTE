@@ -15,6 +15,10 @@ body.iframe-mode {
 
 body.iframe-mode-fullscreen {
   overflow: hidden;
+
+  &.layout-navbar-fixed .wrapper .content-wrapper {
+    margin-top: 0 !important;
+  }
 }
 
 .content-wrapper {
@@ -38,7 +42,7 @@ body.iframe-mode-fullscreen {
         visibility: visible;
       }
 
-      @include on-touch-device () {
+      @include on-touch-device() {
         visibility: visible;
       }
     }
@@ -60,7 +64,7 @@ body.iframe-mode-fullscreen {
             animation-fill-mode: both;
             visibility: visible;
 
-            @include on-touch-device () {
+            @include on-touch-device() {
               visibility: visible;
             }
           }
@@ -126,5 +130,13 @@ body.iframe-mode-fullscreen {
     animation: none !important;
     visibility: visible !important;
     opacity: 1;
+  }
+}
+
+@include dark-mode () {
+  .content-wrapper.iframe-mode {
+    .tab-loading {
+      background-color: $dark;
+    }
   }
 }

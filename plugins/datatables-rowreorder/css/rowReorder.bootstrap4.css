@@ -8,7 +8,7 @@ table.dt-rowReorder-float {
 }
 
 tr.dt-rowReorder-moving {
-  outline: 2px solid #888888;
+  outline: 2px solid #888;
   outline-offset: -2px;
 }
 

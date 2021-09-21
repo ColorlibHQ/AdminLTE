@@ -17,6 +17,8 @@
 .cm-s-base16-dark .CodeMirror-guttermarker-subtle { color: #505050; }
 .cm-s-base16-dark .CodeMirror-linenumber { color: #505050; }
 .cm-s-base16-dark .CodeMirror-cursor { border-left: 1px solid #b0b0b0; }
+.cm-s-base16-dark.cm-fat-cursor .CodeMirror-cursor { background-color: #8e8d8875 !important; }
+.cm-s-base16-dark .cm-animate-fat-cursor { background-color: #8e8d8875 !important; }
 
 .cm-s-base16-dark span.cm-comment { color: #8f5536; }
 .cm-s-base16-dark span.cm-atom { color: #aa759f; }

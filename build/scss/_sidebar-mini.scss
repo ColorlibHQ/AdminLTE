@@ -281,8 +281,10 @@
         .nav-link {
           width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2);
         }
-        .nav-header {
-          display: inline-block;
+        &:not(.hide-nav-header-on-hover) {
+          .nav-header {
+            display: inline-block;
+          }
         }
 
         // Show sidebar search when hover/focus on the sidebar mini mode.

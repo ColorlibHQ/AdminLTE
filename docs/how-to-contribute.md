@@ -25,14 +25,14 @@ Contributions are always **welcome and recommended**! Here is how for beginner's
     * Delete ./package-lock.json file
     * `npm install` (install npm deps)
     * `npm run dev` (developer mode, autocompile with browsersync support for live demo)
-    * Make your changes only in ./buid Folder OR package.json OR ./dist/js/demo.js OR in any html files which nessary to contribute
-    * Do not changes in ./dist/css/ AND ./dist/js/ Because its compiled files
-    * `npm run production` (compile css/js files and test every pages are perfectly working fine, before creating pull request)
+    * Make your changes only in ./build Folder OR package.json OR ./dist/js/demo.js OR package-lock.json OR ./dist/js/pages/ OR ./docs OR in any html files which are necessary for contribution
+    * Do not make changes in ./dist/css/ AND ./dist/js/ AND ./plugins Because it contains compiled files and do not include in PR (Pull Request)
+    * `npm run production` (compile css/js files and test all pages are perfectly working fine, before creating a pull request)
 4. Create a pull request
 
 ## Online one-click setup for contributing
 
-You can use Gitpod(an online IDE which is free for Open Source) for working on issues or making Prs. With a single click it will launch a workspace and automatically:
+You can use Gitpod(an online IDE which is free for Open Source) for working on issues or making PRs (Pull Requests). With a single click it will launch a workspace and automatically:
 
 - clone the `AdminLTE` repo.
 - install the dependencies.

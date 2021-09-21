@@ -42,6 +42,7 @@ $("#my-toggle-button").ControlSidebar('toggle');
 |scrollbarTheme | Boolean | `os-theme-light` | Scrollbar Theme used while SideBar Fixed
 |scrollbarAutoHide | Boolean | `l` | Scrollbar auto-hide trigger
 |target | String | `.control-sidebar` | Target control-sidebar to handle multiple control-sidebars.
+|animationSpeed | Boolean | `300` | Set the animation/transition speed equals to the scss transition speed.
 {: .table .table-bordered .bg-light}
 
 > ##### Tip!
@@ -59,6 +60,7 @@ $("#my-toggle-button").ControlSidebar('toggle');
 |-|-
 |expanded.lte.controlsidebar | Triggered after a control sidebar expands.
 |collapsed.lte.controlsidebar | Triggered after a control sidebar collapses.
+|collapsed-done.lte.controlsidebar | Triggered after a control sidebar is fully collapsed.
 {: .table .table-bordered .bg-light}
 
 Example: `$('#toggle-button').on('expanded.lte.controlsidebar', handleExpandedEvent)`

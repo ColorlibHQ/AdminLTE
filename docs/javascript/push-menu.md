@@ -30,6 +30,7 @@ $('.sidebar-toggle-btn').PushMenu(options)
 |autoCollapseSize | Boolean/Number | FALSE | Screen width in pixels to trigger auto collapse sidebar
 |enableRemember | Boolean | FALSE | Remember sidebar state and set after page refresh.
 |noTransitionAfterReload | Boolean | TRUE | Hold Transition after page refresh.
+|animationSpeed | Boolean | `300` | Set the animation/transition speed equals to the scss transition speed.
 {: .table .table-bordered .bg-light}
 
 > ##### Tip!
@@ -47,6 +48,7 @@ $('.sidebar-toggle-btn').PushMenu(options)
 | Event Type | Description
 |-|-
 |collapsed.lte.pushmenu | Fired when the sidebar collapsed.
+|collapsed-data.lte.pushmenu | Fired when the sidebar is fully collapsed.
 |shown.lte.pushmenu | Fired when the sidebar shown.
 {: .table .table-bordered .bg-light}
 

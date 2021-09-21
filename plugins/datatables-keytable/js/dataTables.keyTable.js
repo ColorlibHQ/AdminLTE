@@ -1,11 +1,11 @@
-/*! KeyTable 2.6.1
+/*! KeyTable 2.6.4
  * ©2009-2021 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     KeyTable
  * @description Spreadsheet like keyboard navigation for DataTables
- * @version     2.6.1
+ * @version     2.6.4
  * @file        dataTables.keyTable.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
@@ -471,8 +471,10 @@ $.extend( KeyTable.prototype, {
 				if ( editor ) {
 					// Got Editor - need to activate inline editing,
 					// set the value and submit
+					var options = that._inlineOptions(focused.cell.index());
+
 					editor
-						.inline( focused.cell.index() )
+						.inline(options.cell, options.field, options.options)
 						.set( editor.displayed()[0], pastedText )
 						.submit();
 				}
@@ -562,6 +564,8 @@ $.extend( KeyTable.prototype, {
 		}
 
 		var editInline = function () {
+			var options = that._inlineOptions(editCell.index());
+
 			editor
 				.one( 'open'+namespace, function () {
 					// Remove cancel open
@@ -616,7 +620,7 @@ $.extend( KeyTable.prototype, {
 					// might be that the open event handler isn't needed
 					editor.off( namespace );
 				} )
-				.inline( editCell.index() );
+				.inline(options.cell, options.field, options.options);
 		};
 
 		// Editor 1.7 listens for `return` on keyup, so if return is the trigger
@@ -632,6 +636,20 @@ $.extend( KeyTable.prototype, {
 		else {
 			editInline();
 		}
+	},
+
+
+	_inlineOptions: function (cellIdx)
+	{
+		if (this.c.editorOptions) {
+			return this.c.editorOptions(cellIdx);
+		}
+
+		return {
+			cell: cellIdx,
+			field: undefined,
+			options: undefined
+		};
 	},
 
 
@@ -841,7 +859,7 @@ $.extend( KeyTable.prototype, {
 				break;
 
 			case 27: // esc
-				if ( this.s.blurable && enable === true ) {
+				if ( this.c.blurable && enable === true ) {
 					this._blur();
 				}
 				break;
@@ -1023,6 +1041,16 @@ $.extend( KeyTable.prototype, {
 			row = currRow,
 			column = columns[ currCol ]; // row is the display, column is an index
 
+		// If the direction is rtl then the logic needs to be inverted from this point forwards
+		if($(dt.table().node()).css('direction') === 'rtl') {
+			if(direction === 'right') {
+				direction = 'left';
+			}
+			else if(direction === 'left'){
+				direction = 'right';
+			}
+		}
+
 		if ( direction === 'right' ) {
 			if ( currCol >= columns.length - 1 ) {
 				row++;
@@ -1189,6 +1217,12 @@ KeyTable.defaults = {
 	editOnFocus: false,
 
 	/**
+	 * Options to pass to Editor's inline method
+	 * @type {function}
+	 */
+	editorOptions: null,
+
+	/**
 	 * Select a cell to automatically select on start up. `null` for no
 	 * automatic selection
 	 * @type {cell-selector}
@@ -1210,7 +1244,7 @@ KeyTable.defaults = {
 
 
 
-KeyTable.version = "2.6.1";
+KeyTable.version = "2.6.4";
 
 
 $.fn.dataTable.KeyTable = KeyTable;
