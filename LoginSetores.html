@@ -20,14 +20,14 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="../../index2.html"><b>Mambo</b>Delivery</a>
+            <a href="../../index2.html"><b>Delivery</b>Mambo</a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Faça login para iniciar a sessão</p>
 
-                <form action="../../index3.html" method="post">
+                <form action="C:\Users\lucas.nogueira\Desktop\Bootstrap5\app\index.html" method="post">
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" placeholder="Email">
                         <div class="input-group-append">
@@ -53,7 +53,7 @@
                         </select>
                     </div>
                     <!-- /.col -->
-                    <div class="col-4">
+                    <div class="col-4" style="float: right;">
                         <button type="submit" class="btn btn-primary btn-block">Entrar</button>
                     </div>
                     <!-- /.col -->
@@ -70,6 +70,18 @@
         <!-- /.login-card-body -->
     </div>
     </div>
+
+    <script>
+        function checkPassword() {
+            if (document.getElementById('password').value == 00000) {
+                alert('Correct Password!');
+                location.href = "http://google.com";
+            } else {
+                alert('Wrong Password!');
+                return false;
+            }
+        }
+    </script>
     <!-- /.login-box -->
 
     <!-- jQuery -->
