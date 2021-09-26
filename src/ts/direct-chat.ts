@@ -6,7 +6,7 @@
  */
 
 import {
-  domReady,
+  domReady
 } from './util/index'
 
 /**

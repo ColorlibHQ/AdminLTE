@@ -1,6 +1,4 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-undef */
-/* eslint-disable unicorn/prefer-module */
+/* eslint-env node */
 
 const autoprefix = require('autoprefixer')
 const browserSync = require('browser-sync').create()
@@ -33,26 +31,18 @@ const paths = {
   dist: {
     base: './dist/',
     css: './dist/css',
-    js: './dist/js',
     html: './dist/pages',
     assets: './dist/assets',
-    img: './dist/assets/img',
-    vendor: './dist/vendor',
-  },
-  base: {
-    base: './',
-    node: './node_modules',
+    vendor: './dist/vendor'
   },
   src: {
     base: './src/',
-    css: './src/css',
     html: './src/pages/**/*.html',
     assets: './src/assets/**/*.*',
     partials: './src/partials/**/*.html',
     scss: './src/scss',
     ts: './src/ts',
-    node_modules: './node_modules/',
-    vendor: './vendor',
+    nodeModules: './node_modules/'
   },
   temp: {
     base: './.temp/',
@@ -60,22 +50,22 @@ const paths = {
     js: './.temp/js',
     html: './.temp/pages',
     assets: './.temp/assets',
-    vendor: './.temp/vendor',
-  },
+    vendor: './.temp/vendor'
+  }
 }
 
 const sassOptions = {
   outputStyle: 'expanded',
-  includePaths: ['./node_modules/'],
+  includePaths: ['./node_modules/']
 }
 
 const postcssOptions = [
-  autoprefix({ cascade: false }),
+  autoprefix({ cascade: false })
 ]
 
 const postcssRtlOptions = [
   autoprefix({ cascade: false }),
-  rtlcss({}),
+  rtlcss({})
 ]
 
 // From here Dev mode will Start
@@ -99,24 +89,24 @@ const lintScss = () => src([paths.src.scss + '/**/*.scss'], { since: lastRun(lin
     .pipe(gulpStylelint({
       failAfterError: false,
       reporters: [
-        { formatter: 'string', console: true },
-      ],
+        { formatter: 'string', console: true }
+      ]
     }))
 
 const tsCompile = () =>
   rollup.rollup({
     input: paths.src.ts + '/adminlte.ts',
     output: {
-      banner,
+      banner
     },
     plugins: [
-      rollupTypescript(),
-    ],
+      rollupTypescript()
+    ]
   }).then(bundle => bundle.write({
     file: paths.temp.js + '/adminlte.js',
     format: 'umd',
     name: 'adminlte',
-    sourcemap: true,
+    sourcemap: true
   }))
 
 // Lint TS
@@ -136,8 +126,8 @@ const index = () => src([paths.src.base + '*.html'])
       prefix: '@@',
       basepath: './src/partials/',
       context: {
-        environment: 'development',
-      },
+        environment: 'development'
+      }
     }))
     .pipe(dest(paths.temp.base))
     .pipe(browserSync.stream())
@@ -147,8 +137,8 @@ const html = () => src([paths.src.html])
       prefix: '@@',
       basepath: './src/partials/',
       context: {
-        environment: 'development',
-      },
+        environment: 'development'
+      }
     }))
     .pipe(dest(paths.temp.html))
     .pipe(browserSync.stream())
@@ -157,12 +147,12 @@ const assets = () => src([paths.src.assets])
     .pipe(dest(paths.temp.assets))
     .pipe(browserSync.stream())
 
-const vendor = () => src(npmDist({ copyUnminified: true }), { base: paths.src.node_modules })
+const vendor = () => src(npmDist({ copyUnminified: true }), { base: paths.src.nodeModules })
     .pipe(dest(paths.temp.vendor))
 
 const serve = () => {
   browserSync.init({
-    server: paths.temp.base,
+    server: paths.temp.base
   })
 
   watch([paths.src.scss], series(lintScss))
@@ -177,10 +167,10 @@ const serve = () => {
 
 // Minify CSS
 const minifyDistCss = () => src([
-  paths.dist.css + '/**/*.css',
+  paths.dist.css + '/**/*.css'
 ], {
   base: paths.dist.css,
-  sourcemaps: true,
+  sourcemaps: true
 })
     .pipe(cleanCss({ format: { breakWith: 'lf' } }))
     .pipe(rename({ suffix: '.min' }))
@@ -192,16 +182,16 @@ const minifyDistJs = () =>
   rollup.rollup({
     input: paths.src.ts + '/adminlte.ts',
     output: {
-      banner,
+      banner
     },
     plugins: [
-      rollupTypescript(),
-    ],
+      rollupTypescript()
+    ]
   }).then(bundle => bundle.write({
     file: paths.temp.js + '/adminlte.js',
     format: 'umd',
     name: 'adminlte',
-    sourcemap: true,
+    sourcemap: true
   }))
 
 // Copy assets
@@ -214,7 +204,7 @@ const cleanDist = () => del([paths.dist.base])
 // Compile and copy all scss/css
 const copyDistCssAll = () => src([paths.src.scss + '/**/*.scss'], {
   base: paths.src.scss,
-  sourcemaps: true,
+  sourcemaps: true
 })
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(postcss(postcssOptions))
@@ -230,16 +220,16 @@ const copyDistJs = () =>
   rollup.rollup({
     input: paths.src.ts + '/adminlte.ts',
     output: {
-      banner,
+      banner
     },
     plugins: [
-      rollupTypescript(),
-    ],
+      rollupTypescript()
+    ]
   }).then(bundle => bundle.write({
     file: paths.temp.js + '/adminlte.js',
     format: 'umd',
     name: 'adminlte',
-    sourcemap: true,
+    sourcemap: true
   }))
 
 // Copy Html
@@ -248,8 +238,8 @@ const copyDistHtml = () => src([paths.src.html])
       prefix: '@@',
       basepath: './src/partials/',
       context: {
-        environment: 'production',
-      },
+        environment: 'production'
+      }
     }))
     .pipe(dest(paths.dist.html))
 
@@ -259,13 +249,13 @@ const copyDistHtmlIndex = () => src([paths.src.base + '*.html'])
       prefix: '@@',
       basepath: './src/partials/',
       context: {
-        environment: 'production',
-      },
+        environment: 'production'
+      }
     }))
     .pipe(dest(paths.dist.base))
 
 // Copy node_modules to vendor
-const copyDistVendor = () => src(npmDist({ copyUnminified: true }), { base: paths.src.node_modules })
+const copyDistVendor = () => src(npmDist({ copyUnminified: true }), { base: paths.src.nodeModules })
     .pipe(dest(paths.dist.vendor))
 
 // To Dist Before release

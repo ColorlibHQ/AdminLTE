@@ -6,7 +6,7 @@
  */
 
 import {
-  domReady,
+  domReady
 } from './util/index'
 
 /**
@@ -37,7 +37,7 @@ const SELECTOR_SIDEBAR_SM = `.${CLASS_NAME_LAYOUT_MOBILE}`
 const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
 
 const Defaults = {
-  onLayouMobile: 992,
+  onLayouMobile: 992
 }
 
 /**

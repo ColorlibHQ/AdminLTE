@@ -8,7 +8,7 @@
 import {
   domReady,
   slideUp,
-  slideDown,
+  slideDown
 } from './util/index'
 
 /**
@@ -39,7 +39,7 @@ const Default = {
   collapseIcon: 'fa-minus',
   expandIcon: 'fa-plus',
   maximizeIcon: 'fa-expand',
-  minimizeIcon: 'fa-compress',
+  minimizeIcon: 'fa-compress'
 }
 
 interface Config {
@@ -65,7 +65,7 @@ class CardWidget {
       this._parent = element
     }
 
-    this._config = Object.assign({}, Default, config)
+    this._config = {...Default, ...config}
   }
 
   collapse() {

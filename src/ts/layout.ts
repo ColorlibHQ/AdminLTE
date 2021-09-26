@@ -6,7 +6,7 @@
  */
 
 import {
-  domReady,
+  domReady
 } from './util/index'
 
 /**
@@ -21,7 +21,7 @@ const SELECTOR_SIDEBAR = '.sidebar'
 
 const Default = {
   scrollbarTheme: 'os-theme-light',
-  scrollbarAutoHide: 'leave',
+  scrollbarAutoHide: 'leave'
 }
 
 interface Config {
@@ -40,7 +40,7 @@ class Layout {
 
   constructor(element: HTMLElement, config: Config) {
     this._element = element
-    this._config = Object.assign({}, Default, config)
+    this._config = {...Default, ...config}
   }
 
   holdTransition(): void {
@@ -69,8 +69,8 @@ domReady(() => {
       sizeAutoCapable: true,
       scrollbars: {
         autoHide: Default.scrollbarAutoHide,
-        clickScrolling: true,
-      },
+        clickScrolling: true
+      }
     })
   }
 })

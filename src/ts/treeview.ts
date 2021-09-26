@@ -8,7 +8,7 @@
 import {
   domReady,
   slideDown,
-  slideUp,
+  slideUp
 } from './util/index'
 
 /**
@@ -32,7 +32,7 @@ const SELECTOR_TREEVIEW_MENU = '.nav-treeview'
 const SELECTOR_DATA_TOGGLE = '[data-lte-toggle="treeview"]'
 
 const Default = {
-  animationSpeed: 300,
+  animationSpeed: 300
 }
 
 interface Config {

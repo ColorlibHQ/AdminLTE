@@ -9,7 +9,7 @@ export {
   PushMenu,
   Treeview,
   DirectChat,
-  CardWidget,
+  CardWidget
 }
 
 //
