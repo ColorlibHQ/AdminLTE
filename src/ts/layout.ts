@@ -15,7 +15,7 @@ import {
  * ------------------------------------------------------------------------
  */
 
-const CLASS_NAME_HOLD_TRANSITIONs = 'hold-transition'
+const CLASS_NAME_HOLD_TRANSITIONS = 'hold-transition'
 
 const SELECTOR_SIDEBAR = '.sidebar'
 
@@ -40,16 +40,16 @@ class Layout {
 
   constructor(element: HTMLElement, config: Config) {
     this._element = element
-    this._config = {...Default, ...config}
+    this._config = { ...Default, ...config }
   }
 
   holdTransition(): void {
     let resizeTimer: number | undefined
     window.addEventListener('resize', () => {
-      document.body.classList.add(CLASS_NAME_HOLD_TRANSITIONs)
+      document.body.classList.add(CLASS_NAME_HOLD_TRANSITIONS)
       clearTimeout(resizeTimer)
       resizeTimer = setTimeout(() => {
-        document.body.classList.remove(CLASS_NAME_HOLD_TRANSITIONs)
+        document.body.classList.remove(CLASS_NAME_HOLD_TRANSITIONS)
       }, 400)
     })
   }

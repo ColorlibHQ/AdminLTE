@@ -65,7 +65,7 @@ class CardWidget {
       this._parent = element
     }
 
-    this._config = {...Default, ...config}
+    this._config = { ...Default, ...config }
   }
 
   collapse() {

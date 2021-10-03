@@ -56,7 +56,7 @@ class Treeview {
     this._navItem = this._element?.closest(SELECTOR_NAV_ITEM)
     this._childNavItem = this._navItem?.querySelector(SELECTOR_TREEVIEW_MENU)
 
-    this._config = {...Default, ...config}
+    this._config = { ...Default, ...config }
   }
 
   open(): void {

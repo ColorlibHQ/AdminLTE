@@ -36,8 +36,6 @@
         "properties": false
       }
     ],
-    // "no-eq-null": "off",
-    // "no-negated-condition": "off",
     "no-console": "error",
     "object-curly-spacing": [
       "error",
@@ -47,7 +45,6 @@
       "error",
       "after"
     ],
-    // "prefer-object-spread": "off",
     "semi": [
       "error",
       "never"
@@ -87,6 +84,17 @@
             "MemberExpression": "off",
             "SwitchCase": 1
           }
+        ],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "variable",
+            "format": ["camelCase", "StrictPascalCase", "UPPER_CASE"]
+          }
+        ],
+        "@typescript-eslint/object-curly-spacing": [
+          "error",
+          "always"
         ],
         "@typescript-eslint/semi": [
           "error",
