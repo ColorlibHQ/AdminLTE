@@ -62,15 +62,15 @@ class ExpandableTable {
         $element.next(SELECTOR_EXPANDABLE_BODY).addClass('d-none')
       })
       $element.attr(SELECTOR_ARIA_ATTR, 'false')
-      let event = $.Event(EVENT_COLLAPSED);
-      event.relatedTarget = relatedTarget;
+      const event = $.Event(EVENT_COLLAPSED)
+      event.relatedTarget = relatedTarget
       $element.trigger(event)
     } else if ($type === 'false') {
       $element.next(SELECTOR_EXPANDABLE_BODY).removeClass('d-none')
       $body.slideDown(time)
       $element.attr(SELECTOR_ARIA_ATTR, 'true')
-      let event = $.Event(EVENT_EXPANDED);
-      event.relatedTarget = relatedTarget;
+      const event = $.Event(EVENT_EXPANDED)
+      event.relatedTarget = relatedTarget
       $element.trigger(event)
     }
   }
