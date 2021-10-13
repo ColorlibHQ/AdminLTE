@@ -50,7 +50,7 @@ class ExpandableTable {
     })
   }
 
-  toggleRow() {
+  toggleRow(relatedTarget) {
     const $element = this._element
     const time = 500
     const $type = $element.attr(SELECTOR_ARIA_ATTR)
@@ -62,18 +62,22 @@ class ExpandableTable {
         $element.next(SELECTOR_EXPANDABLE_BODY).addClass('d-none')
       })
       $element.attr(SELECTOR_ARIA_ATTR, 'false')
-      $element.trigger($.Event(EVENT_COLLAPSED))
+      let event = $.Event(EVENT_COLLAPSED);
+      event.relatedTarget = relatedTarget;
+      $element.trigger(event)
     } else if ($type === 'false') {
       $element.next(SELECTOR_EXPANDABLE_BODY).removeClass('d-none')
       $body.slideDown(time)
       $element.attr(SELECTOR_ARIA_ATTR, 'true')
-      $element.trigger($.Event(EVENT_EXPANDED))
+      let event = $.Event(EVENT_EXPANDED);
+      event.relatedTarget = relatedTarget;
+      $element.trigger(event)
     }
   }
 
   // Static
 
-  static _jQueryInterface(operation) {
+  static _jQueryInterface(operation, relatedTarget) {
     return this.each(function () {
       let data = $(this).data(DATA_KEY)
 
@@ -83,7 +87,7 @@ class ExpandableTable {
       }
 
       if (typeof operation === 'string' && /init|toggleRow/.test(operation)) {
-        data[operation]()
+        data[operation](relatedTarget)
       }
     })
   }
@@ -97,8 +101,8 @@ $(SELECTOR_TABLE).ready(function () {
   ExpandableTable._jQueryInterface.call($(this), 'init')
 })
 
-$(document).on('click', SELECTOR_DATA_TOGGLE, function () {
-  ExpandableTable._jQueryInterface.call($(this), 'toggleRow')
+$(document).on('click', SELECTOR_DATA_TOGGLE, function (e) {
+  ExpandableTable._jQueryInterface.call($(this), 'toggleRow', e.target)
 })
 
 /**
