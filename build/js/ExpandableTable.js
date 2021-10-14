@@ -17,6 +17,8 @@ const DATA_KEY = 'lte.expandableTable'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
+const EVENT_EXPAND = `expand${EVENT_KEY}`
+const EVENT_COLLAPSE = `collapse${EVENT_KEY}`
 const EVENT_EXPANDED = `expanded${EVENT_KEY}`
 const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
 
@@ -58,20 +60,30 @@ class ExpandableTable {
 
     $body.stop()
     if ($type === 'true') {
+      const collapseEvent = $.Event(EVENT_COLLAPSE)
+      $element.trigger(collapseEvent)
+      if (collapseEvent.isDefaultPrevented()) {
+        return
+      }
       $body.slideUp(time, () => {
         $element.next(SELECTOR_EXPANDABLE_BODY).addClass('d-none')
       })
       $element.attr(SELECTOR_ARIA_ATTR, 'false')
-      const event = $.Event(EVENT_COLLAPSED)
-      event.relatedTarget = relatedTarget
-      $element.trigger(event)
+      const collapsedEvent = $.Event(EVENT_COLLAPSED)
+      collapsedEvent.relatedTarget = relatedTarget
+      $element.trigger(collapsedEvent)
     } else if ($type === 'false') {
+      const expandEvent = $.Event(EVENT_EXPAND)
+      $element.trigger(expandEvent)
+      if (expandEvent.isDefaultPrevented()) {
+        return
+      }
       $element.next(SELECTOR_EXPANDABLE_BODY).removeClass('d-none')
       $body.slideDown(time)
       $element.attr(SELECTOR_ARIA_ATTR, 'true')
-      const event = $.Event(EVENT_EXPANDED)
-      event.relatedTarget = relatedTarget
-      $element.trigger(event)
+      const expandedEvent = $.Event(EVENT_EXPANDED)
+      expandedEvent.relatedTarget = relatedTarget
+      $element.trigger(expandedEvent)
     }
   }
 

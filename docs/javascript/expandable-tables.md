@@ -99,7 +99,9 @@ Example: `$('#expandable-table-header-row').ExpandableTable('toggleRow')`
 |---
 | Event Type | Description
 |-|-
+|expande.lte.expandableTable | Triggered before a expandable table body expands.
 |expanded.lte.expandableTable | Triggered after a expandable table body is expanded.
+|collapse.lte.expandableTable | Triggered before a expandable table body collapses.
 |collapsed.lte.expandableTable | Triggered after a expandable table body is collapsed.
 {: .table .table-bordered .bg-light}
 
