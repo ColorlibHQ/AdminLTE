@@ -65,6 +65,7 @@ class ExpandableTable {
       if (collapseEvent.isDefaultPrevented()) {
         return
       }
+
       $body.slideUp(time, () => {
         $element.next(SELECTOR_EXPANDABLE_BODY).addClass('d-none')
       })
@@ -78,6 +79,7 @@ class ExpandableTable {
       if (expandEvent.isDefaultPrevented()) {
         return
       }
+      
       $element.next(SELECTOR_EXPANDABLE_BODY).removeClass('d-none')
       $body.slideDown(time)
       $element.attr(SELECTOR_ARIA_ATTR, 'true')
