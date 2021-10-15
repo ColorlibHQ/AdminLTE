@@ -22,7 +22,7 @@ const EVENT_COLLAPSE = `collapse${EVENT_KEY}`
 const EVENT_EXPANDED = `expanded${EVENT_KEY}`
 const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
 
-const SELECTOR_TABLE = '.expandable-table'
+// const SELECTOR_TABLE = '.expandable-table'
 const SELECTOR_EXPANDABLE_BODY = '.expandable-body'
 const SELECTOR_DATA_TOGGLE = '[data-widget="expandable-table"]'
 const SELECTOR_ARIA_ATTR = 'aria-expanded'
