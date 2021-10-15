@@ -100,7 +100,7 @@
   &[aria-expanded="false"] + .expandable-body {
     display: none;
 
-    &> *:first-child > * {
+    > td:first-child > * {
       display: none;
     }
   }
