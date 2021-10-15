@@ -39,19 +39,6 @@ class ExpandableTable {
 
   // Public
 
-  init() {
-    $(SELECTOR_DATA_TOGGLE).each((_, $header) => {
-      const $type = $($header).attr(SELECTOR_ARIA_ATTR)
-      const $body = $($header).next(SELECTOR_EXPANDABLE_BODY).children().first().children()
-      if ($type === 'true') {
-        $body.show()
-      } else if ($type === 'false') {
-        $body.hide()
-        $body.parent().parent().addClass('d-none')
-      }
-    })
-  }
-
   toggleRow(relatedTarget) {
     const $element = this._element
     const time = 500
@@ -100,7 +87,7 @@ class ExpandableTable {
         $(this).data(DATA_KEY, data)
       }
 
-      if (typeof operation === 'string' && /init|toggleRow/.test(operation)) {
+      if (typeof operation === 'string' && /toggleRow/.test(operation)) {
         data[operation](relatedTarget)
       }
     })
@@ -111,10 +98,6 @@ class ExpandableTable {
   * Data API
   * ====================================================
   */
-$(SELECTOR_TABLE).ready(function () {
-  ExpandableTable._jQueryInterface.call($(this), 'init')
-})
-
 $(document).on('click', SELECTOR_DATA_TOGGLE, function (e) {
   ExpandableTable._jQueryInterface.call($(this), 'toggleRow', e.target)
 })

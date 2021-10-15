@@ -97,6 +97,13 @@
       // stylelint-enable selector-max-attribute
     }
   }
+  &[aria-expanded="false"] + .expandable-body {
+    display: none;
+
+    &> *:first-child > * {
+      display: none;
+    }
+  }
 }
 
 .expandable-body {
