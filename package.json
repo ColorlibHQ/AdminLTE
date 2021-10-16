@@ -151,6 +151,6 @@
     "stylelint": "^13.13.1",
     "stylelint-config-twbs-bootstrap": "^2.2.4",
     "terser": "^5.9.0",
-    "vnu-jar": "^21.10.8"
+    "vnu-jar": "^21.10.12"
   }
 }
