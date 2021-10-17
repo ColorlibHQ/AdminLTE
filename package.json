@@ -33,23 +33,23 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@popperjs/core": "^2.10.2",
-    "bootstrap": "^5.1.1",
+    "bootstrap": "^5.1.3",
     "chart.js": "^3.5.1",
     "overlayscrollbars": "^1.13.1"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^8.2.5",
-    "@typescript-eslint/eslint-plugin": "^4.32.0",
-    "@typescript-eslint/parser": "^4.32.0",
-    "autoprefixer": "^10.3.6",
+    "@rollup/plugin-typescript": "^8.3.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "autoprefixer": "^10.3.7",
     "browser-sync": "^2.27.5",
     "bundlewatch": "^0.3.2",
     "del": "^6.0.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.1",
     "eslint-config-xo": "^0.39.0",
-    "eslint-config-xo-typescript": "^0.45.1",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-unicorn": "^36.0.0",
+    "eslint-config-xo-typescript": "^0.45.2",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-unicorn": "^37.0.1",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-eslint7": "^0.3.2",
@@ -61,12 +61,12 @@
     "gulp-sass": "^5.0.0",
     "gulp-stylelint": "^13.0.0",
     "lockfile-lint": "^4.6.2",
-    "postcss": "^8.3.8",
+    "postcss": "^8.3.9",
     "rollup": "^2.58.0",
     "rtlcss": "^3.3.0",
     "sass": "^1.42.1",
     "stylelint": "^13.13.1",
     "stylelint-config-twbs-bootstrap": "^2.2.4",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.4"
   }
 }
