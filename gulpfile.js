@@ -31,6 +31,7 @@ const paths = {
   dist: {
     base: './dist/',
     css: './dist/css',
+    js: './dist/js',
     html: './dist/pages',
     assets: './dist/assets',
     vendor: './dist/vendor'
@@ -188,7 +189,7 @@ const minifyDistJs = () =>
       rollupTypescript()
     ]
   }).then(bundle => bundle.write({
-    file: paths.temp.js + '/adminlte.js',
+    file: paths.dist.js + '/adminlte.js',
     format: 'umd',
     name: 'adminlte',
     sourcemap: true
@@ -226,7 +227,7 @@ const copyDistJs = () =>
       rollupTypescript()
     ]
   }).then(bundle => bundle.write({
-    file: paths.temp.js + '/adminlte.js',
+    file: paths.dist.js + '/adminlte.js',
     format: 'umd',
     name: 'adminlte',
     sourcemap: true
