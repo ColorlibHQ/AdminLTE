@@ -54,9 +54,8 @@ class ExpandableTable {
       }
 
       $body.slideUp(time, () => {
-        $element.next(SELECTOR_EXPANDABLE_BODY).addClass('d-none')
+        $element.attr(SELECTOR_ARIA_ATTR, 'false')
       })
-      $element.attr(SELECTOR_ARIA_ATTR, 'false')
       const collapsedEvent = $.Event(EVENT_COLLAPSED)
       collapsedEvent.relatedTarget = relatedTarget
       $element.trigger(collapsedEvent)
@@ -67,9 +66,8 @@ class ExpandableTable {
         return
       }
 
-      $element.next(SELECTOR_EXPANDABLE_BODY).removeClass('d-none')
-      $body.slideDown(time)
       $element.attr(SELECTOR_ARIA_ATTR, 'true')
+      $body.slideDown(time)
       const expandedEvent = $.Event(EVENT_EXPANDED)
       expandedEvent.relatedTarget = relatedTarget
       $element.trigger(expandedEvent)
