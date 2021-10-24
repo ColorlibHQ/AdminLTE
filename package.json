@@ -133,7 +133,7 @@
     "autoprefixer": "^10.3.7",
     "browser-sync": "^2.27.5",
     "bundlewatch": "^0.3.2",
-    "clean-css-cli": "^5.3.3",
+    "clean-css-cli": "^5.4.1",
     "concurrently": "^6.3.0",
     "eslint": "^7.32.0",
     "eslint-config-xo": "^0.39.0",
