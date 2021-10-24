@@ -58,6 +58,7 @@
     &.active {
       .page-link {
         background-color: $primary-alt;
+        border-color: $primary-alt;
         color: $white;
 
         &:hover,
