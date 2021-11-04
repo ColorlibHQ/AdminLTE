@@ -236,8 +236,7 @@ const minifyDistJs = () =>
     .pipe(terser({
       compress: {
         passes: 2
-      },
-      comments: '/^!/'
+      }
     }))
     .pipe(dest(paths.dist.js + '/adminlte.min.js'))
 
@@ -267,7 +266,7 @@ const copyDistHtml = () => src([paths.src.html])
     }))
     .pipe(dest(paths.dist.html))
 
-const lintDistHtml = () => src([paths.temp.html + '/**/*.html', paths.src.base + '*.html'])
+const lintDistHtml = () => src([paths.dist.html + '/**/*.html', paths.dist.base + '*.html'])
     .pipe(validator())
 
 // Copy node_modules to vendor
