@@ -147,7 +147,7 @@ const html = () => src([paths.src.html])
     .pipe(dest(paths.temp.html))
     .pipe(browserSync.stream())
 
-const lintHtml = () => src([paths.temp.html + '/**/*.html', paths.temp.base + '*.html'])
+const lintHtml = () => src([paths.temp.html + '/**/*.html', paths.temp.base + '*.html'], { since: lastRun(lintHtml) })
     .pipe(validator())
 
 const serve = () => {

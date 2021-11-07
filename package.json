@@ -12,7 +12,8 @@
     "docs-lint": "node -v",
     "lint": "npx gulp lint && npm run lockfile-lint",
     "compile": "npx gulp compile",
-    "production": "npx gulp production"
+    "production": "npx gulp production",
+    "dev": "npx gulp"
   },
   "keywords": [
     "css",
