@@ -8,7 +8,8 @@
   "scripts": {
     "bundlewatch": "bundlewatch --config .bundlewatch.config.json",
     "lockfile-lint": "lockfile-lint --allowed-hosts npm --allowed-schemes https: --empty-hostname false --type npm --path package-lock.json",
-    "docs": "echo 1",
+    "docs-compile": "node -v",
+    "docs-lint": "node -v",
     "lint": "npx gulp lint && lockfile-lint",
     "compile": "npx gulp compile",
     "production": "npx gulp production"
