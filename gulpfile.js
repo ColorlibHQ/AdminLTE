@@ -9,7 +9,6 @@ const eslint = require('gulp-eslint-new')
 const fileinclude = require('gulp-file-include')
 const validator = require('gulp-html')
 const gulpIf = require('gulp-if')
-const npmDist = require('gulp-npm-dist')
 const postcss = require('gulp-postcss')
 const rename = require('gulp-rename')
 const sass = require('gulp-sass')(require('sass'))
@@ -35,8 +34,7 @@ const paths = {
     css: './dist/css',
     js: './dist/js',
     html: './dist/pages',
-    assets: './dist/assets',
-    vendor: './dist/vendor'
+    assets: './dist/assets'
   },
   src: {
     base: './src/',
@@ -44,16 +42,14 @@ const paths = {
     assets: './src/assets/**/*.*',
     partials: './src/partials/**/*.html',
     scss: './src/scss',
-    ts: './src/ts',
-    nodeModules: './node_modules/'
+    ts: './src/ts'
   },
   temp: {
     base: './.temp/',
     css: './.temp/css',
     js: './.temp/js',
     html: './.temp/pages',
-    assets: './.temp/assets',
-    vendor: './.temp/vendor'
+    assets: './.temp/assets'
   }
 }
 
@@ -151,11 +147,8 @@ const html = () => src([paths.src.html])
     .pipe(dest(paths.temp.html))
     .pipe(browserSync.stream())
 
-const lintHtml = () => src([paths.temp.html + '/**/*.html', paths.src.base + '*.html'])
+const lintHtml = () => src([paths.temp.html + '/**/*.html', paths.temp.base + '*.html'])
     .pipe(validator())
-
-const vendor = () => src(npmDist({ copyUnminified: true }), { base: paths.src.nodeModules })
-    .pipe(dest(paths.temp.vendor))
 
 const serve = () => {
   browserSync.init({
@@ -266,17 +259,37 @@ const copyDistHtml = () => src([paths.src.html])
     }))
     .pipe(dest(paths.dist.html))
 
-const lintDistHtml = () => src([paths.dist.html + '/**/*.html', paths.dist.base + '*.html'])
+// HTML Lint
+// Copy index for Lint
+const copyDistHtmlIndexForLint = () => src([paths.src.base + '*.html'])
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: './src/partials/',
+      context: {
+        environment: 'production'
+      }
+    }))
+    .pipe(dest(paths.temp.base))
+// Copy Html for Lint
+const copyDistHtmlForLint = () => src([paths.src.html])
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: './src/partials/',
+      context: {
+        environment: 'production'
+      }
+    }))
+    .pipe(dest(paths.temp.html))
+// Now Lint
+const lintDistHtmlCopied = () => src([paths.temp.html + '/**/*.html', paths.temp.base + '*.html'])
     .pipe(validator())
 
-// Copy node_modules to vendor
-const copyDistVendor = () => src(npmDist({ copyUnminified: true }), { base: paths.src.nodeModules })
-    .pipe(dest(paths.dist.vendor))
+const lintDistHtml = series(copyDistHtmlIndexForLint, copyDistHtmlForLint, lintDistHtmlCopied)
 
 const lint = parallel(
   lintDistScss,
   lintDistTs,
-  series(copyDistHtmlIndex, copyDistHtml, lintDistHtml)
+  lintDistHtml
 )
 exports.lint = lint
 
@@ -290,8 +303,7 @@ const compile = series(
     series(copyDistJs, minifyDistJs),
     copyDistAssets,
     copyDistHtmlIndex,
-    copyDistHtml,
-    copyDistVendor
+    copyDistHtml
   )
 )
 exports.compile = compile
@@ -300,4 +312,4 @@ exports.compile = compile
 exports.production = series(lint, compile)
 
 // Default - Only for light mode AdminLTE
-exports.default = series(scss, scssDark, tsCompile, html, index, assets, vendor, serve)
+exports.default = series(scss, scssDark, tsCompile, html, index, assets, serve)
