@@ -115,7 +115,7 @@
     "jszip": "^3.7.1",
     "moment": "^2.29.1",
     "overlayscrollbars": "^1.13.1",
-    "pdfmake": "^0.2.2",
+    "pdfmake": "^0.2.3",
     "popper.js": "^1.16.1",
     "raphael": "^2.3.0",
     "select2": "^4.0.13",
