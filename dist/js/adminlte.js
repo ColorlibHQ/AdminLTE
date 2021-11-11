@@ -230,11 +230,12 @@
         addSidebaBreakPoint() {
             const bodyClass = document.body.classList;
             const widthOutput = window.innerWidth;
+            if (widthOutput < Defaults.onLayouMobile) {
+                bodyClass.add(CLASS_NAME_LAYOUT_MOBILE);
+            }
             if (widthOutput >= Defaults.onLayouMobile) {
                 bodyClass.remove(CLASS_NAME_LAYOUT_MOBILE);
-            }
-            else {
-                bodyClass.add(CLASS_NAME_LAYOUT_MOBILE);
+                this.expand();
             }
         }
         removeOverlaySidebar() {

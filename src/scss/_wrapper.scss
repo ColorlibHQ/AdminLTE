@@ -12,7 +12,7 @@
     "main-sidebar main-header"
     "main-sidebar content-wrapper"
     "main-sidebar main-footer";
-  grid-template-columns: auto minmax(100%, max-content);
+  grid-template-columns: auto minmax(max-content, 100%);
   grid-template-rows: min-content 100% min-content;
   min-height: 100vh;
 }
