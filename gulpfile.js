@@ -223,15 +223,10 @@ const copyDistJs = () =>
   }))
 
 // Minify JS
-// Need to add terser
-const minifyDistJs = () =>
-  src(paths.dist.js + '/adminlte.js', { sourcemaps: true })
-    .pipe(terser({
-      compress: {
-        passes: 2
-      }
-    }))
-    .pipe(dest(paths.dist.js + '/adminlte.min.js'))
+const minifyDistJs = () => src(paths.dist.js + '/adminlte.js', { sourcemaps: true })
+    .pipe(terser({ compress: { passes: 2 }))
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(dest(paths.dist.js, { sourcemaps: '.' }))
 
 // Copy assets
 const copyDistAssets = () => src(paths.src.assets)
