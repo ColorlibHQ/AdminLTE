@@ -139,6 +139,10 @@
      * Constants
      * ------------------------------------------------------------------------
      */
+    const DATA_KEY$1 = 'lte.pushmenu';
+    const EVENT_KEY$1 = `.${DATA_KEY$1}`;
+    const EVENT_EXPANDED$1 = `expanded${EVENT_KEY$1}`;
+    const EVENT_COLLAPSED$1 = `collapsed${EVENT_KEY$1}`;
     const CLASS_NAME_SIDEBAR_MINI = 'sidebar-mini';
     const CLASS_NAME_SIDEBAR_MINI_HAD = 'sidebar-mini-had';
     const CLASS_NAME_SIDEBAR_HORIZONTAL = 'sidebar-horizontal';
@@ -203,10 +207,20 @@
             this._bodyClass.remove(CLASS_NAME_SIDEBAR_CLOSE);
             this._bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE);
             this._bodyClass.add(CLASS_NAME_SIDEBAR_OPEN);
+            if (this._element !== null) {
+                const event = new CustomEvent(EVENT_EXPANDED$1);
+                this._element.dispatchEvent(event);
+            }
         }
         collapse() {
             this.sidebarColllapsing();
             this._bodyClass.add(CLASS_NAME_SIDEBAR_COLLAPSE);
+            setTimeout(() => {
+                if (this._element !== null) {
+                    const event = new CustomEvent(EVENT_COLLAPSED$1);
+                    this._element.dispatchEvent(event);
+                }
+            }, 1000);
         }
         close() {
             this._bodyClass.add(CLASS_NAME_SIDEBAR_CLOSE);
@@ -215,6 +229,12 @@
             if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_HORIZONTAL)) {
                 this.menusClose();
             }
+            setTimeout(() => {
+                if (this._element !== null) {
+                    const event = new CustomEvent(EVENT_COLLAPSED$1);
+                    this._element.dispatchEvent(event);
+                }
+            }, 1000);
         }
         sidebarHover() {
             const selSidebar = document.querySelector(SELECTOR_SIDEBAR);

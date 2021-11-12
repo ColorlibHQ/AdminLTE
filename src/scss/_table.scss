@@ -3,6 +3,11 @@
 //
 
 .table {
+  // Highlight border color between thead, tbody and tfoot.
+  > :not(:last-child) > :last-child > * {
+    border-bottom-color: $gray-400;
+  }
+
   &:not(.table-dark) {
     color: inherit;
   }

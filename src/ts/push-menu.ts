@@ -14,6 +14,11 @@ import {
  * Constants
  * ------------------------------------------------------------------------
  */
+const DATA_KEY = 'lte.pushmenu'
+const EVENT_KEY = `.${DATA_KEY}`
+
+const EVENT_EXPANDED = `expanded${EVENT_KEY}`
+const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
 
 const CLASS_NAME_SIDEBAR_MINI = 'sidebar-mini'
 const CLASS_NAME_SIDEBAR_MINI_HAD = 'sidebar-mini-had'
@@ -96,12 +101,24 @@ class PushMenu {
     this._bodyClass.remove(CLASS_NAME_SIDEBAR_CLOSE)
     this._bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
     this._bodyClass.add(CLASS_NAME_SIDEBAR_OPEN)
+
+    if (this._element !== null) {
+      const event = new CustomEvent(EVENT_EXPANDED)
+      this._element.dispatchEvent(event)
+    }
   }
 
   collapse(): void {
     this.sidebarColllapsing()
 
     this._bodyClass.add(CLASS_NAME_SIDEBAR_COLLAPSE)
+
+    setTimeout(() => {
+      if (this._element !== null) {
+        const event = new CustomEvent(EVENT_COLLAPSED)
+        this._element.dispatchEvent(event)
+      }
+    }, 1000)
   }
 
   close(): void {
@@ -112,6 +129,13 @@ class PushMenu {
     if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_HORIZONTAL)) {
       this.menusClose()
     }
+
+    setTimeout(() => {
+      if (this._element !== null) {
+        const event = new CustomEvent(EVENT_COLLAPSED)
+        this._element.dispatchEvent(event)
+      }
+    }, 1000)
   }
 
   sidebarHover(): void {
