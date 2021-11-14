@@ -224,7 +224,7 @@ const copyDistJs = () =>
 
 // Minify JS
 const minifyDistJs = () => src(paths.dist.js + '/adminlte.js', { sourcemaps: true })
-    .pipe(terser({ compress: { passes: 2 }))
+    .pipe(terser({ compress: { passes: 2 }}))
     .pipe(rename({ suffix: '.min' }))
     .pipe(dest(paths.dist.js, { sourcemaps: '.' }))
 
