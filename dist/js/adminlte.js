@@ -141,8 +141,12 @@
      */
     const DATA_KEY$1 = 'lte.pushmenu';
     const EVENT_KEY$1 = `.${DATA_KEY$1}`;
-    const EVENT_EXPANDED$1 = `expanded${EVENT_KEY$1}`;
-    const EVENT_COLLAPSED$1 = `collapsed${EVENT_KEY$1}`;
+    const EVENT_EXPAND = `expand${EVENT_KEY$1}`;
+    const EVENT_COLLAPSE = `collapse${EVENT_KEY$1}`;
+    const EVENT_CLOSE = `close${EVENT_KEY$1}`;
+    const DATA_NAME_REMEMBER_STATE = `${DATA_KEY$1}.remember.state`;
+    const COOKIE_REMEMBER_STATE = `${DATA_KEY$1}.sidebar.state`;
+    const COOKIE_PATH = `${DATA_KEY$1}.sidebar.cookie.path`;
     const CLASS_NAME_SIDEBAR_MINI = 'sidebar-mini';
     const CLASS_NAME_SIDEBAR_MINI_HAD = 'sidebar-mini-had';
     const CLASS_NAME_SIDEBAR_HORIZONTAL = 'sidebar-horizontal';
@@ -165,16 +169,34 @@
     const Defaults = {
         onLayouMobile: 992
     };
+    var RememberState;
+    (function (RememberState) {
+        RememberState["Open"] = "Open";
+        RememberState["Closed"] = "Closed";
+        RememberState["Collapsed"] = "Collapsed";
+    })(RememberState || (RememberState = {}));
     /**
      * Class Definition
      * ====================================================
      */
     class PushMenu {
         constructor(element, config) {
+            var _a, _b;
             this._element = element;
             const bodyElement = document.body;
             this._bodyClass = bodyElement.classList;
             this._config = config;
+            this._rememberState = false;
+            this._cookiePath = '/';
+            if (this._element !== null) {
+                const remember = (_a = this._element.dataset[DATA_NAME_REMEMBER_STATE]) !== null && _a !== void 0 ? _a : '0';
+                const rememberInt = Number.parseInt(remember, 10);
+                this._rememberState = (rememberInt === 1);
+                if (this._rememberState && !this._element.id) {
+                    throw new Error('To remember menu state, id parameter on menu button must be defined!');
+                }
+                this._cookiePath = (_b = this._element.dataset[COOKIE_PATH]) !== null && _b !== void 0 ? _b : this._cookiePath;
+            }
         }
         sidebarOpening() {
             this._bodyClass.add(CLASS_NAME_SIDEBAR_OPENING);
@@ -208,19 +230,19 @@
             this._bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE);
             this._bodyClass.add(CLASS_NAME_SIDEBAR_OPEN);
             if (this._element !== null) {
-                const event = new CustomEvent(EVENT_EXPANDED$1);
+                const event = new CustomEvent(EVENT_EXPAND);
                 this._element.dispatchEvent(event);
             }
+            this.setState(RememberState.Open);
         }
         collapse() {
             this.sidebarColllapsing();
             this._bodyClass.add(CLASS_NAME_SIDEBAR_COLLAPSE);
-            setTimeout(() => {
-                if (this._element !== null) {
-                    const event = new CustomEvent(EVENT_COLLAPSED$1);
-                    this._element.dispatchEvent(event);
-                }
-            }, 1000);
+            if (this._element !== null) {
+                const event = new CustomEvent(EVENT_COLLAPSE);
+                this._element.dispatchEvent(event);
+            }
+            this.setState(RememberState.Collapsed);
         }
         close() {
             this._bodyClass.add(CLASS_NAME_SIDEBAR_CLOSE);
@@ -229,12 +251,11 @@
             if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_HORIZONTAL)) {
                 this.menusClose();
             }
-            setTimeout(() => {
-                if (this._element !== null) {
-                    const event = new CustomEvent(EVENT_COLLAPSED$1);
-                    this._element.dispatchEvent(event);
-                }
-            }, 1000);
+            if (this._element !== null) {
+                const event = new CustomEvent(EVENT_CLOSE);
+                this._element.dispatchEvent(event);
+            }
+            this.setState(RememberState.Closed);
         }
         sidebarHover() {
             const selSidebar = document.querySelector(SELECTOR_SIDEBAR);
@@ -247,7 +268,39 @@
                 });
             }
         }
-        addSidebaBreakPoint() {
+        setState(state) {
+            if (this._rememberState) {
+                window.document.cookie = `${COOKIE_REMEMBER_STATE}.${this._element.id}=${state}; SameSite=Strict; Path=${this._cookiePath}`;
+            }
+        }
+        initPreviousState() {
+            if (!this._rememberState) {
+                return;
+            }
+            this._bodyClass.add('hold-transition');
+            const allcookies = document.cookie;
+            const cookiearray = allcookies.split(';');
+            let state = RememberState.Open;
+            for (const item of cookiearray) {
+                const itemSplit = item.split('=');
+                if (itemSplit.length > 1 && itemSplit[0].trim() === `${COOKIE_REMEMBER_STATE}.${this._element.id}`) {
+                    state = RememberState[itemSplit[1].trim()];
+                }
+            }
+            if (state === RememberState.Closed) {
+                this.close();
+            }
+            else if (state === RememberState.Collapsed) {
+                this.collapse();
+            }
+            else {
+                this.expand();
+            }
+            setTimeout(() => {
+                this._bodyClass.remove('hold-transition');
+            }, 100);
+        }
+        addSidebarBreakPoint() {
             const bodyClass = document.body.classList;
             const widthOutput = window.innerWidth;
             if (widthOutput < Defaults.onLayouMobile) {
@@ -255,7 +308,9 @@
             }
             if (widthOutput >= Defaults.onLayouMobile) {
                 bodyClass.remove(CLASS_NAME_LAYOUT_MOBILE);
-                this.expand();
+                if (!this._rememberState) {
+                    this.initPreviousState();
+                }
             }
         }
         removeOverlaySidebar() {
@@ -297,7 +352,7 @@
             }
         }
         init() {
-            this.addSidebaBreakPoint();
+            this.addSidebarBreakPoint();
             this.sidebarHover();
             const selSidebarSm = document.querySelector(SELECTOR_SIDEBAR_SM);
             const selContentWrapper = selSidebarSm === null || selSidebarSm === void 0 ? void 0 : selSidebarSm.querySelector(SELECTOR_CONTENT_WRAPPER);
@@ -321,6 +376,8 @@
         });
         const fullBtn = document.querySelectorAll(SELECTOR_FULL_TOGGLE);
         for (const btn of fullBtn) {
+            const data = new PushMenu(btn, null);
+            data.initPreviousState();
             btn.addEventListener('click', event => {
                 event.preventDefault();
                 let button = event.currentTarget;
@@ -335,6 +392,8 @@
         }
         const miniBtn = document.querySelectorAll(SELECTOR_MINI_TOGGLE);
         for (const btn of miniBtn) {
+            const data = new PushMenu(btn, null);
+            data.initPreviousState();
             btn.addEventListener('click', event => {
                 event.preventDefault();
                 let button = event.currentTarget;
