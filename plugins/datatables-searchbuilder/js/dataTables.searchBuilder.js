@@ -241,7 +241,6 @@
          */
         Criteria.prototype.getDetails = function (deFormatDates) {
             if (deFormatDates === void 0) { deFormatDates = false; }
-            this.s.value;
             // This check is in place for if a custom decimal character is in place
             if (this.s.type !== null &&
                 this.s.type.includes('num') &&
@@ -377,7 +376,6 @@
                         if (option.val() !== this.s.condition) {
                             option.removeProp('selected');
                         }
-                        if (option.prop('selected')) ;
                     }
                     this._populateValue(loadedCriteria);
                 }
@@ -2404,6 +2402,7 @@
                 isChild: isChild,
                 logic: undefined,
                 opts: opts,
+                preventRedraw: false,
                 toDrop: undefined,
                 topGroup: topGroup
             };
@@ -2515,6 +2514,9 @@
          * Redraws the Contents of the searchBuilder Groups and Criteria
          */
         Group.prototype.redrawContents = function () {
+            if (this.s.preventRedraw) {
+                return;
+            }
             // Clear the container out and add the basic elements
             this.dom.container.children().detach();
             this.dom.container
@@ -3177,7 +3179,10 @@
             if (details === undefined || details === null) {
                 return this;
             }
+            this.s.topGroup.s.preventRedraw = true;
             this.s.topGroup.rebuild(details);
+            this.s.topGroup.s.preventRedraw = false;
+            this.s.topGroup.redrawContents();
             this.s.dt.draw(false);
             this.s.topGroup.setListeners();
             return this;
@@ -3219,7 +3224,7 @@
             var _this = this;
             if (loadState === void 0) { loadState = true; }
             // Register an Api method for getting the column type
-            $.fn.DataTable.Api.registerPlural('columns().type()', 'column().type()', function (selector, opts) {
+            $.fn.DataTable.Api.registerPlural('columns().type()', 'column().type()', function () {
                 return this.iterator('column', function (settings, column) {
                     return settings.aoColumns[column].sType;
                 }, 1);
@@ -3343,7 +3348,7 @@
             var tableNode = this.s.dt.table(0).node();
             if (!$.fn.dataTable.ext.search.includes(this.s.search)) {
                 // Custom search function for SearchBuilder
-                this.s.search = function (settings, searchData, dataIndex, origData) {
+                this.s.search = function (settings, searchData, dataIndex) {
                     if (settings.nTable !== tableNode) {
                         return true;
                     }
@@ -3677,7 +3682,7 @@
         }
         // Attach a listener to the document which listens for DataTables initialisation
         // events so we can automatically initialise
-        $(document).on('preInit.dt.dtsp', function (e, settings, json) {
+        $(document).on('preInit.dt.dtsp', function (e, settings) {
             if (e.namespace !== 'dt') {
                 return;
             }

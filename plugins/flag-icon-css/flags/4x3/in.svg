@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icon-css-in" viewBox="0 0 640 480">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icons-in" viewBox="0 0 640 480">
   <path fill="#f93" d="M0 0h640v160H0z"/>
   <path fill="#fff" d="M0 160h640v160H0z"/>
   <path fill="#128807" d="M0 320h640v160H0z"/>
@@ -11,15 +11,15 @@
         <g id="b">
           <g id="a" fill="#008">
             <circle r=".9" transform="rotate(7.5 -8.8 133.5)"/>
-            <path d="M0 17.5L.6 7 0 2l-.6 5L0 17.5z"/>
+            <path d="M0 17.5.6 7 0 2l-.6 5L0 17.5z"/>
           </g>
-          <use width="100%" height="100%" transform="rotate(15)" xlink:href="#a"/>
+          <use xlink:href="#a" width="100%" height="100%" transform="rotate(15)"/>
         </g>
-        <use width="100%" height="100%" transform="rotate(30)" xlink:href="#b"/>
+        <use xlink:href="#b" width="100%" height="100%" transform="rotate(30)"/>
       </g>
-      <use width="100%" height="100%" transform="rotate(60)" xlink:href="#c"/>
+      <use xlink:href="#c" width="100%" height="100%" transform="rotate(60)"/>
     </g>
-    <use width="100%" height="100%" transform="rotate(120)" xlink:href="#d"/>
-    <use width="100%" height="100%" transform="rotate(-120)" xlink:href="#d"/>
+    <use xlink:href="#d" width="100%" height="100%" transform="rotate(120)"/>
+    <use xlink:href="#d" width="100%" height="100%" transform="rotate(-120)"/>
   </g>
 </svg>

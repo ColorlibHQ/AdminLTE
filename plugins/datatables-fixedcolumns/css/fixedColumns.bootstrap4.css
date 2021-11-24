@@ -1,64 +1,61 @@
-table.DTFC_Cloned tr {
-  background-color: white;
-  margin-bottom: 0;
+tr.even td {
+  background-color: #ffffff;
 }
 
-div.DTFC_LeftHeadWrapper table,
-div.DTFC_RightHeadWrapper table {
-  border-bottom: none !important;
-  margin-bottom: 0 !important;
-  background-color: white;
+tr.odd td {
+  background-color: #f9f9f9;
 }
 
-div.DTFC_LeftBodyWrapper table,
-div.DTFC_RightBodyWrapper table {
-  border-top: none;
-  margin: 0 !important;
-  z-index: 2;
-}
-div.DTFC_LeftBodyWrapper table thead .sorting:before, div.DTFC_LeftBodyWrapper table thead .sorting:after,
-div.DTFC_LeftBodyWrapper table thead .sorting_asc:before,
-div.DTFC_LeftBodyWrapper table thead .sorting_asc:after,
-div.DTFC_LeftBodyWrapper table thead .sorting_desc:before,
-div.DTFC_LeftBodyWrapper table thead .sorting_desc:after,
-div.DTFC_LeftBodyWrapper table thead .sorting:before,
-div.DTFC_LeftBodyWrapper table thead .sorting:after,
-div.DTFC_LeftBodyWrapper table thead .sorting_asc:before,
-div.DTFC_LeftBodyWrapper table thead .sorting_asc:after,
-div.DTFC_LeftBodyWrapper table thead .sorting_desc:before,
-div.DTFC_LeftBodyWrapper table thead .sorting_desc:after,
-div.DTFC_RightBodyWrapper table thead .sorting:before,
-div.DTFC_RightBodyWrapper table thead .sorting:after,
-div.DTFC_RightBodyWrapper table thead .sorting_asc:before,
-div.DTFC_RightBodyWrapper table thead .sorting_asc:after,
-div.DTFC_RightBodyWrapper table thead .sorting_desc:before,
-div.DTFC_RightBodyWrapper table thead .sorting_desc:after,
-div.DTFC_RightBodyWrapper table thead .sorting:before,
-div.DTFC_RightBodyWrapper table thead .sorting:after,
-div.DTFC_RightBodyWrapper table thead .sorting_asc:before,
-div.DTFC_RightBodyWrapper table thead .sorting_asc:after,
-div.DTFC_RightBodyWrapper table thead .sorting_desc:before,
-div.DTFC_RightBodyWrapper table thead .sorting_desc:after {
-  display: none;
-}
-div.DTFC_LeftBodyWrapper table tbody tr:first-child th,
-div.DTFC_LeftBodyWrapper table tbody tr:first-child td,
-div.DTFC_RightBodyWrapper table tbody tr:first-child th,
-div.DTFC_RightBodyWrapper table tbody tr:first-child td {
-  border-top: none;
+tr.selected td {
+  background-color: #0088cc;
 }
 
-div.DTFC_LeftFootWrapper table,
-div.DTFC_RightFootWrapper table {
-  border-top: none;
-  margin-top: 0 !important;
+thead th {
   background-color: white;
 }
 
-div.DTFC_Blocker {
+tfoot th {
   background-color: white;
 }
 
-table.dataTable.table-striped.DTFC_Cloned tbody {
-  background-color: white;
+th.dtfc-fixed-left,
+th.dtfc-fixed-right,
+td.dtfc-fixed-left,
+td.dtfc-fixed-right {
+  z-index: 1;
+}
+
+div.dtfc-right-top-blocker,
+div.dtfc-left-top-blocker {
+  margin-top: 6px;
+  border-bottom: 0px solid #ddd !important;
+}
+
+table.dataTable.table-bordered.dtfc-has-left {
+  border-left: none;
+}
+
+div.dataTables_scroll.dtfc-has-left table.table-bordered {
+  border-left: none;
+}
+
+div.dataTables_scrollBody {
+  border-left: 1px solid #ddd !important;
+}
+
+div.dataTables_scrollFootInner table.table-bordered tr th:first-child,
+div.dataTables_scrollHeadInner table.table-bordered tr th:first-child {
+  border-left: 1px solid #ddd !important;
+}
+
+tr.dt-rowReorder-moving td.dtfc-fixed-left,
+tr.dt-rowReorder-moving td.dtfc-fixed-right {
+  border-top: 2px solid #888 !important;
+  border-bottom: 2px solid #888 !important;
+}
+tr.dt-rowReorder-moving td.dtfc-fixed-left:first-child {
+  border-left: 2px solid #888 !important;
+}
+tr.dt-rowReorder-moving td.dtfc-fixed-right:last-child {
+  border-right: 2px solid #888 !important;
 }

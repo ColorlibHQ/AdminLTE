@@ -530,14 +530,17 @@ a.fc-event:hover {
       bottom: -20px;
     }
 /* selecting (always TOUCH) */
+/* OR, focused by tab-index */
+/* (TODO: maybe not the best focus-styling for .fc-daygrid-dot-event) */
 /* ---------------------------------------------------------------------------------------------------- */
-.fc-event-selected {
+.fc-event-selected,
+.fc-event:focus {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)
 
   /* expand hit area (subclasses should expand) */
 
 }
-.fc-event-selected:before {
+.fc-event-selected:before, .fc-event:focus:before {
     content: "";
     position: absolute;
     z-index: 3;
@@ -546,12 +549,13 @@ a.fc-event:hover {
     right: 0;
     bottom: 0;
   }
-.fc-event-selected {
+.fc-event-selected,
+.fc-event:focus {
 
   /* dimmer effect */
 
 }
-.fc-event-selected:after {
+.fc-event-selected:after, .fc-event:focus:after {
     content: "";
     background: rgba(0, 0, 0, 0.25);
     background: var(--fc-event-selected-overlay-color, rgba(0, 0, 0, 0.25));
@@ -630,29 +634,29 @@ A HORIZONTAL event
 .fc-direction-rtl .fc-h-event:not(.fc-event-selected) .fc-event-resizer-end {
   cursor: w-resize;
   left: -4px;
-  left: calc(var(--fc-event-resizer-thickness, 8px) / -2);
+  left: calc(-0.5 * var(--fc-event-resizer-thickness, 8px));
 }
 .fc-direction-ltr .fc-h-event:not(.fc-event-selected) .fc-event-resizer-end,
 .fc-direction-rtl .fc-h-event:not(.fc-event-selected) .fc-event-resizer-start {
   cursor: e-resize;
   right: -4px;
-  right: calc(var(--fc-event-resizer-thickness, 8px) / -2);
+  right: calc(-0.5 * var(--fc-event-resizer-thickness, 8px));
 }
 /* resizers for TOUCH */
 .fc-h-event.fc-event-selected .fc-event-resizer {
   top: 50%;
   margin-top: -4px;
-  margin-top: calc(var(--fc-event-resizer-dot-total-width, 8px) / -2);
+  margin-top: calc(-0.5 * var(--fc-event-resizer-dot-total-width, 8px));
 }
 .fc-direction-ltr .fc-h-event.fc-event-selected .fc-event-resizer-start,
 .fc-direction-rtl .fc-h-event.fc-event-selected .fc-event-resizer-end {
   left: -4px;
-  left: calc(var(--fc-event-resizer-dot-total-width, 8px) / -2);
+  left: calc(-0.5 * var(--fc-event-resizer-dot-total-width, 8px));
 }
 .fc-direction-ltr .fc-h-event.fc-event-selected .fc-event-resizer-end,
 .fc-direction-rtl .fc-h-event.fc-event-selected .fc-event-resizer-start {
   right: -4px;
-  right: calc(var(--fc-event-resizer-dot-total-width, 8px) / -2);
+  right: calc(-0.5 * var(--fc-event-resizer-dot-total-width, 8px));
 }
 .fc .fc-popover {
     position: absolute;
@@ -1359,6 +1363,23 @@ A VERTICAL event
       background: #fff;
       background: var(--fc-page-bg-color, #fff); /* for when headers are styled to be transparent and sticky */
     }
+.fc {
+
+  /* only exists for aria reasons, hide for non-screen-readers */
+
+}
+.fc .fc-list-table thead {
+    position: absolute;
+    left: -10000px;
+  }
+.fc {
+
+  /* the table's border-style:hidden gets confused by hidden thead. force-hide top border of first cell */
+
+}
+.fc .fc-list-table tbody > tr:first-child th {
+    border-top: 0;
+  }
 .fc .fc-list-table th {
     padding: 0; /* uses an inner-wrapper instead... */
   }
