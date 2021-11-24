@@ -547,7 +547,6 @@
   $container.append($accent_variants)
   $container.append(createSkinBlock(accent_colors, function () {
     var color = $(this).find('option:selected').attr('class')
-    var accent_class = color
     var $body = $('body')
     accent_colors.forEach(function (skin) {
       $body.removeClass(skin)
