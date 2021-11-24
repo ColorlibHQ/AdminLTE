@@ -23,6 +23,7 @@ $theme-colors: map-merge((
 // Variables and Mixins
 // ---------------------------------------------------
 @import '~admin-lte/build/scss/variables';
+@import '~admin-lte/build/scss/variables-alt';
 @import '~admin-lte/build/scss/mixins';
 
 @import '~bootstrap/scss/bootstrap';
