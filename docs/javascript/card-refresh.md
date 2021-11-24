@@ -21,7 +21,7 @@ Activate the plugin by adding a button with `data-card-widget="card-refresh"` to
 The jQuery API provides more customizable options that allows the developer to pre-process the request before rendering and post-process it after rendering. 
 
 ```js
-('#my-card [data-card-widget="card-refresh"]').CardRefresh(options)
+$('#my-card [data-card-widget="card-refresh"]').CardRefresh(options)
 ```
 
 ##### Options
