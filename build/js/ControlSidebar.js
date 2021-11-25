@@ -66,7 +66,6 @@ class ControlSidebar {
   collapse() {
     const $body = $('body')
     const $html = $('html')
-    const { target } = this._config
 
     // Show the control sidebar
     if (this._config.controlsidebarSlide) {
@@ -87,9 +86,13 @@ class ControlSidebar {
     }, this._config.animationSpeed)
   }
 
-  show() {
+  show(toggle = false) {
     const $body = $('body')
     const $html = $('html')
+
+    if (toggle) {
+      $(SELECTOR_CONTROL_SIDEBAR).hide()
+    }
 
     // Collapse the control sidebar
     if (this._config.controlsidebarSlide) {
@@ -113,15 +116,20 @@ class ControlSidebar {
 
   toggle() {
     const $body = $('body')
-    const shouldClose = $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN) ||
-        $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE)
+    const { target } = this._config
 
-    if (shouldClose) {
+    const notVisible = !$(target).is(':visible')
+    const shouldClose = ($body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN) ||
+      $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE))
+    const shouldToggle = notVisible && ($body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN) ||
+      $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE))
+
+    if (notVisible || shouldToggle) {
+      // Open the control sidebar
+      this.show(notVisible)
+    } else if (shouldClose) {
       // Close the control sidebar
       this.collapse()
-    } else {
-      // Open the control sidebar
-      this.show()
     }
   }
 
