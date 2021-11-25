@@ -72,7 +72,7 @@ class ControlSidebar {
     if (this._config.controlsidebarSlide) {
       $html.addClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
       $body.removeClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
-        $(target).hide()
+        $(SELECTOR_CONTROL_SIDEBAR).hide()
         $html.removeClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
         $(this).dequeue()
       })
