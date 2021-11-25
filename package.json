@@ -99,7 +99,7 @@
     "filterizr": "^2.2.4",
     "flag-icon-css": "^4.1.5",
     "flot": "^4.2.2",
-    "fs-extra": "^9.1.0",
+    "fs-extra": "^10.0.0",
     "fullcalendar": "^5.10.1",
     "icheck-bootstrap": "^3.0.1",
     "inputmask": "^5.0.6",
