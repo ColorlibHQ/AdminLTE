@@ -11556,8 +11556,7 @@ textarea.form-control-lg {
   display: grid;
   grid-gap: 0;
   grid-template-areas: "main-sidebar main-header" "main-sidebar content-wrapper" "main-sidebar main-footer";
-  grid-template-columns: auto minmax(100%, -webkit-max-content);
-  grid-template-columns: auto minmax(100%, max-content);
+  grid-template-columns: auto 1fr;
   grid-template-rows: -webkit-min-content 100% -webkit-min-content;
   grid-template-rows: min-content 100% min-content;
   min-height: 100vh;
