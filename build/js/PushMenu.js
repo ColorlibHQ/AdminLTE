@@ -52,14 +52,14 @@
 
   PushMenu.prototype.init = function () {
     if (this.options.expandOnHover
-      || ($('body').is(Selector.mini + Selector.layoutFixed))) {
+      || ($(AdminLTEBody).is(Selector.mini + Selector.layoutFixed))) {
       this.expandOnHover();
-      $('body').addClass(ClassName.expandFeature);
+      $(AdminLTEBody).addClass(ClassName.expandFeature);
     }
 
     $(Selector.contentWrapper).click(function () {
       // Enable hide menu when clicking on the content-wrapper on small screens
-      if ($(window).width() <= this.options.collapseScreenSize && $('body').hasClass(ClassName.open)) {
+      if ($(window).width() <= this.options.collapseScreenSize && $(AdminLTEBody).hasClass(ClassName.open)) {
         this.close();
       }
     }.bind(this));
@@ -72,10 +72,10 @@
 
   PushMenu.prototype.toggle = function () {
     var windowWidth = $(window).width();
-    var isOpen      = !$('body').hasClass(ClassName.collapsed);
+    var isOpen      = !$(AdminLTEBody).hasClass(ClassName.collapsed);
 
     if (windowWidth <= this.options.collapseScreenSize) {
-      isOpen = $('body').hasClass(ClassName.open);
+      isOpen = $(AdminLTEBody).hasClass(ClassName.open);
     }
 
     if (!isOpen) {
@@ -89,11 +89,11 @@
     var windowWidth = $(window).width();
 
     if (windowWidth > this.options.collapseScreenSize) {
-      $('body').removeClass(ClassName.collapsed)
+      $(AdminLTEBody).removeClass(ClassName.collapsed)
         .trigger($.Event(Event.expanded));
     }
     else {
-      $('body').addClass(ClassName.open)
+      $(AdminLTEBody).addClass(ClassName.open)
         .trigger($.Event(Event.expanded));
     }
   };
@@ -101,22 +101,22 @@
   PushMenu.prototype.close = function () {
     var windowWidth = $(window).width();
     if (windowWidth > this.options.collapseScreenSize) {
-      $('body').addClass(ClassName.collapsed)
+      $(AdminLTEBody).addClass(ClassName.collapsed)
         .trigger($.Event(Event.collapsed));
     } else {
-      $('body').removeClass(ClassName.open + ' ' + ClassName.collapsed)
+      $(AdminLTEBody).removeClass(ClassName.open + ' ' + ClassName.collapsed)
         .trigger($.Event(Event.collapsed));
     }
   };
 
   PushMenu.prototype.expandOnHover = function () {
     $(Selector.mainSidebar).hover(function () {
-      if ($('body').is(Selector.mini + Selector.collapsed)
+      if ($(AdminLTEBody).is(Selector.mini + Selector.collapsed)
         && $(window).width() > this.options.collapseScreenSize) {
         this.expand();
       }
     }.bind(this), function () {
-      if ($('body').is(Selector.expanded)) {
+      if ($(AdminLTEBody).is(Selector.expanded)) {
         this.collapse();
       }
     }.bind(this));
@@ -124,14 +124,14 @@
 
   PushMenu.prototype.expand = function () {
     setTimeout(function () {
-      $('body').removeClass(ClassName.collapsed)
+      $(AdminLTEBody).removeClass(ClassName.collapsed)
         .addClass(ClassName.expanded);
     }, this.options.expandTransitionDelay);
   };
 
   PushMenu.prototype.collapse = function () {
     setTimeout(function () {
-      $('body').removeClass(ClassName.expanded)
+      $(AdminLTEBody).removeClass(ClassName.expanded)
         .addClass(ClassName.collapsed);
     }, this.options.expandTransitionDelay);
   };

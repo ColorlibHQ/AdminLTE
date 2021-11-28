@@ -144,6 +144,8 @@ module.exports = function (grunt) { // jshint ignore:line
         + 'if (typeof jQuery === \'undefined\') {\n'
         + 'throw new Error(\'AdminLTE requires jQuery\')\n'
         + '}\n\n'
+        + 'window.AdminLTEBody = window.AdminLTEBody || "body";'
+        + '\n'
       },
       dist   : {
         src : [

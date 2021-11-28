@@ -47,10 +47,10 @@
     this.fix();
     this.fixSidebar();
 
-    $('body').removeClass(ClassName.holdTransition);
+    $(AdminLTEBody).removeClass(ClassName.holdTransition);
 
     if (this.options.resetHeight) {
-      $('body, html, ' + Selector.wrapper).css({
+      $(AdminLTEBody+', html, ' + Selector.wrapper).css({
         'height'    : 'auto',
         'min-height': '100%'
       });
@@ -94,7 +94,7 @@
 
     // Set the min-height of the content and sidebar based on
     // the height of the document.
-    if ($('body').hasClass(ClassName.fixed)) {
+    if ($(AdminLTEBody).hasClass(ClassName.fixed)) {
       $(Selector.contentWrapper).css('min-height', windowHeight - footerHeight);
     } else {
       var postSetHeight;
@@ -118,7 +118,7 @@
 
   Layout.prototype.fixSidebar = function () {
     // Make sure the body tag has the .fixed class
-    if (!$('body').hasClass(ClassName.fixed)) {
+    if (!$(AdminLTEBody).hasClass(ClassName.fixed)) {
       if (typeof $.fn.slimScroll !== 'undefined') {
         $(Selector.sidebar).slimScroll({ destroy: true }).height('auto');
       }
@@ -177,6 +177,6 @@
   // Layout DATA-API
   // ===============
   $(window).on('load', function () {
-    Plugin.call($('body'));
+    Plugin.call($(AdminLTEBody));
   });
 }(jQuery);
