@@ -291,10 +291,7 @@ exports.lint = lint
 const compile = series(
   cleanDist,
   parallel(
-    series(
-      parallel(copyDistCssAll, copyDistCssRtl),
-      minifyDistCss
-    ),
+    series(copyDistCssAll, copyDistCssRtl, minifyDistCss),
     series(copyDistJs, minifyDistJs),
     copyDistAssets,
     copyDistHtmlIndex,
