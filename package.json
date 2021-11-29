@@ -49,7 +49,7 @@
     "eslint-config-xo": "^0.39.0",
     "eslint-config-xo-typescript": "^0.47.1",
     "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-unicorn": "^38.0.1",
+    "eslint-plugin-unicorn": "^39.0.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-eslint-new": "^1.0.0",
