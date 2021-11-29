@@ -4,13 +4,14 @@ on:
   push:
     branches:
       - master
+      - v4-dev
   pull_request:
     branches:
       - "**"
 
 env:
   FORCE_COLOR: 2
-  NODE: 14.x
+  NODE: 16.x
 
 jobs:
   run:
