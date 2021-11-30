@@ -504,8 +504,11 @@ html.maximized-card {
     .card-footer {
       background-color: rgba($black, .1);
     }
+    &.card-outline-tabs {
+      border-top: 0;
+    }
     &.card-outline-tabs .card-header a:hover {
-      border-color: $gray-600;
+      border-top-color: $gray-600;
       border-bottom-color: transparent;
     }
     &:not(.card-outline) > .card-header a.active {
