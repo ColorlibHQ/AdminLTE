@@ -63,7 +63,7 @@
     "gulp-terser": "^2.1.0",
     "lockfile-lint": "^4.6.2",
     "postcss": "^8.4.4",
-    "rollup": "^2.60.0",
+    "rollup": "^2.60.1",
     "rtlcss": "^3.5.0",
     "sass": "^1.44.0",
     "stylelint": "^13.13.1",
