@@ -65,7 +65,7 @@
     "postcss": "^8.4.4",
     "rollup": "^2.60.0",
     "rtlcss": "^3.5.0",
-    "sass": "^1.43.4",
+    "sass": "^1.44.0",
     "stylelint": "^13.13.1",
     "stylelint-config-twbs-bootstrap": "^2.2.4",
     "tslib": "^2.3.1",
