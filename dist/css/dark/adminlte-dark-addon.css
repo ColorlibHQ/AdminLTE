@@ -2912,6 +2912,10 @@ body::selection {
   border-left-color: #121212;
 }
 
+.table > :not(:first-child) {
+  border-color: #495057;
+}
+
 .info-box {
   background-color: #3b3b3b;
   color: #fafafa;

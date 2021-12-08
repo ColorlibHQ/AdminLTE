@@ -1,0 +1,10 @@
+//
+// Component: Table
+//
+
+.table {
+  // Highlight border color between thead, tbody and tfoot.
+  > :not(:first-child) {
+    border-color: $gray-700;
+  }
+}

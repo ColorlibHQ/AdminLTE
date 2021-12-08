@@ -13212,8 +13212,8 @@ html.maximized-card {
   border-left: 0;
 }
 
-.table > :not(:last-child) > :last-child > * {
-  border-bottom-color: #ced4da;
+.table > :not(:first-child) {
+  border-color: #ced4da;
 }
 .table:not(.table-dark) {
   color: inherit;
