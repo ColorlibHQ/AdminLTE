@@ -57,8 +57,8 @@
 }
 
 body {
-  color: var(--bs-body-color-alt);
-  background-color: var(--bs-body-bg-alt);
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
 }
 
 hr {
