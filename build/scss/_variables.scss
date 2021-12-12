@@ -138,7 +138,7 @@ $sidebar-light-submenu-active-bg: $sidebar-light-submenu-hover-bg !default;
 // --------------------------------------------------------
 $sidebar-mini-width: ($nav-link-padding-x + $sidebar-padding-x + .8rem) * 2 !default;
 $sidebar-nav-icon-width: $sidebar-mini-width - (($sidebar-padding-x + $nav-link-padding-x) * 2) !default;
-$sidebar-user-image-width: $sidebar-nav-icon-width + ($nav-link-padding-x / 2) !default;
+$sidebar-user-image-width: $sidebar-nav-icon-width + ($nav-link-padding-x * .5) !default;
 
 // CONTROL SIDEBAR
 // --------------------------------------------------------
