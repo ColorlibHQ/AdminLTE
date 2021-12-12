@@ -413,14 +413,11 @@ html.maximized-card {
 
       // TODO: create new class for reduce files
       // icons
-      > .fa,
-      > .fas,
-      > .far,
-      > .fab,
-      > .fal,
-      > .fad,
-      > .svg-inline--fa,
-      > .ion {
+      > i,
+      > svg,
+      > img,
+      > object,
+      > iframe {
         cursor: pointer;
         margin-right: 5px;
       }

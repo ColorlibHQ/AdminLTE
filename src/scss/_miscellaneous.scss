@@ -264,28 +264,22 @@
     justify-content: center;
     z-index: 50;
 
-    > .fa,
-    > .fas,
-    > .far,
-    > .fab,
-    > .fal,
-    > .fad,
-    > .svg-inline--fa,
-    > .ion {
+    > i,
+    > svg,
+    > img,
+    > object,
+    > iframe {
       color: $gray-800;
     }
 
     &.dark {
       background-color: rgba($black, .5);
 
-      > .fa,
-      > .fas,
-      > .far,
-      > .fab,
-      > .fal,
-      > .fad,
-      > .svg-inline--fa,
-      > .ion {
+      > i,
+      > svg,
+      > img,
+      > object,
+      > iframe {
         color: $gray-400;
       }
     }
