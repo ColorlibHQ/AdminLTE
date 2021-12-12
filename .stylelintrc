@@ -1,6 +1,6 @@
 {
   "extends": [
-    "stylelint-config-twbs-bootstrap/scss"
+    "stylelint-config-twbs-bootstrap"
   ],
   "rules": {
     "declaration-no-important": null,
@@ -9,6 +9,7 @@
       "lighten",
       "darken"
     ],
+    "keyframes-name-pattern": null,
     "order/properties-order": null,
     "selector-max-class": null,
     "selector-max-combinators": null,

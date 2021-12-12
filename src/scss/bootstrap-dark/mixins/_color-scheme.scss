@@ -24,13 +24,13 @@
       color-scheme: dark light;
     } @else if $scheme == light {
       color-scheme: light dark;
-    }  // else ignore
+    }
   } @else {
     @if $scheme == dark {
       color-scheme: dark;
     } @else if $scheme == light {
       color-scheme: light;
-    }  // else ignore
+    }
   }
 }
 
