@@ -4,8 +4,8 @@
       position: fixed;
       top: 0;
       bottom: 0;
-      margin-left: -#{$lte-sidebar-width};
       min-height: 100vh;
+      margin-left: -#{$lte-sidebar-width};
 
       .sidebar {
         overflow-x: hidden;

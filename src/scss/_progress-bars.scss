@@ -9,15 +9,15 @@
 
   // Vertical bars
   &.vertical {
+    position: relative;
     display: inline-block;
+    width: 30px;
     height: 200px;
     margin-right: 10px;
-    position: relative;
-    width: 30px;
 
     > .progress-bar {
-      bottom: 0;
       position: absolute;
+      bottom: 0;
       width: 100%;
     }
 

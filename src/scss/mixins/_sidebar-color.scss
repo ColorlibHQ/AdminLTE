@@ -2,8 +2,8 @@
 @mixin sidebar-color($color) {
   .nav-sidebar > .nav-item {
     > .nav-link.active {
-      background-color: $color;
       color: color-contrast($color);
+      background-color: $color;
     }
   }
 }

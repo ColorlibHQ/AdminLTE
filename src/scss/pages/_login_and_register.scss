@@ -4,9 +4,9 @@
 
 .login-logo,
 .register-logo {
+  margin-bottom: .9rem;
   font-size: 2.1rem;
   font-weight: 300;
-  margin-bottom: .9rem;
   text-align: center;
 
   a {
@@ -16,12 +16,12 @@
 
 .login-page,
 .register-page {
-  align-items: center;
-  background-color: $gray-200;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  align-items: center;
   justify-content: center;
+  height: 100vh;
+  background-color: $gray-200;
 }
 
 .login-box,
@@ -29,8 +29,8 @@
   width: 360px;
 
   @media (max-width: map-get($grid-breakpoints, sm)) {
-    margin-top: .5rem;
     width: 90%;
+    margin-top: .5rem;
   }
 
   .card {
@@ -40,10 +40,10 @@
 
 .login-card-body,
 .register-card-body {
+  padding: 20px;
+  color: #666;
   background-color: $white;
   border-top: 0;
-  color: #666;
-  padding: 20px;
 
   .input-group {
     .form-control {
@@ -81,11 +81,11 @@
     }
 
     .input-group-text {
+      color: #777;
       background-color: transparent;
-      border-bottom-right-radius: $border-radius;
       border-left: 0;
       border-top-right-radius: $border-radius;
-      color: #777;
+      border-bottom-right-radius: $border-radius;
       transition: $input-transition;
     }
   }
@@ -93,8 +93,8 @@
 
 .login-box-msg,
 .register-box-msg {
-  margin: 0;
   padding: 0 20px 20px;
+  margin: 0;
   text-align: center;
 }
 

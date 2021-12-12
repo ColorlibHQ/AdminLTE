@@ -29,8 +29,8 @@
     // Hover and active states
     &.menu-open > .nav-link,
     &:hover > .nav-link {
-      background-color: $lte-sidebar-hover-bg;
       color: $lte-sidebar-hover-color;
+      background-color: $lte-sidebar-hover-bg;
     }
 
     > .nav-link.active {
@@ -45,8 +45,8 @@
 
   // Section Heading
   .nav-header {
-    background-color: inherit;
     color: $lte-sidebar-header-color;
+    background-color: inherit;
   }
 
   // All links within the sidebar menu
@@ -68,16 +68,16 @@
 
         &:hover,
         &:focus {
-          background-color: $lte-sidebar-submenu-hover-bg;
           color: $lte-sidebar-submenu-hover-color;
+          background-color: $lte-sidebar-submenu-hover-bg;
         }
       }
 
       > .nav-link.active {
         &,
         &:hover {
-          background-color: $lte-sidebar-submenu-active-bg;
           color: $lte-sidebar-submenu-active-color;
+          background-color: $lte-sidebar-submenu-active-bg;
         }
       }
 

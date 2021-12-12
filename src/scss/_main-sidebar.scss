@@ -41,23 +41,23 @@
 // }
 
 .main-sidebar {
-  grid-area: main-sidebar;
   @include transition($lte-sidebar-transition);
   z-index: $lte-zindex-sidebar;
+  grid-area: main-sidebar;
   min-width: $lte-sidebar-width;
   max-width: $lte-sidebar-width;
 
   .nav-sidebar > .nav-item {
     > .nav-link.active {
-      background-color: var(--lte-sidebar-menu-active-bg);
       color: var(--lte-sidebar-menu-active-color);
+      background-color: var(--lte-sidebar-menu-active-bg);
     }
   }
 }
 
 .hold-transition {
   .main-sidebar {
-    animation: none !important;
     transition: none !important;
+    animation: none !important;
   }
 }

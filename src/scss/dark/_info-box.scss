@@ -1,6 +1,6 @@
 .info-box {
-  background-color: $dark-alt;
   color: $white-alt;
+  background-color: $dark-alt;
   @each $name, $color in $theme-colors-alt {
     .info-box {
       .bg-#{$name} {

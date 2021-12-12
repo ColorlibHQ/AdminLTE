@@ -6,18 +6,18 @@
   @include box-shadow($lte-card-shadow);
   @include border-radius($border-radius);
 
-  background-color: $white;
+  position: relative;
   display: flex;
-  margin-bottom: map-get($spacers, 3);
+  width: 100%;
   min-height: 80px;
   padding: .5rem;
-  position: relative;
-  width: 100%;
+  margin-bottom: map-get($spacers, 3);
+  background-color: $white;
 
   .progress {
-    background-color: rgba($black, .125);
     height: 2px;
     margin: 5px 0;
+    background-color: rgba($black, .125);
 
     .progress-bar {
       background-color: $white;
@@ -29,12 +29,12 @@
       border-radius: $border-radius;
     }
 
-    align-items: center;
     display: flex;
-    font-size: 1.875rem;
+    align-items: center;
     justify-content: center;
-    text-align: center;
     width: 70px;
+    font-size: 1.875rem;
+    text-align: center;
 
     > img {
       max-width: 100%;
@@ -43,11 +43,11 @@
 
   .info-box-content {
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: center;
-    line-height: 1.8;
-    flex: 1;
     padding: 0 10px;
+    line-height: 1.8;
   }
 
   .info-box-number {

@@ -23,8 +23,8 @@
 }
 
 .dropdown-item-title {
-  font-size: $font-size-base;
   margin: 0;
+  font-size: $font-size-base;
 }
 
 .dropdown-icon {
@@ -35,8 +35,8 @@
 
 // Dropdown Sizes
 .dropdown-menu-lg {
-  max-width: 300px;
   min-width: 280px;
+  max-width: 300px;
   padding: 0;
 
   .dropdown-divider {
@@ -60,15 +60,15 @@
   > a::after {
     @include caret-end ();
     float: right;
-    margin-left: .5rem;
     margin-top: .5rem;
+    margin-left: .5rem;
   }
 
   > .dropdown-menu {
-    left: 100%;
-    margin-left: 0;
-    margin-top: 0;
     top: 0;
+    left: 100%;
+    margin-top: 0;
+    margin-left: 0;
   }
 }
 
@@ -87,8 +87,8 @@
 
 // Dropdown Sizes
 .dropdown-menu-xl {
-  max-width: 420px;
   min-width: 360px;
+  max-width: 420px;
   padding: 0;
 
   .dropdown-divider {
@@ -109,8 +109,8 @@
 .dropdown-footer,
 .dropdown-header {
   display: block;
-  font-size: $font-size-sm;
   padding: .5rem $dropdown-item-padding-x;
+  font-size: $font-size-sm;
   text-align: center;
 }
 
@@ -142,8 +142,8 @@
         position: absolute;
         right: 5%;
         left: auto;
-        border: 1px solid #ddd;
         background-color: $white;
+        border: 1px solid #ddd;
       }
     }
   }
@@ -157,8 +157,8 @@
 
   > .dropdown-menu {
     @include border-top-radius(0);
-    padding: 0;
     width: 280px;
+    padding: 0;
 
     &,
     > .user-body {
@@ -174,8 +174,8 @@
       // User image
       > img {
         z-index: 5;
-        height: 90px;
         width: 90px;
+        height: 90px;
         border: 3px solid;
         border-color: transparent;
         border-color: rgba(255, 255, 255, .2);
@@ -183,9 +183,9 @@
 
       > p {
         z-index: 5;
+        margin-top: 10px;
         font-size: 17px;
         //text-shadow: 2px 2px 3px #333333;
-        margin-top: 10px;
 
         > small {
           display: block;
@@ -197,14 +197,14 @@
     // Menu Body
     > .user-body {
       @include clearfix ();
-      border-bottom: 1px solid $gray-700;
-      border-top: 1px solid $gray-300;
       padding: 15px;
+      border-top: 1px solid $gray-300;
+      border-bottom: 1px solid $gray-700;
 
       a {
         @include media-breakpoint-up(sm) {
-          background-color: $white !important;
           color: $gray-700 !important;
+          background-color: $white !important;
         }
       }
     }
@@ -212,8 +212,8 @@
     // Menu Footer
     > .user-footer {
       @include clearfix ();
-      background-color: $gray-100;
       padding: 10px;
+      background-color: $gray-100;
 
       .btn-default {
         color: $gray-600;
@@ -230,16 +230,16 @@
   .user-image {
     @include media-breakpoint-up(sm) {
       float: none;
-      line-height: 10px;
-      margin-right: .4rem;
       margin-top: -8px;
+      margin-right: .4rem;
+      line-height: 10px;
     }
 
-    border-radius: 50%;
     float: left;
-    height: $lte-sidebar-user-image-width;
-    // margin-right: 10px;
-    margin-top: -2px;
     width: $lte-sidebar-user-image-width;
+    height: $lte-sidebar-user-image-width;
+    margin-top: -2px;
+    // margin-right: 10px;
+    border-radius: 50%;
   }
 }

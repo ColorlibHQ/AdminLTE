@@ -17,10 +17,10 @@
   }
 
   > .description-header {
+    padding: 0;
+    margin: 0;
     font-size: 16px;
     font-weight: 600;
-    margin: 0;
-    padding: 0;
   }
 
   > .description-text {
@@ -36,31 +36,31 @@
 // List utility classes
 .list-group-unbordered {
   > .list-group-item {
+    padding-right: 0;
+    padding-left: 0;
+    border-right: 0;
     border-left: 0;
     border-radius: 0;
-    border-right: 0;
-    padding-left: 0;
-    padding-right: 0;
   }
 }
 
 .list-header {
-  color: $gray-600;
+  padding: 10px 4px;
   font-size: 15px;
   font-weight: 700;
-  padding: 10px 4px;
+  color: $gray-600;
 }
 
 .list-seperator {
-  background-color: $card-border-color;
   height: 1px;
   margin: 15px 0 9px;
+  background-color: $card-border-color;
 }
 
 .list-link {
   > a {
-    color: $gray-600;
     padding: 4px;
+    color: $gray-600;
 
     &:hover {
       color: $gray-900;
@@ -74,8 +74,8 @@
 
   img {
     float: left;
-    height: 40px;
     width: 40px;
+    height: 40px;
   }
 
   .username,
@@ -86,15 +86,15 @@
   }
 
   .username {
+    margin-top: -1px;
     font-size: 16px;
     font-weight: 600;
-    margin-top: -1px;
   }
 
   .description {
-    color: $gray-600;
-    font-size: 13px;
     margin-top: -3px;
+    font-size: 13px;
+    color: $gray-600;
   }
 
   &.user-block-sm {
@@ -123,8 +123,8 @@
 }
 
 .img-sm {
-  height: $lte-img-size-sm;
   width: $lte-img-size-sm;
+  height: $lte-img-size-sm;
 
   + .img-push {
     margin-left: $lte-img-size-sm + $lte-img-size-push;
@@ -151,13 +151,13 @@
 
 // Image bordered
 .img-bordered {
-  border: 3px solid $gray-500;
   padding: 3px;
+  border: 3px solid $gray-500;
 }
 
 .img-bordered-sm {
-  border: 2px solid $gray-500;
   padding: 2px;
+  border: 2px solid $gray-500;
 }
 
 // Rounded and Circle Images
@@ -197,35 +197,35 @@
 }
 
 .size-32 {
+  width: 32px;
   height: 32px;
   line-height: 32px;
-  width: 32px;
 }
 
 .size-40 {
+  width: 40px;
   height: 40px;
   line-height: 40px;
-  width: 40px;
 }
 
 .size-50 {
+  width: 50px;
   height: 50px;
   line-height: 50px;
-  width: 50px;
 }
 
 // General attachemnt block
 .attachment-block {
+  padding: 5px;
+  margin-bottom: 10px;
   background-color: $gray-100;
   border: 1px solid $card-border-color;
-  margin-bottom: 10px;
-  padding: 5px;
 
   .attachment-img {
     float: left;
+    max-width: 100px;
     height: auto;
     max-height: 100px;
-    max-width: 100px;
   }
 
   .attachment-pushed {
@@ -249,20 +249,20 @@
   // Box overlay for LOADING STATE effect
   > .overlay,
   > .loading-img {
-    height: 100%;
-    left: 0;
     position: absolute;
     top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
   }
 
   .overlay {
     @include border-radius($border-radius);
-    align-items: center;
-    background-color: rgba($white, .7);
-    display: flex;
-    justify-content: center;
     z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba($white, .7);
 
     > i,
     > svg,
@@ -291,13 +291,13 @@
   > .overlay-wrapper {
     position: relative;
     > .overlay {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
       flex-direction: column;
+      width: add(100%, (2 * $card-spacer-x));
+      height: add(100%, (2 * $card-spacer-x));
       margin-top: -$card-spacer-x;
       margin-left: -$card-spacer-x;
-      height: add(100%, (2 * $card-spacer-x));
-      width: add(100%, (2 * $card-spacer-x));
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
       &.dark {
         color: $white;
       }
@@ -307,58 +307,58 @@
 
 // Ribbon
 .ribbon-wrapper {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  z-index: 10;
+  width: $lte-ribbon-wrapper-size;
   height: $lte-ribbon-wrapper-size;
   overflow: hidden;
-  position: absolute;
-  right: -2px;
-  top: -2px;
-  width: $lte-ribbon-wrapper-size;
-  z-index: 10;
 
   &.ribbon-lg {
-    height: $lte-ribbon-lg-wrapper-size;
     width: $lte-ribbon-lg-wrapper-size;
+    height: $lte-ribbon-lg-wrapper-size;
 
     .ribbon {
-      right: $lte-ribbon-lg-right;
       top: $lte-ribbon-lg-top;
+      right: $lte-ribbon-lg-right;
       width: $lte-ribbon-lg-width;
     }
   }
 
   &.ribbon-xl {
-    height: $lte-ribbon-xl-wrapper-size;
     width: $lte-ribbon-xl-wrapper-size;
+    height: $lte-ribbon-xl-wrapper-size;
 
     .ribbon {
-      right: $lte-ribbon-xl-right;
       top: $lte-ribbon-xl-top;
+      right: $lte-ribbon-xl-right;
       width: $lte-ribbon-xl-width;
     }
   }
 
   .ribbon {
-    box-shadow: 0 0 $lte-ribbon-border-size rgba($black, .3);
+    position: relative;
+    top: $lte-ribbon-top;
+    right: $lte-ribbon-right;
+    width: $lte-ribbon-width;
+    padding: $lte-ribbon-padding;
     font-size: $lte-ribbon-font-size;
     line-height: $lte-ribbon-line-height;
-    padding: $lte-ribbon-padding;
-    position: relative;
-    right: $lte-ribbon-right;
     text-align: center;
     text-shadow: 0 -1px 0 rgba($black, .4);
     text-transform: uppercase;
-    top: $lte-ribbon-top;
+    box-shadow: 0 0 $lte-ribbon-border-size rgba($black, .3);
     transform: rotate(45deg);
-    width: $lte-ribbon-width;
 
     &::before,
     &::after {
-      border-left: $lte-ribbon-border-size solid transparent;
-      border-right: $lte-ribbon-border-size solid transparent;
-      border-top: $lte-ribbon-border-size solid #9e9e9e;
+      position: absolute;
       bottom: -$lte-ribbon-border-size;
       content: "";
-      position: absolute;
+      border-top: $lte-ribbon-border-size solid #9e9e9e;
+      border-right: $lte-ribbon-border-size solid transparent;
+      border-left: $lte-ribbon-border-size solid transparent;
     }
 
     &::before {
@@ -373,9 +373,9 @@
 
 // Scroll To Top
 .back-to-top {
-  bottom: 1.25rem;
   position: fixed;
   right: 1.25rem;
+  bottom: 1.25rem;
   z-index: $lte-zindex-control-sidebar + 1;
 
   &:focus {
@@ -390,10 +390,10 @@ pre {
 
 // Blockquotes styles
 blockquote {
+  padding: .5em .7rem;
+  margin: 1.5em .7rem;
   background-color: $white;
   border-left: .7rem solid $primary;
-  margin: 1.5em .7rem;
-  padding: .5em .7rem;
 
   .box & {
     background-color: $gray-200;
@@ -409,9 +409,9 @@ blockquote {
   h4,
   h5,
   h6 {
-    color: $primary;
     font-size: 1.25rem;
     font-weight: 600;
+    color: $primary;
   }
 
   @each $color, $value in $theme-colors {
@@ -449,26 +449,26 @@ blockquote {
 // Tab Custom Content
 
 .tab-custom-content {
-  border-top: $nav-tabs-border-width solid $nav-tabs-border-color;
-  margin-top: .5rem;
   padding-top: .5rem;
+  margin-top: .5rem;
+  border-top: $nav-tabs-border-width solid $nav-tabs-border-color;
 }
 
 .nav + .tab-custom-content {
-  border-top: none;
-  border-bottom: $nav-tabs-border-width solid $nav-tabs-border-color;
+  padding-bottom: .5rem;
   margin-top: 0;
   margin-bottom: .5rem;
-  padding-bottom: .5rem;
+  border-top: none;
+  border-bottom: $nav-tabs-border-width solid $nav-tabs-border-color;
 }
 
 
 // Badge BTN Style
 .badge-btn {
-  border-radius: $lte-button-border-radius-xs;
+  padding: $lte-button-padding-y-xs * 2 $lte-button-padding-x-xs * 2;
   font-size: $lte-button-font-size-xs;
   font-weight: 400;
-  padding: $lte-button-padding-y-xs * 2 $lte-button-padding-x-xs * 2;
+  border-radius: $lte-button-border-radius-xs;
 }
 
 .badge-btn.badge-pill {

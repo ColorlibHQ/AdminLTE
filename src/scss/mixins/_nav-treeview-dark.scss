@@ -29,8 +29,8 @@
     &.menu-open > .nav-link,
     &:hover > .nav-link,
     > .nav-link:focus  {
-      background-color: $lte-sidebar-hover-bg;
       color: $lte-sidebar-hover-color;
+      background-color: $lte-sidebar-hover-bg;
     }
 
     > .nav-link.active {
@@ -45,8 +45,8 @@
 
   // Section Heading
   .nav-header {
-    background-color: inherit; //darken($lte-sidebar-bg, 3%);
     color: $lte-sidebar-header-color;
+    background-color: inherit; //darken($lte-sidebar-bg, 3%);
   }
 
   // All links within the sidebar menu
@@ -69,8 +69,8 @@
 
         &:hover,
         &:focus {
-          background-color: $lte-sidebar-submenu-hover-bg;
           color: $lte-sidebar-submenu-hover-color;
+          background-color: $lte-sidebar-submenu-hover-bg;
         }
       }
 
@@ -78,8 +78,8 @@
         &,
         &:hover,
         &:focus {
-          background-color: $lte-sidebar-submenu-active-bg;
           color: $lte-sidebar-submenu-active-color;
+          background-color: $lte-sidebar-submenu-active-bg;
         }
       }
     }

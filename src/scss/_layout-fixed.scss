@@ -1,11 +1,11 @@
 @include media-breakpoint-up(lg) {
   .layout-fixed:not(.sidebar-horizontal) {
     .main-sidebar {
-      bottom: 0;
-      float: none;
-      left: 0;
       position: fixed;
       top: auto;
+      bottom: 0;
+      left: 0;
+      float: none;
 
       .sidebar {
         height: subtract(100vh, add($lte-main-header-height-inner, $lte-main-header-bottom-border-width));

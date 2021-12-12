@@ -10,12 +10,12 @@
   // fixed table head
   &.table-head-fixed {
     thead tr:nth-child(1) th {
-      background-color: $white;
-      border-bottom: 0;
-      box-shadow: inset 0 1px 0 $table-border-color, inset 0 -1px 0 $table-border-color;
       position: sticky;
       top: 0;
       z-index: 10;
+      background-color: $white;
+      border-bottom: 0;
+      box-shadow: inset 0 1px 0 $table-border-color, inset 0 -1px 0 $table-border-color;
     }
 
     // TODO: add $table-dark
@@ -102,8 +102,8 @@
 
 .expandable-body {
   > td {
-    padding: 0 !important;
     width: 100%;
+    padding: 0 !important;
 
     > div,
     > p {

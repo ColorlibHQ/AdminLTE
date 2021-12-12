@@ -5,19 +5,19 @@
 
 @keyframes flipInX {
   0% {
-    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-    transition-timing-function: ease-in;
     opacity: 0;
+    transition-timing-function: ease-in;
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
   }
 
   40% {
-    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
     transition-timing-function: ease-in;
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
   }
 
   60% {
-    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
     opacity: 1;
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
   }
 
   80% {

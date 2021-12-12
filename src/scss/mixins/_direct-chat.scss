@@ -5,9 +5,9 @@
 // Direct Chat Variant
 @mixin direct-chat-variant($bg-color, $color: $white) {
   .end > .direct-chat-text {
+    color: color-contrast($bg-color);
     background-color: $bg-color;
     border-color: $bg-color;
-    color: color-contrast($bg-color);
 
     &::after,
     &::before {

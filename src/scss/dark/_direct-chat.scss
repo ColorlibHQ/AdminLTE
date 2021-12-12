@@ -1,7 +1,7 @@
 .direct-chat-text {
+  color: $white-alt;
   background-color: $gray-800-alt;
   border-color: tint-color($gray-800-alt, 10%);
-  color: $white-alt;
 
   &::after,
   &::before {
@@ -21,8 +21,8 @@
 }
 
 .direct-chat-contacts {
-  background-color: $gray-800-alt;
   color: $white-alt;
+  background-color: $gray-800-alt;
 }
 
 .direct-chat-contacts-light {

@@ -34,10 +34,10 @@
   .nav-sidebar .nav-link p,
   .brand-link {
     margin-left: -10px;
+    visibility: hidden;
     animation-name: fadeOut;
     animation-duration: $lte-transition-speed;
     animation-fill-mode: both;
-    visibility: hidden;
   }
 
   &.sidebar-is-hover {
@@ -57,10 +57,10 @@
     .nav-sidebar .nav-link p,
     .brand-link {
       margin-left: 0;
+      visibility: visible;
       animation-name: fadeIn;
       animation-duration: $lte-transition-speed;
       animation-fill-mode: both;
-      visibility: visible;
     }
   }
 }

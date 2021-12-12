@@ -7,14 +7,14 @@
 
   > li {
     float: left;
+    width: 25%;
     padding: 10px;
     text-align: center;
-    width: 25%;
 
     img {
       @include border-radius(50%);
-      height: auto;
       max-width: 100%;
+      height: auto;
     }
 
     > a:hover {
@@ -32,14 +32,14 @@
 }
 
 .users-list-name {
-  color: $gray-700;
-  font-size: $font-size-sm;
   overflow: hidden;
+  font-size: $font-size-sm;
+  color: $gray-700;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .users-list-date {
-  color: shade-color($gray-500, 20%);
   font-size: 12px;
+  color: shade-color($gray-500, 20%);
 }

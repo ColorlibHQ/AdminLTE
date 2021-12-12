@@ -13,23 +13,23 @@
 }
 
 .bg-gray {
-  background-color: $gray-500;
   color: color-contrast($gray-500);
+  background-color: $gray-500;
 }
 
 .bg-gray-light {
-  background-color: tint-color($gray-200, 3%);
   color: color-contrast(tint-color($gray-200, 3%)) !important;
+  background-color: tint-color($gray-200, 3%);
 }
 
 .bg-black {
-  background-color: $black;
   color: color-contrast($black) !important;
+  background-color: $black;
 }
 
 .bg-white {
-  background-color: $white;
   color: color-contrast($white) !important;
+  background-color: $white;
 }
 
 // Backgrund Color Disabled

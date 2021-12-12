@@ -6,9 +6,9 @@
   @include border-radius($border-radius);
   @include box-shadow($lte-card-shadow);
 
+  position: relative;
   display: block;
   margin-bottom: 1.25rem;
-  position: relative;
 
   // content wrapper
   > .inner {
@@ -16,26 +16,26 @@
   }
 
   > .small-box-footer {
-    background-color: rgba($black, .1);
-    color: rgba($white, .8);
+    position: relative;
+    z-index: 10;
     display: block;
     padding: 3px 0;
-    position: relative;
+    color: rgba($white, .8);
     text-align: center;
     text-decoration: none;
-    z-index: 10;
+    background-color: rgba($black, .1);
 
     &:hover {
-      background-color: rgba($black, .15);
       color: $white;
+      background-color: rgba($black, .15);
     }
   }
 
   h3 {
     @include font-size(2.2rem);
-    font-weight: 700;
-    margin: 0 0 10px;
     padding: 0;
+    margin: 0 0 10px;
+    font-weight: 700;
     white-space: nowrap;
   }
 
@@ -79,10 +79,10 @@
     font-size: 1rem;
 
     > small {
-      color: $gray-100;
       display: block;
-      font-size: .9rem;
       margin-top: 5px;
+      font-size: .9rem;
+      color: $gray-100;
     }
   }
 
@@ -93,27 +93,27 @@
 
   // the icon
   .icon {
-    color: rgba($black, .15);
     z-index: 0;
+    color: rgba($black, .15);
 
     > i {
-      font-size: 90px;
       position: absolute;
-      right: 15px;
       top: 15px;
+      right: 15px;
+      font-size: 90px;
       transition: transform $lte-transition-speed linear;
 
       &.inner-icon {
-        font-size: 70px;
         top: 20px;
+        font-size: 70px;
       }
     }
 
     svg {
-      font-size: 70px;
       position: absolute;
-      right: 15px;
       top: 15px;
+      right: 15px;
+      font-size: 70px;
       transition: transform $lte-transition-speed linear;
     }
   }

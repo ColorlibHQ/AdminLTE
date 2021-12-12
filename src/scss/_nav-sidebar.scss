@@ -16,8 +16,8 @@
   .nav-link > .end,
   .nav-link > p > .end {
     position: absolute;
-    right: 1rem;
     top: .7rem;
+    right: 1rem;
   }
 
   .nav-link {
@@ -37,15 +37,15 @@
   }
 
   .nav-header {
-    font-size: .9rem;
     padding: $nav-link-padding-y ($nav-link-padding-y * 1.5);
+    font-size: .9rem;
   }
 
   // Tree view menu
   .nav-treeview {
     display: none;
-    list-style: none;
     padding: 0;
+    list-style: none;
   }
 
   .menu-open {

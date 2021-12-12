@@ -6,17 +6,17 @@
         "main-sidebar"
         "content-wrapper"
         "main-footer";
-      grid-template-columns: auto;
       grid-template-rows: max-content max-content auto max-content;
+      grid-template-columns: auto;
     }
 
     .main-sidebar {
+      z-index: $lte-zindex-sidebar-horizontal;
       display: grid;
-      height: $lte-sidebar-horizontal-height;
+      justify-content: start;
       min-width: $lte-sidebar-horizontal-width;
       max-width: $lte-sidebar-horizontal-width;
-      justify-content: start;
-      z-index: $lte-zindex-sidebar-horizontal;
+      height: $lte-sidebar-horizontal-height;
     }
 
     .brand-container {
@@ -32,9 +32,9 @@
 
       .nav-sidebar {
         display: grid;
-        list-style-type: none;
         grid-auto-columns: 130px;
         grid-auto-flow: column;
+        list-style-type: none;
         // grid-gap: 5px;
 
         .nav-header {
@@ -47,8 +47,8 @@
           justify-content: center;
 
           .nav-icon {
-            text-align: center;
             padding-left: 0;
+            text-align: center;
           }
 
           p {

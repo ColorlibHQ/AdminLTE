@@ -9,8 +9,8 @@
   $lte-header-mobile-color
 ) {
   .main-header {
-    background-color: $lte-header-bg;
     color: $lte-header-color;
+    background-color: $lte-header-bg;
 
     .nav-link {
       color: $dark;
@@ -24,8 +24,8 @@
 
   @include media-breakpoint-down(lg) {
     .main-header {
-      background-color: $lte-header-mobile-bg;
       color: $lte-header-mobile-color;
+      background-color: $lte-header-mobile-bg;
     }
   }
 }

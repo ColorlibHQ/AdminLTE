@@ -4,15 +4,16 @@
 
 .wrapper {
   position: relative;
-  align-content: stretch;
-  align-items: stretch;
   display: grid;
-  grid-gap: 0;
   grid-template-areas:
     "main-sidebar main-header"
     "main-sidebar content-wrapper"
     "main-sidebar main-footer";
-  grid-template-columns: auto minmax(100%, max-content);
   grid-template-rows: min-content 100% min-content;
+  grid-template-columns: auto minmax(100%, max-content);
+  grid-gap: 0;
+  align-content: stretch;
+  align-items: stretch;
+
   min-height: 100vh;
 }

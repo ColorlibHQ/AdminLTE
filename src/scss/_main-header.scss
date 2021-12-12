@@ -10,24 +10,24 @@
 );
 
 .main-header {
+  z-index: $lte-zindex-main-header;
   grid-area: main-header;
   border-bottom: $lte-main-header-bottom-border;
-  z-index: $lte-zindex-main-header;
 
   .nav-link {
-    height: $nav-link-height;
     position: relative;
+    height: $nav-link-height;
   }
 }
 
 // Navbar badge
 .navbar-badge {
+  position: absolute;
+  top: 9px;
+  right: 5px;
+  padding: 2px 4px;
   font-size: .6rem;
   font-weight: 300;
-  padding: 2px 4px;
-  position: absolute;
-  right: 5px;
-  top: 9px;
 }
 
 .layout-navbar-fixed {
