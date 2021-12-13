@@ -242,7 +242,7 @@ select.form-control-sm ~ {
 
       .select2-selection__rendered {
         padding: 0 $input-padding-x-sm * .5 $input-padding-y-sm;
-        margin-top: -divide($input-padding-x-sm, 5);
+        margin-top: -($input-padding-x-sm * .2);
 
         li:first-child.select2-search.select2-search--inline {
           margin-left: $input-padding-x-sm * .5;
