@@ -28,7 +28,7 @@ To compile the dist files you need Node.js/npm, clone/download the repo then:
 1. `npm install` (install npm deps)
 2. `npm install gulp-cli -g` (install gulp-cli globally)
 3. _Optional:_ `gulp` (developer mode, autocompile with browsersync support for live demo)
-4. `gulp build` (compile css/js files)
+4. `gulp compile` (compile css/js files)
 
 
 ## Contributing
