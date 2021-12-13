@@ -10,7 +10,7 @@
     "main-sidebar content-wrapper"
     "main-sidebar main-footer";
   grid-template-rows: min-content 100% min-content;
-  grid-template-columns: auto minmax(100%, max-content);
+  grid-template-columns: auto 1fr;
   grid-gap: 0;
   align-content: stretch;
   align-items: stretch;
