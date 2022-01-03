@@ -135,7 +135,7 @@
     "bundlewatch": "^0.3.2",
     "clean-css-cli": "^5.4.2",
     "concurrently": "^6.4.0",
-    "eslint": "^8.4.0",
+    "eslint": "^8.6.0",
     "eslint-config-xo": "^0.39.0",
     "eslint-plugin-compat": "^4.0.0",
     "eslint-plugin-import": "^2.25.3",
