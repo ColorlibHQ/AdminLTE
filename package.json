@@ -58,7 +58,7 @@
     "gulp-if": "^3.0.0",
     "gulp-postcss": "^9.0.1",
     "gulp-rename": "^2.0.0",
-    "gulp-sass": "^5.0.0",
+    "gulp-sass": "^5.1.0",
     "gulp-stylelint": "^13.0.0",
     "gulp-terser": "^2.1.0",
     "lockfile-lint": "^4.6.2",
