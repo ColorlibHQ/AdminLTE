@@ -67,7 +67,7 @@ class Layout {
 
     const heights = {
       window: $(window).height(),
-      header: $(SELECTOR_HEADER).length > 0 && !$('body').hasClass('layout-navbar-fixed') ? $(SELECTOR_HEADER).outerHeight() : 0,
+      header: $(SELECTOR_HEADER).length > 0 ? $(SELECTOR_HEADER).outerHeight() : 0,
       footer: $(SELECTOR_FOOTER).length > 0 ? $(SELECTOR_FOOTER).outerHeight() : 0,
       sidebar: $(SELECTOR_SIDEBAR).length > 0 ? $(SELECTOR_SIDEBAR).height() : 0,
       controlSidebar
