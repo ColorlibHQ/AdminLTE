@@ -231,8 +231,8 @@ html.maximized-card {
     .input-group,
     .nav,
     .pagination {
-      margin-top: -$card-spacer-y & .4;
-      margin-bottom: -$card-spacer-y & .4;
+      margin-top: -$card-spacer-y * .4;
+      margin-bottom: -$card-spacer-y * .4;
     }
 
     [data-bs-toggle="tooltip"] {
