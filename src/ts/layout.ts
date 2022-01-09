@@ -17,18 +17,6 @@ import {
 
 const CLASS_NAME_HOLD_TRANSITIONS = 'hold-transition'
 
-const SELECTOR_SIDEBAR = '.sidebar'
-
-const Default = {
-  scrollbarTheme: 'os-theme-light',
-  scrollbarAutoHide: 'leave'
-}
-
-interface Config {
-  scrollbarTheme: string;
-  scrollbarAutoHide: string;
-}
-
 /**
  * Class Definition
  * ====================================================
@@ -36,15 +24,15 @@ interface Config {
 
 class Layout {
   _element: HTMLElement
-  _config: Config
+  _config: undefined
 
-  constructor(element: HTMLElement, config: Config) {
+  constructor(element: HTMLElement, config: undefined) {
     this._element = element
-    this._config = { ...Default, ...config }
+    this._config = config as unknown as undefined
   }
 
   holdTransition(): void {
-    let resizeTimer: number | undefined
+    let resizeTimer: ReturnType<typeof setTimeout>
     window.addEventListener('resize', () => {
       document.body.classList.add(CLASS_NAME_HOLD_TRANSITIONS)
       clearTimeout(resizeTimer)
@@ -56,23 +44,8 @@ class Layout {
 }
 
 domReady(() => {
-  const data = new Layout(document.body, Default)
+  const data = new Layout(document.body, undefined)
   data.holdTransition()
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  if (typeof OverlayScrollbars !== 'undefined') {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    OverlayScrollbars(document.querySelectorAll(SELECTOR_SIDEBAR), { // eslint-disable-line new-cap
-      className: Default.scrollbarTheme,
-      sizeAutoCapable: true,
-      scrollbars: {
-        autoHide: Default.scrollbarAutoHide,
-        clickScrolling: true
-      }
-    })
-  }
 })
 
 export default Layout
