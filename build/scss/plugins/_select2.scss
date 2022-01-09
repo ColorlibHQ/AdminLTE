@@ -218,7 +218,7 @@
 // text-sm / form-control-sm override
 select.form-control-sm ~ {
   .select2-container--default {
-    font-size: $font-size-sm;
+    font-size: 75%;
   }
 }
 
