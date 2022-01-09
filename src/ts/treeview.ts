@@ -47,16 +47,14 @@ interface Config {
 class Treeview {
   _element: HTMLElement
   _config: Config
-  _navItem: HTMLElement | null
-  _childNavItem: HTMLElement | null | undefined
+  _navItem: HTMLElement | undefined
+  _childNavItem: HTMLElement | undefined | undefined
 
   constructor(element: HTMLElement, config: Config) {
     this._element = element
-
-    this._navItem = this._element?.closest(SELECTOR_NAV_ITEM)
-    this._childNavItem = this._navItem?.querySelector(SELECTOR_TREEVIEW_MENU)
-
     this._config = { ...Default, ...config }
+    this._navItem = this._element?.closest(SELECTOR_NAV_ITEM) as HTMLElement | undefined
+    this._childNavItem = this._navItem?.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
   }
 
   open(): void {

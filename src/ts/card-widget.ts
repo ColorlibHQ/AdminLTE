@@ -55,11 +55,11 @@ interface Config {
 
 class CardWidget {
   _element: HTMLElement
-  _parent: HTMLElement | null
+  _parent: HTMLElement | undefined
   _config: Config
   constructor(element: HTMLElement, config: Config) {
     this._element = element
-    this._parent = element.closest(SELECTOR_CARD)
+    this._parent = element.closest(SELECTOR_CARD) as HTMLElement | undefined
 
     if (element.classList.contains(CLASS_NAME_CARD)) {
       this._parent = element

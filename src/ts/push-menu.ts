@@ -46,10 +46,10 @@ const Defaults = {
  */
 
 class PushMenu {
-  _element: HTMLElement | null
-  _config: null
+  _element: HTMLElement | undefined
+  _config: undefined
   _bodyClass: DOMTokenList
-  constructor(element: HTMLElement | null, config: null) {
+  constructor(element: HTMLElement | undefined, config: undefined) {
     this._element = element
 
     const bodyElement = document.body as HTMLBodyElement
@@ -207,7 +207,7 @@ class PushMenu {
  */
 
 domReady(() => {
-  const data = new PushMenu(null, null)
+  const data = new PushMenu(undefined, undefined)
   data.init()
 
   window.addEventListener('resize', () => {
@@ -220,14 +220,14 @@ domReady(() => {
     btn.addEventListener('click', event => {
       event.preventDefault()
 
-      let button = event.currentTarget as HTMLElement | null | undefined
+      let button = event.currentTarget as HTMLElement | undefined
 
       if (button?.dataset.lteToggle !== 'sidebar-full') {
-        button = button?.closest(SELECTOR_FULL_TOGGLE)
+        button = button?.closest(SELECTOR_FULL_TOGGLE) as HTMLElement | undefined
       }
 
       if (button) {
-        const data = new PushMenu(button, null)
+        const data = new PushMenu(button, undefined)
         data.toggleFull()
       }
     })
@@ -239,13 +239,13 @@ domReady(() => {
     btn.addEventListener('click', event => {
       event.preventDefault()
 
-      let button = event.currentTarget as HTMLElement | null | undefined
+      let button = event.currentTarget as HTMLElement | undefined
       if (button?.dataset.lteToggle !== 'sidebar-mini') {
-        button = button?.closest(SELECTOR_FULL_TOGGLE)
+        button = button?.closest(SELECTOR_FULL_TOGGLE) as HTMLElement | undefined
       }
 
       if (button) {
-        const data = new PushMenu(button, null)
+        const data = new PushMenu(button, undefined)
         data.toggleMini()
       }
     })
