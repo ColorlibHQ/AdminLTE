@@ -1167,6 +1167,17 @@
   }
 }
 
+.sidebar-hidden,
+.sidebar-hidden.sidebar-mini.sidebar-collapse {
+  .main-sidebar {
+    display: none !important;
+  }
+  .content-wrapper,
+  .main-header {
+    margin-left: 0 !important;
+  }
+}
+
 @include dark-mode() {
   @each $name, $color in $theme-colors-alt {
     .sidebar-dark-#{$name},
