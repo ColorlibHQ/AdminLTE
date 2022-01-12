@@ -102,7 +102,7 @@
     "fs-extra": "^10.0.0",
     "fullcalendar": "^5.10.1",
     "icheck-bootstrap": "^3.0.1",
-    "inputmask": "^5.0.6",
+    "inputmask": "^5.0.7",
     "ion-rangeslider": "^2.3.1",
     "jquery": "^3.6.0",
     "jquery-knob-chif": "^1.2.13",
