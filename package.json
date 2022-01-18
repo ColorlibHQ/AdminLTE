@@ -134,7 +134,7 @@
     "browser-sync": "^2.27.7",
     "bundlewatch": "^0.3.2",
     "clean-css-cli": "^5.5.0",
-    "concurrently": "^6.4.0",
+    "concurrently": "^7.0.0",
     "eslint": "^8.7.0",
     "eslint-config-xo": "^0.39.0",
     "eslint-plugin-compat": "^4.0.1",
