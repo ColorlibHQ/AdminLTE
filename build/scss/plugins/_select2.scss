@@ -123,12 +123,12 @@
       }
 
       .select2-selection__rendered {
-        padding: 0 $input-padding-x / 2 $input-padding-y;
-        margin-bottom: -$input-padding-x / 2;
+        padding: 0 $input-padding-x * 0.5 $input-padding-y;
+        margin-bottom: -$input-padding-x * 0.5;
 
         li:first-child.select2-search.select2-search--inline {
           width: 100%;
-          margin-left: $input-padding-x / 2;
+          margin-left: $input-padding-x * 0.5;
 
           .select2-search__field {
             width: 100% !important;
@@ -241,11 +241,11 @@ select.form-control-sm ~ {
       min-height: $input-height-sm;
 
       .select2-selection__rendered {
-        padding: 0 $input-padding-x-sm / 2 $input-padding-y-sm;
-        margin-top: -($input-padding-x-sm / 5);
+        padding: 0 $input-padding-x-sm * 0.5 $input-padding-y-sm;
+        margin-top: -($input-padding-x-sm * .2);
 
         li:first-child.select2-search.select2-search--inline {
-          margin-left: $input-padding-x-sm / 2;
+          margin-left: $input-padding-x-sm * 0.5;
         }
 
         .select2-search.select2-search--inline {
