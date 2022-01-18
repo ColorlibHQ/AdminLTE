@@ -213,7 +213,7 @@ html.maximized-card {
 .card-header {
   background-color: transparent;
   border-bottom: 1px solid $card-border-color;
-  padding: (($card-spacer-y / 2) * 2) $card-spacer-x;
+  padding: (($card-spacer-y * .5) * 2) $card-spacer-x;
   position: relative;
 
   @if $enable-rounded {
@@ -226,13 +226,13 @@ html.maximized-card {
 
   > .card-tools {
     float: right;
-    margin-right: -$card-spacer-x / 2;
+    margin-right: -$card-spacer-x * .5;
 
     .input-group,
     .nav,
     .pagination {
-      margin-bottom: -$card-spacer-y / 2.5;
-      margin-top: -$card-spacer-y / 2.5;
+      margin-bottom: -$card-spacer-y * .4;
+      margin-top: -$card-spacer-y * .4;
     }
 
     [data-toggle="tooltip"] {
@@ -258,7 +258,7 @@ html.maximized-card {
   background-color: transparent;
   color: $gray-500;
   font-size: $font-size-sm;
-  margin: -(($card-spacer-y / 2) * 2) 0;
+  margin: -(($card-spacer-y * .5) * 2) 0;
   padding: .25rem .5rem;
 
   .btn-group.show &,
