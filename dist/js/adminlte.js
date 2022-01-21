@@ -2324,7 +2324,7 @@
       }
 
       var groupItemElement = $__default['default']('<a/>', {
-        href: link,
+        href: decodeURIComponent(link),
         class: 'list-group-item'
       });
       var searchTitleElement = $__default['default']('<div/>', {
