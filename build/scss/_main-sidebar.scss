@@ -862,7 +862,7 @@
     animation-fill-mode: both;
   }
 
-  .sidebar-collapse .sidebar & {
+  .sidebar-collapse .sidebar:not(:hover) & {
     .menu-open > .nav-treeview {
       max-height: 0;
       animation-name: fadeOut;

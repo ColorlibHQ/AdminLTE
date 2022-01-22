@@ -278,9 +278,6 @@
 
       &.sidebar-focused,
       &:hover {
-        .nav-link {
-          width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2);
-        }
         &:not(.hide-nav-header-on-hover) {
           .nav-header {
             display: inline-block;
@@ -289,6 +286,9 @@
 
         // Show sidebar search when hover/focus on the sidebar mini mode.
         &:not(.sidebar-no-expand) {
+          .nav-link {
+            width: calc(#{$sidebar-width} - #{$sidebar-padding-x} * 2);
+          }
           .form-control-sidebar {
             display: inline-block;
           }
@@ -462,6 +462,7 @@
           animation-duration: $transition-speed;
           animation-fill-mode: both;
           visibility: hidden;
+          display: inline-block;
           width: 0;
         }
 
