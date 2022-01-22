@@ -20,6 +20,7 @@ Thanks to many of AdminLTE users, there are multiple implementations of the temp
 - [ASP.NET Core MVC / Angular Startup Project](https://github.com/aspnetboilerplate/module-zero-core-template) by [ASP.NET Boilerplate](https://github.com/aspnetboilerplate)
 - [AdminLTE-3-CakePHP](https://github.com/arodu/cakelte) by [arodu](https://github.com/arodu)
 - [AdminLTE-3 for Lua Server Pages](https://github.com/RealTimeLogic/LSP-Examples/tree/master/Dashboard) by [Real Time Logic](https://github.com/RealTimeLogic/)
+- [yii2-adminlte3](https://github.com/hail812/yii2-adminlte3) by [hail812](https://github.com/hail812)
 
 ##### AdminLTE v2.4
 {: .text-bold .text-dark .mt-3}
