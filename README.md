@@ -34,52 +34,24 @@ Legacy Releases are [AdminLTE 2](https://github.com/ColorlibHQ/AdminLTE/releases
 ### Grab from [jsdelivr](https://www.jsdelivr.com/package/npm/admin-lte) CDN:
 _**Important Note**: You needed to add separately cdn links for plugins in your project._
 ```html
-<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
 ```
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
 ```
 ### Using The Command Line:
 _**Important Note**: To install it via npm/Yarn, you need at least Node.js 14 or higher._
 #### Via npm
 ```bash
-npm install admin-lte@^3.1 --save
+npm install admin-lte@^3.2 --save
 ```
 #### Via Yarn
 ```bash
-yarn add admin-lte@^3.1
+yarn add admin-lte@^3.2
 ```
 #### Via Composer
 ```bash
-composer require "almasaeed2010/adminlte=~3.1"
-```
-#### Via Git
-```bash
-git clone https://github.com/ColorlibHQ/AdminLTE.git
-```
-
-## Unstable release
-### Grab from [jsdelivr](https://www.jsdelivr.com/package/npm/admin-lte) CDN:
-_**Important Note**: You needed to add separately cdn links for plugins in your project._
-```html
-<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/js/adminlte.min.js"></script>
-```
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css">
-```
-### Using The Command Line:
-_**Important Note**: To install it via npm/Yarn, you need at least Node.js 14 or higher._
-#### Via npm
-```bash
-npm install admin-lte@^3.1.0 --save
-```
-#### Via Yarn
-```bash
-yarn add admin-lte@^3.1.0
-```
-#### Via Composer
-```bash
-composer require "almasaeed2010/adminlte=~3.1.0"
+composer require "almasaeed2010/adminlte=~3.2"
 ```
 #### Via Git
 ```bash
@@ -88,7 +60,7 @@ git clone https://github.com/ColorlibHQ/AdminLTE.git
 
 ## Documentation
 
-Visit the [online documentation](https://adminlte.io/docs/3.1/) for the most
+Visit the [online documentation](https://adminlte.io/docs/3.2/) for the most
 updated guide. Information will be added on a weekly basis.
 
 ## Browsers support
@@ -97,7 +69,13 @@ updated guide. Information will be added on a weekly basis.
 | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
 | IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions
 
-### Compile dist files
+## Light Mode (Only Dark Mode Removed)
+You can use light-mode-only version, if you are not using dark mode and also file size less without dark-mode.
+
+File Location `./dist/css/alt/adminlte.light.css`
+
+
+## Compile dist files
 
 To compile the dist files you need Node.js/npm, clone/download the repo then:
 
