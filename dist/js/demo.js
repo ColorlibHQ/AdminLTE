@@ -31,9 +31,6 @@
       var $default = $('<option />', {
         text: 'None Selected'
       })
-      if (callback) {
-        $default.on('click', callback)
-      }
 
       $block.append($default)
     }
@@ -45,13 +42,10 @@
       })
 
       $block.append($color)
-
-      $color.data('color', color)
-
-      if (callback) {
-        $color.on('click', callback)
-      }
     })
+    if (callback) {
+      $block.on('change', callback)
+    }
 
     return $block
   }
@@ -510,21 +504,21 @@
   })
   var navbar_all_colors = navbar_dark_skins.concat(navbar_light_skins)
   var $navbar_variants_colors = createSkinBlock(navbar_all_colors, function () {
-    var color = $(this).data('color')
+    var color = $(this).find('option:selected').attr('class')
     var $main_header = $('.main-header')
     $main_header.removeClass('navbar-dark').removeClass('navbar-light')
     navbar_all_colors.forEach(function (color) {
       $main_header.removeClass(color)
     })
 
-    $(this).parent().removeClass().addClass('custom-select mb-3 text-light border-0 ')
+    $(this).removeClass().addClass('custom-select mb-3 text-light border-0 ')
 
     if (navbar_dark_skins.indexOf(color) > -1) {
       $main_header.addClass('navbar-dark')
-      $(this).parent().addClass(color).addClass('text-light')
+      $(this).addClass(color).addClass('text-light')
     } else {
       $main_header.addClass('navbar-light')
-      $(this).parent().addClass(color)
+      $(this).addClass(color)
     }
 
     $main_header.addClass(color)
@@ -552,14 +546,15 @@
   })
   $container.append($accent_variants)
   $container.append(createSkinBlock(accent_colors, function () {
-    var color = $(this).data('color')
-    var accent_class = color
+    var color = $(this).find('option:selected').attr('class')
     var $body = $('body')
     accent_colors.forEach(function (skin) {
       $body.removeClass(skin)
     })
 
-    $body.addClass(accent_class)
+    var accent_color_class = color.replace('bg-', 'accent-')
+
+    $body.addClass(accent_color_class)
   }, true))
 
   var active_accent_color = null
@@ -578,7 +573,7 @@
   })
   $container.append($sidebar_variants_dark)
   var $sidebar_dark_variants = createSkinBlock(sidebar_colors, function () {
-    var color = $(this).data('color')
+    var color = $(this).find('option:selected').attr('class')
     var sidebar_class = 'sidebar-dark-' + color.replace('bg-', '')
     var $sidebar = $('.main-sidebar')
     sidebar_skins.forEach(function (skin) {
@@ -586,7 +581,7 @@
       $sidebar_light_variants.removeClass(skin.replace('sidebar-dark-', 'bg-')).removeClass('text-light')
     })
 
-    $(this).parent().removeClass().addClass('custom-select mb-3 text-light border-0').addClass(color)
+    $(this).removeClass().addClass('custom-select mb-3 text-light border-0').addClass(color)
 
     $sidebar_light_variants.find('option').prop('selected', false)
     $sidebar.addClass(sidebar_class)
@@ -611,7 +606,7 @@
   })
   $container.append($sidebar_variants_light)
   var $sidebar_light_variants = createSkinBlock(sidebar_colors, function () {
-    var color = $(this).data('color')
+    var color = $(this).find('option:selected').attr('class')
     var sidebar_class = 'sidebar-light-' + color.replace('bg-', '')
     var $sidebar = $('.main-sidebar')
     sidebar_skins.forEach(function (skin) {
@@ -619,7 +614,7 @@
       $sidebar_dark_variants.removeClass(skin.replace('sidebar-light-', 'bg-')).removeClass('text-light')
     })
 
-    $(this).parent().removeClass().addClass('custom-select mb-3 text-light border-0').addClass(color)
+    $(this).removeClass().addClass('custom-select mb-3 text-light border-0').addClass(color)
 
     $sidebar_dark_variants.find('option').prop('selected', false)
     $sidebar.addClass(sidebar_class)
@@ -657,7 +652,7 @@
   })
 
   var $brand_variants = createSkinBlock(logo_skins, function () {
-    var color = $(this).data('color')
+    var color = $(this).find('option:selected').attr('class')
     var $logo = $('.brand-link')
 
     if (color === 'navbar-light' || color === 'navbar-white') {
@@ -671,9 +666,9 @@
     })
 
     if (color) {
-      $(this).parent().removeClass().addClass('custom-select mb-3 border-0').addClass(color).addClass(color !== 'navbar-light' && color !== 'navbar-white' ? 'text-light' : '')
+      $(this).removeClass().addClass('custom-select mb-3 border-0').addClass(color).addClass(color !== 'navbar-light' && color !== 'navbar-white' ? 'text-light' : '')
     } else {
-      $(this).parent().removeClass().addClass('custom-select mb-3 border-0')
+      $(this).removeClass().addClass('custom-select mb-3 border-0')
     }
 
     $logo.addClass(color)

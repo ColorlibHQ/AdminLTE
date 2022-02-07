@@ -5,10 +5,6 @@ table.dataTable.fixedHeader-locked {
   margin-bottom: 0 !important;
 }
 
-table.dataTable.fixedHeader-floating {
-  position: fixed !important;
-}
-
 table.dataTable.fixedHeader-locked {
   position: absolute !important;
 }

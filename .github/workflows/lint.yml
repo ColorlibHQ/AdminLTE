@@ -11,7 +11,7 @@ on:
 
 env:
   FORCE_COLOR: 2
-  NODE: 14.x
+  NODE: 16.x
 
 jobs:
   run:

@@ -1,5 +1,6 @@
 version: 2
 updates:
+  # for master branch
   - package-ecosystem: npm
     directory: "/"
     schedule:
@@ -7,7 +8,12 @@ updates:
       day: monday
       time: "03:00"
     open-pull-requests-limit: 10
+    target-branch: "master"
+    labels:
+      - dependencies
+      - version:3.1.x
     versioning-strategy: increase
+    rebase-strategy: disabled
   - package-ecosystem: bundler
     directory: "/docs/"
     schedule:
@@ -16,3 +22,19 @@ updates:
       time: "03:00"
     open-pull-requests-limit: 10
     versioning-strategy: increase
+    rebase-strategy: disabled
+
+  # for v4-dev branch
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: tuesday
+      time: "03:00"
+    open-pull-requests-limit: 10
+    target-branch: "v4-dev"
+    labels:
+      - dependencies
+      - version:4.x
+    versioning-strategy: increase
+    rebase-strategy: disabled

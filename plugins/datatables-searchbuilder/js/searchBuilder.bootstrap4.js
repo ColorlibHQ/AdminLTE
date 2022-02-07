@@ -2,7 +2,7 @@
     if (typeof define === 'function' && define.amd) {
         // AMD
         define(['jquery', 'datatables.net-bs4', 'datatables.net-searchbuilder'], function ($) {
-            return factory($, window, document);
+            return factory($);
         });
     }
     else if (typeof exports === 'object') {
@@ -19,14 +19,14 @@
                 // eslint-disable-next-line @typescript-eslint/no-var-requires
                 require('datatables.net-searchbuilder')(root, $);
             }
-            return factory($, root, root.document);
+            return factory($);
         };
     }
     else {
         // Browser
-        factory(jQuery, window, document);
+        factory(jQuery);
     }
-}(function ($, window, document) {
+}(function ($) {
     'use strict';
     var dataTable = $.fn.dataTable;
     $.extend(true, dataTable.SearchBuilder.classes, {

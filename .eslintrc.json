@@ -65,6 +65,7 @@
     "unicorn/prefer-dom-node-append": "off",
     "unicorn/prefer-dom-node-dataset": "off",
     "unicorn/prefer-dom-node-remove": "off",
+    "unicorn/prefer-export-from": "off",
     "unicorn/prefer-includes": "off",
     "unicorn/prefer-number-properties": "off",
     "unicorn/prefer-optional-catch-binding": "off",

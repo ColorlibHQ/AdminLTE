@@ -143,7 +143,7 @@ class IFrame {
       return
     }
 
-    const uniqueName = link.replace('./', '').replace(/["#&'./:=?[\]]/gi, '-').replace(/(--)/gi, '')
+    const uniqueName = unescape(link).replace('./', '').replace(/["#&'./:=?[\]]/gi, '-').replace(/(--)/gi, '')
     const navId = `tab-${uniqueName}`
 
     if (!this._config.allowDuplicates && $(`#${navId}`).length > 0) {

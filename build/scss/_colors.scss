@@ -12,6 +12,21 @@
   @include background-variant($name, $color);
 }
 
+@media print {
+  .table td,
+  .table th {
+    // Background colors (theme colors)
+    @each $name, $color in $theme-colors {
+      @include background-variant($name, $color);
+    }
+
+    // Background colors (colors)
+    @each $name, $color in $colors {
+      @include background-variant($name, $color);
+    }
+  }
+}
+
 .bg-gray {
   background-color: $gray-500;
   color: color-yiq($gray-500);

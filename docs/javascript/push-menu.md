@@ -48,7 +48,7 @@ $('.sidebar-toggle-btn').PushMenu(options)
 | Event Type | Description
 |-|-
 |collapsed.lte.pushmenu | Fired when the sidebar collapsed.
-|collapsed-data.lte.pushmenu | Fired when the sidebar is fully collapsed.
+|collapsed-done.lte.pushmenu | Fired when the sidebar is fully collapsed.
 |shown.lte.pushmenu | Fired when the sidebar shown.
 {: .table .table-bordered .bg-light}
 

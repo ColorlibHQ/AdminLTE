@@ -187,7 +187,7 @@ class SidebarSearch {
     }
 
     const groupItemElement = $('<a/>', {
-      href: link,
+      href: decodeURIComponent(link),
       class: 'list-group-item'
     })
     const searchTitleElement = $('<div/>', {

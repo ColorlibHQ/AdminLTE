@@ -92,55 +92,57 @@
         }
       }
 
-      &:hover,
-      &.sidebar-focused {
-        width: $sidebar-width;
-
-        .brand-link {
+      &:not(.sidebar-no-expand) {
+        &:hover,
+        &.sidebar-focused {
           width: $sidebar-width;
-        }
 
-        .user-panel {
-          text-align: left;
-
-          .image {
-            float: left;
+          .brand-link {
+            width: $sidebar-width;
           }
-        }
 
-        .user-panel > .info,
-        .sidebar .nav-sidebar .nav-link p,
-        .brand-text,
-        .logo-xl {
-          display: inline-block;
-          margin-left: 0;
-          animation-name: fadeIn;
-          animation-duration: $transition-speed;
-          animation-fill-mode: both;
-          visibility: visible;
-        }
+          .user-panel {
+            text-align: left;
 
-        .logo-xs {
-          animation-name: fadeOut;
-          animation-duration: $transition-speed;
-          animation-fill-mode: both;
-          visibility: hidden;
-        }
+            .image {
+              float: left;
+            }
+          }
 
-        .brand-image {
-          margin-right: .5rem;
-        }
+          .user-panel > .info,
+          .sidebar .nav-sidebar .nav-link p,
+          .brand-text,
+          .logo-xl {
+            display: inline-block;
+            margin-left: 0;
+            animation-name: fadeIn;
+            animation-duration: $transition-speed;
+            animation-fill-mode: both;
+            visibility: visible;
+          }
 
-        // Make the sidebar links, menus, labels, badges
-        // and angle icons disappear
-        .sidebar-form,
-        .user-panel > .info {
-          display: block !important;
-          transform: translateZ(0);
-        }
+          .logo-xs {
+            animation-name: fadeOut;
+            animation-duration: $transition-speed;
+            animation-fill-mode: both;
+            visibility: hidden;
+          }
 
-        .nav-sidebar > .nav-item > .nav-link > span {
-          display: inline-block !important;
+          .brand-image {
+            margin-right: .5rem;
+          }
+
+          // Make the sidebar links, menus, labels, badges
+          // and angle icons disappear
+          .sidebar-form,
+          .user-panel > .info {
+            display: block !important;
+            transform: translateZ(0);
+          }
+
+          .nav-sidebar > .nav-item > .nav-link > span {
+            display: inline-block !important;
+          }
         }
       }
     }

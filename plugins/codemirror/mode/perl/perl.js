@@ -513,9 +513,8 @@ CodeMirror.defineMode("perl",function(){
                         return null;
                 if(state.chain)
                         return tokenChain(stream,state,state.chain,state.style,state.tail);
-                if(stream.match(/^\-?[\d\.]/,false))
-                        if(stream.match(/^(\-?(\d*\.\d+(e[+-]?\d+)?|\d+\.\d*)|0x[\da-fA-F]+|0b[01]+|\d+(e[+-]?\d+)?)/))
-                                return 'number';
+                if(stream.match(/^(\-?((\d[\d_]*)?\.\d+(e[+-]?\d+)?|\d+\.\d*)|0x[\da-fA-F_]+|0b[01_]+|\d[\d_]*(e[+-]?\d+)?)/))
+                        return 'number';
                 if(stream.match(/^<<(?=[_a-zA-Z])/)){                  // NOTE: <<SOMETHING\n...\nSOMETHING\n
                         stream.eatWhile(/\w/);
                         return tokenSOMETHING(stream,state,stream.current().substr(2));}

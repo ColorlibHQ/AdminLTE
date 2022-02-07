@@ -11,56 +11,67 @@
 })(function(CodeMirror) {
 "use strict";
 
-CodeMirror.registerHelper("fold", "brace", function(cm, start) {
-  var line = start.line, lineText = cm.getLine(line);
-  var tokenType;
+function bracketFolding(pairs) {
+  return function(cm, start) {
+    var line = start.line, lineText = cm.getLine(line);
 
-  function findOpening(openCh) {
-    for (var at = start.ch, pass = 0;;) {
-      var found = at <= 0 ? -1 : lineText.lastIndexOf(openCh, at - 1);
-      if (found == -1) {
-        if (pass == 1) break;
-        pass = 1;
-        at = lineText.length;
-        continue;
+    function findOpening(pair) {
+      var tokenType;
+      for (var at = start.ch, pass = 0;;) {
+        var found = at <= 0 ? -1 : lineText.lastIndexOf(pair[0], at - 1);
+        if (found == -1) {
+          if (pass == 1) break;
+          pass = 1;
+          at = lineText.length;
+          continue;
+        }
+        if (pass == 1 && found < start.ch) break;
+        tokenType = cm.getTokenTypeAt(CodeMirror.Pos(line, found + 1));
+        if (!/^(comment|string)/.test(tokenType)) return {ch: found + 1, tokenType: tokenType, pair: pair};
+        at = found - 1;
       }
-      if (pass == 1 && found < start.ch) break;
-      tokenType = cm.getTokenTypeAt(CodeMirror.Pos(line, found + 1));
-      if (!/^(comment|string)/.test(tokenType)) return found + 1;
-      at = found - 1;
     }
-  }
 
-  var startBrace = findOpening("{"), startBracket = findOpening("[")
-  var startToken, endToken, startCh
-  if (startBrace != null && (startBracket == null || startBracket > startBrace)) {
-    startCh = startBrace; startToken = "{"; endToken = "}"
-  } else if (startBracket != null) {
-    startCh = startBracket; startToken = "["; endToken = "]"
-  } else {
-    return
-  }
-
-  var count = 1, lastLine = cm.lastLine(), end, endCh;
-  outer: for (var i = line; i <= lastLine; ++i) {
-    var text = cm.getLine(i), pos = i == line ? startCh : 0;
-    for (;;) {
-      var nextOpen = text.indexOf(startToken, pos), nextClose = text.indexOf(endToken, pos);
-      if (nextOpen < 0) nextOpen = text.length;
-      if (nextClose < 0) nextClose = text.length;
-      pos = Math.min(nextOpen, nextClose);
-      if (pos == text.length) break;
-      if (cm.getTokenTypeAt(CodeMirror.Pos(i, pos + 1)) == tokenType) {
-        if (pos == nextOpen) ++count;
-        else if (!--count) { end = i; endCh = pos; break outer; }
+    function findRange(found) {
+      var count = 1, lastLine = cm.lastLine(), end, startCh = found.ch, endCh
+      outer: for (var i = line; i <= lastLine; ++i) {
+        var text = cm.getLine(i), pos = i == line ? startCh : 0;
+        for (;;) {
+          var nextOpen = text.indexOf(found.pair[0], pos), nextClose = text.indexOf(found.pair[1], pos);
+          if (nextOpen < 0) nextOpen = text.length;
+          if (nextClose < 0) nextClose = text.length;
+          pos = Math.min(nextOpen, nextClose);
+          if (pos == text.length) break;
+          if (cm.getTokenTypeAt(CodeMirror.Pos(i, pos + 1)) == found.tokenType) {
+            if (pos == nextOpen) ++count;
+            else if (!--count) { end = i; endCh = pos; break outer; }
+          }
+          ++pos;
+        }
       }
-      ++pos;
+
+      if (end == null || line == end) return null
+      return {from: CodeMirror.Pos(line, startCh),
+              to: CodeMirror.Pos(end, endCh)};
     }
+
+    var found = []
+    for (var i = 0; i < pairs.length; i++) {
+      var open = findOpening(pairs[i])
+      if (open) found.push(open)
+    }
+    found.sort(function(a, b) { return a.ch - b.ch })
+    for (var i = 0; i < found.length; i++) {
+      var range = findRange(found[i])
+      if (range) return range
+    }
+    return null
   }
-  if (end == null || line == end) return;
-  return {from: CodeMirror.Pos(line, startCh),
-          to: CodeMirror.Pos(end, endCh)};
-});
+}
+
+CodeMirror.registerHelper("fold", "brace", bracketFolding([["{", "}"], ["[", "]"]]));
+
+CodeMirror.registerHelper("fold", "brace-paren", bracketFolding([["{", "}"], ["[", "]"], ["(", ")"]]));
 
 CodeMirror.registerHelper("fold", "import", function(cm, start) {
   function hasImport(line) {
