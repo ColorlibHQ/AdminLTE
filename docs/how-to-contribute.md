@@ -21,7 +21,7 @@ Contributions are always **welcome and recommended**! Here is how for beginner's
     ```
     * Create a new branch
 3. Compile dist files (Development) :
-    * To compile the dist files you need Node.js 10 or higher/npm (node package manager)
+    * To compile the dist files you need Node.js 14 or higher/npm (node package manager)
     * Delete ./package-lock.json file
     * `npm install` (install npm deps)
     * `npm run dev` (developer mode, autocompile with browsersync support for live demo)
