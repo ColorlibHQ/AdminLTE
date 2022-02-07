@@ -1,4 +1,4 @@
-/*! SearchBuilder 1.2.1
+/*! SearchBuilder 1.3.1
  * ©SpryMedia Ltd - datatables.net/license/mit
  */
 (function () {
@@ -60,7 +60,7 @@
                     .addClass(this.classes.italic)
                     .attr('autocomplete', 'hacking'),
                 conditionTitle: $$2('<option value="" disabled selected hidden/>')
-                    .text(this.s.dt.i18n('searchBuilder.condition', i18n.condition)),
+                    .html(this.s.dt.i18n('searchBuilder.condition', i18n.condition)),
                 container: $$2('<div/>')
                     .addClass(this.classes.container),
                 data: $$2('<select/>')
@@ -68,24 +68,28 @@
                     .addClass(this.classes.dropDown)
                     .addClass(this.classes.italic),
                 dataTitle: $$2('<option value="" disabled selected hidden/>')
-                    .text(this.s.dt.i18n('searchBuilder.data', i18n.data)),
+                    .html(this.s.dt.i18n('searchBuilder.data', i18n.data)),
                 defaultValue: $$2('<select disabled/>')
                     .addClass(this.classes.value)
                     .addClass(this.classes.dropDown)
-                    .addClass(this.classes.select),
-                "delete": $$2('<button>&times</button>')
+                    .addClass(this.classes.select)
+                    .addClass(this.classes.italic),
+                "delete": $$2('<button/>')
+                    .html(this.s.dt.i18n('searchBuilder.delete', i18n["delete"]))
                     .addClass(this.classes["delete"])
                     .addClass(this.classes.button)
                     .attr('title', this.s.dt.i18n('searchBuilder.deleteTitle', i18n.deleteTitle))
                     .attr('type', 'button'),
                 // eslint-disable-next-line no-useless-escape
-                left: $$2('<button>\<</button>')
+                left: $$2('<button/>')
+                    .html(this.s.dt.i18n('searchBuilder.left', i18n.left))
                     .addClass(this.classes.left)
                     .addClass(this.classes.button)
                     .attr('title', this.s.dt.i18n('searchBuilder.leftTitle', i18n.leftTitle))
                     .attr('type', 'button'),
                 // eslint-disable-next-line no-useless-escape
-                right: $$2('<button>\></button>')
+                right: $$2('<button/>')
+                    .html(this.s.dt.i18n('searchBuilder.right', i18n.right))
                     .addClass(this.classes.right)
                     .addClass(this.classes.button)
                     .attr('title', this.s.dt.i18n('searchBuilder.rightTitle', i18n.rightTitle))
@@ -97,8 +101,8 @@
                         .addClass(this.classes.italic)
                         .addClass(this.classes.select)
                 ],
-                valueTitle: $$2('<option value="--valueTitle--" selected/>')
-                    .text(this.s.dt.i18n('searchBuilder.value', i18n.value))
+                valueTitle: $$2('<option value="--valueTitle--" disabled selected hidden/>')
+                    .html(this.s.dt.i18n('searchBuilder.value', i18n.value))
             };
             // If the greyscale option is selected then add the class to add the grey colour to SearchBuilder
             if (this.c.greyscale) {
@@ -111,18 +115,32 @@
                 }
             }
             // For responsive design, adjust the criterias properties on the following events
-            this.s.dt.on('draw.dtsp', function () {
+            this.s.dt.on('draw.dtsb', function () {
                 _this._adjustCriteria();
             });
-            this.s.dt.on('buttons-action', function () {
+            this.s.dt.on('buttons-action.dtsb', function () {
                 _this._adjustCriteria();
             });
-            $$2(window).on('resize.dtsp', dataTable$2.util.throttle(function () {
+            $$2(window).on('resize.dtsb', dataTable$2.util.throttle(function () {
                 _this._adjustCriteria();
             }));
             this._buildCriteria();
             return this;
         }
+        /**
+         * Escape html characters within a string
+         *
+         * @param txt the string to be escaped
+         * @returns the escaped string
+         */
+        Criteria._escapeHTML = function (txt) {
+            return txt
+                .toString()
+                .replace(/&amp;/g, '&')
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&quot;/g, '"');
+        };
         /**
          * Adds the left button to the criteria
          */
@@ -217,15 +235,15 @@
                     filter.sort();
                     for (var _i = 0, filter_1 = filter; _i < filter_1.length; _i++) {
                         var filt = filter_1[_i];
-                        if (filt) {
+                        if (filt && typeof filt === 'string') {
                             filt = filt.replace(/[\r\n\u2028]/g, ' ');
                         }
                     }
                 }
-                else if (filter !== null) {
+                else if (filter !== null && typeof filter === 'string') {
                     filter = filter.replace(/[\r\n\u2028]/g, ' ');
                 }
-                if (this.s.type.includes('html')) {
+                if (this.s.type.includes('html') && typeof filter === 'string') {
                     filter = filter.replace(/(<([^>]+)>)/ig, '');
                 }
                 // Not ideal, but jqueries .val() returns an empty string even
@@ -328,7 +346,9 @@
                 var italic_1 = this.classes.italic;
                 var data_1 = this.dom.data;
                 this.dom.data.children('option').each(function () {
-                    if ($$2(this).text() === loadedCriteria.data) {
+                    if (!foundData &&
+                        ($$2(this).text() === loadedCriteria.data ||
+                            loadedCriteria.origData && $$2(this).prop('origData') === loadedCriteria.origData)) {
                         $$2(this).prop('selected', true);
                         data_1.removeClass(italic_1);
                         foundData = true;
@@ -391,7 +411,7 @@
             var _this = this;
             this.dom.data
                 .unbind('change')
-                .on('change', function () {
+                .on('change.dtsb', function () {
                 _this.dom.dataTitle.removeProp('selected');
                 // Need to go over every option to identify the correct selection
                 var options = _this.dom.data.children('option.' + _this.classes.option);
@@ -426,7 +446,7 @@
             });
             this.dom.condition
                 .unbind('change')
-                .on('change', function () {
+                .on('change.dtsb', function () {
                 _this.dom.conditionTitle.removeProp('selected');
                 // Need to go over every option to identify the correct selection
                 var options = _this.dom.condition.children('option.' + _this.classes.option);
@@ -876,7 +896,11 @@
             this.setListeners();
             // If it can and this is different to before then trigger a draw
             if (prevFilled !== this.s.filled) {
-                this.s.dt.draw();
+                // If using SSP we want to restrict the amount of server calls that take place
+                //  and this will already have taken place
+                if (!this.s.dt.page.info().serverSide) {
+                    this.s.dt.draw();
+                }
                 this.setListeners();
             }
         };
@@ -943,6 +967,7 @@
             var column = that.dom.data.children('option:selected').val();
             var indexArray = that.s.dt.rows().indexes().toArray();
             var settings = that.s.dt.settings()[0];
+            that.dom.valueTitle.prop('selected', true);
             // Declare select element to be used with all of the default classes and listeners.
             var el = $$2('<select/>')
                 .addClass(Criteria.classes.value)
@@ -950,7 +975,7 @@
                 .addClass(Criteria.classes.italic)
                 .addClass(Criteria.classes.select)
                 .append(that.dom.valueTitle)
-                .on('change', function () {
+                .on('change.dtsb', function () {
                 $$2(this).removeClass(Criteria.classes.italic);
                 fn(that, this);
             });
@@ -977,22 +1002,20 @@
                 };
                 // If we are dealing with an array type, either make sure we are working with arrays, or sort them
                 if (that.s.type === 'array') {
-                    value.filter = !Array.isArray(value.filter) ?
-                        [value.filter] :
-                        value.filter = value.filter.sort();
-                    value.text = !Array.isArray(value.text) ?
-                        [value.text] :
-                        value.text = value.text.sort();
+                    value.filter = !Array.isArray(value.filter) ? [value.filter] : value.filter;
+                    value.text = !Array.isArray(value.text) ? [value.text] : value.text;
                 }
                 // Function to add an option to the select element
                 var addOption = function (filt, text) {
+                    if (that.s.type.includes('html') && filt !== null && typeof filt === 'string') {
+                        filt.replace(/(<([^>]+)>)/ig, '');
+                    }
                     // Add text and value, stripping out any html if that is the column type
                     var opt = $$2('<option>', {
                         type: Array.isArray(filt) ? 'Array' : 'String',
-                        value: that.s.type.includes('html') && filt !== null && typeof filt === 'string' ?
-                            filt.replace(/(<([^>]+)>)/ig, '') :
-                            filt
+                        value: filt
                     })
+                        .data('sbv', filt)
                         .addClass(that.classes.option)
                         .addClass(that.classes.notItalic)
                         // Have to add the text this way so that special html characters are not escaped - &amp; etc.
@@ -1011,6 +1034,7 @@
                         if (preDefined !== null && opt.val() === preDefined[0]) {
                             opt.prop('selected', true);
                             el.removeClass(Criteria.classes.italic);
+                            that.dom.valueTitle.removeProp('selected');
                         }
                     }
                 };
@@ -1022,7 +1046,7 @@
                 }
                 // Otherwise the value that is in the cell is to be added
                 else {
-                    addOption(value.filter, value.text);
+                    addOption(value.filter, Array.isArray(value.text) ? value.text.join(', ') : value.text);
                 }
             }
             options.sort(function (a, b) {
@@ -1088,7 +1112,7 @@
             var el = $$2('<input/>')
                 .addClass(Criteria.classes.value)
                 .addClass(Criteria.classes.input)
-                .on('input keypress', that._throttle(function (e) {
+                .on('input.dtsb keypress.dtsb', that._throttle(function (e) {
                 var code = e.keyCode || e.which;
                 if (!that.c.enterSearch &&
                     !(that.s.dt.settings()[0].oInit.search !== undefined &&
@@ -1105,7 +1129,7 @@
                 el.val(preDefined[0]);
             }
             // This is add responsive functionality to the logic button without redrawing everything else
-            that.s.dt.one('draw', function () {
+            that.s.dt.one('draw.dtsb', function () {
                 that.s.topGroup.trigger('dtsb-redrawLogic');
             });
             return el;
@@ -1121,7 +1145,7 @@
                 $$2('<input/>')
                     .addClass(Criteria.classes.value)
                     .addClass(Criteria.classes.input)
-                    .on('input keypress', that._throttle(function (e) {
+                    .on('input.dtsb keypress.dtsb', that._throttle(function (e) {
                     var code = e.keyCode || e.which;
                     if (!that.c.enterSearch &&
                         !(that.s.dt.settings()[0].oInit.search !== undefined &&
@@ -1132,11 +1156,11 @@
                 }, searchDelay === null ? 100 : searchDelay)),
                 $$2('<span>')
                     .addClass(that.classes.joiner)
-                    .text(that.s.dt.i18n('searchBuilder.valueJoiner', that.c.i18n.valueJoiner)),
+                    .html(that.s.dt.i18n('searchBuilder.valueJoiner', that.c.i18n.valueJoiner)),
                 $$2('<input/>')
                     .addClass(Criteria.classes.value)
                     .addClass(Criteria.classes.input)
-                    .on('input keypress', that._throttle(function (e) {
+                    .on('input.dtsb keypress.dtsb', that._throttle(function (e) {
                     var code = e.keyCode || e.which;
                     if (!that.c.enterSearch &&
                         !(that.s.dt.settings()[0].oInit.search !== undefined &&
@@ -1156,7 +1180,7 @@
                 els[2].val(preDefined[1]);
             }
             // This is add responsive functionality to the logic button without redrawing everything else
-            that.s.dt.one('draw', function () {
+            that.s.dt.one('draw.dtsb', function () {
                 that.s.topGroup.trigger('dtsb-redrawLogic');
             });
             return els;
@@ -1175,10 +1199,10 @@
                 attachTo: 'input',
                 format: that.s.dateFormat ? that.s.dateFormat : undefined
             })
-                .on('change', that._throttle(function () {
+                .on('change.dtsb', that._throttle(function () {
                 return fn(that, this);
             }, searchDelay === null ? 100 : searchDelay))
-                .on('input keypress', that.c.enterSearch ||
+                .on('input.dtsb keypress.dtsb', that.c.enterSearch ||
                 that.s.dt.settings()[0].oInit.search !== undefined &&
                     that.s.dt.settings()[0].oInit.search["return"] ?
                 function (e) {
@@ -1200,14 +1224,14 @@
                 el.val(preDefined[0]);
             }
             // This is add responsive functionality to the logic button without redrawing everything else
-            that.s.dt.one('draw', function () {
+            that.s.dt.one('draw.dtsb', function () {
                 that.s.topGroup.trigger('dtsb-redrawLogic');
             });
             return el;
         };
         Criteria.initNoValue = function (that) {
             // This is add responsive functionality to the logic button without redrawing everything else
-            that.s.dt.one('draw', function () {
+            that.s.dt.one('draw.dtsb', function () {
                 that.s.topGroup.trigger('dtsb-redrawLogic');
             });
         };
@@ -1224,14 +1248,14 @@
                     attachTo: 'input',
                     format: that.s.dateFormat ? that.s.dateFormat : undefined
                 })
-                    .on('change', searchDelay !== null ?
+                    .on('change.dtsb', searchDelay !== null ?
                     that.s.dt.settings()[0].oApi._fnThrottle(function () {
                         return fn(that, this);
                     }, searchDelay) :
                     function () {
                         fn(that, _this);
                     })
-                    .on('input keypress', !that.c.enterSearch &&
+                    .on('input.dtsb keypress.dtsb', !that.c.enterSearch &&
                     !(that.s.dt.settings()[0].oInit.search !== undefined &&
                         that.s.dt.settings()[0].oInit.search["return"]) &&
                     searchDelay !== null ?
@@ -1252,7 +1276,7 @@
                         }),
                 $$2('<span>')
                     .addClass(that.classes.joiner)
-                    .text(that.s.dt.i18n('searchBuilder.valueJoiner', that.c.i18n.valueJoiner)),
+                    .html(that.s.dt.i18n('searchBuilder.valueJoiner', that.c.i18n.valueJoiner)),
                 $$2('<input/>')
                     .addClass(Criteria.classes.value)
                     .addClass(Criteria.classes.input)
@@ -1260,14 +1284,14 @@
                     attachTo: 'input',
                     format: that.s.dateFormat ? that.s.dateFormat : undefined
                 })
-                    .on('change', searchDelay !== null ?
+                    .on('change.dtsb', searchDelay !== null ?
                     that.s.dt.settings()[0].oApi._fnThrottle(function () {
                         return fn(that, this);
                     }, searchDelay) :
                     function () {
                         fn(that, _this);
                     })
-                    .on('input keypress', !that.c.enterSearch &&
+                    .on('input.dtsb keypress.dtsb', !that.c.enterSearch &&
                     !(that.s.dt.settings()[0].oInit.search !== undefined &&
                         that.s.dt.settings()[0].oInit.search["return"]) &&
                     searchDelay !== null ?
@@ -1297,7 +1321,7 @@
                 els[2].val(preDefined[1]);
             }
             // This is add responsive functionality to the logic button without redrawing everything else
-            that.s.dt.one('draw', function () {
+            that.s.dt.one('draw.dtsb', function () {
                 that.s.topGroup.trigger('dtsb-redrawLogic');
             });
             return els;
@@ -1314,7 +1338,7 @@
                     element.children('option').length -
                         element.children('option.' + Criteria.classes.notItalic).length &&
                     element.children('option:selected').length === 1 &&
-                    element.children('option:selected')[0] === element.children('option:hidden')[0]) {
+                    element.children('option:selected')[0] === element.children('option')[0]) {
                     allFilled = false;
                 }
             }
@@ -1343,11 +1367,7 @@
             for (var _i = 0, el_3 = el; _i < el_3.length; _i++) {
                 var element = el_3[_i];
                 if (element.is('select')) {
-                    var val = element.children('option:selected').val();
-                    // If the type of the option is an array we need to split it up and sort it
-                    values.push(element.children('option:selected').attr('type') === 'Array' ?
-                        val.split(',').sort() :
-                        val);
+                    values.push(Criteria._escapeHTML(element.children('option:selected').data('sbv')));
                 }
             }
             return values;
@@ -1361,7 +1381,7 @@
             for (var _i = 0, el_4 = el; _i < el_4.length; _i++) {
                 var element = el_4[_i];
                 if (element.is('input')) {
-                    values.push(element.val());
+                    values.push(Criteria._escapeHTML(element.val()));
                 }
             }
             return values;
@@ -2164,6 +2184,18 @@
                 }
             },
             // eslint-disable-next-line sort-keys
+            '!starts': {
+                conditionName: function (dt, i18n) {
+                    return dt.i18n('searchBuilder.conditions.string.notStartsWith', i18n.conditions.string.notStartsWith);
+                },
+                init: Criteria.initInput,
+                inputValue: Criteria.inputValueInput,
+                isInputValid: Criteria.isInputValidInput,
+                search: function (value, comparison) {
+                    return value.toLowerCase().indexOf(comparison[0].toLowerCase()) !== 0;
+                }
+            },
+            // eslint-disable-next-line sort-keys
             'contains': {
                 conditionName: function (dt, i18n) {
                     return dt.i18n('searchBuilder.conditions.string.contains', i18n.conditions.string.contains);
@@ -2175,6 +2207,18 @@
                     return value.toLowerCase().includes(comparison[0].toLowerCase());
                 }
             },
+            // eslint-disable-next-line sort-keys
+            '!contains': {
+                conditionName: function (dt, i18n) {
+                    return dt.i18n('searchBuilder.conditions.string.notContains', i18n.conditions.string.notContains);
+                },
+                init: Criteria.initInput,
+                inputValue: Criteria.inputValueInput,
+                isInputValid: Criteria.isInputValidInput,
+                search: function (value, comparison) {
+                    return !value.toLowerCase().includes(comparison[0].toLowerCase());
+                }
+            },
             'ends': {
                 conditionName: function (dt, i18n) {
                     return dt.i18n('searchBuilder.conditions.string.endsWith', i18n.conditions.string.endsWith);
@@ -2184,6 +2228,18 @@
                 isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     return value.toLowerCase().endsWith(comparison[0].toLowerCase());
+                }
+            },
+            // eslint-disable-next-line sort-keys
+            '!ends': {
+                conditionName: function (dt, i18n) {
+                    return dt.i18n('searchBuilder.conditions.string.notEndsWith', i18n.conditions.string.notEndsWith);
+                },
+                init: Criteria.initInput,
+                inputValue: Criteria.inputValueInput,
+                isInputValid: Criteria.isInputValidInput,
+                search: function (value, comparison) {
+                    return !value.toLowerCase().endsWith(comparison[0].toLowerCase());
                 }
             },
             'null': {
@@ -2346,10 +2402,13 @@
                 clearAll: 'Clear All',
                 condition: 'Condition',
                 data: 'Data',
+                "delete": '&times',
                 deleteTitle: 'Delete filtering rule',
+                left: '<',
                 leftTitle: 'Outdent criteria',
                 logicAnd: 'And',
                 logicOr: 'Or',
+                right: '>',
                 rightTitle: 'Indent criteria',
                 title: {
                     0: 'Custom Search Builder',
@@ -2486,7 +2545,7 @@
                 return;
             }
             this.s.logic = loadedDetails.logic;
-            this.dom.logic.children().first().text(this.s.logic === 'OR'
+            this.dom.logic.children().first().html(this.s.logic === 'OR'
                 ? this.s.dt.i18n('searchBuilder.logicOr', this.c.i18n.logicOr)
                 : this.s.dt.i18n('searchBuilder.logicAnd', this.c.i18n.logicAnd));
             // Add all of the criteria, be it a sub group or a criteria
@@ -2638,7 +2697,7 @@
         Group.prototype.setListeners = function () {
             var _this = this;
             this.dom.add.unbind('click');
-            this.dom.add.on('click', function () {
+            this.dom.add.on('click.dtsb', function () {
                 // If this is the parent group then the logic button has not been added yet
                 if (!_this.s.isChild) {
                     _this.dom.container.prepend(_this.dom.logicContainer);
@@ -2873,7 +2932,7 @@
             var _this = this;
             criteria.dom["delete"]
                 .unbind('click')
-                .on('click', function () {
+                .on('click.dtsb', function () {
                 _this._removeCriteria(criteria);
                 criteria.dom.container.remove();
                 for (var _i = 0, _a = _this.s.criteria; _i < _a.length; _i++) {
@@ -2885,12 +2944,11 @@
                 criteria.destroy();
                 _this.s.dt.draw();
                 _this.s.topGroup.trigger('dtsb-redrawContents');
-                _this.s.topGroup.trigger('dtsb-updateTitle');
                 return false;
             });
             criteria.dom.right
                 .unbind('click')
-                .on('click', function () {
+                .on('click.dtsb', function () {
                 var idx = criteria.s.index;
                 var group = new Group(_this.s.dt, _this.s.opts, _this.s.topGroup, criteria.s.index, true, _this.s.depth + 1);
                 // Add the criteria that is to be moved to the new group
@@ -2904,7 +2962,7 @@
             });
             criteria.dom.left
                 .unbind('click')
-                .on('click', function () {
+                .on('click.dtsb', function () {
                 _this.s.toDrop = new Criteria(_this.s.dt, _this.s.opts, _this.s.topGroup, criteria.s.index);
                 _this.s.toDrop.s = criteria.s;
                 _this.s.toDrop.c = criteria.c;
@@ -2929,13 +2987,12 @@
             var _this = this;
             this.dom.clear
                 .unbind('click')
-                .on('click', function () {
+                .on('click.dtsb', function () {
                 if (!_this.s.isChild) {
                     _this.dom.container.trigger('dtsb-clearContents');
                     return false;
                 }
                 _this.destroy();
-                _this.s.topGroup.trigger('dtsb-updateTitle');
                 _this.s.topGroup.trigger('dtsb-redrawContents');
                 return false;
             });
@@ -2950,21 +3007,21 @@
             // Set listeners for the new group
             group.dom.add
                 .unbind('click')
-                .on('click', function () {
+                .on('click.dtsb', function () {
                 _this.setupLogic();
                 _this.dom.container.trigger('dtsb-add');
                 return false;
             });
             group.dom.container
                 .unbind('dtsb-add')
-                .on('dtsb-add', function () {
+                .on('dtsb-add.dtsb', function () {
                 _this.setupLogic();
                 _this.dom.container.trigger('dtsb-add');
                 return false;
             });
             group.dom.container
                 .unbind('dtsb-destroy')
-                .on('dtsb-destroy', function () {
+                .on('dtsb-destroy.dtsb', function () {
                 _this._removeCriteria(group, true);
                 group.dom.container.remove();
                 _this.setupLogic();
@@ -2972,7 +3029,7 @@
             });
             group.dom.container
                 .unbind('dtsb-dropCriteria')
-                .on('dtsb-dropCriteria', function () {
+                .on('dtsb-dropCriteria.dtsb', function () {
                 var toDrop = group.s.toDrop;
                 toDrop.s.index = group.s.index;
                 toDrop.updateArrows(_this.s.criteria.length > 1, false);
@@ -2986,8 +3043,8 @@
          */
         Group.prototype._setup = function () {
             this.setListeners();
-            this.dom.add.text(this.s.dt.i18n('searchBuilder.add', this.c.i18n.add));
-            this.dom.logic.children().first().text(this.c.logic === 'OR'
+            this.dom.add.html(this.s.dt.i18n('searchBuilder.add', this.c.i18n.add));
+            this.dom.logic.children().first().html(this.c.logic === 'OR'
                 ? this.s.dt.i18n('searchBuilder.logicOr', this.c.i18n.logicOr)
                 : this.s.dt.i18n('searchBuilder.logicAnd', this.c.i18n.logicAnd));
             this.s.logic = this.c.logic === 'OR' ? 'OR' : 'AND';
@@ -3009,7 +3066,7 @@
             var _this = this;
             this.dom.logic
                 .unbind('click')
-                .on('click', function () {
+                .on('click.dtsb', function () {
                 _this._toggleLogic();
                 _this.s.dt.draw();
                 for (var _i = 0, _a = _this.s.criteria; _i < _a.length; _i++) {
@@ -3024,11 +3081,11 @@
         Group.prototype._toggleLogic = function () {
             if (this.s.logic === 'OR') {
                 this.s.logic = 'AND';
-                this.dom.logic.children().first().text(this.s.dt.i18n('searchBuilder.logicAnd', this.c.i18n.logicAnd));
+                this.dom.logic.children().first().html(this.s.dt.i18n('searchBuilder.logicAnd', this.c.i18n.logicAnd));
             }
             else if (this.s.logic === 'AND') {
                 this.s.logic = 'OR';
-                this.dom.logic.children().first().text(this.s.dt.i18n('searchBuilder.logicOr', this.c.i18n.logicOr));
+                this.dom.logic.children().first().html(this.s.dt.i18n('searchBuilder.logicOr', this.c.i18n.logicOr));
             }
         };
         Group.version = '1.1.0';
@@ -3068,10 +3125,13 @@
                 clearAll: 'Clear All',
                 condition: 'Condition',
                 data: 'Data',
+                "delete": '&times',
                 deleteTitle: 'Delete filtering rule',
+                left: '<',
                 leftTitle: 'Outdent criteria',
                 logicAnd: 'And',
                 logicOr: 'Or',
+                right: '>',
                 rightTitle: 'Indent criteria',
                 title: {
                     0: 'Custom Search Builder',
@@ -3140,6 +3200,15 @@
                 return;
             }
             table.settings()[0]._searchBuilder = this;
+            // If using SSP we want to include the previous state in the very first server call
+            if (this.s.dt.page.info().serverSide) {
+                this.s.dt.on('preXhr.dtsb', function (e, settings, data) {
+                    var loadedState = _this.s.dt.state.loaded();
+                    if (loadedState && loadedState.searchBuilder) {
+                        data.searchBuilder = _this._collapseArray(loadedState.searchBuilder);
+                    }
+                });
+            }
             // Run the remaining setup when the table is initialised
             if (this.s.dt.settings()[0]._bInitComplete) {
                 this._setUp();
@@ -3265,15 +3334,21 @@
             }
             this.s.topGroup = new Group(this.s.dt, this.c, undefined);
             this._setClearListener();
-            this.s.dt.on('stateSaveParams', function (e, settings, data) {
+            this.s.dt.on('stateSaveParams.dtsb', function (e, settings, data) {
                 data.searchBuilder = _this.getDetails();
                 data.page = _this.s.dt.page();
             });
+            this.s.dt.on('stateLoadParams.dtsb', function (e, settings, data) {
+                _this.rebuild(data.searchBuilder);
+            });
             this._build();
-            this.s.dt.on('preXhr', function (e, settings, data) {
+            this.s.dt.on('preXhr.dtsb', function (e, settings, data) {
                 if (_this.s.dt.page.info().serverSide) {
                     data.searchBuilder = _this._collapseArray(_this.getDetails(true));
                 }
+            });
+            this.s.dt.on('column-reorder', function () {
+                _this.rebuild(_this.getDetails());
             });
             if (loadState) {
                 var loadedState = this.s.dt.state.loaded();
@@ -3281,7 +3356,11 @@
                 if (loadedState !== null && loadedState.searchBuilder !== undefined) {
                     this.s.topGroup.rebuild(loadedState.searchBuilder);
                     this.s.topGroup.dom.container.trigger('dtsb-redrawContents');
-                    this.s.dt.page(loadedState.page).draw('page');
+                    // If using SSP we want to restrict the amount of server calls that take place
+                    //  and this information will already have been processed
+                    if (!this.s.dt.page.info().serverSide) {
+                        this.s.dt.page(loadedState.page).draw('page');
+                    }
                     this.s.topGroup.setListeners();
                 }
                 // Otherwise load any predefined options
@@ -3357,7 +3436,7 @@
                 // Add SearchBuilder search function to the dataTables search array
                 $.fn.dataTable.ext.search.push(this.s.search);
             }
-            this.s.dt.on('destroy.dt', function () {
+            this.s.dt.on('destroy.dtsb', function () {
                 _this.dom.container.remove();
                 _this.dom.clearAll.remove();
                 var searchIdx = $.fn.dataTable.ext.search.indexOf(_this.s.search);
@@ -3365,6 +3444,8 @@
                     $.fn.dataTable.ext.search.splice(searchIdx, 1);
                     searchIdx = $.fn.dataTable.ext.search.indexOf(_this.s.search);
                 }
+                _this.s.dt.off('.dtsb');
+                $(_this.s.dt.table().node()).off('.dtsb');
             });
         };
         /**
@@ -3396,7 +3477,7 @@
         SearchBuilder.prototype._setClearListener = function () {
             var _this = this;
             this.dom.clearAll.unbind('click');
-            this.dom.clearAll.on('click', function () {
+            this.dom.clearAll.on('click.dtsb', function () {
                 _this.s.topGroup = new Group(_this.s.dt, _this.c, undefined);
                 _this._build();
                 _this.s.dt.draw();
@@ -3413,7 +3494,7 @@
         SearchBuilder.prototype._setRedrawListener = function () {
             var _this = this;
             this.s.topGroup.dom.container.unbind('dtsb-redrawContents');
-            this.s.topGroup.dom.container.on('dtsb-redrawContents', function () {
+            this.s.topGroup.dom.container.on('dtsb-redrawContents.dtsb', function () {
                 _this._checkClear();
                 _this.s.topGroup.redrawContents();
                 _this.s.topGroup.setupLogic();
@@ -3421,35 +3502,34 @@
                 var count = _this.s.topGroup.count();
                 _this._updateTitle(count);
                 _this._filterChanged(count);
-                _this.s.dt.draw();
+                // If using SSP we want to restrict the amount of server calls that take place
+                //  and this information will already have been processed
+                if (!_this.s.dt.page.info().serverSide) {
+                    _this.s.dt.draw();
+                }
                 _this.s.dt.state.save();
             });
             this.s.topGroup.dom.container.unbind('dtsb-redrawLogic');
-            this.s.topGroup.dom.container.on('dtsb-redrawLogic', function () {
+            this.s.topGroup.dom.container.on('dtsb-redrawLogic.dtsb', function () {
                 _this.s.topGroup.redrawLogic();
                 var count = _this.s.topGroup.count();
                 _this._updateTitle(count);
                 _this._filterChanged(count);
             });
             this.s.topGroup.dom.container.unbind('dtsb-add');
-            this.s.topGroup.dom.container.on('dtsb-add', function () {
+            this.s.topGroup.dom.container.on('dtsb-add.dtsb', function () {
                 var count = _this.s.topGroup.count();
                 _this._updateTitle(count);
                 _this._filterChanged(count);
             });
-            this.s.dt.on('postEdit postCreate postRemove', function () {
+            this.s.dt.on('postEdit.dtsb postCreate.dtsb postRemove.dtsb', function () {
                 _this.s.topGroup.redrawContents();
             });
             this.s.topGroup.dom.container.unbind('dtsb-clearContents');
-            this.s.topGroup.dom.container.on('dtsb-clearContents', function () {
+            this.s.topGroup.dom.container.on('dtsb-clearContents.dtsb', function () {
                 _this._setUp(false);
                 _this._filterChanged(0);
                 _this.s.dt.draw();
-            });
-            this.s.topGroup.dom.container.on('dtsb-updateTitle', function () {
-                var count = _this.s.topGroup.count();
-                _this._updateTitle(count);
-                _this._filterChanged(count);
             });
         };
         /**
@@ -3457,14 +3537,14 @@
          */
         SearchBuilder.prototype._setEmptyListener = function () {
             var _this = this;
-            this.s.topGroup.dom.add.on('click', function () {
+            this.s.topGroup.dom.add.on('click.dtsb', function () {
                 _this._checkClear();
             });
-            this.s.topGroup.dom.container.on('dtsb-destroy', function () {
+            this.s.topGroup.dom.container.on('dtsb-destroy.dtsb', function () {
                 _this.dom.clearAll.remove();
             });
         };
-        SearchBuilder.version = '1.2.1';
+        SearchBuilder.version = '1.3.1';
         SearchBuilder.classes = {
             button: 'dtsb-button',
             clearAll: 'dtsb-clearAll',
@@ -3537,15 +3617,21 @@
                         endsWith: 'Ends With',
                         equals: 'Equals',
                         not: 'Not',
+                        notContains: 'Does Not Contain',
                         notEmpty: 'Not Empty',
+                        notEndsWith: 'Does Not End With',
+                        notStartsWith: 'Does Not Start With',
                         startsWith: 'Starts With'
                     }
                 },
                 data: 'Data',
+                "delete": '&times',
                 deleteTitle: 'Delete filtering rule',
+                left: '<',
                 leftTitle: 'Outdent criteria',
                 logicAnd: 'And',
                 logicOr: 'Or',
+                right: '>',
                 rightTitle: 'Indent criteria',
                 title: {
                     0: 'Custom Search Builder',
@@ -3564,7 +3650,7 @@
         return SearchBuilder;
     }());
 
-    /*! SearchBuilder 1.2.1
+    /*! SearchBuilder 1.3.1
      * ©SpryMedia Ltd - datatables.net/license/mit
      */
     // DataTables extensions common UMD. Note that this allows for AMD, CommonJS
@@ -3621,11 +3707,15 @@
         $.fn.dataTable.ext.buttons.searchBuilder = {
             action: function (e, dt, node, config) {
                 this.popover(config._searchBuilder.getNode(), {
-                    align: 'dt-container'
+                    align: 'container',
+                    span: 'container'
                 });
                 // Need to redraw the contents to calculate the correct positions for the elements
                 if (config._searchBuilder.s.topGroup !== undefined) {
                     config._searchBuilder.s.topGroup.dom.container.trigger('dtsb-redrawContents');
+                }
+                if (config._searchBuilder.s.topGroup.s.criteria.length === 0) {
+                    $('.' + $.fn.dataTable.Group.classes.add).click();
                 }
             },
             config: {},

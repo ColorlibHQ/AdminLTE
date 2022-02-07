@@ -220,7 +220,7 @@
     return mode.startState ? mode.startState(a1, a2) : true
   }
 
-  var modeMethods = ({
+  var modeMethods = {
     __proto__: null,
     modes: modes,
     mimeModes: mimeModes,
@@ -233,7 +233,7 @@
     copyState: copyState,
     innerMode: innerMode,
     startState: startState
-  });
+  };
 
   // declare global: globalThis, CodeMirror
 

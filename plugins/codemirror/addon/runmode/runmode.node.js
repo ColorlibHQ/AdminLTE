@@ -219,7 +219,7 @@ function startState(mode, a1, a2) {
   return mode.startState ? mode.startState(a1, a2) : true
 }
 
-var modeMethods = ({
+var modeMethods = {
   __proto__: null,
   modes: modes,
   mimeModes: mimeModes,
@@ -232,7 +232,7 @@ var modeMethods = ({
   copyState: copyState,
   innerMode: innerMode,
   startState: startState
-});
+};
 
 // Copy StringStream and mode methods into exports (CodeMirror) object.
 exports.StringStream = StringStream;

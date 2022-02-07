@@ -4,7 +4,7 @@
 *
 * uPlot.js (μPlot)
 * A small, fast chart for time series, lines, areas, ohlc & bars
-* https://github.com/leeoniya/uPlot (v1.6.17)
+* https://github.com/leeoniya/uPlot (v1.6.18)
 */
 
 'use strict';
@@ -1626,13 +1626,17 @@ function clipGaps(gaps, ori, plotLft, plotTop, plotWid, plotHgt) {
 			let g = gaps[i];
 
 			if (g[1] > g[0]) {
-				rect(clip, prevGapEnd, plotTop, g[0] - prevGapEnd, plotTop + plotHgt);
+				let w = g[0] - prevGapEnd;
+
+				w > 0 && rect(clip, prevGapEnd, plotTop, w, plotTop + plotHgt);
 
 				prevGapEnd = g[1];
 			}
 		}
 
-		rect(clip, prevGapEnd, plotTop, plotLft + plotWid - prevGapEnd, plotTop + plotHgt);
+		let w = plotLft + plotWid - prevGapEnd;
+
+		w > 0 && rect(clip, prevGapEnd, plotTop, w, plotTop + plotHgt);
 	}
 
 	return clip;
@@ -1668,7 +1672,7 @@ function rect(ori) {
 		if (r == 0)
 			rect(p, x, y, w, h);
 		else {
-			r = Math.min(r, w / 2, h / 2);
+			r = min(r, w / 2, h / 2);
 
 			// adapted from https://stackoverflow.com/questions/1255512/how-to-draw-a-rounded-rectangle-using-html-canvas/7838871#7838871
 			moveTo(p, x + r, y);
@@ -1946,17 +1950,6 @@ function stepped(opts) {
 
 				if (inGap) {
 					addGap(gaps, prevXPos, x1);
-
-					// don't clip vertical extenders
-					if (prevYPos != y1) {
-						let halfStroke = (series.width * pxRatio) / 2;
-
-						let lastGap = gaps[gaps.length - 1];
-
-						lastGap[0] += (ascDesc || align ==  1) ? halfStroke : -halfStroke;
-						lastGap[1] -= (ascDesc || align == -1) ? halfStroke : -halfStroke;
-					}
-
 					inGap = false;
 				}
 
@@ -1983,6 +1976,16 @@ function stepped(opts) {
 
 			_paths.gaps = gaps = series.gaps(u, seriesIdx, idx0, idx1, gaps);
 
+			// expand/contract clips for ascenders/descenders
+			let halfStroke = (series.width * pxRatio) / 2;
+			let startsOffset = (ascDesc || align ==  1) ?  halfStroke : -halfStroke;
+			let endsOffset   = (ascDesc || align == -1) ? -halfStroke :  halfStroke;
+
+			gaps.forEach(g => {
+				g[0] += startsOffset;
+				g[1] += endsOffset;
+			});
+
 			if (!series.spanGaps)
 				_paths.clip = clipGaps(gaps, scaleX.ori, xOff, yOff, xDim, yDim);
 
@@ -2003,14 +2006,16 @@ function bars(opts) {
 	const align = opts.align || 0;
 	const extraGap = (opts.gap || 0) * pxRatio;
 
-	const radius = ifNull(opts.radius, 0) * pxRatio;
+	const radius = ifNull(opts.radius, 0);
 
 	const gapFactor = 1 - size[0];
 	const maxWidth  = ifNull(size[1], inf) * pxRatio;
 	const minWidth  = ifNull(size[2], 1) * pxRatio;
 
-	const disp = opts.disp;
+	const disp = ifNull(opts.disp, EMPTY_OBJ);
 	const _each = ifNull(opts.each, _ => {});
+
+	const { fill: dispFills, stroke: dispStrokes } = disp;
 
 	return (u, seriesIdx, idx0, idx1) => {
 		return orient(u, seriesIdx, (series, dataX, dataY, scaleX, scaleY, valToPosX, valToPosY, xOff, yOff, xDim, yDim) => {
@@ -2029,6 +2034,7 @@ function bars(opts) {
 
 			let y0Pos = valToPosY(fillToY, scaleY, yDim, yOff);
 
+			// barWid is to center of stroke
 			let xShift, barWid;
 
 			let strokeWidth = pxRound(series.width * pxRatio);
@@ -2040,34 +2046,36 @@ function bars(opts) {
 			let strokeColors = null;
 			let strokePaths = null;
 
-			if (disp != null) {
-				if (disp.fill != null && disp.stroke != null) {
-					multiPath = true;
+			if (dispFills != null && dispStrokes != null) {
+				multiPath = true;
 
-					fillColors = disp.fill.values(u, seriesIdx, idx0, idx1);
-					fillPaths = new Map();
-					(new Set(fillColors)).forEach(color => {
-						if (color != null)
-							fillPaths.set(color, new Path2D());
-					});
+				fillColors = dispFills.values(u, seriesIdx, idx0, idx1);
+				fillPaths = new Map();
+				(new Set(fillColors)).forEach(color => {
+					if (color != null)
+						fillPaths.set(color, new Path2D());
+				});
 
-					strokeColors = disp.stroke.values(u, seriesIdx, idx0, idx1);
-					strokePaths = new Map();
-					(new Set(strokeColors)).forEach(color => {
-						if (color != null)
-							strokePaths.set(color, new Path2D());
-					});
-				}
+				strokeColors = dispStrokes.values(u, seriesIdx, idx0, idx1);
+				strokePaths = new Map();
+				(new Set(strokeColors)).forEach(color => {
+					if (color != null)
+						strokePaths.set(color, new Path2D());
+				});
+			}
 
-				dataX = disp.x0.values(u, seriesIdx, idx0, idx1);
+			let { x0, size } = disp;
 
-				if (disp.x0.unit == 2)
+			if (x0 != null && size != null) {
+				dataX = x0.values(u, seriesIdx, idx0, idx1);
+
+				if (x0.unit == 2)
 					dataX = dataX.map(pct => u.posToVal(xOff + pct * xDim, scaleX.key, true));
 
 				// assumes uniform sizes, for now
-				let sizes = disp.size.values(u, seriesIdx, idx0, idx1);
+				let sizes = size.values(u, seriesIdx, idx0, idx1);
 
-				if (disp.size.unit == 2)
+				if (size.unit == 2)
 					barWid = sizes[0] * xDim;
 				else
 					barWid = valToPosX(sizes[0], scaleX, xDim, xOff) - valToPosX(0, scaleX, xDim, xOff); // assumes linear scale (delta from 0)
@@ -2140,29 +2148,32 @@ function bars(opts) {
 
 				// TODO: all xPos can be pre-computed once for all series in aligned set
 				let xPos = valToPosX(xVal, scaleX, xDim, xOff);
-				let yPos = valToPosY(yVal, scaleY, yDim, yOff);
+				let yPos = valToPosY(ifNull(yVal, fillToY) , scaleY, yDim, yOff);
 
 				let lft = pxRound(xPos - xShift);
 				let btm = pxRound(max(yPos, y0Pos));
 				let top = pxRound(min(yPos, y0Pos));
+				// this includes the stroke
 				let barHgt = btm - top;
 
-				if (dataY[i] != null) {
+				let r = radius * barWid;
+
+				if (yVal != null) {  // && yVal != fillToY (0 height bar)
 					if (multiPath) {
 						if (strokeWidth > 0 && strokeColors[i] != null)
-							rect(strokePaths.get(strokeColors[i]), lft, top, barWid, barHgt, radius * barWid);
+							rect(strokePaths.get(strokeColors[i]), lft, top + floor(strokeWidth / 2), barWid, max(0, barHgt - strokeWidth), r);
 
 						if (fillColors[i] != null)
-							rect(fillPaths.get(fillColors[i]), lft, top, barWid, barHgt, radius * barWid);
+							rect(fillPaths.get(fillColors[i]), lft, top + floor(strokeWidth / 2), barWid, max(0, barHgt - strokeWidth), r);
 					}
 					else
-						rect(stroke, lft, top, barWid, barHgt, radius * barWid);
+						rect(stroke, lft, top + floor(strokeWidth / 2), barWid, max(0, barHgt - strokeWidth), r);
 
 					each(u, seriesIdx, i,
 						lft    - strokeWidth / 2,
-						top    - strokeWidth / 2,
+						top,
 						barWid + strokeWidth,
-						barHgt + strokeWidth,
+						barHgt,
 					);
 				}
 
@@ -2178,7 +2189,7 @@ function bars(opts) {
 
 					barHgt = btm - top;
 
-					rect(band, lft - strokeWidth / 2, top + strokeWidth / 2, barWid + strokeWidth, barHgt - strokeWidth, 0);
+					rect(band, lft - strokeWidth / 2, top, barWid + strokeWidth, max(0, barHgt), 0);
 				}
 			}
 
@@ -4160,6 +4171,9 @@ function uPlot(opts, data, then) {
 				if (sc.distr == 2 && dataLen > 0) {
 					opts.min = closestIdx(opts.min, data[0]);
 					opts.max = closestIdx(opts.max, data[0]);
+
+					if (opts.min == opts.max)
+						opts.max++;
 				}
 			}
 

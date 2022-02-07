@@ -60,7 +60,7 @@ CodeMirror.defineMode('mllike', function(_config, parserConfig) {
       }
     }
     if (ch === '(') {
-      if (stream.eat('*')) {
+      if (stream.match(/^\*(?!\))/)) {
         state.commentLevel++;
         state.tokenize = tokenComment;
         return state.tokenize(stream, state);
