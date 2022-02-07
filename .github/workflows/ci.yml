@@ -20,7 +20,6 @@ jobs:
       fail-fast: false
       matrix:
         node:
-          - "12.x"
           - "14.x"
           - "16.x"
         os:
