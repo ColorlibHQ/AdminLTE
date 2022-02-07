@@ -137,7 +137,7 @@
     "concurrently": "^7.0.0",
     "eslint": "^8.7.0",
     "eslint-config-xo": "^0.39.0",
-    "eslint-plugin-compat": "^4.0.1",
+    "eslint-plugin-compat": "^4.0.2",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-unicorn": "^40.1.0",
     "lockfile-lint": "^4.6.2",
