@@ -21,7 +21,7 @@ The layout consists of four major parts:
 > You cannot use both layout-boxed and layout-navbar-fixed or layout-footer-fixed at the same time. Anything else can be mixed together.
 {: .quote-danger}
 
-AdminLTE 3.1 provides a set of options to apply to your main layout. Each one of these classes can be added to the body tag to get the desired goal.
+AdminLTE 3.2 provides a set of options to apply to your main layout. Each one of these classes can be added to the body tag to get the desired goal.
 
 - Fixed Sidebar: use the class `.layout-fixed` to get a fixed sidebar.
 - Fixed Navbar: use the class `.layout-navbar-fixed` to get a fixed navbar.
@@ -68,14 +68,14 @@ Preloader to avoid [https://github.com/ColorlibHQ/AdminLTE/discussions/3319](htt
 
 #### Dark Mode
 
-AdminLTE 3.1 provides a dark mode option. You can add in body tag:
+AdminLTE 3.2 provides a dark mode option. You can add in body tag:
 
 - `.dark-mode`
 
 
 #### Color Variations
 
-AdminLTE 3.1 provides a set of color variations to apply to your sidebar (light & dark) & navbar. You can combine any available color with these class prefixes:
+AdminLTE 3.2 provides a set of color variations to apply to your sidebar (light & dark) & navbar. You can combine any available color with these class prefixes:
 
 - `.navbar-*`
 - `.sidebar-dark-*`

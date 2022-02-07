@@ -1,8 +1,8 @@
-title: AdminLTE v3 Documentation
-version: v3.1.0
-description: AdminLTE v3.1 Documentation
+title: AdminLTE v3.2 Documentation
+version: v3.2
+description: AdminLTE v3.2 Documentation
 
-baseurl: /docs/3.1
+baseurl: /docs/3.2
 url: https://adminlte.io
 
 plugins:
