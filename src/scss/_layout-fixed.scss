@@ -16,7 +16,7 @@
     .content-wrapper,
     .main-footer {
       margin-left: $lte-sidebar-width;
-      transition: $lte-transition-speed $lte-transition-fn;
+      @include transition($lte-transition-speed $lte-transition-fn);
     }
 
     &.sidebar-collapse {

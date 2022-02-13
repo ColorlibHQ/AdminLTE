@@ -378,12 +378,12 @@ html.maximized-card {
 
   // Todo list element
   > li {
-    @include border-radius(2px);
     padding: 10px;
     margin-bottom: 2px;
     color: $gray-700;
     background-color: $gray-100;
     border-left: 2px solid $gray-200;
+    @include border-radius(2px);
 
     &:last-of-type {
       margin-bottom: 0;

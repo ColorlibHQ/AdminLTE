@@ -101,7 +101,7 @@
       top: 15px;
       right: 15px;
       font-size: 90px;
-      transition: transform $lte-transition-speed linear;
+      @include transition(transform $lte-transition-speed linear);
 
       &.inner-icon {
         top: 20px;
@@ -114,7 +114,7 @@
       top: 15px;
       right: 15px;
       font-size: 70px;
-      transition: transform $lte-transition-speed linear;
+      @include transition(transform $lte-transition-speed linear);
     }
   }
 

@@ -40,7 +40,7 @@
     padding-left: 0;
     border-right: 0;
     border-left: 0;
-    border-radius: 0;
+    @include border-radius(0);
   }
 }
 
@@ -296,8 +296,8 @@
       height: add(100%, (2 * $card-spacer-x));
       margin-top: -$card-spacer-x;
       margin-left: -$card-spacer-x;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
+      @include border-top-start-radius(0);
+      @include border-top-end-radius(0);
       &.dark {
         color: $white;
       }
@@ -468,7 +468,7 @@ blockquote {
   padding: $lte-button-padding-y-xs * 2 $lte-button-padding-x-xs * 2;
   font-size: $lte-button-font-size-xs;
   font-weight: 400;
-  border-radius: $lte-button-border-radius-xs;
+  @include border-radius($lte-button-border-radius-xs);
 }
 
 .badge-btn.badge-pill {

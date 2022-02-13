@@ -84,9 +84,9 @@
       color: #777;
       background-color: transparent;
       border-left: 0;
-      border-top-right-radius: $border-radius;
-      border-bottom-right-radius: $border-radius;
-      transition: $input-transition;
+      @include border-top-end-radius($border-radius);
+      @include border-bottom-end-radius($border-radius);
+      @include transition($input-transition);
     }
   }
 }

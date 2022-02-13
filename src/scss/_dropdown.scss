@@ -240,6 +240,6 @@
     height: $lte-sidebar-user-image-width;
     margin-top: -2px;
     // margin-right: 10px;
-    border-radius: 50%;
+    @include border-radius(50%);
   }
 }

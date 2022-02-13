@@ -48,7 +48,7 @@
 
 .direct-chat-messages,
 .direct-chat-contacts {
-  transition: transform .5s ease-in-out;
+  @include transition(transform .5s ease-in-out);
 }
 
 .direct-chat-text {

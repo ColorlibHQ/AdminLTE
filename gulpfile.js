@@ -168,7 +168,7 @@ const serve = () => {
 // Clean
 const cleanDist = () => del([paths.dist.base])
 
-const lintDistScss = () => src([paths.src.scss + '/**/*.scss'])
+const lintDistScss = () => src([paths.src.scss + '/**/*.scss'], ['./.temp/**/*.css'])
     .pipe(gulpStylelint({
       failAfterError: false,
       reporters: [

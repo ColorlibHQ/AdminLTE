@@ -68,7 +68,7 @@ $lte-sidebar-custom-padding-y:    .5rem !default;
 $lte-sidebar-transition:          min-width $lte-transition-speed $lte-transition-fn,
   max-width $lte-transition-speed $lte-transition-fn,
   margin-left $lte-transition-speed $lte-transition-fn,
-  margin-right $lte-transition-speed $lte-transition-fn;
+  margin-right $lte-transition-speed $lte-transition-fn !default;
 
 // margin-top $lte-transition-speed $lte-transition-fn,
 // transform $lte-transition-speed $lte-transition-fn;
@@ -112,7 +112,7 @@ $lte-sidebar-user-image-width:    $lte-sidebar-nav-icon-width + ($nav-link-paddi
 
 // SIDEBAR HORIZONTAL
 // --------------------------------------------------------
-$lte-sidebar-horizontal-width:    100%;
+$lte-sidebar-horizontal-width:    100% !default;
 $lte-sidebar-horizontal-height:   80px !default;
 
 // CONTROL SIDEBAR
@@ -136,16 +136,16 @@ $lte-main-header-height-sm:            add($lte-main-header-height-sm-inner, $lt
 // --------------------------------------------------------
 
 // Dark sidebar
-$lte-header-dark-bg:              $dark;
-$lte-header-dark-color:           $white;
-$lte-header-mobile-dark-bg:       $dark;
-$lte-header-mobile-dark-color:    $white;
+$lte-header-dark-bg:              $dark !default;
+$lte-header-dark-color:           $white !default;
+$lte-header-mobile-dark-bg:       $dark !default;
+$lte-header-mobile-dark-color:    $white !default;
 
 // Light sidebar
-$lte-header-light-bg:             $white;
-$lte-header-light-color:          $dark;
-$lte-header-mobile-light-bg:      $light;
-$lte-header-mobile-light-color:   $dark;
+$lte-header-light-bg:             $white !default;
+$lte-header-light-color:          $dark !default;
+$lte-header-mobile-light-bg:      $light !default;
+$lte-header-mobile-light-color:   $dark !default;
 
 // Content padding
 $lte-content-padding-y:           0 !default;
@@ -174,8 +174,8 @@ $lte-main-footer-color:             tint-color($gray-700, 25%) !default;
 
 // BRAND LINK
 // --------------------------------------------------------
-$lte-brand-link-padding-y:        $navbar-brand-padding-y + $navbar-padding-y;
-$lte-brand-link-border-buttom:    1px;
+$lte-brand-link-padding-y:        $navbar-brand-padding-y + $navbar-padding-y !default;
+$lte-brand-link-border-buttom:    1px !default;
 
 
 // Cards

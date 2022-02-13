@@ -84,7 +84,7 @@
   cursor: pointer;
 
   i.expandable-table-caret {
-    transition: transform $lte-transition-speed linear;
+    @include transition(transform $lte-transition-speed linear);
   }
   &[aria-expanded="true"] {
     td i.expandable-table-caret {

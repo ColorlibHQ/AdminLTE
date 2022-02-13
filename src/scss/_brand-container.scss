@@ -12,7 +12,7 @@
   overflow: hidden;
   font-size: $navbar-brand-font-size;
   white-space: nowrap;
-  transition: width $lte-transition-speed $lte-transition-fn;
+  @include transition(width $lte-transition-speed $lte-transition-fn);
 
   .brand-link {
     grid-area: brand-link;

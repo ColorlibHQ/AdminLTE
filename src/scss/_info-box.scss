@@ -25,16 +25,13 @@
   }
 
   .info-box-icon {
-    @if $enable-rounded {
-      border-radius: $border-radius;
-    }
-
     display: flex;
     align-items: center;
     justify-content: center;
     width: 70px;
     font-size: 1.875rem;
     text-align: center;
+    @include border-radius($border-radius);
 
     > img {
       max-width: 100%;

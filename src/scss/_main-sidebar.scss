@@ -57,7 +57,7 @@
 
 .hold-transition {
   .main-sidebar {
-    transition: none !important;
+    @include transition(none !important);
     animation: none !important;
   }
 }
