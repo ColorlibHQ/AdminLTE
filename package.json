@@ -77,7 +77,7 @@
     "bs-stepper": "^1.7.0",
     "chart.js": "^2.9.4",
     "codemirror": "^5.65.1",
-    "datatables.net": "^1.11.4",
+    "datatables.net": "^1.11.5",
     "datatables.net-autofill-bs4": "^2.3.9",
     "datatables.net-bs4": "^1.11.4",
     "datatables.net-buttons-bs4": "^2.2.2",
