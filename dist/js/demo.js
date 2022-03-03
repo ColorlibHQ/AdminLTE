@@ -504,7 +504,7 @@
   })
   var navbar_all_colors = navbar_dark_skins.concat(navbar_light_skins)
   var $navbar_variants_colors = createSkinBlock(navbar_all_colors, function () {
-    var color = $(this).find('option:selected').attr('class')
+    var color = $(this).find('option:selected').attr('class').replace('bg-', 'navbar-')
     var $main_header = $('.main-header')
     $main_header.removeClass('navbar-dark').removeClass('navbar-light')
     navbar_all_colors.forEach(function (color) {
@@ -652,7 +652,7 @@
   })
 
   var $brand_variants = createSkinBlock(logo_skins, function () {
-    var color = $(this).find('option:selected').attr('class')
+    var color = $(this).find('option:selected').attr('class').replace('bg-', 'navbar-')
     var $logo = $('.brand-link')
 
     if (color === 'navbar-light' || color === 'navbar-white') {
