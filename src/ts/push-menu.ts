@@ -81,14 +81,14 @@ class PushMenu {
     this._cookiePath = '/'
 
     if (this._element !== null) {
-      const remember: string = this._element.dataset[DATA_NAME_REMEMBER_STATE] ?? '0'
+      const remember: string = this._element ? this._element.dataset[DATA_NAME_REMEMBER_STATE] ?? '0' : '0'
       const rememberInt = Number.parseInt(remember, 10)
       this._rememberState = (rememberInt === 1)
-      if (this._rememberState && !this._element.id) {
+      if (this._rememberState && this._element && !this._element.id) {
         throw new Error('To remember menu state, id parameter on menu button must be defined!')
       }
 
-      this._cookiePath = this._element.dataset[COOKIE_PATH] ?? this._cookiePath
+      this._cookiePath = this._element ? this._element.dataset[COOKIE_PATH] ?? this._cookiePath : this._cookiePath
     }
   }
 
@@ -311,7 +311,7 @@ domReady(() => {
   const fullBtn = document.querySelectorAll(SELECTOR_FULL_TOGGLE)
 
   for (const btn of fullBtn) {
-    const data = new PushMenu(btn as HTMLElement, null)
+    const data = new PushMenu(btn as HTMLElement, undefined)
     data.initPreviousState()
 
     btn.addEventListener('click', event => {
@@ -333,7 +333,7 @@ domReady(() => {
   const miniBtn = document.querySelectorAll(SELECTOR_MINI_TOGGLE)
 
   for (const btn of miniBtn) {
-    const data = new PushMenu(btn as HTMLElement, null)
+    const data = new PushMenu(btn as HTMLElement, undefined)
     data.initPreviousState()
 
     btn.addEventListener('click', event => {
