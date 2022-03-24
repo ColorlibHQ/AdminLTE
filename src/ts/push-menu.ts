@@ -23,7 +23,7 @@ const EVENT_CLOSE = `close${EVENT_KEY}`
 
 const DATA_NAME_REMEMBER_STATE = `${DATA_KEY}.remember.state`
 
-const COOKIE_REMEMBER_STATE = `${DATA_KEY}.sidebar.state`
+const STORAGE_KEY_REMEMBER_STATE = `${DATA_KEY}.sidebar.state`
 const COOKIE_PATH = `${DATA_KEY}.sidebar.cookie.path`
 
 const CLASS_NAME_SIDEBAR_MINI = 'sidebar-mini'
@@ -57,6 +57,12 @@ enum RememberState {
   Collapsed = 'Collapsed'
 }
 
+enum RememberStateStorage {
+  Cookies = 'Cookies',
+  LocalStorage = 'LocalStorage',
+  SessionStorage = 'SessionStorage'
+}
+
 /**
  * Class Definition
  * ====================================================
@@ -64,23 +70,37 @@ enum RememberState {
 
 class PushMenu {
   _element: HTMLElement | undefined
-  _config: undefined
+  _config: { [name: string]: any }
   _bodyClass: DOMTokenList
   _rememberState: boolean
+  _storageObject: Storage
   _cookiePath: string
 
-  constructor(element: HTMLElement | undefined, config: undefined) {
+  constructor(element: HTMLElement | undefined, config: {} | undefined) {
+    // Init defaults
+    this._config = {
+      rememberState: false,
+      stateStorage: RememberStateStorage.LocalStorage
+    }
+    this._rememberState = false
+    this._storageObject = window.localStorage
+    this._cookiePath = '/'
+
+    // Asign instance variables
     this._element = element
 
     const bodyElement = document.body as HTMLBodyElement
     this._bodyClass = bodyElement.classList
 
-    this._config = config
+    if (config !== undefined) {
+      Object.assign(this._config, config)
+    }
 
-    this._rememberState = false
-    this._cookiePath = '/'
+    if (this._config.stateStorage === RememberStateStorage.SessionStorage) {
+      this._storageObject = window.sessionStorage
+    }
 
-    if (this._element !== null) {
+    if (this._element !== null && this._config.rememberState === true) {
       const remember: string = this._element ? this._element.dataset[DATA_NAME_REMEMBER_STATE] ?? '0' : '0'
       const rememberInt = Number.parseInt(remember, 10)
       this._rememberState = (rememberInt === 1)
@@ -88,7 +108,9 @@ class PushMenu {
         throw new Error('To remember menu state, id parameter on menu button must be defined!')
       }
 
-      this._cookiePath = this._element ? this._element.dataset[COOKIE_PATH] ?? this._cookiePath : this._cookiePath
+      if (this._config.stateStorage === RememberStateStorage.Cookies) {
+        this._cookiePath = this._element ? this._element.dataset[COOKIE_PATH] ?? this._cookiePath : this._cookiePath
+      }
     }
   }
 
@@ -185,7 +207,14 @@ class PushMenu {
 
   setState(state: RememberState): void {
     if (this._rememberState) {
-      window.document.cookie = `${COOKIE_REMEMBER_STATE}.${this._element!.id}=${state}; SameSite=Strict; Path=${this._cookiePath}`
+      if (
+           this._config.stateStorage === RememberStateStorage.LocalStorage
+        || this._config.stateStorage === RememberStateStorage.SessionStorage
+      ) {
+        this._storageObject.setItem(STORAGE_KEY_REMEMBER_STATE, state)
+      } else if (this._config.stateStorage === RememberStateStorage.Cookies) {
+        window.document.cookie = `${STORAGE_KEY_REMEMBER_STATE}.${this._element!.id}=${state}; SameSite=Strict; Path=${this._cookiePath}`
+      }
     }
   }
 
@@ -196,14 +225,24 @@ class PushMenu {
 
     this._bodyClass.add('hold-transition')
 
-    const allcookies = document.cookie
-    const cookiearray = allcookies.split(';')
-
     let state: RememberState = RememberState.Open
-    for (const item of cookiearray) {
-      const itemSplit = item.split('=')
-      if (itemSplit.length > 1 && itemSplit[0].trim() === `${COOKIE_REMEMBER_STATE}.${this._element!.id}`) {
-        state = RememberState[itemSplit[1].trim() as keyof typeof RememberState]
+    if (
+         this._config.stateStorage === RememberStateStorage.LocalStorage
+      || this._config.stateStorage === RememberStateStorage.SessionStorage
+    ) {
+      const savedState = this._storageObject.getItem(STORAGE_KEY_REMEMBER_STATE)
+      if (savedState !== null) {
+        state = RememberState[savedState as keyof typeof RememberState]
+      }
+    } else if (this._config.stateStorage === RememberStateStorage.Cookies) {
+      const allcookies = document.cookie
+      const cookiearray = allcookies.split(';')
+
+      for (const item of cookiearray) {
+        const itemSplit = item.split('=')
+        if (itemSplit.length > 1 && itemSplit[0].trim() === `${STORAGE_KEY_REMEMBER_STATE}.${this._element!.id}`) {
+          state = RememberState[itemSplit[1].trim() as keyof typeof RememberState]
+        }
       }
     }
 
