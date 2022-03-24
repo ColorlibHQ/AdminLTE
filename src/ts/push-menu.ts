@@ -22,8 +22,9 @@ const EVENT_COLLAPSE = `collapse${EVENT_KEY}`
 const EVENT_CLOSE = `close${EVENT_KEY}`
 
 const DATA_NAME_REMEMBER_STATE = `${DATA_KEY}.remember.state`
+const DATA_NAME_STATE_STORAGE = `${DATA_KEY}.remember.storage`
 
-const COOKIE_REMEMBER_STATE = `${DATA_KEY}.sidebar.state`
+const STORAGE_KEY_REMEMBER_STATE = `${DATA_KEY}.sidebar.state`
 const COOKIE_PATH = `${DATA_KEY}.sidebar.cookie.path`
 
 const CLASS_NAME_SIDEBAR_MINI = 'sidebar-mini'
@@ -57,6 +58,12 @@ enum RememberState {
   Collapsed = 'Collapsed'
 }
 
+enum RememberStateStorage {
+  Cookies = 'Cookies',
+  LocalStorage = 'LocalStorage',
+  SessionStorage = 'SessionStorage'
+}
+
 /**
  * Class Definition
  * ====================================================
@@ -64,32 +71,67 @@ enum RememberState {
 
 class PushMenu {
   _element: HTMLElement | undefined
-  _config: undefined
+  _config: { [name: string]: any }
   _bodyClass: DOMTokenList
-  _rememberState: boolean
+  _storageObject: Storage
   _cookiePath: string
 
-  constructor(element: HTMLElement | undefined, config: undefined) {
+  constructor(element: HTMLElement | undefined, config: {} | undefined) {
+    // Init defaults
+    this._config = {
+      rememberState: false,
+      stateStorage: RememberStateStorage.LocalStorage
+    }
+    this._storageObject = window.localStorage
+    this._cookiePath = '/'
+
+    // Asign instance variables
     this._element = element
 
     const bodyElement = document.body as HTMLBodyElement
     this._bodyClass = bodyElement.classList
 
-    this._config = config
+    if (config !== undefined) {
+      Object.assign(this._config, config)
+    }
 
-    this._rememberState = false
-    this._cookiePath = '/'
+    if (this._element !== undefined) {
+      // Data attribute can override config parameter
+      const remember: string|undefined = this._element ? this._element.dataset[DATA_NAME_REMEMBER_STATE] : undefined
+      if (remember !== undefined) {
+        const rememberInt = Number.parseInt(remember, 10)
+        this._config.rememberState = (rememberInt === 1)
+      }
 
-    if (this._element !== null) {
-      const remember: string = this._element ? this._element.dataset[DATA_NAME_REMEMBER_STATE] ?? '0' : '0'
-      const rememberInt = Number.parseInt(remember, 10)
-      this._rememberState = (rememberInt === 1)
-      if (this._rememberState && this._element && !this._element.id) {
+      const stateStorage: string|undefined = this._element ? this._element.dataset[DATA_NAME_STATE_STORAGE] : undefined
+      if (stateStorage !== undefined) {
+        this._config.stateStorage = RememberStateStorage[stateStorage as keyof typeof RememberStateStorage]
+      }
+
+      if (this._config.rememberState && this._element && !this._element.id) {
         throw new Error('To remember menu state, id parameter on menu button must be defined!')
       }
 
-      this._cookiePath = this._element ? this._element.dataset[COOKIE_PATH] ?? this._cookiePath : this._cookiePath
+      if (this._config.stateStorage === RememberStateStorage.Cookies) {
+        this._cookiePath = this._element ? this._element.dataset[COOKIE_PATH] ?? this._cookiePath : this._cookiePath
+      }
     }
+
+    if (this._config.stateStorage === RememberStateStorage.SessionStorage) {
+      this._storageObject = window.sessionStorage
+    }
+  }
+
+  isExpanded(): boolean {
+    return this._bodyClass.contains(CLASS_NAME_SIDEBAR_OPEN)
+  }
+
+  isClosed(): boolean {
+    return this._bodyClass.contains(CLASS_NAME_SIDEBAR_CLOSE)
+  }
+
+  isCollapsed(): boolean {
+    return this._bodyClass.contains(CLASS_NAME_SIDEBAR_COLLAPSE)
   }
 
   sidebarOpening(): void {
@@ -131,7 +173,7 @@ class PushMenu {
     this._bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
     this._bodyClass.add(CLASS_NAME_SIDEBAR_OPEN)
 
-    if (this._element !== null) {
+    if (this._element !== undefined) {
       const event = new CustomEvent(EVENT_EXPAND)
       this._element.dispatchEvent(event)
     }
@@ -144,7 +186,7 @@ class PushMenu {
 
     this._bodyClass.add(CLASS_NAME_SIDEBAR_COLLAPSE)
 
-    if (this._element !== null) {
+    if (this._element !== undefined) {
       const event = new CustomEvent(EVENT_COLLAPSE)
       this._element.dispatchEvent(event)
     }
@@ -161,7 +203,7 @@ class PushMenu {
       this.menusClose()
     }
 
-    if (this._element !== null) {
+    if (this._element !== undefined) {
       const event = new CustomEvent(EVENT_CLOSE)
       this._element.dispatchEvent(event)
     }
@@ -184,35 +226,58 @@ class PushMenu {
   }
 
   setState(state: RememberState): void {
-    if (this._rememberState) {
-      window.document.cookie = `${COOKIE_REMEMBER_STATE}.${this._element!.id}=${state}; SameSite=Strict; Path=${this._cookiePath}`
+    if (this._config.rememberState) {
+      if (
+           this._config.stateStorage === RememberStateStorage.LocalStorage
+        || this._config.stateStorage === RememberStateStorage.SessionStorage
+      ) {
+        this._storageObject.setItem(STORAGE_KEY_REMEMBER_STATE, state)
+      } else if (this._config.stateStorage === RememberStateStorage.Cookies) {
+        window.document.cookie = `${STORAGE_KEY_REMEMBER_STATE}.${this._element!.id}=${state}; SameSite=Strict; Path=${this._cookiePath}`
+      }
     }
   }
 
   initPreviousState(): void {
-    if (!this._rememberState) {
+    if (!this._config.rememberState) {
       return
     }
 
     this._bodyClass.add('hold-transition')
 
-    const allcookies = document.cookie
-    const cookiearray = allcookies.split(';')
-
     let state: RememberState = RememberState.Open
-    for (const item of cookiearray) {
-      const itemSplit = item.split('=')
-      if (itemSplit.length > 1 && itemSplit[0].trim() === `${COOKIE_REMEMBER_STATE}.${this._element!.id}`) {
-        state = RememberState[itemSplit[1].trim() as keyof typeof RememberState]
+    if (
+         this._config.stateStorage === RememberStateStorage.LocalStorage
+      || this._config.stateStorage === RememberStateStorage.SessionStorage
+    ) {
+      const savedState = this._storageObject.getItem(STORAGE_KEY_REMEMBER_STATE)
+      if (savedState !== null) {
+        state = RememberState[savedState as keyof typeof RememberState]
+      }
+    } else if (this._config.stateStorage === RememberStateStorage.Cookies) {
+      const allcookies = document.cookie
+      const cookiearray = allcookies.split(';')
+
+      for (const item of cookiearray) {
+        const itemSplit = item.split('=')
+        if (itemSplit.length > 1 && itemSplit[0].trim() === `${STORAGE_KEY_REMEMBER_STATE}.${this._element!.id}`) {
+          state = RememberState[itemSplit[1].trim() as keyof typeof RememberState]
+        }
       }
     }
 
     if (state === RememberState.Closed) {
-      this.close()
+      if (this.isClosed() === false) {
+        this.close()
+      }
     } else if (state === RememberState.Collapsed) {
-      this.collapse()
+      if (this.isCollapsed() === false) {
+        this.collapse()
+      }
     } else {
-      this.expand()
+      if (this.isExpanded() === false) {
+        this.expand()
+      }
     }
 
     setTimeout(() => {
@@ -230,9 +295,7 @@ class PushMenu {
 
     if (widthOutput >= Defaults.onLayouMobile) {
       bodyClass.remove(CLASS_NAME_LAYOUT_MOBILE)
-      if (!this._rememberState) {
-        this.initPreviousState()
-      }
+      this.initPreviousState()
     }
   }
 
@@ -253,7 +316,7 @@ class PushMenu {
   }
 
   toggleFull(): void {
-    if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_CLOSE)) {
+    if (this.isClosed()) {
       this.expand()
     } else {
       this.close()
@@ -271,7 +334,7 @@ class PushMenu {
       this._bodyClass.add(CLASS_NAME_SIDEBAR_MINI)
     }
 
-    if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
+    if (this.isCollapsed()) {
       this.expand()
     } else {
       this.collapse()
