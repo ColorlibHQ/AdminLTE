@@ -413,7 +413,7 @@ $table-hover-bg-alt:              rgba($white-alt, $table-hover-bg-factor-alt) !
 $table-border-factor-alt:         .1 !default;
 $table-border-color-alt:          $border-color-alt !default;
 
-$table-group-separator-color-alt: currentcolor !default;
+$table-group-separator-color-alt: $gray-400-alt !default;
 
 $table-caption-color-alt:         $text-muted-alt !default;
 

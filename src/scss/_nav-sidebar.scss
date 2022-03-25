@@ -3,11 +3,15 @@
   // All levels
   .nav-item {
     > .nav-link {
-      margin-bottom: .2rem;
+      margin-bottom: 0.2rem;
 
       .end {
         @include transition(transform $lte-transition-fn $lte-transition-speed);
         transform: none #{"/*rtl:rotate(-180deg)*/"};
+
+        .sidebar-collapse:not(.sidebar-is-hover) & {
+          display: none;
+        }
       }
     }
   }
@@ -16,7 +20,7 @@
   .nav-link > .end,
   .nav-link > p > .end {
     position: absolute;
-    top: .7rem;
+    top: 0.7rem;
     right: 1rem;
   }
 
@@ -27,18 +31,18 @@
 
     p {
       display: inline;
-      padding-left: .5rem;
+      padding-left: 0.5rem;
       margin: 0;
     }
 
     .nav-icon {
-      padding-left: .3rem;
+      padding-left: 0.3rem;
     }
   }
 
   .nav-header {
     padding: $nav-link-padding-y ($nav-link-padding-y * 1.5);
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 
   // Tree view menu
