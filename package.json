@@ -130,7 +130,7 @@
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
     "@rollup/plugin-babel": "^5.3.1",
-    "autoprefixer": "^10.4.2",
+    "autoprefixer": "^10.4.4",
     "browser-sync": "^2.27.9",
     "bundlewatch": "^0.3.3",
     "clean-css-cli": "^5.5.2",
