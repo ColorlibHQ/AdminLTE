@@ -145,7 +145,7 @@
     "node-sass-package-importer": "^5.3.2",
     "nodemon": "^2.0.15",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.4.7",
+    "postcss": "^8.4.12",
     "postcss-cli": "^9.1.0",
     "rollup": "^2.70.1",
     "stylelint": "^13.13.1",
