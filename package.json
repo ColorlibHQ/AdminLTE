@@ -147,7 +147,7 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.7",
     "postcss-cli": "^9.1.0",
-    "rollup": "^2.69.0",
+    "rollup": "^2.70.1",
     "stylelint": "^13.13.1",
     "stylelint-config-twbs-bootstrap": "^2.2.4",
     "terser": "^5.12.0",
