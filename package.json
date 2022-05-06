@@ -100,7 +100,7 @@
     "flag-icons": "^4.1.7",
     "flot": "^4.2.2",
     "fs-extra": "^10.0.1",
-    "fullcalendar": "^5.10.2",
+    "fullcalendar": "^5.11.0",
     "icheck-bootstrap": "^3.0.1",
     "inputmask": "^5.0.7",
     "ion-rangeslider": "^2.3.1",
