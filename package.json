@@ -48,7 +48,7 @@
     "eslint": "^8.9.0",
     "eslint-config-xo": "^0.40.0",
     "eslint-config-xo-typescript": "^0.50.0",
-    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-unicorn": "^40.1.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
@@ -66,7 +66,7 @@
     "rollup": "^2.67.2",
     "rtlcss": "^3.5.0",
     "sass": "^1.49.7",
-    "stylelint": "^14.5.0",
+    "stylelint": "^14.8.2",
     "stylelint-config-twbs-bootstrap": "^3.0.1",
     "tslib": "^2.3.1",
     "typescript": "^4.5.5"
