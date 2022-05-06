@@ -113,7 +113,7 @@
     "jqvmap-novulnerability": "^1.5.1",
     "jsgrid": "^1.5.3",
     "jszip": "^3.9.1",
-    "moment": "^2.29.1",
+    "moment": "^2.29.3",
     "overlayscrollbars": "^1.13.1",
     "pdfmake": "^0.2.5",
     "popper.js": "^1.16.1",
