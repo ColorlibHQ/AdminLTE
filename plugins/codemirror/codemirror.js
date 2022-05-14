@@ -1324,7 +1324,7 @@
   // Add a span to a line.
   function addMarkedSpan(line, span, op) {
     var inThisOp = op && window.WeakSet && (op.markedSpans || (op.markedSpans = new WeakSet));
-    if (inThisOp && inThisOp.has(line.markedSpans)) {
+    if (inThisOp && line.markedSpans && inThisOp.has(line.markedSpans)) {
       line.markedSpans.push(span);
     } else {
       line.markedSpans = line.markedSpans ? line.markedSpans.concat([span]) : [span];
@@ -9842,7 +9842,7 @@
 
   addLegacyProps(CodeMirror);
 
-  CodeMirror.version = "5.65.1";
+  CodeMirror.version = "5.65.3";
 
   return CodeMirror;
 

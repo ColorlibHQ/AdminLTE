@@ -1,27 +1,16 @@
-tr.even td {
+table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, table.dataTable tfoot td {
+  background-color: white;
+}
+table.dataTable tbody tr td {
   background-color: #ffffff;
 }
-
-tr.odd td {
+table.dataTable.table-striped tbody tr.odd td {
   background-color: #f9f9f9;
 }
-
-tr.selected td {
-  background-color: #0088cc;
-}
-
-thead th {
-  background-color: white;
-}
-
-tfoot th {
-  background-color: white;
-}
-
-th.dtfc-fixed-left,
-th.dtfc-fixed-right,
-td.dtfc-fixed-left,
-td.dtfc-fixed-right {
+table.dataTable th.dtfc-fixed-left,
+table.dataTable th.dtfc-fixed-right,
+table.dataTable td.dtfc-fixed-left,
+table.dataTable td.dtfc-fixed-right {
   z-index: 1;
 }
 

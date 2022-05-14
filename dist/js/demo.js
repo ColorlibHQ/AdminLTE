@@ -66,13 +66,15 @@
   var $dark_mode_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('body').hasClass('dark-mode'),
+    checked: localStorage.getItem('darkMode') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('dark-mode')
+      localStorage.setItem('darkMode', true)
     } else {
       $('body').removeClass('dark-mode')
+      localStorage.removeItem('darkMode')
     }
   })
   var $dark_mode_container = $('<div />', { class: 'mb-4' }).append($dark_mode_checkbox).append('<span>Dark Mode</span>')
@@ -82,13 +84,15 @@
   var $header_fixed_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('body').hasClass('layout-navbar-fixed'),
+    checked: localStorage.getItem('layoutNavbarFixed') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('layout-navbar-fixed')
+      localStorage.setItem('layoutNavbarFixed', true)
     } else {
       $('body').removeClass('layout-navbar-fixed')
+      localStorage.removeItem('layoutNavbarFixed')
     }
   })
   var $header_fixed_container = $('<div />', { class: 'mb-1' }).append($header_fixed_checkbox).append('<span>Fixed</span>')
@@ -97,13 +101,15 @@
   var $dropdown_legacy_offset_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('.main-header').hasClass('dropdown-legacy'),
+    checked: localStorage.getItem('dropdownLegacyOffset') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.main-header').addClass('dropdown-legacy')
+      localStorage.setItem('dropdownLegacyOffset', true)
     } else {
       $('.main-header').removeClass('dropdown-legacy')
+      localStorage.removeItem('dropdownLegacyOffset')
     }
   })
   var $dropdown_legacy_offset_container = $('<div />', { class: 'mb-1' }).append($dropdown_legacy_offset_checkbox).append('<span>Dropdown Legacy Offset</span>')
@@ -112,13 +118,15 @@
   var $no_border_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('.main-header').hasClass('border-bottom-0'),
+    checked: localStorage.getItem('noBorder') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.main-header').addClass('border-bottom-0')
+      localStorage.setItem('noBorder', true)
     } else {
       $('.main-header').removeClass('border-bottom-0')
+      localStorage.removeItem('noBorder')
     }
   })
   var $no_border_container = $('<div />', { class: 'mb-4' }).append($no_border_checkbox).append('<span>No border</span>')
@@ -129,15 +137,17 @@
   var $sidebar_collapsed_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('body').hasClass('sidebar-collapse'),
+    checked: localStorage.getItem('sidebarCollapsed') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('sidebar-collapse')
       $(window).trigger('resize')
+      localStorage.setItem('sidebarCollapsed', true)
     } else {
       $('body').removeClass('sidebar-collapse')
       $(window).trigger('resize')
+      localStorage.removeItem('sidebarCollapsed')
     }
   })
   var $sidebar_collapsed_container = $('<div />', { class: 'mb-1' }).append($sidebar_collapsed_checkbox).append('<span>Collapsed</span>')
@@ -153,15 +163,17 @@
   var $sidebar_fixed_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('body').hasClass('layout-fixed'),
+    checked: localStorage.getItem('layoutFixed') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('layout-fixed')
       $(window).trigger('resize')
+      localStorage.setItem('layoutFixed', true)
     } else {
       $('body').removeClass('layout-fixed')
       $(window).trigger('resize')
+      localStorage.removeItem('layoutFixed')
     }
   })
   var $sidebar_fixed_container = $('<div />', { class: 'mb-1' }).append($sidebar_fixed_checkbox).append('<span>Fixed</span>')
@@ -170,13 +182,15 @@
   var $sidebar_mini_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('body').hasClass('sidebar-mini'),
+    checked: localStorage.getItem('sidebarMini') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('sidebar-mini')
+      localStorage.setItem('sidebarMini', true)
     } else {
       $('body').removeClass('sidebar-mini')
+      localStorage.removeItem('sidebarMini')
     }
   })
   var $sidebar_mini_container = $('<div />', { class: 'mb-1' }).append($sidebar_mini_checkbox).append('<span>Sidebar Mini</span>')
@@ -185,13 +199,15 @@
   var $sidebar_mini_md_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('body').hasClass('sidebar-mini-md'),
+    checked: localStorage.getItem('sidebarMiniMD') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('sidebar-mini-md')
+      localStorage.setItem('sidebarMiniMD', true)
     } else {
       $('body').removeClass('sidebar-mini-md')
+      localStorage.removeItem('sidebarMiniMD')
     }
   })
   var $sidebar_mini_md_container = $('<div />', { class: 'mb-1' }).append($sidebar_mini_md_checkbox).append('<span>Sidebar Mini MD</span>')
@@ -200,13 +216,15 @@
   var $sidebar_mini_xs_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('body').hasClass('sidebar-mini-xs'),
+    checked: localStorage.getItem('sidebarMiniXS') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('sidebar-mini-xs')
+      localStorage.setItem('sidebarMiniXS', true)
     } else {
       $('body').removeClass('sidebar-mini-xs')
+      localStorage.removeItem('sidebarMiniXS')
     }
   })
   var $sidebar_mini_xs_container = $('<div />', { class: 'mb-1' }).append($sidebar_mini_xs_checkbox).append('<span>Sidebar Mini XS</span>')
@@ -215,13 +233,15 @@
   var $flat_sidebar_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('.nav-sidebar').hasClass('nav-flat'),
+    checked: localStorage.getItem('navFlat') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.nav-sidebar').addClass('nav-flat')
+      localStorage.setItem('navFlat', true)
     } else {
       $('.nav-sidebar').removeClass('nav-flat')
+      localStorage.removeItem('navFlat')
     }
   })
   var $flat_sidebar_container = $('<div />', { class: 'mb-1' }).append($flat_sidebar_checkbox).append('<span>Nav Flat Style</span>')
@@ -230,13 +250,15 @@
   var $legacy_sidebar_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('.nav-sidebar').hasClass('nav-legacy'),
+    checked: localStorage.getItem('navLegacy') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.nav-sidebar').addClass('nav-legacy')
+      localStorage.setItem('navLegacy', true)
     } else {
       $('.nav-sidebar').removeClass('nav-legacy')
+      localStorage.removeItem('navLegacy')
     }
   })
   var $legacy_sidebar_container = $('<div />', { class: 'mb-1' }).append($legacy_sidebar_checkbox).append('<span>Nav Legacy Style</span>')
@@ -245,13 +267,15 @@
   var $compact_sidebar_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('.nav-sidebar').hasClass('nav-compact'),
+    checked: localStorage.getItem('navCompact') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.nav-sidebar').addClass('nav-compact')
+      localStorage.setItem('navCompact', true)
     } else {
       $('.nav-sidebar').removeClass('nav-compact')
+      localStorage.removeItem('navCompact')
     }
   })
   var $compact_sidebar_container = $('<div />', { class: 'mb-1' }).append($compact_sidebar_checkbox).append('<span>Nav Compact</span>')
@@ -260,13 +284,15 @@
   var $child_indent_sidebar_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('.nav-sidebar').hasClass('nav-child-indent'),
+    checked: localStorage.getItem('navChildIndent') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.nav-sidebar').addClass('nav-child-indent')
+      localStorage.setItem('navChildIndent', true)
     } else {
       $('.nav-sidebar').removeClass('nav-child-indent')
+      localStorage.removeItem('navChildIndent')
     }
   })
   var $child_indent_sidebar_container = $('<div />', { class: 'mb-1' }).append($child_indent_sidebar_checkbox).append('<span>Nav Child Indent</span>')
@@ -275,13 +301,15 @@
   var $child_hide_sidebar_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('.nav-sidebar').hasClass('nav-collapse-hide-child'),
+    checked: localStorage.getItem('navChildHide') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.nav-sidebar').addClass('nav-collapse-hide-child')
+      localStorage.setItem('navChildHide', true)
     } else {
       $('.nav-sidebar').removeClass('nav-collapse-hide-child')
+      localStorage.removeItem('navChildHide')
     }
   })
   var $child_hide_sidebar_container = $('<div />', { class: 'mb-1' }).append($child_hide_sidebar_checkbox).append('<span>Nav Child Hide on Collapse</span>')
@@ -290,13 +318,15 @@
   var $no_expand_sidebar_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('.main-sidebar').hasClass('sidebar-no-expand'),
+    checked: localStorage.getItem('navNoExpand') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.main-sidebar').addClass('sidebar-no-expand')
+      localStorage.setItem('navNoExpand', true)
     } else {
       $('.main-sidebar').removeClass('sidebar-no-expand')
+      localStorage.removeItem('navNoExpand')
     }
   })
   var $no_expand_sidebar_container = $('<div />', { class: 'mb-4' }).append($no_expand_sidebar_checkbox).append('<span>Disable Hover/Focus Auto-Expand</span>')
@@ -306,13 +336,15 @@
   var $footer_fixed_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('body').hasClass('layout-footer-fixed'),
+    checked: localStorage.getItem('layoutFooterFixed') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('layout-footer-fixed')
+      localStorage.setItem('layoutFooterFixed', true)
     } else {
       $('body').removeClass('layout-footer-fixed')
+      localStorage.removeItem('layoutFooterFixed')
     }
   })
   var $footer_fixed_container = $('<div />', { class: 'mb-4' }).append($footer_fixed_checkbox).append('<span>Fixed</span>')
@@ -323,13 +355,15 @@
   var $text_sm_body_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('body').hasClass('text-sm'),
+    checked: localStorage.getItem('textSmBody') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('body').addClass('text-sm')
+      localStorage.setItem('textSmBody', true)
     } else {
       $('body').removeClass('text-sm')
+      localStorage.removeItem('textSmBody')
     }
   })
   var $text_sm_body_container = $('<div />', { class: 'mb-1' }).append($text_sm_body_checkbox).append('<span>Body</span>')
@@ -338,13 +372,15 @@
   var $text_sm_header_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('.main-header').hasClass('text-sm'),
+    checked: localStorage.getItem('textSmHeader') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.main-header').addClass('text-sm')
+      localStorage.setItem('textSmHeader', true)
     } else {
       $('.main-header').removeClass('text-sm')
+      localStorage.removeItem('textSmHeader')
     }
   })
   var $text_sm_header_container = $('<div />', { class: 'mb-1' }).append($text_sm_header_checkbox).append('<span>Navbar</span>')
@@ -353,13 +389,15 @@
   var $text_sm_brand_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('.brand-link').hasClass('text-sm'),
+    checked: localStorage.getItem('textSmBrand') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.brand-link').addClass('text-sm')
+      localStorage.setItem('textSmBrand', true)
     } else {
       $('.brand-link').removeClass('text-sm')
+      localStorage.removeItem('textSmBrand')
     }
   })
   var $text_sm_brand_container = $('<div />', { class: 'mb-1' }).append($text_sm_brand_checkbox).append('<span>Brand</span>')
@@ -368,13 +406,15 @@
   var $text_sm_sidebar_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('.nav-sidebar').hasClass('text-sm'),
+    checked: localStorage.getItem('textSmSidebar') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.nav-sidebar').addClass('text-sm')
+      localStorage.setItem('textSmSidebar', true)
     } else {
       $('.nav-sidebar').removeClass('text-sm')
+      localStorage.removeItem('textSmSidebar')
     }
   })
   var $text_sm_sidebar_container = $('<div />', { class: 'mb-1' }).append($text_sm_sidebar_checkbox).append('<span>Sidebar Nav</span>')
@@ -383,13 +423,15 @@
   var $text_sm_footer_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('.main-footer').hasClass('text-sm'),
+    checked: localStorage.getItem('textSmFooter') ?? false,
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
       $('.main-footer').addClass('text-sm')
+      localStorage.setItem('textSmFooter', true)
     } else {
       $('.main-footer').removeClass('text-sm')
+      localStorage.removeItem('textSmFooter')
     }
   })
   var $text_sm_footer_container = $('<div />', { class: 'mb-4' }).append($text_sm_footer_checkbox).append('<span>Footer</span>')
@@ -504,7 +546,7 @@
   })
   var navbar_all_colors = navbar_dark_skins.concat(navbar_light_skins)
   var $navbar_variants_colors = createSkinBlock(navbar_all_colors, function () {
-    var color = $(this).find('option:selected').attr('class').replace('bg-', 'navbar-')
+    var color = $(this).find('option:selected').attr('class')
     var $main_header = $('.main-header')
     $main_header.removeClass('navbar-dark').removeClass('navbar-light')
     navbar_all_colors.forEach(function (color) {
@@ -522,9 +564,10 @@
     }
 
     $main_header.addClass(color)
+    localStorage.setItem('navbarVariant', color)
   })
 
-  var active_navbar_color = null
+  var active_navbar_color = localStorage.getItem('navbarVariant') || null
   $('.main-header')[0].classList.forEach(function (className) {
     if (navbar_all_colors.indexOf(className) > -1 && active_navbar_color === null) {
       active_navbar_color = className.replace('navbar-', 'bg-')
@@ -535,17 +578,16 @@
   $navbar_variants_colors.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_navbar_color)
 
   $navbar_variants.append($navbar_variants_colors)
-
   $container.append($navbar_variants)
 
   // Sidebar Colors
 
   $container.append('<h6>Accent Color Variants</h6>')
+
   var $accent_variants = $('<div />', {
     class: 'd-flex'
   })
-  $container.append($accent_variants)
-  $container.append(createSkinBlock(accent_colors, function () {
+  var $accent_variants_colors = createSkinBlock(accent_colors, function () {
     var color = $(this).find('option:selected').attr('class')
     var $body = $('body')
     accent_colors.forEach(function (skin) {
@@ -555,17 +597,21 @@
     var accent_color_class = color.replace('bg-', 'accent-')
 
     $body.addClass(accent_color_class)
-  }, true))
+    localStorage.setItem('AccentColorVariants', color)
+  }, true)
 
-  var active_accent_color = null
+  var active_accent_color = localStorage.getItem('AccentColorVariants') || null
   $('body')[0].classList.forEach(function (className) {
     if (accent_colors.indexOf(className) > -1 && active_accent_color === null) {
-      active_accent_color = className.replace('navbar-', 'bg-')
+      active_accent_color = className
     }
   })
 
-  // $accent_variants.find('option.' + active_accent_color).prop('selected', true)
-  // $accent_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_accent_color)
+  $accent_variants_colors.find('option.' + active_accent_color).prop('selected', true)
+  $accent_variants_colors.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_accent_color)
+
+  $accent_variants.append($accent_variants_colors)
+  $container.append($accent_variants)
 
   $container.append('<h6>Dark Sidebar Variants</h6>')
   var $sidebar_variants_dark = $('<div />', {
@@ -586,10 +632,11 @@
     $sidebar_light_variants.find('option').prop('selected', false)
     $sidebar.addClass(sidebar_class)
     $('.sidebar').removeClass('os-theme-dark').addClass('os-theme-light')
+    localStorage.setItem('DarkSidebarVariants', color)
   }, true)
   $container.append($sidebar_dark_variants)
 
-  var active_sidebar_dark_color = null
+  var active_sidebar_dark_color = localStorage.getItem('DarkSidebarVariants') || null
   $('.main-sidebar')[0].classList.forEach(function (className) {
     var color = className.replace('sidebar-dark-', 'bg-')
     if (sidebar_colors.indexOf(color) > -1 && active_sidebar_dark_color === null) {
@@ -619,10 +666,11 @@
     $sidebar_dark_variants.find('option').prop('selected', false)
     $sidebar.addClass(sidebar_class)
     $('.sidebar').removeClass('os-theme-light').addClass('os-theme-dark')
+    localStorage.setItem('LightSidebarVariants', sidebar_class)
   }, true)
   $container.append($sidebar_light_variants)
 
-  var active_sidebar_light_color = null
+  var active_sidebar_light_color = localStorage.getItem('LightSidebarVariants') || null
   $('.main-sidebar')[0].classList.forEach(function (className) {
     var color = className.replace('sidebar-light-', 'bg-')
     if (sidebar_colors.indexOf(color) > -1 && active_sidebar_light_color === null) {
@@ -635,35 +683,26 @@
     $sidebar_light_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_sidebar_light_color)
   }
 
-  var logo_skins = navbar_all_colors
+  // Logo Skin
+
   $container.append('<h6>Brand Logo Variants</h6>')
   var $logo_variants = $('<div />', {
     class: 'd-flex'
   })
-  $container.append($logo_variants)
-  var $clear_btn = $('<a />', {
-    href: '#'
-  }).text('clear').on('click', function (e) {
-    e.preventDefault()
-    var $logo = $('.brand-link')
-    logo_skins.forEach(function (skin) {
+
+  var $brand_variants = createSkinBlock(navbar_all_colors, function () {
+    var color = $(this).find('option:selected').attr('class')
+    var $logo = $('.brand-link').removeClass().addClass('brand-link text-sm')
+
+    navbar_all_colors.forEach(function (skin) {
       $logo.removeClass(skin)
     })
-  })
 
-  var $brand_variants = createSkinBlock(logo_skins, function () {
-    var color = $(this).find('option:selected').attr('class').replace('bg-', 'navbar-')
-    var $logo = $('.brand-link')
-
-    if (color === 'navbar-light' || color === 'navbar-white') {
+    if (color === 'bg-light' || color === 'bg-white') {
       $logo.addClass('text-black')
     } else {
       $logo.removeClass('text-black')
     }
-
-    logo_skins.forEach(function (skin) {
-      $logo.removeClass(skin)
-    })
 
     if (color) {
       $(this).removeClass().addClass('custom-select mb-3 border-0').addClass(color).addClass(color !== 'navbar-light' && color !== 'navbar-white' ? 'text-light' : '')
@@ -672,18 +711,233 @@
     }
 
     $logo.addClass(color)
-  }, true).append($clear_btn)
-  $container.append($brand_variants)
+    localStorage.setItem('logoSkin', color)
+  }, true)
 
-  var active_brand_color = null
+  var active_brand_color = localStorage.getItem('logoSkin') || null
   $('.brand-link')[0].classList.forEach(function (className) {
-    if (logo_skins.indexOf(className) > -1 && active_brand_color === null) {
-      active_brand_color = className.replace('navbar-', 'bg-')
+    if (navbar_all_colors.indexOf(className) > -1 && active_brand_color === null) {
+      active_brand_color = className
     }
   })
 
-  if (active_brand_color) {
-    $brand_variants.find('option.' + active_brand_color).prop('selected', true)
-    $brand_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_brand_color)
-  }
+  $brand_variants.find('option.' + active_brand_color).prop('selected', true)
+  $brand_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_brand_color)
+
+  $logo_variants.append($brand_variants)
+  $container.append($logo_variants)
+
+  // Load the app personalize
+  const appPersonalize = {
+    configure: function() {
+        this.darkMode();
+        this.layoutNavbarFixed();
+        this.dropdownLegacyOffset();
+        this.noBorder();
+        this.sidebarCollapse();
+        this.layoutFixed();
+        this.sidebarMini();
+        this.sidebarMiniMD();
+        this.sidebarMiniXS();
+        this.navFlat();
+        this.navLegacy();
+        this.navCompact();
+        this.navChildIndent();
+        this.navChildHide();
+        this.navNoExpand();
+        this.layoutFooterFixed();
+        this.textSmBody();
+        this.textSmHeader();
+        this.textSmBrand();
+        this.textSmSidebar();
+        this.textSmFooter();
+        this.navbarVariant();
+        this.AccentColorVariants();
+        this.DarkSidebarVariants();
+        this.LightSidebarVariants();
+        this.logoSkin();
+    },
+    darkMode: function () {
+        if (localStorage.getItem('darkMode') === 'true') {
+            $('body').addClass('dark-mode');
+        } else {
+            $('body').removeClass('dark-mode');
+        }
+    },
+    layoutNavbarFixed: function () {
+        if (localStorage.getItem('layoutNavbarFixed') === 'true') {
+            $('body').addClass('layout-navbar-fixed');
+        } else {
+            $('body').removeClass('layout-navbar-fixed');
+        }
+    },
+    dropdownLegacyOffset: function () {
+        if (localStorage.getItem('dropdownLegacyOffset') === 'true') {
+            $('.main-header').addClass('dropdown-legacy-offset');
+        } else {
+            $('.main-header').removeClass('dropdown-legacy-offset');
+        }
+    },
+    noBorder: function () {
+        if (localStorage.getItem('noBorder') === 'true') {
+            $('.main-header').addClass('no-border');
+        } else {
+            $('.main-header').removeClass('no-border');
+        }
+    },
+    sidebarCollapse: function () {
+        if (localStorage.getItem('sidebarCollapse') === 'true') {
+            $('body').addClass('sidebar-collapse');
+        } else {
+            $('body').removeClass('sidebar-collapse');
+        }
+    },
+    layoutFixed: function () {
+        if (localStorage.getItem('layoutFixed') === 'true') {
+            $('body').addClass('layout-fixed');
+        } else {
+            $('body').removeClass('layout-fixed');
+        }
+    },
+    sidebarMini: function () {
+        if (localStorage.getItem('sidebarMini') === 'true') {
+            $('body').addClass('sidebar-mini');
+        } else {
+            $('body').removeClass('sidebar-mini');
+        }
+    },
+    sidebarMiniMD: function () {
+        if (localStorage.getItem('sidebarMiniMD') === 'true') {
+            $('body').addClass('sidebar-mini-md');
+        } else {
+            $('body').removeClass('sidebar-mini-md');
+        }
+    },
+    sidebarMiniXS: function () {
+        if (localStorage.getItem('sidebarMiniXS') === 'true') {
+            $('body').addClass('sidebar-mini-xs');
+        } else {
+            $('body').removeClass('sidebar-mini-xs');
+        }
+    },
+    navFlat: function () {
+        if (localStorage.getItem('navFlat') === 'true') {
+            $('.nav-sidebar').addClass('nav-flat');
+        } else {
+            $('.nav-sidebar').removeClass('nav-flat');
+        }
+    },
+    navLegacy: function () {
+        if (localStorage.getItem('navLegacy') === 'true') {
+            $('.nav-sidebar').addClass('nav-legacy');
+        } else {
+            $('.nav-sidebar').removeClass('nav-legacy');
+        }
+    },
+    navCompact: function () {
+        if (localStorage.getItem('navCompact') === 'true') {
+            $('.nav-sidebar').addClass('nav-compact');
+        } else {
+            $('.nav-sidebar').removeClass('nav-compact');
+        }
+    },
+    navChildIndent: function () {
+        if (localStorage.getItem('navChildIndent') === 'true') {
+            $('.nav-sidebar').addClass('nav-child-indent');
+        } else {
+            $('.nav-sidebar').removeClass('nav-child-indent');
+        }
+    },
+    navChildHide: function () {
+        if (localStorage.getItem('navChildHide') === 'true') {
+            $('.nav-sidebar').addClass('nav-collapse-hide-child');
+        } else {
+            $('.nav-sidebar').removeClass('nav-collapse-hide-child');
+        }
+    },
+    navNoExpand: function () {
+        if (localStorage.getItem('navNoExpand') === 'true') {
+            $('.main-sidebar').addClass('sidebar-no-expand');
+        } else {
+            $('.main-sidebar').removeClass('sidebar-no-expand');
+        }
+    },
+    layoutFooterFixed: function () {
+        if (localStorage.getItem('layoutFooterFixed') === 'true') {
+            $('body').addClass('layout-footer-fixed');
+        } else {
+            $('body').removeClass('layout-footer-fixed');
+        }
+    },
+    textSmBody: function () {
+        if (localStorage.getItem('textSmBody') === 'true') {
+            $('body').addClass('text-sm');
+        } else {
+            $('body').removeClass('text-sm');
+        }
+    },
+    textSmHeader: function () {
+        if (localStorage.getItem('textSmHeader') === 'true') {
+            $('.main-header').addClass('text-sm');
+        } else {
+            $('.main-header').removeClass('text-sm');
+        }
+    },
+    textSmBrand: function () {
+        if (localStorage.getItem('textSmBrand') === 'true') {
+            $('.brand-link').addClass('text-sm');
+        } else {
+            $('.brand-link').removeClass('text-sm');
+        }
+    },
+    textSmSidebar: function () {
+        if (localStorage.getItem('textSmSidebar') === 'true') {
+            $('.nav-sidebar').addClass('text-sm');
+        } else {
+            $('.nav-sidebar').removeClass('text-sm');
+        }
+    },
+    textSmFooter: function () {
+        if (localStorage.getItem('textSmFooter') === 'true') {
+            $('.main-footer').addClass('text-sm');
+        } else {
+            $('.main-footer').removeClass('text-sm');
+        }
+    },
+    navbarVariant: function () {
+        var color = localStorage.getItem('navbarVariant');
+        if (color != null) {
+            $('.main-header').addClass(color);
+        }
+    },
+    AccentColorVariants: function () {
+        var color = localStorage.getItem('AccentColorVariants');
+        if (color != null) {
+            var accent_color_class = color.replace('bg-', 'accent-')
+            $('body').addClass(accent_color_class);
+        }
+    },
+    DarkSidebarVariants: function () {
+        var color = localStorage.getItem('DarkSidebarVariants');
+        if (color != null) {
+            var sidebar_class = 'sidebar-dark-' + color.replace('bg-', '')
+            $('.main-sidebar').addClass(sidebar_class);
+        }
+    },
+    LightSidebarVariants: function () {
+        var color = localStorage.getItem('LightSidebarVariants');
+        if (color != null) {
+            var sidebar_class = 'sidebar-light-' + color.replace('bg-', '')
+            $('.main-sidebar').addClass(sidebar_class);
+        }
+    },
+    logoSkin: function () {
+        var color = localStorage.getItem('logoSkin');
+        if (color != null) {
+            $('.brand-link').addClass(color);
+        }
+    }
+};
+
+appPersonalize.configure();
 })(jQuery)

@@ -1,6 +1,6 @@
 /*!
 
-JSZip v3.7.1 - A JavaScript class for generating and reading zip files
+JSZip v3.9.1 - A JavaScript class for generating and reading zip files
 <http://stuartk.com/jszip>
 
 (c) 2009-2016 Stuart Knightley <stuart [at] stuartk.com>
@@ -1059,7 +1059,7 @@ JSZip.defaults = require('./defaults');
 
 // TODO find a better way to handle this version,
 // a require('package.json').version doesn't work with webpack, see #327
-JSZip.version = "3.7.1";
+JSZip.version = "3.9.1";
 
 JSZip.loadAsync = function (content, options) {
     return new JSZip().loadAsync(content, options);
@@ -1132,7 +1132,11 @@ module.exports = function (data, options) {
             var files = zipEntries.files;
             for (var i = 0; i < files.length; i++) {
                 var input = files[i];
-                zip.file(input.fileNameStr, input.decompressed, {
+
+                var unsafeName = input.fileNameStr;
+                var safeName = utils.resolve(input.fileNameStr);
+
+                zip.file(safeName, input.decompressed, {
                     binary: true,
                     optimizedBinaryString: true,
                     date: input.date,
@@ -1142,6 +1146,9 @@ module.exports = function (data, options) {
                     dosPermissions: input.dosPermissions,
                     createFolders: options.createFolders
                 });
+                if (!input.dir) {
+                    zip.file(safeName).unsafeOriginalName = unsafeName;
+                }
             }
             if (zipEntries.zipComment.length) {
                 zip.comment = zipEntries.zipComment;
@@ -3353,6 +3360,31 @@ exports.transformTo = function(outputType, input) {
 };
 
 /**
+ * Resolve all relative path components, "." and "..", in a path. If these relative components
+ * traverse above the root then the resulting path will only contain the final path component.
+ *
+ * All empty components, e.g. "//", are removed.
+ * @param {string} path A path with / or \ separators
+ * @returns {string} The path with all relative path components resolved.
+ */
+exports.resolve = function(path) {
+    var parts = path.split("/");
+    var result = [];
+    for (var index = 0; index < parts.length; index++) {
+        var part = parts[index];
+        // Allow the first and last component to be empty for trailing slashes.
+        if (part === "." || (part === "" && index !== 0 && index !== parts.length - 1)) {
+            continue;
+        } else if (part === "..") {
+            result.pop();
+        } else {
+            result.push(part);
+        }
+    }
+    return result.join("/");
+};
+
+/**
  * Return the type of the input.
  * The type will be in a format valid for JSZip.utils.transformTo : string, array, uint8array, arraybuffer.
  * @param {Object} input the input to identify.
@@ -3460,8 +3492,8 @@ exports.prepareContent = function(name, inputData, isBinary, isOptimizedBinarySt
 
     // if inputData is already a promise, this flatten it.
     var promise = external.Promise.resolve(inputData).then(function(data) {
-        
-        
+
+
         var isBlob = support.blob && (data instanceof Blob || ['[object File]', '[object Blob]'].indexOf(Object.prototype.toString.call(data)) !== -1);
 
         if (isBlob && typeof FileReader !== "undefined") {

@@ -13424,7 +13424,6 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 .layout-fixed .main-sidebar-custom {
   height: -webkit-fill-available;
   height: -moz-available;
-  height: -ms-stretch;
   height: stretch;
 }
 

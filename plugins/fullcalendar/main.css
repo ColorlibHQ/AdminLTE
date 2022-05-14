@@ -1465,3 +1465,31 @@ A VERTICAL event
     color: inherit; /* natural color for navlinks */
   }
 
+
+
+  .fc-theme-bootstrap5 a:not([href]) {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+.fc-theme-bootstrap5 .fc-list,
+  .fc-theme-bootstrap5 .fc-scrollgrid,
+  .fc-theme-bootstrap5 td,
+  .fc-theme-bootstrap5 th {
+    border: 1px solid var(--bs-gray-400);
+  }
+
+.fc-theme-bootstrap5 {
+
+  /* HACK: reapply core styles after highe-precedence border statement above */
+}
+
+.fc-theme-bootstrap5 .fc-scrollgrid {
+    border-right-width: 0;
+    border-bottom-width: 0;
+  }
+
+.fc-theme-bootstrap5-shaded {
+  background-color: var(--bs-gray-200);
+}
+

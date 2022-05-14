@@ -44,6 +44,7 @@
         this.orig.state.trackAlignable = new TrackAlignable(this.orig)
       }
       this.lockButton.title = this.edit.phrase("Toggle locked scrolling");
+      this.lockButton.setAttribute("aria-label", this.lockButton.title);
 
       this.orig.state.diffViews = [this];
       var classLocation = options.chunkClassLocation || "background";
@@ -509,6 +510,8 @@
       copy.chunk = chunk;
       copy.style.top = (chunk.origTo > chunk.origFrom ? top : dv.edit.heightAtLine(chunk.editFrom, "local") - sTopEdit) + "px";
       copy.setAttribute("role", "button");
+      copy.setAttribute("tabindex", "0");
+      copy.setAttribute("aria-label", copy.title);
 
       if (editOriginals) {
         var topReverse = dv.edit.heightAtLine(chunk.editFrom, "local") - sTopEdit;
@@ -520,6 +523,8 @@
         copyReverse.style.top = topReverse + "px";
         dv.type == "right" ? copyReverse.style.left = "2px" : copyReverse.style.right = "2px";
         copyReverse.setAttribute("role", "button");
+        copyReverse.setAttribute("tabindex", "0");
+        copyReverse.setAttribute("aria-label", copyReverse.title);
       }
     }
   }
@@ -602,12 +607,14 @@
   function buildGap(dv) {
     var lock = dv.lockButton = elt("div", null, "CodeMirror-merge-scrolllock");
     lock.setAttribute("role", "button");
+    lock.setAttribute("tabindex", "0");
     var lockWrap = elt("div", [lock], "CodeMirror-merge-scrolllock-wrap");
     CodeMirror.on(lock, "click", function() { setScrollLock(dv, !dv.lockScroll); });
+    CodeMirror.on(lock, "keyup", function(e) { e.key === "Enter" && setScrollLock(dv, !dv.lockScroll); });
     var gapElts = [lockWrap];
     if (dv.mv.options.revertButtons !== false) {
       dv.copyButtons = elt("div", null, "CodeMirror-merge-copybuttons-" + dv.type);
-      CodeMirror.on(dv.copyButtons, "click", function(e) {
+      function copyButtons(e) {
         var node = e.target || e.srcElement;
         if (!node.chunk) return;
         if (node.className == "CodeMirror-merge-copy-reverse") {
@@ -615,7 +622,9 @@
           return;
         }
         copyChunk(dv, dv.edit, dv.orig, node.chunk);
-      });
+      }
+      CodeMirror.on(dv.copyButtons, "click", copyButtons);
+      CodeMirror.on(dv.copyButtons, "keyup", function(e) { e.key === "Enter" && copyButtons(e); });
       gapElts.unshift(dv.copyButtons);
     }
     if (dv.mv.options.connect != "align") {

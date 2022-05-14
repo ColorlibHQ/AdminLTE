@@ -6,7 +6,7 @@
   padding: 1em;
   overflow-y: hidden;
   background: #fff;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.075), 0 1px 2px rgba(0, 0, 0, 0.075), 1px 2px 4px rgba(0, 0, 0, 0.075), 1px 3px 8px rgba(0, 0, 0, 0.075), 2px 4px 16px rgba(0, 0, 0, 0.075);
+  box-shadow: 0 0 1px hsla(0deg, 0%, 0%, 0.075), 0 1px 2px hsla(0deg, 0%, 0%, 0.075), 1px 2px 4px hsla(0deg, 0%, 0%, 0.075), 1px 3px 8px hsla(0deg, 0%, 0%, 0.075), 2px 4px 16px hsla(0deg, 0%, 0%, 0.075);
   pointer-events: all;
 }
 .swal2-popup.swal2-toast > * {
@@ -477,7 +477,7 @@
   transition: border-color 0.1s, box-shadow 0.1s;
   border: 1px solid #d9d9d9;
   border-radius: 0.1875em;
-  background: inherit;
+  background: transparent;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06), 0 0 0 3px transparent;
   color: inherit;
   font-size: 1.125em;
@@ -537,7 +537,7 @@
   width: 75%;
   margin-right: auto;
   margin-left: auto;
-  background: inherit;
+  background: transparent;
   font-size: 1.125em;
 }
 
@@ -550,7 +550,7 @@
   min-width: 50%;
   max-width: 100%;
   padding: 0.375em 0.625em;
-  background: inherit;
+  background: transparent;
   color: inherit;
   font-size: 1.125em;
 }
@@ -781,7 +781,7 @@
   max-width: 100%;
   margin: 1.25em auto;
   padding: 0;
-  background: inherit;
+  background: transparent;
   font-weight: 600;
 }
 .swal2-progress-steps li {
@@ -851,6 +851,28 @@
 .swal2-rtl .swal2-timer-progress-bar {
   right: 0;
   left: auto;
+}
+
+.swal2-no-war {
+  display: flex;
+  position: fixed;
+  z-index: 1061;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 3.375em;
+  background: #20232a;
+  color: #fff;
+  text-align: center;
+}
+.swal2-no-war a {
+  color: #61dafb;
+  text-decoration: none;
+}
+.swal2-no-war a:hover {
+  text-decoration: underline;
 }
 
 @-webkit-keyframes swal2-toast-show {
