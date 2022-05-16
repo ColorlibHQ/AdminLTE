@@ -89,7 +89,7 @@
     "datatables.net-rowgroup-bs4": "^1.1.4",
     "datatables.net-rowreorder-bs4": "^1.2.8",
     "datatables.net-scroller-bs4": "^2.0.5",
-    "datatables.net-searchbuilder-bs4": "^1.3.2",
+    "datatables.net-searchbuilder-bs4": "^1.3.3",
     "datatables.net-searchpanes-bs4": "^2.0.0",
     "datatables.net-select-bs4": "^1.3.4",
     "daterangepicker": "^3.1.0",
