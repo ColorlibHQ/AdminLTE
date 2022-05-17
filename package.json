@@ -42,7 +42,7 @@
     "@typescript-eslint/parser": "^5.22.0",
     "autoprefixer": "^10.4.2",
     "bootstrap": "^5.1.3",
-    "browser-sync": "^2.27.7",
+    "browser-sync": "^2.27.10",
     "bundlewatch": "^0.3.3",
     "del": "^6.0.0",
     "eslint": "^8.9.0",
