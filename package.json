@@ -52,7 +52,7 @@
     "eslint-plugin-unicorn": "^40.1.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
-    "gulp-eslint-new": "^1.4.0",
+    "gulp-eslint-new": "^1.4.4",
     "gulp-file-include": "^2.3.0",
     "gulp-html": "^4.0.0",
     "gulp-if": "^3.0.0",
