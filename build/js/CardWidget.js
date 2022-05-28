@@ -108,6 +108,7 @@ class CardWidget {
     this._parent.css({
       height: this._parent.height(),
       width: this._parent.width(),
+      position: 'fixed',
       transition: 'all .15s'
     }).delay(150).queue(function () {
       const $element = $(this)
