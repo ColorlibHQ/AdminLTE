@@ -37,7 +37,7 @@
     "url": "https://github.com/ColorlibHQ/AdminLTE/issues"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^8.3.0",
+    "@rollup/plugin-typescript": "^8.3.3",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.22.0",
     "autoprefixer": "^10.4.2",
