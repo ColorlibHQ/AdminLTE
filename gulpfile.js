@@ -12,7 +12,7 @@ const gulpIf = require('gulp-if')
 const postcss = require('gulp-postcss')
 const rename = require('gulp-rename')
 const sass = require('gulp-sass')(require('sass'))
-const gulpStylelint = require('gulp-stylelint')
+const gulpStylelint = require('@ronilaukkarinen/gulp-stylelint')
 const terser = require('gulp-terser')
 const rollup = require('rollup')
 const rollupTypescript = require('@rollup/plugin-typescript')
@@ -75,7 +75,8 @@ const lintScss = () => src([paths.src.scss + '/**/*.scss'], { since: lastRun(lin
       failAfterError: false,
       reporters: [
         { formatter: 'string', console: true }
-      ]
+      ],
+      debug: true
     }))
 
 // Compile SCSS
