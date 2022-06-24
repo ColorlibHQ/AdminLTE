@@ -911,6 +911,44 @@
         <!-- /.col-->
       </div>
       <!-- ./row -->
+      <div class="row">
+        <div class="col-md-12">
+            <div class="card card-outline card-info">
+              <div class="card-header">
+                <h3 class="card-title">
+                  Simplemde
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <textarea name="text" id="simplemde"># Intro
+Go ahead, play around with the editor! Be sure to check out **bold** and *italic* styling, or even [links](https://google.com). You can type the Markdown syntax, use the toolbar, or use shortcuts like `cmd-b` or `ctrl-b`.
+
+## Lists
+Unordered lists can be started using the toolbar or by typing `* `, `- `, or `+ `. Ordered lists can be started by typing `1. `.
+
+#### Unordered
+* Lists are a piece of cake
+* They even auto continue as you type
+* A double enter will end them
+* Tabs and shift-tabs work too
+
+#### Ordered
+1. Numbered lists...
+2. ...work too!
+
+## What about images?
+![Yes](https://i.imgur.com/sZlktY7.png)</textarea>
+              </div>
+              <div class="card-footer">
+                Visit <a href="https://github.com/sparksuite/simplemde-markdown-editor">Simplemde</a> documentation for more examples and information about the plugin.
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- /.col-->
+      </div>
+      <!-- ./row -->
     </section>
     <!-- /.content -->
   </div>
@@ -943,6 +981,8 @@
 <script src="../../plugins/codemirror/mode/css/css.js"></script>
 <script src="../../plugins/codemirror/mode/xml/xml.js"></script>
 <script src="../../plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<!-- Simplemde -->
+<script src="../../plugins/simplemde/simplemde.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
@@ -956,6 +996,8 @@
       mode: "htmlmixed",
       theme: "monokai"
     });
+
+    var simplemde = new SimpleMDE({ element: document.getElementById("simplemde") });
   })
 </script>
 </body>
