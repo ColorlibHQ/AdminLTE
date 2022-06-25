@@ -120,6 +120,7 @@ class Treeview {
   _setupListeners() {
     const elementId = this._element.attr('id') !== undefined ? `#${this._element.attr('id')}` : ''
     $(document).on('click', `${elementId}${this._config.trigger}`, event => {
+      event.stopImmediatePropagation()
       this.toggle(event)
     })
   }
