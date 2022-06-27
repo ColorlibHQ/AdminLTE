@@ -38,3 +38,13 @@
     // margin-top: $lte-main-header-height;
   }
 }
+
+.fullscreen-false::before {
+  font-weight: 400;
+  content: "\f31e";
+}
+
+.fullscreen-true::before {
+  font-weight: 400;
+  content: "\f78c";
+}

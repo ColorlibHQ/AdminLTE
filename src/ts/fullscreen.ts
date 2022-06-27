@@ -15,8 +15,8 @@
  */
 
 const CLASS_NAME_FULLSCREEN = 'fullscreen'
-const CLASS_NAME_ICON_EXPAND = 'fa-expand-arrows-alt'
-const CLASS_NAME_ICON_COMPRESS = 'fa-compress-arrows-alt'
+const CLASS_NAME_FULLSCREEN_FALSE = 'fullscreen-false'
+const CLASS_NAME_FULLSCREEN_TRUE = 'fullscreen-true'
 
 /**
  * Class Definition
@@ -64,14 +64,14 @@ domReady(() => {
         const screenWidth = window.screen.width;
         const screenHeight = window.screen.height;
         if (((windowWidth / screenWidth) >= 0.95) && ((windowHeight / screenHeight) >= 0.95)) {
-            const icon = document.getElementsByClassName(CLASS_NAME_ICON_EXPAND)
+            const icon = document.getElementsByClassName(CLASS_NAME_FULLSCREEN_FALSE)
             for (const i of icon) {
-                i.classList.replace(CLASS_NAME_ICON_EXPAND, CLASS_NAME_ICON_COMPRESS);
+                i.classList.replace(CLASS_NAME_FULLSCREEN_FALSE, CLASS_NAME_FULLSCREEN_TRUE);
             }
         } else {
-            const icon = document.getElementsByClassName(CLASS_NAME_ICON_COMPRESS)
+            const icon = document.getElementsByClassName(CLASS_NAME_FULLSCREEN_TRUE)
             for (const i of icon) {
-                i.classList.replace(CLASS_NAME_ICON_COMPRESS, CLASS_NAME_ICON_EXPAND)
+                i.classList.replace(CLASS_NAME_FULLSCREEN_TRUE, CLASS_NAME_FULLSCREEN_FALSE)
             }
         }
     });
