@@ -39,12 +39,6 @@
   }
 }
 
-.fullscreen-false::before {
-  font-weight: 400;
-  content: "\f31e";
-}
-
-.fullscreen-true::before {
-  font-weight: 400;
-  content: "\f78c";
+.fullscreen-icon:not(.lte-show) {
+  display: none;
 }

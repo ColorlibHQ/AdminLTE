@@ -15,8 +15,8 @@
  */
 
 const CLASS_NAME_FULLSCREEN = 'fullscreen'
-const CLASS_NAME_FULLSCREEN_FALSE = 'fullscreen-false'
-const CLASS_NAME_FULLSCREEN_TRUE = 'fullscreen-true'
+const CLASS_NAME_FULLSCREEN_ICON = 'fullscreen-icon'
+const CLASS_NAME_LTE_SHOW = "lte-show"
 
 /**
  * Class Definition
@@ -64,14 +64,14 @@ domReady(() => {
         const screenWidth = window.screen.width;
         const screenHeight = window.screen.height;
         if (((windowWidth / screenWidth) >= 0.95) && ((windowHeight / screenHeight) >= 0.95)) {
-            const icon = document.getElementsByClassName(CLASS_NAME_FULLSCREEN_FALSE)
+            const icon = document.getElementsByClassName(CLASS_NAME_FULLSCREEN_ICON)
             for (const i of icon) {
-                i.classList.replace(CLASS_NAME_FULLSCREEN_FALSE, CLASS_NAME_FULLSCREEN_TRUE);
+                i.classList.toggle(CLASS_NAME_LTE_SHOW);
             }
         } else {
-            const icon = document.getElementsByClassName(CLASS_NAME_FULLSCREEN_TRUE)
+            const icon = document.getElementsByClassName(CLASS_NAME_FULLSCREEN_ICON)
             for (const i of icon) {
-                i.classList.replace(CLASS_NAME_FULLSCREEN_TRUE, CLASS_NAME_FULLSCREEN_FALSE)
+                i.classList.toggle(CLASS_NAME_LTE_SHOW);
             }
         }
     });
