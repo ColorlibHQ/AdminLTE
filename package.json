@@ -84,7 +84,7 @@
     "datatables.net-fixedcolumns-bs4": "^4.1.0",
     "datatables.net-fixedheader-bs4": "^3.2.4",
     "datatables.net-keytable-bs4": "^2.7.0",
-    "datatables.net-responsive-bs4": "^2.2.9",
+    "datatables.net-responsive-bs4": "^2.3.0",
     "datatables.net-rowgroup-bs4": "^1.2.0",
     "datatables.net-rowreorder-bs4": "^1.2.8",
     "datatables.net-scroller-bs4": "^2.0.7",
