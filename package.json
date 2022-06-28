@@ -66,7 +66,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@lgaitan/pace-progress": "^1.0.7",
-    "@sweetalert2/theme-bootstrap-4": "^5.0.10",
+    "@sweetalert2/theme-bootstrap-4": "^5.0.11",
     "@ttskch/select2-bootstrap4-theme": "^1.5.2",
     "bootstrap": "^4.6.1",
     "bootstrap-colorpicker": "^3.4.0",
@@ -78,7 +78,7 @@
     "chart.js": "^2.9.4",
     "codemirror": "^5.65.3",
     "datatables.net": "^1.11.5",
-    "datatables.net-autofill-bs4": "^2.3.9",
+    "datatables.net-autofill-bs4": "^2.4.0",
     "datatables.net-bs4": "^1.11.5",
     "datatables.net-buttons-bs4": "^2.2.2",
     "datatables.net-colreorder-bs4": "^1.5.5",
@@ -124,7 +124,7 @@
     "sweetalert2": "^11.4.12",
     "tempusdominus-bootstrap-4": "^5.39.2",
     "toastr": "^2.1.4",
-    "uplot": "^1.6.20"
+    "uplot": "^1.6.21"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
