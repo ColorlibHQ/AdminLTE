@@ -127,7 +127,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
-    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-env": "^7.18.6",
     "@rollup/plugin-babel": "^5.3.1",
     "autoprefixer": "^10.4.7",
     "browser-sync": "^2.27.9",
