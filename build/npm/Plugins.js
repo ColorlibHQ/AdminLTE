@@ -393,11 +393,6 @@ const Plugins = [
     from: 'node_modules/ekko-lightbox/dist',
     to: 'plugins/ekko-lightbox/'
   },
-  // bootstrap-switch
-  {
-    from: 'node_modules/bootstrap-switch/dist',
-    to: 'plugins/bootstrap-switch/'
-  },
   // jQuery Validate
   {
     from: 'node_modules/jquery-validation/dist/',

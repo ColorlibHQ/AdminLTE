@@ -1478,18 +1478,6 @@
               </div>
             </div>
             <!-- /.card -->
-
-            <!-- Bootstrap Switch -->
-            <div class="card card-secondary">
-              <div class="card-header">
-                <h3 class="card-title">Bootstrap Switch</h3>
-              </div>
-              <div class="card-body">
-                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch>
-                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
-              </div>
-            </div>
-            <!-- /.card -->
           </div>
           <!-- /.col (right) -->
         </div>
@@ -1674,8 +1662,6 @@
 <script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Bootstrap Switch -->
-<script src="../../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- BS-Stepper -->
 <script src="../../plugins/bs-stepper/js/bs-stepper.min.js"></script>
 <!-- dropzonejs -->
@@ -1755,11 +1741,6 @@
     $('.my-colorpicker2').on('colorpickerChange', function(event) {
       $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
     })
-
-    $("input[data-bootstrap-switch]").each(function(){
-      $(this).bootstrapSwitch('state', $(this).prop('checked'));
-    })
-
   })
   // BS-Stepper Init
   document.addEventListener('DOMContentLoaded', function () {
