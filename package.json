@@ -79,7 +79,7 @@
     "datatables.net": "^1.12.1",
     "datatables.net-autofill-bs4": "^2.4.0",
     "datatables.net-bs4": "^1.12.1",
-    "datatables.net-buttons-bs4": "^2.2.2",
+    "datatables.net-buttons-bs4": "^2.2.3",
     "datatables.net-colreorder-bs4": "^1.5.6",
     "datatables.net-fixedcolumns-bs4": "^4.1.0",
     "datatables.net-fixedheader-bs4": "^3.2.4",
