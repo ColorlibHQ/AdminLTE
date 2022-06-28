@@ -369,14 +369,14 @@ const Plugins = [
     from: 'node_modules/jsgrid/demos/db.js',
     to: 'plugins/jsgrid/demos/db.js'
   },
-  // flag-icon-css
+  // flag-icons
   {
-    from: 'node_modules/flag-icon-css/css',
-    to: 'plugins/flag-icon-css/css'
+    from: 'node_modules/flag-icons/css',
+    to: 'plugins/flag-icons/css'
   },
   {
-    from: 'node_modules/flag-icon-css/flags',
-    to: 'plugins/flag-icon-css/flags'
+    from: 'node_modules/flag-icons/flags',
+    to: 'plugins/flag-icons/flags'
   },
   // bootstrap4-duallistbox
   {

@@ -63,7 +63,7 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
     <ul class="list-unstyled">
       <li><h4>Icon Packs</h4></li>
       <li><a href="https://fontawesome.com/" rel="noopener" target="_blank">FontAwesome 5</a></li>
-      <li><a href="https://github.com/lipis/flag-icon-css#readme" rel="noopener" target="_blank">flag-icon-css</a></li>
+      <li><a href="https://github.com/lipis/flag-icons#readme" rel="noopener" target="_blank">flag-icons</a></li>
     </ul>
   </div>
 </div>
