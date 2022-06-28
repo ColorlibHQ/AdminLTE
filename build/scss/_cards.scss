@@ -411,6 +411,7 @@ html.maximized-card {
       display: none;
       float: right;
 
+      /* stylelint-disable selector-class-pattern */
       // icons
       > .fa,
       > .fas,
@@ -423,6 +424,7 @@ html.maximized-card {
         cursor: pointer;
         margin-right: 5px;
       }
+      /* stylelint-enable selector-class-pattern */
     }
 
     &:hover .tools {

@@ -10,6 +10,7 @@
     margin-right: 20px;
   }
 
+  /* stylelint-disable selector-class-pattern */
   > .fa,
   > .fas,
   > .far,
@@ -25,4 +26,5 @@
     top: 50%;
     z-index: 5;
   }
+  /* stylelint-enable selector-class-pattern */
 }

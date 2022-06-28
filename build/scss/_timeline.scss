@@ -83,6 +83,8 @@
         }
       }
     }
+
+    /* stylelint-disable selector-class-pattern */
     // The icons at line
     > .fa,
     > .fas,
@@ -106,6 +108,7 @@
     > .svg-inline--fa {
       padding: 7px;
     }
+    /* stylelint-enable selector-class-pattern */
   }
   // Time label
   > .time-label {

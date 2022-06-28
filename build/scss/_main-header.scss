@@ -17,6 +17,7 @@
       height: $nav-link-sm-height;
       padding: $nav-link-sm-padding-y $nav-link-padding-x;
 
+      /* stylelint-disable selector-class-pattern */
       > .fa,
       > .fas,
       > .far,
@@ -27,8 +28,8 @@
       > .ion {
         font-size: $font-size-sm;
       }
+      /* stylelint-enable selector-class-pattern */
     }
-
   }
 
   .navbar-nav {

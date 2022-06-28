@@ -264,6 +264,7 @@
     justify-content: center;
     z-index: 50;
 
+    /* stylelint-disable selector-class-pattern */
     > .fa,
     > .fas,
     > .far,
@@ -274,10 +275,12 @@
     > .ion {
       color: $gray-800;
     }
+    /* stylelint-enable selector-class-pattern */
 
     &.dark {
       background-color: rgba($black, .5);
 
+      /* stylelint-disable selector-class-pattern */
       > .fa,
       > .fas,
       > .far,
@@ -288,6 +291,7 @@
       > .ion {
         color: $gray-400;
       }
+      /* stylelint-enable selector-class-pattern */
     }
   }
 }

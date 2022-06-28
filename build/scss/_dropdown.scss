@@ -117,7 +117,7 @@
 // Add fade animation to dropdown menus by appending
 // the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)
 .open:not(.dropup) > .animated-dropdown-menu {
-  @include animation(flipInX .7s both);
+  @include animation(flip-in-x .7s both);
   backface-visibility: visible !important;
 }
 

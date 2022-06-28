@@ -86,6 +86,7 @@
   position: relative;
   text-align: center;
 
+  /* stylelint-disable selector-class-pattern */
   // Icons within the btn
   > .fa,
   > .fas,
@@ -102,6 +103,7 @@
   > .svg-inline--fa {
     margin: 0 auto;
   }
+  /* stylelint-enable selector-class-pattern */
 
   &:hover {
     background-color: $button-default-background-color;
