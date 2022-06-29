@@ -35,7 +35,7 @@ const Default = {
 class NavbarSearch {
   constructor(_element, _options) {
     this._element = _element
-    this._config = $.extend({}, Default, _options)
+    this._config = _options
   }
 
   // Public
@@ -62,22 +62,21 @@ class NavbarSearch {
   }
 
   // Static
-
-  static _jQueryInterface(options) {
+  static _jQueryInterface(config) {
     return this.each(function () {
       let data = $(this).data(DATA_KEY)
-      const _options = $.extend({}, Default, $(this).data())
+      const _config = $.extend({}, Default, typeof config === 'object' ? config : $(this).data())
 
       if (!data) {
-        data = new NavbarSearch(this, _options)
+        data = new NavbarSearch($(this), _config)
         $(this).data(DATA_KEY, data)
-      }
+      } else if (typeof config === 'string') {
+        if (typeof data[config] === 'undefined') {
+          throw new TypeError(`No method named "${config}"`)
+        }
 
-      if (!/toggle|close|open/.test(options)) {
-        throw new Error(`Undefined method ${options}`)
+        data[config]()
       }
-
-      data[options]()
     })
   }
 }

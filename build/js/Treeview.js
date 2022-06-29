@@ -51,7 +51,7 @@ class Treeview {
 
   // Public
 
-  init() {
+  _init() {
     $(`${SELECTOR_LI}${SELECTOR_OPEN} ${SELECTOR_TREEVIEW_MENU}${SELECTOR_OPEN}`).css('display', 'block')
     this._setupListeners()
   }
@@ -131,19 +131,23 @@ class Treeview {
   }
 
   // Static
-
   static _jQueryInterface(config) {
     return this.each(function () {
       let data = $(this).data(DATA_KEY)
-      const _options = $.extend({}, Default, $(this).data())
+      const _config = $.extend({}, Default, typeof config === 'object' ? config : $(this).data())
 
       if (!data) {
-        data = new Treeview($(this), _options)
+        data = new Treeview($(this), _config)
         $(this).data(DATA_KEY, data)
-      }
+        data._init()
+      } else if (typeof config === 'string') {
+        if (typeof data[config] === 'undefined') {
+          throw new TypeError(`No method named "${config}"`)
+        }
 
-      if (config === 'init') {
         data[config]()
+      } else if (typeof config === 'undefined') {
+        data._init()
       }
     })
   }

@@ -60,7 +60,7 @@ class SidebarSearch {
 
   // Public
 
-  init() {
+  _init() {
     if ($(SELECTOR_DATA_WIDGET).length === 0) {
       return
     }
@@ -207,24 +207,25 @@ class SidebarSearch {
   }
 
   // Static
-
   static _jQueryInterface(config) {
-    let data = $(this).data(DATA_KEY)
+    return this.each(function () {
+      let data = $(this).data(DATA_KEY)
+      const _config = $.extend({}, Default, typeof config === 'object' ? config : $(this).data())
 
-    if (!data) {
-      data = $(this).data()
-    }
+      if (!data) {
+        data = new SidebarSearch($(this), _config)
+        $(this).data(DATA_KEY, data)
+        data._init()
+      } else if (typeof config === 'string') {
+        if (typeof data[config] === 'undefined') {
+          throw new TypeError(`No method named "${config}"`)
+        }
 
-    const _options = $.extend({}, Default, typeof config === 'object' ? config : data)
-    const plugin = new SidebarSearch($(this), _options)
-
-    $(this).data(DATA_KEY, typeof config === 'object' ? config : data)
-
-    if (typeof config === 'string' && /init|toggle|close|open|search/.test(config)) {
-      plugin[config]()
-    } else {
-      plugin.init()
-    }
+        data[config]()
+      } else if (typeof config === 'undefined') {
+        data._init()
+      }
+    })
   }
 }
 

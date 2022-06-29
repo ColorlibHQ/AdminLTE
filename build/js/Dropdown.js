@@ -89,18 +89,19 @@ class Dropdown {
   }
 
   // Static
-
   static _jQueryInterface(config) {
     return this.each(function () {
       let data = $(this).data(DATA_KEY)
-      const _config = $.extend({}, Default, $(this).data())
+      const _config = $.extend({}, Default, typeof config === 'object' ? config : $(this).data())
 
       if (!data) {
         data = new Dropdown($(this), _config)
         $(this).data(DATA_KEY, data)
-      }
+      } else if (typeof config === 'string') {
+        if (typeof data[config] === 'undefined') {
+          throw new TypeError(`No method named "${config}"`)
+        }
 
-      if (config === 'toggleSubmenu' || config === 'fixPosition') {
         data[config]()
       }
     })

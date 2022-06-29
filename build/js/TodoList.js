@@ -46,7 +46,7 @@ class TodoList {
   toggle(item) {
     item.parents('li').toggleClass(CLASS_NAME_TODO_LIST_DONE)
     if (!$(item).prop('checked')) {
-      this.unCheck($(item))
+      this.unCheck(item)
       return
     }
 
@@ -54,11 +54,11 @@ class TodoList {
   }
 
   check(item) {
-    this._config.onCheck.call(item)
+    this._config.onCheck(item)
   }
 
   unCheck(item) {
-    this._config.onUnCheck.call(item)
+    this._config.onUnCheck(item)
   }
 
   // Private
@@ -73,22 +73,23 @@ class TodoList {
   }
 
   // Static
-
   static _jQueryInterface(config) {
     return this.each(function () {
       let data = $(this).data(DATA_KEY)
+      const _config = $.extend({}, Default, typeof config === 'object' ? config : $(this).data())
 
       if (!data) {
-        data = $(this).data()
-      }
+        data = new TodoList($(this), _config)
+        $(this).data(DATA_KEY, data)
+        data._init()
+      } else if (typeof config === 'string') {
+        if (typeof data[config] === 'undefined') {
+          throw new TypeError(`No method named "${config}"`)
+        }
 
-      const _options = $.extend({}, Default, typeof config === 'object' ? config : data)
-      const plugin = new TodoList($(this), _options)
-
-      $(this).data(DATA_KEY, typeof config === 'object' ? config : data)
-
-      if (config === 'init') {
-        plugin[config]()
+        data[config]()
+      } else if (typeof config === 'undefined') {
+        data._init()
       }
     })
   }
