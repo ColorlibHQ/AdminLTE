@@ -46,7 +46,7 @@
     "browser-sync": "^2.27.10",
     "bundlewatch": "^0.3.3",
     "del": "^6.1.1",
-    "eslint": "^8.19.0",
+    "eslint": "^8.23.1",
     "eslint-config-xo": "^0.41.0",
     "eslint-config-xo-typescript": "^0.51.1",
     "eslint-plugin-import": "^2.26.0",
