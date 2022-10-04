@@ -61,7 +61,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
     "gulp-terser": "^2.1.0",
-    "lockfile-lint": "^4.7.6",
+    "lockfile-lint": "^4.9.5",
     "postcss": "^8.4.6",
     "rollup": "^2.76.0",
     "rtlcss": "^3.5.0",
