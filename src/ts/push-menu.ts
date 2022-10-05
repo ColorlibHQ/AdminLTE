@@ -172,6 +172,13 @@ class PushMenu {
   }
 
   toggleMini(): void {
+    if (this._bodyClass.contains(CLASS_NAME_LAYOUT_MOBILE)) {
+      // In mobile mode, the mini sidebar doesn't work well, since it
+      // overlaps with the header. Instead of going mini, just close.
+      this.close()
+      return
+    }
+
     if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_MINI_HAD)) {
       this._bodyClass.remove(CLASS_NAME_SIDEBAR_MINI_HAD)
       this._bodyClass.add(CLASS_NAME_SIDEBAR_MINI)
