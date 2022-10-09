@@ -2,13 +2,13 @@
  * OverlayScrollbars
  * https://github.com/KingSora/OverlayScrollbars
  *
- * Version: 1.13.0
+ * Version: 1.13.2
  *
  * Copyright KingSora | Rene Haas.
  * https://github.com/KingSora
  *
  * Released under the MIT license.
- * Date: 02.08.2020
+ * Date: 01.06.2022
  */
 
 (function (global, factory) {
@@ -2812,7 +2812,12 @@
                  * A callback which will be called after a element has loaded.	
                  */
                 function updateOnLoadCallback(event) {
+                    var target = event.target;
                     var elm = FRAMEWORK(event.target);
+                    var index = FRAMEWORK.inArray(target, _updateOnLoadElms);
+                    if (index > -1) {
+                        _updateOnLoadElms.splice(index, 1);
+                    }
 
                     eachUpdateOnLoad(function (i, updateOnLoadSelector) {
                         if (elm.is(updateOnLoadSelector)) {
@@ -6416,6 +6421,7 @@
 
                     //check if the plugin hasn't to be initialized
                     if (_nativeScrollbarIsOverlaid.x && _nativeScrollbarIsOverlaid.y && !_currentPreparedOptions.nativeScrollbarsOverlaid.initialize) {
+                        _initialized = true; // workaround so the onInitializationWithdrawn callback below is fired
                         dispatchCallback('onInitializationWithdrawn');
                         if (_domExists) {
                             setupStructureDOM(true);
@@ -6423,6 +6429,7 @@
                             setupScrollbarCornerDOM(true);
                         }
 
+                        _initialized = false;
                         _destroyed = true;
                         _sleeping = true;
 

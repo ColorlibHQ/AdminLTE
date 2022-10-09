@@ -1,5 +1,5 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: https://codemirror.net/LICENSE
+// Distributed under an MIT license: https://codemirror.net/5/LICENSE
 
 // Define search commands. Depends on dialog.js or another
 // implementation of the openDialog method.
@@ -202,16 +202,19 @@
   }
 
   function getQueryDialog(cm)  {
-    return el("", null,
-              el("span", {className: "CodeMirror-search-label"}, cm.phrase("Search:")), " ",
-              el("input", {type: "text", "style": "width: 10em", className: "CodeMirror-search-field"}), " ",
-              el("span", {style: "color: #888", className: "CodeMirror-search-hint"},
+    var label = el("label", {className: "CodeMirror-search-label"},
+                   cm.phrase("Search:"),
+                   el("input", {type: "text", "style": "width: 10em", className: "CodeMirror-search-field",
+                                id: "CodeMirror-search-field"}));
+    label.setAttribute("for","CodeMirror-search-field");
+    return el("", null, label, " ",
+              el("span", {style: "color: #666", className: "CodeMirror-search-hint"},
                  cm.phrase("(Use /re/ syntax for regexp search)")));
   }
   function getReplaceQueryDialog(cm) {
     return el("", null, " ",
               el("input", {type: "text", "style": "width: 10em", className: "CodeMirror-search-field"}), " ",
-              el("span", {style: "color: #888", className: "CodeMirror-search-hint"},
+              el("span", {style: "color: #666", className: "CodeMirror-search-hint"},
                  cm.phrase("(Use /re/ syntax for regexp search)")));
   }
   function getReplacementQueryDialog(cm) {

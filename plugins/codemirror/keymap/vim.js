@@ -1,5 +1,5 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: https://codemirror.net/LICENSE
+// Distributed under an MIT license: https://codemirror.net/5/LICENSE
 
 /**
  * Supported keybindings:
@@ -865,13 +865,17 @@
         }
         function handleEsc() {
           if (key == '<Esc>') {
-            // Clear input state and get back to normal mode.
-            clearInputState(cm);
             if (vim.visualMode) {
+              // Get back to normal mode.
               exitVisualMode(cm);
             } else if (vim.insertMode) {
+              // Get back to normal mode.
               exitInsertMode(cm);
+            } else {
+              // We're already in normal mode. Let '<Esc>' be handled normally.
+              return;
             }
+            clearInputState(cm);
             return true;
           }
         }

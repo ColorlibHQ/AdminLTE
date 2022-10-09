@@ -29,7 +29,7 @@ $.extend( $.validator.messages, {
 	rangelength: $.validator.format( "Zəhmət olmasa, {0} - {1} aralığında uzunluğa malik simvol daxil edin." ),
 	range: $.validator.format( "Zəhmət olmasa, {0} - {1} aralığında rəqəm daxil edin." ),
 	max: $.validator.format( "Zəhmət olmasa, {0} və ondan kiçik rəqəm daxil edin." ),
-	min: $.validator.format( "Zəhmət olmasa, {0} və ondan böyük rəqəm daxil edin" )
+	min: $.validator.format( "Zəhmət olmasa, {0} və ondan böyük rəqəm daxil edin." )
 } );
 return $;
 }));

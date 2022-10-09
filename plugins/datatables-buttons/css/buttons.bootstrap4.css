@@ -71,7 +71,7 @@ div.dtb-popover-close {
   text-align: center;
   border-radius: 3px;
   cursor: pointer;
-  z-index: 12;
+  z-index: 2003;
 }
 
 button.dtb-hide-drop {
@@ -129,7 +129,7 @@ div.dt-button-collection {
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  padding: 0.5rem 0;
+  padding: 0.5rem;
   width: 200px;
 }
 div.dt-button-collection div.dropdown-menu {

@@ -253,7 +253,7 @@ exports.splitLines = function(string) { return string.split(/\r?\n|\r/) };
 exports.defaults = { indentUnit: 2 };
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: https://codemirror.net/LICENSE
+// Distributed under an MIT license: https://codemirror.net/5/LICENSE
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS

@@ -1,5 +1,5 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: https://codemirror.net/LICENSE
+// Distributed under an MIT license: https://codemirror.net/5/LICENSE
 
 // By the Neo4j Team and contributors.
 // https://github.com/neo4j-contrib/CodeMirror
@@ -19,6 +19,7 @@
 
   CodeMirror.defineMode("cypher", function(config) {
     var tokenBase = function(stream/*, state*/) {
+      curPunc = null
       var ch = stream.next();
       if (ch ==='"') {
         stream.match(/^[^"]*"/);

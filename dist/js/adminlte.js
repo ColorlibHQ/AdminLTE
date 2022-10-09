@@ -131,20 +131,26 @@
     ;
 
     CardRefresh._jQueryInterface = function _jQueryInterface(config) {
-      var data = $__default["default"](this).data(DATA_KEY$e);
+      return this.each(function () {
+        var data = $__default["default"](this).data(DATA_KEY$e);
 
-      var _options = $__default["default"].extend({}, Default$c, $__default["default"](this).data());
+        var _config = $__default["default"].extend({}, Default$c, typeof config === 'object' ? config : $__default["default"](this).data());
 
-      if (!data) {
-        data = new CardRefresh($__default["default"](this), _options);
-        $__default["default"](this).data(DATA_KEY$e, typeof config === 'string' ? data : config);
-      }
+        if (!data) {
+          data = new CardRefresh($__default["default"](this), _config);
+          $__default["default"](this).data(DATA_KEY$e, data);
 
-      if (typeof config === 'string' && /load/.test(config)) {
-        data[config]();
-      } else {
-        data._init($__default["default"](this));
-      }
+          data._init();
+        } else if (typeof config === 'string') {
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError("No method named \"" + config + "\"");
+          }
+
+          data[config]();
+        } else if (typeof config === 'undefined') {
+          data._init();
+        }
+      });
     };
 
     return CardRefresh;
@@ -283,6 +289,7 @@
       this._parent.css({
         height: this._parent.height(),
         width: this._parent.width(),
+        position: 'fixed',
         transition: 'all .15s'
       }).delay(150).queue(function () {
         var $element = $__default["default"](this);
@@ -350,10 +357,10 @@
     CardWidget._jQueryInterface = function _jQueryInterface(config) {
       var data = $__default["default"](this).data(DATA_KEY$d);
 
-      var _options = $__default["default"].extend({}, Default$b, $__default["default"](this).data());
+      var _config = $__default["default"].extend({}, Default$b, $__default["default"](this).data());
 
       if (!data) {
-        data = new CardWidget($__default["default"](this), _options);
+        data = new CardWidget($__default["default"](this), _config);
         $__default["default"](this).data(DATA_KEY$d, typeof config === 'string' ? data : config);
       }
 
@@ -673,22 +680,26 @@
     } // Static
     ;
 
-    ControlSidebar._jQueryInterface = function _jQueryInterface(operation) {
+    ControlSidebar._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var data = $__default["default"](this).data(DATA_KEY$c);
 
-        var _options = $__default["default"].extend({}, Default$a, $__default["default"](this).data());
+        var _config = $__default["default"].extend({}, Default$a, typeof config === 'object' ? config : $__default["default"](this).data());
 
         if (!data) {
-          data = new ControlSidebar(this, _options);
+          data = new ControlSidebar($__default["default"](this), _config);
           $__default["default"](this).data(DATA_KEY$c, data);
-        }
 
-        if (data[operation] === 'undefined') {
-          throw new Error(operation + " is not a function");
-        }
+          data._init();
+        } else if (typeof config === 'string') {
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError("No method named \"" + config + "\"");
+          }
 
-        data[operation]();
+          data[config]();
+        } else if (typeof config === 'undefined') {
+          data._init();
+        }
       });
     };
 
@@ -766,9 +777,15 @@
         if (!data) {
           data = new DirectChat($__default["default"](this));
           $__default["default"](this).data(DATA_KEY$b, data);
-        }
+        } else if (typeof config === 'string') {
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError("No method named \"" + config + "\"");
+          }
 
-        data[config]();
+          data[config]();
+        } else if (typeof config === 'undefined') {
+          data._init();
+        }
       });
     };
 
@@ -890,14 +907,16 @@
       return this.each(function () {
         var data = $__default["default"](this).data(DATA_KEY$a);
 
-        var _config = $__default["default"].extend({}, Default$9, $__default["default"](this).data());
+        var _config = $__default["default"].extend({}, Default$9, typeof config === 'object' ? config : $__default["default"](this).data());
 
         if (!data) {
           data = new Dropdown($__default["default"](this), _config);
           $__default["default"](this).data(DATA_KEY$a, data);
-        }
+        } else if (typeof config === 'string') {
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError("No method named \"" + config + "\"");
+          }
 
-        if (config === 'toggleSubmenu' || config === 'fixPosition') {
           data[config]();
         }
       });
@@ -968,15 +987,14 @@
     */
 
   var ExpandableTable = /*#__PURE__*/function () {
-    function ExpandableTable(element, options) {
-      this._options = options;
+    function ExpandableTable(element) {
       this._element = element;
     } // Public
 
 
     var _proto = ExpandableTable.prototype;
 
-    _proto.init = function init() {
+    _proto._init = function _init() {
       $__default["default"](SELECTOR_DATA_TOGGLE$2).each(function (_, $header) {
         var $type = $__default["default"]($header).attr(SELECTOR_ARIA_ATTR);
         var $body = $__default["default"]($header).next(SELECTOR_EXPANDABLE_BODY).children().first().children();
@@ -1021,7 +1039,7 @@
     } // Static
     ;
 
-    ExpandableTable._jQueryInterface = function _jQueryInterface(operation) {
+    ExpandableTable._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var data = $__default["default"](this).data(DATA_KEY$9);
 
@@ -1030,8 +1048,8 @@
           $__default["default"](this).data(DATA_KEY$9, data);
         }
 
-        if (typeof operation === 'string' && /init|toggleRow/.test(operation)) {
-          data[operation]();
+        if (typeof config === 'string' && /init|toggleRow/.test(config)) {
+          data[config]();
         }
       });
     };
@@ -1045,7 +1063,7 @@
 
 
   $__default["default"](SELECTOR_TABLE).ready(function () {
-    ExpandableTable._jQueryInterface.call($__default["default"](this), 'init');
+    ExpandableTable._jQueryInterface.call($__default["default"](this), '_init');
   });
   $__default["default"](document).on('click', SELECTOR_DATA_TOGGLE$2, function () {
     ExpandableTable._jQueryInterface.call($__default["default"](this), 'toggleRow');
@@ -1092,7 +1110,7 @@
   var Fullscreen = /*#__PURE__*/function () {
     function Fullscreen(_element, _options) {
       this.element = _element;
-      this.options = $__default["default"].extend({}, Default$8, _options);
+      this.options = _options;
     } // Public
 
 
@@ -1136,22 +1154,22 @@
     ;
 
     Fullscreen._jQueryInterface = function _jQueryInterface(config) {
-      var data = $__default["default"](this).data(DATA_KEY$8);
+      return this.each(function () {
+        var data = $__default["default"](this).data(DATA_KEY$8);
 
-      if (!data) {
-        data = $__default["default"](this).data();
-      }
+        var _config = $__default["default"].extend({}, Default$8, typeof config === 'object' ? config : $__default["default"](this).data());
 
-      var _options = $__default["default"].extend({}, Default$8, typeof config === 'object' ? config : data);
+        if (!data) {
+          data = new Fullscreen($__default["default"](this), _config);
+          $__default["default"](this).data(DATA_KEY$8, data);
+        } else if (typeof config === 'string') {
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError("No method named \"" + config + "\"");
+          }
 
-      var plugin = new Fullscreen($__default["default"](this), _options);
-      $__default["default"](this).data(DATA_KEY$8, typeof config === 'object' ? config : data);
-
-      if (typeof config === 'string' && /toggle|toggleIcon|fullscreen|windowed/.test(config)) {
-        plugin[config]();
-      } else {
-        plugin.init();
-      }
+          data[config]();
+        }
+      });
     };
 
     return Fullscreen;
@@ -1181,12 +1199,23 @@
     return Fullscreen._jQueryInterface;
   };
 
-  /**
-   * --------------------------------------------
-   * AdminLTE IFrame.js
-   * License MIT
-   * --------------------------------------------
-   */
+  function _extends() {
+    _extends = Object.assign ? Object.assign.bind() : function (target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+
+      return target;
+    };
+    return _extends.apply(this, arguments);
+  }
+
   /**
    * Constants
    * ====================================================
@@ -1286,7 +1315,11 @@
       if (autoOpen) {
         if (this._config.loadingScreen) {
           var $loadingScreen = $__default["default"](SELECTOR_TAB_LOADING);
-          $loadingScreen.fadeIn();
+
+          if (!$loadingScreen.is(':animated')) {
+            $loadingScreen.fadeIn();
+          }
+
           $__default["default"](tabId + " iframe").ready(function () {
             if (typeof _this._config.loadingScreen === 'number') {
               _this.switchTab("#" + navId);
@@ -1460,9 +1493,7 @@
       this._fixHeight(true);
 
       if (usingDefTab) {
-        var $el = $__default["default"]("" + SELECTOR_TAB_PANE).first(); // eslint-disable-next-line no-console
-
-        console.log($el);
+        var $el = $__default["default"]("" + SELECTOR_TAB_PANE).first();
         var uniqueName = $el.attr('id').replace('panel-', '');
         var navId = "#tab-" + uniqueName;
         this.switchTab(navId, true);
@@ -1530,7 +1561,7 @@
         e.preventDefault();
         var target = e.target;
 
-        if (target.nodeName == 'I') {
+        if (target.nodeName === 'I') {
           target = e.target.offsetParent;
         }
 
@@ -1628,9 +1659,10 @@
         }
       }
     } // Static
+    // eslint-disable-next-line max-params
     ;
 
-    IFrame._jQueryInterface = function _jQueryInterface(config) {
+    IFrame._jQueryInterface = function _jQueryInterface(config, name, link, id, reload) {
       if ($__default["default"](SELECTOR_DATA_TOGGLE$1).length > 0) {
         var data = $__default["default"](this).data(DATA_KEY$7);
 
@@ -1642,13 +1674,19 @@
 
         localStorage.setItem('AdminLTE:IFrame:Options', JSON.stringify(_options));
         var plugin = new IFrame($__default["default"](this), _options);
-        $__default["default"](this).data(DATA_KEY$7, typeof config === 'object' ? config : data);
+        window.iFrameInstance = plugin;
+        $__default["default"](this).data(DATA_KEY$7, typeof config === 'object' ? config : _extends({
+          link: link,
+          name: name,
+          id: id,
+          reload: reload
+        }, data));
 
         if (typeof config === 'string' && /createTab|openTabSidebar|switchTab|removeActiveTab/.test(config)) {
-          plugin[config]();
+          plugin[config](name, link, id, reload);
         }
       } else {
-        new IFrame($__default["default"](this), JSON.parse(localStorage.getItem('AdminLTE:IFrame:Options')))._initFrameElement();
+        window.iFrameInstance = new IFrame($__default["default"](this), JSON.parse(localStorage.getItem('AdminLTE:IFrame:Options')))._initFrameElement();
       }
     };
 
@@ -1877,24 +1915,24 @@
     ;
 
     Layout._jQueryInterface = function _jQueryInterface(config) {
-      if (config === void 0) {
-        config = '';
-      }
-
       return this.each(function () {
         var data = $__default["default"](this).data(DATA_KEY$6);
 
-        var _options = $__default["default"].extend({}, Default$6, $__default["default"](this).data());
+        var _config = $__default["default"].extend({}, Default$6, typeof config === 'object' ? config : $__default["default"](this).data());
 
         if (!data) {
-          data = new Layout($__default["default"](this), _options);
+          data = new Layout($__default["default"](this), _config);
           $__default["default"](this).data(DATA_KEY$6, data);
-        }
 
-        if (config === 'init' || config === '') {
           data._init();
-        } else if (config === 'fixLayoutHeight' || config === 'fixLoginRegisterHeight') {
+        } else if (typeof config === 'string') {
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError("No method named \"" + config + "\"");
+          }
+
           data[config]();
+        } else if (typeof config === 'undefined') {
+          data._init();
         }
       });
     };
@@ -1968,7 +2006,7 @@
   var PushMenu = /*#__PURE__*/function () {
     function PushMenu(element, options) {
       this._element = element;
-      this._options = $__default["default"].extend({}, Default$5, options);
+      this._options = options;
 
       if ($__default["default"](SELECTOR_OVERLAY).length === 0) {
         this._addOverlay();
@@ -2103,19 +2141,25 @@
     } // Static
     ;
 
-    PushMenu._jQueryInterface = function _jQueryInterface(operation) {
+    PushMenu._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var data = $__default["default"](this).data(DATA_KEY$5);
 
-        var _options = $__default["default"].extend({}, Default$5, $__default["default"](this).data());
+        var _config = $__default["default"].extend({}, Default$5, typeof config === 'object' ? config : $__default["default"](this).data());
 
         if (!data) {
-          data = new PushMenu(this, _options);
+          data = new PushMenu($__default["default"](this), _config);
           $__default["default"](this).data(DATA_KEY$5, data);
-        }
 
-        if (typeof operation === 'string' && /collapse|expand|toggle/.test(operation)) {
-          data[operation]();
+          data._init();
+        } else if (typeof config === 'string') {
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError("No method named \"" + config + "\"");
+          }
+
+          data[config]();
+        } else if (typeof config === 'undefined') {
+          data._init();
         }
       });
     };
@@ -2209,7 +2253,7 @@
 
     var _proto = SidebarSearch.prototype;
 
-    _proto.init = function init() {
+    _proto._init = function _init() {
       var _this = this;
 
       if ($__default["default"](SELECTOR_DATA_WIDGET$1).length === 0) {
@@ -2363,22 +2407,26 @@
     ;
 
     SidebarSearch._jQueryInterface = function _jQueryInterface(config) {
-      var data = $__default["default"](this).data(DATA_KEY$4);
+      return this.each(function () {
+        var data = $__default["default"](this).data(DATA_KEY$4);
 
-      if (!data) {
-        data = $__default["default"](this).data();
-      }
+        var _config = $__default["default"].extend({}, Default$4, typeof config === 'object' ? config : $__default["default"](this).data());
 
-      var _options = $__default["default"].extend({}, Default$4, typeof config === 'object' ? config : data);
+        if (!data) {
+          data = new SidebarSearch($__default["default"](this), _config);
+          $__default["default"](this).data(DATA_KEY$4, data);
 
-      var plugin = new SidebarSearch($__default["default"](this), _options);
-      $__default["default"](this).data(DATA_KEY$4, typeof config === 'object' ? config : data);
+          data._init();
+        } else if (typeof config === 'string') {
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError("No method named \"" + config + "\"");
+          }
 
-      if (typeof config === 'string' && /init|toggle|close|open|search/.test(config)) {
-        plugin[config]();
-      } else {
-        plugin.init();
-      }
+          data[config]();
+        } else if (typeof config === 'undefined') {
+          data._init();
+        }
+      });
     };
 
     return SidebarSearch;
@@ -2480,7 +2528,7 @@
   var NavbarSearch = /*#__PURE__*/function () {
     function NavbarSearch(_element, _options) {
       this._element = _element;
-      this._config = $__default["default"].extend({}, Default$3, _options);
+      this._config = _options;
     } // Public
 
 
@@ -2508,22 +2556,22 @@
     } // Static
     ;
 
-    NavbarSearch._jQueryInterface = function _jQueryInterface(options) {
+    NavbarSearch._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var data = $__default["default"](this).data(DATA_KEY$3);
 
-        var _options = $__default["default"].extend({}, Default$3, $__default["default"](this).data());
+        var _config = $__default["default"].extend({}, Default$3, typeof config === 'object' ? config : $__default["default"](this).data());
 
         if (!data) {
-          data = new NavbarSearch(this, _options);
+          data = new NavbarSearch($__default["default"](this), _config);
           $__default["default"](this).data(DATA_KEY$3, data);
-        }
+        } else if (typeof config === 'string') {
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError("No method named \"" + config + "\"");
+          }
 
-        if (!/toggle|close|open/.test(options)) {
-          throw new Error("Undefined method " + options);
+          data[config]();
         }
-
-        data[options]();
       });
     };
 
@@ -2558,12 +2606,7 @@
     return NavbarSearch._jQueryInterface;
   };
 
-  /**
-   * --------------------------------------------
-   * AdminLTE Toasts.js
-   * License MIT
-   * --------------------------------------------
-   */
+  // noinspection EqualityComparisonWithCoercionJS
   /**
    * Constants
    * ====================================================
@@ -2690,19 +2733,19 @@
     ;
 
     _proto._getContainerId = function _getContainerId() {
-      if (this._config.position == POSITION_TOP_RIGHT) {
+      if (this._config.position === POSITION_TOP_RIGHT) {
         return SELECTOR_CONTAINER_TOP_RIGHT;
       }
 
-      if (this._config.position == POSITION_TOP_LEFT) {
+      if (this._config.position === POSITION_TOP_LEFT) {
         return SELECTOR_CONTAINER_TOP_LEFT;
       }
 
-      if (this._config.position == POSITION_BOTTOM_RIGHT) {
+      if (this._config.position === POSITION_BOTTOM_RIGHT) {
         return SELECTOR_CONTAINER_BOTTOM_RIGHT;
       }
 
-      if (this._config.position == POSITION_BOTTOM_LEFT) {
+      if (this._config.position === POSITION_BOTTOM_LEFT) {
         return SELECTOR_CONTAINER_BOTTOM_LEFT;
       }
     };
@@ -2804,7 +2847,7 @@
       item.parents('li').toggleClass(CLASS_NAME_TODO_LIST_DONE);
 
       if (!$__default["default"](item).prop('checked')) {
-        this.unCheck($__default["default"](item));
+        this.unCheck(item);
         return;
       }
 
@@ -2812,11 +2855,11 @@
     };
 
     _proto.check = function check(item) {
-      this._config.onCheck.call(item);
+      this._config.onCheck(item);
     };
 
     _proto.unCheck = function unCheck(item) {
-      this._config.onUnCheck.call(item);
+      this._config.onUnCheck(item);
     } // Private
     ;
 
@@ -2835,17 +2878,21 @@
       return this.each(function () {
         var data = $__default["default"](this).data(DATA_KEY$1);
 
+        var _config = $__default["default"].extend({}, Default$1, typeof config === 'object' ? config : $__default["default"](this).data());
+
         if (!data) {
-          data = $__default["default"](this).data();
-        }
+          data = new TodoList($__default["default"](this), _config);
+          $__default["default"](this).data(DATA_KEY$1, data);
 
-        var _options = $__default["default"].extend({}, Default$1, typeof config === 'object' ? config : data);
+          data._init();
+        } else if (typeof config === 'string') {
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError("No method named \"" + config + "\"");
+          }
 
-        var plugin = new TodoList($__default["default"](this), _options);
-        $__default["default"](this).data(DATA_KEY$1, typeof config === 'object' ? config : data);
-
-        if (config === 'init') {
-          plugin[config]();
+          data[config]();
+        } else if (typeof config === 'undefined') {
+          data._init();
         }
       });
     };
@@ -2921,7 +2968,7 @@
 
     var _proto = Treeview.prototype;
 
-    _proto.init = function init() {
+    _proto._init = function _init() {
       $__default["default"]("" + SELECTOR_LI + SELECTOR_OPEN + " " + SELECTOR_TREEVIEW_MENU + SELECTOR_OPEN).css('display', 'block');
 
       this._setupListeners();
@@ -3008,15 +3055,21 @@
       return this.each(function () {
         var data = $__default["default"](this).data(DATA_KEY);
 
-        var _options = $__default["default"].extend({}, Default, $__default["default"](this).data());
+        var _config = $__default["default"].extend({}, Default, typeof config === 'object' ? config : $__default["default"](this).data());
 
         if (!data) {
-          data = new Treeview($__default["default"](this), _options);
+          data = new Treeview($__default["default"](this), _config);
           $__default["default"](this).data(DATA_KEY, data);
-        }
 
-        if (config === 'init') {
+          data._init();
+        } else if (typeof config === 'string') {
+          if (typeof data[config] === 'undefined') {
+            throw new TypeError("No method named \"" + config + "\"");
+          }
+
           data[config]();
+        } else if (typeof config === 'undefined') {
+          data._init();
         }
       });
     };

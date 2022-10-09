@@ -1,5 +1,5 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: https://codemirror.net/LICENSE
+// Distributed under an MIT license: https://codemirror.net/5/LICENSE
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
@@ -26,7 +26,7 @@ var keywordList = [
   "require_relative", "extend", "autoload", "__END__", "__FILE__", "__LINE__", "__dir__"
 ], keywords = wordObj(keywordList);
 
-var indentWords = wordObj(["def", "class", "case", "for", "while", "until", "module", "then",
+var indentWords = wordObj(["def", "class", "case", "for", "while", "until", "module",
                            "catch", "loop", "proc", "begin"]);
 var dedentWords = wordObj(["end", "until"]);
 var opening = {"[": "]", "{": "}", "(": ")"};

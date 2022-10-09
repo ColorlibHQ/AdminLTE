@@ -84,6 +84,17 @@ div.dt-autofill-background {
   z-index: 10;
 }
 
+@media screen and (max-width: 767px) {
+  div.dt-autofill-handle {
+    height: 16px;
+    width: 16px;
+  }
+
+  div.dt-autofill-list {
+    width: 90%;
+    left: 74.5%;
+  }
+}
 div.dt-autofill-list div.dt-autofill-question input[type=number] {
   padding: 6px;
   width: 60px;
