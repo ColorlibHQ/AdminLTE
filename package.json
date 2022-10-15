@@ -27,7 +27,7 @@
     "docs-serve": "npm-run-all compile docs-prepare && cd docs/ && bundle exec jekyll serve",
     "docs-prepare": "node build/npm/DocsPublish.js -v",
     "lockfile-lint": "lockfile-lint --allowed-hosts npm --allowed-schemes https: --empty-hostname false --type npm --path package-lock.json",
-    "postinstall": "npm run plugins",
+    "predocs": "npm run plugins",
     "js": "npm-run-all js-compile js-minify",
     "js-compile": "rollup --config build/config/rollup.config.js --sourcemap",
     "js-minify": "terser --compress typeofs=false --mangle --comments \"/^!/\" --source-map \"content=dist/js/adminlte.js.map,includeSources,url=adminlte.min.js.map\" --output dist/js/adminlte.min.js dist/js/adminlte.js",
