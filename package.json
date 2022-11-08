@@ -39,7 +39,7 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.3",
     "@ronilaukkarinen/gulp-stylelint": "^14.0.6",
-    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
     "@typescript-eslint/parser": "^5.30.6",
     "autoprefixer": "^10.4.7",
     "bootstrap": "^5.1.3",
