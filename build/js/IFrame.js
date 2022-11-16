@@ -272,7 +272,7 @@ class IFrame {
   }
 
   _initFrameElement() {
-    if (window.frameElement && this._config.autoIframeMode) {
+    if (window.frameElement && this._config?.autoIframeMode) {
       const $body = $('body')
       $body.addClass(CLASS_NAME_IFRAME_MODE)
 
