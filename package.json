@@ -120,7 +120,7 @@
     "select2": "^4.0.13",
     "sparklines": "^1.3.0",
     "summernote": "^0.8.20",
-    "sweetalert2": "^11.4.20",
+    "sweetalert2": "^11.7.0",
     "tempusdominus-bootstrap-4": "^5.39.2",
     "toastr": "^2.1.4",
     "uplot": "^1.6.22"
