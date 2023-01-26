@@ -67,7 +67,7 @@
     "rtlcss": "^3.5.0",
     "sass": "^1.57.1",
     "stylelint": "^14.9.1",
-    "stylelint-config-twbs-bootstrap": "^4.0.0",
+    "stylelint-config-twbs-bootstrap": "^7.0.0",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   }
