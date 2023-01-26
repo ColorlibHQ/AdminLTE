@@ -87,11 +87,11 @@ const scss = () => src(paths.src.scss + '/adminlte.scss', { sourcemaps: true })
     .pipe(browserSync.stream())
 
 // Compile SCSS Dark
-const scssDark = () => src(paths.src.scss + '/dark/adminlte-dark-addon.scss', { sourcemaps: true })
-    .pipe(sass(sassOptions).on('error', sass.logError))
-    .pipe(postcss(postcssOptions))
-    .pipe(dest(paths.temp.css + '/dark', { sourcemaps: '.' }))
-    .pipe(browserSync.stream())
+// const scssDark = () => src(paths.src.scss + '/dark/adminlte-dark-addon.scss', { sourcemaps: true })
+//     .pipe(sass(sassOptions).on('error', sass.logError))
+//     .pipe(postcss(postcssOptions))
+//     .pipe(dest(paths.temp.css + '/dark', { sourcemaps: '.' }))
+//     .pipe(browserSync.stream())
 
 // Lint TS
 function isFixed(file) {
@@ -158,7 +158,7 @@ const serve = () => {
 
   watch([paths.src.scss], series(lintScss))
   watch([paths.src.scss + '/**/*.scss', '!' + paths.src.scss + '/bootstrap-dark/**/*.scss', '!' + paths.src.scss + '/dark/**/*.scss'], series(scss))
-  watch([paths.src.scss + '/bootstrap-dark/', paths.src.scss + '/dark/'], series(scssDark))
+  watch([paths.src.scss + '/bootstrap-dark/', paths.src.scss + '/dark/'])
   watch([paths.src.ts], series(lintTs, tsCompile))
   watch([paths.src.html, paths.src.base + '*.html', paths.src.partials], series(html, index, lintHtml))
   watch([paths.src.assets], series(assets))
@@ -305,4 +305,4 @@ exports.compile = compile
 exports.production = series(lint, compile)
 
 // Default - Only for light mode AdminLTE
-exports.default = series(scss, scssDark, tsCompile, html, index, assets, serve)
+exports.default = series(scss, tsCompile, html, index, assets, serve)

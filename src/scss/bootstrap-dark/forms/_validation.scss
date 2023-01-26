@@ -1,5 +1,0 @@
-// Form validation
-
-@each $state, $data in $form-validation-states-alt {
-  @include form-validation-state-alt($state, $data...);
-}
