@@ -49,8 +49,8 @@
 
   .nav-sidebar > .nav-item {
     > .nav-link.active {
-      color: var(--lte-sidebar-menu-active-color);
-      background-color: var(--lte-sidebar-menu-active-bg);
+      color: var(--#{$lte-prefix}sidebar-menu-active-color);
+      background-color: var(--#{$lte-prefix}sidebar-menu-active-bg);
     }
   }
 }

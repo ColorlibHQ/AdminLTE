@@ -1,0 +1,23 @@
+:root {
+  --#{$lte-prefix}main-color: $lte-main-color;
+  --#{$lte-prefix}main-bg: $lte-main-bg;
+}
+
+@if $enable-dark-mode {
+  @include color-mode(dark, true) {
+    color-scheme: dark;
+    // Body Color
+    --#{$lte-prefix}main-color: $lte-main-color-dark;
+    --#{$lte-prefix}main-bg: $lte-main-bg-dark;
+
+    // Sidebar active links
+    --#{$lte-prefix}sidebar-menu-active-bg: #{$primary};
+    --#{$lte-prefix}sidebar-menu-active-color: #{$white};
+
+    // Dark Sidebar Native Variables
+    --#{$lte-prefix}sidebar-dark-bg: #{$dark};
+
+    // Light Sidebar Native Variables
+    --#{$lte-prefix}sidebar-light-bg: #{$white};
+  }
+}

@@ -9,14 +9,6 @@
       "maxSize": "35.1 kB"
     },
     {
-      "path": "./dist/css/dark/adminlte-dark-addon.css",
-      "maxSize": "10.17 kB"
-    },
-    {
-      "path": "./dist/css/dark/adminlte-dark-addon.min.css",
-      "maxSize": "9.9 kB"
-    },
-    {
       "path": "./dist/css/rtl/adminlte.rtl.css",
       "maxSize": "37.80 kB"
     },

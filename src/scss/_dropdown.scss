@@ -203,8 +203,8 @@
 
       a {
         @include media-breakpoint-up(sm) {
-          color: $gray-700 !important;
-          background-color: $white !important;
+          color: var(--#{$prefix}body-color) !important;
+          background-color: var(--#{$prefix}body-bg) !important;
         }
       }
     }
@@ -213,14 +213,14 @@
     > .user-footer {
       @include clearfix ();
       padding: 10px;
-      background-color: $gray-100;
+      background-color: var(--#{$prefix}secondary-bg);
 
       .btn-default {
-        color: $gray-600;
+        color: var(--#{$prefix}body-color);
 
         &:hover {
           @include media-breakpoint-up(sm) {
-            background-color: $gray-100;
+            background-color: var(--#{$prefix}body-bg);
           }
         }
       }
