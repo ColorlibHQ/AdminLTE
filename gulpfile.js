@@ -5,7 +5,7 @@ const browserSync = require('browser-sync').create()
 const del = require('del')
 const { src, dest, lastRun, watch, series, parallel } = require('gulp')
 const cleanCss = require('gulp-clean-css')
-const eslint = require('gulp-eslint-new')
+const gulpESLintNew = require('gulp-eslint-new')
 const fileinclude = require('gulp-file-include')
 const validator = require('gulp-html')
 const gulpIf = require('gulp-if')
@@ -100,10 +100,10 @@ function isFixed(file) {
 }
 
 const lintTs = () => src([paths.src.ts + '/**/*.ts'], { since: lastRun(lintTs) })
-    .pipe(eslint({ fix: true }))
-    .pipe(eslint.format())
+    .pipe(gulpESLintNew({ fix: true }))
     .pipe(gulpIf(isFixed, dest(paths.src.ts)))
-    .pipe(eslint.failAfterError())
+    .pipe(gulpESLintNew.format())
+    .pipe(gulpESLintNew.failAfterError())
 
 // Compile TS
 const tsCompile = () =>
@@ -203,8 +203,8 @@ const minifyDistCss = () => src([
     .pipe(dest(paths.dist.css, { sourcemaps: '.' }))
 
 const lintDistTs = () => src([paths.src.ts + '/**/*.ts'])
-    .pipe(eslint())
-    .pipe(eslint.failAfterError())
+    .pipe(gulpESLintNew())
+    .pipe(gulpESLintNew.failAfterError())
 
 // Compile and copy ts/js
 const copyDistJs = () =>
