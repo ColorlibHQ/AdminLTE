@@ -20,7 +20,7 @@
     > a:hover {
       &,
       .users-list-name {
-        color: #999;
+        color: var(--#{$prefix}body-color);
       }
     }
   }
@@ -34,12 +34,12 @@
 .users-list-name {
   overflow: hidden;
   font-size: $font-size-sm;
-  color: $gray-700;
+  color: var(--#{$prefix}secondary-color);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .users-list-date {
   font-size: 12px;
-  color: shade-color($gray-500, 20%);
+  color: var(--#{$prefix}tertiary-color);
 }

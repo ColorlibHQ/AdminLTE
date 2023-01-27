@@ -18,13 +18,13 @@
 
   &.timestamp-light {
     .direct-chat-timestamp {
-      color: tint-color(color-contrast($color-contrast-light), 10%);
+      color: rgba(var(--#{$prefix}body-color-rgb), .65);
     }
   }
 
   &.timestamp-dark {
     .direct-chat-timestamp {
-      color: shade-color(color-contrast($color-contrast-dark), 20%);
+      color: rgba(var(--#{$prefix}body-color-rgb), .9);
     }
   }
 }
@@ -123,7 +123,7 @@
 }
 
 .direct-chat-timestamp {
-  color: shade-color($gray-500, 25%);
+  color: rgba(var(--#{$prefix}body-color-rgb), .75);
 }
 
 //Direct chat contacts pane
@@ -141,23 +141,23 @@
   width: 100%;
   height: 250px;
   overflow: auto;
-  color: $white;
-  background-color: $dark;
+  color: var(--#{$prefix}body-bg);
+  background-color: var(--#{$prefix}body-color);
 }
 
 .direct-chat-contacts-light {
-  background-color: $light;
+  background-color: var(--#{$prefix}light-bg-subtle);
 
   .contacts-list-name {
-    color: $gray-700;
+    color: var(--#{$prefix}body-color);
   }
 
   .contacts-list-date {
-    color: $gray-600;
+    color: var(--#{$prefix}secondary-color);
   }
 
   .contacts-list-msg {
-    color: shade-color($gray-600, 10%);
+    color: var(--#{$prefix}secondary-color);
   }
 }
 
@@ -185,7 +185,7 @@
 
 .contacts-list-info {
   margin-left: 45px;
-  color: $white;
+  color: var(--#{$prefix}body-bg);
 }
 
 .contacts-list-name,
@@ -203,11 +203,11 @@
 
 .contacts-list-date {
   font-weight: 400;
-  color: $gray-400;
+  color: var(--#{$prefix}secondary-bg);
 }
 
 .contacts-list-msg {
-  color: shade-color($gray-400, 10%);
+  color: var(--#{$prefix}secondary-bg);
 }
 
 // Color variants

@@ -10,7 +10,7 @@
   text-align: center;
 
   a {
-    color: $gray-700;
+    color: var(--#{$prefix}secondary-color);
   }
 }
 
@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: $gray-200;
+  background-color: var(--#{$prefix}secondary-bg);
 }
 
 .login-box,
@@ -41,8 +41,8 @@
 .login-card-body,
 .register-card-body {
   padding: 20px;
-  color: #666;
-  background-color: $white;
+  color: var(--#{$prefix}secondary-color);
+  background-color: var(--#{$prefix}body-bg);
   border-top: 0;
 
   .input-group {
@@ -81,7 +81,7 @@
     }
 
     .input-group-text {
-      color: #777;
+      color: var(--#{$prefix}secondary-color);
       background-color: transparent;
       border-left: 0;
       @include border-top-end-radius($border-radius);

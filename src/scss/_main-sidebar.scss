@@ -4,35 +4,35 @@
 
 .sidebar-bg-dark {
   @include nav-treeview-dark (
-    $lte-sidebar-dark-bg,
-    $lte-sidebar-dark-hover-bg,
-    $lte-sidebar-dark-color,
-    $lte-sidebar-dark-hover-color,
-    $lte-sidebar-dark-active-color,
-    $lte-sidebar-dark-submenu-bg,
-    $lte-sidebar-dark-submenu-color,
-    $lte-sidebar-dark-submenu-hover-color,
-    $lte-sidebar-dark-submenu-hover-bg,
-    $lte-sidebar-dark-submenu-active-color,
-    $lte-sidebar-dark-submenu-active-bg,
-    $lte-sidebar-dark-header-color
+    var(--#{$lte-prefix}sidebar-dark-bg),
+    var(--#{$lte-prefix}sidebar-dark-hover-bg),
+    var(--#{$lte-prefix}sidebar-dark-color),
+    var(--#{$lte-prefix}sidebar-dark-hover-color),
+    var(--#{$lte-prefix}sidebar-dark-active-color),
+    var(--#{$lte-prefix}sidebar-dark-submenu-bg),
+    var(--#{$lte-prefix}sidebar-dark-submenu-color),
+    var(--#{$lte-prefix}sidebar-dark-submenu-hover-color),
+    var(--#{$lte-prefix}sidebar-dark-submenu-hover-bg),
+    var(--#{$lte-prefix}sidebar-dark-submenu-active-color),
+    var(--#{$lte-prefix}sidebar-dark-submenu-active-bg),
+    var(--#{$lte-prefix}sidebar-dark-header-color)
   );
 }
 
 .sidebar-bg-light {
   @include nav-treeview-light (
-    $lte-sidebar-light-bg,
-    $lte-sidebar-light-hover-bg,
-    $lte-sidebar-light-color,
-    $lte-sidebar-light-hover-color,
-    $lte-sidebar-light-active-color,
-    $lte-sidebar-light-submenu-bg,
-    $lte-sidebar-light-submenu-color,
-    $lte-sidebar-light-submenu-hover-color,
-    $lte-sidebar-light-submenu-hover-bg,
-    $lte-sidebar-light-submenu-active-color,
-    $lte-sidebar-light-submenu-active-bg,
-    $lte-sidebar-light-header-color
+    var(--#{$lte-prefix}sidebar-light-bg),
+    var(--#{$lte-prefix}sidebar-light-hover-bg),
+    var(--#{$lte-prefix}sidebar-light-color),
+    var(--#{$lte-prefix}sidebar-light-hover-color),
+    var(--#{$lte-prefix}sidebar-light-active-color),
+    var(--#{$lte-prefix}sidebar-light-submenu-bg),
+    var(--#{$lte-prefix}sidebar-light-submenu-color),
+    var(--#{$lte-prefix}sidebar-light-submenu-hover-color),
+    var(--#{$lte-prefix}sidebar-light-submenu-hover-bg),
+    var(--#{$lte-prefix}sidebar-light-submenu-active-color),
+    var(--#{$lte-prefix}sidebar-light-submenu-active-bg),
+    var(--#{$lte-prefix}sidebar-light-header-color)
   );
 }
 

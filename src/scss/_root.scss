@@ -1,23 +1,61 @@
 :root {
-  --#{$lte-prefix}main-color: $lte-main-color;
-  --#{$lte-prefix}main-bg: $lte-main-bg;
+  // Content Wrapper
+  --#{$lte-prefix}main-color: #{$lte-main-color};
+  --#{$lte-prefix}main-bg: #{$lte-main-bg};
+
+  // Main Header
+  --#{$lte-prefix}header-light-bg: #{$lte-header-light-bg};
+  --#{$lte-prefix}header-light-color: #{$lte-header-light-color};
+  --#{$lte-prefix}header-mobile-light-bg: #{$lte-header-mobile-light-bg};
+  --#{$lte-prefix}header-mobile-light-color: #{$lte-header-mobile-light-color};
+
+  // Sidebar
+  --#{$lte-prefix}sidebar-width: #{$lte-sidebar-width};
+
+  // Sidebar active links
+  --#{$lte-prefix}sidebar-menu-active-bg: #{$lte-sidebar-menu-active-bg};
+  --#{$lte-prefix}sidebar-menu-active-color: #{$lte-sidebar-menu-active-color};
+
+  // Dark Sidebar Native Variables
+  --#{$lte-prefix}sidebar-dark-bg: #{$lte-sidebar-dark-bg};
+  --#{$lte-prefix}sidebar-dark-hover-bg: #{$lte-sidebar-dark-hover-bg};
+  --#{$lte-prefix}sidebar-dark-color: #{$lte-sidebar-dark-color};
+  --#{$lte-prefix}sidebar-dark-hover-color: #{$lte-sidebar-dark-hover-color};
+  --#{$lte-prefix}sidebar-dark-active-color: #{$lte-sidebar-dark-active-color};
+  --#{$lte-prefix}sidebar-dark-submenu-bg: #{$lte-sidebar-dark-submenu-bg};
+  --#{$lte-prefix}sidebar-dark-submenu-color: #{$lte-sidebar-dark-submenu-color};
+  --#{$lte-prefix}sidebar-dark-submenu-hover-color: #{$lte-sidebar-dark-submenu-hover-color};
+  --#{$lte-prefix}sidebar-dark-submenu-hover-bg: #{$lte-sidebar-dark-submenu-hover-bg};
+  --#{$lte-prefix}sidebar-dark-submenu-active-color: #{$lte-sidebar-dark-submenu-active-color};
+  --#{$lte-prefix}sidebar-dark-submenu-active-bg: #{$lte-sidebar-dark-submenu-active-bg};
+  --#{$lte-prefix}sidebar-dark-header-color: #{$lte-sidebar-dark-header-color};
+
+  // Light Sidebar Native Variables
+  --#{$lte-prefix}sidebar-light-bg: #{$lte-sidebar-light-bg};
+  --#{$lte-prefix}sidebar-light-hover-bg: #{$lte-sidebar-light-hover-bg};
+  --#{$lte-prefix}sidebar-light-color: #{$lte-sidebar-light-color};
+  --#{$lte-prefix}sidebar-light-hover-color: #{$lte-sidebar-light-hover-color};
+  --#{$lte-prefix}sidebar-light-active-color: #{$lte-sidebar-light-active-color};
+  --#{$lte-prefix}sidebar-light-submenu-bg: #{$lte-sidebar-light-submenu-bg};
+  --#{$lte-prefix}sidebar-light-submenu-color: #{$lte-sidebar-light-submenu-color};
+  --#{$lte-prefix}sidebar-light-submenu-hover-color: #{$lte-sidebar-light-submenu-hover-color};
+  --#{$lte-prefix}sidebar-light-submenu-hover-bg: #{$lte-sidebar-light-submenu-hover-bg};
+  --#{$lte-prefix}sidebar-light-submenu-active-color: #{$lte-sidebar-light-submenu-active-color};
+  --#{$lte-prefix}sidebar-light-submenu-active-bg: #{$lte-sidebar-light-submenu-active-bg};
+  --#{$lte-prefix}sidebar-light-header-color: #{$lte-sidebar-light-header-color};
 }
 
 @if $enable-dark-mode {
   @include color-mode(dark, true) {
     color-scheme: dark;
     // Body Color
-    --#{$lte-prefix}main-color: $lte-main-color-dark;
-    --#{$lte-prefix}main-bg: $lte-main-bg-dark;
+    --#{$lte-prefix}main-color: #{$lte-main-color-dark};
+    --#{$lte-prefix}main-bg: #{$lte-main-bg-dark};
 
-    // Sidebar active links
-    --#{$lte-prefix}sidebar-menu-active-bg: #{$primary};
-    --#{$lte-prefix}sidebar-menu-active-color: #{$white};
+    // // Dark Sidebar Native Variables
+    --#{$lte-prefix}sidebar-dark-bg: #{$lte-sidebar-dark-bg-dark};
 
-    // Dark Sidebar Native Variables
-    --#{$lte-prefix}sidebar-dark-bg: #{$dark};
-
-    // Light Sidebar Native Variables
-    --#{$lte-prefix}sidebar-light-bg: #{$white};
+    // // Light Sidebar Native Variables
+    --#{$lte-prefix}sidebar-light-bg: #{$lte-sidebar-light-bg-dark};
   }
 }

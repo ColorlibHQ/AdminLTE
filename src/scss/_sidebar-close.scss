@@ -1,6 +1,6 @@
 .sidebar-close:not(.sidebar-horizontal) {
   .main-sidebar {
     // stylelint-disable-next-line
-    margin-left: calc(#{$lte-sidebar-width} * -1);
+    margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1);
   }
 }

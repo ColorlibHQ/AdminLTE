@@ -142,8 +142,8 @@
         position: absolute;
         right: 5%;
         left: auto;
-        background-color: $white;
-        border: 1px solid #ddd;
+        background-color: var(--#{$prefix}body-bg);
+        border: 1px solid var(--#{$prefix}border-color);
       }
     }
   }
@@ -178,7 +178,7 @@
         height: 90px;
         border: 3px solid;
         border-color: transparent;
-        border-color: rgba(255, 255, 255, .2);
+        border-color: var(--#{$prefix}border-color-translucent);
       }
 
       > p {
@@ -198,8 +198,8 @@
     > .user-body {
       @include clearfix ();
       padding: 15px;
-      border-top: 1px solid $gray-300;
-      border-bottom: 1px solid $gray-700;
+      border-top: 1px solid var(--#{$prefix}border-color);
+      border-bottom: 1px solid var(--#{$prefix}border-color-translucent);
 
       a {
         @include media-breakpoint-up(sm) {
@@ -213,7 +213,7 @@
     > .user-footer {
       @include clearfix ();
       padding: 10px;
-      background-color: var(--#{$prefix}secondary-bg);
+      background-color: var(--#{$prefix}light-bg);
 
       .btn-default {
         color: var(--#{$prefix}body-color);

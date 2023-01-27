@@ -3,10 +3,10 @@
 //
 
 @include header-variant(
-  $lte-header-light-bg,
-  $lte-header-light-color,
-  $lte-header-mobile-light-bg,
-  $lte-header-mobile-light-color
+  var(--#{$lte-prefix}header-light-bg),
+  var(--#{$lte-prefix}header-light-color),
+  var(--#{$lte-prefix}header-mobile-light-bg),
+  var(--#{$lte-prefix}header-mobile-light-color)
 );
 
 .main-header {
