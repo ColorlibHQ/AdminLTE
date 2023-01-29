@@ -9,7 +9,7 @@
     "main-sidebar main-header"
     "main-sidebar content-wrapper"
     "main-sidebar main-footer";
-  grid-template-rows: min-content 100% min-content;
+  grid-template-rows: min-content 1fr min-content;
   grid-template-columns: auto minmax(100%, max-content);
   grid-gap: 0;
   align-content: stretch;

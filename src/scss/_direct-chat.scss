@@ -11,7 +11,7 @@
 
   &.chat-pane-open {
     .direct-chat-contacts {
-      @include translate(0, 0);
+      transform: translate(0, 0);
     }
   }
 
@@ -30,10 +30,10 @@
 }
 
 .direct-chat-messages {
-  @include translate(0, 0);
   height: 250px;
   padding: 10px;
   overflow: auto;
+  transform: translate(0, 0);
 }
 
 .direct-chat-msg,
@@ -129,12 +129,11 @@
 //Direct chat contacts pane
 .direct-chat-contacts-open {
   .direct-chat-contacts {
-    @include translate(0, 0);
+    transform: translate(0, 0);
   }
 }
 
 .direct-chat-contacts {
-  @include translate(101%, 0);
   position: absolute;
   top: 0;
   bottom: 0;
@@ -143,6 +142,7 @@
   overflow: auto;
   color: var(--#{$prefix}body-bg);
   background-color: var(--#{$prefix}body-color);
+  transform: translate(101%, 0);
 }
 
 .direct-chat-contacts-light {

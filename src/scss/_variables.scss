@@ -150,7 +150,7 @@ $lte-progress-bar-border-radius: 1px !default;
 // DIRECT CHAT
 // --------------------------------------------------------
 $lte-direct-chat-default-msg-bg: var(--#{$prefix}secondary-bg) !default;
-$lte-direct-chat-default-font-color: var(--#{$prefix}body-color) !default;
+$lte-direct-chat-default-font-color: var(--#{$prefix}emphasis-color) !default;
 $lte-direct-chat-default-msg-border-color: var(--#{$prefix}border-color) !default;
 
 // Z-INDEX
