@@ -1,13 +1,37 @@
 <!-- OPTIONAL SCRIPTS -->
-
 <!-- overlayScrollbars -->
-<script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@1.13.1/js/OverlayScrollbars.min.js" integrity="sha256-7mHsZb07yMyUmZE5PP1ayiSGILxT6KyU+a/kTDCWHA8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.0.3/browser/overlayscrollbars.browser.es6.min.js" integrity="sha256-/dwBbLeVyyWBtWfH3jHdL2oVVmLKoGnEFzoOSL3nJC0=" crossorigin="anonymous"></script>
+
+<!-- OPTIONAL SCRIPT For Bootstrap 5 -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+
 <!-- Bootstrap 5 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha256-9SEPo+fwJFpMUet/KACSwO+Z/dKMReF9q4zFhU/fT9M=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 
 <!-- REQUIRED SCRIPTS -->
 <!-- AdminLTE App -->
 <script src="@@path/js/adminlte.js"></script>
+
+<!-- OPTIONAL SCRIPTS -->
+<script>
+  const SELECTOR_SIDEBAR = '.sidebar'
+  const Default = {
+    scrollbarTheme: 'os-theme-light',
+    scrollbarAutoHide: 'leave'
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    if (typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== 'undefined') {
+      OverlayScrollbarsGlobal.OverlayScrollbars(document.querySelector(SELECTOR_SIDEBAR), {
+        scrollbars: {
+          theme: Default.scrollbarTheme,
+          autoHide: Default.scrollbarAutoHide,
+          clickScroll: true
+        }
+      })
+    }
+  })
+</script>
 
 <!-- DON'T USE THIS IN PRODUCTION -->
 <script>
@@ -68,25 +92,4 @@
       })
   })
 })()
-</script>
-
-<!-- OPTIONAL SCRIPTS -->
-<script>
-  const SELECTOR_SIDEBAR = '.sidebar'
-  const Default = {
-    scrollbarTheme: 'os-theme-light',
-    scrollbarAutoHide: 'leave'
-  }
-  document.addEventListener("DOMContentLoaded", function() {
-    if (typeof OverlayScrollbars !== 'undefined') {
-      OverlayScrollbars(document.querySelectorAll(SELECTOR_SIDEBAR), {
-        className: Default.scrollbarTheme,
-        sizeAutoCapable: true,
-        scrollbars: {
-          autoHide: Default.scrollbarAutoHide,
-          clickScrolling: true
-        }
-      })
-    }
-  })
 </script>
