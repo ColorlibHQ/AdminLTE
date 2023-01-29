@@ -192,7 +192,7 @@ const copyDistCssAll = () => src([paths.src.scss + '/**/*.scss'], {
 const copyDistCssRtl = () => src(paths.dist.css + '/*.css', { sourcemaps: true })
     .pipe(postcss(postcssRtlOptions))
     .pipe(rename({ suffix: '.rtl' }))
-    .pipe(dest(paths.dist.css + '/rtl', { sourcemaps: '.' }))
+    .pipe(dest(paths.dist.css, { sourcemaps: '.' }))
 
 // Minify CSS
 const minifyDistCss = () => src([
@@ -207,6 +207,7 @@ const minifyDistCss = () => src([
 
 const lintDistTs = () => src([paths.src.ts + '/**/*.ts'])
     .pipe(gulpESLintNew())
+    .pipe(gulpESLintNew.format())
     .pipe(gulpESLintNew.failAfterError())
 
 // Compile and copy ts/js
