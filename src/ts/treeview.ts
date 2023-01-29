@@ -35,7 +35,7 @@ const Default = {
   animationSpeed: 300
 }
 
-interface Config {
+type Config = {
   animationSpeed: number;
 }
 
@@ -58,7 +58,7 @@ class Treeview {
   }
 
   open(): void {
-    const event = new CustomEvent(EVENT_EXPANDED)
+    const event = new Event(EVENT_EXPANDED)
 
     if (this._navItem) {
       this._navItem.classList.add(CLASS_NAME_MENU_OPEN)
@@ -72,7 +72,8 @@ class Treeview {
   }
 
   close(): void {
-    const event = new CustomEvent(EVENT_COLLAPSED)
+    const event = new Event(EVENT_COLLAPSED)
+
     if (this._navItem) {
       this._navItem.classList.remove(CLASS_NAME_MENU_IS_OPEN)
       this._navItem.classList.remove(CLASS_NAME_MENU_OPEN)

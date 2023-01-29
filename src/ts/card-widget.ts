@@ -42,7 +42,7 @@ const Default = {
   minimizeIcon: 'fa-compress'
 }
 
-interface Config {
+type Config = {
   animationSpeed: number;
   collapseTrigger: string;
   removeTrigger: string;
