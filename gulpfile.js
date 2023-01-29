@@ -7,6 +7,7 @@ const { src, dest, lastRun, watch, series, parallel } = require('gulp')
 const cleanCss = require('gulp-clean-css')
 const gulpESLintNew = require('gulp-eslint-new')
 const fileinclude = require('gulp-file-include')
+const formatHTML = require('gulp-format-html')
 const validator = require('gulp-html')
 const gulpIf = require('gulp-if')
 const postcss = require('gulp-postcss')
@@ -134,6 +135,7 @@ const index = () => src([paths.src.base + '*.html'])
         environment: 'development'
       }
     }))
+    .pipe(formatHTML())
     .pipe(dest(paths.temp.base))
     .pipe(browserSync.stream())
 
@@ -145,6 +147,7 @@ const html = () => src([paths.src.html])
         environment: 'development'
       }
     }))
+    .pipe(formatHTML())
     .pipe(dest(paths.temp.html))
     .pipe(browserSync.stream())
 
@@ -242,6 +245,7 @@ const copyDistHtmlIndex = () => src([paths.src.base + '*.html'])
         environment: 'production'
       }
     }))
+    .pipe(formatHTML())
     .pipe(dest(paths.dist.base))
 
 // Copy Html
@@ -253,6 +257,7 @@ const copyDistHtml = () => src([paths.src.html])
         environment: 'production'
       }
     }))
+    .pipe(formatHTML())
     .pipe(dest(paths.dist.html))
 
 // HTML Lint
@@ -265,6 +270,7 @@ const copyDistHtmlIndexForLint = () => src([paths.src.base + '*.html'])
         environment: 'production'
       }
     }))
+    .pipe(formatHTML())
     .pipe(dest(paths.temp.base))
 // Copy Html for Lint
 const copyDistHtmlForLint = () => src([paths.src.html])
@@ -275,6 +281,7 @@ const copyDistHtmlForLint = () => src([paths.src.html])
         environment: 'production'
       }
     }))
+    .pipe(formatHTML())
     .pipe(dest(paths.temp.html))
 // Now Lint
 const lintDistHtmlCopied = () => src([paths.temp.html + '/**/*.html', paths.temp.base + '*.html'])
