@@ -20,9 +20,9 @@ jobs:
       fail-fast: false
       matrix:
         node:
-          - "12.x"
           - "14.x"
           - "16.x"
+          - "18.x"
         os:
           - "ubuntu-latest"
           - "macos-latest"
