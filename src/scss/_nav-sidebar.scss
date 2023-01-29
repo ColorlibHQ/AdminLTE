@@ -22,7 +22,7 @@
 
   .nav-link {
     position: relative;
-    width: subtract($lte-sidebar-width, $lte-sidebar-padding-x * 2);
+    width: subtract(var(--#{$lte-prefix}sidebar-width), $lte-sidebar-padding-x * 2);
     @include transition(width $lte-transition-fn $lte-transition-speed);
 
     p {
