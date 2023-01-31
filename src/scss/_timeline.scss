@@ -1,0 +1,151 @@
+//
+// Component: Timeline
+//
+
+.timeline {
+  position: relative;
+  padding: 0;
+  margin: 0 0 45px;
+  // The line
+  &::before {
+    @include border-radius($border-radius);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 31px;
+    width: 4px;
+    margin: 0;
+    content: "";
+    background-color: $gray-300;
+  }
+  // Element
+  > div {
+    &::before,
+    &::after {
+      display: table;
+      content: "";
+    }
+
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    // The content
+    > .timeline-item {
+      @include box-shadow($lte-card-shadow);
+      @include border-radius($border-radius);
+      position: relative;
+      padding: 0;
+      margin-top: 0;
+      margin-right: 15px;
+      margin-left: 60px;
+      color: $gray-700;
+      background-color: $white;
+      // The time and header
+      > .time {
+        float: right;
+        padding: 10px;
+        font-size: 12px;
+        color: #999;
+      }
+      // Header
+      > .timeline-header {
+        padding: 10px;
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.1;
+        color: $gray-700;
+        border-bottom: 1px solid $card-border-color;
+        // Link in header
+        > a {
+          font-weight: 600;
+        }
+      }
+      // Item body and footer
+      > .timeline-body,
+      > .timeline-footer {
+        padding: 10px;
+      }
+
+      > .timeline-body {
+        > img {
+          margin: 10px;
+        }
+        > dl,
+        ol,
+        ul {
+          margin: 0;
+        }
+      }
+
+
+    }
+
+    /* stylelint-disable selector-class-pattern */
+    // The icons at line
+    > i,
+    > svg,
+    > img,
+    > object,
+    > iframe {
+      position: absolute;
+      top: 0;
+      left: 18px;
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+      line-height: 30px;
+      text-align: center;
+      background-color: $gray-500;
+      border-radius: 50%; // stylelint-disable-line property-disallowed-list
+    }
+    > .svg-inline--fa {
+      padding: 7px;
+    }
+    /* stylelint-enable selector-class-pattern */
+  }
+  // Time label
+  > .time-label {
+    > span {
+      @include border-radius(4px);
+      display: inline-block;
+      padding: 5px;
+      font-weight: 600;
+      background-color: $white;
+    }
+  }
+}
+
+.timeline-inverse {
+  > div {
+    > .timeline-item {
+      @include box-shadow(none);
+      background-color: $gray-100;
+      border: 1px solid $gray-300;
+
+      > .timeline-header {
+        border-bottom-color: $gray-300;
+      }
+    }
+  }
+}
+
+// @include dark-mode () {
+//   .timeline {
+//     &::before {
+//       background-color: $gray-600;
+//     }
+//     > div > .timeline-item {
+//       color: $white;
+//       background-color: $dark;
+//       border-color: $gray-600;
+
+//       > .timeline-header {
+//         color: $gray-400;
+//         border-color: $gray-600;
+//       }
+//       > .time {
+//         color: $gray-400;
+//       }
+//     }
+//   }
+// }

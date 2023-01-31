@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- For RTL verison -->
+<!-- <html lang="en" dir="rtl"> -->
+  <head>
+    @@include('./_head.html', {
+      "path": "../..",
+      "title": "AdminLTE 4 | Timeline Elements"
+    })
+  </head>
+  <body class="layout-fixed">
+    <div class="wrapper">
+      @@include('./dashboard/_topbar.html', {
+        "path": "../.."
+      })
+
+      @@include('./dashboard/_sidenav.html', {
+        "mainPage": "forms",
+        "page": "general",
+        "path": "../.."
+      })
+      <!-- Main content -->
+      <main class="content-wrapper">
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h3>Timeline</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Timeline</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Main content -->
+        <div class="content">
+          <div class="container-fluid">
+            <!-- Timelime example  -->
+            <div class="row">
+              <div class="col-md-12">
+                <!-- The time line -->
+                <div class="timeline">
+                  <!-- timeline time label -->
+                  <div class="time-label">
+                    <span class="text-bg-danger">10 Feb. 2023</span>
+                  </div>
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <div>
+                    <i class="fa-solid fa-envelope text-bg-primary"></i>
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa-solid fa-clock"></i> 12:05</span>
+                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+
+                      <div class="timeline-body">
+                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                        quora plaxo ideeli hulu weebly balihoo...
+                      </div>
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-sm">Read more</a>
+                        <a class="btn btn-danger btn-sm">Delete</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                  <div>
+                    <i class="fa-solid fa-user text-bg-success"></i>
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa-solid fa-clock"></i> 5 mins ago</span>
+                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
+                    </div>
+                  </div>
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                  <div>
+                    <i class="fa-solid fa-comments text-bg-warning"></i>
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa-solid fa-clock"></i> 27 mins ago</span>
+                      <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+                      <div class="timeline-body">
+                        Take me to your leader!
+                        Switzerland is small and neutral!
+                        We are more like Germany, ambitious and misunderstood!
+                      </div>
+                      <div class="timeline-footer">
+                        <a class="btn btn-warning btn-sm">View comment</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END timeline item -->
+                  <!-- timeline time label -->
+                  <div class="time-label">
+                    <span class="text-bg-success">3 Jan. 2023</span>
+                  </div>
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <div>
+                    <i class="fa-solid fa-camera text-bg-info"></i>
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa-solid fa-clock"></i> 2 days ago</span>
+                      <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+                      <div class="timeline-body">
+                        <img src="../../assets/img/user1-128x128.jpg" alt="...">
+                        <img src="../../assets/img/user3-128x128.jpg" alt="...">
+                        <img src="../../assets/img/user4-128x128.jpg" alt="...">
+                        <img src="../../assets/img/user5-128x128.jpg" alt="...">
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                  <div>
+                    <i class="fa-solid fa-video text-bg-primary"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa-solid fa-clock"></i> 5 days ago</span>
+
+                      <h3 class="timeline-header"><a href="#">Mr. Doe</a> shared a video</h3>
+
+                      <div class="timeline-body">
+                        <div class="ratio ratio-16x9">
+                          <iframe src="https://www.youtube.com/embed/tMWkeBIohBs" allowfullscreen></iframe>
+                        </div>
+                      </div>
+                      <div class="timeline-footer">
+                        <a href="#" class="btn btn-sm text-bg-warning">See comments</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END timeline item -->
+                  <div>
+                    <i class="fa-solid fa-clock text-bg-secondary"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+      </main>
+      <!-- /.content-wrapper -->
+
+      @@include('./dashboard/_footer.html', {
+        "path": "../.."
+      })
+    </div>
+    <!--  ./wrapper -->
+
+    @@include('./_scripts.html', {
+      "path": "../.."
+    })
+  </body>
+</html>

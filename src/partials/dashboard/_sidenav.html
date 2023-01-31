@@ -95,6 +95,23 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item @@if (context.mainPage === 'ui-elements') {menu-open}">
+          <a href="javascript:;" class="nav-link @@if (context.mainPage === 'ui-elements') {active}">
+            <i class="nav-icon fa-solid fa-tree"></i>
+            <p>
+              UI Elements
+              <i class="end fa-solid fa-angle-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="@@path/pages/UI/timeline.html" class="nav-link @@if (context.page === 'timeline') {active}">
+                <i class="nav-icon fa-regular fa-circle"></i>
+                <p>Timeline</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item @@if (context.mainPage === 'forms') {menu-open}">
           <a href="javascript:;" class="nav-link @@if (context.mainPage === 'forms') {active}">
             <i class="nav-icon fa-solid fa-circle"></i>
