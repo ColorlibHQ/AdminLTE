@@ -87,13 +87,6 @@ const scss = () => src(paths.src.scss + '/adminlte.scss', { sourcemaps: true })
     .pipe(dest(paths.temp.css, { sourcemaps: '.' }))
     .pipe(browserSync.stream())
 
-// Compile SCSS Dark
-// const scssDark = () => src(paths.src.scss + '/dark/adminlte-dark-addon.scss', { sourcemaps: true })
-//     .pipe(sass(sassOptions).on('error', sass.logError))
-//     .pipe(postcss(postcssOptions))
-//     .pipe(dest(paths.temp.css + '/dark', { sourcemaps: '.' }))
-//     .pipe(browserSync.stream())
-
 // Lint TS
 function isFixed(file) {
   // Has ESLint fixed the file contents?
@@ -121,7 +114,7 @@ const tsCompile = () =>
     format: 'umd',
     name: 'adminlte',
     sourcemap: true
-  }))
+  })).then(browserSync.stream())
 
 const assets = () => src([paths.src.assets])
     .pipe(dest(paths.temp.assets))
