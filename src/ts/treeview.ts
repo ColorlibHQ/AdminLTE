@@ -26,7 +26,6 @@ const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
 // const EVENT_LOAD_DATA_API = `load${EVENT_KEY}`
 
 const CLASS_NAME_MENU_OPEN = 'menu-open'
-const CLASS_NAME_MENU_IS_OPEN = 'menu-is-open'
 const SELECTOR_NAV_ITEM = '.nav-item'
 const SELECTOR_TREEVIEW_MENU = '.nav-treeview'
 const SELECTOR_DATA_TOGGLE = '[data-lte-toggle="treeview"]'
@@ -62,27 +61,29 @@ class Treeview {
 
     if (this._navItem) {
       this._navItem.classList.add(CLASS_NAME_MENU_OPEN)
-      this._navItem.classList.add(CLASS_NAME_MENU_IS_OPEN)
     }
 
     if (this._childNavItem) {
       slideDown(this._childNavItem, this._config.animationSpeed)
-      this._element.dispatchEvent(event)
     }
+
+    this._element?.dispatchEvent(event)
   }
 
   close(): void {
     const event = new Event(EVENT_COLLAPSED)
 
-    if (this._navItem) {
-      this._navItem.classList.remove(CLASS_NAME_MENU_IS_OPEN)
-      this._navItem.classList.remove(CLASS_NAME_MENU_OPEN)
-    }
+    window.setTimeout(() => {
+      if (this._navItem) {
+        this._navItem.classList.remove(CLASS_NAME_MENU_OPEN)
+      }
+    }, this._config.animationSpeed)
 
     if (this._childNavItem) {
       slideUp(this._childNavItem, this._config.animationSpeed)
-      this._element.dispatchEvent(event)
     }
+
+    this._element?.dispatchEvent(event)
   }
 
   toggle(): void {
@@ -105,8 +106,6 @@ domReady(() => {
 
   for (const btn of button) {
     btn.addEventListener('click', event => {
-      // event.preventDefault()
-
       const treeviewMenu = event.target as HTMLElement
 
       const data = new Treeview(treeviewMenu, Default)

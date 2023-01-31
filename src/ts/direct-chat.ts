@@ -14,6 +14,11 @@ import {
  * ====================================================
  */
 
+const DATA_KEY = 'lte.direct-chat'
+const EVENT_KEY = `.${DATA_KEY}`
+const EVENT_EXPANDED = `expanded${EVENT_KEY}`
+const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
+
 const SELECTOR_DATA_TOGGLE = '[data-lte-toggle="chat-pane"]'
 const SELECTOR_DIRECT_CHAT = '.direct-chat'
 
@@ -25,9 +30,27 @@ const CLASS_NAME_DIRECT_CHAT_OPEN = 'direct-chat-contacts-open'
  */
 
 class DirectChat {
-  toggle(chatPane: Element): void {
-    // chatPane
-    chatPane.closest(SELECTOR_DIRECT_CHAT)?.classList.toggle(CLASS_NAME_DIRECT_CHAT_OPEN)
+  _element: HTMLElement | undefined
+  _config: undefined
+  constructor(element: HTMLElement | undefined, config: undefined) {
+    this._element = element
+    this._config = config
+  }
+
+  toggle(): void {
+    if (this._element?.classList.contains(CLASS_NAME_DIRECT_CHAT_OPEN)) {
+      const event = new Event(EVENT_COLLAPSED)
+
+      this._element?.classList.remove(CLASS_NAME_DIRECT_CHAT_OPEN)
+
+      this._element?.dispatchEvent(event)
+    } else {
+      const event = new Event(EVENT_EXPANDED)
+
+      this._element?.classList.add(CLASS_NAME_DIRECT_CHAT_OPEN)
+
+      this._element?.dispatchEvent(event)
+    }
   }
 }
 
@@ -43,9 +66,10 @@ domReady(() => {
   for (const btn of button) {
     btn.addEventListener('click', event => {
       event.preventDefault()
-      const chatPane = event.target as Element
-      const data = new DirectChat()
-      data.toggle(chatPane)
+      const target = event.target as HTMLElement
+      const chatPane = target?.closest(SELECTOR_DIRECT_CHAT) as HTMLElement | undefined
+      const data = new DirectChat(chatPane, undefined)
+      data.toggle()
     })
   }
 })
