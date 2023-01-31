@@ -16,7 +16,7 @@
     width: 4px;
     margin: 0;
     content: "";
-    background-color: $gray-300;
+    background-color: var(--#{$prefix}border-color);
   }
   // Element
   > div {
@@ -38,14 +38,14 @@
       margin-top: 0;
       margin-right: 15px;
       margin-left: 60px;
-      color: $gray-700;
-      background-color: $white;
+      color: var(--#{$prefix}body-color);
+      background-color: var(--#{$prefix}body-bg);
       // The time and header
       > .time {
         float: right;
         padding: 10px;
         font-size: 12px;
-        color: #999;
+        color: var(--#{$prefix}secondary-color);
       }
       // Header
       > .timeline-header {
@@ -53,8 +53,8 @@
         margin: 0;
         font-size: 16px;
         line-height: 1.1;
-        color: $gray-700;
-        border-bottom: 1px solid $card-border-color;
+        color: var(--#{$prefix}secondary-color);
+        border-bottom: 1px solid var(--#{$prefix}border-color);
         // Link in header
         > a {
           font-weight: 600;
@@ -95,7 +95,7 @@
       font-size: 16px;
       line-height: 30px;
       text-align: center;
-      background-color: $gray-500;
+      background-color: var(--#{$prefix}secondary-bg);
       border-radius: 50%; // stylelint-disable-line property-disallowed-list
     }
     > .svg-inline--fa {
@@ -110,7 +110,7 @@
       display: inline-block;
       padding: 5px;
       font-weight: 600;
-      background-color: $white;
+      background-color: var(--#{$prefix}body-bg);
     }
   }
 }
@@ -119,33 +119,12 @@
   > div {
     > .timeline-item {
       @include box-shadow(none);
-      background-color: $gray-100;
-      border: 1px solid $gray-300;
+      background-color: var(--#{$prefix}tertiary-bg);
+      border: 1px solid var(--#{$prefix}border-color);
 
       > .timeline-header {
-        border-bottom-color: $gray-300;
+        border-bottom-color: var(--#{$prefix}border-color);
       }
     }
   }
 }
-
-// @include dark-mode () {
-//   .timeline {
-//     &::before {
-//       background-color: $gray-600;
-//     }
-//     > div > .timeline-item {
-//       color: $white;
-//       background-color: $dark;
-//       border-color: $gray-600;
-
-//       > .timeline-header {
-//         color: $gray-400;
-//         border-color: $gray-600;
-//       }
-//       > .time {
-//         color: $gray-400;
-//       }
-//     }
-//   }
-// }
