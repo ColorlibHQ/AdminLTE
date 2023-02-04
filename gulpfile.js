@@ -149,7 +149,8 @@ const lintHtml = () => src([paths.temp.html + '/**/*.html', paths.temp.base + '*
 
 const serve = () => {
   browserSync.init({
-    server: paths.temp.base
+    server: paths.temp.base,
+    notify: true
   })
 
   watch([paths.src.scss], series(lintScss))
