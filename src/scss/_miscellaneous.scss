@@ -461,17 +461,3 @@ blockquote {
   border-top: none;
   border-bottom: $nav-tabs-border-width solid $nav-tabs-border-color;
 }
-
-
-// Badge BTN Style
-.badge-btn {
-  padding: $lte-button-padding-y-xs * 2 $lte-button-padding-x-xs * 2;
-  font-size: $lte-button-font-size-xs;
-  font-weight: 400;
-  @include border-radius($lte-button-border-radius-xs);
-}
-
-.badge-btn.badge-pill {
-  padding: .375rem .6rem;
-}
-

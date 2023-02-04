@@ -8,7 +8,7 @@
   list-style: none;
 
   > .item {
-    @include clearfix ();
+    @include clearfix();
 
     @if $enable-rounded {
       @include border-radius($border-radius);

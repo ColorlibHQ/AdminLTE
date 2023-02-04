@@ -2,16 +2,9 @@
 // Core: Main Header
 //
 
-@include header-variant(
-  var(--#{$lte-prefix}header-light-bg),
-  var(--#{$lte-prefix}header-light-color),
-  var(--#{$lte-prefix}header-mobile-light-bg),
-  var(--#{$lte-prefix}header-mobile-light-color)
-);
-
 .main-header {
   z-index: $lte-zindex-main-header;
-  grid-area: main-header;
+  grid-area: #{lte-prefix}main-header;
   border-bottom: $lte-main-header-bottom-border;
 
   .nav-link {
@@ -28,14 +21,4 @@
   padding: 2px 4px;
   font-size: .6rem;
   font-weight: 400;
-}
-
-.layout-navbar-fixed {
-  .main-header {
-    // position: fixed;
-  }
-
-  .content-wrapper {
-    // margin-top: $lte-main-header-height;
-  }
 }

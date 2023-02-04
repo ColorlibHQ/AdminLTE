@@ -20,8 +20,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: var(--#{$prefix}secondary-bg);
+  min-height: 100vh;
 }
 
 .login-box,

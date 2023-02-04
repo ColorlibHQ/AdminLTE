@@ -58,7 +58,7 @@
   position: relative;
 
   > a::after {
-    @include caret-end ();
+    @include caret-end();
     float: right;
     margin-top: .5rem;
     margin-left: .5rem;
@@ -196,7 +196,7 @@
 
     // Menu Body
     > .user-body {
-      @include clearfix ();
+      @include clearfix();
       padding: 15px;
       border-top: 1px solid var(--#{$prefix}border-color);
       border-bottom: 1px solid var(--#{$prefix}border-color-translucent);
@@ -211,7 +211,7 @@
 
     // Menu Footer
     > .user-footer {
-      @include clearfix ();
+      @include clearfix();
       padding: 10px;
       background-color: var(--#{$prefix}light-bg);
 

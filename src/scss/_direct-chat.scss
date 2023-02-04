@@ -42,7 +42,7 @@
 }
 
 .direct-chat-msg {
-  @include clearfix ();
+  @include clearfix();
   margin-bottom: 10px;
 }
 
@@ -163,10 +163,10 @@
 
 //Contacts list -- for displaying contacts in direct chat contacts pane
 .contacts-list {
-  @include list-unstyled ();
+  @include list-unstyled();
 
   > li {
-    @include clearfix ();
+    @include clearfix();
     padding: 10px;
     margin: 0;
     border-bottom: 1px solid rgba($black, .2);
@@ -210,15 +210,21 @@
   color: var(--#{$prefix}secondary-bg);
 }
 
-// Color variants
-@each $name, $color in $theme-colors {
-  .direct-chat-#{$name} {
-    @include direct-chat-variant($color);
+.end > .direct-chat-text {
+  color: var(--#{$lte-prefix}direct-chat-color);
+  background-color: var(--#{$lte-prefix}direct-chat-bg);
+  border-color: var(--#{$lte-prefix}direct-chat-bg);
+
+  &::after,
+  &::before {
+    border-left-color: var(--#{$lte-prefix}direct-chat-bg);
   }
 }
 
-@each $name, $color in $colors {
+// Color variants
+@each $name, $color in $theme-colors {
   .direct-chat-#{$name} {
-    @include direct-chat-variant($color);
+    --#{$lte-prefix}direct-chat-color: #{color-contrast($color)};
+    --#{$lte-prefix}direct-chat-bg: #{$color};
   }
 }

@@ -6,9 +6,9 @@
   position: relative;
   display: grid;
   grid-template-areas:
-    "main-sidebar main-header"
-    "main-sidebar content-wrapper"
-    "main-sidebar main-footer";
+    "#{lte-prefix}main-sidebar #{lte-prefix}main-header"
+    "#{lte-prefix}main-sidebar #{lte-prefix}content-wrapper"
+    "#{lte-prefix}main-sidebar #{lte-prefix}main-footer";
   grid-template-rows: min-content 1fr min-content;
   grid-template-columns: auto 1fr;
   grid-gap: 0;

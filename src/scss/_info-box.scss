@@ -64,12 +64,8 @@
 
   @each $name, $color in $theme-colors {
     .info-box {
-      .bg-#{$name} {
-        color: color-contrast($color);
-
-        .progress-bar {
-          background-color: color-contrast($color);
-        }
+      .progress-bar {
+        background-color: color-contrast($color);
       }
     }
   }
