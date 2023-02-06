@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="rtl">
   <head>
     @@include('./_head.html', {
       "path": "../..",
-      "title": "AdminLTE 4 | Fixed Sidebar"
+      "title": "AdminLTE 4 | Layout RTL",
+      "isRtl": true,
     })
   </head>
   <body class="layout-fixed bg-body-tertiary">
@@ -14,7 +15,7 @@
 
       @@include('./dashboard/_sidenav.html', {
         "mainPage": "layout",
-        "page": "fixed-sidebar",
+        "page": "layout-rtl",
         "path": "../.."
       })
       <!-- Main content -->
@@ -23,12 +24,12 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h3>Fixed Layout</h3>
+                <h3>Layout RTL</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Fixed Layout</li>
+                  <li class="breadcrumb-item active" aria-current="page">Layout RTL</li>
                 </ol>
               </div>
             </div>
