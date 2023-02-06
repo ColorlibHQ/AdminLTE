@@ -9,23 +9,8 @@
 
   &:not(.card-outline) {
     > .card-header {
+      color: var(--#{$lte-prefix}card-variant-color);
       background-color: var(--#{$lte-prefix}card-variant-bg);
-
-      &,
-      a {
-        color: var(--#{$lte-prefix}card-variant-color);
-      }
-
-      a {
-        &:hover {
-          border-top: 3px solid $nav-tabs-border-color;
-        }
-
-        &.active {
-          color: color-contrast($white);
-          border-top: 3px solid var(--#{$lte-prefix}card-variant-bg);
-        }
-      }
 
       .btn-tool {
         color: rgba(var(--#{$lte-prefix}card-variant-color-rgb), .8);
@@ -212,17 +197,6 @@
 
 }
 
-@each $name, $color in $theme-colors {
-  @debug($name);
-  .card-#{$name},
-  .card.bg-#{$name},
-  .card.text-bg-#{$name} {
-    --#{$lte-prefix}card-variant-bg: #{$color};
-    --#{$lte-prefix}card-variant-color: #{color-contrast($color)};
-    --#{$lte-prefix}card-variant-color-rgb: #{to-rgb(color-contrast($color))};
-  }
-}
-
 // Maximized Card Body Scroll fix
 html.maximized-card {
   overflow: hidden;
@@ -286,4 +260,15 @@ html.maximized-card {
 
   margin: -$card-spacer-y 0;
   font-size: $font-size-sm;
+}
+
+@each $name, $color in $theme-colors {
+  .card-#{$name},
+  .card.bg-#{$name},
+  .card.text-bg-#{$name} {
+    --#{$lte-prefix}card-variant-bg: #{$color};
+    --#{$lte-prefix}card-variant-color: #{color-contrast($color)};
+    --#{$lte-prefix}card-variant-bg-rgb: #{to-rgb($color)};
+    --#{$lte-prefix}card-variant-color-rgb: #{to-rgb(color-contrast($color))};
+  }
 }

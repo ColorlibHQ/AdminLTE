@@ -89,14 +89,6 @@ $lte-nav-link-sm-height:               ($font-size-sm * $line-height-sm + $lte-n
 $lte-main-header-height-sm-inner:      ($lte-nav-link-sm-height + ($lte-main-header-link-padding-y * 2)) !default;
 $lte-main-header-height-sm:            add($lte-main-header-height-sm-inner, $lte-main-header-bottom-border-width) !default;
 
-// HEADER SKINS
-// --------------------------------------------------------
-
-$lte-header-light-bg:             var(--#{$prefix}body-bg) !default;
-$lte-header-light-color:          var(--#{$prefix}body-color) !default;
-$lte-header-mobile-light-bg:      $lte-header-light-bg !default;
-$lte-header-mobile-light-color:   $lte-header-light-color !default;
-
 // Content padding
 $lte-content-padding-y:           0 !default;
 $lte-content-padding-x:           .5rem !default;

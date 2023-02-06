@@ -5,7 +5,7 @@
       <img src="@@path/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-75 shadow">
       <span class="brand-text fw-light">AdminLTE 4</span>
     </a>
-    <a class="pushmenu mx-1" data-lte-toggle="sidebar-mini" href="javascript:;" role="button"><i class="fa-solid fa-angle-double-left"></i></a>
+    <a class="pushmenu mx-1 d-none d-lg-block" data-lte-toggle="sidebar-mini" href="javascript:;" role="button"><i class="fa-solid fa-angle-double-left"></i></a>
   </div>
   <!-- Sidebar -->
   <div class="sidebar">
@@ -17,7 +17,7 @@
             <i class="nav-icon fa-solid fa-gauge-high"></i>
             <p>
               Dashboard
-              <i class="end fa-solid fa-angle-right"></i>
+              <i class="nav-arrow fa-solid fa-angle-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -46,7 +46,7 @@
             <i class="nav-icon fa-solid fa-box-open"></i>
             <p>
               Widgets
-              <i class="end fa-solid fa-angle-right"></i>
+              <i class="nav-arrow fa-solid fa-angle-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -77,7 +77,7 @@
             <p>
               Layout Options
               <span class="badge text-bg-primary float-end me-3">6</span>
-              <i class="end fa-solid fa-angle-right"></i>
+              <i class="nav-arrow fa-solid fa-angle-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -93,6 +93,18 @@
                 <p>Fixed Sidebar</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="@@path/pages/layout/sidebar-mini.html" class="nav-link @@if (context.page === 'sidebar-mini') {active}">
+                <i class="nav-icon fa-regular fa-circle"></i>
+                <p>Sidebar Mini</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="@@path/pages/layout/layout-rtl.html" class="nav-link @@if (context.page === 'layout-rtl') {active}">
+                <i class="nav-icon fa-regular fa-circle"></i>
+                <p>Layout RTL</p>
+              </a>
+            </li>
           </ul>
         </li>
         <li class="nav-item @@if (context.mainPage === 'ui-elements') {menu-open}">
@@ -100,7 +112,7 @@
             <i class="nav-icon fa-solid fa-tree"></i>
             <p>
               UI Elements
-              <i class="end fa-solid fa-angle-right"></i>
+              <i class="nav-arrow fa-solid fa-angle-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -117,7 +129,7 @@
             <i class="nav-icon fa-solid fa-pen-to-square"></i>
             <p>
               Forms
-              <i class="end fa-solid fa-angle-right"></i>
+              <i class="nav-arrow fa-solid fa-angle-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -134,7 +146,7 @@
             <i class="nav-icon fa-solid fa-table"></i>
             <p>
               Tables
-              <i class="end fa-solid fa-angle-right"></i>
+              <i class="nav-arrow fa-solid fa-angle-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -152,7 +164,7 @@
             <i class="nav-icon fa-solid fa-arrow-right-to-bracket"></i>
             <p>
               Login & Register
-              <i class="end fa-solid fa-angle-right"></i>
+              <i class="nav-arrow fa-solid fa-angle-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -182,7 +194,7 @@
             <i class="nav-icon fa-solid fa-circle"></i>
             <p>
               Level 1
-              <i class="end fa-solid fa-angle-right"></i>
+              <i class="nav-arrow fa-solid fa-angle-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -197,7 +209,7 @@
                 <i class="nav-icon fa-regular fa-circle"></i>
                 <p>
                   Level 2
-                  <i class="end fa-solid fa-angle-right"></i>
+                  <i class="nav-arrow fa-solid fa-angle-right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
@@ -238,19 +250,19 @@
         <li class="nav-header">LABELS</li>
         <li class="nav-item">
           <a href="javascript:;" class="nav-link">
-            <i class="nav-icon fa-regular fa-circle text-danger"></i>
+            <i class="nav-icon fa-regular fa-circle text-danger-emphasis"></i>
             <p class="text">Important</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="javascript:;" class="nav-link">
-            <i class="nav-icon fa-regular fa-circle text-warning"></i>
+            <i class="nav-icon fa-regular fa-circle text-warning-emphasis"></i>
             <p>Warning</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="javascript:;" class="nav-link">
-            <i class="nav-icon fa-regular fa-circle text-info"></i>
+            <i class="nav-icon fa-regular fa-circle text-info-emphasis"></i>
             <p>Informational</p>
           </a>
         </li>

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- For RTL verison -->
-<!-- <html lang="en" dir="rtl"> -->
   <head>
     @@include('./_head.html', {
       "path": ".",
@@ -192,40 +190,41 @@
                   <!-- ./card-body -->
                   <div class="card-footer">
                     <div class="row">
-                      <div class="col-sm-3 col-6">
-                        <div class="description-block border-end">
-                          <span class="description-percentage text-success"><i class="fa-solid fa-caret-up"></i> 17%</span>
-                          <h5 class="description-header">$35,210.43</h5>
-                          <span class="description-text">TOTAL REVENUE</span>
+                      <div class="col-md-3 col-6">
+                        <div class="text-center border-end">
+                          <span class="text-success-emphasis"><i class="fa-solid fa-caret-up"></i> 17%</span>
+                          <h5 class="fw-bold mb-0">$35,210.43</h5>
+                          <span class="text-uppercase">TOTAL REVENUE</span>
                         </div>
-                        <!-- /.description-block -->
+
+                      </div>
+
+                      <!-- /.col -->
+                      <div class="col-md-3 col-6">
+                        <div class="text-center border-end">
+                          <span class="text-info-emphasis"><i class="fa-solid fa-caret-left"></i> 0%</span>
+                          <h5 class="fw-bold mb-0">$10,390.90</h5>
+                          <span class="text-uppercase">TOTAL COST</span>
+                        </div>
+
                       </div>
                       <!-- /.col -->
-                      <div class="col-sm-3 col-6">
-                        <div class="description-block border-end">
-                          <span class="description-percentage text-info"><i class="fa-solid fa-caret-left"></i> 0%</span>
-                          <h5 class="description-header">$10,390.90</h5>
-                          <span class="description-text">TOTAL COST</span>
+                      <div class="col-md-3 col-6">
+                        <div class="text-center border-end">
+                          <span class="text-success-emphasis"><i class="fa-solid fa-caret-up"></i> 20%</span>
+                          <h5 class="fw-bold mb-0">$24,813.53</h5>
+                          <span class="text-uppercase">TOTAL PROFIT</span>
                         </div>
-                        <!-- /.description-block -->
+
                       </div>
                       <!-- /.col -->
-                      <div class="col-sm-3 col-6">
-                        <div class="description-block border-end">
-                          <span class="description-percentage text-success"><i class="fa-solid fa-caret-up"></i> 20%</span>
-                          <h5 class="description-header">$24,813.53</h5>
-                          <span class="description-text">TOTAL PROFIT</span>
+                      <div class="col-md-3 col-6">
+                        <div class="text-center">
+                          <span class="text-danger-emphasis"><i class="fa-solid fa-caret-down"></i> 18%</span>
+                          <h5 class="fw-bold mb-0">1200</h5>
+                          <span class="text-uppercase">GOAL COMPLETIONS</span>
                         </div>
-                        <!-- /.description-block -->
-                      </div>
-                      <!-- /.col -->
-                      <div class="col-sm-3 col-6">
-                        <div class="description-block">
-                          <span class="description-percentage text-danger"><i class="fa-solid fa-caret-down"></i> 18%</span>
-                          <h5 class="description-header">1200</h5>
-                          <span class="description-text">GOAL COMPLETIONS</span>
-                        </div>
-                        <!-- /.description-block -->
+
                       </div>
                     </div>
                     <!-- /.row -->
@@ -466,48 +465,48 @@
                       </div>
                       <!-- /.card-header -->
                       <div class="card-body p-0">
-                        <ul class="users-list clearfix">
-                          <li>
-                            <img src="./assets/img/user1-128x128.jpg" alt="User Image">
-                            <a class="users-list-name" href="#">Alexander Pierce</a>
-                            <span class="users-list-date">Today</span>
-                          </li>
-                          <li>
-                            <img src="./assets/img/user8-128x128.jpg" alt="User Image">
-                            <a class="users-list-name" href="#">Norman</a>
-                            <span class="users-list-date">Yesterday</span>
-                          </li>
-                          <li>
-                            <img src="./assets/img/user7-128x128.jpg" alt="User Image">
-                            <a class="users-list-name" href="#">Jane</a>
-                            <span class="users-list-date">12 Jan</span>
-                          </li>
-                          <li>
-                            <img src="./assets/img/user6-128x128.jpg" alt="User Image">
-                            <a class="users-list-name" href="#">John</a>
-                            <span class="users-list-date">12 Jan</span>
-                          </li>
-                          <li>
-                            <img src="./assets/img/user2-160x160.jpg" alt="User Image">
-                            <a class="users-list-name" href="#">Alexander</a>
-                            <span class="users-list-date">13 Jan</span>
-                          </li>
-                          <li>
-                            <img src="./assets/img/user5-128x128.jpg" alt="User Image">
-                            <a class="users-list-name" href="#">Sarah</a>
-                            <span class="users-list-date">14 Jan</span>
-                          </li>
-                          <li>
-                            <img src="./assets/img/user4-128x128.jpg" alt="User Image">
-                            <a class="users-list-name" href="#">Nora</a>
-                            <span class="users-list-date">15 Jan</span>
-                          </li>
-                          <li>
-                            <img src="./assets/img/user3-128x128.jpg" alt="User Image">
-                            <a class="users-list-name" href="#">Nadia</a>
-                            <span class="users-list-date">15 Jan</span>
-                          </li>
-                        </ul>
+                        <div class="row text-center m-1">
+                          <div class="col-3 p-2">
+                            <img class="img-fluid rounded-circle" src="./assets/img/user1-128x128.jpg" alt="User Image">
+                            <a class="btn fw-bold fs-7 text-secondary-emphasis text-truncate w-100 p-0" href="#">Alexander Pierce</a>
+                            <div class="fs-8">Today</div>
+                          </div>
+                          <div class="col-3 p-2">
+                            <img class="img-fluid rounded-circle" src="./assets/img/user8-128x128.jpg" alt="User Image">
+                            <a class="btn fw-bold fs-7 text-secondary-emphasis text-truncate w-100 p-0" href="#">Norman</a>
+                            <div class="fs-8">Yesterday</div>
+                          </div>
+                          <div class="col-3 p-2">
+                            <img class="img-fluid rounded-circle" src="./assets/img/user7-128x128.jpg" alt="User Image">
+                            <a class="btn fw-bold fs-7 text-secondary-emphasis text-truncate w-100 p-0" href="#">Jane</a>
+                            <div class="fs-8">12 Jan</div>
+                          </div>
+                          <div class="col-3 p-2">
+                            <img class="img-fluid rounded-circle" src="./assets/img/user6-128x128.jpg" alt="User Image">
+                            <a class="btn fw-bold fs-7 text-secondary-emphasis text-truncate w-100 p-0" href="#">John</a>
+                            <div class="fs-8">12 Jan</div>
+                          </div>
+                          <div class="col-3 p-2">
+                            <img class="img-fluid rounded-circle" src="./assets/img/user2-160x160.jpg" alt="User Image">
+                            <a class="btn fw-bold fs-7 text-secondary-emphasis text-truncate w-100 p-0" href="#">Alexander</a>
+                            <div class="fs-8">13 Jan</div>
+                          </div>
+                          <div class="col-3 p-2">
+                            <img class="img-fluid rounded-circle" src="./assets/img/user5-128x128.jpg" alt="User Image">
+                            <a class="btn fw-bold fs-7 text-secondary-emphasis text-truncate w-100 p-0" href="#">Sarah</a>
+                            <div class="fs-8">14 Jan</div>
+                          </div>
+                          <div class="col-3 p-2">
+                            <img class="img-fluid rounded-circle" src="./assets/img/user4-128x128.jpg" alt="User Image">
+                            <a class="btn fw-bold fs-7 text-secondary-emphasis text-truncate w-100 p-0" href="#">Nora</a>
+                            <div class="fs-8">15 Jan</div>
+                          </div>
+                          <div class="col-3 p-2">
+                            <img class="img-fluid rounded-circle" src="./assets/img/user3-128x128.jpg" alt="User Image">
+                            <a class="btn fw-bold fs-7 text-secondary-emphasis text-truncate w-100 p-0" href="#">Nadia</a>
+                            <div class="fs-8">15 Jan</div>
+                          </div>
+                        </div>
                         <!-- /.users-list -->
                       </div>
                       <!-- /.card-body -->
@@ -689,12 +688,12 @@
                       <!-- /.col -->
                       <div class="col-md-4">
                         <ul class="row list-unstyled text-nowrap">
-                          <li class="col"><i class="fa-regular fa-circle text-danger"></i> Chrome</li>
-                          <li class="col"><i class="fa-regular fa-circle text-success"></i> IE</li>
-                          <li class="col"><i class="fa-regular fa-circle text-warning"></i> FireFox</li>
-                          <li class="col"><i class="fa-regular fa-circle text-info"></i> Safari</li>
-                          <li class="col"><i class="fa-regular fa-circle text-primary"></i> Opera</li>
-                          <li class="col"><i class="fa-regular fa-circle text-secondary"></i> Navigator</li>
+                          <li class="col"><i class="fa-regular fa-circle text-danger-emphasis"></i> Chrome</li>
+                          <li class="col"><i class="fa-regular fa-circle text-success-emphasis"></i> IE</li>
+                          <li class="col"><i class="fa-regular fa-circle text-warning-emphasis"></i> FireFox</li>
+                          <li class="col"><i class="fa-regular fa-circle text-info-emphasis"></i> Safari</li>
+                          <li class="col"><i class="fa-regular fa-circle text-primary-emphasis"></i> Opera</li>
+                          <li class="col"><i class="fa-regular fa-circle text-secondary-emphasis"></i> Navigator</li>
                         </ul>
                       </div>
                       <!-- /.col -->
@@ -707,7 +706,7 @@
                       <li class="nav-item">
                         <a href="#" class="nav-link">
                           United States of America
-                          <span class="float-end text-danger">
+                          <span class="float-end text-danger-emphasis">
                             <i class="fa-solid fa-arrow-down fs-7"></i>
                             12%</span>
                         </a>
@@ -715,7 +714,7 @@
                       <li class="nav-item">
                         <a href="#" class="nav-link">
                           India
-                          <span class="float-end text-success">
+                          <span class="float-end text-success-emphasis">
                             <i class="fa-solid fa-arrow-up fs-7"></i> 4%
                           </span>
                         </a>
@@ -723,7 +722,7 @@
                       <li class="nav-item">
                         <a href="#" class="nav-link">
                           China
-                          <span class="float-end text-info">
+                          <span class="float-end text-info-emphasis">
                             <i class="fa-solid fa-arrow-left fs-7"></i> 0%
                           </span>
                         </a>
