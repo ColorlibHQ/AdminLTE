@@ -7,9 +7,9 @@
       "path": "../..",
       "title": "AdminLTE 4 | Widgets - Info Box"
     })
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ionicons@2.0.1/css/ionicons.min.css" integrity="sha256-kqxQgiD1u2DslOB2UFKOtmYl+CpHQK2gaM3gU2V4EoY=" crossorigin="anonymous">
   </head>
-  <body class="layout-fixed">
+  <body class="layout-fixed bg-body-tertiary">
     <div class="wrapper">
       @@include('./dashboard/_topbar.html', {
         "path": "../.."
@@ -26,7 +26,7 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <div class="fs-3">Info Box</div>
+                <h3>Info Box</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
@@ -44,7 +44,7 @@
             <div class="row">
               <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
-                  <span class="info-box-icon bg-primary shadow-sm"><i class="fas fa-cog"></i></span>
+                  <span class="info-box-icon text-bg-primary shadow-sm"><i class="fa-solid fa-cog"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">CPU Traffic</span>
@@ -61,7 +61,7 @@
 
               <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
-                  <span class="info-box-icon bg-success shadow-sm"><i class="fas fa-shopping-cart"></i></span>
+                  <span class="info-box-icon text-bg-success shadow-sm"><i class="fa-solid fa-shopping-cart"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Sales</span>
@@ -78,7 +78,7 @@
 
               <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
-                  <span class="info-box-icon bg-warning shadow-sm"><i class="fas fa-users"></i></span>
+                  <span class="info-box-icon text-bg-warning shadow-sm"><i class="fa-solid fa-users"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">New Members</span>
@@ -92,7 +92,7 @@
 
               <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
-                  <span class="info-box-icon bg-danger shadow-sm"><i class="fas fa-thumbs-up"></i></span>
+                  <span class="info-box-icon text-bg-danger shadow-sm"><i class="fa-solid fa-thumbs-up"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Likes</span>
@@ -111,7 +111,7 @@
             <div class="row">
               <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box shadow-none">
-                  <span class="info-box-icon bg-primary shadow-sm"><i class="fas fa-cog"></i></span>
+                  <span class="info-box-icon text-bg-primary shadow-sm"><i class="fa-solid fa-cog"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">CPU Traffic</span>
@@ -128,7 +128,7 @@
 
               <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box shadow-sm">
-                  <span class="info-box-icon bg-success shadow-sm"><i class="fas fa-shopping-cart"></i></span>
+                  <span class="info-box-icon text-bg-success shadow-sm"><i class="fa-solid fa-shopping-cart"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Sales</span>
@@ -145,7 +145,7 @@
 
               <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box shadow">
-                  <span class="info-box-icon bg-warning shadow-sm"><i class="fas fa-users"></i></span>
+                  <span class="info-box-icon text-bg-warning shadow-sm"><i class="fa-solid fa-users"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">New Members</span>
@@ -159,7 +159,7 @@
 
               <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box shadow-lg">
-                  <span class="info-box-icon bg-danger shadow-sm"><i class="fas fa-thumbs-up"></i></span>
+                  <span class="info-box-icon text-bg-danger shadow-sm"><i class="fa-solid fa-thumbs-up"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Likes</span>
@@ -177,8 +177,8 @@
             <h5 class="mt-4 mb-2">Info Box With <code>bg-*</code></h5>
             <div class="row">
               <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box bg-primary">
-                  <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+                <div class="info-box text-bg-primary">
+                  <span class="info-box-icon"><i class="fa-regular fa-bookmark"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Bookmarks</span>
@@ -197,8 +197,8 @@
               </div>
               <!-- /.col -->
               <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box bg-success">
-                  <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
+                <div class="info-box text-bg-success">
+                  <span class="info-box-icon"><i class="fa-regular fa-thumbs-up"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Likes</span>
@@ -217,8 +217,8 @@
               </div>
               <!-- /.col -->
               <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box bg-warning">
-                  <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
+                <div class="info-box text-bg-warning">
+                  <span class="info-box-icon"><i class="fa-regular fa-calendar-alt"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Events</span>
@@ -237,8 +237,8 @@
               </div>
               <!-- /.col -->
               <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box bg-danger">
-                  <span class="info-box-icon"><i class="fas fa-comments"></i></span>
+                <div class="info-box text-bg-danger">
+                  <span class="info-box-icon"><i class="fa-solid fa-comments"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Comments</span>
@@ -263,8 +263,8 @@
             <h5 class="mt-4 mb-2">Info Box With <code>bg-gradient</code></h5>
             <div class="row">
               <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box bg-primary bg-gradient">
-                  <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+                <div class="info-box text-bg-primary bg-gradient">
+                  <span class="info-box-icon"><i class="fa-regular fa-bookmark"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Bookmarks</span>
@@ -283,8 +283,8 @@
               </div>
               <!-- /.col -->
               <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box bg-success bg-gradient">
-                  <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
+                <div class="info-box text-bg-success bg-gradient">
+                  <span class="info-box-icon"><i class="fa-regular fa-thumbs-up"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Likes</span>
@@ -303,8 +303,8 @@
               </div>
               <!-- /.col -->
               <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box bg-warning bg-gradient">
-                  <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
+                <div class="info-box text-bg-warning bg-gradient">
+                  <span class="info-box-icon"><i class="fa-regular fa-calendar-alt"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Events</span>
@@ -323,8 +323,8 @@
               </div>
               <!-- /.col -->
               <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box bg-danger bg-gradient">
-                  <span class="info-box-icon"><i class="fas fa-comments"></i></span>
+                <div class="info-box text-bg-danger bg-gradient">
+                  <span class="info-box-icon"><i class="fa-solid fa-comments"></i></span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Comments</span>

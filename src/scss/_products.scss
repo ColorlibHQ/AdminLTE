@@ -8,14 +8,14 @@
   list-style: none;
 
   > .item {
-    @include clearfix ();
+    @include clearfix();
 
     @if $enable-rounded {
       @include border-radius($border-radius);
     }
 
     padding: 10px 0;
-    background-color: $white;
+    background-color: var(--#{$prefix}body-bg);
 
   }
 
@@ -39,7 +39,7 @@
   .product-description {
     display: block;
     overflow: hidden;
-    color: $gray-600;
+    color: var(--#{$prefix}secondary-color);
     text-overflow: ellipsis;
     white-space: nowrap;
   }

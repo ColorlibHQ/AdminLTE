@@ -2,10 +2,10 @@
   .sidebar-horizontal {
     .wrapper {
       grid-template-areas:
-        "main-header"
-        "main-sidebar"
-        "content-wrapper"
-        "main-footer";
+        "#{lte-prefix}main-header"
+        "#{lte-prefix}main-sidebar"
+        "#{lte-prefix}content-wrapper"
+        "#{lte-prefix}main-footer";
       grid-template-rows: max-content max-content auto max-content;
       grid-template-columns: auto;
     }

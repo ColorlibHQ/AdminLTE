@@ -2,27 +2,19 @@
   "files": [
     {
       "path": "./dist/css/adminlte.css",
-      "maxSize": "37.80 kB"
+      "maxSize": "43.49 kB"
     },
     {
       "path": "./dist/css/adminlte.min.css",
-      "maxSize": "35.1 kB"
+      "maxSize": "40.47 kB"
     },
     {
-      "path": "./dist/css/dark/adminlte-dark-addon.css",
-      "maxSize": "10.17 kB"
+      "path": "./dist/css/adminlte.rtl.css",
+      "maxSize": "43.3 kB"
     },
     {
-      "path": "./dist/css/dark/adminlte-dark-addon.min.css",
-      "maxSize": "9.9 kB"
-    },
-    {
-      "path": "./dist/css/rtl/adminlte.rtl.css",
-      "maxSize": "37.80 kB"
-    },
-    {
-      "path": "./dist/css/rtl/adminlte.rtl.min.css",
-      "maxSize": "35.1 kB"
+      "path": "./dist/css/adminlte.rtl.min.css",
+      "maxSize": "40.5 kB"
     },
     {
       "path": "./dist/js/adminlte.js",

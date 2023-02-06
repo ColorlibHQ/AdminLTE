@@ -11,29 +11,29 @@
 
   &.chat-pane-open {
     .direct-chat-contacts {
-      @include translate(0, 0);
+      transform: translate(0, 0);
     }
   }
 
 
   &.timestamp-light {
     .direct-chat-timestamp {
-      color: tint-color(color-contrast($color-contrast-light), 10%);
+      color: rgba(var(--#{$prefix}body-color-rgb), .65);
     }
   }
 
   &.timestamp-dark {
     .direct-chat-timestamp {
-      color: shade-color(color-contrast($color-contrast-dark), 20%);
+      color: rgba(var(--#{$prefix}body-color-rgb), .9);
     }
   }
 }
 
 .direct-chat-messages {
-  @include translate(0, 0);
   height: 250px;
   padding: 10px;
   overflow: auto;
+  transform: translate(0, 0);
 }
 
 .direct-chat-msg,
@@ -42,7 +42,7 @@
 }
 
 .direct-chat-msg {
-  @include clearfix ();
+  @include clearfix();
   margin-bottom: 10px;
 }
 
@@ -123,50 +123,50 @@
 }
 
 .direct-chat-timestamp {
-  color: shade-color($gray-500, 25%);
+  color: rgba(var(--#{$prefix}body-color-rgb), .75);
 }
 
 //Direct chat contacts pane
 .direct-chat-contacts-open {
   .direct-chat-contacts {
-    @include translate(0, 0);
+    transform: translate(0, 0);
   }
 }
 
 .direct-chat-contacts {
-  @include translate(101%, 0);
   position: absolute;
   top: 0;
   bottom: 0;
   width: 100%;
   height: 250px;
   overflow: auto;
-  color: $white;
-  background-color: $dark;
+  color: var(--#{$prefix}body-bg);
+  background-color: var(--#{$prefix}body-color);
+  transform: translate(101%, 0);
 }
 
 .direct-chat-contacts-light {
-  background-color: $light;
+  background-color: var(--#{$prefix}light-bg-subtle);
 
   .contacts-list-name {
-    color: $gray-700;
+    color: var(--#{$prefix}body-color);
   }
 
   .contacts-list-date {
-    color: $gray-600;
+    color: var(--#{$prefix}secondary-color);
   }
 
   .contacts-list-msg {
-    color: shade-color($gray-600, 10%);
+    color: var(--#{$prefix}secondary-color);
   }
 }
 
 //Contacts list -- for displaying contacts in direct chat contacts pane
 .contacts-list {
-  @include list-unstyled ();
+  @include list-unstyled();
 
   > li {
-    @include clearfix ();
+    @include clearfix();
     padding: 10px;
     margin: 0;
     border-bottom: 1px solid rgba($black, .2);
@@ -185,7 +185,7 @@
 
 .contacts-list-info {
   margin-left: 45px;
-  color: $white;
+  color: var(--#{$prefix}body-bg);
 }
 
 .contacts-list-name,
@@ -203,22 +203,28 @@
 
 .contacts-list-date {
   font-weight: 400;
-  color: $gray-400;
+  color: var(--#{$prefix}secondary-bg);
 }
 
 .contacts-list-msg {
-  color: shade-color($gray-400, 10%);
+  color: var(--#{$prefix}secondary-bg);
+}
+
+.end > .direct-chat-text {
+  color: var(--#{$lte-prefix}direct-chat-color);
+  background-color: var(--#{$lte-prefix}direct-chat-bg);
+  border-color: var(--#{$lte-prefix}direct-chat-bg);
+
+  &::after,
+  &::before {
+    border-left-color: var(--#{$lte-prefix}direct-chat-bg);
+  }
 }
 
 // Color variants
 @each $name, $color in $theme-colors {
   .direct-chat-#{$name} {
-    @include direct-chat-variant($color);
-  }
-}
-
-@each $name, $color in $colors {
-  .direct-chat-#{$name} {
-    @include direct-chat-variant($color);
+    --#{$lte-prefix}direct-chat-color: #{color-contrast($color)};
+    --#{$lte-prefix}direct-chat-bg: #{$color};
   }
 }

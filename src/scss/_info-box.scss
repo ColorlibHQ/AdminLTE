@@ -12,7 +12,8 @@
   min-height: 80px;
   padding: .5rem;
   margin-bottom: map-get($spacers, 3);
-  background-color: $white;
+  color: var(--#{$prefix}body-color);
+  background-color: var(--#{$prefix}body-bg);
 
   .progress {
     height: 2px;
@@ -63,12 +64,8 @@
 
   @each $name, $color in $theme-colors {
     .info-box {
-      .bg-#{$name} {
-        color: color-contrast($color);
-
-        .progress-bar {
-          background-color: color-contrast($color);
-        }
+      .progress-bar {
+        background-color: color-contrast($color);
       }
     }
   }

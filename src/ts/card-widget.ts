@@ -16,6 +16,14 @@ import {
  * ====================================================
  */
 
+const DATA_KEY = 'lte.card-widget'
+const EVENT_KEY = `.${DATA_KEY}`
+const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
+const EVENT_EXPANDED = `expanded${EVENT_KEY}`
+const EVENT_REMOVE = `remove${EVENT_KEY}`
+const EVENT_MAXIMIZED = `maximized${EVENT_KEY}`
+const EVENT_MINIMIZED = `minimized${EVENT_KEY}`
+
 const CLASS_NAME_CARD = 'card'
 const CLASS_NAME_COLLAPSED = 'collapsed-card'
 const CLASS_NAME_COLLAPSING = 'collapsing-card'
@@ -42,7 +50,7 @@ const Default = {
   minimizeIcon: 'fa-compress'
 }
 
-interface Config {
+type Config = {
   animationSpeed: number;
   collapseTrigger: string;
   removeTrigger: string;
@@ -69,6 +77,8 @@ class CardWidget {
   }
 
   collapse() {
+    const event = new Event(EVENT_COLLAPSED)
+
     if (this._parent) {
       this._parent.classList.add(CLASS_NAME_COLLAPSING)
 
@@ -96,9 +106,13 @@ class CardWidget {
       icon.classList.remove(this._config.collapseIcon)
       icon.classList.add(this._config.expandIcon)
     }
+
+    this._element?.dispatchEvent(event)
   }
 
   expand() {
+    const event = new Event(EVENT_EXPANDED)
+
     if (this._parent) {
       this._parent.classList.add(CLASS_NAME_EXPANDING)
 
@@ -126,12 +140,18 @@ class CardWidget {
       icon.classList.add(this._config.collapseIcon)
       icon.classList.remove(this._config.expandIcon)
     }
+
+    this._element?.dispatchEvent(event)
   }
 
   remove() {
+    const event = new Event(EVENT_REMOVE)
+
     if (this._parent) {
       slideUp(this._parent, this._config.animationSpeed)
     }
+
+    this._element?.dispatchEvent(event)
   }
 
   toggle() {
@@ -144,6 +164,8 @@ class CardWidget {
   }
 
   maximize() {
+    const event = new Event(EVENT_MAXIMIZED)
+
     if (this._parent) {
       const maxElm = this._parent.querySelector(`${this._config.maximizeTrigger} .${this._config.maximizeIcon}`)
 
@@ -172,9 +194,13 @@ class CardWidget {
         }
       }, 150)
     }
+
+    this._element?.dispatchEvent(event)
   }
 
   minimize() {
+    const event = new Event(EVENT_MINIMIZED)
+
     if (this._parent) {
       const minElm = this._parent.querySelector(`${this._config.maximizeTrigger} .${this._config.minimizeIcon}`)
 
@@ -201,6 +227,8 @@ class CardWidget {
         }
       }, 10)
     }
+
+    this._element?.dispatchEvent(event)
   }
 
   toggleMaximize() {

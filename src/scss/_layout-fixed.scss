@@ -15,7 +15,7 @@
     .main-header,
     .content-wrapper,
     .main-footer {
-      margin-left: $lte-sidebar-width;
+      margin-left: var(--#{$lte-prefix}sidebar-width);
       @include transition($lte-transition-speed $lte-transition-fn);
     }
 

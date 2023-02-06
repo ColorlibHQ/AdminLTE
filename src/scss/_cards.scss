@@ -3,27 +3,42 @@
 //
 
 // Color variants
-@each $name, $color in $theme-colors {
-  @include cards-variant($name, $color);
-}
-
-@each $name, $color in $colors {
-  @include cards-variant($name, $color);
-}
-
 .card {
   @include box-shadow($lte-card-shadow);
   margin-bottom: map-get($spacers, 3);
 
-  &.bg-dark {
-    .card-header {
-      border-color: $lte-card-dark-border-color;
-    }
+  &:not(.card-outline) {
+    > .card-header {
+      background-color: var(--#{$lte-prefix}card-variant-bg);
 
-    &,
-    .card-body {
-      color: $white;
+      &,
+      a {
+        color: var(--#{$lte-prefix}card-variant-color);
+      }
+
+      a {
+        &:hover {
+          border-top: 3px solid $nav-tabs-border-color;
+        }
+
+        &.active {
+          color: color-contrast($white);
+          border-top: 3px solid var(--#{$lte-prefix}card-variant-bg);
+        }
+      }
+
+      .btn-tool {
+        color: rgba(var(--#{$lte-prefix}card-variant-color-rgb), .8);
+
+        &:hover {
+          color: var(--#{$lte-prefix}card-variant-color);
+        }
+      }
     }
+  }
+
+  &.card-outline {
+    border-top: 3px solid var(--#{$lte-prefix}card-variant-bg);
   }
 
   &.maximized-card {
@@ -197,6 +212,17 @@
 
 }
 
+@each $name, $color in $theme-colors {
+  @debug($name);
+  .card-#{$name},
+  .card.bg-#{$name},
+  .card.text-bg-#{$name} {
+    --#{$lte-prefix}card-variant-bg: #{$color};
+    --#{$lte-prefix}card-variant-color: #{color-contrast($color)};
+    --#{$lte-prefix}card-variant-color-rgb: #{to-rgb(color-contrast($color))};
+  }
+}
+
 // Maximized Card Body Scroll fix
 html.maximized-card {
   overflow: hidden;
@@ -206,7 +232,7 @@ html.maximized-card {
 .card-header,
 .card-body,
 .card-footer {
-  @include clearfix ();
+  @include clearfix();
 }
 
 // Box header
@@ -248,231 +274,16 @@ html.maximized-card {
   font-weight: $lte-card-title-font-weight;
 }
 
-.card-text {
-  clear: both;
-}
-
-
 // Box Tools Buttons
 .btn-tool {
-  padding: .25rem .5rem;
-  margin: -(($card-spacer-y * .5) * 2) 0;
+  --#{$prefix}btn-padding-x: .5rem;
+  --#{$prefix}btn-padding-y: .25rem;
+  --#{$prefix}btn-color: var(--#{$prefix}tertiary-color);
+  --#{$prefix}btn-bg: transparent;
+  --#{$prefix}btn-box-shadow: none;
+  --#{$prefix}btn-hover-color: --#{$prefix}secondary-color;
+  --#{$prefix}btn-active-border-color: transparent;
+
+  margin: -$card-spacer-y 0;
   font-size: $font-size-sm;
-  color: $gray-500;
-  background-color: transparent;
-
-  .btn-group.show &,
-  &:hover {
-    color: $gray-700;
-  }
-
-  .show &,
-  &:focus {
-    box-shadow: none !important;
-  }
-}
-
-.fs-7 {
-  .card-title {
-    font-size: $lte-card-title-font-size-sm;
-  }
-
-  .nav-link {
-    padding: $lte-card-nav-link-padding-sm-y $lte-card-nav-link-padding-sm-x;
-  }
-}
-
-// Box Body
-.card-body {
-  // @include border-radius-sides(0, 0, $border-radius, $border-radius);
-  // .no-header & {
-  //   @include border-top-radius($border-radius);
-  // }
-
-  // Tables within the box body
-  > .table {
-    margin-bottom: 0;
-
-    > thead > tr > th,
-    > thead > tr > td {
-      border-top-width: 0;
-    }
-  }
-
-  // Calendar within the box body
-  .fc {
-    margin-top: 5px;
-  }
-
-  .full-width-chart {
-    margin: -19px;
-  }
-
-  &.p-0 .full-width-chart {
-    margin: -9px;
-  }
-}
-
-.chart-legend {
-  @include list-unstyled ();
-  margin: 10px 0;
-
-  > li {
-    @media (max-width: map-get($grid-breakpoints, sm)) {
-      float: left;
-      margin-right: 10px;
-    }
-  }
-}
-
-// Comment Box
-.card-comments {
-  background-color: $gray-100;
-
-  .card-comment {
-    @include clearfix ();
-    padding: 8px 0;
-    border-bottom: 1px solid $gray-200;
-
-    &:last-of-type {
-      border-bottom: 0;
-    }
-
-    &:first-of-type {
-      padding-top: 0;
-    }
-
-    img {
-      float: left;
-      width: $lte-card-img-size;
-      height: $lte-card-img-size;
-    }
-  }
-
-  .comment-text {
-    margin-left: 40px;
-    color: tint-color($gray-700, 20%);
-  }
-
-  .username {
-    display: block;
-    font-weight: 600;
-    color: $gray-700;
-  }
-
-  .text-muted {
-    font-size: 12px;
-    font-weight: 400;
-  }
-}
-
-// Widgets
-//-----------
-
-// Widget: TODO LIST
-.todo-list {
-  padding: 0;
-  margin: 0;
-  overflow: auto;
-  list-style: none;
-
-  // Todo list element
-  > li {
-    padding: 10px;
-    margin-bottom: 2px;
-    color: $gray-700;
-    background-color: $gray-100;
-    border-left: 2px solid $gray-200;
-    @include border-radius(2px);
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
-
-    > input[type="checkbox"] {
-      margin: 0 10px 0 5px;
-    }
-
-    .text {
-      display: inline-block;
-      margin-left: 5px;
-      font-weight: 600;
-    }
-
-    // Time labels
-    .badge {
-      margin-left: 10px;
-      font-size: .7rem;
-    }
-
-    // Tools and options box
-    .tools {
-      display: none;
-      float: right;
-      color: $danger;
-
-      // TODO: create new class for reduce files
-      // icons
-      > i,
-      > svg,
-      > img,
-      > object,
-      > iframe {
-        margin-right: 5px;
-        cursor: pointer;
-      }
-    }
-
-    &:hover .tools {
-      display: inline-block;
-    }
-
-    &.done {
-      color: shade-color($gray-500, 25%);
-
-      .text {
-        font-weight: 500;
-        text-decoration: line-through;
-      }
-
-      .badge {
-        background-color: $gray-500 !important;
-      }
-    }
-  }
-
-  // Color variants
-  @each $name, $color in $theme-colors {
-    .#{$name} {
-      border-left-color: $color;
-    }
-  }
-
-  @each $name, $color in $colors {
-    .#{$name} {
-      border-left-color: $color;
-    }
-  }
-
-  .handle {
-    display: inline-block;
-    margin: 0 5px;
-    cursor: move;
-  }
-}
-
-// END TODO WIDGET
-
-// Input in box
-.card-input {
-  max-width: 200px;
-}
-
-// Nav Tabs override
-.card-default {
-  .nav-item {
-    &:first-child .nav-link {
-      border-left: 0;
-    }
-  }
 }

@@ -3,10 +3,10 @@
 //
 
 @mixin scrollbar-color-gray() {
-  scrollbar-color: #a9a9a9 transparent;
+  scrollbar-color: var(--#{$prefix}secondary-bg) transparent;
 
   &::-webkit-scrollbar-thumb {
-    background-color: #a9a9a9;
+    background-color: var(--#{$prefix}secondary-bg);
   }
 
   &::-webkit-scrollbar-track {

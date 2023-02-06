@@ -5,10 +5,10 @@
   <head>
     @@include('./_head.html', {
       "path": "../..",
-      "title": "AdminLTE 4 | Fixed Sidebar"
+      "title": "AdminLTE 4 | Unfixed Sidebar"
     })
   </head>
-  <body class="layout-fixed bg-body-tertiary">
+  <body>
     <div class="wrapper">
       @@include('./dashboard/_topbar.html', {
         "path": "../.."
@@ -16,7 +16,7 @@
 
       @@include('./dashboard/_sidenav.html', {
         "mainPage": "layout",
-        "page": "fixed-sidebar",
+        "page": "unfixed-sidebar",
         "path": "../.."
       })
       <!-- Main content -->
@@ -25,12 +25,12 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h3>Fixed Layout</h3>
+                <h3>Unfixed Layout</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Fixed Layout</li>
+                  <li class="breadcrumb-item active" aria-current="page">Unfixed Layout</li>
                 </ol>
               </div>
             </div>

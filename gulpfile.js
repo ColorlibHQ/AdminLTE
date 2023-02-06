@@ -5,8 +5,9 @@ const browserSync = require('browser-sync').create()
 const del = require('del')
 const { src, dest, lastRun, watch, series, parallel } = require('gulp')
 const cleanCss = require('gulp-clean-css')
-const eslint = require('gulp-eslint-new')
+const gulpESLintNew = require('gulp-eslint-new')
 const fileinclude = require('gulp-file-include')
+const formatHTML = require('gulp-format-html')
 const validator = require('gulp-html')
 const gulpIf = require('gulp-if')
 const postcss = require('gulp-postcss')
@@ -86,13 +87,6 @@ const scss = () => src(paths.src.scss + '/adminlte.scss', { sourcemaps: true })
     .pipe(dest(paths.temp.css, { sourcemaps: '.' }))
     .pipe(browserSync.stream())
 
-// Compile SCSS Dark
-const scssDark = () => src(paths.src.scss + '/dark/adminlte-dark-addon.scss', { sourcemaps: true })
-    .pipe(sass(sassOptions).on('error', sass.logError))
-    .pipe(postcss(postcssOptions))
-    .pipe(dest(paths.temp.css + '/dark', { sourcemaps: '.' }))
-    .pipe(browserSync.stream())
-
 // Lint TS
 function isFixed(file) {
   // Has ESLint fixed the file contents?
@@ -100,10 +94,10 @@ function isFixed(file) {
 }
 
 const lintTs = () => src([paths.src.ts + '/**/*.ts'], { since: lastRun(lintTs) })
-    .pipe(eslint({ fix: true }))
-    .pipe(eslint.format())
+    .pipe(gulpESLintNew({ fix: true }))
     .pipe(gulpIf(isFixed, dest(paths.src.ts)))
-    .pipe(eslint.failAfterError())
+    .pipe(gulpESLintNew.format())
+    .pipe(gulpESLintNew.failAfterError())
 
 // Compile TS
 const tsCompile = () =>
@@ -120,7 +114,7 @@ const tsCompile = () =>
     format: 'umd',
     name: 'adminlte',
     sourcemap: true
-  }))
+  })).then(browserSync.stream())
 
 const assets = () => src([paths.src.assets])
     .pipe(dest(paths.temp.assets))
@@ -134,6 +128,7 @@ const index = () => src([paths.src.base + '*.html'])
         environment: 'development'
       }
     }))
+    .pipe(formatHTML())
     .pipe(dest(paths.temp.base))
     .pipe(browserSync.stream())
 
@@ -145,6 +140,7 @@ const html = () => src([paths.src.html])
         environment: 'development'
       }
     }))
+    .pipe(formatHTML())
     .pipe(dest(paths.temp.html))
     .pipe(browserSync.stream())
 
@@ -153,12 +149,13 @@ const lintHtml = () => src([paths.temp.html + '/**/*.html', paths.temp.base + '*
 
 const serve = () => {
   browserSync.init({
-    server: paths.temp.base
+    server: paths.temp.base,
+    notify: true
   })
 
   watch([paths.src.scss], series(lintScss))
   watch([paths.src.scss + '/**/*.scss', '!' + paths.src.scss + '/bootstrap-dark/**/*.scss', '!' + paths.src.scss + '/dark/**/*.scss'], series(scss))
-  watch([paths.src.scss + '/bootstrap-dark/', paths.src.scss + '/dark/'], series(scssDark))
+  watch([paths.src.scss + '/bootstrap-dark/', paths.src.scss + '/dark/'])
   watch([paths.src.ts], series(lintTs, tsCompile))
   watch([paths.src.html, paths.src.base + '*.html', paths.src.partials], series(html, index, lintHtml))
   watch([paths.src.assets], series(assets))
@@ -189,7 +186,7 @@ const copyDistCssAll = () => src([paths.src.scss + '/**/*.scss'], {
 const copyDistCssRtl = () => src(paths.dist.css + '/*.css', { sourcemaps: true })
     .pipe(postcss(postcssRtlOptions))
     .pipe(rename({ suffix: '.rtl' }))
-    .pipe(dest(paths.dist.css + '/rtl', { sourcemaps: '.' }))
+    .pipe(dest(paths.dist.css, { sourcemaps: '.' }))
 
 // Minify CSS
 const minifyDistCss = () => src([
@@ -203,8 +200,9 @@ const minifyDistCss = () => src([
     .pipe(dest(paths.dist.css, { sourcemaps: '.' }))
 
 const lintDistTs = () => src([paths.src.ts + '/**/*.ts'])
-    .pipe(eslint())
-    .pipe(eslint.failAfterError())
+    .pipe(gulpESLintNew())
+    .pipe(gulpESLintNew.format())
+    .pipe(gulpESLintNew.failAfterError())
 
 // Compile and copy ts/js
 const copyDistJs = () =>
@@ -242,6 +240,7 @@ const copyDistHtmlIndex = () => src([paths.src.base + '*.html'])
         environment: 'production'
       }
     }))
+    .pipe(formatHTML())
     .pipe(dest(paths.dist.base))
 
 // Copy Html
@@ -253,6 +252,7 @@ const copyDistHtml = () => src([paths.src.html])
         environment: 'production'
       }
     }))
+    .pipe(formatHTML())
     .pipe(dest(paths.dist.html))
 
 // HTML Lint
@@ -265,6 +265,7 @@ const copyDistHtmlIndexForLint = () => src([paths.src.base + '*.html'])
         environment: 'production'
       }
     }))
+    .pipe(formatHTML())
     .pipe(dest(paths.temp.base))
 // Copy Html for Lint
 const copyDistHtmlForLint = () => src([paths.src.html])
@@ -275,6 +276,7 @@ const copyDistHtmlForLint = () => src([paths.src.html])
         environment: 'production'
       }
     }))
+    .pipe(formatHTML())
     .pipe(dest(paths.temp.html))
 // Now Lint
 const lintDistHtmlCopied = () => src([paths.temp.html + '/**/*.html', paths.temp.base + '*.html'])
@@ -305,4 +307,4 @@ exports.compile = compile
 exports.production = series(lint, compile)
 
 // Default - Only for light mode AdminLTE
-exports.default = series(scss, scssDark, tsCompile, html, index, assets, serve)
+exports.default = series(scss, tsCompile, html, index, assets, serve)

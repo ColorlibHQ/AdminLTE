@@ -8,7 +8,7 @@
       "title": "AdminLTE 4 | Widgets - Cards"
     })
   </head>
-  <body class="layout-fixed">
+  <body class="layout-fixed bg-body-tertiary">
     <div class="wrapper">
       @@include('./dashboard/_topbar.html', {
         "path": "../.."
@@ -25,7 +25,7 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <div class="fs-3">Cards</div>
+                <h3>Cards</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
@@ -39,7 +39,8 @@
         <!-- Main content -->
         <div class="content">
           <div class="container-fluid">
-            <h4 class="mb-2 mt-4">Cards</h4>
+            <h4 class="mb-2">Cards</h4>
+
             <h5 class="mb-2">Abilities</h5>
             <div class="row">
               <div class="col-md-3">
@@ -48,7 +49,7 @@
                     <h3 class="card-title">Expandable</h3>
 
                     <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"><i class="fas fa-plus"></i>
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"><i class="fa-solid fa-plus"></i>
                       </button>
                     </div>
                     <!-- /.card-tools -->
@@ -68,7 +69,7 @@
                     <h3 class="card-title">Collapsable</h3>
 
                     <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"><i class="fas fa-minus"></i>
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"><i class="fa-solid fa-minus"></i>
                       </button>
                     </div>
                     <!-- /.card-tools -->
@@ -88,7 +89,7 @@
                     <h3 class="card-title">Removable</h3>
 
                     <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-lte-dismiss="card-remove"><i class="fas fa-times"></i>
+                      <button type="button" class="btn btn-tool" data-lte-dismiss="card-remove"><i class="fa-solid fa-times"></i>
                       </button>
                     </div>
                     <!-- /.card-tools -->
@@ -108,7 +109,175 @@
                     <h3 class="card-title">Maximizable</h3>
 
                     <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-lte-toggle="card-maximize"><i class="fas fa-expand"></i>
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-maximize"><i class="fa-solid fa-expand"></i>
+                      </button>
+                    </div>
+                    <!-- /.card-tools -->
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    The body of the card
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+            </div>
+
+            <h5 class="mb-2">Card Outlined</h5>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card card-outline card-primary collapsed-card">
+                  <div class="card-header">
+                    <h3 class="card-title">Expandable</h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"><i class="fa-solid fa-plus"></i>
+                      </button>
+                    </div>
+                    <!-- /.card-tools -->
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    The body of the card
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="card card-outline card-success">
+                  <div class="card-header">
+                    <h3 class="card-title">Collapsable</h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"><i class="fa-solid fa-minus"></i>
+                      </button>
+                    </div>
+                    <!-- /.card-tools -->
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    The body of the card
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="card card-outline card-warning">
+                  <div class="card-header">
+                    <h3 class="card-title">Removable</h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-lte-dismiss="card-remove"><i class="fa-solid fa-times"></i>
+                      </button>
+                    </div>
+                    <!-- /.card-tools -->
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    The body of the card
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="card card-outline card-danger">
+                  <div class="card-header">
+                    <h3 class="card-title">Maximizable</h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-maximize"><i class="fa-solid fa-expand"></i>
+                      </button>
+                    </div>
+                    <!-- /.card-tools -->
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    The body of the card
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+            </div>
+
+            <h5 class="mb-2">Card with <code>.text-bg-*</code> </h5>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card text-bg-primary collapsed-card">
+                  <div class="card-header">
+                    <h3 class="card-title">Expandable</h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"><i class="fa-solid fa-plus"></i>
+                      </button>
+                    </div>
+                    <!-- /.card-tools -->
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    The body of the card
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="card text-bg-success">
+                  <div class="card-header">
+                    <h3 class="card-title">Collapsable</h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"><i class="fa-solid fa-minus"></i>
+                      </button>
+                    </div>
+                    <!-- /.card-tools -->
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    The body of the card
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="card text-bg-warning">
+                  <div class="card-header">
+                    <h3 class="card-title">Removable</h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-lte-dismiss="card-remove"><i class="fa-solid fa-times"></i>
+                      </button>
+                    </div>
+                    <!-- /.card-tools -->
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    The body of the card
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="card text-bg-danger">
+                  <div class="card-header">
+                    <h3 class="card-title">Maximizable</h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-maximize"><i class="fa-solid fa-expand"></i>
                       </button>
                     </div>
                     <!-- /.card-tools -->

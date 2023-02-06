@@ -1,0 +1,18 @@
+:root,
+[data-bs-theme="light"] {
+  // Content Wrapper
+  --#{$lte-prefix}main-color: #{$lte-main-color};
+  --#{$lte-prefix}main-bg: #{$lte-main-bg};
+
+  // Sidebar
+  --#{$lte-prefix}sidebar-width: #{$lte-sidebar-width};
+}
+
+@if $enable-dark-mode {
+  @include color-mode(dark, true) {
+    color-scheme: dark;
+    // Body Color
+    --#{$lte-prefix}main-color: #{$lte-main-color-dark};
+    --#{$lte-prefix}main-bg: #{$lte-main-bg-dark};
+  }
+}

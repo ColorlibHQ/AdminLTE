@@ -2,16 +2,9 @@
 // Core: Main Header
 //
 
-@include header-variant(
-  $lte-header-light-bg,
-  $lte-header-light-color,
-  $lte-header-mobile-light-bg,
-  $lte-header-mobile-light-color
-);
-
 .main-header {
   z-index: $lte-zindex-main-header;
-  grid-area: main-header;
+  grid-area: #{lte-prefix}main-header;
   border-bottom: $lte-main-header-bottom-border;
 
   .nav-link {
@@ -27,16 +20,7 @@
   right: 5px;
   padding: 2px 4px;
   font-size: .6rem;
-}
-
-.layout-navbar-fixed {
-  .main-header {
-    // position: fixed;
-  }
-
-  .content-wrapper {
-    // margin-top: $lte-main-header-height;
-  }
+  font-weight: 400;
 }
 
 .fullscreen-icon:not(.lte-show) {

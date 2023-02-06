@@ -58,7 +58,7 @@
   position: relative;
 
   > a::after {
-    @include caret-end ();
+    @include caret-end();
     float: right;
     margin-top: .5rem;
     margin-left: .5rem;
@@ -117,7 +117,7 @@
 // Add fade animation to dropdown menus by appending
 // the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)
 .open:not(.dropup) > .animated-dropdown-menu {
-  @include animation(flipInX .7s both);
+  animation: flipInX .7s both;
   backface-visibility: visible !important;
 }
 
@@ -142,8 +142,8 @@
         position: absolute;
         right: 5%;
         left: auto;
-        background-color: $white;
-        border: 1px solid #ddd;
+        background-color: var(--#{$prefix}body-bg);
+        border: 1px solid var(--#{$prefix}border-color);
       }
     }
   }
@@ -167,7 +167,7 @@
 
     // Header menu
     > li.user-header {
-      height: 175px;
+      min-height: 175px;
       padding: 10px;
       text-align: center;
 
@@ -178,7 +178,7 @@
         height: 90px;
         border: 3px solid;
         border-color: transparent;
-        border-color: rgba(255, 255, 255, .2);
+        border-color: var(--#{$prefix}border-color-translucent);
       }
 
       > p {
@@ -196,31 +196,31 @@
 
     // Menu Body
     > .user-body {
-      @include clearfix ();
+      @include clearfix();
       padding: 15px;
-      border-top: 1px solid $gray-300;
-      border-bottom: 1px solid $gray-700;
+      border-top: 1px solid var(--#{$prefix}border-color);
+      border-bottom: 1px solid var(--#{$prefix}border-color-translucent);
 
       a {
         @include media-breakpoint-up(sm) {
-          color: $gray-700 !important;
-          background-color: $white !important;
+          color: var(--#{$prefix}body-color) !important;
+          background-color: var(--#{$prefix}body-bg) !important;
         }
       }
     }
 
     // Menu Footer
     > .user-footer {
-      @include clearfix ();
+      @include clearfix();
       padding: 10px;
-      background-color: $gray-100;
+      background-color: var(--#{$prefix}light-bg);
 
       .btn-default {
-        color: $gray-600;
+        color: var(--#{$prefix}body-color);
 
         &:hover {
           @include media-breakpoint-up(sm) {
-            background-color: $gray-100;
+            background-color: var(--#{$prefix}body-bg);
           }
         }
       }

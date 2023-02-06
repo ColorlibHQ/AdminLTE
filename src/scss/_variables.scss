@@ -1,47 +1,7 @@
 // Custom AdminLTE Variables
 
-// COLORS
-// --------------------------------------------------------
-$lte-gray-x-light: #d2d6de !default;
-
-// Dynamic Variables
-// --------------------------------------------------------
-:root {
-  // Sidebar
-  --lte-sidebar-width: 250px;
-
-  // Sidebar active links
-  --lte-sidebar-menu-active-bg: #{$primary};
-  --lte-sidebar-menu-active-color: #{$white};
-
-  // Dark Sidebar Native Variables
-  --lte-sidebar-dark-bg: #343a40;
-  --lte-sidebar-dark-hover-bg: rgba(255, 255, 255, .1);
-  --lte-sidebar-dark-color: #c2c7d0;
-  --lte-sidebar-dark-hover-color: #{$white};
-  --lte-sidebar-dark-active-color: #{$white};
-  --lte-sidebar-dark-submenu-bg: transparent;
-  --lte-sidebar-dark-submenu-color: var(--lte-sidebar-dark-color);
-  --lte-sidebar-dark-submenu-hover-color: #{$white};
-  --lte-sidebar-dark-submenu-hover-bg: var(--lte-sidebar-dark-hover-bg);
-  --lte-sidebar-dark-submenu-active-color: var(--lte-sidebar-dark-bg);
-  --lte-sidebar-dark-submenu-active-bg: rgba(255, 255, 255, .9);
-  --lte-sidebar-dark-header-color: #{tint-color(#c2c7d0, 5%)};
-
-  // Light Sidebar Native Variables
-  --lte-sidebar-light-bg: #{$white};
-  --lte-sidebar-light-hover-bg: rgba(#{$black}, .1);
-  --lte-sidebar-light-color: #{$gray-800};
-  --lte-sidebar-light-hover-color: #{$gray-900};
-  --lte-sidebar-light-active-color: #{$black};
-  --lte-sidebar-light-submenu-bg: transparent;
-  --lte-sidebar-light-submenu-color: #777;
-  --lte-sidebar-light-submenu-hover-color: #{$black};
-  --lte-sidebar-light-submenu-hover-bg: var(--lte-sidebar-light-hover-bg);
-  --lte-sidebar-light-submenu-active-color: var(--lte-sidebar-light-hover-color);
-  --lte-sidebar-light-submenu-active-bg: var(--lte-sidebar-light-submenu-hover-bg);
-  --lte-sidebar-light-header-color: #{shade-color($gray-800, 5%)};
-}
+// Prefix for :root CSS variables
+$lte-prefix:                      lte- !default;
 
 // LAYOUT
 // --------------------------------------------------------
@@ -57,7 +17,7 @@ $lte-transition-fn:               ease-in-out !default;
 
 // Sidebar
 // --------------------------------------------------------
-$lte-sidebar-width:               var(--lte-sidebar-width) !default;
+$lte-sidebar-width:               250px !default;
 $lte-sidebar-padding-x:           .5rem !default;
 $lte-sidebar-padding-y:           .5rem !default;
 $lte-sidebar-custom-height:       4rem !default;
@@ -70,39 +30,36 @@ $lte-sidebar-transition:          min-width $lte-transition-speed $lte-transitio
   margin-left $lte-transition-speed $lte-transition-fn,
   margin-right $lte-transition-speed $lte-transition-fn !default;
 
-// margin-top $lte-transition-speed $lte-transition-fn,
-// transform $lte-transition-speed $lte-transition-fn;
-
 // SIDEBAR SKINS
 // --------------------------------------------------------
 
 // Dark sidebar
-$lte-sidebar-dark-bg:                   var(--lte-sidebar-dark-bg) !default;
-$lte-sidebar-dark-hover-bg:             var(--lte-sidebar-dark-hover-bg) !default;
-$lte-sidebar-dark-color:                var(--lte-sidebar-dark-color) !default;
-$lte-sidebar-dark-hover-color:          var(--lte-sidebar-dark-hover-color) !default;
-$lte-sidebar-dark-active-color:         var(--lte-sidebar-dark-active-color) !default;
-$lte-sidebar-dark-submenu-bg:           var(--lte-sidebar-dark-submenu-bg) !default;
-$lte-sidebar-dark-submenu-color:        var(--lte-sidebar-dark-submenu-color) !default;
-$lte-sidebar-dark-submenu-hover-color:  var(--lte-sidebar-dark-submenu-hover-color) !default;
-$lte-sidebar-dark-submenu-hover-bg:     var(--lte-sidebar-dark-submenu-hover-bg) !default;
-$lte-sidebar-dark-submenu-active-color: var(--lte-sidebar-dark-submenu-active-color) !default;
-$lte-sidebar-dark-submenu-active-bg:    var(--lte-sidebar-dark-submenu-active-bg) !default;
-$lte-sidebar-dark-header-color:         var(--lte-sidebar-dark-header-color) !default;
+$lte-sidebar-dark-bg:                     $gray-800 !default;
+$lte-sidebar-dark-hover-bg:               rgba(255, 255, 255, .1) !default;
+$lte-sidebar-dark-color:                  #c2c7d0 !default;
+$lte-sidebar-dark-hover-color:            $white !default;
+$lte-sidebar-dark-active-color:           $white !default;
+$lte-sidebar-dark-submenu-bg:             transparent !default;
+$lte-sidebar-dark-submenu-color:          $lte-sidebar-dark-color !default;
+$lte-sidebar-dark-submenu-hover-color:    $white !default;
+$lte-sidebar-dark-submenu-hover-bg:       $lte-sidebar-dark-hover-bg !default;
+$lte-sidebar-dark-submenu-active-color:   $lte-sidebar-dark-bg !default;
+$lte-sidebar-dark-submenu-active-bg:      rgba(255, 255, 255, .9) !default;
+$lte-sidebar-dark-header-color:           tint-color(#c2c7d0, 5%) !default;
 
 // Light sidebar
-$lte-sidebar-light-bg:                   var(--lte-sidebar-light-bg) !default;
-$lte-sidebar-light-hover-bg:             var(--lte-sidebar-light-hover-bg) !default;
-$lte-sidebar-light-color:                var(--lte-sidebar-light-color) !default;
-$lte-sidebar-light-hover-color:          var(--lte-sidebar-light-hover-color) !default;
-$lte-sidebar-light-active-color:         var(--lte-sidebar-light-active-color) !default;
-$lte-sidebar-light-submenu-bg:           var(--lte-sidebar-light-submenu-bg) !default;
-$lte-sidebar-light-submenu-color:        var(--lte-sidebar-light-submenu-color) !default;
-$lte-sidebar-light-submenu-hover-color:  var(--lte-sidebar-light-submenu-hover-color) !default;
-$lte-sidebar-light-submenu-hover-bg:     var(--lte-sidebar-light-submenu-hover-bg) !default;
-$lte-sidebar-light-submenu-active-color: var(--lte-sidebar-light-submenu-active-color) !default;
-$lte-sidebar-light-submenu-active-bg:    var(--lte-sidebar-light-submenu-active-bg) !default;
-$lte-sidebar-light-header-color:         var(--lte-sidebar-light-header-color) !default;
+$lte-sidebar-light-bg:                    $white !default;
+$lte-sidebar-light-hover-bg:              rgba($black, .1) !default;
+$lte-sidebar-light-color:                 $gray-800 !default;
+$lte-sidebar-light-hover-color:           $gray-900 !default;
+$lte-sidebar-light-active-color:          $black !default;
+$lte-sidebar-light-submenu-bg:            transparent !default;
+$lte-sidebar-light-submenu-color:         #777 !default;
+$lte-sidebar-light-submenu-hover-color:   $black !default;
+$lte-sidebar-light-submenu-hover-bg:      $lte-sidebar-light-hover-bg !default;
+$lte-sidebar-light-submenu-active-color:  $lte-sidebar-light-hover-color !default;
+$lte-sidebar-light-submenu-active-bg:     $lte-sidebar-light-submenu-hover-bg !default;
+$lte-sidebar-light-header-color:          shade-color($gray-800, 5%) !default;
 
 // SIDEBAR MINI
 // --------------------------------------------------------
@@ -122,7 +79,7 @@ $lte-control-sidebar-width:       $lte-sidebar-width !default;
 // MAIN HEADER
 // --------------------------------------------------------
 $lte-main-header-bottom-border-width:  $border-width !default;
-$lte-main-header-bottom-border-color:  $gray-300 !default;
+$lte-main-header-bottom-border-color:  var(--#{$prefix}border-color) !default;
 $lte-main-header-bottom-border:        $lte-main-header-bottom-border-width solid $lte-main-header-bottom-border-color !default;
 $lte-main-header-link-padding-y:       $navbar-padding-y !default;
 $lte-main-header-height-inner:         ($nav-link-height + ($lte-main-header-link-padding-y * 2)) !default;
@@ -135,17 +92,10 @@ $lte-main-header-height-sm:            add($lte-main-header-height-sm-inner, $lt
 // HEADER SKINS
 // --------------------------------------------------------
 
-// Dark sidebar
-$lte-header-dark-bg:              $dark !default;
-$lte-header-dark-color:           $white !default;
-$lte-header-mobile-dark-bg:       $dark !default;
-$lte-header-mobile-dark-color:    $white !default;
-
-// Light sidebar
-$lte-header-light-bg:             $white !default;
-$lte-header-light-color:          $dark !default;
-$lte-header-mobile-light-bg:      $light !default;
-$lte-header-mobile-light-color:   $dark !default;
+$lte-header-light-bg:             var(--#{$prefix}body-bg) !default;
+$lte-header-light-color:          var(--#{$prefix}body-color) !default;
+$lte-header-mobile-light-bg:      $lte-header-light-bg !default;
+$lte-header-mobile-light-color:   $lte-header-light-color !default;
 
 // Content padding
 $lte-content-padding-y:           0 !default;
@@ -153,9 +103,9 @@ $lte-content-padding-x:           .5rem !default;
 
 // IMAGE SIZES
 // --------------------------------------------------------
-$lte-img-size-sm: 1.875rem !default;
-$lte-img-size-md: 3.75rem !default;
-$lte-img-size-lg: 6.25rem !default;
+$lte-img-size-sm:   1.875rem !default;
+$lte-img-size-md:   3.75rem !default;
+$lte-img-size-lg:   6.25rem !default;
 $lte-img-size-push: .625rem !default;
 
 // MAIN FOOTER
@@ -163,14 +113,14 @@ $lte-img-size-push: .625rem !default;
 $lte-main-footer-padding:           1rem !default;
 $lte-main-footer-padding-sm:        $lte-main-footer-padding * .812 !default;
 $lte-main-footer-border-top-width:  1px !default;
-$lte-main-footer-border-top-color:  $gray-300 !default;
+$lte-main-footer-border-top-color:  var(--#{$prefix}border-color) !default;
 $lte-main-footer-border-top:        $lte-main-footer-border-top-width solid $lte-main-footer-border-top-color !default;
 $lte-main-footer-height-inner:      (($lte-font-size-root * $line-height-base) + ($lte-main-footer-padding * 2)) !default;
 $lte-main-footer-height:            add($lte-main-footer-height-inner, $lte-main-footer-border-top-width) !default;
 $lte-main-footer-height-sm-inner:   (($font-size-sm * $line-height-base) + ($lte-main-footer-padding-sm * 2)) !default;
 $lte-main-footer-height-sm:         add($lte-main-footer-height-sm-inner, $lte-main-footer-border-top-width) !default;
-$lte-main-footer-bg:                $white !default;
-$lte-main-footer-color:             tint-color($gray-700, 25%) !default;
+$lte-main-footer-bg:                var(--#{$prefix}body-bg) !default;
+$lte-main-footer-color:             var(--#{$prefix}secondary-color) !default;
 
 // BRAND LINK
 // --------------------------------------------------------
@@ -181,7 +131,7 @@ $lte-brand-link-border-buttom:    1px !default;
 // Cards
 // --------------------------------------------------------
 $lte-card-dark-border-color: tint-color($gray-900, 10%) !default;
-$lte-card-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2) !default;
+$lte-card-shadow: 0 0 1px rgba(var(--#{$prefix}body-color-rgb), .125), 0 1px 3px rgba(var(--#{$prefix}body-color-rgb), .2) !default;
 $lte-card-title-font-size: 1.1rem !default;
 $lte-card-title-font-size-sm: 1rem !default;
 $lte-card-title-font-weight: $font-weight-normal !default;
@@ -195,9 +145,9 @@ $lte-progress-bar-border-radius: 1px !default;
 
 // DIRECT CHAT
 // --------------------------------------------------------
-$lte-direct-chat-default-msg-bg: $lte-gray-x-light !default;
-$lte-direct-chat-default-font-color: #444 !default;
-$lte-direct-chat-default-msg-border-color: $lte-gray-x-light !default;
+$lte-direct-chat-default-msg-bg: var(--#{$prefix}secondary-bg) !default;
+$lte-direct-chat-default-font-color: var(--#{$prefix}emphasis-color) !default;
+$lte-direct-chat-default-msg-border-color: var(--#{$prefix}border-color) !default;
 
 // Z-INDEX
 // --------------------------------------------------------
@@ -216,10 +166,6 @@ $lte-main-color:                  $black !default;
 
 // BUTTON
 // --------------------------------------------------------
-$lte-button-default-background-color: $gray-100 !default;
-$lte-button-default-color: #444 !default;
-$lte-button-default-border-color: #ddd !default;
-
 $lte-button-padding-y-xs: .125rem !default;
 $lte-button-padding-x-xs: .25rem !default;
 $lte-button-line-height-xs: $line-height-sm !default;

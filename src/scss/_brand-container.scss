@@ -2,11 +2,9 @@
 // Core: Brand
 //
 
-// @include brand-variant($lte-sidebar-dark-bg, $lte-sidebar-dark-color);
-
 .brand-container {
   display: grid;
-  grid-template-areas: "brand-link pushmenu";
+  grid-template-areas: "#{lte-prefix}brand-link #{lte-prefix}pushmenu";
   justify-content: space-between;
   padding: $lte-brand-link-padding-y $lte-sidebar-padding-x;
   overflow: hidden;
@@ -15,7 +13,7 @@
   @include transition(width $lte-transition-speed $lte-transition-fn);
 
   .brand-link {
-    grid-area: brand-link;
+    grid-area: #{lte-prefix}brand-link;
 
     &:hover {
       text-decoration: none;
@@ -33,7 +31,7 @@
   }
 
   .pushmenu {
-    grid-area: pushmenu;
+    grid-area: #{lte-prefix}pushmenu;
   }
 
   .sidebar-bg-dark & {

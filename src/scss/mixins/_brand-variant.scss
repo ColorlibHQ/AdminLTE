@@ -1,9 +1,0 @@
-@mixin brand-variant(
-  $brand-bg,
-  $brand-color
-) {
-  .brand-container {
-    color: $brand-color;
-    background-color: $brand-bg;
-  }
-}

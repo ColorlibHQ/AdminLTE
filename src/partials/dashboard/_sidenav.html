@@ -2,10 +2,10 @@
 <aside class="main-sidebar sidebar-bg-dark sidebar-color-primary shadow">
   <div class="brand-container">
     <a href="javascript:;" class="brand-link">
-      <img src="@@path/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-80 shadow">
+      <img src="@@path/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-75 shadow">
       <span class="brand-text fw-light">AdminLTE 4</span>
     </a>
-    <a class="pushmenu mx-1" data-lte-toggle="sidebar-mini" href="javascript:;" role="button"><i class="fas fa-angle-double-left"></i></a>
+    <a class="pushmenu mx-1" data-lte-toggle="sidebar-mini" href="javascript:;" role="button"><i class="fa-solid fa-angle-double-left"></i></a>
   </div>
   <!-- Sidebar -->
   <div class="sidebar">
@@ -14,28 +14,28 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
         <li class="nav-item @@if (context.mainPage === 'dashboard') {menu-open}">
           <a href="javascript:;" class="nav-link @@if (context.mainPage === 'dashboard') {active}">
-            <i class="nav-icon fas fa-circle"></i>
+            <i class="nav-icon fa-solid fa-gauge-high"></i>
             <p>
               Dashboard
-              <i class="end fas fa-angle-right"></i>
+              <i class="end fa-solid fa-angle-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="@@path/index.html" class="nav-link @@if (context.page === 'index') {active}">
-                <i class="nav-icon far fa-circle"></i>
+                <i class="nav-icon fa-regular fa-circle"></i>
                 <p>Dashboard v1</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="@@path/index2.html" class="nav-link @@if (context.page === 'index2') {active}">
-                <i class="nav-icon far fa-circle"></i>
+                <i class="nav-icon fa-regular fa-circle"></i>
                 <p>Dashboard v2</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="@@path/index3.html" class="nav-link @@if (context.page === 'index3') {active}">
-                <i class="nav-icon far fa-circle"></i>
+                <i class="nav-icon fa-regular fa-circle"></i>
                 <p>Dashboard v3</p>
               </a>
             </li>
@@ -43,28 +43,28 @@
         </li>
         <li class="nav-item @@if (context.mainPage === 'widgets') {menu-open}">
           <a href="javascript:;" class="nav-link @@if (context.mainPage === 'widgets') {active}">
-            <i class="nav-icon fas fa-circle"></i>
+            <i class="nav-icon fa-solid fa-box-open"></i>
             <p>
               Widgets
-              <i class="end fas fa-angle-right"></i>
+              <i class="end fa-solid fa-angle-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="@@path/pages/widgets/small-box.html" class="nav-link @@if (context.page === 'small-box') {active}">
-                <i class="nav-icon far fa-circle"></i>
+                <i class="nav-icon fa-regular fa-circle"></i>
                 <p>Small Box</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="@@path/pages/widgets/info-box.html" class="nav-link @@if (context.page === 'info-box') {active}">
-                <i class="nav-icon far fa-circle"></i>
+                <i class="nav-icon fa-regular fa-circle"></i>
                 <p>info Box</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="@@path/pages/widgets/cards.html" class="nav-link @@if (context.page === 'cards') {active}">
-                <i class="nav-icon far fa-circle"></i>
+                <i class="nav-icon fa-regular fa-circle"></i>
                 <p>Cards</p>
               </a>
             </li>
@@ -73,34 +73,57 @@
 
         <li class="nav-item @@if (context.mainPage === 'layout') {menu-open}">
           <a href="javascript:;" class="nav-link @@if (context.mainPage === 'layout') {active}">
-            <i class="nav-icon fas fa-circle"></i>
+            <i class="nav-icon fa-solid fa-copy"></i>
             <p>
               Layout Options
-              <span class="badge bg-info float-end me-3">6</span>
-              <i class="end fas fa-angle-right"></i>
+              <span class="badge text-bg-primary float-end me-3">6</span>
+              <i class="end fa-solid fa-angle-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
+              <a href="@@path/pages/layout/unfixed-sidebar.html" class="nav-link @@if (context.page === 'unfixed-sidebar') {active}">
+                <i class="nav-icon fa-regular fa-circle"></i>
+                <p>Unfixed Sidebar</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="@@path/pages/layout/fixed-sidebar.html" class="nav-link @@if (context.page === 'fixed-sidebar') {active}">
-                <i class="nav-icon far fa-circle"></i>
+                <i class="nav-icon fa-regular fa-circle"></i>
                 <p>Fixed Sidebar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item @@if (context.mainPage === 'ui-elements') {menu-open}">
+          <a href="javascript:;" class="nav-link @@if (context.mainPage === 'ui-elements') {active}">
+            <i class="nav-icon fa-solid fa-tree"></i>
+            <p>
+              UI Elements
+              <i class="end fa-solid fa-angle-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="@@path/pages/UI/timeline.html" class="nav-link @@if (context.page === 'timeline') {active}">
+                <i class="nav-icon fa-regular fa-circle"></i>
+                <p>Timeline</p>
               </a>
             </li>
           </ul>
         </li>
         <li class="nav-item @@if (context.mainPage === 'forms') {menu-open}">
           <a href="javascript:;" class="nav-link @@if (context.mainPage === 'forms') {active}">
-            <i class="nav-icon fas fa-circle"></i>
+            <i class="nav-icon fa-solid fa-pen-to-square"></i>
             <p>
               Forms
-              <i class="end fas fa-angle-right"></i>
+              <i class="end fa-solid fa-angle-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="@@path/pages/forms/general.html" class="nav-link @@if (context.page === 'general') {active}">
-                <i class="nav-icon far fa-circle"></i>
+                <i class="nav-icon fa-regular fa-circle"></i>
                 <p>General Elements</p>
               </a>
             </li>
@@ -108,17 +131,41 @@
         </li>
         <li class="nav-item @@if (context.mainPage === 'tables') {menu-open}">
           <a href="javascript:;" class="nav-link @@if (context.mainPage === 'tables') {active}">
-            <i class="nav-icon fas fa-circle"></i>
+            <i class="nav-icon fa-solid fa-table"></i>
             <p>
               Tables
-              <i class="end fas fa-angle-right"></i>
+              <i class="end fa-solid fa-angle-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="@@path/pages/tables/simple.html" class="nav-link @@if (context.page === 'simple') {active}">
-                <i class="nav-icon far fa-circle"></i>
+                <i class="nav-icon fa-regular fa-circle"></i>
                 <p>Simple Tables</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-header">EXAMPLES</li>
+        <li class="nav-item">
+          <a href="javascript:;" class="nav-link">
+            <i class="nav-icon fa-solid fa-arrow-right-to-bracket"></i>
+            <p>
+              Login & Register
+              <i class="end fa-solid fa-angle-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="@@path/pages/examples/login.html" class="nav-link ">
+                <i class="nav-icon fa-regular fa-circle"></i>
+                <p>Login v1</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="@@path/pages/examples/register.html" class="nav-link ">
+                <i class="nav-icon fa-regular fa-circle"></i>
+                <p>Register v1</p>
               </a>
             </li>
           </ul>
@@ -126,49 +173,49 @@
         <li class="nav-header">MULTI LEVEL EXAMPLE</li>
         <li class="nav-item">
           <a href="javascript:;" class="nav-link">
-            <i class="nav-icon fas fa-circle"></i>
+            <i class="nav-icon fa-solid fa-circle"></i>
             <p>Level 1</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="javascript:;" class="nav-link">
-            <i class="nav-icon fas fa-circle"></i>
+            <i class="nav-icon fa-solid fa-circle"></i>
             <p>
               Level 1
-              <i class="end fas fa-angle-right"></i>
+              <i class="end fa-solid fa-angle-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="javascript:;" class="nav-link">
-                <i class="nav-icon far fa-circle"></i>
+                <i class="nav-icon fa-regular fa-circle"></i>
                 <p>Level 2</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="javascript:;" class="nav-link">
-                <i class="nav-icon far fa-circle"></i>
+                <i class="nav-icon fa-regular fa-circle"></i>
                 <p>
                   Level 2
-                  <i class="end fas fa-angle-right"></i>
+                  <i class="end fa-solid fa-angle-right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="javascript:;" class="nav-link">
-                    <i class="nav-icon far fa-dot-circle"></i>
+                    <i class="nav-icon fa-regular fa-dot-circle"></i>
                     <p>Level 3</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="javascript:;" class="nav-link">
-                    <i class="nav-icon far fa-dot-circle"></i>
+                    <i class="nav-icon fa-regular fa-dot-circle"></i>
                     <p>Level 3</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="javascript:;" class="nav-link">
-                    <i class="nav-icon far fa-dot-circle"></i>
+                    <i class="nav-icon fa-regular fa-dot-circle"></i>
                     <p>Level 3</p>
                   </a>
                 </li>
@@ -176,7 +223,7 @@
             </li>
             <li class="nav-item">
               <a href="javascript:;" class="nav-link">
-                <i class="nav-icon far fa-circle"></i>
+                <i class="nav-icon fa-regular fa-circle"></i>
                 <p>Level 2</p>
               </a>
             </li>
@@ -184,26 +231,26 @@
         </li>
         <li class="nav-item">
           <a href="javascript:;" class="nav-link">
-            <i class="nav-icon fas fa-circle"></i>
+            <i class="nav-icon fa-solid fa-circle"></i>
             <p>Level 1</p>
           </a>
         </li>
         <li class="nav-header">LABELS</li>
         <li class="nav-item">
           <a href="javascript:;" class="nav-link">
-            <i class="nav-icon far fa-circle text-danger"></i>
+            <i class="nav-icon fa-regular fa-circle text-danger"></i>
             <p class="text">Important</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="javascript:;" class="nav-link">
-            <i class="nav-icon far fa-circle text-warning"></i>
+            <i class="nav-icon fa-regular fa-circle text-warning"></i>
             <p>Warning</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="javascript:;" class="nav-link">
-            <i class="nav-icon far fa-circle text-info"></i>
+            <i class="nav-icon fa-regular fa-circle text-info"></i>
             <p>Informational</p>
           </a>
         </li>
