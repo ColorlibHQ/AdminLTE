@@ -87,6 +87,13 @@ const scss = () => src(paths.src.scss + '/adminlte.scss', { sourcemaps: true })
     .pipe(dest(paths.temp.css, { sourcemaps: '.' }))
     .pipe(browserSync.stream())
 
+// Compile SCSS RTL
+const scssRtl = () => src(paths.temp.css + '/adminlte.css', { sourcemaps: true })
+    .pipe(postcss(postcssRtlOptions))
+    .pipe(rename({ suffix: '.rtl' }))
+    .pipe(dest(paths.temp.css, { sourcemaps: '.' }))
+    .pipe(browserSync.stream())
+
 // Lint TS
 function isFixed(file) {
   // Has ESLint fixed the file contents?
@@ -153,9 +160,7 @@ const serve = () => {
     notify: true
   })
 
-  watch([paths.src.scss], series(lintScss))
-  watch([paths.src.scss + '/**/*.scss', '!' + paths.src.scss + '/bootstrap-dark/**/*.scss', '!' + paths.src.scss + '/dark/**/*.scss'], series(scss))
-  watch([paths.src.scss + '/bootstrap-dark/', paths.src.scss + '/dark/'])
+  watch([paths.src.scss + '/**/*.scss'], series(lintScss, scss, scssRtl))
   watch([paths.src.ts], series(lintTs, tsCompile))
   watch([paths.src.html, paths.src.base + '*.html', paths.src.partials], series(html, index, lintHtml))
   watch([paths.src.assets], series(assets))
