@@ -1,4 +1,4 @@
-@include media-breakpoint-down(lg) {
+@include media-breakpoint-down($lte-sidebar-breakpoint) {
   .wrapper {
     .main-sidebar {
       position: fixed;

@@ -4,7 +4,7 @@
 
 .main-header {
   z-index: $lte-zindex-main-header;
-  grid-area: #{lte-prefix}main-header;
+  grid-area: #{$lte-prefix}main-header;
   border-bottom: $lte-main-header-bottom-border;
 
   .nav-link {

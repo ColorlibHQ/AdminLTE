@@ -9,7 +9,7 @@
   white-space: nowrap;
 }
 
-.sidebar-collapse:not(.sidebar-horizontal) {
+.sidebar-collapse {
   .main-sidebar {
     min-width: $lte-sidebar-mini-width;
     max-width: $lte-sidebar-mini-width;
@@ -64,57 +64,3 @@
     }
   }
 }
-
-// .sidebar-mini.sidebar-collapse:not(.layout-fixed):not(.sidebar-horizontal) {
-//   .sidebar {
-//     overflow: visible;
-
-//     .nav-sidebar .nav-item:hover {
-//       position: relative;
-
-//       .nav-link {
-//         border-top-right-radius: 0;
-//         border-bottom-right-radius: 0;
-//       }
-
-//       span {
-//         animation: none;
-//         z-index: $lte-zindex-sidebar + 12;
-//         visibility: visible;
-//         display: inline-block;
-//         position: absolute;
-//         width: var(--#{$lte-prefix}sidebar-width);
-//         left: $lte-sidebar-mini-width;
-//         top: 0;
-//         background-color: inherit;
-//         padding: inherit;
-//         padding-left: 1rem;
-//         margin-left: -1rem;
-//         border-top-left-radius: 0;
-//         border-bottom-left-radius: 0;
-//       }
-//     }
-//   }
-// }
-
-// .sidebar-is-opening {
-//   .nav-sidebar .nav-link p,
-//   .brand-link {
-//     margin-left: 0;
-//     animation-name: fadeIn;
-//     animation-duration: $lte-transition-speed;
-//     animation-fill-mode: both;
-//     visibility: visible;
-//   }
-// }
-
-// .sidebar-is-collapsing {
-//   .nav-sidebar .nav-link p,
-//   .brand-link {
-//     margin-left: -10px;
-//     animation-name: fadeOut;
-//     animation-duration: $lte-transition-speed;
-//     animation-fill-mode: both;
-//     visibility: visible;
-//   }
-// }

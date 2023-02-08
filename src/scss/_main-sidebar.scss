@@ -6,7 +6,7 @@
 .main-sidebar {
   @include transition($lte-sidebar-transition);
   z-index: $lte-zindex-sidebar;
-  grid-area: #{lte-prefix}main-sidebar;
+  grid-area: #{$lte-prefix}main-sidebar;
   min-width: var(--#{$lte-prefix}sidebar-width);
   max-width: var(--#{$lte-prefix}sidebar-width);
 

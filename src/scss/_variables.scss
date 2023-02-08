@@ -18,6 +18,7 @@ $lte-transition-fn:               ease-in-out !default;
 // Sidebar
 // --------------------------------------------------------
 $lte-sidebar-width:               250px !default;
+$lte-sidebar-breakpoint:          lg !default;
 $lte-sidebar-padding-x:           .5rem !default;
 $lte-sidebar-padding-y:           .5rem !default;
 $lte-sidebar-custom-height:       4rem !default;
@@ -66,11 +67,6 @@ $lte-sidebar-light-header-color:          shade-color($gray-800, 5%) !default;
 $lte-sidebar-mini-width:          ($nav-link-padding-x + $lte-sidebar-padding-x + .8rem) * 2 !default;
 $lte-sidebar-nav-icon-width:      $lte-sidebar-mini-width - (($lte-sidebar-padding-x + $nav-link-padding-x) * 2) !default;
 $lte-sidebar-user-image-width:    $lte-sidebar-nav-icon-width + ($nav-link-padding-x * .5) !default;
-
-// SIDEBAR HORIZONTAL
-// --------------------------------------------------------
-$lte-sidebar-horizontal-width:    100% !default;
-$lte-sidebar-horizontal-height:   80px !default;
 
 // CONTROL SIDEBAR
 // --------------------------------------------------------
@@ -146,7 +142,6 @@ $lte-direct-chat-default-msg-border-color: var(--#{$prefix}border-color) !defaul
 $lte-zindex-main-header:          $zindex-fixed + 4 !default;
 $lte-zindex-sidebar:              $zindex-fixed + 8 !default;
 $lte-zindex-main-footer:          $zindex-fixed + 2 !default;
-$lte-zindex-sidebar-horizontal:   $lte-zindex-main-header - 2 !default;
 $lte-zindex-control-sidebar:      $zindex-fixed + 1 !default;
 $lte-zindex-toasts:               $lte-zindex-sidebar + 2 !default;
 $lte-zindex-content-wrapper:      $lte-zindex-sidebar - 2 !default;
