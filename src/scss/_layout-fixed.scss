@@ -1,4 +1,4 @@
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up($lte-sidebar-breakpoint) {
   .layout-fixed {
     .main-sidebar {
       position: fixed;
@@ -6,6 +6,7 @@
       bottom: 0;
       left: 0;
       float: none;
+      max-height: 100vh;
 
       .sidebar {
         height: subtract(100vh, add($lte-main-header-height-inner, $lte-main-header-bottom-border-width));

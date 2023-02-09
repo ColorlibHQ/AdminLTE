@@ -5,6 +5,7 @@
 .main-header {
   z-index: $lte-zindex-main-header;
   grid-area: #{$lte-prefix}main-header;
+  max-width: 100vw;
   border-bottom: $lte-main-header-bottom-border;
 
   .nav-link {

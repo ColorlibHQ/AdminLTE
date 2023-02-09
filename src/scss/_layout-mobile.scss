@@ -4,10 +4,11 @@
       position: fixed;
       top: 0;
       bottom: 0;
-      min-height: 100vh;
+      max-height: 100vh;
       margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1); // stylelint-disable-line function-disallowed-list
 
       .sidebar {
+        height: subtract(100vh, add($lte-main-header-height-inner, $lte-main-header-bottom-border-width));
         overflow-x: hidden;
         overflow-y: auto;
       }
