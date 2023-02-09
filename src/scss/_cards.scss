@@ -255,7 +255,7 @@ html.maximized-card {
   --#{$prefix}btn-color: var(--#{$prefix}tertiary-color);
   --#{$prefix}btn-bg: transparent;
   --#{$prefix}btn-box-shadow: none;
-  --#{$prefix}btn-hover-color: --#{$prefix}secondary-color;
+  --#{$prefix}btn-hover-color: var(--#{$prefix}secondary-color);
   --#{$prefix}btn-active-border-color: transparent;
 
   margin: -$card-spacer-y 0;
