@@ -113,7 +113,7 @@
     "jsgrid": "^1.5.3",
     "jszip": "^3.10.0",
     "moment": "^2.29.4",
-    "overlayscrollbars": "^1.13.2",
+    "overlayscrollbars": "^2.1.0",
     "pdfmake": "^0.2.5",
     "popper.js": "^1.16.1",
     "raphael": "^2.3.0",
