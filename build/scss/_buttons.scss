@@ -10,7 +10,7 @@
 
   // Flat buttons
   &.btn-flat {
-    @include border-radius(0);
+    @include border-radius(0rem);
     border-width: 1px;
     box-shadow: none;
   }

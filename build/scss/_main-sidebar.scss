@@ -1076,7 +1076,7 @@
       &:first-child {
         margin-top: 0;
         border-top: 0;
-        @include border-top-radius(0);
+        @include border-top-radius(0rem);
       }
     }
   }
@@ -1089,7 +1089,7 @@
 .sidebar-search-open {
   .btn,
   .form-control {
-    @include border-bottom-radius(0);
+    @include border-bottom-radius(0rem);
   }
 }
 

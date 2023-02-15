@@ -156,7 +156,7 @@
   }
 
   > .dropdown-menu {
-    @include border-top-radius(0);
+    @include border-top-radius(0rem);
     padding: 0;
     width: 280px;
 

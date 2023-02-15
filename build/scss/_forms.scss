@@ -29,7 +29,7 @@
   .btn {
     &.btn-flat:first-of-type,
     &.btn-flat:last-of-type {
-      @include border-radius(0);
+      @include border-radius(0rem);
     }
   }
 }

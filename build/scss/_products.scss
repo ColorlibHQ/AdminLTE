@@ -46,7 +46,7 @@
 }
 
 .product-list-in-card > .item {
-  @include border-radius(0);
+  @include border-radius(0rem);
   border-bottom: 1px solid $card-border-color;
 
   &:last-of-type {
