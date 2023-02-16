@@ -14,7 +14,7 @@
 
 <!-- OPTIONAL SCRIPTS -->
 <script>
-  const SELECTOR_SIDEBAR = '.sidebar'
+  const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper'
   const Default = {
     scrollbarTheme: 'os-theme-light',
     scrollbarAutoHide: 'leave'
@@ -22,7 +22,7 @@
 
   document.addEventListener("DOMContentLoaded", function() {
     if (typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== 'undefined') {
-      OverlayScrollbarsGlobal.OverlayScrollbars(document.querySelector(SELECTOR_SIDEBAR), {
+      OverlayScrollbarsGlobal.OverlayScrollbars(document.querySelector(SELECTOR_SIDEBAR_WRAPPER), {
         scrollbars: {
           theme: Default.scrollbarTheme,
           autoHide: Default.scrollbarAutoHide,

@@ -1,17 +1,17 @@
-<!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-bg-dark sidebar-color-primary shadow">
-  <div class="brand-container">
-    <a href="javascript:;" class="brand-link">
+<!-- Sidebar Container -->
+<aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+  <div class="sidebar-brand">
+    <a href="@@path/index.html" class="brand-link">
       <img src="@@path/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-75 shadow">
       <span class="brand-text fw-light">AdminLTE 4</span>
     </a>
-    <a class="pushmenu mx-1 d-none d-lg-block" data-lte-toggle="sidebar-mini" href="javascript:;" role="button"><i class="fa-solid fa-angle-double-left"></i></a>
+    <a class="pushmenu d-none d-lg-block" data-lte-toggle="sidebar-mini" href="javascript:;" role="button"><i class="fa-solid fa-angle-double-left"></i></a>
   </div>
   <!-- Sidebar -->
-  <div class="sidebar">
+  <div class="sidebar-wrapper">
     <nav class="mt-2">
       <!-- Sidebar Menu -->
-      <ul class="nav nav-pills nav-sidebar flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
+      <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
         <li class="nav-item @@if (context.mainPage === 'dashboard') {menu-open}">
           <a href="javascript:;" class="nav-link @@if (context.mainPage === 'dashboard') {active}">
             <i class="nav-icon fa-solid fa-gauge-high"></i>

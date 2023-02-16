@@ -1,12 +1,7 @@
 // Custom AdminLTE Variables
 
-// Prefix for :root CSS variables
+// Prefix for :root CSS variables and others.
 $lte-prefix:                      lte- !default;
-
-// LAYOUT
-// --------------------------------------------------------
-
-$lte-font-size-root:              1rem !default;
 
 // TRANSITIONS SETTINGS
 // --------------------------------------------------------
@@ -21,11 +16,6 @@ $lte-sidebar-width:               250px !default;
 $lte-sidebar-breakpoint:          lg !default;
 $lte-sidebar-padding-x:           .5rem !default;
 $lte-sidebar-padding-y:           .5rem !default;
-$lte-sidebar-custom-height:       4rem !default;
-$lte-sidebar-custom-height-lg:    6rem !default;
-$lte-sidebar-custom-height-xl:    8rem !default;
-$lte-sidebar-custom-padding-x:    .85rem !default;
-$lte-sidebar-custom-padding-y:    .5rem !default;
 $lte-sidebar-transition:          min-width $lte-transition-speed $lte-transition-fn,
   max-width $lte-transition-speed $lte-transition-fn,
   margin-left $lte-transition-speed $lte-transition-fn,
@@ -34,33 +24,17 @@ $lte-sidebar-transition:          min-width $lte-transition-speed $lte-transitio
 // SIDEBAR SKINS
 // --------------------------------------------------------
 
-// Dark sidebar
-$lte-sidebar-dark-bg:                     $gray-800 !default;
-$lte-sidebar-dark-hover-bg:               rgba(255, 255, 255, .1) !default;
-$lte-sidebar-dark-color:                  #c2c7d0 !default;
-$lte-sidebar-dark-hover-color:            $white !default;
-$lte-sidebar-dark-active-color:           $white !default;
-$lte-sidebar-dark-submenu-bg:             transparent !default;
-$lte-sidebar-dark-submenu-color:          $lte-sidebar-dark-color !default;
-$lte-sidebar-dark-submenu-hover-color:    $white !default;
-$lte-sidebar-dark-submenu-hover-bg:       $lte-sidebar-dark-hover-bg !default;
-$lte-sidebar-dark-submenu-active-color:   $lte-sidebar-dark-bg !default;
-$lte-sidebar-dark-submenu-active-bg:      rgba(255, 255, 255, .9) !default;
-$lte-sidebar-dark-header-color:           tint-color(#c2c7d0, 5%) !default;
-
-// Light sidebar
-$lte-sidebar-light-bg:                    $white !default;
-$lte-sidebar-light-hover-bg:              rgba($black, .1) !default;
-$lte-sidebar-light-color:                 $gray-800 !default;
-$lte-sidebar-light-hover-color:           $gray-900 !default;
-$lte-sidebar-light-active-color:          $black !default;
-$lte-sidebar-light-submenu-bg:            transparent !default;
-$lte-sidebar-light-submenu-color:         #777 !default;
-$lte-sidebar-light-submenu-hover-color:   $black !default;
-$lte-sidebar-light-submenu-hover-bg:      $lte-sidebar-light-hover-bg !default;
-$lte-sidebar-light-submenu-active-color:  $lte-sidebar-light-hover-color !default;
-$lte-sidebar-light-submenu-active-bg:     $lte-sidebar-light-submenu-hover-bg !default;
-$lte-sidebar-light-header-color:          shade-color($gray-800, 5%) !default;
+$lte-sidebar-hover-bg:              rgba($black, .1) !default;
+$lte-sidebar-color:                 $gray-800 !default;
+$lte-sidebar-hover-color:           $gray-900 !default;
+$lte-sidebar-active-color:          $black !default;
+$lte-sidebar-submenu-bg:            transparent !default;
+$lte-sidebar-submenu-color:         #777 !default;
+$lte-sidebar-submenu-hover-color:   $black !default;
+$lte-sidebar-submenu-hover-bg:      $lte-sidebar-hover-bg !default;
+$lte-sidebar-submenu-active-color:  $lte-sidebar-hover-color !default;
+$lte-sidebar-submenu-active-bg:     $lte-sidebar-submenu-hover-bg !default;
+$lte-sidebar-header-color:          shade-color($gray-800, 5%) !default;
 
 // SIDEBAR MINI
 // --------------------------------------------------------
@@ -68,64 +42,39 @@ $lte-sidebar-mini-width:          ($nav-link-padding-x + $lte-sidebar-padding-x 
 $lte-sidebar-nav-icon-width:      $lte-sidebar-mini-width - (($lte-sidebar-padding-x + $nav-link-padding-x) * 2) !default;
 $lte-sidebar-user-image-width:    $lte-sidebar-nav-icon-width + ($nav-link-padding-x * .5) !default;
 
-// CONTROL SIDEBAR
-// --------------------------------------------------------
-$lte-control-sidebar-width:       $lte-sidebar-width !default;
-
 // MAIN HEADER
 // --------------------------------------------------------
-$lte-main-header-bottom-border-width:  $border-width !default;
-$lte-main-header-bottom-border-color:  var(--#{$prefix}border-color) !default;
-$lte-main-header-bottom-border:        $lte-main-header-bottom-border-width solid $lte-main-header-bottom-border-color !default;
-$lte-main-header-link-padding-y:       $navbar-padding-y !default;
-$lte-main-header-height-inner:         ($nav-link-height + ($lte-main-header-link-padding-y * 2)) !default;
-$lte-main-header-height:               add($lte-main-header-height-inner, $lte-main-header-bottom-border-width) !default;
-$lte-nav-link-sm-padding-y:            .35rem !default;
-$lte-nav-link-sm-height:               ($font-size-sm * $line-height-sm + $lte-nav-link-sm-padding-y * 1.785) !default;
-$lte-main-header-height-sm-inner:      ($lte-nav-link-sm-height + ($lte-main-header-link-padding-y * 2)) !default;
-$lte-main-header-height-sm:            add($lte-main-header-height-sm-inner, $lte-main-header-bottom-border-width) !default;
+$lte-app-header-bottom-border-width:  $border-width !default;
+$lte-app-header-bottom-border-color:  var(--#{$prefix}border-color) !default;
+$lte-app-header-bottom-border:        $lte-app-header-bottom-border-width solid $lte-app-header-bottom-border-color !default;
+$lte-app-header-link-padding-y:       $navbar-padding-y !default;
+$lte-app-header-height-inner:         ($nav-link-height + ($lte-app-header-link-padding-y * 2)) !default;
 
 // Content padding
 $lte-content-padding-y:           0 !default;
 $lte-content-padding-x:           .5rem !default;
 
-// IMAGE SIZES
-// --------------------------------------------------------
-$lte-img-size-sm:   1.875rem !default;
-$lte-img-size-md:   3.75rem !default;
-$lte-img-size-lg:   6.25rem !default;
-$lte-img-size-push: .625rem !default;
-
 // MAIN FOOTER
 // --------------------------------------------------------
-$lte-main-footer-padding:           1rem !default;
-$lte-main-footer-padding-sm:        $lte-main-footer-padding * .812 !default;
-$lte-main-footer-border-top-width:  1px !default;
-$lte-main-footer-border-top-color:  var(--#{$prefix}border-color) !default;
-$lte-main-footer-border-top:        $lte-main-footer-border-top-width solid $lte-main-footer-border-top-color !default;
-$lte-main-footer-height-inner:      (($lte-font-size-root * $line-height-base) + ($lte-main-footer-padding * 2)) !default;
-$lte-main-footer-height:            add($lte-main-footer-height-inner, $lte-main-footer-border-top-width) !default;
-$lte-main-footer-height-sm-inner:   (($font-size-sm * $line-height-base) + ($lte-main-footer-padding-sm * 2)) !default;
-$lte-main-footer-height-sm:         add($lte-main-footer-height-sm-inner, $lte-main-footer-border-top-width) !default;
-$lte-main-footer-bg:                var(--#{$prefix}body-bg) !default;
-$lte-main-footer-color:             var(--#{$prefix}secondary-color) !default;
+$lte-app-footer-padding:           1rem !default;
+$lte-app-footer-border-top-width:  1px !default;
+$lte-app-footer-border-top-color:  var(--#{$prefix}border-color) !default;
+$lte-app-footer-border-top:        $lte-app-footer-border-top-width solid $lte-app-footer-border-top-color !default;
+$lte-app-footer-bg:                var(--#{$prefix}body-bg) !default;
+$lte-app-footer-color:             var(--#{$prefix}secondary-color) !default;
 
 // BRAND LINK
 // --------------------------------------------------------
 $lte-brand-link-padding-y:        $navbar-brand-padding-y + $navbar-padding-y !default;
+$lte-brand-link-padding-x:        $lte-sidebar-padding-x !default;
 $lte-brand-link-border-buttom:    1px !default;
 
 
 // Cards
 // --------------------------------------------------------
-$lte-card-dark-border-color: tint-color($gray-900, 10%) !default;
 $lte-card-shadow: 0 0 1px rgba(var(--#{$prefix}body-color-rgb), .125), 0 1px 3px rgba(var(--#{$prefix}body-color-rgb), .2) !default;
 $lte-card-title-font-size: 1.1rem !default;
-$lte-card-title-font-size-sm: 1rem !default;
 $lte-card-title-font-weight: $font-weight-normal !default;
-$lte-card-nav-link-padding-sm-y: .4rem !default;
-$lte-card-nav-link-padding-sm-x: .8rem !default;
-$lte-card-img-size: $lte-img-size-sm !default;
 
 // PROGRESS BARS
 // --------------------------------------------------------
@@ -139,41 +88,5 @@ $lte-direct-chat-default-msg-border-color: var(--#{$prefix}border-color) !defaul
 
 // Z-INDEX
 // --------------------------------------------------------
-$lte-zindex-main-header:          $zindex-fixed + 4 !default;
+$lte-zindex-app-header:          $zindex-fixed + 4 !default;
 $lte-zindex-sidebar:              $zindex-fixed + 8 !default;
-$lte-zindex-main-footer:          $zindex-fixed + 2 !default;
-$lte-zindex-control-sidebar:      $zindex-fixed + 1 !default;
-$lte-zindex-toasts:               $lte-zindex-sidebar + 2 !default;
-$lte-zindex-content-wrapper:      $lte-zindex-sidebar - 2 !default;
-$lte-zindex-preloader:            $lte-zindex-toasts + 2 !default;
-
-// Body background (Affects main content background only)
-$lte-main-bg:                   #f4f6f9 !default;
-$lte-main-color:                  $black !default;
-
-// BUTTON
-// --------------------------------------------------------
-$lte-button-padding-y-xs: .125rem !default;
-$lte-button-padding-x-xs: .25rem !default;
-$lte-button-line-height-xs: $line-height-sm !default;
-$lte-button-font-size-xs: ($font-size-base * .75) !default;
-$lte-button-border-radius-xs: .15rem !default;
-
-// RIBBON
-// --------------------------------------------------------
-$lte-ribbon-border-size: 3px !default;
-$lte-ribbon-line-height: 100% !default;
-$lte-ribbon-padding: .375rem 0 !default;
-$lte-ribbon-font-size: .8rem !default;
-$lte-ribbon-width: 90px !default;
-$lte-ribbon-wrapper-size: 70px !default;
-$lte-ribbon-top: 10px !default;
-$lte-ribbon-right: -2px !default;
-$lte-ribbon-lg-wrapper-size: 120px !default;
-$lte-ribbon-lg-width: 160px !default;
-$lte-ribbon-lg-top: 26px !default;
-$lte-ribbon-lg-right: 0 !default;
-$lte-ribbon-xl-wrapper-size: 180px !default;
-$lte-ribbon-xl-width: 240px !default;
-$lte-ribbon-xl-top: 47px !default;
-$lte-ribbon-xl-right: 4px !default;

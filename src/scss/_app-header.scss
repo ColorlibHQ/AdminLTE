@@ -2,11 +2,11 @@
 // Core: Main Header
 //
 
-.main-header {
-  z-index: $lte-zindex-main-header;
-  grid-area: #{$lte-prefix}main-header;
+.app-header {
+  z-index: $lte-zindex-app-header;
+  grid-area: #{$lte-prefix}app-header;
   max-width: 100vw;
-  border-bottom: $lte-main-header-bottom-border;
+  border-bottom: $lte-app-header-bottom-border;
 
   .nav-link {
     position: relative;

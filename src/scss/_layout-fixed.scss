@@ -1,6 +1,6 @@
 @include media-breakpoint-up($lte-sidebar-breakpoint) {
   .layout-fixed {
-    .main-sidebar {
+    .app-sidebar {
       position: fixed;
       top: auto;
       bottom: 0;
@@ -8,30 +8,30 @@
       float: none;
       max-height: 100vh;
 
-      .sidebar {
-        height: subtract(100vh, add($lte-main-header-height-inner, $lte-main-header-bottom-border-width));
+      .sidebar-wrapper {
+        height: subtract(100vh, add($lte-app-header-height-inner, $lte-app-header-bottom-border-width));
       }
     }
 
-    .main-header,
-    .content-wrapper,
-    .main-footer {
+    .app-header,
+    .app-main,
+    .app-footer {
       margin-left: var(--#{$lte-prefix}sidebar-width);
       @include transition($lte-transition-speed $lte-transition-fn);
     }
 
     &.sidebar-collapse {
-      .main-header,
-      .content-wrapper,
-      .main-footer {
+      .app-header,
+      .app-main,
+      .app-footer {
         margin-left: $lte-sidebar-mini-width;
       }
     }
 
     &.sidebar-close {
-      .main-header,
-      .content-wrapper,
-      .main-footer {
+      .app-header,
+      .app-main,
+      .app-footer {
         margin-left: 0;
       }
     }

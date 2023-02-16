@@ -30,14 +30,14 @@ const CLASS_NAME_SIDEBAR_IS_HOVER = 'sidebar-is-hover'
 const CLASS_NAME_MENU_OPEN = 'menu-open'
 const CLASS_NAME_LAYOUT_MOBILE = 'layout-mobile'
 
-const SELECTOR_SIDEBAR = '.sidebar'
-const SELECTOR_NAV_SIDEBAR = '.nav-sidebar'
+const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper'
+const SELECTOR_SIDEBAR_MENU = '.sidebar-menu'
 const SELECTOR_NAV_ITEM = '.nav-item'
 const SELECTOR_NAV_TREEVIEW = '.nav-treeview'
 const SELECTOR_MINI_TOGGLE = '[data-lte-toggle="sidebar-mini"]'
 const SELECTOR_FULL_TOGGLE = '[data-lte-toggle="sidebar-full"]'
 const SELECTOR_LAYOUT_MOBILE = `.${CLASS_NAME_LAYOUT_MOBILE}`
-const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
+const SELECTOR_APP_MAIN = '.app-main'
 
 const Defaults = {
   onLayoutMobile: 992
@@ -70,7 +70,7 @@ class PushMenu {
       navTree.style.removeProperty('height')
     }
 
-    const navSidebar = document.querySelector(SELECTOR_NAV_SIDEBAR)
+    const navSidebar = document.querySelector(SELECTOR_SIDEBAR_MENU)
     const navItem = navSidebar?.querySelectorAll(SELECTOR_NAV_ITEM)
 
     if (navItem) {
@@ -111,7 +111,7 @@ class PushMenu {
   }
 
   sidebarHover(): void {
-    const selSidebar = document.querySelector(SELECTOR_SIDEBAR)
+    const selSidebar = document.querySelector(SELECTOR_SIDEBAR_WRAPPER)
 
     if (selSidebar) {
       selSidebar.addEventListener('mouseover', () => {
@@ -175,7 +175,7 @@ class PushMenu {
     this.sidebarHover()
 
     const targetLayoutMobile = document.querySelector(SELECTOR_LAYOUT_MOBILE)
-    const targetContentWrapper = targetLayoutMobile?.querySelector(SELECTOR_CONTENT_WRAPPER)
+    const targetContentWrapper = targetLayoutMobile?.querySelector(SELECTOR_APP_MAIN)
 
     if (targetContentWrapper) {
       targetContentWrapper.addEventListener('touchstart', this.removeOverlaySidebar)

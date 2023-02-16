@@ -32,20 +32,24 @@
 
 @keyframes fadeIn {
   from {
+    visibility: hidden;
     opacity: 0;
   }
 
   to {
+    visibility: visible;
     opacity: 1;
   }
 }
 
 @keyframes fadeOut {
   from {
+    visibility: visible;
     opacity: 1;
   }
 
   to {
+    visibility: hidden;
     opacity: 0;
   }
 }

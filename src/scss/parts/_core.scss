@@ -3,18 +3,14 @@
 //
 
 @import "../root";
-@import "../wrapper";
-@import "../main-header";
-@import "../brand-container";
-@import "../main-sidebar";
-@import "../sidebar";
-@import "../nav-sidebar";
+@import "../app-wrapper";
+@import "../app-header";
+@import "../app-sidebar";
+@import "../sidebar-brand";
 @import "../sidebar-collapse";
 @import "../sidebar-close";
-@import "../content-wrapper";
-@import "../content-header";
-@import "../content";
-@import "../main-footer";
+@import "../app-main";
+@import "../app-footer";
 @import "../layout-fixed";
 @import "../layout-mobile";
 @import "../dropdown";

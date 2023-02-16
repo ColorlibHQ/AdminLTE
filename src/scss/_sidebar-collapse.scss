@@ -3,64 +3,71 @@
 //
 
 // A fix for text overflow while transitioning from sidebar mini to full sidebar
-.nav-sidebar,
-.nav-sidebar > .nav-header,
-.nav-sidebar .nav-link {
+.sidebar-menu,
+.sidebar-menu > .nav-header,
+.sidebar-menu .nav-link {
   white-space: nowrap;
 }
 
 .sidebar-collapse {
-  .main-sidebar {
+  .app-sidebar {
     min-width: $lte-sidebar-mini-width;
     max-width: $lte-sidebar-mini-width;
   }
 
   // Make the sidebar headers
-  .nav-sidebar .nav-header {
+  .sidebar-menu .nav-header {
     display: none;
   }
 
-  .nav-sidebar {
+  .sidebar-menu {
     .nav-link {
       width: $lte-sidebar-mini-width - $lte-sidebar-padding-x * 2;
     }
   }
 
-  .nav-sidebar .nav-link p {
+  .sidebar-menu .nav-link p {
     width: 0;
     white-space: nowrap;
   }
 
-  .nav-sidebar .nav-link p,
+  .sidebar-menu .nav-link p,
   .brand-link {
-    margin-left: -10px;
-    visibility: hidden;
     animation-name: fadeOut;
     animation-duration: $lte-transition-speed;
     animation-fill-mode: both;
   }
 
   &.sidebar-is-hover {
-    .main-sidebar {
+    .app-sidebar {
       min-width: var(--#{$lte-prefix}sidebar-width);
       max-width: var(--#{$lte-prefix}sidebar-width);
     }
 
-    .nav-sidebar .nav-header {
+    .sidebar-menu .nav-header {
       display: inline-block;
     }
 
-    .nav-sidebar .nav-link {
+    .sidebar-menu .nav-link {
       width: subtract(var(--#{$lte-prefix}sidebar-width), $lte-sidebar-padding-x * 2);
     }
 
-    .nav-sidebar .nav-link p,
+    .sidebar-menu .nav-link p,
     .brand-link {
       margin-left: 0;
       visibility: visible;
       animation-name: fadeIn;
       animation-duration: $lte-transition-speed;
       animation-fill-mode: both;
+    }
+  }
+
+  &:not(.sidebar-is-hover) {
+    .sidebar-menu .nav-link p {
+      .float-end {
+        // clear: both;
+        float: none !important;
+      }
     }
   }
 }

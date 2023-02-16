@@ -7,7 +7,7 @@
     })
   </head>
   <body class="bg-body-tertiary">
-    <div class="wrapper">
+    <div class="app-wrapper">
       @@include('./dashboard/_topbar.html', {
         "path": "."
       })
@@ -18,8 +18,8 @@
         "path": "."
       })
       <!-- Main content -->
-      <main class="content-wrapper">
-        <div class="content-header">
+      <main class="app-main">
+        <div class="app-content-header">
           <div class="container-fluid">
             <div class="row">
               <div class="col-sm-6">
@@ -34,7 +34,7 @@
             </div>
           </div>
         </div>
-        <div class="content">
+        <div class="app-content">
           <div class="container-fluid">
             <!-- Info boxes -->
             <div class="row">
@@ -821,13 +821,13 @@
           </div><!-- /.container-fluid -->
         </div>
       </main>
-      <!-- /.content-wrapper -->
+      <!-- /.app-content -->
 
       @@include('./dashboard/_footer.html', {
         "path": "."
       })
     </div>
-    <!--  ./wrapper -->
+    <!--  ./app-wrapper -->
 
     @@include('./_scripts.html', {
       "path": "."

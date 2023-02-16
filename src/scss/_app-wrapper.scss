@@ -2,13 +2,13 @@
 // Core: Layout
 //
 
-.wrapper {
+.app-wrapper {
   position: relative;
   display: grid;
   grid-template-areas:
-    "#{$lte-prefix}main-sidebar #{$lte-prefix}main-header"
-    "#{$lte-prefix}main-sidebar #{$lte-prefix}content-wrapper"
-    "#{$lte-prefix}main-sidebar #{$lte-prefix}main-footer";
+    "#{$lte-prefix}app-sidebar #{$lte-prefix}app-header"
+    "#{$lte-prefix}app-sidebar #{$lte-prefix}app-main"
+    "#{$lte-prefix}app-sidebar #{$lte-prefix}app-footer";
   grid-template-rows: min-content 1fr min-content;
   grid-gap: 0;
   align-content: stretch;
@@ -17,6 +17,6 @@
   min-height: 100vh;
 }
 
-:not(.layout-mobile) .wrapper {
+:not(.layout-mobile) .app-wrapper {
   grid-template-columns: auto 1fr;
 }
