@@ -1,0 +1,426 @@
+---
+import Head from '@components/_head.astro';
+import Footer from '@components/dashboard/_footer.astro';
+import Topbar from '@components/dashboard/_topbar.astro';
+import Sidenav from '@components/dashboard/_sidenav.astro';
+import Scripts from '@components/_scripts.astro';
+
+const title = 'AdminLTE | Dashboard v3'
+const path = '../../dist'
+const mainPage = 'dashboard'
+const page = 'index3'
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <Head title={title} path={path} />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ionicons@2.0.1/css/ionicons.min.css" integrity="sha256-kqxQgiD1u2DslOB2UFKOtmYl+CpHQK2gaM3gU2V4EoY=" crossorigin="anonymous">
+  </head>
+
+  <body class="layout-fixed bg-body-tertiary">
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <!-- Main content -->
+      <main class="app-main">
+        <div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Dashboard v3</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Dashboard v3</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-header border-0">
+                    <div class="d-flex justify-content-between">
+                      <h3 class="card-title">Online Store Visitors</h3>
+                      <a href="javascript:void(0);">View Report</a>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex">
+                      <p class="d-flex flex-column">
+                        <span class="fw-bold fs-5">820</span>
+                        <span>Visitors Over Time</span>
+                      </p>
+                      <p class="ms-auto d-flex flex-column text-end">
+                        <span class="text-success">
+                          <i class="fa-solid fa-arrow-up"></i> 12.5%
+                        </span>
+                        <span class="text-secondary">Since last week</span>
+                      </p>
+                    </div>
+                    <!-- /.d-flex -->
+
+                    <div class="position-relative mb-4">
+                      <canvas id="visitors-chart" height="200"></canvas>
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-end">
+                      <span class="me-2">
+                        <i class="fa-solid fa-square text-primary"></i> This Week
+                      </span>
+
+                      <span>
+                        <i class="fa-solid fa-square text-secondary"></i> Last Week
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card -->
+
+                <div class="card">
+                  <div class="card-header border-0">
+                    <h3 class="card-title">Products</h3>
+                    <div class="card-tools">
+                      <a href="#" class="btn btn-tool btn-sm">
+                        <i class="fa-solid fa-download"></i>
+                      </a>
+                      <a href="#" class="btn btn-tool btn-sm">
+                        <i class="fa-solid fa-bars"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="card-body table-responsive p-0">
+                    <table class="table table-striped align-middle">
+                      <thead>
+                      <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Sales</th>
+                        <th>More</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <td>
+                          <img src={path + '/assets/img/default-150x150.png'} alt="Product 1" class="rounded-circle img-size-32 me-2">
+                          Some Product
+                        </td>
+                        <td>$13 USD</td>
+                        <td>
+                          <small class="text-success me-1">
+                            <i class="fa-solid fa-arrow-up"></i>
+                            12%
+                          </small>
+                          12,000 Sold
+                        </td>
+                        <td>
+                          <a href="#" class="text-secondary">
+                            <i class="fa-solid fa-search"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img src={path + '/assets/img/default-150x150.png'} alt="Product 1" class="rounded-circle img-size-32 me-2">
+                          Another Product
+                        </td>
+                        <td>$29 USD</td>
+                        <td>
+                          <small class="text-warning me-1">
+                            <i class="fa-solid fa-arrow-down"></i>
+                            0.5%
+                          </small>
+                          123,234 Sold
+                        </td>
+                        <td>
+                          <a href="#" class="text-secondary">
+                            <i class="fa-solid fa-search"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img src={path + '/assets/img/default-150x150.png'} alt="Product 1" class="rounded-circle img-size-32 me-2">
+                          Amazing Product
+                        </td>
+                        <td>$1,230 USD</td>
+                        <td>
+                          <small class="text-danger me-1">
+                            <i class="fa-solid fa-arrow-down"></i>
+                            3%
+                          </small>
+                          198 Sold
+                        </td>
+                        <td>
+                          <a href="#" class="text-secondary">
+                            <i class="fa-solid fa-search"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img src={path + '/assets/img/default-150x150.png'} alt="Product 1" class="rounded-circle img-size-32 me-2">
+                          Perfect Item
+                          <span class="badge text-bg-danger">NEW</span>
+                        </td>
+                        <td>$199 USD</td>
+                        <td>
+                          <small class="text-success me-1">
+                            <i class="fa-solid fa-arrow-up"></i>
+                            63%
+                          </small>
+                          87 Sold
+                        </td>
+                        <td>
+                          <a href="#" class="text-secondary">
+                            <i class="fa-solid fa-search"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col-md-6 -->
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-header border-0">
+                    <div class="d-flex justify-content-between">
+                      <h3 class="card-title">Sales</h3>
+                      <a href="javascript:void(0);">View Report</a>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex">
+                      <p class="d-flex flex-column">
+                        <span class="fw-bold fs-5">$18,230.00</span>
+                        <span>Sales Over Time</span>
+                      </p>
+                      <p class="ms-auto d-flex flex-column text-end">
+                        <span class="text-success">
+                          <i class="fa-solid fa-arrow-up"></i> 33.1%
+                        </span>
+                        <span class="text-secondary">Since last month</span>
+                      </p>
+                    </div>
+                    <!-- /.d-flex -->
+
+                    <div class="position-relative mb-4">
+                      <canvas id="sales-chart" height="200"></canvas>
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-end">
+                      <span class="me-2">
+                        <i class="fa-solid fa-square text-primary"></i> This year
+                      </span>
+
+                      <span>
+                        <i class="fa-solid fa-square text-secondary"></i> Last year
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card -->
+
+                <div class="card">
+                  <div class="card-header border-0">
+                    <h3 class="card-title">Online Store Overview</h3>
+                    <div class="card-tools">
+                      <a href="#" class="btn btn-sm btn-tool">
+                        <i class="fa-solid fa-download"></i>
+                      </a>
+                      <a href="#" class="btn btn-sm btn-tool">
+                        <i class="fa-solid fa-bars"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                      <p class="text-success fs-2">
+                        <i class="ion ion-ios-refresh-empty"></i>
+                      </p>
+                      <p class="d-flex flex-column text-end">
+                        <span class="fw-bold">
+                          <i class="ion ion-android-arrow-up text-success"></i> 12%
+                        </span>
+                        <span class="text-secondary">CONVERSION RATE</span>
+                      </p>
+                    </div>
+                    <!-- /.d-flex -->
+                    <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                      <p class="text-warning fs-2">
+                        <i class="ion ion-ios-cart-outline"></i>
+                      </p>
+                      <p class="d-flex flex-column text-end">
+                        <span class="fw-bold">
+                          <i class="ion ion-android-arrow-up text-warning"></i> 0.8%
+                        </span>
+                        <span class="text-secondary">SALES RATE</span>
+                      </p>
+                    </div>
+                    <!-- /.d-flex -->
+                    <div class="d-flex justify-content-between align-items-center mb-0">
+                      <p class="text-danger fs-2">
+                        <i class="ion ion-ios-people-outline"></i>
+                      </p>
+                      <p class="d-flex flex-column text-end">
+                        <span class="fw-bold">
+                          <i class="ion ion-android-arrow-down text-danger"></i> 1%
+                        </span>
+                        <span class="text-secondary">REGISTRATION RATE</span>
+                      </p>
+                    </div>
+                    <!-- /.d-flex -->
+                  </div>
+                </div>
+              </div>
+              <!-- /.col-md-6 -->
+            </div>
+            <!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </div>
+      </main>
+      <!-- /.app-content -->
+
+    <Footer />
+    </div>
+    <!--  ./app-wrapper -->
+
+    <Scripts path={path} />
+
+    <!-- OPTIONAL SCRIPTS -->
+
+    <!-- ChartJS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js" integrity="sha256-7lWo7cjrrponRJcS6bc8isfsPDwSKoaYfGIHgSheQkk=" crossorigin="anonymous"></script>
+
+    <script is:inline>
+      // NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT
+      // IT'S ALL JUST JUNK FOR DEMO
+      // ++++++++++++++++++++++++++++++++++++++++++
+
+      /* global Chart:false */
+      (function () {
+        'use strict'
+
+        var ticksStyle = {
+          fontColor: '#495057',
+          fontStyle: 'bold'
+        }
+
+        var mode = 'index'
+        var intersect = true
+
+        var salesChartSelector = document.querySelector('#sales-chart')
+        // eslint-disable-next-line no-unused-vars
+        var salesChart = new Chart(salesChartSelector, {
+          type: 'bar',
+          data: {
+            labels: ['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+            datasets: [{
+              label: 'My First Dataset',
+              data: [65, 59, 80, 81, 56, 55, 40],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+              ],
+              borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        })
+
+        var visitorsChartSelector = document.querySelector('#visitors-chart')
+        var visitorsChart = new Chart(visitorsChartSelector, {
+          data: {
+            labels: ['18th', '20th', '22nd', '24th', '26th', '28th', '30th'],
+            datasets: [{
+              type: 'line',
+              data: [100, 120, 170, 167, 180, 177, 160],
+              backgroundColor: 'transparent',
+              borderColor: '#007bff',
+              pointBorderColor: '#007bff',
+              pointBackgroundColor: '#007bff'
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            },
+            {
+              type: 'line',
+              data: [60, 80, 70, 67, 80, 77, 100],
+              backgroundColor: 'tansparent',
+              borderColor: '#ced4da',
+              pointBorderColor: '#ced4da',
+              pointBackgroundColor: '#ced4da'
+              // pointHoverBackgroundColor: '#ced4da',
+              // pointHoverBorderColor    : '#ced4da'
+            }]
+          },
+          options: {
+            maintainAspectRatio: false,
+            tooltip: {
+              mode: mode,
+              intersect: intersect
+            },
+            hover: {
+              mode: mode,
+              intersect: intersect
+            },
+            plugins: {
+              legend: {
+                display: false
+              }
+            },
+            scales: {
+              yAxes: {
+                // display: false,
+                gridLines: {
+                  display: true,
+                  lineWidth: '4px',
+                  color: 'rgba(0, 0, 0, .2)',
+                  zeroLineColor: 'transparent'
+                },
+                ticks: Object.assign({
+                  beginAtZero: true,
+                  suggestedMax: 200
+                }, ticksStyle)
+              },
+              xAxes: {
+                display: true,
+                gridLines: {
+                  display: false
+                },
+                ticks: ticksStyle
+              }
+            }
+          }
+        })
+      })()
+    </script>
+  </body>
+</html>

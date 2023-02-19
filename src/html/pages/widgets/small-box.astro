@@ -1,0 +1,119 @@
+---
+import Head from '@components/_head.astro';
+import Footer from '@components/dashboard/_footer.astro';
+import Topbar from '@components/dashboard/_topbar.astro';
+import Sidenav from '@components/dashboard/_sidenav.astro';
+import Scripts from '@components/_scripts.astro';
+
+const title = 'AdminLTE 4 | Widgets - Small Box'
+const mainPage = 'widgets'
+const page = 'small-box'
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <Head title={title} />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ionicons@2.0.1/css/ionicons.min.css" integrity="sha256-kqxQgiD1u2DslOB2UFKOtmYl+CpHQK2gaM3gU2V4EoY=" crossorigin="anonymous">
+  </head>
+  <body class="layout-fixed bg-body-tertiary">
+    <div class="app-wrapper">
+      <Topbar />
+      <Sidenav mainPage={mainPage} page={page} />
+      <!-- Main content -->
+      <main class="app-main">
+        <div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Small Box</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Small Box</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Main content -->
+        <div class="app-content">
+          <div class="container-fluid">
+            <!-- Small Box (Stat card) -->
+            <h5 class="mb-2">Small Box</h5>
+            <div class="row">
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box text-bg-primary">
+                  <div class="inner">
+                    <h3>150</h3>
+
+                    <p>New Orders</p>
+                  </div>
+                  <div class="icon">
+                    <i class="inner-icon ion ion-bag"></i>
+                  </div>
+                  <a href="#" class="small-box-footer">More info <i class="fa-solid fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box text-bg-success">
+                  <div class="inner">
+                    <h3>53<sup class="fs-5">%</sup></h3>
+
+                    <p>Bounce Rate</p>
+                  </div>
+                  <div class="icon">
+                    <i class="inner-icon ion ion-stats-bars"></i>
+                  </div>
+                  <a href="#" class="small-box-footer">More info <i class="fa-solid fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box text-bg-warning">
+                  <div class="inner">
+                    <h3>44</h3>
+
+                    <p>User Registrations</p>
+                  </div>
+                  <div class="icon">
+                    <i class="inner-icon ion ion-person-add"></i>
+                  </div>
+                  <a href="#" class="small-box-footer">More info <i class="fa-solid fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box text-bg-danger">
+                  <div class="inner">
+                    <h3>65</h3>
+
+                    <p>Unique Visitors</p>
+                  </div>
+                  <div class="icon">
+                    <i class="inner-icon ion ion-pie-graph"></i>
+                  </div>
+                  <a href="#" class="small-box-footer">More info <i class="fa-solid fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+              <!-- ./col -->
+            </div>
+            <!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+      </main>
+      <!-- /.app-content -->
+
+      <Footer />
+    </div>
+    <!--  ./app-wrapper -->
+
+    <Scripts />
+  </body>
+</html>

@@ -1,0 +1,99 @@
+---
+const { path } = Astro.props
+const distPath = (path != undefined) ? path : '../../../dist'
+---
+<!-- OPTIONAL SCRIPTS -->
+<!-- overlayScrollbars -->
+<script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.0.3/browser/overlayscrollbars.browser.es6.min.js" integrity="sha256-/dwBbLeVyyWBtWfH3jHdL2oVVmLKoGnEFzoOSL3nJC0=" crossorigin="anonymous"></script>
+
+<!-- OPTIONAL SCRIPT For Bootstrap 5 -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+
+<!-- Bootstrap 5 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+
+<!-- REQUIRED SCRIPTS -->
+<!-- AdminLTE App -->
+<script src={distPath + '/js/adminlte.js'}></script>
+
+<!-- OPTIONAL SCRIPTS -->
+<script is:inline>
+  const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper'
+  const Default = {
+    scrollbarTheme: 'os-theme-light',
+    scrollbarAutoHide: 'leave'
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    if (typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== 'undefined') {
+      OverlayScrollbarsGlobal.OverlayScrollbars(document.querySelector(SELECTOR_SIDEBAR_WRAPPER), {
+        scrollbars: {
+          theme: Default.scrollbarTheme,
+          autoHide: Default.scrollbarAutoHide,
+          clickScroll: true
+        }
+      })
+    }
+  })
+</script>
+
+<!-- DON'T USE THIS IN PRODUCTION -->
+<script is:inline>
+  // Color Mode Toggler
+ (() => {
+  'use strict'
+
+  const storedTheme = localStorage.getItem('theme')
+
+  const getPreferredTheme = () => {
+    if (storedTheme) {
+      return storedTheme
+    }
+
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  }
+
+  const setTheme = function (theme) {
+    if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-bs-theme', 'dark')
+    } else {
+      document.documentElement.setAttribute('data-bs-theme', theme)
+    }
+  }
+
+  setTheme(getPreferredTheme())
+
+  const showActiveTheme = theme => {
+    const activeThemeIcon = document.querySelector('.theme-icon-active i')
+    const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+    const svgOfActiveBtn = btnToActive.querySelector('i').getAttribute('class')
+
+    document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+      element.classList.remove('active')
+    })
+
+    btnToActive.classList.add('active')
+    activeThemeIcon.setAttribute('class', svgOfActiveBtn)
+  }
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (storedTheme !== 'light' || storedTheme !== 'dark') {
+      setTheme(getPreferredTheme())
+    }
+  })
+
+  window.addEventListener('DOMContentLoaded', () => {
+    showActiveTheme(getPreferredTheme())
+
+    document.querySelectorAll('[data-bs-theme-value]')
+      .forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const theme = toggle.getAttribute('data-bs-theme-value')
+          localStorage.setItem('theme', theme)
+          setTheme(theme)
+          showActiveTheme(theme)
+        })
+      })
+  })
+})()
+</script>

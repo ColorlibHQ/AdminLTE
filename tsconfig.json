@@ -1,4 +1,5 @@
 {
+  "root": true,
   "compilerOptions": {
     "noUnusedParameters": true,
     "noImplicitReturns": true,
@@ -10,7 +11,11 @@
     "strictNullChecks": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
-    "strictPropertyInitialization": true
+    "strictPropertyInitialization": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/html/components/*"],
+    },
   },
   "include": [
     "src/ts/**/*"
@@ -18,6 +23,5 @@
   "exclude": [
     "dist",
     "node_modules",
-    "plugins"
   ]
 }

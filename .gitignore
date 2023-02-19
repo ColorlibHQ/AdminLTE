@@ -1,3 +1,9 @@
+# build output
+dist/
+
+# generated types
+.astro/
+
 # System / Log files
 *.DS_Store
 *.log
@@ -32,4 +38,3 @@ TODO
 test.html
 ad.js
 /.cache/
-/.temp/
