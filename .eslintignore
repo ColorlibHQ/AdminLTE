@@ -4,4 +4,4 @@
 /dist/
 /docs/
 /docs_html/
-/env.d.ts/
+**/env.d.ts

@@ -4,6 +4,9 @@ dist/
 # generated types
 .astro/
 
+# unwanted types
+**/env.d.ts
+
 # System / Log files
 *.DS_Store
 *.log

@@ -3,8 +3,8 @@
   --#{$lte-prefix}sidebar-color: #{$lte-sidebar-color};
   --#{$lte-prefix}sidebar-hover-color: #{$lte-sidebar-hover-color};
   --#{$lte-prefix}sidebar-active-color: #{$lte-sidebar-active-color};
-  --#{$lte-prefix}sidebar-menu-active-bg: #{$primary};
-  --#{$lte-prefix}sidebar-menu-active-color: #{color-contrast($primary)};
+  --#{$lte-prefix}sidebar-menu-active-bg: #{$lte-sidebar-menu-active-bg};
+  --#{$lte-prefix}sidebar-menu-active-color: #{$lte-sidebar-menu-active-color};
   --#{$lte-prefix}sidebar-submenu-bg: #{$lte-sidebar-submenu-bg};
   --#{$lte-prefix}sidebar-submenu-color: #{$lte-sidebar-submenu-color};
   --#{$lte-prefix}sidebar-submenu-hover-color: #{$lte-sidebar-submenu-hover-color};
@@ -40,9 +40,9 @@
       }
     }
 
-    > .nav-link.active {
+    > .nav-link.active:not(:hover) {
       color: var(--#{$lte-prefix}sidebar-menu-active-color) !important;
-      // background-color: var(--#{$lte-prefix}sidebar-menu-active-bg) !important;
+      background-color: var(--#{$lte-prefix}sidebar-menu-active-bg) !important;
     }
 
     // Hover and active states
@@ -50,7 +50,7 @@
     &:hover > .nav-link,
     > .nav-link:focus  {
       color: var(--#{$lte-prefix}sidebar-hover-color);
-      // background-color: var(--#{$lte-prefix}sidebar-hover-bg);
+      background-color: var(--#{$lte-prefix}sidebar-hover-bg);
     }
 
     // First Level Submenu
@@ -183,8 +183,8 @@
       --#{$lte-prefix}sidebar-color: #{$lte-sidebar-color-dark};
       --#{$lte-prefix}sidebar-hover-color: #{$lte-sidebar-hover-color-dark};
       --#{$lte-prefix}sidebar-active-color: #{$lte-sidebar-active-color-dark};
-      --#{$lte-prefix}sidebar-menu-active-bg: #{$primary};
-      --#{$lte-prefix}sidebar-menu-active-color: #{color-contrast($primary)};
+      --#{$lte-prefix}sidebar-menu-active-bg: #{$lte-sidebar-menu-active-bg-dark};
+      --#{$lte-prefix}sidebar-menu-active-color: #{$lte-sidebar-menu-active-color-dark};
       --#{$lte-prefix}sidebar-submenu-bg: #{$lte-sidebar-submenu-bg-dark};
       --#{$lte-prefix}sidebar-submenu-color: #{$lte-sidebar-submenu-color-dark};
       --#{$lte-prefix}sidebar-submenu-hover-color: #{$lte-sidebar-submenu-hover-color-dark};

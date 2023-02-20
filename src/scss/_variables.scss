@@ -28,12 +28,14 @@ $lte-sidebar-hover-bg:              rgba($black, .1) !default;
 $lte-sidebar-color:                 $gray-800 !default;
 $lte-sidebar-hover-color:           $gray-900 !default;
 $lte-sidebar-active-color:          $black !default;
+$lte-sidebar-menu-active-bg:        transparent !default;
+$lte-sidebar-menu-active-color:     $black !default;
 $lte-sidebar-submenu-bg:            transparent !default;
 $lte-sidebar-submenu-color:         #777 !default;
 $lte-sidebar-submenu-hover-color:   $black !default;
-$lte-sidebar-submenu-hover-bg:      $lte-sidebar-hover-bg !default;
-$lte-sidebar-submenu-active-color:  $lte-sidebar-hover-color !default;
-$lte-sidebar-submenu-active-bg:     $lte-sidebar-submenu-hover-bg !default;
+$lte-sidebar-submenu-hover-bg:      rgba($black, .1) !default;
+$lte-sidebar-submenu-active-color:  $gray-900 !default;
+$lte-sidebar-submenu-active-bg:     rgba($black, .1) !default;
 $lte-sidebar-header-color:          shade-color($gray-800, 5%) !default;
 
 // SIDEBAR MINI
