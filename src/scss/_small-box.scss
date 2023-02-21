@@ -5,10 +5,11 @@
 .small-box {
   @include border-radius($border-radius);
   @include box-shadow($lte-card-shadow);
-
   position: relative;
   display: block;
   margin-bottom: 1.25rem;
+  --bs-link-color-rgb: none;
+  --bs-heading-color: none;
 
   // content wrapper
   > .inner {
@@ -20,14 +21,12 @@
     z-index: 10;
     display: block;
     padding: 3px 0;
-    color: rgba($white, .8);
     text-align: center;
     text-decoration: none;
-    background-color: rgba($black, .1);
+    background-color: rgba($black, .07);
 
     &:hover {
-      color: $white;
-      background-color: rgba($black, .15);
+      background-color: rgba($black, .1);
     }
   }
 
@@ -92,30 +91,15 @@
   }
 
   // the icon
-  .icon {
+  .small-box-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
     z-index: 0;
+    height: 70px;
+    font-size: 70px;
     color: rgba($black, .15);
-
-    > i {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 90px;
-      @include transition(transform $lte-transition-speed linear);
-
-      &.inner-icon {
-        top: 20px;
-        font-size: 70px;
-      }
-    }
-
-    svg {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 70px;
-      @include transition(transform $lte-transition-speed linear);
-    }
+    @include transition(transform $lte-transition-speed linear);
   }
 
   // Small box hover state
@@ -123,16 +107,8 @@
     text-decoration: none;
 
     // Animate icons on small box hover
-    .icon {
-      > i {
-        &,
-        &.inner-icon {
-          transform: scale(1.1);
-        }
-      }
-      > svg {
-        transform: scale(1.1);
-      }
+    .small-box-icon {
+      transform: scale(1.1);
     }
   }
 }
@@ -142,7 +118,7 @@
   .small-box {
     text-align: center;
 
-    .icon {
+    .small-box-icon {
       display: none;
     }
 
