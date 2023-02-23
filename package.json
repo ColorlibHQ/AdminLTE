@@ -79,7 +79,7 @@
     "postcss-cli": "^10.1.0",
     "rollup": "^3.14.0",
     "rtlcss": "^4.0.0",
-    "sass": "^1.58.0",
+    "sass": "^1.58.3",
     "stylelint": "^14.9.1",
     "stylelint-config-twbs-bootstrap": "^7.0.0",
     "terser": "^5.16.4",
