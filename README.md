@@ -26,23 +26,22 @@ SCSS has been used to increase code customizability.
 To compile the dist files you need Node.js/npm, clone/download the repo then:
 
 1. `npm install` (install npm deps)
-2. `npm install gulp-cli -g` (install gulp-cli globally)
-3. _Optional:_ `gulp` (developer mode, autocompile with browsersync support for live demo)
-4. `gulp compile` (compile css/js files)
+2. _Optional:_ `npm run dev` (developer mode, autocompile with browsersync support for live demo)
+3. `npm run production` (compile css/js files)
 
 
 ## Contributing
 
 - Highly welcome.
-- For your extra reference check [AdminLTE v3 Contribution Guide](https://github.com/ColorlibHQ/AdminLTE#contributing)
+- For your extra reference check [AdminLTE v4 Contribution Guide](https://github.com/ColorlibHQ/AdminLTE#contributing)
 - First thing first, you should have bit knowledge about NodeJS.
 - Github Knowledge.
 - Install NodeJS LTS version.
-- Clone this Repository to your machine.
+- Clone this Repository to your machine and change to `v4-dev` branch.
 - Go to Cloned Folder.
 - In cli/bash run `npm install` it will install dependency from `package.json`.
 - After installation complets, run `npm run dev`
-- Cool, Send urs changes.
+- Cool, Send urs changes in PR to `v4-dev` branch.
 
 
 ## License
