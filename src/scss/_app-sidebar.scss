@@ -20,6 +20,42 @@
   @include transition($lte-sidebar-transition);
 }
 
+.sidebar-brand {
+  display: flex;
+  justify-content: space-between;
+  padding: $lte-brand-link-padding-y $lte-brand-link-padding-x;
+  overflow: hidden;
+  font-size: $navbar-brand-font-size;
+  white-space: nowrap;
+  border-bottom: $lte-brand-link-border-buttom solid var(--#{$prefix}border-color);
+  @include transition(width $lte-transition-speed $lte-transition-fn);
+
+  .brand-link {
+    flex: 1;
+    &:hover {
+      text-decoration: none;
+    }
+
+    .brand-image {
+      float: left;
+      width: auto;
+      max-height: 33px;
+      margin-top: -3px;
+      margin-right: .5rem;
+      margin-left: .8rem;
+      line-height: .8;
+    }
+  }
+
+  .brand-text {
+    color: rgba(var(--#{$prefix}emphasis-color-rgb), .8);
+    @include transition(flex $lte-transition-speed $lte-transition-fn, width $lte-transition-speed $lte-transition-fn);
+    &:hover {
+      color: var(--#{$prefix}emphasis-color);
+    }
+  }
+}
+
 .sidebar-wrapper {
   padding-top: $lte-sidebar-padding-y;
   padding-right: $lte-sidebar-padding-x;
@@ -119,6 +155,12 @@
   }
 
   // All levels
+  .nav-link > .nav-badge,
+  .nav-link > p > .nav-badge {
+    position: absolute;
+    right: 1rem;
+  }
+
   .nav-link > .nav-arrow,
   .nav-link > p > .nav-arrow {
     position: absolute;
@@ -168,10 +210,186 @@
   }
 }
 
-.hold-transition {
+// A fix for text overflow while transitioning from sidebar mini to full sidebar
+.sidebar-menu,
+.sidebar-menu > .nav-header,
+.sidebar-menu .nav-link {
+  white-space: nowrap;
+}
+
+.sidebar-mini.sidebar-collapse {
   .app-sidebar {
+    min-width: $lte-sidebar-mini-width;
+    max-width: $lte-sidebar-mini-width;
+  }
+
+  // Make the sidebar headers
+  .sidebar-menu .nav-header {
+    display: none;
+  }
+
+  .sidebar-menu {
+    .nav-link {
+      width: $lte-sidebar-mini-width - $lte-sidebar-padding-x * 2;
+    }
+  }
+
+  .sidebar-menu .nav-link p {
+    width: 0;
+    white-space: nowrap;
+  }
+
+  .sidebar-menu .nav-link p,
+  .brand-text {
+    visibility: hidden;
+    animation-name: fadeOut;
+    animation-fill-mode: both;
+  }
+
+  &.sidebar-is-hover {
+    .app-sidebar {
+      min-width: var(--#{$lte-prefix}sidebar-width);
+      max-width: var(--#{$lte-prefix}sidebar-width);
+    }
+
+    .sidebar-menu .nav-header {
+      display: inline-block;
+    }
+
+    .sidebar-menu .nav-link {
+      width: subtract(var(--#{$lte-prefix}sidebar-width), $lte-sidebar-padding-x * 2);
+    }
+
+    .sidebar-menu .nav-link p,
+    .brand-text {
+      margin-left: 0;
+      visibility: visible;
+      animation-name: fadeIn;
+      animation-duration: $lte-transition-speed;
+      animation-fill-mode: both;
+    }
+  }
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  $next: breakpoint-next($breakpoint, $grid-breakpoints);
+  $infix: breakpoint-infix($next, $grid-breakpoints);
+
+  .sidebar-expand#{$infix} {
+    @include media-breakpoint-up($next) {
+      &.layout-fixed {
+        .app-sidebar {
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          max-height: 100vh;
+
+          .sidebar-wrapper {
+            height: subtract(100vh, add($lte-app-header-height-inner, $lte-app-header-bottom-border-width));
+          }
+        }
+
+        .app-header,
+        .app-main,
+        .app-footer {
+          margin-left: var(--#{$lte-prefix}sidebar-width);
+        }
+
+        &.sidebar-mini.sidebar-collapse {
+          .app-header,
+          .app-main,
+          .app-footer {
+            margin-left: $lte-sidebar-mini-width;
+          }
+        }
+
+        &.sidebar-collapse {
+          .app-header,
+          .app-main,
+          .app-footer {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+
+    @include media-breakpoint-down($next) {
+      $max: breakpoint-max($next);
+
+      &::before {
+        display: none;
+        content: "#{$max}";
+      }
+
+      .app-sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        max-height: 100vh;
+        margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1); // stylelint-disable-line function-disallowed-list
+
+        .sidebar-wrapper {
+          height: subtract(100vh, add($lte-app-header-height-inner, $lte-app-header-bottom-border-width));
+          overflow-x: hidden;
+          overflow-y: auto;
+        }
+      }
+
+      &.sidebar-open {
+        .app-sidebar {
+          margin-left: 0;
+        }
+
+        .sidebar-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: $lte-zindex-sidebar-overlay;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, .2);
+          animation-name: fadeIn;
+          animation-fill-mode: both;
+        }
+      }
+    }
+  }
+}
+
+.sidebar-collapse:not(.sidebar-mini) {
+  .app-sidebar {
+    // stylelint-disable-next-line
+    margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1);
+  }
+}
+
+// To prevent onload transition and animation
+.app-loaded {
+  &.sidebar-mini.sidebar-collapse {
+    .sidebar-menu .nav-link p,
+    .brand-text {
+      animation-duration: $lte-transition-speed;
+    }
+  }
+}
+body:not(.app-loaded) {
+  .app-header,
+  .app-sidebar,
+  .app-main,
+  .app-footer {
     @include transition(none !important);
-    animation: none !important;
+    animation-duration: 0s !important;
+  }
+}
+.hold-transition {
+  .app-header,
+  .app-sidebar,
+  .app-main,
+  .app-footer {
+    @include transition(none !important);
+    animation-duration: 0s !important;
   }
 }
 

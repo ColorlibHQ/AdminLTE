@@ -10,5 +10,6 @@
   color: $lte-app-footer-color;
   background-color: $lte-app-footer-bg;
   border-top: $lte-app-footer-border-top;
+  @include transition($lte-transition-speed $lte-transition-fn);
 }
 

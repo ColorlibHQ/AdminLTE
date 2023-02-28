@@ -16,6 +16,7 @@ import {
  */
 
 const CLASS_NAME_HOLD_TRANSITIONS = 'hold-transition'
+const CLASS_NAME_APP_LOADED = 'app-loaded'
 
 /**
  * Class Definition
@@ -24,11 +25,9 @@ const CLASS_NAME_HOLD_TRANSITIONS = 'hold-transition'
 
 class Layout {
   _element: HTMLElement
-  _config: undefined
 
-  constructor(element: HTMLElement, config: undefined) {
+  constructor(element: HTMLElement) {
     this._element = element
-    this._config = config as unknown as undefined
   }
 
   holdTransition(): void {
@@ -44,8 +43,11 @@ class Layout {
 }
 
 domReady(() => {
-  const data = new Layout(document.body, undefined)
+  const data = new Layout(document.body)
   data.holdTransition()
+  setTimeout(() => {
+    document.body.classList.add(CLASS_NAME_APP_LOADED)
+  }, 400)
 })
 
 export default Layout

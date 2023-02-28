@@ -31,10 +31,8 @@ const CLASS_NAME_DIRECT_CHAT_OPEN = 'direct-chat-contacts-open'
 
 class DirectChat {
   _element: HTMLElement
-  _config: undefined
-  constructor(element: HTMLElement, config: undefined) {
+  constructor(element: HTMLElement) {
     this._element = element
-    this._config = config
   }
 
   toggle(): void {
@@ -70,7 +68,7 @@ domReady(() => {
       const chatPane = target.closest(SELECTOR_DIRECT_CHAT) as HTMLElement | undefined
 
       if (chatPane) {
-        const data = new DirectChat(chatPane, undefined)
+        const data = new DirectChat(chatPane)
         data.toggle()
       }
     })
