@@ -271,97 +271,104 @@
   }
 }
 
-@each $breakpoint in map-keys($grid-breakpoints) {
-  $next: breakpoint-next($breakpoint, $grid-breakpoints);
-  $infix: breakpoint-infix($next, $grid-breakpoints);
+.sidebar-collapse:not(.sidebar-mini) {
+  .app-sidebar {
+    // stylelint-disable-next-line
+    margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1);
+  }
+}
 
-  .sidebar-expand#{$infix} {
-    @include media-breakpoint-up($next) {
-      &.layout-fixed {
+.sidebar-expand {
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    $next: breakpoint-next($breakpoint, $grid-breakpoints);
+    $infix: breakpoint-infix($next, $grid-breakpoints);
+
+    /* stylelint-disable-next-line scss/selector-no-union-class-name */
+    &#{$infix} {
+      @include media-breakpoint-up($next) {
+        &.layout-fixed {
+          .app-sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            max-height: 100vh;
+
+            .sidebar-wrapper {
+              height: subtract(100vh, add($lte-app-header-height-inner, $lte-app-header-bottom-border-width));
+            }
+          }
+
+          .app-header,
+          .app-main,
+          .app-footer {
+            margin-left: var(--#{$lte-prefix}sidebar-width);
+          }
+
+          &.sidebar-collapse {
+            .app-header,
+            .app-main,
+            .app-footer {
+              margin-left: 0;
+            }
+          }
+
+          &.sidebar-mini.sidebar-collapse {
+            .app-header,
+            .app-main,
+            .app-footer {
+              margin-left: $lte-sidebar-mini-width;
+            }
+          }
+        }
+      }
+
+      @include media-breakpoint-down($next) {
+        $max: breakpoint-max($next);
+
+        &::before {
+          display: none;
+          content: "#{$max}";
+        }
+
         .app-sidebar {
           position: fixed;
           top: 0;
           bottom: 0;
           left: 0;
           max-height: 100vh;
+          margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1); // stylelint-disable-line function-disallowed-list
 
           .sidebar-wrapper {
             height: subtract(100vh, add($lte-app-header-height-inner, $lte-app-header-bottom-border-width));
+            overflow-x: hidden;
+            overflow-y: auto;
           }
         }
 
-        .app-header,
-        .app-main,
-        .app-footer {
-          margin-left: var(--#{$lte-prefix}sidebar-width);
+        &.sidebar-mini .app-sidebar {
+          margin-left: -$lte-sidebar-mini-width;
         }
 
-        &.sidebar-mini.sidebar-collapse {
-          .app-header,
-          .app-main,
-          .app-footer {
-            margin-left: $lte-sidebar-mini-width;
-          }
-        }
-
-        &.sidebar-collapse {
-          .app-header,
-          .app-main,
-          .app-footer {
+        &.sidebar-open {
+          .app-sidebar {
             margin-left: 0;
           }
+
+          .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: $lte-zindex-sidebar-overlay;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .2);
+            animation-name: fadeIn;
+            animation-fill-mode: both;
+          }
         }
       }
     }
-
-    @include media-breakpoint-down($next) {
-      $max: breakpoint-max($next);
-
-      &::before {
-        display: none;
-        content: "#{$max}";
-      }
-
-      .app-sidebar {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        max-height: 100vh;
-        margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1); // stylelint-disable-line function-disallowed-list
-
-        .sidebar-wrapper {
-          height: subtract(100vh, add($lte-app-header-height-inner, $lte-app-header-bottom-border-width));
-          overflow-x: hidden;
-          overflow-y: auto;
-        }
-      }
-
-      &.sidebar-open {
-        .app-sidebar {
-          margin-left: 0;
-        }
-
-        .sidebar-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          z-index: $lte-zindex-sidebar-overlay;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, .2);
-          animation-name: fadeIn;
-          animation-fill-mode: both;
-        }
-      }
-    }
-  }
-}
-
-.sidebar-collapse:not(.sidebar-mini) {
-  .app-sidebar {
-    // stylelint-disable-next-line
-    margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1);
   }
 }
 
