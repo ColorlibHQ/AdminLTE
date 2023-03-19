@@ -1,4 +1,4 @@
-name: Lint
+name: Bundlewatch
 
 on:
   push:
@@ -15,7 +15,7 @@ permissions:
   contents: read
 
 jobs:
-  run:
+  bundlewatch:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,5 +33,11 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      - name: Run lint
-        run: npm run lint
+      - name: Run dist
+        run: npm run compile
+
+      - name: Run bundlewatch
+        run: npm run bundlewatch
+        env:
+          BUNDLEWATCH_GITHUB_TOKEN: "${{ secrets.BUNDLEWATCH_GITHUB_TOKEN }}"
+          CI_BRANCH_BASE: v4-dev
