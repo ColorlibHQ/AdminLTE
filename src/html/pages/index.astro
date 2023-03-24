@@ -15,6 +15,9 @@ const page = 'index'
 <html lang="en">
   <head>
     <Head title={title} path={path} />
+
+    <!-- apexcharts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css" integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0=" crossorigin="anonymous">
   </head>
 
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -109,36 +112,18 @@ const page = 'index'
             <div class="row">
               <!-- Start col -->
               <div class="col-lg-7">
-                <!-- Custom tabs (Charts with tabs)-->
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">
-                      <i class="fa-solid fa-chart-pie me-1"></i>
-                      Sales
-                    </h3>
+                    <h3 class="card-title">Sales Value</h3>
+
                     <div class="card-tools">
-                      <ul class="nav nav-pills ms-auto">
-                        <li class="nav-item">
-                          <a class="nav-link active" href="#revenue-chart" data-bs-toggle="tab">Area</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#sales-chart" data-bs-toggle="tab">Donut</a>
-                        </li>
-                      </ul>
+
                     </div>
-                  </div><!-- /.card-header -->
+                  </div>
+
                   <div class="card-body">
-                    <div class="tab-content p-0">
-                      <!-- Morris chart - Sales -->
-                      <div class="chart tab-pane active" id="revenue-chart"
-                          style="position: relative; height: 300px;">
-                          <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                      </div>
-                      <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                        <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
-                      </div>
-                    </div>
-                  </div><!-- /.card-body -->
+                    <div id="revenue-chart"></div>
+                  </div>
                 </div>
                 <!-- /.card -->
 
@@ -360,114 +345,53 @@ const page = 'index'
 
     <!-- OPTIONAL SCRIPTS -->
 
+    <!-- apexcharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js" integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8=" crossorigin="anonymous"></script>
+
     <!-- ChartJS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js" integrity="sha256-7lWo7cjrrponRJcS6bc8isfsPDwSKoaYfGIHgSheQkk=" crossorigin="anonymous"></script>
     <script is:inline>
       // NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT
       // IT'S ALL JUST JUNK FOR DEMO
       // ++++++++++++++++++++++++++++++++++++++++++
 
-      /* Chart.js Charts */
-      // Sales chart
-      (function () {
-        'use strict'
-
-        var salesChartCanvas = document.querySelector('#revenue-chart-canvas').getContext('2d')
-
-        var salesChartData = {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-          datasets: [
-            {
-              label: 'Digital Goods',
-              backgroundColor: 'rgba(60,141,188,0.9)',
-              borderColor: 'rgba(60,141,188,0.8)',
-              fill: true,
-              tension: 0.4,
-              pointRadius: 0,
-              pointColor: '#3b8bba',
-              pointStrokeColor: 'rgba(60,141,188,1)',
-              pointHighlightFill: '#fff',
-              pointHighlightStroke: 'rgba(60,141,188,1)',
-              data: [28, 48, 40, 19, 86, 27, 90]
-            },
-            {
-              label: 'Electronics',
-              backgroundColor: 'rgba(210, 214, 222, 1)',
-              borderColor: 'rgba(210, 214, 222, 1)',
-              fill: true,
-              tension: 0.4,
-              pointRadius: 0,
-              pointColor: 'rgba(210, 214, 222, 1)',
-              pointStrokeColor: '#c1c7d1',
-              pointHighlightFill: '#fff',
-              pointHighlightStroke: 'rgba(220,220,220,1)',
-              data: [65, 59, 80, 81, 56, 55, 40]
-            }
-          ]
-        }
-
-        var salesChartOptions = {
-          maintainAspectRatio: false,
-          responsive: true,
-          plugins: {
-            legend: {
-              display: false
-            }
+      var sales_chart_options = {
+          series: [{
+          name: 'Digital Goods',
+          data: [28, 48, 40, 19, 86, 27, 90]
+        },{
+          name: 'Electronics',
+          data: [65, 59, 80, 81, 56, 55, 40]
+        }],
+        chart: {
+          height: 300,
+          type: 'area',
+          toolbar: {
+            show: false,
           },
-          scales: {
-            xAxes: {
-              gridLines: {
-                display: false
-              }
-            },
-            yAxes: {
-              gridLines: {
-                display: false
-              }
-            }
-          }
-        }
-
-        // This will get the first returned node in the js collection.
-        var salesChart = new Chart(salesChartCanvas, { // lgtm[js/unused-local-variable]
-          type: 'line',
-          data: salesChartData,
-          options: salesChartOptions
-        })
-
-        // Donut Chart
-        var pieChartCanvas = document.querySelector('#sales-chart-canvas').getContext('2d')
-        var pieData = {
-          labels: [
-            'Instore Sales',
-            'Download Sales',
-            'Mail-Order Sales'
-          ],
-          datasets: [
-            {
-              data: [30, 12, 20],
-              backgroundColor: ['#f56954', '#00a65a', '#f39c12']
-            }
-          ]
-        }
-        var pieOptions = {
-          plugins: {
-            legend: {
-              display: false
-            }
+        },
+        legend: {
+          show: false
+        },
+        colors:['#0d6efd', '#20c997'],
+        dataLabels: {
+          enabled: false,
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        xaxis: {
+          type: 'datetime',
+          categories: ["2023-01-01", "2023-02-01", "2023-03-01", "2023-04-01", "2023-05-01", "2023-06-01", "2023-07-01"]
+        },
+        tooltip: {
+          x: {
+            format: 'MMMM yyyy'
           },
-          maintainAspectRatio: false,
-          responsive: true
-        }
-        // Create pie or douhnut chart
-        // You can switch between pie and douhnut using the method below.
-        // eslint-disable-next-line no-unused-vars
-        var pieChart = new Chart(pieChartCanvas, { // lgtm[js/unused-local-variable]
-          type: 'doughnut',
-          data: pieData,
-          options: pieOptions
-        })
-      })()
+        },
+      };
+
+      var sales_chart = new ApexCharts(document.querySelector("#revenue-chart"), sales_chart_options);
+      sales_chart.render();
     </script>
   </body>
 </html>

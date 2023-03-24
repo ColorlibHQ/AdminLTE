@@ -14,6 +14,9 @@ const page = 'index2'
 <html lang="en">
   <head>
     <Head title={title} path={path} />
+
+    <!-- apexcharts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css" integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0=" crossorigin="anonymous">
   </head>
 
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -138,11 +141,7 @@ const page = 'index2'
                           <strong>Sales: 1 Jan, 2023 - 30 Jul, 2023</strong>
                         </p>
 
-                        <div class="chart">
-                          <!-- Sales Chart Canvas -->
-                          <canvas id="salesChart" style="height: 180px;"></canvas>
-                        </div>
-                        <!-- /.chart-responsive -->
+                        <div id="sales-chart"></div>
                       </div>
                       <!-- /.col -->
                       <div class="col-md-4">
@@ -682,22 +681,8 @@ const page = 'index2'
                   <!-- /.card-header -->
                   <div class="card-body">
                     <div class="row">
-                      <div class="col-md-8">
-                        <div class="chart-responsive">
-                          <canvas id="pieChart" height="150"></canvas>
-                        </div>
-                        <!-- ./chart-responsive -->
-                      </div>
-                      <!-- /.col -->
-                      <div class="col-md-4">
-                        <ul class="row list-unstyled text-nowrap">
-                          <li class="col"><i class="fa-regular fa-circle text-danger"></i> Chrome</li>
-                          <li class="col"><i class="fa-regular fa-circle text-success"></i> IE</li>
-                          <li class="col"><i class="fa-regular fa-circle text-warning"></i> FireFox</li>
-                          <li class="col"><i class="fa-regular fa-circle text-info"></i> Safari</li>
-                          <li class="col"><i class="fa-regular fa-circle text-primary"></i> Opera</li>
-                          <li class="col"><i class="fa-regular fa-circle text-secondary"></i> Navigator</li>
-                        </ul>
+                      <div class="col-12">
+                        <div id="pie-chart"></div>
                       </div>
                       <!-- /.col -->
                     </div>
@@ -752,63 +737,63 @@ const page = 'index2'
                   </div>
                   <!-- /.card-header -->
                   <div class="card-body p-0">
-                    <ul class="products-list product-list-in-card ps-2 pe-2">
-                      <li class="item">
-                        <div class="product-img">
+                    <div class="px-2">
+                      <div class="d-flex border-top py-2 px-1">
+                        <div class="col-2">
                           <img src={path + '/assets/img/default-150x150.png'} alt="Product Image" class="img-size-50">
                         </div>
-                        <div class="product-info">
-                          <a href="javascript:void(0)" class="product-title">Samsung TV
+                        <div class="col-10">
+                          <a href="javascript:void(0)" class="fw-bold">Samsung TV
                             <span class="badge text-bg-warning float-end">$1800</span></a>
-                          <span class="product-description">
+                          <div class="text-truncate">
                             Samsung 32" 1080p 60Hz LED Smart HDTV.
-                          </span>
+                          </div>
                         </div>
-                      </li>
+                      </div>
                       <!-- /.item -->
-                      <li class="item">
-                        <div class="product-img">
+                      <div class="d-flex border-top py-2 px-1">
+                        <div class="col-2">
                           <img src={path + '/assets/img/default-150x150.png'} alt="Product Image" class="img-size-50">
                         </div>
-                        <div class="product-info">
-                          <a href="javascript:void(0)" class="product-title">Bicycle
+                        <div class="col-10">
+                          <a href="javascript:void(0)" class="fw-bold">Bicycle
                             <span class="badge text-bg-info float-end">$700</span></a>
-                          <span class="product-description">
+                          <div class="text-truncate">
                             26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-                          </span>
+                          </div>
                         </div>
-                      </li>
+                      </div>
                       <!-- /.item -->
-                      <li class="item">
-                        <div class="product-img">
+                      <div class="d-flex border-top py-2 px-1">
+                        <div class="col-2">
                           <img src={path + '/assets/img/default-150x150.png'} alt="Product Image" class="img-size-50">
                         </div>
-                        <div class="product-info">
-                          <a href="javascript:void(0)" class="product-title">
+                        <div class="col-10">
+                          <a href="javascript:void(0)" class="fw-bold">
                             Xbox One <span class="badge text-bg-danger float-end">
                             $350
                           </span>
                           </a>
-                          <span class="product-description">
+                          <div class="text-truncate">
                             Xbox One Console Bundle with Halo Master Chief Collection.
-                          </span>
+                          </div>
                         </div>
-                      </li>
+                      </div>
                       <!-- /.item -->
-                      <li class="item">
-                        <div class="product-img">
+                      <div class="d-flex border-top py-2 px-1">
+                        <div class="col-2">
                           <img src={path + '/assets/img/default-150x150.png'} alt="Product Image" class="img-size-50">
                         </div>
-                        <div class="product-info">
-                          <a href="javascript:void(0)" class="product-title">PlayStation 4
+                        <div class="col-10">
+                          <a href="javascript:void(0)" class="fw-bold">PlayStation 4
                             <span class="badge text-bg-success float-end">$399</span></a>
-                          <span class="product-description">
+                          <div class="text-truncate">
                             PlayStation 4 500GB Console (PS4)
-                          </span>
+                          </div>
                         </div>
-                      </li>
+                      </div>
                       <!-- /.item -->
-                    </ul>
+                    </div>
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer text-center">
@@ -834,130 +819,92 @@ const page = 'index2'
 
     <!-- OPTIONAL SCRIPTS -->
 
-    <!-- ChartJS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js" integrity="sha256-7lWo7cjrrponRJcS6bc8isfsPDwSKoaYfGIHgSheQkk=" crossorigin="anonymous"></script>
+    <!-- apexcharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js" integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8=" crossorigin="anonymous"></script>
 
     <script is:inline>
       // NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT
       // IT'S ALL JUST JUNK FOR DEMO
       // ++++++++++++++++++++++++++++++++++++++++++
 
-      /* ChartJS
+      /* apexcharts
         * -------
-        * Here we will create a few charts using ChartJS
+        * Here we will create a few charts using apexcharts
         */
 
       //-----------------------
       // - MONTHLY SALES CHART -
       //-----------------------
-      (function () {
-        'use strict'
-        // Get context with querySelector - using Chart.js .getContext('2d') method.
-        var salesChartCanvas = document.querySelector('#salesChart').getContext('2d')
 
-        var salesChartData = {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-          datasets: [
-            {
-              label: 'Digital Goods',
-              backgroundColor: 'rgba(60,141,188,0.9)',
-              borderColor: 'rgba(60,141,188,0.8)',
-              fill: true,
-              pointRadius: 0,
-              pointColor: '#3b8bba',
-              pointStrokeColor: 'rgba(60,141,188,1)',
-              pointHighlightFill: '#fff',
-              pointHighlightStroke: 'rgba(60,141,188,1)',
-              data: [28, 48, 40, 19, 86, 27, 90]
-            },
-            {
-              label: 'Electronics',
-              backgroundColor: 'rgba(210, 214, 222, 1)',
-              borderColor: 'rgba(210, 214, 222, 1)',
-              fill: true,
-              pointRadius: 0,
-              pointColor: 'rgba(210, 214, 222, 1)',
-              pointStrokeColor: '#c1c7d1',
-              pointHighlightFill: '#fff',
-              pointHighlightStroke: 'rgba(220,220,220,1)',
-              data: [65, 59, 80, 81, 56, 55, 40]
-            }
-          ]
-        }
-
-        var salesChartOptions = {
-          maintainAspectRatio: false,
-          responsive: true,
-          tension: 0.4,
-          plugins: {
-            legend: {
-              display: false
-            }
+      var sales_chart_options = {
+          series: [{
+          name: 'Digital Goods',
+          data: [28, 48, 40, 19, 86, 27, 90]
+        },{
+          name: 'Electronics',
+          data: [65, 59, 80, 81, 56, 55, 40]
+        }],
+        chart: {
+          height: 180,
+          type: 'area',
+          toolbar: {
+            show: false,
           },
-          scales: {
-            xAxes: {
-              gridLines: {
-                display: false
-              }
-            },
-            yAxes: {
-              gridLines: {
-                display: false
-              }
-            }
-          }
-        }
+        },
+        legend: {
+          show: false
+        },
+        colors:['#0d6efd', '#20c997'],
+        dataLabels: {
+          enabled: false,
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        xaxis: {
+          type: 'datetime',
+          categories: ["2023-01-01", "2023-02-01", "2023-03-01", "2023-04-01", "2023-05-01", "2023-06-01", "2023-07-01"]
+        },
+        tooltip: {
+          x: {
+            format: 'MMMM yyyy'
+          },
+        },
+      };
 
-        // This will get the first returned node in the js collection.
-        var salesChart = new Chart(salesChartCanvas, {
-          type: 'line',
-          data: salesChartData,
-          options: salesChartOptions
-        })
+      var sales_chart = new ApexCharts(document.querySelector("#sales-chart"), sales_chart_options);
+      sales_chart.render();
 
-        //---------------------------
-        // - END MONTHLY SALES CHART -
-        //---------------------------
+      //---------------------------
+      // - END MONTHLY SALES CHART -
+      //---------------------------
 
-        //-------------
-        // - PIE CHART -
-        //-------------
+      //-------------
+      // - PIE CHART -
+      //-------------
 
-        // Get context with querySelector - using Chart.js .getContext('2d') method.
-        var pieChartCanvas = document.querySelector('#pieChart').getContext('2d')
+      var pie_chart_options = {
+        series: [700, 500, 400, 600, 300, 100],
+          chart: {
+          type: 'donut',
+        },
+        labels: [
+          'Chrome',
+          'Edge',
+          'FireFox',
+          'Safari',
+          'Opera',
+          'IE',
+        ],
+        dataLabels: {
+          enabled: false,
+        },
+        colors: ['#0d6efd', '#20c997', '#ffc107', '#d63384', '#6f42c1', '#adb5bd']
+      };
 
-        var pieData = {
-          labels: [
-            'Chrome',
-            'IE',
-            'FireFox',
-            'Safari',
-            'Opera',
-            'Navigator'
-          ],
-          datasets: [
-            {
-              data: [700, 500, 400, 600, 300, 100],
-              backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de']
-            }
-          ]
-        }
-        var pieOptions = {
-          plugins: {
-            legend: {
-              display: false
-            }
-          }
-        }
-        // Create pie or douhnut chart
-        // You can switch between pie and douhnut using the method below.
-        // eslint-disable-next-line no-unused-vars
-        var pieChart = new Chart(pieChartCanvas, {
-          type: 'doughnut',
-          data: pieData,
-          options: pieOptions
-        })
-      })()
+      var pie_chart = new ApexCharts(document.querySelector("#pie-chart"), pie_chart_options);
+      pie_chart.render();
+
       //-----------------
       // - END PIE CHART -
       //-----------------

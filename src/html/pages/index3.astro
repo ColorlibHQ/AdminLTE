@@ -14,6 +14,9 @@ const page = 'index3'
 <html lang="en">
   <head>
     <Head title={title} path={path} />
+
+    <!-- apexcharts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css" integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0=" crossorigin="anonymous">
   </head>
 
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -64,7 +67,7 @@ const page = 'index3'
                     <!-- /.d-flex -->
 
                     <div class="position-relative mb-4">
-                      <canvas id="visitors-chart" height="200"></canvas>
+                      <div id="visitors-chart"></div>
                     </div>
 
                     <div class="d-flex flex-row justify-content-end">
@@ -205,13 +208,13 @@ const page = 'index3'
                         <span class="text-success">
                           <i class="fa-solid fa-arrow-up"></i> 33.1%
                         </span>
-                        <span class="text-secondary">Since last month</span>
+                        <span class="text-secondary">Since Past Year</span>
                       </p>
                     </div>
                     <!-- /.d-flex -->
 
                     <div class="position-relative mb-4">
-                      <canvas id="sales-chart" height="200"></canvas>
+                      <div id="sales-chart"></div>
                     </div>
 
                     <div class="d-flex flex-row justify-content-end">
@@ -301,131 +304,109 @@ const page = 'index3'
 
     <!-- OPTIONAL SCRIPTS -->
 
-    <!-- ChartJS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js" integrity="sha256-7lWo7cjrrponRJcS6bc8isfsPDwSKoaYfGIHgSheQkk=" crossorigin="anonymous"></script>
+    <!-- apexcharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js" integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8=" crossorigin="anonymous"></script>
 
     <script is:inline>
       // NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT
       // IT'S ALL JUST JUNK FOR DEMO
       // ++++++++++++++++++++++++++++++++++++++++++
 
-      /* global Chart:false */
-      (function () {
-        'use strict'
+      var visitors_chart_options = {
+          series: [
+          {
+            name: "High - 2023",
+            data: [100, 120, 170, 167, 180, 177, 160]
+          },
+          {
+            name: "Low - 2023",
+            data: [60, 80, 70, 67, 80, 77, 100]
+          }
+        ],
+          chart: {
+          height: 200,
+          type: 'line',
+          toolbar: {
+            show: false
+          }
+        },
+        colors: ['#0d6efd', '#adb5bd'],
+        stroke: {
+          curve: 'smooth'
+        },
+        grid: {
+          borderColor: '#e7e7e7',
+          row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.5
+          },
+        },
+        legend: {
+          show: false
+        },
+        markers: {
+          size: 1
+        },
+        xaxis: {
+          categories: ['22th', '23th', '24th', '25th', '26th', '27th', '28th'],
+        },
+      };
 
-        var ticksStyle = {
-          fontColor: '#495057',
-          fontStyle: 'bold'
+      var visitors_chart = new ApexCharts(document.querySelector("#visitors-chart"), visitors_chart_options);
+      visitors_chart.render();
+
+
+      var sales_chart_options = {
+        series: [{
+        name: 'Net Profit',
+        data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+      }, {
+        name: 'Revenue',
+        data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+      }, {
+        name: 'Free Cash Flow',
+        data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+      }],
+        chart: {
+        type: 'bar',
+        height: 200
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: '55%',
+          endingShape: 'rounded'
+        },
+      },
+      legend: {
+        show: false
+      },
+      colors:['#0d6efd', '#20c997', '#ffc107'],
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        show: true,
+        width: 2,
+        colors: ['transparent']
+      },
+      xaxis: {
+        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+      },
+      fill: {
+        opacity: 1
+      },
+      tooltip: {
+        y: {
+          formatter: function (val) {
+            return "$ " + val + " thousands"
+          }
         }
+      }
+      };
 
-        var mode = 'index'
-        var intersect = true
-
-        var salesChartSelector = document.querySelector('#sales-chart')
-        // eslint-disable-next-line no-unused-vars
-        var salesChart = new Chart(salesChartSelector, {
-          type: 'bar',
-          data: {
-            labels: ['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
-            datasets: [{
-              label: 'My First Dataset',
-              data: [65, 59, 80, 81, 56, 55, 40],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 205, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(201, 203, 207, 0.2)'
-              ],
-              borderColor: [
-                'rgb(255, 99, 132)',
-                'rgb(255, 159, 64)',
-                'rgb(255, 205, 86)',
-                'rgb(75, 192, 192)',
-                'rgb(54, 162, 235)',
-                'rgb(153, 102, 255)',
-                'rgb(201, 203, 207)'
-              ],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            maintainAspectRatio: false,
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        })
-
-        var visitorsChartSelector = document.querySelector('#visitors-chart')
-        var visitorsChart = new Chart(visitorsChartSelector, {
-          data: {
-            labels: ['18th', '20th', '22nd', '24th', '26th', '28th', '30th'],
-            datasets: [{
-              type: 'line',
-              data: [100, 120, 170, 167, 180, 177, 160],
-              backgroundColor: 'transparent',
-              borderColor: '#007bff',
-              pointBorderColor: '#007bff',
-              pointBackgroundColor: '#007bff'
-              // pointHoverBackgroundColor: '#007bff',
-              // pointHoverBorderColor    : '#007bff'
-            },
-            {
-              type: 'line',
-              data: [60, 80, 70, 67, 80, 77, 100],
-              backgroundColor: 'tansparent',
-              borderColor: '#ced4da',
-              pointBorderColor: '#ced4da',
-              pointBackgroundColor: '#ced4da'
-              // pointHoverBackgroundColor: '#ced4da',
-              // pointHoverBorderColor    : '#ced4da'
-            }]
-          },
-          options: {
-            maintainAspectRatio: false,
-            tooltip: {
-              mode: mode,
-              intersect: intersect
-            },
-            hover: {
-              mode: mode,
-              intersect: intersect
-            },
-            plugins: {
-              legend: {
-                display: false
-              }
-            },
-            scales: {
-              yAxes: {
-                // display: false,
-                gridLines: {
-                  display: true,
-                  lineWidth: '4px',
-                  color: 'rgba(0, 0, 0, .2)',
-                  zeroLineColor: 'transparent'
-                },
-                ticks: Object.assign({
-                  beginAtZero: true,
-                  suggestedMax: 200
-                }, ticksStyle)
-              },
-              xAxes: {
-                display: true,
-                gridLines: {
-                  display: false
-                },
-                ticks: ticksStyle
-              }
-            }
-          }
-        })
-      })()
+      var sales_chart = new ApexCharts(document.querySelector("#sales-chart"), sales_chart_options);
+      sales_chart.render();
     </script>
   </body>
 </html>
