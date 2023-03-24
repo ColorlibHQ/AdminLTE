@@ -7,17 +7,14 @@
   @include box-shadow($lte-card-shadow);
   margin-bottom: map-get($spacers, 3);
 
-  &:not(.card-outline) {
+  &[class*="card-"]:not(.card-outline) {
     > .card-header {
       color: var(--#{$lte-prefix}card-variant-color);
       background-color: var(--#{$lte-prefix}card-variant-bg);
 
       .btn-tool {
-        color: rgba(var(--#{$lte-prefix}card-variant-color-rgb), .8);
-
-        &:hover {
-          color: var(--#{$lte-prefix}card-variant-color);
-        }
+        --#{$prefix}btn-color: rgba(var(--#{$lte-prefix}card-variant-color-rgb), .8);
+        --#{$prefix}btn-hover-color: var(--#{$lte-prefix}card-variant-color);
       }
     }
   }
@@ -264,11 +261,11 @@ html.maximized-card {
 
 @each $name, $color in $theme-colors {
   .card-#{$name},
-  .card.bg-#{$name},
-  .card.text-bg-#{$name} {
+  .bg-#{$name},
+  .text-bg-#{$name} {
     --#{$lte-prefix}card-variant-bg: #{$color};
-    --#{$lte-prefix}card-variant-color: #{color-contrast($color)};
     --#{$lte-prefix}card-variant-bg-rgb: #{to-rgb($color)};
+    --#{$lte-prefix}card-variant-color: #{color-contrast($color)};
     --#{$lte-prefix}card-variant-color-rgb: #{to-rgb(color-contrast($color))};
   }
 }
