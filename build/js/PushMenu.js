@@ -20,6 +20,7 @@ const JQUERY_NO_CONFLICT = $.fn[NAME]
 const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
 const EVENT_COLLAPSED_DONE = `collapsed-done${EVENT_KEY}`
 const EVENT_SHOWN = `shown${EVENT_KEY}`
+const EVENT_SHOWN_DONE = `shown-done${EVENT_KEY}`
 
 const SELECTOR_TOGGLE_BUTTON = '[data-widget="pushmenu"]'
 const SELECTOR_BODY = 'body'
@@ -74,6 +75,10 @@ class PushMenu {
     }
 
     $(this._element).trigger($.Event(EVENT_SHOWN))
+    
+    setTimeout(() => {
+      $(this._element).trigger($.Event(EVENT_SHOWN_DONE))
+    }, this._options.animationSpeed)
   }
 
   collapse() {
