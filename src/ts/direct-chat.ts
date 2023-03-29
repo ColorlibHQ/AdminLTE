@@ -61,7 +61,7 @@ class DirectChat {
 domReady(() => {
   const button = document.querySelectorAll(SELECTOR_DATA_TOGGLE)
 
-  for (const btn of button) {
+  button.forEach(btn => {
     btn.addEventListener('click', event => {
       event.preventDefault()
       const target = event.target as HTMLElement
@@ -72,7 +72,7 @@ domReady(() => {
         data.toggle()
       }
     })
-  }
+  })
 })
 
 export default DirectChat

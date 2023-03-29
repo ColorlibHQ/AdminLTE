@@ -96,7 +96,7 @@ class Treeview {
 domReady(() => {
   const button = document.querySelectorAll(SELECTOR_DATA_TOGGLE)
 
-  for (const btn of button) {
+  button.forEach(btn => {
     btn.addEventListener('click', event => {
       const target = event.target as HTMLElement
       const targetItem = target.closest(SELECTOR_NAV_ITEM) as HTMLElement | undefined
@@ -106,7 +106,7 @@ domReady(() => {
         data.toggle()
       }
     })
-  }
+  })
 })
 
 export default Treeview

@@ -63,18 +63,18 @@ class PushMenu {
   menusClose() {
     const navTreeview = document.querySelectorAll<HTMLElement>(SELECTOR_NAV_TREEVIEW)
 
-    for (const navTree of navTreeview) {
+    navTreeview.forEach(navTree => {
       navTree.style.removeProperty('display')
       navTree.style.removeProperty('height')
-    }
+    })
 
     const navSidebar = document.querySelector(SELECTOR_SIDEBAR_MENU)
     const navItem = navSidebar?.querySelectorAll(SELECTOR_NAV_ITEM)
 
     if (navItem) {
-      for (const navI of navItem) {
+      navItem.forEach(navI => {
         navI.classList.remove(CLASS_NAME_MENU_OPEN)
-      }
+      })
     }
   }
 
@@ -112,7 +112,7 @@ class PushMenu {
 
   addSidebarBreakPoint() {
     const sidebarExpandList = document.querySelector(SELECTOR_SIDEBAR_EXPAND)?.classList ?? []
-    const sidebarExpand = [...sidebarExpandList].find(className => className.startsWith(CLASS_NAME_SIDEBAR_EXPAND)) ?? ''
+    const sidebarExpand = Array.from(sidebarExpandList).find(className => className.startsWith(CLASS_NAME_SIDEBAR_EXPAND)) ?? ''
     const sidebar = document.getElementsByClassName(sidebarExpand)[0]
     const sidebarContent = window.getComputedStyle(sidebar, '::before').getPropertyValue('content')
     this._config = { ...this._config, sidebarBreakpoint: Number(sidebarContent.replace(/[^\d.-]/g, '')) }
@@ -177,7 +177,7 @@ domReady(() => {
 
   const fullBtn = document.querySelectorAll(SELECTOR_SIDEBAR_TOGGLE)
 
-  for (const btn of fullBtn) {
+  fullBtn.forEach(btn => {
     btn.addEventListener('click', event => {
       event.preventDefault()
 
@@ -193,8 +193,7 @@ domReady(() => {
         data.toggle()
       }
     })
-  }
+  })
 })
 
 export default PushMenu
-

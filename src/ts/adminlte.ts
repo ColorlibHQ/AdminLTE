@@ -11,5 +11,3 @@ export {
   DirectChat,
   CardWidget
 }
-
-//

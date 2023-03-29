@@ -1,5 +1,4 @@
 const typescript = require('@rollup/plugin-typescript')
-// import * as pkg from '../../package.json'
 const pkg = require('../../package.json')
 
 const year = new Date().getFullYear()
@@ -17,5 +16,8 @@ module.exports = {
     banner,
     name: 'adminlte'
   },
-  plugins: [typescript()]
+  plugins: [typescript({
+    declaration: true,
+    declarationDir: 'types'
+  })]
 }

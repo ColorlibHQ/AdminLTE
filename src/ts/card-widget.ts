@@ -84,13 +84,11 @@ class CardWidget {
 
       const elm = this._parent?.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`)
 
-      if (elm !== undefined) {
-        for (const el of elm) {
-          if (el instanceof HTMLElement) {
-            slideUp(el, this._config.animationSpeed)
-          }
+      elm.forEach(el => {
+        if (el instanceof HTMLElement) {
+          slideUp(el, this._config.animationSpeed)
         }
-      }
+      })
 
       setTimeout(() => {
         if (this._parent) {
@@ -118,13 +116,11 @@ class CardWidget {
 
       const elm = this._parent?.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`)
 
-      if (elm !== undefined) {
-        for (const el of elm) {
-          if (el instanceof HTMLElement) {
-            slideDown(el, this._config.animationSpeed)
-          }
+      elm.forEach(el => {
+        if (el instanceof HTMLElement) {
+          slideDown(el, this._config.animationSpeed)
         }
-      }
+      })
 
       setTimeout(() => {
         if (this._parent) {
@@ -250,36 +246,36 @@ class CardWidget {
 domReady(() => {
   const collapseBtn = document.querySelectorAll(SELECTOR_DATA_COLLAPSE)
 
-  for (const btn of collapseBtn) {
+  collapseBtn.forEach(btn => {
     btn.addEventListener('click', event => {
       event.preventDefault()
       const target = event.target as HTMLElement
       const data = new CardWidget(target, Default)
       data.toggle()
     })
-  }
+  })
 
   const removeBtn = document.querySelectorAll(SELECTOR_DATA_REMOVE)
 
-  for (const btn of removeBtn) {
+  removeBtn.forEach(btn => {
     btn.addEventListener('click', event => {
       event.preventDefault()
       const target = event.target as HTMLElement
       const data = new CardWidget(target, Default)
       data.remove()
     })
-  }
+  })
 
   const maxBtn = document.querySelectorAll(SELECTOR_DATA_MAXIMIZE)
 
-  for (const btn of maxBtn) {
+  maxBtn.forEach(btn => {
     btn.addEventListener('click', event => {
       event.preventDefault()
       const target = event.target as HTMLElement
       const data = new CardWidget(target, Default)
       data.toggleMaximize()
     })
-  }
+  })
 })
 
 export default CardWidget
