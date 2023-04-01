@@ -18,6 +18,7 @@ const distPath = (path != undefined) ? path : '../../../dist'
 
 <!-- OPTIONAL SCRIPTS -->
 <script is:inline>
+  const SELECTOR_APP_SIDEBAR = '.app-sidebar'
   const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper'
   const Default = {
     scrollbarTheme: 'os-theme-light',
@@ -25,14 +26,16 @@ const distPath = (path != undefined) ? path : '../../../dist'
   }
 
   document.addEventListener("DOMContentLoaded", function() {
-    if (typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== 'undefined') {
-      OverlayScrollbarsGlobal.OverlayScrollbars(document.querySelector(SELECTOR_SIDEBAR_WRAPPER), {
-        scrollbars: {
-          theme: Default.scrollbarTheme,
-          autoHide: Default.scrollbarAutoHide,
-          clickScroll: true
-        }
-      })
+    if (document.querySelector(SELECTOR_APP_SIDEBAR)) {
+      if (typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== 'undefined') {
+        OverlayScrollbarsGlobal.OverlayScrollbars(document.querySelector(SELECTOR_SIDEBAR_WRAPPER), {
+          scrollbars: {
+            theme: Default.scrollbarTheme,
+            autoHide: Default.scrollbarAutoHide,
+            clickScroll: true
+          }
+        })
+      }
     }
   })
 </script>
