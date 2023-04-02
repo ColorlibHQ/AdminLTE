@@ -29,6 +29,7 @@ const CLASS_NAME_SIDEBAR_EXPAND = 'sidebar-expand'
 const CLASS_NAME_SIDEBAR_OVERLAY = 'sidebar-overlay'
 const CLASS_NAME_MENU_OPEN = 'menu-open'
 
+const SELECTOR_APP_SIDEBAR = '.app-sidebar'
 const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper'
 const SELECTOR_SIDEBAR_MENU = '.sidebar-menu'
 const SELECTOR_NAV_ITEM = '.nav-item'
@@ -151,12 +152,16 @@ class PushMenu {
  */
 
 domReady(() => {
-  const data = new PushMenu(document.body, Defaults)
-  data.init()
+  const sidebar = document?.querySelector(SELECTOR_APP_SIDEBAR) as HTMLElement | undefined
 
-  window.addEventListener('resize', () => {
+  if (sidebar) {
+    const data = new PushMenu(sidebar, Defaults)
     data.init()
-  })
+
+    window.addEventListener('resize', () => {
+      data.init()
+    })
+  }
 
   const sidebarOverlay = document.createElement('div')
   sidebarOverlay.className = CLASS_NAME_SIDEBAR_OVERLAY
