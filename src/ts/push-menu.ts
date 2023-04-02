@@ -152,53 +152,53 @@ class PushMenu {
  */
 
 domReady(() => {
-  const sidebar = document.querySelector(SELECTOR_APP_SIDEBAR)
+  const sidebar = document?.querySelector(SELECTOR_APP_SIDEBAR) as HTMLElement | undefined
 
   if (sidebar) {
-    const data = new PushMenu(document.body, Defaults)
+    const data = new PushMenu(sidebar, Defaults)
     data.init()
 
     window.addEventListener('resize', () => {
       data.init()
     })
-
-    const sidebarOverlay = document.createElement('div')
-    sidebarOverlay.className = CLASS_NAME_SIDEBAR_OVERLAY
-    document.querySelector(SELECTOR_APP_WRAPPER)?.append(sidebarOverlay)
-
-    sidebarOverlay.addEventListener('touchstart', event => {
-      event.preventDefault()
-      const target = event.currentTarget as HTMLElement
-      const data = new PushMenu(target, Defaults)
-      data.collapse()
-    })
-    sidebarOverlay.addEventListener('click', event => {
-      event.preventDefault()
-      const target = event.currentTarget as HTMLElement
-      const data = new PushMenu(target, Defaults)
-      data.collapse()
-    })
-
-    const fullBtn = document.querySelectorAll(SELECTOR_SIDEBAR_TOGGLE)
-
-    fullBtn.forEach(btn => {
-      btn.addEventListener('click', event => {
-        event.preventDefault()
-
-        let button = event.currentTarget as HTMLElement | undefined
-
-        if (button?.dataset.lteToggle !== 'sidebar') {
-          button = button?.closest(SELECTOR_SIDEBAR_TOGGLE) as HTMLElement | undefined
-        }
-
-        if (button) {
-          event?.preventDefault()
-          const data = new PushMenu(button, Defaults)
-          data.toggle()
-        }
-      })
-    })
   }
+
+  const sidebarOverlay = document.createElement('div')
+  sidebarOverlay.className = CLASS_NAME_SIDEBAR_OVERLAY
+  document.querySelector(SELECTOR_APP_WRAPPER)?.append(sidebarOverlay)
+
+  sidebarOverlay.addEventListener('touchstart', event => {
+    event.preventDefault()
+    const target = event.currentTarget as HTMLElement
+    const data = new PushMenu(target, Defaults)
+    data.collapse()
+  })
+  sidebarOverlay.addEventListener('click', event => {
+    event.preventDefault()
+    const target = event.currentTarget as HTMLElement
+    const data = new PushMenu(target, Defaults)
+    data.collapse()
+  })
+
+  const fullBtn = document.querySelectorAll(SELECTOR_SIDEBAR_TOGGLE)
+
+  fullBtn.forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault()
+
+      let button = event.currentTarget as HTMLElement | undefined
+
+      if (button?.dataset.lteToggle !== 'sidebar') {
+        button = button?.closest(SELECTOR_SIDEBAR_TOGGLE) as HTMLElement | undefined
+      }
+
+      if (button) {
+        event?.preventDefault()
+        const data = new PushMenu(button, Defaults)
+        data.toggle()
+      }
+    })
+  })
 })
 
 export default PushMenu
