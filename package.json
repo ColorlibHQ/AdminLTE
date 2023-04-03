@@ -77,7 +77,7 @@
     "chart.js": "^2.9.4",
     "codemirror": "^5.65.11",
     "datatables.net": "^1.13.2",
-    "datatables.net-autofill-bs4": "^2.4.0",
+    "datatables.net-autofill-bs4": "^2.5.3",
     "datatables.net-bs4": "^1.12.1",
     "datatables.net-buttons-bs4": "^2.3.4",
     "datatables.net-colreorder-bs4": "^1.6.2",
