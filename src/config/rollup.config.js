@@ -16,8 +16,5 @@ module.exports = {
     banner,
     name: 'adminlte'
   },
-  plugins: [typescript({
-    declaration: true,
-    declarationDir: 'types'
-  })]
+  plugins: [typescript()]
 }

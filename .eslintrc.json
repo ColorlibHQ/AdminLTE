@@ -100,6 +100,20 @@
           "never"
         ]
       }
+    },
+    {
+      "files": ["src/config/**"],
+      "env": {
+        "browser": false,
+        "node": true
+      },
+      "parserOptions": {
+        "sourceType": "module"
+      },
+      "rules": {
+        "no-console": "off",
+        "unicorn/prefer-top-level-await": "off"
+      }
     }
   ]
 }

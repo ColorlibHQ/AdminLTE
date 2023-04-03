@@ -1,6 +1,7 @@
 ---
 const { path } = Astro.props
 const distPath = (path != undefined) ? path : '../../../dist'
+const adminlteJsUrl = distPath + '/js/adminlte.js'
 ---
 <!-- OPTIONAL SCRIPTS -->
 <!-- overlayscrollbars -->
@@ -14,7 +15,7 @@ const distPath = (path != undefined) ? path : '../../../dist'
 
 <!-- REQUIRED SCRIPTS -->
 <!-- AdminLTE App -->
-<script src={distPath + '/js/adminlte.js'}></script>
+<script src={adminlteJsUrl} is:inline></script>
 
 <!-- OPTIONAL SCRIPTS -->
 <script is:inline>
