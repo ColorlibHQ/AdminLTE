@@ -81,7 +81,7 @@
     "rollup": "^3.20.2",
     "rtlcss": "^4.0.0",
     "sass": "^1.60.0",
-    "stylelint": "^15.3.0",
+    "stylelint": "^15.4.0",
     "stylelint-config-twbs-bootstrap": "^8.0.0",
     "terser": "^5.16.8",
     "tslib": "^2.5.0",
