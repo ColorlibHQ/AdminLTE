@@ -6,6 +6,7 @@ import Sidenav from '@components/dashboard/_sidenav.astro';
 import Scripts from '@components/_scripts.astro';
 
 const title = 'AdminLTE 4 | Layout RTL'
+const path = '../../../dist'
 const mainPage = 'layout'
 const page = 'layout-rtl'
 const isRtl = true
@@ -17,8 +18,8 @@ const isRtl = true
   </head>
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
-      <Topbar />
-      <Sidenav mainPage={mainPage} page={page} />
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
       <!-- Main content -->
       <main class="app-main">
         <div class="app-content-header">
@@ -78,6 +79,6 @@ const isRtl = true
     </div>
     <!--  ./app-wrapper -->
 
-    <Scripts />
+    <Scripts path={path} />
   </body>
 </html>

@@ -7,6 +7,7 @@ import Scripts from "@components/_scripts.astro";
 import NavbarHtml from "@components/docs/color-mode/navbar-html.md";
 import ToggleScript from "@components/docs/color-mode/toggle-script.md";
 const title = "AdminLTE 4 | General Form Elements";
+const path = '../../../dist'
 const mainPage = "forms";
 const page = "general";
 ---
@@ -14,12 +15,12 @@ const page = "general";
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <Head title={title} />
+    <Head title={title} path={path} />
   </head>
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
-      <Topbar />
-      <Sidenav mainPage={mainPage} page={page} />
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
       <!-- Main content -->
       <main class="app-main">
         <div class="app-content-header">
@@ -146,7 +147,7 @@ const page = "general";
     </div>
     <!--  ./app-wrapper -->
 
-    <Scripts />
+    <Scripts path={path} />
 
     <script is:inline>
       // Color Mode Toggler

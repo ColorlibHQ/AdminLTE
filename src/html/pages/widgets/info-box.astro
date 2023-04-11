@@ -6,18 +6,19 @@ import Sidenav from '@components/dashboard/_sidenav.astro';
 import Scripts from '@components/_scripts.astro';
 
 const title = 'AdminLTE 4 | Widgets - Info Box'
+const path = '../../../dist'
 const mainPage = 'widgets'
 const page = 'info-box'
 ---
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <Head title={title} />
+    <Head title={title} path={path} />
   </head>
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
-      <Topbar />
-      <Sidenav mainPage={mainPage} page={page} />
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
       <!-- Main content -->
       <main class="app-main">
         <div class="app-content-header">
@@ -352,6 +353,6 @@ const page = 'info-box'
     </div>
     <!--  ./app-wrapper -->
 
-    <Scripts />
+    <Scripts path={path} />
   </body>
 </html>

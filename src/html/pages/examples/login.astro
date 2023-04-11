@@ -3,13 +3,13 @@ import Head from '@components/_head.astro';
 import Scripts from '@components/_scripts.astro';
 
 const title = 'AdminLTE 4 | Login Page'
-const { path } = Astro.props
-const htmlPath = (path != undefined) ? '.' : '..'
+const path = '../../../dist'
+const htmlPath = '..'
 ---
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <Head title={title} />
+    <Head title={title} path={path} />
   </head>
   <body class="login-page bg-body-secondary">
     <div class="login-box">
@@ -76,6 +76,6 @@ const htmlPath = (path != undefined) ? '.' : '..'
     </div>
     <!-- /.login-box -->
 
-    <Scripts />
+    <Scripts path={path} />
   </body>
 </html>

@@ -1,6 +1,5 @@
 ---
 const { title, path, isRtl } = Astro.props
-const distPath = (path != undefined) ? path : '../../../dist'
 const cssPath = isRtl ? '.rtl' : ''
 ---
 
@@ -29,4 +28,4 @@ const cssPath = isRtl ? '.rtl' : ''
 <!-- REQUIRED LINKS -->
 
 <!-- Theme style -->
-<link rel="stylesheet" href={distPath + '/css/adminlte' + cssPath + '.css'} >
+<link rel="stylesheet" href={path + '/css/adminlte' + cssPath + '.css'} >
