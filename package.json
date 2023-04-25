@@ -83,7 +83,7 @@
     "sass": "^1.62.0",
     "stylelint": "^15.5.0",
     "stylelint-config-twbs-bootstrap": "^9.0.1",
-    "terser": "^5.16.9",
+    "terser": "^5.17.1",
     "tslib": "^2.5.0",
     "typescript": "^5.0.4"
   }
