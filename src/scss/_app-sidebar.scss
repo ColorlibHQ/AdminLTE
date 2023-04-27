@@ -68,6 +68,12 @@
 
   // Sidebar Menu. First level links
   .sidebar-menu > .nav-item {
+    &.menu-open {
+      .nav-link.active:not(:hover) {
+        --#{$lte-prefix}sidebar-menu-active-bg: transparent;
+      }
+    }
+
     // links
     > .nav-link {
       &:active,
@@ -77,8 +83,8 @@
     }
 
     > .nav-link.active:not(:hover) {
-      color: var(--#{$lte-prefix}sidebar-menu-active-color) !important;
-      background-color: var(--#{$lte-prefix}sidebar-menu-active-bg) !important;
+      color: var(--#{$lte-prefix}sidebar-menu-active-color);
+      background-color: var(--#{$lte-prefix}sidebar-menu-active-bg);
     }
 
     // Hover and active states

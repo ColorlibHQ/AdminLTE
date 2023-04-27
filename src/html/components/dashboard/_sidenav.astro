@@ -191,7 +191,19 @@ const htmlPath = convertPathToHtml(path)
 
         <li class="nav-header">DOCUMENTATIONS</li>
         <li class="nav-item">
-          <a href={htmlPath + '/docs/color-mode.html'} class="nav-link">
+          <a href={htmlPath + '/docs/index.html'} class:list={['nav-link', mainPage === 'introduction' && 'active']}>
+            <i class="nav-icon fa-solid fa-download"></i>
+            <p>Installation</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href={htmlPath + '/docs/browser-support.html'} class:list={['nav-link', mainPage === 'browser-support' && 'active']}>
+            <i class="nav-icon fa-solid fa-edge"></i>
+            <p>Browser Support</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href={htmlPath + '/docs/color-mode.html'} class:list={['nav-link', mainPage === 'color-mode' && 'active']}>
             <i class="nav-icon fa-solid fa-star-half-stroke"></i>
             <p>Color Mode</p>
           </a>

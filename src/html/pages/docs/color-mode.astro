@@ -6,10 +6,10 @@ import Sidenav from "@components/dashboard/_sidenav.astro";
 import Scripts from "@components/_scripts.astro";
 import NavbarHtml from "@components/docs/color-mode/navbar-html.md";
 import ToggleScript from "@components/docs/color-mode/toggle-script.md";
-const title = "AdminLTE 4 | General Form Elements";
+const title = "Color Mode | AdminLTE 4";
 const path = '../../../dist'
-const mainPage = "forms";
-const page = "general";
+const mainPage = "color-mode";
+const page = "docs";
 ---
 
 <!DOCTYPE html>
@@ -31,7 +31,7 @@ const page = "general";
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item"><a href="#">Docs</a></li>
                   <li class="breadcrumb-item active" aria-current="page">
                     General Form
                   </li>
@@ -127,13 +127,9 @@ const page = "general";
               </div>
               <!-- Start column -->
               <div class="col-12">
-                <div class="lte-code-snippet">
-                  <NavbarHtml />
-                </div>
+                <NavbarHtml />
 
-                <div class="lte-code-snippet">
-                  <ToggleScript />
-                </div>
+                <ToggleScript />
               </div>
             </div>
             <!-- /.row -->
