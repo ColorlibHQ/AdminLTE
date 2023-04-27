@@ -1,4 +1,4 @@
 {
   "root": true,
-  "extends": "astro/tsconfigs/base"
+  "extends": "astro/tsconfigs/strict"
 }

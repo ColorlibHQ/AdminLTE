@@ -23,7 +23,7 @@
     "lockfile-lint": "lockfile-lint --allowed-hosts npm --allowed-schemes https: --empty-hostname false --type npm --path package-lock.json",
     "docs-compile": "astro --config src/config/astro.config.mjs build",
     "docs-lint": "astro --config src/config/astro.config.mjs check",
-    "docs-serve": "astro --config src/config/astro.config.mjs dev",
+    "docs-serve": "astro --config src/config/astro.config.mjs dev --open",
     "assets": "node src/config/assets.config.mjs",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel js-lint css-lint docs-lint lockfile-lint",
     "compile": "npm-run-all docs-compile assets css js",
