@@ -269,3 +269,16 @@ html.maximized-card {
     --#{$lte-prefix}card-variant-color-rgb: #{to-rgb(color-contrast($color))};
   }
 }
+
+// Box Body
+.card-body {
+  // Tables within the box body
+  > .table {
+    margin-bottom: 0;
+
+    > thead > tr > th,
+    > thead > tr > td {
+      border-top-width: 0;
+    }
+  }
+}
