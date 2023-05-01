@@ -126,7 +126,7 @@
     "uplot": "^1.6.24"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.4",
+    "@babel/core": "^7.21.5",
     "@babel/preset-env": "^7.21.4",
     "@rollup/plugin-babel": "^5.3.1",
     "autoprefixer": "^10.4.7",
