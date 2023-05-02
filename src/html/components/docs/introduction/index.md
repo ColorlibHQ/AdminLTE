@@ -10,24 +10,24 @@ Legacy Releases are [AdminLTE 3](https://github.com/ColorlibHQ/AdminLTE/releases
 ### Grab from [jsdelivr](https://www.jsdelivr.com/package/npm/admin-lte) CDN:
 _**Important Note**: You needed to add separately cdn links for plugins in your project._
 ```html
-<script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-alpha1/dist/js/adminlte.min.js" integrity="sha256-5SPy1/00NR75iVOk7p0Ci0nwAAM8Ab7j31wyie+DKYw=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-alpha2/dist/js/adminlte.min.js" integrity="sha256-5SPy1/00NR75iVOk7p0Ci0nwAAM8Ab7j31wyie+DKYw=" crossorigin="anonymous"></script>
 ```
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-alpha1/dist/css/adminlte.min.css" integrity="sha256-c66Dhf3TzKZoXxk8aNaf2lu580xGnKke4mjUtbpMqYg=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-alpha2/dist/css/adminlte.min.css" integrity="sha256-c66Dhf3TzKZoXxk8aNaf2lu580xGnKke4mjUtbpMqYg=" crossorigin="anonymous">
 ```
 ### Using The Command Line:
 _**Important Note**: To install it via npm/Yarn, you need at least Node.js 14 or higher._
 #### Via npm
 ```bash
-npm install admin-lte@4.0.0-alpha1 --save
+npm install admin-lte@4.0.0-alpha2 --save
 ```
 #### Via Yarn
 ```bash
-yarn add admin-lte@4.0.0-alpha1
+yarn add admin-lte@4.0.0-alpha2
 ```
 #### Via Composer
 ```bash
-composer require "almasaeed2010/adminlte=4.0.0-alpha1"
+composer require "almasaeed2010/adminlte=4.0.0-alpha2"
 ```
 #### Via Git
 ```bash
