@@ -191,21 +191,38 @@ const htmlPath = convertPathToHtml(path)
 
         <li class="nav-header">DOCUMENTATIONS</li>
         <li class="nav-item">
-          <a href={htmlPath + '/docs/index.html'} class:list={['nav-link', mainPage === 'introduction' && 'active']}>
+          <a href={htmlPath + '/docs/index.html'} class:list={['nav-link', page === 'introduction' && 'active']}>
             <i class="nav-icon fa-solid fa-download"></i>
             <p>Installation</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href={htmlPath + '/docs/browser-support.html'} class:list={['nav-link', mainPage === 'browser-support' && 'active']}>
-            <i class="nav-icon fa-solid fa-edge"></i>
-            <p>Browser Support</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href={htmlPath + '/docs/color-mode.html'} class:list={['nav-link', mainPage === 'color-mode' && 'active']}>
+          <a href={htmlPath + '/docs/color-mode.html'} class:list={['nav-link', page === 'color-mode' && 'active']}>
             <i class="nav-icon fa-solid fa-star-half-stroke"></i>
             <p>Color Mode</p>
+          </a>
+        </li>
+        <li class:list={['nav-item', mainPage === 'components' && 'menu-open']}>
+          <a href="javascript:;" class:list={['nav-link', mainPage === 'components' && 'active']}>
+            <i class="nav-icon fa-solid fa-swatchbook"></i>
+            <p>
+              Components
+              <i class="nav-arrow fa-solid fa-angle-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href={htmlPath + '/docs/components/main-header.html'} class:list={['nav-link', page === 'main-header' && 'active']}>
+                <i class="nav-icon fa-regular fa-circle"></i>
+                <p>Main Header</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href={htmlPath + '/docs/browser-support.html'} class:list={['nav-link', page === 'browser-support' && 'active']}>
+            <i class="nav-icon fa-solid fa-edge"></i>
+            <p>Browser Support</p>
           </a>
         </li>
 
