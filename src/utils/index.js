@@ -1,27 +1,11 @@
 function convertPathToHtml(path) {
-  let count = 0
+  let htmlpath = ''
   while (path.startsWith('../')) {
-    count++
     path = path.slice(3)
+    htmlpath += htmlpath.length < 2 ? '.' : '/..'
   }
 
-  if (count === 1) {
-    return '.'
-  }
-
-  if (count === 2) {
-    return '..'
-  }
-
-  if (count === 3) {
-    return '../..'
-  }
-
-  if (count === 4) {
-    return '../../..'
-  }
-
-  return ''
+  return htmlpath
 }
 
 export { convertPathToHtml }
