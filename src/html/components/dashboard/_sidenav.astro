@@ -197,6 +197,12 @@ const htmlPath = convertPathToHtml(path)
           </a>
         </li>
         <li class="nav-item">
+          <a href={htmlPath + '/docs/layout.html'} class:list={['nav-link', page === 'layout' && 'active']}>
+            <i class="nav-icon fa-solid fa-grip"></i>
+            <p>Layout</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href={htmlPath + '/docs/color-mode.html'} class:list={['nav-link', page === 'color-mode' && 'active']}>
             <i class="nav-icon fa-solid fa-star-half-stroke"></i>
             <p>Color Mode</p>
