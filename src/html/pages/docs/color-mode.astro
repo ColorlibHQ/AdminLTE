@@ -4,8 +4,7 @@ import Footer from "@components/dashboard/_footer.astro";
 import Topbar from "@components/dashboard/_topbar.astro";
 import Sidenav from "@components/dashboard/_sidenav.astro";
 import Scripts from "@components/_scripts.astro";
-import NavbarHtml from "@components/docs/color-mode/navbar-html.md";
-import ToggleScript from "@components/docs/color-mode/toggle-script.md";
+import ColorMode from "@components/docs/color-mode.mdx";
 const title = "Color Mode | AdminLTE 4";
 const path = '../../../dist'
 const mainPage = "docs";
@@ -33,7 +32,7 @@ const page = "color-mode";
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Docs</a></li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    General Form
+                    Color Mode
                   </li>
                 </ol>
               </div>
@@ -127,9 +126,8 @@ const page = "color-mode";
               </div>
               <!-- Start column -->
               <div class="col-12">
-                <NavbarHtml />
+                <ColorMode />
 
-                <ToggleScript />
               </div>
             </div>
             <!-- /.row -->
