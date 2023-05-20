@@ -105,6 +105,18 @@ const htmlPath = convertPathToHtml(path)
               </a>
             </li>
             <li class="nav-item">
+              <a href={htmlPath + '/layout/collapsed-sidebar.html'} class:list={['nav-link', page === 'collapsed-sidebar' && 'active']}>
+                <i class="nav-icon fa-regular fa-circle"></i>
+                <p>Sidebar Mini <small>+ Collapsed</small></p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href={htmlPath + '/layout/logo-switch.html'} class:list={['nav-link', page === 'logo-switch' && 'active']}>
+                <i class="nav-icon fa-regular fa-circle"></i>
+                <p>Sidebar Mini <small>+ Logo Switch</small></p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href={htmlPath + '/layout/layout-rtl.html'} class:list={['nav-link', page === 'layout-rtl' && 'active']}>
                 <i class="nav-icon fa-regular fa-circle"></i>
                 <p>Layout RTL</p>
@@ -191,7 +203,7 @@ const htmlPath = convertPathToHtml(path)
 
         <li class="nav-header">DOCUMENTATIONS</li>
         <li class="nav-item">
-          <a href={htmlPath + '/docs/index.html'} class:list={['nav-link', page === 'introduction' && 'active']}>
+          <a href={htmlPath + '/docs/introduction.html'} class:list={['nav-link', page === 'introduction' && 'active']}>
             <i class="nav-icon fa-solid fa-download"></i>
             <p>Installation</p>
           </a>
