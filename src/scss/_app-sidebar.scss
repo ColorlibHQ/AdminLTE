@@ -45,6 +45,24 @@
       margin-left: .8rem;
       line-height: .8;
     }
+
+    .brand-image-xs {
+      float: left;
+      width: auto;
+      max-height: 33px;
+      margin-top: -.1rem;
+      line-height: .8;
+    }
+
+    .brand-image-xl {
+      width: auto;
+      max-height: 40px;
+      line-height: .8;
+
+      &.single {
+        margin-top: -.3rem;
+      }
+    }
   }
 
   .brand-text {
@@ -223,6 +241,42 @@
   white-space: nowrap;
 }
 
+// Logo style
+.logo-xs,
+.logo-xl {
+  position: absolute;
+  visibility: visible;
+  opacity: 1;
+
+  &.brand-image-xs {
+    top: 12px;
+    left: 18px;
+  }
+
+  &.brand-image-xl {
+    top: 6px;
+    left: 12px;
+  }
+}
+
+.logo-xs {
+  visibility: hidden;
+  opacity: 0;
+
+  &.brand-image-xl {
+    top: 8px;
+    left: 16px;
+  }
+}
+
+.brand-link {
+  &.logo-switch {
+    &::before {
+      content: "\00a0";
+    }
+  }
+}
+
 .sidebar-mini.sidebar-collapse {
   .app-sidebar {
     min-width: $lte-sidebar-mini-width;
@@ -246,17 +300,25 @@
   }
 
   .sidebar-menu .nav-link p,
-  .brand-text {
+  .brand-text,
+  .logo-xl {
     visibility: hidden;
     animation-name: fadeOut;
+    animation-duration: $lte-transition-speed;
     animation-fill-mode: both;
   }
 
-  &.sidebar-is-hover {
-    .app-sidebar {
-      min-width: var(--#{$lte-prefix}sidebar-width);
-      max-width: var(--#{$lte-prefix}sidebar-width);
-    }
+  .logo-xs {
+    display: inline-block;
+    visibility: visible;
+    animation-name: fadeIn;
+    animation-duration: $lte-transition-speed;
+    animation-fill-mode: both;
+  }
+
+  .app-sidebar:hover {
+    min-width: var(--#{$lte-prefix}sidebar-width);
+    max-width: var(--#{$lte-prefix}sidebar-width);
 
     .sidebar-menu .nav-header {
       display: inline-block;
@@ -267,10 +329,18 @@
     }
 
     .sidebar-menu .nav-link p,
-    .brand-text {
+    .brand-text,
+    .logo-xl {
       margin-left: 0;
       visibility: visible;
       animation-name: fadeIn;
+      animation-duration: $lte-transition-speed;
+      animation-fill-mode: both;
+    }
+
+    .logo-xs {
+      visibility: hidden;
+      animation-name: fadeOut;
       animation-duration: $lte-transition-speed;
       animation-fill-mode: both;
     }
@@ -368,6 +438,7 @@
             z-index: $lte-zindex-sidebar-overlay;
             width: 100%;
             height: 100%;
+            visibility: visible;
             background-color: rgba(0, 0, 0, .2);
             animation-name: fadeIn;
             animation-fill-mode: both;
@@ -376,6 +447,13 @@
       }
     }
   }
+}
+
+.sidebar-menu .nav-link p,
+.app-sidebar .brand-text,
+.app-sidebar .logo-xs,
+.app-sidebar .logo-xl {
+  @include transition(margin-left $lte-transition-speed linear, opacity $lte-transition-speed ease, visibility $lte-transition-speed ease);
 }
 
 // To prevent onload transition and animation

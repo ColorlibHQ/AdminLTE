@@ -24,13 +24,11 @@ const EVENT_COLLAPSE = `collapse${EVENT_KEY}`
 const CLASS_NAME_SIDEBAR_MINI = 'sidebar-mini'
 const CLASS_NAME_SIDEBAR_COLLAPSE = 'sidebar-collapse'
 const CLASS_NAME_SIDEBAR_OPEN = 'sidebar-open'
-const CLASS_NAME_SIDEBAR_IS_HOVER = 'sidebar-is-hover'
 const CLASS_NAME_SIDEBAR_EXPAND = 'sidebar-expand'
 const CLASS_NAME_SIDEBAR_OVERLAY = 'sidebar-overlay'
 const CLASS_NAME_MENU_OPEN = 'menu-open'
 
 const SELECTOR_APP_SIDEBAR = '.app-sidebar'
-const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper'
 const SELECTOR_SIDEBAR_MENU = '.sidebar-menu'
 const SELECTOR_NAV_ITEM = '.nav-item'
 const SELECTOR_NAV_TREEVIEW = '.nav-treeview'
@@ -97,20 +95,6 @@ class PushMenu {
     this._element.dispatchEvent(event)
   }
 
-  sidebarHover() {
-    const selSidebar = document.querySelector(SELECTOR_SIDEBAR_WRAPPER)
-
-    if (selSidebar) {
-      selSidebar.addEventListener('mouseover', () => {
-        document.body.classList.add(CLASS_NAME_SIDEBAR_IS_HOVER)
-      })
-
-      selSidebar.addEventListener('mouseout', () => {
-        document.body.classList.remove(CLASS_NAME_SIDEBAR_IS_HOVER)
-      })
-    }
-  }
-
   addSidebarBreakPoint() {
     const sidebarExpandList = document.querySelector(SELECTOR_SIDEBAR_EXPAND)?.classList ?? []
     const sidebarExpand = Array.from(sidebarExpandList).find(className => className.startsWith(CLASS_NAME_SIDEBAR_EXPAND)) ?? ''
@@ -125,7 +109,7 @@ class PushMenu {
         this.expand()
       }
 
-      if (document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI)) {
+      if (document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI) && document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
         this.collapse()
       }
     }
@@ -141,7 +125,6 @@ class PushMenu {
 
   init() {
     this.addSidebarBreakPoint()
-    this.sidebarHover()
   }
 }
 

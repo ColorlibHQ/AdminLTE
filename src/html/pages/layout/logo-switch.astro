@@ -2,13 +2,12 @@
 import Head from '@components/_head.astro';
 import Footer from '@components/dashboard/_footer.astro';
 import Topbar from '@components/dashboard/_topbar.astro';
-import Sidenav from '@components/dashboard/_sidenav.astro';
 import Scripts from '@components/_scripts.astro';
+import { convertPathToHtml } from '../../../utils/index.js';
 
 const title = 'AdminLTE 4 | Sidebar Mini'
 const path = '../../../dist'
-const mainPage = 'layout'
-const page = 'sidebar-mini'
+const htmlPath = convertPathToHtml(path)
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -18,19 +17,33 @@ const page = 'sidebar-mini'
   <body class="layout-fixed sidebar-expand-lg sidebar-mini bg-body-tertiary">
     <div class="app-wrapper">
       <Topbar path={path} />
-      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <!-- Sidebar Container -->
+      <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+        <div class="sidebar-brand">
+          <a href={htmlPath + '/index.html'} class="brand-link logo-switch">
+            <img src={path + '/assets/img/AdminLTELogo.png'} alt="AdminLTE Logo Small" class="brand-image-xl logo-xs opacity-75 shadow">
+            <img src={path + '/assets/img/AdminLTEFullLogo.png'} alt="AdminLTE Logo Large" class="brand-image-xs logo-xl opacity-75">
+          </a>
+        </div>
+        <!-- Sidebar -->
+        <div class="sidebar-wrapper">
+          <nav class="mt-2">
+
+          </nav>
+        </div>
+      <aside/>
       <!-- Main content -->
       <main class="app-main">
         <div class="app-content-header">
           <div class="container-fluid">
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">Sidebar Mini</h3>
+                <h3 class="mb-0">Logo Switch</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Sidebar Mini</li>
+                  <li class="breadcrumb-item active" aria-current="page">Logo Switch</li>
                 </ol>
               </div>
             </div>

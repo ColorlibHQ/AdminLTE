@@ -8,14 +8,14 @@ import Scripts from '@components/_scripts.astro';
 const title = 'AdminLTE 4 | Sidebar Mini'
 const path = '../../../dist'
 const mainPage = 'layout'
-const page = 'sidebar-mini'
+const page = 'collapsed-sidebar'
 ---
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <Head title={title} path={path} />
   </head>
-  <body class="layout-fixed sidebar-expand-lg sidebar-mini bg-body-tertiary">
+  <body class="layout-fixed sidebar-expand-lg sidebar-mini sidebar-collapse bg-body-tertiary">
     <div class="app-wrapper">
       <Topbar path={path} />
       <Sidenav path={path} mainPage={mainPage} page={page} />
@@ -25,12 +25,12 @@ const page = 'sidebar-mini'
           <div class="container-fluid">
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">Sidebar Mini</h3>
+                <h3 class="mb-0">Collapsed Sidebar</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Sidebar Mini</li>
+                  <li class="breadcrumb-item active" aria-current="page">Collapsed Sidebar</li>
                 </ol>
               </div>
             </div>
