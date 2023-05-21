@@ -1,21 +1,29 @@
 ---
 import { convertPathToHtml } from '../../../utils/index.js';
-const { path, mainPage, page } = Astro.props
-const htmlPath = convertPathToHtml(path)
+const { path, mainPage, page } = Astro.props;
+const htmlPath = convertPathToHtml(path);
 ---
 
-<!-- Sidebar Container -->
+<!--begin::Sidebar-->
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+  <!--begin::Sidebar Brand-->
   <div class="sidebar-brand">
+    <!--begin::Brand Link-->
     <a href={htmlPath + '/index.html'} class="brand-link">
+      <!--begin::Brand Image-->
       <img src={path + '/assets/img/AdminLTELogo.png'} alt="AdminLTE Logo" class="brand-image opacity-75 shadow">
+      <!--end::Brand Image-->
+      <!--begin::Brand Text-->
       <span class="brand-text fw-light">AdminLTE 4</span>
+      <!--end::Brand Text-->
     </a>
+    <!--end::Brand Link-->
   </div>
-  <!-- Sidebar -->
+  <!--end::Sidebar Brand-->
+  <!--begin::Sidebar Wrapper-->
   <div class="sidebar-wrapper">
     <nav class="mt-2">
-      <!-- Sidebar Menu -->
+      <!--begin::Sidebar Menu-->
       <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
         <li class:list={['nav-item', mainPage === 'dashboard' && 'menu-open']}>
           <a href="javascript:;" class:list={['nav-link', mainPage === 'dashboard' && 'active']}>
@@ -75,7 +83,6 @@ const htmlPath = convertPathToHtml(path)
             </li>
           </ul>
         </li>
-
         <li class:list={['nav-item', mainPage === 'layout' && 'menu-open']}>
           <a href="javascript:;" class:list={['nav-link', mainPage === 'layout' && 'active']}>
             <i class="nav-icon fa-solid fa-copy"></i>
@@ -235,6 +242,12 @@ const htmlPath = convertPathToHtml(path)
                 <p>Main Header</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href={htmlPath + '/docs/components/main-sidebar.html'} class:list={['nav-link', page === 'main-sidebar' && 'active']}>
+                <i class="nav-icon fa-regular fa-circle"></i>
+                <p>Main Sidebar</p>
+              </a>
+            </li>
           </ul>
         </li>
         <li class="nav-item">
@@ -309,6 +322,7 @@ const htmlPath = convertPathToHtml(path)
             <p>Level 1</p>
           </a>
         </li>
+
         <li class="nav-header">LABELS</li>
         <li class="nav-item">
           <a href="javascript:;" class="nav-link">
@@ -329,7 +343,9 @@ const htmlPath = convertPathToHtml(path)
           </a>
         </li>
       </ul>
+      <!--end::Sidebar Menu-->
     </nav>
   </div>
-  <!-- /.sidebar -->
+  <!--end::Sidebar Wrapper-->
 </aside>
+<!--end::Sidebar-->
