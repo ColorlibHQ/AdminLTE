@@ -5,23 +5,29 @@ import Topbar from '@components/dashboard/_topbar.astro';
 import Sidenav from '@components/dashboard/_sidenav.astro';
 import Scripts from '@components/_scripts.astro';
 
-const title = 'AdminLTE 4 | Layout RTL'
-const path = '../../../dist'
-const mainPage = 'layout'
-const page = 'layout-rtl'
-const isRtl = true
+const title = 'AdminLTE 4 | Layout RTL';
+const path = '../../../dist';
+const mainPage = 'layout';
+const page = 'layout-rtl';
+const isRtl = true;
 ---
+
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
+  <!--begin::Head-->
   <head>
     <Head title={title} path={path} isRtl={isRtl} />
   </head>
+  <!--end::Head-->
+  <!--begin::Body-->
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <Topbar path={path} />
       <Sidenav path={path} mainPage={mainPage} page={page} />
-      <!-- Main content -->
+      <!--begin::App Main-->
       <main class="app-main">
+        <!--begin::App Content Header-->
         <div class="app-content-header">
           <div class="container-fluid">
             <div class="row">
@@ -37,7 +43,8 @@ const isRtl = true
             </div>
           </div>
         </div>
-        <!-- Main content -->
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
         <div class="app-content">
           <div class="container-fluid">
             <div class="row">
@@ -71,14 +78,15 @@ const isRtl = true
             <!-- /.row -->
           </div><!-- /.container-fluid -->
         </div>
-        <!-- /.content -->
+        <!--end::App Content-->
       </main>
-      <!-- /.app-content -->
-
+      <!--end::App Main-->
       <Footer />
     </div>
-    <!--  ./app-wrapper -->
-
+    <!--end::App Wrapper-->
+    <!--begin::Script-->
     <Scripts path={path} />
+    <!--end::Script-->
   </body>
+  <!--end::Body-->
 </html>

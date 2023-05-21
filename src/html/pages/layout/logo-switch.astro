@@ -5,16 +5,20 @@ import Topbar from '@components/dashboard/_topbar.astro';
 import Scripts from '@components/_scripts.astro';
 import { convertPathToHtml } from '../../../utils/index.js';
 
-const title = 'AdminLTE 4 | Sidebar Mini'
-const path = '../../../dist'
-const htmlPath = convertPathToHtml(path)
+const title = 'AdminLTE 4 | Sidebar Mini';
+const path = '../../../dist';
+const htmlPath = convertPathToHtml(path);
 ---
 <!DOCTYPE html>
 <html lang="en">
+  <!--begin::Head-->
   <head>
     <Head title={title} path={path} />
   </head>
+  <!--end::Head-->
+  <!--begin::Body-->
   <body class="layout-fixed sidebar-expand-lg sidebar-mini bg-body-tertiary">
+    <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <Topbar path={path} />
       <!-- Sidebar Container -->
@@ -32,8 +36,9 @@ const htmlPath = convertPathToHtml(path)
           </nav>
         </div>
       </aside>
-      <!-- Main content -->
+      <!--begin::App Main-->
       <main class="app-main">
+        <!--begin::App Content Header-->
         <div class="app-content-header">
           <div class="container-fluid">
             <div class="row">
@@ -49,7 +54,8 @@ const htmlPath = convertPathToHtml(path)
             </div>
           </div>
         </div>
-        <!-- Main content -->
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
         <div class="app-content">
           <div class="container-fluid">
             <div class="row">
@@ -84,14 +90,15 @@ const htmlPath = convertPathToHtml(path)
           </div>
           <!-- /.container-fluid -->
         </div>
-        <!-- /.content -->
+        <!--end::App Content-->
       </main>
-      <!-- /.app-content -->
-
+      <!--end::App Main-->
       <Footer />
     </div>
-    <!--  ./app-wrapper -->
-
+    <!--end::App Wrapper-->
+    <!--begin::Script-->
     <Scripts path={path} />
+    <!--end::Script-->
   </body>
+  <!--end::Body-->
 </html>

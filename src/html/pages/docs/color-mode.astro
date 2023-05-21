@@ -5,23 +5,29 @@ import Topbar from "@components/dashboard/_topbar.astro";
 import Sidenav from "@components/dashboard/_sidenav.astro";
 import Scripts from "@components/_scripts.astro";
 import ColorMode from "@components/docs/color-mode.mdx";
+
 const title = "Color Mode | AdminLTE 4";
-const path = '../../../dist'
+const path = '../../../dist';
 const mainPage = "docs";
 const page = "color-mode";
 ---
 
 <!DOCTYPE html>
 <html lang="en">
+  <!--begin::Head-->
   <head>
     <Head title={title} path={path} />
   </head>
+  <!--end::Head-->
+  <!--begin::Body-->
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <Topbar path={path} />
       <Sidenav path={path} mainPage={mainPage} page={page} />
-      <!-- Main content -->
+      <!--begin::App Main-->
       <main class="app-main">
+        <!--begin::App Content Header-->
         <div class="app-content-header">
           <div class="container-fluid">
             <div class="row">
@@ -39,7 +45,8 @@ const page = "color-mode";
             </div>
           </div>
         </div>
-        <!-- Main content -->
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
         <div class="app-content">
           <div class="container-fluid">
             <div class="row g-4">
@@ -133,13 +140,12 @@ const page = "color-mode";
             <!-- /.row -->
           </div><!-- /.container-fluid -->
         </div>
-        <!-- /.content -->
+        <!--end::App Content-->
       </main>
-      <!-- /.app-content -->
-
+      <!--end::App Main-->
       <Footer />
     </div>
-    <!--  ./app-wrapper -->
+    <!--end::App Wrapper-->
 
     <Scripts path={path} />
 
@@ -218,5 +224,7 @@ const page = "color-mode";
         });
       })();
     </script>
+    <!--end::Script-->
   </body>
+  <!--end::Body-->
 </html>

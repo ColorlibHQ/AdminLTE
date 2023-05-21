@@ -2,15 +2,19 @@
 import Head from '@components/_head.astro';
 import Scripts from '@components/_scripts.astro';
 
-const title = 'AdminLTE 4 | Login Page'
-const path = '../../../dist'
-const htmlPath = '..'
+const title = 'AdminLTE 4 | Login Page';
+const path = '../../../dist';
+const htmlPath = '..';
 ---
+
 <!DOCTYPE html>
 <html lang="en">
+  <!--begin::Head-->
   <head>
     <Head title={title} path={path} />
   </head>
+  <!--end::Head-->
+  <!--begin::Body-->
   <body class="login-page bg-body-secondary">
     <div class="login-box">
       <div class="login-logo">
@@ -77,5 +81,7 @@ const htmlPath = '..'
     <!-- /.login-box -->
 
     <Scripts path={path} />
+    <!--end::Script-->
   </body>
+  <!--end::Body-->
 </html>

@@ -5,13 +5,15 @@ import Topbar from '@components/dashboard/_topbar.astro';
 import Sidenav from '@components/dashboard/_sidenav.astro';
 import Scripts from '@components/_scripts.astro';
 
-const title = 'AdminLTE | Dashboard v2'
-const path = '../../dist'
-const mainPage = 'dashboard'
-const page = 'index2'
+const title = 'AdminLTE | Dashboard v2';
+const path = '../../dist';
+const mainPage = 'dashboard';
+const page = 'index2';
 ---
+
 <!DOCTYPE html>
 <html lang="en">
+  <!--begin::Head-->
   <head>
     <Head title={title} path={path} />
 
@@ -20,11 +22,13 @@ const page = 'index2'
   </head>
 
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <Topbar path={path} />
       <Sidenav path={path} mainPage={mainPage} page={page} />
-      <!-- Main content -->
+      <!--begin::App Main-->
       <main class="app-main">
+        <!--begin::App Content Header-->
         <div class="app-content-header">
           <div class="container-fluid">
             <div class="row">
@@ -808,13 +812,13 @@ const page = 'index2'
             <!-- /.row -->
           </div><!-- /.container-fluid -->
         </div>
+        <!--end::App Content-->
       </main>
-      <!-- /.app-content -->
-
-    <Footer />
+      <!--end::App Main-->
+      <Footer />
     </div>
-    <!--  ./app-wrapper -->
-
+    <!--end::App Wrapper-->
+    <!--begin::Script-->
     <Scripts path={path} />
 
     <!-- OPTIONAL SCRIPTS -->
@@ -909,5 +913,7 @@ const page = 'index2'
       // - END PIE CHART -
       //-----------------
     </script>
+    <!--end::Script-->
   </body>
+  <!--end::Body-->
 </html>
