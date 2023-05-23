@@ -87,7 +87,7 @@
     "stylelint": "^15.6.1",
     "stylelint-config-twbs-bootstrap": "^10.0.0",
     "terser": "^5.17.3",
-    "tslib": "^2.5.0",
+    "tslib": "^2.5.2",
     "typescript": "^5.0.4"
   }
 }
