@@ -1,14 +1,14 @@
 ---
-import Head from '@components/_head.astro';
-import Footer from '@components/dashboard/_footer.astro';
-import Topbar from '@components/dashboard/_topbar.astro';
-import Sidenav from '@components/dashboard/_sidenav.astro';
-import Scripts from '@components/_scripts.astro';
+import Head from "@components/_head.astro";
+import Footer from "@components/dashboard/_footer.astro";
+import Topbar from "@components/dashboard/_topbar.astro";
+import Sidenav from "@components/dashboard/_sidenav.astro";
+import Scripts from "@components/_scripts.astro";
 
-const title = 'AdminLTE 4 | Timeline Elements';
-const path = '../../../dist';
-const mainPage = 'ui-elements';
-const page = 'timeline';
+const title = "AdminLTE 4 | Timeline Elements";
+const path = "../../../dist";
+const mainPage = "ui-elements";
+const page = "timeline";
 ---
 
 <!DOCTYPE html>
@@ -38,7 +38,9 @@ const page = 'timeline';
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Timeline</li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Timeline
+                  </li>
                 </ol>
               </div>
             </div>
@@ -63,16 +65,24 @@ const page = 'timeline';
                   <!-- /.timeline-label -->
                   <!-- timeline item -->
                   <div>
-                    <i class="timeline-icon fa-solid fa-envelope text-bg-primary"></i>
+                    <i
+                      class="timeline-icon fa-solid fa-envelope text-bg-primary"
+                    >
+                    </i>
                     <div class="timeline-item">
-                      <span class="time"><i class="fa-solid fa-clock"></i> 12:05</span>
-                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+                      <span class="time">
+                        <i class="fa-solid fa-clock"></i> 12:05
+                      </span>
+                      <h3 class="timeline-header">
+                        <a href="#">Support Team</a> sent you an email
+                      </h3>
 
                       <div class="timeline-body">
-                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                        quora plaxo ideeli hulu weebly balihoo...
+                        Etsy doostang zoodles disqus groupon greplin oooj voxy
+                        zoodles, weebly ning heekya handango imeem plugg dopplr
+                        jibjab, movity jajah plickers sifteo edmodo ifttt
+                        zimbra. Babblely odeo kaboodle quora plaxo ideeli hulu
+                        weebly balihoo...
                       </div>
                       <div class="timeline-footer">
                         <a class="btn btn-primary btn-sm">Read more</a>
@@ -83,23 +93,35 @@ const page = 'timeline';
                   <!-- END timeline item -->
                   <!-- timeline item -->
                   <div>
-                    <i class="timeline-icon fa-solid fa-user text-bg-success"></i>
+                    <i class="timeline-icon fa-solid fa-user text-bg-success">
+                    </i>
                     <div class="timeline-item">
-                      <span class="time"><i class="fa-solid fa-clock"></i> 5 mins ago</span>
-                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
+                      <span class="time">
+                        <i class="fa-solid fa-clock"></i> 5 mins ago
+                      </span>
+                      <h3 class="timeline-header no-border">
+                        <a href="#">Sarah Young</a> accepted your friend request
+                      </h3>
                     </div>
                   </div>
                   <!-- END timeline item -->
                   <!-- timeline item -->
                   <div>
-                    <i class="timeline-icon fa-solid fa-comments text-bg-warning"></i>
+                    <i
+                      class="timeline-icon fa-solid fa-comments text-bg-warning"
+                    >
+                    </i>
                     <div class="timeline-item">
-                      <span class="time"><i class="fa-solid fa-clock"></i> 27 mins ago</span>
-                      <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+                      <span class="time">
+                        <i class="fa-solid fa-clock"></i> 27 mins ago
+                      </span>
+                      <h3 class="timeline-header">
+                        <a href="#">Jay White</a> commented on your post
+                      </h3>
                       <div class="timeline-body">
-                        Take me to your leader!
-                        Switzerland is small and neutral!
-                        We are more like Germany, ambitious and misunderstood!
+                        Take me to your leader! Switzerland is small and
+                        neutral! We are more like Germany, ambitious and
+                        misunderstood!
                       </div>
                       <div class="timeline-footer">
                         <a class="btn btn-warning btn-sm">View comment</a>
@@ -114,15 +136,32 @@ const page = 'timeline';
                   <!-- /.timeline-label -->
                   <!-- timeline item -->
                   <div>
-                    <i class="timeline-icon fa-solid fa-camera text-bg-primary"></i>
+                    <i class="timeline-icon fa-solid fa-camera text-bg-primary">
+                    </i>
                     <div class="timeline-item">
-                      <span class="time"><i class="fa-solid fa-clock"></i> 2 days ago</span>
-                      <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+                      <span class="time">
+                        <i class="fa-solid fa-clock"></i> 2 days ago
+                      </span>
+                      <h3 class="timeline-header">
+                        <a href="#">Mina Lee</a> uploaded new photos
+                      </h3>
                       <div class="timeline-body">
-                        <img src={path + '/assets/img/user1-128x128.jpg'} alt="...">
-                        <img src={path + '/assets/img/user1-128x128.jpg'} alt="...">
-                        <img src={path + '/assets/img/user1-128x128.jpg'} alt="...">
-                        <img src={path + '/assets/img/user1-128x128.jpg'} alt="...">
+                        <img
+                          src={path + "/assets/img/user1-128x128.jpg"}
+                          alt="..."
+                        />
+                        <img
+                          src={path + "/assets/img/user1-128x128.jpg"}
+                          alt="..."
+                        />
+                        <img
+                          src={path + "/assets/img/user1-128x128.jpg"}
+                          alt="..."
+                        />
+                        <img
+                          src={path + "/assets/img/user1-128x128.jpg"}
+                          alt="..."
+                        />
                       </div>
                     </div>
                   </div>
@@ -132,23 +171,34 @@ const page = 'timeline';
                     <i class="timeline-icon fa-solid fa-video text-bg-info"></i>
 
                     <div class="timeline-item">
-                      <span class="time"><i class="fa-solid fa-clock"></i> 5 days ago</span>
+                      <span class="time">
+                        <i class="fa-solid fa-clock"></i> 5 days ago
+                      </span>
 
-                      <h3 class="timeline-header"><a href="#">Mr. Doe</a> shared a video</h3>
+                      <h3 class="timeline-header">
+                        <a href="#">Mr. Doe</a> shared a video
+                      </h3>
 
                       <div class="timeline-body">
                         <div class="ratio ratio-16x9">
-                          <iframe src="https://www.youtube.com/embed/tMWkeBIohBs" allowfullscreen></iframe>
+                          <iframe
+                            src="https://www.youtube.com/embed/tMWkeBIohBs"
+                            allowfullscreen></iframe>
                         </div>
                       </div>
                       <div class="timeline-footer">
-                        <a href="#" class="btn btn-sm text-bg-warning">See comments</a>
+                        <a href="#" class="btn btn-sm text-bg-warning">
+                          See comments
+                        </a>
                       </div>
                     </div>
                   </div>
                   <!-- END timeline item -->
                   <div>
-                    <i class="timeline-icon fa-solid fa-clock text-bg-secondary"></i>
+                    <i
+                      class="timeline-icon fa-solid fa-clock text-bg-secondary"
+                    >
+                    </i>
                   </div>
                 </div>
               </div>
@@ -167,6 +217,5 @@ const page = 'timeline';
     <!--begin::Script-->
     <Scripts path={path} />
     <!--end::Script-->
-  </body>
-  <!--end::Body-->
+  </body><!--end::Body-->
 </html>

@@ -1,14 +1,14 @@
 ---
-import Head from '@components/_head.astro';
-import Footer from '@components/dashboard/_footer.astro';
-import Topbar from '@components/dashboard/_topbar.astro';
-import Sidenav from '@components/dashboard/_sidenav.astro';
-import Scripts from '@components/_scripts.astro';
+import Head from "@components/_head.astro";
+import Footer from "@components/dashboard/_footer.astro";
+import Topbar from "@components/dashboard/_topbar.astro";
+import Sidenav from "@components/dashboard/_sidenav.astro";
+import Scripts from "@components/_scripts.astro";
 
-const title = 'AdminLTE | Dashboard v2';
-const path = '../../dist';
-const mainPage = 'dashboard';
-const page = 'index2';
+const title = "AdminLTE | Dashboard v2";
+const path = "../../dist";
+const mainPage = "dashboard";
+const page = "index2";
 ---
 
 <!DOCTYPE html>
@@ -18,7 +18,12 @@ const page = 'index2';
     <Head title={title} path={path} />
 
     <!-- apexcharts -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css" integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0=" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css"
+      integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0="
+      crossorigin="anonymous"
+    />
   </head>
 
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -40,7 +45,9 @@ const page = 'index2';
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Dashboard v2</li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Dashboard v2
+                  </li>
                 </ol>
               </div>
             </div>
@@ -55,7 +62,9 @@ const page = 'index2';
             <div class="row">
               <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
-                  <span class="info-box-icon text-bg-primary shadow-sm"><i class="fa-solid fa-cog"></i></span>
+                  <span class="info-box-icon text-bg-primary shadow-sm">
+                    <i class="fa-solid fa-cog"></i>
+                  </span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">CPU Traffic</span>
@@ -71,7 +80,9 @@ const page = 'index2';
               <!-- /.col -->
               <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
-                  <span class="info-box-icon text-bg-danger shadow-sm"><i class="fa-solid fa-thumbs-up"></i></span>
+                  <span class="info-box-icon text-bg-danger shadow-sm">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                  </span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Likes</span>
@@ -88,7 +99,9 @@ const page = 'index2';
 
               <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
-                  <span class="info-box-icon text-bg-success shadow-sm"><i class="fa-solid fa-shopping-cart"></i></span>
+                  <span class="info-box-icon text-bg-success shadow-sm">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                  </span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Sales</span>
@@ -101,7 +114,9 @@ const page = 'index2';
               <!-- /.col -->
               <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
-                  <span class="info-box-icon text-bg-warning shadow-sm"><i class="fa-solid fa-users"></i></span>
+                  <span class="info-box-icon text-bg-warning shadow-sm">
+                    <i class="fa-solid fa-users"></i>
+                  </span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">New Members</span>
@@ -123,22 +138,39 @@ const page = 'index2';
                     <h5 class="card-title">Monthly Recap Report</h5>
 
                     <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-toggle="card-collapse"
+                      >
                         <i class="fa-solid fa-minus"></i>
                       </button>
                       <div class="btn-group">
-                        <button type="button" class="btn btn-tool dropdown-toggle" data-bs-toggle="dropdown">
+                        <button
+                          type="button"
+                          class="btn btn-tool dropdown-toggle"
+                          data-bs-toggle="dropdown"
+                        >
                           <i class="fa-solid fa-wrench"></i>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end" role="menu">
+                        <div
+                          class="dropdown-menu dropdown-menu-end"
+                          role="menu"
+                        >
                           <a href="#" class="dropdown-item">Action</a>
                           <a href="#" class="dropdown-item">Another action</a>
-                          <a href="#" class="dropdown-item">Something else here</a>
+                          <a href="#" class="dropdown-item">
+                            Something else here
+                          </a>
                           <a class="dropdown-divider"></a>
                           <a href="#" class="dropdown-item">Separated link</a>
                         </div>
                       </div>
-                      <button type="button" class="btn btn-tool" data-lte-dismiss="card-remove">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-dismiss="card-remove"
+                      >
                         <i class="fa-solid fa-times"></i>
                       </button>
                     </div>
@@ -164,7 +196,11 @@ const page = 'index2';
                           Add Products to Cart
                           <span class="float-end"><b>160</b>/200</span>
                           <div class="progress progress-sm">
-                            <div class="progress-bar text-bg-primary" style="width: 80%"></div>
+                            <div
+                              class="progress-bar text-bg-primary"
+                              style="width: 80%"
+                            >
+                            </div>
                           </div>
                         </div>
                         <!-- /.progress-group -->
@@ -173,7 +209,11 @@ const page = 'index2';
                           Complete Purchase
                           <span class="float-end"><b>310</b>/400</span>
                           <div class="progress progress-sm">
-                            <div class="progress-bar text-bg-danger" style="width: 75%"></div>
+                            <div
+                              class="progress-bar text-bg-danger"
+                              style="width: 75%"
+                            >
+                            </div>
                           </div>
                         </div>
 
@@ -182,7 +222,11 @@ const page = 'index2';
                           <span class="progress-text">Visit Premium Page</span>
                           <span class="float-end"><b>480</b>/800</span>
                           <div class="progress progress-sm">
-                            <div class="progress-bar text-bg-success" style="width: 60%"></div>
+                            <div
+                              class="progress-bar text-bg-success"
+                              style="width: 60%"
+                            >
+                            </div>
                           </div>
                         </div>
 
@@ -191,7 +235,11 @@ const page = 'index2';
                           Send Inquiries
                           <span class="float-end"><b>250</b>/500</span>
                           <div class="progress progress-sm">
-                            <div class="progress-bar text-bg-warning" style="width: 50%"></div>
+                            <div
+                              class="progress-bar text-bg-warning"
+                              style="width: 50%"
+                            >
+                            </div>
                           </div>
                         </div>
                         <!-- /.progress-group -->
@@ -206,39 +254,43 @@ const page = 'index2';
                     <div class="row">
                       <div class="col-md-3 col-6">
                         <div class="text-center border-end">
-                          <span class="text-success"><i class="fa-solid fa-caret-up"></i> 17%</span>
+                          <span class="text-success">
+                            <i class="fa-solid fa-caret-up"></i> 17%
+                          </span>
                           <h5 class="fw-bold mb-0">$35,210.43</h5>
                           <span class="text-uppercase">TOTAL REVENUE</span>
                         </div>
-
                       </div>
 
                       <!-- /.col -->
                       <div class="col-md-3 col-6">
                         <div class="text-center border-end">
-                          <span class="text-info"><i class="fa-solid fa-caret-left"></i> 0%</span>
+                          <span class="text-info">
+                            <i class="fa-solid fa-caret-left"></i> 0%
+                          </span>
                           <h5 class="fw-bold mb-0">$10,390.90</h5>
                           <span class="text-uppercase">TOTAL COST</span>
                         </div>
-
                       </div>
                       <!-- /.col -->
                       <div class="col-md-3 col-6">
                         <div class="text-center border-end">
-                          <span class="text-success"><i class="fa-solid fa-caret-up"></i> 20%</span>
+                          <span class="text-success">
+                            <i class="fa-solid fa-caret-up"></i> 20%
+                          </span>
                           <h5 class="fw-bold mb-0">$24,813.53</h5>
                           <span class="text-uppercase">TOTAL PROFIT</span>
                         </div>
-
                       </div>
                       <!-- /.col -->
                       <div class="col-md-3 col-6">
                         <div class="text-center">
-                          <span class="text-danger"><i class="fa-solid fa-caret-down"></i> 18%</span>
+                          <span class="text-danger">
+                            <i class="fa-solid fa-caret-down"></i> 18%
+                          </span>
                           <h5 class="fw-bold mb-0">1200</h5>
                           <span class="text-uppercase">GOAL COMPLETIONS</span>
                         </div>
-
                       </div>
                     </div>
                     <!--end::Row-->
@@ -264,14 +316,32 @@ const page = 'index2';
                         <h3 class="card-title">Direct Chat</h3>
 
                         <div class="card-tools">
-                          <span title="3 New Messages" class="badge text-bg-warning">3</span>
-                          <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+                          <span
+                            title="3 New Messages"
+                            class="badge text-bg-warning"
+                          >
+                            3
+                          </span>
+                          <button
+                            type="button"
+                            class="btn btn-tool"
+                            data-lte-toggle="card-collapse"
+                          >
                             <i class="fa-solid fa-minus"></i>
                           </button>
-                          <button type="button" class="btn btn-tool" title="Contacts" data-lte-toggle="chat-pane">
+                          <button
+                            type="button"
+                            class="btn btn-tool"
+                            title="Contacts"
+                            data-lte-toggle="chat-pane"
+                          >
                             <i class="fa-solid fa-comments"></i>
                           </button>
-                          <button type="button" class="btn btn-tool" data-lte-dismiss="card-remove">
+                          <button
+                            type="button"
+                            class="btn btn-tool"
+                            data-lte-dismiss="card-remove"
+                          >
                             <i class="fa-solid fa-times"></i>
                           </button>
                         </div>
@@ -283,14 +353,23 @@ const page = 'index2';
                           <!-- Message. Default to the start -->
                           <div class="direct-chat-msg">
                             <div class="direct-chat-infos clearfix">
-                              <span class="direct-chat-name float-start">Alexander Pierce</span>
-                              <span class="direct-chat-timestamp float-end">23 Jan 2:00 pm</span>
+                              <span class="direct-chat-name float-start">
+                                Alexander Pierce
+                              </span>
+                              <span class="direct-chat-timestamp float-end">
+                                23 Jan 2:00 pm
+                              </span>
                             </div>
                             <!-- /.direct-chat-infos -->
-                            <img class="direct-chat-img" src={path + '/assets/img/user1-128x128.jpg'} alt="message user image">
+                            <img
+                              class="direct-chat-img"
+                              src={path + "/assets/img/user1-128x128.jpg"}
+                              alt="message user image"
+                            />
                             <!-- /.direct-chat-img -->
                             <div class="direct-chat-text">
-                              Is this template really for free? That's unbelievable!
+                              Is this template really for free? That's
+                              unbelievable!
                             </div>
                             <!-- /.direct-chat-text -->
                           </div>
@@ -299,11 +378,19 @@ const page = 'index2';
                           <!-- Message to the end -->
                           <div class="direct-chat-msg end">
                             <div class="direct-chat-infos clearfix">
-                              <span class="direct-chat-name float-end">Sarah Bullock</span>
-                              <span class="direct-chat-timestamp float-start">23 Jan 2:05 pm</span>
+                              <span class="direct-chat-name float-end">
+                                Sarah Bullock
+                              </span>
+                              <span class="direct-chat-timestamp float-start">
+                                23 Jan 2:05 pm
+                              </span>
                             </div>
                             <!-- /.direct-chat-infos -->
-                            <img class="direct-chat-img" src={path + '/assets/img/user3-128x128.jpg'} alt="message user image">
+                            <img
+                              class="direct-chat-img"
+                              src={path + "/assets/img/user3-128x128.jpg"}
+                              alt="message user image"
+                            />
                             <!-- /.direct-chat-img -->
                             <div class="direct-chat-text">
                               You better believe it!
@@ -315,14 +402,23 @@ const page = 'index2';
                           <!-- Message. Default to the start -->
                           <div class="direct-chat-msg">
                             <div class="direct-chat-infos clearfix">
-                              <span class="direct-chat-name float-start">Alexander Pierce</span>
-                              <span class="direct-chat-timestamp float-end">23 Jan 5:37 pm</span>
+                              <span class="direct-chat-name float-start">
+                                Alexander Pierce
+                              </span>
+                              <span class="direct-chat-timestamp float-end">
+                                23 Jan 5:37 pm
+                              </span>
                             </div>
                             <!-- /.direct-chat-infos -->
-                            <img class="direct-chat-img" src={path + '/assets/img/user1-128x128.jpg'} alt="message user image">
+                            <img
+                              class="direct-chat-img"
+                              src={path + "/assets/img/user1-128x128.jpg"}
+                              alt="message user image"
+                            />
                             <!-- /.direct-chat-img -->
                             <div class="direct-chat-text">
-                              Working with AdminLTE on a great new app! Wanna join?
+                              Working with AdminLTE on a great new app! Wanna
+                              join?
                             </div>
                             <!-- /.direct-chat-text -->
                           </div>
@@ -331,19 +427,24 @@ const page = 'index2';
                           <!-- Message to the end -->
                           <div class="direct-chat-msg end">
                             <div class="direct-chat-infos clearfix">
-                              <span class="direct-chat-name float-end">Sarah Bullock</span>
-                              <span class="direct-chat-timestamp float-start">23 Jan 6:10 pm</span>
+                              <span class="direct-chat-name float-end">
+                                Sarah Bullock
+                              </span>
+                              <span class="direct-chat-timestamp float-start">
+                                23 Jan 6:10 pm
+                              </span>
                             </div>
                             <!-- /.direct-chat-infos -->
-                            <img class="direct-chat-img" src={path + '/assets/img/user3-128x128.jpg'} alt="message user image">
+                            <img
+                              class="direct-chat-img"
+                              src={path + "/assets/img/user3-128x128.jpg"}
+                              alt="message user image"
+                            />
                             <!-- /.direct-chat-img -->
-                            <div class="direct-chat-text">
-                              I would love to.
-                            </div>
+                            <div class="direct-chat-text">I would love to.</div>
                             <!-- /.direct-chat-text -->
                           </div>
                           <!-- /.direct-chat-msg -->
-
                         </div>
                         <!-- /.direct-chat-messages-->
 
@@ -352,14 +453,22 @@ const page = 'index2';
                           <ul class="contacts-list">
                             <li>
                               <a href="#">
-                                <img class="contacts-list-img" src={path + '/assets/img/user1-128x128.jpg'} alt="User Avatar">
+                                <img
+                                  class="contacts-list-img"
+                                  src={path + "/assets/img/user1-128x128.jpg"}
+                                  alt="User Avatar"
+                                />
 
                                 <div class="contacts-list-info">
                                   <span class="contacts-list-name">
                                     Count Dracula
-                                    <small class="contacts-list-date float-end">2/28/2023</small>
+                                    <small class="contacts-list-date float-end">
+                                      2/28/2023
+                                    </small>
                                   </span>
-                                  <span class="contacts-list-msg">How have you been? I was...</span>
+                                  <span class="contacts-list-msg">
+                                    How have you been? I was...
+                                  </span>
                                 </div>
                                 <!-- /.contacts-list-info -->
                               </a>
@@ -367,14 +476,22 @@ const page = 'index2';
                             <!-- End Contact Item -->
                             <li>
                               <a href="#">
-                                <img class="contacts-list-img" src={path + '/assets/img/user7-128x128.jpg'} alt="User Avatar">
+                                <img
+                                  class="contacts-list-img"
+                                  src={path + "/assets/img/user7-128x128.jpg"}
+                                  alt="User Avatar"
+                                />
 
                                 <div class="contacts-list-info">
                                   <span class="contacts-list-name">
                                     Sarah Doe
-                                    <small class="contacts-list-date float-end">2/23/2023</small>
+                                    <small class="contacts-list-date float-end">
+                                      2/23/2023
+                                    </small>
                                   </span>
-                                  <span class="contacts-list-msg">I will be waiting for...</span>
+                                  <span class="contacts-list-msg">
+                                    I will be waiting for...
+                                  </span>
                                 </div>
                                 <!-- /.contacts-list-info -->
                               </a>
@@ -382,14 +499,22 @@ const page = 'index2';
                             <!-- End Contact Item -->
                             <li>
                               <a href="#">
-                                <img class="contacts-list-img" src={path + '/assets/img/user3-128x128.jpg'} alt="User Avatar">
+                                <img
+                                  class="contacts-list-img"
+                                  src={path + "/assets/img/user3-128x128.jpg"}
+                                  alt="User Avatar"
+                                />
 
                                 <div class="contacts-list-info">
                                   <span class="contacts-list-name">
                                     Nadia Jolie
-                                    <small class="contacts-list-date float-end">2/20/2023</small>
+                                    <small class="contacts-list-date float-end">
+                                      2/20/2023
+                                    </small>
                                   </span>
-                                  <span class="contacts-list-msg">I'll call you back at...</span>
+                                  <span class="contacts-list-msg">
+                                    I'll call you back at...
+                                  </span>
                                 </div>
                                 <!-- /.contacts-list-info -->
                               </a>
@@ -397,14 +522,22 @@ const page = 'index2';
                             <!-- End Contact Item -->
                             <li>
                               <a href="#">
-                                <img class="contacts-list-img" src={path + '/assets/img/user5-128x128.jpg'} alt="User Avatar">
+                                <img
+                                  class="contacts-list-img"
+                                  src={path + "/assets/img/user5-128x128.jpg"}
+                                  alt="User Avatar"
+                                />
 
                                 <div class="contacts-list-info">
                                   <span class="contacts-list-name">
                                     Nora S. Vans
-                                    <small class="contacts-list-date float-end">2/10/2023</small>
+                                    <small class="contacts-list-date float-end">
+                                      2/10/2023
+                                    </small>
                                   </span>
-                                  <span class="contacts-list-msg">Where is your new...</span>
+                                  <span class="contacts-list-msg">
+                                    Where is your new...
+                                  </span>
                                 </div>
                                 <!-- /.contacts-list-info -->
                               </a>
@@ -412,14 +545,22 @@ const page = 'index2';
                             <!-- End Contact Item -->
                             <li>
                               <a href="#">
-                                <img class="contacts-list-img" src={path + '/assets/img/user6-128x128.jpg'} alt="User Avatar">
+                                <img
+                                  class="contacts-list-img"
+                                  src={path + "/assets/img/user6-128x128.jpg"}
+                                  alt="User Avatar"
+                                />
 
                                 <div class="contacts-list-info">
                                   <span class="contacts-list-name">
                                     John K.
-                                    <small class="contacts-list-date float-end">1/27/2023</small>
+                                    <small class="contacts-list-date float-end">
+                                      1/27/2023
+                                    </small>
                                   </span>
-                                  <span class="contacts-list-msg">Can I take a look at...</span>
+                                  <span class="contacts-list-msg">
+                                    Can I take a look at...
+                                  </span>
                                 </div>
                                 <!-- /.contacts-list-info -->
                               </a>
@@ -427,14 +568,22 @@ const page = 'index2';
                             <!-- End Contact Item -->
                             <li>
                               <a href="#">
-                                <img class="contacts-list-img" src={path + '/assets/img/user8-128x128.jpg'} alt="User Avatar">
+                                <img
+                                  class="contacts-list-img"
+                                  src={path + "/assets/img/user8-128x128.jpg"}
+                                  alt="User Avatar"
+                                />
 
                                 <div class="contacts-list-info">
                                   <span class="contacts-list-name">
                                     Kenneth M.
-                                    <small class="contacts-list-date float-end">1/4/2023</small>
+                                    <small class="contacts-list-date float-end">
+                                      1/4/2023
+                                    </small>
                                   </span>
-                                  <span class="contacts-list-msg">Never mind I found...</span>
+                                  <span class="contacts-list-msg">
+                                    Never mind I found...
+                                  </span>
                                 </div>
                                 <!-- /.contacts-list-info -->
                               </a>
@@ -449,9 +598,16 @@ const page = 'index2';
                       <div class="card-footer">
                         <form action="#" method="post">
                           <div class="input-group">
-                            <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                            <input
+                              type="text"
+                              name="message"
+                              placeholder="Type Message ..."
+                              class="form-control"
+                            />
                             <span class="input-group-append">
-                              <button type="button" class="btn btn-warning">Send</button>
+                              <button type="button" class="btn btn-warning">
+                                Send
+                              </button>
                             </span>
                           </div>
                         </form>
@@ -469,11 +625,21 @@ const page = 'index2';
                         <h3 class="card-title">Latest Members</h3>
 
                         <div class="card-tools">
-                          <span class="badge text-bg-danger">8 New Members</span>
-                          <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+                          <span class="badge text-bg-danger">
+                            8 New Members
+                          </span>
+                          <button
+                            type="button"
+                            class="btn btn-tool"
+                            data-lte-toggle="card-collapse"
+                          >
                             <i class="fa-solid fa-minus"></i>
                           </button>
-                          <button type="button" class="btn btn-tool" data-lte-dismiss="card-remove">
+                          <button
+                            type="button"
+                            class="btn btn-tool"
+                            data-lte-dismiss="card-remove"
+                          >
                             <i class="fa-solid fa-times"></i>
                           </button>
                         </div>
@@ -482,43 +648,115 @@ const page = 'index2';
                       <div class="card-body p-0">
                         <div class="row text-center m-1">
                           <div class="col-3 p-2">
-                            <img class="img-fluid rounded-circle" src={path + '/assets/img/user1-128x128.jpg'} alt="User Image">
-                            <a class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0" href="#">Alexander Pierce</a>
+                            <img
+                              class="img-fluid rounded-circle"
+                              src={path + "/assets/img/user1-128x128.jpg"}
+                              alt="User Image"
+                            />
+                            <a
+                              class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0"
+                              href="#"
+                            >
+                              Alexander Pierce
+                            </a>
                             <div class="fs-8">Today</div>
                           </div>
                           <div class="col-3 p-2">
-                            <img class="img-fluid rounded-circle" src={path + '/assets/img/user1-128x128.jpg'} alt="User Image">
-                            <a class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0" href="#">Norman</a>
+                            <img
+                              class="img-fluid rounded-circle"
+                              src={path + "/assets/img/user1-128x128.jpg"}
+                              alt="User Image"
+                            />
+                            <a
+                              class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0"
+                              href="#"
+                            >
+                              Norman
+                            </a>
                             <div class="fs-8">Yesterday</div>
                           </div>
                           <div class="col-3 p-2">
-                            <img class="img-fluid rounded-circle" src={path + '/assets/img/user7-128x128.jpg'} alt="User Image">
-                            <a class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0" href="#">Jane</a>
+                            <img
+                              class="img-fluid rounded-circle"
+                              src={path + "/assets/img/user7-128x128.jpg"}
+                              alt="User Image"
+                            />
+                            <a
+                              class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0"
+                              href="#"
+                            >
+                              Jane
+                            </a>
                             <div class="fs-8">12 Jan</div>
                           </div>
                           <div class="col-3 p-2">
-                            <img class="img-fluid rounded-circle" src={path + '/assets/img/user6-128x128.jpg'} alt="User Image">
-                            <a class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0" href="#">John</a>
+                            <img
+                              class="img-fluid rounded-circle"
+                              src={path + "/assets/img/user6-128x128.jpg"}
+                              alt="User Image"
+                            />
+                            <a
+                              class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0"
+                              href="#"
+                            >
+                              John
+                            </a>
                             <div class="fs-8">12 Jan</div>
                           </div>
                           <div class="col-3 p-2">
-                            <img class="img-fluid rounded-circle" src={path + '/assets/img/user2-160x160.jpg'} alt="User Image">
-                            <a class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0" href="#">Alexander</a>
+                            <img
+                              class="img-fluid rounded-circle"
+                              src={path + "/assets/img/user2-160x160.jpg"}
+                              alt="User Image"
+                            />
+                            <a
+                              class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0"
+                              href="#"
+                            >
+                              Alexander
+                            </a>
                             <div class="fs-8">13 Jan</div>
                           </div>
                           <div class="col-3 p-2">
-                            <img class="img-fluid rounded-circle" src={path + '/assets/img/user5-128x128.jpg'} alt="User Image">
-                            <a class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0" href="#">Sarah</a>
+                            <img
+                              class="img-fluid rounded-circle"
+                              src={path + "/assets/img/user5-128x128.jpg"}
+                              alt="User Image"
+                            />
+                            <a
+                              class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0"
+                              href="#"
+                            >
+                              Sarah
+                            </a>
                             <div class="fs-8">14 Jan</div>
                           </div>
                           <div class="col-3 p-2">
-                            <img class="img-fluid rounded-circle" src={path + '/assets/img/user4-128x128.jpg'} alt="User Image">
-                            <a class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0" href="#">Nora</a>
+                            <img
+                              class="img-fluid rounded-circle"
+                              src={path + "/assets/img/user4-128x128.jpg"}
+                              alt="User Image"
+                            />
+                            <a
+                              class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0"
+                              href="#"
+                            >
+                              Nora
+                            </a>
                             <div class="fs-8">15 Jan</div>
                           </div>
                           <div class="col-3 p-2">
-                            <img class="img-fluid rounded-circle" src={path + '/assets/img/user3-128x128.jpg'} alt="User Image">
-                            <a class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0" href="#">Nadia</a>
+                            <img
+                              class="img-fluid rounded-circle"
+                              src={path + "/assets/img/user3-128x128.jpg"}
+                              alt="User Image"
+                            />
+                            <a
+                              class="btn fw-bold fs-7 text-secondary text-truncate w-100 p-0"
+                              href="#"
+                            >
+                              Nadia
+                            </a>
                             <div class="fs-8">15 Jan</div>
                           </div>
                         </div>
@@ -542,10 +780,18 @@ const page = 'index2';
                     <h3 class="card-title">Latest Orders</h3>
 
                     <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-toggle="card-collapse"
+                      >
                         <i class="fa-solid fa-minus"></i>
                       </button>
-                      <button type="button" class="btn btn-tool" data-lte-dismiss="card-remove">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-dismiss="card-remove"
+                      >
                         <i class="fa-solid fa-times"></i>
                       </button>
                     </div>
@@ -555,70 +801,146 @@ const page = 'index2';
                     <div class="table-responsive">
                       <table class="table m-0">
                         <thead>
-                        <tr>
-                          <th>Order ID</th>
-                          <th>Item</th>
-                          <th>Status</th>
-                          <th>Popularity</th>
-                        </tr>
+                          <tr>
+                            <th>Order ID</th>
+                            <th>Item</th>
+                            <th>Status</th>
+                            <th>Popularity</th>
+                          </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                          <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                          <td>Call of Duty IV</td>
-                          <td><span class="badge text-bg-success">Shipped</span></td>
-                          <td>
-                            <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                          <td>Samsung Smart TV</td>
-                          <td><span class="badge text-bg-warning">Pending</span></td>
-                          <td>
-                            <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                          <td>iPhone 6 Plus</td>
-                          <td><span class="badge text-bg-danger">Delivered</span></td>
-                          <td>
-                            <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                          <td>Samsung Smart TV</td>
-                          <td><span class="badge text-bg-info">Processing</span></td>
-                          <td>
-                            <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                          <td>Samsung Smart TV</td>
-                          <td><span class="badge text-bg-warning">Pending</span></td>
-                          <td>
-                            <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                          <td>iPhone 6 Plus</td>
-                          <td><span class="badge text-bg-danger">Delivered</span></td>
-                          <td>
-                            <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                          <td>Call of Duty IV</td>
-                          <td><span class="badge text-bg-success">Shipped</span></td>
-                          <td>
-                            <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                          </td>
-                        </tr>
+                          <tr>
+                            <td>
+                              <a href="pages/examples/invoice.html">OR9842</a>
+                            </td>
+                            <td>Call of Duty IV</td>
+                            <td>
+                              <span class="badge text-bg-success">
+                                Shipped
+                              </span>
+                            </td>
+                            <td>
+                              <div
+                                class="sparkbar"
+                                data-color="#00a65a"
+                                data-height="20"
+                              >
+                                90,80,90,-70,61,-83,63
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="pages/examples/invoice.html">OR1848</a>
+                            </td>
+                            <td>Samsung Smart TV</td>
+                            <td>
+                              <span class="badge text-bg-warning">Pending</span>
+                            </td>
+                            <td>
+                              <div
+                                class="sparkbar"
+                                data-color="#f39c12"
+                                data-height="20"
+                              >
+                                90,80,-90,70,61,-83,68
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="pages/examples/invoice.html">OR7429</a>
+                            </td>
+                            <td>iPhone 6 Plus</td>
+                            <td>
+                              <span class="badge text-bg-danger">
+                                Delivered
+                              </span>
+                            </td>
+                            <td>
+                              <div
+                                class="sparkbar"
+                                data-color="#f56954"
+                                data-height="20"
+                              >
+                                90,-80,90,70,-61,83,63
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="pages/examples/invoice.html">OR7429</a>
+                            </td>
+                            <td>Samsung Smart TV</td>
+                            <td>
+                              <span class="badge text-bg-info">Processing</span>
+                            </td>
+                            <td>
+                              <div
+                                class="sparkbar"
+                                data-color="#00c0ef"
+                                data-height="20"
+                              >
+                                90,80,-90,70,-61,83,63
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="pages/examples/invoice.html">OR1848</a>
+                            </td>
+                            <td>Samsung Smart TV</td>
+                            <td>
+                              <span class="badge text-bg-warning">Pending</span>
+                            </td>
+                            <td>
+                              <div
+                                class="sparkbar"
+                                data-color="#f39c12"
+                                data-height="20"
+                              >
+                                90,80,-90,70,61,-83,68
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="pages/examples/invoice.html">OR7429</a>
+                            </td>
+                            <td>iPhone 6 Plus</td>
+                            <td>
+                              <span class="badge text-bg-danger">
+                                Delivered
+                              </span>
+                            </td>
+                            <td>
+                              <div
+                                class="sparkbar"
+                                data-color="#f56954"
+                                data-height="20"
+                              >
+                                90,-80,90,70,-61,83,63
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a href="pages/examples/invoice.html">OR9842</a>
+                            </td>
+                            <td>Call of Duty IV</td>
+                            <td>
+                              <span class="badge text-bg-success">Shipped</span>
+                            </td>
+                            <td>
+                              <div
+                                class="sparkbar"
+                                data-color="#00a65a"
+                                data-height="20"
+                              >
+                                90,80,90,-70,61,-83,63
+                              </div>
+                            </td>
+                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -626,8 +948,18 @@ const page = 'index2';
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer clearfix">
-                    <a href="javascript:void(0)" class="btn btn-sm btn-primary float-start">Place New Order</a>
-                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-end">View All Orders</a>
+                    <a
+                      href="javascript:void(0)"
+                      class="btn btn-sm btn-primary float-start"
+                    >
+                      Place New Order
+                    </a>
+                    <a
+                      href="javascript:void(0)"
+                      class="btn btn-sm btn-secondary float-end"
+                    >
+                      View All Orders
+                    </a>
                   </div>
                   <!-- /.card-footer -->
                 </div>
@@ -638,7 +970,9 @@ const page = 'index2';
               <div class="col-md-4">
                 <!-- Info Boxes Style 2 -->
                 <div class="info-box mb-3 text-bg-warning">
-                  <span class="info-box-icon"><i class="fa-solid fa-tag"></i></span>
+                  <span class="info-box-icon">
+                    <i class="fa-solid fa-tag"></i>
+                  </span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Inventory</span>
@@ -648,7 +982,9 @@ const page = 'index2';
                 </div>
                 <!-- /.info-box -->
                 <div class="info-box mb-3 text-bg-success">
-                  <span class="info-box-icon"><i class="fa-regular fa-heart"></i></span>
+                  <span class="info-box-icon">
+                    <i class="fa-regular fa-heart"></i>
+                  </span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Mentions</span>
@@ -658,7 +994,9 @@ const page = 'index2';
                 </div>
                 <!-- /.info-box -->
                 <div class="info-box mb-3 text-bg-danger">
-                  <span class="info-box-icon"><i class="fa-solid fa-cloud-download-alt"></i></span>
+                  <span class="info-box-icon">
+                    <i class="fa-solid fa-cloud-download-alt"></i>
+                  </span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Downloads</span>
@@ -668,7 +1006,9 @@ const page = 'index2';
                 </div>
                 <!-- /.info-box -->
                 <div class="info-box mb-3 text-bg-info">
-                  <span class="info-box-icon"><i class="fa-regular fa-comment"></i></span>
+                  <span class="info-box-icon">
+                    <i class="fa-regular fa-comment"></i>
+                  </span>
 
                   <div class="info-box-content">
                     <span class="info-box-text">Direct Messages</span>
@@ -683,10 +1023,18 @@ const page = 'index2';
                     <h3 class="card-title">Browser Usage</h3>
 
                     <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-toggle="card-collapse"
+                      >
                         <i class="fa-solid fa-minus"></i>
                       </button>
-                      <button type="button" class="btn btn-tool" data-lte-dismiss="card-remove">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-dismiss="card-remove"
+                      >
                         <i class="fa-solid fa-times"></i>
                       </button>
                     </div>
@@ -710,7 +1058,8 @@ const page = 'index2';
                           United States of America
                           <span class="float-end text-danger">
                             <i class="fa-solid fa-arrow-down fs-7"></i>
-                            12%</span>
+                            12%
+                          </span>
                         </a>
                       </li>
                       <li class="nav-item">
@@ -741,10 +1090,18 @@ const page = 'index2';
                     <h3 class="card-title">Recently Added Products</h3>
 
                     <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-toggle="card-collapse"
+                      >
                         <i class="fa-solid fa-minus"></i>
                       </button>
-                      <button type="button" class="btn btn-tool" data-lte-dismiss="card-remove">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-dismiss="card-remove"
+                      >
                         <i class="fa-solid fa-times"></i>
                       </button>
                     </div>
@@ -754,11 +1111,19 @@ const page = 'index2';
                     <div class="px-2">
                       <div class="d-flex border-top py-2 px-1">
                         <div class="col-2">
-                          <img src={path + '/assets/img/default-150x150.png'} alt="Product Image" class="img-size-50">
+                          <img
+                            src={path + "/assets/img/default-150x150.png"}
+                            alt="Product Image"
+                            class="img-size-50"
+                          />
                         </div>
                         <div class="col-10">
-                          <a href="javascript:void(0)" class="fw-bold">Samsung TV
-                            <span class="badge text-bg-warning float-end">$1800</span></a>
+                          <a href="javascript:void(0)" class="fw-bold">
+                            Samsung TV
+                            <span class="badge text-bg-warning float-end">
+                              $1800
+                            </span>
+                          </a>
                           <div class="text-truncate">
                             Samsung 32" 1080p 60Hz LED Smart HDTV.
                           </div>
@@ -767,11 +1132,19 @@ const page = 'index2';
                       <!-- /.item -->
                       <div class="d-flex border-top py-2 px-1">
                         <div class="col-2">
-                          <img src={path + '/assets/img/default-150x150.png'} alt="Product Image" class="img-size-50">
+                          <img
+                            src={path + "/assets/img/default-150x150.png"}
+                            alt="Product Image"
+                            class="img-size-50"
+                          />
                         </div>
                         <div class="col-10">
-                          <a href="javascript:void(0)" class="fw-bold">Bicycle
-                            <span class="badge text-bg-info float-end">$700</span></a>
+                          <a href="javascript:void(0)" class="fw-bold">
+                            Bicycle
+                            <span class="badge text-bg-info float-end">
+                              $700
+                            </span>
+                          </a>
                           <div class="text-truncate">
                             26" Mongoose Dolomite Men's 7-speed, Navy Blue.
                           </div>
@@ -780,27 +1153,41 @@ const page = 'index2';
                       <!-- /.item -->
                       <div class="d-flex border-top py-2 px-1">
                         <div class="col-2">
-                          <img src={path + '/assets/img/default-150x150.png'} alt="Product Image" class="img-size-50">
+                          <img
+                            src={path + "/assets/img/default-150x150.png"}
+                            alt="Product Image"
+                            class="img-size-50"
+                          />
                         </div>
                         <div class="col-10">
                           <a href="javascript:void(0)" class="fw-bold">
-                            Xbox One <span class="badge text-bg-danger float-end">
-                            $350
-                          </span>
+                            Xbox One
+                            <span class="badge text-bg-danger float-end">
+                              $350
+                            </span>
                           </a>
                           <div class="text-truncate">
-                            Xbox One Console Bundle with Halo Master Chief Collection.
+                            Xbox One Console Bundle with Halo Master Chief
+                            Collection.
                           </div>
                         </div>
                       </div>
                       <!-- /.item -->
                       <div class="d-flex border-top py-2 px-1">
                         <div class="col-2">
-                          <img src={path + '/assets/img/default-150x150.png'} alt="Product Image" class="img-size-50">
+                          <img
+                            src={path + "/assets/img/default-150x150.png"}
+                            alt="Product Image"
+                            class="img-size-50"
+                          />
                         </div>
                         <div class="col-10">
-                          <a href="javascript:void(0)" class="fw-bold">PlayStation 4
-                            <span class="badge text-bg-success float-end">$399</span></a>
+                          <a href="javascript:void(0)" class="fw-bold">
+                            PlayStation 4
+                            <span class="badge text-bg-success float-end">
+                              $399
+                            </span>
+                          </a>
                           <div class="text-truncate">
                             PlayStation 4 500GB Console (PS4)
                           </div>
@@ -811,7 +1198,9 @@ const page = 'index2';
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer text-center">
-                    <a href="javascript:void(0)" class="uppercase">View All Products</a>
+                    <a href="javascript:void(0)" class="uppercase">
+                      View All Products
+                    </a>
                   </div>
                   <!-- /.card-footer -->
                 </div>
@@ -835,7 +1224,11 @@ const page = 'index2';
     <!-- OPTIONAL SCRIPTS -->
 
     <!-- apexcharts -->
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js" integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8=" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"
+      integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8="
+      crossorigin="anonymous"
+    ></script>
 
     <script is:inline>
       // NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT
@@ -843,51 +1236,65 @@ const page = 'index2';
       // ++++++++++++++++++++++++++++++++++++++++++
 
       /* apexcharts
-        * -------
-        * Here we will create a few charts using apexcharts
-        */
+       * -------
+       * Here we will create a few charts using apexcharts
+       */
 
       //-----------------------
       // - MONTHLY SALES CHART -
       //-----------------------
 
       var sales_chart_options = {
-          series: [{
-          name: 'Digital Goods',
-          data: [28, 48, 40, 19, 86, 27, 90]
-        },{
-          name: 'Electronics',
-          data: [65, 59, 80, 81, 56, 55, 40]
-        }],
+        series: [
+          {
+            name: "Digital Goods",
+            data: [28, 48, 40, 19, 86, 27, 90],
+          },
+          {
+            name: "Electronics",
+            data: [65, 59, 80, 81, 56, 55, 40],
+          },
+        ],
         chart: {
           height: 180,
-          type: 'area',
+          type: "area",
           toolbar: {
             show: false,
           },
         },
         legend: {
-          show: false
+          show: false,
         },
-        colors:['#0d6efd', '#20c997'],
+        colors: ["#0d6efd", "#20c997"],
         dataLabels: {
           enabled: false,
         },
         stroke: {
-          curve: 'smooth'
+          curve: "smooth",
         },
         xaxis: {
-          type: 'datetime',
-          categories: ["2023-01-01", "2023-02-01", "2023-03-01", "2023-04-01", "2023-05-01", "2023-06-01", "2023-07-01"]
+          type: "datetime",
+          categories: [
+            "2023-01-01",
+            "2023-02-01",
+            "2023-03-01",
+            "2023-04-01",
+            "2023-05-01",
+            "2023-06-01",
+            "2023-07-01",
+          ],
         },
         tooltip: {
           x: {
-            format: 'MMMM yyyy'
+            format: "MMMM yyyy",
           },
         },
       };
 
-      var sales_chart = new ApexCharts(document.querySelector("#sales-chart"), sales_chart_options);
+      var sales_chart = new ApexCharts(
+        document.querySelector("#sales-chart"),
+        sales_chart_options
+      );
       sales_chart.render();
 
       //---------------------------
@@ -900,24 +1307,27 @@ const page = 'index2';
 
       var pie_chart_options = {
         series: [700, 500, 400, 600, 300, 100],
-          chart: {
-          type: 'donut',
+        chart: {
+          type: "donut",
         },
-        labels: [
-          'Chrome',
-          'Edge',
-          'FireFox',
-          'Safari',
-          'Opera',
-          'IE',
-        ],
+        labels: ["Chrome", "Edge", "FireFox", "Safari", "Opera", "IE"],
         dataLabels: {
           enabled: false,
         },
-        colors: ['#0d6efd', '#20c997', '#ffc107', '#d63384', '#6f42c1', '#adb5bd']
+        colors: [
+          "#0d6efd",
+          "#20c997",
+          "#ffc107",
+          "#d63384",
+          "#6f42c1",
+          "#adb5bd",
+        ],
       };
 
-      var pie_chart = new ApexCharts(document.querySelector("#pie-chart"), pie_chart_options);
+      var pie_chart = new ApexCharts(
+        document.querySelector("#pie-chart"),
+        pie_chart_options
+      );
       pie_chart.render();
 
       //-----------------
@@ -925,6 +1335,5 @@ const page = 'index2';
       //-----------------
     </script>
     <!--end::Script-->
-  </body>
-  <!--end::Body-->
+  </body><!--end::Body-->
 </html>
