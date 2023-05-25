@@ -2,62 +2,56 @@ FullCalendar.globalLocales.push(function () {
   'use strict';
 
   function affix(buttonText) {
-    return (buttonText === 'Tag' || buttonText === 'Monat') ? 'r' :
-      buttonText === 'Jahr' ? 's' : ''
+    return buttonText === "Tag" || buttonText === "Monat" ? "r" : buttonText === "Jahr" ? "s" : "";
   }
-
   var de = {
-    code: 'de',
+    code: "de",
     week: {
-      dow: 1, // Monday is the first day of the week.
-      doy: 4, // The week that contains Jan 4th is the first week of the year.
+      dow: 1,
+      doy: 4
     },
     buttonText: {
-      prev: 'Zurück',
-      next: 'Vor',
-      today: 'Heute',
-      year: 'Jahr',
-      month: 'Monat',
-      week: 'Woche',
-      day: 'Tag',
-      list: 'Terminübersicht',
+      prev: "Zur\xFCck",
+      next: "Vor",
+      today: "Heute",
+      year: "Jahr",
+      month: "Monat",
+      week: "Woche",
+      day: "Tag",
+      list: "Termin\xFCbersicht"
     },
-    weekText: 'KW',
-    weekTextLong: 'Woche',
-    allDayText: 'Ganztägig',
+    weekText: "KW",
+    weekTextLong: "Woche",
+    allDayText: "Ganzt\xE4gig",
     moreLinkText: function(n) {
-      return '+ weitere ' + n
+      return "+ weitere " + n;
     },
-    noEventsText: 'Keine Ereignisse anzuzeigen',
+    noEventsText: "Keine Ereignisse anzuzeigen",
     buttonHints: {
-      prev(buttonText) {
-        return `Vorherige${affix(buttonText)} ${buttonText}`
+      prev: function(buttonText) {
+        return "Vorherige".concat(affix(buttonText), " ").concat(buttonText);
       },
-      next(buttonText) {
-        return `Nächste${affix(buttonText)} ${buttonText}`
+      next: function(buttonText) {
+        return "N\xE4chste".concat(affix(buttonText), " ").concat(buttonText);
       },
-      today(buttonText) {
-        // → Heute, Diese Woche, Dieser Monat, Dieses Jahr
-        if (buttonText === 'Tag') {
-          return 'Heute'
+      today: function(buttonText) {
+        if (buttonText === "Tag") {
+          return "Heute";
         }
-        return `Diese${affix(buttonText)} ${buttonText}`
-      },
+        return "Diese".concat(affix(buttonText), " ").concat(buttonText);
+      }
     },
-    viewHint(buttonText) {
-      // → Tagesansicht, Wochenansicht, Monatsansicht, Jahresansicht
-      const glue = buttonText === 'Woche' ? 'n' : buttonText === 'Monat' ? 's' : 'es';
-      return buttonText + glue + 'ansicht'
+    viewHint: function(buttonText) {
+      var glue = buttonText === "Woche" ? "n" : buttonText === "Monat" ? "s" : "es";
+      return buttonText + glue + "ansicht";
     },
-    navLinkHint: 'Gehe zu $0',
-    moreLinkHint(eventCnt) {
-      return 'Zeige ' + (eventCnt === 1 ?
-        'ein weiteres Ereignis' :
-        eventCnt + ' weitere Ereignisse')
+    navLinkHint: "Gehe zu $0",
+    moreLinkHint: function(eventCnt) {
+      return "Zeige " + (eventCnt === 1 ? "ein weiteres Ereignis" : eventCnt + " weitere Ereignisse");
     },
-    closeHint: 'Schließen',
-    timeHint: 'Uhrzeit',
-    eventHint: 'Ereignis',
+    closeHint: "Schlie\xDFen",
+    timeHint: "Uhrzeit",
+    eventHint: "Ereignis"
   };
 
   return de;

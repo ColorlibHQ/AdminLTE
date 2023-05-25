@@ -24,7 +24,7 @@ $.extend( $.validator.messages, {
 	digits: "لطفا تنها رقم وارد کنید.",
 	creditcard: "لطفا کریدیت کارت صحیح وارد کنید.",
 	equalTo: "لطفا مقدار برابری وارد کنید.",
-	extension: "لطفا مقداری وارد کنید که",
+	extension: "لطفا مقداری وارد کنید که.",
 	alphanumeric: "لطفا مقدار را عدد (انگلیسی) وارد کنید.",
 	maxlength: $.validator.format( "لطفا بیشتر از {0} حرف وارد نکنید." ),
 	minlength: $.validator.format( "لطفا کمتر از {0} حرف وارد نکنید." ),

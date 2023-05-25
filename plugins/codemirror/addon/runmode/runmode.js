@@ -1,5 +1,5 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: https://codemirror.net/LICENSE
+// Distributed under an MIT license: https://codemirror.net/5/LICENSE
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
@@ -20,7 +20,7 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
     var ie = /MSIE \d/.test(navigator.userAgent);
     var ie_lt9 = ie && (document.documentMode == null || document.documentMode < 9);
     var node = callback, col = 0;
-    node.innerHTML = "";
+    node.textContent = "";
     callback = function(text, style) {
       if (text == "\n") {
         // Emitting LF or CRLF on IE8 or earlier results in an incorrect display.

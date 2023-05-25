@@ -1,5 +1,5 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: https://codemirror.net/LICENSE
+// Distributed under an MIT license: https://codemirror.net/5/LICENSE
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
@@ -91,9 +91,14 @@ CodeMirror.defineMode("groovy", function(config) {
           if (!tripleQuoted) { break; }
           if (stream.match(quote + quote)) { end = true; break; }
         }
-        if (quote == '"' && next == "$" && !escaped && stream.eat("{")) {
-          state.tokenize.push(tokenBaseUntilBrace());
-          return "string";
+        if (quote == '"' && next == "$" && !escaped) {
+          if (stream.eat("{")) {
+            state.tokenize.push(tokenBaseUntilBrace());
+            return "string";
+          } else if (stream.match(/^\w/, false)) {
+            state.tokenize.push(tokenVariableDeref);
+            return "string";
+          }
         }
         escaped = !escaped && next == "\\";
       }
@@ -120,6 +125,15 @@ CodeMirror.defineMode("groovy", function(config) {
     }
     t.isBase = true;
     return t;
+  }
+
+  function tokenVariableDeref(stream, state) {
+    var next = stream.match(/^(\.|[\w\$_]+)/)
+    if (!next) {
+      state.tokenize.pop()
+      return state.tokenize[state.tokenize.length-1](stream, state)
+    }
+    return next[0] == "." ? null : "variable"
   }
 
   function tokenComment(stream, state) {

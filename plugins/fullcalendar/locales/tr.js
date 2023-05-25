@@ -2,24 +2,24 @@ FullCalendar.globalLocales.push(function () {
   'use strict';
 
   var tr = {
-    code: 'tr',
+    code: "tr",
     week: {
-      dow: 1, // Monday is the first day of the week.
-      doy: 7, // The week that contains Jan 1st is the first week of the year.
+      dow: 1,
+      doy: 7
     },
     buttonText: {
-      prev: 'geri',
-      next: 'ileri',
-      today: 'bugün',
-      month: 'Ay',
-      week: 'Hafta',
-      day: 'Gün',
-      list: 'Ajanda',
+      prev: "geri",
+      next: "ileri",
+      today: "bug\xFCn",
+      month: "Ay",
+      week: "Hafta",
+      day: "G\xFCn",
+      list: "Ajanda"
     },
-    weekText: 'Hf',
-    allDayText: 'Tüm gün',
-    moreLinkText: 'daha fazla',
-    noEventsText: 'Gösterilecek etkinlik yok',
+    weekText: "Hf",
+    allDayText: "T\xFCm g\xFCn",
+    moreLinkText: "daha fazla",
+    noEventsText: "G\xF6sterilecek etkinlik yok"
   };
 
   return tr;

@@ -1,10 +1,14 @@
 table.dt-rowReorder-float {
-  position: absolute !important;
   opacity: 0.8;
+}
+
+div.dt-rowReorder-float-parent {
   table-layout: fixed;
   outline: 2px solid #0275d8;
   outline-offset: -2px;
   z-index: 2001;
+  position: absolute !important;
+  overflow: hidden;
 }
 
 tr.dt-rowReorder-moving {

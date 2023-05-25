@@ -1,0 +1,4 @@
+/*! Bootstrap 4 integration for DataTables' Responsive
+ * © SpryMedia Ltd - datatables.net/license
+ */
+import $ from"jquery";import DataTable from"datatables.net-bs4";import Responsive from"datatables.net-responsive";var _display=DataTable.Responsive.display,_original=_display.modal,_modal=$('<div class="modal fade dtr-bs-modal" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"/></div></div></div>');_display.modal=function(i){return function(a,d,o){var l,e;$.fn.modal?d||(i&&i.header&&(e=(l=_modal.find("div.modal-header")).find("button").detach(),l.empty().append('<h4 class="modal-title">'+i.header(a)+"</h4>").append(e)),_modal.find("div.modal-body").empty().append(o()),_modal.appendTo("body").modal()):_original(a,d,o)}};export default DataTable;

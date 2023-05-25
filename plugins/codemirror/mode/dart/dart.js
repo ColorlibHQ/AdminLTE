@@ -1,5 +1,5 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: https://codemirror.net/LICENSE
+// Distributed under an MIT license: https://codemirror.net/5/LICENSE
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
@@ -12,10 +12,10 @@
   "use strict";
 
   var keywords = ("this super static final const abstract class extends external factory " +
-    "implements mixin get native set typedef with enum throw rethrow " +
-    "assert break case continue default in return new deferred async await covariant " +
-    "try catch finally do else for if switch while import library export " +
-    "part of show hide is as extension on yield late required").split(" ");
+    "implements mixin get native set typedef with enum throw rethrow assert break case " +
+    "continue default in return new deferred async await covariant try catch finally " +
+    "do else for if switch while import library export part of show hide is as extension " +
+    "on yield late required sealed base interface when inline").split(" ");
   var blockKeywords = "try catch finally do else for if switch while".split(" ");
   var atoms = "true false null".split(" ");
   var builtins = "void bool num int double dynamic var String Null Never".split(" ");

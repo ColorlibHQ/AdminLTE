@@ -35,11 +35,25 @@ div.dt-autofill-list {
   margin-left: -250px;
   background-color: white;
   border-radius: 6px;
-  box-shadow: 0 0 5px #555;
-  border: 2px solid #444;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  border: 1px solid black;
   z-index: 11;
   box-sizing: border-box;
   padding: 1.5em 2em;
+  padding-top: 2em;
+}
+div.dt-autofill-list div.dtaf-popover-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #eaeaea;
+  background-color: #f9f9f9;
+  text-align: center;
+  border-radius: 3px;
+  cursor: pointer;
+  z-index: 12;
 }
 div.dt-autofill-list ul {
   display: table;
@@ -50,6 +64,7 @@ div.dt-autofill-list ul {
 }
 div.dt-autofill-list ul li {
   display: table-row;
+  cursor: pointer;
 }
 div.dt-autofill-list ul li:last-child div.dt-autofill-question, div.dt-autofill-list ul li:last-child div.dt-autofill-button {
   border-bottom: none;
@@ -57,9 +72,13 @@ div.dt-autofill-list ul li:last-child div.dt-autofill-question, div.dt-autofill-
 div.dt-autofill-list ul li:hover {
   background-color: #f6f6f6;
 }
+div.dt-autofill-list ul li:hover button.btn {
+  background-color: #548bbb;
+}
 div.dt-autofill-list div.dt-autofill-question {
   display: table-cell;
   padding: 0.5em 0;
+  padding-left: 5px;
   border-bottom: 1px solid #ccc;
 }
 div.dt-autofill-list div.dt-autofill-question input[type=number] {
@@ -70,7 +89,13 @@ div.dt-autofill-list div.dt-autofill-question input[type=number] {
 div.dt-autofill-list div.dt-autofill-button {
   display: table-cell;
   padding: 0.5em 0;
+  padding-right: 5px;
   border-bottom: 1px solid #ccc;
+  text-align: right;
+}
+
+div.dtaf-popover-closeable {
+  padding-top: 2.5em;
 }
 
 div.dt-autofill-background {
@@ -84,6 +109,17 @@ div.dt-autofill-background {
   z-index: 10;
 }
 
+@media screen and (max-width: 767px) {
+  div.dt-autofill-handle {
+    height: 16px;
+    width: 16px;
+  }
+
+  div.dt-autofill-list {
+    width: 90%;
+    left: 74.5%;
+  }
+}
 div.dt-autofill-list div.dt-autofill-question input[type=number] {
   padding: 6px;
   width: 60px;

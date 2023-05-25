@@ -1,5 +1,5 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: https://codemirror.net/LICENSE
+// Distributed under an MIT license: https://codemirror.net/5/LICENSE
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
@@ -31,8 +31,11 @@ CodeMirror.defineMode("sparql", function(config) {
                              "graph", "by", "asc", "desc", "as", "having", "undef", "values", "group",
                              "minus", "in", "not", "service", "silent", "using", "insert", "delete", "union",
                              "true", "false", "with",
-                             "data", "copy", "to", "move", "add", "create", "drop", "clear", "load"]);
+                             "data", "copy", "to", "move", "add", "create", "drop", "clear", "load", "into"]);
   var operatorChars = /[*+\-<>=&|\^\/!\?]/;
+  var PN_CHARS = "[A-Za-z_\\-0-9]";
+  var PREFIX_START = new RegExp("[A-Za-z]");
+  var PREFIX_REMAINDER = new RegExp("((" + PN_CHARS + "|\\.)*(" + PN_CHARS + "))?:");
 
   function tokenBase(stream, state) {
     var ch = stream.next();
@@ -60,14 +63,7 @@ CodeMirror.defineMode("sparql", function(config) {
       stream.skipToEnd();
       return "comment";
     }
-    else if (ch === "^") {
-      ch = stream.peek();
-      if (ch === "^") stream.eat("^");
-      else stream.eatWhile(operatorChars);
-      return "operator";
-    }
     else if (operatorChars.test(ch)) {
-      stream.eatWhile(operatorChars);
       return "operator";
     }
     else if (ch == ":") {
@@ -78,20 +74,18 @@ CodeMirror.defineMode("sparql", function(config) {
       stream.eatWhile(/[a-z\d\-]/i);
       return "meta";
     }
-    else {
-      stream.eatWhile(/[_\w\d]/);
-      if (stream.eat(":")) {
+    else if (PREFIX_START.test(ch) && stream.match(PREFIX_REMAINDER)) {
         eatPnLocal(stream);
         return "atom";
-      }
-      var word = stream.current();
-      if (ops.test(word))
-        return "builtin";
-      else if (keywords.test(word))
-        return "keyword";
-      else
-        return "variable";
     }
+    stream.eatWhile(/[_\w\d]/);
+    var word = stream.current();
+    if (ops.test(word))
+      return "builtin";
+    else if (keywords.test(word))
+      return "keyword";
+    else
+      return "variable";
   }
 
   function eatPnLocal(stream) {

@@ -1,5 +1,5 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
+// Distributed under an MIT license: http://codemirror.net/5/LICENSE
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
@@ -229,6 +229,8 @@
     return {
       startState: function ()  { return { f: normal() }; },
       copyState:  function (s) { return { f: s.f }; },
+
+      lineComment: '--',
 
       token: function(stream, state) {
         var type = state.f(stream, function(s) { state.f = s; });

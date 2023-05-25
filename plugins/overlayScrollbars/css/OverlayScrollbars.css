@@ -363,19 +363,19 @@ object.os-resize-observer {
 }
 @-webkit-keyframes os-resize-observer-dummy-animation {
     from {
-        z-index: 0;
-    }
-    to {
-        z-index: -1;
-    }
+		cursor: auto;
+	}
+	to {
+		cursor: none;
+	}
 }
 @keyframes os-resize-observer-dummy-animation {
     from {
-        z-index: 0;
-    }
-    to {
-        z-index: -1;
-    }
+		cursor: auto;
+	}
+	to {
+		cursor: none;
+	}
 }
 
 /*

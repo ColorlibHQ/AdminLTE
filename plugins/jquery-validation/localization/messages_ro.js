@@ -15,7 +15,7 @@
 $.extend( $.validator.messages, {
 	required: "Acest câmp este obligatoriu.",
 	remote: "Te rugăm să completezi acest câmp.",
-	email: "Te rugăm să introduci o adresă de email validă",
+	email: "Te rugăm să introduci o adresă de email validă.",
 	url: "Te rugăm sa introduci o adresă URL validă.",
 	date: "Te rugăm să introduci o dată corectă.",
 	dateISO: "Te rugăm să introduci o dată (ISO) corectă.",

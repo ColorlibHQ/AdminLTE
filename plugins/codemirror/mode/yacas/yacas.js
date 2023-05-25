@@ -1,5 +1,5 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: https://codemirror.net/LICENSE
+// Distributed under an MIT license: https://codemirror.net/5/LICENSE
 
 // Yacas mode copyright (c) 2015 by Grzegorz Mazur
 // Loosely based on mathematica mode by Calin Barbat

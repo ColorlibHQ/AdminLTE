@@ -70,11 +70,15 @@ div.dtsb-searchBuilder div.dtsb-group div.dtsb-logicContainer {
 }
 div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria {
   margin-bottom: 0.8em;
+  display: flex;
+  justify-content: start;
+  flex-flow: row wrap;
 }
 div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria select.dtsb-dropDown,
 div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria input.dtsb-input {
   padding: 0.4em;
   margin-right: 0.8em;
+  min-width: 5em;
   max-width: 20em;
   background-color: rgba(200, 200, 200, 0.3);
 }
@@ -85,8 +89,18 @@ div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria input.dtsb-input option.
 div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria select.dtsb-italic {
   font-style: italic;
 }
+div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria div.dtsb-inputCont {
+  flex: 1;
+  white-space: nowrap;
+}
+div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria div.dtsb-inputCont span.dtsp-joiner {
+  margin-right: 0.8em;
+}
+div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria div.dtsb-inputCont input.dtsb-value {
+  width: 33%;
+}
 div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria div.dtsb-buttonContainer {
-  float: right;
+  margin-left: auto;
   display: inline-block;
 }
 div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria div.dtsb-buttonContainer button.dtsb-delete, div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria div.dtsb-buttonContainer button.dtsb-right, div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria div.dtsb-buttonContainer button.dtsb-left {
@@ -95,8 +109,41 @@ div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria div.dtsb-buttonContainer
 div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria div.dtsb-buttonContainer button.dtsb-delete:last-child, div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria div.dtsb-buttonContainer button.dtsb-right:last-child, div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria div.dtsb-buttonContainer button.dtsb-left:last-child {
   margin-right: 0;
 }
-div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria span.dtsp-joiner {
-  margin-right: 0.8em;
+@media screen and (max-width: 550px) {
+  div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria {
+    display: flex;
+    flex-flow: none;
+    flex-direction: column;
+    justify-content: start;
+    padding-right: calc(35px + 0.8em);
+    margin-bottom: 0px;
+  }
+  div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria:not(:first-child), div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria:not(:nth-child(2)), div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria:not(:last-child) {
+    padding-top: 0.8em;
+  }
+  div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria:first-child, div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria:nth-child(2), div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria:last-child {
+    padding-top: 0em;
+  }
+  div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria select.dtsb-dropDown,
+div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria input.dtsb-input {
+    max-width: none;
+    width: 100%;
+    margin-bottom: 0.8em;
+    margin-right: 0.8em;
+  }
+  div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria div.dtsb-inputCont {
+    margin-right: 0.8em;
+  }
+  div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria div.dtsb-buttonContainer {
+    position: absolute;
+    width: 35px;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    right: 0;
+  }
+  div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria div.dtsb-buttonContainer button {
+    margin-right: 0px !important;
+  }
 }
 
 div.dtsb-searchBuilder div.dtsb-titleRow {

@@ -5,7 +5,7 @@
  *   Website: AdminLTE.io <https://adminlte.io>
  *   License: Open source - MIT <https://opensource.org/licenses/MIT>
  */
-@-webkit-keyframes flipInX {
+@-webkit-keyframes flip-in-x {
   0% {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
     transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
@@ -31,7 +31,7 @@
     transform: perspective(400px);
   }
 }
-@keyframes flipInX {
+@keyframes flip-in-x {
   0% {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
     transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
@@ -58,7 +58,7 @@
   }
 }
 
-@-webkit-keyframes fadeIn {
+@-webkit-keyframes fade-in {
   from {
     opacity: 0;
   }
@@ -67,7 +67,7 @@
   }
 }
 
-@keyframes fadeIn {
+@keyframes fade-in {
   from {
     opacity: 0;
   }
@@ -76,7 +76,7 @@
   }
 }
 
-@-webkit-keyframes fadeOut {
+@-webkit-keyframes fade-out {
   from {
     opacity: 1;
   }
@@ -85,7 +85,7 @@
   }
 }
 
-@keyframes fadeOut {
+@keyframes fade-out {
   from {
     opacity: 1;
   }
@@ -273,6 +273,7 @@
   border-radius: 0;
 }
 
+/* stylelint-disable selector-class-pattern */
 .form-control-feedback.fa, .form-control-feedback.fas, .form-control-feedback.far, .form-control-feedback.fab, .form-control-feedback.fal, .form-control-feedback.fad, .form-control-feedback.svg-inline--fa, .form-control-feedback.ion {
   line-height: calc(2.25rem + 2px);
 }
@@ -309,6 +310,7 @@
   line-height: calc(1.8125rem + 2px);
 }
 
+/* stylelint-enable selector-class-pattern */
 label:not(.form-check-label):not(.custom-file-label) {
   font-weight: 700;
 }
@@ -7851,6 +7853,8 @@ html.maximized-card {
   color: #dc3545;
   display: none;
   float: right;
+  /* stylelint-disable selector-class-pattern */
+  /* stylelint-enable selector-class-pattern */
 }
 
 .todo-list > li .tools > .fa,
@@ -10964,6 +10968,8 @@ html.maximized-card {
   padding: 15px 5px;
   position: relative;
   text-align: center;
+  /* stylelint-disable selector-class-pattern */
+  /* stylelint-enable selector-class-pattern */
 }
 
 .btn-app > .fa,
@@ -12133,6 +12139,11 @@ html.maximized-card {
 
 .dark-mode .table.table-head-fixed thead tr:nth-child(1) th {
   background-color: #3f474e;
+}
+
+.carousel-control-custom-icon {
+  /* stylelint-disable selector-class-pattern */
+  /* stylelint-enable selector-class-pattern */
 }
 
 .carousel-control-prev .carousel-control-custom-icon {

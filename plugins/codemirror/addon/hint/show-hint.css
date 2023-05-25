@@ -19,6 +19,7 @@
 
   max-height: 20em;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .CodeMirror-hint {

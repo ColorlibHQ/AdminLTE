@@ -9,7 +9,7 @@
 */
 
 .cm-s-bespin.CodeMirror {background: #28211c; color: #9d9b97;}
-.cm-s-bespin div.CodeMirror-selected {background: #36312e !important;}
+.cm-s-bespin div.CodeMirror-selected {background: #59554f !important;}
 .cm-s-bespin .CodeMirror-gutters {background: #28211c; border-right: 0px;}
 .cm-s-bespin .CodeMirror-linenumber {color: #666666;}
 .cm-s-bespin .CodeMirror-cursor {border-left: 1px solid #797977 !important;}

@@ -15,7 +15,7 @@
 $.extend( $.validator.messages, {
 	required: "Aquest camp és obligatori.",
 	remote: "Si us plau, omple aquest camp.",
-	email: "Si us plau, escriu una adreça de correu-e vàlida",
+	email: "Si us plau, escriu una adreça de correu-e vàlida.",
 	url: "Si us plau, escriu una URL vàlida.",
 	date: "Si us plau, escriu una data vàlida.",
 	dateISO: "Si us plau, escriu una data (ISO) vàlida.",

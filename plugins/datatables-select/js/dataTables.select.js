@@ -1,26 +1,7 @@
-/*! Select for DataTables 1.3.4-dev
- * 2015-2021 SpryMedia Ltd - datatables.net/license/mit
+/*! Select for DataTables 1.6.2
+ * © SpryMedia Ltd - datatables.net/license/mit
  */
 
-/**
- * @summary     Select for DataTables
- * @description A collection of API methods, events and buttons for DataTables
- *   that provides selection options of the items in a DataTable
- * @version     1.3.4-dev
- * @file        dataTables.select.js
- * @author      SpryMedia Ltd (www.sprymedia.co.uk)
- * @contact     datatables.net/forums
- * @copyright   Copyright 2015-2021 SpryMedia Ltd.
- *
- * This source file is free software, available under the following license:
- *   MIT license - http://datatables.net/license/mit
- *
- * This source file is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the license files for details.
- *
- * For details please refer to: http://www.datatables.net/extensions/select
- */
 (function( factory ){
 	if ( typeof define === 'function' && define.amd ) {
 		// AMD
@@ -30,17 +11,33 @@
 	}
 	else if ( typeof exports === 'object' ) {
 		// CommonJS
-		module.exports = function (root, $) {
-			if ( ! root ) {
-				root = window;
+		var jq = require('jquery');
+		var cjsRequires = function (root, $) {
+			if ( ! $.fn.dataTable ) {
+				require('datatables.net')(root, $);
 			}
-
-			if ( ! $ || ! $.fn.dataTable ) {
-				$ = require('datatables.net')(root, $).$;
-			}
-
-			return factory( $, root, root.document );
 		};
+
+		if (typeof window !== 'undefined') {
+			module.exports = function (root, $) {
+				if ( ! root ) {
+					// CommonJS environments without a window global must pass a
+					// root. This will give an error otherwise
+					root = window;
+				}
+
+				if ( ! $ ) {
+					$ = jq( root );
+				}
+
+				cjsRequires( root, $ );
+				return factory( $, root, root.document );
+			};
+		}
+		else {
+			cjsRequires( window, jq );
+			module.exports = factory( jq, window, window.document );
+		}
 	}
 	else {
 		// Browser
@@ -51,10 +48,11 @@
 var DataTable = $.fn.dataTable;
 
 
+
 // Version information for debugger
 DataTable.select = {};
 
-DataTable.select.version = '1.3.4-dev';
+DataTable.select.version = '1.6.2';
 
 DataTable.select.init = function ( dt ) {
 	var ctx = dt.settings()[0];
@@ -69,25 +67,37 @@ DataTable.select.init = function ( dt ) {
 		if(data === null || data.select === undefined) {
 			return;
 		}
-		dt.rows().deselect();
-		dt.columns().deselect();
-		dt.cells().deselect();
+
+		// Clear any currently selected rows, before restoring state
+		// None will be selected on first initialisation
+		if (dt.rows({selected: true}).any()) {
+			dt.rows().deselect();
+		}
 		if (data.select.rows !== undefined) {
 			dt.rows(data.select.rows).select();
 		}
+
+		if (dt.columns({selected: true}).any()) {
+			dt.columns().deselect();
+		}
 		if (data.select.columns !== undefined) {
 			dt.columns(data.select.columns).select();
+		}
+
+		if (dt.cells({selected: true}).any()) {
+			dt.cells().deselect();
 		}
 		if (data.select.cells !== undefined) {
 			for(var i = 0; i < data.select.cells.length; i++) {
 				dt.cell(data.select.cells[i].row, data.select.cells[i].column).select();
 			}
 		}
+
 		dt.state.save();
 	}
 	
-	dt.one('init', function() {
-		dt.on('stateSaveParams', function(e, settings, data) {
+	dt
+		.on('stateSaveParams', function(e, settings, data) {
 			data.select = {};
 			data.select.rows = dt.rows({selected:true}).ids(true).toArray();
 			data.select.columns = dt.columns({selected:true})[0];
@@ -95,10 +105,10 @@ DataTable.select.init = function ( dt ) {
 				return {row: dt.row(coords.row).id(true), column: coords.column}
 			});
 		})
-		
-		selectAndSave(undefined, undefined, savedSelected)
-		dt.on('stateLoaded stateLoadParams', selectAndSave)
-	})
+		.on('stateLoadParams', selectAndSave)
+		.one('init', function() {
+			selectAndSave(undefined, undefined, savedSelected);
+		});
 
 	var init = ctx.oInit.select;
 	var defaults = DataTable.defaults.select;
@@ -478,6 +488,13 @@ function enableMouseSelection ( dt )
 				return;
 			}
 
+			var event = $.Event('select-blur.dt');
+			eventTrigger( dt, event, [ e.target, e ] );
+
+			if ( event.isDefaultPrevented() ) {
+				return;
+			}
+
 			clear( ctx, true );
 		}
 	} );
@@ -645,7 +662,8 @@ function init ( ctx ) {
 
 	// Clean up and release
 	api.on( 'destroy.dtSelect', function () {
-		api.rows({selected: true}).deselect();
+		// Remove class directly rather than calling deselect - which would trigger events
+		$(api.rows({selected: true}).nodes()).removeClass(api.settings()[0]._select.className);
 
 		disableMouseSelection( api );
 		api.off( '.dtSelect' );
@@ -980,6 +998,21 @@ apiRegisterPlural( 'rows().select()', 'row().select()', function ( select ) {
 	return this;
 } );
 
+apiRegister( 'row().selected()', function () {
+	var ctx = this.context[0];
+
+	if (
+		ctx &&
+		this.length &&
+		ctx.aoData[this[0]] &&
+		ctx.aoData[this[0]]._select_selected
+	) {
+		return true;
+	}
+
+	return false;
+} );
+
 apiRegisterPlural( 'columns().select()', 'column().select()', function ( select ) {
 	var api = this;
 
@@ -1005,6 +1038,21 @@ apiRegisterPlural( 'columns().select()', 'column().select()', function ( select 
 	} );
 
 	return this;
+} );
+
+apiRegister( 'column().selected()', function () {
+	var ctx = this.context[0];
+
+	if (
+		ctx &&
+		this.length &&
+		ctx.aoColumns[this[0]] &&
+		ctx.aoColumns[this[0]]._select_selected
+	) {
+		return true;
+	}
+
+	return false;
 } );
 
 apiRegisterPlural( 'cells().select()', 'cell().select()', function ( select ) {
@@ -1035,6 +1083,20 @@ apiRegisterPlural( 'cells().select()', 'cell().select()', function ( select ) {
 	} );
 
 	return this;
+} );
+
+apiRegister( 'cell().selected()', function () {
+	var ctx = this.context[0];
+
+	if (ctx && this.length) {
+		var row = ctx.aoData[this[0][0].row];
+
+		if (row && row._selected_cells && row._selected_cells[this[0][0].column]) {
+			return true;
+		}
+	}
+
+	return false;
 } );
 
 
@@ -1220,6 +1282,44 @@ $.extend( DataTable.ext.buttons, {
 		destroy: function ( dt, node, config ) {
 			dt.off( config._eventNamespace );
 		}
+	},
+	showSelected: {
+		text: i18n( 'showSelected', 'Show only selected' ),
+		className: 'buttons-show-selected',
+		action: function (e, dt, node, conf) {
+			// Works by having a filtering function which will reduce to the selected
+			// items only. So we can re-reference the function it gets stored in the
+			// `conf` object
+			if (conf._filter) {
+				var idx = DataTable.ext.search.indexOf(conf._filter);
+
+				if (idx !== -1) {
+					DataTable.ext.search.splice(idx, 1);
+					conf._filter = null;
+				}
+
+				this.active(false);
+			}
+			else {
+				var fn = function (s, data, idx) {
+					// Need to be sure we are operating on our table!
+					if (s !== dt.settings()[0]) {
+						return true;
+					}
+
+					let row = s.aoData[idx];
+
+					return row._select_selected;
+				}
+
+				conf._filter = fn;
+				DataTable.ext.search.push(fn);
+
+				this.active(true);
+			}
+
+			dt.draw();
+		}
 	}
 } );
 
@@ -1243,6 +1343,7 @@ $.each( [ 'Row', 'Column', 'Cell' ], function ( i, item ) {
 } );
 
 
+$.fn.DataTable.select = DataTable.select;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Initialisation
@@ -1261,5 +1362,5 @@ $(document).on( 'preInit.dt.dtSelect', function (e, ctx) {
 } );
 
 
-return DataTable.select;
+return DataTable;
 }));

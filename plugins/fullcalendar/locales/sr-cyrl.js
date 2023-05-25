@@ -2,26 +2,26 @@ FullCalendar.globalLocales.push(function () {
   'use strict';
 
   var srCyrl = {
-    code: 'sr-cyrl',
+    code: "sr-cyrl",
     week: {
-      dow: 1, // Monday is the first day of the week.
-      doy: 7, // The week that contains Jan 1st is the first week of the year.
+      dow: 1,
+      doy: 7
     },
     buttonText: {
-      prev: 'Претходна',
-      next: 'следећи',
-      today: 'Данас',
-      month: 'Месец',
-      week: 'Недеља',
-      day: 'Дан',
-      list: 'Планер',
+      prev: "\u041F\u0440\u0435\u0442\u0445\u043E\u0434\u043D\u0430",
+      next: "\u0441\u043B\u0435\u0434\u0435\u045B\u0438",
+      today: "\u0414\u0430\u043D\u0430\u0441",
+      month: "\u041C\u0435\u0441\u0435\u0446",
+      week: "\u041D\u0435\u0434\u0435\u0459\u0430",
+      day: "\u0414\u0430\u043D",
+      list: "\u041F\u043B\u0430\u043D\u0435\u0440"
     },
-    weekText: 'Сед',
-    allDayText: 'Цео дан',
+    weekText: "\u0421\u0435\u0434",
+    allDayText: "\u0426\u0435\u043E \u0434\u0430\u043D",
     moreLinkText: function(n) {
-      return '+ још ' + n
+      return "+ \u0458\u043E\u0448 " + n;
     },
-    noEventsText: 'Нема догађаја за приказ',
+    noEventsText: "\u041D\u0435\u043C\u0430 \u0434\u043E\u0433\u0430\u0452\u0430\u0458\u0430 \u0437\u0430 \u043F\u0440\u0438\u043A\u0430\u0437"
   };
 
   return srCyrl;

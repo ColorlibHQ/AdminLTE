@@ -31,10 +31,10 @@ API.txt for details.
 
         var oldSetTime = newDate.setTime.bind(newDate);
         newDate.update = function(microEpoch) {
-            oldSetTime(microEpoch);
-
             // Round epoch to 3 decimal accuracy
             microEpoch = Math.round(microEpoch * 1000) / 1000;
+
+            oldSetTime(microEpoch);
 
             // Microseconds are stored as integers
             this.microseconds = 1000 * (microEpoch - Math.floor(microEpoch));
@@ -395,11 +395,10 @@ API.txt for details.
         // reset smaller components
 
         if (step >= timeUnitSize.millisecond) {
-            if (step >= timeUnitSize.second) {
-                d.setMicroseconds(0);
-            } else {
-                d.setMicroseconds(d.getMilliseconds() * 1000);
-            }
+            d.setMicroseconds(0);
+        }
+        if (step >= timeUnitSize.second) {
+            d.setMilliseconds(0);
         }
         if (step >= timeUnitSize.minute) {
             d.setSeconds(0);

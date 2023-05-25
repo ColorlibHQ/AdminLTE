@@ -2,24 +2,24 @@ FullCalendar.globalLocales.push(function () {
   'use strict';
 
   var eo = {
-    code: 'eo',
+    code: "eo",
     week: {
-      dow: 1, // Monday is the first day of the week.
-      doy: 4, // The week that contains Jan 4th is the first week of the year.
+      dow: 1,
+      doy: 4
     },
     buttonText: {
-      prev: 'Antaŭa',
-      next: 'Sekva',
-      today: 'Hodiaŭ',
-      month: 'Monato',
-      week: 'Semajno',
-      day: 'Tago',
-      list: 'Tagordo',
+      prev: "Anta\u016Da",
+      next: "Sekva",
+      today: "Hodia\u016D",
+      month: "Monato",
+      week: "Semajno",
+      day: "Tago",
+      list: "Tagordo"
     },
-    weekText: 'Sm',
-    allDayText: 'Tuta tago',
-    moreLinkText: 'pli',
-    noEventsText: 'Neniuj eventoj por montri',
+    weekText: "Sm",
+    allDayText: "Tuta tago",
+    moreLinkText: "pli",
+    noEventsText: "Neniuj eventoj por montri"
   };
 
   return eo;

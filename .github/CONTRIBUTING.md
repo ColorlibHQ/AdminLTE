@@ -17,9 +17,8 @@ Contributions are always **welcome and recommended**! Here is how for beginner's
     ```
     * Create a new branch
 3. Compile dist files (Development) :
-    * To compile the dist files you need Node.js 14 or higher/npm (node package manager)
-    * Delete ./package-lock.json file
-    * `npm install` (install npm deps)
+    * To compile the dist files you need Node.js 18 or higher/npm (node package manager)
+    * `npm ci` (install npm deps)
     * `npm run dev` (developer mode, autocompile with browsersync support for live demo)
     * Make your changes only in ./build Folder OR package.json OR ./dist/js/demo.js OR package-lock.json OR ./dist/js/pages/ OR ./docs OR in any html files which are necessary for contribution
     * Do not make changes in ./dist/css/ AND ./dist/js/ AND ./plugins Because it contains compiled files and do not include in PR (Pull Request)

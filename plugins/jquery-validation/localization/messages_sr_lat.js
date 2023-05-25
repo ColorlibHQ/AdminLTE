@@ -15,7 +15,7 @@
 $.extend( $.validator.messages, {
 	required: "Polje je obavezno.",
 	remote: "Sredite ovo polje.",
-	email: "Unesite ispravnu e-mail adresu",
+	email: "Unesite ispravnu e-mail adresu.",
 	url: "Unesite ispravan URL.",
 	date: "Unesite ispravan datum.",
 	dateISO: "Unesite ispravan datum (ISO).",

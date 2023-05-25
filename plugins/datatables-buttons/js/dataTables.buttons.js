@@ -1,5 +1,5 @@
-/*! Buttons for DataTables 2.2.2
- * ©2016-2022 SpryMedia Ltd - datatables.net/license
+/*! Buttons for DataTables 2.3.6
+ * ©2016-2023 SpryMedia Ltd - datatables.net/license
  */
 
 (function( factory ){
@@ -11,17 +11,33 @@
 	}
 	else if ( typeof exports === 'object' ) {
 		// CommonJS
-		module.exports = function (root, $) {
-			if ( ! root ) {
-				root = window;
+		var jq = require('jquery');
+		var cjsRequires = function (root, $) {
+			if ( ! $.fn.dataTable ) {
+				require('datatables.net')(root, $);
 			}
-
-			if ( ! $ || ! $.fn.dataTable ) {
-				$ = require('datatables.net')(root, $).$;
-			}
-
-			return factory( $, root, root.document );
 		};
+
+		if (typeof window !== 'undefined') {
+			module.exports = function (root, $) {
+				if ( ! root ) {
+					// CommonJS environments without a window global must pass a
+					// root. This will give an error otherwise
+					root = window;
+				}
+
+				if ( ! $ ) {
+					$ = jq( root );
+				}
+
+				cjsRequires( root, $ );
+				return factory( $, root, root.document );
+			};
+		}
+		else {
+			cjsRequires( window, jq );
+			module.exports = factory( jq, window, window.document );
+		}
 	}
 	else {
 		// Browser
@@ -30,6 +46,7 @@
 }(function( $, window, document, undefined ) {
 'use strict';
 var DataTable = $.fn.dataTable;
+
 
 
 // Used for namespacing events added to the document by each instance, so they
@@ -229,7 +246,16 @@ $.extend( Buttons.prototype, {
 			for (i=button.buttons.length-1; i>=0; i--) {
 				this.remove(button.buttons[i].node);
 			}
-	
+
+			// If the collection has prefix and / or postfix buttons we need to add them in
+			if (button.conf.prefixButtons) {
+				newButtons.unshift.apply(newButtons, button.conf.prefixButtons);
+			}
+
+			if (button.conf.postfixButtons) {
+				newButtons.push.apply(newButtons, button.conf.postfixButtons);
+			}
+
 			for (i=0; i<newButtons.length; i++) {
 				var newBtn = newButtons[i];
 
@@ -239,7 +265,7 @@ $.extend( Buttons.prototype, {
 					newBtn !== undefined && newBtn.config !== undefined && newBtn.config.split !== undefined,
 					true,
 					newBtn.parentConf !== undefined && newBtn.parentConf.split !== undefined,
-					i,
+					null,
 					newBtn.parentConf
 				);
 			}
@@ -267,7 +293,7 @@ $.extend( Buttons.prototype, {
 
 		$(button.node)
 			.addClass( this.c.dom.button.disabled )
-			.attr('disabled', true);
+			.prop('disabled', true);
 
 		return this;
 	},
@@ -322,7 +348,7 @@ $.extend( Buttons.prototype, {
 		var button = this._nodeToButton( node );
 		$(button.node)
 			.removeClass( this.c.dom.button.disabled )
-			.removeAttr('disabled');
+			.prop('disabled', false);
 
 		return this;
 	},
@@ -864,7 +890,7 @@ $.extend( Buttons.prototype, {
 				className: this.c.dom.splitDropdown.className,
 				closeButton: false,
 				attr: {
-					'aria-haspopup': true,
+					'aria-haspopup': 'dialog',
 					'aria-expanded': false
 				},
 				align: this.c.dom.splitDropdown.align,
@@ -875,7 +901,7 @@ $.extend( Buttons.prototype, {
 			this._addKey(dropButtonConfig);
 
 			var splitAction = function ( e, dt, button, config ) {
-				_dtButtons.split.action.call( dt.button($('div.dt-btn-split-wrapper')[0] ), e, dt, button, config );
+				_dtButtons.split.action.call( dt.button(splitDiv), e, dt, button, config );
 	
 				$(dt.table().node()).triggerHandler( 'buttons-action.dt', [
 					dt.button( button ), dt, button, config 
@@ -1150,38 +1176,34 @@ $.extend( Buttons.prototype, {
 				conf.className = originalClassName+' '+conf.className;
 			}
 
-			// Buttons to be added to a collection  -gives the ability to define
-			// if buttons should be added to the start or end of a collection
-			var postfixButtons = conf.postfixButtons;
-			if ( postfixButtons ) {
-				if ( ! conf.buttons ) {
-					conf.buttons = [];
-				}
-
-				for ( i=0, ien=postfixButtons.length ; i<ien ; i++ ) {
-					conf.buttons.push( postfixButtons[i] );
-				}
-
-				conf.postfixButtons = null;
-			}
-
-			var prefixButtons = conf.prefixButtons;
-			if ( prefixButtons ) {
-				if ( ! conf.buttons ) {
-					conf.buttons = [];
-				}
-
-				for ( i=0, ien=prefixButtons.length ; i<ien ; i++ ) {
-					conf.buttons.splice( i, 0, prefixButtons[i] );
-				}
-
-				conf.prefixButtons = null;
-			}
-
 			// Although we want the `conf` object to overwrite almost all of
 			// the properties of the object being extended, the `extend`
 			// property should come from the object being extended
 			conf.extend = objArray.extend;
+		}
+
+		// Buttons to be added to a collection  -gives the ability to define
+		// if buttons should be added to the start or end of a collection
+		var postfixButtons = conf.postfixButtons;
+		if ( postfixButtons ) {
+			if ( ! conf.buttons ) {
+				conf.buttons = [];
+			}
+
+			for ( i=0, ien=postfixButtons.length ; i<ien ; i++ ) {
+				conf.buttons.push( postfixButtons[i] );
+			}
+		}
+
+		var prefixButtons = conf.prefixButtons;
+		if ( prefixButtons ) {
+			if ( ! conf.buttons ) {
+				conf.buttons = [];
+			}
+
+			for ( i=0, ien=prefixButtons.length ; i<ien ; i++ ) {
+				conf.buttons.splice( i, 0, prefixButtons[i] );
+			}
 		}
 
 		return conf;
@@ -1226,7 +1248,7 @@ $.extend( Buttons.prototype, {
 				}
 			);
 
-			$(dt.buttons( '[aria-haspopup="true"][aria-expanded="true"]' ).nodes())
+			$(dt.buttons( '[aria-haspopup="dialog"][aria-expanded="true"]' ).nodes())
 				.attr('aria-expanded', 'false');
 
 			$('div.dt-button-background').off( 'click.dtb-collection' );
@@ -1243,7 +1265,7 @@ $.extend( Buttons.prototype, {
 			return;
 		}
 
-		var existingExpanded = $(dt.buttons( '[aria-haspopup="true"][aria-expanded="true"]' ).nodes());
+		var existingExpanded = $(dt.buttons( '[aria-haspopup="dialog"][aria-expanded="true"]' ).nodes());
 		if ( existingExpanded.length ) {
 			// Reuse the current position if the button that was triggered is inside an existing collection
 			if (hostNode.closest('div.dt-button-collection').length) {
@@ -1272,7 +1294,11 @@ $.extend( Buttons.prototype, {
 			.addClass(options.collectionLayout)
 			.addClass(options.splitAlignClass)
 			.addClass(mod)
-			.css('display', 'none');
+			.css('display', 'none')
+			.attr({
+				'aria-modal': true,
+				role: 'dialog'
+			});
 
 		content = $(content)
 			.addClass(options.contentClassName)
@@ -1459,6 +1485,34 @@ $.extend( Buttons.prototype, {
 				.on( 'keyup.dtb-collection', function (e) {
 					if ( e.keyCode === 27 ) {
 						close();
+					}
+				} )
+				.on( 'keydown.dtb-collection', function (e) {
+					// Focus trap for tab key
+					var elements = $('a, button', content);
+					var active = document.activeElement;
+
+					if (e.keyCode !== 9) { // tab
+						return;
+					}
+
+					if (elements.index(active) === -1) {
+						// If current focus is not inside the popover
+						elements.first().focus();
+						e.preventDefault();
+					}
+					else if (e.shiftKey) {
+						// Reverse tabbing order when shift key is pressed
+						if (active === elements[0]) {
+							elements.last().focus();
+							e.preventDefault();
+						}
+					}
+					else {
+						if (active === elements.last()[0]) {
+							elements.first().focus();
+							e.preventDefault();
+						}
 					}
 				} );
 		}, 0);
@@ -1805,7 +1859,7 @@ Buttons.defaults = {
  * @type {string}
  * @static
  */
-Buttons.version = '2.2.2';
+Buttons.version = '2.3.6';
 
 
 $.extend( _dtButtons, {
@@ -1825,9 +1879,15 @@ $.extend( _dtButtons, {
 			else {
 				this.popover(config._collection, config);
 			}
+
+			// When activated using a key - auto focus on the
+			// first item in the popover
+			if (e.type === 'keypress') {
+				$('a, button', config._collection).eq(0).focus();
+			}
 		},
 		attr: {
-			'aria-haspopup': true
+			'aria-haspopup': 'dialog'
 		}
 		// Also the popover options, defined in Buttons.popover
 	},
@@ -1844,7 +1904,7 @@ $.extend( _dtButtons, {
 			this.popover(config._collection, config);
 		},
 		attr: {
-			'aria-haspopup': true
+			'aria-haspopup': 'dialog'
 		}
 		// Also the popover options, defined in Buttons.popover
 	},
@@ -2474,5 +2534,5 @@ if ( DataTable.ext.features ) {
 }
 
 
-return Buttons;
+return DataTable;
 }));
