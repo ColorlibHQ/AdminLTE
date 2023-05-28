@@ -36,7 +36,7 @@ const htmlPath = convertPathToHtml(path);
       >
         <li class:list={["nav-item", mainPage === "dashboard" && "menu-open"]}>
           <a
-            href="javascript:;"
+            href="#"
             class:list={["nav-link", mainPage === "dashboard" && "active"]}
           >
             <i class="nav-icon fa-solid fa-gauge-high"></i>
@@ -77,7 +77,7 @@ const htmlPath = convertPathToHtml(path);
         </li>
         <li class:list={["nav-item", mainPage === "widgets" && "menu-open"]}>
           <a
-            href="javascript:;"
+            href="#"
             class:list={["nav-link", mainPage === "widgets" && "active"]}
           >
             <i class="nav-icon fa-solid fa-box-open"></i>
@@ -118,7 +118,7 @@ const htmlPath = convertPathToHtml(path);
         </li>
         <li class:list={["nav-item", mainPage === "layout" && "menu-open"]}>
           <a
-            href="javascript:;"
+            href="#"
             class:list={["nav-link", mainPage === "layout" && "active"]}
           >
             <i class="nav-icon fa-solid fa-copy"></i>
@@ -197,7 +197,7 @@ const htmlPath = convertPathToHtml(path);
           class:list={["nav-item", mainPage === "ui-elements" && "menu-open"]}
         >
           <a
-            href="javascript:;"
+            href="#"
             class:list={["nav-link", mainPage === "ui-elements" && "active"]}
           >
             <i class="nav-icon fa-solid fa-tree"></i>
@@ -220,7 +220,7 @@ const htmlPath = convertPathToHtml(path);
         </li>
         <li class:list={["nav-item", mainPage === "forms" && "menu-open"]}>
           <a
-            href="javascript:;"
+            href="#"
             class:list={["nav-link", mainPage === "forms" && "active"]}
           >
             <i class="nav-icon fa-solid fa-pen-to-square"></i>
@@ -243,7 +243,7 @@ const htmlPath = convertPathToHtml(path);
         </li>
         <li class:list={["nav-item", mainPage === "tables" && "menu-open"]}>
           <a
-            href="javascript:;"
+            href="#"
             class:list={["nav-link", mainPage === "tables" && "active"]}
           >
             <i class="nav-icon fa-solid fa-table"></i>
@@ -267,7 +267,7 @@ const htmlPath = convertPathToHtml(path);
 
         <li class="nav-header">EXAMPLES</li>
         <li class="nav-item">
-          <a href="javascript:;" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fa-solid fa-arrow-right-to-bracket"></i>
             <p>
               Login & Register
@@ -320,7 +320,7 @@ const htmlPath = convertPathToHtml(path);
         </li>
         <li class:list={["nav-item", mainPage === "components" && "menu-open"]}>
           <a
-            href="javascript:;"
+            href="#"
             class:list={["nav-link", mainPage === "components" && "active"]}
           >
             <i class="nav-icon fa-solid fa-swatchbook"></i>
@@ -350,6 +350,29 @@ const htmlPath = convertPathToHtml(path);
             </li>
           </ul>
         </li>
+        <li class:list={["nav-item", mainPage === "javascript" && "menu-open"]}>
+          <a
+            href="#"
+            class:list={["nav-link", mainPage === "javascript" && "active"]}
+          >
+            <i class="nav-icon fa-solid fa-swatchbook"></i>
+            <p>
+              Javascript
+              <i class="nav-arrow fa-solid fa-angle-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/docs/javascript/treeview.html"}
+                class:list={["nav-link", page === "treeview" && "active"]}
+              >
+                <i class="nav-icon fa-regular fa-circle"></i>
+                <p>Treeview</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item">
           <a
             href={htmlPath + "/docs/browser-support.html"}
@@ -362,13 +385,13 @@ const htmlPath = convertPathToHtml(path);
 
         <li class="nav-header">MULTI LEVEL EXAMPLE</li>
         <li class="nav-item">
-          <a href="javascript:;" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fa-solid fa-circle"></i>
             <p>Level 1</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="javascript:;" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fa-solid fa-circle"></i>
             <p>
               Level 1
@@ -377,13 +400,13 @@ const htmlPath = convertPathToHtml(path);
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="javascript:;" class="nav-link">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fa-regular fa-circle"></i>
                 <p>Level 2</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="javascript:;" class="nav-link">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fa-regular fa-circle"></i>
                 <p>
                   Level 2
@@ -392,19 +415,19 @@ const htmlPath = convertPathToHtml(path);
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="javascript:;" class="nav-link">
+                  <a href="#" class="nav-link">
                     <i class="nav-icon fa-regular fa-dot-circle"></i>
                     <p>Level 3</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="javascript:;" class="nav-link">
+                  <a href="#" class="nav-link">
                     <i class="nav-icon fa-regular fa-dot-circle"></i>
                     <p>Level 3</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="javascript:;" class="nav-link">
+                  <a href="#" class="nav-link">
                     <i class="nav-icon fa-regular fa-dot-circle"></i>
                     <p>Level 3</p>
                   </a>
@@ -412,7 +435,7 @@ const htmlPath = convertPathToHtml(path);
               </ul>
             </li>
             <li class="nav-item">
-              <a href="javascript:;" class="nav-link">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fa-regular fa-circle"></i>
                 <p>Level 2</p>
               </a>
@@ -420,7 +443,7 @@ const htmlPath = convertPathToHtml(path);
           </ul>
         </li>
         <li class="nav-item">
-          <a href="javascript:;" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fa-solid fa-circle"></i>
             <p>Level 1</p>
           </a>
@@ -428,19 +451,19 @@ const htmlPath = convertPathToHtml(path);
 
         <li class="nav-header">LABELS</li>
         <li class="nav-item">
-          <a href="javascript:;" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fa-regular fa-circle text-danger"></i>
             <p class="text">Important</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="javascript:;" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fa-regular fa-circle text-warning"></i>
             <p>Warning</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="javascript:;" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fa-regular fa-circle text-info"></i>
             <p>Informational</p>
           </a>

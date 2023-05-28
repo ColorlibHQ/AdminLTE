@@ -46,12 +46,10 @@ type Config = {
 class Treeview {
   _element: HTMLElement
   _config: Config
-  _childNavItem: HTMLElement | undefined
 
   constructor(element: HTMLElement, config: Config) {
     this._element = element
     this._config = { ...Default, ...config }
-    this._childNavItem = this._element.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
   }
 
   open(): void {
@@ -59,8 +57,9 @@ class Treeview {
 
     this._element.classList.add(CLASS_NAME_MENU_OPEN)
 
-    if (this._childNavItem) {
-      slideDown(this._childNavItem, this._config.animationSpeed)
+    const childElement = this._element?.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
+    if (childElement) {
+      slideDown(childElement, this._config.animationSpeed)
     }
 
     this._element.dispatchEvent(event)
@@ -71,8 +70,9 @@ class Treeview {
 
     this._element.classList.remove(CLASS_NAME_MENU_OPEN)
 
-    if (this._childNavItem) {
-      slideUp(this._childNavItem, this._config.animationSpeed)
+    const childElement = this._element?.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
+    if (childElement) {
+      slideUp(childElement, this._config.animationSpeed)
     }
 
     this._element.dispatchEvent(event)
@@ -98,7 +98,12 @@ domReady(() => {
 
   button.forEach(btn => {
     btn.addEventListener('click', event => {
-      const target = event.target as HTMLElement
+      const target = event.target as HTMLAnchorElement
+
+      if (target.getAttribute('href') === '#') {
+        event.preventDefault()
+      }
+
       const targetItem = target.closest(SELECTOR_NAV_ITEM) as HTMLElement | undefined
 
       if (targetItem) {
