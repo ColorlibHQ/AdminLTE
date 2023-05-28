@@ -7,7 +7,8 @@
   @include box-shadow($lte-card-shadow);
   margin-bottom: map-get($spacers, 3);
 
-  &[class*="card-"]:not(.card-outline) {
+  &[class*="card-"]:not(.card-outline),
+  &[class*="text-bg-"]:not(.card-outline) {
     > .card-header {
       color: var(--#{$lte-prefix}card-variant-color);
       background-color: var(--#{$lte-prefix}card-variant-bg);
