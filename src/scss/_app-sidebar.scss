@@ -22,16 +22,20 @@
 
 .sidebar-brand {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   padding: $lte-brand-link-padding-y $lte-brand-link-padding-x;
   overflow: hidden;
   font-size: $navbar-brand-font-size;
   white-space: nowrap;
+  height: $lte-app-header-height;
   border-bottom: $lte-brand-link-border-buttom solid var(--#{$prefix}border-color);
   @include transition(width $lte-transition-speed $lte-transition-fn);
 
   .brand-link {
-    flex: 1;
+    display: flex;
+    align-items: center;
+
     &:hover {
       text-decoration: none;
     }
@@ -40,9 +44,6 @@
       float: left;
       width: auto;
       max-height: 33px;
-      margin-top: -3px;
-      margin-right: .5rem;
-      margin-left: .8rem;
       line-height: .8;
     }
 
@@ -67,6 +68,7 @@
 
   .brand-text {
     color: rgba(var(--#{$prefix}emphasis-color-rgb), .8);
+    margin-left: .5rem;
     @include transition(flex $lte-transition-speed $lte-transition-fn, width $lte-transition-speed $lte-transition-fn);
     &:hover {
       color: var(--#{$prefix}emphasis-color);
@@ -173,7 +175,7 @@
 
       .nav-arrow {
         @include transition(transform $lte-transition-fn $lte-transition-speed);
-        transform: none #{"/*rtl:rotate(180deg)*/"};
+        transform: translateY(-50%) #{"/*rtl:rotate(180deg)*/"};
       }
     }
   }
@@ -188,7 +190,7 @@
   .nav-link > .nav-arrow,
   .nav-link > p > .nav-arrow {
     position: absolute;
-    top: .7rem;
+    top: 50%;
     right: 1rem;
   }
 
@@ -202,10 +204,6 @@
       display: inline;
       padding-left: .5rem;
       margin: 0;
-    }
-
-    .nav-icon {
-      padding-left: .3rem;
     }
   }
 
@@ -228,7 +226,7 @@
 
     > .nav-link {
       .nav-arrow {
-        transform: rotate(90deg) #{"/*rtl:rotate(90deg)*/"};
+        transform: translateY(-50%) rotate(90deg) #{"/*rtl:rotate(90deg)*/"};
       }
     }
   }
@@ -291,12 +289,22 @@
   .sidebar-menu {
     .nav-link {
       width: $lte-sidebar-mini-width - $lte-sidebar-padding-x * 2;
+      p {
+        display: inline-block;
+        width: 0;
+        white-space: nowrap;
+      }
+    }
+    .badge,
+    .nav-arrow {
+      display: none;
     }
   }
 
-  .sidebar-menu .nav-link p {
-    width: 0;
-    white-space: nowrap;
+  .brand-text {
+    display: inline-block;
+    max-width: 0;
+    overflow: hidden;
   }
 
   .sidebar-menu .nav-link p,
@@ -338,6 +346,20 @@
       animation-fill-mode: both;
     }
 
+    .brand-text {
+      display: inline;
+      max-width: inherit;
+      overflow: auto;
+      margin-left: .5rem;
+    }
+    .badge,
+    .nav-arrow {
+      display: inherit;
+    }
+
+    .nav-link p {
+      padding-left: inherit;
+    }
     .logo-xs {
       visibility: hidden;
       animation-name: fadeOut;
@@ -371,7 +393,7 @@
             max-height: 100vh;
 
             .sidebar-wrapper {
-              height: subtract(100vh, add($lte-app-header-height-inner, $lte-app-header-bottom-border-width));
+              height: subtract(100vh, add($lte-app-header-height, $lte-app-header-bottom-border-width));
             }
           }
 
@@ -395,6 +417,13 @@
             .app-footer {
               margin-left: $lte-sidebar-mini-width;
             }
+            &.compact-mode {
+              .app-header,
+              .app-main,
+              .app-footer {
+                margin-left: $lte-sidebar-mini-width-compact;
+              }
+            }
           }
         }
       }
@@ -416,7 +445,7 @@
           margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1); // stylelint-disable-line function-disallowed-list
 
           .sidebar-wrapper {
-            height: subtract(100vh, add($lte-app-header-height-inner, $lte-app-header-bottom-border-width));
+            height: subtract(100vh, add($lte-app-header-height, $lte-app-header-bottom-border-width));
             overflow-x: hidden;
             overflow-y: auto;
           }

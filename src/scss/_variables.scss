@@ -15,7 +15,9 @@ $lte-transition-fn:               ease-in-out !default;
 $lte-sidebar-width:               250px !default;
 $lte-sidebar-breakpoint:          lg !default;
 $lte-sidebar-padding-x:           .5rem !default;
+$lte-sidebar-padding-x-compact:   .5rem !default;
 $lte-sidebar-padding-y:           .5rem !default;
+$lte-sidebar-padding-y-compact:   .25rem !default;
 $lte-sidebar-transition:          min-width $lte-transition-speed $lte-transition-fn,
   max-width $lte-transition-speed $lte-transition-fn,
   margin-left $lte-transition-speed $lte-transition-fn,
@@ -40,17 +42,21 @@ $lte-sidebar-header-color:          shade-color($gray-800, 5%) !default;
 
 // SIDEBAR MINI
 // --------------------------------------------------------
+$nav-link-padding-x-compact:      .25rem !default;
 $lte-sidebar-mini-width:          ($nav-link-padding-x + $lte-sidebar-padding-x + .8rem) * 2 !default;
+$lte-sidebar-mini-width-compact:  ($nav-link-padding-x-compact + $lte-sidebar-padding-x-compact + .8rem) * 2 !default;
 $lte-sidebar-nav-icon-width:      $lte-sidebar-mini-width - (($lte-sidebar-padding-x + $nav-link-padding-x) * 2) !default;
-$lte-sidebar-user-image-width:    $lte-sidebar-nav-icon-width + ($nav-link-padding-x * .5) !default;
+$lte-sidebar-user-image-width:    $lte-sidebar-nav-icon-width + ($nav-link-padding-x * .4) !default;
 
 // MAIN HEADER
 // --------------------------------------------------------
+$nav-link-height-compact:             1.75rem !default;
 $lte-app-header-bottom-border-width:  $border-width !default;
 $lte-app-header-bottom-border-color:  var(--#{$prefix}border-color) !default;
 $lte-app-header-bottom-border:        $lte-app-header-bottom-border-width solid $lte-app-header-bottom-border-color !default;
 $lte-app-header-link-padding-y:       $navbar-padding-y !default;
-$lte-app-header-height-inner:         ($nav-link-height + ($lte-app-header-link-padding-y * 2)) !default;
+$lte-app-header-height:               ($nav-link-height + ($lte-app-header-link-padding-y * 2)) !default;
+$lte-app-header-height-compact:       ($nav-link-height-compact + ($lte-app-header-link-padding-y * 2)) !default;
 
 // Content padding
 $lte-content-padding-y:           0 !default;
@@ -59,6 +65,7 @@ $lte-content-padding-x:           .5rem !default;
 // MAIN FOOTER
 // --------------------------------------------------------
 $lte-app-footer-padding:           1rem !default;
+$lte-app-footer-padding-compact:   0.5rem !default;
 $lte-app-footer-border-top-width:  1px !default;
 $lte-app-footer-border-top-color:  var(--#{$prefix}border-color) !default;
 $lte-app-footer-border-top:        $lte-app-footer-border-top-width solid $lte-app-footer-border-top-color !default;
@@ -67,8 +74,12 @@ $lte-app-footer-color:             var(--#{$prefix}secondary-color) !default;
 
 // BRAND LINK
 // --------------------------------------------------------
-$lte-brand-link-padding-y:        $navbar-brand-padding-y + $navbar-padding-y !default;
-$lte-brand-link-padding-x:        $lte-sidebar-padding-x !default;
+$navbar-brand-padding-y-compact:   $navbar-brand-padding-y * .75 !default;
+$navbar-padding-y-compact:         $navbar-padding-y * .5 !default;
+$lte-brand-link-padding-y:         $navbar-brand-padding-y + $navbar-padding-y !default;
+$lte-brand-link-padding-y-compact: $navbar-brand-padding-y-compact + $navbar-padding-y-compact !default;
+$lte-brand-link-padding-x:         $lte-sidebar-padding-x !default;
+$lte-brand-link-padding-x-compact: $lte-sidebar-padding-x-compact !default;
 $lte-brand-link-border-buttom:    1px !default;
 
 
