@@ -56,13 +56,22 @@ const page = "color-mode";
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row g-4">
+              <div class="col-12">
+                <div class="callout callout-info">
+                  <h5 class="fw-bold">Tips</h5>
+                  <p>
+                    First Visit
+                    https://getbootstrap.com/docs/5.3/customize/color-modes/
+                  </p>
+                </div>
+              </div>
               <!-- Start column -->
               <div class="col-12">
-                <!-- Navbar -->
+                <!--begin::Header-->
                 <nav class="navbar navbar-expand bg-body">
                   <!--begin::Container-->
                   <div class="container-fluid">
-                    <!-- Start navbar links -->
+                    <!--begin::Start Navbar links-->
                     <ul class="navbar-nav">
                       <li class="nav-item">
                         <a
@@ -79,6 +88,8 @@ const page = "color-mode";
                         <a href="#" class="nav-link">Contact</a>
                       </li>
                     </ul>
+                    <!--end::Start Navbar links-->
+                    <!--begin::End Navbar links-->
                     <ul class="navbar-nav ms-auto">
                       <li class="nav-item dropdown">
                         <button
@@ -92,10 +103,13 @@ const page = "color-mode";
                           <span class="theme-icon-active">
                             <i class="my-1"></i>
                           </span>
+                          <span class="d-lg-none ms-2" id="bd-theme-text"
+                            >Toggle theme</span
+                          >
                         </button>
                         <ul
                           class="dropdown-menu dropdown-menu-end"
-                          aria-labelledby="bd-theme"
+                          aria-labelledby="bd-theme-text"
                           style="--bs-dropdown-min-width: 8rem;"
                         >
                           <li>
@@ -103,6 +117,7 @@ const page = "color-mode";
                               type="button"
                               class="dropdown-item d-flex align-items-center active"
                               data-bs-theme-value="light"
+                              aria-pressed="false"
                             >
                               <i class="fa-regular fa-sun me-2"></i>
                               Light
@@ -114,6 +129,7 @@ const page = "color-mode";
                               type="button"
                               class="dropdown-item d-flex align-items-center"
                               data-bs-theme-value="dark"
+                              aria-pressed="false"
                             >
                               <i class="fa-solid fa-moon me-2"></i>
                               Dark
@@ -125,6 +141,7 @@ const page = "color-mode";
                               type="button"
                               class="dropdown-item d-flex align-items-center"
                               data-bs-theme-value="auto"
+                              aria-pressed="true"
                             >
                               <i class="fa-solid fa-circle-half-stroke me-2"
                               ></i>
@@ -135,9 +152,11 @@ const page = "color-mode";
                         </ul>
                       </li>
                     </ul>
+                    <!--end::End Navbar links-->
                   </div>
                   <!--end::Container-->
                 </nav>
+                <!--end::Header-->
               </div>
               <!-- Start column -->
               <div class="col-12">
@@ -187,25 +206,40 @@ const page = "color-mode";
 
         setTheme(getPreferredTheme());
 
-        const showActiveTheme = (theme) => {
+        const showActiveTheme = (theme, focus = false) => {
+          const themeSwitcher = document.querySelector("#bd-theme");
+
+          if (!themeSwitcher) {
+            return;
+          }
+
+          const themeSwitcherText = document.querySelector("#bd-theme-text");
           const activeThemeIcon = document.querySelector(
             ".theme-icon-active i"
           );
           const btnToActive = document.querySelector(
-            '[data-bs-theme-value="' + theme + '"]'
+            `[data-bs-theme-value="${theme}"]`
           );
           const svgOfActiveBtn = btnToActive
             .querySelector("i")
             .getAttribute("class");
 
-          document
-            .querySelectorAll("[data-bs-theme-value]")
-            .forEach((element) => {
-              element.classList.remove("active");
-            });
+          for (const element of document.querySelectorAll(
+            "[data-bs-theme-value]"
+          )) {
+            element.classList.remove("active");
+            element.setAttribute("aria-pressed", "false");
+          }
 
           btnToActive.classList.add("active");
+          btnToActive.setAttribute("aria-pressed", "true");
           activeThemeIcon.setAttribute("class", svgOfActiveBtn);
+          const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`;
+          themeSwitcher.setAttribute("aria-label", themeSwitcherLabel);
+
+          if (focus) {
+            themeSwitcher.focus();
+          }
         };
 
         window
@@ -219,16 +253,16 @@ const page = "color-mode";
         window.addEventListener("DOMContentLoaded", () => {
           showActiveTheme(getPreferredTheme());
 
-          document
-            .querySelectorAll("[data-bs-theme-value]")
-            .forEach((toggle) => {
-              toggle.addEventListener("click", () => {
-                const theme = toggle.getAttribute("data-bs-theme-value");
-                localStorage.setItem("theme", theme);
-                setTheme(theme);
-                showActiveTheme(theme);
-              });
+          for (const toggle of document.querySelectorAll(
+            "[data-bs-theme-value]"
+          )) {
+            toggle.addEventListener("click", () => {
+              const theme = toggle.getAttribute("data-bs-theme-value");
+              localStorage.setItem("theme", theme);
+              setTheme(theme);
+              showActiveTheme(theme, true);
             });
+          }
         });
       })();
     </script>
