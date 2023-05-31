@@ -6,7 +6,7 @@
  */
 
 import {
-  domReady,
+  onDOMContentLoaded,
   slideUp,
   slideDown
 } from './util/index'
@@ -243,7 +243,7 @@ class CardWidget {
  * ====================================================
  */
 
-domReady(() => {
+onDOMContentLoaded(() => {
   const collapseBtn = document.querySelectorAll(SELECTOR_DATA_COLLAPSE)
 
   collapseBtn.forEach(btn => {

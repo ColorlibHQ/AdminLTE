@@ -6,7 +6,7 @@
  */
 
 import {
-  domReady
+  onDOMContentLoaded
 } from './util/index'
 
 /**
@@ -58,7 +58,7 @@ class DirectChat {
  * ====================================================
  */
 
-domReady(() => {
+onDOMContentLoaded(() => {
   const button = document.querySelectorAll(SELECTOR_DATA_TOGGLE)
 
   button.forEach(btn => {

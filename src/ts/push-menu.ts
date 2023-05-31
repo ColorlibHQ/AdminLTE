@@ -6,7 +6,7 @@
  */
 
 import {
-  domReady
+  onDOMContentLoaded
 } from './util/index'
 
 /**
@@ -134,7 +134,7 @@ class PushMenu {
  * ------------------------------------------------------------------------
  */
 
-domReady(() => {
+onDOMContentLoaded(() => {
   const sidebar = document?.querySelector(SELECTOR_APP_SIDEBAR) as HTMLElement | undefined
 
   if (sidebar) {

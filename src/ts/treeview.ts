@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * --------------------------------------------
  * AdminLTE treeview.ts
@@ -6,7 +7,7 @@
  */
 
 import {
-  domReady,
+  onDOMContentLoaded,
   slideDown,
   slideUp
 } from './util/index'
@@ -27,6 +28,7 @@ const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
 
 const CLASS_NAME_MENU_OPEN = 'menu-open'
 const SELECTOR_NAV_ITEM = '.nav-item'
+const SELECTOR_NAV_LINK = '.nav-link'
 const SELECTOR_TREEVIEW_MENU = '.nav-treeview'
 const SELECTOR_DATA_TOGGLE = '[data-lte-toggle="treeview"]'
 
@@ -93,18 +95,18 @@ class Treeview {
  * ------------------------------------------------------------------------
  */
 
-domReady(() => {
+onDOMContentLoaded(() => {
   const button = document.querySelectorAll(SELECTOR_DATA_TOGGLE)
 
   button.forEach(btn => {
     btn.addEventListener('click', event => {
-      const target = event.target as HTMLAnchorElement
+      const target = event.target as HTMLElement
+      const targetItem = target.closest(SELECTOR_NAV_ITEM) as HTMLElement | undefined
+      const targetLink = target.closest(SELECTOR_NAV_LINK) as HTMLAnchorElement | undefined
 
-      if (target.getAttribute('href') === '#') {
+      if (target?.getAttribute('href') === '#' || targetLink?.getAttribute('href') === '#') {
         event.preventDefault()
       }
-
-      const targetItem = target.closest(SELECTOR_NAV_ITEM) as HTMLElement | undefined
 
       if (targetItem) {
         const data = new Treeview(targetItem, Default)

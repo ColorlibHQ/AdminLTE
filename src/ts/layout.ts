@@ -6,7 +6,7 @@
  */
 
 import {
-  domReady
+  onDOMContentLoaded
 } from './util/index'
 
 /**
@@ -42,7 +42,7 @@ class Layout {
   }
 }
 
-domReady(() => {
+onDOMContentLoaded(() => {
   const data = new Layout(document.body)
   data.holdTransition()
   setTimeout(() => {
