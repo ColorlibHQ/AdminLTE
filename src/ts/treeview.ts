@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /**
  * --------------------------------------------
  * AdminLTE treeview.ts
