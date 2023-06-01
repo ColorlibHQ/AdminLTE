@@ -86,6 +86,14 @@
   @include scrollbar-color-gray();
   @include scrollbar-width-thin();
 
+  .nav-link {
+    display: flex;
+  }
+  .nav-icon {
+    display: flex;
+    align-items: center;
+  }
+
   // Sidebar Menu. First level links
   .sidebar-menu > .nav-item {
     &.menu-open {
