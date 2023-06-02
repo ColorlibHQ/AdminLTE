@@ -22,13 +22,13 @@
 
 .sidebar-brand {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  height: $lte-app-header-height;
   padding: $lte-brand-link-padding-y $lte-brand-link-padding-x;
   overflow: hidden;
   font-size: $navbar-brand-font-size;
   white-space: nowrap;
-  height: $lte-app-header-height;
   border-bottom: $lte-brand-link-border-buttom solid var(--#{$prefix}border-color);
   @include transition(width $lte-transition-speed $lte-transition-fn);
 
@@ -67,8 +67,8 @@
   }
 
   .brand-text {
-    color: rgba(var(--#{$prefix}emphasis-color-rgb), .8);
     margin-left: .5rem;
+    color: rgba(var(--#{$prefix}emphasis-color-rgb), .8);
     @include transition(flex $lte-transition-speed $lte-transition-fn, width $lte-transition-speed $lte-transition-fn);
     &:hover {
       color: var(--#{$prefix}emphasis-color);
@@ -81,17 +81,19 @@
   padding-right: $lte-sidebar-padding-x;
   padding-bottom: $lte-sidebar-padding-y;
   padding-left: $lte-sidebar-padding-x;
-  overflow-x: hidden;
-  overflow-y: auto;
   @include scrollbar-color-gray();
   @include scrollbar-width-thin();
 
   .nav-link {
     display: flex;
+    justify-content: flex-start;
   }
   .nav-icon {
     display: flex;
     align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    max-width: 1.5rem;
   }
 
   // Sidebar Menu. First level links
@@ -184,6 +186,9 @@
       .nav-arrow {
         @include transition(transform $lte-transition-fn $lte-transition-speed);
         transform: translateY(-50%) #{"/*rtl:rotate(180deg)*/"};
+        animation-name: fadeIn;
+        animation-duration: $lte-transition-speed;
+        animation-fill-mode: both;
       }
     }
   }
@@ -193,6 +198,10 @@
   .nav-link > p > .nav-badge {
     position: absolute;
     right: 1rem;
+    animation-name: fadeIn;
+    animation-duration: $lte-transition-speed;
+    animation-fill-mode: both;
+    animation-delay: $lte-transition-speed;
   }
 
   .nav-link > .nav-arrow,
@@ -200,6 +209,10 @@
     position: absolute;
     top: 50%;
     right: 1rem;
+    animation-name: fadeIn;
+    animation-duration: $lte-transition-speed;
+    animation-fill-mode: both;
+    animation-delay: $lte-transition-speed;
   }
 
   .nav-link {
@@ -297,15 +310,20 @@
   .sidebar-menu {
     .nav-link {
       width: $lte-sidebar-mini-width - $lte-sidebar-padding-x * 2;
+
       p {
         display: inline-block;
         width: 0;
         white-space: nowrap;
       }
     }
-    .badge,
+    .nav-badge,
     .nav-arrow {
       display: none;
+      animation-name: fadeOut;
+      animation-duration: $lte-transition-speed;
+      animation-fill-mode: both;
+      animation-delay: $lte-transition-speed;
     }
   }
 
@@ -317,12 +335,14 @@
 
   .sidebar-menu .nav-link p,
   .brand-text,
-  .logo-xl {
+  .logo-xl,
+  .nav-arrow {
     visibility: hidden;
     animation-name: fadeOut;
     animation-duration: $lte-transition-speed;
     animation-fill-mode: both;
   }
+
 
   .logo-xs {
     display: inline-block;
@@ -357,16 +377,23 @@
     .brand-text {
       display: inline;
       max-width: inherit;
-      overflow: auto;
       margin-left: .5rem;
+      animation-name: fadeIn;
+      animation-duration: $lte-transition-speed;
+      animation-fill-mode: both;
     }
-    .badge,
+    .nav-badge,
     .nav-arrow {
-      display: inherit;
+      display: inline-block;
+      visibility: visible;
+      animation-name: fadeIn;
+      animation-duration: $lte-transition-speed;
+      animation-fill-mode: both;
+      animation-delay: $lte-transition-speed;
     }
 
     .nav-link p {
-      padding-left: inherit;
+      padding-left: .5rem;
     }
     .logo-xs {
       visibility: hidden;
@@ -379,8 +406,7 @@
 
 .sidebar-collapse:not(.sidebar-mini) {
   .app-sidebar {
-    // stylelint-disable-next-line
-    margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1);
+    margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1); // stylelint-disable-line function-disallowed-list
   }
 }
 
@@ -392,46 +418,34 @@
     /* stylelint-disable-next-line scss/selector-no-union-class-name */
     &#{$infix} {
       @include media-breakpoint-up($next) {
+        &.layout-fixed-complete,
         &.layout-fixed {
+          .app-main-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+          }
+          .app-sidebar-wrapper {
+            position: relative;
+          }
+          .app-main {
+            flex: 1 1 auto;
+            overflow: auto;
+          }
           .app-sidebar {
-            position: fixed;
+            position: sticky;
             top: 0;
             bottom: 0;
-            left: 0;
             max-height: 100vh;
 
             .sidebar-wrapper {
-              height: subtract(100vh, add($lte-app-header-height, $lte-app-header-bottom-border-width));
+              height: subtract(100vh, add($lte-app-header-height, 1px));
             }
           }
-
-          .app-header,
-          .app-main,
-          .app-footer {
-            margin-left: var(--#{$lte-prefix}sidebar-width);
-          }
-
-          &.sidebar-collapse {
-            .app-header,
-            .app-main,
-            .app-footer {
-              margin-left: 0;
-            }
-          }
-
-          &.sidebar-mini.sidebar-collapse {
-            .app-header,
-            .app-main,
-            .app-footer {
-              margin-left: $lte-sidebar-mini-width;
-            }
-            &.compact-mode {
-              .app-header,
-              .app-main,
-              .app-footer {
-                margin-left: $lte-sidebar-mini-width-compact;
-              }
-            }
+        }
+        &.layout-fixed-complete {
+          .app-main-wrapper {
+            max-height: 100vh;
           }
         }
       }
@@ -445,36 +459,24 @@
         }
 
         .app-sidebar {
-          position: fixed;
+          position: sticky;
           top: 0;
           bottom: 0;
-          left: 0;
           max-height: 100vh;
-          margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1); // stylelint-disable-line function-disallowed-list
 
           .sidebar-wrapper {
-            height: subtract(100vh, add($lte-app-header-height, $lte-app-header-bottom-border-width));
-            overflow-x: hidden;
-            overflow-y: auto;
+            height: subtract(100vh, add($lte-app-header-height, 1px));
           }
-        }
-
-        &.sidebar-mini .app-sidebar {
-          margin-left: -$lte-sidebar-mini-width;
         }
 
         &.sidebar-open {
-          .app-sidebar {
-            margin-left: 0;
-          }
-
           .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
+            position: absolute;
+            inset: 0;
             z-index: $lte-zindex-sidebar-overlay;
             width: 100%;
             height: 100%;
+            cursor: pointer;
             visibility: visible;
             background-color: rgba(0, 0, 0, .2);
             animation-name: fadeIn;

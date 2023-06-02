@@ -1,5 +1,7 @@
 .compact-mode {
   .app-header {
+    max-height: $lte-app-header-height-compact;
+
     .nav-link {
       max-height: $nav-link-height-compact;
     }
@@ -29,14 +31,11 @@
   }
 
   .brand-image {
-    height: $nav-link-height-compact;
     width: $nav-link-height-compact;
+    height: $nav-link-height-compact;
   }
   .sidebar-brand {
     height: $lte-app-header-height-compact;
-  }
-  .app-header {
-    max-height: $lte-app-header-height-compact;
   }
 
   .app-footer {

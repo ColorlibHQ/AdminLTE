@@ -1,0 +1,36 @@
+.app-content {
+  padding: $lte-content-padding-y $lte-content-padding-x;
+}
+
+.app-content-bottom-area {
+  display: flex;
+  align-items: center;
+  padding: $lte-content-padding-y $lte-content-padding-x;
+  overflow: auto;
+  background: $lte-app-footer-bg;
+  border-top: $lte-app-footer-border-top;
+
+  > .row {
+    display: contents;
+  }
+
+  &:not(.app-content-bottom-area-md),
+  &:not(.app-content-bottom-area-lg),
+  &:not(.app-content-bottom-area-xl) {
+    min-height: $lte-app-content-bottom-area-height-sm;
+    max-height: $lte-app-content-bottom-area-height-sm;
+  }
+
+  &.app-content-bottom-area-md {
+    min-height: $lte-app-content-bottom-area-height-md;
+    max-height: $lte-app-content-bottom-area-height-md;
+  }
+  &.app-content-bottom-area-lg {
+    min-height: $lte-app-content-bottom-area-height-lg;
+    max-height: $lte-app-content-bottom-area-height-lg;
+  }
+  &.app-content-bottom-area-xl {
+    min-height: $lte-app-content-bottom-area-height-xl;
+    max-height: $lte-app-content-bottom-area-height-xl;
+  }
+}

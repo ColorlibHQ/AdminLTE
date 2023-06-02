@@ -124,7 +124,7 @@ const htmlPath = convertPathToHtml(path);
             <i class="nav-icon fa-solid fa-copy"></i>
             <p>
               Layout Options
-              <span class="nav-badge badge text-bg-secondary opacity-75 me-3"
+              <span class="nav-badge badge text-bg-secondary me-3"
                 >6</span
               >
               <i class="nav-arrow fa-solid fa-angle-right"></i>
@@ -140,7 +140,7 @@ const htmlPath = convertPathToHtml(path);
                 ]}
               >
                 <i class="nav-icon fa-regular fa-circle"></i>
-                <p>Unfixed Sidebar</p>
+                <p>Default Sidebar</p>
               </a>
             </li>
             <li class="nav-item">
@@ -150,6 +150,15 @@ const htmlPath = convertPathToHtml(path);
               >
                 <i class="nav-icon fa-regular fa-circle"></i>
                 <p>Fixed Sidebar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/layout/fixed-complete.html"}
+                class:list={["nav-link", page === "fixed-complete" && "active"]}
+              >
+                <i class="nav-icon fa-regular fa-circle"></i>
+                <p>Fixed Complete</p>
               </a>
             </li>
             <li class="nav-item">

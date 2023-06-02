@@ -63,20 +63,20 @@ $lte-content-padding-y:           0 !default;
 $lte-content-padding-x:           .5rem !default;
 
 // MAIN CONTENT
-$lte-app-content-bottom-area-height-sm: 3rem !default;
-$lte-app-content-bottom-area-height-md: 4.5rem !default;
-$lte-app-content-bottom-area-height-lg: 6rem !default;
+$lte-app-content-bottom-area-height-sm: 3.5rem !default;
+$lte-app-content-bottom-area-height-md: 6rem !default;
+$lte-app-content-bottom-area-height-lg: 9rem !default;
+$lte-app-content-bottom-area-height-xl: 12rem !default;
 
 // MAIN FOOTER
 // --------------------------------------------------------
 $lte-app-footer-padding:           1rem !default;
-$lte-app-footer-padding-compact:   0.5rem !default;
+$lte-app-footer-padding-compact:   .5rem !default;
 $lte-app-footer-border-top-width:  1px !default;
 $lte-app-footer-border-top-color:  var(--#{$prefix}border-color) !default;
 $lte-app-footer-border-top:        $lte-app-footer-border-top-width solid $lte-app-footer-border-top-color !default;
 $lte-app-footer-bg:                var(--#{$prefix}body-bg) !default;
 $lte-app-footer-color:             var(--#{$prefix}secondary-color) !default;
-$lte-app-footer-height:            2.5rem !default;
 
 // BRAND LINK
 // --------------------------------------------------------
