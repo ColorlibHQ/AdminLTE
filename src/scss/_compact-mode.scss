@@ -41,5 +41,12 @@
   .app-footer {
     padding: $lte-app-footer-padding-compact;
   }
+
+  .sidebar-wrapper {
+    .nav-icon {
+      min-width: 1.1rem;
+      max-width: 1.1rem;
+    }
+  }
 }
 
