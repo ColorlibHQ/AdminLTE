@@ -198,10 +198,6 @@
   .nav-link > p > .nav-badge {
     position: absolute;
     right: 1rem;
-    animation-name: fadeIn;
-    animation-duration: $lte-transition-speed;
-    animation-fill-mode: both;
-    animation-delay: $lte-transition-speed;
   }
 
   .nav-link > .nav-arrow,
@@ -209,10 +205,6 @@
     position: absolute;
     top: 50%;
     right: 1rem;
-    animation-name: fadeIn;
-    animation-duration: $lte-transition-speed;
-    animation-fill-mode: both;
-    animation-delay: $lte-transition-speed;
   }
 
   .nav-link {
@@ -323,7 +315,6 @@
       animation-name: fadeOut;
       animation-duration: $lte-transition-speed;
       animation-fill-mode: both;
-      animation-delay: $lte-transition-speed;
     }
   }
 
@@ -448,6 +439,22 @@
             max-height: 100vh;
           }
         }
+        &.sidebar-open {
+          .nav-link > .nav-badge,
+          .nav-link > p > .nav-badge {
+            animation-name: fadeIn;
+            animation-duration: $lte-transition-speed;
+            animation-fill-mode: both;
+            animation-delay: $lte-transition-speed;
+          }
+          .nav-link > .nav-arrow,
+          .nav-link > p > .nav-arrow {
+            animation-name: fadeIn;
+            animation-duration: $lte-transition-speed;
+            animation-fill-mode: both;
+            animation-delay: $lte-transition-speed;
+          }
+        }
       }
 
       @include media-breakpoint-down($next) {
@@ -517,7 +524,9 @@ body:not(.app-loaded) {
   .app-header,
   .app-sidebar,
   .app-main,
-  .app-footer {
+  .app-footer,
+  .nav-arrow,
+  .nav-badge {
     @include transition(none !important);
     animation-duration: 0s !important;
   }
