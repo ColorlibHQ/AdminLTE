@@ -1,4 +1,34 @@
 .compact-mode {
+  .app-content-top-area:not(.app-content-top-area-sm):not(.app-content-top-area-md):not(.app-content-top-area-lg):not(.app-content-top-area-xl),
+  .app-content-bottom-area:not(.app-content-bottom-area-sm):not(.app-content-bottom-area-md):not(.app-content-bottom-area-lg):not(.app-content-bottom-area-xl) {
+    padding-top: $grid-gutter-width * 0.425;
+    padding-bottom: $grid-gutter-width * 0.425;
+  }
+  .app-content-top-area-sm,
+  .app-content-bottom-area-sm {
+    min-height: $lte-app-content-bottom-area-height-sm * .825;
+    max-height: $lte-app-content-bottom-area-height-sm * .825;
+  }
+
+  .app-content-top-area-md,
+  .app-content-bottom-area-md {
+    min-height: $lte-app-content-bottom-area-height-md * .825;
+    max-height: $lte-app-content-bottom-area-height-md * .825;
+  }
+
+  .app-content-top-area-lg,
+  .app-content-bottom-area-lg {
+    min-height: $lte-app-content-bottom-area-height-lg * .825;
+    max-height: $lte-app-content-bottom-area-height-lg * .825;
+  }
+
+  .app-content-top-area-xl,
+  .app-content-bottom-area-xl {
+    min-height: $lte-app-content-bottom-area-height-xl * .825;
+    max-height: $lte-app-content-bottom-area-height-xl * .825;
+  }
+
+
   .app-header {
     max-height: $lte-app-header-height-compact;
 
@@ -34,6 +64,7 @@
     width: $nav-link-height-compact;
     height: $nav-link-height-compact;
   }
+
   .sidebar-brand {
     height: $lte-app-header-height-compact;
   }
