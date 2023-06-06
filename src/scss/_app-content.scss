@@ -2,13 +2,13 @@
   padding: $lte-content-padding-y $lte-content-padding-x;
 }
 
-.app-content-bottom-area {
+.app-content-top-area,
+.app-content-bottom-area{
   display: flex;
   align-items: center;
   padding: $lte-content-padding-y $lte-content-padding-x;
   overflow: auto;
   background: $lte-app-footer-bg;
-  border-top: $lte-app-footer-border-top;
 
   > .row {
     display: contents;
@@ -34,3 +34,15 @@
     max-height: $lte-app-content-bottom-area-height-xl;
   }
 }
+
+.app-content-bottom-area {
+  border-top: $lte-app-footer-border-top;
+}
+.app-content-top-area {
+  border-bottom: $lte-app-footer-border-top;
+
+  & + .app-main {
+    padding-top: $grid-gutter-width * 0.5;
+  }
+}
+
