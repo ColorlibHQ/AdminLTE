@@ -57,7 +57,7 @@
     "url": "https://github.com/ColorlibHQ/AdminLTE/issues"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^0.19.4",
+    "@astrojs/mdx": "^0.19.6",
     "@rollup/plugin-typescript": "^11.1.1",
     "@typescript-eslint/eslint-plugin": "^5.59.9",
     "@typescript-eslint/parser": "^5.59.8",
