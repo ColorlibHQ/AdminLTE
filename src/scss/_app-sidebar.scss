@@ -466,10 +466,11 @@
         }
 
         .app-sidebar {
-          position: sticky;
+          position: fixed;
           top: 0;
           bottom: 0;
           max-height: 100vh;
+          margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1); // stylelint-disable-line function-disallowed-list
 
           .sidebar-wrapper {
             height: subtract(100vh, add($lte-app-header-height, 1px));
@@ -477,6 +478,10 @@
         }
 
         &.sidebar-open {
+          .app-sidebar {
+            margin-left: 0;
+          }
+
           .sidebar-overlay {
             position: absolute;
             inset: 0;
