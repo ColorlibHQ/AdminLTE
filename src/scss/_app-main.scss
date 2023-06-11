@@ -2,7 +2,7 @@
   position: relative;
   grid-area: #{$lte-prefix}app-main;
   max-width: 100vw;
-  padding-bottom: $grid-gutter-width * 0.5;
+  padding-bottom: $grid-gutter-width * .5;
   @include transition($lte-transition-speed $lte-transition-fn);
 
   .app-content-header {
