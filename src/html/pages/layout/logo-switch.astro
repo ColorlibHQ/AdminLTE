@@ -59,49 +59,49 @@ const htmlPath = convertPathToHtml(path);
               <li class="nav-header">MULTI LEVEL EXAMPLE</li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="nav-icon fa-solid fa-circle"></i>
+                  <i class="nav-icon bi bi-circle-fill"></i>
                   <p>Level 1</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="nav-icon fa-solid fa-circle"></i>
+                  <i class="nav-icon bi bi-circle-fill"></i>
                   <p>
                     Level 1
-                    <i class="nav-arrow fa-solid fa-angle-right"></i>
+                    <i class="nav-arrow bi bi-chevron-right"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fa-regular fa-circle"></i>
+                      <i class="nav-icon bi bi-circle"></i>
                       <p>Level 2</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fa-regular fa-circle"></i>
+                      <i class="nav-icon bi bi-circle"></i>
                       <p>
                         Level 2
-                        <i class="nav-arrow fa-solid fa-angle-right"></i>
+                        <i class="nav-arrow bi bi-chevron-right"></i>
                       </p>
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
                         <a href="#" class="nav-link">
-                          <i class="nav-icon fa-regular fa-dot-circle"></i>
+                          <i class="nav-icon bi bi-record-circle-fill"></i>
                           <p>Level 3</p>
                         </a>
                       </li>
                       <li class="nav-item">
                         <a href="#" class="nav-link">
-                          <i class="nav-icon fa-regular fa-dot-circle"></i>
+                          <i class="nav-icon bi bi-record-circle-fill"></i>
                           <p>Level 3</p>
                         </a>
                       </li>
                       <li class="nav-item">
                         <a href="#" class="nav-link">
-                          <i class="nav-icon fa-regular fa-dot-circle"></i>
+                          <i class="nav-icon bi bi-record-circle-fill"></i>
                           <p>Level 3</p>
                         </a>
                       </li>
@@ -109,7 +109,7 @@ const htmlPath = convertPathToHtml(path);
                   </li>
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon fa-regular fa-circle"></i>
+                      <i class="nav-icon bi bi-circle"></i>
                       <p>Level 2</p>
                     </a>
                   </li>
@@ -117,7 +117,7 @@ const htmlPath = convertPathToHtml(path);
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="nav-icon fa-solid fa-circle"></i>
+                  <i class="nav-icon bi bi-circle-fill"></i>
                   <p>Level 1</p>
                 </a>
               </li>
@@ -172,15 +172,16 @@ const htmlPath = convertPathToHtml(path);
                         data-lte-toggle="card-collapse"
                         title="Collapse"
                       >
-                        <i class="fa-solid fa-minus"></i>
+                        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
                       </button>
                       <button
                         type="button"
                         class="btn btn-tool"
-                        data-lte-dismiss="card-remove"
+                        data-lte-toggle="card-remove"
                         title="Remove"
                       >
-                        <i class="fa-solid fa-times"></i>
+                        <i class="bi bi-x-lg"></i>
                       </button>
                     </div>
                   </div>

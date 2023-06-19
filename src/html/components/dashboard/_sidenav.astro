@@ -39,10 +39,10 @@ const htmlPath = convertPathToHtml(path);
             href="#"
             class:list={["nav-link", mainPage === "dashboard" && "active"]}
           >
-            <i class="nav-icon fa-solid fa-gauge-high"></i>
+            <i class="nav-icon bi bi-speedometer"></i>
             <p>
               Dashboard
-              <i class="nav-arrow fa-solid fa-angle-right"></i>
+              <i class="nav-arrow bi bi-chevron-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -51,7 +51,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/index.html"}
                 class:list={["nav-link", page === "index" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Dashboard v1</p>
               </a>
             </li>
@@ -60,7 +60,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/index2.html"}
                 class:list={["nav-link", page === "index2" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Dashboard v2</p>
               </a>
             </li>
@@ -69,7 +69,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/index3.html"}
                 class:list={["nav-link", page === "index3" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Dashboard v3</p>
               </a>
             </li>
@@ -80,10 +80,10 @@ const htmlPath = convertPathToHtml(path);
             href="#"
             class:list={["nav-link", mainPage === "widgets" && "active"]}
           >
-            <i class="nav-icon fa-solid fa-box-open"></i>
+            <i class="nav-icon bi bi-box-seam-fill"></i>
             <p>
               Widgets
-              <i class="nav-arrow fa-solid fa-angle-right"></i>
+              <i class="nav-arrow bi bi-chevron-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -92,7 +92,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/widgets/small-box.html"}
                 class:list={["nav-link", page === "small-box" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Small Box</p>
               </a>
             </li>
@@ -101,7 +101,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/widgets/info-box.html"}
                 class:list={["nav-link", page === "info-box" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>info Box</p>
               </a>
             </li>
@@ -110,7 +110,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/widgets/cards.html"}
                 class:list={["nav-link", page === "cards" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Cards</p>
               </a>
             </li>
@@ -121,13 +121,13 @@ const htmlPath = convertPathToHtml(path);
             href="#"
             class:list={["nav-link", mainPage === "layout" && "active"]}
           >
-            <i class="nav-icon fa-solid fa-copy"></i>
+            <i class="nav-icon bi bi-clipboard-fill"></i>
             <p>
               Layout Options
               <span class="nav-badge badge text-bg-secondary me-3"
                 >6</span
               >
-              <i class="nav-arrow fa-solid fa-angle-right"></i>
+              <i class="nav-arrow bi bi-chevron-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -139,7 +139,7 @@ const htmlPath = convertPathToHtml(path);
                   page === "unfixed-sidebar" && "active",
                 ]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Default Sidebar</p>
               </a>
             </li>
@@ -148,7 +148,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/layout/fixed-sidebar.html"}
                 class:list={["nav-link", page === "fixed-sidebar" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Fixed Sidebar</p>
               </a>
             </li>
@@ -157,7 +157,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/layout/fixed-complete.html"}
                 class:list={["nav-link", page === "fixed-complete" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Fixed Complete</p>
               </a>
             </li>
@@ -166,7 +166,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/layout/sidebar-mini.html"}
                 class:list={["nav-link", page === "sidebar-mini" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Sidebar Mini</p>
               </a>
             </li>
@@ -178,7 +178,7 @@ const htmlPath = convertPathToHtml(path);
                   page === "collapsed-sidebar" && "active",
                 ]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Sidebar Mini <small>+ Collapsed</small></p>
               </a>
             </li>
@@ -187,7 +187,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/layout/logo-switch.html"}
                 class:list={["nav-link", page === "logo-switch" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Sidebar Mini <small>+ Logo Switch</small></p>
               </a>
             </li>
@@ -196,7 +196,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/layout/layout-rtl.html"}
                 class:list={["nav-link", page === "layout-rtl" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Layout RTL</p>
               </a>
             </li>
@@ -209,10 +209,10 @@ const htmlPath = convertPathToHtml(path);
             href="#"
             class:list={["nav-link", mainPage === "ui-elements" && "active"]}
           >
-            <i class="nav-icon fa-solid fa-tree"></i>
+            <i class="nav-icon bi bi-tree-fill"></i>
             <p>
               UI Elements
-              <i class="nav-arrow fa-solid fa-angle-right"></i>
+              <i class="nav-arrow bi bi-chevron-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -221,7 +221,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/UI/timeline.html"}
                 class:list={["nav-link", page === "timeline" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Timeline</p>
               </a>
             </li>
@@ -232,10 +232,10 @@ const htmlPath = convertPathToHtml(path);
             href="#"
             class:list={["nav-link", mainPage === "forms" && "active"]}
           >
-            <i class="nav-icon fa-solid fa-pen-to-square"></i>
+            <i class="nav-icon bi bi-pencil-square"></i>
             <p>
               Forms
-              <i class="nav-arrow fa-solid fa-angle-right"></i>
+              <i class="nav-arrow bi bi-chevron-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -244,7 +244,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/forms/general.html"}
                 class:list={["nav-link", page === "general" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>General Elements</p>
               </a>
             </li>
@@ -255,10 +255,10 @@ const htmlPath = convertPathToHtml(path);
             href="#"
             class:list={["nav-link", mainPage === "tables" && "active"]}
           >
-            <i class="nav-icon fa-solid fa-table"></i>
+            <i class="nav-icon bi bi-table"></i>
             <p>
               Tables
-              <i class="nav-arrow fa-solid fa-angle-right"></i>
+              <i class="nav-arrow bi bi-chevron-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -267,7 +267,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/tables/simple.html"}
                 class:list={["nav-link", page === "simple" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Simple Tables</p>
               </a>
             </li>
@@ -277,22 +277,22 @@ const htmlPath = convertPathToHtml(path);
         <li class="nav-header">EXAMPLES</li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fa-solid fa-arrow-right-to-bracket"></i>
+            <i class="nav-icon bi bi-box-arrow-in-right"></i>
             <p>
               Login & Register
-              <i class="nav-arrow fa-solid fa-angle-right"></i>
+              <i class="nav-arrow bi bi-chevron-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href={htmlPath + "/examples/login.html"} class="nav-link">
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Login v1</p>
               </a>
             </li>
             <li class="nav-item">
               <a href={htmlPath + "/examples/register.html"} class="nav-link">
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Register v1</p>
               </a>
             </li>
@@ -305,7 +305,7 @@ const htmlPath = convertPathToHtml(path);
             href={htmlPath + "/docs/introduction.html"}
             class:list={["nav-link", page === "introduction" && "active"]}
           >
-            <i class="nav-icon fa-solid fa-download"></i>
+            <i class="nav-icon bi bi-download"></i>
             <p>Installation</p>
           </a>
         </li>
@@ -314,7 +314,7 @@ const htmlPath = convertPathToHtml(path);
             href={htmlPath + "/docs/layout.html"}
             class:list={["nav-link", page === "layout" && "active"]}
           >
-            <i class="nav-icon fa-solid fa-grip"></i>
+            <i class="nav-icon bi bi-grip-horizontal"></i>
             <p>Layout</p>
           </a>
         </li>
@@ -323,7 +323,7 @@ const htmlPath = convertPathToHtml(path);
             href={htmlPath + "/docs/color-mode.html"}
             class:list={["nav-link", page === "color-mode" && "active"]}
           >
-            <i class="nav-icon fa-solid fa-star-half-stroke"></i>
+            <i class="nav-icon bi bi-star-half"></i>
             <p>Color Mode</p>
           </a>
         </li>
@@ -332,10 +332,10 @@ const htmlPath = convertPathToHtml(path);
             href="#"
             class:list={["nav-link", mainPage === "components" && "active"]}
           >
-            <i class="nav-icon fa-solid fa-swatchbook"></i>
+            <i class="nav-icon bi bi-palette2"></i>
             <p>
               Components
-              <i class="nav-arrow fa-solid fa-angle-right"></i>
+              <i class="nav-arrow bi bi-chevron-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -344,7 +344,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/docs/components/main-header.html"}
                 class:list={["nav-link", page === "main-header" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Main Header</p>
               </a>
             </li>
@@ -353,7 +353,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/docs/components/main-sidebar.html"}
                 class:list={["nav-link", page === "main-sidebar" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Main Sidebar</p>
               </a>
             </li>
@@ -364,10 +364,10 @@ const htmlPath = convertPathToHtml(path);
             href="#"
             class:list={["nav-link", mainPage === "javascript" && "active"]}
           >
-            <i class="nav-icon fa-solid fa-swatchbook"></i>
+            <i class="nav-icon bi bi-palette2"></i>
             <p>
               Javascript
-              <i class="nav-arrow fa-solid fa-angle-right"></i>
+              <i class="nav-arrow bi bi-chevron-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -376,7 +376,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/docs/javascript/treeview.html"}
                 class:list={["nav-link", page === "treeview" && "active"]}
               >
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Treeview</p>
               </a>
             </li>
@@ -387,7 +387,7 @@ const htmlPath = convertPathToHtml(path);
             href={htmlPath + "/docs/browser-support.html"}
             class:list={["nav-link", page === "browser-support" && "active"]}
           >
-            <i class="nav-icon fa-solid fa-edge"></i>
+            <i class="nav-icon bi bi-browser-edge"></i>
             <p>Browser Support</p>
           </a>
         </li>
@@ -395,49 +395,49 @@ const htmlPath = convertPathToHtml(path);
         <li class="nav-header">MULTI LEVEL EXAMPLE</li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fa-solid fa-circle"></i>
+            <i class="nav-icon bi bi-circle-fill"></i>
             <p>Level 1</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fa-solid fa-circle"></i>
+            <i class="nav-icon bi bi-circle-fill"></i>
             <p>
               Level 1
-              <i class="nav-arrow fa-solid fa-angle-right"></i>
+              <i class="nav-arrow bi bi-chevron-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Level 2</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>
                   Level 2
-                  <i class="nav-arrow fa-solid fa-angle-right"></i>
+                  <i class="nav-arrow bi bi-chevron-right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="#" class="nav-link">
-                    <i class="nav-icon fa-regular fa-dot-circle"></i>
+                    <i class="nav-icon bi bi-record-circle-fill"></i>
                     <p>Level 3</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
-                    <i class="nav-icon fa-regular fa-dot-circle"></i>
+                    <i class="nav-icon bi bi-record-circle-fill"></i>
                     <p>Level 3</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
-                    <i class="nav-icon fa-regular fa-dot-circle"></i>
+                    <i class="nav-icon bi bi-record-circle-fill"></i>
                     <p>Level 3</p>
                   </a>
                 </li>
@@ -445,7 +445,7 @@ const htmlPath = convertPathToHtml(path);
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fa-regular fa-circle"></i>
+                <i class="nav-icon bi bi-circle"></i>
                 <p>Level 2</p>
               </a>
             </li>
@@ -453,7 +453,7 @@ const htmlPath = convertPathToHtml(path);
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fa-solid fa-circle"></i>
+            <i class="nav-icon bi bi-circle-fill"></i>
             <p>Level 1</p>
           </a>
         </li>
@@ -461,19 +461,19 @@ const htmlPath = convertPathToHtml(path);
         <li class="nav-header">LABELS</li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fa-regular fa-circle text-danger"></i>
+            <i class="nav-icon bi bi-circle text-danger"></i>
             <p class="text">Important</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fa-regular fa-circle text-warning"></i>
+            <i class="nav-icon bi bi-circle text-warning"></i>
             <p>Warning</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fa-regular fa-circle text-info"></i>
+            <i class="nav-icon bi bi-circle text-info"></i>
             <p>Informational</p>
           </a>
         </li>
