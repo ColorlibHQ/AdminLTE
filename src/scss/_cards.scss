@@ -45,19 +45,40 @@
       display: none;
     }
 
+    [data-lte-icon="maximize"] {
+      display: none;
+    }
+
     .card-header,
     .card-footer {
       @include border-radius(0 !important);
     }
   }
 
+  &:not(.maximized-card) {
+    [data-lte-icon="minimize"] {
+      display: none;
+    }
+  }
+
   // collapsed mode
   &.collapsed-card {
+    [data-lte-icon="collapse"] {
+      display: none;
+    }
+
     .card-body,
     .card-footer {
       display: none;
     }
   }
+
+  &:not(.collapsed-card) {
+    [data-lte-icon="expand"] {
+      display: none;
+    }
+  }
+
 
   .nav.flex-column {
     > li {
