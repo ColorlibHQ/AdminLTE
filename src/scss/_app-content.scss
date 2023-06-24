@@ -17,23 +17,19 @@
   &.app-content-top-area-sm,
   &.app-content-bottom-area-sm{
     min-height: $lte-app-content-bottom-area-height-sm;
-    max-height: $lte-app-content-bottom-area-height-sm;
   }
 
   &.app-content-top-area-md,
   &.app-content-bottom-area-md{
     min-height: $lte-app-content-bottom-area-height-md;
-    max-height: $lte-app-content-bottom-area-height-md;
   }
   &.app-content-top-area-lg,
   &.app-content-bottom-area-lg{
     min-height: $lte-app-content-bottom-area-height-lg;
-    max-height: $lte-app-content-bottom-area-height-lg;
   }
   &.app-content-top-area-xl,
   &.app-content-bottom-area-xl{
     min-height: $lte-app-content-bottom-area-height-xl;
-    max-height: $lte-app-content-bottom-area-height-xl;
   }
 }
 
