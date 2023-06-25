@@ -84,9 +84,19 @@
   @include scrollbar-color-gray();
   @include scrollbar-width-thin();
 
+  .nav-item {
+    max-width: 100%;
+  }
+
   .nav-link {
     display: flex;
     justify-content: flex-start;
+
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
   .nav-icon {
     display: flex;
@@ -209,7 +219,6 @@
 
   .nav-link {
     position: relative;
-    width: subtract(var(--#{$lte-prefix}sidebar-width), $lte-sidebar-padding-x * 2);
     @include transition(width $lte-transition-fn $lte-transition-speed);
     @include border-radius($border-radius);
 
@@ -230,6 +239,10 @@
     display: none;
     padding: 0;
     list-style: none;
+
+    .nav-indent & {
+      padding-left: $lte-sidebar-padding-x;
+    }
   }
 
   .menu-open {
@@ -243,6 +256,43 @@
       }
     }
   }
+}
+
+.nav-compact.nav-indent {
+  .nav-treeview {
+    padding-left: 0;
+
+    .nav-item {
+      padding-left: $lte-sidebar-padding-x;
+    }
+  }
+}
+
+.sidebar-mini.sidebar-collapse.nav-indent {
+  .app-sidebar:hover {
+    .nav-treeview {
+      padding-left: 0;
+
+      .nav-item {
+        padding-left: $lte-sidebar-padding-x;
+      }
+    }
+  }
+}
+
+.sidebar-collapse {
+  &.nav-compact.nav-indent {
+    .nav-treeview {
+      .nav-item {
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+.nav-compact .nav-link {
+  @include border-radius(0);
+  margin-bottom: 0 !important;
 }
 
 // A fix for text overflow while transitioning from sidebar mini to full sidebar
@@ -352,12 +402,13 @@
     }
 
     .sidebar-menu .nav-link {
-      width: subtract(var(--#{$lte-prefix}sidebar-width), $lte-sidebar-padding-x * 2);
+      width: auto;
     }
 
     .sidebar-menu .nav-link p,
     .brand-text,
     .logo-xl {
+      width: auto;
       margin-left: 0;
       visibility: visible;
       animation-name: fadeIn;
