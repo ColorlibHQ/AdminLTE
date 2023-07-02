@@ -61,7 +61,7 @@
     "@rollup/plugin-typescript": "^11.1.1",
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "@typescript-eslint/parser": "^5.59.11",
-    "astro": "^2.6.4",
+    "astro": "^2.7.2",
     "autoprefixer": "^10.4.14",
     "bootstrap": "^5.3.0",
     "bundlewatch": "^0.3.3",
