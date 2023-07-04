@@ -60,7 +60,7 @@
     "@astrojs/mdx": "^0.19.7",
     "@rollup/plugin-typescript": "^11.1.1",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
-    "@typescript-eslint/parser": "^5.60.1",
+    "@typescript-eslint/parser": "^5.61.0",
     "astro": "^2.7.2",
     "autoprefixer": "^10.4.14",
     "bootstrap": "^5.3.0",
