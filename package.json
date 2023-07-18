@@ -59,7 +59,7 @@
   "devDependencies": {
     "@astrojs/mdx": "^0.19.7",
     "@rollup/plugin-typescript": "^11.1.2",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.0.0",
     "astro": "^2.8.0",
     "autoprefixer": "^10.4.14",
