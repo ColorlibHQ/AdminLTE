@@ -73,7 +73,7 @@
     "eslint-config-xo-typescript": "^1.0.0",
     "eslint-plugin-astro": "^0.27.2",
     "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-unicorn": "^47.0.0",
+    "eslint-plugin-unicorn": "^48.0.0",
     "fs-extra": "^11.1.1",
     "js-beautify": "^1.14.8",
     "lockfile-lint": "^4.10.6",
