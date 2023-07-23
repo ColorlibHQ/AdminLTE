@@ -338,7 +338,7 @@ const htmlPath = convertPathToHtml(path);
             href="#"
             class:list={["nav-link", mainPage === "components" && "active"]}
           >
-            <i class="nav-icon bi bi-palette2"></i>
+            <i class="nav-icon bi bi-ui-checks-grid"></i>
             <p>
               Components
               <i class="nav-arrow bi bi-chevron-right"></i>
@@ -370,7 +370,7 @@ const htmlPath = convertPathToHtml(path);
             href="#"
             class:list={["nav-link", mainPage === "javascript" && "active"]}
           >
-            <i class="nav-icon bi bi-palette2"></i>
+            <i class="nav-icon bi bi-filetype-js"></i>
             <p>
               Javascript
               <i class="nav-arrow bi bi-chevron-right"></i>
@@ -395,6 +395,15 @@ const htmlPath = convertPathToHtml(path);
           >
             <i class="nav-icon bi bi-browser-edge"></i>
             <p>Browser Support</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href={htmlPath + "/docs/license.html"}
+            class:list={["nav-link", page === "license" && "active"]}
+          >
+            <i class="nav-icon bi bi-patch-check-fill"></i>
+            <p>License</p>
           </a>
         </li>
 
