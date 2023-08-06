@@ -3,7 +3,6 @@
 [![npm version](https://img.shields.io/npm/v/admin-lte/latest.svg)](https://www.npmjs.com/package/admin-lte)
 [![Packagist](https://img.shields.io/packagist/v/almasaeed2010/adminlte.svg)](https://packagist.org/packages/almasaeed2010/adminlte)
 [![cdn version](https://data.jsdelivr.com/v1/package/npm/admin-lte/badge)](https://www.jsdelivr.com/package/npm/admin-lte)
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/from-referrer/)
 [![Discord Invite](https://img.shields.io/badge/discord-join%20now-green)](https://discord.gg/jfdvjwFqfz)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/1277b36b-08f3-43fa-826a-4b4d24614b3c/deploy-status)](https://app.netlify.com/sites/adminlte-v4/deploys)
 
@@ -38,11 +37,11 @@ To compile the dist files you need Node.js/npm, clone/download the repo then:
 - First thing first, you should have bit knowledge about NodeJS.
 - Github Knowledge.
 - Install NodeJS LTS version.
-- Clone this Repository to your machine and change to `v4-dev` branch.
+- Clone this Repository to your machine and change to `master` branch.
 - Go to Cloned Folder.
 - In cli/bash run `npm install` it will install dependency from `package.json`.
 - After installation complets, run `npm run dev`
-- Cool, Send urs changes in PR to `v4-dev` branch.
+- Cool, Send urs changes in PR to `master` branch.
 
 
 ## License
