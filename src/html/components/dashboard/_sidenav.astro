@@ -399,6 +399,24 @@ const htmlPath = convertPathToHtml(path);
         </li>
         <li class="nav-item">
           <a
+            href={htmlPath + "/docs/how-to-contribute.html"}
+            class:list={["nav-link", page === "how-to-contribute" && "active"]}
+          >
+            <i class="nav-icon bi bi-hand-thumbs-up-fill"></i>
+            <p>How To Contribute</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href={htmlPath + "/docs/faq.html"}
+            class:list={["nav-link", page === "faq" && "active"]}
+          >
+            <i class="nav-icon bi bi-question-circle-fill"></i>
+            <p>FAQ</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
             href={htmlPath + "/docs/license.html"}
             class:list={["nav-link", page === "license" && "active"]}
           >
