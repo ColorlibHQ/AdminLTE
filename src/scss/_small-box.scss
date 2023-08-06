@@ -23,7 +23,6 @@
     display: block;
     padding: 3px 0;
     text-align: center;
-    text-decoration: none;
     background-color: rgba($black, .07);
 
     &:hover {
@@ -105,8 +104,6 @@
 
   // Small box hover state
   &:hover {
-    text-decoration: none;
-
     // Animate icons on small box hover
     .small-box-icon {
       transform: scale(1.1);

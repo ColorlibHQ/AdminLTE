@@ -455,7 +455,7 @@ $body-emphasis-color:       $black !default;
 // Style anchor elements.
 
 $link-color:                              $primary !default;
-$link-decoration:                         none !default; // adminlte-modified
+$link-decoration:                         underline !default;
 $link-shade-percentage:                   20% !default;
 $link-hover-color:                        shift-color($link-color, $link-shade-percentage) !default;
 $link-hover-decoration:                   null !default;

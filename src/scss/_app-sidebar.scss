@@ -35,10 +35,7 @@
   .brand-link {
     display: flex;
     align-items: center;
-
-    &:hover {
-      text-decoration: none;
-    }
+    text-decoration: none;
 
     .brand-image {
       float: left;
@@ -150,11 +147,6 @@
   // All links within the sidebar menu
   a {
     color: var(--#{$lte-prefix}sidebar-color);
-
-    &:hover,
-    &:focus {
-      text-decoration: none;
-    }
   }
 
   // All submenus
