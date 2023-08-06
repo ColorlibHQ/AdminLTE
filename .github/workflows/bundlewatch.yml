@@ -40,4 +40,4 @@ jobs:
         run: npm run bundlewatch
         env:
           BUNDLEWATCH_GITHUB_TOKEN: "${{ secrets.BUNDLEWATCH_GITHUB_TOKEN }}"
-          CI_BRANCH_BASE: v4-dev
+          CI_BRANCH_BASE: master
