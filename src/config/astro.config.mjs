@@ -13,7 +13,7 @@ export default defineConfig({
     }
   },
   integrations: [mdx()],
-  // base: './dist',
   srcDir: './src/html',
+  cacheDir: './dist/pages',
   outDir: './dist/pages'
 })
