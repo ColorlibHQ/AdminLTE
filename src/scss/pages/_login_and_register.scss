@@ -46,8 +46,6 @@
 
   .input-group {
     .form-control {
-      border-right: 0;
-
       &:focus {
         box-shadow: none;
 
@@ -82,7 +80,6 @@
     .input-group-text {
       color: var(--#{$prefix}secondary-color);
       background-color: transparent;
-      border-left: 0;
       @include border-top-end-radius($border-radius);
       @include border-bottom-end-radius($border-radius);
       @include transition($input-transition);
