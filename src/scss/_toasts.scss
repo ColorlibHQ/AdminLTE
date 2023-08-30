@@ -1,0 +1,144 @@
+/**
+ * Toast styles to reflect Bootstrap colors
+ */
+.toast {
+  min-width: 300px;
+  margin: 8px;
+}
+
+.toast .toast-body {
+  color: $black;
+  background-color: $gray-100;
+  /* stylelint-disable */
+  border-radius: 0 0 .25rem .25rem;
+  /* stylelint-enable */
+}
+
+.toast-danger .toast-header {
+  //background-color: #dc3545 !important;
+  color: $white !important;
+  background-color: $red !important;
+  border-color: $red;
+}
+
+.toast-danger .toast-header button {
+  color: $white !important;
+}
+
+.toast-danger .toast-body {
+  color: $white;
+  background-color: $red-300;
+}
+
+.toast-dark .toast-header {
+  color: $white !important;
+  background-color: $gray-900 !important;
+  border-color: $gray-700;
+}
+
+.toast-dark .toast-header button {
+  color: $white !important;
+  --bs-btn-close-color: $white;
+}
+
+.toast-dark .toast-body {
+  color: $white;
+  background-color: $gray-700;
+}
+
+.toast-info .toast-header {
+  color: $white !important;
+  background-color: #17a2b8 !important;
+  border-color: #17a2b8;
+}
+
+.toast-info .toast-header button {
+  color: $white !important;
+  --bs-btn-close-color: $white;
+}
+
+.toast-info .toast-body {
+  color: $white;
+  background-color: #1fc8e3;
+}
+
+.toast-light .toast-header {
+  color: #1f2d3d !important;
+  background-color: $gray-100 !important;
+  border-color: $gray-100;
+}
+
+.toast-light .toast-header button {
+  color: #1f2d3d !important;
+  --bs-btn-close-color: #1f2d3d;
+}
+
+.toast-light .toast-body {
+  color: #1f2d3d;
+  background-color: $white;
+}
+
+.toast-primary .toast-header {
+  color: $white !important;
+  background-color: #007bff !important;
+  border-color: #007bff;
+}
+
+.toast-primary .toast-header button {
+  color: $white !important;
+  --bs-btn-close-color: $white;
+}
+
+.toast-primary .toast-body {
+  color: $white;
+  background-color: #3395ff;
+}
+
+.toast-secondary .toast-header {
+  color: $white !important;
+  background-color: $gray-600 !important;
+  border-color: $gray-600;
+}
+
+.toast-secondary .toast-header button {
+  color: $white !important;
+  --bs-btn-close-color: $white;
+}
+
+.toast-secondary .toast-body {
+  color: $white;
+  background-color: #868e96;
+}
+
+.toast-success .toast-header {
+  color: $white !important;
+  background-color: #28a745 !important;
+  border-color: #28a745;
+}
+
+.toast-success .toast-header button {
+  color: $white !important;
+  --bs-btn-close-color: $white;
+}
+
+.toast-success .toast-body {
+  color: $white;
+  background-color: #34ce57;
+}
+
+.toast-warning .toast-header {
+  color: #1f2d3d !important;
+  background-color: $yellow !important;
+  border-color: $yellow;
+}
+
+.toast-warning .toast-header button {
+  color: #1f2d3d !important;
+  --bs-btn-close-color: #1f2d3d;
+}
+
+.toast-warning .toast-body {
+  color: #1f2d3d;
+  background-color: #ffce3a;
+}
+

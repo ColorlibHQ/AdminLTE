@@ -258,6 +258,10 @@ const pageTitle = "General Components";
               <!--end::Body-->
             </div>
             <!--end::Button-->
+          </div>
+          <!--end::Col-->
+          <!--begin::Col-->
+          <div class="col-md-6">
             <!--begin::Button Group-->
             <div class="card card-info card-outline mb-2">
               <!--begin::Header-->
@@ -321,10 +325,6 @@ const pageTitle = "General Components";
               <!--end::Body-->
             </div>
             <!--end::Button Group-->
-          </div>
-          <!--end::Col-->
-          <!--begin::Col-->
-          <div class="col-md-6">
             <!--begin::Collapse-->
             <div class="card card-primary card-outline mb-2">
               <!--begin::Header-->
@@ -575,19 +575,123 @@ const pageTitle = "General Components";
               <!--end::Body-->
             </div>
             <!--end::Placeholder-->
-            <!--begin::Quick Example-->
+            <!--begin::Progress-->
             <div class="card card-primary card-outline mb-2">
               <!--begin::Header-->
               <div class="card-header">
-                <div class="card-title">Quick Example</div>
+                <div class="card-title">Progress</div>
               </div>
               <!--end::Header-->
               <!--begin::Body-->
               <div class="card-body">
+                <div class="progress mb-2" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar bg-success" style="width: 25%; border-radius: 0.375rem;"></div>
+                </div>
+                <div class="progress mb-2" role="progressbar" aria-label="Default striped example" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar" style="width: 10%; border-radius: 0.375rem;"></div>
+                </div>
+                <div class="progress mb-2" role="progressbar" aria-label="Info striped example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar progress-bar-striped bg-info" style="width: 50%; border-radius: 0.375rem;"></div>
+                </div>
+                <div class="progress mb-2" role="progressbar" aria-label="Warning striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" style="width: 75%; border-radius: 0.375rem;"></div>
+                </div>
+                <div class="progress mb-2" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: 100%; border-radius: 0.375rem;"></div>
+                </div>
               </div>
               <!--end::Body-->
             </div>
-            <!--end::Quick Example-->
+            <!--end::Progress-->
+            <!--begin::Toast-->
+            <div class="card card-primary card-outline mb-2">
+              <!--begin::Header-->
+              <div class="card-header">
+                <div class="card-title">Toast</div>
+              </div>
+              <!--end::Header-->
+              <!--begin::Body-->
+              <div class="card-body">
+                <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                  <div id="liveToast" class="toast toast-warning" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                      <i class="bi bi-circle me-2"></i>
+                      <strong class="me-auto">Bootstrap</strong>
+                      <small>11 mins ago</small>
+                      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                      Hello, world! This is a toast message.
+                    </div>
+                  </div>
+                  <div id="liveToast" class="toast toast-warning" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                      <i class="bi bi-circle me-2"></i>
+                      <strong class="me-auto">Bootstrap</strong>
+                      <small>11 mins ago</small>
+                      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                      Hello, world! This is a toast message.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--end::Body-->
+            </div>
+            <!--end::Toast-->
+            <!--begin::Tooltip-->
+            <div class="card card-primary card-outline mb-2">
+              <!--begin::Header-->
+              <div class="card-header">
+                <div class="card-title">Tooltip</div>
+              </div>
+              <!--end::Header-->
+              <!--begin::Body-->
+              <div class="card-body">
+                <p class="muted">Placeholder text to demonstrate some <a href="#" data-bs-toggle="tooltip" data-bs-title="Default tooltip">inline links</a> with tooltips. This is now just filler, no killer. Content placed here just to mimic the presence of <a href="#" data-bs-toggle="tooltip" data-bs-title="Another tooltip">real text</a>. And all that just to give you an idea of how tooltips would look when used in real-world situations. So hopefully you've now seen how <a href="#" data-bs-toggle="tooltip" data-bs-title="Another one here too">these tooltips on links</a> can work in practice, once you use them on <a href="#" data-bs-toggle="tooltip" data-bs-title="The last tip!">your own</a> site or project.</p>
+              </div>
+              <!--end::Body-->
+            </div>
+            <!--end::Toast-->
+            <!--begin::Spinner-->
+            <div class="card card-success card-outline mb-2">
+              <!--begin::Header-->
+              <div class="card-header">
+                <div class="card-title">Spinner</div>
+              </div>
+              <!--end::Header-->
+              <!--begin::Body-->
+              <div class="card-body">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-border text-secondary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-border text-success" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-border text-danger" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-border text-warning" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-border text-info" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-border text-light" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-border text-dark" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+              <!--end::Body-->
+            </div>
+            <!--end::Spinner-->
           </div>
           <!--end::Col-->
         </div>

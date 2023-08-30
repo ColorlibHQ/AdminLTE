@@ -60,12 +60,12 @@
 // Bootstrap Utilities
 @import "bootstrap/scss/utilities/api";
 
-
 // AdminLTE Configuration
 // ---------------------------------------------------
 @import "variables";
 @import "variables-dark";
 @import "mixins";
+@import "toasts";
 
 // AdiminLTE Parts
 // ---------------------------------------------------
