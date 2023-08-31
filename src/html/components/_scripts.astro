@@ -60,8 +60,10 @@ const adminlteJsUrl = path + "/js/adminlte.js";
 <!--end::Bootstrap Tooltips-->
 <!--begin::JavaScript-->
 <script is:inline>
-  const toastTrigger = document.getElementById('liveToastBtn');
-  const toastLiveExample = document.getElementById('liveToast');
+  // const toastTrigger = document.getElementById('liveToastBtn');
+  // const toastLiveExample = document.getElementById('liveToast');
+  const toastTrigger = document.querySelector('[data-lte-show-toast="toastPrimary"]');
+  const toastLiveExample = document.getElementById('toastPrimary');
   if (toastTrigger) {
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
     toastTrigger.addEventListener('click', () => {
