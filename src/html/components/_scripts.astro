@@ -58,17 +58,16 @@ const adminlteJsUrl = path + "/js/adminlte.js";
   const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 </script>
 <!--end::Bootstrap Tooltips-->
-<!--begin::JavaScript-->
+<!--begin::Bootstrap Toasts-->
 <script is:inline>
-  // const toastTrigger = document.getElementById('liveToastBtn');
-  // const toastLiveExample = document.getElementById('liveToast');
-  const toastTrigger = document.querySelector('[data-lte-show-toast="toastPrimary"]');
-  const toastLiveExample = document.getElementById('toastPrimary');
-  if (toastTrigger) {
-    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-    toastTrigger.addEventListener('click', () => {
+  const toastTriggerList = document.querySelectorAll('[data-bs-toggle="toast"]')
+  toastTriggerList.forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      const toastEle = document.getElementById(btn.getAttribute('data-bs-target'));
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastEle);
       toastBootstrap.show();
     })
-  }
+  })
 </script>
-<!--end::JavaScript-->
+<!--end::Bootstrap Toasts-->

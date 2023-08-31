@@ -1,5 +1,5 @@
 /**
- * Toast styles to reflect Bootstrap colors
+ * Custom toast styles to reflect Bootstrap colors
  */
 .toast {
   min-width: 300px;
@@ -15,7 +15,6 @@
 }
 
 .toast-danger .toast-header {
-  //background-color: #dc3545 !important;
   color: $white !important;
   background-color: $red !important;
   border-color: $red;
@@ -141,4 +140,3 @@
   color: #1f2d3d;
   background-color: #ffce3a;
 }
-
