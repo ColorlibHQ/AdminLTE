@@ -6,7 +6,7 @@
  */
 
 import {
-  domReady
+  onDOMContentLoaded
 } from './util/index'
 
 /**
@@ -20,31 +20,28 @@ const EVENT_KEY = `.${DATA_KEY}`
 
 const EVENT_OPEN = `open${EVENT_KEY}`
 const EVENT_COLLAPSE = `collapse${EVENT_KEY}`
-const EVENT_CLOSE = `close${EVENT_KEY}`
 
 const CLASS_NAME_SIDEBAR_MINI = 'sidebar-mini'
-const CLASS_NAME_SIDEBAR_MINI_HAD = 'sidebar-mini-had'
-const CLASS_NAME_SIDEBAR_HORIZONTAL = 'sidebar-horizontal'
 const CLASS_NAME_SIDEBAR_COLLAPSE = 'sidebar-collapse'
-const CLASS_NAME_SIDEBAR_CLOSE = 'sidebar-close'
 const CLASS_NAME_SIDEBAR_OPEN = 'sidebar-open'
-const CLASS_NAME_SIDEBAR_OPENING = 'sidebar-is-opening'
-const CLASS_NAME_SIDEBAR_COLLAPSING = 'sidebar-is-collapsing'
-const CLASS_NAME_SIDEBAR_IS_HOVER = 'sidebar-is-hover'
+const CLASS_NAME_SIDEBAR_EXPAND = 'sidebar-expand'
+const CLASS_NAME_SIDEBAR_OVERLAY = 'sidebar-overlay'
 const CLASS_NAME_MENU_OPEN = 'menu-open'
-const CLASS_NAME_LAYOUT_MOBILE = 'layout-mobile'
 
-const SELECTOR_SIDEBAR = '.sidebar'
-const SELECTOR_NAV_SIDEBAR = '.nav-sidebar'
+const SELECTOR_APP_SIDEBAR = '.app-sidebar'
+const SELECTOR_SIDEBAR_MENU = '.sidebar-menu'
 const SELECTOR_NAV_ITEM = '.nav-item'
 const SELECTOR_NAV_TREEVIEW = '.nav-treeview'
-const SELECTOR_MINI_TOGGLE = '[data-lte-toggle="sidebar-mini"]'
-const SELECTOR_FULL_TOGGLE = '[data-lte-toggle="sidebar-full"]'
-const SELECTOR_SIDEBAR_SM = `.${CLASS_NAME_LAYOUT_MOBILE}`
-const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
+const SELECTOR_APP_WRAPPER = '.app-wrapper'
+const SELECTOR_SIDEBAR_EXPAND = `[class*="${CLASS_NAME_SIDEBAR_EXPAND}"]`
+const SELECTOR_SIDEBAR_TOGGLE = '[data-lte-toggle="sidebar"]'
+
+type Config = {
+  sidebarBreakpoint: number;
+}
 
 const Defaults = {
-  onLayouMobile: 992
+  sidebarBreakpoint: 992
 }
 
 /**
@@ -53,148 +50,73 @@ const Defaults = {
  */
 
 class PushMenu {
-  _element: HTMLElement | undefined
-  _config: undefined
-  _bodyClass: DOMTokenList
-  constructor(element: HTMLElement | undefined, config: undefined) {
+  _element: HTMLElement
+  _config: Config
+
+  constructor(element: HTMLElement, config: Config) {
     this._element = element
-
-    const bodyElement = document.body as HTMLBodyElement
-    this._bodyClass = bodyElement.classList
-
-    this._config = config
+    this._config = { ...Defaults, ...config }
   }
 
-  sidebarOpening(): void {
-    this._bodyClass.add(CLASS_NAME_SIDEBAR_OPENING)
-    setTimeout(() => {
-      this._bodyClass.remove(CLASS_NAME_SIDEBAR_OPENING)
-    }, 1000)
-  }
-
-  sidebarColllapsing(): void {
-    this._bodyClass.add(CLASS_NAME_SIDEBAR_COLLAPSING)
-    setTimeout(() => {
-      this._bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSING)
-    }, 1000)
-  }
-
-  menusClose(): void {
+  // TODO
+  menusClose() {
     const navTreeview = document.querySelectorAll<HTMLElement>(SELECTOR_NAV_TREEVIEW)
 
-    for (const navTree of navTreeview) {
+    navTreeview.forEach(navTree => {
       navTree.style.removeProperty('display')
       navTree.style.removeProperty('height')
-    }
+    })
 
-    const navSidebar = document.querySelector(SELECTOR_NAV_SIDEBAR)
+    const navSidebar = document.querySelector(SELECTOR_SIDEBAR_MENU)
     const navItem = navSidebar?.querySelectorAll(SELECTOR_NAV_ITEM)
 
     if (navItem) {
-      for (const navI of navItem) {
+      navItem.forEach(navI => {
         navI.classList.remove(CLASS_NAME_MENU_OPEN)
+      })
+    }
+  }
+
+  expand() {
+    const event = new Event(EVENT_OPEN)
+
+    document.body.classList.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
+    document.body.classList.add(CLASS_NAME_SIDEBAR_OPEN)
+
+    this._element.dispatchEvent(event)
+  }
+
+  collapse() {
+    const event = new Event(EVENT_COLLAPSE)
+
+    document.body.classList.remove(CLASS_NAME_SIDEBAR_OPEN)
+    document.body.classList.add(CLASS_NAME_SIDEBAR_COLLAPSE)
+
+    this._element.dispatchEvent(event)
+  }
+
+  addSidebarBreakPoint() {
+    const sidebarExpandList = document.querySelector(SELECTOR_SIDEBAR_EXPAND)?.classList ?? []
+    const sidebarExpand = Array.from(sidebarExpandList).find(className => className.startsWith(CLASS_NAME_SIDEBAR_EXPAND)) ?? ''
+    const sidebar = document.getElementsByClassName(sidebarExpand)[0]
+    const sidebarContent = window.getComputedStyle(sidebar, '::before').getPropertyValue('content')
+    this._config = { ...this._config, sidebarBreakpoint: Number(sidebarContent.replace(/[^\d.-]/g, '')) }
+
+    if (window.innerWidth <= this._config.sidebarBreakpoint) {
+      this.collapse()
+    } else {
+      if (!document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI)) {
+        this.expand()
+      }
+
+      if (document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI) && document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
+        this.collapse()
       }
     }
   }
 
-  expand(): void {
-    const event = new Event(EVENT_OPEN)
-    this.sidebarOpening()
-
-    this._bodyClass.remove(CLASS_NAME_SIDEBAR_CLOSE)
-    this._bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
-    this._bodyClass.add(CLASS_NAME_SIDEBAR_OPEN)
-
-    this._element?.dispatchEvent(event)
-  }
-
-  collapse(): void {
-    const event = new Event(EVENT_COLLAPSE)
-
-    this.sidebarColllapsing()
-
-    this._bodyClass.add(CLASS_NAME_SIDEBAR_COLLAPSE)
-    this._element?.dispatchEvent(event)
-  }
-
-  close(): void {
-    const event = new Event(EVENT_CLOSE)
-
-    this._bodyClass.add(CLASS_NAME_SIDEBAR_CLOSE)
-    this._bodyClass.remove(CLASS_NAME_SIDEBAR_OPEN)
-    this._bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
-
-    if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_HORIZONTAL)) {
-      this.menusClose()
-    }
-
-    this._element?.dispatchEvent(event)
-  }
-
-  sidebarHover(): void {
-    const selSidebar = document.querySelector(SELECTOR_SIDEBAR)
-
-    if (selSidebar) {
-      selSidebar.addEventListener('mouseover', () => {
-        this._bodyClass.add(CLASS_NAME_SIDEBAR_IS_HOVER)
-      })
-
-      selSidebar.addEventListener('mouseout', () => {
-        this._bodyClass.remove(CLASS_NAME_SIDEBAR_IS_HOVER)
-      })
-    }
-  }
-
-  addSidebaBreakPoint(): void {
-    const bodyClass = document.body.classList
-    const widthOutput = window.innerWidth
-
-    if (widthOutput < Defaults.onLayouMobile) {
-      bodyClass.add(CLASS_NAME_LAYOUT_MOBILE)
-    }
-
-    if (widthOutput >= Defaults.onLayouMobile) {
-      bodyClass.remove(CLASS_NAME_LAYOUT_MOBILE)
-      this.expand()
-    }
-  }
-
-  removeOverlaySidebar(): void {
-    const bodyClass = document.body.classList
-    if (bodyClass.contains(CLASS_NAME_LAYOUT_MOBILE)) {
-      bodyClass.remove(CLASS_NAME_SIDEBAR_OPEN)
-      bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
-      bodyClass.add(CLASS_NAME_SIDEBAR_CLOSE)
-    }
-  }
-
-  closeSidebar(): void {
-    const widthOutput: number = window.innerWidth
-    if (widthOutput < Defaults.onLayouMobile) {
-      document.body.classList.add(CLASS_NAME_SIDEBAR_CLOSE)
-    }
-  }
-
-  toggleFull(): void {
-    if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_CLOSE)) {
-      this.expand()
-    } else {
-      this.close()
-    }
-
-    if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_MINI)) {
-      this._bodyClass.remove(CLASS_NAME_SIDEBAR_MINI)
-      this._bodyClass.add(CLASS_NAME_SIDEBAR_MINI_HAD)
-    }
-  }
-
-  toggleMini(): void {
-    if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_MINI_HAD)) {
-      this._bodyClass.remove(CLASS_NAME_SIDEBAR_MINI_HAD)
-      this._bodyClass.add(CLASS_NAME_SIDEBAR_MINI)
-    }
-
-    if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
+  toggle() {
+    if (document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
       this.expand()
     } else {
       this.collapse()
@@ -202,18 +124,7 @@ class PushMenu {
   }
 
   init() {
-    this.addSidebaBreakPoint()
-    this.sidebarHover()
-
-    const selSidebarSm = document.querySelector(SELECTOR_SIDEBAR_SM)
-    const selContentWrapper = selSidebarSm?.querySelector(SELECTOR_CONTENT_WRAPPER)
-
-    if (selContentWrapper) {
-      selContentWrapper.addEventListener('touchstart', this.removeOverlaySidebar)
-      selContentWrapper.addEventListener('click', this.removeOverlaySidebar)
-    }
-
-    this.closeSidebar()
+    this.addSidebarBreakPoint()
   }
 }
 
@@ -223,51 +134,54 @@ class PushMenu {
  * ------------------------------------------------------------------------
  */
 
-domReady(() => {
-  const data = new PushMenu(undefined, undefined)
-  data.init()
+onDOMContentLoaded(() => {
+  const sidebar = document?.querySelector(SELECTOR_APP_SIDEBAR) as HTMLElement | undefined
 
-  window.addEventListener('resize', () => {
+  if (sidebar) {
+    const data = new PushMenu(sidebar, Defaults)
     data.init()
+
+    window.addEventListener('resize', () => {
+      data.init()
+    })
+  }
+
+  const sidebarOverlay = document.createElement('div')
+  sidebarOverlay.className = CLASS_NAME_SIDEBAR_OVERLAY
+  document.querySelector(SELECTOR_APP_WRAPPER)?.append(sidebarOverlay)
+
+  sidebarOverlay.addEventListener('touchstart', event => {
+    event.preventDefault()
+    const target = event.currentTarget as HTMLElement
+    const data = new PushMenu(target, Defaults)
+    data.collapse()
+  })
+  sidebarOverlay.addEventListener('click', event => {
+    event.preventDefault()
+    const target = event.currentTarget as HTMLElement
+    const data = new PushMenu(target, Defaults)
+    data.collapse()
   })
 
-  const fullBtn = document.querySelectorAll(SELECTOR_FULL_TOGGLE)
+  const fullBtn = document.querySelectorAll(SELECTOR_SIDEBAR_TOGGLE)
 
-  for (const btn of fullBtn) {
+  fullBtn.forEach(btn => {
     btn.addEventListener('click', event => {
       event.preventDefault()
 
       let button = event.currentTarget as HTMLElement | undefined
 
-      if (button?.dataset.lteToggle !== 'sidebar-full') {
-        button = button?.closest(SELECTOR_FULL_TOGGLE) as HTMLElement | undefined
+      if (button?.dataset.lteToggle !== 'sidebar') {
+        button = button?.closest(SELECTOR_SIDEBAR_TOGGLE) as HTMLElement | undefined
       }
 
       if (button) {
-        const data = new PushMenu(button, undefined)
-        data.toggleFull()
+        event?.preventDefault()
+        const data = new PushMenu(button, Defaults)
+        data.toggle()
       }
     })
-  }
-
-  const miniBtn = document.querySelectorAll(SELECTOR_MINI_TOGGLE)
-
-  for (const btn of miniBtn) {
-    btn.addEventListener('click', event => {
-      event.preventDefault()
-
-      let button = event.currentTarget as HTMLElement | undefined
-      if (button?.dataset.lteToggle !== 'sidebar-mini') {
-        button = button?.closest(SELECTOR_FULL_TOGGLE) as HTMLElement | undefined
-      }
-
-      if (button) {
-        const data = new PushMenu(button, undefined)
-        data.toggleMini()
-      }
-    })
-  }
+  })
 })
 
 export default PushMenu
-

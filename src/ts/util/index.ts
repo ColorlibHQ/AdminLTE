@@ -1,16 +1,19 @@
-const domReady = (callBack: () => void): void => {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', callBack)
-  } else {
-    callBack()
-  }
-}
+const domContentLoadedCallbacks: Array<() => void> = []
 
-const windowReady = (callBack: () => void): void => {
-  if (document.readyState === 'complete') {
-    callBack()
+const onDOMContentLoaded = (callback: () => void): void => {
+  if (document.readyState === 'loading') {
+    // add listener on the first call when the document is in loading state
+    if (!domContentLoadedCallbacks.length) {
+      document.addEventListener('DOMContentLoaded', () => {
+        for (const callback of domContentLoadedCallbacks) {
+          callback()
+        }
+      })
+    }
+
+    domContentLoadedCallbacks.push(callback)
   } else {
-    window.addEventListener('load', callBack)
+    callback()
   }
 }
 
@@ -91,8 +94,7 @@ const slideToggle = (target: HTMLElement, duration = 500) => {
 }
 
 export {
-  domReady,
-  windowReady,
+  onDOMContentLoaded,
   slideUp,
   slideDown,
   slideToggle

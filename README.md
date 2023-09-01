@@ -3,8 +3,8 @@
 [![npm version](https://img.shields.io/npm/v/admin-lte/latest.svg)](https://www.npmjs.com/package/admin-lte)
 [![Packagist](https://img.shields.io/packagist/v/almasaeed2010/adminlte.svg)](https://packagist.org/packages/almasaeed2010/adminlte)
 [![cdn version](https://data.jsdelivr.com/v1/package/npm/admin-lte/badge)](https://www.jsdelivr.com/package/npm/admin-lte)
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/from-referrer/)
 [![Discord Invite](https://img.shields.io/badge/discord-join%20now-green)](https://discord.gg/jfdvjwFqfz)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1277b36b-08f3-43fa-826a-4b4d24614b3c/deploy-status)](https://app.netlify.com/sites/adminlte-v4/deploys)
 
 **AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 5](https://getbootstrap.com/)** framework and also the JavaScript plugins.
 Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.
@@ -26,23 +26,22 @@ SCSS has been used to increase code customizability.
 To compile the dist files you need Node.js/npm, clone/download the repo then:
 
 1. `npm install` (install npm deps)
-2. `npm install gulp-cli -g` (install gulp-cli globally)
-3. _Optional:_ `gulp` (developer mode, autocompile with browsersync support for live demo)
-4. `gulp compile` (compile css/js files)
+2. _Optional:_ `npm run dev` (developer mode, autocompile with browsersync support for live demo)
+3. `npm run production` (compile css/js files)
 
 
 ## Contributing
 
 - Highly welcome.
-- For your extra reference check [AdminLTE v3 Contribution Guide](https://github.com/ColorlibHQ/AdminLTE#contributing)
+- For your extra reference check [AdminLTE v4 Contribution Guide](https://github.com/ColorlibHQ/AdminLTE#contributing)
 - First thing first, you should have bit knowledge about NodeJS.
 - Github Knowledge.
 - Install NodeJS LTS version.
-- Clone this Repository to your machine.
+- Clone this Repository to your machine and change to `master` branch.
 - Go to Cloned Folder.
 - In cli/bash run `npm install` it will install dependency from `package.json`.
 - After installation complets, run `npm run dev`
-- Cool, Send urs changes.
+- Cool, Send urs changes in PR to `master` branch.
 
 
 ## License

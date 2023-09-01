@@ -49,6 +49,7 @@
 
   p {
     margin: 0;
+    word-wrap: break-word;
     white-space: normal;
   }
 }
@@ -101,6 +102,7 @@
 
   p {
     margin: 0;
+    word-wrap: break-word;
     white-space: normal;
   }
 }
@@ -185,7 +187,7 @@
         z-index: 5;
         margin-top: 10px;
         font-size: 17px;
-        //text-shadow: 2px 2px 3px #333333;
+        word-wrap: break-word;
 
         > small {
           display: block;

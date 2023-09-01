@@ -6,7 +6,7 @@
  */
 
 import {
-  domReady
+  onDOMContentLoaded
 } from './util/index'
 
 /**
@@ -30,26 +30,24 @@ const CLASS_NAME_DIRECT_CHAT_OPEN = 'direct-chat-contacts-open'
  */
 
 class DirectChat {
-  _element: HTMLElement | undefined
-  _config: undefined
-  constructor(element: HTMLElement | undefined, config: undefined) {
+  _element: HTMLElement
+  constructor(element: HTMLElement) {
     this._element = element
-    this._config = config
   }
 
   toggle(): void {
-    if (this._element?.classList.contains(CLASS_NAME_DIRECT_CHAT_OPEN)) {
+    if (this._element.classList.contains(CLASS_NAME_DIRECT_CHAT_OPEN)) {
       const event = new Event(EVENT_COLLAPSED)
 
-      this._element?.classList.remove(CLASS_NAME_DIRECT_CHAT_OPEN)
+      this._element.classList.remove(CLASS_NAME_DIRECT_CHAT_OPEN)
 
-      this._element?.dispatchEvent(event)
+      this._element.dispatchEvent(event)
     } else {
       const event = new Event(EVENT_EXPANDED)
 
-      this._element?.classList.add(CLASS_NAME_DIRECT_CHAT_OPEN)
+      this._element.classList.add(CLASS_NAME_DIRECT_CHAT_OPEN)
 
-      this._element?.dispatchEvent(event)
+      this._element.dispatchEvent(event)
     }
   }
 }
@@ -60,18 +58,21 @@ class DirectChat {
  * ====================================================
  */
 
-domReady(() => {
+onDOMContentLoaded(() => {
   const button = document.querySelectorAll(SELECTOR_DATA_TOGGLE)
 
-  for (const btn of button) {
+  button.forEach(btn => {
     btn.addEventListener('click', event => {
       event.preventDefault()
       const target = event.target as HTMLElement
-      const chatPane = target?.closest(SELECTOR_DIRECT_CHAT) as HTMLElement | undefined
-      const data = new DirectChat(chatPane, undefined)
-      data.toggle()
+      const chatPane = target.closest(SELECTOR_DIRECT_CHAT) as HTMLElement | undefined
+
+      if (chatPane) {
+        const data = new DirectChat(chatPane)
+        data.toggle()
+      }
     })
-  }
+  })
 })
 
 export default DirectChat

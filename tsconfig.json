@@ -1,16 +1,25 @@
 {
+  "root": true,
   "compilerOptions": {
+    "noFallthroughCasesInSwitch": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noImplicitAny": true,
-    "target": "es2018",
     "module": "esnext",
+    "alwaysStrict": true,
     "strict": true,
     "strictNullChecks": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
-    "strictPropertyInitialization": true
+    "strictPropertyInitialization": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/html/components/*"],
+    },
+    /* Language and Environment */
+    "target": "es6",
+    "lib": ["es2018", "DOM"],
   },
   "include": [
     "src/ts/**/*"
@@ -18,6 +27,5 @@
   "exclude": [
     "dist",
     "node_modules",
-    "plugins"
   ]
 }

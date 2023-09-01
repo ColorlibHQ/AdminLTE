@@ -80,13 +80,7 @@
 
     }
 
-    /* stylelint-disable selector-class-pattern */
-    // The icons at line
-    > i,
-    > svg,
-    > img,
-    > object,
-    > iframe {
+    .timeline-icon {
       position: absolute;
       top: 0;
       left: 18px;
@@ -98,10 +92,6 @@
       background-color: var(--#{$prefix}secondary-bg);
       border-radius: 50%; // stylelint-disable-line property-disallowed-list
     }
-    > .svg-inline--fa {
-      padding: 7px;
-    }
-    /* stylelint-enable selector-class-pattern */
   }
   // Time label
   > .time-label {

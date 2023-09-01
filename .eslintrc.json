@@ -52,6 +52,7 @@
     ],
     "unicorn/explicit-length-check": "off",
     "unicorn/no-array-callback-reference": "off",
+    "unicorn/no-array-for-each": "off",
     "unicorn/no-array-method-this-argument": "off",
     "unicorn/no-null": "off",
     "unicorn/no-unused-properties": "error",
@@ -61,6 +62,7 @@
     "unicorn/prefer-module": "off",
     "unicorn/prefer-query-selector": "off",
     "unicorn/prefer-spread": "off",
+    "unicorn/prefer-string-replace-all": "off",
     "unicorn/prevent-abbreviations": "off"
   },
   "overrides": [
@@ -98,6 +100,20 @@
           "error",
           "never"
         ]
+      }
+    },
+    {
+      "files": ["src/config/**"],
+      "env": {
+        "browser": false,
+        "node": true
+      },
+      "parserOptions": {
+        "sourceType": "module"
+      },
+      "rules": {
+        "no-console": "off",
+        "unicorn/prefer-top-level-await": "off"
       }
     }
   ]

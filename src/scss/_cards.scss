@@ -5,34 +5,16 @@
 // Color variants
 .card {
   @include box-shadow($lte-card-shadow);
-  margin-bottom: map-get($spacers, 3);
 
-  &:not(.card-outline) {
+  &[class*="card-"]:not(.card-outline),
+  &[class*="text-bg-"]:not(.card-outline) {
     > .card-header {
+      color: var(--#{$lte-prefix}card-variant-color);
       background-color: var(--#{$lte-prefix}card-variant-bg);
 
-      &,
-      a {
-        color: var(--#{$lte-prefix}card-variant-color);
-      }
-
-      a {
-        &:hover {
-          border-top: 3px solid $nav-tabs-border-color;
-        }
-
-        &.active {
-          color: color-contrast($white);
-          border-top: 3px solid var(--#{$lte-prefix}card-variant-bg);
-        }
-      }
-
       .btn-tool {
-        color: rgba(var(--#{$lte-prefix}card-variant-color-rgb), .8);
-
-        &:hover {
-          color: var(--#{$lte-prefix}card-variant-color);
-        }
+        --#{$prefix}btn-color: rgba(var(--#{$lte-prefix}card-variant-color-rgb), .8);
+        --#{$prefix}btn-hover-color: var(--#{$lte-prefix}card-variant-color);
       }
     }
   }
@@ -63,19 +45,40 @@
       display: none;
     }
 
+    [data-lte-icon="maximize"] {
+      display: none;
+    }
+
     .card-header,
     .card-footer {
       @include border-radius(0 !important);
     }
   }
 
+  &:not(.maximized-card) {
+    [data-lte-icon="minimize"] {
+      display: none;
+    }
+  }
+
   // collapsed mode
   &.collapsed-card {
+    [data-lte-icon="collapse"] {
+      display: none;
+    }
+
     .card-body,
     .card-footer {
       display: none;
     }
   }
+
+  &:not(.collapsed-card) {
+    [data-lte-icon="expand"] {
+      display: none;
+    }
+  }
+
 
   .nav.flex-column {
     > li {
@@ -212,17 +215,6 @@
 
 }
 
-@each $name, $color in $theme-colors {
-  @debug($name);
-  .card-#{$name},
-  .card.bg-#{$name},
-  .card.text-bg-#{$name} {
-    --#{$lte-prefix}card-variant-bg: #{$color};
-    --#{$lte-prefix}card-variant-color: #{color-contrast($color)};
-    --#{$lte-prefix}card-variant-color-rgb: #{to-rgb(color-contrast($color))};
-  }
-}
-
 // Maximized Card Body Scroll fix
 html.maximized-card {
   overflow: hidden;
@@ -278,12 +270,39 @@ html.maximized-card {
 .btn-tool {
   --#{$prefix}btn-padding-x: .5rem;
   --#{$prefix}btn-padding-y: .25rem;
-  --#{$prefix}btn-color: var(--#{$prefix}tertiary-color);
-  --#{$prefix}btn-bg: transparent;
-  --#{$prefix}btn-box-shadow: none;
-  --#{$prefix}btn-hover-color: --#{$prefix}secondary-color;
-  --#{$prefix}btn-active-border-color: transparent;
+
+  &:not(.btn-tool-custom) {
+    --#{$prefix}btn-color: var(--#{$prefix}tertiary-color);
+    --#{$prefix}btn-bg: transparent;
+    --#{$prefix}btn-box-shadow: none;
+    --#{$prefix}btn-hover-color: var(--#{$prefix}secondary-color);
+    --#{$prefix}btn-active-border-color: transparent;
+  }
 
   margin: -$card-spacer-y 0;
   font-size: $font-size-sm;
+}
+
+@each $name, $color in $theme-colors {
+  .card-#{$name},
+  .bg-#{$name},
+  .text-bg-#{$name} {
+    --#{$lte-prefix}card-variant-bg: #{$color};
+    --#{$lte-prefix}card-variant-bg-rgb: #{to-rgb($color)};
+    --#{$lte-prefix}card-variant-color: #{color-contrast($color)};
+    --#{$lte-prefix}card-variant-color-rgb: #{to-rgb(color-contrast($color))};
+  }
+}
+
+// Box Body
+.card-body {
+  // Tables within the box body
+  > .table {
+    margin-bottom: 0;
+
+    > thead > tr > th,
+    > thead > tr > td {
+      border-top-width: 0;
+    }
+  }
 }
