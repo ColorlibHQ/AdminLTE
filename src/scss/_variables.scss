@@ -1,16 +1,17 @@
+//
 // Custom AdminLTE Variables
+//
 
 // Prefix for :root CSS variables and others.
 $lte-prefix:                      lte- !default;
 
 // TRANSITIONS SETTINGS
 // --------------------------------------------------------
-
 // Transition global options
 $lte-transition-speed:            .3s !default;
 $lte-transition-fn:               ease-in-out !default;
 
-// Sidebar
+// SIDEBAR
 // --------------------------------------------------------
 $lte-sidebar-width:               250px !default;
 $lte-sidebar-breakpoint:          lg !default;
@@ -58,11 +59,13 @@ $lte-app-header-link-padding-y:       $navbar-padding-y !default;
 $lte-app-header-height:               ($nav-link-height + ($lte-app-header-link-padding-y * 2)) !default;
 $lte-app-header-height-compact:       ($nav-link-height-compact + ($lte-app-header-link-padding-y * 2)) !default;
 
-// Content padding
+// CONTENT PADDING
+// --------------------------------------------------------
 $lte-content-padding-y:           0 !default;
 $lte-content-padding-x:           .5rem !default;
 
 // MAIN CONTENT
+// --------------------------------------------------------
 $lte-app-content-bottom-area-height-sm: 3.5rem !default;
 $lte-app-content-bottom-area-height-md: 6rem !default;
 $lte-app-content-bottom-area-height-lg: 9rem !default;
@@ -88,8 +91,7 @@ $lte-brand-link-padding-x:         $lte-sidebar-padding-x !default;
 $lte-brand-link-padding-x-compact: $lte-sidebar-padding-x-compact !default;
 $lte-brand-link-border-buttom:    1px !default;
 
-
-// Cards
+// CARDS
 // --------------------------------------------------------
 $lte-card-shadow: 0 0 1px rgba(var(--#{$prefix}body-color-rgb), .125), 0 1px 3px rgba(var(--#{$prefix}body-color-rgb), .2) !default;
 $lte-card-title-font-size: 1.1rem !default;

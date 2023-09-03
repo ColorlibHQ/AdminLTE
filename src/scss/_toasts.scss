@@ -7,136 +7,76 @@
 }
 
 .toast .toast-body {
-  color: $black;
-  background-color: $gray-100;
-  /* stylelint-disable */
-  border-radius: 0 0 .25rem .25rem;
-  /* stylelint-enable */
+  --#{$prefix}toast-color: #{$black};
+  --#{$prefix}toast-bg: #{$gray-100};
+  --#{$prefix}toast-border-radius: 0 0 .25rem .25rem;
 }
 
-.toast-danger .toast-header {
-  color: $white !important;
-  background-color: $red !important;
-  border-color: $red;
+.toast-danger {
+  --#{$prefix}toast-header-color: #{$white};
+  --#{$prefix}toast-header-bg: #{$danger};
+  --#{$prefix}toast-header-border-color: #{$danger};
+  --#{$prefix}toast-border-color: #{$danger};
+  --#{$prefix}toast-color: #{$white};
+  --#{$prefix}toast-bg: #{$red-300};
 }
 
-.toast-danger .toast-header button {
-  color: $white !important;
+.toast-dark {
+  --#{$prefix}toast-header-color: #{$white};
+  --#{$prefix}toast-header-bg: #{$dark};
+  --#{$prefix}toast-header-border-color: #{$dark};
+  --#{$prefix}toast-border-color: #{$dark};
+  --#{$prefix}toast-color: #{$white};
+  --#{$prefix}toast-bg: #{$gray-600};
 }
 
-.toast-danger .toast-body {
-  color: $white;
-  background-color: $red-300;
+.toast-info {
+  --#{$prefix}toast-header-color: #{$white};
+  --#{$prefix}toast-header-bg: #{$info};
+  --#{$prefix}toast-header-border-color: #{$info};
+  --#{$prefix}toast-border-color: #{$info};
+  --#{$prefix}toast-bg: #{$cyan-300};
 }
 
-.toast-dark .toast-header {
-  color: $white !important;
-  background-color: $gray-900 !important;
-  border-color: $gray-700;
+.toast-light {
+  --#{$prefix}toast-header-color: #{$gray-900};
+  --#{$prefix}toast-header-bg: #{$light};
+  --#{$prefix}toast-header-border-color: #{$light};
+  --#{$prefix}toast-border-color: #{$light};
+  --#{$prefix}toast-color: #{$gray-900};
+  --#{$prefix}toast-bg: #{$white};
 }
 
-.toast-dark .toast-header button {
-  color: $white !important;
-  --bs-btn-close-color: $white;
+.toast-primary {
+  --#{$prefix}toast-header-color: #{$white};
+  --#{$prefix}toast-header-bg: #{$primary};
+  --#{$prefix}toast-header-border-color: #{$primary};
+  --#{$prefix}toast-border-color: #{$primary};
+  --#{$prefix}toast-color: #{$white};
+  --#{$prefix}toast-bg: #{$blue-300};
 }
 
-.toast-dark .toast-body {
-  color: $white;
-  background-color: $gray-700;
+.toast-secondary {
+  --#{$prefix}toast-header-color: #{$white};
+  --#{$prefix}toast-header-bg: #{$secondary};
+  --#{$prefix}toast-header-border-color: #{$secondary};
+  --#{$prefix}toast-border-color: #{$secondary};
+  --#{$prefix}toast-bg: #{$gray-400};
 }
 
-.toast-info .toast-header {
-  color: $white !important;
-  background-color: #17a2b8 !important;
-  border-color: #17a2b8;
+.toast-success {
+  --#{$prefix}toast-header-color: #{$white};
+  --#{$prefix}toast-header-bg: #{$success};
+  --#{$prefix}toast-header-border-color: #{$success};
+  --#{$prefix}toast-border-color: #{$success};
+  --#{$prefix}toast-color: #{$white};
+  --#{$prefix}toast-bg: #{$green-300};
 }
 
-.toast-info .toast-header button {
-  color: $white !important;
-  --bs-btn-close-color: $white;
-}
-
-.toast-info .toast-body {
-  color: $white;
-  background-color: #1fc8e3;
-}
-
-.toast-light .toast-header {
-  color: #1f2d3d !important;
-  background-color: $gray-100 !important;
-  border-color: $gray-100;
-}
-
-.toast-light .toast-header button {
-  color: #1f2d3d !important;
-  --bs-btn-close-color: #1f2d3d;
-}
-
-.toast-light .toast-body {
-  color: #1f2d3d;
-  background-color: $white;
-}
-
-.toast-primary .toast-header {
-  color: $white !important;
-  background-color: #007bff !important;
-  border-color: #007bff;
-}
-
-.toast-primary .toast-header button {
-  color: $white !important;
-  --bs-btn-close-color: $white;
-}
-
-.toast-primary .toast-body {
-  color: $white;
-  background-color: #3395ff;
-}
-
-.toast-secondary .toast-header {
-  color: $white !important;
-  background-color: $gray-600 !important;
-  border-color: $gray-600;
-}
-
-.toast-secondary .toast-header button {
-  color: $white !important;
-  --bs-btn-close-color: $white;
-}
-
-.toast-secondary .toast-body {
-  color: $white;
-  background-color: #868e96;
-}
-
-.toast-success .toast-header {
-  color: $white !important;
-  background-color: #28a745 !important;
-  border-color: #28a745;
-}
-
-.toast-success .toast-header button {
-  color: $white !important;
-  --bs-btn-close-color: $white;
-}
-
-.toast-success .toast-body {
-  color: $white;
-  background-color: #34ce57;
-}
-
-.toast-warning .toast-header {
-  color: #1f2d3d !important;
-  background-color: $yellow !important;
-  border-color: $yellow;
-}
-
-.toast-warning .toast-header button {
-  color: #1f2d3d !important;
-  --bs-btn-close-color: #1f2d3d;
-}
-
-.toast-warning .toast-body {
-  color: #1f2d3d;
-  background-color: #ffce3a;
+.toast-warning {
+  --#{$prefix}toast-header-color: #{$white};
+  --#{$prefix}toast-header-bg: #{$warning};
+  --#{$prefix}toast-header-border-color: #{$warning};
+  --#{$prefix}toast-border-color: #{$warning};
+  --#{$prefix}toast-bg: #{$yellow-300};
 }
