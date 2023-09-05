@@ -1,85 +1,50 @@
 /**
  * Custom toast styles to reflect Bootstrap colors
  */
+
+/**
+ * Get subtle BG color.
+ * Returns the subtle bg color for a given color name.
+ *
+ * @param string $value - Bootstrap color name
+ * @return string - Bootstrap subtle bg color
+ */
+@function get-subtle-bg-color($value) {
+  @if $value == "primary" {
+    @return $primary-bg-subtle;
+  } @else if $value == "secondary" {
+    @return $secondary-bg-subtle;
+  } @else if $value == "success" {
+    @return $success-bg-subtle;
+  } @else if $value == "info" {
+    @return $info-bg-subtle;
+  } @else if $value == "warning" {
+    @return $warning-bg-subtle;
+  } @else if $value == "danger" {
+    @return $danger-bg-subtle;
+  } @else if $value == "light" {
+    @return $light-bg-subtle;
+  } @else if $value == "dark" {
+    @return $dark-bg-subtle;
+  } @else {
+    @return $value;
+  }
+}
+
+//
+// Adjusting size and margin
+//
 .toast {
   min-width: 300px;
   margin: 8px;
 }
 
+//
+// Adding a bottom border radius the toast body
+//
 .toast .toast-body {
-  //--#{$prefix}toast-color: #{$black};
-  //--#{$prefix}toast-bg: #{$gray-100};
   --#{$prefix}toast-border-radius: 0 0 .25rem .25rem;
 }
-
-//.toast-danger {
-//  --#{$prefix}toast-header-color: #{$white};
-//  --#{$prefix}toast-header-bg: #{$danger};
-//  --#{$prefix}toast-header-border-color: #{$danger};
-//  --#{$prefix}toast-border-color: #{$danger};
-//  --#{$prefix}toast-color: #{$white};
-//  --#{$prefix}toast-bg: #{$red-300};
-//}
-//
-//.toast-dark {
-//  --#{$prefix}toast-header-color: #{$white};
-//  --#{$prefix}toast-header-bg: #{$dark};
-//  --#{$prefix}toast-header-border-color: #{$dark};
-//  --#{$prefix}toast-border-color: #{$dark};
-//  --#{$prefix}toast-color: #{$white};
-//  --#{$prefix}toast-bg: #{$gray-600};
-//}
-//
-//.toast-info {
-//  --#{$prefix}toast-header-color: #{$white};
-//  --#{$prefix}toast-header-bg: #{$info};
-//  --#{$prefix}toast-header-border-color: #{$info};
-//  --#{$prefix}toast-border-color: #{$info};
-//  --#{$prefix}toast-bg: #{$cyan-300};
-//}
-//
-//.toast-light {
-//  --#{$prefix}toast-header-color: #{$gray-900};
-//  --#{$prefix}toast-header-bg: #{$light};
-//  --#{$prefix}toast-header-border-color: #{$light};
-//  --#{$prefix}toast-border-color: #{$light};
-//  --#{$prefix}toast-color: #{$gray-900};
-//  --#{$prefix}toast-bg: #{$white};
-//}
-//
-//.toast-primary {
-//  --#{$prefix}toast-header-color: #{$white};
-//  --#{$prefix}toast-header-bg: #{$primary};
-//  --#{$prefix}toast-header-border-color: #{$primary};
-//  --#{$prefix}toast-border-color: #{$primary};
-//  --#{$prefix}toast-color: #{$white};
-//  --#{$prefix}toast-bg: #{$blue-300};
-//}
-//
-//.toast-secondary {
-//  --#{$prefix}toast-header-color: #{$white};
-//  --#{$prefix}toast-header-bg: #{$secondary};
-//  --#{$prefix}toast-header-border-color: #{$secondary};
-//  --#{$prefix}toast-border-color: #{$secondary};
-//  --#{$prefix}toast-bg: #{$gray-400};
-//}
-//
-//.toast-success {
-//  --#{$prefix}toast-header-color: #{$white};
-//  --#{$prefix}toast-header-bg: #{$success};
-//  --#{$prefix}toast-header-border-color: #{$success};
-//  --#{$prefix}toast-border-color: #{$success};
-//  --#{$prefix}toast-color: #{$white};
-//  --#{$prefix}toast-bg: #{$green-300};
-//}
-//
-//.toast-warning {
-//  --#{$prefix}toast-header-color: #{$white};
-//  --#{$prefix}toast-header-bg: #{$warning};
-//  --#{$prefix}toast-header-border-color: #{$warning};
-//  --#{$prefix}toast-border-color: #{$warning};
-//  --#{$prefix}toast-bg: #{$yellow-300};
-//}
 
 //
 // Color variants
@@ -90,6 +55,6 @@
     --#{$prefix}toast-header-bg: #{$color};
     --#{$prefix}toast-header-border-color: #{$color};
     --#{$prefix}toast-border-color: #{$color};
-    --#{$prefix}toast-bg: #{$color};
+    --#{$prefix}toast-bg: #{get-subtle-bg-color($name)};
   }
 }
