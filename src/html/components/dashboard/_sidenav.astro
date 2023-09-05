@@ -218,6 +218,15 @@ const htmlPath = convertPathToHtml(path);
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a
+                href={htmlPath + "/UI/general.html"}
+                class:list={["nav-link", page === "bsgeneral" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>General Elements</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
                 href={htmlPath + "/UI/timeline.html"}
                 class:list={["nav-link", page === "timeline" && "active"]}
               >
@@ -246,21 +255,6 @@ const htmlPath = convertPathToHtml(path);
               >
                 <i class="nav-icon bi bi-circle"></i>
                 <p>General Elements</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class:list={["nav-item", mainPage === "bscomponents" && "menu-open"]}>
-          <a href="#" class:list={["nav-link", mainPage === "bscomponents" && "active"]}>
-            <i class="nav-icon bi bi-ui-checks-grid"></i>
-            <p>Components<i class="nav-arrow bi bi-chevron-right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href={htmlPath + "/components/general.html"} class:list={["nav-link", page === "bsgeneral" && "active"]}>
-                <i class="nav-icon bi bi-circle"></i>
-                <p>General Components</p>
               </a>
             </li>
           </ul>
