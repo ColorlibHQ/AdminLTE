@@ -31,6 +31,21 @@
   }
 }
 
+/**
+ * Get button close SVG.
+ * Returns an either white or black button SVG dependent on the given color name.
+ *
+ * @param string $value - Bootstrap color name
+ * @return string - Close button SVG URL
+ */
+@function get-btn-close-svg($value) {
+  @if $value == "primary" or $value == "secondary" or $value == "success" or $value == "danger" or $value == "dark" {
+    @return "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e\")";
+  } @else {
+    @return "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e\")";
+  }
+}
+
 //
 // Adjusting size and margin
 //
@@ -49,5 +64,8 @@
     --#{$prefix}toast-header-border-color: #{$color};
     --#{$prefix}toast-border-color: #{$color};
     --#{$prefix}toast-bg: #{get-subtle-bg-color($name)};
+  }
+  .toast-#{$name} .btn-close {
+    --#{$prefix}btn-close-bg: #{get-btn-close-svg($name)};
   }
 }
