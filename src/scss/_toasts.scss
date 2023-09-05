@@ -40,13 +40,6 @@
 }
 
 //
-// Adding a bottom border radius the toast body
-//
-.toast .toast-body {
-  --#{$prefix}toast-border-radius: 0 0 .25rem .25rem;
-}
-
-//
 // Color variants
 //
 @each $name, $color in $theme-colors {
