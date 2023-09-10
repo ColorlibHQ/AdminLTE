@@ -7,11 +7,30 @@ updates:
       day: monday
       time: "03:00"
     groups:
-      dev-dependencies:
+      eslint:
         patterns:
-            - "eslint"
-            - "stylelint"
-            - "prettier"
-            - "postcss"
+          - "eslint"
+          - "eslint-*"
+          - "@typescript-eslint/*"
+      stylelint:
+        patterns:
+          - "stylelint"
+          - "stylelint-*"
+      prettier:
+        patterns:
+          - "prettier"
+          - "prettier-*"
+      rollup:
+        patterns:
+          - "rollup"
+          - "@rollup/*"
+      postcss:
+        patterns:
+          - "postcss"
+          - "postcss-*"
+      astro:
+        patterns:
+          - "astro"
+          - "@astrojs/*"
     open-pull-requests-limit: 10
     versioning-strategy: increase
