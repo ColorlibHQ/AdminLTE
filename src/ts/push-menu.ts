@@ -1,7 +1,8 @@
 /**
  * --------------------------------------------
- * AdminLTE push-menu.ts
- * License MIT
+ * @file AdminLTE push-menu.ts
+ * @description Push menu for AdminLTE.
+ * @license MIT
  * --------------------------------------------
  */
 

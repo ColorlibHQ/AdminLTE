@@ -1,7 +1,8 @@
 /**
  * --------------------------------------------
- * AdminLTE treeview.ts
- * License MIT
+ * @file AdminLTE treeview.ts
+ * @description Treeview plugin for AdminLTE.
+ * @license MIT
  * --------------------------------------------
  */
 
