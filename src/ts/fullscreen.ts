@@ -89,13 +89,15 @@ onDOMContentLoaded(() => {
   })
   document.addEventListener('keydown', event => {
     event.preventDefault()
-    if (event.key === 'Escape' && document.fullscreenEnabled) {
-      const target = event.target as HTMLElement
-      const fsButton = target.closest(SELECTOR_FULLSCREEN_TOGGLE) as HTMLElement | undefined
+    if (event.key === 'Escape') {
+      const iconMaximize = document.querySelector<HTMLElement>(SELECTOR_MAXIMIZE_ICON)
+      const iconMinimize = document.querySelector<HTMLElement>(SELECTOR_MINIMIZE_ICON)
+      if (iconMaximize) {
+        iconMaximize.style.display = 'block'
+      }
 
-      if (fsButton) {
-        const data = new FullScreen(fsButton)
-        data.toggleFullScreen()
+      if (iconMinimize) {
+        iconMinimize.style.display = 'none'
       }
     }
   })
