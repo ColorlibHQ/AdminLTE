@@ -1,7 +1,8 @@
 /**
  * --------------------------------------------
- * AdminLTE card-widget.ts
- * License MIT
+ * @file AdminLTE card-widget.ts
+ * @description Card widget for AdminLTE.
+ * @license MIT
  * --------------------------------------------
  */
 
