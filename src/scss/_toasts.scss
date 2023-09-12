@@ -3,35 +3,6 @@
  */
 
 /**
- * Get subtle BG color.
- * Returns the subtle bg color for a given color name.
- *
- * @param string $value - Bootstrap color name
- * @return string - Bootstrap subtle bg color
- */
-@function get-subtle-bg-color($value) {
-  @if $value == "primary" {
-    @return $primary-bg-subtle;
-  } @else if $value == "secondary" {
-    @return $secondary-bg-subtle;
-  } @else if $value == "success" {
-    @return $success-bg-subtle;
-  } @else if $value == "info" {
-    @return $info-bg-subtle;
-  } @else if $value == "warning" {
-    @return $warning-bg-subtle;
-  } @else if $value == "danger" {
-    @return $danger-bg-subtle;
-  } @else if $value == "light" {
-    @return $light-bg-subtle;
-  } @else if $value == "dark" {
-    @return $dark-bg-subtle;
-  } @else {
-    @return $value;
-  }
-}
-
-/**
  * Get button close SVG.
  * Returns an either white or black button SVG dependent on the given color name.
  *
@@ -47,14 +18,6 @@
 }
 
 //
-// Adjusting size and margin
-//
-.toast {
-  min-width: 300px;
-  margin: 8px;
-}
-
-//
 // Color variants
 //
 @each $name, $color in $theme-colors {
@@ -63,7 +26,7 @@
     --#{$prefix}toast-header-bg: #{$color};
     --#{$prefix}toast-header-border-color: #{$color};
     --#{$prefix}toast-border-color: #{$color};
-    --#{$prefix}toast-bg: #{get-subtle-bg-color($name)};
+    --#{$prefix}toast-bg: var(--#{$prefix}#{$name}-bg-subtle);
   }
   .toast-#{$name} .btn-close {
     --#{$prefix}btn-close-bg: #{get-btn-close-svg($name)};
