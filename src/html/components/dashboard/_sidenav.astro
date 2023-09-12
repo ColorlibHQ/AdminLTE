@@ -75,6 +75,15 @@ const htmlPath = convertPathToHtml(path);
             </li>
           </ul>
         </li>
+        <li class="nav-item">
+          <a
+            href={htmlPath + "/generate/theme.html"}
+            class:list={["nav-link", page === "theme-generate" && "active"]}
+          >
+            <i class="nav-icon bi bi-palette"></i>
+            <p>Theme Generate</p>
+          </a>
+        </li>
         <li class:list={["nav-item", mainPage === "widgets" && "menu-open"]}>
           <a
             href="#"
