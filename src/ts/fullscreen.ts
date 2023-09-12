@@ -28,6 +28,7 @@ const SELECTOR_MINIMIZE_ICON = '[data-lte-icon="minimize"]'
  */
 class FullScreen {
   _element: HTMLElement
+
   constructor(element: HTMLElement) {
     this._element = element
   }
@@ -85,6 +86,18 @@ onDOMContentLoaded(() => {
         data.toggleFullScreen()
       }
     })
+  })
+  document.addEventListener('keydown', event => {
+    event.preventDefault()
+    if (event.key === 'Escape' && document.fullscreenEnabled) {
+      const target = event.target as HTMLElement
+      const fsButton = target.closest(SELECTOR_FULLSCREEN_TOGGLE) as HTMLElement | undefined
+
+      if (fsButton) {
+        const data = new FullScreen(fsButton)
+        data.toggleFullScreen()
+      }
+    }
   })
 })
 
