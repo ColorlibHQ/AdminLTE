@@ -201,7 +201,7 @@ const page = "index";
                 <!-- /.card -->
 
                 <!-- DIRECT CHAT -->
-                <div class="card direct-chat direct-chat-primary">
+                <div class="card direct-chat direct-chat-primary mb-4">
                   <div class="card-header">
                     <h3 class="card-title">Direct Chat</h3>
 
@@ -510,7 +510,7 @@ const page = "index";
               <!-- Start col -->
               <div class="col-lg-5 connectedSortable">
                 <div
-                  class="card mb-4 text-white bg-primary bg-gradient border-primary"
+                  class="card text-white bg-primary bg-gradient border-primary mb-4"
                 >
                   <div class="card-header border-0">
                     <h3 class="card-title">Sales Value</h3>
@@ -569,8 +569,7 @@ const page = "index";
     <script
       src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"
       integrity="sha256-ipiJrswvAR4VAx/th+6zWsdeYmVae0iJuiR+6OqHJHQ="
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
 
     <!-- sortablejs -->
     <script is:inline>
@@ -579,11 +578,12 @@ const page = "index";
       connectedSortables.forEach((connectedSortable) => {
         let sortable = new Sortable(connectedSortable, {
           group: "shared",
+          handle: ".card-header",
         });
       });
 
       const cardHeaders = document.querySelectorAll(
-        ".connectedSortable .card-header"
+        ".connectedSortable .card-header",
       );
       cardHeaders.forEach((cardHeader) => {
         cardHeader.style.cursor = "move";
@@ -594,8 +594,7 @@ const page = "index";
     <script
       src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"
       integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8="
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
 
     <!-- ChartJS -->
     <script is:inline>
@@ -652,7 +651,7 @@ const page = "index";
 
       const sales_chart = new ApexCharts(
         document.querySelector("#revenue-chart"),
-        sales_chart_options
+        sales_chart_options,
       );
       sales_chart.render();
     </script>
@@ -661,13 +660,11 @@ const page = "index";
     <script
       src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/js/jsvectormap.min.js"
       integrity="sha256-/t1nN2956BT869E6H4V1dnt0X5pAQHPytli+1nTZm2Y="
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js"
       integrity="sha256-XPpPaZlU8S/HWf7FZLAncLg2SAkP8ScUTII89x9D3lY="
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
 
     <!-- jsvectormap -->
     <script is:inline>
@@ -719,7 +716,7 @@ const page = "index";
 
       const sparkline1 = new ApexCharts(
         document.querySelector("#sparkline-1"),
-        option_sparkline1
+        option_sparkline1,
       );
       sparkline1.render();
 
@@ -750,7 +747,7 @@ const page = "index";
 
       const sparkline2 = new ApexCharts(
         document.querySelector("#sparkline-2"),
-        option_sparkline2
+        option_sparkline2,
       );
       sparkline2.render();
 
@@ -781,7 +778,7 @@ const page = "index";
 
       const sparkline3 = new ApexCharts(
         document.querySelector("#sparkline-3"),
-        option_sparkline3
+        option_sparkline3,
       );
       sparkline3.render();
     </script>
