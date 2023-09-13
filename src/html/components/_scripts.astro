@@ -52,22 +52,3 @@ const adminlteJsUrl = path + "/js/adminlte.js";
   });
 </script>
 <!--end::OverlayScrollbars Configure-->
-<!--begin::Bootstrap Tooltips-->
-<script is:inline>
-  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-</script>
-<!--end::Bootstrap Tooltips-->
-<!--begin::Bootstrap Toasts-->
-<script is:inline>
-  const toastTriggerList = document.querySelectorAll('[data-bs-toggle="toast"]')
-  toastTriggerList.forEach(btn => {
-    btn.addEventListener('click', event => {
-      event.preventDefault();
-      const toastEle = document.getElementById(btn.getAttribute('data-bs-target'));
-      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastEle);
-      toastBootstrap.show();
-    })
-  })
-</script>
-<!--end::Bootstrap Toasts-->
