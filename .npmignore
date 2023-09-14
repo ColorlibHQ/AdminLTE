@@ -3,5 +3,4 @@
 /plugins/*
 !/plugins/flot-old/
 /.github/
-/.temp/
 /.lgtm.yml

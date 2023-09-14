@@ -1,0 +1,133 @@
+//
+// Plugin: Full Calendar
+//
+
+// Buttons
+.fc-button {
+  background: $gray-100;
+  background-image: none;
+  border-bottom-color: #ddd;
+  border-color: #ddd;
+  color: $gray-700;
+
+  &:hover,
+  &:active,
+  &.hover {
+    background-color: #e9e9e9;
+  }
+}
+
+// Calendar title
+.fc-header-title h2 {
+  color: #666;
+  font-size: 15px;
+  line-height: 1.6em;
+  margin-left: 10px;
+}
+
+.fc-header-right {
+  padding-right: 10px;
+}
+
+.fc-header-left {
+  padding-left: 10px;
+}
+
+// Calendar table header cells
+.fc-widget-header {
+  background: #fafafa;
+}
+
+.fc-grid {
+  border: 0;
+  width: 100%;
+}
+
+.fc-widget-header:first-of-type,
+.fc-widget-content:first-of-type {
+  border-left: 0;
+  border-right: 0;
+}
+
+.fc-widget-header:last-of-type,
+.fc-widget-content:last-of-type {
+  border-right: 0;
+}
+
+.fc-toolbar,
+.fc-toolbar.fc-header-toolbar {
+  margin: 0;
+  padding: 1rem;
+}
+
+@include media-breakpoint-down(xs) {
+  .fc-toolbar {
+    flex-direction: column;
+
+    .fc-left {
+      order: 1;
+      margin-bottom: .5rem;
+    }
+
+    .fc-center {
+      order: 0;
+      margin-bottom: .375rem;
+    }
+
+    .fc-right {
+      order: 2;
+    }
+  }
+}
+
+.fc-day-number {
+  font-size: 20px;
+  font-weight: 300;
+  padding-right: 10px;
+}
+
+.fc-color-picker {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  > li {
+    float: left;
+    font-size: 30px;
+    line-height: 30px;
+    margin-right: 5px;
+
+    .fa,
+    .fas,
+    .far,
+    .fab,
+    .fal,
+    .fad,
+    .svg-inline--fa,
+    .ion {
+      transition: transform linear .3s;
+
+      &:hover {
+        @include rotate(30deg);
+      }
+    }
+  }
+}
+
+#add-new-event {
+  transition: all linear .3s;
+}
+
+.external-event {
+  @include box-shadow($card-shadow);
+
+  border-radius: $border-radius;
+  cursor: move;
+  font-weight: 700;
+  margin-bottom: 4px;
+  padding: 5px 10px;
+
+  &:hover {
+    @include box-shadow(inset 0 0 90px rgba(0, 0, 0, 0.2));
+  }
+}

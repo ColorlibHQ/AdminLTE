@@ -1,0 +1,179 @@
+//
+// Component: Control Sidebar
+//
+
+html.control-sidebar-animate {
+  overflow-x: hidden;
+}
+
+.control-sidebar {
+  bottom: $main-footer-height;
+  position: absolute;
+  top: $main-header-height;
+  z-index: $zindex-control-sidebar;
+
+  &,
+  &::before {
+    bottom: $main-footer-height;
+    display: none;
+    right: -$control-sidebar-width;
+    width: $control-sidebar-width;
+    @include transition(
+      right $transition-speed $transition-fn,
+      display $transition-speed $transition-fn
+    );
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    position: fixed;
+    top: 0;
+    z-index: -1;
+  }
+}
+
+body.text-sm {
+  .control-sidebar {
+    bottom: $main-footer-height-sm;
+    top: $main-header-height-sm;
+  }
+}
+
+.main-header.text-sm ~ .control-sidebar {
+  top: $main-header-height-sm;
+}
+
+.main-footer.text-sm ~ .control-sidebar {
+  bottom: $main-footer-height-sm;
+}
+
+.control-sidebar-push-slide {
+  .content-wrapper,
+  .main-footer {
+    @include transition(margin-right $transition-speed $transition-fn);
+  }
+}
+
+// Control sidebar open state
+.control-sidebar-open {
+  .control-sidebar {
+    display: block !important;
+
+    &,
+    &::before {
+      right: 0;
+    }
+  }
+
+  &.control-sidebar-push,
+  &.control-sidebar-push-slide {
+    .content-wrapper,
+    .main-footer {
+      margin-right: $control-sidebar-width;
+    }
+  }
+}
+
+// Control sidebar slide over content state
+.control-sidebar-slide-open {
+  .control-sidebar {
+    display: block;
+
+    &,
+    &::before {
+      right: 0;
+      @include transition(
+        right $transition-speed $transition-fn,
+        display $transition-speed $transition-fn
+      );
+    }
+  }
+
+  &.control-sidebar-push,
+  &.control-sidebar-push-slide {
+    .content-wrapper,
+    .main-footer {
+      margin-right: $control-sidebar-width;
+    }
+  }
+}
+
+// Dark skin
+.control-sidebar-dark {
+  background-color: $sidebar-dark-bg;
+
+  &,
+  a,
+  .nav-link {
+    color: $sidebar-dark-color;
+  }
+
+  a:hover {
+    color: $sidebar-dark-hover-color;
+  }
+
+  // Headers and labels
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  label {
+    color: $sidebar-dark-hover-color;
+  }
+
+  // Tabs
+  .nav-tabs {
+    background-color: $sidebar-dark-hover-bg;
+    border-bottom: 0;
+    margin-bottom: 5px;
+
+    .nav-item {
+      margin: 0;
+    }
+
+    .nav-link {
+      border-radius: 0;
+      padding: 10px 20px;
+      position: relative;
+      text-align: center;
+
+      &,
+      &:hover,
+      &:active,
+      &:focus,
+      &.active {
+        border: 0;
+      }
+
+      &:hover,
+      &:active,
+      &:focus,
+      &.active {
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        border-top-color: transparent;
+        color: $sidebar-dark-hover-color;
+      }
+
+      &.active {
+        background-color: $sidebar-dark-bg;
+      }
+    }
+  }
+
+  .tab-pane {
+    padding: 10px 15px;
+  }
+}
+
+// Light skin
+.control-sidebar-light {
+  color: lighten($sidebar-light-color, 10%);
+
+  //  Background
+  background-color: $sidebar-light-bg;
+  border-left: $main-header-bottom-border;
+}

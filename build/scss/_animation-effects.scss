@@ -1,0 +1,14 @@
+//
+// Component: Animation
+//
+
+.animation {
+  &__shake {
+    animation: shake 1500ms;
+  }
+  &__wobble {
+    animation: wobble 1500ms;
+  }
+}
+
+//

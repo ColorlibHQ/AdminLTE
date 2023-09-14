@@ -2,17 +2,16 @@ name: Lint
 
 on:
   push:
-    branches-ignore:
-      - "dependabot/**"
+    branches:
+      - master
+      - v4-dev
   pull_request:
-  workflow_dispatch:
+    branches:
+      - "**"
 
 env:
   FORCE_COLOR: 2
-  NODE: 18
-
-permissions:
-  contents: read
+  NODE: 16.x
 
 jobs:
   run:
@@ -20,15 +19,21 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v3
-        with:
-          persist-credentials: false
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
           node-version: "${{ env.NODE }}"
-          cache: npm
+
+      - name: Set up npm cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-v${{ env.NODE }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}}
+          restore-keys: |
+            ${{ runner.os }}-node-v${{ env.NODE }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}
+            ${{ runner.os }}-node-v${{ env.NODE }}-
 
       - name: Install npm dependencies
         run: npm ci

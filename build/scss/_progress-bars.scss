@@ -1,0 +1,72 @@
+//
+// Component: Progress Bar
+//
+
+//General CSS
+.progress {
+  @include box-shadow(none);
+  @include border-radius($progress-bar-border-radius);
+
+  // Vertical bars
+  &.vertical {
+    display: inline-block;
+    height: 200px;
+    margin-right: 10px;
+    position: relative;
+    width: 30px;
+
+    > .progress-bar {
+      bottom: 0;
+      position: absolute;
+      width: 100%;
+    }
+
+    //Sizes
+    &.sm,
+    &.progress-sm {
+      width: 20px;
+    }
+
+    &.xs,
+    &.progress-xs {
+      width: 10px;
+    }
+
+    &.xxs,
+    &.progress-xxs {
+      width: 3px;
+    }
+  }
+}
+
+.progress-group {
+  margin-bottom: map-get($spacers, 2);
+}
+
+// size variation
+.progress-sm {
+  height: 10px;
+}
+
+.progress-xs {
+  height: 7px;
+}
+
+.progress-xxs {
+  height: 3px;
+}
+
+// Remove margins from progress bars when put in a table
+.table {
+  tr > td {
+    .progress {
+      margin: 0;
+    }
+  }
+}
+
+@include dark-mode () {
+  .progress {
+    background: lighten($dark, 7.5%);
+  }
+}

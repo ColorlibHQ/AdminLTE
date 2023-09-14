@@ -1,0 +1,167 @@
+//
+// Mixins: Sidebar
+//
+
+// Sidebar Color
+@mixin sidebar-color($color) {
+  .nav-sidebar > .nav-item {
+    > .nav-link.active {
+      background-color: $color;
+      color: color-yiq($color);
+    }
+  }
+
+  .nav-sidebar.nav-legacy > .nav-item {
+    > .nav-link.active {
+      border-color: $color;
+    }
+  }
+}
+
+// Sidebar Mini Breakpoints
+@mixin sidebar-mini-breakpoint() {
+  // A fix for text overflow while transitioning from sidebar mini to full sidebar
+  .nav-sidebar,
+  .nav-sidebar > .nav-header,
+  .nav-sidebar .nav-link {
+    white-space: nowrap;
+  }
+
+  // When the sidebar is collapsed...
+  &.sidebar-collapse {
+    .d-hidden-mini {
+      display: none;
+    }
+
+    // Apply the new margins to the main content and footer
+    .content-wrapper,
+    .main-footer,
+    .main-header {
+      margin-left: $sidebar-mini-width !important;
+    }
+
+    // Make the sidebar headers
+    .nav-sidebar .nav-header {
+      display: none;
+    }
+
+    .sidebar .nav-sidebar .nav-link p {
+      width: 0;
+      white-space: nowrap;
+    }
+
+    .sidebar .user-panel > .info,
+    .sidebar .nav-sidebar .nav-link p,
+    .brand-text {
+      margin-left: -10px;
+      animation-name: fade-out;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
+      visibility: hidden;
+    }
+
+    .logo-xl {
+      animation-name: fade-out;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
+      visibility: hidden;
+    }
+
+    .logo-xs {
+      display: inline-block;
+      animation-name: fade-in;
+      animation-duration: $transition-speed;
+      animation-fill-mode: both;
+      visibility: visible;
+    }
+
+    // Modify the sidebar to shrink instead of disappearing
+    .main-sidebar {
+      overflow-x: hidden;
+
+      &,
+      &::before {
+        // Don't go away! Just shrink
+        margin-left: 0;
+        width: $sidebar-mini-width;
+      }
+
+      .user-panel {
+        .image {
+          float: none;
+        }
+      }
+
+      &:not(.sidebar-no-expand) {
+        &:hover,
+        &.sidebar-focused {
+          width: $sidebar-width;
+
+          .brand-link {
+            width: $sidebar-width;
+          }
+
+          .user-panel {
+            text-align: left;
+
+            .image {
+              float: left;
+            }
+          }
+
+          .user-panel > .info,
+          .sidebar .nav-sidebar .nav-link p,
+          .brand-text,
+          .logo-xl {
+            display: inline-block;
+            margin-left: 0;
+            animation-name: fade-in;
+            animation-duration: $transition-speed;
+            animation-fill-mode: both;
+            visibility: visible;
+          }
+
+          .logo-xs {
+            animation-name: fade-out;
+            animation-duration: $transition-speed;
+            animation-fill-mode: both;
+            visibility: hidden;
+          }
+
+          .brand-image {
+            margin-right: .5rem;
+          }
+
+          // Make the sidebar links, menus, labels, badges
+          // and angle icons disappear
+          .sidebar-form,
+          .user-panel > .info {
+            display: block !important;
+            transform: translateZ(0);
+          }
+
+          .nav-sidebar > .nav-item > .nav-link > span {
+            display: inline-block !important;
+          }
+        }
+      }
+    }
+
+    // Make an element visible only when sidebar mini is active
+    .visible-sidebar-mini {
+      display: block !important;
+    }
+
+    &.layout-fixed {
+      .main-sidebar:hover {
+        .brand-link {
+          width: $sidebar-width;
+        }
+      }
+
+      .brand-link {
+        width: $sidebar-mini-width;
+      }
+    }
+  }
+}

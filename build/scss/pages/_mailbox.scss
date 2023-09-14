@@ -1,0 +1,99 @@
+//
+// Pages: Mailbox
+//
+
+.mailbox-messages {
+  > .table {
+    margin: 0;
+  }
+}
+
+.mailbox-controls {
+  padding: 5px;
+
+  &.with-border {
+    border-bottom: 1px solid $card-border-color;
+  }
+}
+
+.mailbox-read-info {
+  border-bottom: 1px solid $card-border-color;
+  padding: 10px;
+
+  h3 {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  h5 {
+    margin: 0;
+    padding: 5px 0 0;
+  }
+}
+
+.mailbox-read-time {
+  color: #999;
+  font-size: 13px;
+}
+
+.mailbox-read-message {
+  padding: 10px;
+}
+
+.mailbox-attachments {
+  @include list-unstyled ();
+  li {
+    border: 1px solid #eee;
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    width: 200px;
+  }
+}
+
+.mailbox-attachment-name {
+  color: #666;
+  font-weight: 700;
+}
+
+.mailbox-attachment-icon,
+.mailbox-attachment-info,
+.mailbox-attachment-size {
+  display: block;
+}
+
+.mailbox-attachment-info {
+  background-color: $gray-100;
+  padding: 10px;
+}
+
+.mailbox-attachment-size {
+  color: #999;
+  font-size: 12px;
+
+  > span {
+    display: inline-block;
+    padding-top: .75rem;
+  }
+}
+
+.mailbox-attachment-icon {
+  color: #666;
+  font-size: 65px;
+  max-height: 132.5px;
+  padding: 20px 10px;
+  text-align: center;
+
+  &.has-img {
+    padding: 0;
+
+    > img {
+      height: auto;
+      max-width: 100%;
+    }
+  }
+}
+
+.mailbox-attachment-close {
+  @extend .close;
+}

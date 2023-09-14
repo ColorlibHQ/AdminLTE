@@ -1,0 +1,106 @@
+//
+// Component: Brand
+//
+
+.brand-link {
+  $brand-link-padding-y: $navbar-brand-padding-y + $navbar-padding-y;
+  display: block;
+  font-size: $navbar-brand-font-size;
+  line-height: $line-height-lg;
+  padding: $brand-link-padding-y $sidebar-padding-x;
+  transition: width $transition-speed $transition-fn;
+  white-space: nowrap;
+
+  &:hover {
+    color: $white;
+    text-decoration: none;
+  }
+
+  .text-sm & {
+    font-size: inherit;
+  }
+
+  [class*="sidebar-dark"] & {
+    border-bottom: 1px solid lighten($dark, 10%);
+
+    &,
+    .pushmenu {
+      color: rgba($white, .8);
+
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+
+  [class*="sidebar-light"] & {
+    border-bottom: 1px solid $gray-300;
+
+    &,
+    .pushmenu {
+      color: rgba($black, .8);
+
+      &:hover {
+        color: $black;
+      }
+    }
+  }
+
+  .pushmenu {
+    margin-right: $sidebar-padding-x;
+    font-size: $font-size-base;
+  }
+
+  .brand-link {
+    padding: 0;
+    border-bottom: none;
+  }
+
+  .brand-image {
+    float: left;
+    line-height: .8;
+    margin-left: .8rem;
+    margin-right: .5rem;
+    margin-top: -3px;
+    max-height: 33px;
+    width: auto;
+  }
+
+  .brand-image-xs {
+    float: left;
+    line-height: .8;
+    margin-top: -.1rem;
+    max-height: 33px;
+    width: auto;
+  }
+
+  .brand-image-xl {
+    line-height: .8;
+    max-height: 40px;
+    width: auto;
+
+    &.single {
+      margin-top: -.3rem;
+    }
+  }
+
+  &.text-sm,
+  .text-sm & {
+    .brand-image {
+      height: 29px;
+      margin-bottom: -.25rem;
+      margin-left: .95rem;
+      margin-top: -.25rem;
+    }
+
+    .brand-image-xs {
+      margin-top: -.2rem;
+      max-height: 29px;
+    }
+
+    .brand-image-xl {
+      margin-top: -.225rem;
+      max-height: 38px;
+    }
+  }
+}

@@ -1,0 +1,293 @@
+/* This is a compiled file, to make changes persist, consider editing under the templates directory */
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+  color: #7c60e0;
+}
+
+.pace-progress {
+  position: fixed;
+  z-index: 2000;
+  top: 50%;
+  left: 50%;
+  margin-left: -2.5rem;
+  margin-top: -2.5rem;
+  height: 5rem;
+  width: 5rem;
+  opacity: 1;
+  -webkit-transition: opacity 0.1s;
+          transition: opacity 0.1s;
+
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  -ms-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+.pace-inactive .pace-progress,
+.pace-progress[data-progress="00"] {
+  opacity: 0;
+}
+
+.pace-progress:after {
+  height: 5rem;
+  width: 5rem;
+  text-align: center;
+  line-height: 5rem;
+  content: attr(data-progress);
+  display: block;
+  font-size: 1.8rem;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+}
+
+.pace-progress .pace-progress-inner {
+  overflow: hidden;
+  position: absolute;
+  width: 2.5rem;
+  height: 5rem;
+  -webkit-transform-origin: left center;
+      -ms-transform-origin: left center;
+          transform-origin: left center;
+  -webkit-transition: -webkit-transform 0.1s;
+          transition: transform 0.1s;
+  left: 2.5rem;
+  top: 0;
+}
+.pace-progress .pace-progress-inner:before,
+.pace-progress .pace-progress-inner:after {
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  content: ' ';
+  left: -2.5rem;
+  top: 0;
+  box-sizing: border-box;
+  border: 1px solid;
+  border-radius: 5rem;
+}
+.pace-progress .pace-progress-inner:before {
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  -webkit-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+.pace-progress .pace-progress-inner:after {
+  border-left-color: transparent;
+  border-top-color: transparent;
+  display: none;
+  -webkit-transform: rotate(315deg);
+      -ms-transform: rotate(315deg);
+          transform: rotate(315deg);
+}
+
+.pace-progress[data-progress="00"] .pace-progress-inner:before { -webkit-transform: rotate(-45deg); -ms-transform: rotate(-45deg); transform: rotate(-45deg); }
+.pace-progress[data-progress="01"] .pace-progress-inner:before { -webkit-transform: rotate(-41deg); -ms-transform: rotate(-41deg); transform: rotate(-41deg); }
+.pace-progress[data-progress="02"] .pace-progress-inner:before { -webkit-transform: rotate(-38deg); -ms-transform: rotate(-38deg); transform: rotate(-38deg); }
+.pace-progress[data-progress="03"] .pace-progress-inner:before { -webkit-transform: rotate(-34deg); -ms-transform: rotate(-34deg); transform: rotate(-34deg); }
+.pace-progress[data-progress="04"] .pace-progress-inner:before { -webkit-transform: rotate(-31deg); -ms-transform: rotate(-31deg); transform: rotate(-31deg); }
+.pace-progress[data-progress="05"] .pace-progress-inner:before { -webkit-transform: rotate(-27deg); -ms-transform: rotate(-27deg); transform: rotate(-27deg); }
+.pace-progress[data-progress="06"] .pace-progress-inner:before { -webkit-transform: rotate(-23deg); -ms-transform: rotate(-23deg); transform: rotate(-23deg); }
+.pace-progress[data-progress="07"] .pace-progress-inner:before { -webkit-transform: rotate(-20deg); -ms-transform: rotate(-20deg); transform: rotate(-20deg); }
+.pace-progress[data-progress="08"] .pace-progress-inner:before { -webkit-transform: rotate(-16deg); -ms-transform: rotate(-16deg); transform: rotate(-16deg); }
+.pace-progress[data-progress="09"] .pace-progress-inner:before { -webkit-transform: rotate(-13deg); -ms-transform: rotate(-13deg); transform: rotate(-13deg); }
+.pace-progress[data-progress="10"] .pace-progress-inner:before { -webkit-transform: rotate(-9deg); -ms-transform: rotate(-9deg); transform: rotate(-9deg); }
+.pace-progress[data-progress="11"] .pace-progress-inner:before { -webkit-transform: rotate(-5deg); -ms-transform: rotate(-5deg); transform: rotate(-5deg); }
+.pace-progress[data-progress="12"] .pace-progress-inner:before { -webkit-transform: rotate(-2deg); -ms-transform: rotate(-2deg); transform: rotate(-2deg); }
+.pace-progress[data-progress="13"] .pace-progress-inner:before { -webkit-transform: rotate(2deg); -ms-transform: rotate(2deg); transform: rotate(2deg); }
+.pace-progress[data-progress="14"] .pace-progress-inner:before { -webkit-transform: rotate(5deg); -ms-transform: rotate(5deg); transform: rotate(5deg); }
+.pace-progress[data-progress="15"] .pace-progress-inner:before { -webkit-transform: rotate(9deg); -ms-transform: rotate(9deg); transform: rotate(9deg); }
+.pace-progress[data-progress="16"] .pace-progress-inner:before { -webkit-transform: rotate(13deg); -ms-transform: rotate(13deg); transform: rotate(13deg); }
+.pace-progress[data-progress="17"] .pace-progress-inner:before { -webkit-transform: rotate(16deg); -ms-transform: rotate(16deg); transform: rotate(16deg); }
+.pace-progress[data-progress="18"] .pace-progress-inner:before { -webkit-transform: rotate(20deg); -ms-transform: rotate(20deg); transform: rotate(20deg); }
+.pace-progress[data-progress="19"] .pace-progress-inner:before { -webkit-transform: rotate(23deg); -ms-transform: rotate(23deg); transform: rotate(23deg); }
+.pace-progress[data-progress="20"] .pace-progress-inner:before { -webkit-transform: rotate(27deg); -ms-transform: rotate(27deg); transform: rotate(27deg); }
+.pace-progress[data-progress="21"] .pace-progress-inner:before { -webkit-transform: rotate(31deg); -ms-transform: rotate(31deg); transform: rotate(31deg); }
+.pace-progress[data-progress="22"] .pace-progress-inner:before { -webkit-transform: rotate(34deg); -ms-transform: rotate(34deg); transform: rotate(34deg); }
+.pace-progress[data-progress="23"] .pace-progress-inner:before { -webkit-transform: rotate(38deg); -ms-transform: rotate(38deg); transform: rotate(38deg); }
+.pace-progress[data-progress="24"] .pace-progress-inner:before { -webkit-transform: rotate(41deg); -ms-transform: rotate(41deg); transform: rotate(41deg); }
+.pace-progress[data-progress="25"] .pace-progress-inner:before { -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); }
+.pace-progress[data-progress="26"] .pace-progress-inner:before { -webkit-transform: rotate(49deg); -ms-transform: rotate(49deg); transform: rotate(49deg); }
+.pace-progress[data-progress="27"] .pace-progress-inner:before { -webkit-transform: rotate(52deg); -ms-transform: rotate(52deg); transform: rotate(52deg); }
+.pace-progress[data-progress="28"] .pace-progress-inner:before { -webkit-transform: rotate(56deg); -ms-transform: rotate(56deg); transform: rotate(56deg); }
+.pace-progress[data-progress="29"] .pace-progress-inner:before { -webkit-transform: rotate(59deg); -ms-transform: rotate(59deg); transform: rotate(59deg); }
+.pace-progress[data-progress="30"] .pace-progress-inner:before { -webkit-transform: rotate(63deg); -ms-transform: rotate(63deg); transform: rotate(63deg); }
+.pace-progress[data-progress="31"] .pace-progress-inner:before { -webkit-transform: rotate(67deg); -ms-transform: rotate(67deg); transform: rotate(67deg); }
+.pace-progress[data-progress="32"] .pace-progress-inner:before { -webkit-transform: rotate(70deg); -ms-transform: rotate(70deg); transform: rotate(70deg); }
+.pace-progress[data-progress="33"] .pace-progress-inner:before { -webkit-transform: rotate(74deg); -ms-transform: rotate(74deg); transform: rotate(74deg); }
+.pace-progress[data-progress="34"] .pace-progress-inner:before { -webkit-transform: rotate(77deg); -ms-transform: rotate(77deg); transform: rotate(77deg); }
+.pace-progress[data-progress="35"] .pace-progress-inner:before { -webkit-transform: rotate(81deg); -ms-transform: rotate(81deg); transform: rotate(81deg); }
+.pace-progress[data-progress="36"] .pace-progress-inner:before { -webkit-transform: rotate(85deg); -ms-transform: rotate(85deg); transform: rotate(85deg); }
+.pace-progress[data-progress="37"] .pace-progress-inner:before { -webkit-transform: rotate(88deg); -ms-transform: rotate(88deg); transform: rotate(88deg); }
+.pace-progress[data-progress="38"] .pace-progress-inner:before { -webkit-transform: rotate(92deg); -ms-transform: rotate(92deg); transform: rotate(92deg); }
+.pace-progress[data-progress="39"] .pace-progress-inner:before { -webkit-transform: rotate(95deg); -ms-transform: rotate(95deg); transform: rotate(95deg); }
+.pace-progress[data-progress="40"] .pace-progress-inner:before { -webkit-transform: rotate(99deg); -ms-transform: rotate(99deg); transform: rotate(99deg); }
+.pace-progress[data-progress="41"] .pace-progress-inner:before { -webkit-transform: rotate(103deg); -ms-transform: rotate(103deg); transform: rotate(103deg); }
+.pace-progress[data-progress="42"] .pace-progress-inner:before { -webkit-transform: rotate(106deg); -ms-transform: rotate(106deg); transform: rotate(106deg); }
+.pace-progress[data-progress="43"] .pace-progress-inner:before { -webkit-transform: rotate(110deg); -ms-transform: rotate(110deg); transform: rotate(110deg); }
+.pace-progress[data-progress="44"] .pace-progress-inner:before { -webkit-transform: rotate(113deg); -ms-transform: rotate(113deg); transform: rotate(113deg); }
+.pace-progress[data-progress="45"] .pace-progress-inner:before { -webkit-transform: rotate(117deg); -ms-transform: rotate(117deg); transform: rotate(117deg); }
+.pace-progress[data-progress="46"] .pace-progress-inner:before { -webkit-transform: rotate(121deg); -ms-transform: rotate(121deg); transform: rotate(121deg); }
+.pace-progress[data-progress="47"] .pace-progress-inner:before { -webkit-transform: rotate(124deg); -ms-transform: rotate(124deg); transform: rotate(124deg); }
+.pace-progress[data-progress="48"] .pace-progress-inner:before { -webkit-transform: rotate(128deg); -ms-transform: rotate(128deg); transform: rotate(128deg); }
+.pace-progress[data-progress="49"] .pace-progress-inner:before { -webkit-transform: rotate(131deg); -ms-transform: rotate(131deg); transform: rotate(131deg); }
+.pace-progress[data-progress="50"] .pace-progress-inner:before { -webkit-transform: rotate(135deg); -ms-transform: rotate(135deg); transform: rotate(135deg); }
+
+.pace-progress[data-progress="50"] .pace-progress-inner:after { -webkit-transform: rotate(315deg); -ms-transform: rotate(315deg); transform: rotate(315deg); display: block; }
+.pace-progress[data-progress="51"] .pace-progress-inner:after { -webkit-transform: rotate(319deg); -ms-transform: rotate(319deg); transform: rotate(319deg); display: block; }
+.pace-progress[data-progress="52"] .pace-progress-inner:after { -webkit-transform: rotate(322deg); -ms-transform: rotate(322deg); transform: rotate(322deg); display: block; }
+.pace-progress[data-progress="53"] .pace-progress-inner:after { -webkit-transform: rotate(326deg); -ms-transform: rotate(326deg); transform: rotate(326deg); display: block; }
+.pace-progress[data-progress="54"] .pace-progress-inner:after { -webkit-transform: rotate(329deg); -ms-transform: rotate(329deg); transform: rotate(329deg); display: block; }
+.pace-progress[data-progress="55"] .pace-progress-inner:after { -webkit-transform: rotate(333deg); -ms-transform: rotate(333deg); transform: rotate(333deg); display: block; }
+.pace-progress[data-progress="56"] .pace-progress-inner:after { -webkit-transform: rotate(337deg); -ms-transform: rotate(337deg); transform: rotate(337deg); display: block; }
+.pace-progress[data-progress="57"] .pace-progress-inner:after { -webkit-transform: rotate(340deg); -ms-transform: rotate(340deg); transform: rotate(340deg); display: block; }
+.pace-progress[data-progress="58"] .pace-progress-inner:after { -webkit-transform: rotate(344deg); -ms-transform: rotate(344deg); transform: rotate(344deg); display: block; }
+.pace-progress[data-progress="59"] .pace-progress-inner:after { -webkit-transform: rotate(347deg); -ms-transform: rotate(347deg); transform: rotate(347deg); display: block; }
+.pace-progress[data-progress="60"] .pace-progress-inner:after { -webkit-transform: rotate(351deg); -ms-transform: rotate(351deg); transform: rotate(351deg); display: block; }
+.pace-progress[data-progress="61"] .pace-progress-inner:after { -webkit-transform: rotate(355deg); -ms-transform: rotate(355deg); transform: rotate(355deg); display: block; }
+.pace-progress[data-progress="62"] .pace-progress-inner:after { -webkit-transform: rotate(358deg); -ms-transform: rotate(358deg); transform: rotate(358deg); display: block; }
+.pace-progress[data-progress="63"] .pace-progress-inner:after { -webkit-transform: rotate(362deg); -ms-transform: rotate(362deg); transform: rotate(362deg); display: block; }
+.pace-progress[data-progress="64"] .pace-progress-inner:after { -webkit-transform: rotate(365deg); -ms-transform: rotate(365deg); transform: rotate(365deg); display: block; }
+.pace-progress[data-progress="65"] .pace-progress-inner:after { -webkit-transform: rotate(369deg); -ms-transform: rotate(369deg); transform: rotate(369deg); display: block; }
+.pace-progress[data-progress="66"] .pace-progress-inner:after { -webkit-transform: rotate(373deg); -ms-transform: rotate(373deg); transform: rotate(373deg); display: block; }
+.pace-progress[data-progress="67"] .pace-progress-inner:after { -webkit-transform: rotate(376deg); -ms-transform: rotate(376deg); transform: rotate(376deg); display: block; }
+.pace-progress[data-progress="68"] .pace-progress-inner:after { -webkit-transform: rotate(380deg); -ms-transform: rotate(380deg); transform: rotate(380deg); display: block; }
+.pace-progress[data-progress="69"] .pace-progress-inner:after { -webkit-transform: rotate(383deg); -ms-transform: rotate(383deg); transform: rotate(383deg); display: block; }
+.pace-progress[data-progress="70"] .pace-progress-inner:after { -webkit-transform: rotate(387deg); -ms-transform: rotate(387deg); transform: rotate(387deg); display: block; }
+.pace-progress[data-progress="71"] .pace-progress-inner:after { -webkit-transform: rotate(391deg); -ms-transform: rotate(391deg); transform: rotate(391deg); display: block; }
+.pace-progress[data-progress="72"] .pace-progress-inner:after { -webkit-transform: rotate(394deg); -ms-transform: rotate(394deg); transform: rotate(394deg); display: block; }
+.pace-progress[data-progress="73"] .pace-progress-inner:after { -webkit-transform: rotate(398deg); -ms-transform: rotate(398deg); transform: rotate(398deg); display: block; }
+.pace-progress[data-progress="74"] .pace-progress-inner:after { -webkit-transform: rotate(401deg); -ms-transform: rotate(401deg); transform: rotate(401deg); display: block; }
+.pace-progress[data-progress="75"] .pace-progress-inner:after { -webkit-transform: rotate(405deg); -ms-transform: rotate(405deg); transform: rotate(405deg); display: block; }
+.pace-progress[data-progress="76"] .pace-progress-inner:after { -webkit-transform: rotate(409deg); -ms-transform: rotate(409deg); transform: rotate(409deg); display: block; }
+.pace-progress[data-progress="77"] .pace-progress-inner:after { -webkit-transform: rotate(412deg); -ms-transform: rotate(412deg); transform: rotate(412deg); display: block; }
+.pace-progress[data-progress="78"] .pace-progress-inner:after { -webkit-transform: rotate(416deg); -ms-transform: rotate(416deg); transform: rotate(416deg); display: block; }
+.pace-progress[data-progress="79"] .pace-progress-inner:after { -webkit-transform: rotate(419deg); -ms-transform: rotate(419deg); transform: rotate(419deg); display: block; }
+.pace-progress[data-progress="80"] .pace-progress-inner:after { -webkit-transform: rotate(423deg); -ms-transform: rotate(423deg); transform: rotate(423deg); display: block; }
+.pace-progress[data-progress="81"] .pace-progress-inner:after { -webkit-transform: rotate(427deg); -ms-transform: rotate(427deg); transform: rotate(427deg); display: block; }
+.pace-progress[data-progress="82"] .pace-progress-inner:after { -webkit-transform: rotate(430deg); -ms-transform: rotate(430deg); transform: rotate(430deg); display: block; }
+.pace-progress[data-progress="83"] .pace-progress-inner:after { -webkit-transform: rotate(434deg); -ms-transform: rotate(434deg); transform: rotate(434deg); display: block; }
+.pace-progress[data-progress="84"] .pace-progress-inner:after { -webkit-transform: rotate(437deg); -ms-transform: rotate(437deg); transform: rotate(437deg); display: block; }
+.pace-progress[data-progress="85"] .pace-progress-inner:after { -webkit-transform: rotate(441deg); -ms-transform: rotate(441deg); transform: rotate(441deg); display: block; }
+.pace-progress[data-progress="86"] .pace-progress-inner:after { -webkit-transform: rotate(445deg); -ms-transform: rotate(445deg); transform: rotate(445deg); display: block; }
+.pace-progress[data-progress="87"] .pace-progress-inner:after { -webkit-transform: rotate(448deg); -ms-transform: rotate(448deg); transform: rotate(448deg); display: block; }
+.pace-progress[data-progress="88"] .pace-progress-inner:after { -webkit-transform: rotate(452deg); -ms-transform: rotate(452deg); transform: rotate(452deg); display: block; }
+.pace-progress[data-progress="89"] .pace-progress-inner:after { -webkit-transform: rotate(455deg); -ms-transform: rotate(455deg); transform: rotate(455deg); display: block; }
+.pace-progress[data-progress="90"] .pace-progress-inner:after { -webkit-transform: rotate(459deg); -ms-transform: rotate(459deg); transform: rotate(459deg); display: block; }
+.pace-progress[data-progress="91"] .pace-progress-inner:after { -webkit-transform: rotate(463deg); -ms-transform: rotate(463deg); transform: rotate(463deg); display: block; }
+.pace-progress[data-progress="92"] .pace-progress-inner:after { -webkit-transform: rotate(466deg); -ms-transform: rotate(466deg); transform: rotate(466deg); display: block; }
+.pace-progress[data-progress="93"] .pace-progress-inner:after { -webkit-transform: rotate(470deg); -ms-transform: rotate(470deg); transform: rotate(470deg); display: block; }
+.pace-progress[data-progress="94"] .pace-progress-inner:after { -webkit-transform: rotate(473deg); -ms-transform: rotate(473deg); transform: rotate(473deg); display: block; }
+.pace-progress[data-progress="95"] .pace-progress-inner:after { -webkit-transform: rotate(477deg); -ms-transform: rotate(477deg); transform: rotate(477deg); display: block; }
+.pace-progress[data-progress="96"] .pace-progress-inner:after { -webkit-transform: rotate(481deg); -ms-transform: rotate(481deg); transform: rotate(481deg); display: block; }
+.pace-progress[data-progress="97"] .pace-progress-inner:after { -webkit-transform: rotate(484deg); -ms-transform: rotate(484deg); transform: rotate(484deg); display: block; }
+.pace-progress[data-progress="98"] .pace-progress-inner:after { -webkit-transform: rotate(488deg); -ms-transform: rotate(488deg); transform: rotate(488deg); display: block; }
+.pace-progress[data-progress="99"] .pace-progress-inner:after { -webkit-transform: rotate(491deg); -ms-transform: rotate(491deg); transform: rotate(491deg); display: block; }
+.pace-progress[data-progress="100"] .pace-progress-inner:after { -webkit-transform: rotate(495deg); -ms-transform: rotate(495deg); transform: rotate(495deg); display: block; }
+
+.pace-progress[data-progress="00"] .pace-progress-inner { -webkit-transform: rotate(0deg); -ms-transform: rotate(0deg); transform: rotate(0deg);}
+.pace-progress[data-progress="01"] .pace-progress-inner { -webkit-transform: rotate(4deg); -ms-transform: rotate(4deg); transform: rotate(4deg);}
+.pace-progress[data-progress="02"] .pace-progress-inner { -webkit-transform: rotate(7deg); -ms-transform: rotate(7deg); transform: rotate(7deg);}
+.pace-progress[data-progress="03"] .pace-progress-inner { -webkit-transform: rotate(11deg); -ms-transform: rotate(11deg); transform: rotate(11deg);}
+.pace-progress[data-progress="04"] .pace-progress-inner { -webkit-transform: rotate(14deg); -ms-transform: rotate(14deg); transform: rotate(14deg);}
+.pace-progress[data-progress="05"] .pace-progress-inner { -webkit-transform: rotate(18deg); -ms-transform: rotate(18deg); transform: rotate(18deg);}
+.pace-progress[data-progress="06"] .pace-progress-inner { -webkit-transform: rotate(22deg); -ms-transform: rotate(22deg); transform: rotate(22deg);}
+.pace-progress[data-progress="07"] .pace-progress-inner { -webkit-transform: rotate(25deg); -ms-transform: rotate(25deg); transform: rotate(25deg);}
+.pace-progress[data-progress="08"] .pace-progress-inner { -webkit-transform: rotate(29deg); -ms-transform: rotate(29deg); transform: rotate(29deg);}
+.pace-progress[data-progress="09"] .pace-progress-inner { -webkit-transform: rotate(32deg); -ms-transform: rotate(32deg); transform: rotate(32deg);}
+.pace-progress[data-progress="10"] .pace-progress-inner { -webkit-transform: rotate(36deg); -ms-transform: rotate(36deg); transform: rotate(36deg);}
+.pace-progress[data-progress="11"] .pace-progress-inner { -webkit-transform: rotate(40deg); -ms-transform: rotate(40deg); transform: rotate(40deg);}
+.pace-progress[data-progress="12"] .pace-progress-inner { -webkit-transform: rotate(43deg); -ms-transform: rotate(43deg); transform: rotate(43deg);}
+.pace-progress[data-progress="13"] .pace-progress-inner { -webkit-transform: rotate(47deg); -ms-transform: rotate(47deg); transform: rotate(47deg);}
+.pace-progress[data-progress="14"] .pace-progress-inner { -webkit-transform: rotate(50deg); -ms-transform: rotate(50deg); transform: rotate(50deg);}
+.pace-progress[data-progress="15"] .pace-progress-inner { -webkit-transform: rotate(54deg); -ms-transform: rotate(54deg); transform: rotate(54deg);}
+.pace-progress[data-progress="16"] .pace-progress-inner { -webkit-transform: rotate(58deg); -ms-transform: rotate(58deg); transform: rotate(58deg);}
+.pace-progress[data-progress="17"] .pace-progress-inner { -webkit-transform: rotate(61deg); -ms-transform: rotate(61deg); transform: rotate(61deg);}
+.pace-progress[data-progress="18"] .pace-progress-inner { -webkit-transform: rotate(65deg); -ms-transform: rotate(65deg); transform: rotate(65deg);}
+.pace-progress[data-progress="19"] .pace-progress-inner { -webkit-transform: rotate(68deg); -ms-transform: rotate(68deg); transform: rotate(68deg);}
+.pace-progress[data-progress="20"] .pace-progress-inner { -webkit-transform: rotate(72deg); -ms-transform: rotate(72deg); transform: rotate(72deg);}
+.pace-progress[data-progress="21"] .pace-progress-inner { -webkit-transform: rotate(76deg); -ms-transform: rotate(76deg); transform: rotate(76deg);}
+.pace-progress[data-progress="22"] .pace-progress-inner { -webkit-transform: rotate(79deg); -ms-transform: rotate(79deg); transform: rotate(79deg);}
+.pace-progress[data-progress="23"] .pace-progress-inner { -webkit-transform: rotate(83deg); -ms-transform: rotate(83deg); transform: rotate(83deg);}
+.pace-progress[data-progress="24"] .pace-progress-inner { -webkit-transform: rotate(86deg); -ms-transform: rotate(86deg); transform: rotate(86deg);}
+.pace-progress[data-progress="25"] .pace-progress-inner { -webkit-transform: rotate(90deg); -ms-transform: rotate(90deg); transform: rotate(90deg);}
+.pace-progress[data-progress="26"] .pace-progress-inner { -webkit-transform: rotate(94deg); -ms-transform: rotate(94deg); transform: rotate(94deg);}
+.pace-progress[data-progress="27"] .pace-progress-inner { -webkit-transform: rotate(97deg); -ms-transform: rotate(97deg); transform: rotate(97deg);}
+.pace-progress[data-progress="28"] .pace-progress-inner { -webkit-transform: rotate(101deg); -ms-transform: rotate(101deg); transform: rotate(101deg);}
+.pace-progress[data-progress="29"] .pace-progress-inner { -webkit-transform: rotate(104deg); -ms-transform: rotate(104deg); transform: rotate(104deg);}
+.pace-progress[data-progress="30"] .pace-progress-inner { -webkit-transform: rotate(108deg); -ms-transform: rotate(108deg); transform: rotate(108deg);}
+.pace-progress[data-progress="31"] .pace-progress-inner { -webkit-transform: rotate(112deg); -ms-transform: rotate(112deg); transform: rotate(112deg);}
+.pace-progress[data-progress="32"] .pace-progress-inner { -webkit-transform: rotate(115deg); -ms-transform: rotate(115deg); transform: rotate(115deg);}
+.pace-progress[data-progress="33"] .pace-progress-inner { -webkit-transform: rotate(119deg); -ms-transform: rotate(119deg); transform: rotate(119deg);}
+.pace-progress[data-progress="34"] .pace-progress-inner { -webkit-transform: rotate(122deg); -ms-transform: rotate(122deg); transform: rotate(122deg);}
+.pace-progress[data-progress="35"] .pace-progress-inner { -webkit-transform: rotate(126deg); -ms-transform: rotate(126deg); transform: rotate(126deg);}
+.pace-progress[data-progress="36"] .pace-progress-inner { -webkit-transform: rotate(130deg); -ms-transform: rotate(130deg); transform: rotate(130deg);}
+.pace-progress[data-progress="37"] .pace-progress-inner { -webkit-transform: rotate(133deg); -ms-transform: rotate(133deg); transform: rotate(133deg);}
+.pace-progress[data-progress="38"] .pace-progress-inner { -webkit-transform: rotate(137deg); -ms-transform: rotate(137deg); transform: rotate(137deg);}
+.pace-progress[data-progress="39"] .pace-progress-inner { -webkit-transform: rotate(140deg); -ms-transform: rotate(140deg); transform: rotate(140deg);}
+.pace-progress[data-progress="40"] .pace-progress-inner { -webkit-transform: rotate(144deg); -ms-transform: rotate(144deg); transform: rotate(144deg);}
+.pace-progress[data-progress="41"] .pace-progress-inner { -webkit-transform: rotate(148deg); -ms-transform: rotate(148deg); transform: rotate(148deg);}
+.pace-progress[data-progress="42"] .pace-progress-inner { -webkit-transform: rotate(151deg); -ms-transform: rotate(151deg); transform: rotate(151deg);}
+.pace-progress[data-progress="43"] .pace-progress-inner { -webkit-transform: rotate(155deg); -ms-transform: rotate(155deg); transform: rotate(155deg);}
+.pace-progress[data-progress="44"] .pace-progress-inner { -webkit-transform: rotate(158deg); -ms-transform: rotate(158deg); transform: rotate(158deg);}
+.pace-progress[data-progress="45"] .pace-progress-inner { -webkit-transform: rotate(162deg); -ms-transform: rotate(162deg); transform: rotate(162deg);}
+.pace-progress[data-progress="46"] .pace-progress-inner { -webkit-transform: rotate(166deg); -ms-transform: rotate(166deg); transform: rotate(166deg);}
+.pace-progress[data-progress="47"] .pace-progress-inner { -webkit-transform: rotate(169deg); -ms-transform: rotate(169deg); transform: rotate(169deg);}
+.pace-progress[data-progress="48"] .pace-progress-inner { -webkit-transform: rotate(173deg); -ms-transform: rotate(173deg); transform: rotate(173deg);}
+.pace-progress[data-progress="49"] .pace-progress-inner { -webkit-transform: rotate(176deg); -ms-transform: rotate(176deg); transform: rotate(176deg);}
+.pace-progress[data-progress="50"] .pace-progress-inner { -webkit-transform: rotate(180deg); -ms-transform: rotate(180deg); transform: rotate(180deg);}
+.pace-progress[data-progress="51"] .pace-progress-inner { -webkit-transform: rotate(184deg); -ms-transform: rotate(184deg); transform: rotate(184deg); overflow: visible;}
+.pace-progress[data-progress="52"] .pace-progress-inner { -webkit-transform: rotate(187deg); -ms-transform: rotate(187deg); transform: rotate(187deg); overflow: visible;}
+.pace-progress[data-progress="53"] .pace-progress-inner { -webkit-transform: rotate(191deg); -ms-transform: rotate(191deg); transform: rotate(191deg); overflow: visible;}
+.pace-progress[data-progress="54"] .pace-progress-inner { -webkit-transform: rotate(194deg); -ms-transform: rotate(194deg); transform: rotate(194deg); overflow: visible;}
+.pace-progress[data-progress="55"] .pace-progress-inner { -webkit-transform: rotate(198deg); -ms-transform: rotate(198deg); transform: rotate(198deg); overflow: visible;}
+.pace-progress[data-progress="56"] .pace-progress-inner { -webkit-transform: rotate(202deg); -ms-transform: rotate(202deg); transform: rotate(202deg); overflow: visible;}
+.pace-progress[data-progress="57"] .pace-progress-inner { -webkit-transform: rotate(205deg); -ms-transform: rotate(205deg); transform: rotate(205deg); overflow: visible;}
+.pace-progress[data-progress="58"] .pace-progress-inner { -webkit-transform: rotate(209deg); -ms-transform: rotate(209deg); transform: rotate(209deg); overflow: visible;}
+.pace-progress[data-progress="59"] .pace-progress-inner { -webkit-transform: rotate(212deg); -ms-transform: rotate(212deg); transform: rotate(212deg); overflow: visible;}
+.pace-progress[data-progress="60"] .pace-progress-inner { -webkit-transform: rotate(216deg); -ms-transform: rotate(216deg); transform: rotate(216deg); overflow: visible;}
+.pace-progress[data-progress="61"] .pace-progress-inner { -webkit-transform: rotate(220deg); -ms-transform: rotate(220deg); transform: rotate(220deg); overflow: visible;}
+.pace-progress[data-progress="62"] .pace-progress-inner { -webkit-transform: rotate(223deg); -ms-transform: rotate(223deg); transform: rotate(223deg); overflow: visible;}
+.pace-progress[data-progress="63"] .pace-progress-inner { -webkit-transform: rotate(227deg); -ms-transform: rotate(227deg); transform: rotate(227deg); overflow: visible;}
+.pace-progress[data-progress="64"] .pace-progress-inner { -webkit-transform: rotate(230deg); -ms-transform: rotate(230deg); transform: rotate(230deg); overflow: visible;}
+.pace-progress[data-progress="65"] .pace-progress-inner { -webkit-transform: rotate(234deg); -ms-transform: rotate(234deg); transform: rotate(234deg); overflow: visible;}
+.pace-progress[data-progress="66"] .pace-progress-inner { -webkit-transform: rotate(238deg); -ms-transform: rotate(238deg); transform: rotate(238deg); overflow: visible;}
+.pace-progress[data-progress="67"] .pace-progress-inner { -webkit-transform: rotate(241deg); -ms-transform: rotate(241deg); transform: rotate(241deg); overflow: visible;}
+.pace-progress[data-progress="68"] .pace-progress-inner { -webkit-transform: rotate(245deg); -ms-transform: rotate(245deg); transform: rotate(245deg); overflow: visible;}
+.pace-progress[data-progress="69"] .pace-progress-inner { -webkit-transform: rotate(248deg); -ms-transform: rotate(248deg); transform: rotate(248deg); overflow: visible;}
+.pace-progress[data-progress="70"] .pace-progress-inner { -webkit-transform: rotate(252deg); -ms-transform: rotate(252deg); transform: rotate(252deg); overflow: visible;}
+.pace-progress[data-progress="71"] .pace-progress-inner { -webkit-transform: rotate(256deg); -ms-transform: rotate(256deg); transform: rotate(256deg); overflow: visible;}
+.pace-progress[data-progress="72"] .pace-progress-inner { -webkit-transform: rotate(259deg); -ms-transform: rotate(259deg); transform: rotate(259deg); overflow: visible;}
+.pace-progress[data-progress="73"] .pace-progress-inner { -webkit-transform: rotate(263deg); -ms-transform: rotate(263deg); transform: rotate(263deg); overflow: visible;}
+.pace-progress[data-progress="74"] .pace-progress-inner { -webkit-transform: rotate(266deg); -ms-transform: rotate(266deg); transform: rotate(266deg); overflow: visible;}
+.pace-progress[data-progress="75"] .pace-progress-inner { -webkit-transform: rotate(270deg); -ms-transform: rotate(270deg); transform: rotate(270deg); overflow: visible;}
+.pace-progress[data-progress="76"] .pace-progress-inner { -webkit-transform: rotate(274deg); -ms-transform: rotate(274deg); transform: rotate(274deg); overflow: visible;}
+.pace-progress[data-progress="77"] .pace-progress-inner { -webkit-transform: rotate(277deg); -ms-transform: rotate(277deg); transform: rotate(277deg); overflow: visible;}
+.pace-progress[data-progress="78"] .pace-progress-inner { -webkit-transform: rotate(281deg); -ms-transform: rotate(281deg); transform: rotate(281deg); overflow: visible;}
+.pace-progress[data-progress="79"] .pace-progress-inner { -webkit-transform: rotate(284deg); -ms-transform: rotate(284deg); transform: rotate(284deg); overflow: visible;}
+.pace-progress[data-progress="80"] .pace-progress-inner { -webkit-transform: rotate(288deg); -ms-transform: rotate(288deg); transform: rotate(288deg); overflow: visible;}
+.pace-progress[data-progress="81"] .pace-progress-inner { -webkit-transform: rotate(292deg); -ms-transform: rotate(292deg); transform: rotate(292deg); overflow: visible;}
+.pace-progress[data-progress="82"] .pace-progress-inner { -webkit-transform: rotate(295deg); -ms-transform: rotate(295deg); transform: rotate(295deg); overflow: visible;}
+.pace-progress[data-progress="83"] .pace-progress-inner { -webkit-transform: rotate(299deg); -ms-transform: rotate(299deg); transform: rotate(299deg); overflow: visible;}
+.pace-progress[data-progress="84"] .pace-progress-inner { -webkit-transform: rotate(302deg); -ms-transform: rotate(302deg); transform: rotate(302deg); overflow: visible;}
+.pace-progress[data-progress="85"] .pace-progress-inner { -webkit-transform: rotate(306deg); -ms-transform: rotate(306deg); transform: rotate(306deg); overflow: visible;}
+.pace-progress[data-progress="86"] .pace-progress-inner { -webkit-transform: rotate(310deg); -ms-transform: rotate(310deg); transform: rotate(310deg); overflow: visible;}
+.pace-progress[data-progress="87"] .pace-progress-inner { -webkit-transform: rotate(313deg); -ms-transform: rotate(313deg); transform: rotate(313deg); overflow: visible;}
+.pace-progress[data-progress="88"] .pace-progress-inner { -webkit-transform: rotate(317deg); -ms-transform: rotate(317deg); transform: rotate(317deg); overflow: visible;}
+.pace-progress[data-progress="89"] .pace-progress-inner { -webkit-transform: rotate(320deg); -ms-transform: rotate(320deg); transform: rotate(320deg); overflow: visible;}
+.pace-progress[data-progress="90"] .pace-progress-inner { -webkit-transform: rotate(324deg); -ms-transform: rotate(324deg); transform: rotate(324deg); overflow: visible;}
+.pace-progress[data-progress="91"] .pace-progress-inner { -webkit-transform: rotate(328deg); -ms-transform: rotate(328deg); transform: rotate(328deg); overflow: visible;}
+.pace-progress[data-progress="92"] .pace-progress-inner { -webkit-transform: rotate(331deg); -ms-transform: rotate(331deg); transform: rotate(331deg); overflow: visible;}
+.pace-progress[data-progress="93"] .pace-progress-inner { -webkit-transform: rotate(335deg); -ms-transform: rotate(335deg); transform: rotate(335deg); overflow: visible;}
+.pace-progress[data-progress="94"] .pace-progress-inner { -webkit-transform: rotate(338deg); -ms-transform: rotate(338deg); transform: rotate(338deg); overflow: visible;}
+.pace-progress[data-progress="95"] .pace-progress-inner { -webkit-transform: rotate(342deg); -ms-transform: rotate(342deg); transform: rotate(342deg); overflow: visible;}
+.pace-progress[data-progress="96"] .pace-progress-inner { -webkit-transform: rotate(346deg); -ms-transform: rotate(346deg); transform: rotate(346deg); overflow: visible;}
+.pace-progress[data-progress="97"] .pace-progress-inner { -webkit-transform: rotate(349deg); -ms-transform: rotate(349deg); transform: rotate(349deg); overflow: visible;}
+.pace-progress[data-progress="98"] .pace-progress-inner { -webkit-transform: rotate(353deg); -ms-transform: rotate(353deg); transform: rotate(353deg); overflow: visible;}
+.pace-progress[data-progress="99"] .pace-progress-inner { -webkit-transform: rotate(356deg); -ms-transform: rotate(356deg); transform: rotate(356deg); overflow: visible;}
+.pace-progress[data-progress="100"] .pace-progress-inner { -webkit-transform: rotate(360deg); -ms-transform: rotate(360deg); transform: rotate(360deg); overflow: visible;}

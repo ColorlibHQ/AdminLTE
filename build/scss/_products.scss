@@ -1,0 +1,68 @@
+//
+// Component: Products
+//
+
+.products-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  > .item {
+    @include clearfix ();
+
+    @if $enable-rounded {
+      @include border-radius($border-radius);
+    }
+
+    background-color: $white;
+    padding: 10px 0;
+
+  }
+
+  .product-img {
+    float: left;
+
+    img {
+      height: 50px;
+      width: 50px;
+    }
+  }
+
+  .product-info {
+    margin-left: 60px;
+  }
+
+  .product-title {
+    font-weight: 600;
+  }
+
+  .product-description {
+    color: $gray-600;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.product-list-in-card > .item {
+  @include border-radius(0);
+  border-bottom: 1px solid $card-border-color;
+
+  &:last-of-type {
+    border-bottom-width: 0;
+  }
+}
+
+
+@include dark-mode () {
+  .products-list > .item {
+    background-color: $dark;
+    color: $white;
+    border-bottom-color: $gray-600;
+  }
+
+  .product-description {
+    color: $gray-400;
+  }
+}

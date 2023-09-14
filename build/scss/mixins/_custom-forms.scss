@@ -1,0 +1,123 @@
+//
+// Mixins: Custom Forms
+//
+
+// Custom Switch Variant
+@mixin custom-switch-variant($name, $color) {
+  &.custom-switch-off-#{$name} {
+    .custom-control-input ~ .custom-control-label::before {
+      background-color: #{$color};
+      border-color: darken($color, 20%);
+    }
+
+    .custom-control-input:focus ~ .custom-control-label::before {
+      box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
+    }
+
+    .custom-control-input ~ .custom-control-label::after {
+      background-color: darken($color, 25%);
+    }
+  }
+
+  &.custom-switch-on-#{$name} {
+    .custom-control-input:checked ~ .custom-control-label::before {
+      background-color: #{$color};
+      border-color: darken($color, 20%);
+    }
+
+    .custom-control-input:checked:focus ~ .custom-control-label::before {
+      box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
+    }
+
+    .custom-control-input:checked ~ .custom-control-label::after {
+      background-color: lighten($color, 30%);
+    }
+  }
+}
+
+// Custom Range Variant
+@mixin custom-range-variant($name, $color) {
+  &.custom-range-#{$name} {
+    &:focus {
+      outline: none;
+
+      &::-webkit-slider-thumb {
+        box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
+      }
+
+      &::-moz-range-thumb     {
+        box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
+      }
+
+      &::-ms-thumb            {
+        box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px rgba($color, .25);
+      }
+    }
+
+    &::-webkit-slider-thumb {
+      background-color: $color;
+
+      &:active {
+        background-color: lighten($color, 35%);
+      }
+    }
+
+    &::-moz-range-thumb {
+      background-color: $color;
+
+      &:active {
+        background-color: lighten($color, 35%);
+      }
+    }
+
+    &::-ms-thumb {
+      background-color: $color;
+
+      &:active {
+        background-color: lighten($color, 35%);
+      }
+    }
+  }
+}
+
+
+// Custom Control Input Variant
+@mixin custom-control-input-variant($name, $color) {
+  $custom-control-indicator-checked-color: $color;
+  $custom-checkbox-indicator-icon-checked: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='#{$custom-control-indicator-checked-color}' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E"), "#", "%23");
+  $custom-radio-indicator-icon-checked: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='#{$custom-control-indicator-checked-color}'/%3E%3C/svg%3E"), "#", "%23");
+
+  .custom-control-input-#{$name} {
+    &:checked ~ .custom-control-label::before {
+      border-color: $color;
+      @include gradient-bg($color);
+    }
+
+    &.custom-control-input-outline:checked {
+      &[type="checkbox"] ~ .custom-control-label::after {
+        background-image: $custom-checkbox-indicator-icon-checked !important;
+      }
+      &[type="radio"] ~ .custom-control-label::after {
+        background-image: $custom-radio-indicator-icon-checked !important;
+      }
+    }
+
+    &:focus ~ .custom-control-label::before {
+      // the mixin is not used here to make sure there is feedback
+      @if $enable-shadows {
+        box-shadow: $input-box-shadow, 0 0 0 $input-btn-focus-width rgba($color, .25);
+      } @else {
+        box-shadow: 0 0 0 $input-btn-focus-width rgba($color, .25);
+      }
+    }
+
+    &:focus:not(:checked) ~ .custom-control-label::before {
+      border-color: lighten($color, 25%);
+    }
+
+    &:not(:disabled):active ~ .custom-control-label::before {
+      background-color: lighten($color, 35%);
+      border-color: lighten($color, 35%);
+    }
+  }
+}

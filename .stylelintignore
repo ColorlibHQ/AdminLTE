@@ -1,8 +1,6 @@
 **/*.html
 **/*.md
 **/*.min.css
-**/.temp/
 **/dist/
 **/docs_html/
 **/plugins/
-**/.cache/

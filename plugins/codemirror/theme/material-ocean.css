@@ -1,0 +1,141 @@
+/*
+  Name:       material
+  Author:     Mattia Astorino (http://github.com/equinusocio)
+  Website:    https://material-theme.site/
+*/
+
+.cm-s-material-ocean.CodeMirror {
+  background-color: #0F111A;
+  color: #8F93A2;
+}
+
+.cm-s-material-ocean .CodeMirror-gutters {
+  background: #0F111A;
+  color: #464B5D;
+  border: none;
+}
+
+.cm-s-material-ocean .CodeMirror-guttermarker,
+.cm-s-material-ocean .CodeMirror-guttermarker-subtle,
+.cm-s-material-ocean .CodeMirror-linenumber {
+  color: #464B5D;
+}
+
+.cm-s-material-ocean .CodeMirror-cursor {
+  border-left: 1px solid #FFCC00;
+}
+.cm-s-material-ocean.cm-fat-cursor .CodeMirror-cursor {
+  background-color: #a2a8a175 !important;
+}
+.cm-s-material-ocean .cm-animate-fat-cursor {
+  background-color: #a2a8a175 !important;
+}
+
+.cm-s-material-ocean div.CodeMirror-selected {
+  background: rgba(113, 124, 180, 0.2);
+}
+
+.cm-s-material-ocean.CodeMirror-focused div.CodeMirror-selected {
+  background: rgba(113, 124, 180, 0.2);
+}
+
+.cm-s-material-ocean .CodeMirror-line::selection,
+.cm-s-material-ocean .CodeMirror-line>span::selection,
+.cm-s-material-ocean .CodeMirror-line>span>span::selection {
+  background: rgba(128, 203, 196, 0.2);
+}
+
+.cm-s-material-ocean .CodeMirror-line::-moz-selection,
+.cm-s-material-ocean .CodeMirror-line>span::-moz-selection,
+.cm-s-material-ocean .CodeMirror-line>span>span::-moz-selection {
+  background: rgba(128, 203, 196, 0.2);
+}
+
+.cm-s-material-ocean .CodeMirror-activeline-background {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.cm-s-material-ocean .cm-keyword {
+  color: #C792EA;
+}
+
+.cm-s-material-ocean .cm-operator {
+  color: #89DDFF;
+}
+
+.cm-s-material-ocean .cm-variable-2 {
+  color: #EEFFFF;
+}
+
+.cm-s-material-ocean .cm-variable-3,
+.cm-s-material-ocean .cm-type {
+  color: #f07178;
+}
+
+.cm-s-material-ocean .cm-builtin {
+  color: #FFCB6B;
+}
+
+.cm-s-material-ocean .cm-atom {
+  color: #F78C6C;
+}
+
+.cm-s-material-ocean .cm-number {
+  color: #FF5370;
+}
+
+.cm-s-material-ocean .cm-def {
+  color: #82AAFF;
+}
+
+.cm-s-material-ocean .cm-string {
+  color: #C3E88D;
+}
+
+.cm-s-material-ocean .cm-string-2 {
+  color: #f07178;
+}
+
+.cm-s-material-ocean .cm-comment {
+  color: #464B5D;
+}
+
+.cm-s-material-ocean .cm-variable {
+  color: #f07178;
+}
+
+.cm-s-material-ocean .cm-tag {
+  color: #FF5370;
+}
+
+.cm-s-material-ocean .cm-meta {
+  color: #FFCB6B;
+}
+
+.cm-s-material-ocean .cm-attribute {
+  color: #C792EA;
+}
+
+.cm-s-material-ocean .cm-property {
+  color: #C792EA;
+}
+
+.cm-s-material-ocean .cm-qualifier {
+  color: #DECB6B;
+}
+
+.cm-s-material-ocean .cm-variable-3,
+.cm-s-material-ocean .cm-type {
+  color: #DECB6B;
+}
+
+
+.cm-s-material-ocean .cm-error {
+  color: rgba(255, 255, 255, 1.0);
+  background-color: #FF5370;
+}
+
+.cm-s-material-ocean .CodeMirror-matchingbracket {
+  text-decoration: underline;
+  color: white !important;
+}
