@@ -6,13 +6,31 @@ updates:
       interval: weekly
       day: monday
       time: "03:00"
-    open-pull-requests-limit: 10
-    versioning-strategy: increase
-  - package-ecosystem: bundler
-    directory: "/docs/"
-    schedule:
-      interval: weekly
-      day: monday
-      time: "03:00"
+    groups:
+      eslint:
+        patterns:
+          - "eslint"
+          - "eslint-*"
+          - "@typescript-eslint/*"
+      stylelint:
+        patterns:
+          - "stylelint"
+          - "stylelint-*"
+      prettier:
+        patterns:
+          - "prettier"
+          - "prettier-*"
+      rollup:
+        patterns:
+          - "rollup"
+          - "@rollup/*"
+      postcss:
+        patterns:
+          - "postcss"
+          - "postcss-*"
+      astro:
+        patterns:
+          - "astro"
+          - "@astrojs/*"
     open-pull-requests-limit: 10
     versioning-strategy: increase
