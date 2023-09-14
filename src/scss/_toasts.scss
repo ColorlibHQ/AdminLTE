@@ -1,6 +1,7 @@
 //
 // Toast
 //
+
 @each $name, $color in $theme-colors {
   .toast-#{$name} {
     --#{$prefix}toast-header-color: #{color-contrast($color)};
@@ -12,6 +13,20 @@
     @if color-contrast($color) == $color-contrast-light {
       .btn-close {
         @include btn-close-white();
+      }
+    }
+  }
+}
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    @each $name, $color in $theme-colors {
+      .toast-#{$name} {
+        @if color-contrast($color) == $color-contrast-dark {
+          .btn-close {
+            --#{$prefix}btn-close-white-filter: none;
+          }
+        }
       }
     }
   }
