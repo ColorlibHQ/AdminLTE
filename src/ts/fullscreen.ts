@@ -28,42 +28,57 @@ const SELECTOR_MINIMIZE_ICON = '[data-lte-icon="minimize"]'
  */
 class FullScreen {
   _element: HTMLElement
+  _config: undefined
 
-  constructor(element: HTMLElement) {
+  constructor(element: HTMLElement, config?: undefined) {
     this._element = element
+    this._config = config
   }
 
-  /**
-   * toggleFullScreen.
-   */
-  toggleFullScreen(): void {
+  inFullScreen(): void {
+    const event = new Event(EVENT_MAXIMIZED)
+
     const iconMaximize = document.querySelector<HTMLElement>(SELECTOR_MAXIMIZE_ICON)
     const iconMinimize = document.querySelector<HTMLElement>(SELECTOR_MINIMIZE_ICON)
+
+    void document.documentElement.requestFullscreen()
+
+    if (iconMaximize) {
+      iconMaximize.style.display = 'none'
+    }
+
+    if (iconMinimize) {
+      iconMinimize.style.display = 'block'
+    }
+
+    this._element.dispatchEvent(event)
+  }
+
+  outFullscreen(): void {
+    const event = new Event(EVENT_MINIMIZED)
+
+    const iconMaximize = document.querySelector<HTMLElement>(SELECTOR_MAXIMIZE_ICON)
+    const iconMinimize = document.querySelector<HTMLElement>(SELECTOR_MINIMIZE_ICON)
+
+    void document.exitFullscreen()
+
+    if (iconMaximize) {
+      iconMaximize.style.display = 'block'
+    }
+
+    if (iconMinimize) {
+      iconMinimize.style.display = 'none'
+    }
+
+    this._element.dispatchEvent(event)
+  }
+
+  toggleFullScreen(): void {
     if (document.fullscreenEnabled) {
-      if (!document.fullscreenElement) {
-        const event = new Event(EVENT_MAXIMIZED)
-        void document.documentElement.requestFullscreen()
-        if (iconMaximize) {
-          iconMaximize.style.display = 'none'
-        }
-
-        if (iconMinimize) {
-          iconMinimize.style.display = 'block'
-        }
-
-        this._element.dispatchEvent(event)
-      } else if (document.exitFullscreen) {
-        const event = new Event(EVENT_MINIMIZED)
-        void document.exitFullscreen()
-        if (iconMaximize) {
-          iconMaximize.style.display = 'block'
-        }
-
-        if (iconMinimize) {
-          iconMinimize.style.display = 'none'
-        }
-
-        this._element.dispatchEvent(event)
+      if (document.fullscreenElement) {
+        this.outFullscreen()
+      } else {
+        this.inFullScreen()
       }
     }
   }
@@ -74,32 +89,20 @@ class FullScreen {
  * ============================================================================
  */
 onDOMContentLoaded(() => {
-  const button = document.querySelectorAll(SELECTOR_FULLSCREEN_TOGGLE)
-  button.forEach(btn => {
+  const buttons = document.querySelectorAll(SELECTOR_FULLSCREEN_TOGGLE)
+
+  buttons.forEach(btn => {
     btn.addEventListener('click', event => {
       event.preventDefault()
-      const target = event.target as HTMLElement
-      const fsButton = target.closest(SELECTOR_FULLSCREEN_TOGGLE) as HTMLElement | undefined
 
-      if (fsButton) {
-        const data = new FullScreen(fsButton)
+      const target = event.target as HTMLElement
+      const button = target.closest(SELECTOR_FULLSCREEN_TOGGLE) as HTMLElement | undefined
+
+      if (button) {
+        const data = new FullScreen(button, undefined)
         data.toggleFullScreen()
       }
     })
-  })
-  document.addEventListener('keydown', event => {
-    event.preventDefault()
-    if (event.key === 'Escape') {
-      const iconMaximize = document.querySelector<HTMLElement>(SELECTOR_MAXIMIZE_ICON)
-      const iconMinimize = document.querySelector<HTMLElement>(SELECTOR_MINIMIZE_ICON)
-      if (iconMaximize) {
-        iconMaximize.style.display = 'block'
-      }
-
-      if (iconMinimize) {
-        iconMinimize.style.display = 'none'
-      }
-    }
   })
 })
 
