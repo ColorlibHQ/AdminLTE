@@ -1,0 +1,247 @@
+//
+// Component: Dropdown
+//
+
+// General Dropdown Rules
+//.dropdown-item {
+//  &:first-of-type {
+//    @include border-top-radius($border-radius);
+//  }
+//  &:last-of-type {
+//    @include border-bottom-radius($border-radius);
+//  }
+//}
+
+.fs-7 {
+  .dropdown-menu {
+    font-size: $font-size-sm !important;
+  }
+
+  .dropdown-toggle::after {
+    vertical-align: .2rem;
+  }
+}
+
+.dropdown-item-title {
+  margin: 0;
+  font-size: $font-size-base;
+}
+
+.dropdown-icon {
+  &::after {
+    margin-left: 0;
+  }
+}
+
+// Dropdown Sizes
+.dropdown-menu-lg {
+  min-width: 280px;
+  max-width: 300px;
+  padding: 0;
+
+  .dropdown-divider {
+    margin: 0;
+  }
+
+  .dropdown-item {
+    padding: $dropdown-padding-y $dropdown-item-padding-x;
+  }
+
+  p {
+    margin: 0;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+}
+
+// Dropdown Submenu
+.dropdown-submenu {
+  position: relative;
+
+  > a::after {
+    @include caret-end();
+    float: right;
+    margin-top: .5rem;
+    margin-left: .5rem;
+  }
+
+  > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: 0;
+    margin-left: 0;
+  }
+}
+
+// Dropdown Hover
+.dropdown-hover {
+  &:hover,
+  &.nav-item.dropdown:hover,
+  .dropdown-submenu:hover,
+  &.dropdown-submenu:hover {
+    > .dropdown-menu {
+      display: block;
+    }
+  }
+}
+
+
+// Dropdown Sizes
+.dropdown-menu-xl {
+  min-width: 360px;
+  max-width: 420px;
+  padding: 0;
+
+  .dropdown-divider {
+    margin: 0;
+  }
+
+  .dropdown-item {
+    padding: $dropdown-padding-y $dropdown-item-padding-x;
+  }
+
+  p {
+    margin: 0;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+}
+
+// Dropdown header and footer
+.dropdown-footer,
+.dropdown-header {
+  display: block;
+  padding: .5rem $dropdown-item-padding-x;
+  font-size: $font-size-sm;
+  text-align: center;
+}
+
+// Add fade animation to dropdown menus by appending
+// the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)
+.open:not(.dropup) > .animated-dropdown-menu {
+  animation: flipInX .7s both;
+  backface-visibility: visible !important;
+}
+
+// Fix dropdown menu in navbars
+.navbar-custom-menu > .navbar-nav {
+  > li {
+    position: relative;
+    > .dropdown-menu {
+      position: absolute;
+      right: 0;
+      left: auto;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .navbar-custom-menu > .navbar-nav {
+    float: right;
+    > li {
+      position: static;
+      > .dropdown-menu {
+        position: absolute;
+        right: 5%;
+        left: auto;
+        background-color: var(--#{$prefix}body-bg);
+        border: 1px solid var(--#{$prefix}border-color);
+      }
+    }
+  }
+}
+
+// User Menu
+.navbar-nav > .user-menu {
+  > .nav-link::after {
+    content: none;
+  }
+
+  > .dropdown-menu {
+    @include border-top-radius(0);
+    width: 280px;
+    padding: 0;
+
+    &,
+    > .user-body {
+      @include border-bottom-radius(4px);
+    }
+
+    // Header menu
+    > li.user-header {
+      min-height: 175px;
+      padding: 10px;
+      text-align: center;
+
+      // User image
+      > img {
+        z-index: 5;
+        width: 90px;
+        height: 90px;
+        border: 3px solid;
+        border-color: transparent;
+        border-color: var(--#{$prefix}border-color-translucent);
+      }
+
+      > p {
+        z-index: 5;
+        margin-top: 10px;
+        font-size: 17px;
+        word-wrap: break-word;
+
+        > small {
+          display: block;
+          font-size: 12px;
+        }
+      }
+    }
+
+    // Menu Body
+    > .user-body {
+      @include clearfix();
+      padding: 15px;
+      border-top: 1px solid var(--#{$prefix}border-color);
+      border-bottom: 1px solid var(--#{$prefix}border-color-translucent);
+
+      a {
+        @include media-breakpoint-up(sm) {
+          color: var(--#{$prefix}body-color) !important;
+          background-color: var(--#{$prefix}body-bg) !important;
+        }
+      }
+    }
+
+    // Menu Footer
+    > .user-footer {
+      @include clearfix();
+      padding: 10px;
+      background-color: var(--#{$prefix}light-bg);
+
+      .btn-default {
+        color: var(--#{$prefix}body-color);
+
+        &:hover {
+          @include media-breakpoint-up(sm) {
+            background-color: var(--#{$prefix}body-bg);
+          }
+        }
+      }
+    }
+  }
+
+  .user-image {
+    @include media-breakpoint-up(sm) {
+      float: none;
+      margin-top: -8px;
+      margin-right: .4rem;
+      line-height: 10px;
+    }
+
+    float: left;
+    width: $lte-sidebar-user-image-width;
+    height: $lte-sidebar-user-image-width;
+    margin-top: -2px;
+    // margin-right: 10px;
+    @include border-radius(50%);
+  }
+}

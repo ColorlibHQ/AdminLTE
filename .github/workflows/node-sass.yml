@@ -1,0 +1,52 @@
+name: CSS (node-sass)
+
+on:
+  push:
+    branches-ignore:
+      - "dependabot/**"
+  pull_request:
+  workflow_dispatch:
+
+env:
+  FORCE_COLOR: 2
+  NODE: 18
+
+permissions:
+  contents: read
+
+jobs:
+  css:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "${{ env.NODE }}"
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build CSS with node-sass
+        run: |
+          npx --package node-sass@latest node-sass --version
+          npx --package node-sass@latest node-sass --include-path=node_modules --output-style expanded --source-map true --source-map-contents true --precision 6 src/scss/ -o dist-sass/css/
+          ls -Al dist-sass/css
+
+      # Check that there are no Sass variables (`$`)
+      - name: Check built CSS files
+        shell: bash
+        run: |
+          if [[ $(find dist-sass/css/ -name "*.css" | xargs grep -F "\$" | wc -l | bc) -eq 0 ]]; then
+            echo "All good, no Sass variables found"
+            exit 0
+          else
+            echo "Found Sass variables!"
+            exit 1
+          fi

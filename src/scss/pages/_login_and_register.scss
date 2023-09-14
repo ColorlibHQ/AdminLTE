@@ -1,0 +1,99 @@
+//
+// Pages: Login & Register
+//
+
+.login-logo,
+.register-logo {
+  margin-bottom: .9rem;
+  font-size: 2.1rem;
+  font-weight: 300;
+  text-align: center;
+
+  a {
+    color: var(--#{$prefix}secondary-color);
+  }
+}
+
+.login-page,
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.login-box,
+.register-box {
+  width: 360px;
+
+  @media (max-width: map-get($grid-breakpoints, sm)) {
+    width: 90%;
+    margin-top: .5rem;
+  }
+
+  .card {
+    margin-bottom: 0;
+  }
+}
+
+.login-card-body,
+.register-card-body {
+  padding: 20px;
+  color: var(--#{$prefix}secondary-color);
+  background-color: var(--#{$prefix}body-bg);
+  border-top: 0;
+
+  .input-group {
+    .form-control {
+      &:focus {
+        box-shadow: none;
+
+        ~ .input-group-prepend .input-group-text,
+        ~ .input-group-append .input-group-text {
+          border-color: $input-focus-border-color;
+        }
+      }
+
+      &.is-valid {
+        &:focus {
+          box-shadow: none;
+        }
+
+        ~ .input-group-prepend .input-group-text,
+        ~ .input-group-append .input-group-text {
+          border-color: $success;
+        }
+      }
+
+      &.is-invalid {
+        &:focus {
+          box-shadow: none;
+        }
+
+        ~ .input-group-append .input-group-text {
+          border-color: $danger;
+        }
+      }
+    }
+
+    .input-group-text {
+      color: var(--#{$prefix}secondary-color);
+      background-color: transparent;
+      @include border-top-end-radius($border-radius);
+      @include border-bottom-end-radius($border-radius);
+      @include transition($input-transition);
+    }
+  }
+}
+
+.login-box-msg,
+.register-box-msg {
+  padding: 0 20px 20px;
+  margin: 0;
+  text-align: center;
+}
+
+.social-auth-links {
+  margin: 10px 0;
+}

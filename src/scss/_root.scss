@@ -1,0 +1,5 @@
+:root,
+[data-bs-theme="light"] {
+  // Sidebar
+  --#{$lte-prefix}sidebar-width: #{$lte-sidebar-width};
+}

@@ -1,5 +1,4 @@
 name: "CodeQL config"
 
 paths-ignore:
-  - docs/assets/plugins/
-  - plugins/
+  - dist

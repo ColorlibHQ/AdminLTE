@@ -1,0 +1,120 @@
+//
+// Component: Timeline
+//
+
+.timeline {
+  position: relative;
+  padding: 0;
+  margin: 0 0 45px;
+  // The line
+  &::before {
+    @include border-radius($border-radius);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 31px;
+    width: 4px;
+    margin: 0;
+    content: "";
+    background-color: var(--#{$prefix}border-color);
+  }
+  // Element
+  > div {
+    &::before,
+    &::after {
+      display: table;
+      content: "";
+    }
+
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    // The content
+    > .timeline-item {
+      @include box-shadow($lte-card-shadow);
+      @include border-radius($border-radius);
+      position: relative;
+      padding: 0;
+      margin-top: 0;
+      margin-right: 15px;
+      margin-left: 60px;
+      color: var(--#{$prefix}body-color);
+      background-color: var(--#{$prefix}body-bg);
+      // The time and header
+      > .time {
+        float: right;
+        padding: 10px;
+        font-size: 12px;
+        color: var(--#{$prefix}secondary-color);
+      }
+      // Header
+      > .timeline-header {
+        padding: 10px;
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.1;
+        color: var(--#{$prefix}secondary-color);
+        border-bottom: 1px solid var(--#{$prefix}border-color);
+        // Link in header
+        > a {
+          font-weight: 600;
+        }
+      }
+      // Item body and footer
+      > .timeline-body,
+      > .timeline-footer {
+        padding: 10px;
+      }
+
+      > .timeline-body {
+        > img {
+          margin: 10px;
+        }
+        > dl,
+        ol,
+        ul {
+          margin: 0;
+        }
+      }
+
+
+    }
+
+    .timeline-icon {
+      position: absolute;
+      top: 0;
+      left: 18px;
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+      line-height: 30px;
+      text-align: center;
+      background-color: var(--#{$prefix}secondary-bg);
+      border-radius: 50%; // stylelint-disable-line property-disallowed-list
+    }
+  }
+  // Time label
+  > .time-label {
+    > span {
+      @include border-radius(4px);
+      display: inline-block;
+      padding: 5px;
+      font-weight: 600;
+      background-color: var(--#{$prefix}body-bg);
+    }
+  }
+}
+
+.timeline-inverse {
+  > div {
+    > .timeline-item {
+      @include box-shadow(none);
+      background-color: var(--#{$prefix}tertiary-bg);
+      border: 1px solid var(--#{$prefix}border-color);
+
+      > .timeline-header {
+        border-bottom-color: var(--#{$prefix}border-color);
+      }
+    }
+  }
+}

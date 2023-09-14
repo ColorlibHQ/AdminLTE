@@ -1,24 +1,36 @@
 version: 2
 updates:
-  # for v4-dev branch
   - package-ecosystem: npm
     directory: "/"
     schedule:
       interval: weekly
-      day: tuesday
+      day: monday
       time: "03:00"
+    groups:
+      eslint:
+        patterns:
+          - "eslint"
+          - "eslint-*"
+          - "@typescript-eslint/*"
+      stylelint:
+        patterns:
+          - "stylelint"
+          - "stylelint-*"
+      prettier:
+        patterns:
+          - "prettier"
+          - "prettier-*"
+      rollup:
+        patterns:
+          - "rollup"
+          - "@rollup/*"
+      postcss:
+        patterns:
+          - "postcss"
+          - "postcss-*"
+      astro:
+        patterns:
+          - "astro"
+          - "@astrojs/*"
     open-pull-requests-limit: 10
-    target-branch: "v4-dev"
-    labels:
-      - dependencies
-      - version:4.x
     versioning-strategy: increase
-    rebase-strategy: disabled
-
-  # for github actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: weekly
-      day: tuesday
-      time: "03:00"
