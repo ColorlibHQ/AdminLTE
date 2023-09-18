@@ -63,7 +63,7 @@
     "@typescript-eslint/parser": "^6.6.0",
     "astro": "^3.0.8",
     "autoprefixer": "^10.4.15",
-    "bootstrap": "^5.3.1",
+    "bootstrap": "^5.3.2",
     "bundlewatch": "^0.3.3",
     "clean-css-cli": "^5.6.2",
     "concurrently": "^8.2.1",
