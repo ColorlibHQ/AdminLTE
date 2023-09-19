@@ -6,7 +6,7 @@
   "author": "Colorlib <https://colorlib.com>",
   "main": "dist/js/adminlte.min.js",
   "scripts": {
-    "dev": "npm-run-all watch docs-serve",
+    "dev": "npm-run-all --parallel watch docs-serve",
     "css": "npm-run-all css-compile css-prefix css-rtl css-minify",
     "css-compile": "sass --style expanded --load-path=\"node_modules\" --source-map --embed-sources --no-error-css src/scss/:dist/css/",
     "css-rtl": "cross-env NODE_ENV=RTL postcss --config src/config/postcss.config.mjs --dir \"dist/css\" --ext \".rtl.css\" \"dist/css/*.css\" \"!dist/css/*.min.css\" \"!dist/css/*.rtl.css\"",
