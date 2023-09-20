@@ -43,6 +43,11 @@ To compile the dist files you need Node.js/npm, clone/download the repo then:
 - After installation complets, run `npm run dev`
 - Cool, Send urs changes in PR to `master` branch.
 
+## Sponsorship
+
+Support AdminLTE development by becoming a sponsor.
+[Github Sponsors](https://github.com/sponsors/danny007in) or
+[PayPal](https://www.paypal.me/daniel007in)
 
 ## License
 
