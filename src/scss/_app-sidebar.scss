@@ -187,7 +187,7 @@
 
       .nav-arrow {
         @include transition(transform $lte-transition-fn $lte-transition-speed);
-        transform: translateY(-50%) #{"/*rtl:rotate(180deg)*/"};
+        transform: translateY(-50%) #{"/*rtl:append:rotate(180deg)*/"};
         animation-name: fadeIn;
         animation-duration: $lte-transition-speed;
         animation-fill-mode: both;
@@ -244,7 +244,7 @@
 
     > .nav-link {
       .nav-arrow {
-        transform: translateY(-50%) rotate(90deg) #{"/*rtl:rotate(90deg)*/"};
+        transform: translateY(-50%) rotate(90deg) #{"/*rtl:ignore*/"};
       }
     }
   }

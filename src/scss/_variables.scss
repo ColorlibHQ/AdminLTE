@@ -101,6 +101,10 @@ $lte-card-title-font-weight: $font-weight-normal !default;
 // --------------------------------------------------------
 $lte-progress-bar-border-radius: 1px !default;
 
+// CALLOUTS
+// --------------------------------------------------------
+$lte-callout-link-font-weight: $alert-link-font-weight !default;
+
 // DIRECT CHAT
 // --------------------------------------------------------
 $lte-direct-chat-default-msg-bg: var(--#{$prefix}secondary-bg) !default;

@@ -18,10 +18,10 @@
   .progress {
     height: 2px;
     margin: 5px 0;
-    background-color: rgba($black, .125);
+    background-color: rgba(var(--#{$lte-prefix}card-variant-color-rgb), .125);
 
     .progress-bar {
-      background-color: $white;
+      background-color: var(--#{$lte-prefix}card-variant-color);
     }
   }
 
@@ -60,14 +60,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
-
-  @each $name, $color in $theme-colors {
-    .info-box {
-      .progress-bar {
-        background-color: color-contrast($color);
-      }
-    }
   }
 
   .info-box-more {

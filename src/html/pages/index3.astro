@@ -65,7 +65,7 @@ const page = "index3";
                   <div class="card-header border-0">
                     <div class="d-flex justify-content-between">
                       <h3 class="card-title">Online Store Visitors</h3>
-                      <a href="javascript:void(0);">View Report</a>
+                      <a href="javascript:void(0);" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">View Report</a>
                     </div>
                   </div>
                   <div class="card-body">
@@ -100,7 +100,7 @@ const page = "index3";
                 </div>
                 <!-- /.card -->
 
-                <div class="card">
+                <div class="card mb-4">
                   <div class="card-header border-0">
                     <h3 class="card-title">Products</h3>
                     <div class="card-tools">
@@ -157,7 +157,7 @@ const page = "index3";
                           </td>
                           <td>$29 USD</td>
                           <td>
-                            <small class="text-warning me-1">
+                            <small class="text-info me-1">
                               <i class="bi bi-arrow-down"></i>
                               0.5%
                             </small>
@@ -228,7 +228,7 @@ const page = "index3";
                   <div class="card-header border-0">
                     <div class="d-flex justify-content-between">
                       <h3 class="card-title">Sales</h3>
-                      <a href="javascript:void(0);">View Report</a>
+                      <a href="javascript:void(0);" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">View Report</a>
                     </div>
                   </div>
                   <div class="card-body">
@@ -298,7 +298,7 @@ const page = "index3";
                       </p>
                       <p class="d-flex flex-column text-end">
                         <span class="fw-bold">
-                          <i class="ion ion-android-arrow-up text-success"></i> 12%
+                          <i class="bi bi-graph-up-arrow text-success"></i> 12%
                         </span>
                         <span class="text-secondary">CONVERSION RATE</span>
                       </p>
@@ -307,7 +307,7 @@ const page = "index3";
                     <div
                       class="d-flex justify-content-between align-items-center border-bottom mb-3"
                     >
-                      <p class="text-warning fs-2">
+                      <p class="text-info fs-2">
                         <svg
                           height="32"
                           fill="none"
@@ -326,7 +326,7 @@ const page = "index3";
                       </p>
                       <p class="d-flex flex-column text-end">
                         <span class="fw-bold">
-                          <i class="ion ion-android-arrow-up text-warning"></i> 0.8%
+                          <i class="bi bi-graph-up-arrow text-info"></i> 0.8%
                         </span>
                         <span class="text-secondary">SALES RATE</span>
                       </p>
@@ -354,7 +354,7 @@ const page = "index3";
                       </p>
                       <p class="d-flex flex-column text-end">
                         <span class="fw-bold">
-                          <i class="ion ion-android-arrow-down text-danger"></i>
+                          <i class="bi bi-graph-down-arrow text-danger"></i>
                           1%
                         </span>
                         <span class="text-secondary">REGISTRATION RATE</span>
@@ -393,7 +393,7 @@ const page = "index3";
       // IT'S ALL JUST JUNK FOR DEMO
       // ++++++++++++++++++++++++++++++++++++++++++
 
-      var visitors_chart_options = {
+      const visitors_chart_options = {
         series: [
           {
             name: "High - 2023",
@@ -433,13 +433,13 @@ const page = "index3";
         },
       };
 
-      var visitors_chart = new ApexCharts(
+      const visitors_chart = new ApexCharts(
         document.querySelector("#visitors-chart"),
         visitors_chart_options
       );
       visitors_chart.render();
 
-      var sales_chart_options = {
+      const sales_chart_options = {
         series: [
           {
             name: "Net Profit",
@@ -502,7 +502,7 @@ const page = "index3";
         },
       };
 
-      var sales_chart = new ApexCharts(
+      const sales_chart = new ApexCharts(
         document.querySelector("#sales-chart"),
         sales_chart_options
       );
