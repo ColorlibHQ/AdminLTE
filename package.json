@@ -84,7 +84,7 @@
     "prettier": "^3.0.3",
     "prettier-plugin-astro": "^0.12.0",
     "rollup": "^3.29.2",
-    "rtlcss": "^4.1.0",
+    "rtlcss": "^4.1.1",
     "sass": "^1.68.0",
     "stylelint": "^15.10.3",
     "stylelint-config-twbs-bootstrap": "^11.0.1",
