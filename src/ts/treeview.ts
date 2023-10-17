@@ -33,11 +33,13 @@ const SELECTOR_TREEVIEW_MENU = '.nav-treeview'
 const SELECTOR_DATA_TOGGLE = '[data-lte-toggle="treeview"]'
 
 const Default = {
-  animationSpeed: 300
+  animationSpeed: 300,
+  accordion: true
 }
 
 type Config = {
   animationSpeed: number;
+  accordion: boolean;
 }
 
 /**
@@ -56,6 +58,20 @@ class Treeview {
 
   open(): void {
     const event = new Event(EVENT_EXPANDED)
+
+    if (this._config.accordion) {
+      const openMenuList = this._element.parentElement?.querySelectorAll(`${SELECTOR_NAV_ITEM}.${CLASS_NAME_MENU_OPEN}`)
+
+      openMenuList?.forEach(openMenu => {
+        if (openMenu !== this._element.parentElement) {
+          openMenu.classList.remove(CLASS_NAME_MENU_OPEN)
+          const childElement = openMenu?.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
+          if (childElement) {
+            slideUp(childElement, this._config.animationSpeed)
+          }
+        }
+      })
+    }
 
     this._element.classList.add(CLASS_NAME_MENU_OPEN)
 
