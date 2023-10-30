@@ -4838,14 +4838,14 @@ input[type="button"].btn-block {
 
 .card > .list-group:first-child {
   border-top-width: 0;
-  border-top-left-radius: calc(0.25rem - 0);
-  border-top-right-radius: calc(0.25rem - 0);
+  border-top-left-radius: calc(0.25rem);
+  border-top-right-radius: calc(0.25rem);
 }
 
 .card > .list-group:last-child {
   border-bottom-width: 0;
-  border-bottom-right-radius: calc(0.25rem - 0);
-  border-bottom-left-radius: calc(0.25rem - 0);
+  border-bottom-right-radius: calc(0.25rem);
+  border-bottom-left-radius: calc(0.25rem);
 }
 
 .card > .card-header + .list-group,
@@ -4889,7 +4889,7 @@ input[type="button"].btn-block {
 }
 
 .card-header:first-child {
-  border-radius: calc(0.25rem - 0) calc(0.25rem - 0) 0 0;
+  border-radius: calc(0.25rem) calc(0.25rem) 0 0;
 }
 
 .card-footer {
@@ -4899,7 +4899,7 @@ input[type="button"].btn-block {
 }
 
 .card-footer:last-child {
-  border-radius: 0 0 calc(0.25rem - 0) calc(0.25rem - 0);
+  border-radius: 0 0 calc(0.25rem) calc(0.25rem);
 }
 
 .card-header-tabs {
@@ -4921,7 +4921,7 @@ input[type="button"].btn-block {
   bottom: 0;
   left: 0;
   padding: 1.25rem;
-  border-radius: calc(0.25rem - 0);
+  border-radius: calc(0.25rem);
 }
 
 .card-img,
@@ -4934,14 +4934,14 @@ input[type="button"].btn-block {
 
 .card-img,
 .card-img-top {
-  border-top-left-radius: calc(0.25rem - 0);
-  border-top-right-radius: calc(0.25rem - 0);
+  border-top-left-radius: calc(0.25rem);
+  border-top-right-radius: calc(0.25rem);
 }
 
 .card-img,
 .card-img-bottom {
-  border-bottom-right-radius: calc(0.25rem - 0);
-  border-bottom-left-radius: calc(0.25rem - 0);
+  border-bottom-right-radius: calc(0.25rem);
+  border-bottom-left-radius: calc(0.25rem);
 }
 
 .card-deck .card {
