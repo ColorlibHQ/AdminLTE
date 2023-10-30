@@ -73,7 +73,7 @@
     "eslint-config-xo": "^0.43.1",
     "eslint-config-xo-typescript": "^1.0.1",
     "eslint-plugin-astro": "^0.29.1",
-    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-unicorn": "^48.0.1",
     "fs-extra": "^11.1.1",
     "js-beautify": "^1.14.9",
