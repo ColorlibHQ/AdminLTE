@@ -84,7 +84,7 @@
     "postcss-cli": "^10.1.0",
     "prettier": "^3.0.3",
     "prettier-plugin-astro": "^0.12.0",
-    "rollup": "^4.1.3",
+    "rollup": "^4.1.5",
     "rtlcss": "^4.1.1",
     "sass": "^1.69.3",
     "stylelint": "^15.10.3",
