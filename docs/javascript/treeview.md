@@ -14,7 +14,7 @@ This plugin can be activated as a jQuery plugin or using the data api.
 Add `data-widget="treeview"` to any `ul` or `ol` element to activate the plugin. 
 
 ```html
-<ul data-widget="treeview">
+<ul class="nav-sidebar" data-widget="treeview">
   <li><a href="#">One Level</a></li>
   <li class="nav-item">
     <a class="nav-link" href="#">Multilevel</a>
