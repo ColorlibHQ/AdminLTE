@@ -59,7 +59,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.3.3",
     "@astrojs/mdx": "^2.0.1",
-    "@rollup/plugin-typescript": "^11.1.5",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
     "astro": "^4.0.6",
@@ -84,7 +84,7 @@
     "postcss-cli": "^11.0.0",
     "prettier": "^3.1.1",
     "prettier-plugin-astro": "^0.12.2",
-    "rollup": "^4.6.1",
+    "rollup": "^4.12.0",
     "rtlcss": "^4.1.1",
     "sass": "^1.69.5",
     "stylelint": "^15.11.0",
