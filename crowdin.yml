@@ -1,2 +1,5 @@
 bundles:
   - 2
+files:
+  - source: /pages/*.html
+    translation: pages/%two_letters_code%/%original_file_name%
