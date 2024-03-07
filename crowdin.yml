@@ -1,5 +1,6 @@
 bundles:
   - 2
 files:
-  - source: /pages/*.html
-    translation: pages/%two_letters_code%/%original_file_name%
+  - source: /pages/tables
+    translation: /pages/translations/%original_file_name%
+    multilingual: 1
