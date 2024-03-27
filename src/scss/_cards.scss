@@ -1,0 +1,309 @@
+//
+// Component: Cards
+//
+
+// Color variants
+.card {
+  @include box-shadow($lte-card-shadow);
+
+  &[class*="card-"]:not(.card-outline),
+  &[class*="text-bg-"]:not(.card-outline) {
+    > .card-header {
+      color: var(--#{$lte-prefix}card-variant-color);
+      background-color: var(--#{$lte-prefix}card-variant-bg);
+
+      .btn-tool {
+        --#{$prefix}btn-color: rgba(var(--#{$lte-prefix}card-variant-color-rgb), .8);
+        --#{$prefix}btn-hover-color: var(--#{$lte-prefix}card-variant-color);
+      }
+    }
+  }
+
+  &.card-outline {
+    border-top: 3px solid var(--#{$lte-prefix}card-variant-bg);
+  }
+
+  &.maximized-card {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: $zindex-modal-backdrop;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+
+    &.was-collapsed .card-body {
+      display: block !important;
+    }
+
+    .card-body {
+      overflow: auto;
+    }
+
+    [data-lte-toggle="card-collapse"] {
+      display: none;
+    }
+
+    [data-lte-icon="maximize"] {
+      display: none;
+    }
+
+    .card-header,
+    .card-footer {
+      @include border-radius(0 !important);
+    }
+  }
+
+  &:not(.maximized-card) {
+    [data-lte-icon="minimize"] {
+      display: none;
+    }
+  }
+
+  // collapsed mode
+  &.collapsed-card {
+    [data-lte-icon="collapse"] {
+      display: none;
+    }
+
+    .card-body,
+    .card-footer {
+      display: none;
+    }
+  }
+
+  &:not(.collapsed-card) {
+    [data-lte-icon="expand"] {
+      display: none;
+    }
+  }
+
+
+  .nav.flex-column {
+    > li {
+      margin: 0;
+      border-bottom: 1px solid $card-border-color;
+
+      &:last-of-type {
+        border-bottom: 0;
+      }
+    }
+  }
+
+  // fixed height to 300px
+  &.height-control {
+    .card-body {
+      max-height: 300px;
+      overflow: auto;
+    }
+  }
+
+  .border-end {
+    border-right: 1px solid $card-border-color;
+  }
+
+  .border-start {
+    border-left: 1px solid $card-border-color;
+  }
+
+  &.card-tabs {
+    &:not(.card-outline) {
+      > .card-header {
+        border-bottom: 0;
+
+        .nav-item {
+          &:first-child .nav-link {
+            border-left-color: transparent;
+          }
+        }
+      }
+    }
+
+    &.card-outline {
+      .nav-item {
+        border-bottom: 0;
+
+        &:first-child .nav-link {
+          margin-left: 0;
+          border-left: 0;
+        }
+      }
+    }
+
+    .card-tools {
+      margin: .3rem .5rem;
+    }
+
+    &:not(.expanding-card).collapsed-card {
+      .card-header {
+        border-bottom: 0;
+
+        .nav-tabs {
+          border-bottom: 0;
+
+          .nav-item {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    &.expanding-card {
+      .card-header {
+        .nav-tabs {
+          .nav-item {
+            margin-bottom: -1px;
+          }
+        }
+      }
+    }
+  }
+
+  &.card-outline-tabs {
+    border-top: 0;
+
+    .card-header {
+      .nav-item {
+        &:first-child .nav-link {
+          margin-left: 0;
+          border-left: 0;
+        }
+      }
+
+      a {
+        text-decoration: none;
+        border-top: 3px solid transparent;
+
+        &:hover {
+          border-top: 3px solid $nav-tabs-border-color;
+        }
+
+        &.active {
+          &:hover {
+            margin-top: 0;
+          }
+        }
+      }
+    }
+
+    .card-tools {
+      margin: .5rem .5rem .3rem;
+    }
+
+    &:not(.expanding-card).collapsed-card .card-header {
+      border-bottom: 0;
+
+      .nav-tabs {
+        border-bottom: 0;
+
+        .nav-item {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &.expanding-card {
+      .card-header {
+        .nav-tabs {
+          .nav-item {
+            margin-bottom: -1px;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+// Maximized Card Body Scroll fix
+html.maximized-card {
+  overflow: hidden;
+}
+
+// Add clearfix to header, body and footer
+.card-header,
+.card-body,
+.card-footer {
+  @include clearfix();
+}
+
+// Box header
+.card-header {
+  position: relative;
+  padding: (($card-spacer-y * .5) * 2) $card-spacer-x;
+  background-color: transparent;
+  border-bottom: 1px solid $card-border-color;
+
+  @if $enable-rounded {
+    @include border-top-radius($border-radius);
+  }
+
+  .collapsed-card & {
+    border-bottom: 0;
+  }
+
+  > .card-tools {
+    float: right;
+    margin-right: -$card-spacer-x * .5;
+
+    .input-group,
+    .nav,
+    .pagination {
+      margin-top: -$card-spacer-y * .4;
+      margin-bottom: -$card-spacer-y * .4;
+    }
+
+    [data-bs-toggle="tooltip"] {
+      position: relative;
+    }
+  }
+}
+
+.card-title {
+  float: left;
+  margin: 0;
+  font-size: $lte-card-title-font-size;
+  font-weight: $lte-card-title-font-weight;
+}
+
+// Box Tools Buttons
+.btn-tool {
+  --#{$prefix}btn-padding-x: .5rem;
+  --#{$prefix}btn-padding-y: .25rem;
+
+  &:not(.btn-tool-custom) {
+    --#{$prefix}btn-color: var(--#{$prefix}tertiary-color);
+    --#{$prefix}btn-bg: transparent;
+    --#{$prefix}btn-box-shadow: none;
+    --#{$prefix}btn-hover-color: var(--#{$prefix}secondary-color);
+    --#{$prefix}btn-active-border-color: transparent;
+  }
+
+  margin: -$card-spacer-y 0;
+  font-size: $font-size-sm;
+}
+
+@each $name, $color in $theme-colors {
+  .card-#{$name},
+  .bg-#{$name},
+  .text-bg-#{$name} {
+    --#{$lte-prefix}card-variant-bg: #{$color};
+    --#{$lte-prefix}card-variant-bg-rgb: #{to-rgb($color)};
+    --#{$lte-prefix}card-variant-color: #{color-contrast($color)};
+    --#{$lte-prefix}card-variant-color-rgb: #{to-rgb(color-contrast($color))};
+  }
+}
+
+// Box Body
+.card-body {
+  // Tables within the box body
+  > .table {
+    margin-bottom: 0;
+
+    > thead > tr > th,
+    > thead > tr > td {
+      border-top-width: 0;
+    }
+  }
+}

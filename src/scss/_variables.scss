@@ -1,0 +1,118 @@
+//
+// Custom AdminLTE Variables
+//
+
+// Prefix for :root CSS variables and others.
+$lte-prefix:                      lte- !default;
+
+// TRANSITIONS SETTINGS
+// --------------------------------------------------------
+// Transition global options
+$lte-transition-speed:            .3s !default;
+$lte-transition-fn:               ease-in-out !default;
+
+// SIDEBAR
+// --------------------------------------------------------
+$lte-sidebar-width:               250px !default;
+$lte-sidebar-breakpoint:          lg !default;
+$lte-sidebar-padding-x:           .5rem !default;
+$lte-sidebar-padding-x-compact:   .5rem !default;
+$lte-sidebar-padding-y:           .5rem !default;
+$lte-sidebar-padding-y-compact:   .25rem !default;
+$lte-sidebar-transition:          min-width $lte-transition-speed $lte-transition-fn,
+  max-width $lte-transition-speed $lte-transition-fn,
+  margin-left $lte-transition-speed $lte-transition-fn,
+  margin-right $lte-transition-speed $lte-transition-fn !default;
+
+// SIDEBAR SKINS
+// --------------------------------------------------------
+
+$lte-sidebar-hover-bg:              rgba($black, .1) !default;
+$lte-sidebar-color:                 $gray-800 !default;
+$lte-sidebar-hover-color:           $gray-900 !default;
+$lte-sidebar-active-color:          $black !default;
+$lte-sidebar-menu-active-bg:        rgba($black, .1) !default;
+$lte-sidebar-menu-active-color:     $black !default;
+$lte-sidebar-submenu-bg:            transparent !default;
+$lte-sidebar-submenu-color:         #777 !default;
+$lte-sidebar-submenu-hover-color:   $black !default;
+$lte-sidebar-submenu-hover-bg:      rgba($black, .1) !default;
+$lte-sidebar-submenu-active-color:  $gray-900 !default;
+$lte-sidebar-submenu-active-bg:     rgba($black, .1) !default;
+$lte-sidebar-header-color:          shade-color($gray-800, 5%) !default;
+
+// SIDEBAR MINI
+// --------------------------------------------------------
+$nav-link-padding-x-compact:      .25rem !default;
+$lte-sidebar-mini-width:          ($nav-link-padding-x + $lte-sidebar-padding-x + .8rem) * 2 !default;
+$lte-sidebar-mini-width-compact:  ($nav-link-padding-x-compact + $lte-sidebar-padding-x-compact + .8rem) * 2 !default;
+$lte-sidebar-nav-icon-width:      $lte-sidebar-mini-width - (($lte-sidebar-padding-x + $nav-link-padding-x) * 2) !default;
+$lte-sidebar-user-image-width:    $lte-sidebar-nav-icon-width + ($nav-link-padding-x * .4) !default;
+
+// MAIN HEADER
+// --------------------------------------------------------
+$nav-link-height-compact:             1.75rem !default;
+$lte-app-header-bottom-border-width:  $border-width !default;
+$lte-app-header-bottom-border-color:  var(--#{$prefix}border-color) !default;
+$lte-app-header-bottom-border:        $lte-app-header-bottom-border-width solid $lte-app-header-bottom-border-color !default;
+$lte-app-header-link-padding-y:       $navbar-padding-y !default;
+$lte-app-header-height:               ($nav-link-height + ($lte-app-header-link-padding-y * 2)) !default;
+$lte-app-header-height-compact:       ($nav-link-height-compact + ($lte-app-header-link-padding-y * 2)) !default;
+
+// CONTENT PADDING
+// --------------------------------------------------------
+$lte-content-padding-y:           0 !default;
+$lte-content-padding-x:           .5rem !default;
+
+// MAIN CONTENT
+// --------------------------------------------------------
+$lte-app-content-bottom-area-height-sm: 3.5rem !default;
+$lte-app-content-bottom-area-height-md: 6rem !default;
+$lte-app-content-bottom-area-height-lg: 9rem !default;
+$lte-app-content-bottom-area-height-xl: 12rem !default;
+
+// MAIN FOOTER
+// --------------------------------------------------------
+$lte-app-footer-padding:           1rem !default;
+$lte-app-footer-padding-compact:   .5rem !default;
+$lte-app-footer-border-top-width:  1px !default;
+$lte-app-footer-border-top-color:  var(--#{$prefix}border-color) !default;
+$lte-app-footer-border-top:        $lte-app-footer-border-top-width solid $lte-app-footer-border-top-color !default;
+$lte-app-footer-bg:                var(--#{$prefix}body-bg) !default;
+$lte-app-footer-color:             var(--#{$prefix}secondary-color) !default;
+
+// BRAND LINK
+// --------------------------------------------------------
+$navbar-brand-padding-y-compact:   $navbar-brand-padding-y * .75 !default;
+$navbar-padding-y-compact:         $navbar-padding-y * .5 !default;
+$lte-brand-link-padding-y:         $navbar-brand-padding-y + $navbar-padding-y !default;
+$lte-brand-link-padding-y-compact: $navbar-brand-padding-y-compact + $navbar-padding-y-compact !default;
+$lte-brand-link-padding-x:         $lte-sidebar-padding-x !default;
+$lte-brand-link-padding-x-compact: $lte-sidebar-padding-x-compact !default;
+$lte-brand-link-border-buttom:    1px !default;
+
+// CARDS
+// --------------------------------------------------------
+$lte-card-shadow: 0 0 1px rgba(var(--#{$prefix}body-color-rgb), .125), 0 1px 3px rgba(var(--#{$prefix}body-color-rgb), .2) !default;
+$lte-card-title-font-size: 1.1rem !default;
+$lte-card-title-font-weight: $font-weight-normal !default;
+
+// PROGRESS BARS
+// --------------------------------------------------------
+$lte-progress-bar-border-radius: 1px !default;
+
+// CALLOUTS
+// --------------------------------------------------------
+$lte-callout-link-font-weight: $alert-link-font-weight !default;
+
+// DIRECT CHAT
+// --------------------------------------------------------
+$lte-direct-chat-default-msg-bg: var(--#{$prefix}secondary-bg) !default;
+$lte-direct-chat-default-font-color: var(--#{$prefix}emphasis-color) !default;
+$lte-direct-chat-default-msg-border-color: var(--#{$prefix}border-color) !default;
+
+// Z-INDEX
+// --------------------------------------------------------
+$lte-zindex-app-header:          $zindex-fixed + 4 !default;
+$lte-zindex-sidebar:             $zindex-fixed + 8 !default;
+$lte-zindex-sidebar-overlay:     $lte-zindex-sidebar - 1 !default;

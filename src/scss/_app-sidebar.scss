@@ -1,0 +1,603 @@
+.app-sidebar {
+  --#{$lte-prefix}sidebar-hover-bg: #{$lte-sidebar-hover-bg};
+  --#{$lte-prefix}sidebar-color: #{$lte-sidebar-color};
+  --#{$lte-prefix}sidebar-hover-color: #{$lte-sidebar-hover-color};
+  --#{$lte-prefix}sidebar-active-color: #{$lte-sidebar-active-color};
+  --#{$lte-prefix}sidebar-menu-active-bg: #{$lte-sidebar-menu-active-bg};
+  --#{$lte-prefix}sidebar-menu-active-color: #{$lte-sidebar-menu-active-color};
+  --#{$lte-prefix}sidebar-submenu-bg: #{$lte-sidebar-submenu-bg};
+  --#{$lte-prefix}sidebar-submenu-color: #{$lte-sidebar-submenu-color};
+  --#{$lte-prefix}sidebar-submenu-hover-color: #{$lte-sidebar-submenu-hover-color};
+  --#{$lte-prefix}sidebar-submenu-hover-bg: #{$lte-sidebar-submenu-hover-bg};
+  --#{$lte-prefix}sidebar-submenu-active-color: #{$lte-sidebar-submenu-active-color};
+  --#{$lte-prefix}sidebar-submenu-active-bg: #{$lte-sidebar-submenu-active-bg};
+  --#{$lte-prefix}sidebar-header-color: #{$lte-sidebar-header-color};
+
+  z-index: $lte-zindex-sidebar;
+  grid-area: #{$lte-prefix}app-sidebar;
+  min-width: var(--#{$lte-prefix}sidebar-width);
+  max-width: var(--#{$lte-prefix}sidebar-width);
+  @include transition($lte-sidebar-transition);
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $lte-app-header-height;
+  padding: $lte-brand-link-padding-y $lte-brand-link-padding-x;
+  overflow: hidden;
+  font-size: $navbar-brand-font-size;
+  white-space: nowrap;
+  border-bottom: $lte-brand-link-border-buttom solid var(--#{$prefix}border-color);
+  @include transition(width $lte-transition-speed $lte-transition-fn);
+
+  .brand-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    .brand-image {
+      float: left;
+      width: auto;
+      max-height: 33px;
+      line-height: .8;
+    }
+
+    .brand-image-xs {
+      float: left;
+      width: auto;
+      max-height: 33px;
+      margin-top: -.1rem;
+      line-height: .8;
+    }
+
+    .brand-image-xl {
+      width: auto;
+      max-height: 40px;
+      line-height: .8;
+
+      &.single {
+        margin-top: -.3rem;
+      }
+    }
+  }
+
+  .brand-text {
+    margin-left: .5rem;
+    color: rgba(var(--#{$prefix}emphasis-color-rgb), .8);
+    @include transition(flex $lte-transition-speed $lte-transition-fn, width $lte-transition-speed $lte-transition-fn);
+    &:hover {
+      color: var(--#{$prefix}emphasis-color);
+    }
+  }
+}
+
+.sidebar-wrapper {
+  padding-top: $lte-sidebar-padding-y;
+  padding-right: $lte-sidebar-padding-x;
+  padding-bottom: $lte-sidebar-padding-y;
+  padding-left: $lte-sidebar-padding-x;
+  @include scrollbar-color-gray();
+  @include scrollbar-width-thin();
+
+  .nav-item {
+    max-width: 100%;
+  }
+
+  .nav-link {
+    display: flex;
+    justify-content: flex-start;
+
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  .nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    max-width: 1.5rem;
+  }
+
+  // Sidebar Menu. First level links
+  .sidebar-menu > .nav-item {
+    &.menu-open {
+      .nav-link.active:not(:hover) {
+        --#{$lte-prefix}sidebar-menu-active-bg: transparent;
+      }
+    }
+
+    // links
+    > .nav-link {
+      &:active,
+      &:focus {
+        color: var(--#{$lte-prefix}sidebar-color);
+      }
+    }
+
+    > .nav-link.active:not(:hover) {
+      color: var(--#{$lte-prefix}sidebar-menu-active-color);
+      background-color: var(--#{$lte-prefix}sidebar-menu-active-bg);
+    }
+
+    // Hover and active states
+    &.menu-open > .nav-link,
+    &:hover > .nav-link,
+    > .nav-link:focus  {
+      color: var(--#{$lte-prefix}sidebar-hover-color);
+      background-color: var(--#{$lte-prefix}sidebar-hover-bg);
+    }
+
+    // First Level Submenu
+    > .nav-treeview {
+      background-color: var(--#{$lte-prefix}sidebar-submenu-bg);
+    }
+  }
+
+  // Section Heading
+  .nav-header {
+    color: var(--#{$lte-prefix}sidebar-header-color);
+    background-color: inherit;
+  }
+
+  // All links within the sidebar menu
+  a {
+    color: var(--#{$lte-prefix}sidebar-color);
+  }
+
+  // All submenus
+  .nav-treeview {
+    > .nav-item {
+      > .nav-link {
+        color: var(--#{$lte-prefix}sidebar-submenu-color);
+
+        &:hover,
+        &:focus {
+          color: var(--#{$lte-prefix}sidebar-submenu-hover-color);
+          // background-color: var(--#{$lte-prefix}sidebar-submenu-hover-bg);
+        }
+      }
+
+      > .nav-link.active {
+        &,
+        &:hover,
+        &:focus {
+          color: var(--#{$lte-prefix}sidebar-submenu-active-color);
+          background-color: var(--#{$lte-prefix}sidebar-submenu-active-bg);
+        }
+      }
+
+      > .nav-link:hover {
+        background-color: var(--#{$lte-prefix}sidebar-submenu-hover-bg);
+      }
+    }
+  }
+}
+
+// Sidebar navigation menu
+.sidebar-menu {
+  // All levels
+  .nav-item {
+    > .nav-link {
+      margin-bottom: .2rem;
+
+      .nav-arrow {
+        @include transition(transform $lte-transition-fn $lte-transition-speed);
+        transform: translateY(-50%) #{"/*rtl:append:rotate(180deg)*/"};
+        animation-name: fadeIn;
+        animation-duration: $lte-transition-speed;
+        animation-fill-mode: both;
+      }
+    }
+  }
+
+  // All levels
+  .nav-link > .nav-badge,
+  .nav-link > p > .nav-badge {
+    position: absolute;
+    right: 1rem;
+  }
+
+  .nav-link > .nav-arrow,
+  .nav-link > p > .nav-arrow {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+  }
+
+  .nav-link {
+    position: relative;
+    @include transition(width $lte-transition-fn $lte-transition-speed);
+    @include border-radius($border-radius);
+
+    p {
+      display: inline;
+      padding-left: .5rem;
+      margin: 0;
+    }
+  }
+
+  .nav-header {
+    padding: $nav-link-padding-y ($nav-link-padding-y * 1.5);
+    font-size: .9rem;
+  }
+
+  // Tree view menu
+  .nav-treeview {
+    display: none;
+    padding: 0;
+    list-style: none;
+
+    .nav-indent & {
+      padding-left: $lte-sidebar-padding-x;
+    }
+  }
+
+  .menu-open {
+    > .nav-treeview {
+      display: block;
+    }
+
+    > .nav-link {
+      .nav-arrow {
+        transform: translateY(-50%) rotate(90deg) #{"/*rtl:ignore*/"};
+      }
+    }
+  }
+}
+
+.nav-compact.nav-indent {
+  .nav-treeview {
+    padding-left: 0;
+
+    .nav-item {
+      padding-left: $lte-sidebar-padding-x;
+    }
+  }
+}
+
+.sidebar-mini.sidebar-collapse.nav-indent {
+  .app-sidebar:hover {
+    .nav-treeview {
+      padding-left: 0;
+
+      .nav-item {
+        padding-left: $lte-sidebar-padding-x;
+      }
+    }
+  }
+}
+
+.sidebar-collapse {
+  &.nav-compact.nav-indent {
+    .nav-treeview {
+      .nav-item {
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+.nav-compact .nav-link {
+  @include border-radius(0);
+  margin-bottom: 0 !important;
+}
+
+// A fix for text overflow while transitioning from sidebar mini to full sidebar
+.sidebar-menu,
+.sidebar-menu > .nav-header,
+.sidebar-menu .nav-link {
+  white-space: nowrap;
+}
+
+// Logo style
+.logo-xs,
+.logo-xl {
+  position: absolute;
+  visibility: visible;
+  opacity: 1;
+
+  &.brand-image-xs {
+    top: 12px;
+    left: 18px;
+  }
+
+  &.brand-image-xl {
+    top: 6px;
+    left: 12px;
+  }
+}
+
+.logo-xs {
+  visibility: hidden;
+  opacity: 0;
+
+  &.brand-image-xl {
+    top: 8px;
+    left: 16px;
+  }
+}
+
+.brand-link {
+  &.logo-switch {
+    &::before {
+      content: "\00a0";
+    }
+  }
+}
+
+.sidebar-mini.sidebar-collapse {
+  .app-sidebar {
+    min-width: $lte-sidebar-mini-width;
+    max-width: $lte-sidebar-mini-width;
+  }
+
+  // Make the sidebar headers
+  .sidebar-menu .nav-header {
+    display: none;
+  }
+
+  .sidebar-menu {
+    .nav-link {
+      width: $lte-sidebar-mini-width - $lte-sidebar-padding-x * 2;
+
+      p {
+        display: inline-block;
+        width: 0;
+        white-space: nowrap;
+      }
+    }
+    .nav-badge,
+    .nav-arrow {
+      display: none;
+      animation-name: fadeOut;
+      animation-duration: $lte-transition-speed;
+      animation-fill-mode: both;
+    }
+  }
+
+  .brand-text {
+    display: inline-block;
+    max-width: 0;
+    overflow: hidden;
+  }
+
+  .sidebar-menu .nav-link p,
+  .brand-text,
+  .logo-xl,
+  .nav-arrow {
+    visibility: hidden;
+    animation-name: fadeOut;
+    animation-duration: $lte-transition-speed;
+    animation-fill-mode: both;
+  }
+
+
+  .logo-xs {
+    display: inline-block;
+    visibility: visible;
+    animation-name: fadeIn;
+    animation-duration: $lte-transition-speed;
+    animation-fill-mode: both;
+  }
+
+  .app-sidebar:hover {
+    min-width: var(--#{$lte-prefix}sidebar-width);
+    max-width: var(--#{$lte-prefix}sidebar-width);
+
+    .sidebar-menu .nav-header {
+      display: inline-block;
+    }
+
+    .sidebar-menu .nav-link {
+      width: auto;
+    }
+
+    .sidebar-menu .nav-link p,
+    .brand-text,
+    .logo-xl {
+      width: auto;
+      margin-left: 0;
+      visibility: visible;
+      animation-name: fadeIn;
+      animation-duration: $lte-transition-speed;
+      animation-fill-mode: both;
+    }
+
+    .brand-text {
+      display: inline;
+      max-width: inherit;
+      margin-left: .5rem;
+      animation-name: fadeIn;
+      animation-duration: $lte-transition-speed;
+      animation-fill-mode: both;
+    }
+    .nav-badge,
+    .nav-arrow {
+      display: inline-block;
+      visibility: visible;
+      animation-name: fadeIn;
+      animation-duration: $lte-transition-speed;
+      animation-fill-mode: both;
+      animation-delay: $lte-transition-speed;
+    }
+
+    .nav-link p {
+      padding-left: .5rem;
+    }
+    .logo-xs {
+      visibility: hidden;
+      animation-name: fadeOut;
+      animation-duration: $lte-transition-speed;
+      animation-fill-mode: both;
+    }
+  }
+}
+
+.sidebar-collapse:not(.sidebar-mini) {
+  .app-sidebar {
+    margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1); // stylelint-disable-line function-disallowed-list
+  }
+}
+
+.sidebar-expand {
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    $next: breakpoint-next($breakpoint, $grid-breakpoints);
+    $infix: breakpoint-infix($next, $grid-breakpoints);
+
+    /* stylelint-disable-next-line scss/selector-no-union-class-name */
+    &#{$infix} {
+      @include media-breakpoint-up($next) {
+        &.layout-fixed-complete,
+        &.layout-fixed {
+          .app-main-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+          }
+          .app-sidebar-wrapper {
+            position: relative;
+          }
+          .app-main {
+            flex: 1 1 auto;
+            overflow: auto;
+          }
+          .app-sidebar {
+            position: sticky;
+            top: 0;
+            bottom: 0;
+            max-height: 100vh;
+
+            .sidebar-wrapper {
+              height: subtract(100vh, add($lte-app-header-height, 1px));
+            }
+          }
+        }
+        &.layout-fixed-complete {
+          .app-main-wrapper {
+            max-height: 100vh;
+          }
+        }
+        &.sidebar-open {
+          .nav-link > .nav-badge,
+          .nav-link > p > .nav-badge {
+            animation-name: fadeIn;
+            animation-duration: $lte-transition-speed;
+            animation-fill-mode: both;
+            animation-delay: $lte-transition-speed;
+          }
+          .nav-link > .nav-arrow,
+          .nav-link > p > .nav-arrow {
+            animation-name: fadeIn;
+            animation-duration: $lte-transition-speed;
+            animation-fill-mode: both;
+            animation-delay: $lte-transition-speed;
+          }
+        }
+      }
+
+      @include media-breakpoint-down($next) {
+        $max: breakpoint-max($next);
+
+        &::before {
+          display: none;
+          content: "#{$max}";
+        }
+
+        .app-sidebar {
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          max-height: 100vh;
+          margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1); // stylelint-disable-line function-disallowed-list
+
+          .sidebar-wrapper {
+            height: subtract(100vh, add($lte-app-header-height, 1px));
+          }
+        }
+
+        &.sidebar-open {
+          .app-sidebar {
+            margin-left: 0;
+          }
+
+          .sidebar-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: $lte-zindex-sidebar-overlay;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            visibility: visible;
+            background-color: rgba(0, 0, 0, .2);
+            animation-name: fadeIn;
+            animation-fill-mode: both;
+          }
+        }
+      }
+    }
+  }
+}
+
+.sidebar-menu .nav-link p,
+.app-sidebar .brand-text,
+.app-sidebar .logo-xs,
+.app-sidebar .logo-xl {
+  @include transition(margin-left $lte-transition-speed linear, opacity $lte-transition-speed ease, visibility $lte-transition-speed ease);
+}
+
+// To prevent onload transition and animation
+.app-loaded {
+  &.sidebar-mini.sidebar-collapse {
+    .sidebar-menu .nav-link p,
+    .brand-text {
+      animation-duration: $lte-transition-speed;
+    }
+  }
+}
+body:not(.app-loaded) {
+  .app-header,
+  .app-sidebar,
+  .app-main,
+  .app-footer {
+    @include transition(none !important);
+    animation-duration: 0s !important;
+  }
+}
+.hold-transition {
+  .app-header,
+  .app-sidebar,
+  .app-main,
+  .app-footer,
+  .nav-arrow,
+  .nav-badge {
+    @include transition(none !important);
+    animation-duration: 0s !important;
+  }
+}
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    &.app-sidebar,
+    .app-sidebar {
+      --#{$lte-prefix}sidebar-hover-bg: #{$lte-sidebar-hover-bg-dark};
+      --#{$lte-prefix}sidebar-color: #{$lte-sidebar-color-dark};
+      --#{$lte-prefix}sidebar-hover-color: #{$lte-sidebar-hover-color-dark};
+      --#{$lte-prefix}sidebar-active-color: #{$lte-sidebar-active-color-dark};
+      --#{$lte-prefix}sidebar-menu-active-bg: #{$lte-sidebar-menu-active-bg-dark};
+      --#{$lte-prefix}sidebar-menu-active-color: #{$lte-sidebar-menu-active-color-dark};
+      --#{$lte-prefix}sidebar-submenu-bg: #{$lte-sidebar-submenu-bg-dark};
+      --#{$lte-prefix}sidebar-submenu-color: #{$lte-sidebar-submenu-color-dark};
+      --#{$lte-prefix}sidebar-submenu-hover-color: #{$lte-sidebar-submenu-hover-color-dark};
+      --#{$lte-prefix}sidebar-submenu-hover-bg: #{$lte-sidebar-submenu-hover-bg-dark};
+      --#{$lte-prefix}sidebar-submenu-active-color: #{$lte-sidebar-submenu-active-color-dark};
+      --#{$lte-prefix}sidebar-submenu-active-bg: #{$lte-sidebar-submenu-active-bg-dark};
+      --#{$lte-prefix}sidebar-header-color: #{$lte-sidebar-header-color-dark};
+    }
+  }
+}
+

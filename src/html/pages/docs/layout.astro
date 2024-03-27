@@ -1,0 +1,120 @@
+---
+import Head from "@components/_head.astro";
+import Footer from "@components/dashboard/_footer.astro";
+import Topbar from "@components/dashboard/_topbar.astro";
+import Sidenav from "@components/dashboard/_sidenav.astro";
+import Scripts from "@components/_scripts.astro";
+
+const title = "Layout | AdminLTE 4";
+const path = "../../../dist";
+const mainPage = "docs";
+const page = "layout";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <!--begin::Head-->
+  <head>
+    <Head title={title} path={path} />
+  </head>
+  <!--end::Head-->
+  <!--begin::Body-->
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <!--begin::App Wrapper-->
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <!--begin::App Main-->
+      <main class="app-main">
+        <!--begin::App Content Header-->
+        <div class="app-content-header">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Layout</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Docs</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Layout
+                  </li>
+                </ol>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
+        <div class="app-content">
+          <div class="container-fluid">
+            <div class="callout callout-info mb-4">
+              <h5 class="fw-bold">Tips</h5>
+              <p>
+                The <a href="/starter.html" target="_blank" rel="noopener noreferrer"  class="callout-link">
+                  starter page
+                </a> is a good place to start building your app if you’d like to
+                start from scratch.
+              </p>
+            </div>
+
+            <p>The layout consists of five major parts:</p>
+            <ul>
+              <li>
+                Wrapper <code>.app-wrapper</code> . A div that wraps the whole site.
+              </li>
+              <li>
+                Main Header <code>.app-header</code> . Contains the logo and navbar.
+              </li>
+              <li>
+                Main Sidebar <code>.app-sidebar</code> . Contains the sidebar user
+                panel and menu.
+              </li>
+              <li>
+                Content <code>.app-main</code> . Contains the page header and content.
+              </li>
+              <li>
+                Main Footer <code>.app-footer</code> . Contains the footer.
+              </li>
+            </ul>
+
+            <h4>Layout Options</h4>
+            <p>
+              AdminLTE v4 provides a set of options to apply to your main
+              layout. Each one of these classes can be added to the
+              <code>body</code> tag to get the desired goal.
+            </p>
+            <ul>
+              <li>
+                Fixed Sidebar: use the class <code>.layout-fixed</code> to get a
+                fixed sidebar.
+              </li>
+              <li>
+                Mini Sidebar on Toggle: use the class
+                <code>.sidebar-expand-* .sidebar-mini</code>
+                to have a collapsed sidebar upon loading.
+              </li>
+              <li>
+                Collapsed Sidebar: use the class
+                <code>.sidebar-expand-* .sidebar-mini .sidebar-collapse</code> to
+                have a collapsed sidebar upon loading.
+              </li>
+            </ul>
+          </div>
+          <!-- /.container-fluid -->
+        </div>
+        <!--end::App Content-->
+      </main>
+      <!--end::App Main-->
+      <Footer />
+    </div>
+    <!--end::App Wrapper-->
+    <!--begin::Script-->
+    <Scripts path={path} />
+    <!--end::Script-->
+  </body><!--end::Body-->
+</html>

@@ -1,0 +1,221 @@
+---
+import Head from "@components/_head.astro";
+import Footer from "@components/dashboard/_footer.astro";
+import Topbar from "@components/dashboard/_topbar.astro";
+import Sidenav from "@components/dashboard/_sidenav.astro";
+import Scripts from "@components/_scripts.astro";
+
+const title = "AdminLTE 4 | Timeline Elements";
+const path = "../../../dist";
+const mainPage = "ui-elements";
+const page = "timeline";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <!--begin::Head-->
+  <head>
+    <Head title={title} path={path} />
+  </head>
+  <!--end::Head-->
+  <!--begin::Body-->
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <!--begin::App Wrapper-->
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <!--begin::App Main-->
+      <main class="app-main">
+        <!--begin::App Content Header-->
+        <div class="app-content-header">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Timeline</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Timeline
+                  </li>
+                </ol>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
+        <div class="app-content">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!-- Timelime example  -->
+            <div class="row">
+              <div class="col-md-12">
+                <!-- The time line -->
+                <div class="timeline">
+                  <!-- timeline time label -->
+                  <div class="time-label">
+                    <span class="text-bg-danger">10 Feb. 2023</span>
+                  </div>
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <div>
+                    <i
+                      class="timeline-icon bi bi-envelope text-bg-primary"
+                    >
+                    </i>
+                    <div class="timeline-item">
+                      <span class="time">
+                        <i class="bi bi-clock-fill"></i> 12:05
+                      </span>
+                      <h3 class="timeline-header">
+                        <a href="#">Support Team</a> sent you an email
+                      </h3>
+
+                      <div class="timeline-body">
+                        Etsy doostang zoodles disqus groupon greplin oooj voxy
+                        zoodles, weebly ning heekya handango imeem plugg dopplr
+                        jibjab, movity jajah plickers sifteo edmodo ifttt
+                        zimbra. Babblely odeo kaboodle quora plaxo ideeli hulu
+                        weebly balihoo...
+                      </div>
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-sm">Read more</a>
+                        <a class="btn btn-danger btn-sm">Delete</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                  <div>
+                    <i class="timeline-icon bi bi-person text-bg-success">
+                    </i>
+                    <div class="timeline-item">
+                      <span class="time">
+                        <i class="bi bi-clock-fill"></i> 5 mins ago
+                      </span>
+                      <h3 class="timeline-header no-border">
+                        <a href="#">Sarah Young</a> accepted your friend request
+                      </h3>
+                    </div>
+                  </div>
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                  <div>
+                    <i
+                      class="timeline-icon bi bi-chat-text-fill text-bg-warning"
+                    >
+                    </i>
+                    <div class="timeline-item">
+                      <span class="time">
+                        <i class="bi bi-clock-fill"></i> 27 mins ago
+                      </span>
+                      <h3 class="timeline-header">
+                        <a href="#">Jay White</a> commented on your post
+                      </h3>
+                      <div class="timeline-body">
+                        Take me to your leader! Switzerland is small and
+                        neutral! We are more like Germany, ambitious and
+                        misunderstood!
+                      </div>
+                      <div class="timeline-footer">
+                        <a class="btn btn-warning btn-sm">View comment</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END timeline item -->
+                  <!-- timeline time label -->
+                  <div class="time-label">
+                    <span class="text-bg-success">3 Jan. 2023</span>
+                  </div>
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <div>
+                    <i class="timeline-icon bi bi-camera text-bg-primary">
+                    </i>
+                    <div class="timeline-item">
+                      <span class="time">
+                        <i class="bi bi-clock-fill"></i> 2 days ago
+                      </span>
+                      <h3 class="timeline-header">
+                        <a href="#">Mina Lee</a> uploaded new photos
+                      </h3>
+                      <div class="timeline-body">
+                        <img
+                          src={path + "/assets/img/user1-128x128.jpg"}
+                          alt="..."
+                        />
+                        <img
+                          src={path + "/assets/img/user1-128x128.jpg"}
+                          alt="..."
+                        />
+                        <img
+                          src={path + "/assets/img/user1-128x128.jpg"}
+                          alt="..."
+                        />
+                        <img
+                          src={path + "/assets/img/user1-128x128.jpg"}
+                          alt="..."
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                  <div>
+                    <i class="timeline-icon bi bi-camera-film text-bg-info"></i>
+
+                    <div class="timeline-item">
+                      <span class="time">
+                        <i class="bi bi-clock-fill"></i> 5 days ago
+                      </span>
+
+                      <h3 class="timeline-header">
+                        <a href="#">Mr. Doe</a> shared a video
+                      </h3>
+
+                      <div class="timeline-body">
+                        <div class="ratio ratio-16x9">
+                          <iframe
+                            src="https://www.youtube.com/embed/tMWkeBIohBs"
+                            allowfullscreen></iframe>
+                        </div>
+                      </div>
+                      <div class="timeline-footer">
+                        <a href="#" class="btn btn-sm text-bg-warning">
+                          See comments
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END timeline item -->
+                  <div>
+                    <i
+                      class="timeline-icon bi bi-clock-fill text-bg-secondary"
+                    >
+                    </i>
+                  </div>
+                </div>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content-->
+      </main>
+      <!--end::App Main-->
+      <Footer />
+    </div>
+    <!--end::App Wrapper-->
+    <!--begin::Script-->
+    <Scripts path={path} />
+    <!--end::Script-->
+  </body><!--end::Body-->
+</html>

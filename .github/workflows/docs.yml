@@ -5,56 +5,39 @@ on:
     branches:
       - master
       - v4-dev
+    branches-ignore:
+      - "dependabot/**"
   pull_request:
-    branches:
-      - "**"
+  workflow_dispatch:
 
 env:
   FORCE_COLOR: 2
   NODE: 16.x
   RUBY: 2.7
+  NODE: 18
+
+permissions:
+  contents: read
+>>>>>>> caff40dfc06ae75d1b23b17113bfb27dd10737d1
 
 jobs:
-  run:
+  bundlewatch:
     runs-on: ubuntu-latest
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: "${{ env.NODE }}"
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: "${{ env.RUBY }}"
-          bundler-cache: true
-          working-directory: docs
-
-      - name: Version info
-        run: |
-          ruby --version
-          gem --version
-          bundle --version
-          java -version
-
-      - name: Set up npm cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-v${{ env.NODE }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}}
-          restore-keys: |
-            ${{ runner.os }}-node-v${{ env.NODE }}-${{ hashFiles('package.json') }}-${{ hashFiles('package-lock.json') }}
-            ${{ runner.os }}-node-v${{ env.NODE }}-
+          cache: npm
 
       - name: Install npm dependencies
         run: npm ci
 
       - name: Build docs
         run: npm run docs-compile
-
-      - name: Run HTML validator
-        run: npm run docs-lint

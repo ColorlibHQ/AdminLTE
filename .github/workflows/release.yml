@@ -1,0 +1,50 @@
+name: Release & Publish
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "${{ env.NODE }}"
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build distribution files
+        run: npm run production
+
+      - name: Zip distribution files
+        uses: montudor/action-zip@v1
+        with:
+          args: "zip -qq admin-lte-${{env.RELEASE_VERSION}}.zip -d dist"
+
+      - name: Create changelog text
+        id: changelog
+        uses: endaft/action-changelog@v0.0.5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          exclude_types: other,doc,chore
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          body: ${{ steps.changelog.outputs.changelog }}
+          files: |
+            admin-lte.${{env.RELEASE_VERSION}}.zip

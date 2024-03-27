@@ -1,4 +1,4 @@
-# [AdminLTE - Bootstrap 4 Admin Dashboard](https://adminlte.io)
+# [AdminLTE - Bootstrap 5 Admin Dashboard](https://adminlte.io)
 
 [![npm version](https://img.shields.io/npm/v/admin-lte/latest.svg)](https://www.npmjs.com/package/admin-lte)
 [![Packagist](https://img.shields.io/packagist/v/almasaeed2010/adminlte.svg)](https://packagist.org/packages/almasaeed2010/adminlte)
@@ -6,11 +6,11 @@
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/from-referrer/)
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/ColorlibHQ/AdminLTE)
 [![Discord Invite](https://img.shields.io/badge/discord-join%20now-green)](https://discord.gg/jfdvjwFqfz)
+[![Discord Invite](https://img.shields.io/badge/discord-join%20now-green)](https://discord.gg/jfdvjwFqfz)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1277b36b-08f3-43fa-826a-4b4d24614b3c/deploy-status)](https://app.netlify.com/sites/adminlte-v4/deploys)
 
-**AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 4.6](https://getbootstrap.com/)** framework and also the JS/jQuery plugin.
+**AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 5](https://getbootstrap.com/)** framework and also the JavaScript plugins.
 Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.
-
-**Preview on [AdminLTE.io](https://adminlte.io/themes/v3)**
 
 ## Looking for Premium Templates?
 
@@ -86,10 +86,22 @@ To compile the dist files you need Node.js/npm, clone/download the repo then:
 
 ## Contributing
 
-Please read through our [contributing guidelines](https://github.com/ColorlibHQ/AdminLTE/tree/master/.github/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
+- Highly welcome.
+- For your extra reference check [AdminLTE v4 Contribution Guide](https://github.com/ColorlibHQ/AdminLTE#contributing)
+- First thing first, you should have bit knowledge about NodeJS.
+- Github Knowledge.
+- Install NodeJS LTS version.
+- Clone this Repository to your machine and change to `master` branch.
+- Go to Cloned Folder.
+- In cli/bash run `npm install` it will install dependency from `package.json`.
+- After installation complets, run `npm run dev`
+- Cool, Send urs changes in PR to `master` branch.
 
-Editor preferences are available in the [editor config](https://github.com/twbs/bootstrap/blob/main/.editorconfig) for easy use in common text editors. Read more and download plugins at <https://editorconfig.org/>.
+## Sponsorship
 
+Support AdminLTE development by becoming a sponsor.
+[Github Sponsors](https://github.com/sponsors/danny007in) or
+[PayPal](https://www.paypal.me/daniel007in)
 
 ## License
 
