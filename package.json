@@ -58,11 +58,11 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.5.10",
-    "@astrojs/mdx": "^2.2.4",
+    "@astrojs/mdx": "^2.3.1",
     "@rollup/plugin-typescript": "^11.1.6",
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@typescript-eslint/parser": "^7.5.0",
-    "astro": "^4.5.17",
+    "astro": "^4.6.3",
     "autoprefixer": "^10.4.16",
     "bootstrap": "^5.3.2",
     "bundlewatch": "^0.3.3",
