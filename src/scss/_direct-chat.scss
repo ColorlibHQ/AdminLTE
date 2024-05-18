@@ -169,10 +169,15 @@
     @include clearfix();
     padding: 10px;
     margin: 0;
+    text-decoration: none;
     border-bottom: 1px solid rgba($black, .2);
 
     &:last-of-type {
       border-bottom: 0;
+    }
+
+    a {
+      text-decoration: none;
     }
   }
 }

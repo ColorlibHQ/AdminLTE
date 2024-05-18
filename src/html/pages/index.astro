@@ -11,7 +11,7 @@ const mainPage = "dashboard";
 const page = "index";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <!--begin::Head-->
   <head>
@@ -91,7 +91,10 @@ const page = "index";
                       d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
                     ></path>
                   </svg>
-                  <a href="#" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                  <a
+                    href="#"
+                    class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
+                  >
                     More info <i class="bi bi-link-45deg"></i>
                   </a>
                 </div>
@@ -117,7 +120,10 @@ const page = "index";
                       d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z"
                     ></path>
                   </svg>
-                  <a href="#" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                  <a
+                    href="#"
+                    class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
+                  >
                     More info <i class="bi bi-link-45deg"></i>
                   </a>
                 </div>
@@ -143,7 +149,10 @@ const page = "index";
                       d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z"
                     ></path>
                   </svg>
-                  <a href="#" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                  <a
+                    href="#"
+                    class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover"
+                  >
                     More info <i class="bi bi-link-45deg"></i>
                   </a>
                 </div>
@@ -176,7 +185,10 @@ const page = "index";
                       d="M12.75 3a.75.75 0 01.75-.75 8.25 8.25 0 018.25 8.25.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75V3z"
                     ></path>
                   </svg>
-                  <a href="#" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                  <a
+                    href="#"
+                    class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
+                  >
                     More info <i class="bi bi-link-45deg"></i>
                   </a>
                 </div>
@@ -201,7 +213,7 @@ const page = "index";
                 <!-- /.card -->
 
                 <!-- DIRECT CHAT -->
-                <div class="card direct-chat direct-chat-primary">
+                <div class="card direct-chat direct-chat-primary mb-4">
                   <div class="card-header">
                     <h3 class="card-title">Direct Chat</h3>
 
@@ -510,7 +522,7 @@ const page = "index";
               <!-- Start col -->
               <div class="col-lg-5 connectedSortable">
                 <div
-                  class="card mb-4 text-white bg-primary bg-gradient border-primary"
+                  class="card text-white bg-primary bg-gradient border-primary mb-4"
                 >
                   <div class="card-header border-0">
                     <h3 class="card-title">Sales Value</h3>
@@ -532,15 +544,15 @@ const page = "index";
                     <!--begin::Row-->
                     <div class="row">
                       <div class="col-4 text-center">
-                        <div id="sparkline-1"></div>
+                        <div id="sparkline-1" class="text-dark"></div>
                         <div class="text-white">Visitors</div>
                       </div>
                       <div class="col-4 text-center">
-                        <div id="sparkline-2"></div>
+                        <div id="sparkline-2" class="text-dark"></div>
                         <div class="text-white">Online</div>
                       </div>
                       <div class="col-4 text-center">
-                        <div id="sparkline-3"></div>
+                        <div id="sparkline-3" class="text-dark"></div>
                         <div class="text-white">Sales</div>
                       </div>
                     </div>
@@ -569,8 +581,7 @@ const page = "index";
     <script
       src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"
       integrity="sha256-ipiJrswvAR4VAx/th+6zWsdeYmVae0iJuiR+6OqHJHQ="
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
 
     <!-- sortablejs -->
     <script is:inline>
@@ -579,11 +590,12 @@ const page = "index";
       connectedSortables.forEach((connectedSortable) => {
         let sortable = new Sortable(connectedSortable, {
           group: "shared",
+          handle: ".card-header",
         });
       });
 
       const cardHeaders = document.querySelectorAll(
-        ".connectedSortable .card-header"
+        ".connectedSortable .card-header",
       );
       cardHeaders.forEach((cardHeader) => {
         cardHeader.style.cursor = "move";
@@ -594,8 +606,7 @@ const page = "index";
     <script
       src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"
       integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8="
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
 
     <!-- ChartJS -->
     <script is:inline>
@@ -652,7 +663,7 @@ const page = "index";
 
       const sales_chart = new ApexCharts(
         document.querySelector("#revenue-chart"),
-        sales_chart_options
+        sales_chart_options,
       );
       sales_chart.render();
     </script>
@@ -661,13 +672,11 @@ const page = "index";
     <script
       src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/js/jsvectormap.min.js"
       integrity="sha256-/t1nN2956BT869E6H4V1dnt0X5pAQHPytli+1nTZm2Y="
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js"
       integrity="sha256-XPpPaZlU8S/HWf7FZLAncLg2SAkP8ScUTII89x9D3lY="
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
 
     <!-- jsvectormap -->
     <script is:inline>
@@ -719,7 +728,7 @@ const page = "index";
 
       const sparkline1 = new ApexCharts(
         document.querySelector("#sparkline-1"),
-        option_sparkline1
+        option_sparkline1,
       );
       sparkline1.render();
 
@@ -750,7 +759,7 @@ const page = "index";
 
       const sparkline2 = new ApexCharts(
         document.querySelector("#sparkline-2"),
-        option_sparkline2
+        option_sparkline2,
       );
       sparkline2.render();
 
@@ -781,7 +790,7 @@ const page = "index";
 
       const sparkline3 = new ApexCharts(
         document.querySelector("#sparkline-3"),
-        option_sparkline3
+        option_sparkline3,
       );
       sparkline3.render();
     </script>

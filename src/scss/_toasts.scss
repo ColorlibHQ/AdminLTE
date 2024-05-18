@@ -1,0 +1,33 @@
+//
+// Toast
+//
+
+@each $name, $color in $theme-colors {
+  .toast-#{$name} {
+    --#{$prefix}toast-header-color: #{color-contrast($color)};
+    --#{$prefix}toast-header-bg: #{$color};
+    --#{$prefix}toast-header-border-color: #{$color};
+    --#{$prefix}toast-border-color: #{$color};
+    --#{$prefix}toast-bg: var(--#{$prefix}#{$name}-bg-subtle);
+
+    @if color-contrast($color) == $color-contrast-light {
+      .btn-close {
+        @include btn-close-white();
+      }
+    }
+  }
+}
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    @each $name, $color in $theme-colors {
+      .toast-#{$name} {
+        @if color-contrast($color) == $color-contrast-dark {
+          .btn-close {
+            --#{$prefix}btn-close-white-filter: none;
+          }
+        }
+      }
+    }
+  }
+}

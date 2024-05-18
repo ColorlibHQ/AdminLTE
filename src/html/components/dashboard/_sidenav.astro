@@ -1,6 +1,6 @@
 ---
-import { convertPathToHtml } from "../../../utils/index.js";
-const { path, mainPage, page } = Astro.props;
+import {convertPathToHtml} from "../../../utils/index.js";
+const {path, mainPage, page} = Astro.props;
 const htmlPath = convertPathToHtml(path);
 ---
 
@@ -125,7 +125,7 @@ const htmlPath = convertPathToHtml(path);
             <p>
               Layout Options
               <span class="nav-badge badge text-bg-secondary me-3"
-                >6</span
+              >6</span
               >
               <i class="nav-arrow bi bi-chevron-right"></i>
             </p>
@@ -216,6 +216,15 @@ const htmlPath = convertPathToHtml(path);
             </p>
           </a>
           <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/UI/general.html"}
+                class:list={["nav-link", page === "general" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>General</p>
+              </a>
+            </li>
             <li class="nav-item">
               <a
                 href={htmlPath + "/UI/timeline.html"}

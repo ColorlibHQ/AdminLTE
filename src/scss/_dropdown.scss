@@ -204,6 +204,7 @@
       border-bottom: 1px solid var(--#{$prefix}border-color-translucent);
 
       a {
+        text-decoration: none;
         @include media-breakpoint-up(sm) {
           color: var(--#{$prefix}body-color) !important;
           background-color: var(--#{$prefix}body-bg) !important;
