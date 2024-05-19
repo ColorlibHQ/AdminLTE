@@ -1,7 +1,8 @@
 /**
  * --------------------------------------------
- * AdminLTE direct-chat.ts
- * License MIT
+ * @file AdminLTE direct-chat.ts
+ * @description Direct chat for AdminLTE.
+ * @license MIT
  * --------------------------------------------
  */
 

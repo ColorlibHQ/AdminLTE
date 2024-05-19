@@ -40,9 +40,14 @@ To compile the dist files you need Node.js/npm, clone/download the repo then:
 - Clone this Repository to your machine and change to `master` branch.
 - Go to Cloned Folder.
 - In cli/bash run `npm install` it will install dependency from `package.json`.
-- After installation complets, run `npm run dev`
+- After installation completes, run `npm run dev`
 - Cool, Send urs changes in PR to `master` branch.
 
+## Sponsorship
+
+Support AdminLTE development by becoming a sponsor.
+[Github Sponsors](https://github.com/sponsors/danny007in) or
+[PayPal](https://www.paypal.me/daniel007in)
 
 ## License
 

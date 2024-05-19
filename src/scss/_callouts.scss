@@ -11,6 +11,11 @@
   background-color: var(--#{$lte-prefix}callout-bg, var(--bs-gray-100));
   border-left: .25rem solid var(--#{$lte-prefix}callout-border, var(--bs-gray-300));
 
+  .callout-link {
+    font-weight: $lte-callout-link-font-weight;
+    color: var(--#{$prefix}callout-link-color);
+  }
+
   h4 {
     margin-bottom: .25rem;
   }
@@ -30,5 +35,6 @@
     --#{$lte-prefix}callout-color: var(--#{$prefix}#{$name}-text-emphasis);
     --#{$lte-prefix}callout-bg: var(--#{$prefix}#{$name}-bg-subtle);
     --#{$lte-prefix}callout-border: var(--#{$prefix}#{$name}-border-subtle);
+    --#{$prefix}callout-link-color: var(--#{$prefix}#{$name}-text-emphasis);
   }
 }
