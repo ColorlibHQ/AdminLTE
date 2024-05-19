@@ -83,7 +83,7 @@ const slideDown = (target: HTMLElement, duration = 500) => {
   }, duration)
 }
 
-/* TOOGLE */
+/* TOGGLE */
 const slideToggle = (target: HTMLElement, duration = 500) => {
   if (window.getComputedStyle(target).display === 'none') {
     slideDown(target, duration)
