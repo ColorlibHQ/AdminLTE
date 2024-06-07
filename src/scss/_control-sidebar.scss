@@ -1,0 +1,170 @@
+//
+// Component: Control Sidebar
+//
+
+html.control-sidebar-animate {
+  overflow-x: hidden;
+}
+
+.control-sidebar {
+  position: absolute;
+  top: $lte-app-header-height;
+  bottom: $lte-app-footer-height;
+  z-index: $lte-zindex-control-sidebar;
+
+  &,
+  &::before {
+    right: -$lte-control-sidebar-width;
+    bottom: $lte-app-footer-height;
+    display: none;
+    width: $lte-control-sidebar-width;
+    @include transition(right $lte-transition-speed $lte-transition-fn, display $lte-transition-speed $lte-transition-fn);
+  }
+
+  &::before {
+    position: fixed;
+    top: 0;
+    z-index: -1;
+    display: block;
+    content: "";
+  }
+}
+
+body.text-sm {
+  .control-sidebar {
+    top: $lte-app-header-height-compact;
+    bottom: $lte-app-footer-height-compact;
+  }
+}
+
+.main-header.text-sm ~ .control-sidebar {
+  top: $lte-app-header-height-compact;
+}
+
+.main-footer.text-sm ~ .control-sidebar {
+  bottom: $lte-app-footer-height-compact;
+}
+
+.control-sidebar-push-slide {
+  .content-wrapper,
+  .main-footer {
+    @include transition(margin-right $lte-transition-speed $lte-transition-fn);
+  }
+}
+
+// Control sidebar open state
+.control-sidebar-open {
+  .control-sidebar {
+    display: block !important;
+
+    &,
+    &::before {
+      right: 0;
+    }
+  }
+
+  &.control-sidebar-push,
+  &.control-sidebar-push-slide {
+    .content-wrapper,
+    .main-footer {
+      margin-right: $lte-control-sidebar-width;
+    }
+  }
+}
+
+// Control sidebar slide over content state
+.control-sidebar-slide-open {
+  .control-sidebar {
+    display: block;
+
+    &,
+    &::before {
+      right: 0;
+      @include transition(right $lte-transition-speed $lte-transition-fn, display $lte-transition-speed $lte-transition-fn);
+    }
+  }
+
+  &.control-sidebar-push,
+  &.control-sidebar-push-slide {
+    .content-wrapper,
+    .main-footer {
+      margin-right: $lte-control-sidebar-width;
+    }
+  }
+}
+
+// Dark skin
+.control-sidebar-dark {
+  background-color: $lte-sidebar-dark-bg;
+
+  &,
+  a,
+  .nav-link {
+    color: $lte-sidebar-dark-color;
+  }
+
+  a:hover {
+    color: $lte-sidebar-dark-hover-color;
+  }
+
+  // Headers and labels
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  label {
+    color: $lte-sidebar-dark-hover-color;
+  }
+
+  // Tabs
+  .nav-tabs {
+    margin-bottom: 5px;
+    background-color: $lte-sidebar-dark-hover-bg;
+    border-bottom: 0;
+
+    .nav-item {
+      margin: 0;
+    }
+
+    .nav-link {
+      position: relative;
+      padding: 10px 20px;
+      text-align: center;
+
+      &,
+      &:hover,
+      &:active,
+      &:focus,
+      &.active {
+        border: 0;
+      }
+
+      &:hover,
+      &:active,
+      &:focus,
+      &.active {
+        color: $lte-sidebar-dark-hover-color;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+      }
+
+      &.active {
+        background-color: $lte-sidebar-dark-bg;
+      }
+    }
+  }
+
+  .tab-pane {
+    padding: 10px 15px;
+  }
+}
+
+// Light skin
+.control-sidebar-light {
+  //  Background
+  background-color: $lte-sidebar-light-bg;
+  border-left: $lte-app-header-bottom-border;
+}

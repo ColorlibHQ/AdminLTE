@@ -41,6 +41,35 @@ $lte-sidebar-submenu-active-color:  $gray-900 !default;
 $lte-sidebar-submenu-active-bg:     rgba($black, .1) !default;
 $lte-sidebar-header-color:          shade-color($gray-800, 5%) !default;
 
+
+// Dark sidebar
+$lte-sidebar-dark-bg: $dark !default;
+$lte-sidebar-dark-hover-bg: rgba(255, 255, 255, .1) !default;
+$lte-sidebar-dark-color: #c2c7d0 !default;
+$lte-sidebar-dark-hover-color: $white !default;
+$lte-sidebar-dark-active-color: $white !default;
+$lte-sidebar-dark-submenu-bg: transparent !default;
+$lte-sidebar-dark-submenu-color: #c2c7d0 !default;
+$lte-sidebar-dark-submenu-hover-color: $white !default;
+$lte-sidebar-dark-submenu-hover-bg: $lte-sidebar-dark-hover-bg !default;
+$lte-sidebar-dark-submenu-active-color: $lte-sidebar-dark-bg !default;
+$lte-sidebar-dark-submenu-active-bg: rgba(255, 255, 255, .9) !default;
+
+
+// Light sidebar
+$lte-sidebar-light-bg: $white !default;
+$lte-sidebar-light-hover-bg: rgba($black, .1) !default;
+$lte-sidebar-light-color: $gray-800 !default;
+$lte-sidebar-light-hover-color: $gray-900 !default;
+$lte-sidebar-light-active-color: $black !default;
+$lte-sidebar-light-submenu-bg: transparent !default;
+$lte-sidebar-light-submenu-color: #777 !default;
+$lte-sidebar-light-submenu-hover-color: $black !default;
+$lte-sidebar-light-submenu-hover-bg: $lte-sidebar-light-hover-bg !default;
+$lte-sidebar-light-submenu-active-color: $lte-sidebar-light-hover-color !default;
+$lte-sidebar-light-submenu-active-bg: $lte-sidebar-light-submenu-hover-bg !default;
+
+
 // SIDEBAR MINI
 // --------------------------------------------------------
 $nav-link-padding-x-compact:      .25rem !default;
@@ -80,6 +109,11 @@ $lte-app-footer-border-top-color:  var(--#{$prefix}border-color) !default;
 $lte-app-footer-border-top:        $lte-app-footer-border-top-width solid $lte-app-footer-border-top-color !default;
 $lte-app-footer-bg:                var(--#{$prefix}body-bg) !default;
 $lte-app-footer-color:             var(--#{$prefix}secondary-color) !default;
+$lte-app-footer-height-inner:      (1rem + ($lte-app-footer-padding * 2)) !default;
+$lte-app-footer-height:            (#{$lte-app-footer-height-inner} + #{$lte-app-footer-border-top-width}) !default;
+$lte-app-footer-height-compact-inner:   (.875rem + ($lte-app-footer-padding-compact * 2)) !default;
+$lte-app-footer-height-compact:         (#{$lte-app-footer-height-compact-inner} + #{$lte-app-footer-border-top-width}) !default;
+
 
 // BRAND LINK
 // --------------------------------------------------------
@@ -116,3 +150,8 @@ $lte-direct-chat-default-msg-border-color: var(--#{$prefix}border-color) !defaul
 $lte-zindex-app-header:          $zindex-fixed + 4 !default;
 $lte-zindex-sidebar:             $zindex-fixed + 8 !default;
 $lte-zindex-sidebar-overlay:     $lte-zindex-sidebar - 1 !default;
+$lte-zindex-control-sidebar:     $zindex-fixed + 1 !default;
+
+// CONTROL SIDEBAR
+// --------------------------------------------------------
+$lte-control-sidebar-width:      $lte-sidebar-width !default;
