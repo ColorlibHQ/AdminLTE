@@ -227,6 +227,15 @@ const htmlPath = convertPathToHtml(path);
             </li>
             <li class="nav-item">
               <a
+                href={htmlPath + "/UI/icons.html"}
+                class:list={["nav-link", page === "icons" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Icons</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
                 href={htmlPath + "/UI/timeline.html"}
                 class:list={["nav-link", page === "timeline" && "active"]}
               >
