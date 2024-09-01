@@ -15,5 +15,12 @@ export default defineConfig({
   integrations: [mdx()],
   srcDir: './src/html',
   cacheDir: './dist/pages',
-  outDir: './dist/pages'
+  outDir: './dist/pages',
+  vite: {
+    server: {
+      watch: {
+        ignored: ['!**/dist/**'],
+      }
+    }
+  }
 })
