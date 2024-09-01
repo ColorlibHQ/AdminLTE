@@ -452,7 +452,6 @@
     /* stylelint-disable-next-line scss/selector-no-union-class-name */
     &#{$infix} {
       @include media-breakpoint-up($next) {
-        &.layout-fixed-complete,
         &.layout-fixed {
           .app-main-wrapper {
             display: flex;
@@ -477,11 +476,7 @@
             }
           }
         }
-        &.layout-fixed-complete {
-          .app-main-wrapper {
-            max-height: 100vh;
-          }
-        }
+
         &.sidebar-open {
           .nav-link > .nav-badge,
           .nav-link > p > .nav-badge {
