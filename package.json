@@ -88,7 +88,7 @@
     "rimraf": "^6.0.1",
     "rollup": "^4.22.4",
     "rtlcss": "^4.3.0",
-    "sass": "^1.80.4",
+    "sass": "^1.80.6",
     "stylelint": "^16.9.0",
     "stylelint-config-twbs-bootstrap": "^14.2.0",
     "terser": "^5.31.6",
