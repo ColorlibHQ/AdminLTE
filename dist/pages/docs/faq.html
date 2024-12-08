@@ -44,6 +44,23 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../../../dist/css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
+    <style>
+      [data-astro-image] {
+        width: 100%;
+        height: auto;
+        object-fit: var(--fit);
+        object-position: var(--pos);
+        aspect-ratio: var(--w) / var(--h);
+      }
+      [data-astro-image='responsive'] {
+        max-width: calc(var(--w) * 1px);
+        max-height: calc(var(--h) * 1px);
+      }
+      [data-astro-image='fixed'] {
+        width: calc(var(--w) * 1px);
+        height: calc(var(--h) * 1px);
+      }
+    </style>
   </head>
   <!--end::Head-->
   <!--begin::Body-->
