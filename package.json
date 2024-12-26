@@ -92,6 +92,6 @@
     "stylelint-config-twbs-bootstrap": "^15.1.0",
     "terser": "^5.31.6",
     "tslib": "^2.8.1",
-    "typescript": "^5.6.3"
+    "typescript": "^5.7.2"
   }
 }
