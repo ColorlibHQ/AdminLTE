@@ -60,7 +60,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/mdx": "^4.0.1",
-    "@rollup/plugin-typescript": "^12.1.1",
+    "@rollup/plugin-typescript": "^12.1.2",
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@typescript-eslint/parser": "^7.5.0",
     "astro": "^5.0.3",
@@ -85,7 +85,7 @@
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "rimraf": "^6.0.1",
-    "rollup": "^4.28.1",
+    "rollup": "^4.29.1",
     "rtlcss": "^4.3.0",
     "sass": "^1.78.0",
     "stylelint": "^16.11.0",
