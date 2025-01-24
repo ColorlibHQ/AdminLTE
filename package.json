@@ -59,7 +59,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/mdx": "^4.0.1",
+    "@astrojs/mdx": "^4.0.6",
     "@rollup/plugin-typescript": "^12.1.1",
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@typescript-eslint/parser": "^7.5.0",
