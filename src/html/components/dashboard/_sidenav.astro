@@ -163,6 +163,33 @@ const htmlPath = convertPathToHtml(path);
             </li>
             <li class="nav-item">
               <a
+                href={htmlPath + "/layout/fixed-header.html"}
+                class:list={["nav-link", page === "fixed-header" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Fixed Header</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/layout/fixed-footer.html"}
+                class:list={["nav-link", page === "fixed-footer" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Fixed Footer</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/layout/fixed-complete.html"}
+                class:list={["nav-link", page === "fixed-complete" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Fixed Complete</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
                 href={htmlPath + "/layout/layout-custom-area.html"}
                 class:list={["nav-link", page === "layout-custom-area" && "active"]}
               >

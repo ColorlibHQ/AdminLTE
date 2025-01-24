@@ -13,3 +13,11 @@
   border-top: $lte-app-footer-border-top;
   @include transition($lte-transition-speed $lte-transition-fn);
 }
+
+.fixed-footer {
+  .app-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: $lte-zindex-fixed-footer;
+  }
+}

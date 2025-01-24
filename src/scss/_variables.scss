@@ -58,6 +58,7 @@ $lte-app-header-bottom-border:        $lte-app-header-bottom-border-width solid 
 $lte-app-header-link-padding-y:       $navbar-padding-y !default;
 $lte-app-header-height:               ($nav-link-height + ($lte-app-header-link-padding-y * 2)) !default;
 $lte-app-header-height-compact:       ($nav-link-height-compact + ($lte-app-header-link-padding-y * 2)) !default;
+$lte-zindex-fixed-header:           $zindex-fixed !default;
 
 // APP MAIN
 // --------------------------------------------------------
@@ -77,7 +78,7 @@ $lte-app-footer-border-top-color:  var(--#{$prefix}border-color) !default;
 $lte-app-footer-border-top:        $lte-app-footer-border-top-width solid $lte-app-footer-border-top-color !default;
 $lte-app-footer-bg:                var(--#{$prefix}body-bg) !default;
 $lte-app-footer-color:             var(--#{$prefix}secondary-color) !default;
-
+$lte-zindex-fixed-footer:         $zindex-fixed !default;
 // CONTENT BOTTOM AREA
 // --------------------------------------------------------
 $lte-app-content-bottom-area-margin-bottom: -$lte-app-main-padding-bottom !default;
