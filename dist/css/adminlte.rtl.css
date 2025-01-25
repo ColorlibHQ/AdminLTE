@@ -12942,6 +12942,13 @@ textarea.form-control-lg {
   font-weight: 400;
 }
 
+.fixed-header .app-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
 .app-sidebar {
   --lte-sidebar-hover-bg: rgba(0, 0, 0, 0.1);
   --lte-sidebar-color: #343a40;
@@ -13865,6 +13872,13 @@ body:not(.app-loaded) .app-footer {
   .app-footer {
     transition: none;
   }
+}
+
+.fixed-footer .app-footer {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  z-index: 1030;
 }
 
 .fs-7 .dropdown-menu {
@@ -15349,4 +15363,5 @@ html.maximized-card {
 .img-size-32 {
   width: 32px;
 }
+
 /*# sourceMappingURL=adminlte.rtl.css.map */
