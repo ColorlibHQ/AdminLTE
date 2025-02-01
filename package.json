@@ -80,7 +80,7 @@
     "lockfile-lint": "^4.14.0",
     "nodemon": "^3.1.9",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.4.43",
+    "postcss": "^8.5.1",
     "postcss-cli": "^11.0.0",
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1",
