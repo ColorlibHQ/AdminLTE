@@ -44,23 +44,6 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../../../dist/css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
-    <style>
-      [data-astro-image] {
-        width: 100%;
-        height: auto;
-        object-fit: var(--fit);
-        object-position: var(--pos);
-        aspect-ratio: var(--w) / var(--h);
-      }
-      [data-astro-image='responsive'] {
-        max-width: calc(var(--w) * 1px);
-        max-height: calc(var(--h) * 1px);
-      }
-      [data-astro-image='fixed'] {
-        width: calc(var(--w) * 1px);
-        height: calc(var(--h) * 1px);
-      }
-    </style>
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -383,6 +366,24 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a href="../layout/fixed-header.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Fixed Header</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../layout/fixed-footer.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Fixed Footer</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../layout/fixed-complete.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Fixed Complete</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="../layout/layout-custom-area.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Layout <small>+ Custom Area </small></p>
@@ -398,6 +399,14 @@
                     <a href="../layout/collapsed-sidebar.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Sidebar Mini <small>+ Collapsed</small></p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../layout/collapsed-sidebar-without-hover.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>
+                        Sidebar Mini <small>+ Collapsed<br />+ Without hover</small>
+                      </p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -772,8 +781,7 @@
             ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span></span>
 <span class="line"><span style="color:#9CDCFE">  src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-beta3/dist/js/adminlte.min.js&quot;</span></span>
 <span class="line"><span style="color:#9CDCFE">  crossorigin</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;anonymous&quot;</span></span>
-<span class="line"><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
-<span class="line"></span></code></pre>
+<span class="line"><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span></code></pre>
             <pre
               class="astro-code dark-plus"
               style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
@@ -783,8 +791,7 @@
 <span class="line"><span style="color:#9CDCFE">  rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span></span>
 <span class="line"><span style="color:#9CDCFE">  href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-beta3/dist/css/adminlte.min.css&quot;</span></span>
 <span class="line"><span style="color:#9CDCFE">  crossorigin</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;anonymous&quot;</span></span>
-<span class="line"><span style="color:#808080">/&gt;</span></span>
-<span class="line"></span></code></pre>
+<span class="line"><span style="color:#808080">/&gt;</span></span></code></pre>
             <h3 id="using-the-command-line">Using The Command Line:</h3>
             <p>
               <em
@@ -798,32 +805,28 @@
               style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
               tabindex="0"
               data-language="bash"
-            ><code><span class="line"><span style="color:#DCDCAA">npm</span><span style="color:#CE9178"> install</span><span style="color:#CE9178"> admin-lte@4.0.0-beta3</span><span style="color:#569CD6"> --save</span></span>
-<span class="line"></span></code></pre>
+            ><code><span class="line"><span style="color:#DCDCAA">npm</span><span style="color:#CE9178"> install</span><span style="color:#CE9178"> admin-lte@4.0.0-beta3</span><span style="color:#569CD6"> --save</span></span></code></pre>
             <h4 id="via-yarn">Via Yarn</h4>
             <pre
               class="astro-code dark-plus"
               style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
               tabindex="0"
               data-language="bash"
-            ><code><span class="line"><span style="color:#DCDCAA">yarn</span><span style="color:#CE9178"> add</span><span style="color:#CE9178"> admin-lte@4.0.0-beta3</span></span>
-<span class="line"></span></code></pre>
+            ><code><span class="line"><span style="color:#DCDCAA">yarn</span><span style="color:#CE9178"> add</span><span style="color:#CE9178"> admin-lte@4.0.0-beta3</span></span></code></pre>
             <h4 id="via-composer">Via Composer</h4>
             <pre
               class="astro-code dark-plus"
               style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
               tabindex="0"
               data-language="bash"
-            ><code><span class="line"><span style="color:#DCDCAA">composer</span><span style="color:#CE9178"> require</span><span style="color:#CE9178"> &quot;almasaeed2010/adminlte=4.0.0-beta3&quot;</span></span>
-<span class="line"></span></code></pre>
+            ><code><span class="line"><span style="color:#DCDCAA">composer</span><span style="color:#CE9178"> require</span><span style="color:#CE9178"> &quot;almasaeed2010/adminlte=4.0.0-beta3&quot;</span></span></code></pre>
             <h4 id="via-git">Via Git</h4>
             <pre
               class="astro-code dark-plus"
               style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
               tabindex="0"
               data-language="bash"
-            ><code><span class="line"><span style="color:#DCDCAA">git</span><span style="color:#CE9178"> clone</span><span style="color:#CE9178"> https://github.com/ColorlibHQ/AdminLTE.git</span></span>
-<span class="line"></span></code></pre>
+            ><code><span class="line"><span style="color:#DCDCAA">git</span><span style="color:#CE9178"> clone</span><span style="color:#CE9178"> https://github.com/ColorlibHQ/AdminLTE.git</span></span></code></pre>
           </div>
           <!--end::Container-->
         </div>
@@ -837,7 +840,7 @@
         <!--end::To the end-->
         <!--begin::Copyright-->
         <strong>
-          Copyright &copy; 2014-2024&nbsp;
+          Copyright &copy; 2014-2025&nbsp;
           <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
         </strong>
         All rights reserved.

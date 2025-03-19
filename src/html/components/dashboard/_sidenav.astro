@@ -220,6 +220,18 @@ const htmlPath = convertPathToHtml(path);
             </li>
             <li class="nav-item">
               <a
+                href={htmlPath + "/layout/collapsed-sidebar-without-hover.html"}
+                class:list={[
+                  "nav-link",
+                  page === "collapsed-sidebar-without-hover" && "active",
+                ]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Sidebar Mini <small>+ Collapsed<br>+ Without hover</small></p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
                 href={htmlPath + "/layout/logo-switch.html"}
                 class:list={["nav-link", page === "logo-switch" && "active"]}
               >

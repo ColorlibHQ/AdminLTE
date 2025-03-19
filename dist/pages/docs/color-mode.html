@@ -44,23 +44,6 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../../../dist/css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
-    <style>
-      [data-astro-image] {
-        width: 100%;
-        height: auto;
-        object-fit: var(--fit);
-        object-position: var(--pos);
-        aspect-ratio: var(--w) / var(--h);
-      }
-      [data-astro-image='responsive'] {
-        max-width: calc(var(--w) * 1px);
-        max-height: calc(var(--h) * 1px);
-      }
-      [data-astro-image='fixed'] {
-        width: calc(var(--w) * 1px);
-        height: calc(var(--h) * 1px);
-      }
-    </style>
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -383,6 +366,24 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a href="../layout/fixed-header.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Fixed Header</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../layout/fixed-footer.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Fixed Footer</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../layout/fixed-complete.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Fixed Complete</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="../layout/layout-custom-area.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Layout <small>+ Custom Area </small></p>
@@ -398,6 +399,14 @@
                     <a href="../layout/collapsed-sidebar.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Sidebar Mini <small>+ Collapsed</small></p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../layout/collapsed-sidebar-without-hover.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>
+                        Sidebar Mini <small>+ Collapsed<br />+ Without hover</small>
+                      </p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -934,8 +943,7 @@
 <span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#6A9955">  &lt;!--end::Container--&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">nav</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#6A9955">&lt;!--end::Header--&gt;</span></span>
-<span class="line"></span></code></pre>
+<span class="line"><span style="color:#6A9955">&lt;!--end::Header--&gt;</span></span></code></pre>
                 <pre
                   class="astro-code dark-plus"
                   style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
@@ -1020,8 +1028,7 @@
 <span class="line"><span style="color:#D4D4D4">      });</span></span>
 <span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"><span style="color:#D4D4D4">  });</span></span>
-<span class="line"><span style="color:#D4D4D4">})();</span></span>
-<span class="line"></span></code></pre>
+<span class="line"><span style="color:#D4D4D4">})();</span></span></code></pre>
               </div>
             </div>
             <!--end::Row-->
@@ -1038,7 +1045,7 @@
         <!--end::To the end-->
         <!--begin::Copyright-->
         <strong>
-          Copyright &copy; 2014-2024&nbsp;
+          Copyright &copy; 2014-2025&nbsp;
           <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
         </strong>
         All rights reserved.

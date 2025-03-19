@@ -530,6 +530,79 @@
                   <!--end::Card Footer-->
                 </div>
                 <!--end::Card-->
+                <!--begin::Card-->
+                <div class="card mt-4">
+                  <!--begin::Card Header-->
+                  <div class="card-header">
+                    <!--begin::Card Title-->
+                    <h3 class="card-title">Footer Theme</h3>
+                    <!--end::Card Title-->
+                    <!--begin::Card Toolbar-->
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+                        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-toggle="card-remove"
+                        title="Remove"
+                      >
+                        <i class="bi bi-x-lg"></i>
+                      </button>
+                    </div>
+                    <!--end::Card Toolbar-->
+                  </div>
+                  <!--end::Card Header-->
+                  <!--begin::Card Body-->
+                  <div class="card-body">
+                    <!--begin::Row-->
+                    <div class="row">
+                      <!--begin::Col-->
+                      <div class="col-md-3">
+                        <select
+                          id="footer-color-modes"
+                          class="form-select form-select-lg"
+                          aria-label="Footer Color Mode Select"
+                        >
+                          <option value="">---Select---</option>
+                          <option value="dark">Dark</option>
+                          <option value="light">Light</option>
+                        </select>
+                      </div>
+                      <!--end::Col-->
+                      <!--begin::Col-->
+                      <div class="col-md-3">
+                        <select
+                          id="footer-color"
+                          class="form-select form-select-lg"
+                          aria-label="Footer Color Select"
+                        >
+                          <option value="">---Select---</option>
+                        </select>
+                      </div>
+                      <!--end::Col-->
+                      <!--begin::Col-->
+                      <div class="col-md-6"><div id="footer-color-code" class="w-100"></div></div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Row-->
+                  </div>
+                  <!--end::Card Body-->
+                  <!--begin::Card Footer-->
+                  <div class="card-footer">
+                    Check more color in
+                    <a
+                      href="https://getbootstrap.com/docs/5.3/utilities/background/"
+                      target="_blank"
+                      class="link-primary"
+                      >Bootstrap Background Colors</a
+                    >
+                  </div>
+                  <!--end::Card Footer-->
+                </div>
+                <!--end::Card-->
               </div>
               <!--end::Col-->
             </div>
@@ -547,7 +620,7 @@
         <!--end::To the end-->
         <!--begin::Copyright-->
         <strong>
-          Copyright &copy; 2014-2024&nbsp;
+          Copyright &copy; 2014-2025&nbsp;
           <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
         </strong>
         All rights reserved.
@@ -728,6 +801,71 @@
           }
 
           updateNavbar();
+        });
+      });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const appFooter = document.querySelector('.app-footer');
+        const footerColorModes = document.querySelector('#footer-color-modes');
+        const footerColor = document.querySelector('#footer-color');
+        const footerColorCode = document.querySelector('#footer-color-code');
+
+        const themeBg = [
+          'bg-primary',
+          'bg-primary-subtle',
+          'bg-secondary',
+          'bg-secondary-subtle',
+          'bg-success',
+          'bg-success-subtle',
+          'bg-danger',
+          'bg-danger-subtle',
+          'bg-warning',
+          'bg-warning-subtle',
+          'bg-info',
+          'bg-info-subtle',
+          'bg-light',
+          'bg-light-subtle',
+          'bg-dark',
+          'bg-dark-subtle',
+          'bg-body-secondary',
+          'bg-body-tertiary',
+          'bg-body',
+          'bg-black',
+          'bg-white',
+          'bg-transparent',
+        ];
+
+        // loop through each option themeBg array
+        document.querySelector('#footer-color').innerHTML = themeBg.map((bg) => {
+          // return option element with value and text
+          return `<option value="${bg}" class="text-${bg}">${bg}</option>`;
+        });
+
+        let footerColorMode = '';
+        let footerBg = '';
+
+        function updateFooter() {
+          appFooter.setAttribute('data-bs-theme', footerColorMode);
+          footerColorCode.innerHTML = `<pre><code class="language-html">&lt;footer class="app-footer ${footerBg}" data-bs-theme="${footerColorMode}"&gt;...&lt;/footer&gt;</code></pre>`;
+        }
+
+        footerColorModes.addEventListener('input', (event) => {
+          footerColorMode = event.target.value;
+          updateFooter();
+        });
+
+        footerColor.addEventListener('input', (event) => {
+          footerBg = event.target.value;
+
+          themeBg.forEach((className) => {
+            appFooter.classList.remove(className);
+          });
+
+          if (themeBg.includes(footerBg)) {
+            appFooter.classList.add(footerBg);
+          }
+
+          updateFooter();
         });
       });
     </script>

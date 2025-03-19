@@ -12968,6 +12968,13 @@ textarea.form-control-lg {
   font-weight: 400;
 }
 
+.fixed-header .app-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
 .app-sidebar {
   --lte-sidebar-hover-bg: rgba(0, 0, 0, 0.1);
   --lte-sidebar-color: #343a40;
@@ -13292,19 +13299,19 @@ textarea.form-control-lg {
   animation-duration: 0.3s;
   animation-fill-mode: both;
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover {
   min-width: var(--lte-sidebar-width);
   max-width: var(--lte-sidebar-width);
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .sidebar-menu .nav-header {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .sidebar-menu .nav-header {
   display: inline-block;
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .sidebar-menu .nav-link {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .sidebar-menu .nav-link {
   width: auto;
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .sidebar-menu .nav-link p,
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .brand-text,
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .logo-xl {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .sidebar-menu .nav-link p,
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .brand-text,
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .logo-xl {
   width: auto;
   margin-left: 0;
   visibility: visible;
@@ -13312,7 +13319,7 @@ textarea.form-control-lg {
   animation-duration: 0.3s;
   animation-fill-mode: both;
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .brand-text {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .brand-text {
   display: inline;
   max-width: inherit;
   margin-left: 0.5rem;
@@ -13320,8 +13327,8 @@ textarea.form-control-lg {
   animation-duration: 0.3s;
   animation-fill-mode: both;
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .nav-badge,
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .nav-arrow {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .nav-badge,
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .nav-arrow {
   display: inline-block;
   visibility: visible;
   animation-name: fadeIn;
@@ -13329,10 +13336,10 @@ textarea.form-control-lg {
   animation-fill-mode: both;
   animation-delay: 0.3s;
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .nav-link p {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .nav-link p {
   padding-left: 0.5rem;
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .logo-xs {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .logo-xs {
   visibility: hidden;
   animation-name: fadeOut;
   animation-duration: 0.3s;
@@ -13891,6 +13898,13 @@ body:not(.app-loaded) .app-footer {
   .app-footer {
     transition: none;
   }
+}
+
+.fixed-footer .app-footer {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  z-index: 1030;
 }
 
 .fs-7 .dropdown-menu {
