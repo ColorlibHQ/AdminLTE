@@ -64,7 +64,7 @@
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@typescript-eslint/parser": "^7.5.0",
     "astro": "^5.1.7",
-    "autoprefixer": "^10.4.20",
+    "autoprefixer": "^10.4.21",
     "bootstrap": "^5.3.2",
     "bundlewatch": "^0.4.0",
     "clean-css-cli": "^5.6.3",
