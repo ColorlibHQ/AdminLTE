@@ -134,7 +134,7 @@ const htmlPath = convertPathToHtml(path);
             <p>
               Layout Options
               <span class="nav-badge badge text-bg-secondary me-3"
-              >6</span
+              >7</span
               >
               <i class="nav-arrow bi bi-chevron-right"></i>
             </p>
@@ -216,6 +216,18 @@ const htmlPath = convertPathToHtml(path);
               >
                 <i class="nav-icon bi bi-circle"></i>
                 <p>Sidebar Mini <small>+ Collapsed</small></p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/layout/collapsed-sidebar-without-hover.html"}
+                class:list={[
+                  "nav-link",
+                  page === "collapsed-sidebar-without-hover" && "active",
+                ]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Sidebar Mini <small>+ Collapsed<br>+ Without hover</small></p>
               </a>
             </li>
             <li class="nav-item">

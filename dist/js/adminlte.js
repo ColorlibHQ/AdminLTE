@@ -1,6 +1,6 @@
 /*!
  * AdminLTE v4.0.0-beta3 (https://adminlte.io)
- * Copyright 2014-2024 Colorlib <https://colorlib.com>
+ * Copyright 2014-2025 Colorlib <https://colorlib.com>
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
 (function (global, factory) {
@@ -175,7 +175,7 @@
                 navTree.style.removeProperty('height');
             });
             const navSidebar = document.querySelector(SELECTOR_SIDEBAR_MENU);
-            const navItem = navSidebar === null || navSidebar === void 0 ? void 0 : navSidebar.querySelectorAll(SELECTOR_NAV_ITEM$1);
+            const navItem = navSidebar === null || navSidebar === undefined ? undefined : navSidebar.querySelectorAll(SELECTOR_NAV_ITEM$1);
             if (navItem) {
                 navItem.forEach(navI => {
                     navI.classList.remove(CLASS_NAME_MENU_OPEN$1);
@@ -196,8 +196,8 @@
         }
         addSidebarBreakPoint() {
             var _a, _b, _c;
-            const sidebarExpandList = (_b = (_a = document.querySelector(SELECTOR_SIDEBAR_EXPAND)) === null || _a === void 0 ? void 0 : _a.classList) !== null && _b !== void 0 ? _b : [];
-            const sidebarExpand = (_c = Array.from(sidebarExpandList).find(className => className.startsWith(CLASS_NAME_SIDEBAR_EXPAND))) !== null && _c !== void 0 ? _c : '';
+            const sidebarExpandList = (_b = (_a = document.querySelector(SELECTOR_SIDEBAR_EXPAND)) === null || _a === undefined ? undefined : _a.classList) !== null && _b !== undefined ? _b : [];
+            const sidebarExpand = (_c = Array.from(sidebarExpandList).find(className => className.startsWith(CLASS_NAME_SIDEBAR_EXPAND))) !== null && _c !== undefined ? _c : '';
             const sidebar = document.getElementsByClassName(sidebarExpand)[0];
             const sidebarContent = window.getComputedStyle(sidebar, '::before').getPropertyValue('content');
             this._config = Object.assign(Object.assign({}, this._config), { sidebarBreakpoint: Number(sidebarContent.replace(/[^\d.-]/g, '')) });
@@ -232,7 +232,7 @@
      */
     onDOMContentLoaded(() => {
         var _a;
-        const sidebar = document === null || document === void 0 ? void 0 : document.querySelector(SELECTOR_APP_SIDEBAR);
+        const sidebar = document === null || document === undefined ? undefined : document.querySelector(SELECTOR_APP_SIDEBAR);
         if (sidebar) {
             const data = new PushMenu(sidebar, Defaults);
             data.init();
@@ -242,7 +242,7 @@
         }
         const sidebarOverlay = document.createElement('div');
         sidebarOverlay.className = CLASS_NAME_SIDEBAR_OVERLAY;
-        (_a = document.querySelector(SELECTOR_APP_WRAPPER)) === null || _a === void 0 ? void 0 : _a.append(sidebarOverlay);
+        (_a = document.querySelector(SELECTOR_APP_WRAPPER)) === null || _a === undefined ? undefined : _a.append(sidebarOverlay);
         sidebarOverlay.addEventListener('touchstart', event => {
             event.preventDefault();
             const target = event.currentTarget;
@@ -260,11 +260,11 @@
             btn.addEventListener('click', event => {
                 event.preventDefault();
                 let button = event.currentTarget;
-                if ((button === null || button === void 0 ? void 0 : button.dataset.lteToggle) !== 'sidebar') {
-                    button = button === null || button === void 0 ? void 0 : button.closest(SELECTOR_SIDEBAR_TOGGLE);
+                if ((button === null || button === undefined ? undefined : button.dataset.lteToggle) !== 'sidebar') {
+                    button = button === null || button === undefined ? undefined : button.closest(SELECTOR_SIDEBAR_TOGGLE);
                 }
                 if (button) {
-                    event === null || event === void 0 ? void 0 : event.preventDefault();
+                    event === null || event === undefined ? undefined : event.preventDefault();
                     const data = new PushMenu(button, Defaults);
                     data.toggle();
                 }
@@ -312,11 +312,11 @@
             var _a, _b;
             const event = new Event(EVENT_EXPANDED$2);
             if (this._config.accordion) {
-                const openMenuList = (_a = this._element.parentElement) === null || _a === void 0 ? void 0 : _a.querySelectorAll(`${SELECTOR_NAV_ITEM}.${CLASS_NAME_MENU_OPEN}`);
-                openMenuList === null || openMenuList === void 0 ? void 0 : openMenuList.forEach(openMenu => {
+                const openMenuList = (_a = this._element.parentElement) === null || _a === undefined ? undefined : _a.querySelectorAll(`${SELECTOR_NAV_ITEM}.${CLASS_NAME_MENU_OPEN}`);
+                openMenuList === null || openMenuList === undefined ? undefined : openMenuList.forEach(openMenu => {
                     if (openMenu !== this._element.parentElement) {
                         openMenu.classList.remove(CLASS_NAME_MENU_OPEN);
-                        const childElement = openMenu === null || openMenu === void 0 ? void 0 : openMenu.querySelector(SELECTOR_TREEVIEW_MENU);
+                        const childElement = openMenu === null || openMenu === undefined ? undefined : openMenu.querySelector(SELECTOR_TREEVIEW_MENU);
                         if (childElement) {
                             slideUp(childElement, this._config.animationSpeed);
                         }
@@ -324,7 +324,7 @@
                 });
             }
             this._element.classList.add(CLASS_NAME_MENU_OPEN);
-            const childElement = (_b = this._element) === null || _b === void 0 ? void 0 : _b.querySelector(SELECTOR_TREEVIEW_MENU);
+            const childElement = (_b = this._element) === null || _b === undefined ? undefined : _b.querySelector(SELECTOR_TREEVIEW_MENU);
             if (childElement) {
                 slideDown(childElement, this._config.animationSpeed);
             }
@@ -334,7 +334,7 @@
             var _a;
             const event = new Event(EVENT_COLLAPSED$2);
             this._element.classList.remove(CLASS_NAME_MENU_OPEN);
-            const childElement = (_a = this._element) === null || _a === void 0 ? void 0 : _a.querySelector(SELECTOR_TREEVIEW_MENU);
+            const childElement = (_a = this._element) === null || _a === undefined ? undefined : _a.querySelector(SELECTOR_TREEVIEW_MENU);
             if (childElement) {
                 slideUp(childElement, this._config.animationSpeed);
             }
@@ -361,7 +361,7 @@
                 const target = event.target;
                 const targetItem = target.closest(SELECTOR_NAV_ITEM);
                 const targetLink = target.closest(SELECTOR_NAV_LINK);
-                if ((target === null || target === void 0 ? void 0 : target.getAttribute('href')) === '#' || (targetLink === null || targetLink === void 0 ? void 0 : targetLink.getAttribute('href')) === '#') {
+                if ((target === null || target === undefined ? undefined : target.getAttribute('href')) === '#' || (targetLink === null || targetLink === undefined ? undefined : targetLink.getAttribute('href')) === '#') {
                     event.preventDefault();
                 }
                 if (targetItem) {
@@ -481,7 +481,7 @@
             const event = new Event(EVENT_COLLAPSED);
             if (this._parent) {
                 this._parent.classList.add(CLASS_NAME_COLLAPSING);
-                const elm = (_a = this._parent) === null || _a === void 0 ? void 0 : _a.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`);
+                const elm = (_a = this._parent) === null || _a === undefined ? undefined : _a.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`);
                 elm.forEach(el => {
                     if (el instanceof HTMLElement) {
                         slideUp(el, this._config.animationSpeed);
@@ -494,14 +494,14 @@
                     }
                 }, this._config.animationSpeed);
             }
-            (_b = this._element) === null || _b === void 0 ? void 0 : _b.dispatchEvent(event);
+            (_b = this._element) === null || _b === undefined ? undefined : _b.dispatchEvent(event);
         }
         expand() {
             var _a, _b;
             const event = new Event(EVENT_EXPANDED);
             if (this._parent) {
                 this._parent.classList.add(CLASS_NAME_EXPANDING);
-                const elm = (_a = this._parent) === null || _a === void 0 ? void 0 : _a.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`);
+                const elm = (_a = this._parent) === null || _a === undefined ? undefined : _a.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`);
                 elm.forEach(el => {
                     if (el instanceof HTMLElement) {
                         slideDown(el, this._config.animationSpeed);
@@ -514,7 +514,7 @@
                     }
                 }, this._config.animationSpeed);
             }
-            (_b = this._element) === null || _b === void 0 ? void 0 : _b.dispatchEvent(event);
+            (_b = this._element) === null || _b === undefined ? undefined : _b.dispatchEvent(event);
         }
         remove() {
             var _a;
@@ -522,11 +522,11 @@
             if (this._parent) {
                 slideUp(this._parent, this._config.animationSpeed);
             }
-            (_a = this._element) === null || _a === void 0 ? void 0 : _a.dispatchEvent(event);
+            (_a = this._element) === null || _a === undefined ? undefined : _a.dispatchEvent(event);
         }
         toggle() {
             var _a;
-            if ((_a = this._parent) === null || _a === void 0 ? void 0 : _a.classList.contains(CLASS_NAME_COLLAPSED)) {
+            if ((_a = this._parent) === null || _a === undefined ? undefined : _a.classList.contains(CLASS_NAME_COLLAPSED)) {
                 this.expand();
                 return;
             }
@@ -552,7 +552,7 @@
                     }
                 }, 150);
             }
-            (_a = this._element) === null || _a === void 0 ? void 0 : _a.dispatchEvent(event);
+            (_a = this._element) === null || _a === undefined ? undefined : _a.dispatchEvent(event);
         }
         minimize() {
             var _a;
@@ -569,17 +569,17 @@
                     }
                     if (this._parent) {
                         this._parent.classList.remove(CLASS_NAME_MAXIMIZED);
-                        if ((_a = this._parent) === null || _a === void 0 ? void 0 : _a.classList.contains(CLASS_NAME_WAS_COLLAPSED)) {
+                        if ((_a = this._parent) === null || _a === undefined ? undefined : _a.classList.contains(CLASS_NAME_WAS_COLLAPSED)) {
                             this._parent.classList.remove(CLASS_NAME_WAS_COLLAPSED);
                         }
                     }
                 }, 10);
             }
-            (_a = this._element) === null || _a === void 0 ? void 0 : _a.dispatchEvent(event);
+            (_a = this._element) === null || _a === undefined ? undefined : _a.dispatchEvent(event);
         }
         toggleMaximize() {
             var _a;
-            if ((_a = this._parent) === null || _a === void 0 ? void 0 : _a.classList.contains(CLASS_NAME_MAXIMIZED)) {
+            if ((_a = this._parent) === null || _a === undefined ? undefined : _a.classList.contains(CLASS_NAME_MAXIMIZED)) {
                 this.minimize();
                 return;
             }
