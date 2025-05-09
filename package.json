@@ -85,7 +85,7 @@
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1",
     "rimraf": "^6.0.1",
-    "rollup": "^4.32.0",
+    "rollup": "^4.34.8",
     "rtlcss": "^4.3.0",
     "sass": "^1.78.0",
     "stylelint": "^16.12.0",
