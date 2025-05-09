@@ -37,6 +37,8 @@ const SELECTOR_APP_WRAPPER = '.app-wrapper'
 const SELECTOR_SIDEBAR_EXPAND = `[class*="${CLASS_NAME_SIDEBAR_EXPAND}"]`
 const SELECTOR_SIDEBAR_TOGGLE = '[data-lte-toggle="sidebar"]'
 
+const STORAGE_KEY_SIDEBAR_STATE = 'lte.sidebar.state'
+
 type Config = {
   sidebarBreakpoint: number;
 }
@@ -116,16 +118,41 @@ class PushMenu {
     }
   }
 
+  saveSidebarState() {
+    if (document.body.classList.contains(CLASS_NAME_SIDEBAR_OPEN)) {
+      localStorage.setItem(STORAGE_KEY_SIDEBAR_STATE, CLASS_NAME_SIDEBAR_OPEN)
+    } else {
+      localStorage.setItem(STORAGE_KEY_SIDEBAR_STATE, CLASS_NAME_SIDEBAR_COLLAPSE)
+    }
+  }
+
+  loadSidebarState() {
+    let storedSidebarState = localStorage.getItem(STORAGE_KEY_SIDEBAR_STATE)
+
+    if (storedSidebarState === null) {
+      storedSidebarState = CLASS_NAME_SIDEBAR_OPEN
+    }
+
+    if (storedSidebarState === CLASS_NAME_SIDEBAR_COLLAPSE) {
+      this.collapse()
+    } else {
+      this.expand()
+    }
+  }
+
   toggle() {
     if (document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
       this.expand()
+      this.saveSidebarState()
     } else {
       this.collapse()
+      this.saveSidebarState()
     }
   }
 
   init() {
     this.addSidebarBreakPoint()
+    this.loadSidebarState()
   }
 }
 
