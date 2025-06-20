@@ -5,13 +5,13 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.0.0-rc1] - 2025-12-20
+## [4.0.0-rc1] - 2025-06-20
 
-### 🎉 Major Modernization Release
+### Major Modernization Release
 
 This release represents a complete modernization of the AdminLTE codebase, bringing it up to current standards with the latest tooling, dependencies, and best practices.
 
-### 🔧 **Infrastructure & Tooling**
+### Infrastructure & Tooling
 
 #### Added
 - **New npm scripts for better developer experience:**
@@ -28,7 +28,7 @@ This release represents a complete modernization of the AdminLTE codebase, bring
 - **Astro configuration:** Added `output: 'static'` for proper static site generation
 - **Build optimizations:** Enhanced Rollup and PostCSS configurations for ES modules
 
-### 📦 **Dependencies**
+### Dependencies
 
 #### Updated
 - **Major version upgrades:**
@@ -49,7 +49,7 @@ This release represents a complete modernization of the AdminLTE codebase, bring
   - `prettier`: 3.3.3 → 3.5.3
   - And many more...
 
-### 🛡️ **Security & Quality**
+### Security & Quality
 
 #### Fixed
 - **Resolved all npm security vulnerabilities** (0 vulnerabilities remaining)
@@ -61,7 +61,7 @@ This release represents a complete modernization of the AdminLTE codebase, bring
 - **Bundle optimization:** All assets pass bundlewatch size thresholds
 - **Build reliability:** Complete production build pipeline works end-to-end
 
-### 🧹 **Code Cleanup**
+### Code Cleanup
 
 #### Removed
 - **Technical debt cleanup:**
@@ -74,7 +74,7 @@ This release represents a complete modernization of the AdminLTE codebase, bring
 - **Module import issues** with JSON imports in ES modules
 - **Circular dependency warnings** in build tools
 
-### 📋 **Development Experience**
+### Development Experience
 
 #### Enhanced
 - **Faster development startup** with optimized watch tasks
@@ -82,7 +82,7 @@ This release represents a complete modernization of the AdminLTE codebase, bring
 - **Better error reporting** with modern linting tools
 - **Improved script organization** with consistent naming conventions
 
-### 💻 **Browser & Platform Support**
+### Browser & Platform Support
 
 #### Maintained
 - **Full Bootstrap 5.3.7 compatibility**

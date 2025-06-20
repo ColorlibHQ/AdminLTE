@@ -9,16 +9,16 @@
 **AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 5](https://getbootstrap.com/)** framework and also the JavaScript plugins.
 Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.
 
-## ✨ What's New in v4.0.0-rc1
+## What's New in v4.0.0-rc1
 
-🚀 **Major Modernization Release** - AdminLTE has been completely modernized with:
+**Major Modernization Release** - AdminLTE has been completely modernized with:
 
-- **🔒 Zero Security Vulnerabilities** - All dependencies updated and vulnerabilities resolved
-- **⚡ Modern Tooling** - ESLint v9, Astro 5.x, latest Stylelint and build tools
-- **🛠️ Better Developer Experience** - New `npm start` command, improved scripts, cleaner builds
-- **📦 Latest Dependencies** - Bootstrap 5.3.7, Node.js ES modules, 50+ package updates
-- **🧹 Code Quality** - Zero linting errors, removed technical debt, standardized formatting
-- **🎯 Future-Ready** - Modern configuration patterns, optimal bundle sizes, enhanced maintainability
+- **Zero Security Vulnerabilities** - All dependencies updated and vulnerabilities resolved
+- **Modern Tooling** - ESLint v9, Astro 5.x, latest Stylelint and build tools
+- **Better Developer Experience** - New `npm start` command, improved scripts, cleaner builds
+- **Latest Dependencies** - Bootstrap 5.3.7, Node.js ES modules, 50+ package updates
+- **Code Quality** - Zero linting errors, removed technical debt, standardized formatting
+- **Future-Ready** - Modern configuration patterns, optimal bundle sizes, enhanced maintainability
 
 See the [CHANGELOG.md](CHANGELOG.md) for complete details.
 
