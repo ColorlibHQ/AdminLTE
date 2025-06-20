@@ -31,8 +31,10 @@ const htmlPath = convertPathToHtml(path);
       <ul
         class="nav sidebar-menu flex-column"
         data-lte-toggle="treeview"
-        role="menu"
+        role="navigation"
+        aria-label="Main navigation"
         data-accordion="false"
+        id="navigation"
       >
         <li class:list={["nav-item", mainPage === "dashboard" && "menu-open"]}>
           <a

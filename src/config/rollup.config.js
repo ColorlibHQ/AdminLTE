@@ -16,5 +16,10 @@ export default {
     banner,
     name: 'adminlte'
   },
-  plugins: [typescript()]
+  plugins: [
+    typescript({
+      tsconfig: './tsconfig.json',
+      sourceMap: true
+    })
+  ]
 }

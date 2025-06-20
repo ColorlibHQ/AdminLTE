@@ -1,11 +1,16 @@
 # https://github.com/browserslist/browserslist#readme
+# Updated for ES2022 compatibility
 
 >= 0.5%
 last 2 major versions
 not dead
-Chrome >= 60
-Firefox >= 60
+Chrome >= 97
+Firefox >= 104
 Firefox ESR
-iOS >= 12
-Safari >= 12
+iOS >= 15.4
+Safari >= 15.4
+Edge >= 97
 not Explorer <= 11
+not ie 11
+not android 4.4.3
+not ios_saf < 15.4

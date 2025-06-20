@@ -17,6 +17,35 @@ const onDOMContentLoaded = (callback: () => void): void => {
   }
 }
 
+/* ES2022 UTILITY FUNCTIONS */
+
+/**
+ * Check if an element has a specific data attribute using ES2022 Object.hasOwn()
+ */
+const hasDataAttribute = (element: HTMLElement, attribute: string): boolean => {
+  return Object.hasOwn(element.dataset, attribute)
+}
+
+/**
+ * Get the last element from a NodeList using ES2022 Array.at()
+ */
+const getLastElement = <T extends Element>(elements: NodeListOf<T> | T[]): T | undefined => {
+  const elementsArray = Array.from(elements)
+  return elementsArray.at(-1)
+}
+
+/**
+ * Safe property access with better error handling
+ */
+const safePropertyAccess = (obj: Record<string, unknown>, property: string): unknown => {
+  try {
+    return Object.hasOwn(obj, property) ? obj[property] : undefined
+  } catch (error) {
+    // ES2022 Error cause
+    throw new Error(`Failed to access property '${property}'`, { cause: error })
+  }
+}
+
 /* SLIDE UP */
 const slideUp = (target: HTMLElement, duration = 500) => {
   target.style.transitionProperty = 'height, margin, padding'
@@ -97,5 +126,8 @@ export {
   onDOMContentLoaded,
   slideUp,
   slideDown,
-  slideToggle
+  slideToggle,
+  hasDataAttribute,
+  getLastElement,
+  safePropertyAccess
 }
