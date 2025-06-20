@@ -119,13 +119,24 @@ onDOMContentLoaded(() => {
       const target = event.target as HTMLElement
       const targetItem = target.closest(SELECTOR_NAV_ITEM) as HTMLElement | undefined
       const targetLink = target.closest(SELECTOR_NAV_LINK) as HTMLAnchorElement | undefined
+      const lteToggleElement = event.currentTarget as HTMLElement
 
       if (target?.getAttribute('href') === '#' || targetLink?.getAttribute('href') === '#') {
         event.preventDefault()
       }
 
       if (targetItem) {
-        const data = new Treeview(targetItem, Default)
+        // Read data attributes
+        const accordionAttr = lteToggleElement.dataset.accordion
+        const animationSpeedAttr = lteToggleElement.dataset.animationSpeed
+
+        // Build config from data attributes, fallback to Default
+        const config: Config = {
+          accordion: accordionAttr === undefined ? Default.accordion : accordionAttr === 'true',
+          animationSpeed: animationSpeedAttr === undefined ? Default.animationSpeed : Number(animationSpeedAttr)
+        }
+
+        const data = new Treeview(targetItem, config)
         data.toggle()
       }
     })
