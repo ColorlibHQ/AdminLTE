@@ -9,6 +9,19 @@
 **AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 5](https://getbootstrap.com/)** framework and also the JavaScript plugins.
 Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.
 
+## ✨ What's New in v4.0.0-rc1
+
+🚀 **Major Modernization Release** - AdminLTE has been completely modernized with:
+
+- **🔒 Zero Security Vulnerabilities** - All dependencies updated and vulnerabilities resolved
+- **⚡ Modern Tooling** - ESLint v9, Astro 5.x, latest Stylelint and build tools
+- **🛠️ Better Developer Experience** - New `npm start` command, improved scripts, cleaner builds
+- **📦 Latest Dependencies** - Bootstrap 5.3.7, Node.js ES modules, 50+ package updates
+- **🧹 Code Quality** - Zero linting errors, removed technical debt, standardized formatting
+- **🎯 Future-Ready** - Modern configuration patterns, optimal bundle sizes, enhanced maintainability
+
+See the [CHANGELOG.md](CHANGELOG.md) for complete details.
+
 ## Looking for Premium Templates?
 
 AdminLTE.io just opened a new premium templates page. Hand picked to ensure the best quality and the most affordable
@@ -21,14 +34,37 @@ SCSS has been used to increase code customizability.
 
 ## Quick start
 
-### Compile dist files
+### Development
 
-To compile the dist files you need Node.js/npm, clone/download the repo then:
+To start developing with AdminLTE:
 
-1. `npm install` (install npm deps)
-2. _Optional:_ `npm run dev` (developer mode, autocompile with browsersync support for live demo)
-3. `npm run production` (compile css/js files)
+1. **Install dependencies:** `npm install`
+2. **Start development server:** `npm start` *(opens browser at http://localhost:3000)*
+3. **Start coding!** Files auto-compile and refresh on changes
 
+### Production Build
+
+To build for production:
+
+1. **Full production build:** `npm run production` *(includes linting and optimization)*
+2. **Quick build:** `npm run build` *(faster for development/testing)*
+
+### Available Scripts
+
+- `npm start` - Start development server with file watching
+- `npm run build` - Build all assets for development
+- `npm run production` - Full production build with linting and bundlewatch
+- `npm run lint` - Run all linters (JS, CSS, docs, lockfile)
+- `npm run css` - Build CSS only
+- `npm run js` - Build JavaScript only
+
+## Browser Support
+
+AdminLTE supports all modern browsers with the latest Bootstrap 5.3.7:
+- Chrome (latest)
+- Firefox (latest) 
+- Safari (latest)
+- Edge (latest)
 
 ## Contributing
 
@@ -40,8 +76,8 @@ To compile the dist files you need Node.js/npm, clone/download the repo then:
 - Clone this Repository to your machine and change to `master` branch.
 - Go to Cloned Folder.
 - In cli/bash run `npm install` it will install dependency from `package.json`.
-- After installation completes, run `npm run dev`
-- Cool, Send urs changes in PR to `master` branch.
+- After installation completes, run `npm start`
+- Cool, Send your changes in PR to `master` branch.
 
 ## Sponsorship
 

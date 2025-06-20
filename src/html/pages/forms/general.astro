@@ -1,13 +1,13 @@
 ---
-import Head from "@components/_head.astro";
-import Footer from "@components/dashboard/_footer.astro";
-import Topbar from "@components/dashboard/_topbar.astro";
-import Sidenav from "@components/dashboard/_sidenav.astro";
-import Scripts from "@components/_scripts.astro";
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
 
-const title = "AdminLTE 4 | General Form Elements";
-const path = "../../../dist";
-const mainPage = "forms";
+const title = "AdminLTE 4 | General Form Elements"
+const path = "../../../dist"
+const mainPage = "forms"
 const page = "general";
 ---
 
@@ -84,7 +84,7 @@ const page = "general";
                     <div class="card-body">
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label"
-                          >Email address</label
+                        >Email address</label
                         >
                         <input
                           type="email"
@@ -98,7 +98,7 @@ const page = "general";
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label"
-                          >Password</label
+                        >Password</label
                         >
                         <input
                           type="password"
@@ -113,7 +113,7 @@ const page = "general";
                           id="inputGroupFile02"
                         />
                         <label class="input-group-text" for="inputGroupFile02"
-                          >Upload</label
+                        >Upload</label
                         >
                       </div>
                       <div class="mb-3 form-check">
@@ -123,7 +123,7 @@ const page = "general";
                           id="exampleCheck1"
                         />
                         <label class="form-check-label" for="exampleCheck1"
-                          >Check me out</label
+                        >Check me out</label
                         >
                       </div>
                     </div>
@@ -131,7 +131,7 @@ const page = "general";
                     <!--begin::Footer-->
                     <div class="card-footer">
                       <button type="submit" class="btn btn-primary"
-                        >Submit</button
+                      >Submit</button
                       >
                     </div>
                     <!--end::Footer-->
@@ -168,17 +168,17 @@ const page = "general";
                         aria-describedby="basic-addon2"
                       />
                       <span class="input-group-text" id="basic-addon2"
-                        >@example.com</span
+                      >@example.com</span
                       >
                     </div>
 
                     <div class="mb-3">
                       <label for="basic-url" class="form-label"
-                        >Your vanity URL</label
+                      >Your vanity URL</label
                       >
                       <div class="input-group">
                         <span class="input-group-text" id="basic-addon3"
-                          >https://example.com/users/</span
+                        >https://example.com/users/</span
                         >
                         <input
                           type="text"
@@ -246,7 +246,7 @@ const page = "general";
                     <div class="card-body">
                       <div class="row mb-3">
                         <label for="inputEmail3" class="col-sm-2 col-form-label"
-                          >Email</label
+                        >Email</label
                         >
                         <div class="col-sm-10">
                           <input
@@ -271,7 +271,7 @@ const page = "general";
                       </div>
                       <fieldset class="row mb-3">
                         <legend class="col-form-label col-sm-2 pt-0"
-                          >Radios</legend
+                        >Radios</legend
                         >
                         <div class="col-sm-10">
                           <div class="form-check">
@@ -333,7 +333,7 @@ const page = "general";
                     <!--begin::Footer-->
                     <div class="card-footer">
                       <button type="submit" class="btn btn-warning"
-                        >Sign in</button
+                      >Sign in</button
                       >
                       <button type="submit" class="btn float-end">Cancel</button
                       >
@@ -440,7 +440,7 @@ const page = "general";
                         <!--begin::Col-->
                         <div class="col-md-6">
                           <label for="validationCustom01" class="form-label"
-                            >First name</label
+                          >First name</label
                           >
                           <input
                             type="text"
@@ -455,7 +455,7 @@ const page = "general";
                         <!--begin::Col-->
                         <div class="col-md-6">
                           <label for="validationCustom02" class="form-label"
-                            >Last name</label
+                          >Last name</label
                           >
                           <input
                             type="text"
@@ -494,7 +494,7 @@ const page = "general";
                         <!--begin::Col-->
                         <div class="col-md-6">
                           <label for="validationCustom03" class="form-label"
-                            >City</label
+                          >City</label
                           >
                           <input
                             type="text"
@@ -510,7 +510,7 @@ const page = "general";
                         <!--begin::Col-->
                         <div class="col-md-6">
                           <label for="validationCustom04" class="form-label"
-                            >State</label
+                          >State</label
                           >
                           <select
                             class="form-select"
@@ -529,7 +529,7 @@ const page = "general";
                         <!--begin::Col-->
                         <div class="col-md-6">
                           <label for="validationCustom05" class="form-label"
-                            >Zip</label
+                          >Zip</label
                           >
                           <input
                             type="text"
@@ -568,7 +568,7 @@ const page = "general";
                     <!--begin::Footer-->
                     <div class="card-footer">
                       <button class="btn btn-info" type="submit"
-                        >Submit form</button
+                      >Submit form</button
                       >
                     </div>
                     <!--end::Footer-->
@@ -578,23 +578,22 @@ const page = "general";
                   <script is:inline>
                     // Example starter JavaScript for disabling form submissions if there are invalid fields
                     (() => {
-                      "use strict";
+                      'use strict';
 
                       // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                      const forms =
-                        document.querySelectorAll(".needs-validation");
+                      const forms = document.querySelectorAll('.needs-validation');
 
                       // Loop over them and prevent submission
-                      Array.from(forms).forEach((form) => {
+                      Array.from(forms).forEach(form => {
                         form.addEventListener(
-                          "submit",
-                          (event) => {
+                          'submit',
+                          event => {
                             if (!form.checkValidity()) {
                               event.preventDefault();
                               event.stopPropagation();
                             }
 
-                            form.classList.add("was-validated");
+                            form.classList.add('was-validated');
                           },
                           false
                         );

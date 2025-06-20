@@ -1,14 +1,14 @@
 ---
-import Head from "@components/_head.astro";
-import Footer from "@components/dashboard/_footer.astro";
-import Topbar from "@components/dashboard/_topbar.astro";
-import Sidenav from "@components/dashboard/_sidenav.astro";
-import Scripts from "@components/_scripts.astro";
-import ColorMode from "@components/docs/color-mode.mdx";
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+import ColorMode from "@components/docs/color-mode.mdx"
 
-const title = "Color Mode | AdminLTE 4";
-const path = "../../../dist";
-const mainPage = "docs";
+const title = "Color Mode | AdminLTE 4"
+const path = "../../../dist"
+const mainPage = "docs"
 const page = "color-mode";
 ---
 
@@ -106,7 +106,7 @@ const page = "color-mode";
                             <i class="my-1"></i>
                           </span>
                           <span class="d-lg-none ms-2" id="bd-theme-text"
-                            >Toggle theme</span
+                          >Toggle theme</span
                           >
                         </button>
                         <ul
@@ -179,94 +179,94 @@ const page = "color-mode";
     <Scripts path={path} />
 
     <script is:inline>
-      // Color Mode Toggler
-      (() => {
-        "use strict";
+// Color Mode Toggler
+(() => {
+  "use strict"
 
-        const storedTheme = localStorage.getItem("theme");
+  const storedTheme = localStorage.getItem("theme")
 
-        const getPreferredTheme = () => {
-          if (storedTheme) {
-            return storedTheme;
-          }
+  const getPreferredTheme = () => {
+    if (storedTheme) {
+      return storedTheme
+    }
 
-          return window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
-        };
+    return globalThis.matchMedia("(prefers-color-scheme: dark)").matches ?
+      "dark" :
+      "light"
+  }
 
-        const setTheme = function (theme) {
-          if (
-            theme === "auto" &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches
-          ) {
-            document.documentElement.setAttribute("data-bs-theme", "dark");
-          } else {
-            document.documentElement.setAttribute("data-bs-theme", theme);
-          }
-        };
+  const setTheme = function (theme) {
+    if (
+      theme === "auto" &&
+            globalThis.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      document.documentElement.setAttribute("data-bs-theme", "dark")
+    } else {
+      document.documentElement.setAttribute("data-bs-theme", theme)
+    }
+  }
 
-        setTheme(getPreferredTheme());
+  setTheme(getPreferredTheme())
 
-        const showActiveTheme = (theme, focus = false) => {
-          const themeSwitcher = document.querySelector("#bd-theme");
+  const showActiveTheme = (theme, focus = false) => {
+    const themeSwitcher = document.querySelector("#bd-theme")
 
-          if (!themeSwitcher) {
-            return;
-          }
+    if (!themeSwitcher) {
+      return
+    }
 
-          const themeSwitcherText = document.querySelector("#bd-theme-text");
-          const activeThemeIcon = document.querySelector(
-            ".theme-icon-active i"
-          );
-          const btnToActive = document.querySelector(
-            `[data-bs-theme-value="${theme}"]`
-          );
-          const svgOfActiveBtn = btnToActive
+    const themeSwitcherText = document.querySelector("#bd-theme-text")
+    const activeThemeIcon = document.querySelector(
+      ".theme-icon-active i"
+    )
+    const btnToActive = document.querySelector(
+      `[data-bs-theme-value="${theme}"]`
+    )
+    const svgOfActiveBtn = btnToActive
             .querySelector("i")
-            .getAttribute("class");
+            .getAttribute("class")
 
-          for (const element of document.querySelectorAll(
-            "[data-bs-theme-value]"
-          )) {
-            element.classList.remove("active");
-            element.setAttribute("aria-pressed", "false");
-          }
+    for (const element of document.querySelectorAll(
+      "[data-bs-theme-value]"
+    )) {
+      element.classList.remove("active")
+      element.setAttribute("aria-pressed", "false")
+    }
 
-          btnToActive.classList.add("active");
-          btnToActive.setAttribute("aria-pressed", "true");
-          activeThemeIcon.setAttribute("class", svgOfActiveBtn);
-          const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`;
-          themeSwitcher.setAttribute("aria-label", themeSwitcherLabel);
+    btnToActive.classList.add("active")
+    btnToActive.setAttribute("aria-pressed", "true")
+    activeThemeIcon.setAttribute("class", svgOfActiveBtn)
+    const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`
+    themeSwitcher.setAttribute("aria-label", themeSwitcherLabel)
 
-          if (focus) {
-            themeSwitcher.focus();
-          }
-        };
+    if (focus) {
+      themeSwitcher.focus()
+    }
+  }
 
-        window
+  globalThis
           .matchMedia("(prefers-color-scheme: dark)")
           .addEventListener("change", () => {
             if (storedTheme !== "light" || storedTheme !== "dark") {
-              setTheme(getPreferredTheme());
+              setTheme(getPreferredTheme())
             }
-          });
+          })
 
-        window.addEventListener("DOMContentLoaded", () => {
-          showActiveTheme(getPreferredTheme());
+  globalThis.addEventListener("DOMContentLoaded", () => {
+    showActiveTheme(getPreferredTheme())
 
-          for (const toggle of document.querySelectorAll(
-            "[data-bs-theme-value]"
-          )) {
-            toggle.addEventListener("click", () => {
-              const theme = toggle.getAttribute("data-bs-theme-value");
-              localStorage.setItem("theme", theme);
-              setTheme(theme);
-              showActiveTheme(theme, true);
-            });
-          }
-        });
-      })();
+    for (const toggle of document.querySelectorAll(
+      "[data-bs-theme-value]"
+    )) {
+      toggle.addEventListener("click", () => {
+        const theme = toggle.getAttribute("data-bs-theme-value")
+        localStorage.setItem("theme", theme)
+        setTheme(theme)
+        showActiveTheme(theme, true)
+      })
+    }
+  })
+})()
     </script>
     <!--end::Script-->
   </body><!--end::Body-->

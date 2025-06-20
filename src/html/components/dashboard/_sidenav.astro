@@ -1,6 +1,6 @@
 ---
-import {convertPathToHtml} from "../../../utils/index.js";
-const {path, mainPage, page} = Astro.props;
+import { convertPathToHtml } from "../../../utils/index.js"
+const { path, mainPage, page } = Astro.props
 const htmlPath = convertPathToHtml(path);
 ---
 
@@ -145,7 +145,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/layout/unfixed-sidebar.html"}
                 class:list={[
                   "nav-link",
-                  page === "unfixed-sidebar" && "active",
+                  page === "unfixed-sidebar" && "active"
                 ]}
               >
                 <i class="nav-icon bi bi-circle"></i>
@@ -211,7 +211,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/layout/collapsed-sidebar.html"}
                 class:list={[
                   "nav-link",
-                  page === "collapsed-sidebar" && "active",
+                  page === "collapsed-sidebar" && "active"
                 ]}
               >
                 <i class="nav-icon bi bi-circle"></i>

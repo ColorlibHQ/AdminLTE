@@ -59,7 +59,6 @@ class PushMenu {
     this._config = { ...Defaults, ...config }
   }
 
-  // TODO
   menusClose() {
     const navTreeview = document.querySelectorAll<HTMLElement>(SELECTOR_NAV_TREEVIEW)
 
@@ -100,7 +99,7 @@ class PushMenu {
     const sidebarExpandList = document.querySelector(SELECTOR_SIDEBAR_EXPAND)?.classList ?? []
     const sidebarExpand = Array.from(sidebarExpandList).find(className => className.startsWith(CLASS_NAME_SIDEBAR_EXPAND)) ?? ''
     const sidebar = document.getElementsByClassName(sidebarExpand)[0]
-    const sidebarContent = window.getComputedStyle(sidebar, '::before').getPropertyValue('content')
+    const sidebarContent = globalThis.getComputedStyle(sidebar, '::before').getPropertyValue('content')
     this._config = { ...this._config, sidebarBreakpoint: Number(sidebarContent.replace(/[^\d.-]/g, '')) }
 
     if (window.innerWidth <= this._config.sidebarBreakpoint) {

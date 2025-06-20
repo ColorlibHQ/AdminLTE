@@ -44,23 +44,6 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../../../dist/css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
-    <style>
-      [data-astro-image] {
-        width: 100%;
-        height: auto;
-        object-fit: var(--fit);
-        object-position: var(--pos);
-        aspect-ratio: var(--w) / var(--h);
-      }
-      [data-astro-image='responsive'] {
-        max-width: calc(var(--w) * 1px);
-        max-height: calc(var(--h) * 1px);
-      }
-      [data-astro-image='fixed'] {
-        width: calc(var(--w) * 1px);
-        height: calc(var(--h) * 1px);
-      }
-    </style>
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -380,6 +363,24 @@
                     <a href="../layout/fixed-sidebar.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Fixed Sidebar</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../layout/fixed-header.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Fixed Header</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../layout/fixed-footer.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Fixed Footer</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../layout/fixed-complete.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Fixed Complete</p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -778,8 +779,7 @@
 <span class="line"><span>Firefox ESR</span></span>
 <span class="line"><span>iOS &gt;= 12</span></span>
 <span class="line"><span>Safari &gt;= 12</span></span>
-<span class="line"><span>not Explorer &lt;= 11</span></span>
-<span class="line"><span></span></span></code></pre>
+<span class="line"><span>not Explorer &lt;= 11</span></span></code></pre>
           </div>
           <!--end::Container-->
         </div>
@@ -793,7 +793,7 @@
         <!--end::To the end-->
         <!--begin::Copyright-->
         <strong>
-          Copyright &copy; 2014-2024&nbsp;
+          Copyright &copy; 2014-2025&nbsp;
           <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
         </strong>
         All rights reserved.
@@ -833,7 +833,7 @@
       };
       document.addEventListener('DOMContentLoaded', function () {
         const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
-        if (sidebarWrapper && typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== 'undefined') {
+        if (sidebarWrapper && OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined) {
           OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
             scrollbars: {
               theme: Default.scrollbarTheme,

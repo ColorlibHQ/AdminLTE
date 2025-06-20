@@ -3,6 +3,7 @@ import mdx from '@astrojs/mdx'
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'static',
   build: {
     // Example: Generate `page.html` instead of `page/index.html` during build.
     format: 'file'
@@ -19,7 +20,7 @@ export default defineConfig({
   vite: {
     server: {
       watch: {
-        ignored: ['!**/dist/**'],
+        ignored: ['!**/dist/**']
       }
     }
   }

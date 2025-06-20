@@ -1,6 +1,6 @@
 /*!
  * AdminLTE v4.0.0-beta3 (https://adminlte.io)
- * Copyright 2014-2024 Colorlib <https://colorlib.com>
+ * Copyright 2014-2025 Colorlib <https://colorlib.com>
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
 (function (global, factory) {
@@ -33,14 +33,14 @@
         target.style.boxSizing = 'border-box';
         target.style.height = `${target.offsetHeight}px`;
         target.style.overflow = 'hidden';
-        window.setTimeout(() => {
+        globalThis.setTimeout(() => {
             target.style.height = '0';
             target.style.paddingTop = '0';
             target.style.paddingBottom = '0';
             target.style.marginTop = '0';
             target.style.marginBottom = '0';
         }, 1);
-        window.setTimeout(() => {
+        globalThis.setTimeout(() => {
             target.style.display = 'none';
             target.style.removeProperty('height');
             target.style.removeProperty('padding-top');
@@ -55,7 +55,7 @@
     /* SLIDE DOWN */
     const slideDown = (target, duration = 500) => {
         target.style.removeProperty('display');
-        let { display } = window.getComputedStyle(target);
+        let { display } = globalThis.getComputedStyle(target);
         if (display === 'none') {
             display = 'block';
         }
@@ -67,7 +67,7 @@
         target.style.paddingBottom = '0';
         target.style.marginTop = '0';
         target.style.marginBottom = '0';
-        window.setTimeout(() => {
+        globalThis.setTimeout(() => {
             target.style.boxSizing = 'border-box';
             target.style.transitionProperty = 'height, margin, padding';
             target.style.transitionDuration = `${duration}ms`;
@@ -77,7 +77,7 @@
             target.style.removeProperty('margin-top');
             target.style.removeProperty('margin-bottom');
         }, 1);
-        window.setTimeout(() => {
+        globalThis.setTimeout(() => {
             target.style.removeProperty('height');
             target.style.removeProperty('overflow');
             target.style.removeProperty('transition-duration');
@@ -167,7 +167,6 @@
             this._element = element;
             this._config = Object.assign(Object.assign({}, Defaults), config);
         }
-        // TODO
         menusClose() {
             const navTreeview = document.querySelectorAll(SELECTOR_NAV_TREEVIEW);
             navTreeview.forEach(navTree => {
@@ -199,7 +198,7 @@
             const sidebarExpandList = (_b = (_a = document.querySelector(SELECTOR_SIDEBAR_EXPAND)) === null || _a === void 0 ? void 0 : _a.classList) !== null && _b !== void 0 ? _b : [];
             const sidebarExpand = (_c = Array.from(sidebarExpandList).find(className => className.startsWith(CLASS_NAME_SIDEBAR_EXPAND))) !== null && _c !== void 0 ? _c : '';
             const sidebar = document.getElementsByClassName(sidebarExpand)[0];
-            const sidebarContent = window.getComputedStyle(sidebar, '::before').getPropertyValue('content');
+            const sidebarContent = globalThis.getComputedStyle(sidebar, '::before').getPropertyValue('content');
             this._config = Object.assign(Object.assign({}, this._config), { sidebarBreakpoint: Number(sidebarContent.replace(/[^\d.-]/g, '')) });
             if (window.innerWidth <= this._config.sidebarBreakpoint) {
                 this.collapse();
@@ -509,8 +508,7 @@
                 });
                 setTimeout(() => {
                     if (this._parent) {
-                        this._parent.classList.remove(CLASS_NAME_COLLAPSED);
-                        this._parent.classList.remove(CLASS_NAME_EXPANDING);
+                        this._parent.classList.remove(CLASS_NAME_COLLAPSED, CLASS_NAME_EXPANDING);
                     }
                 }, this._config.animationSpeed);
             }

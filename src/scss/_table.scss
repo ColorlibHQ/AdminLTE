@@ -18,15 +18,7 @@
       box-shadow: inset 0 1px 0 $table-border-color, inset 0 -1px 0 $table-border-color;
     }
 
-    // TODO: add $table-dark
-    // &.table-dark {
-    //   thead tr {
-    //     &:nth-child(1) th {
-    //       background-color: $table-dark-bg;
-    //       box-shadow: inset 0 1px 0 $table-dark-border-color, inset 0 -1px 0 $table-dark-border-color;
-    //     }
-    //   }
-    // }
+    // Note: Dark table styling for fixed headers is handled by Bootstrap's built-in dark table classes
   }
 
   // no border

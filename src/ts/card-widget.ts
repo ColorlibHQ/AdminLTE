@@ -111,8 +111,7 @@ class CardWidget {
 
       setTimeout(() => {
         if (this._parent) {
-          this._parent.classList.remove(CLASS_NAME_COLLAPSED)
-          this._parent.classList.remove(CLASS_NAME_EXPANDING)
+          this._parent.classList.remove(CLASS_NAME_COLLAPSED, CLASS_NAME_EXPANDING)
         }
       }, this._config.animationSpeed)
     }

@@ -1,12 +1,12 @@
 ---
-import Head from "@components/_head.astro";
-import Footer from "@components/dashboard/_footer.astro";
-import Topbar from "@components/dashboard/_topbar.astro";
-import Scripts from "@components/_scripts.astro";
-import { convertPathToHtml } from "../../../utils/index.js";
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Scripts from "@components/_scripts.astro"
+import { convertPathToHtml } from "../../../utils/index.js"
 
-const title = "AdminLTE 4 | Theme Customize";
-const path = "../../../dist";
+const title = "AdminLTE 4 | Theme Customize"
+const path = "../../../dist"
 const htmlPath = convertPathToHtml(path);
 ---
 
@@ -417,209 +417,209 @@ const htmlPath = convertPathToHtml(path);
     <!--begin::Script-->
     <Scripts path={path} />
     <script is:inline>
-      document.addEventListener("DOMContentLoaded", () => {
-        const appSidebar = document.querySelector(".app-sidebar");
-        const sidebarColorModes = document.querySelector(
-          "#sidebar-color-modes",
-        );
-        const sidebarColor = document.querySelector("#sidebar-color");
-        const sidebarColorCode = document.querySelector("#sidebar-color-code");
+document.addEventListener("DOMContentLoaded", () => {
+  const appSidebar = document.querySelector(".app-sidebar")
+  const sidebarColorModes = document.querySelector(
+    "#sidebar-color-modes"
+  )
+  const sidebarColor = document.querySelector("#sidebar-color")
+  const sidebarColorCode = document.querySelector("#sidebar-color-code")
 
-        const themeBg = [
-          "bg-primary",
-          "bg-primary-subtle",
-          "bg-secondary",
-          "bg-secondary-subtle",
-          "bg-success",
-          "bg-success-subtle",
-          "bg-danger",
-          "bg-danger-subtle",
-          "bg-warning",
-          "bg-warning-subtle",
-          "bg-info",
-          "bg-info-subtle",
-          "bg-light",
-          "bg-light-subtle",
-          "bg-dark",
-          "bg-dark-subtle",
-          "bg-body-secondary",
-          "bg-body-tertiary",
-          "bg-body",
-          "bg-black",
-          "bg-white",
-          "bg-transparent",
-        ];
+  const themeBg = [
+    "bg-primary",
+    "bg-primary-subtle",
+    "bg-secondary",
+    "bg-secondary-subtle",
+    "bg-success",
+    "bg-success-subtle",
+    "bg-danger",
+    "bg-danger-subtle",
+    "bg-warning",
+    "bg-warning-subtle",
+    "bg-info",
+    "bg-info-subtle",
+    "bg-light",
+    "bg-light-subtle",
+    "bg-dark",
+    "bg-dark-subtle",
+    "bg-body-secondary",
+    "bg-body-tertiary",
+    "bg-body",
+    "bg-black",
+    "bg-white",
+    "bg-transparent"
+  ]
 
-        // loop through each option themeBg array
-        document.querySelector("#sidebar-color").innerHTML = themeBg.map(
-          (bg) => {
-            // return option element with value and text
-            return `<option value="${bg}" class="text-${bg}">${bg}</option>`;
-          },
-        );
+  // loop through each option themeBg array
+  document.querySelector("#sidebar-color").innerHTML = themeBg.map(
+    (bg) => {
+      // return option element with value and text
+      return `<option value="${bg}" class="text-${bg}">${bg}</option>`
+    }
+  )
 
-        let sidebarColorMode = "";
-        let sidebarBg = "";
+  let sidebarColorMode = ""
+  let sidebarBg = ""
 
-        function updateSidebar() {
-          appSidebar.setAttribute("data-bs-theme", sidebarColorMode);
+  function updateSidebar() {
+    appSidebar.setAttribute("data-bs-theme", sidebarColorMode)
 
-          sidebarColorCode.innerHTML = `<pre><code class="language-html">&lt;aside class="app-sidebar ${sidebarBg}" data-bs-theme="${sidebarColorMode}"&gt;...&lt;/aside&gt;</code></pre>`;
-        }
+    sidebarColorCode.innerHTML = `<pre><code class="language-html">&lt;aside class="app-sidebar ${sidebarBg}" data-bs-theme="${sidebarColorMode}"&gt;...&lt;/aside&gt;</code></pre>`
+  }
 
-        sidebarColorModes.addEventListener("input", (event) => {
-          sidebarColorMode = event.target.value;
-          updateSidebar();
-        });
+  sidebarColorModes.addEventListener("input", (event) => {
+    sidebarColorMode = event.target.value
+    updateSidebar()
+  })
 
-        sidebarColor.addEventListener("input", (event) => {
-          sidebarBg = event.target.value;
+  sidebarColor.addEventListener("input", (event) => {
+    sidebarBg = event.target.value
 
-          themeBg.forEach((className) => {
-            appSidebar.classList.remove(className);
-          });
+    themeBg.forEach((className) => {
+      appSidebar.classList.remove(className)
+    })
 
-          if (themeBg.includes(sidebarBg)) {
-            appSidebar.classList.add(sidebarBg);
-          }
+    if (themeBg.includes(sidebarBg)) {
+      appSidebar.classList.add(sidebarBg)
+    }
 
-          updateSidebar();
-        });
-      });
+    updateSidebar()
+  })
+})
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const appNavbar = document.querySelector(".app-header");
-        const navbarColorModes = document.querySelector("#navbar-color-modes");
-        const navbarColor = document.querySelector("#navbar-color");
-        const navbarColorCode = document.querySelector("#navbar-color-code");
+document.addEventListener("DOMContentLoaded", () => {
+  const appNavbar = document.querySelector(".app-header")
+  const navbarColorModes = document.querySelector("#navbar-color-modes")
+  const navbarColor = document.querySelector("#navbar-color")
+  const navbarColorCode = document.querySelector("#navbar-color-code")
 
-        const themeBg = [
-          "bg-primary",
-          "bg-primary-subtle",
-          "bg-secondary",
-          "bg-secondary-subtle",
-          "bg-success",
-          "bg-success-subtle",
-          "bg-danger",
-          "bg-danger-subtle",
-          "bg-warning",
-          "bg-warning-subtle",
-          "bg-info",
-          "bg-info-subtle",
-          "bg-light",
-          "bg-light-subtle",
-          "bg-dark",
-          "bg-dark-subtle",
-          "bg-body-secondary",
-          "bg-body-tertiary",
-          "bg-body",
-          "bg-black",
-          "bg-white",
-          "bg-transparent",
-        ];
+  const themeBg = [
+    "bg-primary",
+    "bg-primary-subtle",
+    "bg-secondary",
+    "bg-secondary-subtle",
+    "bg-success",
+    "bg-success-subtle",
+    "bg-danger",
+    "bg-danger-subtle",
+    "bg-warning",
+    "bg-warning-subtle",
+    "bg-info",
+    "bg-info-subtle",
+    "bg-light",
+    "bg-light-subtle",
+    "bg-dark",
+    "bg-dark-subtle",
+    "bg-body-secondary",
+    "bg-body-tertiary",
+    "bg-body",
+    "bg-black",
+    "bg-white",
+    "bg-transparent"
+  ]
 
-        // loop through each option themeBg array
-        document.querySelector("#navbar-color").innerHTML = themeBg.map(
-          (bg) => {
-            // return option element with value and text
-            return `<option value="${bg}" class="text-${bg}">${bg}</option>`;
-          },
-        );
+  // loop through each option themeBg array
+  document.querySelector("#navbar-color").innerHTML = themeBg.map(
+    (bg) => {
+      // return option element with value and text
+      return `<option value="${bg}" class="text-${bg}">${bg}</option>`
+    }
+  )
 
-        let navbarColorMode = "";
-        let navbarBg = "";
+  let navbarColorMode = ""
+  let navbarBg = ""
 
-        function updateNavbar() {
-          appNavbar.setAttribute("data-bs-theme", navbarColorMode);
-          navbarColorCode.innerHTML = `<pre><code class="language-html">&lt;nav class="app-header navbar navbar-expand ${navbarBg}" data-bs-theme="${navbarColorMode}"&gt;...&lt;/nav&gt;</code></pre>`;
-        }
+  function updateNavbar() {
+    appNavbar.setAttribute("data-bs-theme", navbarColorMode)
+    navbarColorCode.innerHTML = `<pre><code class="language-html">&lt;nav class="app-header navbar navbar-expand ${navbarBg}" data-bs-theme="${navbarColorMode}"&gt;...&lt;/nav&gt;</code></pre>`
+  }
 
-        navbarColorModes.addEventListener("input", (event) => {
-          navbarColorMode = event.target.value;
-          updateNavbar();
-        });
+  navbarColorModes.addEventListener("input", (event) => {
+    navbarColorMode = event.target.value
+    updateNavbar()
+  })
 
-        navbarColor.addEventListener("input", (event) => {
-          navbarBg = event.target.value;
+  navbarColor.addEventListener("input", (event) => {
+    navbarBg = event.target.value
 
-          themeBg.forEach((className) => {
-            appNavbar.classList.remove(className);
-          });
+    themeBg.forEach((className) => {
+      appNavbar.classList.remove(className)
+    })
 
-          if (themeBg.includes(navbarBg)) {
-            appNavbar.classList.add(navbarBg);
-          }
+    if (themeBg.includes(navbarBg)) {
+      appNavbar.classList.add(navbarBg)
+    }
 
-          updateNavbar();
-        });
-      });
+    updateNavbar()
+  })
+})
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const appFooter = document.querySelector(".app-footer");
-        const footerColorModes = document.querySelector("#footer-color-modes");
-        const footerColor = document.querySelector("#footer-color");
-        const footerColorCode = document.querySelector("#footer-color-code");
+document.addEventListener("DOMContentLoaded", () => {
+  const appFooter = document.querySelector(".app-footer")
+  const footerColorModes = document.querySelector("#footer-color-modes")
+  const footerColor = document.querySelector("#footer-color")
+  const footerColorCode = document.querySelector("#footer-color-code")
 
-        const themeBg = [
-          "bg-primary",
-          "bg-primary-subtle",
-          "bg-secondary",
-          "bg-secondary-subtle",
-          "bg-success",
-          "bg-success-subtle",
-          "bg-danger",
-          "bg-danger-subtle",
-          "bg-warning",
-          "bg-warning-subtle",
-          "bg-info",
-          "bg-info-subtle",
-          "bg-light",
-          "bg-light-subtle",
-          "bg-dark",
-          "bg-dark-subtle",
-          "bg-body-secondary",
-          "bg-body-tertiary",
-          "bg-body",
-          "bg-black",
-          "bg-white",
-          "bg-transparent",
-        ];
+  const themeBg = [
+    "bg-primary",
+    "bg-primary-subtle",
+    "bg-secondary",
+    "bg-secondary-subtle",
+    "bg-success",
+    "bg-success-subtle",
+    "bg-danger",
+    "bg-danger-subtle",
+    "bg-warning",
+    "bg-warning-subtle",
+    "bg-info",
+    "bg-info-subtle",
+    "bg-light",
+    "bg-light-subtle",
+    "bg-dark",
+    "bg-dark-subtle",
+    "bg-body-secondary",
+    "bg-body-tertiary",
+    "bg-body",
+    "bg-black",
+    "bg-white",
+    "bg-transparent"
+  ]
 
-        // loop through each option themeBg array
-        document.querySelector("#footer-color").innerHTML = themeBg.map(
-          (bg) => {
-            // return option element with value and text
-            return `<option value="${bg}" class="text-${bg}">${bg}</option>`;
-          },
-        );
+  // loop through each option themeBg array
+  document.querySelector("#footer-color").innerHTML = themeBg.map(
+    (bg) => {
+      // return option element with value and text
+      return `<option value="${bg}" class="text-${bg}">${bg}</option>`
+    }
+  )
 
-        let footerColorMode = "";
-        let footerBg = "";
+  let footerColorMode = ""
+  let footerBg = ""
 
-        function updateFooter() {
-          appFooter.setAttribute("data-bs-theme", footerColorMode);
-          footerColorCode.innerHTML = `<pre><code class="language-html">&lt;footer class="app-footer ${footerBg}" data-bs-theme="${footerColorMode}"&gt;...&lt;/footer&gt;</code></pre>`;
-        }
+  function updateFooter() {
+    appFooter.setAttribute("data-bs-theme", footerColorMode)
+    footerColorCode.innerHTML = `<pre><code class="language-html">&lt;footer class="app-footer ${footerBg}" data-bs-theme="${footerColorMode}"&gt;...&lt;/footer&gt;</code></pre>`
+  }
 
-        footerColorModes.addEventListener("input", (event) => {
-          footerColorMode = event.target.value;
-          updateFooter();
-        });
+  footerColorModes.addEventListener("input", (event) => {
+    footerColorMode = event.target.value
+    updateFooter()
+  })
 
-        footerColor.addEventListener("input", (event) => {
-          footerBg = event.target.value;
+  footerColor.addEventListener("input", (event) => {
+    footerBg = event.target.value
 
-          themeBg.forEach((className) => {
-            appFooter.classList.remove(className);
-          });
+    themeBg.forEach((className) => {
+      appFooter.classList.remove(className)
+    })
 
-          if (themeBg.includes(footerBg)) {
-            appFooter.classList.add(footerBg);
-          }
+    if (themeBg.includes(footerBg)) {
+      appFooter.classList.add(footerBg)
+    }
 
-          updateFooter();
-        });
-      });
+    updateFooter()
+  })
+})
     </script>
     <!--end::Script-->
   </body><!--end::Body-->

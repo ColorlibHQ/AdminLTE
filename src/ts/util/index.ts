@@ -25,7 +25,7 @@ const slideUp = (target: HTMLElement, duration = 500) => {
   target.style.height = `${target.offsetHeight}px`
   target.style.overflow = 'hidden'
 
-  window.setTimeout(() => {
+  globalThis.setTimeout(() => {
     target.style.height = '0'
     target.style.paddingTop = '0'
     target.style.paddingBottom = '0'
@@ -33,7 +33,7 @@ const slideUp = (target: HTMLElement, duration = 500) => {
     target.style.marginBottom = '0'
   }, 1)
 
-  window.setTimeout(() => {
+  globalThis.setTimeout(() => {
     target.style.display = 'none'
     target.style.removeProperty('height')
     target.style.removeProperty('padding-top')
@@ -49,7 +49,7 @@ const slideUp = (target: HTMLElement, duration = 500) => {
 /* SLIDE DOWN */
 const slideDown = (target: HTMLElement, duration = 500) => {
   target.style.removeProperty('display')
-  let { display } = window.getComputedStyle(target)
+  let { display } = globalThis.getComputedStyle(target)
 
   if (display === 'none') {
     display = 'block'
@@ -64,7 +64,7 @@ const slideDown = (target: HTMLElement, duration = 500) => {
   target.style.marginTop = '0'
   target.style.marginBottom = '0'
 
-  window.setTimeout(() => {
+  globalThis.setTimeout(() => {
     target.style.boxSizing = 'border-box'
     target.style.transitionProperty = 'height, margin, padding'
     target.style.transitionDuration = `${duration}ms`
@@ -75,7 +75,7 @@ const slideDown = (target: HTMLElement, duration = 500) => {
     target.style.removeProperty('margin-bottom')
   }, 1)
 
-  window.setTimeout(() => {
+  globalThis.setTimeout(() => {
     target.style.removeProperty('height')
     target.style.removeProperty('overflow')
     target.style.removeProperty('transition-duration')
@@ -85,7 +85,7 @@ const slideDown = (target: HTMLElement, duration = 500) => {
 
 /* TOGGLE */
 const slideToggle = (target: HTMLElement, duration = 500) => {
-  if (window.getComputedStyle(target).display === 'none') {
+  if (globalThis.getComputedStyle(target).display === 'none') {
     slideDown(target, duration)
     return
   }
