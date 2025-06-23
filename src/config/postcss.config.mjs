@@ -5,8 +5,8 @@ const postcssConfig = {
     sourcesContent: true
   },
   plugins: {
-    'rtlcss': {},
-    'autoprefixer': {
+    ...(process.env.NODE_ENV === 'RTL' ? { rtlcss: {} } : {}),
+    autoprefixer: {
       cascade: false
     }
   }

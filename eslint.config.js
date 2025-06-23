@@ -15,7 +15,8 @@ export default [
       "**/plugins/",
       "/.temp/",
       "src/html/docs/",
-      "docs_html/"
+      "docs_html/",
+      "src/html/public/"
     ]
   },
   ...tseslint.config(

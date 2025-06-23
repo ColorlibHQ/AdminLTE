@@ -1,6 +1,13 @@
 ---
-const { title, path, isRtl } = Astro.props
+const { title, isRtl } = Astro.props
 const cssPath = isRtl ? ".rtl" : "";
+
+// Smart path resolution: calculate relative path based on directory depth
+const pathname = Astro.url.pathname;
+// Only count directories, not the filename itself
+const pathSegments = pathname.split('/').filter(segment => segment !== '');
+const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0;
+const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 ---
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -29,7 +36,7 @@ const cssPath = isRtl ? ".rtl" : "";
 <!--begin::Accessibility Features-->
 <!-- Skip links will be dynamically added by accessibility.js -->
 <meta name="supported-color-schemes" content="light dark" />
-<link rel="preload" href={path + "/css/adminlte" + cssPath + ".css"} as="style" />
+<link rel="preload" href={deploymentPath + "css/adminlte" + cssPath + ".css"} as="style" />
 <!--end::Accessibility Features-->
 
 <!--begin::Fonts-->
@@ -44,10 +51,9 @@ const cssPath = isRtl ? ".rtl" : "";
 <!--end::Fonts-->
 
 <!--begin::Third Party Plugin(OverlayScrollbars)-->
-<link 
-  rel="stylesheet" 
-  href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/styles/overlayscrollbars.min.css" 
-  integrity="sha256-tZHrRjVqNSRyWg2wbppGnT833E/Ys0DHWGwT04GiqQg=" 
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
   crossorigin="anonymous"
 />
 <!--end::Third Party Plugin(OverlayScrollbars)-->
@@ -55,12 +61,11 @@ const cssPath = isRtl ? ".rtl" : "";
 <!--begin::Third Party Plugin(Bootstrap Icons)-->
 <link 
   rel="stylesheet" 
-  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" 
-  integrity="sha256-9kPW/n5nn53j4WMRYAxe9c1rCY96Oogo/MKSVdKzPmI=" 
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" 
   crossorigin="anonymous"
 />
 <!--end::Third Party Plugin(Bootstrap Icons)-->
 
 <!--begin::Required Plugin(AdminLTE)-->
-<link rel="stylesheet" href={path + "/css/adminlte" + cssPath + ".css"} />
+<link rel="stylesheet" href={deploymentPath + "css/adminlte" + cssPath + ".css"} />
 <!--end::Required Plugin(AdminLTE)-->

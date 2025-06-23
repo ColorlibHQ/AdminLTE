@@ -13043,7 +13043,9 @@ textarea.form-control-lg {
 .sidebar-menu .nav-link > .nav-badge,
 .sidebar-menu .nav-link > p > .nav-badge {
   position: absolute;
+  top: 50%;
   left: 1rem;
+  transform: translateY(-50%);
 }
 .sidebar-menu .nav-link > .nav-arrow,
 .sidebar-menu .nav-link > p > .nav-arrow {
@@ -13053,6 +13055,7 @@ textarea.form-control-lg {
 }
 .sidebar-menu .nav-link {
   position: relative;
+  width: 100%;
   transition: width ease-in-out 0.3s;
   border-radius: 0.375rem;
 }
@@ -13083,6 +13086,13 @@ textarea.form-control-lg {
 }
 .sidebar-menu .menu-open > .nav-link .nav-arrow {
   transform: translateY(-50%) rotate(90deg) ;
+}
+.sidebar-menu .nav-link > .nav-badge,
+.sidebar-menu .nav-link > p > .nav-badge,
+.sidebar-menu .nav-link > .nav-arrow,
+.sidebar-menu .nav-link > p > .nav-arrow {
+  left: 1rem !important;
+  right: auto !important;
 }
 
 .nav-compact.nav-indent .nav-treeview {
@@ -15523,5 +15533,4 @@ fieldset legend {
     content: " (" attr(href) ")";
   }
 }
-
-/*# sourceMappingURL=adminlte.css.map */
+/*# sourceMappingURL=adminlte.rtl.css.map */

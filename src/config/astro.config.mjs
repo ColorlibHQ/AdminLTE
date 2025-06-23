@@ -15,8 +15,9 @@ export default defineConfig({
   },
   integrations: [mdx()],
   srcDir: './src/html',
-  cacheDir: './dist/pages',
-  outDir: './dist/pages',
+  publicDir: './src/html/public',
+  cacheDir: './dist/.astro',
+  outDir: './dist/html',
   vite: {
     server: {
       watch: {

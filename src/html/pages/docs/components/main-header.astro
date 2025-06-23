@@ -10,7 +10,6 @@ const title = "Main Header Component | AdminLTE 4"
 const path = "../../../../dist"
 const mainPage = "components"
 const page = "main-header"
-const distPath = path;
 ---
 
 <!DOCTYPE html>
@@ -21,7 +20,7 @@ const distPath = path;
   </head>
   <!--end::Head-->
   <!--begin::Body-->
-  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+  <body class="layout-fixed sidebar-expand-lg sidebar-open bg-body-tertiary">
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <Topbar path={path} />
@@ -127,7 +126,7 @@ const distPath = path;
                         <div class="d-flex">
                           <div class="flex-shrink-0">
                             <img
-                              src={distPath + "/assets/img/user1-128x128.jpg"}
+                              src="/assets/img/user1-128x128.jpg"
                               alt="User Avatar"
                               class="img-size-50 rounded-circle me-3"
                             />
@@ -153,7 +152,7 @@ const distPath = path;
                         <div class="d-flex">
                           <div class="flex-shrink-0">
                             <img
-                              src={distPath + "/assets/img/user8-128x128.jpg"}
+                              src="/assets/img/user8-128x128.jpg"
                               alt="User Avatar"
                               class="img-size-50 rounded-circle me-3"
                             />
@@ -179,7 +178,7 @@ const distPath = path;
                         <div class="d-flex">
                           <div class="flex-shrink-0">
                             <img
-                              src={distPath + "/assets/img/user3-128x128.jpg"}
+                              src="/assets/img/user3-128x128.jpg"
                               alt="User Avatar"
                               class="img-size-50 rounded-circle me-3"
                             />
@@ -250,7 +249,7 @@ const distPath = path;
                       data-bs-toggle="dropdown"
                     >
                       <img
-                        src={distPath + "/assets/img/user2-160x160.jpg"}
+                        src="/assets/img/user2-160x160.jpg"
                         class="user-image rounded-circle shadow"
                         alt="User Image"
                       />
@@ -262,7 +261,7 @@ const distPath = path;
                       <!-- User image -->
                       <li class="user-header text-bg-primary">
                         <img
-                          src={distPath + "/assets/img/user2-160x160.jpg"}
+                          src="/assets/img/user2-160x160.jpg"
                           class="rounded-circle shadow"
                           alt="User Image"
                         />

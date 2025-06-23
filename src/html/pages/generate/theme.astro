@@ -18,7 +18,7 @@ const htmlPath = convertPathToHtml(path);
   </head>
   <!--end::Head-->
   <!--begin::Body-->
-  <body class="sidebar-expand-lg bg-body-tertiary">
+  <body class="sidebar-expand-lg sidebar-open bg-body-tertiary">
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <Topbar path={path} />
@@ -30,7 +30,7 @@ const htmlPath = convertPathToHtml(path);
           <a href={htmlPath + "/index.html"} class="brand-link">
             <!--begin::Brand Image-->
             <img
-              src={path + "/assets/img/AdminLTELogo.png"}
+              src="/assets/img/AdminLTELogo.png"
               alt="AdminLTE Logo"
               class="brand-image opacity-75 shadow"
             />

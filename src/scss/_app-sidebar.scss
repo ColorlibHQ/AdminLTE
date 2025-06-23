@@ -199,7 +199,9 @@
   .nav-link > .nav-badge,
   .nav-link > p > .nav-badge {
     position: absolute;
+    top: 50%;
     right: 1rem;
+    transform: translateY(-50%);
   }
 
   .nav-link > .nav-arrow,
@@ -211,6 +213,7 @@
 
   .nav-link {
     position: relative;
+    width: 100%;
     @include transition(width $lte-transition-fn $lte-transition-speed);
     @include border-radius($border-radius);
 
@@ -247,6 +250,15 @@
         transform: translateY(-50%) rotate(90deg) #{"/*rtl:ignore*/"};
       }
     }
+  }
+
+  // Override: ensure badges/arrows are aligned to the end (right in LTR, left in RTL)
+  .nav-link > .nav-badge,
+  .nav-link > p > .nav-badge,
+  .nav-link > .nav-arrow,
+  .nav-link > p > .nav-arrow {
+    right: 1rem !important; // place at end in LTR
+    left: auto !important;
   }
 }
 

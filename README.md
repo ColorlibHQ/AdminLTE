@@ -9,16 +9,23 @@
 **AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 5](https://getbootstrap.com/)** framework and also the JavaScript plugins.
 Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.
 
-## What's New in v4.0.0-rc1
+## What's New in v4.0.0-rc3
 
-**Major Modernization Release** - AdminLTE has been completely modernized with:
+**Production Deployment & Cross-Platform Compatibility** - This release resolves critical production deployment issues:
 
-- **Zero Security Vulnerabilities** - All dependencies updated and vulnerabilities resolved
-- **Modern Tooling** - ESLint v9, Astro 5.x, latest Stylelint and build tools
-- **Better Developer Experience** - New `npm start` command, improved scripts, cleaner builds
-- **Latest Dependencies** - Bootstrap 5.3.7, Node.js ES modules, 50+ package updates
-- **Code Quality** - Zero linting errors, removed technical debt, standardized formatting
-- **Future-Ready** - Modern configuration patterns, optimal bundle sizes, enhanced maintainability
+- **Fixed Production Builds** - Resolved CSS/JS path issues, sidebar navigation, and image loading in all deployment scenarios
+- **Smart Path Resolution** - Automatic relative path calculation works for root deployment, sub-folders, and CDN hosting  
+- **RTL CSS Fix** - Eliminated rtlcss interference with standard LTR production builds
+- **Updated Dependencies** - Bootstrap 5.3.7, Bootstrap Icons 1.13.1, OverlayScrollbars 2.11.0
+- **Zero Console Errors** - Fixed all CDN integrity mismatches and runtime issues
+- **FTP/Static Host Ready** - Perfect compatibility with traditional hosting and modern static platforms
+
+**Key Improvements:**
+- ✅ Development and production environments now behave identically
+- ✅ Images, CSS, and JavaScript load correctly in any deployment structure  
+- ✅ Sidebar navigation displays properly with badges and arrow indicators
+- ✅ All CDN resources load without console errors
+- ✅ Build output (`dist/`) excluded from git repository
 
 See the [CHANGELOG.md](CHANGELOG.md) for complete details.
 
