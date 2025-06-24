@@ -4,9 +4,6 @@
 # unwanted types
 **/env.d.ts
 
-# Build output
-dist/
-
 # System / Log files
 *.DS_Store
 *.log
