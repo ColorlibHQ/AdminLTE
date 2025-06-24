@@ -5,7 +5,7 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.0.0-rc3] - 2025-01-29
+## [4.0.0-rc3] - 2025-06-24
 
 ### Production Deployment & Cross-Platform Compatibility
 
@@ -69,10 +69,10 @@ This release resolves critical production deployment issues and ensures consiste
   - Smart path resolution ensures consistent behavior in both environments
 
 #### **Git Repository Cleanup**
-- **Build Output Exclusion:** Added `dist/` to `.gitignore`
-  - Prevents build artifacts from being committed to version control
-  - Reduces repository size and eliminates merge conflicts from generated files
-  - Maintains clean development workflow focused on source files
+- **Production Build Distribution:** Added complete `dist/` folder to repository
+  - Provides ready-to-use production files for immediate deployment
+  - Simplifies distribution and CDN access via jsDelivr
+  - Enables direct download without requiring Node.js build environment
 
 ### 🐛 **Critical Bug Fixes**
 
