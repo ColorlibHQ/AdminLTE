@@ -73,6 +73,15 @@ AdminLTE supports all modern browsers with the latest Bootstrap 5.3.7:
 - Safari (latest)
 - Edge (latest)
 
+## Platform Support
+
+AdminLTE v4 build scripts work cross-platform:
+- **Windows** - Command Prompt, PowerShell, Git Bash
+- **macOS** - Terminal, iTerm2
+- **Linux** - Bash, Zsh, and other Unix shells
+
+All npm scripts use cross-platform utilities to ensure consistent behavior across different operating systems.
+
 ## Contributing
 
 - Highly welcome.

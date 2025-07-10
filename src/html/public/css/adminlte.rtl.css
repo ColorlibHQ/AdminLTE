@@ -15338,10 +15338,16 @@ html.maximized-card {
     scroll-behavior: auto !important;
   }
   .fade {
-    display: block;
+    opacity: 1 !important;
+    /* stylelint-disable-next-line property-disallowed-list */
+    transition: none !important;
   }
   .collapse {
-    display: block;
+    /* stylelint-disable-next-line property-disallowed-list */
+    transition: none !important;
+  }
+  .modal.fade .modal-dialog {
+    transform: none !important;
   }
 }
 /* Screen Reader Only Content */
@@ -15533,4 +15539,5 @@ fieldset legend {
     content: " (" attr(href) ")";
   }
 }
+
 /*# sourceMappingURL=adminlte.rtl.css.map */

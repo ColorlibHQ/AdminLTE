@@ -15338,10 +15338,12 @@ html.maximized-card {
     scroll-behavior: auto !important;
   }
   .fade {
-    transition: none !important;
     opacity: 1 !important;
+    /* stylelint-disable-next-line property-disallowed-list */
+    transition: none !important;
   }
   .collapse {
+    /* stylelint-disable-next-line property-disallowed-list */
     transition: none !important;
   }
   .modal.fade .modal-dialog {
@@ -15537,4 +15539,5 @@ fieldset legend {
     content: " (" attr(href) ")";
   }
 }
+
 /*# sourceMappingURL=adminlte.rtl.css.map */

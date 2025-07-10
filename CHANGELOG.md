@@ -5,6 +5,19 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+- **Windows Build Compatibility:** Fixed npm scripts to work cross-platform by replacing Unix-specific shell commands with `shx`
+  - Updated `copy-assets` script to use `shx mkdir` and `shx cp` commands
+  - Updated `flatten-build` script to use `shx cp` and `shx rm` commands  
+  - Added `shx` package as dev dependency for cross-platform shell command support
+  - Resolves build failures on Windows systems with "The syntax of the command is incorrect" errors
+- **TeamViewer Modal Compatibility:** Fixed modal fade animations for remote desktop compatibility
+  - Updated accessibility CSS to use `transition: none` and `opacity: 1` instead of `display: block`
+  - Maintains WCAG 2.1 AA compliance while ensuring modals work properly in TeamViewer sessions
+  - Added specific transform overrides for modal dialogs in reduced motion mode
+
 ## [4.0.0-rc3] - 2025-06-24
 
 ### Production Deployment & Cross-Platform Compatibility
