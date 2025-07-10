@@ -15338,10 +15338,14 @@ html.maximized-card {
     scroll-behavior: auto !important;
   }
   .fade {
-    display: block;
+    transition: none !important;
+    opacity: 1 !important;
   }
   .collapse {
-    display: block;
+    transition: none !important;
+  }
+  .modal.fade .modal-dialog {
+    transform: none !important;
   }
 }
 /* Screen Reader Only Content */

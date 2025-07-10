@@ -68,11 +68,18 @@
   }
 
   .fade {
-    display: block;
+    opacity: 1 !important;
+    /* stylelint-disable-next-line property-disallowed-list */
+    transition: none !important;
   }
 
   .collapse {
-    display: block;
+    /* stylelint-disable-next-line property-disallowed-list */
+    transition: none !important;
+  }
+
+  .modal.fade .modal-dialog {
+    transform: none !important;
   }
 }
 
