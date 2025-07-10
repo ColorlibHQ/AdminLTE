@@ -4,12 +4,14 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>AdminLTE 4 | Lockscreen</title>
+
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#007bff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
     <!--end::Accessibility Meta Tags-->
+
     <!--begin::Primary Meta Tags-->
     <meta name="title" content="AdminLTE 4 | Lockscreen" />
     <meta name="author" content="ColorlibHQ" />
@@ -22,11 +24,13 @@
       content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard, accessible admin panel, WCAG compliant"
     />
     <!--end::Primary Meta Tags-->
+
     <!--begin::Accessibility Features-->
     <!-- Skip links will be dynamically added by accessibility.js -->
     <meta name="supported-color-schemes" content="light dark" />
     <link rel="preload" href="../css/adminlte.css" as="style" />
     <!--end::Accessibility Features-->
+
     <!--begin::Fonts-->
     <link
       rel="stylesheet"
@@ -37,6 +41,7 @@
       onload="this.media='all'"
     />
     <!--end::Fonts-->
+
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <link
       rel="stylesheet"
@@ -44,6 +49,7 @@
       crossorigin="anonymous"
     />
     <!--end::Third Party Plugin(OverlayScrollbars)-->
+
     <!--begin::Third Party Plugin(Bootstrap Icons)-->
     <link
       rel="stylesheet"
@@ -51,6 +57,7 @@
       crossorigin="anonymous"
     />
     <!--end::Third Party Plugin(Bootstrap Icons)-->
+
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
@@ -62,11 +69,14 @@
       <div class="lockscreen-logo">
         <a href="../index2.html"><b>Admin</b>LTE</a>
       </div>
+
       <div class="lockscreen-name">John Doe</div>
+
       <div class="lockscreen-item">
         <div class="lockscreen-image">
           <img src="../assets/img/user1-128x128.jpg" alt="User Image" />
         </div>
+
         <form class="lockscreen-credentials">
           <div class="input-group">
             <input type="password" class="form-control shadow-none" placeholder="password" />
@@ -78,6 +88,7 @@
           </div>
         </form>
       </div>
+
       <div class="help-block text-center">Enter your password to retrieve your session</div>
       <div class="text-center">
         <a href="login.html" class="text-decoration-none">Or sign in as a different user</a>
@@ -95,6 +106,7 @@
         All rights reserved
       </div>
     </div>
+
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <script
       src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
@@ -122,7 +134,15 @@
       };
       document.addEventListener('DOMContentLoaded', function () {
         const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
-        if (sidebarWrapper && OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined) {
+
+        // Disable OverlayScrollbars on mobile devices to prevent touch interference
+        const isMobile = window.innerWidth <= 992;
+
+        if (
+          sidebarWrapper &&
+          OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined &&
+          !isMobile
+        ) {
           OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
             scrollbars: {
               theme: Default.scrollbarTheme,

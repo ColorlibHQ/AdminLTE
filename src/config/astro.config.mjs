@@ -8,6 +8,7 @@ export default defineConfig({
     // Example: Generate `page.html` instead of `page/index.html` during build.
     format: 'file'
   },
+  compressHTML: false,
   markdown: {
     shikiConfig: {
       theme: 'dark-plus'

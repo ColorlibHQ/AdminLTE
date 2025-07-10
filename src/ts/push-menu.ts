@@ -102,8 +102,15 @@ class PushMenu {
     const sidebarContent = globalThis.getComputedStyle(sidebar, '::before').getPropertyValue('content')
     this._config = { ...this._config, sidebarBreakpoint: Number(sidebarContent.replace(/[^\d.-]/g, '')) }
 
+    // FIXED: Don't auto-collapse on mobile if sidebar is currently open
+    // This prevents resize events (triggered by scrolling) from closing the sidebar
+    const isCurrentlyOpen = document.body.classList.contains(CLASS_NAME_SIDEBAR_OPEN)
+    
     if (window.innerWidth <= this._config.sidebarBreakpoint) {
-      this.collapse()
+      // Only collapse if not currently open (prevents scroll-triggered closes)
+      if (!isCurrentlyOpen) {
+        this.collapse()
+      }
     } else {
       if (!document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI)) {
         this.expand()
@@ -150,24 +157,28 @@ onDOMContentLoaded(() => {
   sidebarOverlay.className = CLASS_NAME_SIDEBAR_OVERLAY
   document.querySelector(SELECTOR_APP_WRAPPER)?.append(sidebarOverlay)
 
-  let isTouchMoved = false
+  let overlayTouchMoved = false
 
+  // Handle touch events on overlay (area outside sidebar)
   sidebarOverlay.addEventListener('touchstart', () => {
-    isTouchMoved = false
+    overlayTouchMoved = false
   }, { passive: true })
 
   sidebarOverlay.addEventListener('touchmove', () => {
-    isTouchMoved = true
+    overlayTouchMoved = true
   }, { passive: true })
 
   sidebarOverlay.addEventListener('touchend', event => {
-    if (!isTouchMoved) {
+    if (!overlayTouchMoved) {
       event.preventDefault()
       const target = event.currentTarget as HTMLElement
       const data = new PushMenu(target, Defaults)
       data.collapse()
     }
+    overlayTouchMoved = false
   }, { passive: false })
+
+
   sidebarOverlay.addEventListener('click', event => {
     event.preventDefault()
     const target = event.currentTarget as HTMLElement
