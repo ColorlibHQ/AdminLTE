@@ -9,23 +9,27 @@
 **AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 5](https://getbootstrap.com/)** framework and also the JavaScript plugins.
 Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.
 
-## What's New in v4.0.0-rc3
+## What's New in v4.0.0-rc4
 
-**Production Deployment & Cross-Platform Compatibility** - This release resolves critical production deployment issues:
+**Latest Release with Enhanced Performance & Updated Dependencies** - Fresh improvements for better development experience:
 
-- **Fixed Production Builds** - Resolved CSS/JS path issues, sidebar navigation, and image loading in all deployment scenarios
-- **Smart Path Resolution** - Automatic relative path calculation works for root deployment, sub-folders, and CDN hosting  
-- **RTL CSS Fix** - Eliminated rtlcss interference with standard LTR production builds
-- **Updated Dependencies** - Bootstrap 5.3.7, Bootstrap Icons 1.13.1, OverlayScrollbars 2.11.0
-- **Zero Console Errors** - Fixed all CDN integrity mismatches and runtime issues
-- **FTP/Static Host Ready** - Perfect compatibility with traditional hosting and modern static platforms
+- **Updated Dependencies** - 8 npm packages updated to latest versions for improved security and performance
+- **Refined Mobile Image Loading** - Streamlined path resolution by removing JavaScript runtime fixes
+- **Better Performance** - Images now load faster with build-time path generation instead of runtime corrections
+- **Latest Tooling** - Updated TypeScript, ESLint, Prettier, Astro, and build tools
+- **Zero Runtime Errors** - Eliminated console errors from JavaScript path corrections
 
 **Key Improvements:**
-- ✅ Development and production environments now behave identically
-- ✅ Images, CSS, and JavaScript load correctly in any deployment structure  
-- ✅ Sidebar navigation displays properly with badges and arrow indicators
-- ✅ All CDN resources load without console errors
-- ✅ Complete production build included in repository for easy deployment
+- ✅ All images use relative paths generated at build time
+- ✅ No more JavaScript runtime path fixes causing console errors
+- ✅ Faster image loading with optimal path resolution
+- ✅ Latest development tools and security updates
+- ✅ Production-ready with enhanced stability
+
+**Install the latest:**
+```bash
+npm install admin-lte@4.0.0-rc4
+```
 
 See the [CHANGELOG.md](CHANGELOG.md) for complete details.
 
