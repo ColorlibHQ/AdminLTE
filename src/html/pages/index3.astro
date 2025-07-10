@@ -9,6 +9,12 @@ const title = "AdminLTE | Dashboard v3"
 const path = "../../dist"
 const mainPage = "dashboard"
 const page = "index3";
+
+// Smart path resolution: calculate relative path based on directory depth
+const pathname = Astro.url.pathname;
+const pathSegments = pathname.split('/').filter(segment => segment !== '');
+const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0;
+const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 ---
 
 <!DOCTYPE html>
@@ -126,7 +132,7 @@ const page = "index3";
                         <tr>
                           <td>
                             <img
-                              src="/assets/img/default-150x150.png"
+                              src={deploymentPath + "assets/img/default-150x150.png"}
                               alt="Product 1"
                               class="rounded-circle img-size-32 me-2"
                             />
@@ -149,7 +155,7 @@ const page = "index3";
                         <tr>
                           <td>
                             <img
-                              src="/assets/img/default-150x150.png"
+                              src={deploymentPath + "assets/img/default-150x150.png"}
                               alt="Product 1"
                               class="rounded-circle img-size-32 me-2"
                             />
@@ -172,7 +178,7 @@ const page = "index3";
                         <tr>
                           <td>
                             <img
-                              src="/assets/img/default-150x150.png"
+                              src={deploymentPath + "assets/img/default-150x150.png"}
                               alt="Product 1"
                               class="rounded-circle img-size-32 me-2"
                             />
@@ -195,7 +201,7 @@ const page = "index3";
                         <tr>
                           <td>
                             <img
-                              src="/assets/img/default-150x150.png"
+                              src={deploymentPath + "assets/img/default-150x150.png"}
                               alt="Product 1"
                               class="rounded-circle img-size-32 me-2"
                             />

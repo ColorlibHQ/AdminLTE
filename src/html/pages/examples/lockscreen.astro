@@ -6,6 +6,12 @@ const title = "AdminLTE 4 | Lockscreen"
 const path = "../../../dist"
 const htmlPath = ".."
 const year = new Date().getFullYear();
+
+// Smart path resolution: calculate relative path based on directory depth
+const pathname = Astro.url.pathname;
+const pathSegments = pathname.split('/').filter(segment => segment !== '');
+const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0;
+const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 ---
 
 <!DOCTYPE html>
@@ -26,7 +32,7 @@ const year = new Date().getFullYear();
 
       <div class="lockscreen-item">
         <div class="lockscreen-image">
-          <img src="/assets/img/user1-128x128.jpg" alt="User Image" />
+          <img src={deploymentPath + "assets/img/user1-128x128.jpg"} alt="User Image" />
         </div>
 
         <form class="lockscreen-credentials">

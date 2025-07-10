@@ -10,6 +10,12 @@ const title = "Main Header Component | AdminLTE 4"
 const path = "../../../../dist"
 const mainPage = "components"
 const page = "main-header"
+
+// Smart path resolution: calculate relative path based on directory depth
+const pathname = Astro.url.pathname;
+const pathSegments = pathname.split('/').filter(segment => segment !== '');
+const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0;
+const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 ---
 
 <!DOCTYPE html>
@@ -126,7 +132,7 @@ const page = "main-header"
                         <div class="d-flex">
                           <div class="flex-shrink-0">
                             <img
-                              src="/assets/img/user1-128x128.jpg"
+                              src={deploymentPath + "assets/img/user1-128x128.jpg"}
                               alt="User Avatar"
                               class="img-size-50 rounded-circle me-3"
                             />
@@ -152,7 +158,7 @@ const page = "main-header"
                         <div class="d-flex">
                           <div class="flex-shrink-0">
                             <img
-                              src="/assets/img/user8-128x128.jpg"
+                              src={deploymentPath + "assets/img/user8-128x128.jpg"}
                               alt="User Avatar"
                               class="img-size-50 rounded-circle me-3"
                             />
@@ -178,7 +184,7 @@ const page = "main-header"
                         <div class="d-flex">
                           <div class="flex-shrink-0">
                             <img
-                              src="/assets/img/user3-128x128.jpg"
+                              src={deploymentPath + "assets/img/user3-128x128.jpg"}
                               alt="User Avatar"
                               class="img-size-50 rounded-circle me-3"
                             />
@@ -249,7 +255,7 @@ const page = "main-header"
                       data-bs-toggle="dropdown"
                     >
                       <img
-                        src="/assets/img/user2-160x160.jpg"
+                        src={deploymentPath + "assets/img/user2-160x160.jpg"}
                         class="user-image rounded-circle shadow"
                         alt="User Image"
                       />
@@ -261,7 +267,7 @@ const page = "main-header"
                       <!-- User image -->
                       <li class="user-header text-bg-primary">
                         <img
-                          src="/assets/img/user2-160x160.jpg"
+                          src={deploymentPath + "assets/img/user2-160x160.jpg"}
                           class="rounded-circle shadow"
                           alt="User Image"
                         />

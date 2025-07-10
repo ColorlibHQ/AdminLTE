@@ -18,8 +18,13 @@ export default defineConfig({
   publicDir: './src/html/public',
   cacheDir: './dist/.astro',
   outDir: './dist/html',
+  server: {
+    host: '0.0.0.0',
+    port: 3000
+  },
   vite: {
     server: {
+      host: '0.0.0.0',
       watch: {
         ignored: ['!**/dist/**']
       }

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- *   AdminLTE v4.0.0-beta3
+ *   AdminLTE v4.0.0-rc3
  *   Author: Colorlib
  *   Website: AdminLTE.io <https://adminlte.io>
  *   License: Open source - MIT <https://opensource.org/licenses/MIT>
@@ -13277,6 +13277,8 @@ textarea.form-control-lg {
   }
   .sidebar-expand-sm.layout-fixed .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .sidebar-expand-sm.sidebar-open .nav-link > .nav-badge,
   .sidebar-expand-sm.sidebar-open .nav-link > p > .nav-badge {
@@ -13307,6 +13309,8 @@ textarea.form-control-lg {
   }
   .sidebar-expand-sm .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .sidebar-expand-sm.sidebar-open .app-sidebar {
     margin-right: 0;
@@ -13345,6 +13349,8 @@ textarea.form-control-lg {
   }
   .sidebar-expand-md.layout-fixed .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .sidebar-expand-md.sidebar-open .nav-link > .nav-badge,
   .sidebar-expand-md.sidebar-open .nav-link > p > .nav-badge {
@@ -13375,6 +13381,8 @@ textarea.form-control-lg {
   }
   .sidebar-expand-md .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .sidebar-expand-md.sidebar-open .app-sidebar {
     margin-right: 0;
@@ -13413,6 +13421,8 @@ textarea.form-control-lg {
   }
   .sidebar-expand-lg.layout-fixed .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .sidebar-expand-lg.sidebar-open .nav-link > .nav-badge,
   .sidebar-expand-lg.sidebar-open .nav-link > p > .nav-badge {
@@ -13443,6 +13453,8 @@ textarea.form-control-lg {
   }
   .sidebar-expand-lg .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .sidebar-expand-lg.sidebar-open .app-sidebar {
     margin-right: 0;
@@ -13481,6 +13493,8 @@ textarea.form-control-lg {
   }
   .sidebar-expand-xl.layout-fixed .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .sidebar-expand-xl.sidebar-open .nav-link > .nav-badge,
   .sidebar-expand-xl.sidebar-open .nav-link > p > .nav-badge {
@@ -13511,6 +13525,8 @@ textarea.form-control-lg {
   }
   .sidebar-expand-xl .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .sidebar-expand-xl.sidebar-open .app-sidebar {
     margin-right: 0;
@@ -13549,6 +13565,8 @@ textarea.form-control-lg {
   }
   .sidebar-expand-xxl.layout-fixed .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .sidebar-expand-xxl.sidebar-open .nav-link > .nav-badge,
   .sidebar-expand-xxl.sidebar-open .nav-link > p > .nav-badge {
@@ -13579,6 +13597,8 @@ textarea.form-control-lg {
   }
   .sidebar-expand-xxl .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .sidebar-expand-xxl.sidebar-open .app-sidebar {
     margin-right: 0;
@@ -13616,6 +13636,8 @@ textarea.form-control-lg {
 }
 .sidebar-expand.layout-fixed .app-sidebar .sidebar-wrapper {
   height: calc(100vh - (calc(3.5rem + 1px)));
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .sidebar-expand.sidebar-open .nav-link > .nav-badge,
 .sidebar-expand.sidebar-open .nav-link > p > .nav-badge {
@@ -13644,6 +13666,8 @@ textarea.form-control-lg {
 }
 .sidebar-expand .app-sidebar .sidebar-wrapper {
   height: calc(100vh - (calc(3.5rem + 1px)));
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .sidebar-expand.sidebar-open .app-sidebar {
   margin-right: 0;
@@ -15539,5 +15563,4 @@ fieldset legend {
     content: " (" attr(href) ")";
   }
 }
-
 /*# sourceMappingURL=adminlte.rtl.css.map */

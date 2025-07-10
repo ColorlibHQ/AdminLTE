@@ -150,31 +150,7 @@
         }
       });
     </script>
-    <!--end::OverlayScrollbars Configure--><!-- Image path runtime fix -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        // Find the link tag for the main AdminLTE CSS file.
-        const cssLink = document.querySelector('link[href*="css/adminlte.css"]');
-        if (!cssLink) {
-          return; // Exit if the link isn't found
-        }
-
-        // Extract the base path from the CSS href.
-        // e.g., from "../css/adminlte.css", we get "../"
-        // e.g., from "./css/adminlte.css", we get "./"
-        const cssHref = cssLink.getAttribute('href');
-        const deploymentPath = cssHref.slice(0, cssHref.indexOf('css/adminlte.css'));
-
-        // Find all images with absolute paths and fix them.
-        document.querySelectorAll('img[src^="/assets/"]').forEach((img) => {
-          const originalSrc = img.getAttribute('src');
-          if (originalSrc) {
-            const relativeSrc = originalSrc.slice(1); // Remove leading '/'
-            img.src = deploymentPath + relativeSrc;
-          }
-        });
-      });
-    </script>
+    <!--end::OverlayScrollbars Configure-->
     <!--end::Script-->
   </body>
   <!--end::Body-->

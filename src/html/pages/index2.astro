@@ -9,6 +9,12 @@ const title = "AdminLTE | Dashboard v2"
 const path = "../../dist"
 const mainPage = "dashboard"
 const page = "index2";
+
+// Smart path resolution: calculate relative path based on directory depth
+const pathname = Astro.url.pathname;
+const pathSegments = pathname.split('/').filter(segment => segment !== '');
+const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0;
+const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 ---
 
 <!doctype html>
@@ -366,7 +372,7 @@ const page = "index2";
                             <!-- /.direct-chat-infos -->
                             <img
                               class="direct-chat-img"
-                              src="/assets/img/user1-128x128.jpg"
+                              src={deploymentPath + "assets/img/user1-128x128.jpg"}
                               alt="message user image"
                             />
                             <!-- /.direct-chat-img -->
@@ -391,7 +397,7 @@ const page = "index2";
                             <!-- /.direct-chat-infos -->
                             <img
                               class="direct-chat-img"
-                              src="/assets/img/user3-128x128.jpg"
+                              src={deploymentPath + "assets/img/user3-128x128.jpg"}
                               alt="message user image"
                             />
                             <!-- /.direct-chat-img -->
@@ -415,7 +421,7 @@ const page = "index2";
                             <!-- /.direct-chat-infos -->
                             <img
                               class="direct-chat-img"
-                              src="/assets/img/user1-128x128.jpg"
+                              src={deploymentPath + "assets/img/user1-128x128.jpg"}
                               alt="message user image"
                             />
                             <!-- /.direct-chat-img -->
@@ -440,7 +446,7 @@ const page = "index2";
                             <!-- /.direct-chat-infos -->
                             <img
                               class="direct-chat-img"
-                              src="/assets/img/user3-128x128.jpg"
+                              src={deploymentPath + "assets/img/user3-128x128.jpg"}
                               alt="message user image"
                             />
                             <!-- /.direct-chat-img -->
@@ -458,7 +464,7 @@ const page = "index2";
                               <a href="#">
                                 <img
                                   class="contacts-list-img"
-                                  src="/assets/img/user1-128x128.jpg"
+                                  src={deploymentPath + "assets/img/user1-128x128.jpg"}
                                   alt="User Avatar"
                                 />
 
@@ -481,7 +487,7 @@ const page = "index2";
                               <a href="#">
                                 <img
                                   class="contacts-list-img"
-                                  src="/assets/img/user7-128x128.jpg"
+                                  src={deploymentPath + "assets/img/user7-128x128.jpg"}
                                   alt="User Avatar"
                                 />
 
@@ -504,7 +510,7 @@ const page = "index2";
                               <a href="#">
                                 <img
                                   class="contacts-list-img"
-                                  src="/assets/img/user3-128x128.jpg"
+                                  src={deploymentPath + "assets/img/user3-128x128.jpg"}
                                   alt="User Avatar"
                                 />
 
@@ -527,7 +533,7 @@ const page = "index2";
                               <a href="#">
                                 <img
                                   class="contacts-list-img"
-                                  src="/assets/img/user5-128x128.jpg"
+                                  src={deploymentPath + "assets/img/user5-128x128.jpg"}
                                   alt="User Avatar"
                                 />
 
@@ -550,7 +556,7 @@ const page = "index2";
                               <a href="#">
                                 <img
                                   class="contacts-list-img"
-                                  src="/assets/img/user6-128x128.jpg"
+                                  src={deploymentPath + "assets/img/user6-128x128.jpg"}
                                   alt="User Avatar"
                                 />
 
@@ -573,7 +579,7 @@ const page = "index2";
                               <a href="#">
                                 <img
                                   class="contacts-list-img"
-                                  src="/assets/img/user8-128x128.jpg"
+                                  src={deploymentPath + "assets/img/user8-128x128.jpg"}
                                   alt="User Avatar"
                                 />
 
@@ -655,7 +661,7 @@ const page = "index2";
                           <div class="col-3 p-2">
                             <img
                               class="img-fluid rounded-circle"
-                              src="/assets/img/user1-128x128.jpg"
+                              src={deploymentPath + "assets/img/user1-128x128.jpg"}
                               alt="User Image"
                             />
                             <a
@@ -669,7 +675,7 @@ const page = "index2";
                           <div class="col-3 p-2">
                             <img
                               class="img-fluid rounded-circle"
-                              src="/assets/img/user1-128x128.jpg"
+                              src={deploymentPath + "assets/img/user1-128x128.jpg"}
                               alt="User Image"
                             />
                             <a
@@ -683,7 +689,7 @@ const page = "index2";
                           <div class="col-3 p-2">
                             <img
                               class="img-fluid rounded-circle"
-                              src="/assets/img/user7-128x128.jpg"
+                              src={deploymentPath + "assets/img/user7-128x128.jpg"}
                               alt="User Image"
                             />
                             <a
@@ -697,7 +703,7 @@ const page = "index2";
                           <div class="col-3 p-2">
                             <img
                               class="img-fluid rounded-circle"
-                              src="/assets/img/user6-128x128.jpg"
+                              src={deploymentPath + "assets/img/user6-128x128.jpg"}
                               alt="User Image"
                             />
                             <a
@@ -711,7 +717,7 @@ const page = "index2";
                           <div class="col-3 p-2">
                             <img
                               class="img-fluid rounded-circle"
-                              src="/assets/img/user2-160x160.jpg"
+                              src={deploymentPath + "assets/img/user2-160x160.jpg"}
                               alt="User Image"
                             />
                             <a
@@ -725,7 +731,7 @@ const page = "index2";
                           <div class="col-3 p-2">
                             <img
                               class="img-fluid rounded-circle"
-                              src="/assets/img/user5-128x128.jpg"
+                              src={deploymentPath + "assets/img/user5-128x128.jpg"}
                               alt="User Image"
                             />
                             <a
@@ -739,7 +745,7 @@ const page = "index2";
                           <div class="col-3 p-2">
                             <img
                               class="img-fluid rounded-circle"
-                              src="/assets/img/user4-128x128.jpg"
+                              src={deploymentPath + "assets/img/user4-128x128.jpg"}
                               alt="User Image"
                             />
                             <a
@@ -753,7 +759,7 @@ const page = "index2";
                           <div class="col-3 p-2">
                             <img
                               class="img-fluid rounded-circle"
-                              src="/assets/img/user3-128x128.jpg"
+                              src={deploymentPath + "assets/img/user3-128x128.jpg"}
                               alt="User Image"
                             />
                             <a
@@ -1078,7 +1084,7 @@ const page = "index2";
                       <div class="d-flex border-top py-2 px-1">
                         <div class="col-2">
                           <img
-                            src="/assets/img/default-150x150.png"
+                            src={deploymentPath + "assets/img/default-150x150.png"}
                             alt="Product Image"
                             class="img-size-50"
                           />
@@ -1099,7 +1105,7 @@ const page = "index2";
                       <div class="d-flex border-top py-2 px-1">
                         <div class="col-2">
                           <img
-                            src="/assets/img/default-150x150.png"
+                            src={deploymentPath + "assets/img/default-150x150.png"}
                             alt="Product Image"
                             class="img-size-50"
                           />
@@ -1120,7 +1126,7 @@ const page = "index2";
                       <div class="d-flex border-top py-2 px-1">
                         <div class="col-2">
                           <img
-                            src="/assets/img/default-150x150.png"
+                            src={deploymentPath + "assets/img/default-150x150.png"}
                             alt="Product Image"
                             class="img-size-50"
                           />
@@ -1142,7 +1148,7 @@ const page = "index2";
                       <div class="d-flex border-top py-2 px-1">
                         <div class="col-2">
                           <img
-                            src="/assets/img/default-150x150.png"
+                            src={deploymentPath + "assets/img/default-150x150.png"}
                             alt="Product Image"
                             class="img-size-50"
                           />

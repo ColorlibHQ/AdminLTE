@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0-rc4] - 2025-07-10
+
+### Updated
+- **Dependencies:** Updated 8 packages to latest versions
+  - @rollup/plugin-typescript: 12.1.3 → 12.1.4
+  - @typescript-eslint/eslint-plugin: 8.35.1 → 8.36.0
+  - @typescript-eslint/parser: 8.35.1 → 8.36.0
+  - astro: 5.10.0 → 5.11.0
+  - eslint: 9.30.0 → 9.30.1
+  - prettier: 3.5.3 → 3.6.2
+  - rollup: 4.44.0 → 4.44.2
+  - stylelint: 16.21.0 → 16.21.1
+
 ### Fixed
 - **Windows Build Compatibility:** Fixed npm scripts to work cross-platform by replacing Unix-specific shell commands with `shx`
   - Updated `copy-assets` script to use `shx mkdir` and `shx cp` commands
@@ -17,6 +30,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Updated accessibility CSS to use `transition: none` and `opacity: 1` instead of `display: block`
   - Maintains WCAG 2.1 AA compliance while ensuring modals work properly in TeamViewer sessions
   - Added specific transform overrides for modal dialogs in reduced motion mode
+- **Mobile Sidebar Scrolling:** Fixed sidebar closing unexpectedly when scrolling on mobile devices
+  - Updated touch event handling to differentiate between tap and scroll gestures
+  - Added proper overflow properties to sidebar wrapper for mobile viewport
+  - Sidebar now remains open during scroll operations on touch devices
+  - Resolves issue where scrolling in sidebar would immediately close it on mobile browsers
+- **Image Path Resolution:** Fixed mobile image loading by using relative paths in HTML
+  - **Root Cause:** Absolute paths like `/assets/img/user.jpg` caused 404 errors on mobile
+  - **Solution:** Generate relative image paths in Astro components based on page location
+  - **Result:** Images now load correctly on all devices and deployment scenarios
 
 ## [4.0.0-rc3] - 2025-06-24
 

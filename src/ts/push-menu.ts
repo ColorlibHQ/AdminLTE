@@ -150,12 +150,24 @@ onDOMContentLoaded(() => {
   sidebarOverlay.className = CLASS_NAME_SIDEBAR_OVERLAY
   document.querySelector(SELECTOR_APP_WRAPPER)?.append(sidebarOverlay)
 
-  sidebarOverlay.addEventListener('touchstart', event => {
-    event.preventDefault()
-    const target = event.currentTarget as HTMLElement
-    const data = new PushMenu(target, Defaults)
-    data.collapse()
+  let isTouchMoved = false
+
+  sidebarOverlay.addEventListener('touchstart', () => {
+    isTouchMoved = false
   }, { passive: true })
+
+  sidebarOverlay.addEventListener('touchmove', () => {
+    isTouchMoved = true
+  }, { passive: true })
+
+  sidebarOverlay.addEventListener('touchend', event => {
+    if (!isTouchMoved) {
+      event.preventDefault()
+      const target = event.currentTarget as HTMLElement
+      const data = new PushMenu(target, Defaults)
+      data.collapse()
+    }
+  }, { passive: false })
   sidebarOverlay.addEventListener('click', event => {
     event.preventDefault()
     const target = event.currentTarget as HTMLElement
