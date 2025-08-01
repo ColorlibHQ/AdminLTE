@@ -90,7 +90,7 @@
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
     "rimraf": "^6.0.1",
-    "rollup": "^4.44.0",
+    "rollup": "^4.46.2",
     "rtlcss": "^4.3.0",
     "sass": "^1.89.2",
     "shx": "^0.4.0",
