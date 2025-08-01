@@ -78,9 +78,8 @@ class Treeview {
     if (childElement) {
       this._element.classList.add(CLASS_NAME_MENU_OPEN)
       slideDown(childElement, this._config.animationSpeed)
+      this._element.dispatchEvent(event)
     }
-
-    this._element.dispatchEvent(event)
   }
 
   close(): void {
@@ -90,9 +89,8 @@ class Treeview {
     if (childElement) {
       this._element.classList.remove(CLASS_NAME_MENU_OPEN)
       slideUp(childElement, this._config.animationSpeed)
+      this._element.dispatchEvent(event)
     }
-
-    this._element.dispatchEvent(event)
   }
 
   toggle(): void {
