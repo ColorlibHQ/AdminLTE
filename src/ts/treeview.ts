@@ -76,7 +76,6 @@ class Treeview {
     this._element.classList.add(CLASS_NAME_MENU_OPEN)
 
     const childElement = this._element?.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
-
     if (childElement) {
       slideDown(childElement, this._config.animationSpeed)
     }
@@ -86,10 +85,10 @@ class Treeview {
 
   close(): void {
     const event = new Event(EVENT_COLLAPSED)
-    const childElement = this._element?.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
 
     this._element.classList.remove(CLASS_NAME_MENU_OPEN)
 
+    const childElement = this._element?.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
     if (childElement) {
       slideUp(childElement, this._config.animationSpeed)
     }
