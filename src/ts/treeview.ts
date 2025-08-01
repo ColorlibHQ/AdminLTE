@@ -73,10 +73,10 @@ class Treeview {
       })
     }
 
-    this._element.classList.add(CLASS_NAME_MENU_OPEN)
-
     const childElement = this._element?.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
+
     if (childElement) {
+      this._element.classList.add(CLASS_NAME_MENU_OPEN)
       slideDown(childElement, this._config.animationSpeed)
     }
 
@@ -85,11 +85,10 @@ class Treeview {
 
   close(): void {
     const event = new Event(EVENT_COLLAPSED)
-
-    this._element.classList.remove(CLASS_NAME_MENU_OPEN)
-
     const childElement = this._element?.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
+
     if (childElement) {
+      this._element.classList.remove(CLASS_NAME_MENU_OPEN)
       slideUp(childElement, this._config.animationSpeed)
     }
 
