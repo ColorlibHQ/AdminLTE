@@ -73,24 +73,28 @@ class Treeview {
       })
     }
 
+    this._element.classList.add(CLASS_NAME_MENU_OPEN)
+
     const childElement = this._element?.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
 
     if (childElement) {
-      this._element.classList.add(CLASS_NAME_MENU_OPEN)
       slideDown(childElement, this._config.animationSpeed)
-      this._element.dispatchEvent(event)
     }
+
+    this._element.dispatchEvent(event)
   }
 
   close(): void {
     const event = new Event(EVENT_COLLAPSED)
     const childElement = this._element?.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
 
+    this._element.classList.remove(CLASS_NAME_MENU_OPEN)
+
     if (childElement) {
-      this._element.classList.remove(CLASS_NAME_MENU_OPEN)
       slideUp(childElement, this._config.animationSpeed)
-      this._element.dispatchEvent(event)
     }
+
+    this._element.dispatchEvent(event)
   }
 
   toggle(): void {
@@ -116,7 +120,13 @@ onDOMContentLoaded(() => {
       const target = event.target as HTMLElement
       const targetItem = target.closest(SELECTOR_NAV_ITEM) as HTMLElement | undefined
       const targetLink = target.closest(SELECTOR_NAV_LINK) as HTMLAnchorElement | undefined
+      const targetTreeviewMenu = targetItem?.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
       const lteToggleElement = event.currentTarget as HTMLElement
+
+      // Avoid creating Treeview instances on non menu elements
+      if (!targetTreeviewMenu) {
+        return
+      }
 
       if (target?.getAttribute('href') === '#' || targetLink?.getAttribute('href') === '#') {
         event.preventDefault()
