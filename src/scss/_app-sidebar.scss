@@ -140,7 +140,10 @@
 
   // Section Heading
   .nav-header {
+    display: inline;
+    overflow: hidden;
     color: var(--#{$lte-prefix}sidebar-header-color);
+    text-overflow: ellipsis;
     background-color: inherit;
   }
 
@@ -225,8 +228,11 @@
   }
 
   .nav-header {
+    position: relative;
+    width: 100%;
     padding: $nav-link-padding-y ($nav-link-padding-y * 1.5);
     font-size: .9rem;
+    @include transition(width $lte-transition-fn $lte-transition-speed);
   }
 
   // Tree view menu
@@ -402,7 +408,7 @@
     max-width: var(--#{$lte-prefix}sidebar-width);
 
     .sidebar-menu .nav-header {
-      display: inline-block;
+      display: inline;
     }
 
     .sidebar-menu .nav-link {
