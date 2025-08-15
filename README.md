@@ -73,7 +73,7 @@ To build for production:
 
 AdminLTE supports all modern browsers with the latest Bootstrap 5.3.7:
 - Chrome (latest)
-- Firefox (latest) 
+- Firefox (latest)
 - Safari (latest)
 - Edge (latest)
 
@@ -85,6 +85,36 @@ AdminLTE v4 build scripts work cross-platform:
 - **Linux** - Bash, Zsh, and other Unix shells
 
 All npm scripts use cross-platform utilities to ensure consistent behavior across different operating systems.
+
+## Sponsorship
+
+Support AdminLTE development by becoming a sponsor or donor.
+
+<p align="center">
+  <a href="https://github.com/sponsors/danny007in">
+    <img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="Sponsor on GitHub" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://www.paypal.me/daniel007in">
+    <img src="https://img.shields.io/static/v1?label=Donate&message=%E2%9D%A4&logo=PayPal&color=%2300457C" alt="Donate via PayPal" />
+  </a>
+</p>
+
+## Our Sponsors
+
+<p align="center">
+  <a href="https://github.com/spizzo14"><img src="https://unavatar.io/github/spizzo14?fallback=https%3A%2F%2Fraw.githubusercontent.com%2FJamesIves%2Fgithub-sponsors-readme-action%2Fdev%2F.github%2Fassets%2Fplaceholder.png" width="50" height="50" alt="User avatar: spizzo14" loading="lazy" /></a>&nbsp;&nbsp;
+  <a href="https://github.com/tomhappyblock"><img src="https://unavatar.io/github/tomhappyblock?fallback=https%3A%2F%2Fraw.githubusercontent.com%2FJamesIves%2Fgithub-sponsors-readme-action%2Fdev%2F.github%2Fassets%2Fplaceholder.png" width="50" height="50" alt="User avatar: tomhappyblock" loading="lazy" /></a>&nbsp;&nbsp;
+  <a href="https://github.com/stefanmorderca"><img src="https://unavatar.io/github/stefanmorderca?fallback=https%3A%2F%2Fraw.githubusercontent.com%2FJamesIves%2Fgithub-sponsors-readme-action%2Fdev%2F.github%2Fassets%2Fplaceholder.png" width="50" height="50" alt="User avatar: stefanmorderca" loading="lazy" /></a>&nbsp;&nbsp;
+  <a href="https://github.com/tito10047"><img src="https://unavatar.io/github/tito10047?fallback=https%3A%2F%2Fraw.githubusercontent.com%2FJamesIves%2Fgithub-sponsors-readme-action%2Fdev%2F.github%2Fassets%2Fplaceholder.png" width="50" height="50" alt="User avatar: tito10047" loading="lazy" /></a>&nbsp;&nbsp;
+  <a href="https://github.com/sitchi"><img src="https://unavatar.io/github/sitchi?fallback=https%3A%2F%2Fraw.githubusercontent.com%2FJamesIves%2Fgithub-sponsors-readme-action%2Fdev%2F.github%2Fassets%2Fplaceholder.png" width="50" height="50" alt="User avatar: sitchi" loading="lazy" /></a>&nbsp;&nbsp;
+  <a href="https://github.com/npreee"><img src="https://unavatar.io/github/npreee?fallback=https%3A%2F%2Fraw.githubusercontent.com%2FJamesIves%2Fgithub-sponsors-readme-action%2Fdev%2F.github%2Fassets%2Fplaceholder.png" width="50" height="50" alt="User avatar: npreee" loading="lazy" /></a>&nbsp;&nbsp;
+  <a href="https://github.com/isaacmorais"><img src="https://unavatar.io/github/isaacmorais?fallback=https%3A%2F%2Fraw.githubusercontent.com%2FJamesIves%2Fgithub-sponsors-readme-action%2Fdev%2F.github%2Fassets%2Fplaceholder.png" width="50" height="50" alt="User avatar: isaacmorais" loading="lazy" /></a>&nbsp;&nbsp;
+</p>
+
+<p align="center">
+  <a href="https://github.com/sponsors/danny007in">Your avatar here? Become a sponsor</a>
+</p>
 
 ## Contributing
 
@@ -99,11 +129,6 @@ All npm scripts use cross-platform utilities to ensure consistent behavior acros
 - After installation completes, run `npm start`
 - Cool, Send your changes in PR to `master` branch.
 
-## Sponsorship
-
-Support AdminLTE development by becoming a sponsor.
-[Github Sponsors](https://github.com/sponsors/danny007in) or
-[PayPal](https://www.paypal.me/daniel007in)
 
 ## License
 
@@ -117,3 +142,4 @@ AdminLTE.io reserves the right to change the license of future releases.
 - [Pickaface](https://pickaface.net/)
 - [Unsplash](https://unsplash.com/)
 - [Uifaces](http://uifaces.com/)
+- [Unavatar](https://unavatar.io/)
