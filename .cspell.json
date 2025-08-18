@@ -1,0 +1,16 @@
+{
+  "version": "0.2",
+  "words": [],
+  "language": "en-US",
+  "files": [
+    "**/*.{astro,md,mdx}"
+  ],
+  "ignorePaths": [
+    ".cspell.json",
+    "dist/",
+    "*.min.*",
+    "**/*rtl*",
+    "**/tests/**"
+  ],
+  "useGitignore": true
+}
