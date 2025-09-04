@@ -36,7 +36,7 @@
     "compile": "npm-run-all css js assets copy-assets docs-compile docs-format flatten-build",
     "production": "npm-run-all clean lint compile bundlewatch",
     "watch": "concurrently \"npm:watch-*\"",
-    "watch-css-main": "nodemon --watch src/scss/ --ext scss --exec \"npm-run-all css-lint css-compile copy-assets\"",
+    "watch-css-main": "nodemon --watch src/scss/ --ext scss --exec \"npm-run-all css-lint css-compile css-prefix copy-assets\"",
     "watch-css-dist": "nodemon --watch dist/css/ --ext css --ignore \"dist/css/*.rtl.*\" --exec \"npm run css-rtl\"",
     "watch-js-main": "nodemon --watch src/ts/ --ext ts --exec \"npm-run-all js-lint js-compile copy-assets\"",
     "watch-assets": "nodemon --watch src/assets/ --exec \"npm run assets\""
