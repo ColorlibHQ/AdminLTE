@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0-rc5] - 2025-10-14
+
+### Updated
+- **Dependencies:** Updated 17+ packages to latest versions for improved security and performance
+  - @astrojs/mdx: 4.3.0 → 4.3.7
+  - @typescript-eslint/eslint-plugin: 8.36.0 → 8.46.1
+  - @typescript-eslint/parser: 8.36.0 → 8.46.1
+  - astro: 5.11.0 → 5.14.4
+  - bootstrap: 5.3.7 → 5.3.8
+  - concurrently: 9.2.0 → 9.2.1
+  - cross-env: 7.0.3 → 10.1.0 (major version)
+  - eslint: 9.30.1 → 9.37.0
+  - eslint-config-xo: 0.47.0 → 0.49.0
+  - eslint-config-xo-typescript: 8.0.1 → 9.0.0 (major version)
+  - eslint-plugin-unicorn: 59.0.1 → 61.0.2
+  - fs-extra: 11.3.0 → 11.3.2
+  - rollup: 4.44.2 → 4.52.4
+  - sass: 1.89.2 → 1.93.2
+  - stylelint: 16.21.1 → 16.25.0
+  - terser: 5.43.1 → 5.44.0
+  - typescript: 5.8.3 → 5.9.3
+
+### Fixed
+- **Security Vulnerabilities:** Resolved 2 security issues
+  - Fixed high severity DoS vulnerability in axios (updated to 0.30.2+)
+  - Fixed critical vulnerability in form-data random function (updated to 4.0.4+)
+
+### Removed
+- **Deprecated Files:** Removed `.eslintignore` file
+  - ESLint ignores are now properly configured in `eslint.config.js`
+  - Eliminates deprecation warnings in ESLint 9.x
+
 ## [4.0.0-rc4] - 2025-07-10
 
 ### Updated

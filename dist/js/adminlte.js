@@ -1,5 +1,5 @@
 /*!
- * AdminLTE v4.0.0-rc4 (https://adminlte.io)
+ * AdminLTE v4.0.0-rc5 (https://adminlte.io)
  * Copyright 2014-2025 Colorlib <https://colorlib.com>
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
@@ -1148,7 +1148,7 @@
     };
 
     /**
-     * AdminLTE v4.0.0-rc3
+     * AdminLTE v4.0.0-rc5
      * Author: Colorlib
      * Website: AdminLTE.io <https://adminlte.io>
      * License: Open source - MIT <https://opensource.org/licenses/MIT>

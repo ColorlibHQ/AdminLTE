@@ -9,26 +9,28 @@
 **AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 5](https://getbootstrap.com/)** framework and also the JavaScript plugins.
 Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.
 
-## What's New in v4.0.0-rc4
+## What's New in v4.0.0-rc5
 
-**Latest Release with Enhanced Performance & Updated Dependencies** - Fresh improvements for better development experience:
+**Latest Release with Major Dependency Updates & Security Fixes** - Fresh improvements for better development experience:
 
-- **Updated Dependencies** - 8 npm packages updated to latest versions for improved security and performance
-- **Refined Mobile Image Loading** - Streamlined path resolution by removing JavaScript runtime fixes
-- **Better Performance** - Images now load faster with build-time path generation instead of runtime corrections
-- **Latest Tooling** - Updated TypeScript, ESLint, Prettier, Astro, and build tools
-- **Zero Runtime Errors** - Eliminated console errors from JavaScript path corrections
+- **Major Dependency Updates** - 17+ npm packages updated to latest versions
+- **Security Enhancements** - Fixed 2 critical vulnerabilities (axios DoS, form-data random function)
+- **Latest Tooling** - Updated to TypeScript 5.9.3, ESLint 9.37.0, Astro 5.14.4, and more
+- **Bootstrap 5.3.8** - Updated to the latest stable Bootstrap release
+- **ESLint 9.x Compatibility** - Removed deprecated `.eslintignore` file
+- **Zero Vulnerabilities** - All security issues resolved
 
 **Key Improvements:**
-- ✅ All images use relative paths generated at build time
-- ✅ No more JavaScript runtime path fixes causing console errors
-- ✅ Faster image loading with optimal path resolution
-- ✅ Latest development tools and security updates
+- ✅ All dependencies updated to their absolute latest versions
+- ✅ Two major version bumps: cross-env 10.x and eslint-config-xo-typescript 9.x
+- ✅ Enhanced security with vulnerability fixes
+- ✅ Cleaner linting without deprecation warnings
 - ✅ Production-ready with enhanced stability
+- ✅ Faster builds with latest Rollup, Sass, and Terser
 
 **Install the latest:**
 ```bash
-npm install admin-lte@4.0.0-rc4
+npm install admin-lte@4.0.0-rc5
 ```
 
 See the [CHANGELOG.md](CHANGELOG.md) for complete details.
