@@ -329,7 +329,7 @@
     const EVENT_KEY$3 = `.${DATA_KEY$3}`;
     const EVENT_EXPANDED$1 = `expanded${EVENT_KEY$3}`;
     const EVENT_COLLAPSED$1 = `collapsed${EVENT_KEY$3}`;
-    // const EVENT_LOAD_DATA_API = `load${EVENT_KEY}`
+    const EVENT_LOAD_DATA_API = `load${EVENT_KEY$3}`;
     const CLASS_NAME_MENU_OPEN$1 = 'menu-open';
     const SELECTOR_NAV_ITEM$1 = '.nav-item';
     const SELECTOR_NAV_LINK = '.nav-link';
@@ -395,6 +395,15 @@
      * ------------------------------------------------------------------------
      */
     onDOMContentLoaded(() => {
+        const openMenuItems = document.querySelectorAll(`${SELECTOR_NAV_ITEM$1}.${CLASS_NAME_MENU_OPEN$1}`);
+        openMenuItems.forEach(menuItem => {
+            const childElement = menuItem.querySelector(SELECTOR_TREEVIEW_MENU);
+            if (childElement) {
+                slideDown(childElement, 0);
+                const event = new Event(EVENT_LOAD_DATA_API);
+                menuItem.dispatchEvent(event);
+            }
+        });
         const button = document.querySelectorAll(SELECTOR_DATA_TOGGLE$1);
         button.forEach(btn => {
             btn.addEventListener('click', event => {
