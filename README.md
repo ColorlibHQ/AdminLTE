@@ -88,6 +88,32 @@ AdminLTE v4 build scripts work cross-platform:
 
 All npm scripts use cross-platform utilities to ensure consistent behavior across different operating systems.
 
+## Security & Production Deployment
+
+### Important Security Notice
+
+AdminLTE is a **UI template** - when deploying to production, follow these critical guidelines:
+
+**What to Deploy:**
+- Only compiled production assets: `dist/js/adminlte.min.js` and `dist/css/adminlte.min.css`
+- Your application-specific files
+
+**What NOT to Deploy:**
+- `node_modules/` directory
+- Demo/example HTML files (index.html, index2.html, index3.html, etc.)
+- Source files (`src/` directory)
+- Development configuration files
+
+**CVE-2021-36471 Notice:**
+This CVE is **disputed** and does not represent a vulnerability in AdminLTE. It refers to demo pages being accessible when developers incorrectly deploy example files to production. AdminLTE v4 has a clear separation between development demos and production assets. See [SECURITY.md](SECURITY.md) for complete details.
+
+**Production Build:**
+```bash
+npm run production  # Builds optimized assets in dist/
+```
+
+For detailed security guidelines, authentication requirements, and best practices, see [SECURITY.md](SECURITY.md).
+
 ## Sponsorship
 
 Support AdminLTE development by becoming a sponsor or donor.
