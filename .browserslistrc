@@ -14,3 +14,4 @@ not Explorer <= 11
 not ie 11
 not android 4.4.3
 not ios_saf < 15.4
+not kaios <= 2.5 # fix floating label issues in Firefox (see https://github.com/postcss/autoprefixer/issues/1533)
