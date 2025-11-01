@@ -89,7 +89,7 @@
     "postcss-cli": "^11.0.1",
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
-    "rimraf": "^6.0.1",
+    "rimraf": "^6.1.0",
     "rollup": "^4.52.4",
     "rtlcss": "^4.3.0",
     "sass": "^1.93.2",
