@@ -42,8 +42,131 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
   <!--end::Head-->
   <!--begin::Body-->
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
-    <!--begin::App Wrapper-->
-    <div class="app-wrapper">
+    <!-- Custom CSS for tech theme -->
+    <style>
+      /* Glassmorphism effect */
+      .card, .small-box, .app-content-header, .app-content {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        transition: all 0.3s ease;
+      }
+      
+      /* Hover animations */
+      .small-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+      
+      .card:hover {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+      
+      /* 3D background container */
+      #three-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+      
+      /* Chat button */
+      .chat-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        z-index: 1000;
+      }
+      
+      .chat-button:hover {
+        transform: scale(1.1) rotate(90deg);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      }
+      
+      /* Chat window */
+      .chat-window {
+        position: fixed;
+        bottom: 100px;
+        right: 20px;
+        width: 350px;
+        height: 450px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        display: none;
+        flex-direction: column;
+      }
+      
+      .chat-window.show {
+        display: flex;
+      }
+      
+      .chat-header {
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 16px 16px 0 0;
+      }
+      
+      .chat-messages {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+      }
+      
+      .chat-input {
+        padding: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      
+      .chat-input input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 25px;
+        outline: none;
+      }
+      
+      /* Message styles */
+      .message {
+        margin-bottom: 15px;
+        padding: 10px 15px;
+        border-radius: 15px;
+        max-width: 80%;
+      }
+      
+      .message.user {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        margin-left: auto;
+      }
+      
+      .message.bot {
+        background: rgba(0, 0, 0, 0.1);
+        color: #333;
+      }
+    </style>
+    <!-- 3D Background -->
+      <div id="three-background"></div>
+      
+      <!--begin::App Wrapper-->
+      <div class="app-wrapper">
       <Topbar path={path} />
       <Sidenav path={path} mainPage={mainPage} page={page} />
       <!--begin::App Main-->
@@ -780,6 +903,151 @@ sales_chart.render()
         option_sparkline3
       )
       sparkline3.render()
+    </script>
+    <!-- Chat functionality -->
+    <button class="chat-button" id="chatButton">💬</button>
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-header">
+        <h4>AI Assistant</h4>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot">
+          <p>Hello! How can I assist you today?</p>
+        </div>
+        <div class="message bot">
+          <p>I'm here to help with your questions and needs.</p>
+        </div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="chatInput" placeholder="Type your message..." />
+      </div>
+    </div>
+    
+    <!-- 3D Background with Three.js -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script>
+      // Declare THREE for TypeScript
+      declare var THREE: any;
+      
+      // 3D Background setup
+      const container = document.getElementById('three-background');
+      if (container) {
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0);
+        container.append(renderer.domElement);
+        
+        // Create particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 5000;
+        const positions = new Float32Array(particlesCount * 3);
+        
+        for (let i = 0; i < particlesCount * 3; i++) {
+          positions[i] = (Math.random() - 0.5) * 100;
+        }
+        
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        
+        const particlesMaterial = new THREE.PointsMaterial({
+          color: 0x00FFFF,
+          size: 0.5,
+          transparent: true,
+          opacity: 0.8
+        });
+        
+        const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particles);
+        
+        // Create rotating cubes
+        const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+        const cubeMaterial = new THREE.MeshBasicMaterial({
+          color: 0xFF00FF,
+          wireframe: true
+        });
+        
+        const cubes: any[] = [];
+        for (let i = 0; i < 10; i++) {
+          const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+          cube.position.set(
+            (Math.random() - 0.5) * 50,
+            (Math.random() - 0.5) * 50,
+            (Math.random() - 0.5) * 50
+          );
+          cubes.push(cube);
+          scene.add(cube);
+        }
+        
+        camera.position.z = 30;
+        
+        function animate() {
+          requestAnimationFrame(animate);
+          
+          // Rotate particles
+          particles.rotation.y += 0.0005;
+          
+          // Rotate cubes
+          cubes.forEach((cube, index) => {
+            cube.rotation.x += 0.01 * (index + 1) * 0.1;
+            cube.rotation.y += 0.01 * (index + 1) * 0.1;
+          });
+          
+          renderer.render(scene, camera);
+        }
+        
+        animate();
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+      }
+      
+      // Chat functionality
+      const chatButton = document.getElementById('chatButton');
+      const chatWindow = document.getElementById('chatWindow');
+      const chatInput = document.getElementById('chatInput') as HTMLInputElement;
+      const chatMessages = document.getElementById('chatMessages');
+      
+      if (chatButton && chatWindow) {
+        chatButton.addEventListener('click', () => {
+          chatWindow.classList.toggle('show');
+        });
+      }
+      
+      if (chatInput && chatMessages) {
+        chatInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            const message = chatInput.value;
+            if (message.trim() !== '') {
+              // Add user message
+              const userMessage = document.createElement('div');
+              userMessage.className = 'message user';
+              userMessage.innerHTML = `<p>${message}</p>`;
+              chatMessages.append(userMessage);
+              
+              // Clear input
+              chatInput.value = '';
+              
+              // Scroll to bottom
+              chatMessages.scrollTop = chatMessages.scrollHeight;
+              
+              // Simulate bot response
+              setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.className = 'message bot';
+                botMessage.innerHTML = `<p>You said: ${message}</p>`;
+                chatMessages.append(botMessage);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+              }, 1000);
+            }
+          }
+        });
+      }
     </script>
     <!--end::Script-->
   </body><!--end::Body-->
