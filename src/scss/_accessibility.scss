@@ -159,12 +159,6 @@
 }
 
 .invalid-feedback {
-  display: block;
-  width: 100%;
-  margin-top: .25rem;
-  font-size: .875em;
-  color: var(--bs-danger);
-
   &[role="alert"] {
     font-weight: 600;
   }
