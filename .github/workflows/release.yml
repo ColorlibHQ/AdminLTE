@@ -5,6 +5,10 @@ on:
     tags:
       - '*'
 
+env:
+  FORCE_COLOR: 2
+  NODE: 20
+
 jobs:
   build:
     runs-on: ubuntu-latest
