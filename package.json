@@ -63,12 +63,12 @@
     "url": "https://github.com/ColorlibHQ/AdminLTE/issues"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.5",
-    "@astrojs/mdx": "^4.3.9",
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/mdx": "^4.3.12",
     "@rollup/plugin-typescript": "^12.1.3",
     "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@typescript-eslint/parser": "^8.46.2",
-    "astro": "^5.15.6",
+    "astro": "^5.16.3",
     "autoprefixer": "^10.4.21",
     "bootstrap": "^5.3.8",
     "bundlewatch": "^0.4.1",
