@@ -3,14 +3,12 @@
 //
 
 // General Dropdown Rules
-//.dropdown-item {
-//  &:first-of-type {
-//    @include border-top-radius($border-radius);
-//  }
-//  &:last-of-type {
-//    @include border-bottom-radius($border-radius);
-//  }
-//}
+
+// Add overflow hidden to prevent first/last childs from overflowing the border
+// radius of the dropdown-menu
+.dropdown-menu {
+  overflow: hidden;
+}
 
 .fs-7 {
   .dropdown-menu {
@@ -158,14 +156,8 @@
   }
 
   > .dropdown-menu {
-    @include border-top-radius(0);
     width: 280px;
     padding: 0;
-
-    &,
-    > .user-body {
-      @include border-bottom-radius(4px);
-    }
 
     // Header menu
     > li.user-header {
@@ -205,10 +197,6 @@
 
       a {
         text-decoration: none;
-        @include media-breakpoint-up(sm) {
-          color: var(--#{$prefix}body-color) !important;
-          background-color: var(--#{$prefix}body-bg) !important;
-        }
       }
     }
 
@@ -217,16 +205,6 @@
       @include clearfix();
       padding: 10px;
       background-color: var(--#{$prefix}light-bg);
-
-      .btn-default {
-        color: var(--#{$prefix}body-color);
-
-        &:hover {
-          @include media-breakpoint-up(sm) {
-            background-color: var(--#{$prefix}body-bg);
-          }
-        }
-      }
     }
   }
 
