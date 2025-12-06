@@ -4,8 +4,7 @@
 
 // General Dropdown Rules
 
-// Add overflow hidden to prevent first/last childs from overflowing the border
-// radius of the dropdown-menu
+// Ensure children cannot overflow and break the dropdown border radius
 .dropdown-menu {
   overflow: hidden;
 }
