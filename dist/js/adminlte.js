@@ -410,7 +410,12 @@
                 const target = event.target;
                 const targetItem = target.closest(SELECTOR_NAV_ITEM$1);
                 const targetLink = target.closest(SELECTOR_NAV_LINK);
+                const targetTreeviewMenu = targetItem?.querySelector(SELECTOR_TREEVIEW_MENU);
                 const lteToggleElement = event.currentTarget;
+                // Avoid creating Treeview instances on non menu elements
+                if (!targetTreeviewMenu) {
+                    return;
+                }
                 if (target?.getAttribute('href') === '#' || targetLink?.getAttribute('href') === '#') {
                     event.preventDefault();
                 }
@@ -1021,10 +1026,13 @@
                         label.append(indicator);
                     }
                 }
-                // Handle invalid states
-                htmlInput.addEventListener('invalid', () => {
-                    this.handleFormError(htmlInput);
-                });
+                // Handle invalid state unless the element explicitly opts out via the
+                // 'disable-adminlte-validations' class.
+                if (!htmlInput.classList.contains('disable-adminlte-validations')) {
+                    htmlInput.addEventListener('invalid', () => {
+                        this.handleFormError(htmlInput);
+                    });
+                }
             });
         }
         handleFormError(input) {
@@ -1035,7 +1043,11 @@
                 errorElement.id = errorId;
                 errorElement.className = 'invalid-feedback';
                 errorElement.setAttribute('role', 'alert');
-                input.parentNode?.insertBefore(errorElement, input.nextSibling);
+                // Always append the error element as the last child of the parent.
+                // This prevents breaking layouts where inputs use Bootstrap's
+                // `.input-group-text` decorators, ensuring the error stays below
+                // the entire input group.
+                input.parentNode?.append(errorElement);
             }
             errorElement.textContent = input.validationMessage;
             input.setAttribute('aria-describedby', errorId);

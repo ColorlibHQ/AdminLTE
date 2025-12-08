@@ -268,8 +268,8 @@
                 <!--end::Menu Body-->
                 <!--begin::Menu Footer-->
                 <li class="user-footer">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
+                  <a href="#" class="btn btn-outline-secondary">Profile</a>
+                  <a href="#" class="btn btn-outline-danger float-end">Sign out</a>
                 </li>
                 <!--end::Menu Footer-->
               </ul>
@@ -990,22 +990,22 @@
 <span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> storedTheme</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">localStorage</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getItem</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;theme&quot;</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#569CD6">  const</span><span style="color:#DCDCAA"> getPreferredTheme</span><span style="color:#D4D4D4"> = () </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#C586C0">    if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">storedTheme</span><span style="color:#D4D4D4">) {</span></span>
-<span class="line"><span style="color:#C586C0">      return</span><span style="color:#9CDCFE"> storedTheme</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#CE92A4">    if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">storedTheme</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#CE92A4">      return</span><span style="color:#9CDCFE"> storedTheme</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#C586C0">    return</span><span style="color:#9CDCFE"> window</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">matchMedia</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;(prefers-color-scheme: dark)&quot;</span><span style="color:#D4D4D4">).</span><span style="color:#9CDCFE">matches</span></span>
+<span class="line"><span style="color:#CE92A4">    return</span><span style="color:#9CDCFE"> window</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">matchMedia</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;(prefers-color-scheme: dark)&quot;</span><span style="color:#D4D4D4">).</span><span style="color:#9CDCFE">matches</span></span>
 <span class="line"><span style="color:#D4D4D4">      ? </span><span style="color:#CE9178">&quot;dark&quot;</span></span>
 <span class="line"><span style="color:#D4D4D4">      : </span><span style="color:#CE9178">&quot;light&quot;</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"><span style="color:#D4D4D4">  };</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#569CD6">  const</span><span style="color:#DCDCAA"> setTheme</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">function</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">theme</span><span style="color:#D4D4D4">) {</span></span>
-<span class="line"><span style="color:#C586C0">    if</span><span style="color:#D4D4D4"> (</span></span>
+<span class="line"><span style="color:#CE92A4">    if</span><span style="color:#D4D4D4"> (</span></span>
 <span class="line"><span style="color:#9CDCFE">      theme</span><span style="color:#D4D4D4"> === </span><span style="color:#CE9178">&quot;auto&quot;</span><span style="color:#D4D4D4"> &amp;&amp;</span></span>
 <span class="line"><span style="color:#9CDCFE">      window</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">matchMedia</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;(prefers-color-scheme: dark)&quot;</span><span style="color:#D4D4D4">).</span><span style="color:#9CDCFE">matches</span></span>
 <span class="line"><span style="color:#D4D4D4">    ) {</span></span>
 <span class="line"><span style="color:#9CDCFE">      document</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">documentElement</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">setAttribute</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;data-bs-theme&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#D4D4D4">);</span></span>
-<span class="line"><span style="color:#D4D4D4">    } </span><span style="color:#C586C0">else</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#D4D4D4">    } </span><span style="color:#CE92A4">else</span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"><span style="color:#9CDCFE">      document</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">documentElement</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">setAttribute</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;data-bs-theme&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">theme</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"><span style="color:#D4D4D4">  };</span></span>
@@ -1015,8 +1015,8 @@
 <span class="line"><span style="color:#569CD6">  const</span><span style="color:#DCDCAA"> showActiveTheme</span><span style="color:#D4D4D4"> = (</span><span style="color:#9CDCFE">theme</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">focus</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">false</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> themeSwitcher</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;#bd-theme&quot;</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#C586C0">    if</span><span style="color:#D4D4D4"> (!</span><span style="color:#9CDCFE">themeSwitcher</span><span style="color:#D4D4D4">) {</span></span>
-<span class="line"><span style="color:#C586C0">      return</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#CE92A4">    if</span><span style="color:#D4D4D4"> (!</span><span style="color:#9CDCFE">themeSwitcher</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#CE92A4">      return</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> themeSwitcherText</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;#bd-theme-text&quot;</span><span style="color:#D4D4D4">);</span></span>
@@ -1026,7 +1026,7 @@
 <span class="line"><span style="color:#D4D4D4">    );</span></span>
 <span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> svgOfActiveBtn</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">btnToActive</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;i&quot;</span><span style="color:#D4D4D4">).</span><span style="color:#DCDCAA">getAttribute</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;class&quot;</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#C586C0">    for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> element</span><span style="color:#569CD6"> of</span><span style="color:#9CDCFE"> document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelectorAll</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;[data-bs-theme-value]&quot;</span><span style="color:#D4D4D4">)) {</span></span>
+<span class="line"><span style="color:#CE92A4">    for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> element</span><span style="color:#569CD6"> of</span><span style="color:#9CDCFE"> document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelectorAll</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;[data-bs-theme-value]&quot;</span><span style="color:#D4D4D4">)) {</span></span>
 <span class="line"><span style="color:#9CDCFE">      element</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">classList</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">remove</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;active&quot;</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"><span style="color:#9CDCFE">      element</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">setAttribute</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;aria-pressed&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">&quot;false&quot;</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"><span style="color:#D4D4D4">    }</span></span>
@@ -1037,7 +1037,7 @@
 <span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> themeSwitcherLabel</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">`</span><span style="color:#569CD6">${</span><span style="color:#9CDCFE">themeSwitcherText</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">textContent</span><span style="color:#569CD6">}</span><span style="color:#CE9178"> (</span><span style="color:#569CD6">${</span><span style="color:#9CDCFE">btnToActive</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">dataset</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">bsThemeValue</span><span style="color:#569CD6">}</span><span style="color:#CE9178">)`</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"><span style="color:#9CDCFE">    themeSwitcher</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">setAttribute</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;aria-label&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">themeSwitcherLabel</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#C586C0">    if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">focus</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#CE92A4">    if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">focus</span><span style="color:#D4D4D4">) {</span></span>
 <span class="line"><span style="color:#9CDCFE">      themeSwitcher</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">focus</span><span style="color:#D4D4D4">();</span></span>
 <span class="line"><span style="color:#D4D4D4">    }</span></span>
 <span class="line"><span style="color:#D4D4D4">  };</span></span>
@@ -1045,7 +1045,7 @@
 <span class="line"><span style="color:#9CDCFE">  window</span></span>
 <span class="line"><span style="color:#D4D4D4">    .</span><span style="color:#DCDCAA">matchMedia</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;(prefers-color-scheme: dark)&quot;</span><span style="color:#D4D4D4">)</span></span>
 <span class="line"><span style="color:#D4D4D4">    .</span><span style="color:#DCDCAA">addEventListener</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;change&quot;</span><span style="color:#D4D4D4">, () </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#C586C0">      if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">storedTheme</span><span style="color:#D4D4D4"> !== </span><span style="color:#CE9178">&quot;light&quot;</span><span style="color:#D4D4D4"> || </span><span style="color:#9CDCFE">storedTheme</span><span style="color:#D4D4D4"> !== </span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#CE92A4">      if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">storedTheme</span><span style="color:#D4D4D4"> !== </span><span style="color:#CE9178">&quot;light&quot;</span><span style="color:#D4D4D4"> || </span><span style="color:#9CDCFE">storedTheme</span><span style="color:#D4D4D4"> !== </span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#D4D4D4">) {</span></span>
 <span class="line"><span style="color:#DCDCAA">        setTheme</span><span style="color:#D4D4D4">(</span><span style="color:#DCDCAA">getPreferredTheme</span><span style="color:#D4D4D4">());</span></span>
 <span class="line"><span style="color:#D4D4D4">      }</span></span>
 <span class="line"><span style="color:#D4D4D4">    });</span></span>
@@ -1053,7 +1053,7 @@
 <span class="line"><span style="color:#9CDCFE">  window</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">addEventListener</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;DOMContentLoaded&quot;</span><span style="color:#D4D4D4">, () </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"><span style="color:#DCDCAA">    showActiveTheme</span><span style="color:#D4D4D4">(</span><span style="color:#DCDCAA">getPreferredTheme</span><span style="color:#D4D4D4">());</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#C586C0">    for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> toggle</span><span style="color:#569CD6"> of</span><span style="color:#9CDCFE"> document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelectorAll</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;[data-bs-theme-value]&quot;</span><span style="color:#D4D4D4">)) {</span></span>
+<span class="line"><span style="color:#CE92A4">    for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> toggle</span><span style="color:#569CD6"> of</span><span style="color:#9CDCFE"> document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelectorAll</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;[data-bs-theme-value]&quot;</span><span style="color:#D4D4D4">)) {</span></span>
 <span class="line"><span style="color:#9CDCFE">      toggle</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">addEventListener</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;click&quot;</span><span style="color:#D4D4D4">, () </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
 <span class="line"><span style="color:#569CD6">        const</span><span style="color:#4FC1FF"> theme</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">toggle</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getAttribute</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;data-bs-theme-value&quot;</span><span style="color:#D4D4D4">);</span></span>
 <span class="line"><span style="color:#9CDCFE">        localStorage</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">setItem</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;theme&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">theme</span><span style="color:#D4D4D4">);</span></span>
