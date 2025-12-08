@@ -609,8 +609,10 @@
     const SELECTOR_APP_WRAPPER = '.app-wrapper';
     const SELECTOR_SIDEBAR_EXPAND = `[class*="${CLASS_NAME_SIDEBAR_EXPAND}"]`;
     const SELECTOR_SIDEBAR_TOGGLE = '[data-lte-toggle="sidebar"]';
+    const STORAGE_KEY_SIDEBAR_STATE = 'lte.sidebar.state';
     const Defaults = {
-        sidebarBreakpoint: 992
+        sidebarBreakpoint: 992,
+        enablePersistence: true
     };
     /**
      * Class Definition
@@ -680,9 +682,62 @@
             else {
                 this.collapse();
             }
+            this.saveSidebarState();
+        }
+        /**
+         * Save sidebar state to localStorage
+         */
+        saveSidebarState() {
+            if (!this._config.enablePersistence) {
+                return;
+            }
+            // Check for SSR environment
+            if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+                return;
+            }
+            try {
+                const state = document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)
+                    ? CLASS_NAME_SIDEBAR_COLLAPSE
+                    : CLASS_NAME_SIDEBAR_OPEN;
+                localStorage.setItem(STORAGE_KEY_SIDEBAR_STATE, state);
+            }
+            catch {
+                // localStorage may be unavailable (private browsing, quota exceeded, etc.)
+            }
+        }
+        /**
+         * Load sidebar state from localStorage
+         * Only applies on desktop; mobile always starts collapsed
+         */
+        loadSidebarState() {
+            if (!this._config.enablePersistence) {
+                return;
+            }
+            // Check for SSR environment
+            if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+                return;
+            }
+            // Don't restore state on mobile - let responsive behavior handle it
+            if (window.innerWidth <= this._config.sidebarBreakpoint) {
+                return;
+            }
+            try {
+                const storedState = localStorage.getItem(STORAGE_KEY_SIDEBAR_STATE);
+                if (storedState === CLASS_NAME_SIDEBAR_COLLAPSE) {
+                    this.collapse();
+                }
+                else if (storedState === CLASS_NAME_SIDEBAR_OPEN) {
+                    this.expand();
+                }
+                // If null (never saved), let default behavior apply
+            }
+            catch {
+                // localStorage may be unavailable
+            }
         }
         init() {
             this.addSidebarBreakPoint();
+            this.loadSidebarState();
         }
     }
     /**
