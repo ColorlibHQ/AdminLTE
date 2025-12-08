@@ -1,5 +1,5 @@
 /*!
- * AdminLTE v4.0.0-rc5 (https://adminlte.io)
+ * AdminLTE v4.0.0-rc6 (https://adminlte.io)
  * Copyright 2014-2025 Colorlib <https://colorlib.com>
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
@@ -180,7 +180,8 @@
             const event = new Event(EVENT_COLLAPSED$2);
             if (this._parent) {
                 this._parent.classList.add(CLASS_NAME_COLLAPSING);
-                const elm = this._parent?.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`);
+                // Only target direct children to avoid affecting nested cards
+                const elm = this._parent?.querySelectorAll(`:scope > ${SELECTOR_CARD_BODY}, :scope > ${SELECTOR_CARD_FOOTER}`);
                 elm.forEach(el => {
                     if (el instanceof HTMLElement) {
                         slideUp(el, this._config.animationSpeed);
@@ -199,7 +200,8 @@
             const event = new Event(EVENT_EXPANDED$2);
             if (this._parent) {
                 this._parent.classList.add(CLASS_NAME_EXPANDING);
-                const elm = this._parent?.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`);
+                // Only target direct children to avoid affecting nested cards
+                const elm = this._parent?.querySelectorAll(`:scope > ${SELECTOR_CARD_BODY}, :scope > ${SELECTOR_CARD_FOOTER}`);
                 elm.forEach(el => {
                     if (el instanceof HTMLElement) {
                         slideDown(el, this._config.animationSpeed);
@@ -692,13 +694,13 @@
                 return;
             }
             // Check for SSR environment
-            if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+            if (globalThis.window === undefined || globalThis.localStorage === undefined) {
                 return;
             }
             try {
-                const state = document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)
-                    ? CLASS_NAME_SIDEBAR_COLLAPSE
-                    : CLASS_NAME_SIDEBAR_OPEN;
+                const state = document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE) ?
+                    CLASS_NAME_SIDEBAR_COLLAPSE :
+                    CLASS_NAME_SIDEBAR_OPEN;
                 localStorage.setItem(STORAGE_KEY_SIDEBAR_STATE, state);
             }
             catch {
@@ -714,11 +716,11 @@
                 return;
             }
             // Check for SSR environment
-            if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+            if (globalThis.window === undefined || globalThis.localStorage === undefined) {
                 return;
             }
             // Don't restore state on mobile - let responsive behavior handle it
-            if (window.innerWidth <= this._config.sidebarBreakpoint) {
+            if (globalThis.innerWidth <= this._config.sidebarBreakpoint) {
                 return;
             }
             try {

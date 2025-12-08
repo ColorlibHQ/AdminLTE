@@ -14222,14 +14222,14 @@ body:not(.app-loaded) .app-footer {
 .card:not(.maximized-card) [data-lte-icon=minimize] {
   display: none;
 }
-.card.collapsed-card [data-lte-icon=collapse] {
+.card.collapsed-card > .card-header [data-lte-icon=collapse] {
   display: none;
 }
-.card.collapsed-card .card-body,
-.card.collapsed-card .card-footer {
+.card.collapsed-card > .card-body,
+.card.collapsed-card > .card-footer {
   display: none;
 }
-.card:not(.collapsed-card) [data-lte-icon=expand] {
+.card:not(.collapsed-card) > .card-header [data-lte-icon=expand] {
   display: none;
 }
 .card .nav.flex-column > li {

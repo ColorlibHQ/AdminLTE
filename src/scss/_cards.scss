@@ -63,18 +63,20 @@
 
   // collapsed mode
   &.collapsed-card {
-    [data-lte-icon="collapse"] {
+    // Use > .card-header to scope to direct card only, not nested cards
+    > .card-header [data-lte-icon="collapse"] {
       display: none;
     }
 
-    .card-body,
-    .card-footer {
+    > .card-body,
+    > .card-footer {
       display: none;
     }
   }
 
   &:not(.collapsed-card) {
-    [data-lte-icon="expand"] {
+    // Use > .card-header to scope to direct card only, not nested cards
+    > .card-header [data-lte-icon="expand"] {
       display: none;
     }
   }

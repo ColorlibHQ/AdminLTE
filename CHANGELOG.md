@@ -42,6 +42,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Release Workflow:** Fixed zip command in release.yml
   - Corrected `-d` flag to `-r` for recursive directory zipping
   - Fixed filename inconsistency in release artifacts
+- **Nested Card Expand Icon:** Fixed issue #5909 where nested collapsed cards didn't show expand icon
+  - Updated CSS selectors to use direct child (>) scoping for card state icons
+  - Collapse/expand icons now correctly display for nested cards independently
+  - Card body/footer display rules now only affect direct children, not nested cards
+- **Card Widget JavaScript:** Fixed nested card collapse/expand affecting child cards
+  - Added `:scope >` selector to only target direct card-body/footer children
+  - Prevents parent card collapse from affecting nested card animations
 
 ### Updated
 

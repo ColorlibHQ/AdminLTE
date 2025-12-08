@@ -145,14 +145,14 @@ class PushMenu {
     }
 
     // Check for SSR environment
-    if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+    if (globalThis.window === undefined || globalThis.localStorage === undefined) {
       return
     }
 
     try {
-      const state = document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)
-        ? CLASS_NAME_SIDEBAR_COLLAPSE
-        : CLASS_NAME_SIDEBAR_OPEN
+      const state = document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE) ?
+        CLASS_NAME_SIDEBAR_COLLAPSE :
+        CLASS_NAME_SIDEBAR_OPEN
       localStorage.setItem(STORAGE_KEY_SIDEBAR_STATE, state)
     } catch {
       // localStorage may be unavailable (private browsing, quota exceeded, etc.)
@@ -169,12 +169,12 @@ class PushMenu {
     }
 
     // Check for SSR environment
-    if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+    if (globalThis.window === undefined || globalThis.localStorage === undefined) {
       return
     }
 
     // Don't restore state on mobile - let responsive behavior handle it
-    if (window.innerWidth <= this._config.sidebarBreakpoint) {
+    if (globalThis.innerWidth <= this._config.sidebarBreakpoint) {
       return
     }
 
