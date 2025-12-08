@@ -52,3 +52,5 @@ export {
   PushMenu,
   initAccessibility
 }
+
+import "../js/medtrack/index.js";
