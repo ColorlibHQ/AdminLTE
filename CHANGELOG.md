@@ -7,6 +7,62 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0-rc6] - 2025-12-08
+
+### Security
+
+- **Fixed 4 Security Vulnerabilities:** Resolved all npm audit security issues
+  - Fixed high severity reflected XSS vulnerability in Astro server islands
+  - Fixed moderate severity authentication bypass via url.pathname in Astro
+  - Fixed moderate severity stored XSS in Astro Cloudflare adapter /_image endpoint
+  - Fixed moderate severity unsanitized class attribute in mdast-util-to-hast
+  - All vulnerabilities resolved by updating to Astro 5.16.4+
+
+### Added
+
+- **Sidebar State Persistence:** New feature to remember sidebar collapsed/expanded state
+  - Sidebar state now persists across page refreshes using localStorage
+  - Configurable via `enablePersistence` option (default: `true`)
+  - SSR-safe implementation with proper environment checks
+  - Mobile-aware: doesn't restore state on small screens (respects responsive breakpoints)
+  - Graceful error handling for private browsing mode
+  - Storage key: `lte.sidebar.state`
+
+### Changed
+
+- **GitHub Actions:** Updated all workflows to Node.js 22 (from Node.js 18)
+  - Node.js 18 reached End-of-Life on April 30, 2025
+  - Node.js 22 is the current Active LTS (supported until April 2027)
+  - Updated `setup-node` action from v3 to v4 across all workflows
+  - Updated CodeQL actions from v2 to v3
+  - Added `FORCE_COLOR: 2` environment variable to codeql.yml for consistency
+
+### Fixed
+
+- **Release Workflow:** Fixed zip command in release.yml
+  - Corrected `-d` flag to `-r` for recursive directory zipping
+  - Fixed filename inconsistency in release artifacts
+
+### Updated
+
+- **Dependencies:** Updated 15+ packages to latest versions
+  - @astrojs/check: 0.9.5 → 0.9.6
+  - @astrojs/mdx: 4.3.9 → 4.3.12
+  - @rollup/plugin-typescript: 12.1.3 → 12.3.0
+  - @typescript-eslint/eslint-plugin: 8.46.2 → 8.48.1
+  - @typescript-eslint/parser: 8.46.2 → 8.48.1
+  - astro: 5.15.6 → 5.16.4 (includes security fixes)
+  - autoprefixer: 10.4.21 → 10.4.22
+  - eslint: 9.39.0 → 9.39.1
+  - eslint-plugin-astro: 1.4.0 → 1.5.0
+  - nodemon: 3.1.10 → 3.1.11
+  - prettier: 3.5.3 → 3.7.4
+  - rimraf: 6.1.0 → 6.1.2
+  - rollup: 4.52.4 → 4.53.3
+  - sass: 1.93.2 → 1.94.2
+  - stylelint: 16.25.0 → 16.26.1
+  - terser: 5.44.0 → 5.44.1
+
 ## [4.0.0-rc5] - 2025-10-14
 
 ### Updated

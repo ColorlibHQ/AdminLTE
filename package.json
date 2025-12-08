@@ -1,7 +1,7 @@
 {
   "name": "admin-lte",
   "description": "Responsive open source admin dashboard and control panel.",
-  "version": "4.0.0-rc5",
+  "version": "4.0.0-rc6",
   "type": "module",
   "license": "MIT",
   "author": "Colorlib <https://colorlib.com>",
