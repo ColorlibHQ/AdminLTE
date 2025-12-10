@@ -6,6 +6,7 @@ import DirectChat from './direct-chat.js'
 import FullScreen from './fullscreen.js'
 import PushMenu from './push-menu.js'
 import { initAccessibility } from './accessibility.js'
+import permissionManager from './permission.js'
 
 /**
  * AdminLTE v4.0.0-rc5
@@ -37,6 +38,36 @@ onDOMContentLoaded(() => {
   // Add semantic landmarks
   accessibilityManager.addLandmarks()
   
+  /**
+   * Initialize Permission Management System
+   * ---------------------------------------
+   */
+  fetch('./js/permission-example.json')
+    .then(response => response.json())
+    .then(permissionData => {
+      permissionManager.init(permissionData);
+    })
+    .catch(error => {
+      console.warn('权限配置文件未找到，将使用默认权限配置');
+      // 使用默认权限配置
+      permissionManager.init({
+        user: {
+          id: 0,
+          username: 'guest',
+          name: 'Guest User'
+        },
+        roles: ['viewer'],
+        rolePriority: {
+          admin: 3,
+          editor: 2,
+          viewer: 1
+        },
+        routePermissions: { '/*': ['viewer'] },
+        menuPermissions: { '/*': ['viewer'] },
+        elementPermissions: { '/*': ['viewer'] }
+      });
+    });
+  
   // Mark app as loaded after initialization
   setTimeout(() => {
     document.body.classList.add('app-loaded')
@@ -48,6 +79,7 @@ export {
   CardWidget,
   Treeview,
   DirectChat,
+  permissionManager,
   FullScreen,
   PushMenu,
   initAccessibility

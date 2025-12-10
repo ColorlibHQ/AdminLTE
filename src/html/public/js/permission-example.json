@@ -1,0 +1,75 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "name": "Administrator",
+      "avatar": "dist/assets/img/user1-128x128.jpg",
+      "roles": ["admin"]
+    },
+    {
+      "id": 2,
+      "username": "editor",
+      "name": "Content Editor",
+      "avatar": "dist/assets/img/user2-160x160.jpg",
+      "roles": ["editor"]
+    },
+    {
+      "id": 3,
+      "username": "viewer",
+      "name": "Guest Viewer",
+      "avatar": "dist/assets/img/user3-128x128.jpg",
+      "roles": ["viewer"]
+    }
+  ],
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "name": "Administrator",
+    "avatar": "dist/assets/img/user1-128x128.jpg",
+    "roles": ["admin"]
+  },
+  "roles": ["admin", "editor", "viewer"],
+  "rolePriority": {
+    "admin": 3,
+    "editor": 2,
+    "viewer": 1
+  },
+  "routePermissions": {
+    "/index.html": ["admin", "editor", "viewer"],
+    "/index2.html": ["admin", "editor"],
+    "/index3.html": ["admin"],
+    "/generate/theme.html": ["admin", "editor"],
+    "/widgets/*": ["admin", "editor", "viewer"],
+    "/layout/*": ["admin", "editor"],
+    "/UI/*": ["admin", "editor", "viewer"],
+    "/forms/*": ["admin", "editor"],
+    "/tables/*": ["admin", "editor", "viewer"],
+    "/examples/login.html": [],
+    "/examples/register.html": [],
+    "/examples/*": ["admin"]
+  },
+  "menuPermissions": {
+    "dashboard": ["admin", "editor", "viewer"],
+    "dashboard.v1": ["admin", "editor", "viewer"],
+    "dashboard.v2": ["admin", "editor"],
+    "dashboard.v3": ["admin"],
+    "theme": ["admin", "editor"],
+    "widgets": ["admin", "editor", "viewer"],
+    "widgets.small-box": ["admin", "editor", "viewer"],
+    "widgets.info-box": ["admin", "editor", "viewer"],
+    "widgets.cards": ["admin", "editor", "viewer"],
+    "layout": ["admin", "editor"],
+    "ui": ["admin", "editor", "viewer"],
+    "forms": ["admin", "editor"],
+    "tables": ["admin", "editor", "viewer"],
+    "auth": ["admin"]
+  },
+  "elementPermissions": {
+    "create-button": ["admin", "editor"],
+    "delete-button": ["admin"],
+    "edit-button": ["admin", "editor"],
+    "export-button": ["admin"],
+    "user-profile": ["admin", "editor", "viewer"]
+  }
+}

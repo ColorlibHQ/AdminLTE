@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>AdminLTE v4 | 权限管理演示</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="color-scheme" content="light dark" />
+
+  <link rel="preload" href="./css/adminlte.css" as="style" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css" crossorigin="anonymous" media="print" onload="this.media='all'" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="./css/adminlte.css" />
+</head>
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+  <div class="app-wrapper">
+    <nav class="app-header navbar navbar-expand bg-body">
+      <div class="container-fluid">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
+              <i class="bi bi-list"></i>
+            </a>
+          </li>
+          <li class="nav-item d-none d-md-block">
+            <a href="#" class="nav-link">权限管理演示</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown user-menu">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+              <img src="./assets/img/user2-160x160.jpg" class="user-image rounded-circle shadow" alt="User Image" />
+              <span class="d-none d-md-inline" data-element-permission="user-profile">Alexander Pierce (admin/editor)</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+              <li class="user-header text-bg-primary">
+                <img src="./assets/img/user2-160x160.jpg" class="rounded-circle shadow" alt="User Image" />
+                <p data-element-permission="user-profile">
+                  Alexander Pierce - Web Developer
+                  <small>Member since Nov. 2023</small>
+                </p>
+              </li>
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-4 text-center">
+                    <a href="#" data-element-permission="user-profile">Followers</a>
+                  </div>
+                  <div class="col-4 text-center">
+                    <a href="#" data-element-permission="user-profile">Sales</a>
+                  </div>
+                  <div class="col-4 text-center">
+                    <a href="#" data-element-permission="user-profile">Friends</a>
+                  </div>
+                </div>
+              </li>
+              <li class="user-footer">
+                <a href="#" class="btn btn-default btn-flat" data-element-permission="user-profile">Profile</a>
+                <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+      <div class="sidebar-brand">
+        <a href="./index.html" class="brand-link">
+          <img src="./assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-75 shadow" />
+          <span class="brand-text fw-light">AdminLTE 4</span>
+        </a>
+      </div>
+
+      <div class="sidebar-wrapper">
+        <nav class="mt-2">
+          <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation" aria-label="Main navigation" data-accordion="false" id="navigation">
+            <li class="nav-item menu-open" data-permission="dashboard">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon bi bi-speedometer"></i>
+                <p>
+                  Dashboard
+                  <i class="nav-arrow bi bi-chevron-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item" data-permission="dashboard.v1">
+                  <a href="./index.html" class="nav-link active">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Dashboard v1 (所有角色可见)</p>
+                  </a>
+                </li>
+                <li class="nav-item" data-permission="dashboard.v2">
+                  <a href="./index2.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Dashboard v2 (admin/editor可见)</p>
+                  </a>
+                </li>
+                <li class="nav-item" data-permission="dashboard.v3">
+                  <a href="./index3.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Dashboard v3 (仅admin可见)</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-permission="theme">
+              <a href="./generate/theme.html" class="nav-link">
+                <i class="nav-icon bi bi-palette"></i>
+                <p>Theme Generate (admin/editor可见)</p>
+              </a>
+            </li>
+            <li class="nav-item" data-permission="widgets">
+              <a href="#" class="nav-link">
+                <i class="nav-icon bi bi-box-seam-fill"></i>
+                <p>
+                  Widgets (所有角色可见)
+                  <i class="nav-arrow bi bi-chevron-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item" data-permission="widgets.small-box">
+                  <a href="./widgets/small-box.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Small Box</p>
+                  </a>
+                </li>
+                <li class="nav-item" data-permission="widgets.info-box">
+                  <a href="./widgets/info-box.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>info Box</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-permission="forms">
+              <a href="#" class="nav-link">
+                <i class="nav-icon bi bi-pencil-square"></i>
+                <p>
+                  Forms (admin/editor可见)
+                  <i class="nav-arrow bi bi-chevron-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="./forms/general.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>General Elements</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-permission="auth">
+              <a href="#" class="nav-link">
+                <i class="nav-icon bi bi-box-arrow-in-right"></i>
+                <p>
+                  Auth Examples (仅admin可见)
+                  <i class="nav-arrow bi bi-chevron-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="./examples/login.html" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Login</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="app-main">
+      <div class="app-content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="card mt-3">
+                <div class="card-header">
+                  <h3 class="card-title">权限管理系统演示</h3>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="callout callout-info">
+                        <h5>当前用户信息</h5>
+                        <p id="user-info">加载中...</p>
+                      </div>
+
+                      <div class="callout callout-success">
+                        <h5>权限控制按钮示例</h5>
+                        <button class="btn btn-primary mr-2" data-element-permission="create-button">
+                          <i class="bi bi-plus"></i> 创建数据 (admin/editor)
+                        </button>
+                        <button class="btn btn-warning mr-2" data-element-permission="edit-button">
+                          <i class="bi bi-pencil"></i> 编辑数据 (admin/editor)
+                        </button>
+                        <button class="btn btn-danger mr-2" data-element-permission="delete-button">
+                          <i class="bi bi-trash"></i> 删除数据 (仅admin)
+                        </button>
+                        <button class="btn btn-info" data-element-permission="export-button">
+                          <i class="bi bi-download"></i> 导出数据 (仅admin)
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="callout callout-warning">
+                        <h5>动态权限切换</h5>
+                        <div class="btn-group mb-3">
+                          <button type="button" class="btn btn-primary" onclick="switchUser('admin')">Admin 管理员</button>
+                          <button type="button" class="btn btn-secondary" onclick="switchUser('editor')">Editor 编辑者</button>
+                          <button type="button" class="btn btn-info" onclick="switchUser('viewer')">Viewer 查看者</button>
+                        </div>
+                        <div class="small text-muted">点击按钮快速切换测试账号</div>
+                      </div>
+
+                      <div class="callout callout-dark">
+                        <h5>路由访问测试</h5>
+                        <p>尝试访问以下链接测试路由权限：</p>
+                        <ul>
+                          <li><a href="./index3.html">Dashboard v3 (仅admin可访问)</a></li>
+                          <li><a href="./examples/lockscreen.html">Lockscreen (仅admin可访问)</a></li>
+                          <li><a href="./forms/general.html">表单页面 (admin/editor可访问)</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <strong>Copyright &copy; 2014-2024 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 4.0.0-rc5
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js" crossorigin="anonymous"></script>
+
+  <script src="./js/adminlte.js"></script>
+
+  <script>
+    // 更新用户信息显示
+    function updateUserInfo() {
+      const user = window.adminlte.permissionManager.userInfo || window.adminlte.permissionManager.getUserInfo();
+      const roles = window.adminlte.permissionManager.getCurrentRoles();
+      const highestRole = window.adminlte.permissionManager.getHighestRole();
+
+      document.getElementById('user-info').innerHTML = `
+        <div class="d-flex align-items-center mb-2">
+          <img src="${user?.avatar || './assets/img/user2-160x160.jpg'}" class="rounded-circle me-2" width="48" height="48" alt="User Avatar">
+          <div>
+            <p class="mb-0"><strong>用户名:</strong> ${user?.name || 'Alexander Pierce'}</p>
+            <p class="mb-0 small text-muted">账号: ${user?.username || 'admin'}</p>
+          </div>
+        </div>
+        <p><strong>拥有角色:</strong> ${roles.join(', ')}</p>
+        <p><strong>最高权限角色:</strong> ${highestRole}</p>
+      `;
+    }
+
+    let permissionData = null;
+
+    // 初始化权限系统
+    document.addEventListener('DOMContentLoaded', function() {
+      // 从JSON文件加载权限配置
+      fetch('./js/permission-example.json')
+        .then(response => response.json())
+        .then(data => {
+          permissionData = data;
+          window.permissionData = permissionData;
+          // 初始化权限管理器
+          window.adminlte.permissionManager.init(permissionData);
+
+          // 更新用户信息显示
+          updateUserInfo();
+
+          console.log('权限系统初始化完成');
+        })
+        .catch(error => {
+          console.error('加载权限配置失败:', error);
+          // 使用默认配置初始化
+          window.adminlte.permissionManager.init();
+          updateUserInfo();
+        });
+    });
+
+    // 切换用户
+    function switchUser(username) {
+      if (!permissionData || !permissionData.users) {
+        alert('用户数据未加载，请刷新页面重试');
+        return;
+      }
+
+      const user = permissionData.users.find(u => u.username === username);
+      if (user) {
+        window.adminlte.permissionManager.updateUserInfo(user);
+        updateUserInfo();
+        showAlert(`已切换到【${user.name}】账号`, 'success');
+      }
+    }
+
+    // 自定义提示弹窗
+    function showAlert(message, type = 'info') {
+      const alertDiv = document.createElement('div');
+      alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed top-0 end-0 m-3`;
+      alertDiv.style.zIndex = 9999;
+      alertDiv.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      `;
+      document.body.appendChild(alertDiv);
+
+      setTimeout(() => {
+        alertDiv.remove();
+      }, 3000);
+    }
+
+    // 兼容旧的切换方法
+    function switchToAdmin() {
+      switchUser('admin');
+    }
+
+    function switchToEditor() {
+      switchUser('editor');
+    }
+
+    function switchToViewer() {
+      switchUser('viewer');
+    }
+  </script>
+</body>
+</html>
