@@ -85,6 +85,11 @@ const slideDown = (target: HTMLElement, duration = 500) => {
   }
 
   target.style.display = display
+
+  if (duration === 0) {
+    return;
+  }
+
   const height = target.offsetHeight
   target.style.overflow = 'hidden'
   target.style.height = '0'
