@@ -48,6 +48,11 @@ const safePropertyAccess = (obj: Record<string, unknown>, property: string): unk
 
 /* SLIDE UP */
 const slideUp = (target: HTMLElement, duration = 500) => {
+  if (duration <= 1) {
+    target.style.display = 'none'
+    return
+  }
+
   target.style.transitionProperty = 'height, margin, padding'
   target.style.transitionDuration = `${duration}ms`
   target.style.boxSizing = 'border-box'
@@ -86,8 +91,8 @@ const slideDown = (target: HTMLElement, duration = 500) => {
 
   target.style.display = display
 
-  if (duration === 0) {
-    return;
+  if (duration <= 1) {
+    return
   }
 
   const height = target.offsetHeight
