@@ -1,0 +1,293 @@
+/* ==========================================================================
+   AdminLTE Accessibility Styles - WCAG 2.1 AA Compliance
+   ========================================================================== */
+
+/* Skip Links - WCAG 2.4.1: Bypass Blocks */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  z-index: 999999;
+  padding: 8px 16px;
+  font-weight: 600;
+  color: var(--bs-white);
+  text-decoration: none;
+  background: var(--bs-primary);
+
+  &:focus {
+    top: 0;
+    outline: 3px solid var(--bs-warning);
+    outline-offset: 2px;
+  }
+
+  &:hover {
+    color: var(--bs-white);
+    text-decoration: none;
+    background: var(--bs-primary-emphasis);
+  }
+}
+
+/* Enhanced Focus Indicators - WCAG 2.4.7: Focus Visible */
+.focus-enhanced {
+  &:focus {
+    outline: 3px solid var(--bs-focus-ring-color, #0d6efd);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .card {
+    border: 2px solid;
+  }
+
+  .btn {
+    border-width: 2px;
+  }
+
+  .nav-link {
+    border: 1px solid transparent;
+
+    &:hover,
+    &:focus {
+      border-color: currentcolor;
+    }
+  }
+}
+
+/* Reduced Motion Support - WCAG 2.3.3: Animation from Interactions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fade {
+    opacity: 1 !important;
+    /* stylelint-disable-next-line property-disallowed-list */
+    transition: none !important;
+  }
+
+  .collapse {
+    /* stylelint-disable-next-line property-disallowed-list */
+    transition: none !important;
+  }
+
+  .modal.fade .modal-dialog {
+    transform: none !important;
+  }
+}
+
+/* Screen Reader Only Content */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.sr-only-focusable:focus {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: inherit !important;
+  margin: inherit !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+}
+
+/* Focus Trap Utilities */
+.focus-trap {
+  &:focus {
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+  }
+}
+
+/* Accessible Color Combinations - WCAG 1.4.3: Contrast (Minimum) */
+.text-accessible-primary {
+  color: #003d82; /* 4.5:1 contrast on white */
+}
+
+.text-accessible-success {
+  color: #0f5132; /* 4.5:1 contrast on white */
+}
+
+.text-accessible-danger {
+  color: #842029; /* 4.5:1 contrast on white */
+}
+
+.text-accessible-warning {
+  color: #664d03; /* 4.5:1 contrast on white */
+}
+
+/* ARIA Live Regions */
+.live-region {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+
+  &.live-region-visible {
+    position: static;
+    left: auto;
+    width: auto;
+    height: auto;
+    overflow: visible;
+  }
+}
+
+/* Enhanced Error States - WCAG 3.3.1: Error Identification */
+.form-control.is-invalid {
+  border-color: var(--bs-danger);
+
+  &:focus {
+    border-color: var(--bs-danger);
+    box-shadow: 0 0 0 .25rem rgba(220, 53, 69, .25);
+  }
+}
+
+.invalid-feedback {
+  &[role="alert"] {
+    font-weight: 600;
+  }
+}
+
+/* Target Size - WCAG 2.5.8: Target Size (Minimum) */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+
+  &.touch-target-small {
+    min-width: 24px;
+    min-height: 24px;
+  }
+}
+
+/* Table Accessibility */
+.table-accessible {
+  th {
+    font-weight: 600;
+    background-color: var(--bs-secondary-bg);
+
+    &[scope="col"] {
+      border-bottom: 2px solid var(--bs-border-color);
+    }
+
+    &[scope="row"] {
+      border-right: 2px solid var(--bs-border-color);
+    }
+  }
+
+  caption {
+    padding: .75rem;
+    font-weight: 600;
+    color: var(--bs-secondary);
+    text-align: left;
+    caption-side: top;
+  }
+}
+
+/* Navigation Landmarks */
+nav[role="navigation"] {
+  &:not([aria-label]):not([aria-labelledby]) {
+    &::before {
+      position: absolute;
+      left: -10000px;
+      content: "Navigation";
+    }
+  }
+}
+
+/* Form Fieldset Styling */
+fieldset {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--bs-border-color);
+
+  legend {
+    padding: 0 .5rem;
+    margin-bottom: .5rem;
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+}
+
+/* Loading States */
+.loading[aria-busy="true"] {
+  position: relative;
+  pointer-events: none;
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    content: "";
+    border: 2px solid var(--bs-primary);
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::after {
+      border-top-color: var(--bs-primary);
+      animation: none;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dark Mode Accessibility */
+[data-bs-theme="dark"] {
+  .text-accessible-primary {
+    color: #6ea8fe;
+  }
+
+  .text-accessible-success {
+    color: #75b798;
+  }
+
+  .text-accessible-danger {
+    color: #f1aeb5;
+  }
+
+  .text-accessible-warning {
+    color: #ffda6a;
+  }
+}
+
+/* Print Accessibility */
+@media print {
+  .skip-link,
+  .btn,
+  .nav-link {
+    color: #000 !important;
+    background: transparent !important;
+    border: 1px solid #000 !important;
+  }
+
+  a[href^="http"]::after {
+    font-size: .8em;
+    content: " (" attr(href) ")";
+  }
+}

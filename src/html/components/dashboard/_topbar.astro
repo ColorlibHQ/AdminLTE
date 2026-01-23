@@ -1,6 +1,9 @@
 ---
-const { path } = Astro.props;
-const distPath = path;
+// Smart path resolution: calculate relative path based on directory depth
+const pathname = Astro.url.pathname;
+const pathSegments = pathname.split('/').filter(segment => segment !== '');
+const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0;
+const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 ---
 
 <!--begin::Header-->
@@ -45,7 +48,7 @@ const distPath = path;
             <div class="d-flex">
               <div class="flex-shrink-0">
                 <img
-                  src={distPath + "/assets/img/user1-128x128.jpg"}
+                  src={deploymentPath + "assets/img/user1-128x128.jpg"}
                   alt="User Avatar"
                   class="img-size-50 rounded-circle me-3"
                 />
@@ -54,7 +57,7 @@ const distPath = path;
                 <h3 class="dropdown-item-title">
                   Brad Diesel
                   <span class="float-end fs-7 text-danger"
-                    ><i class="bi bi-star-fill"></i></span
+                  ><i class="bi bi-star-fill"></i></span
                   >
                 </h3>
                 <p class="fs-7">Call me whenever you can...</p>
@@ -71,7 +74,7 @@ const distPath = path;
             <div class="d-flex">
               <div class="flex-shrink-0">
                 <img
-                  src={distPath + "/assets/img/user8-128x128.jpg"}
+                  src={deploymentPath + "assets/img/user8-128x128.jpg"}
                   alt="User Avatar"
                   class="img-size-50 rounded-circle me-3"
                 />
@@ -97,7 +100,7 @@ const distPath = path;
             <div class="d-flex">
               <div class="flex-shrink-0">
                 <img
-                  src={distPath + "/assets/img/user3-128x128.jpg"}
+                  src={deploymentPath + "assets/img/user3-128x128.jpg"}
                   alt="User Avatar"
                   class="img-size-50 rounded-circle me-3"
                 />
@@ -167,7 +170,7 @@ const distPath = path;
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
           <img
-            src={distPath + "/assets/img/user2-160x160.jpg"}
+            src={deploymentPath + "assets/img/user2-160x160.jpg"}
             class="user-image rounded-circle shadow"
             alt="User Image"
           />
@@ -177,7 +180,7 @@ const distPath = path;
           <!--begin::User Image-->
           <li class="user-header text-bg-primary">
             <img
-              src={distPath + "/assets/img/user2-160x160.jpg"}
+              src={deploymentPath + "assets/img/user2-160x160.jpg"}
               class="rounded-circle shadow"
               alt="User Image"
             />
@@ -206,8 +209,8 @@ const distPath = path;
           <!--end::Menu Body-->
           <!--begin::Menu Footer-->
           <li class="user-footer">
-            <a href="#" class="btn btn-default btn-flat">Profile</a>
-            <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
+            <a href="#" class="btn btn-outline-secondary">Profile</a>
+            <a href="#" class="btn btn-outline-danger float-end">Sign out</a>
           </li>
           <!--end::Menu Footer-->
         </ul>

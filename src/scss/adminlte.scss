@@ -1,5 +1,5 @@
 /*!
- *   AdminLTE v4.0.0-beta1
+ *   AdminLTE v4.0.0-rc5
  *   Author: Colorlib
  *   Website: AdminLTE.io <https://adminlte.io>
  *   License: Open source - MIT <https://opensource.org/licenses/MIT>
@@ -73,3 +73,6 @@
 @import "parts/extra-components";
 @import "parts/pages";
 @import "parts/miscellaneous";
+
+// AdminLTE Accessibility Styles - WCAG 2.1 AA Compliance
+@import "accessibility";

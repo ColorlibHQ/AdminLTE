@@ -1,7 +1,13 @@
 ---
-import {convertPathToHtml} from "../../../utils/index.js";
-const {path, mainPage, page} = Astro.props;
+import { convertPathToHtml } from "../../../utils/index.js"
+const { path, mainPage, page } = Astro.props
 const htmlPath = convertPathToHtml(path);
+
+// Smart path resolution: calculate relative path based on directory depth
+const pathname = Astro.url.pathname;
+const pathSegments = pathname.split('/').filter(segment => segment !== '');
+const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0;
+const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 ---
 
 <!--begin::Sidebar-->
@@ -12,7 +18,7 @@ const htmlPath = convertPathToHtml(path);
     <a href={htmlPath + "/index.html"} class="brand-link">
       <!--begin::Brand Image-->
       <img
-        src={path + "/assets/img/AdminLTELogo.png"}
+        src={deploymentPath + "assets/img/AdminLTELogo.png"}
         alt="AdminLTE Logo"
         class="brand-image opacity-75 shadow"
       />
@@ -31,8 +37,10 @@ const htmlPath = convertPathToHtml(path);
       <ul
         class="nav sidebar-menu flex-column"
         data-lte-toggle="treeview"
-        role="menu"
+        role="navigation"
+        aria-label="Main navigation"
         data-accordion="false"
+        id="navigation"
       >
         <li class:list={["nav-item", mainPage === "dashboard" && "menu-open"]}>
           <a
@@ -145,7 +153,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/layout/unfixed-sidebar.html"}
                 class:list={[
                   "nav-link",
-                  page === "unfixed-sidebar" && "active",
+                  page === "unfixed-sidebar" && "active"
                 ]}
               >
                 <i class="nav-icon bi bi-circle"></i>
@@ -163,11 +171,38 @@ const htmlPath = convertPathToHtml(path);
             </li>
             <li class="nav-item">
               <a
+                href={htmlPath + "/layout/fixed-header.html"}
+                class:list={["nav-link", page === "fixed-header" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Fixed Header</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/layout/fixed-footer.html"}
+                class:list={["nav-link", page === "fixed-footer" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Fixed Footer</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
                 href={htmlPath + "/layout/fixed-complete.html"}
                 class:list={["nav-link", page === "fixed-complete" && "active"]}
               >
                 <i class="nav-icon bi bi-circle"></i>
                 <p>Fixed Complete</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/layout/layout-custom-area.html"}
+                class:list={["nav-link", page === "layout-custom-area" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Layout <small>+ Custom Area </small></p>
               </a>
             </li>
             <li class="nav-item">
@@ -184,7 +219,7 @@ const htmlPath = convertPathToHtml(path);
                 href={htmlPath + "/layout/collapsed-sidebar.html"}
                 class:list={[
                   "nav-link",
-                  page === "collapsed-sidebar" && "active",
+                  page === "collapsed-sidebar" && "active"
                 ]}
               >
                 <i class="nav-icon bi bi-circle"></i>

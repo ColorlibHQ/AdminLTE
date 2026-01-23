@@ -17,6 +17,35 @@ const onDOMContentLoaded = (callback: () => void): void => {
   }
 }
 
+/* ES2022 UTILITY FUNCTIONS */
+
+/**
+ * Check if an element has a specific data attribute using ES2022 Object.hasOwn()
+ */
+const hasDataAttribute = (element: HTMLElement, attribute: string): boolean => {
+  return Object.hasOwn(element.dataset, attribute)
+}
+
+/**
+ * Get the last element from a NodeList using ES2022 Array.at()
+ */
+const getLastElement = <T extends Element>(elements: NodeListOf<T> | T[]): T | undefined => {
+  const elementsArray = Array.from(elements)
+  return elementsArray.at(-1)
+}
+
+/**
+ * Safe property access with better error handling
+ */
+const safePropertyAccess = (obj: Record<string, unknown>, property: string): unknown => {
+  try {
+    return Object.hasOwn(obj, property) ? obj[property] : undefined
+  } catch (error) {
+    // ES2022 Error cause
+    throw new Error(`Failed to access property '${property}'`, { cause: error })
+  }
+}
+
 /* SLIDE UP */
 const slideUp = (target: HTMLElement, duration = 500) => {
   target.style.transitionProperty = 'height, margin, padding'
@@ -25,7 +54,7 @@ const slideUp = (target: HTMLElement, duration = 500) => {
   target.style.height = `${target.offsetHeight}px`
   target.style.overflow = 'hidden'
 
-  window.setTimeout(() => {
+  globalThis.setTimeout(() => {
     target.style.height = '0'
     target.style.paddingTop = '0'
     target.style.paddingBottom = '0'
@@ -33,7 +62,7 @@ const slideUp = (target: HTMLElement, duration = 500) => {
     target.style.marginBottom = '0'
   }, 1)
 
-  window.setTimeout(() => {
+  globalThis.setTimeout(() => {
     target.style.display = 'none'
     target.style.removeProperty('height')
     target.style.removeProperty('padding-top')
@@ -49,7 +78,7 @@ const slideUp = (target: HTMLElement, duration = 500) => {
 /* SLIDE DOWN */
 const slideDown = (target: HTMLElement, duration = 500) => {
   target.style.removeProperty('display')
-  let { display } = window.getComputedStyle(target)
+  let { display } = globalThis.getComputedStyle(target)
 
   if (display === 'none') {
     display = 'block'
@@ -64,7 +93,7 @@ const slideDown = (target: HTMLElement, duration = 500) => {
   target.style.marginTop = '0'
   target.style.marginBottom = '0'
 
-  window.setTimeout(() => {
+  globalThis.setTimeout(() => {
     target.style.boxSizing = 'border-box'
     target.style.transitionProperty = 'height, margin, padding'
     target.style.transitionDuration = `${duration}ms`
@@ -75,7 +104,7 @@ const slideDown = (target: HTMLElement, duration = 500) => {
     target.style.removeProperty('margin-bottom')
   }, 1)
 
-  window.setTimeout(() => {
+  globalThis.setTimeout(() => {
     target.style.removeProperty('height')
     target.style.removeProperty('overflow')
     target.style.removeProperty('transition-duration')
@@ -85,7 +114,7 @@ const slideDown = (target: HTMLElement, duration = 500) => {
 
 /* TOGGLE */
 const slideToggle = (target: HTMLElement, duration = 500) => {
-  if (window.getComputedStyle(target).display === 'none') {
+  if (globalThis.getComputedStyle(target).display === 'none') {
     slideDown(target, duration)
     return
   }
@@ -97,5 +126,8 @@ export {
   onDOMContentLoaded,
   slideUp,
   slideDown,
-  slideToggle
+  slideToggle,
+  hasDataAttribute,
+  getLastElement,
+  safePropertyAccess
 }

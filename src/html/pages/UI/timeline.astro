@@ -1,14 +1,20 @@
 ---
-import Head from "@components/_head.astro";
-import Footer from "@components/dashboard/_footer.astro";
-import Topbar from "@components/dashboard/_topbar.astro";
-import Sidenav from "@components/dashboard/_sidenav.astro";
-import Scripts from "@components/_scripts.astro";
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
 
-const title = "AdminLTE 4 | Timeline Elements";
-const path = "../../../dist";
-const mainPage = "ui-elements";
+const title = "AdminLTE 4 | Timeline Elements"
+const path = "../../../dist"
+const mainPage = "ui-elements"
 const page = "timeline";
+
+// Smart path resolution: calculate relative path based on directory depth
+const pathname = Astro.url.pathname;
+const pathSegments = pathname.split('/').filter(segment => segment !== '');
+const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0;
+const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 ---
 
 <!DOCTYPE html>
@@ -147,19 +153,19 @@ const page = "timeline";
                       </h3>
                       <div class="timeline-body">
                         <img
-                          src={path + "/assets/img/user1-128x128.jpg"}
+                          src={deploymentPath + "assets/img/user1-128x128.jpg"}
                           alt="..."
                         />
                         <img
-                          src={path + "/assets/img/user1-128x128.jpg"}
+                          src={deploymentPath + "assets/img/user1-128x128.jpg"}
                           alt="..."
                         />
                         <img
-                          src={path + "/assets/img/user1-128x128.jpg"}
+                          src={deploymentPath + "assets/img/user1-128x128.jpg"}
                           alt="..."
                         />
                         <img
-                          src={path + "/assets/img/user1-128x128.jpg"}
+                          src={deploymentPath + "assets/img/user1-128x128.jpg"}
                           alt="..."
                         />
                       </div>

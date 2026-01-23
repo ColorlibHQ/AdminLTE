@@ -76,7 +76,8 @@ class CardWidget {
     if (this._parent) {
       this._parent.classList.add(CLASS_NAME_COLLAPSING)
 
-      const elm = this._parent?.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`)
+      // Only target direct children to avoid affecting nested cards
+      const elm = this._parent?.querySelectorAll(`:scope > ${SELECTOR_CARD_BODY}, :scope > ${SELECTOR_CARD_FOOTER}`)
 
       elm.forEach(el => {
         if (el instanceof HTMLElement) {
@@ -101,7 +102,8 @@ class CardWidget {
     if (this._parent) {
       this._parent.classList.add(CLASS_NAME_EXPANDING)
 
-      const elm = this._parent?.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`)
+      // Only target direct children to avoid affecting nested cards
+      const elm = this._parent?.querySelectorAll(`:scope > ${SELECTOR_CARD_BODY}, :scope > ${SELECTOR_CARD_FOOTER}`)
 
       elm.forEach(el => {
         if (el instanceof HTMLElement) {
@@ -111,8 +113,7 @@ class CardWidget {
 
       setTimeout(() => {
         if (this._parent) {
-          this._parent.classList.remove(CLASS_NAME_COLLAPSED)
-          this._parent.classList.remove(CLASS_NAME_EXPANDING)
+          this._parent.classList.remove(CLASS_NAME_COLLAPSED, CLASS_NAME_EXPANDING)
         }
       }, this._config.animationSpeed)
     }

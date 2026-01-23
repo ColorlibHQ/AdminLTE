@@ -1,15 +1,15 @@
-export default ctx => {
-  return {
-    map: {
-      inline: false,
-      annotation: true,
-      sourcesContent: true
-    },
-    plugins: {
-      autoprefixer: {
-        cascade: false
-      },
-      rtlcss: ctx.env === 'RTL' ? {} : false
+const postcssConfig = {
+  map: {
+    inline: false,
+    annotation: true,
+    sourcesContent: true
+  },
+  plugins: {
+    ...(process.env.NODE_ENV === 'RTL' ? { rtlcss: {} } : {}),
+    autoprefixer: {
+      cascade: false
     }
   }
 }
+
+export default postcssConfig

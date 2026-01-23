@@ -1,8 +1,10 @@
 .app-main {
   position: relative;
+  display: flex;
+  flex-direction: column;
   grid-area: #{$lte-prefix}app-main;
   max-width: 100vw;
-  padding-bottom: $grid-gutter-width * .5;
+  padding-bottom: $lte-app-main-padding-bottom;
   @include transition($lte-transition-speed $lte-transition-fn);
 
   .app-content-header {
@@ -17,5 +19,23 @@
         text-decoration: none;
       }
     }
+  }
+
+  .app-content-top-area,
+  .app-content-bottom-area {
+    color: $lte-app-content-bottom-area-color;
+    background-color: $lte-app-content-bottom-area-bg;
+  }
+
+  .app-content-top-area {
+    padding: $lte-app-content-top-area-padding-y $lte-app-content-top-area-padding-x;
+    border-bottom: $lte-app-content-top-area-top-border;
+  }
+
+  .app-content-bottom-area {
+    padding: $lte-app-content-bottom-area-padding-y $lte-app-content-bottom-area-padding-x;
+    margin-top: auto;
+    margin-bottom: $lte-app-content-bottom-area-margin-bottom;
+    border-top: $lte-app-content-bottom-area-top-border;
   }
 }

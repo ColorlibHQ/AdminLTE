@@ -1,24 +1,37 @@
+# Ignore IDE and editor configuration files
+/.astro/
+/.vscode/
+/idea/
+/.temp/
+/.cache/
+
+# Ignore documentation files
 /docs/
 /docs_html/
+
+# Ignore plugin files except for specific ones
 /plugins/*
 !/plugins/flot-old/
+
+# Ignore Git and GitHub configuration files
 /.github/
-/.temp/
 /.lgtm.yml
-/.cache/
-/.idea/
+/.gitignore
+/.gitattributes
+/.gitpod.yml
+
+# Ignore configuration files for various tools
 /.browserlistrc
 /.bundlewatch.config.json
 /.editorconfig
 /.eslintignore
 /.eslintrc.json
-/.gitattributes
-/.gitignore
-/.gitpod.yml
 /.stylelintignore
 /.stylelintrc.json
 /composer.json
 /tsconfig.json
+
+# Ignore specific source directories
 /src/assets/
 /src/config/
 /src/html/

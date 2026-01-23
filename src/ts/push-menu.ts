@@ -37,12 +37,16 @@ const SELECTOR_APP_WRAPPER = '.app-wrapper'
 const SELECTOR_SIDEBAR_EXPAND = `[class*="${CLASS_NAME_SIDEBAR_EXPAND}"]`
 const SELECTOR_SIDEBAR_TOGGLE = '[data-lte-toggle="sidebar"]'
 
+const STORAGE_KEY_SIDEBAR_STATE = 'lte.sidebar.state'
+
 type Config = {
   sidebarBreakpoint: number;
+  enablePersistence: boolean;
 }
 
-const Defaults = {
-  sidebarBreakpoint: 992
+const Defaults: Config = {
+  sidebarBreakpoint: 992,
+  enablePersistence: true
 }
 
 /**
@@ -59,7 +63,6 @@ class PushMenu {
     this._config = { ...Defaults, ...config }
   }
 
-  // TODO
   menusClose() {
     const navTreeview = document.querySelectorAll<HTMLElement>(SELECTOR_NAV_TREEVIEW)
 
@@ -100,11 +103,18 @@ class PushMenu {
     const sidebarExpandList = document.querySelector(SELECTOR_SIDEBAR_EXPAND)?.classList ?? []
     const sidebarExpand = Array.from(sidebarExpandList).find(className => className.startsWith(CLASS_NAME_SIDEBAR_EXPAND)) ?? ''
     const sidebar = document.getElementsByClassName(sidebarExpand)[0]
-    const sidebarContent = window.getComputedStyle(sidebar, '::before').getPropertyValue('content')
+    const sidebarContent = globalThis.getComputedStyle(sidebar, '::before').getPropertyValue('content')
     this._config = { ...this._config, sidebarBreakpoint: Number(sidebarContent.replace(/[^\d.-]/g, '')) }
 
+    // FIXED: Don't auto-collapse on mobile if sidebar is currently open
+    // This prevents resize events (triggered by scrolling) from closing the sidebar
+    const isCurrentlyOpen = document.body.classList.contains(CLASS_NAME_SIDEBAR_OPEN)
+    
     if (window.innerWidth <= this._config.sidebarBreakpoint) {
-      this.collapse()
+      // Only collapse if not currently open (prevents scroll-triggered closes)
+      if (!isCurrentlyOpen) {
+        this.collapse()
+      }
     } else {
       if (!document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI)) {
         this.expand()
@@ -122,10 +132,69 @@ class PushMenu {
     } else {
       this.collapse()
     }
+
+    this.saveSidebarState()
+  }
+
+  /**
+   * Save sidebar state to localStorage
+   */
+  saveSidebarState(): void {
+    if (!this._config.enablePersistence) {
+      return
+    }
+
+    // Check for SSR environment
+    if (globalThis.window === undefined || globalThis.localStorage === undefined) {
+      return
+    }
+
+    try {
+      const state = document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE) ?
+        CLASS_NAME_SIDEBAR_COLLAPSE :
+        CLASS_NAME_SIDEBAR_OPEN
+      localStorage.setItem(STORAGE_KEY_SIDEBAR_STATE, state)
+    } catch {
+      // localStorage may be unavailable (private browsing, quota exceeded, etc.)
+    }
+  }
+
+  /**
+   * Load sidebar state from localStorage
+   * Only applies on desktop; mobile always starts collapsed
+   */
+  loadSidebarState(): void {
+    if (!this._config.enablePersistence) {
+      return
+    }
+
+    // Check for SSR environment
+    if (globalThis.window === undefined || globalThis.localStorage === undefined) {
+      return
+    }
+
+    // Don't restore state on mobile - let responsive behavior handle it
+    if (globalThis.innerWidth <= this._config.sidebarBreakpoint) {
+      return
+    }
+
+    try {
+      const storedState = localStorage.getItem(STORAGE_KEY_SIDEBAR_STATE)
+
+      if (storedState === CLASS_NAME_SIDEBAR_COLLAPSE) {
+        this.collapse()
+      } else if (storedState === CLASS_NAME_SIDEBAR_OPEN) {
+        this.expand()
+      }
+      // If null (never saved), let default behavior apply
+    } catch {
+      // localStorage may be unavailable
+    }
   }
 
   init() {
     this.addSidebarBreakPoint()
+    this.loadSidebarState()
   }
 }
 
@@ -151,12 +220,28 @@ onDOMContentLoaded(() => {
   sidebarOverlay.className = CLASS_NAME_SIDEBAR_OVERLAY
   document.querySelector(SELECTOR_APP_WRAPPER)?.append(sidebarOverlay)
 
-  sidebarOverlay.addEventListener('touchstart', event => {
-    event.preventDefault()
-    const target = event.currentTarget as HTMLElement
-    const data = new PushMenu(target, Defaults)
-    data.collapse()
+  let overlayTouchMoved = false
+
+  // Handle touch events on overlay (area outside sidebar)
+  sidebarOverlay.addEventListener('touchstart', () => {
+    overlayTouchMoved = false
   }, { passive: true })
+
+  sidebarOverlay.addEventListener('touchmove', () => {
+    overlayTouchMoved = true
+  }, { passive: true })
+
+  sidebarOverlay.addEventListener('touchend', event => {
+    if (!overlayTouchMoved) {
+      event.preventDefault()
+      const target = event.currentTarget as HTMLElement
+      const data = new PushMenu(target, Defaults)
+      data.collapse()
+    }
+    overlayTouchMoved = false
+  }, { passive: false })
+
+
   sidebarOverlay.addEventListener('click', event => {
     event.preventDefault()
     const target = event.currentTarget as HTMLElement

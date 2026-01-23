@@ -18,8 +18,8 @@
       "@components/*": ["src/html/components/*"],
     },
     /* Language and Environment */
-    "target": "es6",
-    "lib": ["es2018", "DOM"],
+    "target": "es2022",
+    "lib": ["es2022", "DOM"],
   },
   "include": [
     "src/ts/**/*"

@@ -58,18 +58,16 @@ $lte-app-header-bottom-border:        $lte-app-header-bottom-border-width solid 
 $lte-app-header-link-padding-y:       $navbar-padding-y !default;
 $lte-app-header-height:               ($nav-link-height + ($lte-app-header-link-padding-y * 2)) !default;
 $lte-app-header-height-compact:       ($nav-link-height-compact + ($lte-app-header-link-padding-y * 2)) !default;
+$lte-zindex-fixed-header:           $zindex-fixed !default;
+
+// APP MAIN
+// --------------------------------------------------------
+$lte-app-main-padding-bottom:       $grid-gutter-width * .5 !default;
 
 // CONTENT PADDING
 // --------------------------------------------------------
 $lte-content-padding-y:           0 !default;
 $lte-content-padding-x:           .5rem !default;
-
-// MAIN CONTENT
-// --------------------------------------------------------
-$lte-app-content-bottom-area-height-sm: 3.5rem !default;
-$lte-app-content-bottom-area-height-md: 6rem !default;
-$lte-app-content-bottom-area-height-lg: 9rem !default;
-$lte-app-content-bottom-area-height-xl: 12rem !default;
 
 // MAIN FOOTER
 // --------------------------------------------------------
@@ -80,6 +78,21 @@ $lte-app-footer-border-top-color:  var(--#{$prefix}border-color) !default;
 $lte-app-footer-border-top:        $lte-app-footer-border-top-width solid $lte-app-footer-border-top-color !default;
 $lte-app-footer-bg:                var(--#{$prefix}body-bg) !default;
 $lte-app-footer-color:             var(--#{$prefix}secondary-color) !default;
+$lte-zindex-fixed-footer:         $zindex-fixed !default;
+// CONTENT BOTTOM AREA
+// --------------------------------------------------------
+$lte-app-content-bottom-area-margin-bottom: -$lte-app-main-padding-bottom !default;
+$lte-app-content-bottom-area-color:         $lte-app-footer-color !default;
+$lte-app-content-bottom-area-bg:            $lte-app-footer-bg !default;
+$lte-app-content-bottom-area-top-border:    $lte-app-footer-border-top !default;
+$lte-app-content-bottom-area-padding-y:     $lte-app-footer-padding !default;
+$lte-app-content-bottom-area-padding-x:     0 !default;
+
+// CONTENT TOP AREA
+// --------------------------------------------------------
+$lte-app-content-top-area-top-border:       $lte-app-footer-border-top !default;
+$lte-app-content-top-area-padding-y:     $lte-app-footer-padding !default;
+$lte-app-content-top-area-padding-x:     0 !default;
 
 // BRAND LINK
 // --------------------------------------------------------

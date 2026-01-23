@@ -24,3 +24,11 @@
   font-size: .6rem;
   font-weight: 400;
 }
+
+.fixed-header {
+  .app-header {
+    position: sticky;
+    top: 0;
+    z-index: $lte-zindex-fixed-header;
+  }
+}

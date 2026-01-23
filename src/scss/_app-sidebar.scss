@@ -140,7 +140,10 @@
 
   // Section Heading
   .nav-header {
+    display: inline;
+    overflow: hidden;
     color: var(--#{$lte-prefix}sidebar-header-color);
+    text-overflow: ellipsis;
     background-color: inherit;
   }
 
@@ -199,7 +202,9 @@
   .nav-link > .nav-badge,
   .nav-link > p > .nav-badge {
     position: absolute;
+    top: 50%;
     right: 1rem;
+    transform: translateY(-50%);
   }
 
   .nav-link > .nav-arrow,
@@ -211,6 +216,7 @@
 
   .nav-link {
     position: relative;
+    width: 100%;
     @include transition(width $lte-transition-fn $lte-transition-speed);
     @include border-radius($border-radius);
 
@@ -222,8 +228,11 @@
   }
 
   .nav-header {
+    position: relative;
+    width: 100%;
     padding: $nav-link-padding-y ($nav-link-padding-y * 1.5);
     font-size: .9rem;
+    @include transition(width $lte-transition-fn $lte-transition-speed);
   }
 
   // Tree view menu
@@ -247,6 +256,15 @@
         transform: translateY(-50%) rotate(90deg) #{"/*rtl:ignore*/"};
       }
     }
+  }
+
+  // Override: ensure badges/arrows are aligned to the end (right in LTR, left in RTL)
+  .nav-link > .nav-badge,
+  .nav-link > p > .nav-badge,
+  .nav-link > .nav-arrow,
+  .nav-link > p > .nav-arrow {
+    right: 1rem !important; // place at end in LTR
+    left: auto !important;
   }
 }
 
@@ -390,7 +408,7 @@
     max-width: var(--#{$lte-prefix}sidebar-width);
 
     .sidebar-menu .nav-header {
-      display: inline-block;
+      display: inline;
     }
 
     .sidebar-menu .nav-link {
@@ -452,7 +470,6 @@
     /* stylelint-disable-next-line scss/selector-no-union-class-name */
     &#{$infix} {
       @include media-breakpoint-up($next) {
-        &.layout-fixed-complete,
         &.layout-fixed {
           .app-main-wrapper {
             display: flex;
@@ -474,14 +491,12 @@
 
             .sidebar-wrapper {
               height: subtract(100vh, add($lte-app-header-height, 1px));
+              overflow-x: hidden;
+              overflow-y: auto;
             }
           }
         }
-        &.layout-fixed-complete {
-          .app-main-wrapper {
-            max-height: 100vh;
-          }
-        }
+
         &.sidebar-open {
           .nav-link > .nav-badge,
           .nav-link > p > .nav-badge {
@@ -517,6 +532,8 @@
 
           .sidebar-wrapper {
             height: subtract(100vh, add($lte-app-header-height, 1px));
+            overflow-x: hidden;
+            overflow-y: auto;
           }
         }
 

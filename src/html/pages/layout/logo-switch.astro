@@ -1,13 +1,19 @@
 ---
-import Head from "@components/_head.astro";
-import Footer from "@components/dashboard/_footer.astro";
-import Topbar from "@components/dashboard/_topbar.astro";
-import Scripts from "@components/_scripts.astro";
-import { convertPathToHtml } from "../../../utils/index.js";
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Scripts from "@components/_scripts.astro"
+import { convertPathToHtml } from "../../../utils/index.js"
 
-const title = "AdminLTE 4 | Sidebar Mini";
-const path = "../../../dist";
+const title = "AdminLTE 4 | Sidebar Mini"
+const path = "../../../dist"
 const htmlPath = convertPathToHtml(path);
+
+// Smart path resolution: calculate relative path based on directory depth
+const pathname = Astro.url.pathname;
+const pathSegments = pathname.split('/').filter(segment => segment !== '');
+const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0;
+const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 ---
 
 <!DOCTYPE html>
@@ -30,16 +36,16 @@ const htmlPath = convertPathToHtml(path);
           <a href={htmlPath + "/index.html"} class="brand-link logo-switch">
             <!--begin::Brand Image Small-->
             <img
-            src={path + "/assets/img/AdminLTELogo.png"}
-            alt="AdminLTE Logo Small"
-            class="brand-image-xl logo-xs opacity-75 shadow"
+              src={deploymentPath + "assets/img/AdminLTELogo.png"}
+              alt="AdminLTE Logo Small"
+              class="brand-image-xl logo-xs opacity-75 shadow"
             />
             <!--end::Brand Image Small-->
             <!--begin::Brand Image Large-->
             <img
-            src={path + "/assets/img/AdminLTEFullLogo.png"}
-            alt="AdminLTE Logo Large"
-            class="brand-image-xs logo-xl opacity-75"
+              src={deploymentPath + "assets/img/AdminLTEFullLogo.png"}
+              alt="AdminLTE Logo Large"
+              class="brand-image-xs logo-xl opacity-75"
             />
             <!--end::Brand Image Large-->
           </a>

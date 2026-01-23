@@ -24,7 +24,7 @@ const EVENT_KEY = `.${DATA_KEY}`
 
 const EVENT_EXPANDED = `expanded${EVENT_KEY}`
 const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
-// const EVENT_LOAD_DATA_API = `load${EVENT_KEY}`
+const EVENT_LOAD_DATA_API = `load${EVENT_KEY}`
 
 const CLASS_NAME_MENU_OPEN = 'menu-open'
 const SELECTOR_NAV_ITEM = '.nav-item'
@@ -112,6 +112,18 @@ class Treeview {
  */
 
 onDOMContentLoaded(() => {
+  const openMenuItems = document.querySelectorAll(`${SELECTOR_NAV_ITEM}.${CLASS_NAME_MENU_OPEN}`)
+
+  openMenuItems.forEach(menuItem => {
+    const childElement = menuItem.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
+    if (childElement) {
+      slideDown(childElement, 0)
+
+      const event = new Event(EVENT_LOAD_DATA_API)
+      menuItem.dispatchEvent(event)
+    }
+  })
+
   const button = document.querySelectorAll(SELECTOR_DATA_TOGGLE)
 
   button.forEach(btn => {
@@ -119,13 +131,30 @@ onDOMContentLoaded(() => {
       const target = event.target as HTMLElement
       const targetItem = target.closest(SELECTOR_NAV_ITEM) as HTMLElement | undefined
       const targetLink = target.closest(SELECTOR_NAV_LINK) as HTMLAnchorElement | undefined
+      const targetTreeviewMenu = targetItem?.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
+      const lteToggleElement = event.currentTarget as HTMLElement
+
+      // Avoid creating Treeview instances on non menu elements
+      if (!targetTreeviewMenu) {
+        return
+      }
 
       if (target?.getAttribute('href') === '#' || targetLink?.getAttribute('href') === '#') {
         event.preventDefault()
       }
 
       if (targetItem) {
-        const data = new Treeview(targetItem, Default)
+        // Read data attributes
+        const accordionAttr = lteToggleElement.dataset.accordion
+        const animationSpeedAttr = lteToggleElement.dataset.animationSpeed
+
+        // Build config from data attributes, fallback to Default
+        const config: Config = {
+          accordion: accordionAttr === undefined ? Default.accordion : accordionAttr === 'true',
+          animationSpeed: animationSpeedAttr === undefined ? Default.animationSpeed : Number(animationSpeedAttr)
+        }
+
+        const data = new Treeview(targetItem, config)
         data.toggle()
       }
     })

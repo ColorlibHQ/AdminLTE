@@ -1,16 +1,21 @@
 ---
-import Head from "@components/_head.astro";
-import Footer from "@components/dashboard/_footer.astro";
-import Topbar from "@components/dashboard/_topbar.astro";
-import MainHeader from "@components/docs/components/main-header.mdx";
-import Sidenav from "@components/dashboard/_sidenav.astro";
-import Scripts from "@components/_scripts.astro";
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import MainHeader from "@components/docs/components/main-header.mdx"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
 
-const title = "Main Header Component | AdminLTE 4";
-const path = "../../../../dist";
-const mainPage = "components";
-const page = "main-header";
-const distPath = path;
+const title = "Main Header Component | AdminLTE 4"
+const path = "../../../../dist"
+const mainPage = "components"
+const page = "main-header"
+
+// Smart path resolution: calculate relative path based on directory depth
+const pathname = Astro.url.pathname;
+const pathSegments = pathname.split('/').filter(segment => segment !== '');
+const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0;
+const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 ---
 
 <!DOCTYPE html>
@@ -127,7 +132,7 @@ const distPath = path;
                         <div class="d-flex">
                           <div class="flex-shrink-0">
                             <img
-                              src={distPath + "/assets/img/user1-128x128.jpg"}
+                              src={deploymentPath + "assets/img/user1-128x128.jpg"}
                               alt="User Avatar"
                               class="img-size-50 rounded-circle me-3"
                             />
@@ -153,7 +158,7 @@ const distPath = path;
                         <div class="d-flex">
                           <div class="flex-shrink-0">
                             <img
-                              src={distPath + "/assets/img/user8-128x128.jpg"}
+                              src={deploymentPath + "assets/img/user8-128x128.jpg"}
                               alt="User Avatar"
                               class="img-size-50 rounded-circle me-3"
                             />
@@ -179,7 +184,7 @@ const distPath = path;
                         <div class="d-flex">
                           <div class="flex-shrink-0">
                             <img
-                              src={distPath + "/assets/img/user3-128x128.jpg"}
+                              src={deploymentPath + "assets/img/user3-128x128.jpg"}
                               alt="User Avatar"
                               class="img-size-50 rounded-circle me-3"
                             />
@@ -215,7 +220,7 @@ const distPath = path;
                       class="dropdown-menu dropdown-menu-lg dropdown-menu-end"
                     >
                       <span class="dropdown-item dropdown-header"
-                        >15 Notifications</span
+                      >15 Notifications</span
                       >
                       <div class="dropdown-divider"></div>
                       <a href="#" class="dropdown-item">
@@ -250,7 +255,7 @@ const distPath = path;
                       data-bs-toggle="dropdown"
                     >
                       <img
-                        src={distPath + "/assets/img/user2-160x160.jpg"}
+                        src={deploymentPath + "assets/img/user2-160x160.jpg"}
                         class="user-image rounded-circle shadow"
                         alt="User Image"
                       />
@@ -262,7 +267,7 @@ const distPath = path;
                       <!-- User image -->
                       <li class="user-header text-bg-primary">
                         <img
-                          src={distPath + "/assets/img/user2-160x160.jpg"}
+                          src={deploymentPath + "assets/img/user2-160x160.jpg"}
                           class="rounded-circle shadow"
                           alt="User Image"
                         />

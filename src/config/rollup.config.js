@@ -1,5 +1,5 @@
-const typescript = require('@rollup/plugin-typescript')
-const pkg = require('../../package.json')
+import typescript from '@rollup/plugin-typescript'
+import pkg from '../../package.json' with { type: 'json' }
 
 const year = new Date().getFullYear()
 const banner = `/*!
@@ -8,7 +8,7 @@ const banner = `/*!
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */`
 
-module.exports = {
+export default {
   input: 'src/ts/adminlte.ts',
   output: {
     file: 'dist/js/adminlte.js',
@@ -16,5 +16,10 @@ module.exports = {
     banner,
     name: 'adminlte'
   },
-  plugins: [typescript()]
+  plugins: [
+    typescript({
+      tsconfig: './tsconfig.json',
+      sourceMap: true
+    })
+  ]
 }
