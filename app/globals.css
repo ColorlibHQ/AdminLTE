@@ -1,0 +1,277 @@
+/* Tricoci Marketing Dashboard Styles */
+
+:root {
+  --tricoci-primary: #6f42c1;
+  --tricoci-secondary: #495057;
+  --tricoci-success: #28a745;
+  --tricoci-info: #17a2b8;
+  --tricoci-warning: #ffc107;
+  --tricoci-danger: #dc3545;
+}
+
+/* Layout */
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+  padding: 1rem;
+}
+
+/* Sidebar */
+.app-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  background: #343a40;
+  z-index: 1030;
+  transition: width 0.3s;
+}
+
+.sidebar-collapse .app-sidebar {
+  width: 60px;
+}
+
+.app-sidebar .nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.75rem 1rem;
+}
+
+.app-sidebar .nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.app-sidebar .nav-link.active {
+  color: #fff;
+  background: var(--tricoci-primary);
+}
+
+/* Header */
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 250px;
+  right: 0;
+  height: 60px;
+  background: #fff;
+  border-bottom: 1px solid #dee2e6;
+  z-index: 1020;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.sidebar-collapse .app-header {
+  left: 60px;
+}
+
+/* Content */
+.content-wrapper {
+  margin-left: 250px;
+  margin-top: 60px;
+  padding: 1.5rem;
+  min-height: calc(100vh - 60px);
+}
+
+.sidebar-collapse .content-wrapper {
+  margin-left: 60px;
+}
+
+/* Cards */
+.small-box {
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.small-box .inner h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.small-box .inner p {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+}
+
+.small-box .icon {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 4rem;
+  opacity: 0.15;
+}
+
+.small-box-footer {
+  display: block;
+  padding: 0.5rem 0;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 1rem;
+}
+
+.small-box-footer:hover {
+  color: #fff;
+}
+
+/* Info Box */
+.info-box {
+  background: #fff;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.info-box-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.875rem;
+}
+
+.info-box-content {
+  margin-left: 1rem;
+  flex: 1;
+}
+
+.info-box-text {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin: 0;
+}
+
+.info-box-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Tables */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Metric Cards */
+.metric-card {
+  background: #fff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+}
+
+.metric-card .metric-value {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.metric-card .metric-label {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-top: 0.25rem;
+}
+
+.metric-card .metric-change {
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.metric-card .metric-change.positive {
+  color: var(--tricoci-success);
+}
+
+.metric-card .metric-change.negative {
+  color: var(--tricoci-danger);
+}
+
+/* Channel badges */
+.channel-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.channel-badge.paid-sem {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.channel-badge.paid-social {
+  background: #fce4ec;
+  color: #c2185b;
+}
+
+.channel-badge.organic {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+
+/* Form inputs */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--tricoci-primary);
+  box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.25);
+}
+
+/* Loading states */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+  .app-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar-open .app-sidebar {
+    transform: translateX(0);
+  }
+
+  .app-header {
+    left: 0;
+  }
+
+  .content-wrapper {
+    margin-left: 0;
+  }
+}
