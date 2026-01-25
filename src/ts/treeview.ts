@@ -131,7 +131,13 @@ onDOMContentLoaded(() => {
       const target = event.target as HTMLElement
       const targetItem = target.closest(SELECTOR_NAV_ITEM) as HTMLElement | undefined
       const targetLink = target.closest(SELECTOR_NAV_LINK) as HTMLAnchorElement | undefined
+      const targetTreeviewMenu = targetItem?.querySelector(SELECTOR_TREEVIEW_MENU) as HTMLElement | undefined
       const lteToggleElement = event.currentTarget as HTMLElement
+
+      // Avoid creating Treeview instances on non menu elements
+      if (!targetTreeviewMenu) {
+        return
+      }
 
       if (target?.getAttribute('href') === '#' || targetLink?.getAttribute('href') === '#') {
         event.preventDefault()
