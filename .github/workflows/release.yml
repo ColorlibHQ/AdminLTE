@@ -5,6 +5,10 @@ on:
     tags:
       - '*'
 
+env:
+  FORCE_COLOR: 2
+  NODE: 22
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,7 +22,7 @@ jobs:
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "${{ env.NODE }}"
           cache: npm
@@ -32,7 +36,7 @@ jobs:
       - name: Zip distribution files
         uses: montudor/action-zip@v1
         with:
-          args: "zip -qq admin-lte-${{env.RELEASE_VERSION}}.zip -d dist"
+          args: "zip -qq -r admin-lte-${{env.RELEASE_VERSION}}.zip dist"
 
       - name: Create changelog text
         id: changelog
@@ -47,4 +51,4 @@ jobs:
         with:
           body: ${{ steps.changelog.outputs.changelog }}
           files: |
-            admin-lte.${{env.RELEASE_VERSION}}.zip
+            admin-lte-${{env.RELEASE_VERSION}}.zip

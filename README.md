@@ -9,28 +9,27 @@
 **AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 5](https://getbootstrap.com/)** framework and also the JavaScript plugins.
 Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.
 
-## What's New in v4.0.0-rc5
+## What's New in v4.0.0-rc6
 
-**Latest Release with Major Dependency Updates & Security Fixes** - Fresh improvements for better development experience:
+**Security & Feature Release** - Important security fixes and new sidebar persistence feature:
 
-- **Major Dependency Updates** - 17+ npm packages updated to latest versions
-- **Security Enhancements** - Fixed 2 critical vulnerabilities (axios DoS, form-data random function)
-- **Latest Tooling** - Updated to TypeScript 5.9.3, ESLint 9.37.0, Astro 5.14.4, and more
-- **Bootstrap 5.3.8** - Updated to the latest stable Bootstrap release
-- **ESLint 9.x Compatibility** - Removed deprecated `.eslintignore` file
-- **Zero Vulnerabilities** - All security issues resolved
+- **Security Fixes** - Resolved 4 vulnerabilities (XSS in Astro, auth bypass, unsanitized attributes)
+- **Sidebar State Persistence** - Sidebar now remembers collapsed/expanded state across page refreshes
+- **Node.js 22** - Updated all GitHub Actions workflows to Node.js 22 LTS (supported until 2027)
+- **Latest Dependencies** - 15+ packages updated including Astro 5.16.4, Prettier 3.7.4, Rollup 4.53.3
+- **CI/CD Improvements** - Updated CodeQL actions to v3, fixed release workflow bugs
 
 **Key Improvements:**
-- ✅ All dependencies updated to their absolute latest versions
-- ✅ Two major version bumps: cross-env 10.x and eslint-config-xo-typescript 9.x
-- ✅ Enhanced security with vulnerability fixes
-- ✅ Cleaner linting without deprecation warnings
-- ✅ Production-ready with enhanced stability
-- ✅ Faster builds with latest Rollup, Sass, and Terser
+
+- ✅ Zero security vulnerabilities - all npm audit issues resolved
+- ✅ Sidebar state persists in localStorage (configurable, SSR-safe, mobile-aware)
+- ✅ GitHub Actions use Node.js 22 (Active LTS until April 2027)
+- ✅ CodeQL security scanning updated to latest v3 actions
+- ✅ Release workflow fixed for proper asset packaging
 
 **Install the latest:**
 ```bash
-npm install admin-lte@4.0.0-rc5
+npm install admin-lte@4.0.0-rc6
 ```
 
 See the [CHANGELOG.md](CHANGELOG.md) for complete details.
