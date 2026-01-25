@@ -1,29 +1,62 @@
-# generated types
+# Dependencies
+node_modules/
+bower_components/
+.pnp
+.pnp.js
+
+# Next.js
+.next/
+out/
+
+# Astro (legacy)
 .astro/
 
-# unwanted types
-**/env.d.ts
+# Production
+build/
+dist/
 
-# System / Log files
-*.DS_Store
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 *.log
 
-# Archives
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+**/env.d.ts
+
+# IDE
+.idea/
+.vscode/
+.vs/
+nbproject/
+*.swp
+*.swo
+
+# OS
+*.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+
+# Misc
+*.pem
 *.zip
 
 # Sass Cache
 .sass-cache
-
-# Project files
-.idea
-nbproject
-nbproject/private
-.vscode/
-.vs/
-
-# Node / Bower
-node_modules/
-bower_components/
 
 # Docs
 /docs/_site/
@@ -33,10 +66,15 @@ bower_components/
 .jekyll-cache/
 .jekyll-metadata
 
-# ETC
+# Cache
+/.cache/
+
+# Supabase
+supabase/.temp/
+
+# Misc project files
 TODO
 test.html
 ad.js
-/.cache/
 CLAUDE.md
 github-issue-response.md
