@@ -3,7 +3,7 @@
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE 4 | Timeline Elements</title>
+    <title>AdminLTE 4 | Collapsed Sidebar Without Hover</title>
 
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -13,7 +13,7 @@
     <!--end::Accessibility Meta Tags-->
 
     <!--begin::Primary Meta Tags-->
-    <meta name="title" content="AdminLTE 4 | Timeline Elements" />
+    <meta name="title" content="AdminLTE 4 | Collapsed Sidebar Without Hover" />
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
@@ -64,7 +64,9 @@
   </head>
   <!--end::Head-->
   <!--begin::Body-->
-  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+  <body
+    class="layout-fixed sidebar-expand-lg sidebar-mini sidebar-without-hover sidebar-collapse bg-body-tertiary"
+  >
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <!--begin::Header-->
@@ -377,8 +379,8 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
+              <li class="nav-item menu-open">
+                <a href="#" class="nav-link active">
                   <i class="nav-icon bi bi-clipboard-fill"></i>
                   <p>
                     Layout Options
@@ -436,7 +438,10 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../layout/collapsed-sidebar-without-hover.html" class="nav-link">
+                    <a
+                      href="../layout/collapsed-sidebar-without-hover.html"
+                      class="nav-link active"
+                    >
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Sidebar Mini <small>+ Collapsed + No Hover</small></p>
                     </a>
@@ -455,8 +460,8 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-tree-fill"></i>
                   <p>
                     UI Elements
@@ -477,7 +482,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../UI/timeline.html" class="nav-link active">
+                    <a href="../UI/timeline.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Timeline</p>
                     </a>
@@ -769,12 +774,14 @@
             <!--begin::Row-->
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">Timeline</h3>
+                <h3 class="mb-0">Collapsed Sidebar Without Hover</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Timeline</li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Collapsed Sidebar Without Hover
+                  </li>
                 </ol>
               </div>
             </div>
@@ -787,118 +794,43 @@
         <div class="app-content">
           <!--begin::Container-->
           <div class="container-fluid">
-            <!-- Timelime example  -->
+            <!--begin::Row-->
             <div class="row">
-              <div class="col-md-12">
-                <!-- The time line -->
-                <div class="timeline">
-                  <!-- timeline time label -->
-                  <div class="time-label">
-                    <span class="text-bg-danger">10 Feb. 2023</span>
-                  </div>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <div>
-                    <i class="timeline-icon bi bi-envelope text-bg-primary"> </i>
-                    <div class="timeline-item">
-                      <span class="time"> <i class="bi bi-clock-fill"></i> 12:05 </span>
-                      <h3 class="timeline-header">
-                        <a href="#">Support Team</a> sent you an email
-                      </h3>
+              <div class="col-12">
+                <!-- Default box -->
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Title</h3>
 
-                      <div class="timeline-body">
-                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning
-                        heekya handango imeem plugg dopplr jibjab, movity jajah plickers sifteo
-                        edmodo ifttt zimbra. Babblely odeo kaboodle quora plaxo ideeli hulu weebly
-                        balihoo...
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-primary btn-sm">Read more</a>
-                        <a class="btn btn-danger btn-sm">Delete</a>
-                      </div>
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-toggle="card-collapse"
+                        title="Collapse"
+                      >
+                        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-toggle="card-remove"
+                        title="Remove"
+                      >
+                        <i class="bi bi-x-lg"></i>
+                      </button>
                     </div>
                   </div>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <div>
-                    <i class="timeline-icon bi bi-person text-bg-success"> </i>
-                    <div class="timeline-item">
-                      <span class="time"> <i class="bi bi-clock-fill"></i> 5 mins ago </span>
-                      <h3 class="timeline-header no-border">
-                        <a href="#">Sarah Young</a> accepted your friend request
-                      </h3>
-                    </div>
-                  </div>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <div>
-                    <i class="timeline-icon bi bi-chat-text-fill text-bg-warning"> </i>
-                    <div class="timeline-item">
-                      <span class="time"> <i class="bi bi-clock-fill"></i> 27 mins ago </span>
-                      <h3 class="timeline-header">
-                        <a href="#">Jay White</a> commented on your post
-                      </h3>
-                      <div class="timeline-body">
-                        Take me to your leader! Switzerland is small and neutral! We are more like
-                        Germany, ambitious and misunderstood!
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-warning btn-sm">View comment</a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- END timeline item -->
-                  <!-- timeline time label -->
-                  <div class="time-label">
-                    <span class="text-bg-success">3 Jan. 2023</span>
-                  </div>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <div>
-                    <i class="timeline-icon bi bi-camera text-bg-primary"> </i>
-                    <div class="timeline-item">
-                      <span class="time"> <i class="bi bi-clock-fill"></i> 2 days ago </span>
-                      <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-                      <div class="timeline-body">
-                        <img src="../assets/img/user1-128x128.jpg" alt="..." />
-                        <img src="../assets/img/user1-128x128.jpg" alt="..." />
-                        <img src="../assets/img/user1-128x128.jpg" alt="..." />
-                        <img src="../assets/img/user1-128x128.jpg" alt="..." />
-                      </div>
-                    </div>
-                  </div>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <div>
-                    <i class="timeline-icon bi bi-camera-film text-bg-info"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"> <i class="bi bi-clock-fill"></i> 5 days ago </span>
-
-                      <h3 class="timeline-header"><a href="#">Mr. Doe</a> shared a video</h3>
-
-                      <div class="timeline-body">
-                        <div class="ratio ratio-16x9">
-                          <iframe
-                            src="https://www.youtube.com/embed/tMWkeBIohBs"
-                            allowfullscreen
-                          ></iframe>
-                        </div>
-                      </div>
-                      <div class="timeline-footer">
-                        <a href="#" class="btn btn-sm text-bg-warning"> See comments </a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- END timeline item -->
-                  <div>
-                    <i class="timeline-icon bi bi-clock-fill text-bg-secondary"> </i>
-                  </div>
+                  <div class="card-body">Start creating your amazing application!</div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">Footer</div>
+                  <!-- /.card-footer-->
                 </div>
+                <!-- /.card -->
               </div>
-              <!-- /.col -->
             </div>
-            <!-- /.row -->
+            <!--end::Row-->
           </div>
           <!--end::Container-->
         </div>
