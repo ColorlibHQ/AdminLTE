@@ -636,9 +636,45 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
+                    <a href="../../docs/javascript/layout.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Layout</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../docs/javascript/pushmenu.html" class="nav-link active">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>PushMenu</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="../../docs/javascript/treeview.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Treeview</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../docs/javascript/card-widget.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Card Widget</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../docs/javascript/direct-chat.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Direct Chat</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../docs/javascript/fullscreen.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Fullscreen</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../docs/javascript/accessibility.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Accessibility</p>
                     </a>
                   </li>
                 </ul>
@@ -788,15 +824,19 @@
           <!--begin::Container-->
           <div class="container-fluid">
             <p>
-              The Pushmenu plugin is used to toggle the visibility of a sidebar menu. It allows
-              users to collapse or expand the sidebar by clicking on a button or a link.
+              The PushMenu plugin toggles the sidebar between expanded and collapsed states. It
+              handles responsive behavior, optional localStorage persistence, and overlay management
+              on mobile.
             </p>
             <h5 id="usage">Usage</h5>
-            <p>This plugin can be used as the data api.</p>
+            <p>
+              This plugin is activated via data attributes on the sidebar element and toggle
+              buttons.
+            </p>
             <p><strong>Data API</strong></p>
             <p>
-              Add <code>data-lte-toggle=&quot;sidebar&quot;</code> to any button or link element to
-              activate the plugin.
+              Add <code>data-lte-toggle=&quot;sidebar&quot;</code> to any button or link to toggle
+              the sidebar.
             </p>
             <pre
               class="astro-code dark-plus"
@@ -804,6 +844,112 @@
               tabindex="0"
               data-language="html"
             ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;sidebar&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Toggle Sidebar</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span></code></pre>
+            <h5 id="configuration">Configuration</h5>
+            <p>
+              Configure the sidebar via data attributes on the <code>.app-sidebar</code> element:
+            </p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Attribute</th>
+                  <th>Default</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>data-sidebar-breakpoint</code></td>
+                  <td><code>992</code></td>
+                  <td>Screen width (px) below which the sidebar is considered mobile.</td>
+                </tr>
+                <tr>
+                  <td><code>data-enable-persistence</code></td>
+                  <td><code>false</code></td>
+                  <td>Save sidebar state to localStorage across page loads.</td>
+                </tr>
+              </tbody>
+            </table>
+            <pre
+              class="astro-code dark-plus"
+              style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+              tabindex="0"
+              data-language="html"
+            ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">aside</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-sidebar&quot;</span><span style="color:#9CDCFE"> data-enable-persistence</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;true&quot;</span><span style="color:#9CDCFE"> data-sidebar-breakpoint</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;768&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#6A9955">  &lt;!-- sidebar content --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">aside</span><span style="color:#808080">&gt;</span></span></code></pre>
+            <h5 id="responsive-behavior">Responsive Behavior</h5>
+            <ul>
+              <li>
+                <strong>Desktop</strong> (above breakpoint): Sidebar is expanded by default.
+                Collapse is remembered if persistence is enabled.
+              </li>
+              <li>
+                <strong>Mobile</strong> (at or below breakpoint): Sidebar is collapsed by default.
+                An overlay appears when the sidebar is open, clicking it collapses the sidebar.
+              </li>
+            </ul>
+            <h5 id="css-classes">CSS Classes</h5>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Applied to</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>sidebar-collapse</code></td>
+                  <td><code>&lt;body&gt;</code></td>
+                  <td>Sidebar is collapsed.</td>
+                </tr>
+                <tr>
+                  <td><code>sidebar-open</code></td>
+                  <td><code>&lt;body&gt;</code></td>
+                  <td>Sidebar is explicitly open on mobile.</td>
+                </tr>
+                <tr>
+                  <td><code>sidebar-mini</code></td>
+                  <td><code>&lt;body&gt;</code></td>
+                  <td>Enables mini sidebar mode (icons only when collapsed).</td>
+                </tr>
+                <tr>
+                  <td><code>sidebar-without-hover</code></td>
+                  <td><code>&lt;body&gt;</code></td>
+                  <td>Prevents collapsed sidebar from expanding on hover.</td>
+                </tr>
+                <tr>
+                  <td><code>sidebar-expand-{breakpoint}</code></td>
+                  <td><code>&lt;body&gt;</code></td>
+                  <td>
+                    Sets the responsive breakpoint (<code>sm</code>, <code>md</code>,
+                    <code>lg</code>, <code>xl</code>, <code>xxl</code>).
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <h5 id="events">Events</h5>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>open.lte.push-menu</code></td>
+                  <td>Fired when the sidebar is expanded.</td>
+                </tr>
+                <tr>
+                  <td><code>collapse.lte.push-menu</code></td>
+                  <td>Fired when the sidebar is collapsed.</td>
+                </tr>
+              </tbody>
+            </table>
             <h5 id="example">Example</h5>
             <a href="#" data-lte-toggle="sidebar">Toggle Sidebar</a>
           </div>
