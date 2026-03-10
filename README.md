@@ -9,27 +9,27 @@
 **AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 5](https://getbootstrap.com/)** framework and also the JavaScript plugins.
 Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.
 
-## What's New in v4.0.0-rc6
+## What's New in v4.0.0-rc7
 
-**Security & Feature Release** - Important security fixes and new sidebar persistence feature:
+**Bug Fixes, Refactors & Documentation** - Major plugin refactors, complete JS documentation, and new features:
 
-- **Security Fixes** - Resolved 4 vulnerabilities (XSS in Astro, auth bypass, unsanitized attributes)
-- **Sidebar State Persistence** - Sidebar now remembers collapsed/expanded state across page refreshes
-- **Node.js 22** - Updated all GitHub Actions workflows to Node.js 22 LTS (supported until 2027)
-- **Latest Dependencies** - 15+ packages updated including Astro 5.16.4, Prettier 3.7.4, Rollup 4.53.3
-- **CI/CD Improvements** - Updated CodeQL actions to v3, fixed release workflow bugs
+- **Layout & PushMenu Refactors** - Single-instance architecture, proper responsive logic, configurable via data attributes
+- **Sidebar Without Hover** - New `sidebar-without-hover` class to keep collapsed sidebar from expanding on hover
+- **Complete JS Documentation** - All 7 JavaScript components now fully documented
+- **Astro 6.0.0** - Upgraded to latest Astro with Vite 7 and Shiki 4
+- **Bug Fixes** - Fixed footer with layout-fixed, mobile scroll chaining, print layout, modal escape key, pagination borders
 
 **Key Improvements:**
 
-- ✅ Zero security vulnerabilities - all npm audit issues resolved
-- ✅ Sidebar state persists in localStorage (configurable, SSR-safe, mobile-aware)
-- ✅ GitHub Actions use Node.js 22 (Active LTS until April 2027)
-- ✅ CodeQL security scanning updated to latest v3 actions
-- ✅ Release workflow fixed for proper asset packaging
+- Fixed footer now works correctly with `layout-fixed` (#5805)
+- Sidebar no longer causes page scroll chaining on mobile (#5864)
+- Print layout shows both sidebar and content (#5996)
+- Sidebar persistence is now opt-in via `data-enable-persistence="true"` (**breaking change**)
+- All dependencies updated to latest versions
 
 **Install the latest:**
 ```bash
-npm install admin-lte@4.0.0-rc6
+npm install admin-lte@4.0.0-rc7
 ```
 
 See the [CHANGELOG.md](CHANGELOG.md) for complete details.
@@ -72,7 +72,7 @@ To build for production:
 
 ## Browser Support
 
-AdminLTE supports all modern browsers with the latest Bootstrap 5.3.7:
+AdminLTE supports all modern browsers with the latest Bootstrap 5.3.8:
 - Chrome (latest)
 - Firefox (latest)
 - Safari (latest)
