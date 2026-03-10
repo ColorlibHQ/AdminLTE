@@ -7,6 +7,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0-rc7] - 2026-03-10
+
+### Added
+
+- **Sidebar Without Hover:** New `sidebar-without-hover` body class that prevents collapsed mini sidebar from expanding on hover (#5837)
+  - New demo page at `layout/collapsed-sidebar-without-hover.html`
+- **JavaScript Documentation:** Added documentation pages for all JS components
+  - Layout, Card Widget, Direct Chat, Fullscreen, and Accessibility modules
+  - Updated PushMenu documentation with configuration options and responsive behavior
+  - All 7 JS components now fully documented in the sidebar navigation
+- **Accessibility Module:** WCAG 2.1 AA compliance features (skip links, focus management, keyboard navigation, reduced motion, live announcements)
+- **Print Layout Fix:** Sidebar and main content now both visible when printing (#5996)
+
+### Changed
+
+- **Sidebar Persistence:** `enablePersistence` now defaults to `false` (was `true`). Opt in via `data-enable-persistence="true"` on `.app-sidebar`. **BREAKING CHANGE**
+- **Layout Plugin Refactor:** Single Layout instance with persistent hold-transition timer, proper cleanup on resize (#5956)
+- **PushMenu Plugin Refactor:** Single PushMenu instance with proper responsive logic, config from data attributes, mobile-aware state management (#5954)
+- **Login/Register Box:** Increased width from 360px to 400px (#5963)
+
+### Fixed
+
+- **Fixed Footer with Layout Fixed:** Footer now stays pinned at the bottom when using both `.fixed-footer` and `.layout-fixed` (#5805)
+- **Mobile Sidebar Scroll Chaining:** Added `overscroll-behavior: contain` to prevent page scroll when scrolling sidebar on mobile (#5864)
+- **Sidebar Flicker on Load:** Resolved by layout refactor fixing duplicate initialization and broken hold-transition timer (#5952)
+- **Bootstrap Modal Escape Key:** Accessibility module no longer intercepts Escape key when a Bootstrap modal is open (#5993)
+- **Pagination Border Radius:** Fixed `calc()` syntax in `_bootstrap-variables.scss` to match Bootstrap 5.3 format (#5951)
+- **slideUp/slideDown at Duration 0:** Added early return guard for zero/near-zero animation durations (#5964)
+- **TypeScript Comments in Build:** Added `removeComments: true` to tsconfig.json for smaller unminified bundles (#5953)
+
+### Updated
+
+- **Dependencies:** Updated all packages to latest semver-compatible versions
+  - astro: 5.x → 6.0.0
+  - @astrojs/mdx: 4.x → 5.0.0
+  - @astrojs/check: 0.9.6 → 0.9.7
+  - @rollup/plugin-typescript: 12.3.0 → 12.3.1
+  - @typescript-eslint/eslint-plugin: 8.48.1 → 8.50.0
+  - @typescript-eslint/parser: 8.48.1 → 8.50.0
+  - autoprefixer: 10.4.22 → 10.4.23
+  - eslint: 9.39.1 → 9.39.4
+  - postcss: 8.5.7 → 8.5.8
+  - rollup: 4.53.3 → 4.59.0
+  - sass: 1.94.2 → 1.97.3
+  - terser: 5.44.1 → 5.44.3
+  - typescript: 5.9.2 → 5.9.3
+- **Bundlewatch:** Updated adminlte.js size limit to 5.2 kB
+
 ## [4.0.0-rc6] - 2025-12-08
 
 ### Security
