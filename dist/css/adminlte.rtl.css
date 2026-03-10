@@ -15555,8 +15555,8 @@ fieldset legend {
   /* Print Layout Fix - Ensure sidebar and main content are both visible */
   .app-wrapper {
     display: grid !important;
-    grid-template-columns: auto 1fr !important;
     grid-template-rows: auto 1fr auto !important;
+    grid-template-columns: auto 1fr !important;
   }
   .sidebar-overlay {
     display: none !important;
