@@ -159,15 +159,17 @@ export class AccessibilityManager {
   }
 
   private handleEscapeKey(event: KeyboardEvent): void {
-    // Close modals, dropdowns, etc.
+    // Close dropdowns, but let Bootstrap handle its own modal keyboard behavior
     const activeModal = document.querySelector('.modal.show')
-    const activeDropdown = document.querySelector('.dropdown-menu.show')
-    
+
     if (activeModal) {
-      const closeButton = activeModal.querySelector('[data-bs-dismiss="modal"]') as HTMLElement
-      closeButton?.click()
-      event.preventDefault()
-    } else if (activeDropdown) {
+      // Do not interfere — Bootstrap handles Escape for modals,
+      // including respecting keyboard: false and stacked modals
+      return
+    }
+
+    const activeDropdown = document.querySelector('.dropdown-menu.show')
+    if (activeDropdown) {
       const toggleButton = document.querySelector('[data-bs-toggle="dropdown"][aria-expanded="true"]') as HTMLElement
       toggleButton?.click()
       event.preventDefault()

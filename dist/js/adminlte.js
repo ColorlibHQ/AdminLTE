@@ -785,13 +785,11 @@
         }
         handleEscapeKey(event) {
             const activeModal = document.querySelector('.modal.show');
-            const activeDropdown = document.querySelector('.dropdown-menu.show');
             if (activeModal) {
-                const closeButton = activeModal.querySelector('[data-bs-dismiss="modal"]');
-                closeButton?.click();
-                event.preventDefault();
+                return;
             }
-            else if (activeDropdown) {
+            const activeDropdown = document.querySelector('.dropdown-menu.show');
+            if (activeDropdown) {
                 const toggleButton = document.querySelector('[data-bs-toggle="dropdown"][aria-expanded="true"]');
                 toggleButton?.click();
                 event.preventDefault();
