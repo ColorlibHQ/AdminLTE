@@ -15578,6 +15578,42 @@ fieldset legend {
     font-size: 0.8em;
     content: " (" attr(href) ")";
   }
+  /* Print Layout Fix - Ensure sidebar and main content are both visible */
+  .app-wrapper {
+    display: grid !important;
+    grid-template-columns: auto 1fr !important;
+    grid-template-rows: auto 1fr auto !important;
+  }
+  .sidebar-overlay {
+    display: none !important;
+  }
+  .app-sidebar {
+    position: static !important;
+    display: block !important;
+    min-width: 200px !important;
+    max-width: 200px !important;
+    max-height: none !important;
+    margin-left: 0 !important;
+    overflow: visible !important;
+  }
+  .sidebar-wrapper {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .app-header {
+    position: static !important;
+  }
+  .app-main {
+    width: auto !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+  .app-content {
+    overflow: visible !important;
+  }
+  .app-footer {
+    position: static !important;
+  }
 }
 
 /*# sourceMappingURL=adminlte.css.map */
