@@ -12927,6 +12927,7 @@ textarea.form-control-lg {
   padding-left: 0.5rem;
   padding-bottom: 0.5rem;
   padding-right: 0.5rem;
+  overscroll-behavior: contain;
   scrollbar-color: var(--bs-secondary-bg) transparent;
 }
 .sidebar-wrapper::-webkit-scrollbar-thumb {
@@ -13835,6 +13836,9 @@ body:not(.app-loaded) .app-footer {
   position: sticky;
   bottom: 0;
   z-index: 1030;
+}
+.fixed-footer.layout-fixed .app-main {
+  min-height: 0;
 }
 
 .dropdown-menu {

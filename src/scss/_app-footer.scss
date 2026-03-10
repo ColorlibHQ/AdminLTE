@@ -20,4 +20,13 @@
     bottom: 0;
     z-index: $lte-zindex-fixed-footer;
   }
+
+  // When layout-fixed is used, app-main has overflow: auto which prevents
+  // position: sticky from working on the footer. Ensure the grid keeps the
+  // footer pinned at the bottom while app-main scrolls independently.
+  &.layout-fixed {
+    .app-main {
+      min-height: 0;
+    }
+  }
 }

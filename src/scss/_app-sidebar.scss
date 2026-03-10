@@ -78,6 +78,7 @@
   padding-right: $lte-sidebar-padding-x;
   padding-bottom: $lte-sidebar-padding-y;
   padding-left: $lte-sidebar-padding-x;
+  overscroll-behavior: contain;
   @include scrollbar-color-gray();
   @include scrollbar-width-thin();
 
