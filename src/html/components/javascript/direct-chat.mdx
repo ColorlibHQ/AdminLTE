@@ -1,0 +1,43 @@
+The DirectChat plugin toggles the contacts pane in a direct chat widget.
+
+##### Usage
+
+This plugin is activated via data attributes.
+
+**Data API**
+
+Add `data-lte-toggle="chat-pane"` to a button inside a `.direct-chat` container to toggle the contacts list.
+
+```html
+<div class="card direct-chat">
+  <div class="card-header">
+    <h3 class="card-title">Direct Chat</h3>
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-lte-toggle="chat-pane" title="Toggle Contacts">
+        <i class="bi bi-people-fill"></i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="direct-chat-messages">
+      <!-- Chat messages go here -->
+    </div>
+    <div class="direct-chat-contacts">
+      <!-- Contacts list goes here -->
+    </div>
+  </div>
+</div>
+```
+
+##### Events
+
+| Event | Description |
+|-------|-------------|
+| `expanded.lte.direct-chat` | Fired when the contacts pane is opened. |
+| `collapsed.lte.direct-chat` | Fired when the contacts pane is closed. |
+
+##### CSS Classes
+
+| Class | Description |
+|-------|-------------|
+| `direct-chat-contacts-open` | Applied to the `.direct-chat` container when the contacts pane is visible. |

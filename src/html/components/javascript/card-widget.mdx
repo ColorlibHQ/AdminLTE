@@ -1,0 +1,55 @@
+The CardWidget plugin provides collapse, expand, remove, and maximize functionality for card components.
+
+##### Usage
+
+This plugin is activated via data attributes on buttons inside a `.card` element.
+
+**Data API**
+
+Add `data-lte-toggle="card-collapse"` to toggle card body visibility, `data-lte-toggle="card-remove"` to remove the card, or `data-lte-toggle="card-maximize"` to maximize it.
+
+```html
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Card Title</h3>
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
+        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+      </button>
+      <button type="button" class="btn btn-tool" data-lte-toggle="card-maximize" title="Maximize">
+        <i class="bi bi-fullscreen"></i>
+      </button>
+      <button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">Card content here.</div>
+  <div class="card-footer">Card footer</div>
+</div>
+```
+
+##### Events
+
+The plugin dispatches the following events on the trigger element:
+
+| Event | Description |
+|-------|-------------|
+| `collapsed.lte.card-widget` | Fired when the card body is collapsed. |
+| `expanded.lte.card-widget` | Fired when the card body is expanded. |
+| `remove.lte.card-widget` | Fired when the card is removed. |
+| `maximized.lte.card-widget` | Fired when the card is maximized. |
+| `minimized.lte.card-widget` | Fired when the card is minimized (restored from maximized). |
+
+##### CSS Classes
+
+| Class | Description |
+|-------|-------------|
+| `collapsed-card` | Applied to the card when collapsed. |
+| `maximized-card` | Applied to the card when maximized. |
+
+##### Notes
+
+- Nested cards are handled correctly: collapsing a parent card does not affect child cards.
+- The animation speed defaults to 500ms.

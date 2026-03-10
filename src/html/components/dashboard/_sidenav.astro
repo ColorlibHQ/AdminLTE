@@ -231,7 +231,7 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                 href={htmlPath + "/layout/collapsed-sidebar-without-hover.html"}
                 class:list={[
                   "nav-link",
-                  page === "collapsed-sidebar-without-hover" && "active",
+                  page === "collapsed-sidebar-without-hover" && "active"
                 ]}
               >
                 <i class="nav-icon bi bi-circle"></i>
@@ -487,11 +487,65 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a
+                href={htmlPath + "/docs/javascript/layout.html"}
+                class:list={["nav-link", page === "layout" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Layout</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/docs/javascript/pushmenu.html"}
+                class:list={["nav-link", page === "pushmenu" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>PushMenu</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
                 href={htmlPath + "/docs/javascript/treeview.html"}
                 class:list={["nav-link", page === "treeview" && "active"]}
               >
                 <i class="nav-icon bi bi-circle"></i>
                 <p>Treeview</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/docs/javascript/card-widget.html"}
+                class:list={["nav-link", page === "card-widget" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Card Widget</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/docs/javascript/direct-chat.html"}
+                class:list={["nav-link", page === "direct-chat" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Direct Chat</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/docs/javascript/fullscreen.html"}
+                class:list={["nav-link", page === "fullscreen" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Fullscreen</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/docs/javascript/accessibility.html"}
+                class:list={["nav-link", page === "accessibility" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Accessibility</p>
               </a>
             </li>
           </ul>

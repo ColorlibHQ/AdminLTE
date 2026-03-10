@@ -1,16 +1,53 @@
-The Pushmenu plugin is used to toggle the visibility of a sidebar menu. It allows users to collapse or expand the sidebar by clicking on a button or a link.
+The PushMenu plugin toggles the sidebar between expanded and collapsed states. It handles responsive behavior, optional localStorage persistence, and overlay management on mobile.
 
 ##### Usage
 
-This plugin can be used as the data api.
+This plugin is activated via data attributes on the sidebar element and toggle buttons.
 
 **Data API**
 
-Add `data-lte-toggle="sidebar"` to any button or link element to activate the plugin.
+Add `data-lte-toggle="sidebar"` to any button or link to toggle the sidebar.
 
 ```html
 <a href="#" data-lte-toggle="sidebar">Toggle Sidebar</a>
 ```
+
+##### Configuration
+
+Configure the sidebar via data attributes on the `.app-sidebar` element:
+
+| Attribute | Default | Description |
+|-----------|---------|-------------|
+| `data-sidebar-breakpoint` | `992` | Screen width (px) below which the sidebar is considered mobile. |
+| `data-enable-persistence` | `false` | Save sidebar state to localStorage across page loads. |
+
+```html
+<aside class="app-sidebar" data-enable-persistence="true" data-sidebar-breakpoint="768">
+  <!-- sidebar content -->
+</aside>
+```
+
+##### Responsive Behavior
+
+- **Desktop** (above breakpoint): Sidebar is expanded by default. Collapse is remembered if persistence is enabled.
+- **Mobile** (at or below breakpoint): Sidebar is collapsed by default. An overlay appears when the sidebar is open, clicking it collapses the sidebar.
+
+##### CSS Classes
+
+| Class | Applied to | Description |
+|-------|-----------|-------------|
+| `sidebar-collapse` | `<body>` | Sidebar is collapsed. |
+| `sidebar-open` | `<body>` | Sidebar is explicitly open on mobile. |
+| `sidebar-mini` | `<body>` | Enables mini sidebar mode (icons only when collapsed). |
+| `sidebar-without-hover` | `<body>` | Prevents collapsed sidebar from expanding on hover. |
+| `sidebar-expand-{breakpoint}` | `<body>` | Sets the responsive breakpoint (`sm`, `md`, `lg`, `xl`, `xxl`). |
+
+##### Events
+
+| Event | Description |
+|-------|-------------|
+| `open.lte.push-menu` | Fired when the sidebar is expanded. |
+| `collapse.lte.push-menu` | Fired when the sidebar is collapsed. |
 
 ##### Example
 

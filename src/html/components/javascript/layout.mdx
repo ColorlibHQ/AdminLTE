@@ -1,0 +1,35 @@
+The Layout plugin manages CSS transitions during layout changes and signals when the app has finished loading.
+
+##### Behavior
+
+The Layout plugin performs two key tasks automatically:
+
+1. **Hold Transitions** - During window resize, CSS transitions on the sidebar, navbar, and content area are temporarily disabled to prevent visual glitches. The `hold-transition` class is added to `<body>` for the duration.
+
+2. **App Loaded Signal** - After a 400ms delay on DOMContentLoaded, the `app-loaded` class is added to `<body>`. Use this class in CSS to defer animations until the app is ready, preventing flicker on initial page load.
+
+##### CSS Classes
+
+| Class | Description |
+|-------|-------------|
+| `hold-transition` | Temporarily disables CSS transitions on layout elements. Applied during window resize. |
+| `app-loaded` | Added to `<body>` after the initial layout is ready. Use for entrance animations. |
+
+##### Usage in CSS
+
+```css
+/* Hide sidebar transitions until the app is loaded */
+body:not(.app-loaded) .app-sidebar {
+  transition: none !important;
+}
+
+/* Only animate after app is loaded */
+body.app-loaded .app-sidebar {
+  transition: width 0.3s ease;
+}
+```
+
+##### Notes
+
+- The `hold-transition` class is automatically removed after 200ms (on resize) or 100ms (default).
+- No data attributes or manual initialization required. The plugin initializes automatically.

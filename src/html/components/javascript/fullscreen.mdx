@@ -1,0 +1,28 @@
+The FullScreen plugin toggles the browser's native fullscreen mode.
+
+##### Usage
+
+This plugin is activated via data attributes.
+
+**Data API**
+
+Add `data-lte-toggle="fullscreen"` to a button element. Use `data-lte-icon="maximize"` and `data-lte-icon="minimize"` on child icon elements to toggle their visibility.
+
+```html
+<button type="button" class="btn" data-lte-toggle="fullscreen">
+  <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
+  <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none"></i>
+</button>
+```
+
+##### Events
+
+| Event | Description |
+|-------|-------------|
+| `maximized.lte.fullscreen` | Fired when entering fullscreen mode. |
+| `minimized.lte.fullscreen` | Fired when exiting fullscreen mode. |
+
+##### Notes
+
+- Requires browser support for the Fullscreen API (`document.fullscreenEnabled`).
+- The maximize icon is hidden when in fullscreen mode, and the minimize icon is shown (and vice versa).

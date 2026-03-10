@@ -1,0 +1,82 @@
+The Accessibility module provides WCAG 2.1 AA compliance features that are automatically initialized when AdminLTE loads.
+
+##### Features
+
+| Feature | WCAG Criterion | Description |
+|---------|---------------|-------------|
+| Skip Links | 2.4.1 Bypass Blocks | Adds "Skip to main content" and "Skip to navigation" links. |
+| Focus Management | 2.4.3 & 2.4.7 | Tab cycling, focus trapping in modals, and focus restoration. |
+| Keyboard Navigation | 2.1.1 Keyboard | Arrow key navigation in menus, Enter/Space for custom buttons. |
+| Reduced Motion | 2.3.3 Animation | Respects `prefers-reduced-motion` by disabling animations. |
+| Live Announcements | 4.1.3 Status Messages | Announces errors and success messages to screen readers. |
+| Error Identification | 3.3.1 & 3.3.2 | Auto-labels unlabelled inputs, announces form validation errors. |
+| Table Accessibility | 1.3.1 Info & Relationships | Adds `scope` attributes to table headers automatically. |
+
+##### Configuration
+
+The module is initialized in `adminlte.ts` with all features enabled by default:
+
+```js
+initAccessibility({
+  announcements: true,
+  skipLinks: true,
+  focusManagement: true,
+  keyboardNavigation: true,
+  reducedMotion: true
+})
+```
+
+Set any option to `false` to disable that feature.
+
+##### Public API
+
+```js
+import { initAccessibility } from 'admin-lte'
+
+const a11y = initAccessibility()
+
+// Announce a message to screen readers
+a11y.announce('Item saved successfully', 'polite')
+a11y.announce('Form has errors', 'assertive')
+
+// Focus a specific element
+a11y.focusElement('#my-input')
+
+// Trap focus inside a container (useful for custom modals/dialogs)
+a11y.trapFocus(document.querySelector('.my-dialog'))
+
+// Add semantic landmarks to the page
+a11y.addLandmarks()
+```
+
+##### Utility Functions
+
+```js
+import { accessibilityUtils } from 'admin-lte'
+
+// Check color contrast ratio (WCAG 1.4.3)
+const result = accessibilityUtils.checkColorContrast('rgb(0,0,0)', 'rgb(255,255,255)')
+// { ratio: 21, passes: true }
+
+// Check if an element is focusable
+accessibilityUtils.isFocusable(element)
+
+// Generate a unique ID for ARIA attributes
+accessibilityUtils.generateId('modal') // "modal-x7k2m9p4q"
+```
+
+##### CSS Classes
+
+| Class | Description |
+|-------|-------------|
+| `skip-links` | Container for skip navigation links. |
+| `skip-link` | Individual skip link, visible only on focus. |
+| `reduce-motion` | Added to `<body>` when user prefers reduced motion. |
+| `sr-only` | Screen reader only content (visually hidden). |
+| `live-region` | ARIA live region for dynamic announcements. |
+
+##### Notes
+
+- The module integrates with Bootstrap's modal and dropdown events for focus management.
+- Modal Escape key handling is deferred to Bootstrap to respect `keyboard: false` and stacked modals.
+- Form validation announcements work automatically for any input with HTML5 validation attributes.
