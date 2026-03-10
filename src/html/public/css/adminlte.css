@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- *   AdminLTE v4.0.0-rc5
+ *   AdminLTE v4.0.0-rc7
  *   Author: Colorlib
  *   Website: AdminLTE.io <https://adminlte.io>
  *   License: Open source - MIT <https://opensource.org/licenses/MIT>
@@ -4757,10 +4757,15 @@ textarea.form-control-lg {
 }
 
 .page-item:not(:first-child) .page-link {
-  margin-left: calc(var(--bs-border-width) * -1);
+  margin-left: calc(-1 * var(--bs-border-width));
 }
-.page-item .page-link {
-  border-radius: var(--bs-pagination-border-radius);
+.page-item:first-child .page-link {
+  border-top-left-radius: var(--bs-pagination-border-radius);
+  border-bottom-left-radius: var(--bs-pagination-border-radius);
+}
+.page-item:last-child .page-link {
+  border-top-right-radius: var(--bs-pagination-border-radius);
+  border-bottom-right-radius: var(--bs-pagination-border-radius);
 }
 
 .pagination-lg {
@@ -15178,7 +15183,7 @@ html.maximized-card {
 
 .login-box,
 .register-box {
-  width: 360px;
+  width: 400px;
 }
 @media (max-width: 576px) {
   .login-box,
@@ -15577,6 +15582,42 @@ fieldset legend {
   a[href^=http]::after {
     font-size: 0.8em;
     content: " (" attr(href) ")";
+  }
+  /* Print Layout Fix - Ensure sidebar and main content are both visible */
+  .app-wrapper {
+    display: grid !important;
+    grid-template-rows: auto 1fr auto !important;
+    grid-template-columns: auto 1fr !important;
+  }
+  .sidebar-overlay {
+    display: none !important;
+  }
+  .app-sidebar {
+    position: static !important;
+    display: block !important;
+    min-width: 200px !important;
+    max-width: 200px !important;
+    max-height: none !important;
+    margin-left: 0 !important;
+    overflow: visible !important;
+  }
+  .sidebar-wrapper {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .app-header {
+    position: static !important;
+  }
+  .app-main {
+    width: auto !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+  .app-content {
+    overflow: visible !important;
+  }
+  .app-footer {
+    position: static !important;
   }
 }
 
