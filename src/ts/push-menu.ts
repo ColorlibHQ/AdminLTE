@@ -1,9 +1,9 @@
 /**
- * --------------------------------------------
+ * ----------------------------------------------------------------------------
  * @file AdminLTE push-menu.ts
  * @description Push menu for AdminLTE.
  * @license MIT
- * --------------------------------------------
+ * ----------------------------------------------------------------------------
  */
 
 import {
@@ -11,33 +11,43 @@ import {
 } from './util/index'
 
 /**
- * ------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------
  * Constants
- * ------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------
  */
 
 const DATA_KEY = 'lte.push-menu'
 const EVENT_KEY = `.${DATA_KEY}`
-
 const EVENT_OPEN = `open${EVENT_KEY}`
 const EVENT_COLLAPSE = `collapse${EVENT_KEY}`
 
 const CLASS_NAME_SIDEBAR_MINI = 'sidebar-mini'
-const CLASS_NAME_SIDEBAR_COLLAPSE = 'sidebar-collapse'
-const CLASS_NAME_SIDEBAR_OPEN = 'sidebar-open'
 const CLASS_NAME_SIDEBAR_EXPAND = 'sidebar-expand'
 const CLASS_NAME_SIDEBAR_OVERLAY = 'sidebar-overlay'
-const CLASS_NAME_MENU_OPEN = 'menu-open'
+
+// Classes used to explicitly indicate the sidebar state.
+// - sidebar-collapse: Indicates the sidebar is explicitly collapsed.
+// - sidebar-open: Indicates the sidebar is explicitly open on mobile sizes.
+const CLASS_NAME_SIDEBAR_COLLAPSE = 'sidebar-collapse'
+const CLASS_NAME_SIDEBAR_OPEN = 'sidebar-open'
 
 const SELECTOR_APP_SIDEBAR = '.app-sidebar'
-const SELECTOR_SIDEBAR_MENU = '.sidebar-menu'
-const SELECTOR_NAV_ITEM = '.nav-item'
-const SELECTOR_NAV_TREEVIEW = '.nav-treeview'
 const SELECTOR_APP_WRAPPER = '.app-wrapper'
 const SELECTOR_SIDEBAR_EXPAND = `[class*="${CLASS_NAME_SIDEBAR_EXPAND}"]`
 const SELECTOR_SIDEBAR_TOGGLE = '[data-lte-toggle="sidebar"]'
 
 const STORAGE_KEY_SIDEBAR_STATE = 'lte.sidebar.state'
+
+/**
+ * ----------------------------------------------------------------------------
+ * Configuration Object Interface
+ * - sidebarBreakpoint: The screen width (in pixels) below which the sidebar
+ *   is considered to be on a "mobile" size and should be collapsed by default
+ *   unless explicitly opened.
+ * - enablePersistence: Whether to save the sidebar state (collapsed/open) in
+ *   localStorage and restore it on page load.
+ * ----------------------------------------------------------------------------
+ */
 
 type Config = {
   sidebarBreakpoint: number;
@@ -46,12 +56,13 @@ type Config = {
 
 const Defaults: Config = {
   sidebarBreakpoint: 992,
-  enablePersistence: true
+  enablePersistence: false
 }
 
 /**
+ * ----------------------------------------------------------------------------
  * Class Definition
- * ====================================================
+ * ----------------------------------------------------------------------------
  */
 
 class PushMenu {
@@ -63,96 +74,139 @@ class PushMenu {
     this._config = { ...Defaults, ...config }
   }
 
-  menusClose() {
-    const navTreeview = document.querySelectorAll<HTMLElement>(SELECTOR_NAV_TREEVIEW)
-
-    navTreeview.forEach(navTree => {
-      navTree.style.removeProperty('display')
-      navTree.style.removeProperty('height')
-    })
-
-    const navSidebar = document.querySelector(SELECTOR_SIDEBAR_MENU)
-    const navItem = navSidebar?.querySelectorAll(SELECTOR_NAV_ITEM)
-
-    if (navItem) {
-      navItem.forEach(navI => {
-        navI.classList.remove(CLASS_NAME_MENU_OPEN)
-      })
-    }
+  /**
+   * Check if the sidebar is collapsed.
+   *
+   * @returns True if the sidebar is collapsed, false otherwise.
+   */
+  isCollapsed(): boolean {
+    return document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)
   }
 
-  expand() {
-    const event = new Event(EVENT_OPEN)
+  /**
+   * Check if the sidebar is explicitly open on mobile sizes.
+   *
+   * @returns True if the sidebar is explicitly open, false otherwise.
+   */
+  isExplicitlyOpen(): boolean {
+    return document.body.classList.contains(CLASS_NAME_SIDEBAR_OPEN)
+  }
 
+  /**
+   * Check if the sidebar is in mini mode.
+   *
+   * @returns True if the sidebar is in mini mode, false otherwise.
+   */
+  isMiniMode(): boolean {
+    return document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI)
+  }
+
+  /**
+   * Check if the current screen size is considered "mobile" based on the
+   * sidebarBreakpoint config value.
+   *
+   * @returns True if the screen size is mobile, false otherwise.
+   */
+  isMobileSize(): boolean {
+    return globalThis.innerWidth <= this._config.sidebarBreakpoint
+  }
+
+  /**
+   * Expand the sidebar menu.
+   */
+  expand(): void {
     document.body.classList.remove(CLASS_NAME_SIDEBAR_COLLAPSE)
-    document.body.classList.add(CLASS_NAME_SIDEBAR_OPEN)
 
-    this._element.dispatchEvent(event)
+    if (this.isMobileSize()) {
+      document.body.classList.add(CLASS_NAME_SIDEBAR_OPEN)
+    }
+
+    this._element.dispatchEvent(new Event(EVENT_OPEN))
   }
 
-  collapse() {
-    const event = new Event(EVENT_COLLAPSE)
-
+  /**
+   * Collapse the sidebar menu.
+   */
+  collapse(): void {
     document.body.classList.remove(CLASS_NAME_SIDEBAR_OPEN)
     document.body.classList.add(CLASS_NAME_SIDEBAR_COLLAPSE)
 
-    this._element.dispatchEvent(event)
+    this._element.dispatchEvent(new Event(EVENT_COLLAPSE))
   }
 
-  addSidebarBreakPoint() {
-    const sidebarExpandList = document.querySelector(SELECTOR_SIDEBAR_EXPAND)?.classList ?? []
-    const sidebarExpand = Array.from(sidebarExpandList).find(className => className.startsWith(CLASS_NAME_SIDEBAR_EXPAND)) ?? ''
-    const sidebar = document.getElementsByClassName(sidebarExpand)[0]
-    const sidebarContent = globalThis.getComputedStyle(sidebar, '::before').getPropertyValue('content')
-    this._config = { ...this._config, sidebarBreakpoint: Number(sidebarContent.replace(/[^\d.-]/g, '')) }
+  /**
+   * Toggle the sidebar menu state.
+   */
+  toggle(): void {
+    const isCollapsed = this.isCollapsed()
 
-    // FIXED: Don't auto-collapse on mobile if sidebar is currently open
-    // This prevents resize events (triggered by scrolling) from closing the sidebar
-    const isCurrentlyOpen = document.body.classList.contains(CLASS_NAME_SIDEBAR_OPEN)
-    
-    if (window.innerWidth <= this._config.sidebarBreakpoint) {
-      // Only collapse if not currently open (prevents scroll-triggered closes)
-      if (!isCurrentlyOpen) {
-        this.collapse()
-      }
-    } else {
-      if (!document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI)) {
-        this.expand()
-      }
-
-      if (document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI) && document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
-        this.collapse()
-      }
-    }
-  }
-
-  toggle() {
-    if (document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
+    if (isCollapsed) {
       this.expand()
     } else {
       this.collapse()
     }
 
-    this.saveSidebarState()
+    if (this._config.enablePersistence) {
+      this.saveSidebarState(
+        isCollapsed ? CLASS_NAME_SIDEBAR_OPEN : CLASS_NAME_SIDEBAR_COLLAPSE
+      )
+    }
   }
 
   /**
-   * Save sidebar state to localStorage
+   * Read the CSS breakpoint of the sidebar from the DOM and update the
+   * sidebarBreakpoint config.
    */
-  saveSidebarState(): void {
-    if (!this._config.enablePersistence) {
+  setupSidebarBreakPoint(): void {
+    const sidebarExpand = document.querySelector(SELECTOR_SIDEBAR_EXPAND)
+
+    if (!sidebarExpand) {
       return
     }
 
-    // Check for SSR environment
-    if (globalThis.window === undefined || globalThis.localStorage === undefined) {
+    const content = globalThis.getComputedStyle(sidebarExpand, '::before')
+      .getPropertyValue('content')
+
+    if (!content || content === 'none') {
+      return
+    }
+
+    const breakpointValue = Number(content.replace(/[^\d.-]/g, ''))
+
+    if (Number.isNaN(breakpointValue)) {
+      return
+    }
+
+    this._config = { ...this._config, sidebarBreakpoint: breakpointValue }
+  }
+
+  /**
+   * Update the sidebar state based on the current screen size and the
+   * sidebarBreakpoint config value.
+   */
+  updateStateByResponsiveLogic(): void {
+    if (this.isMobileSize()) {
+      if (!this.isExplicitlyOpen()) {
+        this.collapse()
+      }
+    } else {
+      if (!(this.isMiniMode() && this.isCollapsed())) {
+        this.expand()
+      }
+    }
+  }
+
+  /**
+   * Save sidebar state to localStorage.
+   *
+   * @param state The state to save ('sidebar-open' or 'sidebar-collapse').
+   */
+  saveSidebarState(state: string): void {
+    if (globalThis.localStorage === undefined) {
       return
     }
 
     try {
-      const state = document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE) ?
-        CLASS_NAME_SIDEBAR_COLLAPSE :
-        CLASS_NAME_SIDEBAR_OPEN
       localStorage.setItem(STORAGE_KEY_SIDEBAR_STATE, state)
     } catch {
       // localStorage may be unavailable (private browsing, quota exceeded, etc.)
@@ -160,21 +214,10 @@ class PushMenu {
   }
 
   /**
-   * Load sidebar state from localStorage
-   * Only applies on desktop; mobile always starts collapsed
+   * Load sidebar state from localStorage.
    */
   loadSidebarState(): void {
-    if (!this._config.enablePersistence) {
-      return
-    }
-
-    // Check for SSR environment
-    if (globalThis.window === undefined || globalThis.localStorage === undefined) {
-      return
-    }
-
-    // Don't restore state on mobile - let responsive behavior handle it
-    if (globalThis.innerWidth <= this._config.sidebarBreakpoint) {
+    if (globalThis.localStorage === undefined) {
       return
     }
 
@@ -185,44 +228,96 @@ class PushMenu {
         this.collapse()
       } else if (storedState === CLASS_NAME_SIDEBAR_OPEN) {
         this.expand()
+      } else {
+        this.updateStateByResponsiveLogic()
       }
-      // If null (never saved), let default behavior apply
+    } catch {
+      this.updateStateByResponsiveLogic()
+    }
+  }
+
+  /**
+   * Clear sidebar state from localStorage.
+   */
+  clearSidebarState(): void {
+    if (globalThis.localStorage === undefined) {
+      return
+    }
+
+    try {
+      localStorage.removeItem(STORAGE_KEY_SIDEBAR_STATE)
     } catch {
       // localStorage may be unavailable
     }
   }
 
-  init() {
-    this.addSidebarBreakPoint()
-    this.loadSidebarState()
+  /**
+   * Initialize the push menu plugin and setup the initial sidebar state.
+   */
+  init(): void {
+    this.setupSidebarBreakPoint()
+
+    if (!this._config.enablePersistence) {
+      this.clearSidebarState()
+    }
+
+    if (this._config.enablePersistence && !this.isMobileSize()) {
+      this.loadSidebarState()
+    } else {
+      this.updateStateByResponsiveLogic()
+    }
   }
 }
 
 /**
- * ------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------
  * Data Api implementation
- * ------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------
  */
 
 onDOMContentLoaded(() => {
   const sidebar = document?.querySelector(SELECTOR_APP_SIDEBAR) as HTMLElement | undefined
 
-  if (sidebar) {
-    const data = new PushMenu(sidebar, Defaults)
-    data.init()
-
-    window.addEventListener('resize', () => {
-      data.init()
-    })
+  if (!sidebar) {
+    return
   }
+
+  // Read config from data attributes on the sidebar element.
+
+  const sidebarBreakpointAttr = sidebar.dataset.sidebarBreakpoint
+  const enablePersistenceAttr = sidebar.dataset.enablePersistence
+
+  const config: Config = {
+    sidebarBreakpoint: sidebarBreakpointAttr === undefined ?
+      Defaults.sidebarBreakpoint :
+      Number(sidebarBreakpointAttr),
+    enablePersistence: enablePersistenceAttr === undefined ?
+      Defaults.enablePersistence :
+      enablePersistenceAttr === 'true'
+  }
+
+  // Initialize the PushMenu plugin (a unique instance).
+
+  const pushMenu = new PushMenu(sidebar, config)
+  pushMenu.init()
+
+  // Update the sidebar state on window resize events.
+
+  window.addEventListener('resize', () => {
+    pushMenu.setupSidebarBreakPoint()
+    pushMenu.updateStateByResponsiveLogic()
+  })
+
+  // Create the sidebar overlay element and append it to the app wrapper.
 
   const sidebarOverlay = document.createElement('div')
   sidebarOverlay.className = CLASS_NAME_SIDEBAR_OVERLAY
   document.querySelector(SELECTOR_APP_WRAPPER)?.append(sidebarOverlay)
 
+  // Handle touch events on overlay.
+
   let overlayTouchMoved = false
 
-  // Handle touch events on overlay (area outside sidebar)
   sidebarOverlay.addEventListener('touchstart', () => {
     overlayTouchMoved = false
   }, { passive: true })
@@ -234,20 +329,18 @@ onDOMContentLoaded(() => {
   sidebarOverlay.addEventListener('touchend', event => {
     if (!overlayTouchMoved) {
       event.preventDefault()
-      const target = event.currentTarget as HTMLElement
-      const data = new PushMenu(target, Defaults)
-      data.collapse()
+      pushMenu.collapse()
     }
+
     overlayTouchMoved = false
   }, { passive: false })
 
-
   sidebarOverlay.addEventListener('click', event => {
     event.preventDefault()
-    const target = event.currentTarget as HTMLElement
-    const data = new PushMenu(target, Defaults)
-    data.collapse()
+    pushMenu.collapse()
   })
+
+  // Handle click events on sidebar toggle buttons.
 
   const fullBtn = document.querySelectorAll(SELECTOR_SIDEBAR_TOGGLE)
 
@@ -263,8 +356,7 @@ onDOMContentLoaded(() => {
 
       if (button) {
         event?.preventDefault()
-        const data = new PushMenu(button, Defaults)
-        data.toggle()
+        pushMenu.toggle()
       }
     })
   })
