@@ -16,13 +16,6 @@ import { initAccessibility } from './accessibility.js'
 
 onDOMContentLoaded(() => {
   /**
-   * Initialize AdminLTE Core Components
-   * -------------------------------
-   */
-  const layout = new Layout(document.body)
-  layout.holdTransition()
-  
-  /**
    * Initialize Accessibility Features - WCAG 2.1 AA Compliance
    * --------------------------------------------------------
    */
@@ -33,14 +26,9 @@ onDOMContentLoaded(() => {
     keyboardNavigation: true,
     reducedMotion: true
   })
-  
+
   // Add semantic landmarks
   accessibilityManager.addLandmarks()
-  
-  // Mark app as loaded after initialization
-  setTimeout(() => {
-    document.body.classList.add('app-loaded')
-  }, 400)
 })
 
 export {

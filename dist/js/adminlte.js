@@ -93,23 +93,24 @@
     const CLASS_NAME_APP_LOADED = 'app-loaded';
     class Layout {
         _element;
+        _holdTransitionTimer;
         constructor(element) {
             this._element = element;
+            this._holdTransitionTimer = undefined;
         }
-        holdTransition() {
-            let resizeTimer;
-            window.addEventListener('resize', () => {
-                document.body.classList.add(CLASS_NAME_HOLD_TRANSITIONS);
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(() => {
-                    document.body.classList.remove(CLASS_NAME_HOLD_TRANSITIONS);
-                }, 400);
-            });
+        holdTransition(time = 100) {
+            if (this._holdTransitionTimer) {
+                clearTimeout(this._holdTransitionTimer);
+            }
+            document.body.classList.add(CLASS_NAME_HOLD_TRANSITIONS);
+            this._holdTransitionTimer = setTimeout(() => {
+                document.body.classList.remove(CLASS_NAME_HOLD_TRANSITIONS);
+            }, time);
         }
     }
     onDOMContentLoaded(() => {
-        const data = new Layout(document.body);
-        data.holdTransition();
+        const layout = new Layout(document.body);
+        window.addEventListener('resize', () => layout.holdTransition(200));
         setTimeout(() => {
             document.body.classList.add(CLASS_NAME_APP_LOADED);
         }, 400);
@@ -289,8 +290,8 @@
     const EVENT_EXPANDED$1 = `expanded${EVENT_KEY$3}`;
     const EVENT_COLLAPSED$1 = `collapsed${EVENT_KEY$3}`;
     const EVENT_LOAD_DATA_API = `load${EVENT_KEY$3}`;
-    const CLASS_NAME_MENU_OPEN$1 = 'menu-open';
-    const SELECTOR_NAV_ITEM$1 = '.nav-item';
+    const CLASS_NAME_MENU_OPEN = 'menu-open';
+    const SELECTOR_NAV_ITEM = '.nav-item';
     const SELECTOR_NAV_LINK = '.nav-link';
     const SELECTOR_TREEVIEW_MENU = '.nav-treeview';
     const SELECTOR_DATA_TOGGLE$1 = '[data-lte-toggle="treeview"]';
@@ -308,10 +309,10 @@
         open() {
             const event = new Event(EVENT_EXPANDED$1);
             if (this._config.accordion) {
-                const openMenuList = this._element.parentElement?.querySelectorAll(`${SELECTOR_NAV_ITEM$1}.${CLASS_NAME_MENU_OPEN$1}`);
+                const openMenuList = this._element.parentElement?.querySelectorAll(`${SELECTOR_NAV_ITEM}.${CLASS_NAME_MENU_OPEN}`);
                 openMenuList?.forEach(openMenu => {
                     if (openMenu !== this._element.parentElement) {
-                        openMenu.classList.remove(CLASS_NAME_MENU_OPEN$1);
+                        openMenu.classList.remove(CLASS_NAME_MENU_OPEN);
                         const childElement = openMenu?.querySelector(SELECTOR_TREEVIEW_MENU);
                         if (childElement) {
                             slideUp(childElement, this._config.animationSpeed);
@@ -319,7 +320,7 @@
                     }
                 });
             }
-            this._element.classList.add(CLASS_NAME_MENU_OPEN$1);
+            this._element.classList.add(CLASS_NAME_MENU_OPEN);
             const childElement = this._element?.querySelector(SELECTOR_TREEVIEW_MENU);
             if (childElement) {
                 slideDown(childElement, this._config.animationSpeed);
@@ -328,7 +329,7 @@
         }
         close() {
             const event = new Event(EVENT_COLLAPSED$1);
-            this._element.classList.remove(CLASS_NAME_MENU_OPEN$1);
+            this._element.classList.remove(CLASS_NAME_MENU_OPEN);
             const childElement = this._element?.querySelector(SELECTOR_TREEVIEW_MENU);
             if (childElement) {
                 slideUp(childElement, this._config.animationSpeed);
@@ -336,7 +337,7 @@
             this._element.dispatchEvent(event);
         }
         toggle() {
-            if (this._element.classList.contains(CLASS_NAME_MENU_OPEN$1)) {
+            if (this._element.classList.contains(CLASS_NAME_MENU_OPEN)) {
                 this.close();
             }
             else {
@@ -345,7 +346,7 @@
         }
     }
     onDOMContentLoaded(() => {
-        const openMenuItems = document.querySelectorAll(`${SELECTOR_NAV_ITEM$1}.${CLASS_NAME_MENU_OPEN$1}`);
+        const openMenuItems = document.querySelectorAll(`${SELECTOR_NAV_ITEM}.${CLASS_NAME_MENU_OPEN}`);
         openMenuItems.forEach(menuItem => {
             const childElement = menuItem.querySelector(SELECTOR_TREEVIEW_MENU);
             if (childElement) {
@@ -358,7 +359,7 @@
         button.forEach(btn => {
             btn.addEventListener('click', event => {
                 const target = event.target;
-                const targetItem = target.closest(SELECTOR_NAV_ITEM$1);
+                const targetItem = target.closest(SELECTOR_NAV_ITEM);
                 const targetLink = target.closest(SELECTOR_NAV_LINK);
                 const targetTreeviewMenu = targetItem?.querySelector(SELECTOR_TREEVIEW_MENU);
                 const lteToggleElement = event.currentTarget;
@@ -493,22 +494,18 @@
     const EVENT_OPEN = `open${EVENT_KEY}`;
     const EVENT_COLLAPSE = `collapse${EVENT_KEY}`;
     const CLASS_NAME_SIDEBAR_MINI = 'sidebar-mini';
-    const CLASS_NAME_SIDEBAR_COLLAPSE = 'sidebar-collapse';
-    const CLASS_NAME_SIDEBAR_OPEN = 'sidebar-open';
     const CLASS_NAME_SIDEBAR_EXPAND = 'sidebar-expand';
     const CLASS_NAME_SIDEBAR_OVERLAY = 'sidebar-overlay';
-    const CLASS_NAME_MENU_OPEN = 'menu-open';
+    const CLASS_NAME_SIDEBAR_COLLAPSE = 'sidebar-collapse';
+    const CLASS_NAME_SIDEBAR_OPEN = 'sidebar-open';
     const SELECTOR_APP_SIDEBAR = '.app-sidebar';
-    const SELECTOR_SIDEBAR_MENU = '.sidebar-menu';
-    const SELECTOR_NAV_ITEM = '.nav-item';
-    const SELECTOR_NAV_TREEVIEW = '.nav-treeview';
     const SELECTOR_APP_WRAPPER = '.app-wrapper';
     const SELECTOR_SIDEBAR_EXPAND = `[class*="${CLASS_NAME_SIDEBAR_EXPAND}"]`;
     const SELECTOR_SIDEBAR_TOGGLE = '[data-lte-toggle="sidebar"]';
     const STORAGE_KEY_SIDEBAR_STATE = 'lte.sidebar.state';
     const Defaults = {
         sidebarBreakpoint: 992,
-        enablePersistence: true
+        enablePersistence: false
     };
     class PushMenu {
         _element;
@@ -517,86 +514,82 @@
             this._element = element;
             this._config = { ...Defaults, ...config };
         }
-        menusClose() {
-            const navTreeview = document.querySelectorAll(SELECTOR_NAV_TREEVIEW);
-            navTreeview.forEach(navTree => {
-                navTree.style.removeProperty('display');
-                navTree.style.removeProperty('height');
-            });
-            const navSidebar = document.querySelector(SELECTOR_SIDEBAR_MENU);
-            const navItem = navSidebar?.querySelectorAll(SELECTOR_NAV_ITEM);
-            if (navItem) {
-                navItem.forEach(navI => {
-                    navI.classList.remove(CLASS_NAME_MENU_OPEN);
-                });
-            }
+        isCollapsed() {
+            return document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE);
+        }
+        isExplicitlyOpen() {
+            return document.body.classList.contains(CLASS_NAME_SIDEBAR_OPEN);
+        }
+        isMiniMode() {
+            return document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI);
+        }
+        isMobileSize() {
+            return globalThis.innerWidth <= this._config.sidebarBreakpoint;
         }
         expand() {
-            const event = new Event(EVENT_OPEN);
             document.body.classList.remove(CLASS_NAME_SIDEBAR_COLLAPSE);
-            document.body.classList.add(CLASS_NAME_SIDEBAR_OPEN);
-            this._element.dispatchEvent(event);
+            if (this.isMobileSize()) {
+                document.body.classList.add(CLASS_NAME_SIDEBAR_OPEN);
+            }
+            this._element.dispatchEvent(new Event(EVENT_OPEN));
         }
         collapse() {
-            const event = new Event(EVENT_COLLAPSE);
             document.body.classList.remove(CLASS_NAME_SIDEBAR_OPEN);
             document.body.classList.add(CLASS_NAME_SIDEBAR_COLLAPSE);
-            this._element.dispatchEvent(event);
-        }
-        addSidebarBreakPoint() {
-            const sidebarExpandList = document.querySelector(SELECTOR_SIDEBAR_EXPAND)?.classList ?? [];
-            const sidebarExpand = Array.from(sidebarExpandList).find(className => className.startsWith(CLASS_NAME_SIDEBAR_EXPAND)) ?? '';
-            const sidebar = document.getElementsByClassName(sidebarExpand)[0];
-            const sidebarContent = globalThis.getComputedStyle(sidebar, '::before').getPropertyValue('content');
-            this._config = { ...this._config, sidebarBreakpoint: Number(sidebarContent.replace(/[^\d.-]/g, '')) };
-            const isCurrentlyOpen = document.body.classList.contains(CLASS_NAME_SIDEBAR_OPEN);
-            if (window.innerWidth <= this._config.sidebarBreakpoint) {
-                if (!isCurrentlyOpen) {
-                    this.collapse();
-                }
-            }
-            else {
-                if (!document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI)) {
-                    this.expand();
-                }
-                if (document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI) && document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
-                    this.collapse();
-                }
-            }
+            this._element.dispatchEvent(new Event(EVENT_COLLAPSE));
         }
         toggle() {
-            if (document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
+            const isCollapsed = this.isCollapsed();
+            if (isCollapsed) {
                 this.expand();
             }
             else {
                 this.collapse();
             }
-            this.saveSidebarState();
+            if (this._config.enablePersistence) {
+                this.saveSidebarState(isCollapsed ? CLASS_NAME_SIDEBAR_OPEN : CLASS_NAME_SIDEBAR_COLLAPSE);
+            }
         }
-        saveSidebarState() {
-            if (!this._config.enablePersistence) {
+        setupSidebarBreakPoint() {
+            const sidebarExpand = document.querySelector(SELECTOR_SIDEBAR_EXPAND);
+            if (!sidebarExpand) {
                 return;
             }
-            if (globalThis.window === undefined || globalThis.localStorage === undefined) {
+            const content = globalThis.getComputedStyle(sidebarExpand, '::before')
+                .getPropertyValue('content');
+            if (!content || content === 'none') {
+                return;
+            }
+            const breakpointValue = Number(content.replace(/[^\d.-]/g, ''));
+            if (Number.isNaN(breakpointValue)) {
+                return;
+            }
+            this._config = { ...this._config, sidebarBreakpoint: breakpointValue };
+        }
+        updateStateByResponsiveLogic() {
+            if (this.isMobileSize()) {
+                if (!this.isExplicitlyOpen()) {
+                    this.collapse();
+                }
+            }
+            else {
+                if (!(this.isMiniMode() && this.isCollapsed())) {
+                    this.expand();
+                }
+            }
+        }
+        saveSidebarState(state) {
+            if (globalThis.localStorage === undefined) {
                 return;
             }
             try {
-                const state = document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE) ?
-                    CLASS_NAME_SIDEBAR_COLLAPSE :
-                    CLASS_NAME_SIDEBAR_OPEN;
                 localStorage.setItem(STORAGE_KEY_SIDEBAR_STATE, state);
             }
             catch {
             }
         }
         loadSidebarState() {
-            if (!this._config.enablePersistence) {
-                return;
-            }
-            if (globalThis.window === undefined || globalThis.localStorage === undefined) {
-                return;
-            }
-            if (globalThis.innerWidth <= this._config.sidebarBreakpoint) {
+            if (globalThis.localStorage === undefined) {
                 return;
             }
             try {
@@ -607,24 +600,58 @@
                 else if (storedState === CLASS_NAME_SIDEBAR_OPEN) {
                     this.expand();
                 }
+                else {
+                    this.updateStateByResponsiveLogic();
+                }
+            }
+            catch {
+                this.updateStateByResponsiveLogic();
+            }
+        }
+        clearSidebarState() {
+            if (globalThis.localStorage === undefined) {
+                return;
+            }
+            try {
+                localStorage.removeItem(STORAGE_KEY_SIDEBAR_STATE);
             }
             catch {
             }
         }
         init() {
-            this.addSidebarBreakPoint();
-            this.loadSidebarState();
+            this.setupSidebarBreakPoint();
+            if (!this._config.enablePersistence) {
+                this.clearSidebarState();
+            }
+            if (this._config.enablePersistence && !this.isMobileSize()) {
+                this.loadSidebarState();
+            }
+            else {
+                this.updateStateByResponsiveLogic();
+            }
         }
     }
     onDOMContentLoaded(() => {
         const sidebar = document?.querySelector(SELECTOR_APP_SIDEBAR);
-        if (sidebar) {
-            const data = new PushMenu(sidebar, Defaults);
-            data.init();
-            window.addEventListener('resize', () => {
-                data.init();
-            });
+        if (!sidebar) {
+            return;
         }
+        const sidebarBreakpointAttr = sidebar.dataset.sidebarBreakpoint;
+        const enablePersistenceAttr = sidebar.dataset.enablePersistence;
+        const config = {
+            sidebarBreakpoint: sidebarBreakpointAttr === undefined ?
+                Defaults.sidebarBreakpoint :
+                Number(sidebarBreakpointAttr),
+            enablePersistence: enablePersistenceAttr === undefined ?
+                Defaults.enablePersistence :
+                enablePersistenceAttr === 'true'
+        };
+        const pushMenu = new PushMenu(sidebar, config);
+        pushMenu.init();
+        window.addEventListener('resize', () => {
+            pushMenu.setupSidebarBreakPoint();
+            pushMenu.updateStateByResponsiveLogic();
+        });
         const sidebarOverlay = document.createElement('div');
         sidebarOverlay.className = CLASS_NAME_SIDEBAR_OVERLAY;
         document.querySelector(SELECTOR_APP_WRAPPER)?.append(sidebarOverlay);
@@ -638,17 +665,13 @@
         sidebarOverlay.addEventListener('touchend', event => {
             if (!overlayTouchMoved) {
                 event.preventDefault();
-                const target = event.currentTarget;
-                const data = new PushMenu(target, Defaults);
-                data.collapse();
+                pushMenu.collapse();
             }
             overlayTouchMoved = false;
         }, { passive: false });
         sidebarOverlay.addEventListener('click', event => {
             event.preventDefault();
-            const target = event.currentTarget;
-            const data = new PushMenu(target, Defaults);
-            data.collapse();
+            pushMenu.collapse();
         });
         const fullBtn = document.querySelectorAll(SELECTOR_SIDEBAR_TOGGLE);
         fullBtn.forEach(btn => {
@@ -660,8 +683,7 @@
                 }
                 if (button) {
                     event?.preventDefault();
-                    const data = new PushMenu(button, Defaults);
-                    data.toggle();
+                    pushMenu.toggle();
                 }
             });
         });
@@ -1037,8 +1059,6 @@
     };
 
     onDOMContentLoaded(() => {
-        const layout = new Layout(document.body);
-        layout.holdTransition();
         const accessibilityManager = initAccessibility({
             announcements: true,
             skipLinks: true,
@@ -1047,9 +1067,6 @@
             reducedMotion: true
         });
         accessibilityManager.addLandmarks();
-        setTimeout(() => {
-            document.body.classList.add('app-loaded');
-        }, 400);
     });
 
     exports.CardWidget = CardWidget;
