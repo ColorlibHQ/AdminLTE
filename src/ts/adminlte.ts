@@ -5,6 +5,7 @@ import Treeview from './treeview.js'
 import DirectChat from './direct-chat.js'
 import FullScreen from './fullscreen.js'
 import PushMenu from './push-menu.js'
+import ThemeSwitch from './theme-switch.js'
 import { initAccessibility } from './accessibility.js'
 
 /**
@@ -50,5 +51,6 @@ export {
   DirectChat,
   FullScreen,
   PushMenu,
+  ThemeSwitch,
   initAccessibility
 }
