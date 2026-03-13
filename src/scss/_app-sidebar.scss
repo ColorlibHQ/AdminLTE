@@ -106,31 +106,31 @@
 
   // Sidebar Menu. First level links
   .sidebar-menu > .nav-item {
-    &.menu-open {
-      .nav-link.active:not(:hover) {
-        --#{$lte-prefix}sidebar-menu-active-bg: transparent;
-      }
-    }
-
     // links
     > .nav-link {
-      &:active,
+      color: var(--#{$lte-prefix}sidebar-color);
+
+      &:hover,
       &:focus {
-        color: var(--#{$lte-prefix}sidebar-color);
+        color: var(--#{$lte-prefix}sidebar-hover-color);
+        background-color: var(--#{$lte-prefix}sidebar-hover-bg);
+      }
+
+      &.active {
+        color: var(--#{$lte-prefix}sidebar-menu-active-color);
+        background-color: var(--#{$lte-prefix}sidebar-menu-active-bg);
       }
     }
 
-    > .nav-link.active:not(:hover) {
-      color: var(--#{$lte-prefix}sidebar-menu-active-color);
-      background-color: var(--#{$lte-prefix}sidebar-menu-active-bg);
-    }
-
-    // Hover and active states
-    &.menu-open > .nav-link,
-    &:hover > .nav-link,
-    > .nav-link:focus  {
+    // Open state
+    &.menu-open > .nav-link {
       color: var(--#{$lte-prefix}sidebar-hover-color);
       background-color: var(--#{$lte-prefix}sidebar-hover-bg);
+
+      &.active {
+        color: var(--#{$lte-prefix}sidebar-menu-active-color);
+        background-color: var(--#{$lte-prefix}sidebar-menu-active-bg);
+      }
     }
 
     // First Level Submenu
@@ -162,21 +162,13 @@
         &:hover,
         &:focus {
           color: var(--#{$lte-prefix}sidebar-submenu-hover-color);
-          // background-color: var(--#{$lte-prefix}sidebar-submenu-hover-bg);
+          background-color: var(--#{$lte-prefix}sidebar-submenu-hover-bg);
         }
-      }
 
-      > .nav-link.active {
-        &,
-        &:hover,
-        &:focus {
+        &.active {
           color: var(--#{$lte-prefix}sidebar-submenu-active-color);
           background-color: var(--#{$lte-prefix}sidebar-submenu-active-bg);
         }
-      }
-
-      > .nav-link:hover {
-        background-color: var(--#{$lte-prefix}sidebar-submenu-hover-bg);
       }
     }
   }
