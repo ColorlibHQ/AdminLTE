@@ -241,10 +241,6 @@
     display: none;
     padding: 0;
     list-style: none;
-
-    .nav-indent & {
-      padding-left: $lte-sidebar-padding-x;
-    }
   }
 
   .menu-open {
@@ -266,6 +262,12 @@
   .nav-link > p > .nav-arrow {
     right: 1rem !important; // place at end in LTR
     left: auto !important;
+  }
+}
+
+.nav-indent {
+  .nav-treeview {
+    padding-left: $lte-sidebar-padding-x;
   }
 }
 
