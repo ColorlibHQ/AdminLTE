@@ -71,7 +71,7 @@
     "astro": "^6.0.0",
     "autoprefixer": "^10.4.27",
     "bootstrap": "^5.3.8",
-    "bundlewatch": "^0.4.1",
+    "bundlewatch": "^0.4.2",
     "clean-css-cli": "^5.6.3",
     "concurrently": "^9.2.1",
     "cross-env": "^10.1.0",
