@@ -1,0 +1,252 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+
+const title = "AdminLTE 4 | Pricing"
+const path = "../../../dist"
+const mainPage = "pages"
+const page = "pricing";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <Head title={title} path={path} />
+  </head>
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <main class="app-main">
+        <div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Pricing</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Pricing</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-content">
+          <div class="container-fluid">
+            <!-- Headline -->
+            <div class="text-center mb-4">
+              <h2 class="mb-2">Pick the plan that fits your team</h2>
+              <p class="text-secondary mb-0">
+                Simple, transparent pricing. No hidden fees. Cancel any time.
+              </p>
+            </div>
+
+            <!-- Billing toggle -->
+            <div class="d-flex justify-content-center mb-4">
+              <div class="btn-group" role="group" aria-label="Billing period">
+                <input type="radio" class="btn-check" name="billing" id="billing-monthly" checked />
+                <label class="btn btn-outline-primary" for="billing-monthly">Monthly</label>
+                <input type="radio" class="btn-check" name="billing" id="billing-yearly" />
+                <label class="btn btn-outline-primary" for="billing-yearly">
+                  Yearly <span class="badge text-bg-success ms-1">Save 20%</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Plans -->
+            <div class="row g-4 row-cols-1 row-cols-md-3 mb-4">
+              <!-- Starter -->
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-body p-4">
+                    <h5 class="fw-semibold">Starter</h5>
+                    <p class="text-secondary small mb-3">
+                      For individuals getting started.
+                    </p>
+                    <div class="mb-3">
+                      <span class="display-5 fw-bold">$0</span>
+                      <span class="text-secondary">/mo</span>
+                    </div>
+                    <a href="#" class="btn btn-outline-primary w-100 mb-3">Get started</a>
+                    <ul class="list-unstyled small mb-0">
+                      <li class="mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>
+                        Up to 3 projects
+                      </li>
+                      <li class="mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>
+                        Community support
+                      </li>
+                      <li class="mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>
+                        1 GB storage
+                      </li>
+                      <li class="text-secondary">
+                        <i class="bi bi-dash-circle me-2" aria-hidden="true"></i>
+                        Advanced analytics
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- Pro (highlighted) -->
+              <div class="col">
+                <div class="card h-100 border-primary shadow-sm position-relative">
+                  <span
+                    class="badge text-bg-primary position-absolute top-0 start-50 translate-middle"
+                  >Most popular</span>
+                  <div class="card-body p-4">
+                    <h5 class="fw-semibold">Pro</h5>
+                    <p class="text-secondary small mb-3">
+                      For growing teams that need more.
+                    </p>
+                    <div class="mb-3">
+                      <span class="display-5 fw-bold">$29</span>
+                      <span class="text-secondary">/mo</span>
+                    </div>
+                    <a href="#" class="btn btn-primary w-100 mb-3">Start free trial</a>
+                    <ul class="list-unstyled small mb-0">
+                      <li class="mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>
+                        Unlimited projects
+                      </li>
+                      <li class="mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>
+                        Priority email support
+                      </li>
+                      <li class="mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>
+                        100 GB storage
+                      </li>
+                      <li class="mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>
+                        Advanced analytics
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- Enterprise -->
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-body p-4">
+                    <h5 class="fw-semibold">Enterprise</h5>
+                    <p class="text-secondary small mb-3">
+                      For organizations with custom needs.
+                    </p>
+                    <div class="mb-3">
+                      <span class="display-5 fw-bold">Custom</span>
+                    </div>
+                    <a href="#" class="btn btn-outline-primary w-100 mb-3">Contact sales</a>
+                    <ul class="list-unstyled small mb-0">
+                      <li class="mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>
+                        Everything in Pro
+                      </li>
+                      <li class="mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>
+                        SSO &amp; SCIM
+                      </li>
+                      <li class="mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>
+                        Dedicated account manager
+                      </li>
+                      <li class="mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>
+                        Custom SLA
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature comparison table -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Compare features</h3>
+              </div>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table mb-0 align-middle">
+                    <thead>
+                      <tr>
+                        <th>Feature</th>
+                        <th class="text-center">Starter</th>
+                        <th class="text-center">Pro</th>
+                        <th class="text-center">Enterprise</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Projects</td>
+                        <td class="text-center">3</td>
+                        <td class="text-center">Unlimited</td>
+                        <td class="text-center">Unlimited</td>
+                      </tr>
+                      <tr>
+                        <td>Storage</td>
+                        <td class="text-center">1 GB</td>
+                        <td class="text-center">100 GB</td>
+                        <td class="text-center">Custom</td>
+                      </tr>
+                      <tr>
+                        <td>Team members</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">Up to 20</td>
+                        <td class="text-center">Unlimited</td>
+                      </tr>
+                      <tr>
+                        <td>Advanced analytics</td>
+                        <td class="text-center">
+                          <i class="bi bi-x-lg text-secondary" aria-hidden="true"></i>
+                          <span class="visually-hidden">No</span>
+                        </td>
+                        <td class="text-center">
+                          <i class="bi bi-check-lg text-success" aria-hidden="true"></i>
+                          <span class="visually-hidden">Yes</span>
+                        </td>
+                        <td class="text-center">
+                          <i class="bi bi-check-lg text-success" aria-hidden="true"></i>
+                          <span class="visually-hidden">Yes</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>SSO &amp; SCIM</td>
+                        <td class="text-center">
+                          <i class="bi bi-x-lg text-secondary" aria-hidden="true"></i>
+                          <span class="visually-hidden">No</span>
+                        </td>
+                        <td class="text-center">
+                          <i class="bi bi-x-lg text-secondary" aria-hidden="true"></i>
+                          <span class="visually-hidden">No</span>
+                        </td>
+                        <td class="text-center">
+                          <i class="bi bi-check-lg text-success" aria-hidden="true"></i>
+                          <span class="visually-hidden">Yes</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Support</td>
+                        <td class="text-center">Community</td>
+                        <td class="text-center">Priority email</td>
+                        <td class="text-center">Dedicated</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+    <Scripts path={path} />
+  </body>
+</html>

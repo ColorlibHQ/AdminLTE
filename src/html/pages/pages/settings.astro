@@ -1,0 +1,345 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+
+const title = "AdminLTE 4 | Settings"
+const path = "../../../dist"
+const mainPage = "pages"
+const page = "settings";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <Head title={title} path={path} />
+  </head>
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <main class="app-main">
+        <div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Settings</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Settings</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-content">
+          <div class="container-fluid">
+            <div class="row g-3">
+              <!-- Left rail -->
+              <div class="col-md-3">
+                <div
+                  class="list-group list-group-flush nav nav-pills flex-column"
+                  id="settings-nav"
+                  role="tablist"
+                >
+                  <a
+                    href="#account"
+                    class="list-group-item list-group-item-action active"
+                    data-bs-toggle="pill"
+                    role="tab"
+                    aria-selected="true"
+                  >
+                    <i class="bi bi-person me-2" aria-hidden="true"></i>Account
+                  </a>
+                  <a
+                    href="#notifications"
+                    class="list-group-item list-group-item-action"
+                    data-bs-toggle="pill"
+                    role="tab"
+                  >
+                    <i class="bi bi-bell me-2" aria-hidden="true"></i>Notifications
+                  </a>
+                  <a
+                    href="#security"
+                    class="list-group-item list-group-item-action"
+                    data-bs-toggle="pill"
+                    role="tab"
+                  >
+                    <i class="bi bi-shield-lock me-2" aria-hidden="true"></i>Security
+                  </a>
+                  <a
+                    href="#billing"
+                    class="list-group-item list-group-item-action"
+                    data-bs-toggle="pill"
+                    role="tab"
+                  >
+                    <i class="bi bi-credit-card me-2" aria-hidden="true"></i>Billing
+                  </a>
+                  <a
+                    href="#danger"
+                    class="list-group-item list-group-item-action text-danger"
+                    data-bs-toggle="pill"
+                    role="tab"
+                  >
+                    <i
+                      class="bi bi-exclamation-triangle me-2"
+                      aria-hidden="true"
+                    ></i>
+                    Danger zone
+                  </a>
+                </div>
+              </div>
+
+              <!-- Tab content -->
+              <div class="col-md-9">
+                <div class="tab-content">
+                  <!-- Account -->
+                  <div
+                    class="tab-pane fade show active"
+                    id="account"
+                    role="tabpanel"
+                  >
+                    <div class="card">
+                      <div class="card-header">
+                        <h3 class="card-title">Account</h3>
+                      </div>
+                      <div class="card-body">
+                        <form class="row g-3">
+                          <div class="col-md-6">
+                            <label class="form-label" for="settings-name">
+                              Full name
+                            </label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="settings-name"
+                              value="Jane Doe"
+                            />
+                          </div>
+                          <div class="col-md-6">
+                            <label class="form-label" for="settings-email">
+                              Email
+                            </label>
+                            <input
+                              type="email"
+                              class="form-control"
+                              id="settings-email"
+                              value="jane@example.com"
+                            />
+                          </div>
+                          <div class="col-md-6">
+                            <label class="form-label" for="settings-tz">
+                              Time zone
+                            </label>
+                            <select class="form-select" id="settings-tz">
+                              <option>UTC</option>
+                              <option selected>America/Los_Angeles</option>
+                              <option>Europe/London</option>
+                              <option>Asia/Tokyo</option>
+                            </select>
+                          </div>
+                          <div class="col-md-6">
+                            <label class="form-label" for="settings-lang">
+                              Language
+                            </label>
+                            <select class="form-select" id="settings-lang">
+                              <option selected>English</option>
+                              <option>Español</option>
+                              <option>Français</option>
+                              <option>Deutsch</option>
+                            </select>
+                          </div>
+                          <div class="col-12">
+                            <button type="submit" class="btn btn-primary">
+                              Save changes
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Notifications -->
+                  <div class="tab-pane fade" id="notifications" role="tabpanel">
+                    <div class="card">
+                      <div class="card-header">
+                        <h3 class="card-title">Notifications</h3>
+                      </div>
+                      <div class="card-body">
+                        <p class="text-secondary">
+                          Choose what to be notified about.
+                        </p>
+                        {
+                          [
+                            ["Product updates", "Major releases and changelogs"],
+                            ["Security alerts", "Sign-in attempts and account changes"],
+                            ["Weekly digest", "A summary of activity in your workspace"],
+                            ["Mentions", "When a teammate @mentions you"]
+                          ].map(([label, desc], i) => (
+                            <div class="d-flex justify-content-between align-items-start py-2 border-bottom">
+                              <div>
+                                <p class="mb-0 fw-semibold">{label}</p>
+                                <small class="text-secondary">{desc}</small>
+                              </div>
+                              <div class="form-check form-switch mb-0">
+                                <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  role="switch"
+                                  id={`notif-${i}`}
+                                  checked={i < 2}
+                                />
+                                <label
+                                  class="visually-hidden"
+                                  for={`notif-${i}`}
+                                >
+                                  Toggle {label}
+                                </label>
+                              </div>
+                            </div>
+                          ))
+                        }
+                        <button class="btn btn-primary mt-3">Save preferences</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Security -->
+                  <div class="tab-pane fade" id="security" role="tabpanel">
+                    <div class="card">
+                      <div class="card-header">
+                        <h3 class="card-title">Password</h3>
+                      </div>
+                      <div class="card-body">
+                        <form class="row g-3">
+                          <div class="col-md-12">
+                            <label class="form-label" for="pwd-current">
+                              Current password
+                            </label>
+                            <input
+                              type="password"
+                              class="form-control"
+                              id="pwd-current"
+                            />
+                          </div>
+                          <div class="col-md-6">
+                            <label class="form-label" for="pwd-new">
+                              New password
+                            </label>
+                            <input type="password" class="form-control" id="pwd-new" />
+                          </div>
+                          <div class="col-md-6">
+                            <label class="form-label" for="pwd-confirm">
+                              Confirm new password
+                            </label>
+                            <input
+                              type="password"
+                              class="form-control"
+                              id="pwd-confirm"
+                            />
+                          </div>
+                          <div class="col-12">
+                            <button type="submit" class="btn btn-primary">
+                              Update password
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="card mt-3">
+                      <div class="card-header">
+                        <h3 class="card-title">Two-factor authentication</h3>
+                      </div>
+                      <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                          <p class="mb-0 fw-semibold">Authenticator app</p>
+                          <small class="text-secondary">
+                            Use an authenticator app such as 1Password or Authy.
+                          </small>
+                        </div>
+                        <button class="btn btn-outline-primary">Enable</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Billing -->
+                  <div class="tab-pane fade" id="billing" role="tabpanel">
+                    <div class="card">
+                      <div class="card-header">
+                        <h3 class="card-title">Current plan</h3>
+                      </div>
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                          <div>
+                            <p class="mb-0 fw-semibold">Pro plan</p>
+                            <small class="text-secondary">
+                              $29 / month &middot; Renews June 18, 2026
+                            </small>
+                          </div>
+                          <a href="#" class="btn btn-outline-primary btn-sm">
+                            Change plan
+                          </a>
+                        </div>
+                        <hr />
+                        <p class="fw-semibold mb-2">Payment method</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div>
+                            <i
+                              class="bi bi-credit-card-2-front me-2"
+                              aria-hidden="true"
+                            ></i>
+                            Visa ending in 4242
+                          </div>
+                          <a href="#" class="btn btn-link btn-sm">Update</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Danger zone -->
+                  <div class="tab-pane fade" id="danger" role="tabpanel">
+                    <div class="card border-danger">
+                      <div class="card-header bg-danger-subtle">
+                        <h3 class="card-title text-danger">Danger zone</h3>
+                      </div>
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                          <div>
+                            <p class="mb-0 fw-semibold">Export account data</p>
+                            <small class="text-secondary">
+                              Download a copy of all your data as a ZIP archive.
+                            </small>
+                          </div>
+                          <button class="btn btn-outline-secondary">Export</button>
+                        </div>
+                        <hr />
+                        <div class="d-flex justify-content-between align-items-start">
+                          <div>
+                            <p class="mb-0 fw-semibold text-danger">
+                              Delete account
+                            </p>
+                            <small class="text-secondary">
+                              This will permanently delete your account and all
+                              associated data. This cannot be undone.
+                            </small>
+                          </div>
+                          <button class="btn btn-danger">Delete account</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+    <Scripts path={path} />
+  </body>
+</html>
