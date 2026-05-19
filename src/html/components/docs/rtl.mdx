@@ -1,0 +1,92 @@
+AdminLTE ships an RTL (right-to-left) stylesheet alongside the standard LTR one, generated from the same source via [`rtlcss`](https://rtlcss.com/). Use it for Arabic, Hebrew, Persian, Urdu, and any other right-to-left scripts.
+
+##### The pre-built RTL stylesheet
+
+Every release publishes RTL variants of every CSS file:
+
+```text
+dist/css/adminlte.css           ← LTR (default)
+dist/css/adminlte.rtl.css       ← RTL
+dist/css/adminlte.min.css
+dist/css/adminlte.rtl.min.css
+```
+
+To switch a page to RTL, swap the stylesheet and set `dir="rtl"` on the `<html>` element:
+
+```html
+<html lang="ar" dir="rtl">
+  <head>
+    <link rel="stylesheet" href="dist/css/adminlte.rtl.min.css" />
+  </head>
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <!-- ...same markup as LTR -->
+  </body>
+</html>
+```
+
+That's it — the sidebar now docks to the right, scroll bars flip, padding/margin utilities mirror, and Bootstrap Icons stay LTR-safe (most icons aren't directional). For a live example, see [`layout/layout-rtl.html`](../layout/layout-rtl.html).
+
+##### Bootstrap's `dir="rtl"` attribute
+
+Setting `dir="rtl"` triggers Bootstrap 5.3's logical property pathway as well — `.ms-*` becomes right-margin instead of left, `.float-start` floats right, etc. You don't need separate Bootstrap classes for RTL; the same utility names work in both directions.
+
+##### When you have a mixed-language UI
+
+If your app shows RTL content on an otherwise-LTR page (eg. an Arabic text block inside an English admin panel), you can scope `dir="rtl"` to a single element:
+
+```html
+<body>
+  <!-- LTR app shell -->
+  <main dir="rtl" lang="ar">
+    <!-- this block only is RTL -->
+  </main>
+</body>
+```
+
+Bootstrap and AdminLTE handle nested direction switches correctly — the inner element's direction is what counts.
+
+##### Building RTL yourself
+
+If you're building AdminLTE from source and you've modified the SCSS, regenerate the RTL CSS:
+
+```bash
+npm run css-compile     # builds LTR
+npm run css-prefix      # adds autoprefixer
+npm run css-rtl         # generates *.rtl.css from the LTR output
+npm run css-minify
+```
+
+The full pipeline is wired into `npm run css`, so most of the time you just run that.
+
+The conversion is handled by [`postcss`](https://postcss.org/) running [`rtlcss`](https://rtlcss.com/) — both are already in devDependencies. If you need to opt-out a specific rule from the LTR-to-RTL flip, use rtlcss control directives in your SCSS:
+
+```scss
+.brand-link {
+  /*rtl:ignore*/
+  margin-left: .5rem;   // stays left-margin in both LTR and RTL
+}
+```
+
+##### What flips automatically
+
+| Direction-aware property | Behaviour in RTL |
+|---|---|
+| `margin-left` / `padding-left` | Swapped to right |
+| `left`, `right` positioning | Swapped |
+| `text-align: left` / `right` | Swapped |
+| Bootstrap `.ms-*`, `.me-*`, `.float-start`, `.float-end` | Mirror via Bootstrap's logical properties |
+| `transform: translateX()` | Sign inverted |
+| Sidebar position | Docks to the right |
+| Dropdown menu open direction | Flips automatically (Bootstrap handles this) |
+
+##### What doesn't flip
+
+- Bootstrap Icons (SVG glyphs) — most icons are direction-neutral; arrows that *do* indicate direction (`bi-arrow-right`, `bi-chevron-right`, etc.) need to be manually swapped to their `-left` siblings.
+- Inline images, charts, and third-party widgets — their internal layout doesn't react to `dir`. Check each integration (ApexCharts, FullCalendar, Tabulator) for an RTL option.
+- Numbers — digits stay LTR even in RTL contexts (this is standard Unicode bidi behaviour, not a bug).
+
+##### Common gotchas
+
+- **The `.min.css` minified RTL build is `.rtl.min.css`, not `.min.rtl.css`.** Filename order matters; the build script emits the former.
+- **Don't mix LTR and RTL stylesheets on the same page** — pick one. If you need a mixed-direction app, use `dir="rtl"` on the relevant subtree, not a separate stylesheet.
+- **Icon mirroring**: when you swap an icon for RTL, also update its `aria-label` if it indicates direction (eg. "Next page" should still say "Next page" — only the glyph rotates).

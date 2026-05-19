@@ -1,0 +1,149 @@
+AdminLTE 4 is a ground-up rewrite. It targets Bootstrap 5.3, drops jQuery, ships as TypeScript-authored vanilla JS, and reorganises the CSS class structure. If you're upgrading an AdminLTE 3 project, the changes below are the ones most likely to bite.
+
+##### The high-level summary
+
+| | AdminLTE 3 | AdminLTE 4 |
+|---|---|---|
+| CSS framework | Bootstrap 4.6 | **Bootstrap 5.3** |
+| JavaScript | jQuery + vanilla | **Vanilla TypeScript only** |
+| Dark mode | Manual `.dark-mode` class | **`data-bs-theme` attribute (Bootstrap-native)** |
+| RTL | Separate `rtl.css` build | **Generated automatically via rtlcss** |
+| Browser support | IE 11 forks available | Modern evergreen browsers only |
+| Build tooling | Gulp | **Rollup + Sass + PostCSS** |
+| Icon library | FontAwesome | **Bootstrap Icons** (Lucide / Tabler Icons documented as alternatives) |
+
+If your project relies on jQuery or IE 11, stay on AdminLTE 3 — those constraints are not reversible in v4.
+
+##### Class renames
+
+The most common find-and-replace work:
+
+| AdminLTE 3 | AdminLTE 4 |
+|---|---|
+| `.wrapper` | `.app-wrapper` |
+| `.main-header` | `.app-header` |
+| `.main-sidebar` | `.app-sidebar` |
+| `.content-wrapper` | `.app-main` |
+| `.main-footer` | `.app-footer` |
+| `.content-header` | `.app-content-header` |
+| `.content` | `.app-content` |
+| `.brand-link` (inside `.main-sidebar`) | `.sidebar-brand > .brand-link` |
+| `data-widget="pushmenu"` | `data-lte-toggle="sidebar"` |
+| `data-widget="treeview"` | `data-lte-toggle="treeview"` (on the parent menu) |
+| `data-widget="card-widget"` | `data-lte-toggle="card-collapse"`, `card-remove`, `card-maximize` |
+| `data-widget="fullscreen"` | `data-lte-toggle="fullscreen"` |
+| `data-widget="control-sidebar"` | (removed — Bootstrap offcanvas replaces this) |
+| `.dark-mode` (on `<body>`) | `data-bs-theme="dark"` (on any element) |
+
+##### Bootstrap 4 → 5 utility renames
+
+These come from Bootstrap itself, not AdminLTE, but they affect every page:
+
+| Bootstrap 4 | Bootstrap 5 |
+|---|---|
+| `data-toggle` | `data-bs-toggle` |
+| `data-target` | `data-bs-target` |
+| `data-dismiss` | `data-bs-dismiss` |
+| `data-parent` | `data-bs-parent` |
+| `data-spy` | `data-bs-spy` |
+| `data-ride` | `data-bs-ride` |
+| `.ml-*`, `.mr-*` | `.ms-*`, `.me-*` |
+| `.pl-*`, `.pr-*` | `.ps-*`, `.pe-*` |
+| `.float-left`, `.float-right` | `.float-start`, `.float-end` |
+| `.text-left`, `.text-right` | `.text-start`, `.text-end` |
+| `.border-left`, `.border-right` | `.border-start`, `.border-end` |
+| `.rounded-left`, `.rounded-right` | `.rounded-start`, `.rounded-end` |
+| `.font-weight-*` | `.fw-*` |
+| `.font-italic` | `.fst-italic` |
+| `.text-monospace` | `.font-monospace` |
+
+A regex find-replace handles most of this in a few minutes. The migration tool [`bootstrap-5-migration`](https://github.com/dbtek/bootstrap-5-migration) automates the bulk.
+
+##### jQuery removal
+
+If your app code calls AdminLTE 3 plugins via jQuery (`$('.sidebar').PushMenu()`, etc.), those calls no longer work. Replacements:
+
+```js
+// AdminLTE 3
+$('.sidebar-toggle').on('click', function () {
+  $('body').toggleClass('sidebar-collapse')
+})
+```
+
+```js
+// AdminLTE 4 — the data-API does this for you
+// <a href="#" data-lte-toggle="sidebar">...</a>
+```
+
+If you need programmatic control, import the plugin class directly:
+
+```js
+import { PushMenu } from "admin-lte"
+
+new PushMenu(document.querySelector(".sidebar-toggle")).toggle()
+```
+
+All seven JS plugins (`Layout`, `CardWidget`, `Treeview`, `DirectChat`, `FullScreen`, `PushMenu`, plus `initAccessibility`) are exported from `admin-lte`.
+
+##### Dark mode
+
+AdminLTE 3 used a `.dark-mode` class toggled on the `<body>`. AdminLTE 4 uses Bootstrap 5.3's native `data-bs-theme="dark"` attribute, which can be applied at any level — `<html>`, `<body>`, or a single component.
+
+```html
+<!-- AdminLTE 3 -->
+<body class="dark-mode">
+
+<!-- AdminLTE 4 -->
+<html data-bs-theme="dark">
+```
+
+The included [Color Mode](color-mode.html) widget reads/writes this attribute and persists the user's choice in `localStorage`. See the [Color Mode](color-mode.html) docs page for the toggle implementation.
+
+##### CSS variables instead of `.bg-*` overrides
+
+AdminLTE 3 shipped a lot of one-off colour classes (`.bg-navy`, `.bg-purple`, `.bg-fuchsia`, etc.). In v4, prefer Bootstrap 5.3's CSS-variable model:
+
+```html
+<!-- AdminLTE 3 -->
+<div class="card bg-navy">…</div>
+
+<!-- AdminLTE 4 — use Bootstrap utilities + CSS variables -->
+<div class="card text-bg-primary">…</div>
+```
+
+For full retheming, override `--bs-primary` etc. on `:root`. See [Customization](customization.html).
+
+##### Icons
+
+AdminLTE 3 demos used FontAwesome 6 free. AdminLTE 4 standardises on [Bootstrap Icons](https://icons.getbootstrap.com/) — they're SVG, lighter, MIT-licensed, and ship with Bootstrap's ecosystem.
+
+```html
+<!-- AdminLTE 3 -->
+<i class="fas fa-home"></i>
+
+<!-- AdminLTE 4 -->
+<i class="bi bi-house"></i>
+```
+
+If you'd rather stick with FontAwesome (or use Lucide, Tabler Icons, Material Symbols, etc.), nothing in AdminLTE 4 forces Bootstrap Icons — load whichever icon font you prefer and replace the `<i>` classes. See [Recommended Integrations](integrations.html#icon-libraries) for the comparison table.
+
+##### Pages we haven't ported yet
+
+The v3 demo includes pages that haven't all been recreated for v4. The v4 release notes cover the current page catalog. If you depend on a specific v3 page that hasn't been ported, please [open an issue](https://github.com/ColorlibHQ/AdminLTE/issues) — community contributions for missing pages are very welcome.
+
+##### Suggested migration order
+
+For an existing AdminLTE 3 project:
+
+1. **Branch first.** This is not a small change — keep `master` on v3 until v4 is stable.
+2. **Update CSS class names** with a find-replace pass using the table above. Most layouts compile but look broken until step 3.
+3. **Update `data-toggle` → `data-bs-toggle`** etc. across all your templates.
+4. **Replace `.dark-mode` toggle code** with `data-bs-theme` attribute writes.
+5. **Audit jQuery calls.** Either remove them (use the data API) or import plugin classes directly.
+6. **Test responsive breakpoints** — Bootstrap 5 added `xxl`. If you use breakpoint-specific utilities, double-check the new scale.
+7. **Re-test print views** — AdminLTE 4 fixed a print-layout issue (#5996); if you had custom print CSS, verify it still works.
+
+##### Help and discussion
+
+- Migration questions: [GitHub Discussions](https://github.com/ColorlibHQ/AdminLTE/discussions)
+- Found something we missed? [Open an issue](https://github.com/ColorlibHQ/AdminLTE/issues) tagged `migration`.

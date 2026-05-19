@@ -1,0 +1,172 @@
+AdminLTE inherits Bootstrap 5.3's CSS-custom-properties theming model and adds its own layer of SCSS variables on top. You can customize the look two ways:
+
+1. **CSS custom properties** — quick, no build step, works on prebuilt CSS.
+2. **SCSS variables** — slower (requires a build), but lets you change anything including grid breakpoints and sidebar width.
+
+##### Quick wins with CSS variables
+
+Bootstrap and AdminLTE expose dozens of CSS custom properties on `:root`. Override them in your own stylesheet to retheme without rebuilding:
+
+```css
+:root,
+[data-bs-theme="light"] {
+  --bs-primary: #6610f2;        /* swap Bootstrap's blue for purple */
+  --bs-primary-rgb: 102, 16, 242;
+  --bs-body-bg: #f3f4f6;
+}
+
+[data-bs-theme="dark"] {
+  --bs-body-bg: #14171c;        /* darker than Bootstrap's default */
+  --bs-body-color: #e9ecef;
+}
+```
+
+Components built on `var(--bs-primary)` (most of AdminLTE's chrome) pick this up automatically.
+
+###### Common variables worth knowing
+
+| Variable | Default | What it controls |
+|---|---|---|
+| `--bs-primary` | `#0d6efd` | Brand colour, used in active sidebar items, primary buttons |
+| `--bs-body-bg` | `#fff` (light) / `#212529` (dark) | Page background |
+| `--bs-body-color` | `#212529` | Default text colour |
+| `--bs-border-color` | `#dee2e6` | All hairline borders |
+| `--bs-border-radius` | `.375rem` | Default radius for cards, buttons, inputs |
+| `--bs-border-radius-lg` | `.5rem` | Larger radius, used for modals |
+| `--bs-font-sans-serif` | `system-ui, ...` | Default font stack |
+
+For the full list, see [Bootstrap CSS variables](https://getbootstrap.com/docs/5.3/customize/css-variables/).
+
+##### SCSS variables
+
+If you're building from source (cloned the repo or installed via npm + your own bundler), edit [`src/scss/_variables.scss`](https://github.com/ColorlibHQ/AdminLTE/blob/master/src/scss/_variables.scss) and recompile.
+
+The most-overridden variables, with their defaults:
+
+```scss
+// Sidebar
+$lte-sidebar-width:          250px;       // collapse to mini at ~70px
+$lte-sidebar-breakpoint:     lg;          // breakpoint at which sidebar starts off-canvas
+$lte-sidebar-padding-x:      .5rem;
+$lte-sidebar-padding-y:      .5rem;
+
+// Sidebar colours (light theme)
+$lte-sidebar-color:          $gray-800;
+$lte-sidebar-hover-bg:       rgba($black, .1);
+$lte-sidebar-active-color:   $black;
+$lte-sidebar-menu-active-bg: rgba($black, .1);
+
+// Header
+$lte-app-header-height:      $nav-link-height + ($lte-app-header-link-padding-y * 2);
+$lte-app-header-bottom-border-color: var(--#{$prefix}border-color);
+
+// Transitions
+$lte-transition-speed:       .3s;
+$lte-transition-fn:          ease-in-out;
+```
+
+Bootstrap's own variables (button colours, font sizes, spacing scale, breakpoints) live in [`src/scss/_bootstrap-variables.scss`](https://github.com/ColorlibHQ/AdminLTE/blob/master/src/scss/_bootstrap-variables.scss). All values use `!default`, so override them in your own SCSS file *before* the import:
+
+```scss
+// my-theme.scss
+
+// 1. Your overrides FIRST
+$primary:                #6610f2;
+$lte-sidebar-width:      280px;
+$border-radius:          .25rem;
+
+// 2. Then import AdminLTE (which imports Bootstrap)
+@import "node_modules/admin-lte/src/scss/adminlte";
+```
+
+##### Recompiling SCSS
+
+If you cloned the repo, the build pipeline is already wired:
+
+```bash
+npm install
+npm run css           # one-off build → dist/css/
+npm run watch-css-main  # rebuild on save during development
+```
+
+For a project that uses AdminLTE as a dependency, point your bundler at `node_modules/admin-lte/src/scss/adminlte.scss`. Examples:
+
+```js
+// Vite / Rollup / Webpack
+import "admin-lte/src/scss/adminlte.scss"
+```
+
+##### Custom sidebar branding
+
+The `.sidebar-brand` element accepts text, an image, or both. Markup:
+
+```html
+<div class="sidebar-brand">
+  <a href="/" class="brand-link">
+    <img src="/assets/logo.svg" alt="Logo" class="brand-image opacity-75 shadow" />
+    <span class="brand-text fw-light">My Dashboard</span>
+  </a>
+</div>
+```
+
+To swap the logo when the sidebar collapses to its mini state, AdminLTE provides a built-in pattern — see the [Logo Switch layout demo](../layout/logo-switch.html) for the markup.
+
+##### Dark mode customization
+
+AdminLTE follows Bootstrap 5.3's `data-bs-theme` attribute system. To customize dark-mode colours, scope your variables under `[data-bs-theme="dark"]`:
+
+```css
+[data-bs-theme="dark"] {
+  --bs-primary: #4dabf7;          /* lighter primary for dark backgrounds */
+  --lte-sidebar-color: #e9ecef;
+  --lte-sidebar-active-color: #fff;
+}
+```
+
+The [Color Mode](color-mode.html) page covers the toggle markup and JavaScript that switches the attribute.
+
+##### Custom sidebar colour scheme
+
+AdminLTE ships its sidebar styled for light mode, but the demos apply `data-bs-theme="dark"` on `.app-sidebar` to get the dark sidebar variant against a light page. You can mix and match:
+
+```html
+<!-- Light page, dark sidebar (the demo pattern) -->
+<body class="bg-body-tertiary">
+  <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+    ...
+  </aside>
+</body>
+```
+
+```html
+<!-- Light page, light sidebar -->
+<body class="bg-body-tertiary">
+  <aside class="app-sidebar bg-body shadow border-end">
+    ...
+  </aside>
+</body>
+```
+
+##### Compact mode
+
+Add `.compact-mode` to `.app-wrapper` (or anywhere up the tree) to reduce padding throughout the layout — handy for data-dense dashboards. The dimensions for compact mode come from the `*-compact` variables in `_variables.scss`.
+
+```html
+<div class="app-wrapper compact-mode">
+  <!-- header, sidebar, main content with tighter spacing -->
+</div>
+```
+
+##### When to recompile vs. override at runtime
+
+| Customization | CSS variables | SCSS rebuild |
+|---|---|---|
+| Brand colours | ✅ | ✅ |
+| Body / text colours | ✅ | ✅ |
+| Border radius | ✅ | ✅ |
+| Sidebar width | ❌ (not a CSS var) | ✅ |
+| Breakpoint changes | ❌ | ✅ |
+| Spacing scale | ❌ | ✅ |
+| Font sizes | partial | ✅ (full control) |
+
+Use CSS variables for everything you can — it survives AdminLTE upgrades without merge conflicts. Reserve SCSS overrides for structural changes (sidebar width, breakpoints) that CSS variables don't cover.

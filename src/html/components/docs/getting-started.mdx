@@ -1,0 +1,148 @@
+AdminLTE is an HTML template — there's no build step required to use it. This page gets you to a working dashboard in about ten minutes, without npm, without a build pipeline, without learning Astro.
+
+If you're integrating AdminLTE into a real project, the [Installation](introduction.html) page covers npm, Composer, and source-build workflows.
+
+##### 1. Grab the CDN snippets
+
+Copy these tags into the `<head>` of a new HTML file. They pull AdminLTE, Bootstrap 5.3, Popper, OverlayScrollbars, and Bootstrap Icons from jsDelivr — no install needed.
+
+```html
+<!-- AdminLTE 4 + Bootstrap 5.3 (CSS) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc7/dist/css/adminlte.min.css" />
+```
+
+And these just before `</body>`:
+
+```html
+<!-- Bootstrap + Popper + AdminLTE (JS) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc7/dist/js/adminlte.min.js"></script>
+```
+
+##### 2. The minimum viable layout
+
+This is the smallest AdminLTE page that still feels like AdminLTE — a header, a collapsible sidebar, and a main content area. Drop it between the CSS and JS tags above:
+
+```html
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+  <div class="app-wrapper">
+
+    <!-- Header -->
+    <nav class="app-header navbar navbar-expand bg-body">
+      <div class="container-fluid">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
+              <i class="bi bi-list"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+      <div class="sidebar-brand">
+        <a href="#" class="brand-link">
+          <span class="brand-text fw-light">My Dashboard</span>
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <nav class="mt-2">
+          <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu">
+            <li class="nav-item">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon bi bi-speedometer"></i>
+                <p>Dashboard</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon bi bi-bar-chart"></i>
+                <p>Reports</p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="app-main">
+      <div class="app-content-header">
+        <div class="container-fluid">
+          <h3 class="mb-0">Hello, AdminLTE</h3>
+        </div>
+      </div>
+      <div class="app-content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-header"><h5 class="card-title">Welcome</h5></div>
+            <div class="card-body">
+              Edit this file to start building your dashboard.
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+</body>
+```
+
+Open it in a browser. The hamburger button at the top-left collapses the sidebar — that's AdminLTE's [PushMenu](javascript/pushmenu.html) plugin working out of the box, wired by `data-lte-toggle="sidebar"`.
+
+##### 3. What's actually happening
+
+The four classes that do the heavy lifting:
+
+| Class | What it does |
+|---|---|
+| `app-wrapper` | The CSS grid root — defines header / sidebar / main / footer regions |
+| `app-header` | Stuck to the top of the viewport when `layout-fixed` is on the body |
+| `app-sidebar` | Collapsible side rail. Add `sidebar-expand-lg` to body to control breakpoint |
+| `app-main` | Scrollable content region — everything else lives here |
+
+The [Layout](layout.html) page covers the full wrapper structure and the responsive options.
+
+##### 4. Add a working JavaScript widget
+
+AdminLTE ships seven JavaScript plugins. All of them are wired via `data-lte-*` attributes — no JavaScript code needed.
+
+Drop this in the content area to see the card-widget plugin in action (try the buttons in the card header):
+
+```html
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">Collapsible card</h5>
+    <div class="card-tools">
+      <button type="button" class="btn btn-sm btn-tool" data-lte-toggle="card-collapse">
+        <i data-lte-icon="expand" class="bi bi-dash-lg"></i>
+        <i data-lte-icon="collapse" class="bi bi-plus-lg"></i>
+      </button>
+      <button type="button" class="btn btn-sm btn-tool" data-lte-toggle="card-remove">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    Click the minus icon to collapse; the X to remove.
+  </div>
+</div>
+```
+
+##### 5. Where to go next
+
+You now have a working AdminLTE page. From here:
+
+- **Make it pretty** → [Customization & Theming](customization.html) — change colors, fonts, and spacing via SCSS variables or CSS custom properties.
+- **Make it functional** → [JavaScript Plugins](javascript/layout.html) — full reference for all seven plugins.
+- **Make it dark** → [Color Mode](color-mode.html) — light/dark/auto toggle.
+- **Make it international** → [RTL Support](rtl.html) — right-to-left layouts for Arabic, Hebrew, Persian, etc.
+- **Add real widgets** → [Recommended Integrations](integrations.html) — date pickers, multi-selects, charts, rich text editors. AdminLTE keeps its dep tree lean; this page tells you which third-party libraries to drop in.
+
+If you're upgrading an existing AdminLTE 3 project, see the [Migration from v3](migration.html) guide for breaking changes.
