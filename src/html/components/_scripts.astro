@@ -48,3 +48,74 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 <!--end::OverlayScrollbars Configure-->
 
+<!--begin::Color Mode Toggle (#6010)-->
+<script is:inline>
+;(() => {
+  "use strict"
+
+  const STORAGE_KEY = "lte-theme"
+
+  const getStoredTheme = () => localStorage.getItem(STORAGE_KEY)
+  const setStoredTheme = (theme) => localStorage.setItem(STORAGE_KEY, theme)
+
+  const prefersDark = () =>
+    globalThis.matchMedia("(prefers-color-scheme: dark)").matches
+
+  const getPreferredTheme = () => {
+    const stored = getStoredTheme()
+    if (stored) return stored
+    return prefersDark() ? "dark" : "light"
+  }
+
+  const setTheme = (theme) => {
+    const resolved = theme === "auto" ?
+      (prefersDark() ? "dark" : "light") :
+      theme
+    document.documentElement.setAttribute("data-bs-theme", resolved)
+  }
+
+  setTheme(getPreferredTheme())
+
+  const showActiveTheme = (theme) => {
+    // Highlight the active dropdown option
+    document.querySelectorAll("[data-bs-theme-value]").forEach((el) => {
+      el.classList.remove("active")
+      el.setAttribute("aria-pressed", "false")
+      const check = el.querySelector(".bi-check-lg")
+      if (check) check.classList.add("d-none")
+    })
+    const active = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+    if (active) {
+      active.classList.add("active")
+      active.setAttribute("aria-pressed", "true")
+      const check = active.querySelector(".bi-check-lg")
+      if (check) check.classList.remove("d-none")
+    }
+    // Sync the topbar trigger icon
+    document.querySelectorAll("[data-lte-theme-icon]").forEach((icon) => {
+      icon.classList.toggle("d-none", icon.dataset.lteThemeIcon !== theme)
+    })
+  }
+
+  globalThis
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", () => {
+      const stored = getStoredTheme()
+      if (!stored || stored === "auto") setTheme(getPreferredTheme())
+    })
+
+  document.addEventListener("DOMContentLoaded", () => {
+    showActiveTheme(getPreferredTheme())
+    document.querySelectorAll("[data-bs-theme-value]").forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        const theme = toggle.getAttribute("data-bs-theme-value")
+        setStoredTheme(theme)
+        setTheme(theme)
+        showActiveTheme(theme)
+      })
+    })
+  })
+})()
+</script>
+<!--end::Color Mode Toggle-->
+
