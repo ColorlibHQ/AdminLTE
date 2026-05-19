@@ -1,0 +1,16 @@
+# Netlify deploy configuration for adminlte-v4.netlify.app
+#
+# The dist/ folder is committed to the repo (see "rebuild dist" commits),
+# so the production deploy just publishes those static files. This avoids
+# running npm install on Netlify, which has been failing since rc7 due to
+# a Node version drift between Netlify's default and the Node 22 used in
+# CI (see .github/workflows/*).
+
+[build]
+  publish = "dist"
+  command = "echo 'Static deploy of committed dist/'"
+
+[build.environment]
+  # Match the Node version used in GitHub Actions so any future build
+  # command (eg. `npm run docs-compile`) resolves dependencies correctly.
+  NODE_VERSION = "22"
