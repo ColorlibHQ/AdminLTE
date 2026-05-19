@@ -12,15 +12,38 @@
 }
 
 .docs-page {
-  // Slightly more breathing room inside the card body so prose doesn't feel
-  // cramped against the card border, and prose typography tuning.
+  // Constrain the docs card to a comfortable reading width.
+  // Tables and code blocks inside can still scroll horizontally if needed.
+  .app-content > .container-fluid {
+    max-width: 60rem; // ~960px
+
+    @include media-breakpoint-up(xxl) {
+      max-width: 64rem;
+    }
+  }
+
+  //
+  // Card body — breathing room + prose typography.
+  // Only applied inside docs content cards so demo-page card content
+  // stays unchanged.
+  //
   .card > .card-body {
     padding: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--#{$prefix}body-color);
 
     @include media-breakpoint-up(md) {
-      padding: 2rem;
+      padding: 2.5rem;
     }
 
+    //
+    // Heading hierarchy. The MDX content in src/html/components/docs/ uses
+    // ##### (h5) as the dominant section heading and ###### (h6) as a
+    // sub-heading (most visible in FAQ.mdx, where h5 is a topic and h6 is
+    // a question). Style h5 as a major section and h6 as a sub-section so
+    // the visual hierarchy matches the semantic one.
+    //
     h1,
     h2,
     h3,
@@ -33,8 +56,12 @@
     .h4,
     .h5,
     .h6 {
-      margin-top: 1.75em;
+      margin-top: 2em;
       margin-bottom: .5em;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--#{$prefix}emphasis-color);
+      scroll-margin-top: 4rem; // anchor-link friendly
 
       &:first-child {
         margin-top: 0;
@@ -43,64 +70,137 @@
 
     h2,
     .h2 {
-      font-size: 1.5rem;
+      padding-bottom: .35em;
+      font-size: 1.75rem;
+      border-bottom: 1px solid var(--#{$prefix}border-color);
     }
 
     h3,
     .h3 {
-      font-size: 1.25rem;
+      font-size: 1.4rem;
     }
 
     h4,
     .h4 {
-      font-size: 1.05rem;
+      font-size: 1.2rem;
     }
 
+    // h5 is the dominant section heading across docs MDX files. Give it
+    // a visible separator above so sections are easy to scan.
     h5,
     .h5 {
-      font-size: .95rem;
-      font-weight: 600;
+      padding-top: 1.5em;
+      margin-top: 2.5em;
+      font-size: 1.3rem;
+      border-top: 1px solid var(--#{$prefix}border-color);
+
+      &:first-child {
+        padding-top: 0;
+        border-top: 0;
+      }
     }
 
+    // h6 is the sub-section / FAQ question style. Smaller than h5 but
+    // still distinctly heading-like, with a touch of accent colour to
+    // separate from body text.
+    h6,
+    .h6 {
+      margin-top: 1.75em;
+      font-size: 1.08rem;
+      color: var(--#{$prefix}emphasis-color);
+    }
+
+    //
+    // Paragraphs and lists.
+    //
     p,
     ul,
     ol,
     dl,
     blockquote,
     table {
-      margin-bottom: 1rem;
-      line-height: 1.6;
+      margin-bottom: 1.1rem;
     }
 
-    // Inline code styling that complements MDX's syntax-highlighted blocks
+    ul,
+    ol {
+      padding-left: 1.5rem;
+
+      li {
+        margin-bottom: .35rem;
+      }
+
+      // Tighter nested lists
+      ul,
+      ol {
+        margin-top: .35rem;
+        margin-bottom: 0;
+      }
+    }
+
+    // Lead-style first paragraph (just after a heading)
+    h2 + p,
+    h3 + p,
+    h5 + p {
+      margin-top: 0;
+    }
+
+    //
+    // Inline code — pill style that complements MDX's syntax-highlighted blocks.
+    //
     p code,
     li code,
     td code,
-    th code {
-      padding: .125rem .375rem;
+    th code,
+    h2 code,
+    h3 code,
+    h4 code,
+    h5 code,
+    h6 code {
+      padding: .15em .4em;
       font-size: .875em;
       color: var(--#{$prefix}emphasis-color);
       background: var(--#{$prefix}tertiary-bg);
+      border: 1px solid var(--#{$prefix}border-color);
       @include border-radius($border-radius-sm);
     }
 
-    // Code blocks: align with paragraph spacing and constrain overflow
+    //
+    // Code blocks.
+    //
     pre.astro-code,
     pre {
-      margin-bottom: 1rem;
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      margin-bottom: 1.5rem;
       overflow-x: auto;
-      font-size: .85rem;
-      line-height: 1.5;
+      font-size: .875rem;
+      line-height: 1.6;
+      @include border-radius($border-radius);
+
+      code {
+        padding: 0;
+        background: transparent;
+        border: 0;
+      }
     }
 
-    // Reference tables get a subtle hairline treatment
+    //
+    // Tables — reference-doc styling with hairline borders.
+    //
     table {
       width: 100%;
+      margin-top: 1.25rem;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      font-size: .95rem;
       border-collapse: collapse;
+      border: 1px solid var(--#{$prefix}border-color);
+      @include border-radius($border-radius-sm);
 
       th,
       td {
-        padding: .5rem .75rem;
+        padding: .65rem .9rem;
         text-align: left;
         vertical-align: top;
         border-bottom: 1px solid var(--#{$prefix}border-color);
@@ -108,17 +208,25 @@
 
       th {
         font-weight: 600;
+        color: var(--#{$prefix}emphasis-color);
         background: var(--#{$prefix}tertiary-bg);
       }
 
       tr:last-child td {
         border-bottom: 0;
       }
+
+      code {
+        white-space: nowrap;
+      }
     }
 
-    // Blockquotes used as callouts
+    //
+    // Blockquotes used as info callouts.
+    //
     blockquote {
-      padding: .75rem 1rem;
+      padding: .85rem 1.1rem;
+      margin-top: 1.25rem;
       color: var(--#{$prefix}emphasis-color);
       background: var(--#{$prefix}info-bg-subtle);
       border-left: 4px solid var(--#{$prefix}info-border-subtle);
@@ -127,10 +235,17 @@
       p:last-child {
         margin-bottom: 0;
       }
+
+      code {
+        background: rgba(0, 0, 0, .05);
+      }
     }
 
-    // Prose links stand out a bit more than Bootstrap defaults
+    //
+    // Prose links — stand out more than Bootstrap defaults.
+    //
     a:not(.btn):not(.nav-link) {
+      color: var(--#{$prefix}primary);
       text-decoration: underline;
       text-decoration-thickness: 1px;
       text-underline-offset: 3px;
@@ -138,6 +253,36 @@
       &:hover {
         text-decoration-thickness: 2px;
       }
+    }
+
+    //
+    // Horizontal rule — used as additional section separator.
+    //
+    hr {
+      margin: 2.5rem 0;
+      border: 0;
+      border-top: 1px solid var(--#{$prefix}border-color);
+      opacity: 1;
+    }
+
+    //
+    // Lead paragraph — the first paragraph in any doc is a summary.
+    // Visually heavier so it functions as a deck.
+    //
+    > p:first-child,
+    > p:first-of-type {
+      margin-bottom: 2rem;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--#{$prefix}body-color);
+    }
+  }
+
+  // Dark-mode tweak: blockquote info bg needs more contrast on dark
+  &[data-bs-theme="dark"],
+  [data-bs-theme="dark"] & {
+    .card > .card-body blockquote code {
+      background: rgba(255, 255, 255, .08);
     }
   }
 }
