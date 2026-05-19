@@ -443,10 +443,10 @@
             const iconMinimize = document.querySelector(SELECTOR_MINIMIZE_ICON);
             void document.documentElement.requestFullscreen();
             if (iconMaximize) {
-                iconMaximize.style.display = 'none';
+                iconMaximize.classList.add('d-none');
             }
             if (iconMinimize) {
-                iconMinimize.style.display = 'block';
+                iconMinimize.classList.remove('d-none');
             }
             this._element.dispatchEvent(event);
         }
@@ -456,10 +456,10 @@
             const iconMinimize = document.querySelector(SELECTOR_MINIMIZE_ICON);
             void document.exitFullscreen();
             if (iconMaximize) {
-                iconMaximize.style.display = 'block';
+                iconMaximize.classList.remove('d-none');
             }
             if (iconMinimize) {
-                iconMinimize.style.display = 'none';
+                iconMinimize.classList.add('d-none');
             }
             this._element.dispatchEvent(event);
         }

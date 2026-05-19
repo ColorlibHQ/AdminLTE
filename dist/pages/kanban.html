@@ -1,9 +1,8 @@
 <!doctype html>
 <html lang="en">
-  <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE 4 | General Form Elements</title>
+    <title>AdminLTE 4 | Kanban Board</title>
 
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -13,7 +12,7 @@
     <!--end::Accessibility Meta Tags-->
 
     <!--begin::Primary Meta Tags-->
-    <meta name="title" content="AdminLTE 4 | General Form Elements" />
+    <meta name="title" content="AdminLTE 4 | Kanban Board" />
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
@@ -61,11 +60,87 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
+    <style>
+      .kanban-board {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+        align-items: start;
+      }
+      .kanban-lane {
+        background: var(--bs-tertiary-bg);
+        border-radius: var(--bs-border-radius);
+        padding: 0.75rem;
+        min-height: 8rem;
+      }
+      .kanban-lane-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+        padding: 0 0.25rem;
+      }
+      .kanban-cards {
+        min-height: 4rem;
+      }
+      .kanban-card {
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius);
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        cursor: grab;
+        transition: box-shadow 0.15s ease;
+      }
+      .kanban-card:hover {
+        box-shadow: var(--bs-box-shadow-sm);
+      }
+      .kanban-card.sortable-ghost {
+        opacity: 0.4;
+        background: var(--bs-primary-bg-subtle);
+        border-style: dashed;
+      }
+      .kanban-card.sortable-drag {
+        cursor: grabbing;
+        box-shadow: var(--bs-box-shadow);
+        transform: rotate(2deg);
+      }
+      .kanban-assignees {
+        display: inline-flex;
+      }
+      .kanban-assignee {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 50%;
+        background: var(--bs-secondary-bg);
+        color: var(--bs-secondary-color);
+        font-size: 0.7rem;
+        font-weight: 600;
+        border: 2px solid var(--bs-body-bg);
+        margin-left: -0.5rem;
+      }
+      .kanban-assignee:first-child {
+        margin-left: 0;
+      }
+      .kanban-add-card {
+        background: transparent;
+        border: 1px dashed var(--bs-border-color);
+        color: var(--bs-secondary-color);
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: var(--bs-border-radius);
+        font-size: 0.875rem;
+      }
+      .kanban-add-card:hover {
+        background: var(--bs-body-bg);
+        color: var(--bs-body-color);
+      }
+    </style>
   </head>
-  <!--end::Head-->
-  <!--begin::Body-->
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
-    <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <!--begin::Header-->
       <nav class="app-header navbar navbar-expand bg-body">
@@ -220,10 +295,69 @@
             <li class="nav-item">
               <a class="nav-link" href="#" data-lte-toggle="fullscreen">
                 <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
-                <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none"></i>
+                <i data-lte-icon="minimize" class="bi bi-fullscreen-exit d-none"></i>
               </a>
             </li>
             <!--end::Fullscreen Toggle-->
+
+            <!--begin::Color Mode Toggle (#6010)-->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link"
+                href="#"
+                id="bd-theme"
+                aria-label="Toggle color scheme"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="bi bi-sun-fill" data-lte-theme-icon="light"></i>
+                <i class="bi bi-moon-fill d-none" data-lte-theme-icon="dark"></i>
+                <i class="bi bi-circle-half d-none" data-lte-theme-icon="auto"></i>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="bd-theme"
+                style="--bs-dropdown-min-width: 8rem"
+              >
+                <li>
+                  <button
+                    type="button"
+                    class="dropdown-item d-flex align-items-center"
+                    data-bs-theme-value="light"
+                    aria-pressed="false"
+                  >
+                    <i class="bi bi-sun-fill me-2"></i>
+                    Light
+                    <i class="bi bi-check-lg ms-auto d-none"></i>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    class="dropdown-item d-flex align-items-center"
+                    data-bs-theme-value="dark"
+                    aria-pressed="false"
+                  >
+                    <i class="bi bi-moon-fill me-2"></i>
+                    Dark
+                    <i class="bi bi-check-lg ms-auto d-none"></i>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    class="dropdown-item d-flex align-items-center active"
+                    data-bs-theme-value="auto"
+                    aria-pressed="true"
+                  >
+                    <i class="bi bi-circle-half me-2"></i>
+                    Auto
+                    <i class="bi bi-check-lg ms-auto d-none"></i>
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <!--end::Color Mode Toggle-->
 
             <!--begin::User Menu Dropdown-->
             <li class="nav-item dropdown user-menu">
@@ -465,7 +599,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="../UI/general.html" class="nav-link active">
+                    <a href="../UI/general.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>General</p>
                     </a>
@@ -484,8 +618,38 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon bi bi-envelope"></i>
+                  <p>
+                    Mailbox
+                    <i class="nav-arrow bi bi-chevron-right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="../mailbox/inbox.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Inbox</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../mailbox/read.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Read Message</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../mailbox/compose.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Compose</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-pencil-square"></i>
                   <p>
                     Forms
@@ -494,9 +658,27 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="../forms/general.html" class="nav-link active">
+                    <a href="../forms/elements.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>General Elements</p>
+                      <p>Elements</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../forms/layout.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Layout</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../forms/validation.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Validation</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../forms/wizard.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Wizard</p>
                     </a>
                   </li>
                 </ul>
@@ -515,6 +697,114 @@
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Simple Tables</p>
                     </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../tables/data.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Data Tables</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-header">PAGES</li>
+              <li class="nav-item menu-open">
+                <a href="#" class="nav-link active">
+                  <i class="nav-icon bi bi-file-earmark-text"></i>
+                  <p>
+                    Pages
+                    <i class="nav-arrow bi bi-chevron-right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="../pages/profile.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Profile</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../pages/settings.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Settings</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../pages/invoice.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Invoice</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../pages/calendar.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Calendar</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../pages/kanban.html" class="nav-link active">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Kanban</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../pages/chat.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Chat</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../pages/file-manager.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>File Manager</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../pages/projects.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Projects</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../pages/pricing.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Pricing</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../pages/faq.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>FAQ</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>
+                        Error
+                        <i class="nav-arrow bi bi-chevron-right"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="../pages/404.html" class="nav-link">
+                          <i class="nav-icon bi bi-circle"></i>
+                          <p>404</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="../pages/500.html" class="nav-link">
+                          <i class="nav-icon bi bi-circle"></i>
+                          <p>500</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="../pages/maintenance.html" class="nav-link">
+                          <i class="nav-icon bi bi-circle"></i>
+                          <p>Maintenance</p>
+                        </a>
+                      </li>
+                    </ul>
                   </li>
                 </ul>
               </li>
@@ -601,6 +891,12 @@
                 <a href="../docs/color-mode.html" class="nav-link">
                   <i class="nav-icon bi bi-star-half"></i>
                   <p>Color Mode</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../docs/integrations.html" class="nav-link">
+                  <i class="nav-icon bi bi-puzzle"></i>
+                  <p>Recommended Integrations</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -796,495 +1092,259 @@
         <!--end::Sidebar Wrapper-->
       </aside>
       <!--end::Sidebar-->
-      <!--begin::App Main-->
       <main class="app-main">
-        <!--begin::App Content Header-->
         <div class="app-content-header">
-          <!--begin::Container-->
           <div class="container-fluid">
-            <!--begin::Row-->
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">General Form</h3>
+                <h3 class="mb-0">Kanban Board</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">General Form</li>
+                  <li class="breadcrumb-item active" aria-current="page">Kanban</li>
                 </ol>
               </div>
             </div>
-            <!--end::Row-->
           </div>
-          <!--end::Container-->
         </div>
-        <!--end::App Content Header-->
-        <!--begin::App Content-->
         <div class="app-content">
-          <!--begin::Container-->
           <div class="container-fluid">
-            <!--begin::Row-->
-            <div class="row g-4">
-              <!--begin::Col-->
-              <div class="col-12">
-                <div class="callout callout-info">
-                  For detailed documentation of Form visit
-                  <a
-                    href="https://getbootstrap.com/docs/5.3/forms/overview/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="callout-link"
-                  >
-                    Bootstrap Form
-                  </a>
-                </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <p class="text-secondary mb-0 small">
+                  Drag cards between lanes. Try dropping &ldquo;In progress&rdquo; items into
+                  &ldquo;Done&rdquo;.
+                </p>
               </div>
-              <!--end::Col-->
-              <!--begin::Col-->
-              <div class="col-md-6">
-                <!--begin::Quick Example-->
-                <div class="card card-primary card-outline mb-4">
-                  <!--begin::Header-->
-                  <div class="card-header">
-                    <div class="card-title">Quick Example</div>
-                  </div>
-                  <!--end::Header-->
-                  <!--begin::Form-->
-                  <form>
-                    <!--begin::Body-->
-                    <div class="card-body">
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input
-                          type="email"
-                          class="form-control"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
-                        />
-                        <div id="emailHelp" class="form-text">
-                          We'll never share your email with anyone else.
-                        </div>
-                      </div>
-                      <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" />
-                      </div>
-                      <div class="input-group mb-3">
-                        <input type="file" class="form-control" id="inputGroupFile02" />
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                      </div>
-                      <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                      </div>
-                    </div>
-                    <!--end::Body-->
-                    <!--begin::Footer-->
-                    <div class="card-footer">
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                    <!--end::Footer-->
-                  </form>
-                  <!--end::Form-->
-                </div>
-                <!--end::Quick Example-->
-                <!--begin::Input Group-->
-                <div class="card card-success card-outline mb-4">
-                  <!--begin::Header-->
-                  <div class="card-header">
-                    <div class="card-title">Input Group</div>
-                  </div>
-                  <!--end::Header-->
-                  <!--begin::Body-->
-                  <div class="card-body">
-                    <div class="input-group mb-3">
-                      <span class="input-group-text" id="basic-addon1">@</span>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Username"
-                        aria-label="Username"
-                        aria-describedby="basic-addon1"
-                      />
-                    </div>
-
-                    <div class="input-group mb-3">
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Recipient's username"
-                        aria-label="Recipient's username"
-                        aria-describedby="basic-addon2"
-                      />
-                      <span class="input-group-text" id="basic-addon2">@example.com</span>
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="basic-url" class="form-label">Your vanity URL</label>
-                      <div class="input-group">
-                        <span class="input-group-text" id="basic-addon3"
-                          >https://example.com/users/</span
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="basic-url"
-                          aria-describedby="basic-addon3 basic-addon4"
-                        />
-                      </div>
-                      <div class="form-text" id="basic-addon4">
-                        Example help text goes outside the input group.
-                      </div>
-                    </div>
-
-                    <div class="input-group mb-3">
-                      <span class="input-group-text">$</span>
-                      <input
-                        type="text"
-                        class="form-control"
-                        aria-label="Amount (to the nearest dollar)"
-                      />
-                      <span class="input-group-text">.00</span>
-                    </div>
-
-                    <div class="input-group mb-3">
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Username"
-                        aria-label="Username"
-                      />
-                      <span class="input-group-text">@</span>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Server"
-                        aria-label="Server"
-                      />
-                    </div>
-
-                    <div class="input-group">
-                      <span class="input-group-text">With textarea</span>
-                      <textarea class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                  </div>
-                  <!--end::Body-->
-                  <!--begin::Footer-->
-                  <div class="card-footer">
-                    <button type="submit" class="btn btn-success">Submit</button>
-                  </div>
-                  <!--end::Footer-->
-                </div>
-                <!--end::Input Group-->
-                <!--begin::Horizontal Form-->
-                <div class="card card-warning card-outline mb-4">
-                  <!--begin::Header-->
-                  <div class="card-header">
-                    <div class="card-title">Horizontal Form</div>
-                  </div>
-                  <!--end::Header-->
-                  <!--begin::Form-->
-                  <form>
-                    <!--begin::Body-->
-                    <div class="card-body">
-                      <div class="row mb-3">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail3" />
-                        </div>
-                      </div>
-                      <div class="row mb-3">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
-                          <input type="password" class="form-control" id="inputPassword3" />
-                        </div>
-                      </div>
-                      <fieldset class="row mb-3">
-                        <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-                        <div class="col-sm-10">
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="gridRadios"
-                              id="gridRadios1"
-                              value="option1"
-                              checked
-                            />
-                            <label class="form-check-label" for="gridRadios1"> First radio </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="gridRadios"
-                              id="gridRadios2"
-                              value="option2"
-                            />
-                            <label class="form-check-label" for="gridRadios2"> Second radio </label>
-                          </div>
-                          <div class="form-check disabled">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="gridRadios"
-                              id="gridRadios3"
-                              value="option3"
-                              disabled
-                            />
-                            <label class="form-check-label" for="gridRadios3">
-                              Third disabled radio
-                            </label>
-                          </div>
-                        </div>
-                      </fieldset>
-                      <div class="row mb-3">
-                        <div class="col-sm-10 offset-sm-2">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                            <label class="form-check-label" for="gridCheck1">
-                              Example checkbox
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!--end::Body-->
-                    <!--begin::Footer-->
-                    <div class="card-footer">
-                      <button type="submit" class="btn btn-warning">Sign in</button>
-                      <button type="submit" class="btn float-end">Cancel</button>
-                    </div>
-                    <!--end::Footer-->
-                  </form>
-                  <!--end::Form-->
-                </div>
-                <!--end::Horizontal Form-->
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-secondary" type="button">
+                  <i class="bi bi-funnel me-1" aria-hidden="true"></i>Filter
+                </button>
+                <button class="btn btn-outline-secondary" type="button">
+                  <i class="bi bi-sort-down me-1" aria-hidden="true"></i>Sort
+                </button>
+                <button class="btn btn-primary" type="button">
+                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>Add lane
+                </button>
               </div>
-              <!--end::Col-->
-              <!--begin::Col-->
-              <div class="col-md-6">
-                <!--begin::Different Height-->
-                <div class="card card-secondary card-outline mb-4">
-                  <!--begin::Header-->
-                  <div class="card-header">
-                    <div class="card-title">Different Height</div>
-                  </div>
-                  <!--end::Header-->
-                  <!--begin::Body-->
-                  <div class="card-body">
-                    <input
-                      class="form-control form-control-lg"
-                      type="text"
-                      placeholder=".form-control-lg"
-                      aria-label=".form-control-lg example"
-                    />
-                    <br />
-                    <input
-                      class="form-control"
-                      type="text"
-                      placeholder="Default input"
-                      aria-label="default input example"
-                    />
-                    <br />
-                    <input
-                      class="form-control form-control-sm"
-                      type="text"
-                      placeholder=".form-control-sm"
-                      aria-label=".form-control-sm example"
-                    />
-                  </div>
-                  <!--end::Body-->
-                </div>
-                <!--end::Different Height-->
-                <!--begin::Different Width-->
-                <div class="card card-danger card-outline mb-4">
-                  <!--begin::Header-->
-                  <div class="card-header">
-                    <div class="card-title">Different Width</div>
-                  </div>
-                  <!--end::Header-->
-                  <!--begin::Body-->
-                  <div class="card-body">
-                    <!--begin::Row-->
-                    <div class="row">
-                      <!--begin::Col-->
-                      <div class="col-3">
-                        <input type="text" class="form-control" placeholder=".col-3" />
-                      </div>
-                      <!--end::Col-->
-                      <!--begin::Col-->
-                      <div class="col-4">
-                        <input type="text" class="form-control" placeholder=".col-4" />
-                      </div>
-                      <!--end::Col-->
-                      <!--begin::Col-->
-                      <div class="col-5">
-                        <input type="text" class="form-control" placeholder=".col-5" />
-                      </div>
-                      <!--end::Col-->
-                    </div>
-                    <!--end::Row-->
-                  </div>
-                  <!--end::Body-->
-                </div>
-                <!--end::Different Width-->
-                <!--begin::Form Validation-->
-                <div class="card card-info card-outline mb-4">
-                  <!--begin::Header-->
-                  <div class="card-header">
-                    <div class="card-title">Form Validation</div>
-                  </div>
-                  <!--end::Header-->
-                  <!--begin::Form-->
-                  <form class="needs-validation" novalidate>
-                    <!--begin::Body-->
-                    <div class="card-body">
-                      <!--begin::Row-->
-                      <div class="row g-3">
-                        <!--begin::Col-->
-                        <div class="col-md-6">
-                          <label for="validationCustom01" class="form-label">First name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="validationCustom01"
-                            value="Mark"
-                            required
-                          />
-                          <div class="valid-feedback">Looks good!</div>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6">
-                          <label for="validationCustom02" class="form-label">Last name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="validationCustom02"
-                            value="Otto"
-                            required
-                          />
-                          <div class="valid-feedback">Looks good!</div>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6">
-                          <label for="validationCustomUsername" class="form-label">Username</label>
-                          <div class="input-group has-validation">
-                            <span class="input-group-text" id="inputGroupPrepend">@</span>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="validationCustomUsername"
-                              aria-describedby="inputGroupPrepend"
-                              required
-                            />
-                            <div class="invalid-feedback">Please choose a username.</div>
-                          </div>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6">
-                          <label for="validationCustom03" class="form-label">City</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="validationCustom03"
-                            required
-                          />
-                          <div class="invalid-feedback">Please provide a valid city.</div>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6">
-                          <label for="validationCustom04" class="form-label">State</label>
-                          <select class="form-select" id="validationCustom04" required>
-                            <option selected disabled value="">Choose...</option>
-                            <option>...</option>
-                          </select>
-                          <div class="invalid-feedback">Please select a valid state.</div>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6">
-                          <label for="validationCustom05" class="form-label">Zip</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="validationCustom05"
-                            required
-                          />
-                          <div class="invalid-feedback">Please provide a valid zip.</div>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-12">
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="checkbox"
-                              value=""
-                              id="invalidCheck"
-                              required
-                            />
-                            <label class="form-check-label" for="invalidCheck">
-                              Agree to terms and conditions
-                            </label>
-                            <div class="invalid-feedback">You must agree before submitting.</div>
-                          </div>
-                        </div>
-                        <!--end::Col-->
-                      </div>
-                      <!--end::Row-->
-                    </div>
-                    <!--end::Body-->
-                    <!--begin::Footer-->
-                    <div class="card-footer">
-                      <button class="btn btn-info" type="submit">Submit form</button>
-                    </div>
-                    <!--end::Footer-->
-                  </form>
-                  <!--end::Form-->
-                  <!--begin::JavaScript-->
-                  <script>
-                    // Example starter JavaScript for disabling form submissions if there are invalid fields
-                    (() => {
-                      'use strict';
-
-                      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                      const forms = document.querySelectorAll('.needs-validation');
-
-                      // Loop over them and prevent submission
-                      Array.from(forms).forEach((form) => {
-                        form.addEventListener(
-                          'submit',
-                          (event) => {
-                            if (!form.checkValidity()) {
-                              event.preventDefault();
-                              event.stopPropagation();
-                            }
-
-                            form.classList.add('was-validated');
-                          },
-                          false,
-                        );
-                      });
-                    })();
-                  </script>
-                  <!--end::JavaScript-->
-                </div>
-                <!--end::Form Validation-->
-              </div>
-              <!--end::Col-->
             </div>
-            <!--end::Row-->
+
+            <div class="kanban-board" id="kanban-board">
+              <div class="kanban-lane" data-lane-id="backlog">
+                <div class="kanban-lane-header">
+                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
+                    <span class="badge text-bg-secondary" style="font-size: 0.65rem"> 3 </span>
+                    Backlog
+                  </h2>
+                  <button
+                    class="btn btn-sm btn-link text-secondary p-0"
+                    type="button"
+                    title="Lane actions"
+                    aria-label="Lane actions"
+                  >
+                    <i class="bi bi-three-dots" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="kanban-cards" data-lane-id="backlog">
+                  <article class="kanban-card">
+                    <span class="badge text-bg-secondary mb-2"> tech debt </span>
+                    <p class="fw-semibold mb-1 small">Audit unused SCSS variables</p>
+                    <p class="text-secondary small mb-2">
+                      Identify deprecated Bootstrap 5.3.4 variables and add comments.
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="kanban-assignees">
+                        <span class="kanban-assignee" title="DM"> DM </span>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="kanban-card">
+                    <span class="badge text-bg-info mb-2"> docs </span>
+                    <p class="fw-semibold mb-1 small">Document hreflang setup</p>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="kanban-assignees">
+                        <span class="kanban-assignee" title="JD"> JD </span>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="kanban-card">
+                    <span class="badge text-bg-danger mb-2"> bug </span>
+                    <p class="fw-semibold mb-1 small">Investigate Safari iOS calendar drag bug</p>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="kanban-assignees">
+                        <span class="kanban-assignee" title="OB"> OB </span
+                        ><span class="kanban-assignee" title="MK"> MK </span>
+                      </div>
+                      <small class="text-secondary">
+                        <i class="bi bi-calendar-event me-1" aria-hidden="true"></i>
+                        May 28
+                      </small>
+                    </div>
+                  </article>
+                </div>
+                <button class="kanban-add-card mt-2" type="button" data-add-card-for="backlog">
+                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
+                  Add card
+                </button>
+              </div>
+              <div class="kanban-lane" data-lane-id="todo">
+                <div class="kanban-lane-header">
+                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
+                    <span class="badge text-bg-primary" style="font-size: 0.65rem"> 2 </span>
+                    To do
+                  </h2>
+                  <button
+                    class="btn btn-sm btn-link text-secondary p-0"
+                    type="button"
+                    title="Lane actions"
+                    aria-label="Lane actions"
+                  >
+                    <i class="bi bi-three-dots" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="kanban-cards" data-lane-id="todo">
+                  <article class="kanban-card">
+                    <span class="badge text-bg-primary mb-2"> feature </span>
+                    <p class="fw-semibold mb-1 small">Add Tom Select recommended-integration doc</p>
+                    <p class="text-secondary small mb-2">
+                      Cover install, theming, single + multi select examples.
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="kanban-assignees">
+                        <span class="kanban-assignee" title="JD"> JD </span>
+                      </div>
+                      <small class="text-secondary">
+                        <i class="bi bi-calendar-event me-1" aria-hidden="true"></i>
+                        May 24
+                      </small>
+                    </div>
+                  </article>
+                  <article class="kanban-card">
+                    <span class="badge text-bg-primary mb-2"> feature </span>
+                    <p class="fw-semibold mb-1 small">Wire up profile page avatar upload</p>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="kanban-assignees">
+                        <span class="kanban-assignee" title="EM"> EM </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <button class="kanban-add-card mt-2" type="button" data-add-card-for="todo">
+                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
+                  Add card
+                </button>
+              </div>
+              <div class="kanban-lane" data-lane-id="in-progress">
+                <div class="kanban-lane-header">
+                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
+                    <span class="badge text-bg-warning" style="font-size: 0.65rem"> 2 </span>
+                    In progress
+                  </h2>
+                  <button
+                    class="btn btn-sm btn-link text-secondary p-0"
+                    type="button"
+                    title="Lane actions"
+                    aria-label="Lane actions"
+                  >
+                    <i class="bi bi-three-dots" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="kanban-cards" data-lane-id="in-progress">
+                  <article class="kanban-card">
+                    <span class="badge text-bg-primary mb-2"> feature </span>
+                    <p class="fw-semibold mb-1 small">Build kanban board demo</p>
+                    <p class="text-secondary small mb-2">
+                      SortableJS, draggable between lanes, MIT license.
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="kanban-assignees">
+                        <span class="kanban-assignee" title="JD"> JD </span>
+                      </div>
+                      <small class="text-secondary">
+                        <i class="bi bi-calendar-event me-1" aria-hidden="true"></i>
+                        Today
+                      </small>
+                    </div>
+                  </article>
+                  <article class="kanban-card">
+                    <span class="badge text-bg-warning mb-2"> qa </span>
+                    <p class="fw-semibold mb-1 small">Tabulator + FullCalendar integration QA</p>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="kanban-assignees">
+                        <span class="kanban-assignee" title="OB"> OB </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <button class="kanban-add-card mt-2" type="button" data-add-card-for="in-progress">
+                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
+                  Add card
+                </button>
+              </div>
+              <div class="kanban-lane" data-lane-id="done">
+                <div class="kanban-lane-header">
+                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
+                    <span class="badge text-bg-success" style="font-size: 0.65rem"> 3 </span>
+                    Done
+                  </h2>
+                  <button
+                    class="btn btn-sm btn-link text-secondary p-0"
+                    type="button"
+                    title="Lane actions"
+                    aria-label="Lane actions"
+                  >
+                    <i class="bi bi-three-dots" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="kanban-cards" data-lane-id="done">
+                  <article class="kanban-card">
+                    <span class="badge text-bg-primary mb-2"> feature </span>
+                    <p class="fw-semibold mb-1 small">Upgrade to Bootstrap 5.3.8</p>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="kanban-assignees">
+                        <span class="kanban-assignee" title="DM"> DM </span>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="kanban-card">
+                    <span class="badge text-bg-primary mb-2"> feature </span>
+                    <p class="fw-semibold mb-1 small">Ship 8 Tier-1 page templates</p>
+                    <p class="text-secondary small mb-2">
+                      Profile, settings, invoice, pricing, FAQ, 404/500/maintenance.
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="kanban-assignees">
+                        <span class="kanban-assignee" title="JD"> JD </span
+                        ><span class="kanban-assignee" title="OB"> OB </span>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="kanban-card">
+                    <span class="badge text-bg-secondary mb-2"> tech debt </span>
+                    <p class="fw-semibold mb-1 small">Drop dead eslint-config-xo deps</p>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="kanban-assignees">
+                        <span class="kanban-assignee" title="DM"> DM </span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <button class="kanban-add-card mt-2" type="button" data-add-card-for="done">
+                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
+                  Add card
+                </button>
+              </div>
+            </div>
           </div>
-          <!--end::Container-->
         </div>
-        <!--end::App Content-->
       </main>
-      <!--end::App Main-->
       <!--begin::Footer-->
       <footer class="app-footer">
         <!--begin::To the end-->
@@ -1300,8 +1360,6 @@
       </footer>
       <!--end::Footer-->
     </div>
-    <!--end::App Wrapper-->
-    <!--begin::Script-->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <script
       src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
@@ -1348,8 +1406,118 @@
         }
       });
     </script>
-    <!--end::OverlayScrollbars Configure-->
-    <!--end::Script-->
+    <!--end::OverlayScrollbars Configure--><!--begin::Color Mode Toggle (#6010)-->
+    <script>
+      (() => {
+        'use strict';
+
+        const STORAGE_KEY = 'lte-theme';
+
+        const getStoredTheme = () => localStorage.getItem(STORAGE_KEY);
+        const setStoredTheme = (theme) => localStorage.setItem(STORAGE_KEY, theme);
+
+        const prefersDark = () => globalThis.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        const getPreferredTheme = () => {
+          const stored = getStoredTheme();
+          if (stored) return stored;
+          return prefersDark() ? 'dark' : 'light';
+        };
+
+        const setTheme = (theme) => {
+          const resolved = theme === 'auto' ? (prefersDark() ? 'dark' : 'light') : theme;
+          document.documentElement.setAttribute('data-bs-theme', resolved);
+        };
+
+        setTheme(getPreferredTheme());
+
+        const showActiveTheme = (theme) => {
+          // Highlight the active dropdown option
+          document.querySelectorAll('[data-bs-theme-value]').forEach((el) => {
+            el.classList.remove('active');
+            el.setAttribute('aria-pressed', 'false');
+            const check = el.querySelector('.bi-check-lg');
+            if (check) check.classList.add('d-none');
+          });
+          const active = document.querySelector(`[data-bs-theme-value="${theme}"]`);
+          if (active) {
+            active.classList.add('active');
+            active.setAttribute('aria-pressed', 'true');
+            const check = active.querySelector('.bi-check-lg');
+            if (check) check.classList.remove('d-none');
+          }
+          // Sync the topbar trigger icon
+          document.querySelectorAll('[data-lte-theme-icon]').forEach((icon) => {
+            icon.classList.toggle('d-none', icon.dataset.lteThemeIcon !== theme);
+          });
+        };
+
+        globalThis.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+          const stored = getStoredTheme();
+          if (!stored || stored === 'auto') setTheme(getPreferredTheme());
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+          showActiveTheme(getPreferredTheme());
+          document.querySelectorAll('[data-bs-theme-value]').forEach((toggle) => {
+            toggle.addEventListener('click', () => {
+              const theme = toggle.getAttribute('data-bs-theme-value');
+              setStoredTheme(theme);
+              setTheme(theme);
+              showActiveTheme(theme);
+            });
+          });
+        });
+      })();
+    </script>
+    <!--end::Color Mode Toggle-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.7/Sortable.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const updateLaneCount = (laneEl) => {
+        const lane = laneEl.closest('.kanban-lane');
+        const badge = lane.querySelector('.kanban-lane-header .badge');
+        badge.textContent = laneEl.children.length;
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.kanban-cards').forEach((el) => {
+          new Sortable(el, {
+            group: 'kanban',
+            animation: 150,
+            ghostClass: 'sortable-ghost',
+            dragClass: 'sortable-drag',
+            onEnd: (evt) => {
+              updateLaneCount(evt.from);
+              if (evt.from !== evt.to) updateLaneCount(evt.to);
+            },
+          });
+        });
+
+        document.querySelectorAll('[data-add-card-for]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const title = prompt('Card title:');
+            if (!title) return;
+            const laneId = btn.dataset.addCardFor;
+            const lane = document.querySelector(`.kanban-cards[data-lane-id="${laneId}"]`);
+            const card = document.createElement('article');
+            card.className = 'kanban-card';
+            card.innerHTML = `
+              <p class="fw-semibold mb-1 small">${title.replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c])}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="kanban-assignees">
+                  <span class="kanban-assignee" title="You">YO</span>
+                </div>
+                <small class="text-secondary">just now</small>
+              </div>
+            `;
+            lane.append(card);
+            updateLaneCount(lane);
+          });
+        });
+      });
+    </script>
   </body>
-  <!--end::Body-->
 </html>
