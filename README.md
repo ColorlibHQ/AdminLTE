@@ -9,30 +9,56 @@
 **AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 5](https://getbootstrap.com/)** framework and also the JavaScript plugins.
 Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.
 
-## What's New in v4.0.0-rc7
+## What's New in v4.0.0
 
-**Bug Fixes, Refactors & Documentation** - Major plugin refactors, complete JS documentation, and new features:
+The first stable release of the v4 line — a ground-up rewrite on Bootstrap 5.3 with no jQuery. Highlights:
 
-- **Layout & PushMenu Refactors** - Single-instance architecture, proper responsive logic, configurable via data attributes
-- **Sidebar Without Hover** - New `sidebar-without-hover` class to keep collapsed sidebar from expanding on hover
-- **Complete JS Documentation** - All 7 JavaScript components now fully documented
-- **Astro 6.0.0** - Upgraded to latest Astro with Vite 7 and Shiki 4
-- **Bug Fixes** - Fixed footer with layout-fixed, mobile scroll chaining, print layout, modal escape key, pagination borders
+**18 new demo pages**
 
-**Key Improvements:**
+- Apps: Calendar (FullCalendar), Kanban (SortableJS), Chat, File Manager, Projects, Mailbox (Inbox / Read / Compose)
+- Forms: Wizard (4-step with validation)
+- Tables: Data Tables (Tabulator — jQuery-free)
+- Pages: Profile, Settings, Invoice, Pricing, FAQ
+- Errors: 404, 500, Maintenance
 
-- Fixed footer now works correctly with `layout-fixed` (#5805)
-- Sidebar no longer causes page scroll chaining on mobile (#5864)
-- Print layout shows both sidebar and content (#5996)
-- Sidebar persistence is now opt-in via `data-enable-persistence="true"` (**breaking change**)
-- All dependencies updated to latest versions
+**Documentation overhaul**
 
-**Install the latest:**
+- New pages: Getting Started, Customization & Theming, RTL Support, Migration from v3, Layout Blueprint, Recipes, Deployment & Performance, Recommended Integrations, JavaScript Plugins Overview
+- Rewritten Introduction with four labelled install paths (CDN / npm / source / Composer)
+- FAQ rebuilt as a custom page with hero, live search, section chips, and an accordion of 19 questions across six topics
+- Split sidebar navigation: dashboard demo and docs each have their own nav, no more docs entries cluttering the live preview
+- Reading-friendly typography across all docs pages, with constrained line length, prose-tuned heading rhythm, styled reference tables, info callouts, and pill inline code
+
+**Six issue fixes**
+
+- `bi-circle-half` for the Auto color-mode icon (#6028)
+- `table-head-fixed` respects dark mode (#6026)
+- Fullscreen icon toggles `.d-none` instead of inline `display` so it works with any icon library (#6021)
+- Sidebar (including brand) stays pinned when using `fixed-header` (#6020)
+- Pie chart on `index2.html` no longer flickers on browser zoom (#6019)
+- Color-mode toggle now visible by default in the topbar with localStorage persistence (#6010)
+
+**Major dependency upgrades**
+
+- ESLint 9 → 10, TypeScript 5.9 → 6, Stylelint 16 → 17
+- Astro 6.0 → 6.3, autoprefixer / postcss / rollup / sass / terser refreshed
+- Bootstrap 5.3.8, Node 22 LTS in CI
+- Dropped dead `eslint-plugin-import`, `eslint-config-xo*`, and the legacy `.eslintrc.json`
+- npm `overrides` for `yaml` + `stylelint-config-twbs-bootstrap` so `npm install` runs without `--legacy-peer-deps` and reports **0 vulnerabilities**
+
+**Breaking changes from v3**
+
+- Class renames: `.wrapper` → `.app-wrapper`, `.main-header` → `.app-header`, `.main-sidebar` → `.app-sidebar`, `.content-wrapper` → `.app-main`
+- Data attributes: `data-toggle` → `data-bs-toggle`, `data-widget="pushmenu"` → `data-lte-toggle="sidebar"`, `data-widget="treeview"` → `data-lte-toggle="treeview"`
+- Dark mode: `.dark-mode` body class → `data-bs-theme="dark"` attribute (Bootstrap 5.3 native)
+- jQuery no longer required; plugins are vanilla TypeScript
+
+See the dedicated [Migration from v3](https://adminlte.io/themes/v4/docs/migration.html) guide and the [CHANGELOG.md](CHANGELOG.md) for the full list.
+
+**Install:**
 ```bash
-npm install admin-lte@4.0.0-rc7
+npm install admin-lte@4.0.0
 ```
-
-See the [CHANGELOG.md](CHANGELOG.md) for complete details.
 
 ## Looking for Premium Templates?
 

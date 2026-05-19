@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0] - 2026-05-19
+
 ### Added
 
 - **18 new demo pages** dramatically expanding the page catalog:
