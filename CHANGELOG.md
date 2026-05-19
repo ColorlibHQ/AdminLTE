@@ -7,6 +7,52 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **18 new demo pages** dramatically expanding the page catalog:
+  - **Apps:** Calendar (FullCalendar 6, drag-and-drop scheduling), Kanban (SortableJS, lane-to-lane drag), Chat (full-page conversation app), File Manager (grid + list views, folder tree), Projects (list with status, progress, team avatars)
+  - **Mailbox:** Inbox, Read Message, Compose — three-pane workflow with folders + labels
+  - **Forms:** Wizard (4-step with per-step validation + review summary)
+  - **Tables:** Data Tables — jQuery-free implementation using Tabulator 6
+  - **Pages:** Profile (tabbed activity/timeline/settings), Settings (account / notifications / security / billing / danger zone), Invoice (print-ready with totals math), Pricing (3-tier + comparison table + billing toggle), FAQ (data-driven accordions)
+  - **Error pages:** 404, 500, Maintenance
+- **Recommended Integrations docs page** (`docs/integrations.html`) — copy-paste install snippets for Flatpickr, Tom Select, noUiSlider, Pickr, IMask, Dropzone, FilePond, Quill, EasyMDE, Toast UI Editor, ApexCharts, Chart.js, Tabulator, FullCalendar, SortableJS, GLightbox, and a comparison of icon libraries. AdminLTE doesn't bundle these — the page shows how to drop them in.
+- **Visible color-mode toggle in the default topbar** (#6010) — Light / Dark / Auto dropdown with localStorage persistence and `prefers-color-scheme` integration. Wiring JS shipped globally in `_scripts.astro` so the toggle works on every demo page automatically.
+
+### Changed
+
+- **Forms section restructured:** Split the 623-line `forms/general.html` into three focused pages — `forms/elements.html` (inputs, selects, checks/radios/switches, ranges, floating labels), `forms/layout.html` (horizontal, inline, sizing, width), and `forms/validation.html` (Bootstrap native validation + tooltip variant).
+
+### Fixed
+
+- **#6028:** Color-mode "Auto" icon now renders. The dropdown used `bi-circle-fill-half-stroke` (a FontAwesome class name); replaced with the correct Bootstrap Icons class `bi-circle-half`.
+- **#6026:** `.table-head-fixed` now respects dark mode. Hardcoded `background-color: $white` swapped for `var(--bs-body-bg)` so the sticky header tracks the active colour scheme.
+- **#6021:** Fullscreen button no longer shifts after click. The plugin used to set `iconMaximize.style.display = 'block'` directly, overriding the icon library's natural display value (visible on FontAwesome). Now toggles Bootstrap's `.d-none` utility class. Markup updated accordingly.
+- **#6020:** Sidebar (including brand) now stays put when using `.fixed-header`. New companion rule pins the sidebar sticky on `sidebar-expand-*` breakpoints, giving the menu its own scrollbar instead of scrolling with the page.
+- **#6019:** Pie chart on `index2.html` no longer flickers on browser zoom. Pinned an explicit `height: 350` to break the ApexCharts ResizeObserver feedback loop most visible on Edge.
+
+### Updated
+
+- **Bootstrap variable sync with 5.3.4:**
+  - Added missing null variables: `$btn-close-filter`, `$carousel-control-icon-filter`
+  - Marked deprecated-in-5.3.4 variables with inline comments: `$btn-close-white-filter`, `$carousel-dark-indicator-active-bg`, `$carousel-dark-caption-color`, `$carousel-dark-control-icon-filter`
+  - Documented the intentional override of `$modal-content-color` (null vs Bootstrap's `var(--bs-body-color)`)
+- **All dependencies bumped to latest, including majors:**
+  - eslint: 9.39.4 → 10.4.0
+  - typescript: 5.9.3 → 6.0.3 (`baseUrl` removed, `moduleResolution: "bundler"` set to clear deprecation warnings)
+  - stylelint: 16.26.1 → 17.11.1
+  - eslint-plugin-unicorn: 62 → 64
+  - astro: 6.0.0 → 6.3.3
+  - autoprefixer: 10.4.27 → 10.5.0
+  - postcss: 8.5.8 → 8.5.14
+  - rollup: 4.59.0 → 4.60.4
+  - sass: 1.97.3 → 1.99.0
+  - terser: 5.46.0 → 5.47.1
+  - bundlewatch: 0.4.1 → 0.4.2, fs-extra: 11.3.4 → 11.3.5, prettier: 3.8.1 → 3.8.3
+- **ESLint config flattened:** Removed the legacy `.eslintrc.json` (ignored since ESLint 9), along with three deps that only it referenced: `eslint-plugin-import`, `eslint-config-xo`, `eslint-config-xo-typescript`. Added explicit deps for `@eslint/js`, `globals`, and `typescript-eslint` (now required to be declared since ESLint 10 stopped resolving them transitively).
+- **`stylelint-config-twbs-bootstrap` peer pinned via npm overrides** so it accepts stylelint 17 ahead of an upstream release. This removes the need for `--legacy-peer-deps` on `npm install`.
+- **Security:** `yaml` pinned to `^2.9.0` via overrides to clear the dev-only stack-overflow advisory chain through `@astrojs/check`. `npm audit` now reports **0 vulnerabilities**.
+
 ## [4.0.0-rc7] - 2026-03-10
 
 ### Added
