@@ -38,17 +38,13 @@ jobs:
         with:
           args: "zip -qq -r admin-lte-${{env.RELEASE_VERSION}}.zip dist"
 
-      - name: Create changelog text
-        id: changelog
-        uses: endaft/action-changelog@v0.0.5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          exclude_types: other,doc,chore
-
       - name: Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          body: ${{ steps.changelog.outputs.changelog }}
+          # Let GitHub auto-generate the release notes from PRs / commits
+          # since the previous tag. Replaces the discontinued
+          # endaft/action-changelog action.
+          generate_release_notes: true
           files: |
             admin-lte-${{env.RELEASE_VERSION}}.zip
