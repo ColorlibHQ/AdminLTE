@@ -1,9 +1,16 @@
 ---
+import { convertPathToHtml } from "../../../utils/index.js"
+
 // Smart path resolution: calculate relative path based on directory depth
 const pathname = Astro.url.pathname;
 const pathSegments = pathname.split('/').filter(segment => segment !== '');
 const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0;
 const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
+
+// Cross-link between demo and docs experiences.
+const { path } = Astro.props
+const htmlPath = path ? convertPathToHtml(path) : ""
+const isDocsPage = pathname.includes("/docs/")
 ---
 
 <!--begin::Header-->
@@ -17,12 +24,35 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
           <i class="bi bi-list"></i>
         </a>
       </li>
-      <li class="nav-item d-none d-md-block">
-        <a href="#" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-md-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
+      {isDocsPage ?
+        <>
+          <li class="nav-item d-none d-md-block">
+            <a href={htmlPath + "/docs/introduction.html"} class="nav-link">
+              <i class="bi bi-book me-1" aria-hidden="true" />
+              Documentation
+            </a>
+          </li>
+          <li class="nav-item d-none d-md-block">
+            <a href={htmlPath + "/index.html"} class="nav-link">
+              <i class="bi bi-arrow-left me-1" aria-hidden="true" />
+              Back to live preview
+            </a>
+          </li>
+        </> :
+        <>
+          <li class="nav-item d-none d-md-block">
+            <a href={htmlPath + "/index.html"} class="nav-link">
+              <i class="bi bi-grid-1x2 me-1" aria-hidden="true" />
+              Live preview
+            </a>
+          </li>
+          <li class="nav-item d-none d-md-block">
+            <a href={htmlPath + "/docs/introduction.html"} class="nav-link">
+              <i class="bi bi-book me-1" aria-hidden="true" />
+              Documentation
+            </a>
+          </li>
+        </>}
     </ul>
     <!--end::Start Navbar Links-->
 
