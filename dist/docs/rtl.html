@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE 4 | Kanban Board</title>
+    <title>RTL Support | AdminLTE 4</title>
 
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -12,7 +12,7 @@
     <!--end::Accessibility Meta Tags-->
 
     <!--begin::Primary Meta Tags-->
-    <meta name="title" content="AdminLTE 4 | Kanban Board" />
+    <meta name="title" content="RTL Support | AdminLTE 4" />
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
@@ -60,85 +60,6 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
-    <style>
-      .kanban-board {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1rem;
-        align-items: start;
-      }
-      .kanban-lane {
-        background: var(--bs-tertiary-bg);
-        border-radius: var(--bs-border-radius);
-        padding: 0.75rem;
-        min-height: 8rem;
-      }
-      .kanban-lane-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 0.75rem;
-        padding: 0 0.25rem;
-      }
-      .kanban-cards {
-        min-height: 4rem;
-      }
-      .kanban-card {
-        background: var(--bs-body-bg);
-        border: 1px solid var(--bs-border-color);
-        border-radius: var(--bs-border-radius);
-        padding: 0.75rem;
-        margin-bottom: 0.5rem;
-        cursor: grab;
-        transition: box-shadow 0.15s ease;
-      }
-      .kanban-card:hover {
-        box-shadow: var(--bs-box-shadow-sm);
-      }
-      .kanban-card.sortable-ghost {
-        opacity: 0.4;
-        background: var(--bs-primary-bg-subtle);
-        border-style: dashed;
-      }
-      .kanban-card.sortable-drag {
-        cursor: grabbing;
-        box-shadow: var(--bs-box-shadow);
-        transform: rotate(2deg);
-      }
-      .kanban-assignees {
-        display: inline-flex;
-      }
-      .kanban-assignee {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 1.75rem;
-        height: 1.75rem;
-        border-radius: 50%;
-        background: var(--bs-secondary-bg);
-        color: var(--bs-secondary-color);
-        font-size: 0.7rem;
-        font-weight: 600;
-        border: 2px solid var(--bs-body-bg);
-        margin-left: -0.5rem;
-      }
-      .kanban-assignee:first-child {
-        margin-left: 0;
-      }
-      .kanban-add-card {
-        background: transparent;
-        border: 1px dashed var(--bs-border-color);
-        color: var(--bs-secondary-color);
-        width: 100%;
-        padding: 0.5rem;
-        border-radius: var(--bs-border-radius);
-        font-size: 0.875rem;
-      }
-      .kanban-add-card:hover {
-        background: var(--bs-body-bg);
-        color: var(--bs-body-color);
-      }
-    </style>
   </head>
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
@@ -708,8 +629,8 @@
               </li>
 
               <li class="nav-header">PAGES</li>
-              <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-file-earmark-text"></i>
                   <p>
                     Pages
@@ -742,7 +663,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../pages/kanban.html" class="nav-link active">
+                    <a href="../pages/kanban.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Kanban</p>
                     </a>
@@ -906,7 +827,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../docs/rtl.html" class="nav-link">
+                <a href="../docs/rtl.html" class="nav-link active">
                   <i class="nav-icon bi bi-text-paragraph"></i>
                   <p>RTL Support</p>
                 </a>
@@ -1121,12 +1042,12 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">Kanban Board</h3>
+                <h3 class="mb-0">RTL Support</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Kanban</li>
+                  <li class="breadcrumb-item"><a href="#">Docs</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">RTL</li>
                 </ol>
               </div>
             </div>
@@ -1134,236 +1055,202 @@
         </div>
         <div class="app-content">
           <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <div>
-                <p class="text-secondary mb-0 small">
-                  Drag cards between lanes. Try dropping &ldquo;In progress&rdquo; items into
-                  &ldquo;Done&rdquo;.
-                </p>
-              </div>
-              <div class="btn-group btn-group-sm">
-                <button class="btn btn-outline-secondary" type="button">
-                  <i class="bi bi-funnel me-1" aria-hidden="true"></i>Filter
-                </button>
-                <button class="btn btn-outline-secondary" type="button">
-                  <i class="bi bi-sort-down me-1" aria-hidden="true"></i>Sort
-                </button>
-                <button class="btn btn-primary" type="button">
-                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>Add lane
-                </button>
-              </div>
-            </div>
-
-            <div class="kanban-board" id="kanban-board">
-              <div class="kanban-lane" data-lane-id="backlog">
-                <div class="kanban-lane-header">
-                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
-                    <span class="badge text-bg-secondary" style="font-size: 0.65rem"> 3 </span>
-                    Backlog
-                  </h2>
-                  <button
-                    class="btn btn-sm btn-link text-secondary p-0"
-                    type="button"
-                    title="Lane actions"
-                    aria-label="Lane actions"
-                  >
-                    <i class="bi bi-three-dots" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="kanban-cards" data-lane-id="backlog">
-                  <article class="kanban-card">
-                    <span class="badge text-bg-secondary mb-2"> tech debt </span>
-                    <p class="fw-semibold mb-1 small">Audit unused SCSS variables</p>
-                    <p class="text-secondary small mb-2">
-                      Identify deprecated Bootstrap 5.3.4 variables and add comments.
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <p>
+                      AdminLTE ships an RTL (right-to-left) stylesheet alongside the standard LTR
+                      one, generated from the same source via
+                      <a href="https://rtlcss.com/"><code>rtlcss</code></a
+                      >. Use it for Arabic, Hebrew, Persian, Urdu, and any other right-to-left
+                      scripts.
                     </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="DM"> DM </span>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-info mb-2"> docs </span>
-                    <p class="fw-semibold mb-1 small">Document hreflang setup</p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="JD"> JD </span>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-danger mb-2"> bug </span>
-                    <p class="fw-semibold mb-1 small">Investigate Safari iOS calendar drag bug</p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="OB"> OB </span
-                        ><span class="kanban-assignee" title="MK"> MK </span>
-                      </div>
-                      <small class="text-secondary">
-                        <i class="bi bi-calendar-event me-1" aria-hidden="true"></i>
-                        May 28
-                      </small>
-                    </div>
-                  </article>
-                </div>
-                <button class="kanban-add-card mt-2" type="button" data-add-card-for="backlog">
-                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
-                  Add card
-                </button>
-              </div>
-              <div class="kanban-lane" data-lane-id="todo">
-                <div class="kanban-lane-header">
-                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
-                    <span class="badge text-bg-primary" style="font-size: 0.65rem"> 2 </span>
-                    To do
-                  </h2>
-                  <button
-                    class="btn btn-sm btn-link text-secondary p-0"
-                    type="button"
-                    title="Lane actions"
-                    aria-label="Lane actions"
-                  >
-                    <i class="bi bi-three-dots" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="kanban-cards" data-lane-id="todo">
-                  <article class="kanban-card">
-                    <span class="badge text-bg-primary mb-2"> feature </span>
-                    <p class="fw-semibold mb-1 small">Add Tom Select recommended-integration doc</p>
-                    <p class="text-secondary small mb-2">
-                      Cover install, theming, single + multi select examples.
+                    <h5 id="the-pre-built-rtl-stylesheet">The pre-built RTL stylesheet</h5>
+                    <p>Every release publishes RTL variants of every CSS file:</p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="text"
+                    ><code><span class="line"><span>dist/css/adminlte.css           ← LTR (default)</span></span>
+<span class="line"><span>dist/css/adminlte.rtl.css       ← RTL</span></span>
+<span class="line"><span>dist/css/adminlte.min.css</span></span>
+<span class="line"><span>dist/css/adminlte.rtl.min.css</span></span></code></pre>
+                    <p>
+                      To switch a page to RTL, swap the stylesheet and set
+                      <code>dir=&quot;rtl&quot;</code> on the <code>&lt;html&gt;</code> element:
                     </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="JD"> JD </span>
-                      </div>
-                      <small class="text-secondary">
-                        <i class="bi bi-calendar-event me-1" aria-hidden="true"></i>
-                        May 24
-                      </small>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-primary mb-2"> feature </span>
-                    <p class="fw-semibold mb-1 small">Wire up profile page avatar upload</p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="EM"> EM </span>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-                <button class="kanban-add-card mt-2" type="button" data-add-card-for="todo">
-                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
-                  Add card
-                </button>
-              </div>
-              <div class="kanban-lane" data-lane-id="in-progress">
-                <div class="kanban-lane-header">
-                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
-                    <span class="badge text-bg-warning" style="font-size: 0.65rem"> 2 </span>
-                    In progress
-                  </h2>
-                  <button
-                    class="btn btn-sm btn-link text-secondary p-0"
-                    type="button"
-                    title="Lane actions"
-                    aria-label="Lane actions"
-                  >
-                    <i class="bi bi-three-dots" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="kanban-cards" data-lane-id="in-progress">
-                  <article class="kanban-card">
-                    <span class="badge text-bg-primary mb-2"> feature </span>
-                    <p class="fw-semibold mb-1 small">Build kanban board demo</p>
-                    <p class="text-secondary small mb-2">
-                      SortableJS, draggable between lanes, MIT license.
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">html</span><span style="color:#9CDCFE"> lang</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;ar&quot;</span><span style="color:#9CDCFE"> dir</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;rtl&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">head</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dist/css/adminlte.rtl.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">head</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">body</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;layout-fixed sidebar-expand-lg bg-body-tertiary&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#6A9955">    &lt;!-- ...same markup as LTR --&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">body</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">html</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      That’s it — the sidebar now docks to the right, scroll bars flip,
+                      padding/margin utilities mirror, and Bootstrap Icons stay LTR-safe (most icons
+                      aren’t directional). For a live example, see
+                      <a href="../layout/layout-rtl.html"><code>layout/layout-rtl.html</code></a
+                      >.
                     </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="JD"> JD </span>
-                      </div>
-                      <small class="text-secondary">
-                        <i class="bi bi-calendar-event me-1" aria-hidden="true"></i>
-                        Today
-                      </small>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-warning mb-2"> qa </span>
-                    <p class="fw-semibold mb-1 small">Tabulator + FullCalendar integration QA</p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="OB"> OB </span>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-                <button class="kanban-add-card mt-2" type="button" data-add-card-for="in-progress">
-                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
-                  Add card
-                </button>
-              </div>
-              <div class="kanban-lane" data-lane-id="done">
-                <div class="kanban-lane-header">
-                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
-                    <span class="badge text-bg-success" style="font-size: 0.65rem"> 3 </span>
-                    Done
-                  </h2>
-                  <button
-                    class="btn btn-sm btn-link text-secondary p-0"
-                    type="button"
-                    title="Lane actions"
-                    aria-label="Lane actions"
-                  >
-                    <i class="bi bi-three-dots" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="kanban-cards" data-lane-id="done">
-                  <article class="kanban-card">
-                    <span class="badge text-bg-primary mb-2"> feature </span>
-                    <p class="fw-semibold mb-1 small">Upgrade to Bootstrap 5.3.8</p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="DM"> DM </span>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-primary mb-2"> feature </span>
-                    <p class="fw-semibold mb-1 small">Ship 8 Tier-1 page templates</p>
-                    <p class="text-secondary small mb-2">
-                      Profile, settings, invoice, pricing, FAQ, 404/500/maintenance.
+                    <h5 id="bootstraps-dirrtl-attribute">
+                      Bootstrap’s <code>dir=&quot;rtl&quot;</code> attribute
+                    </h5>
+                    <p>
+                      Setting <code>dir=&quot;rtl&quot;</code> triggers Bootstrap 5.3’s logical
+                      property pathway as well — <code>.ms-*</code> becomes right-margin instead of
+                      left, <code>.float-start</code> floats right, etc. You don’t need separate
+                      Bootstrap classes for RTL; the same utility names work in both directions.
                     </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="JD"> JD </span
-                        ><span class="kanban-assignee" title="OB"> OB </span>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-secondary mb-2"> tech debt </span>
-                    <p class="fw-semibold mb-1 small">Drop dead eslint-config-xo deps</p>
+                    <h5 id="when-you-have-a-mixed-language-ui">
+                      When you have a mixed-language UI
+                    </h5>
+                    <p>
+                      If your app shows RTL content on an otherwise-LTR page (eg. an Arabic text
+                      block inside an English admin panel), you can scope
+                      <code>dir=&quot;rtl&quot;</code> to a single element:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">body</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#6A9955">  &lt;!-- LTR app shell --&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">main</span><span style="color:#9CDCFE"> dir</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;rtl&quot;</span><span style="color:#9CDCFE"> lang</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;ar&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#6A9955">    &lt;!-- this block only is RTL --&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">main</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">body</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      Bootstrap and AdminLTE handle nested direction switches correctly — the inner
+                      element’s direction is what counts.
+                    </p>
+                    <h5 id="building-rtl-yourself">Building RTL yourself</h5>
+                    <p>
+                      If you’re building AdminLTE from source and you’ve modified the SCSS,
+                      regenerate the RTL CSS:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="bash"
+                    ><code><span class="line"><span style="color:#DCDCAA">npm</span><span style="color:#CE9178"> run</span><span style="color:#CE9178"> css-compile</span><span style="color:#6A9955">     # builds LTR</span></span>
+<span class="line"><span style="color:#DCDCAA">npm</span><span style="color:#CE9178"> run</span><span style="color:#CE9178"> css-prefix</span><span style="color:#6A9955">      # adds autoprefixer</span></span>
+<span class="line"><span style="color:#DCDCAA">npm</span><span style="color:#CE9178"> run</span><span style="color:#CE9178"> css-rtl</span><span style="color:#6A9955">         # generates *.rtl.css from the LTR output</span></span>
+<span class="line"><span style="color:#DCDCAA">npm</span><span style="color:#CE9178"> run</span><span style="color:#CE9178"> css-minify</span></span></code></pre>
+                    <p>
+                      The full pipeline is wired into <code>npm run css</code>, so most of the time
+                      you just run that.
+                    </p>
+                    <p>
+                      The conversion is handled by
+                      <a href="https://postcss.org/"><code>postcss</code></a> running
+                      <a href="https://rtlcss.com/"><code>rtlcss</code></a> — both are already in
+                      devDependencies. If you need to opt-out a specific rule from the LTR-to-RTL
+                      flip, use rtlcss control directives in your SCSS:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="scss"
+                    ><code><span class="line"><span style="color:#D7BA7D">.brand-link</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#6A9955">  /*rtl:ignore*/</span></span>
+<span class="line"><span style="color:#9CDCFE">  margin-left</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">.5rem</span><span style="color:#D4D4D4">;   </span><span style="color:#6A9955">// stays left-margin in both LTR and RTL</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+                    <h5 id="what-flips-automatically">What flips automatically</h5>
 
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="DM"> DM </span>
-                      </div>
-                    </div>
-                  </article>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Direction-aware property</th>
+                          <th>Behaviour in RTL</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><code>margin-left</code> / <code>padding-left</code></td>
+                          <td>Swapped to right</td>
+                        </tr>
+                        <tr>
+                          <td><code>left</code>, <code>right</code> positioning</td>
+                          <td>Swapped</td>
+                        </tr>
+                        <tr>
+                          <td><code>text-align: left</code> / <code>right</code></td>
+                          <td>Swapped</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            Bootstrap <code>.ms-*</code>, <code>.me-*</code>,
+                            <code>.float-start</code>, <code>.float-end</code>
+                          </td>
+                          <td>Mirror via Bootstrap’s logical properties</td>
+                        </tr>
+                        <tr>
+                          <td><code>transform: translateX()</code></td>
+                          <td>Sign inverted</td>
+                        </tr>
+                        <tr>
+                          <td>Sidebar position</td>
+                          <td>Docks to the right</td>
+                        </tr>
+                        <tr>
+                          <td>Dropdown menu open direction</td>
+                          <td>Flips automatically (Bootstrap handles this)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h5 id="what-doesnt-flip">What doesn’t flip</h5>
+                    <ul>
+                      <li>
+                        Bootstrap Icons (SVG glyphs) — most icons are direction-neutral; arrows that
+                        <em>do</em> indicate direction (<code>bi-arrow-right</code>,
+                        <code>bi-chevron-right</code>, etc.) need to be manually swapped to their
+                        <code>-left</code> siblings.
+                      </li>
+                      <li>
+                        Inline images, charts, and third-party widgets — their internal layout
+                        doesn’t react to <code>dir</code>. Check each integration (ApexCharts,
+                        FullCalendar, Tabulator) for an RTL option.
+                      </li>
+                      <li>
+                        Numbers — digits stay LTR even in RTL contexts (this is standard Unicode
+                        bidi behaviour, not a bug).
+                      </li>
+                    </ul>
+                    <h5 id="common-gotchas">Common gotchas</h5>
+                    <ul>
+                      <li>
+                        <strong
+                          >The <code>.min.css</code> minified RTL build is
+                          <code>.rtl.min.css</code>, not <code>.min.rtl.css</code>.</strong
+                        >
+                        Filename order matters; the build script emits the former.
+                      </li>
+                      <li>
+                        <strong>Don’t mix LTR and RTL stylesheets on the same page</strong> — pick
+                        one. If you need a mixed-direction app, use
+                        <code>dir=&quot;rtl&quot;</code> on the relevant subtree, not a separate
+                        stylesheet.
+                      </li>
+                      <li>
+                        <strong>Icon mirroring</strong>: when you swap an icon for RTL, also update
+                        its <code>aria-label</code> if it indicates direction (eg. “Next page”
+                        should still say “Next page” — only the glyph rotates).
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <button class="kanban-add-card mt-2" type="button" data-add-card-for="done">
-                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
-                  Add card
-                </button>
               </div>
             </div>
           </div>
@@ -1495,53 +1382,5 @@
       })();
     </script>
     <!--end::Color Mode Toggle-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.7/Sortable.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      const updateLaneCount = (laneEl) => {
-        const lane = laneEl.closest('.kanban-lane');
-        const badge = lane.querySelector('.kanban-lane-header .badge');
-        badge.textContent = laneEl.children.length;
-      };
-
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.kanban-cards').forEach((el) => {
-          new Sortable(el, {
-            group: 'kanban',
-            animation: 150,
-            ghostClass: 'sortable-ghost',
-            dragClass: 'sortable-drag',
-            onEnd: (evt) => {
-              updateLaneCount(evt.from);
-              if (evt.from !== evt.to) updateLaneCount(evt.to);
-            },
-          });
-        });
-
-        document.querySelectorAll('[data-add-card-for]').forEach((btn) => {
-          btn.addEventListener('click', () => {
-            const title = prompt('Card title:');
-            if (!title) return;
-            const laneId = btn.dataset.addCardFor;
-            const lane = document.querySelector(`.kanban-cards[data-lane-id="${laneId}"]`);
-            const card = document.createElement('article');
-            card.className = 'kanban-card';
-            card.innerHTML = `
-              <p class="fw-semibold mb-1 small">${title.replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c])}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="kanban-assignees">
-                  <span class="kanban-assignee" title="You">YO</span>
-                </div>
-                <small class="text-secondary">just now</small>
-              </div>
-            `;
-            lane.append(card);
-            updateLaneCount(lane);
-          });
-        });
-      });
-    </script>
   </body>
 </html>

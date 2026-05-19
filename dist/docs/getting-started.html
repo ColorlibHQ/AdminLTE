@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE 4 | Kanban Board</title>
+    <title>Getting Started | AdminLTE 4</title>
 
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -12,7 +12,7 @@
     <!--end::Accessibility Meta Tags-->
 
     <!--begin::Primary Meta Tags-->
-    <meta name="title" content="AdminLTE 4 | Kanban Board" />
+    <meta name="title" content="Getting Started | AdminLTE 4" />
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
@@ -60,85 +60,6 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
-    <style>
-      .kanban-board {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1rem;
-        align-items: start;
-      }
-      .kanban-lane {
-        background: var(--bs-tertiary-bg);
-        border-radius: var(--bs-border-radius);
-        padding: 0.75rem;
-        min-height: 8rem;
-      }
-      .kanban-lane-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 0.75rem;
-        padding: 0 0.25rem;
-      }
-      .kanban-cards {
-        min-height: 4rem;
-      }
-      .kanban-card {
-        background: var(--bs-body-bg);
-        border: 1px solid var(--bs-border-color);
-        border-radius: var(--bs-border-radius);
-        padding: 0.75rem;
-        margin-bottom: 0.5rem;
-        cursor: grab;
-        transition: box-shadow 0.15s ease;
-      }
-      .kanban-card:hover {
-        box-shadow: var(--bs-box-shadow-sm);
-      }
-      .kanban-card.sortable-ghost {
-        opacity: 0.4;
-        background: var(--bs-primary-bg-subtle);
-        border-style: dashed;
-      }
-      .kanban-card.sortable-drag {
-        cursor: grabbing;
-        box-shadow: var(--bs-box-shadow);
-        transform: rotate(2deg);
-      }
-      .kanban-assignees {
-        display: inline-flex;
-      }
-      .kanban-assignee {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 1.75rem;
-        height: 1.75rem;
-        border-radius: 50%;
-        background: var(--bs-secondary-bg);
-        color: var(--bs-secondary-color);
-        font-size: 0.7rem;
-        font-weight: 600;
-        border: 2px solid var(--bs-body-bg);
-        margin-left: -0.5rem;
-      }
-      .kanban-assignee:first-child {
-        margin-left: 0;
-      }
-      .kanban-add-card {
-        background: transparent;
-        border: 1px dashed var(--bs-border-color);
-        color: var(--bs-secondary-color);
-        width: 100%;
-        padding: 0.5rem;
-        border-radius: var(--bs-border-radius);
-        font-size: 0.875rem;
-      }
-      .kanban-add-card:hover {
-        background: var(--bs-body-bg);
-        color: var(--bs-body-color);
-      }
-    </style>
   </head>
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
@@ -708,8 +629,8 @@
               </li>
 
               <li class="nav-header">PAGES</li>
-              <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-file-earmark-text"></i>
                   <p>
                     Pages
@@ -742,7 +663,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../pages/kanban.html" class="nav-link active">
+                    <a href="../pages/kanban.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Kanban</p>
                     </a>
@@ -882,7 +803,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../docs/getting-started.html" class="nav-link">
+                <a href="../docs/getting-started.html" class="nav-link active">
                   <i class="nav-icon bi bi-rocket-takeoff"></i>
                   <p>Getting Started</p>
                 </a>
@@ -1121,12 +1042,12 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">Kanban Board</h3>
+                <h3 class="mb-0">Getting Started</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Kanban</li>
+                  <li class="breadcrumb-item"><a href="#">Docs</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Getting Started</li>
                 </ol>
               </div>
             </div>
@@ -1134,236 +1055,236 @@
         </div>
         <div class="app-content">
           <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <div>
-                <p class="text-secondary mb-0 small">
-                  Drag cards between lanes. Try dropping &ldquo;In progress&rdquo; items into
-                  &ldquo;Done&rdquo;.
-                </p>
-              </div>
-              <div class="btn-group btn-group-sm">
-                <button class="btn btn-outline-secondary" type="button">
-                  <i class="bi bi-funnel me-1" aria-hidden="true"></i>Filter
-                </button>
-                <button class="btn btn-outline-secondary" type="button">
-                  <i class="bi bi-sort-down me-1" aria-hidden="true"></i>Sort
-                </button>
-                <button class="btn btn-primary" type="button">
-                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>Add lane
-                </button>
-              </div>
-            </div>
-
-            <div class="kanban-board" id="kanban-board">
-              <div class="kanban-lane" data-lane-id="backlog">
-                <div class="kanban-lane-header">
-                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
-                    <span class="badge text-bg-secondary" style="font-size: 0.65rem"> 3 </span>
-                    Backlog
-                  </h2>
-                  <button
-                    class="btn btn-sm btn-link text-secondary p-0"
-                    type="button"
-                    title="Lane actions"
-                    aria-label="Lane actions"
-                  >
-                    <i class="bi bi-three-dots" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="kanban-cards" data-lane-id="backlog">
-                  <article class="kanban-card">
-                    <span class="badge text-bg-secondary mb-2"> tech debt </span>
-                    <p class="fw-semibold mb-1 small">Audit unused SCSS variables</p>
-                    <p class="text-secondary small mb-2">
-                      Identify deprecated Bootstrap 5.3.4 variables and add comments.
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <p>
+                      AdminLTE is an HTML template — there’s no build step required to use it. This
+                      page gets you to a working dashboard in about ten minutes, without npm,
+                      without a build pipeline, without learning Astro.
                     </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="DM"> DM </span>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-info mb-2"> docs </span>
-                    <p class="fw-semibold mb-1 small">Document hreflang setup</p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="JD"> JD </span>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-danger mb-2"> bug </span>
-                    <p class="fw-semibold mb-1 small">Investigate Safari iOS calendar drag bug</p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="OB"> OB </span
-                        ><span class="kanban-assignee" title="MK"> MK </span>
-                      </div>
-                      <small class="text-secondary">
-                        <i class="bi bi-calendar-event me-1" aria-hidden="true"></i>
-                        May 28
-                      </small>
-                    </div>
-                  </article>
-                </div>
-                <button class="kanban-add-card mt-2" type="button" data-add-card-for="backlog">
-                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
-                  Add card
-                </button>
-              </div>
-              <div class="kanban-lane" data-lane-id="todo">
-                <div class="kanban-lane-header">
-                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
-                    <span class="badge text-bg-primary" style="font-size: 0.65rem"> 2 </span>
-                    To do
-                  </h2>
-                  <button
-                    class="btn btn-sm btn-link text-secondary p-0"
-                    type="button"
-                    title="Lane actions"
-                    aria-label="Lane actions"
-                  >
-                    <i class="bi bi-three-dots" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="kanban-cards" data-lane-id="todo">
-                  <article class="kanban-card">
-                    <span class="badge text-bg-primary mb-2"> feature </span>
-                    <p class="fw-semibold mb-1 small">Add Tom Select recommended-integration doc</p>
-                    <p class="text-secondary small mb-2">
-                      Cover install, theming, single + multi select examples.
+                    <p>
+                      If you’re integrating AdminLTE into a real project, the
+                      <a href="introduction.html">Installation</a> page covers npm, Composer, and
+                      source-build workflows.
                     </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="JD"> JD </span>
-                      </div>
-                      <small class="text-secondary">
-                        <i class="bi bi-calendar-event me-1" aria-hidden="true"></i>
-                        May 24
-                      </small>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-primary mb-2"> feature </span>
-                    <p class="fw-semibold mb-1 small">Wire up profile page avatar upload</p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="EM"> EM </span>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-                <button class="kanban-add-card mt-2" type="button" data-add-card-for="todo">
-                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
-                  Add card
-                </button>
-              </div>
-              <div class="kanban-lane" data-lane-id="in-progress">
-                <div class="kanban-lane-header">
-                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
-                    <span class="badge text-bg-warning" style="font-size: 0.65rem"> 2 </span>
-                    In progress
-                  </h2>
-                  <button
-                    class="btn btn-sm btn-link text-secondary p-0"
-                    type="button"
-                    title="Lane actions"
-                    aria-label="Lane actions"
-                  >
-                    <i class="bi bi-three-dots" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="kanban-cards" data-lane-id="in-progress">
-                  <article class="kanban-card">
-                    <span class="badge text-bg-primary mb-2"> feature </span>
-                    <p class="fw-semibold mb-1 small">Build kanban board demo</p>
-                    <p class="text-secondary small mb-2">
-                      SortableJS, draggable between lanes, MIT license.
+                    <h5 id="1-grab-the-cdn-snippets">1. Grab the CDN snippets</h5>
+                    <p>
+                      Copy these tags into the <code>&lt;head&gt;</code> of a new HTML file. They
+                      pull AdminLTE, Bootstrap 5.3, Popper, OverlayScrollbars, and Bootstrap Icons
+                      from jsDelivr — no install needed.
                     </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="JD"> JD </span>
-                      </div>
-                      <small class="text-secondary">
-                        <i class="bi bi-calendar-event me-1" aria-hidden="true"></i>
-                        Today
-                      </small>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-warning mb-2"> qa </span>
-                    <p class="fw-semibold mb-1 small">Tabulator + FullCalendar integration QA</p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="OB"> OB </span>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-                <button class="kanban-add-card mt-2" type="button" data-add-card-for="in-progress">
-                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
-                  Add card
-                </button>
-              </div>
-              <div class="kanban-lane" data-lane-id="done">
-                <div class="kanban-lane-header">
-                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
-                    <span class="badge text-bg-success" style="font-size: 0.65rem"> 3 </span>
-                    Done
-                  </h2>
-                  <button
-                    class="btn btn-sm btn-link text-secondary p-0"
-                    type="button"
-                    title="Lane actions"
-                    aria-label="Lane actions"
-                  >
-                    <i class="bi bi-three-dots" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="kanban-cards" data-lane-id="done">
-                  <article class="kanban-card">
-                    <span class="badge text-bg-primary mb-2"> feature </span>
-                    <p class="fw-semibold mb-1 small">Upgrade to Bootstrap 5.3.8</p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="DM"> DM </span>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-primary mb-2"> feature </span>
-                    <p class="fw-semibold mb-1 small">Ship 8 Tier-1 page templates</p>
-                    <p class="text-secondary small mb-2">
-                      Profile, settings, invoice, pricing, FAQ, 404/500/maintenance.
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#6A9955">&lt;!-- AdminLTE 4 + Bootstrap 5.3 (CSS) --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc7/dist/css/adminlte.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span></code></pre>
+                    <p>And these just before <code>&lt;/body&gt;</code>:</p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#6A9955">&lt;!-- Bootstrap + Popper + AdminLTE (JS) --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc7/dist/js/adminlte.min.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <h5 id="2-the-minimum-viable-layout">2. The minimum viable layout</h5>
+                    <p>
+                      This is the smallest AdminLTE page that still feels like AdminLTE — a header,
+                      a collapsible sidebar, and a main content area. Drop it between the CSS and JS
+                      tags above:
                     </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="JD"> JD </span
-                        ><span class="kanban-assignee" title="OB"> OB </span>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-secondary mb-2"> tech debt </span>
-                    <p class="fw-semibold mb-1 small">Drop dead eslint-config-xo deps</p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">body</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;layout-fixed sidebar-expand-lg bg-body-tertiary&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-wrapper&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    &lt;!-- Header --&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">nav</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-header navbar navbar-expand bg-body&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;container-fluid&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">ul</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;navbar-nav&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;</span><span style="color:#569CD6">li</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-item&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-link&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;sidebar&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#9CDCFE"> role</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;button&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">              &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-list&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;/</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;/</span><span style="color:#569CD6">ul</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">nav</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    &lt;!-- Sidebar --&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">aside</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-sidebar bg-body-secondary shadow&quot;</span><span style="color:#9CDCFE"> data-bs-theme</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;sidebar-brand&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;brand-link&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;</span><span style="color:#569CD6">span</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;brand-text fw-light&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">My Dashboard</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">span</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;sidebar-wrapper&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">nav</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;mt-2&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;</span><span style="color:#569CD6">ul</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav sidebar-menu flex-column&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;treeview&quot;</span><span style="color:#9CDCFE"> role</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;menu&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;</span><span style="color:#569CD6">li</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-item&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">              &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-link active&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">                &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-icon bi bi-speedometer&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">                &lt;</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Dashboard</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">              &lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;/</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;</span><span style="color:#569CD6">li</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-item&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">              &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-link&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">                &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-icon bi bi-bar-chart&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">                &lt;</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Reports</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">              &lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;/</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;/</span><span style="color:#569CD6">ul</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;/</span><span style="color:#569CD6">nav</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">aside</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    &lt;!-- Main content --&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">main</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-main&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-content-header&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;container-fluid&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;</span><span style="color:#569CD6">h3</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;mb-0&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Hello, AdminLTE</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">h3</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-content&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;container-fluid&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-header&quot;</span><span style="color:#808080">&gt;&lt;</span><span style="color:#569CD6">h5</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-title&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Welcome</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">h5</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-body&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#D4D4D4">              Edit this file to start building your dashboard.</span></span>
+<span class="line"><span style="color:#808080">            &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">main</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">body</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      Open it in a browser. The hamburger button at the top-left collapses the
+                      sidebar — that’s AdminLTE’s
+                      <a href="javascript/pushmenu.html">PushMenu</a> plugin working out of the box,
+                      wired by <code>data-lte-toggle=&quot;sidebar&quot;</code>.
+                    </p>
+                    <h5 id="3-whats-actually-happening">3. What’s actually happening</h5>
+                    <p>The four classes that do the heavy lifting:</p>
 
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="DM"> DM </span>
-                      </div>
-                    </div>
-                  </article>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Class</th>
+                          <th>What it does</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><code>app-wrapper</code></td>
+                          <td>
+                            The CSS grid root — defines header / sidebar / main / footer regions
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><code>app-header</code></td>
+                          <td>
+                            Stuck to the top of the viewport when <code>layout-fixed</code> is on
+                            the body
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><code>app-sidebar</code></td>
+                          <td>
+                            Collapsible side rail. Add <code>sidebar-expand-lg</code> to body to
+                            control breakpoint
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><code>app-main</code></td>
+                          <td>Scrollable content region — everything else lives here</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p>
+                      The <a href="layout.html">Layout</a> page covers the full wrapper structure
+                      and the responsive options.
+                    </p>
+                    <h5 id="4-add-a-working-javascript-widget">
+                      4. Add a working JavaScript widget
+                    </h5>
+                    <p>
+                      AdminLTE ships seven JavaScript plugins. All of them are wired via
+                      <code>data-lte-*</code> attributes — no JavaScript code needed.
+                    </p>
+                    <p>
+                      Drop this in the content area to see the card-widget plugin in action (try the
+                      buttons in the card header):
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-header&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">h5</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-title&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Collapsible card</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">h5</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-tools&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">button</span><span style="color:#9CDCFE"> type</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;button&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;btn btn-sm btn-tool&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-collapse&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> data-lte-icon</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;expand&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-dash-lg&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> data-lte-icon</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;collapse&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-plus-lg&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">button</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">button</span><span style="color:#9CDCFE"> type</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;button&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;btn btn-sm btn-tool&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-remove&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-x-lg&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">button</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-body&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#D4D4D4">    Click the minus icon to collapse; the X to remove.</span></span>
+<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <h5 id="5-where-to-go-next">5. Where to go next</h5>
+                    <p>You now have a working AdminLTE page. From here:</p>
+                    <ul>
+                      <li>
+                        <strong>Make it pretty</strong> →
+                        <a href="customization.html">Customization &amp; Theming</a> — change
+                        colors, fonts, and spacing via SCSS variables or CSS custom properties.
+                      </li>
+                      <li>
+                        <strong>Make it functional</strong> →
+                        <a href="javascript/layout.html">JavaScript Plugins</a> — full reference for
+                        all seven plugins.
+                      </li>
+                      <li>
+                        <strong>Make it dark</strong> → <a href="color-mode.html">Color Mode</a> —
+                        light/dark/auto toggle.
+                      </li>
+                      <li>
+                        <strong>Make it international</strong> →
+                        <a href="rtl.html">RTL Support</a> — right-to-left layouts for Arabic,
+                        Hebrew, Persian, etc.
+                      </li>
+                      <li>
+                        <strong>Add real widgets</strong> →
+                        <a href="integrations.html">Recommended Integrations</a> — date pickers,
+                        multi-selects, charts, rich text editors. AdminLTE keeps its dep tree lean;
+                        this page tells you which third-party libraries to drop in.
+                      </li>
+                    </ul>
+                    <p>
+                      If you’re upgrading an existing AdminLTE 3 project, see the
+                      <a href="migration.html">Migration from v3</a> guide for breaking changes.
+                    </p>
+                  </div>
                 </div>
-                <button class="kanban-add-card mt-2" type="button" data-add-card-for="done">
-                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
-                  Add card
-                </button>
               </div>
             </div>
           </div>
@@ -1495,53 +1416,5 @@
       })();
     </script>
     <!--end::Color Mode Toggle-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.7/Sortable.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      const updateLaneCount = (laneEl) => {
-        const lane = laneEl.closest('.kanban-lane');
-        const badge = lane.querySelector('.kanban-lane-header .badge');
-        badge.textContent = laneEl.children.length;
-      };
-
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.kanban-cards').forEach((el) => {
-          new Sortable(el, {
-            group: 'kanban',
-            animation: 150,
-            ghostClass: 'sortable-ghost',
-            dragClass: 'sortable-drag',
-            onEnd: (evt) => {
-              updateLaneCount(evt.from);
-              if (evt.from !== evt.to) updateLaneCount(evt.to);
-            },
-          });
-        });
-
-        document.querySelectorAll('[data-add-card-for]').forEach((btn) => {
-          btn.addEventListener('click', () => {
-            const title = prompt('Card title:');
-            if (!title) return;
-            const laneId = btn.dataset.addCardFor;
-            const lane = document.querySelector(`.kanban-cards[data-lane-id="${laneId}"]`);
-            const card = document.createElement('article');
-            card.className = 'kanban-card';
-            card.innerHTML = `
-              <p class="fw-semibold mb-1 small">${title.replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c])}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="kanban-assignees">
-                  <span class="kanban-assignee" title="You">YO</span>
-                </div>
-                <small class="text-secondary">just now</small>
-              </div>
-            `;
-            lane.append(card);
-            updateLaneCount(lane);
-          });
-        });
-      });
-    </script>
   </body>
 </html>

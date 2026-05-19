@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE 4 | Kanban Board</title>
+    <title>Migration from v3 | AdminLTE 4</title>
 
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -12,7 +12,7 @@
     <!--end::Accessibility Meta Tags-->
 
     <!--begin::Primary Meta Tags-->
-    <meta name="title" content="AdminLTE 4 | Kanban Board" />
+    <meta name="title" content="Migration from v3 | AdminLTE 4" />
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
@@ -60,85 +60,6 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
-    <style>
-      .kanban-board {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1rem;
-        align-items: start;
-      }
-      .kanban-lane {
-        background: var(--bs-tertiary-bg);
-        border-radius: var(--bs-border-radius);
-        padding: 0.75rem;
-        min-height: 8rem;
-      }
-      .kanban-lane-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 0.75rem;
-        padding: 0 0.25rem;
-      }
-      .kanban-cards {
-        min-height: 4rem;
-      }
-      .kanban-card {
-        background: var(--bs-body-bg);
-        border: 1px solid var(--bs-border-color);
-        border-radius: var(--bs-border-radius);
-        padding: 0.75rem;
-        margin-bottom: 0.5rem;
-        cursor: grab;
-        transition: box-shadow 0.15s ease;
-      }
-      .kanban-card:hover {
-        box-shadow: var(--bs-box-shadow-sm);
-      }
-      .kanban-card.sortable-ghost {
-        opacity: 0.4;
-        background: var(--bs-primary-bg-subtle);
-        border-style: dashed;
-      }
-      .kanban-card.sortable-drag {
-        cursor: grabbing;
-        box-shadow: var(--bs-box-shadow);
-        transform: rotate(2deg);
-      }
-      .kanban-assignees {
-        display: inline-flex;
-      }
-      .kanban-assignee {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 1.75rem;
-        height: 1.75rem;
-        border-radius: 50%;
-        background: var(--bs-secondary-bg);
-        color: var(--bs-secondary-color);
-        font-size: 0.7rem;
-        font-weight: 600;
-        border: 2px solid var(--bs-body-bg);
-        margin-left: -0.5rem;
-      }
-      .kanban-assignee:first-child {
-        margin-left: 0;
-      }
-      .kanban-add-card {
-        background: transparent;
-        border: 1px dashed var(--bs-border-color);
-        color: var(--bs-secondary-color);
-        width: 100%;
-        padding: 0.5rem;
-        border-radius: var(--bs-border-radius);
-        font-size: 0.875rem;
-      }
-      .kanban-add-card:hover {
-        background: var(--bs-body-bg);
-        color: var(--bs-body-color);
-      }
-    </style>
   </head>
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
@@ -708,8 +629,8 @@
               </li>
 
               <li class="nav-header">PAGES</li>
-              <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-file-earmark-text"></i>
                   <p>
                     Pages
@@ -742,7 +663,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../pages/kanban.html" class="nav-link active">
+                    <a href="../pages/kanban.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Kanban</p>
                     </a>
@@ -912,7 +833,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../docs/migration.html" class="nav-link">
+                <a href="../docs/migration.html" class="nav-link active">
                   <i class="nav-icon bi bi-arrow-up-right-square"></i>
                   <p>Migration from v3</p>
                 </a>
@@ -1121,12 +1042,12 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">Kanban Board</h3>
+                <h3 class="mb-0">Migration from v3</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Kanban</li>
+                  <li class="breadcrumb-item"><a href="#">Docs</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Migration</li>
                 </ol>
               </div>
             </div>
@@ -1134,236 +1055,394 @@
         </div>
         <div class="app-content">
           <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <div>
-                <p class="text-secondary mb-0 small">
-                  Drag cards between lanes. Try dropping &ldquo;In progress&rdquo; items into
-                  &ldquo;Done&rdquo;.
-                </p>
-              </div>
-              <div class="btn-group btn-group-sm">
-                <button class="btn btn-outline-secondary" type="button">
-                  <i class="bi bi-funnel me-1" aria-hidden="true"></i>Filter
-                </button>
-                <button class="btn btn-outline-secondary" type="button">
-                  <i class="bi bi-sort-down me-1" aria-hidden="true"></i>Sort
-                </button>
-                <button class="btn btn-primary" type="button">
-                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>Add lane
-                </button>
-              </div>
-            </div>
-
-            <div class="kanban-board" id="kanban-board">
-              <div class="kanban-lane" data-lane-id="backlog">
-                <div class="kanban-lane-header">
-                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
-                    <span class="badge text-bg-secondary" style="font-size: 0.65rem"> 3 </span>
-                    Backlog
-                  </h2>
-                  <button
-                    class="btn btn-sm btn-link text-secondary p-0"
-                    type="button"
-                    title="Lane actions"
-                    aria-label="Lane actions"
-                  >
-                    <i class="bi bi-three-dots" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="kanban-cards" data-lane-id="backlog">
-                  <article class="kanban-card">
-                    <span class="badge text-bg-secondary mb-2"> tech debt </span>
-                    <p class="fw-semibold mb-1 small">Audit unused SCSS variables</p>
-                    <p class="text-secondary small mb-2">
-                      Identify deprecated Bootstrap 5.3.4 variables and add comments.
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <p>
+                      AdminLTE 4 is a ground-up rewrite. It targets Bootstrap 5.3, drops jQuery,
+                      ships as TypeScript-authored vanilla JS, and reorganises the CSS class
+                      structure. If you’re upgrading an AdminLTE 3 project, the changes below are
+                      the ones most likely to bite.
                     </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="DM"> DM </span>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-info mb-2"> docs </span>
-                    <p class="fw-semibold mb-1 small">Document hreflang setup</p>
+                    <h5 id="the-high-level-summary">The high-level summary</h5>
 
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="JD"> JD </span>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-danger mb-2"> bug </span>
-                    <p class="fw-semibold mb-1 small">Investigate Safari iOS calendar drag bug</p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="OB"> OB </span
-                        ><span class="kanban-assignee" title="MK"> MK </span>
-                      </div>
-                      <small class="text-secondary">
-                        <i class="bi bi-calendar-event me-1" aria-hidden="true"></i>
-                        May 28
-                      </small>
-                    </div>
-                  </article>
-                </div>
-                <button class="kanban-add-card mt-2" type="button" data-add-card-for="backlog">
-                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
-                  Add card
-                </button>
-              </div>
-              <div class="kanban-lane" data-lane-id="todo">
-                <div class="kanban-lane-header">
-                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
-                    <span class="badge text-bg-primary" style="font-size: 0.65rem"> 2 </span>
-                    To do
-                  </h2>
-                  <button
-                    class="btn btn-sm btn-link text-secondary p-0"
-                    type="button"
-                    title="Lane actions"
-                    aria-label="Lane actions"
-                  >
-                    <i class="bi bi-three-dots" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="kanban-cards" data-lane-id="todo">
-                  <article class="kanban-card">
-                    <span class="badge text-bg-primary mb-2"> feature </span>
-                    <p class="fw-semibold mb-1 small">Add Tom Select recommended-integration doc</p>
-                    <p class="text-secondary small mb-2">
-                      Cover install, theming, single + multi select examples.
+                    <table>
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>AdminLTE 3</th>
+                          <th>AdminLTE 4</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>CSS framework</td>
+                          <td>Bootstrap 4.6</td>
+                          <td><strong>Bootstrap 5.3</strong></td>
+                        </tr>
+                        <tr>
+                          <td>JavaScript</td>
+                          <td>jQuery + vanilla</td>
+                          <td><strong>Vanilla TypeScript only</strong></td>
+                        </tr>
+                        <tr>
+                          <td>Dark mode</td>
+                          <td>Manual <code>.dark-mode</code> class</td>
+                          <td>
+                            <strong><code>data-bs-theme</code> attribute (Bootstrap-native)</strong>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>RTL</td>
+                          <td>Separate <code>rtl.css</code> build</td>
+                          <td><strong>Generated automatically via rtlcss</strong></td>
+                        </tr>
+                        <tr>
+                          <td>Browser support</td>
+                          <td>IE 11 forks available</td>
+                          <td>Modern evergreen browsers only</td>
+                        </tr>
+                        <tr>
+                          <td>Build tooling</td>
+                          <td>Gulp</td>
+                          <td><strong>Rollup + Sass + PostCSS</strong></td>
+                        </tr>
+                        <tr>
+                          <td>Icon library</td>
+                          <td>FontAwesome</td>
+                          <td>
+                            <strong>Bootstrap Icons</strong> (Lucide / Tabler Icons documented as
+                            alternatives)
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p>
+                      If your project relies on jQuery or IE 11, stay on AdminLTE 3 — those
+                      constraints are not reversible in v4.
                     </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="JD"> JD </span>
-                      </div>
-                      <small class="text-secondary">
-                        <i class="bi bi-calendar-event me-1" aria-hidden="true"></i>
-                        May 24
-                      </small>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-primary mb-2"> feature </span>
-                    <p class="fw-semibold mb-1 small">Wire up profile page avatar upload</p>
+                    <h5 id="class-renames">Class renames</h5>
+                    <p>The most common find-and-replace work:</p>
 
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="EM"> EM </span>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-                <button class="kanban-add-card mt-2" type="button" data-add-card-for="todo">
-                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
-                  Add card
-                </button>
-              </div>
-              <div class="kanban-lane" data-lane-id="in-progress">
-                <div class="kanban-lane-header">
-                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
-                    <span class="badge text-bg-warning" style="font-size: 0.65rem"> 2 </span>
-                    In progress
-                  </h2>
-                  <button
-                    class="btn btn-sm btn-link text-secondary p-0"
-                    type="button"
-                    title="Lane actions"
-                    aria-label="Lane actions"
-                  >
-                    <i class="bi bi-three-dots" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="kanban-cards" data-lane-id="in-progress">
-                  <article class="kanban-card">
-                    <span class="badge text-bg-primary mb-2"> feature </span>
-                    <p class="fw-semibold mb-1 small">Build kanban board demo</p>
-                    <p class="text-secondary small mb-2">
-                      SortableJS, draggable between lanes, MIT license.
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>AdminLTE 3</th>
+                          <th>AdminLTE 4</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><code>.wrapper</code></td>
+                          <td><code>.app-wrapper</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.main-header</code></td>
+                          <td><code>.app-header</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.main-sidebar</code></td>
+                          <td><code>.app-sidebar</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.content-wrapper</code></td>
+                          <td><code>.app-main</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.main-footer</code></td>
+                          <td><code>.app-footer</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.content-header</code></td>
+                          <td><code>.app-content-header</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.content</code></td>
+                          <td><code>.app-content</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.brand-link</code> (inside <code>.main-sidebar</code>)</td>
+                          <td><code>.sidebar-brand &gt; .brand-link</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>data-widget=&quot;pushmenu&quot;</code></td>
+                          <td><code>data-lte-toggle=&quot;sidebar&quot;</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>data-widget=&quot;treeview&quot;</code></td>
+                          <td>
+                            <code>data-lte-toggle=&quot;treeview&quot;</code> (on the parent menu)
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><code>data-widget=&quot;card-widget&quot;</code></td>
+                          <td>
+                            <code>data-lte-toggle=&quot;card-collapse&quot;</code>,
+                            <code>card-remove</code>, <code>card-maximize</code>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><code>data-widget=&quot;fullscreen&quot;</code></td>
+                          <td><code>data-lte-toggle=&quot;fullscreen&quot;</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>data-widget=&quot;control-sidebar&quot;</code></td>
+                          <td>(removed — Bootstrap offcanvas replaces this)</td>
+                        </tr>
+                        <tr>
+                          <td><code>.dark-mode</code> (on <code>&lt;body&gt;</code>)</td>
+                          <td><code>data-bs-theme=&quot;dark&quot;</code> (on any element)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h5 id="bootstrap-4--5-utility-renames">Bootstrap 4 → 5 utility renames</h5>
+                    <p>
+                      These come from Bootstrap itself, not AdminLTE, but they affect every page:
                     </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="JD"> JD </span>
-                      </div>
-                      <small class="text-secondary">
-                        <i class="bi bi-calendar-event me-1" aria-hidden="true"></i>
-                        Today
-                      </small>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-warning mb-2"> qa </span>
-                    <p class="fw-semibold mb-1 small">Tabulator + FullCalendar integration QA</p>
 
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="OB"> OB </span>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-                <button class="kanban-add-card mt-2" type="button" data-add-card-for="in-progress">
-                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
-                  Add card
-                </button>
-              </div>
-              <div class="kanban-lane" data-lane-id="done">
-                <div class="kanban-lane-header">
-                  <h2 class="h6 mb-0 d-flex align-items-center gap-2">
-                    <span class="badge text-bg-success" style="font-size: 0.65rem"> 3 </span>
-                    Done
-                  </h2>
-                  <button
-                    class="btn btn-sm btn-link text-secondary p-0"
-                    type="button"
-                    title="Lane actions"
-                    aria-label="Lane actions"
-                  >
-                    <i class="bi bi-three-dots" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="kanban-cards" data-lane-id="done">
-                  <article class="kanban-card">
-                    <span class="badge text-bg-primary mb-2"> feature </span>
-                    <p class="fw-semibold mb-1 small">Upgrade to Bootstrap 5.3.8</p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="DM"> DM </span>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-primary mb-2"> feature </span>
-                    <p class="fw-semibold mb-1 small">Ship 8 Tier-1 page templates</p>
-                    <p class="text-secondary small mb-2">
-                      Profile, settings, invoice, pricing, FAQ, 404/500/maintenance.
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Bootstrap 4</th>
+                          <th>Bootstrap 5</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><code>data-toggle</code></td>
+                          <td><code>data-bs-toggle</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>data-target</code></td>
+                          <td><code>data-bs-target</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>data-dismiss</code></td>
+                          <td><code>data-bs-dismiss</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>data-parent</code></td>
+                          <td><code>data-bs-parent</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>data-spy</code></td>
+                          <td><code>data-bs-spy</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>data-ride</code></td>
+                          <td><code>data-bs-ride</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.ml-*</code>, <code>.mr-*</code></td>
+                          <td><code>.ms-*</code>, <code>.me-*</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.pl-*</code>, <code>.pr-*</code></td>
+                          <td><code>.ps-*</code>, <code>.pe-*</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.float-left</code>, <code>.float-right</code></td>
+                          <td><code>.float-start</code>, <code>.float-end</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.text-left</code>, <code>.text-right</code></td>
+                          <td><code>.text-start</code>, <code>.text-end</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.border-left</code>, <code>.border-right</code></td>
+                          <td><code>.border-start</code>, <code>.border-end</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.rounded-left</code>, <code>.rounded-right</code></td>
+                          <td><code>.rounded-start</code>, <code>.rounded-end</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.font-weight-*</code></td>
+                          <td><code>.fw-*</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.font-italic</code></td>
+                          <td><code>.fst-italic</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>.text-monospace</code></td>
+                          <td><code>.font-monospace</code></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p>
+                      A regex find-replace handles most of this in a few minutes. The migration tool
+                      <a href="https://github.com/dbtek/bootstrap-5-migration"
+                        ><code>bootstrap-5-migration</code></a
+                      >
+                      automates the bulk.
                     </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="JD"> JD </span
-                        ><span class="kanban-assignee" title="OB"> OB </span>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="kanban-card">
-                    <span class="badge text-bg-secondary mb-2"> tech debt </span>
-                    <p class="fw-semibold mb-1 small">Drop dead eslint-config-xo deps</p>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="kanban-assignees">
-                        <span class="kanban-assignee" title="DM"> DM </span>
-                      </div>
-                    </div>
-                  </article>
+                    <h5 id="jquery-removal">jQuery removal</h5>
+                    <p>
+                      If your app code calls AdminLTE 3 plugins via jQuery
+                      (<code>$(&#39;.sidebar&#39;).PushMenu()</code>, etc.), those calls no longer
+                      work. Replacements:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="js"
+                    ><code><span class="line"><span style="color:#6A9955">// AdminLTE 3</span></span>
+<span class="line"><span style="color:#DCDCAA">$</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&#39;.sidebar-toggle&#39;</span><span style="color:#D4D4D4">).</span><span style="color:#DCDCAA">on</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&#39;click&#39;</span><span style="color:#D4D4D4">, </span><span style="color:#569CD6">function</span><span style="color:#D4D4D4"> () {</span></span>
+<span class="line"><span style="color:#DCDCAA">  $</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&#39;body&#39;</span><span style="color:#D4D4D4">).</span><span style="color:#DCDCAA">toggleClass</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&#39;sidebar-collapse&#39;</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#D4D4D4">})</span></span></code></pre>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="js"
+                    ><code><span class="line"><span style="color:#6A9955">// AdminLTE 4 — the data-API does this for you</span></span>
+<span class="line"><span style="color:#6A9955">// &lt;a href=&quot;#&quot; data-lte-toggle=&quot;sidebar&quot;&gt;...&lt;/a&gt;</span></span></code></pre>
+                    <p>If you need programmatic control, import the plugin class directly:</p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="js"
+                    ><code><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">PushMenu</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> &quot;admin-lte&quot;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> PushMenu</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;.sidebar-toggle&quot;</span><span style="color:#D4D4D4">)).</span><span style="color:#DCDCAA">toggle</span><span style="color:#D4D4D4">()</span></span></code></pre>
+                    <p>
+                      All seven JS plugins (<code>Layout</code>, <code>CardWidget</code>,
+                      <code>Treeview</code>, <code>DirectChat</code>, <code>FullScreen</code>,
+                      <code>PushMenu</code>, plus <code>initAccessibility</code>) are exported from
+                      <code>admin-lte</code>.
+                    </p>
+                    <h5 id="dark-mode">Dark mode</h5>
+                    <p>
+                      AdminLTE 3 used a <code>.dark-mode</code> class toggled on the
+                      <code>&lt;body&gt;</code>. AdminLTE 4 uses Bootstrap 5.3’s native
+                      <code>data-bs-theme=&quot;dark&quot;</code> attribute, which can be applied at
+                      any level — <code>&lt;html&gt;</code>, <code>&lt;body&gt;</code>, or a single
+                      component.
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#6A9955">&lt;!-- AdminLTE 3 --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">body</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dark-mode&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">&lt;!-- AdminLTE 4 --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">html</span><span style="color:#9CDCFE"> data-bs-theme</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      The included <a href="color-mode.html">Color Mode</a> widget reads/writes this
+                      attribute and persists the user’s choice in <code>localStorage</code>. See the
+                      <a href="color-mode.html">Color Mode</a> docs page for the toggle
+                      implementation.
+                    </p>
+                    <h5 id="css-variables-instead-of-bg--overrides">
+                      CSS variables instead of <code>.bg-*</code> overrides
+                    </h5>
+                    <p>
+                      AdminLTE 3 shipped a lot of one-off colour classes (<code>.bg-navy</code>,
+                      <code>.bg-purple</code>, <code>.bg-fuchsia</code>, etc.). In v4, prefer
+                      Bootstrap 5.3’s CSS-variable model:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#6A9955">&lt;!-- AdminLTE 3 --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card bg-navy&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">&lt;!-- AdminLTE 4 — use Bootstrap utilities + CSS variables --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card text-bg-primary&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      For full retheming, override <code>--bs-primary</code> etc. on
+                      <code>:root</code>. See <a href="customization.html">Customization</a>.
+                    </p>
+                    <h5 id="icons">Icons</h5>
+                    <p>
+                      AdminLTE 3 demos used FontAwesome 6 free. AdminLTE 4 standardises on
+                      <a href="https://icons.getbootstrap.com/">Bootstrap Icons</a> — they’re SVG,
+                      lighter, MIT-licensed, and ship with Bootstrap’s ecosystem.
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#6A9955">&lt;!-- AdminLTE 3 --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;fas fa-home&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">&lt;!-- AdminLTE 4 --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-house&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      If you’d rather stick with FontAwesome (or use Lucide, Tabler Icons, Material
+                      Symbols, etc.), nothing in AdminLTE 4 forces Bootstrap Icons — load whichever
+                      icon font you prefer and replace the <code>&lt;i&gt;</code> classes. See
+                      <a href="integrations.html#icon-libraries">Recommended Integrations</a> for
+                      the comparison table.
+                    </p>
+                    <h5 id="pages-we-havent-ported-yet">Pages we haven’t ported yet</h5>
+                    <p>
+                      The v3 demo includes pages that haven’t all been recreated for v4. The v4
+                      release notes cover the current page catalog. If you depend on a specific v3
+                      page that hasn’t been ported, please
+                      <a href="https://github.com/ColorlibHQ/AdminLTE/issues">open an issue</a> —
+                      community contributions for missing pages are very welcome.
+                    </p>
+                    <h5 id="suggested-migration-order">Suggested migration order</h5>
+                    <p>For an existing AdminLTE 3 project:</p>
+                    <ol>
+                      <li>
+                        <strong>Branch first.</strong> This is not a small change — keep
+                        <code>master</code> on v3 until v4 is stable.
+                      </li>
+                      <li>
+                        <strong>Update CSS class names</strong> with a find-replace pass using the
+                        table above. Most layouts compile but look broken until step 3.
+                      </li>
+                      <li>
+                        <strong
+                          >Update <code>data-toggle</code> → <code>data-bs-toggle</code></strong
+                        >
+                        etc. across all your templates.
+                      </li>
+                      <li>
+                        <strong>Replace <code>.dark-mode</code> toggle code</strong> with
+                        <code>data-bs-theme</code> attribute writes.
+                      </li>
+                      <li>
+                        <strong>Audit jQuery calls.</strong> Either remove them (use the data API)
+                        or import plugin classes directly.
+                      </li>
+                      <li>
+                        <strong>Test responsive breakpoints</strong> — Bootstrap 5 added
+                        <code>xxl</code>. If you use breakpoint-specific utilities, double-check the
+                        new scale.
+                      </li>
+                      <li>
+                        <strong>Re-test print views</strong> — AdminLTE 4 fixed a print-layout issue
+                        (#5996); if you had custom print CSS, verify it still works.
+                      </li>
+                    </ol>
+                    <h5 id="help-and-discussion">Help and discussion</h5>
+                    <ul>
+                      <li>
+                        Migration questions:
+                        <a href="https://github.com/ColorlibHQ/AdminLTE/discussions"
+                          >GitHub Discussions</a
+                        >
+                      </li>
+                      <li>
+                        Found something we missed?
+                        <a href="https://github.com/ColorlibHQ/AdminLTE/issues">Open an issue</a>
+                        tagged <code>migration</code>.
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <button class="kanban-add-card mt-2" type="button" data-add-card-for="done">
-                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
-                  Add card
-                </button>
               </div>
             </div>
           </div>
@@ -1495,53 +1574,5 @@
       })();
     </script>
     <!--end::Color Mode Toggle-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.7/Sortable.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      const updateLaneCount = (laneEl) => {
-        const lane = laneEl.closest('.kanban-lane');
-        const badge = lane.querySelector('.kanban-lane-header .badge');
-        badge.textContent = laneEl.children.length;
-      };
-
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.kanban-cards').forEach((el) => {
-          new Sortable(el, {
-            group: 'kanban',
-            animation: 150,
-            ghostClass: 'sortable-ghost',
-            dragClass: 'sortable-drag',
-            onEnd: (evt) => {
-              updateLaneCount(evt.from);
-              if (evt.from !== evt.to) updateLaneCount(evt.to);
-            },
-          });
-        });
-
-        document.querySelectorAll('[data-add-card-for]').forEach((btn) => {
-          btn.addEventListener('click', () => {
-            const title = prompt('Card title:');
-            if (!title) return;
-            const laneId = btn.dataset.addCardFor;
-            const lane = document.querySelector(`.kanban-cards[data-lane-id="${laneId}"]`);
-            const card = document.createElement('article');
-            card.className = 'kanban-card';
-            card.innerHTML = `
-              <p class="fw-semibold mb-1 small">${title.replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c])}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="kanban-assignees">
-                  <span class="kanban-assignee" title="You">YO</span>
-                </div>
-                <small class="text-secondary">just now</small>
-              </div>
-            `;
-            lane.append(card);
-            updateLaneCount(lane);
-          });
-        });
-      });
-    </script>
   </body>
 </html>
