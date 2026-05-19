@@ -276,6 +276,118 @@
       line-height: 1.6;
       color: var(--#{$prefix}body-color);
     }
+
+    //
+    // FAQ / disclosure accordion — uses native <details>/<summary>.
+    // Add `.faq-item` to <details> to opt in.
+    //
+    details.faq-item {
+      margin-bottom: .5rem;
+      overflow: hidden;
+      background: var(--#{$prefix}body-bg);
+      border: 1px solid var(--#{$prefix}border-color);
+      @include border-radius($border-radius);
+      @include transition(border-color .15s ease, box-shadow .15s ease);
+
+      &:hover {
+        border-color: var(--#{$prefix}primary-border-subtle);
+      }
+
+      &[open] {
+        background: var(--#{$prefix}body-bg);
+        border-color: var(--#{$prefix}primary-border-subtle);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .04);
+      }
+
+      summary {
+        position: relative;
+        padding: .9rem 3rem .9rem 1.1rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--#{$prefix}emphasis-color);
+        list-style: none;
+        cursor: pointer;
+        user-select: none;
+        @include transition(color .15s ease);
+
+        // Hide the default disclosure triangle in Webkit/Blink
+        &::-webkit-details-marker {
+          display: none;
+        }
+
+        // Hide the marker in modern Firefox too
+        &::marker {
+          content: "";
+        }
+
+        &:hover {
+          color: var(--#{$prefix}primary);
+        }
+
+        // Right-side chevron, rotates on open
+        &::after {
+          position: absolute;
+          top: 50%;
+          right: 1.1rem;
+          display: inline-block;
+          width: .55rem;
+          height: .55rem;
+          margin-top: -.4rem;
+          content: "";
+          border-right: 2px solid currentcolor;
+          border-bottom: 2px solid currentcolor;
+          opacity: .55;
+          transform: rotate(45deg);
+          @include transition(transform .2s ease);
+        }
+      }
+
+      &[open] > summary {
+        color: var(--#{$prefix}primary);
+        border-bottom: 1px solid var(--#{$prefix}border-color);
+
+        &::after {
+          margin-top: -.15rem;
+          opacity: 1;
+          transform: rotate(-135deg);
+        }
+      }
+
+      // Content (everything after <summary>) gets the inner padding
+      > *:not(summary) {
+        padding-right: 1.1rem;
+        padding-left: 1.1rem;
+      }
+
+      > *:not(summary):first-of-type {
+        padding-top: 1rem;
+      }
+
+      > *:not(summary):last-child {
+        padding-bottom: 1rem;
+      }
+
+      // Tighten paragraphs/lists inside an FAQ answer
+      p,
+      ul,
+      ol {
+        margin-bottom: .65rem;
+      }
+
+      > *:last-child p:last-child,
+      > p:last-child,
+      > ul:last-child,
+      > ol:last-child {
+        margin-bottom: 0;
+      }
+
+      // Code blocks inside an FAQ answer get a less-distracting bg
+      pre.astro-code,
+      pre {
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
   }
 
   // Dark-mode tweak: blockquote info bg needs more contrast on dark

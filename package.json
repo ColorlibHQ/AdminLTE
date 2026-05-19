@@ -29,7 +29,7 @@
     "docs-format": "prettier --write \"dist/**/*.html\"",
     "docs-serve": "npm run copy-assets && astro --config src/config/astro.config.mjs dev --open --port 3000",
     "copy-assets": "rimraf src/html/public && shx mkdir -p src/html/public && shx cp -r dist/css dist/js dist/assets src/html/public/",
-    "flatten-build": "shx cp -r dist/html/* dist/ && shx rm -rf dist/html && shx rm -rf dist/.astro",
+    "flatten-build": "shx cp -r dist/html/* dist/ && shx rm -rf dist/html && shx rm -rf dist/.astro && shx mkdir -p dist/docs && shx mv dist/docs.html dist/docs/index.html",
     "assets": "node src/config/assets.config.mjs",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel js-lint css-lint docs-lint lockfile-lint",
     "clean": "rimraf dist",

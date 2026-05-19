@@ -2,19 +2,19 @@
   "files": [
     {
       "path": "./dist/css/adminlte.css",
-      "maxSize": "46 kB"
+      "maxSize": "48 kB"
     },
     {
       "path": "./dist/css/adminlte.min.css",
-      "maxSize": "42 kB"
+      "maxSize": "44 kB"
     },
     {
       "path": "./dist/css/adminlte.rtl.css",
-      "maxSize": "46 kB"
+      "maxSize": "48 kB"
     },
     {
       "path": "./dist/css/adminlte.rtl.min.css",
-      "maxSize": "42 kB"
+      "maxSize": "44 kB"
     },
     {
       "path": "./dist/js/adminlte.js",
