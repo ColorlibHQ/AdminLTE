@@ -1,4 +1,143 @@
+//
+// Component: Docs
+//
+// Visual treatment for documentation pages. Body class `.docs-page` opts in.
+// Demo pages are not affected.
+//
+
+// Inline code blocks rendered by MDX (Astro highlight default class)
 .astro-code {
   padding: .75rem;
   @include border-radius($border-radius);
+}
+
+.docs-page {
+  // Slightly more breathing room inside the card body so prose doesn't feel
+  // cramped against the card border, and prose typography tuning.
+  .card > .card-body {
+    padding: 1.5rem;
+
+    @include media-breakpoint-up(md) {
+      padding: 2rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+      margin-top: 1.75em;
+      margin-bottom: .5em;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    h2,
+    .h2 {
+      font-size: 1.5rem;
+    }
+
+    h3,
+    .h3 {
+      font-size: 1.25rem;
+    }
+
+    h4,
+    .h4 {
+      font-size: 1.05rem;
+    }
+
+    h5,
+    .h5 {
+      font-size: .95rem;
+      font-weight: 600;
+    }
+
+    p,
+    ul,
+    ol,
+    dl,
+    blockquote,
+    table {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    // Inline code styling that complements MDX's syntax-highlighted blocks
+    p code,
+    li code,
+    td code,
+    th code {
+      padding: .125rem .375rem;
+      font-size: .875em;
+      color: var(--#{$prefix}emphasis-color);
+      background: var(--#{$prefix}tertiary-bg);
+      @include border-radius($border-radius-sm);
+    }
+
+    // Code blocks: align with paragraph spacing and constrain overflow
+    pre.astro-code,
+    pre {
+      margin-bottom: 1rem;
+      overflow-x: auto;
+      font-size: .85rem;
+      line-height: 1.5;
+    }
+
+    // Reference tables get a subtle hairline treatment
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th,
+      td {
+        padding: .5rem .75rem;
+        text-align: left;
+        vertical-align: top;
+        border-bottom: 1px solid var(--#{$prefix}border-color);
+      }
+
+      th {
+        font-weight: 600;
+        background: var(--#{$prefix}tertiary-bg);
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+    }
+
+    // Blockquotes used as callouts
+    blockquote {
+      padding: .75rem 1rem;
+      color: var(--#{$prefix}emphasis-color);
+      background: var(--#{$prefix}info-bg-subtle);
+      border-left: 4px solid var(--#{$prefix}info-border-subtle);
+      @include border-radius($border-radius-sm);
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    // Prose links stand out a bit more than Bootstrap defaults
+    a:not(.btn):not(.nav-link) {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+
+      &:hover {
+        text-decoration-thickness: 2px;
+      }
+    }
+  }
 }

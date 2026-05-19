@@ -76,3 +76,6 @@
 
 // AdminLTE Accessibility Styles - WCAG 2.1 AA Compliance
 @import "accessibility";
+
+// AdminLTE Documentation Styles (only applies to pages with body.docs-page)
+@import "docs";
