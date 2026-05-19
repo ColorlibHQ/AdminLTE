@@ -819,6 +819,18 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="../../docs/layout-blueprint.html" class="nav-link">
+                  <i class="nav-icon bi bi-diagram-3"></i>
+                  <p>Layout Blueprint</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../../docs/recipes.html" class="nav-link">
+                  <i class="nav-icon bi bi-clipboard-check"></i>
+                  <p>Recipes</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="../../docs/customization.html" class="nav-link">
                   <i class="nav-icon bi bi-palette"></i>
                   <p>Customization</p>
@@ -846,6 +858,12 @@
                 <a href="../../docs/integrations.html" class="nav-link">
                   <i class="nav-icon bi bi-puzzle"></i>
                   <p>Recommended Integrations</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../../docs/deployment.html" class="nav-link">
+                  <i class="nav-icon bi bi-cloud-upload"></i>
+                  <p>Deployment</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -880,6 +898,12 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="../../docs/javascript/plugins-overview.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Overview</p>
+                    </a>
+                  </li>
                   <li class="nav-item">
                     <a href="../../docs/javascript/layout.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
@@ -1138,6 +1162,44 @@
                 </tr>
               </tbody>
             </table>
+            <h5 id="programmatic-api">Programmatic API</h5>
+            <pre
+              class="astro-code dark-plus"
+              style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+              tabindex="0"
+              data-language="js"
+            ><code><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">DirectChat</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> &quot;admin-lte&quot;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> chat</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;.direct-chat&quot;</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> dc</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> DirectChat</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">chat</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">dc</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">toggle</span><span style="color:#D4D4D4">()  </span><span style="color:#6A9955">// show or hide the contacts pane</span></span></code></pre>
+            <h6 id="methods">Methods</h6>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Returns</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>toggle()</code></td>
+                  <td><code>void</code></td>
+                  <td>
+                    Toggles the <code>direct-chat-contacts-open</code> class on the
+                    <code>.direct-chat</code> container. Fires
+                    <code>expanded.lte.direct-chat</code> or <code>collapsed.lte.direct-chat</code>.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              The constructor takes no config object — pass only the
+              <code>.direct-chat</code> element.
+            </p>
           </div>
           <!--end::Container-->
         </div>

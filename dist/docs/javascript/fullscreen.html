@@ -819,6 +819,18 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="../../docs/layout-blueprint.html" class="nav-link">
+                  <i class="nav-icon bi bi-diagram-3"></i>
+                  <p>Layout Blueprint</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../../docs/recipes.html" class="nav-link">
+                  <i class="nav-icon bi bi-clipboard-check"></i>
+                  <p>Recipes</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="../../docs/customization.html" class="nav-link">
                   <i class="nav-icon bi bi-palette"></i>
                   <p>Customization</p>
@@ -846,6 +858,12 @@
                 <a href="../../docs/integrations.html" class="nav-link">
                   <i class="nav-icon bi bi-puzzle"></i>
                   <p>Recommended Integrations</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../../docs/deployment.html" class="nav-link">
+                  <i class="nav-icon bi bi-cloud-upload"></i>
+                  <p>Deployment</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -880,6 +898,12 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="../../docs/javascript/plugins-overview.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Overview</p>
+                    </a>
+                  </li>
                   <li class="nav-item">
                     <a href="../../docs/javascript/layout.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
@@ -1107,15 +1131,80 @@
                 </tr>
               </tbody>
             </table>
+            <h5 id="programmatic-api">Programmatic API</h5>
+            <pre
+              class="astro-code dark-plus"
+              style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+              tabindex="0"
+              data-language="js"
+            ><code><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">FullScreen</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> &quot;admin-lte&quot;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> btn</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&#39;[data-lte-toggle=&quot;fullscreen&quot;]&#39;</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> fs</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> FullScreen</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">btn</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">fs</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">toggleFullScreen</span><span style="color:#D4D4D4">()  </span><span style="color:#6A9955">// enter or exit based on current state</span></span>
+<span class="line"><span style="color:#9CDCFE">fs</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">inFullScreen</span><span style="color:#D4D4D4">()      </span><span style="color:#6A9955">// request fullscreen</span></span>
+<span class="line"><span style="color:#9CDCFE">fs</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">outFullscreen</span><span style="color:#D4D4D4">()     </span><span style="color:#6A9955">// exit fullscreen</span></span></code></pre>
+            <h6 id="methods">Methods</h6>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Returns</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>toggleFullScreen()</code></td>
+                  <td><code>void</code></td>
+                  <td>
+                    Calls <code>inFullScreen()</code> if not in fullscreen, otherwise
+                    <code>outFullscreen()</code>. Checks
+                    <code>document.fullscreenEnabled</code> first.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>inFullScreen()</code></td>
+                  <td><code>void</code></td>
+                  <td>
+                    Calls <code>document.documentElement.requestFullscreen()</code>, toggles
+                    <code>.d-none</code> on the maximize/minimize icons. Fires
+                    <code>maximized.lte.fullscreen</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>outFullscreen()</code></td>
+                  <td><code>void</code></td>
+                  <td>
+                    Calls <code>document.exitFullscreen()</code>, toggles <code>.d-none</code> on
+                    the maximize/minimize icons. Fires <code>minimized.lte.fullscreen</code>.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <p>The constructor takes no config — pass only the trigger element.</p>
             <h5 id="notes">Notes</h5>
             <ul>
               <li>
-                Requires browser support for the Fullscreen API
-                (<code>document.fullscreenEnabled</code>).
+                Requires browser support for the
+                <a href="https://developer.mozilla.org/docs/Web/API/Fullscreen_API"
+                  >Fullscreen API</a
+                >. Check <code>document.fullscreenEnabled</code> before invoking.
               </li>
               <li>
-                The maximize icon is hidden when in fullscreen mode, and the minimize icon is shown
-                (and vice versa).
+                The maximize icon is hidden via the <code>d-none</code> Bootstrap utility class (not
+                inline <code>display</code>) so it doesn’t override the icon library’s natural
+                display value — this works correctly with FontAwesome, Lucide, Tabler Icons, etc.
+              </li>
+              <li>
+                Fullscreen on <code>document.documentElement</code> (i.e. <code>&lt;html&gt;</code>)
+                means the entire page goes fullscreen. To fullscreen just a card, use the
+                <a href="card-widget.html#programmatic-api"
+                  >CardWidget <code>maximize()</code> method</a
+                >
+                instead.
               </li>
             </ul>
           </div>

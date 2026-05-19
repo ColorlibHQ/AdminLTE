@@ -1,9 +1,8 @@
 <!doctype html>
 <html lang="en">
-  <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Treeview Plugin | AdminLTE 4</title>
+    <title>JavaScript Plugins Overview | AdminLTE 4</title>
 
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -13,7 +12,7 @@
     <!--end::Accessibility Meta Tags-->
 
     <!--begin::Primary Meta Tags-->
-    <meta name="title" content="Treeview Plugin | AdminLTE 4" />
+    <meta name="title" content="JavaScript Plugins Overview | AdminLTE 4" />
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
@@ -62,10 +61,7 @@
     <link rel="stylesheet" href="../../css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
   </head>
-  <!--end::Head-->
-  <!--begin::Body-->
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
-    <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <!--begin::Header-->
       <nav class="app-header navbar navbar-expand bg-body">
@@ -899,7 +895,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="../../docs/javascript/plugins-overview.html" class="nav-link">
+                    <a href="../../docs/javascript/plugins-overview.html" class="nav-link active">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Overview</p>
                     </a>
@@ -917,7 +913,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../docs/javascript/treeview.html" class="nav-link active">
+                    <a href="../../docs/javascript/treeview.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Treeview</p>
                     </a>
@@ -1065,272 +1061,412 @@
         <!--end::Sidebar Wrapper-->
       </aside>
       <!--end::Sidebar-->
-      <!--begin::App Main-->
       <main class="app-main">
-        <!--begin::App Content Header-->
         <div class="app-content-header">
-          <!--begin::Container-->
           <div class="container-fluid">
-            <!--begin::Row-->
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">Treeview Plugin</h3>
+                <h3 class="mb-0">JavaScript Plugins Overview</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Docs</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Treeview Plugin</li>
+                  <li class="breadcrumb-item"><a href="#">JavaScript</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Overview</li>
                 </ol>
               </div>
             </div>
-            <!--end::Row-->
           </div>
-          <!--end::Container-->
         </div>
-        <!--end::App Content Header-->
-        <!--begin::App Content-->
         <div class="app-content">
-          <!--begin::Container-->
           <div class="container-fluid">
-            <p>
-              The Treeview plugin converts a nested list into a collapsible tree where submenus
-              expand and contract on click. It’s what powers the sidebar navigation in the demo
-              dashboards.
-            </p>
-            <h5 id="usage">Usage</h5>
-            <h6 id="data-api">Data API</h6>
-            <p>
-              Add <code>data-lte-toggle=&quot;treeview&quot;</code> to the parent
-              <code>&lt;ul&gt;</code> or <code>&lt;ol&gt;</code>. Inside, mark items that have
-              children with <code>.nav-item</code> and put the submenu in a nested
-              <code>&lt;ul class=&quot;nav-treeview&quot;&gt;</code>:
-            </p>
-            <pre
-              class="astro-code dark-plus"
-              style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
-              tabindex="0"
-              data-language="html"
-            ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">ul</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav sidebar-menu flex-column&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;treeview&quot;</span><span style="color:#9CDCFE"> role</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;menu&quot;</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">li</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-item&quot;</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-link&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-icon bi bi-speedometer&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Dashboard</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">li</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-item&quot;</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-link&quot;</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-icon bi bi-folder&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#D4D4D4">        Reports</span></span>
-<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-arrow bi bi-chevron-right&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">ul</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav nav-treeview&quot;</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">li</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-item&quot;</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-link&quot;</span><span style="color:#808080">&gt;&lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-icon bi bi-circle&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;&lt;</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Sales</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">li</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-item&quot;</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-link&quot;</span><span style="color:#808080">&gt;&lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-icon bi bi-circle&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;&lt;</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Traffic</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">ul</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">ul</span><span style="color:#808080">&gt;</span></span></code></pre>
-            <p>
-              To start with a submenu pre-expanded, add <code>menu-open</code> to its
-              <code>.nav-item</code>.
-            </p>
-            <h5 id="configuration">Configuration</h5>
-            <p>
-              Configure via <code>data-*</code> attributes on the parent <code>&lt;ul&gt;</code>:
-            </p>
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <p>
+                      AdminLTE ships seven JavaScript plugins as a single bundle
+                      (<code>adminlte.js</code>). Each one is exported from the package root, can be
+                      triggered via <code>data-lte-*</code> attributes for declarative use, and
+                      exposes a programmatic API for code-driven control.
+                    </p>
+                    <h5 id="at-a-glance">At a glance</h5>
 
-            <table>
-              <thead>
-                <tr>
-                  <th>Attribute</th>
-                  <th>Default</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>data-accordion</code></td>
-                  <td><code>true</code></td>
-                  <td>
-                    Close other open submenus when one opens. Set <code>false</code> for
-                    non-accordion behaviour (multiple submenus open at once).
-                  </td>
-                </tr>
-                <tr>
-                  <td><code>data-animation-speed</code></td>
-                  <td><code>300</code></td>
-                  <td>
-                    Slide animation duration in milliseconds. Set <code>0</code> to disable
-                    animation.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <pre
-              class="astro-code dark-plus"
-              style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
-              tabindex="0"
-              data-language="html"
-            ><code><span class="line"><span style="color:#6A9955">&lt;!-- Non-accordion mode: multiple submenus can stay open --&gt;</span></span>
-<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">ul</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav sidebar-menu&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;treeview&quot;</span><span style="color:#9CDCFE"> data-accordion</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;false&quot;</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#D4D4D4">  …</span></span>
-<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">ul</span><span style="color:#808080">&gt;</span></span>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Plugin</th>
+                          <th>Data API</th>
+                          <th>Programmatic</th>
+                          <th>Documentation</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><strong>PushMenu</strong></td>
+                          <td><code>data-lte-toggle=&quot;sidebar&quot;</code></td>
+                          <td>
+                            <code>.toggle()</code> / <code>.expand()</code> /
+                            <code>.collapse()</code>
+                          </td>
+                          <td><a href="pushmenu.html">Reference</a></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Treeview</strong></td>
+                          <td><code>data-lte-toggle=&quot;treeview&quot;</code> on parent menu</td>
+                          <td>
+                            <code>.toggle()</code> / <code>.open()</code> / <code>.close()</code>
+                          </td>
+                          <td><a href="treeview.html">Reference</a></td>
+                        </tr>
+                        <tr>
+                          <td><strong>CardWidget</strong></td>
+                          <td>
+                            <code>data-lte-toggle=&quot;card-collapse&quot;</code>,
+                            <code>card-remove</code>, <code>card-maximize</code>
+                          </td>
+                          <td>
+                            <code>.toggle()</code> / <code>.collapse()</code> /
+                            <code>.expand()</code> / <code>.remove()</code> /
+                            <code>.maximize()</code> / <code>.minimize()</code> /
+                            <code>.toggleMaximize()</code>
+                          </td>
+                          <td><a href="card-widget.html">Reference</a></td>
+                        </tr>
+                        <tr>
+                          <td><strong>DirectChat</strong></td>
+                          <td><code>data-lte-toggle=&quot;chat-pane&quot;</code></td>
+                          <td><code>.toggle()</code></td>
+                          <td><a href="direct-chat.html">Reference</a></td>
+                        </tr>
+                        <tr>
+                          <td><strong>FullScreen</strong></td>
+                          <td><code>data-lte-toggle=&quot;fullscreen&quot;</code></td>
+                          <td>
+                            <code>.toggleFullScreen()</code> / <code>.inFullScreen()</code> /
+                            <code>.outFullscreen()</code>
+                          </td>
+                          <td><a href="fullscreen.html">Reference</a></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Layout</strong></td>
+                          <td>(auto-applied to <code>&lt;body&gt;</code>)</td>
+                          <td><code>.holdTransition(time)</code></td>
+                          <td><a href="layout.html">Reference</a></td>
+                        </tr>
+                        <tr>
+                          <td><strong>AccessibilityManager</strong></td>
+                          <td>(helper function: <code>initAccessibility()</code>)</td>
+                          <td>
+                            <code>.announce()</code> / <code>.focusElement()</code> /
+                            <code>.trapFocus()</code> / <code>.addLandmarks()</code>
+                          </td>
+                          <td><a href="accessibility.html">Reference</a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h5 id="two-ways-to-use-them">Two ways to use them</h5>
+                    <h6 id="1-data-api-declarative">1. Data API (declarative)</h6>
+                    <p>
+                      For most pages, the data API is enough — no JavaScript code required. Drop the
+                      right <code>data-lte-*</code> attribute on the trigger element and the bundle
+                      wires it up on page load:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#6A9955">&lt;!-- Sidebar toggle --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">button</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;sidebar&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">☰</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">button</span><span style="color:#808080">&gt;</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A9955">&lt;!-- Faster animation --&gt;</span></span>
-<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">ul</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav sidebar-menu&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;treeview&quot;</span><span style="color:#9CDCFE"> data-animation-speed</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;150&quot;</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#D4D4D4">  …</span></span>
-<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">ul</span><span style="color:#808080">&gt;</span></span></code></pre>
-            <h5 id="css-classes">CSS Classes</h5>
-
-            <table>
-              <thead>
-                <tr>
-                  <th>Class</th>
-                  <th>Applied to</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>menu-open</code></td>
-                  <td><code>.nav-item</code> (the parent of a submenu)</td>
-                  <td>The submenu is currently expanded.</td>
-                </tr>
-                <tr>
-                  <td><code>nav-treeview</code></td>
-                  <td><code>&lt;ul&gt;</code> (nested)</td>
-                  <td>Marks a submenu so the plugin recognises it.</td>
-                </tr>
-                <tr>
-                  <td><code>nav-arrow</code></td>
-                  <td><code>&lt;i&gt;</code> inside <code>.nav-link</code></td>
-                  <td>The chevron icon that rotates when the submenu opens.</td>
-                </tr>
-              </tbody>
-            </table>
-            <h5 id="events">Events</h5>
-
-            <table>
-              <thead>
-                <tr>
-                  <th>Event</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>expanded.lte.treeview</code></td>
-                  <td>Fired on the <code>.nav-item</code> when its submenu opens.</td>
-                </tr>
-                <tr>
-                  <td><code>collapsed.lte.treeview</code></td>
-                  <td>Fired on the <code>.nav-item</code> when its submenu closes.</td>
-                </tr>
-                <tr>
-                  <td><code>load.lte.treeview</code></td>
-                  <td>
-                    Fired once per page load for any submenu that’s already expanded via the
-                    <code>menu-open</code> class.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <pre
-              class="astro-code dark-plus"
-              style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
-              tabindex="0"
-              data-language="js"
-            ><code><span class="line"><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">addEventListener</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;expanded.lte.treeview&quot;</span><span style="color:#D4D4D4">, (</span><span style="color:#9CDCFE">e</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;Opened submenu inside:&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">e</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">target</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#6A9955">&lt;!-- Card collapse / remove / maximize --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-header&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">h3</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-title&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Title</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">h3</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-tools&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">button</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;btn btn-tool&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-collapse&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> data-lte-icon</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;expand&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-dash-lg&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> data-lte-icon</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;collapse&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-plus-lg&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">button</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-body&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      The bundle attaches all data-API listeners on <code>DOMContentLoaded</code>.
+                      Dynamically-injected elements still work for the
+                      <a href="pushmenu.html">PushMenu</a>,
+                      <a href="card-widget.html">CardWidget</a>, and
+                      <a href="treeview.html">Treeview</a> plugins, which use event delegation.
+                    </p>
+                    <h6 id="2-programmatic-imperative">2. Programmatic (imperative)</h6>
+                    <p>
+                      When you need to control a plugin from your own code — eg. open the sidebar
+                      after a successful login, or expand a card on a route change — instantiate the
+                      class directly:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="js"
+                    ><code><span class="line"><span style="color:#6A9955">// ESM (bundler import)</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">PushMenu</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">CardWidget</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">Treeview</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> &quot;admin-lte&quot;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// Sidebar</span></span>
+<span class="line"><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> PushMenu</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">body</span><span style="color:#D4D4D4">, {}).</span><span style="color:#DCDCAA">expand</span><span style="color:#D4D4D4">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// Card maximize</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> card</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;#chart-card&quot;</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> CardWidget</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">card</span><span style="color:#D4D4D4">, {}).</span><span style="color:#DCDCAA">maximize</span><span style="color:#D4D4D4">()</span></span></code></pre>
+                    <p>Or use the globals (UMD bundle, no build step):</p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#6A9955">  // The bundle assigns to window.adminlte</span></span>
+<span class="line"><span style="color:#569CD6">  new</span><span style="color:#9CDCFE"> adminlte</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">PushMenu</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">body</span><span style="color:#D4D4D4">, {}).</span><span style="color:#DCDCAA">expand</span><span style="color:#D4D4D4">()</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <h5 id="listening-to-plugin-events">Listening to plugin events</h5>
+                    <p>
+                      Every plugin fires a <code>CustomEvent</code> or <code>Event</code> on the
+                      element it operates on. Listen for these to coordinate with your own code:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="js"
+                    ><code><span class="line"><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">addEventListener</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;expanded.lte.card-widget&quot;</span><span style="color:#D4D4D4">, (</span><span style="color:#9CDCFE">e</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;Card expanded:&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">e</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">target</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#D4D4D4">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">addEventListener</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;open.lte.push-menu&quot;</span><span style="color:#D4D4D4">, () </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#6A9955">  // user opened the sidebar — eg. analytics call</span></span>
 <span class="line"><span style="color:#D4D4D4">})</span></span></code></pre>
-            <h5 id="programmatic-api">Programmatic API</h5>
-            <pre
-              class="astro-code dark-plus"
-              style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
-              tabindex="0"
-              data-language="js"
-            ><code><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">Treeview</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> &quot;admin-lte&quot;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> item</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;.sidebar-menu .nav-item&quot;</span><span style="color:#D4D4D4">)</span></span>
-<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> tv</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> Treeview</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">item</span><span style="color:#D4D4D4">, { </span><span style="color:#9CDCFE">accordion:</span><span style="color:#569CD6"> true</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">animationSpeed:</span><span style="color:#B5CEA8"> 300</span><span style="color:#D4D4D4"> })</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#9CDCFE">tv</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">open</span><span style="color:#D4D4D4">()    </span><span style="color:#6A9955">// expand this item&#39;s submenu</span></span>
-<span class="line"><span style="color:#9CDCFE">tv</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">close</span><span style="color:#D4D4D4">()   </span><span style="color:#6A9955">// collapse it</span></span>
-<span class="line"><span style="color:#9CDCFE">tv</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">toggle</span><span style="color:#D4D4D4">()  </span><span style="color:#6A9955">// toggle</span></span></code></pre>
-            <h6 id="methods">Methods</h6>
+                    <h6 id="event-name-reference">Event name reference</h6>
 
-            <table>
-              <thead>
-                <tr>
-                  <th>Method</th>
-                  <th>Returns</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>open()</code></td>
-                  <td><code>void</code></td>
-                  <td>
-                    Expands the submenu. If <code>accordion</code> is <code>true</code>, closes
-                    sibling submenus first. Fires <code>expanded.lte.treeview</code>.
-                  </td>
-                </tr>
-                <tr>
-                  <td><code>close()</code></td>
-                  <td><code>void</code></td>
-                  <td>Collapses the submenu. Fires <code>collapsed.lte.treeview</code>.</td>
-                </tr>
-                <tr>
-                  <td><code>toggle()</code></td>
-                  <td><code>void</code></td>
-                  <td>Calls <code>open()</code> or <code>close()</code> based on current state.</td>
-                </tr>
-              </tbody>
-            </table>
-            <h5 id="example">Example</h5>
-            <ul
-              class="nav sidebar-menu flex-column"
-              data-lte-toggle="treeview"
-              role="menu"
-              style="
-                background: var(--bs-tertiary-bg);
-                padding: 0.5rem;
-                border-radius: var(--bs-border-radius);
-              "
-            >
-              <li class="nav-item">
-                <a class="nav-link" href="#"
-                  ><i class="nav-icon bi bi-circle"></i>
-                  <p>One level</p></a
-                >
-              </li>
-              <li class="nav-item menu-open">
-                <a class="nav-link" href="#"
-                  ><i class="nav-icon bi bi-folder"></i>
-                  <p>Multilevel <i class="nav-arrow bi bi-chevron-right"></i></p
-                ></a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link"
-                      ><i class="nav-icon bi bi-circle"></i>
-                      <p>Level 2</p></a
-                    >
-                  </li>
-                </ul>
-              </li>
-            </ul>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Plugin</th>
+                          <th>Event</th>
+                          <th>Fired when</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>PushMenu</td>
+                          <td><code>open.lte.push-menu</code></td>
+                          <td>Sidebar expanded</td>
+                        </tr>
+                        <tr>
+                          <td>PushMenu</td>
+                          <td><code>collapse.lte.push-menu</code></td>
+                          <td>Sidebar collapsed</td>
+                        </tr>
+                        <tr>
+                          <td>Treeview</td>
+                          <td><code>expanded.lte.treeview</code></td>
+                          <td>Submenu opened</td>
+                        </tr>
+                        <tr>
+                          <td>Treeview</td>
+                          <td><code>collapsed.lte.treeview</code></td>
+                          <td>Submenu closed</td>
+                        </tr>
+                        <tr>
+                          <td>Treeview</td>
+                          <td><code>load.lte.treeview</code></td>
+                          <td>Pre-opened submenu detected on page load</td>
+                        </tr>
+                        <tr>
+                          <td>CardWidget</td>
+                          <td><code>expanded.lte.card-widget</code></td>
+                          <td>Card expanded</td>
+                        </tr>
+                        <tr>
+                          <td>CardWidget</td>
+                          <td><code>collapsed.lte.card-widget</code></td>
+                          <td>Card collapsed</td>
+                        </tr>
+                        <tr>
+                          <td>CardWidget</td>
+                          <td><code>remove.lte.card-widget</code></td>
+                          <td>Card removed</td>
+                        </tr>
+                        <tr>
+                          <td>CardWidget</td>
+                          <td><code>maximized.lte.card-widget</code></td>
+                          <td>Card maximized</td>
+                        </tr>
+                        <tr>
+                          <td>CardWidget</td>
+                          <td><code>minimized.lte.card-widget</code></td>
+                          <td>Card minimized</td>
+                        </tr>
+                        <tr>
+                          <td>DirectChat</td>
+                          <td><code>expanded.lte.direct-chat</code></td>
+                          <td>Contacts pane opened</td>
+                        </tr>
+                        <tr>
+                          <td>DirectChat</td>
+                          <td><code>collapsed.lte.direct-chat</code></td>
+                          <td>Contacts pane closed</td>
+                        </tr>
+                        <tr>
+                          <td>FullScreen</td>
+                          <td><code>maximized.lte.fullscreen</code></td>
+                          <td>Entered fullscreen</td>
+                        </tr>
+                        <tr>
+                          <td>FullScreen</td>
+                          <td><code>minimized.lte.fullscreen</code></td>
+                          <td>Exited fullscreen</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p>
+                      All events bubble. Attach listeners to <code>document</code> or
+                      <code>document.body</code> for global hooks, or to a specific card / sidebar
+                      element for scoped listeners.
+                    </p>
+                    <h5 id="configuring-via-data-attributes">Configuring via data attributes</h5>
+                    <p>
+                      Some plugins read config from <code>data-*</code> attributes on their target
+                      element:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#6A9955">&lt;!-- Treeview — non-accordion (multiple submenus can be open at once) --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">ul</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav sidebar-menu&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;treeview&quot;</span><span style="color:#9CDCFE"> data-accordion</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;false&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">ul</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">&lt;!-- Treeview — custom animation speed --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">ul</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav sidebar-menu&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;treeview&quot;</span><span style="color:#9CDCFE"> data-animation-speed</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;500&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">ul</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">&lt;!-- Sidebar — opt into localStorage persistence (default: off) --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">aside</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-sidebar&quot;</span><span style="color:#9CDCFE"> data-enable-persistence</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;true&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">aside</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">&lt;!-- Sidebar — override the mobile breakpoint --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">aside</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-sidebar&quot;</span><span style="color:#9CDCFE"> data-sidebar-breakpoint</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;768&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">aside</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>Each plugin’s reference page documents which attributes it supports.</p>
+                    <h5 id="css-classes-the-plugins-manage">CSS classes the plugins manage</h5>
+                    <p>
+                      The plugins toggle a small set of CSS classes that you can also style or react
+                      to:
+                    </p>
+
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Class</th>
+                          <th>Set by</th>
+                          <th>Where</th>
+                          <th>Meaning</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><code>sidebar-collapse</code></td>
+                          <td>PushMenu</td>
+                          <td><code>&lt;body&gt;</code></td>
+                          <td>Sidebar collapsed (desktop mini state, or mobile-closed)</td>
+                        </tr>
+                        <tr>
+                          <td><code>sidebar-open</code></td>
+                          <td>PushMenu</td>
+                          <td><code>&lt;body&gt;</code></td>
+                          <td>Mobile sidebar explicitly opened by user</td>
+                        </tr>
+                        <tr>
+                          <td><code>sidebar-mini</code></td>
+                          <td>PushMenu</td>
+                          <td><code>&lt;body&gt;</code></td>
+                          <td>Mini-sidebar mode active</td>
+                        </tr>
+                        <tr>
+                          <td><code>menu-open</code></td>
+                          <td>Treeview</td>
+                          <td><code>.nav-item</code></td>
+                          <td>Submenu is currently expanded</td>
+                        </tr>
+                        <tr>
+                          <td><code>collapsed-card</code></td>
+                          <td>CardWidget</td>
+                          <td><code>.card</code></td>
+                          <td>Card body/footer are collapsed</td>
+                        </tr>
+                        <tr>
+                          <td><code>maximized-card</code></td>
+                          <td>CardWidget</td>
+                          <td><code>&lt;html&gt;</code> and <code>.card</code></td>
+                          <td>Card is in fullscreen mode</td>
+                        </tr>
+                        <tr>
+                          <td><code>direct-chat-contacts-open</code></td>
+                          <td>DirectChat</td>
+                          <td><code>.direct-chat</code></td>
+                          <td>Contacts pane visible</td>
+                        </tr>
+                        <tr>
+                          <td><code>hold-transition</code></td>
+                          <td>Layout</td>
+                          <td><code>&lt;body&gt;</code></td>
+                          <td>Transitions disabled briefly (during resize, etc.)</td>
+                        </tr>
+                        <tr>
+                          <td><code>app-loaded</code></td>
+                          <td>Layout</td>
+                          <td><code>&lt;body&gt;</code></td>
+                          <td>Initial page-load animation finished</td>
+                        </tr>
+                        <tr>
+                          <td><code>reduce-motion</code></td>
+                          <td>AccessibilityManager</td>
+                          <td><code>&lt;body&gt;</code></td>
+                          <td>OS <code>prefers-reduced-motion</code> detected</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h5 id="production-vs-source">Production vs source</h5>
+                    <p>
+                      The plugins live in
+                      <a href="https://github.com/ColorlibHQ/master/src/ts"><code>src/ts/</code></a>
+                      as TypeScript modules. The published <code>dist/js/adminlte.js</code> is a
+                      Rollup bundle of all seven, exporting them under a single
+                      <code>adminlte</code> namespace (UMD) or named imports (ESM).
+                    </p>
+                    <p>
+                      If you only need one or two plugins and care about bundle size, importing
+                      individual modules from <code>node_modules/admin-lte/src/ts/</code> will
+                      tree-shake — but you’ll need TypeScript in your toolchain.
+                    </p>
+                    <h5 id="where-to-next">Where to next</h5>
+                    <ul>
+                      <li>Detailed reference for each plugin (links in the table above)</li>
+                      <li>
+                        <a href="../layout-blueprint.html">Layout Blueprint</a> — the structural
+                        classes the plugins operate on
+                      </li>
+                      <li>
+                        <a href="accessibility.html">Accessibility</a> — keyboard navigation, focus
+                        trapping, ARIA helpers
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <!--end::Container-->
         </div>
-        <!--end::App Content-->
       </main>
-      <!--end::App Main-->
       <!--begin::Footer-->
       <footer class="app-footer">
         <!--begin::To the end-->
@@ -1346,8 +1482,6 @@
       </footer>
       <!--end::Footer-->
     </div>
-    <!--end::App Wrapper-->
-    <!--begin::Script-->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <script
       src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
@@ -1459,7 +1593,5 @@
       })();
     </script>
     <!--end::Color Mode Toggle-->
-    <!--end::Script-->
   </body>
-  <!--end::Body-->
 </html>

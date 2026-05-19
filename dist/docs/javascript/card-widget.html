@@ -819,6 +819,18 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="../../docs/layout-blueprint.html" class="nav-link">
+                  <i class="nav-icon bi bi-diagram-3"></i>
+                  <p>Layout Blueprint</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../../docs/recipes.html" class="nav-link">
+                  <i class="nav-icon bi bi-clipboard-check"></i>
+                  <p>Recipes</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="../../docs/customization.html" class="nav-link">
                   <i class="nav-icon bi bi-palette"></i>
                   <p>Customization</p>
@@ -846,6 +858,12 @@
                 <a href="../../docs/integrations.html" class="nav-link">
                   <i class="nav-icon bi bi-puzzle"></i>
                   <p>Recommended Integrations</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../../docs/deployment.html" class="nav-link">
+                  <i class="nav-icon bi bi-cloud-upload"></i>
+                  <p>Deployment</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -880,6 +898,12 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="../../docs/javascript/plugins-overview.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Overview</p>
+                    </a>
+                  </li>
                   <li class="nav-item">
                     <a href="../../docs/javascript/layout.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
@@ -1160,13 +1184,143 @@
                 </tr>
               </tbody>
             </table>
+            <h5 id="configuration">Configuration</h5>
+            <p>
+              The plugin reads no <code>data-*</code> configuration attributes. To customize
+              behaviour, instantiate it programmatically and pass a config:
+            </p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Default</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>animationSpeed</code></td>
+                  <td><code>500</code></td>
+                  <td>Slide animation duration in milliseconds.</td>
+                </tr>
+                <tr>
+                  <td><code>collapseTrigger</code></td>
+                  <td><code>[data-lte-toggle=&quot;card-collapse&quot;]</code></td>
+                  <td>CSS selector for collapse buttons.</td>
+                </tr>
+                <tr>
+                  <td><code>removeTrigger</code></td>
+                  <td><code>[data-lte-toggle=&quot;card-remove&quot;]</code></td>
+                  <td>CSS selector for remove buttons.</td>
+                </tr>
+                <tr>
+                  <td><code>maximizeTrigger</code></td>
+                  <td><code>[data-lte-toggle=&quot;card-maximize&quot;]</code></td>
+                  <td>CSS selector for maximize buttons.</td>
+                </tr>
+              </tbody>
+            </table>
+            <h5 id="programmatic-api">Programmatic API</h5>
+            <pre
+              class="astro-code dark-plus"
+              style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+              tabindex="0"
+              data-language="js"
+            ><code><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">CardWidget</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> &quot;admin-lte&quot;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> card</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;#chart-card&quot;</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> widget</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> CardWidget</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">card</span><span style="color:#D4D4D4">, { </span><span style="color:#9CDCFE">animationSpeed:</span><span style="color:#B5CEA8"> 250</span><span style="color:#D4D4D4"> })</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">widget</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">maximize</span><span style="color:#D4D4D4">()     </span><span style="color:#6A9955">// expand to fullscreen</span></span>
+<span class="line"><span style="color:#9CDCFE">widget</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">collapse</span><span style="color:#D4D4D4">()     </span><span style="color:#6A9955">// hide body and footer</span></span>
+<span class="line"><span style="color:#9CDCFE">widget</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">expand</span><span style="color:#D4D4D4">()       </span><span style="color:#6A9955">// restore from collapsed</span></span>
+<span class="line"><span style="color:#9CDCFE">widget</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">remove</span><span style="color:#D4D4D4">()       </span><span style="color:#6A9955">// animate out and remove from DOM</span></span>
+<span class="line"><span style="color:#9CDCFE">widget</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">toggle</span><span style="color:#D4D4D4">()       </span><span style="color:#6A9955">// expand / collapse based on current state</span></span>
+<span class="line"><span style="color:#9CDCFE">widget</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">toggleMaximize</span><span style="color:#D4D4D4">()  </span><span style="color:#6A9955">// maximize / minimize based on current state</span></span></code></pre>
+            <h6 id="methods">Methods</h6>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Returns</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>collapse()</code></td>
+                  <td><code>void</code></td>
+                  <td>
+                    Slides up body and footer, adds <code>collapsed-card</code>. Fires
+                    <code>collapsed.lte.card-widget</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>expand()</code></td>
+                  <td><code>void</code></td>
+                  <td>
+                    Slides down body and footer, removes <code>collapsed-card</code>. Fires
+                    <code>expanded.lte.card-widget</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>toggle()</code></td>
+                  <td><code>void</code></td>
+                  <td>
+                    Calls <code>collapse()</code> or <code>expand()</code> based on the
+                    <code>collapsed-card</code> class.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>maximize()</code></td>
+                  <td><code>void</code></td>
+                  <td>
+                    Sets the card to fixed fullscreen positioning, adds <code>maximized-card</code>.
+                    Fires <code>maximized.lte.card-widget</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>minimize()</code></td>
+                  <td><code>void</code></td>
+                  <td>
+                    Restores original size, removes <code>maximized-card</code>. Fires
+                    <code>minimized.lte.card-widget</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>toggleMaximize()</code></td>
+                  <td><code>void</code></td>
+                  <td>
+                    Calls <code>maximize()</code> or <code>minimize()</code> based on the
+                    <code>maximized-card</code> class.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>remove()</code></td>
+                  <td><code>void</code></td>
+                  <td>
+                    Animates the card out and removes it from the DOM. Fires
+                    <code>remove.lte.card-widget</code>.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
             <h5 id="notes">Notes</h5>
             <ul>
               <li>
                 Nested cards are handled correctly: collapsing a parent card does not affect child
                 cards.
               </li>
-              <li>The animation speed defaults to 500ms.</li>
+              <li>
+                Maximizing a card also adds <code>maximized-card</code> to
+                <code>&lt;html&gt;</code> so global styles can react.
+              </li>
+              <li>
+                A card that’s collapsed when you maximize it remembers that — the
+                <code>was-collapsed</code> class tracks this state.
+              </li>
             </ul>
           </div>
           <!--end::Container-->
