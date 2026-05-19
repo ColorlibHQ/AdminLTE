@@ -14431,6 +14431,108 @@ body:not(.app-loaded) .app-footer {
   line-height: 1.6;
   color: var(--bs-body-color);
 }
+.docs-page .card > .card-body details.faq-item {
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .docs-page .card > .card-body details.faq-item {
+    transition: none;
+  }
+}
+.docs-page .card > .card-body details.faq-item:hover {
+  border-color: var(--bs-primary-border-subtle);
+}
+.docs-page .card > .card-body details.faq-item[open] {
+  background: var(--bs-body-bg);
+  border-color: var(--bs-primary-border-subtle);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+.docs-page .card > .card-body details.faq-item summary {
+  position: relative;
+  padding: 0.9rem 1.1rem 0.9rem 3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--bs-emphasis-color);
+  list-style: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: color 0.15s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .docs-page .card > .card-body details.faq-item summary {
+    transition: none;
+  }
+}
+.docs-page .card > .card-body details.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.docs-page .card > .card-body details.faq-item summary::marker {
+  content: "";
+}
+.docs-page .card > .card-body details.faq-item summary:hover {
+  color: var(--bs-primary);
+}
+.docs-page .card > .card-body details.faq-item summary::after {
+  position: absolute;
+  top: 50%;
+  left: 1.1rem;
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: -0.4rem;
+  content: "";
+  border-left: 2px solid currentcolor;
+  border-bottom: 2px solid currentcolor;
+  opacity: 0.55;
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .docs-page .card > .card-body details.faq-item summary::after {
+    transition: none;
+  }
+}
+.docs-page .card > .card-body details.faq-item[open] > summary {
+  color: var(--bs-primary);
+  border-bottom: 1px solid var(--bs-border-color);
+}
+.docs-page .card > .card-body details.faq-item[open] > summary::after {
+  margin-top: -0.15rem;
+  opacity: 1;
+  transform: rotate(135deg);
+}
+.docs-page .card > .card-body details.faq-item > *:not(summary) {
+  padding-left: 1.1rem;
+  padding-right: 1.1rem;
+}
+.docs-page .card > .card-body details.faq-item > *:not(summary):first-of-type {
+  padding-top: 1rem;
+}
+.docs-page .card > .card-body details.faq-item > *:not(summary):last-child {
+  padding-bottom: 1rem;
+}
+.docs-page .card > .card-body details.faq-item p,
+.docs-page .card > .card-body details.faq-item ul,
+.docs-page .card > .card-body details.faq-item ol {
+  margin-bottom: 0.65rem;
+}
+.docs-page .card > .card-body details.faq-item > *:last-child p:last-child,
+.docs-page .card > .card-body details.faq-item > p:last-child,
+.docs-page .card > .card-body details.faq-item > ul:last-child,
+.docs-page .card > .card-body details.faq-item > ol:last-child {
+  margin-bottom: 0;
+}
+.docs-page .card > .card-body details.faq-item pre.astro-code,
+.docs-page .card > .card-body details.faq-item pre {
+  margin-left: 0;
+  margin-right: 0;
+}
 .docs-page[data-bs-theme=dark] .card > .card-body blockquote code, [data-bs-theme=dark] .docs-page .card > .card-body blockquote code {
   background: rgba(255, 255, 255, 0.08);
 }
@@ -16109,6 +16211,108 @@ fieldset legend {
   font-size: 1.125rem;
   line-height: 1.6;
   color: var(--bs-body-color);
+}
+.docs-page .card > .card-body details.faq-item {
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .docs-page .card > .card-body details.faq-item {
+    transition: none;
+  }
+}
+.docs-page .card > .card-body details.faq-item:hover {
+  border-color: var(--bs-primary-border-subtle);
+}
+.docs-page .card > .card-body details.faq-item[open] {
+  background: var(--bs-body-bg);
+  border-color: var(--bs-primary-border-subtle);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+.docs-page .card > .card-body details.faq-item summary {
+  position: relative;
+  padding: 0.9rem 1.1rem 0.9rem 3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--bs-emphasis-color);
+  list-style: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: color 0.15s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .docs-page .card > .card-body details.faq-item summary {
+    transition: none;
+  }
+}
+.docs-page .card > .card-body details.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.docs-page .card > .card-body details.faq-item summary::marker {
+  content: "";
+}
+.docs-page .card > .card-body details.faq-item summary:hover {
+  color: var(--bs-primary);
+}
+.docs-page .card > .card-body details.faq-item summary::after {
+  position: absolute;
+  top: 50%;
+  left: 1.1rem;
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: -0.4rem;
+  content: "";
+  border-left: 2px solid currentcolor;
+  border-bottom: 2px solid currentcolor;
+  opacity: 0.55;
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .docs-page .card > .card-body details.faq-item summary::after {
+    transition: none;
+  }
+}
+.docs-page .card > .card-body details.faq-item[open] > summary {
+  color: var(--bs-primary);
+  border-bottom: 1px solid var(--bs-border-color);
+}
+.docs-page .card > .card-body details.faq-item[open] > summary::after {
+  margin-top: -0.15rem;
+  opacity: 1;
+  transform: rotate(135deg);
+}
+.docs-page .card > .card-body details.faq-item > *:not(summary) {
+  padding-left: 1.1rem;
+  padding-right: 1.1rem;
+}
+.docs-page .card > .card-body details.faq-item > *:not(summary):first-of-type {
+  padding-top: 1rem;
+}
+.docs-page .card > .card-body details.faq-item > *:not(summary):last-child {
+  padding-bottom: 1rem;
+}
+.docs-page .card > .card-body details.faq-item p,
+.docs-page .card > .card-body details.faq-item ul,
+.docs-page .card > .card-body details.faq-item ol {
+  margin-bottom: 0.65rem;
+}
+.docs-page .card > .card-body details.faq-item > *:last-child p:last-child,
+.docs-page .card > .card-body details.faq-item > p:last-child,
+.docs-page .card > .card-body details.faq-item > ul:last-child,
+.docs-page .card > .card-body details.faq-item > ol:last-child {
+  margin-bottom: 0;
+}
+.docs-page .card > .card-body details.faq-item pre.astro-code,
+.docs-page .card > .card-body details.faq-item pre {
+  margin-left: 0;
+  margin-right: 0;
 }
 .docs-page[data-bs-theme=dark] .card > .card-body blockquote code, [data-bs-theme=dark] .docs-page .card > .card-body blockquote code {
   background: rgba(255, 255, 255, 0.08);
