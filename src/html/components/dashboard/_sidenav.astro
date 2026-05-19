@@ -638,6 +638,15 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
         </li>
         <li class="nav-item">
           <a
+            href={htmlPath + "/docs/getting-started.html"}
+            class:list={["nav-link", page === "getting-started" && "active"]}
+          >
+            <i class="nav-icon bi bi-rocket-takeoff"></i>
+            <p>Getting Started</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
             href={htmlPath + "/docs/layout.html"}
             class:list={["nav-link", page === "layout" && "active"]}
           >
@@ -647,11 +656,38 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
         </li>
         <li class="nav-item">
           <a
+            href={htmlPath + "/docs/customization.html"}
+            class:list={["nav-link", page === "customization" && "active"]}
+          >
+            <i class="nav-icon bi bi-palette"></i>
+            <p>Customization</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
             href={htmlPath + "/docs/color-mode.html"}
             class:list={["nav-link", page === "color-mode" && "active"]}
           >
             <i class="nav-icon bi bi-star-half"></i>
             <p>Color Mode</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href={htmlPath + "/docs/rtl.html"}
+            class:list={["nav-link", page === "rtl" && "active"]}
+          >
+            <i class="nav-icon bi bi-text-paragraph"></i>
+            <p>RTL Support</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href={htmlPath + "/docs/migration.html"}
+            class:list={["nav-link", page === "migration" && "active"]}
+          >
+            <i class="nav-icon bi bi-arrow-up-right-square"></i>
+            <p>Migration from v3</p>
           </a>
         </li>
         <li class="nav-item">

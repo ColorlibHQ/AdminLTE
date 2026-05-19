@@ -1,11 +1,111 @@
-#### Can AdminLTE be used with WordPress?
+A grab bag of questions we get asked most often. If yours isn't here, [open a Discussion](https://github.com/ColorlibHQ/AdminLTE/discussions) on GitHub.
 
-AdminLTE is an HTML template that can be used for any purpose. However, it is not made to be easily installed on WordPress. It will require some effort and enough knowledge of the WordPress script to do so.
+##### Getting started
 
-#### Is there an integration guide for PHP frameworks such as Yii or Symfony?
+###### What is AdminLTE, exactly?
 
-Short answer, no. However, there are forks and tutorials around the web that provide info on how to integrate with many different frameworks. There are even versions of AdminLTE that are integrated with jQuery ajax, AngularJS and/or MVC5 ASP .NET.
+A free, MIT-licensed admin dashboard *template*. It's a set of HTML, CSS, and JavaScript files built on top of Bootstrap 5.3 — not a framework, not an npm component library. You drop it into your project, modify the markup to suit your app, and ship.
 
-#### How do I get notified of new AdminLTE versions?
+###### Do I need a build step to use it?
 
-You may watch the [releases on GitHub](https://github.com/ColorlibHQ/AdminLTE).
+No. The [Getting Started](getting-started.html) guide shows the CDN-only approach — copy four `<link>` tags and four `<script>` tags into your HTML and you're done. The npm-based workflow is there if you want to customise SCSS variables or tree-shake the JavaScript.
+
+###### Which Bootstrap version does v4 require?
+
+Bootstrap 5.3.x. The current `package.json` pins 5.3.8 — older 5.3 minors should work but aren't tested. Bootstrap 5.0/5.1/5.2 will not work (the colour-mode and `data-bs-theme` system landed in 5.3).
+
+###### Can I use AdminLTE 4 with jQuery?
+
+You don't *need* jQuery — AdminLTE 4's JavaScript is vanilla. If your existing app already uses jQuery, it'll coexist fine. But none of AdminLTE 4's own plugins call into jQuery, and there are no `$.fn.xxx()` plugin shims.
+
+##### Framework integrations
+
+###### Can AdminLTE be used with WordPress?
+
+Yes — it's just HTML/CSS/JS. The typical path is to build a custom WordPress theme that wraps AdminLTE's markup around `wp_head()`, `wp_footer()`, and WordPress's loops. AdminLTE doesn't ship a WordPress-specific build; the work of porting nav-walker classes and authentication forms is yours.
+
+###### Laravel? Symfony? Yii? Django? Rails?
+
+All workable. AdminLTE is a server-rendered template — copy the demo pages into your views/templates, replace static content with your framework's template variables, and wire up routes/auth as usual. Community Composer/Packagist packages exist for Laravel and Symfony, though they typically lag the upstream version — verify they ship v4 before you depend on them.
+
+###### React, Vue, Svelte, Angular?
+
+Workable but less natural. AdminLTE's JavaScript plugins use DOM lifecycle hooks (`DOMContentLoaded`, MutationObserver patterns) which fight with framework reconciliation. If you're using a SPA framework, consider:
+
+- Using AdminLTE *only* for CSS — keep the visual style, but write your own React/Vue components for the interactive parts.
+- Or pick a component library built for your framework (PrimeReact, Vuetify, etc.).
+
+We don't recommend wrapping AdminLTE's jQuery-era plugins in SPA framework components — it's a maintenance burden that outweighs the visual win.
+
+##### Customization
+
+###### How do I change the primary colour?
+
+Override `--bs-primary` (and its RGB counterpart) on `:root`:
+
+```css
+:root {
+  --bs-primary: #6610f2;
+  --bs-primary-rgb: 102, 16, 242;
+}
+```
+
+For deeper control (sidebar width, breakpoints, spacing scale), see [Customization &amp; Theming](customization.html).
+
+###### How do I add a date picker / multi-select / rich text editor?
+
+AdminLTE deliberately doesn't bundle these — they'd bloat the framework. The [Recommended Integrations](integrations.html) page lists best-in-class third-party libraries (Flatpickr, Tom Select, Quill, etc.) with copy-paste install snippets.
+
+###### Can I use FontAwesome instead of Bootstrap Icons?
+
+Yes. Bootstrap Icons is the default in the demos because it's MIT, ships with Bootstrap, and is SVG-based — but nothing in AdminLTE's CSS or JS requires it. Drop in FontAwesome's stylesheet and replace `<i class="bi bi-x">` with `<i class="fas fa-x">` throughout.
+
+##### Versions and updates
+
+###### How do I get notified of new versions?
+
+[Watch the GitHub repo](https://github.com/ColorlibHQ/AdminLTE) (Releases-only mode) or subscribe to the RSS feed at `https://github.com/ColorlibHQ/AdminLTE/releases.atom`.
+
+###### Where's the AdminLTE 3 documentation?
+
+Still online at [adminlte.io/docs/3.2](https://adminlte.io/docs/3.2/) and earlier versions are linked there. The v3 branch on GitHub continues to receive critical bug fixes; new features land in v4 only.
+
+###### How do I upgrade from v3 to v4?
+
+See the dedicated [Migration from v3](migration.html) guide. The short version: class names changed (`.wrapper` → `.app-wrapper`), `data-toggle` → `data-bs-toggle`, dark mode uses `data-bs-theme` instead of `.dark-mode`, and jQuery isn't required anymore.
+
+##### Licensing
+
+###### Is AdminLTE free for commercial use?
+
+Yes — MIT licensed. You can use it in commercial products, SaaS apps, client work, anything. The only requirement is preserving the copyright notice in the source files (`adminlte.css` / `adminlte.js`). You don't need to display attribution in the UI.
+
+###### Do I need to credit AdminLTE in my app?
+
+No. The MIT license requires you to keep the licence notice in the source files you distribute — that's it. You don't have to mention AdminLTE in the rendered UI, your About page, or your README.
+
+###### Can I sell a product made with AdminLTE?
+
+Yes. The MIT license explicitly permits this. You can also resell modified versions of AdminLTE itself (theme marketplaces frequently do this) — just preserve the original copyright notice.
+
+##### Troubleshooting
+
+###### The sidebar doesn't collapse when I click the hamburger menu.
+
+Check that the PushMenu plugin is loaded. It's bundled into `adminlte.js` — make sure the script tag is on the page and *after* the markup it operates on. Also verify your hamburger button has `data-lte-toggle="sidebar"` (not `data-widget="pushmenu"`, which is the v3 attribute).
+
+###### Dark mode doesn't persist after refresh.
+
+The included [Color Mode](color-mode.html) toggle writes to `localStorage` under the key `lte-theme`. If you're using a different toggle implementation, make sure it both sets `document.documentElement.setAttribute('data-bs-theme', ...)` and writes to localStorage on change.
+
+###### Bootstrap modal closes when I press Escape, but the AdminLTE sidebar closes too.
+
+Fixed in v4.0.0 (#5993). If you're still seeing this, you're on an older RC — update to the latest.
+
+###### My custom SCSS doesn't override AdminLTE's defaults.
+
+Put your overrides *before* the `@import` of AdminLTE's SCSS. AdminLTE uses `!default` on its variables, which means the first declaration wins. See [Customization &amp; Theming](customization.html#scss-variables) for the import order.
+
+###### `npm install` fails with peer dependency errors.
+
+We use an npm `overrides` block in `package.json` to keep peers happy — make sure you're on npm 8.3+ which respects them. If you're on an older npm, install with `--legacy-peer-deps`.
