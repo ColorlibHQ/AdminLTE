@@ -1,0 +1,350 @@
+Copy-paste solutions for the patterns that show up in every admin dashboard. Each recipe assumes you've followed [Getting Started](getting-started.html) and have a working AdminLTE page to build on.
+
+##### A multi-level sidebar with icons, badges, and headers
+
+The demo dashboards use this exact pattern. Group sections with `.nav-header`, indicate item depth with nested `.nav-treeview` lists, and use `.navbar-badge` for counts.
+
+```html
+<aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+  <div class="sidebar-brand">
+    <a href="/" class="brand-link">
+      <span class="brand-text fw-light">My Dashboard</span>
+    </a>
+  </div>
+  <div class="sidebar-wrapper">
+    <nav class="mt-2">
+      <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu">
+
+        <li class="nav-header">MAIN</li>
+        <li class="nav-item">
+          <a href="/" class="nav-link active">
+            <i class="nav-icon bi bi-speedometer"></i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon bi bi-folder"></i>
+            <p>
+              Projects
+              <span class="badge text-bg-info ms-2">12</span>
+              <i class="nav-arrow bi bi-chevron-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="#" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>Active</p></a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>Archived</p></a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-header">REPORTS</li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon bi bi-bar-chart"></i>
+            <p>Sales</p>
+            <span class="badge text-bg-danger ms-auto">3</span>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+</aside>
+```
+
+To mark the current page as active, server-render the `.active` class onto the matching `.nav-link`. For SPA frameworks, add it on route change.
+
+##### Highlighting the active sidebar item from JavaScript
+
+If you're rendering the sidebar once and want client-side route highlighting:
+
+```js
+function setActiveSidebarItem(href) {
+  document.querySelectorAll(".sidebar-menu .nav-link").forEach((el) => {
+    el.classList.toggle("active", el.getAttribute("href") === href)
+  })
+}
+
+// Call on route change
+setActiveSidebarItem(window.location.pathname)
+```
+
+##### Responsive data tables
+
+Wrap a `<table>` in `.table-responsive` so it gets a horizontal scrollbar on narrow viewports instead of overflowing the card.
+
+```html
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Recent orders</h3>
+  </div>
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-striped align-middle mb-0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Customer</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- rows -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+```
+
+For interactive sorting/filtering/pagination, use [Tabulator](integrations.html#tabulator) — `tables/data.html` in the demo has a full example.
+
+##### A user dropdown in the topbar
+
+```html
+<li class="nav-item dropdown user-menu">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+    <span class="d-none d-md-inline me-1">Jane Doe</span>
+    <i class="bi bi-person-circle fs-5"></i>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li>
+      <a href="/profile" class="dropdown-item">
+        <i class="bi bi-person me-2"></i>Profile
+      </a>
+    </li>
+    <li>
+      <a href="/settings" class="dropdown-item">
+        <i class="bi bi-gear me-2"></i>Settings
+      </a>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+    <li>
+      <a href="/logout" class="dropdown-item text-danger">
+        <i class="bi bi-box-arrow-right me-2"></i>Sign out
+      </a>
+    </li>
+  </ul>
+</li>
+```
+
+Put this inside the `<ul class="navbar-nav ms-auto">` in `.app-header`.
+
+##### A KPI card (small-box)
+
+The bright-coloured stat boxes at the top of most dashboards:
+
+```html
+<div class="row g-3">
+  <div class="col-lg-3 col-6">
+    <div class="small-box text-bg-primary">
+      <div class="inner">
+        <h3>150</h3>
+        <p>New orders</p>
+      </div>
+      <i class="bi bi-cart small-box-icon" aria-hidden="true"></i>
+      <a href="#" class="small-box-footer link-light">
+        More info <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+  <!-- repeat 3 more times with different values + colours -->
+</div>
+```
+
+Swap `text-bg-primary` for `text-bg-success`, `text-bg-warning`, `text-bg-danger`, etc.
+
+##### A breadcrumb + page-title row
+
+This is the standard `.app-content-header` pattern used across every demo page:
+
+```html
+<div class="app-content-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="mb-0">Page Title</h3>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-end">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a href="/section">Section</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Current page</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+##### A timeline
+
+For activity feeds, audit logs, or roadmap views:
+
+```html
+<div class="timeline">
+  <div>
+    <i class="bi bi-envelope bg-info" aria-hidden="true"></i>
+    <div class="timeline-item">
+      <span class="time"><i class="bi bi-clock"></i> 12:05</span>
+      <h3 class="timeline-header">
+        <a href="#">Olivia</a> sent you a message
+      </h3>
+      <div class="timeline-body">
+        Hey, can we review the Q4 numbers tomorrow at 10?
+      </div>
+      <div class="timeline-footer">
+        <a class="btn btn-primary btn-sm">Read more</a>
+      </div>
+    </div>
+  </div>
+  <!-- repeat -->
+</div>
+```
+
+The timeline component lives in `_timeline.scss` and has variants. See [`/UI/timeline.html`](../UI/timeline.html) for the full set.
+
+##### A direct-chat widget
+
+The chat-style card used for live customer support, team chat, etc. Includes contact toggle and message bubbles.
+
+```html
+<div class="card direct-chat direct-chat-primary">
+  <div class="card-header">
+    <h3 class="card-title">Direct Chat</h3>
+    <div class="card-tools">
+      <span class="badge text-bg-primary">3 new</span>
+      <button type="button" class="btn btn-tool" data-lte-toggle="chat-pane" title="Contacts">
+        <i class="bi bi-people-fill"></i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="direct-chat-messages">
+      <div class="direct-chat-msg">
+        <div class="direct-chat-infos clearfix">
+          <span class="direct-chat-name float-start">Olivia</span>
+          <span class="direct-chat-timestamp float-end">12:05</span>
+        </div>
+        <img class="direct-chat-img" src="/avatars/olivia.jpg" alt="" />
+        <div class="direct-chat-text">Hey, ready for the review?</div>
+      </div>
+      <div class="direct-chat-msg right">
+        <div class="direct-chat-infos clearfix">
+          <span class="direct-chat-name float-end">You</span>
+          <span class="direct-chat-timestamp float-start">12:06</span>
+        </div>
+        <img class="direct-chat-img" src="/avatars/me.jpg" alt="" />
+        <div class="direct-chat-text">Yes, on my way.</div>
+      </div>
+    </div>
+    <div class="direct-chat-contacts">
+      <!-- contacts list, shown when chat-pane toggled -->
+    </div>
+  </div>
+  <div class="card-footer">
+    <form>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Message…" />
+        <button type="submit" class="btn btn-primary">
+          <i class="bi bi-send"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+```
+
+For a full-page chat application, see `/pages/chat.html` in the demo.
+
+##### Reacting to layout/sidebar changes
+
+Listen for plugin events to coordinate with your own code — e.g., refit a chart when the sidebar collapses (so the chart re-measures its container width):
+
+```js
+let chart = /* your ApexCharts instance */
+
+document.addEventListener("collapse.lte.push-menu", () => {
+  // wait for the transition to finish (~300ms by default)
+  setTimeout(() => chart.updateOptions({}), 350)
+})
+
+document.addEventListener("open.lte.push-menu", () => {
+  setTimeout(() => chart.updateOptions({}), 350)
+})
+```
+
+The same pattern works for Tabulator, FullCalendar, and any other library that reads its container width on init.
+
+##### Loading content into a card via fetch
+
+```html
+<div class="card" id="users-card">
+  <div class="card-header">
+    <h3 class="card-title">Users</h3>
+    <div class="card-tools">
+      <span class="spinner-border spinner-border-sm text-secondary d-none" id="users-spinner" role="status"></span>
+    </div>
+  </div>
+  <div class="card-body p-0">
+    <div id="users-body" class="text-secondary p-3">Loading&hellip;</div>
+  </div>
+</div>
+
+<script>
+  const spinner = document.getElementById("users-spinner")
+  const body = document.getElementById("users-body")
+
+  spinner.classList.remove("d-none")
+  fetch("/api/users")
+    .then((r) => r.text())
+    .then((html) => { body.innerHTML = html })
+    .catch(() => { body.textContent = "Failed to load." })
+    .finally(() => spinner.classList.add("d-none"))
+</script>
+```
+
+##### Confirming destructive actions before submission
+
+Bootstrap modal + a tiny confirmation pattern:
+
+```html
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDelete">
+  Delete account
+</button>
+
+<div class="modal fade" id="confirmDelete" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete account?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        This permanently deletes your account and all associated data. This cannot be undone.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <form action="/account/delete" method="POST" class="d-inline">
+          <button type="submit" class="btn btn-danger">Yes, delete it</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+The [Color Mode](color-mode.html), [Accessibility](javascript/accessibility.html), and the bundled JS handle Escape-to-close, focus trap, and keyboard navigation inside the modal automatically.
+
+##### Where to next
+
+- [JavaScript Plugins Overview](javascript/plugins-overview.html) — every plugin's event names and methods
+- [Recommended Integrations](integrations.html) — when you need more than what's in this list
+- [Customization](customization.html) — change colours, sidebar width, breakpoints

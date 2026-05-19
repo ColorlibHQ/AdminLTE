@@ -1,0 +1,225 @@
+AdminLTE is a static HTML/CSS/JS template — there's nothing exotic about deploying it. But there are a handful of choices that meaningfully change page weight, time-to-interactive, and CDN reliability. This page documents the ones worth getting right.
+
+##### What to deploy
+
+The deployable artefact is everything under `dist/` plus your own HTML / server-rendered templates:
+
+```text
+dist/
+├── css/                ← stylesheets (LTR + RTL, dev + minified)
+│   ├── adminlte.css
+│   ├── adminlte.min.css
+│   ├── adminlte.rtl.css
+│   └── adminlte.rtl.min.css
+├── js/                 ← JavaScript bundle (dev + minified)
+│   ├── adminlte.js
+│   └── adminlte.min.js
+└── assets/             ← demo images / fonts (replace with your own)
+```
+
+You don't ship `src/`, `node_modules/`, or the demo HTML if you're embedding AdminLTE into your own app.
+
+##### Always use the `.min` variants in production
+
+The minified builds are the same code with whitespace stripped and identifiers shortened. For `adminlte.css` the saving is roughly 15-20%; for `adminlte.js` it's bigger (about 30% after gzip). The non-minified files are useful in development for readable source-map debugging — never serve them to users.
+
+| Asset | Dev | Production |
+|---|---|---|
+| Stylesheet | `dist/css/adminlte.css` | **`dist/css/adminlte.min.css`** |
+| Script | `dist/js/adminlte.js` | **`dist/js/adminlte.min.js`** |
+| RTL stylesheet | `dist/css/adminlte.rtl.css` | **`dist/css/adminlte.rtl.min.css`** |
+
+##### Compression at the edge
+
+Make sure your web server / CDN gzips (or brotlis) responses for the relevant content types:
+
+```nginx
+# nginx
+gzip on;
+gzip_types text/css application/javascript text/html image/svg+xml;
+gzip_comp_level 6;
+```
+
+```apache
+# Apache
+AddOutputFilterByType DEFLATE text/css application/javascript text/html image/svg+xml
+```
+
+Cloudflare, Vercel, Netlify, and most managed hosting do this automatically. Verify with `curl -I -H "Accept-Encoding: gzip" your-page-url` and look for `content-encoding: gzip` in the response.
+
+##### Cache headers
+
+The dist artefacts have content hashes in their filenames *only if you wire it up via your bundler* — AdminLTE itself ships fixed filenames. Two reasonable strategies:
+
+1. **Short cache + version query string** (simple, works without a build pipeline):
+
+   ```html
+   <link rel="stylesheet" href="/dist/css/adminlte.min.css?v=4.0.0" />
+   <script src="/dist/js/adminlte.min.js?v=4.0.0"></script>
+   ```
+
+   Set `Cache-Control: public, max-age=86400` (1 day) at the server. Bump `?v=` on every release to force cache invalidation.
+
+2. **Fingerprinted filenames** (production-grade, requires a bundler):
+
+   Let your bundler emit `adminlte.[hash].min.css` and reference that hash in your HTML. Set `Cache-Control: public, max-age=31536000, immutable` (1 year). This is what Vite/Webpack/Rollup do by default if you import AdminLTE through them.
+
+##### CDN integrity hashes
+
+If you load AdminLTE from a public CDN (jsDelivr, unpkg), include a Subresource Integrity (SRI) hash so a compromised CDN can't serve malicious JavaScript silently:
+
+```html
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc7/dist/css/adminlte.min.css"
+  integrity="sha384-PASTE_THE_HASH_HERE"
+  crossorigin="anonymous"
+/>
+```
+
+You can get the hash from the [jsDelivr file detail page](https://www.jsdelivr.com/package/npm/admin-lte) — click any file and copy the "SRI" line. Do the same for Bootstrap, Popper, OverlayScrollbars, and Bootstrap Icons.
+
+For private-hosted assets, generate the hash yourself:
+
+```bash
+openssl dgst -sha384 -binary dist/css/adminlte.min.css | openssl base64 -A
+```
+
+##### Loading order matters
+
+Get the script order right or things break silently:
+
+```html
+<head>
+  <!-- 1. Bootstrap Icons (font CSS) — load first so icons render with the page -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+
+  <!-- 2. OverlayScrollbars (optional, for the sidebar scroller) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css" />
+
+  <!-- 3. AdminLTE — includes Bootstrap CSS via its imports -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc7/dist/css/adminlte.min.css" />
+</head>
+
+<body>
+  …
+
+  <!-- Scripts at the END of body -->
+  <!-- 4. Popper (Bootstrap dependency for dropdowns/tooltips/popovers) -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+
+  <!-- 5. Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
+
+  <!-- 6. OverlayScrollbars -->
+  <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"></script>
+
+  <!-- 7. AdminLTE — must load AFTER Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc7/dist/js/adminlte.min.js"></script>
+</body>
+```
+
+##### Defer or async?
+
+The AdminLTE bundle waits for `DOMContentLoaded` before wiring its data API, so `defer` is safe and recommended:
+
+```html
+<script defer src="/dist/js/adminlte.min.js"></script>
+```
+
+Don't use `async` — the script could execute before its dependencies (Bootstrap, Popper) have parsed, and listeners would attach to elements that don't exist yet.
+
+##### Critical CSS
+
+For sub-1-second first paint, inline the styles that the above-the-fold layout uses (header + brand + first visible content) and load the rest of `adminlte.min.css` asynchronously:
+
+```html
+<style>/* extracted critical CSS for /dashboard */</style>
+
+<link
+  rel="preload"
+  as="style"
+  href="/dist/css/adminlte.min.css"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
+<noscript><link rel="stylesheet" href="/dist/css/adminlte.min.css" /></noscript>
+```
+
+Extract critical CSS with a tool like [Critters](https://github.com/GoogleChromeLabs/critters) or [Penthouse](https://github.com/pocketjoso/penthouse) as part of your build. For dashboards behind a login (where first-load speed matters less than for marketing pages), this is usually overkill.
+
+##### Preload key assets
+
+Push critical resources to the browser before it discovers them in the HTML:
+
+```html
+<link rel="preload" as="style" href="/dist/css/adminlte.min.css" />
+<link rel="preload" as="font" href="/fonts/source-sans-3.woff2" type="font/woff2" crossorigin />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+```
+
+Only preload what's used on every page. Preloading per-route assets in a shared layout wastes bandwidth.
+
+##### Lazy-loading sub-pages
+
+If your dashboard has many routes and the JS is server-rendered HTML per route, prefer per-route CSS imports rather than one mega-stylesheet. AdminLTE's core CSS is small (~44KB gzipped) but page-specific styles (charts, calendars, tables) can add up — only load them where they're used.
+
+For SPAs, code-split heavy integrations:
+
+```js
+// Don't bundle the calendar app into the main chunk
+const Calendar = () => import("./Calendar.vue")
+```
+
+##### Bundle size budget
+
+The current published `dist/` artefacts gzip to:
+
+| Asset | Size (gzip) |
+|---|---|
+| `adminlte.min.css` | ~40 KB |
+| `adminlte.rtl.min.css` | ~40 KB |
+| `adminlte.min.js` | ~5 KB |
+
+The full first-page payload (HTML + Bootstrap + AdminLTE + Bootstrap Icons + Popper + OverlayScrollbars) is around **180 KB gzipped** when loaded from CDN. The CI build enforces a `bundlewatch` check that fails if any asset crosses its budget.
+
+##### Service workers / offline support
+
+AdminLTE is just static files — caching them in a service worker works without changes. A minimal Workbox config:
+
+```js
+import { precacheAndRoute } from "workbox-precaching"
+
+precacheAndRoute([
+  { url: "/dist/css/adminlte.min.css", revision: "4.0.0" },
+  { url: "/dist/js/adminlte.min.js", revision: "4.0.0" },
+  // ...your own pages
+])
+```
+
+##### Removing dev-only files before deploy
+
+If you're deploying the demo `dist/` folder verbatim, strip these patterns from the upload:
+
+- `*.map` (source maps — leak source code to anyone who opens devtools)
+- `**/html/` (the Astro intermediate build, if present)
+- `**/.astro/` (Astro cache)
+
+For `rclone` / `rsync`:
+
+```bash
+rsync -avz --delete \
+  --exclude='*.map' \
+  --exclude='html/' \
+  --exclude='.astro/' \
+  dist/ user@server:/var/www/your-app/
+```
+
+##### A note on Cloudflare cache
+
+Cloudflare's default Browser Cache TTL is 4 hours. If you push a new release and want users to see it immediately, [purge the affected paths](https://developers.cloudflare.com/cache/how-to/purge-cache/) from the Cloudflare dashboard or API. Otherwise, users on cached pages will see your old CSS / JS for up to four hours.
+
+##### Where to next
+
+- [Customization](customization.html) — change colours, sidebar width, breakpoints before you deploy
+- [Recommended Integrations](integrations.html) — pick lightweight libraries for the things AdminLTE doesn't bundle
+- [Accessibility](javascript/accessibility.html) — make sure your deployed pages keep their a11y guarantees

@@ -1,0 +1,161 @@
+Every AdminLTE page follows the same structural blueprint: a wrapper that contains a header, a sidebar, a main content area, and (optionally) a footer. Understanding the four region classes is the difference between fighting the framework and using it productively.
+
+##### The four regions
+
+```text
+┌──────────────────────────────────────────┐
+│  .app-wrapper                            │
+│  ┌────────────────────────────────────┐  │
+│  │  .app-header                       │  │ ← topbar / navbar
+│  ├──────────┬─────────────────────────┤  │
+│  │          │                         │  │
+│  │  .app-   │   .app-main             │  │ ← page content
+│  │ sidebar  │                         │  │
+│  │          │                         │  │
+│  ├──────────┴─────────────────────────┤  │
+│  │  .app-footer (optional)            │  │
+│  └────────────────────────────────────┘  │
+└──────────────────────────────────────────┘
+```
+
+The wrapper is a CSS grid container, the four children are grid areas. You don't have to know that to use it — the markup pattern alone is sufficient.
+
+##### Minimal markup
+
+```html
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+  <div class="app-wrapper">
+    <nav class="app-header navbar navbar-expand bg-body">…</nav>
+    <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">…</aside>
+    <main class="app-main">…</main>
+    <footer class="app-footer">…</footer>
+  </div>
+</body>
+```
+
+Order inside `.app-wrapper` doesn't matter — the grid template positions each child by its class. Use whatever order reads cleanly.
+
+##### Region reference
+
+###### `.app-wrapper`
+
+The root container. Defines the grid template that positions header, sidebar, main, and footer. Always lives directly inside `<body>`.
+
+You can add `.compact-mode` here (or anywhere up the tree) to reduce padding throughout the layout — useful for data-dense dashboards.
+
+###### `.app-header`
+
+The top bar. Use Bootstrap's navbar classes (`navbar navbar-expand bg-body`) for the visual. The header is where the sidebar toggle button lives — wire it with `data-lte-toggle="sidebar"`:
+
+```html
+<a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
+  <i class="bi bi-list"></i>
+</a>
+```
+
+By default the header scrolls with the page. Add `.fixed-header` to `<body>` to pin it.
+
+###### `.app-sidebar`
+
+The side rail. Always contains two children: `.sidebar-brand` (logo / app name) and `.sidebar-wrapper` (the scrollable nav region).
+
+```html
+<aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+  <div class="sidebar-brand">
+    <a href="/" class="brand-link">
+      <span class="brand-text fw-light">My Dashboard</span>
+    </a>
+  </div>
+  <div class="sidebar-wrapper">
+    <nav class="mt-2">
+      <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu">
+        <!-- nav items -->
+      </ul>
+    </nav>
+  </div>
+</aside>
+```
+
+The `data-bs-theme="dark"` on the sidebar gives you the dark-sidebar-on-light-page look from the demos. Drop it for a light sidebar.
+
+###### `.app-main`
+
+The page content region. Almost always contains two children:
+
+```html
+<main class="app-main">
+  <div class="app-content-header">
+    <!-- page title + breadcrumb -->
+  </div>
+  <div class="app-content">
+    <!-- page body, cards, tables, charts, etc. -->
+  </div>
+</main>
+```
+
+`.app-content-header` is the title strip — typically an `<h3>` and a breadcrumb in a row. `.app-content` is everything below it. Both should wrap their children in `.container-fluid` (or `.container` for capped width).
+
+###### `.app-footer` (optional)
+
+A footer strip at the bottom of the wrapper:
+
+```html
+<footer class="app-footer">
+  <div class="float-end d-none d-sm-inline">Version 4.0.0</div>
+  <strong>&copy; 2026 Your Company</strong>
+</footer>
+```
+
+Add `.fixed-footer` to `<body>` to pin it to the bottom of the viewport.
+
+##### Body-level layout modifiers
+
+Layout behaviour is mostly controlled by classes on `<body>`, not `.app-wrapper`. The supported modifiers:
+
+| Class | What it does |
+|---|---|
+| `layout-fixed` | Sidebar gets its own scrollbar; only `.app-main` scrolls with the page |
+| `fixed-header` | Sticky `.app-header` at the top; sidebar also pins (since v4.0.0) |
+| `fixed-footer` | Sticky `.app-footer` at the bottom |
+| `sidebar-expand-{sm,md,lg,xl,xxl}` | Breakpoint at which the sidebar transitions from off-canvas (mobile) to inline (desktop). `lg` is the default in the demos. |
+| `sidebar-mini` | Collapses sidebar to icon-only mini state |
+| `sidebar-mini sidebar-collapse` | Starts the page with the mini sidebar already collapsed |
+| `sidebar-without-hover` | Disables the auto-expand-on-hover behaviour for the mini sidebar |
+| `layout-rtl` | Mirrors the layout for right-to-left languages (also requires `.rtl.css` and `dir="rtl"` — see [RTL Support](rtl.html)) |
+
+These compose. The demo dashboards use `class="layout-fixed sidebar-expand-lg bg-body-tertiary"` — fixed-height with a desktop sidebar breakpoint at the `lg` (≥992px) boundary.
+
+###### Layout variants demo
+
+The Layout section of the demo site (`/layout/*.html` files) ships eleven pre-built combinations:
+
+- [Fixed Sidebar](../layout/fixed-sidebar.html), [Fixed Header](../layout/fixed-header.html), [Fixed Footer](../layout/fixed-footer.html), [Fixed Complete](../layout/fixed-complete.html)
+- [Unfixed Sidebar](../layout/unfixed-sidebar.html), [Sidebar Mini](../layout/sidebar-mini.html), [Collapsed Sidebar](../layout/collapsed-sidebar.html), [Collapsed without hover](../layout/collapsed-sidebar-without-hover.html)
+- [Layout Custom Area](../layout/layout-custom-area.html), [Logo Switch](../layout/logo-switch.html), [Layout RTL](../layout/layout-rtl.html)
+
+##### Responsive behaviour
+
+At and above your `sidebar-expand-*` breakpoint, the sidebar is **inline** — visible in the grid alongside `.app-main`. Below the breakpoint, it becomes **off-canvas** — hidden by default and slid in from the left when the user clicks the hamburger toggle.
+
+Mobile-specific classes:
+
+| Class | When applied | Effect |
+|---|---|---|
+| `sidebar-open` | Body — when the user explicitly opens the mobile sidebar | Slides the sidebar in over the content with an overlay |
+| `sidebar-collapse` | Body — set automatically when the user closes the mobile sidebar | Hides the sidebar |
+
+These are managed by the [PushMenu plugin](javascript/pushmenu.html) — you don't write them yourself.
+
+##### Common pitfalls
+
+- **Forgetting `.container-fluid` inside `.app-content`** — the content lands flush against the screen edge. Wrap your content cards in a container.
+- **Putting the sidebar toggle outside `.app-header`** — it'll still work, but the styling expects the navbar context.
+- **Mixing `.app-*` and `.main-*` classes** — `.main-*` is the AdminLTE 3 naming. Don't combine them. See [Migration from v3](migration.html).
+- **Using `position: fixed` on something inside `.app-main`** — `layout-fixed` already gives `.app-main` `overflow: auto`. Children with `position: fixed` may behave unexpectedly. Use sticky positioning instead.
+- **Hardcoding sidebar width in custom CSS** — the sidebar width is exposed via the SCSS variable `$lte-sidebar-width`. If you need to know it from JavaScript, read the rendered `.app-sidebar` element's computed width.
+
+##### Where to next
+
+- [Layout reference](layout.html) — the lower-level CSS classes and what they do
+- [PushMenu plugin](javascript/pushmenu.html) — the sidebar toggle implementation
+- [Customization](customization.html) — how to change sidebar width, breakpoint, and colours
