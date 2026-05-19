@@ -656,6 +656,24 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
         </li>
         <li class="nav-item">
           <a
+            href={htmlPath + "/docs/layout-blueprint.html"}
+            class:list={["nav-link", page === "layout-blueprint" && "active"]}
+          >
+            <i class="nav-icon bi bi-diagram-3"></i>
+            <p>Layout Blueprint</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href={htmlPath + "/docs/recipes.html"}
+            class:list={["nav-link", page === "recipes" && "active"]}
+          >
+            <i class="nav-icon bi bi-clipboard-check"></i>
+            <p>Recipes</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
             href={htmlPath + "/docs/customization.html"}
             class:list={["nav-link", page === "customization" && "active"]}
           >
@@ -697,6 +715,15 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
           >
             <i class="nav-icon bi bi-puzzle"></i>
             <p>Recommended Integrations</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href={htmlPath + "/docs/deployment.html"}
+            class:list={["nav-link", page === "deployment" && "active"]}
+          >
+            <i class="nav-icon bi bi-cloud-upload"></i>
+            <p>Deployment</p>
           </a>
         </li>
         <li class:list={["nav-item", mainPage === "components" && "menu-open"]}>
@@ -743,6 +770,15 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
             </p>
           </a>
           <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/docs/javascript/plugins-overview.html"}
+                class:list={["nav-link", page === "plugins-overview" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Overview</p>
+              </a>
+            </li>
             <li class="nav-item">
               <a
                 href={htmlPath + "/docs/javascript/layout.html"}

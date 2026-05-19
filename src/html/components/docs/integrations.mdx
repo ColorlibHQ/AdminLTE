@@ -2,6 +2,8 @@ AdminLTE deliberately ships a lean dependency tree. Rather than bundling every f
 
 Each section has a CDN-based "install" snippet and the minimum JavaScript needed to wire it up. You can swap CDN URLs for npm installs if you're using a bundler.
 
+> **About the version numbers below:** every CDN URL pins a specific version (eg. `@4.6.13`) so the snippets stay reproducible. They were current as of the latest release, but third-party libraries publish new versions independently of AdminLTE. Before copying a snippet into production, check the library's homepage (linked in each section) for the latest version — and consider hosting a copy yourself rather than relying on the CDN long-term.
+
 ##### Form widgets
 
 ###### Date / time picker — Flatpickr
@@ -30,8 +32,8 @@ Supports date ranges, time-only mode, multiple dates, and i18n out of the box.
 [Tom Select](https://tom-select.js.org/) is a vanilla-JS rewrite of Selectize. Great fit for searchable selects, tag inputs, and remote-data autocomplete.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.bootstrap5.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.6.1/dist/css/tom-select.bootstrap5.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.6.1/dist/js/tom-select.complete.min.js"></script>
 
 <select id="tags" class="form-control" multiple placeholder="Pick some tags">
   <option value="design">Design</option>
@@ -122,8 +124,8 @@ Ships a `tom-select.bootstrap5.min.css` theme that matches Bootstrap form contro
 [FilePond](https://pqina.nl/filepond/) is a more modern alternative with a polished UX and a plugin system for image preview, validation, EXIF, etc.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/filepond@4.32.7/dist/filepond.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/filepond@4.32.7/dist/filepond.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/filepond@4.32.12/dist/filepond.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/filepond@4.32.12/dist/filepond.min.js"></script>
 
 <input type="file" class="filepond" />
 
@@ -157,8 +159,8 @@ Ships a `tom-select.bootstrap5.min.css` theme that matches Bootstrap form contro
 [EasyMDE](https://github.com/Ionaru/easy-markdown-editor) is the actively-maintained fork of SimpleMDE. Same look, same API, but still gets updates.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde@2.18.0/dist/easymde.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/easymde@2.18.0/dist/easymde.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde@2.21.0/dist/easymde.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/easymde@2.21.0/dist/easymde.min.js"></script>
 
 <textarea id="markdown"></textarea>
 
@@ -194,7 +196,7 @@ Ships a `tom-select.bootstrap5.min.css` theme that matches Bootstrap form contro
 [ApexCharts](https://apexcharts.com/) is the chart library used in the AdminLTE dashboards. Modern look, animated, MIT.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/apexcharts@4.4.0/dist/apexcharts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@5.12.0/dist/apexcharts.min.js"></script>
 
 <div id="chart"></div>
 
@@ -212,7 +214,7 @@ Ships a `tom-select.bootstrap5.min.css` theme that matches Bootstrap form contro
 [Chart.js](https://www.chartjs.org/) is the most-asked-for traditional chart library. Canvas-based, very wide chart-type support.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1"></script>
 
 <canvas id="bar-chart" height="120"></canvas>
 
@@ -301,8 +303,8 @@ Ships a `tom-select.bootstrap5.min.css` theme that matches Bootstrap form contro
 [GLightbox](https://biati-digital.github.io/glightbox/) is a vanilla-JS lightbox for images, videos, and inline content.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/css/glightbox.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/js/glightbox.min.js"></script>
 
 <a href="image-large.jpg" class="glightbox">
   <img src="image-thumb.jpg" alt="Click to enlarge" />
