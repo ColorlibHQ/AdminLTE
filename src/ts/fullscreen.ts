@@ -44,12 +44,16 @@ class FullScreen {
 
     void document.documentElement.requestFullscreen()
 
+    // Toggle Bootstrap's .d-none utility instead of hardcoding inline
+    // display:block. The previous approach overrode the icon library's
+    // natural display value (eg. some icon fonts use inline-block) and
+    // caused the icon to shift its position. Fixes #6021.
     if (iconMaximize) {
-      iconMaximize.style.display = 'none'
+      iconMaximize.classList.add('d-none')
     }
 
     if (iconMinimize) {
-      iconMinimize.style.display = 'block'
+      iconMinimize.classList.remove('d-none')
     }
 
     this._element.dispatchEvent(event)
@@ -64,11 +68,11 @@ class FullScreen {
     void document.exitFullscreen()
 
     if (iconMaximize) {
-      iconMaximize.style.display = 'block'
+      iconMaximize.classList.remove('d-none')
     }
 
     if (iconMinimize) {
-      iconMinimize.style.display = 'none'
+      iconMinimize.classList.add('d-none')
     }
 
     this._element.dispatchEvent(event)
