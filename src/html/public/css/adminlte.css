@@ -14242,12 +14242,23 @@ body:not(.app-loaded) .app-footer {
   border-radius: 0.375rem;
 }
 
+.docs-page .app-content > .container-fluid, .docs-page .app-content > .container-sm, .docs-page .app-content > .container-md, .docs-page .app-content > .container-lg, .docs-page .app-content > .container-xl, .docs-page .app-content > .container-xxl {
+  max-width: 60rem;
+}
+@media (min-width: 1400px) {
+  .docs-page .app-content > .container-fluid, .docs-page .app-content > .container-sm, .docs-page .app-content > .container-md, .docs-page .app-content > .container-lg, .docs-page .app-content > .container-xl, .docs-page .app-content > .container-xxl {
+    max-width: 64rem;
+  }
+}
 .docs-page .card > .card-body {
   padding: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--bs-body-color);
 }
 @media (min-width: 768px) {
   .docs-page .card > .card-body {
-    padding: 2rem;
+    padding: 2.5rem;
   }
 }
 .docs-page .card > .card-body h1,
@@ -14262,8 +14273,12 @@ body:not(.app-loaded) .app-footer {
 .docs-page .card > .card-body .h4,
 .docs-page .card > .card-body .h5,
 .docs-page .card > .card-body .h6 {
-  margin-top: 1.75em;
+  margin-top: 2em;
   margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--bs-emphasis-color);
+  scroll-margin-top: 4rem;
 }
 .docs-page .card > .card-body h1:first-child,
 .docs-page .card > .card-body h2:first-child,
@@ -14281,20 +14296,35 @@ body:not(.app-loaded) .app-footer {
 }
 .docs-page .card > .card-body h2,
 .docs-page .card > .card-body .h2 {
-  font-size: 1.5rem;
+  padding-bottom: 0.35em;
+  font-size: 1.75rem;
+  border-bottom: 1px solid var(--bs-border-color);
 }
 .docs-page .card > .card-body h3,
 .docs-page .card > .card-body .h3 {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
 }
 .docs-page .card > .card-body h4,
 .docs-page .card > .card-body .h4 {
-  font-size: 1.05rem;
+  font-size: 1.2rem;
 }
 .docs-page .card > .card-body h5,
 .docs-page .card > .card-body .h5 {
-  font-size: 0.95rem;
-  font-weight: 600;
+  padding-top: 1.5em;
+  margin-top: 2.5em;
+  font-size: 1.3rem;
+  border-top: 1px solid var(--bs-border-color);
+}
+.docs-page .card > .card-body h5:first-child,
+.docs-page .card > .card-body .h5:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.docs-page .card > .card-body h6,
+.docs-page .card > .card-body .h6 {
+  margin-top: 1.75em;
+  font-size: 1.08rem;
+  color: var(--bs-emphasis-color);
 }
 .docs-page .card > .card-body p,
 .docs-page .card > .card-body ul,
@@ -14302,46 +14332,98 @@ body:not(.app-loaded) .app-footer {
 .docs-page .card > .card-body dl,
 .docs-page .card > .card-body blockquote,
 .docs-page .card > .card-body table {
-  margin-bottom: 1rem;
-  line-height: 1.6;
+  margin-bottom: 1.1rem;
+}
+.docs-page .card > .card-body ul,
+.docs-page .card > .card-body ol {
+  padding-left: 1.5rem;
+}
+.docs-page .card > .card-body ul li,
+.docs-page .card > .card-body ol li {
+  margin-bottom: 0.35rem;
+}
+.docs-page .card > .card-body ul ul,
+.docs-page .card > .card-body ul ol,
+.docs-page .card > .card-body ol ul,
+.docs-page .card > .card-body ol ol {
+  margin-top: 0.35rem;
+  margin-bottom: 0;
+}
+.docs-page .card > .card-body h2 + p, .docs-page .card > .card-body .h2 + p,
+.docs-page .card > .card-body h3 + p,
+.docs-page .card > .card-body .h3 + p,
+.docs-page .card > .card-body h5 + p,
+.docs-page .card > .card-body .h5 + p {
+  margin-top: 0;
 }
 .docs-page .card > .card-body p code,
 .docs-page .card > .card-body li code,
 .docs-page .card > .card-body td code,
-.docs-page .card > .card-body th code {
-  padding: 0.125rem 0.375rem;
+.docs-page .card > .card-body th code,
+.docs-page .card > .card-body h2 code,
+.docs-page .card > .card-body .h2 code,
+.docs-page .card > .card-body h3 code,
+.docs-page .card > .card-body .h3 code,
+.docs-page .card > .card-body h4 code,
+.docs-page .card > .card-body .h4 code,
+.docs-page .card > .card-body h5 code,
+.docs-page .card > .card-body .h5 code,
+.docs-page .card > .card-body h6 code,
+.docs-page .card > .card-body .h6 code {
+  padding: 0.15em 0.4em;
   font-size: 0.875em;
   color: var(--bs-emphasis-color);
   background: var(--bs-tertiary-bg);
+  border: 1px solid var(--bs-border-color);
   border-radius: 0.25rem;
 }
 .docs-page .card > .card-body pre.astro-code,
 .docs-page .card > .card-body pre {
-  margin-bottom: 1rem;
+  padding: 1rem 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.5rem;
   overflow-x: auto;
-  font-size: 0.85rem;
-  line-height: 1.5;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  border-radius: 0.375rem;
+}
+.docs-page .card > .card-body pre.astro-code code,
+.docs-page .card > .card-body pre code {
+  padding: 0;
+  background: transparent;
+  border: 0;
 }
 .docs-page .card > .card-body table {
   width: 100%;
+  margin-top: 1.25rem;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  font-size: 0.95rem;
   border-collapse: collapse;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.25rem;
 }
 .docs-page .card > .card-body table th,
 .docs-page .card > .card-body table td {
-  padding: 0.5rem 0.75rem;
+  padding: 0.65rem 0.9rem;
   text-align: left;
   vertical-align: top;
   border-bottom: 1px solid var(--bs-border-color);
 }
 .docs-page .card > .card-body table th {
   font-weight: 600;
+  color: var(--bs-emphasis-color);
   background: var(--bs-tertiary-bg);
 }
 .docs-page .card > .card-body table tr:last-child td {
   border-bottom: 0;
 }
+.docs-page .card > .card-body table code {
+  white-space: nowrap;
+}
 .docs-page .card > .card-body blockquote {
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1.1rem;
+  margin-top: 1.25rem;
   color: var(--bs-emphasis-color);
   background: var(--bs-info-bg-subtle);
   border-left: 4px solid var(--bs-info-border-subtle);
@@ -14350,13 +14432,33 @@ body:not(.app-loaded) .app-footer {
 .docs-page .card > .card-body blockquote p:last-child {
   margin-bottom: 0;
 }
+.docs-page .card > .card-body blockquote code {
+  background: rgba(0, 0, 0, 0.05);
+}
 .docs-page .card > .card-body a:not(.btn):not(.nav-link) {
+  color: var(--bs-primary);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 .docs-page .card > .card-body a:not(.btn):not(.nav-link):hover {
   text-decoration-thickness: 2px;
+}
+.docs-page .card > .card-body hr {
+  margin: 2.5rem 0;
+  border: 0;
+  border-top: 1px solid var(--bs-border-color);
+  opacity: 1;
+}
+.docs-page .card > .card-body > p:first-child,
+.docs-page .card > .card-body > p:first-of-type {
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--bs-body-color);
+}
+.docs-page[data-bs-theme=dark] .card > .card-body blockquote code, [data-bs-theme=dark] .docs-page .card > .card-body blockquote code {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .progress {
@@ -15819,12 +15921,23 @@ fieldset legend {
   border-radius: 0.375rem;
 }
 
+.docs-page .app-content > .container-fluid, .docs-page .app-content > .container-sm, .docs-page .app-content > .container-md, .docs-page .app-content > .container-lg, .docs-page .app-content > .container-xl, .docs-page .app-content > .container-xxl {
+  max-width: 60rem;
+}
+@media (min-width: 1400px) {
+  .docs-page .app-content > .container-fluid, .docs-page .app-content > .container-sm, .docs-page .app-content > .container-md, .docs-page .app-content > .container-lg, .docs-page .app-content > .container-xl, .docs-page .app-content > .container-xxl {
+    max-width: 64rem;
+  }
+}
 .docs-page .card > .card-body {
   padding: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--bs-body-color);
 }
 @media (min-width: 768px) {
   .docs-page .card > .card-body {
-    padding: 2rem;
+    padding: 2.5rem;
   }
 }
 .docs-page .card > .card-body h1,
@@ -15839,8 +15952,12 @@ fieldset legend {
 .docs-page .card > .card-body .h4,
 .docs-page .card > .card-body .h5,
 .docs-page .card > .card-body .h6 {
-  margin-top: 1.75em;
+  margin-top: 2em;
   margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--bs-emphasis-color);
+  scroll-margin-top: 4rem;
 }
 .docs-page .card > .card-body h1:first-child,
 .docs-page .card > .card-body h2:first-child,
@@ -15858,20 +15975,35 @@ fieldset legend {
 }
 .docs-page .card > .card-body h2,
 .docs-page .card > .card-body .h2 {
-  font-size: 1.5rem;
+  padding-bottom: 0.35em;
+  font-size: 1.75rem;
+  border-bottom: 1px solid var(--bs-border-color);
 }
 .docs-page .card > .card-body h3,
 .docs-page .card > .card-body .h3 {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
 }
 .docs-page .card > .card-body h4,
 .docs-page .card > .card-body .h4 {
-  font-size: 1.05rem;
+  font-size: 1.2rem;
 }
 .docs-page .card > .card-body h5,
 .docs-page .card > .card-body .h5 {
-  font-size: 0.95rem;
-  font-weight: 600;
+  padding-top: 1.5em;
+  margin-top: 2.5em;
+  font-size: 1.3rem;
+  border-top: 1px solid var(--bs-border-color);
+}
+.docs-page .card > .card-body h5:first-child,
+.docs-page .card > .card-body .h5:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.docs-page .card > .card-body h6,
+.docs-page .card > .card-body .h6 {
+  margin-top: 1.75em;
+  font-size: 1.08rem;
+  color: var(--bs-emphasis-color);
 }
 .docs-page .card > .card-body p,
 .docs-page .card > .card-body ul,
@@ -15879,46 +16011,98 @@ fieldset legend {
 .docs-page .card > .card-body dl,
 .docs-page .card > .card-body blockquote,
 .docs-page .card > .card-body table {
-  margin-bottom: 1rem;
-  line-height: 1.6;
+  margin-bottom: 1.1rem;
+}
+.docs-page .card > .card-body ul,
+.docs-page .card > .card-body ol {
+  padding-left: 1.5rem;
+}
+.docs-page .card > .card-body ul li,
+.docs-page .card > .card-body ol li {
+  margin-bottom: 0.35rem;
+}
+.docs-page .card > .card-body ul ul,
+.docs-page .card > .card-body ul ol,
+.docs-page .card > .card-body ol ul,
+.docs-page .card > .card-body ol ol {
+  margin-top: 0.35rem;
+  margin-bottom: 0;
+}
+.docs-page .card > .card-body h2 + p, .docs-page .card > .card-body .h2 + p,
+.docs-page .card > .card-body h3 + p,
+.docs-page .card > .card-body .h3 + p,
+.docs-page .card > .card-body h5 + p,
+.docs-page .card > .card-body .h5 + p {
+  margin-top: 0;
 }
 .docs-page .card > .card-body p code,
 .docs-page .card > .card-body li code,
 .docs-page .card > .card-body td code,
-.docs-page .card > .card-body th code {
-  padding: 0.125rem 0.375rem;
+.docs-page .card > .card-body th code,
+.docs-page .card > .card-body h2 code,
+.docs-page .card > .card-body .h2 code,
+.docs-page .card > .card-body h3 code,
+.docs-page .card > .card-body .h3 code,
+.docs-page .card > .card-body h4 code,
+.docs-page .card > .card-body .h4 code,
+.docs-page .card > .card-body h5 code,
+.docs-page .card > .card-body .h5 code,
+.docs-page .card > .card-body h6 code,
+.docs-page .card > .card-body .h6 code {
+  padding: 0.15em 0.4em;
   font-size: 0.875em;
   color: var(--bs-emphasis-color);
   background: var(--bs-tertiary-bg);
+  border: 1px solid var(--bs-border-color);
   border-radius: 0.25rem;
 }
 .docs-page .card > .card-body pre.astro-code,
 .docs-page .card > .card-body pre {
-  margin-bottom: 1rem;
+  padding: 1rem 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.5rem;
   overflow-x: auto;
-  font-size: 0.85rem;
-  line-height: 1.5;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  border-radius: 0.375rem;
+}
+.docs-page .card > .card-body pre.astro-code code,
+.docs-page .card > .card-body pre code {
+  padding: 0;
+  background: transparent;
+  border: 0;
 }
 .docs-page .card > .card-body table {
   width: 100%;
+  margin-top: 1.25rem;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  font-size: 0.95rem;
   border-collapse: collapse;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.25rem;
 }
 .docs-page .card > .card-body table th,
 .docs-page .card > .card-body table td {
-  padding: 0.5rem 0.75rem;
+  padding: 0.65rem 0.9rem;
   text-align: left;
   vertical-align: top;
   border-bottom: 1px solid var(--bs-border-color);
 }
 .docs-page .card > .card-body table th {
   font-weight: 600;
+  color: var(--bs-emphasis-color);
   background: var(--bs-tertiary-bg);
 }
 .docs-page .card > .card-body table tr:last-child td {
   border-bottom: 0;
 }
+.docs-page .card > .card-body table code {
+  white-space: nowrap;
+}
 .docs-page .card > .card-body blockquote {
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1.1rem;
+  margin-top: 1.25rem;
   color: var(--bs-emphasis-color);
   background: var(--bs-info-bg-subtle);
   border-left: 4px solid var(--bs-info-border-subtle);
@@ -15927,13 +16111,33 @@ fieldset legend {
 .docs-page .card > .card-body blockquote p:last-child {
   margin-bottom: 0;
 }
+.docs-page .card > .card-body blockquote code {
+  background: rgba(0, 0, 0, 0.05);
+}
 .docs-page .card > .card-body a:not(.btn):not(.nav-link) {
+  color: var(--bs-primary);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 .docs-page .card > .card-body a:not(.btn):not(.nav-link):hover {
   text-decoration-thickness: 2px;
+}
+.docs-page .card > .card-body hr {
+  margin: 2.5rem 0;
+  border: 0;
+  border-top: 1px solid var(--bs-border-color);
+  opacity: 1;
+}
+.docs-page .card > .card-body > p:first-child,
+.docs-page .card > .card-body > p:first-of-type {
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--bs-body-color);
+}
+.docs-page[data-bs-theme=dark] .card > .card-body blockquote code, [data-bs-theme=dark] .docs-page .card > .card-body blockquote code {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /*# sourceMappingURL=adminlte.css.map */
