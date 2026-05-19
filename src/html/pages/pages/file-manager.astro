@@ -1,0 +1,425 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+
+const title = "AdminLTE 4 | File Manager"
+const path = "../../../dist"
+const mainPage = "pages"
+const page = "file-manager";
+
+type FolderTree = {
+  name: string;
+  icon: string;
+  count?: number;
+  children?: FolderTree[];
+  open?: boolean;
+};
+
+const tree: FolderTree[] = [
+  {
+    name: "My Drive",
+    icon: "house",
+    open: true,
+    count: 24,
+    children: [
+      { name: "Documents", icon: "folder", count: 12 },
+      { name: "Design", icon: "folder", count: 8, open: true, children: [
+        { name: "v2.4 candidates", icon: "folder", count: 4 },
+        { name: "Archive", icon: "folder", count: 28 }
+      ] },
+      { name: "Invoices", icon: "folder", count: 41 }
+    ]
+  },
+  { name: "Shared with me", icon: "people", count: 9 },
+  { name: "Starred", icon: "star", count: 6 },
+  { name: "Recent", icon: "clock-history" },
+  { name: "Trash", icon: "trash", count: 3 }
+];
+
+type FileItem = {
+  name: string;
+  type: "folder" | "pdf" | "image" | "doc" | "sheet" | "zip" | "code";
+  size: string;
+  modified: string;
+  shared?: boolean;
+};
+
+const items: FileItem[] = [
+  { name: "Customer interviews", type: "folder", size: "—", modified: "Today" },
+  { name: "Q2 planning", type: "folder", size: "—", modified: "Yesterday", shared: true },
+  { name: "design-review.pdf", type: "pdf", size: "1.4 MB", modified: "10:42 AM" },
+  { name: "focus-ring-dark.png", type: "image", size: "320 KB", modified: "10:38 AM" },
+  { name: "INV-2026-00428.pdf", type: "pdf", size: "184 KB", modified: "Yesterday" },
+  { name: "roadmap.docx", type: "doc", size: "47 KB", modified: "Yesterday", shared: true },
+  { name: "analytics-may.xlsx", type: "sheet", size: "92 KB", modified: "May 16" },
+  { name: "site-export-2026-05.zip", type: "zip", size: "12.3 MB", modified: "May 14" },
+  { name: "main.tsx", type: "code", size: "8 KB", modified: "May 12" }
+];
+
+const iconFor: Record<FileItem["type"], { icon: string; color: string }> = {
+  folder: { icon: "folder-fill", color: "warning" },
+  pdf: { icon: "file-earmark-pdf-fill", color: "danger" },
+  image: { icon: "file-earmark-image-fill", color: "primary" },
+  doc: { icon: "file-earmark-word-fill", color: "info" },
+  sheet: { icon: "file-earmark-spreadsheet-fill", color: "success" },
+  zip: { icon: "file-earmark-zip-fill", color: "secondary" },
+  code: { icon: "file-earmark-code-fill", color: "primary" }
+};
+
+const renderTree = (nodes: FolderTree[]) => nodes;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <Head title={title} path={path} />
+  </head>
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <main class="app-main">
+        <div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">File Manager</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Files</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-content">
+          <div class="container-fluid">
+            <div class="row g-3">
+              <!-- Folder tree -->
+              <div class="col-lg-3">
+                <div class="d-grid gap-2 mb-3">
+                  <button class="btn btn-primary" type="button">
+                    <i class="bi bi-cloud-upload me-1" aria-hidden="true"></i>
+                    Upload files
+                  </button>
+                  <button class="btn btn-outline-secondary" type="button">
+                    <i class="bi bi-folder-plus me-1" aria-hidden="true"></i>
+                    New folder
+                  </button>
+                </div>
+                <div class="card">
+                  <div class="list-group list-group-flush">
+                    {
+                      renderTree(tree).map((node) => (
+                        <>
+                          <a
+                            href="#"
+                            class:list={[
+                              "list-group-item list-group-item-action d-flex justify-content-between align-items-center",
+                              node.open && "active"
+                            ]}
+                          >
+                            <span>
+                              <i
+                                class={`bi bi-${node.icon} me-2`}
+                                aria-hidden="true"
+                              />
+                              {node.name}
+                            </span>
+                            {node.count !== undefined && (
+                              <small class="opacity-75">{node.count}</small>
+                            )}
+                          </a>
+                          {node.children?.map((c) => (
+                            <>
+                              <a
+                                href="#"
+                                class:list={[
+                                  "list-group-item list-group-item-action d-flex justify-content-between align-items-center ps-4",
+                                  c.open && "active"
+                                ]}
+                              >
+                                <span>
+                                  <i
+                                    class={`bi bi-${c.icon} me-2`}
+                                    aria-hidden="true"
+                                  />
+                                  {c.name}
+                                </span>
+                                {c.count !== undefined && (
+                                  <small class="opacity-75">{c.count}</small>
+                                )}
+                              </a>
+                              {c.children?.map((gc) => (
+                                <a
+                                  href="#"
+                                  class="list-group-item list-group-item-action d-flex justify-content-between align-items-center ps-5"
+                                >
+                                  <span>
+                                    <i
+                                      class={`bi bi-${gc.icon} me-2`}
+                                      aria-hidden="true"
+                                    />
+                                    {gc.name}
+                                  </span>
+                                  {gc.count !== undefined && (
+                                    <small class="opacity-75">{gc.count}</small>
+                                  )}
+                                </a>
+                              ))}
+                            </>
+                          ))}
+                        </>
+                      ))
+                    }
+                  </div>
+                </div>
+                <div class="card mt-3">
+                  <div class="card-body">
+                    <p class="fw-semibold mb-2 small">
+                      <i class="bi bi-cloud me-1" aria-hidden="true"></i>
+                      Storage
+                    </p>
+                    <div class="progress mb-2" style="height: 8px;">
+                      <div
+                        class="progress-bar"
+                        role="progressbar"
+                        style="width: 62%;"
+                        aria-valuenow="62"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      />
+                    </div>
+                    <small class="text-secondary">
+                      6.2 GB of 10 GB used
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- File browser -->
+              <div class="col-lg-9">
+                <div class="card">
+                  <div class="card-header d-flex flex-wrap gap-2 align-items-center">
+                    <nav aria-label="breadcrumb" class="flex-grow-1">
+                      <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                          <a href="#">
+                            <i class="bi bi-house" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                          <a href="#">My Drive</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                          Design
+                        </li>
+                      </ol>
+                    </nav>
+                    <div class="input-group input-group-sm" style="width: 14rem;">
+                      <span class="input-group-text">
+                        <i class="bi bi-search" aria-hidden="true"></i>
+                      </span>
+                      <input
+                        type="search"
+                        class="form-control"
+                        placeholder="Search files&hellip;"
+                        aria-label="Search files"
+                      />
+                    </div>
+                    <div
+                      class="btn-group btn-group-sm"
+                      role="group"
+                      aria-label="View"
+                    >
+                      <input
+                        type="radio"
+                        class="btn-check"
+                        name="view"
+                        id="view-grid"
+                        checked
+                      />
+                      <label class="btn btn-outline-secondary" for="view-grid">
+                        <i class="bi bi-grid-3x3-gap" aria-hidden="true"></i>
+                      </label>
+                      <input
+                        type="radio"
+                        class="btn-check"
+                        name="view"
+                        id="view-list"
+                      />
+                      <label class="btn btn-outline-secondary" for="view-list">
+                        <i class="bi bi-list-ul" aria-hidden="true"></i>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <!-- Grid view -->
+                    <div
+                      id="grid-view"
+                      class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-3"
+                    >
+                      {
+                        items.map((it) => {
+                          const ic = iconFor[it.type];
+                          return (
+                            <div class="col">
+                              <a
+                                href="#"
+                                class="card text-center text-decoration-none text-body h-100 position-relative"
+                              >
+                                {it.shared && (
+                                  <span class="badge text-bg-info position-absolute top-0 end-0 m-2">
+                                    <i
+                                      class="bi bi-people-fill me-1"
+                                      aria-hidden="true"
+                                    />
+                                    Shared
+                                  </span>
+                                )}
+                                <div class="card-body d-flex flex-column justify-content-center pb-2">
+                                  <i
+                                    class={`bi bi-${ic.icon} text-${ic.color} display-5 mb-3`}
+                                    aria-hidden="true"
+                                  />
+                                  <p class="card-title fw-medium small text-break mb-0">
+                                    {it.name}
+                                  </p>
+                                </div>
+                                <div class="card-footer bg-transparent small text-secondary py-2">
+                                  <div class="d-flex justify-content-between align-items-center gap-2">
+                                    <span class="text-truncate" title={it.size}>
+                                      {it.type === "folder" ?
+                                        <>
+                                          <i
+                                            class="bi bi-folder me-1"
+                                            aria-hidden="true"
+                                          />
+                                          Folder
+                                        </> :
+                                        it.size}
+                                    </span>
+                                    <span
+                                      class="text-truncate"
+                                      title={it.modified}
+                                    >
+                                      {it.modified}
+                                    </span>
+                                  </div>
+                                </div>
+                              </a>
+                            </div>
+                          );
+                        })
+                      }
+                    </div>
+                    <!-- List view -->
+                    <div id="list-view" class="d-none">
+                      <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                          <thead>
+                            <tr>
+                              <th>Name</th>
+                              <th>Size</th>
+                              <th>Modified</th>
+                              <th class="text-end">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {
+                              items.map((it) => {
+                                const ic = iconFor[it.type];
+                                return (
+                                  <tr>
+                                    <td>
+                                      <i
+                                        class={`bi bi-${ic.icon} text-${ic.color} me-2`}
+                                        aria-hidden="true"
+                                      />
+                                      {it.name}
+                                      {it.shared && (
+                                        <span class="badge text-bg-info ms-2">
+                                          Shared
+                                        </span>
+                                      )}
+                                    </td>
+                                    <td>{it.size}</td>
+                                    <td>{it.modified}</td>
+                                    <td class="text-end">
+                                      <div class="btn-group btn-group-sm">
+                                        <button
+                                          class="btn btn-outline-secondary"
+                                          type="button"
+                                          title="Download"
+                                        >
+                                          <i
+                                            class="bi bi-download"
+                                            aria-hidden="true"
+                                          />
+                                        </button>
+                                        <button
+                                          class="btn btn-outline-secondary"
+                                          type="button"
+                                          title="Share"
+                                        >
+                                          <i
+                                            class="bi bi-share"
+                                            aria-hidden="true"
+                                          />
+                                        </button>
+                                        <button
+                                          class="btn btn-outline-danger"
+                                          type="button"
+                                          title="Delete"
+                                        >
+                                          <i
+                                            class="bi bi-trash"
+                                            aria-hidden="true"
+                                          />
+                                        </button>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                );
+                              })
+                            }
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer text-secondary small">
+                    {items.length} items
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+    <Scripts path={path} />
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        const grid = document.getElementById("view-grid");
+        const list = document.getElementById("view-list");
+        const gridView = document.getElementById("grid-view");
+        const listView = document.getElementById("list-view");
+        grid.addEventListener("change", () => {
+          gridView.classList.remove("d-none");
+          listView.classList.add("d-none");
+        });
+        list.addEventListener("change", () => {
+          listView.classList.remove("d-none");
+          gridView.classList.add("d-none");
+        });
+      });
+    </script>
+  </body>
+</html>

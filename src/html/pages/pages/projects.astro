@@ -1,0 +1,352 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+
+const title = "AdminLTE 4 | Projects"
+const path = "../../../dist"
+const mainPage = "pages"
+const page = "projects";
+
+type Project = {
+  name: string;
+  client: string;
+  status: "On track" | "At risk" | "Delayed" | "Completed";
+  progress: number;
+  team: { initials: string; color: string }[];
+  budget: string;
+  due: string;
+  priority: "Low" | "Medium" | "High";
+};
+
+const projects: Project[] = [
+  {
+    name: "AdminLTE 4 Release",
+    client: "Internal",
+    status: "On track",
+    progress: 78,
+    team: [
+      { initials: "JD", color: "primary" },
+      { initials: "OB", color: "info" },
+      { initials: "DM", color: "success" }
+    ],
+    budget: "$24,500",
+    due: "Jun 14, 2026",
+    priority: "High"
+  },
+  {
+    name: "Marketing Site Redesign",
+    client: "Acme Corp",
+    status: "At risk",
+    progress: 42,
+    team: [
+      { initials: "OB", color: "info" },
+      { initials: "MR", color: "warning" }
+    ],
+    budget: "$48,000",
+    due: "Jul 02, 2026",
+    priority: "High"
+  },
+  {
+    name: "Mobile App v2",
+    client: "Nimbus Labs",
+    status: "On track",
+    progress: 61,
+    team: [
+      { initials: "LC", color: "primary" },
+      { initials: "ED", color: "danger" },
+      { initials: "AF", color: "secondary" },
+      { initials: "SK", color: "info" }
+    ],
+    budget: "$92,500",
+    due: "Aug 18, 2026",
+    priority: "Medium"
+  },
+  {
+    name: "Analytics Pipeline",
+    client: "Internal",
+    status: "Delayed",
+    progress: 22,
+    team: [{ initials: "DM", color: "success" }],
+    budget: "$12,000",
+    due: "May 30, 2026",
+    priority: "Medium"
+  },
+  {
+    name: "Brand Style Guide",
+    client: "Riverhaus",
+    status: "Completed",
+    progress: 100,
+    team: [
+      { initials: "OB", color: "info" },
+      { initials: "ED", color: "danger" }
+    ],
+    budget: "$8,200",
+    due: "May 09, 2026",
+    priority: "Low"
+  },
+  {
+    name: "Onboarding Email Flow",
+    client: "Acme Corp",
+    status: "On track",
+    progress: 55,
+    team: [
+      { initials: "MR", color: "warning" },
+      { initials: "JD", color: "primary" }
+    ],
+    budget: "$6,800",
+    due: "Jun 22, 2026",
+    priority: "Low"
+  }
+];
+
+const statusBadge: Record<Project["status"], string> = {
+  "On track": "success",
+  "At risk": "warning",
+  Delayed: "danger",
+  Completed: "secondary"
+};
+
+const priorityBadge: Record<Project["priority"], string> = {
+  Low: "secondary",
+  Medium: "info",
+  High: "danger"
+};
+
+const progressBar = (p: number) => {
+  if (p === 100) return "success";
+  if (p >= 60) return "primary";
+  if (p >= 30) return "info";
+  return "warning";
+};
+
+const totals = {
+  count: projects.length,
+  onTrack: projects.filter((p) => p.status === "On track").length,
+  atRisk: projects.filter((p) => p.status === "At risk" || p.status === "Delayed").length,
+  done: projects.filter((p) => p.status === "Completed").length
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <Head title={title} path={path} />
+  </head>
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <main class="app-main">
+        <div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Projects</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Projects</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-content">
+          <div class="container-fluid">
+            <!-- Summary cards -->
+            <div class="row g-3 mb-3">
+              <div class="col-md-3 col-6">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <p class="text-secondary small mb-1">Active projects</p>
+                    <h3 class="mb-0 fw-bold">{totals.count}</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <p class="text-secondary small mb-1">On track</p>
+                    <h3 class="mb-0 fw-bold text-success">{totals.onTrack}</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <p class="text-secondary small mb-1">At risk / delayed</p>
+                    <h3 class="mb-0 fw-bold text-warning">{totals.atRisk}</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <p class="text-secondary small mb-1">Completed</p>
+                    <h3 class="mb-0 fw-bold text-secondary">{totals.done}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="card">
+              <div class="card-header d-flex flex-wrap gap-2 align-items-center">
+                <h3 class="card-title mb-0 me-auto">All projects</h3>
+                <div class="input-group input-group-sm" style="width: 16rem;">
+                  <span class="input-group-text">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                  </span>
+                  <input
+                    type="search"
+                    class="form-control"
+                    placeholder="Search projects&hellip;"
+                    aria-label="Search projects"
+                  />
+                </div>
+                <select
+                  class="form-select form-select-sm"
+                  style="width: 10rem;"
+                  aria-label="Filter by status"
+                >
+                  <option value="">All statuses</option>
+                  <option>On track</option>
+                  <option>At risk</option>
+                  <option>Delayed</option>
+                  <option>Completed</option>
+                </select>
+                <button class="btn btn-primary btn-sm" type="button">
+                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
+                  New project
+                </button>
+              </div>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table align-middle mb-0">
+                    <thead>
+                      <tr>
+                        <th>Project</th>
+                        <th>Status</th>
+                        <th>Progress</th>
+                        <th>Team</th>
+                        <th>Budget</th>
+                        <th>Due</th>
+                        <th>Priority</th>
+                        <th class="text-end">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {
+                        projects.map((p) => (
+                          <tr>
+                            <td>
+                              <a href="#" class="fw-semibold text-decoration-none">
+                                {p.name}
+                              </a>
+                              <div class="small text-secondary">{p.client}</div>
+                            </td>
+                            <td>
+                              <span class={`badge text-bg-${statusBadge[p.status]}`}>
+                                {p.status}
+                              </span>
+                            </td>
+                            <td style="min-width: 8rem;">
+                              <div class="d-flex align-items-center gap-2">
+                                <div class="progress flex-grow-1" style="height: 6px;">
+                                  <div
+                                    class={`progress-bar bg-${progressBar(p.progress)}`}
+                                    role="progressbar"
+                                    style={`width: ${p.progress}%;`}
+                                    aria-valuenow={p.progress}
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                  />
+                                </div>
+                                <small class="text-secondary" style="min-width: 2.25rem;">
+                                  {p.progress}%
+                                </small>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-inline-flex">
+                                {p.team.map((t, i) => (
+                                  <span
+                                    class={`rounded-circle d-inline-flex align-items-center justify-content-center bg-${t.color}-subtle text-${t.color} fw-semibold`}
+                                    style={`width: 1.75rem; height: 1.75rem; font-size: .7rem; border: 2px solid var(--bs-body-bg); margin-left: ${i === 0 ? "0" : "-.5rem"};`}
+                                    title={t.initials}
+                                  >
+                                    {t.initials}
+                                  </span>
+                                ))}
+                              </div>
+                            </td>
+                            <td class="text-nowrap">{p.budget}</td>
+                            <td class="text-nowrap">{p.due}</td>
+                            <td>
+                              <span class={`badge text-bg-${priorityBadge[p.priority]}`}>
+                                {p.priority}
+                              </span>
+                            </td>
+                            <td class="text-end">
+                              <div class="btn-group btn-group-sm">
+                                <button
+                                  class="btn btn-outline-secondary"
+                                  type="button"
+                                  title="View"
+                                >
+                                  <i class="bi bi-eye" aria-hidden="true" />
+                                </button>
+                                <button
+                                  class="btn btn-outline-secondary"
+                                  type="button"
+                                  title="Edit"
+                                >
+                                  <i class="bi bi-pencil" aria-hidden="true" />
+                                </button>
+                                <button
+                                  class="btn btn-outline-secondary"
+                                  type="button"
+                                  title="More"
+                                >
+                                  <i class="bi bi-three-dots-vertical" aria-hidden="true" />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card-footer d-flex justify-content-between align-items-center">
+                <small class="text-secondary">
+                  Showing {projects.length} of {projects.length}
+                </small>
+                <nav aria-label="Pagination">
+                  <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item disabled">
+                      <a class="page-link" href="#">Previous</a>
+                    </li>
+                    <li class="page-item active">
+                      <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item disabled">
+                      <a class="page-link" href="#">Next</a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+    <Scripts path={path} />
+  </body>
+</html>

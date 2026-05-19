@@ -1,0 +1,364 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+
+const title = "AdminLTE 4 | Chat"
+const path = "../../../dist"
+const mainPage = "pages"
+const page = "chat";
+
+const contacts = [
+  { name: "Olivia Bennett", initials: "OB", color: "primary", last: "Approved — a few small notes…", time: "2m", unread: 2, online: true, active: true },
+  { name: "Marcus Reyes", initials: "MR", color: "success", last: "Lunch Thursday?", time: "1h", unread: 0, online: true, active: false },
+  { name: "Sara Khan", initials: "SK", color: "info", last: "Customer interview notes are up.", time: "3h", unread: 0, online: false, active: false },
+  { name: "Diego Smania", initials: "DS", color: "warning", last: "PR is ready for review.", time: "Yesterday", unread: 1, online: false, active: false },
+  { name: "Emma Dawson", initials: "ED", color: "danger", last: "Heading out, see you Mon.", time: "Yesterday", unread: 0, online: false, active: false },
+  { name: "Liam Carter", initials: "LC", color: "primary", last: "Pushed the calendar fix.", time: "May 16", unread: 0, online: true, active: false },
+  { name: "Ava Foster", initials: "AF", color: "secondary", last: "Adding you to the design crit.", time: "May 15", unread: 0, online: false, active: false }
+];
+
+type Message = {
+  who: "me" | "them";
+  text: string;
+  time: string;
+};
+
+const messages: Message[] = [
+  { who: "them", text: "Hey Jane! Did you get a chance to look at the v2.4 candidate?", time: "10:38 AM" },
+  { who: "me", text: "Just finished going through it. Overall really solid — the new motion primitives are great.", time: "10:40 AM" },
+  { who: "them", text: "Glad you like them. Any concerns?", time: "10:40 AM" },
+  { who: "me", text: "Two small things: the success state on form inputs feels light, and the focus ring is barely visible on dark theme.", time: "10:41 AM" },
+  { who: "them", text: "Yeah, that focus ring issue has been bugging me too. I’ll bump the contrast and ping you for another look.", time: "10:42 AM" },
+  { who: "me", text: "Sounds good. Otherwise, ship it!", time: "10:42 AM" }
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <Head title={title} path={path} />
+    <style is:inline>
+      .chat-app {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 0;
+        height: calc(100vh - 14rem);
+        min-height: 32rem;
+        border-radius: var(--bs-border-radius);
+        overflow: hidden;
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+      }
+      @media (max-width: 768px) {
+        .chat-app {
+          grid-template-columns: 1fr;
+        }
+        .chat-app .chat-contacts {
+          display: none;
+        }
+      }
+      .chat-contacts {
+        background: var(--bs-tertiary-bg);
+        border-right: 1px solid var(--bs-border-color);
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+      .chat-contact {
+        display: flex;
+        gap: .75rem;
+        padding: .75rem 1rem;
+        cursor: pointer;
+        border-bottom: 1px solid var(--bs-border-color);
+        text-decoration: none;
+        color: inherit;
+      }
+      .chat-contact:hover {
+        background: var(--bs-body-bg);
+      }
+      .chat-contact.active {
+        background: var(--bs-body-bg);
+        border-left: 3px solid var(--bs-primary);
+        padding-left: calc(1rem - 3px);
+      }
+      .chat-avatar {
+        position: relative;
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: .8rem;
+      }
+      .chat-avatar.online::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 10px;
+        height: 10px;
+        background: var(--bs-success);
+        border: 2px solid var(--bs-body-bg);
+        border-radius: 50%;
+      }
+      .chat-conversation {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+      .chat-header {
+        padding: .75rem 1rem;
+        border-bottom: 1px solid var(--bs-border-color);
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+      }
+      .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1rem;
+        background: var(--bs-tertiary-bg);
+      }
+      .chat-message {
+        display: flex;
+        margin-bottom: .75rem;
+      }
+      .chat-message.me {
+        justify-content: flex-end;
+      }
+      .chat-bubble {
+        max-width: 70%;
+        padding: .5rem .75rem;
+        border-radius: 1rem;
+        font-size: .9rem;
+        line-height: 1.4;
+      }
+      .chat-message.them .chat-bubble {
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-bottom-left-radius: .25rem;
+      }
+      .chat-message.me .chat-bubble {
+        background: var(--bs-primary);
+        color: #fff;
+        border-bottom-right-radius: .25rem;
+      }
+      .chat-time {
+        font-size: .7rem;
+        opacity: .7;
+        display: block;
+        margin-top: .15rem;
+      }
+      .chat-composer {
+        padding: .75rem;
+        border-top: 1px solid var(--bs-border-color);
+      }
+    </style>
+  </head>
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <main class="app-main">
+        <div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Chat</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Chat</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-content">
+          <div class="container-fluid">
+            <div class="chat-app">
+              <!-- Contacts -->
+              <aside class="chat-contacts">
+                <div class="p-3 border-bottom">
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-text bg-body">
+                      <i class="bi bi-search" aria-hidden="true"></i>
+                    </span>
+                    <input
+                      type="search"
+                      class="form-control"
+                      placeholder="Search contacts&hellip;"
+                      aria-label="Search contacts"
+                    />
+                  </div>
+                </div>
+                <div class="flex-grow-1 overflow-auto">
+                  {
+                    contacts.map((c) => (
+                      <a
+                        href="#"
+                        class:list={["chat-contact", c.active && "active"]}
+                      >
+                        <span
+                          class:list={[
+                            "chat-avatar",
+                            `bg-${c.color}-subtle`,
+                            `text-${c.color}`,
+                            c.online && "online"
+                          ]}
+                        >
+                          {c.initials}
+                        </span>
+                        <div class="flex-grow-1 overflow-hidden">
+                          <div class="d-flex justify-content-between">
+                            <p
+                              class:list={[
+                                "mb-0 text-truncate",
+                                c.unread > 0 && "fw-semibold"
+                              ]}
+                            >
+                              {c.name}
+                            </p>
+                            <small class="text-secondary flex-shrink-0 ms-2">
+                              {c.time}
+                            </small>
+                          </div>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <small
+                              class:list={[
+                                "text-truncate",
+                                c.unread > 0 ? "fw-semibold" : "text-secondary"
+                              ]}
+                            >
+                              {c.last}
+                            </small>
+                            {c.unread > 0 && (
+                              <span class="badge text-bg-primary rounded-pill ms-2">
+                                {c.unread}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </a>
+                    ))
+                  }
+                </div>
+              </aside>
+
+              <!-- Conversation -->
+              <section class="chat-conversation">
+                <header class="chat-header">
+                  <span class="chat-avatar bg-primary-subtle text-primary online">
+                    OB
+                  </span>
+                  <div class="flex-grow-1">
+                    <p class="mb-0 fw-semibold">Olivia Bennett</p>
+                    <small class="text-success">
+                      <i
+                        class="bi bi-circle-fill"
+                        style="font-size: .5rem;"
+                        aria-hidden="true"
+                      ></i>
+                      Online &middot; typing&hellip;
+                    </small>
+                  </div>
+                  <div class="btn-group btn-group-sm">
+                    <button class="btn btn-outline-secondary" type="button" title="Call">
+                      <i class="bi bi-telephone" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-outline-secondary" type="button" title="Video call">
+                      <i class="bi bi-camera-video" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-outline-secondary" type="button" title="More">
+                      <i class="bi bi-three-dots-vertical" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </header>
+
+                <div class="chat-messages" id="chat-messages">
+                  {
+                    messages.map((m) => (
+                      <div class:list={["chat-message", m.who]}>
+                        <div class="chat-bubble">
+                          {m.text}
+                          <span class="chat-time">{m.time}</span>
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+
+                <form class="chat-composer" id="chat-composer">
+                  <div class="input-group">
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      title="Attach"
+                    >
+                      <i class="bi bi-paperclip" aria-hidden="true"></i>
+                    </button>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Type a message&hellip;"
+                      aria-label="Type a message"
+                      id="chat-input"
+                    />
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      title="Emoji"
+                    >
+                      <i class="bi bi-emoji-smile" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-primary" type="submit">
+                      <i class="bi bi-send" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+    <Scripts path={path} />
+    <script is:inline>
+      const fmtTime = () =>
+        new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("chat-composer");
+        const input = document.getElementById("chat-input");
+        const list = document.getElementById("chat-messages");
+
+        list.scrollTop = list.scrollHeight;
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const text = input.value.trim();
+          if (!text) return;
+          const wrap = document.createElement("div");
+          wrap.className = "chat-message me";
+          wrap.innerHTML = `<div class="chat-bubble"></div>`;
+          wrap.firstChild.textContent = text;
+          const time = document.createElement("span");
+          time.className = "chat-time";
+          time.textContent = fmtTime();
+          wrap.firstChild.append(time);
+          list.append(wrap);
+          input.value = "";
+          list.scrollTop = list.scrollHeight;
+        });
+      });
+    </script>
+  </body>
+</html>

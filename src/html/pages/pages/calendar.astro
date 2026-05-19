@@ -1,0 +1,211 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+
+const title = "AdminLTE 4 | Calendar"
+const path = "../../../dist"
+const mainPage = "pages"
+const page = "calendar";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <Head title={title} path={path} />
+    <style is:inline>
+      .fc-event {
+        cursor: pointer;
+      }
+      .draggable-event {
+        cursor: grab;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <main class="app-main">
+        <div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Calendar</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Calendar</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-content">
+          <div class="container-fluid">
+            <div class="row g-3">
+              <!-- Sidebar: draggable events -->
+              <div class="col-lg-3">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Draggable events</h3>
+                  </div>
+                  <div class="card-body">
+                    <p class="text-secondary small mb-3">
+                      Drag an event to the calendar to schedule it.
+                    </p>
+                    <div id="external-events">
+                      <div
+                        class="draggable-event badge text-bg-primary p-2 mb-2 d-block text-start"
+                        data-color="#0d6efd"
+                      >
+                        <i class="bi bi-grip-vertical me-1" aria-hidden="true"></i>
+                        Team standup
+                      </div>
+                      <div
+                        class="draggable-event badge text-bg-success p-2 mb-2 d-block text-start"
+                        data-color="#198754"
+                      >
+                        <i class="bi bi-grip-vertical me-1" aria-hidden="true"></i>
+                        Customer call
+                      </div>
+                      <div
+                        class="draggable-event badge text-bg-warning p-2 mb-2 d-block text-start"
+                        data-color="#ffc107"
+                      >
+                        <i class="bi bi-grip-vertical me-1" aria-hidden="true"></i>
+                        Design review
+                      </div>
+                      <div
+                        class="draggable-event badge text-bg-info p-2 mb-2 d-block text-start"
+                        data-color="#0dcaf0"
+                      >
+                        <i class="bi bi-grip-vertical me-1" aria-hidden="true"></i>
+                        1:1 with manager
+                      </div>
+                      <div
+                        class="draggable-event badge text-bg-danger p-2 d-block text-start"
+                        data-color="#dc3545"
+                      >
+                        <i class="bi bi-grip-vertical me-1" aria-hidden="true"></i>
+                        Release window
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="form-check form-switch">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id="remove-after-drop"
+                      />
+                      <label
+                        class="form-check-label small"
+                        for="remove-after-drop"
+                      >
+                        Remove from list after dropping
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Calendar -->
+              <div class="col-lg-9">
+                <div class="card">
+                  <div class="card-body">
+                    <div id="calendar"></div>
+                  </div>
+                  <div class="card-footer text-secondary small">
+                    Powered by
+                    <a
+                      href="https://fullcalendar.io/"
+                      target="_blank"
+                      rel="noopener">FullCalendar 6</a
+                    >
+                    &mdash; MIT licensed, jQuery-free.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+    <Scripts path={path} />
+    <script
+      src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.20/index.global.min.js"
+      crossorigin="anonymous"></script>
+    <script is:inline>
+      const isoDate = (d) => d.toISOString().slice(0, 10);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const calendarEl = document.getElementById("calendar");
+        const externalEl = document.getElementById("external-events");
+        const removeAfterDrop = document.getElementById("remove-after-drop");
+
+        new FullCalendar.Draggable(externalEl, {
+          itemSelector: ".draggable-event",
+          eventData: (el) => ({
+            title: el.textContent.trim(),
+            backgroundColor: el.dataset.color,
+            borderColor: el.dataset.color
+          })
+        });
+
+        const today = new Date();
+        const offsetDay = (n) => {
+          const d = new Date(today);
+          d.setDate(today.getDate() + n);
+          return isoDate(d);
+        };
+
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: "dayGridMonth",
+          headerToolbar: {
+            start: "prev,next today",
+            center: "title",
+            end: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+          },
+          height: 700,
+          editable: true,
+          droppable: true,
+          dayMaxEvents: 3,
+          drop: (info) => {
+            if (removeAfterDrop.checked) {
+              info.draggedEl.remove();
+            }
+          },
+          dateClick: (info) => {
+            const title = prompt("Event title:");
+            if (title) {
+              calendar.addEvent({
+                title: title,
+                start: info.dateStr,
+                allDay: info.allDay
+              });
+            }
+          },
+          eventClick: (info) => {
+            if (confirm(`Delete "${info.event.title}"?`)) {
+              info.event.remove();
+            }
+          },
+          events: [
+            { title: "Quarterly planning", start: offsetDay(-2), backgroundColor: "#0d6efd", borderColor: "#0d6efd" },
+            { title: "Onboarding session", start: offsetDay(1), backgroundColor: "#198754", borderColor: "#198754" },
+            { title: "Design review", start: offsetDay(3), end: offsetDay(4), backgroundColor: "#ffc107", borderColor: "#ffc107", textColor: "#000" },
+            { title: "Release v2.5", start: offsetDay(7), backgroundColor: "#dc3545", borderColor: "#dc3545" },
+            { title: "All-hands", start: offsetDay(10), backgroundColor: "#6f42c1", borderColor: "#6f42c1" }
+          ]
+        });
+
+        calendar.render();
+      });
+    </script>
+  </body>
+</html>

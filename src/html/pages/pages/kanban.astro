@@ -1,0 +1,363 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+
+const title = "AdminLTE 4 | Kanban Board"
+const path = "../../../dist"
+const mainPage = "pages"
+const page = "kanban";
+
+type Card = {
+  title: string;
+  desc?: string;
+  tag?: { label: string; color: string };
+  due?: string;
+  assignees: string[];
+};
+
+const lanes: { id: string; title: string; color: string; cards: Card[] }[] = [
+  {
+    id: "backlog",
+    title: "Backlog",
+    color: "secondary",
+    cards: [
+      {
+        title: "Audit unused SCSS variables",
+        desc: "Identify deprecated Bootstrap 5.3.4 variables and add comments.",
+        tag: { label: "tech debt", color: "secondary" },
+        assignees: ["DM"]
+      },
+      {
+        title: "Document hreflang setup",
+        tag: { label: "docs", color: "info" },
+        assignees: ["JD"]
+      },
+      {
+        title: "Investigate Safari iOS calendar drag bug",
+        tag: { label: "bug", color: "danger" },
+        due: "May 28",
+        assignees: ["OB", "MK"]
+      }
+    ]
+  },
+  {
+    id: "todo",
+    title: "To do",
+    color: "primary",
+    cards: [
+      {
+        title: "Add Tom Select recommended-integration doc",
+        desc: "Cover install, theming, single + multi select examples.",
+        tag: { label: "feature", color: "primary" },
+        due: "May 24",
+        assignees: ["JD"]
+      },
+      {
+        title: "Wire up profile page avatar upload",
+        tag: { label: "feature", color: "primary" },
+        assignees: ["EM"]
+      }
+    ]
+  },
+  {
+    id: "in-progress",
+    title: "In progress",
+    color: "warning",
+    cards: [
+      {
+        title: "Build kanban board demo",
+        desc: "SortableJS, draggable between lanes, MIT license.",
+        tag: { label: "feature", color: "primary" },
+        due: "Today",
+        assignees: ["JD"]
+      },
+      {
+        title: "Tabulator + FullCalendar integration QA",
+        tag: { label: "qa", color: "warning" },
+        assignees: ["OB"]
+      }
+    ]
+  },
+  {
+    id: "done",
+    title: "Done",
+    color: "success",
+    cards: [
+      {
+        title: "Upgrade to Bootstrap 5.3.8",
+        tag: { label: "feature", color: "primary" },
+        assignees: ["DM"]
+      },
+      {
+        title: "Ship 8 Tier-1 page templates",
+        desc: "Profile, settings, invoice, pricing, FAQ, 404/500/maintenance.",
+        tag: { label: "feature", color: "primary" },
+        assignees: ["JD", "OB"]
+      },
+      {
+        title: "Drop dead eslint-config-xo deps",
+        tag: { label: "tech debt", color: "secondary" },
+        assignees: ["DM"]
+      }
+    ]
+  }
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <Head title={title} path={path} />
+    <style is:inline>
+      .kanban-board {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+        align-items: start;
+      }
+      .kanban-lane {
+        background: var(--bs-tertiary-bg);
+        border-radius: var(--bs-border-radius);
+        padding: .75rem;
+        min-height: 8rem;
+      }
+      .kanban-lane-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: .75rem;
+        padding: 0 .25rem;
+      }
+      .kanban-cards {
+        min-height: 4rem;
+      }
+      .kanban-card {
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius);
+        padding: .75rem;
+        margin-bottom: .5rem;
+        cursor: grab;
+        transition: box-shadow .15s ease;
+      }
+      .kanban-card:hover {
+        box-shadow: var(--bs-box-shadow-sm);
+      }
+      .kanban-card.sortable-ghost {
+        opacity: .4;
+        background: var(--bs-primary-bg-subtle);
+        border-style: dashed;
+      }
+      .kanban-card.sortable-drag {
+        cursor: grabbing;
+        box-shadow: var(--bs-box-shadow);
+        transform: rotate(2deg);
+      }
+      .kanban-assignees {
+        display: inline-flex;
+      }
+      .kanban-assignee {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 50%;
+        background: var(--bs-secondary-bg);
+        color: var(--bs-secondary-color);
+        font-size: .7rem;
+        font-weight: 600;
+        border: 2px solid var(--bs-body-bg);
+        margin-left: -.5rem;
+      }
+      .kanban-assignee:first-child {
+        margin-left: 0;
+      }
+      .kanban-add-card {
+        background: transparent;
+        border: 1px dashed var(--bs-border-color);
+        color: var(--bs-secondary-color);
+        width: 100%;
+        padding: .5rem;
+        border-radius: var(--bs-border-radius);
+        font-size: .875rem;
+      }
+      .kanban-add-card:hover {
+        background: var(--bs-body-bg);
+        color: var(--bs-body-color);
+      }
+    </style>
+  </head>
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <main class="app-main">
+        <div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Kanban Board</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Kanban</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-content">
+          <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <p class="text-secondary mb-0 small">
+                  Drag cards between lanes. Try dropping &ldquo;In progress&rdquo;
+                  items into &ldquo;Done&rdquo;.
+                </p>
+              </div>
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-secondary" type="button">
+                  <i class="bi bi-funnel me-1" aria-hidden="true"></i>Filter
+                </button>
+                <button class="btn btn-outline-secondary" type="button">
+                  <i class="bi bi-sort-down me-1" aria-hidden="true"></i>Sort
+                </button>
+                <button class="btn btn-primary" type="button">
+                  <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>Add lane
+                </button>
+              </div>
+            </div>
+
+            <div class="kanban-board" id="kanban-board">
+              {
+                lanes.map((lane) => (
+                  <div class="kanban-lane" data-lane-id={lane.id}>
+                    <div class="kanban-lane-header">
+                      <h2 class="h6 mb-0 d-flex align-items-center gap-2">
+                        <span
+                          class={`badge text-bg-${lane.color}`}
+                          style="font-size: .65rem;"
+                        >
+                          {lane.cards.length}
+                        </span>
+                        {lane.title}
+                      </h2>
+                      <button
+                        class="btn btn-sm btn-link text-secondary p-0"
+                        type="button"
+                        title="Lane actions"
+                        aria-label="Lane actions"
+                      >
+                        <i class="bi bi-three-dots" aria-hidden="true" />
+                      </button>
+                    </div>
+                    <div class="kanban-cards" data-lane-id={lane.id}>
+                      {lane.cards.map((card) => (
+                        <article class="kanban-card">
+                          {card.tag && (
+                            <span
+                              class={`badge text-bg-${card.tag.color} mb-2`}
+                            >
+                              {card.tag.label}
+                            </span>
+                          )}
+                          <p class="fw-semibold mb-1 small">{card.title}</p>
+                          {card.desc && (
+                            <p class="text-secondary small mb-2">{card.desc}</p>
+                          )}
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="kanban-assignees">
+                              {card.assignees.map((a) => (
+                                <span class="kanban-assignee" title={a}>
+                                  {a}
+                                </span>
+                              ))}
+                            </div>
+                            {card.due && (
+                              <small class="text-secondary">
+                                <i
+                                  class="bi bi-calendar-event me-1"
+                                  aria-hidden="true"
+                                />
+                                {card.due}
+                              </small>
+                            )}
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                    <button
+                      class="kanban-add-card mt-2"
+                      type="button"
+                      data-add-card-for={lane.id}
+                    >
+                      <i class="bi bi-plus-lg me-1" aria-hidden="true" />
+                      Add card
+                    </button>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+    <Scripts path={path} />
+    <script
+      src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.7/Sortable.min.js"
+      crossorigin="anonymous"
+      is:inline></script>
+    <script is:inline>
+      const updateLaneCount = (laneEl) => {
+        const lane = laneEl.closest(".kanban-lane");
+        const badge = lane.querySelector(".kanban-lane-header .badge");
+        badge.textContent = laneEl.children.length;
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".kanban-cards").forEach((el) => {
+          new Sortable(el, {
+            group: "kanban",
+            animation: 150,
+            ghostClass: "sortable-ghost",
+            dragClass: "sortable-drag",
+            onEnd: (evt) => {
+              updateLaneCount(evt.from);
+              if (evt.from !== evt.to) updateLaneCount(evt.to);
+            }
+          });
+        });
+
+        document.querySelectorAll("[data-add-card-for]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const title = prompt("Card title:");
+            if (!title) return;
+            const laneId = btn.dataset.addCardFor;
+            const lane = document.querySelector(
+              `.kanban-cards[data-lane-id="${laneId}"]`
+            );
+            const card = document.createElement("article");
+            card.className = "kanban-card";
+            card.innerHTML = `
+              <p class="fw-semibold mb-1 small">${title.replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c]))}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="kanban-assignees">
+                  <span class="kanban-assignee" title="You">YO</span>
+                </div>
+                <small class="text-secondary">just now</small>
+              </div>
+            `;
+            lane.append(card);
+            updateLaneCount(lane);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
