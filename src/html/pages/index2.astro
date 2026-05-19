@@ -1348,7 +1348,10 @@ createSparklineChart("#table-sparkline-7", table_sparkline_7_data)
 const pie_chart_options = {
   series: [700, 500, 400, 600, 300, 100],
   chart: {
-    type: "donut"
+    type: "donut",
+    // Pin an explicit height to avoid an ApexCharts ResizeObserver feedback
+    // loop on browser zoom (most visible on Edge). Fixes #6019.
+    height: 350
   },
   labels: ["Chrome", "Edge", "FireFox", "Safari", "Opera", "IE"],
   dataLabels: {
