@@ -301,6 +301,48 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
             </li>
           </ul>
         </li>
+        <li class:list={["nav-item", mainPage === "mailbox" && "menu-open"]}>
+          <a
+            href="#"
+            class:list={["nav-link", mainPage === "mailbox" && "active"]}
+          >
+            <i class="nav-icon bi bi-envelope"></i>
+            <p>
+              Mailbox
+              <i class="nav-arrow bi bi-chevron-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/mailbox/inbox.html"}
+                class:list={["nav-link", page === "inbox" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Inbox</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/mailbox/read.html"}
+                class:list={["nav-link", page === "read" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Read Message</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/mailbox/compose.html"}
+                class:list={["nav-link", page === "compose" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Compose</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
         <li class:list={["nav-item", mainPage === "forms" && "menu-open"]}>
           <a
             href="#"
@@ -315,11 +357,38 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a
-                href={htmlPath + "/forms/general.html"}
-                class:list={["nav-link", page === "general" && "active"]}
+                href={htmlPath + "/forms/elements.html"}
+                class:list={["nav-link", page === "elements" && "active"]}
               >
                 <i class="nav-icon bi bi-circle"></i>
-                <p>General Elements</p>
+                <p>Elements</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/forms/layout.html"}
+                class:list={["nav-link", page === "layout" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Layout</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/forms/validation.html"}
+                class:list={["nav-link", page === "validation" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Validation</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/forms/wizard.html"}
+                class:list={["nav-link", page === "wizard" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Wizard</p>
               </a>
             </li>
           </ul>
@@ -344,6 +413,150 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                 <i class="nav-icon bi bi-circle"></i>
                 <p>Simple Tables</p>
               </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/tables/data.html"}
+                class:list={["nav-link", page === "data" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Data Tables</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-header">PAGES</li>
+        <li class:list={["nav-item", mainPage === "pages" && "menu-open"]}>
+          <a
+            href="#"
+            class:list={["nav-link", mainPage === "pages" && "active"]}
+          >
+            <i class="nav-icon bi bi-file-earmark-text"></i>
+            <p>
+              Pages
+              <i class="nav-arrow bi bi-chevron-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/pages/profile.html"}
+                class:list={["nav-link", page === "profile" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Profile</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/pages/settings.html"}
+                class:list={["nav-link", page === "settings" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Settings</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/pages/invoice.html"}
+                class:list={["nav-link", page === "invoice" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Invoice</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/pages/calendar.html"}
+                class:list={["nav-link", page === "calendar" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Calendar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/pages/kanban.html"}
+                class:list={["nav-link", page === "kanban" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Kanban</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/pages/chat.html"}
+                class:list={["nav-link", page === "chat" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Chat</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/pages/file-manager.html"}
+                class:list={["nav-link", page === "file-manager" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>File Manager</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/pages/projects.html"}
+                class:list={["nav-link", page === "projects" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Projects</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/pages/pricing.html"}
+                class:list={["nav-link", page === "pricing" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Pricing</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/pages/faq.html"}
+                class:list={["nav-link", page === "faq" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>FAQ</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>
+                  Error
+                  <i class="nav-arrow bi bi-chevron-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href={htmlPath + "/pages/404.html"} class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>404</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href={htmlPath + "/pages/500.html"} class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>500</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href={htmlPath + "/pages/maintenance.html"} class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Maintenance</p>
+                  </a>
+                </li>
+              </ul>
             </li>
           </ul>
         </li>
@@ -439,6 +652,15 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
           >
             <i class="nav-icon bi bi-star-half"></i>
             <p>Color Mode</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href={htmlPath + "/docs/integrations.html"}
+            class:list={["nav-link", page === "integrations" && "active"]}
+          >
+            <i class="nav-icon bi bi-puzzle"></i>
+            <p>Recommended Integrations</p>
           </a>
         </li>
         <li class:list={["nav-item", mainPage === "components" && "menu-open"]}>
