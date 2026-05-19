@@ -1,0 +1,339 @@
+AdminLTE deliberately ships a lean dependency tree. Rather than bundling every form widget or chart library, we recommend best-in-class third-party libraries you can drop in when you need them. Every library below is **MIT-licensed**, **actively maintained**, and **jQuery-free**.
+
+Each section has a CDN-based "install" snippet and the minimum JavaScript needed to wire it up. You can swap CDN URLs for npm installs if you're using a bundler.
+
+##### Form widgets
+
+###### Date / time picker — Flatpickr
+
+[Flatpickr](https://flatpickr.js.org/) is a lightweight, no-dependency date and time picker.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13"></script>
+
+<input type="text" class="form-control" id="datepicker" placeholder="Select a date" />
+
+<script>
+  flatpickr("#datepicker", {
+    altInput: true,
+    altFormat: "F j, Y",
+    dateFormat: "Y-m-d"
+  })
+</script>
+```
+
+Supports date ranges, time-only mode, multiple dates, and i18n out of the box.
+
+###### Multi-select / tag input — Tom Select
+
+[Tom Select](https://tom-select.js.org/) is a vanilla-JS rewrite of Selectize. Great fit for searchable selects, tag inputs, and remote-data autocomplete.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.bootstrap5.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+
+<select id="tags" class="form-control" multiple placeholder="Pick some tags">
+  <option value="design">Design</option>
+  <option value="dev">Development</option>
+  <option value="qa">QA</option>
+</select>
+
+<script>
+  new TomSelect("#tags", { plugins: ["remove_button"] })
+</script>
+```
+
+Ships a `tom-select.bootstrap5.min.css` theme that matches Bootstrap form controls.
+
+###### Range slider — noUiSlider
+
+[noUiSlider](https://refreshless.com/nouislider/) handles single, range, and multi-handle sliders with no dependencies.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.8.1/dist/nouislider.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/nouislider@15.8.1/dist/nouislider.min.js"></script>
+
+<div id="slider"></div>
+
+<script>
+  noUiSlider.create(document.getElementById("slider"), {
+    start: [20, 80],
+    connect: true,
+    range: { min: 0, max: 100 }
+  })
+</script>
+```
+
+###### Color picker — Pickr
+
+[Pickr](https://github.com/Simonwep/pickr) is a flat, modern color picker with multiple themes.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr@1.9.1/dist/themes/classic.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr@1.9.1/dist/pickr.min.js"></script>
+
+<div id="color-picker"></div>
+
+<script>
+  Pickr.create({
+    el: "#color-picker",
+    theme: "classic",
+    default: "#0d6efd",
+    components: { preview: true, opacity: true, hue: true, interaction: { input: true, save: true } }
+  })
+</script>
+```
+
+###### Input mask — IMask
+
+[IMask](https://imask.js.org/) handles phone numbers, credit cards, dates, currency — anything with a fixed pattern.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/imask@7.6.1/dist/imask.min.js"></script>
+
+<input class="form-control" id="phone" placeholder="(123) 456-7890" />
+
+<script>
+  IMask(document.getElementById("phone"), { mask: "(000) 000-0000" })
+</script>
+```
+
+##### File handling
+
+###### File uploader — Dropzone
+
+[Dropzone](https://www.dropzone.dev/) is the de-facto drag-and-drop uploader. The v6 rewrite is plain JavaScript (the older v5 had jQuery-coupled examples; v6+ does not).
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@6.0.0-beta.2/dist/dropzone.css" />
+<script src="https://cdn.jsdelivr.net/npm/dropzone@6.0.0-beta.2/dist/dropzone-min.js"></script>
+
+<form action="/upload" class="dropzone" id="uploader"></form>
+
+<script>
+  Dropzone.autoDiscover = false
+  new Dropzone("#uploader", { paramName: "file", maxFilesize: 5 })
+</script>
+```
+
+###### File uploader — FilePond
+
+[FilePond](https://pqina.nl/filepond/) is a more modern alternative with a polished UX and a plugin system for image preview, validation, EXIF, etc.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/filepond@4.32.7/dist/filepond.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/filepond@4.32.7/dist/filepond.min.js"></script>
+
+<input type="file" class="filepond" />
+
+<script>
+  FilePond.create(document.querySelector(".filepond"), { allowMultiple: true })
+</script>
+```
+
+##### Rich text & markdown editors
+
+###### Rich text — Quill
+
+[Quill](https://quilljs.com/) is the best-supported open-source WYSIWYG editor. Lightweight, modular, no dependencies.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" />
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+<div id="editor" style="height: 12rem;"></div>
+
+<script>
+  new Quill("#editor", {
+    theme: "snow",
+    placeholder: "Write something fancy&hellip;"
+  })
+</script>
+```
+
+###### Markdown — EasyMDE
+
+[EasyMDE](https://github.com/Ionaru/easy-markdown-editor) is the actively-maintained fork of SimpleMDE. Same look, same API, but still gets updates.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde@2.18.0/dist/easymde.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/easymde@2.18.0/dist/easymde.min.js"></script>
+
+<textarea id="markdown"></textarea>
+
+<script>
+  new EasyMDE({ element: document.getElementById("markdown") })
+</script>
+```
+
+###### WYSIWYG + Markdown — Toast UI Editor
+
+[Toast UI Editor](https://ui.toast.com/tui-editor) supports both markdown and WYSIWYG modes side-by-side. Best when you want users to pick their preferred mode.
+
+```html
+<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+
+<div id="md-editor"></div>
+
+<script>
+  new toastui.Editor({
+    el: document.getElementById("md-editor"),
+    height: "20rem",
+    initialEditType: "markdown",
+    previewStyle: "vertical"
+  })
+</script>
+```
+
+##### Charts
+
+###### ApexCharts
+
+[ApexCharts](https://apexcharts.com/) is the chart library used in the AdminLTE dashboards. Modern look, animated, MIT.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@4.4.0/dist/apexcharts.min.js"></script>
+
+<div id="chart"></div>
+
+<script>
+  new ApexCharts(document.querySelector("#chart"), {
+    chart: { type: "area", height: 300 },
+    series: [{ name: "Visits", data: [30, 40, 35, 50, 49, 60, 70] }],
+    xaxis: { categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] }
+  }).render()
+</script>
+```
+
+###### Chart.js
+
+[Chart.js](https://www.chartjs.org/) is the most-asked-for traditional chart library. Canvas-based, very wide chart-type support.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4"></script>
+
+<canvas id="bar-chart" height="120"></canvas>
+
+<script>
+  new Chart(document.getElementById("bar-chart"), {
+    type: "bar",
+    data: {
+      labels: ["Q1", "Q2", "Q3", "Q4"],
+      datasets: [{ label: "Revenue", data: [120, 190, 170, 230] }]
+    }
+  })
+</script>
+```
+
+##### Data tables
+
+###### Tabulator
+
+[Tabulator](https://tabulator.info/) is the jQuery-free DataTables alternative used in `tables/data.html`. Sort, filter, paginate, edit, export — all built in.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/js/tabulator.min.js"></script>
+
+<div id="table"></div>
+
+<script>
+  new Tabulator("#table", {
+    data: [{ id: 1, name: "Alice", role: "Admin" }],
+    layout: "fitColumns",
+    pagination: true,
+    paginationSize: 10,
+    columns: [
+      { title: "ID", field: "id", width: 60 },
+      { title: "Name", field: "name", headerFilter: "input" },
+      { title: "Role", field: "role" }
+    ]
+  })
+</script>
+```
+
+##### Calendar
+
+###### FullCalendar
+
+[FullCalendar](https://fullcalendar.io/) is the calendar used in `pages/calendar.html`. Drag-and-drop scheduling, multiple views, recurrence, MIT.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.20/index.global.min.js"></script>
+
+<div id="calendar"></div>
+
+<script>
+  new FullCalendar.Calendar(document.getElementById("calendar"), {
+    initialView: "dayGridMonth",
+    headerToolbar: { start: "prev,next today", center: "title", end: "dayGridMonth,timeGridWeek,listWeek" },
+    events: [{ title: "Team standup", start: "2026-06-01" }]
+  }).render()
+</script>
+```
+
+##### Drag and drop
+
+###### SortableJS
+
+[SortableJS](https://sortablejs.github.io/Sortable/) powers the kanban board demo. Reorder lists, drag between lists, touch-friendly. 31k stars.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.7/Sortable.min.js"></script>
+
+<ul id="list" class="list-group">
+  <li class="list-group-item">Item 1</li>
+  <li class="list-group-item">Item 2</li>
+  <li class="list-group-item">Item 3</li>
+</ul>
+
+<script>
+  new Sortable(document.getElementById("list"), { animation: 150 })
+</script>
+```
+
+##### Lightbox / image viewer
+
+###### GLightbox
+
+[GLightbox](https://biati-digital.github.io/glightbox/) is a vanilla-JS lightbox for images, videos, and inline content.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"></script>
+
+<a href="image-large.jpg" class="glightbox">
+  <img src="image-thumb.jpg" alt="Click to enlarge" />
+</a>
+
+<script>
+  GLightbox()
+</script>
+```
+
+##### Icon libraries
+
+AdminLTE ships [Bootstrap Icons](https://icons.getbootstrap.com/) by default — they're SVG-based, ~1,900 icons, and used throughout the demo. If you need more, these all work alongside AdminLTE:
+
+| Library | Icons | Notes |
+|---|---|---|
+| [Bootstrap Icons](https://icons.getbootstrap.com/) | 1,900+ | Default, SVG, MIT |
+| [Lucide](https://lucide.dev/) | 1,500+ | Modern, SVG, ISC, very consistent style |
+| [Tabler Icons](https://tabler.io/icons) | 5,800+ | MIT, broadest free set available |
+| [Material Symbols](https://fonts.google.com/icons) | 3,500+ | Google, Apache 2.0, variable font |
+| [FontAwesome Free](https://fontawesome.com/icons) | 2,000+ free | Most-recognized, font-based |
+| [Phosphor](https://phosphoricons.com/) | 6,000+ | MIT, six weights |
+
+Mix and match — they all coexist.
+
+##### A note on bundling
+
+The examples above use jsDelivr CDNs for copy-paste convenience. For production use, prefer:
+
+1. **npm install + bundler** (Vite, Webpack, Rollup) — best for tree-shaking and version locking
+2. **Self-host** the minified bundles — avoids CDN downtime as a failure mode
+3. **CDN with `integrity` hashes** — fine for prototypes and demos
+
+AdminLTE doesn't ship any of these libraries — keeping the framework's footprint small is intentional. Pick what you need, skip what you don't.
