@@ -29,7 +29,28 @@ body.app-loaded .app-sidebar {
 }
 ```
 
+##### Programmatic API
+
+The Layout plugin self-initializes on `DOMContentLoaded` — there's nothing to wire up manually. The only public method is exposed for advanced cases where you want to suppress transitions around your own DOM mutations:
+
+```js
+import { Layout } from "admin-lte"
+
+const layout = new Layout(document.body)
+layout.holdTransition(200)   // disable transitions for 200ms
+
+// ... do something that would otherwise animate awkwardly
+document.body.classList.toggle("sidebar-mini")
+```
+
+###### Methods
+
+| Method | Returns | Description |
+|---|---|---|
+| `holdTransition(time?)` | `void` | Adds `hold-transition` to `<body>`, removes it after `time` milliseconds (default `100`). Use to suppress CSS transitions during programmatic layout changes. |
+
 ##### Notes
 
-- The `hold-transition` class is automatically removed after 200ms (on resize) or 100ms (default).
-- No data attributes or manual initialization required. The plugin initializes automatically.
+- The `hold-transition` class is automatically removed after the timeout. You don't need to clean up.
+- No data attributes — the plugin reads no config and initialises with the body element on page load.
+- If you need to detect when the initial page-load animations are done, watch for the `app-loaded` class on `<body>` or listen for the standard `load` event.

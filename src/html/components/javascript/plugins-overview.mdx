@@ -1,0 +1,149 @@
+AdminLTE ships seven JavaScript plugins as a single bundle (`adminlte.js`). Each one is exported from the package root, can be triggered via `data-lte-*` attributes for declarative use, and exposes a programmatic API for code-driven control.
+
+##### At a glance
+
+| Plugin | Data API | Programmatic | Documentation |
+|---|---|---|---|
+| **PushMenu** | `data-lte-toggle="sidebar"` | `.toggle()` / `.expand()` / `.collapse()` | [Reference](pushmenu.html) |
+| **Treeview** | `data-lte-toggle="treeview"` on parent menu | `.toggle()` / `.open()` / `.close()` | [Reference](treeview.html) |
+| **CardWidget** | `data-lte-toggle="card-collapse"`, `card-remove`, `card-maximize` | `.toggle()` / `.collapse()` / `.expand()` / `.remove()` / `.maximize()` / `.minimize()` / `.toggleMaximize()` | [Reference](card-widget.html) |
+| **DirectChat** | `data-lte-toggle="chat-pane"` | `.toggle()` | [Reference](direct-chat.html) |
+| **FullScreen** | `data-lte-toggle="fullscreen"` | `.toggleFullScreen()` / `.inFullScreen()` / `.outFullscreen()` | [Reference](fullscreen.html) |
+| **Layout** | (auto-applied to `<body>`) | `.holdTransition(time)` | [Reference](layout.html) |
+| **AccessibilityManager** | (helper function: `initAccessibility()`) | `.announce()` / `.focusElement()` / `.trapFocus()` / `.addLandmarks()` | [Reference](accessibility.html) |
+
+##### Two ways to use them
+
+###### 1. Data API (declarative)
+
+For most pages, the data API is enough — no JavaScript code required. Drop the right `data-lte-*` attribute on the trigger element and the bundle wires it up on page load:
+
+```html
+<!-- Sidebar toggle -->
+<button data-lte-toggle="sidebar">☰</button>
+
+<!-- Card collapse / remove / maximize -->
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Title</h3>
+    <div class="card-tools">
+      <button class="btn btn-tool" data-lte-toggle="card-collapse">
+        <i data-lte-icon="expand" class="bi bi-dash-lg"></i>
+        <i data-lte-icon="collapse" class="bi bi-plus-lg"></i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">…</div>
+</div>
+```
+
+The bundle attaches all data-API listeners on `DOMContentLoaded`. Dynamically-injected elements still work for the [PushMenu](pushmenu.html), [CardWidget](card-widget.html), and [Treeview](treeview.html) plugins, which use event delegation.
+
+###### 2. Programmatic (imperative)
+
+When you need to control a plugin from your own code — eg. open the sidebar after a successful login, or expand a card on a route change — instantiate the class directly:
+
+```js
+// ESM (bundler import)
+import { PushMenu, CardWidget, Treeview } from "admin-lte"
+
+// Sidebar
+new PushMenu(document.body, {}).expand()
+
+// Card maximize
+const card = document.querySelector("#chart-card")
+new CardWidget(card, {}).maximize()
+```
+
+Or use the globals (UMD bundle, no build step):
+
+```html
+<script>
+  // The bundle assigns to window.adminlte
+  new adminlte.PushMenu(document.body, {}).expand()
+</script>
+```
+
+##### Listening to plugin events
+
+Every plugin fires a `CustomEvent` or `Event` on the element it operates on. Listen for these to coordinate with your own code:
+
+```js
+document.addEventListener("expanded.lte.card-widget", (e) => {
+  console.log("Card expanded:", e.target)
+})
+
+document.addEventListener("open.lte.push-menu", () => {
+  // user opened the sidebar — eg. analytics call
+})
+```
+
+###### Event name reference
+
+| Plugin | Event | Fired when |
+|---|---|---|
+| PushMenu | `open.lte.push-menu` | Sidebar expanded |
+| PushMenu | `collapse.lte.push-menu` | Sidebar collapsed |
+| Treeview | `expanded.lte.treeview` | Submenu opened |
+| Treeview | `collapsed.lte.treeview` | Submenu closed |
+| Treeview | `load.lte.treeview` | Pre-opened submenu detected on page load |
+| CardWidget | `expanded.lte.card-widget` | Card expanded |
+| CardWidget | `collapsed.lte.card-widget` | Card collapsed |
+| CardWidget | `remove.lte.card-widget` | Card removed |
+| CardWidget | `maximized.lte.card-widget` | Card maximized |
+| CardWidget | `minimized.lte.card-widget` | Card minimized |
+| DirectChat | `expanded.lte.direct-chat` | Contacts pane opened |
+| DirectChat | `collapsed.lte.direct-chat` | Contacts pane closed |
+| FullScreen | `maximized.lte.fullscreen` | Entered fullscreen |
+| FullScreen | `minimized.lte.fullscreen` | Exited fullscreen |
+
+All events bubble. Attach listeners to `document` or `document.body` for global hooks, or to a specific card / sidebar element for scoped listeners.
+
+##### Configuring via data attributes
+
+Some plugins read config from `data-*` attributes on their target element:
+
+```html
+<!-- Treeview — non-accordion (multiple submenus can be open at once) -->
+<ul class="nav sidebar-menu" data-lte-toggle="treeview" data-accordion="false">…</ul>
+
+<!-- Treeview — custom animation speed -->
+<ul class="nav sidebar-menu" data-lte-toggle="treeview" data-animation-speed="500">…</ul>
+
+<!-- Sidebar — opt into localStorage persistence (default: off) -->
+<aside class="app-sidebar" data-enable-persistence="true">…</aside>
+
+<!-- Sidebar — override the mobile breakpoint -->
+<aside class="app-sidebar" data-sidebar-breakpoint="768">…</aside>
+```
+
+Each plugin's reference page documents which attributes it supports.
+
+##### CSS classes the plugins manage
+
+The plugins toggle a small set of CSS classes that you can also style or react to:
+
+| Class | Set by | Where | Meaning |
+|---|---|---|---|
+| `sidebar-collapse` | PushMenu | `<body>` | Sidebar collapsed (desktop mini state, or mobile-closed) |
+| `sidebar-open` | PushMenu | `<body>` | Mobile sidebar explicitly opened by user |
+| `sidebar-mini` | PushMenu | `<body>` | Mini-sidebar mode active |
+| `menu-open` | Treeview | `.nav-item` | Submenu is currently expanded |
+| `collapsed-card` | CardWidget | `.card` | Card body/footer are collapsed |
+| `maximized-card` | CardWidget | `<html>` and `.card` | Card is in fullscreen mode |
+| `direct-chat-contacts-open` | DirectChat | `.direct-chat` | Contacts pane visible |
+| `hold-transition` | Layout | `<body>` | Transitions disabled briefly (during resize, etc.) |
+| `app-loaded` | Layout | `<body>` | Initial page-load animation finished |
+| `reduce-motion` | AccessibilityManager | `<body>` | OS `prefers-reduced-motion` detected |
+
+##### Production vs source
+
+The plugins live in [`src/ts/`](https://github.com/ColorlibHQ/master/src/ts) as TypeScript modules. The published `dist/js/adminlte.js` is a Rollup bundle of all seven, exporting them under a single `adminlte` namespace (UMD) or named imports (ESM).
+
+If you only need one or two plugins and care about bundle size, importing individual modules from `node_modules/admin-lte/src/ts/` will tree-shake — but you'll need TypeScript in your toolchain.
+
+##### Where to next
+
+- Detailed reference for each plugin (links in the table above)
+- [Layout Blueprint](../layout-blueprint.html) — the structural classes the plugins operate on
+- [Accessibility](accessibility.html) — keyboard navigation, focus trapping, ARIA helpers

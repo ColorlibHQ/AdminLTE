@@ -49,7 +49,47 @@ The plugin dispatches the following events on the trigger element:
 | `collapsed-card` | Applied to the card when collapsed. |
 | `maximized-card` | Applied to the card when maximized. |
 
+##### Configuration
+
+The plugin reads no `data-*` configuration attributes. To customize behaviour, instantiate it programmatically and pass a config:
+
+| Option | Default | Description |
+|---|---|---|
+| `animationSpeed` | `500` | Slide animation duration in milliseconds. |
+| `collapseTrigger` | `[data-lte-toggle="card-collapse"]` | CSS selector for collapse buttons. |
+| `removeTrigger` | `[data-lte-toggle="card-remove"]` | CSS selector for remove buttons. |
+| `maximizeTrigger` | `[data-lte-toggle="card-maximize"]` | CSS selector for maximize buttons. |
+
+##### Programmatic API
+
+```js
+import { CardWidget } from "admin-lte"
+
+const card = document.querySelector("#chart-card")
+const widget = new CardWidget(card, { animationSpeed: 250 })
+
+widget.maximize()     // expand to fullscreen
+widget.collapse()     // hide body and footer
+widget.expand()       // restore from collapsed
+widget.remove()       // animate out and remove from DOM
+widget.toggle()       // expand / collapse based on current state
+widget.toggleMaximize()  // maximize / minimize based on current state
+```
+
+###### Methods
+
+| Method | Returns | Description |
+|---|---|---|
+| `collapse()` | `void` | Slides up body and footer, adds `collapsed-card`. Fires `collapsed.lte.card-widget`. |
+| `expand()` | `void` | Slides down body and footer, removes `collapsed-card`. Fires `expanded.lte.card-widget`. |
+| `toggle()` | `void` | Calls `collapse()` or `expand()` based on the `collapsed-card` class. |
+| `maximize()` | `void` | Sets the card to fixed fullscreen positioning, adds `maximized-card`. Fires `maximized.lte.card-widget`. |
+| `minimize()` | `void` | Restores original size, removes `maximized-card`. Fires `minimized.lte.card-widget`. |
+| `toggleMaximize()` | `void` | Calls `maximize()` or `minimize()` based on the `maximized-card` class. |
+| `remove()` | `void` | Animates the card out and removes it from the DOM. Fires `remove.lte.card-widget`. |
+
 ##### Notes
 
 - Nested cards are handled correctly: collapsing a parent card does not affect child cards.
-- The animation speed defaults to 500ms.
+- Maximizing a card also adds `maximized-card` to `<html>` so global styles can react.
+- A card that's collapsed when you maximize it remembers that — the `was-collapsed` class tracks this state.

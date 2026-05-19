@@ -22,7 +22,31 @@ Add `data-lte-toggle="fullscreen"` to a button element. Use `data-lte-icon="maxi
 | `maximized.lte.fullscreen` | Fired when entering fullscreen mode. |
 | `minimized.lte.fullscreen` | Fired when exiting fullscreen mode. |
 
+##### Programmatic API
+
+```js
+import { FullScreen } from "admin-lte"
+
+const btn = document.querySelector('[data-lte-toggle="fullscreen"]')
+const fs = new FullScreen(btn)
+
+fs.toggleFullScreen()  // enter or exit based on current state
+fs.inFullScreen()      // request fullscreen
+fs.outFullscreen()     // exit fullscreen
+```
+
+###### Methods
+
+| Method | Returns | Description |
+|---|---|---|
+| `toggleFullScreen()` | `void` | Calls `inFullScreen()` if not in fullscreen, otherwise `outFullscreen()`. Checks `document.fullscreenEnabled` first. |
+| `inFullScreen()` | `void` | Calls `document.documentElement.requestFullscreen()`, toggles `.d-none` on the maximize/minimize icons. Fires `maximized.lte.fullscreen`. |
+| `outFullscreen()` | `void` | Calls `document.exitFullscreen()`, toggles `.d-none` on the maximize/minimize icons. Fires `minimized.lte.fullscreen`. |
+
+The constructor takes no config — pass only the trigger element.
+
 ##### Notes
 
-- Requires browser support for the Fullscreen API (`document.fullscreenEnabled`).
-- The maximize icon is hidden when in fullscreen mode, and the minimize icon is shown (and vice versa).
+- Requires browser support for the [Fullscreen API](https://developer.mozilla.org/docs/Web/API/Fullscreen_API). Check `document.fullscreenEnabled` before invoking.
+- The maximize icon is hidden via the `d-none` Bootstrap utility class (not inline `display`) so it doesn't override the icon library's natural display value — this works correctly with FontAwesome, Lucide, Tabler Icons, etc.
+- Fullscreen on `document.documentElement` (i.e. `<html>`) means the entire page goes fullscreen. To fullscreen just a card, use the [CardWidget `maximize()` method](card-widget.html#programmatic-api) instead.

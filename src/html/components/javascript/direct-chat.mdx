@@ -41,3 +41,22 @@ Add `data-lte-toggle="chat-pane"` to a button inside a `.direct-chat` container 
 | Class | Description |
 |-------|-------------|
 | `direct-chat-contacts-open` | Applied to the `.direct-chat` container when the contacts pane is visible. |
+
+##### Programmatic API
+
+```js
+import { DirectChat } from "admin-lte"
+
+const chat = document.querySelector(".direct-chat")
+const dc = new DirectChat(chat)
+
+dc.toggle()  // show or hide the contacts pane
+```
+
+###### Methods
+
+| Method | Returns | Description |
+|---|---|---|
+| `toggle()` | `void` | Toggles the `direct-chat-contacts-open` class on the `.direct-chat` container. Fires `expanded.lte.direct-chat` or `collapsed.lte.direct-chat`. |
+
+The constructor takes no config object — pass only the `.direct-chat` element.

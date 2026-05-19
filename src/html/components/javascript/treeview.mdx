@@ -1,38 +1,123 @@
-The Treeview plugin converts a nested list into a tree view where sub menus can be expanded.
+The Treeview plugin converts a nested list into a collapsible tree where submenus expand and contract on click. It's what powers the sidebar navigation in the demo dashboards.
 
 ##### Usage
 
-This plugin can be used as the data api.
+###### Data API
 
-**Data API**
-
-Add `data-lte-toggle="treeview"` to any ul or ol element to activate the plugin.
+Add `data-lte-toggle="treeview"` to the parent `<ul>` or `<ol>`. Inside, mark items that have children with `.nav-item` and put the submenu in a nested `<ul class="nav-treeview">`:
 
 ```html
-<ul data-lte-toggle="treeview">
-  <li><a href="#">One Level</a></li>
-  <li class="nav-item menu-open">
-    <a class="nav-link" href="#">Multilevel</a>
-    <ul class="nav-treeview">
-      <li><a href="#">Level 2</a></li>
+<ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu">
+  <li class="nav-item">
+    <a class="nav-link" href="#">
+      <i class="nav-icon bi bi-speedometer"></i>
+      <p>Dashboard</p>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a href="#" class="nav-link">
+      <i class="nav-icon bi bi-folder"></i>
+      <p>
+        Reports
+        <i class="nav-arrow bi bi-chevron-right"></i>
+      </p>
+    </a>
+    <ul class="nav nav-treeview">
+      <li class="nav-item">
+        <a href="#" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>Sales</p></a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>Traffic</p></a>
+      </li>
     </ul>
   </li>
 </ul>
 ```
 
+To start with a submenu pre-expanded, add `menu-open` to its `.nav-item`.
+
+##### Configuration
+
+Configure via `data-*` attributes on the parent `<ul>`:
+
+| Attribute | Default | Description |
+|---|---|---|
+| `data-accordion` | `true` | Close other open submenus when one opens. Set `false` for non-accordion behaviour (multiple submenus open at once). |
+| `data-animation-speed` | `300` | Slide animation duration in milliseconds. Set `0` to disable animation. |
+
+```html
+<!-- Non-accordion mode: multiple submenus can stay open -->
+<ul class="nav sidebar-menu" data-lte-toggle="treeview" data-accordion="false">
+  …
+</ul>
+
+<!-- Faster animation -->
+<ul class="nav sidebar-menu" data-lte-toggle="treeview" data-animation-speed="150">
+  …
+</ul>
+```
+
+##### CSS Classes
+
+| Class | Applied to | Description |
+|---|---|---|
+| `menu-open` | `.nav-item` (the parent of a submenu) | The submenu is currently expanded. |
+| `nav-treeview` | `<ul>` (nested) | Marks a submenu so the plugin recognises it. |
+| `nav-arrow` | `<i>` inside `.nav-link` | The chevron icon that rotates when the submenu opens. |
+
+##### Events
+
+| Event | Description |
+|---|---|
+| `expanded.lte.treeview` | Fired on the `.nav-item` when its submenu opens. |
+| `collapsed.lte.treeview` | Fired on the `.nav-item` when its submenu closes. |
+| `load.lte.treeview` | Fired once per page load for any submenu that's already expanded via the `menu-open` class. |
+
+```js
+document.addEventListener("expanded.lte.treeview", (e) => {
+  console.log("Opened submenu inside:", e.target)
+})
+```
+
+##### Programmatic API
+
+```js
+import { Treeview } from "admin-lte"
+
+const item = document.querySelector(".sidebar-menu .nav-item")
+const tv = new Treeview(item, { accordion: true, animationSpeed: 300 })
+
+tv.open()    // expand this item's submenu
+tv.close()   // collapse it
+tv.toggle()  // toggle
+```
+
+###### Methods
+
+| Method | Returns | Description |
+|---|---|---|
+| `open()` | `void` | Expands the submenu. If `accordion` is `true`, closes sibling submenus first. Fires `expanded.lte.treeview`. |
+| `close()` | `void` | Collapses the submenu. Fires `collapsed.lte.treeview`. |
+| `toggle()` | `void` | Calls `open()` or `close()` based on current state. |
+
 ##### Example
 
-<ul data-lte-toggle="treeview">
-  <li>
-    <a href="#">One Level</a>
+<ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" style="background: var(--bs-tertiary-bg); padding: .5rem; border-radius: var(--bs-border-radius);">
+  <li class="nav-item">
+    <a class="nav-link" href="#">
+      <i class="nav-icon bi bi-circle"></i><p>One level</p>
+    </a>
   </li>
   <li class="nav-item menu-open">
     <a class="nav-link" href="#">
-      Multilevel
+      <i class="nav-icon bi bi-folder"></i>
+      <p>Multilevel <i class="nav-arrow bi bi-chevron-right"></i></p>
     </a>
-    <ul class="nav-treeview">
-      <li>
-        <a href="#">Level 2</a>
+    <ul class="nav nav-treeview">
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon bi bi-circle"></i><p>Level 2</p>
+        </a>
       </li>
     </ul>
   </li>

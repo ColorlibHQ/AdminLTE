@@ -49,6 +49,50 @@ Configure the sidebar via data attributes on the `.app-sidebar` element:
 | `open.lte.push-menu` | Fired when the sidebar is expanded. |
 | `collapse.lte.push-menu` | Fired when the sidebar is collapsed. |
 
+Both events bubble. Listen on `document` for a global hook:
+
+```js
+document.addEventListener("open.lte.push-menu", () => {
+  console.log("Sidebar opened")
+})
+```
+
+##### Programmatic API
+
+Import the class and instantiate it on any element (typically the sidebar toggle button or `document.body`):
+
+```js
+import { PushMenu } from "admin-lte"
+
+const sidebar = new PushMenu(document.querySelector('[data-lte-toggle="sidebar"]'), {
+  sidebarBreakpoint: 992,
+  enablePersistence: false
+})
+```
+
+###### Methods
+
+| Method | Returns | Description |
+|---|---|---|
+| `toggle()` | `void` | Expands or collapses the sidebar based on current state. Persists state if `enablePersistence` is `true`. |
+| `expand()` | `void` | Expands the sidebar. Fires `open.lte.push-menu`. |
+| `collapse()` | `void` | Collapses the sidebar. Fires `collapse.lte.push-menu`. |
+| `isCollapsed()` | `boolean` | `true` if `<body>` has `sidebar-collapse` class. |
+| `isExplicitlyOpen()` | `boolean` | `true` if `<body>` has `sidebar-open` (mobile, user opened it). |
+| `isMiniMode()` | `boolean` | `true` if `<body>` has `sidebar-mini`. |
+| `isMobileSize()` | `boolean` | `true` if `window.innerWidth ≤ sidebarBreakpoint`. |
+| `saveSidebarState(state)` | `void` | Manually save state to localStorage (`"sidebar-open"` or `"sidebar-collapse"`). |
+| `loadSidebarState()` | `void` | Read state from localStorage and apply it. |
+| `clearSidebarState()` | `void` | Remove saved state from localStorage. |
+| `updateStateByResponsiveLogic()` | `void` | Recompute correct state based on viewport size (collapse on mobile, expand on desktop unless mini). Called automatically on resize. |
+
+###### Storage key
+
+When `enablePersistence` is enabled, the plugin reads/writes `localStorage.getItem("lte.sidebar.state")`. The stored value is one of:
+
+- `"sidebar-open"` — user wants the sidebar expanded
+- `"sidebar-collapse"` — user wants it collapsed
+
 ##### Example
 
 <a href="#" data-lte-toggle="sidebar">Toggle Sidebar</a>
