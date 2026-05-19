@@ -8,15 +8,15 @@
     "noUnusedLocals": true,
     "noImplicitAny": true,
     "module": "esnext",
+    "moduleResolution": "bundler",
     "alwaysStrict": true,
     "strict": true,
     "strictNullChecks": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
-    "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/html/components/*"],
+      "@components/*": ["./src/html/components/*"],
     },
     /* Language and Environment */
     "target": "es2022",
