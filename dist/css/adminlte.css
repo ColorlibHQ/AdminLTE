@@ -14242,6 +14242,123 @@ body:not(.app-loaded) .app-footer {
   border-radius: 0.375rem;
 }
 
+.docs-page .card > .card-body {
+  padding: 1.5rem;
+}
+@media (min-width: 768px) {
+  .docs-page .card > .card-body {
+    padding: 2rem;
+  }
+}
+.docs-page .card > .card-body h1,
+.docs-page .card > .card-body h2,
+.docs-page .card > .card-body h3,
+.docs-page .card > .card-body h4,
+.docs-page .card > .card-body h5,
+.docs-page .card > .card-body h6,
+.docs-page .card > .card-body .h1,
+.docs-page .card > .card-body .h2,
+.docs-page .card > .card-body .h3,
+.docs-page .card > .card-body .h4,
+.docs-page .card > .card-body .h5,
+.docs-page .card > .card-body .h6 {
+  margin-top: 1.75em;
+  margin-bottom: 0.5em;
+}
+.docs-page .card > .card-body h1:first-child,
+.docs-page .card > .card-body h2:first-child,
+.docs-page .card > .card-body h3:first-child,
+.docs-page .card > .card-body h4:first-child,
+.docs-page .card > .card-body h5:first-child,
+.docs-page .card > .card-body h6:first-child,
+.docs-page .card > .card-body .h1:first-child,
+.docs-page .card > .card-body .h2:first-child,
+.docs-page .card > .card-body .h3:first-child,
+.docs-page .card > .card-body .h4:first-child,
+.docs-page .card > .card-body .h5:first-child,
+.docs-page .card > .card-body .h6:first-child {
+  margin-top: 0;
+}
+.docs-page .card > .card-body h2,
+.docs-page .card > .card-body .h2 {
+  font-size: 1.5rem;
+}
+.docs-page .card > .card-body h3,
+.docs-page .card > .card-body .h3 {
+  font-size: 1.25rem;
+}
+.docs-page .card > .card-body h4,
+.docs-page .card > .card-body .h4 {
+  font-size: 1.05rem;
+}
+.docs-page .card > .card-body h5,
+.docs-page .card > .card-body .h5 {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.docs-page .card > .card-body p,
+.docs-page .card > .card-body ul,
+.docs-page .card > .card-body ol,
+.docs-page .card > .card-body dl,
+.docs-page .card > .card-body blockquote,
+.docs-page .card > .card-body table {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+.docs-page .card > .card-body p code,
+.docs-page .card > .card-body li code,
+.docs-page .card > .card-body td code,
+.docs-page .card > .card-body th code {
+  padding: 0.125rem 0.375rem;
+  font-size: 0.875em;
+  color: var(--bs-emphasis-color);
+  background: var(--bs-tertiary-bg);
+  border-radius: 0.25rem;
+}
+.docs-page .card > .card-body pre.astro-code,
+.docs-page .card > .card-body pre {
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.docs-page .card > .card-body table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.docs-page .card > .card-body table th,
+.docs-page .card > .card-body table td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--bs-border-color);
+}
+.docs-page .card > .card-body table th {
+  font-weight: 600;
+  background: var(--bs-tertiary-bg);
+}
+.docs-page .card > .card-body table tr:last-child td {
+  border-bottom: 0;
+}
+.docs-page .card > .card-body blockquote {
+  padding: 0.75rem 1rem;
+  color: var(--bs-emphasis-color);
+  background: var(--bs-info-bg-subtle);
+  border-left: 4px solid var(--bs-info-border-subtle);
+  border-radius: 0.25rem;
+}
+.docs-page .card > .card-body blockquote p:last-child {
+  margin-bottom: 0;
+}
+.docs-page .card > .card-body a:not(.btn):not(.nav-link) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.docs-page .card > .card-body a:not(.btn):not(.nav-link):hover {
+  text-decoration-thickness: 2px;
+}
+
 .progress {
   border-radius: 1px;
 }
@@ -15696,6 +15813,127 @@ fieldset legend {
   .app-footer {
     position: static !important;
   }
+}
+.astro-code {
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+}
+
+.docs-page .card > .card-body {
+  padding: 1.5rem;
+}
+@media (min-width: 768px) {
+  .docs-page .card > .card-body {
+    padding: 2rem;
+  }
+}
+.docs-page .card > .card-body h1,
+.docs-page .card > .card-body h2,
+.docs-page .card > .card-body h3,
+.docs-page .card > .card-body h4,
+.docs-page .card > .card-body h5,
+.docs-page .card > .card-body h6,
+.docs-page .card > .card-body .h1,
+.docs-page .card > .card-body .h2,
+.docs-page .card > .card-body .h3,
+.docs-page .card > .card-body .h4,
+.docs-page .card > .card-body .h5,
+.docs-page .card > .card-body .h6 {
+  margin-top: 1.75em;
+  margin-bottom: 0.5em;
+}
+.docs-page .card > .card-body h1:first-child,
+.docs-page .card > .card-body h2:first-child,
+.docs-page .card > .card-body h3:first-child,
+.docs-page .card > .card-body h4:first-child,
+.docs-page .card > .card-body h5:first-child,
+.docs-page .card > .card-body h6:first-child,
+.docs-page .card > .card-body .h1:first-child,
+.docs-page .card > .card-body .h2:first-child,
+.docs-page .card > .card-body .h3:first-child,
+.docs-page .card > .card-body .h4:first-child,
+.docs-page .card > .card-body .h5:first-child,
+.docs-page .card > .card-body .h6:first-child {
+  margin-top: 0;
+}
+.docs-page .card > .card-body h2,
+.docs-page .card > .card-body .h2 {
+  font-size: 1.5rem;
+}
+.docs-page .card > .card-body h3,
+.docs-page .card > .card-body .h3 {
+  font-size: 1.25rem;
+}
+.docs-page .card > .card-body h4,
+.docs-page .card > .card-body .h4 {
+  font-size: 1.05rem;
+}
+.docs-page .card > .card-body h5,
+.docs-page .card > .card-body .h5 {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.docs-page .card > .card-body p,
+.docs-page .card > .card-body ul,
+.docs-page .card > .card-body ol,
+.docs-page .card > .card-body dl,
+.docs-page .card > .card-body blockquote,
+.docs-page .card > .card-body table {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+.docs-page .card > .card-body p code,
+.docs-page .card > .card-body li code,
+.docs-page .card > .card-body td code,
+.docs-page .card > .card-body th code {
+  padding: 0.125rem 0.375rem;
+  font-size: 0.875em;
+  color: var(--bs-emphasis-color);
+  background: var(--bs-tertiary-bg);
+  border-radius: 0.25rem;
+}
+.docs-page .card > .card-body pre.astro-code,
+.docs-page .card > .card-body pre {
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.docs-page .card > .card-body table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.docs-page .card > .card-body table th,
+.docs-page .card > .card-body table td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--bs-border-color);
+}
+.docs-page .card > .card-body table th {
+  font-weight: 600;
+  background: var(--bs-tertiary-bg);
+}
+.docs-page .card > .card-body table tr:last-child td {
+  border-bottom: 0;
+}
+.docs-page .card > .card-body blockquote {
+  padding: 0.75rem 1rem;
+  color: var(--bs-emphasis-color);
+  background: var(--bs-info-bg-subtle);
+  border-left: 4px solid var(--bs-info-border-subtle);
+  border-radius: 0.25rem;
+}
+.docs-page .card > .card-body blockquote p:last-child {
+  margin-bottom: 0;
+}
+.docs-page .card > .card-body a:not(.btn):not(.nav-link) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.docs-page .card > .card-body a:not(.btn):not(.nav-link):hover {
+  text-decoration-thickness: 2px;
 }
 
 /*# sourceMappingURL=adminlte.css.map */
