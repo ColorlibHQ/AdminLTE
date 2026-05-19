@@ -398,3 +398,423 @@
     }
   }
 }
+
+//
+// FAQ page — custom layout that breaks out of the standard docs card
+// to give the FAQ a more distinctive visual identity. Opt in via
+// body.faq-page (set in pages/docs/faq.astro).
+//
+
+.faq-page {
+  // The FAQ doesn't use the standard card wrapper used by other docs,
+  // so the container can stretch wider for the chip strip and section
+  // grid.
+  .app-content > .container-fluid {
+    max-width: 64rem;
+
+    @include media-breakpoint-up(xxl) {
+      max-width: 72rem;
+    }
+  }
+
+  // --- Hero -------------------------------------------------------------
+  .faq-hero {
+    position: relative;
+    padding: 3rem 1.5rem 2.5rem;
+    margin-top: 1rem;
+    overflow: hidden;
+    background: radial-gradient(ellipse at top left, rgba(var(--#{$prefix}primary-rgb), .12), transparent 60%), radial-gradient(ellipse at bottom right, rgba(var(--#{$prefix}info-rgb), .1), transparent 65%), var(--#{$prefix}body-bg);
+    border: 1px solid var(--#{$prefix}border-color);
+    @include border-radius($border-radius-xl);
+  }
+
+  .faq-hero-eyebrow {
+    display: inline-flex;
+    gap: .4rem;
+    align-items: center;
+    padding: .35rem .85rem;
+    margin-bottom: 1rem;
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--#{$prefix}primary);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    background: var(--#{$prefix}primary-bg-subtle);
+    border: 1px solid var(--#{$prefix}primary-border-subtle);
+    @include border-radius(50rem);
+
+    .bi {
+      font-size: .9rem;
+    }
+  }
+
+  .faq-hero-title {
+    margin: 0 0 .5rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--#{$prefix}emphasis-color);
+
+    @include media-breakpoint-up(md) {
+      font-size: 2.75rem;
+    }
+  }
+
+  .faq-hero-lead {
+    max-width: 36rem;
+    margin: 0 auto 1.75rem;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--#{$prefix}secondary-color);
+  }
+
+  .faq-search {
+    position: relative;
+    max-width: 32rem;
+    margin: 0 auto;
+
+    .form-control {
+      height: 3rem;
+      padding-right: 3rem;
+      padding-left: 3rem;
+      font-size: 1rem;
+      background: var(--#{$prefix}body-bg);
+      @include border-radius(50rem);
+      @include transition(box-shadow .15s ease, border-color .15s ease);
+
+      &:focus {
+        box-shadow: 0 0 0 .25rem rgba(var(--#{$prefix}primary-rgb), .15);
+      }
+    }
+  }
+
+  .faq-search-icon {
+    position: absolute;
+    top: 50%;
+    left: 1.2rem;
+    color: var(--#{$prefix}secondary-color);
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+
+  .faq-search-clear {
+    position: absolute;
+    top: 50%;
+    right: .65rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    color: var(--#{$prefix}secondary-color);
+    background: var(--#{$prefix}tertiary-bg);
+    border: 0;
+    transform: translateY(-50%);
+    @include border-radius(50%);
+    @include transition(background .15s ease, color .15s ease);
+
+    &:hover {
+      color: var(--#{$prefix}body-color);
+      background: var(--#{$prefix}secondary-bg);
+    }
+  }
+
+  .faq-empty-state {
+    max-width: 32rem;
+    padding: 1rem;
+    margin: 1.5rem auto 0;
+    font-size: .95rem;
+    color: var(--#{$prefix}secondary-color);
+    background: var(--#{$prefix}tertiary-bg);
+    @include border-radius($border-radius);
+
+    .bi {
+      margin-right: .35rem;
+    }
+  }
+
+  // --- Section nav chips ------------------------------------------------
+  .faq-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    justify-content: center;
+  }
+
+  .faq-chip {
+    display: inline-flex;
+    gap: .45rem;
+    align-items: center;
+    padding: .45rem .85rem;
+    font-size: .875rem;
+    font-weight: 500;
+    color: var(--#{$prefix}body-color);
+    text-decoration: none;
+    background: var(--#{$prefix}body-bg);
+    border: 1px solid var(--#{$prefix}border-color);
+    @include border-radius(50rem);
+    @include transition(transform .15s ease, border-color .15s ease, background-color .15s ease, color .15s ease);
+
+    &:hover {
+      color: var(--#{$prefix}emphasis-color);
+      background: var(--#{$prefix}tertiary-bg);
+      transform: translateY(-1px);
+    }
+
+    .bi {
+      font-size: 1rem;
+    }
+  }
+
+  .faq-chip-count {
+    padding: 0 .45rem;
+    font-size: .7rem;
+    font-weight: 600;
+    color: var(--#{$prefix}secondary-color);
+    background: var(--#{$prefix}tertiary-bg);
+    @include border-radius(50rem);
+  }
+
+  // Per-section chip accent on hover/active
+  @each $tone in (primary, info, warning, success, danger, secondary) {
+    .faq-chip-#{$tone}:hover {
+      color: var(--#{$prefix}#{$tone}-text-emphasis);
+      background: var(--#{$prefix}#{$tone}-bg-subtle);
+      border-color: var(--#{$prefix}#{$tone}-border-subtle);
+
+      .faq-chip-count {
+        color: var(--#{$prefix}#{$tone}-text-emphasis);
+        background: rgba(0, 0, 0, .06);
+      }
+    }
+  }
+
+  // --- Sections ---------------------------------------------------------
+  .faq-section {
+    margin-bottom: 2.5rem;
+    scroll-margin-top: 5rem;
+  }
+
+  .faq-section-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    background: var(--#{$prefix}body-bg);
+    border: 1px solid var(--#{$prefix}border-color);
+    border-left: 4px solid var(--#{$prefix}primary);
+    @include border-radius($border-radius);
+  }
+
+  .faq-section-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 1.35rem;
+    color: var(--#{$prefix}primary);
+    background: var(--#{$prefix}primary-bg-subtle);
+    @include border-radius($border-radius);
+  }
+
+  .faq-section-title {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--#{$prefix}emphasis-color);
+  }
+
+  .faq-section-count {
+    margin: .1rem 0 0;
+    font-size: .8rem;
+    color: var(--#{$prefix}secondary-color);
+  }
+
+  // Per-section tone accents
+  @each $tone in (primary, info, warning, success, danger, secondary) {
+    .faq-section-#{$tone} {
+      border-left-color: var(--#{$prefix}#{$tone});
+
+      .faq-section-icon {
+        color: var(--#{$prefix}#{$tone}-text-emphasis);
+        background: var(--#{$prefix}#{$tone}-bg-subtle);
+      }
+    }
+  }
+
+  // --- FAQ items (override the generic .docs-page details styling) ------
+  .faq-section-items .faq-item {
+    margin-bottom: .5rem;
+    overflow: hidden;
+    background: var(--#{$prefix}body-bg);
+    border: 1px solid var(--#{$prefix}border-color);
+    @include border-radius($border-radius);
+    @include transition(border-color .15s ease, box-shadow .15s ease, transform .15s ease);
+
+    &:hover {
+      border-color: var(--#{$prefix}primary-border-subtle);
+      transform: translateX(2px);
+    }
+
+    &[open] {
+      border-color: var(--#{$prefix}primary-border-subtle);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+      transform: none;
+    }
+
+    summary {
+      display: flex;
+      gap: .85rem;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--#{$prefix}emphasis-color);
+      list-style: none;
+      cursor: pointer;
+      user-select: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::marker {
+        content: "";
+      }
+
+      &::after {
+        content: none; // disable the generic chevron, we use our own
+      }
+    }
+
+    .faq-q-icon {
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      font-size: .85rem;
+      color: var(--#{$prefix}primary);
+      background: var(--#{$prefix}primary-bg-subtle);
+      @include border-radius(50%);
+    }
+
+    .faq-q-text {
+      flex-grow: 1;
+    }
+
+    .faq-q-chevron {
+      flex-shrink: 0;
+      color: var(--#{$prefix}secondary-color);
+      @include transition(transform .2s ease, color .2s ease);
+    }
+
+    &[open] .faq-q-chevron {
+      color: var(--#{$prefix}primary);
+      transform: rotate(180deg);
+    }
+
+    &[open] summary {
+      color: var(--#{$prefix}primary);
+      border-bottom: 1px solid var(--#{$prefix}border-color);
+    }
+
+    .faq-answer {
+      padding: 1.1rem 1.25rem 1.1rem 3.85rem; // align with the question text (icon + gap)
+      font-size: .95rem;
+      line-height: 1.65;
+      color: var(--#{$prefix}body-color);
+
+      p:last-child,
+      ul:last-child,
+      ol:last-child,
+      pre:last-child {
+        margin-bottom: 0;
+      }
+
+      a {
+        color: var(--#{$prefix}primary);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+
+        &:hover {
+          text-decoration-thickness: 2px;
+        }
+      }
+
+      code {
+        padding: .12em .35em;
+        font-size: .875em;
+        color: var(--#{$prefix}emphasis-color);
+        background: var(--#{$prefix}tertiary-bg);
+        border: 1px solid var(--#{$prefix}border-color);
+        @include border-radius($border-radius-sm);
+      }
+
+      pre.astro-code,
+      pre {
+        padding: .85rem 1rem;
+        margin-top: .75rem;
+        margin-bottom: .75rem;
+        overflow-x: auto;
+        font-size: .85rem;
+        line-height: 1.55;
+        @include border-radius($border-radius-sm);
+
+        code {
+          padding: 0;
+          background: transparent;
+          border: 0;
+        }
+      }
+    }
+  }
+
+  // --- CTA footer -------------------------------------------------------
+  .faq-cta {
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    background: radial-gradient(ellipse at top, rgba(var(--#{$prefix}primary-rgb), .08), transparent 60%), var(--#{$prefix}body-bg);
+    border: 1px solid var(--#{$prefix}border-color);
+    @include border-radius($border-radius-xl);
+  }
+
+  .faq-cta-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    color: var(--#{$prefix}primary);
+    background: var(--#{$prefix}primary-bg-subtle);
+    @include border-radius(50%);
+  }
+
+  .faq-cta h2 {
+    margin: 0 0 .5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--#{$prefix}emphasis-color);
+  }
+
+  .faq-cta p {
+    max-width: 32rem;
+    margin: 0 auto 1.5rem;
+    color: var(--#{$prefix}secondary-color);
+  }
+
+  .faq-cta-actions {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    justify-content: center;
+  }
+}
