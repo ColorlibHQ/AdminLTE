@@ -1,0 +1,302 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+
+const title = "AdminLTE 4 | Mailbox"
+const path = "../../../dist"
+const htmlPath = ".."
+const mainPage = "mailbox"
+const page = "inbox";
+
+const messages = [
+  { from: "Olivia Bennett", subject: "Re: design system v2.4 sign-off", preview: "Approved — a few small notes on the success state for forms.", time: "10:42 AM", unread: true, starred: true, label: "primary" },
+  { from: "GitHub", subject: "[fullcalendar/fullcalendar] PR #6912 merged", preview: "Allow custom render hooks for time grid axis labels.", time: "9:08 AM", unread: true, starred: false, label: "secondary" },
+  { from: "Stripe", subject: "Your May invoice is ready", preview: "Invoice INV-2026-00428 totaling $108.31 has been issued.", time: "8:15 AM", unread: true, starred: false, label: "success" },
+  { from: "Marcus Reyes", subject: "Lunch on Thursday?", preview: "Free around 1pm at the usual place. Let me know.", time: "Yesterday", unread: false, starred: true, label: "info" },
+  { from: "Linear", subject: "[ADM-441] Calendar drag-and-drop not working on Safari iOS", preview: "Reproduces consistently on iOS 18.4 in Safari and Chrome.", time: "Yesterday", unread: false, starred: false, label: "warning" },
+  { from: "Vercel", subject: "Deployment succeeded — production", preview: "main@a3c91fb deployed to production in 47s.", time: "May 16", unread: false, starred: false, label: "success" },
+  { from: "Sara Khan", subject: "Customer interview notes — Acme Corp", preview: "Three big themes: onboarding friction, billing visibility, mobile.", time: "May 15", unread: false, starred: false, label: "primary" },
+  { from: "AWS", subject: "Your monthly bill summary", preview: "Total charges for April 2026: $312.94. View in console.", time: "May 14", unread: false, starred: false, label: "danger" }
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <Head title={title} path={path} />
+  </head>
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <main class="app-main">
+        <div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Mailbox</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Inbox</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-content">
+          <div class="container-fluid">
+            <div class="row g-3">
+              <!-- Folder sidebar -->
+              <div class="col-lg-3">
+                <a
+                  href={htmlPath + "/mailbox/compose.html"}
+                  class="btn btn-primary w-100 mb-3"
+                >
+                  <i class="bi bi-pencil-square me-1" aria-hidden="true"></i>
+                  Compose
+                </a>
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Folders</h3>
+                  </div>
+                  <div class="card-body p-0">
+                    <ul class="nav nav-pills flex-column mb-0">
+                      <li class="nav-item">
+                        <a
+                          href={htmlPath + "/mailbox/inbox.html"}
+                          class="nav-link active rounded-0 d-flex justify-content-between"
+                        >
+                          <span>
+                            <i class="bi bi-inbox me-2" aria-hidden="true"></i>Inbox
+                          </span>
+                          <span class="badge text-bg-primary">3</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#" class="nav-link rounded-0">
+                          <i class="bi bi-send me-2" aria-hidden="true"></i>Sent
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a
+                          href="#"
+                          class="nav-link rounded-0 d-flex justify-content-between"
+                        >
+                          <span>
+                            <i class="bi bi-file-earmark me-2" aria-hidden="true"></i>
+                            Drafts
+                          </span>
+                          <span class="badge text-bg-secondary">2</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#" class="nav-link rounded-0">
+                          <i class="bi bi-star me-2" aria-hidden="true"></i>Starred
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#" class="nav-link rounded-0">
+                          <i class="bi bi-archive me-2" aria-hidden="true"></i>Archive
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#" class="nav-link rounded-0">
+                          <i
+                            class="bi bi-exclamation-octagon me-2"
+                            aria-hidden="true"
+                          ></i>
+                          Spam
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#" class="nav-link rounded-0">
+                          <i class="bi bi-trash me-2" aria-hidden="true"></i>Trash
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card mt-3">
+                  <div class="card-header">
+                    <h3 class="card-title">Labels</h3>
+                  </div>
+                  <div class="card-body p-0">
+                    <ul class="nav flex-column mb-0">
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">
+                          <i
+                            class="bi bi-circle-fill text-primary me-2"
+                            style="font-size: 0.6rem;"
+                            aria-hidden="true"
+                          ></i>
+                          Customers
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">
+                          <i
+                            class="bi bi-circle-fill text-success me-2"
+                            style="font-size: 0.6rem;"
+                            aria-hidden="true"
+                          ></i>
+                          Billing
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">
+                          <i
+                            class="bi bi-circle-fill text-warning me-2"
+                            style="font-size: 0.6rem;"
+                            aria-hidden="true"
+                          ></i>
+                          Internal
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Inbox list -->
+              <div class="col-lg-9">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Inbox</h3>
+                    <div class="card-tools">
+                      <div class="input-group input-group-sm" style="width: 16rem;">
+                        <span class="input-group-text">
+                          <i class="bi bi-search" aria-hidden="true"></i>
+                        </span>
+                        <input
+                          type="search"
+                          class="form-control"
+                          placeholder="Search mail&hellip;"
+                          aria-label="Search mail"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body p-0">
+                    <div
+                      class="d-flex align-items-center px-3 py-2 border-bottom"
+                    >
+                      <div class="form-check mb-0">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="select-all"
+                        />
+                        <label class="form-check-label visually-hidden" for="select-all">
+                          Select all
+                        </label>
+                      </div>
+                      <div class="btn-group btn-group-sm ms-3">
+                        <button
+                          class="btn btn-outline-secondary"
+                          type="button"
+                          title="Refresh"
+                        >
+                          <i class="bi bi-arrow-clockwise" aria-hidden="true"></i>
+                        </button>
+                        <button
+                          class="btn btn-outline-secondary"
+                          type="button"
+                          title="Archive"
+                        >
+                          <i class="bi bi-archive" aria-hidden="true"></i>
+                        </button>
+                        <button
+                          class="btn btn-outline-secondary"
+                          type="button"
+                          title="Mark as spam"
+                        >
+                          <i class="bi bi-exclamation-octagon" aria-hidden="true"></i>
+                        </button>
+                        <button
+                          class="btn btn-outline-secondary"
+                          type="button"
+                          title="Delete"
+                        >
+                          <i class="bi bi-trash" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                      <span class="ms-auto text-secondary small">
+                        1&ndash;{messages.length} of {messages.length}
+                      </span>
+                    </div>
+                    <ul class="list-group list-group-flush mb-0">
+                      {
+                        messages.map((m, idx) => (
+                          <li
+                            class:list={[
+                              "list-group-item d-flex align-items-center gap-2",
+                              m.unread && "fw-semibold bg-body-secondary"
+                            ]}
+                          >
+                            <div class="form-check mb-0">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id={`msg-${idx}`}
+                              />
+                              <label
+                                class="form-check-label visually-hidden"
+                                for={`msg-${idx}`}
+                              >
+                                Select message from {m.from}
+                              </label>
+                            </div>
+                            <button
+                              class="btn btn-link p-0 text-warning lh-1"
+                              type="button"
+                              title={m.starred ? "Starred" : "Star"}
+                              aria-label={m.starred ? "Starred" : "Star"}
+                            >
+                              <i
+                                class={
+                                  m.starred ? "bi bi-star-fill" : "bi bi-star"
+                                }
+                                aria-hidden="true"
+                              />
+                            </button>
+                            <a
+                              href={htmlPath + "/mailbox/read.html"}
+                              class="flex-grow-1 d-flex flex-column flex-md-row gap-md-3 text-decoration-none text-body"
+                            >
+                              <span class="text-truncate" style="min-width: 9rem;">
+                                {m.from}
+                              </span>
+                              <span class="flex-grow-1 text-truncate">
+                                <span class={`badge text-bg-${m.label} me-2`}>
+                                  &middot;
+                                </span>
+                                {m.subject}
+                                <span class="fw-normal text-secondary">
+                                  &nbsp;&mdash; {m.preview}
+                                </span>
+                              </span>
+                              <span class="text-secondary small text-md-end" style="min-width: 5rem;">
+                                {m.time}
+                              </span>
+                            </a>
+                          </li>
+                        ))
+                      }
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+    <Scripts path={path} />
+  </body>
+</html>

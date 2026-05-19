@@ -1,0 +1,127 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+
+const title = "AdminLTE 4 | Mailbox - Compose"
+const path = "../../../dist"
+const htmlPath = ".."
+const mainPage = "mailbox"
+const page = "compose";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <Head title={title} path={path} />
+  </head>
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <main class="app-main">
+        <div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Compose Message</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item">
+                    <a href={htmlPath + "/mailbox/inbox.html"}>Mailbox</a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">Compose</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-content">
+          <div class="container-fluid">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">New Message</h3>
+              </div>
+              <div class="card-body">
+                <form class="row g-3">
+                  <div class="col-12">
+                    <label class="form-label" for="mail-to">To</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="mail-to"
+                      placeholder="recipient@example.com"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" for="mail-cc">Cc</label>
+                    <input type="text" class="form-control" id="mail-cc" />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" for="mail-bcc">Bcc</label>
+                    <input type="text" class="form-control" id="mail-bcc" />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" for="mail-subject">Subject</label>
+                    <input type="text" class="form-control" id="mail-subject" />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" for="mail-body">Message</label>
+                    <textarea
+                      id="mail-body"
+                      class="form-control"
+                      rows="12"
+                      placeholder="Write your message&hellip;"
+                      style="min-height: 16rem;"></textarea>
+                    <small class="text-secondary">
+                      Hook up a rich-text editor such as
+                      <a
+                        href="https://quilljs.com/"
+                        target="_blank"
+                        rel="noopener">Quill</a
+                      >
+                      or
+                      <a
+                        href="https://github.com/Ionaru/easy-markdown-editor"
+                        target="_blank"
+                        rel="noopener">EasyMDE</a
+                      >
+                      to upgrade this textarea.
+                    </small>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" for="mail-attach">Attachments</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="mail-attach"
+                      multiple
+                    />
+                  </div>
+                </form>
+              </div>
+              <div class="card-footer d-flex gap-2">
+                <button class="btn btn-primary" type="button">
+                  <i class="bi bi-send me-1" aria-hidden="true"></i>Send
+                </button>
+                <button class="btn btn-outline-secondary" type="button">
+                  <i class="bi bi-file-earmark me-1" aria-hidden="true"></i>
+                  Save draft
+                </button>
+                <button class="btn btn-outline-danger ms-auto" type="button">
+                  <i class="bi bi-x-lg me-1" aria-hidden="true"></i>Discard
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+    <Scripts path={path} />
+  </body>
+</html>
