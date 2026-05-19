@@ -1,0 +1,197 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+
+const title = "AdminLTE 4 | Data Tables"
+const path = "../../../dist"
+const mainPage = "tables"
+const page = "data";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <Head title={title} path={path} />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <main class="app-main">
+        <div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Data Tables</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Data</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-content">
+          <div class="container-fluid">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Users</h3>
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 16rem;">
+                    <span class="input-group-text">
+                      <i class="bi bi-search" aria-hidden="true"></i>
+                    </span>
+                    <input
+                      id="table-filter"
+                      type="search"
+                      class="form-control"
+                      placeholder="Filter rows&hellip;"
+                      aria-label="Filter rows"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex gap-2 mb-3">
+                  <button
+                    id="export-csv"
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                  >
+                    <i class="bi bi-filetype-csv me-1" aria-hidden="true"></i>
+                    Export CSV
+                  </button>
+                  <button
+                    id="export-json"
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                  >
+                    <i class="bi bi-filetype-json me-1" aria-hidden="true"></i>
+                    Export JSON
+                  </button>
+                  <button
+                    id="print-table"
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                  >
+                    <i class="bi bi-printer me-1" aria-hidden="true"></i>
+                    Print
+                  </button>
+                </div>
+                <div id="users-table"></div>
+              </div>
+              <div class="card-footer text-secondary small">
+                Powered by
+                <a
+                  href="https://tabulator.info/"
+                  target="_blank"
+                  rel="noopener"
+                >Tabulator</a>
+                &mdash; vanilla JS, no jQuery required.
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+    <Scripts path={path} />
+    <script
+      src="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/js/tabulator.min.js"
+      crossorigin="anonymous"></script>
+    <script is:inline>
+      const statusBadge = (cell) => {
+        const value = cell.getValue();
+        const map = { Active: "success", Invited: "info", Suspended: "secondary" };
+        const color = map[value] || "secondary";
+        return `<span class="badge text-bg-${color}">${value}</span>`;
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const data = [
+          { id: 1, name: "Olivia Bennett", email: "olivia@example.com", role: "Admin", status: "Active", joined: "2024-03-12" },
+          { id: 2, name: "Liam Carter", email: "liam@example.com", role: "Editor", status: "Active", joined: "2024-04-08" },
+          { id: 3, name: "Emma Dawson", email: "emma@example.com", role: "Viewer", status: "Invited", joined: "2024-06-21" },
+          { id: 4, name: "Noah Evans", email: "noah@example.com", role: "Editor", status: "Suspended", joined: "2024-07-15" },
+          { id: 5, name: "Ava Foster", email: "ava@example.com", role: "Admin", status: "Active", joined: "2024-08-30" },
+          { id: 6, name: "Ethan Grant", email: "ethan@example.com", role: "Viewer", status: "Active", joined: "2024-09-14" },
+          { id: 7, name: "Sophia Hayes", email: "sophia@example.com", role: "Editor", status: "Active", joined: "2024-10-02" },
+          { id: 8, name: "Mason Ingram", email: "mason@example.com", role: "Viewer", status: "Invited", joined: "2024-11-19" },
+          { id: 9, name: "Isabella Jones", email: "isabella@example.com", role: "Admin", status: "Active", joined: "2025-01-05" },
+          { id: 10, name: "Lucas Klein", email: "lucas@example.com", role: "Viewer", status: "Suspended", joined: "2025-02-18" },
+          { id: 11, name: "Mia Lopez", email: "mia@example.com", role: "Editor", status: "Active", joined: "2025-03-22" },
+          { id: 12, name: "Logan Moore", email: "logan@example.com", role: "Viewer", status: "Active", joined: "2025-04-09" },
+          { id: 13, name: "Charlotte Nelson", email: "charlotte@example.com", role: "Admin", status: "Active", joined: "2025-04-27" },
+          { id: 14, name: "Henry Owens", email: "henry@example.com", role: "Editor", status: "Invited", joined: "2025-05-11" },
+          { id: 15, name: "Amelia Price", email: "amelia@example.com", role: "Viewer", status: "Active", joined: "2025-05-17" }
+        ];
+
+        const table = new Tabulator("#users-table", {
+          data: data,
+          layout: "fitColumns",
+          pagination: true,
+          paginationSize: 10,
+          paginationSizeSelector: [10, 25, 50, 100],
+          movableColumns: true,
+          columns: [
+            { title: "#", field: "id", width: 60, headerSort: true },
+            { title: "Name", field: "name", headerFilter: "input" },
+            { title: "Email", field: "email", headerFilter: "input" },
+            {
+              title: "Role",
+              field: "role",
+              headerFilter: "list",
+              headerFilterParams: { values: ["", "Admin", "Editor", "Viewer"] },
+              width: 120
+            },
+            {
+              title: "Status",
+              field: "status",
+              formatter: statusBadge,
+              headerFilter: "list",
+              headerFilterParams: { values: ["", "Active", "Invited", "Suspended"] },
+              width: 130,
+              hozAlign: "center"
+            },
+            { title: "Joined", field: "joined", sorter: "date", width: 130 }
+          ]
+        });
+
+        document.getElementById("table-filter").addEventListener("input", (e) => {
+          const value = e.target.value;
+          if (value) {
+            table.setFilter([
+              [
+                { field: "name", type: "like", value: value },
+                { field: "email", type: "like", value: value }
+              ]
+            ]);
+          } else {
+            table.clearFilter();
+          }
+        });
+
+        document
+          .getElementById("export-csv")
+          .addEventListener("click", () => table.download("csv", "users.csv"));
+        document
+          .getElementById("export-json")
+          .addEventListener("click", () => table.download("json", "users.json"));
+        document
+          .getElementById("print-table")
+          .addEventListener("click", () => table.print(false, true));
+      });
+    </script>
+  </body>
+</html>
