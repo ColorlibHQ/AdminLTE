@@ -1,0 +1,258 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+
+const title = "AdminLTE 4 | Form Validation"
+const path = "../../../dist"
+const mainPage = "forms"
+const page = "validation";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <Head title={title} path={path} />
+  </head>
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <main class="app-main">
+        <div class="app-content-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="mb-0">Form Validation</h3>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Validation</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-content">
+          <div class="container-fluid">
+            <div class="row g-4">
+              <div class="col-12">
+                <div class="callout callout-info">
+                  Built on
+                  <a
+                    href="https://getbootstrap.com/docs/5.3/forms/validation/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="callout-link"
+                  >Bootstrap's native form validation</a>
+                  — submit each form to see the feedback. The wiring script lives at the bottom of this page.
+                </div>
+              </div>
+
+              <!-- Custom validation -->
+              <div class="col-lg-6">
+                <div class="card card-info card-outline mb-4">
+                  <div class="card-header">
+                    <div class="card-title">Custom Validation</div>
+                  </div>
+                  <form class="needs-validation" novalidate>
+                    <div class="card-body">
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label for="validationCustom01" class="form-label">First name</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="validationCustom01"
+                            value="Mark"
+                            required
+                          />
+                          <div class="valid-feedback">Looks good!</div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="validationCustom02" class="form-label">Last name</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="validationCustom02"
+                            value="Otto"
+                            required
+                          />
+                          <div class="valid-feedback">Looks good!</div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="validationCustomUsername" class="form-label">Username</label>
+                          <div class="input-group has-validation">
+                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="validationCustomUsername"
+                              aria-describedby="inputGroupPrepend"
+                              required
+                            />
+                            <div class="invalid-feedback">Please choose a username.</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="validationCustom03" class="form-label">City</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="validationCustom03"
+                            required
+                          />
+                          <div class="invalid-feedback">Please provide a valid city.</div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="validationCustom04" class="form-label">State</label>
+                          <select
+                            class="form-select"
+                            id="validationCustom04"
+                            required
+                          >
+                            <option selected disabled value="">Choose&hellip;</option>
+                            <option>California</option>
+                            <option>Washington</option>
+                            <option>Tennessee</option>
+                          </select>
+                          <div class="invalid-feedback">Please select a valid state.</div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="validationCustom05" class="form-label">Zip</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="validationCustom05"
+                            required
+                          />
+                          <div class="invalid-feedback">Please provide a valid zip.</div>
+                        </div>
+                        <div class="col-12">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value=""
+                              id="invalidCheck"
+                              required
+                            />
+                            <label class="form-check-label" for="invalidCheck">
+                              Agree to terms and conditions
+                            </label>
+                            <div class="invalid-feedback">You must agree before submitting.</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <button class="btn btn-info" type="submit">Submit form</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <!-- Browser-default validation + tooltips -->
+              <div class="col-lg-6">
+                <div class="card card-success card-outline mb-4">
+                  <div class="card-header">
+                    <div class="card-title">Browser Defaults &amp; Tooltips</div>
+                  </div>
+                  <div class="card-body">
+                    <p class="text-secondary small">
+                      For browser-native validation feedback, omit
+                      <code>novalidate</code> and the <code>.needs-validation</code> class.
+                    </p>
+                    <form>
+                      <div class="mb-3">
+                        <label class="form-label" for="defaultEmail">Email</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="defaultEmail"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" for="defaultUrl">URL</label>
+                        <input
+                          type="url"
+                          class="form-control"
+                          id="defaultUrl"
+                          required
+                        />
+                      </div>
+                      <button class="btn btn-success" type="submit">Submit (browser default)</button>
+                    </form>
+
+                    <hr class="my-4" />
+
+                    <p class="text-secondary small">
+                      Add <code>.needs-validation-tooltip</code> in place of
+                      <code>.needs-validation</code> to swap inline feedback for floating tooltips.
+                    </p>
+                    <form class="needs-validation-tooltip position-relative" novalidate>
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label for="vt-first" class="form-label">First name</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="vt-first"
+                            value="Jane"
+                            required
+                          />
+                          <div class="valid-tooltip">Looks good!</div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="vt-username" class="form-label">Username</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="vt-username"
+                            required
+                          />
+                          <div class="invalid-tooltip">Please choose a username.</div>
+                        </div>
+                        <div class="col-12">
+                          <button class="btn btn-success" type="submit">Submit (tooltip)</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+    <Scripts path={path} />
+    <script is:inline>
+      // Enable Bootstrap-style validation for forms marked with .needs-validation
+      // or .needs-validation-tooltip. Prevents submission if any field is invalid.
+      ;(() => {
+        "use strict"
+        const selector = ".needs-validation, .needs-validation-tooltip"
+        for (const form of document.querySelectorAll(selector)) {
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+              }
+              form.classList.add("was-validated")
+            },
+            false
+          )
+        }
+      })()
+    </script>
+  </body>
+</html>
