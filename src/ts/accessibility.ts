@@ -476,6 +476,9 @@ export class AccessibilityManager {
 
     // Add navigation landmarks
     document.querySelectorAll('.navbar-nav, .nav').forEach((nav, index) => {
+      // Skip <ul>/<ol> elements — assigning navigation role to list elements
+      // strips their list semantics, breaking screen reader list traversal
+      if (nav.tagName === 'UL' || nav.tagName === 'OL') return
       if (!nav.hasAttribute('role')) {
         nav.setAttribute('role', 'navigation')
       }
