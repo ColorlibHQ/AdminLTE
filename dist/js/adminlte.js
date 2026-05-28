@@ -1041,6 +1041,9 @@
                 }
             }
             document.querySelectorAll('.navbar-nav, .nav').forEach((nav, index) => {
+                if (nav.tagName === 'UL' || nav.tagName === 'OL') {
+                    return;
+                }
                 if (!nav.hasAttribute('role')) {
                     nav.setAttribute('role', 'navigation');
                 }
