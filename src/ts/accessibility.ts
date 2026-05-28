@@ -474,8 +474,16 @@ export class AccessibilityManager {
       }
     }
 
-    // Add navigation landmarks
+    // Add navigation landmarks.
+    // Skip <ul>/<ol>: assigning role="navigation" to a list element strips its
+    // implicit list semantics, orphaning its <li> children for screen readers
+    // and failing Lighthouse's "list items not contained within list parent"
+    // audit (#6038). Lists that should be navigation landmarks belong inside a
+    // <nav> element, which already provides the landmark and accessible name.
     document.querySelectorAll('.navbar-nav, .nav').forEach((nav, index) => {
+      if (nav.tagName === 'UL' || nav.tagName === 'OL') {
+        return
+      }
       if (!nav.hasAttribute('role')) {
         nav.setAttribute('role', 'navigation')
       }

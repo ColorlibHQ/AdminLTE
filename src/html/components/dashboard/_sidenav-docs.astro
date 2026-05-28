@@ -28,24 +28,11 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
   <!--end::Sidebar Brand-->
   <!--begin::Sidebar Wrapper-->
   <div class="sidebar-wrapper">
-    <nav class="mt-2">
-      <!-- Back to preview CTA -->
-      <div class="px-3 pb-2">
-        <a
-          href={htmlPath + "/index.html"}
-          class="btn btn-sm btn-outline-light w-100 d-flex align-items-center justify-content-center gap-2"
-        >
-          <i class="bi bi-arrow-left" aria-hidden="true"></i>
-          Back to live preview
-        </a>
-      </div>
-
+    <nav class="mt-2" aria-label="Documentation navigation">
       <!--begin::Sidebar Menu-->
       <ul
         class="nav sidebar-menu flex-column"
         data-lte-toggle="treeview"
-        role="navigation"
-        aria-label="Documentation navigation"
         data-accordion="false"
         id="docs-navigation"
       >
@@ -327,6 +314,17 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
         </li>
       </ul>
       <!--end::Sidebar Menu-->
+
+      <!-- Back to preview CTA (bottom of sidebar) -->
+      <div class="p-3 mt-3 border-top border-secondary border-opacity-25">
+        <a
+          href={htmlPath + "/index.html"}
+          class="btn btn-sm btn-outline-light w-100 d-flex align-items-center justify-content-center gap-2"
+        >
+          <i class="bi bi-arrow-left" aria-hidden="true"></i>
+          Back to live preview
+        </a>
+      </div>
     </nav>
   </div>
   <!--end::Sidebar Wrapper-->
