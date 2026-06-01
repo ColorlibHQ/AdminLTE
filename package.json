@@ -80,7 +80,7 @@
     "bootstrap": "^5.3.8",
     "bundlewatch": "^0.4.2",
     "clean-css-cli": "^5.6.3",
-    "concurrently": "^10.0.0",
+    "concurrently": "^10.0.1",
     "cross-env": "^10.1.0",
     "eslint": "^10.4.0",
     "eslint-plugin-astro": "^1.7.0",
