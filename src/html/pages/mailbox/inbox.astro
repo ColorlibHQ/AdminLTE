@@ -267,11 +267,12 @@ const messages = [
                             <a
                               href={htmlPath + "/mailbox/read.html"}
                               class="flex-grow-1 d-flex flex-column flex-md-row gap-md-3 text-decoration-none text-body"
+                              style="min-width: 0;"
                             >
                               <span class="text-truncate" style="min-width: 9rem;">
                                 {m.from}
                               </span>
-                              <span class="flex-grow-1 text-truncate">
+                              <span class="flex-grow-1 text-truncate" style="min-width: 0;">
                                 <span class={`badge text-bg-${m.label} me-2`}>
                                   &middot;
                                 </span>
