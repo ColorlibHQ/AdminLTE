@@ -18,8 +18,12 @@
         const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)').matches;
         // Mirror the resolution in _scripts.astro: explicit "dark"/"light" win,
         // otherwise ("auto" or unset) fall back to the OS preference.
-        const resolved =
-          stored === 'dark' || stored === 'light' ? stored : prefersDark ? 'dark' : 'light';
+        let resolved = 'light';
+        if (stored === 'dark' || stored === 'light') {
+          resolved = stored;
+        } else if (prefersDark) {
+          resolved = 'dark';
+        }
         document.documentElement.setAttribute('data-bs-theme', resolved);
         document.documentElement.style.colorScheme = resolved;
       })();
