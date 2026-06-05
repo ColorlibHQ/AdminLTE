@@ -5,6 +5,28 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>AdminLTE v4 | Dashboard</title>
 
+    <!--begin::Theme Init (prevents flash of incorrect theme on load, #6043)-->
+    <script>
+      (() => {
+        'use strict';
+        const STORAGE_KEY = 'lte-theme';
+        let stored = null;
+        try {
+          stored = localStorage.getItem(STORAGE_KEY);
+        } catch {
+          // localStorage may be unavailable (private mode, sandboxed iframe).
+        }
+        const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)').matches;
+        // Mirror the resolution in _scripts.astro: explicit "dark"/"light" win,
+        // otherwise ("auto" or unset) fall back to the OS preference.
+        const resolved =
+          stored === 'dark' || stored === 'light' ? stored : prefersDark ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-bs-theme', resolved);
+        document.documentElement.style.colorScheme = resolved;
+      })();
+    </script>
+    <!--end::Theme Init-->
+
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <meta name="color-scheme" content="light dark" />
