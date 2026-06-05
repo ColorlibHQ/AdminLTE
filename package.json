@@ -63,6 +63,7 @@
     "url": "https://github.com/ColorlibHQ/AdminLTE/issues"
   },
   "overrides": {
+    "axios": "0.32.0",
     "stylelint-config-twbs-bootstrap": {
       "stylelint": "$stylelint"
     },
@@ -70,19 +71,19 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
-    "@astrojs/mdx": "^6.0.0",
+    "@astrojs/mdx": "^6.0.2",
     "@eslint/js": "^10.0.1",
     "@rollup/plugin-typescript": "^12.3.0",
-    "@typescript-eslint/eslint-plugin": "^8.60.0",
-    "@typescript-eslint/parser": "^8.60.0",
-    "astro": "^6.4.0",
+    "@typescript-eslint/eslint-plugin": "^8.60.1",
+    "@typescript-eslint/parser": "^8.60.1",
+    "astro": "^6.4.4",
     "autoprefixer": "^10.5.0",
     "bootstrap": "^5.3.8",
     "bundlewatch": "^0.4.2",
     "clean-css-cli": "^5.6.3",
-    "concurrently": "^10.0.0",
+    "concurrently": "^10.0.3",
     "cross-env": "^10.1.0",
-    "eslint": "^10.4.0",
+    "eslint": "^10.4.1",
     "eslint-plugin-astro": "^1.7.0",
     "eslint-plugin-unicorn": "^64.0.0",
     "fs-extra": "^11.3.5",
@@ -95,7 +96,7 @@
     "prettier": "^3.8.3",
     "prettier-plugin-astro": "^0.14.1",
     "rimraf": "^6.1.3",
-    "rollup": "^4.60.4",
+    "rollup": "^4.61.1",
     "rtlcss": "^4.3.0",
     "sass": "^1.100.0",
     "shx": "^0.4.0",
@@ -104,6 +105,6 @@
     "terser": "^5.48.0",
     "tslib": "^2.8.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.60.0"
+    "typescript-eslint": "^8.60.1"
   }
 }
