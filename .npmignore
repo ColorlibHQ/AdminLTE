@@ -9,6 +9,9 @@
 /docs/
 /docs_html/
 
+# Ignore development-only scripts
+/scripts/
+
 # Ignore plugin files except for specific ones
 /plugins/*
 !/plugins/flot-old/
