@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // scripts/social-preview.mjs
 //
 // Capture a 1280×640 GitHub social preview image of the dashboard.
@@ -58,8 +59,8 @@ function serve(rootDir) {
       if (!existsSync(filePath)) { res.statusCode = 404; res.end('not found'); return; }
       res.setHeader('Content-Type', MIME[path.extname(filePath).toLowerCase()] || 'application/octet-stream');
       res.end(await readFile(filePath));
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
       res.statusCode = 500;
       res.setHeader('Content-Type', 'text/plain');
       res.end('server error');
@@ -88,10 +89,10 @@ async function main() {
     try {
       ['theme', 'color-theme', 'dash26-theme', 'lte.theme', 'data-theme'].forEach((k) =>
         localStorage.setItem(k, 'light'));
-    } catch (_e) { /* ignore */ }
+    } catch { /* ignore */ }
   });
 
-  await page.goto(url, { waitUntil: 'networkidle', timeout: 45000 });
+  await page.goto(url, { waitUntil: 'networkidle', timeout: 45_000 });
   await page.evaluate(() => {
     const h = document.documentElement;
     h.setAttribute('data-bs-theme', 'light');
@@ -107,4 +108,9 @@ async function main() {
   console.log(`✓ ${path.relative(ROOT, OUT)}`);
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+try {
+  await main();
+} catch (error) {
+  console.error(error);
+  process.exit(1);
+}
