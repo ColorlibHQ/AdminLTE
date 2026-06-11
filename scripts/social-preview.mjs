@@ -47,14 +47,23 @@ function serve(rootDir) {
     try {
       let urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
       if (urlPath === '/') urlPath = '/index.html';
-      let filePath = path.join(rootDir, urlPath);
+      const root = path.resolve(rootDir);
+      let filePath = path.resolve(root, '.' + path.posix.normalize('/' + urlPath));
+      if (filePath !== root && !filePath.startsWith(root + path.sep)) {
+        res.statusCode = 403; res.end('forbidden'); return;
+      }
       if (existsSync(filePath) && statSync(filePath).isDirectory()) {
         filePath = path.join(filePath, 'index.html');
       }
       if (!existsSync(filePath)) { res.statusCode = 404; res.end('not found'); return; }
       res.setHeader('Content-Type', MIME[path.extname(filePath).toLowerCase()] || 'application/octet-stream');
       res.end(await readFile(filePath));
-    } catch (e) { res.statusCode = 500; res.end(String(e)); }
+    } catch (e) {
+      console.error(e);
+      res.statusCode = 500;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end('server error');
+    }
   });
   return new Promise((resolve) => server.listen(0, '127.0.0.1', () =>
     resolve({ port: server.address().port, close: () => server.close() })));
