@@ -64,6 +64,34 @@ export default [
       'unicorn/prefer-spread': 'off',
       'unicorn/prefer-string-replace-all': 'off',
       'unicorn/prevent-abbreviations': 'off',
+      // Rules introduced in newer eslint-plugin-unicorn releases (v65–v68).
+      // Disabled to preserve AdminLTE's established conventions: Bootstrap-style
+      // `_element`/`_config` fields, modules that auto-init via top-level side
+      // effects, and the abbreviation/`forEach`/dataset style already curated
+      // above (these are renames of rules already disabled). Adopting any of
+      // them is a deliberate source refactor, out of scope for a version bump.
+      'unicorn/consistent-boolean-name': 'off',
+      'unicorn/consistent-conditional-object-spread': 'off',
+      'unicorn/dom-node-dataset': 'off',
+      'unicorn/filename-case': 'off',
+      'unicorn/name-replacements': 'off',
+      'unicorn/no-declarations-before-early-exit': 'off',
+      'unicorn/no-for-each': 'off',
+      'unicorn/no-optional-chaining-on-undeclared-variable': 'off',
+      'unicorn/no-top-level-side-effects': 'off',
+      'unicorn/no-unnecessary-global-this': 'off',
+      'unicorn/no-unsafe-string-replacement': 'off',
+      'unicorn/numeric-separators-style': 'off',
+      'unicorn/operator-assignment': 'off',
+      'unicorn/prefer-add-event-listener-options': 'off',
+      'unicorn/prefer-early-return': 'off',
+      'unicorn/prefer-else-if': 'off',
+      'unicorn/prefer-hoisting-branch-code': 'off',
+      'unicorn/prefer-minimal-ternary': 'off',
+      'unicorn/prefer-private-class-fields': 'off',
+      'unicorn/prefer-scoped-selector': 'off',
+      'unicorn/prefer-split-limit': 'off',
+      'unicorn/require-css-escape': 'off',
       'astro/no-set-html-directive': 'off'
     }
   },
