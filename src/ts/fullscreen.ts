@@ -36,54 +36,64 @@ class FullScreen {
     this._config = config
   }
 
-  inFullScreen(): void {
+  async inFullScreen(): Promise<void> {
     const event = new Event(EVENT_MAXIMIZED)
 
     const iconMaximize = document.querySelector<HTMLElement>(SELECTOR_MAXIMIZE_ICON)
     const iconMinimize = document.querySelector<HTMLElement>(SELECTOR_MINIMIZE_ICON)
 
-    void document.documentElement.requestFullscreen()
+    try {
+      await document.documentElement.requestFullscreen()
 
-    // Toggle Bootstrap's .d-none utility instead of hardcoding inline
-    // display:block. The previous approach overrode the icon library's
-    // natural display value (eg. some icon fonts use inline-block) and
-    // caused the icon to shift its position. Fixes #6021.
-    if (iconMaximize) {
-      iconMaximize.classList.add('d-none')
+      // Toggle Bootstrap's .d-none utility instead of hardcoding inline
+      // display:block. The previous approach overrode the icon library's
+      // natural display value (eg. some icon fonts use inline-block) and
+      // caused the icon to shift its position. Fixes #6021.
+      if (iconMaximize) {
+        iconMaximize.classList.add('d-none')
+      }
+
+      if (iconMinimize) {
+        iconMinimize.classList.remove('d-none')
+      }
+
+      this._element.dispatchEvent(event)
+    } catch {
+      // Fullscreen request was denied (e.g. permission policy, missing
+      // allowfullscreen on an iframe). Leave icons/state untouched so the
+      // UI doesn't claim we're in fullscreen when we aren't.
     }
-
-    if (iconMinimize) {
-      iconMinimize.classList.remove('d-none')
-    }
-
-    this._element.dispatchEvent(event)
   }
 
-  outFullscreen(): void {
+  async outFullscreen(): Promise<void> {
     const event = new Event(EVENT_MINIMIZED)
 
     const iconMaximize = document.querySelector<HTMLElement>(SELECTOR_MAXIMIZE_ICON)
     const iconMinimize = document.querySelector<HTMLElement>(SELECTOR_MINIMIZE_ICON)
 
-    void document.exitFullscreen()
+    try {
+      await document.exitFullscreen()
 
-    if (iconMaximize) {
-      iconMaximize.classList.remove('d-none')
+      if (iconMaximize) {
+        iconMaximize.classList.remove('d-none')
+      }
+
+      if (iconMinimize) {
+        iconMinimize.classList.add('d-none')
+      }
+
+      this._element.dispatchEvent(event)
+    } catch {
+      // Exit request failed; stay in the current (fullscreen) state.
     }
-
-    if (iconMinimize) {
-      iconMinimize.classList.add('d-none')
-    }
-
-    this._element.dispatchEvent(event)
   }
 
-  toggleFullScreen(): void {
+  async toggleFullScreen(): Promise<void> {
     if (document.fullscreenEnabled) {
       if (document.fullscreenElement) {
-        this.outFullscreen()
+        await this.outFullscreen()
       } else {
-        this.inFullScreen()
+        await this.inFullScreen()
       }
     }
   }
@@ -105,7 +115,7 @@ onDOMContentLoaded(() => {
 
       if (button) {
         const data = new FullScreen(button, undefined)
-        data.toggleFullScreen()
+        void data.toggleFullScreen()
       }
     })
   })

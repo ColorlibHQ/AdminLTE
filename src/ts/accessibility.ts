@@ -351,7 +351,7 @@ export class AccessibilityManager {
   }
 
   private handleFormError(input: HTMLInputElement): void {
-    const errorId = `${input.id || input.name}-error`
+    const errorId = `${input.id || input.name || accessibilityUtils.generateId('field')}-error`
     let errorElement = document.getElementById(errorId)
     
     if (!errorElement) {
@@ -456,9 +456,10 @@ export class AccessibilityManager {
             event.preventDefault()
           }
         } else if (document.activeElement === lastElement) {
-          firstElement.focus()
+          firstElement?.focus()
           event.preventDefault()
         }
+
       }
     })
   }
