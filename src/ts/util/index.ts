@@ -1,21 +1,29 @@
-const domContentLoadedCallbacks: Array<() => void> = []
+type DOMContentLoadedCallback = () => void;
 
-const onDOMContentLoaded = (callback: () => void): void => {
-  if (document.readyState === 'loading') {
-    // add listener on the first call when the document is in loading state
-    if (!domContentLoadedCallbacks.length) {
-      document.addEventListener('DOMContentLoaded', () => {
-        for (const callback of domContentLoadedCallbacks) {
-          callback()
-        }
-      })
+const adminLTEState = (() => {
+  const callbacks: DOMContentLoadedCallback[] = [];
+  let isInitialized = false;
+  return {
+    registerCallback(callback: DOMContentLoadedCallback): void {
+      callbacks.push(callback);
+    },
+    initialize(): void {
+      if (isInitialized) return;
+      isInitialized = true;
+      for (const callback of callbacks) {
+        callback();
+      }
+    },
+    reset(): void {
+      isInitialized = false;
     }
+  };
+})();
+const onDOMContentLoaded = adminLTEState.registerCallback;
 
-    domContentLoadedCallbacks.push(callback)
-  } else {
-    callback()
-  }
-}
+document.addEventListener('DOMContentLoaded', adminLTEState.initialize);
+document.addEventListener('turbo:load', adminLTEState.initialize);
+document.addEventListener('turbo:before-render', adminLTEState.reset);
 
 /* ES2022 UTILITY FUNCTIONS */
 
