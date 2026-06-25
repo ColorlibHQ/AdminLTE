@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **Fullscreen state sync:** the fullscreen icons and the `maximized`/`minimized` events are now driven by the native `fullscreenchange` event instead of the request/exit calls. The UI no longer flips when a fullscreen request is denied (permissions policy, missing `allowfullscreen`, lost user gesture), and it now stays in sync when the user exits with `ESC` or `F11`. (builds on @webgo-oss's report in #6055)
+- **Accessibility:** form inputs lacking both an `id` and a `name` now receive a stable, generated error-message id instead of colliding on a shared `-error` id and appending a new orphaned error node on every re-validation. (#6055, reported by @webgo-oss)
+
 ## [4.0.2] - 2026-06-11
 
 ### Fixed

@@ -351,6 +351,14 @@ export class AccessibilityManager {
   }
 
   private handleFormError(input: HTMLInputElement): void {
+    // Inputs lacking both an id and a name would otherwise collide on a
+    // single "-error" id. Assign a stable generated id once and persist it on
+    // the element so repeated `invalid` events reuse the same error node
+    // instead of appending a new orphaned one each time.
+    if (!input.id && !input.name) {
+      input.id = accessibilityUtils.generateId('field')
+    }
+
     const errorId = `${input.id || input.name}-error`
     let errorElement = document.getElementById(errorId)
     
