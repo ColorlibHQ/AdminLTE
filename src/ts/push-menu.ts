@@ -7,6 +7,7 @@
  */
 
 import {
+  getLifecycleSignal,
   onDOMContentLoaded
 } from './util/index'
 
@@ -365,7 +366,7 @@ onDOMContentLoaded(() => {
   window.addEventListener('resize', () => {
     pushMenu.setupSidebarBreakPoint()
     pushMenu.updateStateByResponsiveLogic()
-  })
+  }, { signal: getLifecycleSignal() })
 
   // Create the sidebar overlay element and append it to the app wrapper.
 

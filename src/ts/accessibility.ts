@@ -3,6 +3,8 @@
  * WCAG 2.1 AA Compliance Features
  */
 
+import { getLifecycleSignal } from './util/index'
+
 export interface AccessibilityConfig {
   announcements: boolean
   skipLinks: boolean
@@ -15,6 +17,9 @@ export class AccessibilityManager {
   private config: AccessibilityConfig
   private liveRegion: HTMLElement | null = null
   private focusHistory: HTMLElement[] = []
+  // Listeners bound to `document` survive Turbo's <body> swap, so they are
+  // registered with this signal and torn down before the next re-init.
+  private readonly signal: AbortSignal = getLifecycleSignal()
 
   constructor(config: Partial<AccessibilityConfig> = {}) {
     this.config = {
@@ -120,7 +125,7 @@ export class AccessibilityManager {
       if (event.key === 'Escape') {
         this.handleEscapeKey(event)
       }
-    })
+    }, { signal: this.signal })
 
     // Focus management for modals and dropdowns
     this.initModalFocusManagement()
@@ -192,7 +197,7 @@ export class AccessibilityManager {
         event.preventDefault()
         target.click()
       }
-    })
+    }, { signal: this.signal })
   }
 
   private handleMenuNavigation(event: KeyboardEvent): void {
@@ -244,16 +249,20 @@ export class AccessibilityManager {
       // Disable smooth scrolling
       document.documentElement.style.scrollBehavior = 'auto'
       
-      // Reduce animation duration
-      const style = document.createElement('style')
-      style.textContent = `
-        *, *::before, *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
-      `
-      document.head.append(style)
+      // Reduce animation duration. The <head> survives Turbo navigations, so
+      // only inject the override stylesheet once to avoid stacking duplicates.
+      if (!document.getElementById('adminlte-reduce-motion')) {
+        const style = document.createElement('style')
+        style.id = 'adminlte-reduce-motion'
+        style.textContent = `
+          *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
+        `
+        document.head.append(style)
+      }
     }
   }
 
@@ -283,6 +292,11 @@ export class AccessibilityManager {
       childList: true,
       subtree: true
     })
+
+    // Stop observing the old <body> before Turbo swaps in a new one.
+    this.signal.addEventListener('abort', () => {
+      observer.disconnect()
+    }, { once: true })
   }
 
   // WCAG 1.3.1: Info and Relationships
@@ -394,7 +408,7 @@ export class AccessibilityManager {
       
       // Store previous focus
       this.focusHistory.push(document.activeElement as HTMLElement)
-    })
+    }, { signal: this.signal })
 
     document.addEventListener('hidden.bs.modal', () => {
       // Restore previous focus
@@ -402,7 +416,7 @@ export class AccessibilityManager {
       if (previousElement) {
         previousElement.focus()
       }
-    })
+    }, { signal: this.signal })
   }
 
   // Dropdown focus management
@@ -415,7 +429,7 @@ export class AccessibilityManager {
       if (firstItem) {
         firstItem.focus()
       }
-    })
+    }, { signal: this.signal })
   }
 
   // Public API methods

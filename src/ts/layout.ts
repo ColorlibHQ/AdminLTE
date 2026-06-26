@@ -7,6 +7,7 @@
  */
 
 import {
+  getLifecycleSignal,
   onDOMContentLoaded
 } from './util/index'
 
@@ -62,7 +63,7 @@ class Layout {
 
 onDOMContentLoaded(() => {
   const layout = new Layout(document.body)
-  window.addEventListener('resize', () => layout.holdTransition(200))
+  window.addEventListener('resize', () => layout.holdTransition(200), { signal: getLifecycleSignal() })
 
   setTimeout(() => {
     document.body.classList.add(CLASS_NAME_APP_LOADED)

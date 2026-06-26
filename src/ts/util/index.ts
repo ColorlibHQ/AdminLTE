@@ -1,21 +1,79 @@
-const domContentLoadedCallbacks: Array<() => void> = []
+/**
+ * Lifecycle management
+ * ============================================================================
+ *
+ * Plugins register their initialisation through `onDOMContentLoaded`. Besides
+ * the initial page load, every registered callback is re-run on Hotwired Turbo
+ * navigations (`turbo:load`): Turbo Drive swaps the <body> without a full page
+ * reload, so without re-initialisation plugins such as PushMenu and TreeView
+ * stop working after the first in-app link click (#563, #5890).
+ *
+ * Re-running init would normally leak listeners, because callbacks also bind to
+ * `window`/`document`, which survive Turbo's <body> swap. To prevent that, each
+ * cycle has its own `AbortController`: callbacks should attach their
+ * window/document-level listeners with the signal from `getLifecycleSignal()`.
+ * The signal is aborted on `turbo:before-render`, tearing down the previous
+ * cycle's listeners before the callbacks run again. Listeners bound to elements
+ * inside <body> don't need the signal — Turbo discards the old <body>, so they
+ * are cleaned up automatically.
+ */
 
-const onDOMContentLoaded = (callback: () => void): void => {
-  if (document.readyState === 'loading') {
-    // add listener on the first call when the document is in loading state
-    if (!domContentLoadedCallbacks.length) {
-      document.addEventListener('DOMContentLoaded', () => {
-        for (const callback of domContentLoadedCallbacks) {
-          callback()
-        }
-      })
-    }
+const lifecycleCallbacks: Array<() => void> = []
 
-    domContentLoadedCallbacks.push(callback)
-  } else {
+// Mutable state is held on an object so the lifecycle hooks below can update it
+// without reassigning top-level bindings.
+const lifecycleState = {
+  controller: new AbortController(),
+  hasInitialized: false
+}
+
+/**
+ * The AbortSignal for the current lifecycle. Pass it as the
+ * `{ signal }` option to window/document `addEventListener` calls made during
+ * initialisation so they are removed automatically on the next Turbo render.
+ */
+const getLifecycleSignal = (): AbortSignal => lifecycleState.controller.signal
+
+const runLifecycleCallbacks = (): void => {
+  if (lifecycleState.hasInitialized) {
+    return
+  }
+
+  lifecycleState.hasInitialized = true
+
+  for (const callback of lifecycleCallbacks) {
     callback()
   }
 }
+
+const onDOMContentLoaded = (callback: () => void): void => {
+  lifecycleCallbacks.push(callback)
+
+  // Late registration: the batch for the current cycle has already run (the
+  // script loaded after DOMContentLoaded, or a callback was registered after a
+  // Turbo visit), so run the newcomer immediately rather than stranding it
+  // until the next navigation. Preserves the original non-loading behaviour.
+  if (lifecycleState.hasInitialized) {
+    callback()
+  }
+}
+
+// Initial page load.
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', runLifecycleCallbacks, { once: true })
+} else {
+  runLifecycleCallbacks()
+}
+
+// Hotwired Turbo: drop the previous cycle's window/document listeners, then
+// re-run initialisation against the freshly rendered <body>.
+document.addEventListener('turbo:before-render', () => {
+  lifecycleState.controller.abort()
+  lifecycleState.controller = new AbortController()
+  lifecycleState.hasInitialized = false
+})
+
+document.addEventListener('turbo:load', runLifecycleCallbacks)
 
 /* ES2022 UTILITY FUNCTIONS */
 
@@ -134,6 +192,7 @@ const slideToggle = (target: HTMLElement, duration = 500) => {
 
 export {
   onDOMContentLoaded,
+  getLifecycleSignal,
   slideUp,
   slideDown,
   slideToggle,

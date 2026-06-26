@@ -146,6 +146,13 @@ Check that the PushMenu plugin is loaded. It's bundled into `adminlte.js` — ma
 </details>
 
 <details class="faq-item">
+<summary>PushMenu / TreeView stop working after navigating with Hotwired Turbo (or Turbolinks).</summary>
+
+This is handled automatically. Turbo Drive swaps the `<body>` instead of doing a full page load, so AdminLTE re-initialises its plugins on the `turbo:load` event (and tears down its `window`/`document` listeners on `turbo:before-render` so they don't accumulate). As long as `adminlte.js` is loaded once in the `<head>` or as a persistent (`data-turbo-track="reload"`) script, the menus keep working across in-app navigations.
+
+</details>
+
+<details class="faq-item">
 <summary>Dark mode doesn't persist after refresh.</summary>
 
 The included [Color Mode](color-mode.html) toggle writes to `localStorage` under the key `lte-theme`. If you're using a different toggle implementation, make sure it both sets `document.documentElement.setAttribute('data-bs-theme', ...)` and writes to localStorage on change.

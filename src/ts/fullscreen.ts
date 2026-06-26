@@ -7,6 +7,7 @@
  */
 
 import {
+  getLifecycleSignal,
   onDOMContentLoaded
 } from './util/index'
 
@@ -97,7 +98,7 @@ class FullScreen {
  * ============================================================================
  */
 onDOMContentLoaded(() => {
-  document.addEventListener('fullscreenchange', syncFullScreenState)
+  document.addEventListener('fullscreenchange', syncFullScreenState, { signal: getLifecycleSignal() })
 
   const buttons = document.querySelectorAll(SELECTOR_FULLSCREEN_TOGGLE)
 
