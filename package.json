@@ -87,7 +87,7 @@
     "eslint": "^10.5.0",
     "eslint-plugin-astro": "^1.7.0",
     "eslint-plugin-unicorn": "^68.0.0",
-    "fs-extra": "^11.3.5",
+    "fs-extra": "^11.3.6",
     "globals": "^17.6.0",
     "lockfile-lint": "^5.0.0",
     "nodemon": "^3.1.14",
