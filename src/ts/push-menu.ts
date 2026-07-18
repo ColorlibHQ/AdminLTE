@@ -341,12 +341,12 @@ class PushMenu extends BaseComponent {
 
     // When persistence is enabled and screen size is above the breakpoint, load
     // the saved sidebar state from local storage. Otherwise, use responsive
-    // logic to set the initial state. On low screen sizes, the sidebar should
-    // always be collapsed by default unless explicitly opened.
+    // logic to set the initial state (unless explicitly set as collapsed at
+    // initialization).
 
     if (this._config.enablePersistence && !this.isMobileSize()) {
       this.loadSidebarState()
-    } else {
+    } else if (!this.isCollapsed()) {
       this.updateStateByResponsiveLogic()
     }
   }
