@@ -64,13 +64,17 @@ export default [
       'unicorn/prefer-spread': 'off',
       'unicorn/prefer-string-replace-all': 'off',
       'unicorn/prevent-abbreviations': 'off',
-      // Rules introduced in newer eslint-plugin-unicorn releases (v65–v68).
+      // Rules introduced in newer eslint-plugin-unicorn releases (v65–v72).
       // Disabled to preserve AdminLTE's established conventions: Bootstrap-style
       // `_element`/`_config` fields, modules that auto-init via top-level side
       // effects, and the abbreviation/`forEach`/dataset style already curated
       // above (these are renames of rules already disabled). Adopting any of
       // them is a deliberate source refactor, out of scope for a version bump.
+      // `isolated-functions` also misfires on Playwright `page.evaluate`
+      // callbacks that reference browser-context globals injected at runtime.
       'unicorn/consistent-boolean-name': 'off',
+      'unicorn/isolated-functions': 'off',
+      'unicorn/prefer-simple-condition-first': 'off',
       'unicorn/consistent-conditional-object-spread': 'off',
       'unicorn/dom-node-dataset': 'off',
       'unicorn/filename-case': 'off',
