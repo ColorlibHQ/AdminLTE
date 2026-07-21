@@ -99,7 +99,8 @@
     "bootstrap": "^5.3.8"
   },
   "overrides": {
-    "axios": "0.32.0",
+    "axios": "^0.33.0",
+    "shell-quote": "^1.10.0",
     "stylelint-config-twbs-bootstrap": {
       "stylelint": "$stylelint"
     },
