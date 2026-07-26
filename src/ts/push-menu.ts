@@ -76,20 +76,51 @@ const Defaults: Config = {
  */
 
 class PushMenu extends BaseComponent {
+  /**
+   * Get the component name.
+   *
+   * @returns The component name.
+   */
   static get NAME(): string {
     return NAME
   }
 
+  /**
+   * Get the component instance associated with the given element, if any.
+   *
+   * @param element The element to look up.
+   * @returns The component instance, or null if none.
+   */
   static getInstance(element: Element | null | undefined): PushMenu | null {
     return this._getInstance(element) as PushMenu | null
   }
 
-  static getOrCreateInstance(element: HTMLElement, config: Partial<Config> = {}): PushMenu {
+  /**
+   * Get the component instance associated with the given element, or create a
+   * new one if none exists.
+   *
+   * @param element The element to look up or associate with a new instance.
+   * @param config Optional configuration for a new instance.
+   * @returns The component instance.
+   */
+  static getOrCreateInstance(
+    element: HTMLElement,
+    config: Partial<Config> = {}
+  ): PushMenu {
     return this.getInstance(element) ?? new this(element, config)
   }
 
+  /**
+   * The configuration for this instance.
+   */
   _config: Config
 
+  /**
+   * Create a new PushMenu instance associated with the given element.
+   *
+   * @param element The element to associate with this instance.
+   * @param config Optional configuration for this instance.
+   */
   constructor(element: HTMLElement, config: Partial<Config> = {}) {
     super(element)
     this._config = { ...Defaults, ...config }
@@ -136,9 +167,16 @@ class PushMenu extends BaseComponent {
    * Expand the sidebar menu.
    */
   expand(): void {
-    // The "open" event is cancelable: preventDefault() keeps the sidebar
-    // in its current state.
-    if (dispatchCustomEvent(this._element, EVENT_OPEN, { cancelable: true }).defaultPrevented) {
+    // Dispatch the "open" event, which is cancelable: preventDefault() should
+    // keep the sidebar in its current state.
+
+    const evt = dispatchCustomEvent(
+      this._element,
+      EVENT_OPEN,
+      { cancelable: true }
+    )
+
+    if (evt.defaultPrevented) {
       return
     }
 
@@ -151,6 +189,8 @@ class PushMenu extends BaseComponent {
       document.body.classList.add(CLASS_NAME_SIDEBAR_OPEN)
     }
 
+    // Dispatch the "opened" event to indicate the sidebar is now open.
+
     dispatchCustomEvent(this._element, EVENT_OPENED)
   }
 
@@ -158,7 +198,16 @@ class PushMenu extends BaseComponent {
    * Collapse the sidebar menu.
    */
   collapse(): void {
-    if (dispatchCustomEvent(this._element, EVENT_COLLAPSE, { cancelable: true }).defaultPrevented) {
+    // Dispatch the "collapse" event, which is cancelable: preventDefault()
+    // should keep the sidebar in its current state.
+
+    const evt = dispatchCustomEvent(
+      this._element,
+      EVENT_COLLAPSE,
+      { cancelable: true }
+    )
+
+    if (evt.defaultPrevented) {
       return
     }
 
@@ -167,6 +216,8 @@ class PushMenu extends BaseComponent {
 
     document.body.classList.remove(CLASS_NAME_SIDEBAR_OPEN)
     document.body.classList.add(CLASS_NAME_SIDEBAR_COLLAPSE)
+
+    // Dispatch the "collapsed" event to indicate the sidebar is now collapsed.
 
     dispatchCustomEvent(this._element, EVENT_COLLAPSED)
   }
@@ -361,7 +412,7 @@ class PushMenu extends BaseComponent {
  * swaps. The instance itself is created per page load below and can be
  * retrieved anywhere with:
  *
- *   PushMenu.getInstance(document.querySelector('.app-sidebar'))
+ * PushMenu.getInstance(document.querySelector('.app-sidebar'))
  */
 
 document.addEventListener('click', event => {
@@ -379,7 +430,9 @@ document.addEventListener('click', event => {
 
   event.preventDefault()
 
-  const sidebar = document.querySelector(SELECTOR_APP_SIDEBAR) as HTMLElement | null
+  const sidebar = document.querySelector(
+    SELECTOR_APP_SIDEBAR
+  ) as HTMLElement | null
 
   if (sidebar) {
     PushMenu.getOrCreateInstance(sidebar).toggle()
@@ -389,7 +442,9 @@ document.addEventListener('click', event => {
 onDOMContentLoaded(() => {
   // Find the sidebar element in the DOM.
 
-  const sidebar = document.querySelector(SELECTOR_APP_SIDEBAR) as HTMLElement | null
+  const sidebar = document.querySelector(
+    SELECTOR_APP_SIDEBAR
+  ) as HTMLElement | null
 
   if (!sidebar) {
     return
@@ -423,7 +478,9 @@ onDOMContentLoaded(() => {
   // disturb a sidebar state the user chose. init() has already read the
   // effective breakpoint from the CSS, so the query uses the final value.
 
-  const breakpointQuery = globalThis.matchMedia(`(max-width: ${pushMenu._config.sidebarBreakpoint}px)`)
+  const breakpointQuery = globalThis.matchMedia(
+    `(max-width: ${pushMenu._config.sidebarBreakpoint}px)`
+  )
 
   breakpointQuery.addEventListener('change', () => {
     pushMenu.updateStateByResponsiveLogic()
@@ -435,7 +492,9 @@ onDOMContentLoaded(() => {
   // after the restore — the snapshot is a clone — so they are rebound below).
 
   const appWrapper = document.querySelector(SELECTOR_APP_WRAPPER)
-  let sidebarOverlay = appWrapper?.querySelector(`:scope > .${CLASS_NAME_SIDEBAR_OVERLAY}`) as HTMLElement | null
+  let sidebarOverlay = appWrapper?.querySelector(
+    `:scope > .${CLASS_NAME_SIDEBAR_OVERLAY}`
+  ) as HTMLElement | null
 
   if (!sidebarOverlay) {
     sidebarOverlay = document.createElement('div')
@@ -471,5 +530,11 @@ onDOMContentLoaded(() => {
     pushMenu.collapse()
   })
 })
+
+/**
+ * ----------------------------------------------------------------------------
+ * Exports
+ * ----------------------------------------------------------------------------
+ */
 
 export default PushMenu
