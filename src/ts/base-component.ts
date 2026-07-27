@@ -9,17 +9,25 @@
  */
 
 /**
- * element -> (data key -> component instance). WeakMap keys don't prevent
- * garbage collection, so instances die with their elements — important under
- * Hotwired Turbo, which swaps the whole <body> on navigation.
+ * Component registry: element -> (data key -> component instance). A single
+ * element can host several components at once, each stored under its own
+ * DATA_KEY. WeakMap keys don't prevent garbage collection, so instances die
+ * with their elements — important under Hotwired Turbo, which swaps the whole
+ * <body> on navigation.
  */
 const componentRegistry = new WeakMap<Element, Map<string, BaseComponent>>()
 
 class BaseComponent {
+  /**
+   * Subclasses must override this getter to declare their own name.
+   */
   static get NAME(): string {
     throw new Error('Component subclasses must override the static NAME getter.')
   }
 
+  /**
+   * Key this component is registered under: `lte.<name>`.
+   */
   static get DATA_KEY(): string {
     return `lte.${this.NAME}`
   }
@@ -27,6 +35,9 @@ class BaseComponent {
   /**
    * Untyped registry lookup. Every component exposes a typed wrapper
    * (e.g. CardWidget.getInstance()) built on top of this.
+   *
+   * @param element The element to look up.
+   * @returns The instance for this component, or null if there is none.
    */
   protected static _getInstance(element: Element | null | undefined): BaseComponent | null {
     if (!element) {
@@ -36,8 +47,17 @@ class BaseComponent {
     return componentRegistry.get(element)?.get(this.DATA_KEY) ?? null
   }
 
+  /**
+   * The element this instance is attached to.
+   */
   _element: HTMLElement
 
+  /**
+   * Attach a new instance to the given element and register it under the
+   * subclass's DATA_KEY.
+   *
+   * @param element The element to attach this instance to.
+   */
   constructor(element: HTMLElement) {
     this._element = element
 
@@ -55,6 +75,7 @@ class BaseComponent {
     const instances = componentRegistry.get(this._element)
     instances?.delete((this.constructor as typeof BaseComponent).DATA_KEY)
 
+    // Drop the element's entry once it holds no components at all.
     if (instances?.size === 0) {
       componentRegistry.delete(this._element)
     }
@@ -65,6 +86,12 @@ class BaseComponent {
  * Dispatch a namespaced custom event that bubbles — so applications can
  * listen once on `document` — and can optionally carry a payload or be
  * canceled. Returns the event so callers can check `defaultPrevented`.
+ *
+ * @param element The element to dispatch the event on.
+ * @param name The namespaced event name, e.g. `collapse.lte.push-menu`.
+ * @param options `cancelable` opts the event into preventDefault(); `detail`
+ *   is the payload handed to listeners.
+ * @returns The dispatched event, after listeners have run.
  */
 const dispatchCustomEvent = <T = undefined>(
   element: Element,
