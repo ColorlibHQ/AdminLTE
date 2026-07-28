@@ -357,11 +357,15 @@ export class AccessibilityManager {
       }
 
       // Handle invalid state unless the element explicitly opts out via the
-      // 'disable-adminlte-validations' class.
+      // 'disable-adminlte-validations' class. Registered with the lifecycle
+      // signal: this runs once per cycle, and under a framework that
+      // re-initialises against a persistent <body> (initialize()) the inputs
+      // survive the cycle — an unsignalled listener would stack one handler
+      // per re-init on every field.
       if (!htmlInput.classList.contains('disable-adminlte-validations')) {
         htmlInput.addEventListener('invalid', () => {
           this.handleFormError(htmlInput)
-        })
+        }, { signal: this.signal })
       }
     })
   }

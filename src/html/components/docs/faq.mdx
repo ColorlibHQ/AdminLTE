@@ -153,6 +153,15 @@ This is handled automatically. Turbo Drive swaps the `<body>` instead of doing a
 </details>
 
 <details class="faq-item">
+<summary>My framework renders the layout client-side after the page has loaded (GWT, Vaadin, plain JS) and the sidebar never initialises.</summary>
+
+AdminLTE runs its per-page initialisation on `DOMContentLoaded`. If your framework builds the layout after that point, the init pass finds no sidebar to set up — call `adminlte.initialize()` once your layout is attached to the DOM. It tears down the previous cycle's listeners first and re-runs every plugin's initialisation against the current DOM, so it's safe to call after every re-render. If your app later unmounts the AdminLTE layout, `adminlte.teardown()` removes the `window`/`document` listeners the current cycle added.
+
+Clicking toggles (sidebar, treeview, card tools, dark mode) is handled by delegated listeners and works regardless — `initialize()` is only needed for the per-page pass: PushMenu setup and its overlay, restoring open treeview menus, color-mode init and the accessibility landmarks. One caveat: components keep their instance per element, so on a re-init against the *same* sidebar element, changed `data-*` config attributes are not re-read (dispose the instance or use a fresh element if you need that).
+
+</details>
+
+<details class="faq-item">
 <summary>Dark mode doesn't persist after refresh.</summary>
 
 The included [Color Mode](color-mode.html) toggle writes to `localStorage` under the key `lte-theme`. If you're using a different toggle implementation, make sure it both sets `document.documentElement.setAttribute('data-bs-theme', ...)` and writes to localStorage on change.

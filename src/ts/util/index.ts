@@ -36,7 +36,10 @@ const lifecycleCallbacks: Array<() => void> = []
 // without reassigning top-level bindings.
 const lifecycleState = {
   controller: new AbortController(),
-  hasInitialized: false
+  hasInitialized: false,
+  // True while the callback batch is executing — lets initialize() refuse
+  // re-entrant calls made from inside a lifecycle callback.
+  isReplaying: false
 }
 
 /**
@@ -52,9 +55,14 @@ const runLifecycleCallbacks = (): void => {
   }
 
   lifecycleState.hasInitialized = true
+  lifecycleState.isReplaying = true
 
-  for (const callback of lifecycleCallbacks) {
-    callback()
+  try {
+    for (const callback of lifecycleCallbacks) {
+      callback()
+    }
+  } finally {
+    lifecycleState.isReplaying = false
   }
 }
 
@@ -73,8 +81,13 @@ const onDOMContentLoaded = (callback: () => void): void => {
 /**
  * End the current lifecycle: abort the cycle's signal so listeners registered
  * with it are removed, then arm a fresh cycle for the next replay.
+ *
+ * Exported for SPA containers that unmount the AdminLTE layout: calling it
+ * drops the window/document listeners the current cycle added without
+ * immediately re-initialising. Internally it is also the first half of
+ * `initialize()` and the `turbo:before-render` handler.
  */
-const resetLifecycle = (): void => {
+const teardown = (): void => {
   lifecycleState.controller.abort()
   lifecycleState.controller = new AbortController()
   lifecycleState.hasInitialized = false
@@ -90,17 +103,27 @@ const resetLifecycle = (): void => {
  *
  * The previous cycle is torn down first, so calling it repeatedly does not stack
  * listeners registered with `getLifecycleSignal()`. Calling it before the
- * initial batch has run (while `document.readyState === 'loading'`) simply runs
- * that batch early, against whatever DOM exists at the time.
+ * initial batch has run (while `document.readyState === 'loading'`) runs that
+ * batch early, against whatever DOM exists at the time — the initial
+ * `DOMContentLoaded` pass below still replays against the complete DOM.
  */
 const initialize = (): void => {
-  resetLifecycle()
+  // Re-entrancy guard: a lifecycle callback calling initialize() would tear
+  // down its own cycle mid-replay and recurse without end.
+  if (lifecycleState.isReplaying) {
+    return
+  }
+
+  teardown()
   runLifecycleCallbacks()
 }
 
-// Initial page load.
+// Initial page load. Routed through initialize() so that an early initialize()
+// call (a framework initialising before the document finished loading) cannot
+// mark the cycle as done and suppress this pass — the replay tears the early
+// cycle down and re-runs every callback against the complete DOM.
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', runLifecycleCallbacks, { once: true })
+  document.addEventListener('DOMContentLoaded', initialize, { once: true })
 } else {
   runLifecycleCallbacks()
 }
@@ -110,7 +133,7 @@ if (document.readyState === 'loading') {
 // happen at `before-render` rather than as part of the replay, so the outgoing
 // <body>'s listeners are gone before Turbo swaps in the new one — which is why
 // this is the two-step form of `initialize()` rather than a call to it.
-document.addEventListener('turbo:before-render', resetLifecycle)
+document.addEventListener('turbo:before-render', teardown)
 
 document.addEventListener('turbo:load', runLifecycleCallbacks)
 
@@ -259,6 +282,7 @@ export {
   onDOMContentLoaded,
   getLifecycleSignal,
   initialize,
+  teardown,
   slideUp,
   slideDown,
   slideToggle,

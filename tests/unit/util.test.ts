@@ -115,4 +115,87 @@ describe('lifecycle', () => {
     document.dispatchEvent(new Event('turbo:load'))
     expect(callback).toHaveBeenCalledTimes(1)
   })
+
+  it('element-level listeners with the signal do not stack on a persistent element', async () => {
+    // The overlay case: the element is reused across cycles (persistent <body>),
+    // so only the signal keeps repeated initialize() calls from stacking handlers.
+    const { getLifecycleSignal, initialize, onDOMContentLoaded } = await import('../../src/ts/util/index')
+    const element = document.createElement('div')
+    document.body.append(element)
+    const handler = vi.fn()
+
+    onDOMContentLoaded(() => {
+      element.addEventListener('lte.test.overlay', handler, { signal: getLifecycleSignal() })
+    })
+
+    initialize()
+    initialize()
+
+    element.dispatchEvent(new Event('lte.test.overlay'))
+    expect(handler).toHaveBeenCalledTimes(1)
+
+    element.remove()
+  })
+
+  it('an early initialize() does not suppress the initial DOMContentLoaded pass', async () => {
+    // Simulate a script evaluated while the document is still parsing.
+    Object.defineProperty(document, 'readyState', { configurable: true, get: () => 'loading' })
+    const callback = vi.fn()
+
+    try {
+      const { initialize, onDOMContentLoaded } = await import('../../src/ts/util/index')
+
+      onDOMContentLoaded(callback)
+      expect(callback).not.toHaveBeenCalled()
+
+      // A framework initialising early, against a partial DOM.
+      initialize()
+      expect(callback).toHaveBeenCalledTimes(1)
+    } finally {
+      // Restore the prototype getter ('complete').
+      Reflect.deleteProperty(document, 'readyState')
+    }
+
+    // The real initial pass must still replay against the complete DOM.
+    document.dispatchEvent(new Event('DOMContentLoaded'))
+    expect(callback).toHaveBeenCalledTimes(2)
+  })
+
+  it('initialize() from inside a lifecycle callback does not recurse', async () => {
+    const { initialize, onDOMContentLoaded } = await import('../../src/ts/util/index')
+    const callback = vi.fn(() => {
+      initialize()
+    })
+
+    // Late registration runs the callback outside a replay, so its nested
+    // initialize() performs one replay (guarded against going further).
+    onDOMContentLoaded(callback)
+    expect(callback).toHaveBeenCalledTimes(2)
+
+    // During a replay the nested call is a no-op — exactly one run per cycle.
+    initialize()
+    expect(callback).toHaveBeenCalledTimes(3)
+  })
+
+  it('teardown() removes the cycle listeners without replaying', async () => {
+    const { getLifecycleSignal, initialize, onDOMContentLoaded, teardown } = await import('../../src/ts/util/index')
+    const handler = vi.fn()
+    const callback = vi.fn(() => {
+      document.addEventListener('lte.test.teardown', handler, { signal: getLifecycleSignal() })
+    })
+
+    onDOMContentLoaded(callback)
+    expect(callback).toHaveBeenCalledTimes(1)
+
+    teardown()
+    // No replay happened, and the cycle's listener is gone.
+    expect(callback).toHaveBeenCalledTimes(1)
+    document.dispatchEvent(new Event('lte.test.teardown'))
+    expect(handler).not.toHaveBeenCalled()
+
+    // A later initialize() arms a fresh, working cycle.
+    initialize()
+    document.dispatchEvent(new Event('lte.test.teardown'))
+    expect(handler).toHaveBeenCalledTimes(1)
+  })
 })

@@ -1,4 +1,4 @@
-import { initialize, onDOMContentLoaded } from './util/index.js'
+import { initialize, teardown, onDOMContentLoaded } from './util/index.js'
 import Layout from './layout.js'
 import CardWidget from './card-widget.js'
 import Treeview from './treeview.js'
@@ -41,5 +41,6 @@ export {
   PushMenu,
   ColorMode,
   initAccessibility,
-  initialize
+  initialize,
+  teardown
 }
