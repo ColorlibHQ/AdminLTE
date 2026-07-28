@@ -1,4 +1,4 @@
-import { onDOMContentLoaded } from './util/index.js'
+import { initialize, onDOMContentLoaded } from './util/index.js'
 import Layout from './layout.js'
 import CardWidget from './card-widget.js'
 import Treeview from './treeview.js'
@@ -40,5 +40,6 @@ export {
   FullScreen,
   PushMenu,
   ColorMode,
-  initAccessibility
+  initAccessibility,
+  initialize
 }

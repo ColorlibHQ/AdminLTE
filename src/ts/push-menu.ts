@@ -469,16 +469,23 @@ onDOMContentLoaded(() => {
   // Handle touch events on overlay (area outside sidebar), usually we want to
   // close the sidebar when the user taps outside the sidebar on mobile
   // devices.
+  //
+  // These are bound with the lifecycle signal even though the overlay lives
+  // inside <body>: the node above is reused when it already exists, so under a
+  // framework that re-initialises against a persistent <body>, an unsignalled
+  // binding would stack another set of handlers on the same element per cycle.
+
+  const overlaySignal = getLifecycleSignal()
 
   let overlayTouchMoved = false
 
   sidebarOverlay.addEventListener('touchstart', () => {
     overlayTouchMoved = false
-  }, { passive: true })
+  }, { passive: true, signal: overlaySignal })
 
   sidebarOverlay.addEventListener('touchmove', () => {
     overlayTouchMoved = true
-  }, { passive: true })
+  }, { passive: true, signal: overlaySignal })
 
   sidebarOverlay.addEventListener('touchend', event => {
     if (!overlayTouchMoved) {
@@ -487,12 +494,12 @@ onDOMContentLoaded(() => {
     }
 
     overlayTouchMoved = false
-  }, { passive: false })
+  }, { passive: false, signal: overlaySignal })
 
   sidebarOverlay.addEventListener('click', event => {
     event.preventDefault()
     pushMenu.collapse()
-  })
+  }, { signal: overlaySignal })
 })
 
 export default PushMenu

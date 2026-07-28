@@ -53,3 +53,66 @@ describe('slide animations', () => {
     expect(element.style.height).toBe('')
   })
 })
+
+/**
+ * The lifecycle module keeps state at module scope and runs its initial batch on
+ * import, so every test imports a fresh instance. `document.readyState` is
+ * 'complete' under happy-dom, which means a callback registered here runs once
+ * immediately via the late-registration path.
+ */
+describe('lifecycle', () => {
+  beforeEach(() => {
+    vi.resetModules()
+  })
+
+  it('initialize() replays registered callbacks against the current DOM', async () => {
+    const { initialize, onDOMContentLoaded } = await import('../../src/ts/util/index')
+    const callback = vi.fn()
+
+    onDOMContentLoaded(callback)
+    expect(callback).toHaveBeenCalledTimes(1)
+
+    initialize()
+    expect(callback).toHaveBeenCalledTimes(2)
+
+    // Repeated calls keep replaying — frameworks may re-render more than once.
+    initialize()
+    expect(callback).toHaveBeenCalledTimes(3)
+  })
+
+  it('initialize() aborts the previous cycle so signalled listeners do not stack', async () => {
+    const { getLifecycleSignal, initialize, onDOMContentLoaded } = await import('../../src/ts/util/index')
+    const handler = vi.fn()
+
+    onDOMContentLoaded(() => {
+      document.addEventListener('lte.test.ping', handler, { signal: getLifecycleSignal() })
+    })
+
+    document.dispatchEvent(new Event('lte.test.ping'))
+    expect(handler).toHaveBeenCalledTimes(1)
+
+    initialize()
+    handler.mockClear()
+
+    // Two registrations have happened, but the first cycle's signal was aborted,
+    // so exactly one listener is still live.
+    document.dispatchEvent(new Event('lte.test.ping'))
+    expect(handler).toHaveBeenCalledTimes(1)
+  })
+
+  it('turbo:load replays only once turbo:before-render has reset the cycle', async () => {
+    const { onDOMContentLoaded } = await import('../../src/ts/util/index')
+    const callback = vi.fn()
+
+    onDOMContentLoaded(callback)
+    callback.mockClear()
+
+    // The cycle is still marked initialised, so a bare turbo:load is a no-op.
+    document.dispatchEvent(new Event('turbo:load'))
+    expect(callback).not.toHaveBeenCalled()
+
+    document.dispatchEvent(new Event('turbo:before-render'))
+    document.dispatchEvent(new Event('turbo:load'))
+    expect(callback).toHaveBeenCalledTimes(1)
+  })
+})

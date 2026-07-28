@@ -16,6 +16,18 @@
  * cycle's listeners before the callbacks run again. Listeners bound to elements
  * inside <body> don't need the signal — Turbo discards the old <body>, so they
  * are cleaned up automatically.
+ *
+ * Turbo is not the only environment that renders after `DOMContentLoaded`:
+ * client-side frameworks that build the layout themselves (GWT, and other
+ * imperative widget toolkits) have an empty <body> when the initial batch runs,
+ * so the per-page init pass finds no sidebar and no menu. Those consumers call
+ * the exported `initialize()` once the layout is attached — it performs the same
+ * reset-then-replay cycle Turbo gets, without faking Turbo events.
+ *
+ * Unlike Turbo, such frameworks keep the same <body> across a re-init, so
+ * element-level listeners are NOT discarded for them. Callbacks should therefore
+ * pass `getLifecycleSignal()` to every `addEventListener` they make — including
+ * ones on elements — whenever the element can outlive the cycle.
  */
 
 const lifecycleCallbacks: Array<() => void> = []
@@ -58,6 +70,34 @@ const onDOMContentLoaded = (callback: () => void): void => {
   }
 }
 
+/**
+ * End the current lifecycle: abort the cycle's signal so listeners registered
+ * with it are removed, then arm a fresh cycle for the next replay.
+ */
+const resetLifecycle = (): void => {
+  lifecycleState.controller.abort()
+  lifecycleState.controller = new AbortController()
+  lifecycleState.hasInitialized = false
+}
+
+/**
+ * Re-run every plugin's initialisation against the DOM as it stands right now.
+ *
+ * Intended for frameworks that render the layout after `DOMContentLoaded` has
+ * already fired — call it once the sidebar and menu are attached, and PushMenu,
+ * Treeview and ColorMode pick them up as if they had been in the initial HTML.
+ * Delegated click handling never needs this; only the per-page init pass does.
+ *
+ * The previous cycle is torn down first, so calling it repeatedly does not stack
+ * listeners registered with `getLifecycleSignal()`. Calling it before the
+ * initial batch has run (while `document.readyState === 'loading'`) simply runs
+ * that batch early, against whatever DOM exists at the time.
+ */
+const initialize = (): void => {
+  resetLifecycle()
+  runLifecycleCallbacks()
+}
+
 // Initial page load.
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', runLifecycleCallbacks, { once: true })
@@ -66,12 +106,11 @@ if (document.readyState === 'loading') {
 }
 
 // Hotwired Turbo: drop the previous cycle's window/document listeners, then
-// re-run initialisation against the freshly rendered <body>.
-document.addEventListener('turbo:before-render', () => {
-  lifecycleState.controller.abort()
-  lifecycleState.controller = new AbortController()
-  lifecycleState.hasInitialized = false
-})
+// re-run initialisation against the freshly rendered <body>. The teardown has to
+// happen at `before-render` rather than as part of the replay, so the outgoing
+// <body>'s listeners are gone before Turbo swaps in the new one — which is why
+// this is the two-step form of `initialize()` rather than a call to it.
+document.addEventListener('turbo:before-render', resetLifecycle)
 
 document.addEventListener('turbo:load', runLifecycleCallbacks)
 
@@ -219,6 +258,7 @@ const slideToggle = (target: HTMLElement, duration = 500) => {
 export {
   onDOMContentLoaded,
   getLifecycleSignal,
+  initialize,
   slideUp,
   slideDown,
   slideToggle,
