@@ -19,10 +19,10 @@ large desktops, and it's MIT-licensed.
 
 <p align="center">
   <a href="https://adminlte.io/themes/v4/">
-    <img alt="AdminLTE 4 dashboard — light mode" src=".github/assets/dashboard-light.png" width="49%">
+    <img alt="AdminLTE 4 dashboard — light mode" src=".github/assets/dashboard-light.webp" width="49%">
   </a>
   <a href="https://adminlte.io/themes/v4/">
-    <img alt="AdminLTE 4 dashboard — dark mode" src=".github/assets/dashboard-dark.png" width="49%">
+    <img alt="AdminLTE 4 dashboard — dark mode" src=".github/assets/dashboard-dark.webp" width="49%">
   </a>
 </p>
 
@@ -161,7 +161,7 @@ including editions built for the same stacks AdminLTE integrates with:
   <tr>
     <td align="center" width="50%">
       <a href="https://dashboardpack.com/theme-details/admindek-html/?utm_source=github&utm_medium=readme&utm_campaign=adminlte">
-        <img src=".github/assets/premium/admindek.png" alt="Admindek — feature-rich Bootstrap 5 dashboard with dark mode" width="100%">
+        <img src=".github/assets/premium/admindek.webp" alt="Admindek — feature-rich Bootstrap 5 dashboard with dark mode" width="100%">
       </a>
       <br>
       <a href="https://dashboardpack.com/theme-details/admindek-html/?utm_source=github&utm_medium=readme&utm_campaign=adminlte"><strong>Admindek</strong></a>
@@ -173,7 +173,7 @@ including editions built for the same stacks AdminLTE integrates with:
     </td>
     <td align="center" width="50%">
       <a href="https://dashboardpack.com/theme-details/apex-dashboard-nextjs/?utm_source=github&utm_medium=readme&utm_campaign=adminlte">
-        <img src=".github/assets/premium/apex.png" alt="Apex Dashboard — admin template available for Next.js, Laravel, Django and Angular" width="100%">
+        <img src=".github/assets/premium/apex.webp" alt="Apex Dashboard — admin template available for Next.js, Laravel, Django and Angular" width="100%">
       </a>
       <br>
       <a href="https://dashboardpack.com/theme-details/apex-dashboard-nextjs/?utm_source=github&utm_medium=readme&utm_campaign=adminlte"><strong>Apex Dashboard</strong></a>
@@ -188,7 +188,7 @@ including editions built for the same stacks AdminLTE integrates with:
   <tr>
     <td align="center" width="50%">
       <a href="https://dashboardpack.com/theme-details/zenith-dashboard-django/?utm_source=github&utm_medium=readme&utm_campaign=adminlte">
-        <img src=".github/assets/premium/zenith.png" alt="Zenith — ultra-minimal admin dashboard, Django edition" width="100%">
+        <img src=".github/assets/premium/zenith.webp" alt="Zenith — ultra-minimal admin dashboard, Django edition" width="100%">
       </a>
       <br>
       <a href="https://dashboardpack.com/theme-details/zenith-dashboard-django/?utm_source=github&utm_medium=readme&utm_campaign=adminlte"><strong>Zenith Dashboard — Django</strong></a>
@@ -197,7 +197,7 @@ including editions built for the same stacks AdminLTE integrates with:
     </td>
     <td align="center" width="50%">
       <a href="https://dashboardpack.com/theme-details/haze-dashboard-nuxt/?utm_source=github&utm_medium=readme&utm_campaign=adminlte">
-        <img src=".github/assets/premium/haze.png" alt="Haze — Nuxt 4 admin dashboard with 92+ pages and 5 dashboards" width="100%">
+        <img src=".github/assets/premium/haze.webp" alt="Haze — Nuxt 4 admin dashboard with 92+ pages and 5 dashboards" width="100%">
       </a>
       <br>
       <a href="https://dashboardpack.com/theme-details/haze-dashboard-nuxt/?utm_source=github&utm_medium=readme&utm_campaign=adminlte"><strong>Haze — Nuxt</strong></a>
