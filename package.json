@@ -125,7 +125,7 @@
     "eslint-plugin-astro": "^2.1.1",
     "eslint-plugin-unicorn": "^72.0.0",
     "fs-extra": "^11.3.6",
-    "globals": "^17.7.0",
+    "globals": "^17.8.0",
     "happy-dom": "^20.11.0",
     "lockfile-lint": "^5.0.0",
     "nodemon": "^3.1.14",
