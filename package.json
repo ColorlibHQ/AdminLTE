@@ -124,7 +124,7 @@
     "eslint": "^10.7.0",
     "eslint-plugin-astro": "^2.1.1",
     "eslint-plugin-unicorn": "^72.0.0",
-    "fs-extra": "^11.3.6",
+    "fs-extra": "^11.4.0",
     "globals": "^17.7.0",
     "happy-dom": "^20.11.0",
     "lockfile-lint": "^5.0.0",
