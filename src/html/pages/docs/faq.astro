@@ -143,6 +143,10 @@ const sections: Section[] = [
         a: `The included <a href="color-mode.html">Color Mode</a> toggle writes to <code>localStorage</code> under the key <code>lte-theme</code>. If you're using a different toggle implementation, make sure it both sets <code>document.documentElement.setAttribute('data-bs-theme', ...)</code> and writes to localStorage on change.`
       },
       {
+        q: "My own theming keeps getting overwritten by AdminLTE.",
+        a: `Turn the bundled switcher off with <code>&lt;html data-lte-color-mode="off"&gt;</code>. ColorMode then never writes <code>data-bs-theme</code> — not on load, not on a toggle click, not when the OS preference changes — so your own switcher (or a custom Bootstrap theme name) stays in control. If you only need a server-rendered default instead, render <code>data-bs-theme</code> on <code>&lt;html&gt;</code> and it is respected as long as the visitor hasn't picked a theme themselves. See <a href="color-mode.html">Color Mode</a>.`
+      },
+      {
         q: "Bootstrap modal closes when I press Escape, but the AdminLTE sidebar closes too.",
         a: `Fixed in v4.0.0 (#5993). If you're still seeing this, you're on an older RC — update to the latest.`
       },
