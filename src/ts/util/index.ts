@@ -137,7 +137,7 @@ document.addEventListener('turbo:before-render', teardown)
 
 document.addEventListener('turbo:load', runLifecycleCallbacks)
 
-/* ES2022 UTILITY FUNCTIONS */
+// ES2022 UTILITY FUNCTIONS
 
 /**
  * Check if an element has a specific data attribute using ES2022 Object.hasOwn()
@@ -188,7 +188,7 @@ const clearSlideStyles = (target: HTMLElement): void => {
   }
 }
 
-/* SLIDE UP */
+// SLIDE UP
 const slideUp = (target: HTMLElement, duration = 500) => {
   cancelSlide(target)
 
@@ -221,7 +221,7 @@ const slideUp = (target: HTMLElement, duration = 500) => {
   slideTimers.set(target, [stepTimer, cleanupTimer])
 }
 
-/* SLIDE DOWN */
+// SLIDE DOWN
 const slideDown = (target: HTMLElement, duration = 500) => {
   cancelSlide(target)
   // Drop inline styles a cancelled slideUp may have left behind (height: 0,
@@ -268,7 +268,7 @@ const slideDown = (target: HTMLElement, duration = 500) => {
   slideTimers.set(target, [stepTimer, cleanupTimer])
 }
 
-/* TOGGLE */
+// TOGGLE
 const slideToggle = (target: HTMLElement, duration = 500) => {
   if (globalThis.getComputedStyle(target).display === 'none') {
     slideDown(target, duration)
