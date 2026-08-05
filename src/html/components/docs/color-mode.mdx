@@ -6,6 +6,14 @@ AdminLTE supports Bootstrap 5.3 color modes (light, dark, and auto) out of the b
 - `auto` follows the operating system's `prefers-color-scheme` and updates live when the OS preference changes.
 - The resolved mode is applied as `data-bs-theme="light|dark"` on `<html>`, so every Bootstrap and AdminLTE component adapts automatically.
 
+The mode is resolved from three sources, in this order:
+
+1. **The visitor's stored choice** — `localStorage.lte-theme`, written when they click a toggle. It is their own click on this device, so it wins.
+2. **The theme your page declared** — `data-bs-theme` on `<html>` as it was served. Use this to render a per-user preference from a cookie or a user record; it survives OS preference changes.
+3. **The OS preference** — `prefers-color-scheme`, followed live while neither of the above expressed a choice.
+
+Only `light`, `dark` and `auto` are understood. A custom Bootstrap theme name in `data-bs-theme` is not a mode ColorMode can resolve, so it is ignored — see *Opting out* below.
+
 ##### Markup
 
 Add toggle buttons anywhere with `data-bs-theme-value` — the module binds them automatically. Optional `data-lte-theme-icon` elements act as an indicator for the current choice (the demo uses them in the topbar trigger):
@@ -59,7 +67,9 @@ import { ColorMode } from "admin-lte"
 
 const colorMode = new ColorMode()
 
-colorMode.getPreferredTheme() // "light" | "dark" | "auto"
+colorMode.getPreferredTheme() // "light" | "dark" | "auto" — the effective choice
+colorMode.getStoredTheme()    // what the visitor picked, or null
+colorMode.getMarkupTheme()    // what the page declared on <html>, or null
 colorMode.setTheme("dark")    // apply + persist + sync toggles
 
 // React to changes (fired on document)
@@ -77,15 +87,43 @@ The module runs after the DOM is ready, so pages should also apply the stored th
 <script>
   (() => {
     "use strict"
+    const root = document.documentElement
+    if (root.getAttribute("data-lte-color-mode") === "off") return
     let stored = null
     try { stored = localStorage.getItem("lte-theme") } catch {}
-    const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches
-    const resolved = (stored === "dark" || stored === "light") ? stored : (prefersDark ? "dark" : "light")
-    document.documentElement.setAttribute("data-bs-theme", resolved)
-    document.documentElement.style.colorScheme = resolved
+    const authored = root.getAttribute("data-bs-theme")
+    let resolved = "light"
+    if (stored === "dark" || stored === "light") resolved = stored
+    else if (authored === "dark" || authored === "light") resolved = authored
+    else if (matchMedia("(prefers-color-scheme: dark)").matches) resolved = "dark"
+    root.setAttribute("data-bs-theme", resolved)
+    root.style.colorScheme = resolved
+    if (resolved !== authored) root.setAttribute("data-lte-theme-resolved", "")
   })()
 </script>
 ```
+
+It follows the same precedence as the module, so a theme you rendered server-side is not overwritten before paint. The last line matters: it flags a value the snippet worked out itself, so the module doesn't mistake it for a theme your page declared and stop following the OS preference.
+
+##### Server-rendered themes
+
+If you store a per-user preference server-side, render it on `<html>` and the module will keep it — on load, and across OS preference changes:
+
+```html
+<html lang="en" data-bs-theme="dark">
+```
+
+It remains a default: the moment a visitor clicks a toggle, their choice is persisted and takes precedence on that device from then on. Clear `lte-theme` from `localStorage` when you want the server's value to take over again.
+
+##### Opting out
+
+Applications with their own theming — a custom Bootstrap theme, or a switcher of your own — turn the module off entirely:
+
+```html
+<html lang="en" data-lte-color-mode="off">
+```
+
+ColorMode then never writes `data-bs-theme`: not on load, not when a `[data-bs-theme-value]` toggle is clicked, and not when the OS preference changes. The inline snippet above honours it too, so nothing touches your theme before first paint either. Your own code stays in full control of `<html data-bs-theme>`.
 
 ##### Per-region color modes
 

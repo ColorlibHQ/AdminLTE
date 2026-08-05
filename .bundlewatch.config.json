@@ -22,19 +22,19 @@
     },
     {
       "path": "./dist/js/adminlte.js",
-      "maxSize": "10 kB"
+      "maxSize": "10.5 kB"
     },
     {
       "path": "./dist/js/adminlte.min.js",
-      "maxSize": "7.25 kB"
+      "maxSize": "7.5 kB"
     },
     {
       "path": "./dist/js/adminlte.esm.js",
-      "maxSize": "10 kB"
+      "maxSize": "10.5 kB"
     },
     {
       "path": "./dist/js/adminlte.esm.min.js",
-      "maxSize": "7.25 kB"
+      "maxSize": "7.5 kB"
     }
   ]
 }
