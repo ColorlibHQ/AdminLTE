@@ -27,9 +27,30 @@ type Config = {
  */
 declare class PushMenu extends BaseComponent {
     static get NAME(): string;
+    /**
+     * Look up the PushMenu already attached to the given element.
+     *
+     * @param element The sidebar element to look up.
+     * @returns The existing instance, or null if the sidebar has none yet.
+     */
     static getInstance(element: Element | null | undefined): PushMenu | null;
+    /**
+     * Look up the PushMenu attached to the given element, creating one when the
+     * element has none. `config` is ignored if an instance already exists.
+     *
+     * @param element The sidebar element.
+     * @param config Overrides merged over the defaults for a new instance.
+     * @returns The existing or newly created instance.
+     */
     static getOrCreateInstance(element: HTMLElement, config?: Partial<Config>): PushMenu;
+    /**
+     * The defaults merged with the overrides this instance was created with.
+     */
     _config: Config;
+    /**
+     * @param element The sidebar element to attach to.
+     * @param config Overrides merged over the defaults.
+     */
     constructor(element: HTMLElement, config?: Partial<Config>);
     /**
      * Check if the sidebar is collapsed.

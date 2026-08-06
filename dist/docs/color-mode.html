@@ -9,6 +9,14 @@
     <script>
       (() => {
         'use strict';
+        const root = document.documentElement;
+
+        // Applications with their own theming opt out of AdminLTE's color mode
+        // entirely, here as well as in the bundle.
+        if (root.getAttribute('data-lte-color-mode') === 'off') {
+          return;
+        }
+
         const STORAGE_KEY = 'lte-theme';
         let stored = null;
         try {
@@ -16,17 +24,24 @@
         } catch {
           // localStorage may be unavailable (private mode, sandboxed iframe).
         }
-        const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)').matches;
-        // Mirror the resolution in _scripts.astro: explicit "dark"/"light" win,
-        // otherwise ("auto" or unset) fall back to the OS preference.
+        // Mirror the precedence in color-mode.ts: the visitor's stored choice
+        // wins, then a theme this page declared itself, then the OS preference.
+        const authored = root.getAttribute('data-bs-theme');
         let resolved = 'light';
         if (stored === 'dark' || stored === 'light') {
           resolved = stored;
-        } else if (prefersDark) {
+        } else if (authored === 'dark' || authored === 'light') {
+          resolved = authored;
+        } else if (globalThis.matchMedia('(prefers-color-scheme: dark)').matches) {
           resolved = 'dark';
         }
-        document.documentElement.setAttribute('data-bs-theme', resolved);
-        document.documentElement.style.colorScheme = resolved;
+        root.setAttribute('data-bs-theme', resolved);
+        root.style.colorScheme = resolved;
+        // Flag values computed here, so the bundle does not mistake them for a
+        // theme the page declared and stop following the OS preference.
+        if (resolved !== authored) {
+          root.setAttribute('data-lte-theme-resolved', '');
+        }
       })();
     </script>
     <!--end::Theme Init-->
@@ -789,6 +804,30 @@
                         automatically.
                       </li>
                     </ul>
+                    <p>The mode is resolved from three sources, in this order:</p>
+                    <ol>
+                      <li>
+                        <strong>The visitor’s stored choice</strong> —
+                        <code>localStorage.lte-theme</code>, written when they click a toggle. It is
+                        their own click on this device, so it wins.
+                      </li>
+                      <li>
+                        <strong>The theme your page declared</strong> —
+                        <code>data-bs-theme</code> on <code>&lt;html&gt;</code> as it was served.
+                        Use this to render a per-user preference from a cookie or a user record; it
+                        survives OS preference changes.
+                      </li>
+                      <li>
+                        <strong>The OS preference</strong> — <code>prefers-color-scheme</code>,
+                        followed live while neither of the above expressed a choice.
+                      </li>
+                    </ol>
+                    <p>
+                      Only <code>light</code>, <code>dark</code> and <code>auto</code> are
+                      understood. A custom Bootstrap theme name in <code>data-bs-theme</code> is not
+                      a mode ColorMode can resolve, so it is ignored — see
+                      <em>Opting out</em> below.
+                    </p>
                     <h5 id="markup">Markup</h5>
                     <p>
                       Add toggle buttons anywhere with <code>data-bs-theme-value</code> — the module
@@ -801,43 +840,43 @@
                       style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
                       tabindex="0"
                       data-language="html"
-                    ><code><span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">li</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"nav-item dropdown"</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">  &#x3C;</span><span style="color:#569CD6">a</span></span>
-<span class="line"><span style="color:#9CDCFE">    class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"nav-link"</span></span>
-<span class="line"><span style="color:#9CDCFE">    href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"#"</span></span>
-<span class="line"><span style="color:#9CDCFE">    id</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"bd-theme"</span></span>
-<span class="line"><span style="color:#9CDCFE">    aria-label</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"Toggle color scheme"</span></span>
-<span class="line"><span style="color:#9CDCFE">    data-bs-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"dropdown"</span></span>
-<span class="line"><span style="color:#9CDCFE">    aria-expanded</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"false"</span></span>
-<span class="line"><span style="color:#808080">  ></span></span>
-<span class="line"><span style="color:#808080">    &#x3C;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"bi bi-sun-fill"</span><span style="color:#9CDCFE"> data-lte-theme-icon</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"light"</span><span style="color:#808080">>&#x3C;/</span><span style="color:#569CD6">i</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">    &#x3C;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"bi bi-moon-fill d-none"</span><span style="color:#9CDCFE"> data-lte-theme-icon</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"dark"</span><span style="color:#808080">>&#x3C;/</span><span style="color:#569CD6">i</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">    &#x3C;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"bi bi-circle-half d-none"</span><span style="color:#9CDCFE"> data-lte-theme-icon</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"auto"</span><span style="color:#808080">>&#x3C;/</span><span style="color:#569CD6">i</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">  &#x3C;/</span><span style="color:#569CD6">a</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">  &#x3C;</span><span style="color:#569CD6">ul</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"dropdown-menu dropdown-menu-end"</span><span style="color:#9CDCFE"> aria-labelledby</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"bd-theme"</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">    &#x3C;</span><span style="color:#569CD6">li</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">      &#x3C;</span><span style="color:#569CD6">button</span><span style="color:#9CDCFE"> type</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"button"</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"dropdown-item d-flex align-items-center"</span><span style="color:#9CDCFE"> data-bs-theme-value</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"light"</span><span style="color:#9CDCFE"> aria-pressed</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"false"</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">        &#x3C;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"bi bi-sun-fill me-2"</span><span style="color:#808080">>&#x3C;/</span><span style="color:#569CD6">i</span><span style="color:#808080">></span></span>
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">li</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-item dropdown&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">a</span></span>
+<span class="line"><span style="color:#9CDCFE">    class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-link&quot;</span></span>
+<span class="line"><span style="color:#9CDCFE">    href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span></span>
+<span class="line"><span style="color:#9CDCFE">    id</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bd-theme&quot;</span></span>
+<span class="line"><span style="color:#9CDCFE">    aria-label</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;Toggle color scheme&quot;</span></span>
+<span class="line"><span style="color:#9CDCFE">    data-bs-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dropdown&quot;</span></span>
+<span class="line"><span style="color:#9CDCFE">    aria-expanded</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;false&quot;</span></span>
+<span class="line"><span style="color:#808080">  &gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-sun-fill&quot;</span><span style="color:#9CDCFE"> data-lte-theme-icon</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;light&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-moon-fill d-none&quot;</span><span style="color:#9CDCFE"> data-lte-theme-icon</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-circle-half d-none&quot;</span><span style="color:#9CDCFE"> data-lte-theme-icon</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;auto&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">ul</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dropdown-menu dropdown-menu-end&quot;</span><span style="color:#9CDCFE"> aria-labelledby</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bd-theme&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">button</span><span style="color:#9CDCFE"> type</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;button&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dropdown-item d-flex align-items-center&quot;</span><span style="color:#9CDCFE"> data-bs-theme-value</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;light&quot;</span><span style="color:#9CDCFE"> aria-pressed</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;false&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-sun-fill me-2&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#D4D4D4">        Light</span></span>
-<span class="line"><span style="color:#808080">        &#x3C;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"bi bi-check-lg ms-auto d-none"</span><span style="color:#808080">>&#x3C;/</span><span style="color:#569CD6">i</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">      &#x3C;/</span><span style="color:#569CD6">button</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">    &#x3C;/</span><span style="color:#569CD6">li</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">    &#x3C;</span><span style="color:#569CD6">li</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">      &#x3C;</span><span style="color:#569CD6">button</span><span style="color:#9CDCFE"> type</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"button"</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"dropdown-item d-flex align-items-center"</span><span style="color:#9CDCFE"> data-bs-theme-value</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"dark"</span><span style="color:#9CDCFE"> aria-pressed</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"false"</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">        &#x3C;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"bi bi-moon-fill me-2"</span><span style="color:#808080">>&#x3C;/</span><span style="color:#569CD6">i</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-check-lg ms-auto d-none&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">button</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">button</span><span style="color:#9CDCFE"> type</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;button&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dropdown-item d-flex align-items-center&quot;</span><span style="color:#9CDCFE"> data-bs-theme-value</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#9CDCFE"> aria-pressed</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;false&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-moon-fill me-2&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#D4D4D4">        Dark</span></span>
-<span class="line"><span style="color:#808080">        &#x3C;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"bi bi-check-lg ms-auto d-none"</span><span style="color:#808080">>&#x3C;/</span><span style="color:#569CD6">i</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">      &#x3C;/</span><span style="color:#569CD6">button</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">    &#x3C;/</span><span style="color:#569CD6">li</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">    &#x3C;</span><span style="color:#569CD6">li</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">      &#x3C;</span><span style="color:#569CD6">button</span><span style="color:#9CDCFE"> type</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"button"</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"dropdown-item d-flex align-items-center active"</span><span style="color:#9CDCFE"> data-bs-theme-value</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"auto"</span><span style="color:#9CDCFE"> aria-pressed</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"true"</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">        &#x3C;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"bi bi-circle-half me-2"</span><span style="color:#808080">>&#x3C;/</span><span style="color:#569CD6">i</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-check-lg ms-auto d-none&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">button</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">button</span><span style="color:#9CDCFE"> type</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;button&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dropdown-item d-flex align-items-center active&quot;</span><span style="color:#9CDCFE"> data-bs-theme-value</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;auto&quot;</span><span style="color:#9CDCFE"> aria-pressed</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;true&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-circle-half me-2&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#D4D4D4">        Auto</span></span>
-<span class="line"><span style="color:#808080">        &#x3C;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"bi bi-check-lg ms-auto d-none"</span><span style="color:#808080">>&#x3C;/</span><span style="color:#569CD6">i</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">      &#x3C;/</span><span style="color:#569CD6">button</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">    &#x3C;/</span><span style="color:#569CD6">li</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">  &#x3C;/</span><span style="color:#569CD6">ul</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">li</span><span style="color:#808080">></span></span></code></pre>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-check-lg ms-auto d-none&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">button</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">ul</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span></code></pre>
                     <p>
                       The module keeps the <code>active</code> class,
                       <code>aria-pressed</code> state, and the <code>.bi-check-lg</code> check marks
@@ -849,17 +888,19 @@
                       style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
                       tabindex="0"
                       data-language="js"
-                    ><code><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">ColorMode</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "admin-lte"</span></span>
+                    ><code><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">ColorMode</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> &quot;admin-lte&quot;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> colorMode</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> ColorMode</span><span style="color:#D4D4D4">()</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#9CDCFE">colorMode</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getPreferredTheme</span><span style="color:#D4D4D4">() </span><span style="color:#6A9955">// "light" | "dark" | "auto"</span></span>
-<span class="line"><span style="color:#9CDCFE">colorMode</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">setTheme</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"dark"</span><span style="color:#D4D4D4">)    </span><span style="color:#6A9955">// apply + persist + sync toggles</span></span>
+<span class="line"><span style="color:#9CDCFE">colorMode</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getPreferredTheme</span><span style="color:#D4D4D4">() </span><span style="color:#6A9955">// &quot;light&quot; | &quot;dark&quot; | &quot;auto&quot; — the effective choice</span></span>
+<span class="line"><span style="color:#9CDCFE">colorMode</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getStoredTheme</span><span style="color:#D4D4D4">()    </span><span style="color:#6A9955">// what the visitor picked, or null</span></span>
+<span class="line"><span style="color:#9CDCFE">colorMode</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getMarkupTheme</span><span style="color:#D4D4D4">()    </span><span style="color:#6A9955">// what the page declared on &lt;html&gt;, or null</span></span>
+<span class="line"><span style="color:#9CDCFE">colorMode</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">setTheme</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#D4D4D4">)    </span><span style="color:#6A9955">// apply + persist + sync toggles</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#6A9955">// React to changes (fired on document)</span></span>
-<span class="line"><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">addEventListener</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"changed.lte.color-mode"</span><span style="color:#D4D4D4">, (</span><span style="color:#9CDCFE">event</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">event</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">detail</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">theme</span><span style="color:#D4D4D4">)    </span><span style="color:#6A9955">// what the user chose: "light" | "dark" | "auto"</span></span>
-<span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">event</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">detail</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">resolved</span><span style="color:#D4D4D4">) </span><span style="color:#6A9955">// what got applied:    "light" | "dark"</span></span>
+<span class="line"><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">addEventListener</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;changed.lte.color-mode&quot;</span><span style="color:#D4D4D4">, (</span><span style="color:#9CDCFE">event</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">event</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">detail</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">theme</span><span style="color:#D4D4D4">)    </span><span style="color:#6A9955">// what the user chose: &quot;light&quot; | &quot;dark&quot; | &quot;auto&quot;</span></span>
+<span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">event</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">detail</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">resolved</span><span style="color:#D4D4D4">) </span><span style="color:#6A9955">// what got applied:    &quot;light&quot; | &quot;dark&quot;</span></span>
 <span class="line"><span style="color:#D4D4D4">})</span></span></code></pre>
                     <h5 id="preventing-the-flash-of-wrong-theme">
                       Preventing the flash of wrong theme
@@ -875,17 +916,65 @@
                       style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
                       tabindex="0"
                       data-language="html"
-                    ><code><span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">script</span><span style="color:#808080">></span></span>
-<span class="line"><span style="color:#D4D4D4">  (() </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#CE9178">    "use strict"</span></span>
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#D4D4D4">  (() </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#CE9178">    &quot;use strict&quot;</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> root</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">documentElement</span></span>
+<span class="line"><span style="color:#C586C0">    if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">root</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getAttribute</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;data-lte-color-mode&quot;</span><span style="color:#D4D4D4">) === </span><span style="color:#CE9178">&quot;off&quot;</span><span style="color:#D4D4D4">) </span><span style="color:#C586C0">return</span></span>
 <span class="line"><span style="color:#569CD6">    let</span><span style="color:#9CDCFE"> stored</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">null</span></span>
-<span class="line"><span style="color:#C586C0">    try</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">stored</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">localStorage</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getItem</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"lte-theme"</span><span style="color:#D4D4D4">) } </span><span style="color:#C586C0">catch</span><span style="color:#D4D4D4"> {}</span></span>
-<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> prefersDark</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">matchMedia</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"(prefers-color-scheme: dark)"</span><span style="color:#D4D4D4">).</span><span style="color:#9CDCFE">matches</span></span>
-<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> resolved</span><span style="color:#D4D4D4"> = (</span><span style="color:#9CDCFE">stored</span><span style="color:#D4D4D4"> === </span><span style="color:#CE9178">"dark"</span><span style="color:#D4D4D4"> || </span><span style="color:#9CDCFE">stored</span><span style="color:#D4D4D4"> === </span><span style="color:#CE9178">"light"</span><span style="color:#D4D4D4">) ? </span><span style="color:#9CDCFE">stored</span><span style="color:#D4D4D4"> : (</span><span style="color:#9CDCFE">prefersDark</span><span style="color:#D4D4D4"> ? </span><span style="color:#CE9178">"dark"</span><span style="color:#D4D4D4"> : </span><span style="color:#CE9178">"light"</span><span style="color:#D4D4D4">)</span></span>
-<span class="line"><span style="color:#9CDCFE">    document</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">documentElement</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">setAttribute</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"data-bs-theme"</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">resolved</span><span style="color:#D4D4D4">)</span></span>
-<span class="line"><span style="color:#9CDCFE">    document</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">documentElement</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">style</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">colorScheme</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">resolved</span></span>
+<span class="line"><span style="color:#C586C0">    try</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">stored</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">localStorage</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getItem</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;lte-theme&quot;</span><span style="color:#D4D4D4">) } </span><span style="color:#C586C0">catch</span><span style="color:#D4D4D4"> {}</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> authored</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">root</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getAttribute</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;data-bs-theme&quot;</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#569CD6">    let</span><span style="color:#9CDCFE"> resolved</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">&quot;light&quot;</span></span>
+<span class="line"><span style="color:#C586C0">    if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">stored</span><span style="color:#D4D4D4"> === </span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#D4D4D4"> || </span><span style="color:#9CDCFE">stored</span><span style="color:#D4D4D4"> === </span><span style="color:#CE9178">&quot;light&quot;</span><span style="color:#D4D4D4">) </span><span style="color:#9CDCFE">resolved</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">stored</span></span>
+<span class="line"><span style="color:#C586C0">    else</span><span style="color:#C586C0"> if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">authored</span><span style="color:#D4D4D4"> === </span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#D4D4D4"> || </span><span style="color:#9CDCFE">authored</span><span style="color:#D4D4D4"> === </span><span style="color:#CE9178">&quot;light&quot;</span><span style="color:#D4D4D4">) </span><span style="color:#9CDCFE">resolved</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">authored</span></span>
+<span class="line"><span style="color:#C586C0">    else</span><span style="color:#C586C0"> if</span><span style="color:#D4D4D4"> (</span><span style="color:#DCDCAA">matchMedia</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;(prefers-color-scheme: dark)&quot;</span><span style="color:#D4D4D4">).</span><span style="color:#9CDCFE">matches</span><span style="color:#D4D4D4">) </span><span style="color:#9CDCFE">resolved</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">&quot;dark&quot;</span></span>
+<span class="line"><span style="color:#9CDCFE">    root</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">setAttribute</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;data-bs-theme&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">resolved</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#9CDCFE">    root</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">style</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">colorScheme</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">resolved</span></span>
+<span class="line"><span style="color:#C586C0">    if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">resolved</span><span style="color:#D4D4D4"> !== </span><span style="color:#9CDCFE">authored</span><span style="color:#D4D4D4">) </span><span style="color:#9CDCFE">root</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">setAttribute</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;data-lte-theme-resolved&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">&quot;&quot;</span><span style="color:#D4D4D4">)</span></span>
 <span class="line"><span style="color:#D4D4D4">  })()</span></span>
-<span class="line"><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">script</span><span style="color:#808080">></span></span></code></pre>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      It follows the same precedence as the module, so a theme you rendered
+                      server-side is not overwritten before paint. The last line matters: it flags a
+                      value the snippet worked out itself, so the module doesn’t mistake it for a
+                      theme your page declared and stop following the OS preference.
+                    </p>
+                    <h5 id="server-rendered-themes">Server-rendered themes</h5>
+                    <p>
+                      If you store a per-user preference server-side, render it on
+                      <code>&lt;html&gt;</code> and the module will keep it — on load, and across OS
+                      preference changes:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">html</span><span style="color:#9CDCFE"> lang</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;en&quot;</span><span style="color:#9CDCFE"> data-bs-theme</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      It remains a default: the moment a visitor clicks a toggle, their choice is
+                      persisted and takes precedence on that device from then on. Clear
+                      <code>lte-theme</code> from <code>localStorage</code> when you want the
+                      server’s value to take over again.
+                    </p>
+                    <h5 id="opting-out">Opting out</h5>
+                    <p>
+                      Applications with their own theming — a custom Bootstrap theme, or a switcher
+                      of your own — turn the module off entirely:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">html</span><span style="color:#9CDCFE"> lang</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;en&quot;</span><span style="color:#9CDCFE"> data-lte-color-mode</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;off&quot;</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      ColorMode then never writes <code>data-bs-theme</code>: not on load, not when
+                      a <code>[data-bs-theme-value]</code> toggle is clicked, and not when the OS
+                      preference changes. The inline snippet above honours it too, so nothing
+                      touches your theme before first paint either. Your own code stays in full
+                      control of <code>&lt;html data-bs-theme&gt;</code>.
+                    </p>
                     <h5 id="per-region-color-modes">Per-region color modes</h5>
                     <p>
                       <code>data-bs-theme</code> also works on any element, not just
@@ -897,7 +986,7 @@
                       style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
                       tabindex="0"
                       data-language="html"
-                    ><code><span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">aside</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"app-sidebar"</span><span style="color:#9CDCFE"> data-bs-theme</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"dark"</span><span style="color:#808080">></span><span style="color:#D4D4D4">...</span><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">aside</span><span style="color:#808080">></span></span></code></pre>
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">aside</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-sidebar&quot;</span><span style="color:#9CDCFE"> data-bs-theme</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">...</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">aside</span><span style="color:#808080">&gt;</span></span></code></pre>
                   </div>
                 </div>
               </div>
@@ -980,81 +1069,6 @@
      module (since 4.1) — no page script needed. Only the no-flash snippet
      in <head> stays inline, because it must run before first paint. -->
     <!--end::Color Mode Toggle-->
-
-    <script>
-      // Color Mode Toggler
-      (() => {
-        'use strict';
-
-        const storedTheme = localStorage.getItem('theme');
-
-        const getPreferredTheme = () => {
-          if (storedTheme) {
-            return storedTheme;
-          }
-
-          return globalThis.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        };
-
-        const setTheme = function (theme) {
-          if (theme === 'auto' && globalThis.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.setAttribute('data-bs-theme', 'dark');
-          } else {
-            document.documentElement.setAttribute('data-bs-theme', theme);
-          }
-        };
-
-        setTheme(getPreferredTheme());
-
-        const showActiveTheme = (theme, focus = false) => {
-          const themeSwitcher = document.querySelector('#bd-theme');
-
-          if (!themeSwitcher) {
-            return;
-          }
-
-          const themeSwitcherText = document.querySelector('#bd-theme-text');
-          const activeThemeIcon = document.querySelector('.theme-icon-active i');
-          const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`);
-          const svgOfActiveBtn = btnToActive.querySelector('i').getAttribute('class');
-
-          for (const element of document.querySelectorAll('[data-bs-theme-value]')) {
-            element.classList.remove('active');
-            element.setAttribute('aria-pressed', 'false');
-          }
-
-          btnToActive.classList.add('active');
-          btnToActive.setAttribute('aria-pressed', 'true');
-          activeThemeIcon.setAttribute('class', svgOfActiveBtn);
-          const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`;
-          themeSwitcher.setAttribute('aria-label', themeSwitcherLabel);
-
-          if (focus) {
-            themeSwitcher.focus();
-          }
-        };
-
-        globalThis.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-          if (storedTheme !== 'light' || storedTheme !== 'dark') {
-            setTheme(getPreferredTheme());
-          }
-        });
-
-        globalThis.addEventListener('DOMContentLoaded', () => {
-          showActiveTheme(getPreferredTheme());
-
-          for (const toggle of document.querySelectorAll('[data-bs-theme-value]')) {
-            toggle.addEventListener('click', () => {
-              const theme = toggle.getAttribute('data-bs-theme-value');
-              localStorage.setItem('theme', theme);
-              setTheme(theme);
-              showActiveTheme(theme, true);
-            });
-          }
-        });
-      })();
-    </script>
-    <!--end::Script-->
   </body>
   <!--end::Body-->
 </html>

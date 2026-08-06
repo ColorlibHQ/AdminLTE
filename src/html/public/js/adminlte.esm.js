@@ -1,12 +1,13 @@
 /*!
- * AdminLTE v4.1.0 (https://adminlte.io)
+ * AdminLTE v4.2.0 (https://adminlte.io)
  * Copyright 2014-2026 Colorlib <https://colorlib.com>
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
 const lifecycleCallbacks = [];
 const lifecycleState = {
     controller: new AbortController(),
-    hasInitialized: false
+    hasInitialized: false,
+    isReplaying: false
 };
 const getLifecycleSignal = () => lifecycleState.controller.signal;
 const runLifecycleCallbacks = () => {
@@ -14,8 +15,14 @@ const runLifecycleCallbacks = () => {
         return;
     }
     lifecycleState.hasInitialized = true;
-    for (const callback of lifecycleCallbacks) {
-        callback();
+    lifecycleState.isReplaying = true;
+    try {
+        for (const callback of lifecycleCallbacks) {
+            callback();
+        }
+    }
+    finally {
+        lifecycleState.isReplaying = false;
     }
 };
 const onDOMContentLoaded = (callback) => {
@@ -24,17 +31,25 @@ const onDOMContentLoaded = (callback) => {
         callback();
     }
 };
+const teardown = () => {
+    lifecycleState.controller.abort();
+    lifecycleState.controller = new AbortController();
+    lifecycleState.hasInitialized = false;
+};
+const initialize = () => {
+    if (lifecycleState.isReplaying) {
+        return;
+    }
+    teardown();
+    runLifecycleCallbacks();
+};
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', runLifecycleCallbacks, { once: true });
+    document.addEventListener('DOMContentLoaded', initialize, { once: true });
 }
 else {
     runLifecycleCallbacks();
 }
-document.addEventListener('turbo:before-render', () => {
-    lifecycleState.controller.abort();
-    lifecycleState.controller = new AbortController();
-    lifecycleState.hasInitialized = false;
-});
+document.addEventListener('turbo:before-render', teardown);
 document.addEventListener('turbo:load', runLifecycleCallbacks);
 const slideTimers = new WeakMap();
 const cancelSlide = (target) => {
@@ -768,7 +783,7 @@ class PushMenu extends BaseComponent {
         if (this._config.enablePersistence && !this.isMobileSize()) {
             this.loadSidebarState();
         }
-        else {
+        else if (!this.isCollapsed()) {
             this.updateStateByResponsiveLogic();
         }
     }
@@ -816,46 +831,66 @@ onDOMContentLoaded(() => {
         sidebarOverlay.className = CLASS_NAME_SIDEBAR_OVERLAY;
         appWrapper?.append(sidebarOverlay);
     }
+    const overlaySignal = getLifecycleSignal();
     let overlayTouchMoved = false;
     sidebarOverlay.addEventListener('touchstart', () => {
         overlayTouchMoved = false;
-    }, { passive: true });
+    }, { passive: true, signal: overlaySignal });
     sidebarOverlay.addEventListener('touchmove', () => {
         overlayTouchMoved = true;
-    }, { passive: true });
+    }, { passive: true, signal: overlaySignal });
     sidebarOverlay.addEventListener('touchend', event => {
         if (!overlayTouchMoved) {
             event.preventDefault();
             pushMenu.collapse();
         }
         overlayTouchMoved = false;
-    }, { passive: false });
+    }, { passive: false, signal: overlaySignal });
     sidebarOverlay.addEventListener('click', event => {
         event.preventDefault();
         pushMenu.collapse();
-    });
+    }, { signal: overlaySignal });
 });
 
 const DATA_KEY = 'lte.color-mode';
 const EVENT_KEY = `.${DATA_KEY}`;
 const EVENT_CHANGED = `changed${EVENT_KEY}`;
 const STORAGE_KEY = 'lte-theme';
-const SELECTOR_TOGGLE = '[data-bs-theme-value]';
+const ATTRIBUTE_THEME = 'data-bs-theme';
+const ATTRIBUTE_TOGGLE = 'data-bs-theme-value';
+const ATTRIBUTE_DISABLED = 'data-lte-color-mode';
+const ATTRIBUTE_RESOLVED = 'data-lte-theme-resolved';
+const SELECTOR_TOGGLE = `[${ATTRIBUTE_TOGGLE}]`;
 const SELECTOR_ICON = '[data-lte-theme-icon]';
+const THEMES = new Set(['light', 'dark', 'auto']);
+const isValidTheme = (value) => THEMES.has(value);
+const isDisabled = () => document.documentElement.getAttribute(ATTRIBUTE_DISABLED) === 'off';
+const readMarkupTheme = () => {
+    const { documentElement } = document;
+    if (documentElement.hasAttribute(ATTRIBUTE_RESOLVED)) {
+        return null;
+    }
+    const declared = documentElement.getAttribute(ATTRIBUTE_THEME);
+    return declared && isValidTheme(declared) ? declared : null;
+};
+const MARKUP_THEME = readMarkupTheme();
 class ColorMode {
     getStoredTheme() {
         try {
             const stored = localStorage.getItem(STORAGE_KEY);
-            return stored && ['light', 'dark', 'auto'].includes(stored) ? stored : null;
+            return stored && isValidTheme(stored) ? stored : null;
         }
         catch {
             return null;
         }
     }
+    getMarkupTheme() {
+        return MARKUP_THEME;
+    }
     getPreferredTheme() {
-        const stored = this.getStoredTheme();
-        if (stored) {
-            return stored;
+        const preferred = this.getStoredTheme() ?? this.getMarkupTheme();
+        if (preferred) {
+            return preferred;
         }
         return this._prefersDark() ? 'dark' : 'light';
     }
@@ -879,7 +914,7 @@ class ColorMode {
     }
     _applyTheme(theme) {
         const resolved = this.resolveTheme(theme);
-        document.documentElement.setAttribute('data-bs-theme', resolved);
+        document.documentElement.setAttribute(ATTRIBUTE_THEME, resolved);
         document.documentElement.style.colorScheme = resolved;
     }
     _prefersDark() {
@@ -887,7 +922,7 @@ class ColorMode {
     }
     _showActiveTheme(theme) {
         document.querySelectorAll(SELECTOR_TOGGLE).forEach(toggle => {
-            const isActive = toggle.getAttribute('data-bs-theme-value') === theme;
+            const isActive = toggle.getAttribute(ATTRIBUTE_TOGGLE) === theme;
             toggle.classList.toggle('active', isActive);
             toggle.setAttribute('aria-pressed', String(isActive));
             toggle.querySelector('.bi-check-lg')?.classList.toggle('d-none', !isActive);
@@ -897,6 +932,9 @@ class ColorMode {
         });
     }
     init() {
+        if (isDisabled()) {
+            return;
+        }
         const theme = this.getPreferredTheme();
         this._applyTheme(theme);
         this._showActiveTheme(theme);
@@ -904,12 +942,12 @@ class ColorMode {
 }
 document.addEventListener('click', event => {
     const target = event.target;
-    if (!(target instanceof Element)) {
+    if (!(target instanceof Element) || isDisabled()) {
         return;
     }
     const toggle = target.closest(SELECTOR_TOGGLE);
-    const theme = toggle?.getAttribute('data-bs-theme-value');
-    if (theme) {
+    const theme = toggle?.getAttribute(ATTRIBUTE_TOGGLE);
+    if (theme && isValidTheme(theme)) {
         new ColorMode().setTheme(theme);
     }
 });
@@ -917,10 +955,13 @@ onDOMContentLoaded(() => {
     const colorMode = new ColorMode();
     colorMode.init();
     globalThis.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-        const stored = colorMode.getStoredTheme();
-        if (!stored || stored === 'auto') {
+        if (isDisabled()) {
+            return;
+        }
+        const preferred = colorMode.getStoredTheme() ?? colorMode.getMarkupTheme();
+        if (!preferred || preferred === 'auto') {
             colorMode._applyTheme('auto');
-            colorMode._showActiveTheme(stored ?? 'auto');
+            colorMode._showActiveTheme(preferred ?? 'auto');
         }
     }, { signal: getLifecycleSignal() });
 });
@@ -1175,7 +1216,7 @@ class AccessibilityManager {
             if (!htmlInput.classList.contains('disable-adminlte-validations')) {
                 htmlInput.addEventListener('invalid', () => {
                     this.handleFormError(htmlInput);
-                });
+                }, { signal: this.signal });
             }
         });
     }
@@ -1361,5 +1402,5 @@ onDOMContentLoaded(() => {
     accessibilityManager.addLandmarks();
 });
 
-export { CardWidget, ColorMode, DirectChat, FullScreen, Layout, PushMenu, Treeview, initAccessibility };
+export { CardWidget, ColorMode, DirectChat, FullScreen, Layout, PushMenu, Treeview, initAccessibility, initialize, teardown };
 //# sourceMappingURL=adminlte.esm.js.map

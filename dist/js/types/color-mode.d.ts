@@ -2,13 +2,19 @@
  * --------------------------------------------
  * @file AdminLTE color-mode.ts
  * @description Color mode (light/dark/auto) switcher for AdminLTE.
- * Persists the choice in localStorage, follows the OS preference in
- * "auto" mode, and keeps [data-bs-theme-value] toggles and
- * [data-lte-theme-icon] indicator icons in sync.
+ * Resolves the theme from, in order: the visitor's stored choice, the theme
+ * the page itself declared in <html data-bs-theme="…">, and finally the OS
+ * preference. Keeps [data-bs-theme-value] toggles and [data-lte-theme-icon]
+ * indicator icons in sync.
  *
  * Ships in the bundle so applications no longer need to copy the demo's
  * inline script. The tiny no-flash snippet in <head> (see _head.astro)
- * remains inline by design — it must run before first paint.
+ * remains inline by design — it must run before first paint. That snippet
+ * flags the values it computes itself with [data-lte-theme-resolved], so a
+ * theme authored in the markup can be told apart from one it resolved.
+ *
+ * Applications with their own theming opt out entirely with
+ * <html data-lte-color-mode="off">.
  * @license MIT
  * --------------------------------------------
  */
@@ -24,8 +30,17 @@ declare class ColorMode {
      */
     getStoredTheme(): Theme | null;
     /**
-     * The user's effective choice: the stored theme, falling back to the OS
-     * preference.
+     * The theme declared in the markup, for applications that render it
+     * server-side from a cookie or a user record. Null when the page declared
+     * none, or when the value is a custom Bootstrap theme ColorMode cannot
+     * resolve — see `isDisabled` for those.
+     */
+    getMarkupTheme(): Theme | null;
+    /**
+     * The user's effective choice: the stored theme, then the theme declared in
+     * the markup, falling back to the OS preference. Storage comes first because
+     * it is the visitor's own click on this device; markup is only the default
+     * the page shipped with.
      */
     getPreferredTheme(): Theme;
     /**
@@ -42,6 +57,9 @@ declare class ColorMode {
      * changes while in "auto" mode.
      */
     _applyTheme(theme: Theme): void;
+    /**
+     * Whether the OS preference is currently dark.
+     */
     _prefersDark(): boolean;
     /**
      * Sync the [data-bs-theme-value] toggles (active state, pressed state,

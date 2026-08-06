@@ -5,7 +5,7 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [4.2.0] - 2026-08-06
 
 ### Added
 
@@ -17,9 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **Dev dependencies refreshed to their latest releases**, including two majors: `eslint-plugin-astro` 2 → 3 and `eslint-plugin-unicorn` 72 → 73, whose new `single-line-block-comment-style` rule prompted converting four one-line banner comments in `src/ts/util/index.ts` to line comments. Also Astro 7.1.6, ESLint 10.8, typescript-eslint 8.66, Sass 1.102, Rollup 4.62.4, Terser 5.49.2, PostCSS 8.5.25, happy-dom 20.11.1, `@astrojs/mdx` 7.0.5, plus concurrently, fs-extra and globals. TypeScript stays on 6.0.3: 7.0 has shipped, but both `typescript-eslint` (peer `>=4.8.4 <6.1.0`) and `@astrojs/check` (peer `^5 || ^6`) still cap it, so installing it fails dependency resolution outright. Nothing in `dist/` changed as a result. Supersedes #6085–#6092.
+- Component docstrings corrected in `base-component.ts` and `push-menu.ts` (#6082, thanks @dfsmania), the `adminlte-docs.scss` banner is now version-synced by `npm version` along with the other source banners, and the README's screenshots were downscaled to WebP for faster cold-cache loads.
 
 ### Fixed
 
+- **A sidebar rendered collapsed no longer springs open on load:** a page shipping `<body class="sidebar-collapse">` had that state overwritten by PushMenu's responsive pass during initialisation, so a deliberately collapsed sidebar expanded itself on wide screens. The responsive pass now runs only when the sidebar was not already collapsed in the markup (#6076, thanks @dfsmania).
 - **The Color Mode docs page ran two switchers at once:** `docs/color-mode.html` still carried the pre-4.1 inline toggler, which bound its own handlers to the same `[data-bs-theme-value]` buttons as the bundled module and persisted to a different `localStorage` key (`theme` instead of `lte-theme`). It has been removed — the page now uses the shipped ColorMode like every other page.
 
 ## [4.1.0] - 2026-07-02
