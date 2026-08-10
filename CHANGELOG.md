@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Removed the dead `src/html/components/docs/faq.mdx`.** The docs FAQ has been rendered from the typed `sections` array in `src/html/pages/docs/faq.astro` since the accordion rewrite, and nothing imported the `.mdx` any more — but two later commits kept editing it, so those edits silently did nothing. It is the only docs `.mdx` with no importer; every other one is rendered by its matching `pages/docs/*.astro`.
 - **The remote-data Tom Select demo in `forms/advanced.html` is now the real pattern**, not a `setTimeout` sketch: request debouncing via `loadThrottle`, in-flight cancellation via `AbortController`, and page-by-page loading through the `virtual_scroll` plugin against a 72-record stub whose `{ results, next }` response shape matches a real endpoint — swap the stub body for a single `fetch()` and it works unchanged. The single select also gained the `clear_button` plugin.
 
 ## [4.2.0] - 2026-08-06
