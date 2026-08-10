@@ -118,6 +118,34 @@ $lte-progress-bar-border-radius: 1px !default;
 // --------------------------------------------------------
 $lte-callout-link-font-weight: $alert-link-font-weight !default;
 
+// RIBBONS
+// --------------------------------------------------------
+// The size is the side of the square that clips the band; the band's own width
+// is derived from it, so these are the only three values a theme has to change.
+$lte-ribbon-size: 70px !default;
+$lte-ribbon-size-lg: 110px !default;
+$lte-ribbon-size-xl: 145px !default;
+$lte-ribbon-font-size: .8rem !default;
+$lte-ribbon-font-size-lg: 1rem !default;
+$lte-ribbon-font-size-xl: 1.25rem !default;
+$lte-ribbon-padding: .375rem 0 !default;
+$lte-ribbon-font-weight: $font-weight-normal !default;
+$lte-ribbon-shadow: 0 0 3px rgba(var(--#{$prefix}body-color-rgb), .3) !default;
+
+// WIDGETS
+// --------------------------------------------------------
+$lte-user-block-avatar-size: 2.5rem !default;
+$lte-user-block-avatar-size-sm: 1.75rem !default;
+$lte-user-block-username-font-size: 1rem !default;
+$lte-user-block-username-font-weight: $font-weight-semibold !default;
+$lte-user-block-description-font-size: .8125rem !default;
+// Kept in rem so the avatar's overhang past the header — half its own height —
+// stays computable in Sass rather than needing calc() at runtime.
+$lte-widget-user-header-padding: 1rem !default;
+$lte-widget-user-header-height: 8.4375rem !default;
+$lte-widget-user-image-size: 5.625rem !default;
+$lte-widget-user-2-image-size: 4.0625rem !default;
+
 // DIRECT CHAT
 // --------------------------------------------------------
 $lte-direct-chat-default-msg-bg: var(--#{$prefix}secondary-bg) !default;

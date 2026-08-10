@@ -1,0 +1,192 @@
+//
+// Component: Widgets
+//
+// Social and post widgets: the profile cards and activity-feed blocks that v3
+// shipped. The class names are kept from v3 so migrating markup keeps working,
+// but the implementations are grid/flex rather than the original floats, and
+// colour comes from Bootstrap utilities (`.text-bg-*`, `.rounded-circle`,
+// `.shadow`) instead of AdminLTE-specific ones.
+//
+
+// A user's avatar, name and a line of meta, laid out from flat markup: the
+// avatar spans both text rows, so no wrapper element is needed around them.
+.user-block {
+  --#{$lte-prefix}user-block-avatar-size: #{$lte-user-block-avatar-size};
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: .75rem;
+  align-items: center;
+
+  > img {
+    grid-row: 1 / span 2;
+    align-self: center;
+    width: var(--#{$lte-prefix}user-block-avatar-size);
+    height: var(--#{$lte-prefix}user-block-avatar-size);
+    object-fit: cover;
+  }
+
+  .username,
+  .description,
+  .comment {
+    grid-column: 2;
+  }
+
+  .username {
+    align-self: end;
+    font-size: $lte-user-block-username-font-size;
+    font-weight: $lte-user-block-username-font-weight;
+
+    a {
+      color: var(--#{$prefix}emphasis-color);
+      text-decoration: none;
+
+      &:hover,
+      &:focus-visible {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .description {
+    align-self: start;
+    font-size: $lte-user-block-description-font-size;
+    color: var(--#{$prefix}secondary-color);
+  }
+
+  .comment {
+    margin-top: .5rem;
+  }
+
+  // In a card header a user block stands in for .card-title, so it floats the
+  // same way — otherwise the grid box claims the full line and the floated
+  // .card-tools drop below it.
+  .card-header > & {
+    float: left;
+  }
+
+  &.user-block-sm {
+    --#{$lte-prefix}user-block-avatar-size: #{$lte-user-block-avatar-size-sm};
+
+    .username {
+      font-size: $lte-user-block-description-font-size;
+    }
+
+    .description {
+      font-size: .75rem;
+    }
+  }
+}
+
+// One entry in an activity feed. Dividers sit between entries only, so the last
+// post doesn't add trailing space inside its card.
+.post {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--#{$prefix}border-color);
+
+  &:last-of-type {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .user-block {
+    margin-bottom: .75rem;
+  }
+}
+
+// A labelled figure, typically repeated across a card footer's grid columns.
+.description-block {
+  display: block;
+  margin: .625rem 0;
+  text-align: center;
+
+  .description-header {
+    padding: 0;
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: $font-weight-bold;
+  }
+
+  .description-text {
+    font-size: $lte-user-block-description-font-size;
+    color: var(--#{$prefix}secondary-color);
+    text-transform: uppercase;
+  }
+}
+
+// Profile card with a banner header and an avatar straddling the seam between
+// the header and the footer.
+.widget-user {
+  .widget-user-header {
+    height: $lte-widget-user-header-height;
+    padding: $lte-widget-user-header-padding;
+    text-align: center;
+    background-position: center;
+    background-size: cover;
+    @include border-top-radius(inherit);
+  }
+
+  .widget-user-username {
+    margin-top: 0;
+    margin-bottom: .3125rem;
+    font-size: 1.5625rem;
+    font-weight: $font-weight-light;
+  }
+
+  .widget-user-desc {
+    margin-top: 0;
+    font-size: 1rem;
+  }
+
+  .widget-user-image {
+    position: absolute;
+    top: $lte-widget-user-header-height - ($lte-widget-user-image-size * .5);
+    right: 0;
+    left: 0;
+    width: $lte-widget-user-image-size;
+    margin-inline: auto;
+
+    > img {
+      width: 100%;
+      height: auto;
+      border: 3px solid var(--#{$prefix}body-bg);
+    }
+  }
+
+  // Clear the half of the avatar that overhangs the header.
+  > .card-footer {
+    padding-top: ($lte-widget-user-image-size * .5) + .75rem;
+  }
+}
+
+// Same idea with the avatar inline in the header — shorter, and it survives
+// long names better because the text column can wrap.
+.widget-user-2 {
+  .widget-user-header {
+    display: flex;
+    column-gap: 1rem;
+    align-items: center;
+    padding: $lte-widget-user-header-padding;
+    @include border-top-radius(inherit);
+  }
+
+  .widget-user-image > img {
+    width: $lte-widget-user-2-image-size;
+    height: $lte-widget-user-2-image-size;
+    object-fit: cover;
+  }
+
+  .widget-user-username {
+    margin-top: 0;
+    margin-bottom: .3125rem;
+    font-size: 1.5625rem;
+    font-weight: $font-weight-light;
+  }
+
+  .widget-user-desc {
+    margin-top: 0;
+    font-size: 1rem;
+  }
+}
