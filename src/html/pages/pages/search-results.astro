@@ -1,0 +1,372 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+
+const title = "AdminLTE 4 | Search Results"
+const path = "../../../dist"
+const mainPage = "pages"
+const page = "search-results"
+const pageTitle = "Search Results"
+
+// Smart path resolution: calculate relative path based on directory depth
+const pathname = Astro.url.pathname
+const pathSegments = pathname.split("/").filter(segment => segment !== "")
+const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0
+const deploymentPath = depth === 0 ? "./" : "../".repeat(depth)
+
+const query = "invoice"
+
+// Results are typed, because an admin search returns more than documents —
+// the icon and the badge are what let someone scan the list.
+const results = [
+  {
+    type: "Page",
+    icon: "bi-file-earmark-text",
+    tone: "primary",
+    title: "Invoice #A-1042",
+    url: "/pages/invoice.html",
+    snippet:
+      "Issued 2 August 2026 to Colorlib Ltd. Contains 4 line items totalling $2,310.00, due in 14 days.",
+    meta: "Updated 3 hours ago"
+  },
+  {
+    type: "Page",
+    icon: "bi-file-earmark-text",
+    tone: "primary",
+    title: "Invoice template settings",
+    url: "/pages/settings.html",
+    snippet:
+      "Configure the default invoice footer, tax rate and payment terms applied to every new invoice.",
+    meta: "Updated 5 days ago"
+  },
+  {
+    type: "User",
+    icon: "bi-person",
+    tone: "info",
+    title: "Alexander Pierce",
+    url: "/pages/profile.html",
+    snippet:
+      "Billing administrator · Raised 18 invoices this quarter · alexander.pierce@example.com",
+    meta: "Active 12 minutes ago"
+  },
+  {
+    type: "File",
+    icon: "bi-paperclip",
+    tone: "secondary",
+    title: "invoice-archive-2025.zip",
+    url: "/pages/file-manager.html",
+    snippet: "Archive · 48.2 MB · Uploaded by Nadia Carmichael to Finance / Archive.",
+    meta: "Uploaded 12 Jan 2026"
+  },
+  {
+    type: "Project",
+    icon: "bi-kanban",
+    tone: "success",
+    title: "Invoicing rebuild",
+    url: "/pages/projects.html",
+    snippet:
+      "6 of 11 tasks complete. Blocked on the payment-provider migration; next milestone 30 September.",
+    meta: "3 open tasks"
+  }
+]
+
+const tabs = [
+  { label: "All", count: 128 },
+  { label: "Pages", count: 64 },
+  { label: "Users", count: 41 },
+  { label: "Files", count: 18 },
+  { label: "Projects", count: 5 }
+]
+---
+
+<!doctype html>
+<html lang="en">
+  <!--begin::Head-->
+  <head>
+    <Head title={title} path={path} />
+  </head>
+  <!--end::Head-->
+  <!--begin::Body-->
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <!--begin::App Wrapper-->
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <!--begin::App Main-->
+      <main class="app-main">
+        <!--begin::App Content Header-->
+        <div class="app-content-header">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6">
+                <h1 class="mb-0 fs-3">{pageTitle}</h1>
+              </div>
+              <div class="col-sm-6">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      {pageTitle}
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
+        <div class="app-content">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row g-4">
+              <!--begin::Results-->
+              <div class="col-lg-8">
+                <!--begin::Search Form-->
+                <form class="mb-3" role="search" action="#">
+                  <label for="results-query" class="visually-hidden">
+                    Search
+                  </label>
+                  <div class="input-group">
+                    <input
+                      type="search"
+                      id="results-query"
+                      class="form-control form-control-lg"
+                      value={query}
+                      placeholder="Search pages, users and files"
+                    />
+                    <button class="btn btn-primary" type="submit">
+                      <i class="bi bi-search me-1" aria-hidden="true"></i>
+                      Search
+                    </button>
+                  </div>
+                </form>
+                <!--end::Search Form-->
+
+                <p class="text-body-secondary" aria-live="polite">
+                  <strong>{tabs[0].count}</strong> results for
+                  <strong>&ldquo;{query}&rdquo;</strong> &middot; 0.21 seconds
+                </p>
+
+                <!--begin::Result List-->
+                <div class="card">
+                  <!--begin::Type Tabs-->
+                  <div class="card-header p-0 pt-1">
+                    <ul class="nav nav-tabs" role="tablist">
+                      {
+                        tabs.map((tab, index) => (
+                          <li class="nav-item" role="presentation">
+                            <button
+                              class:list={["nav-link", index === 0 && "active"]}
+                              type="button"
+                              role="tab"
+                              aria-selected={index === 0 ? "true" : "false"}
+                            >
+                              {tab.label}
+                              <span class="badge text-bg-secondary ms-1">
+                                {tab.count}
+                              </span>
+                            </button>
+                          </li>
+                        ))
+                      }
+                    </ul>
+                  </div>
+                  <!--end::Type Tabs-->
+                  <div class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                      {
+                        results.map(result => (
+                          <li class="list-group-item py-3">
+                            <div class="d-flex gap-3">
+                              <span
+                                class={`badge text-bg-${result.tone} flex-shrink-0 d-flex align-items-center`}
+                                style="height: 2rem; width: 2rem; justify-content: center;"
+                              >
+                                <i class={`bi ${result.icon}`} aria-hidden="true" />
+                              </span>
+                              <div class="flex-grow-1 overflow-hidden">
+                                <h2 class="fs-5 mb-1">
+                                  <a
+                                    href={deploymentPath + result.url.slice(1)}
+                                    class="link-body-emphasis link-underline-opacity-0 link-underline-opacity-100-hover"
+                                  >
+                                    {result.title}
+                                  </a>
+                                </h2>
+                                <p class="fs-7 text-success mb-1 text-truncate">
+                                  {result.url}
+                                </p>
+                                <p class="mb-1">{result.snippet}</p>
+                                <p class="fs-7 text-secondary mb-0">
+                                  <span class="badge text-bg-light me-1">
+                                    {result.type}
+                                  </span>
+                                  {result.meta}
+                                </p>
+                              </div>
+                            </div>
+                          </li>
+                        ))
+                      }
+                    </ul>
+                  </div>
+                </div>
+                <!--end::Result List-->
+
+                <!--begin::Pagination-->
+                <nav aria-label="Search results pages" class="mt-3">
+                  <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item disabled">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li class="page-item active" aria-current="page">
+                      <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+                <!--end::Pagination-->
+              </div>
+              <!--end::Results-->
+
+              <!--begin::Sidebar-->
+              <div class="col-lg-4">
+                <!--begin::Refine-->
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <div class="card-title">Refine</div>
+                  </div>
+                  <div class="card-body">
+                    <div class="mb-3">
+                      <label for="refine-range" class="form-label">
+                        Date range
+                      </label>
+                      <select class="form-select" id="refine-range">
+                        <option selected>Any time</option>
+                        <option>Past 24 hours</option>
+                        <option>Past week</option>
+                        <option>Past month</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="refine-owner" class="form-label">Owner</label>
+                      <select class="form-select" id="refine-owner">
+                        <option selected>Anyone</option>
+                        <option>Me</option>
+                        <option>My team</option>
+                      </select>
+                    </div>
+                    <fieldset>
+                      <legend class="form-label fs-6">Include</legend>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="refine-archived"
+                        />
+                        <label class="form-check-label" for="refine-archived">
+                          Archived items
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="refine-trashed"
+                        />
+                        <label class="form-check-label" for="refine-trashed">
+                          Trashed items
+                        </label>
+                      </div>
+                    </fieldset>
+                  </div>
+                  <div class="card-footer">
+                    <button type="button" class="btn btn-primary btn-sm">
+                      Apply
+                    </button>
+                    <button type="button" class="btn btn-outline-dark btn-sm">
+                      Reset
+                    </button>
+                  </div>
+                </div>
+                <!--end::Refine-->
+
+                <!--begin::Related-->
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <div class="card-title">Related searches</div>
+                  </div>
+                  <div class="card-body d-flex flex-wrap gap-2">
+                    <a href="#" class="badge text-bg-light text-decoration-none">
+                      invoice template
+                    </a>
+                    <a href="#" class="badge text-bg-light text-decoration-none">
+                      overdue invoices
+                    </a>
+                    <a href="#" class="badge text-bg-light text-decoration-none">
+                      invoice pdf export
+                    </a>
+                    <a href="#" class="badge text-bg-light text-decoration-none">
+                      tax rate
+                    </a>
+                  </div>
+                </div>
+                <!--end::Related-->
+
+                <!--begin::Empty State Example-->
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">No results state</div>
+                  </div>
+                  <div class="card-body text-center py-4">
+                    <i
+                      class="bi bi-search fs-1 text-secondary d-block mb-2"
+                      aria-hidden="true"></i>
+                    <p class="fw-semibold mb-1">
+                      Nothing matched &ldquo;quarterly forecast&rdquo;
+                    </p>
+                    <p class="text-secondary fs-7 mb-3">
+                      Check the spelling, use fewer words, or clear the filters
+                      on the left.
+                    </p>
+                    <button type="button" class="btn btn-sm btn-outline-primary">
+                      Clear filters
+                    </button>
+                  </div>
+                </div>
+                <!--end::Empty State Example-->
+              </div>
+              <!--end::Sidebar-->
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content-->
+      </main>
+      <!--end::App Main-->
+      <Footer />
+    </div>
+    <!--end::App Wrapper-->
+    <!--begin::Script-->
+    <Scripts path={path} />
+    <!--end::Script-->
+  </body><!--end::Body-->
+</html>

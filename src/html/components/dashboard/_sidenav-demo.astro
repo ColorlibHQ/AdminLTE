@@ -30,6 +30,28 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
     <!--end::Brand Link-->
   </div>
   <!--end::Sidebar Brand-->
+  <!--begin::Sidebar Search-->
+  <div class="sidebar-search" role="search">
+    <label for="sidebar-search-input" class="visually-hidden">Filter menu</label>
+    <input
+      type="search"
+      id="sidebar-search-input"
+      class="form-control form-control-sm"
+      placeholder="Filter menu…"
+      autocomplete="off"
+      data-lte-toggle="sidebar-search"
+      data-lte-target="#navigation"
+    />
+    <p
+      class="fs-7 text-secondary mt-2 mb-0"
+      data-lte-search-empty
+      role="status"
+      hidden
+    >
+      No matching pages.
+    </p>
+  </div>
+  <!--end::Sidebar Search-->
   <!--begin::Sidebar Wrapper-->
   <div class="sidebar-wrapper">
     <nav class="mt-2" aria-label="Main navigation">
@@ -136,6 +158,15 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
               >
                 <i class="nav-icon bi bi-circle"></i>
                 <p>Cards</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/widgets/social.html"}
+                class:list={["nav-link", page === "social" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Social &amp; Post</p>
               </a>
             </li>
           </ul>
@@ -313,6 +344,15 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
               >
                 <i class="nav-icon bi bi-circle"></i>
                 <p>Timeline</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/UI/ribbons.html"}
+                class:list={["nav-link", page === "ribbons" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Ribbons</p>
               </a>
             </li>
           </ul>
@@ -566,6 +606,24 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
               >
                 <i class="nav-icon bi bi-circle"></i>
                 <p>Projects</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/pages/gallery.html"}
+                class:list={["nav-link", page === "gallery" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Gallery</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/pages/search-results.html"}
+                class:list={["nav-link", page === "search-results" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Search Results</p>
               </a>
             </li>
             <li class="nav-item">

@@ -1,0 +1,204 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+
+const title = "AdminLTE 4 | Ribbons"
+const path = "../../../dist"
+const mainPage = "ui-elements"
+const page = "ribbons"
+const pageTitle = "Ribbons"
+
+// The corner banner takes its colour from a Bootstrap `.text-bg-*` utility, so
+// the demo grid is just a list of variants.
+const variants = [
+  "primary",
+  "secondary",
+  "success",
+  "danger",
+  "warning",
+  "info",
+  "dark"
+]
+---
+
+<!doctype html>
+<html lang="en">
+  <!--begin::Head-->
+  <head>
+    <Head title={title} path={path} />
+  </head>
+  <!--end::Head-->
+  <!--begin::Body-->
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <!--begin::App Wrapper-->
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <!--begin::App Main-->
+      <main class="app-main">
+        <!--begin::App Content Header-->
+        <div class="app-content-header">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6">
+                <h1 class="mb-0 fs-3">{pageTitle}</h1>
+              </div>
+              <div class="col-sm-6">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      {pageTitle}
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
+        <div class="app-content">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <div class="callout callout-info mb-4">
+              A ribbon is pinned to the top corner of its nearest positioned
+              ancestor. Cards are already positioned, so
+              <code>.ribbon-wrapper</code> works inside one as-is — on any other
+              element, add <code>.position-relative</code> to the parent.
+            </div>
+
+            <!--begin::Colors-->
+            <h5 class="mb-3">Colors</h5>
+            <!--begin::Row-->
+            <div class="row g-4">
+              {
+                variants.map(variant => (
+                  <div class="col-md-4 col-sm-6">
+                    <div class="card mb-0">
+                      <div class="ribbon-wrapper">
+                        <div class={`ribbon text-bg-${variant}`}>{variant}</div>
+                      </div>
+                      <div class="card-body" style="min-height: 5rem;">
+                        <h6 class="card-title text-capitalize mb-0">{variant}</h6>
+                      </div>
+                      <div class="card-footer">
+                        <code class="text-body-emphasis">.ribbon.text-bg-{variant}</code>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+            <!--end::Row-->
+            <!--end::Colors-->
+
+            <!--begin::Sizes-->
+            <h5 class="mb-3 mt-4">Sizes</h5>
+            <!--begin::Row-->
+            <div class="row g-4">
+              <div class="col-lg-4">
+                <div class="card mb-0">
+                  <div class="ribbon-wrapper">
+                    <div class="ribbon text-bg-primary">Default</div>
+                  </div>
+                  <div class="card-body" style="min-height: 9rem;">
+                    <h6 class="card-title mb-0">Default</h6>
+                  </div>
+                  <div class="card-footer">
+                    <code class="text-body-emphasis">.ribbon-wrapper</code>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="card mb-0">
+                  <div class="ribbon-wrapper ribbon-lg">
+                    <div class="ribbon text-bg-success">Large</div>
+                  </div>
+                  <div class="card-body" style="min-height: 9rem;">
+                    <h6 class="card-title mb-0">Large</h6>
+                  </div>
+                  <div class="card-footer">
+                    <code class="text-body-emphasis">.ribbon-wrapper.ribbon-lg</code>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="card mb-0">
+                  <div class="ribbon-wrapper ribbon-xl">
+                    <div class="ribbon text-bg-danger">X-Large</div>
+                  </div>
+                  <div class="card-body" style="min-height: 9rem;">
+                    <h6 class="card-title mb-0">Extra large</h6>
+                  </div>
+                  <div class="card-footer">
+                    <code class="text-body-emphasis">.ribbon-wrapper.ribbon-xl</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end::Row-->
+            <!--end::Sizes-->
+
+            <!--begin::Outside a card-->
+            <h5 class="mb-3 mt-4">Outside a card</h5>
+            <!--begin::Row-->
+            <div class="row g-4">
+              <div class="col-lg-6">
+                <div
+                  class="position-relative overflow-hidden rounded border bg-body p-4"
+                  style="min-height: 10rem;"
+                >
+                  <div class="ribbon-wrapper">
+                    <div class="ribbon text-bg-warning">New</div>
+                  </div>
+                  <h6>Any positioned element</h6>
+                  <p class="mb-0">
+                    The wrapper only needs an ancestor with
+                    <code>position: relative</code>. Add
+                    <code>.overflow-hidden</code> as well when the parent is
+                    rounded, so the banner is clipped to the corner radius.
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="card mb-0">
+                  <div class="ribbon-wrapper ribbon-lg">
+                    <div class="ribbon text-bg-info">
+                      <a href="#">Linked</a>
+                    </div>
+                  </div>
+                  <div class="card-body" style="min-height: 10rem;">
+                    <h6>Interactive ribbon</h6>
+                    <p class="mb-0 pe-4">
+                      A ribbon can wrap a link. It inherits whatever contrast
+                      colour the utility picked, so the label stays readable in
+                      both colour modes.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end::Row-->
+            <!--end::Outside a card-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content-->
+      </main>
+      <!--end::App Main-->
+      <Footer />
+    </div>
+    <!--end::App Wrapper-->
+    <!--begin::Script-->
+    <Scripts path={path} />
+    <!--end::Script-->
+  </body><!--end::Body-->
+</html>
