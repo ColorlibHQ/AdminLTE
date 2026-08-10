@@ -1,0 +1,476 @@
+//
+// Compatibility: Select2
+//
+// Styling only. AdminLTE bundles neither Select2 nor jQuery — this sheet
+// exists for projects that cannot drop Select2 yet (server-rendered ERP
+// forms, vendor plugins that initialise it for you) and want it to look like
+// the rest of a Bootstrap 5.3 form.
+//
+// New code should use Tom Select instead; see the Recommended Integrations
+// docs page for the API mapping.
+//
+// Load order matters — this sheet layers on top of Select2's own CSS:
+//
+//   <link rel="stylesheet" href="adminlte.min.css">
+//   <link rel="stylesheet" href="select2.min.css">
+//   <link rel="stylesheet" href="adminlte-select2.min.css">
+//
+// Everything resolves through Bootstrap CSS variables at runtime, so
+// `data-bs-theme` switches and reskins need no recompile. Selectors are
+// scoped to `.select2-container--default` (Select2's built-in theme) to win
+// against the rules in select2.css without `!important`.
+//
+// Markup target: Select2 4.1.x, with fallbacks for 4.0.x choice markup.
+//
+
+// Sits above .modal (1055) but below .popover (1070) so a Select2 dropdown
+// opened inside a modal is visible — the single most-reported Select2 +
+// Bootstrap 5 problem, and the reason `dropdownParent` is usually needed.
+$lte-select2-zindex:              $zindex-modal + 5 !default;
+
+$lte-select2-choice-bg:           var(--#{$prefix}secondary-bg) !default;
+$lte-select2-choice-color:        var(--#{$prefix}body-color) !default;
+$lte-select2-choice-border-color: var(--#{$prefix}border-color) !default;
+$lte-select2-choice-gap:          .25rem !default;
+$lte-select2-choice-padding-y:    .0625rem !default;
+$lte-select2-choice-padding-x:    .375rem !default;
+
+//
+// Container
+//
+// Select2 writes an inline `width` on the container, so sizing is left alone;
+// only the box model needs aligning with a block-level form control.
+//
+.select2-container {
+  max-width: 100%;
+  vertical-align: top;
+}
+
+//
+// Single select — mirrors `.form-select`
+//
+.select2-container--default {
+  .select2-selection--single {
+    // Bootstrap's chevron, swapped for the light-on-dark variant further down.
+    --#{$lte-prefix}select2-bg-img: #{escape-svg($form-select-indicator)};
+
+    height: auto;
+    padding: $form-select-padding-y $form-select-indicator-padding $form-select-padding-y $form-select-padding-x;
+    font-family: $form-select-font-family;
+    @include font-size($form-select-font-size);
+    font-weight: $form-select-font-weight;
+    line-height: $form-select-line-height;
+    color: $form-select-color;
+    background-color: $form-select-bg;
+    background-image: var(--#{$lte-prefix}select2-bg-img);
+    background-repeat: no-repeat;
+    background-position: $form-select-bg-position;
+    background-size: $form-select-bg-size;
+    border: $form-select-border-width solid $form-select-border-color;
+    @include border-radius($form-select-border-radius, 0);
+    @include box-shadow($form-select-box-shadow);
+    @include transition($form-select-transition);
+
+    .select2-selection__rendered {
+      padding: 0;
+      line-height: inherit;
+      color: inherit;
+    }
+
+    .select2-selection__placeholder {
+      color: $input-placeholder-color;
+    }
+
+    // Bootstrap's chevron replaces the bordered triangle.
+    .select2-selection__arrow {
+      display: none;
+    }
+  }
+
+  //
+  // Multi select — mirrors `.form-control`, with choices as pills
+  //
+  .select2-selection--multiple {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $lte-select2-choice-gap;
+    align-items: center;
+    min-height: $input-height;
+    padding: ($input-padding-y - $lte-select2-choice-padding-y) $input-padding-x;
+    font-family: $input-font-family;
+    @include font-size($input-font-size);
+    font-weight: $input-font-weight;
+    line-height: $input-line-height;
+    color: $input-color;
+    background-color: $input-bg;
+    border: $input-border-width solid $input-border-color;
+    @include border-radius($input-border-radius, 0);
+    @include box-shadow($input-box-shadow);
+    @include transition($input-transition);
+
+    // Select2 wraps the choices in a <ul> but leaves the inline search field
+    // as that list's *sibling*, so a flex context on the list alone would
+    // stack the search on its own row and double the control's height.
+    // `display: contents` promotes the individual choices to flex items of
+    // the control, letting the search field flow after the last one.
+    .select2-selection__rendered {
+      display: contents;
+      padding: 0;
+      margin: 0;
+      line-height: inherit;
+    }
+
+    .select2-selection__choice {
+      display: inline-flex;
+      align-items: center;
+      max-width: 100%;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      @include font-size($font-size-sm);
+      color: $lte-select2-choice-color;
+      background-color: $lte-select2-choice-bg;
+      border: $input-border-width solid $lte-select2-choice-border-color;
+      @include border-radius($border-radius-sm);
+    }
+
+    // 4.1.x wraps the label in its own element; 4.0.x leaves it as a bare
+    // text node, hence the padding on the choice itself further down.
+    .select2-selection__choice__display {
+      padding: $lte-select2-choice-padding-y $lte-select2-choice-padding-x;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .select2-selection__choice__remove {
+      position: static;
+      display: flex;
+      align-items: center;
+      align-self: stretch;
+      padding: 0 $lte-select2-choice-padding-x;
+      color: var(--#{$prefix}secondary-color);
+      background-color: transparent;
+      border: 0;
+      border-right: $input-border-width solid $lte-select2-choice-border-color;
+      @include border-radius(0);
+      @include transition(color .15s ease-in-out, background-color .15s ease-in-out);
+
+      &:hover,
+      &:focus-visible {
+        color: var(--#{$prefix}danger-text-emphasis);
+        background-color: var(--#{$prefix}danger-bg-subtle);
+      }
+
+      &:focus-visible {
+        outline: 0;
+        box-shadow: $focus-ring-box-shadow;
+      }
+    }
+
+    .select2-search--inline {
+      display: flex;
+      flex: 1 1 auto;
+      align-items: center;
+      min-width: 3rem;
+    }
+
+    // Select2 renders the inline search as a `rows="2"` <textarea>, so its
+    // height has to be pinned to one line — `height: auto` would resolve to
+    // two rows and double the control's height. Placeholder text lives in
+    // this field rather than a dedicated element.
+    .select2-search--inline .select2-search__field {
+      height: $input-line-height * 1em;
+      min-height: 0;
+      padding: 0;
+      margin: 0;
+      font-family: inherit;
+      @include font-size($input-font-size);
+      line-height: $input-line-height;
+      color: inherit;
+
+      &::placeholder {
+        color: $input-placeholder-color;
+      }
+    }
+  }
+
+  //
+  // Clear ("remove all") button
+  //
+  .select2-selection__clear {
+    padding: 0;
+    margin: 0;
+    color: var(--#{$prefix}secondary-color);
+    background-color: transparent;
+    border: 0;
+
+    &:hover {
+      color: var(--#{$prefix}danger);
+    }
+  }
+
+  .select2-selection--single .select2-selection__clear {
+    float: right;
+    margin-right: $lte-select2-choice-gap;
+  }
+
+  .select2-selection--multiple .select2-selection__clear {
+    top: $input-padding-y;
+    margin-top: 0;
+    margin-right: $lte-select2-choice-gap;
+  }
+
+  //
+  // Focus and open states — Bootstrap's focus ring, not Select2's outline
+  //
+  &.select2-container--focus,
+  &.select2-container--open {
+    .select2-selection--single,
+    .select2-selection--multiple {
+      border-color: $input-focus-border-color;
+      outline: 0;
+
+      @if $enable-shadows {
+        @include box-shadow($input-box-shadow, $input-focus-box-shadow);
+      } @else {
+        box-shadow: $input-focus-box-shadow;
+      }
+    }
+  }
+
+  //
+  // Disabled
+  //
+  &.select2-container--disabled {
+    .select2-selection--single,
+    .select2-selection--multiple {
+      color: $form-select-disabled-color;
+      cursor: default;
+      background-color: $form-select-disabled-bg;
+      border-color: $form-select-disabled-border-color;
+    }
+
+    .select2-selection__choice__remove {
+      display: none;
+    }
+  }
+
+  //
+  // Dropdown panel
+  //
+  .select2-dropdown {
+    color: var(--#{$prefix}body-color);
+    background-color: var(--#{$prefix}body-bg);
+    border-color: $input-focus-border-color;
+    @include border-radius($dropdown-border-radius);
+    @include box-shadow($dropdown-box-shadow);
+  }
+
+  // Square off the edge that meets the control so the two read as one shape.
+  .select2-dropdown--below {
+    @include border-top-radius(0);
+  }
+
+  .select2-dropdown--above {
+    @include border-bottom-radius(0);
+  }
+
+  //
+  // Dropdown search field — mirrors `.form-control-sm`
+  //
+  .select2-search--dropdown {
+    padding: $dropdown-padding-y $dropdown-item-padding-x;
+
+    .select2-search__field {
+      padding: $input-padding-y-sm $input-padding-x-sm;
+      @include font-size($input-font-size-sm);
+      line-height: $input-line-height;
+      color: $input-color;
+      background-color: $input-bg;
+      border: $input-border-width solid $input-border-color;
+      @include border-radius($input-border-radius-sm);
+      @include transition($input-transition);
+
+      &:focus {
+        border-color: $input-focus-border-color;
+        outline: 0;
+
+        @if $enable-shadows {
+          @include box-shadow($input-box-shadow, $input-focus-box-shadow);
+        } @else {
+          box-shadow: $input-focus-box-shadow;
+        }
+      }
+    }
+  }
+
+  //
+  // Results
+  //
+  // Only the top-level list scrolls; nested group lists must not.
+  .select2-results > .select2-results__options {
+    max-height: 15rem;
+  }
+
+  .select2-results__option {
+    padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+    @include font-size($font-size-base);
+    color: var(--#{$prefix}body-color);
+  }
+
+  .select2-results__option--selected {
+    color: var(--#{$prefix}emphasis-color);
+    background-color: var(--#{$prefix}tertiary-bg);
+  }
+
+  .select2-results__option--highlighted.select2-results__option--selectable {
+    color: $component-active-color;
+    background-color: $component-active-bg;
+  }
+
+  .select2-results__option--disabled {
+    color: var(--#{$prefix}secondary-color);
+  }
+
+  // Option groups: an unpadded <li> holding a label plus a nested list.
+  .select2-results__option--group {
+    padding: 0;
+  }
+
+  .select2-results__group {
+    padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+    @include font-size($font-size-sm);
+    font-weight: $font-weight-semibold;
+    color: var(--#{$prefix}secondary-color);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+  }
+}
+
+//
+// Dark mode — only the caret is a baked-in colour; every other value above
+// already reads a Bootstrap CSS variable and follows `data-bs-theme` for free.
+//
+@if $enable-dark-mode {
+  @include color-mode(dark, true) {
+    .select2-container--default .select2-selection--single {
+      --#{$lte-prefix}select2-bg-img: #{escape-svg($form-select-indicator-dark)};
+    }
+  }
+}
+
+//
+// Sizing — driven by the class already on the original <select>, which Select2
+// leaves in the DOM immediately before the container it generates. No extra
+// `containerCssClass` option needed.
+//
+.form-select-sm,
+.form-control-sm {
+  + .select2-container--default .select2-selection--single {
+    padding-top: $form-select-padding-y-sm;
+    padding-bottom: $form-select-padding-y-sm;
+    padding-left: $form-select-padding-x-sm;
+    @include font-size($form-select-font-size-sm);
+    @include border-radius($form-select-border-radius-sm);
+  }
+
+  + .select2-container--default .select2-selection--multiple {
+    min-height: $input-height-sm;
+    padding: ($input-padding-y-sm - $lte-select2-choice-padding-y) $input-padding-x-sm;
+    @include font-size($input-font-size-sm);
+    @include border-radius($input-border-radius-sm);
+  }
+}
+
+.form-select-lg,
+.form-control-lg {
+  + .select2-container--default .select2-selection--single {
+    padding-top: $form-select-padding-y-lg;
+    padding-bottom: $form-select-padding-y-lg;
+    padding-left: $form-select-padding-x-lg;
+    @include font-size($form-select-font-size-lg);
+    @include border-radius($form-select-border-radius-lg);
+  }
+
+  + .select2-container--default .select2-selection--multiple {
+    min-height: $input-height-lg;
+    padding: ($input-padding-y-lg - $lte-select2-choice-padding-y) $input-padding-x-lg;
+    @include font-size($input-font-size-lg);
+    @include border-radius($input-border-radius-lg);
+  }
+}
+
+//
+// Validation states — same trigger as Bootstrap's, `.is-invalid` / `.is-valid`
+// on the field itself.
+//
+.is-invalid + .select2-container--default {
+  .select2-selection--single,
+  .select2-selection--multiple {
+    border-color: var(--#{$prefix}form-invalid-border-color);
+  }
+
+  &.select2-container--focus,
+  &.select2-container--open {
+    .select2-selection--single,
+    .select2-selection--multiple {
+      box-shadow: 0 0 $input-btn-focus-blur $input-focus-width rgba(var(--#{$prefix}danger-rgb), $input-btn-focus-color-opacity);
+    }
+  }
+}
+
+.is-valid + .select2-container--default {
+  .select2-selection--single,
+  .select2-selection--multiple {
+    border-color: var(--#{$prefix}form-valid-border-color);
+  }
+
+  &.select2-container--focus,
+  &.select2-container--open {
+    .select2-selection--single,
+    .select2-selection--multiple {
+      box-shadow: 0 0 $input-btn-focus-blur $input-focus-width rgba(var(--#{$prefix}success-rgb), $input-btn-focus-color-opacity);
+    }
+  }
+}
+
+//
+// Input groups — the container has to behave like the `.form-control` it
+// replaced, and only the outer corners stay rounded.
+//
+.input-group > .select2-container--default {
+  flex: 1 1 auto;
+  // Select2 writes `width` as an inline style, so `!important` is the only way
+  // to hand sizing back to the flex container. Matches `.form-control`'s own
+  // input-group sizing.
+  width: 1% !important;
+  min-width: 0;
+
+  &:not(:last-child) .select2-selection {
+    @include border-end-radius(0);
+  }
+
+  &:not(:first-child) .select2-selection {
+    @include border-start-radius(0);
+  }
+
+  // An open dropdown has to sit above the neighbouring input-group children,
+  // which Bootstrap raises to z-index 5 on focus.
+  &.select2-container--open {
+    z-index: 5;
+  }
+}
+
+//
+// Stacking — Select2 appends the dropdown's container to <body> at z-index
+// 1051, which is below Bootstrap 5's modal (1055).
+//
+.select2-container--open {
+  z-index: $lte-select2-zindex;
+}
+
+.select2-close-mask {
+  z-index: $lte-select2-zindex - 1;
+}

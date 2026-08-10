@@ -34,7 +34,11 @@ const sections: Section[] = [
       },
       {
         q: "Can I use AdminLTE 4 with jQuery?",
-        a: `You don't <em>need</em> jQuery — AdminLTE 4's JavaScript is vanilla. If your existing app already uses jQuery, it'll coexist fine. But none of AdminLTE 4's own plugins call into jQuery, and there are no <code>$.fn.xxx()</code> plugin shims.`
+        a: `You don't <em>need</em> jQuery — AdminLTE 4's JavaScript is vanilla. If your existing app already uses jQuery, it'll coexist fine. But none of AdminLTE 4's own plugins call into jQuery, and there are no <code>$.fn.xxx()</code> plugin shims.<br /><br />The v3 <code>plugins/</code> folder is gone too. Every widget it bundled has a vanilla-JS successor — see the <a href="migration.html#third-party-plugin-replacements">plugin replacement table</a> for the full mapping (Select2 → Tom Select, DataTables → Tabulator, Summernote → Quill, and so on).`
+      },
+      {
+        q: "Does AdminLTE 4 support Select2?",
+        a: `AdminLTE 4 recommends <a href="https://tom-select.js.org/" target="_blank" rel="noopener">Tom Select</a> instead. It covers everything people reach for Select2 to do — searchable dropdowns, multi-select, tagging, clearable selections, AJAX-backed options, virtual scrolling over large datasets, keyboard navigation — in roughly <strong>20&nbsp;kB gzip</strong>, against Select2's <strong>~50&nbsp;kB</strong> once jQuery is counted. <code>forms/advanced.html</code> demos all of it, including a paginated remote-data field with request cancellation, and there's a <a href="../forms/advanced.html#select2">line-by-line API mapping</a> if you're porting existing code.<br /><br />Select2 itself is still maintained (4.1.0 shipped in 2026), but it is still a jQuery plugin — its UMD wrapper hard-requires jQuery and there is no jQuery-free build. Bundling it would put jQuery back into a framework whose entire v4 premise is not needing it, and none of the official Vue/React/Django/Laravel ports could consume it.<br /><br />If you're locked into Select2 anyway, AdminLTE ships an optional <strong>styling-only</strong> compatibility sheet — see <a href="integrations.html#select2-compatibility-theme">Select2 compatibility theme</a>. You bring the plugin; it makes Select2 match Bootstrap 5.3, dark mode and modals included. No jQuery is added to AdminLTE.`
       }
     ]
   },

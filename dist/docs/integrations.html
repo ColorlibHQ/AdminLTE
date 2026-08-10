@@ -741,6 +741,297 @@
                       Ships a <code>tom-select.bootstrap5.min.css</code> theme that matches
                       Bootstrap form controls.
                     </p>
+                    <p>
+                      <strong>Remote data.</strong> For selects backed by a database rather than a
+                      static option list, fetch inside <code>load()</code>. Tom Select debounces it
+                      for you via <code>loadThrottle</code> (300 ms by default), and the
+                      <code>virtual_scroll</code> plugin pages through results as the user scrolls
+                      the dropdown:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="js"
+                    ><code><span class="line"><span style="color:#569CD6">let</span><span style="color:#9CDCFE"> inFlight</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">null</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> TomSelect</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;#reviewer&quot;</span><span style="color:#D4D4D4">, {</span></span>
+<span class="line"><span style="color:#9CDCFE">  valueField:</span><span style="color:#CE9178"> &quot;id&quot;</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  labelField:</span><span style="color:#CE9178"> &quot;name&quot;</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  searchField:</span><span style="color:#D4D4D4"> [</span><span style="color:#CE9178">&quot;name&quot;</span><span style="color:#D4D4D4">],</span></span>
+<span class="line"><span style="color:#9CDCFE">  loadThrottle:</span><span style="color:#B5CEA8"> 300</span><span style="color:#D4D4D4">,                      </span><span style="color:#6A9955">// debounce, built in</span></span>
+<span class="line"><span style="color:#9CDCFE">  plugins:</span><span style="color:#D4D4D4"> [</span><span style="color:#CE9178">&quot;virtual_scroll&quot;</span><span style="color:#D4D4D4">],            </span><span style="color:#6A9955">// infinite scroll pagination</span></span>
+<span class="line"><span style="color:#DCDCAA">  firstUrl</span><span style="color:#9CDCFE">:</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">query</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=&gt;</span><span style="color:#CE9178"> `/api/users?q=</span><span style="color:#569CD6">${</span><span style="color:#DCDCAA">encodeURIComponent</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">query</span><span style="color:#D4D4D4">)</span><span style="color:#569CD6">}</span><span style="color:#CE9178">&amp;page=1`</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#DCDCAA">  load</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">query</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">callback</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#9CDCFE">    inFlight</span><span style="color:#D4D4D4">?.</span><span style="color:#DCDCAA">abort</span><span style="color:#D4D4D4">()                     </span><span style="color:#6A9955">// drop the stale request</span></span>
+<span class="line"><span style="color:#9CDCFE">    inFlight</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> AbortController</span><span style="color:#D4D4D4">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">    fetch</span><span style="color:#D4D4D4">(</span><span style="color:#569CD6">this</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getUrl</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">query</span><span style="color:#D4D4D4">), { </span><span style="color:#9CDCFE">signal:</span><span style="color:#9CDCFE"> inFlight</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">signal</span><span style="color:#D4D4D4"> })</span></span>
+<span class="line"><span style="color:#D4D4D4">      .</span><span style="color:#DCDCAA">then</span><span style="color:#D4D4D4">((</span><span style="color:#9CDCFE">response</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=&gt;</span><span style="color:#9CDCFE"> response</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">json</span><span style="color:#D4D4D4">())</span></span>
+<span class="line"><span style="color:#D4D4D4">      .</span><span style="color:#DCDCAA">then</span><span style="color:#D4D4D4">((</span><span style="color:#9CDCFE">json</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#C586C0">        if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">json</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">next</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#569CD6">          this</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">setNextUrl</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">query</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">json</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">next</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#D4D4D4">        }</span></span>
+<span class="line"><span style="color:#DCDCAA">        callback</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">json</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">results</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#D4D4D4">      })</span></span>
+<span class="line"><span style="color:#D4D4D4">      .</span><span style="color:#DCDCAA">catch</span><span style="color:#D4D4D4">((</span><span style="color:#9CDCFE">error</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#C586C0">        if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">error</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">name</span><span style="color:#D4D4D4"> !== </span><span style="color:#CE9178">&quot;AbortError&quot;</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#DCDCAA">          callback</span><span style="color:#D4D4D4">()</span></span>
+<span class="line"><span style="color:#D4D4D4">        }</span></span>
+<span class="line"><span style="color:#D4D4D4">      })</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">})</span></span></code></pre>
+                    <p>
+                      <code>forms/advanced.html</code> runs this exact pattern against a stubbed
+                      endpoint — swap the stub for a <code>fetch()</code> and it works unchanged.
+                    </p>
+                    <h6 id="coming-from-select2">Coming from Select2</h6>
+                    <p>
+                      <a href="https://select2.org/">Select2</a> is still maintained (4.1.0 shipped
+                      in 2026), but it is still a jQuery plugin — its UMD wrapper hard-requires
+                      jQuery, and there is no jQuery-free build. AdminLTE 4 therefore recommends Tom
+                      Select instead, which covers the same feature set for roughly 20 kB gzip
+                      against Select2’s ~50 kB once jQuery is counted.
+                    </p>
+                    <p>The API translates directly:</p>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Select2</th>
+                          <th>Tom Select</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><code>$(&quot;#x&quot;).select2()</code></td>
+                          <td><code>new TomSelect(&quot;#x&quot;)</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>$(&quot;#x&quot;).select2({ tags: true })</code></td>
+                          <td><code>new TomSelect(&quot;#x&quot;, { create: true })</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>allowClear: true</code></td>
+                          <td><code>plugins: [&quot;clear_button&quot;]</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>closeOnSelect: false</code></td>
+                          <td><code>closeAfterSelect: false</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>maximumSelectionLength: 3</code></td>
+                          <td><code>maxItems: 3</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>minimumInputLength: 2</code></td>
+                          <td><code>shouldLoad: (q) =&gt; q.length &gt;= 2</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>ajax: { url, delay: 250 }</code></td>
+                          <td>
+                            <code>load(query, callback)</code> + <code>loadThrottle: 250</code>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><code>ajax: { …, processResults }</code></td>
+                          <td>
+                            <code>valueField</code> / <code>labelField</code> /
+                            <code>searchField</code>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>infinite scroll (<code>pagination.more</code>)</td>
+                          <td>
+                            <code>plugins: [&quot;virtual_scroll&quot;]</code> +
+                            <code>setNextUrl()</code>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><code>templateResult</code> / <code>templateSelection</code></td>
+                          <td><code>render: { option, item }</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>dropdownParent: $(&quot;#modal&quot;)</code></td>
+                          <td><em>(not needed — the dropdown is inline)</em></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <code
+                              >$(&quot;#x&quot;).val(&quot;2&quot;).trigger(&quot;change&quot;)</code
+                            >
+                          </td>
+                          <td><code>ts.setValue(&quot;2&quot;)</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>$(&quot;#x&quot;).val()</code></td>
+                          <td><code>ts.getValue()</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>$(&quot;#x&quot;).on(&quot;select2:select&quot;, fn)</code></td>
+                          <td><code>ts.on(&quot;item_add&quot;, fn)</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>$(&quot;#x&quot;).on(&quot;change&quot;, fn)</code></td>
+                          <td><code>ts.on(&quot;change&quot;, fn)</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>$(&quot;#x&quot;).select2(&quot;open&quot;)</code></td>
+                          <td><code>ts.open()</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>$(&quot;#x&quot;).prop(&quot;disabled&quot;, true)</code></td>
+                          <td><code>ts.disable()</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>$(&quot;#x&quot;).select2(&quot;destroy&quot;)</code></td>
+                          <td><code>ts.destroy()</code></td>
+                        </tr>
+                        <tr>
+                          <td><code>$(&quot;#x&quot;).empty().select2({ data })</code></td>
+                          <td><code>ts.clearOptions(); ts.addOptions(data)</code></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p>
+                      A side-by-side version of this table with runnable code lives on the
+                      <a href="../forms/advanced.html#select2">Advanced Elements</a> demo page.
+                    </p>
+                    <p>
+                      <strong>If you have to keep Select2</strong>, AdminLTE ships a
+                      <em>styling-only</em> compatibility sheet — see
+                      <a href="#select2-compatibility-theme">Select2 compatibility theme</a> below.
+                    </p>
+                    <h6 id="select2-compatibility-theme">Select2 compatibility theme</h6>
+                    <p>
+                      Some projects can’t drop Select2: an ERP with hundreds of server-rendered
+                      forms, a vendor plugin that initialises it for you, or a team that simply
+                      isn’t ready. AdminLTE won’t bundle Select2 or jQuery, but it does ship a
+                      <strong>CSS-only compatibility theme</strong> so a Select2 you bring yourself
+                      inherits Bootstrap 5.3’s form metrics, focus ring, validation states and
+                      <code>data-bs-theme</code> dark mode.
+                    </p>
+                    <ul>
+                      <li>
+                        <strong><code>dist/css/adminlte-select2.css</code></strong> (+
+                        <code>.min.css</code>, <code>.rtl.css</code>, <code>.rtl.min.css</code>)
+                      </li>
+                      <li>
+                        No JavaScript, no jQuery, nothing added to <code>adminlte.css</code> — you
+                        opt in by loading one extra stylesheet.
+                      </li>
+                    </ul>
+                    <p>Load it <strong>after</strong> <code>select2.css</code>:</p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;path/to/adminlte.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;path/to/adminlte-select2.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">select</span><span style="color:#9CDCFE"> id</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;country&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;form-select&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">option</span><span style="color:#9CDCFE"> value</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Select a country…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">option</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">option</span><span style="color:#9CDCFE"> value</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;lv&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Latvia</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">option</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">select</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#DCDCAA">  $</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;#country&quot;</span><span style="color:#D4D4D4">).</span><span style="color:#DCDCAA">select2</span><span style="color:#D4D4D4">({ </span><span style="color:#9CDCFE">width:</span><span style="color:#CE9178"> &quot;100%&quot;</span><span style="color:#D4D4D4"> })</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>What the theme handles for you:</p>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Metrics</td>
+                          <td>
+                            Height, padding, font size and border radius match
+                            <code>.form-select</code> exactly
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Sizing</td>
+                          <td>
+                            <code>.form-select-sm</code> / <code>.form-select-lg</code> on the
+                            original <code>&lt;select&gt;</code> are honoured
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Focus</td>
+                          <td>Bootstrap’s focus ring instead of Select2’s black outline</td>
+                        </tr>
+                        <tr>
+                          <td>Dark mode</td>
+                          <td>
+                            Follows <code>data-bs-theme</code> — including the body-appended
+                            dropdown
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Validation</td>
+                          <td>
+                            <code>.is-invalid</code> / <code>.is-valid</code> on the original
+                            <code>&lt;select&gt;</code> colour the container
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Multi-select</td>
+                          <td>Choice pills styled as Bootstrap secondary badges</td>
+                        </tr>
+                        <tr>
+                          <td>Input groups</td>
+                          <td><code>.input-group</code> corner rounding and flex sizing</td>
+                        </tr>
+                        <tr>
+                          <td>Modals</td>
+                          <td>
+                            Dropdown <code>z-index</code> raised above <code>.modal</code> — fixes
+                            the single most-reported Select2 + Bootstrap 5 bug, so
+                            <code>dropdownParent</code> is no longer needed
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>RTL</td>
+                          <td>Generated automatically alongside the rest of the CSS</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p>
+                      Using a bundler? The compiled sheet is reachable through the package’s
+                      <code>exports</code> map — again, after Select2’s own CSS:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="js"
+                    ><code><span class="line"><span style="color:#C586C0">import</span><span style="color:#CE9178"> &quot;admin-lte/dist/css/adminlte.min.css&quot;</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#CE9178"> &quot;select2/dist/css/select2.min.css&quot;</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#CE9178"> &quot;admin-lte/dist/css/adminlte-select2.min.css&quot;</span></span></code></pre>
+                    <p>
+                      Compiling your own Sass instead? Import the partial after AdminLTE, which has
+                      already loaded the Bootstrap variables and mixins it needs:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="scss"
+                    ><code><span class="line"><span style="color:#C586C0">@import</span><span style="color:#CE9178"> &quot;node_modules/admin-lte/src/scss/adminlte&quot;</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#C586C0">@import</span><span style="color:#CE9178"> &quot;node_modules/admin-lte/src/scss/compat/select2&quot;</span><span style="color:#D4D4D4">;</span></span></code></pre>
+                    <p>
+                      The theme tracks Select2 4.1.x markup (it also covers the 4.0.x choice-remove
+                      markup). It is styling only — bugs in Select2 itself are still Select2’s to
+                      fix, and none of the official AdminLTE framework ports (Vue, React, Django,
+                      Laravel) can consume a jQuery plugin.
+                    </p>
                     <h6 id="range-slider--nouislider">Range slider — noUiSlider</h6>
                     <p>
                       <a href="https://refreshless.com/nouislider/">noUiSlider</a> handles single,
@@ -1007,6 +1298,32 @@
 <span class="line"><span style="color:#9CDCFE">    headerToolbar:</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">start:</span><span style="color:#CE9178"> &quot;prev,next today&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">center:</span><span style="color:#CE9178"> &quot;title&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">end:</span><span style="color:#CE9178"> &quot;dayGridMonth,timeGridWeek,listWeek&quot;</span><span style="color:#D4D4D4"> },</span></span>
 <span class="line"><span style="color:#9CDCFE">    events:</span><span style="color:#D4D4D4"> [{ </span><span style="color:#9CDCFE">title:</span><span style="color:#CE9178"> &quot;Team standup&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">start:</span><span style="color:#CE9178"> &quot;2026-06-01&quot;</span><span style="color:#D4D4D4"> }]</span></span>
 <span class="line"><span style="color:#D4D4D4">  }).</span><span style="color:#DCDCAA">render</span><span style="color:#D4D4D4">()</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <h5 id="maps">Maps</h5>
+                    <h6 id="jsvectormap">jsVectorMap</h6>
+                    <p>
+                      <a href="https://github.com/themustafaomar/jsvectormap">jsVectorMap</a> is the
+                      dependency-free successor to jQuery Mapael / jVectorMap. Choropleth maps,
+                      markers, per-region click handlers, and a world map plus per-country data
+                      files.
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/jsvectormap@1.7.0/dist/css/jsvectormap.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/jsvectormap@1.7.0/dist/js/jsvectormap.min.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/jsvectormap@1.7.0/dist/maps/world.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> id</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;map&quot;</span><span style="color:#9CDCFE"> style</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;height: 20rem;&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#569CD6">  new</span><span style="color:#DCDCAA"> jsVectorMap</span><span style="color:#D4D4D4">({</span></span>
+<span class="line"><span style="color:#9CDCFE">    selector:</span><span style="color:#CE9178"> &quot;#map&quot;</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">    map:</span><span style="color:#CE9178"> &quot;world&quot;</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">    markers:</span><span style="color:#D4D4D4"> [{ </span><span style="color:#9CDCFE">name:</span><span style="color:#CE9178"> &quot;Riga&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">coords:</span><span style="color:#D4D4D4"> [</span><span style="color:#B5CEA8">56.95</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">24.11</span><span style="color:#D4D4D4">] }]</span></span>
+<span class="line"><span style="color:#D4D4D4">  })</span></span>
 <span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span></code></pre>
                     <h5 id="drag-and-drop">Drag and drop</h5>
                     <h6 id="sortablejs">SortableJS</h6>

@@ -21,6 +21,14 @@
       "maxSize": "4.5 kB"
     },
     {
+      "path": "./dist/css/adminlte-select2.min.css",
+      "maxSize": "3 kB"
+    },
+    {
+      "path": "./dist/css/adminlte-select2.rtl.min.css",
+      "maxSize": "3 kB"
+    },
+    {
       "path": "./dist/js/adminlte.js",
       "maxSize": "10.5 kB"
     },
