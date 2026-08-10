@@ -4,18 +4,21 @@
 // A diagonal banner pinned to the top corner of a positioned parent. `.card` is
 // already `position: relative`; anything else needs `.position-relative`.
 //
-// The wrapper is a square that clips the band, and the band is centred on that
-// square before being rotated — so the whole geometry follows one size variable
-// and stays correct at every scale. rtlcss mirrors both the corner offset and
-// the rotation, so no direction-specific rules are needed here.
+// The wrapper is a square that clips the band. The band is NOT centred on that
+// square — a corner ribbon has to hug the corner, and the square's centre is
+// the point furthest from it, which would leave the corner bare. Instead the
+// band's centre sits on the corner's bisector at ~46% of the square's side,
+// which is the proportion v3 used and the one that leaves room for the label.
+// rtlcss mirrors the offsets and the rotation, so no direction-specific rules
+// are needed here.
 //
 
 .ribbon-wrapper {
-  // The band has to span the wrapper's diagonal (size × √2); the extra bleed
-  // keeps its cut ends outside the clipping square. Derived here rather than
-  // with calc() so a theme only ever overrides the size.
+  // Width is the chord across the corner at the band's inner edge, so the band
+  // reaches both edges of the square and its ends are cut flush. Derived here
+  // rather than with calc() so a theme only ever overrides the size.
   --#{$lte-prefix}ribbon-size: #{$lte-ribbon-size};
-  --#{$lte-prefix}ribbon-width: #{$lte-ribbon-size * 1.45};
+  --#{$lte-prefix}ribbon-width: #{$lte-ribbon-size * 1.3};
   --#{$lte-prefix}ribbon-font-size: #{$lte-ribbon-font-size};
 
   position: absolute;
@@ -31,20 +34,22 @@
 
   &.ribbon-lg {
     --#{$lte-prefix}ribbon-size: #{$lte-ribbon-size-lg};
-    --#{$lte-prefix}ribbon-width: #{$lte-ribbon-size-lg * 1.45};
+    --#{$lte-prefix}ribbon-width: #{$lte-ribbon-size-lg * 1.3};
     --#{$lte-prefix}ribbon-font-size: #{$lte-ribbon-font-size-lg};
   }
 
   &.ribbon-xl {
     --#{$lte-prefix}ribbon-size: #{$lte-ribbon-size-xl};
-    --#{$lte-prefix}ribbon-width: #{$lte-ribbon-size-xl * 1.45};
+    --#{$lte-prefix}ribbon-width: #{$lte-ribbon-size-xl * 1.3};
     --#{$lte-prefix}ribbon-font-size: #{$lte-ribbon-font-size-xl};
   }
 
   .ribbon {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    // 32.5% / 67.5% puts the band's centre on the corner bisector, close enough
+    // to the corner to cover it; 50%/50% would park it at the far diagonal.
+    top: 32.5%;
+    left: 67.5%;
     width: var(--#{$lte-prefix}ribbon-width);
     padding: $lte-ribbon-padding;
     overflow: hidden;

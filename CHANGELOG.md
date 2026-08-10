@@ -5,6 +5,13 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.3.1] - 2026-08-10
+
+### Fixed
+
+- **Ribbons left the card corner bare.** The banner was centred on its clipping square, but the square's centre is the point *furthest* from the corner — so the banner sat too far into the card, left a large empty triangle at the corner it is supposed to cover, and had its label cut off by the clip. The banner's centre now sits on the corner's bisector at ~46% of the square's side, the proportion that leaves the label room and fills the corner, and the width is the chord across the corner rather than the square's diagonal. RTL mirrors as before.
+- The ribbons demo uses short labels and states the constraint: the banner is clipped to the corner, so only about `64px` of it is readable at the default size. `.ribbon-lg` and `.ribbon-xl` give more room. Documented on the Miscellaneous components page.
+
 ## [4.3.0] - 2026-08-10
 
 ### Added

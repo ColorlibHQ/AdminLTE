@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- *   AdminLTE v4.3.0
+ *   AdminLTE v4.3.1
  *   Author: Colorlib
  *   Website: AdminLTE.io <https://adminlte.io>
  *   License: Open source - MIT <https://opensource.org/licenses/MIT>
@@ -15261,7 +15261,7 @@ html.maximized-card {
 }
 .ribbon-wrapper {
   --lte-ribbon-size: 70px;
-  --lte-ribbon-width: 101.5px;
+  --lte-ribbon-width: 91px;
   --lte-ribbon-font-size: 0.8rem;
   position: absolute;
   top: 0;
@@ -15274,18 +15274,18 @@ html.maximized-card {
 }
 .ribbon-wrapper.ribbon-lg {
   --lte-ribbon-size: 110px;
-  --lte-ribbon-width: 159.5px;
+  --lte-ribbon-width: 143px;
   --lte-ribbon-font-size: 1rem;
 }
 .ribbon-wrapper.ribbon-xl {
   --lte-ribbon-size: 145px;
-  --lte-ribbon-width: 210.25px;
+  --lte-ribbon-width: 188.5px;
   --lte-ribbon-font-size: 1.25rem;
 }
 .ribbon-wrapper .ribbon {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 32.5%;
+  left: 67.5%;
   width: var(--lte-ribbon-width);
   padding: 0.375rem 0;
   overflow: hidden;
