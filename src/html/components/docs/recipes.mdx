@@ -137,6 +137,45 @@ For interactive sorting/filtering/pagination, use [Tabulator](integrations.html#
 
 Put this inside the `<ul class="navbar-nav ms-auto">` in `.app-header`.
 
+##### A language switcher wired to a real locale
+
+The demo topbar ships a language dropdown, but the markup alone changes nothing — swapping the locale is the application's job, and doing it badly is worse than not shipping it. The pattern below covers what a switcher actually has to get right.
+
+```html
+<li class="nav-item dropdown">
+  <a class="nav-link" href="#" id="language-menu" data-bs-toggle="dropdown"
+     aria-expanded="false" aria-label="Change language, current language English">
+    <i class="bi bi-translate" aria-hidden="true"></i>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language-menu">
+    <li>
+      <a class="dropdown-item active" href="/en/dashboard" hreflang="en" aria-current="true">
+        English <i class="bi bi-check-lg ms-2" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li><a class="dropdown-item" href="/es/dashboard" hreflang="es">Español</a></li>
+    <li><a class="dropdown-item" href="/ar/dashboard" hreflang="ar">العربية</a></li>
+  </ul>
+</li>
+```
+
+Four things make the difference between a working switcher and set dressing:
+
+1. **Each item is a real link to the same page in another locale**, not a `#` with a click handler. A link is bookmarkable, crawlable, opens in a new tab, and works before your JavaScript loads. Add `hreflang` so assistive tech announces the language change and search engines can pair the URLs.
+2. **The locale belongs in the URL** (`/es/dashboard`) or in a cookie the server reads — not in `localStorage`. Server-rendered HTML has to know the locale *before* it renders, and `localStorage` is only readable after the page has already been sent in the wrong language.
+3. **Mark the current language** with both `.active` and `aria-current="true"`, and name it in the toggle's `aria-label`. A flag icon alone is not a language: several languages share a flag, and several countries share a language.
+4. **Switching to an RTL locale needs the RTL stylesheet**, not just a `dir` attribute. Serve `adminlte.rtl.css` and set `<html lang="ar" dir="rtl">` together — see [RTL Support](rtl.html).
+
+If your locale lives in the URL, the server picks the stylesheet and the switcher stays pure markup:
+
+```html
+<!-- Rendered per request from the active locale -->
+<html lang="ar" dir="rtl">
+  <link rel="stylesheet" href="/css/adminlte.rtl.css">
+```
+
+For a client-rendered app, do the same work at the router level — change the locale, re-render, and swap the stylesheet `href` — rather than translating text nodes in place.
+
 ##### A KPI card (small-box)
 
 The bright-coloured stat boxes at the top of most dashboards:

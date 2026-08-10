@@ -1,0 +1,89 @@
+SidebarSearch filters the sidebar menu as you type. Matching entries stay, everything else is hidden, and any submenu holding a match is expanded so the result is actually visible. Clearing the field puts the menu back exactly as it was — including which submenus were open.
+
+The search box in this page's sidebar is a live example.
+
+##### Usage
+
+This plugin is activated via data attributes.
+
+**Data API**
+
+Put `data-lte-toggle="sidebar-search"` on a text input. Place it outside `.sidebar-wrapper` so it stays put while the menu scrolls under it.
+
+```html
+<div class="sidebar-search" role="search">
+  <label for="sidebar-search-input" class="visually-hidden">Filter menu</label>
+  <input
+    type="search"
+    id="sidebar-search-input"
+    class="form-control form-control-sm"
+    placeholder="Filter menu…"
+    autocomplete="off"
+    data-lte-toggle="sidebar-search"
+    data-lte-target="#navigation"
+  >
+  <p class="fs-7 text-secondary mt-2 mb-0" data-lte-search-empty role="status" hidden>
+    No matching pages.
+  </p>
+</div>
+```
+
+| Attribute | Description |
+|---|---|
+| `data-lte-toggle="sidebar-search"` | Marks the input as a menu filter. |
+| `data-lte-target` | Selector for the menu to filter. Optional — without it, the `.sidebar-menu` inside the input's own `.app-sidebar` is used. |
+| `data-lte-search-empty` | Optional element shown only while a query matches nothing. Give it `role="status"` so the result is announced. |
+
+`type="search"` is worth using: the browser's built-in clear button fires `input`, so it restores the menu for free. <kbd>ESC</kbd> in the field does the same.
+
+##### Matching rules
+
+- Matching is case-insensitive and matches anywhere in a `.nav-link`'s text, not just at the start.
+- A parent survives if any descendant matches, and is expanded to reveal it.
+- A parent whose own name matches keeps its entire subtree, so expanding it is never a dead end.
+- `.nav-header` section labels are hidden while filtering, because the groups they label are no longer intact.
+
+##### Events
+
+| Event | Description |
+|-------|-------------|
+| `filtered.lte.sidebar-search` | Fired on the input after each filter pass. `event.detail` is `{ query, matches }`; `matches` is `-1` when the filter was cleared. |
+
+```js
+document.addEventListener("filtered.lte.sidebar-search", event => {
+  console.log(event.detail.query, event.detail.matches)
+})
+```
+
+##### Programmatic API
+
+```js
+import { SidebarSearch } from "admin-lte"
+
+const input = document.querySelector('[data-lte-toggle="sidebar-search"]')
+const search = SidebarSearch.getOrCreateInstance(input)
+
+search.search("layout")  // filter the menu
+search.clear()           // restore it
+search.dispose()         // restore, then drop the instance
+```
+
+###### Methods
+
+| Method | Returns | Description |
+|---|---|---|
+| `search(term)` | `void` | Filters the menu to entries matching `term`. An empty or whitespace-only term calls `clear()`. |
+| `clear()` | `void` | Un-hides every entry and restores each submenu's pre-search open state. |
+| `dispose()` | `void` | Clears the filter, then removes the instance from the registry. |
+| `SidebarSearch.getInstance(el)` | `SidebarSearch \| null` | The existing instance for an element, if any. |
+| `SidebarSearch.getOrCreateInstance(el)` | `SidebarSearch` | The existing instance, or a new one. |
+
+The constructor takes no config — the target menu comes from `data-lte-target`.
+
+##### Notes
+
+- Entries are hidden with the `hidden` attribute, not a class, so they leave the accessibility tree as well as the layout. Nothing in your CSS has to know about the filter.
+- The plugin snapshots each submenu's open state *and* its inline `display` before the first keystroke. Both matter: [Treeview](treeview.html) writes an inline `display` while sliding a menu open or shut, and that would otherwise outrank `.menu-open > .nav-treeview` after a search.
+- Because a search rewrites `.menu-open`, don't drive the same submenus from your own code while a filter is active — clear it first.
+- In the mini sidebar the field is hidden, since a text input can't render usefully in the rail. It returns on hover along with the labels it filters.
+- Both listeners are delegated on `document`, so a sidebar rendered after page load — a Turbo Frame, a client-side router — needs no re-initialisation.

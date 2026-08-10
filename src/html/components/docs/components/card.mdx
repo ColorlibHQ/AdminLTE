@@ -1,0 +1,106 @@
+Cards are the main content container in AdminLTE. They are [Bootstrap cards](https://getbootstrap.com/docs/5.3/components/card/) with an added shadow, a colour-variant system, a header toolbar, and hooks for the [CardWidget plugin](../javascript/card-widget.html) that collapses, removes and maximises them.
+
+##### Anatomy
+
+```html
+<div class="card card-primary card-outline">
+  <div class="card-header">
+    <div class="card-title">Title</div>
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" aria-label="Collapse card">
+        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">Body</div>
+  <div class="card-footer">Footer</div>
+</div>
+```
+
+| Class | Description |
+|---|---|
+| `.card` | The container. Adds AdminLTE's shadow on top of the Bootstrap card. |
+| `.card-header` | Header strip. Positioned relative, so `.card-tools` can float inside it. |
+| `.card-title` | Header text. Floats left at `1.1rem`; it is a style, not a heading — use whatever element the document outline calls for. |
+| `.card-tools` | Right-aligned toolbar inside the header. Absorbs the header's horizontal padding so buttons sit flush. |
+| `.btn-tool` | Muted, borderless icon button for use inside `.card-tools`. Add `.btn-tool-custom` to keep your own colours. |
+| `.card-body` | Content area. |
+| `.card-footer` | Footer strip. |
+
+##### Colour variants
+
+Every entry in `$theme-colors` produces a `.card-*` class. The variant sets two custom properties — `--lte-card-variant-bg` and `--lte-card-variant-color` — which the header then consumes, so `.bg-primary` and `.text-bg-primary` colour a card the same way `.card-primary` does.
+
+```html
+<div class="card card-primary">…</div>
+<div class="card card-success">…</div>
+<div class="card card-danger">…</div>
+```
+
+Add `.card-outline` to move the colour to a 3px top border and leave the header plain:
+
+```html
+<div class="card card-primary card-outline">…</div>
+```
+
+##### States
+
+These classes are the resting state that [CardWidget](../javascript/card-widget.html) toggles. Setting one in your markup is how you render a card that starts out collapsed.
+
+| Class | Description |
+|---|---|
+| `.collapsed-card` | Hides the body and footer, and swaps the collapse icon for the expand icon. |
+| `.maximized-card` | Fixes the card to the viewport at full size. AdminLTE also sets it on `<html>` to lock page scrolling. |
+| `.was-collapsed` | Set by CardWidget on a card that was collapsed when it got maximised, so restoring returns it to collapsed. |
+| `.expanding-card` | Present for the duration of the expand animation. |
+
+Icon visibility follows the state automatically: `[data-lte-icon="expand"]` is hidden unless the card is collapsed, and `[data-lte-icon="minimize"]` is hidden unless it is maximised. Ship both icons and let the CSS choose.
+
+##### Cards with tabs
+
+`.card-tabs` puts a `.nav-tabs` in the header and squares off the seam between the tabs and the body:
+
+```html
+<div class="card card-primary card-tabs">
+  <div class="card-header p-0 pt-1">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-1" type="button" role="tab">Tab 1</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-2" type="button" role="tab">Tab 2</button>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="tab-1" role="tabpanel" tabindex="0">…</div>
+      <div class="tab-pane fade" id="tab-2" role="tabpanel" tabindex="0">…</div>
+    </div>
+  </div>
+</div>
+```
+
+`.card-outline-tabs` is the same idea for outline cards: the active tab carries the accent as a top border instead of the card doing it.
+
+##### Utilities
+
+| Class | Description |
+|---|---|
+| `.height-control` | Caps the body at `300px` and scrolls it. |
+| `.card .nav.flex-column` | A vertical nav inside a card gets dividers between items and none after the last. Used by the [user widgets](miscellaneous.html#social-and-post-widgets). |
+
+##### Sass variables
+
+| Variable | Default | Description |
+|---|---|---|
+| `$lte-card-shadow` | two-layer shadow from `--bs-body-color-rgb` | The shadow applied to every `.card`. |
+| `$lte-card-title-font-size` | `1.1rem` | `.card-title` size. |
+| `$lte-card-title-font-weight` | `$font-weight-normal` | `.card-title` weight. |
+
+##### Notes
+
+- `.card-title` floats, so a `.card-header` containing only a title and tools has no height of its own — the clearfix mixin on the header restores it. Adding your own floated element to a header is safe for the same reason.
+- Nested cards are scoped correctly: the collapse and expand rules use `> .card-header` and `> .card-body`, so collapsing an outer card doesn't rewrite the icons of a card inside it.
+- For a card that toggles from a button elsewhere on the page, use CardWidget's [programmatic API](../javascript/card-widget.html#programmatic-api) rather than adding and removing the state classes by hand — it fires the matching events.

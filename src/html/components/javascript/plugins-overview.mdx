@@ -1,4 +1,4 @@
-AdminLTE ships seven JavaScript plugins as a single bundle (`adminlte.js`). Each one is exported from the package root, can be triggered via `data-lte-*` attributes for declarative use, and exposes a programmatic API for code-driven control.
+AdminLTE ships eight JavaScript plugins as a single bundle (`adminlte.js`). Each one is exported from the package root, can be triggered via `data-lte-*` attributes for declarative use, and exposes a programmatic API for code-driven control.
 
 ##### At a glance
 
@@ -9,6 +9,7 @@ AdminLTE ships seven JavaScript plugins as a single bundle (`adminlte.js`). Each
 | **CardWidget** | `data-lte-toggle="card-collapse"`, `card-remove`, `card-maximize` | `.toggle()` / `.collapse()` / `.expand()` / `.remove()` / `.maximize()` / `.minimize()` / `.toggleMaximize()` | [Reference](card-widget.html) |
 | **DirectChat** | `data-lte-toggle="chat-pane"` | `.toggle()` | [Reference](direct-chat.html) |
 | **FullScreen** | `data-lte-toggle="fullscreen"` | `.toggleFullScreen()` / `.inFullScreen()` / `.outFullscreen()` | [Reference](fullscreen.html) |
+| **SidebarSearch** | `data-lte-toggle="sidebar-search"` on an input | `.search(term)` / `.clear()` | [Reference](sidebar-search.html) |
 | **Layout** | (auto-applied to `<body>`) | `.holdTransition(time)` | [Reference](layout.html) |
 | **AccessibilityManager** | (helper function: `initAccessibility()`) | `.announce()` / `.focusElement()` / `.trapFocus()` / `.addLandmarks()` | [Reference](accessibility.html) |
 
@@ -37,7 +38,7 @@ For most pages, the data API is enough — no JavaScript code required. Drop the
 </div>
 ```
 
-The bundle attaches all data-API listeners on `DOMContentLoaded`. Dynamically-injected elements still work for the [PushMenu](pushmenu.html), [CardWidget](card-widget.html), and [Treeview](treeview.html) plugins, which use event delegation.
+The bundle attaches all data-API listeners on `DOMContentLoaded`. Dynamically-injected elements still work for the [PushMenu](pushmenu.html), [CardWidget](card-widget.html), [Treeview](treeview.html), and [SidebarSearch](sidebar-search.html) plugins, which use event delegation.
 
 ###### 2. Programmatic (imperative)
 
@@ -110,6 +111,7 @@ document.addEventListener("remove.lte.card-widget", (e) => {
 | DirectChat | — | `collapsed.lte.direct-chat` | Contacts pane closed |
 | FullScreen | — | `maximized.lte.fullscreen` | Entered fullscreen |
 | FullScreen | — | `minimized.lte.fullscreen` | Exited fullscreen |
+| SidebarSearch | — | `filtered.lte.sidebar-search` | Menu filtered (`detail: { query, matches }`; `matches` is `-1` on clear) |
 | ColorMode | — | `changed.lte.color-mode` | Theme changed (`detail: { theme, resolved }`, fired on `document`) |
 
 All events bubble (since 4.1). The "after" events of animated actions fire when the animation completes, not when it starts.
@@ -150,10 +152,11 @@ The plugins toggle a small set of CSS classes that you can also style or react t
 | `hold-transition` | Layout | `<body>` | Transitions disabled briefly (during resize, etc.) |
 | `app-loaded` | Layout | `<body>` | Initial page-load animation finished |
 | `reduce-motion` | AccessibilityManager | `<body>` | OS `prefers-reduced-motion` detected |
+| `menu-open` | SidebarSearch | `.nav-item` | Submenu expanded to reveal a match (restored on clear) |
 
 ##### Production vs source
 
-The plugins live in [`src/ts/`](https://github.com/ColorlibHQ/master/src/ts) as TypeScript modules. The published `dist/js/adminlte.js` is a Rollup bundle of all seven, exporting them under a single `adminlte` namespace (UMD) or named imports (ESM).
+The plugins live in [`src/ts/`](https://github.com/ColorlibHQ/master/src/ts) as TypeScript modules. The published `dist/js/adminlte.js` is a Rollup bundle of all eight, exporting them under a single `adminlte` namespace (UMD) or named imports (ESM).
 
 If you only need one or two plugins and care about bundle size, importing individual modules from `node_modules/admin-lte/src/ts/` will tree-shake — but you'll need TypeScript in your toolchain.
 
