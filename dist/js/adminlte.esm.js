@@ -1,5 +1,5 @@
 /*!
- * AdminLTE v4.2.0 (https://adminlte.io)
+ * AdminLTE v4.3.0 (https://adminlte.io)
  * Copyright 2014-2026 Colorlib <https://colorlib.com>
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
@@ -192,16 +192,16 @@ const dispatchCustomEvent = (element, name, options = {}) => {
     return event;
 };
 
-const NAME$4 = 'card-widget';
-const EVENT_KEY$5 = `.lte.${NAME$4}`;
-const EVENT_COLLAPSE$2 = `collapse${EVENT_KEY$5}`;
-const EVENT_EXPAND$1 = `expand${EVENT_KEY$5}`;
-const EVENT_REMOVE = `remove${EVENT_KEY$5}`;
-const EVENT_COLLAPSED$3 = `collapsed${EVENT_KEY$5}`;
-const EVENT_EXPANDED$2 = `expanded${EVENT_KEY$5}`;
-const EVENT_REMOVED = `removed${EVENT_KEY$5}`;
-const EVENT_MAXIMIZED$1 = `maximized${EVENT_KEY$5}`;
-const EVENT_MINIMIZED$1 = `minimized${EVENT_KEY$5}`;
+const NAME$5 = 'card-widget';
+const EVENT_KEY$6 = `.lte.${NAME$5}`;
+const EVENT_COLLAPSE$2 = `collapse${EVENT_KEY$6}`;
+const EVENT_EXPAND$1 = `expand${EVENT_KEY$6}`;
+const EVENT_REMOVE = `remove${EVENT_KEY$6}`;
+const EVENT_COLLAPSED$3 = `collapsed${EVENT_KEY$6}`;
+const EVENT_EXPANDED$2 = `expanded${EVENT_KEY$6}`;
+const EVENT_REMOVED = `removed${EVENT_KEY$6}`;
+const EVENT_MAXIMIZED$1 = `maximized${EVENT_KEY$6}`;
+const EVENT_MINIMIZED$1 = `minimized${EVENT_KEY$6}`;
 const CLASS_NAME_CARD = 'card';
 const CLASS_NAME_COLLAPSED = 'collapsed-card';
 const CLASS_NAME_COLLAPSING = 'collapsing-card';
@@ -222,7 +222,7 @@ const Default$1 = {
 };
 class CardWidget extends BaseComponent {
     static get NAME() {
-        return NAME$4;
+        return NAME$5;
     }
     static getInstance(element) {
         return this._getInstance(element);
@@ -389,29 +389,29 @@ document.addEventListener('click', event => {
     }
 });
 
-const NAME$3 = 'treeview';
-const EVENT_KEY$4 = `.lte.${NAME$3}`;
-const EVENT_EXPAND = `expand${EVENT_KEY$4}`;
-const EVENT_COLLAPSE$1 = `collapse${EVENT_KEY$4}`;
-const EVENT_EXPANDED$1 = `expanded${EVENT_KEY$4}`;
-const EVENT_COLLAPSED$2 = `collapsed${EVENT_KEY$4}`;
-const EVENT_LOAD_DATA_API = `load${EVENT_KEY$4}`;
-const CLASS_NAME_MENU_OPEN = 'menu-open';
-const SELECTOR_NAV_ITEM = '.nav-item';
-const SELECTOR_NAV_LINK = '.nav-link';
-const SELECTOR_TREEVIEW_MENU = '.nav-treeview';
-const SELECTOR_DATA_TOGGLE$1 = '[data-lte-toggle="treeview"]';
+const NAME$4 = 'treeview';
+const EVENT_KEY$5 = `.lte.${NAME$4}`;
+const EVENT_EXPAND = `expand${EVENT_KEY$5}`;
+const EVENT_COLLAPSE$1 = `collapse${EVENT_KEY$5}`;
+const EVENT_EXPANDED$1 = `expanded${EVENT_KEY$5}`;
+const EVENT_COLLAPSED$2 = `collapsed${EVENT_KEY$5}`;
+const EVENT_LOAD_DATA_API = `load${EVENT_KEY$5}`;
+const CLASS_NAME_MENU_OPEN$1 = 'menu-open';
+const SELECTOR_NAV_ITEM$1 = '.nav-item';
+const SELECTOR_NAV_LINK$1 = '.nav-link';
+const SELECTOR_TREEVIEW_MENU$1 = '.nav-treeview';
+const SELECTOR_DATA_TOGGLE$2 = '[data-lte-toggle="treeview"]';
 const Default = {
     animationSpeed: 300,
     accordion: true
 };
 const setAriaExpanded = (navItem, expanded) => {
-    const link = navItem.querySelector(`:scope > ${SELECTOR_NAV_LINK}`);
+    const link = navItem.querySelector(`:scope > ${SELECTOR_NAV_LINK$1}`);
     link?.setAttribute('aria-expanded', String(expanded));
 };
 class Treeview extends BaseComponent {
     static get NAME() {
-        return NAME$3;
+        return NAME$4;
     }
     static getInstance(element) {
         return this._getInstance(element);
@@ -429,26 +429,26 @@ class Treeview extends BaseComponent {
             return;
         }
         if (this._config.accordion) {
-            const openMenuList = this._element.parentElement?.querySelectorAll(`${SELECTOR_NAV_ITEM}.${CLASS_NAME_MENU_OPEN}`);
+            const openMenuList = this._element.parentElement?.querySelectorAll(`${SELECTOR_NAV_ITEM$1}.${CLASS_NAME_MENU_OPEN$1}`);
             openMenuList?.forEach(openMenu => {
                 if (!this._element.contains(openMenu)) {
-                    openMenu.classList.remove(CLASS_NAME_MENU_OPEN);
+                    openMenu.classList.remove(CLASS_NAME_MENU_OPEN$1);
                     setAriaExpanded(openMenu, false);
-                    const childElement = openMenu?.querySelector(SELECTOR_TREEVIEW_MENU);
+                    const childElement = openMenu?.querySelector(SELECTOR_TREEVIEW_MENU$1);
                     if (childElement) {
                         slideUp(childElement, this._config.animationSpeed);
                     }
                 }
             });
         }
-        this._element.classList.add(CLASS_NAME_MENU_OPEN);
+        this._element.classList.add(CLASS_NAME_MENU_OPEN$1);
         setAriaExpanded(this._element, true);
-        const childElement = this._element.querySelector(SELECTOR_TREEVIEW_MENU);
+        const childElement = this._element.querySelector(SELECTOR_TREEVIEW_MENU$1);
         if (childElement) {
             slideDown(childElement, this._config.animationSpeed);
         }
         setTimeout(() => {
-            if (this._element.classList.contains(CLASS_NAME_MENU_OPEN)) {
+            if (this._element.classList.contains(CLASS_NAME_MENU_OPEN$1)) {
                 dispatchCustomEvent(this._element, EVENT_EXPANDED$1);
             }
         }, this._config.animationSpeed);
@@ -457,20 +457,20 @@ class Treeview extends BaseComponent {
         if (dispatchCustomEvent(this._element, EVENT_COLLAPSE$1, { cancelable: true }).defaultPrevented) {
             return;
         }
-        this._element.classList.remove(CLASS_NAME_MENU_OPEN);
+        this._element.classList.remove(CLASS_NAME_MENU_OPEN$1);
         setAriaExpanded(this._element, false);
-        const childElement = this._element.querySelector(SELECTOR_TREEVIEW_MENU);
+        const childElement = this._element.querySelector(SELECTOR_TREEVIEW_MENU$1);
         if (childElement) {
             slideUp(childElement, this._config.animationSpeed);
         }
         setTimeout(() => {
-            if (!this._element.classList.contains(CLASS_NAME_MENU_OPEN)) {
+            if (!this._element.classList.contains(CLASS_NAME_MENU_OPEN$1)) {
                 dispatchCustomEvent(this._element, EVENT_COLLAPSED$2);
             }
         }, this._config.animationSpeed);
     }
     toggle() {
-        if (this._element.classList.contains(CLASS_NAME_MENU_OPEN)) {
+        if (this._element.classList.contains(CLASS_NAME_MENU_OPEN$1)) {
             this.close();
         }
         else {
@@ -483,13 +483,13 @@ document.addEventListener('click', event => {
     if (!(target instanceof Element)) {
         return;
     }
-    const toggleRoot = target.closest(SELECTOR_DATA_TOGGLE$1);
+    const toggleRoot = target.closest(SELECTOR_DATA_TOGGLE$2);
     if (!toggleRoot) {
         return;
     }
-    const targetItem = target.closest(SELECTOR_NAV_ITEM);
-    const targetLink = target.closest(SELECTOR_NAV_LINK);
-    if (!targetItem?.querySelector(SELECTOR_TREEVIEW_MENU)) {
+    const targetItem = target.closest(SELECTOR_NAV_ITEM$1);
+    const targetLink = target.closest(SELECTOR_NAV_LINK$1);
+    if (!targetItem?.querySelector(SELECTOR_TREEVIEW_MENU$1)) {
         return;
     }
     if (target.getAttribute('href') === '#' || targetLink?.getAttribute('href') === '#') {
@@ -504,34 +504,34 @@ document.addEventListener('click', event => {
     Treeview.getOrCreateInstance(targetItem, config).toggle();
 });
 onDOMContentLoaded(() => {
-    const openMenuItems = document.querySelectorAll(`${SELECTOR_NAV_ITEM}.${CLASS_NAME_MENU_OPEN}`);
+    const openMenuItems = document.querySelectorAll(`${SELECTOR_NAV_ITEM$1}.${CLASS_NAME_MENU_OPEN$1}`);
     openMenuItems.forEach(menuItem => {
-        const childElement = menuItem.querySelector(SELECTOR_TREEVIEW_MENU);
+        const childElement = menuItem.querySelector(SELECTOR_TREEVIEW_MENU$1);
         if (childElement) {
             slideDown(childElement, 0);
             const event = new Event(EVENT_LOAD_DATA_API);
             menuItem.dispatchEvent(event);
         }
     });
-    document.querySelectorAll(SELECTOR_DATA_TOGGLE$1).forEach(root => {
-        root.querySelectorAll(SELECTOR_NAV_ITEM).forEach(item => {
-            if (item.querySelector(`:scope > ${SELECTOR_TREEVIEW_MENU}`)) {
-                setAriaExpanded(item, item.classList.contains(CLASS_NAME_MENU_OPEN));
+    document.querySelectorAll(SELECTOR_DATA_TOGGLE$2).forEach(root => {
+        root.querySelectorAll(SELECTOR_NAV_ITEM$1).forEach(item => {
+            if (item.querySelector(`:scope > ${SELECTOR_TREEVIEW_MENU$1}`)) {
+                setAriaExpanded(item, item.classList.contains(CLASS_NAME_MENU_OPEN$1));
             }
         });
     });
 });
 
-const NAME$2 = 'direct-chat';
-const EVENT_KEY$3 = `.lte.${NAME$2}`;
-const EVENT_EXPANDED = `expanded${EVENT_KEY$3}`;
-const EVENT_COLLAPSED$1 = `collapsed${EVENT_KEY$3}`;
-const SELECTOR_DATA_TOGGLE = '[data-lte-toggle="chat-pane"]';
+const NAME$3 = 'direct-chat';
+const EVENT_KEY$4 = `.lte.${NAME$3}`;
+const EVENT_EXPANDED = `expanded${EVENT_KEY$4}`;
+const EVENT_COLLAPSED$1 = `collapsed${EVENT_KEY$4}`;
+const SELECTOR_DATA_TOGGLE$1 = '[data-lte-toggle="chat-pane"]';
 const SELECTOR_DIRECT_CHAT = '.direct-chat';
 const CLASS_NAME_DIRECT_CHAT_OPEN = 'direct-chat-contacts-open';
 class DirectChat extends BaseComponent {
     static get NAME() {
-        return NAME$2;
+        return NAME$3;
     }
     static getInstance(element) {
         return this._getInstance(element);
@@ -555,7 +555,7 @@ document.addEventListener('click', event => {
     if (!(target instanceof Element)) {
         return;
     }
-    const trigger = target.closest(SELECTOR_DATA_TOGGLE);
+    const trigger = target.closest(SELECTOR_DATA_TOGGLE$1);
     if (!trigger) {
         return;
     }
@@ -566,10 +566,10 @@ document.addEventListener('click', event => {
     }
 });
 
-const NAME$1 = 'fullscreen';
-const EVENT_KEY$2 = `.lte.${NAME$1}`;
-const EVENT_MAXIMIZED = `maximized${EVENT_KEY$2}`;
-const EVENT_MINIMIZED = `minimized${EVENT_KEY$2}`;
+const NAME$2 = 'fullscreen';
+const EVENT_KEY$3 = `.lte.${NAME$2}`;
+const EVENT_MAXIMIZED = `maximized${EVENT_KEY$3}`;
+const EVENT_MINIMIZED = `minimized${EVENT_KEY$3}`;
 const SELECTOR_FULLSCREEN_TOGGLE = '[data-lte-toggle="fullscreen"]';
 const SELECTOR_MAXIMIZE_ICON = '[data-lte-icon="maximize"]';
 const SELECTOR_MINIMIZE_ICON = '[data-lte-icon="minimize"]';
@@ -586,7 +586,7 @@ function syncFullScreenState() {
 }
 class FullScreen extends BaseComponent {
     static get NAME() {
-        return NAME$1;
+        return NAME$2;
     }
     static getInstance(element) {
         return this._getInstance(element);
@@ -630,12 +630,12 @@ onDOMContentLoaded(() => {
     document.addEventListener('fullscreenchange', syncFullScreenState, { signal: getLifecycleSignal() });
 });
 
-const NAME = 'push-menu';
-const EVENT_KEY$1 = `.lte.${NAME}`;
-const EVENT_OPEN = `open${EVENT_KEY$1}`;
-const EVENT_COLLAPSE = `collapse${EVENT_KEY$1}`;
-const EVENT_OPENED = `opened${EVENT_KEY$1}`;
-const EVENT_COLLAPSED = `collapsed${EVENT_KEY$1}`;
+const NAME$1 = 'push-menu';
+const EVENT_KEY$2 = `.lte.${NAME$1}`;
+const EVENT_OPEN = `open${EVENT_KEY$2}`;
+const EVENT_COLLAPSE = `collapse${EVENT_KEY$2}`;
+const EVENT_OPENED = `opened${EVENT_KEY$2}`;
+const EVENT_COLLAPSED = `collapsed${EVENT_KEY$2}`;
 const CLASS_NAME_SIDEBAR_MINI = 'sidebar-mini';
 const CLASS_NAME_SIDEBAR_EXPAND = 'sidebar-expand';
 const CLASS_NAME_SIDEBAR_OVERLAY = 'sidebar-overlay';
@@ -652,7 +652,7 @@ const Defaults = {
 };
 class PushMenu extends BaseComponent {
     static get NAME() {
-        return NAME;
+        return NAME$1;
     }
     static getInstance(element) {
         return this._getInstance(element);
@@ -853,8 +853,8 @@ onDOMContentLoaded(() => {
 });
 
 const DATA_KEY = 'lte.color-mode';
-const EVENT_KEY = `.${DATA_KEY}`;
-const EVENT_CHANGED = `changed${EVENT_KEY}`;
+const EVENT_KEY$1 = `.${DATA_KEY}`;
+const EVENT_CHANGED = `changed${EVENT_KEY$1}`;
 const STORAGE_KEY = 'lte-theme';
 const ATTRIBUTE_THEME = 'data-bs-theme';
 const ATTRIBUTE_TOGGLE = 'data-bs-theme-value';
@@ -966,6 +966,154 @@ onDOMContentLoaded(() => {
     }, { signal: getLifecycleSignal() });
 });
 
+const NAME = 'sidebar-search';
+const EVENT_KEY = `.lte.${NAME}`;
+const EVENT_FILTERED = `filtered${EVENT_KEY}`;
+const CLASS_NAME_MENU_OPEN = 'menu-open';
+const SELECTOR_DATA_TOGGLE = '[data-lte-toggle="sidebar-search"]';
+const SELECTOR_SIDEBAR = '.app-sidebar';
+const SELECTOR_MENU = '.sidebar-menu';
+const SELECTOR_NAV_ITEM = '.nav-item';
+const SELECTOR_NAV_HEADER = '.nav-header';
+const SELECTOR_NAV_LINK = ':scope > .nav-link';
+const SELECTOR_TREEVIEW_MENU = ':scope > .nav-treeview';
+const SELECTOR_EMPTY_STATE = '[data-lte-search-empty]';
+const submenuOf = (item) => item.querySelector(SELECTOR_TREEVIEW_MENU);
+const setOpen = (item, submenu, open, display) => {
+    item.classList.toggle(CLASS_NAME_MENU_OPEN, open);
+    item.querySelector(SELECTOR_NAV_LINK)?.setAttribute('aria-expanded', String(open));
+    submenu.style.display = display;
+};
+class SidebarSearch extends BaseComponent {
+    static get NAME() {
+        return NAME;
+    }
+    static getInstance(element) {
+        return this._getInstance(element);
+    }
+    static getOrCreateInstance(element) {
+        return this.getInstance(element) ?? new this(element);
+    }
+    _menu;
+    _emptyState;
+    _snapshot = null;
+    constructor(element) {
+        super(element);
+        const target = element.dataset.lteTarget;
+        const scope = element.closest(SELECTOR_SIDEBAR) ?? document;
+        this._menu = target ?
+            document.querySelector(target) :
+            scope.querySelector(SELECTOR_MENU);
+        this._emptyState = scope.querySelector(SELECTOR_EMPTY_STATE);
+    }
+    search(term) {
+        const menu = this._menu;
+        if (!menu) {
+            return;
+        }
+        const query = term.trim().toLowerCase();
+        if (!query) {
+            this.clear();
+            return;
+        }
+        this._snapshot ??= this._takeSnapshot(menu);
+        const items = [...menu.querySelectorAll(SELECTOR_NAV_ITEM)];
+        const matched = new Set();
+        for (const item of items) {
+            const label = item.querySelector(SELECTOR_NAV_LINK)?.textContent?.replace(/\s+/g, ' ').trim().toLowerCase();
+            if (label?.includes(query)) {
+                matched.add(item);
+            }
+        }
+        for (let index = items.length - 1; index >= 0; index--) {
+            const item = items[index];
+            item.hidden = !(matched.has(item) || item.querySelector(`${SELECTOR_NAV_ITEM}:not([hidden])`));
+        }
+        for (const item of matched) {
+            for (const descendant of item.querySelectorAll(SELECTOR_NAV_ITEM)) {
+                descendant.hidden = false;
+            }
+        }
+        let visible = 0;
+        for (const item of items) {
+            if (!item.hidden) {
+                visible++;
+            }
+            const submenu = submenuOf(item);
+            if (submenu) {
+                const expand = !item.hidden && Boolean(item.querySelector(`${SELECTOR_NAV_ITEM}:not([hidden])`));
+                setOpen(item, submenu, expand, expand ? 'block' : 'none');
+            }
+        }
+        for (const header of menu.querySelectorAll(SELECTOR_NAV_HEADER)) {
+            header.hidden = true;
+        }
+        if (this._emptyState) {
+            this._emptyState.hidden = visible > 0;
+        }
+        dispatchCustomEvent(this._element, EVENT_FILTERED, { detail: { query, matches: visible } });
+    }
+    clear() {
+        const menu = this._menu;
+        if (!menu) {
+            return;
+        }
+        for (const item of menu.querySelectorAll(`${SELECTOR_NAV_ITEM}, ${SELECTOR_NAV_HEADER}`)) {
+            item.hidden = false;
+        }
+        if (this._snapshot) {
+            for (const [item, state] of this._snapshot) {
+                const submenu = submenuOf(item);
+                if (submenu) {
+                    setOpen(item, submenu, state.open, state.display);
+                }
+            }
+            this._snapshot = null;
+        }
+        if (this._emptyState) {
+            this._emptyState.hidden = true;
+        }
+        dispatchCustomEvent(this._element, EVENT_FILTERED, { detail: { query: '', matches: -1 } });
+    }
+    dispose() {
+        this.clear();
+        super.dispose();
+    }
+    _takeSnapshot(menu) {
+        const snapshot = new Map();
+        for (const item of menu.querySelectorAll(SELECTOR_NAV_ITEM)) {
+            const submenu = submenuOf(item);
+            if (submenu) {
+                snapshot.set(item, {
+                    open: item.classList.contains(CLASS_NAME_MENU_OPEN),
+                    display: submenu.style.display
+                });
+            }
+        }
+        return snapshot;
+    }
+}
+document.addEventListener('input', event => {
+    const target = event.target;
+    if (target instanceof HTMLInputElement && target.matches(SELECTOR_DATA_TOGGLE)) {
+        SidebarSearch.getOrCreateInstance(target).search(target.value);
+    }
+});
+document.addEventListener('keydown', event => {
+    const target = event.target;
+    if (event.key === 'Escape' && target instanceof HTMLInputElement && target.matches(SELECTOR_DATA_TOGGLE)) {
+        target.value = '';
+        SidebarSearch.getOrCreateInstance(target).clear();
+    }
+});
+onDOMContentLoaded(() => {
+    document.querySelectorAll(SELECTOR_DATA_TOGGLE).forEach(input => {
+        if (input.value) {
+            SidebarSearch.getOrCreateInstance(input).search(input.value);
+        }
+    });
+});
+
 class AccessibilityManager {
     config;
     liveRegion = null;
@@ -1039,19 +1187,21 @@ class AccessibilityManager {
         this.ensureSkipTargets();
     }
     ensureSkipTargets() {
-        const main = document.querySelector('#main, main, [role="main"]');
-        if (main && !main.id) {
-            main.id = 'main';
-        }
-        if (main && !main.hasAttribute('tabindex')) {
-            main.setAttribute('tabindex', '-1');
-        }
-        const nav = document.querySelector('#navigation, nav, [role="navigation"]');
-        if (nav && !nav.id) {
-            nav.id = 'navigation';
-        }
-        if (nav && !nav.hasAttribute('tabindex')) {
-            nav.setAttribute('tabindex', '-1');
+        const targets = [
+            ['main', 'main, [role="main"]'],
+            ['navigation', 'nav, [role="navigation"]']
+        ];
+        for (const [id, fallbackSelector] of targets) {
+            const target = document.getElementById(id) ?? document.querySelector(fallbackSelector);
+            if (!target) {
+                continue;
+            }
+            if (!target.id) {
+                target.id = id;
+            }
+            if (!target.hasAttribute('tabindex')) {
+                target.setAttribute('tabindex', '-1');
+            }
         }
     }
     initFocusManagement() {
@@ -1402,5 +1552,5 @@ onDOMContentLoaded(() => {
     accessibilityManager.addLandmarks();
 });
 
-export { CardWidget, ColorMode, DirectChat, FullScreen, Layout, PushMenu, Treeview, initAccessibility, initialize, teardown };
+export { CardWidget, ColorMode, DirectChat, FullScreen, Layout, PushMenu, SidebarSearch, Treeview, initAccessibility, initialize, teardown };
 //# sourceMappingURL=adminlte.esm.js.map

@@ -141,6 +141,28 @@
           </ul>
           <!--end::Start Navbar Links-->
 
+          <!--begin::Navbar Search-->
+          <form
+            class="navbar-search d-none d-md-block ms-3"
+            role="search"
+            action="../pages/search-results.html"
+          >
+            <div class="input-group input-group-sm">
+              <label for="navbar-search-input" class="visually-hidden">Search</label>
+              <input
+                type="search"
+                id="navbar-search-input"
+                name="q"
+                class="form-control"
+                placeholder="Search…"
+              />
+              <button class="btn btn-outline-secondary" type="submit" aria-label="Submit search">
+                <i class="bi bi-search" aria-hidden="true"></i>
+              </button>
+            </div>
+          </form>
+          <!--end::Navbar Search-->
+
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">
             <!--begin::Messages Dropdown Menu-->
@@ -271,6 +293,35 @@
               </div>
             </li>
             <!--end::Notifications Dropdown Menu-->
+
+            <!--begin::Language Menu-->
+            <!-- Markup only: swapping the locale is the application's job. The docs
+           Recipes page shows how to wire this to a real locale switch. -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link"
+                href="#"
+                id="language-menu"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                aria-label="Change language, current language English"
+              >
+                <i class="bi bi-translate" aria-hidden="true"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language-menu">
+                <li>
+                  <a class="dropdown-item active" href="#" hreflang="en" aria-current="true">
+                    English
+                    <i class="bi bi-check-lg ms-2" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li><a class="dropdown-item" href="#" hreflang="es">Español</a></li>
+                <li><a class="dropdown-item" href="#" hreflang="fr">Français</a></li>
+                <li><a class="dropdown-item" href="#" hreflang="de">Deutsch</a></li>
+                <li><a class="dropdown-item" href="#" hreflang="ar">العربية</a></li>
+              </ul>
+            </li>
+            <!--end::Language Menu-->
 
             <!--begin::Fullscreen Toggle-->
             <li class="nav-item">
@@ -421,6 +472,23 @@
           <!--end::Brand Link-->
         </div>
         <!--end::Sidebar Brand-->
+        <!--begin::Sidebar Search-->
+        <div class="sidebar-search" role="search">
+          <label for="sidebar-search-input" class="visually-hidden">Filter menu</label>
+          <input
+            type="search"
+            id="sidebar-search-input"
+            class="form-control form-control-sm"
+            placeholder="Filter menu…"
+            autocomplete="off"
+            data-lte-toggle="sidebar-search"
+            data-lte-target="#navigation"
+          />
+          <p class="fs-7 text-secondary mt-2 mb-0" data-lte-search-empty role="status" hidden>
+            No matching pages.
+          </p>
+        </div>
+        <!--end::Sidebar Search-->
         <!--begin::Sidebar Wrapper-->
         <div class="sidebar-wrapper">
           <nav class="mt-2" aria-label="Main navigation">
@@ -497,6 +565,12 @@
                     <a href="../widgets/cards.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Cards</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../widgets/social.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Social &amp; Post</p>
                     </a>
                   </li>
                 </ul>
@@ -610,6 +684,12 @@
                     <a href="../UI/timeline.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Timeline</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../UI/ribbons.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Ribbons</p>
                     </a>
                   </li>
                 </ul>
@@ -788,6 +868,18 @@
                     <a href="../pages/projects.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Projects</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../pages/gallery.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Gallery</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../pages/search-results.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Search Results</p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -1317,10 +1409,17 @@
                     <button type="button" class="btn btn-outline-secondary mb-2">Secondary</button>
                     <button type="button" class="btn btn-outline-success mb-2">Success</button>
                     <button type="button" class="btn btn-outline-danger mb-2">Danger</button>
-                    <button type="button" class="btn btn-outline-warning mb-2">Warning</button>
-                    <button type="button" class="btn btn-outline-info mb-2">Info</button>
-                    <button type="button" class="btn btn-outline-light mb-2">Light</button>
                     <button type="button" class="btn btn-outline-dark mb-2">Dark</button>
+                    <p class="fs-7 text-secondary mt-2 mb-2">
+                      The warning, info and light outlines draw their text in a light colour, which
+                      drops below the 4.5:1 contrast minimum on a light surface. Put them on a dark
+                      one:
+                    </p>
+                    <div class="bg-dark rounded p-3 mb-2">
+                      <button type="button" class="btn btn-outline-warning mb-2">Warning</button>
+                      <button type="button" class="btn btn-outline-info mb-2">Info</button>
+                      <button type="button" class="btn btn-outline-light mb-2">Light</button>
+                    </div>
                     <hr />
                     <button type="button" class="btn btn-primary btn-lg">Large button</button>
                     <button type="button" class="btn btn-warning btn-sm">Small button</button>
@@ -1339,6 +1438,417 @@
                   <!--end::Body-->
                 </div>
                 <!--end::Button-->
+                <!--begin::Nav Tabs-->
+                <div class="card card-primary card-outline mb-4">
+                  <!--begin::Header-->
+                  <div class="card-header">
+                    <div class="card-title">Nav Tabs &amp; Pills</div>
+                  </div>
+                  <!--end::Header-->
+                  <!--begin::Body-->
+                  <div class="card-body">
+                    <ul class="nav nav-tabs" id="demoTab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button
+                          class="nav-link active"
+                          id="demo-home-tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#demo-home"
+                          type="button"
+                          role="tab"
+                          aria-controls="demo-home"
+                          aria-selected="true"
+                        >
+                          Home
+                        </button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button
+                          class="nav-link"
+                          id="demo-profile-tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#demo-profile"
+                          type="button"
+                          role="tab"
+                          aria-controls="demo-profile"
+                          aria-selected="false"
+                        >
+                          Profile
+                        </button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button
+                          class="nav-link"
+                          id="demo-settings-tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#demo-settings"
+                          type="button"
+                          role="tab"
+                          aria-controls="demo-settings"
+                          aria-selected="false"
+                        >
+                          Settings
+                        </button>
+                      </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 p-3 mb-4">
+                      <div
+                        class="tab-pane fade show active"
+                        id="demo-home"
+                        role="tabpanel"
+                        aria-labelledby="demo-home-tab"
+                        tabindex="0"
+                      >
+                        Tab panes are plain Bootstrap 5 — AdminLTE only styles the surrounding card.
+                      </div>
+                      <div
+                        class="tab-pane fade"
+                        id="demo-profile"
+                        role="tabpanel"
+                        aria-labelledby="demo-profile-tab"
+                        tabindex="0"
+                      >
+                        Give every trigger a <code>data-bs-target</code> and the matching pane an
+                        <code>id</code>.
+                      </div>
+                      <div
+                        class="tab-pane fade"
+                        id="demo-settings"
+                        role="tabpanel"
+                        aria-labelledby="demo-settings-tab"
+                        tabindex="0"
+                      >
+                        Use <code>&lt;button&gt;</code> triggers rather than links: they are
+                        focusable without a href and need no <code>preventDefault</code>.
+                      </div>
+                    </div>
+
+                    <ul class="nav nav-pills" id="demoPill" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button
+                          class="nav-link active"
+                          id="demo-pill-one-tab"
+                          data-bs-toggle="pill"
+                          data-bs-target="#demo-pill-one"
+                          type="button"
+                          role="tab"
+                          aria-controls="demo-pill-one"
+                          aria-selected="true"
+                        >
+                          Active
+                        </button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button
+                          class="nav-link"
+                          id="demo-pill-two-tab"
+                          data-bs-toggle="pill"
+                          data-bs-target="#demo-pill-two"
+                          type="button"
+                          role="tab"
+                          aria-controls="demo-pill-two"
+                          aria-selected="false"
+                        >
+                          Link
+                        </button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button
+                          class="nav-link"
+                          type="button"
+                          role="tab"
+                          disabled
+                          aria-selected="false"
+                        >
+                          Disabled
+                        </button>
+                      </li>
+                    </ul>
+                    <div class="tab-content pt-3">
+                      <div
+                        class="tab-pane fade show active"
+                        id="demo-pill-one"
+                        role="tabpanel"
+                        aria-labelledby="demo-pill-one-tab"
+                        tabindex="0"
+                      >
+                        Pills use the same markup with
+                        <code>data-bs-toggle="pill"</code>.
+                      </div>
+                      <div
+                        class="tab-pane fade"
+                        id="demo-pill-two"
+                        role="tabpanel"
+                        aria-labelledby="demo-pill-two-tab"
+                        tabindex="0"
+                      >
+                        Add <code>.flex-column</code> to the list for a vertical pill nav.
+                      </div>
+                    </div>
+                  </div>
+                  <!--end::Body-->
+                </div>
+                <!--end::Nav Tabs-->
+                <!--begin::Modal-->
+                <div class="card card-success card-outline mb-4">
+                  <!--begin::Header-->
+                  <div class="card-header">
+                    <div class="card-title">Modal</div>
+                  </div>
+                  <!--end::Header-->
+                  <!--begin::Body-->
+                  <div class="card-body">
+                    <button
+                      type="button"
+                      class="btn btn-primary me-1"
+                      data-bs-toggle="modal"
+                      data-bs-target="#demoModalDefault"
+                    >
+                      Default
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary me-1"
+                      data-bs-toggle="modal"
+                      data-bs-target="#demoModalScrollable"
+                    >
+                      Scrollable
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#demoModalFullscreen"
+                    >
+                      Fullscreen below lg
+                    </button>
+
+                    <div
+                      class="modal fade"
+                      id="demoModalDefault"
+                      tabindex="-1"
+                      aria-labelledby="demoModalDefaultLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="demoModalDefaultLabel">
+                              Centered modal
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            <p class="mb-0">
+                              <code>.modal-dialog-centered</code> vertically centres the dialog in
+                              the viewport.
+                            </p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                              Close
+                            </button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="modal fade"
+                      id="demoModalScrollable"
+                      tabindex="-1"
+                      aria-labelledby="demoModalScrollableLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="demoModalScrollableLabel">
+                              Scrollable body
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                              With <code>.modal-dialog-scrollable</code> the body scrolls instead of
+                              the page, so the header and footer stay put.
+                            </p>
+                            <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                              posuere erat a ante.
+                            </p>
+                            <p>
+                              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                              dapibus ac facilisis in.
+                            </p>
+                            <p>
+                              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+                              magna.
+                            </p>
+                            <p class="mb-0">
+                              Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus
+                              eget urna mollis.
+                            </p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                              Close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="modal fade"
+                      id="demoModalFullscreen"
+                      tabindex="-1"
+                      aria-labelledby="demoModalFullscreenLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog modal-fullscreen-lg-down">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="demoModalFullscreenLabel">
+                              Fullscreen below lg
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            <p class="mb-0">
+                              <code>.modal-fullscreen-lg-down</code> fills the screen on phones and
+                              tablets, then falls back to a regular dialog from the
+                              <code>lg</code> breakpoint up — a good default for dense admin forms.
+                            </p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                              Close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--end::Body-->
+                </div>
+                <!--end::Modal-->
+                <!--begin::Offcanvas-->
+                <div class="card card-info card-outline mb-4">
+                  <!--begin::Header-->
+                  <div class="card-header">
+                    <div class="card-title">Offcanvas</div>
+                  </div>
+                  <!--end::Header-->
+                  <!--begin::Body-->
+                  <div class="card-body">
+                    <p>
+                      Offcanvas panels are useful for filters and detail views that would otherwise
+                      crowd a dashboard. They are separate from the AdminLTE sidebar, which has its
+                      own
+                      <code>PushMenu</code> plugin.
+                    </p>
+                    <button
+                      type="button"
+                      class="btn btn-primary me-1"
+                      data-bs-toggle="offcanvas"
+                      data-bs-target="#demoOffcanvasEnd"
+                      aria-controls="demoOffcanvasEnd"
+                    >
+                      From the end
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-toggle="offcanvas"
+                      data-bs-target="#demoOffcanvasBottom"
+                      aria-controls="demoOffcanvasBottom"
+                    >
+                      From the bottom
+                    </button>
+
+                    <div
+                      class="offcanvas offcanvas-end"
+                      tabindex="-1"
+                      id="demoOffcanvasEnd"
+                      aria-labelledby="demoOffcanvasEndLabel"
+                    >
+                      <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="demoOffcanvasEndLabel">Filters</h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="offcanvas"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="offcanvas-body">
+                        <div class="mb-3">
+                          <label for="demoOffcanvasStatus" class="form-label"> Status </label>
+                          <select class="form-select" id="demoOffcanvasStatus">
+                            <option selected>Any</option>
+                            <option>Open</option>
+                            <option>Closed</option>
+                          </select>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="demoOffcanvasArchived"
+                          />
+                          <label class="form-check-label" for="demoOffcanvasArchived">
+                            Include archived
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="offcanvas offcanvas-bottom"
+                      tabindex="-1"
+                      id="demoOffcanvasBottom"
+                      aria-labelledby="demoOffcanvasBottomLabel"
+                    >
+                      <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="demoOffcanvasBottomLabel">
+                          Bottom placement
+                        </h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="offcanvas"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="offcanvas-body">
+                        <p class="mb-0">
+                          Placement classes are
+                          <code>.offcanvas-start</code>, <code>.offcanvas-end</code>,
+                          <code>.offcanvas-top</code> and <code>.offcanvas-bottom</code>.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!--end::Body-->
+                </div>
+                <!--end::Offcanvas-->
               </div>
               <!--end::Col-->
               <!--begin::Col-->

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- *   AdminLTE v4.2.0
+ *   AdminLTE v4.3.0
  *   Author: Colorlib
  *   Website: AdminLTE.io <https://adminlte.io>
  *   License: Open source - MIT <https://opensource.org/licenses/MIT>
@@ -13191,6 +13191,10 @@ textarea.form-control-lg {
   white-space: nowrap;
 }
 
+.sidebar-search {
+  padding: 0.5rem 1rem;
+}
+
 .logo-xs,
 .logo-xl {
   position: absolute;
@@ -13226,6 +13230,9 @@ textarea.form-control-lg {
   max-width: 4.6rem;
 }
 .sidebar-mini.sidebar-collapse .sidebar-menu .nav-header {
+  display: none;
+}
+.sidebar-mini.sidebar-collapse .app-sidebar:not(:hover) .sidebar-search {
   display: none;
 }
 .sidebar-mini.sidebar-collapse .sidebar-menu .nav-link {
@@ -15226,6 +15233,200 @@ html.maximized-card {
 [data-bs-theme=dark] .toast-light .btn-close {
   --bs-btn-close-white-filter: none;
 }
+.ribbon-wrapper {
+  --lte-ribbon-size: 70px;
+  --lte-ribbon-width: 101.5px;
+  --lte-ribbon-font-size: 0.8rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: var(--lte-ribbon-size);
+  height: var(--lte-ribbon-size);
+  overflow: hidden;
+  border-top-left-radius: inherit;
+}
+.ribbon-wrapper.ribbon-lg {
+  --lte-ribbon-size: 110px;
+  --lte-ribbon-width: 159.5px;
+  --lte-ribbon-font-size: 1rem;
+}
+.ribbon-wrapper.ribbon-xl {
+  --lte-ribbon-size: 145px;
+  --lte-ribbon-width: 210.25px;
+  --lte-ribbon-font-size: 1.25rem;
+}
+.ribbon-wrapper .ribbon {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  width: var(--lte-ribbon-width);
+  padding: 0.375rem 0;
+  overflow: hidden;
+  font-size: var(--lte-ribbon-font-size);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--bs-emphasis-color);
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background-color: var(--bs-secondary-bg);
+  box-shadow: 0 0 3px rgba(var(--bs-body-color-rgb), 0.3);
+  transform: translate(50%, -50%) rotate(-45deg);
+}
+.ribbon-wrapper .ribbon a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.user-block {
+  --lte-user-block-avatar-size: 2.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  -moz-column-gap: 0.75rem;
+  column-gap: 0.75rem;
+  align-items: center;
+}
+.user-block > img {
+  grid-row: 1/span 2;
+  align-self: center;
+  width: var(--lte-user-block-avatar-size);
+  height: var(--lte-user-block-avatar-size);
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.user-block .username,
+.user-block .description,
+.user-block .comment {
+  grid-column: 2;
+}
+.user-block .username {
+  align-self: end;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.user-block .username a {
+  color: var(--bs-emphasis-color);
+  text-decoration: none;
+}
+.user-block .username a:hover, .user-block .username a:focus-visible {
+  text-decoration: underline;
+}
+.user-block .description {
+  align-self: start;
+  font-size: 0.8125rem;
+  color: var(--bs-secondary-color);
+}
+.user-block .comment {
+  margin-top: 0.5rem;
+}
+.card-header > .user-block {
+  float: right;
+}
+.user-block.user-block-sm {
+  --lte-user-block-avatar-size: 1.75rem;
+}
+.user-block.user-block-sm .username {
+  font-size: 0.8125rem;
+}
+.user-block.user-block-sm .description {
+  font-size: 0.75rem;
+}
+
+.post {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--bs-border-color);
+}
+.post:last-of-type {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+.post .user-block {
+  margin-bottom: 0.75rem;
+}
+
+.description-block {
+  display: block;
+  margin: 0.625rem 0;
+  text-align: center;
+}
+.description-block .description-header {
+  padding: 0;
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+.description-block .description-text {
+  font-size: 0.8125rem;
+  color: var(--bs-secondary-color);
+  text-transform: uppercase;
+}
+
+.widget-user .widget-user-header {
+  height: 8.4375rem;
+  padding: 1rem;
+  text-align: center;
+  background-position: center;
+  background-size: cover;
+  border-top-right-radius: inherit;
+  border-top-left-radius: inherit;
+}
+.widget-user .widget-user-username {
+  margin-top: 0;
+  margin-bottom: 0.3125rem;
+  font-size: 1.5625rem;
+  font-weight: 300;
+}
+.widget-user .widget-user-desc {
+  margin-top: 0;
+  font-size: 1rem;
+}
+.widget-user .widget-user-image {
+  position: absolute;
+  top: 5.625rem;
+  left: 0;
+  right: 0;
+  width: 5.625rem;
+  margin-inline: auto;
+}
+.widget-user .widget-user-image > img {
+  width: 100%;
+  height: auto;
+  border: 3px solid var(--bs-body-bg);
+}
+.widget-user > .card-footer {
+  padding-top: 3.5625rem;
+}
+
+.widget-user-2 .widget-user-header {
+  display: flex;
+  -moz-column-gap: 1rem;
+  column-gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-top-right-radius: inherit;
+  border-top-left-radius: inherit;
+}
+.widget-user-2 .widget-user-image > img {
+  width: 4.0625rem;
+  height: 4.0625rem;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.widget-user-2 .widget-user-username {
+  margin-top: 0;
+  margin-bottom: 0.3125rem;
+  font-size: 1.5625rem;
+  font-weight: 300;
+}
+.widget-user-2 .widget-user-desc {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
 .login-logo,
 .register-logo {
   margin-bottom: 0.9rem;
