@@ -5,6 +5,20 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- **Select2 compatibility theme (`dist/css/adminlte-select2.css`)** — an opt-in, **CSS-only** sheet for projects that can't drop Select2 yet. AdminLTE still bundles neither Select2 nor jQuery and nothing is added to `adminlte.css`; load this one extra stylesheet after `select2.css` and a Select2 you bring yourself inherits Bootstrap 5.3's form metrics (`.form-select-sm` / `-lg` on the original `<select>` are honoured), focus ring, `.is-invalid` / `.is-valid` states, input-group corner rounding, badge-style multi-select pills, and `data-bs-theme` dark mode — including the body-appended dropdown. It also raises the dropdown above `.modal`, which removes the usual need for `dropdownParent`. Source lives in `src/scss/compat/_select2.scss` for anyone compiling their own Sass; RTL and minified variants are generated alongside the rest of the CSS (#6097, requested by @saddam2512).
+- **Third-party plugin replacement table** on the Migration page: every jQuery widget AdminLTE 3 bundled (Select2, DataTables, Summernote, iCheck, bootstrap-datepicker, jQuery Knob, Mapael, …) mapped to its vanilla-JS successor. The old plugin names were absent from the v4 docs entirely, so anyone searching for the plugin they knew found nothing and concluded it was unsupported.
+- **Select2 → Tom Select API mapping**, on both the Advanced Elements demo page and the Integrations docs page: 19 options, methods and events translated one-to-one (`ajax` → `load` + `loadThrottle`, `templateResult` → `render.option`, `select2("destroy")` → `ts.destroy()`, and so on).
+- **jsVectorMap** documented on the Integrations page as the dependency-free successor to AdminLTE 3's jQuery Mapael.
+- **New FAQ entry, "Does AdminLTE 4 support Select2?"**, plus a pointer from the existing jQuery question to the replacement table. The Deployment asset table and the RTL page now list the optional Select2 sheet alongside the core builds, and the README's breaking-changes list links the replacement table.
+
+### Changed
+
+- **The remote-data Tom Select demo in `forms/advanced.html` is now the real pattern**, not a `setTimeout` sketch: request debouncing via `loadThrottle`, in-flight cancellation via `AbortController`, and page-by-page loading through the `virtual_scroll` plugin against a 72-record stub whose `{ results, next }` response shape matches a real endpoint — swap the stub body for a single `fetch()` and it works unchanged. The single select also gained the `clear_button` plugin.
+
 ## [4.2.0] - 2026-08-06
 
 ### Added

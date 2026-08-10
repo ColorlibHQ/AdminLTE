@@ -1,0 +1,31 @@
+/*!
+ *   AdminLTE v4.2.0 — Select2 compatibility theme
+ *   Styling only. AdminLTE bundles neither Select2 nor jQuery; this optional
+ *   sheet makes a Select2 you load yourself match Bootstrap 5.3 form controls,
+ *   including `data-bs-theme` dark mode. Load it AFTER select2.css.
+ *   New code should prefer Tom Select — see docs/integrations.html.
+ *
+ *   Author: Colorlib
+ *   Website: AdminLTE.io <https://adminlte.io>
+ *   License: Open source - MIT <https://opensource.org/licenses/MIT>
+ */
+
+// Bootstrap Configuration
+// ---------------------------------------------------
+@import "bootstrap/scss/functions";
+@import "bootstrap-overrides";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+
+// AdminLTE Configuration
+// ---------------------------------------------------
+// `mixins` is deliberately not imported: it emits AdminLTE's @keyframes, and
+// this sheet only uses Bootstrap's own mixins.
+@import "variables";
+@import "variables-dark";
+
+// Select2 compatibility styles
+// ---------------------------------------------------
+@import "compat/select2";

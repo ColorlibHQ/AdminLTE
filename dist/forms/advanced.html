@@ -1099,7 +1099,10 @@
                         <option>United Kingdom</option>
                         <option>United States</option>
                       </select>
-                      <div class="form-text">Start typing to filter the list.</div>
+                      <div class="form-text">
+                        Start typing to filter the list; the &times; button clears the selection
+                        (<code>clear_button</code>).
+                      </div>
                     </div>
                     <div class="mb-4">
                       <label for="post-tags" class="form-label">Multi-select with tags</label>
@@ -1122,17 +1125,17 @@
                       </div>
                     </div>
                     <div>
-                      <label for="reviewer" class="form-label"
-                        >Option groups, loaded on demand</label
-                      >
+                      <label for="reviewer" class="form-label">Remote data with pagination</label>
                       <select
                         id="reviewer"
                         class="form-control"
-                        aria-label="Option groups, loaded on demand"
+                        aria-label="Remote data with pagination"
                       ></select>
                       <div class="form-text">
-                        Options arrive through Tom Select's <code>load</code> callback (a simulated
-                        API here) and are grouped by team.
+                        Backed by 72 records behind a stubbed endpoint. Typing is debounced
+                        (<code>loadThrottle</code>), stale requests are cancelled with
+                        <code>AbortController</code>, and scrolling to the bottom of the list pulls
+                        the next page (<code>virtual_scroll</code>).
                       </div>
                     </div>
                   </div>
@@ -1205,6 +1208,143 @@
                       >Flatpickr</a
                     >
                     &mdash; vanilla JS, no jQuery required.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Select2 → Tom Select -->
+              <div class="col-12" id="select2">
+                <div class="card card-secondary card-outline mb-4">
+                  <div class="card-header">
+                    <div class="card-title">Coming from Select2?</div>
+                  </div>
+                  <div class="card-body">
+                    <p>
+                      <a href="https://select2.org/" target="_blank" rel="noopener noreferrer"
+                        >Select2</a
+                      >
+                      is still maintained, but it is still a jQuery plugin &mdash; there is no
+                      jQuery-free build. Tom Select covers the same feature set in roughly
+                      <strong>20&nbsp;kB gzip</strong>, against Select2's
+                      <strong>~50&nbsp;kB</strong> once jQuery is counted. The API maps across
+                      almost one-to-one:
+                    </p>
+                    <div
+                      class="table-responsive"
+                      tabindex="0"
+                      role="region"
+                      aria-label="Select2 to Tom Select API mapping"
+                    >
+                      <table class="table table-sm table-striped align-middle mb-0">
+                        <caption class="visually-hidden">
+                          Select2 options and methods mapped to their Tom Select equivalents
+                        </caption>
+                        <thead>
+                          <tr>
+                            <th scope="col" style="width: 50%">Select2</th>
+                            <th scope="col">Tom Select</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>$("#x").select2()</code></td>
+                            <td><code>new TomSelect("#x")</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>tags: true</code></td>
+                            <td><code>create: true</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>allowClear: true</code></td>
+                            <td><code>plugins: ["clear_button"]</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>closeOnSelect: false</code></td>
+                            <td><code>closeAfterSelect: false</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>maximumSelectionLength: 3</code></td>
+                            <td><code>maxItems: 3</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>minimumInputLength: 2</code></td>
+                            <td><code>shouldLoad: (q) =&gt; q.length &gt;= 2</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>ajax: &#123; url, delay: 250 &#125;</code></td>
+                            <td>
+                              <code>load(query, callback)</code> + <code>loadThrottle: 250</code>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>ajax.processResults</code></td>
+                            <td>
+                              <code>valueField</code> / <code>labelField</code> /
+                              <code>searchField</code>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>infinite scroll (<code>pagination.more</code>)</td>
+                            <td>
+                              <code>plugins: ["virtual_scroll"]</code> + <code>setNextUrl()</code>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>templateResult</code> / <code>templateSelection</code></td>
+                            <td><code>render: &#123; option, item &#125;</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>dropdownParent: $("#modal")</code></td>
+                            <td class="text-body-secondary">
+                              Not needed &mdash; the dropdown renders inline
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>$("#x").val("2").trigger("change")</code></td>
+                            <td><code>ts.setValue("2")</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>$("#x").val()</code></td>
+                            <td><code>ts.getValue()</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.on("select2:select", fn)</code></td>
+                            <td><code>ts.on("item_add", fn)</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>.on("change", fn)</code></td>
+                            <td><code>ts.on("change", fn)</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>$("#x").select2("open")</code></td>
+                            <td><code>ts.open()</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>$("#x").prop("disabled", true)</code></td>
+                            <td><code>ts.disable()</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>$("#x").select2("destroy")</code></td>
+                            <td><code>ts.destroy()</code></td>
+                          </tr>
+                          <tr>
+                            <td><code>$("#x").empty().select2(&#123; data &#125;)</code></td>
+                            <td><code>ts.clearOptions(); ts.addOptions(data)</code></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="card-footer text-body-secondary small">
+                    Locked into Select2 for now? AdminLTE ships a styling-only
+                    <a
+                      href="../docs/integrations.html#select2-compatibility-theme"
+                      class="link-body-emphasis"
+                      >Select2 compatibility theme</a
+                    >
+                    that makes it match Bootstrap 5.3 &mdash; including dark mode and dropdowns
+                    inside modals. No jQuery is added to AdminLTE itself; you bring the plugin, we
+                    style it.
                   </div>
                 </div>
               </div>
@@ -1293,8 +1433,9 @@
     ></script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        // Tom Select: single select with search
+        // Tom Select: single select with search and a clear button
         new TomSelect('#country', {
+          plugins: ['clear_button'],
           sortField: { field: 'text', direction: 'asc' },
         });
 
@@ -1305,34 +1446,124 @@
           persist: false,
         });
 
-        // Tom Select: options fetched on demand and rendered in option groups.
-        // Swap the timeout for fetch("/api/users?q=" + encodeURIComponent(query))
-        // against a real endpoint in production.
-        const reviewers = [
-          { id: 1, name: 'Olivia Bennett', team: 'Frontend' },
-          { id: 2, name: 'Liam Carter', team: 'Frontend' },
-          { id: 3, name: 'Emma Dawson', team: 'Backend' },
-          { id: 4, name: 'Noah Evans', team: 'Backend' },
-          { id: 5, name: 'Ava Foster', team: 'Design' },
-          { id: 6, name: 'Ethan Grant', team: 'Design' },
+        // Tom Select: remote data, the way you'd wire a select backed by a table
+        // with thousands of rows. Only the matching page is ever loaded.
+        const PAGE_SIZE = 12;
+        const FIRST_NAMES = [
+          'Olivia',
+          'Liam',
+          'Emma',
+          'Noah',
+          'Ava',
+          'Ethan',
+          'Sofia',
+          'Lucas',
+          'Mia',
+          'Mateo',
+          'Isla',
+          'Arjun',
+          'Nora',
+          'Hugo',
+          'Yuki',
+          'Amara',
+          'Elena',
+          'Omar',
+          'Freya',
+          'Diego',
+          'Leila',
+          'Jonas',
+          'Priya',
+          'Marek',
         ];
+        const TEAMS = ['Frontend', 'Backend', 'Design'];
+        // Stands in for a database table.
+        const REVIEWERS = FIRST_NAMES.flatMap((first, index) =>
+          ['Bennett', 'Carter', 'Dawson'].map((last, offset) => ({
+            id: index * 3 + offset + 1,
+            name: `${first} ${last}`,
+            team: TEAMS[(index + offset) % TEAMS.length],
+          })),
+        );
+
+        // Stand-in for a real endpoint. To go live, replace the whole body with:
+        //   return fetch(url, { signal }).then((response) => response.json())
+        // The { results, next } response shape is what the loader below expects
+        // — and it's the same shape Select2's `ajax.processResults` users return.
+        function fetchReviewers(url, signal) {
+          const params = new URLSearchParams(url.slice(url.indexOf('?') + 1));
+          const query = (params.get('q') || '').toLowerCase();
+          const page = Number(params.get('page') || 1);
+
+          return new Promise((resolve, reject) => {
+            const timer = setTimeout(() => {
+              const matches = REVIEWERS.filter((person) =>
+                `${person.name} ${person.team}`.toLowerCase().includes(query),
+              );
+              const start = (page - 1) * PAGE_SIZE;
+              const hasMore = start + PAGE_SIZE < matches.length;
+              resolve({
+                results: matches.slice(start, start + PAGE_SIZE),
+                next: hasMore
+                  ? `/api/reviewers?q=${encodeURIComponent(query)}&page=${page + 1}`
+                  : null,
+              });
+            }, 400);
+
+            signal.addEventListener('abort', () => {
+              clearTimeout(timer);
+              reject(new DOMException('Aborted', 'AbortError'));
+            });
+          });
+        }
+
+        let inFlight = null;
+
         new TomSelect('#reviewer', {
           valueField: 'id',
           labelField: 'name',
-          searchField: ['name'],
-          optgroupField: 'team',
-          optgroups: [
-            { value: 'Frontend', label: 'Frontend' },
-            { value: 'Backend', label: 'Backend' },
-            { value: 'Design', label: 'Design' },
-          ],
-          placeholder: 'Type to search people…',
+          searchField: ['name', 'team'],
+          placeholder: 'Type to search 72 people…',
           preload: 'focus',
-          load(query, callback) {
-            setTimeout(() => {
-              const q = query.toLowerCase();
-              callback(reviewers.filter((person) => person.name.toLowerCase().includes(q)));
-            }, 300);
+          // Tom Select debounces `load` for you — no hand-rolled timer needed.
+          loadThrottle: 300,
+          // Pages in the next batch when the dropdown is scrolled to the bottom.
+          plugins: ['virtual_scroll'],
+          firstUrl: (query) => `/api/reviewers?q=${encodeURIComponent(query)}&page=1`,
+          // Tom Select invokes `load` with the instance as `this`; that's how
+          // the virtual_scroll plugin hands over getUrl() and setNextUrl().
+          /* eslint-disable unicorn/no-this-outside-of-class */
+          async load(query, callback) {
+            // Cancel the request already in flight, so a slow response for "an"
+            // can't land after the fast one for "anna".
+            if (inFlight) {
+              inFlight.abort();
+            }
+            inFlight = new AbortController();
+
+            try {
+              const json = await fetchReviewers(this.getUrl(query), inFlight.signal);
+              if (json.next) {
+                this.setNextUrl(query, json.next);
+              }
+              callback(json.results);
+            } catch (error) {
+              // An aborted request was replaced by a newer one — let that one
+              // resolve the dropdown instead of clearing it here.
+              if (error.name !== 'AbortError') {
+                callback();
+              }
+            }
+          },
+          /* eslint-enable unicorn/no-this-outside-of-class */
+          render: {
+            option: (data, escape) =>
+              `<div class="d-flex justify-content-between align-items-center">
+                 <span>${escape(data.name)}</span>
+                 <span class="badge text-bg-secondary">${escape(data.team)}</span>
+               </div>`,
+            loading_more: () => '<div class="p-2 text-body-secondary small">Loading more…</div>',
+            no_more_results: () =>
+              '<div class="p-2 text-body-secondary small">End of results</div>',
           },
         });
 

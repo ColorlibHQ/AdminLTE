@@ -48,6 +48,130 @@ Supports date ranges, time-only mode, multiple dates, and i18n out of the box.
 
 Ships a `tom-select.bootstrap5.min.css` theme that matches Bootstrap form controls.
 
+**Remote data.** For selects backed by a database rather than a static option list, fetch inside `load()`. Tom Select debounces it for you via `loadThrottle` (300 ms by default), and the `virtual_scroll` plugin pages through results as the user scrolls the dropdown:
+
+```js
+let inFlight = null
+
+new TomSelect("#reviewer", {
+  valueField: "id",
+  labelField: "name",
+  searchField: ["name"],
+  loadThrottle: 300,                      // debounce, built in
+  plugins: ["virtual_scroll"],            // infinite scroll pagination
+  firstUrl: (query) => `/api/users?q=${encodeURIComponent(query)}&page=1`,
+  load(query, callback) {
+    inFlight?.abort()                     // drop the stale request
+    inFlight = new AbortController()
+
+    fetch(this.getUrl(query), { signal: inFlight.signal })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.next) {
+          this.setNextUrl(query, json.next)
+        }
+        callback(json.results)
+      })
+      .catch((error) => {
+        if (error.name !== "AbortError") {
+          callback()
+        }
+      })
+  }
+})
+```
+
+`forms/advanced.html` runs this exact pattern against a stubbed endpoint — swap the stub for a `fetch()` and it works unchanged.
+
+###### Coming from Select2
+
+[Select2](https://select2.org/) is still maintained (4.1.0 shipped in 2026), but it is still a jQuery plugin — its UMD wrapper hard-requires jQuery, and there is no jQuery-free build. AdminLTE 4 therefore recommends Tom Select instead, which covers the same feature set for roughly 20 kB gzip against Select2's ~50 kB once jQuery is counted.
+
+The API translates directly:
+
+| Select2 | Tom Select |
+|---|---|
+| `$("#x").select2()` | `new TomSelect("#x")` |
+| `$("#x").select2({ tags: true })` | `new TomSelect("#x", { create: true })` |
+| `allowClear: true` | `plugins: ["clear_button"]` |
+| `closeOnSelect: false` | `closeAfterSelect: false` |
+| `maximumSelectionLength: 3` | `maxItems: 3` |
+| `minimumInputLength: 2` | `shouldLoad: (q) => q.length >= 2` |
+| `ajax: { url, delay: 250 }` | `load(query, callback)` + `loadThrottle: 250` |
+| `ajax: { …, processResults }` | `valueField` / `labelField` / `searchField` |
+| infinite scroll (`pagination.more`) | `plugins: ["virtual_scroll"]` + `setNextUrl()` |
+| `templateResult` / `templateSelection` | `render: { option, item }` |
+| `dropdownParent: $("#modal")` | *(not needed — the dropdown is inline)* |
+| `$("#x").val("2").trigger("change")` | `ts.setValue("2")` |
+| `$("#x").val()` | `ts.getValue()` |
+| `$("#x").on("select2:select", fn)` | `ts.on("item_add", fn)` |
+| `$("#x").on("change", fn)` | `ts.on("change", fn)` |
+| `$("#x").select2("open")` | `ts.open()` |
+| `$("#x").prop("disabled", true)` | `ts.disable()` |
+| `$("#x").select2("destroy")` | `ts.destroy()` |
+| `$("#x").empty().select2({ data })` | `ts.clearOptions(); ts.addOptions(data)` |
+
+A side-by-side version of this table with runnable code lives on the [Advanced Elements](../forms/advanced.html#select2) demo page.
+
+**If you have to keep Select2**, AdminLTE ships a *styling-only* compatibility sheet — see [Select2 compatibility theme](#select2-compatibility-theme) below.
+
+###### Select2 compatibility theme
+
+Some projects can't drop Select2: an ERP with hundreds of server-rendered forms, a vendor plugin that initialises it for you, or a team that simply isn't ready. AdminLTE won't bundle Select2 or jQuery, but it does ship a **CSS-only compatibility theme** so a Select2 you bring yourself inherits Bootstrap 5.3's form metrics, focus ring, validation states and `data-bs-theme` dark mode.
+
+- **`dist/css/adminlte-select2.css`** (+ `.min.css`, `.rtl.css`, `.rtl.min.css`)
+- No JavaScript, no jQuery, nothing added to `adminlte.css` — you opt in by loading one extra stylesheet.
+
+Load it **after** `select2.css`:
+
+```html
+<link rel="stylesheet" href="path/to/adminlte.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" />
+<link rel="stylesheet" href="path/to/adminlte-select2.min.css" />
+
+<select id="country" class="form-select">
+  <option value="">Select a country…</option>
+  <option value="lv">Latvia</option>
+</select>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
+<script>
+  $("#country").select2({ width: "100%" })
+</script>
+```
+
+What the theme handles for you:
+
+| | |
+|---|---|
+| Metrics | Height, padding, font size and border radius match `.form-select` exactly |
+| Sizing | `.form-select-sm` / `.form-select-lg` on the original `<select>` are honoured |
+| Focus | Bootstrap's focus ring instead of Select2's black outline |
+| Dark mode | Follows `data-bs-theme` — including the body-appended dropdown |
+| Validation | `.is-invalid` / `.is-valid` on the original `<select>` colour the container |
+| Multi-select | Choice pills styled as Bootstrap secondary badges |
+| Input groups | `.input-group` corner rounding and flex sizing |
+| Modals | Dropdown `z-index` raised above `.modal` — fixes the single most-reported Select2 + Bootstrap 5 bug, so `dropdownParent` is no longer needed |
+| RTL | Generated automatically alongside the rest of the CSS |
+
+Using a bundler? The compiled sheet is reachable through the package's `exports` map — again, after Select2's own CSS:
+
+```js
+import "admin-lte/dist/css/adminlte.min.css"
+import "select2/dist/css/select2.min.css"
+import "admin-lte/dist/css/adminlte-select2.min.css"
+```
+
+Compiling your own Sass instead? Import the partial after AdminLTE, which has already loaded the Bootstrap variables and mixins it needs:
+
+```scss
+@import "node_modules/admin-lte/src/scss/adminlte";
+@import "node_modules/admin-lte/src/scss/compat/select2";
+```
+
+The theme tracks Select2 4.1.x markup (it also covers the 4.0.x choice-remove markup). It is styling only — bugs in Select2 itself are still Select2's to fix, and none of the official AdminLTE framework ports (Vue, React, Django, Laravel) can consume a jQuery plugin.
+
 ###### Range slider — noUiSlider
 
 [noUiSlider](https://refreshless.com/nouislider/) handles single, range, and multi-handle sliders with no dependencies.
@@ -273,6 +397,28 @@ Ships a `tom-select.bootstrap5.min.css` theme that matches Bootstrap form contro
     headerToolbar: { start: "prev,next today", center: "title", end: "dayGridMonth,timeGridWeek,listWeek" },
     events: [{ title: "Team standup", start: "2026-06-01" }]
   }).render()
+</script>
+```
+
+##### Maps
+
+###### jsVectorMap
+
+[jsVectorMap](https://github.com/themustafaomar/jsvectormap) is the dependency-free successor to jQuery Mapael / jVectorMap. Choropleth maps, markers, per-region click handlers, and a world map plus per-country data files.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap@1.7.0/dist/css/jsvectormap.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.7.0/dist/js/jsvectormap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.7.0/dist/maps/world.js"></script>
+
+<div id="map" style="height: 20rem;"></div>
+
+<script>
+  new jsVectorMap({
+    selector: "#map",
+    map: "world",
+    markers: [{ name: "Riga", coords: [56.95, 24.11] }]
+  })
 </script>
 ```
 

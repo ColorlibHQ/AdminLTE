@@ -42,6 +42,13 @@
         "selector-max-type": null,
         "selector-no-qualifying-type": null
       }
+    },
+    {
+      "comment": "Third-party compatibility themes target class names we don't own (Select2 uses BEM, not kebab-case).",
+      "files": ["src/scss/compat/*.scss"],
+      "rules": {
+        "selector-class-pattern": null
+      }
     }
   ]
 }

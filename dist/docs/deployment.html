@@ -731,8 +731,21 @@
                             <strong><code>dist/css/adminlte.rtl.min.css</code></strong>
                           </td>
                         </tr>
+                        <tr>
+                          <td>Select2 theme <em>(optional)</em></td>
+                          <td><code>dist/css/adminlte-select2.css</code></td>
+                          <td>
+                            <strong><code>dist/css/adminlte-select2.min.css</code></strong>
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
+                    <p>
+                      <code>adminlte-select2.css</code> is opt-in and only needed if your app loads
+                      <a href="integrations.html#select2-compatibility-theme">Select2</a>; it is not
+                      part of <code>adminlte.css</code>. <code>adminlte-docs.css</code> styles the
+                      documentation pages only — never ship it.
+                    </p>
                     <h5 id="compression-at-the-edge">Compression at the edge</h5>
                     <p>
                       Make sure your web server / CDN gzips (or brotlis) responses for the relevant
