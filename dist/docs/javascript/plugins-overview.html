@@ -138,6 +138,28 @@
           </ul>
           <!--end::Start Navbar Links-->
 
+          <!--begin::Navbar Search-->
+          <form
+            class="navbar-search d-none d-md-block ms-3"
+            role="search"
+            action="../../pages/search-results.html"
+          >
+            <div class="input-group input-group-sm">
+              <label for="navbar-search-input" class="visually-hidden">Search</label>
+              <input
+                type="search"
+                id="navbar-search-input"
+                name="q"
+                class="form-control"
+                placeholder="Search…"
+              />
+              <button class="btn btn-outline-secondary" type="submit" aria-label="Submit search">
+                <i class="bi bi-search" aria-hidden="true"></i>
+              </button>
+            </div>
+          </form>
+          <!--end::Navbar Search-->
+
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">
             <!--begin::Messages Dropdown Menu-->
@@ -268,6 +290,35 @@
               </div>
             </li>
             <!--end::Notifications Dropdown Menu-->
+
+            <!--begin::Language Menu-->
+            <!-- Markup only: swapping the locale is the application's job. The docs
+           Recipes page shows how to wire this to a real locale switch. -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link"
+                href="#"
+                id="language-menu"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                aria-label="Change language, current language English"
+              >
+                <i class="bi bi-translate" aria-hidden="true"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language-menu">
+                <li>
+                  <a class="dropdown-item active" href="#" hreflang="en" aria-current="true">
+                    English
+                    <i class="bi bi-check-lg ms-2" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li><a class="dropdown-item" href="#" hreflang="es">Español</a></li>
+                <li><a class="dropdown-item" href="#" hreflang="fr">Français</a></li>
+                <li><a class="dropdown-item" href="#" hreflang="de">Deutsch</a></li>
+                <li><a class="dropdown-item" href="#" hreflang="ar">العربية</a></li>
+              </ul>
+            </li>
+            <!--end::Language Menu-->
 
             <!--begin::Fullscreen Toggle-->
             <li class="nav-item">
@@ -414,6 +465,23 @@
           </a>
         </div>
         <!--end::Sidebar Brand-->
+        <!--begin::Sidebar Search-->
+        <div class="sidebar-search" role="search">
+          <label for="sidebar-search-input" class="visually-hidden">Filter docs</label>
+          <input
+            type="search"
+            id="sidebar-search-input"
+            class="form-control form-control-sm"
+            placeholder="Filter docs…"
+            autocomplete="off"
+            data-lte-toggle="sidebar-search"
+            data-lte-target="#docs-navigation"
+          />
+          <p class="fs-7 text-secondary mt-2 mb-0" data-lte-search-empty role="status" hidden>
+            No matching pages.
+          </p>
+        </div>
+        <!--end::Sidebar Search-->
         <!--begin::Sidebar Wrapper-->
         <div class="sidebar-wrapper">
           <nav class="mt-2" aria-label="Documentation navigation">
@@ -498,6 +566,18 @@
                       <p>Main Sidebar</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="../../docs/components/card.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Card</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../docs/components/miscellaneous.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Miscellaneous</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
               <li class="nav-item menu-open">
@@ -549,6 +629,12 @@
                     <a href="../../docs/javascript/fullscreen.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Fullscreen</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../docs/javascript/sidebar-search.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Sidebar Search</p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -663,7 +749,7 @@
                 <div class="card">
                   <div class="card-body">
                     <p>
-                      AdminLTE ships seven JavaScript plugins as a single bundle
+                      AdminLTE ships eight JavaScript plugins as a single bundle
                       (<code>adminlte.js</code>). Each one is exported from the package root, can be
                       triggered via <code>data-lte-*</code> attributes for declarative use, and
                       exposes a programmatic API for code-driven control.
@@ -726,6 +812,14 @@
                           <td><a href="fullscreen.html">Reference</a></td>
                         </tr>
                         <tr>
+                          <td><strong>SidebarSearch</strong></td>
+                          <td>
+                            <code>data-lte-toggle=&quot;sidebar-search&quot;</code> on an input
+                          </td>
+                          <td><code>.search(term)</code> / <code>.clear()</code></td>
+                          <td><a href="sidebar-search.html">Reference</a></td>
+                        </tr>
+                        <tr>
                           <td><strong>Layout</strong></td>
                           <td>(auto-applied to <code>&lt;body&gt;</code>)</td>
                           <td><code>.holdTransition(time)</code></td>
@@ -774,8 +868,10 @@
                       The bundle attaches all data-API listeners on <code>DOMContentLoaded</code>.
                       Dynamically-injected elements still work for the
                       <a href="pushmenu.html">PushMenu</a>,
-                      <a href="card-widget.html">CardWidget</a>, and
-                      <a href="treeview.html">Treeview</a> plugins, which use event delegation.
+                      <a href="card-widget.html">CardWidget</a>,
+                      <a href="treeview.html">Treeview</a>, and
+                      <a href="sidebar-search.html">SidebarSearch</a> plugins, which use event
+                      delegation.
                     </p>
                     <h6 id="2-programmatic-imperative">2. Programmatic (imperative)</h6>
                     <p>
@@ -950,6 +1046,15 @@
                           <td>Exited fullscreen</td>
                         </tr>
                         <tr>
+                          <td>SidebarSearch</td>
+                          <td>—</td>
+                          <td><code>filtered.lte.sidebar-search</code></td>
+                          <td>
+                            Menu filtered (<code>detail: { query, matches }</code>;
+                            <code>matches</code> is <code>-1</code> on clear)
+                          </td>
+                        </tr>
+                        <tr>
                           <td>ColorMode</td>
                           <td>—</td>
                           <td><code>changed.lte.color-mode</code></td>
@@ -1061,6 +1166,12 @@
                           <td><code>&lt;body&gt;</code></td>
                           <td>OS <code>prefers-reduced-motion</code> detected</td>
                         </tr>
+                        <tr>
+                          <td><code>menu-open</code></td>
+                          <td>SidebarSearch</td>
+                          <td><code>.nav-item</code></td>
+                          <td>Submenu expanded to reveal a match (restored on clear)</td>
+                        </tr>
                       </tbody>
                     </table>
                     <h5 id="production-vs-source">Production vs source</h5>
@@ -1068,7 +1179,7 @@
                       The plugins live in
                       <a href="https://github.com/ColorlibHQ/master/src/ts"><code>src/ts/</code></a>
                       as TypeScript modules. The published <code>dist/js/adminlte.js</code> is a
-                      Rollup bundle of all seven, exporting them under a single
+                      Rollup bundle of all eight, exporting them under a single
                       <code>adminlte</code> namespace (UMD) or named imports (ESM).
                     </p>
                     <p>

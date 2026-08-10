@@ -6,5 +6,6 @@ import DirectChat from './direct-chat.js';
 import FullScreen from './fullscreen.js';
 import PushMenu from './push-menu.js';
 import ColorMode from './color-mode.js';
+import SidebarSearch from './sidebar-search.js';
 import { initAccessibility } from './accessibility.js';
-export { Layout, CardWidget, Treeview, DirectChat, FullScreen, PushMenu, ColorMode, initAccessibility, initialize, teardown };
+export { Layout, CardWidget, Treeview, DirectChat, FullScreen, PushMenu, ColorMode, SidebarSearch, initAccessibility, initialize, teardown };

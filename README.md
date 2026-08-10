@@ -113,6 +113,21 @@ The v4 line is a ground-up rewrite on Bootstrap 5.3 with **no jQuery**: 18 new d
 a documentation overhaul, and major dependency upgrades. See the
 [CHANGELOG](CHANGELOG.md) for full details.
 
+### New in 4.3
+
+- **Sidebar search** — a new `SidebarSearch` plugin filters the menu as you type, expanding
+  whatever submenu holds a match and restoring the menu exactly as it was when cleared.
+  Paired with a navbar search in the app header.
+- **Ribbons** — corner banners (`.ribbon-wrapper` + `.ribbon`) in three sizes, mirrored
+  automatically in RTL, with the clip following the card's corner radius.
+- **Social & post widgets** — `.user-block`, `.post`, `.widget-user`, `.widget-user-2` and
+  `.description-block`, laid out with grid and flex.
+- **Three new demo pages** — Gallery (filterable media library, no image library required),
+  Search Results (typed results with a refine panel), and Ribbons.
+- **Nav tabs, modals and offcanvas** added to the General UI Elements showcase.
+- **Card and Miscellaneous docs pages**, plus a language switcher recipe — every component
+  that ships CSS now has a reference page.
+
 <details>
 <summary>Highlights</summary>
 
