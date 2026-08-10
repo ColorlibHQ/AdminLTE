@@ -26,6 +26,28 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
     </a>
   </div>
   <!--end::Sidebar Brand-->
+  <!--begin::Sidebar Search-->
+  <div class="sidebar-search" role="search">
+    <label for="sidebar-search-input" class="visually-hidden">Filter docs</label>
+    <input
+      type="search"
+      id="sidebar-search-input"
+      class="form-control form-control-sm"
+      placeholder="Filter docs…"
+      autocomplete="off"
+      data-lte-toggle="sidebar-search"
+      data-lte-target="#docs-navigation"
+    />
+    <p
+      class="fs-7 text-secondary mt-2 mb-0"
+      data-lte-search-empty
+      role="status"
+      hidden
+    >
+      No matching pages.
+    </p>
+  </div>
+  <!--end::Sidebar Search-->
   <!--begin::Sidebar Wrapper-->
   <div class="sidebar-wrapper">
     <nav class="mt-2" aria-label="Documentation navigation">
@@ -143,6 +165,24 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                 <p>Main Sidebar</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/docs/components/card.html"}
+                class:list={["nav-link", page === "card" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Card</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/docs/components/miscellaneous.html"}
+                class:list={["nav-link", page === "miscellaneous" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Miscellaneous</p>
+              </a>
+            </li>
           </ul>
         </li>
         <li class:list={["nav-item", mainPage === "javascript" && "menu-open"]}>
@@ -218,6 +258,15 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
               >
                 <i class="nav-icon bi bi-circle"></i>
                 <p>Fullscreen</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/docs/javascript/sidebar-search.html"}
+                class:list={["nav-link", page === "sidebar-search" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Sidebar Search</p>
               </a>
             </li>
             <li class="nav-item">
