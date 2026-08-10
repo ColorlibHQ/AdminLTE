@@ -1,0 +1,70 @@
+//
+// Component: Ribbon
+//
+// A diagonal banner pinned to the top corner of a positioned parent. `.card` is
+// already `position: relative`; anything else needs `.position-relative`.
+//
+// The wrapper is a square that clips the band, and the band is centred on that
+// square before being rotated — so the whole geometry follows one size variable
+// and stays correct at every scale. rtlcss mirrors both the corner offset and
+// the rotation, so no direction-specific rules are needed here.
+//
+
+.ribbon-wrapper {
+  // The band has to span the wrapper's diagonal (size × √2); the extra bleed
+  // keeps its cut ends outside the clipping square. Derived here rather than
+  // with calc() so a theme only ever overrides the size.
+  --#{$lte-prefix}ribbon-size: #{$lte-ribbon-size};
+  --#{$lte-prefix}ribbon-width: #{$lte-ribbon-size * 1.45};
+  --#{$lte-prefix}ribbon-font-size: #{$lte-ribbon-font-size};
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: var(--#{$lte-prefix}ribbon-size);
+  height: var(--#{$lte-prefix}ribbon-size);
+  overflow: hidden;
+  // Inheriting the parent's corner radius makes the clip follow a rounded
+  // card instead of cutting a square out of it.
+  @include border-top-end-radius(inherit);
+
+  &.ribbon-lg {
+    --#{$lte-prefix}ribbon-size: #{$lte-ribbon-size-lg};
+    --#{$lte-prefix}ribbon-width: #{$lte-ribbon-size-lg * 1.45};
+    --#{$lte-prefix}ribbon-font-size: #{$lte-ribbon-font-size-lg};
+  }
+
+  &.ribbon-xl {
+    --#{$lte-prefix}ribbon-size: #{$lte-ribbon-size-xl};
+    --#{$lte-prefix}ribbon-width: #{$lte-ribbon-size-xl * 1.45};
+    --#{$lte-prefix}ribbon-font-size: #{$lte-ribbon-font-size-xl};
+  }
+
+  .ribbon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--#{$lte-prefix}ribbon-width);
+    padding: $lte-ribbon-padding;
+    overflow: hidden;
+    font-size: var(--#{$lte-prefix}ribbon-font-size);
+    font-weight: $lte-ribbon-font-weight;
+    line-height: 1.2;
+    color: var(--#{$prefix}emphasis-color);
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background-color: var(--#{$prefix}secondary-bg);
+    box-shadow: $lte-ribbon-shadow;
+    transform: translate(-50%, -50%) rotate(45deg);
+
+    // Ribbons carry a `.text-bg-*` utility for colour, so the link only needs
+    // to inherit whatever contrast colour that utility picked.
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}
