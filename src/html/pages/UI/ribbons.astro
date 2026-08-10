@@ -11,16 +11,17 @@ const mainPage = "ui-elements"
 const page = "ribbons"
 const pageTitle = "Ribbons"
 
-// The corner banner takes its colour from a Bootstrap `.text-bg-*` utility, so
-// the demo grid is just a list of variants.
+// The corner banner takes its colour from a Bootstrap `.text-bg-*` utility.
+// Labels are short on purpose: only about 64px of the band is visible at the
+// default size, so a long word is cut by the corner rather than ellipsised.
 const variants = [
-  "primary",
-  "secondary",
-  "success",
-  "danger",
-  "warning",
-  "info",
-  "dark"
+  { name: "primary", label: "New" },
+  { name: "secondary", label: "Draft" },
+  { name: "success", label: "Live" },
+  { name: "danger", label: "Hot" },
+  { name: "warning", label: "Beta" },
+  { name: "info", label: "Tip" },
+  { name: "dark", label: "Pro" }
 ]
 ---
 
@@ -69,10 +70,20 @@ const variants = [
           <!--begin::Container-->
           <div class="container-fluid">
             <div class="callout callout-info mb-4">
-              A ribbon is pinned to the top corner of its nearest positioned
-              ancestor. Cards are already positioned, so
-              <code>.ribbon-wrapper</code> works inside one as-is — on any other
-              element, add <code>.position-relative</code> to the parent.
+              <p>
+                A ribbon is pinned to the top corner of its nearest positioned
+                ancestor. Cards are already positioned, so
+                <code>.ribbon-wrapper</code> works inside one as-is — on any
+                other element, add <code>.position-relative</code> to the
+                parent.
+              </p>
+              <p class="mb-0">
+                Keep labels short. The banner is clipped to the corner, so only
+                about <code>64px</code> of it is readable at the default size —
+                roughly six characters. Step up to
+                <code>.ribbon-lg</code> or <code>.ribbon-xl</code> for longer
+                words.
+              </p>
             </div>
 
             <!--begin::Colors-->
@@ -84,13 +95,19 @@ const variants = [
                   <div class="col-md-4 col-sm-6">
                     <div class="card mb-0">
                       <div class="ribbon-wrapper">
-                        <div class={`ribbon text-bg-${variant}`}>{variant}</div>
+                        <div class={`ribbon text-bg-${variant.name}`}>
+                          {variant.label}
+                        </div>
                       </div>
                       <div class="card-body" style="min-height: 5rem;">
-                        <h6 class="card-title text-capitalize mb-0">{variant}</h6>
+                        <h6 class="card-title text-capitalize mb-0">
+                          {variant.name}
+                        </h6>
                       </div>
                       <div class="card-footer">
-                        <code class="text-body-emphasis">.ribbon.text-bg-{variant}</code>
+                        <code class="text-body-emphasis">
+                          .ribbon.text-bg-{variant.name}
+                        </code>
                       </div>
                     </div>
                   </div>

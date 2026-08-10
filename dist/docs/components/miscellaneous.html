@@ -875,8 +875,10 @@
 <span class="line"><span style="color:#9CDCFE">  --lte-ribbon-width</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">130px</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
                     <p>
-                      Long labels are truncated with an ellipsis rather than breaking the geometry.
-                      In RTL the corner and the rotation both mirror — no extra markup.
+                      Keep labels short. The banner is clipped to the corner square, so only about
+                      <code>64px</code> of it is readable at the default size — roughly six
+                      characters. <code>.ribbon-lg</code> and <code>.ribbon-xl</code> give you more
+                      room. In RTL the corner and the rotation both mirror, with no extra markup.
                     </p>
                     <h5 id="small-box">Small box</h5>
                     <p>

@@ -48,7 +48,7 @@ The banner's width is derived from `--lte-ribbon-size`, so overriding that one p
 }
 ```
 
-Long labels are truncated with an ellipsis rather than breaking the geometry. In RTL the corner and the rotation both mirror — no extra markup.
+Keep labels short. The banner is clipped to the corner square, so only about `64px` of it is readable at the default size — roughly six characters. `.ribbon-lg` and `.ribbon-xl` give you more room. In RTL the corner and the rotation both mirror, with no extra markup.
 
 ##### Small box
 
