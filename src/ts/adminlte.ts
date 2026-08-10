@@ -6,10 +6,11 @@ import DirectChat from './direct-chat.js'
 import FullScreen from './fullscreen.js'
 import PushMenu from './push-menu.js'
 import ColorMode from './color-mode.js'
+import SidebarSearch from './sidebar-search.js'
 import { initAccessibility } from './accessibility.js'
 
 /**
- * AdminLTE v4.2.0
+ * AdminLTE v4.3.0
  * Author: Colorlib
  * Website: AdminLTE.io <https://adminlte.io>
  * License: Open source - MIT <https://opensource.org/licenses/MIT>
@@ -40,6 +41,7 @@ export {
   FullScreen,
   PushMenu,
   ColorMode,
+  SidebarSearch,
   initAccessibility,
   initialize,
   teardown
