@@ -309,6 +309,12 @@
   white-space: nowrap;
 }
 
+// Sidebar search: the filter field above the menu. It sits outside
+// .sidebar-wrapper so it stays put while the menu scrolls under it.
+.sidebar-search {
+  padding: $lte-sidebar-padding-y ($lte-sidebar-padding-x * 2);
+}
+
 // Logo style
 .logo-xs,
 .logo-xl {
@@ -353,6 +359,12 @@
 
   // Make the sidebar headers
   .sidebar-menu .nav-header {
+    display: none;
+  }
+
+  // A text field can't render usefully in the mini rail; it returns on hover
+  // together with the labels it filters.
+  .app-sidebar:not(:hover) .sidebar-search {
     display: none;
   }
 
