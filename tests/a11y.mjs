@@ -31,7 +31,13 @@ const PAGES = [
   '/tables/simple.html',
   '/forms/advanced.html',
   '/forms/editors.html',
-  '/layout/top-nav.html'
+  '/layout/top-nav.html',
+  '/UI/general.html',
+  '/UI/ribbons.html',
+  '/widgets/social.html',
+  '/pages/gallery.html',
+  '/pages/search-results.html',
+  '/docs/components/miscellaneous.html'
 ]
 
 // Failures gate on impact, so new pages can't regress below this bar.
