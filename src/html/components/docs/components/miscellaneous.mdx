@@ -1,0 +1,191 @@
+The components on this page are the ones AdminLTE adds on top of Bootstrap that aren't the header, the sidebar or the [card](card.html). Each is CSS-only unless noted.
+
+##### Callouts
+
+A bordered note block, tinted per theme colour. Used throughout these docs.
+
+```html
+<div class="callout callout-info">
+  <h5 class="fw-bold">Heads up</h5>
+  <p>Body text. <a href="#" class="callout-link">A link</a>.</p>
+</div>
+```
+
+| Class | Description |
+|---|---|
+| `.callout` | Base block: padding and a `.25rem` left border. |
+| `.callout-{color}` | One per `$theme-colors` entry. Sets the background, border and text-emphasis colours together. |
+| `.callout-link` | Bolds a link inside a callout. Plain links and `<code>` are already tinted to the variant's emphasis colour, so they stay legible on the subtle background. |
+
+Consecutive callouts collapse the gap between them, so a stack reads as one block.
+
+##### Ribbons
+
+A diagonal banner pinned to the top corner of a positioned ancestor. See the [ribbons demo](../../UI/ribbons.html).
+
+```html
+<div class="card">
+  <div class="ribbon-wrapper">
+    <div class="ribbon text-bg-primary">New</div>
+  </div>
+  <div class="card-body">…</div>
+</div>
+```
+
+| Class | Description |
+|---|---|
+| `.ribbon-wrapper` | The square that clips the banner. Must sit inside something positioned — `.card` already is; anything else needs `.position-relative`. |
+| `.ribbon` | The banner itself. Colour comes from a `.text-bg-*` utility. |
+| `.ribbon-wrapper.ribbon-lg` | Larger corner, `1rem` text. |
+| `.ribbon-wrapper.ribbon-xl` | Largest corner, `1.25rem` text. |
+
+The banner's width is derived from `--lte-ribbon-size`, so overriding that one property rescales the whole thing:
+
+```css
+.ribbon-wrapper.ribbon-custom {
+  --lte-ribbon-size: 90px;
+  --lte-ribbon-width: 130px;
+}
+```
+
+Long labels are truncated with an ellipsis rather than breaking the geometry. In RTL the corner and the rotation both mirror — no extra markup.
+
+##### Small box
+
+A large stat tile with a background colour, a watermark icon and a footer link.
+
+```html
+<div class="small-box text-bg-primary">
+  <div class="inner">
+    <h3>150</h3>
+    <p>New Orders</p>
+  </div>
+  <svg class="small-box-icon" aria-hidden="true">…</svg>
+  <a href="#" class="small-box-footer link-light">More info <i class="bi bi-link-45deg"></i></a>
+</div>
+```
+
+| Class | Description |
+|---|---|
+| `.small-box` | The tile. Pair with a `.text-bg-*` utility for colour. |
+| `.inner` | Holds the figure and its label. |
+| `.small-box-icon` | Oversized watermark icon, anchored to the trailing edge. Mark it `aria-hidden="true"`. |
+| `.small-box-footer` | Full-width footer link. |
+
+##### Info box
+
+A compact stat row: icon, label, figure and an optional progress bar.
+
+```html
+<div class="info-box">
+  <span class="info-box-icon text-bg-primary shadow-sm">
+    <i class="bi bi-gear-fill"></i>
+  </span>
+  <div class="info-box-content">
+    <span class="info-box-text">CPU Traffic</span>
+    <span class="info-box-number">10 <small>%</small></span>
+    <div class="progress">
+      <div class="progress-bar" style="width: 70%"></div>
+    </div>
+    <span class="progress-description">70% increase in 30 days</span>
+  </div>
+</div>
+```
+
+| Class | Description |
+|---|---|
+| `.info-box` | The row. |
+| `.info-box-icon` | Square icon area. Colour it with `.text-bg-*`. |
+| `.info-box-content` | Text column. |
+| `.info-box-text` | Label. Truncates rather than wrapping. |
+| `.info-box-number` | The figure. |
+| `.info-box-more` | Optional trailing link. |
+| `.progress-description` | Caption under an embedded progress bar. |
+
+##### Timeline
+
+A vertical, dated activity list.
+
+```html
+<div class="timeline">
+  <div class="time-label"><span class="text-bg-danger">10 Feb. 2026</span></div>
+  <div>
+    <i class="timeline-icon bi bi-envelope text-bg-primary"></i>
+    <div class="timeline-item">
+      <span class="time"><i class="bi bi-clock-fill"></i> 12:05</span>
+      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+      <div class="timeline-body">…</div>
+      <div class="timeline-footer"><a class="btn btn-primary btn-sm">Read more</a></div>
+    </div>
+  </div>
+</div>
+```
+
+| Class | Description |
+|---|---|
+| `.timeline` | The container, drawing the vertical rule. |
+| `.time-label` | A date marker interrupting the rule. |
+| `.timeline-icon` | The dot on the rule. Colour it with `.text-bg-*`. |
+| `.timeline-item` | The entry's panel. |
+| `.time` | Trailing timestamp inside the panel. |
+| `.timeline-header` / `.timeline-body` / `.timeline-footer` | The panel's three sections. Body and footer are optional. |
+| `.timeline-inverse` | Flat variant: no shadow, a plain border instead. |
+
+Each entry is a bare `<div>` wrapping the icon and the item — the wrapper carries no class.
+
+##### Social and post widgets
+
+Profile cards and activity-feed blocks. See the [social widgets demo](../../widgets/social.html). These keep their v3 class names so migrating markup works unchanged, but they are laid out with grid and flex rather than floats, and take their colours from Bootstrap utilities.
+
+```html
+<div class="user-block">
+  <img class="rounded-circle" src="user.jpg" alt="">
+  <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+  <span class="description">Shared publicly · 7:30 PM today</span>
+</div>
+```
+
+| Class | Description |
+|---|---|
+| `.user-block` | Avatar, name and meta line from flat markup — the avatar spans both text rows, so no wrapper element is needed. An optional `.comment` lands on a third row. |
+| `.user-block.user-block-sm` | Smaller avatar and type, for comment threads. |
+| `.post` | One entry in a feed. Divided from the next; the last entry drops its divider and trailing space. |
+| `.description-block` | A centred figure with an uppercase caption — `.description-header` and `.description-text`. Repeat across a card footer's columns. |
+| `.widget-user` | Profile card with a banner header and an avatar straddling the header/footer seam. Needs `.widget-user-header`, `.widget-user-image`, `.widget-user-username`, `.widget-user-desc`. |
+| `.widget-user-2` | Shorter variant with the avatar inline in the header, so long names can wrap. |
+
+For `.widget-user`, the header's height and the avatar's size are Sass variables (`$lte-widget-user-header-height`, `$lte-widget-user-image-size`); the footer's top padding is derived from them, so changing one value keeps the overlap correct.
+
+##### Progress bars
+
+Extra sizes on top of Bootstrap's `.progress`.
+
+| Class | Height |
+|---|---|
+| `.progress-sm` | `10px` |
+| `.progress-xs` | `7px` |
+| `.progress-xxs` | `3px` |
+
+`.progress.vertical` turns a bar on its side, and `.progress-group` pairs a bar with a label row.
+
+##### Toasts
+
+`.toast-{color}` themes a Bootstrap toast per `$theme-colors`: coloured header, subtle body, matching border. The close button flips to its white variant on dark headers automatically, in both colour modes.
+
+```html
+<div class="toast toast-success" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <strong class="me-auto">Saved</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+  <div class="toast-body">Your changes have been saved.</div>
+</div>
+```
+
+##### Image sizes
+
+`.img-size-32`, `.img-size-50` and `.img-size-64` set a width in pixels and leave the height automatic. They exist for avatars in dropdowns and lists, where a Bootstrap sizing utility would need two classes.
+
+##### Direct chat
+
+The chat panel has its own page — see the [DirectChat plugin](../javascript/direct-chat.html) for its markup and the contacts-pane toggle.
