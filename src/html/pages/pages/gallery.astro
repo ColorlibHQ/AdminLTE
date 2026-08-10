@@ -1,0 +1,259 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+
+const title = "AdminLTE 4 | Gallery"
+const path = "../../../dist"
+const mainPage = "pages"
+const page = "gallery"
+const pageTitle = "Gallery"
+
+// Smart path resolution: calculate relative path based on directory depth
+const pathname = Astro.url.pathname
+const pathSegments = pathname.split("/").filter(segment => segment !== "")
+const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0
+const deploymentPath = depth === 0 ? "./" : "../".repeat(depth)
+
+// The grid is plain Bootstrap — a ratio box plus `.object-fit-cover` — so the
+// page carries no image library at all. Categories drive the filter buttons.
+// Titles describe the bundled image each tile actually shows — the demo assets
+// are one product (a hiking boot, shot from five angles), two streetscapes, an
+// interior and a portrait.
+const items = [
+  { file: "photo1.png", title: "Old town at dusk", category: "places", meta: "4.2 MB · 3840×2160" },
+  { file: "prod-1.jpg", title: "Trail boot, three-quarter", category: "products", meta: "1.1 MB · 1600×1600" },
+  { file: "photo3.jpg", title: "Reading by lamplight", category: "people", meta: "3.8 MB · 3200×2133" },
+  { file: "prod-2.jpg", title: "Trail boot, profile", category: "products", meta: "980 KB · 1600×1600" },
+  { file: "photo2.png", title: "Dining area, morning", category: "interiors", meta: "2.6 MB · 2560×1707" },
+  { file: "prod-3.jpg", title: "Trail boot, outsole", category: "products", meta: "1.4 MB · 1600×1600" },
+  { file: "photo4.jpg", title: "Canal at first light", category: "places", meta: "3.1 MB · 3000×2000" },
+  { file: "prod-4.jpg", title: "Trail boot, heel detail", category: "products", meta: "1.2 MB · 1600×1600" },
+  { file: "photo2.png", title: "Dining area, wide", category: "interiors", meta: "2.6 MB · 2560×1707" },
+  { file: "prod-5.jpg", title: "Trail boot, upper", category: "products", meta: "1.0 MB · 1600×1600" },
+  { file: "photo1.png", title: "Narrow street", category: "places", meta: "4.2 MB · 3840×2160" },
+  { file: "photo4.jpg", title: "Canal, long exposure", category: "places", meta: "3.1 MB · 3000×2000" }
+]
+
+const filters = [
+  { value: "all", label: "All" },
+  { value: "places", label: "Places" },
+  { value: "products", label: "Products" },
+  { value: "interiors", label: "Interiors" },
+  { value: "people", label: "People" }
+]
+---
+
+<!doctype html>
+<html lang="en">
+  <!--begin::Head-->
+  <head>
+    <Head title={title} path={path} />
+  </head>
+  <!--end::Head-->
+  <!--begin::Body-->
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <!--begin::App Wrapper-->
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <!--begin::App Main-->
+      <main class="app-main">
+        <!--begin::App Content Header-->
+        <div class="app-content-header">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6">
+                <h1 class="mb-0 fs-3">{pageTitle}</h1>
+              </div>
+              <div class="col-sm-6">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      {pageTitle}
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
+        <div class="app-content">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Card-->
+            <div class="card">
+              <!--begin::Card Header-->
+              <div class="card-header d-flex flex-wrap align-items-center gap-2">
+                <div class="card-title">Media library</div>
+                <div class="card-tools">
+                  <div
+                    class="btn-group btn-group-sm"
+                    role="group"
+                    aria-label="Filter by category"
+                    id="gallery-filters"
+                  >
+                    {
+                      filters.map((filter, index) => (
+                        <button
+                          type="button"
+                          class:list={[
+                            "btn",
+                            index === 0 ? "btn-primary" : "btn-outline-primary"
+                          ]}
+                          data-gallery-filter={filter.value}
+                          aria-pressed={index === 0 ? "true" : "false"}
+                        >
+                          {filter.label}
+                        </button>
+                      ))
+                    }
+                  </div>
+                </div>
+              </div>
+              <!--end::Card Header-->
+              <!--begin::Card Body-->
+              <div class="card-body">
+                <!--begin::Gallery Grid-->
+                <div
+                  class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4 g-3"
+                  id="gallery-grid"
+                >
+                  {
+                    items.map(item => (
+                      <div class="col" data-gallery-item={item.category}>
+                        <figure class="card h-100 mb-0">
+                          <div class="ratio ratio-4x3">
+                            <img
+                              src={deploymentPath + "assets/img/" + item.file}
+                              alt={item.title}
+                              class="card-img-top object-fit-cover"
+                              loading="lazy"
+                            />
+                          </div>
+                          <figcaption class="card-body d-flex align-items-start gap-2 py-2">
+                            <div class="flex-grow-1 overflow-hidden">
+                              <p class="fw-semibold mb-0 text-truncate">
+                                {item.title}
+                              </p>
+                              <p class="fs-7 text-secondary mb-0">{item.meta}</p>
+                            </div>
+                            <div class="dropdown flex-shrink-0">
+                              <button
+                                class="btn btn-tool"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                aria-label={`Actions for ${item.title}`}
+                              >
+                                <i class="bi bi-three-dots-vertical" aria-hidden="true" />
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                  <a class="dropdown-item" href="#">Download</a>
+                                </li>
+                                <li>
+                                  <a class="dropdown-item" href="#">Rename</a>
+                                </li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                  <a class="dropdown-item text-danger" href="#">
+                                    Delete
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </figcaption>
+                        </figure>
+                      </div>
+                    ))
+                  }
+                </div>
+                <!--end::Gallery Grid-->
+                <!--begin::Empty State-->
+                <p
+                  class="text-secondary text-center my-5"
+                  id="gallery-empty"
+                  role="status"
+                  hidden
+                >
+                  Nothing in this category yet.
+                </p>
+                <!--end::Empty State-->
+              </div>
+              <!--end::Card Body-->
+              <!--begin::Card Footer-->
+              <div class="card-footer d-flex flex-wrap justify-content-between align-items-center gap-2">
+                <span class="fs-7 text-body-secondary" id="gallery-count" aria-live="polite">
+                  Showing {items.length} of {items.length} items
+                </span>
+                <button type="button" class="btn btn-sm btn-primary">
+                  <i class="bi bi-upload me-1" aria-hidden="true"></i> Upload
+                </button>
+              </div>
+              <!--end::Card Footer-->
+            </div>
+            <!--end::Card-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content-->
+      </main>
+      <!--end::App Main-->
+      <Footer />
+    </div>
+    <!--end::App Wrapper-->
+    <!--begin::Script-->
+    <Scripts path={path} />
+    <!--begin::Gallery Filter-->
+    <script is:inline>
+const galleryFilters = document.getElementById("gallery-filters")
+const galleryGrid = document.getElementById("gallery-grid")
+const galleryEmpty = document.getElementById("gallery-empty")
+const galleryCount = document.getElementById("gallery-count")
+
+if (galleryFilters && galleryGrid) {
+  const tiles = galleryGrid.querySelectorAll("[data-gallery-item]")
+
+  galleryFilters.addEventListener("click", event => {
+    const button = event.target.closest("[data-gallery-filter]")
+    if (!button) {
+      return
+    }
+
+    const category = button.dataset.galleryFilter
+    let shown = 0
+
+    tiles.forEach(tile => {
+      const match = category === "all" || tile.dataset.galleryItem === category
+      tile.hidden = !match
+      if (match) {
+        shown++
+      }
+    })
+
+    galleryFilters.querySelectorAll("[data-gallery-filter]").forEach(other => {
+      const active = other === button
+      other.classList.toggle("btn-primary", active)
+      other.classList.toggle("btn-outline-primary", !active)
+      other.setAttribute("aria-pressed", String(active))
+    })
+
+    galleryEmpty.hidden = shown > 0
+    galleryCount.textContent = `Showing ${shown} of ${tiles.length} items`
+  })
+}
+    </script>
+    <!--end::Gallery Filter-->
+    <!--end::Script-->
+  </body><!--end::Body-->
+</html>
