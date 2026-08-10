@@ -115,20 +115,32 @@ export class AccessibilityManager {
   }
 
   private ensureSkipTargets(): void {
-    const main = document.querySelector('#main, main, [role="main"]')
-    if (main && !main.id) {
-      main.id = 'main'
-    }
-    if (main && !main.hasAttribute('tabindex')) {
-      main.setAttribute('tabindex', '-1')
-    }
+    // An element the page already gave the id to always wins. This used to be
+    // one querySelector over `#navigation, nav, [role="navigation"]`, but a
+    // selector list returns the first match in *document order* rather than
+    // the first selector that matched — so a page whose sidebar menu carried
+    // `id="navigation"` had the id stamped a second time onto the header
+    // <nav> that precedes it, leaving a duplicate id and pointing both the
+    // skip link and any `#navigation` lookup at the wrong element.
+    const targets: Array<[string, string]> = [
+      ['main', 'main, [role="main"]'],
+      ['navigation', 'nav, [role="navigation"]']
+    ]
 
-    const nav = document.querySelector('#navigation, nav, [role="navigation"]')
-    if (nav && !nav.id) {
-      nav.id = 'navigation'
-    }
-    if (nav && !nav.hasAttribute('tabindex')) {
-      nav.setAttribute('tabindex', '-1')
+    for (const [id, fallbackSelector] of targets) {
+      const target = document.getElementById(id) ?? document.querySelector(fallbackSelector)
+
+      if (!target) {
+        continue
+      }
+
+      if (!target.id) {
+        target.id = id
+      }
+
+      if (!target.hasAttribute('tabindex')) {
+        target.setAttribute('tabindex', '-1')
+      }
     }
   }
 
