@@ -898,7 +898,9 @@
                       <strong><code>dist/css/adminlte-colors.css</code></strong> is the answer, and
                       it is opt-in: one extra stylesheet (≈ 5 kB gzipped) that adds fourteen colours
                       as <code>--bs-*</code> tokens plus every class family Bootstrap generates for
-                      its own theme colours. Nothing changes for projects that don’t load it.
+                      its own theme colours. Nothing changes for projects that don’t load it. Prefer
+                      the AdminLTE 3 colours exactly as they were? There is a second sheet for that
+                      — see <a href="#two-palettes">Two palettes</a> below.
                     </p>
                     <div class="d-flex flex-wrap gap-2 my-3">
                       <span class="badge text-bg-orange fs-6 fw-normal">orange</span
@@ -955,6 +957,406 @@
                       generated for symmetry with the rest of the CSS; the sheet has no
                       direction-dependent rules, so either file works in either direction.
                     </p>
+                    <h5 id="two-palettes">Two palettes</h5>
+                    <p>
+                      You can have the colours <strong>designed for 4.4</strong> (this page’s
+                      default, below) or the <strong>AdminLTE 3 originals</strong>, unchanged. They
+                      ship as two files that define the same class names with different values, so
+                      load <strong>one</strong> of them after <code>adminlte.css</code>:
+                    </p>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>File</th>
+                          <th>What you get</th>
+                          <th>Text colour rule</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><code>dist/css/adminlte-colors.css</code></td>
+                          <td>
+                            14 colours designed in OKLCH — orange, amber, olive, teal, sky, indigo,
+                            violet, fuchsia, pink, navy, steel, slate, graphite, midnight — every
+                            one readable with white text, placed to sit next to Bootstrap’s theme
+                            colours
+                          </td>
+                          <td>Bootstrap 5’s <code>color-contrast()</code>, 4.5:1</td>
+                        </tr>
+                        <tr>
+                          <td><code>dist/css/adminlte-colors-v3.css</code></td>
+                          <td>
+                            the 18 AdminLTE 3 colours — lightblue, navy, olive, lime, fuchsia,
+                            maroon, blue, indigo, purple, pink, red, orange, yellow, green, teal,
+                            cyan, gray, gray-dark — values as they were in the 3.2 build
+                          </td>
+                          <td>
+                            AdminLTE 3’s rule (Bootstrap 4 YIQ): white on lightblue, olive, teal,
+                            cyan …; dark on lime, orange, yellow
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p>
+                      Both emit exactly the same class families (<code>.bg-*</code>,
+                      <code>.text-bg-*</code>, <code>.text-*</code>, <code>.border-*</code>,
+                      <code>.link-*</code>, <code>.bg-gradient-*</code>, <code>.card-*</code>,
+                      <code>.callout-*</code>, <code>.direct-chat-*</code>, tokens with dark-mode
+                      variants), so everything on this page applies to either. The demo pages let
+                      you switch between them live: the
+                      <a href="../UI/colors.html">Colors demo</a> and
+                      <a href="../generate/theme.html">Theme Customize</a> both have a palette
+                      toggle.
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#6A9955">&lt;!-- either the designed palette … --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;css/adminlte-colors.css&quot;</span><span style="color:#808080"> /&gt;</span></span>
+<span class="line"><span style="color:#6A9955">&lt;!-- … or the AdminLTE 3 originals, not both --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;css/adminlte-colors-v3.css&quot;</span><span style="color:#808080"> /&gt;</span></span></code></pre>
+                    <p>
+                      The AdminLTE 3 originals, with the contrast ratio white text reaches on each —
+                      several are below WCAG AA’s 4.5:1 for normal text, exactly as they were in v3,
+                      which is the trade-off of keeping them as they were:
+                    </p>
+                    <div class="table-responsive">
+                      <table class="table align-middle">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Hex</th>
+                            <th scope="col">Text (v3 rule)</th>
+                            <th scope="col">White text</th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #3c8dbc">   </span
+                              ><code>lightblue</code>
+                            </td>
+                            <td><code>#3c8dbc</code></td>
+                            <td>white</td>
+                            <td class="text-nowrap">3.7:1 ⚠︎</td>
+                            <td class="text-body-secondary">
+                              The AdminLTE 2/3 signature blue (skin-blue header)
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #001f3f">   </span
+                              ><code>navy</code>
+                            </td>
+                            <td><code>#001f3f</code></td>
+                            <td>white</td>
+                            <td class="text-nowrap">16.6:1</td>
+                            <td class="text-body-secondary"></td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #3d9970">   </span
+                              ><code>olive</code>
+                            </td>
+                            <td><code>#3d9970</code></td>
+                            <td>white</td>
+                            <td class="text-nowrap">3.5:1 ⚠︎</td>
+                            <td class="text-body-secondary"></td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #01ff70">   </span
+                              ><code>lime</code>
+                            </td>
+                            <td><code>#01ff70</code></td>
+                            <td>dark (#1f2d3d)</td>
+                            <td class="text-nowrap">1.4:1</td>
+                            <td class="text-body-secondary">Dark text</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #f012be">   </span
+                              ><code>fuchsia</code>
+                            </td>
+                            <td><code>#f012be</code></td>
+                            <td>white</td>
+                            <td class="text-nowrap">3.8:1 ⚠︎</td>
+                            <td class="text-body-secondary"></td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #d81b60">   </span
+                              ><code>maroon</code>
+                            </td>
+                            <td><code>#d81b60</code></td>
+                            <td>white</td>
+                            <td class="text-nowrap">4.9:1</td>
+                            <td class="text-body-secondary"></td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #007bff">   </span
+                              ><code>blue</code>
+                            </td>
+                            <td><code>#007bff</code></td>
+                            <td>white</td>
+                            <td class="text-nowrap">4.0:1 ⚠︎</td>
+                            <td class="text-body-secondary">Bootstrap 4 blue</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #6610f2">   </span
+                              ><code>indigo</code>
+                            </td>
+                            <td><code>#6610f2</code></td>
+                            <td>white</td>
+                            <td class="text-nowrap">7.2:1</td>
+                            <td class="text-body-secondary">Bootstrap 4 indigo</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #6f42c1">   </span
+                              ><code>purple</code>
+                            </td>
+                            <td><code>#6f42c1</code></td>
+                            <td>white</td>
+                            <td class="text-nowrap">6.5:1</td>
+                            <td class="text-body-secondary">Bootstrap 4 purple</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #e83e8c">   </span
+                              ><code>pink</code>
+                            </td>
+                            <td><code>#e83e8c</code></td>
+                            <td>white</td>
+                            <td class="text-nowrap">3.8:1 ⚠︎</td>
+                            <td class="text-body-secondary">Bootstrap 4 pink</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #dc3545">   </span
+                              ><code>red</code>
+                            </td>
+                            <td><code>#dc3545</code></td>
+                            <td>white</td>
+                            <td class="text-nowrap">4.5:1</td>
+                            <td class="text-body-secondary">Bootstrap 4 red</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #fd7e14">   </span
+                              ><code>orange</code>
+                            </td>
+                            <td><code>#fd7e14</code></td>
+                            <td>dark (#1f2d3d)</td>
+                            <td class="text-nowrap">2.6:1</td>
+                            <td class="text-body-secondary">Bootstrap 4 orange — dark text</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #ffc107">   </span
+                              ><code>yellow</code>
+                            </td>
+                            <td><code>#ffc107</code></td>
+                            <td>dark (#1f2d3d)</td>
+                            <td class="text-nowrap">1.6:1</td>
+                            <td class="text-body-secondary">Bootstrap 4 yellow — dark text</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #28a745">   </span
+                              ><code>green</code>
+                            </td>
+                            <td><code>#28a745</code></td>
+                            <td>white</td>
+                            <td class="text-nowrap">3.1:1 ⚠︎</td>
+                            <td class="text-body-secondary">Bootstrap 4 green</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #20c997">   </span
+                              ><code>teal</code>
+                            </td>
+                            <td><code>#20c997</code></td>
+                            <td>white</td>
+                            <td class="text-nowrap">2.1:1 ⚠︎</td>
+                            <td class="text-body-secondary">Bootstrap 4 teal</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #17a2b8">   </span
+                              ><code>cyan</code>
+                            </td>
+                            <td><code>#17a2b8</code></td>
+                            <td>white</td>
+                            <td class="text-nowrap">3.0:1 ⚠︎</td>
+                            <td class="text-body-secondary">Bootstrap 4 cyan</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #6c757d">   </span
+                              ><code>gray</code>
+                            </td>
+                            <td><code>#6c757d</code></td>
+                            <td>white</td>
+                            <td class="text-nowrap">4.7:1</td>
+                            <td class="text-body-secondary"></td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap">
+                              <span class="badge me-2" style="background: #343a40">   </span
+                              ><code>gray-dark</code>
+                            </td>
+                            <td><code>#343a40</code></td>
+                            <td>white</td>
+                            <td class="text-nowrap">11.5:1</td>
+                            <td class="text-body-secondary">
+                              The v3 dark sidebar (sidebar-dark-*) background
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <p>
+                      The v3 sheet is built from the same Sass as the designed one —
+                      <code>src/scss/adminlte-colors-v3.scss</code> sets
+                      <code>$lte-palette</code> to the v3 map and
+                      <code>$lte-palette-contrast: &quot;yiq&quot;</code> — so
+                      <code>$lte-palette-custom</code>, <code>$lte-palette-aliases</code> and the
+                      rest below apply to it too. Its skin presets are AdminLTE 2’s: a coloured
+                      header over the v3 dark sidebar (<code>text-bg-gray-dark</code>, the exact
+                      <code>sidebar-dark-*</code> background) or over a white one:
+                    </p>
+                    <div class="table-responsive">
+                      <table class="table align-middle">
+                        <thead>
+                          <tr>
+                            <th scope="col">Skin</th>
+                            <th scope="col">Header</th>
+                            <th scope="col">Sidebar</th>
+                            <th scope="col">v2/v3 name</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="text-nowrap fw-semibold">Blue</td>
+                            <td class="text-nowrap">
+                              <code>text-bg-lightblue</code> · <code>dark</code>
+                            </td>
+                            <td class="text-nowrap">
+                              <code>text-bg-gray-dark</code> · <code>dark</code>
+                            </td>
+                            <td class="text-body-secondary">
+                              skin-blue — the classic AdminLTE look.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap fw-semibold">Black</td>
+                            <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                            <td class="text-nowrap">
+                              <code>text-bg-gray-dark</code> · <code>dark</code>
+                            </td>
+                            <td class="text-body-secondary">
+                              skin-black — white header, dark sidebar.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap fw-semibold">Purple</td>
+                            <td class="text-nowrap">
+                              <code>text-bg-purple</code> · <code>dark</code>
+                            </td>
+                            <td class="text-nowrap">
+                              <code>text-bg-gray-dark</code> · <code>dark</code>
+                            </td>
+                            <td class="text-body-secondary">skin-purple.</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap fw-semibold">Green</td>
+                            <td class="text-nowrap">
+                              <code>text-bg-green</code> · <code>dark</code>
+                            </td>
+                            <td class="text-nowrap">
+                              <code>text-bg-gray-dark</code> · <code>dark</code>
+                            </td>
+                            <td class="text-body-secondary">skin-green.</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap fw-semibold">Red</td>
+                            <td class="text-nowrap">
+                              <code>text-bg-red</code> · <code>dark</code>
+                            </td>
+                            <td class="text-nowrap">
+                              <code>text-bg-gray-dark</code> · <code>dark</code>
+                            </td>
+                            <td class="text-body-secondary">skin-red.</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap fw-semibold">Yellow</td>
+                            <td class="text-nowrap">
+                              <code>text-bg-yellow</code> · <code>light</code>
+                            </td>
+                            <td class="text-nowrap">
+                              <code>text-bg-gray-dark</code> · <code>dark</code>
+                            </td>
+                            <td class="text-body-secondary">
+                              skin-yellow — dark text on the header.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap fw-semibold">Blue light</td>
+                            <td class="text-nowrap">
+                              <code>text-bg-lightblue</code> · <code>dark</code>
+                            </td>
+                            <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                            <td class="text-body-secondary">skin-blue-light.</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap fw-semibold">Black light</td>
+                            <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                            <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                            <td class="text-body-secondary">
+                              skin-black-light — all white chrome.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap fw-semibold">Purple light</td>
+                            <td class="text-nowrap">
+                              <code>text-bg-purple</code> · <code>dark</code>
+                            </td>
+                            <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                            <td class="text-body-secondary">skin-purple-light.</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap fw-semibold">Green light</td>
+                            <td class="text-nowrap">
+                              <code>text-bg-green</code> · <code>dark</code>
+                            </td>
+                            <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                            <td class="text-body-secondary">skin-green-light.</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap fw-semibold">Red light</td>
+                            <td class="text-nowrap">
+                              <code>text-bg-red</code> · <code>dark</code>
+                            </td>
+                            <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                            <td class="text-body-secondary">skin-red-light.</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap fw-semibold">Yellow light</td>
+                            <td class="text-nowrap">
+                              <code>text-bg-yellow</code> · <code>light</code>
+                            </td>
+                            <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                            <td class="text-body-secondary">skin-yellow-light.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h5 id="the-palette">The palette</h5>
                     <p>
                       Nine chromatic colours and five neutrals for chrome. Every one of them takes
@@ -2769,6 +3171,13 @@
                         black; <code>3</code> (WCAG AA for large text and UI components) is the
                         other defensible setting.
                       </li>
+                      <li>
+                        <code>$lte-palette-contrast</code> — <code>&quot;wcag&quot;</code> (default)
+                        or <code>&quot;yiq&quot;</code>, the Bootstrap 4 / AdminLTE 3 brightness
+                        rule (<code>$lte-palette-yiq-threshold: 150</code>, dark text
+                        <code>#1f2d3d</code>). The v3 sheet uses <code>&quot;yiq&quot;</code>; set
+                        it if you want a custom palette to pick text colours the way v3 did.
+                      </li>
                     </ul>
                     <p>
                       <strong>Choosing a brand colour that works.</strong> The one property that
@@ -3669,7 +4078,10 @@
                       </tbody>
                     </table>
                     <p>
-                      Keeping the old class names in existing markup is a one-liner:
+                      Two ways to keep existing markup working: load
+                      <strong><code>adminlte-colors-v3.css</code></strong> and every v3 name is back
+                      with its original value (see <a href="#two-palettes">Two palettes</a>), or use
+                      the designed palette with the alias one-liner
                       <code
                         >$lte-palette-aliases: (&quot;lightblue&quot;: &quot;sky&quot;,
                         &quot;maroon&quot;: &quot;pink&quot;);</code

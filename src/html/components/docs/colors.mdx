@@ -1,10 +1,10 @@
 import PaletteWheel from "./_palette-wheel.astro"
 import SkinPreview from "../_skin-preview.astro"
-import { palette, sets, skinGroups, skins } from "../../../utils/palette.mjs"
+import { palette, paletteV3, sets, skinGroups, skinGroupsV3, skins, skinsV3 } from "../../../utils/palette.mjs"
 
 AdminLTE 4 styles itself with Bootstrap 5.3's theme colours — `primary`, `success`, `danger`, `warning`, `info`, `secondary`, `light`, `dark` — and nothing else. That keeps `adminlte.css` small, but a dashboard often wants more than five hues on a widget row, and AdminLTE 3 users miss `.bg-navy`, `.bg-teal` and the sidebar skins.
 
-**`dist/css/adminlte-colors.css`** is the answer, and it is opt-in: one extra stylesheet (≈ 5 kB gzipped) that adds fourteen colours as `--bs-*` tokens plus every class family Bootstrap generates for its own theme colours. Nothing changes for projects that don't load it.
+**`dist/css/adminlte-colors.css`** is the answer, and it is opt-in: one extra stylesheet (≈ 5 kB gzipped) that adds fourteen colours as `--bs-*` tokens plus every class family Bootstrap generates for its own theme colours. Nothing changes for projects that don't load it. Prefer the AdminLTE 3 colours exactly as they were? There is a second sheet for that — see [Two palettes](#two-palettes) below.
 
 <div class="d-flex flex-wrap gap-2 my-3">
   {palette.map(c => (
@@ -37,6 +37,79 @@ import "admin-lte/dist/css/adminlte-colors.min.css"
 ```
 
 Or compile it yourself — the Sass entry is `src/scss/adminlte-colors.scss`, and that is also how you add your own colours (below). An RTL build (`adminlte-colors.rtl.css`) is generated for symmetry with the rest of the CSS; the sheet has no direction-dependent rules, so either file works in either direction.
+
+##### Two palettes
+
+You can have the colours **designed for 4.4** (this page's default, below) or the **AdminLTE 3 originals**, unchanged. They ship as two files that define the same class names with different values, so load **one** of them after `adminlte.css`:
+
+| File | What you get | Text colour rule |
+|---|---|---|
+| `dist/css/adminlte-colors.css` | 14 colours designed in OKLCH — orange, amber, olive, teal, sky, indigo, violet, fuchsia, pink, navy, steel, slate, graphite, midnight — every one readable with white text, placed to sit next to Bootstrap's theme colours | Bootstrap 5's `color-contrast()`, 4.5:1 |
+| `dist/css/adminlte-colors-v3.css` | the 18 AdminLTE 3 colours — lightblue, navy, olive, lime, fuchsia, maroon, blue, indigo, purple, pink, red, orange, yellow, green, teal, cyan, gray, gray-dark — values as they were in the 3.2 build | AdminLTE 3's rule (Bootstrap 4 YIQ): white on lightblue, olive, teal, cyan …; dark on lime, orange, yellow |
+
+Both emit exactly the same class families (`.bg-*`, `.text-bg-*`, `.text-*`, `.border-*`, `.link-*`, `.bg-gradient-*`, `.card-*`, `.callout-*`, `.direct-chat-*`, tokens with dark-mode variants), so everything on this page applies to either. The demo pages let you switch between them live: the <a href="../UI/colors.html">Colors demo</a> and <a href="../generate/theme.html">Theme Customize</a> both have a palette toggle.
+
+```html
+<!-- either the designed palette … -->
+<link rel="stylesheet" href="css/adminlte-colors.css" />
+<!-- … or the AdminLTE 3 originals, not both -->
+<link rel="stylesheet" href="css/adminlte-colors-v3.css" />
+```
+
+The AdminLTE 3 originals, with the contrast ratio white text reaches on each — several are below WCAG AA's 4.5:1 for normal text, exactly as they were in v3, which is the trade-off of keeping them as they were:
+
+<div class="table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Hex</th>
+        <th scope="col">Text (v3 rule)</th>
+        <th scope="col">White text</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {paletteV3.map(c => (
+        <tr>
+          <td class="text-nowrap">
+            <span class="badge me-2" style={`background:${c.hex}`}>&nbsp;&nbsp;&nbsp;</span>
+            <code>{c.name}</code>
+          </td>
+          <td><code>{c.hex}</code></td>
+          <td>{c.textColor === "white" ? "white" : "dark (#1f2d3d)"}</td>
+          <td class="text-nowrap">{c.contrastWhite.toFixed(1)}:1{c.textColor === "white" && c.contrastWhite < 4.5 ? " ⚠︎" : ""}</td>
+          <td class="text-body-secondary">{c.note}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+The v3 sheet is built from the same Sass as the designed one — `src/scss/adminlte-colors-v3.scss` sets `$lte-palette` to the v3 map and `$lte-palette-contrast: "yiq"` — so `$lte-palette-custom`, `$lte-palette-aliases` and the rest below apply to it too. Its skin presets are AdminLTE 2's: a coloured header over the v3 dark sidebar (`text-bg-gray-dark`, the exact `sidebar-dark-*` background) or over a white one:
+
+<div class="table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">Skin</th>
+        <th scope="col">Header</th>
+        <th scope="col">Sidebar</th>
+        <th scope="col">v2/v3 name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {skinsV3.map(s => (
+        <tr>
+          <td class="text-nowrap fw-semibold">{s.name}</td>
+          <td class="text-nowrap"><code>{s.header.cls}</code> · <code>{s.header.theme}</code></td>
+          <td class="text-nowrap"><code>{s.sidebar.cls}</code> · <code>{s.sidebar.theme}</code></td>
+          <td class="text-body-secondary">{s.note}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
 
 ##### The palette
 
@@ -189,6 +262,7 @@ Two more knobs:
 
 - `$lte-palette-aliases` — extra names that generate the same classes as an existing entry. AdminLTE 3 projects can bring their old class names back: `("lightblue": "sky", "maroon": "pink")`.
 - `$lte-palette-min-contrast-ratio` — the contrast Bootstrap's `color-contrast()` requires when it picks the automatic text colour for `.text-bg-*`, `.bg-gradient-*` and `.card-*` headers. Default `4.5` (WCAG AA for normal text). If a custom colour can't reach it with white, the text flips to black; `3` (WCAG AA for large text and UI components) is the other defensible setting.
+- `$lte-palette-contrast` — `"wcag"` (default) or `"yiq"`, the Bootstrap 4 / AdminLTE 3 brightness rule (`$lte-palette-yiq-threshold: 150`, dark text `#1f2d3d`). The v3 sheet uses `"yiq"`; set it if you want a custom palette to pick text colours the way v3 did.
 
 **Choosing a brand colour that works.** The one property that matters is that white text on it reaches 4.5:1 — that is what keeps `.text-bg-brand`, small boxes and a branded sidebar readable, and what the accessibility gate on the demo pages checks. Most brand blues, greens and purples pass; bright oranges, yellows and cyans don't. The <a href="../UI/colors.html#brand-hex">checker on the demo page</a> reports the ratio, offers a same-hue version darkened just enough to pass, warns when your hue sits on top of an existing one, and prints the Sass snippet.
 
@@ -257,4 +331,4 @@ v3's extended colours were `lightblue`, `navy`, `olive`, `lime`, `fuchsia`, `mar
 | `sidebar-dark-primary`, `navbar-light` … | `text-bg-*` + `data-bs-theme` | See <em>Skins</em> above |
 | `bg-gradient-*` | `bg-gradient-*` | Kept, for palette and theme colours |
 
-Keeping the old class names in existing markup is a one-liner: `$lte-palette-aliases: ("lightblue": "sky", "maroon": "pink");`.
+Two ways to keep existing markup working: load **`adminlte-colors-v3.css`** and every v3 name is back with its original value (see [Two palettes](#two-palettes)), or use the designed palette with the alias one-liner `$lte-palette-aliases: ("lightblue": "sky", "maroon": "pink");`.

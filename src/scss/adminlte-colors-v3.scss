@@ -1,0 +1,59 @@
+/*!
+ *   AdminLTE v4.4.1 — AdminLTE 3 color palette (legacy)
+ *   Opt-in. The extended colours exactly as AdminLTE 3 shipped them — same
+ *   names, same values, same text-colour rule (Bootstrap 4's YIQ brightness
+ *   test, so lightblue, olive and teal take white text as they did) — with
+ *   the AdminLTE 4 class families: `.bg-*`, `.text-bg-*`, `.text-*`,
+ *   `.border-*`, `.link-*`, `.bg-gradient-*`, `.card-*`, `.callout-*`,
+ *   `.direct-chat-*`, plus dark-mode tokens.
+ *
+ *   Load EITHER this file OR adminlte-colors.css (the palette designed for
+ *   4.4), not both: they define the same class names (navy, teal, olive, …)
+ *   with different values. Nothing here is in adminlte.css.
+ *   See docs/colors.html.
+ *
+ *   Author: Colorlib
+ *   Website: AdminLTE.io <https://adminlte.io>
+ *   License: Open source - MIT <https://opensource.org/licenses/MIT>
+ */
+
+// Bootstrap Configuration
+// ---------------------------------------------------
+@import "bootstrap/scss/functions";
+@import "bootstrap-overrides";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+
+// AdminLTE Configuration
+// ---------------------------------------------------
+@import "variables";
+@import "variables-dark";
+
+// The AdminLTE 3 palette — values read from the 3.2.0 build, unchanged
+// ---------------------------------------------------
+$lte-palette: (
+  "lightblue": #3c8dbc,
+  "navy":      #001f3f,
+  "olive":     #3d9970,
+  "lime":      #01ff70,
+  "fuchsia":   #f012be,
+  "maroon":    #d81b60,
+  "blue":      #007bff,
+  "indigo":    #6610f2,
+  "purple":    #6f42c1,
+  "pink":      #e83e8c,
+  "red":       #dc3545,
+  "orange":    #fd7e14,
+  "yellow":    #ffc107,
+  "green":     #28a745,
+  "teal":      #20c997,
+  "cyan":      #17a2b8,
+  "gray":      #6c757d,
+  "gray-dark": #343a40
+) !default;
+$lte-palette-contrast: "yiq" !default;
+
+@import "colors/variables";
+@import "colors/colors";

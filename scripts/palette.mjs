@@ -25,10 +25,12 @@ import {
   hueDistance,
   oklchToHex,
   palette,
-  paletteTargets
+  paletteTargets,
+  paletteV3
 } from '../src/utils/palette.mjs'
 
 const SCSS_FILE = new URL('../src/scss/colors/_variables.scss', import.meta.url)
+const SCSS_V3_FILE = new URL('../src/scss/adminlte-colors-v3.scss', import.meta.url)
 const MIN_WHITE_CONTRAST = 4.5
 const MIN_HUE_GAP_PALETTE = 19.5 // degrees between chromatic palette colours (rule: 20°, with rounding slack)
 const MIN_HUE_GAP_BOOTSTRAP = 15 // degrees from any Bootstrap theme colour
@@ -38,12 +40,12 @@ const fmt = lch => `oklch(${lch.L.toFixed(2)} ${lch.C.toFixed(2)} ${lch.h.toFixe
 /**
 `$lte-palette` as { name: hex } read straight out of the SCSS source.
 */
-function readScssPalette() {
-  const source = readFileSync(SCSS_FILE, 'utf8')
+function readScssPalette(file = SCSS_FILE) {
+  const source = readFileSync(file, 'utf8')
   const start = source.indexOf('$lte-palette: (')
   const end = source.indexOf(') !default;', start)
   if (start === -1 || end === -1) {
-    throw new Error('Could not find `$lte-palette: ( … ) !default;` in ' + SCSS_FILE.pathname)
+    throw new Error('Could not find `$lte-palette: ( … ) !default;` in ' + file.pathname)
   }
 
   const map = {}
@@ -130,6 +132,22 @@ function check() {
     }
   }
 
+  // 4. The legacy v3 sheet: SCSS map and JS data agree (values are historical — no other rules)
+  const scssV3 = readScssPalette(SCSS_V3_FILE)
+  for (const c of paletteV3) {
+    if (!Object.hasOwn(scssV3, c.name)) {
+      problems.push(`v3 ${c.name}: in src/utils/palette.mjs but not in adminlte-colors-v3.scss`)
+    } else if (scssV3[c.name] !== c.hex) {
+      problems.push(`v3 ${c.name}: SCSS has ${scssV3[c.name]}, src/utils/palette.mjs has ${c.hex}`)
+    }
+  }
+
+  for (const name of Object.keys(scssV3)) {
+    if (paletteV3.every(c => c.name !== name)) {
+      problems.push(`v3 ${name}: in adminlte-colors-v3.scss but not in src/utils/palette.mjs`)
+    }
+  }
+
   if (problems.length > 0) {
     console.error('palette check failed:')
     for (const p of problems) {
@@ -140,7 +158,7 @@ function check() {
     return
   }
 
-  console.log(`palette check passed: ${palette.length} colours, all ≥ ${MIN_WHITE_CONTRAST}:1 with white text, SCSS and JS in step.`)
+  console.log(`palette check passed: ${palette.length} colours, all ≥ ${MIN_WHITE_CONTRAST}:1 with white text, SCSS and JS in step; v3 sheet: ${paletteV3.length} colours in step.`)
   for (const c of palette) {
     console.log(`  ${c.name.padEnd(9)} ${c.hex}  ${fmt(hexToOklch(c.hex)).padEnd(24)} white ${contrastWhite(c.hex).toFixed(2)}:1`)
   }

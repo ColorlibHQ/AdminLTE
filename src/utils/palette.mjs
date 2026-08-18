@@ -251,3 +251,87 @@ export const skins = [
   { name: 'Gradient indigo', group: 'Coloured & gradient', note: 'The v3 gradient sheen on a brand sidebar, white header.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'bg-gradient-indigo', theme: 'dark' }, boxes: ['indigo', 'teal'] },
   { name: 'Gradient teal', group: 'Coloured & gradient', note: 'Calm and fresh; teal sidebar with the gradient sheen.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'bg-gradient-teal', theme: 'dark' }, boxes: ['teal', 'amber'] }
 ]
+
+// ---------------------------------------------------------------------------
+// The AdminLTE 3 palette, as it was (dist/css/adminlte-colors-v3.css)
+// ---------------------------------------------------------------------------
+
+/**
+Bootstrap 4 / AdminLTE 3 text-colour rule: perceived brightness against a threshold.
+*/
+export const yiqTextColor = (hex, threshold = 150) => {
+  const [r, g, b] = hexToRgb(hex).map(v => v * 255)
+  return (r * 299 + g * 587 + b * 114) / 1000 >= threshold ? 'dark' : 'white'
+}
+
+const describeV3 = (name, hex, note) => {
+  const lch = hexToOklch(hex)
+  return {
+    name,
+    hex,
+    note,
+    oklch: { L: lch.L, C: lch.C, h: lch.h },
+    contrastWhite: contrastWhite(hex),
+    contrastBlack: contrastBlack(hex),
+    textColor: yiqTextColor(hex) === 'white' ? 'white' : 'black'
+  }
+}
+
+/**
+ * Values read from the AdminLTE 3.2.0 build, unchanged. Must match `$lte-palette`
+ * in src/scss/adminlte-colors-v3.scss — the unit test enforces it.
+ */
+export const paletteV3 = [
+  describeV3('lightblue', '#3c8dbc', 'The AdminLTE 2/3 signature blue (skin-blue header)'),
+  describeV3('navy', '#001f3f', ''),
+  describeV3('olive', '#3d9970', ''),
+  describeV3('lime', '#01ff70', 'Dark text'),
+  describeV3('fuchsia', '#f012be', ''),
+  describeV3('maroon', '#d81b60', ''),
+  describeV3('blue', '#007bff', 'Bootstrap 4 blue'),
+  describeV3('indigo', '#6610f2', 'Bootstrap 4 indigo'),
+  describeV3('purple', '#6f42c1', 'Bootstrap 4 purple'),
+  describeV3('pink', '#e83e8c', 'Bootstrap 4 pink'),
+  describeV3('red', '#dc3545', 'Bootstrap 4 red'),
+  describeV3('orange', '#fd7e14', 'Bootstrap 4 orange — dark text'),
+  describeV3('yellow', '#ffc107', 'Bootstrap 4 yellow — dark text'),
+  describeV3('green', '#28a745', 'Bootstrap 4 green'),
+  describeV3('teal', '#20c997', 'Bootstrap 4 teal'),
+  describeV3('cyan', '#17a2b8', 'Bootstrap 4 cyan'),
+  describeV3('gray', '#6c757d', ''),
+  describeV3('gray-dark', '#343a40', 'The v3 dark sidebar (sidebar-dark-*) background')
+]
+
+/**
+ * AdminLTE 2's skins, in AdminLTE 4 terms, for the v3 palette: a coloured header
+ * over the v3 dark sidebar (`gray-dark`, the exact `sidebar-dark-*` background)
+ * or, for the "-light" family, over a white sidebar.
+ */
+export const skinGroupsV3 = [
+  { name: 'Dark sidebar', note: 'skin-blue, skin-purple, skin-green, skin-red, skin-yellow, skin-black — a coloured header over the v3 dark sidebar.' },
+  { name: 'Light sidebar', note: 'The "-light" family: the same headers over a white sidebar.' }
+]
+
+const v3Skin = ({ name, group, header, theme, boxes, note }) => ({
+  name,
+  group,
+  note,
+  header: { cls: header, theme },
+  sidebar: group === 'Dark sidebar' ? { cls: 'text-bg-gray-dark', theme: 'dark' } : { cls: 'bg-body', theme: 'light' },
+  boxes
+})
+
+export const skinsV3 = [
+  v3Skin({ name: 'Blue', group: 'Dark sidebar', header: 'text-bg-lightblue', theme: 'dark', boxes: ['lightblue', 'green'], note: 'skin-blue — the classic AdminLTE look.' }),
+  v3Skin({ name: 'Black', group: 'Dark sidebar', header: 'bg-body', theme: 'light', boxes: ['blue', 'red'], note: 'skin-black — white header, dark sidebar.' }),
+  v3Skin({ name: 'Purple', group: 'Dark sidebar', header: 'text-bg-purple', theme: 'dark', boxes: ['purple', 'teal'], note: 'skin-purple.' }),
+  v3Skin({ name: 'Green', group: 'Dark sidebar', header: 'text-bg-green', theme: 'dark', boxes: ['green', 'yellow'], note: 'skin-green.' }),
+  v3Skin({ name: 'Red', group: 'Dark sidebar', header: 'text-bg-red', theme: 'dark', boxes: ['red', 'gray'], note: 'skin-red.' }),
+  v3Skin({ name: 'Yellow', group: 'Dark sidebar', header: 'text-bg-yellow', theme: 'light', boxes: ['yellow', 'navy'], note: 'skin-yellow — dark text on the header.' }),
+  v3Skin({ name: 'Blue light', group: 'Light sidebar', header: 'text-bg-lightblue', theme: 'dark', boxes: ['lightblue', 'green'], note: 'skin-blue-light.' }),
+  v3Skin({ name: 'Black light', group: 'Light sidebar', header: 'bg-body', theme: 'light', boxes: ['blue', 'red'], note: 'skin-black-light — all white chrome.' }),
+  v3Skin({ name: 'Purple light', group: 'Light sidebar', header: 'text-bg-purple', theme: 'dark', boxes: ['purple', 'teal'], note: 'skin-purple-light.' }),
+  v3Skin({ name: 'Green light', group: 'Light sidebar', header: 'text-bg-green', theme: 'dark', boxes: ['green', 'yellow'], note: 'skin-green-light.' }),
+  v3Skin({ name: 'Red light', group: 'Light sidebar', header: 'text-bg-red', theme: 'dark', boxes: ['red', 'gray'], note: 'skin-red-light.' }),
+  v3Skin({ name: 'Yellow light', group: 'Light sidebar', header: 'text-bg-yellow', theme: 'light', boxes: ['yellow', 'navy'], note: 'skin-yellow-light.' })
+]

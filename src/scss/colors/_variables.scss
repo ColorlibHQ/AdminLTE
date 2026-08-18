@@ -1,5 +1,7 @@
+@use "sass:color";
 @use "sass:list";
 @use "sass:map";
+@use "sass:math";
 
 //
 // Colors: Variables
@@ -67,6 +69,16 @@ $lte-palette-aliases: () !default;
 // palettes — `3` is WCAG AA for large text and UI components.
 $lte-palette-min-contrast-ratio: $min-contrast-ratio !default;
 
+// Which rule picks that text colour: "wcag" (Bootstrap 5's color-contrast(),
+// governed by the ratio above) or "yiq" — the Bootstrap 4 / AdminLTE 3 rule
+// (perceived brightness against a threshold), which is what gives the v3
+// palette its familiar white-on-lightblue / white-on-teal look.
+// adminlte-colors-v3.scss sets "yiq"; the designed palette uses "wcag".
+$lte-palette-contrast: "wcag" !default;
+$lte-palette-yiq-threshold: 150 !default;
+$lte-palette-yiq-text-dark: #1f2d3d !default; // AdminLTE 3's $yiq-text-dark
+$lte-palette-yiq-text-light: $white !default;
+
 // Resolve custom colours and aliases into the palette
 // --------------------------------------------------------
 @if list.length($lte-palette-custom) > 0 {
@@ -81,5 +93,19 @@ $lte-palette-min-contrast-ratio: $min-contrast-ratio !default;
 }
 
 @function lte-contrast($color) {
+  @if $lte-palette-contrast == "yiq" {
+    // stylelint-disable scss/at-function-named-arguments -- `$space` is required by color.channel()
+    $r: color.channel($color, "red", $space: rgb);
+    $g: color.channel($color, "green", $space: rgb);
+    $b: color.channel($color, "blue", $space: rgb);
+    // stylelint-enable scss/at-function-named-arguments
+    $yiq: math.div($r * 299 + $g * 587 + $b * 114, 1000);
+    @if $yiq >= $lte-palette-yiq-threshold {
+      @return $lte-palette-yiq-text-dark;
+    }
+
+    @return $lte-palette-yiq-text-light;
+  }
+
   @return color-contrast($color, $min-contrast-ratio: $lte-palette-min-contrast-ratio);
 }

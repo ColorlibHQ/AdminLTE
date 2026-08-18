@@ -11,6 +11,7 @@ const banners = [
   'src/scss/adminlte-docs.scss',
   'src/scss/adminlte-select2.scss',
   'src/scss/adminlte-colors.scss',
+  'src/scss/adminlte-colors-v3.scss',
   'src/ts/adminlte.ts'
 ]
 

@@ -37,6 +37,14 @@
       "maxSize": "6 kB"
     },
     {
+      "path": "./dist/css/adminlte-colors-v3.min.css",
+      "maxSize": "7 kB"
+    },
+    {
+      "path": "./dist/css/adminlte-colors-v3.rtl.min.css",
+      "maxSize": "7 kB"
+    },
+    {
       "path": "./dist/js/adminlte.js",
       "maxSize": "12 kB"
     },

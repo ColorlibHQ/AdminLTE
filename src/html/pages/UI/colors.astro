@@ -5,7 +5,7 @@ import Topbar from "@components/dashboard/_topbar.astro"
 import Sidenav from "@components/dashboard/_sidenav.astro"
 import Scripts from "@components/_scripts.astro"
 import SkinPreview from "@components/_skin-preview.astro"
-import { palette, sets, skinGroups, skins } from "../../../utils/palette.mjs"
+import { palette, paletteV3, sets, skinGroups, skinGroupsV3, skins, skinsV3 } from "../../../utils/palette.mjs"
 
 const title = "AdminLTE 4 | Colors"
 const path = "../../../dist"
@@ -23,11 +23,18 @@ const deploymentPath = depth === 0 ? "./" : "../".repeat(depth)
 const chromatic = palette.filter(c => c.role === "chromatic")
 const neutral = palette.filter(c => c.role === "neutral")
 const names = palette.map(c => c.name)
-// The skin switcher below only offers colours designed for white text.
-const skinChoices = [
-  { name: "default", label: "Default" },
-  ...palette.map(c => ({ name: c.name, label: c.name }))
+// Two palettes can drive this page: the designed 4.4 palette (default) or the
+// AdminLTE 3 originals. Both sheets define the same class names with different
+// values, so the page loads one at a time and swaps the <link>.
+const paletteSets = [
+  { key: "designed", label: "Designed palette (4.4)", file: "adminlte-colors.css", groups: skinGroups, skins, choices: ["default", ...palette.map(c => c.name)] },
+  { key: "v3", label: "AdminLTE 3 originals", file: "adminlte-colors-v3.css", groups: skinGroupsV3, skins: skinsV3, choices: ["default", ...paletteV3.map(c => c.name)] }
 ]
+// name → automatic text colour, per set (v3 uses the YIQ rule: some take dark text)
+const paletteText = JSON.stringify({
+  designed: Object.fromEntries(palette.map(c => [c.name, c.textColor])),
+  v3: Object.fromEntries(paletteV3.map(c => [c.name, c.textColor]))
+})
 const utilityRows = [
   { label: ".bg-*", cell: (n: string) => `<div class="lte-swatch bg-${n}"></div>` },
   { label: ".text-bg-*", cell: (n: string) => `<div class="lte-swatch text-bg-${n}">Aa</div>` },
@@ -49,7 +56,8 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
   <head>
     <Head title={title} path={path} />
     <!--begin::Optional Stylesheet(Extended palette — only this page loads it)-->
-    <link rel="stylesheet" href={deploymentPath + "css/adminlte-colors.css"} />
+    <link rel="stylesheet" href={deploymentPath + "css/adminlte-colors.css"} id="palette-stylesheet" data-css-dir={deploymentPath + "css/"} />
+    <script type="application/json" id="palette-text" set:html={paletteText} />
     <!--end::Optional Stylesheet(Extended palette)-->
     <style>
       /* Page-local helpers for the swatch tables; not part of AdminLTE. */
@@ -156,10 +164,35 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
               <p class="mb-0">
                 Every colour takes white text at 4.6:1 or better and was placed
                 to sit next to Bootstrap's own theme colours without clashing.
-                How and why is on the
+                Prefer the AdminLTE 3 colours exactly as they were? A second sheet,
+                <code>dist/css/adminlte-colors-v3.css</code>, ships them under their
+                original names — switch this page to it below. How and why is on the
                 <a href={deploymentPath + "docs/colors.html"} class="callout-link">Colors documentation page</a>.
               </p>
             </div>
+
+            <!--begin::Palette switch-->
+            <div class="card mb-4">
+              <div class="card-body d-flex flex-wrap align-items-center gap-3">
+                <div class="me-auto">
+                  <p class="fw-semibold mb-1">Palette on this page</p>
+                  <p class="text-body-secondary small mb-0">
+                    <span data-palette-set="designed">Fourteen colours designed in OKLCH — every one takes white text and sits cleanly next to Bootstrap's theme colours.</span>
+                    <span data-palette-set="v3" hidden>The eighteen AdminLTE 3 colours, values unchanged, with v3's text-colour rule (lime, orange and yellow take dark text). Same class families. Several fail WCAG AA with white text, as they did in v3.</span>
+                  </p>
+                </div>
+                <div class="btn-group" role="group" aria-label="Palette stylesheet">
+                  {
+                    paletteSets.map((set, i) => (
+                      <button type="button" class:list={["btn btn-outline-secondary", i === 0 && "active"]} data-palette-switch={set.key} data-palette-file={set.file} aria-pressed={i === 0 ? "true" : "false"}>
+                        {set.label}
+                      </button>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
+            <!--end::Palette switch-->
 
             <!--begin::Skins-->
             <h5 class="mb-3">Try a skin on this page</h5>
@@ -175,73 +208,79 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
                   <a href={deploymentPath + "generate/theme.html"}>Theme Customize</a> page —
                   its pickers list the palette under "Extended palette".
                 </p>
-                <div id="skin-presets">
-                  {
-                    skinGroups.map(group => (
-                      <div class="mb-3">
-                        <p class="fw-semibold mb-1">{group.name}</p>
-                        <p class="text-body-secondary small mb-2">{group.note}</p>
-                        <div class="d-flex flex-wrap gap-2">
-                          {
-                            skins.filter(skin => skin.group === group.name).map(skin => (
-                              <button
-                                type="button"
-                                class="lte-skin-btn"
-                                data-skin-header={skin.header.cls}
-                                data-skin-header-theme={skin.header.theme}
-                                data-skin-sidebar={skin.sidebar.cls}
-                                data-skin-sidebar-theme={skin.sidebar.theme}
-                                title={skin.note}
-                                aria-pressed="false"
-                              >
-                                <SkinPreview skin={skin} />
-                                <span>{skin.name}</span>
-                              </button>
-                            ))
-                          }
+                {
+                  paletteSets.map((set, i) => (
+                    <div data-palette-set={set.key} hidden={i !== 0}>
+                      <div class="skin-presets">
+                        {
+                          set.groups.map(group => (
+                            <div class="mb-3">
+                              <p class="fw-semibold mb-1">{group.name}</p>
+                              <p class="text-body-secondary small mb-2">{group.note}</p>
+                              <div class="d-flex flex-wrap gap-2">
+                                {
+                                  set.skins.filter(skin => skin.group === group.name).map(skin => (
+                                    <button
+                                      type="button"
+                                      class="lte-skin-btn"
+                                      data-skin-header={skin.header.cls}
+                                      data-skin-header-theme={skin.header.theme}
+                                      data-skin-sidebar={skin.sidebar.cls}
+                                      data-skin-sidebar-theme={skin.sidebar.theme}
+                                      title={skin.note}
+                                      aria-pressed="false"
+                                    >
+                                      <SkinPreview skin={skin} />
+                                      <span>{skin.name}</span>
+                                    </button>
+                                  ))
+                                }
+                              </div>
+                            </div>
+                          ))
+                        }
+                      </div>
+                      <div class="row g-4">
+                        <div class="col-lg-6">
+                          <p class="fw-semibold mb-2">Sidebar colour</p>
+                          <div class="d-flex flex-wrap gap-2" data-skin-picker="sidebar" role="group" aria-label="Sidebar colour">
+                            {
+                              set.choices.map(name => (
+                                <button
+                                  type="button"
+                                  class:list={["lte-chip", name === "default" ? "bg-body-secondary" : `text-bg-${name}`]}
+                                  data-color={name}
+                                  title={name === "default" ? "Default (bg-body-secondary)" : `.text-bg-${name}`}
+                                  aria-pressed={name === "default" ? "true" : "false"}
+                                >
+                                  <span class="visually-hidden">{name === "default" ? "Default" : name}</span>
+                                </button>
+                              ))
+                            }
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <p class="fw-semibold mb-2">Header colour</p>
+                          <div class="d-flex flex-wrap gap-2" data-skin-picker="header" role="group" aria-label="Header colour">
+                            {
+                              set.choices.map(name => (
+                                <button
+                                  type="button"
+                                  class:list={["lte-chip", name === "default" ? "bg-body border" : `text-bg-${name}`]}
+                                  data-color={name}
+                                  title={name === "default" ? "Default (bg-body)" : `.text-bg-${name}`}
+                                  aria-pressed={name === "default" ? "true" : "false"}
+                                >
+                                  <span class="visually-hidden">{name === "default" ? "Default" : name}</span>
+                                </button>
+                              ))
+                            }
+                          </div>
                         </div>
                       </div>
-                    ))
-                  }
-                </div>
-                <div class="row g-4">
-                  <div class="col-lg-6">
-                    <p class="fw-semibold mb-2">Sidebar colour</p>
-                    <div class="d-flex flex-wrap gap-2" data-skin-picker="sidebar" role="group" aria-label="Sidebar colour">
-                      {
-                        skinChoices.map(choice => (
-                          <button
-                            type="button"
-                            class:list={["lte-chip", choice.name === "default" ? "bg-body-secondary" : `text-bg-${choice.name}`]}
-                            data-color={choice.name}
-                            title={choice.name === "default" ? "Default (bg-body-secondary)" : `.text-bg-${choice.name}`}
-                            aria-pressed={choice.name === "default" ? "true" : "false"}
-                          >
-                            <span class="visually-hidden">{choice.label}</span>
-                          </button>
-                        ))
-                      }
                     </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <p class="fw-semibold mb-2">Header colour</p>
-                    <div class="d-flex flex-wrap gap-2" data-skin-picker="header" role="group" aria-label="Header colour">
-                      {
-                        skinChoices.map(choice => (
-                          <button
-                            type="button"
-                            class:list={["lte-chip", choice.name === "default" ? "bg-body border" : `text-bg-${choice.name}`]}
-                            data-color={choice.name}
-                            title={choice.name === "default" ? "Default (bg-body)" : `.text-bg-${choice.name}`}
-                            aria-pressed={choice.name === "default" ? "true" : "false"}
-                          >
-                            <span class="visually-hidden">{choice.label}</span>
-                          </button>
-                        ))
-                      }
-                    </div>
-                  </div>
-                </div>
+                  ))
+                }
                 <pre class="bg-body-tertiary rounded p-3 mt-4 mb-0 small overflow-auto" tabindex="0"><code id="skin-markup"></code></pre>
               </div>
             </div>
@@ -249,42 +288,67 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
 
             <!--begin::Palette-->
             <h5 class="mb-3">The palette</h5>
-            <div class="row g-3 mb-2">
-              {
-                chromatic.map(c => (
-                  <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                    <div class={`lte-tile p-3 h-100 d-flex flex-column justify-content-between text-bg-${c.name}`}>
-                      <div>
-                        <div class="fw-bold font-monospace">.bg-{c.name}</div>
-                        <div class="small opacity-90 mt-1">{c.description}</div>
-                      </div>
-                      <div class="small font-monospace mt-3">
-                        {c.hex}<br />{c.oklchLabel}<br />white {c.contrastWhite.toFixed(1)}:1
+            <div data-palette-set="designed">
+              <div class="row g-3 mb-2">
+                {
+                  chromatic.map(c => (
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                      <div class={`lte-tile p-3 h-100 d-flex flex-column justify-content-between text-bg-${c.name}`}>
+                        <div>
+                          <div class="fw-bold font-monospace">.bg-{c.name}</div>
+                          <div class="small opacity-90 mt-1">{c.description}</div>
+                        </div>
+                        <div class="small font-monospace mt-3">
+                          {c.hex}<br />{c.oklchLabel}<br />white {c.contrastWhite.toFixed(1)}:1
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))
-              }
+                  ))
+                }
+              </div>
+              <div class="row g-3 mb-4">
+                {
+                  neutral.map(c => (
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                      <div class={`lte-tile p-3 h-100 d-flex flex-column justify-content-between text-bg-${c.name}`}>
+                        <div>
+                          <div class="fw-bold font-monospace">.bg-{c.name}</div>
+                          <div class="small opacity-90 mt-1">{c.description}</div>
+                        </div>
+                        <div class="small font-monospace mt-3">
+                          {c.hex}<br />{c.oklchLabel}<br />white {c.contrastWhite.toFixed(1)}:1
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
             </div>
-            <div class="row g-3 mb-4">
-              {
-                neutral.map(c => (
-                  <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                    <div class={`lte-tile p-3 h-100 d-flex flex-column justify-content-between text-bg-${c.name}`}>
-                      <div>
-                        <div class="fw-bold font-monospace">.bg-{c.name}</div>
-                        <div class="small opacity-90 mt-1">{c.description}</div>
-                      </div>
-                      <div class="small font-monospace mt-3">
-                        {c.hex}<br />{c.oklchLabel}<br />white {c.contrastWhite.toFixed(1)}:1
+            <div data-palette-set="v3" hidden>
+              <div class="row g-3 mb-4">
+                {
+                  paletteV3.map(c => (
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                      <div class={`lte-tile p-3 h-100 d-flex flex-column justify-content-between text-bg-${c.name}`}>
+                        <div>
+                          <div class="fw-bold font-monospace">.bg-{c.name}</div>
+                          {c.note && <div class="small opacity-90 mt-1">{c.note}</div>}
+                        </div>
+                        <div class="small font-monospace mt-3">
+                          {c.hex}<br />white {c.contrastWhite.toFixed(1)}:1 · black {c.contrastBlack.toFixed(1)}:1
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))
-              }
+                  ))
+                }
+              </div>
+              <p class="text-body-secondary">
+                Utilities, components and the dashboard sets are demonstrated with the designed palette; the v3 sheet emits exactly the same class families for these eighteen names.
+              </p>
             </div>
             <!--end::Palette-->
 
+            <div data-palette-set="designed">
             <!--begin::Sets-->
             <h5 class="mb-3">Dashboard sets</h5>
             <p class="text-body-secondary">
@@ -437,6 +501,7 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
               </div>
             </div>
             <!--end::Components-->
+            </div>
 
             <!--begin::Brand checker-->
             <h5 class="mb-3">Check a brand colour</h5>
@@ -498,6 +563,10 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
         const header = document.querySelector(".app-header")
         const markup = document.getElementById("skin-markup")
         const pickers = document.querySelectorAll("[data-skin-picker]")
+        // Automatic text colour per palette (the v3 sheet gives some colours dark text)
+        const PALETTE_TEXT = JSON.parse(document.getElementById("palette-text").textContent)
+        const stylesheet = document.getElementById("palette-stylesheet")
+        let activeSet = "designed"
         const state = {
           sidebar: { cls: "bg-body-secondary", theme: "dark" },
           header: { cls: "bg-body", theme: "light" }
@@ -527,7 +596,7 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
               chip.setAttribute("aria-pressed", String(chip.getAttribute("data-color") === current))
             }
           }
-          for (const button of document.querySelectorAll("#skin-presets [data-skin-sidebar]")) {
+          for (const button of document.querySelectorAll(".skin-presets [data-skin-sidebar]")) {
             const matches =
               button.getAttribute("data-skin-sidebar") === state.sidebar.cls &&
               button.getAttribute("data-skin-sidebar-theme") === state.sidebar.theme &&
@@ -548,22 +617,44 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
               return
             }
             const color = chip.getAttribute("data-color")
-            // Every palette colour is designed for white text, so a coloured
-            // sidebar or header always pairs with data-bs-theme="dark".
-            state[role] = color === "default" ? { ...DEFAULTS[role] } : { cls: `text-bg-${color}`, theme: "dark" }
+            // A coloured sidebar or header pairs with data-bs-theme="dark" when the
+            // colour takes white text (every designed colour; most v3 colours).
+            const text = (PALETTE_TEXT[activeSet] || {})[color] || "white"
+            state[role] = color === "default" ? { ...DEFAULTS[role] } : { cls: `text-bg-${color}`, theme: text === "white" ? "dark" : "light" }
             render()
           })
         }
 
-        document.getElementById("skin-presets").addEventListener("click", event => {
-          const button = event.target.closest("[data-skin-sidebar]")
-          if (!button) {
-            return
-          }
-          state.sidebar = { cls: button.getAttribute("data-skin-sidebar"), theme: button.getAttribute("data-skin-sidebar-theme") }
-          state.header = { cls: button.getAttribute("data-skin-header"), theme: button.getAttribute("data-skin-header-theme") }
-          render()
-        })
+        for (const container of document.querySelectorAll(".skin-presets")) {
+          container.addEventListener("click", event => {
+            const button = event.target.closest("[data-skin-sidebar]")
+            if (!button) {
+              return
+            }
+            state.sidebar = { cls: button.getAttribute("data-skin-sidebar"), theme: button.getAttribute("data-skin-sidebar-theme") }
+            state.header = { cls: button.getAttribute("data-skin-header"), theme: button.getAttribute("data-skin-header-theme") }
+            render()
+          })
+        }
+
+        // ---- Palette switch: swap the stylesheet, show that palette's tiles/presets/chips ----
+        for (const button of document.querySelectorAll("[data-palette-switch]")) {
+          button.addEventListener("click", () => {
+            activeSet = button.getAttribute("data-palette-switch")
+            stylesheet.href = stylesheet.getAttribute("data-css-dir") + button.getAttribute("data-palette-file")
+            for (const b of document.querySelectorAll("[data-palette-switch]")) {
+              const on = b === button
+              b.classList.toggle("active", on)
+              b.setAttribute("aria-pressed", String(on))
+            }
+            for (const el of document.querySelectorAll("[data-palette-set]")) {
+              el.hidden = el.getAttribute("data-palette-set") !== activeSet
+            }
+            state.sidebar = { ...DEFAULTS.sidebar }
+            state.header = { ...DEFAULTS.header }
+            render()
+          })
+        }
 
         render()
 

@@ -3,7 +3,7 @@ import path from 'node:path'
 import process from 'node:process'
 import { describe, expect, it } from 'vitest'
 // @ts-expect-error — plain ESM module without a declaration file (dev-only helper)
-import { bootstrapThemeColors, contrastWhite, hueDistance, palette, sets, skins } from '../../src/utils/palette.mjs'
+import { bootstrapThemeColors, contrastWhite, hueDistance, palette, paletteV3, sets, skins, skinsV3 } from '../../src/utils/palette.mjs'
 
 /**
  * The extended palette (dist/css/adminlte-colors.css) is generated from OKLCH
@@ -23,8 +23,8 @@ type PaletteColor = {
 const colors = palette as PaletteColor[]
 const byName = (a: string, b: string) => a.localeCompare(b)
 
-function readScssPalette(): Record<string, string> {
-  const source = readFileSync(path.resolve(process.cwd(), 'src/scss/colors/_variables.scss'), 'utf8')
+function readScssPalette(file = 'src/scss/colors/_variables.scss'): Record<string, string> {
+  const source = readFileSync(path.resolve(process.cwd(), file), 'utf8')
   const start = source.indexOf('$lte-palette: (')
   const end = source.indexOf(') !default;', start)
   const map: Record<string, string> = {}
@@ -69,6 +69,28 @@ describe('extended palette', () => {
 
       for (const bs of bootstrapChromatic) {
         expect(hueDistance(a.oklch.h, bs.hue), `${a.name}–${bs.name}`).toBeGreaterThanOrEqual(15)
+      }
+    }
+  })
+
+  it('the legacy v3 sheet lists exactly the colours src/utils/palette.mjs describes', () => {
+    const scss = readScssPalette('src/scss/adminlte-colors-v3.scss')
+    const v3 = paletteV3 as PaletteColor[]
+    expect(Object.keys(scss).toSorted(byName)).toEqual(v3.map(c => c.name).toSorted(byName))
+    for (const c of v3) {
+      expect(scss[c.name], c.name).toBe(c.hex)
+    }
+  })
+
+  it('v3 skin presets only reference v3 colours', () => {
+    const known = new Set((paletteV3 as PaletteColor[]).map(c => c.name))
+    for (const skin of skinsV3 as Array<{ name: string; header: { cls: string }; sidebar: { cls: string }; boxes: string[] }>) {
+      for (const cls of [skin.header.cls, skin.sidebar.cls]) {
+        expect(known.has(cls.replace(/^text-bg-/, '')) || cls.startsWith('bg-body'), `${skin.name} → ${cls}`).toBe(true)
+      }
+
+      for (const name of skin.boxes) {
+        expect(known.has(name), `${skin.name} → boxes ${name}`).toBe(true)
       }
     }
   })

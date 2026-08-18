@@ -5,6 +5,12 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- **The AdminLTE 3 palette, as it was — `dist/css/adminlte-colors-v3.css`.** A second opt-in sheet for everyone who preferred the original colours: the 18 AdminLTE 3 colours (lightblue, navy, olive, lime, fuchsia, maroon, blue, indigo, purple, pink, red, orange, yellow, green, teal, cyan, gray, gray-dark) with the values from the 3.2 build and v3's text-colour rule (Bootstrap 4's YIQ test — white on lightblue, olive, teal…, dark on lime, orange, yellow), emitting exactly the same class families as the designed palette. Load one sheet or the other; they share class names. Built from the same Sass — new `$lte-palette-contrast: "wcag" | "yiq"` knob (with `$lte-palette-yiq-threshold`, `$lte-palette-yiq-text-dark/-light`) — so `$lte-palette-custom` and `$lte-palette-aliases` work with it too. Twelve AdminLTE 2 skin presets (skin-blue, -black, -purple, -green, -red, -yellow and their -light variants) in v4 terms. **UI → Colors** and **Theme Customize** gained a palette switch that swaps the stylesheet live and shows that palette's tiles, presets and pickers; the Colors docs page documents both. `npm run palette -- --check` and the unit tests keep the v3 map and its metadata in step (#6103, follow-up for @johnnyq).
+
 ## [4.4.1] - 2026-08-18
 
 ### Fixed
