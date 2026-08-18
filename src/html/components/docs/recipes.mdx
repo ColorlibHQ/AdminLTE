@@ -416,6 +416,38 @@ new ApexCharts(document.querySelector("#revenue-chart"), {
 
 If you prefer the ColorMode event to the attribute observer, `document.addEventListener("changed.lte.color-mode", e => …)` receives `e.detail.resolved` (`"light"` or `"dark"`); the observer above additionally covers OS-preference changes in auto mode and any code that sets the attribute directly. The same idea applies to other libraries — Chart.js reads `Chart.defaults.color` / `Chart.defaults.borderColor`, which you can set from `getComputedStyle(document.body)` and re-apply with `chart.update()` in the same observer.
 
+##### Printing a page as a document
+
+AdminLTE prints the whole layout — sidebar, header and content — with the styles you would want for reading a copy of a screen: the target of an external link is printed after it, buttons keep an outline so they still read as buttons, and everything goes black on white so backgrounds don't eat ink.
+
+For pages that print as *documents* — an invoice, quote, work order or packing slip that goes to a customer — that is the wrong output: nobody wants `Pay online (https://pay.example.com/inv/12345?token=…)` on a printed invoice, or a box drawn around a button. Put `data-lte-print="plain"` on `<html>`, `<body>` or any container and both go away, while the text stays black on white:
+
+```html
+<html lang="en" data-lte-print="plain">
+```
+
+Scope it to part of a page when only that part is the document:
+
+```html
+<div class="card" data-lte-print="plain">…the invoice…</div>
+```
+
+Hide the chrome for that print with Bootstrap's own utility — `.d-print-none` works on any element, including the sidebar and the header:
+
+```html
+<aside class="app-sidebar bg-body-secondary shadow d-print-none" data-bs-theme="dark">…</aside>
+<nav class="app-header navbar navbar-expand bg-body d-print-none">…</nav>
+```
+
+And if a page only ever prints as a document, set the attribute once when you print:
+
+```js
+document.querySelector("#print-invoice").addEventListener("click", () => {
+  document.documentElement.setAttribute("data-lte-print", "plain")
+  window.print()
+})
+```
+
 ##### Where to next
 
 - [JavaScript Plugins Overview](javascript/plugins-overview.html) — every plugin's event names and methods

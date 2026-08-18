@@ -765,7 +765,7 @@
               </span>
               <h1 class="faq-hero-title">How can we help?</h1>
               <p class="faq-hero-lead">
-                Quick answers to the 24 questions we get asked most often. Use the search to jump to
+                Quick answers to the 25 questions we get asked most often. Use the search to jump to
                 anything, or click a topic below.
               </p>
               <form class="faq-search" role="search" onsubmit="return false;">
@@ -824,7 +824,7 @@
               ><a href="#troubleshooting" class="faq-chip faq-chip-danger">
                 <i class="bi bi-wrench-adjustable" aria-hidden="true"></i>
                 <span>Troubleshooting</span>
-                <span class="faq-chip-count">6</span>
+                <span class="faq-chip-count">7</span>
               </a>
             </nav>
 
@@ -1058,15 +1058,30 @@
                     </summary>
                     <div class="faq-answer">
                       <p>
-                        Override <code>--bs-primary</code> (and its RGB counterpart) on
-                        <code>:root</code>:
+                        Bootstrap compiles <code>$primary</code> into its components, so overriding
+                        <code>--bs-primary</code> alone repaints <code>.text-primary</code> and
+                        <code>.bg-primary</code> but leaves <code>.btn-primary</code>, pagination,
+                        checkboxes and the focus ring blue. Two things actually work:
                       </p>
-                      <pre class="astro-code"><code>:root {
-  --bs-primary: #6610f2;
-  --bs-primary-rgb: 102, 16, 242;
-}</code></pre>
+                      <p>
+                        <strong>With Sass</strong> — set <code>$primary</code> before importing
+                        AdminLTE and everything is compiled with it:
+                      </p>
+                      <pre class="astro-code"><code>$primary: #6610f2;
+@import "admin-lte/src/scss/adminlte";</code></pre>
+                      <p>
+                        <strong>Without a build step</strong> — load the opt-in palette sheet and
+                        name your colour on <code>&lt;html&gt;</code>; it rewires the components
+                        that bake the hex:
+                      </p>
+                      <pre
+                        class="astro-code"
+                      ><code>&lt;link rel="stylesheet" href="css/adminlte-colors.css"&gt;
+&lt;html lang="en" data-lte-primary="indigo"&gt;</code></pre>
                       <p class="mb-0">
-                        For deeper control (sidebar width, breakpoints, spacing scale), see
+                        A brand colour outside the palette needs only <code>--bs-primary</code> plus
+                        that attribute — see <a href="colors.html">Colors &amp; Skins</a>. For
+                        sidebar width, breakpoints and the spacing scale, see
                         <a href="customization.html">Customization &amp; Theming</a>.
                       </p>
                     </div>
@@ -1285,7 +1300,7 @@
                   </span>
                   <div>
                     <h2 class="faq-section-title">Troubleshooting</h2>
-                    <p class="faq-section-count">6 questions</p>
+                    <p class="faq-section-count">7 questions</p>
                   </div>
                 </header>
                 <div class="faq-section-items">
@@ -1366,6 +1381,27 @@
                     <div class="faq-answer">
                       Fixed in v4.0.0 (#5993). If you're still seeing this, you're on an older RC —
                       update to the latest.
+                    </div>
+                  </details>
+                  <details class="faq-item" data-faq-item>
+                    <summary>
+                      <span class="faq-q-icon">
+                        <i class="bi bi-question-lg" aria-hidden="true"></i>
+                      </span>
+                      <span class="faq-q-text"
+                        >Printing adds the URL after every link and a box around buttons.</span
+                      >
+                      <span class="faq-q-chevron">
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                      </span>
+                    </summary>
+                    <div class="faq-answer">
+                      Those are AdminLTE's print defaults, which suit printing a copy of a screen.
+                      For a page that prints as a document — an invoice or work order that goes to a
+                      customer — add <code>&lt;html data-lte-print="plain"&gt;</code> (it works on
+                      any container too) and both go away, while text stays black on white. Hide the
+                      chrome with Bootstrap's <code>.d-print-none</code> on the sidebar and header.
+                      See the <a href="recipes.html">Recipes</a> page.
                     </div>
                   </details>
                   <details class="faq-item" data-faq-item>

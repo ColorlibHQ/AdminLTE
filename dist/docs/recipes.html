@@ -1306,6 +1306,60 @@
                       which you can set from <code>getComputedStyle(document.body)</code> and
                       re-apply with <code>chart.update()</code> in the same observer.
                     </p>
+                    <h5 id="printing-a-page-as-a-document">Printing a page as a document</h5>
+                    <p>
+                      AdminLTE prints the whole layout — sidebar, header and content — with the
+                      styles you would want for reading a copy of a screen: the target of an
+                      external link is printed after it, buttons keep an outline so they still read
+                      as buttons, and everything goes black on white so backgrounds don’t eat ink.
+                    </p>
+                    <p>
+                      For pages that print as <em>documents</em> — an invoice, quote, work order or
+                      packing slip that goes to a customer — that is the wrong output: nobody wants
+                      <code>Pay online (https://pay.example.com/inv/12345?token=…)</code> on a
+                      printed invoice, or a box drawn around a button. Put
+                      <code>data-lte-print=&quot;plain&quot;</code> on <code>&lt;html&gt;</code>,
+                      <code>&lt;body&gt;</code> or any container and both go away, while the text
+                      stays black on white:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">html</span><span style="color:#9CDCFE"> lang</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;en&quot;</span><span style="color:#9CDCFE"> data-lte-print</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;plain&quot;</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>Scope it to part of a page when only that part is the document:</p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card&quot;</span><span style="color:#9CDCFE"> data-lte-print</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;plain&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…the invoice…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      Hide the chrome for that print with Bootstrap’s own utility —
+                      <code>.d-print-none</code> works on any element, including the sidebar and the
+                      header:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">aside</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-sidebar bg-body-secondary shadow d-print-none&quot;</span><span style="color:#9CDCFE"> data-bs-theme</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">aside</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">nav</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-header navbar navbar-expand bg-body d-print-none&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">nav</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      And if a page only ever prints as a document, set the attribute once when you
+                      print:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="js"
+                    ><code><span class="line"><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;#print-invoice&quot;</span><span style="color:#D4D4D4">).</span><span style="color:#DCDCAA">addEventListener</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;click&quot;</span><span style="color:#D4D4D4">, () </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  document</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">documentElement</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">setAttribute</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;data-lte-print&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">&quot;plain&quot;</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#9CDCFE">  window</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">print</span><span style="color:#D4D4D4">()</span></span>
+<span class="line"><span style="color:#D4D4D4">})</span></span></code></pre>
                     <h5 id="where-to-next">Where to next</h5>
                     <ul>
                       <li>

@@ -281,17 +281,42 @@ fieldset {
 
 /* Print Accessibility */
 @media print {
+  // Printers drop backgrounds, so anything that takes its text colour from one
+  // — a `.btn-primary`, a nav link on a coloured sidebar — would print white on
+  // nothing. Force legible ink instead.
   .skip-link,
   .btn,
   .nav-link {
     color: #000 !important;
     background: transparent !important;
+  }
+
+  // A button should still read as a button on paper. Nav links are ordinary
+  // text in print: the sidebar prints by design, so outlining every item put a
+  // black box around the whole menu, which was never the intent (#6108).
+  .btn {
     border: 1px solid #000 !important;
   }
 
+  // The HTML5 Boilerplate convention: a reader holding paper cannot follow a
+  // link, so print where it goes.
   a[href^="http"]::after {
     font-size: .8em;
     content: " (" attr(href) ")";
+  }
+
+  // `data-lte-print="plain"` — for pages that print as a document (invoice,
+  // quote, work order, packing slip) rather than as a copy of a web page: no
+  // URLs after links, no outline around buttons. Goes on <html>, <body> or any
+  // container; text stays black on white either way (#6108).
+  [data-lte-print="plain"] {
+    a[href^="http"]::after {
+      content: none;
+    }
+
+    .btn {
+      border-color: transparent !important;
+    }
   }
 
   /* Print Layout Fix - Ensure sidebar and main content are both visible.

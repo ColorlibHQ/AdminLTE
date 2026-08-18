@@ -5,6 +5,17 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.7.0] - 2026-08-18
+
+### Added
+
+- **`data-lte-print="plain"` — print a page as a document, not as a copy of a screen.** Two rules in the print stylesheet restyle content unconditionally: the target of every external link is printed after it (`a[href^="http"]::after`), and buttons are outlined in black. They are the HTML5 Boilerplate conventions and they suit printing a web page, but they are wrong for an invoice, quote or work order that goes to a customer — `Pay online (https://pay.example.com/inv/12345?token=…)` is not what anyone wants on paper. The attribute turns both off, on `<html>`, `<body>` or any single container, while text stays black on white so nothing becomes unreadable. Note that `.d-print-none` could not have served as the opt-out: it hides the element, and these rules restyle elements that are meant to print (#6108, requested by @johnnyq). Documented as the **“Printing a page as a document”** recipe.
+
+### Fixed
+
+- **Every sidebar item printed inside a black box.** The print rule that outlines buttons also listed `.nav-link`, and the sidebar prints by design (since 4.0.0), so a printed page came out with a black rectangle around all 85 menu items. The outline now applies to `.btn` only; nav links keep the ink-saving black-on-transparent treatment and print as ordinary text (#6108).
+- The FAQ answer for “How do I change the primary colour?” recommended overriding `--bs-primary` on `:root` — the one approach that leaves `.btn-primary` blue, which is what led to #6107. It now gives the two that work: `$primary` in Sass, or `data-lte-primary` with the palette sheet.
+
 ## [4.6.0] - 2026-08-18
 
 ### Added

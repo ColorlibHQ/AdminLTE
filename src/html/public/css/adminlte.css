@@ -15974,11 +15974,19 @@ fieldset legend {
   .nav-link {
     color: #000 !important;
     background: transparent !important;
+  }
+  .btn {
     border: 1px solid #000 !important;
   }
   a[href^=http]::after {
     font-size: 0.8em;
     content: " (" attr(href) ")";
+  }
+  [data-lte-print=plain] a[href^=http]::after {
+    content: none;
+  }
+  [data-lte-print=plain] .btn {
+    border-color: transparent !important;
   }
   /* Print Layout Fix - Ensure sidebar and main content are both visible.
      `:not(.d-print-none)` on the two rules that force `display`, so Bootstrap's
