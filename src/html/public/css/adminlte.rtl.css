@@ -12824,6 +12824,85 @@ textarea.form-control-lg {
   height: 2.5rem;
 }
 
+.navbar-search {
+  --lte-search-field-width: 14rem;
+  --lte-search-field-focus-width: 18rem;
+  --lte-search-field-bg: rgba(var(--bs-emphasis-color-rgb), .06);
+  --lte-search-field-hover-bg: rgba(var(--bs-emphasis-color-rgb), .09);
+  --lte-search-field-focus-bg: rgba(var(--bs-emphasis-color-rgb), .1);
+  --lte-search-field-border-color: rgba(var(--bs-emphasis-color-rgb), .1);
+  --lte-search-field-focus-border-color: rgba(var(--bs-emphasis-color-rgb), .35);
+  --lte-search-field-focus-ring: 0 0 0 .2rem rgba(var(--bs-emphasis-color-rgb), .12);
+  --lte-search-field-color: var(--bs-body-color);
+  --lte-search-field-placeholder-color: var(--bs-secondary-color);
+  --lte-search-field-icon-color: var(--bs-secondary-color);
+}
+.navbar-search .form-control {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--lte-search-field-color);
+  background-color: var(--lte-search-field-bg);
+  border-color: var(--lte-search-field-border-color);
+  box-shadow: none;
+  border-radius: 50rem;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .navbar-search .form-control {
+    transition: none;
+  }
+}
+.navbar-search .form-control::placeholder {
+  color: var(--lte-search-field-placeholder-color);
+  opacity: 1;
+}
+.navbar-search .form-control:hover {
+  background-color: var(--lte-search-field-hover-bg);
+}
+.navbar-search .form-control:focus {
+  background-color: var(--lte-search-field-focus-bg);
+  border-color: var(--lte-search-field-focus-border-color);
+  box-shadow: var(--lte-search-field-focus-ring);
+}
+.navbar-search .navbar-search-field {
+  position: relative;
+  width: var(--lte-search-field-width);
+  max-width: 100%;
+  transition: width 0.2s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .navbar-search .navbar-search-field {
+    transition: none;
+  }
+}
+.navbar-search:focus-within .navbar-search-field {
+  width: var(--lte-search-field-focus-width);
+}
+.navbar-search .form-control {
+  padding-right: 2.125rem;
+}
+.navbar-search .navbar-search-submit {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  line-height: 1;
+  color: var(--lte-search-field-icon-color);
+  background: transparent;
+  border: 0;
+  transform: translateY(-50%);
+  border-radius: 50rem;
+}
+.navbar-search .navbar-search-submit:hover, .navbar-search .navbar-search-submit:focus-visible {
+  color: var(--lte-search-field-color);
+}
+.navbar-search .navbar-search-submit:focus-visible {
+  outline: 2px solid var(--bs-focus-ring-color);
+  outline-offset: 2px;
+}
+
 .navbar-badge {
   position: absolute;
   top: 9px;
@@ -13193,6 +13272,42 @@ textarea.form-control-lg {
 
 .sidebar-search {
   padding: 0.5rem 1rem;
+  --lte-search-field-bg: rgba(var(--bs-emphasis-color-rgb), .06);
+  --lte-search-field-hover-bg: rgba(var(--bs-emphasis-color-rgb), .09);
+  --lte-search-field-focus-bg: rgba(var(--bs-emphasis-color-rgb), .1);
+  --lte-search-field-border-color: rgba(var(--bs-emphasis-color-rgb), .1);
+  --lte-search-field-focus-border-color: rgba(var(--bs-emphasis-color-rgb), .35);
+  --lte-search-field-focus-ring: 0 0 0 .2rem rgba(var(--bs-emphasis-color-rgb), .12);
+  --lte-search-field-color: var(--bs-body-color);
+  --lte-search-field-placeholder-color: var(--bs-secondary-color);
+  --lte-search-field-icon-color: var(--bs-secondary-color);
+}
+.sidebar-search .form-control {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--lte-search-field-color);
+  background-color: var(--lte-search-field-bg);
+  border-color: var(--lte-search-field-border-color);
+  box-shadow: none;
+  border-radius: 50rem;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-search .form-control {
+    transition: none;
+  }
+}
+.sidebar-search .form-control::placeholder {
+  color: var(--lte-search-field-placeholder-color);
+  opacity: 1;
+}
+.sidebar-search .form-control:hover {
+  background-color: var(--lte-search-field-hover-bg);
+}
+.sidebar-search .form-control:focus {
+  background-color: var(--lte-search-field-focus-bg);
+  border-color: var(--lte-search-field-focus-border-color);
+  box-shadow: var(--lte-search-field-focus-ring);
 }
 
 .logo-xs,

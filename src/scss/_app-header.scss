@@ -17,6 +17,55 @@
   }
 }
 
+// Navbar search: a quiet pill with the icon inside; the icon is the submit
+// button. Widens a little while it has focus. Below `md` the demo shows an
+// icon link to the search page instead (see the Topbar markup).
+.navbar-search {
+  --#{$lte-prefix}search-field-width: #{$lte-search-field-width};
+  --#{$lte-prefix}search-field-focus-width: #{$lte-search-field-focus-width};
+  @include lte-search-field();
+
+  .navbar-search-field {
+    position: relative;
+    width: var(--#{$lte-prefix}search-field-width);
+    max-width: 100%;
+    @include transition(width .2s ease-in-out);
+  }
+
+  &:focus-within .navbar-search-field {
+    width: var(--#{$lte-prefix}search-field-focus-width);
+  }
+
+  .form-control {
+    padding-left: $lte-search-field-icon-space;
+  }
+
+  .navbar-search-submit {
+    position: absolute;
+    top: 50%;
+    left: $lte-search-field-padding-x;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    line-height: 1;
+    color: var(--#{$lte-prefix}search-field-icon-color);
+    background: transparent;
+    border: 0;
+    transform: translateY(-50%);
+    @include border-radius($border-radius-pill);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--#{$lte-prefix}search-field-color);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--#{$prefix}focus-ring-color);
+      outline-offset: 2px;
+    }
+  }
+}
+
 // Navbar badge
 .navbar-badge {
   position: absolute;

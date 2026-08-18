@@ -154,16 +154,17 @@
             role="search"
             action="./pages/search-results.html"
           >
-            <div class="input-group input-group-sm">
-              <label for="navbar-search-input" class="visually-hidden">Search</label>
+            <label for="navbar-search-input" class="visually-hidden">Search</label>
+            <div class="navbar-search-field">
               <input
                 type="search"
                 id="navbar-search-input"
                 name="q"
                 class="form-control"
                 placeholder="Search…"
+                autocomplete="off"
               />
-              <button class="btn btn-outline-secondary" type="submit" aria-label="Submit search">
+              <button class="navbar-search-submit" type="submit" aria-label="Submit search">
                 <i class="bi bi-search" aria-hidden="true"></i>
               </button>
             </div>
@@ -172,6 +173,13 @@
 
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">
+            <!--begin::Search (small screens: the field above is hidden, so link to the search page)-->
+            <li class="nav-item d-md-none">
+              <a class="nav-link" href="./pages/search-results.html" aria-label="Search">
+                <i class="bi bi-search" aria-hidden="true"></i>
+              </a>
+            </li>
+            <!--end::Search-->
             <!--begin::Messages Dropdown Menu-->
             <li class="nav-item dropdown">
               <a

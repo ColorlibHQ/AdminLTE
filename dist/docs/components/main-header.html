@@ -148,16 +148,17 @@
             role="search"
             action="../../pages/search-results.html"
           >
-            <div class="input-group input-group-sm">
-              <label for="navbar-search-input" class="visually-hidden">Search</label>
+            <label for="navbar-search-input" class="visually-hidden">Search</label>
+            <div class="navbar-search-field">
               <input
                 type="search"
                 id="navbar-search-input"
                 name="q"
                 class="form-control"
                 placeholder="Search…"
+                autocomplete="off"
               />
-              <button class="btn btn-outline-secondary" type="submit" aria-label="Submit search">
+              <button class="navbar-search-submit" type="submit" aria-label="Submit search">
                 <i class="bi bi-search" aria-hidden="true"></i>
               </button>
             </div>
@@ -166,6 +167,13 @@
 
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">
+            <!--begin::Search (small screens: the field above is hidden, so link to the search page)-->
+            <li class="nav-item d-md-none">
+              <a class="nav-link" href="../../pages/search-results.html" aria-label="Search">
+                <i class="bi bi-search" aria-hidden="true"></i>
+              </a>
+            </li>
+            <!--end::Search-->
             <!--begin::Messages Dropdown Menu-->
             <li class="nav-item dropdown">
               <a
@@ -1007,11 +1015,22 @@
 <span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">ul</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#6A9955">    &lt;!-- End navbar links --&gt;</span></span>
 <span class="line"></span>
+<span class="line"><span style="color:#6A9955">    &lt;!-- Navbar search: a quiet pill, the icon is the submit button (md and up) --&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">form</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;navbar-search d-none d-md-block ms-3&quot;</span><span style="color:#9CDCFE"> role</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;search&quot;</span><span style="color:#9CDCFE"> action</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;search-results.html&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">label</span><span style="color:#9CDCFE"> for</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;navbar-search-input&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;visually-hidden&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Search</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">label</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;navbar-search-field&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">input</span><span style="color:#9CDCFE"> type</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;search&quot;</span><span style="color:#9CDCFE"> id</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;navbar-search-input&quot;</span><span style="color:#9CDCFE"> name</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;q&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;form-control&quot;</span><span style="color:#9CDCFE"> placeholder</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;Search…&quot;</span><span style="color:#9CDCFE"> autocomplete</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;off&quot;</span><span style="color:#808080"> /&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">button</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;navbar-search-submit&quot;</span><span style="color:#9CDCFE"> type</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;submit&quot;</span><span style="color:#9CDCFE"> aria-label</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;Submit search&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-search&quot;</span><span style="color:#9CDCFE"> aria-hidden</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;true&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;/</span><span style="color:#569CD6">button</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">form</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">ul</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;navbar-nav ms-auto&quot;</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#6A9955">      &lt;!-- Navbar Search --&gt;</span></span>
-<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">li</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-item&quot;</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-link&quot;</span><span style="color:#9CDCFE"> data-widget</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;navbar-search&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#9CDCFE"> role</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;button&quot;</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">          &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-search&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#6A9955">      &lt;!-- Search on small screens: link to the search page --&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">li</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-item d-md-none&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-link&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;search-results.html&quot;</span><span style="color:#9CDCFE"> aria-label</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;Search&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-search&quot;</span><span style="color:#9CDCFE"> aria-hidden</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;true&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">        &lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
 <span class="line"></span>

@@ -313,6 +313,7 @@
 // .sidebar-wrapper so it stays put while the menu scrolls under it.
 .sidebar-search {
   padding: $lte-sidebar-padding-y ($lte-sidebar-padding-x * 2);
+  @include lte-search-field();
 }
 
 // Logo style

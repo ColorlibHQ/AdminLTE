@@ -58,6 +58,14 @@ $lte-app-header-bottom-border:        $lte-app-header-bottom-border-width solid 
 $lte-app-header-link-padding-y:       $navbar-padding-y !default;
 $lte-app-header-height:               ($nav-link-height + ($lte-app-header-link-padding-y * 2)) !default;
 $lte-app-header-height-compact:       ($nav-link-height-compact + ($lte-app-header-link-padding-y * 2)) !default;
+
+// Search fields in the chrome (navbar search, sidebar filter)
+$lte-search-field-width:              14rem !default;
+$lte-search-field-focus-width:        18rem !default;
+$lte-search-field-font-size:          $font-size-sm !default;
+$lte-search-field-padding-y:          .3rem !default;
+$lte-search-field-padding-x:          .75rem !default;
+$lte-search-field-icon-space:         2.125rem !default;
 $lte-zindex-fixed-header:           $zindex-fixed !default;
 
 // APP MAIN

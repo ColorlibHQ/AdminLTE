@@ -1,0 +1,46 @@
+//
+// Mixin: search field in the chrome
+//
+// One treatment for the navbar search and the sidebar filter. Colours are all
+// theme-relative (`--bs-emphasis-color-rgb`, `--bs-body-color`), so the field
+// is a soft translucent glass on any coloured or dark header / sidebar and a
+// soft grey on a white one — it never fights the `text-bg-*` behind it.
+//
+
+@mixin lte-search-field() {
+  --#{$lte-prefix}search-field-bg: rgba(var(--#{$prefix}emphasis-color-rgb), .06);
+  --#{$lte-prefix}search-field-hover-bg: rgba(var(--#{$prefix}emphasis-color-rgb), .09);
+  --#{$lte-prefix}search-field-focus-bg: rgba(var(--#{$prefix}emphasis-color-rgb), .1);
+  --#{$lte-prefix}search-field-border-color: rgba(var(--#{$prefix}emphasis-color-rgb), .1);
+  --#{$lte-prefix}search-field-focus-border-color: rgba(var(--#{$prefix}emphasis-color-rgb), .35);
+  --#{$lte-prefix}search-field-focus-ring: 0 0 0 .2rem rgba(var(--#{$prefix}emphasis-color-rgb), .12);
+  --#{$lte-prefix}search-field-color: var(--#{$prefix}body-color);
+  --#{$lte-prefix}search-field-placeholder-color: var(--#{$prefix}secondary-color);
+  --#{$lte-prefix}search-field-icon-color: var(--#{$prefix}secondary-color);
+
+  .form-control {
+    padding: $lte-search-field-padding-y $lte-search-field-padding-x;
+    font-size: $lte-search-field-font-size;
+    color: var(--#{$lte-prefix}search-field-color);
+    background-color: var(--#{$lte-prefix}search-field-bg);
+    border-color: var(--#{$lte-prefix}search-field-border-color);
+    box-shadow: none;
+    @include border-radius($border-radius-pill);
+    @include transition(background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out);
+
+    &::placeholder {
+      color: var(--#{$lte-prefix}search-field-placeholder-color);
+      opacity: 1;
+    }
+
+    &:hover {
+      background-color: var(--#{$lte-prefix}search-field-hover-bg);
+    }
+
+    &:focus {
+      background-color: var(--#{$lte-prefix}search-field-focus-bg);
+      border-color: var(--#{$lte-prefix}search-field-focus-border-color);
+      box-shadow: var(--#{$lte-prefix}search-field-focus-ring);
+    }
+  }
+}
