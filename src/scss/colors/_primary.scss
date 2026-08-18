@@ -1,0 +1,253 @@
+@use "sass:map";
+
+//
+// Colors: `primary` as a theme colour
+// --------------------------------------------------------
+// Bootstrap bakes `$primary` into components at build time — `.btn-primary`
+// carries `--bs-btn-bg: #0d6efd`, not `var(--bs-primary)` — so overriding
+// `--bs-primary` alone repaints utilities and leaves buttons blue.
+//
+// This block rewires those components to variables, then points the variables
+// at a palette colour per `data-lte-primary` value:
+//
+//   <html lang="en" data-lte-primary="teal">
+//
+// Nothing applies without the attribute, and it works on any container, so a
+// section of a page can carry its own primary. Requested in #6107.
+//
+
+// Which way a state moves: Bootstrap darkens a colour that carries white text
+// and lightens one that carries dark text (see its button-variant mixin).
+@function lte-primary-state($color, $shade, $tint) {
+  $text: lte-contrast($color);
+
+  @if $text == $color-contrast-light or $text == $lte-palette-yiq-text-light {
+    @return lte-hex(shade-color($color, $shade));
+  }
+
+  @return lte-hex(tint-color($color, $tint));
+}
+
+// Defaults, so `data-lte-primary` also works with a hand-written
+// `--bs-primary` (a brand colour that is not in the palette).
+[data-lte-primary] {
+  --#{$prefix}focus-ring-color: rgba(var(--#{$prefix}primary-rgb), #{$focus-ring-opacity});
+  --#{$lte-prefix}primary-color: #{$color-contrast-light};
+  --#{$lte-prefix}primary-color-rgb: #{to-rgb($color-contrast-light)};
+  --#{$lte-prefix}primary-hover: var(--#{$prefix}primary);
+  --#{$lte-prefix}primary-hover-border: var(--#{$prefix}primary);
+  --#{$lte-prefix}primary-active: var(--#{$prefix}primary);
+  --#{$lte-prefix}primary-active-border: var(--#{$prefix}primary);
+}
+
+// Shade the hover / active states of a hand-written colour where the browser
+// can do the maths. Guarded: without the guard, older browsers would resolve
+// the variable to nothing and paint a transparent button.
+@supports (color: color-mix(in srgb, red 50%, black)) {
+  [data-lte-primary] {
+    --#{$lte-prefix}primary-hover: color-mix(in srgb, var(--#{$prefix}primary) 85%, #{$black});
+    --#{$lte-prefix}primary-hover-border: color-mix(in srgb, var(--#{$prefix}primary) 80%, #{$black});
+    --#{$lte-prefix}primary-active: color-mix(in srgb, var(--#{$prefix}primary) 80%, #{$black});
+    --#{$lte-prefix}primary-active-border: color-mix(in srgb, var(--#{$prefix}primary) 75%, #{$black});
+  }
+}
+
+// The presets: every palette colour, plus Bootstrap's own theme colours, so
+// `data-lte-primary="danger"` works without the palette being involved. The
+// tokens are aliases — dark mode is already handled where they are defined.
+@each $name, $value in map.merge($theme-colors, $lte-palette) {
+  @if $name != "primary" {
+    $link-hover: shift-color($value, $link-shade-percentage);
+    $text: lte-contrast($value);
+
+    [data-lte-primary="#{$name}"] {
+      --#{$prefix}primary: var(--#{$prefix}#{$name});
+      --#{$prefix}primary-rgb: var(--#{$prefix}#{$name}-rgb);
+      --#{$prefix}primary-text-emphasis: var(--#{$prefix}#{$name}-text-emphasis);
+      --#{$prefix}primary-bg-subtle: var(--#{$prefix}#{$name}-bg-subtle);
+      --#{$prefix}primary-border-subtle: var(--#{$prefix}#{$name}-border-subtle);
+      --#{$prefix}link-color: var(--#{$prefix}#{$name});
+      --#{$prefix}link-color-rgb: var(--#{$prefix}#{$name}-rgb);
+      --#{$prefix}link-hover-color: #{lte-hex($link-hover)};
+      --#{$prefix}link-hover-color-rgb: #{to-rgb($link-hover)};
+      --#{$lte-prefix}primary-hover: #{lte-primary-state($value, $btn-hover-bg-shade-amount, $btn-hover-bg-tint-amount)};
+      --#{$lte-prefix}primary-hover-border: #{lte-primary-state($value, $btn-hover-border-shade-amount, $btn-hover-border-tint-amount)};
+      --#{$lte-prefix}primary-active: #{lte-primary-state($value, $btn-active-bg-shade-amount, $btn-active-bg-tint-amount)};
+      --#{$lte-prefix}primary-active-border: #{lte-primary-state($value, $btn-active-border-shade-amount, $btn-active-border-tint-amount)};
+
+      // The shared block above already says white; only the light colours,
+      // which carry dark text, need to say otherwise
+      @if $text != $color-contrast-light {
+        --#{$lte-prefix}primary-color: #{$text};
+        --#{$lte-prefix}primary-color-rgb: #{to-rgb($text)};
+      }
+    }
+  }
+}
+
+// Links carry Bootstrap's dark-mode tint, as they do for the default primary.
+@if $enable-dark-mode {
+  @include color-mode(dark, true) {
+    @each $name, $value in map.merge($theme-colors, $lte-palette) {
+      @if $name != "primary" {
+        $link-dark: tint-color($value, 40%);
+        $link-dark-hover: tint-color($link-dark, 20%);
+
+        // Both selectors: `data-bs-theme` and `data-lte-primary` usually sit on
+        // the same <html> element, which a descendant combinator would miss.
+        &[data-lte-primary="#{$name}"],
+        [data-lte-primary="#{$name}"] {
+          --#{$prefix}link-color: #{lte-hex($link-dark)};
+          --#{$prefix}link-color-rgb: #{to-rgb($link-dark)};
+          --#{$prefix}link-hover-color: #{lte-hex($link-dark-hover)};
+          --#{$prefix}link-hover-color-rgb: #{to-rgb($link-dark-hover)};
+        }
+      }
+    }
+  }
+}
+
+// The components that bake the colour
+// --------------------------------------------------------
+// Deliberately a second `[data-lte-primary]` block: the variable defaults above
+// have to be declared before the per-colour presets (same specificity), and the
+// component rules have to come after them.
+/* stylelint-disable-next-line no-duplicate-selectors */
+[data-lte-primary] {
+  .btn-primary {
+    --#{$prefix}btn-color: var(--#{$lte-prefix}primary-color);
+    --#{$prefix}btn-bg: var(--#{$prefix}primary);
+    --#{$prefix}btn-border-color: var(--#{$prefix}primary);
+    --#{$prefix}btn-hover-color: var(--#{$lte-prefix}primary-color);
+    --#{$prefix}btn-hover-bg: var(--#{$lte-prefix}primary-hover);
+    --#{$prefix}btn-hover-border-color: var(--#{$lte-prefix}primary-hover-border);
+    --#{$prefix}btn-focus-shadow-rgb: var(--#{$prefix}primary-rgb);
+    --#{$prefix}btn-active-color: var(--#{$lte-prefix}primary-color);
+    --#{$prefix}btn-active-bg: var(--#{$lte-prefix}primary-active);
+    --#{$prefix}btn-active-border-color: var(--#{$lte-prefix}primary-active-border);
+    --#{$prefix}btn-disabled-color: var(--#{$lte-prefix}primary-color);
+    --#{$prefix}btn-disabled-bg: var(--#{$prefix}primary);
+    --#{$prefix}btn-disabled-border-color: var(--#{$prefix}primary);
+  }
+
+  .btn-outline-primary {
+    --#{$prefix}btn-color: var(--#{$prefix}primary);
+    --#{$prefix}btn-border-color: var(--#{$prefix}primary);
+    --#{$prefix}btn-hover-color: var(--#{$lte-prefix}primary-color);
+    --#{$prefix}btn-hover-bg: var(--#{$prefix}primary);
+    --#{$prefix}btn-hover-border-color: var(--#{$prefix}primary);
+    --#{$prefix}btn-focus-shadow-rgb: var(--#{$prefix}primary-rgb);
+    --#{$prefix}btn-active-color: var(--#{$lte-prefix}primary-color);
+    --#{$prefix}btn-active-bg: var(--#{$prefix}primary);
+    --#{$prefix}btn-active-border-color: var(--#{$prefix}primary);
+    --#{$prefix}btn-disabled-color: var(--#{$prefix}primary);
+    --#{$prefix}btn-disabled-border-color: var(--#{$prefix}primary);
+  }
+
+  .btn-link {
+    --#{$prefix}btn-focus-shadow-rgb: var(--#{$prefix}primary-rgb);
+  }
+
+  // `.text-bg-primary` hard-codes white; the rest of it already reads the token
+  .text-bg-primary {
+    color: var(--#{$lte-prefix}primary-color) !important;
+  }
+
+  .link-primary {
+    &:hover,
+    &:focus {
+      color: RGBA(var(--#{$prefix}link-hover-color-rgb), var(--#{$prefix}link-opacity, 1)) !important;
+      text-decoration-color: RGBA(var(--#{$prefix}link-hover-color-rgb), var(--#{$prefix}link-underline-opacity, 1)) !important;
+    }
+  }
+
+  .dropdown-menu {
+    --#{$prefix}dropdown-link-active-color: var(--#{$lte-prefix}primary-color);
+    --#{$prefix}dropdown-link-active-bg: var(--#{$prefix}primary);
+  }
+
+  .nav-pills {
+    --#{$prefix}nav-pills-link-active-color: var(--#{$lte-prefix}primary-color);
+    --#{$prefix}nav-pills-link-active-bg: var(--#{$prefix}primary);
+  }
+
+  .pagination {
+    --#{$prefix}pagination-active-color: var(--#{$lte-prefix}primary-color);
+    --#{$prefix}pagination-active-bg: var(--#{$prefix}primary);
+    --#{$prefix}pagination-active-border-color: var(--#{$prefix}primary);
+    --#{$prefix}pagination-focus-box-shadow: 0 0 0 $pagination-focus-box-shadow-width rgba(var(--#{$prefix}primary-rgb), #{$focus-ring-opacity});
+  }
+
+  .progress,
+  .progress-stacked {
+    --#{$prefix}progress-bar-color: var(--#{$lte-prefix}primary-color);
+    --#{$prefix}progress-bar-bg: var(--#{$prefix}primary);
+  }
+
+  .list-group {
+    --#{$prefix}list-group-active-color: var(--#{$lte-prefix}primary-color);
+    --#{$prefix}list-group-active-bg: var(--#{$prefix}primary);
+    --#{$prefix}list-group-active-border-color: var(--#{$prefix}primary);
+  }
+
+  // The open-state chevron is a data URI in Bootstrap's blue; the closed one is
+  // body-coloured and rotates just the same
+  .accordion {
+    --#{$prefix}accordion-btn-active-icon: var(--#{$prefix}accordion-btn-icon);
+  }
+
+  // Forms
+  .form-control:focus,
+  .form-select:focus {
+    border-color: var(--#{$prefix}primary);
+    box-shadow: var(--#{$prefix}box-shadow-inset), 0 0 0 $input-btn-focus-width rgba(var(--#{$prefix}primary-rgb), #{$focus-ring-opacity});
+  }
+
+  .form-check-input:focus {
+    border-color: var(--#{$prefix}primary);
+    box-shadow: 0 0 0 $input-btn-focus-width rgba(var(--#{$prefix}primary-rgb), #{$focus-ring-opacity});
+  }
+
+  .form-check-input:checked,
+  .form-check-input[type="checkbox"]:indeterminate {
+    background-color: var(--#{$prefix}primary);
+    border-color: var(--#{$prefix}primary);
+  }
+
+  // Focus paints a blue knob into a data URI; keep the resting one instead
+  .form-switch .form-check-input:focus:not(:checked) {
+    --#{$prefix}form-switch-bg: #{escape-svg($form-switch-bg-image)};
+  }
+
+  .form-range {
+    &::-webkit-slider-thumb {
+      background-color: var(--#{$prefix}primary);
+    }
+
+    &::-moz-range-thumb {
+      background-color: var(--#{$prefix}primary);
+    }
+  }
+
+  // AdminLTE's own primary hooks
+  .card-primary,
+  .bg-primary,
+  .text-bg-primary {
+    --#{$lte-prefix}card-variant-bg: var(--#{$prefix}primary);
+    --#{$lte-prefix}card-variant-bg-rgb: var(--#{$prefix}primary-rgb);
+    --#{$lte-prefix}card-variant-color: var(--#{$lte-prefix}primary-color);
+    --#{$lte-prefix}card-variant-color-rgb: var(--#{$lte-prefix}primary-color-rgb);
+  }
+
+  .direct-chat-primary {
+    --#{$lte-prefix}direct-chat-color: var(--#{$lte-prefix}primary-color);
+    --#{$lte-prefix}direct-chat-bg: var(--#{$prefix}primary);
+  }
+
+  .toast-primary {
+    --#{$prefix}toast-header-color: var(--#{$lte-prefix}primary-color);
+    --#{$prefix}toast-header-bg: var(--#{$prefix}primary);
+    --#{$prefix}toast-header-border-color: var(--#{$prefix}primary);
+    --#{$prefix}toast-border-color: var(--#{$prefix}primary);
+  }
+}

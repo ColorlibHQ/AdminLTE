@@ -230,26 +230,26 @@ export const skinGroups = [
 
 export const skins = [
   // Light
-  { name: 'Light', group: 'Light', note: 'White sidebar and header; colour comes only from widgets and badges.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'bg-body', theme: 'light' }, boxes: ['primary', 'teal'] },
-  { name: 'Light & indigo', group: 'Light', note: 'The "-light" family: white sidebar under a coloured header.', header: { cls: 'text-bg-indigo', theme: 'dark' }, sidebar: { cls: 'bg-body-tertiary', theme: 'light' }, boxes: ['indigo', 'pink'] },
-  { name: 'Light & sky', group: 'Light', note: 'The v2 skin-blue-light: sky header over a white sidebar.', header: { cls: 'text-bg-sky', theme: 'dark' }, sidebar: { cls: 'bg-body', theme: 'light' }, boxes: ['sky', 'amber'] },
+  { name: 'Light', group: 'Light', note: 'White sidebar and header; colour comes only from widgets and badges.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'bg-body', theme: 'light' }, primary: 'primary', boxes: ['primary', 'teal'] },
+  { name: 'Light & indigo', group: 'Light', note: 'The "-light" family: white sidebar under a coloured header.', header: { cls: 'text-bg-indigo', theme: 'dark' }, sidebar: { cls: 'bg-body-tertiary', theme: 'light' }, primary: 'indigo', boxes: ['indigo', 'pink'] },
+  { name: 'Light & sky', group: 'Light', note: 'The v2 skin-blue-light: sky header over a white sidebar.', header: { cls: 'text-bg-sky', theme: 'dark' }, sidebar: { cls: 'bg-body', theme: 'light' }, primary: 'sky', boxes: ['sky', 'amber'] },
   // Semi-dark
-  { name: 'Default', group: 'Semi-dark', note: 'What AdminLTE 4 ships: white header, dark neutral sidebar.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'bg-body-secondary', theme: 'dark' }, boxes: ['primary', 'teal'] },
-  { name: 'Graphite', group: 'Semi-dark', note: 'Quiet near-black sidebar; the widgets carry the colour.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'text-bg-graphite', theme: 'dark' }, boxes: ['indigo', 'amber'] },
-  { name: 'Navy', group: 'Semi-dark', note: 'Deep blue sidebar under a white header — the classic dark-sidebar look.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'text-bg-navy', theme: 'dark' }, boxes: ['teal', 'pink'] },
-  { name: 'Steel', group: 'Semi-dark', note: 'Mid-dark blue-grey sidebar — reads as dark without going near black.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'text-bg-steel', theme: 'dark' }, boxes: ['sky', 'orange'] },
-  { name: 'Midnight', group: 'Semi-dark', note: 'Near-black with a violet cast; made for vivid accents.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'text-bg-midnight', theme: 'dark' }, boxes: ['violet', 'teal'] },
-  { name: 'Indigo', group: 'Semi-dark', note: 'Brand-forward: one strong hue on the sidebar, everything else calm.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'text-bg-indigo', theme: 'dark' }, boxes: ['teal', 'orange'] },
+  { name: 'Default', group: 'Semi-dark', note: 'What AdminLTE 4 ships: white header, dark neutral sidebar.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'bg-body-secondary', theme: 'dark' }, primary: 'primary', boxes: ['primary', 'teal'] },
+  { name: 'Graphite', group: 'Semi-dark', note: 'Quiet near-black sidebar; the widgets carry the colour.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'text-bg-graphite', theme: 'dark' }, primary: 'indigo', boxes: ['indigo', 'amber'] },
+  { name: 'Navy', group: 'Semi-dark', note: 'Deep blue sidebar under a white header — the classic dark-sidebar look.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'text-bg-navy', theme: 'dark' }, primary: 'teal', boxes: ['teal', 'pink'] },
+  { name: 'Steel', group: 'Semi-dark', note: 'Mid-dark blue-grey sidebar — reads as dark without going near black.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'text-bg-steel', theme: 'dark' }, primary: 'sky', boxes: ['sky', 'orange'] },
+  { name: 'Midnight', group: 'Semi-dark', note: 'Near-black with a violet cast; made for vivid accents.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'text-bg-midnight', theme: 'dark' }, primary: 'violet', boxes: ['violet', 'teal'] },
+  { name: 'Indigo', group: 'Semi-dark', note: 'Brand-forward: one strong hue on the sidebar, everything else calm.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'text-bg-indigo', theme: 'dark' }, primary: 'indigo', boxes: ['teal', 'orange'] },
   // Full dark
-  { name: 'Navy & sky', group: 'Full dark', note: 'The modern take on the classic skin-blue.', header: { cls: 'text-bg-sky', theme: 'dark' }, sidebar: { cls: 'text-bg-navy', theme: 'dark' }, boxes: ['teal', 'pink'] },
-  { name: 'Midnight mono', group: 'Full dark', note: 'One deep tone for all chrome — the "dark header" layout.', header: { cls: 'text-bg-midnight', theme: 'dark' }, sidebar: { cls: 'text-bg-midnight', theme: 'dark' }, boxes: ['indigo', 'pink'] },
-  { name: 'Steel mono', group: 'Full dark', note: 'Blue-grey chrome throughout; softer than midnight.', header: { cls: 'text-bg-steel', theme: 'dark' }, sidebar: { cls: 'text-bg-steel', theme: 'dark' }, boxes: ['sky', 'amber'] },
-  { name: 'Slate & teal', group: 'Full dark', note: 'Mid-weight sidebar with a cool header — softer than navy.', header: { cls: 'text-bg-teal', theme: 'dark' }, sidebar: { cls: 'text-bg-slate', theme: 'dark' }, boxes: ['indigo', 'pink'] },
-  { name: 'Graphite & orange', group: 'Full dark', note: 'Warm header over a quiet sidebar — the energetic v2 skins, restrained.', header: { cls: 'text-bg-orange', theme: 'dark' }, sidebar: { cls: 'text-bg-graphite', theme: 'dark' }, boxes: ['orange', 'amber'] },
+  { name: 'Navy & sky', group: 'Full dark', note: 'The modern take on the classic skin-blue.', header: { cls: 'text-bg-sky', theme: 'dark' }, sidebar: { cls: 'text-bg-navy', theme: 'dark' }, primary: 'sky', boxes: ['teal', 'pink'] },
+  { name: 'Midnight mono', group: 'Full dark', note: 'One deep tone for all chrome — the "dark header" layout.', header: { cls: 'text-bg-midnight', theme: 'dark' }, sidebar: { cls: 'text-bg-midnight', theme: 'dark' }, primary: 'indigo', boxes: ['indigo', 'pink'] },
+  { name: 'Steel mono', group: 'Full dark', note: 'Blue-grey chrome throughout; softer than midnight.', header: { cls: 'text-bg-steel', theme: 'dark' }, sidebar: { cls: 'text-bg-steel', theme: 'dark' }, primary: 'sky', boxes: ['sky', 'amber'] },
+  { name: 'Slate & teal', group: 'Full dark', note: 'Mid-weight sidebar with a cool header — softer than navy.', header: { cls: 'text-bg-teal', theme: 'dark' }, sidebar: { cls: 'text-bg-slate', theme: 'dark' }, primary: 'teal', boxes: ['indigo', 'pink'] },
+  { name: 'Graphite & orange', group: 'Full dark', note: 'Warm header over a quiet sidebar — the energetic v2 skins, restrained.', header: { cls: 'text-bg-orange', theme: 'dark' }, sidebar: { cls: 'text-bg-graphite', theme: 'dark' }, primary: 'orange', boxes: ['orange', 'amber'] },
   // Coloured & gradient
-  { name: 'Violet mono', group: 'Coloured & gradient', note: 'Header and sidebar in one hue — the bold, single-brand look.', header: { cls: 'text-bg-violet', theme: 'dark' }, sidebar: { cls: 'text-bg-violet', theme: 'dark' }, boxes: ['teal', 'amber'] },
-  { name: 'Gradient indigo', group: 'Coloured & gradient', note: 'The v3 gradient sheen on a brand sidebar, white header.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'bg-gradient-indigo', theme: 'dark' }, boxes: ['indigo', 'teal'] },
-  { name: 'Gradient teal', group: 'Coloured & gradient', note: 'Calm and fresh; teal sidebar with the gradient sheen.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'bg-gradient-teal', theme: 'dark' }, boxes: ['teal', 'amber'] }
+  { name: 'Violet mono', group: 'Coloured & gradient', note: 'Header and sidebar in one hue — the bold, single-brand look.', header: { cls: 'text-bg-violet', theme: 'dark' }, sidebar: { cls: 'text-bg-violet', theme: 'dark' }, primary: 'violet', boxes: ['teal', 'amber'] },
+  { name: 'Gradient indigo', group: 'Coloured & gradient', note: 'The v3 gradient sheen on a brand sidebar, white header.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'bg-gradient-indigo', theme: 'dark' }, primary: 'indigo', boxes: ['indigo', 'teal'] },
+  { name: 'Gradient teal', group: 'Coloured & gradient', note: 'Calm and fresh; teal sidebar with the gradient sheen.', header: { cls: 'bg-body', theme: 'light' }, sidebar: { cls: 'bg-gradient-teal', theme: 'dark' }, primary: 'teal', boxes: ['teal', 'amber'] }
 ]
 
 // ---------------------------------------------------------------------------
@@ -312,13 +312,16 @@ export const skinGroupsV3 = [
   { name: 'Light sidebar', note: 'The "-light" family: the same headers over a white sidebar.' }
 ]
 
-const v3Skin = ({ name, group, header, theme, boxes, note }) => ({
+const v3Skin = ({ name, group, header, theme, boxes, note, primary }) => ({
   name,
   group,
   note,
   header: { cls: header, theme },
   sidebar: group === 'Dark sidebar' ? { cls: 'text-bg-gray-dark', theme: 'dark' } : { cls: 'bg-body', theme: 'light' },
-  boxes
+  boxes,
+  // What `data-lte-primary` should be for this skin: the colour the v2/v3 skin
+  // was named after, which is the colour its buttons carried (#6107).
+  primary: primary || boxes[0]
 })
 
 export const skinsV3 = [

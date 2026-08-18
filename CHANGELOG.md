@@ -5,6 +5,22 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.6.0] - 2026-08-18
+
+### Added
+
+- **Make any palette colour Bootstrap's `primary` — `data-lte-primary`.** Bootstrap compiles `$primary` into its components, so `.btn-primary` ships with `--bs-btn-bg: #0d6efd` rather than `var(--bs-primary)`: overriding the token repainted the utilities and left every button, pagination, checkbox and focus ring blue, which is why a coloured skin looked half-applied. Both colour sheets now rewire those components to variables and point them at a colour with one attribute — `<html lang="en" data-lte-primary="teal">` — covering `.btn-primary` / `.btn-outline-primary` (hover, active and disabled shaded exactly as Bootstrap shades its own), `.btn-link`, links and `.link-primary`, the `--bs-primary` token trio, `.nav-pills`, `.pagination`, `.progress-bar`, `.list-group-item.active`, `.dropdown-item.active`, `.accordion`, `.form-control` / `.form-select` focus, checkboxes, radios, switches, `.form-range`, `--bs-focus-ring-color`, and AdminLTE's `.card-primary`, `.direct-chat-primary` and `.toast-primary` — in both colour modes, with Bootstrap's dark-mode link tint. Nothing changes without the attribute, and it works on any container, so one page can carry more than one primary. Bootstrap's own theme colours are presets too (`data-lte-primary="danger"`), a brand colour outside the palette needs only `--bs-primary` (hover shades are then derived with `color-mix()` where supported), and `$lte-palette-custom: ("brand": #hex)` generates a full preset in Sass. Every skin preset now names the primary that goes with it, so applying a skin on **UI → Colors** or **Theme Customize** recolours the buttons too; both pages gained a picker and a live preview, and the Colors docs page a section (#6107, requested by @johnnyq).
+
+### Fixed
+
+- **`d-print-none` did nothing on the sidebar and the app wrapper.** The print layout fix from 4.0.0 set `display: grid !important` on `.app-wrapper` and `display: block !important` on `.app-sidebar`, and — being later in the cascade and equally `!important` — beat Bootstrap's `.d-print-none`, so those two elements could not be hidden for printing. Both rules are now scoped with `:not(.d-print-none)`: the print layout still applies to the standard layout, and the display utilities win where a page asks them to (#6106, reported by @johnnyq).
+- **The skip link went invisible on hover.** `.skip-link:hover` painted `var(--bs-primary-emphasis)`, which Bootstrap does not define (it emits `--bs-primary-text-emphasis`), so the background computed to transparent and left white text on the page background. It now uses the emphasis token — dark in light mode, light in dark mode — with the body background for the text.
+
+### Maintenance
+
+- Computed colours in both palette sheets are emitted as hex instead of Sass's `rgb(5.647%, 40.784%, 39.216%)` (cleancss leaves values inside custom properties alone), which pays for a good part of the new feature: `adminlte-colors.css` is ≈ 8 kB gzipped and `adminlte-colors-v3.css` ≈ 9.3 kB. `adminlte.css` is unchanged.
+- `npm run palette -- --check` and the unit tests also verify that every skin's primary exists in its own palette and that both sheets emit the rewiring rules and a preset per colour.
+
 ## [4.5.0] - 2026-08-18
 
 ### Added

@@ -4,7 +4,7 @@ import { palette, paletteV3, sets, skinGroups, skinGroupsV3, skins, skinsV3 } fr
 
 AdminLTE 4 styles itself with Bootstrap 5.3's theme colours — `primary`, `success`, `danger`, `warning`, `info`, `secondary`, `light`, `dark` — and nothing else. That keeps `adminlte.css` small, but a dashboard often wants more than five hues on a widget row, and AdminLTE 3 users miss `.bg-navy`, `.bg-teal` and the sidebar skins.
 
-**`dist/css/adminlte-colors.css`** is the answer, and it is opt-in: one extra stylesheet (≈ 5 kB gzipped) that adds fourteen colours as `--bs-*` tokens plus every class family Bootstrap generates for its own theme colours. Nothing changes for projects that don't load it. Prefer the AdminLTE 3 colours exactly as they were? There is a second sheet for that — see [Two palettes](#two-palettes) below.
+**`dist/css/adminlte-colors.css`** is the answer, and it is opt-in: one extra stylesheet (≈ 8 kB gzipped) that adds fourteen colours as `--bs-*` tokens plus every class family Bootstrap generates for its own theme colours — and lets any of them [become your `primary`](#making-one-of-them-your-primary). Nothing changes for projects that don't load it. Prefer the AdminLTE 3 colours exactly as they were? There is a second sheet for that — see [Two palettes](#two-palettes) below.
 
 <div class="d-flex flex-wrap gap-2 my-3">
   {palette.map(c => (
@@ -88,13 +88,14 @@ The AdminLTE 3 originals, with the contrast ratio white text reaches on each —
 
 The v3 sheet is built from the same Sass as the designed one — `src/scss/adminlte-colors-v3.scss` sets `$lte-palette` to the v3 map and `$lte-palette-contrast: "yiq"` — so `$lte-palette-custom`, `$lte-palette-aliases` and the rest below apply to it too. Its skin presets are AdminLTE 2's: a coloured header over the v3 dark sidebar (`text-bg-gray-dark`, the exact `sidebar-dark-*` background) or over a white one:
 
-<div class="table-responsive">
+<div class="table-responsive" tabindex="0">
   <table class="table align-middle">
     <thead>
       <tr>
         <th scope="col">Skin</th>
         <th scope="col">Header</th>
         <th scope="col">Sidebar</th>
+        <th scope="col">Primary</th>
         <th scope="col">v2/v3 name</th>
       </tr>
     </thead>
@@ -104,6 +105,7 @@ The v3 sheet is built from the same Sass as the designed one — `src/scss/admin
           <td class="text-nowrap fw-semibold">{s.name}</td>
           <td class="text-nowrap"><code>{s.header.cls}</code> · <code>{s.header.theme}</code></td>
           <td class="text-nowrap"><code>{s.sidebar.cls}</code> · <code>{s.sidebar.theme}</code></td>
+          <td class="text-nowrap"><code>{s.primary}</code></td>
           <td class="text-body-secondary">{s.note}</td>
         </tr>
       ))}
@@ -162,6 +164,47 @@ For each colour `<name>` the sheet emits the same shapes Bootstrap emits for a t
 | Widgets | `.small-box.text-bg-teal`, `.info-box.text-bg-teal`, `.badge.text-bg-teal`, `.progress-bar.bg-teal` | These already colour themselves through `.text-bg-*` / `.bg-*`, so nothing extra is emitted |
 | Buttons | `.btn.text-bg-teal`, `.btn.bg-gradient-teal` | Get a hover / active shade so they don't look inert |
 
+##### Making one of them your `primary`
+
+Bootstrap compiles `$primary` into its components at build time: `.btn-primary` ships with `--bs-btn-bg: #0d6efd`, not `var(--bs-primary)`. So overriding the token repaints `.text-primary` and `.bg-primary` and leaves every button, pagination and checkbox blue — the reason a skin used to look half-applied ([#6107](https://github.com/ColorlibHQ/AdminLTE/issues/6107)).
+
+Both colour sheets rewire those components to variables and point them at a palette colour with one attribute:
+
+```html
+<html lang="en" data-lte-primary="teal">
+```
+
+Nothing changes without the attribute, and it works on any container — a section of a page can carry its own primary. What follows the colour:
+
+| Follows | Details |
+|---|---|
+| Buttons | `.btn-primary`, `.btn-outline-primary` (hover, active and disabled states shaded exactly as Bootstrap shades its own), `.btn-link` |
+| Links | `a`, `.link-primary`, `.btn-link`, pagination links — with Bootstrap's dark-mode tint in dark mode |
+| Utilities and tokens | `--bs-primary`, `--bs-primary-rgb`, the subtle / emphasis trio, `.text-primary`, `.bg-primary`, `.border-primary`, `.text-bg-primary`, `.alert-primary`, `.list-group-item-primary`, `.accordion` |
+| Forms | Focus ring and focus border on `.form-control` / `.form-select`, `.form-check-input:checked`, indeterminate checkboxes, `.form-range` thumbs |
+| Components | `.nav-pills .nav-link.active`, `.pagination .active`, `.progress-bar`, `.list-group-item.active`, `.dropdown-item.active`, `--bs-focus-ring-color` |
+| AdminLTE | `.card-primary` (and `.card-outline`), `.direct-chat-primary`, `.toast-primary`, `.small-box`/`.info-box` carrying `.bg-primary` |
+
+Bootstrap's own theme colours work too — `data-lte-primary="danger"` needs no palette colour at all. Two things stay Bootstrap-blue by design: `.table-primary`'s striped and hover tints, and the switch knob painted into a data-URI when a switch is checked.
+
+For a brand colour that isn't in the palette, set the token yourself and keep the attribute:
+
+```css
+[data-lte-primary="brand"] {
+  --bs-primary: #7a5af8;
+  --bs-primary-rgb: 122, 90, 248;
+  /* optional — otherwise the hover shade is computed with color-mix() */
+  --lte-primary-hover: #6849e6;
+  --lte-primary-active: #5b3fd1;
+  /* dark text on a light brand colour */
+  --lte-primary-color: #fff;
+}
+```
+
+With Sass it is one line — `$lte-palette-custom: ("brand": #7a5af8)` (see [Adding your brand colours](#adding-your-brand-colours)) — and `data-lte-primary="brand"` is generated for you, shades and contrast text included.
+
+Pick a colour that takes white text: the checkmark inside a checked checkbox is white in Bootstrap and cannot be recoloured from CSS. Every colour in the designed palette qualifies; in the v3 palette, `lime`, `yellow` and `orange` do not.
+
 ##### Skins — colouring the sidebar and header
 
 In AdminLTE 4 a "skin" is not a class of its own: it is a background utility plus `data-bs-theme` on the sidebar and the header. `data-bs-theme="dark"` gives light nav links and brand text; `"light"` gives dark ones. Because every palette colour takes white text, a coloured sidebar or header always pairs with `dark`:
@@ -174,13 +217,13 @@ In AdminLTE 4 a "skin" is not a class of its own: it is a background utility plu
 <aside class="app-sidebar text-bg-navy shadow" data-bs-theme="dark">…</aside>
 ```
 
-Admin dashboards tend to offer their looks in four families, and the presets follow them. Each thumbnail is the real thing in miniature — sidebar, header, and the two accents that go with it. The <a href="../UI/colors.html">Colors demo</a> applies any preset to itself with one click; the <a href="../generate/theme.html">Theme Customize</a> page does the same and then lets you mix sidebar, navbar and footer freely (its pickers list the palette under "Extended palette").
+Each preset also names the `data-lte-primary` that goes with it, so the buttons match the chrome. Admin dashboards tend to offer their looks in four families, and the presets follow them. Each thumbnail is the real thing in miniature — sidebar, header, and the two accents that go with it. The <a href="../UI/colors.html">Colors demo</a> applies any preset to itself with one click; the <a href="../generate/theme.html">Theme Customize</a> page does the same and then lets you mix sidebar, navbar and footer freely (its pickers list the palette under "Extended palette").
 
 {skinGroups.map(group => (
   <div class="mb-4">
     <h6 class="fw-semibold mb-1">{group.name}</h6>
     <p class="text-body-secondary mb-2">{group.note}</p>
-    <div class="table-responsive">
+    <div class="table-responsive" tabindex="0">
       <table class="table align-middle mb-0">
         <thead>
           <tr>
@@ -188,6 +231,7 @@ Admin dashboards tend to offer their looks in four families, and the presets fol
             <th scope="col">Skin</th>
             <th scope="col">Header</th>
             <th scope="col">Sidebar</th>
+            <th scope="col">Primary</th>
             <th scope="col">Why</th>
           </tr>
         </thead>
@@ -198,6 +242,7 @@ Admin dashboards tend to offer their looks in four families, and the presets fol
               <td class="text-nowrap fw-semibold">{s.name}</td>
               <td class="text-nowrap"><code>{s.header.cls}</code> · <code>{s.header.theme}</code></td>
               <td class="text-nowrap"><code>{s.sidebar.cls}</code> · <code>{s.sidebar.theme}</code></td>
+              <td class="text-nowrap"><code>{s.primary}</code></td>
               <td>{s.note}</td>
             </tr>
           ))}
@@ -246,6 +291,8 @@ $lte-palette-custom: (
 );
 @import "admin-lte/src/scss/adminlte-colors";
 ```
+
+That also generates `data-lte-primary="brand"`, so `<html data-lte-primary="brand">` turns Bootstrap's `primary` components into your brand colour with the right hover shades and contrast text.
 
 To ship **only** your colours (drop the fourteen), set `$lte-palette` itself instead:
 

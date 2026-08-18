@@ -5,7 +5,8 @@
  *   test, so lightblue, olive and teal take white text as they did) — with
  *   the AdminLTE 4 class families: `.bg-*`, `.text-bg-*`, `.text-*`,
  *   `.border-*`, `.link-*`, `.bg-gradient-*`, `.card-*`, `.callout-*`,
- *   `.direct-chat-*`, plus dark-mode tokens.
+ *   `.direct-chat-*`, plus dark-mode tokens — and `data-lte-primary="lightblue"`
+ *   on <html> to make any of them Bootstrap's `primary`, buttons and all.
  *
  *   Load EITHER this file OR adminlte-colors.css (the palette designed for
  *   4.4), not both: they define the same class names (navy, teal, olive, …)
@@ -57,3 +58,4 @@ $lte-palette-contrast: "yiq" !default;
 
 @import "colors/variables";
 @import "colors/colors";
+@import "colors/primary";

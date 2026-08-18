@@ -2,6 +2,7 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:math";
+@use "sass:string";
 
 //
 // Colors: Variables
@@ -90,6 +91,26 @@ $lte-palette-yiq-text-light: $white !default;
     @error "adminlte-colors: alias `#{$alias}` points to `#{$target}`, which is not in $lte-palette.";
   }
   $lte-palette: map.merge($lte-palette, ($alias: map.get($lte-palette, $target)));
+}
+
+// Serialise a computed colour as `#0e6864`. Dart Sass writes `rgb(14, 104, 100)`
+// (or worse, `rgb(5.647%, 40.784%, 39.216%)`) and cleancss leaves values inside
+// custom properties alone, so the long form would ship as-is — this is the same
+// colour at a third of the bytes.
+@function lte-hex-channel($value) {
+  $digits: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9" "a" "b" "c" "d" "e" "f";
+  $n: math.clamp(0, math.round($value), 255);
+  @return list.nth($digits, math.floor(math.div($n, 16)) + 1) + list.nth($digits, $n % 16 + 1);
+}
+
+@function lte-hex($color) {
+  // stylelint-disable scss/at-function-named-arguments -- `$space` is required by color.channel()
+  $r: color.channel($color, "red", $space: rgb);
+  $g: color.channel($color, "green", $space: rgb);
+  $b: color.channel($color, "blue", $space: rgb);
+  // stylelint-enable scss/at-function-named-arguments
+
+  @return string.unquote("##{lte-hex-channel($r)}#{lte-hex-channel($g)}#{lte-hex-channel($b)}");
 }
 
 @function lte-contrast($color) {

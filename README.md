@@ -161,7 +161,7 @@ a documentation overhaul, and major dependency upgrades. See the
 - Dark mode: `.dark-mode` body class → `data-bs-theme="dark"` attribute (Bootstrap 5.3 native)
 - jQuery no longer required; plugins are vanilla TypeScript
 - The bundled `plugins/` folder is gone — every v3 jQuery widget has a documented vanilla-JS successor ([replacement table](https://adminlte.io/themes/v4/docs/migration.html#third-party-plugin-replacements): Select2 → Tom Select, DataTables → Tabulator, Summernote → Quill, …)
-- The v3 extra colours (`.bg-navy`, `.bg-teal`, the sidebar skins, …) live in opt-in stylesheets: `dist/css/adminlte-colors.css` — fourteen redesigned colours, every one readable with white text, 17 skin presets, plus a one-line hook for your brand colour — or `dist/css/adminlte-colors-v3.css`, the 18 AdminLTE 3 colours exactly as they were ([Colors docs](https://adminlte.io/themes/v4/docs/colors.html), [live demo](https://adminlte.io/themes/v4/UI/colors.html)). Nothing is added to `adminlte.css`.
+- The v3 extra colours (`.bg-navy`, `.bg-teal`, the sidebar skins, …) live in opt-in stylesheets: `dist/css/adminlte-colors.css` — fourteen redesigned colours, every one readable with white text, 17 skin presets, plus a one-line hook for your brand colour — or `dist/css/adminlte-colors-v3.css`, the 18 AdminLTE 3 colours exactly as they were. Either sheet also lets you make one of them Bootstrap's `primary` — `<html data-lte-primary="teal">` recolours buttons, links, pagination and form focus ([Colors docs](https://adminlte.io/themes/v4/docs/colors.html), [live demo](https://adminlte.io/themes/v4/UI/colors.html)). Nothing is added to `adminlte.css`.
 
 See the dedicated [Migration from v3](https://adminlte.io/themes/v4/docs/migration.html) guide.
 

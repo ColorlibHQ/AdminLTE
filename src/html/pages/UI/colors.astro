@@ -158,8 +158,9 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
                 <code>.bg-*</code>, <code>.text-bg-*</code>, <code>.text-*</code>,
                 <code>.border-*</code>, <code>.link-*</code>, <code>.bg-gradient-*</code>,
                 <code>.card-*</code>, <code>.callout-*</code> and <code>.direct-chat-*</code>
-                families. It is not part of <code>adminlte.css</code>; nothing else
-                in the demo uses it.
+                families — and <code>data-lte-primary</code>, which makes any of
+                them Bootstrap's <code>primary</code>, buttons and all. It is not
+                part of <code>adminlte.css</code>; nothing else in the demo uses it.
               </p>
               <p class="mb-0">
                 Every colour takes white text at 4.6:1 or better and was placed
@@ -227,6 +228,7 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
                                       data-skin-header-theme={skin.header.theme}
                                       data-skin-sidebar={skin.sidebar.cls}
                                       data-skin-sidebar-theme={skin.sidebar.theme}
+                                      data-skin-primary={skin.primary}
                                       title={skin.note}
                                       aria-pressed="false"
                                     >
@@ -285,6 +287,93 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
               </div>
             </div>
             <!--end::Skins-->
+
+            <!--begin::Primary-->
+            <h5 class="mb-3">Make one of them your <code class="text-body-emphasis">primary</code></h5>
+            <div class="card mb-4">
+              <div class="card-body">
+                <p>
+                  Bootstrap compiles <code>$primary</code> into its components,
+                  so <code>.btn-primary</code> carries
+                  <code>--bs-btn-bg: #0d6efd</code> rather than
+                  <code>var(--bs-primary)</code> — overriding the token alone
+                  leaves buttons blue. This sheet rewires those components and
+                  points them at a palette colour when you add
+                  <code>data-lte-primary</code> to <code>&lt;html&gt;</code>.
+                  Buttons, links, pagination, checkboxes, the focus ring,
+                  progress bars, active list items and dropdown items follow;
+                  nothing changes without the attribute.
+                </p>
+                {
+                  paletteSets.map((set, i) => (
+                    <div data-palette-set={set.key} hidden={i !== 0}>
+                      <div class="d-flex flex-wrap gap-2" data-primary-picker role="group" aria-label="Primary colour">
+                        {
+                          set.choices.map(name => (
+                            <button
+                              type="button"
+                              class:list={["lte-chip", name !== "default" && `text-bg-${name}`]}
+                              data-color={name}
+                              style={name === "default" ? "background-color: #0d6efd" : undefined}
+                              title={name === "default" ? "Bootstrap's blue (no attribute)" : `data-lte-primary="${name}"`}
+                              aria-pressed={name === "default" ? "true" : "false"}
+                            >
+                              <span class="visually-hidden">{name === "default" ? "Bootstrap default" : name}</span>
+                            </button>
+                          ))
+                        }
+                      </div>
+                    </div>
+                  ))
+                }
+                <div class="row g-3 align-items-center mt-1">
+                  <div class="col-auto">
+                    <button type="button" class="btn btn-primary">Primary button</button>
+                  </div>
+                  <div class="col-auto">
+                    <button type="button" class="btn btn-outline-primary">Outline</button>
+                  </div>
+                  <div class="col-auto">
+                    <a href="#primary-preview">A link</a>
+                  </div>
+                  <div class="col-auto">
+                    <span class="badge text-bg-primary">Badge</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" type="checkbox" id="primary-check" checked />
+                      <label class="form-check-label" for="primary-check">Checked</label>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="form-check form-switch mb-0">
+                      <input class="form-check-input" type="checkbox" role="switch" id="primary-switch" checked />
+                      <label class="form-check-label" for="primary-switch">Switch</label>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-5">
+                    <label for="primary-input" class="form-label small text-body-secondary mb-1">Focus this field</label>
+                    <input type="text" class="form-control" id="primary-input" placeholder="The focus ring follows too" />
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <div class="progress" role="progressbar" aria-label="Example progress" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress-bar" style="width: 62%">62%</div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <nav aria-label="Example pagination">
+                      <ul class="pagination mb-0">
+                        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+                        <li class="page-item"><a class="page-link" href="#primary-preview">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#primary-preview">3</a></li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+                <pre class="bg-body-tertiary rounded p-3 mt-4 mb-0 small overflow-auto" tabindex="0" id="primary-preview"><code id="primary-markup"></code></pre>
+              </div>
+            </div>
+            <!--end::Primary-->
 
             <!--begin::Palette-->
             <h5 class="mb-3">The palette</h5>
@@ -563,13 +652,17 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
         const header = document.querySelector(".app-header")
         const markup = document.getElementById("skin-markup")
         const pickers = document.querySelectorAll("[data-skin-picker]")
+        const primaryPickers = document.querySelectorAll("[data-primary-picker]")
+        const primaryMarkup = document.getElementById("primary-markup")
         // Automatic text colour per palette (the v3 sheet gives some colours dark text)
         const PALETTE_TEXT = JSON.parse(document.getElementById("palette-text").textContent)
         const stylesheet = document.getElementById("palette-stylesheet")
         let activeSet = "designed"
         const state = {
           sidebar: { cls: "bg-body-secondary", theme: "dark" },
-          header: { cls: "bg-body", theme: "light" }
+          header: { cls: "bg-body", theme: "light" },
+          // `data-lte-primary` on <html>: "default" leaves the attribute off
+          primary: "default"
         }
         const DEFAULTS = {
           sidebar: { cls: "bg-body-secondary", theme: "dark" },
@@ -588,6 +681,20 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
         const render = () => {
           paint(sidebar, "sidebar")
           paint(header, "header")
+          if (state.primary === "default") {
+            document.documentElement.removeAttribute("data-lte-primary")
+          } else {
+            document.documentElement.setAttribute("data-lte-primary", state.primary)
+          }
+          for (const picker of primaryPickers) {
+            for (const chip of picker.querySelectorAll("[data-color]")) {
+              chip.setAttribute("aria-pressed", String(chip.getAttribute("data-color") === state.primary))
+            }
+          }
+          primaryMarkup.textContent =
+            state.primary === "default" ?
+              '<html lang="en">   <!-- no attribute: Bootstrap\'s blue -->' :
+              `<html lang="en" data-lte-primary="${state.primary}">`
           for (const picker of pickers) {
             const role = picker.getAttribute("data-skin-picker")
             const cls = state[role].cls
@@ -598,6 +705,7 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
           }
           for (const button of document.querySelectorAll(".skin-presets [data-skin-sidebar]")) {
             const matches =
+              button.getAttribute("data-skin-primary") === state.primary &&
               button.getAttribute("data-skin-sidebar") === state.sidebar.cls &&
               button.getAttribute("data-skin-sidebar-theme") === state.sidebar.theme &&
               button.getAttribute("data-skin-header") === state.header.cls &&
@@ -625,6 +733,17 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
           })
         }
 
+        for (const picker of primaryPickers) {
+          picker.addEventListener("click", event => {
+            const chip = event.target.closest("[data-color]")
+            if (!chip) {
+              return
+            }
+            state.primary = chip.getAttribute("data-color")
+            render()
+          })
+        }
+
         for (const container of document.querySelectorAll(".skin-presets")) {
           container.addEventListener("click", event => {
             const button = event.target.closest("[data-skin-sidebar]")
@@ -633,6 +752,7 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
             }
             state.sidebar = { cls: button.getAttribute("data-skin-sidebar"), theme: button.getAttribute("data-skin-sidebar-theme") }
             state.header = { cls: button.getAttribute("data-skin-header"), theme: button.getAttribute("data-skin-header-theme") }
+            state.primary = button.getAttribute("data-skin-primary") || "default"
             render()
           })
         }
@@ -652,6 +772,7 @@ const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-l
             }
             state.sidebar = { ...DEFAULTS.sidebar }
             state.header = { ...DEFAULTS.header }
+            state.primary = "default"
             render()
           })
         }

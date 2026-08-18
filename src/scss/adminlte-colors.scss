@@ -6,7 +6,9 @@
  *   tokens plus the
  *   `.bg-*`, `.text-bg-*`, `.text-*`, `.border-*`, `.link-*`, `.bg-gradient-*`,
  *   `.card-*`, `.callout-*` and `.direct-chat-*` families — with dark mode.
- *   Every colour takes white text at ≥ 4.6:1. See docs/colors.html.
+ *   `data-lte-primary="teal"` on <html> also makes that colour Bootstrap's
+ *   `primary`, buttons and all. Every colour takes white text at ≥ 4.6:1.
+ *   See docs/colors.html.
  *
  *   Author: Colorlib
  *   Website: AdminLTE.io <https://adminlte.io>
@@ -33,3 +35,4 @@
 // ---------------------------------------------------
 @import "colors/variables";
 @import "colors/colors";
+@import "colors/primary";

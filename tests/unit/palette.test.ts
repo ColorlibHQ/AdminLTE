@@ -1,9 +1,12 @@
 import { readFileSync } from 'node:fs'
+import * as sass from 'sass'
 import path from 'node:path'
 import process from 'node:process'
 import { describe, expect, it } from 'vitest'
 // @ts-expect-error — plain ESM module without a declaration file (dev-only helper)
 import { bootstrapThemeColors, contrastWhite, hueDistance, palette, paletteV3, sets, skins, skinsV3 } from '../../src/utils/palette.mjs'
+
+const THEME_COLORS = ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark']
 
 /**
  * The extended palette (dist/css/adminlte-colors.css) is generated from OKLCH
@@ -92,6 +95,51 @@ describe('extended palette', () => {
       for (const name of skin.boxes) {
         expect(known.has(name), `${skin.name} → boxes ${name}`).toBe(true)
       }
+    }
+  })
+
+  it('every skin names a `data-lte-primary` its own palette has', () => {
+    for (const [label, list, colors] of [['designed', skins, palette], ['v3', skinsV3, paletteV3]] as Array<[string, Array<{ name: string; primary: string }>, PaletteColor[]]>) {
+      const known = new Set([...colors.map(c => c.name), ...THEME_COLORS])
+      for (const skin of list) {
+        expect(known.has(skin.primary), `${label} → ${skin.name} → ${skin.primary}`).toBe(true)
+      }
+    }
+  })
+
+  it('both sheets rewire the components that bake Bootstrap\'s primary', () => {
+    // Compiled here rather than read from dist/, so the check does not depend
+    // on a build having run (`npm run production` cleans dist/ before testing).
+    for (const entry of ['src/scss/adminlte-colors.scss', 'src/scss/adminlte-colors-v3.scss']) {
+      const file = entry
+      const { css } = sass.compile(path.resolve(process.cwd(), entry), {
+        loadPaths: ['node_modules'],
+        quietDeps: true,
+        silenceDeprecations: ['import']
+      })
+      // the components Bootstrap hard-codes #0d6efd into
+      for (const selector of [
+        '[data-lte-primary] .btn-primary',
+        '[data-lte-primary] .btn-outline-primary',
+        '[data-lte-primary] .nav-pills',
+        '[data-lte-primary] .pagination',
+        '[data-lte-primary] .progress',
+        '[data-lte-primary] .list-group',
+        '[data-lte-primary] .dropdown-menu',
+        '[data-lte-primary] .form-check-input:checked',
+        '[data-lte-primary] .card-primary'
+      ]) {
+        expect(css, `${file} → ${selector}`).toContain(selector)
+      }
+
+      // and a preset exists for every colour in that sheet's palette
+      const colors = file.includes('-v3') ? paletteV3 : palette
+      for (const c of colors as PaletteColor[]) {
+        expect(css, `${file} → ${c.name}`).toContain(`[data-lte-primary=${c.name}]`)
+      }
+
+      // dark mode has to match the attribute on the same element as data-bs-theme
+      expect(css, file).toContain('[data-bs-theme=dark][data-lte-primary=')
     }
   })
 

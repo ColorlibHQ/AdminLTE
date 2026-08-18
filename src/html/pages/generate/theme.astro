@@ -18,7 +18,12 @@ const paletteSets = [
   { key: "designed", label: "Designed palette (4.4)", file: "adminlte-colors.css", groups: skinGroups, skins, classes: paletteClasses, text: Object.fromEntries(palette.map(c => [`text-bg-${c.name}`, c.textColor])) },
   { key: "v3", label: "AdminLTE 3 originals", file: "adminlte-colors-v3.css", groups: skinGroupsV3, skins: skinsV3, classes: paletteV3.map(c => `text-bg-${c.name}`), text: Object.fromEntries(paletteV3.map(c => [`text-bg-${c.name}`, c.textColor])) }
 ]
-const paletteSetsJson = paletteSets.map(({ key, file, classes, text }) => ({ key, file, classes, text }))
+// `data-lte-primary` values each sheet can offer (#6107)
+const primaryChoices = {
+  designed: palette.map(c => c.name),
+  v3: paletteV3.map(c => c.name)
+}
+const paletteSetsJson = paletteSets.map(({ key, file, classes, text }) => ({ key, file, classes, text, primaries: primaryChoices[key] }))
 const path = "../../../dist"
 const htmlPath = convertPathToHtml(path);
 
@@ -278,6 +283,7 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                                         data-preset-sidebar-theme={skin.sidebar.theme}
                                         data-preset-header={skin.header.cls}
                                         data-preset-header-theme={skin.header.theme}
+                                        data-preset-primary={skin.primary}
                                         title={skin.note}
                                         aria-pressed="false"
                                       >
@@ -550,6 +556,78 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                   <!--end::Card Footer-->
                 </div>
                 <!--end::Card-->
+                <!--begin::Card(Primary colour)-->
+                <div class="card mt-4">
+                  <!--begin::Card Header-->
+                  <div class="card-header">
+                    <h3 class="card-title">Primary Color</h3>
+                  </div>
+                  <!--end::Card Header-->
+                  <!--begin::Card Body-->
+                  <div class="card-body">
+                    <p>
+                      Bootstrap bakes <code>$primary</code> into its components,
+                      so <code>.btn-primary</code> stays blue however you set
+                      <code>--bs-primary</code>. The palette sheet rewires them:
+                      put <code>data-lte-primary</code> on <code>&lt;html&gt;</code>
+                      and buttons, links, pagination, checkboxes, progress bars
+                      and the focus ring follow the colour you pick.
+                    </p>
+                    <!--begin::Row-->
+                    <div class="row">
+                      <!--begin::Col-->
+                      <div class="col-md-3">
+                        <select
+                          id="primary-color"
+                          class="form-select form-select-lg"
+                          aria-label="Primary Color Select"
+                        >
+                          <option value="">---Select---</option>
+                        </select>
+                      </div>
+                      <!--end::Col-->
+                      <!--begin::Col-->
+                      <div class="col-md-9">
+                        <div id="primary-color-code" class="w-100"></div>
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Row-->
+                    <!--begin::Row(Preview)-->
+                    <div class="row g-3 align-items-center mt-1">
+                      <div class="col-auto">
+                        <button type="button" class="btn btn-primary">Primary button</button>
+                      </div>
+                      <div class="col-auto">
+                        <button type="button" class="btn btn-outline-primary">Outline</button>
+                      </div>
+                      <div class="col-auto">
+                        <span class="badge text-bg-primary">Badge</span>
+                      </div>
+                      <div class="col-auto">
+                        <div class="form-check mb-0">
+                          <input class="form-check-input" type="checkbox" id="primary-check" checked />
+                          <label class="form-check-label" for="primary-check">Checked</label>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-4">
+                        <div class="progress" role="progressbar" aria-label="Example progress" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100">
+                          <div class="progress-bar" style="width: 62%">62%</div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--end::Row(Preview)-->
+                  </div>
+                  <!--end::Card Body-->
+                  <!--begin::Card Footer-->
+                  <div class="card-footer">
+                    Needs <code>css/adminlte-colors.css</code> (or
+                    <code>css/adminlte-colors-v3.css</code>) — see
+                    <a href={deploymentPath + "docs/colors.html"} class="link-primary">Colors</a>.
+                  </div>
+                  <!--end::Card Footer-->
+                </div>
+                <!--end::Card(Primary colour)-->
               </div>
               <!--end::Col-->
             </div>
@@ -604,6 +682,52 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 
         const controllers = {}
         const presetButtons = document.querySelectorAll(".theme-presets [data-preset-sidebar]")
+
+        // `data-lte-primary` on <html>: makes Bootstrap's `primary` components
+        // (buttons, links, pagination, checkboxes, progress) take a palette
+        // colour. Empty value = no attribute = Bootstrap's blue.
+        const primary = (() => {
+          const select = document.querySelector("#primary-color")
+          const code = document.querySelector("#primary-color-code")
+          if (!select || !code) {
+            return null
+          }
+          let value = ""
+          const render = () => {
+            if (value) {
+              document.documentElement.setAttribute("data-lte-primary", value)
+            } else {
+              document.documentElement.removeAttribute("data-lte-primary")
+            }
+            select.value = value
+            code.innerHTML = `<pre><code class="language-html">&lt;html lang="en"${value ? ` data-lte-primary="${value}"` : ""}&gt;</code></pre>`
+            markPresets()
+          }
+          const renderOptions = () => {
+            select.innerHTML =
+              '<option value="">---Select--- (Bootstrap blue)</option>' +
+              `<optgroup label="Extended palette (${activeSet.file})">${activeSet.primaries.map(name => `<option value="${name}" class="text-${name}">${name}</option>`).join("")}</optgroup>`
+          }
+          renderOptions()
+          select.addEventListener("input", event => {
+            value = event.target.value
+            render()
+          })
+          return {
+            get: () => value,
+            set: next => {
+              value = activeSet.primaries.includes(next) ? next : ""
+              render()
+            },
+            refresh: () => {
+              renderOptions()
+              if (value && !activeSet.primaries.includes(value)) {
+                value = ""
+              }
+              render()
+            }
+          }
+        })()
         const markPresets = () => {
           const sidebar = controllers[".app-sidebar"]
           const header = controllers[".app-header"]
@@ -612,6 +736,7 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
           }
           for (const button of presetButtons) {
             const matches =
+              (primary ? button.getAttribute("data-preset-primary") === (primary.get() || "primary") : true) &&
               button.getAttribute("data-preset-sidebar") === sidebar.get().bg &&
               button.getAttribute("data-preset-sidebar-theme") === sidebar.get().mode &&
               button.getAttribute("data-preset-header") === header.get().bg &&
@@ -710,6 +835,7 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
           button.addEventListener("click", () => {
             controllers[".app-sidebar"]?.set(button.getAttribute("data-preset-sidebar"), button.getAttribute("data-preset-sidebar-theme"))
             controllers[".app-header"]?.set(button.getAttribute("data-preset-header"), button.getAttribute("data-preset-header-theme"))
+            primary?.set(button.getAttribute("data-preset-primary"))
           })
         }
 
@@ -729,8 +855,10 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
             for (const c of Object.values(controllers)) {
               c.refresh()
             }
+            primary?.refresh()
           })
         }
+        primary?.refresh()
         markPresets()
       })
     </script>

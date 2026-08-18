@@ -18,18 +18,18 @@
   @each $name, $value in $lte-palette {
     --#{$prefix}#{$name}: #{$value};
     --#{$prefix}#{$name}-rgb: #{to-rgb($value)};
-    --#{$prefix}#{$name}-text-emphasis: #{shade-color($value, 60%)};
-    --#{$prefix}#{$name}-bg-subtle: #{tint-color($value, 80%)};
-    --#{$prefix}#{$name}-border-subtle: #{tint-color($value, 60%)};
+    --#{$prefix}#{$name}-text-emphasis: #{lte-hex(shade-color($value, 60%))};
+    --#{$prefix}#{$name}-bg-subtle: #{lte-hex(tint-color($value, 80%))};
+    --#{$prefix}#{$name}-border-subtle: #{lte-hex(tint-color($value, 60%))};
   }
 }
 
 @if $enable-dark-mode {
   @include color-mode(dark, true) {
     @each $name, $value in $lte-palette {
-      --#{$prefix}#{$name}-text-emphasis: #{tint-color($value, 40%)};
-      --#{$prefix}#{$name}-bg-subtle: #{shade-color($value, 80%)};
-      --#{$prefix}#{$name}-border-subtle: #{shade-color($value, 40%)};
+      --#{$prefix}#{$name}-text-emphasis: #{lte-hex(tint-color($value, 40%))};
+      --#{$prefix}#{$name}-bg-subtle: #{lte-hex(shade-color($value, 80%))};
+      --#{$prefix}#{$name}-border-subtle: #{lte-hex(shade-color($value, 40%))};
     }
   }
 }
@@ -127,12 +127,12 @@
   .btn.bg-gradient-#{$name} {
     &:hover,
     &:focus-visible {
-      background-color: #{shade-color($value, 10%)} !important;
+      background-color: #{lte-hex(shade-color($value, 10%))} !important;
     }
 
     &:active,
     &.active {
-      background-color: #{shade-color($value, 15%)} !important;
+      background-color: #{lte-hex(shade-color($value, 15%))} !important;
     }
   }
 }

@@ -896,11 +896,13 @@
                     </p>
                     <p>
                       <strong><code>dist/css/adminlte-colors.css</code></strong> is the answer, and
-                      it is opt-in: one extra stylesheet (≈ 5 kB gzipped) that adds fourteen colours
+                      it is opt-in: one extra stylesheet (≈ 8 kB gzipped) that adds fourteen colours
                       as <code>--bs-*</code> tokens plus every class family Bootstrap generates for
-                      its own theme colours. Nothing changes for projects that don’t load it. Prefer
-                      the AdminLTE 3 colours exactly as they were? There is a second sheet for that
-                      — see <a href="#two-palettes">Two palettes</a> below.
+                      its own theme colours — and lets any of them
+                      <a href="#making-one-of-them-your-primary">become your <code>primary</code></a
+                      >. Nothing changes for projects that don’t load it. Prefer the AdminLTE 3
+                      colours exactly as they were? There is a second sheet for that — see
+                      <a href="#two-palettes">Two palettes</a> below.
                     </p>
                     <div class="d-flex flex-wrap gap-2 my-3">
                       <span class="badge text-bg-orange fs-6 fw-normal">orange</span
@@ -1231,13 +1233,14 @@
                       header over the v3 dark sidebar (<code>text-bg-gray-dark</code>, the exact
                       <code>sidebar-dark-*</code> background) or over a white one:
                     </p>
-                    <div class="table-responsive">
+                    <div class="table-responsive" tabindex="0">
                       <table class="table align-middle">
                         <thead>
                           <tr>
                             <th scope="col">Skin</th>
                             <th scope="col">Header</th>
                             <th scope="col">Sidebar</th>
+                            <th scope="col">Primary</th>
                             <th scope="col">v2/v3 name</th>
                           </tr>
                         </thead>
@@ -1250,6 +1253,7 @@
                             <td class="text-nowrap">
                               <code>text-bg-gray-dark</code> · <code>dark</code>
                             </td>
+                            <td class="text-nowrap"><code>lightblue</code></td>
                             <td class="text-body-secondary">
                               skin-blue — the classic AdminLTE look.
                             </td>
@@ -1260,6 +1264,7 @@
                             <td class="text-nowrap">
                               <code>text-bg-gray-dark</code> · <code>dark</code>
                             </td>
+                            <td class="text-nowrap"><code>blue</code></td>
                             <td class="text-body-secondary">
                               skin-black — white header, dark sidebar.
                             </td>
@@ -1272,6 +1277,7 @@
                             <td class="text-nowrap">
                               <code>text-bg-gray-dark</code> · <code>dark</code>
                             </td>
+                            <td class="text-nowrap"><code>purple</code></td>
                             <td class="text-body-secondary">skin-purple.</td>
                           </tr>
                           <tr>
@@ -1282,6 +1288,7 @@
                             <td class="text-nowrap">
                               <code>text-bg-gray-dark</code> · <code>dark</code>
                             </td>
+                            <td class="text-nowrap"><code>green</code></td>
                             <td class="text-body-secondary">skin-green.</td>
                           </tr>
                           <tr>
@@ -1292,6 +1299,7 @@
                             <td class="text-nowrap">
                               <code>text-bg-gray-dark</code> · <code>dark</code>
                             </td>
+                            <td class="text-nowrap"><code>red</code></td>
                             <td class="text-body-secondary">skin-red.</td>
                           </tr>
                           <tr>
@@ -1302,6 +1310,7 @@
                             <td class="text-nowrap">
                               <code>text-bg-gray-dark</code> · <code>dark</code>
                             </td>
+                            <td class="text-nowrap"><code>yellow</code></td>
                             <td class="text-body-secondary">
                               skin-yellow — dark text on the header.
                             </td>
@@ -1312,12 +1321,14 @@
                               <code>text-bg-lightblue</code> · <code>dark</code>
                             </td>
                             <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                            <td class="text-nowrap"><code>lightblue</code></td>
                             <td class="text-body-secondary">skin-blue-light.</td>
                           </tr>
                           <tr>
                             <td class="text-nowrap fw-semibold">Black light</td>
                             <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
                             <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                            <td class="text-nowrap"><code>blue</code></td>
                             <td class="text-body-secondary">
                               skin-black-light — all white chrome.
                             </td>
@@ -1328,6 +1339,7 @@
                               <code>text-bg-purple</code> · <code>dark</code>
                             </td>
                             <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                            <td class="text-nowrap"><code>purple</code></td>
                             <td class="text-body-secondary">skin-purple-light.</td>
                           </tr>
                           <tr>
@@ -1336,6 +1348,7 @@
                               <code>text-bg-green</code> · <code>dark</code>
                             </td>
                             <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                            <td class="text-nowrap"><code>green</code></td>
                             <td class="text-body-secondary">skin-green-light.</td>
                           </tr>
                           <tr>
@@ -1344,6 +1357,7 @@
                               <code>text-bg-red</code> · <code>dark</code>
                             </td>
                             <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                            <td class="text-nowrap"><code>red</code></td>
                             <td class="text-body-secondary">skin-red-light.</td>
                           </tr>
                           <tr>
@@ -1352,6 +1366,7 @@
                               <code>text-bg-yellow</code> · <code>light</code>
                             </td>
                             <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                            <td class="text-nowrap"><code>yellow</code></td>
                             <td class="text-body-secondary">skin-yellow-light.</td>
                           </tr>
                         </tbody>
@@ -1736,6 +1751,132 @@
                         </tr>
                       </tbody>
                     </table>
+                    <h5 id="making-one-of-them-your-primary">
+                      Making one of them your <code>primary</code>
+                    </h5>
+                    <p>
+                      Bootstrap compiles <code>$primary</code> into its components at build time:
+                      <code>.btn-primary</code> ships with <code>--bs-btn-bg: #0d6efd</code>, not
+                      <code>var(--bs-primary)</code>. So overriding the token repaints
+                      <code>.text-primary</code> and <code>.bg-primary</code> and leaves every
+                      button, pagination and checkbox blue — the reason a skin used to look
+                      half-applied (<a href="https://github.com/ColorlibHQ/AdminLTE/issues/6107"
+                        >#6107</a
+                      >).
+                    </p>
+                    <p>
+                      Both colour sheets rewire those components to variables and point them at a
+                      palette colour with one attribute:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">html</span><span style="color:#9CDCFE"> lang</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;en&quot;</span><span style="color:#9CDCFE"> data-lte-primary</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;teal&quot;</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      Nothing changes without the attribute, and it works on any container — a
+                      section of a page can carry its own primary. What follows the colour:
+                    </p>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Follows</th>
+                          <th>Details</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Buttons</td>
+                          <td>
+                            <code>.btn-primary</code>, <code>.btn-outline-primary</code> (hover,
+                            active and disabled states shaded exactly as Bootstrap shades its own),
+                            <code>.btn-link</code>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Links</td>
+                          <td>
+                            <code>a</code>, <code>.link-primary</code>, <code>.btn-link</code>,
+                            pagination links — with Bootstrap’s dark-mode tint in dark mode
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Utilities and tokens</td>
+                          <td>
+                            <code>--bs-primary</code>, <code>--bs-primary-rgb</code>, the subtle /
+                            emphasis trio, <code>.text-primary</code>, <code>.bg-primary</code>,
+                            <code>.border-primary</code>, <code>.text-bg-primary</code>,
+                            <code>.alert-primary</code>, <code>.list-group-item-primary</code>,
+                            <code>.accordion</code>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Forms</td>
+                          <td>
+                            Focus ring and focus border on <code>.form-control</code> /
+                            <code>.form-select</code>, <code>.form-check-input:checked</code>,
+                            indeterminate checkboxes, <code>.form-range</code> thumbs
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Components</td>
+                          <td>
+                            <code>.nav-pills .nav-link.active</code>,
+                            <code>.pagination .active</code>, <code>.progress-bar</code>,
+                            <code>.list-group-item.active</code>,
+                            <code>.dropdown-item.active</code>, <code>--bs-focus-ring-color</code>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>AdminLTE</td>
+                          <td>
+                            <code>.card-primary</code> (and <code>.card-outline</code>),
+                            <code>.direct-chat-primary</code>, <code>.toast-primary</code>,
+                            <code>.small-box</code>/<code>.info-box</code> carrying
+                            <code>.bg-primary</code>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p>
+                      Bootstrap’s own theme colours work too —
+                      <code>data-lte-primary=&quot;danger&quot;</code> needs no palette colour at
+                      all. Two things stay Bootstrap-blue by design: <code>.table-primary</code>’s
+                      striped and hover tints, and the switch knob painted into a data-URI when a
+                      switch is checked.
+                    </p>
+                    <p>
+                      For a brand colour that isn’t in the palette, set the token yourself and keep
+                      the attribute:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="css"
+                    ><code><span class="line"><span style="color:#D4D4D4">[</span><span style="color:#9CDCFE">data-lte-primary</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;brand&quot;</span><span style="color:#D4D4D4">] {</span></span>
+<span class="line"><span style="color:#9CDCFE">  --bs-primary</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#7a5af8</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  --bs-primary-rgb</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">122</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">90</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">248</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#6A9955">  /* optional — otherwise the hover shade is computed with color-mix() */</span></span>
+<span class="line"><span style="color:#9CDCFE">  --lte-primary-hover</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#6849e6</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  --lte-primary-active</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#5b3fd1</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#6A9955">  /* dark text on a light brand colour */</span></span>
+<span class="line"><span style="color:#9CDCFE">  --lte-primary-color</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#fff</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+                    <p>
+                      With Sass it is one line —
+                      <code>$lte-palette-custom: (&quot;brand&quot;: #7a5af8)</code> (see
+                      <a href="#adding-your-brand-colours">Adding your brand colours</a>) — and
+                      <code>data-lte-primary=&quot;brand&quot;</code> is generated for you, shades
+                      and contrast text included.
+                    </p>
+                    <p>
+                      Pick a colour that takes white text: the checkmark inside a checked checkbox
+                      is white in Bootstrap and cannot be recoloured from CSS. Every colour in the
+                      designed palette qualifies; in the v3 palette, <code>lime</code>,
+                      <code>yellow</code> and <code>orange</code> do not.
+                    </p>
                     <h5 id="skins--colouring-the-sidebar-and-header">
                       Skins — colouring the sidebar and header
                     </h5>
@@ -1758,9 +1899,10 @@
 <span class="line"><span style="color:#6A9955">&lt;!-- sidebar --&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">aside</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-sidebar text-bg-navy shadow&quot;</span><span style="color:#9CDCFE"> data-bs-theme</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">aside</span><span style="color:#808080">&gt;</span></span></code></pre>
                     <p>
-                      Admin dashboards tend to offer their looks in four families, and the presets
-                      follow them. Each thumbnail is the real thing in miniature — sidebar, header,
-                      and the two accents that go with it. The
+                      Each preset also names the <code>data-lte-primary</code> that goes with it, so
+                      the buttons match the chrome. Admin dashboards tend to offer their looks in
+                      four families, and the presets follow them. Each thumbnail is the real thing
+                      in miniature — sidebar, header, and the two accents that go with it. The
                       <a href="../UI/colors.html">Colors demo</a> applies any preset to itself with
                       one click; the <a href="../generate/theme.html">Theme Customize</a> page does
                       the same and then lets you mix sidebar, navbar and footer freely (its pickers
@@ -1771,7 +1913,7 @@
                       <p class="text-body-secondary mb-2">
                         White chrome; the widgets and the active item carry the colour.
                       </p>
-                      <div class="table-responsive">
+                      <div class="table-responsive" tabindex="0">
                         <table class="table align-middle mb-0">
                           <thead>
                             <tr>
@@ -1779,6 +1921,7 @@
                               <th scope="col">Skin</th>
                               <th scope="col">Header</th>
                               <th scope="col">Sidebar</th>
+                              <th scope="col">Primary</th>
                               <th scope="col">Why</th>
                             </tr>
                           </thead>
@@ -1847,6 +1990,7 @@
                               <td class="text-nowrap fw-semibold">Light</td>
                               <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
                               <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                              <td class="text-nowrap"><code>primary</code></td>
                               <td>
                                 White sidebar and header; colour comes only from widgets and badges.
                               </td>
@@ -1919,6 +2063,7 @@
                               <td class="text-nowrap">
                                 <code>bg-body-tertiary</code> · <code>light</code>
                               </td>
+                              <td class="text-nowrap"><code>indigo</code></td>
                               <td>
                                 The &quot;-light&quot; family: white sidebar under a coloured
                                 header.
@@ -1990,6 +2135,7 @@
                                 <code>text-bg-sky</code> · <code>dark</code>
                               </td>
                               <td class="text-nowrap"><code>bg-body</code> · <code>light</code></td>
+                              <td class="text-nowrap"><code>sky</code></td>
                               <td>The v2 skin-blue-light: sky header over a white sidebar.</td>
                             </tr>
                           </tbody>
@@ -2002,7 +2148,7 @@
                         Dark sidebar, light header — the most common admin layout, and
                         AdminLTE&#39;s default.
                       </p>
-                      <div class="table-responsive">
+                      <div class="table-responsive" tabindex="0">
                         <table class="table align-middle mb-0">
                           <thead>
                             <tr>
@@ -2010,6 +2156,7 @@
                               <th scope="col">Skin</th>
                               <th scope="col">Header</th>
                               <th scope="col">Sidebar</th>
+                              <th scope="col">Primary</th>
                               <th scope="col">Why</th>
                             </tr>
                           </thead>
@@ -2080,6 +2227,7 @@
                               <td class="text-nowrap">
                                 <code>bg-body-secondary</code> · <code>dark</code>
                               </td>
+                              <td class="text-nowrap"><code>primary</code></td>
                               <td>What AdminLTE 4 ships: white header, dark neutral sidebar.</td>
                             </tr>
                             <tr>
@@ -2148,6 +2296,7 @@
                               <td class="text-nowrap">
                                 <code>text-bg-graphite</code> · <code>dark</code>
                               </td>
+                              <td class="text-nowrap"><code>indigo</code></td>
                               <td>Quiet near-black sidebar; the widgets carry the colour.</td>
                             </tr>
                             <tr>
@@ -2216,6 +2365,7 @@
                               <td class="text-nowrap">
                                 <code>text-bg-navy</code> · <code>dark</code>
                               </td>
+                              <td class="text-nowrap"><code>teal</code></td>
                               <td>
                                 Deep blue sidebar under a white header — the classic dark-sidebar
                                 look.
@@ -2287,6 +2437,7 @@
                               <td class="text-nowrap">
                                 <code>text-bg-steel</code> · <code>dark</code>
                               </td>
+                              <td class="text-nowrap"><code>sky</code></td>
                               <td>
                                 Mid-dark blue-grey sidebar — reads as dark without going near black.
                               </td>
@@ -2357,6 +2508,7 @@
                               <td class="text-nowrap">
                                 <code>text-bg-midnight</code> · <code>dark</code>
                               </td>
+                              <td class="text-nowrap"><code>violet</code></td>
                               <td>Near-black with a violet cast; made for vivid accents.</td>
                             </tr>
                             <tr>
@@ -2425,6 +2577,7 @@
                               <td class="text-nowrap">
                                 <code>text-bg-indigo</code> · <code>dark</code>
                               </td>
+                              <td class="text-nowrap"><code>indigo</code></td>
                               <td>
                                 Brand-forward: one strong hue on the sidebar, everything else calm.
                               </td>
@@ -2439,7 +2592,7 @@
                         Dark sidebar and dark header; the body stays light unless the visitor picks
                         dark mode.
                       </p>
-                      <div class="table-responsive">
+                      <div class="table-responsive" tabindex="0">
                         <table class="table align-middle mb-0">
                           <thead>
                             <tr>
@@ -2447,6 +2600,7 @@
                               <th scope="col">Skin</th>
                               <th scope="col">Header</th>
                               <th scope="col">Sidebar</th>
+                              <th scope="col">Primary</th>
                               <th scope="col">Why</th>
                             </tr>
                           </thead>
@@ -2519,6 +2673,7 @@
                               <td class="text-nowrap">
                                 <code>text-bg-navy</code> · <code>dark</code>
                               </td>
+                              <td class="text-nowrap"><code>sky</code></td>
                               <td>The modern take on the classic skin-blue.</td>
                             </tr>
                             <tr>
@@ -2589,6 +2744,7 @@
                               <td class="text-nowrap">
                                 <code>text-bg-midnight</code> · <code>dark</code>
                               </td>
+                              <td class="text-nowrap"><code>indigo</code></td>
                               <td>
                                 One deep tone for all chrome — the &quot;dark header&quot; layout.
                               </td>
@@ -2661,6 +2817,7 @@
                               <td class="text-nowrap">
                                 <code>text-bg-steel</code> · <code>dark</code>
                               </td>
+                              <td class="text-nowrap"><code>sky</code></td>
                               <td>Blue-grey chrome throughout; softer than midnight.</td>
                             </tr>
                             <tr>
@@ -2731,6 +2888,7 @@
                               <td class="text-nowrap">
                                 <code>text-bg-slate</code> · <code>dark</code>
                               </td>
+                              <td class="text-nowrap"><code>teal</code></td>
                               <td>Mid-weight sidebar with a cool header — softer than navy.</td>
                             </tr>
                             <tr>
@@ -2801,6 +2959,7 @@
                               <td class="text-nowrap">
                                 <code>text-bg-graphite</code> · <code>dark</code>
                               </td>
+                              <td class="text-nowrap"><code>orange</code></td>
                               <td>
                                 Warm header over a quiet sidebar — the energetic v2 skins,
                                 restrained.
@@ -2815,7 +2974,7 @@
                       <p class="text-body-secondary mb-2">
                         Brand-forward chrome: one strong hue, or the v3 gradient sheen.
                       </p>
-                      <div class="table-responsive">
+                      <div class="table-responsive" tabindex="0">
                         <table class="table align-middle mb-0">
                           <thead>
                             <tr>
@@ -2823,6 +2982,7 @@
                               <th scope="col">Skin</th>
                               <th scope="col">Header</th>
                               <th scope="col">Sidebar</th>
+                              <th scope="col">Primary</th>
                               <th scope="col">Why</th>
                             </tr>
                           </thead>
@@ -2895,6 +3055,7 @@
                               <td class="text-nowrap">
                                 <code>text-bg-violet</code> · <code>dark</code>
                               </td>
+                              <td class="text-nowrap"><code>violet</code></td>
                               <td>Header and sidebar in one hue — the bold, single-brand look.</td>
                             </tr>
                             <tr>
@@ -2963,6 +3124,7 @@
                               <td class="text-nowrap">
                                 <code>bg-gradient-indigo</code> · <code>dark</code>
                               </td>
+                              <td class="text-nowrap"><code>indigo</code></td>
                               <td>The v3 gradient sheen on a brand sidebar, white header.</td>
                             </tr>
                             <tr>
@@ -3031,6 +3193,7 @@
                               <td class="text-nowrap">
                                 <code>bg-gradient-teal</code> · <code>dark</code>
                               </td>
+                              <td class="text-nowrap"><code>teal</code></td>
                               <td>Calm and fresh; teal sidebar with the gradient sheen.</td>
                             </tr>
                           </tbody>
@@ -3136,6 +3299,12 @@
 <span class="line"><span style="color:#CE9178">  &quot;sky&quot;</span><span style="color:#D4D4D4">:   </span><span style="color:#CE9178">#0369a1</span><span style="color:#6A9955">       // re-tune a shipped colour to your blue</span></span>
 <span class="line"><span style="color:#D4D4D4">);</span></span>
 <span class="line"><span style="color:#C586C0">@import</span><span style="color:#CE9178"> &quot;admin-lte/src/scss/adminlte-colors&quot;</span><span style="color:#D4D4D4">;</span></span></code></pre>
+                    <p>
+                      That also generates <code>data-lte-primary=&quot;brand&quot;</code>, so
+                      <code>&lt;html data-lte-primary=&quot;brand&quot;&gt;</code> turns Bootstrap’s
+                      <code>primary</code> components into your brand colour with the right hover
+                      shades and contrast text.
+                    </p>
                     <p>
                       To ship <strong>only</strong> your colours (drop the fourteen), set
                       <code>$lte-palette</code> itself instead:
