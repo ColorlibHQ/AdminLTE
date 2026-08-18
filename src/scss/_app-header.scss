@@ -101,7 +101,6 @@
           max-height: 100vh;
 
           .sidebar-wrapper {
-            height: subtract(100vh, add($lte-app-header-height, 1px));
             overflow-x: hidden;
             overflow-y: auto;
           }

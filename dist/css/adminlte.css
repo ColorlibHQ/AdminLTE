@@ -12950,7 +12950,6 @@ textarea.form-control-lg {
     max-height: 100vh;
   }
   .fixed-header.sidebar-expand-sm .app-sidebar .sidebar-wrapper {
-    height: calc(100vh - (calc(3.5rem + 1px)));
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -12962,7 +12961,6 @@ textarea.form-control-lg {
     max-height: 100vh;
   }
   .fixed-header.sidebar-expand-md .app-sidebar .sidebar-wrapper {
-    height: calc(100vh - (calc(3.5rem + 1px)));
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -12974,7 +12972,6 @@ textarea.form-control-lg {
     max-height: 100vh;
   }
   .fixed-header.sidebar-expand-lg .app-sidebar .sidebar-wrapper {
-    height: calc(100vh - (calc(3.5rem + 1px)));
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -12986,7 +12983,6 @@ textarea.form-control-lg {
     max-height: 100vh;
   }
   .fixed-header.sidebar-expand-xl .app-sidebar .sidebar-wrapper {
-    height: calc(100vh - (calc(3.5rem + 1px)));
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -12998,7 +12994,6 @@ textarea.form-control-lg {
     max-height: 100vh;
   }
   .fixed-header.sidebar-expand-xxl .app-sidebar .sidebar-wrapper {
-    height: calc(100vh - (calc(3.5rem + 1px)));
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -13009,7 +13004,6 @@ textarea.form-control-lg {
   max-height: 100vh;
 }
 .fixed-header.sidebar-expand .app-sidebar .sidebar-wrapper {
-  height: calc(100vh - (calc(3.5rem + 1px)));
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -13029,6 +13023,8 @@ textarea.form-control-lg {
   --lte-sidebar-submenu-active-bg: rgba(0, 0, 0, 0.1);
   --lte-sidebar-header-color: rgb(19.3725490196%, 21.6078431373%, 23.8431372549%);
   z-index: 1038;
+  display: flex;
+  flex-direction: column;
   grid-area: lte-app-sidebar;
   min-width: var(--lte-sidebar-width);
   max-width: var(--lte-sidebar-width);
@@ -13042,6 +13038,7 @@ textarea.form-control-lg {
 
 .sidebar-brand {
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
   height: 3.5rem;
@@ -13098,6 +13095,8 @@ textarea.form-control-lg {
 }
 
 .sidebar-wrapper {
+  flex: 1 1 auto;
+  min-height: 0;
   padding-top: 0.5rem;
   padding-right: 0.5rem;
   padding-bottom: 0.5rem;
@@ -13297,6 +13296,7 @@ textarea.form-control-lg {
 }
 
 .sidebar-search {
+  flex: 0 0 auto;
   padding: 0.5rem 1rem;
   --lte-search-field-bg: rgba(var(--bs-emphasis-color-rgb), .06);
   --lte-search-field-hover-bg: rgba(var(--bs-emphasis-color-rgb), .09);
@@ -13486,7 +13486,6 @@ textarea.form-control-lg {
     max-height: 100vh;
   }
   .sidebar-expand-sm.layout-fixed .app-sidebar .sidebar-wrapper {
-    height: calc(100vh - (calc(3.5rem + 1px)));
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -13518,7 +13517,6 @@ textarea.form-control-lg {
     margin-left: calc(var(--lte-sidebar-width) * -1);
   }
   .sidebar-expand-sm .app-sidebar .sidebar-wrapper {
-    height: calc(100vh - (calc(3.5rem + 1px)));
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -13561,7 +13559,6 @@ textarea.form-control-lg {
     max-height: 100vh;
   }
   .sidebar-expand-md.layout-fixed .app-sidebar .sidebar-wrapper {
-    height: calc(100vh - (calc(3.5rem + 1px)));
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -13593,7 +13590,6 @@ textarea.form-control-lg {
     margin-left: calc(var(--lte-sidebar-width) * -1);
   }
   .sidebar-expand-md .app-sidebar .sidebar-wrapper {
-    height: calc(100vh - (calc(3.5rem + 1px)));
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -13636,7 +13632,6 @@ textarea.form-control-lg {
     max-height: 100vh;
   }
   .sidebar-expand-lg.layout-fixed .app-sidebar .sidebar-wrapper {
-    height: calc(100vh - (calc(3.5rem + 1px)));
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -13668,7 +13663,6 @@ textarea.form-control-lg {
     margin-left: calc(var(--lte-sidebar-width) * -1);
   }
   .sidebar-expand-lg .app-sidebar .sidebar-wrapper {
-    height: calc(100vh - (calc(3.5rem + 1px)));
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -13711,7 +13705,6 @@ textarea.form-control-lg {
     max-height: 100vh;
   }
   .sidebar-expand-xl.layout-fixed .app-sidebar .sidebar-wrapper {
-    height: calc(100vh - (calc(3.5rem + 1px)));
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -13743,7 +13736,6 @@ textarea.form-control-lg {
     margin-left: calc(var(--lte-sidebar-width) * -1);
   }
   .sidebar-expand-xl .app-sidebar .sidebar-wrapper {
-    height: calc(100vh - (calc(3.5rem + 1px)));
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -13786,7 +13778,6 @@ textarea.form-control-lg {
     max-height: 100vh;
   }
   .sidebar-expand-xxl.layout-fixed .app-sidebar .sidebar-wrapper {
-    height: calc(100vh - (calc(3.5rem + 1px)));
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -13818,7 +13809,6 @@ textarea.form-control-lg {
     margin-left: calc(var(--lte-sidebar-width) * -1);
   }
   .sidebar-expand-xxl .app-sidebar .sidebar-wrapper {
-    height: calc(100vh - (calc(3.5rem + 1px)));
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -13860,7 +13850,6 @@ textarea.form-control-lg {
   max-height: 100vh;
 }
 .sidebar-expand.layout-fixed .app-sidebar .sidebar-wrapper {
-  height: calc(100vh - (calc(3.5rem + 1px)));
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -13890,7 +13879,6 @@ textarea.form-control-lg {
   margin-left: calc(var(--lte-sidebar-width) * -1);
 }
 .sidebar-expand .app-sidebar .sidebar-wrapper {
-  height: calc(100vh - (calc(3.5rem + 1px)));
   overflow-x: hidden;
   overflow-y: auto;
 }

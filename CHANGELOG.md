@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Theme Customize (`generate/theme.html`)** offers the palette in its sidebar / navbar / footer pickers under "Extended palette", gained a preset row with the same thumbnails, reflects the page's current state on load, and defaults the colour mode to dark when a palette colour is picked; its three duplicated scripts are one controller.
 - The Migration and Customization pages point to the palette; the migration guide maps every AdminLTE 3 colour and skin class to its v4 form.
 
+### Fixed
+
+- **Sidebar taller than the viewport with the sidebar filter in place.** `.sidebar-wrapper` was sized with a hard-coded `100vh − header height`, which assumed only the brand sat above it; the `SidebarSearch` field added in 4.3.0 sits between the brand and the wrapper (on purpose, so it stays put while the menu scrolls), so the wrapper overflowed the sidebar by exactly the filter's height and the last menu items were cut off. `.app-sidebar` is now a flex column: brand and filter keep their size (`flex: 0 0 auto`), `.sidebar-wrapper` fills the rest (`flex: 1 1 auto; min-height: 0`) and scrolls — in fixed layouts, the `fixed-header`-only case, and the off-canvas sidebar. Anything else placed above or below the menu now sizes correctly too, without a height calc (#6104, reported by @dfsmania).
+
 ## [4.3.1] - 2026-08-10
 
 ### Fixed

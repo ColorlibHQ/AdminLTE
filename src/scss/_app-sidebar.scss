@@ -16,6 +16,11 @@
   --#{$lte-prefix}sidebar-header-color: #{$lte-sidebar-header-color};
 
   z-index: $lte-zindex-sidebar;
+  // A column: brand and filter keep their size, .sidebar-wrapper takes the
+  // rest and scrolls (#6104). Anything else placed above or below the menu
+  // just works, without a hard-coded height calc.
+  display: flex;
+  flex-direction: column;
   grid-area: #{$lte-prefix}app-sidebar;
   min-width: var(--#{$lte-prefix}sidebar-width);
   max-width: var(--#{$lte-prefix}sidebar-width);
@@ -24,6 +29,7 @@
 
 .sidebar-brand {
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
   height: $lte-app-header-height;
@@ -76,6 +82,8 @@
 }
 
 .sidebar-wrapper {
+  flex: 1 1 auto;
+  min-height: 0;
   padding-top: $lte-sidebar-padding-y;
   padding-right: $lte-sidebar-padding-x;
   padding-bottom: $lte-sidebar-padding-y;
@@ -312,6 +320,7 @@
 // Sidebar search: the filter field above the menu. It sits outside
 // .sidebar-wrapper so it stays put while the menu scrolls under it.
 .sidebar-search {
+  flex: 0 0 auto;
   padding: $lte-sidebar-padding-y ($lte-sidebar-padding-x * 2);
   @include lte-search-field();
 }
@@ -504,7 +513,6 @@
             max-height: 100vh;
 
             .sidebar-wrapper {
-              height: subtract(100vh, add($lte-app-header-height, 1px));
               overflow-x: hidden;
               overflow-y: auto;
             }
@@ -545,7 +553,6 @@
           margin-left: calc(var(--#{$lte-prefix}sidebar-width) * -1); // stylelint-disable-line function-disallowed-list
 
           .sidebar-wrapper {
-            height: subtract(100vh, add($lte-app-header-height, 1px));
             overflow-x: hidden;
             overflow-y: auto;
           }
