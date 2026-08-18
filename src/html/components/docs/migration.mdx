@@ -133,19 +133,21 @@ AdminLTE 3 used a `.dark-mode` class toggled on the `<body>`. AdminLTE 4 uses Bo
 
 The included [Color Mode](color-mode.html) widget reads/writes this attribute and persists the user's choice in `localStorage`. See the [Color Mode](color-mode.html) docs page for the toggle implementation.
 
-##### CSS variables instead of `.bg-*` overrides
+##### Extra colours moved to an opt-in stylesheet
 
-AdminLTE 3 shipped a lot of one-off colour classes (`.bg-navy`, `.bg-purple`, `.bg-fuchsia`, etc.). In v4, prefer Bootstrap 5.3's CSS-variable model:
+AdminLTE 3 shipped a lot of one-off colour classes (`.bg-navy`, `.bg-purple`, `.bg-fuchsia`, `.bg-gradient-*`, the sidebar/navbar skins) inside its main CSS. In v4 the core stylesheet only knows Bootstrap's theme colours; the extended palette is a separate, opt-in file, `dist/css/adminlte-colors.css`, with a redesigned set of fourteen colours (every one takes white text at ≥ 4.5:1) and the same class families for each — `.bg-*`, `.text-bg-*`, `.bg-gradient-*`, `.card-*`, `.callout-*`, ….
 
 ```html
 <!-- AdminLTE 3 -->
 <div class="card bg-navy">…</div>
+<aside class="main-sidebar sidebar-dark-primary">…</aside>
 
-<!-- AdminLTE 4 — use Bootstrap utilities + CSS variables -->
-<div class="card text-bg-primary">…</div>
+<!-- AdminLTE 4 — load css/adminlte-colors.css after adminlte.css -->
+<div class="card text-bg-navy">…</div>
+<aside class="app-sidebar text-bg-navy shadow" data-bs-theme="dark">…</aside>
 ```
 
-For full retheming, override `--bs-primary` etc. on `:root`. See [Customization](customization.html).
+`lightblue` became `sky` and `maroon` became `pink`; `$lte-palette-aliases` restores the old names if your markup depends on them. Everything else — the palette, skins, adding your brand colours — is on the [Colors](colors.html) page. For retheming Bootstrap's own colours, override `--bs-primary` etc. on `:root`; see [Customization](customization.html).
 
 ##### Icons
 

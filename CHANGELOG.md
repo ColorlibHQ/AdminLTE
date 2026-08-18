@@ -5,6 +5,14 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- **Extended colour palette (`dist/css/adminlte-colors.css`)** — an opt-in stylesheet (≈ 5 kB gzipped; `adminlte.css` is unchanged) that adds fourteen colours — orange, amber, olive, teal, sky, indigo, violet, fuchsia, pink, and the chrome neutrals navy, steel, slate, graphite, midnight — as `--bs-*` tokens plus every family Bootstrap generates for its own theme colours: `.bg-*`, `.text-bg-*`, `.text-*`, `.border-*`, `.link-*`, `.bg-gradient-*` (also for the eight theme colours, as in v3), `.card-*` / `.card-outline`, `.callout-*`, `.direct-chat-*`, with the subtle/emphasis tokens for dark mode and a hover shade for `.btn.bg-*`. The palette is generated, not picked: in OKLCH, each chromatic colour is the lightest value whose white text still reaches 4.6:1 (WCAG AA), hues sit ≥ 17° from every Bootstrap theme colour and ≥ 20° from each other, chroma is capped at parity with `primary`, and the five neutrals are cool-tinted and sit at the lightness steps popular admin kits use for sidebars. `scripts/palette.mjs` regenerates it (`npm run palette`) and checks it (`--check`); a unit test keeps the Sass map and the demo data in step. Add your own with `$lte-palette-custom: ("brand": #hex)`, replace the set with `$lte-palette`, restore v3 names with `$lte-palette-aliases: ("lightblue": "sky", "maroon": "pink")`. Documented on the new **Colors** page (`docs/colors.html`) — palette, class families, 17 skin presets in four families (light, semi-dark, full dark, coloured & gradient) each with a layout thumbnail, widget-set presets, brand-colour recipe, design rules with a hue/chroma plot — and demonstrated on **UI → Colors** (`UI/colors.html`), which recolours its own sidebar and header live from thumbnail presets, shows the four dashboard sets and every component, and has a brand-colour checker that reports contrast, proposes a same-hue value that passes, and prints the Sass snippet (#6103, requested by @johnnyq).
+- **Theme Customize (`generate/theme.html`)** offers the palette in its sidebar / navbar / footer pickers under "Extended palette", gained a preset row with the same thumbnails, reflects the page's current state on load, and defaults the colour mode to dark when a palette colour is picked; its three duplicated scripts are one controller.
+- The Migration and Customization pages point to the palette; the migration guide maps every AdminLTE 3 colour and skin class to its v4 form.
+
 ## [4.3.1] - 2026-08-10
 
 ### Fixed

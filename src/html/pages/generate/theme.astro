@@ -3,9 +3,15 @@ import Head from "@components/_head.astro"
 import Footer from "@components/dashboard/_footer.astro"
 import Topbar from "@components/dashboard/_topbar.astro"
 import Scripts from "@components/_scripts.astro"
+import SkinPreview from "@components/_skin-preview.astro"
 import { convertPathToHtml } from "../../../utils/index.js"
+import { palette, skinGroups, skins } from "../../../utils/palette.mjs"
 
 const title = "AdminLTE 4 | Theme Customize"
+// The extended palette (dist/css/adminlte-colors.css) is opt-in; this page
+// loads it so the pickers can offer those colours too. Skins use `.text-bg-*`
+// so the contrast text comes along — see docs/colors.html.
+const paletteClasses = palette.map(c => `text-bg-${c.name}`)
 const path = "../../../dist"
 const htmlPath = convertPathToHtml(path);
 
@@ -21,6 +27,36 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
   <!--begin::Head-->
   <head>
     <Head title={title} path={path} />
+    <!--begin::Optional Stylesheet(Extended palette — needed for the "Extended palette" options below)-->
+    <link rel="stylesheet" href={deploymentPath + "css/adminlte-colors.css"} />
+    <!--end::Optional Stylesheet(Extended palette)-->
+    <style>
+      /* Page-local: the preset thumbnails' button shell. */
+      .lte-skin-btn {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.4rem 0.4rem 0.3rem;
+        font-size: 0.8125rem;
+        line-height: 1.2;
+        color: var(--bs-body-color);
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius);
+      }
+      .lte-skin-btn:hover {
+        border-color: var(--bs-secondary-color);
+      }
+      .lte-skin-btn[aria-pressed="true"] {
+        border-color: var(--bs-body-color);
+        box-shadow: 0 0 0 1px var(--bs-body-color);
+      }
+      .lte-skin-btn:focus-visible {
+        outline: 2px solid var(--bs-focus-ring-color);
+        outline-offset: 2px;
+      }
+    </style>
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -166,10 +202,73 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
         <div class="app-content">
           <!--begin::Container-->
           <div class="container-fluid">
+            <div class="callout callout-info mb-4">
+              <p>
+                Pick a colour mode and a background for the sidebar, the navbar
+                and the footer. Each choice is applied to <em>this page</em> at
+                once, and the markup to copy is printed next to the pickers — a
+                "theme" in AdminLTE 4 is just a background utility plus
+                <code>data-bs-theme</code> on the element, no extra CSS.
+              </p>
+              <p class="mb-0">
+                The <strong>Extended palette</strong> group in each picker
+                (orange, amber, olive, teal, sky, indigo, violet, fuchsia, pink,
+                navy, steel, slate, graphite, midnight) needs the optional
+                <code>css/adminlte-colors.css</code>, which this page loads. Every
+                one of those colours takes white text, so pair it with the
+                <em>Dark</em> mode — the picker does that for you. Palette,
+                presets and how to add your brand colour:
+                <a href={deploymentPath + "docs/colors.html"} class="callout-link">Colors documentation</a>
+                · <a href={deploymentPath + "UI/colors.html"} class="callout-link">Colors demo</a>.
+              </p>
+            </div>
             <!--begin::Row-->
             <div class="row">
               <!--begin::Col-->
               <div class="col-12">
+                <!--begin::Card(Presets)-->
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <h3 class="card-title">Presets</h3>
+                  </div>
+                  <div class="card-body">
+                    <p>
+                      Sidebar + navbar combinations in the four families admin
+                      dashboards usually offer. Click one to apply it to this
+                      page and fill the pickers below; then fine-tune.
+                    </p>
+                    <div id="theme-presets">
+                      {
+                        skinGroups.map(group => (
+                          <div class="mb-3">
+                            <p class="fw-semibold mb-1">{group.name}</p>
+                            <p class="text-body-secondary small mb-2">{group.note}</p>
+                            <div class="d-flex flex-wrap gap-2">
+                              {
+                                skins.filter(skin => skin.group === group.name).map(skin => (
+                                  <button
+                                    type="button"
+                                    class="lte-skin-btn"
+                                    data-preset-sidebar={skin.sidebar.cls}
+                                    data-preset-sidebar-theme={skin.sidebar.theme}
+                                    data-preset-header={skin.header.cls}
+                                    data-preset-header-theme={skin.header.theme}
+                                    title={skin.note}
+                                    aria-pressed="false"
+                                  >
+                                    <SkinPreview skin={skin} />
+                                    <span>{skin.name}</span>
+                                  </button>
+                                ))
+                              }
+                            </div>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
+                </div>
+                <!--end::Card(Presets)-->
                 <!--begin::Card-->
                 <div class="card">
                   <!--begin::Card Header-->
@@ -241,12 +340,15 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                   <!--end::Card Body-->
                   <!--begin::Card Footer-->
                   <div class="card-footer">
-                    Check more color in
+                    Bootstrap's own backgrounds are documented under
                     <a
                       href="https://getbootstrap.com/docs/5.3/utilities/background/"
                       target="_blank"
-                      class="link-primary">Bootstrap Background Colors</a
-                    >
+                      rel="noopener noreferrer"
+                      class="link-primary">Background utilities</a
+                    >; the <em>Extended palette</em> group needs
+                    <code>css/adminlte-colors.css</code> — see
+                    <a href={deploymentPath + "docs/colors.html"} class="link-primary">Colors</a>.
                   </div>
                   <!--end::Card Footer-->
                 </div>
@@ -323,12 +425,15 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                   <!--end::Card Body-->
                   <!--begin::Card Footer-->
                   <div class="card-footer">
-                    Check more color in
+                    Bootstrap's own backgrounds are documented under
                     <a
                       href="https://getbootstrap.com/docs/5.3/utilities/background/"
                       target="_blank"
-                      class="link-primary">Bootstrap Background Colors</a
-                    >
+                      rel="noopener noreferrer"
+                      class="link-primary">Background utilities</a
+                    >; the <em>Extended palette</em> group needs
+                    <code>css/adminlte-colors.css</code> — see
+                    <a href={deploymentPath + "docs/colors.html"} class="link-primary">Colors</a>.
                   </div>
                   <!--end::Card Footer-->
                 </div>
@@ -405,12 +510,15 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                   <!--end::Card Body-->
                   <!--begin::Card Footer-->
                   <div class="card-footer">
-                    Check more color in
+                    Bootstrap's own backgrounds are documented under
                     <a
                       href="https://getbootstrap.com/docs/5.3/utilities/background/"
                       target="_blank"
-                      class="link-primary">Bootstrap Background Colors</a
-                    >
+                      rel="noopener noreferrer"
+                      class="link-primary">Background utilities</a
+                    >; the <em>Extended palette</em> group needs
+                    <code>css/adminlte-colors.css</code> — see
+                    <a href={deploymentPath + "docs/colors.html"} class="link-primary">Colors</a>.
                   </div>
                   <!--end::Card Footer-->
                 </div>
@@ -430,210 +538,136 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
     <!--end::App Wrapper-->
     <!--begin::Script-->
     <Scripts path={path} />
-    <script is:inline>
-document.addEventListener("DOMContentLoaded", () => {
-  const appSidebar = document.querySelector(".app-sidebar")
-  const sidebarColorModes = document.querySelector(
-    "#sidebar-color-modes"
-  )
-  const sidebarColor = document.querySelector("#sidebar-color")
-  const sidebarColorCode = document.querySelector("#sidebar-color-code")
+    <script is:inline define:vars={{ paletteClasses }}>
+      // Theme Customize: one controller for the three regions. Applies the
+      // chosen background + colour mode to THIS page and prints the markup.
+      // Page-local demo script — not part of adminlte.js.
+      const option = bg => `<option value="${bg}" class="text-${bg.replace(/^(text-bg-|bg-gradient-)/, "")}">${bg}</option>`
 
-  const themeBg = [
-    "bg-primary",
-    "bg-primary-subtle",
-    "bg-secondary",
-    "bg-secondary-subtle",
-    "bg-success",
-    "bg-success-subtle",
-    "bg-danger",
-    "bg-danger-subtle",
-    "bg-warning",
-    "bg-warning-subtle",
-    "bg-info",
-    "bg-info-subtle",
-    "bg-light",
-    "bg-light-subtle",
-    "bg-dark",
-    "bg-dark-subtle",
-    "bg-body-secondary",
-    "bg-body-tertiary",
-    "bg-body",
-    "bg-black",
-    "bg-white",
-    "bg-transparent"
-  ]
+      document.addEventListener("DOMContentLoaded", () => {
+        // Bootstrap's background utilities (all of adminlte.css) …
+        const bootstrapBg = [
+          "bg-primary", "bg-primary-subtle",
+          "bg-secondary", "bg-secondary-subtle",
+          "bg-success", "bg-success-subtle",
+          "bg-danger", "bg-danger-subtle",
+          "bg-warning", "bg-warning-subtle",
+          "bg-info", "bg-info-subtle",
+          "bg-light", "bg-light-subtle",
+          "bg-dark", "bg-dark-subtle",
+          "bg-body-secondary", "bg-body-tertiary", "bg-body",
+          "bg-black", "bg-white", "bg-transparent"
+        ]
+        // … plus the extended palette (opt-in css/adminlte-colors.css), as
+        // `.text-bg-*` so the contrast text comes with the background, and its
+        // `.bg-gradient-*` variants.
+        const paletteGradient = paletteClasses.map(c => c.replace("text-bg-", "bg-gradient-"))
+        const allBg = [...bootstrapBg, ...paletteClasses, ...paletteGradient]
 
-  // loop through each option themeBg array
-  document.querySelector("#sidebar-color").innerHTML = themeBg.map(
-    (bg) => {
-      // return option element with value and text
-      return `<option value="${bg}" class="text-${bg}">${bg}</option>`
-    }
-  )
+        const regions = [
+          { element: ".app-sidebar", modes: "#sidebar-color-modes", colors: "#sidebar-color", code: "#sidebar-color-code", open: '&lt;aside class="app-sidebar', close: '&gt;...&lt;/aside&gt;' },
+          { element: ".app-header", modes: "#navbar-color-modes", colors: "#navbar-color", code: "#navbar-color-code", open: '&lt;nav class="app-header navbar navbar-expand', close: '&gt;...&lt;/nav&gt;' },
+          { element: ".app-footer", modes: "#footer-color-modes", colors: "#footer-color", code: "#footer-color-code", open: '&lt;footer class="app-footer', close: '&gt;...&lt;/footer&gt;' }
+        ]
 
-  let sidebarColorMode = ""
-  let sidebarBg = ""
+        const controllers = {}
+        const presetButtons = document.querySelectorAll("#theme-presets [data-preset-sidebar]")
+        const markPresets = () => {
+          const sidebar = controllers[".app-sidebar"]
+          const header = controllers[".app-header"]
+          if (!sidebar || !header) {
+            return
+          }
+          for (const button of presetButtons) {
+            const matches =
+              button.getAttribute("data-preset-sidebar") === sidebar.get().bg &&
+              button.getAttribute("data-preset-sidebar-theme") === sidebar.get().mode &&
+              button.getAttribute("data-preset-header") === header.get().bg &&
+              button.getAttribute("data-preset-header-theme") === header.get().mode
+            button.setAttribute("aria-pressed", String(matches))
+          }
+        }
 
-  function updateSidebar() {
-    appSidebar.setAttribute("data-bs-theme", sidebarColorMode)
+        for (const region of regions) {
+          const element = document.querySelector(region.element)
+          const modeSelect = document.querySelector(region.modes)
+          const colorSelect = document.querySelector(region.colors)
+          const code = document.querySelector(region.code)
+          if (!element || !modeSelect || !colorSelect || !code) {
+            continue
+          }
 
-    sidebarColorCode.innerHTML = `<pre><code class="language-html">&lt;aside class="app-sidebar ${sidebarBg}" data-bs-theme="${sidebarColorMode}"&gt;...&lt;/aside&gt;</code></pre>`
-  }
+          colorSelect.innerHTML =
+            '<option value="">---Select---</option>' +
+            `<optgroup label="Bootstrap">${bootstrapBg.map(option).join("")}</optgroup>` +
+            `<optgroup label="Extended palette (adminlte-colors.css)">${paletteClasses.map(option).join("")}</optgroup>` +
+            `<optgroup label="Extended palette · gradient">${paletteGradient.map(option).join("")}</optgroup>`
 
-  sidebarColorModes.addEventListener("input", (event) => {
-    sidebarColorMode = event.target.value
-    updateSidebar()
-  })
+          // Start from what the page is already showing.
+          let mode = element.getAttribute("data-bs-theme") || ""
+          let bg = [...element.classList].find(c => allBg.includes(c)) || ""
+          modeSelect.value = mode
+          colorSelect.value = bg
 
-  sidebarColor.addEventListener("input", (event) => {
-    sidebarBg = event.target.value
+          const render = () => {
+            if (mode) {
+              element.setAttribute("data-bs-theme", mode)
+            } else {
+              element.removeAttribute("data-bs-theme")
+            }
+            const classes = [bg].filter(Boolean).join(" ")
+            const theme = mode ? ` data-bs-theme="${mode}"` : ""
+            code.innerHTML = `<pre><code class="language-html">${region.open}${classes ? " " + classes : ""}"${theme}${region.close}</code></pre>`
+            markPresets()
+          }
 
-    themeBg.forEach((className) => {
-      appSidebar.classList.remove(className)
-    })
+          const applyBg = value => {
+            bg = value
+            element.classList.remove(...allBg)
+            if (bg) {
+              element.classList.add(bg)
+            }
+          }
 
-    if (themeBg.includes(sidebarBg)) {
-      appSidebar.classList.add(sidebarBg)
-    }
+          controllers[region.element] = {
+            get: () => ({ bg, mode }),
+            set: (nextBg, nextMode) => {
+              applyBg(nextBg)
+              mode = nextMode
+              colorSelect.value = bg
+              modeSelect.value = mode
+              render()
+            }
+          }
 
-    updateSidebar()
-  })
-})
+          modeSelect.addEventListener("input", event => {
+            mode = event.target.value
+            render()
+          })
 
-document.addEventListener("DOMContentLoaded", () => {
-  const appNavbar = document.querySelector(".app-header")
-  const navbarColorModes = document.querySelector("#navbar-color-modes")
-  const navbarColor = document.querySelector("#navbar-color")
-  const navbarColorCode = document.querySelector("#navbar-color-code")
+          colorSelect.addEventListener("input", event => {
+            applyBg(event.target.value)
+            // Every palette colour is designed for white text: default the
+            // mode to dark when one is picked and no mode was chosen yet.
+            if ((bg.startsWith("text-bg-") || bg.startsWith("bg-gradient-")) && !mode) {
+              mode = "dark"
+              modeSelect.value = "dark"
+            }
+            render()
+          })
 
-  const themeBg = [
-    "bg-primary",
-    "bg-primary-subtle",
-    "bg-secondary",
-    "bg-secondary-subtle",
-    "bg-success",
-    "bg-success-subtle",
-    "bg-danger",
-    "bg-danger-subtle",
-    "bg-warning",
-    "bg-warning-subtle",
-    "bg-info",
-    "bg-info-subtle",
-    "bg-light",
-    "bg-light-subtle",
-    "bg-dark",
-    "bg-dark-subtle",
-    "bg-body-secondary",
-    "bg-body-tertiary",
-    "bg-body",
-    "bg-black",
-    "bg-white",
-    "bg-transparent"
-  ]
+          render()
+        }
 
-  // loop through each option themeBg array
-  document.querySelector("#navbar-color").innerHTML = themeBg.map(
-    (bg) => {
-      // return option element with value and text
-      return `<option value="${bg}" class="text-${bg}">${bg}</option>`
-    }
-  )
-
-  let navbarColorMode = ""
-  let navbarBg = ""
-
-  function updateNavbar() {
-    appNavbar.setAttribute("data-bs-theme", navbarColorMode)
-    navbarColorCode.innerHTML = `<pre><code class="language-html">&lt;nav class="app-header navbar navbar-expand ${navbarBg}" data-bs-theme="${navbarColorMode}"&gt;...&lt;/nav&gt;</code></pre>`
-  }
-
-  navbarColorModes.addEventListener("input", (event) => {
-    navbarColorMode = event.target.value
-    updateNavbar()
-  })
-
-  navbarColor.addEventListener("input", (event) => {
-    navbarBg = event.target.value
-
-    themeBg.forEach((className) => {
-      appNavbar.classList.remove(className)
-    })
-
-    if (themeBg.includes(navbarBg)) {
-      appNavbar.classList.add(navbarBg)
-    }
-
-    updateNavbar()
-  })
-})
-
-document.addEventListener("DOMContentLoaded", () => {
-  const appFooter = document.querySelector(".app-footer")
-  const footerColorModes = document.querySelector("#footer-color-modes")
-  const footerColor = document.querySelector("#footer-color")
-  const footerColorCode = document.querySelector("#footer-color-code")
-
-  const themeBg = [
-    "bg-primary",
-    "bg-primary-subtle",
-    "bg-secondary",
-    "bg-secondary-subtle",
-    "bg-success",
-    "bg-success-subtle",
-    "bg-danger",
-    "bg-danger-subtle",
-    "bg-warning",
-    "bg-warning-subtle",
-    "bg-info",
-    "bg-info-subtle",
-    "bg-light",
-    "bg-light-subtle",
-    "bg-dark",
-    "bg-dark-subtle",
-    "bg-body-secondary",
-    "bg-body-tertiary",
-    "bg-body",
-    "bg-black",
-    "bg-white",
-    "bg-transparent"
-  ]
-
-  // loop through each option themeBg array
-  document.querySelector("#footer-color").innerHTML = themeBg.map(
-    (bg) => {
-      // return option element with value and text
-      return `<option value="${bg}" class="text-${bg}">${bg}</option>`
-    }
-  )
-
-  let footerColorMode = ""
-  let footerBg = ""
-
-  function updateFooter() {
-    appFooter.setAttribute("data-bs-theme", footerColorMode)
-    footerColorCode.innerHTML = `<pre><code class="language-html">&lt;footer class="app-footer ${footerBg}" data-bs-theme="${footerColorMode}"&gt;...&lt;/footer&gt;</code></pre>`
-  }
-
-  footerColorModes.addEventListener("input", (event) => {
-    footerColorMode = event.target.value
-    updateFooter()
-  })
-
-  footerColor.addEventListener("input", (event) => {
-    footerBg = event.target.value
-
-    themeBg.forEach((className) => {
-      appFooter.classList.remove(className)
-    })
-
-    if (themeBg.includes(footerBg)) {
-      appFooter.classList.add(footerBg)
-    }
-
-    updateFooter()
-  })
-})
+        // Presets: sidebar + navbar in one click; the footer is left as it is.
+        for (const button of presetButtons) {
+          button.addEventListener("click", () => {
+            controllers[".app-sidebar"]?.set(button.getAttribute("data-preset-sidebar"), button.getAttribute("data-preset-sidebar-theme"))
+            controllers[".app-header"]?.set(button.getAttribute("data-preset-header"), button.getAttribute("data-preset-header-theme"))
+          })
+        }
+        markPresets()
+      })
     </script>
     <!--end::Script-->
   </body><!--end::Body-->

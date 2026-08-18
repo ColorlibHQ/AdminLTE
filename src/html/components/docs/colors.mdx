@@ -1,0 +1,260 @@
+import PaletteWheel from "./_palette-wheel.astro"
+import SkinPreview from "../_skin-preview.astro"
+import { palette, sets, skinGroups, skins } from "../../../utils/palette.mjs"
+
+AdminLTE 4 styles itself with Bootstrap 5.3's theme colours — `primary`, `success`, `danger`, `warning`, `info`, `secondary`, `light`, `dark` — and nothing else. That keeps `adminlte.css` small, but a dashboard often wants more than five hues on a widget row, and AdminLTE 3 users miss `.bg-navy`, `.bg-teal` and the sidebar skins.
+
+**`dist/css/adminlte-colors.css`** is the answer, and it is opt-in: one extra stylesheet (≈ 5 kB gzipped) that adds fourteen colours as `--bs-*` tokens plus every class family Bootstrap generates for its own theme colours. Nothing changes for projects that don't load it.
+
+<div class="d-flex flex-wrap gap-2 my-3">
+  {palette.map(c => (
+    <span class={`badge text-bg-${c.name} fs-6 fw-normal`}>{c.name}</span>
+  ))}
+</div>
+
+Try every colour, skin and widget set live on the <a href="../UI/colors.html">Colors demo page</a> — it also has a checker for your own brand colours.
+
+##### Getting the stylesheet
+
+Load it **after** `adminlte.css`. It only adds classes; nothing in `adminlte.css` is overridden.
+
+```html
+<link rel="stylesheet" href="css/adminlte.css" />
+<link rel="stylesheet" href="css/adminlte-colors.css" />
+```
+
+From the CDN (pin the exact version you tested against in production):
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4/dist/css/adminlte-colors.min.css" />
+```
+
+From npm, in a bundler:
+
+```js
+import "admin-lte/dist/css/adminlte.min.css"
+import "admin-lte/dist/css/adminlte-colors.min.css"
+```
+
+Or compile it yourself — the Sass entry is `src/scss/adminlte-colors.scss`, and that is also how you add your own colours (below). An RTL build (`adminlte-colors.rtl.css`) is generated for symmetry with the rest of the CSS; the sheet has no direction-dependent rules, so either file works in either direction.
+
+##### The palette
+
+Nine chromatic colours and five neutrals for chrome. Every one of them takes **white** text at 4.5:1 or better, so `.text-bg-*`, small boxes, badges and coloured sidebars all read the same way — no per-colour "is this one dark text?" question.
+
+<div class="table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Hex</th>
+        <th scope="col">OKLCH</th>
+        <th scope="col">White text</th>
+        <th scope="col">Character &amp; use</th>
+      </tr>
+    </thead>
+    <tbody>
+      {palette.map(c => (
+        <tr>
+          <td class="text-nowrap">
+            <span class={`badge text-bg-${c.name} me-2`}>&nbsp;&nbsp;&nbsp;</span>
+            <code>{c.name}</code>
+          </td>
+          <td><code>{c.hex}</code></td>
+          <td class="text-nowrap"><small class="font-monospace">{c.oklchLabel}</small></td>
+          <td class="text-nowrap">{c.contrastWhite.toFixed(1)}:1</td>
+          <td><span class="text-body-emphasis">{c.description}</span> <span class="text-body-secondary">{c.use}</span></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+The colours are named for what they are, not for Bootstrap's `$colors` names (`blue`, `purple`, `red`, …). Those overlap the theme colours and are deliberately not generated; the `--bs-blue`, `--bs-purple` … variables Bootstrap defines are still there if you want the raw values.
+
+##### What you get
+
+For each colour `<name>` the sheet emits the same shapes Bootstrap emits for a theme colour, so opacity modifiers and dark mode work exactly as you would expect:
+
+| You get | Example | Notes |
+|---|---|---|
+| Tokens | `--bs-teal`, `--bs-teal-rgb` | Plus `--bs-teal-bg-subtle`, `--bs-teal-border-subtle`, `--bs-teal-text-emphasis` in both colour modes |
+| Background | `.bg-teal`, `.bg-teal.bg-opacity-25` | Same variable shape as `.bg-primary` |
+| Background + contrast text | `.text-bg-teal` | White text; this is what widgets use |
+| Gradient | `.bg-gradient-teal` | The AdminLTE 3 class; also emitted for the 8 theme colours (`.bg-gradient-primary` …). Bootstrap's composable `.bg-teal.bg-gradient` gives the same result |
+| Text, border, link | `.text-teal`, `.border-teal`, `.link-teal` | With `.text-opacity-*`, `.border-opacity-*`, `.link-underline-*` |
+| Cards | `.card-teal`, `.card-outline.card-teal`, `.card.text-bg-teal` | Feeds the same `--lte-card-variant-*` variables the theme-colour cards use |
+| Callouts | `.callout-teal` | Subtle background, emphasis text — flips in dark mode |
+| Direct chat | `.direct-chat-teal` | |
+| Widgets | `.small-box.text-bg-teal`, `.info-box.text-bg-teal`, `.badge.text-bg-teal`, `.progress-bar.bg-teal` | These already colour themselves through `.text-bg-*` / `.bg-*`, so nothing extra is emitted |
+| Buttons | `.btn.text-bg-teal`, `.btn.bg-gradient-teal` | Get a hover / active shade so they don't look inert |
+
+##### Skins — colouring the sidebar and header
+
+In AdminLTE 4 a "skin" is not a class of its own: it is a background utility plus `data-bs-theme` on the sidebar and the header. `data-bs-theme="dark"` gives light nav links and brand text; `"light"` gives dark ones. Because every palette colour takes white text, a coloured sidebar or header always pairs with `dark`:
+
+```html
+<!-- header -->
+<nav class="app-header navbar navbar-expand text-bg-sky" data-bs-theme="dark">…</nav>
+
+<!-- sidebar -->
+<aside class="app-sidebar text-bg-navy shadow" data-bs-theme="dark">…</aside>
+```
+
+Admin dashboards tend to offer their looks in four families, and the presets follow them. Each thumbnail is the real thing in miniature — sidebar, header, and the two accents that go with it. The <a href="../UI/colors.html">Colors demo</a> applies any preset to itself with one click; the <a href="../generate/theme.html">Theme Customize</a> page does the same and then lets you mix sidebar, navbar and footer freely (its pickers list the palette under "Extended palette").
+
+{skinGroups.map(group => (
+  <div class="mb-4">
+    <h6 class="fw-semibold mb-1">{group.name}</h6>
+    <p class="text-body-secondary mb-2">{group.note}</p>
+    <div class="table-responsive">
+      <table class="table align-middle mb-0">
+        <thead>
+          <tr>
+            <th scope="col" class="text-nowrap" style="width: 1%">Preview</th>
+            <th scope="col">Skin</th>
+            <th scope="col">Header</th>
+            <th scope="col">Sidebar</th>
+            <th scope="col">Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          {skins.filter(s => s.group === group.name).map(s => (
+            <tr>
+              <td><SkinPreview skin={s} size="sm" /></td>
+              <td class="text-nowrap fw-semibold">{s.name}</td>
+              <td class="text-nowrap"><code>{s.header.cls}</code> · <code>{s.header.theme}</code></td>
+              <td class="text-nowrap"><code>{s.sidebar.cls}</code> · <code>{s.sidebar.theme}</code></td>
+              <td>{s.note}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+))}
+
+`bg-body`, `bg-body-secondary` and `bg-body-tertiary` are Bootstrap's own surface utilities — they follow the element's `data-bs-theme`, which is why "Default" is a dark sidebar. Every `text-bg-*` and `bg-gradient-*` entry needs `adminlte-colors.css`.
+
+##### Dashboard sets — which four to put on a widget row
+
+Picking four colours for a row of small boxes is where palettes usually fall apart. These quartets are chosen by hue relationship rather than taste; use them as-is or as a starting point.
+
+<div class="table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">Set</th>
+        <th scope="col">Classes</th>
+        <th scope="col">Why it works</th>
+      </tr>
+    </thead>
+    <tbody>
+      {sets.map(s => (
+        <tr>
+          <td class="text-nowrap fw-semibold">{s.name}</td>
+          <td class="text-nowrap">{s.colors.map(c => <span class={`badge text-bg-${c} me-1`}>{c}</span>)}</td>
+          <td>{s.why}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+##### Adding your brand colours
+
+**With Sass** (recommended): set `$lte-palette-custom` before importing the entry, and your colour gets every token, utility and component hook the shipped colours get. Names you reuse override the shipped value.
+
+```scss
+// your-adminlte.scss
+$lte-palette-custom: (
+  "brand": #0f766e,      // new colour → .bg-brand, .text-bg-brand, .card-brand, …
+  "sky":   #0369a1       // re-tune a shipped colour to your blue
+);
+@import "admin-lte/src/scss/adminlte-colors";
+```
+
+To ship **only** your colours (drop the fourteen), set `$lte-palette` itself instead:
+
+```scss
+$lte-palette: (
+  "brand": #0f766e,
+  "brand-dark": #134e4a,
+  "brand-warm": #b45309
+);
+@import "admin-lte/src/scss/adminlte-colors";
+```
+
+Two more knobs:
+
+- `$lte-palette-aliases` — extra names that generate the same classes as an existing entry. AdminLTE 3 projects can bring their old class names back: `("lightblue": "sky", "maroon": "pink")`.
+- `$lte-palette-min-contrast-ratio` — the contrast Bootstrap's `color-contrast()` requires when it picks the automatic text colour for `.text-bg-*`, `.bg-gradient-*` and `.card-*` headers. Default `4.5` (WCAG AA for normal text). If a custom colour can't reach it with white, the text flips to black; `3` (WCAG AA for large text and UI components) is the other defensible setting.
+
+**Choosing a brand colour that works.** The one property that matters is that white text on it reaches 4.5:1 — that is what keeps `.text-bg-brand`, small boxes and a branded sidebar readable, and what the accessibility gate on the demo pages checks. Most brand blues, greens and purples pass; bright oranges, yellows and cyans don't. The <a href="../UI/colors.html#brand-hex">checker on the demo page</a> reports the ratio, offers a same-hue version darkened just enough to pass, warns when your hue sits on top of an existing one, and prints the Sass snippet.
+
+**Without Sass**, on the prebuilt CSS, you can still hand-write one colour. This is the whole shape for a single name:
+
+```css
+:root, [data-bs-theme="light"] {
+  --bs-brand: #0f766e;
+  --bs-brand-rgb: 15, 118, 110;
+  --bs-brand-text-emphasis: #062f2c;
+  --bs-brand-bg-subtle: #cfe4e2;
+  --bs-brand-border-subtle: #9fc8c5;
+}
+[data-bs-theme="dark"] {
+  --bs-brand-text-emphasis: #6fada8;
+  --bs-brand-bg-subtle: #031816;
+  --bs-brand-border-subtle: #094742;
+}
+.bg-brand      { --bs-bg-opacity: 1; background-color: rgba(var(--bs-brand-rgb), var(--bs-bg-opacity)) !important; }
+.text-bg-brand { color: #fff !important; background-color: rgba(var(--bs-brand-rgb), var(--bs-bg-opacity, 1)) !important; }
+.text-brand    { --bs-text-opacity: 1; color: rgba(var(--bs-brand-rgb), var(--bs-text-opacity)) !important; }
+.border-brand  { --bs-border-opacity: 1; border-color: rgba(var(--bs-brand-rgb), var(--bs-border-opacity)) !important; }
+.card-brand, .bg-brand, .text-bg-brand {
+  --lte-card-variant-bg: #0f766e; --lte-card-variant-bg-rgb: 15, 118, 110;
+  --lte-card-variant-color: #fff; --lte-card-variant-color-rgb: 255, 255, 255;
+}
+```
+
+##### How the palette was designed
+
+The fourteen values are generated, not picked. `scripts/palette.mjs` derives them in **OKLCH** — the perceptually uniform colour space Tailwind v4 and Radix build their palettes in — from three rules:
+
+<div class="row g-4 align-items-start my-2">
+  <div class="col-lg-5">
+    <PaletteWheel />
+    <p class="small text-body-secondary mt-2 mb-0">Angle is hue, distance from the centre is chroma. Filled dots: the palette. Hollow rings: Bootstrap's <em>primary · success · danger · warning · info</em> (secondary sits unlabelled at the centre). The unlabelled dots near the centre are the five neutrals — navy, steel, slate, graphite, midnight.</p>
+  </div>
+  <div class="col-lg-7">
+    <ol class="mb-0">
+      <li class="mb-3"><strong>Equal contrast, by construction.</strong> Each chromatic colour is the <em>lightest</em> value of its hue whose white text still reaches 4.6:1. That puts every one at OKLCH L ≈ 0.55–0.59 — the same visual weight as Bootstrap's own primary, success and danger — so a row of mixed widgets never has one colour shouting.</li>
+      <li class="mb-3"><strong>Hues in the gaps.</strong> Bootstrap already owns red (21°), yellow (85°), green (157°), cyan (218°) and blue (260°). The palette hues sit at least 17° from each of them and 20° from each other — orange 42 · amber 67 · olive 126 · teal 190 · sky 237 · indigo 283 · violet 303 · fuchsia 324 · pink 350 — so mixing palette and theme colours on one page is safe.</li>
+      <li class="mb-0"><strong>Chroma capped, neutrals tinted.</strong> Chroma is capped at 0.20 (parity with primary 0.23 / danger 0.20), so indigo and violet don't overpower teal and amber, which sit at the sRGB gamut limit for this lightness. The five neutrals — navy, steel, slate, graphite, midnight — are cool-tinted (hue ≈ 255–287°) rather than pure grey, the way modern UI neutrals are built, and sit at the lightness steps popular admin kits use for their sidebars (L ≈ 0.24, 0.30, 0.33, 0.40, 0.50).</li>
+    </ol>
+  </div>
+</div>
+
+`npm run palette` regenerates the map from those targets; `npm run palette -- --check` (and the unit tests) verify contrast and hue separation, and that the Sass map and the demo data agree.
+
+##### Accessibility and dark mode
+
+- Every shipped colour clears 4.5:1 with white text (the lowest is 4.6:1), so `.text-bg-*` never needs a per-colour exception and the demo pages using them pass the axe gate.
+- Solid utilities (`.bg-*`, `.text-bg-*`) are the same in both colour modes, as Bootstrap's own are. The subtle tokens — and with them `.callout-*` — flip for `data-bs-theme="dark"` using the same derivation Bootstrap applies to `.alert-*`.
+- `.text-*` and `.link-*` on a coloured background are your responsibility, exactly as with Bootstrap's theme colours.
+
+##### Migrating from AdminLTE 3
+
+v3's extended colours were `lightblue`, `navy`, `olive`, `lime`, `fuchsia`, `maroon` plus Bootstrap 4's named palette, several of them with white text below 4:1. The new palette keeps the useful names (`navy`, `olive`, `fuchsia`) and remakes the rest:
+
+| AdminLTE 3 | Now | |
+|---|---|---|
+| `bg-lightblue` | `text-bg-sky` | Same hue, set so white text passes |
+| `bg-maroon` | `text-bg-pink` | |
+| `bg-navy` / `bg-olive` / `bg-fuchsia` | same names | Values redesigned |
+| `bg-lime` | — | No white-text lime exists; use `text-bg-olive` or Bootstrap's `text-bg-warning` |
+| `bg-purple`, `bg-teal`, `bg-orange`, `bg-indigo` … | `text-bg-violet`, `text-bg-teal`, `text-bg-orange`, `text-bg-indigo` | See the palette table |
+| `sidebar-dark-primary`, `navbar-light` … | `text-bg-*` + `data-bs-theme` | See <em>Skins</em> above |
+| `bg-gradient-*` | `bg-gradient-*` | Kept, for palette and theme colours |
+
+Keeping the old class names in existing markup is a one-liner: `$lte-palette-aliases: ("lightblue": "sky", "maroon": "pink");`.

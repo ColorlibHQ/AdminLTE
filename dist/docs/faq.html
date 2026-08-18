@@ -532,6 +532,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="../docs/colors.html" class="nav-link">
+                  <i class="nav-icon bi bi-palette"></i>
+                  <p>Colors</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="../docs/rtl.html" class="nav-link">
                   <i class="nav-icon bi bi-text-paragraph"></i>
                   <p>RTL Support</p>
@@ -751,7 +757,7 @@
               </span>
               <h1 class="faq-hero-title">How can we help?</h1>
               <p class="faq-hero-lead">
-                Quick answers to the 23 questions we get asked most often. Use the search to jump to
+                Quick answers to the 24 questions we get asked most often. Use the search to jump to
                 anything, or click a topic below.
               </p>
               <form class="faq-search" role="search" onsubmit="return false;">
@@ -798,7 +804,7 @@
               ><a href="#customization" class="faq-chip faq-chip-warning">
                 <i class="bi bi-palette" aria-hidden="true"></i>
                 <span>Customization</span>
-                <span class="faq-chip-count">3</span> </a
+                <span class="faq-chip-count">4</span> </a
               ><a href="#versions" class="faq-chip faq-chip-success">
                 <i class="bi bi-arrow-clockwise" aria-hidden="true"></i>
                 <span>Versions and updates</span>
@@ -1028,7 +1034,7 @@
                   </span>
                   <div>
                     <h2 class="faq-section-title">Customization</h2>
-                    <p class="faq-section-count">3 questions</p>
+                    <p class="faq-section-count">4 questions</p>
                   </div>
                 </header>
                 <div class="faq-section-items">
@@ -1054,6 +1060,40 @@
                       <p class="mb-0">
                         For deeper control (sidebar width, breakpoints, spacing scale), see
                         <a href="customization.html">Customization &amp; Theming</a>.
+                      </p>
+                    </div>
+                  </details>
+                  <details class="faq-item" data-faq-item>
+                    <summary>
+                      <span class="faq-q-icon">
+                        <i class="bi bi-question-lg" aria-hidden="true"></i>
+                      </span>
+                      <span class="faq-q-text"
+                        >Where did the v3 colours go — <code>bg-navy</code>, <code>bg-teal</code>,
+                        the sidebar skins? Can I add my brand colour?</span
+                      >
+                      <span class="faq-q-chevron">
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                      </span>
+                    </summary>
+                    <div class="faq-answer">
+                      <p>
+                        They live in an opt-in stylesheet,
+                        <code>dist/css/adminlte-colors.css</code> (≈ 5 kB gzipped), so they cost
+                        nothing unless you load it: fourteen redesigned colours — every one readable
+                        with white text — with the full <code>.bg-*</code>, <code>.text-bg-*</code>,
+                        <code>.card-*</code>, <code>.callout-*</code>,
+                        <code>.bg-gradient-*</code> families. A sidebar "skin" is just
+                        <code
+                          >&lt;aside class="app-sidebar text-bg-navy" data-bs-theme="dark"&gt;</code
+                        >.
+                      </p>
+                      <p class="mb-0">
+                        Your own colour is a one-liner in Sass,
+                        <code>$lte-palette-custom: ("brand": #0f766e)</code>. Everything — palette,
+                        presets, the brand-colour checker — is on <a href="colors.html">Colors</a>;
+                        try skins live on the <a href="../UI/colors.html">Colors demo</a> or the
+                        <a href="../generate/theme.html">Theme Customize</a> page.
                       </p>
                     </div>
                   </details>

@@ -64,6 +64,7 @@
     "test": "vitest run",
     "test-watch": "vitest",
     "test-a11y": "node tests/a11y.mjs",
+    "palette": "node scripts/palette.mjs",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel js-lint css-lint docs-lint lockfile-lint",
     "clean": "rimraf dist",
     "compile": "npm-run-all css js assets copy-assets docs-compile docs-format flatten-build",

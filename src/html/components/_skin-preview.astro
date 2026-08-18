@@ -1,0 +1,131 @@
+---
+// Tiny layout thumbnail for a skin preset: sidebar strip, header strip and a
+// body with the skin's two accent tiles. Built only from the palette's own
+// utilities and `data-bs-theme`, so it renders from the same CSS as the real
+// layout and follows the colour mode. Decorative — always paired with a label.
+interface Props {
+  skin: {
+    header: { cls: string; theme: string }
+    sidebar: { cls: string; theme: string }
+    boxes: string[]
+  }
+  size?: "sm" | "md"
+}
+
+const { skin, size = "md" } = Astro.props
+---
+
+<span class:list={["lte-skin-preview", `lte-skin-preview-${size}`, "bg-body-tertiary"]} aria-hidden="true">
+  <span class:list={["lte-skin-preview-sidebar", skin.sidebar.cls]} data-bs-theme={skin.sidebar.theme}>
+    <span class="lte-skin-preview-brand"></span>
+    <span class="lte-skin-preview-item lte-skin-preview-active"></span>
+    <span class="lte-skin-preview-item"></span>
+    <span class="lte-skin-preview-item"></span>
+  </span>
+  <span class="lte-skin-preview-main">
+    <span class:list={["lte-skin-preview-header", skin.header.cls]} data-bs-theme={skin.header.theme}>
+      <span class="lte-skin-preview-item"></span>
+      <span class="lte-skin-preview-avatar"></span>
+    </span>
+    <span class="lte-skin-preview-body">
+      <span class={`lte-skin-preview-box text-bg-${skin.boxes[0]}`}></span>
+      <span class={`lte-skin-preview-box text-bg-${skin.boxes[1]}`}></span>
+      <span class="lte-skin-preview-card"></span>
+    </span>
+  </span>
+</span>
+
+<style>
+  .lte-skin-preview {
+    --lte-skin-preview-w: 6rem;
+    --lte-skin-preview-h: 3.75rem;
+    display: inline-flex;
+    width: var(--lte-skin-preview-w);
+    height: var(--lte-skin-preview-h);
+    overflow: hidden;
+    vertical-align: middle;
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+  }
+  .lte-skin-preview-sm {
+    --lte-skin-preview-w: 4.5rem;
+    --lte-skin-preview-h: 2.8rem;
+  }
+  .lte-skin-preview-sidebar {
+    display: flex;
+    flex: 0 0 30%;
+    flex-direction: column;
+    gap: 9%;
+    padding: 10% 12%;
+    color: var(--bs-body-color);
+    border-right: 1px solid rgba(var(--bs-body-color-rgb), 0.08);
+  }
+  .lte-skin-preview-brand,
+  .lte-skin-preview-item {
+    display: block;
+    flex: 0 0 auto;
+    height: 7%;
+    min-height: 2px;
+    background: currentColor;
+    border-radius: 99px;
+    opacity: 0.45;
+  }
+  .lte-skin-preview-brand {
+    width: 70%;
+    height: 11%;
+    min-height: 3px;
+    margin-bottom: 6%;
+    opacity: 0.9;
+  }
+  .lte-skin-preview-active {
+    opacity: 0.95;
+  }
+  .lte-skin-preview-main {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .lte-skin-preview-header {
+    display: flex;
+    flex: 0 0 24%;
+    gap: 6%;
+    align-items: center;
+    padding: 0 8%;
+    color: var(--bs-body-color);
+    border-bottom: 1px solid var(--bs-border-color);
+  }
+  .lte-skin-preview-header .lte-skin-preview-item {
+    width: 24%;
+    height: 22%;
+    opacity: 0.55;
+  }
+  .lte-skin-preview-avatar {
+    display: block;
+    width: 14%;
+    aspect-ratio: 1;
+    margin-left: auto;
+    background: currentColor;
+    border-radius: 50%;
+    opacity: 0.55;
+  }
+  .lte-skin-preview-body {
+    display: grid;
+    flex: 1 1 auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 8%;
+    padding: 10%;
+  }
+  .lte-skin-preview-box {
+    display: block;
+    border-radius: 2px;
+  }
+  .lte-skin-preview-card {
+    display: block;
+    grid-column: 1 / -1;
+    background: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 2px;
+  }
+</style>

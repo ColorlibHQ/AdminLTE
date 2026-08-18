@@ -1,0 +1,1260 @@
+@charset "UTF-8";
+/*!
+ *   AdminLTE v4.3.1 — Extended color palette
+ *   Opt-in. Nothing here is in adminlte.css: load this sheet after it and you
+ *   get fourteen additional colours (orange, amber, olive, teal, sky, indigo,
+ *   violet, fuchsia, pink, navy, steel, slate, graphite, midnight) as `--bs-*`
+ *   tokens plus the
+ *   `.bg-*`, `.text-bg-*`, `.text-*`, `.border-*`, `.link-*`, `.bg-gradient-*`,
+ *   `.card-*`, `.callout-*` and `.direct-chat-*` families — with dark mode.
+ *   Every colour takes white text at ≥ 4.6:1. See docs/colors.html.
+ *
+ *   Author: Colorlib
+ *   Website: AdminLTE.io <https://adminlte.io>
+ *   License: Open source - MIT <https://opensource.org/licenses/MIT>
+ */
+:root,
+[data-bs-theme=light] {
+  --bs-orange: #c84e10;
+  --bs-orange-rgb: 200, 78, 16;
+  --bs-orange-text-emphasis: rgb(31.3725490196%, 12.2352941176%, 2.5098039216%);
+  --bs-orange-bg-subtle: rgb(95.6862745098%, 86.1176470588%, 81.2549019608%);
+  --bs-orange-border-subtle: rgb(91.3725490196%, 72.2352941176%, 62.5098039216%);
+  --bs-amber: #a56710;
+  --bs-amber-rgb: 165, 103, 16;
+  --bs-amber-text-emphasis: rgb(25.8823529412%, 16.1568627451%, 2.5098039216%);
+  --bs-amber-bg-subtle: rgb(92.9411764706%, 88.0784313725%, 81.2549019608%);
+  --bs-amber-border-subtle: rgb(85.8823529412%, 76.1568627451%, 62.5098039216%);
+  --bs-olive: #5f7f0f;
+  --bs-olive-rgb: 95, 127, 15;
+  --bs-olive-text-emphasis: rgb(14.9019607843%, 19.9215686275%, 2.3529411765%);
+  --bs-olive-bg-subtle: rgb(87.4509803922%, 89.9607843137%, 81.1764705882%);
+  --bs-olive-border-subtle: rgb(74.9019607843%, 79.9215686275%, 62.3529411765%);
+  --bs-teal: #12827d;
+  --bs-teal-rgb: 18, 130, 125;
+  --bs-teal-text-emphasis: rgb(2.8235294118%, 20.3921568627%, 19.6078431373%);
+  --bs-teal-bg-subtle: rgb(81.4117647059%, 90.1960784314%, 89.8039215686%);
+  --bs-teal-border-subtle: rgb(62.8235294118%, 80.3921568627%, 79.6078431373%);
+  --bs-sky: #127caf;
+  --bs-sky-rgb: 18, 124, 175;
+  --bs-sky-text-emphasis: rgb(2.8235294118%, 19.4509803922%, 27.4509803922%);
+  --bs-sky-bg-subtle: rgb(81.4117647059%, 89.7254901961%, 93.7254901961%);
+  --bs-sky-border-subtle: rgb(62.8235294118%, 79.4509803922%, 87.4509803922%);
+  --bs-indigo: #6f60ea;
+  --bs-indigo-rgb: 111, 96, 234;
+  --bs-indigo-text-emphasis: rgb(17.4117647059%, 15.0588235294%, 36.7058823529%);
+  --bs-indigo-bg-subtle: rgb(88.7058823529%, 87.5294117647%, 98.3529411765%);
+  --bs-indigo-border-subtle: rgb(77.4117647059%, 75.0588235294%, 96.7058823529%);
+  --bs-violet: #9553db;
+  --bs-violet-rgb: 149, 83, 219;
+  --bs-violet-text-emphasis: rgb(23.3725490196%, 13.0196078431%, 34.3529411765%);
+  --bs-violet-bg-subtle: rgb(91.6862745098%, 86.5098039216%, 97.1764705882%);
+  --bs-violet-border-subtle: rgb(83.3725490196%, 73.0196078431%, 94.3529411765%);
+  --bs-fuchsia: #b347be;
+  --bs-fuchsia-rgb: 179, 71, 190;
+  --bs-fuchsia-text-emphasis: rgb(28.0784313725%, 11.137254902%, 29.8039215686%);
+  --bs-fuchsia-bg-subtle: rgb(94.0392156863%, 85.568627451%, 94.9019607843%);
+  --bs-fuchsia-border-subtle: rgb(88.0784313725%, 71.137254902%, 89.8039215686%);
+  --bs-pink: #cd388d;
+  --bs-pink-rgb: 205, 56, 141;
+  --bs-pink-text-emphasis: rgb(32.1568627451%, 8.7843137255%, 22.1176470588%);
+  --bs-pink-bg-subtle: rgb(96.0784313725%, 84.3921568627%, 91.0588235294%);
+  --bs-pink-border-subtle: rgb(92.1568627451%, 68.7843137255%, 82.1176470588%);
+  --bs-navy: #1d2d4c;
+  --bs-navy-rgb: 29, 45, 76;
+  --bs-navy-text-emphasis: rgb(4.5490196078%, 7.0588235294%, 11.9215686275%);
+  --bs-navy-bg-subtle: rgb(82.2745098039%, 83.5294117647%, 85.9607843137%);
+  --bs-navy-border-subtle: rgb(64.5490196078%, 67.0588235294%, 71.9215686275%);
+  --bs-steel: #3a4860;
+  --bs-steel-rgb: 58, 72, 96;
+  --bs-steel-text-emphasis: rgb(9.0980392157%, 11.2941176471%, 15.0588235294%);
+  --bs-steel-bg-subtle: rgb(84.5490196078%, 85.6470588235%, 87.5294117647%);
+  --bs-steel-border-subtle: rgb(69.0980392157%, 71.2941176471%, 75.0588235294%);
+  --bs-slate: #566577;
+  --bs-slate-rgb: 86, 101, 119;
+  --bs-slate-text-emphasis: rgb(13.4901960784%, 15.8431372549%, 18.6666666667%);
+  --bs-slate-bg-subtle: rgb(86.7450980392%, 87.9215686275%, 89.3333333333%);
+  --bs-slate-border-subtle: rgb(73.4901960784%, 75.8431372549%, 78.6666666667%);
+  --bs-graphite: #32363c;
+  --bs-graphite-rgb: 50, 54, 60;
+  --bs-graphite-text-emphasis: rgb(7.8431372549%, 8.4705882353%, 9.4117647059%);
+  --bs-graphite-bg-subtle: rgb(83.9215686275%, 84.2352941176%, 84.7058823529%);
+  --bs-graphite-border-subtle: rgb(67.8431372549%, 68.4705882353%, 69.4117647059%);
+  --bs-midnight: #1e1d2d;
+  --bs-midnight-rgb: 30, 29, 45;
+  --bs-midnight-text-emphasis: rgb(4.7058823529%, 4.5490196078%, 7.0588235294%);
+  --bs-midnight-bg-subtle: rgb(82.3529411765%, 82.2745098039%, 83.5294117647%);
+  --bs-midnight-border-subtle: rgb(64.7058823529%, 64.5490196078%, 67.0588235294%);
+}
+
+[data-bs-theme=dark] {
+  --bs-orange-text-emphasis: rgb(87.0588235294%, 58.3529411765%, 43.7647058824%);
+  --bs-orange-bg-subtle: rgb(15.6862745098%, 6.1176470588%, 1.2549019608%);
+  --bs-orange-border-subtle: rgb(47.0588235294%, 18.3529411765%, 3.7647058824%);
+  --bs-amber-text-emphasis: rgb(78.8235294118%, 64.2352941176%, 43.7647058824%);
+  --bs-amber-bg-subtle: rgb(12.9411764706%, 8.0784313725%, 1.2549019608%);
+  --bs-amber-border-subtle: rgb(38.8235294118%, 24.2352941176%, 3.7647058824%);
+  --bs-olive-text-emphasis: rgb(62.3529411765%, 69.8823529412%, 43.5294117647%);
+  --bs-olive-bg-subtle: rgb(7.4509803922%, 9.9607843137%, 1.1764705882%);
+  --bs-olive-border-subtle: rgb(22.3529411765%, 29.8823529412%, 3.5294117647%);
+  --bs-teal-text-emphasis: rgb(44.2352941176%, 70.5882352941%, 69.4117647059%);
+  --bs-teal-bg-subtle: rgb(1.4117647059%, 10.1960784314%, 9.8039215686%);
+  --bs-teal-border-subtle: rgb(4.2352941176%, 30.5882352941%, 29.4117647059%);
+  --bs-sky-text-emphasis: rgb(44.2352941176%, 69.1764705882%, 81.1764705882%);
+  --bs-sky-bg-subtle: rgb(1.4117647059%, 9.7254901961%, 13.7254901961%);
+  --bs-sky-border-subtle: rgb(4.2352941176%, 29.1764705882%, 41.1764705882%);
+  --bs-indigo-text-emphasis: rgb(66.1176470588%, 62.5882352941%, 95.0588235294%);
+  --bs-indigo-bg-subtle: rgb(8.7058823529%, 7.5294117647%, 18.3529411765%);
+  --bs-indigo-border-subtle: rgb(26.1176470588%, 22.5882352941%, 55.0588235294%);
+  --bs-violet-text-emphasis: rgb(75.0588235294%, 59.5294117647%, 91.5294117647%);
+  --bs-violet-bg-subtle: rgb(11.6862745098%, 6.5098039216%, 17.1764705882%);
+  --bs-violet-border-subtle: rgb(35.0588235294%, 19.5294117647%, 51.5294117647%);
+  --bs-fuchsia-text-emphasis: rgb(82.1176470588%, 56.7058823529%, 84.7058823529%);
+  --bs-fuchsia-bg-subtle: rgb(14.0392156863%, 5.568627451%, 14.9019607843%);
+  --bs-fuchsia-border-subtle: rgb(42.1176470588%, 16.7058823529%, 44.7058823529%);
+  --bs-pink-text-emphasis: rgb(88.2352941176%, 53.1764705882%, 73.1764705882%);
+  --bs-pink-bg-subtle: rgb(16.0784313725%, 4.3921568627%, 11.0588235294%);
+  --bs-pink-border-subtle: rgb(48.2352941176%, 13.1764705882%, 33.1764705882%);
+  --bs-navy-text-emphasis: rgb(46.8235294118%, 50.5882352941%, 57.8823529412%);
+  --bs-navy-bg-subtle: rgb(2.2745098039%, 3.5294117647%, 5.9607843137%);
+  --bs-navy-border-subtle: rgb(6.8235294118%, 10.5882352941%, 17.8823529412%);
+  --bs-steel-text-emphasis: rgb(53.6470588235%, 56.9411764706%, 62.5882352941%);
+  --bs-steel-bg-subtle: rgb(4.5490196078%, 5.6470588235%, 7.5294117647%);
+  --bs-steel-border-subtle: rgb(13.6470588235%, 16.9411764706%, 22.5882352941%);
+  --bs-slate-text-emphasis: rgb(60.2352941176%, 63.7647058824%, 68%);
+  --bs-slate-bg-subtle: rgb(6.7450980392%, 7.9215686275%, 9.3333333333%);
+  --bs-slate-border-subtle: rgb(20.2352941176%, 23.7647058824%, 28%);
+  --bs-graphite-text-emphasis: rgb(51.7647058824%, 52.7058823529%, 54.1176470588%);
+  --bs-graphite-bg-subtle: rgb(3.9215686275%, 4.2352941176%, 4.7058823529%);
+  --bs-graphite-border-subtle: rgb(11.7647058824%, 12.7058823529%, 14.1176470588%);
+  --bs-midnight-text-emphasis: rgb(47.0588235294%, 46.8235294118%, 50.5882352941%);
+  --bs-midnight-bg-subtle: rgb(2.3529411765%, 2.2745098039%, 3.5294117647%);
+  --bs-midnight-border-subtle: rgb(7.0588235294%, 6.8235294118%, 10.5882352941%);
+}
+
+.bg-orange {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-orange-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.text-orange {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-orange-rgb), var(--bs-text-opacity)) !important;
+}
+
+.border-orange {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-orange-rgb), var(--bs-border-opacity)) !important;
+}
+
+.text-bg-orange {
+  color: #fff !important;
+  background-color: RGBA(var(--bs-orange-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+
+.link-orange {
+  color: RGBA(var(--bs-orange-rgb), var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(var(--bs-orange-rgb), var(--bs-link-underline-opacity, 1)) !important;
+}
+.link-orange:hover, .link-orange:focus {
+  color: RGBA(160, 62, 13, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(160, 62, 13, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+.bg-amber {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-amber-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.text-amber {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-amber-rgb), var(--bs-text-opacity)) !important;
+}
+
+.border-amber {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-amber-rgb), var(--bs-border-opacity)) !important;
+}
+
+.text-bg-amber {
+  color: #fff !important;
+  background-color: RGBA(var(--bs-amber-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+
+.link-amber {
+  color: RGBA(var(--bs-amber-rgb), var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(var(--bs-amber-rgb), var(--bs-link-underline-opacity, 1)) !important;
+}
+.link-amber:hover, .link-amber:focus {
+  color: RGBA(132, 82, 13, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(132, 82, 13, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+.bg-olive {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-olive-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.text-olive {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-olive-rgb), var(--bs-text-opacity)) !important;
+}
+
+.border-olive {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-olive-rgb), var(--bs-border-opacity)) !important;
+}
+
+.text-bg-olive {
+  color: #fff !important;
+  background-color: RGBA(var(--bs-olive-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+
+.link-olive {
+  color: RGBA(var(--bs-olive-rgb), var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(var(--bs-olive-rgb), var(--bs-link-underline-opacity, 1)) !important;
+}
+.link-olive:hover, .link-olive:focus {
+  color: RGBA(76, 102, 12, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(76, 102, 12, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+.bg-teal {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-teal-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.text-teal {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-teal-rgb), var(--bs-text-opacity)) !important;
+}
+
+.border-teal {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-teal-rgb), var(--bs-border-opacity)) !important;
+}
+
+.text-bg-teal {
+  color: #fff !important;
+  background-color: RGBA(var(--bs-teal-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+
+.link-teal {
+  color: RGBA(var(--bs-teal-rgb), var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(var(--bs-teal-rgb), var(--bs-link-underline-opacity, 1)) !important;
+}
+.link-teal:hover, .link-teal:focus {
+  color: RGBA(14, 104, 100, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(14, 104, 100, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+.bg-sky {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-sky-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.text-sky {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-sky-rgb), var(--bs-text-opacity)) !important;
+}
+
+.border-sky {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-sky-rgb), var(--bs-border-opacity)) !important;
+}
+
+.text-bg-sky {
+  color: #fff !important;
+  background-color: RGBA(var(--bs-sky-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+
+.link-sky {
+  color: RGBA(var(--bs-sky-rgb), var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(var(--bs-sky-rgb), var(--bs-link-underline-opacity, 1)) !important;
+}
+.link-sky:hover, .link-sky:focus {
+  color: RGBA(14, 99, 140, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(14, 99, 140, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+.bg-indigo {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-indigo-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.text-indigo {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-indigo-rgb), var(--bs-text-opacity)) !important;
+}
+
+.border-indigo {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-indigo-rgb), var(--bs-border-opacity)) !important;
+}
+
+.text-bg-indigo {
+  color: #fff !important;
+  background-color: RGBA(var(--bs-indigo-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+
+.link-indigo {
+  color: RGBA(var(--bs-indigo-rgb), var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(var(--bs-indigo-rgb), var(--bs-link-underline-opacity, 1)) !important;
+}
+.link-indigo:hover, .link-indigo:focus {
+  color: RGBA(89, 77, 187, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(89, 77, 187, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+.bg-violet {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-violet-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.text-violet {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-violet-rgb), var(--bs-text-opacity)) !important;
+}
+
+.border-violet {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-violet-rgb), var(--bs-border-opacity)) !important;
+}
+
+.text-bg-violet {
+  color: #fff !important;
+  background-color: RGBA(var(--bs-violet-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+
+.link-violet {
+  color: RGBA(var(--bs-violet-rgb), var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(var(--bs-violet-rgb), var(--bs-link-underline-opacity, 1)) !important;
+}
+.link-violet:hover, .link-violet:focus {
+  color: RGBA(119, 66, 175, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(119, 66, 175, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+.bg-fuchsia {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-fuchsia-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.text-fuchsia {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-fuchsia-rgb), var(--bs-text-opacity)) !important;
+}
+
+.border-fuchsia {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-fuchsia-rgb), var(--bs-border-opacity)) !important;
+}
+
+.text-bg-fuchsia {
+  color: #fff !important;
+  background-color: RGBA(var(--bs-fuchsia-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+
+.link-fuchsia {
+  color: RGBA(var(--bs-fuchsia-rgb), var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(var(--bs-fuchsia-rgb), var(--bs-link-underline-opacity, 1)) !important;
+}
+.link-fuchsia:hover, .link-fuchsia:focus {
+  color: RGBA(143, 57, 152, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(143, 57, 152, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+.bg-pink {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-pink-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.text-pink {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-pink-rgb), var(--bs-text-opacity)) !important;
+}
+
+.border-pink {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-pink-rgb), var(--bs-border-opacity)) !important;
+}
+
+.text-bg-pink {
+  color: #fff !important;
+  background-color: RGBA(var(--bs-pink-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+
+.link-pink {
+  color: RGBA(var(--bs-pink-rgb), var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(var(--bs-pink-rgb), var(--bs-link-underline-opacity, 1)) !important;
+}
+.link-pink:hover, .link-pink:focus {
+  color: RGBA(164, 45, 113, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(164, 45, 113, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+.bg-navy {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-navy-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.text-navy {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-navy-rgb), var(--bs-text-opacity)) !important;
+}
+
+.border-navy {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-navy-rgb), var(--bs-border-opacity)) !important;
+}
+
+.text-bg-navy {
+  color: #fff !important;
+  background-color: RGBA(var(--bs-navy-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+
+.link-navy {
+  color: RGBA(var(--bs-navy-rgb), var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(var(--bs-navy-rgb), var(--bs-link-underline-opacity, 1)) !important;
+}
+.link-navy:hover, .link-navy:focus {
+  color: RGBA(23, 36, 61, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(23, 36, 61, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+.bg-steel {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-steel-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.text-steel {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-steel-rgb), var(--bs-text-opacity)) !important;
+}
+
+.border-steel {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-steel-rgb), var(--bs-border-opacity)) !important;
+}
+
+.text-bg-steel {
+  color: #fff !important;
+  background-color: RGBA(var(--bs-steel-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+
+.link-steel {
+  color: RGBA(var(--bs-steel-rgb), var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(var(--bs-steel-rgb), var(--bs-link-underline-opacity, 1)) !important;
+}
+.link-steel:hover, .link-steel:focus {
+  color: RGBA(46, 58, 77, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(46, 58, 77, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+.bg-slate {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-slate-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.text-slate {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-slate-rgb), var(--bs-text-opacity)) !important;
+}
+
+.border-slate {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-slate-rgb), var(--bs-border-opacity)) !important;
+}
+
+.text-bg-slate {
+  color: #fff !important;
+  background-color: RGBA(var(--bs-slate-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+
+.link-slate {
+  color: RGBA(var(--bs-slate-rgb), var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(var(--bs-slate-rgb), var(--bs-link-underline-opacity, 1)) !important;
+}
+.link-slate:hover, .link-slate:focus {
+  color: RGBA(69, 81, 95, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(69, 81, 95, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+.bg-graphite {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-graphite-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.text-graphite {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-graphite-rgb), var(--bs-text-opacity)) !important;
+}
+
+.border-graphite {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-graphite-rgb), var(--bs-border-opacity)) !important;
+}
+
+.text-bg-graphite {
+  color: #fff !important;
+  background-color: RGBA(var(--bs-graphite-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+
+.link-graphite {
+  color: RGBA(var(--bs-graphite-rgb), var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(var(--bs-graphite-rgb), var(--bs-link-underline-opacity, 1)) !important;
+}
+.link-graphite:hover, .link-graphite:focus {
+  color: RGBA(40, 43, 48, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(40, 43, 48, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+.bg-midnight {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-midnight-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.text-midnight {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-midnight-rgb), var(--bs-text-opacity)) !important;
+}
+
+.border-midnight {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-midnight-rgb), var(--bs-border-opacity)) !important;
+}
+
+.text-bg-midnight {
+  color: #fff !important;
+  background-color: RGBA(var(--bs-midnight-rgb), var(--bs-bg-opacity, 1)) !important;
+}
+
+.link-midnight {
+  color: RGBA(var(--bs-midnight-rgb), var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(var(--bs-midnight-rgb), var(--bs-link-underline-opacity, 1)) !important;
+}
+.link-midnight:hover, .link-midnight:focus {
+  color: RGBA(24, 23, 36, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(24, 23, 36, var(--bs-link-underline-opacity, 1)) !important;
+}
+
+.bg-gradient-primary {
+  color: #fff !important;
+  background-color: #0d6efd !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-secondary {
+  color: #fff !important;
+  background-color: #6c757d !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-success {
+  color: #fff !important;
+  background-color: #198754 !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-info {
+  color: #000 !important;
+  background-color: #0dcaf0 !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-warning {
+  color: #000 !important;
+  background-color: #ffc107 !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-danger {
+  color: #fff !important;
+  background-color: #dc3545 !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-light {
+  color: #000 !important;
+  background-color: #f8f9fa !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-dark {
+  color: #fff !important;
+  background-color: #212529 !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-orange {
+  color: #fff !important;
+  background-color: #c84e10 !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-amber {
+  color: #fff !important;
+  background-color: #a56710 !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-olive {
+  color: #fff !important;
+  background-color: #5f7f0f !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-teal {
+  color: #fff !important;
+  background-color: #12827d !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-sky {
+  color: #fff !important;
+  background-color: #127caf !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-indigo {
+  color: #fff !important;
+  background-color: #6f60ea !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-violet {
+  color: #fff !important;
+  background-color: #9553db !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-fuchsia {
+  color: #fff !important;
+  background-color: #b347be !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-pink {
+  color: #fff !important;
+  background-color: #cd388d !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-navy {
+  color: #fff !important;
+  background-color: #1d2d4c !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-steel {
+  color: #fff !important;
+  background-color: #3a4860 !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-slate {
+  color: #fff !important;
+  background-color: #566577 !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-graphite {
+  color: #fff !important;
+  background-color: #32363c !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.bg-gradient-midnight {
+  color: #fff !important;
+  background-color: #1e1d2d !important;
+  background-image: var(--bs-gradient) !important;
+}
+
+.card-orange,
+.bg-orange,
+.text-bg-orange {
+  --lte-card-variant-bg: #c84e10;
+  --lte-card-variant-bg-rgb: 200, 78, 16;
+  --lte-card-variant-color: #fff;
+  --lte-card-variant-color-rgb: 255, 255, 255;
+}
+
+.card-amber,
+.bg-amber,
+.text-bg-amber {
+  --lte-card-variant-bg: #a56710;
+  --lte-card-variant-bg-rgb: 165, 103, 16;
+  --lte-card-variant-color: #fff;
+  --lte-card-variant-color-rgb: 255, 255, 255;
+}
+
+.card-olive,
+.bg-olive,
+.text-bg-olive {
+  --lte-card-variant-bg: #5f7f0f;
+  --lte-card-variant-bg-rgb: 95, 127, 15;
+  --lte-card-variant-color: #fff;
+  --lte-card-variant-color-rgb: 255, 255, 255;
+}
+
+.card-teal,
+.bg-teal,
+.text-bg-teal {
+  --lte-card-variant-bg: #12827d;
+  --lte-card-variant-bg-rgb: 18, 130, 125;
+  --lte-card-variant-color: #fff;
+  --lte-card-variant-color-rgb: 255, 255, 255;
+}
+
+.card-sky,
+.bg-sky,
+.text-bg-sky {
+  --lte-card-variant-bg: #127caf;
+  --lte-card-variant-bg-rgb: 18, 124, 175;
+  --lte-card-variant-color: #fff;
+  --lte-card-variant-color-rgb: 255, 255, 255;
+}
+
+.card-indigo,
+.bg-indigo,
+.text-bg-indigo {
+  --lte-card-variant-bg: #6f60ea;
+  --lte-card-variant-bg-rgb: 111, 96, 234;
+  --lte-card-variant-color: #fff;
+  --lte-card-variant-color-rgb: 255, 255, 255;
+}
+
+.card-violet,
+.bg-violet,
+.text-bg-violet {
+  --lte-card-variant-bg: #9553db;
+  --lte-card-variant-bg-rgb: 149, 83, 219;
+  --lte-card-variant-color: #fff;
+  --lte-card-variant-color-rgb: 255, 255, 255;
+}
+
+.card-fuchsia,
+.bg-fuchsia,
+.text-bg-fuchsia {
+  --lte-card-variant-bg: #b347be;
+  --lte-card-variant-bg-rgb: 179, 71, 190;
+  --lte-card-variant-color: #fff;
+  --lte-card-variant-color-rgb: 255, 255, 255;
+}
+
+.card-pink,
+.bg-pink,
+.text-bg-pink {
+  --lte-card-variant-bg: #cd388d;
+  --lte-card-variant-bg-rgb: 205, 56, 141;
+  --lte-card-variant-color: #fff;
+  --lte-card-variant-color-rgb: 255, 255, 255;
+}
+
+.card-navy,
+.bg-navy,
+.text-bg-navy {
+  --lte-card-variant-bg: #1d2d4c;
+  --lte-card-variant-bg-rgb: 29, 45, 76;
+  --lte-card-variant-color: #fff;
+  --lte-card-variant-color-rgb: 255, 255, 255;
+}
+
+.card-steel,
+.bg-steel,
+.text-bg-steel {
+  --lte-card-variant-bg: #3a4860;
+  --lte-card-variant-bg-rgb: 58, 72, 96;
+  --lte-card-variant-color: #fff;
+  --lte-card-variant-color-rgb: 255, 255, 255;
+}
+
+.card-slate,
+.bg-slate,
+.text-bg-slate {
+  --lte-card-variant-bg: #566577;
+  --lte-card-variant-bg-rgb: 86, 101, 119;
+  --lte-card-variant-color: #fff;
+  --lte-card-variant-color-rgb: 255, 255, 255;
+}
+
+.card-graphite,
+.bg-graphite,
+.text-bg-graphite {
+  --lte-card-variant-bg: #32363c;
+  --lte-card-variant-bg-rgb: 50, 54, 60;
+  --lte-card-variant-color: #fff;
+  --lte-card-variant-color-rgb: 255, 255, 255;
+}
+
+.card-midnight,
+.bg-midnight,
+.text-bg-midnight {
+  --lte-card-variant-bg: #1e1d2d;
+  --lte-card-variant-bg-rgb: 30, 29, 45;
+  --lte-card-variant-color: #fff;
+  --lte-card-variant-color-rgb: 255, 255, 255;
+}
+
+.callout-orange {
+  --lte-callout-color: var(--bs-orange-text-emphasis);
+  --lte-callout-bg: var(--bs-orange-bg-subtle);
+  --lte-callout-border: var(--bs-orange-border-subtle);
+  --lte-callout-link: var(--bs-orange-text-emphasis);
+  --lte-callout-code-color: var(--bs-orange-text-emphasis);
+  --bs-callout-link-color: var(--bs-orange-text-emphasis);
+}
+
+.callout-amber {
+  --lte-callout-color: var(--bs-amber-text-emphasis);
+  --lte-callout-bg: var(--bs-amber-bg-subtle);
+  --lte-callout-border: var(--bs-amber-border-subtle);
+  --lte-callout-link: var(--bs-amber-text-emphasis);
+  --lte-callout-code-color: var(--bs-amber-text-emphasis);
+  --bs-callout-link-color: var(--bs-amber-text-emphasis);
+}
+
+.callout-olive {
+  --lte-callout-color: var(--bs-olive-text-emphasis);
+  --lte-callout-bg: var(--bs-olive-bg-subtle);
+  --lte-callout-border: var(--bs-olive-border-subtle);
+  --lte-callout-link: var(--bs-olive-text-emphasis);
+  --lte-callout-code-color: var(--bs-olive-text-emphasis);
+  --bs-callout-link-color: var(--bs-olive-text-emphasis);
+}
+
+.callout-teal {
+  --lte-callout-color: var(--bs-teal-text-emphasis);
+  --lte-callout-bg: var(--bs-teal-bg-subtle);
+  --lte-callout-border: var(--bs-teal-border-subtle);
+  --lte-callout-link: var(--bs-teal-text-emphasis);
+  --lte-callout-code-color: var(--bs-teal-text-emphasis);
+  --bs-callout-link-color: var(--bs-teal-text-emphasis);
+}
+
+.callout-sky {
+  --lte-callout-color: var(--bs-sky-text-emphasis);
+  --lte-callout-bg: var(--bs-sky-bg-subtle);
+  --lte-callout-border: var(--bs-sky-border-subtle);
+  --lte-callout-link: var(--bs-sky-text-emphasis);
+  --lte-callout-code-color: var(--bs-sky-text-emphasis);
+  --bs-callout-link-color: var(--bs-sky-text-emphasis);
+}
+
+.callout-indigo {
+  --lte-callout-color: var(--bs-indigo-text-emphasis);
+  --lte-callout-bg: var(--bs-indigo-bg-subtle);
+  --lte-callout-border: var(--bs-indigo-border-subtle);
+  --lte-callout-link: var(--bs-indigo-text-emphasis);
+  --lte-callout-code-color: var(--bs-indigo-text-emphasis);
+  --bs-callout-link-color: var(--bs-indigo-text-emphasis);
+}
+
+.callout-violet {
+  --lte-callout-color: var(--bs-violet-text-emphasis);
+  --lte-callout-bg: var(--bs-violet-bg-subtle);
+  --lte-callout-border: var(--bs-violet-border-subtle);
+  --lte-callout-link: var(--bs-violet-text-emphasis);
+  --lte-callout-code-color: var(--bs-violet-text-emphasis);
+  --bs-callout-link-color: var(--bs-violet-text-emphasis);
+}
+
+.callout-fuchsia {
+  --lte-callout-color: var(--bs-fuchsia-text-emphasis);
+  --lte-callout-bg: var(--bs-fuchsia-bg-subtle);
+  --lte-callout-border: var(--bs-fuchsia-border-subtle);
+  --lte-callout-link: var(--bs-fuchsia-text-emphasis);
+  --lte-callout-code-color: var(--bs-fuchsia-text-emphasis);
+  --bs-callout-link-color: var(--bs-fuchsia-text-emphasis);
+}
+
+.callout-pink {
+  --lte-callout-color: var(--bs-pink-text-emphasis);
+  --lte-callout-bg: var(--bs-pink-bg-subtle);
+  --lte-callout-border: var(--bs-pink-border-subtle);
+  --lte-callout-link: var(--bs-pink-text-emphasis);
+  --lte-callout-code-color: var(--bs-pink-text-emphasis);
+  --bs-callout-link-color: var(--bs-pink-text-emphasis);
+}
+
+.callout-navy {
+  --lte-callout-color: var(--bs-navy-text-emphasis);
+  --lte-callout-bg: var(--bs-navy-bg-subtle);
+  --lte-callout-border: var(--bs-navy-border-subtle);
+  --lte-callout-link: var(--bs-navy-text-emphasis);
+  --lte-callout-code-color: var(--bs-navy-text-emphasis);
+  --bs-callout-link-color: var(--bs-navy-text-emphasis);
+}
+
+.callout-steel {
+  --lte-callout-color: var(--bs-steel-text-emphasis);
+  --lte-callout-bg: var(--bs-steel-bg-subtle);
+  --lte-callout-border: var(--bs-steel-border-subtle);
+  --lte-callout-link: var(--bs-steel-text-emphasis);
+  --lte-callout-code-color: var(--bs-steel-text-emphasis);
+  --bs-callout-link-color: var(--bs-steel-text-emphasis);
+}
+
+.callout-slate {
+  --lte-callout-color: var(--bs-slate-text-emphasis);
+  --lte-callout-bg: var(--bs-slate-bg-subtle);
+  --lte-callout-border: var(--bs-slate-border-subtle);
+  --lte-callout-link: var(--bs-slate-text-emphasis);
+  --lte-callout-code-color: var(--bs-slate-text-emphasis);
+  --bs-callout-link-color: var(--bs-slate-text-emphasis);
+}
+
+.callout-graphite {
+  --lte-callout-color: var(--bs-graphite-text-emphasis);
+  --lte-callout-bg: var(--bs-graphite-bg-subtle);
+  --lte-callout-border: var(--bs-graphite-border-subtle);
+  --lte-callout-link: var(--bs-graphite-text-emphasis);
+  --lte-callout-code-color: var(--bs-graphite-text-emphasis);
+  --bs-callout-link-color: var(--bs-graphite-text-emphasis);
+}
+
+.callout-midnight {
+  --lte-callout-color: var(--bs-midnight-text-emphasis);
+  --lte-callout-bg: var(--bs-midnight-bg-subtle);
+  --lte-callout-border: var(--bs-midnight-border-subtle);
+  --lte-callout-link: var(--bs-midnight-text-emphasis);
+  --lte-callout-code-color: var(--bs-midnight-text-emphasis);
+  --bs-callout-link-color: var(--bs-midnight-text-emphasis);
+}
+
+.direct-chat-orange {
+  --lte-direct-chat-color: #fff;
+  --lte-direct-chat-bg: #c84e10;
+}
+
+.direct-chat-amber {
+  --lte-direct-chat-color: #fff;
+  --lte-direct-chat-bg: #a56710;
+}
+
+.direct-chat-olive {
+  --lte-direct-chat-color: #fff;
+  --lte-direct-chat-bg: #5f7f0f;
+}
+
+.direct-chat-teal {
+  --lte-direct-chat-color: #fff;
+  --lte-direct-chat-bg: #12827d;
+}
+
+.direct-chat-sky {
+  --lte-direct-chat-color: #fff;
+  --lte-direct-chat-bg: #127caf;
+}
+
+.direct-chat-indigo {
+  --lte-direct-chat-color: #fff;
+  --lte-direct-chat-bg: #6f60ea;
+}
+
+.direct-chat-violet {
+  --lte-direct-chat-color: #fff;
+  --lte-direct-chat-bg: #9553db;
+}
+
+.direct-chat-fuchsia {
+  --lte-direct-chat-color: #fff;
+  --lte-direct-chat-bg: #b347be;
+}
+
+.direct-chat-pink {
+  --lte-direct-chat-color: #fff;
+  --lte-direct-chat-bg: #cd388d;
+}
+
+.direct-chat-navy {
+  --lte-direct-chat-color: #fff;
+  --lte-direct-chat-bg: #1d2d4c;
+}
+
+.direct-chat-steel {
+  --lte-direct-chat-color: #fff;
+  --lte-direct-chat-bg: #3a4860;
+}
+
+.direct-chat-slate {
+  --lte-direct-chat-color: #fff;
+  --lte-direct-chat-bg: #566577;
+}
+
+.direct-chat-graphite {
+  --lte-direct-chat-color: #fff;
+  --lte-direct-chat-bg: #32363c;
+}
+
+.direct-chat-midnight {
+  --lte-direct-chat-color: #fff;
+  --lte-direct-chat-bg: #1e1d2d;
+}
+
+.btn.bg-orange:hover, .btn.bg-orange:focus-visible,
+.btn.text-bg-orange:hover,
+.btn.text-bg-orange:focus-visible,
+.btn.bg-gradient-orange:hover,
+.btn.bg-gradient-orange:focus-visible {
+  background-color: rgb(70.5882352941%, 27.5294117647%, 5.6470588235%) !important;
+}
+.btn.bg-orange:active, .btn.bg-orange.active,
+.btn.text-bg-orange:active,
+.btn.text-bg-orange.active,
+.btn.bg-gradient-orange:active,
+.btn.bg-gradient-orange.active {
+  background-color: rgb(66.6666666667%, 26%, 5.3333333333%) !important;
+}
+
+.btn.bg-amber:hover, .btn.bg-amber:focus-visible,
+.btn.text-bg-amber:hover,
+.btn.text-bg-amber:focus-visible,
+.btn.bg-gradient-amber:hover,
+.btn.bg-gradient-amber:focus-visible {
+  background-color: rgb(58.2352941176%, 36.3529411765%, 5.6470588235%) !important;
+}
+.btn.bg-amber:active, .btn.bg-amber.active,
+.btn.text-bg-amber:active,
+.btn.text-bg-amber.active,
+.btn.bg-gradient-amber:active,
+.btn.bg-gradient-amber.active {
+  background-color: rgb(55%, 34.3333333333%, 5.3333333333%) !important;
+}
+
+.btn.bg-olive:hover, .btn.bg-olive:focus-visible,
+.btn.text-bg-olive:hover,
+.btn.text-bg-olive:focus-visible,
+.btn.bg-gradient-olive:hover,
+.btn.bg-gradient-olive:focus-visible {
+  background-color: rgb(33.5294117647%, 44.8235294118%, 5.2941176471%) !important;
+}
+.btn.bg-olive:active, .btn.bg-olive.active,
+.btn.text-bg-olive:active,
+.btn.text-bg-olive.active,
+.btn.bg-gradient-olive:active,
+.btn.bg-gradient-olive.active {
+  background-color: rgb(31.6666666667%, 42.3333333333%, 5%) !important;
+}
+
+.btn.bg-teal:hover, .btn.bg-teal:focus-visible,
+.btn.text-bg-teal:hover,
+.btn.text-bg-teal:focus-visible,
+.btn.bg-gradient-teal:hover,
+.btn.bg-gradient-teal:focus-visible {
+  background-color: rgb(6.3529411765%, 45.8823529412%, 44.1176470588%) !important;
+}
+.btn.bg-teal:active, .btn.bg-teal.active,
+.btn.text-bg-teal:active,
+.btn.text-bg-teal.active,
+.btn.bg-gradient-teal:active,
+.btn.bg-gradient-teal.active {
+  background-color: rgb(6%, 43.3333333333%, 41.6666666667%) !important;
+}
+
+.btn.bg-sky:hover, .btn.bg-sky:focus-visible,
+.btn.text-bg-sky:hover,
+.btn.text-bg-sky:focus-visible,
+.btn.bg-gradient-sky:hover,
+.btn.bg-gradient-sky:focus-visible {
+  background-color: rgb(6.3529411765%, 43.7647058824%, 61.7647058824%) !important;
+}
+.btn.bg-sky:active, .btn.bg-sky.active,
+.btn.text-bg-sky:active,
+.btn.text-bg-sky.active,
+.btn.bg-gradient-sky:active,
+.btn.bg-gradient-sky.active {
+  background-color: rgb(6%, 41.3333333333%, 58.3333333333%) !important;
+}
+
+.btn.bg-indigo:hover, .btn.bg-indigo:focus-visible,
+.btn.text-bg-indigo:hover,
+.btn.text-bg-indigo:focus-visible,
+.btn.bg-gradient-indigo:hover,
+.btn.bg-gradient-indigo:focus-visible {
+  background-color: rgb(39.1764705882%, 33.8823529412%, 82.5882352941%) !important;
+}
+.btn.bg-indigo:active, .btn.bg-indigo.active,
+.btn.text-bg-indigo:active,
+.btn.text-bg-indigo.active,
+.btn.bg-gradient-indigo:active,
+.btn.bg-gradient-indigo.active {
+  background-color: rgb(37%, 32%, 78%) !important;
+}
+
+.btn.bg-violet:hover, .btn.bg-violet:focus-visible,
+.btn.text-bg-violet:hover,
+.btn.text-bg-violet:focus-visible,
+.btn.bg-gradient-violet:hover,
+.btn.bg-gradient-violet:focus-visible {
+  background-color: rgb(52.5882352941%, 29.2941176471%, 77.2941176471%) !important;
+}
+.btn.bg-violet:active, .btn.bg-violet.active,
+.btn.text-bg-violet:active,
+.btn.text-bg-violet.active,
+.btn.bg-gradient-violet:active,
+.btn.bg-gradient-violet.active {
+  background-color: rgb(49.6666666667%, 27.6666666667%, 73%) !important;
+}
+
+.btn.bg-fuchsia:hover, .btn.bg-fuchsia:focus-visible,
+.btn.text-bg-fuchsia:hover,
+.btn.text-bg-fuchsia:focus-visible,
+.btn.bg-gradient-fuchsia:hover,
+.btn.bg-gradient-fuchsia:focus-visible {
+  background-color: rgb(63.1764705882%, 25.0588235294%, 67.0588235294%) !important;
+}
+.btn.bg-fuchsia:active, .btn.bg-fuchsia.active,
+.btn.text-bg-fuchsia:active,
+.btn.text-bg-fuchsia.active,
+.btn.bg-gradient-fuchsia:active,
+.btn.bg-gradient-fuchsia.active {
+  background-color: rgb(59.6666666667%, 23.6666666667%, 63.3333333333%) !important;
+}
+
+.btn.bg-pink:hover, .btn.bg-pink:focus-visible,
+.btn.text-bg-pink:hover,
+.btn.text-bg-pink:focus-visible,
+.btn.bg-gradient-pink:hover,
+.btn.bg-gradient-pink:focus-visible {
+  background-color: rgb(72.3529411765%, 19.7647058824%, 49.7647058824%) !important;
+}
+.btn.bg-pink:active, .btn.bg-pink.active,
+.btn.text-bg-pink:active,
+.btn.text-bg-pink.active,
+.btn.bg-gradient-pink:active,
+.btn.bg-gradient-pink.active {
+  background-color: rgb(68.3333333333%, 18.6666666667%, 47%) !important;
+}
+
+.btn.bg-navy:hover, .btn.bg-navy:focus-visible,
+.btn.text-bg-navy:hover,
+.btn.text-bg-navy:focus-visible,
+.btn.bg-gradient-navy:hover,
+.btn.bg-gradient-navy:focus-visible {
+  background-color: rgb(10.2352941176%, 15.8823529412%, 26.8235294118%) !important;
+}
+.btn.bg-navy:active, .btn.bg-navy.active,
+.btn.text-bg-navy:active,
+.btn.text-bg-navy.active,
+.btn.bg-gradient-navy:active,
+.btn.bg-gradient-navy.active {
+  background-color: rgb(9.6666666667%, 15%, 25.3333333333%) !important;
+}
+
+.btn.bg-steel:hover, .btn.bg-steel:focus-visible,
+.btn.text-bg-steel:hover,
+.btn.text-bg-steel:focus-visible,
+.btn.bg-gradient-steel:hover,
+.btn.bg-gradient-steel:focus-visible {
+  background-color: rgb(20.4705882353%, 25.4117647059%, 33.8823529412%) !important;
+}
+.btn.bg-steel:active, .btn.bg-steel.active,
+.btn.text-bg-steel:active,
+.btn.text-bg-steel.active,
+.btn.bg-gradient-steel:active,
+.btn.bg-gradient-steel.active {
+  background-color: rgb(19.3333333333%, 24%, 32%) !important;
+}
+
+.btn.bg-slate:hover, .btn.bg-slate:focus-visible,
+.btn.text-bg-slate:hover,
+.btn.text-bg-slate:focus-visible,
+.btn.bg-gradient-slate:hover,
+.btn.bg-gradient-slate:focus-visible {
+  background-color: rgb(30.3529411765%, 35.6470588235%, 42%) !important;
+}
+.btn.bg-slate:active, .btn.bg-slate.active,
+.btn.text-bg-slate:active,
+.btn.text-bg-slate.active,
+.btn.bg-gradient-slate:active,
+.btn.bg-gradient-slate.active {
+  background-color: rgb(28.6666666667%, 33.6666666667%, 39.6666666667%) !important;
+}
+
+.btn.bg-graphite:hover, .btn.bg-graphite:focus-visible,
+.btn.text-bg-graphite:hover,
+.btn.text-bg-graphite:focus-visible,
+.btn.bg-gradient-graphite:hover,
+.btn.bg-gradient-graphite:focus-visible {
+  background-color: rgb(17.6470588235%, 19.0588235294%, 21.1764705882%) !important;
+}
+.btn.bg-graphite:active, .btn.bg-graphite.active,
+.btn.text-bg-graphite:active,
+.btn.text-bg-graphite.active,
+.btn.bg-gradient-graphite:active,
+.btn.bg-gradient-graphite.active {
+  background-color: rgb(16.6666666667%, 18%, 20%) !important;
+}
+
+.btn.bg-midnight:hover, .btn.bg-midnight:focus-visible,
+.btn.text-bg-midnight:hover,
+.btn.text-bg-midnight:focus-visible,
+.btn.bg-gradient-midnight:hover,
+.btn.bg-gradient-midnight:focus-visible {
+  background-color: rgb(10.5882352941%, 10.2352941176%, 15.8823529412%) !important;
+}
+.btn.bg-midnight:active, .btn.bg-midnight.active,
+.btn.text-bg-midnight:active,
+.btn.text-bg-midnight.active,
+.btn.bg-gradient-midnight:active,
+.btn.bg-gradient-midnight.active {
+  background-color: rgb(10%, 9.6666666667%, 15%) !important;
+}
+
+.bg-opacity-10 {
+  --bs-bg-opacity: 0.1;
+}
+
+.border-opacity-10 {
+  --bs-border-opacity: 0.1;
+}
+
+.bg-opacity-25 {
+  --bs-bg-opacity: 0.25;
+}
+
+.border-opacity-25 {
+  --bs-border-opacity: 0.25;
+}
+
+.bg-opacity-50 {
+  --bs-bg-opacity: 0.5;
+}
+
+.border-opacity-50 {
+  --bs-border-opacity: 0.5;
+}
+
+.bg-opacity-75 {
+  --bs-bg-opacity: 0.75;
+}
+
+.border-opacity-75 {
+  --bs-border-opacity: 0.75;
+}
+
+.bg-opacity-100 {
+  --bs-bg-opacity: 1;
+}
+
+.border-opacity-100 {
+  --bs-border-opacity: 1;
+}
+
+.text-opacity-25 {
+  --bs-text-opacity: 0.25;
+}
+
+.text-opacity-50 {
+  --bs-text-opacity: 0.5;
+}
+
+.text-opacity-75 {
+  --bs-text-opacity: 0.75;
+}
+
+.text-opacity-100 {
+  --bs-text-opacity: 1;
+}
+/*# sourceMappingURL=adminlte-colors.rtl.css.map */

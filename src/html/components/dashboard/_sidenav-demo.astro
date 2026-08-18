@@ -355,6 +355,15 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
                 <p>Ribbons</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a
+                href={htmlPath + "/UI/colors.html"}
+                class:list={["nav-link", page === "colors" && "active"]}
+              >
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Colors</p>
+              </a>
+            </li>
           </ul>
         </li>
         <li class:list={["nav-item", mainPage === "mailbox" && "menu-open"]}>

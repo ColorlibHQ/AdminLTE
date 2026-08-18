@@ -1,0 +1,103 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+import Colors from "@components/docs/colors.mdx"
+
+const title = "Colors | AdminLTE 4"
+const path = "../../../dist"
+const mainPage = "docs"
+const page = "colors"
+
+// The docs page loads the optional palette so its own tables render in colour.
+const pathname = Astro.url.pathname
+const pathSegments = pathname.split("/").filter(segment => segment !== "")
+const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0
+const deploymentPath = depth === 0 ? "./" : "../".repeat(depth)
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <!--begin::Head-->
+  <head>
+    <Head title={title} path={path} />
+    <!--begin::Optional Stylesheet(Extended palette — documented on this page)-->
+    <link rel="stylesheet" href={deploymentPath + "css/adminlte-colors.css"} />
+    <!--end::Optional Stylesheet(Extended palette)-->
+  </head>
+  <!--end::Head-->
+  <!--begin::Body-->
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary docs-page">
+    <!--begin::App Wrapper-->
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <!--begin::App Main-->
+      <main class="app-main">
+        <!--begin::App Content Header-->
+        <div class="app-content-header">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6">
+                <h1 class="mb-0 fs-3">Colors</h1>
+              </div>
+              <div class="col-sm-6">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Docs</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Colors
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
+        <div class="app-content">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row g-4">
+              <div class="col-12">
+                <div class="callout callout-info">
+                  <h5 class="fw-bold">Opt-in</h5>
+                  <p class="mb-0">
+                    The extended palette lives in its own stylesheet,
+                    <code>dist/css/adminlte-colors.css</code>, so it costs nothing
+                    unless you load it. See it in action on the
+                    <a href={deploymentPath + "UI/colors.html"} class="callout-link">Colors demo page</a>,
+                    which also lets you try skins on a real layout and check your own brand colours.
+                  </p>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <Colors />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content-->
+      </main>
+      <!--end::App Main-->
+      <Footer />
+    </div>
+    <!--end::App Wrapper-->
+
+    <Scripts path={path} />
+  </body><!--end::Body-->
+</html>

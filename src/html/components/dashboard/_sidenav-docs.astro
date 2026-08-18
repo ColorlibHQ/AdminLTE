@@ -117,6 +117,15 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
         </li>
         <li class="nav-item">
           <a
+            href={htmlPath + "/docs/colors.html"}
+            class:list={["nav-link", page === "colors" && "active"]}
+          >
+            <i class="nav-icon bi bi-palette"></i>
+            <p>Colors</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
             href={htmlPath + "/docs/rtl.html"}
             class:list={["nav-link", page === "rtl" && "active"]}
           >

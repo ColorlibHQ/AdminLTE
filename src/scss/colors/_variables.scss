@@ -1,0 +1,85 @@
+@use "sass:list";
+@use "sass:map";
+
+//
+// Colors: Variables
+//
+// The extended palette shipped by `adminlte-colors.css`. Everything here is
+// `!default`, so a project compiling its own Sass can set any of it before
+// importing `adminlte-colors.scss` — see docs/colors.html.
+//
+
+// The palette
+// --------------------------------------------------------
+// Designed in OKLCH (see scripts/palette.mjs) rather than picked one by one:
+//
+//  • Each chromatic colour is the LIGHTEST value whose white text still reaches
+//    ≥ 4.6:1 (WCAG AA), which puts all of them at OKLCH L ≈ .55–.59 — the same
+//    weight as Bootstrap's primary / success / danger — so `.text-bg-*`, small
+//    boxes, badges and sidebars all take white text and read as one family.
+//  • Hues sit ≥ 17° from every Bootstrap theme colour (danger 21°, warning 85°,
+//    success 157°, info 218°, primary 260°) and ≥ 20° from each other, so nothing
+//    collides with `.text-bg-primary` & co.
+//  • Chroma is capped at 0.20 (parity with primary .23 / danger .20). Teal, sky,
+//    olive and amber sit at the sRGB gamut limit for this lightness.
+//  • navy, steel, slate, graphite and midnight are cool-tinted neutrals
+//    (h ≈ 255–287°) meant for sidebars and headers.
+//
+// `npm run palette -- --check` verifies contrast and hue separation.
+$lte-palette: (
+  "orange":    #c84e10, // oklch(.58 .17  42)  burnt orange — warm accent that isn't "danger"
+  "amber":     #a56710, // oklch(.57 .12  67)  ochre — warm neutral, pairs with navy/graphite
+  "olive":     #5f7f0f, // oklch(.55 .13 126)  moss — earthy green, 31° from success
+  "teal":      #12827d, // oklch(.55 .09 190)  blue-green — the calm data colour
+  "sky":       #127caf, // oklch(.56 .12 237)  the classic AdminLTE blue, remade at 4.6:1
+  "indigo":    #6f60ea, // oklch(.58 .20 283)  blue-violet — brand-forward, 23° from primary
+  "violet":    #9553db, // oklch(.58 .20 303)  purple
+  "fuchsia":   #b347be, // oklch(.59 .20 324)  magenta — emphasis, sparingly
+  "pink":      #cd388d, // oklch(.59 .20 350)  deep pink — v3 "maroon", designed
+  "navy":      #1d2d4c, // oklch(.30 .06 263)  sidebar navy — deep, cool, not black
+  "steel":     #3a4860, // oklch(.40 .05 261)  mid-dark blue-grey — the sidebar tone many admin kits use
+  "slate":     #566577, // oklch(.50 .03 253)  mid neutral — grey-blue for headers and cards
+  "graphite":  #32363c, // oklch(.33 .01 258)  near-black cool grey for quiet sidebars
+  "midnight":  #1e1d2d  // oklch(.24 .03 287)  near-black with a violet cast — full-dark chrome
+) !default;
+
+// Your own colours
+// --------------------------------------------------------
+// Merged over `$lte-palette`, so a brand colour gets every token, utility and
+// component hook the shipped colours get — and an existing name is overridden:
+//   $lte-palette-custom: ("brand": #0f766e, "sky": #0369a1);
+// Aim for a colour whose white text reaches 4.5:1 (UI/colors.html has a checker).
+$lte-palette-custom: () !default;
+
+// Aliases
+// --------------------------------------------------------
+// Extra names that generate the same classes as an existing palette entry.
+// Empty by default; AdminLTE 3 projects can restore their old class names with
+//   $lte-palette-aliases: ("lightblue": "sky", "maroon": "pink");
+$lte-palette-aliases: () !default;
+
+// Contrast rule
+// --------------------------------------------------------
+// Minimum contrast ratio `color-contrast()` uses when picking the automatic
+// text colour of `.text-bg-*`, `.bg-gradient-*`, `.card-*` headers and
+// `.direct-chat-*`. Bootstrap's default (4.5, WCAG AA for normal text). Every
+// shipped palette colour clears it with white text; the knob exists for custom
+// palettes — `3` is WCAG AA for large text and UI components.
+$lte-palette-min-contrast-ratio: $min-contrast-ratio !default;
+
+// Resolve custom colours and aliases into the palette
+// --------------------------------------------------------
+@if list.length($lte-palette-custom) > 0 {
+  $lte-palette: map.merge($lte-palette, $lte-palette-custom);
+}
+
+@each $alias, $target in $lte-palette-aliases {
+  @if not map.has-key($lte-palette, $target) {
+    @error "adminlte-colors: alias `#{$alias}` points to `#{$target}`, which is not in $lte-palette.";
+  }
+  $lte-palette: map.merge($lte-palette, ($alias: map.get($lte-palette, $target)));
+}
+
+@function lte-contrast($color) {
+  @return color-contrast($color, $min-contrast-ratio: $lte-palette-min-contrast-ratio);
+}

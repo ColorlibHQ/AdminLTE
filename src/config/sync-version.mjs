@@ -9,6 +9,8 @@ import pkg from '../../package.json' with { type: 'json' }
 const banners = [
   'src/scss/adminlte.scss',
   'src/scss/adminlte-docs.scss',
+  'src/scss/adminlte-select2.scss',
+  'src/scss/adminlte-colors.scss',
   'src/ts/adminlte.ts'
 ]
 

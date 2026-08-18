@@ -1,0 +1,728 @@
+---
+import Head from "@components/_head.astro"
+import Footer from "@components/dashboard/_footer.astro"
+import Topbar from "@components/dashboard/_topbar.astro"
+import Sidenav from "@components/dashboard/_sidenav.astro"
+import Scripts from "@components/_scripts.astro"
+import SkinPreview from "@components/_skin-preview.astro"
+import { palette, sets, skinGroups, skins } from "../../../utils/palette.mjs"
+
+const title = "AdminLTE 4 | Colors"
+const path = "../../../dist"
+const mainPage = "ui-elements"
+const page = "colors"
+const pageTitle = "Colors"
+
+// This page is the one demo page that loads the optional extended palette,
+// dist/css/adminlte-colors.css. Nothing here is in adminlte.css.
+const pathname = Astro.url.pathname
+const pathSegments = pathname.split("/").filter(segment => segment !== "")
+const depth = pathSegments.length > 0 ? pathSegments.length - 1 : 0
+const deploymentPath = depth === 0 ? "./" : "../".repeat(depth)
+
+const chromatic = palette.filter(c => c.role === "chromatic")
+const neutral = palette.filter(c => c.role === "neutral")
+const names = palette.map(c => c.name)
+// The skin switcher below only offers colours designed for white text.
+const skinChoices = [
+  { name: "default", label: "Default" },
+  ...palette.map(c => ({ name: c.name, label: c.name }))
+]
+const utilityRows = [
+  { label: ".bg-*", cell: (n: string) => `<div class="lte-swatch bg-${n}"></div>` },
+  { label: ".text-bg-*", cell: (n: string) => `<div class="lte-swatch text-bg-${n}">Aa</div>` },
+  { label: ".bg-* .bg-opacity-25", cell: (n: string) => `<div class="lte-swatch bg-${n} bg-opacity-25"></div>` },
+  { label: ".bg-gradient-*", cell: (n: string) => `<div class="lte-swatch bg-gradient-${n}"></div>` },
+  { label: ".text-*", cell: (n: string) => `<div class="lte-swatch fw-semibold text-${n}">Aa</div>` },
+  { label: ".border-*", cell: (n: string) => `<div class="lte-swatch border border-3 border-${n}"></div>` },
+  { label: ".link-*", cell: (n: string) => `<div class="lte-swatch"><a href="#" class="link-${n} link-underline-opacity-25 link-underline-opacity-100-hover">Link</a></div>` },
+  { label: ".callout-*", cell: (n: string) => `<div class="callout callout-${n} py-2 px-2 mb-0 small text-center rounded-1">Subtle</div>` }
+]
+const smallBoxNumbers = ["2,341", "$18.4k", "318", "97%"]
+const smallBoxLabels = ["Active users", "Revenue", "Support tickets", "Uptime"]
+const smallBoxIcons = ["bi-people", "bi-cash-stack", "bi-chat-dots", "bi-check-lg"]
+---
+
+<!doctype html>
+<html lang="en">
+  <!--begin::Head-->
+  <head>
+    <Head title={title} path={path} />
+    <!--begin::Optional Stylesheet(Extended palette — only this page loads it)-->
+    <link rel="stylesheet" href={deploymentPath + "css/adminlte-colors.css"} />
+    <!--end::Optional Stylesheet(Extended palette)-->
+    <style>
+      /* Page-local helpers for the swatch tables; not part of AdminLTE. */
+      .lte-swatch {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.5rem;
+        font-size: 0.875rem;
+        border-radius: var(--bs-border-radius);
+      }
+      .lte-chip {
+        width: 2rem;
+        height: 2rem;
+        padding: 0;
+        border-radius: var(--bs-border-radius);
+        border: 1px solid rgba(var(--bs-body-color-rgb), 0.18);
+      }
+      .lte-chip[aria-pressed="true"] {
+        outline: 2px solid var(--bs-body-color);
+        outline-offset: 2px;
+      }
+      .lte-tile {
+        min-height: 9rem;
+        border-radius: var(--bs-border-radius);
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+      }
+      .lte-skin-btn {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.4rem 0.4rem 0.3rem;
+        font-size: 0.8125rem;
+        line-height: 1.2;
+        color: var(--bs-body-color);
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius);
+      }
+      .lte-skin-btn:hover {
+        border-color: var(--bs-secondary-color);
+      }
+      .lte-skin-btn[aria-pressed="true"] {
+        border-color: var(--bs-body-color);
+        box-shadow: 0 0 0 1px var(--bs-body-color);
+      }
+      .lte-skin-btn:focus-visible {
+        outline: 2px solid var(--bs-focus-ring-color);
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+  <!--end::Head-->
+  <!--begin::Body-->
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <!--begin::App Wrapper-->
+    <div class="app-wrapper">
+      <Topbar path={path} />
+      <Sidenav path={path} mainPage={mainPage} page={page} />
+      <!--begin::App Main-->
+      <main class="app-main">
+        <!--begin::App Content Header-->
+        <div class="app-content-header">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6">
+                <h1 class="mb-0 fs-3">{pageTitle}</h1>
+              </div>
+              <div class="col-sm-6">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      {pageTitle}
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
+        <div class="app-content">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <div class="callout callout-info mb-4">
+              <p>
+                This page loads the optional
+                <code>dist/css/adminlte-colors.css</code> — fourteen extra colours
+                (orange, amber, olive, teal, sky, indigo, violet, fuchsia, pink,
+                navy, steel, slate, graphite, midnight) as <code>--bs-*</code> tokens plus the
+                <code>.bg-*</code>, <code>.text-bg-*</code>, <code>.text-*</code>,
+                <code>.border-*</code>, <code>.link-*</code>, <code>.bg-gradient-*</code>,
+                <code>.card-*</code>, <code>.callout-*</code> and <code>.direct-chat-*</code>
+                families. It is not part of <code>adminlte.css</code>; nothing else
+                in the demo uses it.
+              </p>
+              <p class="mb-0">
+                Every colour takes white text at 4.6:1 or better and was placed
+                to sit next to Bootstrap's own theme colours without clashing.
+                How and why is on the
+                <a href={deploymentPath + "docs/colors.html"} class="callout-link">Colors documentation page</a>.
+              </p>
+            </div>
+
+            <!--begin::Skins-->
+            <h5 class="mb-3">Try a skin on this page</h5>
+            <div class="card mb-4">
+              <div class="card-body">
+                <p>
+                  A skin is a background utility plus <code>data-bs-theme</code>
+                  on the sidebar and the header — no CSS of its own. The
+                  buttons below recolour <em>this page's</em> sidebar and header
+                  so you can judge a combination in place; the markup they
+                  produce is printed underneath. For the footer, Bootstrap's own
+                  backgrounds and free mixing, use the
+                  <a href={deploymentPath + "generate/theme.html"}>Theme Customize</a> page —
+                  its pickers list the palette under "Extended palette".
+                </p>
+                <div id="skin-presets">
+                  {
+                    skinGroups.map(group => (
+                      <div class="mb-3">
+                        <p class="fw-semibold mb-1">{group.name}</p>
+                        <p class="text-body-secondary small mb-2">{group.note}</p>
+                        <div class="d-flex flex-wrap gap-2">
+                          {
+                            skins.filter(skin => skin.group === group.name).map(skin => (
+                              <button
+                                type="button"
+                                class="lte-skin-btn"
+                                data-skin-header={skin.header.cls}
+                                data-skin-header-theme={skin.header.theme}
+                                data-skin-sidebar={skin.sidebar.cls}
+                                data-skin-sidebar-theme={skin.sidebar.theme}
+                                title={skin.note}
+                                aria-pressed="false"
+                              >
+                                <SkinPreview skin={skin} />
+                                <span>{skin.name}</span>
+                              </button>
+                            ))
+                          }
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+                <div class="row g-4">
+                  <div class="col-lg-6">
+                    <p class="fw-semibold mb-2">Sidebar colour</p>
+                    <div class="d-flex flex-wrap gap-2" data-skin-picker="sidebar" role="group" aria-label="Sidebar colour">
+                      {
+                        skinChoices.map(choice => (
+                          <button
+                            type="button"
+                            class:list={["lte-chip", choice.name === "default" ? "bg-body-secondary" : `text-bg-${choice.name}`]}
+                            data-color={choice.name}
+                            title={choice.name === "default" ? "Default (bg-body-secondary)" : `.text-bg-${choice.name}`}
+                            aria-pressed={choice.name === "default" ? "true" : "false"}
+                          >
+                            <span class="visually-hidden">{choice.label}</span>
+                          </button>
+                        ))
+                      }
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <p class="fw-semibold mb-2">Header colour</p>
+                    <div class="d-flex flex-wrap gap-2" data-skin-picker="header" role="group" aria-label="Header colour">
+                      {
+                        skinChoices.map(choice => (
+                          <button
+                            type="button"
+                            class:list={["lte-chip", choice.name === "default" ? "bg-body border" : `text-bg-${choice.name}`]}
+                            data-color={choice.name}
+                            title={choice.name === "default" ? "Default (bg-body)" : `.text-bg-${choice.name}`}
+                            aria-pressed={choice.name === "default" ? "true" : "false"}
+                          >
+                            <span class="visually-hidden">{choice.label}</span>
+                          </button>
+                        ))
+                      }
+                    </div>
+                  </div>
+                </div>
+                <pre class="bg-body-tertiary rounded p-3 mt-4 mb-0 small overflow-auto" tabindex="0"><code id="skin-markup"></code></pre>
+              </div>
+            </div>
+            <!--end::Skins-->
+
+            <!--begin::Palette-->
+            <h5 class="mb-3">The palette</h5>
+            <div class="row g-3 mb-2">
+              {
+                chromatic.map(c => (
+                  <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                    <div class={`lte-tile p-3 h-100 d-flex flex-column justify-content-between text-bg-${c.name}`}>
+                      <div>
+                        <div class="fw-bold font-monospace">.bg-{c.name}</div>
+                        <div class="small opacity-90 mt-1">{c.description}</div>
+                      </div>
+                      <div class="small font-monospace mt-3">
+                        {c.hex}<br />{c.oklchLabel}<br />white {c.contrastWhite.toFixed(1)}:1
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+            <div class="row g-3 mb-4">
+              {
+                neutral.map(c => (
+                  <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                    <div class={`lte-tile p-3 h-100 d-flex flex-column justify-content-between text-bg-${c.name}`}>
+                      <div>
+                        <div class="fw-bold font-monospace">.bg-{c.name}</div>
+                        <div class="small opacity-90 mt-1">{c.description}</div>
+                      </div>
+                      <div class="small font-monospace mt-3">
+                        {c.hex}<br />{c.oklchLabel}<br />white {c.contrastWhite.toFixed(1)}:1
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+            <!--end::Palette-->
+
+            <!--begin::Sets-->
+            <h5 class="mb-3">Dashboard sets</h5>
+            <p class="text-body-secondary">
+              Which four colours to put on a widget row is where "random" usually
+              creeps in. These quartets are chosen by hue relationship. They are
+              recommendations, not classes.
+            </p>
+            {
+              sets.map(set => (
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <h3 class="card-title">{set.name}</h3>
+                    <div class="card-tools">
+                      {set.colors.map(c => <code class="text-body-emphasis me-2">text-bg-{c}</code>)}
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <p class="text-body-secondary">{set.why}</p>
+                    <div class="row">
+                      {
+                        set.colors.map((c, i) => (
+                          <div class="col-lg-3 col-6">
+                            <div class={`small-box text-bg-${c}`}>
+                              <div class="inner">
+                                <h3>{smallBoxNumbers[i]}</h3>
+                                <p>{smallBoxLabels[i]}</p>
+                              </div>
+                              <i class={`small-box-icon bi ${smallBoxIcons[i]}`} aria-hidden="true"></i>
+                              <a href="#" class="small-box-footer link-underline-opacity-0 link-underline-opacity-50-hover">
+                                More info <i class="bi bi-link-45deg"></i>
+                              </a>
+                            </div>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+            <!--end::Sets-->
+
+            <!--begin::Utilities-->
+            <h5 class="mb-3">Utilities</h5>
+            <div class="card mb-4">
+              <div class="card-body">
+                <p>
+                  Every family Bootstrap generates for its theme colours, generated
+                  for the palette — the same CSS-variable shape, so
+                  <code>.bg-opacity-*</code>, <code>.link-underline-*</code> and friends compose.
+                </p>
+                <div class="table-responsive">
+                  <table class="table table-sm align-middle mb-0" style="min-width: 60rem;">
+                    <thead>
+                      <tr>
+                        <th scope="col"><span class="visually-hidden">Utility</span></th>
+                        {names.map(n => <th scope="col" class="text-center small fw-semibold">{n}</th>)}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {
+                        utilityRows.map(row => (
+                          <tr>
+                            <th scope="row" class="fw-normal text-nowrap"><code>{row.label}</code></th>
+                            {names.map(n => <td set:html={row.cell(n)} />)}
+                          </tr>
+                        ))
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!--end::Utilities-->
+
+            <!--begin::Components-->
+            <h5 class="mb-3">Components</h5>
+            <p class="text-body-secondary">
+              AdminLTE's widgets colour themselves through <code class="text-body-emphasis">.text-bg-*</code>
+              and the <code class="text-body-emphasis">--lte-card-variant-*</code> variables, so the palette
+              reaches them with no per-component CSS.
+            </p>
+            <div class="row g-4 mb-4">
+              <div class="col-lg-4">
+                <div class="card card-indigo mb-0 h-100">
+                  <div class="card-header"><h3 class="card-title">.card-indigo</h3></div>
+                  <div class="card-body">The header takes the colour and its contrast text; the body stays neutral.</div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="card card-outline card-pink mb-0 h-100">
+                  <div class="card-header"><h3 class="card-title">.card-outline.card-pink</h3></div>
+                  <div class="card-body">A three-pixel top border in the palette colour — the v3 idiom.</div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="card text-bg-teal mb-0 h-100">
+                  <div class="card-header"><h3 class="card-title">.card.text-bg-teal</h3></div>
+                  <div class="card-body">Whole card in colour; header and card tools inherit the contrast text.</div>
+                </div>
+              </div>
+            </div>
+            <div class="row g-4 mb-4">
+              <div class="col-lg-4">
+                <div class="info-box mb-3">
+                  <span class="info-box-icon text-bg-violet shadow-sm"><i class="bi bi-box-seam" aria-hidden="true"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Shipments</span>
+                    <span class="info-box-number">1,204</span>
+                  </div>
+                </div>
+                <div class="info-box text-bg-orange mb-0">
+                  <span class="info-box-icon"><i class="bi bi-star-fill" aria-hidden="true"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Reviews</span>
+                    <span class="info-box-number">4.8</span>
+                    <div class="progress"><div class="progress-bar" style="width: 86%"></div></div>
+                    <span class="progress-description">86% five-star this month</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="callout callout-sky mb-3">
+                  <strong>.callout-sky</strong> uses the subtle and emphasis tokens, so it flips correctly in dark mode.
+                  <a href="#" class="callout-link">Learn more</a>
+                </div>
+                <div class="callout callout-amber mb-0">
+                  <strong>.callout-amber</strong> — the same tokens Bootstrap uses for <code>.alert-*</code>.
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  {names.map(n => <span class={`badge text-bg-${n}`}>{n}</span>)}
+                </div>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <button type="button" class="btn text-bg-indigo">Save</button>
+                  <button type="button" class="btn bg-gradient-pink">Delete</button>
+                  <button type="button" class="btn text-bg-teal">Approve</button>
+                  <button type="button" class="btn btn-outline-secondary border-slate text-slate">Outline via utilities</button>
+                </div>
+                <div class="d-grid gap-2">
+                  {
+                    [["indigo", 82], ["pink", 64], ["teal", 47], ["amber", 29]].map(([n, w]) => (
+                      <div class="progress" style="height: .6rem" role="progressbar" aria-label={`${n} ${w}%`} aria-valuenow={w} aria-valuemin="0" aria-valuemax="100">
+                        <div class={`progress-bar bg-${n}`} style={`width: ${w}%`}></div>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
+            <!--end::Components-->
+
+            <!--begin::Brand checker-->
+            <h5 class="mb-3">Check a brand colour</h5>
+            <div class="card mb-4">
+              <div class="card-body">
+                <p>
+                  Adding your own colour is a one-line Sass override —
+                  <code>$lte-palette-custom: ("brand": #hex)</code> — and it then
+                  gets every token, utility and component hook the shipped colours
+                  get. The one thing worth checking first is that white text on it
+                  reaches 4.5:1, so <code>.text-bg-brand</code>, small boxes and a
+                  branded sidebar stay readable. Paste a colour:
+                </p>
+                <div class="row g-3 align-items-end">
+                  <div class="col-md-4">
+                    <label for="brand-hex" class="form-label">Colour</label>
+                    <div class="input-group">
+                      <input type="color" class="form-control form-control-color" id="brand-picker" value="#0f766e" aria-label="Pick a colour" />
+                      <input type="text" class="form-control font-monospace" id="brand-hex" value="#0f766e" spellcheck="false" autocomplete="off" pattern="#?[0-9a-fA-F]{6}" />
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="d-flex flex-wrap gap-2">
+                      <button type="button" class="btn btn-outline-secondary" id="brand-preview-sidebar">Preview on sidebar</button>
+                      <button type="button" class="btn btn-outline-secondary" id="brand-preview-header">Preview on header</button>
+                      <button type="button" class="btn btn-outline-secondary" id="brand-preview-clear">Clear preview</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row g-4 mt-1">
+                  <div class="col-lg-5">
+                    <div id="brand-verdict" class="callout mb-0" aria-live="polite"></div>
+                  </div>
+                  <div class="col-lg-7">
+                    <pre class="bg-body-tertiary rounded p-3 mb-0 small overflow-auto" tabindex="0"><code id="brand-snippet"></code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end::Brand checker-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content-->
+      </main>
+      <!--end::App Main-->
+      <Footer />
+    </div>
+    <!--end::App Wrapper-->
+
+    <Scripts path={path} />
+    <!--begin::Page script (skin switcher + brand checker; page-local, not part of adminlte.js)-->
+    <script is:inline>
+      ;(() => {
+        "use strict"
+
+        // ---- Skin switcher: recolours THIS page's sidebar and header ----------
+        const sidebar = document.querySelector(".app-sidebar")
+        const header = document.querySelector(".app-header")
+        const markup = document.getElementById("skin-markup")
+        const pickers = document.querySelectorAll("[data-skin-picker]")
+        const state = {
+          sidebar: { cls: "bg-body-secondary", theme: "dark" },
+          header: { cls: "bg-body", theme: "light" }
+        }
+        const DEFAULTS = {
+          sidebar: { cls: "bg-body-secondary", theme: "dark" },
+          header: { cls: "bg-body", theme: "light" }
+        }
+        const isSkinClass = c => /^(text-bg-|bg-body|bg-gradient-)/.test(c)
+
+        const paint = (el, role) => {
+          const stale = [...el.classList].filter(c => isSkinClass(c))
+          el.classList.remove(...stale)
+          el.classList.add(...state[role].cls.split(" "))
+          el.setAttribute("data-bs-theme", state[role].theme)
+          el.style.removeProperty("background-color")
+        }
+
+        const render = () => {
+          paint(sidebar, "sidebar")
+          paint(header, "header")
+          for (const picker of pickers) {
+            const role = picker.getAttribute("data-skin-picker")
+            const cls = state[role].cls
+            const current = cls.startsWith("text-bg-") ? cls.slice(8) : (cls.startsWith("bg-body") ? "default" : "")
+            for (const chip of picker.querySelectorAll("[data-color]")) {
+              chip.setAttribute("aria-pressed", String(chip.getAttribute("data-color") === current))
+            }
+          }
+          for (const button of document.querySelectorAll("#skin-presets [data-skin-sidebar]")) {
+            const matches =
+              button.getAttribute("data-skin-sidebar") === state.sidebar.cls &&
+              button.getAttribute("data-skin-sidebar-theme") === state.sidebar.theme &&
+              button.getAttribute("data-skin-header") === state.header.cls &&
+              button.getAttribute("data-skin-header-theme") === state.header.theme
+            button.setAttribute("aria-pressed", String(matches))
+          }
+          markup.textContent =
+            `<nav class="app-header navbar navbar-expand ${state.header.cls}" data-bs-theme="${state.header.theme}">\n` +
+            `<aside class="app-sidebar ${state.sidebar.cls} shadow" data-bs-theme="${state.sidebar.theme}">`
+        }
+
+        for (const picker of pickers) {
+          const role = picker.getAttribute("data-skin-picker")
+          picker.addEventListener("click", event => {
+            const chip = event.target.closest("[data-color]")
+            if (!chip) {
+              return
+            }
+            const color = chip.getAttribute("data-color")
+            // Every palette colour is designed for white text, so a coloured
+            // sidebar or header always pairs with data-bs-theme="dark".
+            state[role] = color === "default" ? { ...DEFAULTS[role] } : { cls: `text-bg-${color}`, theme: "dark" }
+            render()
+          })
+        }
+
+        document.getElementById("skin-presets").addEventListener("click", event => {
+          const button = event.target.closest("[data-skin-sidebar]")
+          if (!button) {
+            return
+          }
+          state.sidebar = { cls: button.getAttribute("data-skin-sidebar"), theme: button.getAttribute("data-skin-sidebar-theme") }
+          state.header = { cls: button.getAttribute("data-skin-header"), theme: button.getAttribute("data-skin-header-theme") }
+          render()
+        })
+
+        render()
+
+        // ---- Brand colour checker ------------------------------------------
+        // OKLCH + WCAG maths; a copy of src/utils/palette.mjs — keep in step.
+        const srgbToLinear = c => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4)
+        const linearToSrgb = c => (c <= 0.0031308 ? 12.92 * c : 1.055 * c ** (1 / 2.4) - 0.055)
+        const hexToRgb = hex => hex.replace("#", "").match(/../g).map(h => Number.parseInt(h, 16) / 255)
+        const rgbToHex = rgb => "#" + rgb.map(v => Math.round(Math.min(1, Math.max(0, v)) * 255).toString(16).padStart(2, "0")).join("")
+        const luminance = hex => {
+          const [r, g, b] = hexToRgb(hex).map(srgbToLinear)
+          return 0.2126 * r + 0.7152 * g + 0.0722 * b
+        }
+        const contrastWhite = hex => 1.05 / (luminance(hex) + 0.05)
+        const contrastBlack = hex => (luminance(hex) + 0.05) / 0.05
+        const rgbToOklch = ([r, g, b]) => {
+          const [lr, lg, lb] = [r, g, b].map(srgbToLinear)
+          const l = Math.cbrt(0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb)
+          const m = Math.cbrt(0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb)
+          const s = Math.cbrt(0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb)
+          const L = 0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s
+          const a = 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s
+          const bb = 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s
+          let h = (Math.atan2(bb, a) * 180) / Math.PI
+          if (h < 0) h += 360
+          return { L, C: Math.hypot(a, bb), h }
+        }
+        const oklchToRgb = ({ L, C, h }) => {
+          const a = C * Math.cos((h * Math.PI) / 180)
+          const b = C * Math.sin((h * Math.PI) / 180)
+          const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3
+          const m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3
+          const s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3
+          return [
+            4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+            -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+            -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s
+          ].map(linearToSrgb)
+        }
+        const inGamut = rgb => rgb.every(v => v >= -0.0005 && v <= 1.0005)
+        const maxChroma = (L, h) => {
+          let lo = 0
+          let hi = 0.4
+          for (let i = 0; i < 30; i++) {
+            const mid = (lo + hi) / 2
+            if (inGamut(oklchToRgb({ L, C: mid, h }))) lo = mid
+            else hi = mid
+          }
+          return lo
+        }
+        // Keep hue and chroma, lower lightness until white text reaches 4.6:1
+        const fixForWhiteText = hex => {
+          const { L: start, C, h } = rgbToOklch(hexToRgb(hex))
+          for (let L = start; L >= 0.2; L -= 0.0025) {
+            const chroma = Math.min(C, maxChroma(L, h) * 0.98)
+            const candidate = rgbToHex(oklchToRgb({ L, C: chroma, h }))
+            if (contrastWhite(candidate) >= 4.6) return candidate
+          }
+          return null
+        }
+        const hueDistance = (a, b) => {
+          const d = Math.abs(a - b) % 360
+          return d > 180 ? 360 - d : d
+        }
+        const byGap = (a, b) => a[1] - b[1]
+        const PALETTE_HUES = [
+          ["orange", 42], ["amber", 67], ["olive", 126], ["teal", 190], ["sky", 237],
+          ["indigo", 283], ["violet", 303], ["fuchsia", 324], ["pink", 350]
+        ]
+        const BOOTSTRAP_HUES = [["danger", 21], ["warning", 85], ["success", 157], ["info", 218], ["primary", 260]]
+
+        const picker = document.getElementById("brand-picker")
+        const hexInput = document.getElementById("brand-hex")
+        const verdict = document.getElementById("brand-verdict")
+        const snippet = document.getElementById("brand-snippet")
+        let currentHex = "#0f766e"
+
+        const evaluate = raw => {
+          const hex = raw.trim().replace(/^#?/, "#").toLowerCase()
+          if (!/^#[0-9a-f]{6}$/.test(hex)) {
+            verdict.className = "callout callout-warning mb-0"
+            verdict.textContent = "Enter a six-digit hex colour, like #0f766e."
+            snippet.textContent = ""
+            return
+          }
+          currentHex = hex
+          picker.value = hex
+          const lch = rgbToOklch(hexToRgb(hex))
+          const white = contrastWhite(hex)
+          const black = contrastBlack(hex)
+          const passes = white >= 4.5
+          const fixed = passes ? null : fixForWhiteText(hex)
+          const nearestPalette = PALETTE_HUES.map(([n, h]) => [n, hueDistance(h, lch.h)]).toSorted(byGap)[0]
+          const nearestBootstrap = BOOTSTRAP_HUES.map(([n, h]) => [n, hueDistance(h, lch.h)]).toSorted(byGap)[0]
+          const isNeutral = lch.C < 0.04
+          const overrideName = !isNeutral && nearestPalette[1] < 15 ? nearestPalette[0] : "brand"
+
+          let advice
+          if (passes) {
+            advice = `<p class="mb-0">Good to go: <code>.text-bg-${overrideName}</code>, small boxes, badges and a branded sidebar (<code>data-bs-theme="dark"</code>) all take white text.</p>`
+          } else if (fixed) {
+            advice = `<p class="mb-0">Same hue and chroma, lightness lowered until white text passes: <button type="button" class="btn btn-sm btn-link p-0 align-baseline font-monospace" data-use-hex="${fixed}">${fixed}</button> (${contrastWhite(fixed).toFixed(2)}:1). Or keep the colour and use it with dark text — set <code>data-bs-theme="light"</code> on a sidebar or header that carries it.</p>`
+          } else {
+            advice = `<p class="mb-0">No darker version of this hue reaches 4.5:1 with white text — use it with dark text (<code>data-bs-theme="light"</code>).</p>`
+          }
+          const notes = []
+          if (!isNeutral && nearestPalette[1] < 15) {
+            notes.push(`it is only ${nearestPalette[1].toFixed(0)}° from <strong>${nearestPalette[0]}</strong> — consider overriding that name instead of adding one`)
+          }
+          if (!isNeutral && nearestBootstrap[1] < 15) {
+            notes.push(`it is only ${nearestBootstrap[1].toFixed(0)}° from Bootstrap's <strong>${nearestBootstrap[0]}</strong>, so the two may read as one colour`)
+          }
+          const lines = [
+            `<p class="mb-2"><span class="badge me-2" style="background:${hex};color:${passes ? "#fff" : "#000"}">Aa</span><code>${hex}</code> · oklch(${lch.L.toFixed(2)} ${lch.C.toFixed(2)} ${lch.h.toFixed(0)})</p>`,
+            `<p class="mb-2">White text <strong>${white.toFixed(2)}:1</strong> ${passes ? "✔ passes WCAG AA" : "✖ below 4.5:1"} · black text ${black.toFixed(2)}:1</p>`,
+            advice,
+            notes.length > 0 ? `<p class="mb-0 mt-2 small">Hue note: ${notes.join("; ")}.</p>` : ""
+          ]
+          verdict.className = `callout mb-0 ${passes ? "callout-success" : "callout-warning"}`
+          verdict.innerHTML = lines.join("")
+
+          snippet.textContent =
+            `// your-adminlte.scss — compile with your own Sass build\n` +
+            `$lte-palette-custom: (\n  "${overrideName}": ${passes || !fixed ? hex : fixed}\n);\n` +
+            `@import "admin-lte/src/scss/adminlte-colors";\n\n` +
+            `<!-- then in your markup -->\n` +
+            `<div class="small-box text-bg-${overrideName}">…</div>\n` +
+            `<aside class="app-sidebar text-bg-${overrideName} shadow" data-bs-theme="${passes || fixed ? "dark" : "light"}">`
+        }
+
+        verdict.addEventListener("click", event => {
+          const use = event.target.closest("[data-use-hex]")
+          if (use) {
+            hexInput.value = use.getAttribute("data-use-hex")
+            evaluate(hexInput.value)
+          }
+        })
+        picker.addEventListener("input", () => {
+          hexInput.value = picker.value
+          evaluate(picker.value)
+        })
+        hexInput.addEventListener("input", () => evaluate(hexInput.value))
+
+        // Preview the brand colour on the page chrome (inline style, so it works
+        // without a compiled class); the skin switcher's next click clears it.
+        const preview = (el, role) => {
+          if (!/^#[0-9a-f]{6}$/.test(currentHex)) return
+          paint(el, role)
+          el.style.setProperty("background-color", currentHex, "important")
+          el.setAttribute("data-bs-theme", contrastWhite(currentHex) >= 3 ? "dark" : "light")
+        }
+        document.getElementById("brand-preview-sidebar").addEventListener("click", () => preview(sidebar, "sidebar"))
+        document.getElementById("brand-preview-header").addEventListener("click", () => preview(header, "header"))
+        document.getElementById("brand-preview-clear").addEventListener("click", render)
+
+        evaluate(hexInput.value)
+      })()
+    </script>
+    <!--end::Page script-->
+  </body>
+  <!--end::Body-->
+</html>

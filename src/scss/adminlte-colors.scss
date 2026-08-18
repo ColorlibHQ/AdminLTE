@@ -1,0 +1,35 @@
+/*!
+ *   AdminLTE v4.3.1 — Extended color palette
+ *   Opt-in. Nothing here is in adminlte.css: load this sheet after it and you
+ *   get fourteen additional colours (orange, amber, olive, teal, sky, indigo,
+ *   violet, fuchsia, pink, navy, steel, slate, graphite, midnight) as `--bs-*`
+ *   tokens plus the
+ *   `.bg-*`, `.text-bg-*`, `.text-*`, `.border-*`, `.link-*`, `.bg-gradient-*`,
+ *   `.card-*`, `.callout-*` and `.direct-chat-*` families — with dark mode.
+ *   Every colour takes white text at ≥ 4.6:1. See docs/colors.html.
+ *
+ *   Author: Colorlib
+ *   Website: AdminLTE.io <https://adminlte.io>
+ *   License: Open source - MIT <https://opensource.org/licenses/MIT>
+ */
+
+// Bootstrap Configuration
+// ---------------------------------------------------
+@import "bootstrap/scss/functions";
+@import "bootstrap-overrides";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+
+// AdminLTE Configuration
+// ---------------------------------------------------
+// `mixins` is deliberately not imported: it emits AdminLTE's @keyframes, and
+// this sheet only uses Bootstrap's own mixins and functions.
+@import "variables";
+@import "variables-dark";
+
+// Palette
+// ---------------------------------------------------
+@import "colors/variables";
+@import "colors/colors";

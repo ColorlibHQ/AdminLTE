@@ -1,0 +1,85 @@
+---
+// Hue / chroma polar plot of the extended palette against Bootstrap's theme
+// colours. Angle = OKLCH hue, radius = chroma. Rendered at build time from
+// src/utils/palette.mjs, so it can never drift from the shipped colours.
+import { bootstrapThemeColors, hexToOklch, maxChroma, oklchToHex, palette } from "../../../utils/palette.mjs"
+
+const W = 420
+const cx = 210
+const cy = 210
+const R = 168
+const rmin = 26
+const rOf = (C: number) => rmin + (Math.min(C, 0.24) / 0.24) * (R - rmin)
+const xy = (h: number, r: number): [number, number] => [cx + r * Math.cos((-h * Math.PI) / 180), cy + r * Math.sin((-h * Math.PI) / 180)]
+const f = (n: number) => n.toFixed(1)
+
+// Hue ring, 72 segments coloured in OKLCH at a light, even L
+const ring: string[] = []
+for (let i = 0; i < 72; i++) {
+  const h0 = i * 5
+  const h1 = h0 + 5.4
+  const hm = h0 + 2.5
+  const col = oklchToHex({ L: 0.72, C: Math.min(0.11, maxChroma(0.72, hm) * 0.9), h: hm })
+  const [x0, y0] = xy(h0, R + 10)
+  const [x1, y1] = xy(h1, R + 10)
+  const [x2, y2] = xy(h1, R + 22)
+  const [x3, y3] = xy(h0, R + 22)
+  ring.push(`M${f(x0)},${f(y0)} A${R + 10},${R + 10} 0 0 0 ${f(x1)},${f(y1)} L${f(x2)},${f(y2)} A${R + 22},${R + 22} 0 0 1 ${f(x3)},${f(y3)} Z|${col}`)
+}
+
+// Labels sit radially outside their marker, anchored by direction
+const label = (h: number, r: number) => {
+  const [lx, ly] = xy(h, r + 13)
+  const dx = Math.cos((-h * Math.PI) / 180)
+  return { x: f(lx), y: f(ly + 4), anchor: dx > 0.35 ? "start" : (dx < -0.35 ? "end" : "middle") }
+}
+
+const bootstrap = bootstrapThemeColors.map(c => {
+  const r = rOf(c.chroma)
+  const [x, y] = xy(c.hue, r)
+  return { name: c.name, hex: c.hex, x: f(x), y: f(y), label: c.chroma > 0.05 ? label(c.hue, r + 3) : null }
+})
+
+const dots = palette.map(c => {
+  const lch = hexToOklch(c.hex)
+  const r = rOf(lch.C)
+  const [x, y] = xy(lch.h, r)
+  const neutral = c.role === "neutral"
+  return { name: c.name, hex: c.hex, x: f(x), y: f(y), r: neutral ? 6 : 8, label: neutral ? null : label(lch.h, r) }
+})
+
+const gridCircles = [0.1, 0.2].map(c => f(rOf(c)))
+const axes = [0, 90, 180, 270].map(h => {
+  const [x, y] = xy(h, R + 8)
+  const [tx, ty] = xy(h, R + 30)
+  return { x: f(x), y: f(y), tx: f(tx), ty: f(ty + 4), text: h === 0 ? "h 0°" : `${h}°` }
+})
+---
+
+<svg
+  viewBox={`0 0 ${W} ${W}`}
+  class="d-block w-100"
+  style="max-width: 420px; font-family: var(--bs-body-font-family);"
+  role="img"
+  aria-label="Polar plot of hue and chroma. Filled dots are the palette colours; hollow rings are Bootstrap's theme colours."
+>
+  {ring.map(seg => { const [d, fill] = seg.split("|"); return <path d={d} fill={fill} /> })}
+  {gridCircles.map(r => <circle cx={cx} cy={cy} r={r} fill="none" stroke="var(--bs-border-color)" stroke-dasharray="3 4" />)}
+  <circle cx={cx} cy={cy} r={rmin} fill="none" stroke="var(--bs-border-color)" />
+  {axes.map(a => <line x1={cx} y1={cy} x2={a.x} y2={a.y} stroke="var(--bs-border-color)" stroke-dasharray="3 4" />)}
+  {axes.map(a => <text x={a.tx} y={a.ty} text-anchor="middle" font-size="10" fill="var(--bs-secondary-color)">{a.text}</text>)}
+  <text x={cx + rOf(0.1) + 3} y={cy - 4} font-size="10" fill="var(--bs-secondary-color)">C .10</text>
+  <text x={cx + rOf(0.2) + 3} y={cy - 4} font-size="10" fill="var(--bs-secondary-color)">C .20</text>
+  {bootstrap.map(b => (
+    <>
+      <circle cx={b.x} cy={b.y} r="7" fill="var(--bs-body-bg)" stroke={b.hex} stroke-width="3" />
+      {b.label && <text x={b.label.x} y={b.label.y} text-anchor={b.label.anchor} font-size="10.5" font-style="italic" fill="var(--bs-secondary-color)">{b.name}</text>}
+    </>
+  ))}
+  {dots.map(d => (
+    <>
+      <circle cx={d.x} cy={d.y} r={d.r} fill={d.hex} stroke="var(--bs-body-bg)" stroke-width="2" />
+      {d.label && <text x={d.label.x} y={d.label.y} text-anchor={d.label.anchor} font-size="11" font-weight="600" fill="var(--bs-body-color)">{d.name}</text>}
+    </>
+  ))}
+</svg>

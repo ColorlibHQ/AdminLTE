@@ -34,10 +34,12 @@ const PAGES = [
   '/layout/top-nav.html',
   '/UI/general.html',
   '/UI/ribbons.html',
+  '/UI/colors.html',
   '/widgets/social.html',
   '/pages/gallery.html',
   '/pages/search-results.html',
-  '/docs/components/miscellaneous.html'
+  '/docs/components/miscellaneous.html',
+  '/docs/colors.html'
 ]
 
 // Failures gate on impact, so new pages can't regress below this bar.

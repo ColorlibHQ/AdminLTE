@@ -532,6 +532,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="../docs/colors.html" class="nav-link">
+                  <i class="nav-icon bi bi-palette"></i>
+                  <p>Colors</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="../docs/rtl.html" class="nav-link">
                   <i class="nav-icon bi bi-text-paragraph"></i>
                   <p>RTL Support</p>
@@ -1315,13 +1321,19 @@
                       <a href="color-mode.html">Color Mode</a> docs page for the toggle
                       implementation.
                     </p>
-                    <h5 id="css-variables-instead-of-bg--overrides">
-                      CSS variables instead of <code>.bg-*</code> overrides
+                    <h5 id="extra-colours-moved-to-an-opt-in-stylesheet">
+                      Extra colours moved to an opt-in stylesheet
                     </h5>
                     <p>
                       AdminLTE 3 shipped a lot of one-off colour classes (<code>.bg-navy</code>,
-                      <code>.bg-purple</code>, <code>.bg-fuchsia</code>, etc.). In v4, prefer
-                      Bootstrap 5.3’s CSS-variable model:
+                      <code>.bg-purple</code>, <code>.bg-fuchsia</code>,
+                      <code>.bg-gradient-*</code>, the sidebar/navbar skins) inside its main CSS. In
+                      v4 the core stylesheet only knows Bootstrap’s theme colours; the extended
+                      palette is a separate, opt-in file, <code>dist/css/adminlte-colors.css</code>,
+                      with a redesigned set of fourteen colours (every one takes white text at ≥
+                      4.5:1) and the same class families for each — <code>.bg-*</code>,
+                      <code>.text-bg-*</code>, <code>.bg-gradient-*</code>, <code>.card-*</code>,
+                      <code>.callout-*</code>, ….
                     </p>
                     <pre
                       class="astro-code dark-plus"
@@ -1330,12 +1342,18 @@
                       data-language="html"
                     ><code><span class="line"><span style="color:#6A9955">&lt;!-- AdminLTE 3 --&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card bg-navy&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">aside</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;main-sidebar sidebar-dark-primary&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">aside</span><span style="color:#808080">&gt;</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A9955">&lt;!-- AdminLTE 4 — use Bootstrap utilities + CSS variables --&gt;</span></span>
-<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card text-bg-primary&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span></code></pre>
+<span class="line"><span style="color:#6A9955">&lt;!-- AdminLTE 4 — load css/adminlte-colors.css after adminlte.css --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card text-bg-navy&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">aside</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-sidebar text-bg-navy shadow&quot;</span><span style="color:#9CDCFE"> data-bs-theme</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">…</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">aside</span><span style="color:#808080">&gt;</span></span></code></pre>
                     <p>
-                      For full retheming, override <code>--bs-primary</code> etc. on
-                      <code>:root</code>. See <a href="customization.html">Customization</a>.
+                      <code>lightblue</code> became <code>sky</code> and <code>maroon</code> became
+                      <code>pink</code>; <code>$lte-palette-aliases</code> restores the old names if
+                      your markup depends on them. Everything else — the palette, skins, adding your
+                      brand colours — is on the <a href="colors.html">Colors</a> page. For retheming
+                      Bootstrap’s own colours, override <code>--bs-primary</code> etc. on
+                      <code>:root</code>; see <a href="customization.html">Customization</a>.
                     </p>
                     <h5 id="icons">Icons</h5>
                     <p>
