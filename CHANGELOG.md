@@ -5,6 +5,12 @@ All notable changes to AdminLTE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- **Charts unreadable in dark mode.** ApexCharts drew its light-theme tooltip (white background) while the tooltip text inherited the page's dark-mode body colour — near-white on white — and axis labels stayed dark grey on the dark card, in every browser. Every demo page now carries a small shared helper (`_scripts`): it sets ApexCharts' global default `theme.mode` from `<html data-bs-theme>` before any chart is created, keeps the chart background transparent, and watches the attribute so every chart with a `chart.id` follows the toggle, the OS preference in auto mode, or your own code. All demo charts got ids. Documented as the **“Charts that follow dark mode”** recipe (#6105, reported by @Yusk03).
+
 ## [4.4.0] - 2026-08-18
 
 ### Added

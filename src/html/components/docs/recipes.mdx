@@ -382,6 +382,40 @@ Bootstrap modal + a tiny confirmation pattern:
 
 The [Color Mode](color-mode.html), [Accessibility](javascript/accessibility.html), and the bundled JS handle Escape-to-close, focus trap, and keyboard navigation inside the modal automatically.
 
+##### Charts that follow dark mode
+
+Charting libraries draw their own text and tooltips, so they know nothing about `data-bs-theme`. ApexCharts, for instance, renders a light tooltip and dark-grey axis labels by default — on a dark card the tooltip's inherited text colour is near-white on white and unreadable. The library has a dark theme; you just have to tell it which one to use, and update when the mode changes.
+
+Every demo page ships this helper (it is part of the shared scripts at the bottom of the page). It sets ApexCharts' global default `theme.mode` from `<html data-bs-theme>` **before** any chart is created, keeps the chart background transparent (dark mode would otherwise paint it grey), and watches the attribute so every chart that has a `chart.id` follows the toggle, the OS preference in auto mode, or your own code:
+
+```html
+<script>
+  const mode = () => (document.documentElement.getAttribute("data-bs-theme") === "dark" ? "dark" : "light")
+  globalThis.Apex ||= {}                                   // ApexCharts' global options object
+  Apex.theme = { mode: mode() }
+  Apex.chart = Object.assign(Apex.chart || {}, { background: "transparent" })
+  new MutationObserver(() => {
+    const next = mode()
+    Apex.theme = { mode: next }
+    for (const { chart } of Apex._chartInstances || []) {
+      chart.updateOptions({ theme: { mode: next } }, false, false)
+    }
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-bs-theme"] })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"></script>
+```
+
+Give each chart an `id` so it is registered for the live update:
+
+```js
+new ApexCharts(document.querySelector("#revenue-chart"), {
+  chart: { id: "revenue-chart", type: "area", height: 300 },
+  // …
+}).render()
+```
+
+If you prefer the ColorMode event to the attribute observer, `document.addEventListener("changed.lte.color-mode", e => …)` receives `e.detail.resolved` (`"light"` or `"dark"`); the observer above additionally covers OS-preference changes in auto mode and any code that sets the attribute directly. The same idea applies to other libraries — Chart.js reads `Chart.defaults.color` / `Chart.defaults.borderColor`, which you can set from `getComputedStyle(document.body)` and re-apply with `chart.update()` in the same observer.
+
 ##### Where to next
 
 - [JavaScript Plugins Overview](javascript/plugins-overview.html) — every plugin's event names and methods

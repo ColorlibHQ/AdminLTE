@@ -1243,6 +1243,69 @@
                       handle Escape-to-close, focus trap, and keyboard navigation inside the modal
                       automatically.
                     </p>
+                    <h5 id="charts-that-follow-dark-mode">Charts that follow dark mode</h5>
+                    <p>
+                      Charting libraries draw their own text and tooltips, so they know nothing
+                      about <code>data-bs-theme</code>. ApexCharts, for instance, renders a light
+                      tooltip and dark-grey axis labels by default — on a dark card the tooltip’s
+                      inherited text colour is near-white on white and unreadable. The library has a
+                      dark theme; you just have to tell it which one to use, and update when the
+                      mode changes.
+                    </p>
+                    <p>
+                      Every demo page ships this helper (it is part of the shared scripts at the
+                      bottom of the page). It sets ApexCharts’ global default
+                      <code>theme.mode</code> from <code>&lt;html data-bs-theme&gt;</code>
+                      <strong>before</strong> any chart is created, keeps the chart background
+                      transparent (dark mode would otherwise paint it grey), and watches the
+                      attribute so every chart that has a <code>chart.id</code> follows the toggle,
+                      the OS preference in auto mode, or your own code:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#DCDCAA"> mode</span><span style="color:#D4D4D4"> = () </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">documentElement</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getAttribute</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;data-bs-theme&quot;</span><span style="color:#D4D4D4">) === </span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#D4D4D4"> ? </span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#D4D4D4"> : </span><span style="color:#CE9178">&quot;light&quot;</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#9CDCFE">  globalThis</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">Apex</span><span style="color:#D4D4D4"> ||= {}                                   </span><span style="color:#6A9955">// ApexCharts&#39; global options object</span></span>
+<span class="line"><span style="color:#9CDCFE">  Apex</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">theme</span><span style="color:#D4D4D4"> = { </span><span style="color:#9CDCFE">mode:</span><span style="color:#DCDCAA"> mode</span><span style="color:#D4D4D4">() }</span></span>
+<span class="line"><span style="color:#9CDCFE">  Apex</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">chart</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">Object</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">assign</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">Apex</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">chart</span><span style="color:#D4D4D4"> || {}, { </span><span style="color:#9CDCFE">background:</span><span style="color:#CE9178"> &quot;transparent&quot;</span><span style="color:#D4D4D4"> })</span></span>
+<span class="line"><span style="color:#569CD6">  new</span><span style="color:#DCDCAA"> MutationObserver</span><span style="color:#D4D4D4">(() </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> next</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">mode</span><span style="color:#D4D4D4">()</span></span>
+<span class="line"><span style="color:#9CDCFE">    Apex</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">theme</span><span style="color:#D4D4D4"> = { </span><span style="color:#9CDCFE">mode:</span><span style="color:#9CDCFE"> next</span><span style="color:#D4D4D4"> }</span></span>
+<span class="line"><span style="color:#C586C0">    for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">const</span><span style="color:#D4D4D4"> { </span><span style="color:#4FC1FF">chart</span><span style="color:#D4D4D4"> } </span><span style="color:#569CD6">of</span><span style="color:#9CDCFE"> Apex</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">_chartInstances</span><span style="color:#D4D4D4"> || []) {</span></span>
+<span class="line"><span style="color:#9CDCFE">      chart</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">updateOptions</span><span style="color:#D4D4D4">({ </span><span style="color:#9CDCFE">theme:</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">mode:</span><span style="color:#9CDCFE"> next</span><span style="color:#D4D4D4"> } }, </span><span style="color:#569CD6">false</span><span style="color:#D4D4D4">, </span><span style="color:#569CD6">false</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"><span style="color:#D4D4D4">  }).</span><span style="color:#DCDCAA">observe</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">documentElement</span><span style="color:#D4D4D4">, { </span><span style="color:#9CDCFE">attributes:</span><span style="color:#569CD6"> true</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">attributeFilter:</span><span style="color:#D4D4D4"> [</span><span style="color:#CE9178">&quot;data-bs-theme&quot;</span><span style="color:#D4D4D4">] })</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      Give each chart an <code>id</code> so it is registered for the live update:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="js"
+                    ><code><span class="line"><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> ApexCharts</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;#revenue-chart&quot;</span><span style="color:#D4D4D4">), {</span></span>
+<span class="line"><span style="color:#9CDCFE">  chart:</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">id:</span><span style="color:#CE9178"> &quot;revenue-chart&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">type:</span><span style="color:#CE9178"> &quot;area&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">height:</span><span style="color:#B5CEA8"> 300</span><span style="color:#D4D4D4"> },</span></span>
+<span class="line"><span style="color:#6A9955">  // …</span></span>
+<span class="line"><span style="color:#D4D4D4">}).</span><span style="color:#DCDCAA">render</span><span style="color:#D4D4D4">()</span></span></code></pre>
+                    <p>
+                      If you prefer the ColorMode event to the attribute observer,
+                      <code
+                        >document.addEventListener(&quot;changed.lte.color-mode&quot;, e =&gt;
+                        …)</code
+                      >
+                      receives <code>e.detail.resolved</code> (<code>&quot;light&quot;</code> or
+                      <code>&quot;dark&quot;</code>); the observer above additionally covers
+                      OS-preference changes in auto mode and any code that sets the attribute
+                      directly. The same idea applies to other libraries — Chart.js reads
+                      <code>Chart.defaults.color</code> / <code>Chart.defaults.borderColor</code>,
+                      which you can set from <code>getComputedStyle(document.body)</code> and
+                      re-apply with <code>chart.update()</code> in the same observer.
+                    </p>
                     <h5 id="where-to-next">Where to next</h5>
                     <ul>
                       <li>
@@ -1328,6 +1391,38 @@
       });
     </script>
     <!--end::OverlayScrollbars Configure-->
+    <!--begin::Charts follow the colour mode-->
+    <script>
+      // ApexCharts draws light-theme tooltips and axis text unless told otherwise,
+      // which is unreadable in dark mode (#6105). Give it the page's colour mode as
+      // a global default before any chart is created — this runs before the chart
+      // pages' own scripts — and keep every chart that has a `chart.id` in step
+      // when the mode changes (ColorMode, the OS in auto mode, or your own code).
+      (() => {
+        'use strict';
+        const mode = () =>
+          document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : 'light';
+        // `Apex` is ApexCharts' global-options object; it must exist before the library loads.
+        // theme.mode also sets a dark chart background — keep the card's instead.
+        // eslint-disable-next-line unicorn/no-global-object-property-assignment
+        globalThis.Apex ||= {};
+        const apex = globalThis.Apex;
+        apex.theme = { mode: mode() };
+        apex.chart = Object.assign(apex.chart || {}, { background: 'transparent' });
+        new MutationObserver(() => {
+          const next = mode();
+          apex.theme = { mode: next };
+          const instances = apex._chartInstances || [];
+          for (const { chart } of instances) {
+            chart.updateOptions({ theme: { mode: next } }, false, false);
+          }
+        }).observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['data-bs-theme'],
+        });
+      })();
+    </script>
+    <!--end::Charts follow the colour mode-->
 
     <!--begin::Color Mode Toggle-->
     <!-- The light/dark/auto switcher ships in adminlte.js as the ColorMode

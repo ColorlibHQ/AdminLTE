@@ -1242,6 +1242,7 @@ const sales_chart_options = {
     }
   ],
   chart: {
+    id: "sales-chart",
     height: 180,
     type: "area",
     toolbar: {
@@ -1291,6 +1292,7 @@ function createSparklineChart(selector, data) {
   const options = {
     series: [{ data }],
     chart: {
+      id: selector.replace(/^#/, ""),
       type: "line",
       width: 150,
       height: 30,
@@ -1363,6 +1365,7 @@ createSparklineChart("#table-sparkline-7", table_sparkline_7_data)
 const pie_chart_options = {
   series: [700, 500, 400, 600, 300, 100],
   chart: {
+    id: "pie-chart",
     type: "donut",
     // Pin an explicit height to avoid an ApexCharts ResizeObserver feedback
     // loop on browser zoom (most visible on Edge). Fixes #6019.

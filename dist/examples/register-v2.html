@@ -237,6 +237,38 @@
       });
     </script>
     <!--end::OverlayScrollbars Configure-->
+    <!--begin::Charts follow the colour mode-->
+    <script>
+      // ApexCharts draws light-theme tooltips and axis text unless told otherwise,
+      // which is unreadable in dark mode (#6105). Give it the page's colour mode as
+      // a global default before any chart is created — this runs before the chart
+      // pages' own scripts — and keep every chart that has a `chart.id` in step
+      // when the mode changes (ColorMode, the OS in auto mode, or your own code).
+      (() => {
+        'use strict';
+        const mode = () =>
+          document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : 'light';
+        // `Apex` is ApexCharts' global-options object; it must exist before the library loads.
+        // theme.mode also sets a dark chart background — keep the card's instead.
+        // eslint-disable-next-line unicorn/no-global-object-property-assignment
+        globalThis.Apex ||= {};
+        const apex = globalThis.Apex;
+        apex.theme = { mode: mode() };
+        apex.chart = Object.assign(apex.chart || {}, { background: 'transparent' });
+        new MutationObserver(() => {
+          const next = mode();
+          apex.theme = { mode: next };
+          const instances = apex._chartInstances || [];
+          for (const { chart } of instances) {
+            chart.updateOptions({ theme: { mode: next } }, false, false);
+          }
+        }).observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['data-bs-theme'],
+        });
+      })();
+    </script>
+    <!--end::Charts follow the colour mode-->
 
     <!--begin::Color Mode Toggle-->
     <!-- The light/dark/auto switcher ships in adminlte.js as the ColorMode
