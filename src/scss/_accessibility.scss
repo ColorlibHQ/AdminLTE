@@ -21,9 +21,12 @@
   }
 
   &:hover {
-    color: var(--bs-white);
+    // `--bs-primary-emphasis` does not exist; Bootstrap emits
+    // `--bs-primary-text-emphasis`, which is dark in light mode and light in
+    // dark mode — so pair it with the body background for the text colour.
+    color: var(--bs-body-bg);
     text-decoration: none;
-    background: var(--bs-primary-emphasis);
+    background: var(--bs-primary-text-emphasis);
   }
 }
 
@@ -291,8 +294,11 @@ fieldset {
     content: " (" attr(href) ")";
   }
 
-  /* Print Layout Fix - Ensure sidebar and main content are both visible */
-  .app-wrapper {
+  /* Print Layout Fix - Ensure sidebar and main content are both visible.
+     `:not(.d-print-none)` on the two rules that force `display`, so Bootstrap's
+     print display utilities keep working: these are defaults for the standard
+     layout, not something a page should have to fight to hide. */
+  .app-wrapper:not(.d-print-none) {
     display: grid !important;
     grid-template-rows: auto 1fr auto !important;
     grid-template-columns: auto 1fr !important;
@@ -302,7 +308,7 @@ fieldset {
     display: none !important;
   }
 
-  .app-sidebar {
+  .app-sidebar:not(.d-print-none) {
     position: static !important;
     display: block !important;
     min-width: 200px !important;

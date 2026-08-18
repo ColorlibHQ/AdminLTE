@@ -15749,9 +15749,9 @@ html.maximized-card {
   outline-offset: 2px;
 }
 .skip-link:hover {
-  color: var(--bs-white);
+  color: var(--bs-body-bg);
   text-decoration: none;
-  background: var(--bs-primary-emphasis);
+  background: var(--bs-primary-text-emphasis);
 }
 
 /* Enhanced Focus Indicators - WCAG 2.4.7: Focus Visible */
@@ -15980,8 +15980,11 @@ fieldset legend {
     font-size: 0.8em;
     content: " (" attr(href) ")";
   }
-  /* Print Layout Fix - Ensure sidebar and main content are both visible */
-  .app-wrapper {
+  /* Print Layout Fix - Ensure sidebar and main content are both visible.
+     `:not(.d-print-none)` on the two rules that force `display`, so Bootstrap's
+     print display utilities keep working: these are defaults for the standard
+     layout, not something a page should have to fight to hide. */
+  .app-wrapper:not(.d-print-none) {
     display: grid !important;
     grid-template-rows: auto 1fr auto !important;
     grid-template-columns: auto 1fr !important;
@@ -15989,7 +15992,7 @@ fieldset legend {
   .sidebar-overlay {
     display: none !important;
   }
-  .app-sidebar {
+  .app-sidebar:not(.d-print-none) {
     position: static !important;
     display: block !important;
     min-width: 200px !important;
